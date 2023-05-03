@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D5E6F51D2
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 09:36:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E8EC6F5303
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 10:21:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A740D10E1CA;
-	Wed,  3 May 2023 07:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E04410E0CC;
+	Wed,  3 May 2023 08:21:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 421AA10E106;
- Wed,  3 May 2023 07:36:48 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBE7E10E0CC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 May 2023 08:21:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683099408; x=1714635408;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=8qja3xL3o15/P6MEI7nlTlj9pz/7Jct5MsrbFwz2PEU=;
- b=ihXM87gVTYNaHWL0eGCTJ43gBJScmaPJaykWNM1Z45P+tVunQt5f7uWY
- R86rWtbJDJP+SVIT18LnAL5JzckEklD3mPWFYDG5QgJ8zm3ppdpRfo57W
- ThVzh4zwq3FZfdlF0oKmrzTjr/Wwl/Nx3Oe8wROoBT0H4rhyVwun4J7Nj
- Wuv8/bG8ouTDf28iNqSI8sJXug2SBEwM6eRk/ve2dAJ+3jdQWM8ojv/cU
- CKkuCQspXTa8RW9QYyh7Ez02H1DHaw+7XmLOSrMnhuXrIrJ6PXcvyj3UG
- qjjiqJkjfVQctqp1VzH41qgYSOrFf9WYVgxFt4ZFAol645DcOOexJNosI w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="347409274"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="347409274"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 00:36:47 -0700
+ t=1683102065; x=1714638065;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=OoY6ckN95ZwmzLHgo5V5T4HHA61vTFUDxbnMeMILiaA=;
+ b=Ljq5gtKyIo2F0DYMbikXvcio4T6m6yTOwIKABYuRfPzDXox80GYH/YeY
+ 8WLokHO4Ol5Wa7ufQSgiFKYWWbqnvTRVUa5qJB8GYy2kGH7I9cqgtHMjr
+ Ln5LTbZeNoIHeuzHDrw240Wy3w/EtGDhSLL+E+zM+R9RJlm4e8pwgkgnp
+ 9LilQ691gZxJRsk6qmRhWU7fUS/hRDJT7Tl/M03Xe+2jQJs+M8Hy9ozM4
+ 8UHfRiTuFtorNp2a6ztsY4OYEM0XTYxKKQNC4elLjzKHjnQawlXDO81RC
+ EIOLR7D4ab3W1qJx8f0dlMg6wWv9G1ToVI8jEoC5gjclLusOMapdPrjYq Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="434910579"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="434910579"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 01:21:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="729239905"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="729239905"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 00:36:45 -0700
-Date: Wed, 3 May 2023 10:36:42 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <ZFIPCm+k9TCyfMfS@intel.com>
-References: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
- <20230502143906.2401-3-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="727058521"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="727058521"
+Received: from ebrosekx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.204])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 01:21:03 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230426135019.7603-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230426135019.7603-1-ville.syrjala@linux.intel.com>
+ <20230426135019.7603-2-ville.syrjala@linux.intel.com>
+Date: Wed, 03 May 2023 11:21:00 +0300
+Message-ID: <87ild925cj.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230502143906.2401-3-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 02/11] drm/i915/mst: Remove broken MST DSC
- support
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 1/7] drm/i915: Define bitmasks for ilk
+ pfit window pos/size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,294 +62,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 02, 2023 at 05:38:57PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> The MST DSC code has a myriad of issues:
-> - Platform checks are wrong (MST+DSC is TGL+ only IIRC)
-> - Return values of .mode_valid_ctx() are wrong
-> - .mode_valid_ctx() assumes bigjoiner might be used, but ther rest
->   of the code doesn't agree
-> - compressed bpp calculations don't make sense
-> - FEC handling needs to consider the entire link as opposed to just
->   the single stream. Currently FEC would only get enabled if the
->   first enabled stream is compressed. Also I'm not seeing anything
->   that would account for the FEC overhead in any bandwidth calculations
-> - PPS SDP is only handled for the first stream via the dig_port
->   hooks, other streams will not be transmittitng any PPS SDPs
-> - PPS SDP readout is missing (also missing for SST!)
-> - VDSC readout is missing (also missing for SST!)
-> 
-> The FEC issues is really the big one since we have no way currently
-> to apply such link wide configuration constraints. Changing that is
-> going to require a much bigger rework of the higher level modeset
-> .compute_config() logic. We will also need such a rework to properly
-> distribute the available bandwidth across all the streams on the
-> same link (which is a must to eg. enable deep color).
+On Wed, 26 Apr 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Define and use the bitmasks for the x/y components
+> of the ilk+ panel filter window pos/size registers.
+>
+> Note that we stick to the full 16 bit mask even though
+> the actual hardware limits are lower (and somewhat
+> platform dependent). BDW is actually limited to
+> 13 bits horizontal and 12 bits vertical, with the high
+> bits being hardwired to zero. HSW should have the same
+> limits as BDW. And pre-HSW should be limited to 12bits
+> in both directions as that's already the limit of the
+> transcoder timing registers. Curiously on HSW and earlier
+> platforms all 16 bits can actually be set, but presumably
+> the hardware ignores the high bits.
+>
+> v2: Switch back to full 16bit masks since that's what
+>     we use transcoder timign regs and PIPESRC as well
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Also all the things you mentioned are subject for discussion, for example
-I see that FEC overhead is actually accounted for bpp calculation for instance.
-We usually improve things by gradually fixing, because if we act same way towards
-all wrong code in the driver, we could end up removing the whole i915.
-So from my side I would nack it, at least until you have a code which handles
-all of this better - I have no doubt you probably have some ideas in your mind, so lets be constructive at least and propose something better first.
-This code doesn't cause any regressions, but still provides "some" support to DP MST DSC to say the least and even if that would be removed, if some of those users 
-refer to me, I would probably then just point to this mail discussion everytime.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Stan
-
-
-> 
-> Cc: stable@vger.kernel.org
-> Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Fixes: d51f25eb479a ("drm/i915: Add DSC support to MST path")
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 176 +-------------------
->  1 file changed, 5 insertions(+), 171 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 44c15d6faac4..d762f37fafb5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -72,8 +72,7 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
->  						int min_bpp,
->  						struct link_config_limits *limits,
->  						struct drm_connector_state *conn_state,
-> -						int step,
-> -						bool dsc)
-> +						int step)
->  {
->  	struct drm_atomic_state *state = crtc_state->uapi.state;
->  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> @@ -104,7 +103,7 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
->  	for (bpp = max_bpp; bpp >= min_bpp; bpp -= step) {
->  		drm_dbg_kms(&i915->drm, "Trying bpp %d\n", bpp);
->  
-> -		ret = intel_dp_mst_check_constraints(i915, bpp, adjusted_mode, crtc_state, dsc);
-> +		ret = intel_dp_mst_check_constraints(i915, bpp, adjusted_mode, crtc_state, false);
->  		if (ret)
->  			continue;
->  
-> @@ -136,11 +135,8 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
->  		drm_dbg_kms(&i915->drm, "failed finding vcpi slots:%d\n",
->  			    slots);
->  	} else {
-> -		if (!dsc)
-> -			crtc_state->pipe_bpp = bpp;
-> -		else
-> -			crtc_state->dsc.compressed_bpp = bpp;
-> -		drm_dbg_kms(&i915->drm, "Got %d slots for pipe bpp %d dsc %d\n", slots, bpp, dsc);
-> +		crtc_state->pipe_bpp = bpp;
-> +		drm_dbg_kms(&i915->drm, "Got %d slots for pipe bpp %d\n", slots, bpp);
->  	}
->  
->  	return slots;
-> @@ -157,7 +153,7 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
->  
->  	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, limits->max_bpp,
->  						     limits->min_bpp, limits,
-> -						     conn_state, 2 * 3, false);
-> +						     conn_state, 2 * 3);
->  
->  	if (slots < 0)
->  		return slots;
-> @@ -173,99 +169,6 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
->  	return 0;
+>  drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++----
+>  drivers/gpu/drm/i915/i915_reg.h              |  8 ++++++++
+>  2 files changed, 16 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index bf391a6cd8d6..5e40a0ef3457 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -812,8 +812,10 @@ static void ilk_pfit_enable(const struct intel_crtc_=
+state *crtc_state)
+>  	else
+>  		intel_de_write_fw(dev_priv, PF_CTL(pipe), PF_ENABLE |
+>  				  PF_FILTER_MED_3x3);
+> -	intel_de_write_fw(dev_priv, PF_WIN_POS(pipe), x << 16 | y);
+> -	intel_de_write_fw(dev_priv, PF_WIN_SZ(pipe), width << 16 | height);
+> +	intel_de_write_fw(dev_priv, PF_WIN_POS(pipe),
+> +			  PF_WIN_XPOS(x) | PF_WIN_YPOS(y));
+> +	intel_de_write_fw(dev_priv, PF_WIN_SZ(pipe),
+> +			  PF_WIN_XSIZE(width) | PF_WIN_YSIZE(height));
 >  }
->  
-> -static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-> -						struct intel_crtc_state *crtc_state,
-> -						struct drm_connector_state *conn_state,
-> -						struct link_config_limits *limits)
-> -{
-> -	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> -	struct intel_dp *intel_dp = &intel_mst->primary->dp;
-> -	struct intel_connector *connector =
-> -		to_intel_connector(conn_state->connector);
-> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> -	const struct drm_display_mode *adjusted_mode =
-> -		&crtc_state->hw.adjusted_mode;
-> -	int slots = -EINVAL;
-> -	int i, num_bpc;
-> -	u8 dsc_bpc[3] = {0};
-> -	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
-> -	u8 dsc_max_bpc;
-> -	bool need_timeslot_recalc = false;
-> -	u32 last_compressed_bpp;
-> -
-> -	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
-> -	if (DISPLAY_VER(i915) >= 12)
-> -		dsc_max_bpc = min_t(u8, 12, conn_state->max_requested_bpc);
-> -	else
-> -		dsc_max_bpc = min_t(u8, 10, conn_state->max_requested_bpc);
-> -
-> -	max_bpp = min_t(u8, dsc_max_bpc * 3, limits->max_bpp);
-> -	min_bpp = limits->min_bpp;
-> -
-> -	num_bpc = drm_dp_dsc_sink_supported_input_bpcs(intel_dp->dsc_dpcd,
-> -						       dsc_bpc);
-> -
-> -	drm_dbg_kms(&i915->drm, "DSC Source supported min bpp %d max bpp %d\n",
-> -		    min_bpp, max_bpp);
-> -
-> -	sink_max_bpp = dsc_bpc[0] * 3;
-> -	sink_min_bpp = sink_max_bpp;
-> -
-> -	for (i = 1; i < num_bpc; i++) {
-> -		if (sink_min_bpp > dsc_bpc[i] * 3)
-> -			sink_min_bpp = dsc_bpc[i] * 3;
-> -		if (sink_max_bpp < dsc_bpc[i] * 3)
-> -			sink_max_bpp = dsc_bpc[i] * 3;
-> -	}
-> -
-> -	drm_dbg_kms(&i915->drm, "DSC Sink supported min bpp %d max bpp %d\n",
-> -		    sink_min_bpp, sink_max_bpp);
-> -
-> -	if (min_bpp < sink_min_bpp)
-> -		min_bpp = sink_min_bpp;
-> -
-> -	if (max_bpp > sink_max_bpp)
-> -		max_bpp = sink_max_bpp;
-> -
-> -	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_bpp,
-> -						     min_bpp, limits,
-> -						     conn_state, 2 * 3, true);
-> -
-> -	if (slots < 0)
-> -		return slots;
-> -
-> -	last_compressed_bpp = crtc_state->dsc.compressed_bpp;
-> -
-> -	crtc_state->dsc.compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915,
-> -									last_compressed_bpp,
-> -									crtc_state->pipe_bpp);
-> -
-> -	if (crtc_state->dsc.compressed_bpp != last_compressed_bpp)
-> -		need_timeslot_recalc = true;
-> -
-> -	/*
-> -	 * Apparently some MST hubs dislike if vcpi slots are not matching precisely
-> -	 * the actual compressed bpp we use.
-> -	 */
-> -	if (need_timeslot_recalc) {
-> -		slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state,
-> -							     crtc_state->dsc.compressed_bpp,
-> -							     crtc_state->dsc.compressed_bpp,
-> -							     limits, conn_state, 2 * 3, true);
-> -		if (slots < 0)
-> -			return slots;
-> -	}
-> -
-> -	intel_link_compute_m_n(crtc_state->dsc.compressed_bpp,
-> -			       crtc_state->lane_count,
-> -			       adjusted_mode->crtc_clock,
-> -			       crtc_state->port_clock,
-> -			       &crtc_state->dp_m_n,
-> -			       crtc_state->fec_enable);
-> -	crtc_state->dp_m_n.tu = slots;
-> -
-> -	return 0;
-> -}
->  static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
->  				     struct intel_crtc_state *crtc_state,
->  				     struct drm_connector_state *conn_state)
-> @@ -349,29 +252,6 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
->  
->  	ret = intel_dp_mst_compute_link_config(encoder, pipe_config,
->  					       conn_state, &limits);
-> -
-> -	if (ret == -EDEADLK)
-> -		return ret;
-> -
-> -	/* enable compression if the mode doesn't fit available BW */
-> -	drm_dbg_kms(&dev_priv->drm, "Force DSC en = %d\n", intel_dp->force_dsc_en);
-> -	if (ret || intel_dp->force_dsc_en) {
-> -		/*
-> -		 * Try to get at least some timeslots and then see, if
-> -		 * we can fit there with DSC.
-> -		 */
-> -		drm_dbg_kms(&dev_priv->drm, "Trying to find VCPI slots in DSC mode\n");
-> -
-> -		ret = intel_dp_dsc_mst_compute_link_config(encoder, pipe_config,
-> -							   conn_state, &limits);
-> -		if (ret < 0)
-> -			return ret;
-> -
-> -		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
-> -						  conn_state, &limits,
-> -						  pipe_config->dp_m_n.tu, false);
-> -	}
-> -
->  	if (ret)
->  		return ret;
->  
-> @@ -909,10 +789,6 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
->  	int max_dotclk = to_i915(connector->dev)->max_dotclk_freq;
->  	int max_rate, mode_rate, max_lanes, max_link_clock;
->  	int ret;
-> -	bool dsc = false, bigjoiner = false;
-> -	u16 dsc_max_output_bpp = 0;
-> -	u8 dsc_slice_count = 0;
-> -	int target_clock = mode->clock;
->  
->  	if (drm_connector_is_unregistered(connector)) {
->  		*status = MODE_ERROR;
-> @@ -950,48 +826,6 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
->  		return 0;
->  	}
->  
-> -	if (intel_dp_need_bigjoiner(intel_dp, mode->hdisplay, target_clock)) {
-> -		bigjoiner = true;
-> -		max_dotclk *= 2;
-> -	}
-> -
-> -	if (DISPLAY_VER(dev_priv) >= 10 &&
-> -	    drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)) {
-> -		/*
-> -		 * TBD pass the connector BPC,
-> -		 * for now U8_MAX so that max BPC on that platform would be picked
-> -		 */
-> -		int pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, U8_MAX);
-> -
-> -		if (drm_dp_sink_supports_fec(intel_dp->fec_capable)) {
-> -			dsc_max_output_bpp =
-> -				intel_dp_dsc_get_output_bpp(dev_priv,
-> -							    max_link_clock,
-> -							    max_lanes,
-> -							    target_clock,
-> -							    mode->hdisplay,
-> -							    bigjoiner,
-> -							    pipe_bpp, 64) >> 4;
-> -			dsc_slice_count =
-> -				intel_dp_dsc_get_slice_count(intel_dp,
-> -							     target_clock,
-> -							     mode->hdisplay,
-> -							     bigjoiner);
-> -		}
-> -
-> -		dsc = dsc_max_output_bpp && dsc_slice_count;
-> -	}
-> -
-> -	/*
-> -	 * Big joiner configuration needs DSC for TGL which is not true for
-> -	 * XE_LPD where uncompressed joiner is supported.
-> -	 */
-> -	if (DISPLAY_VER(dev_priv) < 13 && bigjoiner && !dsc)
-> -		return MODE_CLOCK_HIGH;
-> -
-> -	if (mode_rate > max_rate && !dsc)
-> -		return MODE_CLOCK_HIGH;
-> -
->  	*status = intel_mode_valid_max_plane_size(dev_priv, mode, false);
->  	return 0;
->  }
-> -- 
-> 2.39.2
-> 
+>=20=20
+>  static void intel_crtc_dpms_overlay_disable(struct intel_crtc *crtc)
+> @@ -3246,8 +3248,10 @@ static void ilk_get_pfit_config(struct intel_crtc_=
+state *crtc_state)
+>  	size =3D intel_de_read(dev_priv, PF_WIN_SZ(crtc->pipe));
+>=20=20
+>  	drm_rect_init(&crtc_state->pch_pfit.dst,
+> -		      pos >> 16, pos & 0xffff,
+> -		      size >> 16, size & 0xffff);
+> +		      REG_FIELD_GET(PF_WIN_XPOS_MASK, pos),
+> +		      REG_FIELD_GET(PF_WIN_YPOS_MASK, pos),
+> +		      REG_FIELD_GET(PF_WIN_XSIZE_MASK, size),
+> +		      REG_FIELD_GET(PF_WIN_YSIZE_MASK, size));
+>=20=20
+>  	/*
+>  	 * We currently do not free assignements of panel fitters on
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index dde6e91055bd..f7294a9b5cfa 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -4025,8 +4025,16 @@
+>  #define   PF_FILTER_EDGE_SOFTEN		REG_FIELD_PREP(PF_FILTER_EDGE_MASK, 3)
+>  #define _PFA_WIN_SZ		0x68074
+>  #define _PFB_WIN_SZ		0x68874
+> +#define   PF_WIN_XSIZE_MASK	REG_GENMASK(31, 16)
+> +#define   PF_WIN_XSIZE(w)	REG_FIELD_PREP(PF_WIN_XSIZE_MASK, (w))
+> +#define   PF_WIN_YSIZE_MASK	REG_GENMASK(15, 0)
+> +#define   PF_WIN_YSIZE(h)	REG_FIELD_PREP(PF_WIN_YSIZE_MASK, (h))
+>  #define _PFA_WIN_POS		0x68070
+>  #define _PFB_WIN_POS		0x68870
+> +#define   PF_WIN_XPOS_MASK	REG_GENMASK(31, 16)
+> +#define   PF_WIN_XPOS(x)	REG_FIELD_PREP(PF_WIN_XPOS_MASK, (x))
+> +#define   PF_WIN_YPOS_MASK	REG_GENMASK(15, 0)
+> +#define   PF_WIN_YPOS(y)	REG_FIELD_PREP(PF_WIN_YPOS_MASK, (y))
+>  #define _PFA_VSCALE		0x68084
+>  #define _PFB_VSCALE		0x68884
+>  #define _PFA_HSCALE		0x68090
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
