@@ -1,33 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D845C6F56DD
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 13:04:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D4486F56EE
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 13:07:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 276BA10E121;
-	Wed,  3 May 2023 11:04:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBC0010E121;
+	Wed,  3 May 2023 11:07:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D24C810E121;
- Wed,  3 May 2023 11:04:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 248FBA0BA8;
- Wed,  3 May 2023 11:04:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1629698081952957187=="
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECC3010E121;
+ Wed,  3 May 2023 11:07:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1683112028; x=1714648028;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=isSEaTcczQehorA2XyFTb7Qg8MalrslW5ar7lNBTlZw=;
+ b=ktNfqAdZnZHrYLTAtxO1sP7jPLrk63jW8C8+lBOKHisXXVZ1K3ruyZWt
+ +juNiY5GMKeWA9Wh5Bsv9ysSpi2u4MjKvkenWdURC0+7SdSRevKmm9/NI
+ yTNtFqLystIHxGIViqzZvMB97VUh40otN83h/qQLU+rPCF/7KTMsAkOWg
+ 6ZL7Tr7K5RlqLgqreFEV6z09V8v0Eo35Y4PfDLnoQDWxaHKpAQDzF4SJw
+ B2YOHghTcHHb7QP3rXrMj/A6f7x2lOUV37TW2AYcx+wlIoHVJORHt2lqq
+ wEf1cCBFMoAD/rpIvqJZ5WKW+On8CjJjzi+1lk/UB07vnx0G35LJ4faKC g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="411780903"
+X-IronPort-AV: E=Sophos;i="5.99,247,1677571200"; d="scan'208";a="411780903"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 04:07:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="699326439"
+X-IronPort-AV: E=Sophos;i="5.99,247,1677571200"; d="scan'208";a="699326439"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga007.fm.intel.com with SMTP; 03 May 2023 04:07:04 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 03 May 2023 14:07:04 +0300
+Date: Wed, 3 May 2023 14:07:04 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <ZFJAWCGuWcLDQOfS@intel.com>
+References: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
+ <20230502143906.2401-3-ville.syrjala@linux.intel.com>
+ <ZFIPCm+k9TCyfMfS@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 03 May 2023 11:04:54 -0000
-Message-ID: <168311189411.9279.6360768731896593374@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230503094826.1467208-1-jani.nikula@intel.com>
-In-Reply-To: <20230503094826.1467208-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_taint_kernel_when_force_probing_unsupported_devices?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZFIPCm+k9TCyfMfS@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 02/11] drm/i915/mst: Remove broken MST DSC
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,229 +63,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1629698081952957187==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, May 03, 2023 at 10:36:42AM +0300, Lisovskiy, Stanislav wrote:
+> On Tue, May 02, 2023 at 05:38:57PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > The MST DSC code has a myriad of issues:
+> > - Platform checks are wrong (MST+DSC is TGL+ only IIRC)
+> > - Return values of .mode_valid_ctx() are wrong
+> > - .mode_valid_ctx() assumes bigjoiner might be used, but ther rest
+> >   of the code doesn't agree
+> > - compressed bpp calculations don't make sense
+> > - FEC handling needs to consider the entire link as opposed to just
+> >   the single stream. Currently FEC would only get enabled if the
+> >   first enabled stream is compressed. Also I'm not seeing anything
+> >   that would account for the FEC overhead in any bandwidth calculations
+> > - PPS SDP is only handled for the first stream via the dig_port
+> >   hooks, other streams will not be transmittitng any PPS SDPs
+> > - PPS SDP readout is missing (also missing for SST!)
+> > - VDSC readout is missing (also missing for SST!)
+> > 
+> > The FEC issues is really the big one since we have no way currently
+> > to apply such link wide configuration constraints. Changing that is
+> > going to require a much bigger rework of the higher level modeset
+> > .compute_config() logic. We will also need such a rework to properly
+> > distribute the available bandwidth across all the streams on the
+> > same link (which is a must to eg. enable deep color).
+> 
+> Also all the things you mentioned are subject for discussion, for example
+> I see that FEC overhead is actually accounted for bpp calculation for instance.
 
-== Series Details ==
+AFAICS FEC is only accounted for in the data M/N calculations,
+assuming that particular stream happened to be compressed. I'm
+not sure if that actually matters since at least the link M/N
+are not even used by the MST sink. I suppose the data M/N might
+still be used for something though. For any uncompressed stream
+on the same link the data M/N values will be calculated
+incorrectly without FEC.
 
-Series: drm/i915: taint kernel when force probing unsupported devices
-URL   : https://patchwork.freedesktop.org/series/117231/
-State : success
+And as mentioned, the FEC bandwidth overhead doesn't seem to
+be accounted anywhere so no guarantee that we won't try to
+oversubcribe the link.
 
-== Summary ==
+And FEC will only be enabled if the first stream to be enabled
+is compressed, otherwise we will enable the link without FEC
+and still try to cram other compressed streams through it
+(albeit without the PPS SDP so who knows what will happen)
+and that is illegal.
 
-CI Bug Log - changes from CI_DRM_13102 -> Patchwork_117231v1
-====================================================
+> We usually improve things by gradually fixing, because if we act same way towards
+> all wrong code in the driver, we could end up removing the whole i915.
 
-Summary
--------
+We ususally don't merge code that has this many obvious and/or
+fundemental issues.
 
-  **SUCCESS**
+Now, most of the issues I listed above are probably fixable
+in a way that could be backported to stable kernels, but
+unfortunately the FEC issue is not one of those. That one
+will likely need massive amounts of work all over the driver
+modeset code, making a backport impossible.
 
-  No regressions found.
+> So from my side I would nack it, at least until you have a code which handles
+> all of this better - I have no doubt you probably have some ideas in your mind, so lets be constructive at least and propose something better first.
+> This code doesn't cause any regressions, but still provides "some" support to DP MST DSC to say the least and even if that would be removed, if some of those users 
+> refer to me, I would probably then just point to this mail discussion everytime.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/index.html
+It seems very likely that it will cause regressions at some point,
+it just needs a specific multi-display MST setup. The resulting
+problems will be very confusing to debug since the order in which
+you enable/disable the outputs will have an impact on what actually
+goes wrong on account of the FEC and PPS SDP issues. The longer
+we wait disabling this the harder it will be to deal with those
+regressions since we the probably can't revert anymore (a straight
+revert was already not possible) but also can't fix it in a way
+that can be backported (due to the FEC issues in particular).
 
-Participating hosts (38 -> 38)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_117231v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-1:         [PASS][1] -> [ABORT][2] ([i915#6687] / [i915#7978] / [i915#8407])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][5] ([i915#1886] / [i915#7913])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-fast:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271]) +16 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@migrate:
-    - bat-dg2-11:         [DMESG-WARN][7] ([i915#7699]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/bat-dg2-11/igt@i915_selftest@live@migrate.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         [DMESG-WARN][9] ([i915#6367]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/bat-rpls-1/igt@i915_selftest@live@slpc.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:
-    - bat-dg2-8:          [FAIL][11] ([i915#7932]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8407]: https://gitlab.freedesktop.org/drm/intel/issues/8407
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13102 -> Patchwork_117231v1
-
-  CI-20190529: 20190529
-  CI_DRM_13102: b0492ca8c1cec314da218999babaa016df4cf9d1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7277: 1cb3507f3ff28d11bd5cfabcde576fe78ddab571 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_117231v1: b0492ca8c1cec314da218999babaa016df4cf9d1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-c28ab3f844ff drm/i915: taint kernel when force probing unsupported devices
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/index.html
-
---===============1629698081952957187==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: taint kernel when force probing unsupported devices</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117231/">https://patchwork.freedesktop.org/series/117231/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13102 -&gt; Patchwork_117231v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 38)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_117231v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8407">i915#8407</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117231v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13102 -&gt; Patchwork_117231v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13102: b0492ca8c1cec314da218999babaa016df4cf9d1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7277: 1cb3507f3ff28d11bd5cfabcde576fe78ddab571 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_117231v1: b0492ca8c1cec314da218999babaa016df4cf9d1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>c28ab3f844ff drm/i915: taint kernel when force probing unsupported devices</p>
-
-</body>
-</html>
-
---===============1629698081952957187==--
+-- 
+Ville Syrjälä
+Intel
