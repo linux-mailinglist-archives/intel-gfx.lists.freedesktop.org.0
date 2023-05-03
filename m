@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8F746F53C1
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 10:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D7A26F53E3
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 10:59:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B04310E21F;
-	Wed,  3 May 2023 08:54:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A844110E22D;
+	Wed,  3 May 2023 08:59:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0836D10E20F
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 May 2023 08:53:58 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 470AC10E257
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 May 2023 08:59:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683104039; x=1714640039;
+ t=1683104380; x=1714640380;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=trml87V1lx0DArR8o+kC+2uWaGlTVIj5qoMrzhleJU8=;
- b=f+ykHWYBokvXWoWQ/fayvi3gz4VQAah84JqnXJ7xm4Vm8RZ/QKKMzAo2
- pj3HMWDpXl0w1D9pADYDwzv2CY6J2+9V2M2928aZ0zQ81SeH0yAfs8enw
- bS5BN4eBVpMJNtD8KmHULSgPFommN6+g36WmYmWHrBZvCizF13Adb+LDv
- Qcmp1xOJUeoTysn8gblQFXtkSWn8/Wx9ZNVrxfx7JTf9pfkVmZmHcs4h1
- cMf0EQRUIeIaopQOlCdhOqBZX4g240wDeZfqIJqB3r0UKGLBCJDboA6YZ
- Vs1JUMKeMOhVgmKSd910/f1qcLIOHnTsJ1Q+jN7/kLAZWMKn+G5L+PjB6 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="350679940"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="350679940"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 01:53:57 -0700
+ bh=QJduVMs4D6lEqNPvqBt35oWbpUUYNaTuZDHtH9eACe8=;
+ b=Y92w0MviWo771EJgpubo5elpkF9q9RMz4WG0KoUBL8DgO3cSTuOOtti7
+ JQ9og7LfbY+ebh65P26kAg3B/QINAE+8GFVB2ykYoSv8xjLT+Le9xfMj5
+ qHlxVtppDQQfkAFeqh5p3yhBKRsoai5UiNJvgV1gEen+yfjr9Zik3nl3P
+ PyTzygqDrFFREYDtxZnlC2qvuhRiuXlQkUPLJs9gD8FWQ1/JcpjYwFwts
+ kw5ageMqT+2SczQyICGmD9rrNrKGx3NwByalsy1p4wLg+50V+VkYUaD6H
+ 0nYsBzsCSaY8yFks9E/5Ld+TSbpvRFUVFZmtxrEfgvs6Mt6Lz93ocRhSC g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="337743274"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="337743274"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 01:59:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="727066406"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="727066406"
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="690625387"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="690625387"
 Received: from ebrosekx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.36.204])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 01:53:56 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 01:59:37 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230425105450.18441-13-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230425105450.18441-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230425105450.18441-1-ville.syrjala@linux.intel.com>
- <20230425105450.18441-13-ville.syrjala@linux.intel.com>
-Date: Wed, 03 May 2023 11:53:53 +0300
-Message-ID: <871qjx23tq.fsf@intel.com>
+Date: Wed, 03 May 2023 11:59:35 +0300
+Message-ID: <87y1m5zt6w.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 12/14] drm/i915/dsi: Move panel reset+power
- off to be the last thing
+Subject: Re: [Intel-gfx] [PATCH 00/14] drm/i915/dsi: ICL+ DSI modeset
+ sequence fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,66 +67,50 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 25 Apr 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Follow what Windows does and do the DSI panel reset+power off
-> after everything else.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 14 ++++++++------
->  1 file changed, 8 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
-5/display/icl_dsi.c
-> index d133cd450271..30b1ad51b0c5 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1291,12 +1291,6 @@ static void gen11_dsi_powerdown_panel(struct intel=
-_encoder *encoder)
->  	struct intel_dsi *intel_dsi =3D enc_to_intel_dsi(encoder);
->=20=20
->  	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DISPLAY_OFF);
-> -	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_ASSERT_RESET);
-> -
-> -	msleep(intel_dsi->panel_off_delay);
-> -	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_POWER_OFF);
-> -
-> -	intel_dsi->panel_power_off_time =3D ktime_get_boottime();
->=20=20
->  	/* ensure cmds dispatched to panel */
->  	wait_for_cmds_dispatched_to_panel(encoder);
-> @@ -1408,6 +1402,7 @@ static void gen11_dsi_post_disable(struct intel_ato=
-mic_state *state,
->  				   const struct intel_crtc_state *old_crtc_state,
->  				   const struct drm_connector_state *old_conn_state)
->  {
-> +	struct intel_dsi *intel_dsi =3D enc_to_intel_dsi(encoder);
->  	struct intel_crtc *crtc =3D to_intel_crtc(old_conn_state->crtc);
->=20=20
->  	intel_crtc_vblank_off(old_crtc_state);
-> @@ -1434,6 +1429,13 @@ static void gen11_dsi_post_disable(struct intel_at=
-omic_state *state,
->=20=20
->  	/* step4: disable IO power */
->  	gen11_dsi_disable_io_power(encoder);
-> +
-> +	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_ASSERT_RESET);
-> +
-> +	intel_dsi_msleep(intel_dsi, intel_dsi->panel_off_delay);
+> A bunch of changes to the ICL+ DSI modeset sequences.
+> The hope is that these might help with
+> https://gitlab.freedesktop.org/drm/intel/-/issues/7717
 
-Rebase fail? This replaces msleep again with intel_dsi_msleep.
+This needs a rebase, and I left some minor comments inline.
 
-Otherwise,
+I can't claim I did an in-depth review, but I also don't think anyone's
+going to have that as a priority either. I looked at every patch,
+thought the changes made sense, and pretty much matched what it said on
+the box, but I did not peruse the specs or other driver code. I'm
+inclined to rely more on the test results from the issue. Would be great
+to try to ping the folks in the already closed, related bugs, for
+testing as well to ensure this doesn't break anything for
+them. Especially if we're trying to Cc: stable this stuff, if we can't
+pinpoint the exact change that fixes the reported issue.
+
+Anyway, overall on the series,
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
-> +	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_POWER_OFF);
-> +
-> +	intel_dsi->panel_power_off_time =3D ktime_get_boottime();
->  }
->=20=20
->  static enum drm_mode_status gen11_dsi_mode_valid(struct drm_connector *c=
-onnector,
+>
+> Ville Syrj=C3=A4l=C3=A4 (14):
+>   drm/i915/icl: Do panel power on + reset deassert earlier on icl+
+>   drm/i915/dsi: Do display on sequence later on icl+
+>   drm/i915/dsi: Always do panel power up delay on icl+
+>   drm/i915/dsi: Print the VBT MIPI sequence delay duration
+>   drm/i915/dsi: Split icl+ D-PHY vs. DSI timing steps
+>   drm/i915/dsi: Gate DSI clocks earlier
+>   drm/i915/dsi: Respect power cycle delay on icl+
+>   drm/i915/dsi: Implement encoder->shutdown() for icl+
+>   drm/i915/dsi: Move most things from .enable() into .post_disable()
+>   drm/i915/dsi: Do DSC/scaler disable earlier on icl+
+>   drm/i915/dsi: Respect power_off_delay on icl+
+>   drm/i915/dsi: Move panel reset+power off to be the last thing
+>   drm/i915/dsi: Grab the crtc from the customary place
+>   drm/i915/dsi: Remove weird has_pch_encoder asserts
+>
+>  drivers/gpu/drm/i915/display/icl_dsi.c       | 127 +++++++++++--------
+>  drivers/gpu/drm/i915/display/intel_dsi.c     |  20 +++
+>  drivers/gpu/drm/i915/display/intel_dsi.h     |   2 +
+>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c |   2 +-
+>  drivers/gpu/drm/i915/display/vlv_dsi.c       |  23 ----
+>  5 files changed, 100 insertions(+), 74 deletions(-)
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
