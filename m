@@ -1,60 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8F4C6F5592
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 12:07:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D30E36F55B1
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 12:13:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8A4D10E257;
-	Wed,  3 May 2023 10:06:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B0E510E255;
+	Wed,  3 May 2023 10:13:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D44E010E250;
- Wed,  3 May 2023 10:06:51 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95F7F10E255
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 May 2023 10:13:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683108411; x=1714644411;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=wXTKpIgcNJcKBmw7wE/sa1YRHjVIbRIem99rf4NCvjc=;
- b=Zh15QvdBYbkeNg3d6yYAu6Fas41YMkqxxtXmmPY74JJvqzYzQFguykhY
- gNDEaaT92b/P0MfftqcZTgP2xPPkic8f/XGBySI/YU8SwzeZOSUOgrtj9
- 4LmCs1gdWtNtos/K9oVodhm9t15Jf8IUcBk0Q7pKXhlhRxrcs0o5lP1/5
- ZQaFcpADtn5i0AwGkp2Z+uhKS/PW5quhxZpTM2w1XUE6EVpnARr2Fx3xj
- Igf59EOww5oujEQGoARsjBfURL0PwZkaMmHuC7iwaUB4OLlqvAx5twKga
- f2ANm9F+yPnTdCYghtMLxcHL2sV0UeuL6eJIdn65pdpgVzvxXXUiGHfKY g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="332980286"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="332980286"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 03:06:51 -0700
+ t=1683108831; x=1714644831;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=TZscmWY7s6te68Uh1u3j8JTBW8EG4DCMfj9mmiT2LIs=;
+ b=SiMBv1WXgIXSdXZh+jYaN0U3rN0qZheqTgbhJwQORsjYUzFs+PQNejqv
+ AF1/peLN+gzwR7U2BM2Oi5lBkC/gBJAf87zv8BdkYlvwzJ0tqhQBSutEH
+ KDGcS9fycIYmWz/JVBCiUVxv6aME7ws1zu+CueIgjI6QEeXWGJPnHGcAN
+ xi5HmcMO4LTJkp/YEJJtEXGgmwkszO8x7rihJ4CLL2fseDRBZ7lGatvc3
+ XoQppKGofLimdf7uoOp8FyODVknBfLQlFFYH7VpidMT1dJIVCLpQy4mm7
+ RojsLX0XHnc1AlD+1sFfuHJVKBuRuT+esh3uLNcF5clkBr2lU5yWCxgpk A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="328246465"
+X-IronPort-AV: E=Sophos;i="5.99,247,1677571200"; d="scan'208";a="328246465"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 03:13:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="870881384"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="870881384"
-Received: from ebrosekx-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.36.204])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 03:06:48 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>, Tetsuo Handa
- <penguin-kernel@i-love.sakura.ne.jp>
-In-Reply-To: <ZDuntOkUeh0Eve8a@phenom.ffwll.local>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <d8b73f88-d4aa-ed7e-09ea-5ad5ee803893@I-love.SAKURA.ne.jp>
- <5bbe7093-791e-5653-850b-aea343db3f3f@I-love.SAKURA.ne.jp>
- <b10d5ada60ab823a09b64f3bfd79db2dd601d5fd.camel@coelho.fi>
- <9ee23b3f-e2e1-6a78-4a28-2ed8790636e5@I-love.SAKURA.ne.jp>
- <87edomg4b6.fsf@intel.com>
- <95e9f67f-b198-4946-327c-626de07e45f9@I-love.SAKURA.ne.jp>
- <ZDuntOkUeh0Eve8a@phenom.ffwll.local>
-Date: Wed, 03 May 2023 13:06:45 +0300
-Message-ID: <87sfcdzq2y.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="761439767"
+X-IronPort-AV: E=Sophos;i="5.99,247,1677571200"; d="scan'208";a="761439767"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmsmga008.fm.intel.com with ESMTP; 03 May 2023 03:13:33 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  3 May 2023 15:42:06 +0530
+Message-Id: <20230503101206.579877-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230503013731.537037-1-suraj.kandpal@intel.com>
+References: <20230503013731.537037-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: avoid flush_scheduled_work()
- usage
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/hdcp: Check if media_gt exists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,80 +56,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 16 Apr 2023, Daniel Vetter <daniel@ffwll.ch> wrote:
-> On Fri, Apr 14, 2023 at 07:52:12PM +0900, Tetsuo Handa wrote:
->> On 2023/04/14 19:13, Jani Nikula wrote:
->> > On Fri, 14 Apr 2023, Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>=
- wrote:
->> >> On 2023/03/15 19:47, Luca Coelho wrote:
->> >>> On Tue, 2023-03-14 at 20:21 +0900, Tetsuo Handa wrote:
->> >>>> Like commit c4f135d643823a86 ("workqueue: Wrap flush_workqueue() us=
-ing a
->> >>>> macro") says, flush_scheduled_work() is dangerous and will be forbi=
-dden.
->> >>>>
->> >>>> Now that i915 is the last flush_scheduled_work() user, for now let's
->> >>>> start with blind conversion inside the whole drivers/gpu/drm/i915/
->> >>>> directory. Jani Nikula wants to use two workqueues in order to avoid
->> >>>> adding new module globals, but I'm not familiar enough to audit and
->> >>>> split into two workqueues.
->> >>>>
->> >>>> Link: https://lkml.kernel.org/r/87sfeita1p.fsf@intel.com
->> >>>> Signed-off-by: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
->> >>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> >>>> Cc: Jani Nikula <jani.nikula@intel.com>
->> >>>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> >>>> ---
->> >>>> Changes in v2:
->> >>>>   Add missing alloc_workqueue() failure check.
->> >>>
->> >>> Hi,
->> >>>
->> >>> Thanks for your patch! But it seems that you only fixed that failure
->> >>> check, without making the other change Jani proposed, namely, move t=
-he
->> >>> work to the i915 struct instead of making it a global.
->> >>>
->> >>> I'm working on that now.
->> >>
->> >> What is estimated time of arrival on this?
->> >> Can we expect your work in Linux 6.4 ?
->> >=20
->> > I'm afraid that ship has sailed. Sorry. :(
->>=20
->> Well, then, can we temporarily apply "[PATCH v2] drm/i915: avoid flush_s=
-cheduled_work() usage" ?
->> This patch is a mechanical conversion which unlikely causes regressions.=
- This patch eliminates
->> interference from work items outside of i915, which is small but an impr=
-ovement for i915 users.
->
-> I think if someone from i915 team triple-checks that i915 really doesn't
-> use any of the drm workers (hotplug handling, atomic commit, ...) then I
-> think we should be fine. The one that's unavoidable is the rmfb work
-> (which really only exists to avoid signal interruptions when doing this in
-> userspace process context, it's entirely synchronous otherwise), but I
-> think that's safe.
->
-> With that tripled checked I think the mechanical conversion is ok to land
-> late for 6.4 and has my
->
-> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->
-> [Dropped this on irc already, here just for the record]
+Check if media_gt exists if we are using gsc cs
 
-The patch conflicts already, I was out sick for a week, and nobody
-picked this up in the mean time. I just don't see a way to rush it to
-v6.4 anymore, with mere days remaining in the merge window. I'm sorry.
+--v2
+-correct typo [Ankit]
+-assign gsc variable if gt exists [Ankit]
 
-BR,
-Jani.
+--v3
+-declare gsc and gt variables in if block [Ankit]
 
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 650232c4892b..b183efab04a1 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -204,8 +204,6 @@ bool intel_hdcp2_capable(struct intel_connector *connector)
+ 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+ 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+ 	struct intel_hdcp *hdcp = &connector->hdcp;
+-	struct intel_gt *gt = dev_priv->media_gt;
+-	struct intel_gsc_uc *gsc = &gt->uc.gsc;
+ 	bool capable = false;
+ 
+ 	/* I915 support for HDCP2.2 */
+@@ -213,9 +211,13 @@ bool intel_hdcp2_capable(struct intel_connector *connector)
+ 		return false;
+ 
+ 	/* If MTL+ make sure gsc is loaded and proxy is setup */
+-	if (intel_hdcp_gsc_cs_required(dev_priv))
+-		if (!intel_uc_fw_is_running(&gsc->fw))
++	if (intel_hdcp_gsc_cs_required(dev_priv)) {
++		struct intel_gt *gt = dev_priv->media_gt;
++		struct intel_gsc_uc *gsc = gt ? &gt->uc.gsc : NULL;
++
++		if (!gsc || !intel_uc_fw_is_running(&gsc->fw))
+ 			return false;
++	}
+ 
+ 	/* MEI/GSC interface is solid depending on which is used */
+ 	mutex_lock(&dev_priv->display.hdcp.comp_mutex);
+-- 
+2.25.1
+
