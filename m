@@ -2,32 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C12E86F5A84
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 16:59:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B40906F5B38
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 17:33:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99F9510E2DC;
-	Wed,  3 May 2023 14:59:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E42EC10E266;
+	Wed,  3 May 2023 15:32:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 309FB10E13C;
- Wed,  3 May 2023 14:59:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 28EC1A00E8;
- Wed,  3 May 2023 14:59:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3827140938804746088=="
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20EC810E266;
+ Wed,  3 May 2023 15:32:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1683127977; x=1714663977;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=BN2BK+oeCHCUZaZ4NEBc8WA1+u9GPhP/CnBYczQWvAI=;
+ b=Fk4Xevox3HihItG0+QShgIydOQaILFJb2fEvnjvWkeUPpw2+V1rNFbOr
+ Z15EOJGM2HDu6bCBHpBtcIj78SO5h6NnWmWfc6WLl1BPdsC2YAyFF4Knv
+ xnS8W8NkNgcrgl9tVEymjerA3wFAE3E3n86CTLo7tJVfX2sicJ+Dx71Ra
+ VAclXo9RTS/IlDHXbronWuLXCxkdOoZR6ATklgYMIieSHk3ObgQuCCzoE
+ Z4pHM9UK4TDkVAUiBEUiqq7BIPoFMMg8R8LY9sDTuyZsV1aKD4AMngleG
+ qfmGmF+uVGSJtfckhpYbYShmCzhGuCLfj4L1EeXTQ8kcIMeZjwrSDdVxW g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="333045825"
+X-IronPort-AV: E=Sophos;i="5.99,247,1677571200"; d="scan'208";a="333045825"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 08:32:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="942883136"
+X-IronPort-AV: E=Sophos;i="5.99,247,1677571200"; d="scan'208";a="942883136"
+Received: from slinsell-mobl.ger.corp.intel.com (HELO [10.213.195.109])
+ ([10.213.195.109])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 08:31:30 -0700
+Message-ID: <c9d1e666-50e9-d66a-d751-f4ec39fcb7bb@linux.intel.com>
+Date: Wed, 3 May 2023 16:31:19 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Wed, 03 May 2023 14:59:00 -0000
-Message-ID: <168312594013.9282.8406497291093682533@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230502083652.463435-1-suraj.kandpal@intel.com>
-In-Reply-To: <20230502083652.463435-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_Check_if_media=5Fgt_exists_=28rev3=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, cgroups@vger.kernel.org,
+ intel-xe@lists.freedesktop.org
+References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
+ <20230503083500.645848-3-maarten.lankhorst@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230503083500.645848-3-maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [RFC PATCH 2/4] drm/cgroup: Add memory accounting
+ to DRM cgroup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,349 +66,878 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>, Zefan Li <lizefan.x@bytedance.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Maxime Ripard <mripard@kernel.org>, amd-gfx@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Johannes Weiner <hannes@cmpxchg.org>,
+ Tejun Heo <tj@kernel.org>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3827140938804746088==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 03/05/2023 09:34, Maarten Lankhorst wrote:
+> Based roughly on the rdma and misc cgroup controllers, with a lot of
+> the accounting code borrowed from rdma.
+> 
+> The interface is simple:
+> - populate drmcgroup_device->regions[..] name and size for each active
+>    region.
+> - Call drm(m)cg_register_device()
+> - Use drmcg_try_charge to check if you can allocate a chunk of memory,
+>    use drmcg_uncharge when freeing it. This may return an error code,
+>    or -EAGAIN when the cgroup limit is reached.
+> 
+> The ttm code transforms -EAGAIN back to -ENOSPC since it has specific
+> logic for -ENOSPC, and returning -EAGAIN to userspace causes drmIoctl
+> to restart infinitely.
+> 
+> This API allows you to limit stuff with cgroups.
+> You can see the supported cards in /sys/fs/cgroup/drm.capacity
+> You need to echo +drm to cgroup.subtree_control, and then you can
+> partition memory.
+> 
+> In each cgroup subdir:
+> drm.max shows the current limits of the cgroup.
+> drm.current the current amount of allocated memory used by this cgroup.
+> drm.events shows the amount of time max memory was reached.
 
-Series: drm/i915/hdcp: Check if media_gt exists (rev3)
-URL   : https://patchwork.freedesktop.org/series/117189/
-State : success
+Events is not in the patch?
 
-== Summary ==
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>   Documentation/admin-guide/cgroup-v2.rst |  46 ++
+>   Documentation/gpu/drm-compute.rst       |  54 +++
+>   include/linux/cgroup_drm.h              |  81 ++++
+>   kernel/cgroup/drm.c                     | 539 +++++++++++++++++++++++-
+>   4 files changed, 699 insertions(+), 21 deletions(-)
+>   create mode 100644 Documentation/gpu/drm-compute.rst
+> 
+> diff --git a/Documentation/admin-guide/cgroup-v2.rst b/Documentation/admin-guide/cgroup-v2.rst
+> index f67c0829350b..b858d99cb2ef 100644
+> --- a/Documentation/admin-guide/cgroup-v2.rst
+> +++ b/Documentation/admin-guide/cgroup-v2.rst
+> @@ -2374,6 +2374,52 @@ RDMA Interface Files
+>   	  mlx4_0 hca_handle=1 hca_object=20
+>   	  ocrdma1 hca_handle=1 hca_object=23
+>   
+> +DRM
+> +----
+> +
+> +The "drm" controller regulates the distribution and accounting of
+> +DRM resources.
+> +
+> +DRM Interface Files
+> +~~~~~~~~~~~~~~~~~~~~
+> +
+> +  drm.max
+> +	A readwrite nested-keyed file that exists for all the cgroups
+> +	except root that describes current configured resource limit
+> +	for a DRM device.
+> +
+> +	Lines are keyed by device name and are not ordered.
+> +	Each line contains space separated resource name and its configured
+> +	limit that can be distributed.
+> +
+> +	The following nested keys are defined.
+> +
+> +	  ==========	=======================================================
+> +	  region.* 	Maximum amount of bytes that allocatable in this region
+> +	  ==========	=======================================================
+> +
+> +	An example for xe follows::
+> +
+> +	  0000:03:00.0 region.vram0=1073741824 region.stolen=max
+> +
+> +  drm.capacity
+> +	A read-only file that describes maximum region capacity.
+> +	It only exists on the root cgroup. Not all memory can be
+> +	allocated by cgroups, as the kernel reserves some for
+> +	internal use.
+> +
+> +	An example for xe follows::
+> +
+> +	  0000:03:00.0 region.vram0=8514437120 region.stolen=67108864
+> +
+> +  drm.current
+> +	A read-only file that describes current resource usage.
+> +	It exists for all the cgroup except root.
+> +
+> +	An example for xe follows::
+> +
+> +	  0000:03:00.0 region.vram0=12550144 region.stolen=8650752
+> +
+>   HugeTLB
+>   -------
+>   
+> diff --git a/Documentation/gpu/drm-compute.rst b/Documentation/gpu/drm-compute.rst
+> new file mode 100644
+> index 000000000000..116270976ef7
+> --- /dev/null
+> +++ b/Documentation/gpu/drm-compute.rst
+> @@ -0,0 +1,54 @@
+> +==================================
+> +Long running workloads and compute
+> +==================================
+> +
+> +Long running workloads (compute) are workloads that will not complete in 10
+> +seconds. (The time let the user wait before he reaches for the power button).
+> +This means that other techniques need to be used to manage those workloads,
+> +that cannot use fences.
+> +
+> +Some hardware may schedule compute jobs, and have no way to pre-empt them, or
+> +have their memory swapped out from them. Or they simply want their workload
+> +not to be preempted or swapped out at all.
+> +
+> +This means that it differs from what is described in driver-api/dma-buf.rst.
+> +
+> +As with normal compute jobs, dma-fence may not be used at all. In this case,
+> +not even to force preemption. The driver with is simply forced to unmap a BO
+> +from the long compute job's address space on unbind immediately, not even
+> +waiting for the workload to complete. Effectively this terminates the workload
+> +when there is no hardware support to recover.
+> +
+> +Since this is undesirable, there need to be mitigations to prevent a workload
+> +from being terminated. There are several possible approach, all with their
+> +advantages and drawbacks.
+> +
+> +The first approach you will likely try is to pin all buffers used by compute.
+> +This guarantees that the job will run uninterrupted, but also allows a very
+> +denial of service attack by pinning as much memory as possible, hogging the
+> +all GPU memory, and possibly a huge chunk of CPU memory.
+> +
+> +A second approach that will work slightly better on its own is adding an option
+> +not to evict when creating a new job (any kind). If all of userspace opts in
+> +to this flag, it would prevent cooperating userspace from forced terminating
+> +older compute jobs to start a new one.
+> +
+> +If job preemption and recoverable pagefaults are not available, those are the
+> +only approaches possible. So even with those, you want a separate way of
+> +controlling resources. The standard kernel way of doing so is cgroups.
+> +
+> +This creates a third option, using cgroups to prevent eviction. Both GPU and
+> +driver-allocated CPU memory would be accounted to the correct cgroup, and
+> +eviction would be made cgroup aware. This allows the GPU to be partitioned
+> +into cgroups, that will allow jobs to run next to each other without
+> +interference.
 
-CI Bug Log - changes from CI_DRM_13102_full -> Patchwork_117189v3_full
-====================================================
+The 3rd approach is only valid if used strictly with device local 
+memory, right? Because as soon as system memory backed buffers are used 
+this approach cannot guarantee no eviction can be triggered.
 
-Summary
--------
+> +
+> +The interface to the cgroup would be similar to the current CPU memory
+> +interface, with similar semantics for min/low/high/max, if eviction can
+> +be made cgroup aware. For now only max is implemented.
+> +
+> +What should be noted is that each memory region (tiled memory for example)
+> +should have its own accounting, using $card key0 = value0 key1 = value1.
+> +
+> +The key is set to the regionid set by the driver, for example "tile0".
+> +For the value of $card, we use drmGetUnique().
+> diff --git a/include/linux/cgroup_drm.h b/include/linux/cgroup_drm.h
+> index 8ef66a47619f..4f17b1c85f47 100644
+> --- a/include/linux/cgroup_drm.h
+> +++ b/include/linux/cgroup_drm.h
+> @@ -6,4 +6,85 @@
+>   #ifndef _CGROUP_DRM_H
+>   #define _CGROUP_DRM_H
+>   
+> +#include <linux/types.h>
+> +
+> +#include <drm/drm_managed.h>
+> +
+> +struct drm_device;
+> +struct drm_file;
+> +
+> +struct drmcgroup_state;
+> +
+> +/*
+> + * Use 8 as max, because of N^2 lookup when setting things, can be bumped if needed
+> + * Identical to TTM_NUM_MEM_TYPES to allow simplifying that code.
+> + */
+> +#define DRMCG_MAX_REGIONS 8
+> +
+> +struct drmcgroup_device {
+> +	struct list_head list;
+> +	struct list_head pools;
+> +
+> +	struct {
+> +		u64 size;
+> +		const char *name;
+> +	} regions[DRMCG_MAX_REGIONS];
+> +
+> +	/* Name describing the card, set by drmcg_register_device */
+> +	const char *name;
+> +
+> +};
+> +
+> +#if IS_ENABLED(CONFIG_CGROUP_DRM)
+> +int drmcg_register_device(struct drm_device *dev,
+> +			   struct drmcgroup_device *drm_cg);
+> +void drmcg_unregister_device(struct drmcgroup_device *cgdev);
+> +int drmcg_try_charge(struct drmcgroup_state **drmcg,
+> +		     struct drmcgroup_device *cgdev,
+> +		     u32 index, u64 size);
+> +void drmcg_uncharge(struct drmcgroup_state *drmcg,
+> +		    struct drmcgroup_device *cgdev,
+> +		    u32 index, u64 size);
+> +#else
+> +static inline int
+> +drmcg_register_device(struct drm_device *dev,
+> +		      struct drm_cgroup *drm_cg)
+> +{
+> +	return 0;
+> +}
+> +
+> +static inline void drmcg_unregister_device(struct drmcgroup_device *cgdev)
+> +{
+> +}
+> +
+> +static inline int drmcg_try_charge(struct drmcgroup_state **drmcg,
+> +				   struct drmcgroup_device *cgdev,
+> +				   u32 index, u64 size)
+> +{
+> +	*drmcg = NULL;
+> +	return 0;
+> +}
+> +
+> +static inline void drmcg_uncharge(struct drmcgroup_state *drmcg,
+> +				  struct drmcgroup_device *cgdev,
+> +				  u32 index, u64 size)
+> +{ }
+> +#endif
+> +
+> +static inline void drmmcg_unregister_device(struct drm_device *dev, void *arg)
+> +{
+> +	drmcg_unregister_device(arg);
+> +}
+> +
+> +/*
+> + * This needs to be done as inline, because cgroup lives in the core
+> + * kernel and it cannot call drm calls directly
+> + */
+> +static inline int drmmcg_register_device(struct drm_device *dev,
+> +					 struct drmcgroup_device *cgdev)
+> +{
+> +	return drmcg_register_device(dev, cgdev) ?:
+> +		drmm_add_action_or_reset(dev, drmmcg_unregister_device, cgdev);
+> +}
+> +
+>   #endif	/* _CGROUP_DRM_H */
+> diff --git a/kernel/cgroup/drm.c b/kernel/cgroup/drm.c
+> index 02c8eaa633d3..a93d9344fd36 100644
+> --- a/kernel/cgroup/drm.c
+> +++ b/kernel/cgroup/drm.c
+> @@ -1,60 +1,557 @@
+> -/* SPDX-License-Identifier: MIT */
+> +// SPDX-License-Identifier: GPL-2.0
+>   /*
+> - * Copyright © 2023 Intel Corporation
+> + * Copyright 2023 Intel
+> + * Partially based on the rdma and misc controllers, which bear the following copyrights:
+> + *
+> + * Copyright 2020 Google LLC
+> + * Copyright (C) 2016 Parav Pandit <pandit.parav@gmail.com>
+>    */
+>   
+>   #include <linux/cgroup.h>
+>   #include <linux/cgroup_drm.h>
+> +#include <linux/list.h>
+> +#include <linux/mutex.h>
+> +#include <linux/parser.h>
+>   #include <linux/slab.h>
+>   
+> -struct drm_cgroup_state {
 
-  **SUCCESS**
+As a side note, it'd be easier to read the diff if you left the name as 
+is, and some other details too, like the static root group (I need to 
+remind myself if/why I needed it, but does it harm you?) and my missed 
+static keywords and needless static struct initialization. I will fix 
+that up in my patch localy. Aynway, that way it would maybe be less 
+churn from one patch to the other in the series.
 
-  No regressions found.
+> +#include <drm/drm_device.h>
+> +#include <drm/drm_drv.h>
+> +#include <drm/drm_file.h>
+> +#include <drm/drm_managed.h>
+> +
+> +struct drmcgroup_state {
+>   	struct cgroup_subsys_state css;
+> +
+> +	struct list_head pools;
+>   };
+>   
+> -struct drm_root_cgroup_state {
+> -	struct drm_cgroup_state drmcs;
+> +struct drmcgroup_pool_state {
+> +	struct drmcgroup_device *device;
+> +	struct drmcgroup_resource {
+> +		s64 max, used;
+> +	} resources[DRMCG_MAX_REGIONS];
+> +
+> +	s64 usage_sum;
+> +
+> +	struct list_head	cg_node;
 
-  
+cg always makes me think cgroup and not css so it is a bit confusing.
 
-Participating hosts (7 -> 8)
-------------------------------
+Why are two lists needed?
 
-  Additional (1): shard-rkl0 
+> +	struct list_head	dev_node;
+>   };
+>   
+> -static struct drm_root_cgroup_state root_drmcs;
+> +static DEFINE_MUTEX(drmcg_mutex);
+> +static LIST_HEAD(drmcg_devices);
+>   
+> -static inline struct drm_cgroup_state *
+> +static inline struct drmcgroup_state *
+>   css_to_drmcs(struct cgroup_subsys_state *css)
+>   {
+> -	return container_of(css, struct drm_cgroup_state, css);
+> +	return container_of(css, struct drmcgroup_state, css);
+> +}
+> +
+> +static inline struct drmcgroup_state *get_current_drmcg(void)
+> +{
+> +	return css_to_drmcs(task_get_css(current, drm_cgrp_id));
+> +}
+> +
+> +static struct drmcgroup_state *parent_drmcg(struct drmcgroup_state *cg)
+> +{
+> +	return css_to_drmcs(cg->css.parent);
+> +}
+> +
+> +static void free_cg_pool_locked(struct drmcgroup_pool_state *pool)
+> +{
+> +	lockdep_assert_held(&drmcg_mutex);
+> +
+> +	list_del(&pool->cg_node);
+> +	list_del(&pool->dev_node);
+> +	kfree(pool);
+> +}
+> +
+> +static void
+> +set_resource_max(struct drmcgroup_pool_state *pool, int i, u64 new_max)
+> +{
+> +	pool->resources[i].max = new_max;
+> +}
+> +
+> +static void set_all_resource_max_limit(struct drmcgroup_pool_state *rpool)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < DRMCG_MAX_REGIONS; i++)
+> +		set_resource_max(rpool, i, S64_MAX);
+> +}
+> +
+> +static void drmcs_offline(struct cgroup_subsys_state *css)
+> +{
+> +	struct drmcgroup_state *drmcs = css_to_drmcs(css);
+> +	struct drmcgroup_pool_state *pool, *next;
+> +
+> +	mutex_lock(&drmcg_mutex);
+> +	list_for_each_entry_safe(pool, next, &drmcs->pools, cg_node) {
+> +		if (!pool->usage_sum) {
+> +			free_cg_pool_locked(pool);
+> +		} else {
+> +			/* Reset all regions, last uncharge will remove pool */
+> +			set_all_resource_max_limit(pool);
+> +		}
+> +	}
+> +	mutex_unlock(&drmcg_mutex);
+>   }
+>   
+>   static void drmcs_free(struct cgroup_subsys_state *css)
+>   {
+> -	struct drm_cgroup_state *drmcs = css_to_drmcs(css);
+> +	struct drmcgroup_state *drmcs = css_to_drmcs(css);
+>   
+> -	if (drmcs != &root_drmcs.drmcs)
+> -		kfree(drmcs);
+> +	kfree(drmcs);
+>   }
+>   
+>   static struct cgroup_subsys_state *
+>   drmcs_alloc(struct cgroup_subsys_state *parent_css)
+>   {
+> -	struct drm_cgroup_state *drmcs;
+> +	struct drmcgroup_state *drmcs = kzalloc(sizeof(*drmcs), GFP_KERNEL);
+> +	if (!drmcs)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	INIT_LIST_HEAD(&drmcs->pools);
+> +	return &drmcs->css;
+> +}
+> +
+> +static struct drmcgroup_pool_state *
+> +find_cg_pool_locked(struct drmcgroup_state *drmcs, struct drmcgroup_device *dev)
+> +{
+> +	struct drmcgroup_pool_state *pool;
+> +
+> +	list_for_each_entry(pool, &drmcs->pools, cg_node)
+> +		if (pool->device == dev)
+> +			return pool;
+> +
+> +	return NULL;
+> +}
+> +
+> +static struct drmcgroup_pool_state *
+> +get_cg_pool_locked(struct drmcgroup_state *drmcs, struct drmcgroup_device *dev)
+> +{
+> +	struct drmcgroup_pool_state *pool;
+> +
+> +	pool = find_cg_pool_locked(drmcs, dev);
+> +	if (pool)
+> +		return pool;
+> +
+> +	pool = kzalloc(sizeof(*pool), GFP_KERNEL);
+> +	if (!pool)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	pool->device = dev;
+> +	set_all_resource_max_limit(pool);
+>   
+> -	if (!parent_css) {
+> -		drmcs = &root_drmcs.drmcs;
+> -	} else {
+> -		drmcs = kzalloc(sizeof(*drmcs), GFP_KERNEL);
+> -		if (!drmcs)
+> -			return ERR_PTR(-ENOMEM);
+> +	INIT_LIST_HEAD(&pool->cg_node);
+> +	INIT_LIST_HEAD(&pool->dev_node);
+> +	list_add_tail(&pool->cg_node, &drmcs->pools);
+> +	list_add_tail(&pool->dev_node, &dev->pools);
+> +	return pool;
+> +}
+> +
+> +void drmcg_unregister_device(struct drmcgroup_device *cgdev)
+> +{
+> +	struct drmcgroup_pool_state *pool, *next;
+> +
+> +	mutex_lock(&drmcg_mutex);
+> +	list_del(&cgdev->list);
+> +
+> +	list_for_each_entry_safe(pool, next, &cgdev->pools, dev_node)
+> +		free_cg_pool_locked(pool);
+> +	mutex_unlock(&drmcg_mutex);
+> +	kfree(cgdev->name);
+> +}
+> +
+> +EXPORT_SYMBOL_GPL(drmcg_unregister_device);
+> +
+> +int drmcg_register_device(struct drm_device *dev,
+> +			  struct drmcgroup_device *cgdev)
+> +{
+> +	char *name = kstrdup(dev->unique, GFP_KERNEL);
+> +	if (!name)
+> +		return -ENOMEM;
+> +
+> +	INIT_LIST_HEAD(&cgdev->pools);
+> +	mutex_lock(&drmcg_mutex);
+> +	cgdev->name = name;
+> +	list_add_tail(&cgdev->list, &drmcg_devices);
+> +	mutex_unlock(&drmcg_mutex);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(drmcg_register_device);
+> +
+> +static int drmcg_max_show(struct seq_file *sf, void *v)
+> +{
+> +	struct drmcgroup_state *drmcs = css_to_drmcs(seq_css(sf));
+> +	struct drmcgroup_pool_state *pool;
+> +
+> +	mutex_lock(&drmcg_mutex);
+> +	list_for_each_entry(pool, &drmcs->pools, cg_node) {
+> +		struct drmcgroup_device *dev = pool->device;
+> +		int i;
+> +
+> +		seq_puts(sf, dev->name);
+> +
+> +		for (i = 0; i < DRMCG_MAX_REGIONS; i++) {
+> +			if (!dev->regions[i].name)
+> +				continue;
+> +
+> +			if (pool->resources[i].max < S64_MAX)
+> +				seq_printf(sf, " region.%s=%lld", dev->regions[i].name,
+> +					   pool->resources[i].max);
+> +			else
+> +				seq_printf(sf, " region.%s=max", dev->regions[i].name);
+> +		}
+> +
+> +		seq_putc(sf, '\n');
+>   	}
+> +	mutex_unlock(&drmcg_mutex);
+>   
+> -	return &drmcs->css;
+> +	return 0;
+> +}
+> +
+> +static struct drmcgroup_device *drmcg_get_device_locked(const char *name)
+> +{
+> +	struct drmcgroup_device *dev;
+> +
+> +	lockdep_assert_held(&drmcg_mutex);
+> +
+> +	list_for_each_entry(dev, &drmcg_devices, list)
+> +		if (!strcmp(name, dev->name))
+> +			return dev;
+> +
+> +	return NULL;
+> +}
+> +
+> +static void try_to_free_cg_pool_locked(struct drmcgroup_pool_state *pool)
+> +{
+> +	struct drmcgroup_device *dev = pool->device;
+> +	u32 i;
+> +
+> +	/* Memory charged to this pool */
+> +	if (pool->usage_sum)
+> +		return;
+> +
+> +	for (i = 0; i < DRMCG_MAX_REGIONS; i++) {
+> +		if (!dev->regions[i].name)
+> +			continue;
+> +
+> +		/* Is a specific limit set? */
+> +		if (pool->resources[i].max < S64_MAX)
+> +			return;
+> +	}
+> +
+> +	/*
+> +	 * No user of the pool and all entries are set to defaults;
+> +	 * safe to delete this pool.
+> +	 */
+> +	free_cg_pool_locked(pool);
+> +}
+> +
+> +
+> +static void
+> +uncharge_cg_locked(struct drmcgroup_state *drmcs,
+> +		   struct drmcgroup_device *cgdev,
+> +		   u32 index, u64 size)
+> +{
+> +	struct drmcgroup_pool_state *pool;
+> +
+> +	pool = find_cg_pool_locked(drmcs, cgdev);
+> +
+> +	if (unlikely(!pool)) {
+> +		pr_warn("Invalid device %p or drm cgroup %p\n", cgdev, drmcs);
+> +		return;
+> +	}
+> +
+> +	pool->resources[index].used -= size;
+> +
+> +	/*
+> +	 * A negative count (or overflow) is invalid,
+> +	 * it indicates a bug in the rdma controller.
+> +	 */
+> +	WARN_ON_ONCE(pool->resources[index].used < 0);
+> +	pool->usage_sum--;
+> +	try_to_free_cg_pool_locked(pool);
+> +}
+> +
+> +static void drmcg_uncharge_hierarchy(struct drmcgroup_state *drmcs,
+> +				     struct drmcgroup_device *cgdev,
+> +				     struct drmcgroup_state *stop_cg,
+> +				     u32 index, u64 size)
+> +{
+> +	struct drmcgroup_state *p;
+> +
+> +	mutex_lock(&drmcg_mutex);
+> +
+> +	for (p = drmcs; p != stop_cg; p = parent_drmcg(p))
+> +		uncharge_cg_locked(p, cgdev, index, size);
+> +
+> +	mutex_unlock(&drmcg_mutex);
+> +
+> +	css_put(&drmcs->css);
+> +}
+> +
+> +void drmcg_uncharge(struct drmcgroup_state *drmcs,
+> +		    struct drmcgroup_device *cgdev,
+> +		    u32 index,
+> +		    u64 size)
+> +{
+> +	if (index >= DRMCG_MAX_REGIONS)
+> +		return;
+> +
+> +	drmcg_uncharge_hierarchy(drmcs, cgdev, NULL, index, size);
+> +}
+> +EXPORT_SYMBOL_GPL(drmcg_uncharge);
+> +
+> +int drmcg_try_charge(struct drmcgroup_state **drmcs,
+> +		     struct drmcgroup_device *cgdev,
+> +		     u32 index,
+> +		     u64 size)
+> +{
+> +	struct drmcgroup_state *cg, *p;
+> +	struct drmcgroup_pool_state *pool;
+> +	u64 new;
+> +	int ret = 0;
+> +
+> +	if (index >= DRMCG_MAX_REGIONS)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * hold on to css, as cgroup can be removed but resource
+> +	 * accounting happens on css.
+> +	 */
+> +	cg = get_current_drmcg();
 
-Possible new issues
--------------------
+1)
 
-  Here are the unknown changes that may have been introduced in Patchwork_117189v3_full:
+I am not familiar with the Xe flows - charging is at the point of actual 
+backing store allocation?
 
-### IGT changes ###
+What about buffer sharing?
 
-#### Suppressed ####
+Also, given how the css is permanently stored in the caller - you 
+deliberately decided not to deal with task migrations? I am not sure 
+that will work. Or maybe just omitted for RFC v1?
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+2)
 
-  * igt@gem_ctx_persistence@many-contexts:
-    - {shard-dg1}:        [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-dg1-17/igt@gem_ctx_persistence@many-contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-dg1-13/igt@gem_ctx_persistence@many-contexts.html
+Buffer objects which Xe can migrate between memory regions will be 
+correctly charge/uncharged as they are moved?
 
-  
-Known issues
-------------
+Regards,
 
-  Here are the changes found in Patchwork_117189v3_full that come from known issues:
+Tvrtko
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_fair@basic-pace-solo@rcs0:
-    - shard-apl:          [PASS][3] -> [FAIL][4] ([i915#2842])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-apl2/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-apl1/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
-    - shard-apl:          [PASS][5] -> [FAIL][6] ([i915#2346])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-apl1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-apl7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-
-  * igt@kms_flip@flip-vs-expired-vblank@c-dp1:
-    - shard-apl:          [PASS][7] -> [FAIL][8] ([i915#79])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-apl1/igt@kms_flip@flip-vs-expired-vblank@c-dp1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-apl2/igt@kms_flip@flip-vs-expired-vblank@c-dp1.html
-
-  * igt@kms_plane_scaling@plane-upscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-1:
-    - shard-snb:          NOTRUN -> [SKIP][9] ([fdo#109271]) +3 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-snb1/igt@kms_plane_scaling@plane-upscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@drm_fdinfo@most-busy-idle-check-all@rcs0:
-    - {shard-rkl}:        [FAIL][10] ([i915#7742]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-rkl-3/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-rkl-4/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
-
-  * igt@gem_barrier_race@remote-request@rcs0:
-    - {shard-rkl}:        [ABORT][12] ([i915#7461] / [i915#8211]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-rkl-3/igt@gem_barrier_race@remote-request@rcs0.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-rkl-4/igt@gem_barrier_race@remote-request@rcs0.html
-
-  * igt@gem_eio@hibernate:
-    - {shard-tglu}:       [ABORT][14] ([i915#7975] / [i915#8213] / [i915#8398]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-tglu-10/igt@gem_eio@hibernate.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-tglu-7/igt@gem_eio@hibernate.html
-
-  * igt@gem_eio@reset-stress:
-    - {shard-dg1}:        [FAIL][16] ([i915#5784]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-dg1-17/igt@gem_eio@reset-stress.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-dg1-12/igt@gem_eio@reset-stress.html
-
-  * igt@i915_pm_rpm@modeset-lpsp-stress:
-    - {shard-rkl}:        [SKIP][18] ([i915#1397]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-rkl-2/igt@i915_pm_rpm@modeset-lpsp-stress.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-rkl-7/igt@i915_pm_rpm@modeset-lpsp-stress.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - shard-glk:          [DMESG-FAIL][20] ([i915#5334]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-glk7/igt@i915_selftest@live@gt_heartbeat.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-glk6/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
-    - shard-glk:          [FAIL][22] ([i915#2346]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-glk4/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-glk7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-
-  * igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a1:
-    - shard-glk:          [FAIL][24] ([i915#79]) -> [PASS][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-glk4/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a1.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-glk7/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
-  [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
-  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
-  [fdo#109300]: https://bugs.freedesktop.org/show_bug.cgi?id=109300
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
-  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
-  [i915#1825]: https://gitlab.freedesktop.org/drm/intel/issues/1825
-  [i915#1937]: https://gitlab.freedesktop.org/drm/intel/issues/1937
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2587]: https://gitlab.freedesktop.org/drm/intel/issues/2587
-  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
-  [i915#2681]: https://gitlab.freedesktop.org/drm/intel/issues/2681
-  [i915#2705]: https://gitlab.freedesktop.org/drm/intel/issues/2705
-  [i915#280]: https://gitlab.freedesktop.org/drm/intel/issues/280
-  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
-  [i915#315]: https://gitlab.freedesktop.org/drm/intel/issues/315
-  [i915#3297]: https://gitlab.freedesktop.org/drm/intel/issues/3297
-  [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
-  [i915#3591]: https://gitlab.freedesktop.org/drm/intel/issues/3591
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
-  [i915#3804]: https://gitlab.freedesktop.org/drm/intel/issues/3804
-  [i915#3989]: https://gitlab.freedesktop.org/drm/intel/issues/3989
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
-  [i915#4349]: https://gitlab.freedesktop.org/drm/intel/issues/4349
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
-  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
-  [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5784]: https://gitlab.freedesktop.org/drm/intel/issues/5784
-  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
-  [i915#6433]: https://gitlab.freedesktop.org/drm/intel/issues/6433
-  [i915#6946]: https://gitlab.freedesktop.org/drm/intel/issues/6946
-  [i915#7116]: https://gitlab.freedesktop.org/drm/intel/issues/7116
-  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
-  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
-  [i915#7742]: https://gitlab.freedesktop.org/drm/intel/issues/7742
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#7975]: https://gitlab.freedesktop.org/drm/intel/issues/7975
-  [i915#8211]: https://gitlab.freedesktop.org/drm/intel/issues/8211
-  [i915#8213]: https://gitlab.freedesktop.org/drm/intel/issues/8213
-  [i915#8398]: https://gitlab.freedesktop.org/drm/intel/issues/8398
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13102 -> Patchwork_117189v3
-
-  CI-20190529: 20190529
-  CI_DRM_13102: b0492ca8c1cec314da218999babaa016df4cf9d1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7277: 1cb3507f3ff28d11bd5cfabcde576fe78ddab571 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_117189v3: b0492ca8c1cec314da218999babaa016df4cf9d1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/index.html
-
---===============3827140938804746088==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Check if media_gt exists (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117189/">https://patchwork.freedesktop.org/series/117189/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13102_full -&gt; Patchwork_117189v3_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 8)</h2>
-<p>Additional (1): shard-rkl0 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_117189v3_full:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@gem_ctx_persistence@many-contexts:<ul>
-<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-dg1-17/igt@gem_ctx_persistence@many-contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-dg1-13/igt@gem_ctx_persistence@many-contexts.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_117189v3_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-apl2/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-apl1/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-apl1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-apl7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@c-dp1:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-apl1/igt@kms_flip@flip-vs-expired-vblank@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-apl2/igt@kms_flip@flip-vs-expired-vblank@c-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/79">i915#79</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-upscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-1:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-snb1/igt@kms_plane_scaling@plane-upscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@drm_fdinfo@most-busy-idle-check-all@rcs0:</p>
-<ul>
-<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-rkl-3/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7742">i915#7742</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-rkl-4/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_barrier_race@remote-request@rcs0:</p>
-<ul>
-<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-rkl-3/igt@gem_barrier_race@remote-request@rcs0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8211">i915#8211</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-rkl-4/igt@gem_barrier_race@remote-request@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@hibernate:</p>
-<ul>
-<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-tglu-10/igt@gem_eio@hibernate.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7975">i915#7975</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8213">i915#8213</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8398">i915#8398</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-tglu-7/igt@gem_eio@hibernate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@reset-stress:</p>
-<ul>
-<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-dg1-17/igt@gem_eio@reset-stress.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5784">i915#5784</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-dg1-12/igt@gem_eio@reset-stress.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@modeset-lpsp-stress:</p>
-<ul>
-<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-rkl-2/igt@i915_pm_rpm@modeset-lpsp-stress.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-rkl-7/igt@i915_pm_rpm@modeset-lpsp-stress.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-glk7/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-glk6/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-glk4/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-glk7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a1:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13102/shard-glk4/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/79">i915#79</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117189v3/shard-glk7/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13102 -&gt; Patchwork_117189v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13102: b0492ca8c1cec314da218999babaa016df4cf9d1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7277: 1cb3507f3ff28d11bd5cfabcde576fe78ddab571 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_117189v3: b0492ca8c1cec314da218999babaa016df4cf9d1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============3827140938804746088==--
+> +
+> +	mutex_lock(&drmcg_mutex);
+> +	for (p = cg; p; p = parent_drmcg(p)) {
+> +		pool = get_cg_pool_locked(p, cgdev);
+> +		if (IS_ERR(pool)) {
+> +			ret = PTR_ERR(pool);
+> +			goto err;
+> +		} else {
+> +			new = pool->resources[index].used + size;
+> +			if (new > pool->resources[index].max || new > S64_MAX) {
+> +				ret = -EAGAIN;
+> +				goto err;
+> +			} else {
+> +				pool->resources[index].used = new;
+> +				pool->usage_sum++;
+> +			}
+> +		}
+> +	}
+> +	mutex_unlock(&drmcg_mutex);
+> +
+> +	*drmcs = cg;
+> +	return 0;
+> +
+> +err:
+> +	mutex_unlock(&drmcg_mutex);
+> +	drmcg_uncharge_hierarchy(cg, cgdev, p, index, size);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(drmcg_try_charge);
+> +
+> +static s64 parse_resource(char *c, char **retname)
+> +{
+> +	substring_t argstr;
+> +	char *name, *value = c;
+> +	size_t len;
+> +	int ret;
+> +	u64 retval;
+> +
+> +	name = strsep(&value, "=");
+> +	if (!name || !value)
+> +		return -EINVAL;
+> +
+> +	/* Only support region setting for now */
+> +	if (strncmp(name, "region.", 7))
+> +		return -EINVAL;
+> +	else
+> +		name += 7;
+> +
+> +	*retname = name;
+> +	len = strlen(value);
+> +
+> +	argstr.from = value;
+> +	argstr.to = value + len;
+> +
+> +	ret = match_u64(&argstr, &retval);
+> +	if (ret >= 0) {
+> +		if (retval > S64_MAX)
+> +			return -EINVAL;
+> +		return retval;
+> +	}
+> +	if (!strncmp(value, "max", len))
+> +		return S64_MAX;
+> +
+> +	/* Not u64 or max, error */
+> +	return -EINVAL;
+> +}
+> +
+> +static int drmcg_parse_limits(char *options,
+> +			      u64 *limits, char **enables)
+> +{
+> +	char *c;
+> +	int num_limits = 0;
+> +
+> +	/* parse resource options */
+> +	while ((c = strsep(&options, " ")) != NULL) {
+> +		s64 limit;
+> +
+> +		if (num_limits >= DRMCG_MAX_REGIONS)
+> +			return -EINVAL;
+> +
+> +		limit = parse_resource(c, &enables[num_limits]);
+> +		if (limit < 0)
+> +			return limit;
+> +
+> +		limits[num_limits++] = limit;
+> +	}
+> +	return num_limits;
+> +}
+> +
+> +static ssize_t drmcg_max_write(struct kernfs_open_file *of,
+> +			       char *buf, size_t nbytes, loff_t off)
+> +{
+> +	struct drmcgroup_state *drmcs = css_to_drmcs(of_css(of));
+> +	struct drmcgroup_device *dev;
+> +	struct drmcgroup_pool_state *pool;
+> +	char *options = strstrip(buf);
+> +	char *dev_name = strsep(&options, " ");
+> +	u64 limits[DRMCG_MAX_REGIONS];
+> +	u64 new_limits[DRMCG_MAX_REGIONS];
+> +	char *regions[DRMCG_MAX_REGIONS];
+> +	int num_limits, i;
+> +	unsigned long set_mask = 0;
+> +	int err = 0;
+> +
+> +	if (!dev_name)
+> +		return -EINVAL;
+> +
+> +	num_limits = drmcg_parse_limits(options, limits, regions);
+> +	if (num_limits < 0)
+> +		return num_limits;
+> +	if (!num_limits)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Everything is parsed into key=value pairs now, take lock and attempt to update
+> +	 * For good measure, set -EINVAL when a key is set twice.
+> +	 */
+> +	mutex_lock(&drmcg_mutex);
+> +
+> +	dev = drmcg_get_device_locked(dev_name);
+> +	if (!dev) {
+> +		err = -ENODEV;
+> +		goto err;
+> +	}
+> +
+> +	pool = get_cg_pool_locked(drmcs, dev);
+> +	if (IS_ERR(pool)) {
+> +		err = PTR_ERR(pool);
+> +		goto err;
+> +	}
+> +
+> +	/* Lookup region names and set new_limits to the index */
+> +	for (i = 0; i < num_limits; i++) {
+> +		int j;
+> +
+> +		for (j = 0; j < DRMCG_MAX_REGIONS; j++)
+> +			if (dev->regions[j].name &&
+> +			    !strcmp(regions[i], dev->regions[j].name))
+> +				break;
+> +
+> +		if (j == DRMCG_MAX_REGIONS ||
+> +		    set_mask & BIT(j)) {
+> +			err = -EINVAL;
+> +			goto err_put;
+> +		}
+> +
+> +		set_mask |= BIT(j);
+> +		new_limits[j] = limits[i];
+> +	}
+> +
+> +	/* And commit */
+> +	for_each_set_bit(i, &set_mask, DRMCG_MAX_REGIONS)
+> +		set_resource_max(pool, i, new_limits[i]);
+> +
+> +err_put:
+> +	try_to_free_cg_pool_locked(pool);
+> +err:
+> +	mutex_unlock(&drmcg_mutex);
+> +
+> +	return err ?: nbytes;
+> +}
+> +
+> +static int drmcg_current_show(struct seq_file *sf, void *v)
+> +{
+> +	struct drmcgroup_state *drmcs = css_to_drmcs(seq_css(sf));
+> +	struct drmcgroup_device *dev;
+> +
+> +	mutex_lock(&drmcg_mutex);
+> +	list_for_each_entry(dev, &drmcg_devices, list) {
+> +		struct drmcgroup_pool_state *pool = find_cg_pool_locked(drmcs, dev);
+> +		int i;
+> +
+> +		seq_puts(sf, dev->name);
+> +
+> +		for (i = 0; i < DRMCG_MAX_REGIONS; i++) {
+> +			if (!dev->regions[i].name)
+> +				continue;
+> +
+> +			seq_printf(sf, " region.%s=%lld", dev->regions[i].name,
+> +				   pool ? pool->resources[i].used : 0ULL);
+> +		}
+> +
+> +		seq_putc(sf, '\n');
+> +	}
+> +	mutex_unlock(&drmcg_mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +static int drmcg_capacity_show(struct seq_file *sf, void *v)
+> +{
+> +	struct drmcgroup_device *dev;
+> +	int i;
+> +
+> +	list_for_each_entry(dev, &drmcg_devices, list) {
+> +		seq_puts(sf, dev->name);
+> +		for (i = 0; i < DRMCG_MAX_REGIONS; i++)
+> +			if (dev->regions[i].name)
+> +				seq_printf(sf, " region.%s=%lld",
+> +					   dev->regions[i].name,
+> +					   dev->regions[i].size);
+> +		seq_putc(sf, '\n');
+> +	}
+> +	return 0;
+>   }
+>   
+> -struct cftype files[] = {
+> +static struct cftype files[] = {
+> +	{
+> +		.name = "max",
+> +		.write = drmcg_max_write,
+> +		.seq_show = drmcg_max_show,
+> +		.flags = CFTYPE_NOT_ON_ROOT,
+> +	},
+> +	{
+> +		.name = "current",
+> +		.seq_show = drmcg_current_show,
+> +		.flags = CFTYPE_NOT_ON_ROOT,
+> +	},
+> +	{
+> +		.name = "capacity",
+> +		.seq_show = drmcg_capacity_show,
+> +		.flags = CFTYPE_ONLY_ON_ROOT,
+> +	},
+>   	{ } /* Zero entry terminates. */
+>   };
+>   
+>   struct cgroup_subsys drm_cgrp_subsys = {
+>   	.css_alloc	= drmcs_alloc,
+>   	.css_free	= drmcs_free,
+> -	.early_init	= false,
+> +	.css_offline	= drmcs_offline,
+>   	.legacy_cftypes	= files,
+>   	.dfl_cftypes	= files,
+>   };
