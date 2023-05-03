@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D006D6F5A45
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 16:39:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEF666F5A4A
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 16:40:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A5C210E13C;
-	Wed,  3 May 2023 14:39:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2275710E2CA;
+	Wed,  3 May 2023 14:40:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0833C10E13C
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 May 2023 14:39:44 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D076E10E2CA
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 May 2023 14:40:16 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 6F1BA60F23;
- Wed,  3 May 2023 14:39:44 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 3E3D260C6C;
+ Wed,  3 May 2023 14:40:16 +0000 (UTC)
 Received: from rdvivi-mobl4 (fmdmzpr02-ext.fm.intel.com [192.55.54.37])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id AA668C433EF;
- Wed,  3 May 2023 14:39:42 +0000 (UTC)
-Date: Wed, 3 May 2023 10:39:40 -0400
+ by smtp.kernel.org (Postfix) with ESMTPSA id 39ECBC433EF;
+ Wed,  3 May 2023 14:40:14 +0000 (UTC)
+Date: Wed, 3 May 2023 10:40:11 -0400
 From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZFJyLPP98StaIv1g@rdvivi-mobl4>
+Message-ID: <ZFJySwnNfMS6ZRaH@rdvivi-mobl4>
 References: <cover.1683041799.git.jani.nikula@intel.com>
- <7656b8f58b088c108a2a32f7089329740efabba1.1683041799.git.jani.nikula@intel.com>
+ <84f89a3332fa323888f1e3241fb51ae10417ecd7.1683041799.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7656b8f58b088c108a2a32f7089329740efabba1.1683041799.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 20/24] drm/i915/pmu: drop kernel-doc
+In-Reply-To: <84f89a3332fa323888f1e3241fb51ae10417ecd7.1683041799.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 21/24] drm/i915/pxp: fix kernel-doc for
+ member dev_link
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,53 +50,34 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 02, 2023 at 06:37:37PM +0300, Jani Nikula wrote:
-> The comments are closer to not being kernel-doc.
+On Tue, May 02, 2023 at 06:37:38PM +0300, Jani Nikula wrote:
+> Add /** to make it a kernel-doc.
 > 
-> drivers/gpu/drm/i915/i915_pmu.h:21: warning: cannot understand function prototype: 'enum i915_pmu_tracked_events '
-> drivers/gpu/drm/i915/i915_pmu.h:32: warning: cannot understand function prototype: 'enum '
-> drivers/gpu/drm/i915/i915_pmu.h:41: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
->  * How many different events we track in the global PMU mask.
+> drivers/gpu/drm/i915/pxp/intel_pxp_types.h:96: warning: Function parameter or member 'dev_link' not described in 'intel_pxp'
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/i915_pmu.h | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/i915/pxp/intel_pxp_types.h | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
-> index 449057648f39..c30f43319a78 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.h
-> +++ b/drivers/gpu/drm/i915/i915_pmu.h
-> @@ -14,7 +14,7 @@
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> index 007de49e1ea4..c445f7f2f47a 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> @@ -33,7 +33,9 @@ struct intel_pxp {
+>  	 */
+>  	struct i915_pxp_component *pxp_component;
 >  
->  struct drm_i915_private;
->  
-> -/**
-> +/*
->   * Non-engine events that we need to track enabled-disabled transition and
->   * current state.
->   */
-> @@ -25,7 +25,7 @@ enum i915_pmu_tracked_events {
->  	__I915_PMU_TRACKED_EVENT_COUNT, /* count marker */
->  };
->  
-> -/**
-> +/*
->   * Slots used from the sampling timer (non-engine events) with some extras for
->   * convenience.
->   */
-> @@ -37,7 +37,7 @@ enum {
->  	__I915_NUM_PMU_SAMPLERS
->  };
->  
-> -/**
-> +/*
->   * How many different events we track in the global PMU mask.
->   *
->   * It is also used to know to needed number of event reference counters.
+> -	/* @dev_link: Enforce module relationship for power management ordering. */
+> +	/**
+> +	 * @dev_link: Enforce module relationship for power management ordering.
+> +	 */
+>  	struct device_link *dev_link;
+>  	/**
+>  	 * @pxp_component_added: track if the pxp component has been added.
 > -- 
 > 2.39.2
 > 
