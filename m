@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82B596F510F
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 09:17:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2D5E6F51D2
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 May 2023 09:36:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 014CC10E1B5;
-	Wed,  3 May 2023 07:17:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A740D10E1CA;
+	Wed,  3 May 2023 07:36:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED46310E1B5;
- Wed,  3 May 2023 07:17:56 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 421AA10E106;
+ Wed,  3 May 2023 07:36:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683098276; x=1714634276;
+ t=1683099408; x=1714635408;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=OhiBpaS6d2q5twhFhB0AUUvTpsX4MPGD7rgiEPm2qdk=;
- b=ZvIZOlEATdfesVRTL5Ir52CeoYAzk9b1AB3AtKFVZGSnsJ4ItFLQIKPZ
- GqShFNEZHRPZdWYWLpV9M7oy6/Xt5wh5Cn8WgfCr4Ug/xK8XIu2b8CX7G
- fYWQV3LKOJ9aqwCiGfOFMgrXEh6K7sPe/r/arGCJSVEal2NiYG+FJDi8f
- oAoo2Mp6DzEP9IHfVMb8uAnPNU7UIb+wNUo4w2MXZUZ+3b/28WUbTjnFu
- DpiXU4QFCvYcB3T/43NDZjrautjkQXh0l70O+4sgZK3DUfIyYRWRkvkSf
- /Dab5J8BbqXSQK2w/5J2sLv2PdfRIUjOFI+Sk9pDEcVT2BvNWNbY1bs6/ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="348629788"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="348629788"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 00:17:55 -0700
+ bh=8qja3xL3o15/P6MEI7nlTlj9pz/7Jct5MsrbFwz2PEU=;
+ b=ihXM87gVTYNaHWL0eGCTJ43gBJScmaPJaykWNM1Z45P+tVunQt5f7uWY
+ R86rWtbJDJP+SVIT18LnAL5JzckEklD3mPWFYDG5QgJ8zm3ppdpRfo57W
+ ThVzh4zwq3FZfdlF0oKmrzTjr/Wwl/Nx3Oe8wROoBT0H4rhyVwun4J7Nj
+ Wuv8/bG8ouTDf28iNqSI8sJXug2SBEwM6eRk/ve2dAJ+3jdQWM8ojv/cU
+ CKkuCQspXTa8RW9QYyh7Ez02H1DHaw+7XmLOSrMnhuXrIrJ6PXcvyj3UG
+ qjjiqJkjfVQctqp1VzH41qgYSOrFf9WYVgxFt4ZFAol645DcOOexJNosI w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="347409274"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="347409274"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 00:36:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="820664601"
-X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="820664601"
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="729239905"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="729239905"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 00:17:53 -0700
-Date: Wed, 3 May 2023 10:17:45 +0300
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 00:36:45 -0700
+Date: Wed, 3 May 2023 10:36:42 +0300
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <ZFIKmVvB1gjcP420@intel.com>
+Message-ID: <ZFIPCm+k9TCyfMfS@intel.com>
 References: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
  <20230502143906.2401-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
@@ -90,22 +90,14 @@ On Tue, May 02, 2023 at 05:38:57PM +0300, Ville Syrjala wrote:
 > distribute the available bandwidth across all the streams on the
 > same link (which is a must to eg. enable deep color).
 
-Hi Ville,
-
-I'm not going to argue even that this code has some issues or not,
-sure it has. However you are currently totally removing everything
-without proposing what fixes have to be done or could have been done
-instead.
-We had multiple DP MST hubs which started to work because of this code,
-also we had a public gitlab issues which were solved. So now they will loose
-that support. I mean if this goes through, then I guess its up to you to 
-handle this. Why not just fix instead of remove? Just add fixing patches on
-top of those which remove the wrong code.
-Now we are simply removing all that works at least,
-instead of proposing how to fix, leaving no support at all. 
-I have 2 MST hubs on my desk which won't work after this code is removed,
-so if this patch goes through I recommend taking them.
-But at least from my side, I think this is kinda unconstructive.
+Also all the things you mentioned are subject for discussion, for example
+I see that FEC overhead is actually accounted for bpp calculation for instance.
+We usually improve things by gradually fixing, because if we act same way towards
+all wrong code in the driver, we could end up removing the whole i915.
+So from my side I would nack it, at least until you have a code which handles
+all of this better - I have no doubt you probably have some ideas in your mind, so lets be constructive at least and propose something better first.
+This code doesn't cause any regressions, but still provides "some" support to DP MST DSC to say the least and even if that would be removed, if some of those users 
+refer to me, I would probably then just point to this mail discussion everytime.
 
 Stan
 
