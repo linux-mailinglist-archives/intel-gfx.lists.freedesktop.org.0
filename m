@@ -1,55 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2331A6F688E
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 11:45:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD8876F690A
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 12:28:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 965E410E419;
-	Thu,  4 May 2023 09:45:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43E5D10E421;
+	Thu,  4 May 2023 10:28:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D3D210E417;
- Thu,  4 May 2023 09:45:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683193522; x=1714729522;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=xXxKdtNC5aGnqQZK70eazDiZwZew3BpBgKA0azwk6Ig=;
- b=fXKThyVzgs1agv123vNGJ5hw1cJ0s+8iUTf2tyCAPbZxlOeGX2sME+hP
- kC/R729sSC8akX36PfcpqsWubNj6HKC7Q4oUqH2H6bCG9EILsfR3aWTt2
- y8GBYIEWabRSe1IUI+DmaF+WgrvMccr6KDyYdyeIkiEMHDyEx9YOpammS
- R5RYxgMZlDYKUfe/SnwtoPFJZAIdqex6q36bE3u0oYgyS5hh1CUy7Vo14
- ryo6cD7tXWv28qt2OnMh+TM7axOvUYjopzOnkOHyUs2Py+1nJOUdiFbnU
- RDGfL40BfL2eWtBIXJfIVC2z1Mr5bUPAzc9pICclFIGJ0X0J/D+Adzqrf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="348929913"
-X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; d="scan'208";a="348929913"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2023 02:45:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="841074862"
-X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; d="scan'208";a="841074862"
-Received: from dmitriyp-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.249.37.93])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2023 02:45:18 -0700
-Date: Thu, 4 May 2023 11:45:15 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <ZFN+q9xEyuRFrJp4@ashyti-mobl2.lan>
-References: <20230412113308.812468-1-andi.shyti@linux.intel.com>
- <20230412113308.812468-6-andi.shyti@linux.intel.com>
- <ca796c78-67cf-c803-b3bc-7d6eaa542b32@linux.intel.com>
- <5b7f82db-b9dd-e9c9-496c-72995469d699@linux.intel.com>
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com
+ [IPv6:2a00:1450:4864:20::12e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6EAB10E421
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 May 2023 10:28:18 +0000 (UTC)
+Received: by mail-lf1-x12e.google.com with SMTP id
+ 2adb3069b0e04-4f00c33c3d6so347120e87.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 04 May 2023 03:28:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1683196096; x=1685788096;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=jEBRUwDLpFcnXrlbigezC2oCjVBKtjOYIID+uAK03II=;
+ b=e/FgJRw8f6WfrB6YMwlxVlh9QADotisTsB1L2B7pXL0GACDFZzdzcpf8BOORdtCY3Y
+ ly59hiK8X/1ChOpqHEMrteqMRZNDYoVUSl2xtXIyfEdzW9WjVss7QUutGahYiExIJJks
+ QmRTKoEDIpL/XnAs+DgaxsxamkbgadkbLzThD7aJ/lU9L6oAVNdVD+iGlBskScJ6lTvR
+ PuNq+Zfao6mypJzSLVZWa6r/qeRcyRtHRPl/7HMyNHuG0ypLHKZExHa9r9+n6yWAS21r
+ gll+4KYhBmn/5NTiR3Yxqck9NZRQvSwTfhBIKRvBUtxkPtPw8rmEDw97laDQ9clCPge6
+ PlDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1683196096; x=1685788096;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=jEBRUwDLpFcnXrlbigezC2oCjVBKtjOYIID+uAK03II=;
+ b=JVt6Jq1Q5DyEYFrRfFp2YoiSfvT47kY7UIl8AWxoGB7YYnZLdAVsl3AP+vNV8lOzAF
+ 9rQwdYeB90vOVteYCQEtx8lBH+HPDIjBNVY54oLG3i1689NXJITv6QvML34nVB+WiSyM
+ VyKAP+yZkOQgYhV1O8MBKzHgZZN9RTCJ0sGD/nkv8RTIZNvwPewx+ETZy7AGW0qWg668
+ JgUN+16sJBfwCjmgTfiROPZCOujaMFIwbi9RSvzmM2dRQLSOJr8SciQLJ+wDYpUV0Axp
+ oqC/Hw3BJ4okWVBCxQChbeUKpcxq81Pbu9MkcmcVYfSge4fvXCkYcdygwNXu4dvD5Udv
+ BdPQ==
+X-Gm-Message-State: AC+VfDyLXPzhLu6rkafTpIda3tQTEhq94w8IAb1+egF6Q1ncjEzQl76m
+ NC/W/++6YqQth8pfwd1gGByiSLdprb5vh9of
+X-Google-Smtp-Source: ACHHUZ41VvAUUN+BN2N9eXUvf4+ZTyrTJivN+cK8/0Ym6H62zp5CNFyXz2Bid7uSInWTRd/snH7kpw==
+X-Received: by 2002:ac2:5142:0:b0:4ef:ed49:fcc2 with SMTP id
+ q2-20020ac25142000000b004efed49fcc2mr2147517lfd.26.1683196095550; 
+ Thu, 04 May 2023 03:28:15 -0700 (PDT)
+Received: from localhost.localdomain ([2001:998:22:0:60cb:8180:a416:f400])
+ by smtp.gmail.com with ESMTPSA id
+ v25-20020a056512049900b004eff32d6a21sm5097416lfq.121.2023.05.04.03.28.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 04 May 2023 03:28:14 -0700 (PDT)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  4 May 2023 13:28:02 +0300
+Message-Id: <20230504102805.18645-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5b7f82db-b9dd-e9c9-496c-72995469d699@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 5/5] drm/i915/gt: Make sure that errors
- are propagated through request chains
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/mtl: Drop FLAT CCS check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,25 +70,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andi Shyti <andi.shyti@kernel.org>, intel-gfx@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>
+Cc: Pallavi Mishra <pallavi.mishra@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+From: Pallavi Mishra <pallavi.mishra@intel.com>
 
-> Another option - maybe - is this related to revert of fence error
-> propagation? If it is and having that would avoid the need for this invasive
-> fix, maybe we unrevert 3761baae908a7b5012be08d70fa553cc2eb82305 with edits
-> to limit to special contexts? If doable..
+Remove FLAT CCS check from XY_FAST_COLOR_BLT usage, thus
+enabling MTL to use it.
 
-I think that is not enough as we want to get anyway to the last
-request and fence submitted. Right?
+Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+---
+ drivers/gpu/drm/i915/gt/intel_migrate.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-I guess this commit should be reverted anyway.
+diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+index 3f638f198796..e0998879a0e1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_migrate.c
++++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+@@ -920,7 +920,7 @@ static int emit_clear(struct i915_request *rq, u32 offset, int size,
+ 
+ 	GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
+ 
+-	if (HAS_FLAT_CCS(i915) && ver >= 12)
++	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
+ 		ring_sz = XY_FAST_COLOR_BLT_DW;
+ 	else if (ver >= 8)
+ 		ring_sz = 8;
+@@ -931,7 +931,7 @@ static int emit_clear(struct i915_request *rq, u32 offset, int size,
+ 	if (IS_ERR(cs))
+ 		return PTR_ERR(cs);
+ 
+-	if (HAS_FLAT_CCS(i915) && ver >= 12) {
++	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
+ 		*cs++ = XY_FAST_COLOR_BLT_CMD | XY_FAST_COLOR_BLT_DEPTH_32 |
+ 			(XY_FAST_COLOR_BLT_DW - 2);
+ 		*cs++ = FIELD_PREP(XY_FAST_COLOR_BLT_MOCS_MASK, mocs) |
+-- 
+2.25.1
 
-Andi
