@@ -1,54 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66E86F6865
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 11:37:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14D456F6878
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 11:40:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE4E10E413;
-	Thu,  4 May 2023 09:37:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3666910E411;
+	Thu,  4 May 2023 09:40:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4408010E411;
- Thu,  4 May 2023 09:37:25 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8113C10E411
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 May 2023 09:40:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683193045; x=1714729045;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=uuwvPTcukojeCkqdnTNYHkod5MKZZgUgvSBBaFF1kfE=;
- b=ZqTFLQbc/jPpzgLgMvk9amLt2eM4FE6QPFQsPsI/zSKUp6y+l8OyrcjT
- veHWEkuyJS+Ji8JDMudhHnTpMvNVHfe+AhAxLvPzEgugiqyoq2Tm6YxY9
- o2nbFWn7j8nAF/lYisWwuKmUXKv9ymBUf3qpJ57sdapai9Q2DGQjsJYJJ
- U5ga4j2ehteASDa3cIkEbogmAayaYv4w0++/IAT6o4bBNrn0BZQZ7Hzcw
- oC3eab9JpS+WohUOFFdhW6XM+rI2wZ06078JvIF9Iyz0QC6ySdA0I2wv7
- PhA8nLs+IOmsJB70alf8UNBIJXYvmoxBum7x4IPFiwOeuZ34aZk1cnzRp w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="348927900"
-X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; d="scan'208";a="348927900"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2023 02:37:24 -0700
+ t=1683193216; x=1714729216;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lleGUfpHFb+cs1lWcBU7gw1HaPbCREIZTp7bPtOlD7U=;
+ b=AYOaq/pG84f5E1gRGG+5jVvJGtSawJa5u/EfeHtSgvkLP1vlzUFXbs5x
+ jMOcF8IwWrtt1pPjZBKI2UnBfBh9x0GhnG/yF9uhyhrJAjGfQ9IPFx4Fb
+ aQWZIWgH04CujQJbMYalkdwU1BjS8lu6WdyRXpiwcxIWWAcfLRcxVl3Eq
+ epdxQdFeySvzDfLM7VPYgR5KWmmrHN37BIlZKMuRNed8Jjy9WXuKbH1vL
+ YdWdUAljC8gvKiX2g6RwRitEAVkCtHCxuQSqxJH1Ex0isquXQIaF+i3MS
+ OQ8adqQ+AvwV2FmK5YF5n5GBSMmHcg3x4ZwMydlNjNk5P57Ju5SIeRa3Y Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="329242535"
+X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; d="scan'208";a="329242535"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2023 02:40:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="761829691"
-X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; d="scan'208";a="761829691"
-Received: from dmitriyp-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.249.37.93])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2023 02:37:20 -0700
-Date: Thu, 4 May 2023 11:37:17 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <ZFN8zc85kGJ8dMlD@ashyti-mobl2.lan>
-References: <20230412113308.812468-1-andi.shyti@linux.intel.com>
- <20230412113308.812468-6-andi.shyti@linux.intel.com>
- <ca796c78-67cf-c803-b3bc-7d6eaa542b32@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="786459362"
+X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; d="scan'208";a="786459362"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by FMSMGA003.fm.intel.com with ESMTP; 04 May 2023 02:40:00 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  4 May 2023 12:39:59 +0300
+Message-Id: <20230504093959.12085-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ca796c78-67cf-c803-b3bc-7d6eaa542b32@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 5/5] drm/i915/gt: Make sure that errors
- are propagated through request chains
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Communicate display power
+ demands to pcode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,219 +56,308 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andi Shyti <andi.shyti@kernel.org>, intel-gfx@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Maciej Patelczyk <maciej.patelczyk@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+Display to communicate display pipe count/CDCLK/voltage configuration
+to Pcode for more accurate power accounting for DG2.
+Existing sequence is only sending the voltage value to the Pcode.
+Adding new sequence with current cdclk associate with voltage value masking.
+Adding pcode request when any pipe power well will disable or enable.
 
-sorry for the very late reply, it's about time to bring this
-patch up.
+v2: - Make intel_cdclk_need_serialize static to make CI compiler happy.
+v3: - Removed redundant return(Jani Nikula)
+    - Changed intel_cdclk_power_usage_to_pcode_(pre|post)_notification to be
+      static and also naming to intel_cdclk_pcode_(pre|post)_notify(Jani Nikula)
+    - Changed u8 to be u16 for cdclk parameter in intel_pcode_notify function,
+      as according to BSpec it requires 10 bits(Jani Nikula)
+    - Replaced dev_priv's with i915's(Jani Nikula)
+    - Simplified expression in intel_cdclk_need_serialize(Jani Nikula)
+    - Removed redundant kernel-doc and indentation(Jani Nikula)
+v4: - Fixed some checkpatch warnings
+v5: - According to HW team comments that change should affect only DG2,
+      fix correspodent platform check to account this.
+v6: - Added one more missing IS_DG2 check(Vinod Govindapillai)
 
-On Thu, Apr 13, 2023 at 12:56:00PM +0100, Tvrtko Ursulin wrote:
-> 
-> On 12/04/2023 12:33, Andi Shyti wrote:
-> > Currently, when we perform operations such as clearing or copying
-> > large blocks of memory, we generate multiple requests that are
-> > executed in a chain.
-> > 
-> > However, if one of these requests fails, we may not realize it
-> > unless it happens to be the last request in the chain. This is
-> > because errors are not properly propagated.
-> > 
-> > For this we need to keep propagating the chain of fence
-> > notification in order to always reach the final fence associated
-> > to the final request.
-> > 
-> > To address this issue, we need to ensure that the chain of fence
-> > notifications is always propagated so that we can reach the final
-> > fence associated with the last request. By doing so, we will be
-> > able to detect any memory operation  failures and determine
-> > whether the memory is still invalid.
-> 
-> Above two paragraphs seems to have redundancy in the message they convey.
-> 
-> > On copy and clear migration signal fences upon completion.
-> > 
-> > On copy and clear migration, signal fences upon request
-> > completion to ensure that we have a reliable perpetuation of the
-> > operation outcome.
-> 
-> These two too. So I think commit message can be a bit polished.
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 158 +++++++++++++++++++--
+ drivers/gpu/drm/i915/i915_reg.h            |  14 ++
+ 2 files changed, 160 insertions(+), 12 deletions(-)
 
-In my intent of being very explicative I might have exaggerated.
-I know that these kind of patches might bring some controversy.
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index f6223d8f13b8..a11092deaba6 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1898,7 +1898,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 	 */
+ 	if (DISPLAY_VER(dev_priv) >= 14)
+ 		/* NOOP */;
+-	else if (DISPLAY_VER(dev_priv) >= 11)
++	else if (DISPLAY_VER(dev_priv) >= 11 && !IS_DG2(dev_priv))
+ 		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+ 					SKL_CDCLK_PREPARE_FOR_CHANGE,
+ 					SKL_CDCLK_READY_FOR_CHANGE,
+@@ -1932,10 +1932,10 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 		 * NOOP - No Pcode communication needed for
+ 		 * Display versions 14 and beyond
+ 		 */;
+-	else if (DISPLAY_VER(dev_priv) >= 11)
++	else if (DISPLAY_VER(dev_priv) >= 11 && !IS_DG2(dev_priv))
+ 		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+ 				      cdclk_config->voltage_level);
+-	else
++	if (DISPLAY_VER(dev_priv) < 11) {
+ 		/*
+ 		 * The timeout isn't specified, the 2ms used here is based on
+ 		 * experiment.
+@@ -1946,7 +1946,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 					      HSW_PCODE_DE_WRITE_FREQ_REQ,
+ 					      cdclk_config->voltage_level,
+ 					      150, 2);
+-
++	}
+ 	if (ret) {
+ 		drm_err(&dev_priv->drm,
+ 			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
+@@ -2242,6 +2242,38 @@ void intel_cdclk_dump_config(struct drm_i915_private *i915,
+ 		    cdclk_config->voltage_level);
+ }
+ 
++static void intel_pcode_notify(struct drm_i915_private *i915,
++			       u8 voltage_level,
++			       u8 active_pipe_count,
++			       u16 cdclk,
++			       bool cdclk_update_valid,
++			       bool pipe_count_update_valid)
++{
++	int ret;
++	u32 update_mask = 0;
++
++	if (!IS_DG2(i915))
++		return;
++
++	update_mask = DISPLAY_TO_PCODE_UPDATE_MASK(cdclk, active_pipe_count, voltage_level);
++
++	if (cdclk_update_valid)
++		update_mask |= DISPLAY_TO_PCODE_CDCLK_VALID;
++
++	if (pipe_count_update_valid)
++		update_mask |= DISPLAY_TO_PCODE_PIPE_COUNT_VALID;
++
++	ret = skl_pcode_request(&i915->uncore, SKL_PCODE_CDCLK_CONTROL,
++				SKL_CDCLK_PREPARE_FOR_CHANGE |
++				update_mask,
++				SKL_CDCLK_READY_FOR_CHANGE,
++				SKL_CDCLK_READY_FOR_CHANGE, 3);
++	if (ret)
++		drm_err(&i915->drm,
++			"Failed to inform PCU about display config (err %d)\n",
++			ret);
++}
++
+ /**
+  * intel_set_cdclk - Push the CDCLK configuration to the hardware
+  * @dev_priv: i915 device
+@@ -2311,6 +2343,88 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+ 	}
+ }
+ 
++static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *state)
++{
++	struct drm_i915_private *i915 = to_i915(state->base.dev);
++	const struct intel_cdclk_state *old_cdclk_state =
++		intel_atomic_get_old_cdclk_state(state);
++	const struct intel_cdclk_state *new_cdclk_state =
++		intel_atomic_get_new_cdclk_state(state);
++	unsigned int cdclk = 0; u8 voltage_level, num_active_pipes = 0;
++	bool change_cdclk, update_pipe_count;
++
++	if (!intel_cdclk_changed(&old_cdclk_state->actual,
++				 &new_cdclk_state->actual) &&
++				 new_cdclk_state->active_pipes ==
++				 old_cdclk_state->active_pipes)
++		return;
++
++	/* According to "Sequence Before Frequency Change", voltage level set to 0x3 */
++	voltage_level = DISPLAY_TO_PCODE_VOLTAGE_MAX;
++
++	change_cdclk = new_cdclk_state->actual.cdclk != old_cdclk_state->actual.cdclk;
++	update_pipe_count = hweight8(new_cdclk_state->active_pipes) >
++			    hweight8(old_cdclk_state->active_pipes);
++
++	/*
++	 * According to "Sequence Before Frequency Change",
++	 * if CDCLK is increasing, set bits 25:16 to upcoming CDCLK,
++	 * if CDCLK is decreasing or not changing, set bits 25:16 to current CDCLK,
++	 * which basically means we choose the maximum of old and new CDCLK, if we know both
++	 */
++	if (change_cdclk)
++		cdclk = max(new_cdclk_state->actual.cdclk, old_cdclk_state->actual.cdclk);
++
++	/*
++	 * According to "Sequence For Pipe Count Change",
++	 * if pipe count is increasing, set bits 25:16 to upcoming pipe count
++	 * (power well is enabled)
++	 * no action if it is decreasing, before the change
++	 */
++	if (update_pipe_count)
++		num_active_pipes = hweight8(new_cdclk_state->active_pipes);
++
++	intel_pcode_notify(i915, voltage_level, num_active_pipes, cdclk,
++			   change_cdclk, update_pipe_count);
++}
++
++static void intel_cdclk_pcode_post_notify(struct intel_atomic_state *state)
++{
++	struct drm_i915_private *i915 = to_i915(state->base.dev);
++	const struct intel_cdclk_state *new_cdclk_state =
++		intel_atomic_get_new_cdclk_state(state);
++	const struct intel_cdclk_state *old_cdclk_state =
++		intel_atomic_get_old_cdclk_state(state);
++	unsigned int cdclk = 0; u8 voltage_level, num_active_pipes = 0;
++	bool update_cdclk, update_pipe_count;
++
++	/* According to "Sequence After Frequency Change", set voltage to used level */
++	voltage_level = new_cdclk_state->actual.voltage_level;
++
++	update_cdclk = new_cdclk_state->actual.cdclk != old_cdclk_state->actual.cdclk;
++	update_pipe_count = hweight8(new_cdclk_state->active_pipes) <
++			    hweight8(old_cdclk_state->active_pipes);
++
++	/*
++	 * According to "Sequence After Frequency Change",
++	 * set bits 25:16 to current CDCLK
++	 */
++	if (update_cdclk)
++		cdclk = new_cdclk_state->actual.cdclk;
++
++	/*
++	 * According to "Sequence For Pipe Count Change",
++	 * if pipe count is decreasing, set bits 25:16 to current pipe count,
++	 * after the change(power well is disabled)
++	 * no action if it is increasing, after the change
++	 */
++	if (update_pipe_count)
++		num_active_pipes = hweight8(new_cdclk_state->active_pipes);
++
++	intel_pcode_notify(i915, voltage_level, num_active_pipes, cdclk,
++			   update_cdclk, update_pipe_count);
++}
++
+ /**
+  * intel_set_cdclk_pre_plane_update - Push the CDCLK state to the hardware
+  * @state: intel atomic state
+@@ -2321,7 +2435,7 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+ void
+ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ 	const struct intel_cdclk_state *old_cdclk_state =
+ 		intel_atomic_get_old_cdclk_state(state);
+ 	const struct intel_cdclk_state *new_cdclk_state =
+@@ -2332,11 +2446,14 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+ 				 &new_cdclk_state->actual))
+ 		return;
+ 
++	if (IS_DG2(i915))
++		intel_cdclk_pcode_pre_notify(state);
++
+ 	if (pipe == INVALID_PIPE ||
+ 	    old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
+-		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
++		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
+ 
+-		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
++		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
+ 	}
+ }
+ 
+@@ -2350,7 +2467,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+ void
+ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ 	const struct intel_cdclk_state *old_cdclk_state =
+ 		intel_atomic_get_old_cdclk_state(state);
+ 	const struct intel_cdclk_state *new_cdclk_state =
+@@ -2361,11 +2478,14 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+ 				 &new_cdclk_state->actual))
+ 		return;
+ 
++	if (IS_DG2(i915))
++		intel_cdclk_pcode_post_notify(state);
++
+ 	if (pipe != INVALID_PIPE &&
+ 	    old_cdclk_state->actual.cdclk > new_cdclk_state->actual.cdclk) {
+-		drm_WARN_ON(&dev_priv->drm, !new_cdclk_state->base.changed);
++		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
+ 
+-		intel_set_cdclk(dev_priv, &new_cdclk_state->actual, pipe);
++		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
+ 	}
+ }
+ 
+@@ -2871,6 +2991,21 @@ int intel_cdclk_init(struct drm_i915_private *dev_priv)
+ 	return 0;
+ }
+ 
++static bool intel_cdclk_need_serialize(struct drm_i915_private *i915,
++				       const struct intel_cdclk_state *old_cdclk_state,
++				       const struct intel_cdclk_state *new_cdclk_state)
++{
++	bool power_well_cnt_changed = hweight8(old_cdclk_state->active_pipes) !=
++				      hweight8(new_cdclk_state->active_pipes);
++	bool cdclk_changed = intel_cdclk_changed(&old_cdclk_state->actual,
++						 &new_cdclk_state->actual);
++	/*
++	 * We need to poke hw for gen >= 12, because we notify PCode if
++	 * pipe power well count changes.
++	 */
++	return cdclk_changed || (IS_DG2(i915) && power_well_cnt_changed);
++}
++
+ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+@@ -2892,8 +3027,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+ 	if (ret)
+ 		return ret;
+ 
+-	if (intel_cdclk_changed(&old_cdclk_state->actual,
+-				&new_cdclk_state->actual)) {
++	if (intel_cdclk_need_serialize(dev_priv, old_cdclk_state, new_cdclk_state)) {
+ 		/*
+ 		 * Also serialize commits across all crtcs
+ 		 * if the actual hw needs to be poked.
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index dde6e91055bd..5eb83f81225a 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -5346,6 +5346,20 @@
+ #define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
+ #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16) | (0x1 << 8))
+ #define     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO	((0) | (0x2 << 8))
++#define   DISPLAY_TO_PCODE_CDCLK_MAX		0x28D
++#define   DISPLAY_TO_PCODE_VOLTAGE_MASK		REG_GENMASK(1, 0)
++#define	  DISPLAY_TO_PCODE_VOLTAGE_MAX		DISPLAY_TO_PCODE_VOLTAGE_MASK
++#define   DISPLAY_TO_PCODE_CDCLK_VALID		REG_BIT(27)
++#define   DISPLAY_TO_PCODE_PIPE_COUNT_VALID	REG_BIT(31)
++#define   DISPLAY_TO_PCODE_CDCLK_MASK		REG_GENMASK(25, 16)
++#define   DISPLAY_TO_PCODE_PIPE_COUNT_MASK	REG_GENMASK(30, 28)
++#define   DISPLAY_TO_PCODE_CDCLK(x)		REG_FIELD_PREP(DISPLAY_TO_PCODE_CDCLK_MASK, (x))
++#define   DISPLAY_TO_PCODE_PIPE_COUNT(x)	REG_FIELD_PREP(DISPLAY_TO_PCODE_PIPE_COUNT_MASK, (x))
++#define   DISPLAY_TO_PCODE_VOLTAGE(x)		REG_FIELD_PREP(DISPLAY_TO_PCODE_VOLTAGE_MASK, (x))
++#define   DISPLAY_TO_PCODE_UPDATE_MASK(cdclk, num_pipes, voltage_level) \
++		((DISPLAY_TO_PCODE_CDCLK(cdclk)) | \
++		(DISPLAY_TO_PCODE_PIPE_COUNT(num_pipes)) | \
++		(DISPLAY_TO_PCODE_VOLTAGE(voltage_level)))
+ #define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
+ #define     ICL_PCODE_REP_QGV_MASK		REG_GENMASK(1, 0)
+ #define     ICL_PCODE_REP_QGV_SAFE		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 0)
+-- 
+2.37.3
 
-I will review the commit.
-
-> > Fixes: cf586021642d80 ("drm/i915/gt: Pipelined page migration")
-> > Reported-by: Matthew Auld <matthew.auld@intel.com>
-> > Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > Cc: stable@vger.kernel.org
-> > Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> > Acked-by: Nirmoy Das <nirmoy.das@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_migrate.c | 51 +++++++++++++++++++------
-> >   1 file changed, 39 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > index 3f638f1987968..668c95af8cbcf 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> > @@ -742,13 +742,19 @@ intel_context_migrate_copy(struct intel_context *ce,
-> >   			dst_offset = 2 * CHUNK_SZ;
-> >   	}
-> > +	/*
-> > +	 * While building the chain of requests, we need to ensure
-> > +	 * that no one can sneak into the timeline unnoticed.
-> > +	 */
-> > +	mutex_lock(&ce->timeline->mutex);
-> > +
-> >   	do {
-> >   		int len;
-> > -		rq = i915_request_create(ce);
-> > +		rq = i915_request_create_locked(ce);
-> >   		if (IS_ERR(rq)) {
-> >   			err = PTR_ERR(rq);
-> > -			goto out_ce;
-> > +			break;
-> >   		}
-> >   		if (deps) {
-> > @@ -878,10 +884,14 @@ intel_context_migrate_copy(struct intel_context *ce,
-> >   		/* Arbitration is re-enabled between requests. */
-> >   out_rq:
-> > -		if (*out)
-> > +		i915_sw_fence_await(&rq->submit);
-> > +		i915_request_get(rq);
-> > +		i915_request_add_locked(rq);
-> > +		if (*out) {
-> > +			i915_sw_fence_complete(&(*out)->submit);
-> >   			i915_request_put(*out);
-> 
-> Could you help me understand this please. I have a few questions - first,
-> what are the actual mechanics of fence error transfer here? I see the submit
-> fence is being blocked until the next request is submitted - effectively
-> previous request is only allowed to get on the hardware after the next one
-> has been queued up. But I don't immediately see what that does in practice.
-
-This is the basic of the error perpetuation. Without this
-serialization, for big operations like migrate and copy, we would
-only catch the error in the last rq.
-
-> Second question relates to the need to hold the timeline mutex throughout.
-> Presumably this is so two copy or migrate operations on the same context do
-> not interleave, which can otherwise happen?
-> 
-> Would the error propagation be doable without the lock held by chaining on
-> the previous request _completion_ fence? If so I am sure that would have a
-> performance impact, because chunk by chunk would need a GPU<->CPU round trip
-> to schedule. How much of an impact I don't know. Maybe enlarging CHUNK_SZ to
-> compensate is an option?
-
-The need for a mutex lock comes from adding the throttle during
-request creation, which ensures no pending requests are being
-served.
-
-I will copy paste from Chris review, which was missed in the
-mailing list:
-
-Adding a large throttle before the mutex makes the race less
-likely, but to overcome that just increase the number of
-simultaneous clients fighting for ring space.
-
-If we hold the lock while constructing the chain, no one else may
-inject themselves between links in our chain. If we do not, we
-may end up with
-
-ABCDEFGHI
-^head   ^tail
-
-Then in order for A to submit its next request it has to wait
-upon its previous request. But since we are holding the submit
-fence for A, it will not be executed until after we complete our
-submission. Boom.
-
-Andi
-
-> Or if the perf hit would be bearable for stable backports only (much smaller
-> patch) and then for tip we can do this full speed solution.
-> 
-> But yes, I would first want to understand the actual error propagation
-> mechanism because sadly my working knowledge is a bit rusty.
-> 
-> > -		*out = i915_request_get(rq);
-> > -		i915_request_add(rq);
-> > +		}
-> > +		*out = rq;
-> >   		if (err)
-> >   			break;
-> > @@ -905,7 +915,10 @@ intel_context_migrate_copy(struct intel_context *ce,
-> >   		cond_resched();
-> >   	} while (1);
-> > -out_ce:
-> > +	mutex_unlock(&ce->timeline->mutex);
-> > +
-> > +	if (*out)
-> > +		i915_sw_fence_complete(&(*out)->submit);
-> >   	return err;
-> >   }
-> > @@ -999,13 +1012,19 @@ intel_context_migrate_clear(struct intel_context *ce,
-> >   	if (HAS_64K_PAGES(i915) && is_lmem)
-> >   		offset = CHUNK_SZ;
-> > +	/*
-> > +	 * While building the chain of requests, we need to ensure
-> > +	 * that no one can sneak into the timeline unnoticed.
-> > +	 */
-> > +	mutex_lock(&ce->timeline->mutex);
-> > +
-> >   	do {
-> >   		int len;
-> > -		rq = i915_request_create(ce);
-> > +		rq = i915_request_create_locked(ce);
-> >   		if (IS_ERR(rq)) {
-> >   			err = PTR_ERR(rq);
-> > -			goto out_ce;
-> > +			break;
-> >   		}
-> >   		if (deps) {
-> > @@ -1056,17 +1075,25 @@ intel_context_migrate_clear(struct intel_context *ce,
-> >   		/* Arbitration is re-enabled between requests. */
-> >   out_rq:
-> > -		if (*out)
-> > +		i915_sw_fence_await(&rq->submit);
-> > +		i915_request_get(rq);
-> > +		i915_request_add_locked(rq);
-> > +		if (*out) {
-> > +			i915_sw_fence_complete(&(*out)->submit);
-> >   			i915_request_put(*out);
-> > -		*out = i915_request_get(rq);
-> > -		i915_request_add(rq);
-> > +		}
-> > +		*out = rq;
-> 
-> Btw if all else fails perhaps these two blocks can be consolidated by
-> something like __chain_requests(rq, out) and all these operations in it. Not
-> sure how much would that save in the grand total.
-> 
-> Regards,
-> 
-> Tvrtko
-> 
-> > +
-> >   		if (err || !it.sg || !sg_dma_len(it.sg))
-> >   			break;
-> >   		cond_resched();
-> >   	} while (1);
-> > -out_ce:
-> > +	mutex_unlock(&ce->timeline->mutex);
-> > +
-> > +	if (*out)
-> > +		i915_sw_fence_complete(&(*out)->submit);
-> >   	return err;
-> >   }
