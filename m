@@ -2,53 +2,136 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 681A76F76FF
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 22:29:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 040D26F770E
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 22:33:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36AF210E1C0;
-	Thu,  4 May 2023 20:29:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7470B10E1C0;
+	Thu,  4 May 2023 20:33:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C355D10E1C0
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 May 2023 20:29:11 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B1BF10E1C0;
+ Thu,  4 May 2023 20:33:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683232151; x=1714768151;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=nB1qxGLbp1dHsBprU/6RDCrnOgPZl8Fl/nV5O5HOi8g=;
- b=JBzPwBDYSKi6LE6e258dHUwhBmq+OP43qSrTZfiPvSWbbBiHBETZSbyK
- F5n3RYFJGaRbGonOs4tn1UOkJTBWBKVWJTK1ebEe+QSscR67O04ukvAlK
- CM7o+Jcl7x9ULbWEbPm6CwZ/XBvEL5PUlWQTNkTwYBeaY5si7lZM+6GsH
- 4opimnskr/ftw4pFPeTkIvQK7cT8V+K5YZRZFfSb5v2odJODfh0X48w7v
- cf+CgiPLKB+o8Nb9k0R2XySMcLld6O0prCl97t0PrLcX3VO77PFvZg8d3
- s5bI73DYJGqtKS5dVrUbMtrzQMWm+yMWUS73zbCV3qVdsjsvvxxuWB5U7 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="351177179"
-X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="351177179"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2023 13:29:10 -0700
+ t=1683232386; x=1714768386;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=3Vp8RQT/87eJa3Bv1K7jlpYCC+DxgE3r4fA/PDMspyc=;
+ b=cs6N6Pt4kpqlQIsighgb4mEWARpes1RIVQQYYaSPILm80UsQRAaETrts
+ QDUz08RAcc/Tq83m1R9MXUXyXTAD9dFwWtz/Hz/qmNUz1+6Be+O/k/2Nu
+ PeotA1x2h7UmtQb84nqKibBsYUYEiovDDQWxuYqSTjDhRzuHZa8fYnn/t
+ nqLwvmTlLvuckpcbVTH7SHFfy6NhPHb4cpLL6oEcbDbLjHlIO+eVuDY4q
+ 8eRcw8Obed9klQK0pnWVzMaMtfYXXMxHm5Q82g8BL7bOThWAu/lEgZk1B
+ WxrZusgv2W0g/sStp9dKs0xXqMZdsP1E2qxAn8wDpiMlIecX5h5R+G4/q w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="333463905"
+X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="333463905"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2023 13:33:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="766731524"
-X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="766731524"
-Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.72.78])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2023 13:29:09 -0700
-Date: Thu, 4 May 2023 23:29:45 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZFQVufRvCt4YlMEB@ideak-desk.fi.intel.com>
-References: <20230503231048.432368-1-imre.deak@intel.com>
- <20230503231048.432368-7-imre.deak@intel.com>
- <ZFPoFWK3XWA4Ru0M@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="1027119708"
+X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="1027119708"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga005.fm.intel.com with ESMTP; 04 May 2023 13:33:04 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 4 May 2023 13:33:04 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Thu, 4 May 2023 13:33:04 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.43) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Thu, 4 May 2023 13:33:04 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AZWJ1sP4CrWbefcph4MPfJR8eESZYaBgSUq2VpMMg5P/kGUxMXPkiC/ncuqjMgKKrPr1IYl8qyxUkVuxxUs9FeLYVQ+7hJr9ZnNaPAJLNYg3u3vbTi7+MvPMZ5rEM0lpKRJHnOCsZnVrmMghMdFbGNls8+TzzVjhSP93GwIEIyRdLa8VCwsVuPylZJT8pqpsSi/0nDnvW60VGJufLffF1bzxIqOsZh8iHXyzIWDjj4Px0qUNhuX1EgFYEtjI9pkgNYFk7AsM6qHBZX+tIclzBJYHRe0U6glhCwUASNddCYbszOm1KW69UVIRDUkVhd0+AEypSecubP4IhoSCwi6Hlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FS+t4kZRh6eCLa/HIuedTxRTrrWvMDTkw3hnZbUXXsU=;
+ b=RfXVlRNgAu96y5CA4tYTvauBJiFigtsJ3cy5VVhGvX8qneCENZC6xO9KXgLrhfxf1b2h20+eeeJaMJi/WineSL3uDwT1DqbtAb8pZJJFmdaiOUxuU/c+80qsczUjUOsY6/OSxNcVsu5Ncj8ZQ7mzwfGBq03fk6vuM9qUD87y0lXwvz/o9CW3fPtkmyOa3IrXP/jyLKraoO6bthXK4Pf+o+993eZuwf1x/WqQW3k9fl4h9W4hXOwNwTV295t1wFwHZ5UTL5DmcaiZVk5wNPY6Lyw+i1VtK8tR2FHhodoAxHVrubn1VFaB/jPoEb6eQQRFViVJwer40b8770CVNyi6OA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ SA2PR11MB4924.namprd11.prod.outlook.com (2603:10b6:806:113::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.22; Thu, 4 May
+ 2023 20:33:01 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::9f98:8f3c:a608:8396]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::9f98:8f3c:a608:8396%7]) with mapi id 15.20.6363.022; Thu, 4 May 2023
+ 20:33:01 +0000
+Date: Thu, 4 May 2023 13:32:58 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: <fei.yang@intel.com>
+Message-ID: <20230504203258.GR10045@mdroper-desk1.amr.corp.intel.com>
+References: <20230503225100.2834222-1-fei.yang@intel.com>
+ <20230503225100.2834222-4-fei.yang@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZFPoFWK3XWA4Ru0M@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 06/12] drm/i915: Add support for
- disabling any CRTCs during HW readout/sanitization
+In-Reply-To: <20230503225100.2834222-4-fei.yang@intel.com>
+X-ClientProxiedBy: SJ2PR07CA0023.namprd07.prod.outlook.com
+ (2603:10b6:a03:505::9) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SA2PR11MB4924:EE_
+X-MS-Office365-Filtering-Correlation-Id: da3ea8ca-8548-4200-11d6-08db4cdec12c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +RdHbSwsHzB9HRMhbtt7fGBCKJC2SLz4TXmoPfyiC2hX8V4pUWQMIcaHIoYx2H+aAf35AqqAkJcC1K/6EKS7k2mxtpJ8HhdojQAOPVn3+iBlVknszLQWBD9cpalRJDR/ZKm53QrLIj6O+DAhXmetUgBooRCM0vUZlaoG7ueaqM7kI0RRvv51Tt9k1A2jX8JiqTCDqUbyplTcZD7ReusAOTpkvur3y4KZv3OxJ0Qcn1mkJvHvOgKwiGp09s+DpudYPvLidynghAO/G1cGrXCVeGwLzTrJs4C3v0AWnIi6qyew7YBDwDAUQGTwEvVFLJAw9AfcorFjq+xokWfbAjq38Xa6jXj3iEfKOPHuLDkdkpejO3m/tNv5tc9e5Ut809uc5YpByULCth002UBfjbUmXAqJ2DCTWMEgs9THK2apJeG7mdfvYso1E4sJbjhJWhn0//fHbcXLSqik/z/j5s+girbWTa+y4uoYSK9BJJ+2/35ygNQpTVamGYhmi9tKXX+2uczGwAETqb7X+wHRBPvoKmsbQsa/HGaYWxIzKviQAEuQpaLWlwcL4mUUYRVV66lP
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(39860400002)(366004)(376002)(396003)(136003)(346002)(451199021)(8936002)(6512007)(8676002)(6506007)(1076003)(26005)(83380400001)(2906002)(186003)(5660300002)(6636002)(41300700001)(6486002)(34206002)(478600001)(4326008)(66476007)(316002)(66946007)(66556008)(54906003)(86362001)(33656002)(6666004)(82960400001)(38100700002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FgUlYK9lRHxQ8pCY0ZuNPSYtgw3vNikhBMge708sQIJ5Zcca3owvo12wwteB?=
+ =?us-ascii?Q?DZSDuQFMqJ4hoYSwIRRYOcwlRv/bdjIG8BKbgWPM5FYuhKoj7mPDAMcylcYQ?=
+ =?us-ascii?Q?3htlCyn+5jTIX9V2z7BP2e4gyx58AkKehelPJpB+UbsRxLFiHfFcNwjt0dOS?=
+ =?us-ascii?Q?xQycGvxwphWhojz8rqoWRJg6rSKkidFoZtNQ8ievyxyiLJl7lYo//A+Rm3nb?=
+ =?us-ascii?Q?kXA24OLIIzPFtv9YzYBtFdUfowkPApY+/2t0P1he8jLwYOTr1WxZaZyOdyUM?=
+ =?us-ascii?Q?3c6zI5mOuh26RJ0VNY44T4zeuqU8swoiJaIHKRJu5nBzibQLWYYP6jI9p5QV?=
+ =?us-ascii?Q?B0dzUE4tjiJ9gQq6N1LbKmXyHtx87S4xsitSbDOfzMfchE+I5G3vQyFFb4J1?=
+ =?us-ascii?Q?S2JfMiyrPdObWY1YPIXR+VO4ZFIFjU6uKZRX8/S5kyc2yxl1U4No6WmqfOzO?=
+ =?us-ascii?Q?dHNoAImYQHLQWBfZzo+3u/NsS2AfBaHj1AOodVrIjkgsw62VVChsrOlu4VeL?=
+ =?us-ascii?Q?alUWT887afbYGETTKO8x96/7rgfqi6/YMhuf3l20J/4jF0hBo28SdoqANg5Z?=
+ =?us-ascii?Q?mN6wVfArKb3MvtWp7Ev8iDRY8qALowR8fSxTP1MCKRHLP1NPoWbj9G06WtXd?=
+ =?us-ascii?Q?VfL/NQ23v+NB+m0zK4CPJupmG5ltYoBCt0CBhW7IhXs1Ol0FyByOP/+4HRjs?=
+ =?us-ascii?Q?OlvvVVppvQE5QoQ4/MBqOZpVqYiMrsqJZ/myFvbui7M5tg7Bn+7sJwVGvKUo?=
+ =?us-ascii?Q?wbX4WSV7fcLFhGDNYqS25cWeFbeBhguouEm2BwoJl5aNdRf7+H3gfa0aGcky?=
+ =?us-ascii?Q?DhlEQaO+QQpBVJ2oZUSdthDwWCi9xtfbBQ3FI2p6ftU0xKwPUr7GlwUghdrM?=
+ =?us-ascii?Q?RWb80sa+NsBvjGHnlLHsmjVO4mHxJOgOqL7VKQNDC1TJLo+xraoQI0ZRI5HQ?=
+ =?us-ascii?Q?7vQzSYWBKw5AWs0G/X8OAAws9zTXHmfcHj6LbvWwqMsNyXgTlP04wsfu34ue?=
+ =?us-ascii?Q?kfQSdf/RIL7y1VlsdgYZFeVB6AL6P05SqUOzpasBb3MRx3r/Uw5lTFkCqW/z?=
+ =?us-ascii?Q?YDHMg7oQ2xUZLWn0IRsi7Q6RixOuobJZqu3aFilWZ33tjdXnu1f/KCs1f5BR?=
+ =?us-ascii?Q?HhDWuJk0Q+w91vsOMHOqy+FTjmPx82sss+caB3grzM3KKlGmEBl9UGZzfhYL?=
+ =?us-ascii?Q?t9tMDtPxyB9EhhRA6cCnyJY3k09GAR37vgIIiGGbnzcbxYbS0yTFWUv/tbvP?=
+ =?us-ascii?Q?cvcCEizM7c9+8hboiq09VQjVW4mUWrKlI3+vGQ1G4n3iRKVLVWAAoNEad4JA?=
+ =?us-ascii?Q?d/hl3jKDIRuQzsXZBENGMtBJ/9DywZi1Qi8OPQxmcae/uEAaMgGOI9imqoW5?=
+ =?us-ascii?Q?UEN3wSLR0eTqzBDFdIeYzKodvCvQKYOumZq0iE6loVooYUusyg7arHwKkkFW?=
+ =?us-ascii?Q?WX+ln+Ymr9+GyM1ncOvwFRg2i+NJegIkU4jDNKqqidv30pnW/Amn84MXOEsu?=
+ =?us-ascii?Q?1EHs6uX7EtDpyHMLVY0KBmq1b8eUYH0T7SzrzfNsdsn1tSuHV0XeJVBJwtjp?=
+ =?us-ascii?Q?u8/st70NzSnvtXY0xsNNvAem+4VVZhVTQtsLbbXnKSNViHvpiMxrLTOQoWIj?=
+ =?us-ascii?Q?BQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: da3ea8ca-8548-4200-11d6-08db4cdec12c
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2023 20:33:01.1672 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: opn+0ki+XqsLiIEKaIFQN+lAcvHvc2A9nLHLjYmigzwZT9dpveVNzWAypXlG+nwKmLQ4E9qXb1RANcvwc7Gxh2Sn2bymEdFde+epVbkiglw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4924
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5 3/3] drm/i915: make sure correct pte
+ encode is used
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,295 +144,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 04, 2023 at 08:15:01PM +0300, Ville Syrjälä wrote:
-> On Thu, May 04, 2023 at 02:10:42AM +0300, Imre Deak wrote:
-> > During HW readout/sanitization CRTCs can be disabled only if they don't
-> > have an attached encoder (and so the encoder disable hooks don't need to
-> > be called). An upcoming patch will need to disable CRTCs also with an
-> > attached an encoder, so add support for this.
-> > 
-> > For bigjoiner configs the encoder disabling hooks require the slave CRTC
-> > states, so add these too to the atomic state. Since the connector atomic
-> > state is already up-to-date when the CRTC is disabled the connector
-> > state needs to be updated (reset) after the CRTC is disabled, make this
-> > so. Follow the proper order of disabling first all bigjoiner slaves,
-> > then any port synced CRTC slaves followed by the CRTC originally
-> > requested to be disabled.
-> > 
-> > v2:
-> > - Fix calculating the bigjoiner_masters mask in a port sync config,
-> >   (Ville)
-> > - Keep _noatomic suffix in intel_crtc_disable_noatomic(). (Ville)
-> > - Rebase on full CRTC state reset in this patchset, not requiring
-> >   resetting the bigjoiner state separately and (instead) resetting
-> >   the full atomic CRTC and related global state after all linked
-> >   pipes got disabled.
-> > - Disable portsync slaves before a portsync master.
-> > - Disable a portsync master if a linked portsync slave is disabled.
-> > 
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
-> >  drivers/gpu/drm/i915/display/intel_display.h  |   1 +
-> >  .../drm/i915/display/intel_modeset_setup.c    | 159 ++++++++++++++++--
-> >  3 files changed, 151 insertions(+), 11 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index ca95cf6764c04..f567c6bbc2a05 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -225,7 +225,7 @@ is_trans_port_sync_slave(const struct intel_crtc_state *crtc_state)
-> >  	return crtc_state->master_transcoder != INVALID_TRANSCODER;
-> >  }
-> >  
-> > -static bool
-> > +bool
-> >  is_trans_port_sync_master(const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	return crtc_state->sync_mode_slaves_mask != 0;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> > index ac95961f68ba7..3ecc5649a73ab 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> > @@ -407,6 +407,7 @@ intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
-> >  				bool bigjoiner);
-> >  enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port);
-> >  bool is_trans_port_sync_mode(const struct intel_crtc_state *state);
-> > +bool is_trans_port_sync_master(const struct intel_crtc_state *state);
-> >  bool intel_crtc_is_bigjoiner_slave(const struct intel_crtc_state *crtc_state);
-> >  bool intel_crtc_is_bigjoiner_master(const struct intel_crtc_state *crtc_state);
-> >  u8 intel_crtc_bigjoiner_slave_pipes(const struct intel_crtc_state *crtc_state);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > index 9848d20582963..1e10580e5ab31 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > @@ -38,9 +38,8 @@ static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
-> >  		to_intel_crtc_state(crtc->base.state);
-> >  	struct intel_plane *plane;
-> >  	struct drm_atomic_state *state;
-> > -	struct intel_crtc_state *temp_crtc_state;
-> > +	struct intel_crtc *temp_crtc;
-> >  	enum pipe pipe = crtc->pipe;
-> > -	int ret;
-> >  
-> >  	if (!crtc_state->hw.active)
-> >  		return;
-> > @@ -65,10 +64,17 @@ static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
-> >  	to_intel_atomic_state(state)->internal = true;
-> >  
-> >  	/* Everything's already locked, -EDEADLK can't happen. */
-> > -	temp_crtc_state = intel_atomic_get_crtc_state(state, crtc);
-> > -	ret = drm_atomic_add_affected_connectors(state, &crtc->base);
-> > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc,
-> > +					 BIT(pipe) |
-> > +					 intel_crtc_bigjoiner_slave_pipes(crtc_state)) {
-> > +		struct intel_crtc_state *temp_crtc_state =
-> > +			intel_atomic_get_crtc_state(state, temp_crtc);
-> > +		int ret;
-> >  
-> > -	drm_WARN_ON(&i915->drm, IS_ERR(temp_crtc_state) || ret);
-> > +		ret = drm_atomic_add_affected_connectors(state, &temp_crtc->base);
-> > +
-> > +		drm_WARN_ON(&i915->drm, IS_ERR(temp_crtc_state) || ret);
-> > +	}
-> >  
-> >  	i915->display.funcs.display->crtc_disable(to_intel_atomic_state(state), crtc);
-> >  
-> > @@ -105,9 +111,38 @@ static void set_encoder_for_connector(struct intel_connector *connector,
-> >  	}
-> >  }
-> >  
-> > -static void intel_crtc_disable_noatomic_complete(struct intel_crtc *crtc)
-> > +static void reset_encoder_connector_state(struct intel_encoder *encoder)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > +	struct intel_connector *connector;
-> > +	struct drm_connector_list_iter conn_iter;
-> > +
-> > +	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-> > +	for_each_intel_connector_iter(connector, &conn_iter) {
-> > +		if (connector->base.encoder != &encoder->base)
-> > +			continue;
-> > +
-> > +		set_encoder_for_connector(connector, NULL);
-> > +
-> > +		connector->base.dpms = DRM_MODE_DPMS_OFF;
-> > +		connector->base.encoder = NULL;
-> > +	}
-> > +	drm_connector_list_iter_end(&conn_iter);
-> > +}
-> > +
-> > +static void reset_crtc_encoder_state(struct intel_crtc *crtc)
-> >  {
-> > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> >  	struct intel_encoder *encoder;
-> > +
-> > +	for_each_encoder_on_crtc(&i915->drm, &crtc->base, encoder) {
-> > +		reset_encoder_connector_state(encoder);
-> > +		encoder->base.crtc = NULL;
-> > +	}
-> > +}
-> > +
-> > +static void intel_crtc_disable_noatomic_complete(struct intel_crtc *crtc)
-> > +{
-> >  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> >  	struct intel_bw_state *bw_state =
-> >  		to_intel_bw_state(i915->display.bw.obj.state);
-> > @@ -123,8 +158,7 @@ static void intel_crtc_disable_noatomic_complete(struct intel_crtc *crtc)
-> >  	intel_crtc_free_hw_state(crtc_state);
-> >  	intel_crtc_state_reset(crtc_state, crtc);
-> >  
-> > -	for_each_encoder_on_crtc(&i915->drm, &crtc->base, encoder)
-> > -		encoder->base.crtc = NULL;
-> > +	reset_crtc_encoder_state(crtc);
-> >  
-> >  	intel_fbc_disable(crtc);
-> >  	intel_update_watermarks(i915);
-> > @@ -141,11 +175,116 @@ static void intel_crtc_disable_noatomic_complete(struct intel_crtc *crtc)
-> >  	bw_state->num_active_planes[pipe] = 0;
-> >  }
-> >  
-> > +/*
-> > + * Return all the pipes using a transcoder in @transcoder_mask.
-> > + * For bigjoiner configs return only the bigjoiner master.
-> > + */
-> > +static u32 get_transcoder_pipes(struct drm_i915_private *i915,
-> > +				u32 transcoder_mask)
-> > +{
-> > +	struct intel_crtc *temp_crtc;
-> > +	u32 pipes = 0;
+On Wed, May 03, 2023 at 03:51:00PM -0700, fei.yang@intel.com wrote:
+> From: Fei Yang <fei.yang@intel.com>
 > 
-> I think we generally use u8 for pipe/transcoder masks. Ditto elsewhere.
-
-Yes, did that elsewhere, but got it wrong here, will fix it.
-
+> PTE encode is platform dependent. After replacing cache_level with
+> pat_index, the newly introduced mtl_pte_encode is actually generic
+> for all gen12 platforms, thus rename it to gen12_pte_encode and
+> apply it to all gen12 platforms.
 > 
-> > +
-> > +	for_each_intel_crtc(&i915->drm, temp_crtc) {
-> > +		struct intel_crtc_state *temp_crtc_state =
-> > +			to_intel_crtc_state(temp_crtc->base.state);
-> > +
-> > +		if (temp_crtc_state->cpu_transcoder == INVALID_TRANSCODER)
-> > +			continue;
-> > +
-> > +		if (intel_crtc_is_bigjoiner_slave(temp_crtc_state))
-> > +			continue;
-> > +
-> > +		if (transcoder_mask & BIT(temp_crtc_state->cpu_transcoder))
-> > +			pipes |= BIT(temp_crtc->pipe);
-> > +	}
-> > +
-> > +	return pipes;
-> > +}
-> > +
-> > +/*
-> > + * Return the port sync master and slave pipes linked to @crtc.
-> > + * For bigjoiner configs return only the bigjoiner master pipes.
-> > + */
-> > +static void get_portsync_pipes(struct intel_crtc *crtc,
-> > +			       u32 *master_pipe_mask, u32 *slave_pipes_mask)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> > +	struct intel_crtc_state *crtc_state =
-> > +		to_intel_crtc_state(crtc->base.state);
-> > +	struct intel_crtc *master_crtc;
-> > +	struct intel_crtc_state *master_crtc_state;
-> > +	enum transcoder master_transcoder;
-> > +
-> > +	if (!is_trans_port_sync_mode(crtc_state)) {
-> > +		*master_pipe_mask = BIT(crtc->pipe);
-> > +		*slave_pipes_mask = 0;
-> > +
-> > +		return;
-> > +	}
-> > +
-> > +	if (is_trans_port_sync_master(crtc_state))
-> > +		master_transcoder = crtc_state->cpu_transcoder;
-> > +	else
-> > +		master_transcoder = crtc_state->master_transcoder;
-> > +
-> > +	*master_pipe_mask = get_transcoder_pipes(i915, BIT(master_transcoder));
-> > +	drm_WARN_ON(&i915->drm, hweight32(*master_pipe_mask) != 1);
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Fei Yang <fei.yang@intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Bspec: 63019
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+I think it's important to include the bspec reference here since we have
+so much trouble finding proper documentation on PTE formats (other pages
+like 45030, 45040, etc. never got updated in a sensible way).
+
+
+Matt
+
+> ---
+>  drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
 > 
-> or perhaps is_power_of_two(). Doesn't really matter I suppose.
-
-I wonder if hweight better expresses what we check for, but
-is_power_of_2() is enough, so can use that instead.
-
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-Thanks.
-
-> 
-> > +
-> > +	master_crtc = intel_crtc_for_pipe(i915, ffs(*master_pipe_mask) - 1);
-> > +	master_crtc_state = to_intel_crtc_state(master_crtc->base.state);
-> > +	*slave_pipes_mask = get_transcoder_pipes(i915, master_crtc_state->sync_mode_slaves_mask);
-> > +}
-> > +
-> > +static u32 get_bigjoiner_slave_pipes(struct drm_i915_private *i915, u32 master_pipes_mask)
-> > +{
-> > +	struct intel_crtc *master_crtc;
-> > +	u32 pipes = 0;
-> > +
-> > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, master_crtc, master_pipes_mask) {
-> > +		struct intel_crtc_state *master_crtc_state =
-> > +			to_intel_crtc_state(master_crtc->base.state);
-> > +
-> > +		pipes |= intel_crtc_bigjoiner_slave_pipes(master_crtc_state);
-> > +	}
-> > +
-> > +	return pipes;
-> > +}
-> > +
-> >  static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
-> >  					struct drm_modeset_acquire_ctx *ctx)
-> >  {
-> > -	intel_crtc_disable_noatomic_begin(crtc, ctx);
-> > -	intel_crtc_disable_noatomic_complete(crtc);
-> > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> > +	u32 portsync_master_mask;
-> > +	u32 portsync_slaves_mask;
-> > +	u32 bigjoiner_slaves_mask;
-> > +	struct intel_crtc *temp_crtc;
-> > +
-> > +	/* TODO: Add support for MST */
-> > +	get_portsync_pipes(crtc, &portsync_master_mask, &portsync_slaves_mask);
-> > +	bigjoiner_slaves_mask = get_bigjoiner_slave_pipes(i915,
-> > +							  portsync_master_mask |
-> > +							  portsync_slaves_mask);
-> > +
-> > +	drm_WARN_ON(&i915->drm,
-> > +		    portsync_master_mask & portsync_slaves_mask ||
-> > +		    portsync_master_mask & bigjoiner_slaves_mask ||
-> > +		    portsync_slaves_mask & bigjoiner_slaves_mask);
-> > +
-> > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc, bigjoiner_slaves_mask)
-> > +		intel_crtc_disable_noatomic_begin(temp_crtc, ctx);
-> > +
-> > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc, portsync_slaves_mask)
-> > +		intel_crtc_disable_noatomic_begin(temp_crtc, ctx);
-> > +
-> > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc, portsync_master_mask)
-> > +		intel_crtc_disable_noatomic_begin(temp_crtc, ctx);
-> > +
-> > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc,
-> > +					 bigjoiner_slaves_mask |
-> > +					 portsync_slaves_mask |
-> > +					 portsync_master_mask)
-> > +		intel_crtc_disable_noatomic_complete(temp_crtc);
-> >  }
-> >  
-> >  static void intel_modeset_update_connector_atomic_state(struct drm_i915_private *i915)
-> > -- 
-> > 2.37.2
-> 
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> index f2334a713c4e..d1e3d3b90e95 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+> @@ -55,9 +55,9 @@ static u64 gen8_pte_encode(dma_addr_t addr,
+>  	return pte;
+>  }
+>  
+> -static u64 mtl_pte_encode(dma_addr_t addr,
+> -			  unsigned int pat_index,
+> -			  u32 flags)
+> +static u64 gen12_pte_encode(dma_addr_t addr,
+> +			    unsigned int pat_index,
+> +			    u32 flags)
+>  {
+>  	gen8_pte_t pte = addr | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
+>  
+> @@ -995,8 +995,8 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt,
+>  	 */
+>  	ppgtt->vm.alloc_scratch_dma = alloc_pt_dma;
+>  
+> -	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
+> -		ppgtt->vm.pte_encode = mtl_pte_encode;
+> +	if (GRAPHICS_VER(gt->i915) >= 12)
+> +		ppgtt->vm.pte_encode = gen12_pte_encode;
+>  	else
+>  		ppgtt->vm.pte_encode = gen8_pte_encode;
+>  
 > -- 
-> Ville Syrjälä
-> Intel
+> 2.25.1
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
