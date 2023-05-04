@@ -1,55 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7822A6F69B9
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 13:21:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C2C6F6A44
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 13:41:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1272E10E05F;
-	Thu,  4 May 2023 11:21:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 628C810E10B;
+	Thu,  4 May 2023 11:41:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A61F010E05F
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 May 2023 11:21:03 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 375F46335B
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 May 2023 11:21:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A03CFC4339E
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 May 2023 11:21:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1683199260;
- bh=ljZUTddvaj7uRfhD7+gnwj65qqG+M216XcDPeqNqRBs=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=tLTjXy6qC/GGfHlzP+ZZoG+zDRYvAdAtw0bvdb+E6Vn7joQn6QqVlmoo45QacYPBt
- SYwNxhbtEvsXiis8/29iZemrH67/KieAva3AgZhQ/+Ut2f2hDwJwqCD5/JRspL2/YP
- cv0Q1R3U9SAJq0GCPgG9oO9EFa/C4141TiZONwme1E7Mog05gFprXLYWmWQZCKpAu6
- MPmjboMCJ7aPWzhblVXADCmUIASynctf0SLHxpmY8HRSSxr0h364m0eQNF7oTF3+Dl
- 0aN+lFuQ9Tt1eOdSxY9SZGR7IdFRBM/VAYXcuY28otTqqjv1CxY025stZS8WR93Z/y
- ADm972ezabPcA==
-Received: by mail-yb1-f177.google.com with SMTP id
- 3f1490d57ef6-ba1815e12efso321561276.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 04 May 2023 04:21:00 -0700 (PDT)
-X-Gm-Message-State: AC+VfDxNY3HrOmoUIqe0GSAK9hBwG2fPxJZqbiOo+4j6SEsSJwlrLMd+
- QfZ8FCLgQubFNP6cfgzz0ffwkhGiiw96KGKNZWg=
-X-Google-Smtp-Source: ACHHUZ4hyiXFELtz+uH8zvw8xtX7BmLLptktEnELOmhcTb24Lwh+67J3WumMHl3nMeNdhpqCoIteLxnwhijC5HW3nDU=
-X-Received: by 2002:a25:2491:0:b0:b67:463e:a719 with SMTP id
- k139-20020a252491000000b00b67463ea719mr22790069ybk.46.1683199259680; Thu, 04
- May 2023 04:20:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230503165828.1002609-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20230503165828.1002609-1-John.C.Harrison@Intel.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Thu, 4 May 2023 07:20:48 -0400
-X-Gmail-Original-Message-ID: <CA+5PVA6eQnGfJ8FD9ZWWbgcGOJVHDpaJt3piNgnX-4TT=siYZw@mail.gmail.com>
-Message-ID: <CA+5PVA6eQnGfJ8FD9ZWWbgcGOJVHDpaJt3piNgnX-4TT=siYZw@mail.gmail.com>
-To: John.C.Harrison@intel.com
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2648910E087;
+ Thu,  4 May 2023 11:41:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:Date:To:
+ From:Subject:Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=DY2Ok8279LYbukTn4RyVDpj5MbcGHsCyoi1DnlySgWk=; b=coqZ51PvbgUdFwIKttmgO2Wczt
+ rNJcEsJlXANwIm5gE46wTOvrfBWb2mskizyrA1UwrsZB/iKxW5/54r63SZEFAcIdZIZ1EAPhhEUYY
+ CYVzeVefmvYA63395H0nHKEB3vz3Jbzl9y0LYb4BDn4ay7pRR3rus5b6/9qO60EbBo7r7ASiegCa5
+ KCLX+scCQQLqKdB69QSty1zn7PvOaKKYTpSJsGL+uiretyyQpQ8aHMcGd8K2wtX65IhlDi+lzO+Ie
+ zT02dI85ukQjm6EKZLxuk1pMmIaNZYcYTMNa11dlT0UpHNuSonulW8ZXuI2HP6l4RW/S5jlGfuCkd
+ mGz8l/dQ==;
+Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
+ helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1puXKZ-001506-AJ; Thu, 04 May 2023 13:41:03 +0200
+Message-ID: <bd27b87dc34f5ff00d346a8115cbf3bbb22b911b.camel@igalia.com>
+From: Ricardo Garcia <rgarcia@igalia.com>
+To: events@lists.x.org, xorg-devel@lists.x.org, 
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org, 
+ xorg@lists.freedesktop.org
+Date: Thu, 04 May 2023 13:41:02 +0200
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] PR for new GuC v70.6.6 for MTL
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+MIME-Version: 1.0
+Subject: [Intel-gfx] 2023 X.Org Foundation Election vote results
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,36 +56,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kyle@kernel.org, ben@decadent.org.uk,
- linux-firmware@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 3, 2023 at 12:58=E2=80=AFPM <John.C.Harrison@intel.com> wrote:
->
-> The following changes since commit 312c61f5a6c9c6a313383a8f0c2b02711ec152=
-62:
->
->   amdgpu: update DCN 3.1.6 DMCUB firmware (2023-05-03 09:11:02 -0400)
->
-> are available in the Git repository at:
->
->   git://anongit.freedesktop.org/drm/drm-firmware mtl_guc_70.6.6
+The Board of Directors election and the vote on the By-laws concluded at
+14:00 UTC on May 1st 2023 and these are the results:
 
-Pulled and pushed out.
+- We had 75 members this year, of which 55 cast a vote, so the turnout
+is 73.3%.
 
-josh
+- On the question "Do you accept the proposed By-Law changes to make SFC
+the new fiscal sponsor of the X.Org foundation, replacing SPI?" 52 of
+the 55 members voted yes (94.5%). Among all 75 members, approval is
+69.3% (52/75, over 2/3), so we can consider this change approved using
+the current by-law rules.
 
->
-> for you to fetch changes up to 192ee6d1a7806620eeb6f8478e6a3ec6ea44821c:
->
->   i915: Add GuC v70.6.6 for MTL (2023-05-03 06:45:11 -0700)
->
-> ----------------------------------------------------------------
-> John Harrison (1):
->       i915: Add GuC v70.6.6 for MTL
->
->  WHENCE              |   3 +++
->  i915/mtl_guc_70.bin | Bin 0 -> 303936 bytes
->  2 files changed, 3 insertions(+)
->  create mode 100644 i915/mtl_guc_70.bin
+- On the question "Do you accept the proposed By-Law changes to modify
+the special voting quorum requirements to be limited to present (meaning
+voting) members?" 48 of the 55 members voted yes (87.3%). Despite this,
+48 votes represent only 64% of the members, which means the by-laws
+change does not pass.
+
+- In the election of the Directors to the Board of the X.Org Foundation,
+the results were that Daniel Vetter, Lyude Paul, Arkadiusz Hiler and
+Christopher Michael were elected for two-year terms.
+
+The old full board is: Emma Anholt, Mark Filion, Ricardo Garcia, Samuel
+Iglesias Gons=C3=A1lvez, Manasi D Navare, Lyude Paul, Alyssa Rosenzweig and
+Daniel Vetter.
+
+The new full board is: Emma Anholt, Mark Filion, Ricardo Garcia,
+Arkadiusz Hiler, Christopher Michael, Lyude Paul, Alyssa Rosenzweig and
+Daniel Vetter.
+
+Full election results, sorted by points:
+
+* Daniel Vetter (367 points)
+* Lyude Paul (348 points)
+* Arkadiusz Hiler (286 points)
+* Christopher Michael (263 points)
+* Manasi Navare (195 points)
+* Uma Shankar (157 points)
+* Thomas Adam (105 points)
+* William Weeks-Balconi (51 points)
+
+Thanks everyone,
+-Ricardo Garcia, on behalf of the X.Org elections committee
+
