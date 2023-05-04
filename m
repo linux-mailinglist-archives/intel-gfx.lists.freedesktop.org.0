@@ -1,63 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8876F690A
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 12:28:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7F3B6F690B
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 12:28:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43E5D10E421;
-	Thu,  4 May 2023 10:28:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2393610E424;
+	Thu,  4 May 2023 10:28:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com
- [IPv6:2a00:1450:4864:20::12e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6EAB10E421
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 May 2023 10:28:18 +0000 (UTC)
-Received: by mail-lf1-x12e.google.com with SMTP id
- 2adb3069b0e04-4f00c33c3d6so347120e87.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 04 May 2023 03:28:18 -0700 (PDT)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
+ [IPv6:2a00:1450:4864:20::12a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E57C310E425
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 May 2023 10:28:21 +0000 (UTC)
+Received: by mail-lf1-x12a.google.com with SMTP id
+ 2adb3069b0e04-4eed764a10cso355579e87.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 04 May 2023 03:28:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1683196096; x=1685788096;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=jEBRUwDLpFcnXrlbigezC2oCjVBKtjOYIID+uAK03II=;
- b=e/FgJRw8f6WfrB6YMwlxVlh9QADotisTsB1L2B7pXL0GACDFZzdzcpf8BOORdtCY3Y
- ly59hiK8X/1ChOpqHEMrteqMRZNDYoVUSl2xtXIyfEdzW9WjVss7QUutGahYiExIJJks
- QmRTKoEDIpL/XnAs+DgaxsxamkbgadkbLzThD7aJ/lU9L6oAVNdVD+iGlBskScJ6lTvR
- PuNq+Zfao6mypJzSLVZWa6r/qeRcyRtHRPl/7HMyNHuG0ypLHKZExHa9r9+n6yWAS21r
- gll+4KYhBmn/5NTiR3Yxqck9NZRQvSwTfhBIKRvBUtxkPtPw8rmEDw97laDQ9clCPge6
- PlDg==
+ d=gmail.com; s=20221208; t=1683196099; x=1685788099;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=+MlPGmqnMWjfVdndrwJb0nfPY3ABmvvSgvtmgY2NyW4=;
+ b=VcCZXAWmbPxw1w0X5HzZnHS8fPHW0lzpLmwPRDJtKCvXIqFXczuC5j+HK8ABSZznoc
+ FSUj5B7NkxUtXfyyQJ+V8JsoZaDnFji5PRTsf7IDD0CCoBXv1oWnoEpF2MAhmPxrRirp
+ llNcHdeyQvdcP6vW04GXpKNwTCOyGTY9fQ0sRubtNJ8uPLhPG8fMKrq2+IqQxb3n0moJ
+ XmfG/ZNHTaC5QIBSA4i/llzILH/0kltpzLfWHSn6ZgQN4oQ/efeGLHOWcW2jKBtwMb47
+ kMnl5oad2+7j1pMM5uvWsg8qsds7uxldkLeJmOm4MOukAS6AVym7nuw9Bi6mPPBKtK1h
+ yBYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1683196096; x=1685788096;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=jEBRUwDLpFcnXrlbigezC2oCjVBKtjOYIID+uAK03II=;
- b=JVt6Jq1Q5DyEYFrRfFp2YoiSfvT47kY7UIl8AWxoGB7YYnZLdAVsl3AP+vNV8lOzAF
- 9rQwdYeB90vOVteYCQEtx8lBH+HPDIjBNVY54oLG3i1689NXJITv6QvML34nVB+WiSyM
- VyKAP+yZkOQgYhV1O8MBKzHgZZN9RTCJ0sGD/nkv8RTIZNvwPewx+ETZy7AGW0qWg668
- JgUN+16sJBfwCjmgTfiROPZCOujaMFIwbi9RSvzmM2dRQLSOJr8SciQLJ+wDYpUV0Axp
- oqC/Hw3BJ4okWVBCxQChbeUKpcxq81Pbu9MkcmcVYfSge4fvXCkYcdygwNXu4dvD5Udv
- BdPQ==
-X-Gm-Message-State: AC+VfDyLXPzhLu6rkafTpIda3tQTEhq94w8IAb1+egF6Q1ncjEzQl76m
- NC/W/++6YqQth8pfwd1gGByiSLdprb5vh9of
-X-Google-Smtp-Source: ACHHUZ41VvAUUN+BN2N9eXUvf4+ZTyrTJivN+cK8/0Ym6H62zp5CNFyXz2Bid7uSInWTRd/snH7kpw==
-X-Received: by 2002:ac2:5142:0:b0:4ef:ed49:fcc2 with SMTP id
- q2-20020ac25142000000b004efed49fcc2mr2147517lfd.26.1683196095550; 
- Thu, 04 May 2023 03:28:15 -0700 (PDT)
+ d=1e100.net; s=20221208; t=1683196099; x=1685788099;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=+MlPGmqnMWjfVdndrwJb0nfPY3ABmvvSgvtmgY2NyW4=;
+ b=lbK7DqYRyYmguQwnRCS8bX5NJpu4ZNqDbFS1mh543vgYEKqTfSPP9sofUE5xy/sxsL
+ jmskLz0UVl45yAdtXSg7et7vVvHlCO5TOaX4ATRVRZSgQb2lC0l4vEGpbk2B7ZtEVs7k
+ HBc0QGlHQIePPgRszwZ0sQSYvw/FPJ1JPKwnD4bdKXrwiPdJzhyNGMFtDljGZiEOReKh
+ hpj7m3Q8abSZZMfpSZDOSiVNcdhuhaE15fuV+JME9OuO9+iHzUurSpH1+0ao6YIqhCZu
+ jOP2e9uhfQNgAALFoOjYz1JZeFkN0pPNbFbUFjTPrtVYgx9+7dejymW+ub++VkXAMj8o
+ 8g+A==
+X-Gm-Message-State: AC+VfDwSScIfd3Ju2yoRAt/GtITMyPxYIA6Hvfq1x9Jriu60u6xd+1uX
+ 4hm8u079MqLdqahikNsj/KFy+6ZopPNaZyLU
+X-Google-Smtp-Source: ACHHUZ58ponsiVXQRAJsHoovsj0avl2NPVlQMJboDM3gTVGYBKmjeG0TJe2bc2izg7MPJQYp7VZa7g==
+X-Received: by 2002:a19:a402:0:b0:4f1:44c0:a921 with SMTP id
+ q2-20020a19a402000000b004f144c0a921mr366534lfc.55.1683196099106; 
+ Thu, 04 May 2023 03:28:19 -0700 (PDT)
 Received: from localhost.localdomain ([2001:998:22:0:60cb:8180:a416:f400])
  by smtp.gmail.com with ESMTPSA id
- v25-20020a056512049900b004eff32d6a21sm5097416lfq.121.2023.05.04.03.28.14
+ v25-20020a056512049900b004eff32d6a21sm5097416lfq.121.2023.05.04.03.28.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 May 2023 03:28:14 -0700 (PDT)
+ Thu, 04 May 2023 03:28:18 -0700 (PDT)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 May 2023 13:28:02 +0300
-Message-Id: <20230504102805.18645-1-juhapekka.heikkila@gmail.com>
+Date: Thu,  4 May 2023 13:28:03 +0300
+Message-Id: <20230504102805.18645-2-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230504102805.18645-1-juhapekka.heikkila@gmail.com>
+References: <20230504102805.18645-1-juhapekka.heikkila@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915/mtl: Drop FLAT CCS check
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915/mtl: Add MTL for remapping CCS FBs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,43 +73,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pallavi Mishra <pallavi.mishra@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Pallavi Mishra <pallavi.mishra@intel.com>
+From: Clint Taylor <clinton.a.taylor@intel.com>
 
-Remove FLAT CCS check from XY_FAST_COLOR_BLT usage, thus
-enabling MTL to use it.
+    Add support for remapping CCS FBs on MTL to remove the restriction
+    of the power-of-two sized stride and the 2MB surface offset alignment
+    for these FBs.
 
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 ---
- drivers/gpu/drm/i915/gt/intel_migrate.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index 3f638f198796..e0998879a0e1 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -920,7 +920,7 @@ static int emit_clear(struct i915_request *rq, u32 offset, int size,
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index e5f637897b5e..c004f08fcfe1 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1190,7 +1190,8 @@ bool intel_fb_needs_pot_stride_remap(const struct intel_framebuffer *fb)
+ {
+ 	struct drm_i915_private *i915 = to_i915(fb->base.dev);
  
- 	GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
+-	return IS_ALDERLAKE_P(i915) && intel_fb_uses_dpt(&fb->base);
++	return (IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14) &&
++		intel_fb_uses_dpt(&fb->base);
+ }
  
--	if (HAS_FLAT_CCS(i915) && ver >= 12)
-+	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
- 		ring_sz = XY_FAST_COLOR_BLT_DW;
- 	else if (ver >= 8)
- 		ring_sz = 8;
-@@ -931,7 +931,7 @@ static int emit_clear(struct i915_request *rq, u32 offset, int size,
- 	if (IS_ERR(cs))
- 		return PTR_ERR(cs);
+ static int intel_fb_pitch(const struct intel_framebuffer *fb, int color_plane, unsigned int rotation)
+@@ -1326,9 +1327,10 @@ plane_view_scanout_stride(const struct intel_framebuffer *fb, int color_plane,
+ 			  unsigned int tile_width,
+ 			  unsigned int src_stride_tiles, unsigned int dst_stride_tiles)
+ {
++	struct drm_i915_private *i915 = to_i915(fb->base.dev);
+ 	unsigned int stride_tiles;
  
--	if (HAS_FLAT_CCS(i915) && ver >= 12) {
-+	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
- 		*cs++ = XY_FAST_COLOR_BLT_CMD | XY_FAST_COLOR_BLT_DEPTH_32 |
- 			(XY_FAST_COLOR_BLT_DW - 2);
- 		*cs++ = FIELD_PREP(XY_FAST_COLOR_BLT_MOCS_MASK, mocs) |
+-	if (IS_ALDERLAKE_P(to_i915(fb->base.dev)))
++	if (IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
+ 		stride_tiles = src_stride_tiles;
+ 	else
+ 		stride_tiles = dst_stride_tiles;
+@@ -1522,7 +1524,8 @@ static void intel_fb_view_init(struct drm_i915_private *i915, struct intel_fb_vi
+ 	memset(view, 0, sizeof(*view));
+ 	view->gtt.type = view_type;
+ 
+-	if (view_type == I915_GTT_VIEW_REMAPPED && IS_ALDERLAKE_P(i915))
++	if (view_type == I915_GTT_VIEW_REMAPPED &&
++	    (IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14))
+ 		view->gtt.remapped.plane_alignment = SZ_2M / PAGE_SIZE;
+ }
+ 
 -- 
 2.25.1
 
