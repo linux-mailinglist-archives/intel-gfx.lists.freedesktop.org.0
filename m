@@ -2,47 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019336F638E
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 05:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5A666F63EF
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 06:14:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D177E10E061;
-	Thu,  4 May 2023 03:38:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17B4810E042;
+	Thu,  4 May 2023 04:14:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4436910E061
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 May 2023 03:38:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683171530; x=1714707530;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vv4nojO8uAsImZgfCGzz3xzY/RgJg7w8Zhywm/N0Th8=;
- b=l109+T2EtINO4Yp5cxDcahxfgX9QdIzRWogRc+/KCHDIvF/24TWKrHxm
- wZSvzytCZsSVOnDBe0+jCcEvgQ/KRAQfxbZlPdrOQbtJyWgHXz582zSgh
- faBY/Kj65/cfuqIGJEQualbFdmS/ldgeeXmWbSRdGGPC7hGoH8eJg70gw
- Sp962X55Tzsxh3Lajh9fIvhaQhpcYrYGjFfv+ciAQ7lE7Ki38ghB/APqG
- 8vjQp5WKEnP1e/NlvrY+yoabNr0/8pe4Wk12PBmZOfW3nwtezl7V7r9E8
- KukAzgif1lY1KW20H1VdG8vqdjqX0JbQX9JXBBO1INj+FH+XqY4zyFSE/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="350912423"
-X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; d="scan'208";a="350912423"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 20:38:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="699686290"
-X-IronPort-AV: E=Sophos;i="5.99,249,1677571200"; d="scan'208";a="699686290"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga007.fm.intel.com with ESMTP; 03 May 2023 20:38:47 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 May 2023 09:07:18 +0530
-Message-Id: <20230504033718.581317-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B794F10E042;
+ Thu,  4 May 2023 04:14:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 90BD9AA3D8;
+ Thu,  4 May 2023 04:14:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4344262241548789909=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/hdcp: add intel_atomic_state argument
- to hdcp_enable function
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Date: Thu, 04 May 2023 04:14:31 -0000
+Message-ID: <168317367156.11433.11031854195794821167@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230504033718.581317-1-suraj.kandpal@intel.com>
+In-Reply-To: <20230504033718.581317-1-suraj.kandpal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/hdcp=3A_add_intel=5Fatomic=5Fstate_argument_to_hdcp=5Fena?=
+ =?utf-8?q?ble_function?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,178 +41,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since topology state is being added to drm_atomic_state now all
-drm_modeset_lock required are being taken from core this raises
-an issue when we try to loop over connector and assign vcpi id to
-our streams as we did not have atomic state to derive acquire_ctx
-from hence we fill in stream info if dpmst encoder is found before
-enabling hdcp.
+--===============4344262241548789909==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c    |  3 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c   | 50 ++++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_hdcp.h   |  3 +-
- 4 files changed, 49 insertions(+), 9 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 29e4bfab4635..182b8815b20d 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3264,9 +3264,10 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
- 	/* Enable hdcp if it's desired */
- 	if (conn_state->content_protection ==
- 	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
--		intel_hdcp_enable(to_intel_connector(conn_state->connector),
-+		intel_hdcp_enable(state, to_intel_connector(conn_state->connector),
- 				  crtc_state,
- 				  (u8)conn_state->hdcp_content_type);
-+
- }
- 
- static void intel_disable_ddi_dp(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 2c49d9ab86a2..c92b00ceaae0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -800,7 +800,7 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
- 	/* Enable hdcp if it's desired */
- 	if (conn_state->content_protection ==
- 	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
--		intel_hdcp_enable(to_intel_connector(conn_state->connector),
-+		intel_hdcp_enable(state, to_intel_connector(conn_state->connector),
- 				  pipe_config,
- 				  (u8)conn_state->hdcp_content_type);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index e1dc3d96e708..c8cdf25914f7 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -30,7 +30,8 @@
- #define KEY_LOAD_TRIES	5
- #define HDCP2_LC_RETRY_CNT			3
- 
--static int intel_conn_to_vcpi(struct intel_connector *connector)
-+static int intel_conn_to_vcpi(struct intel_connector *connector,
-+			      struct drm_atomic_state *state)
- {
- 	struct drm_dp_mst_topology_mgr *mgr;
- 	struct drm_dp_mst_atomic_payload *payload;
-@@ -42,7 +43,7 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
- 		return 0;
- 	mgr = connector->port->mgr;
- 
--	drm_modeset_lock(&mgr->base.lock, NULL);
-+	drm_modeset_lock(&mgr->base.lock, state->acquire_ctx);
- 	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
- 	payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
- 	if (drm_WARN_ON(mgr->dev, !payload))
-@@ -54,7 +55,6 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
- 		goto out;
- 	}
- out:
--	drm_modeset_unlock(&mgr->base.lock);
- 	return vcpi;
- }
- 
-@@ -99,7 +99,6 @@ intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
- 		if (!enforce_type0 && !dig_port->hdcp_mst_type1_capable)
- 			enforce_type0 = true;
- 
--		data->streams[data->k].stream_id = intel_conn_to_vcpi(connector);
- 		data->k++;
- 
- 		/* if there is only one active stream */
-@@ -122,6 +121,41 @@ intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
- 	return 0;
- }
- 
-+static int
-+intel_hdcp_get_content_stream_id(struct intel_digital_port *dig_port,
-+				 struct intel_atomic_state *state)
-+{
-+	struct drm_connector_list_iter conn_iter;
-+	struct intel_digital_port *conn_dig_port;
-+	struct intel_connector *connector;
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-+
-+	data->k = 0;
-+
-+	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-+	for_each_intel_connector_iter(connector, &conn_iter) {
-+		if (connector->base.status == connector_status_disconnected)
-+			continue;
-+
-+		if (!intel_encoder_is_mst(intel_attached_encoder(connector)))
-+			continue;
-+
-+		conn_dig_port = intel_attached_dig_port(connector);
-+		if (conn_dig_port != dig_port)
-+			continue;
-+
-+		data->streams[data->k].stream_id = intel_conn_to_vcpi(connector, &state->base);
-+		data->k++;
-+
-+		/* if there is only one active stream */
-+		if (dig_port->dp.active_mst_links <= 1)
-+			break;
-+	}
-+	drm_connector_list_iter_end(&conn_iter);
-+
-+	return 0;
-+}
- static int intel_hdcp_prepare_streams(struct intel_connector *connector)
- {
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-@@ -2333,7 +2367,8 @@ int intel_hdcp_init(struct intel_connector *connector,
- 	return 0;
- }
- 
--int intel_hdcp_enable(struct intel_connector *connector,
-+int intel_hdcp_enable(struct intel_atomic_state *state,
-+		      struct intel_connector *connector,
- 		      const struct intel_crtc_state *pipe_config, u8 content_type)
- {
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-@@ -2374,6 +2409,9 @@ int intel_hdcp_enable(struct intel_connector *connector,
- 	 * is capable of HDCP2.2, it is preferred to use HDCP2.2.
- 	 */
- 	if (intel_hdcp2_capable(connector)) {
-+		if (intel_crtc_has_type(pipe_config, INTEL_OUTPUT_DP_MST))
-+			intel_hdcp_get_content_stream_id(dig_port, state);
-+
- 		ret = _intel_hdcp2_enable(connector);
- 		if (!ret)
- 			check_link_interval = DRM_HDCP2_CHECK_PERIOD_MS;
-@@ -2486,7 +2524,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
- 	}
- 
- 	if (desired_and_not_enabled || content_protection_type_changed)
--		intel_hdcp_enable(connector,
-+		intel_hdcp_enable(state, connector,
- 				  crtc_state,
- 				  (u8)conn_state->hdcp_content_type);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/i915/display/intel_hdcp.h
-index 8f53b0c7fe5c..a6f4bf93f9bf 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
-@@ -28,7 +28,8 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
- int intel_hdcp_init(struct intel_connector *connector,
- 		    struct intel_digital_port *dig_port,
- 		    const struct intel_hdcp_shim *hdcp_shim);
--int intel_hdcp_enable(struct intel_connector *connector,
-+int intel_hdcp_enable(struct intel_atomic_state *state,
-+		      struct intel_connector *connector,
- 		      const struct intel_crtc_state *pipe_config, u8 content_type);
- int intel_hdcp_disable(struct intel_connector *connector);
- void intel_hdcp_update_pipe(struct intel_atomic_state *state,
--- 
-2.25.1
+Series: drm/i915/hdcp: add intel_atomic_state argument to hdcp_enable function
+URL   : https://patchwork.freedesktop.org/series/117261/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_13105 -> Patchwork_117261v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/index.html
+
+Participating hosts (38 -> 37)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_117261v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-1:         NOTRUN -> [DMESG-WARN][1] ([i915#6367])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - bat-rpls-1:         NOTRUN -> [SKIP][2] ([i915#7828])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-rpls-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc:
+    - bat-rpls-1:         NOTRUN -> [SKIP][3] ([i915#1845])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@requests:
+    - {bat-mtlp-8}:       [ABORT][4] ([i915#4983] / [i915#7920]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13105/bat-mtlp-8/igt@i915_selftest@live@requests.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-mtlp-8/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-1:         [ABORT][6] ([i915#4983] / [i915#7461] / [i915#8347] / [i915#8384]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13105/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:
+    - bat-dg2-8:          [FAIL][8] ([i915#7932]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13105/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
+  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7920]: https://gitlab.freedesktop.org/drm/intel/issues/7920
+  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
+  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
+  [i915#8384]: https://gitlab.freedesktop.org/drm/intel/issues/8384
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13105 -> Patchwork_117261v1
+
+  CI-20190529: 20190529
+  CI_DRM_13105: e9c4e0f955197134304733e2417f72ce6392cb30 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7277: 1cb3507f3ff28d11bd5cfabcde576fe78ddab571 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_117261v1: e9c4e0f955197134304733e2417f72ce6392cb30 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+82d3004e095d drm/i915/hdcp: add intel_atomic_state argument to hdcp_enable function
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/index.html
+
+--===============4344262241548789909==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/hdcp: add intel_atomic_state argument to hdcp_enable function</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117261/">https://patchwork.freedesktop.org/series/117261/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13105 -&gt; Patchwork_117261v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/index.html</p>
+<h2>Participating hosts (38 -&gt; 37)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_117261v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-rpls-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-rpls-1/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>{bat-mtlp-8}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13105/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7920">i915#7920</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13105/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8384">i915#8384</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13105/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117261v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13105 -&gt; Patchwork_117261v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13105: e9c4e0f955197134304733e2417f72ce6392cb30 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7277: 1cb3507f3ff28d11bd5cfabcde576fe78ddab571 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_117261v1: e9c4e0f955197134304733e2417f72ce6392cb30 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>82d3004e095d drm/i915/hdcp: add intel_atomic_state argument to hdcp_enable function</p>
+
+</body>
+</html>
+
+--===============4344262241548789909==--
