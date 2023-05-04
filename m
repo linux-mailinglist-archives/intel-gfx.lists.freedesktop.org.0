@@ -2,51 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCE2B6F76EA
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 22:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 834DB6F76F2
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 22:23:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D204010E51E;
-	Thu,  4 May 2023 20:22:43 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2744010E1C0;
- Thu,  4 May 2023 20:22:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683231761; x=1714767761;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=84afhfByTW10EnXTasVhm2/sggpFyegCFHAEgH0ofMQ=;
- b=nzJEWH2cUEw70KKV5ustbgvZceBFPnrv4VjinGovZBE9f7b6zNIX/8VM
- 2Q8h4ddTJxsP/6r1slhdpICwZTl/YqcIgoXuHv54NXJvyw31cUUvdVnF8
- W0q21mDQUiACKfzO9E79zA7IkBfa6zYCBqTYSSSrUubLvjhyrGtKboP8x
- ZYcKInD5mLGCgLz0fILLYG4mN/goIk4hoTKKg/0am6qUkbNyKoJxCnH33
- 2RZEpDDo4b2uv7L6vJULOwuofGfIjjOdXsldoK3lhnU2SOUVhH1t3Niph
- vBoIMhvcKLieQL6fiu6blURWEd4pEcuXjeUGfoAm+90/c6MgX1N0ZPlZC A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="414569995"
-X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="414569995"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2023 13:22:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="808900445"
-X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="808900445"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmsmga002.fm.intel.com with ESMTP; 04 May 2023 13:22:39 -0700
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Thu,  4 May 2023 13:22:52 -0700
-Message-Id: <20230504202252.1104212-3-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230504202252.1104212-1-John.C.Harrison@Intel.com>
-References: <20230504202252.1104212-1-John.C.Harrison@Intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E20C110E525;
+	Thu,  4 May 2023 20:23:52 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D82C410E1C0;
+ Thu,  4 May 2023 20:23:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A2F56A00CC;
+ Thu,  4 May 2023 20:23:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/mtl: Update GuC firmware version
- for MTL to 70.6.6
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 04 May 2023 20:23:51 -0000
+Message-ID: <168323183166.11434.15346064804709753143@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230504123444.1843795-1-jani.nikula@intel.com>
+In-Reply-To: <20230504123444.1843795-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/connector=3A_document_enum_drm=5Fconnector=5Ftv=5Fmode_DRM?=
+ =?utf-8?b?X01PREVfVFZfTU9ERV9NQVg=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,33 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-Also switch to using reduced version file naming as it is no longer
-such a work-in-progress and likely to change.
+Series: drm/connector: document enum drm_connector_tv_mode DRM_MODE_TV_MODE_MAX
+URL   : https://patchwork.freedesktop.org/series/117332/
+State : warning
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-index 55e50bd08d7ff..10e48cbcf494a 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-@@ -79,7 +79,7 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
-  * security fixes, etc. to be enabled.
-  */
- #define INTEL_GUC_FIRMWARE_DEFS(fw_def, guc_maj, guc_mmp) \
--	fw_def(METEORLAKE,   0, guc_mmp(mtl,  70, 6, 5)) \
-+	fw_def(METEORLAKE,   0, guc_maj(mtl,  70, 6, 6)) \
- 	fw_def(DG2,          0, guc_maj(dg2,  70, 5, 1)) \
- 	fw_def(ALDERLAKE_P,  0, guc_maj(adlp, 70, 5, 1)) \
- 	fw_def(ALDERLAKE_P,  0, guc_mmp(adlp, 70, 1, 1)) \
--- 
-2.39.1
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
 
