@@ -1,34 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3339C6F7721
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 22:37:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 352CF6F7748
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 May 2023 22:41:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E514E10E002;
-	Thu,  4 May 2023 20:37:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 913E510E1C0;
+	Thu,  4 May 2023 20:41:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B681510E002;
- Thu,  4 May 2023 20:37:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AC5AAA00E6;
- Thu,  4 May 2023 20:37:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2092185301739013664=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 04 May 2023 20:37:10 -0000
-Message-ID: <168323263066.11434.6729609488967201101@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230504123444.1843795-1-jani.nikula@intel.com>
-In-Reply-To: <20230504123444.1843795-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/connector=3A_document_enum_drm=5Fconnector=5Ftv=5Fmode_DRM=5FM?=
- =?utf-8?b?T0RFX1RWX01PREVfTUFY?=
+Received: from mail-pl1-x649.google.com (mail-pl1-x649.google.com
+ [IPv6:2607:f8b0:4864:20::649])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA8DD10E529
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 May 2023 20:41:19 +0000 (UTC)
+Received: by mail-pl1-x649.google.com with SMTP id
+ d9443c01a7336-1aaeaa1ad2dso4741685ad.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 04 May 2023 13:41:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20221208; t=1683232877; x=1685824877;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=AjkGj18Tl/NdfVrPbyDKfRjswecBEB5bOxxm+RgEgOA=;
+ b=dwM0BsNHiZq4qN5FFSbCSGE++/6He9ZJ4z5viQWckrJ8WPqSLQ8Km8bPGMKJj+0R9p
+ I0J3YecLSBxvD02tDtPU982IC8x9/a1YZb8X+0iRfNF3fiRMfxvvQUULR3hN79FAwnI/
+ cAU4ZxDrnR4eK3dQFmer77OC9xbMVjvG7DPL3SgAqYCnzopDZ4sbT7kparWlvac/jrpe
+ aywPdxXO07pbaZv/2mlj9qGJ7Q9r9pz4gOZuesNuCy0kVdWw40YrzzQQQEiQGUkTdoOc
+ KxNZS7OaaTUFp1rlYp342z2i6irzzOSijP7gKUSkwl8xUGPyY5XEPsn+Su+NBS8T47K+
+ kY+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1683232877; x=1685824877;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=AjkGj18Tl/NdfVrPbyDKfRjswecBEB5bOxxm+RgEgOA=;
+ b=YmYVCBu+be72Y6lpq5T+BjsdRNImunirS8qo1ACAVE8rBeTi8kFwfXI8vPDgdwYuvD
+ z+Z9RLjfwAyLjo32As0UpreL1c9ir1IR6KX+SP7kfFrUHqSVV+o7uzXrBR/zfN1HRQR1
+ 9gaKTlKqZ4oyxgM702HrjyapQ/sAt9B7ZlPNROsAMnx7o4Aux9weO0qekSgoWVxA6z8C
+ jllOz8CP7koztZmYUfJdfnoBQzVEU9sLHI78JNdxag62TeOHpChag7eh4TnmJ6mYxDRg
+ zdpN2WX5Tko9zKel3qpqFXO2BigyYH8xg0ee07v6Qq/IfNcqdhRUA5ovngb8LZzKOnXe
+ xWyA==
+X-Gm-Message-State: AC+VfDwz9GbGMZoPApErsUkvplsTF6r968Rqy+IpiX+QyuUxrkCg7FMF
+ c8ZmzQ1KpZbdgK4fwhkO/tVksN38xa4=
+X-Google-Smtp-Source: ACHHUZ4qDwy5vZenwdizmjrkDEh6vha7LNA0vevnvbKr11qb7WL0aDbrG3uXQqhgmVCsKenkgsLqX/R9iCE=
+X-Received: from zagreus.c.googlers.com
+ ([fda3:e722:ac3:cc00:7f:e700:c0a8:5c37])
+ (user=seanjc job=sendgmr) by 2002:a17:903:1247:b0:1a6:c110:900a with SMTP id
+ u7-20020a170903124700b001a6c110900amr1614861plh.3.1683232877690; Thu, 04 May
+ 2023 13:41:17 -0700 (PDT)
+Date: Thu, 4 May 2023 13:41:16 -0700
+In-Reply-To: <ZBP7oZ1lkJhlSNpY@yzhao56-desk.sh.intel.com>
+Mime-Version: 1.0
+References: <20230311002258.852397-1-seanjc@google.com>
+ <20230311002258.852397-6-seanjc@google.com>
+ <ZBP7oZ1lkJhlSNpY@yzhao56-desk.sh.intel.com>
+Message-ID: <ZFQYbHTYgG4HJ+ac@google.com>
+From: Sean Christopherson <seanjc@google.com>
+To: Yan Zhao <yan.y.zhao@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [Intel-gfx] [PATCH v2 05/27] drm/i915/gvt: Verify VFIO-pinned
+ page is THP when shadowing 2M gtt entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,231 +70,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ben Gardon <bgardon@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2092185301739013664==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Mar 17, 2023, Yan Zhao wrote:
+> On Fri, Mar 10, 2023 at 04:22:36PM -0800, Sean Christopherson wrote:
+> > When shadowing a GTT entry with a 2M page, explicitly verify that the
+> > first page pinned by VFIO is a transparent hugepage instead of assuming
+> > that page observed by is_2MB_gtt_possible() is the same page pinned by
+> > vfio_pin_pages().  E.g. if userspace is doing something funky with the
+> > guest's memslots, or if the page is demoted between is_2MB_gtt_possible()
+> > and vfio_pin_pages().
+> > 
+> > This is more of a performance optimization than a bug fix as the check
+> > for contiguous struct pages should guard against incorrect mapping (even
+> > though assuming struct pages are virtually contiguous is wrong).
+> > 
+> > The real motivation for explicitly checking for a transparent hugepage
+> > after pinning is that it will reduce the risk of introducing a bug in a
+> > future fix for a page refcount leak (KVMGT doesn't put the reference
+> > acquired by gfn_to_pfn()), and eventually will allow KVMGT to stop using
+> > KVM's gfn_to_pfn() altogether.
+> > 
+> > Signed-off-by: Sean Christopherson <seanjc@google.com>
+> > ---
+> >  drivers/gpu/drm/i915/gvt/kvmgt.c | 18 ++++++++++++++++--
+> >  1 file changed, 16 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> > index 8ae7039b3683..90997cc385b4 100644
+> > --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
+> > +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> > @@ -159,11 +159,25 @@ static int gvt_pin_guest_page(struct intel_vgpu *vgpu, unsigned long gfn,
+> >  			goto err;
+> >  		}
+> >  
+> > -		if (npage == 0)
+> > -			base_page = cur_page;
+> > +		if (npage == 0) {
+> > +			/*
+> > +			 * Bail immediately to avoid unnecessary pinning when
+> > +			 * trying to shadow a 2M page and the host page isn't
+> > +			 * a transparent hugepage.
+> > +			 *
+> > +			 * TODO: support other type hugepages, e.g. HugeTLB.
+> > +			 */
+> > +			if (size == I915_GTT_PAGE_SIZE_2M &&
+> > +			    !PageTransHuge(cur_page))
+> Maybe the checking of PageTransHuge(cur_page) and bailing out is not necessary.
+> If a page is not transparent huge, but there are 512 contigous 4K
+> pages, I think it's still good to map them in IOMMU in 2M.
+> See vfio_pin_map_dma() who does similar things.
 
-== Series Details ==
+I agree that bailing isn't strictly necessary, and processing "blindly" should
+Just Work for HugeTLB and other hugepage types.  I was going to argue that it
+would be safer to add this and then drop it at the end, but I think that's a
+specious argument.  If not checking the page type is unsafe, then the existing
+code is buggy, and this changelog literally states that the check for contiguous
+pages guards against any such problems.
 
-Series: drm/connector: document enum drm_connector_tv_mode DRM_MODE_TV_MODE_MAX
-URL   : https://patchwork.freedesktop.org/series/117332/
-State : success
+I do think there's a (very, very theoretical) issue though.  For "CONFIG_SPARSEMEM=y
+&& CONFIG_SPARSEMEM_VMEMMAP=n", struct pages aren't virtually contiguous with respect
+to their pfns, i.e. it's possible (again, very theoretically) that two struct pages
+could be virtually contiguous but physically discontiguous.  I suspect I'm being
+ridiculously paranoid, but for the efficient cases where pages are guaranteed to
+be contiguous, the extra page_to_pfn() checks should be optimized away by the
+compiler, i.e. there's no meaningful downside to the paranoia.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13109 -> Patchwork_117332v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/index.html
-
-Participating hosts (41 -> 40)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_117332v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-1:         NOTRUN -> [ABORT][1] ([i915#6687] / [i915#7978] / [i915#8407])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         NOTRUN -> [DMESG-WARN][2] ([i915#6367])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-dg1-7:          NOTRUN -> [SKIP][3] ([i915#7828])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-dg1-7/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-dg1-7:          NOTRUN -> [SKIP][4] ([i915#1845] / [i915#4078])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-dg1-7/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-1:         [ABORT][5] ([i915#4983] / [i915#7911] / [i915#7920]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13109/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-rpls-1/igt@i915_selftest@live@requests.html
-    - {bat-mtlp-6}:       [ABORT][7] ([i915#4983] / [i915#7920]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13109/bat-mtlp-6/igt@i915_selftest@live@requests.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-mtlp-6/igt@i915_selftest@live@requests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg1-7:          [ABORT][9] ([i915#4983]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13109/bat-dg1-7/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-dg1-7/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:
-    - bat-dg2-8:          [FAIL][11] ([i915#7932]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13109/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7920]: https://gitlab.freedesktop.org/drm/intel/issues/7920
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8407]: https://gitlab.freedesktop.org/drm/intel/issues/8407
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13109 -> Patchwork_117332v1
-
-  CI-20190529: 20190529
-  CI_DRM_13109: 1c3b807eabfd457e98ccbec6c22cc39b45befed5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7277: 1cb3507f3ff28d11bd5cfabcde576fe78ddab571 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_117332v1: 1c3b807eabfd457e98ccbec6c22cc39b45befed5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-40f5595203de drm/connector: document enum drm_connector_tv_mode DRM_MODE_TV_MODE_MAX
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/index.html
-
---===============2092185301739013664==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/connector: document enum drm_connector_tv_mode DRM_MODE_TV_MODE_MAX</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117332/">https://patchwork.freedesktop.org/series/117332/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13109 -&gt; Patchwork_117332v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_117332v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8407">i915#8407</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-dg1-7/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-dg1-7/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>
-<p>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13109/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7920">i915#7920</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-<li>
-<p>{bat-mtlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13109/bat-mtlp-6/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7920">i915#7920</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-mtlp-6/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13109/bat-dg1-7/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-dg1-7/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13109/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117332v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13109 -&gt; Patchwork_117332v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13109: 1c3b807eabfd457e98ccbec6c22cc39b45befed5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7277: 1cb3507f3ff28d11bd5cfabcde576fe78ddab571 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_117332v1: 1c3b807eabfd457e98ccbec6c22cc39b45befed5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>40f5595203de drm/connector: document enum drm_connector_tv_mode DRM_MODE_TV_MODE_MAX</p>
-
-</body>
-</html>
-
---===============2092185301739013664==--
+TL;DR: My plan is to drop this patch and instead harden the continuity check.
