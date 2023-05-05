@@ -2,37 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE8306F84D9
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 16:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 319326F84DC
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 16:30:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 603FF10E619;
-	Fri,  5 May 2023 14:29:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76A1B10E614;
+	Fri,  5 May 2023 14:30:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60E2210E614;
- Fri,  5 May 2023 14:29:27 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 50C2963E70;
- Fri,  5 May 2023 14:29:26 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 9BDDEC433D2;
- Fri,  5 May 2023 14:29:22 +0000 (UTC)
-Date: Fri, 5 May 2023 10:29:20 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-Message-ID: <ZFUSwEVKF5S8LF3A@rdvivi-mobl4>
-References: <20230418140430.69902-1-n.zhandarovich@fintech.ru>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D36CE10E614
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 May 2023 14:30:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1683297005; x=1714833005;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Sm3VTrkZ46SS+kM+zXvGyJ+Mv+V0cPJDZm7+zX9H6m4=;
+ b=TyViooH574eCUzDTpfKWNTaCks8yt/SGU3VhXDCsM8hjrdCunAqOL2kI
+ yoGn79DcBc2UkOrrZDLz4t7txuRXRg0yN83L0I3jpYFicwAlF2i2BqGLJ
+ hnY0Ka4yStG/iULOt43sGk5d/65cPnG48XpR7Ky1uBwj8UriEEd4tg1M2
+ zPxH8B31rwVxEzYzaFJxRrkmDlQteoibNVOckxMjtLGQaYMG226acWhs0
+ IT7E743Fhu0WyvhlUCL3nFfqJnSGG57KwWwFwm577XZxg6y8yfSn33qmQ
+ RxvyzIge4wiX/5BFD437+r+p0Yg80qo/4Fp/CJ1a5r+0pxjA85yfXNC1S w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="435540749"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="435540749"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2023 07:30:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="647888443"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="647888443"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2023 07:30:04 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  5 May 2023 07:29:52 -0700
+Message-Id: <20230505142952.844087-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230418140430.69902-1-n.zhandarovich@fintech.ru>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: prevent potential div-by-zero
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [CI] PR for GSC 102.0.0.1556 for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,54 +55,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lvc-project@linuxtesting.org, intel-gfx@lists.freedesktop.org,
- "Jason A. Donenfeld" <Jason@zx2c4.com>, linux-kernel@vger.kernel.org,
- Manasi Navare <manasi.d.navare@intel.com>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 18, 2023 at 07:04:30AM -0700, Nikita Zhandarovich wrote:
-> drm_dp_dsc_sink_max_slice_count() may return 0 if something goes
-> wrong on the part of the DSC sink and its DPCD register. This null
-> value may be later used as a divisor in intel_dsc_compute_params(),
-> which will lead to an error.
-> In the unlikely event that this issue occurs, fix it by testing the
-> return value of drm_dp_dsc_sink_max_slice_count() against zero.
-> 
-> Found by Linux Verification Center (linuxtesting.org) with static
-> analysis tool SVACE.
-> 
-> Fixes: a4a157777c80 ("drm/i915/dp: Compute DSC pipe config in atomic check")
-> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+The following changes since commit 2bc50f50b092087636cc216f1605c557dc12a1ee:
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+  Merge branch 'mtl_guc_70.6.6' of git://anongit.freedesktop.org/drm/drm-firmware (2023-05-04 07:20:20 -0400)
 
-and pushed.
+are available in the Git repository at:
 
-Thanks for the patch and sorry for the delay.
+  git://anongit.freedesktop.org/drm/drm-firmware mtl_gsc_102.0.0.1556
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 62cbab7402e9..c1825f8f885c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1533,6 +1533,11 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  		pipe_config->dsc.slice_count =
->  			drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd,
->  							true);
-> +		if (!pipe_config->dsc.slice_count) {
-> +			drm_dbg_kms(&dev_priv->drm, "Unsupported Slice Count %d\n",
-> +				    pipe_config->dsc.slice_count);
-> +			return -EINVAL;
-> +		}
->  	} else {
->  		u16 dsc_max_output_bpp = 0;
->  		u8 dsc_dp_slice_count;
-> -- 
-> 2.25.1
-> 
+for you to fetch changes up to d8944e5bb05b30bb8c0ed6813c8365de1e59306f:
+
+  i915: add GSC 102.0.0.1556 for MTL (2023-05-05 07:25:26 -0700)
+
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (1):
+      i915: add GSC 102.0.0.1556 for MTL
+
+ WHENCE             |   3 +++
+ i915/mtl_gsc_1.bin | Bin 0 -> 1142784 bytes
+ 2 files changed, 3 insertions(+)
+ create mode 100644 i915/mtl_gsc_1.bin
