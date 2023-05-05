@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93506F84FA
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 16:40:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93B1A6F84FD
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 16:40:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF25410E622;
-	Fri,  5 May 2023 14:40:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FA8410E623;
+	Fri,  5 May 2023 14:40:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5CB410E622
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 May 2023 14:40:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5280410E622
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 May 2023 14:40:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683297614; x=1714833614;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RxtkVXhw8ySpXfbjEvXD7JSpLoJlu5PdSr4344K0NsI=;
- b=J2m6RDC0bE66a12cTnEJUIuB4dzmxPeqD5gJcc892vMTAHL1QPyD7LnX
- BReLdhSoQI4y+JkYUOO1gxSlHT9pogJ8fsv94Ahsimw3iT5DJ2nd0JNNZ
- ZyAH06+D2utMW65UPEYwGLZpZF5+0o8zb2MVK6pim20V0WqFyYgO38xYK
- f/FtLhX0pQahMlzf/mFNTFY+LdufwCOint7x7kR4oJztVgLg+ic4/VDn3
- kPnqWvYKUa9GTHqFJaI6XbxknlfdXgImShFWs3G1ghV35aMx9vn5WZkZa
- 3t0wCx+ujL+fCieKyi663Da561aAaQIxhveYo+qVn0rlTE/AMCn8G/NyH g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="348042640"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="348042640"
+ t=1683297615; x=1714833615;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=eOji54EtgI3Se9yyxaF2wP4cgFx0ObiXypQP4Z+4DxA=;
+ b=WagMwlnIvZxFuChohegC0qEFP0dqRgK12Z7ZBE4xNd8YLYI8bXy+yasH
+ UAdp/kvvHi8BfyHxyZ0kyH82KkQBfyctdFL6NeQLXIYN3scXJkxYASIIa
+ 8V0EaQW2MFfWTar+0BzzsE26eekeYDCM7nwC5Xw9JhnfozqhTcnt14VVt
+ ZbDDxkBbuSBVuZaijPHMV6iqwXCgYGHY5pmHK5Ho2elDdJsQuM8pGcz9m
+ QlHZr8owfLEDRUE1lxFEbnH3y+GUzKM2YVYo8X/n18aUq9OaxlAWPDXKZ
+ a8qtm24SePCqgfUxI1hysTePV9rnGnR4hZqpRllM0n4p/ZdICAoxtlZ6P Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="348042645"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="348042645"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 07:40:13 -0700
+ 05 May 2023 07:40:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="697613355"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="697613355"
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="697613368"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="697613368"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 07:40:11 -0700
+ 05 May 2023 07:40:13 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  5 May 2023 16:40:04 +0200
-Message-Id: <20230505144005.23480-1-nirmoy.das@intel.com>
+Date: Fri,  5 May 2023 16:40:05 +0200
+Message-Id: <20230505144005.23480-2-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230505144005.23480-1-nirmoy.das@intel.com>
+References: <20230505144005.23480-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
 Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
  85579 Neubiberg, Germany,
  Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/mtl: Drop FLAT CCS check
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/mtl: Add MTL for remapping CCS FBs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,48 +60,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andi.shyti@intel.com, Andrzej Hajda <andrzej.hajda@intel.com>,
- Pallavi Mishra <pallavi.mishra@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: andi.shyti@intel.com, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Pallavi Mishra <pallavi.mishra@intel.com>
+From: Clint Taylor <clinton.a.taylor@intel.com>
 
-Remove FLAT CCS check from XY_FAST_COLOR_BLT usage, thus
-enabling MTL to use it.
+Add support for remapping CCS FBs on MTL to remove the restriction
+of the power-of-two sized stride and the 2MB surface offset alignment
+for these FBs.
 
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Reviewed-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_migrate.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index 3f638f198796..e0998879a0e1 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -920,7 +920,7 @@ static int emit_clear(struct i915_request *rq, u32 offset, int size,
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index e5f637897b5e..c004f08fcfe1 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1190,7 +1190,8 @@ bool intel_fb_needs_pot_stride_remap(const struct intel_framebuffer *fb)
+ {
+ 	struct drm_i915_private *i915 = to_i915(fb->base.dev);
  
- 	GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
+-	return IS_ALDERLAKE_P(i915) && intel_fb_uses_dpt(&fb->base);
++	return (IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14) &&
++		intel_fb_uses_dpt(&fb->base);
+ }
  
--	if (HAS_FLAT_CCS(i915) && ver >= 12)
-+	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
- 		ring_sz = XY_FAST_COLOR_BLT_DW;
- 	else if (ver >= 8)
- 		ring_sz = 8;
-@@ -931,7 +931,7 @@ static int emit_clear(struct i915_request *rq, u32 offset, int size,
- 	if (IS_ERR(cs))
- 		return PTR_ERR(cs);
+ static int intel_fb_pitch(const struct intel_framebuffer *fb, int color_plane, unsigned int rotation)
+@@ -1326,9 +1327,10 @@ plane_view_scanout_stride(const struct intel_framebuffer *fb, int color_plane,
+ 			  unsigned int tile_width,
+ 			  unsigned int src_stride_tiles, unsigned int dst_stride_tiles)
+ {
++	struct drm_i915_private *i915 = to_i915(fb->base.dev);
+ 	unsigned int stride_tiles;
  
--	if (HAS_FLAT_CCS(i915) && ver >= 12) {
-+	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
- 		*cs++ = XY_FAST_COLOR_BLT_CMD | XY_FAST_COLOR_BLT_DEPTH_32 |
- 			(XY_FAST_COLOR_BLT_DW - 2);
- 		*cs++ = FIELD_PREP(XY_FAST_COLOR_BLT_MOCS_MASK, mocs) |
+-	if (IS_ALDERLAKE_P(to_i915(fb->base.dev)))
++	if (IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
+ 		stride_tiles = src_stride_tiles;
+ 	else
+ 		stride_tiles = dst_stride_tiles;
+@@ -1522,7 +1524,8 @@ static void intel_fb_view_init(struct drm_i915_private *i915, struct intel_fb_vi
+ 	memset(view, 0, sizeof(*view));
+ 	view->gtt.type = view_type;
+ 
+-	if (view_type == I915_GTT_VIEW_REMAPPED && IS_ALDERLAKE_P(i915))
++	if (view_type == I915_GTT_VIEW_REMAPPED &&
++	    (IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14))
+ 		view->gtt.remapped.plane_alignment = SZ_2M / PAGE_SIZE;
+ }
+ 
 -- 
 2.39.0
 
