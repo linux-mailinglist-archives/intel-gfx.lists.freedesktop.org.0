@@ -1,39 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7839C6F89FA
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 22:06:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AA4A6F8A0F
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 22:19:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 399CF10E032;
-	Fri,  5 May 2023 20:06:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8369A10E672;
+	Fri,  5 May 2023 20:19:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB86610E032;
- Fri,  5 May 2023 20:06:38 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 1816E64070;
- Fri,  5 May 2023 20:06:38 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id A06DCC433D2;
- Fri,  5 May 2023 20:06:33 +0000 (UTC)
-Date: Fri, 5 May 2023 16:06:31 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <ZFVhx2PBdcwpNNl0@rdvivi-mobl4>
-References: <20230224-track_gt-v8-0-4b6517e61be6@intel.com>
- <55aa19b3-58d4-02ae-efd1-c3f3d0f21ce6@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B08BC10E670;
+ Fri,  5 May 2023 20:19:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A7FF4AADE3;
+ Fri,  5 May 2023 20:19:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <55aa19b3-58d4-02ae-efd1-c3f3d0f21ce6@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v8 0/7] drm/i915: use ref_tracker library
- for tracking wakerefs
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Fri, 05 May 2023 20:19:13 -0000
+Message-ID: <168331795368.5022.17402684044516628203@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230505141719.332109-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230505141719.332109-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/ttm=3A_Allow_the_driver_to_resolve_a_WW_transaction_rollbac?=
+ =?utf-8?q?k?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,153 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Eric Dumazet <edumazet@google.com>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jakub Kicinski <kuba@kernel.org>, David Airlie <airlied@gmail.com>,
- "David S . Miller" <davem@davemloft.net>, Dmitry Vyukov <dvyukov@google.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 04, 2023 at 06:27:53PM +0200, Andrzej Hajda wrote:
-> Hi maintainers of net and i915,
-> 
-> On 25.04.2023 00:05, Andrzej Hajda wrote:
-> > This is revived patchset improving ref_tracker library and converting
-> > i915 internal tracker to ref_tracker.
-> > The old thread ended without consensus about small kernel allocations,
-> > which are performed under spinlock.
-> > I have tried to solve the problem by splitting the calls, but it results
-> > in complicated API, so I went back to original solution.
-> > If there are better solutions I am glad to discuss them.
-> > Meanwhile I send original patchset with addressed remaining comments.
-> > 
-> > To: Jani Nikula <jani.nikula@linux.intel.com>
-> > To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> > To: David Airlie <airlied@gmail.com>
-> > To: Daniel Vetter <daniel@ffwll.ch>
-> > To: Eric Dumazet <edumazet@google.com>
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: netdev@vger.kernel.org
-> > Cc: Jakub Kicinski <kuba@kernel.org>
-> > Cc: Dmitry Vyukov <dvyukov@google.com>
-> > Cc: "David S. Miller" <davem@davemloft.net>
-> > Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> > Cc: Das, Nirmoy <nirmoy.das@linux.intel.com>
-> > Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> > 
-> > ---
-> > Changes in v8:
-> > - addressed comments from Eric, Zhou and CI, thanks,
-> > - added ref_tracker_dir_init name argument to all callers in one patch
-> > - moved intel_wakeref_tracker_show to *.c
-> > - s/intel_wakeref_tracker_show/intel_ref_tracker_show/
-> > - removed 'default n' from Kconfig
-> > - changed strlcpy to strscpy,
-> > - removed assignement from if condition,
-> > - removed long lines from patch description
-> > - added tags
-> > - Link to v7: https://lore.kernel.org/r/20230224-track_gt-v7-0-11f08358c1ec@intel.com
-> > 
-> > Changes in v7:
-> > - removed 8th patch (hold wakeref), as it was already merged
-> > - added tags (thx Andi)
-> > - Link to v6: https://lore.kernel.org/r/20230224-track_gt-v6-0-0dc8601fd02f@intel.com
-> > 
-> > Changes in v6:
-> > - rebased to solve minor conflict and allow CI testing
-> > - Link to v5: https://lore.kernel.org/r/20230224-track_gt-v5-0-77be86f2c872@intel.com
-> > 
-> > Changes in v5 (thx Andi for review):
-> > - use *_locked convention instead of __*,
-> > - improved commit messages,
-> > - re-worked i915 patches, squashed separation and conversion patches,
-> > - added tags,
-> > - Link to v4: https://lore.kernel.org/r/20230224-track_gt-v4-0-464e8ab4c9ab@intel.com
-> > 
-> > Changes in v4:
-> > - split "Separate wakeref tracking" to smaller parts
-> > - fixed typos,
-> > - Link to v1-v3: https://patchwork.freedesktop.org/series/100327/
-> > 
-> > ---
-> > Andrzej Hajda (7):
-> >        lib/ref_tracker: add unlocked leak print helper
-> >        lib/ref_tracker: improve printing stats
-> >        lib/ref_tracker: add printing to memory buffer
-> >        lib/ref_tracker: remove warnings in case of allocation failure
-> >        drm/i915: Correct type of wakeref variable
-> >        drm/i915: Replace custom intel runtime_pm tracker with ref_tracker library
-> >        drm/i915: Track gt pm wakerefs
-> 
-> Finally all patches are reviewed.
-> Question to network and i915 maintainers, how to merge this patchset:
-> 1. Patches 1-4 belongs rather to network domain (especially patch 2).
-> 2. Patches 5-7 are for i915.
+== Series Details ==
 
-Well, probably the easiest way to avoid conflicts would be to send
-this right now through the net repo.
+Series: drm/ttm: Allow the driver to resolve a WW transaction rollback
+URL   : https://patchwork.freedesktop.org/series/117389/
+State : warning
 
-And hold patches 5-7 after drm-intel-next can backmerge them.
+== Summary ==
 
-At this point I believe we would be looking at 6.5-rc2
-backmerge to drm-intel-next in likely 11 weeks from now.
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-Do we have any urgency on them? Looking to all the changes in
-i915 I believe we will get many conflicts if we let all these
-i915 patches go through net tree as well.
 
-> 
-> What would be the best way to do it?
-> 
-> Regards
-> Andrzej
-> 
-> 
-> 
-> > 
-> >   drivers/gpu/drm/i915/Kconfig.debug                 |  18 ++
-> >   drivers/gpu/drm/i915/display/intel_display_power.c |   2 +-
-> >   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |   7 +-
-> >   .../drm/i915/gem/selftests/i915_gem_coherency.c    |  10 +-
-> >   drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |  14 +-
-> >   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c        |  13 +-
-> >   drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h  |   3 +-
-> >   drivers/gpu/drm/i915/gt/intel_context.h            |   4 +-
-> >   drivers/gpu/drm/i915/gt/intel_context_types.h      |   2 +
-> >   drivers/gpu/drm/i915/gt/intel_engine_pm.c          |   7 +-
-> >   drivers/gpu/drm/i915/gt/intel_engine_types.h       |   2 +
-> >   .../gpu/drm/i915/gt/intel_execlists_submission.c   |   2 +-
-> >   drivers/gpu/drm/i915/gt/intel_gt_pm.c              |  12 +-
-> >   drivers/gpu/drm/i915/gt/intel_gt_pm.h              |  38 +++-
-> >   drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c      |   4 +-
-> >   drivers/gpu/drm/i915/gt/selftest_engine_cs.c       |  20 +-
-> >   drivers/gpu/drm/i915/gt/selftest_gt_pm.c           |   5 +-
-> >   drivers/gpu/drm/i915/gt/selftest_reset.c           |  10 +-
-> >   drivers/gpu/drm/i915/gt/selftest_rps.c             |  17 +-
-> >   drivers/gpu/drm/i915/gt/selftest_slpc.c            |   5 +-
-> >   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  |  12 +-
-> >   drivers/gpu/drm/i915/i915_driver.c                 |   2 +-
-> >   drivers/gpu/drm/i915/i915_pmu.c                    |  16 +-
-> >   drivers/gpu/drm/i915/intel_runtime_pm.c            | 221 ++-------------------
-> >   drivers/gpu/drm/i915/intel_runtime_pm.h            |  11 +-
-> >   drivers/gpu/drm/i915/intel_wakeref.c               |  35 +++-
-> >   drivers/gpu/drm/i915/intel_wakeref.h               |  73 ++++++-
-> >   include/linux/ref_tracker.h                        |  25 ++-
-> >   lib/ref_tracker.c                                  | 179 ++++++++++++++---
-> >   lib/test_ref_tracker.c                             |   2 +-
-> >   net/core/dev.c                                     |   2 +-
-> >   net/core/net_namespace.c                           |   4 +-
-> >   32 files changed, 445 insertions(+), 332 deletions(-)
-> > ---
-> > base-commit: 4d0066a1c0763d50b6fb017e27d12b081ce21b57
-> > change-id: 20230224-track_gt-1b3da8bdacd7
-> > 
-> > Best regards,
-> 
