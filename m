@@ -1,34 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 889F36F8486
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 16:10:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F4896F84B2
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 16:17:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA5510E60D;
-	Fri,  5 May 2023 14:10:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75AB710E60A;
+	Fri,  5 May 2023 14:17:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0046210E60A;
- Fri,  5 May 2023 14:10:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DA483A47DF;
- Fri,  5 May 2023 14:10:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4793643488155699389=="
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E062E10E60A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 May 2023 14:17:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1683296229; x=1714832229;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=97lUDt6sx6uvOIeWt1VIdsaVie4K/YTigh4FmTnRihI=;
+ b=X3H1bHGnV2VbJ1TpuWijCjue8NalxIupWs9hFbstYTa5kMsaLL0S9NlJ
+ IcEXcaPrSpn+Jz0gMTcsVPpxXPzLACLlQPvOW15u9cvNz3CXsOc4O7Due
+ kzwGF441TyfN/ycNKqviDsrQG/FiHfwB+Fsou7O48fnj8i9EGfjhDo/Yy
+ kztDLZGp3+dVOq4UC81g+vlqGvEztlq+UoiP2sC1/rhEcpUyVbVXm+bv7
+ 151RbR3vjcVMIo0fzKSsWj7tZAvUSewgBfZvWQ5DF+j4pguPBT9AhKBsp
+ wCWEhu1FNaQ7cMfxJZGBLLyAuv7aKqmf/vTnQBaKVbCRG7iDSA2vG9Cvr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="351354856"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="351354856"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2023 07:17:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="841765177"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="841765177"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga001.fm.intel.com with SMTP; 05 May 2023 07:17:07 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 05 May 2023 17:17:06 +0300
+Date: Fri, 5 May 2023 17:17:06 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <ZFUP4s4mJsztgoIB@intel.com>
+References: <ZFTx3esk/Jlcnpjj@intel.com> <ZFT2R33ftOs3xnH5@intel.com>
+ <ZFT6sMoymxdJkD9G@intel.com> <ZFT8oh057XUt2vaV@intel.com>
+ <ZFUAmNkBiY95hDAM@intel.com> <ZFUCzMeHI5UFqfL7@intel.com>
+ <ZFUEkh-42PjplGtN@intel.com> <ZFUHyVLFGfbRxajB@intel.com>
+ <ZFULYgF1jBv4dTjq@intel.com> <ZFUNQ8bauuRmMnVh@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Date: Fri, 05 May 2023 14:10:35 -0000
-Message-ID: <168329583587.5021.3067915055425910020@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230505110917.1918957-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20230505110917.1918957-1-ankit.k.nautiyal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Update_the_DDI=5FBUF=5FCTL_active_timeout_for_?=
- =?utf-8?q?ADL-P?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZFUNQ8bauuRmMnVh@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix NULL ptr deref by checking
+ new_crtc_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,289 +65,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4793643488155699389==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, May 05, 2023 at 05:05:55PM +0300, Lisovskiy, Stanislav wrote:
+> On Fri, May 05, 2023 at 04:57:54PM +0300, Ville Syrjälä wrote:
+> > On Fri, May 05, 2023 at 04:42:33PM +0300, Lisovskiy, Stanislav wrote:
+> > > On Fri, May 05, 2023 at 04:28:50PM +0300, Ville Syrjälä wrote:
+> > > > On Fri, May 05, 2023 at 04:21:16PM +0300, Lisovskiy, Stanislav wrote:
+> > > > > On Fri, May 05, 2023 at 04:11:52PM +0300, Ville Syrjälä wrote:
+> > > > > > On Fri, May 05, 2023 at 03:54:58PM +0300, Lisovskiy, Stanislav wrote:
+> > > > > > > On Fri, May 05, 2023 at 03:46:40PM +0300, Ville Syrjälä wrote:
+> > > > > > > > On Fri, May 05, 2023 at 03:27:51PM +0300, Lisovskiy, Stanislav wrote:
+> > > > > > > > > On Fri, May 05, 2023 at 03:09:01PM +0300, Ville Syrjälä wrote:
+> > > > > > > > > > On Fri, May 05, 2023 at 02:41:24PM +0300, Lisovskiy, Stanislav wrote:
+> > > > > > > > > > > On Fri, May 05, 2023 at 02:25:46PM +0300, Ville Syrjälä wrote:
+> > > > > > > > > > > > On Fri, May 05, 2023 at 02:20:17PM +0300, Lisovskiy, Stanislav wrote:
+> > > > > > > > > > > > > On Fri, May 05, 2023 at 02:06:34PM +0300, Ville Syrjälä wrote:
+> > > > > > > > > > > > > > On Fri, May 05, 2023 at 02:05:27PM +0300, Lisovskiy, Stanislav wrote:
+> > > > > > > > > > > > > > > On Fri, May 05, 2023 at 02:02:43PM +0300, Ville Syrjälä wrote:
+> > > > > > > > > > > > > > > > On Fri, May 05, 2023 at 01:58:03PM +0300, Lisovskiy, Stanislav wrote:
+> > > > > > > > > > > > > > > > > On Fri, May 05, 2023 at 01:54:14PM +0300, Ville Syrjälä wrote:
+> > > > > > > > > > > > > > > > > > On Fri, May 05, 2023 at 11:22:12AM +0300, Stanislav Lisovskiy wrote:
+> > > > > > > > > > > > > > > > > > > intel_atomic_get_new_crtc_state can return NULL, unless crtc state wasn't
+> > > > > > > > > > > > > > > > > > > obtained previously with intel_atomic_get_crtc_state, so we must check it
+> > > > > > > > > > > > > > > > > > > for NULLness here, just as in many other places, where we can't guarantee
+> > > > > > > > > > > > > > > > > > > that intel_atomic_get_crtc_state was called.
+> > > > > > > > > > > > > > > > > > > We are currently getting NULL ptr deref because of that, so this fix was
+> > > > > > > > > > > > > > > > > > > confirmed to help.
+> > > > > > > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > > > > > > Fixes: 74a75dc90869 ("drm/i915/display: move plane prepare/cleanup to intel_atomic_plane.c")
+> > > > > > > > > > > > > > > > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > > > > > > > > > > > > > > > > ---
+> > > > > > > > > > > > > > > > > > >  drivers/gpu/drm/i915/display/intel_atomic_plane.c | 4 ++--
+> > > > > > > > > > > > > > > > > > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > > > > > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > > > > > > > > > > > > > > > > > index 9f670dcfe76e..4125ee07a271 100644
+> > > > > > > > > > > > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > > > > > > > > > > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > > > > > > > > > > > > > > > > > > @@ -1029,7 +1029,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+> > > > > > > > > > > > > > > > > > >  	int ret;
+> > > > > > > > > > > > > > > > > > >  
+> > > > > > > > > > > > > > > > > > >  	if (old_obj) {
+> > > > > > > > > > > > > > > > > > > -		const struct intel_crtc_state *crtc_state =
+> > > > > > > > > > > > > > > > > > > +		const struct intel_crtc_state *new_crtc_state =
+> > > > > > > > > > > > > > > > > > >  			intel_atomic_get_new_crtc_state(state,
+> > > > > > > > > > > > > > > > > > >  							to_intel_crtc(old_plane_state->hw.crtc));
+> > > > > > > > > > > > > > > > > > >  
+> > > > > > > > > > > > > > > > > > > @@ -1044,7 +1044,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+> > > > > > > > > > > > > > > > > > >  		 * This should only fail upon a hung GPU, in which case we
+> > > > > > > > > > > > > > > > > > >  		 * can safely continue.
+> > > > > > > > > > > > > > > > > > >  		 */
+> > > > > > > > > > > > > > > > > > > -		if (intel_crtc_needs_modeset(crtc_state)) {
+> > > > > > > > > > > > > > > > > > > +		if (new_crtc_state && intel_crtc_needs_modeset(new_crtc_state)) {
+> > > > > > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > > > > > NAK. We need to fix the bug instead of paparing over it.
+> > > > > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > > > > I had pushed this already.
+> > > > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > > > It didn't even finish CI. Please revert.
+> > > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > > Swati did run CI and verified that fix helps. I'm _not_ going to revert.
+> > > > > > > > > > > > > > 
+> > > > > > > > > > > > > > Fine. I'll do it.
+> > > > > > > > > > > > > 
+> > > > > > > > > > > > > Problem is that you don't even care to explain, why this fix is wrong, but simply
+> > > > > > > > > > > > > act in authoritarian way, instead of having constructive discussion.
+> > > > > > > > > > > > 
+> > > > > > > > > > > > I've explanined this one about a hundred times. The NULL pointer should
+> > > > > > > > > > > > not happen. Someone needs to actually analyze what is happening instead
+> > > > > > > > > > > > of just adding randomg NULL checks all over the place.
+> > > > > > > > > > > 
+> > > > > > > > > > > I do get this point. However why are we doing those check in other places then?
+> > > > > > > > > > 
+> > > > > > > > > > We do then when they are actually necessary.
+> > > > > > > > > 
+> > > > > > > > > Well but for example when we do check like if(new_bw_state) in intel_bw.c,
+> > > > > > > > > we are also might be having potentially some silent bugs.
+> > > > > > > > > Would you guarantee that if we remove all if(crtc_state) and if(new_bw_state) checks
+> > > > > > > > > in our code, that there won't be NULL pointer dereferences? I bet you don't.
+> > > > > > > > 
+> > > > > > > > We have the checks where they are needed. The check in
+> > > > > > > > intel_bw_atomic_check() (if that's the one you mean)
+> > > > > > > > looks entirely correct to me.
+> > > > > > > 
+> > > > > > > Typo in my prev message, I meant intel_atomic_get_bw_state..but common idea is the same.
+> > > > > > 
+> > > > > > get_state() vs. get_{new,old}_state() are entirely different
+> > > > > > things.
+> > > > > > 
+> > > > > > You use get_state() when you really want the state to be
+> > > > > > included, and either
+> > > > > > - know the state isn't included already, or
+> > > > > > - you don't know wether the might have alerady been included
+> > > > > > 
+> > > > > > And one must of course remember that get_state() can
+> > > > > > - fail so error handling is needed
+> > > > > > - only be used during the check phase, and is illegal during the
+> > > > > >   commit phase.
+> > > > > 
+> > > > > Sure I know this. I even remember we discussed this many times.
+> > > > > 
+> > > > > > 
+> > > > > > The get_{new,old}_state() (or the various for loop variants)
+> > > > > > you can use when you either:
+> > > > > > - know that the state is included already
+> > > > > > - are fine with the state potentially not being included
+> > > > > 
+> > > > > Don't you see that it is a bit of a contradiction in those 2 above??
+> > > > > 
+> > > > > You can't be "know that the state is included already" and 
+> > > > > "are fine with the state potentially not being included" same time :)
+> > > > > 
+> > > > > Those 2 above actually mean that you CANNOT be sure, because you 
+> > > > > are "fine with the state potentially not being included"! 
+> > > > > Otherwise second one would have been redundant.
+> > > > 
+> > > > No. You are either fine with NULL, XOR you know that
+> > > > the state is there already. There is no contradiction.
+> > > 
+> > > I do get that. But that way of calling the function is veeery counterintuitive.
+> > > Means that you call it and check for NULLness..if you are fine with NULL and
+> > > don't check for NULL..if you aren't fine with it and expect the state to be there.
+> > > 
+> > > That is really probabilistic design.
+> > > I think we must enumerate all the cases where 
+> > 
+> > Not sure what you mean with enumerate. You can't just delcare
+> > somewhere globally that in functions X and Y NULL is fine,
+> > and in Z it is not. It depends on how X,Y,Z are implemented
+> > and it may change any time the implementation is changed.
+> > 
+> > 
+> > > 1) we expect new_state to be there and
+> > >    then we don't need even any checks to be there, because we will then rely on get_state.
+> > > 2) we don't expect it to be there and then call get_state always.
+> > > 
+> > > Because if you are "fine" with new_state being NULL, why even calling it?
+> > 
+> > Because
+> > !NULL -> you have some work to do
+> >  NULL -> you don't have work to do
+> 
+> Pretty sure we could find a way not to call it at all in case if no work is needed,
+> and call it without any checks, if work is needed.
+> 
+> You typically get new bw state to recalculate and compare with old state, however
+> there has to be some place where you decide whether to call get_bw/crtc_state or not.
+> So from there, this could have been propagated to the moment where we decide where
+> to call get_new_bw/crtc_state or not. Then no checks would have been needed.
+> And NULL would always mean a bug.
+> Also that would be a lot more simple, following KISS principle.
 
-== Series Details ==
+You'd need to separately track each case in some boolean/etc.
+in the overall atomic state. Doable? Sure. Simpler? Don't see
+it. It's the exact same code with the NULL check just replaced
+with some other check. And you must additionally remember to
+sprinkle those bool assignments around.
 
-Series: drm/i915/display: Update the DDI_BUF_CTL active timeout for ADL-P
-URL   : https://patchwork.freedesktop.org/series/117375/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13112 -> Patchwork_117375v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/index.html
-
-Participating hosts (40 -> 39)
-------------------------------
-
-  Additional (1): bat-mtlp-6 
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_117375v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-1:         [PASS][1] -> [ABORT][2] ([i915#6687] / [i915#7978] / [i915#8407])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [PASS][3] -> [DMESG-FAIL][4] ([i915#5334])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-1:         [PASS][5] -> [DMESG-WARN][6] ([i915#6367])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/bat-rpls-1/igt@i915_selftest@live@slpc.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - bat-rpls-2:         [PASS][7] -> [ABORT][8] ([i915#6687])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-atsm-1:         NOTRUN -> [SKIP][9] ([i915#6645])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-atsm-1/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-atsm-1:         NOTRUN -> [SKIP][10] ([i915#6078])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-atsm-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-atsm-1:         NOTRUN -> [SKIP][11] ([i915#1836])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-atsm-1/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_fence@basic-await@bcs0:
-    - bat-rplp-1:         [FAIL][12] -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/bat-rplp-1/igt@gem_exec_fence@basic-await@bcs0.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-rplp-1/igt@gem_exec_fence@basic-await@bcs0.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-guc:         [DMESG-FAIL][14] ([i915#5334] / [i915#7872]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/fi-kbl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/fi-kbl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-hsw-4770:        [DMESG-WARN][16] -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@slpc:
-    - {bat-mtlp-8}:       [DMESG-WARN][18] ([i915#6367]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/bat-mtlp-8/igt@i915_selftest@live@slpc.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-mtlp-8/igt@i915_selftest@live@slpc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4342]: https://gitlab.freedesktop.org/drm/intel/issues/4342
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8368]: https://gitlab.freedesktop.org/drm/intel/issues/8368
-  [i915#8407]: https://gitlab.freedesktop.org/drm/intel/issues/8407
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13112 -> Patchwork_117375v1
-
-  CI-20190529: 20190529
-  CI_DRM_13112: 90ecd907cd4b9c1fe1275a9da536e79e10ca85ec @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7279: 3c22c8491f753d513892c479e9f4ab2f1336d5bb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_117375v1: 90ecd907cd4b9c1fe1275a9da536e79e10ca85ec @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-93b08da71840 drm/i915/display: Update the DDI_BUF_CTL active timeout for ADL-P
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/index.html
-
---===============4793643488155699389==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Update the DDI_BUF_CTL active timeout for ADL-P</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117375/">https://patchwork.freedesktop.org/series/117375/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13112 -&gt; Patchwork_117375v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 39)</h2>
-<p>Additional (1): bat-mtlp-6 <br />
-  Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_117375v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-rpls-1/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8407">i915#8407</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/bat-rpls-1/igt@i915_selftest@live@slpc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-atsm-1/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-atsm-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6078">i915#6078</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-atsm-1/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1836">i915#1836</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-await@bcs0:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/bat-rplp-1/igt@gem_exec_fence@basic-await@bcs0.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-rplp-1/igt@gem_exec_fence@basic-await@bcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/fi-kbl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/fi-kbl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/fi-hsw-4770/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>{bat-mtlp-8}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13112/bat-mtlp-8/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117375v1/bat-mtlp-8/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13112 -&gt; Patchwork_117375v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13112: 90ecd907cd4b9c1fe1275a9da536e79e10ca85ec @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7279: 3c22c8491f753d513892c479e9f4ab2f1336d5bb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_117375v1: 90ecd907cd4b9c1fe1275a9da536e79e10ca85ec @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>93b08da71840 drm/i915/display: Update the DDI_BUF_CTL active timeout for ADL-P</p>
-
-</body>
-</html>
-
---===============4793643488155699389==--
+-- 
+Ville Syrjälä
+Intel
