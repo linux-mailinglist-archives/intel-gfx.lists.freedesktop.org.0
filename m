@@ -1,58 +1,146 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B6586F875E
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 19:17:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67FE96F886E
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 20:10:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14B4210E64A;
-	Fri,  5 May 2023 17:17:43 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D04FA10E64A
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 May 2023 17:17:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC16B10E653;
+	Fri,  5 May 2023 18:10:19 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08DE810E653;
+ Fri,  5 May 2023 18:10:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683307061; x=1714843061;
+ t=1683310219; x=1714846219;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=GhlUnRaHnVFlh5wNchJMQ7Kgqk2atbTk9q6uKku7HsA=;
- b=jzVmQo0mMnMM8YeIa3F0zDvrH+X46g/zqaQfw6UHhsWDfuHA78WNZk1x
- zqJTYpZjOt3mOXLdhfEsEWJuyIOb5YyE1zhsyqtfZmLRYDE3I+2MtT6PW
- WubbN098eJ3z2ib/Hqxf2Nw/jacEvtU+Px0hYVA86PGgxQvaDBxEoOn1x
- 6xsTLLTidgGIkCuGA4to+cc1JmvqFPq08D4Cl62C/zsdf9xvtxp5Ypp9H
- VnWqb1/dIxbmWGPa+RyhYwEd5phaghp23e446o19Rv6iN+8ZurIyNhHTm
- Ir8xTKjng5KC6jIPGrRzOaxnoOkgJ0R/sP5NvdXM1ZUe36z7NOF2TTYVJ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="348083531"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="348083531"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 10:17:41 -0700
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=ZKuccpPJsIYzKX9E1fuj6FK5QN/b5UUYVAVQsWFC7yc=;
+ b=d1UHjo5jgngeoFk5GaUSB2QxHkBJ316dGi0JT3Fba3itNJRWsHSBJ7i+
+ zMSsz4+rUNuo88MvgSKkm1UsRvkYT14//ayMGeMgNyyiAYZjFkCGBQcqO
+ mTKzvHplM6OoKpVdSUvTqvYllDF1sqarOhcHRuWInSZ9wL2GrMUtdy1RF
+ mJGoo1F3vkPnZnaXB7bPwta63PTM4pcXRj5bmQ+aAkd26htTAINHUrv/6
+ 5fKgVRYnHemkye8X/FP2JR+l1t/1oHy0XBlV98tTkLJJRfE7VzdoKM+tg
+ CELGodoBS4t0pQfiqAwZD0n61Lp8NvsZ6pQIfEoZ1WPdhUlWSZqdehASH g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="352318182"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="352318182"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2023 11:10:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="697673537"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="697673537"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 05 May 2023 10:17:38 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 May 2023 20:17:37 +0300
-Date: Fri, 5 May 2023 20:17:37 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Message-ID: <ZFU6MdrxsW7G8nO7@intel.com>
-References: <20221107194604.15227-1-ville.syrjala@linux.intel.com>
- <20221107194604.15227-6-ville.syrjala@linux.intel.com>
- <DM4PR11MB636050E0C82E5BC1F23454B2F46D9@DM4PR11MB6360.namprd11.prod.outlook.com>
- <ZFTjBcK+Ps+mgPhn@intel.com>
- <DM4PR11MB6360EB6036423174860EC319F4729@DM4PR11MB6360.namprd11.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="787241381"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="787241381"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by FMSMGA003.fm.intel.com with ESMTP; 05 May 2023 11:10:18 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 5 May 2023 11:10:17 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 5 May 2023 11:10:17 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 5 May 2023 11:10:17 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.176)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Fri, 5 May 2023 11:10:17 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k9feq05xHje/ebVgyWc3qfbWpLjyOSaT0q0JQZWLfeuJTikOHt3vL9mPO87mo09CU1YshkcNHUWT6eYVa4HczqQbV+9lPOnqRxkCjY0DUwTlzU7B3t/SjLAx2Pi7Rjqhnr8g+2TqsAXsQj6ERMNxBycabR+tCwyWP5IFjbKFOtLXEP60h+rqL43S5Igjp9dfnnQvkykp696hlMbMSYTm5UcKLDm309yt7Xic0nJ9XMm8OufDW0F4R+YusbLnHkKV/235u6FK/i5UKBK72X8kQ4ilfghqmYzc4dtKoraDAqmN6ar1xo83q5I+xWnvgd93/pzFlY5iEyt4wcxNBJYQkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0cyC1jXpFjGutaQoMqm9O4S42do1a6/3VrXnRmhRBXk=;
+ b=bGtqQasI8dYs7QsNobus0t1Vz8dQvvNgZSn1baJfbUX808KzsZgFL+xzpf2qst6Hdx4dn7bO05Hd0njiYTlj43gcsahWlpT/fvQ+1EKRJYON+RfAMhuNCfXkRYwbIDW+PfwQ3BL8R7w+iDLbzF5sBlFCNi/Kxb2lJzi9UhwZSnAJmbROp5zPNYW9ygLQsBArmu4ahpYABActkuhKjCwZ8EHDRtaSd6vRqSyatYD0muTFhVghMfzB1qJrc0J3acJpmjg61gtFNj5F37uhFaFokQwbWxBCL5KgfCqU6xt5kL2PebbuESe3LquG9sqAU1JS8raHAqMeB4b2hU/YsyVvqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DM4PR11MB5486.namprd11.prod.outlook.com (2603:10b6:5:39e::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.27; Fri, 5 May
+ 2023 18:10:15 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::44e7:c479:62f4:3eb4%3]) with mapi id 15.20.6363.026; Fri, 5 May 2023
+ 18:10:15 +0000
+Date: Fri, 5 May 2023 11:10:12 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Message-ID: <zrtslyn6h5edjmcaa5umq4fafbnuxqmgdzl2q7sfw75o3zgids@ycuq5tnje6xs>
+X-Patchwork-Hint: comment
+References: <20230504202252.1104212-1-John.C.Harrison@Intel.com>
+ <20230504202252.1104212-3-John.C.Harrison@Intel.com>
+ <jo3pp2ew2qsckcrn4lvrkmhfilve6gjr6vb2iiof465dhj3uus@fppfx7jwt3q3>
+ <0ef47947-d52e-18aa-5642-874ee2ca14c8@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM4PR11MB6360EB6036423174860EC319F4729@DM4PR11MB6360.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: Pick one HDMI port for
- infoframe/audio transmission on g4x
+In-Reply-To: <0ef47947-d52e-18aa-5642-874ee2ca14c8@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0061.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::6) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM4PR11MB5486:EE_
+X-MS-Office365-Filtering-Correlation-Id: c7965961-d8ec-474f-b3e0-08db4d93f9f9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gNfFAyJCtpfqc0egVU0G9IzlqsYJW9QlbsTilrX5KO5HqWHf4pHrQjDAabOazdNLIJZz7F0GUe8lyHvQucmmEvO9SbgHpbmtpvWNaWhn/n6XkASJ1r6mBjjj9qiEcjwnFfIKK9xcThFWQUbhdyfyLquaABdGvv4q9moUdvSMH/bSz2jm0WN4cvZLAEuBYP75lWjrJQ0yVP95hZJTJ1RCTWg/9FyRdl7Dh+r4GZZ1T3R6/KZi2kTVJfNgaJHIHvY4WmZrdh+WZcqwxSFifNAwnQKgB26kq/8RFPq054H4mYd+XopQbYXUJw5gY5oJ44gjoX6ufmSMYKQefr1k6F2X2IHTHNz78WtEsgTsoI7WGFobjNpQA/B/UZes+7g4R6qYQgfjomp6aV91uyb8OMlV3Odk0BRA4EY2Nbt/4TFn4GkmdIFPe+bfuQBDd/WCxNshDG++ta/Wq4XIhDyoDFZCT5JH26QqSPjl2y882Lhic4zgG+HDFItqmzLEtk1hetih
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(366004)(346002)(396003)(136003)(39860400002)(376002)(451199021)(86362001)(33716001)(38100700002)(83380400001)(8676002)(41300700001)(66476007)(6862004)(66556008)(8936002)(6506007)(66946007)(2906002)(15650500001)(5660300002)(6666004)(316002)(478600001)(6636002)(4326008)(6486002)(966005)(9686003)(6512007)(26005)(54906003)(186003)(82960400001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?CIgYZO2xFPIJscEUS1eqtjDc0KHDiXbcXfMR3ORl9LYWa/S5ges/gBzToo?=
+ =?iso-8859-1?Q?RAYrjFYMfmF3kd2cgSaQpAIL8Z49ab/mbAWBC8ypJlz8pRfrekOXiazLiG?=
+ =?iso-8859-1?Q?lGvy2fPwmvHKXLAdS5xgdHDEzOBFiCL57dPtPMTSX9TwoxZT9J0zIqltzs?=
+ =?iso-8859-1?Q?dKPg1PZ2tZrNwTAPhOucyVagqpSVSuyScJ/HaJU/udPyfYMpy82XQCK1Zy?=
+ =?iso-8859-1?Q?PfMtl6BevCu7QQkLPQxsywqsmTXZBPxM8I+iXVsUY0bllEOghkVSbZu8yP?=
+ =?iso-8859-1?Q?SIhx06QSMB8m0BBpUzIl67LA40k4ewV4OUt4xHXlaWQIlu6NuwJpwMMRcf?=
+ =?iso-8859-1?Q?d+wCSHw2eqS2F/0pi/TNJ6Vs0Ppb1hCq1DYiuXsUPAh4Lt6coc4OS93UAw?=
+ =?iso-8859-1?Q?Sx6Wej3Xu5Fz8zXPKLCKrzpf0u7ei2TGk2bxlmqeoZFJi06d0/5Km8zxCJ?=
+ =?iso-8859-1?Q?qNbJDENh2xTAEZhH+wJe1U1nNpw1Ep2PipbDKGnsn3gu7cRKaMGa6aAhLT?=
+ =?iso-8859-1?Q?BC1iu+kF/JNm9uquB7EYw/G/g5n39Ks7Fnux+LLT97AYXfx95Zi5p1Olx7?=
+ =?iso-8859-1?Q?JO8e7Bj9A1yUMYg2p5nj5S0ZKWrZ8GXjAEm5j+C47tw0Rlc5dFPtLHfdTe?=
+ =?iso-8859-1?Q?57vl57Fk4mV3uoLV8vzpMf1RofI2cC88x5yc+WZTnqQ1DbmyvgZeegy45z?=
+ =?iso-8859-1?Q?cnDn97WUDmBuiz3C+9sURnTWJcSoUqzrZ7bbjViBYeWuuDjyf8YPSKrk9A?=
+ =?iso-8859-1?Q?mAg9sp08e/sn7CF0kXuMXvEatWxNYN99rnReqttZMr6fULNOYbcfnIBFZ+?=
+ =?iso-8859-1?Q?7Eukq2kc5J6bWK/REsJIwQIs/gpwQL7Gli/UQb+h4lSluFnROd67tRYN/Q?=
+ =?iso-8859-1?Q?Q+JfvnQztvCxEjKjIF51pKk0HNjRoVqNerUsDE4RJ7IA5OgBephSjXdmbV?=
+ =?iso-8859-1?Q?3t0cyXrwUan9mHZ+xB2a2TFuBSUoBxWRXnM1i4Wt8xN3sVKkbXI//w2Mf0?=
+ =?iso-8859-1?Q?4Y5SlZLVi5J+E9m3bM4Aq74n6DGDW8MQhAT2H2N9EouW3/QHMXsZzIblch?=
+ =?iso-8859-1?Q?o5Blcx2UAtt+Vjdj964ByKcAaW2kJrkFGrVgLpWn4kTktfBC1mzcF1tCu4?=
+ =?iso-8859-1?Q?ZPlPW/tLy4Pa9zM4JckSvosnGylO/so2F8pgCqMeNsW/1c1AIylTMQfAj7?=
+ =?iso-8859-1?Q?8rGAeIx+vCCHKuJWh8Wy0fkipzCf3iZrK8+70vV2DNZ+140xqUmvH7Eghs?=
+ =?iso-8859-1?Q?a+J+4tDRKqpC+IhQYKNUd/47ljHVd4h5aCGNERWYItRRrQSUd/c1Nu4Lgo?=
+ =?iso-8859-1?Q?WHKfD5nckkm2PvOjI3MFycO+mvALjkooPCZ9zetBa+jJO9xw79OtSnCdXA?=
+ =?iso-8859-1?Q?Nf+oPmYEv9R3uvLPf3ydDOHVhlTI9XrzSKR7Ln+HnovnRKvF7PyI59VRLk?=
+ =?iso-8859-1?Q?wfn2DKI4I7ORuwP1p23897K5qS4Xul/C0gpfv0r7IWyxVIG4c/5mxJLFbL?=
+ =?iso-8859-1?Q?cukdt01VHUyd6EszZXy8Qpg7orA21YspfF4FNf3pYrdUR258DKQ294NGJs?=
+ =?iso-8859-1?Q?q1P/lRbM7sBO8NG1++2XGX7w62dDE0q+xx5CY+xv4t5io/SlAZa5Uf0++b?=
+ =?iso-8859-1?Q?8w7drIEvQaNQBmG+GfooeYEKiyGMB8mHNZq1pLImFERbe4JDjizoVF0A?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7965961-d8ec-474f-b3e0-08db4d93f9f9
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 18:10:15.4853 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +JO0L7dADrd2l02jfGG2bLguPMKieTDM79B7sEfJG0v4hNfd3LykCnKJ6BttAyVlaO074DpgLkclIp8Wlk5IraezQVqHZxNBFJZjbhzahnE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5486
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/mtl: Update GuC firmware
+ version for MTL to 70.6.6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,300 +153,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Intel-GFX@lists.freedesktop.org, DRI-Devel@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 05, 2023 at 11:15:18AM +0000, Shankar, Uma wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Sent: Friday, May 5, 2023 4:36 PM
-> > To: Shankar, Uma <uma.shankar@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: Pick one HDMI port for
-> > infoframe/audio transmission on g4x
-> > 
-> > On Thu, May 04, 2023 at 09:13:27PM +0000, Shankar, Uma wrote:
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
-> > > > Of Ville Syrjala
-> > > > Sent: Tuesday, November 8, 2022 1:16 AM
-> > > > To: intel-gfx@lists.freedesktop.org
-> > > > Subject: [Intel-gfx] [PATCH 5/5] drm/i915: Pick one HDMI port for
-> > > > infoframe/audio transmission on g4x
-> > > >
-> > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > >
-> > > > On g4x the hardware has only one audio/video DIP block. Thus only
-> > > > one HDMI port can transmit audio/infoframes at a time.
-> > > > Currently we pretend that multiple ports can do it at the same time,
-> > > > but that doesn't actually work for two reasons:
-> > > > - the state of the single hw block will get clobbered by
-> > > >   the multiple ports, leading to state checker failures
-> > > > - the hardware will automagically disable audio/infoframe
-> > > >   transmission when enabled on multiple ports
-> > > >
-> > > > To fix this let's allow only one of the ports to transmit audio/infoframes at a
-> > time.
-> > > > We'll just go over all the HDMI ports and pick the first one that is
-> > > > otherwise capable of audio/infoframes. Further HDMI ports will be
-> > > > treated as if they had a DVI sink connected.
-> > > >
-> > > > In order to compute this consistently we'll also need to always add
-> > > > all HDMI ports to the atomic state.
-> > >
-> > > Hi Ville,
-> > > Approach and idea looks nice. One query I had on this is, if we have 2
-> > > HDMI ports/sink enabled and we treat one of them as DVI due to this
-> > > limitation. Later if the monitor being treated as HDMI is unplugged, will we get the
-> > audio on the other monitor without modeset.
-> > 
-> > Yes. When disabling the HDMI connector g4x_hdmi_connector_atomic_check() will
-> > add both connectors to the state, and HDMI vs. DVI decisions is redone for both
-> > connectors.
-> 
-> Oh ok, got it. Thanks Ville for the clarification.
-> 
-> Looks Good to me.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+On Thu, May 04, 2023 at 01:45:24PM -0700, John Harrison wrote:
+>On 5/4/2023 13:29, Lucas De Marchi wrote:
+>>On Thu, May 04, 2023 at 01:22:52PM -0700, John.C.Harrison@Intel.com 
+>>wrote:
+>>>From: John Harrison <John.C.Harrison@Intel.com>
+>>>
+>>>Also switch to using reduced version file naming as it is no longer
+>>>such a work-in-progress and likely to change.
+>>>
+>>>Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>
+>>
+>>commit message here will be bogus as it will be the first time MTL will
+>>actually have the define.
+>Oh. Because the current line is coming from the for-CI branch and is 
+>not actually upstream already. Yeah, forgot that!
+>
+>>
+>>Better to do it like this:
+>>
+>>    git revert 5c71b8b8ac87
+>>    then this patch, with a better commit message
+>>
+>>or I can change the commit message of this commit while applying to:
+>>
+>>    drm/i915/mtl: Define GuC firmware version for MTL
+>>
+>>    First release of GuC for Meteorlake.
+>>
+>>    Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+>>    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>
+>>Lucas De Marchi
+>That works for me :).
 
-Thanks for the reviews Jani & Uma.
-Remainder of the series pushed to drm-intel-next.
+applied both commits to drm-intel-gt-next branch and removed the other
+one from topic/core-for-CI.
 
-> 
-> > >
-> > > Regards,
-> > > Uma Shankar
-> > >
-> > > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/g4x_hdmi.c   | 114 +++++++++++++++++++++-
-> > > >  drivers/gpu/drm/i915/display/g4x_hdmi.h   |   4 +
-> > > >  drivers/gpu/drm/i915/display/intel_hdmi.c |  14 ++-
-> > > >  3 files changed, 129 insertions(+), 3 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> > > > b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> > > > index fd23aa03cdc4..28d477d7c7e3 100644
-> > > > --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> > > > +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> > > > @@ -6,6 +6,7 @@
-> > > >   */
-> > > >
-> > > >  #include "g4x_hdmi.h"
-> > > > +#include "intel_atomic.h"
-> > > >  #include "intel_audio.h"
-> > > >  #include "intel_connector.h"
-> > > >  #include "intel_crtc.h"
-> > > > @@ -78,17 +79,66 @@ static bool intel_hdmi_get_hw_state(struct
-> > > > intel_encoder *encoder,
-> > > >  	return ret;
-> > > >  }
-> > > >
-> > > > +static bool connector_is_hdmi(struct drm_connector *connector) {
-> > > > +	struct intel_encoder *encoder =
-> > > > +		intel_attached_encoder(to_intel_connector(connector));
-> > > > +
-> > > > +	return encoder && encoder->type == INTEL_OUTPUT_HDMI; }
-> > > > +
-> > > > +static bool g4x_compute_has_hdmi_sink(struct intel_atomic_state *state,
-> > > > +				      struct intel_crtc *this_crtc) {
-> > > > +	const struct drm_connector_state *conn_state;
-> > > > +	struct drm_connector *connector;
-> > > > +	int i;
-> > > > +
-> > > > +	/*
-> > > > +	 * On g4x only one HDMI port can transmit infoframes/audio at
-> > > > +	 * any given time. Select the first suitable port for this duty.
-> > > > +	 *
-> > > > +	 * See also g4x_hdmi_connector_atomic_check().
-> > > > +	 */
-> > > > +	for_each_new_connector_in_state(&state->base, connector,
-> > > > +conn_state, i)
-> > > > {
-> > > > +		struct intel_encoder *encoder = to_intel_encoder(conn_state-
-> > > > >best_encoder);
-> > > > +		const struct intel_crtc_state *crtc_state;
-> > > > +		struct intel_crtc *crtc;
-> > > > +
-> > > > +		if (!connector_is_hdmi(connector))
-> > > > +			continue;
-> > > > +
-> > > > +		crtc = to_intel_crtc(conn_state->crtc);
-> > > > +		if (!crtc)
-> > > > +			continue;
-> > > > +
-> > > > +		crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
-> > > > +
-> > > > +		if (!intel_hdmi_compute_has_hdmi_sink(encoder, crtc_state,
-> > > > conn_state))
-> > > > +			continue;
-> > > > +
-> > > > +		return crtc == this_crtc;
-> > > > +	}
-> > > > +
-> > > > +	return false;
-> > > > +}
-> > > > +
-> > > >  static int g4x_hdmi_compute_config(struct intel_encoder *encoder,
-> > > >  				   struct intel_crtc_state *crtc_state,
-> > > >  				   struct drm_connector_state *conn_state)  {
-> > > > +	struct intel_atomic_state *state =
-> > > > +to_intel_atomic_state(crtc_state-
-> > > > >uapi.state);
-> > > > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > > >  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > >
-> > > >  	if (HAS_PCH_SPLIT(i915))
-> > > >  		crtc_state->has_pch_encoder = true;
-> > > >
-> > > > -	crtc_state->has_hdmi_sink =
-> > > > -		intel_hdmi_compute_has_hdmi_sink(encoder, crtc_state,
-> > > > conn_state);
-> > > > +	if (IS_G4X(i915))
-> > > > +		crtc_state->has_hdmi_sink = g4x_compute_has_hdmi_sink(state,
-> > > > crtc);
-> > > > +	else
-> > > > +		crtc_state->has_hdmi_sink =
-> > > > +			intel_hdmi_compute_has_hdmi_sink(encoder, crtc_state,
-> > > > conn_state);
-> > > >
-> > > >  	return intel_hdmi_compute_config(encoder, crtc_state, conn_state);
-> > > > } @@
-> > > > -532,6 +582,66 @@ intel_hdmi_hotplug(struct intel_encoder *encoder,
-> > > >  	return state;
-> > > >  }
-> > > >
-> > > > +int g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
-> > > > +				    struct drm_atomic_state *state) {
-> > > > +	struct drm_i915_private *i915 = to_i915(state->dev);
-> > > > +	struct drm_connector_list_iter conn_iter;
-> > > > +	struct drm_connector *conn;
-> > > > +	int ret;
-> > > > +
-> > > > +	ret = intel_digital_connector_atomic_check(connector, state);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	if (!IS_G4X(i915))
-> > > > +		return 0;
-> > > > +
-> > > > +	if (!intel_connector_needs_modeset(to_intel_atomic_state(state),
-> > > > connector))
-> > > > +		return 0;
-> > > > +
-> > > > +	/*
-> > > > +	 * On g4x only one HDMI port can transmit infoframes/audio
-> > > > +	 * at any given time. Make sure all enabled HDMI ports are
-> > > > +	 * included in the state so that it's possible to select
-> > > > +	 * one of them for this duty.
-> > > > +	 *
-> > > > +	 * See also g4x_compute_has_hdmi_sink().
-> > > > +	 */
-> > > > +	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-> > > > +	drm_for_each_connector_iter(conn, &conn_iter) {
-> > > > +		struct drm_connector_state *conn_state;
-> > > > +		struct drm_crtc_state *crtc_state;
-> > > > +		struct drm_crtc *crtc;
-> > > > +
-> > > > +		if (!connector_is_hdmi(conn))
-> > > > +			continue;
-> > > > +
-> > > > +		drm_dbg_kms(&i915->drm, "Adding [CONNECTOR:%d:%s]\n",
-> > > > +			    conn->base.id, conn->name);
-> > > > +
-> > > > +		conn_state = drm_atomic_get_connector_state(state, conn);
-> > > > +		if (IS_ERR(conn_state)) {
-> > > > +			ret = PTR_ERR(conn_state);
-> > > > +			break;
-> > > > +		}
-> > > > +
-> > > > +		crtc = conn_state->crtc;
-> > > > +		if (!crtc)
-> > > > +			continue;
-> > > > +
-> > > > +		crtc_state = drm_atomic_get_new_crtc_state(state, crtc);
-> > > > +		crtc_state->mode_changed = true;
-> > > > +
-> > > > +		ret = drm_atomic_add_affected_planes(state, crtc);
-> > > > +		if (ret)
-> > > > +			break;
-> > > > +	}
-> > > > +	drm_connector_list_iter_end(&conn_iter);
-> > > > +
-> > > > +	return ret;
-> > > > +}
-> > > > +
-> > > >  void g4x_hdmi_init(struct drm_i915_private *dev_priv,
-> > > >  		   i915_reg_t hdmi_reg, enum port port)  { diff --git
-> > > > a/drivers/gpu/drm/i915/display/g4x_hdmi.h
-> > > > b/drivers/gpu/drm/i915/display/g4x_hdmi.h
-> > > > index db9a93bc9321..1e3ea7f3c846 100644
-> > > > --- a/drivers/gpu/drm/i915/display/g4x_hdmi.h
-> > > > +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.h
-> > > > @@ -11,9 +11,13 @@
-> > > >  #include "i915_reg_defs.h"
-> > > >
-> > > >  enum port;
-> > > > +struct drm_atomic_state;
-> > > > +struct drm_connector;
-> > > >  struct drm_i915_private;
-> > > >
-> > > >  void g4x_hdmi_init(struct drm_i915_private *dev_priv,
-> > > >  		   i915_reg_t hdmi_reg, enum port port);
-> > > > +int g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
-> > > > +				    struct drm_atomic_state *state);
-> > > >
-> > > >  #endif
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > > > b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > > > index 2425a9f59b90..d93aab847548 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > > > @@ -40,6 +40,7 @@
-> > > >  #include <drm/drm_edid.h>
-> > > >  #include <drm/intel_lpe_audio.h>
-> > > >
-> > > > +#include "g4x_hdmi.h"
-> > > >  #include "i915_debugfs.h"
-> > > >  #include "i915_drv.h"
-> > > >  #include "intel_atomic.h"
-> > > > @@ -2590,10 +2591,21 @@ static const struct drm_connector_funcs
-> > > > intel_hdmi_connector_funcs = {
-> > > >  	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
-> > > >  };
-> > > >
-> > > > +static int intel_hdmi_connector_atomic_check(struct drm_connector
-> > *connector,
-> > > > +					     struct drm_atomic_state *state) {
-> > > > +	struct drm_i915_private *i915 = to_i915(state->dev);
-> > > > +
-> > > > +	if (HAS_DDI(i915))
-> > > > +		return intel_digital_connector_atomic_check(connector, state);
-> > > > +	else
-> > > > +		return g4x_hdmi_connector_atomic_check(connector, state); }
-> > > > +
-> > > >  static const struct drm_connector_helper_funcs
-> > > > intel_hdmi_connector_helper_funcs = {
-> > > >  	.get_modes = intel_hdmi_get_modes,
-> > > >  	.mode_valid = intel_hdmi_mode_valid,
-> > > > -	.atomic_check = intel_digital_connector_atomic_check,
-> > > > +	.atomic_check = intel_hdmi_connector_atomic_check,
-> > > >  };
-> > > >
-> > > >  static void
-> > > > --
-> > > > 2.37.4
-> > >
-> > 
-> > --
-> > Ville Syrjälä
-> > Intel
+Closing https://gitlab.freedesktop.org/drm/intel/-/issues/8343
 
--- 
-Ville Syrjälä
-Intel
+Thanks
+Lucas De Marchi
+
+>
+>>
+>>>---
+>>>drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 2 +-
+>>>1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>>diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c 
+>>>b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>>>index 55e50bd08d7ff..10e48cbcf494a 100644
+>>>--- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>>>+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>>>@@ -79,7 +79,7 @@ void intel_uc_fw_change_status(struct 
+>>>intel_uc_fw *uc_fw,
+>>> * security fixes, etc. to be enabled.
+>>> */
+>>>#define INTEL_GUC_FIRMWARE_DEFS(fw_def, guc_maj, guc_mmp) \
+>>>-    fw_def(METEORLAKE,   0, guc_mmp(mtl,  70, 6, 5)) \
+>>>+    fw_def(METEORLAKE,   0, guc_maj(mtl,  70, 6, 6)) \
+>>>    fw_def(DG2,          0, guc_maj(dg2,  70, 5, 1)) \
+>>>    fw_def(ALDERLAKE_P,  0, guc_maj(adlp, 70, 5, 1)) \
+>>>    fw_def(ALDERLAKE_P,  0, guc_mmp(adlp, 70, 1, 1)) \
+>>>-- 
+>>>2.39.1
+>>>
+>
