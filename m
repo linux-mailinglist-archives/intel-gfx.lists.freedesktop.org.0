@@ -2,55 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6597A6F864A
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 17:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 266226F8660
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 18:08:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC7EB10E62C;
-	Fri,  5 May 2023 15:55:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B1E910E633;
+	Fri,  5 May 2023 16:08:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D436F10E638
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 May 2023 15:55:25 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00A7810E633;
+ Fri,  5 May 2023 16:08:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683302125; x=1714838125;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DnNSNT5X3ojPvve1FOQFsjSwaXHLr0KcetSPuxQmHmg=;
- b=SE6n4mjQVLWmKxgXVBr09fYoFLMCJcx8I7OeR5Vkh7aIeMFeL3P1auDH
- BY0jP0hNcbQFHMlddPL9HwQgBdXKcUjMibXgwqW+10aIOfYtLWdDP8+FN
- za8pzHA2TCvIclP4ttL59pyuOtnoTIm0bbWRYpzyo63o3d6anLycPUTTO
- T+AUOI97sqDZA/7uXo5EQcjpHrq7Jh6Q/iusqpa8BfvB0jZBy28e31SV3
- ryYl+/c7h0vOnSJBf0lzWBHgv7YQEwqCnB3dPzG4TcZV/dLNHlz6bjmyF
- /Ly4GSG+L8xMuCEpMDMLcjLrMSmXh9gIgcPN3A9HHl7UWaY/gi2FbAT5N w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="346705617"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="346705617"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 08:55:25 -0700
+ t=1683302907; x=1714838907;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PRuHjZkzqB/ib3PdQurqfsVvSKMKgrOuiux5EVQVrwg=;
+ b=NQHafGCTwRuut4xQ0mqqjIAdT2jw3WEuPBr7irSYiFzCoTfi9rNjXTjm
+ RrjP33nyEI98VNx6PXTFAz/4crxPqkE5p4c1yXui5YdGRJA535nqFJnag
+ qyfjhiQU7lxCKhxOVJWiIHxyP053dU4wDcoGckB6ybQSfr/1RaXmvnDUy
+ 9lzKQVvuwQuFLzaeMY1Rwaw+sLakvYJ3YIGi/QJS/ZccPJ1Z/9st6TfGr
+ 5J+AWbUXksffBVZRxUGzzvVt/1tyXpWJHg9KjLBu7YiLsnpGF1V5P3a3E
+ C+t+BrHNmeLPNQ1MKHJQ1FL1EdRxxyMcuOWGOnriugvPQgbg36gV1dfFT w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="349276932"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="349276932"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2023 09:04:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="767157966"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="767157966"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 08:55:24 -0700
-Date: Fri, 5 May 2023 18:55:18 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZFUm5uaNzPS2zw0K@intel.com>
-References: <ZFT2R33ftOs3xnH5@intel.com> <ZFT6sMoymxdJkD9G@intel.com>
- <ZFT8oh057XUt2vaV@intel.com> <ZFUAmNkBiY95hDAM@intel.com>
- <ZFUCzMeHI5UFqfL7@intel.com> <ZFUEkh-42PjplGtN@intel.com>
- <ZFUHyVLFGfbRxajB@intel.com> <ZFULYgF1jBv4dTjq@intel.com>
- <ZFUNQ8bauuRmMnVh@intel.com> <ZFUP4s4mJsztgoIB@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="871911252"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="871911252"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2023 09:04:26 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  5 May 2023 09:04:09 -0700
+Message-Id: <20230505160415.889525-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZFUP4s4mJsztgoIB@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix NULL ptr deref by checking
- new_crtc_state
+Subject: [Intel-gfx] [PATCH 0/6] drm/i915: GSC FW support for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,186 +55,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 05, 2023 at 05:17:06PM +0300, Ville Syrjälä wrote:
-> On Fri, May 05, 2023 at 05:05:55PM +0300, Lisovskiy, Stanislav wrote:
-> > On Fri, May 05, 2023 at 04:57:54PM +0300, Ville Syrjälä wrote:
-> > > On Fri, May 05, 2023 at 04:42:33PM +0300, Lisovskiy, Stanislav wrote:
-> > > > On Fri, May 05, 2023 at 04:28:50PM +0300, Ville Syrjälä wrote:
-> > > > > On Fri, May 05, 2023 at 04:21:16PM +0300, Lisovskiy, Stanislav wrote:
-> > > > > > On Fri, May 05, 2023 at 04:11:52PM +0300, Ville Syrjälä wrote:
-> > > > > > > On Fri, May 05, 2023 at 03:54:58PM +0300, Lisovskiy, Stanislav wrote:
-> > > > > > > > On Fri, May 05, 2023 at 03:46:40PM +0300, Ville Syrjälä wrote:
-> > > > > > > > > On Fri, May 05, 2023 at 03:27:51PM +0300, Lisovskiy, Stanislav wrote:
-> > > > > > > > > > On Fri, May 05, 2023 at 03:09:01PM +0300, Ville Syrjälä wrote:
-> > > > > > > > > > > On Fri, May 05, 2023 at 02:41:24PM +0300, Lisovskiy, Stanislav wrote:
-> > > > > > > > > > > > On Fri, May 05, 2023 at 02:25:46PM +0300, Ville Syrjälä wrote:
-> > > > > > > > > > > > > On Fri, May 05, 2023 at 02:20:17PM +0300, Lisovskiy, Stanislav wrote:
-> > > > > > > > > > > > > > On Fri, May 05, 2023 at 02:06:34PM +0300, Ville Syrjälä wrote:
-> > > > > > > > > > > > > > > On Fri, May 05, 2023 at 02:05:27PM +0300, Lisovskiy, Stanislav wrote:
-> > > > > > > > > > > > > > > > On Fri, May 05, 2023 at 02:02:43PM +0300, Ville Syrjälä wrote:
-> > > > > > > > > > > > > > > > > On Fri, May 05, 2023 at 01:58:03PM +0300, Lisovskiy, Stanislav wrote:
-> > > > > > > > > > > > > > > > > > On Fri, May 05, 2023 at 01:54:14PM +0300, Ville Syrjälä wrote:
-> > > > > > > > > > > > > > > > > > > On Fri, May 05, 2023 at 11:22:12AM +0300, Stanislav Lisovskiy wrote:
-> > > > > > > > > > > > > > > > > > > > intel_atomic_get_new_crtc_state can return NULL, unless crtc state wasn't
-> > > > > > > > > > > > > > > > > > > > obtained previously with intel_atomic_get_crtc_state, so we must check it
-> > > > > > > > > > > > > > > > > > > > for NULLness here, just as in many other places, where we can't guarantee
-> > > > > > > > > > > > > > > > > > > > that intel_atomic_get_crtc_state was called.
-> > > > > > > > > > > > > > > > > > > > We are currently getting NULL ptr deref because of that, so this fix was
-> > > > > > > > > > > > > > > > > > > > confirmed to help.
-> > > > > > > > > > > > > > > > > > > > 
-> > > > > > > > > > > > > > > > > > > > Fixes: 74a75dc90869 ("drm/i915/display: move plane prepare/cleanup to intel_atomic_plane.c")
-> > > > > > > > > > > > > > > > > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > > > > > > > > > > > > > > > > > > ---
-> > > > > > > > > > > > > > > > > > > >  drivers/gpu/drm/i915/display/intel_atomic_plane.c | 4 ++--
-> > > > > > > > > > > > > > > > > > > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > > > > > > > > > > > > > > > > > > > 
-> > > > > > > > > > > > > > > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > > > > > > > > > > > > > > > > > > index 9f670dcfe76e..4125ee07a271 100644
-> > > > > > > > > > > > > > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > > > > > > > > > > > > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > > > > > > > > > > > > > > > > > > @@ -1029,7 +1029,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
-> > > > > > > > > > > > > > > > > > > >  	int ret;
-> > > > > > > > > > > > > > > > > > > >  
-> > > > > > > > > > > > > > > > > > > >  	if (old_obj) {
-> > > > > > > > > > > > > > > > > > > > -		const struct intel_crtc_state *crtc_state =
-> > > > > > > > > > > > > > > > > > > > +		const struct intel_crtc_state *new_crtc_state =
-> > > > > > > > > > > > > > > > > > > >  			intel_atomic_get_new_crtc_state(state,
-> > > > > > > > > > > > > > > > > > > >  							to_intel_crtc(old_plane_state->hw.crtc));
-> > > > > > > > > > > > > > > > > > > >  
-> > > > > > > > > > > > > > > > > > > > @@ -1044,7 +1044,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
-> > > > > > > > > > > > > > > > > > > >  		 * This should only fail upon a hung GPU, in which case we
-> > > > > > > > > > > > > > > > > > > >  		 * can safely continue.
-> > > > > > > > > > > > > > > > > > > >  		 */
-> > > > > > > > > > > > > > > > > > > > -		if (intel_crtc_needs_modeset(crtc_state)) {
-> > > > > > > > > > > > > > > > > > > > +		if (new_crtc_state && intel_crtc_needs_modeset(new_crtc_state)) {
-> > > > > > > > > > > > > > > > > > > 
-> > > > > > > > > > > > > > > > > > > NAK. We need to fix the bug instead of paparing over it.
-> > > > > > > > > > > > > > > > > > 
-> > > > > > > > > > > > > > > > > > I had pushed this already.
-> > > > > > > > > > > > > > > > > 
-> > > > > > > > > > > > > > > > > It didn't even finish CI. Please revert.
-> > > > > > > > > > > > > > > > 
-> > > > > > > > > > > > > > > > Swati did run CI and verified that fix helps. I'm _not_ going to revert.
-> > > > > > > > > > > > > > > 
-> > > > > > > > > > > > > > > Fine. I'll do it.
-> > > > > > > > > > > > > > 
-> > > > > > > > > > > > > > Problem is that you don't even care to explain, why this fix is wrong, but simply
-> > > > > > > > > > > > > > act in authoritarian way, instead of having constructive discussion.
-> > > > > > > > > > > > > 
-> > > > > > > > > > > > > I've explanined this one about a hundred times. The NULL pointer should
-> > > > > > > > > > > > > not happen. Someone needs to actually analyze what is happening instead
-> > > > > > > > > > > > > of just adding randomg NULL checks all over the place.
-> > > > > > > > > > > > 
-> > > > > > > > > > > > I do get this point. However why are we doing those check in other places then?
-> > > > > > > > > > > 
-> > > > > > > > > > > We do then when they are actually necessary.
-> > > > > > > > > > 
-> > > > > > > > > > Well but for example when we do check like if(new_bw_state) in intel_bw.c,
-> > > > > > > > > > we are also might be having potentially some silent bugs.
-> > > > > > > > > > Would you guarantee that if we remove all if(crtc_state) and if(new_bw_state) checks
-> > > > > > > > > > in our code, that there won't be NULL pointer dereferences? I bet you don't.
-> > > > > > > > > 
-> > > > > > > > > We have the checks where they are needed. The check in
-> > > > > > > > > intel_bw_atomic_check() (if that's the one you mean)
-> > > > > > > > > looks entirely correct to me.
-> > > > > > > > 
-> > > > > > > > Typo in my prev message, I meant intel_atomic_get_bw_state..but common idea is the same.
-> > > > > > > 
-> > > > > > > get_state() vs. get_{new,old}_state() are entirely different
-> > > > > > > things.
-> > > > > > > 
-> > > > > > > You use get_state() when you really want the state to be
-> > > > > > > included, and either
-> > > > > > > - know the state isn't included already, or
-> > > > > > > - you don't know wether the might have alerady been included
-> > > > > > > 
-> > > > > > > And one must of course remember that get_state() can
-> > > > > > > - fail so error handling is needed
-> > > > > > > - only be used during the check phase, and is illegal during the
-> > > > > > >   commit phase.
-> > > > > > 
-> > > > > > Sure I know this. I even remember we discussed this many times.
-> > > > > > 
-> > > > > > > 
-> > > > > > > The get_{new,old}_state() (or the various for loop variants)
-> > > > > > > you can use when you either:
-> > > > > > > - know that the state is included already
-> > > > > > > - are fine with the state potentially not being included
-> > > > > > 
-> > > > > > Don't you see that it is a bit of a contradiction in those 2 above??
-> > > > > > 
-> > > > > > You can't be "know that the state is included already" and 
-> > > > > > "are fine with the state potentially not being included" same time :)
-> > > > > > 
-> > > > > > Those 2 above actually mean that you CANNOT be sure, because you 
-> > > > > > are "fine with the state potentially not being included"! 
-> > > > > > Otherwise second one would have been redundant.
-> > > > > 
-> > > > > No. You are either fine with NULL, XOR you know that
-> > > > > the state is there already. There is no contradiction.
-> > > > 
-> > > > I do get that. But that way of calling the function is veeery counterintuitive.
-> > > > Means that you call it and check for NULLness..if you are fine with NULL and
-> > > > don't check for NULL..if you aren't fine with it and expect the state to be there.
-> > > > 
-> > > > That is really probabilistic design.
-> > > > I think we must enumerate all the cases where 
-> > > 
-> > > Not sure what you mean with enumerate. You can't just delcare
-> > > somewhere globally that in functions X and Y NULL is fine,
-> > > and in Z it is not. It depends on how X,Y,Z are implemented
-> > > and it may change any time the implementation is changed.
-> > > 
-> > > 
-> > > > 1) we expect new_state to be there and
-> > > >    then we don't need even any checks to be there, because we will then rely on get_state.
-> > > > 2) we don't expect it to be there and then call get_state always.
-> > > > 
-> > > > Because if you are "fine" with new_state being NULL, why even calling it?
-> > > 
-> > > Because
-> > > !NULL -> you have some work to do
-> > >  NULL -> you don't have work to do
-> > 
-> > Pretty sure we could find a way not to call it at all in case if no work is needed,
-> > and call it without any checks, if work is needed.
-> > 
-> > You typically get new bw state to recalculate and compare with old state, however
-> > there has to be some place where you decide whether to call get_bw/crtc_state or not.
-> > So from there, this could have been propagated to the moment where we decide where
-> > to call get_new_bw/crtc_state or not. Then no checks would have been needed.
-> > And NULL would always mean a bug.
-> > Also that would be a lot more simple, following KISS principle.
-> 
-> You'd need to separately track each case in some boolean/etc.
-> in the overall atomic state. Doable? Sure. Simpler? Don't see
-> it. It's the exact same code with the NULL check just replaced
-> with some other check. And you must additionally remember to
-> sprinkle those bool assignments around.
+Last chunk of the required support for the GSC FW. This includes some
+fixes to the GSC memory allocation, FW idefinition and version
+management, plus a new debugfs for debug information.
 
-No-no-no. This is how intel_atomic_get_bw_state is called:
+Adding the FW definition will enable all the features that are dependent
+on the GSC being loaded (Media C6, HuC loading, SW proxy, PXP, HDCP).
 
-for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-	new_bw_state = intel_atomic_get_bw_state(state);
+The HuC series [1] has been included, squashed in a single patch,
+as one of the patches in this series depends on it, but it should be
+reviewd in its own thread.
 
+[1] https://patchwork.freedesktop.org/series/117080/
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Basically in any subsequent check, if it is called after that,
-whenever its called under for_each_new_intel_crtc_in_state, you 
-can be sure that intel_atomic_get_new_bw_state returns non-NULL.
+Daniele Ceraolo Spurio (6):
+  DO NOT REVIEW: drm/i915: HuC loading and authentication for MTL
+  drm/i915/uc/gsc: fixes and updates for GSC memory allocation
+  drm/i915/uc/gsc: extract release and security versions from the gsc
+    binary
+  drm/i915/uc/gsc: query the GSC FW for its compatibility version
+  drm/i915/uc/gsc: define gsc fw
+  drm/i915/uc/gsc: Add a gsc_info debugfs
 
-I was thinking about something like that, not adding a new boolean
-check. I'm pretty sure you understand that there might an elegant
-solution.
+ drivers/gpu/drm/i915/Makefile                 |   3 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |   3 +
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c     | 277 +++++++++++++++---
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h     |   2 +
+ .../drm/i915/gt/uc/intel_gsc_meu_headers.h    | 143 +++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c     | 154 +++++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h     |   6 +
+ .../gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.c |  38 +++
+ .../gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.h |  14 +
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c |   2 +-
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h |   1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c        | 182 ++++++++----
+ drivers/gpu/drm/i915/gt/uc/intel_huc.h        |  26 +-
+ drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c     | 224 +++++++++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h     |   6 +-
+ drivers/gpu/drm/i915/gt/uc/intel_huc_print.h  |  21 ++
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  10 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.h         |   2 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c |   2 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 218 +++++++++-----
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h      |  13 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h  |   6 -
+ drivers/gpu/drm/i915/i915_getparam.c          |   6 +-
+ drivers/gpu/drm/i915/i915_reg.h               |  25 ++
+ .../drm/i915/pxp/intel_pxp_cmd_interface_43.h |  14 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_huc.c      |   2 +-
+ include/uapi/drm/i915_drm.h                   |   3 +-
+ 28 files changed, 1191 insertions(+), 214 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_meu_headers.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.c
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_huc_print.h
 
-Anyways, I will get back here, once I have more info, why we don't
-call intel_atomic_get_crtc in that particular case.
+-- 
+2.40.0
 
-
-> 
-> -- 
-> Ville Syrjälä
-> Intel
