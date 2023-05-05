@@ -2,33 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96CBA6F89E8
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 21:58:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7839C6F89FA
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 22:06:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7836310E66F;
-	Fri,  5 May 2023 19:58:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 399CF10E032;
+	Fri,  5 May 2023 20:06:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0224C10E66F;
- Fri,  5 May 2023 19:58:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ED981A9932;
- Fri,  5 May 2023 19:58:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7195906379168628425=="
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB86610E032;
+ Fri,  5 May 2023 20:06:38 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 1816E64070;
+ Fri,  5 May 2023 20:06:38 +0000 (UTC)
+Received: from rdvivi-mobl4 (unknown [192.55.54.48])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by smtp.kernel.org (Postfix) with ESMTPSA id A06DCC433D2;
+ Fri,  5 May 2023 20:06:33 +0000 (UTC)
+Date: Fri, 5 May 2023 16:06:31 -0400
+From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <ZFVhx2PBdcwpNNl0@rdvivi-mobl4>
+References: <20230224-track_gt-v8-0-4b6517e61be6@intel.com>
+ <55aa19b3-58d4-02ae-efd1-c3f3d0f21ce6@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Date: Fri, 05 May 2023 19:58:05 -0000
-Message-ID: <168331668594.5022.9237390004277366065@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230504102805.18645-1-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20230504102805.18645-1-juhapekka.heikkila@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915/mtl=3A_Drop_FLAT_CCS_check?=
- =?utf-8?q?_=28rev2=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <55aa19b3-58d4-02ae-efd1-c3f3d0f21ce6@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v8 0/7] drm/i915: use ref_tracker library
+ for tracking wakerefs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,278 +46,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Eric Dumazet <edumazet@google.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jakub Kicinski <kuba@kernel.org>, David Airlie <airlied@gmail.com>,
+ "David S . Miller" <davem@davemloft.net>, Dmitry Vyukov <dvyukov@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7195906379168628425==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, May 04, 2023 at 06:27:53PM +0200, Andrzej Hajda wrote:
+> Hi maintainers of net and i915,
+> 
+> On 25.04.2023 00:05, Andrzej Hajda wrote:
+> > This is revived patchset improving ref_tracker library and converting
+> > i915 internal tracker to ref_tracker.
+> > The old thread ended without consensus about small kernel allocations,
+> > which are performed under spinlock.
+> > I have tried to solve the problem by splitting the calls, but it results
+> > in complicated API, so I went back to original solution.
+> > If there are better solutions I am glad to discuss them.
+> > Meanwhile I send original patchset with addressed remaining comments.
+> > 
+> > To: Jani Nikula <jani.nikula@linux.intel.com>
+> > To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > To: David Airlie <airlied@gmail.com>
+> > To: Daniel Vetter <daniel@ffwll.ch>
+> > To: Eric Dumazet <edumazet@google.com>
+> > Cc: linux-kernel@vger.kernel.org
+> > Cc: intel-gfx@lists.freedesktop.org
+> > Cc: dri-devel@lists.freedesktop.org
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: netdev@vger.kernel.org
+> > Cc: Jakub Kicinski <kuba@kernel.org>
+> > Cc: Dmitry Vyukov <dvyukov@google.com>
+> > Cc: "David S. Miller" <davem@davemloft.net>
+> > Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> > Cc: Das, Nirmoy <nirmoy.das@linux.intel.com>
+> > Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> > 
+> > ---
+> > Changes in v8:
+> > - addressed comments from Eric, Zhou and CI, thanks,
+> > - added ref_tracker_dir_init name argument to all callers in one patch
+> > - moved intel_wakeref_tracker_show to *.c
+> > - s/intel_wakeref_tracker_show/intel_ref_tracker_show/
+> > - removed 'default n' from Kconfig
+> > - changed strlcpy to strscpy,
+> > - removed assignement from if condition,
+> > - removed long lines from patch description
+> > - added tags
+> > - Link to v7: https://lore.kernel.org/r/20230224-track_gt-v7-0-11f08358c1ec@intel.com
+> > 
+> > Changes in v7:
+> > - removed 8th patch (hold wakeref), as it was already merged
+> > - added tags (thx Andi)
+> > - Link to v6: https://lore.kernel.org/r/20230224-track_gt-v6-0-0dc8601fd02f@intel.com
+> > 
+> > Changes in v6:
+> > - rebased to solve minor conflict and allow CI testing
+> > - Link to v5: https://lore.kernel.org/r/20230224-track_gt-v5-0-77be86f2c872@intel.com
+> > 
+> > Changes in v5 (thx Andi for review):
+> > - use *_locked convention instead of __*,
+> > - improved commit messages,
+> > - re-worked i915 patches, squashed separation and conversion patches,
+> > - added tags,
+> > - Link to v4: https://lore.kernel.org/r/20230224-track_gt-v4-0-464e8ab4c9ab@intel.com
+> > 
+> > Changes in v4:
+> > - split "Separate wakeref tracking" to smaller parts
+> > - fixed typos,
+> > - Link to v1-v3: https://patchwork.freedesktop.org/series/100327/
+> > 
+> > ---
+> > Andrzej Hajda (7):
+> >        lib/ref_tracker: add unlocked leak print helper
+> >        lib/ref_tracker: improve printing stats
+> >        lib/ref_tracker: add printing to memory buffer
+> >        lib/ref_tracker: remove warnings in case of allocation failure
+> >        drm/i915: Correct type of wakeref variable
+> >        drm/i915: Replace custom intel runtime_pm tracker with ref_tracker library
+> >        drm/i915: Track gt pm wakerefs
+> 
+> Finally all patches are reviewed.
+> Question to network and i915 maintainers, how to merge this patchset:
+> 1. Patches 1-4 belongs rather to network domain (especially patch 2).
+> 2. Patches 5-7 are for i915.
 
-== Series Details ==
+Well, probably the easiest way to avoid conflicts would be to send
+this right now through the net repo.
 
-Series: series starting with [1/4] drm/i915/mtl: Drop FLAT CCS check (rev2)
-URL   : https://patchwork.freedesktop.org/series/117272/
-State : success
+And hold patches 5-7 after drm-intel-next can backmerge them.
 
-== Summary ==
+At this point I believe we would be looking at 6.5-rc2
+backmerge to drm-intel-next in likely 11 weeks from now.
 
-CI Bug Log - changes from CI_DRM_13114 -> Patchwork_117272v2
-====================================================
+Do we have any urgency on them? Looking to all the changes in
+i915 I believe we will get many conflicts if we let all these
+i915 patches go through net tree as well.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/index.html
-
-Participating hosts (40 -> 39)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_117272v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         NOTRUN -> [ABORT][1] ([i915#4983] / [i915#7461] / [i915#8347] / [i915#8384])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rplp-1:         [PASS][2] -> [DMESG-WARN][3] ([i915#6367])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-rplp-1/igt@i915_selftest@live@slpc.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rplp-1/igt@i915_selftest@live@slpc.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-rpls-2:         NOTRUN -> [SKIP][4] ([i915#7828])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-    - bat-adlp-6:         NOTRUN -> [SKIP][5] ([i915#7828])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-adlp-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-    - bat-jsl-3:          NOTRUN -> [SKIP][6] ([i915#7828])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-jsl-3/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-rpls-2:         NOTRUN -> [SKIP][7] ([i915#1845])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-2:         [ABORT][8] ([i915#6687] / [i915#7978]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-adlp-6:         [ABORT][10] ([i915#7677] / [i915#7913]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-adlp-6/igt@i915_selftest@live@hangcheck.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-adlp-6/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@migrate:
-    - {bat-mtlp-8}:       [DMESG-FAIL][12] ([i915#7699]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-mtlp-8/igt@i915_selftest@live@migrate.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-mtlp-8/igt@i915_selftest@live@migrate.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-1:         [ABORT][14] ([i915#4983] / [i915#7911] / [i915#7920]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rpls-1/igt@i915_selftest@live@requests.html
-
-  * igt@kms_busy@basic@flip:
-    - {bat-mtlp-8}:       [DMESG-WARN][16] ([i915#8379]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-mtlp-8/igt@kms_busy@basic@flip.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-mtlp-8/igt@kms_busy@basic@flip.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - {bat-mtlp-8}:       [DMESG-FAIL][18] ([i915#1982] / [i915#8379]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-mtlp-8/igt@kms_frontbuffer_tracking@basic.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-mtlp-8/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
-  [i915#7677]: https://gitlab.freedesktop.org/drm/intel/issues/7677
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7920]: https://gitlab.freedesktop.org/drm/intel/issues/7920
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
-  [i915#8379]: https://gitlab.freedesktop.org/drm/intel/issues/8379
-  [i915#8384]: https://gitlab.freedesktop.org/drm/intel/issues/8384
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13114 -> Patchwork_117272v2
-
-  CI-20190529: 20190529
-  CI_DRM_13114: b4d6f70062cd04a8fdb9872828bcbe4767a4f833 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7281: 9e9cd7e69a393b7cce8fc12fce409eb59817dd7e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_117272v2: b4d6f70062cd04a8fdb9872828bcbe4767a4f833 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-4a7160d6edb7 drm/i915/mtl: Add handling for MTL ccs modifiers
-a4ed70ab9bb9 drm/fourcc: define Intel Meteorlake related ccs modifiers
-10b2f27a32fd drm/i915/mtl: Add MTL for remapping CCS FBs
-963a030ad590 drm/i915/mtl: Drop FLAT CCS check
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/index.html
-
---===============7195906379168628425==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/4] drm/i915/mtl: Drop FLAT CCS check (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117272/">https://patchwork.freedesktop.org/series/117272/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13114 -&gt; Patchwork_117272v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/index.html</p>
-<h2>Participating hosts (40 -&gt; 39)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_117272v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8384">i915#8384</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-rplp-1/igt@i915_selftest@live@slpc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rplp-1/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>
-<p>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-<li>
-<p>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-adlp-6/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-<li>
-<p>bat-jsl-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-jsl-3/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-adlp-6/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7677">i915#7677</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-adlp-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>{bat-mtlp-8}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-mtlp-8/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-mtlp-8/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7920">i915#7920</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>{bat-mtlp-8}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-mtlp-8/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8379">i915#8379</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-mtlp-8/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>{bat-mtlp-8}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13114/bat-mtlp-8/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8379">i915#8379</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117272v2/bat-mtlp-8/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13114 -&gt; Patchwork_117272v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13114: b4d6f70062cd04a8fdb9872828bcbe4767a4f833 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7281: 9e9cd7e69a393b7cce8fc12fce409eb59817dd7e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_117272v2: b4d6f70062cd04a8fdb9872828bcbe4767a4f833 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>4a7160d6edb7 drm/i915/mtl: Add handling for MTL ccs modifiers<br />
-a4ed70ab9bb9 drm/fourcc: define Intel Meteorlake related ccs modifiers<br />
-10b2f27a32fd drm/i915/mtl: Add MTL for remapping CCS FBs<br />
-963a030ad590 drm/i915/mtl: Drop FLAT CCS check</p>
-
-</body>
-</html>
-
---===============7195906379168628425==--
+> 
+> What would be the best way to do it?
+> 
+> Regards
+> Andrzej
+> 
+> 
+> 
+> > 
+> >   drivers/gpu/drm/i915/Kconfig.debug                 |  18 ++
+> >   drivers/gpu/drm/i915/display/intel_display_power.c |   2 +-
+> >   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |   7 +-
+> >   .../drm/i915/gem/selftests/i915_gem_coherency.c    |  10 +-
+> >   drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |  14 +-
+> >   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c        |  13 +-
+> >   drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h  |   3 +-
+> >   drivers/gpu/drm/i915/gt/intel_context.h            |   4 +-
+> >   drivers/gpu/drm/i915/gt/intel_context_types.h      |   2 +
+> >   drivers/gpu/drm/i915/gt/intel_engine_pm.c          |   7 +-
+> >   drivers/gpu/drm/i915/gt/intel_engine_types.h       |   2 +
+> >   .../gpu/drm/i915/gt/intel_execlists_submission.c   |   2 +-
+> >   drivers/gpu/drm/i915/gt/intel_gt_pm.c              |  12 +-
+> >   drivers/gpu/drm/i915/gt/intel_gt_pm.h              |  38 +++-
+> >   drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c      |   4 +-
+> >   drivers/gpu/drm/i915/gt/selftest_engine_cs.c       |  20 +-
+> >   drivers/gpu/drm/i915/gt/selftest_gt_pm.c           |   5 +-
+> >   drivers/gpu/drm/i915/gt/selftest_reset.c           |  10 +-
+> >   drivers/gpu/drm/i915/gt/selftest_rps.c             |  17 +-
+> >   drivers/gpu/drm/i915/gt/selftest_slpc.c            |   5 +-
+> >   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  |  12 +-
+> >   drivers/gpu/drm/i915/i915_driver.c                 |   2 +-
+> >   drivers/gpu/drm/i915/i915_pmu.c                    |  16 +-
+> >   drivers/gpu/drm/i915/intel_runtime_pm.c            | 221 ++-------------------
+> >   drivers/gpu/drm/i915/intel_runtime_pm.h            |  11 +-
+> >   drivers/gpu/drm/i915/intel_wakeref.c               |  35 +++-
+> >   drivers/gpu/drm/i915/intel_wakeref.h               |  73 ++++++-
+> >   include/linux/ref_tracker.h                        |  25 ++-
+> >   lib/ref_tracker.c                                  | 179 ++++++++++++++---
+> >   lib/test_ref_tracker.c                             |   2 +-
+> >   net/core/dev.c                                     |   2 +-
+> >   net/core/net_namespace.c                           |   4 +-
+> >   32 files changed, 445 insertions(+), 332 deletions(-)
+> > ---
+> > base-commit: 4d0066a1c0763d50b6fb017e27d12b081ce21b57
+> > change-id: 20230224-track_gt-1b3da8bdacd7
+> > 
+> > Best regards,
+> 
