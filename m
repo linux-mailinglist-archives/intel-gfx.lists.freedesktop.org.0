@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51AB06F834A
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 14:52:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0972F6F8354
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 May 2023 14:55:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B016C10E5E9;
-	Fri,  5 May 2023 12:52:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F7D010E5F3;
+	Fri,  5 May 2023 12:55:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34D1710E5E9
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 May 2023 12:52:19 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C83C010E5F0
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 May 2023 12:55:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683291139; x=1714827139;
+ t=1683291303; x=1714827303;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=vxWnv4OvE9IJzvmRnVSRkbRvw/Ci91WlOjwDvpojzS4=;
- b=JXqzcT5FbcXijeP9YfPqpVD7KATQJ3CzKSNxHGyXjRGJqLLDpki564/A
- c9mjVfUL/5otOjjQw99U3wePJouvomah2AtTQyIDu5x67WY8JaNnEBB6p
- zqSutFNQJhngcw2UE30B28P4kbGiCVyDad3B7Lm2/cTGAqckqGuYtWcEH
- HmuaqkfsMPHzQNkH0aQdB8BckYEoRGre4CHKA5QhCorTPHO+pZ3Qoxabv
- btgojv/QBWhpdyfxgjO2b11FXpP5dwylZbOOlUyp353CDVC0ud5wM3Orn
- cnytlPcW7nZBJ8ehOA1wUbhVwZCG9IP608cV0OKKPj3zlHzRWdJfrMuIf w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="435523876"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="435523876"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 05:52:18 -0700
+ bh=8a9OqqcU2wFGYyn7pOCoCUzOlRti5/F5lGzFHcdfGBs=;
+ b=AgBsysQJmFwkiOqNOwspE/h68gmClqUEljDeBel8EJ+2pJJtogTRsWlL
+ zQ7aAe2RVh/Wceq6YvA3ssw9P/wrpcK6zB+WinsW3Dst6Pd69k1PBUoD2
+ 2kv8EFxN+FzBaFj3atW2JcV8ma6UVLlyo9jcx8NlA1o06F9Rr70x+5ljw
+ Kq+PUrHJI6BWoUTasjo2NEgeRSb2G5pnSp3jYiyBrucPO2QTIFNZjyEB3
+ DJOIBm6B0ic8IW5Mdpg3704AOFIiIBR4loPcYbhfNkQIfjK0BhSZGG3RF
+ Tyk+reGER65M5RV7DQlnyWqZ+NlHU+Q1NXl6tsAaaplCtcBOnFJG4fF4O A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="338388257"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="338388257"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2023 05:55:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="943855444"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="943855444"
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="691673179"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="691673179"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 05:52:17 -0700
-Date: Fri, 5 May 2023 15:52:12 +0300
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2023 05:55:01 -0700
+Date: Fri, 5 May 2023 15:54:58 +0300
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZFT7/B/xxqdojbRZ@intel.com>
+Message-ID: <ZFT8oh057XUt2vaV@intel.com>
 References: <ZFThO5u6IiYc2IQ4@intel.com> <ZFTiU924796iuQVn@intel.com>
  <ZFTi96yiKwfxqPFg@intel.com> <ZFTjOncKZ1ZksCSH@intel.com>
  <ZFTmcR48e6eXPIg6@intel.com> <ZFTnuvm6DH9Ow+gP@intel.com>
@@ -142,8 +142,7 @@ On Fri, May 05, 2023 at 03:46:40PM +0300, Ville Syrjälä wrote:
 > intel_bw_atomic_check() (if that's the one you mean)
 > looks entirely correct to me.
 
-They are needed because there might the case, when intel_atomic_get_crtc
-might not get called right?
+Typo in my prev message, I meant intel_atomic_get_bw_state..but common idea is the same.
 
 > 
 > > 
@@ -169,9 +168,6 @@ might not get called right?
 > What's the point of testing code that is known to be broken in
 > ways no one currently understands. Any results you get are entirely
 > suspect.
-
-Any code has some issues, what we do is trying to gradually fix those.
-
 > 
 > > 
 > > > 
@@ -208,9 +204,6 @@ Any code has some issues, what we do is trying to gradually fix those.
 > we have at least one internal bug report about it, not sure if
 > there's also a gitlab issue. Am I to assume you haven't actually
 > read those?
-
-Well that is where I started actually.
-
 > 
 > > 
 > > > 
@@ -231,10 +224,6 @@ Well that is where I started actually.
 > 
 > If you need to wait for CI results for that long then you need
 > to have a serious talk with the CI team.
-
-Yep, regarding pinging I agree, lets discuss offline regarding
-how we could improve that.
-
 > 
 > -- 
 > Ville Syrjälä
