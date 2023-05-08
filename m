@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B9546FBB32
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 May 2023 00:54:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A816FBB33
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 May 2023 00:54:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 122CA10E315;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B248B10E31B;
 	Mon,  8 May 2023 22:54:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3C63610E315;
- Mon,  8 May 2023 22:54:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8E86510E315;
+ Mon,  8 May 2023 22:54:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 32A76AA917;
- Mon,  8 May 2023 22:54:07 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8AA75AA917;
+ Mon,  8 May 2023 22:54:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: fei.yang@intel.com
-Date: Mon, 08 May 2023 22:54:07 -0000
-Message-ID: <168358644717.22735.3615787379150187944@emeril.freedesktop.org>
+Date: Mon, 08 May 2023 22:54:09 -0000
+Message-ID: <168358644956.22734.16591968561626029165@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230508222913.3946355-1-fei.yang@intel.com>
 In-Reply-To: <20230508222913.3946355-1-fei.yang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_use_pat=5Findex_instead_of_cache=5Flevel?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_use_pat=5Findex_instead_of_cache=5Flevel?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,22 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-cc05bc57e9a5 drm/i915: preparation for using PAT index
-db9174616b6f drm/i915: use pat_index instead of cache_level
--:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#18: 
-and by design userspace is expected to select the index that exactly matches
-
--:37: WARNING:TYPO_SPELLING: 'controled' may be misspelled - perhaps 'controlled'?
-#37: 
-Special note: this patch changes the way caching behavior is controled in
-                                                             ^^^^^^^^^
-
--:1682: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
-#1682: FILE: drivers/gpu/drm/i915/i915_debugfs.c:178:
-+		case 1: return HAS_LLC(i915) ? " LLC" : " snooped";
-
-total: 1 errors, 2 warnings, 0 checks, 1689 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
