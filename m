@@ -1,143 +1,149 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9AAB6FD17C
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 May 2023 23:35:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8C426FD188
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 May 2023 23:38:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7060910E002;
-	Tue,  9 May 2023 21:35:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B899B10E002;
+	Tue,  9 May 2023 21:38:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E66F010E002;
- Tue,  9 May 2023 21:35:00 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AD4410E002
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 May 2023 21:38:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683668100; x=1715204100;
+ t=1683668306; x=1715204306;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=0VhGDMX7szgI/jXvFlp7pUy7TnixG0/xz50rzEiEqHc=;
- b=JLpRtxy0VDx6GcLuZxmeJdJPrTf74LxOZpOG84YSmgZu8LOCFexl+gpC
- rajheWZJrYjWLvtixoCDNnZwOhd3vYDeUozwk2XDFw4DPupowbkrbFlga
- nuFRtgCvhBnhnXn+VMUYt9OZr1qiMi8B6XxQyMccyKJ1dM9c3JuJZN276
- xeZF5kpWfnF9oQagvIUyIqdguCnaYTsrT1LZb/0QUrOPf9XoOde13udPk
- Xtgahv/hSqFjjXpEHiYSlo6Eq1ql49HnBVkVF1IY4eLRG4oLNzVs+EjSi
- bMF3okzcfGqRnj0duhkxqU8hxdbdoJ4vWlw/djapHgzUEkSlJX67/gMyA A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="436380279"
-X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="436380279"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2023 14:35:00 -0700
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=mr7j7/1Owg5cOGSEp14SzgXp2jgYqQNWFhjt9+OK75U=;
+ b=NpFSicfQaQDaUAw5pALGIfLnhc+PaS7IIZozJsvxKBXbrPD63NocSGys
+ s3tQQB6pgPlxR7Hpm2IvvM9feXrU2w/NZyr6cnTaGJ/zpB3vvSgzF6By7
+ EVHPug/F4tDZAP5KA366W5e4EtlRYglv5KO7b9YOzDxEz4NDN8H5KD0sG
+ V29hnSwjAQQK3rCx+mNK9Jlqllcd0pVz5pYhzhjGnHGI6OUwuYhN2Jz4r
+ Z/EmZCJhGKk29iS+Sswz3GNG4BWWG7la9HVC3K/sRtgSnwyxM/12jrIF3
+ xApW9hF+Zn/SSXoxN6MxFqm2W5q1HChdcNFnFbMskrGMan2fVD4/SDSlo A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="348892797"
+X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="348892797"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 14:38:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="649498658"
-X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="649498658"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga003.jf.intel.com with ESMTP; 09 May 2023 14:34:59 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="945448322"
+X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="945448322"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga006.fm.intel.com with ESMTP; 09 May 2023 14:38:23 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 9 May 2023 14:34:59 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.23; Tue, 9 May 2023 14:38:22 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 9 May 2023 14:34:58 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.23; Tue, 9 May 2023 14:38:22 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Tue, 9 May 2023 14:34:58 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.177)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Tue, 9 May 2023 14:38:22 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Tue, 9 May 2023 14:34:58 -0700
+ 15.1.2507.23; Tue, 9 May 2023 14:38:22 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZcS634zHVldLPSMYUnnJeC9i4BNG15aZ08dUQ+3jalOVDTQSIEqqrhuqMsSVQImw79WHIq59BkAP8hTAt6FAUuHayyejNTSBQhOeGkUDt0JzAj0njoFWrejrTvwAXYDJZxPLlcYRain13qP43DHpKkQYzCjMt5LoFV91ALUqf32SOowZsCQyAYLezMyk/C3ZPLu26sqlYSC8YqsWBKZSPBqsszj6nkQq50s3hSANKa6+ywSz9mwAMkIWvry5GR3Iq3rdIzHmFgxDgSMsnVosoZDiDA2RFaZhol4awxnCIgYFKZAD2wu8osY9KObGAH1Zd9hgbJIl8sdC4JqUDz5qmg==
+ b=b+W6mBvi5cRdQOtb0HknlXeQuO9jJuBdkGDGXvDwH3YePtWQzfAwEYMwC2e9LtL9+WmyYLFT4hinwOgXwsi2KDFdSKlU40FiJyC9b2yFv9zM18HZaqY3QaG90uxAEYzhZGn8slwOHQjCQT7eb2v0c26busZg2O2I0k8tgnEcivR6nCIBxNLP0Cgn/E5tSl+r8KJHQq+1WgoWk227t3piU3FzniiPJrGCphFueRFlGJ1pweVwzC93tTI5MttjnJojKPPskDGSyg6Elg2ChgZxlGr17cJ0krm+7XSSxRJP0aoQ7A5PnRxW2r7QGFgbsuA9GFU1Sc5+6SsDMwjkGdDhBA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BVjOLe3XhT/YgQrYKIpt6UL4D6gRJxws3vrUOriytB0=;
- b=fQQajFNo+DRHDeiyULivV4S7jkHjBWqpHV0wbm1CvXklAXp+7QAHbnExfhpernnjB/0JzB1JZQ1jrlPrQ3GNNJU0QSQ5ZCmCcWCCtUukxqHc+UmTN+os796cPvKOblyiJm1M0RA4E2g+e3h/zCFjERDGRYD70mlViZimbBVuELfOjppjNgVK3nwnWjzfAxs00Bg8ZWqI2dymE9AovIirS9koNZS2YqrcqO0P3vF6Lx5xjUIzAOJFp41nclx/i+Mc0VDcSIFx9yvbiYLwio833BadYyObeWXWsr+RKPIYMub69fhEWNuc6RR5SXq3zoCGblqRa2fE1nEfSoYCFC/YEQ==
+ bh=7bqv6sGn5h/q6BX+XiAK0YpOeySXgkeqsR8nnOmuEtw=;
+ b=MkpWAcCjfM9FiAPPuSeye0B79BdZGE0npN4yRBIqq6YtvDU6fctziCo5SW6Wo8hJ32bXQj4lwvs2Go+12lywq3ay0OQSjeHOeYAQg+V7an/9VFoLIx+QnaCHVc0e9NGTEi7fIVWNu+HgkFelk3sCCA6URNJAYuAvwbpDUtYZ8J5zNyJmmlmL01locfs2c4KxQf82OeGOW7+O9tfxfZnFl6uL2t5abKh44/RzahemUoHYV5RBm0rOyd20tO717l6bzXP+xywZuo0b7DQ97IEdv/zg2gA21ZWFO0lgXwoXVnpBWWSGlr5ch4wOmvDQlUojK5NtxocsOgbv9wQ81TDBlA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DM6PR11MB4577.namprd11.prod.outlook.com (2603:10b6:5:2a1::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Tue, 9 May
- 2023 21:34:56 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4%3]) with mapi id 15.20.6363.033; Tue, 9 May 2023
- 21:34:55 +0000
-Date: Tue, 9 May 2023 14:34:51 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Message-ID: <iakuowef3ysobpcpa6f74kolw44zyjepb5byjxljp4mxuwunkn@rdegvnuzbnmi>
-X-Patchwork-Hint: comment
-References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
- <20230509051403.2748545-3-lucas.demarchi@intel.com>
- <168364083689.27719.2337781022536351304@gjsousa-mobl2>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+Received: from DM5PR11MB1372.namprd11.prod.outlook.com (2603:10b6:3:11::14) by
+ SA0PR11MB4606.namprd11.prod.outlook.com (2603:10b6:806:71::12) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6363.32; Tue, 9 May 2023 21:38:21 +0000
+Received: from DM5PR11MB1372.namprd11.prod.outlook.com
+ ([fe80::ddcc:18a2:6830:7625]) by DM5PR11MB1372.namprd11.prod.outlook.com
+ ([fe80::ddcc:18a2:6830:7625%6]) with mapi id 15.20.6363.033; Tue, 9 May 2023
+ 21:38:20 +0000
+Date: Tue, 9 May 2023 23:38:16 +0200
+From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <20230509213816.iqe7daibapgzfjgv@intel.com>
+References: <20230509201103.538-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <168364083689.27719.2337781022536351304@gjsousa-mobl2>
-X-ClientProxiedBy: BY3PR05CA0018.namprd05.prod.outlook.com
- (2603:10b6:a03:254::23) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230509201103.538-1-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: FR3P281CA0022.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1c::10) To DM5PR11MB1372.namprd11.prod.outlook.com
+ (2603:10b6:3:11::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM6PR11MB4577:EE_
-X-MS-Office365-Filtering-Correlation-Id: 44dceb25-e1e5-46b8-d8a4-08db50d53ae2
+X-MS-TrafficTypeDiagnostic: DM5PR11MB1372:EE_|SA0PR11MB4606:EE_
+X-MS-Office365-Filtering-Correlation-Id: bc8e8eb8-ecaa-4a47-c42c-08db50d5b4e4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Z/Cj2wvh5Mk3Bo0YIGuaxHqAA8532LinbBIm/gNfalntw7K1A6IDVzp3MdwGBJIyhYlIXF8aruUB2KAmhlgZVKC3qd+bSAnCGGA0YqgAVBilSJn98YHZtQzf82bKU448sZdbpkioj+4lVd4XuiikFVpMioJ7F9FnI1dCSl97ftftUIcJEQzA9/luROwJeVcgcydKbR/9nM/pVzkE9tLFYGMgSqSgwR/5ynG1+V2ShCX0tiE20PZcSALeR7fhREai5GH7V7VSWZAg2WrHwldAuVw2UVQHhOo8jHEsraCDKA0EjDl5nVN7M5fYLZLDCk2cf8uQaEjN+vDkJ2xSjwPA0MNCyDfLWaOvcuxUgP/i97e2/A1LWnMKOLN33snepKsFLEHzpvWtjoAM6bGl89r3ek2BcJKrZjWnlFjTNpyKcyxUnAu/y4XSZo5q5xo51ucC4EGsdBB/dVEqR5PJUrNX7rM3E+R6jjm+SIfjICtgR8c1xSiiiiatCxoo3KIROZ4Yh9pCL3SL2DGZTNg5zfZzmEu+qDWJEr0C0l+IvP758BRNVdlX04vyHqDJFFbLusBIaiJiIvJMSOaHW/u8W1lnwYSAtFHfpvhQy6NWu1BnSd19i30vO/oY0oxVaScAapPR
+X-Microsoft-Antispam-Message-Info: /Jowo2fy7ZxE7VD8N1XDuL2dIPNUv57NoP9mWh82BbUYGO+EQFW/owu7ho0nosMkRPYa00Js5Vizb4asI9/Vz6+rIiTJpHYnVMer3V587GMN1e8xehTxLheadjTRtBZdrt4gvdaa7nObJjWcdZMMghkDhLgMBOHetDdbP3ZWrSLPNCkcI0bOlVjpMqFU199vZiufqZAICAUs+GZlcqxm0qbcwdVybgufiZAsDjCAk+J09RMdLWL65JwCdM8DavRMVFHAT+9aK/dcDmfXxjlvAfSQSpZeaB20YbMtZhz0IAlCT4imFUh6QKo9SPjKf3G9/E6yh0D99l6F71ATQCwvh3hk0tXzxGX10I693x30FTKzkMbyyz9a6qss4q9saBcaLb8XBGsw97yVF0MLvQz8jzvTjNKo3MU/iWDhGaj6/zsP+iVoBAeCtf/ctyYQNTKOIMqzu1oJQdFBuAN2JQm6fm50UWN2Y0RDpZUsah/ZuauX98+WVh2LJR0J52spIrNtTaF8MMS8/yzS32iNhPSdvxlyLveFwu2f35ciKc1O4CqRW6oZyvW1C5cPDYv4FVXg
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(366004)(376002)(39860400002)(136003)(346002)(396003)(451199021)(6512007)(6506007)(186003)(9686003)(2906002)(26005)(6666004)(6486002)(66946007)(86362001)(66556008)(82960400001)(4326008)(41300700001)(6636002)(316002)(66476007)(54906003)(478600001)(33716001)(7416002)(6862004)(8676002)(8936002)(5660300002)(38100700002)(27256005);
+ IPV:NLI; SFV:NSPM; H:DM5PR11MB1372.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(136003)(376002)(346002)(396003)(39860400002)(366004)(451199021)(8676002)(8936002)(41300700001)(316002)(6862004)(478600001)(37006003)(2906002)(6666004)(66476007)(5660300002)(66556008)(66946007)(4326008)(6636002)(6486002)(6512007)(107886003)(6506007)(1076003)(26005)(186003)(82960400001)(83380400001)(66574015)(2616005)(36756003)(38100700002)(86362001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?iBtOR1IE3aHL/6t1J3IX65PhlLBR8j/FEdwvZDAxz4kOYJgNytdInKU4e6qW?=
- =?us-ascii?Q?ZLvpPC6TueITr32BJ9lcekVWcyHxGoxqtl7EFvzFH/zk+mSEqw6TxOCRMOPN?=
- =?us-ascii?Q?SBQ/Rs27ouuFDBBxQhy2kcg9yD+/yAHu3Evw5kKBWi3RmWMK/iuysN2zDA9m?=
- =?us-ascii?Q?zHrklPSVWsN8CV524C6+tlxgdfKktXk0hHpSYYYwXHJJT8wjdpLqrYI9JeoB?=
- =?us-ascii?Q?tt3vDtzfd2yxkUeA0W5VqiQB5AtRR5hjSC0Rw1UOdN1650WNzTGte8pQuNTa?=
- =?us-ascii?Q?QBl1stOY/WDAeDHj34gl3v83m6lU8T0/Ih3EgZbrPYUg2HcpQviDBhgMiHye?=
- =?us-ascii?Q?WHNI05Cl0I26E/vMfZRWTgJuLX5KygOfd2ILOc4o+X5vCG0KNv5AXNENy/lK?=
- =?us-ascii?Q?RSRxTHBYuGZo3uAorE3Ih+hCtH6ms/cLPaggtfUag74Bt/Li0VdfPyiB2BFF?=
- =?us-ascii?Q?P276jYlfZhITIDkGnmQeUQXSOQU7/OecEj2JwteADV1+0SYjc32chvzYFwGS?=
- =?us-ascii?Q?JPtMLRqPGZmGAjGRnVbwWh4JQ5fmqfOU1ZywsqeLGZLL2jybDD9ivW5ikLG/?=
- =?us-ascii?Q?IBZftMnRwfY0QAlcSBTV+uKXUq7DsopDT5qDigpMZe5LzeGQye/wslaL3WYm?=
- =?us-ascii?Q?uUp2ZFdU69BdyRH6SheM8IF4X8xdLlGUeELPBUYogs8THTrQlEyMECYEwb6S?=
- =?us-ascii?Q?7eZmur9fkPMEenDti/jpbfyfLmkVmd5rsBYoZZeUzgrIgrCHlS27S5b9lgxi?=
- =?us-ascii?Q?CiED3xVqwepbUN/Ug9CQ27+sA6P8+TBp4O5eLSn0PDFXGjTXsZMjsUOeZGu0?=
- =?us-ascii?Q?iP0z0lCNsipPRhVNkOrWOhfwK8nE6jJ0H+uOyvv91Ms2jWmIBIEp1u1cBMBV?=
- =?us-ascii?Q?M/yj5+4r/rRSC5Eab90gMCLeS2EF7H7CBTWIVrkbpSdnIUuzMo9USMzBe8HK?=
- =?us-ascii?Q?b9Y74UCcz+vTDkKtmi7B0peBpAqqetrtyC31JI8aLavY5QPGpcseE/j3hC2p?=
- =?us-ascii?Q?zLXlwpW+qpV9xzUQjnaxWlTxVd6OAXHxLxXfxAqkli1dkGDTNp7k2zyQyIPK?=
- =?us-ascii?Q?VI1B7WRDbU0ExICGRpj5nZMvpjUKC4729nVhWZCL2iS4kiOTb+QNkt0oj0my?=
- =?us-ascii?Q?2TWNIt6xVqAoDwNIUzZTch7z7J/PF4wxg8zmL1OXwnaz5klmaTTcHHzPsQ5O?=
- =?us-ascii?Q?1csVTLkuNBpV8T/8cVLXCtGhsNFfebl1pWN9AKHz38JAoM87NGKLPJ121l99?=
- =?us-ascii?Q?pSQor83dJj3Zm1PXVajGVxnN+UwcQh/tJCOfB8SMMOImWboC0AySWVM+HQ6a?=
- =?us-ascii?Q?QrAnJTzmIE4J0IuTA5mBi5p45at7PRZY6pAvKGZsNZpYX1DxLLcFYetYchPP?=
- =?us-ascii?Q?L8hK72tWjOqtJtmCkOlUILaWwuudemJXzw0Doakr/B/VNWX1f39Hlq+5CsJZ?=
- =?us-ascii?Q?COisX5XhBCfRZZE5BnaeX6luZD2tZWBwxtD1LpRBVClsS+St3kh7hAnssNku?=
- =?us-ascii?Q?N+X2jIKAOv14BQ1Pj2+toeQH7qHju629/biWXU1nho7U0g775APk99CGgBXv?=
- =?us-ascii?Q?w9RbHmzBWmVj3XMiOIOZ108LFUS5+jShvbylZ7sEHgjlO2rxXGTr7WurXylO?=
- =?us-ascii?Q?Vw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44dceb25-e1e5-46b8-d8a4-08db50d53ae2
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1JudWsxOXFBZmF0M0phclQwSW5qcTRaaWR6SFRsY0hZT0wrM2FmbG15WnA5?=
+ =?utf-8?B?MzFrQVh6aGljb3oxQXhVVUxRU09LbGFoUHVsU1VnL0Zsb3lVcW11MmNaOEo0?=
+ =?utf-8?B?TEsyQjZoN3JJcTU3UnpCZTliVkJNNm0wbzZtT29WV3dRblVma2dYQ3lRaHFq?=
+ =?utf-8?B?K0FlSW5Jb0k1ZmVDTXBNOEVQNEt2a0JmYXE1SmNPcHpqYVZJY01MNEM3UGZW?=
+ =?utf-8?B?bTk3THJmSTBxZTVqSWxoLythMkI3WmtUY29rQ3ZnbmgyWTNCSExPYitQQTBD?=
+ =?utf-8?B?VHBRdVhERDZ5NUhXNGxxTHhDc1RSZWd3L2VSSnc3MEMrV2RlN0gxRlF3T0R0?=
+ =?utf-8?B?OEY3M0tXQ0xQMkRBYlV0aFJlellTcXRuOXlTRlBaYTUvOEhpWUdSNEtEbk1E?=
+ =?utf-8?B?WGZYcTRBQklUUGo4dlZtMzd5Uy8yYVl0ZW1RK0dQSncwbUl4aWVOQWpDUC92?=
+ =?utf-8?B?Q2dwTG1uVHRsUnVYM21VZ3F0K01NcXoxeDFZRnMwc1lSSXhYenVrWHVzWC9q?=
+ =?utf-8?B?eFZ4OUVad25EczJjdjdDRE5VZjRjT0tlK3A3dE1uQ1hxOGtoc1h2bnhHc3JR?=
+ =?utf-8?B?ZGxFVzlxYzNWb3pmRW41d1RlWnNYSTBkQ2hEZ3RQZVNxU0VaRml3K2tqVHB4?=
+ =?utf-8?B?TTJ2RFpCNjI1TCtmdUJadlppZC9VVjlBM2pwc2NqOWdWZTNwblFTS0ExRDNB?=
+ =?utf-8?B?R0NuNkh6dmI2b2tobWxnbHJnV1JybW9FbG9KQ0hTR3lwcHRsS2Z3a2xkR3Nr?=
+ =?utf-8?B?N3Z3RVdSRzI2MzhTUmovUXVheXRSa0pUVUlPa0U2QjdXMk53UE94alBSQ0lG?=
+ =?utf-8?B?bHFEdUFLL0lQL2NZaTlnRThlUEN4WldCTElSM1JZbWpMZ1pqdnVMYUN0cGFu?=
+ =?utf-8?B?WkpWWGVvVkVNYUxjQjlXVzJhY2huVmhqTmJLTG1tVUNKWFhJU3RHYXdYNzR0?=
+ =?utf-8?B?dnA2NlhpVFdQSHI2S2pNc0tnd2RIcHJwUmFWTURoaTZUWVNDWEJSWmlFWWlv?=
+ =?utf-8?B?THVic2RLbGZaMVRiUTdpdXNaMm5IMC9XNzhCMFpUL1N1YzQyK3ZwTTZPNzZa?=
+ =?utf-8?B?aTREMWVsWUlvWFlhbmszOVF5ZHZPeVVSRU4wbHd3WTNEcEhrazJWcjlpTG1P?=
+ =?utf-8?B?Ykx2WjRFcnRtL2w5SjlBTE5hSjV6eDFhNjNzL3V6c3BCbVduaVptTkJkcVcx?=
+ =?utf-8?B?emNrL1R0VDJCb28wenNMeVU4SmJmWElEU21nQXRqSU4rS1lheExMTFNnNTlu?=
+ =?utf-8?B?dGEzWnFvdVE2TjdQbXR4QTl5dlNROU9HdXZING03SGUvQjEvcDdVQ2ZBbzk4?=
+ =?utf-8?B?d25ZY3J6SDh2U1g3MFlwZ2czZVIyOGRqMm9IcER0YUVjOFpMZFRRZHdpa3A3?=
+ =?utf-8?B?b1JDSVdIS2hnY1JZSFNhYnZFZWFuenlIYitFL25GUkZrSnZ0bnk2SjVBMXR1?=
+ =?utf-8?B?U3JLajRpWmhVUTA2TDA2WmZwdjRSMGhkaXRaYkNIZ0VxaGh6ZVdDcm5RSEJL?=
+ =?utf-8?B?dXJKWXhteVBnQUNZL1FYMERWWVFta0w2RTR0ZXlDV2FEUmNPUlpQa21nV1VB?=
+ =?utf-8?B?NEV4OWNZdWl6YzRtcVRxNXpDOEEwcTZRZTBuTkErZG1maXZtOFJieUJ0QUhD?=
+ =?utf-8?B?RCtjY3A1SnpEd0dPelFVMERnWkdESnhjK3JDTkl0aC9ESW5KV0t2c1d4YUJx?=
+ =?utf-8?B?aVUzU2U0WVRSVUMwcTYzQ1greG9NcFZTOE9aR3VJNGltVUV3MlBDazI5ZVo4?=
+ =?utf-8?B?aWRlY2syTmdyOGRBbTFIYmcwSWxUenJlSVV1anhuVUhCUSt6aE9pU3luZkxB?=
+ =?utf-8?B?TmZvRUVtTGFvdUxUaVRzZ1JRVGNZQ3M0eEQ1dDc5Q0tKQytqYWt5NHl1bXZ4?=
+ =?utf-8?B?bW4vMUxIQnM4alBQVDFiMWloUU5HOEFKZ1QzaWNBV2E3dXcvRVB2M3RRZU41?=
+ =?utf-8?B?Q2ZqRTRNRkJxWG4wR0lUYSs3T3FJMlE2SnF4QVJOUWFNZm1vOW9sYkViemhU?=
+ =?utf-8?B?bzVXUmJGNDNtQisvTU1IYkpnOUVQZ0pJWWFjVGdxV3dPTGtNUnRsc0FGWVJp?=
+ =?utf-8?B?QkFwczJ3R1E0bnQxbVRiLzBYU2taQXNJbVBhSFBTY3c3NXYvZnVXNy9vMk5M?=
+ =?utf-8?B?QVE0YnJET1A1LytEVHRkekljZFN5ek9wc1dib0ZZL0dEbTNFM0ZYT0h1TkJt?=
+ =?utf-8?B?eXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bc8e8eb8-ecaa-4a47-c42c-08db50d5b4e4
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR11MB1372.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 21:34:55.1486 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 21:38:20.0169 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FB4StLGrZxO9sKD97I1n1KWIIJ2vRsKG4s8naueaSanr7fhsOmS4Q8HFAB6MrWyE1BdNtKJuI23Si7UWkuo/bkGMQ3gqj/zzDDgM1OtYrHI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4577
+X-MS-Exchange-CrossTenant-UserPrincipalName: 51WzxhcpA3X9fd8dnCDxztN3z+o90F74QkEzxewSXRiu98TC8+aHuOZszKb6V53RYNXxXhQkt79fcLM5ZCF+9+8H6tTzgsvvnRnrBG3cfkI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4606
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 2/3] linux/bits.h: Add
- fixed-width GENMASK and BIT macros
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Drop legacy CTB definitions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,170 +156,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- intel-gfx@lists.freedesktop.org, Kevin Brodsky <kevin.brodsky@arm.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Thomas Gleixner <tglx@linutronix.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>,
- Masahiro Yamada <masahiroy@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 09, 2023 at 11:00:36AM -0300, Gustavo Sousa wrote:
->Quoting Lucas De Marchi (2023-05-09 02:14:02)
->>Add GENMASK_U32(), GENMASK_U16() and GENMASK_U8()  macros to create
->>masks for fixed-width types and also the corresponding BIT_U32(),
->>BIT_U16() and BIT_U8().
->>
->>All of those depend on a new "U" suffix added to the integer constant.
->>Due to naming clashes it's better to call the macro U32. Since C doesn't
->>have a proper suffix for short and char types, the U16 and U18 variants
->>just use U32 with one additional check in the BIT_* macros to make
->>sure the compiler gives an error when the those types overflow.
->>The BIT_U16() and BIT_U8() need the help of GENMASK_INPUT_CHECK(),
->>as otherwise they would allow an invalid bit to be passed. Hence
->>implement them in include/linux/bits.h rather than together with
->>the other BIT* variants.
->>
->>The following test file is is used to test this:
->>
->>        $ cat mask.c
->>        #include <linux/types.h>
->>        #include <linux/bits.h>
->>
->>        static const u32 a = GENMASK_U32(31, 0);
->>        static const u16 b = GENMASK_U16(15, 0);
->>        static const u8 c = GENMASK_U8(7, 0);
->>        static const u32 x = BIT_U32(31);
->>        static const u16 y = BIT_U16(15);
->>        static const u8 z = BIT_U8(7);
->>
->>        #if FAIL
->>        static const u32 a2 = GENMASK_U32(32, 0);
->>        static const u16 b2 = GENMASK_U16(16, 0);
->>        static const u8 c2 = GENMASK_U8(8, 0);
->>        static const u32 x2 = BIT_U32(32);
->>        static const u16 y2 = BIT_U16(16);
->>        static const u8 z2 = BIT_U8(8);
->>        #endif
->>
->>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>---
->> include/linux/bits.h       | 22 ++++++++++++++++++++++
->> include/uapi/linux/const.h |  2 ++
->> include/vdso/const.h       |  1 +
->> 3 files changed, 25 insertions(+)
->>
->>diff --git a/include/linux/bits.h b/include/linux/bits.h
->>index 7c0cf5031abe..ff4786c99b8c 100644
->>--- a/include/linux/bits.h
->>+++ b/include/linux/bits.h
->>@@ -42,4 +42,26 @@
->> #define GENMASK_ULL(h, l) \
->>        (GENMASK_INPUT_CHECK(h, l) + __GENMASK_ULL(h, l))
->>
->>+#define __GENMASK_U32(h, l) \
->>+  (((~U32(0)) - (U32(1) << (l)) + 1) & \
->>+   (~U32(0) >> (32 - 1 - (h))))
->>+#define GENMASK_U32(h, l) \
->>+  (GENMASK_INPUT_CHECK(h, l) + __GENMASK_U32(h, l))
->>+
->>+#define __GENMASK_U16(h, l) \
->>+  ((U32(0xffff) - (U32(1) << (l)) + 1) & \
->>+   (U32(0xffff) >> (16 - 1 - (h))))
->>+#define GENMASK_U16(h, l) \
->>+  (GENMASK_INPUT_CHECK(h, l) + __GENMASK_U16(h, l))
->>+
->>+#define __GENMASK_U8(h, l) \
->>+  (((U32(0xff)) - (U32(1) << (l)) + 1) & \
->>+   (U32(0xff) >> (8 - 1 - (h))))
->>+#define GENMASK_U8(h, l) \
->>+  (GENMASK_INPUT_CHECK(h, l) + __GENMASK_U8(h, l))
->
->I wonder if we should use BIT_U* variants in the above to ensure the values are
->valid. If so, we get a nice boundary check and we also can use a single
->definition for the mask generation:
->
->  #define __GENMASK_U32(h, l) \
->          (((~U32(0)) - (U32(1) << (l)) + 1) & \
->           (~U32(0) >> (32 - 1 - (h))))
-
-the boundary for h and l are already covered here because (32 - 1 - (h))
-would lead to a negative value if h >= 32. Similar reason for l
-
-Doing ~U32(0) didn't work for me as it wouldn't catch the invalid values
-due to expanding to U32_MAX
+Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on wto [2023-maj-09 22:11:03 +0200]:
+> We've already switched to new HXG definitions some time ago,
+> drop legacy CTB definitions to avoid mistakes.
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>  .../gt/uc/abi/guc_communication_ctb_abi.h     | 21 -------------------
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  2 +-
+>  2 files changed, 1 insertion(+), 22 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> index 28b8387f97b7..f7d70db16d76 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> @@ -167,25 +167,4 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+>   * - **flags**, holds various bits to control message handling
+>   */
+>  
+> -/*
+> - * Definition of the command transport message header (DW0)
+> - *
+> - * bit[4..0]	message len (in dwords)
+> - * bit[7..5]	reserved
+> - * bit[8]	response (G2H only)
+> - * bit[8]	write fence to desc (H2G only)
+> - * bit[9]	write status to H2G buff (H2G only)
+> - * bit[10]	send status back via G2H (H2G only)
+> - * bit[15..11]	reserved
+> - * bit[31..16]	action code
+> - */
+> -#define GUC_CT_MSG_LEN_SHIFT			0
+> -#define GUC_CT_MSG_LEN_MASK			0x1F
+> -#define GUC_CT_MSG_IS_RESPONSE			(1 << 8)
+> -#define GUC_CT_MSG_WRITE_FENCE_TO_DESC		(1 << 8)
+> -#define GUC_CT_MSG_WRITE_STATUS_TO_BUFF		(1 << 9)
+> -#define GUC_CT_MSG_SEND_STATUS			(1 << 10)
+> -#define GUC_CT_MSG_ACTION_SHIFT			16
+> -#define GUC_CT_MSG_ACTION_MASK			0xFFFF
+> -
+>  #endif /* _ABI_GUC_COMMUNICATION_CTB_ABI_H */
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index 99a0a89091e7..fe355f316d37 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -640,7 +640,7 @@ static int ct_send(struct intel_guc_ct *ct,
+>  
+>  	GEM_BUG_ON(!ct->enabled);
+>  	GEM_BUG_ON(!len);
+> -	GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
+> +	GEM_BUG_ON(len > GUC_CTB_HXG_MSG_MAX_LEN - GUC_CTB_HDR_LEN);
+>  	GEM_BUG_ON(!response_buf && response_buf_size);
+>  	might_sleep();
+>  
 
 
->  #define GENMASK_U32(h, l) \
->          (GENMASK_INPUT_CHECK(h, l) + __GENMASK_U32(BIT_U32(h), BIT_U32(l)))
+It seems that these legacy definitions, after the update of this GEM_BUG_ON,
+are no longer actually needed anywhere. It is time to remove them.
+As for me, this patch looks fine.
 
-							^^^^
-that doesn't really work as BIT_U32(h) would expand here,
-creating the equivalent of
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> -- 
+> 2.25.1
+> 
 
-	~U32(0) >> (32 - 1 - (BIT_U32(h))),
-
-which is not what we want
-
->  #define GENMASK_U16(h, l) \
->          (GENMASK_INPUT_CHECK(h, l) + __GENMASK_U32(BIT_U16(h), BIT_U16(l)))
->  #define GENMASK_U8(h, l) \
->          (GENMASK_INPUT_CHECK(h, l) + __GENMASK_U32(BIT_U8(h), BIT_U8(l)))
->
->>+
->>+#define BIT_U32(nr)       _BITU32(nr)
->>+#define BIT_U16(nr)       (GENMASK_INPUT_CHECK(16 - 1, nr) + (U32(1) << (nr)))
->>+#define BIT_U8(nr)        (GENMASK_INPUT_CHECK(32 - 1, nr) + (U32(1) << (nr)))
->
->Shouldn't this be GENMASK_INPUT_CHECK(8 - 1, nr)?
-
-ugh, good catch. Thanks
-
-I will think if I can come up with something that reuses a single
-__GENMASK_U(). Meanwhile I improved my negative tests to cover more
-cases.
-
-Lucas De Marchi
-
-
-
->
->--
->Gustavo Sousa
->
->>+
->> #endif /* __LINUX_BITS_H */
->>diff --git a/include/uapi/linux/const.h b/include/uapi/linux/const.h
->>index a429381e7ca5..3a4e152520f4 100644
->>--- a/include/uapi/linux/const.h
->>+++ b/include/uapi/linux/const.h
->>@@ -22,9 +22,11 @@
->> #define _AT(T,X)       ((T)(X))
->> #endif
->>
->>+#define _U32(x)           (_AC(x, U))
->> #define _UL(x)         (_AC(x, UL))
->> #define _ULL(x)                (_AC(x, ULL))
->>
->>+#define _BITU32(x)        (_U32(1) << (x))
->> #define _BITUL(x)      (_UL(1) << (x))
->> #define _BITULL(x)     (_ULL(1) << (x))
->>
->>diff --git a/include/vdso/const.h b/include/vdso/const.h
->>index 94b385ad438d..417384a9795b 100644
->>--- a/include/vdso/const.h
->>+++ b/include/vdso/const.h
->>@@ -4,6 +4,7 @@
->>
->> #include <uapi/linux/const.h>
->>
->>+#define U32(x)            (_U32(x))
->> #define UL(x)          (_UL(x))
->> #define ULL(x)         (_ULL(x))
->>
->>--
->>2.40.1
->>
+-- 
