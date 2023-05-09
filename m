@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 648DC6FC2E2
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 May 2023 11:35:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ED0A6FC49E
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 May 2023 13:09:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAE9810E371;
-	Tue,  9 May 2023 09:35:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B614D10E389;
+	Tue,  9 May 2023 11:09:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 461E710E371;
- Tue,  9 May 2023 09:35:46 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA5210E387;
+ Tue,  9 May 2023 11:08:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683624946; x=1715160946;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=h1cVGnwBwmjYaATILljOV4HVPwbeYHchazT++Fv5Rvs=;
- b=e7s/HFtOIC8KrCjT82CoKWiMSv7RaGL9K1ODA73VwXtML5uOz2HX6pbe
- h3OHN2vgL0QKdKflcUOvfRiNou0xI/cz94RHxfiJWrlQh8DfMRyRwPiTm
- D/L+c2C+veAV52wv53DIj9dt65jMxBxmVi3lF3TCK+lWn3d6jsGaAnqSN
- 0E7/YdCSNFHhHGkF+RxdZVkl1goHXKcqjRSSJEC/emaetBNm43uFaiyAg
- paKYXoArcokvsFA1lRJu/rVAKlKCNUWkIVllaGbNUjo+uo2hvawvn56II
- DemK1rF+KMmBOpqdmgr5PT17pdKMgirIKTnJTRCRGrmFEyKgHGvAOOOVo Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="348703819"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="348703819"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2023 02:35:44 -0700
+ t=1683630539; x=1715166539;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=dXP6jE6h6gxYAw8DQHf88A0e90eMUD0J0N4hUUvMJ0M=;
+ b=FOQTTg1lPmaoslH8kWqAjHwGjyWqOvRrYt6N5r7Sw8dC1iHPHp7qEw8P
+ jFepRVVoullOrzNSPmuDr/IoeWPN+GygJFDyaOf+IHtTIZR59c9i8ShGJ
+ C89E+fFjyD7ONeeAoaAzIVK/KuaaKAQ62zmpNaeNYWXyHqBKXbAIlvj1Z
+ fjLzFJ/rSkZgEUlhdu78RmLqdlQUoOTmdIcJDCgsgwgc1QQ3hUb0Dw2YM
+ ZMd4WSAshdCOds23jbPzuWUk7O93cvTY2wxb7IM2nka1y22aK7ySBlO6Q
+ oHOKy20L+N09VXlJsK4ktyr109tD+66FlT5IBFpp25uGLvIhPX+tAqc26 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="349932146"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="349932146"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 04:08:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="788460012"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="788460012"
-Received: from unknown (HELO localhost) ([10.252.39.92])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2023 02:35:43 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Simon Ser <contact@emersion.fr>
-In-Reply-To: <xAFAkPUUOOBaOeo-gUC5Cie_-c8lebcFKZD7CYPMIJP_6fy8dla0m68EYtWtQAAayuNIftrpBJkHFEHJaUrV-MyO_xJvWiErwJ2NAkQuLMA=@emersion.fr>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230504123444.1843795-1-jani.nikula@intel.com>
- <xAFAkPUUOOBaOeo-gUC5Cie_-c8lebcFKZD7CYPMIJP_6fy8dla0m68EYtWtQAAayuNIftrpBJkHFEHJaUrV-MyO_xJvWiErwJ2NAkQuLMA=@emersion.fr>
-Date: Tue, 09 May 2023 12:35:40 +0300
-Message-ID: <875y91onir.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="701802205"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="701802205"
+Received: from aanokhov-mobl.ccr.corp.intel.com (HELO intel.com)
+ ([10.252.38.157])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 04:08:55 -0700
+Date: Tue, 9 May 2023 13:08:53 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: fei.yang@intel.com
+Message-ID: <ZFopxZtZAOfiEviI@ashyti-mobl2.lan>
+References: <20230508234854.4028658-1-fei.yang@intel.com>
+ <20230508234854.4028658-3-fei.yang@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/connector: document enum
- drm_connector_tv_mode DRM_MODE_TV_MODE_MAX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230508234854.4028658-3-fei.yang@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v7 2/2] drm/i915: use pat_index instead of
+ cache_level
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,17 +60,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 04 May 2023, Simon Ser <contact@emersion.fr> wrote:
-> Reviewed-by: Simon Ser <contact@emersion.fr>
+Hi Fei,
 
-Thanks, pushed to drm-misc-next.
+On Mon, May 08, 2023 at 04:48:54PM -0700, fei.yang@intel.com wrote:
+> From: Fei Yang <fei.yang@intel.com>
+> 
+> Currently the KMD is using enum i915_cache_level to set caching policy for
+> buffer objects. This is flaky because the PAT index which really controls
+> the caching behavior in PTE has far more levels than what's defined in the
+> enum. In addition, the PAT index is platform dependent, having to translate
+> between i915_cache_level and PAT index is not reliable, and makes the code
+> more complicated.
+> 
+> >From UMD's perspective there is also a necessity to set caching policy for
+> performance fine tuning. It's much easier for the UMD to directly use PAT
+> index because the behavior of each PAT index is clearly defined in Bspec.
+> Having the abstracted i915_cache_level sitting in between would only cause
+> more ambiguity. PAT is expected to work much like MOCS already works today,
+> and by design userspace is expected to select the index that exactly
+> matches the desired behavior described in the hardware specification.
+> 
+> For these reasons this patch replaces i915_cache_level with PAT index. Also
+> note, the cache_level is not completely removed yet, because the KMD still
+> has the need of creating buffer objects with simple cache settings such as
+> cached, uncached, or writethrough. For kernel objects, cache_level is used
+> for simplicity and backward compatibility. For Pre-gen12 platforms PAT can
+> have 1:1 mapping to i915_cache_level, so these two are interchangeable. see
+> the use of LEGACY_CACHELEVEL.
+> 
+> One consequence of this change is that gen8_pte_encode is no longer working
+> for gen12 platforms due to the fact that gen12 platforms has different PAT
+> definitions. In the meantime the mtl_pte_encode introduced specfically for
+> MTL becomes generic for all gen12 platforms. This patch renames the MTL
+> PTE encode function into gen12_pte_encode and apply it to all gen12. Even
+> though this change looks unrelated, but separating them would temporarily
+> break gen12 PTE encoding, thus squash them in one patch.
+> 
+> Special note: this patch changes the way caching behavior is controlled in
+> the sense that some objects are left to be managed by userspace. For such
+> objects we need to be careful not to change the userspace settings.There
+> are kerneldoc and comments added around obj->cache_coherent, cache_dirty,
+> and how to bypass the checkings by i915_gem_object_has_cache_level. For
+> full understanding, these changes need to be looked at together with the
+> two follow-up patches, one disables the {set|get}_caching ioctl's and the
+> other adds set_pat extension to the GEM_CREATE uAPI.
+> 
+> Bspec: 63019
+> 
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Signed-off-by: Fei Yang <fei.yang@intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> 
+> To be squashed
 
-BR,
-Jani.
+Ha! you forgot to remove this... I also do the same :)
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+No worries, if the patch is right I'll fix it before pushing it.
+
+Tvrtko? Any opinion?
+
+Andi
