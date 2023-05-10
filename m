@@ -1,33 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 224F06FE3E0
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 20:18:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A58BE6FE414
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 20:36:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C828F10E501;
-	Wed, 10 May 2023 18:18:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0370910E503;
+	Wed, 10 May 2023 18:36:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 08ED610E504;
- Wed, 10 May 2023 18:18:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 03EF4A00E6;
- Wed, 10 May 2023 18:18:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21A5710E063;
+ Wed, 10 May 2023 18:36:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1683743772; x=1715279772;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1Vzc4TnF6i2+1Soe9M7OcZYLpblf1RuPuI3eR5Ov1Bs=;
+ b=jdkfQq70P3KFu1UCRaI2rzQgGRM9AOJmj+xkwkh4moa3rxWVJeZeq4rR
+ uB3yEo4CYx2LAhy5J1u8hUQGwpaKaF7HoDxzysP/gW31PjADpdNPNs509
+ Bdg+6F/ESW6mejP8JjPVt06j8bWcBnHNJy+4PcOBcx5VNS9NkmHjJO+6z
+ 0aat0iCJBVuFkNzh63B3wcEp5Hthg4/wTkyaQJQiPpevQtZlZIpolp4fn
+ 1ps2Rh5cFkEyJ7CMcq6hLsLEHqSKuEw3/8gERbnHGkUo5ZV1sxDwMcS9T
+ GwB+IAioLvbAvKBuWKsSLaB48nGuYQhd6xfsjTnqVy3EU/DX6yMdbgr6a A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="352486649"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="352486649"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2023 11:36:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="823633618"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="823633618"
+Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2023 11:36:11 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 10 May 2023 11:36:06 -0700
+Message-Id: <20230510183606.2480777-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Date: Wed, 10 May 2023 18:18:46 -0000
-Message-ID: <168374272601.7573.2889411840612077190@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230510174550.986965-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20230510174550.986965-1-alan.previn.teres.alexis@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/pxp=3A_Add_MTL_PXP_Support_=28rev10=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/hwmon: Silence UBSAN uninitialized
+ bool variable warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +56,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Loading i915 on UBSAN enabled kernels (CONFIG_UBSAN/CONFIG_UBSAN_BOOL)
+causes the following warning:
 
-Series: drm/i915/pxp: Add MTL PXP Support (rev10)
-URL   : https://patchwork.freedesktop.org/series/112647/
-State : warning
+  UBSAN: invalid-load in drivers/gpu/drm/i915/gt/uc/intel_uc.c:558:2
+  load of value 255 is not a valid value for type '_Bool'
+  Call Trace:
+   dump_stack_lvl+0x57/0x7d
+   ubsan_epilogue+0x5/0x40
+   __ubsan_handle_load_invalid_value.cold+0x43/0x48
+   __uc_init_hw+0x76a/0x903 [i915]
+   ...
+   i915_driver_probe+0xfb1/0x1eb0 [i915]
+   i915_pci_probe+0xbe/0x2d0 [i915]
 
-== Summary ==
+The warning happens because during probe i915_hwmon is still not available
+which results in the output boolean variable *old remaining
+uninitialized. Silence the warning by initializing the variable to an
+arbitrary value.
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/i915_hwmon.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+index a3bdd9f68a458..685663861bc0b 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.c
++++ b/drivers/gpu/drm/i915/i915_hwmon.c
+@@ -502,8 +502,11 @@ void i915_hwmon_power_max_disable(struct drm_i915_private *i915, bool *old)
+ 	struct i915_hwmon *hwmon = i915->hwmon;
+ 	u32 r;
+ 
+-	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
++	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit)) {
++		/* Fix uninitialized bool variable warning */
++		*old = false;
+ 		return;
++	}
+ 
+ 	mutex_lock(&hwmon->hwmon_lock);
+ 
+-- 
+2.38.0
 
