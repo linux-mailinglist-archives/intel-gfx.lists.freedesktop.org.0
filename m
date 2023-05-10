@@ -2,49 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 349AC6FE0D3
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 16:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0F6C6FE0E7
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 16:59:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40F1310E4BB;
-	Wed, 10 May 2023 14:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37A0310E4BF;
+	Wed, 10 May 2023 14:59:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09BD410E4BB
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 May 2023 14:52:11 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 392DE10E4BD;
+ Wed, 10 May 2023 14:59:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683730332; x=1715266332;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=XVkwyBB0It3Sa5boeQS4DfWiQEfVr3APecYtIICsT+U=;
- b=XXyzt5NDkJi2i+X5LGwPKhnQQuEpVUFHn1ESDlQRcks+kJwuJxRT926U
- Cs3oXRusDOsV236pg1/22Va0Tloqu/5bgldp/xUEq1hMmhwh7o5fwAgAr
- +M24vwmDoP7rILpcrkmmth54d1tH4LdRRrL9kKzDXW0VHyVjhDMqZrzT8
- gym4d74YLyxZkcURrunCaoNNldCs/TPltKNiQtgBHBO+Gl82yj/D8BAkG
- rIptKqMezca2kEK6BncQoZBrbHHdTC3nQgnhtMaMcFdUCXu69Kl5l+h2q
- TSIDrvbP4cPrxh1SHIqIThZtQl0fS3NUyHpzh2ic6u4mES1WMNFyFbQbK g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="329848912"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="329848912"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 07:52:10 -0700
+ t=1683730760; x=1715266760;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to;
+ bh=5PcR85UP60W1q4JTlwAaNEIiLv3C4MtG+bgQlozaZAU=;
+ b=ezezgabZuGpi/mh1m6UpjvksZm5pcYA/KDxi4zihy/Hflmd9fzpkz9wf
+ uJs0LRZfsTPwWqyCUg5B66BdRXiR8CEWpJO4qLaDJTlVqA4vxvny6CDJW
+ MOpRlUTo4D8yRIzGaf5jmug+EeuOsodKlYz6b6K7uQw1j7biHT5HAFe/K
+ aLXyUjKKRbw2sNxJ1wvIW1oNssD6c0+0XjpSf5yvNMpuIkJUIVHXV+QmK
+ AsSkAqrMogRWMcSsukyk2aC8ArDSudGVDdA14ZzQHj2en2UrqxG015y1b
+ NwDZk0pLlz7ye4VpDVQkIl3W5jJrIIHfqLSp1GNBNA0CXKQ7eY+LJj3wS Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="352424385"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; 
+ d="scan'208,217";a="352424385"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2023 07:59:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="764319962"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="764319962"
-Received: from azaki-mobl.amr.corp.intel.com (HELO localhost) ([10.252.63.3])
- by fmsmga008-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2023 07:52:08 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230504033718.581317-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230504033718.581317-1-suraj.kandpal@intel.com>
-Date: Wed, 10 May 2023 17:52:06 +0300
-Message-ID: <87jzxgme7d.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="676875225"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; 
+ d="scan'208,217";a="676875225"
+Received: from mfalalee-mobl1.ger.corp.intel.com (HELO [10.252.39.242])
+ ([10.252.39.242])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2023 07:59:15 -0700
+Content-Type: multipart/alternative;
+ boundary="------------L9LEjtZf5zN6LJSFQm2Vgkmg"
+Message-ID: <4d6fbce3-a676-f648-7a09-6f6dcc4bdb46@linux.intel.com>
+Date: Wed, 10 May 2023 16:59:01 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: add intel_atomic_state
- argument to hdcp_enable function
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.11.0
+To: Tejun Heo <tj@kernel.org>
+References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
+ <ZFVeI2DKQXddKDNl@slm.duckdns.org>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <ZFVeI2DKQXddKDNl@slm.duckdns.org>
+Subject: Re: [Intel-gfx] [RFC PATCH 0/4] Add support for DRM cgroup memory
+ accounting.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,218 +65,279 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Zefan Li <lizefan.x@bytedance.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, cgroups@vger.kernel.org,
+ David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 04 May 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Since topology state is being added to drm_atomic_state now all
-> drm_modeset_lock required are being taken from core this raises
-> an issue when we try to loop over connector and assign vcpi id to
-> our streams as we did not have atomic state to derive acquire_ctx
-> from hence we fill in stream info if dpmst encoder is found before
-> enabling hdcp.
+This is a multi-part message in MIME format.
+--------------L9LEjtZf5zN6LJSFQm2Vgkmg
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hey,
+
+On 2023-05-05 21:50, Tejun Heo wrote:
+> Hello,
 >
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-
-The subject implies you're just passing an extra parameter, but that's
-really not the case. You're doing something else, and to achieve that,
-you also pass an extra parameter.
-
-One approach might be to have a separate patch to change the parameters
-only, and it might be sensible to actually pass all the
-intel_encoder->enable() parameters i.e.
-
-(struct intel_atomic_state *state,
- struct intel_encoder *encoder,
- const struct intel_crtc_state *pipe_config,
- const struct drm_connector_state *conn_state)
-
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c    |  3 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 +-
->  drivers/gpu/drm/i915/display/intel_hdcp.c   | 50 ++++++++++++++++++---
->  drivers/gpu/drm/i915/display/intel_hdcp.h   |  3 +-
->  4 files changed, 49 insertions(+), 9 deletions(-)
+> On Wed, May 03, 2023 at 10:34:56AM +0200, Maarten Lankhorst wrote:
+>> RFC as I'm looking for comments.
+>>
+>> For long running compute, it can be beneficial to partition the GPU memory
+>> between cgroups, so each cgroup can use its maximum amount of memory without
+>> interfering with other scheduled jobs. Done properly, this can alleviate the
+>> need for eviction, which might result in a job being terminated if the GPU
+>> doesn't support mid-thread preemption or recoverable page faults.
+>>
+>> This is done by adding a bunch of knobs to cgroup:
+>> drm.capacity: Shows maximum capacity of each resource region.
+>> drm.max: Display or limit max amount of memory.
+>> drm.current: Current amount of memory in use.
+>>
+>> TTM has not been made cgroup aware yet, so instead of evicting from
+>> the current cgroup to stay within the cgroup limits, it simply returns
+>> the error -ENOSPC to userspace.
+>>
+>> I've used Tvrtko's cgroup controller series as a base, but it implemented
+>> scheduling weight, not memory accounting, so I only ended up keeping the
+>> base patch.
+>>
+>> Xe is not upstream yet, so the driver specific patch will only apply on
+>> https://gitlab.freedesktop.org/drm/xe/kernel
+> Some high-level feedbacks.
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 29e4bfab4635..182b8815b20d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3264,9 +3264,10 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
->  	/* Enable hdcp if it's desired */
->  	if (conn_state->content_protection ==
->  	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
-> -		intel_hdcp_enable(to_intel_connector(conn_state->connector),
-> +		intel_hdcp_enable(state, to_intel_connector(conn_state->connector),
->  				  crtc_state,
->  				  (u8)conn_state->hdcp_content_type);
-> +
->  }
->  
->  static void intel_disable_ddi_dp(struct intel_atomic_state *state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 2c49d9ab86a2..c92b00ceaae0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -800,7 +800,7 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
->  	/* Enable hdcp if it's desired */
->  	if (conn_state->content_protection ==
->  	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
-> -		intel_hdcp_enable(to_intel_connector(conn_state->connector),
-> +		intel_hdcp_enable(state, to_intel_connector(conn_state->connector),
->  				  pipe_config,
->  				  (u8)conn_state->hdcp_content_type);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index e1dc3d96e708..c8cdf25914f7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -30,7 +30,8 @@
->  #define KEY_LOAD_TRIES	5
->  #define HDCP2_LC_RETRY_CNT			3
->  
-> -static int intel_conn_to_vcpi(struct intel_connector *connector)
-> +static int intel_conn_to_vcpi(struct intel_connector *connector,
-> +			      struct drm_atomic_state *state)
->  {
->  	struct drm_dp_mst_topology_mgr *mgr;
->  	struct drm_dp_mst_atomic_payload *payload;
-> @@ -42,7 +43,7 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
->  		return 0;
->  	mgr = connector->port->mgr;
->  
-> -	drm_modeset_lock(&mgr->base.lock, NULL);
-> +	drm_modeset_lock(&mgr->base.lock, state->acquire_ctx);
+> * There have been multiple attempts at this but the track record is kinda
+>    poor. People don't seem to agree what should constitute DRM memory and how
+>    they should be accounted / controlled.
 
-The return value must be checked and handled for ctx != NULL. Please git
-grep for examples.
+Thanks for the feedback.
 
->  	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
->  	payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
->  	if (drm_WARN_ON(mgr->dev, !payload))
-> @@ -54,7 +55,6 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
->  		goto out;
->  	}
->  out:
-> -	drm_modeset_unlock(&mgr->base.lock);
->  	return vcpi;
->  }
->  
-> @@ -99,7 +99,6 @@ intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
->  		if (!enforce_type0 && !dig_port->hdcp_mst_type1_capable)
->  			enforce_type0 = true;
->  
-> -		data->streams[data->k].stream_id = intel_conn_to_vcpi(connector);
->  		data->k++;
->  
->  		/* if there is only one active stream */
-> @@ -122,6 +121,41 @@ intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
->  	return 0;
->  }
->  
-> +static int
-> +intel_hdcp_get_content_stream_id(struct intel_digital_port *dig_port,
-> +				 struct intel_atomic_state *state)
+I think for a lot of drivers, what is VRAM might have different meaning, but the intention
+is it being accounted in the same way. Most drivers use TTM, which has a standard way
+of allocating memory, and a standard way of evicting VRAM.
 
-To me it seems like this *sets* the stream id, not get. This doesn't
-return any id.
+This makes it very useful for the usecase which I'm looking at, long running compute.
+When you have long running jobs, you don't want them to be interrupted because a completely
+unrelated process needs some VRAM, and one of the compute jobs buffers are being evicted.
 
-> +{
-> +	struct drm_connector_list_iter conn_iter;
-> +	struct intel_digital_port *conn_dig_port;
-> +	struct intel_connector *connector;
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-> +
-> +	data->k = 0;
-> +
-> +	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-> +	for_each_intel_connector_iter(connector, &conn_iter) {
-> +		if (connector->base.status == connector_status_disconnected)
-> +			continue;
-> +
-> +		if (!intel_encoder_is_mst(intel_attached_encoder(connector)))
-> +			continue;
-> +
-> +		conn_dig_port = intel_attached_dig_port(connector);
-> +		if (conn_dig_port != dig_port)
-> +			continue;
-> +
-> +		data->streams[data->k].stream_id = intel_conn_to_vcpi(connector, &state->base);
-> +		data->k++;
-> +
-> +		/* if there is only one active stream */
-> +		if (dig_port->dp.active_mst_links <= 1)
-> +			break;
-> +	}
-> +	drm_connector_list_iter_end(&conn_iter);
-> +
-> +	return 0;
+Some hardware does not support mid-thread preemption or page fault recovery, this means that
+when memory is evicted, the compute job is terminated.
 
-This is 95% copy-paste of intel_hdcp_required_content_stream().
+The full problem statement is in drm-compute.rst in the memory accounting patch.
 
-> +}
->  static int intel_hdcp_prepare_streams(struct intel_connector *connector)
->  {
->  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> @@ -2333,7 +2367,8 @@ int intel_hdcp_init(struct intel_connector *connector,
->  	return 0;
->  }
->  
-> -int intel_hdcp_enable(struct intel_connector *connector,
-> +int intel_hdcp_enable(struct intel_atomic_state *state,
-> +		      struct intel_connector *connector,
->  		      const struct intel_crtc_state *pipe_config, u8 content_type)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> @@ -2374,6 +2409,9 @@ int intel_hdcp_enable(struct intel_connector *connector,
->  	 * is capable of HDCP2.2, it is preferred to use HDCP2.2.
->  	 */
->  	if (intel_hdcp2_capable(connector)) {
-> +		if (intel_crtc_has_type(pipe_config, INTEL_OUTPUT_DP_MST))
-> +			intel_hdcp_get_content_stream_id(dig_port, state);
-> +
+> * I like Tvrtko's scheduling patchset because it exposes a generic interface
+>    which makes sense regardless of hardware details and then each driver can
+>    implement the configured control in whatever way they can. However, even
+>    for that, there doesn't seem much buy-in from other drivers.
 
-The call chain below already leads to:
+Yeah, that is correct. But it tries to solve a different part of the problem.
 
-_intel_hdcp2_enable()
-hdcp2_authenticate_and_encrypt()
-intel_hdcp_prepare_streams()
-intel_hdcp_required_content_stream() (for MST)
+> * This proposal seems narrowly scoped trying to solve a specific problem
+>    which may not translate to different hardware configurations. Please let
+>    me know if I got that wrong, but if that's the case, I think a better and
+>    easier approach might be just being a part of the misc controller. That
+>    doesn't require much extra code and should be able to provide everything
+>    necessary for statically limiting specific resources.
 
-and as I said, that's almost the same as what you're adding as
-intel_hdcp_get_content_stream_id().
+The misc controller is not granular enough. A single computer may have any number of
+graphics cards, some of them with multiple regions of vram inside a single card.
 
-So I don't get the point of doing almost exactly the same thing twice
-here.
+For compute and shared hosting you might want to limit the usage of a single memory
+region on a single card, and then limit the same limits for the rest too, to prevent
+triggering eviction.
 
->  		ret = _intel_hdcp2_enable(connector);
->  		if (!ret)
->  			check_link_interval = DRM_HDCP2_CHECK_PERIOD_MS;
-> @@ -2486,7 +2524,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
->  	}
->  
->  	if (desired_and_not_enabled || content_protection_type_changed)
-> -		intel_hdcp_enable(connector,
-> +		intel_hdcp_enable(state, connector,
->  				  crtc_state,
->  				  (u8)conn_state->hdcp_content_type);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> index 8f53b0c7fe5c..a6f4bf93f9bf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> @@ -28,7 +28,8 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->  int intel_hdcp_init(struct intel_connector *connector,
->  		    struct intel_digital_port *dig_port,
->  		    const struct intel_hdcp_shim *hdcp_shim);
-> -int intel_hdcp_enable(struct intel_connector *connector,
-> +int intel_hdcp_enable(struct intel_atomic_state *state,
-> +		      struct intel_connector *connector,
->  		      const struct intel_crtc_state *pipe_config, u8 content_type);
->  int intel_hdcp_disable(struct intel_connector *connector);
->  void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+The current version doesn't handle eviction correctly, because I was still working
+on it and I wanted to post a RFC. As a result, the case where resource limit is hit
+will evict the device's entire memory or get stuck in a loop. With some changes, the
+next version will not have this bug. This results in a few changes to the core code. [1]
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+In the next version, I will move all the code for handling the resource limit to
+TTM's eviction layer, because otherwise it cannot handle the resource limit correctly.
+
+The effect of moving the code to TTM, is that it will make the code even more generic
+for drivers that have vram and use TTM. When using TTM, you only have to describe your
+VRAM, update some fields in the TTM manager and (un)register your device with the
+cgroup handler on (un)load. It's quite trivial to add vram accounting to amdgpu and
+nouveau. [2]
+
+If you want to add a knob for scheduling weight for a process, it makes sense to
+also add resource usage as a knob, otherwise the effect of that knob is very
+limited. So even for Tvrtko's original proposed usecase, it would make sense.
+
+Cheers,
+~Maarten
+
+--------
+[1] Compared to this version:
+  static inline int drmcg_try_charge(struct drmcgroup_state **drmcs,
++                                  struct drmcgroup_state **limitcs,
+                                    struct drmcgroup_device *cgdev,
+                                    u32 index, u64 size)
+
+This now returns which cgroup's limit is hit on -EAGAIN.
+
++bool drmcs_grouped(struct drmcgroup_state *limitcs,
++                  struct drmcgroup_state *testcs);
+Tells if testcs is the same as limitcs, or a subgroup of it. This allows us to
+skip evicting when it's unneeded. If we want to add a min, it will make sense
+to pass the size too, to skip some subcgroups below min.
+
++void drmcs_put(struct drmcgroup_state *drmcs);
+Drops the limitcs ref.
+-------------------
+[2] With the next version, I can very easily implement the cgroup handling on amdgpu too:
+- embed a struct drmcgroup_device inside amdgpu_device.
+- In amdgpu_vram_mgr_init, populate the struct drmcgroup_device.regions[0] for vram,
+   and set ttm_resource_manager->cg to &adev->drmcgroup_device
+- Call drmcg_register_device after, and drmcg_unregister_device after cleaning up vram.
+
+So if anyone wants to limit VRAM on amdgpu or qxl or nouveau (left as exercise for reader)
+afterwards, it will work as intended, while the driver doesn't have to be cgroups aware.
+
+--------------L9LEjtZf5zN6LJSFQm2Vgkmg
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Hey,<br>
+    </p>
+    <div class="moz-cite-prefix">On 2023-05-05 21:50, Tejun Heo wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:ZFVeI2DKQXddKDNl@slm.duckdns.org">
+      <pre class="moz-quote-pre" wrap="">Hello,
+
+On Wed, May 03, 2023 at 10:34:56AM +0200, Maarten Lankhorst wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">RFC as I'm looking for comments.
+
+For long running compute, it can be beneficial to partition the GPU memory
+between cgroups, so each cgroup can use its maximum amount of memory without
+interfering with other scheduled jobs. Done properly, this can alleviate the
+need for eviction, which might result in a job being terminated if the GPU
+doesn't support mid-thread preemption or recoverable page faults.
+
+This is done by adding a bunch of knobs to cgroup:
+drm.capacity: Shows maximum capacity of each resource region.
+drm.max: Display or limit max amount of memory.
+drm.current: Current amount of memory in use.
+
+TTM has not been made cgroup aware yet, so instead of evicting from
+the current cgroup to stay within the cgroup limits, it simply returns
+the error -ENOSPC to userspace.
+
+I've used Tvrtko's cgroup controller series as a base, but it implemented
+scheduling weight, not memory accounting, so I only ended up keeping the
+base patch.
+
+Xe is not upstream yet, so the driver specific patch will only apply on
+<a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/xe/kernel">https://gitlab.freedesktop.org/drm/xe/kernel</a>
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+Some high-level feedbacks.
+
+* There have been multiple attempts at this but the track record is kinda
+  poor. People don't seem to agree what should constitute DRM memory and how
+  they should be accounted / controlled.</pre>
+    </blockquote>
+    <pre>Thanks for the feedback.
+
+I think for a lot of drivers, what is VRAM might have different meaning, but the intention
+is it being accounted in the same way. Most drivers use TTM, which has a standard way
+of allocating memory, and a standard way of evicting VRAM.
+
+This makes it very useful for the usecase which I'm looking at, long running compute.
+When you have long running jobs, you don't want them to be interrupted because a completely
+unrelated process needs some VRAM, and one of the compute jobs buffers are being evicted.
+
+Some hardware does not support mid-thread preemption or page fault recovery, this means that
+when memory is evicted, the compute job is terminated.
+
+The full problem statement is in drm-compute.rst in the memory accounting patch.
+
+</pre>
+    <blockquote type="cite" cite="mid:ZFVeI2DKQXddKDNl@slm.duckdns.org">
+      <pre class="moz-quote-pre" wrap="">* I like Tvrtko's scheduling patchset because it exposes a generic interface
+  which makes sense regardless of hardware details and then each driver can
+  implement the configured control in whatever way they can. However, even
+  for that, there doesn't seem much buy-in from other drivers.</pre>
+    </blockquote>
+    <pre>Yeah, that is correct. But it tries to solve a different part of the problem.</pre>
+    <blockquote type="cite" cite="mid:ZFVeI2DKQXddKDNl@slm.duckdns.org">
+      <pre class="moz-quote-pre" wrap="">* This proposal seems narrowly scoped trying to solve a specific problem
+  which may not translate to different hardware configurations. Please let
+  me know if I got that wrong, but if that's the case, I think a better and
+  easier approach might be just being a part of the misc controller. That
+  doesn't require much extra code and should be able to provide everything
+  necessary for statically limiting specific resources.
+</pre>
+    </blockquote>
+    <pre>The misc controller is not granular enough. A single computer may have any number of
+graphics cards, some of them with multiple regions of vram inside a single card.
+
+For compute and shared hosting you might want to limit the usage of a single memory
+region on a single card, and then limit the same limits for the rest too, to prevent
+triggering eviction.
+
+The current version doesn't handle eviction correctly, because I was still working
+on it and I wanted to post a RFC. As a result, the case where resource limit is hit
+will evict the device's entire memory or get stuck in a loop. With some changes, the
+next version will not have this bug. This results in a few changes to the core code. [1]
+
+In the next version, I will move all the code for handling the resource limit to
+TTM's eviction layer, because otherwise it cannot handle the resource limit correctly.
+
+The effect of moving the code to TTM, is that it will make the code even more generic
+for drivers that have vram and use TTM. When using TTM, you only have to describe your
+VRAM, update some fields in the TTM manager and (un)register your device with the
+cgroup handler on (un)load. It's quite trivial to add vram accounting to amdgpu and
+nouveau. [2]
+
+If you want to add a knob for scheduling weight for a process, it makes sense to
+also add resource usage as a knob, otherwise the effect of that knob is very
+limited. So even for Tvrtko's original proposed usecase, it would make sense.
+
+Cheers,
+~Maarten
+
+--------
+[1] Compared to this version:
+ static inline int drmcg_try_charge(struct drmcgroup_state **drmcs,
++                                  struct drmcgroup_state **limitcs,
+                                   struct drmcgroup_device *cgdev,
+                                   u32 index, u64 size)
+
+This now returns which cgroup's limit is hit on -EAGAIN.
+
++bool drmcs_grouped(struct drmcgroup_state *limitcs,
++                  struct drmcgroup_state *testcs);
+Tells if testcs is the same as limitcs, or a subgroup of it. This allows us to
+skip evicting when it's unneeded. If we want to add a min, it will make sense
+to pass the size too, to skip some subcgroups below min.
+
++void drmcs_put(struct drmcgroup_state *drmcs);
+Drops the limitcs ref.
+-------------------
+[2] With the next version, I can very easily implement the cgroup handling on amdgpu too:
+- embed a struct drmcgroup_device inside amdgpu_device.
+- In amdgpu_vram_mgr_init, populate the struct drmcgroup_device.regions[0] for vram,
+  and set ttm_resource_manager-&gt;cg to &amp;adev-&gt;drmcgroup_device
+- Call drmcg_register_device after, and drmcg_unregister_device after cleaning up vram.
+
+So if anyone wants to limit VRAM on amdgpu or qxl or nouveau (left as exercise for reader)
+afterwards, it will work as intended, while the driver doesn't have to be cgroups aware.
+
+</pre>
+  </body>
+</html>
+
+--------------L9LEjtZf5zN6LJSFQm2Vgkmg--
