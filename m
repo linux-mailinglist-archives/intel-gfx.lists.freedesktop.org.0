@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D20B16FDBB2
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 12:31:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77CFA6FDBB3
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 12:31:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56B2110E480;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D55B010E483;
 	Wed, 10 May 2023 10:31:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB98910E477
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 May 2023 10:31:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9EAF10E47E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 May 2023 10:31:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683714671; x=1715250671;
+ t=1683714672; x=1715250672;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=acaok0yjJN5Yy0NN9XIqIwVVTRXw5S5btImUa6m+u1k=;
- b=li1+ScEKxHB22EYc8hAz4hVByACNfbr8eezLRL5YqK5BI2GCqULLGrHI
- ae3OxPHsiEELmD1JAsjlvWxE4q5f3MogLLTNQ+eHiUIHEXL7PMNTQ9tMc
- aTd2jRsO5wdgxehYj/kEKQtSyo11nK503SGxqdDHVaHhcO+RfBN7hqKnD
- PHxtFJRBUHoFqphyhyVsgn4+EBCwGZh0Er9SAkJMMm/sbUWjbNTtc584y
- v4nQX1vUhQMkwTvUNw2AvkUQQ+kGjX7r0Im6kPxmuTkbYqe9b6oExV8lF
- EgENsdEIKk71o8RL5FtSbKESg3fU/uevTSjfrWXimrx2CZsrylGKqzbiu A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="350214455"
-X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="350214455"
+ bh=QYZnREDj58sxXgZNdJjgtkm665ZijpdJuWhtpeEruP8=;
+ b=AnM9m79UIDxBTJFH68w5NCvbq7IwP1SgcxxmiuEjcn0NzV2cKuZYb38S
+ uLKpHjj/gaRdacGOeqSvkUcq9kiWnLboDD8cfYTX0a4UYtApQZYblr4f/
+ 9kx32eHeX3swuzexzAuHYC8okwpCF5jDfMakORQJAs5Xba+7ompBjSI9o
+ elIACPxsMrp+/uMyZMZiVv3Pebo3hvUp7qW3T5IDu1F1x6QxuHDylK3AR
+ 9kJ1ybXWQnqAhvpWH0Ov0tV9fMdknQgeefuZSBZ3xdyEi6csIfm9qA8mk
+ 70KyRxxG90RTEDmCko2JhlfJuGhUmbmsvAjq8gfhQuqD/IyZgSxC9z5me A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="350214460"
+X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="350214460"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 03:31:11 -0700
+ 10 May 2023 03:31:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="676796762"
-X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="676796762"
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="676796769"
+X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="676796769"
 Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.72.78])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 03:31:10 -0700
+ 10 May 2023 03:31:11 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 May 2023 13:31:29 +0300
-Message-Id: <20230510103131.1618266-13-imre.deak@intel.com>
+Date: Wed, 10 May 2023 13:31:30 +0300
+Message-Id: <20230510103131.1618266-14-imre.deak@intel.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230510103131.1618266-1-imre.deak@intel.com>
 References: <20230510103131.1618266-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 12/14] drm/i915: Factor out a helper for
- handling atomic modeset locks/state
+Subject: [Intel-gfx] [PATCH v4 13/14] drm/i915/tc: Call TypeC port
+ flush_work/cleanup without modeset locks held
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,184 +62,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch simplifying the handling of modeset locks and atomic state
-for an atomic commit is based on
+Call the TypeC port flush_work and cleanup handlers without the modeset
+locks held. These don't require the locks, as the work takes - as it
+should be able to at any point in time - any locks it needs and by the
+time cleanup is called and after cleanup returns the encoder is not in
+use.
 
-https://lore.kernel.org/all/20210715184954.7794-2-ville.syrjala@linux.intel.com/
+This is required by the next patch canceling a TypeC port work
+synchronously during encoder suspend and shutdown, where the work can
+take modeset locks as well, hence the canceling must be done without
+holding the locks.
 
-adding the helper to i915. I find this approach preferrable than
-open-coding the corresponding steps (fixed for me an atomic
-state reset during a DEADLK retry, which I missed in the open-coded
-version) and also better than the existing
-DRM_MODESET_LOCK_ALL_BEGIN/END macros for the reasons described in the
-above original patchset.
-
-This change takes the helper into use only for atomic commits during DDI
-hotplug handling, as a preparation for a follow-up patch adding a
-similar commit started from the same spot. Other places doing a
-driver-internal atomic commit is to be converted by a follow-up
-patchset.
+I also considered moving the modeset locking down to each encoder
+suspend()/shutdown() hook instead, however locking the full modeset
+state for each encoder separately would be odd, and the bigger change -
+affecting all encoders - is beyond the scope of this patchset.
 
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                 |  1 +
- drivers/gpu/drm/i915/display/intel_ddi.c      | 17 ++-----
- .../gpu/drm/i915/display/intel_modeset_lock.c | 50 +++++++++++++++++++
- .../gpu/drm/i915/display/intel_modeset_lock.h | 33 ++++++++++++
- 4 files changed, 87 insertions(+), 14 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_modeset_lock.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_modeset_lock.h
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 27 +++++++++----------
+ .../drm/i915/display/intel_display_types.h    | 12 +++++++++
+ drivers/gpu/drm/i915/i915_driver.c            |  8 ++++++
+ 3 files changed, 33 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index d97d45ae1a0d7..2a388bc1f07cb 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -264,6 +264,7 @@ i915-y += \
- 	display/intel_hti.o \
- 	display/intel_load_detect.o \
- 	display/intel_lpe_audio.o \
-+	display/intel_modeset_lock.o \
- 	display/intel_modeset_verify.o \
- 	display/intel_modeset_setup.o \
- 	display/intel_overlay.o \
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 0ba5492c06047..813be957ed11b 100644
+index 813be957ed11b..7d09bd2412352 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -63,6 +63,7 @@
- #include "intel_hti.h"
- #include "intel_lspcon.h"
- #include "intel_mg_phy_regs.h"
-+#include "intel_modeset_lock.h"
- #include "intel_pps.h"
- #include "intel_psr.h"
- #include "intel_quirks.h"
-@@ -4403,26 +4404,14 @@ intel_ddi_hotplug(struct intel_encoder *encoder,
+@@ -4617,31 +4617,27 @@ static bool intel_ddi_is_tc(struct drm_i915_private *i915, enum port port)
  
- 	state = intel_encoder_hotplug(encoder, connector);
+ static void intel_ddi_encoder_suspend(struct intel_encoder *encoder)
+ {
+-	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	enum phy phy = intel_port_to_phy(i915, encoder->port);
+-
+ 	intel_dp_encoder_suspend(encoder);
++}
  
--	drm_modeset_acquire_init(&ctx, 0);
+-	if (!intel_phy_is_tc(i915, phy))
+-		return;
++static void intel_ddi_tc_encoder_suspend_complete(struct intel_encoder *encoder)
++{
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+ 
+ 	intel_tc_port_flush_work(dig_port);
+ }
+ 
+ static void intel_ddi_encoder_shutdown(struct intel_encoder *encoder)
+ {
+-	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	enum phy phy = intel_port_to_phy(i915, encoder->port);
 -
--	for (;;) {
-+	intel_modeset_lock_ctx_retry(&ctx, NULL, 0, ret) {
- 		if (connector->base.connector_type == DRM_MODE_CONNECTOR_HDMIA)
- 			ret = intel_hdmi_reset_link(encoder, &ctx);
- 		else
- 			ret = intel_dp_retrain_link(encoder, &ctx);
--
--		if (ret == -EDEADLK) {
--			drm_modeset_backoff(&ctx);
--			continue;
--		}
--
--		break;
+ 	intel_dp_encoder_shutdown(encoder);
+ 	intel_hdmi_encoder_shutdown(encoder);
++}
+ 
+-	if (!intel_phy_is_tc(i915, phy))
+-		return;
++static void intel_ddi_tc_encoder_shutdown_complete(struct intel_encoder *encoder)
++{
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+ 
+ 	intel_tc_port_cleanup(dig_port);
+ }
+@@ -4908,6 +4904,9 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 				    is_legacy ? "legacy" : "non-legacy");
+ 		}
+ 
++		encoder->suspend_complete = intel_ddi_tc_encoder_suspend_complete;
++		encoder->shutdown_complete = intel_ddi_tc_encoder_shutdown_complete;
++
+ 		if (intel_tc_port_init(dig_port, is_legacy) < 0)
+ 			goto err;
  	}
- 
--	drm_modeset_drop_locks(&ctx);
--	drm_modeset_acquire_fini(&ctx);
--	drm_WARN(encoder->base.dev, ret,
--		 "Acquiring modeset locks failed with %i\n", ret);
-+	drm_WARN_ON(encoder->base.dev, ret);
- 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 270c4c84a2920..88b2a55d19f21 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -233,13 +233,25 @@ struct intel_encoder {
+ 	 * Called during system suspend after all pending requests for the
+ 	 * encoder are flushed (for example for DP AUX transactions) and
+ 	 * device interrupts are disabled.
++	 * All modeset locks are held while the hook is called.
+ 	 */
+ 	void (*suspend)(struct intel_encoder *);
++	/*
++	 * Called without the modeset locks held after the suspend() hook for
++	 * all encoders have been called.
++	 */
++	void (*suspend_complete)(struct intel_encoder *encoder);
  	/*
- 	 * Unpowered type-c dongles can take some time to boot and be
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_lock.c b/drivers/gpu/drm/i915/display/intel_modeset_lock.c
-new file mode 100644
-index 0000000000000..8fb6fd849a75d
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_lock.c
-@@ -0,0 +1,50 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
+ 	 * Called during system reboot/shutdown after all the
+ 	 * encoders have been disabled and suspended.
++	 * All modeset locks are held while the hook is called.
+ 	 */
+ 	void (*shutdown)(struct intel_encoder *encoder);
++	/*
++	 * Called without the modeset locks held after the shutdown() hook for
++	 * all encoders have been called.
++	 */
++	void (*shutdown_complete)(struct intel_encoder *encoder);
+ 	/*
+ 	 * Enable/disable the clock to the port.
+ 	 */
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index fd198700272b1..705ba65f2ff9a 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -964,6 +964,10 @@ static void intel_suspend_encoders(struct drm_i915_private *dev_priv)
+ 		if (encoder->suspend)
+ 			encoder->suspend(encoder);
+ 	drm_modeset_unlock_all(&dev_priv->drm);
 +
-+#include <drm/drm_modeset_lock.h>
++	for_each_intel_encoder(&dev_priv->drm, encoder)
++		if (encoder->suspend_complete)
++			encoder->suspend_complete(encoder);
+ }
+ 
+ static void intel_shutdown_encoders(struct drm_i915_private *dev_priv)
+@@ -978,6 +982,10 @@ static void intel_shutdown_encoders(struct drm_i915_private *dev_priv)
+ 		if (encoder->shutdown)
+ 			encoder->shutdown(encoder);
+ 	drm_modeset_unlock_all(&dev_priv->drm);
 +
-+#include "intel_display_types.h"
-+#include "intel_modeset_lock.h"
-+
-+void _intel_modeset_lock_begin(struct drm_modeset_acquire_ctx *ctx,
-+			       struct intel_atomic_state *state,
-+			       unsigned int flags, int *ret)
-+{
-+	drm_modeset_acquire_init(ctx, flags);
-+
-+	if (state)
-+		state->base.acquire_ctx = ctx;
-+
-+	*ret = -EDEADLK;
-+}
-+
-+bool _intel_modeset_lock_loop(int *ret)
-+{
-+	if (*ret == -EDEADLK) {
-+		*ret = 0;
-+		return true;
-+	}
-+
-+	return false;
-+}
-+
-+void _intel_modeset_lock_end(struct drm_modeset_acquire_ctx *ctx,
-+			     struct intel_atomic_state *state,
-+			     int *ret)
-+{
-+	if (*ret == -EDEADLK) {
-+		if (state)
-+			drm_atomic_state_clear(&state->base);
-+
-+		*ret = drm_modeset_backoff(ctx);
-+		if (*ret == 0) {
-+			*ret = -EDEADLK;
-+			return;
-+		}
-+	}
-+
-+	drm_modeset_drop_locks(ctx);
-+	drm_modeset_acquire_fini(ctx);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_lock.h b/drivers/gpu/drm/i915/display/intel_modeset_lock.h
-new file mode 100644
-index 0000000000000..edb5099bcd99c
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_lock.h
-@@ -0,0 +1,33 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_MODESET_LOCK_H__
-+#define __INTEL_MODESET_LOCK_H__
-+
-+#include <linux/types.h>
-+
-+struct drm_modeset_acquire_ctx;
-+struct intel_atomic_state;
-+
-+void _intel_modeset_lock_begin(struct drm_modeset_acquire_ctx *ctx,
-+			       struct intel_atomic_state *state,
-+			       unsigned int flags,
-+			       int *ret);
-+bool _intel_modeset_lock_loop(int *ret);
-+void _intel_modeset_lock_end(struct drm_modeset_acquire_ctx *ctx,
-+			     struct intel_atomic_state *state,
-+			     int *ret);
-+
-+/*
-+ * Note that one must always use "continue" rather than
-+ * "break" or "return" to handle errors within the
-+ * intel_modeset_lock_ctx_retry() block.
-+ */
-+#define intel_modeset_lock_ctx_retry(ctx, state, flags, ret) \
-+	for (_intel_modeset_lock_begin((ctx), (state), (flags), &(ret)); \
-+	     _intel_modeset_lock_loop(&(ret)); \
-+	     _intel_modeset_lock_end((ctx), (state), &(ret)))
-+
-+#endif /* __INTEL_MODESET_LOCK_H__ */
++	for_each_intel_encoder(&dev_priv->drm, encoder)
++		if (encoder->shutdown_complete)
++			encoder->shutdown_complete(encoder);
+ }
+ 
+ void i915_driver_shutdown(struct drm_i915_private *i915)
 -- 
 2.37.2
 
