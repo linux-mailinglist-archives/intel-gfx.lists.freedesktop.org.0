@@ -2,48 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A58BE6FE414
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 20:36:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 236176FE42D
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 20:46:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0370910E503;
-	Wed, 10 May 2023 18:36:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90AFC10E50D;
+	Wed, 10 May 2023 18:46:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21A5710E063;
- Wed, 10 May 2023 18:36:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683743772; x=1715279772;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1Vzc4TnF6i2+1Soe9M7OcZYLpblf1RuPuI3eR5Ov1Bs=;
- b=jdkfQq70P3KFu1UCRaI2rzQgGRM9AOJmj+xkwkh4moa3rxWVJeZeq4rR
- uB3yEo4CYx2LAhy5J1u8hUQGwpaKaF7HoDxzysP/gW31PjADpdNPNs509
- Bdg+6F/ESW6mejP8JjPVt06j8bWcBnHNJy+4PcOBcx5VNS9NkmHjJO+6z
- 0aat0iCJBVuFkNzh63B3wcEp5Hthg4/wTkyaQJQiPpevQtZlZIpolp4fn
- 1ps2Rh5cFkEyJ7CMcq6hLsLEHqSKuEw3/8gERbnHGkUo5ZV1sxDwMcS9T
- GwB+IAioLvbAvKBuWKsSLaB48nGuYQhd6xfsjTnqVy3EU/DX6yMdbgr6a A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="352486649"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="352486649"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 11:36:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="823633618"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="823633618"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 11:36:11 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 May 2023 11:36:06 -0700
-Message-Id: <20230510183606.2480777-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.38.0
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
+ [IPv6:2607:f8b0:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A11FF10E50A;
+ Wed, 10 May 2023 18:46:03 +0000 (UTC)
+Received: by mail-pf1-x434.google.com with SMTP id
+ d2e1a72fcca58-64359d9c531so5731645b3a.3; 
+ Wed, 10 May 2023 11:46:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1683744362; x=1686336362;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+ :reply-to; bh=5fuvzbzfAPaWz0F0qnb+ng0M3t+DRDPEy+SEvx5Zlpw=;
+ b=WaX/lA3Y5RC6vqi8Gstz4xLqZDGmFXeG7a3rgiWsDu5hUwAToAZzkqoYMo1FT7KjnA
+ ARUu3pTtOMc7WAoU2YOH9cnEDLX7dlPp5Fk+vl639nloA3cqkDUb96asyf9ZQw15ihXz
+ nIf9q2YeVZUyrcSMtyeAkgoRbV+oLyls91sRKUg2xusZZZ3Ihxuq/x0/E/g2898K6qQY
+ NY2fYU0eav3eoftoQ/+ak267O1ldNVnrMhtexIpFA1GoP5llXOIGlF9JxtpQi2ToH3Sb
+ zXx6m0I8PgYy7bI06tjMymfporVo62Z/NoPWgDzh1wszI52lSrupgJLtKhGceUulCGBv
+ Mj0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1683744362; x=1686336362;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=5fuvzbzfAPaWz0F0qnb+ng0M3t+DRDPEy+SEvx5Zlpw=;
+ b=ZXv7VsIeuFiYy5oTkblNWidR7W7uHkM/6Wpv8izEVLdLUL4X2eIIePp0XiS6o4d6Fl
+ 5RyTe+30Yzm65qdxaNZys7qSR+chQvXnjEvOBqfftb+fltfYUljSOkS8dJJ8VQDOXTnn
+ vLu262kV7JYt68RuB6e3r96VYdQETkBRxjzphjOEmXatajodaOa0qbnxdDh/TZ3Qr29e
+ Pyf/3f03ysMzub3rEbmbkbRcgmxcd5WJCVsd2uYSwjzNTS4s7Mgk2gM4LyXM+mB7Zugo
+ cBb3jBvH2H/IBy6GM0OEt66BvR3x06+8wsOJz+OydineJBv1YyYTlRASbqEn/kM0EaHO
+ rnhQ==
+X-Gm-Message-State: AC+VfDxPyj+H6cfHwkB5RBPvHr9NeP4J3RvRlLzhR6JLTUcMpQY3BDBq
+ RBBp1R5gWAA6HwbeiGJs+Tg=
+X-Google-Smtp-Source: ACHHUZ5d5WqcqsbpOW8d9gvlIIZZNzXUY94wx3QLBecJ3Q5deydid7nrQYlsF19asRDnaQT3WKzIjA==
+X-Received: by 2002:a17:902:ce86:b0:1ad:c1c2:7d14 with SMTP id
+ f6-20020a170902ce8600b001adc1c27d14mr224531plg.46.1683744362257; 
+ Wed, 10 May 2023 11:46:02 -0700 (PDT)
+Received: from localhost
+ (2603-800c-1a02-1bae-a7fa-157f-969a-4cde.res6.spectrum.com.
+ [2603:800c:1a02:1bae:a7fa:157f:969a:4cde])
+ by smtp.gmail.com with ESMTPSA id
+ i3-20020a17090332c300b001ac4d3d3f72sm4130469plr.296.2023.05.10.11.46.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 10 May 2023 11:46:01 -0700 (PDT)
+Date: Wed, 10 May 2023 08:46:00 -1000
+From: Tejun Heo <tj@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <ZFvmaGNo0buQEUi1@slm.duckdns.org>
+References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
+ <ZFVeI2DKQXddKDNl@slm.duckdns.org>
+ <4d6fbce3-a676-f648-7a09-6f6dcc4bdb46@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/hwmon: Silence UBSAN uninitialized
- bool variable warning
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4d6fbce3-a676-f648-7a09-6f6dcc4bdb46@linux.intel.com>
+Subject: Re: [Intel-gfx] [RFC PATCH 0/4] Add support for DRM cgroup memory
+ accounting.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,51 +77,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Zefan Li <lizefan.x@bytedance.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, cgroups@vger.kernel.org,
+ David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Loading i915 on UBSAN enabled kernels (CONFIG_UBSAN/CONFIG_UBSAN_BOOL)
-causes the following warning:
+Hello,
 
-  UBSAN: invalid-load in drivers/gpu/drm/i915/gt/uc/intel_uc.c:558:2
-  load of value 255 is not a valid value for type '_Bool'
-  Call Trace:
-   dump_stack_lvl+0x57/0x7d
-   ubsan_epilogue+0x5/0x40
-   __ubsan_handle_load_invalid_value.cold+0x43/0x48
-   __uc_init_hw+0x76a/0x903 [i915]
-   ...
-   i915_driver_probe+0xfb1/0x1eb0 [i915]
-   i915_pci_probe+0xbe/0x2d0 [i915]
+On Wed, May 10, 2023 at 04:59:01PM +0200, Maarten Lankhorst wrote:
+> The misc controller is not granular enough. A single computer may have any number of
+> graphics cards, some of them with multiple regions of vram inside a single card.
 
-The warning happens because during probe i915_hwmon is still not available
-which results in the output boolean variable *old remaining
-uninitialized. Silence the warning by initializing the variable to an
-arbitrary value.
+Extending the misc controller to support dynamic keys shouldn't be that
+difficult.
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/i915/i915_hwmon.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+...
+> In the next version, I will move all the code for handling the resource limit to
+> TTM's eviction layer, because otherwise it cannot handle the resource limit correctly.
+> 
+> The effect of moving the code to TTM, is that it will make the code even more generic
+> for drivers that have vram and use TTM. When using TTM, you only have to describe your
+> VRAM, update some fields in the TTM manager and (un)register your device with the
+> cgroup handler on (un)load. It's quite trivial to add vram accounting to amdgpu and
+> nouveau. [2]
+> 
+> If you want to add a knob for scheduling weight for a process, it makes sense to
+> also add resource usage as a knob, otherwise the effect of that knob is very
+> limited. So even for Tvrtko's original proposed usecase, it would make sense.
 
-diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index a3bdd9f68a458..685663861bc0b 100644
---- a/drivers/gpu/drm/i915/i915_hwmon.c
-+++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -502,8 +502,11 @@ void i915_hwmon_power_max_disable(struct drm_i915_private *i915, bool *old)
- 	struct i915_hwmon *hwmon = i915->hwmon;
- 	u32 r;
- 
--	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit))
-+	if (!hwmon || !i915_mmio_reg_valid(hwmon->rg.pkg_rapl_limit)) {
-+		/* Fix uninitialized bool variable warning */
-+		*old = false;
- 		return;
-+	}
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
+It does make sense but unlike Tvrtko's scheduling weights what's being
+proposed doesn't seem to encapsulate GPU memory resource in a generic enough
+manner at least to my untrained eyes. ie. w/ drm.weight, I don't need any
+specific knoweldge of how a specific GPU operates to say "this guy should
+get 2x processing power over that guy". This more or less holds for other
+major resources including CPU, memory and IO. What you're proposing seems a
+lot more tied to hardware details and users would have to know a lot more
+about how memory is configured on that particular GPU.
+
+Now, if this is inherent to how all, or at least most, GPUs operate, sure,
+but otherwise let's start small in terms of interface and not take up space
+which should be for something universal. If this turns out to be the way,
+expanding to take up the generic interface space isn't difficult.
+
+I don't know GPU space so please educate me where I'm wrong.
+
+Thanks.
+
 -- 
-2.38.0
-
+tejun
