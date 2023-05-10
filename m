@@ -1,57 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB54F6FE65B
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 23:39:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76EF6FE675
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 23:51:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3280410E08D;
-	Wed, 10 May 2023 21:38:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6207710E554;
+	Wed, 10 May 2023 21:50:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02F5F10E08D
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 May 2023 21:38:57 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F97C10E553;
+ Wed, 10 May 2023 21:50:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683754738; x=1715290738;
+ t=1683755453; x=1715291453;
  h=mime-version:content-transfer-encoding:in-reply-to:
  references:subject:from:cc:to:date:message-id;
- bh=CsKrB/JamNT6F/GybLWYBfKOd8fW5i/I/ADXfvf0+E8=;
- b=fUr4DjBpkh+Xg5NnxwrSLeF5EvL/Ox+ASgwHbmrwKj/lwihrzDp/JhqG
- G/spYFSwx0a2RXMDEZ1Cato6kG6f6jJqnp/7I6FP4A+mtQwt/rJSPDvCF
- zBYPMnQPKyQLbzlPElYc4wGUrTLEUXYQfFRNhN64/sqzGSaoHUhGjJnsF
- RQ75llLkuZcI0hatA4lj2JFNS84NnbWaErMuX/CsNUytX5Go0TSHm0yTw
- gx4ITfCpOtC2V+Y0dSg8//JZUBjSdpwfqfiOS/tGW73A6btp8V12BEjcv
- EZ+VP8cxmPRscAvjVNyn5lFuJs8RMT8+cYN02KE/rRv3EDVoY21z+MCSR A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="329949647"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="329949647"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 14:38:57 -0700
+ bh=/6yeJAG01uOPXl1Ot8zQr7Z33lkwuopJhv71z4xjfco=;
+ b=DHao5atVhH72Ye9EmKLm/LojCUTuSbxOKkItHTYnpeAdyfPFcv2V1bcJ
+ qrxkNYhuzWv4/lC7VdIgSSANIg9NO3JC05spe/jLJGjX6gHR3WRadlUuP
+ l5mxBdGkRPUI6nIxQpo6TNmCrAW86e0G3Zk0bhHOOcF9KQP3AqBHpUCam
+ E4eIebbPh/rD6hlsy16+6W0iZ2pQVEiPShVmWMFKCaIGrA9ml6qPCBy1o
+ IUcF1EsuB+7jG9CXt80AcEg8+bEg/PSlNSpn9xSP/ddcy9z6cImOPJ/cX
+ 8bG4496+j+TxnJ/fgR6S/s3kUi2fZrCWmBPqM0bhff7+0SG59EJkQYTlp w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="352532688"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="352532688"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2023 14:50:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="649885580"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="649885580"
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="843668335"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="843668335"
 Received: from archanas-mobl24.amr.corp.intel.com (HELO localhost)
  ([10.209.61.250])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 14:38:57 -0700
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2023 14:50:51 -0700
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <0a23ff5be69e3d6b6e3b457c2599bc2f018fc71a.camel@intel.com>
+In-Reply-To: <168375473641.1096084.7149697040639389794@jljusten-skl>
 References: <20230427234843.2886921-1-alan.previn.teres.alexis@intel.com>
  <20230427234843.2886921-7-alan.previn.teres.alexis@intel.com>
  <8888e3dff8c1c4fd1702ded911850da30330fbfa.camel@intel.com>
  <168327239043.1096084.14316886882692698230@jljusten-skl>
  <e40f2b8750b39facd98f72cda63bc733ca0319d5.camel@intel.com>
  <0a23ff5be69e3d6b6e3b457c2599bc2f018fc71a.camel@intel.com>
+ <168375473641.1096084.7149697040639389794@jljusten-skl>
 From: Jordan Justen <jordan.l.justen@intel.com>
 To: "Souza, Jose" <jose.souza@intel.com>, "Teres Alexis,
  Alan Previn" <alan.previn.teres.alexis@intel.com>,
  intel-gfx@lists.freedesktop.org
-Date: Wed, 10 May 2023 14:38:56 -0700
-Message-ID: <168375473641.1096084.7149697040639389794@jljusten-skl>
+Date: Wed, 10 May 2023 14:50:50 -0700
+Message-ID: <168375545081.1096084.10046830335154502443@jljusten-skl>
 User-Agent: alot/0.10
 Subject: Re: [Intel-gfx] [PATCH v9 6/8] drm/i915/uapi/pxp: Add a GET_PARAM
  for PXP
@@ -67,10 +68,11 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ri-devel@lists.freedesktop.org, ustonli@chromium.org, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: dri-devel@lists.freedesktop.org, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+
+...fixing some Cc email addresses I somehow mangled.
 
 On 2023-05-10 12:40:07, Souza, Jose wrote:
 > On Mon, 2023-05-08 at 17:49 +0000, Teres Alexis, Alan Previn wrote:
