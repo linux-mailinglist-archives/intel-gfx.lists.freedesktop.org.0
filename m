@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB59B6FDBA8
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 12:31:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D43356FDBAB
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 12:31:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D789010E476;
-	Wed, 10 May 2023 10:31:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 749EF10E47A;
+	Wed, 10 May 2023 10:31:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57C0010E471
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 May 2023 10:31:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 999BC10E471
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 May 2023 10:31:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683714660; x=1715250660;
+ t=1683714661; x=1715250661;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wFPwR0nwTP9qTKdOi0dN70Yin1GnpjwATPpfLjg/C5w=;
- b=GezFeZQT4mAJ5SDc5jl6ZiSJl0Q1aCcdu+lax5ED9txSnWWSiGfGWIKQ
- e7aLJI87c/lneWKtRk7BSLbXTxbPkKj8hkgBNDjW6e9y04gzq3mWKnpFq
- hXJLEGGJNCVljr7MmdDcnXOaqqyXYXVUPz5jOjPpZ4U/2+AkAP6miYjIQ
- WrWSRd0Ay9UV7W8a4ryZXH8G8jVbzpJ8Ta0n/9J4tAgFDNiGYzx3H2JNq
- ygo0xyJRUrlP0xfK2UlwDU17IdwrJGxqK/fEV6yvQaA6QUWHWSDU3P3RC
- SDG5sm99ikUQZzlqvbWFH+3G+icG/jVoQ9gENiTQXx86cVuM6Ic8gTHT9 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="350214410"
-X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="350214410"
+ bh=/hPee39SLxvfoxPwswfVL1/2gR+FqP0KS8lg6FVQN5g=;
+ b=Kgr8PL3IYtcPy2XyDAQOOrHHTw9/vQdm3Tra22LT2OGgHAlVox1W9kcd
+ DeoInR+gQDiUtCYJQkkpvQdBe49vqkfZRmGIrAR1qZBlVv/cu7eH7B8P+
+ rpcESgywWrGykQobnPw8xxugk17n5vBdcEGh1FQnwFPdck33Egt52cayZ
+ 4nzqdCFUA6hDQUzlrsgLbbgqRoR5GXZ+uC/DPAD1GvVOAFW1esSEF78CK
+ NDFRlU0grhn6P5HYr07ZuRNqZwcAxpeyS0fAOw8wkpqHX7C/WdlWnu9WF
+ 8HPGbqnPpD18on31Y0sVgcnkRaZ8Myo2B7iQV00SdqJFVtaiJrFDmolCE A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="350214416"
+X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="350214416"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 03:31:00 -0700
+ 10 May 2023 03:31:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="676796705"
-X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="676796705"
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="676796712"
+X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="676796712"
 Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.72.78])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 03:30:59 -0700
+ 10 May 2023 03:31:00 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 May 2023 13:31:21 +0300
-Message-Id: <20230510103131.1618266-5-imre.deak@intel.com>
+Date: Wed, 10 May 2023 13:31:22 +0300
+Message-Id: <20230510103131.1618266-6-imre.deak@intel.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230510103131.1618266-1-imre.deak@intel.com>
 References: <20230510103131.1618266-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 04/14] drm/i915: Update connector atomic
- state before crtc sanitize-disabling
+Subject: [Intel-gfx] [PATCH v4 05/14] drm/i915: Separate
+ intel_crtc_disable_noatomic_begin/complete()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,51 +62,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During HW state readout/sanitization an up-to-date connector atomic
-state will be required by a follow-up patch, which can disable CRTCs
-with an encoder (and calling the correct encoder hooks happens via the
-connector atomic state encoder pointer). So update the connector state
-already before the CRTC sanitize/disable step. For now this doesn't make
-a difference, since intel_modeset_update_connector_atomic_state() will
-update/enable the atomic state only for connectors that have an enabled
-encoder/CRTC. Such CRTCs/encoders will not be affected by
-intel_sanitize_crtc().
+Split calling the CRTC/encoder disabling hooks and updating the CRTC and
+DPLL object states from updating the CRTC and atomic state and other
+global state (BW, CDCLK, DBUF) into separate functions. When disabling a
+bigjoiner configuration the latter step can be done only after all the
+linked pipes are disabled, so this change prepares for that.
 
-v2: Add comment about why the connector state needs to be up-to-date.
+No functional changes.
 
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_modeset_setup.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ .../drm/i915/display/intel_modeset_setup.c    | 34 +++++++++++++------
+ 1 file changed, 24 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index 6e55806bbe066..66796e8eef90a 100644
+index 66796e8eef90a..2c93f4c5dc8cf 100644
 --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
 +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -701,6 +701,12 @@ void intel_modeset_setup_hw_state(struct drm_i915_private *i915,
- 	for_each_intel_encoder(&i915->drm, encoder)
- 		intel_sanitize_encoder(encoder);
+@@ -30,23 +30,15 @@
+ #include "intel_wm.h"
+ #include "skl_watermark.h"
  
-+	/*
-+	 * Sanitizing CRTCs needs their connector atomic state to be
-+	 * up-to-date, so ensure that already here.
-+	 */
-+	intel_modeset_update_connector_atomic_state(i915);
+-static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
+-					struct drm_modeset_acquire_ctx *ctx)
++static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
++					      struct drm_modeset_acquire_ctx *ctx)
+ {
+-	struct intel_encoder *encoder;
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+-	struct intel_bw_state *bw_state =
+-		to_intel_bw_state(i915->display.bw.obj.state);
+-	struct intel_cdclk_state *cdclk_state =
+-		to_intel_cdclk_state(i915->display.cdclk.obj.state);
+-	struct intel_dbuf_state *dbuf_state =
+-		to_intel_dbuf_state(i915->display.dbuf.obj.state);
+ 	struct intel_crtc_state *crtc_state =
+ 		to_intel_crtc_state(crtc->base.state);
+ 	struct intel_plane *plane;
+ 	struct drm_atomic_state *state;
+ 	struct intel_crtc_state *temp_crtc_state;
+-	enum pipe pipe = crtc->pipe;
+ 	int ret;
+ 
+ 	if (!crtc_state->hw.active)
+@@ -92,6 +84,21 @@ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
+ 		intel_unreference_shared_dpll_crtc(crtc,
+ 						   crtc_state->shared_dpll,
+ 						   &crtc_state->shared_dpll->state);
++}
 +
- 	for_each_intel_crtc(&i915->drm, crtc) {
- 		struct intel_crtc_state *crtc_state =
- 			to_intel_crtc_state(crtc->base.state);
-@@ -709,8 +715,6 @@ void intel_modeset_setup_hw_state(struct drm_i915_private *i915,
- 		intel_crtc_state_dump(crtc_state, NULL, "setup_hw_state");
- 	}
++static void intel_crtc_disable_noatomic_complete(struct intel_crtc *crtc)
++{
++	struct intel_encoder *encoder;
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_bw_state *bw_state =
++		to_intel_bw_state(i915->display.bw.obj.state);
++	struct intel_cdclk_state *cdclk_state =
++		to_intel_cdclk_state(i915->display.cdclk.obj.state);
++	struct intel_dbuf_state *dbuf_state =
++		to_intel_dbuf_state(i915->display.dbuf.obj.state);
++	struct intel_crtc_state *crtc_state =
++		to_intel_crtc_state(crtc->base.state);
++	enum pipe pipe = crtc->pipe;
  
--	intel_modeset_update_connector_atomic_state(i915);
--
- 	intel_dpll_sanitize_state(i915);
+ 	__drm_atomic_helper_crtc_destroy_state(&crtc_state->uapi);
+ 	intel_crtc_free_hw_state(crtc_state);
+@@ -115,6 +122,13 @@ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
+ 	bw_state->num_active_planes[pipe] = 0;
+ }
  
- 	intel_wm_get_hw_state(i915);
++static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
++					struct drm_modeset_acquire_ctx *ctx)
++{
++	intel_crtc_disable_noatomic_begin(crtc, ctx);
++	intel_crtc_disable_noatomic_complete(crtc);
++}
++
+ static void intel_modeset_update_connector_atomic_state(struct drm_i915_private *i915)
+ {
+ 	struct intel_connector *connector;
 -- 
 2.37.2
 
