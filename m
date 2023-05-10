@@ -2,159 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0AA56FE69F
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 00:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E86166FE716
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 00:14:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44BFD10E55A;
-	Wed, 10 May 2023 22:00:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A28689294;
+	Wed, 10 May 2023 22:14:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7518810E558;
- Wed, 10 May 2023 22:00:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6F4689294;
+ Wed, 10 May 2023 22:14:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683756007; x=1715292007;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=LXpmUoPx7RiTsb14s4k7Ptmu/vb9xo6snzp6TuJqya8=;
- b=gl6ZEzPmYglfAWlj8fwRaoI198s0Uy85Y+bKu+I2qFDdlN+m2lLH3FYf
- O9jfj36gQj+IQvMrxtTwMmikWXaxRHVrfiZKkTvHM82OwlLFz8dL4L8CW
- 3SxHGi0brjWN8+y9/eQtzbCQkvqMzcvvMsqhpTI+72kuGYDifWbW8NOl6
- PS8NdwgElYfCxqaPEnYFJy8Rj5yiaP6HwuwAmVD6x5vsgX5eiaGmg2qT0
- 33FgQmsfLX5QPOIxaYx/nSC+438USrrKPyK3u0Sf5wxPGOaox99At0a9U
- 6hqfXZOH4Rz+ayzzDU+c7tf/lb6KTYHdZ/8JLXteCaoik0osPFi1+qhWB A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="347798914"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="347798914"
+ t=1683756862; x=1715292862;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=6jMh9q1lgIubHSv6etodnKnCwBQKoDIqzXoeP6WwDFs=;
+ b=PFbhJX5Fgp6xxAEjWUz1aRpQTSe78/McgYxMtjgX4mjudGv4aqQ/kfol
+ Vduu6k92wF6xO3uhXELTvN1czmIiCmw4e3bxK/ic6mweMly3NMHPj1LVp
+ tnaZzEfdO6KoxTSOa8bACkOsqRxgFGosIPZ14f6yOxT/YruApTd4x6S9B
+ SeJfqGvcOmxeAMo6Z7SEUTHWCBMk2jQtcejSXDWPeXS/maCD4BReverEf
+ JHq8ptUUpAzdUBGS7xz8VqqTNv/7MA8Jb/9GiYLqOA/zKXmJS1hF7/OMp
+ kQpp83VLc4CFCDsi1qxi+zo1ANyBhDVjnu6Db2AX3DpyBSocI8vXHrQVd A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="347801549"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="347801549"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 15:00:06 -0700
+ 10 May 2023 15:14:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="649889781"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="649889781"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga003.jf.intel.com with ESMTP; 10 May 2023 15:00:06 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 10 May 2023 15:00:05 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 10 May 2023 15:00:05 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 10 May 2023 15:00:05 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QgHM2iZdUIYE+E1X8Iu4ozFBnd5cSYSIUCKxOfm/Xl3eSIyCn/YG5XEQpi5It1M2cxtkeL9D/+BkuMPpjZC/QFuCW+uUmPe4GIwBNw2GfKs5Kb/eq6IJITMZHtDvr5EgRXEeKP8XpOhsHSguaPpMbpiCxhgKgydrYCmxS4rAWSSgVs16J3oROETjqsP2pvxBO0IYnb/Q6JgnyyzINngRyiUi3QsDj6E/Xus1uznFr68WeRmu6LVWgChKH6/SyFNOwm8F0F1vpphj6E08V9iXCg2SKV+SLXrm7Ld9aMjHusW6X1rGxQfv/3l/TSbwVDfEPSohaBQWsLQe/+cfEtNflw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LXpmUoPx7RiTsb14s4k7Ptmu/vb9xo6snzp6TuJqya8=;
- b=HZJ9oR5+xURX8tox7p7tnjPWDNOlW5SI+7zpz3tILA+TdQeiGpJMMdzIAw7jeWF2AxhDOmAzu5zoq0gCZkyGlsK3xT38SZoHCs9nZ8wABdywkaIB/fnJmdrc7NIUvCNQqFuMUhS1b7t7Xd268Cicck5ZJ80zDfH6O05L16i18VS9u/3oEFkItuNVMfV0FIyZ20WE8+oaFYgWKpKRBXA1A2opU5eOA9fNbRf2mV9/MudH1r3tieHbGAO93MrRI3bTXLPshz4Ps4TBlNoLUYHZEDbHi1jSPzZQjk5QmpKi3IZPJ5KYhXekG+fTPg3pffcgNIBA9bJhQQo5VEiYtB3AlA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5751.namprd11.prod.outlook.com (2603:10b6:8:12::16) by
- SJ1PR11MB6156.namprd11.prod.outlook.com (2603:10b6:a03:45d::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Wed, 10 May
- 2023 22:00:03 +0000
-Received: from DM8PR11MB5751.namprd11.prod.outlook.com
- ([fe80::34a1:94e9:ec9b:dfe3]) by DM8PR11MB5751.namprd11.prod.outlook.com
- ([fe80::34a1:94e9:ec9b:dfe3%6]) with mapi id 15.20.6387.020; Wed, 10 May 2023
- 22:00:03 +0000
-From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-To: "Justen, Jordan L" <jordan.l.justen@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Souza,
- Jose" <jose.souza@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v9 6/8] drm/i915/uapi/pxp: Add a GET_PARAM
- for PXP
-Thread-Index: AQHZeWLWx68i9/8KnU+Unxd6GaMLfq9LMoYAgAAkQACABWFXAIADQ4+AgAAhMwCAAANTAIAAApGA
-Date: Wed, 10 May 2023 22:00:03 +0000
-Message-ID: <642c1a52bbcc4369c69ec2dbbfd7723c60c1dcb2.camel@intel.com>
-References: <20230427234843.2886921-1-alan.previn.teres.alexis@intel.com>
- <20230427234843.2886921-7-alan.previn.teres.alexis@intel.com>
- <8888e3dff8c1c4fd1702ded911850da30330fbfa.camel@intel.com>
- <168327239043.1096084.14316886882692698230@jljusten-skl>
- <e40f2b8750b39facd98f72cda63bc733ca0319d5.camel@intel.com>
- <0a23ff5be69e3d6b6e3b457c2599bc2f018fc71a.camel@intel.com>
- <168375473641.1096084.7149697040639389794@jljusten-skl>
- <168375545081.1096084.10046830335154502443@jljusten-skl>
-In-Reply-To: <168375545081.1096084.10046830335154502443@jljusten-skl>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.1-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5751:EE_|SJ1PR11MB6156:EE_
-x-ms-office365-filtering-correlation-id: abbb19ea-2990-4a3b-3c97-08db51a1e87a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ePlwNm5BrFIJHF8gasthduNJPnU8DZapM5BmFVSUCAx3H0rpDYocofQ1j7/bDqTj01aO3LBplmqdaHbsPT5xW3el8szKNEIpSq+2VZAmTEJJkAVypbDLgJAsV3UekeiIquAYQKi1hd/cFmQmOQndNfhWWX2g4WtCAFRT+iJUqnl8B7wCrgf/Gd2iV+scUyjkRSZxfYsuxCYVtjUUDHk3zDLxAhZStaLtkcWK6Y5cPCN20Rl4JIVwG5PpuZ97xQ8No8ho6hWcHQQhsOmEpWGt7I8wfM9piw46uISQUp+P/13irtl87MYqQdEP67xgTxIvU1LbyotsIl6+89ljpemv1dQGPYo1Ir2FudsN43CxvMWDX7XHm04ymtHtgG3JAHtkJNZLeDzYeepWWQgb9qcFQCGCsOBlfA12TcmVpqkdycgiMDrs7p/txKvQAqm4FHnkN2n8fVimjdzptsNEzM9GeqXJZsq2V9CDe9RgIDL99ltvDCCCC2U6MO0OKfJCAwQ0GH7jT2fRvfuABlzvlSCJMy6DbYVK6x9MlN+gjpYmXeAhec67ToNMM5DKISxE5c//eRkZePkT+/0xObVhlp7M8DfxXj5LNLvhCNKdm2FIglZrwurzF0yedmQbV6UvC5Qe
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5751.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(366004)(136003)(376002)(346002)(39860400002)(451199021)(64756008)(478600001)(66556008)(66476007)(76116006)(6636002)(110136005)(6486002)(4326008)(66946007)(91956017)(316002)(54906003)(66446008)(36756003)(107886003)(6506007)(86362001)(6512007)(26005)(2616005)(8676002)(41300700001)(8936002)(4744005)(82960400001)(2906002)(5660300002)(186003)(38100700002)(38070700005)(122000001)(71200400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dVprWmxsbUY5WmorSFVnMkVDeFpBUTI2b1o0M3hBUmE4VmYyR3FoK0s0Y0Y0?=
- =?utf-8?B?VUVBSENZb0hSRWRRMXYzZ3BGSldyNVZta0gzRE94UUdlNlY0dFYySmVWTmti?=
- =?utf-8?B?ZjNFdzNwL2pTV2c5NXpJQk5yVzRaS3ZsNnZKbWV1UUptSkw5YmZrWXFVVDJI?=
- =?utf-8?B?U1RRWUdMTmNCc0tzeEQ1SDdrNFhDUEF1ZkE1eEFDdHYyYlBmb3RLZG1zdEdq?=
- =?utf-8?B?UklUZWVkbUdET2RjUVd3aExuWGpkd0tLeWVkM2RoQ3pqVzZjaHdvU3FXTkNZ?=
- =?utf-8?B?dVhVVGhRQmxxNnphUWp5a2lISzFVdXMvRHYvMmh4RXVQYkt3VnY0Ykw1bXRB?=
- =?utf-8?B?ZHdpVWR3SVg4b1A2V05aeXYxRFBQSkJZUUxrTFBFVTVYRDdwOUJqRUQyaDYy?=
- =?utf-8?B?dW1vOEllbi92ZitlbGU1RFU2WHhLNFFhcW9tbm10dGRNeVphSzYvUXVTVzgz?=
- =?utf-8?B?a0orMEZkNjVEL2lReC9oUk5TT2JPRFIwblh3Um0wZ2xnYjZ3eThlMGlzaXRS?=
- =?utf-8?B?eGgrU2dkcVV0SkVQUjYwYVFxdHljZHpTTFBrUERON2VrbG9BdkZ1MG5iRHdo?=
- =?utf-8?B?Nk1iVVFLZUhOUlNPQm9LQzRDcEFqcTRLOVNOSDJLOVduSGNSQ0hnaUVzcys2?=
- =?utf-8?B?UGJ0WDZTUjh1aUtCUmE5NDhNUzluVUIzUnN3dW8wa1d4bURVQzRTYUdPNG41?=
- =?utf-8?B?aUhKRWtJMHVSNUxCWWIzUUhoME9KNGZDTGhMVG1rL2o3VmRwZm1jU1daL3Yy?=
- =?utf-8?B?TkIzZ1hRT2xmbjJEVUJUMXREdThQUHZ0aGt1V0Z6VUJOMUdWeWx0S2d5dEYy?=
- =?utf-8?B?Mk1MT0JtOCttQTIyQ0tLZUxEcll2dWNscmh6SHFVdEU1OVVFVUEyQ1dmWWlL?=
- =?utf-8?B?ZzBvSEU3TWZGR0hhK1JtZmZuRE8rRmk5dkZJcmM4QUdLRytONHVaMGxyREhK?=
- =?utf-8?B?QktjbkZYRzBBdTB4alVBZ3V6cGJ0L3V6citQWENZamdzaUVyRDZkbi9tNExw?=
- =?utf-8?B?NlVNVUpJeXc5c3NkVWhhTm5RYWp3L3oyZTBWZ29iTlhWSmU4a0RTaDVoN1h6?=
- =?utf-8?B?NW9YRjU3dnl0S3dtcXVoUUJsdHRQZ0lLUGpQc2xxWW4weHBmWnM5ZnFla3RC?=
- =?utf-8?B?Mk81Z09YMGFEMEgyZUhmV0pGK245aHk0R2p2Q1pWWWtsQmt3SnFteTQ3WmJi?=
- =?utf-8?B?VnlESndYbGlEb09DWmlKQk5pekdtSUJlT2pJdmZrN3NBeDJYa3ZQcjk4Ulh2?=
- =?utf-8?B?a0FRZnNMdGJZZHZ6ZU55aUJFL3FDZkkvMkkya2lwcmlNUjViQUZvTEtwdzcy?=
- =?utf-8?B?dDF6OVVEZkR1ZlUzRzEremYzc2o3UTIvaVl0SDY3U21IMVEzUGVHTW1CVFU2?=
- =?utf-8?B?SzhSUDgvWCs3TE83NUNQWVJsU1cwL0l2Z3FXa2lkTUZFR3ozbmpkbkUybXFy?=
- =?utf-8?B?NmZ6Z05LdS9QMHM1WW9sVHRCU1RUckUrNHlMaWZ6WmVrd1VYdGppbDZKN3hu?=
- =?utf-8?B?bEtvaEg5YVpTOVhkRmM5QVN1YjJ6VXZaQ0FxejV0RGxNdExHSXk0WUNNeEs4?=
- =?utf-8?B?QVZ0RXlCYTBYZlFvS0pMcFY5cXFJaUJhQkhEVDdzdHBCdVVQNm5DblRhelFa?=
- =?utf-8?B?a2xtTkJ4K21FcVpvVHhLeWxlSE1KU05oVHJ1aFRyNzJETnplL2JzRWk3MHls?=
- =?utf-8?B?U0hubkFWUnpRUXdvQjNVNTJ4TytlQURjWXR5R0J5RWxjczZJcHhjNG42TkEr?=
- =?utf-8?B?MGFrZHRSb2FoSVh4eXJMUVRkeFh3SFZJb2xDOEZoQmdTdG1OeFRNa2g0bTdr?=
- =?utf-8?B?cCtwbUZUNGJpWlJUQ2VnVjN0U2hzR1pvUzRQN3B3c3JLeGJ4K01QOVM3Ull6?=
- =?utf-8?B?bGt6M1d6YXdSNHJ4aU1uSG1jcXkrMFJKMmZVbjIxcHdkcGg3b05ndjNHTFNs?=
- =?utf-8?B?TmdDTXVPN1NZdU0raWZlSkZwQU5rcDBnSlBmL2J0ZUhpS3NRQ0Q0anNzV3Fk?=
- =?utf-8?B?Q294d3NVUWplUitKVTJTRzNNOVd1Q0ZzUTBGQUdmOE1GbVZzVHNDQjJia3M1?=
- =?utf-8?B?ODdBZng4ZEo4a0UramxWaHBZZzVRTHVqeFl1eGozdnlrS0JEaGpqZmQ4Nk9X?=
- =?utf-8?B?TWtQWGRmYWVweEhTdDlnNXNmOWNIblFmKzEza2FwV2l2bEpSdEFzd3BVYVg4?=
- =?utf-8?Q?hX+6nmsgLpTyeJHJAS0F1t4=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <01F1CD8BD3854F4B886B59E2C3AFD36C@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="649894862"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="649894862"
+Received: from gchung-mobl.gar.corp.intel.com (HELO intel.com)
+ ([10.252.37.154])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2023 15:14:19 -0700
+Date: Thu, 11 May 2023 00:14:16 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: fei.yang@intel.com
+Message-ID: <ZFwXOPV9eY0mCSyz@ashyti-mobl2.lan>
+References: <20230509165942.2155-1-fei.yang@intel.com>
+ <20230509165942.2155-5-fei.yang@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5751.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: abbb19ea-2990-4a3b-3c97-08db51a1e87a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 May 2023 22:00:03.4961 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: osfHTasysE4DxLQ0NAWqTPi6EZJOZLCiNudxBB41L6ykgp9wXpX+P6w3kiK9agED9I8VdOF0glrbNY66V/xcylpZ0M7idRloK8xaZK5SIqlRwEyIArigt6RX/GIHsouX
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6156
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v9 6/8] drm/i915/uapi/pxp: Add a GET_PARAM
- for PXP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230509165942.2155-5-fei.yang@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v7 4/4] drm/i915: Allow user to set cache at
+ BO creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,24 +60,263 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: Arkadiusz Hiler <arek@hiler.eu>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Petri Latvala <adrinael@adrinael.net>,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQphbGFuOnNuaXANCg0KPiBUaGlzIGlzIHdoeSBJIGFza2VkIGlmIGl0IHdhcyBpdCB3YXMgImJh
-c2ljYWxseSBjZXJ0YWluIHRoYXQgaW4gYQ0KPiBwcm9kdWN0aW9uIGVudmlyb25tZW50LCB0aGVu
-IGl0IHdpbGwgZXZlbnR1YWxseSByZXR1cm4gMSBtZWFuaW5nIGl0J3MNCj4gcmVhZHkiLiBBbGFu
-J3MgcmVzcG9uc2Ugd2FzIGEgbGl0dGxlIGFtYmlndW91cyBvbiB0aGlzIHBvaW50Lg0KYWxhbjog
-aWYgd2UgZ2V0IGEgJzInIGFuZCBuZXZlciB0cmFuc2l0aW9uIHRvICcxJyAtIHRoYXRzIGEga2Vy
-bmVsIGJ1ZyBvcg0KZmlybXdhcmUgLyBzeXN0ZW0gaXNzdWUuDQoNCj4gQXJndWFibHkgYSB0cmFu
-c2l0aW9uIGZyb20gMiB0byAtRU5PREVWIGNvdWxkIGJlIGNvbnNpZGVyZWQgYSBrZXJuZWwNCj4g
-YnVnLCBidXQgaXQgZG9lc24ndCBzb3VuZCBsaWtlIEFsYW4gd291bGQgYWdyZWUuIDopIE1heWJl
-IEFsYW4gd291bGQNCj4gYWdyZWUgdG8gc2F5aW5nIGl0J3MgZWl0aGVyIGEga2VybmVsLCBvciBz
-eXN0ZW0gaW50ZWdyYXRpb24gYnVnLg0KYWxhbjogYWdyZWVkIC0gdGhhdCB3b3VsZCBiZSBhIGtl
-cm5lbCBidWcgb3IgYSBzeXN0ZW0gaW50ZWdyYXRpb24gYnVnLg0KDQpJIGFsc28gYWdyZWVkIG9u
-IHRoZSBpbml0LWZsb3cgdnMgYXBwLXVzYWdlIHRob3VnaHRzIEpvcmRhbiBoYWQuDQpUaGF0IHNh
-aWQgTUVTQSBoYXMgbWFueSB3YXlzIGl0IGNhbiB1c2UgdGhpcyBVQVBJIGFuZCB3ZSBjYW4gZGlz
-Y3Vzcw0KdGhhdCBvbiB0aGUgTUVTQSBwYXRjaC4NCg0KDQpobW1tLi4gc28uLi4gYWNrIGFueW9u
-ZT8gW2luc2VydCBiaWcgaG9wZWZ1bCBzbWlsZXkgaGVyZV0NCmFwb2xvZ2llcyBpZiBJIGFtIGFz
-a2luZyB0b28gb2Z0ZW4uDQo=
+Hi,
+
+On Tue, May 09, 2023 at 09:59:42AM -0700, fei.yang@intel.com wrote:
+> From: Fei Yang <fei.yang@intel.com>
+> 
+> To comply with the design that buffer objects shall have immutable
+> cache setting through out their life cycle, {set, get}_caching ioctl's
+> are no longer supported from MTL onward. With that change caching
+> policy can only be set at object creation time. The current code
+> applies a default (platform dependent) cache setting for all objects.
+> However this is not optimal for performance tuning. The patch extends
+> the existing gem_create uAPI to let user set PAT index for the object
+> at creation time.
+> The new extension is platform independent, so UMD's can switch to using
+> this extension for older platforms as well, while {set, get}_caching are
+> still supported on these legacy paltforms for compatibility reason.
+> 
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Fei Yang <fei.yang@intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+just for a matter of completeness, this is new uapi is tested
+through the "create-ext-set-pat" test case from the "gem_create"
+igt test[1]. Can any of the igt maintainers give it a look,
+comment and ack?
+
+The mesa merge request is here [2]. As there is a merge request
+in progress, would anyone from mesa be so kind to give an ack to
+this patch, as well?
+
+With the mesa ack in place this patch should be ready to go and
+I'm looking forward to having it in.
+
+Thanks,
+Andi
+
+[1] https://patchwork.freedesktop.org/patch/534955/?series=117185&rev=1
+[2] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22878
+
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_create.c | 36 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c |  6 ++++
+>  include/uapi/drm/i915_drm.h                | 36 ++++++++++++++++++++++
+>  tools/include/uapi/drm/i915_drm.h          | 36 ++++++++++++++++++++++
+>  4 files changed, 114 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> index bfe1dbda4cb7..644a936248ad 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> @@ -245,6 +245,7 @@ struct create_ext {
+>  	unsigned int n_placements;
+>  	unsigned int placement_mask;
+>  	unsigned long flags;
+> +	unsigned int pat_index;
+>  };
+>  
+>  static void repr_placements(char *buf, size_t size,
+> @@ -394,11 +395,39 @@ static int ext_set_protected(struct i915_user_extension __user *base, void *data
+>  	return 0;
+>  }
+>  
+> +static int ext_set_pat(struct i915_user_extension __user *base, void *data)
+> +{
+> +	struct create_ext *ext_data = data;
+> +	struct drm_i915_private *i915 = ext_data->i915;
+> +	struct drm_i915_gem_create_ext_set_pat ext;
+> +	unsigned int max_pat_index;
+> +
+> +	BUILD_BUG_ON(sizeof(struct drm_i915_gem_create_ext_set_pat) !=
+> +		     offsetofend(struct drm_i915_gem_create_ext_set_pat, rsvd));
+> +
+> +	if (copy_from_user(&ext, base, sizeof(ext)))
+> +		return -EFAULT;
+> +
+> +	max_pat_index = INTEL_INFO(i915)->max_pat_index;
+> +
+> +	if (ext.pat_index > max_pat_index) {
+> +		drm_dbg(&i915->drm, "PAT index is invalid: %u\n",
+> +			ext.pat_index);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ext_data->pat_index = ext.pat_index;
+> +
+> +	return 0;
+> +}
+> +
+>  static const i915_user_extension_fn create_extensions[] = {
+>  	[I915_GEM_CREATE_EXT_MEMORY_REGIONS] = ext_set_placements,
+>  	[I915_GEM_CREATE_EXT_PROTECTED_CONTENT] = ext_set_protected,
+> +	[I915_GEM_CREATE_EXT_SET_PAT] = ext_set_pat,
+>  };
+>  
+> +#define PAT_INDEX_NOT_SET	0xffff
+>  /**
+>   * i915_gem_create_ext_ioctl - Creates a new mm object and returns a handle to it.
+>   * @dev: drm device pointer
+> @@ -418,6 +447,7 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
+>  	if (args->flags & ~I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS)
+>  		return -EINVAL;
+>  
+> +	ext_data.pat_index = PAT_INDEX_NOT_SET;
+>  	ret = i915_user_extensions(u64_to_user_ptr(args->extensions),
+>  				   create_extensions,
+>  				   ARRAY_SIZE(create_extensions),
+> @@ -454,5 +484,11 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
+>  	if (IS_ERR(obj))
+>  		return PTR_ERR(obj);
+>  
+> +	if (ext_data.pat_index != PAT_INDEX_NOT_SET) {
+> +		i915_gem_object_set_pat_index(obj, ext_data.pat_index);
+> +		/* Mark pat_index is set by UMD */
+> +		obj->pat_set_by_user = true;
+> +	}
+> +
+>  	return i915_gem_publish(obj, file, &args->size, &args->handle);
+>  }
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> index 46a19b099ec8..97ac6fb37958 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -208,6 +208,12 @@ bool i915_gem_object_can_bypass_llc(struct drm_i915_gem_object *obj)
+>  	if (!(obj->flags & I915_BO_ALLOC_USER))
+>  		return false;
+>  
+> +	/*
+> +	 * Always flush cache for UMD objects at creation time.
+> +	 */
+> +	if (obj->pat_set_by_user)
+> +		return true;
+> +
+>  	/*
+>  	 * EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
+>  	 * possible for userspace to bypass the GTT caching bits set by the
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index dba7c5a5b25e..03c5c314846e 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -3630,9 +3630,13 @@ struct drm_i915_gem_create_ext {
+>  	 *
+>  	 * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
+>  	 * struct drm_i915_gem_create_ext_protected_content.
+> +	 *
+> +	 * For I915_GEM_CREATE_EXT_SET_PAT usage see
+> +	 * struct drm_i915_gem_create_ext_set_pat.
+>  	 */
+>  #define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
+>  #define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
+> +#define I915_GEM_CREATE_EXT_SET_PAT 2
+>  	__u64 extensions;
+>  };
+>  
+> @@ -3747,6 +3751,38 @@ struct drm_i915_gem_create_ext_protected_content {
+>  	__u32 flags;
+>  };
+>  
+> +/**
+> + * struct drm_i915_gem_create_ext_set_pat - The
+> + * I915_GEM_CREATE_EXT_SET_PAT extension.
+> + *
+> + * If this extension is provided, the specified caching policy (PAT index) is
+> + * applied to the buffer object.
+> + *
+> + * Below is an example on how to create an object with specific caching policy:
+> + *
+> + * .. code-block:: C
+> + *
+> + *      struct drm_i915_gem_create_ext_set_pat set_pat_ext = {
+> + *              .base = { .name = I915_GEM_CREATE_EXT_SET_PAT },
+> + *              .pat_index = 0,
+> + *      };
+> + *      struct drm_i915_gem_create_ext create_ext = {
+> + *              .size = PAGE_SIZE,
+> + *              .extensions = (uintptr_t)&set_pat_ext,
+> + *      };
+> + *
+> + *      int err = ioctl(fd, DRM_IOCTL_I915_GEM_CREATE_EXT, &create_ext);
+> + *      if (err) ...
+> + */
+> +struct drm_i915_gem_create_ext_set_pat {
+> +	/** @base: Extension link. See struct i915_user_extension. */
+> +	struct i915_user_extension base;
+> +	/** @pat_index: PAT index to be set */
+> +	__u32 pat_index;
+> +	/** @rsvd: reserved for future use */
+> +	__u32 rsvd;
+> +};
+> +
+>  /* ID of the protected content session managed by i915 when PXP is active */
+>  #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
+>  
+> diff --git a/tools/include/uapi/drm/i915_drm.h b/tools/include/uapi/drm/i915_drm.h
+> index 8df261c5ab9b..8cdcdb5fac26 100644
+> --- a/tools/include/uapi/drm/i915_drm.h
+> +++ b/tools/include/uapi/drm/i915_drm.h
+> @@ -3607,9 +3607,13 @@ struct drm_i915_gem_create_ext {
+>  	 *
+>  	 * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
+>  	 * struct drm_i915_gem_create_ext_protected_content.
+> +	 *
+> +	 * For I915_GEM_CREATE_EXT_SET_PAT usage see
+> +	 * struct drm_i915_gem_create_ext_set_pat.
+>  	 */
+>  #define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
+>  #define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
+> +#define I915_GEM_CREATE_EXT_SET_PAT 2
+>  	__u64 extensions;
+>  };
+>  
+> @@ -3724,6 +3728,38 @@ struct drm_i915_gem_create_ext_protected_content {
+>  	__u32 flags;
+>  };
+>  
+> +/**
+> + * struct drm_i915_gem_create_ext_set_pat - The
+> + * I915_GEM_CREATE_EXT_SET_PAT extension.
+> + *
+> + * If this extension is provided, the specified caching policy (PAT index) is
+> + * applied to the buffer object.
+> + *
+> + * Below is an example on how to create an object with specific caching policy:
+> + *
+> + * .. code-block:: C
+> + *
+> + *      struct drm_i915_gem_create_ext_set_pat set_pat_ext = {
+> + *              .base = { .name = I915_GEM_CREATE_EXT_SET_PAT },
+> + *              .pat_index = 0,
+> + *      };
+> + *      struct drm_i915_gem_create_ext create_ext = {
+> + *              .size = PAGE_SIZE,
+> + *              .extensions = (uintptr_t)&set_pat_ext,
+> + *      };
+> + *
+> + *      int err = ioctl(fd, DRM_IOCTL_I915_GEM_CREATE_EXT, &create_ext);
+> + *      if (err) ...
+> + */
+> +struct drm_i915_gem_create_ext_set_pat {
+> +	/** @base: Extension link. See struct i915_user_extension. */
+> +	struct i915_user_extension base;
+> +	/** @pat_index: PAT index to be set */
+> +	__u32 pat_index;
+> +	/** @rsvd: reserved for future use */
+> +	__u32 rsvd;
+> +};
+> +
+>  /* ID of the protected content session managed by i915 when PXP is active */
+>  #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
+>  
+> -- 
+> 2.25.1
