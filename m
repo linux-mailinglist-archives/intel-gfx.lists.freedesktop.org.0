@@ -2,69 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 236176FE42D
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 20:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7376D6FE439
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 20:53:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90AFC10E50D;
-	Wed, 10 May 2023 18:46:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46C9E10E510;
+	Wed, 10 May 2023 18:53:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
- [IPv6:2607:f8b0:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A11FF10E50A;
- Wed, 10 May 2023 18:46:03 +0000 (UTC)
-Received: by mail-pf1-x434.google.com with SMTP id
- d2e1a72fcca58-64359d9c531so5731645b3a.3; 
- Wed, 10 May 2023 11:46:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1683744362; x=1686336362;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
- :reply-to; bh=5fuvzbzfAPaWz0F0qnb+ng0M3t+DRDPEy+SEvx5Zlpw=;
- b=WaX/lA3Y5RC6vqi8Gstz4xLqZDGmFXeG7a3rgiWsDu5hUwAToAZzkqoYMo1FT7KjnA
- ARUu3pTtOMc7WAoU2YOH9cnEDLX7dlPp5Fk+vl639nloA3cqkDUb96asyf9ZQw15ihXz
- nIf9q2YeVZUyrcSMtyeAkgoRbV+oLyls91sRKUg2xusZZZ3Ihxuq/x0/E/g2898K6qQY
- NY2fYU0eav3eoftoQ/+ak267O1ldNVnrMhtexIpFA1GoP5llXOIGlF9JxtpQi2ToH3Sb
- zXx6m0I8PgYy7bI06tjMymfporVo62Z/NoPWgDzh1wszI52lSrupgJLtKhGceUulCGBv
- Mj0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1683744362; x=1686336362;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=5fuvzbzfAPaWz0F0qnb+ng0M3t+DRDPEy+SEvx5Zlpw=;
- b=ZXv7VsIeuFiYy5oTkblNWidR7W7uHkM/6Wpv8izEVLdLUL4X2eIIePp0XiS6o4d6Fl
- 5RyTe+30Yzm65qdxaNZys7qSR+chQvXnjEvOBqfftb+fltfYUljSOkS8dJJ8VQDOXTnn
- vLu262kV7JYt68RuB6e3r96VYdQETkBRxjzphjOEmXatajodaOa0qbnxdDh/TZ3Qr29e
- Pyf/3f03ysMzub3rEbmbkbRcgmxcd5WJCVsd2uYSwjzNTS4s7Mgk2gM4LyXM+mB7Zugo
- cBb3jBvH2H/IBy6GM0OEt66BvR3x06+8wsOJz+OydineJBv1YyYTlRASbqEn/kM0EaHO
- rnhQ==
-X-Gm-Message-State: AC+VfDxPyj+H6cfHwkB5RBPvHr9NeP4J3RvRlLzhR6JLTUcMpQY3BDBq
- RBBp1R5gWAA6HwbeiGJs+Tg=
-X-Google-Smtp-Source: ACHHUZ5d5WqcqsbpOW8d9gvlIIZZNzXUY94wx3QLBecJ3Q5deydid7nrQYlsF19asRDnaQT3WKzIjA==
-X-Received: by 2002:a17:902:ce86:b0:1ad:c1c2:7d14 with SMTP id
- f6-20020a170902ce8600b001adc1c27d14mr224531plg.46.1683744362257; 
- Wed, 10 May 2023 11:46:02 -0700 (PDT)
-Received: from localhost
- (2603-800c-1a02-1bae-a7fa-157f-969a-4cde.res6.spectrum.com.
- [2603:800c:1a02:1bae:a7fa:157f:969a:4cde])
- by smtp.gmail.com with ESMTPSA id
- i3-20020a17090332c300b001ac4d3d3f72sm4130469plr.296.2023.05.10.11.46.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 10 May 2023 11:46:01 -0700 (PDT)
-Date: Wed, 10 May 2023 08:46:00 -1000
-From: Tejun Heo <tj@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <ZFvmaGNo0buQEUi1@slm.duckdns.org>
-References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
- <ZFVeI2DKQXddKDNl@slm.duckdns.org>
- <4d6fbce3-a676-f648-7a09-6f6dcc4bdb46@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8866210E50C;
+ Wed, 10 May 2023 18:53:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DE3A8A47DF;
+ Wed, 10 May 2023 18:53:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4d6fbce3-a676-f648-7a09-6f6dcc4bdb46@linux.intel.com>
-Subject: Re: [Intel-gfx] [RFC PATCH 0/4] Add support for DRM cgroup memory
- accounting.
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Wed, 10 May 2023 18:53:37 -0000
+Message-ID: <168374481787.7574.3908744087438486084@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230510174550.986965-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20230510174550.986965-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/pxp=3A_Add_MTL_PXP_Support_=28rev11=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,55 +40,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Zefan Li <lizefan.x@bytedance.com>,
- Johannes Weiner <hannes@cmpxchg.org>, cgroups@vger.kernel.org,
- David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+== Series Details ==
 
-On Wed, May 10, 2023 at 04:59:01PM +0200, Maarten Lankhorst wrote:
-> The misc controller is not granular enough. A single computer may have any number of
-> graphics cards, some of them with multiple regions of vram inside a single card.
+Series: drm/i915/pxp: Add MTL PXP Support (rev11)
+URL   : https://patchwork.freedesktop.org/series/112647/
+State : warning
 
-Extending the misc controller to support dynamic keys shouldn't be that
-difficult.
+== Summary ==
 
-...
-> In the next version, I will move all the code for handling the resource limit to
-> TTM's eviction layer, because otherwise it cannot handle the resource limit correctly.
-> 
-> The effect of moving the code to TTM, is that it will make the code even more generic
-> for drivers that have vram and use TTM. When using TTM, you only have to describe your
-> VRAM, update some fields in the TTM manager and (un)register your device with the
-> cgroup handler on (un)load. It's quite trivial to add vram accounting to amdgpu and
-> nouveau. [2]
-> 
-> If you want to add a knob for scheduling weight for a process, it makes sense to
-> also add resource usage as a knob, otherwise the effect of that knob is very
-> limited. So even for Tvrtko's original proposed usecase, it would make sense.
+Error: dim checkpatch failed
+b96ff8f3b576 drm/i915/pxp: Add GSC-CS back-end resource init and cleanup
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:99: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#99: 
+new file mode 100644
 
-It does make sense but unlike Tvrtko's scheduling weights what's being
-proposed doesn't seem to encapsulate GPU memory resource in a generic enough
-manner at least to my untrained eyes. ie. w/ drm.weight, I don't need any
-specific knoweldge of how a specific GPU operates to say "this guy should
-get 2x processing power over that guy". This more or less holds for other
-major resources including CPU, memory and IO. What you're proposing seems a
-lot more tied to hardware details and users would have to know a lot more
-about how memory is configured on that particular GPU.
+total: 0 errors, 1 warnings, 0 checks, 173 lines checked
+997b8ed14d28 drm/i915/pxp: Add MTL hw-plumbing enabling for KCR operation
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:109: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#109: 
+new file mode 100644
 
-Now, if this is inherent to how all, or at least most, GPUs operate, sure,
-but otherwise let's start small in terms of interface and not take up space
-which should be for something universal. If this turns out to be the way,
-expanding to take up the generic interface space isn't difficult.
+total: 0 errors, 1 warnings, 0 checks, 153 lines checked
+d261f1ae7782 drm/i915/pxp: Add MTL helpers to submit Heci-Cmd-Packet to GSC
+73c94ae011c9 drm/i915/pxp: Add GSC-CS backend to send GSC fw messages
+-:109: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#109: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c:43:
++	GEM_BUG_ON(exec_res->pkt_vma->size < (2 * PXP43_MAX_HECI_INOUT_SIZE));
 
-I don't know GPU space so please educate me where I'm wrong.
+total: 0 errors, 1 warnings, 0 checks, 326 lines checked
+c90f5b0aa492 drm/i915/pxp: Add ARB session creation and cleanup
+fa2c398aa4e2 drm/i915/uapi/pxp: Add a GET_PARAM for PXP
+-:24: WARNING:TYPO_SPELLING: 'similiar' may be misspelled - perhaps 'similar'?
+#24: 
+similiar checks.
+^^^^^^^^
 
-Thanks.
+total: 0 errors, 1 warnings, 0 checks, 96 lines checked
+f6ad47c4e352 drm/i915/pxp: On MTL, KCR enabling doesn't wait on tee component
+52fb85b4e4a9 drm/i915/pxp: Enable PXP with MTL-GSC-CS
 
--- 
-tejun
+
