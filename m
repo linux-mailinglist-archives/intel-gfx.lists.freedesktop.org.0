@@ -1,33 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2559C6FDD6B
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 14:06:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0688B6FDD96
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 14:19:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A377510E484;
-	Wed, 10 May 2023 12:06:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07AB210E48A;
+	Wed, 10 May 2023 12:19:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D073810E486;
- Wed, 10 May 2023 12:06:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C9745AA01E;
- Wed, 10 May 2023 12:06:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1598308368345534312=="
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 932E410E484;
+ Wed, 10 May 2023 12:19:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1683721175; x=1715257175;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=qq8fVQ7gjdkMiSHS1W+8BaigREYmj/b60CdMkbnsI0I=;
+ b=CBDtV1bzr+83fBwWuIEvQQLV8Kv9TWFh17JqEKyZ1zucp3YoGCO/51YV
+ 85BTbAnpQJjXEjarPLcVa4X9fAHpUWXjnq6rhW0LeJeq105/Ozm9Gm9FN
+ 0QuDrhQurj3wcADwDAXnAxmxPIdQrLX7oEYiJY4kysSMQiSDDXFdBmM64
+ IAGu35tTsg5xw2uj/GmNK12DNnDqqMK/IcelowWhlEeHptqKGkic7uPsz
+ akFvZ7TjKD7E/LExhY8BnZ9ylRWWUrgKH6ce+32lsmuQgOcKVmqWedGzI
+ 37IAxwEBktUcqRU6GxLO0+Y3hVPaffp2lazYQ31e0twlaoa/x/vtf74Pa Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="330561061"
+X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="330561061"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2023 05:19:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="1029195409"
+X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="1029195409"
+Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
+ by fmsmga005.fm.intel.com with ESMTP; 10 May 2023 05:19:30 -0700
+Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pwin3-0003GQ-2R;
+ Wed, 10 May 2023 12:19:29 +0000
+Date: Wed, 10 May 2023 20:18:37 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Message-ID: <202305102048.2O5u4Wia-lkp@intel.com>
+References: <20230509051403.2748545-3-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Wed, 10 May 2023 12:06:20 -0000
-Message-ID: <168372038079.7573.9097060188483295962@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230510085043.599326-1-jouni.hogander@intel.com>
-In-Reply-To: <20230510085043.599326-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_typo_in_intel=5Ffrontbuffer?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230509051403.2748545-3-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/3] linux/bits.h: Add fixed-width GENMASK
+ and BIT macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,301 +62,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Kevin Brodsky <kevin.brodsky@arm.com>,
+ Masahiro Yamada <masahiroy@kernel.org>, llvm@lists.linux.dev,
+ Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ oe-kbuild-all@lists.linux.dev, Alex Deucher <alexander.deucher@amd.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1598308368345534312==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Lucas,
 
-== Series Details ==
+kernel test robot noticed the following build errors:
 
-Series: drm/i915: Fix typo in intel_frontbuffer
-URL   : https://patchwork.freedesktop.org/series/117567/
-State : success
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.4-rc1 next-20230510]
+[cannot apply to drm-misc/drm-misc-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Lucas-De-Marchi/drm-amd-Remove-wrapper-macros-over-get_u-32-16-8/20230509-131544
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20230509051403.2748545-3-lucas.demarchi%40intel.com
+patch subject: [PATCH 2/3] linux/bits.h: Add fixed-width GENMASK and BIT macros
+config: arm64-randconfig-r021-20230509 (https://download.01.org/0day-ci/archive/20230510/202305102048.2O5u4Wia-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project b0fb98227c90adf2536c9ad644a74d5e92961111)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/dc308f14f76fa2d6c1698a701dfbe0f1b247e6bd
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Lucas-De-Marchi/drm-amd-Remove-wrapper-macros-over-get_u-32-16-8/20230509-131544
+        git checkout dc308f14f76fa2d6c1698a701dfbe0f1b247e6bd
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash lib/
 
-CI Bug Log - changes from CI_DRM_13129_full -> Patchwork_117567v1_full
-====================================================
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202305102048.2O5u4Wia-lkp@intel.com/
 
-Summary
--------
+All errors (new ones prefixed by >>):
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (7 -> 7)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_117567v1_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_ctx_isolation@preservation-s3@bcs0:
-    - shard-apl:          [PASS][1] -> [ABORT][2] ([i915#180])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-apl3/igt@gem_ctx_isolation@preservation-s3@bcs0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-apl6/igt@gem_ctx_isolation@preservation-s3@bcs0.html
-
-  * igt@gem_exec_fair@basic-deadline:
-    - shard-glk:          [PASS][3] -> [FAIL][4] ([i915#2846])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-glk9/igt@gem_exec_fair@basic-deadline.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-glk3/igt@gem_exec_fair@basic-deadline.html
-
-  * igt@i915_pm_rps@reset:
-    - shard-snb:          [PASS][5] -> [DMESG-FAIL][6] ([i915#8319])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-snb4/igt@i915_pm_rps@reset.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-snb2/igt@i915_pm_rps@reset.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - shard-apl:          [PASS][7] -> [DMESG-FAIL][8] ([i915#5334])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-apl2/igt@i915_selftest@live@gt_heartbeat.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-apl6/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_exec@basic-nohangcheck:
-    - {shard-tglu}:       [FAIL][9] ([i915#6268]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-tglu-4/igt@gem_ctx_exec@basic-nohangcheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-tglu-9/igt@gem_ctx_exec@basic-nohangcheck.html
-
-  * igt@gem_eio@hibernate:
-    - {shard-tglu}:       [ABORT][11] ([i915#7953] / [i915#7975] / [i915#8213] / [i915#8398]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-tglu-10/igt@gem_eio@hibernate.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-tglu-9/igt@gem_eio@hibernate.html
-
-  * igt@gem_exec_fair@basic-none-solo@rcs0:
-    - shard-apl:          [FAIL][13] ([i915#2842]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-apl1/igt@gem_exec_fair@basic-none-solo@rcs0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-apl1/igt@gem_exec_fair@basic-none-solo@rcs0.html
-
-  * igt@gem_exec_fair@basic-pace-solo@rcs0:
-    - {shard-rkl}:        [FAIL][15] ([i915#2842]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-rkl-7/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-rkl-2/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-
-  * igt@i915_pm_rpm@dpms-mode-unset-non-lpsp:
-    - {shard-rkl}:        [SKIP][17] ([i915#1397]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-rkl-7/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-rkl-4/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
-    - shard-apl:          [FAIL][19] ([i915#2346]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-apl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-apl7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
-
-  * igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2:
-    - shard-glk:          [FAIL][21] ([i915#79]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-glk2/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-glk5/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2.html
-
-  * {igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2}:
-    - {shard-rkl}:        [FAIL][23] ([i915#8292]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-rkl-6/igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-rkl-4/igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
-  [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
-  [i915#2437]: https://gitlab.freedesktop.org/drm/intel/issues/2437
-  [i915#2527]: https://gitlab.freedesktop.org/drm/intel/issues/2527
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
-  [i915#2846]: https://gitlab.freedesktop.org/drm/intel/issues/2846
-  [i915#2856]: https://gitlab.freedesktop.org/drm/intel/issues/2856
-  [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3955]: https://gitlab.freedesktop.org/drm/intel/issues/3955
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
-  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
-  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
-  [i915#6268]: https://gitlab.freedesktop.org/drm/intel/issues/6268
-  [i915#7742]: https://gitlab.freedesktop.org/drm/intel/issues/7742
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#7953]: https://gitlab.freedesktop.org/drm/intel/issues/7953
-  [i915#7975]: https://gitlab.freedesktop.org/drm/intel/issues/7975
-  [i915#8011]: https://gitlab.freedesktop.org/drm/intel/issues/8011
-  [i915#8213]: https://gitlab.freedesktop.org/drm/intel/issues/8213
-  [i915#8292]: https://gitlab.freedesktop.org/drm/intel/issues/8292
-  [i915#8319]: https://gitlab.freedesktop.org/drm/intel/issues/8319
-  [i915#8398]: https://gitlab.freedesktop.org/drm/intel/issues/8398
+>> lib/zstd/compress/zstd_opt.c:785:9: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
+   typedef U32 (*ZSTD_getAllMatchesFn)(
+   ~~~~~~~ ^
+   int
+   include/vdso/const.h:7:18: note: expanded from macro 'U32'
+   #define U32(x)          (_U32(x))
+                            ^
+   include/uapi/linux/const.h:25:19: note: expanded from macro '_U32'
+   #define _U32(x)         (_AC(x, U))
+                            ^
+   include/uapi/linux/const.h:21:18: note: expanded from macro '_AC'
+   #define _AC(X,Y)        __AC(X,Y)
+                           ^
+   include/uapi/linux/const.h:20:20: note: expanded from macro '__AC'
+   #define __AC(X,Y)       (X##Y)
+                            ^
+   <scratch space>:178:1: note: expanded from here
+   ZSTD_getAllMatchesFnU
+   ^
+>> lib/zstd/compress/zstd_opt.c:851:8: error: unknown type name 'ZSTD_getAllMatchesFn'; did you mean 'ZSTD_getAllMatchesFnU'?
+   static ZSTD_getAllMatchesFn
+          ^~~~~~~~~~~~~~~~~~~~
+          ZSTD_getAllMatchesFnU
+   lib/zstd/compress/zstd_opt.c:785:9: note: 'ZSTD_getAllMatchesFnU' declared here
+   typedef U32 (*ZSTD_getAllMatchesFn)(
+           ^
+   include/vdso/const.h:7:18: note: expanded from macro 'U32'
+   #define U32(x)          (_U32(x))
+                            ^
+   include/uapi/linux/const.h:25:19: note: expanded from macro '_U32'
+   #define _U32(x)         (_AC(x, U))
+                            ^
+   include/uapi/linux/const.h:21:18: note: expanded from macro '_AC'
+   #define _AC(X,Y)        __AC(X,Y)
+                           ^
+   include/uapi/linux/const.h:20:20: note: expanded from macro '__AC'
+   #define __AC(X,Y)       (X##Y)
+                            ^
+   <scratch space>:178:1: note: expanded from here
+   ZSTD_getAllMatchesFnU
+   ^
+>> lib/zstd/compress/zstd_opt.c:854:5: error: use of undeclared identifier 'ZSTD_getAllMatchesFn'
+       ZSTD_getAllMatchesFn const getAllMatchesFns[3][4] = {
+       ^
+>> lib/zstd/compress/zstd_opt.c:862:12: error: use of undeclared identifier 'getAllMatchesFns'
+       return getAllMatchesFns[(int)dictMode][mls - 3];
+              ^
+   lib/zstd/compress/zstd_opt.c:1054:5: error: unknown type name 'ZSTD_getAllMatchesFn'; did you mean 'ZSTD_getAllMatchesFnU'?
+       ZSTD_getAllMatchesFn getAllMatches = ZSTD_selectBtGetAllMatches(ms, dictMode);
+       ^~~~~~~~~~~~~~~~~~~~
+       ZSTD_getAllMatchesFnU
+   lib/zstd/compress/zstd_opt.c:785:9: note: 'ZSTD_getAllMatchesFnU' declared here
+   typedef U32 (*ZSTD_getAllMatchesFn)(
+           ^
+   include/vdso/const.h:7:18: note: expanded from macro 'U32'
+   #define U32(x)          (_U32(x))
+                            ^
+   include/uapi/linux/const.h:25:19: note: expanded from macro '_U32'
+   #define _U32(x)         (_AC(x, U))
+                            ^
+   include/uapi/linux/const.h:21:18: note: expanded from macro '_AC'
+   #define _AC(X,Y)        __AC(X,Y)
+                           ^
+   include/uapi/linux/const.h:20:20: note: expanded from macro '__AC'
+   #define __AC(X,Y)       (X##Y)
+                            ^
+   <scratch space>:178:1: note: expanded from here
+   ZSTD_getAllMatchesFnU
+   ^
+   5 errors generated.
 
 
-Build changes
--------------
+vim +/int +785 lib/zstd/compress/zstd_opt.c
 
-  * Linux: CI_DRM_13129 -> Patchwork_117567v1
+e0c1b49f5b674c Nick Terrell 2020-09-11  784  
+2aa14b1ab2c41a Nick Terrell 2022-10-17 @785  typedef U32 (*ZSTD_getAllMatchesFn)(
+2aa14b1ab2c41a Nick Terrell 2022-10-17  786      ZSTD_match_t*,
+2aa14b1ab2c41a Nick Terrell 2022-10-17  787      ZSTD_matchState_t*,
+2aa14b1ab2c41a Nick Terrell 2022-10-17  788      U32*,
+2aa14b1ab2c41a Nick Terrell 2022-10-17  789      const BYTE*,
+2aa14b1ab2c41a Nick Terrell 2022-10-17  790      const BYTE*,
+2aa14b1ab2c41a Nick Terrell 2022-10-17  791      const U32 rep[ZSTD_REP_NUM],
+2aa14b1ab2c41a Nick Terrell 2022-10-17  792      U32 const ll0,
+2aa14b1ab2c41a Nick Terrell 2022-10-17  793      U32 const lengthToBeat);
+e0c1b49f5b674c Nick Terrell 2020-09-11  794  
+2aa14b1ab2c41a Nick Terrell 2022-10-17  795  FORCE_INLINE_TEMPLATE U32 ZSTD_btGetAllMatches_internal(
+2aa14b1ab2c41a Nick Terrell 2022-10-17  796          ZSTD_match_t* matches,
+e0c1b49f5b674c Nick Terrell 2020-09-11  797          ZSTD_matchState_t* ms,
+e0c1b49f5b674c Nick Terrell 2020-09-11  798          U32* nextToUpdate3,
+2aa14b1ab2c41a Nick Terrell 2022-10-17  799          const BYTE* ip,
+2aa14b1ab2c41a Nick Terrell 2022-10-17  800          const BYTE* const iHighLimit,
+e0c1b49f5b674c Nick Terrell 2020-09-11  801          const U32 rep[ZSTD_REP_NUM],
+e0c1b49f5b674c Nick Terrell 2020-09-11  802          U32 const ll0,
+2aa14b1ab2c41a Nick Terrell 2022-10-17  803          U32 const lengthToBeat,
+2aa14b1ab2c41a Nick Terrell 2022-10-17  804          const ZSTD_dictMode_e dictMode,
+2aa14b1ab2c41a Nick Terrell 2022-10-17  805          const U32 mls)
+e0c1b49f5b674c Nick Terrell 2020-09-11  806  {
+2aa14b1ab2c41a Nick Terrell 2022-10-17  807      assert(BOUNDED(3, ms->cParams.minMatch, 6) == mls);
+2aa14b1ab2c41a Nick Terrell 2022-10-17  808      DEBUGLOG(8, "ZSTD_BtGetAllMatches(dictMode=%d, mls=%u)", (int)dictMode, mls);
+2aa14b1ab2c41a Nick Terrell 2022-10-17  809      if (ip < ms->window.base + ms->nextToUpdate)
+2aa14b1ab2c41a Nick Terrell 2022-10-17  810          return 0;   /* skipped area */
+2aa14b1ab2c41a Nick Terrell 2022-10-17  811      ZSTD_updateTree_internal(ms, ip, iHighLimit, mls, dictMode);
+2aa14b1ab2c41a Nick Terrell 2022-10-17  812      return ZSTD_insertBtAndGetAllMatches(matches, ms, nextToUpdate3, ip, iHighLimit, dictMode, rep, ll0, lengthToBeat, mls);
+2aa14b1ab2c41a Nick Terrell 2022-10-17  813  }
+2aa14b1ab2c41a Nick Terrell 2022-10-17  814  
+2aa14b1ab2c41a Nick Terrell 2022-10-17  815  #define ZSTD_BT_GET_ALL_MATCHES_FN(dictMode, mls) ZSTD_btGetAllMatches_##dictMode##_##mls
+2aa14b1ab2c41a Nick Terrell 2022-10-17  816  
+2aa14b1ab2c41a Nick Terrell 2022-10-17  817  #define GEN_ZSTD_BT_GET_ALL_MATCHES_(dictMode, mls)            \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  818      static U32 ZSTD_BT_GET_ALL_MATCHES_FN(dictMode, mls)(      \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  819              ZSTD_match_t* matches,                             \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  820              ZSTD_matchState_t* ms,                             \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  821              U32* nextToUpdate3,                                \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  822              const BYTE* ip,                                    \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  823              const BYTE* const iHighLimit,                      \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  824              const U32 rep[ZSTD_REP_NUM],                       \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  825              U32 const ll0,                                     \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  826              U32 const lengthToBeat)                            \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  827      {                                                          \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  828          return ZSTD_btGetAllMatches_internal(                  \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  829                  matches, ms, nextToUpdate3, ip, iHighLimit,    \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  830                  rep, ll0, lengthToBeat, ZSTD_##dictMode, mls); \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  831      }
+2aa14b1ab2c41a Nick Terrell 2022-10-17  832  
+2aa14b1ab2c41a Nick Terrell 2022-10-17  833  #define GEN_ZSTD_BT_GET_ALL_MATCHES(dictMode)  \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  834      GEN_ZSTD_BT_GET_ALL_MATCHES_(dictMode, 3)  \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  835      GEN_ZSTD_BT_GET_ALL_MATCHES_(dictMode, 4)  \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  836      GEN_ZSTD_BT_GET_ALL_MATCHES_(dictMode, 5)  \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  837      GEN_ZSTD_BT_GET_ALL_MATCHES_(dictMode, 6)
+2aa14b1ab2c41a Nick Terrell 2022-10-17  838  
+2aa14b1ab2c41a Nick Terrell 2022-10-17  839  GEN_ZSTD_BT_GET_ALL_MATCHES(noDict)
+2aa14b1ab2c41a Nick Terrell 2022-10-17  840  GEN_ZSTD_BT_GET_ALL_MATCHES(extDict)
+2aa14b1ab2c41a Nick Terrell 2022-10-17  841  GEN_ZSTD_BT_GET_ALL_MATCHES(dictMatchState)
+2aa14b1ab2c41a Nick Terrell 2022-10-17  842  
+2aa14b1ab2c41a Nick Terrell 2022-10-17  843  #define ZSTD_BT_GET_ALL_MATCHES_ARRAY(dictMode)  \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  844      {                                            \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  845          ZSTD_BT_GET_ALL_MATCHES_FN(dictMode, 3), \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  846          ZSTD_BT_GET_ALL_MATCHES_FN(dictMode, 4), \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  847          ZSTD_BT_GET_ALL_MATCHES_FN(dictMode, 5), \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  848          ZSTD_BT_GET_ALL_MATCHES_FN(dictMode, 6)  \
+2aa14b1ab2c41a Nick Terrell 2022-10-17  849      }
+2aa14b1ab2c41a Nick Terrell 2022-10-17  850  
+2aa14b1ab2c41a Nick Terrell 2022-10-17 @851  static ZSTD_getAllMatchesFn
+2aa14b1ab2c41a Nick Terrell 2022-10-17  852  ZSTD_selectBtGetAllMatches(ZSTD_matchState_t const* ms, ZSTD_dictMode_e const dictMode)
+e0c1b49f5b674c Nick Terrell 2020-09-11  853  {
+2aa14b1ab2c41a Nick Terrell 2022-10-17 @854      ZSTD_getAllMatchesFn const getAllMatchesFns[3][4] = {
+2aa14b1ab2c41a Nick Terrell 2022-10-17  855          ZSTD_BT_GET_ALL_MATCHES_ARRAY(noDict),
+2aa14b1ab2c41a Nick Terrell 2022-10-17  856          ZSTD_BT_GET_ALL_MATCHES_ARRAY(extDict),
+2aa14b1ab2c41a Nick Terrell 2022-10-17  857          ZSTD_BT_GET_ALL_MATCHES_ARRAY(dictMatchState)
+2aa14b1ab2c41a Nick Terrell 2022-10-17  858      };
+2aa14b1ab2c41a Nick Terrell 2022-10-17  859      U32 const mls = BOUNDED(3, ms->cParams.minMatch, 6);
+2aa14b1ab2c41a Nick Terrell 2022-10-17  860      assert((U32)dictMode < 3);
+2aa14b1ab2c41a Nick Terrell 2022-10-17  861      assert(mls - 3 < 4);
+2aa14b1ab2c41a Nick Terrell 2022-10-17 @862      return getAllMatchesFns[(int)dictMode][mls - 3];
+e0c1b49f5b674c Nick Terrell 2020-09-11  863  }
+e0c1b49f5b674c Nick Terrell 2020-09-11  864  
 
-  CI-20190529: 20190529
-  CI_DRM_13129: 451e49cfbaa90720149e63f4fa9c7824013c783d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7285: d1cbf2bad9c2664ab8bd3bd0946510a52800912f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_117567v1: 451e49cfbaa90720149e63f4fa9c7824013c783d @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/index.html
-
---===============1598308368345534312==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix typo in intel_frontbuffer</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117567/">https://patchwork.freedesktop.org/series/117567/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13129_full -&gt; Patchwork_117567v1_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_117567v1_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_isolation@preservation-s3@bcs0:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-apl3/igt@gem_ctx_isolation@preservation-s3@bcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-apl6/igt@gem_ctx_isolation@preservation-s3@bcs0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-deadline:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-glk9/igt@gem_exec_fair@basic-deadline.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-glk3/igt@gem_exec_fair@basic-deadline.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2846">i915#2846</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@reset:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-snb4/igt@i915_pm_rps@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-snb2/igt@i915_pm_rps@reset.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8319">i915#8319</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-apl2/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-apl6/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_exec@basic-nohangcheck:</p>
-<ul>
-<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-tglu-4/igt@gem_ctx_exec@basic-nohangcheck.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6268">i915#6268</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-tglu-9/igt@gem_ctx_exec@basic-nohangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@hibernate:</p>
-<ul>
-<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-tglu-10/igt@gem_eio@hibernate.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7953">i915#7953</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7975">i915#7975</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8213">i915#8213</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8398">i915#8398</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-tglu-9/igt@gem_eio@hibernate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none-solo@rcs0:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-apl1/igt@gem_exec_fair@basic-none-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-apl1/igt@gem_exec_fair@basic-none-solo@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
-<ul>
-<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-rkl-7/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-rkl-2/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@dpms-mode-unset-non-lpsp:</p>
-<ul>
-<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-rkl-7/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-rkl-4/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-apl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-apl7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-glk2/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/79">i915#79</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-glk5/igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a2.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2}:</p>
-<ul>
-<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13129/shard-rkl-6/igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8292">i915#8292</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117567v1/shard-rkl-4/igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13129 -&gt; Patchwork_117567v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13129: 451e49cfbaa90720149e63f4fa9c7824013c783d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7285: d1cbf2bad9c2664ab8bd3bd0946510a52800912f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_117567v1: 451e49cfbaa90720149e63f4fa9c7824013c783d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============1598308368345534312==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
