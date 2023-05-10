@@ -1,48 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF1C6FE2DF
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 18:59:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A7C76FE369
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 May 2023 19:46:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 668A610E4E3;
-	Wed, 10 May 2023 16:59:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 658B510E4DF;
+	Wed, 10 May 2023 17:45:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6510410E4E3;
- Wed, 10 May 2023 16:59:46 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EA9C10E4D5;
+ Wed, 10 May 2023 17:45:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683737986; x=1715273986;
- h=date:from:to:cc:subject:message-id;
- bh=MXRfxmrT/wZKUWHy5Or6HUXzKTlt4SQQ1vA1rzDXv2o=;
- b=Ev77SsQ2sHIF52j+RZeBytvGWMyoCYVP/w1n4qwKTvCaz3cnHGj/Vgj2
- wcrFr7pSMUltHAicHL9zic5HbxTgw7VBZ1Daz9/zPqlMPR5pKAmJI9J3R
- /LU4VKUGwNnw6DnHWcqL0I3b1LVefpsBsOc4flByiOAJqfeSNhS1clOrC
- vqbp+7JrUOObCuK4vYXllTFUXoMv3QvP4ZiVliHFKFCodk0IoImnVvmGj
- glJ92HCfwdfej1Qg75Bnjj3S1CSP2LrC6gNcM0JfkhdhjxwTz6cFPI93A
- 30aWaLnhy3hUzOYhXrQujSmyKcLZPJ+/woh6xAGOeFLtq8FIyybbRTq3k g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="350297725"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="350297725"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 09:59:42 -0700
+ t=1683740753; x=1715276753;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=CQ9ngpe4EwczcDcFiL1J8UQyCvFsqdMAu7lp2iAtvCg=;
+ b=MnjidcjkzOUChGtzgDjA/gvxvuqG2XrYCNd3Fr7YPpPa2mH23iHwuvRy
+ lXKDzVb+ANG4JWSyX2XOU1qrl0cF65Le9ba0WeAAP7oTpGFGR5+4Npsg5
+ MihMKLW2oM9flmiaZdzJDDm4RQ8a8qODoE35aFH5OpAcg52p07Jfh2Tmu
+ 2Q0V3jxsFIP/BAePrN9RYclwkuyQzgp5LJcp0cqCbg/NoB9UmNIuvPXcA
+ NacoxKerlfOaRogoHgwTVlKy+rxW+M3A2eoK57cJYnheefF2rGFzyfsQ5
+ rxpYEp9Q30+Krd3jTUD3F2t/QE70mpu2menhDGFyQmzKyAczqtG2FxLlA A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="353352046"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="353352046"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2023 10:45:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="789010691"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="789010691"
-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
- by FMSMGA003.fm.intel.com with ESMTP; 10 May 2023 09:59:40 -0700
-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pwnAB-0003Rm-1f;
- Wed, 10 May 2023 16:59:39 +0000
-Date: Thu, 11 May 2023 00:59:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Message-ID: <20230510165934.5Zgh4%lkp@intel.com>
-User-Agent: s-nail v14.9.24
-Subject: [Intel-gfx] [linux-next:master] BUILD SUCCESS WITH WARNING
- 578215f3e21c472c08d70b8796edf1ac58f88578
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="945791907"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="945791907"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by fmsmga006.fm.intel.com with ESMTP; 10 May 2023 10:45:51 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 10 May 2023 10:45:42 -0700
+Message-Id: <20230510174550.986965-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.39.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v10 0/8] drm/i915/pxp: Add MTL PXP Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,269 +54,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-spi@vger.kernel.org, linux-xfs@vger.kernel.org,
- Linux Memory Management List <linux-mm@kvack.org>, linux-ext4@vger.kernel.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 578215f3e21c472c08d70b8796edf1ac58f88578  Add linux-next specific files for 20230510
+This series enables PXP on MTL. On ADL/TGL platforms, we rely on
+the mei driver via the i915-mei PXP component interface to establish
+a connection to the security firmware via the HECI device interface.
+That interface is used to create and teardown the PXP ARB session.
+PXP ARB session is created when protected contexts are created.
 
-Warning reports:
+In this series, the front end behaviors and interfaces (uapi) remain
+the same. We add backend support for MTL but with MTL we directly use
+the GSC-CS engine on the MTL GPU device to send messages to the PXP
+(a.k.a. GSC a.k.a graphics-security) firmware. With MTL, the format
+of the message is slightly different with a 2-layer packetization
+that is explained in detail in Patch #3. Also, the second layer
+which is the actual PXP firmware packet is now rev'd to version 4.3
+for MTL that is defined in Patch #5.
 
-https://lore.kernel.org/oe-kbuild-all/202304140707.CoH337Ux-lkp@intel.com
+Take note that Patch #4 adds the buffer allocation and gsccs-send-
+message without actually being called by the arb-creation code
+which gets added in Patch #5. Additionally, a seperate series being
+reviewed is introducing a change for session teardown (in pxp front-
+end layer that will need backend support by both legacy and gsccs).
+If we squash all of these together (buffer-alloc, send-message,
+arb-creation and, in future, session-termination), the single patch
+will be rather large. That said, we are keeping Patch #4 and #5
+separate for now, but at merge time, we can squash them together
+if maintainer requires it.
 
-Warning: (recently discovered and may have been fixed)
+Changes from prior revs:
+   v1 : - fixed when building with CONFIG_PXP disabled.
+        - more alignment with gsc_mtl_header structure from the HDCP
+   v2 : - (all following changes as per reviews from Daniele)
+        - squashed Patch #1 from v1 into the next one.
+        - replaced unnecessary "uses_gsccs" boolean in the pxp
+          with "HAS_ENGINE(pxp->ctrl_gt, GSC0)".
+        - moved the stashing of gsccs resources from a dynamically
+          allocated opaque handle to an explicit sub-struct in
+          'struct intel_pxp'.
+        - moved the buffer object allocations from Patch #1 of this
+          series to Patch #5 (but keep the context allocation in
+          Patch #1).
+        - used the kernel default ppgtt for the gsccs context.
+        - optimized the buffer allocation and deallocation code
+          and drop the need to stash the drm_i915_gem_object.
+        - use a macro with the right mmio reg base (depending
+          on root-tile vs media-tile) along with common relative
+          offset to access all KCR registers thus minimizing
+          changes to the KCR register access codes.
+        - fixed bugs in the heci packet request submission code
+          in Patch #3 (of this series)
+        - add comments in the mtl-gsc-heci-header regarding the
+          host-session-handle.
+        - re-use tee-mutex instead of introducing a gsccs specific
+          cmd mutex.
+        - minor cosmetic improvements in Patch #5.
+	- before creating arb session, ensure intel_pxp_start
+          first ensures the GSC FW is up and running.
+        - use 2 second timeout for the pending-bit scenario when
+          sending command to GSC-FW as per specs.
+        - simplify intel_pxp_get_irq_gt with addition comments
+        - redo Patch #7 to minimize the changes without introducing
+          a common  abstraction helper for suspend/resume/init/fini
+          codes that have to change the kcr power state.
+   v3 : - rebase onto latest drm-tip with the updated firmware
+          session invalidation flow
+        - on Patch#1: move 'mutex_init(&pxp->tee_mutex)' to a common
+          init place in intel_pxp_init since its needed everywhere
+          (Daniele)
+        - on Patch#1: remove unneccasary "ce->vm = i915_vm_get(vm);"
+          (Daniele)
+        - on Patch#2: move the introduction of host_session_handle to
+          Patch#4 where it starts getting used.
+        - on Patch#4: move host-session-handle initialization to the
+          allocate-resources during gsccs-init (away from Patch#5)
+          and add the required call to PXP-firmware to cleanup the
+          host-session-handle in destroy-resources during gsccs-fini
+        - on Patch#5: add dispatching of arb session termination
+          firmware cmd during session teardown (as per latest
+          upstream flows)
+   v4 : - Added proper initialization and cleanup of host-session-handle
+          that the gsc firmware expects.
+        - Fix the stream-session-key invalidation instruction for MTL.
+   v5 : - In Patch #4, move the tee_mutex locking to after we check for
+          valid vma allocations.
+        - In Patch #5, wait for intel_huc_is_authenticated instead of
+          intel_uc_fw_is_running(gsc-fw) before starting ARB session.
+        - In Patch #5, increase the necessary timeouts at the top-level
+          (PXP arb session creation / termination) to accomodate SLA of
+          GSC firmware when busy with pending-bit responses.
+        - In Patch #5, remove redundant host_session_handle init as
+          we need a single handle that is already initialized during
+          execution_resource init in Patch #4.
+        - In Patch #8, increase the wait timeout for termination to
+          align with the same SLA.
+   v6 : - (multiple patches) always name variables of type struct
+          gsccs_session_resources * as 'exec_res'. (Daniele).
+        - In gsccs_allocate_execution_resource, always put and take the
+          contexts vm to enforce its the default pxp->ctrl_gt->vm.
+          (Daniele)
+        - In Patch #3: Rebase with the upstream-merged version of the
+          intel_gsc_uc_heci_cmd_submit.* files that was part of the hdcp
+          merge (adding only the difference of the non-priv submision).
+          Fix the non-priv submission helper to use the ww-aware versions
+          of request creation + submission (some re-ordeing and calling
+          i915_gem_ww_ctx_init and intel_context_pin_ww). (Alan)
+        - In Patch #4: Misc coding styling improvements (Daniele).
+          Replace PXP43_MAX_HECI_IN_SIZE and PXP43_MAX_HECI_OUT_SIZE
+          with PXP43_MAX_HECI_INOUT_SIZE to simplify the size checking.
+          Clear the MTL-GSC-HECI header's validity marker of the output
+          packet before submission to avoid stale values (Daniele).
+          Fix a bug with the gsccs_allocate_execution_resource error
+          condition bailing out when out of mem (Daniele).
+        - In Patch #5: Add intel_gsc_uc_fw_proxy_init_done when starting
+          arb session (in front-end code) when called on platforms with GSC
+          engine (Daniele). Update the fw-response-error reporting to
+          match what is being merged upstream for the ADL case (Daniele).
+        - Old Patch #6: Remove this patch completely. We don't need to
+          use the root-gt's uncore to handle KCR irq / power registers.
+          (Daniele).
+        - New Patch #6: Update the documentation in i915 UAPI for PXP
+          context creation to include additional error meanings that was
+          always there in upstream code but just never documented. (Alan).
+          Add a GET_PARAM for PXP support so that UMDs won't have to create
+          a PXP context to know if it's available since that method would
+          suffer a longer delay if called too early in kernel startup
+          because of the additional dependencies on devices with GSC engine.
+          (Tvrtko, Alan, Rodrigo, Lionel).
+        - Patch #7: Move intel_pxp_init_hw into backend code to be
+          consistent with legacy mei-pxp based tee transport. (Daniele).
+        - Patch #8: With 3 places now being aware of mei-pxp vs gsccs-pxp
+          difference in timeouts for round trip delays when communicating
+          with pxp firmware (getting fw commands sent and receiving the
+          reply), add a helper for this. (Daniele)
+   v7 : - In Patch #3: Minor cosmetics and remove unnecessary
+          EXEC_OBJECT_WRITE when moving bb to active. (Daniele)
+        - In Patch #4: Minor cosmetic fixes. (Daniele)
+        - In Patch #5: Pull in the fixups for missing documentation of
+          legacy UAPI behavior of PXP context creation errors values
+          from Patch #6 to Patch #5. Also, add a comment to explain
+          why GSC_REPLY_LATENCY_MS is 210 milisec. (Daniele)
+        - In Patch #6: See first change of Patch #5.
+   v8 : - Tweaked the GET_PARAM for PXP so that positive values returned
+          user-space can differentiate "PXP is supported and ready" vs
+          "PXP is supported but will be ready soon" (Jorden)
+   v9 : - Rebased to the latest drm-tip to resolve rebase conflicts.
+          All patches reviewed, waiting on Ack from UMD side.
 
-drivers/base/regmap/regcache-maple.c:113:23: warning: 'lower_index' is used uninitialized [-Wuninitialized]
-drivers/base/regmap/regcache-maple.c:113:36: warning: 'lower_last' is used uninitialized [-Wuninitialized]
-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:6395:21: warning: variable 'count' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:499:13: warning: variable 'j' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c:48:38: warning: unused variable 'golden_settings_gc_9_4_3' [-Wunused-const-variable]
+Alan Previn (8):
+  drm/i915/pxp: Add GSC-CS back-end resource init and cleanup
+  drm/i915/pxp: Add MTL hw-plumbing enabling for KCR operation
+  drm/i915/pxp: Add MTL helpers to submit Heci-Cmd-Packet to GSC
+  drm/i915/pxp: Add GSC-CS backend to send GSC fw messages
+  drm/i915/pxp: Add ARB session creation and cleanup
+  drm/i915/uapi/pxp: Add a GET_PARAM for PXP
+  drm/i915/pxp: On MTL, KCR enabling doesn't wait on tee component
+  drm/i915/pxp: Enable PXP with MTL-GSC-CS
 
-Unverified Warning (likely false positive, please contact us if interested):
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   3 +-
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c | 102 ++++
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h |  26 +-
+ drivers/gpu/drm/i915/i915_getparam.c          |   7 +
+ drivers/gpu/drm/i915/i915_pci.c               |   1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          | 102 +++-
+ drivers/gpu/drm/i915/pxp/intel_pxp.h          |   2 +
+ .../drm/i915/pxp/intel_pxp_cmd_interface_43.h |  24 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c  |   6 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c    | 444 ++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h    |  43 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |   3 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_regs.h     |  27 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.c  |  25 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      |   2 -
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  20 +
+ include/uapi/drm/i915_drm.h                   |  34 ++
+ 18 files changed, 831 insertions(+), 41 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_regs.h
 
-drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:648:3-9: preceding lock on line 640
-drivers/gpu/drm/i915/display/intel_psr.c:2999:0-23: WARNING: i915_edp_psr_debug_fops should be defined with DEFINE_DEBUGFS_ATTRIBUTE
-fs/ext4/super.c:4724 ext4_check_feature_compatibility() warn: bitwise AND condition is false here
-fs/ext4/verity.c:316 ext4_get_verity_descriptor_location() error: uninitialized symbol 'desc_size_disk'.
-fs/xfs/scrub/fscounters.c:459 xchk_fscounters() warn: ignoring unreachable code.
 
-Warning ids grouped by kconfigs:
-
-gcc_recent_errors
-|-- alpha-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arc-allyesconfig
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_index-is-used-uninitialized
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_last-is-used-uninitialized
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arc-randconfig-r025-20230509
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_index-is-used-uninitialized
-|   `-- drivers-base-regmap-regcache-maple.c:warning:lower_last-is-used-uninitialized
-|-- arm-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arm-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arm64-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- csky-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- i386-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- ia64-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- ia64-randconfig-s052-20230509
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- loongarch-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- loongarch-defconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- loongarch-randconfig-c023-20230509
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- loongarch-randconfig-s051-20230509
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- microblaze-randconfig-m031-20230509
-|   `-- fs-ext4-super.c-ext4_check_feature_compatibility()-warn:bitwise-AND-condition-is-false-here
-|-- microblaze-randconfig-r035-20230509
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- microblaze-randconfig-s032-20230509
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- mips-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- mips-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- mips-randconfig-c042-20230510
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:preceding-lock-on-line
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- mips-randconfig-m041-20230509
-|   |-- fs-ext4-super.c-ext4_check_feature_compatibility()-warn:bitwise-AND-condition-is-false-here
-|   |-- fs-ext4-verity.c-ext4_get_verity_descriptor_location()-error:uninitialized-symbol-desc_size_disk-.
-|   `-- fs-xfs-scrub-fscounters.c-xchk_fscounters()-warn:ignoring-unreachable-code.
-|-- powerpc-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- powerpc-randconfig-s042-20230509
-|   `-- drivers-spi-spi-fsl-cpm.c:sparse:sparse:incorrect-type-in-assignment-(different-base-types)-expected-unsigned-short-usertype-got-restricted-__le16
-|-- riscv-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- s390-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- sparc-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- sparc-randconfig-c041-20230510
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:preceding-lock-on-line
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- x86_64-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-`-- x86_64-randconfig-c002
-    `-- drivers-gpu-drm-i915-display-intel_psr.c:WARNING:i915_edp_psr_debug_fops-should-be-defined-with-DEFINE_DEBUGFS_ATTRIBUTE
-clang_recent_errors
-|-- powerpc-randconfig-r023-20230509
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:unused-variable-golden_settings_gc_9_4_3
-`-- riscv-randconfig-r042-20230509
-    `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:unused-variable-golden_settings_gc_9_4_3
-
-elapsed time: 771m
-
-configs tested: 133
-configs skipped: 4
-
-tested configs:
-alpha                            allyesconfig   gcc  
-alpha        buildonly-randconfig-r002-20230509   gcc  
-alpha        buildonly-randconfig-r006-20230510   gcc  
-alpha                               defconfig   gcc  
-arc                              allyesconfig   gcc  
-arc          buildonly-randconfig-r002-20230510   gcc  
-arc                                 defconfig   gcc  
-arc                        nsim_700_defconfig   gcc  
-arc                  randconfig-r022-20230509   gcc  
-arc                  randconfig-r025-20230509   gcc  
-arc                  randconfig-r043-20230509   gcc  
-arm                              allmodconfig   gcc  
-arm                              allyesconfig   gcc  
-arm                     am200epdkit_defconfig   clang
-arm                                 defconfig   gcc  
-arm                          exynos_defconfig   gcc  
-arm                           h3600_defconfig   gcc  
-arm                         lpc32xx_defconfig   clang
-arm                        neponset_defconfig   clang
-arm                  randconfig-r005-20230509   clang
-arm                  randconfig-r046-20230509   gcc  
-arm                           sama5_defconfig   gcc  
-arm                          sp7021_defconfig   clang
-arm                    vt8500_v6_v7_defconfig   clang
-arm64                            allyesconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                randconfig-r034-20230509   gcc  
-csky         buildonly-randconfig-r003-20230510   gcc  
-csky                                defconfig   gcc  
-hexagon      buildonly-randconfig-r004-20230510   clang
-hexagon              randconfig-r041-20230509   clang
-hexagon              randconfig-r045-20230509   clang
-i386                             allyesconfig   gcc  
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                          randconfig-a001   gcc  
-i386                          randconfig-a002   clang
-i386                          randconfig-a003   gcc  
-i386                          randconfig-a004   clang
-i386                          randconfig-a005   gcc  
-i386                          randconfig-a006   clang
-i386                          randconfig-a011   clang
-i386                          randconfig-a012   gcc  
-i386                          randconfig-a013   clang
-i386                          randconfig-a014   gcc  
-i386                          randconfig-a015   clang
-i386                          randconfig-a016   gcc  
-ia64                             allmodconfig   gcc  
-ia64                                defconfig   gcc  
-ia64                 randconfig-r014-20230509   gcc  
-ia64                 randconfig-r033-20230509   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch    buildonly-randconfig-r001-20230510   gcc  
-loongarch                           defconfig   gcc  
-m68k                             allmodconfig   gcc  
-m68k                                defconfig   gcc  
-m68k                       m5475evb_defconfig   gcc  
-m68k                            mac_defconfig   gcc  
-m68k                        stmark2_defconfig   gcc  
-microblaze           randconfig-r001-20230509   gcc  
-microblaze           randconfig-r003-20230509   gcc  
-microblaze           randconfig-r035-20230509   gcc  
-mips                             allmodconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                 decstation_r4k_defconfig   gcc  
-mips                     loongson2k_defconfig   clang
-mips                      malta_kvm_defconfig   clang
-mips                 randconfig-r015-20230509   gcc  
-nios2                               defconfig   gcc  
-nios2                randconfig-r006-20230509   gcc  
-nios2                randconfig-r031-20230509   gcc  
-nios2                randconfig-r032-20230509   gcc  
-openrisc             randconfig-r004-20230509   gcc  
-openrisc             randconfig-r011-20230509   gcc  
-parisc                              defconfig   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                   currituck_defconfig   gcc  
-powerpc                       eiger_defconfig   gcc  
-powerpc                    klondike_defconfig   gcc  
-powerpc                      makalu_defconfig   gcc  
-powerpc                 mpc8560_ads_defconfig   clang
-powerpc                  mpc885_ads_defconfig   clang
-powerpc                      ppc40x_defconfig   gcc  
-powerpc              randconfig-r023-20230509   clang
-powerpc              randconfig-r024-20230509   clang
-powerpc              randconfig-r026-20230509   clang
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv                               defconfig   gcc  
-riscv                randconfig-r013-20230509   clang
-riscv                randconfig-r042-20230509   clang
-riscv                          rv32_defconfig   gcc  
-s390                             alldefconfig   clang
-s390                             allmodconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-s390                 randconfig-r002-20230509   gcc  
-s390                 randconfig-r044-20230509   clang
-sh                               allmodconfig   gcc  
-sh                        edosk7705_defconfig   gcc  
-sh                   randconfig-r012-20230509   gcc  
-sh                   randconfig-r016-20230509   gcc  
-sh                   rts7751r2dplus_defconfig   gcc  
-sh                   sh7724_generic_defconfig   gcc  
-sh                            shmin_defconfig   gcc  
-sparc                            alldefconfig   gcc  
-sparc                               defconfig   gcc  
-sparc                randconfig-r036-20230509   gcc  
-um                             i386_defconfig   gcc  
-um                           x86_64_defconfig   gcc  
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64                              defconfig   gcc  
-x86_64                                  kexec   gcc  
-x86_64                        randconfig-a001   clang
-x86_64                        randconfig-a002   gcc  
-x86_64                        randconfig-a003   clang
-x86_64                        randconfig-a004   gcc  
-x86_64                        randconfig-a005   clang
-x86_64                        randconfig-a006   gcc  
-x86_64                        randconfig-a011   gcc  
-x86_64                        randconfig-a012   clang
-x86_64                        randconfig-a013   gcc  
-x86_64                        randconfig-a014   clang
-x86_64                        randconfig-a015   gcc  
-x86_64                        randconfig-a016   clang
-x86_64                        randconfig-k001   clang
-x86_64                               rhel-8.3   gcc  
-xtensa                  audio_kc705_defconfig   gcc  
-xtensa       buildonly-randconfig-r005-20230510   gcc  
-
+base-commit: 92b7f1c42fc99ff1bad5e18d6b1aaa585f134d47
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+2.39.0
+
