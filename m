@@ -1,50 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CED56FEF91
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 12:00:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ED546FEF93
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 12:03:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C08E10E5CD;
-	Thu, 11 May 2023 10:00:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DF9E10E5C8;
+	Thu, 11 May 2023 10:03:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4B7A10E5C7
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 10:00:29 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2066810E5C8;
+ Thu, 11 May 2023 10:03:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683799229; x=1715335229;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RTxvA4+MYWALoPczAmN5gdZRkPOaFKyFeOhHr49lIgQ=;
- b=Va4XGHznj12fSC/MTmJmehEhKzE7xJSfac4zQQubU797yQbOPTol1QBp
- R90yWwLKp9cenlWBftad9KfpvAJKaRLTAmsCSm555yOmH1i6NrsXLRtyU
- 7Kov3xt0y2vLSG7zd4GUFeUTN69gjDsIWFxzBmsDXGBJYbXTrLYYfCgpq
- o4bXKdiaKVys4Mo5qjzBvUNr0RK4+LS8BZYhfgkd7LbVZHOIC2wpsdu6q
- X60tRW4y4YfesLR8FT0R5sm22Qqeqq0mHcbvX+4kW+q+FEs27XsmBWerf
- MmmZ6JoE3KYRLh2STnsyQ9h9r9iV8jH0/Vr2fIFmiS0EK3ZBUNgKw+s4P Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="349294276"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="349294276"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 03:00:29 -0700
+ t=1683799394; x=1715335394;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=QlT9To/OXd8EOJgtiTI8cBaN4OaCchdOcuG26O4bS00=;
+ b=U/4pwlahc+E5N5fH9o27ywR+K5AqXm0VyqaXYUuenoqn1HVbKF0jwsfu
+ sCokzkYOIQ8v2tbS0/TvUoVj5TA/a+jinRtxE0INUs8vf1vYVxVJHKt0Q
+ HiP9CrI39v2uIHXW6LaWgacuTFB4UM6IF3chGyfNkGhFdrBumMCDeZWa1
+ CtX1LI31KizVISsmUYCAgjo8p+OnWyFPMc8KziXsDcBOl201CwnBMU6L/
+ CqwRQSLAak9uzKEbjEewNITkwKDfhJVP/f6Fg2SaZuPdJtJLZRFMw7SeY
+ y8TKVnwp2Pi5dudKP2dUdsTu7rBNgQYXkXOgrbL5V1JplRZ6SauIWWHAW A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="353549909"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="353549909"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 03:03:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="823907691"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="823907691"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga004.jf.intel.com with ESMTP; 11 May 2023 03:00:27 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 May 2023 15:26:50 +0530
-Message-Id: <20230511095650.631387-3-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230511095650.631387-1-suraj.kandpal@intel.com>
-References: <20230511095650.631387-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="843886962"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="843886962"
+Received: from acharach-mobl.ger.corp.intel.com (HELO [10.251.219.38])
+ ([10.251.219.38])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 03:03:06 -0700
+Message-ID: <56668e29-f697-bd9b-2c13-182e8456dbce@linux.intel.com>
+Date: Thu, 11 May 2023 12:03:04 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/hdcp: Fix modeset locking issue
- in hdcp mst
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.11.0
+Content-Language: en-US
+To: Tejun Heo <tj@kernel.org>
+References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
+ <ZFVeI2DKQXddKDNl@slm.duckdns.org>
+ <4d6fbce3-a676-f648-7a09-6f6dcc4bdb46@linux.intel.com>
+ <ZFvmaGNo0buQEUi1@slm.duckdns.org>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <ZFvmaGNo0buQEUi1@slm.duckdns.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC PATCH 0/4] Add support for DRM cgroup memory
+ accounting.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,142 +65,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Zefan Li <lizefan.x@bytedance.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, cgroups@vger.kernel.org,
+ David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since topology state is being added to drm_atomic_state now all
-drm_modeset_lock required are being taken from core this raises
-an issue when we try to loop over connector and assign vcpi id to
-our streams as we did not have atomic state to derive acquire_ctx
-from hence we fill in stream info if dpmst encoder is found before
-enabling hdcp.
+Hey,
 
---v2
--move prepare streams to beginning of intel_hdcp_enable to avoid
-checking of mst encoder twice [Ankit]
+On 2023-05-10 20:46, Tejun Heo wrote:
+> Hello,
+>
+> On Wed, May 10, 2023 at 04:59:01PM +0200, Maarten Lankhorst wrote:
+>> The misc controller is not granular enough. A single computer may have any number of
+>> graphics cards, some of them with multiple regions of vram inside a single card.
+> Extending the misc controller to support dynamic keys shouldn't be that
+> difficult.
+>
+> ...
+>> In the next version, I will move all the code for handling the resource limit to
+>> TTM's eviction layer, because otherwise it cannot handle the resource limit correctly.
+>>
+>> The effect of moving the code to TTM, is that it will make the code even more generic
+>> for drivers that have vram and use TTM. When using TTM, you only have to describe your
+>> VRAM, update some fields in the TTM manager and (un)register your device with the
+>> cgroup handler on (un)load. It's quite trivial to add vram accounting to amdgpu and
+>> nouveau. [2]
+>>
+>> If you want to add a knob for scheduling weight for a process, it makes sense to
+>> also add resource usage as a knob, otherwise the effect of that knob is very
+>> limited. So even for Tvrtko's original proposed usecase, it would make sense.
+> It does make sense but unlike Tvrtko's scheduling weights what's being
+> proposed doesn't seem to encapsulate GPU memory resource in a generic enough
+> manner at least to my untrained eyes. ie. w/ drm.weight, I don't need any
+> specific knoweldge of how a specific GPU operates to say "this guy should
+> get 2x processing power over that guy". This more or less holds for other
+> major resources including CPU, memory and IO. What you're proposing seems a
+> lot more tied to hardware details and users would have to know a lot more
+> about how memory is configured on that particular GPU.
 
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 39 ++++++++++-------------
- 1 file changed, 17 insertions(+), 22 deletions(-)
+There's not much need of knowing the specifics of a card, but there might
+be a need of knowing the workload to determine what allocation limits to set.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index e2c5781ad0ab..bf40d1c7aaa1 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -30,7 +30,8 @@
- #define KEY_LOAD_TRIES	5
- #define HDCP2_LC_RETRY_CNT			3
- 
--static int intel_conn_to_vcpi(struct intel_connector *connector)
-+static int intel_conn_to_vcpi(struct drm_atomic_state *state,
-+			      struct intel_connector *connector)
- {
- 	struct drm_dp_mst_topology_mgr *mgr;
- 	struct drm_dp_mst_atomic_payload *payload;
-@@ -42,10 +43,10 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
- 		return 0;
- 	mgr = connector->port->mgr;
- 
--	drm_modeset_lock(&mgr->base.lock, NULL);
-+	drm_modeset_lock(&mgr->base.lock, state->acquire_ctx);
- 	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
- 	payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
--	if (drm_WARN_ON(mgr->dev, !payload))
-+	if (!payload)
- 		goto out;
- 
- 	vcpi = payload->vcpi;
-@@ -54,7 +55,6 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
- 		goto out;
- 	}
- out:
--	drm_modeset_unlock(&mgr->base.lock);
- 	return vcpi;
- }
- 
-@@ -69,7 +69,8 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
-  * policy to mark different content_types for different streams.
-  */
- static int
--intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
-+intel_hdcp_required_content_stream(struct intel_digital_port *dig_port,
-+				   struct intel_atomic_state *state)
- {
- 	struct drm_connector_list_iter conn_iter;
- 	struct intel_digital_port *conn_dig_port;
-@@ -81,9 +82,6 @@ intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
- 
- 	data->k = 0;
- 
--	if (dig_port->hdcp_auth_status)
--		return 0;
--
- 	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
- 	for_each_intel_connector_iter(connector, &conn_iter) {
- 		if (connector->base.status == connector_status_disconnected)
-@@ -99,7 +97,8 @@ intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
- 		if (!enforce_type0 && !dig_port->hdcp_mst_type1_capable)
- 			enforce_type0 = true;
- 
--		data->streams[data->k].stream_id = intel_conn_to_vcpi(connector);
-+		data->streams[data->k].stream_id =
-+			intel_conn_to_vcpi(&state->base, connector);
- 		data->k++;
- 
- 		/* if there is only one active stream */
-@@ -122,7 +121,8 @@ intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
- 	return 0;
- }
- 
--static int intel_hdcp_prepare_streams(struct intel_connector *connector)
-+static int intel_hdcp_prepare_streams(struct intel_atomic_state *state,
-+				      struct intel_connector *connector)
- {
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
-@@ -133,7 +133,7 @@ static int intel_hdcp_prepare_streams(struct intel_connector *connector)
- 		data->k = 1;
- 		data->streams[0].stream_type = hdcp->content_type;
- 	} else {
--		ret = intel_hdcp_required_content_stream(dig_port);
-+		ret = intel_hdcp_required_content_stream(dig_port, state);
- 		if (ret)
- 			return ret;
- 	}
-@@ -1917,14 +1917,6 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
- 	for (i = 0; i < tries && !dig_port->hdcp_auth_status; i++) {
- 		ret = hdcp2_authenticate_sink(connector);
- 		if (!ret) {
--			ret = intel_hdcp_prepare_streams(connector);
--			if (ret) {
--				drm_dbg_kms(&i915->drm,
--					    "Prepare streams failed.(%d)\n",
--					    ret);
--				break;
--			}
--
- 			ret = hdcp2_propagate_stream_management_info(connector);
- 			if (ret) {
- 				drm_dbg_kms(&i915->drm,
-@@ -2375,9 +2367,12 @@ int intel_hdcp_enable(struct intel_atomic_state *state,
- 	 * is capable of HDCP2.2, it is preferred to use HDCP2.2.
- 	 */
- 	if (intel_hdcp2_capable(connector)) {
--		ret = _intel_hdcp2_enable(connector);
--		if (!ret)
--			check_link_interval = DRM_HDCP2_CHECK_PERIOD_MS;
-+		if (!intel_hdcp_prepare_streams(state, connector)) {
-+			ret = _intel_hdcp2_enable(connector);
-+			if (!ret)
-+				check_link_interval =
-+					DRM_HDCP2_CHECK_PERIOD_MS;
-+		}
- 	}
- 
- 	/*
--- 
-2.25.1
+I've left region to be implementation specific, but it would make sense to
+standardise it.
+TTM, the layer used by drivers that support VRAM, have the following regions:
+* sysmem - All system memory allocated; includes evicted VRAM.
+* mapped - All physical system memory that is mapped to the GPU, when unbound
+           moves to sysmem. When evicting VRAM to sysmem, it's temporarily
+           mapped here.
+* vramN - All VRAM regions of the device.
+* driver specific regions - probably doesn't make sense to put in cgroup at all,
+  this includes stolen from the PoC.
+
+That leaves the question, what regions would make sense for a cgroup?
+Since vramN can be moved to mapped and sysmem (VRAM eviction, suspend/resume,
+driver_madvise), it becomes a subject of debate if we should include the other
+regions, since things become complicated fast.
+
+For the first iteration, I focus on a single category, vramN.
+
+Even when not knowing anything about a GPU, it will be easy to partition its
+memory like that.
+
+If you can assign a weight for the scheduler, then you can also partition it's
+vram by parsing /drm.capacity for total amount, and then splitting it across
+cgroups.
+
+
+> Now, if this is inherent to how all, or at least most, GPUs operate, sure,
+> but otherwise let's start small in terms of interface and not take up space
+> which should be for something universal. If this turns out to be the way,
+> expanding to take up the generic interface space isn't difficult.
+>
+> I don't know GPU space so please educate me where I'm wrong.
+
+Most GPU's have dedicated vram that works roughly in the same way, some
+integrated chips like i915 or arm use shared memory from the host system
+only. I would say amd, nvidia and intel's chips with dedicated memory work
+roughly in the same way for vram.
+
+I hope this explains it a little bit more,
+
+~Maarten
 
