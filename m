@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1098A6FEDDF
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 10:37:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 751A16FEDED
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 10:39:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C31710E1EC;
-	Thu, 11 May 2023 08:37:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5D0C10E5B9;
+	Thu, 11 May 2023 08:39:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72ED910E1EC
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 08:37:04 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60DE110E5B9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 08:39:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683794224; x=1715330224;
+ t=1683794363; x=1715330363;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=A8ZF6akZDNfAJ5dMBLPY7hYCNW8ljpql6Y5GG9jTFb0=;
- b=nd7ZAhTkXOkaBcbr2/yKpYJtJ06bJE+3QW/fOpJQLsXihIfWVyhmSiRb
- URG3mm3OotAGnoIkbUJzW8xC9hUZx9913k9GAm4XwIxCBLZDEKlolA5Sx
- YENHP0eEJKRjQfe06U7JhyiIbiRwwW3MQ5ksqH19wzfoTkhLQi/3bZwUe
- Z11BHdXucYg1FxJwjqoRjsP3kkvL/pBt4dqyGPYqU2/1h2OAronUxklk9
- uCdsMhqR/+wvOcQT3govfcRh3BhIYwmoRdT+KTnQvCDwqOFwJaQ2n0BU2
- l1SRb3hi240s8PKg1Hw4tPRkgKJJUSQCzG0TRy6IAtTEBEKWmobfF2WMg g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="339709606"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="339709606"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 01:37:03 -0700
+ bh=6UaIU8+OCh3Vh/TY/O/iiL2U6RMqCpeKF4x8si+ivLQ=;
+ b=iTJYyG1a2UaTIlSDXNKsvU2YJZb7xi+8uYTX6obBG+54gE/W5gqy4SoC
+ V/V2qMV74TBezOrHNYGo36rJr0h7T2RYrUb3NT9vi595FyLUsjLwl6iuh
+ wrCvGUXJmo6ICbNMU0GFGjA0yW6x67VPpdgt5uqw0v1ANnLGIhr6sEhUu
+ 379uGa4lS7MOo5yPzUMOi6Lz5w9HoLIch/jYszr8ICi8lTuA/k/pqpitL
+ gYW7dolum5jzCtqocnvsKR0dynmTIJkQJ36Cp/fk6xBDuftVXZ3/3l7m8
+ IQ2hTc5swTxxqTXUc82fOq6fxJ1WmxR5YkSfI4xjzRE1WkIr6tB8OXHi6 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="353530204"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="353530204"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 01:39:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="702649561"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="702649561"
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="789305143"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="789305143"
 Received: from nbathi-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.63.185])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 01:37:01 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 01:39:20 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <Y72fweagAUui83Y6@intel.com>
+To: imre.deak@intel.com
+In-Reply-To: <Y6II2T9SCtc1uZC6@ideak-desk.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230110105902.279004-1-maarten.lankhorst@linux.intel.com>
- <Y72fweagAUui83Y6@intel.com>
-Date: Thu, 11 May 2023 11:36:59 +0300
-Message-ID: <87a5ybmfh0.fsf@intel.com>
+References: <20221220094618.207126-1-maarten.lankhorst@linux.intel.com>
+ <87zgbi2qpc.fsf@intel.com> <Y6II2T9SCtc1uZC6@ideak-desk.fi.intel.com>
+Date: Thu, 11 May 2023 11:39:18 +0300
+Message-ID: <877ctfmfd5.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove i915_drm_suspend_mode
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix a use-after-free when
+ intel_edp_init_connector fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,139 +64,109 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 10 Jan 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Tue, Jan 10, 2023 at 11:59:02AM +0100, Maarten Lankhorst wrote:
->> enum i915_drm_suspend_mode suspend_mode is only used in
->> intel_display_power, while we only care about whether we perform a
->> s2idle. Remove it and use a simple bool.
+On Tue, 20 Dec 2022, Imre Deak <imre.deak@intel.com> wrote:
+> On Tue, Dec 20, 2022 at 02:40:47PM +0200, Jani Nikula wrote:
+>> On Tue, 20 Dec 2022, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
+>> > We enable the DP aux channel during probe, but may free the connector
+>> > soon afterwards. Ensure the DP aux display power put is completed before
+>> > everything is freed, to prevent a use-after-free in icl_aux_pw_to_phy(),
+>> > called from icl_combo_phy_aux_power_well_disable.
 >> 
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Feels like the placement of the intel_display_power_flush_work_sync()
+>> call in intel_dp_aux_fini() is a bit arbitrary.
+>> 
+>> If we add it in intel_dp_aux_fini(), the async and sync waits will both
+>> be called on the regular encoder destroy path.
 >
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Yes, calling intel_display_power_flush_work() from the error handler at
+> the end of intel_dp_init_connector() would be better.
+>
+>> Maybe both intel_ddi_encoder_destroy() and intel_dp_encoder_destroy()
+>> should call intel_display_power_flush_work_sync(), instead of async,
+>
+> intel_display_power_flush_work() ensures that power wells without a
+> reference held are disabled when it returns, so no need to call the
+> _sync() version for encoders (the _sync() version ensures in addition
+> during driver unloading that the work function is not running).
+>
+>> and maybe the error paths should call those functions instead of just
+>> drm_encoder_cleanup()?
+>
+> Yes, the cleanup in those functions could be shared with the error
+> handling in g4x_dp_init() and intel_ddi_init(), except kfree(dig_port)
+> which also happens if drm_encoder_init() fails. 
+>
+> For this intel_pps_vdd_off_sync() / intel_dp_aux_fini() would also
+> happen later at the end of g4x_dp_init()/intel_ddi_init(), I guess
+> that's ok.
+>
+> I wonder if not handling drm_encoder_init() error in intel_ddi_init()
+> was on purpose, can't see a reason for it.
 
-I guess this patch was forgotten and never applied.
+This patch has been forgotten...
 
-Maarten, care to rebase and resend please?
+Maarten, can you follow up on it please?
 
 BR,
 Jani.
 
 
->> ---
->>  .../gpu/drm/i915/display/intel_display_power.c   |  8 +++-----
->>  .../gpu/drm/i915/display/intel_display_power.h   |  3 +--
->>  drivers/gpu/drm/i915/i915_driver.c               | 16 ++--------------
->>  drivers/gpu/drm/i915/intel_runtime_pm.h          |  6 ------
->>  4 files changed, 6 insertions(+), 27 deletions(-)
+>
+>> Imre?
 >> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
->> index 060e0a2770f7..6ef937afe48e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
->> @@ -2029,7 +2029,7 @@ void intel_power_domains_disable(struct drm_i915_private *i915)
->>  /**
->>   * intel_power_domains_suspend - suspend power domain state
->>   * @i915: i915 device instance
->> - * @suspend_mode: specifies the target suspend state (idle, mem, hibernation)
->> + * @s2idle: specifies whether we go to idle, or deeper sleep
->>   *
->>   * This function prepares the hardware power domain state before entering
->>   * system suspend.
->> @@ -2037,8 +2037,7 @@ void intel_power_domains_disable(struct drm_i915_private *i915)
->>   * It must be called with power domains already disabled (after a call to
->>   * intel_power_domains_disable()) and paired with intel_power_domains_resume().
->>   */
->> -void intel_power_domains_suspend(struct drm_i915_private *i915,
->> -				 enum i915_drm_suspend_mode suspend_mode)
->> +void intel_power_domains_suspend(struct drm_i915_private *i915, bool s2idle)
->>  {
->>  	struct i915_power_domains *power_domains = &i915->display.power.domains;
->>  	intel_wakeref_t wakeref __maybe_unused =
->> @@ -2054,8 +2053,7 @@ void intel_power_domains_suspend(struct drm_i915_private *i915,
->>  	 * that would be blocked if the firmware was inactive.
->>  	 */
->>  	if (!(i915->display.dmc.allowed_dc_mask & DC_STATE_EN_DC9) &&
->> -	    suspend_mode == I915_DRM_SUSPEND_IDLE &&
->> -	    intel_dmc_has_payload(i915)) {
->> +	    s2idle && intel_dmc_has_payload(i915)) {
->>  		intel_display_power_flush_work(i915);
->>  		intel_power_domains_verify_state(i915);
->>  		return;
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
->> index 6480afcfe0d8..04216be1d6fe 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
->> @@ -164,8 +164,7 @@ void intel_power_domains_init_hw(struct drm_i915_private *dev_priv, bool resume)
->>  void intel_power_domains_driver_remove(struct drm_i915_private *dev_priv);
->>  void intel_power_domains_enable(struct drm_i915_private *dev_priv);
->>  void intel_power_domains_disable(struct drm_i915_private *dev_priv);
->> -void intel_power_domains_suspend(struct drm_i915_private *dev_priv,
->> -				 enum i915_drm_suspend_mode);
->> +void intel_power_domains_suspend(struct drm_i915_private *dev_priv, bool s2idle);
->>  void intel_power_domains_resume(struct drm_i915_private *dev_priv);
->>  void intel_power_domains_sanitize_state(struct drm_i915_private *dev_priv);
->>  
->> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
->> index 9c49cc7a246d..a02dd8e38f2a 100644
->> --- a/drivers/gpu/drm/i915/i915_driver.c
->> +++ b/drivers/gpu/drm/i915/i915_driver.c
->> @@ -1232,18 +1232,6 @@ static int i915_drm_suspend(struct drm_device *dev)
->>  	return 0;
->>  }
->>  
->> -static enum i915_drm_suspend_mode
->> -get_suspend_mode(struct drm_i915_private *dev_priv, bool hibernate)
->> -{
->> -	if (hibernate)
->> -		return I915_DRM_SUSPEND_HIBERNATE;
->> -
->> -	if (suspend_to_idle(dev_priv))
->> -		return I915_DRM_SUSPEND_IDLE;
->> -
->> -	return I915_DRM_SUSPEND_MEM;
->> -}
->> -
->>  static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
->>  {
->>  	struct drm_i915_private *dev_priv = to_i915(dev);
->> @@ -1251,6 +1239,7 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
->>  	struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
->>  	struct intel_gt *gt;
->>  	int ret, i;
->> +	bool s2idle = !hibernation && suspend_to_idle(dev_priv);
->>  
->>  	disable_rpm_wakeref_asserts(rpm);
->>  
->> @@ -1259,8 +1248,7 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
->>  	for_each_gt(gt, dev_priv, i)
->>  		intel_uncore_suspend(gt->uncore);
->>  
->> -	intel_power_domains_suspend(dev_priv,
->> -				    get_suspend_mode(dev_priv, hibernation));
->> +	intel_power_domains_suspend(dev_priv, s2idle);
->>  
->>  	intel_display_power_suspend_late(dev_priv);
->>  
->> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
->> index d9160e3ff4af..c87ae95bfd18 100644
->> --- a/drivers/gpu/drm/i915/intel_runtime_pm.h
->> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
->> @@ -16,12 +16,6 @@ struct device;
->>  struct drm_i915_private;
->>  struct drm_printer;
->>  
->> -enum i915_drm_suspend_mode {
->> -	I915_DRM_SUSPEND_IDLE,
->> -	I915_DRM_SUSPEND_MEM,
->> -	I915_DRM_SUSPEND_HIBERNATE,
->> -};
->> -
->>  /*
->>   * This struct helps tracking the state needed for runtime PM, which puts the
->>   * device in PCI D3 state. Notice that when this happens, nothing on the
+>> 
+>> BR,
+>> Jani.
+>> 
+>> 
+>> >
+>> > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+>> >  drivers/gpu/drm/i915/display/intel_display_power.h | 1 +
+>> >  drivers/gpu/drm/i915/display/intel_dp_aux.c        | 2 ++
+>> >  3 files changed, 4 insertions(+), 1 deletion(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> > index 04915f85a0df..0edb5532461f 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> > @@ -776,7 +776,7 @@ void intel_display_power_flush_work(struct drm_i915_private *i915)
+>> >   * Like intel_display_power_flush_work(), but also ensure that the work
+>> >   * handler function is not running any more when this function returns.
+>> >   */
+>> > -static void
+>> > +void
+>> >  intel_display_power_flush_work_sync(struct drm_i915_private *i915)
+>> >  {
+>> >  	struct i915_power_domains *power_domains = &i915->display.power.domains;
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+>> > index 7136ea3f233e..dc10ee0519e6 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+>> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+>> > @@ -188,6 +188,7 @@ void __intel_display_power_put_async(struct drm_i915_private *i915,
+>> >  				     enum intel_display_power_domain domain,
+>> >  				     intel_wakeref_t wakeref);
+>> >  void intel_display_power_flush_work(struct drm_i915_private *i915);
+>> > +void intel_display_power_flush_work_sync(struct drm_i915_private *i915);
+>> >  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+>> >  void intel_display_power_put(struct drm_i915_private *dev_priv,
+>> >  			     enum intel_display_power_domain domain,
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> > index f1835c74bff0..1006dddad2d5 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> > @@ -680,6 +680,8 @@ void intel_dp_aux_fini(struct intel_dp *intel_dp)
+>> >  	if (cpu_latency_qos_request_active(&intel_dp->pm_qos))
+>> >  		cpu_latency_qos_remove_request(&intel_dp->pm_qos);
+>> >  
+>> > +	/* Ensure async work from intel_dp_aux_xfer() is flushed before we clean up */
+>> > +	intel_display_power_flush_work_sync(dp_to_i915(intel_dp));
+>> >  	kfree(intel_dp->aux.name);
+>> >  }
+>> 
 >> -- 
->> 2.34.1
->> 
+>> Jani Nikula, Intel Open Source Graphics Center
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
