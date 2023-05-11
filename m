@@ -1,60 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05F7C6FEFBB
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 12:14:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1116FEFEA
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 12:28:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3756410E5CA;
-	Thu, 11 May 2023 10:14:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFC810E21B;
+	Thu, 11 May 2023 10:28:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 274D110E21E;
- Thu, 11 May 2023 10:14:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683800049; x=1715336049;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=OX6/RLsUKcu9rpPuGAmUsq6PrFANuvVqJn6z7EUYoHE=;
- b=dQYWMa1djTPA9nCkoytAoRVIvc1ysPx6r4XG59tQsUGRKs+3AGy3FTWY
- Mjz7yTOzYyMXcvmBWlh+vyH4ZMD751vRexMcN5Qt5FMYw4BTp8X9ndv57
- ZfgAtc8o61OtgAo8BJn+kHlNVnRKtLzjn6lRy4pel+9g+z65yyymn/cIh
- y8nFU4Pce4ApOX3MtJYDDmSViWWPq//LXY9jY5CBLaZRUsnpRfUktcTXL
- 19mrZ3iGWP8XbDuhVcsPXVPrMrUWfKvCfS36GF1zU0NBiVg1V+a/q1A83
- loH2i3jV6Q6A6raJZpYEfoeH6Wr1kDJLLZFvvT63txplMM81wkAICESro w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="350490023"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="350490023"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 03:14:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="946094895"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="946094895"
-Received: from thenehan-mobl1.ger.corp.intel.com (HELO [10.213.214.244])
- ([10.213.214.244])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 03:14:03 -0700
-Message-ID: <562bd20d-36b9-a617-92cc-460f2eece22e@linux.intel.com>
-Date: Thu, 11 May 2023 11:14:01 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 88ED310E219;
+ Thu, 11 May 2023 10:28:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 819C6A47DF;
+ Thu, 11 May 2023 10:28:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8580396806531774419=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: Tejun Heo <tj@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
- <ZFVeI2DKQXddKDNl@slm.duckdns.org>
- <4d6fbce3-a676-f648-7a09-6f6dcc4bdb46@linux.intel.com>
- <ZFvmaGNo0buQEUi1@slm.duckdns.org>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <ZFvmaGNo0buQEUi1@slm.duckdns.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [RFC PATCH 0/4] Add support for DRM cgroup memory
- accounting.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 11 May 2023 10:28:56 -0000
+Message-ID: <168380093649.29007.24174648241426569@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230511085553.799321-1-jani.nikula@intel.com>
+In-Reply-To: <20230511085553.799321-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/hdcp=3A_drop_display/_prefix_from_include?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,100 +40,277 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Zefan Li <lizefan.x@bytedance.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Johannes Weiner <hannes@cmpxchg.org>, cgroups@vger.kernel.org,
- David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============8580396806531774419==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 10/05/2023 19:46, Tejun Heo wrote:
-> Hello,
-> 
-> On Wed, May 10, 2023 at 04:59:01PM +0200, Maarten Lankhorst wrote:
->> The misc controller is not granular enough. A single computer may have any number of
->> graphics cards, some of them with multiple regions of vram inside a single card.
-> 
-> Extending the misc controller to support dynamic keys shouldn't be that
-> difficult.
-> 
-> ...
->> In the next version, I will move all the code for handling the resource limit to
->> TTM's eviction layer, because otherwise it cannot handle the resource limit correctly.
->>
->> The effect of moving the code to TTM, is that it will make the code even more generic
->> for drivers that have vram and use TTM. When using TTM, you only have to describe your
->> VRAM, update some fields in the TTM manager and (un)register your device with the
->> cgroup handler on (un)load. It's quite trivial to add vram accounting to amdgpu and
->> nouveau. [2]
->>
->> If you want to add a knob for scheduling weight for a process, it makes sense to
->> also add resource usage as a knob, otherwise the effect of that knob is very
->> limited. So even for Tvrtko's original proposed usecase, it would make sense.
-> 
-> It does make sense but unlike Tvrtko's scheduling weights what's being
-> proposed doesn't seem to encapsulate GPU memory resource in a generic enough
-> manner at least to my untrained eyes. ie. w/ drm.weight, I don't need any
-> specific knoweldge of how a specific GPU operates to say "this guy should
-> get 2x processing power over that guy". This more or less holds for other
-> major resources including CPU, memory and IO. What you're proposing seems a
-> lot more tied to hardware details and users would have to know a lot more
-> about how memory is configured on that particular GPU.
-> 
-> Now, if this is inherent to how all, or at least most, GPUs operate, sure,
-> but otherwise let's start small in terms of interface and not take up space
-> which should be for something universal. If this turns out to be the way,
-> expanding to take up the generic interface space isn't difficult.
-> 
-> I don't know GPU space so please educate me where I'm wrong.
+== Series Details ==
 
-I was hoping it might be passable in principle (in some form, pending 
-discussion on semantics) given how Maarten's proposal starts with only 
-very specific per-device-per-memory regions controls, which is 
-applicable to many devices. And hard limit at that, which probably has 
-less complicated semantics, or at least implementation.
+Series: drm/i915/hdcp: drop display/ prefix from include
+URL   : https://patchwork.freedesktop.org/series/117619/
+State : success
 
-My understanding of the proposal is that the allocation either fits, or 
-it evicts from the parent's hierarchy (if possible) and then fits, or it 
-fails. Which sounds simple enough.
+== Summary ==
 
-I do however agree that it is a limited use case. So from the negative 
-side of the debating camp I have to ask if this use case could be simply 
-satisfied by providing a driver/device global over commit yes/no 
-control? In other words, is it really important to partition the vram 
-space ahead of time, and from the kernel side too? Wouldn't the relevant 
-(highly specialised) applications work just fine with global over commit 
-disabled? Even if the option to configure their maximum allowed working 
-set from the userspace side was needed.
+CI Bug Log - changes from CI_DRM_13133 -> Patchwork_117619v1
+====================================================
 
-Or if we conclude cgroup controller is the way to go, would adding less 
-specific limits make it more palatable? I am thinking here some generic 
-"device memory resident". Not per device, not per memory region. So 
-userspace/admins have some chance of configuring generic limits. That 
-would require coming up with more generic use cases though so another 
-thing to discuss. Like who would use that and for what.
+Summary
+-------
 
-Assuming also we can agree that "device memory resident" is a 
-stable/solid concept across drm. Should be easier than for integrated 
-GPUs, for which I have to admit I currently don't remember if 
-allocations are already consistently covered by the memory controller. 
-Even if they are ownership is probably wrong.
+  **SUCCESS**
 
-Group ownership is possibly a concern in this proposal too. Because I 
-remember the previous attempt of adding some drm stats to memcg 
-explained that for instance on Android all buffers are allocated by a 
-central process and then handed over to other processes. So transferring 
-ownership was explained as critical.
+  No regressions found.
 
-Regards,
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/index.html
 
-Tvrtko
+Participating hosts (41 -> 40)
+------------------------------
 
-P.S.
-On the matter of naming the uapi interface - in any case I wouldn't use 
-the "unqualified" drm namespace such as drm.max/current/capacity. I 
-think all those should include a specific prefix to signify it is about 
-memory. In some way.
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_117619v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_backlight@basic-brightness@edp-1:
+    - bat-rplp-1:         NOTRUN -> [ABORT][1] ([i915#7077])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rplp-1/igt@i915_pm_backlight@basic-brightness@edp-1.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-1:         NOTRUN -> [DMESG-WARN][2] ([i915#6367] / [i915#7953])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  * igt@i915_suspend@basic-s2idle-without-i915:
+    - bat-rpls-2:         NOTRUN -> [ABORT][3] ([i915#6687])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-rpls-1:         NOTRUN -> [ABORT][4] ([i915#6687] / [i915#7953] / [i915#7978])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
+    - bat-adlp-9:         NOTRUN -> [SKIP][5] ([i915#3546]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-rplp-1:         NOTRUN -> [SKIP][6] ([i915#3555] / [i915#4579])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-rpls-1:         [INCOMPLETE][7] ([i915#4983] / [i915#7953]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13133/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@requests:
+    - {bat-mtlp-6}:       [ABORT][9] ([i915#4983] / [i915#7920] / [i915#7953]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13133/bat-mtlp-6/igt@i915_selftest@live@requests.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-mtlp-6/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-2:         [ABORT][11] ([i915#4983] / [i915#7461] / [i915#7913] / [i915#7981] / [i915#8347]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13133/bat-rpls-2/igt@i915_selftest@live@reset.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rpls-2/igt@i915_selftest@live@reset.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1:
+    - bat-dg2-8:          [FAIL][13] ([i915#7932]) -> [PASS][14] +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13133/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html
+
+  
+#### Warnings ####
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - bat-rplp-1:         [ABORT][15] -> [SKIP][16] ([i915#1072])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13133/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
+  [i915#7077]: https://gitlab.freedesktop.org/drm/intel/issues/7077
+  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7920]: https://gitlab.freedesktop.org/drm/intel/issues/7920
+  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
+  [i915#7953]: https://gitlab.freedesktop.org/drm/intel/issues/7953
+  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
+  [i915#7981]: https://gitlab.freedesktop.org/drm/intel/issues/7981
+  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13133 -> Patchwork_117619v1
+
+  CI-20190529: 20190529
+  CI_DRM_13133: 9de28734b7c6180707b305c9d736b439fb02e032 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7285: d1cbf2bad9c2664ab8bd3bd0946510a52800912f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_117619v1: 9de28734b7c6180707b305c9d736b439fb02e032 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+d9d548c0432e drm/i915/hdcp: drop display/ prefix from include
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/index.html
+
+--===============8580396806531774419==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/hdcp: drop display/ prefix from include</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117619/">https://patchwork.freedesktop.org/series/117619/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13133 -&gt; Patchwork_117619v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_117619v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness@edp-1:</p>
+<ul>
+<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rplp-1/igt@i915_pm_backlight@basic-brightness@edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7077">i915#7077</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7953">i915#7953</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
+<ul>
+<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7953">i915#7953</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence:</p>
+<ul>
+<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13133/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7953">i915#7953</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>{bat-mtlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13133/bat-mtlp-6/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7920">i915#7920</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7953">i915#7953</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-mtlp-6/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13133/bat-rpls-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7981">i915#7981</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13133/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-c-dp-1.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_psr@primary_mmap_gtt:<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13133/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117619v1/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13133 -&gt; Patchwork_117619v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13133: 9de28734b7c6180707b305c9d736b439fb02e032 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7285: d1cbf2bad9c2664ab8bd3bd0946510a52800912f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_117619v1: 9de28734b7c6180707b305c9d736b439fb02e032 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>d9d548c0432e drm/i915/hdcp: drop display/ prefix from include</p>
+
+</body>
+</html>
+
+--===============8580396806531774419==--
