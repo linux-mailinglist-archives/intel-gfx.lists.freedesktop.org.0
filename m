@@ -2,52 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 289EC6FED3E
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 09:57:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B0B26FED60
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 10:01:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F75010E5B7;
-	Thu, 11 May 2023 07:57:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F325710E1E2;
+	Thu, 11 May 2023 08:01:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8829F10E5BD
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 07:57:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683791850; x=1715327850;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=efUvsbRTxoDoDf0JFI5ViCbjLd68SjbHQw7tekvwZKk=;
- b=I3pqO+eNGet0fFIp7uuee3UDjE+1jeL1rzYD9cjXj/PfOLG3cK/LfW1m
- tPIHnPfYLOqIoj46S/LpXuplnAssHhtvA20yQ+a00+ovt2O+O7KcjAWY7
- e2uEgTkz4lut58F/NhjfajlRCyMb8BPGGZ85bOg/WmSROVEvidU8+F9Lb
- ixIX/5yj8412h5gPhZ/1vC2F5SC5Ue342vFOKpLFL1IKKs3ak4+LulSWF
- DE0CiPevhP4f7hBSZUzkVEycOUf3iUQeilVC+XygAXYHzkYhcrZrbBCUr
- nksui1Hl4mF4ZEUmAedOhwu4TMk7Rdq112HmTOf/juxPr/5epLlWZF3Wm Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="350459100"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="350459100"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 00:57:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="789291922"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="789291922"
-Received: from nbathi-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.63.185])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 00:57:27 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230511055705.611809-2-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230511055705.611809-1-suraj.kandpal@intel.com>
- <20230511055705.611809-2-suraj.kandpal@intel.com>
-Date: Thu, 11 May 2023 10:57:25 +0300
-Message-ID: <87cz37mhay.fsf@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC0C410E1E2;
+ Thu, 11 May 2023 08:01:31 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 3BB3B21846;
+ Thu, 11 May 2023 08:01:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1683792090; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Kxh9oTkBZubaGvNOl09GCmcWeGnLPsAnseWjmb776+Q=;
+ b=uZCKZcYymkXSCuk35mKVxOBiPb3PUmSoblhBIFq0ptwfyuJ+AwtLDTlWrgcIQUfnZLc7io
+ vekbOu2+g7F3lM+Rg3GKsbj+S77qYYjtlIaz9Y6yCGhJLuQzTfod1GWwTgfSsybdXAsM+1
+ GXcMAaxIA6Hso1xt7oz3Ek4PtZiO3oU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1683792090;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Kxh9oTkBZubaGvNOl09GCmcWeGnLPsAnseWjmb776+Q=;
+ b=YH14vHdKVOsc0bX3rSb92JdQXTtJZk7zBu2bHahU6GwDx/kKxa2ufJ1cbOwZYQ+POCQccq
+ CxzwvOV8NBVBiICg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 0FBB5134B2;
+ Thu, 11 May 2023 08:01:30 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id 69brAtqgXGQZawAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 11 May 2023 08:01:30 +0000
+Message-ID: <e1d716ad-569f-c26a-82cd-bf747a352360@suse.de>
+Date: Thu, 11 May 2023 10:01:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/hdcp: add intel_atomic_state
- argument to hdcp_enable function
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Content-Language: en-US
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <a91d6e42-3c29-d8f8-cb09-68177cecbc74@linux.intel.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <a91d6e42-3c29-d8f8-cb09-68177cecbc74@linux.intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------xEfRq1O0wkqaYgCoF8TXgf0X"
+Subject: Re: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,118 +70,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 11 May 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Pass all the parameter in intel_encoder->enable()
-> to intel_hdcp_enable as we need intel_atomic_state
-> later down to get acquire_ctx.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------xEfRq1O0wkqaYgCoF8TXgf0X
+Content-Type: multipart/mixed; boundary="------------Y2nNNB7ZdBtccR2BnA0tQvw8";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <e1d716ad-569f-c26a-82cd-bf747a352360@suse.de>
+Subject: Re: [PULL] drm-misc-fixes
+References: <a91d6e42-3c29-d8f8-cb09-68177cecbc74@linux.intel.com>
+In-Reply-To: <a91d6e42-3c29-d8f8-cb09-68177cecbc74@linux.intel.com>
 
-You're passing connector, not encoder, though.
+--------------Y2nNNB7ZdBtccR2BnA0tQvw8
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-BR,
-Jani.
+QSBmcmllbmRseSBwaW5nIHRvIG1lcmdlIHRoaXMgUFIuIFRoZSBwYXRjaGVzIGFwcGVhciB0
+byBiZSBtaXNzaW5nIGZyb20gDQpkcm0tZml4ZXMuDQoNCkFtIDI2LjA0LjIzIHVtIDA3OjU5
+IHNjaHJpZWIgTWFhcnRlbiBMYW5raG9yc3Q6DQo+IEhpIERhdmUsIERhbmllbCwNCj4gDQo+
+IGRybS1taXNjLWZpeGVzIHB1bGwgcmVxdWVzdCBmb3IgcmMxLiBkcm0tbWlzYy1uZXh0LWZp
+eGVzIGNvbWluZyB1cC4uIG5leHQNCj4gDQo+IH5NYWFydGVuDQo+IA0KPiBkcm0tbWlzYy1m
+aXhlcy0yMDIzLTA0LTI2Og0KPiBkcm0tbWlzYy1maXhlcyBmb3IgdjYuNC1yYzE6DQo+IC0g
+Rml4IERTQyBtYWNyb3MuDQo+IC0gRml4IFZFU0EgZm9ybWF0IGZvciBzaW1wbGVmYi4NCj4g
+LSBQcm9oaWJpdCBwb3RlbnRpYWwgb3V0LW9mLWJvdW5kcyBhY2Nlc3MgaW4gZ2VuZXJpYyBm
+YmRldiBlbXVsYXRpb24uDQo+IC0gSW1wcm92ZSBBU1QyNTAwKyBjb21wYXQgb24gQVJNLg0K
+PiBUaGUgZm9sbG93aW5nIGNoYW5nZXMgc2luY2UgY29tbWl0IA0KPiBiNjNhNTUzZThmNWFh
+NjU3NGVlYjUzNWE1NTE4MTdhOTNjNDI2ZDhjOg0KPiANCj4gIMKgZHJtL3JvY2tjaGlwOiB2
+b3AyOiBVc2UgcmVnY2FjaGVfc3luYygpIHRvIGZpeCBzdXNwZW5kL3Jlc3VtZSANCj4gKDIw
+MjMtMDQtMTcgMjM6NDA6NDAgKzAyMDApDQo+IA0KPiBhcmUgYXZhaWxhYmxlIGluIHRoZSBH
+aXQgcmVwb3NpdG9yeSBhdDoNCj4gDQo+ICDCoGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Au
+b3JnL2RybS9kcm0tbWlzYyB0YWdzL2RybS1taXNjLWZpeGVzLTIwMjMtMDQtMjYNCj4gDQo+
+IGZvciB5b3UgdG8gZmV0Y2ggY2hhbmdlcyB1cCB0byAwZDY4NjgzODM4ZjI4NTBkZDhmZjMx
+ZjExMjFlMDViZmI3YTJkZWYwOg0KPiANCj4gIMKgZHJtL2RzYzogZml4IERQX0RTQ19NQVhf
+QlBQX0RFTFRBXyogbWFjcm8gdmFsdWVzICgyMDIzLTA0LTI0IDIyOjQwOjU3IA0KPiArMDMw
+MCkNCj4gDQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gZHJtLW1pc2MtZml4ZXMgZm9yIHY2LjQtcmMxOg0K
+PiAtIEZpeCBEU0MgbWFjcm9zLg0KPiAtIEZpeCBWRVNBIGZvcm1hdCBmb3Igc2ltcGxlZmIu
+DQo+IC0gUHJvaGliaXQgcG90ZW50aWFsIG91dC1vZi1ib3VuZHMgYWNjZXNzIGluIGdlbmVy
+aWMgZmJkZXYgZW11bGF0aW9uLg0KPiAtIEltcHJvdmUgQVNUMjUwMCsgY29tcGF0IG9uIEFS
+TS4NCj4gDQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gSmFtbXkgSHVhbmcgKDEpOg0KPiAgwqDCoMKgwqDC
+oGRybS9hc3Q6IEZpeCBBUk0gY29tcGF0aWJpbGl0eQ0KPiANCj4gSmFuaSBOaWt1bGEgKDIp
+Og0KPiAgwqDCoMKgwqDCoGRybS9kc2M6IGZpeCBkcm1fZWRwX2RzY19zaW5rX291dHB1dF9i
+cHAoKSBEUENEIGhpZ2ggYnl0ZSB1c2FnZQ0KPiAgwqDCoMKgwqDCoGRybS9kc2M6IGZpeCBE
+UF9EU0NfTUFYX0JQUF9ERUxUQV8qIG1hY3JvIHZhbHVlcw0KPiANCj4gUGllcnJlIEFzc2Vs
+aW4gKDEpOg0KPiAgwqDCoMKgwqDCoGZpcm13YXJlL3N5c2ZiOiBGaXggVkVTQSBmb3JtYXQg
+c2VsZWN0aW9uDQo+IA0KPiBTdWkgSmluZ2ZlbmcgKDEpOg0KPiAgwqDCoMKgwqDCoGRybS9m
+YmRldi1nZW5lcmljOiBwcm9oaWJpdCBwb3RlbnRpYWwgb3V0LW9mLWJvdW5kcyBhY2Nlc3MN
+Cj4gDQo+IGRyaXZlcnMvZmlybXdhcmUvc3lzZmJfc2ltcGxlZmIuYyDCoMKgfCDCoDQgKysr
+LQ0KPiBkcml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9tYWluLmMgwqDCoMKgwqDCoHwgwqA5ICsr
+KysrLS0tLQ0KPiBkcml2ZXJzL2dwdS9kcm0vZHJtX2ZiX2hlbHBlci5jIMKgwqDCoMKgfCAx
+NiArKysrKysrKysrKystLS0tDQo+IGluY2x1ZGUvZHJtL2Rpc3BsYXkvZHJtX2RwLmggwqDC
+oMKgwqDCoMKgwqB8IMKgNSArKy0tLQ0KPiBpbmNsdWRlL2RybS9kaXNwbGF5L2RybV9kcF9o
+ZWxwZXIuaCB8IMKgNSArKy0tLQ0KPiA1IGZpbGVzIGNoYW5nZWQsIDI0IGluc2VydGlvbnMo
+KyksIDE1IGRlbGV0aW9ucygtKQ0KPiANCj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4N
+CkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdl
+cm1hbnkgR21iSA0KRnJhbmtlbnN0cmFzc2UgMTQ2LCA5MDQ2MSBOdWVybmJlcmcsIEdlcm1h
+bnkNCkdGOiBJdm8gVG90ZXYsIEFuZHJldyBNeWVycywgQW5kcmV3IE1jRG9uYWxkLCBCb3Vk
+aWVuIE1vZXJtYW4NCkhSQiAzNjgwOSAoQUcgTnVlcm5iZXJnKQ0K
 
->
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c    |  5 +++--
->  drivers/gpu/drm/i915/display/intel_dp_mst.c |  4 ++--
->  drivers/gpu/drm/i915/display/intel_hdcp.c   | 12 +++++++-----
->  drivers/gpu/drm/i915/display/intel_hdcp.h   |  6 ++++--
->  4 files changed, 16 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 29e4bfab4635..e838d56415cd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3264,9 +3264,10 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
->  	/* Enable hdcp if it's desired */
->  	if (conn_state->content_protection ==
->  	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
-> -		intel_hdcp_enable(to_intel_connector(conn_state->connector),
-> +		intel_hdcp_enable(state, to_intel_connector(conn_state->connector),
->  				  crtc_state,
-> -				  (u8)conn_state->hdcp_content_type);
-> +				  conn_state);
-> +
->  }
->  
->  static void intel_disable_ddi_dp(struct intel_atomic_state *state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 2c49d9ab86a2..e1e040434a97 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -800,9 +800,9 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
->  	/* Enable hdcp if it's desired */
->  	if (conn_state->content_protection ==
->  	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
-> -		intel_hdcp_enable(to_intel_connector(conn_state->connector),
-> +		intel_hdcp_enable(state, to_intel_connector(conn_state->connector),
->  				  pipe_config,
-> -				  (u8)conn_state->hdcp_content_type);
-> +				  conn_state);
->  }
->  
->  static bool intel_dp_mst_enc_get_hw_state(struct intel_encoder *encoder,
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 650232c4892b..1928c80cb6a2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -2330,8 +2330,10 @@ int intel_hdcp_init(struct intel_connector *connector,
->  	return 0;
->  }
->  
-> -int intel_hdcp_enable(struct intel_connector *connector,
-> -		      const struct intel_crtc_state *pipe_config, u8 content_type)
-> +int intel_hdcp_enable(struct intel_atomic_state *state,
-> +		      struct intel_connector *connector,
-> +		      const struct intel_crtc_state *pipe_config,
-> +		      const struct drm_connector_state *conn_state)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> @@ -2352,7 +2354,7 @@ int intel_hdcp_enable(struct intel_connector *connector,
->  	mutex_lock(&dig_port->hdcp_mutex);
->  	drm_WARN_ON(&dev_priv->drm,
->  		    hdcp->value == DRM_MODE_CONTENT_PROTECTION_ENABLED);
-> -	hdcp->content_type = content_type;
-> +	hdcp->content_type = (u8)conn_state->content_type;
->  
->  	if (intel_crtc_has_type(pipe_config, INTEL_OUTPUT_DP_MST)) {
->  		hdcp->cpu_transcoder = pipe_config->mst_master_transcoder;
-> @@ -2483,9 +2485,9 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
->  	}
->  
->  	if (desired_and_not_enabled || content_protection_type_changed)
-> -		intel_hdcp_enable(connector,
-> +		intel_hdcp_enable(state, connector,
->  				  crtc_state,
-> -				  (u8)conn_state->hdcp_content_type);
-> +				  conn_state);
->  }
->  
->  void intel_hdcp_component_fini(struct drm_i915_private *dev_priv)
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> index 8f53b0c7fe5c..6aaec4df6f6c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> @@ -28,8 +28,10 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->  int intel_hdcp_init(struct intel_connector *connector,
->  		    struct intel_digital_port *dig_port,
->  		    const struct intel_hdcp_shim *hdcp_shim);
-> -int intel_hdcp_enable(struct intel_connector *connector,
-> -		      const struct intel_crtc_state *pipe_config, u8 content_type);
-> +int intel_hdcp_enable(struct intel_atomic_state *state,
-> +		      struct intel_connector *connector,
-> +		      const struct intel_crtc_state *pipe_config,
-> +		      const struct drm_connector_state *conn_state);
->  int intel_hdcp_disable(struct intel_connector *connector);
->  void intel_hdcp_update_pipe(struct intel_atomic_state *state,
->  			    struct intel_encoder *encoder,
+--------------Y2nNNB7ZdBtccR2BnA0tQvw8--
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+--------------xEfRq1O0wkqaYgCoF8TXgf0X
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmRcoNkFAwAAAAAACgkQlh/E3EQov+Dc
+SQ//daMWgXvviDwiVTyAFggiezVu4tcdTSHGzcA4aR58L2l5r1OBGcURuM9jkprGl5JtX2dECP/O
+BqavRmd+P1tYg5MG52qhKMgMZvW5w+lQN20hcfvQA6viiNCPDjvRfq+kKUehGMaS7IlC2icexysy
+mzL60CQ7RYhY9bRk/bsoxW2dUgh8Bc1xIu6aK90l0+OTPwf/DRsNYXswXSWzuQSEIMneRiFFi0ia
+KD3M7sOQto1Qi/KUi3kQv/dyy0Kbz7eQtl/qy78NiA28U87o0eZIbAAU++srqDkQQZGyGYpVG63b
+WnIrxAcZDnT60pYl+Sl9E+egebFy9+vskI2xGsGKvcoHqmT3UnIQR4MB8VdkkD4mFRvKaUaoqW5O
+INa3Mgp5MFdqPEg8/aPce0JMMTa4R3yjujwjZfq8aVsBNu/C+A9Ces0PZUmLv/Cs6fOYReZBO0Jn
+tyJtgmY+H5Ju7A2CBks7WMVZQ9X7WQh9zw2teCeAOgkRzxvGAhYALJwuq2b0KySlKenlhD8bqO9L
+xypUJ+xe1ob7vTksijfyV9V+3LqfbPXzQw3UkzqKY6dqgJc6Sqq9wlmmXJgFtMntFCj0NHfA92im
+M5ILx4fxuwkQd890a/7Fqc01qZLhNISjMomyiGsk92/74+BJhCZ2gWkGS/7pqPcg4jiypkYimf7p
+3cc=
+=iM4t
+-----END PGP SIGNATURE-----
+
+--------------xEfRq1O0wkqaYgCoF8TXgf0X--
