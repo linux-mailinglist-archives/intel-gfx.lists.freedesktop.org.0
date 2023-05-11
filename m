@@ -1,82 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9D3C6FEC67
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 09:11:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CAB86FECC4
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 09:28:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A755010E5B0;
-	Thu, 11 May 2023 07:11:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B63E10E1B9;
+	Thu, 11 May 2023 07:28:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E44ED10E5B0
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 07:11:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1683789078;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ZNiRCSQizjrLet4+w7YasYKR5X4+4EtQJ4aMJEQXXo0=;
- b=YMCbe5UTXpAmMD/eyUaEztR39befzgPgD+9lYf6HKtBHetZgERBPvWOZ+AuYEhfeATAK1v
- TCfYiWQlGfZP0ghazN63dhWbNgeFSCh9RB1ArAgV73r6j/qB43aHmgiB4jnxdiHk4lPhZ2
- JPPTGQ+azmOQsTRn1uzbTh0bvvyHDpw=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-575-yCL73-L3MLm3nR7wId0Frg-1; Thu, 11 May 2023 03:11:15 -0400
-X-MC-Unique: yCL73-L3MLm3nR7wId0Frg-1
-Received: by mail-wr1-f71.google.com with SMTP id
- ffacd0b85a97d-3079c6648e3so2592679f8f.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 00:11:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1683789074; x=1686381074;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ZNiRCSQizjrLet4+w7YasYKR5X4+4EtQJ4aMJEQXXo0=;
- b=PtKCzc0QBF1euhXyR64oy8TYH3XQJ6Qukix40dBQIz1sNo/zhI/Sc6PelBAXF70wKb
- hYrSNeRJH0efnpfosL0yP1TI7UWLRsziQ7GRgo5yls94xdyKiCBUF4syfh3pbpB79p28
- wbxac0s+YkFWevk4e669v1XdMUSVvycjZOj3+LATINrg8DNBQjgszbcwS3TIthE8m8l7
- O6d2L3gZzbVOHVZrJghgRG2uCE6V/6nAZdi9rUmLdiKvcNrJ1pUQZ1Miq97GY8OjG2SI
- pQvnmWGpXIsI5PgbVR5hA1ebfdh5G7yq1DNK3qSShx4uafZqTWcKB17obLhxraE0e96m
- w8rg==
-X-Gm-Message-State: AC+VfDzR/lhPspfLe8T0HKrSQ/syRWG/1AyZxp2rVk/rzvYNJhNBtPL6
- AcEITrzfBX3THOp1wBX80k1bJeMBgLWY63yV0Z8r42+rksDdPsF0m7CvTnnAkgTA/WAKnfR3J7a
- Kw4elHWAmRxoST7LTMiqEyPHTa/lS
-X-Received: by 2002:adf:f302:0:b0:306:3b78:fe33 with SMTP id
- i2-20020adff302000000b003063b78fe33mr14011153wro.32.1683789074240; 
- Thu, 11 May 2023 00:11:14 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ6yKhoWUVKatWXlNJACwaNqY57Nig7w2ksG7ecoiA64DliEZhMpd3/Eh87z/qa0jstH/lFHKQ==
-X-Received: by 2002:adf:f302:0:b0:306:3b78:fe33 with SMTP id
- i2-20020adff302000000b003063b78fe33mr14011111wro.32.1683789073839; 
- Thu, 11 May 2023 00:11:13 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:280:24f0:9db0:474c:ff43:9f5c?
- ([2a01:e0a:280:24f0:9db0:474c:ff43:9f5c])
- by smtp.gmail.com with ESMTPSA id
- i6-20020adfdec6000000b002c70ce264bfsm19376071wrn.76.2023.05.11.00.11.12
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 11 May 2023 00:11:13 -0700 (PDT)
-Message-ID: <0805efa4-9376-7485-e52b-d53216f74482@redhat.com>
-Date: Thu, 11 May 2023 09:11:11 +0200
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com
+ [66.111.4.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E895F10E085;
+ Thu, 11 May 2023 07:28:45 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailout.nyi.internal (Postfix) with ESMTP id 7A5145C08CE;
+ Thu, 11 May 2023 03:28:44 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute4.internal (MEProxy); Thu, 11 May 2023 03:28:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:content-type:date:date:from:from:in-reply-to
+ :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+ s=fm2; t=1683790124; x=1683876524; bh=2DGMxaz68lfbQSOmt05c1FHF4
+ 3i3eiEYZZf3NWV/les=; b=rFgsfmTLxz4UtgEB3zzNiUD9sJnK10Rl42hfpTj9D
+ aRu5aRluBinvYnQ20BDhr7r1bqvTWdaPWH3GKOwd92wAJ2ESFqOxbSEmGG5yBGT5
+ LwAjaNWNLzt08msgD0rymBbXLQcYurxGWPibi6a3xxxIsno0HUxgFGw4zVa4RnQg
+ CfSC+gqmoVRkPuA7fspPtTDeAdBDsMoYAcFSFx9EzaPyc0oJwT2qyn9rUyjGTUo4
+ mfpgJZsmGay2XerNi1QCG2zuiiYSIBm77YGM+D4jRt/4YiCi2wNQdWlFAF6q/6nk
+ m8Qi6dBCJ28pd7hlDD6qHnVJ5iY3hYK3BsXY0AbFmGbhQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+ 1683790124; x=1683876524; bh=2DGMxaz68lfbQSOmt05c1FHF43i3eiEYZZf
+ 3NWV/les=; b=hxSELixkGD7jyMKRB+Vk/M1tZFk6Ksr4U7RuAJzvkJ0hLbmdyEE
+ U7EgxGiC0JBdiyG7t3t5d1p0wo1EXQwaJkMuDd4YeF2ckbm6srDkddyGoZxM3YNa
+ bapsb3wl7oqtDb516E5ARtWlZcqq2/UOtgQgF1zvzxmhTsdlH0pzGGGfvY5rF6E0
+ Xtc4gPnOi9LytRWUXM1WIM9QF3Y72YzmYBqrxuawu36q2CxZibSP0lLARAumwmRj
+ nLnkYnxWmfX2E5GGzasNqmUK6E+ifmjM5mZH8lCjRJ+xpu2D2/Sr92jsF7GQiIFZ
+ b3vZ/B8CRQ3YvPDnpkz52yxNmn0xZyzGrfA==
+X-ME-Sender: <xms:K5lcZOWSf0LNUSQl9Wlp_PvyZ4U4iMLbRua6nWHqb0M2kVyKliaEWQ>
+ <xme:K5lcZKllXTeM-KHoj3wDvASVRwl6-iAfGyWFN0B1eSQaAfU6w3thy7vWFJKy5ep0Z
+ 3RKrHNVrqaS5FICytI>
+X-ME-Received: <xmr:K5lcZCZ3Rrkch8_1UcAmRAXdqYTsBfIr42TrnP6egDbO9IgDbjcUe_C_Oc7O4-xE-shkNhWcULApMxl8XBFREA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeegjedguddvtdcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvvefukfggtggusehgtdfsredttddunecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepleejhfeuleffleeuvdeufeefvefftdehgefhffelheehvedvlefhhfejledt
+ heeknecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrh
+ fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhho
+ rdhtvggthh
+X-ME-Proxy: <xmx:K5lcZFVL-EHj28zSndEdcdIKbKEh4LO6Xyb_hzqkwGcxmFzpkSudZA>
+ <xmx:K5lcZIk1Bo8JB0TxBKNeazuxdsdyQ9ebOdnB6_dK6Did2TGiz8lgWQ>
+ <xmx:K5lcZKd98CJiZ4F7z67Ltlpwn1PCYZusTwfNu3vqnf9ruIbr_l97fw>
+ <xmx:LJlcZBc8eY9KgBL3Y31Tu1OS3EjXwlPsfW1O1hFTX5Q47-ab2och3Q>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 11 May 2023 03:28:43 -0400 (EDT)
+Date: Thu, 11 May 2023 09:28:40 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <2pxmxdzsk2ekjy6xvbpj67zrhtwvkkhfspuvdm5pfm5i54hed6@sooct7yq6z4w>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-To: Yi Liu <yi.l.liu@intel.com>, alex.williamson@redhat.com, jgg@nvidia.com,
- kevin.tian@intel.com
-References: <20230426150321.454465-1-yi.l.liu@intel.com>
- <20230426150321.454465-6-yi.l.liu@intel.com>
-From: =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clegoate@redhat.com>
-In-Reply-To: <20230426150321.454465-6-yi.l.liu@intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v10 05/22] kvm/vfio: Accept vfio device file
- from userspace
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="3jypkz6hnh354tho"
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,184 +82,488 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- peterx@redhat.com, terrence.xu@intel.com, chao.p.peng@linux.intel.com,
- linux-s390@vger.kernel.org, kvm@vger.kernel.org, lulu@redhat.com,
- zhenzhong.duan@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
- yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
- intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
- cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
- suravee.suthikulpanit@amd.com, yanting.jiang@intel.com, robin.murphy@arm.com
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 4/26/23 17:03, Yi Liu wrote:
-> This defines KVM_DEV_VFIO_FILE* and make alias with KVM_DEV_VFIO_GROUP*.
-> Old userspace uses KVM_DEV_VFIO_GROUP* works as well.
-> 
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> Tested-by: Terrence Xu <terrence.xu@intel.com>
-> Tested-by: Nicolin Chen <nicolinc@nvidia.com>
-> Tested-by: Matthew Rosato <mjrosato@linux.ibm.com>
-> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> ---
->   Documentation/virt/kvm/devices/vfio.rst | 47 ++++++++++++++++---------
->   include/uapi/linux/kvm.h                | 13 +++++--
->   virt/kvm/vfio.c                         | 16 ++++-----
->   3 files changed, 49 insertions(+), 27 deletions(-)
-> 
-> diff --git a/Documentation/virt/kvm/devices/vfio.rst b/Documentation/virt/kvm/devices/vfio.rst
-> index 08b544212638..c549143bb891 100644
-> --- a/Documentation/virt/kvm/devices/vfio.rst
-> +++ b/Documentation/virt/kvm/devices/vfio.rst
-> @@ -9,22 +9,34 @@ Device types supported:
->     - KVM_DEV_TYPE_VFIO
->   
->   Only one VFIO instance may be created per VM.  The created device
-> -tracks VFIO groups in use by the VM and features of those groups
-> -important to the correctness and acceleration of the VM.  As groups
-> -are enabled and disabled for use by the VM, KVM should be updated
-> -about their presence.  When registered with KVM, a reference to the
-> -VFIO-group is held by KVM.
-> +tracks VFIO files (group or device) in use by the VM and features
-> +of those groups/devices important to the correctness and acceleration
-> +of the VM.  As groups/devices are enabled and disabled for use by the
-> +VM, KVM should be updated about their presence.  When registered with
-> +KVM, a reference to the VFIO file is held by KVM.
->   
->   Groups:
-> -  KVM_DEV_VFIO_GROUP
-> -
-> -KVM_DEV_VFIO_GROUP attributes:
-> -  KVM_DEV_VFIO_GROUP_ADD: Add a VFIO group to VFIO-KVM device tracking
-> -	kvm_device_attr.addr points to an int32_t file descriptor
-> -	for the VFIO group.
-> -  KVM_DEV_VFIO_GROUP_DEL: Remove a VFIO group from VFIO-KVM device tracking
-> -	kvm_device_attr.addr points to an int32_t file descriptor
-> -	for the VFIO group.
-> +  KVM_DEV_VFIO_FILE
-> +	alias: KVM_DEV_VFIO_GROUP
-> +
-> +KVM_DEV_VFIO_FILE attributes:
-> +  KVM_DEV_VFIO_FILE_ADD: Add a VFIO file (group/device) to VFIO-KVM device
-> +	tracking
-> +
-> +	kvm_device_attr.addr points to an int32_t file descriptor for the
-> +	VFIO file.
-> +
-> +  KVM_DEV_VFIO_FILE_DEL: Remove a VFIO file (group/device) from VFIO-KVM
-> +	device tracking
-> +
-> +	kvm_device_attr.addr points to an int32_t file descriptor for the
-> +	VFIO file.
-> +
-> +KVM_DEV_VFIO_GROUP (legacy kvm device group restricted to the handling of VFIO group fd):
-> +  KVM_DEV_VFIO_GROUP_ADD: same as KVM_DEV_VFIO_FILE_ADD for group fd only
-> +
-> +  KVM_DEV_VFIO_GROUP_DEL: same as KVM_DEV_VFIO_FILE_DEL for group fd only
-> +
->     KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE: attaches a guest visible TCE table
->   	allocated by sPAPR KVM.
->   	kvm_device_attr.addr points to a struct::
-> @@ -40,7 +52,10 @@ KVM_DEV_VFIO_GROUP attributes:
->   	- @tablefd is a file descriptor for a TCE table allocated via
->   	  KVM_CREATE_SPAPR_TCE.
->   
-> -The GROUP_ADD operation above should be invoked prior to accessing the
-> +The FILE/GROUP_ADD operation above should be invoked prior to accessing the
->   device file descriptor via VFIO_GROUP_GET_DEVICE_FD in order to support
->   drivers which require a kvm pointer to be set in their .open_device()
-> -callback.
-> +callback.  It is the same for device file descriptor via character device
-> +open which gets device access via VFIO_DEVICE_BIND_IOMMUFD.  For such file
-> +descriptors, FILE_ADD should be invoked before VFIO_DEVICE_BIND_IOMMUFD
-> +to support the drivers mentioned in prior sentence as well.
-> diff --git a/include/uapi/linux/kvm.h b/include/uapi/linux/kvm.h
-> index d77aef872a0a..7980c7533136 100644
-> --- a/include/uapi/linux/kvm.h
-> +++ b/include/uapi/linux/kvm.h
-> @@ -1410,9 +1410,16 @@ struct kvm_device_attr {
->   	__u64	addr;		/* userspace address of attr data */
->   };
->   
-> -#define  KVM_DEV_VFIO_GROUP			1
-> -#define   KVM_DEV_VFIO_GROUP_ADD			1
-> -#define   KVM_DEV_VFIO_GROUP_DEL			2
-> +#define  KVM_DEV_VFIO_FILE			1
-> +
-> +#define   KVM_DEV_VFIO_FILE_ADD			1
-> +#define   KVM_DEV_VFIO_FILE_DEL			2
-> +
-> +/* KVM_DEV_VFIO_GROUP aliases are for compile time uapi compatibility */
-> +#define  KVM_DEV_VFIO_GROUP	KVM_DEV_VFIO_FILE
-> +
-> +#define   KVM_DEV_VFIO_GROUP_ADD	KVM_DEV_VFIO_FILE_ADD
-> +#define   KVM_DEV_VFIO_GROUP_DEL	KVM_DEV_VFIO_FILE_DEL
->   #define   KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE		3
->   
->   enum kvm_device_type {
-> diff --git a/virt/kvm/vfio.c b/virt/kvm/vfio.c
-> index 8f7fa07e8170..10a3c7ccadf1 100644
-> --- a/virt/kvm/vfio.c
-> +++ b/virt/kvm/vfio.c
-> @@ -286,18 +286,18 @@ static int kvm_vfio_set_file(struct kvm_device *dev, long attr,
->   	int32_t fd;
->   
->   	switch (attr) {
-> -	case KVM_DEV_VFIO_GROUP_ADD:
-> +	case KVM_DEV_VFIO_FILE_ADD:
->   		if (get_user(fd, argp))
->   			return -EFAULT;
->   		return kvm_vfio_file_add(dev, fd);
->   
-> -	case KVM_DEV_VFIO_GROUP_DEL:
-> +	case KVM_DEV_VFIO_FILE_DEL:
->   		if (get_user(fd, argp))
->   			return -EFAULT;
->   		return kvm_vfio_file_del(dev, fd);
->   
->   #ifdef CONFIG_SPAPR_TCE_IOMMU
-> -	case KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE:
-> +	case KVM_DEV_VFIO_FILE_SET_SPAPR_TCE:
 
-This should still be DEV_VFIO_GROUP_SET_SPAPR_TCE. Same below.
+--3jypkz6hnh354tho
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->   		return kvm_vfio_file_set_spapr_tce(dev, arg);
->   #endif
->   	}
-> @@ -309,7 +309,7 @@ static int kvm_vfio_set_attr(struct kvm_device *dev,
->   			     struct kvm_device_attr *attr)
->   {
->   	switch (attr->group) {
-> -	case KVM_DEV_VFIO_GROUP:
-> +	case KVM_DEV_VFIO_FILE:
->   		return kvm_vfio_set_file(dev, attr->attr,
->   					 u64_to_user_ptr(attr->addr));
->   	}
-> @@ -321,12 +321,12 @@ static int kvm_vfio_has_attr(struct kvm_device *dev,
->   			     struct kvm_device_attr *attr)
->   {
->   	switch (attr->group) {
-> -	case KVM_DEV_VFIO_GROUP:
-> +	case KVM_DEV_VFIO_FILE:
->   		switch (attr->attr) {
-> -		case KVM_DEV_VFIO_GROUP_ADD:
-> -		case KVM_DEV_VFIO_GROUP_DEL:
-> +		case KVM_DEV_VFIO_FILE_ADD:
-> +		case KVM_DEV_VFIO_FILE_DEL:
->   #ifdef CONFIG_SPAPR_TCE_IOMMU
-> -		case KVM_DEV_VFIO_GROUP_SET_SPAPR_TCE:
-> +		case KVM_DEV_VFIO_FILE_SET_SPAPR_TCE:
+Hi,
 
-Probably an error due to a global rename change.
+Here's the first drm-misc-next PR for 6.5
 
-Thanks,
+Please note that I'll be off for about a month starting next week, and
+Thomas has kindly agreed to fill in.
 
-C.
+Thanks!
+Maxime
 
->   #endif
->   			return 0;
->   		}
+drm-misc-next-2023-05-11:
+drm-misc-next for 6.5:
 
+UAPI Changes:
+
+Cross-subsystem Changes:
+ - arch: Consolidate <asm/fb.h>
+
+Core Changes:
+ - aperture: Ignore firmware framebuffers with non-primary devices
+ - fbdev: Use fbdev's I/O helpers
+ - sysfs: Expose DRM connector ID
+ - tests: More tests for drm_rect
+
+Driver Changes:
+ - armada: Implement fbdev emulation as a client
+ - bridge:
+   - fsl-ldb: Support i.MX6SX
+   - lt9211: Remove blanking packets
+   - lt9611: Remove blanking packets
+   - tc358768: Implement input bus formats reporting, fix various
+     timings and clocks settings
+   - ti-sn65dsi86: Implement wait_hpd_asserted
+ - nouveau: Improve NULL pointer checks before dereference
+ - panel:
+   - nt36523: Support Lenovo J606F
+   - st7703: Support Anbernic RG353V-V2
+   - new panels: InnoLux G070ACE-L01
+ - sun4i: Fix MIPI-DSI dotclock
+ - vc4: RGB Range toggle property, BT601 and BT2020 support for HDMI
+ - vkms: Convert to drmm helpers, Add reflection and rotation support
+The following changes since commit ac9a78681b921877518763ba0e89202254349d1b:
+
+  Linux 6.4-rc1 (2023-05-07 13:34:35 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-05-11
+
+for you to fetch changes up to 4795c78768bcbd58d4ffab650674d314dc6dd772:
+
+  drm: sun4i: calculate proper DCLK rate for DSI (2023-05-10 16:03:19 +0200)
+
+----------------------------------------------------------------
+drm-misc-next for 6.5:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+ - arch: Consolidate <asm/fb.h>
+
+Core Changes:
+ - aperture: Ignore firmware framebuffers with non-primary devices
+ - fbdev: Use fbdev's I/O helpers
+ - sysfs: Expose DRM connector ID
+ - tests: More tests for drm_rect
+
+Driver Changes:
+ - armada: Implement fbdev emulation as a client
+ - bridge:
+   - fsl-ldb: Support i.MX6SX
+   - lt9211: Remove blanking packets
+   - lt9611: Remove blanking packets
+   - tc358768: Implement input bus formats reporting, fix various
+     timings and clocks settings
+   - ti-sn65dsi86: Implement wait_hpd_asserted
+ - nouveau: Improve NULL pointer checks before dereference
+ - panel:
+   - nt36523: Support Lenovo J606F
+   - st7703: Support Anbernic RG353V-V2
+   - new panels: InnoLux G070ACE-L01
+ - sun4i: Fix MIPI-DSI dotclock
+ - vc4: RGB Range toggle property, BT601 and BT2020 support for HDMI
+ - vkms: Convert to drmm helpers, Add reflection and rotation support
+
+----------------------------------------------------------------
+Alexander Stein (1):
+      drm/bridge: ti-sn65dsi83: Fix enable error path
+
+Arthur Grillo (5):
+      drm/tests: Add test cases for drm_rect_intersect()
+      drm/tests: Add test cases for drm_rect_calc_hscale()
+      drm/tests: Add test cases for drm_rect_calc_vscale()
+      drm/tests: Add test cases for drm_rect_rotate()
+      drm/test: Add test cases for drm_rect_rotate_inv()
+
+Brandon Pollack (1):
+      Documentation: vkms: clarify devres managed reference cleanup
+
+Brian Norris (2):
+      drm/atomic: Allow vblank-enabled + self-refresh "disable"
+      drm/rockchip: vop: Leave vblank enabled in self-refresh
+
+Chris Morgan (3):
+      dt-bindings: panel: Add Anbernic RG353V-V2 panel compatible
+      drm/panel: st7703: Rename CMD_UNKNOWN_C6 to CMD_SETECO
+      drm/panel: st7703: Add Anbernic RG353V-V2 Panel Support
+
+Christian K=F6nig (3):
+      drm/scheduler: properly forward fence errors
+      drm/scheduler: add drm_sched_entity_error and use rcu for last_schedu=
+led
+      drm/scheduler: mark jobs without fence as canceled
+
+Dan Carpenter (2):
+      drm/imx/lcdc: fix a NULL vs IS_ERR() bug in probe
+      drm/udl: delete dead code
+
+Daniel Vetter (9):
+      MAINTAINERS: add drm_bridge for drm bridge maintainers
+      drm/gma500: Use drm_aperture_remove_conflicting_pci_framebuffers
+      video/aperture: use generic code to figure out the vga default device
+      drm/aperture: Remove primary argument
+      video/aperture: Only kick vgacon when the pdev is decoding vga
+      video/aperture: Move vga handling to pci function
+      video/aperture: Drop primary argument
+      video/aperture: Only remove sysfb on the default vga pci device
+      fbdev: Simplify fb_is_primary_device for x86
+
+Danilo Krummrich (1):
+      drm/scheduler: set entity to NULL in drm_sched_entity_pop_job()
+
+Dave Stevenson (7):
+      drm/vc4: hdmi: Add Broadcast RGB property to allow override of RGB ra=
+nge
+      drm/vc4: hdmi: Rename full range helper
+      drm/vc4: hdmi: Swap CSC matrix channels for YUV444
+      drm/vc4: hdmi: Rework the CSC matrices organization
+      drm/vc4: hdmi: Add a function to retrieve the CSC matrix
+      drm/vc4: hdmi: Add BT.601 Support
+      drm/vc4: hdmi: Add BT.2020 Support
+
+Fabio Estevam (2):
+      dt-bindings: display: bridge: ldb: Add an i.MX6SX entry
+      drm/bridge: fsl-ldb: Add i.MX6SX support
+
+Francesco Dolcini (10):
+      drm/bridge: tc358768: Add atomic_get_input_bus_fmts() implementation
+      drm/bridge: tc358768: always enable HS video mode
+      drm/bridge: tc358768: fix PLL parameters computation
+      drm/bridge: tc358768: fix PLL target frequency
+      drm/bridge: tc358768: fix TCLK_ZEROCNT computation
+      drm/bridge: tc358768: fix TCLK_TRAILCNT computation
+      drm/bridge: tc358768: fix THS_ZEROCNT computation
+      drm/bridge: tc358768: fix TXTAGOCNT computation
+      drm/bridge: tc358768: fix THS_TRAILCNT computation
+      drm/bridge: tc358768: remove unused variable
+
+Jani Nikula (3):
+      drm/sti/sti_hdmi: convert to using is_hdmi from display info
+      drm/rockchip: cdn-dp: call drm_connector_update_edid_property() uncon=
+ditionally
+      drm/connector: document enum drm_connector_tv_mode DRM_MODE_TV_MODE_M=
+AX
+
+Konrad Dybcio (4):
+      dt-bindings: display: panel: nt36523: Add Lenovo J606F panel
+      drm/panel: nt36523: Add DCS backlight support
+      drm/panel: nt36523: Get orientation from OF
+      drm/panel: nt36523: Add Lenovo J606F panel
+
+Luc Ma (1):
+      drm/vram-helper: fix function names in vram helper doc
+
+Marek Vasut (2):
+      drm/bridge: lt9211: Do not generate HFP/HBP/HSA and EOT packet
+      drm/bridge: lt9611: Do not generate HFP/HBP/HSA and EOT packet
+
+Markus Elfring (10):
+      drm/nouveau/debugfs: Move an expression into a function call paramete=
+r in nouveau_debugfs_pstate_set()
+      drm/nouveau/debugfs: Move a variable assignment behind a null pointer=
+ check in nouveau_debugfs_pstate_get()
+      drm/nouveau/debugfs: Use seq_putc() in nouveau_debugfs_pstate_get()
+      drm/nouveau/debugfs: Replace five seq_printf() calls by seq_puts() in=
+ nouveau_debugfs_pstate_get()
+      drm/nouveau/bios/power_budget: Move an expression into a macro call p=
+arameter in nvbios_power_budget_header()
+      drm/nouveau/clk: Move a variable assignment behind a null pointer che=
+ck in nvkm_pstate_new()
+      drm/nouveau/pci: Move a variable assignment behind condition checks i=
+n nvkm_pcie_set_link()
+      drm/nouveau/pci: Move an expression into a function call parameter in=
+ nvkm_pcie_set_link()
+      drm/nouveau/therm: Move an assignment statement behind a null pointer=
+ check in two functions
+      drm/bridge: it6505: Move a variable assignment behind a null pointer =
+check in receive_timing_debugfs_show()
+
+Maxime Ripard (3):
+      drm/vc4: Switch to container_of_const
+      drm/vc4: hdmi: Update all the planes if the TV margins are changed
+      Merge drm/drm-next into drm-misc-next
+
+Ma=EDra Canal (14):
+      drm/vkms: Use drmm_crtc_init_with_planes()
+      drm/vkms: Use drmm_mode_config_init()
+      drm/gem: Check for valid formats
+      drm/bridge: anx7625: Drop of_gpio header
+      drm/sti: Drop of_gpio header
+      drm/vkms: isolate pixel conversion functionality
+      drm/vkms: allow full alpha blending on all planes
+      drm/vkms: drop full alpha blending TODO
+      drm/vkms: add rotate-0 and reflect-x property
+      drm/vkms: add reflect-y and rotate-180 property
+      drm/vkms: add rotate-90 property
+      drm/vkms: add rotate-270 property
+      drm/vkms: drop "Rotation" TODO
+      MAINTAINERS: Add Maira to VKMS maintainers
+
+Nikita Travkin (1):
+      drm/bridge: ti-sn65dsi86: Implement wait_hpd_asserted
+
+Richard Leitner (2):
+      dt-bindings: display: simple: add support for InnoLux G070ACE-L01
+      drm/panel: simple: Add InnoLux G070ACE-L01
+
+Rodrigo Siqueira (1):
+      drm/display: Add missing OLED Vesa brightnesses definitions
+
+Rodrigo Vivi (1):
+      drm/doc/rfc: Introduce the merge plan for the Xe driver.
+
+Roman Beranek (2):
+      drm: sun4i: rename sun4i_dotclock to sun4i_tcon_dclk
+      drm: sun4i: calculate proper DCLK rate for DSI
+
+Sui Jingfeng (1):
+      dma-buf/dma-resv.c: fix a typo
+
+Thomas Zimmermann (46):
+      video/aperture: Provide a VGA helper for gma500 and internal use
+      Merge drm/drm-next into drm-misc-next
+      fbdev: Prepare generic architecture helpers
+      arch/arc: Implement <asm/fb.h> with generic helpers
+      arch/arm: Implement <asm/fb.h> with generic helpers
+      arch/arm64: Implement <asm/fb.h> with generic helpers
+      arch/ia64: Implement <asm/fb.h> with generic helpers
+      arch/loongarch: Implement <asm/fb.h> with generic helpers
+      arch/m68k: Merge variants of fb_pgprotect() into single function
+      arch/m68k: Implement <asm/fb.h> with generic helpers
+      arch/mips: Implement <asm/fb.h> with generic helpers
+      video: Remove trailing whitespaces
+      video: Move HP PARISC STI core code to shared location
+      arch/parisc: Remove trailing whitespaces
+      arch/parisc: Implement fb_is_primary_device() under arch/parisc
+      arch/parisc: Implement <asm/fb.h> with generic helpers
+      arch/powerpc: Implement <asm/fb.h> with generic helpers
+      arch/sh: Implement <asm/fb.h> with generic helpers
+      arch/sparc: Implement fb_is_primary_device() in source file
+      arch/sparc: Implement <asm/fb.h> with generic helpers
+      arch/x86: Implement <asm/fb.h> with generic helpers
+      drm/armada: Include <linux/of.h>
+      drm/armada: Hide fbdev support behind config option
+      drm/armada: Initialize fbdev DRM client
+      drm/armada: Implement fbdev emulation as in-kernel client
+      Merge drm/drm-next into drm-misc-next
+      arch/x86: Include <asm/fb.h> in fbdev source file
+      auxdisplay/cfag12864bfb: Use struct fb_info.screen_buffer
+      auxdisplay/ht16k33: Use struct fb_info.screen_buffer
+      hid/hid-picolcd_fb: Use struct fb_info.screen_buffer
+      fbdev/arcfb: Use struct fb_info.screen_buffer
+      fbdev/au1200fb: Use struct fb_info.screen_buffer
+      fbdev/broadsheetfb: Use struct fb_info.screen_buffer
+      fbdev/hecubafb: Use struct fb_info.screen_buffer
+      fbdev/metronomefb: Use struct fb_info.screen_buffer
+      fbdev/ps3fb: Use struct fb_info.screen_buffer
+      fbdev/smscufx: Use struct fb_info.screen_buffer
+      fbdev/udlfb: Use struct fb_info.screen_buffer
+      fbdev/vfb: Use struct fb_info.screen_buffer
+      fbdev/xen-fbfront: Use struct fb_info.screen_buffer
+      fbdev: Return number of bytes read or written
+      fbdev: Use screen_buffer in fb_sys_{read,write}()
+      fbdev: Don't re-validate info->state in fb_ops implementations
+      fbdev: Validate info->screen_{base, buffer} in fb_ops implementations
+      fbdev: Move I/O read and write code into helper functions
+      drm/fb-helper: Use fb_{cfb,sys}_{read, write}()
+
+Tom Rix (1):
+      drm/meson: set variables meson_hdmi_* storage-class-specifier to stat=
+ic
+
+Ville Syrj=E4l=E4 (1):
+      drm/uapi: Document CTM matrix better
+
+Won Chung (2):
+      drm/sysfs: Expose DRM connector id in each connector sysfs
+      drm/sysfs: Link DRM connectors to corresponding Type-C connectors
+
+Yang Li (1):
+      drm/tve200: Use devm_platform_ioremap_resource()
+
+ .../bindings/display/bridge/fsl,ldb.yaml           |   5 +-
+ .../bindings/display/panel/novatek,nt36523.yaml    |  16 +-
+ .../bindings/display/panel/panel-simple.yaml       |   2 +
+ .../display/panel/rocktech,jh057n00900.yaml        |   2 +
+ Documentation/gpu/rfc/index.rst                    |   4 +
+ Documentation/gpu/rfc/xe.rst                       | 235 +++++++++
+ Documentation/gpu/todo.rst                         |   7 +-
+ Documentation/gpu/vkms.rst                         |   7 +-
+ MAINTAINERS                                        |   2 +
+ arch/arc/include/asm/fb.h                          |  16 +-
+ arch/arm/include/asm/fb.h                          |  15 +-
+ arch/arm64/include/asm/fb.h                        |  15 +-
+ arch/ia64/include/asm/fb.h                         |  11 +-
+ arch/loongarch/include/asm/fb.h                    |  15 +-
+ arch/m68k/include/asm/fb.h                         |  24 +-
+ arch/mips/include/asm/fb.h                         |  10 +-
+ arch/parisc/Makefile                               |   4 +-
+ arch/parisc/include/asm/fb.h                       |  20 +-
+ arch/parisc/video/Makefile                         |   3 +
+ arch/parisc/video/fbdev.c                          |  27 +
+ arch/powerpc/include/asm/fb.h                      |   8 +-
+ arch/sh/include/asm/fb.h                           |  15 +-
+ arch/sparc/Makefile                                |   1 +
+ arch/sparc/include/asm/fb.h                        |  33 +-
+ arch/sparc/video/Makefile                          |   3 +
+ arch/sparc/video/fbdev.c                           |  24 +
+ arch/x86/include/asm/fb.h                          |  21 +-
+ arch/x86/video/fbdev.c                             |  30 +-
+ drivers/auxdisplay/cfag12864bfb.c                  |   2 +-
+ drivers/auxdisplay/ht16k33.c                       |   2 +-
+ drivers/dma-buf/dma-resv.c                         |   2 +-
+ drivers/gpu/drm/arm/hdlcd_drv.c                    |   2 +-
+ drivers/gpu/drm/armada/Makefile                    |   3 +-
+ drivers/gpu/drm/armada/armada_drm.h                |  10 +-
+ drivers/gpu/drm/armada/armada_drv.c                |  14 +-
+ drivers/gpu/drm/armada/armada_fb.c                 |   1 -
+ drivers/gpu/drm/armada/armada_fbdev.c              | 135 +++--
+ drivers/gpu/drm/bridge/analogix/anx7625.c          |   1 -
+ drivers/gpu/drm/bridge/fsl-ldb.c                   |  14 +-
+ drivers/gpu/drm/bridge/ite-it6505.c                |   3 +-
+ drivers/gpu/drm/bridge/lontium-lt9211.c            |   4 +-
+ drivers/gpu/drm/bridge/lontium-lt9611.c            |   4 +-
+ drivers/gpu/drm/bridge/tc358768.c                  |  97 +++-
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c              |   1 +
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c              |  19 +
+ drivers/gpu/drm/drm_aperture.c                     |  11 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |  11 +-
+ drivers/gpu/drm/drm_drv.c                          |   4 +-
+ drivers/gpu/drm/drm_fb_helper.c                    | 174 +------
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c       |   9 +
+ drivers/gpu/drm/drm_gem_vram_helper.c              |   6 +-
+ drivers/gpu/drm/drm_sysfs.c                        |  51 ++
+ drivers/gpu/drm/gma500/psb_drv.c                   |  43 +-
+ drivers/gpu/drm/hyperv/hyperv_drm_drv.c            |   1 -
+ drivers/gpu/drm/imx/lcdc/imx-lcdc.c                |   4 +-
+ drivers/gpu/drm/meson/meson_drv.c                  |   2 +-
+ drivers/gpu/drm/meson/meson_venc.c                 |  32 +-
+ drivers/gpu/drm/msm/msm_drv.c                      |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_debugfs.c          |  19 +-
+ .../drm/nouveau/nvkm/subdev/bios/power_budget.c    |   3 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c     |   2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/pci/pcie.c     |   7 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/therm/fanpwm.c |   2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/therm/fantog.c |   2 +-
+ drivers/gpu/drm/panel/panel-novatek-nt36523.c      | 569 +++++++++++++++++=
++++-
+ drivers/gpu/drm/panel/panel-simple.c               |  35 ++
+ drivers/gpu/drm/panel/panel-sitronix-st7703.c      | 102 +++-
+ drivers/gpu/drm/rockchip/cdn-dp-core.c             |   5 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |   2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |   8 +-
+ drivers/gpu/drm/scheduler/sched_entity.c           |  49 +-
+ drivers/gpu/drm/scheduler/sched_fence.c            |   4 +-
+ drivers/gpu/drm/scheduler/sched_main.c             |  22 +-
+ drivers/gpu/drm/sti/sti_dvo.c                      |   2 +-
+ drivers/gpu/drm/sti/sti_hdmi.c                     |  11 +-
+ drivers/gpu/drm/sti/sti_hdmi.h                     |   2 -
+ drivers/gpu/drm/stm/drv.c                          |   2 +-
+ drivers/gpu/drm/sun4i/Makefile                     |   2 +-
+ drivers/gpu/drm/sun4i/sun4i_drv.c                  |   2 +-
+ drivers/gpu/drm/sun4i/sun4i_tcon.c                 |  46 +-
+ .../sun4i/{sun4i_dotclock.c =3D> sun4i_tcon_dclk.c}  |   2 +-
+ .../sun4i/{sun4i_dotclock.h =3D> sun4i_tcon_dclk.h}  |   0
+ drivers/gpu/drm/tegra/drm.c                        |   2 +-
+ drivers/gpu/drm/tests/drm_rect_test.c              | 315 ++++++++++++
+ drivers/gpu/drm/tve200/tve200_drv.c                |   4 +-
+ drivers/gpu/drm/udl/udl_main.c                     |   2 +-
+ drivers/gpu/drm/vc4/tests/vc4_mock.h               |   3 +
+ drivers/gpu/drm/vc4/tests/vc4_mock_output.c        |   4 +-
+ drivers/gpu/drm/vc4/vc4_dpi.c                      |   7 +-
+ drivers/gpu/drm/vc4/vc4_drv.c                      |   2 +-
+ drivers/gpu/drm/vc4/vc4_drv.h                      |  65 +--
+ drivers/gpu/drm/vc4/vc4_dsi.c                      |  17 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     | 336 ++++++++++--
+ drivers/gpu/drm/vc4/vc4_hdmi.h                     |  25 +-
+ drivers/gpu/drm/vc4/vc4_kms.c                      |  16 +-
+ drivers/gpu/drm/vc4/vc4_plane.c                    |   3 +-
+ drivers/gpu/drm/vc4/vc4_txp.c                      |  12 +-
+ drivers/gpu/drm/vc4/vc4_vec.c                      |  14 +-
+ drivers/gpu/drm/vkms/vkms_composer.c               |  38 +-
+ drivers/gpu/drm/vkms/vkms_crtc.c                   |   5 +-
+ drivers/gpu/drm/vkms/vkms_drv.c                    |   6 +-
+ drivers/gpu/drm/vkms/vkms_drv.h                    |   6 +-
+ drivers/gpu/drm/vkms/vkms_formats.c                | 141 +++--
+ drivers/gpu/drm/vkms/vkms_formats.h                |   2 +-
+ drivers/gpu/drm/vkms/vkms_plane.c                  |  50 +-
+ drivers/hid/hid-picolcd_fb.c                       |   4 +-
+ drivers/media/pci/ivtv/ivtvfb.c                    |   4 +-
+ drivers/video/Kconfig                              |   7 +
+ drivers/video/Makefile                             |   1 +
+ drivers/video/aperture.c                           |  70 ++-
+ drivers/video/console/Kconfig                      |   1 +
+ drivers/video/console/Makefile                     |   4 +-
+ drivers/video/console/sticon.c                     |   6 +-
+ drivers/video/fbdev/Kconfig                        |   3 +-
+ drivers/video/fbdev/arcfb.c                        |  11 +-
+ drivers/video/fbdev/au1200fb.c                     |   2 +-
+ drivers/video/fbdev/broadsheetfb.c                 |  16 +-
+ drivers/video/fbdev/cobalt_lcdfb.c                 |   6 +
+ drivers/video/fbdev/core/Makefile                  |   2 +-
+ drivers/video/fbdev/core/fb_io_fops.c              | 133 +++++
+ drivers/video/fbdev/core/fb_sys_fops.c             |  36 +-
+ drivers/video/fbdev/core/fbmem.c                   | 111 +---
+ drivers/video/fbdev/hecubafb.c                     |  12 +-
+ drivers/video/fbdev/hyperv_fb.c                    |   2 +-
+ drivers/video/fbdev/metronomefb.c                  |  16 +-
+ drivers/video/fbdev/ps3fb.c                        |   4 +-
+ drivers/video/fbdev/pvr2fb.c                       |   3 +
+ drivers/video/fbdev/sm712fb.c                      |  10 +-
+ drivers/video/fbdev/smscufx.c                      |  14 +-
+ drivers/video/fbdev/ssd1307fb.c                    |   3 +
+ drivers/video/fbdev/stifb.c                        | 158 +++---
+ drivers/video/fbdev/udlfb.c                        |  12 +-
+ drivers/video/fbdev/vfb.c                          |   2 +-
+ drivers/video/fbdev/xen-fbfront.c                  |   2 +-
+ drivers/video/{console =3D> }/sticore.c              | 123 ++---
+ include/asm-generic/fb.h                           |  24 +-
+ include/drm/display/drm_dp.h                       |   3 +
+ include/drm/drm_aperture.h                         |   7 +-
+ include/drm/drm_connector.h                        |   5 +
+ include/drm/gpu_scheduler.h                        |   5 +-
+ include/linux/aperture.h                           |  16 +-
+ include/linux/fb.h                                 |  10 +
+ include/uapi/drm/drm_mode.h                        |   5 +
+ {drivers/video/fbdev =3D> include/video}/sticore.h   |  16 +-
+ 144 files changed, 2840 insertions(+), 1243 deletions(-)
+ create mode 100644 Documentation/gpu/rfc/xe.rst
+ create mode 100644 arch/parisc/video/Makefile
+ create mode 100644 arch/parisc/video/fbdev.c
+ create mode 100644 arch/sparc/video/Makefile
+ create mode 100644 arch/sparc/video/fbdev.c
+ rename drivers/gpu/drm/sun4i/{sun4i_dotclock.c =3D> sun4i_tcon_dclk.c} (99=
+%)
+ rename drivers/gpu/drm/sun4i/{sun4i_dotclock.h =3D> sun4i_tcon_dclk.h} (10=
+0%)
+ create mode 100644 drivers/video/fbdev/core/fb_io_fops.c
+ rename drivers/video/{console =3D> }/sticore.c (95%)
+ rename {drivers/video/fbdev =3D> include/video}/sticore.h (99%)
+
+--3jypkz6hnh354tho
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZFyZKAAKCRDj7w1vZxhR
+xRaPAP9J7hRRIpzzSAFI+IBhaVVtFvjt91dOaWDUGmwe8kXuAgD/WJgeJ1l17KHR
+lMRn+LWJty3Sh8zyAd0ucew6YQnWkAk=
+=ndL+
+-----END PGP SIGNATURE-----
+
+--3jypkz6hnh354tho--
