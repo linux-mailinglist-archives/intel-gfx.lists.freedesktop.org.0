@@ -1,55 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 808F86FF0B9
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 13:54:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD0D56FF102
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 14:03:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C24DB10E08D;
-	Thu, 11 May 2023 11:54:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7F3010E0A6;
+	Thu, 11 May 2023 12:02:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C996C10E08D
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 11:54:54 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D36AC10E0CF;
+ Thu, 11 May 2023 12:02:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683806094; x=1715342094;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=5RN5G0hLyNYxq59ImrrdxP3qt5gCGDAZ+m34zfrkI48=;
- b=RDsXNHCdFdyadWIpUK6JFM5jq216kLgWFtRM1QPwzkYH/faXSNDYWNXe
- CSBzoBN4IBMw5h4nLru3TNBH85zDLXTnkt+dPcws4tW8EVcFLZ833Ztul
- 1DvBkwqdDx9azcA/BJpEZ03Vjel4F6BcZ0Mwn2qet/aICb5N6JtH/Kdid
- SogykLqc0SYADgQfWdkBHGoPDolLkF+7BY35723BM0Qko2Ufjvg/DmC/7
- ROTV1gI5S9P+TTknVhKEKvjkvNKMhyWy1Y18m+wEup/mp6/cJQ08DaGw4
- 41sxiAAcRLTt4qrxLRehCrRO7etkB7yZnpOmEKP78ADdBCfZRXI5/5fIH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="334960974"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="334960974"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 04:54:53 -0700
+ t=1683806574; x=1715342574;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=pgKwgNGYg+F+j98b2qPTjWsB/OPTbOcSNjg9AVmnpys=;
+ b=NWf8wbNjS+7DXLiRUZY9AMC5Jek6cJJxBAs2v1PqXzUg68gPToMDLXa5
+ Ath38zVF63ClVIDgRpPlgnGYDEnfG2t60kIYRF+NvnTI+7yF9kr2rczOY
+ FDrZ6M23OP2wa7n9hBq+Rm86ldrN7OxjfvkWRs7FYQ0x86mWGQw3LHiLa
+ 0HXS/U6DuLXnMBNtr4xe8TbeKpqsh+Wsv+tY7LaAkj2kpCHCkoqe374En
+ svclQshGpEeEsju0i90v31chxTxxOzu+MevFDQymlJIu8+JYlXZKFoIgs
+ ZAT6HWaw1Jj9mx0AO0Y0p2DnPLH/SsG8cLUFV/ugcepAOfc4H5tpTE9Yb Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="436810423"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="436810423"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 05:02:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="843915444"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="843915444"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga001.fm.intel.com with SMTP; 11 May 2023 04:54:51 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 11 May 2023 14:54:50 +0300
-Date: Thu, 11 May 2023 14:54:50 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Luca Coelho <luca@coelho.fi>
-Message-ID: <ZFzXigQck7Vk7Mkf@intel.com>
-References: <20230426135019.7603-1-ville.syrjala@linux.intel.com>
- <20230426135019.7603-8-ville.syrjala@linux.intel.com>
- <fd19232a9a6a82fcb6875b2d603bdaa1f71c2699.camel@coelho.fi>
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="873957221"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="873957221"
+Received: from thenehan-mobl1.ger.corp.intel.com (HELO [10.213.214.244])
+ ([10.213.214.244])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 05:02:52 -0700
+Message-ID: <5c7abe53-aa76-e16d-4276-e53d8138bc55@linux.intel.com>
+Date: Thu, 11 May 2023 13:02:50 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: "Yang, Fei" <fei.yang@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20230508234854.4028658-1-fei.yang@intel.com>
+ <20230508234854.4028658-3-fei.yang@intel.com>
+ <1eba1d94-427e-c8fe-9d58-69b52d1545e4@linux.intel.com>
+ <SN6PR11MB25746DE12E35850DF6772BA29A769@SN6PR11MB2574.namprd11.prod.outlook.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <SN6PR11MB25746DE12E35850DF6772BA29A769@SN6PR11MB2574.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <fd19232a9a6a82fcb6875b2d603bdaa1f71c2699.camel@coelho.fi>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 7/7] drm/i915: Define more PS_CTRL bits
+Subject: Re: [Intel-gfx] [PATCH v7 2/2] drm/i915: use pat_index instead of
+ cache_level
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,72 +67,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>, "Roper,
+ Matthew D" <matthew.d.roper@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 11, 2023 at 10:29:01AM +0300, Luca Coelho wrote:
-> On Wed, 2023-04-26 at 16:50 +0300, Ville Syrjala wrote:
-> > From: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> > 
-> > To avoid annoying spec lookups let's define more PS_CTRL
-> > bits in the header.
-> > 
-> > Signed-off-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_reg.h | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > index f5ae8d1eb6ff..e08bb15eddcf 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -4055,6 +4055,9 @@
-> >  #define _PS_2B_CTRL      0x68A80
-> >  #define _PS_1C_CTRL      0x69180
-> >  #define   PS_SCALER_EN				REG_BIT(31)
-> > +#define   PS_SCALER_TYPE_MASK			REG_BIT(30) /* icl+ */
-> > +#define   PS_SCALER_TYPE_NON_LINEAR		REG_FIELD_PREP(PS_SCALER_TYPE_MASK, 0)
-> > +#define   PS_SCALER_TYPE_LINEAR			REG_FIELD_PREP(PS_SCALER_TYPE_MASK, 1)
-> >  #define   SKL_PS_SCALER_MODE_MASK		REG_GENMASK(29, 28) /* skl/bxt */
-> >  #define   SKL_PS_SCALER_MODE_DYN		REG_FIELD_PREP(SKL_PS_SCALER_MODE_MASK, 0)
-> >  #define   SKL_PS_SCALER_MODE_HQ			REG_FIELD_PREP(SKL_PS_SCALER_MODE_MASK, 1)
-> > @@ -4062,6 +4065,7 @@
-> >  #define   PS_SCALER_MODE_MASK			REG_BIT(29) /* glk-tgl */
-> >  #define   PS_SCALER_MODE_NORMAL			REG_FIELD_PREP(PS_SCALER_MODE_MASK, 0)
-> >  #define   PS_SCALER_MODE_PLANAR			REG_FIELD_PREP(PS_SCALER_MODE_MASK, 1)
-> > +#define   PS_ADAPTIVE_FILTERING_EN		REG_BIT(28) /* icl+ */
-> >  #define   PS_BINDING_MASK			REG_GENMASK(27, 25)
-> >  #define   PS_BINDING_PIPE			REG_FIELD_PREP(PS_BINDING_MASK, 0)
-> >  #define   PS_BINDING_PLANE(plane_id)		REG_FIELD_PREP(PS_BINDING_MASK, (plane_id) + 1)
-> > @@ -4070,8 +4074,15 @@
-> >  #define   PS_FILTER_PROGRAMMED			REG_FIELD_PREP(PS_FILTER_MASK, 1)
-> >  #define   PS_FILTER_EDGE_ENHANCE		REG_FIELD_PREP(PS_FILTER_MASK, 2)
-> >  #define   PS_FILTER_BILINEAR			REG_FIELD_PREP(PS_FILTER_MASK, 3)
-> > +#define   PS_ADAPTIVE_FILTER_MASK		REG_BIT(22) /* icl+ */
-> > +#define   PS_ADAPTIVE_FILTER_MEDIUM		REG_FIELD_PREP(PS_ADAPTIVE_FILTER_MASK, 0)
-> > +#define   PS_ADAPTIVE_FILTER_EDGE_ENHANCE	REG_FIELD_PREP(PS_ADAPTIVE_FILTER_MASK, 1)
-> > +#define   PS_PIPE_SCALER_LOC_MASK		REG_BIT(21) /* icl+ */
-> > +#define   PS_PIPE_SCALER_LOC_AFTER_OUTPUT_CSC	REG_FIELD_PREP(PS_SCALER_LOCATION_MASK, 0) /* non-linear */
-> > +#define   PS_PIPE_SCALER_LOC_AFTER_CSC		REG_FIELD_PREP(PS_SCALER_LOCATION_MASK, 1) /* linear */
-> >  #define   PS_VERT3TAP				REG_BIT(21) /* skl/bxt */
-> >  #define   PS_VERT_INT_INVERT_FIELD		REG_BIT(20)
-> > +#define   PS_PROG_SCALE_FACTOR			REG_BIT(19) /* tgl+ */
-> 
-> This one is actually a two-bit field, isn't it? 19:18.  And why not
-> define the values for it here too, like with the previous ones?
 
-It's still a single bit in current hardware.
+On 09/05/2023 18:12, Yang, Fei wrote:
+>  > On 09/05/2023 00:48, fei.yang@intel.com wrote:
+>  >> From: Fei Yang <fei.yang@intel.com>
+>  >>
+>  >> Currently the KMD is using enum i915_cache_level to set caching 
+> policy for
+>  >> buffer objects. This is flaky because the PAT index which really 
+> controls
+>  >> the caching behavior in PTE has far more levels than what's defined 
+> in the
+>  >> enum. In addition, the PAT index is platform dependent, having to 
+> translate
+>  >> between i915_cache_level and PAT index is not reliable, and makes 
+> the code
+>  >> more complicated.
+>  >>
+>  >> From UMD's perspective there is also a necessity to set caching 
+> policy for
+>  >> performance fine tuning. It's much easier for the UMD to directly 
+> use PAT
+>  >> index because the behavior of each PAT index is clearly defined in 
+> Bspec.
+>  >> Having the abstracted i915_cache_level sitting in between would only 
+> cause
+>  >> more ambiguity. PAT is expected to work much like MOCS already works 
+> today,
+>  >> and by design userspace is expected to select the index that exactly
+>  >> matches the desired behavior described in the hardware specification.
+>  >>
+>  >> For these reasons this patch replaces i915_cache_level with PAT 
+> index. Also
+>  >> note, the cache_level is not completely removed yet, because the KMD 
+> still
+>  >> has the need of creating buffer objects with simple cache settings 
+> such as
+>  >> cached, uncached, or writethrough. For kernel objects, cache_level 
+> is used
+>  >> for simplicity and backward compatibility. For Pre-gen12 platforms 
+> PAT can
+>  >> have 1:1 mapping to i915_cache_level, so these two are 
+> interchangeable. see
+>  >> the use of LEGACY_CACHELEVEL.
+>  >>
+>  >> One consequence of this change is that gen8_pte_encode is no longer 
+> working
+>  >> for gen12 platforms due to the fact that gen12 platforms has 
+> different PAT
+>  >> definitions. In the meantime the mtl_pte_encode introduced 
+> specfically for
+>  >> MTL becomes generic for all gen12 platforms. This patch renames the MTL
+>  >> PTE encode function into gen12_pte_encode and apply it to all gen12. 
+> Even
+>  >> though this change looks unrelated, but separating them would 
+> temporarily
+>  >> break gen12 PTE encoding, thus squash them in one patch.
+>  >>
+>  >> Special note: this patch changes the way caching behavior is 
+> controlled in
+>  >> the sense that some objects are left to be managed by userspace. For 
+> such
+>  >> objects we need to be careful not to change the userspace settings.There
+>  >> are kerneldoc and comments added around obj->cache_coherent, 
+> cache_dirty,
+>  >> and how to bypass the checkings by i915_gem_object_has_cache_level. For
+>  >> full understanding, these changes need to be looked at together with the
+>  >> two follow-up patches, one disables the {set|get}_caching ioctl's 
+> and the
+>  >> other adds set_pat extension to the GEM_CREATE uAPI.
+>  >>
+>  >> Bspec: 63019
+>  >>
+>  >> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+>  >> Signed-off-by: Fei Yang <fei.yang@intel.com>
+>  >> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+>  >> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-> 
-> >  #define   PS_PWRUP_PROGRESS			REG_BIT(17)
-> >  #define   PS_V_FILTER_BYPASS			REG_BIT(8)
-> >  #define   PS_VADAPT_EN				REG_BIT(7) /* skl/bxt */
-> 
-> --
-> Cheers,
-> Luca.
+[snip]
 
--- 
-Ville Syrj�l�
-Intel
+>  >> +                                          node.start,
+>  >> +                                          i915_gem_get_pat_index(i915,
+>  >> +                                                                 
+> I915_CACHE_NONE), 0);
+>  >>                        wmb(); /* flush modifications to the GGTT 
+> (insert_page) */
+>  >>                } else {
+>  >>                        page_base += offset & PAGE_MASK;
+>  >> @@ -1142,6 +1148,19 @@ int i915_gem_init(struct drm_i915_private 
+> *dev_priv)
+>  >>        unsigned int i;
+>  >>        int ret;
+>  >>
+>  >> +     /*
+>  >> +      * In the proccess of replacing cache_level with pat_index a 
+> tricky
+>  >> +      * dependency is created on the definition of the enum 
+> i915_cache_level.
+>  >> +      * in case this enum is changed, PTE encode would be broken.
+>  >
+>  >_I_n
+> 
+> Sorry, what does this mean?
+
+Start of sentence, capital 'i'.
+
+[snip]
+
+>  > With a pinky promise to improve this all in the near future I won't
+>  > grumble to loudly. :) I haven't read all the details, I leave that to
+>  > other reviewers, and also assuming some final tweaks as indicated above
+>  > please.
+> 
+> Thanks for all the suggestions, really appreciated.
+> May I add your Acked-by?
+
+I can't make myself do it since I really don't like the design that 
+much. That's why I said I will not grumble too loudly.
+
+Jira for follow up clean since we both agreed something more elegant is 
+possible would be appreciated though.
+
+Regards,
+
+Tvrtko
