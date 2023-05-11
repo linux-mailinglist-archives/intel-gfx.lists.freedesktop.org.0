@@ -1,53 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB2A46FF394
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 16:07:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3FEC6FF3D7
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 16:16:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6219910E259;
-	Thu, 11 May 2023 14:07:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB43B10E25C;
+	Thu, 11 May 2023 14:16:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0896B10E259
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 14:07:09 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59B3F10E259
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 14:16:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683814030; x=1715350030;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=m6e/Vt8kCJ/h1FsMSpJliFvu3iHpKu2kPrPhok5JLZU=;
- b=V7i5t5PFexh0Lk/+hS09aCpeftKRmBrcn8jem3Fk5arml6CS4Uhorjhj
- qRaZi7i24t2v2qtx/Qht5A90KnD9I/ih8J7vp6f/AawBXIee8qB1gt0tw
- j76mJv9cDj0zABdkxgKdyRZs62hQQgNY1wQMa3ib7W6zltWFetz/0VsVF
- 9yh5eCt4lRDnsPMsqZ0NOpYBoKUH0630uk1EItGhDyoFrBCfqz+jptU+s
- iz3B4H4J9rkOfYZH8aoyIi4NB9T+9oKvfnt6/P0xFJXqnzHOcdACYbqSc
- 5ILNnswVAAjWOX1fw7gvgrq1ZSxReOLX9wNbEUjSq+MNVQyoWhSXksCwD w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="413857886"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="413857886"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 07:05:25 -0700
+ t=1683814595; x=1715350595;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=gLHYEZYrTSjomhYTevPcB6MDFRvOrkBlrneWHNjrL+U=;
+ b=btGNJ01YawGnEZx0prfgxI7fDLwEuiWVdrhy7nMM0rhMUVaa1rGcrs+B
+ op9KMPO4irTUW5iFCAVn87yd0BKwfAjAmY+XNiJbpORD5lZiocxsuFF+A
+ 2cB/cIow+i/zYGHNRkb40RPyVpjNWxTmUARF+hUpOLki3m5py9E4Q5J7Z
+ XWmgat3IiF2wV1NLv9r/T1CbWCMV6yDb8h1nHmmxu+ENWLiTxVUGlPVsd
+ wV2bWV72EcokTOONpCPu3QSFmuxso4RyuMaJKKvggiAGJ/PSyL6XsN2XL
+ mtWs58QcCxqsBlQ2X3M6tCrTuNIKNRVz3guw/Sy08WFiYe9Tvb/zoISI0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="330868089"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="330868089"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 07:15:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="650196734"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="650196734"
-Received: from unknown (HELO localhost) ([10.237.66.162])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 07:05:23 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <SN7PR11MB675091535530A23122E56593E3749@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230511085553.799321-1-jani.nikula@intel.com>
- <SN7PR11MB675091535530A23122E56593E3749@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Thu, 11 May 2023 17:05:21 +0300
-Message-ID: <87h6sjklpa.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="843984087"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="843984087"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by fmsmga001.fm.intel.com with SMTP; 11 May 2023 07:15:02 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 11 May 2023 17:15:01 +0300
+Date: Thu, 11 May 2023 17:15:01 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <ZFz4ZQ0exPK6e4ZZ@intel.com>
+References: <20230511090427.809243-1-jani.nikula@intel.com>
+ <ZFzddTOx2QciRfXE@intel.com> <87sfc3kq23.fsf@intel.com>
+ <ZFzgqLtuY8gM96lE@intel.com> <87jzxfkpd5.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: drop display/ prefix from
- include
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87jzxfkpd5.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: drop dependency on
+ VLV_DISPLAY_BASE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,58 +63,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 11 May 2023, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Thursday, May 11, 2023 2:26 PM
->> To: intel-gfx@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>; Teres Alexis, Alan Previn
->> <alan.previn.teres.alexis@intel.com>; Kandpal, Suraj
->> <suraj.kandpal@intel.com>; Shankar, Uma <uma.shankar@intel.com>
->> Subject: [PATCH] drm/i915/hdcp: drop display/ prefix from include
->>
->> The display prefix is unnecessary within the display sub-directory.
->>
->
-> LGTM.
->
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+On Thu, May 11, 2023 at 03:46:14PM +0300, Jani Nikula wrote:
+> On Thu, 11 May 2023, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Thu, May 11, 2023 at 03:31:16PM +0300, Jani Nikula wrote:
+> >> On Thu, 11 May 2023, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> >> > On Thu, May 11, 2023 at 12:04:27PM +0300, Jani Nikula wrote:
+> >> >> CHV_FUSE_GT (0x182168) is purely about GT fuses, therefore belongs in
+> >> >> intel_gt_regs.h, is in the gcfgmmio unit, but is technically in the VLV
+> >> >> display base area.
+> >> >> 
+> >> >> Use the 0x182168 MMIO address directly to drop dependency on
+> >> >> VLV_DISPLAY_BASE and thus display/intel_display_reg_defs.h in
+> >> >> intel_gt_regs.h.
+> >> >> 
+> >> >> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >> >> ---
+> >> >>  drivers/gpu/drm/i915/gt/intel_gt_regs.h | 3 +--
+> >> >>  1 file changed, 1 insertion(+), 2 deletions(-)
+> >> >> 
+> >> >> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> >> >> index b8a39c219b60..f38550dae6b8 100644
+> >> >> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> >> >> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> >> >> @@ -7,7 +7,6 @@
+> >> >>  #define __INTEL_GT_REGS__
+> >> >>  
+> >> >>  #include "i915_reg_defs.h"
+> >> >> -#include "display/intel_display_reg_defs.h"	/* VLV_DISPLAY_BASE */
+> >> >>  
+> >> >>  /*
+> >> >>   * The perf control registers are technically multicast registers, but the
+> >> >> @@ -1469,7 +1468,7 @@
+> >> >>  #define GEN12_RCU_MODE				_MMIO(0x14800)
+> >> >>  #define   GEN12_RCU_MODE_CCS_ENABLE		REG_BIT(0)
+> >> >>  
+> >> >> -#define CHV_FUSE_GT				_MMIO(VLV_DISPLAY_BASE + 0x2168)
+> >> >> +#define CHV_FUSE_GT				_MMIO(0x182168)
+> >> >
+> >> > Or mmaybe s/VLV_DISPLAY_BASE/VLV_GUNIT_BASE/ here? Although all the
+> >> > other Gunit register defintions are still in i915_reg.h, and using
+> >> > VLV_DISPLAY_BASE. Not sure what to do about all that...
+> >> 
+> >> Works for me, as long as I can drop the dependency on
+> >> display/intel_display_reg_defs.h.
+> >> 
+> >> Just let me know.
+> >
+> > I'd probably go with the VLV_GUNIT_BASE approach. We can think
+> > about what to do with all the other Gunit registers later.
+> 
+> Hmm, where to put VLV_GUNIT_BASE, then?
+> 
+> To avoid deps on display/, it would be here, i915_reg_defs.h, or a new
+> file that would mostly just contain this kind of offsets.
 
-Thanks, pushed to din.
-
->
->> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
->> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
->> Cc: Uma Shankar <uma.shankar@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->> index 7e52aea6aa17..4056bb2323ca 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->> @@ -5,11 +5,11 @@
->>
->>  #include <drm/i915_hdcp_interface.h>
->>
->> -#include "display/intel_hdcp_gsc.h"
->>  #include "gem/i915_gem_region.h"
->>  #include "gt/uc/intel_gsc_uc_heci_cmd_submit.h"
->>  #include "i915_drv.h"
->>  #include "i915_utils.h"
->> +#include "intel_hdcp_gsc.h"
->>
->>  bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915)  {
->> --
->> 2.39.2
->
+I suppose it could just live in intel_gt_regs.h for the moment?
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Ville Syrjälä
+Intel
