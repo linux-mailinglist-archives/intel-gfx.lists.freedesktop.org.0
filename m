@@ -1,50 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1B96FF7CD
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 18:55:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8CCB6FF7CE
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 18:55:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B15BD10E557;
-	Thu, 11 May 2023 16:55:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4FBB10E55A;
+	Thu, 11 May 2023 16:55:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BD3410E557
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83D5110E52A
  for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 16:55:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1683824143; x=1715360143;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Hj6VNZ9vXTgMHsqpcKm612chRU64qCBgyH3fc24S6+4=;
- b=BJwILnqxf5VpagGUM0zMLZaZGXGP6oN4TwwvaywjXjewpH9S/HhUHEyM
- P4cGK98m3FgLwJTjNQ7btI6yhzVZR4Ms25td/xgmMPMFTBJK8UEVrHSI5
- YC5JlXUJCXYJvJQ3isUhHG7hMAUYDX0vYmcN48BwRz1W8ep/xl4uX7eov
- c+drhz4kweuYr6/SEvE8XxH5o+psBtba0rixZG0R8em76e+NDDba5Tj0r
- 0zrYLHwMgtHToZ01XaWzsnld/356mt50V731Swmx90S+a40CSNolcdeX2
- 65tpeL+YaSJFawV4IRXR50MCG8Coyba+8ZahzKSC4TpZYMVkFx9H0/c6D Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="348042937"
-X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="348042937"
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=KsiZhqe20foDB8hRMOWSqIKbI363KrGjEUeyHM0ahrg=;
+ b=RbQ1GviUcPiDi0nmATvP0hr1mPJNjJa0szeXPdOSodTqemRDooU67Vgl
+ z73hubdI2PjT3PKsI4gf+ALDb1/tDv1oOnjsHZuBDD2O2IqPyXDh5vnc9
+ RTYu2xKH0FIsv9xQbTRTtx41kqYQ2nTsERJzW3S2xB5C24CJyQ8KnSWLr
+ YW65guzmBPCDgMgT/uW2JNwB2BRolLY9y1tugkAL7mPot92jE1ZEPnJ9i
+ 99hzJxx03rLaAGeFMFyM6YT32kS7AUXndY9xe8jHjM/YQi2t6U7Nt+VqW
+ FtgO2ERkZDAW0yDnXY5Vvq3B5t+P/Y9tMRlAZmSWlEoAzLleRvIduRgH7 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="348042940"
+X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="348042940"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 09:55:39 -0700
+ 11 May 2023 09:55:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="824049588"
-X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="824049588"
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="824049594"
+X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="824049594"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga004.jf.intel.com with SMTP; 11 May 2023 09:55:34 -0700
+ by orsmga004.jf.intel.com with SMTP; 11 May 2023 09:55:38 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 11 May 2023 19:55:34 +0300
+ Thu, 11 May 2023 19:55:37 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 May 2023 19:55:27 +0300
-Message-Id: <20230511165534.10266-1-ville.syrjala@linux.intel.com>
+Date: Thu, 11 May 2023 19:55:28 +0300
+Message-Id: <20230511165534.10266-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.3
+In-Reply-To: <20230511165534.10266-1-ville.syrjala@linux.intel.com>
+References: <20230511165534.10266-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/7] drm/i915: Init DDI ports based on port_mask
+Subject: [Intel-gfx] [PATCH 1/7] drm/i915: Remove bogus DDI-F from hsw/bdw
+ output init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,35 +65,30 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Introduce port_mask into the device info and utilize it
-it initalize DDI ports instead of hand rolling each
-intel_ddi_init() call per platform+port.
+HSW/BDW don't have DDI-F so don't go looking for one.
 
-This is an intermediate step towards initializing
-DDI/DP/HDMI/DSI ports purely based on VBT information.
+Seems to have been accidentally left behind when the
+skl+ stuff got split out in commit 097d9e902068
+("drm/i915/display: remove strap checks from gen 9").
 
-Ville Syrjälä (7):
-  drm/i915: Remove bogus DDI-F from hsw/bdw output init
-  drm/i915: Introduce device info port_mask
-  drm/i915: Assert that device info bitmasks have enough bits
-  drm/i915: Assert that the port being initialized is valid
-  drm/i915: Beef up SDVO/HDMI port checks
-  drm/i915: Init DDI outputs based on port_mask on skl+
-  drm/i915: Convert HSW/BDW to use port_mask for DDI probe
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 2 --
+ 1 file changed, 2 deletions(-)
 
- drivers/gpu/drm/i915/display/g4x_dp.c        |   3 +
- drivers/gpu/drm/i915/display/g4x_hdmi.c      |  20 ++++
- drivers/gpu/drm/i915/display/intel_crt.c     |   2 +
- drivers/gpu/drm/i915/display/intel_ddi.c     |  30 ++++++
- drivers/gpu/drm/i915/display/intel_display.c | 103 ++++---------------
- drivers/gpu/drm/i915/display/intel_display.h |   2 +
- drivers/gpu/drm/i915/display/intel_dvo.c     |   2 +
- drivers/gpu/drm/i915/display/intel_sdvo.c    |  20 +++-
- drivers/gpu/drm/i915/i915_pci.c              |  33 ++++++
- drivers/gpu/drm/i915/intel_device_info.c     |   9 ++
- drivers/gpu/drm/i915/intel_device_info.h     |   1 +
- 11 files changed, 136 insertions(+), 89 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 1d5d42a40803..c1e0d439db79 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7429,8 +7429,6 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 			intel_ddi_init(dev_priv, PORT_C);
+ 		if (found & SFUSE_STRAP_DDID_DETECTED)
+ 			intel_ddi_init(dev_priv, PORT_D);
+-		if (found & SFUSE_STRAP_DDIF_DETECTED)
+-			intel_ddi_init(dev_priv, PORT_F);
+ 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+ 		int found;
+ 
 -- 
 2.39.3
 
