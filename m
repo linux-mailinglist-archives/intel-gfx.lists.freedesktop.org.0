@@ -2,54 +2,149 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 624E06FFA07
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 21:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80E956FFAE2
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 21:55:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DD0410E09A;
-	Thu, 11 May 2023 19:21:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13CAF10E0D0;
+	Thu, 11 May 2023 19:55:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 469F210E09A
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 19:21:31 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2597210E0D0;
+ Thu, 11 May 2023 19:55:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683832891; x=1715368891;
+ t=1683834936; x=1715370936;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=EWA8Um6wSS04QmPFww4lXhpIYezx9KXxfUvqpd/vvjs=;
- b=CQeS5vJIeKzg2mOnfrx5v20mrjqstsCaEATG36oyEqAXLj9DEyQnVNTd
- BTH/e72oIyxqlzsNAYOLC7uT+VO8FXu5Ln7NWyZMKSk8ipMfadeeD5dD5
- c28sK3kWNHSB+EVM+4Y5AIObA4ZINgeoD0+tI6JyL8oHHrE0LLRqednwk
- GqxHcrUoXmP7h9PkONj3lM6lPAOsAE51ZwpogglsVMEolhAH5drZ127i1
- s1Fv+9d26om7zGE57EmdZDL941NKgP6/CwLRO85cHHkGbnUgxTtQIoNNj
- sn50C2VAWts/LOOkd0xevnxR/ph9Gy266bctdFkIEPJ3gd2yfF627nF4c Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="352843399"
-X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="352843399"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 12:21:29 -0700
+ in-reply-to:mime-version;
+ bh=tV1RtbXKsueDb5tbGc9ZLGMnt6lfBYm7/eJ3X/1ggt0=;
+ b=YRRCWXVfwfvKlfOEOPP2LZXFoLsP5COTvRdg7UIBKDm8QBBirUjiN0DR
+ gDGQiNtHCpEhH/AE9TC1blEf1lcu7p1nJH394k+LDEF3OjDmjGeNa2yND
+ ge86uBhaNk90OwEnnqZ7DLNqvhl9soGFz9b7K6X7tqRjtgE+CC/2oU7WQ
+ GaK4oIyiKgXkZPjJIDzIKfHA7lviIU06w6g0QnwY2jOtdAHvvx/38DVB8
+ JUfCxTRyehBYzDzaewBXLnFbxZ4oZyvkFbiki9tkqNtUmtC9K4CUwK6ya
+ U+JYvGFRNrllbsk6InOs4sS1GrApPFl7OY+9cgj0rbfD2H9yFV43rGH5R Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="330234587"
+X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="330234587"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 12:55:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="732723001"
-X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="732723001"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga001.jf.intel.com with SMTP; 11 May 2023 12:21:26 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 11 May 2023 22:21:26 +0300
-Date: Thu, 11 May 2023 22:21:26 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <ZF1ANptc8cI4N3K0@intel.com>
-References: <20230510103131.1618266-1-imre.deak@intel.com>
- <20230510103131.1618266-15-imre.deak@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="677391278"
+X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="677391278"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga006.jf.intel.com with ESMTP; 11 May 2023 12:55:34 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 11 May 2023 12:55:34 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 11 May 2023 12:55:34 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Thu, 11 May 2023 12:55:34 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.172)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Thu, 11 May 2023 12:55:34 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LbdL/EalREgUKFlw3vAGebowAcAzx6qtTpafo9CKFb+my6htzxfsRlicPwb7xlTdaq3sWDapc/W355fQgSnUL+VeaWwd2ZT3caK53+aQMqeBBncx9RPs3H96UN8L3al9q2wC0FrxEYJDfHZ1nXbE4nEM5n/yOgvVYRr2b4op2V7dXsiOyAKVOGn7bi2WOKpWXtrInK2v2kukciUjo0dTerweW88eqRNyl68N6mFpuxfGjx+wGWCv2G4C9+oZphzPP02s/d8VRfpsvgY+BhtpwPr3W9YVnvp4il6G9Tfz0RV+F2RkyvkqBWYXRl13V22ohrmZyrRCekc1gT0aooNQ1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UjgO2ne2MKIuFEx8s/qwQXQnQdYER1PkVx8U3DWQKWo=;
+ b=MtYMFIgLDOqaVMt470Mi6u0yiIzD72oh6o2WaOjiyCcVbRvv9bDjgPIrlM5hXz+9lUtgsv0JwZLF23xr6jSOZyZ5GLZOEyT2roKfS4Qtbh8KmA959PhG3vRxvP/Ry1O6mvWb618CYeKlvVdZWpupb7VWwii7e70rQ+hNa0ymCIcHAoC89miQrD4p7PbT34+0heztvLbd11Ko6+sBzENCI0QBW4eI2TE4WFOQcil5sM3b8bQV7p/hfgQhVdHCIJ9AS+VNwDZHldXZKCoJhMtSsunHx9M0kIGLtQfS2Q7PEyyh0j/x8zFy5sWkufgFMx60zDz1g5Cala7o4QBnAbpwGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN2PR11MB4239.namprd11.prod.outlook.com (2603:10b6:208:192::20)
+ by BL3PR11MB6339.namprd11.prod.outlook.com (2603:10b6:208:3b3::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.29; Thu, 11 May
+ 2023 19:55:32 +0000
+Received: from MN2PR11MB4239.namprd11.prod.outlook.com
+ ([fe80::e585:1863:208d:7e7b]) by MN2PR11MB4239.namprd11.prod.outlook.com
+ ([fe80::e585:1863:208d:7e7b%4]) with mapi id 15.20.6387.019; Thu, 11 May 2023
+ 19:55:32 +0000
+Date: Thu, 11 May 2023 12:55:25 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+Message-ID: <ZF1ILXLX6QG5Bf9K@msatwood-mobl>
+References: <20230511103714.5194-1-juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230510103131.1618266-15-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v4 14/14] drm/i915/tc: Reset TypeC PHYs left
- enabled in DP-alt mode after the sink disconnects
+In-Reply-To: <20230511103714.5194-1-juhapekka.heikkila@gmail.com>
+X-ClientProxiedBy: SJ0PR05CA0130.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d::15) To MN2PR11MB4239.namprd11.prod.outlook.com
+ (2603:10b6:208:192::20)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN2PR11MB4239:EE_|BL3PR11MB6339:EE_
+X-MS-Office365-Filtering-Correlation-Id: c757203a-4a27-4369-710c-08db5259ad7f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: b1TA5fNEg8EtALdGuOEe20reeRCNHiO2uIlHMVTBQ/XZ0TwaL+pRot/Uz9i45Q0lPn1kKKvkSP4XGwUxUXllreNhIsIDEYTPI7hjj2Ev6xiaX34jiRPJR4DkJI3RbWVUSXceqqo4WDslmD4/r2YkI1EFET5wnjuLOZ+ULd7xgtvrJPQIiGrWcY60r+Db7PBQuWo/08hW5YjnamvExSOxLgzIBXJpK1f984Un25GK8MCKKf5S3vkt+QXEkfkR6WMWVhGxG2rKqnQNLNO+d1F61J2orSqY975KYyxjlA8FDugVjLdZUkTTAWON2Aw0TrDiGFrAetzqO0WUTRrL+45pBxSF3IxtQGFAeq4H3e2qt9xBZok2QFx13841RtOiqNW7yqicB2mjMheOaSErkJSBE6JlYiU7qQ2BuLdWr0N7diRfwvll8WYforl5sX8NUZQFQzy38iqqoN6/g0whqzPe4KxsIOvlsKogZ6Y58EetAedXu8ig5qoTeP4vsTp8Ra2Q12HevfK+3I4aXiL3qj5E/swKfAaOoD1S60KhY8z+ajqQH0UKiz7N7FawOyFmshDb
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR11MB4239.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(376002)(136003)(396003)(39860400002)(366004)(346002)(451199021)(86362001)(33716001)(316002)(83380400001)(66476007)(66556008)(66946007)(4326008)(478600001)(6506007)(6486002)(186003)(5660300002)(9686003)(26005)(8676002)(2906002)(8936002)(6512007)(38100700002)(82960400001)(6666004)(41300700001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aEZpSGRqMnBFNlVmRy9kaEZ4cGhyaEc1eEpESDlWTVYzWHpvbGJ1QTFQbTFD?=
+ =?utf-8?B?eWoxU0YydlRaNlN0ZW5LdEhVcCtpbXNidkk0bklZS1UrN1NWMzhMdlR5bVR6?=
+ =?utf-8?B?aVpkVHN6WkJ3UHRZOGpMSWEyTHRKc2VDY2JLYXN2NGpwbEJJL2dzTVZDcmdU?=
+ =?utf-8?B?TkwySW9BTnIzelZFYXZwaVgrRThhTWx1ZWxkZ2dySFFiVVRJeHVKZmZaRVVB?=
+ =?utf-8?B?aElJQ1pzbmowSkNiM29lOVRwRnFuKytmalZYTyt4RVpPWFhWT2dTQ2VDNTAw?=
+ =?utf-8?B?M3FHUGdDUWVhT1pSTnUzSzE0RC9SVzBHZGlnakxkZ3NDK3QzUmdtN1FPa3Bu?=
+ =?utf-8?B?M3dCOTM5eS9uMmV5VDh1WEw3TG15c3AxckdKR3BPQmFtNnhWcVNtZFgxcS9t?=
+ =?utf-8?B?Ty91Z1kyV0ZocUFZOFNRMVJnR3BtdFhlTmRCWURTdWdBTkJiTFdYa25hdysx?=
+ =?utf-8?B?YUtnNU1heDN6VnFjK0U4cCtqd1ZyVXBTbG5zTmpqcCtiQ1VYMmsyRUVCdGZ2?=
+ =?utf-8?B?a2ZMeEFwekp1bWNocVcvUHM5TStvRDlkZ0drd0srNVB5R0Nma0hLZ3ArSWRi?=
+ =?utf-8?B?R2JDdUh0NUZKYlpxWUdlOVlNbXI3RCtSOWJpZFQyeEVYMnc1VGZodm5Ya000?=
+ =?utf-8?B?YVBBY09GWWkvQUYzUnJIQmVFWWtMRWRQNUl2N0RYODN4Mm9MQVc2STF5SlBL?=
+ =?utf-8?B?UkIxQUJpeG40TlVYOGVRRG5WbVJRUVpJUDJ0QlN0QlB6MDJaVU44TmFWMVVT?=
+ =?utf-8?B?NmZMVFJESCtkM21DYzJacDZXa0JvUjBsSE0vTU5JUXdFM2w2dFFydnltbjR2?=
+ =?utf-8?B?aW9XcHAwelMzT2pTQ1h5cU9xUWovL0pvVXNGOEdibVFCbmszK2NsTG5PSXVj?=
+ =?utf-8?B?Y1d6dmlvanlvbk5keFZsMlhiVWxjKzBsbU0zTlNOSGpiY1d2T29xRkNucVJO?=
+ =?utf-8?B?blNEQUNYTUdLQzY3d3RaR1RIWHVVTUhnUFBOZ21oeE1DMEtjdStjRGpjMHRC?=
+ =?utf-8?B?WUgyODRQNEd1QisrRU9KenNWb2xoTkM5NkJIVkdWVG5QMHNiREpWcVhMaXI5?=
+ =?utf-8?B?MURDVjZPODNmWnhoWjNGbEJlZkxuZkNlOVE1cDk5dlhSaC9EMXduUG5nQksx?=
+ =?utf-8?B?L1ZHTlMvb3Q2d1pGU2NjbUZSNnVianJpQXFLaXRkSzc0MytHT1cwajFySHJ5?=
+ =?utf-8?B?VlF3ODE2TDJZZnZYZS9vekttUTRnK08wQjFmcFA2U2lObEpWN3dwTE9TcTJI?=
+ =?utf-8?B?WnNUSmRRa3IyRkt6NU9FdUErWlFDZldMUVRCSWV3VkxYMUpBVlFETEVYZHZv?=
+ =?utf-8?B?Sm1jUGxNdit5ZlZwWUJJY0RETGJ2R25zN2pVRUVUaHVheEJqdG80c1VyUUtM?=
+ =?utf-8?B?bjhsaHVNUk4yNm1IcEpZTTVtbW5OeE1CZVo5WHEzU0g2OFBjNEJxWVZyZUhC?=
+ =?utf-8?B?anRuOEJqa0x0Nmd6TkNXM3krbnBYVlNlRURnaDBjdDVRYkZvMFNzekpwL3Vo?=
+ =?utf-8?B?NEV5U0pleFFadHZaalRvWXVUYURXR01MSHlaZEpRN3BYTFBRZERRUmdXT3VT?=
+ =?utf-8?B?THRxeTd0Uk1qSHpweGFuU3M0N1JEb2I0UE5iWGIzVHA5UE1HQUtCeXhxK0tz?=
+ =?utf-8?B?OUhHWDVXUzI5MEdiczNpOXE5VFFjWFVLTUZYbzl5dVR6dlFEYi9QZ1FUcjJM?=
+ =?utf-8?B?cys3OXVpSDNiUjV5TlNid0twaGhjWHR3b3J6azJwR0hJZUNPblpNaFVEbmJm?=
+ =?utf-8?B?S00yOUNNUUxQOElHUk55KzNWdldUQzhGS0xYWHBabmdkZDJDaWlXQk03TSsx?=
+ =?utf-8?B?djNYczZXUkpPejBTN0RsdVBheTVuNER1UElOZmEwYStZRzNxbnRZcHhHakFx?=
+ =?utf-8?B?VjN5ekJaUER5dXB1eUtFR0ovWElEMVNPYnJNUS9kRHFsR3JVRUUwc1lKZm1Q?=
+ =?utf-8?B?dEpCRXhZbEdGMlg2N1kxSk55cjhUeDY5WWowNXAyb25RN2UrWUFGMEwzcmhl?=
+ =?utf-8?B?SlZ6aXVqRktWUkxOc08wc0IrdktCKzJ5VDBZdHVXR09GTnNDRzRZMVdNeDBj?=
+ =?utf-8?B?eExXZjdaUTJCVGVPd2gvMUNCWmxBVGFoRDdHWGViSVVDM2VabWFMUS9wTUN3?=
+ =?utf-8?B?SUhNN2dNYXA3RythVUZiTHFPZWY2K1ZaR0RieGsvTUo1OWREOElCU0VhZGU4?=
+ =?utf-8?B?RHc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c757203a-4a27-4369-710c-08db5259ad7f
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR11MB4239.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 19:55:32.3469 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wUOHnnfEg5DJ27OFZ560+ZY3m/txybFxLf4bGmmASkoLT+LRBdsTcSMe+WCqldKmNsd6Ae4pCoZZjhlzNDSLW1/RmkZaFJ8pOVf1b5LYJeE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6339
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/fourcc: define Intel Meteorlake
+ related ccs modifiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,589 +157,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Kai-Heng Feng <kai.heng.feng@canonical.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 10, 2023 at 01:31:31PM +0300, Imre Deak wrote:
-> If the output on a DP-alt link with its sink disconnected is kept
-> enabled for too long (about 20 sec), then some IOM/TCSS firmware timeout
-> will cause havoc on the PCI bus, at least for other GFX devices on it
-> which will stop powering up. Since user space is not guaranteed to do a
-> disabling modeset in time, switch such disconnected but active links to
-> TBT mode - which is without such shortcomings - with a 2 second delay.
+On Thu, May 11, 2023 at 01:37:13PM +0300, Juha-Pekka Heikkila wrote:
+> Add Tile4 type ccs modifiers with aux buffer needed for MTL
 > 
-> If the above condition is detected already during the driver load/system
-> resume sanitization step disable the output instead, as at that point no
-> user space or kernel client depends on a consistent output state yet and
-> because subsequent atomic modeset on such connectors - without the
-> actual sink capabilities available - can fail.
-> 
-> An active/disconnected port as above will also block the HPD status of
-> other active/disconnected ports to get updated (stuck in the connected
-> state), until the former port is disabled, its PHY is disconnected and
-> a ~10 ms delay has elapsed. This means the link state for all TypeC
-> ports/CRTCs must be rechecked after a CRTC is disabled due to the above
-> reason. For this disconnect the PHY synchronously after the CRTC/port is
-> disabled and recheck all CRTCs for the above condition whenever such a
-> port is disabled.
-> 
-> To account for a race condition during driver loading where the sink is
-> disconnected after the above sanitization step and before the HPD
-> interrupts get enabled, do an explicit check/link reset if needed from
-> the encoder's late_register hook, which is called after the HPD
-> interrupts are enabled already.
-> 
-> v2:
-> - Handle an active/disconnected port blocking the HPD state update of
->   another active/disconnected port.
-> - Cancel the delayed work resetting the link also from the encoder
->   enable/suspend/shutdown hooks.
-> - Rebase on the earlier intel_modeset_lock_ctx_retry() addition,
->   fixing here the missed atomic state reset in case of a retry.
-> - Fix handling of an error return from intel_atomic_get_crtc_state().
-> - Recheck if the port needs to be reset after all the atomic state
->   is locked and async commits are waited on.
-> 
-> v3:
-> - Add intel_crtc_needs_link_reset(), instead of open-coding it,
->   keep intel_crtc_has_encoders(). (Ville)
-> - Fix state dumping and use a bitmask to track disabled CRTCs in
->   intel_sanitize_all_crtcs(). (Ville)
-> - Set internal in intel_atomic_state right after allocating it.
->   (Ville)
-> - Recheck all CRTCs (not yet force-disabled) after a CRTC is
->   force-disabled for any reason (not only due to a link state)
->   in intel_sanitize_all_crtcs().
-> - Reduce delay after CRTC disabling to 20ms, and use the simpler
->   msleep().
-> - Clarify code comment about HPD behaviour in
->   intel_sanitize_all_crtcs().
-> - Move all the TC link reset logic to intel_tc.c .
-> - Cancel the link reset work synchronously during system suspend,
->   driver unload and shutdown.
-> 
-> v4:
-> - Rebased on previous patch, which allows calling the TC port
->   suspend/cleanup handlers without modeset locks held; remove the
->   display driver suspended assert from the link reset work
->   accordingly.
-> 
-> Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Tested-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/5860
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+Bspec: 49251, 49252, 49253
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c      |  32 +++-
->  drivers/gpu/drm/i915/display/intel_dp.c       |   6 +-
->  drivers/gpu/drm/i915/display/intel_dp.h       |   3 +
->  .../drm/i915/display/intel_modeset_setup.c    |  85 ++++++++--
->  drivers/gpu/drm/i915/display/intel_tc.c       | 156 +++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_tc.h       |   5 +-
->  6 files changed, 262 insertions(+), 25 deletions(-)
+>  include/uapi/drm/drm_fourcc.h | 43 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 43 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 7d09bd2412352..b443a79bc9803 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3313,6 +3313,8 @@ static void intel_disable_ddi(struct intel_atomic_state *state,
->  			      const struct intel_crtc_state *old_crtc_state,
->  			      const struct drm_connector_state *old_conn_state)
->  {
-> +	intel_tc_port_link_cancel_reset_work(enc_to_dig_port(encoder));
-> +
->  	intel_hdcp_disable(to_intel_connector(old_conn_state->connector));
->  
->  	if (intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_HDMI))
-> @@ -3381,6 +3383,8 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
->  	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
->  	bool is_tc_port = intel_phy_is_tc(dev_priv, phy);
->  
-> +	intel_tc_port_link_cancel_reset_work(dig_port);
-
-Can the reset work still be schduled at this time?
-
-> +
->  	if (is_tc_port) {
->  		struct intel_crtc *master_crtc =
->  			to_intel_crtc(crtc_state->uapi.crtc);
-> @@ -4232,9 +4236,19 @@ static void intel_ddi_encoder_reset(struct drm_encoder *encoder)
->  		intel_tc_port_init_mode(dig_port);
->  }
->  
-> +static int intel_ddi_encoder_late_register(struct drm_encoder *_encoder)
-> +{
-> +	struct intel_encoder *encoder = to_intel_encoder(_encoder);
-> +
-> +	intel_tc_port_link_reset(enc_to_dig_port(encoder));
-> +
-> +	return 0;
-> +}
-> +
->  static const struct drm_encoder_funcs intel_ddi_funcs = {
->  	.reset = intel_ddi_encoder_reset,
->  	.destroy = intel_ddi_encoder_destroy,
-> +	.late_register = intel_ddi_encoder_late_register,
->  };
->  
->  static struct intel_connector *
-> @@ -4404,14 +4418,16 @@ intel_ddi_hotplug(struct intel_encoder *encoder,
->  
->  	state = intel_encoder_hotplug(encoder, connector);
->  
-> -	intel_modeset_lock_ctx_retry(&ctx, NULL, 0, ret) {
-> -		if (connector->base.connector_type == DRM_MODE_CONNECTOR_HDMIA)
-> -			ret = intel_hdmi_reset_link(encoder, &ctx);
-> -		else
-> -			ret = intel_dp_retrain_link(encoder, &ctx);
-> -	}
-> +	if (!intel_tc_port_link_reset(dig_port)) {
-> +		intel_modeset_lock_ctx_retry(&ctx, NULL, 0, ret) {
-> +			if (connector->base.connector_type == DRM_MODE_CONNECTOR_HDMIA)
-> +				ret = intel_hdmi_reset_link(encoder, &ctx);
-> +			else
-> +				ret = intel_dp_retrain_link(encoder, &ctx);
-> +		}
->  
-> -	drm_WARN_ON(encoder->base.dev, ret);
-> +		drm_WARN_ON(encoder->base.dev, ret);
-> +	}
->  
->  	/*
->  	 * Unpowered type-c dongles can take some time to boot and be
-> @@ -4625,7 +4641,7 @@ static void intel_ddi_tc_encoder_suspend_complete(struct intel_encoder *encoder)
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  
-> -	intel_tc_port_flush_work(dig_port);
-> +	intel_tc_port_suspend(dig_port);
->  }
->  
->  static void intel_ddi_encoder_shutdown(struct intel_encoder *encoder)
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 99ceaa7d90b62..9a13ec09755fc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4231,9 +4231,9 @@ static bool intel_dp_has_connector(struct intel_dp *intel_dp,
->  	return false;
->  }
->  
-> -static int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
-> -				     struct drm_modeset_acquire_ctx *ctx,
-> -				     u8 *pipe_mask)
-> +int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
-> +			      struct drm_modeset_acquire_ctx *ctx,
-> +			      u8 *pipe_mask)
->  {
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	struct drm_connector_list_iter conn_iter;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> index ef39e4f7a329e..5f86157a10d2d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -42,6 +42,9 @@ void intel_dp_set_link_params(struct intel_dp *intel_dp,
->  			      int link_rate, int lane_count);
->  int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
->  					    int link_rate, u8 lane_count);
-> +int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
-> +			      struct drm_modeset_acquire_ctx *ctx,
-> +			      u8 *pipe_mask);
->  int intel_dp_retrain_link(struct intel_encoder *encoder,
->  			  struct drm_modeset_acquire_ctx *ctx);
->  void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode);
-> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> index 75b4dea1e442b..85f6401b8c709 100644
-> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> @@ -26,6 +26,7 @@
->  #include "intel_fifo_underrun.h"
->  #include "intel_modeset_setup.h"
->  #include "intel_pch_display.h"
-> +#include "intel_tc.h"
->  #include "intel_vblank.h"
->  #include "intel_wm.h"
->  #include "skl_watermark.h"
-> @@ -379,6 +380,21 @@ static bool intel_crtc_has_encoders(struct intel_crtc *crtc)
->  	return false;
->  }
->  
-> +static bool intel_crtc_needs_link_reset(struct intel_crtc *crtc)
-> +{
-> +	struct drm_device *dev = crtc->base.dev;
-> +	struct intel_encoder *encoder;
-> +
-> +	for_each_encoder_on_crtc(dev, &crtc->base, encoder) {
-> +		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> +
-> +		if (dig_port && intel_tc_port_link_needs_reset(dig_port))
-> +			return true;
-> +	}
-> +
-> +	return false;
-> +}
-> +
->  static struct intel_connector *intel_encoder_find_connector(struct intel_encoder *encoder)
->  {
->  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> @@ -421,11 +437,12 @@ static void intel_sanitize_fifo_underrun_reporting(const struct intel_crtc_state
->  					   !HAS_GMCH(i915));
->  }
->  
-> -static void intel_sanitize_crtc(struct intel_crtc *crtc,
-> +static bool intel_sanitize_crtc(struct intel_crtc *crtc,
->  				struct drm_modeset_acquire_ctx *ctx)
->  {
->  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->  	struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
-> +	bool needs_link_reset;
->  
->  	if (crtc_state->hw.active) {
->  		struct intel_plane *plane;
-> @@ -445,13 +462,65 @@ static void intel_sanitize_crtc(struct intel_crtc *crtc,
->  		intel_color_commit_arm(crtc_state);
->  	}
->  
-> +	if (!crtc_state->hw.active ||
-> +	    intel_crtc_is_bigjoiner_slave(crtc_state))
-> +		return false;
-> +
-> +	needs_link_reset = intel_crtc_needs_link_reset(crtc);
-> +
->  	/*
->  	 * Adjust the state of the output pipe according to whether we have
->  	 * active connectors/encoders.
->  	 */
-> -	if (crtc_state->hw.active && !intel_crtc_has_encoders(crtc) &&
-> -	    !intel_crtc_is_bigjoiner_slave(crtc_state))
-> -		intel_crtc_disable_noatomic(crtc, ctx);
-> +	if (!needs_link_reset && intel_crtc_has_encoders(crtc))
-> +		return false;
-> +
-> +	intel_crtc_disable_noatomic(crtc, ctx);
-> +
-> +	/*
-> +	 * The HPD state on other active/disconnected TC ports may be stuck in
-> +	 * the connected state until this port is disabled and a ~10ms delay has
-> +	 * passed, wait here for that so that sanitizing other CRTCs will see the
-> +	 * up-to-date HPD state.
-> +	 */
-> +	if (needs_link_reset)
-> +		msleep(20);
-> +
-> +	return true;
-> +}
-> +
-> +static void intel_sanitize_all_crtcs(struct drm_i915_private *i915,
-> +				     struct drm_modeset_acquire_ctx *ctx)
-> +{
-> +	struct intel_crtc *crtc;
-> +	u8 crtcs_forced_off = 0;
-
-Bit of a pipe vs. crtc confusion here. Maybe we should use
-u32+drm_crtc_mask() here for real since we're not really interested
-in individual pipes.
-
-> +
-> +	/*
-> +	 * An active and disconnected TypeC port prevents the HPD live state
-> +	 * to get updated on other active/disconnected TypeC ports, so after
-> +	 * a port gets disabled the CRTCs using other TypeC ports must be
-> +	 * rechecked wrt. their link status.
-> +	 */
-> +	for (;;) {
-> +		u8 old_mask = crtcs_forced_off;
-> +
-> +		for_each_intel_crtc(&i915->drm, crtc) {
-> +			if (BIT(crtc->pipe) & crtcs_forced_off)
-> +				continue;
-> +
-> +			if (intel_sanitize_crtc(crtc, ctx))
-> +				crtcs_forced_off |= BIT(crtc->pipe);
-> +		}
-> +		if (crtcs_forced_off == old_mask)
-> +			break;
-> +	}
-> +
-> +	for_each_intel_crtc(&i915->drm, crtc) {
-> +		struct intel_crtc_state *crtc_state =
-> +			to_intel_crtc_state(crtc->base.state);
-> +
-> +		intel_crtc_state_dump(crtc_state, NULL, "setup_hw_state");
-> +	}
->  }
->  
->  static bool has_bogus_dpll_config(const struct intel_crtc_state *crtc_state)
-> @@ -871,13 +940,7 @@ void intel_modeset_setup_hw_state(struct drm_i915_private *i915,
->  	 */
->  	intel_modeset_update_connector_atomic_state(i915);
->  
-> -	for_each_intel_crtc(&i915->drm, crtc) {
-> -		struct intel_crtc_state *crtc_state =
-> -			to_intel_crtc_state(crtc->base.state);
-> -
-> -		intel_sanitize_crtc(crtc, ctx);
-> -		intel_crtc_state_dump(crtc_state, NULL, "setup_hw_state");
-> -	}
-> +	intel_sanitize_all_crtcs(i915, ctx);
->  
->  	intel_dpll_sanitize_state(i915);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-> index 4fca711a58bce..4d45571fba956 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> @@ -5,15 +5,19 @@
->  
->  #include "i915_drv.h"
->  #include "i915_reg.h"
-> +#include "intel_atomic.h"
->  #include "intel_cx0_phy_regs.h"
->  #include "intel_ddi.h"
->  #include "intel_de.h"
->  #include "intel_display.h"
-> +#include "intel_display_driver.h"
->  #include "intel_display_power_map.h"
->  #include "intel_display_types.h"
->  #include "intel_dkl_phy_regs.h"
-> +#include "intel_dp.h"
->  #include "intel_dp_mst.h"
->  #include "intel_mg_phy_regs.h"
-> +#include "intel_modeset_lock.h"
->  #include "intel_tc.h"
->  
->  #define DP_PIN_ASSIGNMENT_C	0x3
-> @@ -51,6 +55,7 @@ struct intel_tc_port {
->  	enum intel_display_power_domain lock_power_domain;
->  #endif
->  	struct delayed_work disconnect_phy_work;
-> +	struct delayed_work link_reset_work;
->  	int link_refcount;
->  	bool legacy_port:1;
->  	char port_name[8];
-> @@ -1572,6 +1577,135 @@ bool intel_tc_port_connected(struct intel_encoder *encoder)
->  	return is_connected;
->  }
->  
-> +static bool __intel_tc_port_link_needs_reset(struct intel_tc_port *tc)
-> +{
-> +	bool ret;
-> +
-> +	mutex_lock(&tc->lock);
-> +
-> +	ret = tc->link_refcount &&
-> +	      tc->mode == TC_PORT_DP_ALT &&
-> +	      intel_tc_port_needs_reset(tc);
-> +
-> +	mutex_unlock(&tc->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +bool intel_tc_port_link_needs_reset(struct intel_digital_port *dig_port)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
-> +
-> +	if (!intel_phy_is_tc(i915, phy))
-> +		return false;
-> +
-> +	return __intel_tc_port_link_needs_reset(to_tc_port(dig_port));
-> +}
-> +
-> +static int reset_link(struct intel_tc_port *tc)
-> +{
-> +	struct drm_i915_private *i915 = tc_to_i915(tc);
-> +	struct intel_digital_port *dig_port = tc->dig_port;
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(&dig_port->base);
-> +	struct drm_modeset_acquire_ctx ctx;
-> +	struct drm_atomic_state *_state;
-> +	struct intel_atomic_state *state;
-> +	int ret = 0;
-> +
-> +	_state = drm_atomic_state_alloc(&i915->drm);
-> +	if (!_state)
-> +		return -ENOMEM;
-> +
-> +	state = to_intel_atomic_state(_state);
-> +	state->internal = true;
-> +
-> +	intel_modeset_lock_ctx_retry(&ctx, state, 0, ret) {
-> +		struct intel_crtc *crtc;
-> +		u8 pipe_mask;
-> +
-> +		ret = drm_modeset_lock(&i915->drm.mode_config.connection_mutex, &ctx);
-> +		if (ret)
-> +			continue;
-> +
-> +		ret = intel_dp_get_active_pipes(intel_dp, &ctx, &pipe_mask);
-> +		if (ret)
-> +			continue;
-> +
-> +		if (!pipe_mask)
-> +			continue;
-> +
-> +		for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, pipe_mask) {
-> +			struct intel_crtc_state *crtc_state;
-> +
-> +			crtc_state = intel_atomic_get_crtc_state(&state->base, crtc);
-> +			if (IS_ERR(crtc_state)) {
-> +				ret = PTR_ERR(crtc_state);
-> +				break;
-> +			}
-> +
-> +			crtc_state->uapi.connectors_changed = true;
-> +		}
-> +
-> +		if (ret)
-> +			continue;
-> +
-> +		if (!__intel_tc_port_link_needs_reset(tc))
-> +			continue;
-> +
-> +		ret = drm_atomic_commit(&state->base);
-
-I suppose one way to avoid the dangers of the continue vs. not
-in these things would be to extract the entire body of the loop to
-a separate function.
-
-Anyways, the patch looks decent enough to me so
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-> +	}
-> +
-> +	drm_atomic_state_put(&state->base);
-> +
-> +	return ret;
-> +}
-> +
-> +static void intel_tc_port_link_reset_work(struct work_struct *work)
-> +{
-> +	struct intel_tc_port *tc =
-> +		container_of(work, struct intel_tc_port, link_reset_work.work);
-> +	struct drm_i915_private *i915 = tc_to_i915(tc);
-> +	int ret;
-> +
-> +	if (!__intel_tc_port_link_needs_reset(tc))
-> +		return;
-> +
-> +	mutex_lock(&i915->drm.mode_config.mutex);
-> +
-> +	drm_dbg_kms(&i915->drm,
-> +		    "Port %s: TypeC DP-alt sink disconnected, resetting link\n",
-> +		    tc->port_name);
-> +	ret = reset_link(tc);
-> +	drm_WARN_ON(&i915->drm, ret);
-> +
-> +	mutex_unlock(&i915->drm.mode_config.mutex);
-> +}
-> +
-> +bool intel_tc_port_link_reset(struct intel_digital_port *dig_port)
-> +{
-> +	if (!intel_tc_port_link_needs_reset(dig_port))
-> +		return false;
-> +
-> +	queue_delayed_work(system_unbound_wq,
-> +			   &to_tc_port(dig_port)->link_reset_work,
-> +			   msecs_to_jiffies(2000));
-> +
-> +	return true;
-> +}
-> +
-> +void intel_tc_port_link_cancel_reset_work(struct intel_digital_port *dig_port)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
-> +	struct intel_tc_port *tc = to_tc_port(dig_port);
-> +
-> +	if (!intel_phy_is_tc(i915, phy))
-> +		return;
-> +
-> +	cancel_delayed_work(&tc->link_reset_work);
-> +}
-> +
->  static void __intel_tc_port_lock(struct intel_tc_port *tc,
->  				 int required_lanes)
->  {
-> @@ -1619,11 +1753,19 @@ static void intel_tc_port_disconnect_phy_work(struct work_struct *work)
->   *
->   * Flush the delayed work disconnecting an idle PHY.
+> diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+> index de703c6be969..cbe214adf1e4 100644
+> --- a/include/uapi/drm/drm_fourcc.h
+> +++ b/include/uapi/drm/drm_fourcc.h
+> @@ -657,6 +657,49 @@ extern "C" {
 >   */
-> -void intel_tc_port_flush_work(struct intel_digital_port *dig_port)
-> +static void intel_tc_port_flush_work(struct intel_digital_port *dig_port)
->  {
->  	flush_delayed_work(&to_tc_port(dig_port)->disconnect_phy_work);
->  }
+>  #define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC fourcc_mod_code(INTEL, 12)
 >  
-> +void intel_tc_port_suspend(struct intel_digital_port *dig_port)
-> +{
-> +	struct intel_tc_port *tc = to_tc_port(dig_port);
+> +/*
+> + * Intel color control surfaces (CCS) for display ver 14 render compression.
+nit: Color Control Surfaces, ver.
+> + *
+> + * The main surface is tile4 and at plane index 0, the CCS is linear and
+> + * at index 1. A 64B CCS cache line corresponds to an area of 4x1 tiles in
+> + * main surface. In other words, 4 bits in CCS map to a main surface cache
+> + * line pair. The main surface pitch is required to be a multiple of four
+> + * tile4 widths.
+> + */
+> +#define I915_FORMAT_MOD_4_TILED_MTL_RC_CCS fourcc_mod_code(INTEL, 13)
 > +
-> +	cancel_delayed_work_sync(&tc->link_reset_work);
-> +	intel_tc_port_flush_work(dig_port);
-> +}
+> +/*
+> + * Intel color control surfaces (CCS) for display ver 14 media compression
+nit: Color Control Surfaces, ver.
+> + *
+> + * The main surface is tile4 and at plane index 0, the CCS is linear and
+> + * at index 1. A 64B CCS cache line corresponds to an area of 4x1 tiles in
+> + * main surface. In other words, 4 bits in CCS map to a main surface cache
+> + * line pair. The main surface pitch is required to be a multiple of four
+> + * tile4 widths. For semi-planar formats like NV12, CCS planes follow the
+> + * Y and UV planes i.e., planes 0 and 1 are used for Y and UV surfaces,
+> + * planes 2 and 3 for the respective CCS.
+> + */
+> +#define I915_FORMAT_MOD_4_TILED_MTL_MC_CCS fourcc_mod_code(INTEL, 14)
 > +
->  void intel_tc_port_unlock(struct intel_digital_port *dig_port)
->  {
->  	struct intel_tc_port *tc = to_tc_port(dig_port);
-> @@ -1660,6 +1802,14 @@ void intel_tc_port_put_link(struct intel_digital_port *dig_port)
->  	intel_tc_port_lock(dig_port);
->  	__intel_tc_port_put_link(tc);
->  	intel_tc_port_unlock(dig_port);
+> +/*
+> + * Intel Color Control Surface with Clear Color (CCS) for display ver 14 render
+nit: ver.
+> + * compression.
+> + *
+> + * The main surface is tile4 and is at plane index 0 whereas CCS is linear
+> + * and at index 1. The clear color is stored at index 2, and the pitch should
+> + * be ignored. The clear color structure is 256 bits. The first 128 bits
+> + * represents Raw Clear Color Red, Green, Blue and Alpha color each represented
+> + * by 32 bits. The raw clear color is consumed by the 3d engine and generates
+> + * the converted clear color of size 64 bits. The first 32 bits store the Lower
+> + * Converted Clear Color value and the next 32 bits store the Higher Converted
+> + * Clear Color value when applicable. The Converted Clear Color values are
+> + * consumed by the DE. The last 64 bits are used to store Color Discard Enable
+> + * and Depth Clear Value Valid which are ignored by the DE. A CCS cache line
+> + * corresponds to an area of 4x1 tiles in the main surface. The main surface
+> + * pitch is required to be a multiple of 4 tile widths.
+> + */
+> +#define I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC fourcc_mod_code(INTEL, 15)
 > +
-> +	/*
-> +	 * The firmware will not update the HPD status of other TypeC ports
-> +	 * that are active in DP-alt mode with their sink disconnected, until
-> +	 * this port is disabled and its PHY gets disconnected. Make sure this
-> +	 * happens in a timely manner by disconnecting the PHY synchronously.
-> +	 */
-> +	intel_tc_port_flush_work(dig_port);
->  }
->  
->  int intel_tc_port_init(struct intel_digital_port *dig_port, bool is_legacy)
-> @@ -1692,7 +1842,9 @@ int intel_tc_port_init(struct intel_digital_port *dig_port, bool is_legacy)
->  		 "%c/TC#%d", port_name(port), tc_port + 1);
->  
->  	mutex_init(&tc->lock);
-> +	/* TODO: Combine the two works */
->  	INIT_DELAYED_WORK(&tc->disconnect_phy_work, intel_tc_port_disconnect_phy_work);
-> +	INIT_DELAYED_WORK(&tc->link_reset_work, intel_tc_port_link_reset_work);
->  	tc->legacy_port = is_legacy;
->  	tc->mode = TC_PORT_DISCONNECTED;
->  	tc->link_refcount = 0;
-> @@ -1706,7 +1858,7 @@ int intel_tc_port_init(struct intel_digital_port *dig_port, bool is_legacy)
->  
->  void intel_tc_port_cleanup(struct intel_digital_port *dig_port)
->  {
-> -	intel_tc_port_flush_work(dig_port);
-> +	intel_tc_port_suspend(dig_port);
->  
->  	kfree(dig_port->tc);
->  	dig_port->tc = NULL;
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
-> index dd0810f9ea95e..3b16491925fa9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.h
-> @@ -30,11 +30,14 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
->  				 const struct intel_crtc_state *crtc_state);
->  void intel_tc_port_lock(struct intel_digital_port *dig_port);
->  void intel_tc_port_unlock(struct intel_digital_port *dig_port);
-> -void intel_tc_port_flush_work(struct intel_digital_port *dig_port);
-> +void intel_tc_port_suspend(struct intel_digital_port *dig_port);
->  void intel_tc_port_get_link(struct intel_digital_port *dig_port,
->  			    int required_lanes);
->  void intel_tc_port_put_link(struct intel_digital_port *dig_port);
->  bool intel_tc_port_ref_held(struct intel_digital_port *dig_port);
-> +bool intel_tc_port_link_needs_reset(struct intel_digital_port *dig_port);
-> +bool intel_tc_port_link_reset(struct intel_digital_port *dig_port);
-> +void intel_tc_port_link_cancel_reset_work(struct intel_digital_port *dig_port);
->  
->  int intel_tc_port_init(struct intel_digital_port *dig_port, bool is_legacy);
->  void intel_tc_port_cleanup(struct intel_digital_port *dig_port);
+>  /*
+>   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+>   *
 > -- 
-> 2.37.2
-
--- 
-Ville Syrjälä
-Intel
+> 2.25.1
+> 
