@@ -1,54 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 591616FF5E9
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 17:27:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C6996FF69C
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 May 2023 17:59:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F03810E4F7;
-	Thu, 11 May 2023 15:27:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A163710E073;
+	Thu, 11 May 2023 15:59:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F99210E4F7
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 May 2023 15:27:43 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7A8810E073;
+ Thu, 11 May 2023 15:59:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683818864; x=1715354864;
+ t=1683820765; x=1715356765;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=xSy2tU40fjnpt8ekjH3TyS7bTk7AX9UlPnVCqeXU6d0=;
- b=WfmLrqiApyzdkoTTt2oL61ojr95zCc9YBNCqvcPYnHwEDQ6j4d6dT/Fm
- Flz2G/Wx+MgA7GHJRaXsr8VgaKTVoPa+D0s/Z/whXDzYDxTxVcfUuTsHl
- zdh7wO5YNyFwBSUJRknvgwS7pugkbN52FrwsPlh444hU04hY0Wo3U2jnk
- J4Cg7V25l2Zm6T94+SDeg+F4VmesX1A9pvbKRVq7oQ+8G+s0i5GnkiIxN
- 9dVZLka21th3BeE/xzOPvMScd60N0i9fIeLo6hAdnV515wJAwJSxtxCnO
- Y3Q8xgSfSf37jxMAkr77+jTMsOKmpjezwJEzHS5ghK6DmChb6/ZCmIr1y A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="436866609"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="436866609"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 08:25:49 -0700
+ mime-version:in-reply-to;
+ bh=cI1JkXQDUbxFZfrfncHOooNoQ1tHGsPYm1ODLNyHOO4=;
+ b=lea9qFKwupK71xNjN9zOM1fYjmCUuC9p3ndnMbIyoyHx0HDuyW39CtZt
+ aF06RayI0kUUB4gMwGr38IsV2eZzERGBD1vWwAV8zQ0fcJDDUHG6MIRRu
+ fVA41Ta98buLxapeq99RCr6sirzGQCC7GPtFiuVmHvd1uXsz1KN2bSnAl
+ hzq3Z+TDYOIyHLUOdqrxLM70nGqMFI6jKsjOD93skzDA30NYxy3Nx8h9w
+ vLQXLcBiKjaRJb1XMk+PjTQ8uhEfx/TyCq73xOouNHOVeC7MSu9scFX1T
+ hEn3YV5etd2LkOukFk1nOptNlHdeBEsTalra6xEfPFWRFqhfbjbkvUOEd w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="378668422"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="378668422"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 08:59:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="811656608"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="811656608"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga002.fm.intel.com with SMTP; 11 May 2023 08:25:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 11 May 2023 18:25:46 +0300
-Date: Thu, 11 May 2023 18:25:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZF0I-oYThXJqhhbT@intel.com>
-References: <20230511152153.986676-1-jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="677290111"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="677290111"
+Received: from aaltazin-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.252.63.104])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 08:59:22 -0700
+Date: Thu, 11 May 2023 17:59:19 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: fei.yang@intel.com
+Message-ID: <ZF0Q1zGJtWr4OvQt@ashyti-mobl2.lan>
+References: <20230509165200.1740-1-fei.yang@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230511152153.986676-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: drop dependency on
- VLV_DISPLAY_BASE
+In-Reply-To: <20230509165200.1740-1-fei.yang@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v8 0/2] drm/i915: use pat_index instead of
+ cache_level
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,55 +59,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 11, 2023 at 06:21:53PM +0300, Jani Nikula wrote:
-> CHV_FUSE_GT (0x182168) is purely about GT fuses, therefore belongs in
-> intel_gt_regs.h, is in the gcfgmmio unit, but is technically in the VLV
-> display base area.
-> 
-> Add VLV_GUNIT_BASE to drop dependency on VLV_DISPLAY_BASE and thus
-> display/intel_display_reg_defs.h in intel_gt_regs.h.
-> 
-> v2: Add VLV_GUNIT_BASE (Ville)
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Hi Fei,
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Pushed to drm-intel-gt-next.
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_regs.h | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+There was a "pinky" promise that Tvrtko asked you (and I feel
+involved, as well) to make. Let's make sure to follow up on that.
+
+Andi
+
+On Tue, May 09, 2023 at 09:51:58AM -0700, fei.yang@intel.com wrote:
+> From: Fei Yang <fei.yang@intel.com>
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> index b8a39c219b60..718cb2c80f79 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> @@ -7,7 +7,8 @@
->  #define __INTEL_GT_REGS__
->  
->  #include "i915_reg_defs.h"
-> -#include "display/intel_display_reg_defs.h"	/* VLV_DISPLAY_BASE */
-> +
-> +#define VLV_GUNIT_BASE			0x180000
->  
->  /*
->   * The perf control registers are technically multicast registers, but the
-> @@ -1469,7 +1470,7 @@
->  #define GEN12_RCU_MODE				_MMIO(0x14800)
->  #define   GEN12_RCU_MODE_CCS_ENABLE		REG_BIT(0)
->  
-> -#define CHV_FUSE_GT				_MMIO(VLV_DISPLAY_BASE + 0x2168)
-> +#define CHV_FUSE_GT				_MMIO(VLV_GUNIT_BASE + 0x2168)
->  #define   CHV_FGT_DISABLE_SS0			(1 << 10)
->  #define   CHV_FGT_DISABLE_SS1			(1 << 11)
->  #define   CHV_FGT_EU_DIS_SS0_R0_SHIFT		16
+> This patch set was posted at
+> https://patchwork.freedesktop.org/series/116868/
+> Change title since the PTE patch was merged separately.
+> 
+> These patches are extracted from series
+> https://patchwork.freedesktop.org/series/115980/
+> 
+> This series refactor the cache policy programming so that the PTE
+> encode functions can be unified across all GEN12 platforms. This
+> refactor is also important in implementing the design which allows
+> uerspace to directly set cache policy for each Buffer Object.
+> 
+> v2: drop one patch that was merged separately
+>     341ad0e8e254 drm/i915/mtl: Add PTE encode function
+> v3: disable {get, set}_caching ioctl
+> v4: fix missing unlock introduced in v3, and
+>     solve a rebase conflict
+> v5: replace obj->cache_level with pat_set_by_user,
+>     fix i915_cache_level_str() for legacy platforms.
+> v6: squash the pte_encode patch because separating them causes
+>     bisect probelm. Also addressing some review comments from
+>     Tvrtko and Matt.
+> v7: fix checkpatch errors and warnings.
+> v8: BUILD_BUG_ON instead of WARN_ON_ONCE. Some updates in
+>     comments.
+> 
+> Fei Yang (2):
+>   drm/i915: preparation for using PAT index
+>   drm/i915: use pat_index instead of cache_level
+> 
+>  drivers/gpu/drm/i915/display/intel_dpt.c      | 12 +--
+>  drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 58 +++++++++-----
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 15 +++-
+>  drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 11 ++-
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c    | 60 +++++++++++++-
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  8 ++
+>  .../gpu/drm/i915/gem/i915_gem_object_types.h  | 53 ++++++++++++-
+>  drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  2 -
+>  drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  4 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  8 +-
+>  .../gpu/drm/i915/gem/selftests/huge_pages.c   |  2 +-
+>  .../drm/i915/gem/selftests/i915_gem_migrate.c |  2 +-
+>  .../drm/i915/gem/selftests/i915_gem_mman.c    |  2 +-
+>  drivers/gpu/drm/i915/gt/gen6_ppgtt.c          | 10 ++-
+>  drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 78 +++++++++---------
+>  drivers/gpu/drm/i915/gt/gen8_ppgtt.h          |  3 +-
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c          | 76 +++++++++---------
+>  drivers/gpu/drm/i915/gt/intel_gtt.h           | 18 ++---
+>  drivers/gpu/drm/i915/gt/intel_migrate.c       | 47 ++++++-----
+>  drivers/gpu/drm/i915/gt/intel_migrate.h       | 13 ++-
+>  drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  4 +-
+>  drivers/gpu/drm/i915/gt/selftest_migrate.c    | 47 +++++------
+>  drivers/gpu/drm/i915/gt/selftest_reset.c      |  8 +-
+>  drivers/gpu/drm/i915/gt/selftest_timeline.c   |  2 +-
+>  drivers/gpu/drm/i915/gt/selftest_tlb.c        |  4 +-
+>  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      | 10 ++-
+>  drivers/gpu/drm/i915/i915_debugfs.c           | 53 ++++++++++---
+>  drivers/gpu/drm/i915/i915_gem.c               | 27 ++++++-
+>  drivers/gpu/drm/i915/i915_gpu_error.c         |  8 +-
+>  drivers/gpu/drm/i915/i915_pci.c               | 79 ++++++++++++++++---
+>  drivers/gpu/drm/i915/i915_vma.c               | 16 ++--
+>  drivers/gpu/drm/i915/i915_vma.h               |  2 +-
+>  drivers/gpu/drm/i915/i915_vma_types.h         |  2 -
+>  drivers/gpu/drm/i915/intel_device_info.h      |  5 ++
+>  drivers/gpu/drm/i915/selftests/i915_gem.c     |  5 +-
+>  .../gpu/drm/i915/selftests/i915_gem_evict.c   |  4 +-
+>  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 15 ++--
+>  .../drm/i915/selftests/intel_memory_region.c  |  4 +-
+>  .../gpu/drm/i915/selftests/mock_gem_device.c  |  9 +++
+>  drivers/gpu/drm/i915/selftests/mock_gtt.c     |  8 +-
+>  40 files changed, 557 insertions(+), 237 deletions(-)
+> 
 > -- 
-> 2.39.2
-
--- 
-Ville Syrjälä
-Intel
+> 2.25.1
