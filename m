@@ -1,150 +1,149 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0226701284
-	for <lists+intel-gfx@lfdr.de>; Sat, 13 May 2023 01:34:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65EE3701293
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 May 2023 01:44:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1A8410E2C7;
-	Fri, 12 May 2023 23:34:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 524C610E028;
+	Fri, 12 May 2023 23:44:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9799A10E08C;
- Fri, 12 May 2023 23:34:39 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CDA410E028
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 May 2023 23:44:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683934479; x=1715470479;
- h=from:to:cc:subject:date:message-id:references:
+ t=1683935083; x=1715471083;
+ h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=s9AQ+AiTgdYUKeWn2WBRmVsrKYJ42hZXV9tUc0SbpF4=;
- b=T97Hm7KHqcteHZItYZzDx1wNQv2RLwabvo3bvpcnH6gIvha8o4MxqFKV
- E7TNws5jK6XJCZGZSBMVbhZ4N7GVkrxSxwhH+66FM1PARy0cSLdAKVapU
- iYypRLvfw4dso3RlVRJi0AVyYjS/+yO7k/u4QdqhC+y2C+2k2kOB8ijsN
- 3DuDJh57cRoz9gGgtJD187hSuCRJhBKpnBK+srXyAAVZ1zCr5dWE2337t
- xQ+VDjfmR156vrwgmzwLyBPTclQ9ghGFDswciL+zKnnyDgnKrzbddCy5/
- faWyesE8zfqPcMyL9O6B/0L6O5RUCjMjP+imy5MuZ7JARwpKXaQTYGrR+ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="349745204"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; 
- d="scan'208,217";a="349745204"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2023 16:34:38 -0700
+ bh=GiqBgY2kjexzxeWGG+aMxiaM2fh3sW5yE5Hk7CIufwk=;
+ b=JxL9IhQsP8KVnDPM6LHyh+htSZxh+/oMYspv7Z790G99654uw51aciGH
+ HCyPJCLb3Pco+t8ADs9wfwpG6aqBLuk8XXMROnVrV5A/emGr8Z25dughv
+ uTVXnygwSt9sVwfqParFkEek0nzWH5r1cfRBMkX16WA5iy4kX6g/tlG8T
+ HjAxgILMOD5P7UIrdu5bhiTII6sZLNCWoHkDsyKV7/GpUalGUpaty/sW4
+ BtZlBvp3I/YiGm/I1dga42Rd50IOsXjiMucErFqe/BHneRjezqLIgzpSW
+ n7/vleR44U8dLMFBiEMV03DhJVvNv1sre53N9e7aC4ylGeK1oBT2yBT1w g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="350931329"
+X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="350931329"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2023 16:44:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="789988860"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; 
- d="scan'208,217";a="789988860"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by FMSMGA003.fm.intel.com with ESMTP; 12 May 2023 16:34:38 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="1030243783"
+X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="1030243783"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga005.fm.intel.com with ESMTP; 12 May 2023 16:44:42 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 12 May 2023 16:34:38 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.23; Fri, 12 May 2023 16:44:41 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 12 May 2023 16:34:38 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Fri, 12 May 2023 16:34:38 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.106)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Fri, 12 May 2023 16:44:41 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Fri, 12 May 2023 16:34:37 -0700
+ 15.1.2507.23; Fri, 12 May 2023 16:44:41 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bCt2yiB/mM93EIyH0uMligZzmF2iOJLZhsLv+yG+3TWjTx33tb7//PKrlyWXSVIEzqH5HXWb7TZq7ATJFWjWa+4B6msPQ4QCvOZyID47TzhwOtQl/P7Uqocj8B2Pt2rKPpYSo0cWXMSH9K86BtZWQamWKT9zXK8Ax80B5M+vr8ErkxON+PD+PYswpfCOubf4MnkCGmwLUjWcPH2LUcoLER94Edd60ZFi5h5KLuWpKyThoLF9N8IeqCGPeU+MMawd/AZMVuw+E9Ix/0Q4wLUCeRFrOHKxr1bCvodAWYbK7dLdeenF7zmfFDZkYH3bAW4x4wReIB6lQLLQ90H3cW9cNQ==
+ b=ULi1YIMdRac8hxqRqUc9hnHOb2C4cqGtQNfo14xtfT5KK/xEHcuz01BnnJQrcTcqn/cpix4pS852MgWPrkDdQwB2FU52SfO9EXxxj/lI1kgacY6TBnY9/+qx6hzOJ3/CcZ7gADKYl/NBrcfu/Vr75kkob9JBTlXX8uXe20yFawNWJQRpKwEwjm+WnJxPspVgSRQIGaA+i5yXemxZ2D37RQ5bplfYW8dC/ARLnjRMX1NVfKCiM9gEaSKf/RJe+d2rimbweKT7OQC8WTbRzcBexYGseKyUpa3Qx+QMUQ8/9wZwWHq6xA1nY7bdQ7xWBYY3hYHrMf7XPrZO4fP2waZXjA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s9AQ+AiTgdYUKeWn2WBRmVsrKYJ42hZXV9tUc0SbpF4=;
- b=SJRqDtWYJ5pSDYQNruGGxMBwX0AKPu0IqMDcNOggHem6OamUNL+sN38UpQKM/PZQfxNaGAQNanB1YZz8HT+OT2fzA9I3sJQkeFv30EFRlJ8mzISWErlG6F+ntbBywpAUTjxHTbddmvohk+IS9nGWFpUIzDLI7OR0wsfWVYW/0cMFxILKkRP5OhBK9QZMhS9C7tPPnTWn4lvleuPIT4y++f247vTdo/lWEE7NpxNIB83PFn/B2BKI8ffztCk+3myN0OfCGnOVjykeIBxoXpsD/yqMluKfsXqUShJibjy0BjpT0sQGW+kJNtX3tLBtuXSIAsWm0dAR02/Dx0LisqVBew==
+ bh=m09L7iF4LhWFQdt9iozg2wLGzAcLDiGip/hIpwKCX0s=;
+ b=XO4Z/5wD8x4pwsktZyPVvnI8eNx8cDFm7cvB5/Y2KcMEGdq0sjR3BjCiiCGPuxv3drVMyXz84sk2PTcJgxxwkd0/9N1iBYC/K0LHaYxRedFX67f619BY+QiFPhT9Y+1KaHkuxDkucOdvKRDyS5bZTXLSc13P9YlZtExME0jHHJ5cIdGqdP4lzCtQ03XJzb6bf4rVqR8QZKZgyMhHqFoZbq9vfiNW+Ncfz9aIRDljcOtoegv3f1CVdlul7dchK00seAJ9xQ9z5Ua5Mvc55ApfEdKRypj19PRPBlqEvgMprAl/Bs2Wbo4Cq0uIKM+9G0tGFs5zfAJ1GB5swON4xKTJgA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from BYAPR11MB2567.namprd11.prod.outlook.com (2603:10b6:a02:c5::32)
- by SJ0PR11MB4911.namprd11.prod.outlook.com (2603:10b6:a03:2ad::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.21; Fri, 12 May
- 2023 23:34:31 +0000
-Received: from BYAPR11MB2567.namprd11.prod.outlook.com
- ([fe80::8ec1:2f24:6309:c008]) by BYAPR11MB2567.namprd11.prod.outlook.com
- ([fe80::8ec1:2f24:6309:c008%3]) with mapi id 15.20.6387.022; Fri, 12 May 2023
- 23:34:31 +0000
-From: "Yang, Fei" <fei.yang@intel.com>
-To: "Justen, Jordan L" <jordan.l.justen@intel.com>, Andi Shyti
- <andi.shyti@linux.intel.com>
-Thread-Topic: [PATCH v7 4/4] drm/i915: Allow user to set cache at BO creation
-Thread-Index: AQHZgpeJ1/DlI0r6H0y/Q4/wLFhrpq9UFFUAgAL9oICAADyAzQ==
-Date: Fri, 12 May 2023 23:34:30 +0000
-Message-ID: <BYAPR11MB25670C9127D87446BCE366539A759@BYAPR11MB2567.namprd11.prod.outlook.com>
-References: <20230509165942.2155-1-fei.yang@intel.com>
- <20230509165942.2155-5-fei.yang@intel.com>
- <ZFwXOPV9eY0mCSyz@ashyti-mobl2.lan>
- <168392127300.1245490.15218496130423132985@jljusten-skl>
-In-Reply-To: <168392127300.1245490.15218496130423132985@jljusten-skl>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR11MB2567:EE_|SJ0PR11MB4911:EE_
-x-ms-office365-filtering-correlation-id: 4b70f74c-f190-4635-201c-08db53416f5f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: zkxOOYtgpw9+kkq5OA8QLJaNesv3os2ulyVaWw6tKqzrGhPhiceckRFn7y/DdZBOhe0lrxQHg7rGTb+EidvLxqze1m+0D+6ne5gTOAaRPQpjseiJpVOoxzUaDVR20RgJdhZrsXissxjRKTxILA9YmbAAS2RyU0tOsavku5XgalUpLfpSYsileHghszBjGzAoQP/ven8jiwl7jZYlcmTNUVFIt4Xw7Rv9Bk7VjWnbhFhNdaQ5AA9aOue0s3Alv5LEK4pkU7U97RzYTrrJZzK764D9hCUm/2GA3bl+BbDWoxCi5O431mWcMcyJmQd7jnGKagudIZ/Jg66emTsHO6YbjNEduXQGQqL0CqCnyyYNbamnsKFCl+tICnGeW9qCR3deUJTud9YMofxbV8Q2dKkZ3zDmxTrWJUQhHbY7DsD9NVuRKM4+XkoOOUvZAPX3s1h2i3/W+enl8A/q+uJwX8Sq4CWhr0YZuvyCWsLFC8LMD92MeTf81aG3HltWcfan1F/j9RobT/zQI6U67ezotHQWKzWHTURLSBrIar4uJ1MZ8MLe8Rl0Ok4m+b5NZDYSpYNf
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2567.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(136003)(39860400002)(366004)(376002)(346002)(396003)(451199021)(966005)(66556008)(8936002)(8676002)(52536014)(7696005)(38100700002)(33656002)(5660300002)(54906003)(316002)(64756008)(66476007)(66446008)(66946007)(82960400001)(76116006)(4326008)(478600001)(41300700001)(55016003)(122000001)(71200400001)(110136005)(2906002)(86362001)(38070700005)(186003)(19627405001)(83380400001)(6506007)(53546011)(9686003)(26005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?JP1hC2GPfG0zzvpBmt37Y4aAHOUnytw8Uk+hn8Mh/XJ5TFtfP0ZJklpZPb?=
- =?iso-8859-1?Q?lcE7T8lGvqCO5mLcE41DlDfsQ6O4VKxtl7pauHJ0vIow0Y2HPxPnmVCHeU?=
- =?iso-8859-1?Q?l3raURjEn+KBI+jEGh8ufKxZ+kCNRMYA2BFCAf7eZmTGAFWouSXBWFqcbx?=
- =?iso-8859-1?Q?zQqqK8Kyt0Jn4rhEbjAxcYcw5FvG+SZvFawl2M8EMe60k0tfVFbM7hU6cS?=
- =?iso-8859-1?Q?Tat5e7guVPFrLRi3QC6e5QZRzUVWggVHwd53GCvrLT0AwHYT1w0P24WKsf?=
- =?iso-8859-1?Q?H61w2+QsXdOY1mKXJ1C8TQWGyINByxuN8oZdzhPz5nYI/LTQ5pu4vcQyzq?=
- =?iso-8859-1?Q?d8bC3SXBoxRgj7h0d0CSQVHDSeJo1eYvP2WOoyezskra2qn1UsSZcofWBD?=
- =?iso-8859-1?Q?dK+nW8QIWV1DrOTnvlKoQIQeCE4G2WXYgPmzO+QwtRsRzFnNFmdsfSyup+?=
- =?iso-8859-1?Q?ZQh9ChLkN/7J2DZNI4bf/cGifs2J5No1UBEzQEfHt9WPTt+cDItIe+NR2m?=
- =?iso-8859-1?Q?Q+6AVdA/cESpYnCx6NoEF9mcrY8+yyr6AaE65cIaJ/upea+P07y/qeuyYP?=
- =?iso-8859-1?Q?bzgXF2nMnfWLuhHFvuEd00lCBLZd5pWVSBWw3f+x2wDHjA6diFqmZ4ttjT?=
- =?iso-8859-1?Q?SSNg+t5QWPy8r9NnEgVIYqP7qGWktell380tBC7Y2/x0ywnpJ13pOaeYTI?=
- =?iso-8859-1?Q?XXk0q0ncefn4qzdi0EzwkUJYoLytC5LycJmT3Zy7sSvYOgI7ffDxQHJ50o?=
- =?iso-8859-1?Q?k1tQPVK6C5SOUfSfTJIuP+eSaGa5Xrcc0eNHQI6ec4als3nUuLkLTD4q/x?=
- =?iso-8859-1?Q?mBtd5CIymHu0sxD6mwyE7YFDgwXpFobsljmFsSX/qNz5rRtDbYfDo7Cgm5?=
- =?iso-8859-1?Q?1DMYrDXVOx/IY6OlLhx9rUjvAxUWQEV44Fv1ZSFAnEHzvS01SaAASzN5vP?=
- =?iso-8859-1?Q?3yw3nQ4a/gE4/h5x2sB+Ue0VnEnp3oz04VjFJy8KGnghwOEOgchoWBrsA4?=
- =?iso-8859-1?Q?p/BvpKUBaKl4golJQ9e1u5AHb8XYidbGc6Bb34C4WAwVN3iretFnV7Pd9a?=
- =?iso-8859-1?Q?0nS8bRdsGZ8bBHRjL5VQqWEte1QbaTXdoKzZfl62QV44x6uWe7lra5Bvc6?=
- =?iso-8859-1?Q?Ko62aXRl/d4mizjpDipESprR80pYdZG0CU6EOXEZjagY8ZWY8/Az/ySdLv?=
- =?iso-8859-1?Q?4+njPSPmMGjYr4dPUvSVlzpPEwZgG5MCaCDzdjgw6+AlWAWPQta8VleCii?=
- =?iso-8859-1?Q?hueTx2oOSfz6szS08N/anA9zwgaA4GcMf/OldmdZqGbwgiq7VKNYGwOOq/?=
- =?iso-8859-1?Q?OJ5FXS2yZo+mJkpaXPEpZOAZiYAD24EBSiWm7zh2kprNXB3R/bmfBWlAWo?=
- =?iso-8859-1?Q?UuTAVH0bHYhvTEwJwELKQIVCbIrisGkhmTL8VVM7PEZHfiSJLFWqieHAKa?=
- =?iso-8859-1?Q?ypVSXH7itZn6xBLxhHWITJgyYktGPYNJc+VJ/y1us6xvIv+KqrwMnVWs1B?=
- =?iso-8859-1?Q?dKm71z98+DXdCbJa+OBWE4ks1fAI6VtzTPGn0/RNnvSATX1PR8/oPHsmuR?=
- =?iso-8859-1?Q?Z5JhhI0m+1eIE83OiBTGncCLoKgQgYT67PU0pgiFPDwl91Q96CmSZkqmI5?=
- =?iso-8859-1?Q?9LauywgPiPxM8=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_BYAPR11MB25670C9127D87446BCE366539A759BYAPR11MB2567namp_"
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
+ SN7PR11MB6995.namprd11.prod.outlook.com (2603:10b6:806:2ae::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.21; Fri, 12 May
+ 2023 23:44:39 +0000
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::3435:8461:a51:17fc]) by DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::3435:8461:a51:17fc%3]) with mapi id 15.20.6387.023; Fri, 12 May 2023
+ 23:44:39 +0000
+Date: Fri, 12 May 2023 16:44:29 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Message-ID: <ZF7PXazccbkufp1X@orsosgc001.jf.intel.com>
+References: <20230506005816.1891043-1-umesh.nerlige.ramappa@intel.com>
+ <20230506005816.1891043-5-umesh.nerlige.ramappa@intel.com>
+ <87ilcxdw0g.wl-ashutosh.dixit@intel.com>
+ <ZF7BMH5W/lzS2tq0@orsosgc001.jf.intel.com>
+ <87h6shdtn0.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <87h6shdtn0.wl-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: BY5PR17CA0070.namprd17.prod.outlook.com
+ (2603:10b6:a03:167::47) To DM6PR11MB2987.namprd11.prod.outlook.com
+ (2603:10b6:5:65::14)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|SN7PR11MB6995:EE_
+X-MS-Office365-Filtering-Correlation-Id: f516f8b3-3651-4e3b-3050-08db5342d980
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TsJ6H1bXMU9E4pWKtfD4SLRTrcb5XIzoLKbHwcOJWCY/rN4MsyOSM3td2aILOEoTHyazkpPG2ketHeX37FcSw+2yaFWSloewGP/OhBz3/H4lBOkJanKPjAPoRVZYI1/AyKEgOwNfUhIMah9niWNswTwkHNLTmJuJtWmTpOMUkqYxliqnTPzF0SWqR61VtEiFfHr+SIwyNVabmBGQlb3JFJ4odxq9jCTub70poXuRIVd5Gsf2b+75/NWNsmmMa99uan+VrbbIRfxGMUxl1b01ZWcE/pXjCLQ1IXDBYYlBS7ZywJDIey7G0LxchPaYxAqHzMnNgYNq4A7q2p+NEdOoqCCh98oUAZ0iyo+hDrhqTXC95whPy07/slW7bh5/wj3ekvTNi5cpg2ni4JkPEjWifTvvZePH3b3rMH/ulAx/QuoWS4weEcFe83hoYIjAqquOalR8tUSkKCub92kJz7jzGbcso4ztoM60q5bXicPED3fJ04tJxWXLYkNzUD2qum6L5IqB21K2CzT+mY8odaU+bhZ03aiqRKPoJgQ16APAWFXJrCIMPWkeyEJCLMsGm6l4
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(136003)(376002)(39860400002)(346002)(396003)(366004)(451199021)(4326008)(6636002)(66556008)(66476007)(478600001)(66946007)(316002)(8936002)(8676002)(6862004)(41300700001)(6666004)(6486002)(38100700002)(82960400001)(186003)(6512007)(6506007)(26005)(5660300002)(86362001)(2906002)(83380400001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TUhLK3BOZE9EZzhDRzRwY1AxSFBLUEo3NmYrMGhnZ2tNZ3dqeDgxSGpWSUdV?=
+ =?utf-8?B?TWJuOWpOM0c0Wm5aQ0l3SFRHSC84QkxEZjRwVzJzaFBQUFd0eHR4aEpJTCsr?=
+ =?utf-8?B?Uk8xc0RnRW8ycVRtRkJ4Y21leTVuUllrYzlVMnhWdmVJd2YreWthVUxhRWdR?=
+ =?utf-8?B?RUxZcjVKOC9iRThLdFdTMmlBUXBwQXpRUWswK3hWL0psVjFmeXIvOGpJaE5o?=
+ =?utf-8?B?RS8vcjhFNVo3WWNZenlVa081SHBaR3FabU5HK0JYWkVrNGxoNlFDcFVreitO?=
+ =?utf-8?B?K0Q4YklwWC96c3pIMHhCNExsaDE5VjlrVlgzcW85QVZ2aStkNTdJTjFVY0hs?=
+ =?utf-8?B?WDdtd3VRTXRHTWhqYXNzcThKcXlBcTBmZFJwbDU2YTlzU1B4U1BEU3Y1ZDl2?=
+ =?utf-8?B?ekJFMUhCbkpQQjlkYVB1M3V2TVo0VFRHZTNyWWZBdlJUbld0N3lSckpyZW1M?=
+ =?utf-8?B?RGFhMThXZmNOa1dOQ2xCNXpDdjNrMWw1NnhJRzl2Yy9BYXBYdEVKbU56WWtL?=
+ =?utf-8?B?Mmd2bkk3ait3akU3MFZhMlo2Q0J2L3R2NXF6blliaTFaOG93MzJubDZBWHdQ?=
+ =?utf-8?B?Q3MxYnZQSkoyVDUzby9XdE5uRGJUK0R2VGdWbEJSVGdoM1NOSjQveDZyUVM1?=
+ =?utf-8?B?Ym5XQ0JGRkV0cWc4WWpldVZYc0VuRjd6YU40cXNkcmpHeithdkZwZlNPbnRj?=
+ =?utf-8?B?b3dUaXNmRkNzZ000VExlM3hyakovdEJzYXhic3ZaR0NEbVNwTzcvQzlyVkRv?=
+ =?utf-8?B?cU5ORWhFQURNbG4xNWhUdmQxMFRSRGdZZDhnNFpnbjhaclRvcUdwME5oV2VP?=
+ =?utf-8?B?SGhjYzNaZTZkWC9QV2l2VHhIVlpBbW91c1d6ei9GQzQ4UEJaN0FYV3pBVnEv?=
+ =?utf-8?B?dm04YUJOU1BRQ2x5cU9uYlRiOHJxNlBOalJMOG9sblByQnpteTEvOFFTSVRX?=
+ =?utf-8?B?YjZlaThLQUp5cEJmQStvRVY4VmNWN2s0aUlwWG9KL0lGNThZdHZjMXJtelBG?=
+ =?utf-8?B?MnpRcVA1bGx0SmVqcVpVT3JXZDNGVmNmZTRscFZXalE5K1hqalczYnlnVy85?=
+ =?utf-8?B?bm1GS2h2NTZhcDdIMTFQMjhnekhnRUhIZVZlZ096Z3VPc25ZVS93WmhrN2Np?=
+ =?utf-8?B?aEd3c2hMc05GV3BVa0Q1dE5KTUEyMVozL0RhZnFrVFl0UnZoWk1VV0tUa3RC?=
+ =?utf-8?B?YlhKbFR3R0NxbUljSVQvdy9QeFQ3cExMd1ZUVVpIL1c4QjI3TForRXNUZnN1?=
+ =?utf-8?B?bTVrMm9iR1hxSTBvZkJyRkVJOU11azJwcEZwTlFPRG1PTTZMVmFRSnBGRTZG?=
+ =?utf-8?B?MEpZZlFmUTRLUTZ3d2R5QmlHMk5PemR6RU9mN3dPeHBQRUc2ZDJ6SU1FZDdw?=
+ =?utf-8?B?NWU1STJwY3NQUFZDS3FpS1JLOEtjZXRHODdKYjJLUExRcENGOThscW4yamJr?=
+ =?utf-8?B?TFhjZWw4SFd3UHpnS01RcHV4U3lwV0N3Kys1d3lyWm53MkFLb2JaeU5jYnRh?=
+ =?utf-8?B?N292RUFINDM4L2hlMk1YWjhGTWF4U051Z25JazdFV1BWVTV3NnhUVnJkY1RT?=
+ =?utf-8?B?Sk5Rd2dLYVZ1dCt4SWZsdzBRMU9jSzc0OXlneloxTDd5a2NQNXlkNFcwN3RY?=
+ =?utf-8?B?dFRYRlE5M2xPMTc0bXYzWnhxTVBTYUtyd2p3aTZQWjBTSWlGcmpyQjRwQ1d0?=
+ =?utf-8?B?NXl2RXB3bFlZL29TUjlhNjNYYmxUU3c5UjdRU2c2ZStESzk3K3pma2tZOXFF?=
+ =?utf-8?B?bFJOc05CUXpwd1dVNGZlcVprTUJxeEZuMmFDY3JsdWdzd25TakhMRFRCSTFE?=
+ =?utf-8?B?V3p6Wmk0SUlNVmYvSVF1SFNETDUva3dyemc3UkQvV1k2VU44QXVkUWlwRE92?=
+ =?utf-8?B?QnY3Z2ZGMkZIc1VzOFN0emkyYkZVc09Bc0FBS0lYeVdmT2VXNDZxM01WMFFo?=
+ =?utf-8?B?KzMwbmxJek5pOFFWWlRqY3o2aWkvM0NWRmNlWXVSdTVsREZWZitOOEt4WTdY?=
+ =?utf-8?B?ZTd6Q3hCQ3ZVdkpKYUR1amIwN1c3bG5MSmtzS1FzbE1QUWVuRWhFc0dlNzI4?=
+ =?utf-8?B?KzJpcVBibmpJK0xFR1Mzb3ZMb2NuRXgrZi9qRWNMMWtSbVZrUWlBMjFpTWJu?=
+ =?utf-8?B?c3VMbE5Zd21nYlNieGUyc1BPaUJYV1BmejhudlRxb1p4dnpZMGtpRmtsSGVI?=
+ =?utf-8?Q?Fcp73mfhyKzOESrlgsI/ysc=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f516f8b3-3651-4e3b-3050-08db5342d980
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2567.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b70f74c-f190-4635-201c-08db53416f5f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 May 2023 23:34:30.9031 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: snXFY1GNwbCqd6r/s2rFYnktVW7yAfnKku32uw4hzIJNoGuueo/NNaz8Z8uFKOH8GcU48Z/j46YmS8E4dusRsw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4911
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2023 23:44:38.7703 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5e1D7TYELnuv9RdM0mLdmtDfXTLQBA4sxTCT1Wh0kPvKytzxUtFcCNGB8Ho93oD4ubgm5tNqGhwRzHT/D5CNrzyLqAH4+S95ktiPv1Jw+rI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6995
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v7 4/4] drm/i915: Allow user to set cache at
- BO creation
+Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/pmu: Add reference counting to
+ the sampling timer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,207 +156,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arkadiusz Hiler <arek@hiler.eu>, Chris
- Wilson <chris.p.wilson@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Petri Latvala <adrinael@adrinael.net>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_BYAPR11MB25670C9127D87446BCE366539A759BYAPR11MB2567namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-> On 2023-05-10 15:14:16, Andi Shyti wrote:
->> Hi,
+On Fri, May 12, 2023 at 04:20:19PM -0700, Dixit, Ashutosh wrote:
+>On Fri, 12 May 2023 15:44:00 -0700, Umesh Nerlige Ramappa wrote:
 >>
->> On Tue, May 09, 2023 at 09:59:42AM -0700, fei.yang@intel.com wrote:
->>> From: Fei Yang <fei.yang@intel.com>
->>>
->>> To comply with the design that buffer objects shall have immutable
->>> cache setting through out their life cycle, {set, get}_caching ioctl's
->>> are no longer supported from MTL onward. With that change caching
->>> policy can only be set at object creation time. The current code
->>> applies a default (platform dependent) cache setting for all objects.
->>> However this is not optimal for performance tuning. The patch extends
->>> the existing gem_create uAPI to let user set PAT index for the object
->>> at creation time.
->>> The new extension is platform independent, so UMD's can switch to using
->>> this extension for older platforms as well, while {set, get}_caching ar=
-e
->>> still supported on these legacy paltforms for compatibility reason.
->>>
->>> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
->>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->>> Signed-off-by: Fei Yang <fei.yang@intel.com>
->>> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+>> On Fri, May 12, 2023 at 03:29:03PM -0700, Dixit, Ashutosh wrote:
+>> > On Fri, 05 May 2023 17:58:14 -0700, Umesh Nerlige Ramappa wrote:
+>> >>
+>> >
+>> > Hi Umesh/Tvrtko,
+>> >
+>> >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> >>
+>> >> We do not want to have timers per tile and waste CPU cycles and energy via
+>> >> multiple wake-up sources, for a relatively un-important task of PMU
+>> >> sampling, so keeping a single timer works well. But we also do not want
+>> >> the first GT which goes idle to turn off the timer.
+>> >>
+>> >> Add some reference counting, via a mask of unparked GTs, to solve this.
+>> >>
+>> >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> >> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> >> ---
+>> >>  drivers/gpu/drm/i915/i915_pmu.c | 12 ++++++++++--
+>> >>  drivers/gpu/drm/i915/i915_pmu.h |  4 ++++
+>> >>  2 files changed, 14 insertions(+), 2 deletions(-)
+>> >>
+>> >> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+>> >> index 2b63ee31e1b3..669a42e44082 100644
+>> >> --- a/drivers/gpu/drm/i915/i915_pmu.c
+>> >> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+>> >> @@ -251,7 +251,9 @@ void i915_pmu_gt_parked(struct intel_gt *gt)
+>> >>	 * Signal sampling timer to stop if only engine events are enabled and
+>> >>	 * GPU went idle.
+>> >>	 */
+>> >> -	pmu->timer_enabled = pmu_needs_timer(pmu, false);
+>> >> +	pmu->unparked &= ~BIT(gt->info.id);
+>> >> +	if (pmu->unparked == 0)
+>> >> +		pmu->timer_enabled = pmu_needs_timer(pmu, false);
+>> >>
+>> >>	spin_unlock_irq(&pmu->lock);
+>> >>  }
+>> >> @@ -268,7 +270,10 @@ void i915_pmu_gt_unparked(struct intel_gt *gt)
+>> >>	/*
+>> >>	 * Re-enable sampling timer when GPU goes active.
+>> >>	 */
+>> >> -	__i915_pmu_maybe_start_timer(pmu);
+>> >> +	if (pmu->unparked == 0)
+>> >> +		__i915_pmu_maybe_start_timer(pmu);
+>> >> +
+>> >> +	pmu->unparked |= BIT(gt->info.id);
+>> >>
+>> >>	spin_unlock_irq(&pmu->lock);
+>> >>  }
+>> >> @@ -438,6 +443,9 @@ static enum hrtimer_restart i915_sample(struct hrtimer *hrtimer)
+>> >>	 */
+>> >>
+>> >>	for_each_gt(gt, i915, i) {
+>> >> +		if (!(pmu->unparked & BIT(i)))
+>> >> +			continue;
+>> >> +
+>> >
+>> > This is not correct. In this series we are at least sampling frequencies
+>> > (calling frequency_sample) even when GT is parked. So these 3 lines should be
+>> > deleted. engines_sample will get called and will return without doing
+>> > anything if engine events are disabled.
 >>
->> just for a matter of completeness, this is new uapi is tested
->> through the "create-ext-set-pat" test case from the "gem_create"
->> igt test[1]. Can any of the igt maintainers give it a look,
->> comment and ack?
->>
->> The mesa merge request is here [2]. As there is a merge request
->> in progress, would anyone from mesa be so kind to give an ack to
->> this patch, as well?
->>
->> With the mesa ack in place this patch should be ready to go and
->> I'm looking forward to having it in.
+>> Not sure I understand. This is checking pmu->'un'parked bits.
 >
-> I tested my MR [2] in our CI. There was some bad news, but I don't
-> think it needs to block these patches.
+>Sorry, my bad. Not "engines_sample will get called and will return without
+>doing anything if engine events are disabled" but "engines_sample will get
+>called and will return without doing anything if GT is not awake". This is
+>the same as the previous behavior before this series.
 >
-> The good news was that I found that OpenGL testing with our iris
-> driver appeared to have ok results when using this interface.
+>Umesh and I discussed this but writing this out in case Tvrtko takes a
+>look.
+
+Sounds good, Dropping the check here in the new revision.
+
+Thanks,
+Umesh
 >
-> But, our Vulkan Anvil driver was not stable with the current patches
-> in the Mesa MR. We will need to debug this further before using the
-> interface on Vulkan.
+>Thanks.
+>--
+>Ashutosh
 >
-> I don't suspect that this is an issue with the kernel interface, so
-> you can add:
 >
-> Tested-by: Jordan Justen <jordan.l.justen@intel.com>
-
-v8 sent with updates.
-
-> -Jordan
-
-Thanks Jordan.
-
->>
->> Thanks,
->> Andi
->>
->> [1] https://patchwork.freedesktop.org/patch/534955/?series=3D117185&rev=
-=3D1
->> [2] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22878
->>
-
-
---_000_BYAPR11MB25670C9127D87446BCE366539A759BYAPR11MB2567namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof ContentPasted0 Conten=
-tPasted1">
-&gt; On 2023-05-10 15:14:16, Andi Shyti wrote:
-<div class=3D"ContentPasted0">&gt;&gt; Hi,</div>
-<div class=3D"ContentPasted0">&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt; On Tue, May 09, 2023 at 09:59:42AM -=
-0700, fei.yang@intel.com wrote:</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; From: Fei Yang &lt;fei.yang@inte=
-l.com&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; To comply with the design that b=
-uffer objects shall have immutable</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; cache setting through out their =
-life cycle, {set, get}_caching ioctl's</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; are no longer supported from MTL=
- onward. With that change caching</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; policy can only be set at object=
- creation time. The current code</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; applies a default (platform depe=
-ndent) cache setting for all objects.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; However this is not optimal for =
-performance tuning. The patch extends</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; the existing gem_create uAPI to =
-let user set PAT index for the object</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; at creation time.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; The new extension is platform in=
-dependent, so UMD's can switch to using</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; this extension for older platfor=
-ms as well, while {set, get}_caching are</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; still supported on these legacy =
-paltforms for compatibility reason.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Cc: Chris Wilson &lt;chris.p.wil=
-son@linux.intel.com&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Cc: Matt Roper &lt;matthew.d.rop=
-er@intel.com&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Cc: Andi Shyti &lt;andi.shyti@li=
-nux.intel.com&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Signed-off-by: Fei Yang &lt;fei.=
-yang@intel.com&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Reviewed-by: Andi Shyti &lt;andi=
-.shyti@linux.intel.com&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt; just for a matter of completeness, t=
-his is new uapi is tested</div>
-<div class=3D"ContentPasted0">&gt;&gt; through the &quot;create-ext-set-pat=
-&quot; test case from the &quot;gem_create&quot;</div>
-<div class=3D"ContentPasted0">&gt;&gt; igt test[1]. Can any of the igt main=
-tainers give it a look,</div>
-<div class=3D"ContentPasted0">&gt;&gt; comment and ack?</div>
-<div class=3D"ContentPasted0">&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt; The mesa merge request is here [2]. =
-As there is a merge request</div>
-<div class=3D"ContentPasted0">&gt;&gt; in progress, would anyone from mesa =
-be so kind to give an ack to</div>
-<div class=3D"ContentPasted0">&gt;&gt; this patch, as well?</div>
-<div class=3D"ContentPasted0">&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt; With the mesa ack in place this patc=
-h should be ready to go and</div>
-<div class=3D"ContentPasted0">&gt;&gt; I'm looking forward to having it in.=
-</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; I tested my MR [2] in our CI. There was =
-some bad news, but I don't</div>
-<div class=3D"ContentPasted0">&gt; think it needs to block these patches.</=
-div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; The good news was that I found that Open=
-GL testing with our iris</div>
-<div class=3D"ContentPasted0">&gt; driver appeared to have ok results when =
-using this interface.</div>
-&gt;
-<div class=3D"ContentPasted1">&gt; But, our Vulkan Anvil driver was not sta=
-ble with the current patches</div>
-<div class=3D"ContentPasted1">&gt; in the Mesa MR. We will need to debug th=
-is further before using the</div>
-<div class=3D"ContentPasted1">&gt; interface on Vulkan.</div>
-<div class=3D"ContentPasted1">&gt;</div>
-<div class=3D"ContentPasted1">&gt; I don't suspect that this is an issue wi=
-th the kernel interface, so</div>
-<div class=3D"ContentPasted1">&gt; you can add:</div>
-<div class=3D"ContentPasted1">&gt;</div>
-<div class=3D"ContentPasted1">&gt; Tested-by: Jordan Justen &lt;jordan.l.ju=
-sten@intel.com&gt;</div>
-<div><br class=3D"ContentPasted1">
-</div>
-<div class=3D"ContentPasted1">v8 sent with updates.</div>
-<div><br class=3D"ContentPasted1">
-</div>
-<div class=3D"ContentPasted1">&gt; -Jordan</div>
-<div><br class=3D"ContentPasted1">
-</div>
-<div class=3D"ContentPasted1">Thanks Jordan.</div>
-<div><br class=3D"ContentPasted1">
-</div>
-<div class=3D"ContentPasted1">&gt;&gt;</div>
-<div class=3D"ContentPasted1">&gt;&gt; Thanks,</div>
-<div class=3D"ContentPasted1">&gt;&gt; Andi</div>
-<div class=3D"ContentPasted1">&gt;&gt;</div>
-<div class=3D"ContentPasted1">&gt;&gt; [1] https://patchwork.freedesktop.or=
-g/patch/534955/?series=3D117185&amp;rev=3D1</div>
-<div class=3D"ContentPasted1">&gt;&gt; [2] https://gitlab.freedesktop.org/m=
-esa/mesa/-/merge_requests/22878</div>
-<div class=3D"ContentPasted1">&gt;&gt;</div>
-<br>
-</div>
-</body>
-</html>
-
---_000_BYAPR11MB25670C9127D87446BCE366539A759BYAPR11MB2567namp_--
+>
+>> >
+>> >
+>> >>		engines_sample(gt, period_ns);
+>> >>
+>> >>		if (i == 0) /* FIXME */
+>> >> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
+>> >> index a686fd7ccedf..3a811266ac6a 100644
+>> >> --- a/drivers/gpu/drm/i915/i915_pmu.h
+>> >> +++ b/drivers/gpu/drm/i915/i915_pmu.h
+>> >> @@ -76,6 +76,10 @@ struct i915_pmu {
+>> >>	 * @lock: Lock protecting enable mask and ref count handling.
+>> >>	 */
+>> >>	spinlock_t lock;
+>> >> +	/**
+>> >> +	 * @unparked: GT unparked mask.
+>> >> +	 */
+>> >> +	unsigned int unparked;
+>> >>	/**
+>> >>	 * @timer: Timer for internal i915 PMU sampling.
+>> >>	 */
+>> >> --
+>> >> 2.36.1
+>> >>
