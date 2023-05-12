@@ -1,38 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0C567009E6
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 May 2023 16:04:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D7077009EB
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 May 2023 16:05:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5971710E04D;
-	Fri, 12 May 2023 14:04:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCEE510E6C7;
+	Fri, 12 May 2023 14:05:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E56C810E04D
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 May 2023 14:04:14 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B4A410E6C7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 May 2023 14:05:29 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 562B4656FB;
- Fri, 12 May 2023 14:04:14 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 8549C656FB;
+ Fri, 12 May 2023 14:05:28 +0000 (UTC)
 Received: from rdvivi-mobl4 (unknown [192.55.55.57])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 389FDC433EF;
- Fri, 12 May 2023 14:04:12 +0000 (UTC)
-Date: Fri, 12 May 2023 10:04:10 -0400
+ by smtp.kernel.org (Postfix) with ESMTPSA id C7FA1C433EF;
+ Fri, 12 May 2023 14:05:26 +0000 (UTC)
+Date: Fri, 12 May 2023 10:05:25 -0400
 From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZF5HWja9HdAjqqJz@rdvivi-mobl4>
-References: <20230512111446.1524038-1-jani.nikula@intel.com>
+Message-ID: <ZF5HpaE2MTwDguRz@rdvivi-mobl4>
+References: <20230512110444.1448231-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230512111446.1524038-1-jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/bios: add helper for reading SPI
+In-Reply-To: <20230512110444.1448231-1-jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/dpll: drop a useless
+ I915_STATE_WARN_ON()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,76 +49,30 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 12, 2023 at 02:14:46PM +0300, Jani Nikula wrote:
-> Add helper for reading SPI to not duplicate the write&read combo
-> everywhere.
+On Fri, May 12, 2023 at 02:04:41PM +0300, Jani Nikula wrote:
+> In general, we don't do assertions that a function gets called on the
+> right platforms, and if we did, it should not be a state warn.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-BAT failure is likely a false positive on crcs... this patch
-looks correct to me without any functional change.
-
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-
 > ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 23 ++++++++++++-----------
->  1 file changed, 12 insertions(+), 11 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 --
+>  1 file changed, 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index 64eb11a45265..34a397adbd6b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -3033,6 +3033,13 @@ bool intel_bios_is_valid_vbt(const void *buf, size_t size)
->  	return vbt;
->  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> index ed372d227aa7..936b8de9e439 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> @@ -464,8 +464,6 @@ static void ibx_assert_pch_refclk_enabled(struct drm_i915_private *dev_priv)
+>  	u32 val;
+>  	bool enabled;
 >  
-> +static u32 intel_spi_read(struct intel_uncore *uncore, u32 offset)
-> +{
-> +	intel_uncore_write(uncore, PRIMARY_SPI_ADDRESS, offset);
-> +
-> +	return intel_uncore_read(uncore, PRIMARY_SPI_TRIGGER);
-> +}
-> +
->  static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
->  {
->  	u32 count, data, found, store = 0;
-> @@ -3049,9 +3056,7 @@ static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
->  	oprom_offset &= OROM_OFFSET_MASK;
->  
->  	for (count = 0; count < oprom_size; count += 4) {
-> -		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, oprom_offset + count);
-> -		data = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
+> -	I915_STATE_WARN_ON(!(HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv)));
 > -
-> +		data = intel_spi_read(&i915->uncore, oprom_offset + count);
->  		if (data == *((const u32 *)"$VBT")) {
->  			found = oprom_offset + count;
->  			break;
-> @@ -3062,20 +3067,16 @@ static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
->  		goto err_not_found;
->  
->  	/* Get VBT size and allocate space for the VBT */
-> -	intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found +
-> -		   offsetof(struct vbt_header, vbt_size));
-> -	vbt_size = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
-> +	vbt_size = intel_spi_read(&i915->uncore,
-> +				  found + offsetof(struct vbt_header, vbt_size));
->  	vbt_size &= 0xffff;
->  
->  	vbt = kzalloc(round_up(vbt_size, 4), GFP_KERNEL);
->  	if (!vbt)
->  		goto err_not_found;
->  
-> -	for (count = 0; count < vbt_size; count += 4) {
-> -		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found + count);
-> -		data = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
-> -		*(vbt + store++) = data;
-> -	}
-> +	for (count = 0; count < vbt_size; count += 4)
-> +		*(vbt + store++) = intel_spi_read(&i915->uncore, found + count);
->  
->  	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
->  		goto err_free_vbt;
+>  	val = intel_de_read(dev_priv, PCH_DREF_CONTROL);
+>  	enabled = !!(val & (DREF_SSC_SOURCE_MASK | DREF_NONSPREAD_SOURCE_MASK |
+>  			    DREF_SUPERSPREAD_SOURCE_MASK));
 > -- 
 > 2.39.2
 > 
