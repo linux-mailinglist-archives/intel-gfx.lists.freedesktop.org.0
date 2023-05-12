@@ -1,50 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6FC4700677
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 May 2023 13:14:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E7357006B8
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 May 2023 13:25:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33F1310E67E;
-	Fri, 12 May 2023 11:14:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76D7010E687;
+	Fri, 12 May 2023 11:25:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11F0D10E67E
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 May 2023 11:14:52 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC35B10E686;
+ Fri, 12 May 2023 11:25:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683890093; x=1715426093;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=WxLtdagd1a3yEe8hCe3Xt4QhoY80Z2XFQUhI967RvzY=;
- b=Scb9lrSyKkNBKWjIiTLGexfwMaszq3slfcno3EiQ1FCpdfkhdltBplq2
- wJKytjTwRx98aDSTxTV6Il067k1ma1zyPDVEel7UOjfLRHIwyaUx0EKDd
- bIHvKBCvLoqfm7dJ2EPkBYERh5tYraRpsAQbsnmJY653koOOGFMo2uQU5
- 7JBLai+45sTNjhYf/Afo5mRUYYF/leaTZKoHmSl3yAUIUBLXMUUiJ91o+
- 0t78VzW2FKQU5mxNZ+8ozJZ9Kxy/ac5fdGWEeUZoOuoZG5XLM5lad0oe+
- TUh8goEy/M7uLKC9GfmCu2q6BGk3ZLNzRg5JtyXVZTl5bRuC7HZ+wWzWY g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="353899750"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="353899750"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2023 04:14:52 -0700
+ t=1683890726; x=1715426726;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=DLcxuGg90W0qpFb37T2Z/r5Za1skwRRI/1oJiKzq3+Y=;
+ b=iuOCP06S3ZDrVCk0w2Oe8o+EIJ85iryjnf1BbFj/VouM8FdMjWJbH/vR
+ AUZC1IcIdRWkai4QdMIgDj0Hn9yrup1+IOZMdBStvCmofcoHv+JvjCH2z
+ aZIJ0Ge/+vv32+o1mYrZ0RwC14PFoDJVqFy38Rx8RQj0lA79x3+lK66oJ
+ GgsxGf28B4bNJ4k1vMgcomrXY7XNKld1NBjvKka85Rodpv5nRTu77oJDH
+ 1hLl74TnRPHQ2eb8+JhLwYK2r406iV+ySiEa+NL6fJYXGN/diFa5iduW9
+ Oh3ufhr2nuNNs3YDPaxcbLVyz2FHxyn5KAA9oFrJLwoQRa7U7ABOWZGqL g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="335287280"
+X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="335287280"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2023 04:25:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="694207812"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="694207812"
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="824331254"
+X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="824331254"
 Received: from tsavina-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.63.51])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2023 04:14:50 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 12 May 2023 14:14:46 +0300
-Message-Id: <20230512111446.1524038-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-MIME-Version: 1.0
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2023 04:25:21 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>
+In-Reply-To: <ZF4fi5B7PPlgZBOI@smile.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/bios: add helper for reading SPI
+References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
+ <20230509051403.2748545-3-lucas.demarchi@intel.com>
+ <ZF4fi5B7PPlgZBOI@smile.fi.intel.com>
+Date: Fri, 12 May 2023 14:25:18 +0300
+Message-ID: <87pm75kd0h.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 2/3] linux/bits.h: Add fixed-width GENMASK
+ and BIT macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,72 +62,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>,
+ intel-gfx@lists.freedesktop.org, Kevin Brodsky <kevin.brodsky@arm.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Masahiro Yamada <masahiroy@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add helper for reading SPI to not duplicate the write&read combo
-everywhere.
+On Fri, 12 May 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> On Mon, May 08, 2023 at 10:14:02PM -0700, Lucas De Marchi wrote:
+>> Add GENMASK_U32(), GENMASK_U16() and GENMASK_U8()  macros to create
+>> masks for fixed-width types and also the corresponding BIT_U32(),
+>> BIT_U16() and BIT_U8().
+>
+> Why?
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 23 ++++++++++++-----------
- 1 file changed, 12 insertions(+), 11 deletions(-)
+The main reason is that GENMASK() and BIT() size varies for 32/64 bit
+builds.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 64eb11a45265..34a397adbd6b 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -3033,6 +3033,13 @@ bool intel_bios_is_valid_vbt(const void *buf, size_t size)
- 	return vbt;
- }
- 
-+static u32 intel_spi_read(struct intel_uncore *uncore, u32 offset)
-+{
-+	intel_uncore_write(uncore, PRIMARY_SPI_ADDRESS, offset);
-+
-+	return intel_uncore_read(uncore, PRIMARY_SPI_TRIGGER);
-+}
-+
- static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
- {
- 	u32 count, data, found, store = 0;
-@@ -3049,9 +3056,7 @@ static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
- 	oprom_offset &= OROM_OFFSET_MASK;
- 
- 	for (count = 0; count < oprom_size; count += 4) {
--		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, oprom_offset + count);
--		data = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
--
-+		data = intel_spi_read(&i915->uncore, oprom_offset + count);
- 		if (data == *((const u32 *)"$VBT")) {
- 			found = oprom_offset + count;
- 			break;
-@@ -3062,20 +3067,16 @@ static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
- 		goto err_not_found;
- 
- 	/* Get VBT size and allocate space for the VBT */
--	intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found +
--		   offsetof(struct vbt_header, vbt_size));
--	vbt_size = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
-+	vbt_size = intel_spi_read(&i915->uncore,
-+				  found + offsetof(struct vbt_header, vbt_size));
- 	vbt_size &= 0xffff;
- 
- 	vbt = kzalloc(round_up(vbt_size, 4), GFP_KERNEL);
- 	if (!vbt)
- 		goto err_not_found;
- 
--	for (count = 0; count < vbt_size; count += 4) {
--		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found + count);
--		data = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
--		*(vbt + store++) = data;
--	}
-+	for (count = 0; count < vbt_size; count += 4)
-+		*(vbt + store++) = intel_spi_read(&i915->uncore, found + count);
- 
- 	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
- 		goto err_free_vbt;
+
+BR,
+Jani.
+
+>
+>> All of those depend on a new "U" suffix added to the integer constant.
+>> Due to naming clashes it's better to call the macro U32. Since C doesn't
+>> have a proper suffix for short and char types, the U16 and U18 variants
+>> just use U32 with one additional check in the BIT_* macros to make
+>> sure the compiler gives an error when the those types overflow.
+>> The BIT_U16() and BIT_U8() need the help of GENMASK_INPUT_CHECK(),
+>> as otherwise they would allow an invalid bit to be passed. Hence
+>> implement them in include/linux/bits.h rather than together with
+>> the other BIT* variants.
+>
+> So, we have _Generic() in case you still wish to implement this.
+
 -- 
-2.39.2
-
+Jani Nikula, Intel Open Source Graphics Center
