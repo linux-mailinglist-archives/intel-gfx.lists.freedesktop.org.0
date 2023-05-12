@@ -1,55 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D043700F76
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 May 2023 21:54:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0918700F77
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 May 2023 21:54:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A0F210E2A7;
-	Fri, 12 May 2023 19:54:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31F8810E2A8;
+	Fri, 12 May 2023 19:54:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2488B10E2A6;
- Fri, 12 May 2023 19:54:45 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3725610E2A8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 May 2023 19:54:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683921285; x=1715457285;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=42l0w6A0sLXQHwqgTZjORD9VAgWRT1QeiSd6JXsne70=;
- b=No2ydlHGzUvHzn1lcWmj5ixqiSltv0Tyo5Ub+aOZ7Jqg7WEmOKw5PaRw
- MgPb3T7fnAhZ0oEJy+hLO6wwMIVt7l2cPPVcDkCjoxizGt5aVLjvMfzi0
- VWGykCItem4TNWtWmnMmZE/v1QHzvw+MpENpl6yO2wC2Q8NoxUx9Q4c/V
- M+hhk/AojmDLQv5F/VoGJewLBjB2LsddXEtDFvl836KqZ2+mR93iPPwlH
- a9ZVnon+xXYWsswM32SuTHOFlRoOGhznjnSkzdzKVTCDQjbaC7AOjWIjI
- lvmtdwfRjxpDTAOq+Xb2h4VQ8QB9v5n3ubk+Z7mMljVmUuPUKDwGRTRZJ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="348366242"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="348366242"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2023 12:54:34 -0700
+ t=1683921292; x=1715457292;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=3/kZWswwiUpRaF2pvnXwouJz+qzguevxz67MXezP1NI=;
+ b=VUwV223tw8ts77ke+WInOFmp4KChZP1oaMEn0hpoVlFQ0obI9COUsVqx
+ TH+Df9m0kyrami7nX5HGeL5p1SQ7iHjSfhI/hmpdz6AQuejP6KbThTrIt
+ /gI8rY4qr2TfKpqm4IMXLYtYzHztz3IvskbcC/IDqrVmFHMabRL6ayLJo
+ h5FF64NWDYOjBxTuKk7xU6ZOro40hke7AyYMHLZYN35wkUk8MMrP9wM8c
+ kUPXuRBrBJBPJQCbP9+vEXuQs8wnlHMkgERcc4uJnwQj5sV+ziUwjAGvw
+ lb4z+uihxqZLcWWzjGm7e7sbQkIsMnVCAI10DAqLQosX/ZHledwbZoUR0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="340194800"
+X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="340194800"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2023 12:54:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="650755690"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="650755690"
-Received: from pnordeen-mobl.amr.corp.intel.com (HELO localhost)
- ([10.252.139.219])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2023 12:54:33 -0700
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="824477763"
+X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="824477763"
+Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.72.78])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2023 12:54:49 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 12 May 2023 22:55:12 +0300
+Message-Id: <20230512195513.2699-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230510103131.1618266-14-imre.deak@intel.com>
+References: <20230510103131.1618266-14-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ZFwXOPV9eY0mCSyz@ashyti-mobl2.lan>
-References: <20230509165942.2155-1-fei.yang@intel.com>
- <20230509165942.2155-5-fei.yang@intel.com>
- <ZFwXOPV9eY0mCSyz@ashyti-mobl2.lan>
-From: Jordan Justen <jordan.l.justen@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>, fei.yang@intel.com
-Date: Fri, 12 May 2023 12:54:33 -0700
-Message-ID: <168392127300.1245490.15218496130423132985@jljusten-skl>
-User-Agent: alot/0.10
-Subject: Re: [Intel-gfx] [PATCH v7 4/4] drm/i915: Allow user to set cache at
- BO creation
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5 13/14] drm/i915/tc: Call TypeC port
+ flush_work/cleanup without modeset locks held
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,71 +59,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arkadiusz Hiler <arek@hiler.eu>,
- Chris Wilson <chris.p.wilson@linux.intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Petri Latvala <adrinael@adrinael.net>,
- Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2023-05-10 15:14:16, Andi Shyti wrote:
-> Hi,
->=20
-> On Tue, May 09, 2023 at 09:59:42AM -0700, fei.yang@intel.com wrote:
-> > From: Fei Yang <fei.yang@intel.com>
-> >=20
-> > To comply with the design that buffer objects shall have immutable
-> > cache setting through out their life cycle, {set, get}_caching ioctl's
-> > are no longer supported from MTL onward. With that change caching
-> > policy can only be set at object creation time. The current code
-> > applies a default (platform dependent) cache setting for all objects.
-> > However this is not optimal for performance tuning. The patch extends
-> > the existing gem_create uAPI to let user set PAT index for the object
-> > at creation time.
-> > The new extension is platform independent, so UMD's can switch to using
-> > this extension for older platforms as well, while {set, get}_caching are
-> > still supported on these legacy paltforms for compatibility reason.
-> >=20
-> > Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> > Signed-off-by: Fei Yang <fei.yang@intel.com>
-> > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->=20
-> just for a matter of completeness, this is new uapi is tested
-> through the "create-ext-set-pat" test case from the "gem_create"
-> igt test[1]. Can any of the igt maintainers give it a look,
-> comment and ack?
->=20
-> The mesa merge request is here [2]. As there is a merge request
-> in progress, would anyone from mesa be so kind to give an ack to
-> this patch, as well?
->=20
-> With the mesa ack in place this patch should be ready to go and
-> I'm looking forward to having it in.
+Call the TypeC port flush_work and cleanup handlers without the modeset
+locks held. These don't require the locks, as the work takes - as it
+should be able to at any point in time - any locks it needs and by the
+time cleanup is called and after cleanup returns the encoder is not in
+use.
 
-I tested my MR [2] in our CI. There was some bad news, but I don't
-think it needs to block these patches.
+This is required by the next patch canceling a TypeC port work
+synchronously during encoder suspend and shutdown, where the work can
+take modeset locks as well, hence the canceling must be done without
+holding the locks.
 
-The good news was that I found that OpenGL testing with our iris
-driver appeared to have ok results when using this interface.
+I also considered moving the modeset locking down to each encoder
+suspend()/shutdown() hook instead, however locking the full modeset
+state for each encoder separately would be odd, and the bigger change -
+affecting all encoders - is beyond the scope of this patchset.
 
-But, our Vulkan Anvil driver was not stable with the current patches
-in the Mesa MR. We will need to debug this further before using the
-interface on Vulkan.
+v2:
+- Add a TODO: comment to remove modeset locks if no encoder depends
+  on this. (Ville)
 
-I don't suspect that this is an issue with the kernel interface, so
-you can add:
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 27 +++++++++----------
+ .../drm/i915/display/intel_display_types.h    | 12 +++++++++
+ drivers/gpu/drm/i915/i915_driver.c            | 16 +++++++++++
+ 3 files changed, 41 insertions(+), 14 deletions(-)
 
-Tested-by: Jordan Justen <jordan.l.justen@intel.com>
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 813be957ed11b..7d09bd2412352 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4617,31 +4617,27 @@ static bool intel_ddi_is_tc(struct drm_i915_private *i915, enum port port)
+ 
+ static void intel_ddi_encoder_suspend(struct intel_encoder *encoder)
+ {
+-	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	enum phy phy = intel_port_to_phy(i915, encoder->port);
+-
+ 	intel_dp_encoder_suspend(encoder);
++}
+ 
+-	if (!intel_phy_is_tc(i915, phy))
+-		return;
++static void intel_ddi_tc_encoder_suspend_complete(struct intel_encoder *encoder)
++{
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+ 
+ 	intel_tc_port_flush_work(dig_port);
+ }
+ 
+ static void intel_ddi_encoder_shutdown(struct intel_encoder *encoder)
+ {
+-	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	enum phy phy = intel_port_to_phy(i915, encoder->port);
+-
+ 	intel_dp_encoder_shutdown(encoder);
+ 	intel_hdmi_encoder_shutdown(encoder);
++}
+ 
+-	if (!intel_phy_is_tc(i915, phy))
+-		return;
++static void intel_ddi_tc_encoder_shutdown_complete(struct intel_encoder *encoder)
++{
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+ 
+ 	intel_tc_port_cleanup(dig_port);
+ }
+@@ -4908,6 +4904,9 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 				    is_legacy ? "legacy" : "non-legacy");
+ 		}
+ 
++		encoder->suspend_complete = intel_ddi_tc_encoder_suspend_complete;
++		encoder->shutdown_complete = intel_ddi_tc_encoder_shutdown_complete;
++
+ 		if (intel_tc_port_init(dig_port, is_legacy) < 0)
+ 			goto err;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 270c4c84a2920..88b2a55d19f21 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -233,13 +233,25 @@ struct intel_encoder {
+ 	 * Called during system suspend after all pending requests for the
+ 	 * encoder are flushed (for example for DP AUX transactions) and
+ 	 * device interrupts are disabled.
++	 * All modeset locks are held while the hook is called.
+ 	 */
+ 	void (*suspend)(struct intel_encoder *);
++	/*
++	 * Called without the modeset locks held after the suspend() hook for
++	 * all encoders have been called.
++	 */
++	void (*suspend_complete)(struct intel_encoder *encoder);
+ 	/*
+ 	 * Called during system reboot/shutdown after all the
+ 	 * encoders have been disabled and suspended.
++	 * All modeset locks are held while the hook is called.
+ 	 */
+ 	void (*shutdown)(struct intel_encoder *encoder);
++	/*
++	 * Called without the modeset locks held after the shutdown() hook for
++	 * all encoders have been called.
++	 */
++	void (*shutdown_complete)(struct intel_encoder *encoder);
+ 	/*
+ 	 * Enable/disable the clock to the port.
+ 	 */
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index fd198700272b1..522733a899463 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -959,11 +959,19 @@ static void intel_suspend_encoders(struct drm_i915_private *dev_priv)
+ 	if (!HAS_DISPLAY(dev_priv))
+ 		return;
+ 
++	/*
++	 * TODO: check and remove holding the modeset locks if none of
++	 * the encoders depends on this.
++	 */
+ 	drm_modeset_lock_all(&dev_priv->drm);
+ 	for_each_intel_encoder(&dev_priv->drm, encoder)
+ 		if (encoder->suspend)
+ 			encoder->suspend(encoder);
+ 	drm_modeset_unlock_all(&dev_priv->drm);
++
++	for_each_intel_encoder(&dev_priv->drm, encoder)
++		if (encoder->suspend_complete)
++			encoder->suspend_complete(encoder);
+ }
+ 
+ static void intel_shutdown_encoders(struct drm_i915_private *dev_priv)
+@@ -973,11 +981,19 @@ static void intel_shutdown_encoders(struct drm_i915_private *dev_priv)
+ 	if (!HAS_DISPLAY(dev_priv))
+ 		return;
+ 
++	/*
++	 * TODO: check and remove holding the modeset locks if none of
++	 * the encoders depends on this.
++	 */
+ 	drm_modeset_lock_all(&dev_priv->drm);
+ 	for_each_intel_encoder(&dev_priv->drm, encoder)
+ 		if (encoder->shutdown)
+ 			encoder->shutdown(encoder);
+ 	drm_modeset_unlock_all(&dev_priv->drm);
++
++	for_each_intel_encoder(&dev_priv->drm, encoder)
++		if (encoder->shutdown_complete)
++			encoder->shutdown_complete(encoder);
+ }
+ 
+ void i915_driver_shutdown(struct drm_i915_private *i915)
+-- 
+2.37.2
 
--Jordan
-
->=20
-> Thanks,
-> Andi
->=20
-> [1] https://patchwork.freedesktop.org/patch/534955/?series=3D117185&rev=
-=3D1
-> [2] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22878
->
