@@ -1,56 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E34AD700943
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 May 2023 15:37:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E4470095B
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 May 2023 15:42:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F7A710E6B6;
-	Fri, 12 May 2023 13:37:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5546610E6BA;
+	Fri, 12 May 2023 13:42:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37CC510E6B6
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 May 2023 13:37:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683898652; x=1715434652;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DnWI4AEEoZavw4X23Z2n2BCzUFUyNveVzwJvW0UWzPU=;
- b=ccAeo4Yk5upoyiexc+hq46kW4vlVRimotLK7sv1JhTEj4kfTIPLB5PsD
- MtyUz5IxXBKRF+/wJvtSOFULkGLaLkvef/Yi1iiBz7Q5pKetYyOBAWY5I
- U6OOWkL3VjXRFPalYeyVtfxcbUxw8ik0CKpy2mc6RVb0Opyumk1/AKRg6
- Gfe9u23b5N09iNDBOROLF/frGUG/R+81rGKierJxfXrR5374+v1JO1LQa
- 1AXBYBFqyGS5geDuN9DwL9Via4g36EO9Rt8T7g1gAf37AOnDXL7BqU5ex
- +5IJm1t21lYYlFfuieK4XoA/qFDYAWhHOxw7YWyRPupiToQOpEMsSZ2te Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="437124006"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="437124006"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2023 06:37:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10708"; a="700187453"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="700187453"
-Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.72.78])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2023 06:37:28 -0700
-Date: Fri, 12 May 2023 16:38:07 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZF5BP68S41e26o8x@ideak-desk.fi.intel.com>
-References: <20230510103131.1618266-1-imre.deak@intel.com>
- <20230510103131.1618266-14-imre.deak@intel.com>
- <ZFukJRgC27CS3r_B@intel.com>
- <ZFulrgn/Tf5IHMEv@ideak-desk.fi.intel.com>
- <ZF0oqq8BD62Hl7Xo@intel.com>
+X-Greylist: delayed 11485 seconds by postgrey-1.36 at gabe;
+ Fri, 12 May 2023 13:42:29 UTC
+Received: from mailrelay4-1.pub.mailoutpod2-cph3.one.com
+ (mailrelay4-1.pub.mailoutpod2-cph3.one.com [46.30.211.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 790F910E036
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 May 2023 13:42:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ravnborg.org; s=rsa1;
+ h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+ from:date:from;
+ bh=k5+VvPJZto/QysP3qavd+SjTUa8fNKadbzfeW9t/AI0=;
+ b=TJqvyu4TL26/tkosYpSp/vgIA/FnUtfVPwRhGnhgjW6DjR2EqDxNEOmvAvwBfZKcH2qhe5ZzWbxoN
+ vl9N5BPEmc1pURxGI8+aZmV6f9C6ritn1M5jcZIj3pPJZuA3S1AOkIjS1yiXPeErwagvShrsEZyqUb
+ ny0rhwnS6Qnjv9CnpD9VVj+pZOwxypUYCAQPFM1bjrRboPXFg8JlD5LBV5U7YmMft9VzdrWrfEhc4M
+ 9pSWZFnApjyq/TOjS7C3GyUSHyzFO+dlUbpJhwVr2Wtr+RX9P9M4MHLSuUsUtJYPmtxSnZpjYozxcA
+ YLVGdYT1rabB1SNFSz74tNDY3uxstiQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+ d=ravnborg.org; s=ed1;
+ h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+ from:date:from;
+ bh=k5+VvPJZto/QysP3qavd+SjTUa8fNKadbzfeW9t/AI0=;
+ b=LY1+43GjLg7g0v31ddFfMmDZLCnJlWOY0tSmLnD9XCftTZs66g2Q4BG7BWVYXydEmwapLLs/UDcdB
+ BIAoQtOAQ==
+X-HalOne-ID: ad59f563-f0ca-11ed-a5b2-592bb1efe9dc
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+ by mailrelay4 (Halon) with ESMTPSA
+ id ad59f563-f0ca-11ed-a5b2-592bb1efe9dc;
+ Fri, 12 May 2023 13:41:21 +0000 (UTC)
+Date: Fri, 12 May 2023 15:41:20 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20230512134120.GA1395037@ravnborg.org>
+References: <20230512084152.31233-1-tzimmermann@suse.de>
+ <20230512102954.GA1373384@ravnborg.org>
+ <4cc261d7-ddcd-e1a2-1067-7b8c44e7769d@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZF0oqq8BD62Hl7Xo@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 13/14] drm/i915/tc: Call TypeC port
- flush_work/cleanup without modeset locks held
+In-Reply-To: <4cc261d7-ddcd-e1a2-1067-7b8c44e7769d@suse.de>
+Subject: Re: [Intel-gfx] [PATCH 00/11] drm/fbdev: Remove DRM's helpers for
+ fbdev I/O
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,185 +61,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org, linux-samsung-soc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, javierm@redhat.com, mripard@kernel.org,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch, linux-tegra@vger.kernel.org,
+ airlied@gmail.com, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 11, 2023 at 08:40:58PM +0300, Ville Syrjälä wrote:
-> On Wed, May 10, 2023 at 05:10:22PM +0300, Imre Deak wrote:
-> > On Wed, May 10, 2023 at 05:03:17PM +0300, Ville Syrjälä wrote:
-> > > On Wed, May 10, 2023 at 01:31:30PM +0300, Imre Deak wrote:
-> > > > Call the TypeC port flush_work and cleanup handlers without the modeset
-> > > > locks held. These don't require the locks, as the work takes - as it
-> > > > should be able to at any point in time - any locks it needs and by the
-> > > > time cleanup is called and after cleanup returns the encoder is not in
-> > > > use.
-> > > > 
-> > > > This is required by the next patch canceling a TypeC port work
-> > > > synchronously during encoder suspend and shutdown, where the work can
-> > > > take modeset locks as well, hence the canceling must be done without
-> > > > holding the locks.
-> > > > 
-> > > > I also considered moving the modeset locking down to each encoder
-> > > > suspend()/shutdown() hook instead, however locking the full modeset
-> > > > state for each encoder separately would be odd, and the bigger change -
-> > > > affecting all encoders - is beyond the scope of this patchset.
-> > > 
-> > > Hmm. What is it in the encoder shutdown/suspend hooks that
-> > > actually needs the modeset locks?
+Hi Thomas,
 > > 
-> > In the case of intel_dp_encoder_suspend() for instance, I assume
-> > nothing, since the VDD work and intel_pps_vdd_off_sync() should take
-> > whatever locks they require.
+> > Nice cleanup.
 > > 
-> > So presumably most (all) of those could be made lockless. However, I
-> > would like to leave that kind of change for a follow-up if possible, not
-> > to affect in this patchset any other encoder types (again because of
-> > possible need for CC stable).
-> 
-> Yeah sure.
-
-Ok, will add a TODO comment about this.
-
-> A bit irksome to have to add vfuncs and whatnot for
-> it though, but it's not the end of the world.
-
-Direct intel_tc calls from intel_suspend/shutdown_encoders didn't seem
-ideal either, but can do that if you think that's better.
-
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
+> >  From one of the patches:
 > > 
-> > > 
-> > > > 
-> > > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_ddi.c      | 27 +++++++++----------
-> > > >  .../drm/i915/display/intel_display_types.h    | 12 +++++++++
-> > > >  drivers/gpu/drm/i915/i915_driver.c            |  8 ++++++
-> > > >  3 files changed, 33 insertions(+), 14 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > index 813be957ed11b..7d09bd2412352 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > @@ -4617,31 +4617,27 @@ static bool intel_ddi_is_tc(struct drm_i915_private *i915, enum port port)
-> > > >  
-> > > >  static void intel_ddi_encoder_suspend(struct intel_encoder *encoder)
-> > > >  {
-> > > > -	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > > > -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > > > -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> > > > -	enum phy phy = intel_port_to_phy(i915, encoder->port);
-> > > > -
-> > > >  	intel_dp_encoder_suspend(encoder);
-> > > > +}
-> > > >  
-> > > > -	if (!intel_phy_is_tc(i915, phy))
-> > > > -		return;
-> > > > +static void intel_ddi_tc_encoder_suspend_complete(struct intel_encoder *encoder)
-> > > > +{
-> > > > +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > > > +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> > > >  
-> > > >  	intel_tc_port_flush_work(dig_port);
-> > > >  }
-> > > >  
-> > > >  static void intel_ddi_encoder_shutdown(struct intel_encoder *encoder)
-> > > >  {
-> > > > -	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > > > -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > > > -	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> > > > -	enum phy phy = intel_port_to_phy(i915, encoder->port);
-> > > > -
-> > > >  	intel_dp_encoder_shutdown(encoder);
-> > > >  	intel_hdmi_encoder_shutdown(encoder);
-> > > > +}
-> > > >  
-> > > > -	if (!intel_phy_is_tc(i915, phy))
-> > > > -		return;
-> > > > +static void intel_ddi_tc_encoder_shutdown_complete(struct intel_encoder *encoder)
-> > > > +{
-> > > > +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > > > +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> > > >  
-> > > >  	intel_tc_port_cleanup(dig_port);
-> > > >  }
-> > > > @@ -4908,6 +4904,9 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
-> > > >  				    is_legacy ? "legacy" : "non-legacy");
-> > > >  		}
-> > > >  
-> > > > +		encoder->suspend_complete = intel_ddi_tc_encoder_suspend_complete;
-> > > > +		encoder->shutdown_complete = intel_ddi_tc_encoder_shutdown_complete;
-> > > > +
-> > > >  		if (intel_tc_port_init(dig_port, is_legacy) < 0)
-> > > >  			goto err;
-> > > >  	}
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > index 270c4c84a2920..88b2a55d19f21 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > @@ -233,13 +233,25 @@ struct intel_encoder {
-> > > >  	 * Called during system suspend after all pending requests for the
-> > > >  	 * encoder are flushed (for example for DP AUX transactions) and
-> > > >  	 * device interrupts are disabled.
-> > > > +	 * All modeset locks are held while the hook is called.
-> > > >  	 */
-> > > >  	void (*suspend)(struct intel_encoder *);
-> > > > +	/*
-> > > > +	 * Called without the modeset locks held after the suspend() hook for
-> > > > +	 * all encoders have been called.
-> > > > +	 */
-> > > > +	void (*suspend_complete)(struct intel_encoder *encoder);
-> > > >  	/*
-> > > >  	 * Called during system reboot/shutdown after all the
-> > > >  	 * encoders have been disabled and suspended.
-> > > > +	 * All modeset locks are held while the hook is called.
-> > > >  	 */
-> > > >  	void (*shutdown)(struct intel_encoder *encoder);
-> > > > +	/*
-> > > > +	 * Called without the modeset locks held after the shutdown() hook for
-> > > > +	 * all encoders have been called.
-> > > > +	 */
-> > > > +	void (*shutdown_complete)(struct intel_encoder *encoder);
-> > > >  	/*
-> > > >  	 * Enable/disable the clock to the port.
-> > > >  	 */
-> > > > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> > > > index fd198700272b1..705ba65f2ff9a 100644
-> > > > --- a/drivers/gpu/drm/i915/i915_driver.c
-> > > > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> > > > @@ -964,6 +964,10 @@ static void intel_suspend_encoders(struct drm_i915_private *dev_priv)
-> > > >  		if (encoder->suspend)
-> > > >  			encoder->suspend(encoder);
-> > > >  	drm_modeset_unlock_all(&dev_priv->drm);
-> > > > +
-> > > > +	for_each_intel_encoder(&dev_priv->drm, encoder)
-> > > > +		if (encoder->suspend_complete)
-> > > > +			encoder->suspend_complete(encoder);
-> > > >  }
-> > > >  
-> > > >  static void intel_shutdown_encoders(struct drm_i915_private *dev_priv)
-> > > > @@ -978,6 +982,10 @@ static void intel_shutdown_encoders(struct drm_i915_private *dev_priv)
-> > > >  		if (encoder->shutdown)
-> > > >  			encoder->shutdown(encoder);
-> > > >  	drm_modeset_unlock_all(&dev_priv->drm);
-> > > > +
-> > > > +	for_each_intel_encoder(&dev_priv->drm, encoder)
-> > > > +		if (encoder->shutdown_complete)
-> > > > +			encoder->shutdown_complete(encoder);
-> > > >  }
-> > > >  
-> > > >  void i915_driver_shutdown(struct drm_i915_private *i915)
-> > > > -- 
-> > > > 2.37.2
-> > > 
-> > > -- 
-> > > Ville Syrjälä
-> > > Intel
+> > > +config DRM_ARMADA_FBDEV_EMULATION
+> > > +     bool
+> > > +     depends on DRM_ARMADA
+> > > +     select FB_CFB_COPYAREA
+> > > +     select FB_CFB_FILLRECT
+> > > +     select FB_CFB_IMAGEBLIT
+> > 
+> > This seems like a hard to maintain way to select a few helper functions.
+> > Today we have LD_DEAD_CODE_DATA_ELIMINATION for the configs that care
+> > about size - and that should work here as well.
 > 
-> -- 
-> Ville Syrjälä
-> Intel
+> I wasn't too happy about this solution either as it is quite verbose. But I
+> don't want to rely on the linker either. It certainly cannot remove exported
+> symbols.
+I forgot about exported symbols - that makes the idea futile.
+
+> 
+> But the pattern is very common among the fbdev drivers. We could introduce
+> common Kconfig options in fbdev and selcet those instead. Like this:
+> 
+> const FB_IO_HELPERS
+> 	bool
+> 	depends on FB
+> 	select FB_CFB_COPYAREA
+> 	select FB_CFB_FILLRECT
+> 	select FB_CFB_IMAGEBLIT
+> 
+> const FB_SYS_HELPERS
+> 	bool
+> 	depends on FB
+> 	select FB_SYS_COPYAREA
+> 	select FB_SYS_FILLRECT
+> 	select FB_SYS_FOPS
+> 	select FB_SYS_IMAGEBLIT
+> 
+> Apart from DRM, most of the fbdev drivers could use these as well.
+That's a much nicer way to express it - and with this we do not introduce
+the IMO confusing CFB (Color Frame Buffer) abbreviation in every driver.
+
+	Sam
