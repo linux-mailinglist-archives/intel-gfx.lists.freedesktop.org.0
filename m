@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ABF4701793
-	for <lists+intel-gfx@lfdr.de>; Sat, 13 May 2023 16:03:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08AE470179D
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 May 2023 16:13:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 278B810E0D8;
-	Sat, 13 May 2023 14:03:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD8210E0D8;
+	Sat, 13 May 2023 14:13:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8EE1C10E0D4;
- Sat, 13 May 2023 14:03:53 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 310EC10E0D4;
+ Sat, 13 May 2023 14:13:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 68743A7E03;
- Sat, 13 May 2023 14:03:53 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C24FFAADD5;
+ Sat, 13 May 2023 14:13:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Yi Liu" <yi.l.liu@intel.com>
-Date: Sat, 13 May 2023 14:03:53 -0000
-Message-ID: <168398663340.18764.7484500674307918090@emeril.freedesktop.org>
+To: "Jon Pan-Doh" <pandoh@google.com>
+Date: Sat, 13 May 2023 14:13:25 -0000
+Message-ID: <168398720575.18763.14648295624323974395@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230513132136.15021-1-yi.l.liu@intel.com>
-In-Reply-To: <20230513132136.15021-1-yi.l.liu@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Enhance_vfio_PCI_hot_reset_for_vfio_cdev_device_=28rev2=29?=
+References: <20230513132827.39066-1-yi.l.liu@intel.com>
+In-Reply-To: <20230513132827.39066-1-yi.l.liu@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBB?=
+ =?utf-8?q?dd_vfio=5Fdevice_cdev_for_iommufd_support_=28rev13=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,36 +47,34 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Enhance vfio PCI hot reset for vfio cdev device (rev2)
-URL   : https://patchwork.freedesktop.org/series/116991/
-State : warning
+Series: Add vfio_device cdev for iommufd support (rev13)
+URL   : https://patchwork.freedesktop.org/series/113696/
+State : failure
 
 == Summary ==
 
-Error: dim checkpatch failed
-a7174f490b03 vfio-iommufd: Create iommufd_access for noiommu devices
-ec30c8fef218 vfio/pci: Update comment around group_fd get in vfio_pci_ioctl_pci_hot_reset()
-a77f9349425e vfio/pci: Move the existing hot reset logic to be a helper
--:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#6: 
-This prepares to add another method for hot reset. The major hot reset logic
-
-total: 0 errors, 1 warnings, 0 checks, 99 lines checked
-e61bed084fa4 vfio: Mark cdev usage in vfio_device
-0bdfe10424d2 iommufd: Reserve all negative IDs in the iommufd xarray
-a1ce1e605e4c vfio-iommufd: Add helper to retrieve iommufd_ctx and devid for vfio_device
-5d87236894e5 vfio: Add helper to search vfio_device in a dev_set
-e7c23092383b iommufd: Add iommufd_ctx_has_group()
-a6a19d8a857f vfio/pci: Extend VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
--:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#15: 
-iommufd, or opened outside of the vfio device cdev API, the _INFO ioctl shall
-
--:112: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#112: FILE: drivers/vfio/pci/vfio_pci_core.c:1273:
-+	fill.devid = fill.dev_owned = vfio_device_cdev_opened(&vdev->vdev);
-
-total: 0 errors, 1 warnings, 1 checks, 154 lines checked
-8b87fbee5680 vfio/pci: Allow passing zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/113696/revisions/13/mbox/ not applied
+Applying: vfio: Allocate per device file structure
+Applying: vfio: Refine vfio file kAPIs for KVM
+Applying: vfio: Accept vfio device file in the KVM facing kAPI
+Applying: kvm/vfio: Rename kvm_vfio_group to prepare for accepting vfio device fd
+Applying: kvm/vfio: Accept vfio device file from userspace
+Applying: vfio: Pass struct vfio_device_file * to vfio_device_open/close()
+Applying: vfio: Block device access via device fd until device is opened
+Applying: vfio: Add cdev_device_open_cnt to vfio_group
+Applying: vfio: Make vfio_device_open() single open for device cdev path
+Applying: vfio-iommufd: Move noiommu compat probe out of vfio_iommufd_bind()
+Using index info to reconstruct a base tree...
+M	drivers/vfio/iommufd.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/vfio/iommufd.c
+CONFLICT (content): Merge conflict in drivers/vfio/iommufd.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0010 vfio-iommufd: Move noiommu compat probe out of vfio_iommufd_bind()
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
 
