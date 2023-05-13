@@ -2,32 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCF69701300
-	for <lists+intel-gfx@lfdr.de>; Sat, 13 May 2023 02:34:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 103D2701306
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 May 2023 02:36:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7809410E6F4;
-	Sat, 13 May 2023 00:34:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FB3D10E6F7;
+	Sat, 13 May 2023 00:36:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D422C10E039;
- Sat, 13 May 2023 00:34:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CCDA3AADD2;
- Sat, 13 May 2023 00:34:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8758595918991876251=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Yang, Fei" <fei.yang@intel.com>
-Date: Sat, 13 May 2023 00:34:01 -0000
-Message-ID: <168393804180.18762.2418170272106795431@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230512232825.1253644-1-fei.yang@intel.com>
-In-Reply-To: <20230512232825.1253644-1-fei.yang@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Allow_user_to_set_cache_at_BO_creation_=28rev8=29?=
+Received: from mail-pf1-x44a.google.com (mail-pf1-x44a.google.com
+ [IPv6:2607:f8b0:4864:20::44a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E76A810E039
+ for <intel-gfx@lists.freedesktop.org>; Sat, 13 May 2023 00:36:06 +0000 (UTC)
+Received: by mail-pf1-x44a.google.com with SMTP id
+ d2e1a72fcca58-6439bc1e3aaso6263757b3a.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 May 2023 17:36:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20221208; t=1683938166; x=1686530166;
+ h=cc:to:from:subject:message-id:mime-version:date:reply-to:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=U1Ge3/d9lA0wDaa4KjBcDxtmuRNcZOWTUCAWw0gE6gI=;
+ b=oetF2r1M5UiBxGIcL8zFJt3KZzPc4fIcwMDdhX/l57bLLJh7cM3X4mNNADBirTiMsw
+ tno7AR+Dvgh3Vw4uuqw6BiGqojcKm9HdP5GJEjmyW5fgNQ3uH9GfWcik8X9l8Il8yj/F
+ JDSdCnCk453r2ImEA+XEqnVZNEGK62kt196UdpjOQTLp5m6ljRH7LbmbsKQcW1JkZLWL
+ eTI/tPiSeCVE0Ra8n1OkKzP9IuDY0/KphXTBaOaj5Ytdy2EoJjClJKVr2vKk22PnetQj
+ TQ1WL518q999Tr/FzyV0uLw0cE55dRKp34tT4WPlBaPORkpnV8W5J1MOW7nmEVxQABm9
+ gj1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1683938166; x=1686530166;
+ h=cc:to:from:subject:message-id:mime-version:date:reply-to
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=U1Ge3/d9lA0wDaa4KjBcDxtmuRNcZOWTUCAWw0gE6gI=;
+ b=kKbLfQObpq2c2Y9BJTfepkWcWJajKLe9QUc/4Immb+ph2LAsR+3Vwgaq3bpZNH9U4H
+ xBeI4/uytgjQHCFRBnWrG7jTLGeIZzXfbSehO+RM2YSO0eYdO+6UJE3IWftql54du+E4
+ nz4SvsmyTZEuHm8mNbk5X04ypBel75KkgrZVMaNvvGSzY8Ltsam35REGONTf3UIffRjQ
+ /yBlxnEQgcRkgxPHTgx7BMmyd1zJlTR7obiWmM3QnQtzSypRz9tFzgmF84b4/7v70VQJ
+ z/qa1YHEoo5Xhm3MYIj6kj1J9/FGfsBMG+puCTcfklR/0p6Z8nUKDyaAUq8LJGFoIwXL
+ ZwUg==
+X-Gm-Message-State: AC+VfDyzbGOqUurP3eTk3uHThfl4tJ8vWmcjFmb1CaIKvcjiQ1Es/L3C
+ sVDYhyXcb9AvVBBdOp1EBCqBQ/OqHgE=
+X-Google-Smtp-Source: ACHHUZ6XSa3OoCY9QC+biOTjnUfwxLBt3mtAiLJDXi5Zo5Z6h8DJwGXJ7iRHgf0PShhQobJeUJ93cGlbS9k=
+X-Received: from zagreus.c.googlers.com
+ ([fda3:e722:ac3:cc00:7f:e700:c0a8:5c37])
+ (user=seanjc job=sendgmr) by 2002:a05:6a00:d5a:b0:643:536b:e764 with SMTP id
+ n26-20020a056a000d5a00b00643536be764mr7181548pfv.4.1683938166027; Fri, 12 May
+ 2023 17:36:06 -0700 (PDT)
+Date: Fri, 12 May 2023 17:35:32 -0700
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.40.1.606.ga4b1b128d6-goog
+Message-ID: <20230513003600.818142-1-seanjc@google.com>
+From: Sean Christopherson <seanjc@google.com>
+To: Sean Christopherson <seanjc@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, 
+ Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: [Intel-gfx] [PATCH v3 00/28] drm/i915/gvt: KVM: KVMGT fixes and
+ page-track cleanups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,314 +69,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: Sean Christopherson <seanjc@google.com>
+Cc: Yan Zhao <yan.y.zhao@intel.com>, kvm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Ben Gardon <bgardon@google.com>, intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8758595918991876251==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Fix a variety of found-by-inspection bugs in KVMGT, and overhaul KVM's
+page-track APIs to provide a leaner and cleaner interface.  The motivation
+for this series is to (significantly) reduce the number of KVM APIs that
+KVMGT uses, with a long-term goal of making all kvm_host.h headers
+KVM-internal.
 
-== Series Details ==
+As always for this series, the KVMGT changes are compile tested only.
 
-Series: drm/i915: Allow user to set cache at BO creation (rev8)
-URL   : https://patchwork.freedesktop.org/series/116870/
-State : failure
+Based on "git://git.kernel.org/pub/scm/virt/kvm/kvm.git tags/kvm-6.4-1".
 
-== Summary ==
+v3:
+ - Collect reviewed/tested tags (I apologize if I missed any, I manually
+   gathered them this time due to a goof in my workflow). [Yan]
+ - Drop check on max KVM paging size from KVMGT. [Yan]
+ - Drop the explicit change on THP pages, and instead validate that the
+   pfns (not struct page pointers) are contiguous. [Yan]
+ - Fix buggy intel_gvt_dma_map_guest_page() usage by eliminating a helper
+   for shadowing 2MiB GTT entries. [Yan]
+ - Move kvm_arch_flush_shadow_{all,memslot}() to mmu.c instead of exposing
+   kvm_mmu_zap_all_fast() outside of mmu.c. [Yan]
+ - Fix an alignment goof in hlist_for_each_entry_srcu() usage. [Yan]
+ - Wrap full definition of external page track structures with
+   CONFIG_KVM_EXTERNAL_WRITE_TRACKING. [Yan]
 
-CI Bug Log - changes from CI_DRM_13143 -> Patchwork_116870v8
-====================================================
+v2:
+ - https://lore.kernel.org/all/20230311002258.852397-1-seanjc@google.com
+ - Reuse vgpu_lock to protect gfn hash instead of introducing a new (and
+   buggy) mutext. [Yan]
+ - Remove a spurious return from kvm_page_track_init(). [Yan]
+ - Take @kvm directly in the inner __kvm_page_track_write(). [Yan]
+ - Delete the gfn sanity check that relies on kvm_is_visible_gfn() instead
+   of providing a dedicated interface. [Yan]
 
-Summary
--------
+v1: https://lore.kernel.org/lkml/20221223005739.1295925-1-seanjc@google.com
 
-  **FAILURE**
+Sean Christopherson (24):
+  drm/i915/gvt: Verify pfn is "valid" before dereferencing "struct page"
+  drm/i915/gvt: Verify hugepages are contiguous in physical address
+    space
+  drm/i915/gvt: Put the page reference obtained by KVM's gfn_to_pfn()
+  drm/i915/gvt: Explicitly check that vGPU is attached before shadowing
+  drm/i915/gvt: Error out on an attempt to shadowing an unknown GTT
+    entry type
+  drm/i915/gvt: Don't rely on KVM's gfn_to_pfn() to query possible 2M
+    GTT
+  drm/i915/gvt: Use an "unsigned long" to iterate over memslot gfns
+  drm/i915/gvt: Drop unused helper intel_vgpu_reset_gtt()
+  drm/i915/gvt: Protect gfn hash table with vgpu_lock
+  KVM: x86/mmu: Move kvm_arch_flush_shadow_{all,memslot}() to mmu.c
+  KVM: x86/mmu: Don't rely on page-track mechanism to flush on memslot
+    change
+  KVM: x86/mmu: Don't bounce through page-track mechanism for guest PTEs
+  KVM: drm/i915/gvt: Drop @vcpu from KVM's ->track_write() hook
+  KVM: x86: Reject memslot MOVE operations if KVMGT is attached
+  drm/i915/gvt: Don't bother removing write-protection on to-be-deleted
+    slot
+  KVM: x86/mmu: Move KVM-only page-track declarations to internal header
+  KVM: x86/mmu: Use page-track notifiers iff there are external users
+  KVM: x86/mmu: Drop infrastructure for multiple page-track modes
+  KVM: x86/mmu: Rename page-track APIs to reflect the new reality
+  KVM: x86/mmu: Assert that correct locks are held for page
+    write-tracking
+  KVM: x86/mmu: Bug the VM if write-tracking is used but not enabled
+  KVM: x86/mmu: Drop @slot param from exported/external page-track APIs
+  KVM: x86/mmu: Handle KVM bookkeeping in page-track APIs, not callers
+  drm/i915/gvt: Drop final dependencies on KVM internal details
 
-  Serious unknown changes coming with Patchwork_116870v8 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_116870v8, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Yan Zhao (4):
+  drm/i915/gvt: remove interface intel_gvt_is_valid_gfn
+  KVM: x86: Add a new page-track hook to handle memslot deletion
+  drm/i915/gvt: switch from ->track_flush_slot() to
+    ->track_remove_region()
+  KVM: x86: Remove the unused page-track hook track_flush_slot()
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/index.html
-
-Participating hosts (38 -> 38)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_116870v8:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck@pipe-b-dp-1:
-    - bat-dg2-8:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13143/bat-dg2-8/igt@kms_pipe_crc_basic@compare-crc-sanitycheck@pipe-b-dp-1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-dg2-8/igt@kms_pipe_crc_basic@compare-crc-sanitycheck@pipe-b-dp-1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_116870v8 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][5] ([i915#1886] / [i915#7913])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@migrate:
-    - bat-dg2-11:         [PASS][6] -> [DMESG-FAIL][7] ([i915#7699] / [i915#7913])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13143/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-dg2-11/igt@i915_selftest@live@migrate.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - bat-rpls-2:         NOTRUN -> [ABORT][8] ([i915#6687])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-rpls-1:         NOTRUN -> [ABORT][9] ([i915#6687] / [i915#7953] / [i915#7978])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-fast:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][10] ([fdo#109271]) +15 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][11] ([i915#1845] / [i915#5354]) +2 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][12] ([fdo#109271] / [i915#4579])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-kbl-soraka/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][13] ([i915#5334]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13143/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-2:         [ABORT][15] ([i915#4983] / [i915#7461] / [i915#7913] / [i915#8347]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13143/bat-rpls-2/igt@i915_selftest@live@reset.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-rpls-2/igt@i915_selftest@live@reset.html
-    - bat-rpls-1:         [ABORT][17] ([i915#4983] / [i915#7461] / [i915#7953] / [i915#8347] / [i915#8384]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13143/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7920]: https://gitlab.freedesktop.org/drm/intel/issues/7920
-  [i915#7953]: https://gitlab.freedesktop.org/drm/intel/issues/7953
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
-  [i915#8384]: https://gitlab.freedesktop.org/drm/intel/issues/8384
+ arch/x86/include/asm/kvm_host.h       |  16 +-
+ arch/x86/include/asm/kvm_page_track.h |  73 +++-----
+ arch/x86/kvm/mmu.h                    |   2 +
+ arch/x86/kvm/mmu/mmu.c                |  51 +++--
+ arch/x86/kvm/mmu/page_track.c         | 256 +++++++++++++-------------
+ arch/x86/kvm/mmu/page_track.h         |  58 ++++++
+ arch/x86/kvm/x86.c                    |  22 +--
+ drivers/gpu/drm/i915/gvt/gtt.c        | 102 ++--------
+ drivers/gpu/drm/i915/gvt/gtt.h        |   1 -
+ drivers/gpu/drm/i915/gvt/gvt.h        |   3 +-
+ drivers/gpu/drm/i915/gvt/kvmgt.c      | 117 +++++-------
+ drivers/gpu/drm/i915/gvt/page_track.c |  10 +-
+ 12 files changed, 320 insertions(+), 391 deletions(-)
+ create mode 100644 arch/x86/kvm/mmu/page_track.h
 
 
-Build changes
--------------
+base-commit: b3c98052d46948a8d65d2778c7f306ff38366aac
+-- 
+2.40.1.606.ga4b1b128d6-goog
 
-  * Linux: CI_DRM_13143 -> Patchwork_116870v8
-
-  CI-20190529: 20190529
-  CI_DRM_13143: 222ff19f23b0bd6aca0b52001d69699f78f5a206 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7286: a482779488f11c432d7ddcb1980691ab1603f356 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_116870v8: 222ff19f23b0bd6aca0b52001d69699f78f5a206 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-14fe3c293827 drm/i915: Allow user to set cache at BO creation
-edc9f0cd0450 drm/i915/mtl: end support for set caching ioctl
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/index.html
-
---===============8758595918991876251==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Allow user to set cache at BO creation (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116870/">https://patchwork.freedesktop.org/series/116870/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13143 -&gt; Patchwork_116870v8</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_116870v8 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_116870v8, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/index.html</p>
-<h2>Participating hosts (38 -&gt; 38)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_116870v8:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck@pipe-b-dp-1:<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13143/bat-dg2-8/igt@kms_pipe_crc_basic@compare-crc-sanitycheck@pipe-b-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-dg2-8/igt@kms_pipe_crc_basic@compare-crc-sanitycheck@pipe-b-dp-1.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116870v8 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13143/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7953">i915#7953</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-kbl-soraka/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13143/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>
-<p>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13143/bat-rpls-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-rpls-2/igt@i915_selftest@live@reset.html">PASS</a></p>
-</li>
-<li>
-<p>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13143/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7953">i915#7953</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8384">i915#8384</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116870v8/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13143 -&gt; Patchwork_116870v8</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13143: 222ff19f23b0bd6aca0b52001d69699f78f5a206 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7286: a482779488f11c432d7ddcb1980691ab1603f356 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_116870v8: 222ff19f23b0bd6aca0b52001d69699f78f5a206 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>14fe3c293827 drm/i915: Allow user to set cache at BO creation<br />
-edc9f0cd0450 drm/i915/mtl: end support for set caching ioctl</p>
-
-</body>
-</html>
-
---===============8758595918991876251==--
