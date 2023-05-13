@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89BED701333
-	for <lists+intel-gfx@lfdr.de>; Sat, 13 May 2023 02:36:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CA01701335
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 May 2023 02:36:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE63110E704;
-	Sat, 13 May 2023 00:36:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40C4D10E70B;
+	Sat, 13 May 2023 00:36:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com
- [IPv6:2607:f8b0:4864:20::b4a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98E9E10E70A
- for <intel-gfx@lists.freedesktop.org>; Sat, 13 May 2023 00:36:40 +0000 (UTC)
-Received: by mail-yb1-xb4a.google.com with SMTP id
- 3f1490d57ef6-ba6f530c9c7so3040434276.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 May 2023 17:36:40 -0700 (PDT)
+Received: from mail-yw1-x1149.google.com (mail-yw1-x1149.google.com
+ [IPv6:2607:f8b0:4864:20::1149])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B4F610E704
+ for <intel-gfx@lists.freedesktop.org>; Sat, 13 May 2023 00:36:42 +0000 (UTC)
+Received: by mail-yw1-x1149.google.com with SMTP id
+ 00721157ae682-559d35837bbso200834497b3.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 May 2023 17:36:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20221208; t=1683938200; x=1686530200;
+ d=google.com; s=20221208; t=1683938201; x=1686530201;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:reply-to:from:to:cc:subject:date:message-id:reply-to;
- bh=aMthFZfKChU24b3VOtsPFEPGDJzFR8scEpj8KdiOvI8=;
- b=zbEDkdjmJSYEa7+2zJhAe0a7HkBu9+tNiGcX0MT4Tal0cts0MOzLKi/QabrNqilpFq
- sPCRpl3ELRdYwnALKfuWd7zqA+8dYlFnanetule9PDq8aDyPVdPMJER3XnmLii5YTQLf
- tA5gvnsaDAIlHf7jrAKr8ie2kC57iNFKr75qA19cY61LffWA2EQ0bhCe7sgySld4WMBj
- Lw5WUKgIAjNdWqZCjJpdll6dtw/eZ8gBdU5C8SI/08mCrL0z9aPXcRHM7a+XYaks6Gdp
- HH+dfL+CQVXOxC8Ja6k97C+2hQI4MAo+wxW/BqscEvqevBQMqflqcIEnZvQdcAB34TNC
- b9LQ==
+ bh=yBETkGnGrC8xyRU9tqoXVGFHlyOCEt0u5rcLYF6ohy4=;
+ b=ZXGeAKEgO8hcDtjKpOXSnd1FbTzMf1+7DyVEZOA9BrMq9Tl7hGxQEzG/Fl1cU7yZhg
+ u3Jy0T8wQykwBT1qHFXsHxlN5FIEKv02d3rVwzux3mJSTfb0D/7uMNLaEyb2gH9xYrkr
+ WELoXfba5L0iPT22FkArGeve/0l5axDlImnWWHzdm7cSBVRxRoPzAF53f0wCIiHJB83W
+ Zsct/PIdzW5XOp7SR/OCJPZOvq+sJZCUjz5sEKbIyxIg2y009eLzW8Qtmud6WTpisUMW
+ n0pDLKH7s6WSInK2gy6hit353+jnmdLB04+6fToS9m7ApQSsdUH2geLdkYWa+KrfuChT
+ BrPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1683938200; x=1686530200;
+ d=1e100.net; s=20221208; t=1683938201; x=1686530201;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:reply-to:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=aMthFZfKChU24b3VOtsPFEPGDJzFR8scEpj8KdiOvI8=;
- b=I4b+UsgjJmYA910/hkLpykhrRtIcmnWAZnY5z+VeEbs4cxo6S8/mwWuV2o3Fs4y//r
- BxgU/7KQg0tqo2a5ESx7/UnX1itMaYJCn/4O7UrrBQ16FauAa9EKRXs1Egg5RM7Yca8t
- p7c+ftfWsgUZ6dllfkekBAJFX01VDjfoRtD1xy4zjLQpNRkyrkMGoRHutsM+1RuYHNkY
- waEhqCINk0fnZbFifp8tdKgUMbG0CDUoPn9BjrXnkTRm6/56PQUZpo/CPwPTMukuCR8I
- C0EaV7gCV3V5JFkvxvifdjnd8nvRzfBeJDoWAqYFs/HpI6cwv40e/aH9cybXwqsUv+VU
- V+hw==
-X-Gm-Message-State: AC+VfDwHbVw5hQFV+CJSePmJZeLsoimgEPR39PGHA/uRzeFSCnSZm2o5
- PdHglkkOd5krsHjrX2IdVVwPJ5yBpzQ=
-X-Google-Smtp-Source: ACHHUZ4bjKLP+LCjU4jHWIA0lMCPLaFJEVV60B48H4+JRWdMR/qA7lphanX8VZ/t6d8lDlH244f3Acb/LK0=
+ bh=yBETkGnGrC8xyRU9tqoXVGFHlyOCEt0u5rcLYF6ohy4=;
+ b=ahoYyeva5gZL3+b6EBuubQTyKOQhhbu2Mt9ZBf8TiixrZFQ6IMO6Sjf9tYBA1mzazj
+ AnTLGmHlXAaksjNlza02LxBlcgxXjYloEEV416cLfpPmGga7YELIhwjen9wjjI4R6drT
+ kuceOL47NhC5/Q3wLlMmwKM2kGFGtS0scZ3dJYxmQuZzpYu27ovvjHDP0xZAoaPOgHCS
+ 6JU7tNb5u2gjYjLxa+COVacnSlgE7MrNIcj6VG3L2YEKg/QCqoASiPxMFR0EBpXYg1S8
+ qNmiWTEZjMLsojncutY3HySrHFYFI5RYUB5yt3cF+4LImvksXEf0wbV2b+IpItDXB73h
+ gtwA==
+X-Gm-Message-State: AC+VfDzQWEt8paEumLrq/TQp1Zmf0xli3DFJMKFqzv4Z4TGcYliXLIht
+ d4s0mvaFtr22/H8Co+cf/Cb+bEsHOWw=
+X-Google-Smtp-Source: ACHHUZ7l3ePv6zKDFzoAhujwIzaWMwTG2FjHBPR4kh0IXDS7Hk0xhSDs9YHZN+pcUE3y+CqYI16b+YuhSro=
 X-Received: from zagreus.c.googlers.com
  ([fda3:e722:ac3:cc00:7f:e700:c0a8:5c37])
- (user=seanjc job=sendgmr) by 2002:a25:1c02:0:b0:b8b:f584:6b73 with SMTP id
- c2-20020a251c02000000b00b8bf5846b73mr11687288ybc.10.1683938199874; Fri, 12
- May 2023 17:36:39 -0700 (PDT)
-Date: Fri, 12 May 2023 17:35:50 -0700
+ (user=seanjc job=sendgmr) by 2002:a81:e549:0:b0:55d:d26c:9aff with SMTP id
+ c9-20020a81e549000000b0055dd26c9affmr13085374ywm.8.1683938201688; Fri, 12 May
+ 2023 17:36:41 -0700 (PDT)
+Date: Fri, 12 May 2023 17:35:51 -0700
 In-Reply-To: <20230513003600.818142-1-seanjc@google.com>
 Mime-Version: 1.0
 References: <20230513003600.818142-1-seanjc@google.com>
 X-Mailer: git-send-email 2.40.1.606.ga4b1b128d6-goog
-Message-ID: <20230513003600.818142-19-seanjc@google.com>
+Message-ID: <20230513003600.818142-20-seanjc@google.com>
 From: Sean Christopherson <seanjc@google.com>
 To: Sean Christopherson <seanjc@google.com>,
  Paolo Bonzini <pbonzini@redhat.com>, 
  Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Subject: [Intel-gfx] [PATCH v3 18/28] drm/i915/gvt: switch from
- ->track_flush_slot() to ->track_remove_region()
+Subject: [Intel-gfx] [PATCH v3 19/28] KVM: x86: Remove the unused page-track
+ hook track_flush_slot()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,77 +81,99 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Yan Zhao <yan.y.zhao@intel.com>
 
-Switch from the poorly named and flawed ->track_flush_slot() to the newly
-introduced ->track_remove_region().  From KVMGT's perspective, the two
-hooks are functionally equivalent, the only difference being that
-->track_remove_region() is called only when KVM is 100% certain the
-memory region will be removed, i.e. is invoked slightly later in KVM's
-memslot modification flow.
+Remove ->track_remove_slot(), there are no longer any users and it's
+unlikely a "flush" hook will ever be the correct API to provide to an
+external page-track user.
 
 Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
 Suggested-by: Sean Christopherson <seanjc@google.com>
 Signed-off-by: Yan Zhao <yan.y.zhao@intel.com>
-[sean: handle name change, massage changelog, rebase]
-Tested-by: Yan Zhao <yan.y.zhao@intel.com>
 Signed-off-by: Sean Christopherson <seanjc@google.com>
 ---
- drivers/gpu/drm/i915/gvt/kvmgt.c | 21 +++++++++------------
- 1 file changed, 9 insertions(+), 12 deletions(-)
+ arch/x86/include/asm/kvm_page_track.h | 11 -----------
+ arch/x86/kvm/mmu/mmu.c                |  2 --
+ arch/x86/kvm/mmu/page_track.c         | 26 --------------------------
+ 3 files changed, 39 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-index c309a77f495f..2e65901270ca 100644
---- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-+++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-@@ -108,9 +108,8 @@ struct gvt_dma {
+diff --git a/arch/x86/include/asm/kvm_page_track.h b/arch/x86/include/asm/kvm_page_track.h
+index cfd36c22b467..5c348ffdc194 100644
+--- a/arch/x86/include/asm/kvm_page_track.h
++++ b/arch/x86/include/asm/kvm_page_track.h
+@@ -33,16 +33,6 @@ struct kvm_page_track_notifier_node {
+ 	 */
+ 	void (*track_write)(gpa_t gpa, const u8 *new, int bytes,
+ 			    struct kvm_page_track_notifier_node *node);
+-	/*
+-	 * It is called when memory slot is being moved or removed
+-	 * users can drop write-protection for the pages in that memory slot
+-	 *
+-	 * @kvm: the kvm where memory slot being moved or removed
+-	 * @slot: the memory slot being moved or removed
+-	 * @node: this node
+-	 */
+-	void (*track_flush_slot)(struct kvm *kvm, struct kvm_memory_slot *slot,
+-			    struct kvm_page_track_notifier_node *node);
  
- static void kvmgt_page_track_write(gpa_t gpa, const u8 *val, int len,
- 				   struct kvm_page_track_notifier_node *node);
--static void kvmgt_page_track_flush_slot(struct kvm *kvm,
--		struct kvm_memory_slot *slot,
--		struct kvm_page_track_notifier_node *node);
-+static void kvmgt_page_track_remove_region(gfn_t gfn, unsigned long nr_pages,
-+					   struct kvm_page_track_notifier_node *node);
+ 	/*
+ 	 * Invoked when a memory region is removed from the guest.  Or in KVM
+@@ -85,7 +75,6 @@ kvm_page_track_unregister_notifier(struct kvm *kvm,
+ 				   struct kvm_page_track_notifier_node *n);
+ void kvm_page_track_write(struct kvm_vcpu *vcpu, gpa_t gpa, const u8 *new,
+ 			  int bytes);
+-void kvm_page_track_flush_slot(struct kvm *kvm, struct kvm_memory_slot *slot);
+ void kvm_page_track_delete_slot(struct kvm *kvm, struct kvm_memory_slot *slot);
  
- static ssize_t intel_vgpu_show_description(struct mdev_type *mtype, char *buf)
+ bool kvm_page_track_has_external_user(struct kvm *kvm);
+diff --git a/arch/x86/kvm/mmu/mmu.c b/arch/x86/kvm/mmu/mmu.c
+index af3e562d3106..3f9030650c3d 100644
+--- a/arch/x86/kvm/mmu/mmu.c
++++ b/arch/x86/kvm/mmu/mmu.c
+@@ -6734,8 +6734,6 @@ void kvm_arch_flush_shadow_memslot(struct kvm *kvm,
+ 				   struct kvm_memory_slot *slot)
  {
-@@ -665,7 +664,7 @@ static int intel_vgpu_open_device(struct vfio_device *vfio_dev)
- 		return -EEXIST;
- 
- 	vgpu->track_node.track_write = kvmgt_page_track_write;
--	vgpu->track_node.track_flush_slot = kvmgt_page_track_flush_slot;
-+	vgpu->track_node.track_remove_region = kvmgt_page_track_remove_region;
- 	kvm_get_kvm(vgpu->vfio_device.kvm);
- 	kvm_page_track_register_notifier(vgpu->vfio_device.kvm,
- 					 &vgpu->track_node);
-@@ -1616,22 +1615,20 @@ static void kvmgt_page_track_write(gpa_t gpa, const u8 *val, int len,
- 	mutex_unlock(&info->vgpu_lock);
+ 	kvm_mmu_zap_all_fast(kvm);
+-
+-	kvm_page_track_flush_slot(kvm, slot);
  }
  
--static void kvmgt_page_track_flush_slot(struct kvm *kvm,
--		struct kvm_memory_slot *slot,
--		struct kvm_page_track_notifier_node *node)
-+static void kvmgt_page_track_remove_region(gfn_t gfn, unsigned long nr_pages,
-+					   struct kvm_page_track_notifier_node *node)
- {
- 	unsigned long i;
--	gfn_t gfn;
- 	struct intel_vgpu *info =
- 		container_of(node, struct intel_vgpu, track_node);
- 
- 	mutex_lock(&info->vgpu_lock);
- 
--	for (i = 0; i < slot->npages; i++) {
--		gfn = slot->base_gfn + i;
--		if (kvmgt_gfn_is_write_protected(info, gfn))
--			kvmgt_protect_table_del(info, gfn);
-+	for (i = 0; i < nr_pages; i++) {
-+		if (kvmgt_gfn_is_write_protected(info, gfn + i))
-+			kvmgt_protect_table_del(info, gfn + i);
- 	}
-+
- 	mutex_unlock(&info->vgpu_lock);
+ void kvm_mmu_invalidate_mmio_sptes(struct kvm *kvm, u64 gen)
+diff --git a/arch/x86/kvm/mmu/page_track.c b/arch/x86/kvm/mmu/page_track.c
+index d971c28be99d..2a6ab7c455c0 100644
+--- a/arch/x86/kvm/mmu/page_track.c
++++ b/arch/x86/kvm/mmu/page_track.c
+@@ -278,32 +278,6 @@ void kvm_page_track_write(struct kvm_vcpu *vcpu, gpa_t gpa, const u8 *new,
+ 	kvm_mmu_track_write(vcpu, gpa, new, bytes);
  }
  
+-/*
+- * Notify the node that memory slot is being removed or moved so that it can
+- * drop write-protection for the pages in the memory slot.
+- *
+- * The node should figure out it has any write-protected pages in this slot
+- * by itself.
+- */
+-void kvm_page_track_flush_slot(struct kvm *kvm, struct kvm_memory_slot *slot)
+-{
+-	struct kvm_page_track_notifier_head *head;
+-	struct kvm_page_track_notifier_node *n;
+-	int idx;
+-
+-	head = &kvm->arch.track_notifier_head;
+-
+-	if (hlist_empty(&head->track_notifier_list))
+-		return;
+-
+-	idx = srcu_read_lock(&head->track_srcu);
+-	hlist_for_each_entry_srcu(n, &head->track_notifier_list, node,
+-				  srcu_read_lock_held(&head->track_srcu))
+-		if (n->track_flush_slot)
+-			n->track_flush_slot(kvm, slot, n);
+-	srcu_read_unlock(&head->track_srcu, idx);
+-}
+-
+ /*
+  * Notify external page track nodes that a memory region is being removed from
+  * the VM, e.g. so that users can free any associated metadata.
 -- 
 2.40.1.606.ga4b1b128d6-goog
 
