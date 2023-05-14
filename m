@@ -1,150 +1,73 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50131701D05
-	for <lists+intel-gfx@lfdr.de>; Sun, 14 May 2023 13:13:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56659701ECA
+	for <lists+intel-gfx@lfdr.de>; Sun, 14 May 2023 19:44:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 209BB10E0F5;
-	Sun, 14 May 2023 11:13:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9570510E033;
+	Sun, 14 May 2023 17:44:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82CF910E0F5
- for <intel-gfx@lists.freedesktop.org>; Sun, 14 May 2023 11:13:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684062804; x=1715598804;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ao9KEZkCGJGQLgn7hjibyRlp+RDJ0ZyM+V2A9mV2psg=;
- b=YrCAVibWVuXC+Uwj8NAcyOk1mvVNrVKkijiUSwKrkQf0XXSpOnX12UFk
- vJy+cwTAHERPtPu+il1KQaJDECye57oVw47kz+R3+f/7wBSSAdN6qvx/3
- 8AjfdEzgOE79CVoHIsPjmcew1iV4dgUHiC96WOQ2so0YkIgnvvgvQxymP
- rl2QBLe11KVrLK4HO6W+ITyHn/VXorvhFrb7j1mbGTCUBl+vyVcKfVhMC
- cAc6XBeFVKaTkvo81FmrHcTDEu16rKLIqWtaetzDZTH2pXsk15zmkQ/u2
- 8WE/2twD9wKv2nNhBpvkvD/3vofv6tJEiOAShLSVkScTjiLSU+mBXGFYd w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10709"; a="354183596"
-X-IronPort-AV: E=Sophos;i="5.99,274,1677571200"; d="scan'208";a="354183596"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2023 04:13:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10709"; a="694729006"
-X-IronPort-AV: E=Sophos;i="5.99,274,1677571200"; d="scan'208";a="694729006"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga007.jf.intel.com with ESMTP; 14 May 2023 04:13:22 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Sun, 14 May 2023 04:13:22 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Sun, 14 May 2023 04:13:22 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.47) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Sun, 14 May 2023 04:13:22 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QDXLWDdc/eNX6t21pTwzK0GYu+MTez3Y4AGAmZVlN37nvP9PxF2yGXOeN9QuX1lQzGkBH24m4h3G5sVj8OWjqvPyGxyC0LotStdbUJUXw2Ijp67Zl1BxBI7myS05ClnqkLRr1uF7Iqq/vBxFLH1xmF8hAElRbO2UxhvlV3Pv8Gja/bUYqcrpSrb34TF0akwQJMnL253SBw27HvP1c8fTM2CI5w9VreKQP6V1uw0SNdbJgsg/+4z4iZiOTzJwor5RA4AR0FtsL4LTHaYTzMwz1UyLyKIg9naAiVVhGE9i4M60gQPkhoonUVE5m4hZ2EY5/2koiEiff60Ikp2Df8UG3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ojlAvzWSzDWcjLeO46Ni6K9JAFn/VTWohGRwZb9LDuQ=;
- b=IBa0RPDaNf7XAqyBRGFsvd9G0TVRMNayrLLVAlDAwzY1qpP5CBci/p6qjast70y5drQQtgUard2pHIofx3DCqFn2zfsUGpmhK3gJ2jUsL2QkxyfJveIpa/0ExQLf9me+HGINnF3G8GcQ/d8M5eBBk3Z8ve7+vE60nUUzhfYZ/JeSve8aBFhcF/MNcOy3Mg8bd2GFEg6y2cE2gimjQ9r0VmMoK59nUyqRW27TmsVXsd1LOHvDj1XPAQXkDUrsL+rA36qkzgeTSPnK6GFSWL+QZvN/T+VLigrl/Jd9OP06udcM2s6F0B7MuVyK9kdeMM34ywXL6DAEZhR2VVaxXehYWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM6PR11MB2907.namprd11.prod.outlook.com (2603:10b6:5:64::33) by
- MN0PR11MB6160.namprd11.prod.outlook.com (2603:10b6:208:3c8::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.29; Sun, 14 May
- 2023 11:13:20 +0000
-Received: from DM6PR11MB2907.namprd11.prod.outlook.com
- ([fe80::f6a:a1de:83ec:b111]) by DM6PR11MB2907.namprd11.prod.outlook.com
- ([fe80::f6a:a1de:83ec:b111%6]) with mapi id 15.20.6387.029; Sun, 14 May 2023
- 11:13:20 +0000
-Message-ID: <3473435b-7d4b-94a9-37b2-4249683c199d@intel.com>
-Date: Sun, 14 May 2023 16:43:10 +0530
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com
+ [IPv6:2a00:1450:4864:20::533])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39AAF10E033
+ for <intel-gfx@lists.freedesktop.org>; Sun, 14 May 2023 17:43:59 +0000 (UTC)
+Received: by mail-ed1-x533.google.com with SMTP id
+ 4fb4d7f45d1cf-50b383222f7so17477429a12.3
+ for <intel-gfx@lists.freedesktop.org>; Sun, 14 May 2023 10:43:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1684086234; x=1686678234;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=Ehg2tSMyOBJ3viyxEtnKL2gsz5sp7fKvAT7qZaEFsIo=;
+ b=nfz7CApechFJLjtBjLGTG7VJWB7IF6yY8J/Kj22Rs5jfWBQalpcGLrlbAUkg/n1mSl
+ WBicBBTie2nRPZsDiv1hMmCW3oNXJHI2PJndZ/pI5lFqhkBm5eNvL2RC4zkAwcVrXc5Z
+ hmdLcLuMpig+Z3hrhTqBGB01z62I6NtwE9V4UrU4YeSD63lyryDbo1Yzn2S9/WqeqsLq
+ u/9oM3QVlQl2kVizq3CpluG4uWk5S+7xk8V/psb+pfD65s8mBYKROywniPXA71pV/qwq
+ M58cQlqRKVqd9hDgAt1l4nxbQuFSSbFxrdiUEtk2nSGoQF18Tiz3mHTKfRaVwQfhLIKb
+ elnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684086234; x=1686678234;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Ehg2tSMyOBJ3viyxEtnKL2gsz5sp7fKvAT7qZaEFsIo=;
+ b=UHr5DI7yPD6OKHn8ciaJbBUlAZnLXUODqoYitCbPP1nY9XaRaIuKuqKeqmqpcCF5ag
+ D1WAOiNwbeK3IYgGd7OJKAbmcxjdkVr23ljlNqJ1f/RkmzfnUbBNktYZnWjjIcDRvHQW
+ Gv6JQHXKbCo5NQotpBp1IQH7epvb3674Se6tvP7gNAKDoEefUcX4guqv0lTYTFwNKGNC
+ MPVUj7xvojXN95Gzbroa8P8Kh49Op253CDhnQO4kftCE0oQLoVnXe2E3MSEzfYbjXHTJ
+ jdlZeFv81w5AUsUxUWpXYVjldh829Hee2VdcyfyRLnKgp3CmfOrIparxAo+pCPle8/Le
+ NIow==
+X-Gm-Message-State: AC+VfDwwAB7wbs1vAjBnpMJywQ8CbJc75rKp3+4vMtICFCvHnC8u4MK6
+ pMl7ri7LEZ+cMuY3LWSjvkxd9leoqmRwMw==
+X-Google-Smtp-Source: ACHHUZ4GxuiEys7pfM2By4iDr9CQdvCHlckNDXFbmFiVr9iWm6nCYs0EyZid5vJa16/2ci/+qobxsA==
+X-Received: by 2002:a17:907:7291:b0:96a:717:d452 with SMTP id
+ dt17-20020a170907729100b0096a0717d452mr18761530ejc.19.1684086234029; 
+ Sun, 14 May 2023 10:43:54 -0700 (PDT)
+Received: from [0.0.0.0] ([134.134.139.85])
+ by smtp.googlemail.com with ESMTPSA id
+ jj8-20020a170907984800b00965c7c93655sm8270229ejc.213.2023.05.14.10.43.51
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 14 May 2023 10:43:53 -0700 (PDT)
+Message-ID: <804fa18f-e930-a7e2-8988-677cd19e5086@gmail.com>
+Date: Sun, 14 May 2023 20:43:47 +0300
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
 Content-Language: en-US
-To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20230513021438.185352-1-radhakrishna.sripada@intel.com>
- <20230513021438.185352-2-radhakrishna.sripada@intel.com>
-From: "Kalvala, Haridhar" <haridhar.kalvala@intel.com>
-In-Reply-To: <20230513021438.185352-2-radhakrishna.sripada@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Matt Atwood <matthew.s.atwood@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230511103714.5194-1-juhapekka.heikkila@gmail.com>
+ <20230511103714.5194-2-juhapekka.heikkila@gmail.com>
+ <ZF1MbhyoHsXgOcaA@msatwood-mobl>
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+In-Reply-To: <ZF1MbhyoHsXgOcaA@msatwood-mobl>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0090.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:23::35) To DM6PR11MB2907.namprd11.prod.outlook.com
- (2603:10b6:5:64::33)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2907:EE_|MN0PR11MB6160:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2414aa2c-3da5-4cc3-b419-08db546c3918
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0NRBebAUpm+WjECjAedRfXKtq1+ZsztiQKGkXcpCsPGGnuPjiyrNMRcnCmPmUDY08yGk1rfA00h/2szEg6Xbt7EhRUYuU5PrSBanwO3MWlRHsOuSSlKS7z+xKz8w7YP37D4OMUVkigjgpHomVmHRoym4YyFjRfVo0eUGvK3/CEzjkQ2PuygjeoYgBHZxNgPYCxoDGcdSYfhJH154pymWlel6WdDuXNkFq5qKhT1ChquVv8V+K4kg0JDcBUjbxP6u41ga66yC7dFk+/NgEcvIneFV4vDxs/0Ip0cOuaU4LUeiLGRxFRpCCqBEHk1l01ZQ1UDeuourV/0KRPJE3a2dQ8DwmpRHkmae3SP59MdwzDqYnJUrtRuwp4JbT6jdqv3l6lNaREYAEmUOulfCAM7HB8n9ODDTBnD7vD9onOft7d3lAaKXo5p4jwDSRY2bSn31GS6abe24AR2LxFik7UF3JmxYeFtcbHfnqlrRmTf4jf8PJyCwOut93BEXEiyHxu1bKb77YIvm5D7GVdUUFJZ0Mpjnt55DcR7NYd9h8OxhgmnHACK94EtvAwPl2CE6gNRLUsc6GpUZAr2IpdY5IGNkIIIHadkU6OByvEnAAPx2eSmpTRaB2ERFI10tkAwpjUXfJT1cbPTiFGucL0dopYFCZw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB2907.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(39860400002)(346002)(366004)(136003)(376002)(451199021)(31686004)(83380400001)(4326008)(316002)(36756003)(41300700001)(82960400001)(38100700002)(53546011)(6512007)(6506007)(26005)(6486002)(478600001)(107886003)(66476007)(66556008)(66946007)(2616005)(86362001)(31696002)(5660300002)(2906002)(8936002)(8676002)(54906003)(186003)(6666004)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a0d6M011eDVnR3RNK2xIYytIS3Nyd1VEUXJ1OXV6MFBMR0ZYNWgzTUFlQnE0?=
- =?utf-8?B?Q1I2Q3NzNUNscDFwT1JCcCt2S0gyd2RXS3hKcDZQVXJhK1U4UWFZU05QUnlw?=
- =?utf-8?B?V2V6QU9mNmxZZnhyK0lCY3gvNnpQcUtWSVhKTEhmMGtWY3JWM2ltb050bGRt?=
- =?utf-8?B?dG94YXdrdW9jQitWanJHWlVReHQxN1RENnllYm9lNTV0T2tXVE9ENEY5MXJZ?=
- =?utf-8?B?TUk1TlE5WkVzZjJxME9OYlJWZTh3NVd4dE5BeHVkNFZHaTRQVDJjV09WQUJQ?=
- =?utf-8?B?QjdIa3BKZ2V5VXBqS1VKRFFCVldGV3VtMGNqbXpoR0FMbDhRU0trY3NKcnZJ?=
- =?utf-8?B?V0htZnFtNHVXNnd1ZE50dVFBUXQyTFNzUVNKMnEzekU5S2JGWXZCZ3VpY0JC?=
- =?utf-8?B?ZmcrUVBDQytwU1Y5N0hZK3Q0VVBNc2hQSzRPUXhHREY1VGE0VUxyRm1FS0dr?=
- =?utf-8?B?Nzg4bWI1NTRzTllWcnZFQ0d3UDNSb1lCbUpSMFdQb1lpNWdUb21hMUw2L0xz?=
- =?utf-8?B?MSt0L3VhbUxsYVdCRVJqWjBFTG5OQzVhQjRpb1A3cUo3ZEs0ZWdaUDl2M2JU?=
- =?utf-8?B?VXdiMEdNbDNjdHVyMXFQMSswL3ZyVzhzaUQ5dFo2L0pkdEtoL2pKUmdKYTYz?=
- =?utf-8?B?UGR4YUMxL0Z4OVJYdGx5ZWJyblFLVDNReDNqWWFra1NLKzJmVENMa1hUcGdv?=
- =?utf-8?B?NUVuRjViMUhUUllUeGY1dG1RNFdwME54WDdHVk5HcUQwek5mSEdwZ0hLNXhJ?=
- =?utf-8?B?cEtSSEdBNkNoQlpIci9NTEdrTmZsRy9MaHlHUkhvbGIzL05GQm9SZk5oUEZV?=
- =?utf-8?B?eUpWZWlGdU1ETFpjamRDVEpyaXFBcEpPdVJoL3BZRnVrTjhyZmVHZXJHd1BC?=
- =?utf-8?B?bThuaExoTXlFZ2JLbzlTY0h1bkZlZlNPWTAzK0pLSjZsQWllNG5qbWthYytN?=
- =?utf-8?B?eGFTZkMva2JJVVRVYUdDdmhGcmV3OXhKUnRMSnk5UDJJYzNkbUpzZGZYRC9n?=
- =?utf-8?B?WTV1aHBLUkRQRFRkNkFEc0V3NWRvRHpNQlBWVEdFYXZ5YU5RcDFwbnhIWlo5?=
- =?utf-8?B?b05CV2NRRDQxdzNBbHNyMStLUGZqbHo5ekVvME03SEhRZ1ZXTnFOQkhjdHlX?=
- =?utf-8?B?KzJkNG1nK215dXBRYVRtUWNrcEpnblFRR0JKVm80OGRSaW9zU0dqZmRGL256?=
- =?utf-8?B?T1ljWTUyYzlsM3F2SnNiV1RxMUJzaUZzd3gydXdxRWVJMFlPOEQ5M24vaHNK?=
- =?utf-8?B?L3pOODBLUDBBU1hOZkd4K2dSWHM3ZnNBL3A1Y3c1T1hnM2tIUGlDQThvYmtv?=
- =?utf-8?B?TnVVWHdZUzB4cEt5MWd6c1poU1BIMWxDR2RkU2pPMnFEMGplR2MzNUpnekxY?=
- =?utf-8?B?N1ZITE5rVnhOSEdGdDl2Q0RMdFFpV3QxajlZYkxXR1RIT0pJaGJqNVFHeUxZ?=
- =?utf-8?B?TEt3ZmtEbitqMTFMaHhyRDRGV1JlVjU2elZVc2dvc2xyR2p5d0ZwaU1NV1V0?=
- =?utf-8?B?WGJFbVFoZlpxeFRTc3Q4bEFuV2JvK0FKMjVXTU8zaHlxdkRpZU9KUTN4aGxr?=
- =?utf-8?B?bGlWTzdEczg1ZjhoeHhhbmVYZ1BjUkZ5MFlEeTM0V3dOOHh0b09BVFc1SHho?=
- =?utf-8?B?RUtLdGc3L2IzL0krNWltUWhrZGZoRnQ5WXJBVEJTYjhENTZXV3BYckVTRFJ5?=
- =?utf-8?B?TnlkSEF3cUNzNGdHdXJzejc4SXpxazVFTkJVeEpJRDE4Tmt3ajhEeUgrRkZl?=
- =?utf-8?B?d3pPRVh1ajdlZEpVT2ZHcnQvMElFMEt4TUw5TkxJOXNyZ1NPbkUyYXpJZVlU?=
- =?utf-8?B?MTA4Q2Z4Y1FEM0JNNGtDaWtaSDVTZ3pWTnlRRFNvcDZORUQ5eElOZDZmZlVY?=
- =?utf-8?B?dVNxZFRDckZCQnBzejV3S3RYZlh3L2xmSlVzdjhTd29YTUF3QUwzdGRmVUlS?=
- =?utf-8?B?Vm1BbFFObExHa2xGVUJ4bEpDOTNsQ3JxM2FiU2U1V0NXUzIxaEx6QnhSaFp6?=
- =?utf-8?B?eWdWS0VqNXVpVHBoQVAzTXM5bkRmNEgvNUtTWjlzeWE3Y1hteXZVL3VsbmRv?=
- =?utf-8?B?SlNZNkN2WEw5cFNNOUNsVTFoTFlpTVh0dThyTEhQKzFqWXpLSzhpOWI2YkJS?=
- =?utf-8?B?UUlIM2QyNm9WY1AxbVAra3QvWjN1aFJ0YThKbHRlQ2NkcnVqeGJWdjZ0cXcy?=
- =?utf-8?B?cmc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2414aa2c-3da5-4cc3-b419-08db546c3918
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2907.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2023 11:13:20.0860 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qPph3PyUOd2UkNaVTf8u9tw2aOt+m03bBOay55Sl6FDofd2G13+Vp1gZmEf3tEOYDacsEt6/oDSyOxZ570o0mpUlhMliVahN1KFBr6gQwKA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6160
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/mtl: Add MTL performance
- tuning changes
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/mtl: Add handling for MTL ccs
+ modifiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,71 +80,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 11.5.2023 23.13, Matt Atwood wrote:
+> On Thu, May 11, 2023 at 01:37:14PM +0300, Juha-Pekka Heikkila wrote:
+>> Add Tile4 ccs modifiers w/ auxbuffer handling
+> Commit message should include the workarounds implemented
+> Wa_14017240301.
+>>
+> Bspec: 49251, 49252, 49253
+> with white space revisions, and commit message update:
+> Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>> Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_fb.c       | 42 ++++++++++++++++++-
+>>   .../drm/i915/display/skl_universal_plane.c    | 22 +++++++++-
+>>   2 files changed, 61 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+>> index c004f08fcfe1..f9420a68ed3c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+>> @@ -157,6 +157,32 @@ struct intel_modifier_desc {
+>>   
+>>   static const struct intel_modifier_desc intel_modifiers[] = {
+>>   	{
+>> +		.modifier = I915_FORMAT_MOD_4_TILED_MTL_MC_CCS,
+>> +		.display_ver = { 14, 14 },
+>> +		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_MC,
+>> +
+>> +		.ccs.packed_aux_planes = BIT(1),
+>> +		.ccs.planar_aux_planes = BIT(2) | BIT(3),
+>> +
+>> +		FORMAT_OVERRIDE(gen12_ccs_formats),
+>> +	}, {
+>> +		.modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS,
+>> +		.display_ver = { 14, 14 },
+>> +		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC,
+>> +
+>> +		.ccs.packed_aux_planes = BIT(1),
+>> +
+>> +		FORMAT_OVERRIDE(gen12_ccs_formats),
+>> +	}, {
+>> +		.modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC,
+>> +		.display_ver = { 14, 14 },
+>> +		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC_CC,
+>> +
+>> +		.ccs.cc_planes = BIT(2),
+>> +		.ccs.packed_aux_planes = BIT(1),
+>> +
+>> +		FORMAT_OVERRIDE(gen12_ccs_cc_formats),
+>> +	}, {
+>>   		.modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS,
+>>   		.display_ver = { 13, 13 },
+>>   		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_MC,
+>> @@ -370,6 +396,14 @@ static bool plane_has_modifier(struct drm_i915_private *i915,
+>>   	if (!plane_caps_contain_all(plane_caps, md->plane_caps))
+>>   		return false;
+>>   
+>> +	/*
+>> +	 * Separate AuxCCS and Flat CCS modifiers to be run only on platforms
+>> +	 * where supported.
+>> +	 */
+>> +	if (intel_fb_is_ccs_modifier(md->modifier) &&
+>> +	   HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
+> please align HAS_FLAT_CCS with intel_fb_is_css_modifier
 
-On 5/13/2023 7:44 AM, Radhakrishna Sripada wrote:
-> MTL reuses the tuning parameters for DG2. Extend the dg2
-> performance tuning parameters to MTL.
->
-> v2: Add DRAW_WATERMARK tuning parameter.
->
-> Bspec: 68331
-> Cc: Haridhar Kalvala <haridhar.kalvala@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_workarounds.c | 8 ++++++--
->   1 file changed, 6 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 786349e95487..72dab970de5b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -817,6 +817,10 @@ static void mtl_ctx_workarounds_init(struct intel_engine_cs *engine,
->   {
->   	struct drm_i915_private *i915 = engine->i915;
->   
-> +	dg2_ctx_gt_tuning_init(engine, wal);
-> +
-> +	wa_add(wal, DRAW_WATERMARK, VERT_WM_VAL, 0x3FF, 0, false);
+I'll update and put patches to list.
 
-Hi RK,
+thanks for the reviews
 
-I am not sure but have doubt w.r.t DRAW_WATERMARK are we not doing same 
-in [ Patch V2 1/2].
+/Juha-Pekka
 
-Thank you,
-
-Haridhar Kalvala
-
-> +
->   	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
->   	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
->   		/* Wa_14014947963 */
-> @@ -1754,7 +1758,7 @@ static void gt_tuning_settings(struct intel_gt *gt, struct i915_wa_list *wal)
->   		wa_mcr_masked_en(wal, XEHPC_LNCFMISCCFGREG0, XEHPC_HOSTCACHEEN);
->   	}
->   
-> -	if (IS_DG2(gt->i915)) {
-> +	if (IS_DG2(gt->i915) || IS_METEORLAKE(gt->i915)) {
->   		wa_mcr_write_or(wal, XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS);
->   		wa_mcr_write_or(wal, XEHP_SQCM, EN_32B_ACCESS);
->   	}
-> @@ -2944,7 +2948,7 @@ static void
->   add_render_compute_tuning_settings(struct drm_i915_private *i915,
->   				   struct i915_wa_list *wal)
->   {
-> -	if (IS_DG2(i915))
-> +	if (IS_DG2(i915) || IS_METEORLAKE(i915))
->   		wa_mcr_write_clr_set(wal, RT_CTRL, STACKID_CTRL, STACKID_CTRL_512);
->   
->   	/*
-
--- 
-Regards,
-Haridhar Kalvala
+>> +		return false;
+>> +
+>>   	return true;
+>>   }
+>>   
+>> @@ -489,7 +523,7 @@ static bool intel_fb_is_gen12_ccs_aux_plane(const struct drm_framebuffer *fb, in
+>>   {
+>>   	const struct intel_modifier_desc *md = lookup_modifier(fb->modifier);
+>>   
+>> -	return check_modifier_display_ver_range(md, 12, 13) &&
+>> +	return check_modifier_display_ver_range(md, 12, 14) &&
+>>   	       ccs_aux_plane_mask(md, fb->format) & BIT(color_plane);
+>>   }
+>>   
+>> @@ -605,6 +639,9 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+>>   		if (intel_fb_is_ccs_aux_plane(fb, color_plane))
+>>   			return 128;
+>>   		fallthrough;
+>> +	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS:
+>> +	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC:
+>> +	case I915_FORMAT_MOD_4_TILED_MTL_MC_CCS:
+>>   	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+>>   	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>>   	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+>> @@ -791,6 +828,9 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+>>   	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+>>   	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+>>   	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>> +	case I915_FORMAT_MOD_4_TILED_MTL_MC_CCS:
+>> +	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS:
+>> +	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC:
+>>   		return 16 * 1024;
+>>   	case I915_FORMAT_MOD_Y_TILED_CCS:
+>>   	case I915_FORMAT_MOD_Yf_TILED_CCS:
+>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> index 8ea0598a5a07..f6f760e59c9e 100644
+>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> @@ -789,6 +789,14 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
+>>   			PLANE_CTL_CLEAR_COLOR_DISABLE;
+>>   	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
+>>   		return PLANE_CTL_TILED_4 | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
+>> +	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS:
+>> +		return PLANE_CTL_TILED_4 |
+>> +			PLANE_CTL_RENDER_DECOMPRESSION_ENABLE |
+>> +			PLANE_CTL_CLEAR_COLOR_DISABLE;
+>> +	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC:
+>> +		return PLANE_CTL_TILED_4 | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
+>> +	case I915_FORMAT_MOD_4_TILED_MTL_MC_CCS:
+>> +		return PLANE_CTL_TILED_4 | PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE;
+>>   	case I915_FORMAT_MOD_Y_TILED_CCS:
+>>   	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+>>   		return PLANE_CTL_TILED_Y | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
+>> @@ -2160,6 +2168,11 @@ skl_plane_disable_flip_done(struct intel_plane *plane)
+>>   static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
+>>   				 enum pipe pipe, enum plane_id plane_id)
+>>   {
+>> +	/* Wa_14017240301 */
+>> +	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>> +	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>> +		return false;
+>> +
+>>   	/* Wa_22011186057 */
+>>   	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
+>>   		return false;
+>> @@ -2441,12 +2454,17 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
+>>   	case PLANE_CTL_TILED_Y:
+>>   		plane_config->tiling = I915_TILING_Y;
+>>   		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
+>> -			if (DISPLAY_VER(dev_priv) >= 12)
+>> +			if (DISPLAY_VER(dev_priv) >= 14)
+>> +				fb->modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS;
+>> +			else if (DISPLAY_VER(dev_priv) >= 12)
+>>   				fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS;
+>>   			else
+>>   				fb->modifier = I915_FORMAT_MOD_Y_TILED_CCS;
+>>   		else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
+>> -			fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS;
+>> +			if (DISPLAY_VER(dev_priv) >= 14)
+>> +				fb->modifier = I915_FORMAT_MOD_4_TILED_MTL_MC_CCS;
+>> +			else
+>> +				fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS;
+>>   		else
+>>   			fb->modifier = I915_FORMAT_MOD_Y_TILED;
+>>   		break;
+>> -- 
+>> 2.25.1
+>>
 
