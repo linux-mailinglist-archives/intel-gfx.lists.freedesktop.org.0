@@ -2,63 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE89701F09
-	for <lists+intel-gfx@lfdr.de>; Sun, 14 May 2023 20:43:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EAEA701F0D
+	for <lists+intel-gfx@lfdr.de>; Sun, 14 May 2023 20:43:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41E2B88867;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 002EB10E033;
 	Sun, 14 May 2023 18:43:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com
- [IPv6:2a00:1450:4864:20::131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A785E10E033;
- Sun, 14 May 2023 18:43:20 +0000 (UTC)
-Received: by mail-lf1-x131.google.com with SMTP id
- 2adb3069b0e04-4f2510b2b98so9445804e87.3; 
- Sun, 14 May 2023 11:43:20 -0700 (PDT)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
+ [IPv6:2a00:1450:4864:20::134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2558710E033
+ for <intel-gfx@lists.freedesktop.org>; Sun, 14 May 2023 18:43:21 +0000 (UTC)
+Received: by mail-lf1-x134.google.com with SMTP id
+ 2adb3069b0e04-4f14468ef54so13686194e87.0
+ for <intel-gfx@lists.freedesktop.org>; Sun, 14 May 2023 11:43:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20221208; t=1684089798; x=1686681798;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=wIbnvgmJCDQh9UHtsuRNkB0HCn83qO85MVUMP60gjIE=;
- b=kjV0uaXcPYLTGQvCeLALCIjuGNxIgWU+OQiEPGiN81CvvcrShdwbFYfq3wYf9LrEY/
- HFNkHmzViZf6uaOv7YNvevIW1HdmnPubQ6LSiGrtbqCKD2QtZQ5fKsYoP721h9eLy3C9
- PMOwqCpkaCwZG8fCUvZXlO4Bl9jZhuyXOysMs4DOpmAU/6t3PhPFmN8LDJtyh6ONxnb/
- GtO5el/QZOyLs4XYmRKyFOUhlxqdbwlJHlLQ5JlwnKk9zOtAnyUUrDb3SqCiPEU4rgkB
- JvLsYIkEBNMZfb/eGKGQYyPZbvyUSH8QWhf4iAxkzv33FCj+339AOib/kwtTg2P8A1Xi
- RDzQ==
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=dU8ACWRJaUnk8nOdTJ6Z4fawgco5uenAqyfuq0VsCT8=;
+ b=ov67bIDn/HYTbRq33wNEVsILyw8jSdkzBz04fd3ihcS7DbDNHVfmrFDO3DDfTpI3zI
+ LINTOUtReXKubRBrM898OrI/KMEHZVx/RG/2E527EwdKHnMb4TE8vPOQ8/EWhnq42g/n
+ WJkwiQ6vDrrnZgcGmE+O5teXBQTCot0y6dMTcnRJmRfCnRfG+e+w5H3ogUplzbDTZtLr
+ aXGthkweQBXU3cRbpPHsMDCCXKPbFT5WjALx5VAQd3Fxm9RPyyRNod/cnXn5YLXpXuza
+ CX3nv3hKXGsjFM839aqcIJOfQHaq2NBwqEZwoI5jpyuzTPqZson6mbuW7mU5SRfgEUIA
+ rWzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20221208; t=1684089798; x=1686681798;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=wIbnvgmJCDQh9UHtsuRNkB0HCn83qO85MVUMP60gjIE=;
- b=MmProqMwOpIW+SrnMI8JysgLYssLs4FlWe/k92qnm9dWbbp7iEYDjpn6u44J3psQmw
- o9Sv42xjXDqLiAWulgOs12TI4OQR1Hh2O8n9PD6OMvtNg2sQ6Pe1KCCLG+vU7SadulM5
- t6Eypn4qcOK78aBifob8av+jaJEcsv7NU6SFN2dk94eXxFDrzYp5qu4KFlaUWSXKH5YH
- c7RY2TUsNhb3lGbkjrV6uCyjOo2t0qYhVnu1HvFXngOozqfiEq0pR2SMp5TlMfygYalB
- MY81wnscuDAfxra9TPC7gwvP0VvxSLO2dbITh0sKor1fb8JxmJTOEVtu1nG0lf0Qpf+7
- kb6g==
-X-Gm-Message-State: AC+VfDwgTZGcKe0Ezy9HbcaFcx1oVrZXBPDbykbXEuljYjgdc8LduCuF
- JsIp/sLNTmAe86paVA2dhXfSbCEtAa2c/w==
-X-Google-Smtp-Source: ACHHUZ7PGcdsEvSS4/GYTyWxrZXI+WGSVbAqmv19un9LM4YpyX5mbOqVnMrLY4YjLR6Oabua9TD4yg==
-X-Received: by 2002:a05:6512:943:b0:4f1:496a:de8e with SMTP id
- u3-20020a056512094300b004f1496ade8emr4238540lft.27.1684089797437; 
- Sun, 14 May 2023 11:43:17 -0700 (PDT)
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=dU8ACWRJaUnk8nOdTJ6Z4fawgco5uenAqyfuq0VsCT8=;
+ b=eg6UF3hAwiYjmajGBcBxFictfl+ZZo65SJq/g++nFcKuanHhFwTxAlvu/EQ4C63sRx
+ xObhfcM/LiOVQPvXqCk3aMhgSCj3J1OxYvMitt72LO4EGhBklDH1E/Jq+S9jVMEtLOpz
+ lCO0N0Y8PYGNKWKsCobMtg9qa6WQYh8Kv8O1kG5rRFa4Hn4NBOaXxVhv3bMX25VBELJS
+ DsmueCnIZeV/jqpyM8qPW7Qz/kl8hP19f7drtGNZSmlHsaqOETlbaElyaXIAHQ6WdBsK
+ Ft/D5opmgVrBiat1bj9kSte529BjWkrk29S0Ahe6tRaZ5QJQJgx8o25uBcYYFumUG7T1
+ PxBQ==
+X-Gm-Message-State: AC+VfDxmD9xkmDAytYdCuB/uFxozXa8gHX9pERuxUzsJrST1U4Yl0Qj8
+ IVWvCA75TFKXPk1HBzo7b87JLw1e2Y/Mxw==
+X-Google-Smtp-Source: ACHHUZ5i9UBgLj3UaMoeVvZKFVJweoVQMrixDOsN9Pwvbrqn+EWYEUkxNMzsRmgxgVjFoqyAMqNrkg==
+X-Received: by 2002:a19:f813:0:b0:4ec:a48a:28c0 with SMTP id
+ a19-20020a19f813000000b004eca48a28c0mr5607250lff.25.1684089798227; 
+ Sun, 14 May 2023 11:43:18 -0700 (PDT)
 Received: from localhost.localdomain (91-156-196-125.elisa-laajakaista.fi.
  [91.156.196.125]) by smtp.gmail.com with ESMTPSA id
- g11-20020a19ac0b000000b004efd3c2b746sm2254332lfc.162.2023.05.14.11.43.16
+ g11-20020a19ac0b000000b004efd3c2b746sm2254332lfc.162.2023.05.14.11.43.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 14 May 2023 11:43:16 -0700 (PDT)
+ Sun, 14 May 2023 11:43:17 -0700 (PDT)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 14 May 2023 21:42:39 +0300
-Message-Id: <20230514184240.6184-1-juhapekka.heikkila@gmail.com>
+Date: Sun, 14 May 2023 21:42:40 +0300
+Message-Id: <20230514184240.6184-2-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230514184240.6184-1-juhapekka.heikkila@gmail.com>
+References: <20230514184240.6184-1-juhapekka.heikkila@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/fourcc: define Intel Meteorlake related
- ccs modifiers
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/mtl: Add handling for MTL ccs
+ modifiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,75 +74,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add Tile4 type ccs modifiers with aux buffer needed for MTL
+Add Tile4 ccs modifiers w/ auxbuffer handling
+
+Implement Wa_14017240301
 
 Bspec: 49251, 49252, 49253
-Cc: dri-devel@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 ---
- include/uapi/drm/drm_fourcc.h | 43 +++++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+ drivers/gpu/drm/i915/display/intel_fb.c       | 42 ++++++++++++++++++-
+ .../drm/i915/display/skl_universal_plane.c    | 22 +++++++++-
+ 2 files changed, 61 insertions(+), 3 deletions(-)
 
-diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
-index de703c6be969..8db7fd3f743e 100644
---- a/include/uapi/drm/drm_fourcc.h
-+++ b/include/uapi/drm/drm_fourcc.h
-@@ -657,6 +657,49 @@ extern "C" {
-  */
- #define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC fourcc_mod_code(INTEL, 12)
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index c004f08fcfe1..0d27a98dcbbe 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -157,6 +157,32 @@ struct intel_modifier_desc {
  
-+/*
-+ * Intel Color Control Surfaces (CCS) for display ver. 14 render compression.
-+ *
-+ * The main surface is tile4 and at plane index 0, the CCS is linear and
-+ * at index 1. A 64B CCS cache line corresponds to an area of 4x1 tiles in
-+ * main surface. In other words, 4 bits in CCS map to a main surface cache
-+ * line pair. The main surface pitch is required to be a multiple of four
-+ * tile4 widths.
-+ */
-+#define I915_FORMAT_MOD_4_TILED_MTL_RC_CCS fourcc_mod_code(INTEL, 13)
+ static const struct intel_modifier_desc intel_modifiers[] = {
+ 	{
++		.modifier = I915_FORMAT_MOD_4_TILED_MTL_MC_CCS,
++		.display_ver = { 14, 14 },
++		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_MC,
 +
-+/*
-+ * Intel Color Control Surfaces (CCS) for display ver. 14 media compression
-+ *
-+ * The main surface is tile4 and at plane index 0, the CCS is linear and
-+ * at index 1. A 64B CCS cache line corresponds to an area of 4x1 tiles in
-+ * main surface. In other words, 4 bits in CCS map to a main surface cache
-+ * line pair. The main surface pitch is required to be a multiple of four
-+ * tile4 widths. For semi-planar formats like NV12, CCS planes follow the
-+ * Y and UV planes i.e., planes 0 and 1 are used for Y and UV surfaces,
-+ * planes 2 and 3 for the respective CCS.
-+ */
-+#define I915_FORMAT_MOD_4_TILED_MTL_MC_CCS fourcc_mod_code(INTEL, 14)
++		.ccs.packed_aux_planes = BIT(1),
++		.ccs.planar_aux_planes = BIT(2) | BIT(3),
 +
-+/*
-+ * Intel Color Control Surface with Clear Color (CCS) for display ver. 14 render
-+ * compression.
-+ *
-+ * The main surface is tile4 and is at plane index 0 whereas CCS is linear
-+ * and at index 1. The clear color is stored at index 2, and the pitch should
-+ * be ignored. The clear color structure is 256 bits. The first 128 bits
-+ * represents Raw Clear Color Red, Green, Blue and Alpha color each represented
-+ * by 32 bits. The raw clear color is consumed by the 3d engine and generates
-+ * the converted clear color of size 64 bits. The first 32 bits store the Lower
-+ * Converted Clear Color value and the next 32 bits store the Higher Converted
-+ * Clear Color value when applicable. The Converted Clear Color values are
-+ * consumed by the DE. The last 64 bits are used to store Color Discard Enable
-+ * and Depth Clear Value Valid which are ignored by the DE. A CCS cache line
-+ * corresponds to an area of 4x1 tiles in the main surface. The main surface
-+ * pitch is required to be a multiple of 4 tile widths.
-+ */
-+#define I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC fourcc_mod_code(INTEL, 15)
++		FORMAT_OVERRIDE(gen12_ccs_formats),
++	}, {
++		.modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS,
++		.display_ver = { 14, 14 },
++		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC,
 +
- /*
-  * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
-  *
++		.ccs.packed_aux_planes = BIT(1),
++
++		FORMAT_OVERRIDE(gen12_ccs_formats),
++	}, {
++		.modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC,
++		.display_ver = { 14, 14 },
++		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_RC_CC,
++
++		.ccs.cc_planes = BIT(2),
++		.ccs.packed_aux_planes = BIT(1),
++
++		FORMAT_OVERRIDE(gen12_ccs_cc_formats),
++	}, {
+ 		.modifier = I915_FORMAT_MOD_4_TILED_DG2_MC_CCS,
+ 		.display_ver = { 13, 13 },
+ 		.plane_caps = INTEL_PLANE_CAP_TILING_4 | INTEL_PLANE_CAP_CCS_MC,
+@@ -370,6 +396,14 @@ static bool plane_has_modifier(struct drm_i915_private *i915,
+ 	if (!plane_caps_contain_all(plane_caps, md->plane_caps))
+ 		return false;
+ 
++	/*
++	 * Separate AuxCCS and Flat CCS modifiers to be run only on platforms
++	 * where supported.
++	 */
++	if (intel_fb_is_ccs_modifier(md->modifier) &&
++	    HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
++		return false;
++
+ 	return true;
+ }
+ 
+@@ -489,7 +523,7 @@ static bool intel_fb_is_gen12_ccs_aux_plane(const struct drm_framebuffer *fb, in
+ {
+ 	const struct intel_modifier_desc *md = lookup_modifier(fb->modifier);
+ 
+-	return check_modifier_display_ver_range(md, 12, 13) &&
++	return check_modifier_display_ver_range(md, 12, 14) &&
+ 	       ccs_aux_plane_mask(md, fb->format) & BIT(color_plane);
+ }
+ 
+@@ -605,6 +639,9 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+ 		if (intel_fb_is_ccs_aux_plane(fb, color_plane))
+ 			return 128;
+ 		fallthrough;
++	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS:
++	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC:
++	case I915_FORMAT_MOD_4_TILED_MTL_MC_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+@@ -791,6 +828,9 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
++	case I915_FORMAT_MOD_4_TILED_MTL_MC_CCS:
++	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS:
++	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC:
+ 		return 16 * 1024;
+ 	case I915_FORMAT_MOD_Y_TILED_CCS:
+ 	case I915_FORMAT_MOD_Yf_TILED_CCS:
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 8ea0598a5a07..f6f760e59c9e 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -789,6 +789,14 @@ static u32 skl_plane_ctl_tiling(u64 fb_modifier)
+ 			PLANE_CTL_CLEAR_COLOR_DISABLE;
+ 	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
+ 		return PLANE_CTL_TILED_4 | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
++	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS:
++		return PLANE_CTL_TILED_4 |
++			PLANE_CTL_RENDER_DECOMPRESSION_ENABLE |
++			PLANE_CTL_CLEAR_COLOR_DISABLE;
++	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC:
++		return PLANE_CTL_TILED_4 | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
++	case I915_FORMAT_MOD_4_TILED_MTL_MC_CCS:
++		return PLANE_CTL_TILED_4 | PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE;
+ 	case I915_FORMAT_MOD_Y_TILED_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+ 		return PLANE_CTL_TILED_Y | PLANE_CTL_RENDER_DECOMPRESSION_ENABLE;
+@@ -2160,6 +2168,11 @@ skl_plane_disable_flip_done(struct intel_plane *plane)
+ static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
+ 				 enum pipe pipe, enum plane_id plane_id)
+ {
++	/* Wa_14017240301 */
++	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
++	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++		return false;
++
+ 	/* Wa_22011186057 */
+ 	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
+ 		return false;
+@@ -2441,12 +2454,17 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
+ 	case PLANE_CTL_TILED_Y:
+ 		plane_config->tiling = I915_TILING_Y;
+ 		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
+-			if (DISPLAY_VER(dev_priv) >= 12)
++			if (DISPLAY_VER(dev_priv) >= 14)
++				fb->modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS;
++			else if (DISPLAY_VER(dev_priv) >= 12)
+ 				fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS;
+ 			else
+ 				fb->modifier = I915_FORMAT_MOD_Y_TILED_CCS;
+ 		else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
+-			fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS;
++			if (DISPLAY_VER(dev_priv) >= 14)
++				fb->modifier = I915_FORMAT_MOD_4_TILED_MTL_MC_CCS;
++			else
++				fb->modifier = I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS;
+ 		else
+ 			fb->modifier = I915_FORMAT_MOD_Y_TILED;
+ 		break;
 -- 
 2.25.1
 
