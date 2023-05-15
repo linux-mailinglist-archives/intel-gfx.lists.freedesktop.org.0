@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E05E7025B3
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 09:10:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ACA47025B4
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 09:10:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CBA510E13B;
-	Mon, 15 May 2023 07:10:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A49210E140;
+	Mon, 15 May 2023 07:10:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D331310E13D;
- Mon, 15 May 2023 07:10:31 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 31E4E10E13D;
+ Mon, 15 May 2023 07:10:34 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CAE06AADEB;
- Mon, 15 May 2023 07:10:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2F033AADED;
+ Mon, 15 May 2023 07:10:34 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Date: Mon, 15 May 2023 07:10:31 -0000
-Message-ID: <168413463179.22015.8860345540528322936@emeril.freedesktop.org>
+Date: Mon, 15 May 2023 07:10:34 -0000
+Message-ID: <168413463418.22013.13301530786514335726@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230515064416.3054707-1-umesh.nerlige.ramappa@intel.com>
 In-Reply-To: <20230515064416.3054707-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Add_MTL_PMU_support_for_multi-gt?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Add_MTL_PMU_support_for_multi-gt?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,17 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-6114f8d0c211 drm/i915/pmu: Support PMU for all engines
-8736cb79fd80 drm/i915/pmu: Skip sampling engines with no enabled counters
-a758943c95f5 drm/i915/pmu: Transform PMU parking code to be GT based
-e5548d8ca335 drm/i915/pmu: Add reference counting to the sampling timer
-ccb4d59f4da6 drm/i915/pmu: Prepare for multi-tile non-engine counters
--:107: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#107: FILE: drivers/gpu/drm/i915/i915_pmu.c:194:
-+	GEM_BUG_ON(idx >= ARRAY_SIZE(pmu->sample));
-
-total: 0 errors, 1 warnings, 0 checks, 351 lines checked
-fb34a531fb2d drm/i915/pmu: Export counters from all tiles
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
