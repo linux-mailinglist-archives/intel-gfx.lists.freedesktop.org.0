@@ -1,46 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1948B702119
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 03:24:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8B637022F1
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 06:32:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05FA110E119;
-	Mon, 15 May 2023 01:24:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06F8710E138;
+	Mon, 15 May 2023 04:32:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 600 seconds by postgrey-1.36 at gabe;
- Mon, 15 May 2023 01:24:25 UTC
-Received: from gandalf.ozlabs.org (mail.ozlabs.org
- [IPv6:2404:9400:2221:ea00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E61310E120
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 May 2023 01:24:24 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4QKM2h2h8Pz4x1f;
- Mon, 15 May 2023 11:18:52 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1684113532;
- bh=RuG1ySZ7s0gri5igZ17AAKvrQJ9VYS5+SrhO6HTfQ/M=;
- h=Date:From:To:Cc:Subject:From;
- b=ctyvs543o42/L/rHIu3u974XNWuO2tg128n0RTkXr+NJWOoFIoKmgJ5oOrJTA/Sfe
- 4MemJlc6mDjf1a2TlFinSOcAid9NppZI9ma2T06aoF61aa8c+g+uKfsGfsseQcxLle
- 6vWlvMqQwYW9de+VZVoZ0/708gtVNYoOeBA07UJhC3WkHbTs9xghCjgNKsn90mcred
- 4XXyBRRqrH3ZdxkbpcK8zn8pt83VqgGt4Jn3WjiCCI5usOFQROvbxtcBCBx9l6ORGG
- 2TixEkrnGse2uYYUXG8NLDabxp1zIu6GBDBMrLMCzjF065n3u3bh7T4x9CUpaqux7O
- LirF8NGtM/K0g==
-Date: Mon, 15 May 2023 11:18:51 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Alex Deucher <alexdeucher@gmail.com>, Daniel Vetter
- <daniel.vetter@ffwll.ch>
-Message-ID: <20230515111851.73e4eda3@canb.auug.org.au>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2DFF110E133;
+ Mon, 15 May 2023 04:32:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id ECD82A47E9;
+ Mon, 15 May 2023 04:32:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/K0iJ.Q_1CtC+BJVPXt_5_.q";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the amdgpu tree with the
- drm-misc tree
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Date: Mon, 15 May 2023 04:32:29 -0000
+Message-ID: <168412514993.22014.4032047644102786671@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230514184240.6184-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20230514184240.6184-1-juhapekka.heikkila@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/2=5D_drm/fourcc=3A_define_Intel_Meteo?=
+ =?utf-8?q?rlake_related_ccs_modifiers_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,63 +41,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Iswara Nagulendran <Iswara.Nagulendran@amd.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/K0iJ.Q_1CtC+BJVPXt_5_.q
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi all,
+Series: series starting with [1/2] drm/fourcc: define Intel Meteorlake related ccs modifiers (rev3)
+URL   : https://patchwork.freedesktop.org/series/117729/
+State : warning
 
-Today's linux-next merge of the amdgpu tree got a conflict in:
+== Summary ==
 
-  include/drm/display/drm_dp.h
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-between commit:
 
-  55b24786b748 ("drm/display: Add missing OLED Vesa brightnesses definition=
-s")
-
-from the drm-misc tree and commit:
-
-  4d5f872dbc75 ("drm/amd/display: Adding support for VESA SCR")
-
-from the amdgpu tree.
-
-I fixed it up (the changes in the latter included the changes in the
-former (apart from whitespace differences)) and can carry the fix as
-necessary. This is now fixed as far as linux-next is concerned, but any
-non trivial conflicts should be mentioned to your upstream maintainer
-when your tree is submitted for merging.  You may also want to consider
-cooperating with the maintainer of the conflicting tree to minimise any
-particularly complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/K0iJ.Q_1CtC+BJVPXt_5_.q
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmRhiHsACgkQAVBC80lX
-0GwtLQf6A8UkFy13kPQIn2zb39PDbr4MTZunzmujY886d1j3qJ4lFeshMsKFKVdR
-xwwOQRTu9pDB0BoJEECRRqhC4FB32oX1o7IfiHJJMnIs68JoEIfZlOWMFrBtRcm7
-y8r0tRW940UnaJE8TYSTd+LHcgGZDPxktbncI52N0ikJC2oaa4GXOmICYcXLm6rT
-dBZrO1tAKVLFX4kXupw+HaR6FuUFlUUquXcyRonsTjOVDM2AzmwUe5cxLoTQGp+B
-rzN3qvjJBpx2GgVTyvCxVZd3zTVkWu6qSYoUzmgA2eRHojeSImjT+cJNcEwoi6u5
-6WGhwd4smxnHVmwEXhuIW2phHSpDMQ==
-=LYSm
------END PGP SIGNATURE-----
-
---Sig_/K0iJ.Q_1CtC+BJVPXt_5_.q--
