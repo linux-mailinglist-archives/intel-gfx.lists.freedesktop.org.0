@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1767A702D20
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 14:54:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37333702DF1
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 15:20:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21D6910E1CA;
-	Mon, 15 May 2023 12:54:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64FAD10E1D4;
+	Mon, 15 May 2023 13:20:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9CED10E1B7;
- Mon, 15 May 2023 12:54:08 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39BBA10E1D5;
+ Mon, 15 May 2023 13:20:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684155248; x=1715691248;
+ t=1684156834; x=1715692834;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=yplrmYNNQPplQTwHqMtTpl2JRIkVQ1ZIOj5xbrxhjuQ=;
- b=dRRJwnzq75zsdx9Jx7ihuIej7Xvf4GFix3OL2ibjMBj0RcaF5xoT1nSW
- YZGiusAlZqLdF+6iht77p0ZxrJbbJHlIyBvVobDXUt/JLxnnp8nFnjcbW
- hrVqeDqdYNC95S9Hml0yFjQ+9VhpFSIknYTvuZ9xdV8smb4n6IZxt79wJ
- jz9QNB3BuyBfVWdKd4b8WdZu0zVDwe8tcPR55dOtyjVBpHQyrPW+8ctJd
- +84UoG4RZ2Ymb+VLB/UyptTjEYqyFp0OF6DmBAgK6GzTMOTdbsW3fMUnj
- JccfuaA9+hVBoo2KBnEc4UySwquOsdg9SO3m2hAfOwFppX67+Lc9CJbYp A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="354347276"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="354347276"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 05:54:07 -0700
+ bh=vk3MP0dR/qJwHu+wkKoimXE8DW0/t2thW/pmtWShnHU=;
+ b=ewHClnBWUbOofcZXjg0KvLxAduKflKezZrEqOiJwStarf3tUe2/SWnc9
+ BErf/zVIM2G/4ZiCmEiI3uGYCRe2LAhYlKZ3zLXa2FHxjVRoXYWaY0rd3
+ cIqqgCcRlZbOuWwTloLU1rN6zt9Li2/O0JlqWKM2o7eDShTMl+SbINBix
+ DYoql1qNGph8jGSLykqDHkdE1pO+2HRlRT1lp1qWzasdpkYAYVyRIQufG
+ X/3tiDPXz2ZA71VV+lZollRRXKeB60w3188M0UBLjbnXC5AVvhdIHYnmP
+ RYaCseeH6Z2X+53GUabZIaOtNgNlXjPwUpI/2BQlVxTTP+6b/mKXDusAU Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="330817158"
+X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="330817158"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2023 06:20:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="812940419"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="812940419"
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="731623597"
+X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="731623597"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga002.fm.intel.com with SMTP; 15 May 2023 05:54:02 -0700
+ by orsmga008.jf.intel.com with SMTP; 15 May 2023 06:20:30 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 15 May 2023 15:54:02 +0300
-Date: Mon, 15 May 2023 15:54:02 +0300
+ Mon, 15 May 2023 16:20:29 +0300
+Date: Mon, 15 May 2023 16:20:29 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <ZGIraoocR1gLCWjZ@intel.com>
-References: <20230124104548.3234554-1-dmitry.baryshkov@linaro.org>
- <20230124104548.3234554-2-dmitry.baryshkov@linaro.org>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Message-ID: <ZGIxnayBXmOUz8YT@intel.com>
+References: <20230512062417.2584427-1-ankit.k.nautiyal@intel.com>
+ <20230512062417.2584427-2-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230124104548.3234554-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230512062417.2584427-2-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/probe_helper: sort out
- poll_running vs poll_enabled
+Subject: Re: [Intel-gfx] [PATCH 01/13] drm/i915/dp: Consider output_format
+ while computing dsc bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,195 +62,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, freedreno@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wenst@chromium.org>,
- David Airlie <airlied@gmail.com>, Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 24, 2023 at 12:45:48PM +0200, Dmitry Baryshkov wrote:
-> There are two flags attemting to guard connector polling:
-> poll_enabled and poll_running. While poll_enabled semantics is clearly
-> defined and fully adhered (mark that drm_kms_helper_poll_init() was
-> called and not finalized by the _fini() call), the poll_running flag
-> doesn't have such clearliness.
+On Fri, May 12, 2023 at 11:54:05AM +0530, Ankit Nautiyal wrote:
+> While using DSC the compressed bpp is computed assuming RGB output
+> format. Consider the output_format and compute the compressed bpp
+> during mode valid and compute config steps.
 > 
-> This flag is used only in drm_helper_probe_single_connector_modes() to
-> guard calling of drm_kms_helper_poll_enable, it doesn't guard the
-> drm_kms_helper_poll_fini(), etc. Change it to only be set if the polling
-> is actually running. Tie HPD enablement to this flag.
+> For DP-MST we currently use RGB output format only, so continue
+> using RGB while computing compressed bpp for MST case.
+> 
+> v2: Use output_bpp instead for pipe_bpp to clamp compressed_bpp. (Ville)
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-This apparently broke something in i915. I suspect polling
-is no longer happening correctly while the device is runtime
-suspended.
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-https://gitlab.freedesktop.org/drm/intel/-/issues/8451
-
-> 
-> This fixes the following warning reported after merging the HPD series:
-> 
-> Hot plug detection already enabled
-> WARNING: CPU: 2 PID: 9 at drivers/gpu/drm/drm_bridge.c:1257 drm_bridge_hpd_enable+0x94/0x9c [drm]
-> Modules linked in: videobuf2_memops snd_soc_simple_card snd_soc_simple_card_utils fsl_imx8_ddr_perf videobuf2_common snd_soc_imx_spdif adv7511 etnaviv imx8m_ddrc imx_dcss mc cec nwl_dsi gov
-> CPU: 2 PID: 9 Comm: kworker/u8:0 Not tainted 6.2.0-rc2-15208-g25b283acd578 #6
-> Hardware name: NXP i.MX8MQ EVK (DT)
-> Workqueue: events_unbound deferred_probe_work_func
-> pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-> pc : drm_bridge_hpd_enable+0x94/0x9c [drm]
-> lr : drm_bridge_hpd_enable+0x94/0x9c [drm]
-> sp : ffff800009ef3740
-> x29: ffff800009ef3740 x28: ffff000009331f00 x27: 0000000000001000
-> x26: 0000000000000020 x25: ffff800001148ed8 x24: ffff00000a8fe000
-> x23: 00000000fffffffd x22: ffff000005086348 x21: ffff800001133ee0
-> x20: ffff00000550d800 x19: ffff000005086288 x18: 0000000000000006
-> x17: 0000000000000000 x16: ffff8000096ef008 x15: 97ffff2891004260
-> x14: 2a1403e194000000 x13: 97ffff2891004260 x12: 2a1403e194000000
-> x11: 7100385f29400801 x10: 0000000000000aa0 x9 : ffff800008112744
-> x8 : ffff000000250b00 x7 : 0000000000000003 x6 : 0000000000000011
-> x5 : 0000000000000000 x4 : ffff0000bd986a48 x3 : 0000000000000001
-> x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff000000250000
-> Call trace:
->  drm_bridge_hpd_enable+0x94/0x9c [drm]
->  drm_bridge_connector_enable_hpd+0x2c/0x3c [drm_kms_helper]
->  drm_kms_helper_poll_enable+0x94/0x10c [drm_kms_helper]
->  drm_helper_probe_single_connector_modes+0x1a8/0x510 [drm_kms_helper]
->  drm_client_modeset_probe+0x204/0x1190 [drm]
->  __drm_fb_helper_initial_config_and_unlock+0x5c/0x4a4 [drm_kms_helper]
->  drm_fb_helper_initial_config+0x54/0x6c [drm_kms_helper]
->  drm_fbdev_client_hotplug+0xd0/0x140 [drm_kms_helper]
->  drm_fbdev_generic_setup+0x90/0x154 [drm_kms_helper]
->  dcss_kms_attach+0x1c8/0x254 [imx_dcss]
->  dcss_drv_platform_probe+0x90/0xfc [imx_dcss]
->  platform_probe+0x70/0xcc
->  really_probe+0xc4/0x2e0
->  __driver_probe_device+0x80/0xf0
->  driver_probe_device+0xe0/0x164
->  __device_attach_driver+0xc0/0x13c
->  bus_for_each_drv+0x84/0xe0
->  __device_attach+0xa4/0x1a0
->  device_initial_probe+0x1c/0x30
->  bus_probe_device+0xa4/0xb0
->  deferred_probe_work_func+0x90/0xd0
->  process_one_work+0x200/0x474
->  worker_thread+0x74/0x43c
->  kthread+0xfc/0x110
->  ret_from_fork+0x10/0x20
-> ---[ end trace 0000000000000000 ]---
-> 
-> Reported-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> Fixes: c8268795c9a9 ("drm/probe-helper: enable and disable HPD on connectors")
-> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-> Acked-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> Tested-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> Tested-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  drivers/gpu/drm/drm_probe_helper.c | 42 +++++++++++++++---------------
->  1 file changed, 21 insertions(+), 21 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c     | 19 +++++++++++++++++--
+>  drivers/gpu/drm/i915/display/intel_dp.h     |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c |  1 +
+>  3 files changed, 19 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
-> index ab787d71fa66..8127be134c39 100644
-> --- a/drivers/gpu/drm/drm_probe_helper.c
-> +++ b/drivers/gpu/drm/drm_probe_helper.c
-> @@ -282,7 +282,8 @@ void drm_kms_helper_poll_enable(struct drm_device *dev)
->  	bool poll = false;
->  	unsigned long delay = DRM_OUTPUT_POLL_PERIOD;
->  
-> -	if (!dev->mode_config.poll_enabled || !drm_kms_helper_poll)
-> +	if (!dev->mode_config.poll_enabled || !drm_kms_helper_poll ||
-> +	    dev->mode_config.poll_running)
->  		return;
->  
->  	poll = drm_kms_helper_enable_hpd(dev);
-> @@ -304,6 +305,8 @@ void drm_kms_helper_poll_enable(struct drm_device *dev)
->  
->  	if (poll)
->  		schedule_delayed_work(&dev->mode_config.output_poll_work, delay);
-> +
-> +	dev->mode_config.poll_running = true;
->  }
->  EXPORT_SYMBOL(drm_kms_helper_poll_enable);
->  
-> @@ -592,10 +595,7 @@ int drm_helper_probe_single_connector_modes(struct drm_connector *connector,
->  	}
->  
->  	/* Re-enable polling in case the global poll config changed. */
-> -	if (drm_kms_helper_poll != dev->mode_config.poll_running)
-> -		drm_kms_helper_poll_enable(dev);
-> -
-> -	dev->mode_config.poll_running = drm_kms_helper_poll;
-> +	drm_kms_helper_poll_enable(dev);
->  
->  	if (connector->status == connector_status_disconnected) {
->  		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] disconnected\n",
-> @@ -735,8 +735,11 @@ static void output_poll_execute(struct work_struct *work)
->  	changed = dev->mode_config.delayed_event;
->  	dev->mode_config.delayed_event = false;
->  
-> -	if (!drm_kms_helper_poll)
-> +	if (!drm_kms_helper_poll && dev->mode_config.poll_running) {
-> +		drm_kms_helper_disable_hpd(dev);
-> +		dev->mode_config.poll_running = false;
->  		goto out;
-> +	}
->  
->  	if (!mutex_trylock(&dev->mode_config.mutex)) {
->  		repoll = true;
-> @@ -833,19 +836,6 @@ bool drm_kms_helper_is_poll_worker(void)
->  }
->  EXPORT_SYMBOL(drm_kms_helper_is_poll_worker);
->  
-> -static void drm_kms_helper_poll_disable_fini(struct drm_device *dev, bool fini)
-> -{
-> -	if (!dev->mode_config.poll_enabled)
-> -		return;
-> -
-> -	if (fini)
-> -		dev->mode_config.poll_enabled = false;
-> -
-> -	drm_kms_helper_disable_hpd(dev);
-> -
-> -	cancel_delayed_work_sync(&dev->mode_config.output_poll_work);
-> -}
-> -
->  /**
->   * drm_kms_helper_poll_disable - disable output polling
->   * @dev: drm_device
-> @@ -862,7 +852,12 @@ static void drm_kms_helper_poll_disable_fini(struct drm_device *dev, bool fini)
->   */
->  void drm_kms_helper_poll_disable(struct drm_device *dev)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 0cc57681dc4d..263c30948117 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -734,6 +734,7 @@ u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+>  				u32 link_clock, u32 lane_count,
+>  				u32 mode_clock, u32 mode_hdisplay,
+>  				bool bigjoiner,
+> +				enum intel_output_format output_format,
+>  				u32 pipe_bpp,
+>  				u32 timeslots)
 >  {
-> -	drm_kms_helper_poll_disable_fini(dev, false);
-> +	if (dev->mode_config.poll_running)
-> +		drm_kms_helper_disable_hpd(dev);
-> +
-> +	cancel_delayed_work_sync(&dev->mode_config.output_poll_work);
-> +
-> +	dev->mode_config.poll_running = false;
->  }
->  EXPORT_SYMBOL(drm_kms_helper_poll_disable);
+> @@ -758,6 +759,10 @@ u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+>  	bits_per_pixel = ((link_clock * lane_count) * timeslots) /
+>  			 (intel_dp_mode_to_fec_clock(mode_clock) * 8);
 >  
-> @@ -900,7 +895,12 @@ EXPORT_SYMBOL(drm_kms_helper_poll_init);
->   */
->  void drm_kms_helper_poll_fini(struct drm_device *dev)
->  {
-> -	drm_kms_helper_poll_disable_fini(dev, true);
-> +	if (!dev->mode_config.poll_enabled)
-> +		return;
+> +	/* Bandwidth required for 420 is half, that of 444 format */
+> +	if (output_format == INTEL_OUTPUT_FORMAT_YCBCR420)
+> +		bits_per_pixel *= 2;
 > +
-> +	drm_kms_helper_poll_disable(dev);
-> +
-> +	dev->mode_config.poll_enabled = false;
->  }
->  EXPORT_SYMBOL(drm_kms_helper_poll_fini);
+>  	drm_dbg_kms(&i915->drm, "Max link bpp is %u for %u timeslots "
+>  				"total bw %u pixel clock %u\n",
+>  				bits_per_pixel, timeslots,
+> @@ -1151,11 +1156,16 @@ intel_dp_mode_valid(struct drm_connector *_connector,
 >  
+>  	if (HAS_DSC(dev_priv) &&
+>  	    drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)) {
+> +		enum intel_output_format sink_format, output_format;
+> +		int pipe_bpp;
+> +
+> +		sink_format = intel_dp_sink_format(connector, mode);
+> +		output_format = intel_dp_output_format(connector, sink_format);
+>  		/*
+>  		 * TBD pass the connector BPC,
+>  		 * for now U8_MAX so that max BPC on that platform would be picked
+>  		 */
+> -		int pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, U8_MAX);
+> +		pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, U8_MAX);
+>  
+>  		/*
+>  		 * Output bpp is stored in 6.4 format so right shift by 4 to get the
+> @@ -1175,6 +1185,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+>  							    target_clock,
+>  							    mode->hdisplay,
+>  							    bigjoiner,
+> +							    output_format,
+>  							    pipe_bpp, 64) >> 4;
+>  			dsc_slice_count =
+>  				intel_dp_dsc_get_slice_count(intel_dp,
+> @@ -1707,6 +1718,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  							    adjusted_mode->crtc_clock,
+>  							    adjusted_mode->crtc_hdisplay,
+>  							    pipe_config->bigjoiner_pipes,
+> +							    pipe_config->output_format,
+>  							    pipe_bpp,
+>  							    timeslots);
+>  			/*
+> @@ -1742,9 +1754,12 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  		 * calculation procedure is bit different for MST case.
+>  		 */
+>  		if (compute_pipe_bpp) {
+> +			u16 output_bpp = intel_dp_output_bpp(pipe_config->output_format,
+> +							     pipe_config->pipe_bpp);
+> +
+>  			pipe_config->dsc.compressed_bpp = min_t(u16,
+>  								dsc_max_output_bpp >> 4,
+> -								pipe_config->pipe_bpp);
+> +								output_bpp);
+>  		}
+>  		pipe_config->dsc.slice_count = dsc_dp_slice_count;
+>  		drm_dbg_kms(&dev_priv->drm, "DSC: compressed bpp %d slice count %d\n",
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+> index ef39e4f7a329..db86c2b71c1f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -107,6 +107,7 @@ u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+>  				u32 link_clock, u32 lane_count,
+>  				u32 mode_clock, u32 mode_hdisplay,
+>  				bool bigjoiner,
+> +				enum intel_output_format output_format,
+>  				u32 pipe_bpp,
+>  				u32 timeslots);
+>  u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 63d61e610210..ee28bb89bffe 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -973,6 +973,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+>  							    target_clock,
+>  							    mode->hdisplay,
+>  							    bigjoiner,
+> +							    INTEL_OUTPUT_FORMAT_RGB,
+>  							    pipe_bpp, 64) >> 4;
+>  			dsc_slice_count =
+>  				intel_dp_dsc_get_slice_count(intel_dp,
 > -- 
-> 2.39.0
+> 2.25.1
 
 -- 
 Ville Syrjälä
