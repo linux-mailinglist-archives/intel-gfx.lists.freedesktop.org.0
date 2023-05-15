@@ -2,52 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E3D97027CB
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 11:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C20087027F7
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 11:12:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28B1110E18D;
-	Mon, 15 May 2023 09:04:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25C5310E178;
+	Mon, 15 May 2023 09:12:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8144010E188;
- Mon, 15 May 2023 09:04:54 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F48F10E178;
+ Mon, 15 May 2023 09:12:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684141494; x=1715677494;
+ t=1684141930; x=1715677930;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=7KSgSl7VvqM4uEuMQ+UuwxKFoLryKVBWpDtLSR4ejjE=;
- b=kGUlWi8U3XrCgHkBt2HUVzUMIuIxVlPNFGWtPmwoXDQ+L1PeQZ5qpBCx
- BJC688fGa80DMQuObWF+zUaGsh6K7TRpEXV5LEABlE2Vmr6pw/IscC1he
- DXUHLySep0uIDhv/DWmWZdGAz5Lc/MerNqtP4k9IAYtDh17FcL1mfTdgp
- BWwd9pGkHPm3heRktkjNDnHAIke+XRkFIF0VxgdplHvqbf1aqMithNqCy
- 0YRDAhUXuzUHErkfJqJ7FfRasbnUltmXBqNMAAUkvbTBv+PHDfbGKZtRd
- KCkh8kJxulbdm4CzjgrKh6kRmN9iUJJwcK6lGt0VL6ashjrNd7qcLWTeN g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="335690072"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="335690072"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 02:04:53 -0700
+ bh=dhM3m8vOuQXUzo4VYwSqzWC32+ahxslyhibsQL5kqac=;
+ b=L2oK9Q6L+lt8y5MVhAryQsO0ILS63BSwuBIWwPw3boCsd9pbx3aqYwrt
+ 9c1GbHcSXELiONd6WfaqKLcmQ23JIXtNj5P+gA0OPaRFvvBJ8rb42686Y
+ sN3/fPHxWkMp4KtARX9rlBlRUNdixQjIkurCn1o1Z2sq6jPSC4NC+V8SW
+ 2tjaEGIDW4RZtV3IDSqs0DajUPKx8c2Sqw5khkixiEyl8KrB43+SUazRR
+ nSJ01Aaq83NONJTBz6fPQsj8sGti+ZWMq5MchcBMXn7tefwCBE0mHAIQT
+ wSU/QtoTNOKaIG3BOYk+hjvl7iUGDOVum8gh+q8a8Y/S4vpePsgTdWBNM Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="437489750"
+X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="437489750"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2023 02:12:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="1030826541"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="1030826541"
+X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="812870323"
+X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="812870323"
 Received: from lveltman-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.42.56])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 02:04:51 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2023 02:12:04 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230514184240.6184-1-juhapekka.heikkila@gmail.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Suraj Kandpal
+ <suraj.kandpal@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Rob Clark
+ <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean
+ Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>
+In-Reply-To: <20230504153511.4007320-1-dmitry.baryshkov@linaro.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230514184240.6184-1-juhapekka.heikkila@gmail.com>
-Date: Mon, 15 May 2023 12:04:48 +0300
-Message-ID: <875y8uj77z.fsf@intel.com>
+References: <20230504153511.4007320-1-dmitry.baryshkov@linaro.org>
+Date: Mon, 15 May 2023 12:12:02 +0300
+Message-ID: <871qjij6vx.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/fourcc: define Intel Meteorlake
- related ccs modifiers
+Subject: Re: [Intel-gfx] [PATCH v5 0/8] drm/i915: move DSC RC tables to
+ drm_dsc_helper.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,85 +65,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org
+Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 14 May 2023, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> wrote:
-> Add Tile4 type ccs modifiers with aux buffer needed for MTL
+On Thu, 04 May 2023, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
+> Other platforms (msm) will benefit from sharing the DSC config setup
+> functions. This series moves parts of static DSC config data from the
+> i915 driver to the common helpers to be used by other drivers.
 >
-> Bspec: 49251, 49252, 49253
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+> Note: the RC parameters were cross-checked against config files found in
+> DSC model 2021062, 20161212 (and 20150914). The first patch modifies
+> tables according to those config files, while preserving parameter
+> values using the code. I have not changed one of the values in the
+> pre-SCR config file as it clearly looks like a typo in the config file,
+> considering the table E in DSC 1.1 and in the DSC 1.1 SCR.
 
-Thanks for the patches and review. Pushed via drm-intel-next with
-Thomas' IRC ack.
-
+As I believe I've said before, I think it's fine to merge these either
+via drm-intel or drm-misc. Which do you prefer?
 
 BR,
 Jani.
 
 
-> ---
->  include/uapi/drm/drm_fourcc.h | 43 +++++++++++++++++++++++++++++++++++
->  1 file changed, 43 insertions(+)
+
 >
-> diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
-> index de703c6be969..8db7fd3f743e 100644
-> --- a/include/uapi/drm/drm_fourcc.h
-> +++ b/include/uapi/drm/drm_fourcc.h
-> @@ -657,6 +657,49 @@ extern "C" {
->   */
->  #define I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC fourcc_mod_code(INTEL, 12)
->  
-> +/*
-> + * Intel Color Control Surfaces (CCS) for display ver. 14 render compression.
-> + *
-> + * The main surface is tile4 and at plane index 0, the CCS is linear and
-> + * at index 1. A 64B CCS cache line corresponds to an area of 4x1 tiles in
-> + * main surface. In other words, 4 bits in CCS map to a main surface cache
-> + * line pair. The main surface pitch is required to be a multiple of four
-> + * tile4 widths.
-> + */
-> +#define I915_FORMAT_MOD_4_TILED_MTL_RC_CCS fourcc_mod_code(INTEL, 13)
-> +
-> +/*
-> + * Intel Color Control Surfaces (CCS) for display ver. 14 media compression
-> + *
-> + * The main surface is tile4 and at plane index 0, the CCS is linear and
-> + * at index 1. A 64B CCS cache line corresponds to an area of 4x1 tiles in
-> + * main surface. In other words, 4 bits in CCS map to a main surface cache
-> + * line pair. The main surface pitch is required to be a multiple of four
-> + * tile4 widths. For semi-planar formats like NV12, CCS planes follow the
-> + * Y and UV planes i.e., planes 0 and 1 are used for Y and UV surfaces,
-> + * planes 2 and 3 for the respective CCS.
-> + */
-> +#define I915_FORMAT_MOD_4_TILED_MTL_MC_CCS fourcc_mod_code(INTEL, 14)
-> +
-> +/*
-> + * Intel Color Control Surface with Clear Color (CCS) for display ver. 14 render
-> + * compression.
-> + *
-> + * The main surface is tile4 and is at plane index 0 whereas CCS is linear
-> + * and at index 1. The clear color is stored at index 2, and the pitch should
-> + * be ignored. The clear color structure is 256 bits. The first 128 bits
-> + * represents Raw Clear Color Red, Green, Blue and Alpha color each represented
-> + * by 32 bits. The raw clear color is consumed by the 3d engine and generates
-> + * the converted clear color of size 64 bits. The first 32 bits store the Lower
-> + * Converted Clear Color value and the next 32 bits store the Higher Converted
-> + * Clear Color value when applicable. The Converted Clear Color values are
-> + * consumed by the DE. The last 64 bits are used to store Color Discard Enable
-> + * and Depth Clear Value Valid which are ignored by the DE. A CCS cache line
-> + * corresponds to an area of 4x1 tiles in the main surface. The main surface
-> + * pitch is required to be a multiple of 4 tile widths.
-> + */
-> +#define I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC fourcc_mod_code(INTEL, 15)
-> +
->  /*
->   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
->   *
+> Chances since v4:
+> - Rebased on top of drm-intel-next
+> - Cut the first 8 patches of the series to ease merging. The rest of the
+>   patches will go afterwards.
+>
+> Chances since v3:
+> - Rebased on top of drm-intel-next
+> - Dropped the msm patch to make patchset fully mergeable through
+>   drm-intel
+> - Made drm_dsc_set_const_params() ignore rc_model_size, picked up
+>   drm_dsc_set_initial_scale_value() patch by Jessica and switched
+>   intel_vdsc.c to use those two helpers.
+> - Added a patch to make i915 actually use rc_tgt_offset_high,
+>   rc_tgt_offset_low and rc_edge_factor from struct drm_dsc_config.
+>
+> Chances since v2:
+> - Rebased on top of drm-intel-next
+>
+> Chances since v1:
+> - Made drm_dsc_rc_buf_thresh static rather than exporting it
+> - Switched drm_dsc_rc_buf_thresh loop to use ARRAY_SIZE. Added
+>   BUILD_BUG_ON's to be sure that array sizes are correct
+> - Fixed rc_parameters_data indentation to be logical and tidy
+> - Fixed drm_dsc_setup_rc_params() kerneldoc
+> - Added a clause to drm_dsc_setup_rc_params() to verify bpp and bpc
+>   being set.
+> - Fixed range_bpg_offset programming in calculate_rc_params()
+> - Fixed bpp vs bpc bug in intel_dsc_compute_params()
+> - Added FIXME comment next to the customizations in
+>   intel_dsc_compute_params().
+>
+> Dmitry Baryshkov (8):
+>   drm/i915/dsc: change DSC param tables to follow the DSC model
+>   drm/i915/dsc: move rc_buf_thresh values to common helper
+>   drm/i915/dsc: move DSC tables to DRM DSC helper
+>   drm/i915/dsc: stop using interim structure for calculated params
+>   drm/display/dsc: use flat array for rc_parameters lookup
+>   drm/display/dsc: split DSC 1.2 and DSC 1.1 (pre-SCR) parameters
+>   drm/display/dsc: include the rest of pre-SCR parameters
+>   drm/display/dsc: add YCbCr 4:2:2 and 4:2:0 RC parameters
+>
+>  drivers/gpu/drm/display/drm_dsc_helper.c  | 986 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_vdsc.c | 443 ++--------
+>  include/drm/display/drm_dsc_helper.h      |   9 +
+>  3 files changed, 1042 insertions(+), 396 deletions(-)
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
