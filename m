@@ -1,51 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25A1C703ACA
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 19:55:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21676703AE4
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 19:57:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E7F610E11E;
-	Mon, 15 May 2023 17:55:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91F5310E0FD;
+	Mon, 15 May 2023 17:57:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mailrelay3-1.pub.mailoutpod2-cph3.one.com
- (mailrelay3-1.pub.mailoutpod2-cph3.one.com [IPv6:2a02:2350:5:402::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4D6810E1AA
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 May 2023 17:55:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ravnborg.org; s=rsa1;
- h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
- from:date:from;
- bh=kijHQtgxttKSzIe63Sc9ubU86PvOZObb1Y8eH8l4uL8=;
- b=PpeGelvP188K5le4qUEGfdhPvO3yuoJINwJQq7YwU35iPD2OZ2HP5inYrZlu1Ip4nK3uwMdCOcuRK
- HHF6eBV+up8OsVaWWfkceAGpRoUdWxtZZQLDkJOBSpPVGHOfUVs8Mq4yfGzFs3H+jtmAYdPDProQs6
- A8jTiSe+sXpvJvckRNGla1ooORRL1t0dObCWUx2b2AdurQZV0SNIfOXmx8MW7yNFgquGDm5wdGRf24
- UFCS7gc0c47vcS+QrXmqPjSphyVxTm4NnfSDMbOS+g037cjuKr57Vr1TYj2JrEDMwL7M6FrQt8vB8y
- SoqjjqyYr0XQYP5hAaqzUJGD1cB3oaQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
- d=ravnborg.org; s=ed1;
- h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
- from:date:from;
- bh=kijHQtgxttKSzIe63Sc9ubU86PvOZObb1Y8eH8l4uL8=;
- b=CEZapi9dJhYo7KuWSzbXL6YvLMoYg8ucSqleLN5Nl2lpxX058eR97ZyOBg1pcBWxDaD8vTJWBfFUb
- MgoQ75eAQ==
-X-HalOne-ID: b606303c-f349-11ed-93aa-b90637070a9d
-Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
- by mailrelay3 (Halon) with ESMTPSA
- id b606303c-f349-11ed-93aa-b90637070a9d;
- Mon, 15 May 2023 17:55:45 +0000 (UTC)
-Date: Mon, 15 May 2023 19:55:44 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20230515175544.GB1745913@ravnborg.org>
-References: <20230515094033.2133-1-tzimmermann@suse.de>
- <20230515094033.2133-3-tzimmermann@suse.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230515094033.2133-3-tzimmermann@suse.de>
-Subject: Re: [Intel-gfx] [PATCH v2 02/12] drm/armada: Use regular fbdev I/O
- helpers
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com
+ [IPv6:2607:f8b0:4864:20::b4a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 610D910E11E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 May 2023 17:57:10 +0000 (UTC)
+Received: by mail-yb1-xb4a.google.com with SMTP id
+ 3f1490d57ef6-ba718f5cd50so6938607276.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 May 2023 10:57:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20221208; t=1684173429; x=1686765429;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=99srR1wR+oKvE5/WokGr4LZs8iI5brQIGfN7GCM4UrE=;
+ b=qgBmAUsdMhWoFgdfIMBysrOMi/gESv0r34Xoj0igegtNAqMmPuZYSN8teIqqNTO4qr
+ +o9xeOyk9osBGJxQbQuznSPE37lto98WL25ntsbJrltXSslcw1N9UwCjtAleA783eS5O
+ 9YwANM1uEr3ANtlR1gIiXFGuiQX6HZHez7Az1JmZfWcgZ8XXRvwsKlQVSp1qYogeiohP
+ HZiUVEoNqJwtMnWDAcgFy21hoDfY46Zz54Xrc7sGdVcVXFt7SRAKBWqGimi1IwSKlxe6
+ LTURlyPrfkfy2KvuKglvcB3GJiMGve4uIMdIImYsP6Uo1qtixcy8iwFrsPFnos8ejlvp
+ S2tA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684173429; x=1686765429;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=99srR1wR+oKvE5/WokGr4LZs8iI5brQIGfN7GCM4UrE=;
+ b=Q289plITVMJlQxGk5CP/FHAA22WKTb+RDPpF8F27gspjLJkbMVduIK9cPVDZinIkq7
+ mqGWRDPojEHcS4aMX8LtE8zE19WLISZVv+lDC4qydCUIRw8q46SutAHNmzAEZ2J80ZjR
+ KRugW8j8VS0G3TUDHO5VGf6y8G8c9bNk/k9l/V+twkaI7m0Wlhc6KH/FFeCH0P/TWatI
+ Jx7DFjQuTU/F16IGXQl7DZH6HinsU6XN5q74YI8eWKenEqZZeKIZnsWHVOUC22x+3ltH
+ cXqY0f0Hh6GGxaz1j0JmEuafMyGy1SdLLjhIbvZ4O9iaWqz5YM5qj57YST367JsmOsn8
+ scFw==
+X-Gm-Message-State: AC+VfDxERQAr8d3QqUkycd3TLffJo7kIuQIAdzLSXMrQd7zkH/NPAOkL
+ j3+APxq7E1PWpJ0CQapIFibm12QcJmc=
+X-Google-Smtp-Source: ACHHUZ4He0csQ4Oev4VXrHXbI7rX8wyUIkfOSTVuja6DxDI6qDgf1L+qcXE8dfIu5YKaWZQqJrs9xqp4fJ0=
+X-Received: from zagreus.c.googlers.com
+ ([fda3:e722:ac3:cc00:7f:e700:c0a8:5c37])
+ (user=seanjc job=sendgmr) by 2002:a25:5454:0:b0:ba2:1a28:c852 with SMTP id
+ i81-20020a255454000000b00ba21a28c852mr14179279ybb.7.1684173429090; Mon, 15
+ May 2023 10:57:09 -0700 (PDT)
+Date: Mon, 15 May 2023 10:57:07 -0700
+In-Reply-To: <66685365-86f9-9ddf-d63b-f87621b05b88@intel.com>
+Mime-Version: 1.0
+References: <20230513003600.818142-1-seanjc@google.com>
+ <20230513003600.818142-6-seanjc@google.com>
+ <66685365-86f9-9ddf-d63b-f87621b05b88@intel.com>
+Message-ID: <ZGJyc7k1Z4gXQH2U@google.com>
+From: Sean Christopherson <seanjc@google.com>
+To: Zhi A Wang <zhi.a.wang@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [Intel-gfx] [PATCH v3 05/28] drm/i915/gvt: Explicitly check
+ that vGPU is attached before shadowing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,87 +70,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: freedreno@lists.freedesktop.org, linux-samsung-soc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, javierm@redhat.com, mripard@kernel.org,
- Russell King <linux@armlinux.org.uk>, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, linux-tegra@vger.kernel.org, airlied@gmail.com,
- linux-arm-kernel@lists.infradead.org
+Cc: Yan Y Zhao <yan.y.zhao@intel.com>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Ben Gardon <bgardon@google.com>, Paolo Bonzini <pbonzini@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
-
-On Mon, May 15, 2023 at 11:40:23AM +0200, Thomas Zimmermann wrote:
-> Use the regular fbdev helpers for framebuffer I/O instead of DRM's
-> helpers. Armada does not use damage handling, so DRM's fbdev helpers
-> are mere wrappers around the fbdev code.
+On Mon, May 15, 2023, Zhi A Wang wrote:
+> On 5/13/2023 8:35 AM, Sean Christopherson wrote:
+> > Move the check that a vGPU is attacked from is_2MB_gtt_possible() to its
+> > sole caller, ppgtt_populate_shadow_entry().  All of the paths in
+> > ppgtt_populate_shadow_entry() eventually check for attachment by way of
+> > intel_gvt_dma_map_guest_page(), but explicitly checking can avoid
+> > unnecessary work and will make it more obvious that a future cleanup of
+> > is_2MB_gtt_possible() isn't introducing a bug.
+> > 
 > 
-> By using fbdev helpers directly within each DRM fbdev emulation,
-> we can eventually remove DRM's wrapper functions entirely.
-> 
-> v2:
-> 	* use FB_IO_HELPERS option
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Russell King <linux@armlinux.org.uk>
-> ---
->  drivers/gpu/drm/armada/Kconfig        | 1 +
->  drivers/gpu/drm/armada/armada_fbdev.c | 9 ++++-----
->  2 files changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/armada/Kconfig b/drivers/gpu/drm/armada/Kconfig
-> index f5c66d89ba99..5afade25e217 100644
-> --- a/drivers/gpu/drm/armada/Kconfig
-> +++ b/drivers/gpu/drm/armada/Kconfig
-> @@ -3,6 +3,7 @@ config DRM_ARMADA
->  	tristate "DRM support for Marvell Armada SoCs"
->  	depends on DRM && HAVE_CLK && ARM && MMU
->  	select DRM_KMS_HELPER
-> +	select FB_IO_HELPERS if DRM_FBDEV_EMULATION
->  	help
->  	  Support the "LCD" controllers found on the Marvell Armada 510
->  	  devices.  There are two controllers on the device, each controller
-> diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/armada/armada_fbdev.c
-> index 0a5fd1aa86eb..6c3bbaf53569 100644
-> --- a/drivers/gpu/drm/armada/armada_fbdev.c
-> +++ b/drivers/gpu/drm/armada/armada_fbdev.c
-> @@ -5,6 +5,7 @@
->   */
->  
->  #include <linux/errno.h>
-> +#include <linux/fb.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  
-> @@ -34,11 +35,9 @@ static void armada_fbdev_fb_destroy(struct fb_info *info)
->  static const struct fb_ops armada_fb_ops = {
->  	.owner		= THIS_MODULE,
->  	DRM_FB_HELPER_DEFAULT_OPS,
-> -	.fb_read	= drm_fb_helper_cfb_read,
-> -	.fb_write	= drm_fb_helper_cfb_write,
-I had expected to see
-.fb_read = fb_io_read,
+> It might be better move this check to shadow_ppgtt_mm() which is used
+> in both shadow page table creation and pinning path so that the path
+> can bail out even earlier when creating a shadow page table but a vGPU
+> has not been attached to KVM yet.
 
-But maybe this only used when using damage handling?
+Ah, yes, that'll work.  I traced through all of the paths that lead to
+ppgtt_populate_shadow_entry(), and shadow_ppgtt_mm() is the only caller that isn't
+already gated by INTEL_VGPU_STATUS_ATTACHED or INTEL_VGPU_STATUS_ACTIVE (ACTIVE
+is set iff ATTACHED is set).
 
-Likewise for drm_fb_helper_cfb_write.
+I'll move the check up to shadow_ppgtt_mm() in the next version.
 
-??
+Thanks!
 
-> -	.fb_fillrect	= drm_fb_helper_cfb_fillrect,
-> -	.fb_copyarea	= drm_fb_helper_cfb_copyarea,
-> -	.fb_imageblit	= drm_fb_helper_cfb_imageblit,
-> +	.fb_fillrect	= cfb_fillrect,
-> +	.fb_copyarea	= cfb_copyarea,
-> +	.fb_imageblit	= cfb_imageblit,
 
-This part is as expected.
+workload_thread() <= pick_next_workload() => INTEL_VGPU_STATUS_ACTIVE
+|
+-> dispatch_workload()
+   |
+   |-> prepare_workload()
+       |
+       -> intel_vgpu_sync_oos_pages()
+       |  |
+       |  |-> ppgtt_set_guest_page_sync()
+       |      |
+       |      |-> sync_oos_page()
+       |          |
+       |          |-> ppgtt_populate_shadow_entry()
+       |
+       |-> intel_vgpu_flush_post_shadow()
+           |
+1:         |-> ppgtt_handle_guest_write_page_table()
+               |
+               |-> ppgtt_handle_guest_entry_add()
+                   |
+2:                 | -> ppgtt_populate_spt_by_guest_entry()
+                   |    |
+                   |    |-> ppgtt_populate_spt()
+                   |        |
+                   |        |-> ppgtt_populate_shadow_entry()
+                   |            |
+                   |            |-> ppgtt_populate_spt_by_guest_entry() [see 2]
+                   |
+                   |-> ppgtt_populate_shadow_entry()
 
-	Sam
 
->  	.fb_destroy	= armada_fbdev_fb_destroy,
->  };
->  
-> -- 
-> 2.40.1
+kvmgt_page_track_write()  <= KVM callback => INTEL_VGPU_STATUS_ATTACHED
+|
+|-> intel_vgpu_page_track_handler()
+    |
+    |-> ppgtt_write_protection_handler()
+        |
+        |-> ppgtt_handle_guest_write_page_table_bytes()
+            |
+            |-> ppgtt_handle_guest_write_page_table() [see 1]
