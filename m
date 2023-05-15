@@ -1,55 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 412E3702EB9
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 15:51:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B269702F5A
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 16:14:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 338AD10E077;
-	Mon, 15 May 2023 13:51:14 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B11F310E1D5;
- Mon, 15 May 2023 13:51:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684158671; x=1715694671;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=j7T61y8BuhzBAuiqVQj29xbrPcpXMiytN/YPhkiOn2M=;
- b=AyxaviuL9AD7ZaiFfiuLgvQ4hNanXZM6ahDZKNFCiTKm9W310YZ/IcHi
- /wn+sibLp4YpNhZsTZAgz5aq86uvIP2bfBTqN6f+kI3zdUpU5FRO0IEkI
- PBfgTMPn/fvxoIfGebVvtY0CdeYfHlxcofdZMDo2iySyC4If+X5Azfv09
- PY/0JKamBS5iILPPMOCrxhYBIULOKykXnr7QdQTbsgGO6isfwHcouOfNF
- CNTWcmyWk01IA0pAv2gZCfJC9tc3kiwY8DbD2jisp1ncTPWaHnp1EE/SY
- ZIZ5Iboplepn9nKT3y57itxcfnY3iLWVfO9BWAoL7cGQ0I1C9QwsNszUy w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="414601112"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="414601112"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 06:51:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="700966526"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="700966526"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 15 May 2023 06:51:08 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 15 May 2023 16:51:07 +0300
-Date: Mon, 15 May 2023 16:51:07 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <ZGI4y-6NKngtl0wh@intel.com>
-References: <20230512062417.2584427-1-ankit.k.nautiyal@intel.com>
- <20230512062417.2584427-5-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D41B410E1EB;
+	Mon, 15 May 2023 14:14:49 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com
+ [IPv6:2607:f8b0:4864:20::134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 944FB10E1EB
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 15 May 2023 14:14:47 +0000 (UTC)
+Received: by mail-il1-x134.google.com with SMTP id
+ e9e14a558f8ab-3319a6f989aso90296485ab.2
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 15 May 2023 07:14:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1684160086; x=1686752086;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=2MS5pErOMzbvk/m8xyqMY4LCt4dsHCCnspwEyjFHPZU=;
+ b=TgSOmd9nOSgUwBEaamPGIBsQ2dnGg5xOjFJTOfPO52mpIuJrUWaQIbGCBMg69V0Wkt
+ agKFK7IyrpDoxa3u2K6OP5e9fOLeo8rBxzNdqTYtpLohcZJJFP37icQILD5GoDenmWnX
+ wsCk6RjuARlhUN2XznJ0uyy31EP47lnQNsqmA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684160086; x=1686752086;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=2MS5pErOMzbvk/m8xyqMY4LCt4dsHCCnspwEyjFHPZU=;
+ b=gUDgiLNBQ4oiw/GtOgt2Qin6q65zedgGa72vb7RvwVrTuCZl+z/K8xNFDV4KIbTVvt
+ 4h31SvD4UeYnpEOKAG34WV7FW08RNHw07e7QwgITd61JE6sLFyAK9AtEIT/qPXlnLSv/
+ JtSinvGmU0CnMlM4Mn4zhMk4UHpKICE6XYpoRIgQ6dZnLgZVNblD0OpeeNwPDoVGxIGk
+ z9zheL+ocl40W87nLvUwOmcUL6QnjT1AlCoZtfvUXFFy94UPxkUsU1g39l95iel9QQyk
+ TsoTTns19fLK94OImUVAoAdxHXQRX7aBLC6YaCYK0WfTHwrx5K7lmVYPMmY956Eei8b2
+ GU4A==
+X-Gm-Message-State: AC+VfDzoXGhuo7Cds5FXLLcppSgpven7ekohQofImPdpgBSHIW536a+5
+ 03QRvf+PKjZvHcKFlgXWW0S7WQKH4/DL3fHz8Hw3mw==
+X-Google-Smtp-Source: ACHHUZ4A+iJyqIJrCSJTwSuMukBQeD17G9TycP/xyDPUcv+0di7XLHPF3K+lFiWNWCnIJtq6p0ssZqorGImUrrYO+zE=
+X-Received: by 2002:a92:4a06:0:b0:328:39a6:ed13 with SMTP id
+ m6-20020a924a06000000b0032839a6ed13mr20323235ilf.4.1684160086365; Mon, 15 May
+ 2023 07:14:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230512062417.2584427-5-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 04/13] drm/i915/dp: Update Bigjoiner
- interface bits for computing compressed bpp
+References: <20230515133630.2163170-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20230515133630.2163170-1-tvrtko.ursulin@linux.intel.com>
+From: Rob Clark <robdclark@chromium.org>
+Date: Mon, 15 May 2023 07:14:35 -0700
+Message-ID: <CAJs_Fx4tPYkPo-Oc2BduuzC09OfkB3PbFwBQ3b7U9rG_Akh_Fw@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH i-g-t 0/2] gputop/intel_gpu_top: Move name
+ to be the last field
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,47 +66,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 12, 2023 at 11:54:08AM +0530, Ankit Nautiyal wrote:
-> In Bigjoiner check for DSC, bigjoiner interface bits for DP for
-> DISPLAY > 13 is 36 (Bspec: 49259).
-> 
-> v2: Corrected Display ver to 13.
-> 
-> v3: Follow convention for conditional statement. (Ville)
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 24de25551a49..bca80c0793e9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -783,8 +783,9 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
->  	bits_per_pixel = min(bits_per_pixel, max_bpp_small_joiner_ram);
->  
->  	if (bigjoiner) {
-> +		int bigjoiner_interface_bits = DISPLAY_VER(i915) > 13 ? 36 : 24;
+On Mon, May 15, 2023 at 6:36=E2=80=AFAM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>
+> Rob,
+>
+> I thought maybe when you add memory stats the same field order like top(1=
+)
+> would feel more natural? That is client name comes last and is left justi=
+fied.
+> All other stats then come in the middle, between PID and NAME.
+>
+> DRM minor 0
+>     PID     render         copy         video     video-enhance  NAME
+>    2704 |=E2=96=8C           ||            ||            ||            | =
+kwin_x11
+>    2734 |=E2=96=8F           ||            ||            ||            | =
+plasmashell
+>    3932 |            ||            ||            ||            | krunner
+>    4414 |            ||            ||            ||            | xdg-desk=
+top-por
+> 1999477 |            ||            ||            ||            | firefox
+> 2162094 |            ||            ||            ||            | thunderb=
+ir
 
-'x >= 14' is the usual convention.
+Seems like a good idea, and more in line with top/htop/nvtop
 
-with that
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+BR,
+-R
 
->  		u32 max_bpp_bigjoiner =
-> -			i915->display.cdclk.max_cdclk_freq * 48 /
-> +			i915->display.cdclk.max_cdclk_freq * 2 * bigjoiner_interface_bits /
->  			intel_dp_mode_to_fec_clock(mode_clock);
->  
->  		bits_per_pixel = min(bits_per_pixel, max_bpp_bigjoiner);
-> -- 
-> 2.25.1
-
--- 
-Ville Syrjälä
-Intel
+> intel-gpu-top: Intel Alderlake_s (Gen12) @ /dev/dri/card0 -   15/  15 MHz
+>     99% RC6;  0.01/ 5.46 W;       34 irqs/s
+>
+>          ENGINES     BUSY                                        MI_SEMA =
+MI_WAIT
+>        Render/3D    1.31% |=E2=96=8C                                   | =
+     0%      0%
+>          Blitter    0.00% |                                    |      0% =
+     0%
+>            Video    0.00% |                                    |      0% =
+     0%
+>     VideoEnhance    0.00% |                                    |      0% =
+     0%
+>
+>     PID   Render/3D      Blitter        Video      VideoEnhance  NAME
+>    2734 |=E2=96=8F           ||            ||            ||            | =
+plasmashell
+>    2704 |=E2=96=8F           ||            ||            ||            | =
+kwin_x11
+>    1837 |=E2=96=8F           ||            ||            ||            | =
+Xorg
+> 3429732 |            ||            ||            ||            | kwrite
+> 2162094 |            ||            ||            ||            | thunderb=
+ird
+>
+> Cc: Rob Clark <robdclark@chromium.org>
+>
+> Tvrtko Ursulin (2):
+>   gputop: Move client name last
+>   intel_gpu_top: Move client name last
+>
+>  tools/gputop.c        | 19 +++++++++----------
+>  tools/intel_gpu_top.c | 19 +++++++++----------
+>  2 files changed, 18 insertions(+), 20 deletions(-)
+>
+> --
+> 2.37.2
+>
