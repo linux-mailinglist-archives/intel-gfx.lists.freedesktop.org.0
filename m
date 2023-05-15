@@ -1,58 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20087027F7
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 11:12:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEE7E70285F
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 11:23:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25C5310E178;
-	Mon, 15 May 2023 09:12:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20B7510E18A;
+	Mon, 15 May 2023 09:23:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F48F10E178;
- Mon, 15 May 2023 09:12:10 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E758610E18B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 May 2023 09:23:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684141930; x=1715677930;
+ t=1684142608; x=1715678608;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=dhM3m8vOuQXUzo4VYwSqzWC32+ahxslyhibsQL5kqac=;
- b=L2oK9Q6L+lt8y5MVhAryQsO0ILS63BSwuBIWwPw3boCsd9pbx3aqYwrt
- 9c1GbHcSXELiONd6WfaqKLcmQ23JIXtNj5P+gA0OPaRFvvBJ8rb42686Y
- sN3/fPHxWkMp4KtARX9rlBlRUNdixQjIkurCn1o1Z2sq6jPSC4NC+V8SW
- 2tjaEGIDW4RZtV3IDSqs0DajUPKx8c2Sqw5khkixiEyl8KrB43+SUazRR
- nSJ01Aaq83NONJTBz6fPQsj8sGti+ZWMq5MchcBMXn7tefwCBE0mHAIQT
- wSU/QtoTNOKaIG3BOYk+hjvl7iUGDOVum8gh+q8a8Y/S4vpePsgTdWBNM Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="437489750"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="437489750"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 02:12:09 -0700
+ bh=Iz4ryu0BItyfkO824Lvj0NdkjgAfrqSiI8mHjLU9Fig=;
+ b=FC6ulJF2lPYazRiQA/zAj6krxiTlW8zWsF6NK480BNy45161/DUcsNOH
+ 4a7cCFDPfOZygXUDpBQubJtStfLMnLwRkBtnisKxgJLRYg6YwtEWK1VtM
+ pEh2CaNcf8H+q9PYj4uzPHO8W/pw8C8ru2n7N06SikugL+vXMeUkxUmQ/
+ CBw6gr6thUiZTa0ggj2cCoZRCZkko6pc0abSHPyUnHAQY2FU2yMFenv/x
+ 96oTgZPPapC49QIBwXYsLznIXENSSPBGC5YR0Qt5kYFvQiUe3vZ3jDLEF
+ E0crAhioaU+pHOC3weG58wuSyfqFa77YGl+VJUSlA1Ue5nIymVKuZ43lW Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="348648302"
+X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="348648302"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2023 02:23:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="812870323"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="812870323"
+X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="790589906"
+X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="790589906"
 Received: from lveltman-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.42.56])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 02:12:04 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Suraj Kandpal
- <suraj.kandpal@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Rob Clark
- <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean
- Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>
-In-Reply-To: <20230504153511.4007320-1-dmitry.baryshkov@linaro.org>
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2023 02:23:21 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+In-Reply-To: <ZF5HpaE2MTwDguRz@rdvivi-mobl4>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230504153511.4007320-1-dmitry.baryshkov@linaro.org>
-Date: Mon, 15 May 2023 12:12:02 +0300
-Message-ID: <871qjij6vx.fsf@intel.com>
+References: <20230512110444.1448231-1-jani.nikula@intel.com>
+ <ZF5HpaE2MTwDguRz@rdvivi-mobl4>
+Date: Mon, 15 May 2023 12:23:18 +0300
+Message-ID: <87y1lqhrsp.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v5 0/8] drm/i915: move DSC RC tables to
- drm_dsc_helper.c
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/dpll: drop a useless
+ I915_STATE_WARN_ON()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,77 +60,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 04 May 2023, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> Other platforms (msm) will benefit from sharing the DSC config setup
-> functions. This series moves parts of static DSC config data from the
-> i915 driver to the common helpers to be used by other drivers.
+On Fri, 12 May 2023, Rodrigo Vivi <rodrigo.vivi@kernel.org> wrote:
+> On Fri, May 12, 2023 at 02:04:41PM +0300, Jani Nikula wrote:
+>> In general, we don't do assertions that a function gets called on the
+>> right platforms, and if we did, it should not be a state warn.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >
-> Note: the RC parameters were cross-checked against config files found in
-> DSC model 2021062, 20161212 (and 20150914). The first patch modifies
-> tables according to those config files, while preserving parameter
-> values using the code. I have not changed one of the values in the
-> pre-SCR config file as it clearly looks like a typo in the config file,
-> considering the table E in DSC 1.1 and in the DSC 1.1 SCR.
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-As I believe I've said before, I think it's fine to merge these either
-via drm-intel or drm-misc. Which do you prefer?
+Thanks for the review, pushed to din.
 
 BR,
 Jani.
 
 
-
->
-> Chances since v4:
-> - Rebased on top of drm-intel-next
-> - Cut the first 8 patches of the series to ease merging. The rest of the
->   patches will go afterwards.
->
-> Chances since v3:
-> - Rebased on top of drm-intel-next
-> - Dropped the msm patch to make patchset fully mergeable through
->   drm-intel
-> - Made drm_dsc_set_const_params() ignore rc_model_size, picked up
->   drm_dsc_set_initial_scale_value() patch by Jessica and switched
->   intel_vdsc.c to use those two helpers.
-> - Added a patch to make i915 actually use rc_tgt_offset_high,
->   rc_tgt_offset_low and rc_edge_factor from struct drm_dsc_config.
->
-> Chances since v2:
-> - Rebased on top of drm-intel-next
->
-> Chances since v1:
-> - Made drm_dsc_rc_buf_thresh static rather than exporting it
-> - Switched drm_dsc_rc_buf_thresh loop to use ARRAY_SIZE. Added
->   BUILD_BUG_ON's to be sure that array sizes are correct
-> - Fixed rc_parameters_data indentation to be logical and tidy
-> - Fixed drm_dsc_setup_rc_params() kerneldoc
-> - Added a clause to drm_dsc_setup_rc_params() to verify bpp and bpc
->   being set.
-> - Fixed range_bpg_offset programming in calculate_rc_params()
-> - Fixed bpp vs bpc bug in intel_dsc_compute_params()
-> - Added FIXME comment next to the customizations in
->   intel_dsc_compute_params().
->
-> Dmitry Baryshkov (8):
->   drm/i915/dsc: change DSC param tables to follow the DSC model
->   drm/i915/dsc: move rc_buf_thresh values to common helper
->   drm/i915/dsc: move DSC tables to DRM DSC helper
->   drm/i915/dsc: stop using interim structure for calculated params
->   drm/display/dsc: use flat array for rc_parameters lookup
->   drm/display/dsc: split DSC 1.2 and DSC 1.1 (pre-SCR) parameters
->   drm/display/dsc: include the rest of pre-SCR parameters
->   drm/display/dsc: add YCbCr 4:2:2 and 4:2:0 RC parameters
->
->  drivers/gpu/drm/display/drm_dsc_helper.c  | 986 ++++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_vdsc.c | 443 ++--------
->  include/drm/display/drm_dsc_helper.h      |   9 +
->  3 files changed, 1042 insertions(+), 396 deletions(-)
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 --
+>>  1 file changed, 2 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> index ed372d227aa7..936b8de9e439 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> @@ -464,8 +464,6 @@ static void ibx_assert_pch_refclk_enabled(struct drm_i915_private *dev_priv)
+>>  	u32 val;
+>>  	bool enabled;
+>>  
+>> -	I915_STATE_WARN_ON(!(HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv)));
+>> -
+>>  	val = intel_de_read(dev_priv, PCH_DREF_CONTROL);
+>>  	enabled = !!(val & (DREF_SSC_SOURCE_MASK | DREF_NONSPREAD_SOURCE_MASK |
+>>  			    DREF_SUPERSPREAD_SOURCE_MASK));
+>> -- 
+>> 2.39.2
+>> 
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
