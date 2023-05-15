@@ -1,53 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE7E70285F
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 11:23:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD19702908
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 May 2023 11:41:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20B7510E18A;
-	Mon, 15 May 2023 09:23:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF92E10E1AB;
+	Mon, 15 May 2023 09:40:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E758610E18B
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 May 2023 09:23:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684142608; x=1715678608;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Iz4ryu0BItyfkO824Lvj0NdkjgAfrqSiI8mHjLU9Fig=;
- b=FC6ulJF2lPYazRiQA/zAj6krxiTlW8zWsF6NK480BNy45161/DUcsNOH
- 4a7cCFDPfOZygXUDpBQubJtStfLMnLwRkBtnisKxgJLRYg6YwtEWK1VtM
- pEh2CaNcf8H+q9PYj4uzPHO8W/pw8C8ru2n7N06SikugL+vXMeUkxUmQ/
- CBw6gr6thUiZTa0ggj2cCoZRCZkko6pc0abSHPyUnHAQY2FU2yMFenv/x
- 96oTgZPPapC49QIBwXYsLznIXENSSPBGC5YR0Qt5kYFvQiUe3vZ3jDLEF
- E0crAhioaU+pHOC3weG58wuSyfqFa77YGl+VJUSlA1Ue5nIymVKuZ43lW Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="348648302"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="348648302"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 02:23:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="790589906"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="790589906"
-Received: from lveltman-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.42.56])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 02:23:21 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-In-Reply-To: <ZF5HpaE2MTwDguRz@rdvivi-mobl4>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230512110444.1448231-1-jani.nikula@intel.com>
- <ZF5HpaE2MTwDguRz@rdvivi-mobl4>
-Date: Mon, 15 May 2023 12:23:18 +0300
-Message-ID: <87y1lqhrsp.fsf@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3517810E18A;
+ Mon, 15 May 2023 09:40:38 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id CC1891F749;
+ Mon, 15 May 2023 09:40:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1684143634; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=gmr4FfaH5fbVmlkPgeABvPLh70AOaXqGDduq6NJ5ewI=;
+ b=HpNO9MAQmtFT0yZbTdZhHZmp8ZPFMHBzlHtwh31/3eOPlc7YuselHO3PrhTKLIIdYrpcc2
+ yC/MUpPcKq0V3gL1sfNqXEfpioV/utCoqMoBevvXfeJIV3ghSjd6AHvy2XnInEn7rrzxin
+ yDT9gUB2X5QNfk6+Rqi+VQnDwfrpyew=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1684143634;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=gmr4FfaH5fbVmlkPgeABvPLh70AOaXqGDduq6NJ5ewI=;
+ b=4pKrYyAEyEMbX3hdJ4z9QYEPh45rqeWWpG6ZCOLivDWeKEx/er2DoKqzb/RJCcDjiJXzJE
+ pM7snHdKQ6tgHNAg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 6EE5513466;
+ Mon, 15 May 2023 09:40:34 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id 5OD4GRL+YWTeTwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 15 May 2023 09:40:34 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: daniel@ffwll.ch, airlied@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, javierm@redhat.com, sam@ravnborg.org
+Date: Mon, 15 May 2023 11:40:21 +0200
+Message-Id: <20230515094033.2133-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/dpll: drop a useless
- I915_STATE_WARN_ON()
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 00/12] drm/fbdev: Remove DRM's helpers for
+ fbdev I/O
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,45 +66,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 12 May 2023, Rodrigo Vivi <rodrigo.vivi@kernel.org> wrote:
-> On Fri, May 12, 2023 at 02:04:41PM +0300, Jani Nikula wrote:
->> In general, we don't do assertions that a function gets called on the
->> right platforms, and if we did, it should not be a state warn.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+DRM provides a number of wrappers around fbdev cfb_() sys_(), fb_io_()
+and fb_sys_() helpers. The DRM functions don't provide any additional
+functionality for most DRM drivers. So remove them and call the fbdev
+I/O helpers directly.
 
-Thanks for the review, pushed to din.
+The DRM fbdev I/O wrappers were originally added because <linux/fb.h>
+does not protect its content with CONFIG_FB. DRM fbdev emulation did
+not build if the config option had been disabled. This has been
+fixed. For fbdev-generic and i915, the wrappers added support for damage
+handling. But this is better handled within the two callers, as each
+is special in its damage handling.
 
-BR,
-Jani.
+Patch 1 adds several internal Kconfig otpions that DRM drivers (and
+possibly other fbdev code) will use to select the correct set of I/O
+helpers.
+
+Patches 2 to 9 replace the DRM wrappers in a number of fbdev emulations.
+Patch 10 exports two helpers for damage handling. Patches 11 and 12
+update fbdev-generic and i915 with the help of the exported functions.
+The patches also remove DRM's fbdev I/O helpers, which are now unused.
+
+DRM's fbdev helpers had to select fbdev I/O helpers for I/O and for
+system memory. Each fbdev emulation now selects the correct helpers
+for itself. Depending on the selected DRM drivers, kernel builds will
+now only contain the necessary fbdev I/O helpers and might be slightly
+smaller in size.
+
+v2:
+	* simplify Kconfig handling (Sam)
+
+Thomas Zimmermann (12):
+  fbdev: Add Kconfig options to select different fb_ops helpers
+  drm/armada: Use regular fbdev I/O helpers
+  drm/exynos: Use regular fbdev I/O helpers
+  drm/gma500: Use regular fbdev I/O helpers
+  drm/radeon: Use regular fbdev I/O helpers
+  drm/fbdev-dma: Use regular fbdev I/O helpers
+  drm/msm: Use regular fbdev I/O helpers
+  drm/omapdrm: Use regular fbdev I/O helpers
+  drm/tegra: Use regular fbdev I/O helpers
+  drm/fb-helper: Export helpers for marking damage areas
+  drm/fbdev-generic: Implement dedicated fbdev I/O helpers
+  drm/i915: Implement dedicated fbdev I/O helpers
+
+ drivers/gpu/drm/Kconfig                    |  10 +-
+ drivers/gpu/drm/armada/Kconfig             |   1 +
+ drivers/gpu/drm/armada/armada_fbdev.c      |   9 +-
+ drivers/gpu/drm/drm_fb_helper.c            | 233 ++-------------------
+ drivers/gpu/drm/drm_fbdev_dma.c            |  12 +-
+ drivers/gpu/drm/drm_fbdev_generic.c        |  47 ++++-
+ drivers/gpu/drm/exynos/Kconfig             |   1 +
+ drivers/gpu/drm/exynos/Makefile            |   2 +-
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c  |  10 +-
+ drivers/gpu/drm/gma500/Kconfig             |   1 +
+ drivers/gpu/drm/gma500/fbdev.c             |   9 +-
+ drivers/gpu/drm/i915/Kconfig               |   1 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c |  51 ++++-
+ drivers/gpu/drm/msm/Kconfig                |   1 +
+ drivers/gpu/drm/msm/msm_fbdev.c            |  12 +-
+ drivers/gpu/drm/omapdrm/Kconfig            |   1 +
+ drivers/gpu/drm/omapdrm/omap_fbdev.c       |  12 +-
+ drivers/gpu/drm/radeon/Kconfig             |   1 +
+ drivers/gpu/drm/radeon/radeon_fbdev.c      |   9 +-
+ drivers/gpu/drm/tegra/Kconfig              |   1 +
+ drivers/gpu/drm/tegra/fbdev.c              |  11 +-
+ drivers/video/fbdev/Kconfig                |  21 ++
+ include/drm/drm_fb_helper.h                |  84 +-------
+ 23 files changed, 184 insertions(+), 356 deletions(-)
 
 
->> ---
->>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 --
->>  1 file changed, 2 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> index ed372d227aa7..936b8de9e439 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> @@ -464,8 +464,6 @@ static void ibx_assert_pch_refclk_enabled(struct drm_i915_private *dev_priv)
->>  	u32 val;
->>  	bool enabled;
->>  
->> -	I915_STATE_WARN_ON(!(HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv)));
->> -
->>  	val = intel_de_read(dev_priv, PCH_DREF_CONTROL);
->>  	enabled = !!(val & (DREF_SSC_SOURCE_MASK | DREF_NONSPREAD_SOURCE_MASK |
->>  			    DREF_SUPERSPREAD_SOURCE_MASK));
->> -- 
->> 2.39.2
->> 
-
+base-commit: 451e49cfbaa90720149e63f4fa9c7824013c783d
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.40.1
+
