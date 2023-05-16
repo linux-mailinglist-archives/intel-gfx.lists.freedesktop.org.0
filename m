@@ -2,27 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2068F70499C
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 11:44:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 737417049F1
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 11:59:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79ABD10E33B;
-	Tue, 16 May 2023 09:44:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74A6F10E331;
+	Tue, 16 May 2023 09:59:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 293AD10E332;
- Tue, 16 May 2023 09:44:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 302EE10E331;
+ Tue, 16 May 2023 09:59:37 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D1CCAAADE4;
- Tue, 16 May 2023 09:44:51 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 26A8FAADE0;
+ Tue, 16 May 2023 09:59:37 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============2123105684013273398=="
+ boundary="===============4536672244055425510=="
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Tue, 16 May 2023 09:44:51 -0000
-Message-ID: <168423029185.14225.692975493202110893@emeril.freedesktop.org>
+Date: Tue, 16 May 2023 09:59:37 -0000
+Message-ID: <168423117712.14226.2864077913123810153@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230515103225.688830-1-suraj.kandpal@intel.com>
 In-Reply-To: <20230515103225.688830-1-suraj.kandpal@intel.com>
@@ -45,7 +45,7 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2123105684013273398==
+--===============4536672244055425510==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,10 +104,10 @@ Known issues
 #### Issues hit ####
 
   * igt@gem_exec_nop@basic-sequential:
-    - shard-glk:          [PASS][4] -> ([PASS][5], [DMESG-WARN][6]) ([i915#118])
+    - shard-glk:          [PASS][4] -> ([DMESG-WARN][5], [PASS][6]) ([i915#118])
    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13148/shard-glk7/igt@gem_exec_nop@basic-sequential.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117615v5/shard-glk8/igt@gem_exec_nop@basic-sequential.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117615v5/shard-glk7/igt@gem_exec_nop@basic-sequential.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117615v5/shard-glk7/igt@gem_exec_nop@basic-sequential.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117615v5/shard-glk8/igt@gem_exec_nop@basic-sequential.html
 
   * igt@gem_lmem_swapping@heavy-verify-multi:
     - shard-glk:          NOTRUN -> ([SKIP][7], [SKIP][8]) ([fdo#109271] / [i915#4613]) +1 similar issue
@@ -321,7 +321,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117615v5/index.html
 
---===============2123105684013273398==
+--===============4536672244055425510==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -376,7 +376,7 @@ Content-Transfer-Encoding: 7bit
 <li>
 <p>igt@gem_exec_nop@basic-sequential:</p>
 <ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13148/shard-glk7/igt@gem_exec_nop@basic-sequential.html">PASS</a> -&gt; (<a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117615v5/shard-glk8/igt@gem_exec_nop@basic-sequential.html">PASS</a>, <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117615v5/shard-glk7/igt@gem_exec_nop@basic-sequential.html">DMESG-WARN</a>) (<a href="https://gitlab.freedesktop.org/drm/intel/issues/118">i915#118</a>)</li>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13148/shard-glk7/igt@gem_exec_nop@basic-sequential.html">PASS</a> -&gt; (<a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117615v5/shard-glk7/igt@gem_exec_nop@basic-sequential.html">DMESG-WARN</a>, <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117615v5/shard-glk8/igt@gem_exec_nop@basic-sequential.html">PASS</a>) (<a href="https://gitlab.freedesktop.org/drm/intel/issues/118">i915#118</a>)</li>
 </ul>
 </li>
 <li>
@@ -527,4 +527,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============2123105684013273398==--
+--===============4536672244055425510==--
