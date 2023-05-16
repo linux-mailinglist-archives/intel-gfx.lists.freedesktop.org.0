@@ -1,64 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C9B9705347
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 18:11:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 875077053C8
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 18:29:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F3B310E086;
-	Tue, 16 May 2023 16:11:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1289110E276;
+	Tue, 16 May 2023 16:29:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com
- [IPv6:2607:f8b0:4864:20::c2d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85D0F10E065;
- Tue, 16 May 2023 16:11:26 +0000 (UTC)
-Received: by mail-oo1-xc2d.google.com with SMTP id
- 006d021491bc7-54fb3ef9c53so2932464eaf.3; 
- Tue, 16 May 2023 09:11:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1684253485; x=1686845485;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=vaBNU8MoQeniJsGNNOBBa/mrT/HUCmYPBQz0uJsYTKk=;
- b=lRRoV+0YuzxOkiOFqqCvVHdlLGS4oyyAKLLXMB9376khWuRNYCM7JA4g3M8veQV0R8
- zAXhSU94bNifjBQ3b2JioSPp0MEvtpnaf0C6JzFeGop8bTw6BkzMGW54Ak0Y58V23Buy
- 6NE9354L2b8t2DmGMQQVzGzzue4Lznnh8p8BHTMZcOU14QhaYJVX6A2tA57JWajhKUo5
- F5lqZGBaxCv6Z7e5XovCl2etN3iU9LRL2jSG+GeSTaxGARw5XhCX8Zve1WEz16KpDQu7
- 2HC3FsYP2F8zY1MToRgU+oKv+p31IzTDPykGwpK72s3lRLITcL9FnIfNn+nnyD/mPf49
- prPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684253485; x=1686845485;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=vaBNU8MoQeniJsGNNOBBa/mrT/HUCmYPBQz0uJsYTKk=;
- b=XpZDQCabMkzHGYgQjbs2s8aptooJW31lP/HzxyRrbx6SNNCLHjwwD5poXqhbowaQZp
- jQF5Ox/eKlbUMJPJxhHt6Rvxkl5dw6baqIL741d/rLGnmRAQj1GUyfdMkDtstXvco8qG
- Hsn9/YooUSJm8DQOtiaXszZUG2qgMWbob0RVm5oZMayvcFntVVWEFIeiluLxc3zr5bIb
- u9CRObz6sWv9Rm+OHnzmwcK8yec6GAwARcXVXX9MEQPuolDyThNUYUHneqE92cTk4CS7
- qmAIsA86n5Prye5TBfCKMTLaPx2b4Nrm0RQ2fqQeZL354mGFrSaqOre1gzrgMMGtahS+
- 8YSA==
-X-Gm-Message-State: AC+VfDxYN1zJmzm7N28fOG3IqVLG/aj+WSlfK8SGhOOn1PMYtf/Alr+L
- +5mRzci9y/BB4E1MQWGrF7/mJLUiUI1aVCY+4FQ=
-X-Google-Smtp-Source: ACHHUZ4nvADM2PqszlRkzOK5G/Xhpqv1ZOXy6ubNOt5o8TJ6PwaF/S7EmxC/jQbfFjcqOx3/3fDOlHEVLN2h+uxmtFE=
-X-Received: by 2002:a4a:9297:0:b0:54f:4498:115c with SMTP id
- i23-20020a4a9297000000b0054f4498115cmr11490762ooh.9.1684253485199; Tue, 16
- May 2023 09:11:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230309123700.528641-1-jani.nikula@intel.com>
- <d844e8f4-dbfe-15a6-32db-4ab928fad77d@amd.com> <87bkl29jk0.fsf@intel.com>
- <875y8sitv5.fsf@intel.com>
-In-Reply-To: <875y8sitv5.fsf@intel.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 16 May 2023 12:11:14 -0400
-Message-ID: <CADnq5_NL-Ouh5-NRaoRknPDRTq2NDKWcHKxDEXfmkuqgWL54kw@mail.gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6775410E276
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 May 2023 16:29:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684254582; x=1715790582;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=wa2LgatE+fsRu51r/7m933qWO4/YTzia4H5GIfjjVaw=;
+ b=IWFP/pBLKFtEPp+fg2mZ3Ew02hEXWG0fNM3cbpW9ec/kGZ9BC72ke0uB
+ wzuBR65+5JagxGLyHbBKV2G6qdhgt/gxovWhZJxcvnLxo65PxmoFDW1EF
+ 6MqSNmoK9/O62o7yqoxjLlwU61KtnS++25Liszj+7KA4Gs4phS4KCiUG2
+ LPPGHR5epetWegY2Sc5XVdk7j7ljUijIUuBL0hzvPndLpBzgZEiqYljY1
+ p3Lcsk/lzzhkurYOI66rrSpwh3jlAgWlUNLAfNFIzgD0JHtGMQRgTnEjn
+ /zM/VPHDcsIflwEdqvd9YIicIv+sfhktbOV2PpRX/k/UkiU/lh4S0RW4r w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="437874368"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="437874368"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2023 09:29:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="734344178"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="734344178"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.212.213.20])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2023 09:29:39 -0700
+Date: Tue, 16 May 2023 09:29:13 -0700
+Message-ID: <87fs7wp7dy.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <9bc89ec1-2333-5b1c-b732-b9641e5f8947@linux.intel.com>
+References: <20230506005816.1891043-1-umesh.nerlige.ramappa@intel.com>
+ <20230506005816.1891043-5-umesh.nerlige.ramappa@intel.com>
+ <87ilcxdw0g.wl-ashutosh.dixit@intel.com>
+ <ZF7BMH5W/lzS2tq0@orsosgc001.jf.intel.com>
+ <87h6shdtn0.wl-ashutosh.dixit@intel.com>
+ <ZF7PXazccbkufp1X@orsosgc001.jf.intel.com>
+ <1aabf497-81e8-d3b6-1547-251324562494@linux.intel.com>
+ <87lehpp9tw.wl-ashutosh.dixit@intel.com>
+ <9bc89ec1-2333-5b1c-b732-b9641e5f8947@linux.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/ttm: let struct ttm_device_funcs be
- placed in rodata
+Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/pmu: Add reference counting to
+ the sampling timer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,103 +70,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Huang Rui <ray.huang@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 16, 2023 at 4:05=E2=80=AFAM Jani Nikula <jani.nikula@intel.com>=
- wrote:
+On Tue, 16 May 2023 00:12:45 -0700, Tvrtko Ursulin wrote:
 >
-> On Thu, 09 Mar 2023, Jani Nikula <jani.nikula@intel.com> wrote:
-> > On Thu, 09 Mar 2023, Christian K=C3=B6nig <christian.koenig@amd.com> wr=
-ote:
-> >> Am 09.03.23 um 13:37 schrieb Jani Nikula:
-> >>> Make the struct ttm_device_funcs pointers const so the data can be pl=
-aced in rodata.
-> >>>
-> >>> Cc: Christian Koenig <christian.koenig@amd.com>
-> >>> Cc: Huang Rui <ray.huang@amd.com>
-> >>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> On 15/05/2023 22:24, Dixit, Ashutosh wrote:
+> > On Mon, 15 May 2023 02:52:35 -0700, Tvrtko Ursulin wrote:
 > >>
-> >> Good idea, Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com=
+> >> On 13/05/2023 00:44, Umesh Nerlige Ramappa wrote:
+> >>> On Fri, May 12, 2023 at 04:20:19PM -0700, Dixit, Ashutosh wrote:
+> >>>> On Fri, 12 May 2023 15:44:00 -0700, Umesh Nerlige Ramappa wrote:
+> >>>>>
+> >>>>> On Fri, May 12, 2023 at 03:29:03PM -0700, Dixit, Ashutosh wrote:
+> >>>>>> On Fri, 05 May 2023 17:58:14 -0700, Umesh Nerlige Ramappa wrote:
+> >>>>>>>
+> >>>>>>
+> >>>>>> Hi Umesh/Tvrtko,
+> >>>>>>
+> >>>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> >>>>>>>
+> >>>>>>> We do not want to have timers per tile and waste CPU cycles and
+> >>>>> energy via
+> >>>>>>> multiple wake-up sources, for a relatively un-important task of P=
+MU
+> >>>>>>> sampling, so keeping a single timer works well. But we also do not
+> >>>>> want
+> >>>>>>> the first GT which goes idle to turn off the timer.
+> >>>>>>>
+> >>>>>>> Add some reference counting, via a mask of unparked GTs, to solve
+> >>>>> this.
+> >>>>>>>
+> >>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> >>>>>>> Signed-off-by: Umesh Nerlige Ramappa
+> >>>>> <umesh.nerlige.ramappa@intel.com>
+> >>>>>>> ---
+> >>>>>>>  =A0 drivers/gpu/drm/i915/i915_pmu.c | 12 ++++++++++--
+> >>>>>>>  =A0 drivers/gpu/drm/i915/i915_pmu.h |=A0 4 ++++
+> >>>>>>>  =A0 2 files changed, 14 insertions(+), 2 deletions(-)
+> >>>>>>>
+> >>>>>>> diff --git a/drivers/gpu/drm/i915/i915_pmu.c
+> >>>>> b/drivers/gpu/drm/i915/i915_pmu.c
+> >>>>>>> index 2b63ee31e1b3..669a42e44082 100644
+> >>>>>>> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> >>>>>>> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> >>>>>>> @@ -251,7 +251,9 @@ void i915_pmu_gt_parked(struct intel_gt *gt)
+> >>>>>>>  =A0=A0=A0=A0 * Signal sampling timer to stop if only engine even=
+ts are
+> >>>>> enabled and
+> >>>>>>>  =A0=A0=A0=A0 * GPU went idle.
+> >>>>>>>  =A0=A0=A0=A0 */
+> >>>>>>> -=A0=A0=A0 pmu->timer_enabled =3D pmu_needs_timer(pmu, false);
+> >>>>>>> +=A0=A0=A0 pmu->unparked &=3D ~BIT(gt->info.id);
+> >>>>>>> +=A0=A0=A0 if (pmu->unparked =3D=3D 0)
+> >>>>>>> +=A0=A0=A0=A0=A0=A0=A0 pmu->timer_enabled =3D pmu_needs_timer(pmu=
+, false);
+> >>>>>>>
+> >>>>>>>  =A0=A0=A0 spin_unlock_irq(&pmu->lock);
+> >>>>>>>  =A0 }
+> >>>>>>> @@ -268,7 +270,10 @@ void i915_pmu_gt_unparked(struct intel_gt *g=
+t)
+> >>>>>>>  =A0=A0=A0 /*
+> >>>>>>>  =A0=A0=A0=A0 * Re-enable sampling timer when GPU goes active.
+> >>>>>>>  =A0=A0=A0=A0 */
+> >>>>>>> -=A0=A0=A0 __i915_pmu_maybe_start_timer(pmu);
+> >>>>>>> +=A0=A0=A0 if (pmu->unparked =3D=3D 0)
+> >>>>>>> +=A0=A0=A0=A0=A0=A0=A0 __i915_pmu_maybe_start_timer(pmu);
+> >>>>>>> +
+> >>>>>>> +=A0=A0=A0 pmu->unparked |=3D BIT(gt->info.id);
+> >>>>>>>
+> >>>>>>>  =A0=A0=A0 spin_unlock_irq(&pmu->lock);
+> >>>>>>>  =A0 }
+> >>>>>>> @@ -438,6 +443,9 @@ static enum hrtimer_restart i915_sample(struct
+> >>>>> hrtimer *hrtimer)
+> >>>>>>>  =A0=A0=A0=A0 */
+> >>>>>>>
+> >>>>>>>  =A0=A0=A0 for_each_gt(gt, i915, i) {
+> >>>>>>> +=A0=A0=A0=A0=A0=A0=A0 if (!(pmu->unparked & BIT(i)))
+> >>>>>>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 continue;
+> >>>>>>> +
+> >>>>>>
+> >>>>>> This is not correct. In this series we are at least sampling
+> >>>>> frequencies
+> >>>>>> (calling frequency_sample) even when GT is parked. So these 3 lines
+> >>>>> should be
+> >>>>>> deleted. engines_sample will get called and will return without do=
+ing
+> >>>>>> anything if engine events are disabled.
+> >>>>>
+> >>>>> Not sure I understand. This is checking pmu->'un'parked bits.
+> >>>>
+> >>>> Sorry, my bad. Not "engines_sample will get called and will return
+> >>>> without
+> >>>> doing anything if engine events are disabled" but "engines_sample wi=
+ll
+> >>>> get
+> >>>> called and will return without doing anything if GT is not awake". T=
+his
+> >>>> is
+> >>>> the same as the previous behavior before this series.
+> >>>>
+> >>>> Umesh and I discussed this but writing this out in case Tvrtko takes=
+ a
+> >>>> look.
+> >>>
+> >>> Sounds good, Dropping the check here in the new revision.
+> >
+> > Hi Tvrtko,
+> >
+> >> I think it is safe to not have the check, but I didn't quite understan=
+d the
+> >> "this is not correct" part. I can only see the argument that it could =
+be
+> >> redundant, not that it is incorrect.
+> >
+> > I said that it looks incorrect to me because in this series we are still
+> > sampling freq when gt is parked and we would be skipping that if we
+> > included:
+> >		if (!(pmu->unparked & BIT(i)))
+> >			continue;
 >
-> >
-> > Thanks!
-> >
-> >> Should I push it to drm-misc-next or do you need it on some other bran=
-ch?
-> >
-> > Go ahead, I'm not urgently depending on it.
+> Ah okay. We concluded in your upstream patch that looks like an omission.
 >
-> Christian, I guess this fell between the cracks? Can I just push it to
-> drm-misc-next?
+> >> In which case I think it should better stay since it is way more effic=
+ient,
+> >> given this gets called at 200Hz, than the *atomic* atomic_inc_not_zero
+> >> (from intel_wakeref_get_if_active).
+> >
+> > Where efficiency goes, when we merge the patch below (I have a v2 based=
+ on
+> > your suggestion but I am waiting till Umesh's series gets merged):
+> >
+> > https://patchwork.freedesktop.org/series/117658/
+> >
+> > this will turn off the timer itself which will be even more
+> > efficient. Rather than use the above code where the timer is running and
+> > then we skip. So after the link above is merged the above code will be
+> > truly redundant. That was a second reason why I said delete it.
+>
+> On multi-tile where not all tiles are being looked at it still pays to
+> avoid the atomic check.
 
-Go ahead.  Christian is out of the office this week.
+Ah ok I overlooked there was a single timer shared between multiple tiles.
 
-Alex
+> It doesn't apply to tools like intel_gpu_top, which
+> monitor all tiles, but still I think there isn't any harm in having the
+> fast check.
 
->
-> BR,
-> Jani.
->
->
-> >
-> > BR,
-> > Jani.
-> >
-> >>
-> >> Christian.
-> >>
-> >>> ---
-> >>>   drivers/gpu/drm/ttm/ttm_device.c | 2 +-
-> >>>   include/drm/ttm/ttm_device.h     | 4 ++--
-> >>>   2 files changed, 3 insertions(+), 3 deletions(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/t=
-tm_device.c
-> >>> index ae2f19dc9f81..a71bb1362de4 100644
-> >>> --- a/drivers/gpu/drm/ttm/ttm_device.c
-> >>> +++ b/drivers/gpu/drm/ttm/ttm_device.c
-> >>> @@ -190,7 +190,7 @@ EXPORT_SYMBOL(ttm_device_swapout);
-> >>>    * Returns:
-> >>>    * !0: Failure.
-> >>>    */
-> >>> -int ttm_device_init(struct ttm_device *bdev, struct ttm_device_funcs=
- *funcs,
-> >>> +int ttm_device_init(struct ttm_device *bdev, const struct ttm_device=
-_funcs *funcs,
-> >>>                 struct device *dev, struct address_space *mapping,
-> >>>                 struct drm_vma_offset_manager *vma_manager,
-> >>>                 bool use_dma_alloc, bool use_dma32)
-> >>> diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_devic=
-e.h
-> >>> index 56e82ba2d046..c22f30535c84 100644
-> >>> --- a/include/drm/ttm/ttm_device.h
-> >>> +++ b/include/drm/ttm/ttm_device.h
-> >>> @@ -223,7 +223,7 @@ struct ttm_device {
-> >>>      * @funcs: Function table for the device.
-> >>>      * Constant after bo device init
-> >>>      */
-> >>> -   struct ttm_device_funcs *funcs;
-> >>> +   const struct ttm_device_funcs *funcs;
-> >>>
-> >>>     /**
-> >>>      * @sysman: Resource manager for the system domain.
-> >>> @@ -287,7 +287,7 @@ static inline void ttm_set_driver_manager(struct =
-ttm_device *bdev, int type,
-> >>>     bdev->man_drv[type] =3D manager;
-> >>>   }
-> >>>
-> >>> -int ttm_device_init(struct ttm_device *bdev, struct ttm_device_funcs=
- *funcs,
-> >>> +int ttm_device_init(struct ttm_device *bdev, const struct ttm_device=
-_funcs *funcs,
-> >>>                 struct device *dev, struct address_space *mapping,
-> >>>                 struct drm_vma_offset_manager *vma_manager,
-> >>>                 bool use_dma_alloc, bool use_dma32);
-> >>
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+I think in that case the simplest would be to just put this code back (as
+it was in Tvrtko's original patch) and not worry about sampling the freq's
+when gt is parked, since we want to stop doing that anyway.
+
+So let's just put this code back.
+
+Thanks.
+--
+Ashutosh
