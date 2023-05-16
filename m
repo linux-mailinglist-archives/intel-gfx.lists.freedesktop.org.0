@@ -2,140 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FEB57049F6
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 12:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 957C37049FD
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 12:05:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 742B010E33B;
-	Tue, 16 May 2023 10:02:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFF6210E33F;
+	Tue, 16 May 2023 10:05:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 504CD10E33B;
- Tue, 16 May 2023 10:02:53 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBFC410E20B;
+ Tue, 16 May 2023 10:05:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684231373; x=1715767373;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=L/LNoqs1tISEtlbcw7xR+7RlMB79xqPMCNJdcg7oGJ0=;
- b=Gt07ECsIWDkWGUMMCi4leJThUe8aiRiZ4UbVDKTqIFenE1VB5Vso77aI
- 8vLBhiVllDyz/RZrHLcqD3snH7AD0oEkCmsWlTrparF9+MZDTVkGF+vKJ
- 6YXT+Ew+uRBTHIO2l7ValH3JPJckWfQbdwo1J2thLg4cJl/iPhBSSrNPj
- y76yJbYsImL6hEcIgjwbZa8JtTUfbqtHGEuYF6y3aHit8styBAr5tdU6D
- 7hsdVrAyupg0v0mhQXrohBzKAPEQ/3pd2yJV8/K1836lLJrsl3qyfMBBz
- SCmav4AZJIFrOrmw6kZS/h2RROlksnWIDoHk6fohSGTmmj4XHQ2bYkqw9 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="437778284"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="437778284"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 03:02:52 -0700
+ t=1684231531; x=1715767531;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tR3G7Pts09x0WP1Hz1n0NWQbVy4UmwZZkVMDVAsVmXg=;
+ b=MEoyFyWqtgY2glvk6JQZALII9SOlKIJzIxxWg0JQwmK6UHj81fKYhRbi
+ mmAY22gUlSHH4PMZ0cLjaAvYCgBIf2F189MvTxwl6I0mRooaDT1pvckve
+ OnbuGirWKBUFoECD5KCnDoJbE1lheD63XuwL3Rcg5s49oRa1+0Rwq3P8r
+ JF67n3nQAg1uSPKChvrhB/2N2J/5wfdpEu0A7m/wrvnk3llY3XYUDeLIe
+ 9ulOe3zvmu5qfLJf1gsiK6yC9cJLy9dcYJBZ9DrhiQOGfzGIBXAIdiDCP
+ +bXQz1trvbsTC1vOcWeEzR1xGXhBpa2zjeos9XWKacv8zKS8G4pJAj3Me A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="351469777"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="351469777"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2023 03:05:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="770977447"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="770977447"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga004.fm.intel.com with ESMTP; 16 May 2023 03:02:52 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 16 May 2023 03:02:52 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 16 May 2023 03:02:51 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Tue, 16 May 2023 03:02:51 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Tue, 16 May 2023 03:02:51 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=beMbRf6nvxtyUR3rxYr9xn5I7iJ37wMpR5MPiCWFCiscbT4El1A5TZY8IIaE4GNwv23vDvtjuzuV4dfsYzi6h/a/1g8fJq4KT8Xek3qY9xIOKTsk3enxrd0/ge37gQNmo+cAxjC5dBeR1FCnMSfJ5aG3D77vtdl9TRY9iJP3pSG/KMccXfpv/XFG1sI0e5rT+OVzYLShcGlciMKRqHOmN/pvxjw2Dv04tm1zZ29RyEKoQG/3mdpWgBs2/Kprgg/0M8XgCmRjiJ1so5tDkX8FZjDyWw9gscss6EvVCaVVX7l8u771Nj/DOKTw0np9yVMtY25z3JyDJ8DDArBCCnL5jA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hru+np02JJfkgaLRRMYDC7UyI4+C5LvTpxsG9EUVoEo=;
- b=kaOhKHFtTmgzkRECYfNF8A7QcqMVlKvgH2WLbBRoDQHuRIG0anyPa0GD9tP3vyNRXhsZAmgZ80nQBRsYbRhDchbalBlqf6jm7UvxUcTHY9G2X1EXv6l6/BYTG4hePLRqrl+nKJhHNemfZsp6XRxeF36eGdxNqZ1fkLk4O/FkV+O77sSf2FOPQAvbT87kOkhkKvwbBuMXFK3ZQ7Jx7fUp65m9bzy1dyhe5XPPTSQm+0vXOc3FX8kD8rrdo+VS9S+n5Ar7jjkPzBSOP9G+azeAeR0KKRIhJqC8XLCvjcwlfHJfEf9H1nrvfcYA93tnLU4o93uyMrId7wneJ5SQFjilEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB5957.namprd11.prod.outlook.com (2603:10b6:510:1e0::14)
- by SA1PR11MB6735.namprd11.prod.outlook.com (2603:10b6:806:25e::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.30; Tue, 16 May
- 2023 10:02:48 +0000
-Received: from PH7PR11MB5957.namprd11.prod.outlook.com
- ([fe80::c190:aae6:9019:1ac8]) by PH7PR11MB5957.namprd11.prod.outlook.com
- ([fe80::c190:aae6:9019:1ac8%6]) with mapi id 15.20.6387.030; Tue, 16 May 2023
- 10:02:47 +0000
-Date: Tue, 16 May 2023 17:37:42 +0800
-From: Yan Zhao <yan.y.zhao@intel.com>
-To: Sean Christopherson <seanjc@google.com>
-Message-ID: <ZGNO5gYKOhhnslsp@yzhao56-desk.sh.intel.com>
-References: <20230513003600.818142-1-seanjc@google.com>
- <20230513003600.818142-4-seanjc@google.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230513003600.818142-4-seanjc@google.com>
-X-ClientProxiedBy: SG2PR01CA0192.apcprd01.prod.exchangelabs.com
- (2603:1096:4:189::21) To PH7PR11MB5957.namprd11.prod.outlook.com
- (2603:10b6:510:1e0::14)
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="875569326"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="875569326"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.29.27])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2023 03:05:26 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Tue, 16 May 2023 12:05:11 +0200
+Message-Id: <20230516100511.33150-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB5957:EE_|SA1PR11MB6735:EE_
-X-MS-Office365-Filtering-Correlation-Id: f5613010-340a-4755-8fa8-08db55f4b38c
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: aINCX1nmUTyJPWligkw4mBkQpDPoYC2t2m6j+EJiO0zsCX1X2bbMpRUr8wZZ4lDTWaS1kyClVD5dT5mo7YDfXugR5CpI6L1GWkZXjnVIXC1TJAryfrZ/jgnyg6Eehx1xPsyVm6oSqtHunk4FYIsHNKlzj+RvEyosN2g9eSGkqEsQ2xlzTNlfr8gMmYZZVvDFFw0TBXpV0edu7O3q3tm80sQO+sVEhmgw4XiaUvTOupz3APWtdFTYebl0hB7f4UNhi33NCNZuoREyiN+V+UXD6sZ1SZ+l5eGc2EZhoFl6t9mX4ga2xbYl761SA1+fS9679oRJWowd5oEjJmxv2x4a1aueMSyyC3JrcWRTVEjhV+Bi7qmZ5Tp8cJYPodYu/eo1xsO9UcYQHBNMD/o+wE1URHg8PiREnbkydU0mVq6O5J9g5WlWskUj3bLN51YD7HaHDOhEMj9Wrns946dCC2biHxd/9VWLC1t+oOgP9LOS7ppJyRTg/zYOaU9M81ny/j9gYuNaIXR2NTOvoZCqpc1VvkzQR6SFnaWO2ttmYDOK1ls=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB5957.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(366004)(346002)(136003)(376002)(39860400002)(451199021)(54906003)(316002)(478600001)(66476007)(6916009)(66946007)(66556008)(966005)(4326008)(6486002)(86362001)(15650500001)(5660300002)(8676002)(8936002)(6666004)(3450700001)(82960400001)(2906002)(41300700001)(38100700002)(6512007)(26005)(186003)(6506007)(83380400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?prfZnhYPtA6Y2yRV/GDaVNxR8UzNtSzl4Qo+NSa2OvotFhnKQqjOQbL5ZwES?=
- =?us-ascii?Q?K9qGnq8S83YZb+rAfNXNYIrU0Bam5Tvu8WbSCQcCZQI/+TIs15BUxajtNKbs?=
- =?us-ascii?Q?1iriPrM6QR6rCQgncsEz0aft8HxPyb5lhLKdyrPDk1QkcNolxzNpsFRifqv5?=
- =?us-ascii?Q?8ZTsQ/hoUXwq4Mq14xE4+dLX00FaevIibiTHX3OprSl3nNMDcGyXj2ktPKI4?=
- =?us-ascii?Q?MOzzQuWNIANwhoZ5Fvd4O1j5qCbAwHe2jwyOTvEG57eG9bllwhg7ijJu/Mmm?=
- =?us-ascii?Q?U+drwfOxhJTs6GuAqyo5qY6xJJCAw+Qpfwo/h/rxmEJhvE2ETeiQA68+/xGs?=
- =?us-ascii?Q?96U9wM/4GmuiTxqp56BnYXlcMoKD8Vhf7yatpnl+5i8DjIMXv0iLeLJVtAxX?=
- =?us-ascii?Q?Nn7/BDRZNu/YDKNAWcuHDQEPQkZwcpTrnawGAF6nI//4JpJsQKGkG68CqkIa?=
- =?us-ascii?Q?mecHOuOuMKMnvapgMEctjy5IO/NpDowulQW0UgENwS6NzhMIn4wlmTTj4ls7?=
- =?us-ascii?Q?qEtt7f4Qk7/72wmp/o9u58kMhLrrGZRL97RP40LtlQjHHKBPBsheN2gC8qYB?=
- =?us-ascii?Q?y5OiV+QYpDOuzrO//Tr6sLd/UNGixTbX+79FbjS7isoGdrl3Iez8f+kNpC9K?=
- =?us-ascii?Q?A2Fom0izZZ2YaI8nQGH4+ysR5FGw/aia14p+XgkPhjMhca5vW7qxAxB+9q9v?=
- =?us-ascii?Q?d8aXJ7IgSw/QwhKgKBiAB4hSzvtzY5qXsdKI35bg0TADCtqqPRCHUYMlRpnz?=
- =?us-ascii?Q?UZ2JlveKab/5C+AS2XKMM5PbgqoWm1uHqjbGD2H8iHUEl0dJYYeduljwhX8O?=
- =?us-ascii?Q?vVF2jBZfofqNqg8aJlNPlNGeBuHORVsBwPAFwlhKWAgtBdTTxgoFsSPMKlKb?=
- =?us-ascii?Q?CXVF6S2MvHKc1VZGWfxLyievc3hgjXzqbKWkwDAIGr9PR45a5NZm9ODKo50m?=
- =?us-ascii?Q?AsogaKAAye238NWXespOqrYsgmjFnVIcRzFHu9hN+V5O2fW/kawmfUNV7mgc?=
- =?us-ascii?Q?P46Q0XyGn6hYvZBCZ2PTX+Ph9J5Toj8h1E7I41/rvy5k8emud1BtVRFgcIp/?=
- =?us-ascii?Q?uCXkaW1+fe7Ioq3jnvCfKzqYoSx0ki9l6Ul4nJrGjOQrA96i0JcstmHsVj0G?=
- =?us-ascii?Q?zvI/p3EphVP7b8n22/pN69dXnyMSOQqZCJ18U/peqttkPyyjJp75gA1ehSVq?=
- =?us-ascii?Q?C6mbTAVSsE3dyeJkPP3oEO0g64eBxRWlWIRp45G/XJyarKrflrgAjybIaM6Q?=
- =?us-ascii?Q?QMcQWUvxY/a8jOw+3/99YEdF3RgAoG7wJILy/nFso5vyQc/Gh7c3DucQ5wx3?=
- =?us-ascii?Q?eTXCcc/+DdSAtM2l5rbSe5VIGJUDcc5VYlwBq4h3Hz+VNHcbC4DP6hNvFXrS?=
- =?us-ascii?Q?sz5NWvhUoL8LcDh8pPv0IpNCiG7XzOUtBA1tZrJjRIlTW9vKbQnwx4LhuuYr?=
- =?us-ascii?Q?29pRr4P7rdtx/P7371prZiDb9Cwov/yOGXGs91dn3tlujvW5gYSjFj4V2j5k?=
- =?us-ascii?Q?u24Imt71sf5JbM7AR0UHumgjzaUNV804agSWQu0FwcDS1xO8youOr7AB72PL?=
- =?us-ascii?Q?hGd82X8QVCp8sEkbKeLOKlPmsnpyaoIc3DOKGe0o?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5613010-340a-4755-8fa8-08db55f4b38c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5957.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2023 10:02:47.7741 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: i/Z9cOk3TFAdjdJnNPm09nxImOZnjk2ZxcG/emC9vvSc9k1y6CHkfTJ+qiRDjSo40BJmBhakVVKNGwhDG8pp1Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6735
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 03/28] drm/i915/gvt: Verify hugepages are
- contiguous in physical address space
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH i-g-t v2] tests/i915: Exercise coherency of
+ mmapped frame buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,65 +57,365 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Yan Zhao <yan.y.zhao@intel.com>
-Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ben Gardon <bgardon@google.com>,
- Paolo Bonzini <pbonzini@redhat.com>, intel-gvt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-hi Sean
+Visible glitches have been observed when running graphics applications on
+Linux under Xen hypervisor.  Those observations have been confirmed with
+failures from kms_pwrite_crc IGT test that verifies data coherency of DRM
+frame buffer objects using hardware CRC checksums calculated by display
+controllers, exposed to userspace via debugfs.  Since not all applications
+exhibit the issue, we need to exercise more methods than just pwrite in
+order to identify all affected processing paths.
 
-Do you think it's necessary to double check that struct page pointers
-are also contiguous?
+Create a new test focused on exercising coherency of future scanout
+buffers populated over mmap.  Cover all available mmap methods and caching
+modes expected to be device coherent.
 
-And do you like to also include a fix as below, which is to remove the
-warning in vfio_device_container_unpin_pages() when npage is 0?
+v2: Drop unused functions -- left-overs from unsuccessful negative subtest
+    attempts requiring consistent crc mismatches in non-coherent modes,
+  - since all subtests now call igt_assert_crc_equal(), move it from
+    subtest bodies to an updated and renamed helper,
+  - drop "derived from ..." info from copyrights comment (Kamil),
+  - fix order of includes (Kamil),
+  - fix whitespace (Kamil),
+  - Cc: Bhanuprakash (Kamil).
 
-@ -169,7 +173,8 @@ static int gvt_pin_guest_page(struct intel_vgpu *vgpu, unsigned long gfn,
-        *page = base_page;
-        return 0;
- err:
--       gvt_unpin_guest_page(vgpu, gfn, npage * PAGE_SIZE);
-+       if (npage)
-+               gvt_unpin_guest_page(vgpu, gfn, npage * PAGE_SIZE);
-        return ret;
- }
+Link: https://gitlab.freedesktop.org/drm/intel/-/issues/7648
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+---
+ tests/i915/kms_fb_coherency.c | 305 ++++++++++++++++++++++++++++++++++
+ tests/meson.build             |   1 +
+ 2 files changed, 306 insertions(+)
+ create mode 100644 tests/i915/kms_fb_coherency.c
 
-BTW, I've sent a separate fix for vfio_iommu_type1_pin_pages() to ensure
-struct page is a valid address.
-https://lore.kernel.org/lkml/20230516093007.15234-1-yan.y.zhao@intel.com/
+diff --git a/tests/i915/kms_fb_coherency.c b/tests/i915/kms_fb_coherency.c
+new file mode 100644
+index 0000000000..b3f055c2b1
+--- /dev/null
++++ b/tests/i915/kms_fb_coherency.c
+@@ -0,0 +1,305 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++/**
++ * TEST: kms_fb_coherency
++ * Description: Exercise coherency of future scanout buffer objects
++ */
++
++#include <errno.h>
++#include <limits.h>
++#include <stdbool.h>
++#include <stdio.h>
++#include <string.h>
++
++#include "igt.h"
++
++typedef struct {
++	int drm_fd;
++	igt_display_t display;
++	struct igt_fb fb[2];
++	igt_output_t *output;
++	igt_plane_t *primary;
++	enum pipe pipe;
++	igt_crc_t ref_crc;
++	igt_pipe_crc_t *pipe_crc;
++	uint32_t devid;
++} data_t;
++
++static void prepare_crtc(data_t *data)
++{
++	igt_display_t *display = &data->display;
++	igt_output_t *output = data->output;
++	drmModeModeInfo *mode;
++
++	igt_display_reset(display);
++	/* select the pipe we want to use */
++	igt_output_set_pipe(output, data->pipe);
++
++	mode = igt_output_get_mode(output);
++
++	/* create a white reference fb and flip to it */
++	igt_create_color_fb(data->drm_fd, mode->hdisplay, mode->vdisplay,
++			    DRM_FORMAT_XRGB8888, DRM_FORMAT_MOD_LINEAR,
++			    1.0, 1.0, 1.0, &data->fb[0]);
++
++	data->primary = igt_output_get_plane_type(output, DRM_PLANE_TYPE_PRIMARY);
++
++	igt_plane_set_fb(data->primary, &data->fb[0]);
++	igt_display_commit(display);
++
++	if (data->pipe_crc)
++		igt_pipe_crc_free(data->pipe_crc);
++
++	data->pipe_crc = igt_pipe_crc_new(data->drm_fd, data->pipe,
++					  IGT_PIPE_CRC_SOURCE_AUTO);
++
++	/* get reference crc for the white fb */
++	igt_pipe_crc_collect_crc(data->pipe_crc, &data->ref_crc);
++}
++
++static struct igt_fb *prepare_fb(data_t *data)
++{
++	igt_output_t *output = data->output;
++	struct igt_fb *fb = &data->fb[1];
++	drmModeModeInfo *mode;
++
++	prepare_crtc(data);
++
++	mode = igt_output_get_mode(output);
++
++	/* create a non-white fb we can overwrite later */
++	igt_create_pattern_fb(data->drm_fd, mode->hdisplay, mode->vdisplay,
++			      DRM_FORMAT_XRGB8888, DRM_FORMAT_MOD_LINEAR, fb);
++
++	/* flip to it to make it UC/WC and fully flushed */
++	drmModeSetPlane(data->drm_fd,
++			data->primary->drm_plane->plane_id,
++			output->config.crtc->crtc_id,
++			fb->fb_id, 0,
++			0, 0, fb->width, fb->height,
++			0, 0, fb->width << 16, fb->height << 16);
++
++	/* flip back the original white buffer */
++	drmModeSetPlane(data->drm_fd,
++			data->primary->drm_plane->plane_id,
++			output->config.crtc->crtc_id,
++			data->fb[0].fb_id, 0,
++			0, 0, fb->width, fb->height,
++			0, 0, fb->width << 16, fb->height << 16);
++
++	if (!gem_has_lmem(data->drm_fd)) {
++		uint32_t caching;
++
++		/* make sure caching mode has become UC/WT */
++		caching = gem_get_caching(data->drm_fd, fb->gem_handle);
++		igt_assert(caching == I915_CACHING_NONE ||
++			   caching == I915_CACHING_DISPLAY);
++	}
++
++	return fb;
++}
++
++static void check_buf_crc(data_t *data, void *buf, igt_fb_t *fb)
++{
++	igt_crc_t crc;
++
++	/* use memset to make the mmapped fb all white */
++	memset(buf, 0xff, fb->size);
++	munmap(buf, fb->size);
++
++	/* and flip to it */
++	drmModeSetPlane(data->drm_fd,
++			data->primary->drm_plane->plane_id,
++			data->output->config.crtc->crtc_id,
++			fb->fb_id, 0,
++			0, 0, fb->width, fb->height,
++			0, 0, fb->width << 16, fb->height << 16);
++
++	/* check that the crc is as expected, which requires that caches got flushed */
++	igt_pipe_crc_collect_crc(data->pipe_crc, &crc);
++	igt_assert_crc_equal(&crc, &data->ref_crc);
++}
++
++static void cleanup_crtc(data_t *data)
++{
++	igt_display_t *display = &data->display;
++	igt_output_t *output = data->output;
++
++	igt_pipe_crc_free(data->pipe_crc);
++	data->pipe_crc = NULL;
++
++	igt_plane_set_fb(data->primary, NULL);
++
++	igt_output_set_pipe(output, PIPE_ANY);
++	igt_display_commit(display);
++
++	igt_remove_fb(data->drm_fd, &data->fb[0]);
++	igt_remove_fb(data->drm_fd, &data->fb[1]);
++}
++
++static void test_mmap_gtt(data_t *data)
++{
++	igt_fb_t *fb;
++	void *buf;
++
++	gem_require_mappable_ggtt(data->drm_fd);
++
++	fb = prepare_fb(data);
++
++	buf = gem_mmap__gtt(data->drm_fd, fb->gem_handle, fb->size, PROT_WRITE);
++
++	check_buf_crc(data, buf, fb);
++}
++
++static void test_mmap_offset_wc(data_t *data)
++{
++	igt_fb_t *fb;
++	void *buf;
++
++	igt_require(gem_mmap_offset__has_wc(data->drm_fd));
++
++	fb = prepare_fb(data);
++
++	buf = gem_mmap_offset__wc(data->drm_fd, fb->gem_handle, 0, fb->size, PROT_WRITE);
++
++	check_buf_crc(data, buf, fb);
++}
++
++static void test_mmap_offset_uc(data_t *data)
++{
++	igt_fb_t *fb;
++	void *buf;
++
++	igt_require(gem_has_mmap_offset(data->drm_fd));
++	igt_skip_on(gem_has_lmem(data->drm_fd));
++
++	fb = prepare_fb(data);
++
++	/* mmap the fb */
++	buf = __gem_mmap_offset(data->drm_fd, fb->gem_handle, 0, fb->size, PROT_WRITE,
++				I915_MMAP_OFFSET_UC);
++	igt_assert(buf);
++
++	check_buf_crc(data, buf, fb);
++}
++
++static void test_mmap_offset_fixed(data_t *data)
++{
++	igt_fb_t *fb;
++	void *buf;
++
++	igt_require(gem_has_lmem(data->drm_fd));
++
++	fb = prepare_fb(data);
++
++	/* mmap the fb */
++	buf = gem_mmap_offset__fixed(data->drm_fd, fb->gem_handle, 0, fb->size, PROT_WRITE);
++
++	check_buf_crc(data, buf, fb);
++}
++
++static void test_legacy_mmap_wc(data_t *data)
++{
++	igt_fb_t *fb;
++	void *buf;
++
++	igt_require(gem_has_legacy_mmap(data->drm_fd));
++	igt_require(gem_mmap__has_wc(data->drm_fd));
++
++	fb = prepare_fb(data);
++
++	/* mmap the fb */
++	buf = gem_mmap__wc(data->drm_fd, fb->gem_handle, 0, fb->size, PROT_WRITE);
++
++	check_buf_crc(data, buf, fb);
++}
++
++static void select_valid_pipe_output_combo(data_t *data)
++{
++	igt_display_t *display = &data->display;
++
++	for_each_pipe_with_valid_output(display, data->pipe, data->output) {
++		igt_display_reset(display);
++
++		igt_output_set_pipe(data->output, data->pipe);
++		if (!i915_pipe_output_combo_valid(display))
++			continue;
++
++		/* one is enough */
++		return;
++	}
++
++	igt_skip("no valid crtc/connector combinations found\n");
++}
++
++igt_main
++{
++	data_t data;
++
++	igt_fixture {
++		data.drm_fd = drm_open_driver_master(DRIVER_INTEL);
++
++		data.devid = intel_get_drm_devid(data.drm_fd);
++
++		kmstest_set_vt_graphics_mode();
++
++		igt_require_pipe_crc(data.drm_fd);
++
++		igt_display_require(&data.display, data.drm_fd);
++
++		select_valid_pipe_output_combo(&data);
++	}
++
++	/**
++	 * SUBTEST: memset-crc
++	 * Description: Use display controller CRC hardware to validate (non)coherency
++	 *		of memset operations on future scanout buffer objects
++	 *		mmapped with different mmap methods and different caching modes.
++	 */
++	igt_subtest_with_dynamic("memset-crc") {
++		if (gem_has_mappable_ggtt(data.drm_fd)) {
++			igt_dynamic("mmap-gtt")
++				test_mmap_gtt(&data);
++
++			cleanup_crtc(&data);
++		}
++
++		if (gem_mmap_offset__has_wc(data.drm_fd)) {
++			igt_dynamic("mmap-offset-wc")
++				test_mmap_offset_wc(&data);
++
++			cleanup_crtc(&data);
++		}
++
++		if (gem_has_mmap_offset(data.drm_fd)) {
++			if (gem_has_lmem(data.drm_fd)) {
++				igt_dynamic("mmap-offset-fixed")
++					test_mmap_offset_fixed(&data);
++
++				cleanup_crtc(&data);
++
++			} else {
++				igt_dynamic("mmap-offset-uc")
++					test_mmap_offset_uc(&data);
++
++				cleanup_crtc(&data);
++			}
++		}
++
++		if (gem_has_legacy_mmap(data.drm_fd) &&
++		    gem_mmap__has_wc(data.drm_fd)) {
++			igt_dynamic("mmap-legacy-wc")
++				test_legacy_mmap_wc(&data);
++
++			cleanup_crtc(&data);
++		}
++	}
++
++	igt_fixture {
++		igt_display_fini(&data.display);
++		close(data.drm_fd);
++	}
++}
+diff --git a/tests/meson.build b/tests/meson.build
+index 38f080f7c2..f71be1dbe5 100644
+--- a/tests/meson.build
++++ b/tests/meson.build
+@@ -224,6 +224,7 @@ i915_progs = [
+ 	'kms_ccs',
+ 	'kms_cdclk',
+ 	'kms_draw_crc',
++	'kms_fb_coherency',
+ 	'kms_fbcon_fbt',
+ 	'kms_fence_pin_leak',
+ 	'kms_flip_scaled_crc',
+-- 
+2.40.1
 
-On Fri, May 12, 2023 at 05:35:35PM -0700, Sean Christopherson wrote:
-> When shadowing a GTT entry with a 2M page, verify that the pfns are
-> contiguous, not just that the struct page pointers are contiguous.  The
-> memory map is virtual contiguous if "CONFIG_FLATMEM=y ||
-> CONFIG_SPARSEMEM_VMEMMAP=y", but not for "CONFIG_SPARSEMEM=y &&
-> CONFIG_SPARSEMEM_VMEMMAP=n", so theoretically KVMGT could encounter struct
-> pages that are virtually contiguous, but not physically contiguous.
-> 
-> In practice, this flaw is likely a non-issue as it would cause functional
-> problems iff a section isn't 2M aligned _and_ is directly adjacent to
-> another section with discontiguous pfns.
-> 
-> Signed-off-by: Sean Christopherson <seanjc@google.com>
-> ---
->  drivers/gpu/drm/i915/gvt/kvmgt.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> index de675d799c7d..429f0f993a13 100644
-> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> @@ -161,7 +161,7 @@ static int gvt_pin_guest_page(struct intel_vgpu *vgpu, unsigned long gfn,
->  
->  		if (npage == 0)
->  			base_page = cur_page;
-> -		else if (base_page + npage != cur_page) {
-> +		else if (page_to_pfn(base_page) + npage != page_to_pfn(cur_page)) {
->  			gvt_vgpu_err("The pages are not continuous\n");
->  			ret = -EINVAL;
->  			npage++;
-> -- 
-> 2.40.1.606.ga4b1b128d6-goog
-> 
