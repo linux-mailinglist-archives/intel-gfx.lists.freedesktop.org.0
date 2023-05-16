@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38F5F70491C
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 11:25:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 688F5704997
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 11:44:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B304E10E32D;
-	Tue, 16 May 2023 09:25:00 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4218510E244;
- Tue, 16 May 2023 09:24:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E3AF10E167;
+	Tue, 16 May 2023 09:44:15 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E5E710E331
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 May 2023 09:44:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684229098; x=1715765098;
+ t=1684230253; x=1715766253;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=LyjoW1ovuHt7n8HvV1MDVJHeDhZp4458W4MzW4ViPYI=;
- b=n72PXsb16Q6jsX4g96bBtIT40kwVVP2WkVOElz1FTEe1GtoZGhp0MSO7
- PlnJniRmuw1m0rWo6/PLVEvNarQz0p+nBMd6Wky8dZtcU5weWRcJ1mdex
- +3dRH0D6c32FdK9m2ZmgFekzqWye/x/9Zv4OkiEqWAJ+U3KPGgoB6qZnW
- t/KCEVgGiY6y0PwwN+x5RtriJSKkQCw1SMQw+qMqzw+n+IyFiwSRYvtRY
- BZz+kwIi7VrdWdwZnrrR/sM1PpabpDGhjkIgSyH/QKrk6QUuFjEMOJ48g
- DHd28RCwMAI9FTuHHaZ+Gq+4ScGZDJ2LwJYx+WLCrVCbo+JT9F4bJAG0v w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="348929598"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="348929598"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 02:24:57 -0700
+ bh=osXFi1Kj5hoZoDxIwAqZ4CRYZ0BqscrTDGL4M7tY4oE=;
+ b=BQeHC6Vnv46W8PHj3ykUAjcJU2/zcYstEsyB01YBc28QDOdXf+3toxwT
+ s15vgb5QQ2Qqs8abYnoTEKBDu2A8XTlClvru6JqPE81AGlEJOiNJnFa7/
+ J44KQRr5ZAyRoCdYGeO+BSIICzbK1EBZ6gS5Kr7A6CeThqcETG4z06Q2A
+ Emt5uTWMfwTVSu8SViSVxj0tdAoZTHWy+kPmOvwn4gfTZuyiPbnyJNUtq
+ CF6suWGKPDVY+/OHdXzZPgxFyvIrhBddt/23NsSB+HcVXvymeqNke3ibl
+ OsX+lyslCXBE91LacxpqUJSIVpr5E1g4aA+MxTNWQ8um1GtCJ1HvpTPjP g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="354598892"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="354598892"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2023 02:44:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="947774377"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="947774377"
-Received: from sdrogers-mobl.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.200.127])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 02:24:55 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue, 16 May 2023 10:24:45 +0100
-Message-Id: <20230516092445.184823-1-tvrtko.ursulin@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="704334489"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="704334489"
+Received: from khach-mobl.ger.corp.intel.com (HELO localhost) ([10.252.49.69])
+ by fmsmga007-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2023 02:44:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 16 May 2023 12:44:06 +0300
+Message-Id: <20230516094406.2675307-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/pmu: Change bitmask of enabled events
- to u32
+Subject: [Intel-gfx] [PATCH] drm/i915: tweak language in fastset pipe config
+ compare logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,114 +58,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+The "fastset mismatch" debug logging has been slightly confusing,
+leading people to believe some error happened. Change it to the more
+informative "fastset requirement not met", and add a final message about
+this leading to full modeset.
 
-Having it as u64 was a confusing (but harmless) mistake.
-
-Also add some asserts to make sure the internal field does not overflow
-in the future.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
-I am not entirely sure the __builtin_constant_p->BUILD_BUG_ON branch will
-work with all compilers. Lets see...
+ drivers/gpu/drm/i915/display/intel_display.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
-Compile tested only.
----
- drivers/gpu/drm/i915/i915_pmu.c | 32 ++++++++++++++++++++++----------
- 1 file changed, 22 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 7ece883a7d95..8736b3418f88 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -50,7 +50,7 @@ static u8 engine_event_instance(struct perf_event *event)
- 	return (event->attr.config >> I915_PMU_SAMPLE_BITS) & 0xff;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 4b70b389e0cb..8afbaf8d1196 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4857,7 +4857,7 @@ pipe_config_infoframe_mismatch(struct drm_i915_private *dev_priv,
+ 			return;
  
--static bool is_engine_config(u64 config)
-+static bool is_engine_config(const u64 config)
- {
- 	return config < __I915_PMU_OTHER(0);
- }
-@@ -82,15 +82,28 @@ static unsigned int other_bit(const u64 config)
+ 		drm_dbg_kms(&dev_priv->drm,
+-			    "fastset mismatch in %s infoframe\n", name);
++			    "fastset requirement not met in %s infoframe\n", name);
+ 		drm_dbg_kms(&dev_priv->drm, "expected:\n");
+ 		hdmi_infoframe_log(KERN_DEBUG, dev_priv->drm.dev, a);
+ 		drm_dbg_kms(&dev_priv->drm, "found:\n");
+@@ -4882,7 +4882,7 @@ pipe_config_dp_vsc_sdp_mismatch(struct drm_i915_private *dev_priv,
+ 			return;
  
- static unsigned int config_bit(const u64 config)
- {
-+	unsigned int bit;
-+
- 	if (is_engine_config(config))
--		return engine_config_sample(config);
-+		bit = engine_config_sample(config);
+ 		drm_dbg_kms(&dev_priv->drm,
+-			    "fastset mismatch in %s dp sdp\n", name);
++			    "fastset requirement not met in %s dp sdp\n", name);
+ 		drm_dbg_kms(&dev_priv->drm, "expected:\n");
+ 		drm_dp_vsc_sdp_log(KERN_DEBUG, dev_priv->drm.dev, a);
+ 		drm_dbg_kms(&dev_priv->drm, "found:\n");
+@@ -4923,7 +4923,7 @@ pipe_config_buffer_mismatch(struct drm_i915_private *dev_priv,
+ 		len = memcmp_diff_len(a, b, len);
+ 
+ 		drm_dbg_kms(&dev_priv->drm,
+-			    "fastset mismatch in %s buffer\n", name);
++			    "fastset requirement not met in %s buffer\n", name);
+ 		print_hex_dump(KERN_DEBUG, "expected: ", DUMP_PREFIX_NONE,
+ 			       16, 0, a, len, false);
+ 		print_hex_dump(KERN_DEBUG, "found: ", DUMP_PREFIX_NONE,
+@@ -4954,7 +4954,7 @@ pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
+ 
+ 	if (fastset)
+ 		drm_dbg_kms(&i915->drm,
+-			    "[CRTC:%d:%s] fastset mismatch in %s %pV\n",
++			    "[CRTC:%d:%s] fastset requirement not met in %s %pV\n",
+ 			    crtc->base.base.id, crtc->base.name, name, &vaf);
  	else
--		return other_bit(config);
-+		bit = other_bit(config);
+ 		drm_err(&i915->drm, "[CRTC:%d:%s] mismatch in %s %pV\n",
+@@ -5542,8 +5542,13 @@ static int intel_modeset_checks(struct intel_atomic_state *state)
+ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_state,
+ 				     struct intel_crtc_state *new_crtc_state)
+ {
+-	if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state, true))
++	struct drm_i915_private *i915 = to_i915(old_crtc_state->uapi.crtc->dev);
 +
-+	if (__builtin_constant_p(config))
-+		BUILD_BUG_ON(bit >
-+			     BITS_PER_TYPE(typeof_member(struct i915_pmu,
-+							 enable)) - 1);
-+	else
-+		WARN_ON_ONCE(bit >
-+			     BITS_PER_TYPE(typeof_member(struct i915_pmu,
-+							 enable)) - 1);
++	if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state, true)) {
++		drm_dbg_kms(&i915->drm, "fastset requirement not met, forcing full modeset\n");
 +
-+	return bit;
- }
+ 		return;
++	}
  
--static u64 config_mask(u64 config)
-+static u32 config_mask(const u64 config)
- {
--	return BIT_ULL(config_bit(config));
-+	return BIT(config_bit(config));
- }
- 
- static bool is_engine_event(struct perf_event *event)
-@@ -633,11 +646,10 @@ static void i915_pmu_enable(struct perf_event *event)
- {
- 	struct drm_i915_private *i915 =
- 		container_of(event->pmu, typeof(*i915), pmu.base);
-+	const unsigned int bit = event_bit(event);
- 	struct i915_pmu *pmu = &i915->pmu;
- 	unsigned long flags;
--	unsigned int bit;
- 
--	bit = event_bit(event);
- 	if (bit == -1)
- 		goto update;
- 
-@@ -651,7 +663,7 @@ static void i915_pmu_enable(struct perf_event *event)
- 	GEM_BUG_ON(bit >= ARRAY_SIZE(pmu->enable_count));
- 	GEM_BUG_ON(pmu->enable_count[bit] == ~0);
- 
--	pmu->enable |= BIT_ULL(bit);
-+	pmu->enable |= BIT(bit);
- 	pmu->enable_count[bit]++;
- 
- 	/*
-@@ -698,7 +710,7 @@ static void i915_pmu_disable(struct perf_event *event)
- {
- 	struct drm_i915_private *i915 =
- 		container_of(event->pmu, typeof(*i915), pmu.base);
--	unsigned int bit = event_bit(event);
-+	const unsigned int bit = event_bit(event);
- 	struct i915_pmu *pmu = &i915->pmu;
- 	unsigned long flags;
- 
-@@ -734,7 +746,7 @@ static void i915_pmu_disable(struct perf_event *event)
- 	 * bitmask when the last listener on an event goes away.
- 	 */
- 	if (--pmu->enable_count[bit] == 0) {
--		pmu->enable &= ~BIT_ULL(bit);
-+		pmu->enable &= ~BIT(bit);
- 		pmu->timer_enabled &= pmu_needs_timer(pmu, true);
- 	}
- 
+ 	new_crtc_state->uapi.mode_changed = false;
+ 	if (!intel_crtc_needs_modeset(new_crtc_state))
 -- 
 2.39.2
 
