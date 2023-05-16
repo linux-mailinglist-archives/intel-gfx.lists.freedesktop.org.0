@@ -2,50 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53EB1704DD1
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 14:31:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF916704E74
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 14:59:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE76010E0C6;
-	Tue, 16 May 2023 12:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F34AB10E09C;
+	Tue, 16 May 2023 12:59:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E72C510E0C6
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 May 2023 12:31:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684240288; x=1715776288;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=i6m8kb7Xfbg938NFfhw+K/zZ1s6iEb504+7GabM/Ccw=;
- b=gv0kD3yOp6HUk1JlwaWLTyuzxuhxZ4ptIl2ZtFdcFhpVluXBbhAISNHj
- ztTgi8nlfh9zTN2+RgLIEEETdEIfesc3vMl9U+2MrSXePr+r/MF1lGP80
- FhcfMuQrSNdn9mazd9W3JhjXVjxPN5VLxuLjKl7qxd9oJGz2gdY480UiG
- CKisOT+E9GQGgKmedNQ35+AsN7d70F7YqSBFn6uyVKGiUD/1qmCUXVPVu
- oDT0HBurYhBTucXXaCVgbwJ6+uL2kN60SnotMfOqZ9I6sWCJmbnyULn+C
- vnT1wgzR199WJgByqKp9f3g5Padz3IrtfDeCOsaMDtvvRnP+DZBhido88 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="331826376"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="331826376"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 05:31:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="947837471"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="947837471"
-Received: from khach-mobl.ger.corp.intel.com (HELO localhost) ([10.252.49.69])
- by fmsmga006-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2023 05:31:26 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230516121345.1036399-1-tejas.upadhyay@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230516121345.1036399-1-tejas.upadhyay@intel.com>
-Date: Tue, 16 May 2023 15:31:23 +0300
-Message-ID: <87wn18h2zo.fsf@intel.com>
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com
+ [IPv6:2a00:1450:4864:20::129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0198C10E085
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 May 2023 12:59:32 +0000 (UTC)
+Received: by mail-lf1-x129.google.com with SMTP id
+ 2adb3069b0e04-4f122ff663eso16152826e87.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 May 2023 05:59:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1684241969; x=1686833969;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=RyX6rQJR1BZQe9Yc57Xp/rJrQBCXKFM6w6ZuIQmIOyk=;
+ b=vms5vFb83wjTEUFScjnZ39oGL9tY2MRnQCrmiM+Z9r8mbDubZnpRtiI94iw7RQHBiG
+ NQlmg0NnQK5UWCHQAo7xRz5Bc228a9R01ftilJ6IUT2lUm5XaaUNSQ7OHnjcBvRofMEx
+ DGSsneyG3NEoZzAE3kgVBc0ixpS/9nduEN/bFcMq8BwFjTY3Z6bTTX1rSe0gM9EpFiut
+ DySc6CxiBo/ZSeaiwij+VNx4FBjDaKaRNnar8q8HgHujQln+VWp3L75DJgnMTrvIWeXj
+ 1zkAMj7IT0v7Ktd0k0c/MGkTFc20GDtFYo3o8TvPg0zX+03jq1aybpoUMCqea/zXSymx
+ 6MTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684241969; x=1686833969;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=RyX6rQJR1BZQe9Yc57Xp/rJrQBCXKFM6w6ZuIQmIOyk=;
+ b=EOAfZ2HYmS3NkIB0YQXcY77/hV0EP4irW4eGbuklM3wFeOz1lfKZkjwCmYc97xD521
+ 9gUgJi9SAhor6wiKWrycvnR0Hnx0BGPl3C9DhuESNNinO8KkoIhZGradWCloRu/Tsnlo
+ vSXaXqzZKMKSVcxj4D7OKkmE1WE2+T2YnLlS7TZwCIPgPnkyLMpk6yJg6EIFQwWxhwgD
+ HUrmNbKI1n3KnqvMXJwAjcK5TqSQCq5axl/Q2BJUoCFz8kB5nGeMez4mguRMDjUvhbLs
+ DIVnGG+dMGMKfLCYt4jeUiUpaZNzW2NPK8LrqGAQdfm34SMW6+ylNn6zWqX7wynHz+w8
+ cWbA==
+X-Gm-Message-State: AC+VfDxF0tBiTNeNMtbUFIhJibxFZCyCbwGX++47+2DJDPVmCuBs35Jn
+ M6eLkn2MxA+H8AleJNYIN8US3Q==
+X-Google-Smtp-Source: ACHHUZ5jrcPyi1Sklbq+EVgE6AzuXgiM/acWnd8fwfuhTH5xW6E3kNQ1fnoEjsH+AEPeI1ou78pHOA==
+X-Received: by 2002:ac2:5dc4:0:b0:4ef:6ed9:7af2 with SMTP id
+ x4-20020ac25dc4000000b004ef6ed97af2mr7847544lfq.8.1684241968852; 
+ Tue, 16 May 2023 05:59:28 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5?
+ (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+ by smtp.gmail.com with ESMTPSA id
+ c9-20020ac244a9000000b004f387d97dafsm360065lfm.147.2023.05.16.05.59.28
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 16 May 2023 05:59:28 -0700 (PDT)
+Message-ID: <19853086-3486-54e9-7926-e6eb9fc0d243@linaro.org>
+Date: Tue, 16 May 2023 15:59:27 +0300
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Use large rings for compute
- contexts
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>
+References: <20230504153511.4007320-1-dmitry.baryshkov@linaro.org>
+ <871qjij6vx.fsf@intel.com>
+Content-Language: en-GB
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <871qjij6vx.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v5 0/8] drm/i915: move DSC RC tables to
+ drm_dsc_helper.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,51 +86,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@intel.com>
+Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 16 May 2023, Tejas Upadhyay <tejas.upadhyay@intel.com> wrote:
-> From: Chris Wilson <chris.p.wilson@intel.com>
->
-> Allow compute contexts to submit the maximal amount of work without
-> blocking userspace.
->
-> The original size for user LRC ring's (SZ_16K) was chosen to minimise
-> memory consumption, without being so small as to frequently stall in the
-> middle of workloads. With the main consumers being GL / media pipelines
-> of 2 or 3 batches per frame, we want to support ~10 requests in flight
-> to allow for the application to control throttling without stalling
-> within a frame.
->
-> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 5402a7bbcb1d..0edb7be6fa5e 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -965,6 +965,8 @@ static int intel_context_set_gem(struct intel_context *ce,
->  
->  	GEM_BUG_ON(intel_context_is_pinned(ce));
->  	ce->ring_size = SZ_16K;
-> +	if (ce->engine->class == COMPUTE_CLASS)
-> +		ce->ring_size = SZ_512K;
+On 15/05/2023 12:12, Jani Nikula wrote:
+> On Thu, 04 May 2023, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
+>> Other platforms (msm) will benefit from sharing the DSC config setup
+>> functions. This series moves parts of static DSC config data from the
+>> i915 driver to the common helpers to be used by other drivers.
+>>
+>> Note: the RC parameters were cross-checked against config files found in
+>> DSC model 2021062, 20161212 (and 20150914). The first patch modifies
+>> tables according to those config files, while preserving parameter
+>> values using the code. I have not changed one of the values in the
+>> pre-SCR config file as it clearly looks like a typo in the config file,
+>> considering the table E in DSC 1.1 and in the DSC 1.1 SCR.
+> 
+> As I believe I've said before, I think it's fine to merge these either
+> via drm-intel or drm-misc. Which do you prefer?
 
-Not a huge fan of first initializing something, and then changing it in
-some cases.
+No strong preference. Maybe drm-misc would be easier for us to 
+back-merge it into msm/next. Otherwise it is up to you.
 
-Why not if (ce->engine->class == COMPUTE_CLASS) ... else ...?
-
-BR,
-Jani.
-
-
->  
->  	i915_vm_put(ce->vm);
->  	ce->vm = i915_gem_context_get_eb_vm(ctx);
+> 
+> BR,
+> Jani.
+> 
+> 
+> 
+>>
+>> Chances since v4:
+>> - Rebased on top of drm-intel-next
+>> - Cut the first 8 patches of the series to ease merging. The rest of the
+>>    patches will go afterwards.
+>>
+>> Chances since v3:
+>> - Rebased on top of drm-intel-next
+>> - Dropped the msm patch to make patchset fully mergeable through
+>>    drm-intel
+>> - Made drm_dsc_set_const_params() ignore rc_model_size, picked up
+>>    drm_dsc_set_initial_scale_value() patch by Jessica and switched
+>>    intel_vdsc.c to use those two helpers.
+>> - Added a patch to make i915 actually use rc_tgt_offset_high,
+>>    rc_tgt_offset_low and rc_edge_factor from struct drm_dsc_config.
+>>
+>> Chances since v2:
+>> - Rebased on top of drm-intel-next
+>>
+>> Chances since v1:
+>> - Made drm_dsc_rc_buf_thresh static rather than exporting it
+>> - Switched drm_dsc_rc_buf_thresh loop to use ARRAY_SIZE. Added
+>>    BUILD_BUG_ON's to be sure that array sizes are correct
+>> - Fixed rc_parameters_data indentation to be logical and tidy
+>> - Fixed drm_dsc_setup_rc_params() kerneldoc
+>> - Added a clause to drm_dsc_setup_rc_params() to verify bpp and bpc
+>>    being set.
+>> - Fixed range_bpg_offset programming in calculate_rc_params()
+>> - Fixed bpp vs bpc bug in intel_dsc_compute_params()
+>> - Added FIXME comment next to the customizations in
+>>    intel_dsc_compute_params().
+>>
+>> Dmitry Baryshkov (8):
+>>    drm/i915/dsc: change DSC param tables to follow the DSC model
+>>    drm/i915/dsc: move rc_buf_thresh values to common helper
+>>    drm/i915/dsc: move DSC tables to DRM DSC helper
+>>    drm/i915/dsc: stop using interim structure for calculated params
+>>    drm/display/dsc: use flat array for rc_parameters lookup
+>>    drm/display/dsc: split DSC 1.2 and DSC 1.1 (pre-SCR) parameters
+>>    drm/display/dsc: include the rest of pre-SCR parameters
+>>    drm/display/dsc: add YCbCr 4:2:2 and 4:2:0 RC parameters
+>>
+>>   drivers/gpu/drm/display/drm_dsc_helper.c  | 986 ++++++++++++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_vdsc.c | 443 ++--------
+>>   include/drm/display/drm_dsc_helper.h      |   9 +
+>>   3 files changed, 1042 insertions(+), 396 deletions(-)
+> 
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+With best wishes
+Dmitry
+
