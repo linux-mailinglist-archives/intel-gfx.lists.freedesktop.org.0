@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAB88704F70
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 15:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53CE3704F71
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 May 2023 15:37:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8A4810E0A6;
-	Tue, 16 May 2023 13:37:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 356A210E1F0;
+	Tue, 16 May 2023 13:37:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06D6F10E1F0
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 May 2023 13:37:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DA0C10E0A6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 May 2023 13:37:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684244229; x=1715780229;
+ t=1684244230; x=1715780230;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uz6YIaNyB+fYCh+lUUEW6P5dck2NxSSuWA4OPb4+s4Y=;
- b=f4Q4hJ9zRulEQUav59gCSAuHHFGs1aNrrWFxThIsiey/5N2wYiys6RRW
- YCnzdcMuOfv2vpIECZEf2nY5m6mLtIUDeAL7oPjvR3A1j5HOVE3yK2Mjc
- R9CIq0nxJP9kacRPkg0sUijzrSguxTWGs/QmGKmxGc8eaoVrS+GT0FLxk
- JIYb0yXZvARHFdggOwSnVCLebHAL73IBcboGc3CVN7/Kgm6navMi42I7T
- lxOnJIajHdMrPgeq4Sa0Jcv/QgFDXtvfKWRN/O+ePBqoz0aN5GVRldCIW
- 9HCsvd1TiH5kx5yqW14fK7LN5hNS4XSFs3Bf9HVEyvkyCibBTr8FW8suB g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="350317303"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="350317303"
+ bh=JxKh5QweJolljg0pIVTyIpPyyyaJJNCQJnxwTEutC2I=;
+ b=nvj+5SM7VeadijkuGRWpJGN0JQp+ItfcXH6UibRefmyax+NBDjd/qkcu
+ i2wcI3wfWxdc6f+fp/WvmNA2OZJQYc4TByajHZRgfJvTkQMsHrHaYYDtL
+ af+CqdX/Jmin4gI3rAYjX/jviMaQwVLULSclvnQUL62481y03XRkw9idJ
+ 9wpWGJYQTMqWu24uzPjUEyC7fDRBkFHKoI1oIJbTuRq8wFoVcVCdVdUUw
+ AF4XeNwLYm6JCAnBG3jrY0heuYkWVkWZh7nSwitHyb3NoAjr5Yqfih5JQ
+ b2Ar+V221twpDzTe8NAL2dr7Jd0KtMQe3rbBNN7Z+RGZZLNQZAhn0uGsP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="350317305"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="350317305"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 06:37:08 -0700
+ 16 May 2023 06:37:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="678848104"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="678848104"
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="678848109"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="678848109"
 Received: from lab-ah.igk.intel.com ([10.102.138.202])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 06:37:07 -0700
+ 16 May 2023 06:37:08 -0700
 From: Andrzej Hajda <andrzej.hajda@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 16 May 2023 15:36:45 +0200
-Message-Id: <20230516133646.3708898-2-andrzej.hajda@intel.com>
+Date: Tue, 16 May 2023 15:36:46 +0200
+Message-Id: <20230516133646.3708898-3-andrzej.hajda@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230516133646.3708898-1-andrzej.hajda@intel.com>
 References: <20230516133646.3708898-1-andrzej.hajda@intel.com>
@@ -46,8 +46,8 @@ MIME-Version: 1.0
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
  80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI DO_NOT_MERGE 2/3] drm/i915/gt: do not enable render
- and media power-gating on RPL-S
+Subject: [Intel-gfx] [CI DO_NOT_MERGE 3/3] drm/i915/selftests: add
+ forcewake_with_spinners tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,29 +64,123 @@ Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Multiple CI tests fails with forcewake timeouts. Disabling power
-gating for render and media solves the issue.
+The test examines if running spinners do not interfere with forcewake.
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/4983
 Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_rc6.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/selftests/intel_uncore.c | 85 +++++++++++++++++++
+ 1 file changed, 85 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index 0819576ffeb5df..c405b209e47922 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -126,6 +126,9 @@ static void gen11_rc6_enable(struct intel_rc6 *rc6)
- 		pg_enable =
- 			GEN9_MEDIA_PG_ENABLE |
- 			GEN11_MEDIA_SAMPLER_PG_ENABLE;
-+	/* Testing */
-+	else if (IS_ADLS_RPLS(gt->i915))
-+		pg_enable = 0;
- 	else
- 		pg_enable =
- 			GEN9_RENDER_PG_ENABLE |
+diff --git a/drivers/gpu/drm/i915/selftests/intel_uncore.c b/drivers/gpu/drm/i915/selftests/intel_uncore.c
+index e4281508d5808b..0ce8a5c5ee0064 100644
+--- a/drivers/gpu/drm/i915/selftests/intel_uncore.c
++++ b/drivers/gpu/drm/i915/selftests/intel_uncore.c
+@@ -22,7 +22,10 @@
+  *
+  */
+ 
++#include <i915_gpu_error.h>
++#include <gt/intel_gpu_commands.h>
+ #include "../i915_selftest.h"
++#include <selftests/igt_spinner.h>
+ 
+ static int intel_fw_table_check(const struct intel_forcewake_range *ranges,
+ 				unsigned int num_ranges,
+@@ -342,12 +345,94 @@ static int live_fw_table(void *arg)
+ 				    GRAPHICS_VER(gt->i915) >= 9);
+ }
+ 
++static int live_forcewake_with_spinners(void *arg)
++{
++	struct intel_gt *gt = arg;
++	struct intel_uncore_forcewake_domain *domain;
++	struct intel_engine_cs *engine;
++	enum intel_engine_id id;
++	intel_wakeref_t wakeref;
++	struct igt_spinner spin;
++	unsigned int tmp;
++	int err;
++
++	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
++
++	err = igt_spinner_init(&spin, gt);
++	if (err)
++		goto err_rpm;
++
++	for_each_engine(engine, gt, id) {
++		struct intel_context *ce;
++		struct i915_request *rq;
++
++		if (!intel_engine_can_store_dword(engine))
++			continue;
++
++		pr_info("%s: Spinning %s\n", __func__, engine->name);
++
++		ce = intel_context_create(engine);
++		if (IS_ERR(ce)) {
++			err = PTR_ERR(ce);
++			goto err_spin;
++		}
++		rq = igt_spinner_create_request(&spin, ce, MI_ARB_CHECK);
++		intel_context_put(ce);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			goto err_spin;
++		}
++		i915_request_add(rq);
++	}
++
++	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
++	for_each_fw_domain(domain, gt->uncore, tmp) {
++		if (readl(domain->reg_ack) & FORCEWAKE_KERNEL)
++			continue;
++		pr_err("%s: not acked\n", intel_uncore_forcewake_domain_to_str(domain->id));
++		err = -EINVAL;
++	}
++	if (err) {
++#if defined(CONFIG_DRM_I915_DEBUG_WAKEREF) // Ugly test of presence of intel_klog_error_capture
++		intel_klog_error_capture(gt, (intel_engine_mask_t) ~0U);
++#else
++		pr_err("Time to catch GuC logs.\n");
++		msleep(4000);
++#endif
++	}
++	msleep(3);
++	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
++
++err_spin:
++	igt_spinner_fini(&spin);
++err_rpm:
++	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
++
++	return err;
++}
++
++static int live_forcewake_with_spinners_25s(void *arg)
++{
++	ktime_t t = ktime_get();
++	int err = 0;
++
++	while (ktime_ms_delta(ktime_get(), t) < 25000) {
++		err = live_forcewake_with_spinners(arg);
++		if (err)
++			break;
++	}
++
++	return err;
++}
++
+ int intel_uncore_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
+ 		SUBTEST(live_fw_table),
+ 		SUBTEST(live_forcewake_ops),
+ 		SUBTEST(live_forcewake_domains),
++		SUBTEST(live_forcewake_with_spinners),
++		SUBTEST(live_forcewake_with_spinners_25s),
+ 	};
+ 
+ 	return intel_gt_live_subtests(tests, to_gt(i915));
 -- 
 2.34.1
 
