@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2412570684E
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 14:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E565C70684F
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 14:38:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9378E10E418;
-	Wed, 17 May 2023 12:38:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69D8A10E41B;
+	Wed, 17 May 2023 12:38:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A63C10E41B
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 May 2023 12:38:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D30F410E41B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 May 2023 12:38:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684327131; x=1715863131;
+ t=1684327135; x=1715863135;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=t3rDW7ymjDQF33Q/5d48RRP2NI5dqnk8MbTHVjQ2a8I=;
- b=XX1mKGRWSjdaZM2Iocvkg/AEHXHOXdXI5oItW3ovMYDy/wqgsHx+lPN2
- i+yu3+kQhHg9v8gx203dgu7h56qt7Fb+i7qJQ2jm3PvheKN8/k5B70KCh
- cBgCZYtt0kIxwbkZ6qcir4IxLeoyGPVARQQBkCkFeChucW7C2Fhjn9upc
- 2er7w+YF6M5YrmP0o6yMf/j+fHixfAFuyQ/QN+bPVqRczADCsobViVWXQ
- 6Sd7BY+yT5k6gh5fkWCg0sdzROmYk6JMHf8OLSrZjEY10umg4bzMqRCM3
- k7Tac+bN5ZfKevHsWbGOdJFH8pqxevtr8YW7g3rl/7qa7cQ4YfcWqDZRg A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="417402143"
-X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="417402143"
+ bh=c2cszby03IwHQ/KYKoEozAuL6sov+W5ouGNyhWgsmao=;
+ b=H5KkUtFeA6dV+cJZNWQEONZiagThe9PU2dj/c+Vf9McbbVEixEeBjIdC
+ tObL4o0WDvVsaUBudfIBo4kkiB4uauOvoIrXfIUs+SLbWwvX6onXNdlW3
+ wCm2rFFIRVBOGaYFF2uoCcjk93+DPphL8nky8yjo6ZrCMzrPKjMABb8TR
+ GlymvMXKKGwpXPocC2xi1eGxM+LUtWXUlJHRHi6hiXkIBuSdng3ti6A5L
+ Rp5Uyq/POE3X7TEMU+/WdlU5t4N250HPHXDTAW+o9O1mIxO0Oz8e8kYdY
+ n5yIow7ZSWS7rHUAiZlqRPJn5k6rSGvxlZs0CosE7NEgGLf8LxSHq7ISJ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="417402154"
+X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="417402154"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 05:38:51 -0700
+ 17 May 2023 05:38:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="695850451"
-X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="695850451"
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="695850538"
+X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="695850538"
 Received: from unknown (HELO localhost) ([10.237.66.162])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 05:38:46 -0700
+ 17 May 2023 05:38:52 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 May 2023 15:38:20 +0300
-Message-Id: <001cbde6f244d5bd6058c60fe5a97eb3fef75f29.1684327004.git.jani.nikula@intel.com>
+Date: Wed, 17 May 2023 15:38:21 +0300
+Message-Id: <783fa511898f956e5c25afe6206eb6f993e58102.1684327004.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1684327004.git.jani.nikula@intel.com>
 References: <cover.1684327004.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/6] drm/i915/color: move SKL+ gamma and CSC
+Subject: [Intel-gfx] [PATCH 6/6] drm/i915/color: move pre-SKL gamma and CSC
  enable read to intel_color
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,110 +63,141 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Abstract the platform specific register access better.
+Abstract the register access better. The DSPCNTR read could be moved to
+either i9xx_plane.c or intel_color.c. The latter feels better, even if
+the register is written in the former.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c   | 26 +++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_display.c | 12 +--------
- 2 files changed, 23 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c   | 25 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display.c | 23 ------------------
+ 2 files changed, 25 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index c99941472cb2..882536b372e0 100644
+index 882536b372e0..6c9086dfce8f 100644
 --- a/drivers/gpu/drm/i915/display/intel_color.c
 +++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -924,6 +924,24 @@ static void hsw_get_config(struct intel_crtc_state *crtc_state)
- 	crtc_state->csc_mode = ilk_read_csc_mode(crtc);
+@@ -916,12 +916,31 @@ static u32 ilk_read_csc_mode(struct intel_crtc *crtc)
+ 	return intel_de_read(i915, PIPE_CSC_MODE(crtc->pipe));
  }
  
-+static void skl_get_config(struct intel_crtc_state *crtc_state)
++static void i9xx_get_config(struct intel_crtc_state *crtc_state)
 +{
 +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_plane *plane = to_intel_plane(crtc->base.primary);
++	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
 +	u32 tmp;
 +
-+	crtc_state->gamma_mode = hsw_read_gamma_mode(crtc);
-+	crtc_state->csc_mode = ilk_read_csc_mode(crtc);
++	tmp = intel_de_read(dev_priv, DSPCNTR(i9xx_plane));
 +
-+	tmp = intel_de_read(i915, SKL_BOTTOM_COLOR(crtc->pipe));
-+
-+	if (tmp & SKL_BOTTOM_COLOR_GAMMA_ENABLE)
++	if (tmp & DISP_PIPE_GAMMA_ENABLE)
 +		crtc_state->gamma_enable = true;
 +
-+	if (tmp & SKL_BOTTOM_COLOR_CSC_ENABLE)
++	if (!HAS_GMCH(dev_priv) && tmp & DISP_PIPE_CSC_ENABLE)
 +		crtc_state->csc_enable = true;
 +}
 +
- static void skl_color_commit_arm(const struct intel_crtc_state *crtc_state)
+ static void hsw_get_config(struct intel_crtc_state *crtc_state)
  {
  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -3436,7 +3454,7 @@ static const struct intel_color_funcs tgl_color_funcs = {
- 	.read_luts = icl_read_luts,
- 	.lut_equal = icl_lut_equal,
- 	.read_csc = icl_read_csc,
--	.get_config = hsw_get_config,
-+	.get_config = skl_get_config,
+ 
+ 	crtc_state->gamma_mode = hsw_read_gamma_mode(crtc);
+ 	crtc_state->csc_mode = ilk_read_csc_mode(crtc);
++
++	i9xx_get_config(crtc_state);
+ }
+ 
+ static void skl_get_config(struct intel_crtc_state *crtc_state)
+@@ -3057,6 +3076,8 @@ static void chv_get_config(struct intel_crtc_state *crtc_state)
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 
+ 	crtc_state->cgm_mode = intel_de_read(i915, CGM_PIPE_MODE(crtc->pipe));
++
++	i9xx_get_config(crtc_state);
+ }
+ 
+ static void chv_read_luts(struct intel_crtc_state *crtc_state)
+@@ -3127,6 +3148,8 @@ static void ilk_get_config(struct intel_crtc_state *crtc_state)
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 
+ 	crtc_state->csc_mode = ilk_read_csc_mode(crtc);
++
++	i9xx_get_config(crtc_state);
+ }
+ 
+ static void ilk_read_luts(struct intel_crtc_state *crtc_state)
+@@ -3436,6 +3459,7 @@ static const struct intel_color_funcs i965_color_funcs = {
+ 	.load_luts = i965_load_luts,
+ 	.read_luts = i965_read_luts,
+ 	.lut_equal = i965_lut_equal,
++	.get_config = i9xx_get_config,
  };
  
- static const struct intel_color_funcs icl_color_funcs = {
-@@ -3448,7 +3466,7 @@ static const struct intel_color_funcs icl_color_funcs = {
- 	.read_luts = icl_read_luts,
- 	.lut_equal = icl_lut_equal,
- 	.read_csc = icl_read_csc,
--	.get_config = hsw_get_config,
-+	.get_config = skl_get_config,
+ static const struct intel_color_funcs i9xx_color_funcs = {
+@@ -3444,6 +3468,7 @@ static const struct intel_color_funcs i9xx_color_funcs = {
+ 	.load_luts = i9xx_load_luts,
+ 	.read_luts = i9xx_read_luts,
+ 	.lut_equal = i9xx_lut_equal,
++	.get_config = i9xx_get_config,
  };
  
- static const struct intel_color_funcs glk_color_funcs = {
-@@ -3459,7 +3477,7 @@ static const struct intel_color_funcs glk_color_funcs = {
- 	.read_luts = glk_read_luts,
- 	.lut_equal = glk_lut_equal,
- 	.read_csc = skl_read_csc,
--	.get_config = hsw_get_config,
-+	.get_config = skl_get_config,
- };
- 
- static const struct intel_color_funcs skl_color_funcs = {
-@@ -3470,7 +3488,7 @@ static const struct intel_color_funcs skl_color_funcs = {
- 	.read_luts = bdw_read_luts,
- 	.lut_equal = ivb_lut_equal,
- 	.read_csc = skl_read_csc,
--	.get_config = hsw_get_config,
-+	.get_config = skl_get_config,
- };
- 
- static const struct intel_color_funcs bdw_color_funcs = {
+ static const struct intel_color_funcs tgl_color_funcs = {
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a24466efe0ae..b17279ddc409 100644
+index b17279ddc409..568cf74fb07a 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -61,7 +61,6 @@
- #include "intel_cdclk.h"
- #include "intel_clock_gating.h"
- #include "intel_color.h"
--#include "intel_color_regs.h"
- #include "intel_crt.h"
- #include "intel_crtc.h"
- #include "intel_crtc_state_dump.h"
-@@ -3720,17 +3719,8 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+@@ -2865,24 +2865,6 @@ bdw_get_pipe_misc_output_format(struct intel_crtc *crtc)
+ 	}
+ }
+ 
+-static void i9xx_get_pipe_color_config(struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct intel_plane *plane = to_intel_plane(crtc->base.primary);
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
+-	u32 tmp;
+-
+-	tmp = intel_de_read(dev_priv, DSPCNTR(i9xx_plane));
+-
+-	if (tmp & DISP_PIPE_GAMMA_ENABLE)
+-		crtc_state->gamma_enable = true;
+-
+-	if (!HAS_GMCH(dev_priv) &&
+-	    tmp & DISP_PIPE_CSC_ENABLE)
+-		crtc_state->csc_enable = true;
+-}
+-
+ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
+ 				 struct intel_crtc_state *pipe_config)
+ {
+@@ -2934,7 +2916,6 @@ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
+ 
+ 	pipe_config->framestart_delay = REG_FIELD_GET(TRANSCONF_FRAME_START_DELAY_MASK, tmp) + 1;
+ 
+-	i9xx_get_pipe_color_config(pipe_config);
+ 	intel_color_get_config(pipe_config);
+ 
+ 	if (DISPLAY_VER(dev_priv) < 4)
+@@ -3328,7 +3309,6 @@ static bool ilk_get_pipe_config(struct intel_crtc *crtc,
+ 
+ 	pipe_config->msa_timing_delay = REG_FIELD_GET(TRANSCONF_MSA_TIMING_DELAY_MASK, tmp);
+ 
+-	i9xx_get_pipe_color_config(pipe_config);
+ 	intel_color_get_config(pipe_config);
+ 
+ 	pipe_config->pixel_multiplier = 1;
+@@ -3719,9 +3699,6 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
  
  	pipe_config->sink_format = pipe_config->output_format;
  
--	if (DISPLAY_VER(dev_priv) >= 9) {
--		tmp = intel_de_read(dev_priv, SKL_BOTTOM_COLOR(crtc->pipe));
+-	if (DISPLAY_VER(dev_priv) < 9)
+-		i9xx_get_pipe_color_config(pipe_config);
 -
--		if (tmp & SKL_BOTTOM_COLOR_GAMMA_ENABLE)
--			pipe_config->gamma_enable = true;
--
--		if (tmp & SKL_BOTTOM_COLOR_CSC_ENABLE)
--			pipe_config->csc_enable = true;
--	} else {
-+	if (DISPLAY_VER(dev_priv) < 9)
- 		i9xx_get_pipe_color_config(pipe_config);
--	}
- 
  	intel_color_get_config(pipe_config);
  
+ 	tmp = intel_de_read(dev_priv, WM_LINETIME(crtc->pipe));
 -- 
 2.39.2
 
