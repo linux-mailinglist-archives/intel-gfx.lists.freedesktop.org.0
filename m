@@ -2,62 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E51D706B91
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 16:50:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B6D7706C11
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 17:04:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6109F10E432;
-	Wed, 17 May 2023 14:50:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6EBA10E442;
+	Wed, 17 May 2023 15:04:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x549.google.com (mail-pg1-x549.google.com
- [IPv6:2607:f8b0:4864:20::549])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60D7810E434
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 May 2023 14:50:29 +0000 (UTC)
-Received: by mail-pg1-x549.google.com with SMTP id
- 41be03b00d2f7-51b7810ec2cso544078a12.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 May 2023 07:50:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20221208; t=1684335028; x=1686927028;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=pDsdBMwmB7I2Qp688+UBcj3KD8alKjVIKuHiZri9HMU=;
- b=Vf+7S2HoSpfs2i91kZKs1dMajBCg4atRbZ1RdHfApDlXNjHAhHxRwez5A5qZNHe2jv
- V0o4IUUnS336MnI4yymhfCjVauEsGe8mKhzMo8rb46v3D64L7OyYpQlYBvNELH3PaE7V
- FcnaP5aDFfMfOWo+P5kJmjS+zZS//6/Lt34MqwTss3nyMeKmrbr/uI1dWi2bjbV1Ndkb
- cXCzjRfg6Nl1KV49v8ID5U6rveTZCkiD26mW7/h36IwbzqwvRsQvuzCVGjs+Ty2qNsgc
- EckxMnZV0hHOddy4Jc7+/6qYUYqXK1JZAUlL8AN2bGd8+Yo9N1QiKq7D6OW3Ya6pVVVF
- 89AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684335028; x=1686927028;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=pDsdBMwmB7I2Qp688+UBcj3KD8alKjVIKuHiZri9HMU=;
- b=EWoiUjrujLvHVRHGduAX7De6+7Da7N1F5116z+BbB0AroRV5VKcGqSs4s/xCrrM8Xs
- OAcZEDBvJcrT361g8BT6No7eXG0/oSFzXmq1LKzKw0R7Y7XANFLYfzz5zd54CqUqh5ji
- LyHvyeITtqt6rQdFSBJzdk/hBHGGiGF2RZFma/S2jTH7z0bfpbjjZQRCkIihappkW0Se
- 9cm9+tqGotnzLCRrtabFeVbaPUDmSdnaCl6dKro6ZD4FU1qQ+UsJaZwqFikGSjFWOCIX
- 9/O4ITh5ZO2TkXLOx8nakXhljft3RFHaF6OulDDpzCb1/vb2PQBWUzdc99bRbT8Q5qa5
- RjMA==
-X-Gm-Message-State: AC+VfDx+QHV88mwBaydQ44kfhHNxLyGhj86db+eqoAiYEhbZUbtz4U9I
- aC/4zPyfziZPX55AyVVKRDeo/bgOCVw=
-X-Google-Smtp-Source: ACHHUZ75/t5JCGUIwclJmPSmeF9uOB4McX3h8rZmEZLvYDyHDz2kKHj8Q6kfck2kxY5E1pOs7Hb99X7Mh6A=
-X-Received: from zagreus.c.googlers.com
- ([fda3:e722:ac3:cc00:7f:e700:c0a8:5c37])
- (user=seanjc job=sendgmr) by 2002:a63:6cc8:0:b0:52c:b46d:3609 with SMTP id
- h191-20020a636cc8000000b0052cb46d3609mr10657615pgc.12.1684335028469; Wed, 17
- May 2023 07:50:28 -0700 (PDT)
-Date: Wed, 17 May 2023 07:50:26 -0700
-In-Reply-To: <ZGNO5gYKOhhnslsp@yzhao56-desk.sh.intel.com>
-Mime-Version: 1.0
-References: <20230513003600.818142-1-seanjc@google.com>
- <20230513003600.818142-4-seanjc@google.com>
- <ZGNO5gYKOhhnslsp@yzhao56-desk.sh.intel.com>
-Message-ID: <ZGTpsvZed+r3Low1@google.com>
-From: Sean Christopherson <seanjc@google.com>
-To: Yan Zhao <yan.y.zhao@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Subject: Re: [Intel-gfx] [PATCH v3 03/28] drm/i915/gvt: Verify hugepages are
- contiguous in physical address space
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8377E10E442;
+ Wed, 17 May 2023 15:04:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7B6B1AADD2;
+ Wed, 17 May 2023 15:04:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 17 May 2023 15:04:38 -0000
+Message-ID: <168433587850.6590.9798409544930618193@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1684327004.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1684327004.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/color=3A_register_=26_get_config_abstractions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,37 +40,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ben Gardon <bgardon@google.com>,
- Paolo Bonzini <pbonzini@redhat.com>, intel-gvt-dev@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 16, 2023, Yan Zhao wrote:
-> hi Sean
-> 
-> Do you think it's necessary to double check that struct page pointers
-> are also contiguous?
+== Series Details ==
 
-No, the virtual address space should be irrelevant.  The only way it would be
-problematic is if something in dma_map_page() expected to be able to access the
-entire chunk of memory by getting the virtual address of only the first page,
-but I can't imagine that code is reading or writing memory, let alone doing so
-across a huge range of memory.
+Series: drm/i915/color: register & get config abstractions
+URL   : https://patchwork.freedesktop.org/series/117875/
+State : warning
 
-> And do you like to also include a fix as below, which is to remove the
-> warning in vfio_device_container_unpin_pages() when npage is 0?
-> 
-> @ -169,7 +173,8 @@ static int gvt_pin_guest_page(struct intel_vgpu *vgpu, unsigned long gfn,
->         *page = base_page;
->         return 0;
->  err:
-> -       gvt_unpin_guest_page(vgpu, gfn, npage * PAGE_SIZE);
-> +       if (npage)
-> +               gvt_unpin_guest_page(vgpu, gfn, npage * PAGE_SIZE);
->         return ret;
->  }
+== Summary ==
 
-Sure.  Want to give your SoB?  I'll write a changelog.
+Error: dim checkpatch failed
+88392f9a0c53 drm/i915/regs: split out intel_color_regs.h
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:35: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#35: 
+new file mode 100644
 
-Thanks again!
+-:75: WARNING:LONG_LINE_COMMENT: line length of 105 exceeds 100 columns
+#75: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:36:
++#define PREC_PIPEGCMAX(pipe, i)        _MMIO(_PIPE(pipe, _PIPEAGCMAX, _PIPEBGCMAX) + (i) * 4) /* u1.16 */
+
+-:87: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
+#87: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:48:
++#define  GAMMA_MODE_MODE_SPLIT			REG_FIELD_PREP(GAMMA_MODE_MODE_MASK, 3) /* ivb-bdw */
+
+-:88: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
+#88: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:49:
++#define  GAMMA_MODE_MODE_12BIT_MULTI_SEG	REG_FIELD_PREP(GAMMA_MODE_MODE_MASK, 3) /* icl-tgl */
+
+-:126: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#126: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:87:
++#define PIPE_CSC_COEFF_RY_GY(pipe)	_MMIO_PIPE(pipe, _PIPE_A_CSC_COEFF_RY_GY, _PIPE_B_CSC_COEFF_RY_GY)
+
+-:128: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#128: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:89:
++#define PIPE_CSC_COEFF_RU_GU(pipe)	_MMIO_PIPE(pipe, _PIPE_A_CSC_COEFF_RU_GU, _PIPE_B_CSC_COEFF_RU_GU)
+
+-:130: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#130: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:91:
++#define PIPE_CSC_COEFF_RV_GV(pipe)	_MMIO_PIPE(pipe, _PIPE_A_CSC_COEFF_RV_GV, _PIPE_B_CSC_COEFF_RV_GV)
+
+-:133: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#133: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:94:
++#define PIPE_CSC_PREOFF_HI(pipe)	_MMIO_PIPE(pipe, _PIPE_A_CSC_PREOFF_HI, _PIPE_B_CSC_PREOFF_HI)
+
+-:134: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#134: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:95:
++#define PIPE_CSC_PREOFF_ME(pipe)	_MMIO_PIPE(pipe, _PIPE_A_CSC_PREOFF_ME, _PIPE_B_CSC_PREOFF_ME)
+
+-:135: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#135: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:96:
++#define PIPE_CSC_PREOFF_LO(pipe)	_MMIO_PIPE(pipe, _PIPE_A_CSC_PREOFF_LO, _PIPE_B_CSC_PREOFF_LO)
+
+-:136: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#136: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:97:
++#define PIPE_CSC_POSTOFF_HI(pipe)	_MMIO_PIPE(pipe, _PIPE_A_CSC_POSTOFF_HI, _PIPE_B_CSC_POSTOFF_HI)
+
+-:137: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#137: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:98:
++#define PIPE_CSC_POSTOFF_ME(pipe)	_MMIO_PIPE(pipe, _PIPE_A_CSC_POSTOFF_ME, _PIPE_B_CSC_POSTOFF_ME)
+
+-:138: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#138: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:99:
++#define PIPE_CSC_POSTOFF_LO(pipe)	_MMIO_PIPE(pipe, _PIPE_A_CSC_POSTOFF_LO, _PIPE_B_CSC_POSTOFF_LO)
+
+-:228: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#228: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:189:
++#define PREC_PAL_GC_MAX(pipe, i)	_MMIO(_PIPE(pipe, _PAL_PREC_GC_MAX_A, _PAL_PREC_GC_MAX_B) + (i) * 4) /* u1.16 */
+
+-:229: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
+#229: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:190:
++#define PREC_PAL_EXT_GC_MAX(pipe, i)	_MMIO(_PIPE(pipe, _PAL_PREC_EXT_GC_MAX_A, _PAL_PREC_EXT_GC_MAX_B) + (i) * 4) /* u3.16 */
+
+-:230: WARNING:LONG_LINE: line length of 136 exceeds 100 columns
+#230: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:191:
++#define PREC_PAL_EXT2_GC_MAX(pipe, i)	_MMIO(_PIPE(pipe, _PAL_PREC_EXT2_GC_MAX_A, _PAL_PREC_EXT2_GC_MAX_B) + (i) * 4) /* glk+, u3.16 */
+
+-:242: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#242: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:203:
++#define PRE_CSC_GAMC_INDEX(pipe)	_MMIO_PIPE(pipe, _PRE_CSC_GAMC_INDEX_A, _PRE_CSC_GAMC_INDEX_B)
+
+-:250: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#250: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:211:
++#define   PAL_PREC_MULTI_SEG_INDEX_VALUE(x)	REG_FIELD_PREP(PAL_PREC_MULTI_SEG_INDEX_VALUE_MASK, (x))
+
+-:295: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#295: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:256:
++#define CGM_PIPE_CSC_COEFF01(pipe)	_MMIO_PIPE(pipe, _CGM_PIPE_A_CSC_COEFF01, _CGM_PIPE_B_CSC_COEFF01)
+
+-:296: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#296: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:257:
++#define CGM_PIPE_CSC_COEFF23(pipe)	_MMIO_PIPE(pipe, _CGM_PIPE_A_CSC_COEFF23, _CGM_PIPE_B_CSC_COEFF23)
+
+-:297: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#297: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:258:
++#define CGM_PIPE_CSC_COEFF45(pipe)	_MMIO_PIPE(pipe, _CGM_PIPE_A_CSC_COEFF45, _CGM_PIPE_B_CSC_COEFF45)
+
+-:298: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#298: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:259:
++#define CGM_PIPE_CSC_COEFF67(pipe)	_MMIO_PIPE(pipe, _CGM_PIPE_A_CSC_COEFF67, _CGM_PIPE_B_CSC_COEFF67)
+
+-:299: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#299: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:260:
++#define CGM_PIPE_CSC_COEFF8(pipe)	_MMIO_PIPE(pipe, _CGM_PIPE_A_CSC_COEFF8, _CGM_PIPE_B_CSC_COEFF8)
+
+-:300: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#300: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:261:
++#define CGM_PIPE_DEGAMMA(pipe, i, w)	_MMIO(_PIPE(pipe, _CGM_PIPE_A_DEGAMMA, _CGM_PIPE_B_DEGAMMA) + (i) * 8 + (w) * 4)
+
+-:301: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#301: FILE: drivers/gpu/drm/i915/display/intel_color_regs.h:262:
++#define CGM_PIPE_GAMMA(pipe, i, w)	_MMIO(_PIPE(pipe, _CGM_PIPE_A_GAMMA, _CGM_PIPE_B_GAMMA) + (i) * 8 + (w) * 4)
+
+total: 0 errors, 25 warnings, 0 checks, 591 lines checked
+75886f52437f drm/i915/color: move CHV CGM pipe mode read to intel_color
+f39691d89712 drm/i915: move HSW+ gamma mode read to intel_color
+08e78de74e8d drm/i915: move ILK+ CSC mode read to intel_color
+6cc47d52f6da drm/i915/color: move SKL+ gamma and CSC enable read to intel_color
+6842dab3c552 drm/i915/color: move pre-SKL gamma and CSC enable read to intel_color
+
+
