@@ -2,33 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB454705C94
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 03:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD7F705CC6
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 04:04:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27C0810E088;
-	Wed, 17 May 2023 01:43:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCA4B10E088;
+	Wed, 17 May 2023 02:04:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B262F10E088;
- Wed, 17 May 2023 01:43:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AA5D8AADEB;
- Wed, 17 May 2023 01:43:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3349066795293086822=="
+X-Greylist: delayed 327 seconds by postgrey-1.36 at gabe;
+ Wed, 17 May 2023 02:04:03 UTC
+Received: from 189.cn (ptr.189.cn [183.61.185.104])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F2F1F10E088;
+ Wed, 17 May 2023 02:04:03 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.31:42626.2114773713
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.31])
+ by 189.cn (HERMES) with SMTP id 7D6F9102973;
+ Wed, 17 May 2023 09:58:31 +0800 (CST)
+Received: from  ([114.242.206.180])
+ by gateway-151646-dep-75648544bd-2qvwx with ESMTP id
+ 810a8ff56b7f48219248832b0e786209 for tzimmermann@suse.de; 
+ Wed, 17 May 2023 09:58:33 CST
+X-Transaction-ID: 810a8ff56b7f48219248832b0e786209
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Message-ID: <80b4b615-0a71-89e8-3a58-fbeb8a9a06e8@189.cn>
+Date: Wed, 17 May 2023 09:58:30 +0800
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
-Date: Wed, 17 May 2023 01:43:06 -0000
-Message-ID: <168428778666.6588.1859787018286499387@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230517004046.264131-1-radhakrishna.sripada@intel.com>
-In-Reply-To: <20230517004046.264131-1-radhakrishna.sripada@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv4=2C1/2=5D_drm/i915/mtl=3A_Add_MTL_perfor?=
- =?utf-8?q?mance_tuning_changes?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ javierm@redhat.com, sam@ravnborg.org
+References: <20230515094033.2133-12-tzimmermann@suse.de>
+Content-Language: en-US
+From: Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <20230515094033.2133-12-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [v2,
+ 11/12] drm/fbdev-generic: Implement dedicated fbdev I/O helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,263 +56,327 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3349066795293086822==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: series starting with [v4,1/2] drm/i915/mtl: Add MTL performance tuning changes
-URL   : https://patchwork.freedesktop.org/series/117847/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13154 -> Patchwork_117847v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/index.html
-
-Participating hosts (38 -> 37)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_117847v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-2:         NOTRUN -> [FAIL][1] ([fdo#103375]) +2 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      [PASS][2] -> [DMESG-FAIL][3] ([i915#5334] / [i915#7872])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         [PASS][4] -> [DMESG-WARN][5] ([i915#6367])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/bat-rpls-2/igt@i915_selftest@live@slpc.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rpls-2/igt@i915_selftest@live@slpc.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-rpls-2:         NOTRUN -> [SKIP][6] ([i915#7828])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][7] ([i915#1845] / [i915#5354]) +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-rpls-2:         NOTRUN -> [SKIP][8] ([i915#1845])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@requests:
-    - {bat-mtlp-8}:       [ABORT][9] ([i915#4983] / [i915#7920]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/bat-mtlp-8/igt@i915_selftest@live@requests.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-mtlp-8/igt@i915_selftest@live@requests.html
-    - {bat-mtlp-6}:       [ABORT][11] ([i915#4983] / [i915#7920]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/bat-mtlp-6/igt@i915_selftest@live@requests.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-mtlp-6/igt@i915_selftest@live@requests.html
-
-  
-#### Warnings ####
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - bat-rpls-2:         [ABORT][13] ([i915#6687]) -> [FAIL][14] ([fdo#103375])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-rplp-1:         [SKIP][15] ([i915#3555] / [i915#4579]) -> [ABORT][16] ([i915#4579] / [i915#8260])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
-  [i915#7920]: https://gitlab.freedesktop.org/drm/intel/issues/7920
-  [i915#8260]: https://gitlab.freedesktop.org/drm/intel/issues/8260
+Hi, Thomas
 
 
-Build changes
--------------
+After apply your patch set, the kernel with 
+arch/loongarch/configs/loongson3_defconfig
 
-  * Linux: CI_DRM_13154 -> Patchwork_117847v1
-
-  CI-20190529: 20190529
-  CI_DRM_13154: d04e82f5245c285e7ae36955d89c4d217d04d664 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7292: 9d9475ffd3b5ae18fd8ec120595385f6c562f249 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_117847v1: d04e82f5245c285e7ae36955d89c4d217d04d664 @ git://anongit.freedesktop.org/gfx-ci/linux
+can not finish compile anymore.  gcc complains:
 
 
-### Linux commits
-
-d73f81e411dd drm/i915/mtl: Extend Wa_16014892111 to MTL A-step
-606fd14a3146 drm/i915/mtl: Add MTL performance tuning changes
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/index.html
-
---===============3349066795293086822==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+   AR      drivers/gpu/built-in.a
+   AR      drivers/built-in.a
+   AR      built-in.a
+   AR      vmlinux.a
+   LD      vmlinux.o
+   OBJCOPY modules.builtin.modinfo
+   GEN     modules.builtin
+   GEN     .vmlinux.objs
+   MODPOST Module.symvers
+ERROR: modpost: "fb_sys_write" [drivers/gpu/drm/drm_kms_helper.ko] 
+undefined!
+ERROR: modpost: "sys_imageblit" [drivers/gpu/drm/drm_kms_helper.ko] 
+undefined!
+ERROR: modpost: "sys_fillrect" [drivers/gpu/drm/drm_kms_helper.ko] 
+undefined!
+ERROR: modpost: "sys_copyarea" [drivers/gpu/drm/drm_kms_helper.ko] 
+undefined!
+ERROR: modpost: "fb_sys_read" [drivers/gpu/drm/drm_kms_helper.ko] undefined!
+make[1]: *** [scripts/Makefile.modpost:136: Module.symvers] Error 1
+make: *** [Makefile:1978: modpost] Error 2
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v4,1/2] drm/i915/mtl: Add MTL performance tuning changes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117847/">https://patchwork.freedesktop.org/series/117847/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+On 2023/5/15 17:40, Thomas Zimmermann wrote:
+> Implement dedicated fbdev helpers for framebuffer I/O instead
+> of using DRM's helpers. Fbdev-generic was the only caller of the
+> DRM helpers, so remove them from the helper module.
+>
+> v2:
+> 	* use FB_SYS_HELPERS_DEFERRED option
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>   drivers/gpu/drm/Kconfig             |   6 +-
+>   drivers/gpu/drm/drm_fb_helper.c     | 107 ----------------------------
+>   drivers/gpu/drm/drm_fbdev_generic.c |  47 ++++++++++--
+>   include/drm/drm_fb_helper.h         |  41 -----------
+>   4 files changed, 43 insertions(+), 158 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 77fb10ddd8a2..92a782827b7b 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -95,6 +95,7 @@ config DRM_KUNIT_TEST
+>   config DRM_KMS_HELPER
+>   	tristate
+>   	depends on DRM
+> +	select FB_SYS_HELPERS_DEFERRED if DRM_FBDEV_EMULATION
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/index.html</a></td></tr>
+Here, select FB_SYS_HELPERS helps resolve the above issue mentioned.
 
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13154 -&gt; Patchwork_117847v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 37)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_117847v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/bat-rpls-2/igt@i915_selftest@live@slpc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rpls-2/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rpls-2/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>
-<p>{bat-mtlp-8}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7920">i915#7920</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-<li>
-<p>{bat-mtlp-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/bat-mtlp-6/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7920">i915#7920</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-mtlp-6/igt@i915_selftest@live@requests.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13154/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117847v1/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8260">i915#8260</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13154 -&gt; Patchwork_117847v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13154: d04e82f5245c285e7ae36955d89c4d217d04d664 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7292: 9d9475ffd3b5ae18fd8ec120595385f6c562f249 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_117847v1: d04e82f5245c285e7ae36955d89c4d217d04d664 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>d73f81e411dd drm/i915/mtl: Extend Wa_16014892111 to MTL A-step<br />
-606fd14a3146 drm/i915/mtl: Add MTL performance tuning changes</p>
-
-</body>
-</html>
-
---===============3349066795293086822==--
+>   	help
+>   	  CRTC helpers for KMS drivers.
+>   
+> @@ -135,11 +136,6 @@ config DRM_FBDEV_EMULATION
+>   	select FB_CFB_FILLRECT
+>   	select FB_CFB_COPYAREA
+>   	select FB_CFB_IMAGEBLIT
+> -	select FB_DEFERRED_IO
+> -	select FB_SYS_FOPS
+> -	select FB_SYS_FILLRECT
+> -	select FB_SYS_COPYAREA
+> -	select FB_SYS_IMAGEBLIT
+>   	select FRAMEBUFFER_CONSOLE if !EXPERT
+>   	select FRAMEBUFFER_CONSOLE_DETECT_PRIMARY if FRAMEBUFFER_CONSOLE
+>   	default y
+> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+> index 8724e08c518b..ba0a808f14ee 100644
+> --- a/drivers/gpu/drm/drm_fb_helper.c
+> +++ b/drivers/gpu/drm/drm_fb_helper.c
+> @@ -729,113 +729,6 @@ void drm_fb_helper_deferred_io(struct fb_info *info, struct list_head *pagerefli
+>   }
+>   EXPORT_SYMBOL(drm_fb_helper_deferred_io);
+>   
+> -/**
+> - * drm_fb_helper_sys_read - Implements struct &fb_ops.fb_read for system memory
+> - * @info: fb_info struct pointer
+> - * @buf: userspace buffer to read from framebuffer memory
+> - * @count: number of bytes to read from framebuffer memory
+> - * @ppos: read offset within framebuffer memory
+> - *
+> - * Returns:
+> - * The number of bytes read on success, or an error code otherwise.
+> - */
+> -ssize_t drm_fb_helper_sys_read(struct fb_info *info, char __user *buf,
+> -			       size_t count, loff_t *ppos)
+> -{
+> -	return fb_sys_read(info, buf, count, ppos);
+> -}
+> -EXPORT_SYMBOL(drm_fb_helper_sys_read);
+> -
+> -/**
+> - * drm_fb_helper_sys_write - Implements struct &fb_ops.fb_write for system memory
+> - * @info: fb_info struct pointer
+> - * @buf: userspace buffer to write to framebuffer memory
+> - * @count: number of bytes to write to framebuffer memory
+> - * @ppos: write offset within framebuffer memory
+> - *
+> - * Returns:
+> - * The number of bytes written on success, or an error code otherwise.
+> - */
+> -ssize_t drm_fb_helper_sys_write(struct fb_info *info, const char __user *buf,
+> -				size_t count, loff_t *ppos)
+> -{
+> -	struct drm_fb_helper *helper = info->par;
+> -	loff_t pos = *ppos;
+> -	ssize_t ret;
+> -	struct drm_rect damage_area;
+> -
+> -	ret = fb_sys_write(info, buf, count, ppos);
+> -	if (ret <= 0)
+> -		return ret;
+> -
+> -	if (helper->funcs->fb_dirty) {
+> -		drm_fb_helper_memory_range_to_clip(info, pos, ret, &damage_area);
+> -		drm_fb_helper_damage(helper, damage_area.x1, damage_area.y1,
+> -				     drm_rect_width(&damage_area),
+> -				     drm_rect_height(&damage_area));
+> -	}
+> -
+> -	return ret;
+> -}
+> -EXPORT_SYMBOL(drm_fb_helper_sys_write);
+> -
+> -/**
+> - * drm_fb_helper_sys_fillrect - wrapper around sys_fillrect
+> - * @info: fbdev registered by the helper
+> - * @rect: info about rectangle to fill
+> - *
+> - * A wrapper around sys_fillrect implemented by fbdev core
+> - */
+> -void drm_fb_helper_sys_fillrect(struct fb_info *info,
+> -				const struct fb_fillrect *rect)
+> -{
+> -	struct drm_fb_helper *helper = info->par;
+> -
+> -	sys_fillrect(info, rect);
+> -
+> -	if (helper->funcs->fb_dirty)
+> -		drm_fb_helper_damage(helper, rect->dx, rect->dy, rect->width, rect->height);
+> -}
+> -EXPORT_SYMBOL(drm_fb_helper_sys_fillrect);
+> -
+> -/**
+> - * drm_fb_helper_sys_copyarea - wrapper around sys_copyarea
+> - * @info: fbdev registered by the helper
+> - * @area: info about area to copy
+> - *
+> - * A wrapper around sys_copyarea implemented by fbdev core
+> - */
+> -void drm_fb_helper_sys_copyarea(struct fb_info *info,
+> -				const struct fb_copyarea *area)
+> -{
+> -	struct drm_fb_helper *helper = info->par;
+> -
+> -	sys_copyarea(info, area);
+> -
+> -	if (helper->funcs->fb_dirty)
+> -		drm_fb_helper_damage(helper, area->dx, area->dy, area->width, area->height);
+> -}
+> -EXPORT_SYMBOL(drm_fb_helper_sys_copyarea);
+> -
+> -/**
+> - * drm_fb_helper_sys_imageblit - wrapper around sys_imageblit
+> - * @info: fbdev registered by the helper
+> - * @image: info about image to blit
+> - *
+> - * A wrapper around sys_imageblit implemented by fbdev core
+> - */
+> -void drm_fb_helper_sys_imageblit(struct fb_info *info,
+> -				 const struct fb_image *image)
+> -{
+> -	struct drm_fb_helper *helper = info->par;
+> -
+> -	sys_imageblit(info, image);
+> -
+> -	if (helper->funcs->fb_dirty)
+> -		drm_fb_helper_damage(helper, image->dx, image->dy, image->width, image->height);
+> -}
+> -EXPORT_SYMBOL(drm_fb_helper_sys_imageblit);
+> -
+>   /**
+>    * drm_fb_helper_cfb_read - Implements struct &fb_ops.fb_read for I/O memory
+>    * @info: fb_info struct pointer
+> diff --git a/drivers/gpu/drm/drm_fbdev_generic.c b/drivers/gpu/drm/drm_fbdev_generic.c
+> index 8e5148bf40bb..f53fc49e34a4 100644
+> --- a/drivers/gpu/drm/drm_fbdev_generic.c
+> +++ b/drivers/gpu/drm/drm_fbdev_generic.c
+> @@ -34,6 +34,43 @@ static int drm_fbdev_generic_fb_release(struct fb_info *info, int user)
+>   	return 0;
+>   }
+>   
+> +static ssize_t drm_fbdev_generic_fb_write(struct fb_info *info, const char __user *buf,
+> +					  size_t count, loff_t *ppos)
+> +{
+> +	struct drm_fb_helper *helper = info->par;
+> +	loff_t pos = *ppos;
+> +	ssize_t ret;
+> +
+> +	ret = fb_sys_write(info, buf, count, ppos);
+> +	if (ret > 0)
+> +		drm_fb_helper_damage_range(helper, pos, ret);
+> +	return ret;
+> +}
+> +
+> +static void drm_fbdev_generic_fb_fillrect(struct fb_info *info, const struct fb_fillrect *rect)
+> +{
+> +	struct drm_fb_helper *helper = info->par;
+> +
+> +	sys_fillrect(info, rect);
+> +	drm_fb_helper_damage(helper, rect->dx, rect->dy, rect->width, rect->height);
+> +}
+> +
+> +static void drm_fbdev_generic_fb_copyarea(struct fb_info *info, const struct fb_copyarea *area)
+> +{
+> +	struct drm_fb_helper *helper = info->par;
+> +
+> +	sys_copyarea(info, area);
+> +	drm_fb_helper_damage(helper, area->dx, area->dy, area->width, area->height);
+> +}
+> +
+> +static void drm_fbdev_generic_fb_imageblit(struct fb_info *info, const struct fb_image *image)
+> +{
+> +	struct drm_fb_helper *helper = info->par;
+> +
+> +	sys_imageblit(info, image);
+> +	drm_fb_helper_damage(helper, image->dx, image->dy, image->width, image->height);
+> +}
+> +
+>   static void drm_fbdev_generic_fb_destroy(struct fb_info *info)
+>   {
+>   	struct drm_fb_helper *fb_helper = info->par;
+> @@ -56,12 +93,12 @@ static const struct fb_ops drm_fbdev_generic_fb_ops = {
+>   	.owner		= THIS_MODULE,
+>   	.fb_open	= drm_fbdev_generic_fb_open,
+>   	.fb_release	= drm_fbdev_generic_fb_release,
+> -	.fb_read	= drm_fb_helper_sys_read,
+> -	.fb_write	= drm_fb_helper_sys_write,
+> +	.fb_read	= fb_sys_read,
+> +	.fb_write	= drm_fbdev_generic_fb_write,
+>   	DRM_FB_HELPER_DEFAULT_OPS,
+> -	.fb_fillrect	= drm_fb_helper_sys_fillrect,
+> -	.fb_copyarea	= drm_fb_helper_sys_copyarea,
+> -	.fb_imageblit	= drm_fb_helper_sys_imageblit,
+> +	.fb_fillrect	= drm_fbdev_generic_fb_fillrect,
+> +	.fb_copyarea	= drm_fbdev_generic_fb_copyarea,
+> +	.fb_imageblit	= drm_fbdev_generic_fb_imageblit,
+>   	.fb_mmap	= fb_deferred_io_mmap,
+>   	.fb_destroy	= drm_fbdev_generic_fb_destroy,
+>   };
+> diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
+> index 80c402f4e379..e3240d749a43 100644
+> --- a/include/drm/drm_fb_helper.h
+> +++ b/include/drm/drm_fb_helper.h
+> @@ -259,18 +259,6 @@ void drm_fb_helper_damage_range(struct drm_fb_helper *helper, off_t off, size_t
+>   
+>   void drm_fb_helper_deferred_io(struct fb_info *info, struct list_head *pagereflist);
+>   
+> -ssize_t drm_fb_helper_sys_read(struct fb_info *info, char __user *buf,
+> -			       size_t count, loff_t *ppos);
+> -ssize_t drm_fb_helper_sys_write(struct fb_info *info, const char __user *buf,
+> -				size_t count, loff_t *ppos);
+> -
+> -void drm_fb_helper_sys_fillrect(struct fb_info *info,
+> -				const struct fb_fillrect *rect);
+> -void drm_fb_helper_sys_copyarea(struct fb_info *info,
+> -				const struct fb_copyarea *area);
+> -void drm_fb_helper_sys_imageblit(struct fb_info *info,
+> -				 const struct fb_image *image);
+> -
+>   ssize_t drm_fb_helper_cfb_read(struct fb_info *info, char __user *buf,
+>   			       size_t count, loff_t *ppos);
+>   ssize_t drm_fb_helper_cfb_write(struct fb_info *info, const char __user *buf,
+> @@ -398,35 +386,6 @@ static inline int drm_fb_helper_defio_init(struct drm_fb_helper *fb_helper)
+>   	return -ENODEV;
+>   }
+>   
+> -static inline ssize_t drm_fb_helper_sys_read(struct fb_info *info,
+> -					     char __user *buf, size_t count,
+> -					     loff_t *ppos)
+> -{
+> -	return -ENODEV;
+> -}
+> -
+> -static inline ssize_t drm_fb_helper_sys_write(struct fb_info *info,
+> -					      const char __user *buf,
+> -					      size_t count, loff_t *ppos)
+> -{
+> -	return -ENODEV;
+> -}
+> -
+> -static inline void drm_fb_helper_sys_fillrect(struct fb_info *info,
+> -					      const struct fb_fillrect *rect)
+> -{
+> -}
+> -
+> -static inline void drm_fb_helper_sys_copyarea(struct fb_info *info,
+> -					      const struct fb_copyarea *area)
+> -{
+> -}
+> -
+> -static inline void drm_fb_helper_sys_imageblit(struct fb_info *info,
+> -					       const struct fb_image *image)
+> -{
+> -}
+> -
+>   static inline ssize_t drm_fb_helper_cfb_read(struct fb_info *info, char __user *buf,
+>   					     size_t count, loff_t *ppos)
+>   {
