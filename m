@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 470AF70684A
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 14:38:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 489B470684B
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 14:38:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AABCA10E413;
-	Wed, 17 May 2023 12:38:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCB8F10E414;
+	Wed, 17 May 2023 12:38:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7605D10E414
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 May 2023 12:38:34 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF01610E414
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 May 2023 12:38:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684327114; x=1715863114;
+ t=1684327119; x=1715863119;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Nb5j0BXE+rmH/sr+p/vNWO6CZCnj+cAk7JpoDLaA9ZA=;
- b=YRP4xqa6c3t8xsZ1mbfBoU2aGDeItZdq0Iqqc+88oP3ZbkNiLXqIiqA0
- lG8FKnuCzxgd10llChaH/rpxTDZM679JlqN5ch8cPEnDQgg68AYyKRYig
- gk/rBCu6PzIq/WCIr8+4067o0appeq8G1yKVjczedfyAG7ABeplWzjztz
- oF1DnONgmIm90/yR7ka6//KnBL2aZLhPUuT5oD7WnJBeuwYOprylOgF0Z
- X4RF+YxXHRJcJLh4IT5JYHqrMFZAnoPnT4V5jYqzi5ywwlrAFfFCT1sDF
- 2KU1KoV4nr9PmIkc+yBUu6TOrlA7o6BYK8lb/ixmSvlkccfQdrLerz7vA g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="354916145"
-X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="354916145"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 05:38:34 -0700
+ bh=Ok9aVXOad/qEfWSYl4spjmJkYCUwY1Z/aeZIFptR6/0=;
+ b=EMsSvwBtq5orWBW0JC+3TWyGcF2+C+mA+vBDvJW+aCo3xCk1E+9fCxhf
+ L8mcPolFa92DMvPlFrzAIKvRVAIjhfmjfTeRu7JknP6gmZIpxtUlrly53
+ eAwad/KrQxCBheagcg7NCabDGVflyeU0j0EA+V4WmtzX0yPmVJsPrYkyc
+ IOZIabLUT4SCpRIZc9sTgIs3uq4LYKHZdV4TEfR4cRQMa+Qbnd3hzJXmp
+ atOZjDYABCkQMKOJqjVfjQW89ZS4wabWGi/8Z8PwOn/AU3Q9ER5MsYyNY
+ X7QVgyRn7LbOI+t560rCc88afRONjwi3MeBMR8+5rFJOZfv/KFNZnkR+W Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="354040342"
+X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="354040342"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 05:38:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="679253605"
-X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="679253605"
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="876030810"
+X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="876030810"
 Received: from unknown (HELO localhost) ([10.237.66.162])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 05:38:32 -0700
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 05:38:37 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 May 2023 15:38:17 +0300
-Message-Id: <1a0fdae992413dfe328f619fb7bd76529a2d2600.1684327004.git.jani.nikula@intel.com>
+Date: Wed, 17 May 2023 15:38:18 +0300
+Message-Id: <dc75d6c60100bc6f1e3daf33c5aa32f90ed23a68.1684327004.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1684327004.git.jani.nikula@intel.com>
 References: <cover.1684327004.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/6] drm/i915/color: move CHV CGM pipe mode read
- to intel_color
+Subject: [Intel-gfx] [PATCH 3/6] drm/i915: move HSW+ gamma mode read to
+ intel_color
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,78 +63,101 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add color .get_config hook to read config other than LUTs and CSCs, and
-start off with CHV CGM pipe mode to abstract the platform specific
-register access better.
+Abstract the platform specific register access better. The separate
+hsw_read_gamma_mode() will make more sense with the following changes.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c   | 16 ++++++++++++++++
- drivers/gpu/drm/i915/display/intel_display.c |  4 ----
- 2 files changed, 16 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c   | 20 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display.c |  3 ---
+ 2 files changed, 20 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index f458b136e6a8..0a6d5ff494eb 100644
+index 0a6d5ff494eb..25730697fa8a 100644
 --- a/drivers/gpu/drm/i915/display/intel_color.c
 +++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -76,6 +76,10 @@ struct intel_color_funcs {
- 	 * software state. Used by eg. the hardware state checker.
- 	 */
- 	void (*read_csc)(struct intel_crtc_state *crtc_state);
-+	/*
-+	 * Read config other than LUTs and CSCs, before them. Optional.
-+	 */
-+	void (*get_config)(struct intel_crtc_state *crtc_state);
- };
- 
- #define CTM_COEFF_SIGN	(1ULL << 63)
-@@ -1737,6 +1741,9 @@ void intel_color_get_config(struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
- 
-+	if (i915->display.funcs.color->get_config)
-+		i915->display.funcs.color->get_config(crtc_state);
-+
- 	i915->display.funcs.color->read_luts(crtc_state);
- 
- 	if (i915->display.funcs.color->read_csc)
-@@ -3004,6 +3011,14 @@ static struct drm_property_blob *chv_read_cgm_gamma(struct intel_crtc *crtc)
- 	return blob;
+@@ -902,6 +902,20 @@ static void hsw_color_commit_arm(const struct intel_crtc_state *crtc_state)
+ 			  crtc_state->csc_mode);
  }
  
-+static void chv_get_config(struct intel_crtc_state *crtc_state)
++static u32 hsw_read_gamma_mode(struct intel_crtc *crtc)
 +{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
 +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
 +
-+	crtc_state->cgm_mode = intel_de_read(i915, CGM_PIPE_MODE(crtc->pipe));
++	return intel_de_read(i915, GAMMA_MODE(crtc->pipe));
 +}
 +
- static void chv_read_luts(struct intel_crtc_state *crtc_state)
++static void hsw_get_config(struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	crtc_state->gamma_mode = hsw_read_gamma_mode(crtc);
++}
++
+ static void skl_color_commit_arm(const struct intel_crtc_state *crtc_state)
  {
  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -3365,6 +3380,7 @@ static const struct intel_color_funcs chv_color_funcs = {
- 	.read_luts = chv_read_luts,
- 	.lut_equal = chv_lut_equal,
- 	.read_csc = chv_read_csc,
-+	.get_config = chv_get_config,
+@@ -3407,6 +3421,7 @@ static const struct intel_color_funcs tgl_color_funcs = {
+ 	.read_luts = icl_read_luts,
+ 	.lut_equal = icl_lut_equal,
+ 	.read_csc = icl_read_csc,
++	.get_config = hsw_get_config,
  };
  
- static const struct intel_color_funcs i965_color_funcs = {
+ static const struct intel_color_funcs icl_color_funcs = {
+@@ -3418,6 +3433,7 @@ static const struct intel_color_funcs icl_color_funcs = {
+ 	.read_luts = icl_read_luts,
+ 	.lut_equal = icl_lut_equal,
+ 	.read_csc = icl_read_csc,
++	.get_config = hsw_get_config,
+ };
+ 
+ static const struct intel_color_funcs glk_color_funcs = {
+@@ -3428,6 +3444,7 @@ static const struct intel_color_funcs glk_color_funcs = {
+ 	.read_luts = glk_read_luts,
+ 	.lut_equal = glk_lut_equal,
+ 	.read_csc = skl_read_csc,
++	.get_config = hsw_get_config,
+ };
+ 
+ static const struct intel_color_funcs skl_color_funcs = {
+@@ -3438,6 +3455,7 @@ static const struct intel_color_funcs skl_color_funcs = {
+ 	.read_luts = bdw_read_luts,
+ 	.lut_equal = ivb_lut_equal,
+ 	.read_csc = skl_read_csc,
++	.get_config = hsw_get_config,
+ };
+ 
+ static const struct intel_color_funcs bdw_color_funcs = {
+@@ -3448,6 +3466,7 @@ static const struct intel_color_funcs bdw_color_funcs = {
+ 	.read_luts = bdw_read_luts,
+ 	.lut_equal = ivb_lut_equal,
+ 	.read_csc = ilk_read_csc,
++	.get_config = hsw_get_config,
+ };
+ 
+ static const struct intel_color_funcs hsw_color_funcs = {
+@@ -3458,6 +3477,7 @@ static const struct intel_color_funcs hsw_color_funcs = {
+ 	.read_luts = ivb_read_luts,
+ 	.lut_equal = ivb_lut_equal,
+ 	.read_csc = ilk_read_csc,
++	.get_config = hsw_get_config,
+ };
+ 
+ static const struct intel_color_funcs ivb_color_funcs = {
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index bca7664d1ffc..9b9b885db8d4 100644
+index 9b9b885db8d4..3c93f1676e14 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2935,10 +2935,6 @@ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
+@@ -3723,9 +3723,6 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
  
- 	pipe_config->framestart_delay = REG_FIELD_GET(TRANSCONF_FRAME_START_DELAY_MASK, tmp) + 1;
+ 	pipe_config->sink_format = pipe_config->output_format;
  
--	if (IS_CHERRYVIEW(dev_priv))
--		pipe_config->cgm_mode = intel_de_read(dev_priv,
--						      CGM_PIPE_MODE(crtc->pipe));
+-	pipe_config->gamma_mode = intel_de_read(dev_priv,
+-						GAMMA_MODE(crtc->pipe));
 -
- 	i9xx_get_pipe_color_config(pipe_config);
- 	intel_color_get_config(pipe_config);
+ 	pipe_config->csc_mode = intel_de_read(dev_priv,
+ 					      PIPE_CSC_MODE(crtc->pipe));
  
 -- 
 2.39.2
