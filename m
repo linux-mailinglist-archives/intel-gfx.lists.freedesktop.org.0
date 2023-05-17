@@ -1,41 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB2E870641B
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 11:28:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB3DE706446
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 11:39:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37D8F10E3D3;
-	Wed, 17 May 2023 09:28:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0880510E3D8;
+	Wed, 17 May 2023 09:38:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9123A10E3D3;
- Wed, 17 May 2023 09:28:33 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BF2310E145;
+ Wed, 17 May 2023 09:38:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684315713; x=1715851713;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=nKgzkfcVAPljUT2zjEKTschQjkA+e905vgG7hjXcyGc=;
- b=Cpd5aTXT9bewqKtkj+4JKPGwJyk9pM0vD5LrE/meobrM+EIjyvN4BOs9
- nqx75NmYehAcHa8x8FX3fmY3xU05Dc5cCDCpPSIReAhWoJNe7sIp/8TWv
- vuSV9RLVL6CcfP+Cuy/1A7h/8KmIyG1wqqJ8qobj9hDMpbDnFzP/5Zyjt
- p1ir2dQ4tU0iPPY6g/RG/GldnY755bWtcLyBCSCzJ0PYBac+7ri9D+xWN
- 7x5O0RmyDpIDRvYNoIIGVCDHEYKCvJcyrVQAIs5zb9t7uMRJTm+441YNv
- 8jlaYbyNdHWxVxcZBYqgdaML9zKvlQqaJF7mIoOCy6ubpQeZwJU3xaLqU g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="350546064"
-X-IronPort-AV: E=Sophos;i="5.99,281,1677571200"; d="scan'208";a="350546064"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 02:28:21 -0700
+ t=1684316332; x=1715852332;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=CNGqGF8c6TYzh812PwaejYLAHsNgbc/gb9bSy9QoNbo=;
+ b=nD2Nx0ltDSYNDEAiDzeW3fUEp4lsqlWmCZ9GogLpPWeSLvCNPA0g9uuv
+ CaXx162j9ZnyZyA5kqZrHlmmTLCgc2ADkG5efhGKbadolh2jSkivibsgb
+ DG5CavA1HX4y1PbMprUTt4gXu0hzN0C4/nE4cj+9sBRm8nLnghW/+vWVW
+ zpsNS61HgOb4ZRlpbRg8qnr6R2HhsuA+Tnn4m49tNVVzbBLYgFuyWgjfp
+ 6tcQlhViSJRluPJf2SflCXAQPZ8BCtXOmFJdlgnYP56w3IBTV92YfbE/Z
+ mQinF3LR7DRvqlAjpofrj+CbOrzZ1BJ/5ItNJOvX8BxHi/q7kQEoqdZ0r Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="331329008"
+X-IronPort-AV: E=Sophos;i="5.99,281,1677571200"; d="scan'208";a="331329008"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 02:38:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="825894450"
-X-IronPort-AV: E=Sophos;i="5.99,281,1677571200"; d="scan'208";a="825894450"
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="948199481"
+X-IronPort-AV: E=Sophos;i="5.99,281,1677571200"; d="scan'208";a="948199481"
 Received: from pakurapo-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.252.50.207])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 02:28:17 -0700
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 02:38:47 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Joonas Lahtinen
  <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
@@ -43,11 +42,13 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Joonas Lahtinen
  <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-In-Reply-To: <20230511175446.282041-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2a1b81da-39c8-4111-7e42-18f5f2f557c4@linaro.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230511175446.282041-1-krzysztof.kozlowski@linaro.org>
-Date: Wed, 17 May 2023 12:28:14 +0300
-Message-ID: <87cz2zgvdd.fsf@intel.com>
+ <87cz2zgvdd.fsf@intel.com>
+ <2a1b81da-39c8-4111-7e42-18f5f2f557c4@linaro.org>
+Date: Wed, 17 May 2023 12:38:44 +0300
+Message-ID: <87a5y3guvv.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Subject: Re: [Intel-gfx] [RESEND PATCH] drm/i915: constify pointers to
@@ -64,50 +65,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 11 May 2023, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> Statically allocated array of pointers to hwmon_channel_info can be made
-> const for safety.
+On Wed, 17 May 2023, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> On 17/05/2023 11:28, Jani Nikula wrote:
+>> On Thu, 11 May 2023, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>> Statically allocated array of pointers to hwmon_channel_info can be made
+>>> const for safety.
+>>>
+>>> Acked-by: Jani Nikula <jani.nikula@intel.com>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> 
+>> FYI we'll merge this once we've done a backmerge to get the hwmon
+>> changes to our tree.
 >
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> There are no dependencies. hwmon changes are already in rc1.
 
-FYI we'll merge this once we've done a backmerge to get the hwmon
-changes to our tree.
+That's what I'm saying, drm-intel-next doesn't have rc1. :)
 
 BR,
 Jani.
 
-
-> ---
->  drivers/gpu/drm/i915/i915_hwmon.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-> index 8e7dccc8d3a0..e99e8c97ef01 100644
-> --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> @@ -267,7 +267,7 @@ static const struct attribute_group *hwm_groups[] = {
->  	NULL
->  };
->  
-> -static const struct hwmon_channel_info *hwm_info[] = {
-> +static const struct hwmon_channel_info * const hwm_info[] = {
->  	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT),
->  	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
->  	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
-> @@ -275,7 +275,7 @@ static const struct hwmon_channel_info *hwm_info[] = {
->  	NULL
->  };
->  
-> -static const struct hwmon_channel_info *hwm_gt_info[] = {
-> +static const struct hwmon_channel_info * const hwm_gt_info[] = {
->  	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
->  	NULL
->  };
+> Best regards,
+> Krzysztof
+>
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
