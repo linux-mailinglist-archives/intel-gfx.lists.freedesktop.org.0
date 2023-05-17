@@ -2,153 +2,149 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CDB3707383
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 23:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B046770739A
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 May 2023 23:12:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10EA310E482;
-	Wed, 17 May 2023 21:05:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2789D10E496;
+	Wed, 17 May 2023 21:12:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7901710E482;
- Wed, 17 May 2023 21:05:26 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E179D10E495;
+ Wed, 17 May 2023 21:12:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684357526; x=1715893526;
+ t=1684357969; x=1715893969;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=4q+3JsG9hxjG+RJZraallthYakq0l/XWNY0rp3pS06k=;
- b=BLZZCLBJZy7TI38Guvq67NIgQofIoixaFS7wmtpSzVGOu5rMtLyHmA7+
- xKVWtFMDkZMxSaudZRZekbb0kOLUu86SyBa+QtXzqgCGHjHHs/dZebd3Q
- o41TVnt5bSHynCZLUf8LxJ3hirYGmgpl2WVP9irYRZkWwk67fbTT8ufxG
- PHQKl+jUKgnOLhQYGuf43g5Bu6YE7QCm4tHV2kU2yXQYoG0ae+ZHBelgP
- y8+97qT9sIMYVyCkSMjvHD1dzzcon0LDPyVRkq0DRN59kVEW5DW/pGGsG
- ogt9MUpOhTuKN9ofbQBevHWHm2dHqLJzVOlCZNkyS81mRTwlseSQwPHQx A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="351891851"
-X-IronPort-AV: E=Sophos;i="5.99,283,1677571200"; d="scan'208";a="351891851"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 14:05:03 -0700
+ bh=f+Il4ksHsOFZnXBssNkWNNRWcUO7NnHuT30Ka41sX9A=;
+ b=Td5yP1Z7Vh1iJpGAadgGEDSp2XGgACFTltSR9tfssVFQagl8JLMZ2Ot+
+ 3E/PU2Q5y9fCFvpLXVfkpG4sdGEdy/EvEWB7Jkc1NA2jDZoETMmQoXnqT
+ EWJlrSVUu3AoISDs+S5WcrZ4z2JuZBHZpykHO0MEUIc8VZfLW+qVqAcQ0
+ vvV3Mj4mqIMrhQslje2/T48sNM4EqjNRF5i+ar00txsu+PAv9GPmvwgBG
+ hB/lRNHv+RR+XSHqBAoaiHCM08Sf5xIJrbKi1JhCE3lBHI1jD7sj5WlxU
+ HPmpq9SP+TYjrL7GOq47eujXtaS4ZBFcoKxLzHjS7c9DcppqTmiZiSyBf Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="417539697"
+X-IronPort-AV: E=Sophos;i="5.99,283,1677571200"; d="scan'208";a="417539697"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 14:12:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="696024851"
-X-IronPort-AV: E=Sophos;i="5.99,283,1677571200"; d="scan'208";a="696024851"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga007.jf.intel.com with ESMTP; 17 May 2023 14:05:03 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="704953362"
+X-IronPort-AV: E=Sophos;i="5.99,283,1677571200"; d="scan'208";a="704953362"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga007.fm.intel.com with ESMTP; 17 May 2023 14:12:48 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 17 May 2023 14:05:03 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.23; Wed, 17 May 2023 14:12:48 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 17 May 2023 14:05:02 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 17 May 2023 14:05:02 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.173)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Wed, 17 May 2023 14:12:48 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.176)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 17 May 2023 14:05:02 -0700
+ 15.1.2507.23; Wed, 17 May 2023 14:12:47 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dVyS8kxsEanCLdC39G58bhCp8d/uE58HZIK8EBoKSEETVs+oCCgoCZ8ooI17yzu3mZbT6iz6O/9Z6cx27BNQ4sIfgwCYyr7uCib1G1pKVBmHGXRmmiaTlg6WdNh/6QQ5xtV242rDMxW3Gg3ZpJ6K/nST2Gk0lrOfZzGTngcOxB2Fxbw87N4sbpwiYtzrh/XZWVQJFzZ0hUytLjhfrcDFzh0Hj4dRiLrFbbQe6f2VPppzmfTozI84YZYT8vys3/C5pyGNoPP8qjHjc4yBoklHvZB2BaR0Z1qGj9A0ncYVbTkpyPQCSoS67/aoRStWowOBwuDAhyWiM1OcUYrvq2zjvA==
+ b=cUi/bA6D7DxLRTuKFQJDEImTE/hPZeLgWLYpSjUEN0GMMJpgXsWhcnPSvG+va4HI/0W3mW+h6icfthG7fVw4HgB5QNpaojhqaFUwBSgeR2TrmM1FThQv+eLWeTwAsa516SymX6o/MIXCF5l8N5OvaVxAzBSbbbu7zAVgsHW5ptQYZPKK0Et+lxmcVzDsmcxhxvv38S9pnz9JCgYa9Lr346qU7fp1VhY+hakhjmoDIwQ935icjeD+oa63Nu3EccWdoq7ntMXGVCyBocwVBNyu0umTO5Ks76SwMLdaIFwpVrump63zX1Hk0wlB0YaiVfk4Lks7USGs9jlTeAaQAao3Kw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7xaVuqWwbbdrv/9lymnsj2X4yJHDP/0Aq6U0oT7511g=;
- b=DBt8WWrWOrH2bVCq7f5s9zNPiQ/iDj8ETc0vlVKIbu78BcUzkEnzJutzgtJgY42An36rk8dUVQSthNLSUXLgbr+L9RUf80RQqPHmiT1cjenNHOkDEn4eLQ2yosooJOtjsi5XHDXrRw8rdZuxhVgcbwflsPtQrYSxXgOO0o1N0lHztsBP/LgCAbsPYeNR/2vzWF34MG+1SgsrXSyiG+76hXCl/dEIQxgf0A/BcKPbvgx+7jQQFVgwI+3K2nlomIZPl+eJzBon8ZBFqhGY4oXOL9qrNLLw6WgtcAsDzq93bMuZolP/81DJB8uQlSYe3tByzHlGmX64HfTNRg/P+jznAA==
+ bh=RRgDVCfyWsoeel+GOEsmRq+YJDlO7as376GmTiAZLrs=;
+ b=Qj8NdED4yEEeLgsjwUHrJHsS+bfvNohgaw53X/KH4p/1XPzvSjZ3olaNGJWBzSWRgWV/N/w3C7dzbk7muMt4r7SNoDSHFVVbpCWkkxab/P0ZMwd4j7h71Pxbwi7CRl60yWhDGMjlPuvCEVYlO/lufL/eV17iJksi86PzQ8ThPKV39ATzFc6e52nJPQUq6CN3NVh0FFAV7bNnAHuCZ+Lz3EqCGNP502JtN+Al8MZNgv7mykNQwZlDzv4/RWa7I53qlbtpRquOwlkpeQju/v+LGG/RI7hNOuTl99sVcroRSzFh8H+5j2M6XxOzQE4PSpMSBA2Mx4tWmh+jNxdcgJG3YQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by SA1PR11MB7129.namprd11.prod.outlook.com (2603:10b6:806:29d::12)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ PH7PR11MB6546.namprd11.prod.outlook.com (2603:10b6:510:212::16) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.30; Wed, 17 May
- 2023 21:05:00 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::871d:4695:ebdf:9df1]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::871d:4695:ebdf:9df1%4]) with mapi id 15.20.6387.033; Wed, 17 May 2023
- 21:05:00 +0000
-Message-ID: <a856d7ca-e5a7-fe85-a96b-6db37764bbdb@intel.com>
-Date: Wed, 17 May 2023 14:04:57 -0700
+ 2023 21:12:45 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::4ae6:750e:a237:4eb0]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::4ae6:750e:a237:4eb0%3]) with mapi id 15.20.6387.033; Wed, 17 May 2023
+ 21:12:45 +0000
+Message-ID: <b7ce82ad-0395-32b3-7fe1-9e0a97dd5d23@intel.com>
+Date: Wed, 17 May 2023 14:12:42 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.0
-Content-Language: en-GB
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Thunderbird/102.10.1
+To: John Harrison <john.c.harrison@intel.com>,
  <intel-gfx@lists.freedesktop.org>
-References: <20230428185810.4127234-4-daniele.ceraolospurio@intel.com>
- <20230502152743.304579-1-daniele.ceraolospurio@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20230502152743.304579-1-daniele.ceraolospurio@intel.com>
+References: <20230428185810.4127234-1-daniele.ceraolospurio@intel.com>
+ <20230428185810.4127234-3-daniele.ceraolospurio@intel.com>
+ <064b5612-c8f6-3310-1323-31886090b39c@intel.com>
+Content-Language: en-US
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <064b5612-c8f6-3310-1323-31886090b39c@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR13CA0037.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::12) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
+X-ClientProxiedBy: SJ0P220CA0009.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::25) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|SA1PR11MB7129:EE_
-X-MS-Office365-Filtering-Correlation-Id: a680266a-141d-4cfc-46a8-08db571a6048
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5488:EE_|PH7PR11MB6546:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4bfbc53a-6ac3-48d3-700a-08db571b75b3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /XpXRm3diJ6pyUfq9AsFiZRvjDGfo+op5DwF+uVDx5a19CgO1n8bIl4KFfUJSqrUGE8jx9le4ofJTf7sGPSm0IRR87JFD6fyfS26FWyJ88lu5Rb1MSTiazPI+TI/yryi+Kg9VCac67FXazAQR3rJByyv5HqhhXqns3BBWxzLlntMMxcEXHQ3TQgiTOYYxbW35Hl71lU2ePmuamvYzpDs6neiOSSjR+a0Zye8cBxE9LkcMMgNtCntwf2CbIW9uWmZpQLkWKKWH866mwPij77z7oA/alrXOHNUrp1mFbWWev+HqR2jCWrSD3TYhNSpI0Fk9yz8nRifTiNKEStYI7yL16xj8wiodNCb9o/MmNCT/X4Zpfw9cmxSFse/8wmH7XPMX1ypXnbK6osGfjenx2Rc5QsyMvfPuTpmHnmfsx8uUsvOKfpglALwPj8gQ4Sw2vFluJTRl+9ZsIiUjWtNFPPWxS8KuEm6rkoHofoMZ7dAs1Q+iO8zm4oOjStDMde+oBZkjreWh17wSloWzD90Sjwh02bYF+sFaqztVt2u8R/PCDd1nGsifs76HcLwLCiHr7VPBMvAc465pHmU7KCdMhxoXFH9rHgoiSphy1kD/WiOJTqcLl6GoBOaB1dS0Wdi8FtuKBM+PU3+OlLOP2oS8cLvsg==
+X-Microsoft-Antispam-Message-Info: 7gy3r7PpCkftL3pgeaRXetPK31bvQ9obx7yuRuPvtC5YjIx37NDM4Wsu/QFoNPOEEGsWx8UpsCBlJA7kfd0X5OMHmIgHkE3YlOZ5NZeDFS6vpwrdX7t79n2vMggkB9MdPde3giBug86DBNqUKOdZDA7x03CYFQXt1FLRgSqESrsYo7BqhOzhG79TLgH26bCTuZhB/NJjBKeHVDezQSgJlPaZww4XTUD1kmVC3o0c7W8WBSoob0PLDog7fyor1lpcGPi4mf9Q0UtA6deBr/njmxvBXCwv6IAEEG6J6NOrf5PmEauEM/1SZeH5CagZvtyDqgEt3TZGYlt6YtLgB23iZnyGLtz/Er8RIhL2UQiG7FnorEkV9pWQbpt3xAcTqQCIq25+6wWmZ3+sdqvlzQDn874ysLXZ9ZGEYx3Mf9+CIMcWOdmVnEQW+4Nr7tsazGXGoMNJDiKdkMY0DDMERQv8Z813/ax/tvvYx0MtxHszIu+La/fPVO/u/KTWMiwynmuMB5GnDHjo4ffuwywKOWzwdKEb6l0KY9aK+AADM5b5M/cQuGA6JgJM3YoJYgWZgnYOxg2mzjUao9ENsiKBYjNUg0lbJd80M4WCBF6ZMPP20yjDkN0ORX7ZlUuhKyCWlI63ko9QrlvyoHNhklzg4FuGbQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(346002)(366004)(396003)(376002)(136003)(451199021)(36756003)(478600001)(41300700001)(8936002)(8676002)(38100700002)(5660300002)(30864003)(2906002)(450100002)(66556008)(82960400001)(66946007)(66476007)(31696002)(6506007)(6512007)(4326008)(53546011)(86362001)(26005)(186003)(316002)(31686004)(83380400001)(2616005)(6486002)(6666004)(43740500002)(45980500001);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(346002)(366004)(396003)(136003)(39860400002)(451199021)(53546011)(478600001)(186003)(6506007)(6512007)(26005)(86362001)(6666004)(4326008)(83380400001)(82960400001)(450100002)(31686004)(66556008)(2616005)(6486002)(66476007)(66946007)(5660300002)(41300700001)(316002)(8936002)(8676002)(30864003)(38100700002)(2906002)(31696002)(36756003)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UHBHUDFaaU5BY2dxUW44bnZiS2ZodXJhejB1MitRYUxjdEsvb0MvVzdDbHF4?=
- =?utf-8?B?cTNuWWk2ZUFnZ0ZUZ0g5NHErMHhoeTdmS0RycDAzYVlvRngyMmsvUDdwVnJD?=
- =?utf-8?B?Tm5FTGZPYmxNOW9XNi84dGk0L1NzTVUrZVFZV2xZRlp2NDhZLzZiMkxRSWV6?=
- =?utf-8?B?MTdQY3oyUnhkUkdMTDRENTM5WWNNZGNDbDVJckxuK3NhNmZtUnJTYWdmV0ZR?=
- =?utf-8?B?Tkdab3ZRS2RrbjVudEZyVzNtdi9oM2Q4dEd4ZnY5OFh6dXZTbDJQenZoczcw?=
- =?utf-8?B?S3Y3TWd5RklSU3h4VGpjWHpqakhPRzI2STFJUk1WeFNQYmVtaHVMNG01bHlv?=
- =?utf-8?B?MGxPdU1iT0hUNER4dUZkQW5NdXp1ZjlzVDhOQmtjYUI2NGgwcEltK2IvamRy?=
- =?utf-8?B?cWNuQ2lGbEFPb05TVnp4QXFKK1B3UzVhaW9VakFtUnI4a1BIeWFmenF5U3JK?=
- =?utf-8?B?R2hremtodVhwZTREak1GZTZSZWVYUGpWQitxV25mSkV6ZzdvaXdhQnJ2QmJu?=
- =?utf-8?B?d2oxenRFQXp5Nlh3TDR5M2ZQYnhhZTlqd2haSGlsVFF0cUUwNWJXNStpRzhH?=
- =?utf-8?B?eFpxdUxUTU1UcDRnTkNHd3N4c0J2TWYxeXBlNXR6UjVnaHMyM00zdFdNV2Rv?=
- =?utf-8?B?MmdnWit1RWU3UHRrN1BicU1qQisxbGxvUW9hZGJWQ2RhWnZ1OGMzaHN2Wk5N?=
- =?utf-8?B?cngyWnVId2dwOFRnSm4zeXVLV09vaVM2bk9wbzFqNzRRK1JSZTVCWnk2a05L?=
- =?utf-8?B?eGlXN2o1SndBdUlNTDVwajlWcGtGaEM1RU1mMzBCMGNNNlBMOEp2SEx1cWF4?=
- =?utf-8?B?YlNKb25GZDZIRFFjZGgzWXQwVVZnbHk1K1d3N3pYWUFRYm9xZENOTUtoS0JT?=
- =?utf-8?B?ejFpVTllMW5aeTJhN3Zyd3Q4YWFJTnkwLzdLbEhvRDJya2UwQkd0Vm9TNU1k?=
- =?utf-8?B?dmxoc2xQMm5pSDZoZlZ0Rk92MVVWdnBRcHVOMXhheVEzbHZWdVpTWkQyemZF?=
- =?utf-8?B?UGxramhjWjkrczgwRnpjelNVWDBiSlJkUS9hQ2lqcC9ueGUxYzdHcnBNaEtH?=
- =?utf-8?B?QTJ0elBrQVZmMlRrUEFiK0dJWWVuSGNPdmFJWDRDd1VHTmVDN1o0Yk10NWpU?=
- =?utf-8?B?elZTZUJmdHFSSTRvTUVqaWdMSjFHcjFhK01lRHEzMVFLN2RSbytUdEFtNVlR?=
- =?utf-8?B?NTYwZU1zMWI2bzZGaHdVb1pCNXE0clFNUk03bStEc09EbEpiVzdrTm9sTWxk?=
- =?utf-8?B?UVFSNFNIdkp5YXlUbEZXMWEvQkhsRk9GVmw3dkRHRVRyYmRtQWU2R2RCTHRq?=
- =?utf-8?B?YndmMmozOXJsSDExcVArOTM5UXowVXZUUjMrYTZONEJwTmc5cVhOZWxPYXBy?=
- =?utf-8?B?VmJXRjZYVk05ZG1wbnc2NndSUXFGenBSbEsvVWNLKzRpb0hWbFN0Rkc1ZFNK?=
- =?utf-8?B?TFlFTTJLRjB6M1NjRzdTQ3Z2T3h2aVBYc0JWV3hrL1dHaGhpUVBzQ3czbmd4?=
- =?utf-8?B?Y0xHdGNSTjRVYTRvR3VQSnYyVjFPSGs1NUhmakM3MlV2a1luaDV3cnZQQXg3?=
- =?utf-8?B?T0JkNVZDV1lzZ1MyYnMrOVMwUmVRTytVR205NUJyRVBzKzRralYrKzU4UCsy?=
- =?utf-8?B?UXUxd0Fwd25EWVNBSGM2ek94TGNrZUhwVkFPeDZlTFF6OXBjMVVFU2V6cnhT?=
- =?utf-8?B?TkJCZS9DTjJHbkRsU3M5Qml0Z0xNRzg2MlZjZEh4Z1QvMmdEYVV1ellpVVF4?=
- =?utf-8?B?aEZXOURydi9raFd5eHpaWjlScXBhYWcvVFBPeHZsUjBRaU5EOTdZQmtVZVVy?=
- =?utf-8?B?ZkpRaFNXVzYvc0IyZjFjOHFCQ1lURTZLWkk5RlVRczBJcjBHODArQ1JDSXlH?=
- =?utf-8?B?Mkhmcm9uMnJaTDFzRVZLQTFSYlIxM3podEtnYTJhZTZIUlYxKzBKdk9ndHVY?=
- =?utf-8?B?bS96OFVQdmE4S1RYUGRMWElOYU84Zkp3QjVTWkxLcFVGdE9aY0E2UW56amow?=
- =?utf-8?B?UGpzVk5uNUlnOEpCRjZEZ3F3dHdVSTZHTHVoQ0dpdllHbjVvbkpWM1Z6Q1A1?=
- =?utf-8?B?SFl6TEF1anduVXZiamRKU3FUc29MZEVGOWE3Q0hLZjR0MEZXUVN2YkN2ek02?=
- =?utf-8?B?dzlPUXhhTllBUjlvd0t1N1Rtd0dCRWlKeTJGVjNidjV3b0NOZmdHb1pwREZN?=
- =?utf-8?B?RXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a680266a-141d-4cfc-46a8-08db571a6048
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VVE1WWVjNWg3ME45Rm04N01TcDZxRHVrdGxwalRPZnNHL2FzN3hDMUJTbzFp?=
+ =?utf-8?B?ZEpGTEFqL3h4VDNCRG9GQmhhbUxuVGRrcTlVRnYvanBuQllaWTBJd3JpK1NU?=
+ =?utf-8?B?VzdJUnc2UUNFNkpWR3NLc2NIRU13ZTFRaXI2bDlLK0tXeVgzN1NROHZlUGF6?=
+ =?utf-8?B?NlN3VHpQOG9EeGw1V3Q5ZjA1L0FBT0d0aGV3YWtRTFptWWFoOGdCNGJvSGpJ?=
+ =?utf-8?B?dVJGNXByQlgzY2NNWXJzVE9WdHZSZG45djM5a1lzU1YwZWxENmNzcWZSZm4x?=
+ =?utf-8?B?eDluSHFsTk85SXM0b0pVSDh5YnJaSVJnUGdsQWsyaUwrY0JoS2lueVp1bjZa?=
+ =?utf-8?B?enBLL2lTM2ljQjVhWE55a21hSmNhd0xOS0hNK0ZBeGdmb1luRVREWjlrNDYz?=
+ =?utf-8?B?VXBjTEhtY2w0UXVOU0t0QzlubVNzQzJDZ0E5TUpydDVXZXRXeDREL1N4YUdm?=
+ =?utf-8?B?UnRNazlQTCtwazVZUjFjcmVTL25zSHlyTXg0MTdkZWZZalA2TEh3WFRBK3V2?=
+ =?utf-8?B?ZjVhdzVsblpEditMTzNsVktHZFZ2VVN1djdVcWRERXpNQkxrMzdlUHJ0bllm?=
+ =?utf-8?B?Tmw4OFJpdk44VUNJcUVMbW96T2kvQXpFZ3U1UWUwRkdsYTcxOWJ2Rlh3VWhH?=
+ =?utf-8?B?SmpQQlR1TTlDMUJ4NFBrdEh6a0NONE5zdGNReWs4Nm1TS21HVXRrd3A1YzQy?=
+ =?utf-8?B?bUpHc1dtd2dOQXVURG9waXdYaEdZSEx5dnhrSlR5VWVtMnliU2VWZDl5RUgr?=
+ =?utf-8?B?QnJrT1lJSng1c3BidEttaUdrVmxLK0tyMXI5aktScldPSEc1a2lubVhYSlpr?=
+ =?utf-8?B?dkxrbTZkcWplK3hPeEMvRzBuMUZEcEd1ZjRjWG9uQytzd3VJaEx0aXBzZTdV?=
+ =?utf-8?B?TUlkWUduK0JzUGRKTlg3NzFzRm5wZnlxZ0FEd3BxZlEvQzNmV0dWRkhqYVpT?=
+ =?utf-8?B?OVlxVFl1bVIzWVVidDkzUkthNlBJeU5YcmdWRGc0ZDFlUjBjSXZ4Mm1Ga1Z2?=
+ =?utf-8?B?Mnh4Sm5mTmp1RVpuekplQ01HTEUrdVpiWllCdzc3SE1wS0JuTE0remlqMytN?=
+ =?utf-8?B?clQ3TVdSRGM4UjVZOWZOUTFnSisyMmQvWmI1bU9kazF2ODdOTXUyeDM5Yi9E?=
+ =?utf-8?B?K3ZtMXdhVnhzVDVONUtZdzF1RGw0WTNJMy83OE9GU2xRSEk5bVhSYWVreW9y?=
+ =?utf-8?B?cUhURCs1a0pyUnkyeklIS016RlJGc2gyRk9WR3V6blJWeEUrRThHTkk4QmZ6?=
+ =?utf-8?B?TDRDNkRtZ0JUbHhPN0M0Z2dyOTlXRkh2dHNOU2RraVZWLzBLZTYrRDg3TDUv?=
+ =?utf-8?B?c1N4V0hRSmpoOTVMZE9mOGYxYWpNQVNNWVhGK0dxRWpDY1BXQnFlZmZPbzlE?=
+ =?utf-8?B?SmZJS2tzdUFXUkJtdk5qd2QyQXpBRjZUUHB4Z1d3cHJpVkJOMjZGd1J1cSs4?=
+ =?utf-8?B?QnA2N3N1TmdJTER5RUh6OG1WTmxJYUErZDVLR09VUGhXTUJoWlluRTVVWFJO?=
+ =?utf-8?B?NUNIMENhSE9zYnFrakpFSTcrWVJablNOemxpWlZFT3NRZnZ3Rko1STZuZ3l1?=
+ =?utf-8?B?dkR0azU4cFR3T2FCTUJqZXM0ZzlkMUFQN3pkcWtXZWFPdFIwZE9mSHZ3Q1V6?=
+ =?utf-8?B?Yk9FOGdISVBqczBsTmFuT2xaeU9vc0E4UTR1MldUV2p1YWVvNm5ObjdNYWk5?=
+ =?utf-8?B?OWExWVYyRXdnQzM3TDZtYXIwYTR3bExGYTdzWlp4UlhMTWhNa0R3WnkwWGpt?=
+ =?utf-8?B?eUROaHVvd1Bpem5yTndjOTZxajNDMkR1K0t6UkJEV1lrVUI5d0pCT2FZQVcx?=
+ =?utf-8?B?YUc4NEtHb0kvZ1ZBSlViVUpxRE95cjVHVlZ2YVdVdUQ2cGpjcHlnb3VUOTVy?=
+ =?utf-8?B?eWhOQ1pRbSt5VTNIT3N3eStaajByY2RMSlIrSS9ZSTdrZ2VNZUFBVzh4OVRJ?=
+ =?utf-8?B?TzVWV2puMTFPNDNadzRFSGg0SERyLzZST2FVekxaTktwWnpUa1JYNEczajJV?=
+ =?utf-8?B?a2VKTStCWUZ5cmdoVXpoQ0RjYlRPUU5RMHdhZVRObXBWTlgzWHVKa052eHRK?=
+ =?utf-8?B?eDBSKzJCUlYrejBOM1dCZUdQMWIxSzhLV1hqbXovem5BYWVMZGd2dGRLSFBY?=
+ =?utf-8?B?VXl2ZGlGUHJRY1dGTXcxTmNScWU2V3JEWGJWMGVoRWhnNHVhdHRKLy80bWVZ?=
+ =?utf-8?B?ZUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4bfbc53a-6ac3-48d3-700a-08db571b75b3
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2023 21:05:00.1232 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2023 21:12:45.5533 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: U0dI8YlAZaYCLJ8IbxlWJ41/m25XPTWYIeFrI6aH2zu4Ef/lCNVLKUxVmVJxMey40vrbvAGu0sMpFpjY2GzLNslMwTQ+7qzv6+G6QlW5tZ4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7129
+X-MS-Exchange-CrossTenant-UserPrincipalName: lyAARIoZu0HJRmWtDLZNfciD4p0nWApu+to12UC1p2H1rXRSWvQW+LSOudiMnm/lUGiyNoPQgBiP+FQzLbwuTDa4XvY9TY/8gRx/JGO+Ons=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6546
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/huc: Parse the GSC-enabled HuC
- binary
+Subject: Re: [Intel-gfx] [PATCH v2 2/8] drm/i915/uc: perma-pin firmwares
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,501 +162,307 @@ Cc: dri-devel@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 5/2/2023 08:27, Daniele Ceraolo Spurio wrote:
-> The new binaries that support the 2-step authentication have contain the
-have contain?
 
-> legacy-style binary, which we can use for loading the HuC via DMA. To
-> find out where this is located in the image, we need to parse the meu
-'meu manifest' needs some kind of explanation. 'meu' is mentioned many 
-times but nothing ever seems to explain what it is or where it comes 
-from. Also, sometimes it is capitalised and sometimes not.
 
-> manifest of the GSC binary. The manifest consist of a partition header
-> followed by entries, one of which contains the offset we're looking for.
-> Note that the DG2 GSC binary contains entries with the same names, but
-> it doesn't contain a full legacy binary, so we need to skip assigning
-> the dma offset in that case (which we can do by checking the ccs).
-> Also, since we're now parsing the entries, we can extract the HuC
-> version that way instead of using hardcoded offsets.
->
-> Note that the meu structure will be re-used for parsing the GSC binary,
-> so they've been added in their own header.
->
-> v2: fix structure names to match meu defines (s/CPT/CPD/), update commit
->      message, check ccs validity, drop old version location defines.
->
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-> ---
->   .../drm/i915/gt/uc/intel_gsc_meu_headers.h    |  74 ++++++++++
->   drivers/gpu/drm/i915/gt/uc/intel_huc.c        |  11 +-
->   drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c     | 135 ++++++++++++++++++
->   drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h     |   5 +-
->   drivers/gpu/drm/i915/gt/uc/intel_huc_print.h  |  21 +++
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  71 +++++----
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h      |   2 +
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h  |   6 -
->   8 files changed, 272 insertions(+), 53 deletions(-)
->   create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_meu_headers.h
->   create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_huc_print.h
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_meu_headers.h b/drivers/gpu/drm/i915/gt/uc/intel_gsc_meu_headers.h
-> new file mode 100644
-> index 000000000000..d55a66202576
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_meu_headers.h
-> @@ -0,0 +1,74 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef _INTEL_GSC_MEU_H_
-> +#define _INTEL_GSC_MEU_H_
-> +
-> +#include <linux/types.h>
-> +
-> +/* Code partition directory (CPD) structures */
-> +struct intel_gsc_cpd_header_v2 {
-> +	u32 header_marker;
-> +#define INTEL_GSC_CPD_HEADER_MARKER 0x44504324
-> +
-> +	u32 num_of_entries;
-> +	u8 header_version;
-> +	u8 entry_version;
-> +	u8 header_length; /* in bytes */
-> +	u8 flags;
-> +	u32 partition_name;
-> +	u32 crc32;
-> +} __packed;
-> +
-> +struct intel_gsc_cpd_entry {
-> +	u8 name[12];
-> +
-> +	/*
-> +	 * Bits 0-24: offset from the beginning of the code partition
-> +	 * Bit 25: huffman compressed
-> +	 * Bits 26-31: reserved
-> +	 */
-> +	u32 offset;
-> +#define INTEL_GSC_CPD_ENTRY_OFFSET_MASK GENMASK(24, 0)
-> +#define INTEL_GSC_CPD_ENTRY_HUFFMAN_COMP BIT(25)
-> +
-> +	/*
-> +	 * Module/Item length, in bytes. For Huffman-compressed modules, this
-> +	 * refers to the uncompressed size. For software-compressed modules,
-> +	 * this refers to the compressed size.
-> +	 */
-> +	u32 length;
-> +
-> +	u8 reserved[4];
-> +} __packed;
-> +
-> +struct intel_gsc_meu_version {
-> +	u16 major;
-> +	u16 minor;
-> +	u16 hotfix;
-> +	u16 build;
-> +} __packed;
-> +
-> +struct intel_gsc_manifest_header {
-> +	u32 header_type; /* 0x4 for manifest type */
-> +	u32 header_length; /* in dwords */
-> +	u32 header_version;
-> +	u32 flags;
-> +	u32 vendor;
-> +	u32 date;
-> +	u32 size; /* In dwords, size of entire manifest (header + extensions) */
-> +	u32 header_id;
-> +	u32 internal_data;
-> +	struct intel_gsc_meu_version fw_version;
-> +	u32 security_version;
-> +	struct intel_gsc_meu_version meu_kit_version;
-> +	u32 meu_manifest_version;
-> +	u8 general_data[4];
-> +	u8 reserved3[56];
-> +	u32 modulus_size; /* in dwords */
-> +	u32 exponent_size; /* in dwords */
-> +} __packed;
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> index 9721761373fb..062ff914b274 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> @@ -6,23 +6,14 @@
->   #include <linux/types.h>
->   
->   #include "gt/intel_gt.h"
-> -#include "gt/intel_gt_print.h"
->   #include "intel_guc_reg.h"
->   #include "intel_huc.h"
-> +#include "intel_huc_print.h"
->   #include "i915_drv.h"
->   
->   #include <linux/device/bus.h>
->   #include <linux/mei_aux.h>
->   
-> -#define huc_printk(_huc, _level, _fmt, ...) \
-> -	gt_##_level(huc_to_gt(_huc), "HuC: " _fmt, ##__VA_ARGS__)
-> -#define huc_err(_huc, _fmt, ...)	huc_printk((_huc), err, _fmt, ##__VA_ARGS__)
-> -#define huc_warn(_huc, _fmt, ...)	huc_printk((_huc), warn, _fmt, ##__VA_ARGS__)
-> -#define huc_notice(_huc, _fmt, ...)	huc_printk((_huc), notice, _fmt, ##__VA_ARGS__)
-> -#define huc_info(_huc, _fmt, ...)	huc_printk((_huc), info, _fmt, ##__VA_ARGS__)
-> -#define huc_dbg(_huc, _fmt, ...)	huc_printk((_huc), dbg, _fmt, ##__VA_ARGS__)
-> -#define huc_probe_error(_huc, _fmt, ...) huc_printk((_huc), probe_error, _fmt, ##__VA_ARGS__)
-> -
->   /**
->    * DOC: HuC
->    *
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
-> index 534b0aa43316..0ec48c2cd749 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
-> @@ -5,11 +5,146 @@
->   
->   #include "gt/intel_gsc.h"
->   #include "gt/intel_gt.h"
-> +#include "intel_gsc_meu_headers.h"
->   #include "intel_huc.h"
->   #include "intel_huc_fw.h"
-> +#include "intel_huc_print.h"
->   #include "i915_drv.h"
->   #include "pxp/intel_pxp_huc.h"
->   
-> +static void get_version_from_meu_manifest(struct intel_uc_fw_ver *ver, const void *data)
-> +{
-> +	const struct intel_gsc_manifest_header *manifest = data;
-> +
-> +	ver->major = manifest->fw_version.major;
-> +	ver->minor = manifest->fw_version.minor;
-> +	ver->patch = manifest->fw_version.hotfix;
-> +}
-> +
-> +static bool css_valid(const void *data, size_t size)
-> +{
-> +	const struct uc_css_header *css = data;
-> +
-> +	if (unlikely(size < sizeof(struct uc_css_header)))
-> +		return false;
-> +
-> +	if (css->module_type != 0x6)
-> +		return false;
-> +
-> +	if (css->module_vendor != PCI_VENDOR_ID_INTEL)
-> +		return false;
-> +
-> +	return true;
-> +}
-> +
-> +static inline u32 entry_offset(const struct intel_gsc_cpd_entry *entry)
-> +{
-> +	return entry->offset & INTEL_GSC_CPD_ENTRY_OFFSET_MASK;
-> +}
-> +
-> +int intel_huc_fw_get_binary_info(struct intel_uc_fw *huc_fw, const void *data, size_t size)
-> +{
-> +	struct intel_huc *huc = container_of(huc_fw, struct intel_huc, fw);
-> +	const struct intel_gsc_cpd_header_v2 *header = data;
-> +	const struct intel_gsc_cpd_entry *entry;
-> +	size_t min_size = sizeof(*header);
-> +	int i;
-> +
-> +	if (!huc_fw->loaded_via_gsc) {
-> +		huc_err(huc, "Invalid FW type MEU parsing!\n");
-Not sure what this message is meant to be saying?
+On 5/17/2023 1:59 PM, John Harrison wrote:
+> On 4/28/2023 11:58, Daniele Ceraolo Spurio wrote:
+>> Now that each FW has its own reserved area, we can keep them always
+>> pinned and skip the pin/unpin dance on reset. This will make things
+>> easier for the 2-step HuC authentication, which requires the FW to be
+>> pinned in GGTT after the xfer is completed.
+>> Given that we use dummy vmas for the pinning, we do need to explicitly
+>> re-pin on resume because the automated helper won't cover us.
+>>
+>> Signed-off-by: Daniele Ceraolo Spurio<daniele.ceraolospurio@intel.com>
+>> Cc: Alan Previn<alan.previn.teres.alexis@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/intel_ggtt.c      |  3 ++
+>>   drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c |  7 ++++-
+>>   drivers/gpu/drm/i915/gt/uc/intel_guc.c    |  2 +-
+>>   drivers/gpu/drm/i915/gt/uc/intel_huc.c    |  2 +-
+>>   drivers/gpu/drm/i915/gt/uc/intel_uc.c     |  8 +++++
+>>   drivers/gpu/drm/i915/gt/uc/intel_uc.h     |  2 ++
+>>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c  | 36 ++++++++++++++++++-----
+>>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h  |  5 +++-
+>>   8 files changed, 53 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c 
+>> b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>> index 20915edc8bd9..ab71ed11de79 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>> @@ -1322,6 +1322,9 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
+>>           ggtt->vm.scratch_range(&ggtt->vm, ggtt->error_capture.start,
+>>                          ggtt->error_capture.size);
+>>   +    list_for_each_entry(gt, &ggtt->gt_list, ggtt_link)
+>> +        intel_uc_resume_mappings(&gt->uc);
+>> +
+>>       ggtt->invalidate(ggtt);
+>>         if (flush)
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c
+>> index 64bff01026e8..af542e3cb3e9 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c
+>> @@ -80,7 +80,12 @@ void intel_gsc_uc_init_early(struct intel_gsc_uc 
+>> *gsc)
+>>   {
+>>       struct intel_gt *gt = gsc_uc_to_gt(gsc);
+>>   -    intel_uc_fw_init_early(&gsc->fw, INTEL_UC_FW_TYPE_GSC);
+>> +    /*
+>> +     * GSC FW needs to be copied to a dedicated memory allocations for
+>> +     * loading (see gsc->local), so we don't need to GGTT map the FW 
+>> image
+>> +     * itself into GGTT.
+>> +     */
+>> +    intel_uc_fw_init_early(&gsc->fw, INTEL_UC_FW_TYPE_GSC, false);
+>>       INIT_WORK(&gsc->work, gsc_work);
+>>         /* we can arrive here from i915_driver_early_probe for primary
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>> index c9f20385f6a0..2eb891b270ae 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>> @@ -164,7 +164,7 @@ void intel_guc_init_early(struct intel_guc *guc)
+>>       struct intel_gt *gt = guc_to_gt(guc);
+>>       struct drm_i915_private *i915 = gt->i915;
+>>   -    intel_uc_fw_init_early(&guc->fw, INTEL_UC_FW_TYPE_GUC);
+>> +    intel_uc_fw_init_early(&guc->fw, INTEL_UC_FW_TYPE_GUC, true);
+>>       intel_guc_ct_init_early(&guc->ct);
+>>       intel_guc_log_init_early(&guc->log);
+>>       intel_guc_submission_init_early(guc);
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>> index aefdaa62da99..9721761373fb 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>> @@ -276,7 +276,7 @@ void intel_huc_init_early(struct intel_huc *huc)
+>>       struct drm_i915_private *i915 = huc_to_gt(huc)->i915;
+>>       struct intel_gt *gt = huc_to_gt(huc);
+>>   -    intel_uc_fw_init_early(&huc->fw, INTEL_UC_FW_TYPE_HUC);
+>> +    intel_uc_fw_init_early(&huc->fw, INTEL_UC_FW_TYPE_HUC, true);
+>>         /*
+>>        * we always init the fence as already completed, even if HuC 
+>> is not
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>> index 996168312340..b6adfda3761e 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>> @@ -697,6 +697,12 @@ void intel_uc_suspend(struct intel_uc *uc)
+>>       }
+>>   }
+>>   +static void __uc_resume_mappings(struct intel_uc *uc)
+>> +{
+>> +    intel_uc_fw_resume_mapping(&uc->guc.fw);
+>> +    intel_uc_fw_resume_mapping(&uc->huc.fw);
+>> +}
+>> +
+>>   static int __uc_resume(struct intel_uc *uc, bool enable_communication)
+>>   {
+>>       struct intel_guc *guc = &uc->guc;
+>> @@ -764,4 +770,6 @@ static const struct intel_uc_ops uc_ops_on = {
+>>         .init_hw = __uc_init_hw,
+>>       .fini_hw = __uc_fini_hw,
+>> +
+>> +    .resume_mappings = __uc_resume_mappings,
+>>   };
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+>> index 5d0f1bcc381e..c2783e6e752b 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+>> @@ -24,6 +24,7 @@ struct intel_uc_ops {
+>>       void (*fini)(struct intel_uc *uc);
+>>       int (*init_hw)(struct intel_uc *uc);
+>>       void (*fini_hw)(struct intel_uc *uc);
+>> +    void (*resume_mappings)(struct intel_uc *uc);
+>>   };
+>>     struct intel_uc {
+>> @@ -113,6 +114,7 @@ intel_uc_ops_function(init, init, int, 0);
+>>   intel_uc_ops_function(fini, fini, void, );
+>>   intel_uc_ops_function(init_hw, init_hw, int, 0);
+>>   intel_uc_ops_function(fini_hw, fini_hw, void, );
+>> +intel_uc_ops_function(resume_mappings, resume_mappings, void, );
+>>   #undef intel_uc_ops_function
+>>     #endif
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>> index 6b71b9febd74..03f0b258aea7 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>> @@ -422,12 +422,14 @@ static void __uc_fw_user_override(struct 
+>> drm_i915_private *i915, struct intel_uc
+>>    * intel_uc_fw_init_early - initialize the uC object and select the 
+>> firmware
+>>    * @uc_fw: uC firmware
+>>    * @type: type of uC
+>> + * @needs_ggtt_mapping: whether the FW needs to be GGTT mapped for 
+>> loading
+>>    *
+>>    * Initialize the state of our uC object and relevant tracking and 
+>> select the
+>>    * firmware to fetch and load.
+>>    */
+>>   void intel_uc_fw_init_early(struct intel_uc_fw *uc_fw,
+>> -                enum intel_uc_fw_type type)
+>> +                enum intel_uc_fw_type type,
+>> +                bool needs_ggtt_mapping)
+>>   {
+>>       struct drm_i915_private *i915 = ____uc_fw_to_gt(uc_fw, 
+>> type)->i915;
+>>   @@ -440,6 +442,7 @@ void intel_uc_fw_init_early(struct intel_uc_fw 
+>> *uc_fw,
+>>       GEM_BUG_ON(uc_fw->file_selected.path);
+>>         uc_fw->type = type;
+>> +    uc_fw->needs_ggtt_mapping = needs_ggtt_mapping;
+>>         if (HAS_GT_UC(i915)) {
+>>           __uc_fw_auto_select(i915, uc_fw);
+>> @@ -699,7 +702,7 @@ static int try_firmware_load(struct intel_uc_fw 
+>> *uc_fw, const struct firmware **
+>>       if (err)
+>>           return err;
+>>   -    if ((*fw)->size > INTEL_UC_RSVD_GGTT_PER_FW) {
+>> +    if (uc_fw->needs_ggtt_mapping && (*fw)->size > 
+>> INTEL_UC_RSVD_GGTT_PER_FW) {
+>>           gt_err(gt, "%s firmware %s: size (%zuKB) exceeds max 
+>> supported size (%uKB)\n",
+>>                  intel_uc_fw_type_repr(uc_fw->type), 
+>> uc_fw->file_selected.path,
+>>                  (*fw)->size / SZ_1K, INTEL_UC_RSVD_GGTT_PER_FW / 
+>> SZ_1K);
+>> @@ -880,6 +883,9 @@ static void uc_fw_bind_ggtt(struct intel_uc_fw 
+>> *uc_fw)
+>>       struct i915_vma_resource *dummy = &uc_fw->dummy;
+>>       u32 pte_flags = 0;
+>>   +    if (!uc_fw->needs_ggtt_mapping)
+>> +        return;
+>> +
+>>       dummy->start = uc_fw_ggtt_offset(uc_fw);
+>>       dummy->node_size = obj->base.size;
+>>       dummy->bi.pages = obj->mm.pages;
+>> @@ -901,11 +907,13 @@ static void uc_fw_bind_ggtt(struct intel_uc_fw 
+>> *uc_fw)
+>>     static void uc_fw_unbind_ggtt(struct intel_uc_fw *uc_fw)
+>>   {
+>> -    struct drm_i915_gem_object *obj = uc_fw->obj;
+>>       struct i915_ggtt *ggtt = __uc_fw_to_gt(uc_fw)->ggtt;
+>> -    u64 start = uc_fw_ggtt_offset(uc_fw);
+>> +    struct i915_vma_resource *dummy = &uc_fw->dummy;
+> I'm confused as to why this was using uc_fw->obj previously? Why was 
+> it not originally using dummy? And why if that was correct before, why 
+> is not correct now?
 
-John.
+Both are correct, because the values inside of dummy are initialized 
+based on uc_fw->obj and uc_fw_ggtt_offset(). Since now we're 
+perma-pinning the binary, I wanted to move to a vma-centric approach for 
+the functions, which also makes it easier to check if the vma has 
+actually been pinned (via the dummy->node_size check below) in the 
+fini/unbind path; this check was not required before because the vma was 
+immediately unpinned after load and therefore we didn't need to check it 
+in the fini path.
 
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (size < sizeof(*header)) {
-> +		huc_err(huc, "MEU FW too small! %zu < %zu\n", size, min_size);
-> +		return -ENODATA;
-> +	}
-> +
-> +	/*
-> +	 * The meu HuC binary starts with a directory header, followed by a
-> +	 * series of entries. Each entry is identified by a name and points to
-> +	 * a specific section of the binary containing the relevant data.
-> +	 * The entries we're interested in are
-> +	 * - "HUCP.man": points to the GSC manifest header for the HuC, which
-> +	 *               contains the version info.
-> +	 * - "huc_fw": points to the legacy-style binary that can be used for
-> +	 *             load via the DMA. This entry only contains a valid CSS
-> +	 *             on binaries for platforms that support 2-step HuC load
-> +	 *             via dma and auth via GSC (like MTL).
-> +	 *
-> +	 * --------------------------------------------------
-> +	 * [  intel_gsc_cpd_header_v2                       ]
-> +	 * --------------------------------------------------
-> +	 * [  intel_gsc_cpd_entry[]                         ]
-> +	 * [      entry1                                    ]
-> +	 * [      ...                                       ]
-> +	 * [      entryX                                    ]
-> +	 * [          "HUCP.man"                            ]
-> +	 * [           ...                                  ]
-> +	 * [           offset  >----------------------------]------o
-> +	 * [      ...                                       ]      |
-> +	 * [      entryY                                    ]      |
-> +	 * [          "huc_fw"                              ]      |
-> +	 * [           ...                                  ]      |
-> +	 * [           offset  >----------------------------]----------o
-> +	 * --------------------------------------------------      |   |
-> +	 *                                                         |   |
-> +	 * --------------------------------------------------      |   |
-> +	 * [ intel_gsc_manifest_header                      ]<-----o   |
-> +	 * [  ...                                           ]          |
-> +	 * [  intel_gsc_meu_version fw_version              ]          |
-> +	 * [  ...                                           ]          |
-> +	 * --------------------------------------------------          |
-> +	 *                                                             |
-> +	 * --------------------------------------------------          |
-> +	 * [ data[]                                         ]<---------o
-> +	 * [  ...                                           ]
-> +	 * [  ...                                           ]
-> +	 * --------------------------------------------------
-> +	 */
-> +
-> +	if (header->header_marker != INTEL_GSC_CPD_HEADER_MARKER) {
-> +		huc_err(huc, "invalid marker for meu CPD header: 0x%08x!\n",
-> +			header->header_marker);
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* we only have binaries with header v2 and entry v1 for now */
-> +	if (header->header_version != 2 || header->entry_version != 1) {
-> +		huc_err(huc, "invalid meu CPD header/entry version %u:%u!\n",
-> +			header->header_version, header->entry_version);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (header->header_length < sizeof(struct intel_gsc_cpd_header_v2)) {
-> +		huc_err(huc, "invalid meu CPD header length %u!\n",
-> +			header->header_length);
-> +		return -EINVAL;
-> +	}
-> +
-> +	min_size = header->header_length + sizeof(*entry) * header->num_of_entries;
-> +	if (size < min_size) {
-> +		huc_err(huc, "MEU FW too small! %zu < %zu\n", size, min_size);
-> +		return -ENODATA;
-> +	}
-> +
-> +	entry = data + header->header_length;
-> +
-> +	for (i = 0; i < header->num_of_entries; i++, entry++) {
-> +		if (strcmp(entry->name, "HUCP.man") == 0)
-> +			get_version_from_meu_manifest(&huc_fw->file_selected.ver,
-> +						      data + entry_offset(entry));
-> +
-> +		if (strcmp(entry->name, "huc_fw") == 0) {
-> +			u32 offset = entry_offset(entry);
-> +			if (offset < size && css_valid(data + offset, size - offset))
-> +				huc_fw->dma_start_offset = offset;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   int intel_huc_fw_load_and_auth_via_gsc(struct intel_huc *huc)
->   {
->   	int ret;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h
-> index db42e238b45f..0999ffe6f962 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h
-> @@ -7,8 +7,11 @@
->   #define _INTEL_HUC_FW_H_
->   
->   struct intel_huc;
-> +struct intel_uc_fw;
-> +
-> +#include <linux/types.h>
->   
->   int intel_huc_fw_load_and_auth_via_gsc(struct intel_huc *huc);
->   int intel_huc_fw_upload(struct intel_huc *huc);
-> -
-> +int intel_huc_fw_get_binary_info(struct intel_uc_fw *huc_fw, const void *data, size_t size);
->   #endif
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc_print.h b/drivers/gpu/drm/i915/gt/uc/intel_huc_print.h
-> new file mode 100644
-> index 000000000000..915d310ee1df
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc_print.h
-> @@ -0,0 +1,21 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef __INTEL_HUC_PRINT__
-> +#define __INTEL_HUC_PRINT__
-> +
-> +#include "gt/intel_gt.h"
-> +#include "gt/intel_gt_print.h"
-> +
-> +#define huc_printk(_huc, _level, _fmt, ...) \
-> +	gt_##_level(huc_to_gt(_huc), "HuC: " _fmt, ##__VA_ARGS__)
-> +#define huc_err(_huc, _fmt, ...)	huc_printk((_huc), err, _fmt, ##__VA_ARGS__)
-> +#define huc_warn(_huc, _fmt, ...)	huc_printk((_huc), warn, _fmt, ##__VA_ARGS__)
-> +#define huc_notice(_huc, _fmt, ...)	huc_printk((_huc), notice, _fmt, ##__VA_ARGS__)
-> +#define huc_info(_huc, _fmt, ...)	huc_printk((_huc), info, _fmt, ##__VA_ARGS__)
-> +#define huc_dbg(_huc, _fmt, ...)	huc_printk((_huc), dbg, _fmt, ##__VA_ARGS__)
-> +#define huc_probe_error(_huc, _fmt, ...) huc_printk((_huc), probe_error, _fmt, ##__VA_ARGS__)
-> +
-> +#endif /* __INTEL_HUC_PRINT__ */
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index 03f0b258aea7..da6fcfe1d80a 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -492,33 +492,6 @@ static void __force_fw_fetch_failures(struct intel_uc_fw *uc_fw, int e)
->   	}
->   }
->   
-> -static int check_gsc_manifest(struct intel_gt *gt,
-> -			      const struct firmware *fw,
-> -			      struct intel_uc_fw *uc_fw)
-> -{
-> -	u32 *dw = (u32 *)fw->data;
-> -	u32 version_hi, version_lo;
-> -	size_t min_size;
-> -
-> -	/* Check the size of the blob before examining buffer contents */
-> -	min_size = sizeof(u32) * (HUC_GSC_VERSION_LO_DW + 1);
-> -	if (unlikely(fw->size < min_size)) {
-> -		gt_warn(gt, "%s firmware %s: invalid size: %zu < %zu\n",
-> -			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-> -			fw->size, min_size);
-> -		return -ENODATA;
-> -	}
-> -
-> -	version_hi = dw[HUC_GSC_VERSION_HI_DW];
-> -	version_lo = dw[HUC_GSC_VERSION_LO_DW];
-> -
-> -	uc_fw->file_selected.ver.major = FIELD_GET(HUC_GSC_MAJOR_VER_HI_MASK, version_hi);
-> -	uc_fw->file_selected.ver.minor = FIELD_GET(HUC_GSC_MINOR_VER_HI_MASK, version_hi);
-> -	uc_fw->file_selected.ver.patch = FIELD_GET(HUC_GSC_PATCH_VER_LO_MASK, version_lo);
-> -
-> -	return 0;
-> -}
-> -
->   static void uc_unpack_css_version(struct intel_uc_fw_ver *ver, u32 css_value)
->   {
->   	/* Get version numbers from the CSS header */
-> @@ -575,22 +548,22 @@ static void guc_read_css_info(struct intel_uc_fw *uc_fw, struct uc_css_header *c
->   	uc_fw->private_data_size = css->private_data_size;
->   }
->   
-> -static int check_ccs_header(struct intel_gt *gt,
-> -			    const struct firmware *fw,
-> -			    struct intel_uc_fw *uc_fw)
-> +static int __check_ccs_header(struct intel_gt *gt,
-> +			      const void *fw_data, size_t fw_size,
-> +			      struct intel_uc_fw *uc_fw)
->   {
->   	struct uc_css_header *css;
->   	size_t size;
->   
->   	/* Check the size of the blob before examining buffer contents */
-> -	if (unlikely(fw->size < sizeof(struct uc_css_header))) {
-> +	if (unlikely(fw_size < sizeof(struct uc_css_header))) {
->   		gt_warn(gt, "%s firmware %s: invalid size: %zu < %zu\n",
->   			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-> -			fw->size, sizeof(struct uc_css_header));
-> +			fw_size, sizeof(struct uc_css_header));
->   		return -ENODATA;
->   	}
->   
-> -	css = (struct uc_css_header *)fw->data;
-> +	css = (struct uc_css_header *)fw_data;
->   
->   	/* Check integrity of size values inside CSS header */
->   	size = (css->header_size_dw - css->key_size_dw - css->modulus_size_dw -
-> @@ -598,7 +571,7 @@ static int check_ccs_header(struct intel_gt *gt,
->   	if (unlikely(size != sizeof(struct uc_css_header))) {
->   		gt_warn(gt, "%s firmware %s: unexpected header size: %zu != %zu\n",
->   			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-> -			fw->size, sizeof(struct uc_css_header));
-> +			fw_size, sizeof(struct uc_css_header));
->   		return -EPROTO;
->   	}
->   
-> @@ -610,10 +583,10 @@ static int check_ccs_header(struct intel_gt *gt,
->   
->   	/* At least, it should have header, uCode and RSA. Size of all three. */
->   	size = sizeof(struct uc_css_header) + uc_fw->ucode_size + uc_fw->rsa_size;
-> -	if (unlikely(fw->size < size)) {
-> +	if (unlikely(fw_size < size)) {
->   		gt_warn(gt, "%s firmware %s: invalid size: %zu < %zu\n",
->   			intel_uc_fw_type_repr(uc_fw->type), uc_fw->file_selected.path,
-> -			fw->size, size);
-> +			fw_size, size);
->   		return -ENOEXEC;
->   	}
->   
-> @@ -634,6 +607,32 @@ static int check_ccs_header(struct intel_gt *gt,
->   	return 0;
->   }
->   
-> +static int check_gsc_manifest(struct intel_gt *gt,
-> +			      const struct firmware *fw,
-> +			      struct intel_uc_fw *uc_fw)
-> +{
-> +	if (uc_fw->type != INTEL_UC_FW_TYPE_HUC) {
-> +		gt_err(gt, "trying to MEU-parse a non-HuC binary");
-> +		return -EINVAL;
-> +	}
-> +
-> +	intel_huc_fw_get_binary_info(uc_fw, fw->data, fw->size);
-> +
-> +	if (uc_fw->dma_start_offset) {
-> +		u32 delta = uc_fw->dma_start_offset;
-> +		__check_ccs_header(gt, fw->data + delta, fw->size - delta, uc_fw);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int check_ccs_header(struct intel_gt *gt,
-> +			    const struct firmware *fw,
-> +			    struct intel_uc_fw *uc_fw)
-> +{
-> +	return __check_ccs_header(gt, fw->data, fw->size, uc_fw);
-> +}
-> +
->   static bool is_ver_8bit(struct intel_uc_fw_ver *ver)
->   {
->   	return ver->major < 0xFF && ver->minor < 0xFF && ver->patch < 0xFF;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> index 26a9d6e0dc00..2691bb6bde48 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> @@ -113,6 +113,8 @@ struct intel_uc_fw {
->   	u32 ucode_size;
->   	u32 private_data_size;
->   
-> +	u32 dma_start_offset;
-> +
->   	bool loaded_via_gsc;
->   };
->   
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> index 646fa8aa6cf1..7fe405126249 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> @@ -84,10 +84,4 @@ struct uc_css_header {
->   } __packed;
->   static_assert(sizeof(struct uc_css_header) == 128);
->   
-> -#define HUC_GSC_VERSION_HI_DW		44
-> -#define   HUC_GSC_MAJOR_VER_HI_MASK	(0xFF << 0)
-> -#define   HUC_GSC_MINOR_VER_HI_MASK	(0xFF << 16)
-> -#define HUC_GSC_VERSION_LO_DW		45
-> -#define   HUC_GSC_PATCH_VER_LO_MASK	(0xFF << 0)
-> -
->   #endif /* _INTEL_UC_FW_ABI_H */
+Also, the "dummy" name is probably not valid anymore; it was used 
+because the vma structure was not allocated via the normal functions and 
+not kept around, but now that it is it's probably better to rename it to 
+just vma_res or something like that.
+
+Daniele
+
+>
+>> +
+>> +    if (!dummy->node_size)
+>> +        return;
+>>   -    ggtt->vm.clear_range(&ggtt->vm, start, obj->base.size);
+>> +    ggtt->vm.clear_range(&ggtt->vm, dummy->start, dummy->node_size);
+>>   }
+>>     static int uc_fw_xfer(struct intel_uc_fw *uc_fw, u32 dst_offset, 
+>> u32 dma_flags)
+>> @@ -922,7 +930,7 @@ static int uc_fw_xfer(struct intel_uc_fw *uc_fw, 
+>> u32 dst_offset, u32 dma_flags)
+>>       intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+>>         /* Set the source address for the uCode */
+>> -    offset = uc_fw_ggtt_offset(uc_fw);
+>> +    offset = uc_fw->dummy.start;
+> Same question here.
+>
+> John.
+>
+>>       GEM_BUG_ON(upper_32_bits(offset) & 0xFFFF0000);
+>>       intel_uncore_write_fw(uncore, DMA_ADDR_0_LOW, 
+>> lower_32_bits(offset));
+>>       intel_uncore_write_fw(uncore, DMA_ADDR_0_HIGH, 
+>> upper_32_bits(offset));
+>> @@ -996,9 +1004,7 @@ int intel_uc_fw_upload(struct intel_uc_fw 
+>> *uc_fw, u32 dst_offset, u32 dma_flags)
+>>           return -ENOEXEC;
+>>         /* Call custom loader */
+>> -    uc_fw_bind_ggtt(uc_fw);
+>>       err = uc_fw_xfer(uc_fw, dst_offset, dma_flags);
+>> -    uc_fw_unbind_ggtt(uc_fw);
+>>       if (err)
+>>           goto fail;
+>>   @@ -1102,6 +1108,8 @@ int intel_uc_fw_init(struct intel_uc_fw *uc_fw)
+>>           goto out_unpin;
+>>       }
+>>   +    uc_fw_bind_ggtt(uc_fw);
+>> +
+>>       return 0;
+>>     out_unpin:
+>> @@ -1112,6 +1120,7 @@ int intel_uc_fw_init(struct intel_uc_fw *uc_fw)
+>>     void intel_uc_fw_fini(struct intel_uc_fw *uc_fw)
+>>   {
+>> +    uc_fw_unbind_ggtt(uc_fw);
+>>       uc_fw_rsa_data_destroy(uc_fw);
+>>         if (i915_gem_object_has_pinned_pages(uc_fw->obj))
+>> @@ -1120,6 +1129,17 @@ void intel_uc_fw_fini(struct intel_uc_fw *uc_fw)
+>>       intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_AVAILABLE);
+>>   }
+>>   +void intel_uc_fw_resume_mapping(struct intel_uc_fw *uc_fw)
+>> +{
+>> +    if (!intel_uc_fw_is_available(uc_fw))
+>> +        return;
+>> +
+>> +    if (!i915_gem_object_has_pinned_pages(uc_fw->obj))
+>> +        return;
+>> +
+>> +    uc_fw_bind_ggtt(uc_fw);
+>> +}
+>> +
+>>   /**
+>>    * intel_uc_fw_cleanup_fetch - cleanup uC firmware
+>>    * @uc_fw: uC firmware
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
+>> index 6ba00e6b3975..26a9d6e0dc00 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
+>> @@ -105,6 +105,7 @@ struct intel_uc_fw {
+>>        * threaded as it done during driver load (inherently single 
+>> threaded)
+>>        * or during a GT reset (mutex guarantees single threaded).
+>>        */
+>> +    bool needs_ggtt_mapping;
+>>       struct i915_vma_resource dummy;
+>>       struct i915_vma *rsa_data;
+>>   @@ -282,12 +283,14 @@ static inline u32 
+>> intel_uc_fw_get_upload_size(struct intel_uc_fw *uc_fw)
+>>   }
+>>     void intel_uc_fw_init_early(struct intel_uc_fw *uc_fw,
+>> -                enum intel_uc_fw_type type);
+>> +                enum intel_uc_fw_type type,
+>> +                bool needs_ggtt_mapping);
+>>   int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw);
+>>   void intel_uc_fw_cleanup_fetch(struct intel_uc_fw *uc_fw);
+>>   int intel_uc_fw_upload(struct intel_uc_fw *uc_fw, u32 offset, u32 
+>> dma_flags);
+>>   int intel_uc_fw_init(struct intel_uc_fw *uc_fw);
+>>   void intel_uc_fw_fini(struct intel_uc_fw *uc_fw);
+>> +void intel_uc_fw_resume_mapping(struct intel_uc_fw *uc_fw);
+>>   size_t intel_uc_fw_copy_rsa(struct intel_uc_fw *uc_fw, void *dst, 
+>> u32 max_len);
+>>   int intel_uc_fw_mark_load_failed(struct intel_uc_fw *uc_fw, int err);
+>>   void intel_uc_fw_dump(const struct intel_uc_fw *uc_fw, struct 
+>> drm_printer *p);
+>
 
