@@ -1,79 +1,80 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF5570889C
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 21:50:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EE817088B8
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 21:53:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8736C10E547;
-	Thu, 18 May 2023 19:50:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0100710E54B;
+	Thu, 18 May 2023 19:53:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D326F10E54B
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 19:50:36 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0FF110E547
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 19:53:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1684439436;
+ s=mimecast20190719; t=1684439633;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Jh5OmsoiniNzfPxTh2q8i8zD0yrfR3xzpW1VvlO4Lwg=;
- b=FAHtDv+7lItLOPsoGz9+C1gEFw9P8a3H1aBtq8a9jDsRL9jFxk6iOmSAdOcCK9Tc83rraG
- 0iE5JMxA2YiNrjoGKJzgbDNh0R2H5o4CxFgnJiN8dBou5YV74FaXF/snvNS7d4vo0fDu6B
- gMNeSLAvKJucoSpavFNBCEw+q0GsvuI=
+ bh=SOnz7FLeWFp9Eq20E/7cfvpQ/psIaNzbdtCx4JAp4z8=;
+ b=Hit6H5wUQZBbS397wGKZ/yY5k/QPR0Omj3Cx95I7cM/k7FxuGxdrc6WSe4uCrMowDQlMJo
+ LTipokZ4TeBEaHxgBHMf/vxI+xneZhggi5KgSD7qWrOF1L7dom32UjSrVFpdQGX5CPzjGt
+ 3tlEqY3A+fnxdH48zOAKka3fgCSQILM=
 Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
  [209.85.166.199]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-99--okAcwG7MXO_vIaFNSKIiA-1; Thu, 18 May 2023 15:50:32 -0400
-X-MC-Unique: -okAcwG7MXO_vIaFNSKIiA-1
+ us-mta-252-8TIVXOlVNW2eEBXr9nBhXA-1; Thu, 18 May 2023 15:53:52 -0400
+X-MC-Unique: 8TIVXOlVNW2eEBXr9nBhXA-1
 Received: by mail-il1-f199.google.com with SMTP id
- e9e14a558f8ab-3318938ea0bso575645ab.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 12:50:32 -0700 (PDT)
+ e9e14a558f8ab-3384bfb39b4so28655345ab.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 12:53:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684439432; x=1687031432;
+ d=1e100.net; s=20221208; t=1684439632; x=1687031632;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=Jh5OmsoiniNzfPxTh2q8i8zD0yrfR3xzpW1VvlO4Lwg=;
- b=kZ45DpcrYdPvqacNkhNF4x7Y1cjVFNMUkdF1ePgh5GZ/b/qzq9B5ryKuB2aQV6P4ht
- FJNONNzpPMEcN+bd3PY7GXXnxw9UwOBPDvzd7AsVRkyo6Cuz28J4LUUwjQnBmenMZI3z
- GQKMxlLc9NCrWPJu7Dsb//sgwYBNVwm6cP1F8RYJVoPlPTtVjxPHcc5KduRULxcX+sRH
- PRnMTCU3kPCHogH1k5LdMa2M0TtaRdgDiugo8kih2RsrwzAfjyi4ahrSKT3Z3FsVmk7+
- bOzwMHegw70P8tEBaHrngQ3gdtivL8MTzzg+BnJOK46pFWwIHo/6Jrtqj5ehFBQHBOoR
- ngrA==
-X-Gm-Message-State: AC+VfDyY+GnXKKVgv1HtNbmg1/VJPy6kRkI0e69DN50H8kfAsiEa2NbM
- io5I8p1tOBpvTSIu6PJKKMVRVqwap+hcrAkTguRW2gH8gPX4c1GHbclUDH8vIXUoz6JMnSwXt/C
- pclsDEEBn1andixIHsH1gzHPFD4WQ
-X-Received: by 2002:a05:6e02:1aa3:b0:333:49f9:a5f3 with SMTP id
- l3-20020a056e021aa300b0033349f9a5f3mr4588877ilv.2.1684439431996; 
- Thu, 18 May 2023 12:50:31 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ5FxhxTBMgm7TCu3seuae29eNjQqi+QvYLiW+iwyYL0QmMjButMon7ajVdlh0YbG0jeo2m46g==
-X-Received: by 2002:a05:6e02:1aa3:b0:333:49f9:a5f3 with SMTP id
- l3-20020a056e021aa300b0033349f9a5f3mr4588864ilv.2.1684439431737; 
- Thu, 18 May 2023 12:50:31 -0700 (PDT)
+ bh=SOnz7FLeWFp9Eq20E/7cfvpQ/psIaNzbdtCx4JAp4z8=;
+ b=kaPirtY0xyVtS7rBzaI5pVpDJ94c6bEBoVQLTIJEi2NkDYQSWE/AcsvLVO2nwF49wS
+ ZuCleZ8C9NiVu9N88thDUQEWYaHFE1EHUCnWMnbcWBO7NR8+EWSSjey3sEMn1R1FRAeJ
+ J7jCiPs3jm1aSsxABcfvKLgmBKYFyQziNcy0Ccw/NBpBh/eLDnWHE2sjy+h4m/P21xAQ
+ yWANXVT230BOdrA0UqTbOV29/bMfIQN59T5Uzzff25c2KUs98xVWWZlbUzxUETYAPvBs
+ 7M/tAoOc3yIP+pewTHUtuvyNPS1Yx3447RpieslY7NckRbJrEkrDMiCKAwuME9rnvtDg
+ Hw4w==
+X-Gm-Message-State: AC+VfDyqWbRetGZOZnadi2qxqCdbKBu9Nf5pUqm//qgbWI1RhXPsUeRm
+ TOwU/TyJoEJvypcH/VYzzRjOXoeWVyFvPqCdsbw7CpGampPwp/20DPL6JoWY6tORC2uZ3iFT4cd
+ mg3aDDzR+iKt1E8Yi1BEWqZRKgvCi
+X-Received: by 2002:a92:c952:0:b0:337:83fc:43c8 with SMTP id
+ i18-20020a92c952000000b0033783fc43c8mr5511189ilq.10.1684439631918; 
+ Thu, 18 May 2023 12:53:51 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6Mt3onZ7ykj03VNoF8B/a0LVLffzU72IX2ayiTe6tSR9N5/g8PndWcoR1I1HxYqhwrE8Wk5Q==
+X-Received: by 2002:a92:c952:0:b0:337:83fc:43c8 with SMTP id
+ i18-20020a92c952000000b0033783fc43c8mr5511169ilq.10.1684439631723; 
+ Thu, 18 May 2023 12:53:51 -0700 (PDT)
 Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- f16-20020a02cad0000000b0041643b78cbesm664248jap.120.2023.05.18.12.50.30
+ cp12-20020a056638480c00b004165f64968csm676038jab.103.2023.05.18.12.53.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 May 2023 12:50:31 -0700 (PDT)
-Date: Thu, 18 May 2023 13:50:29 -0600
+ Thu, 18 May 2023 12:53:51 -0700 (PDT)
+Date: Thu, 18 May 2023 13:53:49 -0600
 From: Alex Williamson <alex.williamson@redhat.com>
 To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <20230518135029.26abe519.alex.williamson@redhat.com>
-In-Reply-To: <DS0PR11MB752963E14A652AEE1A1C2699C37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
+Message-ID: <20230518135349.5dcf63c1.alex.williamson@redhat.com>
+In-Reply-To: <DS0PR11MB752951FE3826428345A6CF6DC37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
 References: <20230513132136.15021-1-yi.l.liu@intel.com>
- <20230513132136.15021-7-yi.l.liu@intel.com>
- <20230517121517.4b7ceb52.alex.williamson@redhat.com>
- <DS0PR11MB752963E14A652AEE1A1C2699C37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230513132136.15021-10-yi.l.liu@intel.com>
+ <20230517160131.254be76b.alex.williamson@redhat.com>
+ <DS0PR11MB75291457BBD647819B855DA0C37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <DS0PR11MB752951FE3826428345A6CF6DC37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v5 06/10] vfio-iommufd: Add helper to
- retrieve iommufd_ctx and devid for vfio_device
+Subject: Re: [Intel-gfx] [PATCH v5 09/10] vfio/pci: Extend
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,107 +111,51 @@ Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 18 May 2023 13:25:59 +0000
+On Thu, 18 May 2023 13:31:47 +0000
 "Liu, Yi L" <yi.l.liu@intel.com> wrote:
 
-> > From: Alex Williamson <alex.williamson@redhat.com>
-> > Sent: Thursday, May 18, 2023 2:15 AM
-> > 
-> > On Sat, 13 May 2023 06:21:32 -0700
-> > Yi Liu <yi.l.liu@intel.com> wrote:
+> > From: Liu, Yi L <yi.l.liu@intel.com>
+> > Sent: Thursday, May 18, 2023 9:22 PM
 > >   
-> > > This is needed by the vfio-pci driver to report affected devices in the
-> > > hot reset for a given device.
+> > > From: Alex Williamson <alex.williamson@redhat.com>
+> > > Sent: Thursday, May 18, 2023 6:02 AM
 > > >
-> > > Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> > > ---
-> > >  drivers/iommu/iommufd/device.c | 24 ++++++++++++++++++++++++
-> > >  drivers/vfio/iommufd.c         | 20 ++++++++++++++++++++
-> > >  include/linux/iommufd.h        |  6 ++++++
-> > >  include/linux/vfio.h           | 14 ++++++++++++++
-> > >  4 files changed, 64 insertions(+)
-> > >
-> > > diff --git a/drivers/iommu/iommufd/device.c b/drivers/iommu/iommufd/device.c
-> > > index 4f9b2142274c..81466b97023f 100644
-> > > --- a/drivers/iommu/iommufd/device.c
-> > > +++ b/drivers/iommu/iommufd/device.c
-> > > @@ -116,6 +116,18 @@ void iommufd_device_unbind(struct iommufd_device *idev)
-> > >  }
-> > >  EXPORT_SYMBOL_NS_GPL(iommufd_device_unbind, IOMMUFD);
-> > >
-> > > +struct iommufd_ctx *iommufd_device_to_ictx(struct iommufd_device *idev)
-> > > +{
-> > > +	return idev->ictx;
-> > > +}
-> > > +EXPORT_SYMBOL_NS_GPL(iommufd_device_to_ictx, IOMMUFD);
-> > > +
-> > > +u32 iommufd_device_to_id(struct iommufd_device *idev)
-> > > +{
-> > > +	return idev->obj.id;
-> > > +}
-> > > +EXPORT_SYMBOL_NS_GPL(iommufd_device_to_id, IOMMUFD);
-> > > +
-> > >  static int iommufd_device_setup_msi(struct iommufd_device *idev,
-> > >  				    struct iommufd_hw_pagetable *hwpt,
-> > >  				    phys_addr_t sw_msi_start)
-> > > @@ -463,6 +475,18 @@ void iommufd_access_destroy(struct iommufd_access  
-> > *access)  
-> > >  }
-> > >  EXPORT_SYMBOL_NS_GPL(iommufd_access_destroy, IOMMUFD);
-> > >
-> > > +struct iommufd_ctx *iommufd_access_to_ictx(struct iommufd_access *access)
-> > > +{
-> > > +	return access->ictx;
-> > > +}
-> > > +EXPORT_SYMBOL_NS_GPL(iommufd_access_to_ictx, IOMMUFD);
-> > > +
-> > > +u32 iommufd_access_to_id(struct iommufd_access *access)
-> > > +{
-> > > +	return access->obj.id;
-> > > +}
-> > > +EXPORT_SYMBOL_NS_GPL(iommufd_access_to_id, IOMMUFD);
-> > > +
-> > >  int iommufd_access_attach(struct iommufd_access *access, u32 ioas_id)
-> > >  {
-> > >  	struct iommufd_ioas *new_ioas;
-> > > diff --git a/drivers/vfio/iommufd.c b/drivers/vfio/iommufd.c
-> > > index c1379e826052..a18e920be164 100644
-> > > --- a/drivers/vfio/iommufd.c
-> > > +++ b/drivers/vfio/iommufd.c
-> > > @@ -105,6 +105,26 @@ void vfio_iommufd_unbind(struct vfio_device *vdev)
-> > >  		vdev->ops->unbind_iommufd(vdev);
-> > >  }
-> > >
-> > > +struct iommufd_ctx *vfio_iommufd_physical_ictx(struct vfio_device *vdev)
-> > > +{
-> > > +	if (vdev->iommufd_device)
-> > > +		return iommufd_device_to_ictx(vdev->iommufd_device);
-> > > +	if (vdev->noiommu_access)
-> > > +		return iommufd_access_to_ictx(vdev->noiommu_access);
-> > > +	return NULL;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(vfio_iommufd_physical_ictx);
-> > > +
-> > > +int vfio_iommufd_physical_devid(struct vfio_device *vdev)
-> > > +{
-> > > +	if (vdev->iommufd_device)
-> > > +		return iommufd_device_to_id(vdev->iommufd_device);
-> > > +	if (vdev->noiommu_access)
-> > > +		return iommufd_access_to_id(vdev->noiommu_access);
-> > > +	return -EINVAL;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(vfio_iommufd_physical_devid);  
-> > 
-> > I think these exemplify that it would be better if both emulated and
-> > noiommu use the same iommufd_access pointer.  Thanks,  
+> > > On Sat, 13 May 2023 06:21:35 -0700
+> > > Yi Liu <yi.l.liu@intel.com> wrote:  
 > 
-> Sure. Then I shall rename this helper. vfio_iommufd_device_devid()
-> What about your opinion?
+> > >
+> > > static int vfio_hot_reset_devid(struct vfio_device *vdev,
+> > >                                 struct iommufd_ctx *iommufd_ctx)
+> > > {
+> > >         struct iommu_group *group;
+> > >         int devid;
+> > >
+> > >         if (!vdev)
+> > >                 return VFIO_PCI_DEVID_NOT_OWNED;
+> > >
+> > >         if (vfio_iommufd_physical_ictx(vdev) == iommufd_ctx)
+> > >                 return vfio_iommufd_physical_devid(vdev);  
+> 
+> Do we need to check the return of this helper? It returns -EINVAL
+> when iommufd_access and iommufd_device are both null. Though
+> not possible in this path. Is a WARN_ON needed or not?
 
-Yes, it really didn't even occur to me that "physical" in the name was
-meant to suggest this shouldn't be used for emulated mdev devices.  It
-should work for all devices and using a shared iommufd access pointer
-between noiommu and emulated should simplify that somewhat.  Thanks,
+I also came to the conclusion that it wasn't possible while reviewing
+the code.  I wouldn't got to extreme measures to introduce paranoia
+checks for impossible conditions.  Thanks,
 
 Alex
+
+> > >
+> > >         group = iommu_group_get(vdev->dev);
+> > >         if (!group)
+> > >                 return VFIO_PCI_DEVID_NOT_OWNED;
+> > >
+> > >         if (iommufd_ctx_has_group(iommufd_ctx, group))
+> > >                 devid = VFIO_PCI_DEVID_OWNED;
+> > >
+> > >         iommu_group_put(group);
+> > >
+> > >         return devid;
+> > > }  
 
