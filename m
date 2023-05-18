@@ -1,49 +1,151 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9B607081AA
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 14:46:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CB4D708269
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 15:14:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D9BD10E091;
-	Thu, 18 May 2023 12:46:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6F1710E0A1;
+	Thu, 18 May 2023 13:14:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 189.cn (ptr.189.cn [183.61.185.101])
- by gabe.freedesktop.org (Postfix) with ESMTP id 35BDE10E030;
- Thu, 18 May 2023 12:46:44 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.43:37340.1169356039
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
- by 189.cn (HERMES) with SMTP id CD0D9100135;
- Thu, 18 May 2023 20:46:38 +0800 (CST)
-Received: from  ([114.242.206.180])
- by gateway-151646-dep-75648544bd-prw2v with ESMTP id
- 0047ede249374502a0ae76a827e3ffab for tzimmermann@suse.de; 
- Thu, 18 May 2023 20:46:39 CST
-X-Transaction-ID: 0047ede249374502a0ae76a827e3ffab
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Message-ID: <f1688b87-0b8d-59b0-2fe8-88b2d40c513e@189.cn>
-Date: Thu, 18 May 2023 20:46:37 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3C9710E0A1;
+ Thu, 18 May 2023 13:14:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684415687; x=1715951687;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=bGLrHo7+J8DPrrehwdIk6FP6zOI0ahYzyYnw9im5FX0=;
+ b=BGp9rMzUjy0EVEmwj4tUVH5QT7wN9kPidvgMJnBqynSR7FsfjJuAxdnF
+ /ZrZtx+JaiCR8oJLMaqCgryidkgAr9x4xmPAb3+q2RaAwfhhbXr/Gh7x5
+ xSwGx3zUdRjPsOxiZDm+QdZI/sQPt1gvQAbQKjGPi+xS1i6scdcE/hTk3
+ RUpdjYimLbs36YziUwU4KEAKGtsVo90krq7pfrSH0zdt83VZge82CGY67
+ SqN9yTs7nq3mjdpdqZiuHM/pnzlcqnFXOYMBSJx7CawaXFs41uHg1fagP
+ JXuQxV1BRVZWFYX9EovQsfZ8LZR96WzWqZthl1e9F1w6V/u3X3uS9TmM/ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="349573593"
+X-IronPort-AV: E=Sophos;i="5.99,285,1677571200"; d="scan'208";a="349573593"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2023 06:14:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="679669659"
+X-IronPort-AV: E=Sophos;i="5.99,285,1677571200"; d="scan'208";a="679669659"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga006.jf.intel.com with ESMTP; 18 May 2023 06:14:46 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 18 May 2023 06:14:46 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Thu, 18 May 2023 06:14:46 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Thu, 18 May 2023 06:14:46 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RPxKE0oXQUXrOlcsjsIxSnEk5Gm9gyqc+hBgzQiaRnKryNY3lwnrJVkCrCYkRBrzUmwRt9JTJEhDHj48sWyedlWel/mXP/6dRX//8KAZezYou+9eWNV0viqnPNHwua8To2ZMwBSM2k6Gc7q8A+PJhQVZNJl3IZX6DSh0htHdVM/ZImWAa9BQxhsviylSqM1nr1JyQDkWHbb9V3X1b7+DrvU3vNFYmIJ0qTYTNQxqUkWuUTDhenKTul8gqqfj455WE0uHK5l/+NlTuBxSJBC5AD5BWhH/oE1WdPBpaLY5qikCOI6GLzXZL/7VHI7RIbwjYl7EoLYQOxXix17FgTxKRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=juL+fajpPpUyd3LYndpxxH7rA63vM363ALIsm5m2buA=;
+ b=C2QFWM0wSbYpJrtf1LoY+7oClAtFBCTrPqmWkwbe+53aqrdypT3f3sMF5rVPAG1YJ5zt6xRtn2Jl4Jh942s4MiPo/yIJ9hPO94ie6CAyKbK5IqnSjZgG26rsl89Er05ymxyarm+tn3D5e/5JGuJ9hisz/yAsDDeJ62MQPwRGETWc87D4B5S/G4q9sOgdlYMOtZv9ZbEX+Ott5EXcqeBUiM44tMugbM8aSgV8gAelpFlJg7ZIUKNQch21Vg5WcoKCky0ydEk+gPAk115xpjYgIFl2Ru2HnzRypnXLLU53A6i1/EMByKQ0oyd+4KVtjy04tZw2TmF0euAw5b/pJkvbyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by CY8PR11MB7777.namprd11.prod.outlook.com (2603:10b6:930:71::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.19; Thu, 18 May
+ 2023 13:14:44 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::d1b9:3221:bc0d:1a9b]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::d1b9:3221:bc0d:1a9b%7]) with mapi id 15.20.6411.019; Thu, 18 May 2023
+ 13:14:44 +0000
+Message-ID: <d04d4176-437b-8776-639a-a5a287e61839@intel.com>
+Date: Thu, 18 May 2023 18:44:33 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- javierm@redhat.com, sam@ravnborg.org
-References: <20230515094033.2133-12-tzimmermann@suse.de>
- <80b4b615-0a71-89e8-3a58-fbeb8a9a06e8@189.cn>
- <28d2e7d5-7dde-b1f9-3b5f-0ba51f8eaaeb@suse.de>
 Content-Language: en-US
-From: Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <28d2e7d5-7dde-b1f9-3b5f-0ba51f8eaaeb@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20230512062417.2584427-1-ankit.k.nautiyal@intel.com>
+ <20230512062417.2584427-6-ankit.k.nautiyal@intel.com>
+ <ZGJFYziCKeW-vfpF@intel.com> <ZGNWnP1/vWckkAkA@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <ZGNWnP1/vWckkAkA@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [v2,
- 11/12] drm/fbdev-generic: Implement dedicated fbdev I/O helpers
+X-ClientProxiedBy: PN3PR01CA0049.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:98::12) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CY8PR11MB7777:EE_
+X-MS-Office365-Filtering-Correlation-Id: c09f573c-e1b1-4da3-2eb7-08db57a1d857
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wOYmshyNikiAp5owpQbqkGqt5mQ6gecJCfPV/trlImql1SX/s1aFougukqKlBbJP/cbt2USH0Ob7a9uY5dHI3z/xbL6KEltFDO1h7ppUU2+oyLS896Zb4waMlLK7GAFcde4Q7oGbo2MUn/G4SfqHSH2th+hJmjb09cDq9K1Hqmz7wAqUrTqlK2u0FOBu2ccKFyb4L6bH1UOSH5wp4+VgWPQRISYINpIY6uHOD0+DLMF+qMGo7QtJfM5Jd2J8m40nBRjsUHJFfoDP11C9TGUhNl+YGEXJ1puilv0ywoFUjFSOqw9enNPlsh4Xm1MMJOg0VrHtS4hB445olzKo68C1Do/pLqXZfScUJJH4OeUIGGb/avwM1fWhK7dg9kOlYn90Ztnkgsx6YOK+xn7+ee5hyebMEErJbwdibrsxUXwyxZtPa2t/54/FgdRvjgIRUFdJ2xysMNZYGSQ5oN9e3b91tcDKcuLjhWfa+bnSVadjUKjHzXNjIqCCxg0JB8AILgRB1owVwmtZBKt4OFOOALVNQ7Gfkz25KeogjEwcEOOY9XHXe+vhz5r4NZKdT68zzNO9Ww8NFp4JbcqDZliPfswBe3cu5jB4GphzyvqbDDoX8OJTr49fFr0LITQbqug5RMIOjEjidKjY44wR9kizJmvLNQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(39860400002)(136003)(346002)(366004)(396003)(451199021)(66476007)(6666004)(66946007)(66556008)(110136005)(31686004)(55236004)(53546011)(6486002)(316002)(4326008)(478600001)(41300700001)(5660300002)(186003)(8936002)(26005)(8676002)(6506007)(6512007)(83380400001)(66574015)(36756003)(2906002)(2616005)(38100700002)(82960400001)(31696002)(86362001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NnBYZlZzRHZIcTF2R3NYMXJTTnA1RGpPWFlBUFlWeGc0N3R0Zm5LNkNDdlBn?=
+ =?utf-8?B?ODBoMS90a1lQVkNiZFRicHppZHhFcFFGdUp2NzFEaVk1NVA1ZFk3a1FXOFhZ?=
+ =?utf-8?B?NWV6eFE5MVFsSFJxbHQvVkxSTmw5b29TalNLa25nQTNsQ2lscmV1bTZxZ0JX?=
+ =?utf-8?B?aUp0SFhHSW5OSVZ3VkpieHhSbVh2WXR5b1k2bURzM3VpcFQ5Ulh4SEdXYm5x?=
+ =?utf-8?B?Wi9BS0cyT1pVRmJESjB1S21ZYjJhTmQ3Sm9xK2c5YlRyVUoxWnY0VUdGQWND?=
+ =?utf-8?B?Mkswc2pqOU9XODJSL042K1NOYUMvMnhwc0hraC9YSkpjNG5Bcjg3Q3dsUnZ6?=
+ =?utf-8?B?dEtodkQ0NEVWL1FxM0hXZkY0Ri9UMDkzVGFHaEtTemR5ZkdFV2NZSmZ4WHpr?=
+ =?utf-8?B?QzhDZkt0djlqaThTUkx4cUo2WjQ4L2h4VkFFZk1MUjRSYkI3am04M0VjV0Y1?=
+ =?utf-8?B?TW52YUl5OFVsWXh0b0lxM2IwVSt4TnpldGZqM2NuVUUyanpEWGZncTIya0k3?=
+ =?utf-8?B?U3dsUDBzY3F6NzlJR1hGTEhHcVVBaXlEMDgxeGdPSG5BL3VMNkZ4eUtIb3JV?=
+ =?utf-8?B?SnBBY3dzV0w4NjQ0Z05XYURNa2hhakExOVhJYXhnN1dMSVYvMGlhZlNpTVFa?=
+ =?utf-8?B?VUJ1UUZ6QlZVY2dlM3dlalp4bHQ1WTVhK0x5V1hTSVlNNm5vRk5VaGhqTFlG?=
+ =?utf-8?B?VGtxNEZwMU5zbXc0RGF6TlZtVWNYMU5KdDh1TFo4cUJSRm5tMFdnYjhKNExt?=
+ =?utf-8?B?Q2RQK0VZRURycDk0U29lQUg4RmphMW9kOTY3R3k0dzlNR1dudmJSSHZaMVJa?=
+ =?utf-8?B?dHFVWFo1ZzNwbFc5emZuNHVHUy9QamtOc0ZZeVJMcTJOM1hjUUI5dVE1a255?=
+ =?utf-8?B?MXJ0eW84bmdOMi9TVitBOERUajFGRGlJTE9BbVBUdFl6MVVQU0JmNGQ2Nytw?=
+ =?utf-8?B?dXNoRFFBWlBacUsrSkZteWZTdlk0UDBEeW0xK0pqQ2V3bGpMaVJlbmszdzUw?=
+ =?utf-8?B?OFZqNk9WSzVwYlc3UUtrU3JibzFEaWtLeXdoN2owbXhQNWRpQjJuYWJkNyt2?=
+ =?utf-8?B?dlZtNmVmRVdka1Z2VkR1Vzh5bExReUV6NmhlNWVJNVBqMGQyNUw2LzdXZ1pL?=
+ =?utf-8?B?SVlBVHZlK2s5MFREb0ZwVmYvZCtUUUU5T3RFUDRudUxiMlZ0bTh5bXpXbXp3?=
+ =?utf-8?B?K21TTEIxRHA2L0orTjB6bWIzWWJ5SFpIdG1yQzZ1WjdlZ3lwSWQ4SXZxdUtl?=
+ =?utf-8?B?elNSakVHSEJCMFJNeENaREtMM00vWm42ZCtTZ2JHZ0tCZGZGaWp3NWR1eElS?=
+ =?utf-8?B?dDJDTVJzVjUzYkhTaHcvSTIzdFMrRGFFbmtvdlA3VEFmQXRsNENGMlAzYys0?=
+ =?utf-8?B?aFlDQllsWWVBVVFVS0hVeFF0M2xubk0xM2FucHJRamVXUzM1Y1R0V0NacE9X?=
+ =?utf-8?B?dUdkUFhZMTI2SEFwNk9PSjZOUGZ2TjNhc0YvdUlvY0VIaW9BdlozU1llSGFt?=
+ =?utf-8?B?R2pZbXd3cEhZdGpLbWN5amhMdjFDSEoydTlyNy81WVVNUjJCQXZraVNsZjlq?=
+ =?utf-8?B?ZjlQOVVNU2VobE9kQnlITDVzMUVIKzJRQ0ZYcExLUWd1d0pJSGFUQ0txcVdI?=
+ =?utf-8?B?MXBUT1IxUzRRbG9RS3EyanJoN2NSdXBRN09MWWdNTVJoMFpXMkt6TkdkMlo2?=
+ =?utf-8?B?RjdITXVhRENBK2tpUXVSZXU4MHYxZzFhWnNXemV6U0hxZFZ3UXE3MVA1azNs?=
+ =?utf-8?B?ZjFxb1dBUWxXZDI1UnE3K1hPUkpJNkh3bHF6Z0RyTk9xR2ZFZlZJTTVaNzZN?=
+ =?utf-8?B?Yy9LYWRoWGpPN3BBL2gyWk9wSVRrNmdMY2ZjWjFBWHQwRjc3dnhOVWU3OUlK?=
+ =?utf-8?B?d3JzVnZ0UmU4NXczY01rR1JGZnFyNU82UUhycVRaeVdyUzBka1gvV1dncUlP?=
+ =?utf-8?B?cE1Ld1U0cHg3djJtcm5XNnZsN2VNdC9OZUNINkJWQkJ2SVA0UEYvcHBteGk0?=
+ =?utf-8?B?VkZ6Umw3emwxOE1nVS9lM3lVY2xBTEZyckVrcFp6VVVhVkVFZXB6TEFUVm82?=
+ =?utf-8?B?V3hucTF1Z0ZHazNZZURnTTdqSXFnUTdibTNzNWFoSjJsdHBJZUFMTjBCMWFL?=
+ =?utf-8?B?N21KN05FTHFlT3hOeUJFNkJocGRoZFY4c1VRU1JMbE5SMXFwTTU0OGhCZVRP?=
+ =?utf-8?B?cEE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c09f573c-e1b1-4da3-2eb7-08db57a1d857
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2023 13:14:43.9055 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qUTMyNZDtX1waWK/V0T5RuJSMCdRorqz84CWHrRYpaUhQ1xfYilA0Jt8YNC9j7PtDgHf6LuZD9URXgifK+Xy9TuRp6FvVNLCuQlSlLWMC6M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7777
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 05/13] drm/i915/intel_cdclk: Add vdsc with
+ bigjoiner constraints on min_cdlck
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,388 +158,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Thanks Ville and Stan for the comments.
 
-On 2023/5/17 15:07, Thomas Zimmermann wrote:
-> Hi
->
-> Am 17.05.23 um 03:58 schrieb Sui Jingfeng:
->> Hi, Thomas
->>
->>
->> After apply your patch set, the kernel with 
->> arch/loongarch/configs/loongson3_defconfig
->>
->> can not finish compile anymore.  gcc complains:
->>
->>
->>    AR      drivers/gpu/built-in.a
->>    AR      drivers/built-in.a
->>    AR      built-in.a
->>    AR      vmlinux.a
->>    LD      vmlinux.o
->>    OBJCOPY modules.builtin.modinfo
->>    GEN     modules.builtin
->>    GEN     .vmlinux.objs
->>    MODPOST Module.symvers
->> ERROR: modpost: "fb_sys_write" [drivers/gpu/drm/drm_kms_helper.ko] 
->> undefined!
->> ERROR: modpost: "sys_imageblit" [drivers/gpu/drm/drm_kms_helper.ko] 
->> undefined!
->> ERROR: modpost: "sys_fillrect" [drivers/gpu/drm/drm_kms_helper.ko] 
->> undefined!
->> ERROR: modpost: "sys_copyarea" [drivers/gpu/drm/drm_kms_helper.ko] 
->> undefined!
->> ERROR: modpost: "fb_sys_read" [drivers/gpu/drm/drm_kms_helper.ko] 
->> undefined!
->> make[1]: *** [scripts/Makefile.modpost:136: Module.symvers] Error 1
->> make: *** [Makefile:1978: modpost] Error 2
->
-> Thanks for reporting this problem. I found that it's caused by a typo 
-> in the very first patch 1/7, where these helpers are not selected 
-> correctly. Will be fixed in the next round.
->
-Yeah, this is just a typo.
+I agree with the changes in _plane_min_cdclk and 
+intel_pixel_rate_to_cdclk regarding PPC.
 
-Should replace 'FB_SYS_HELPER' with 'FB_SYS_HELPERS' on the first patch 
-of this series.
+But I am a little confused for about the pixel clock.
+
+Please find my comments inline:
 
 
-> Best regards
-> Thomas
->
->>
->>
->> On 2023/5/15 17:40, Thomas Zimmermann wrote:
->>> Implement dedicated fbdev helpers for framebuffer I/O instead
->>> of using DRM's helpers. Fbdev-generic was the only caller of the
->>> DRM helpers, so remove them from the helper module.
+On 5/16/2023 3:41 PM, Lisovskiy, Stanislav wrote:
+> On Mon, May 15, 2023 at 05:44:51PM +0300, Ville Syrjälä wrote:
+>> On Fri, May 12, 2023 at 11:54:09AM +0530, Ankit Nautiyal wrote:
+>>> As per Bsepc:49259, Bigjoiner BW check puts restriction on the
+>>> compressed bpp for a given CDCLK, pixelclock in cases where
+>>> Bigjoiner + DSC are used.
 >>>
->>> v2:
->>>     * use FB_SYS_HELPERS_DEFERRED option
+>>> Currently compressed bpp is computed first, and it is ensured that
+>>> the bpp will work at least with the max CDCLK freq.
 >>>
->>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>>> Since the CDCLK is computed later, lets account for Bigjoiner BW
+>>> check while calculating Min CDCLK.
+>>>
+>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 >>> ---
->>>   drivers/gpu/drm/Kconfig             |   6 +-
->>>   drivers/gpu/drm/drm_fb_helper.c     | 107 
->>> ----------------------------
->>>   drivers/gpu/drm/drm_fbdev_generic.c |  47 ++++++++++--
->>>   include/drm/drm_fb_helper.h         |  41 -----------
->>>   4 files changed, 43 insertions(+), 158 deletions(-)
+>>>   drivers/gpu/drm/i915/display/intel_cdclk.c | 49 ++++++++++++++++++----
+>>>   1 file changed, 42 insertions(+), 7 deletions(-)
 >>>
->>> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
->>> index 77fb10ddd8a2..92a782827b7b 100644
->>> --- a/drivers/gpu/drm/Kconfig
->>> +++ b/drivers/gpu/drm/Kconfig
->>> @@ -95,6 +95,7 @@ config DRM_KUNIT_TEST
->>>   config DRM_KMS_HELPER
->>>       tristate
->>>       depends on DRM
->>> +    select FB_SYS_HELPERS_DEFERRED if DRM_FBDEV_EMULATION
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+>>> index 6bed75f1541a..3532640c5027 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+>>> @@ -2520,6 +2520,46 @@ static int intel_planes_min_cdclk(const struct intel_crtc_state *crtc_state)
+>>>   	return min_cdclk;
+>>>   }
+>>>   
+>>> +static int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+>>> +{
+>>> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>>> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>>> +	int min_cdclk = 0;
+>>> +
+>>> +	/*
+>>> +	 * When we decide to use only one VDSC engine, since
+>>> +	 * each VDSC operates with 1 ppc throughput, pixel clock
+>>> +	 * cannot be higher than the VDSC clock (cdclk)
+>>> +	 */
+>>> +	if (!crtc_state->dsc.dsc_split)
+>>> +		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
+>>> +
+>>> +	if (crtc_state->bigjoiner_pipes) {
+>>> +		/*
+>>> +		 * According to Bigjoiner bw check:
+>>> +		 * compressed_bpp <= PPC * CDCLK * Big joiner Interface bits / Pixel clock
+>>> +		 *
+>>> +		 * We have already computed compressed_bpp, so now compute the min CDCLK that
+>>> +		 * is required to support this compressed_bpp.
+>>> +		 *
+>>> +		 * => CDCLK >= compressed_bpp * Pixel clock / (PPC * Bigjoiner Interface bits)
+>>> +		 *
+>>> +		 * Since Num of pipes joined = 2, and PPC = 2 with bigjoiner
+>>> +		 * => CDCLK >= compressed_bpp * pixel_rate  / Bigjoiner Interface bits
+>>> +		 *
+>>> +		 * #TODO Bspec mentions to account for FEC overhead while using pixel clock.
+>>> +		 * Check if we need to use FEC overhead in the above calculations.
+>>> +		 */
+>>> +		int bigjoiner_interface_bits = DISPLAY_VER(i915) > 13 ? 36 : 24;
+>>> +		int min_cdclk_bj = crtc_state->dsc.compressed_bpp * crtc_state->pixel_rate /
+>>> +				   bigjoiner_interface_bits;
+>> pixel_rate is the downscale adjusted thing, so it doesn't seem
+>> like the correct thing to use here.
 >>
->> Here, select FB_SYS_HELPERS helps resolve the above issue mentioned.
->>
-But select FB_SYS_HELPERS here is more better, I think.  Because it show 
-the nature that
+>> Hmm. Assuming that the single VDSC engine really throttles the entire
+>> pipe to 1 PPC then we should probably account for the 1 vs. 2 PPC
+>> difference in *_plane_min_cdclk() and intel_pixel_rate_to_cdclk()
+>> directly. Currently all of those assume 2 PPC.
 
-DRM_KMS_HELPER is depend on FB_SYS_HELPERS, I think you may want isolate
+Hmm alright,  I do see in plane_min_cdclk and intel_pixel_rate_to_cdclk 
+we assume 2 PPC.
 
-those dependency with DRM_FBDEV_EMULATION guard.
-
-at least, you should guarantee that drm itself could built and run 
-standalone.
-
-Fbdev emulation is a client of drm, not reverse.
+So I can add a check for the dsc_split and use 1 PPC/2PPC  in the two 
+functions as a separate patch perhaps.
 
 
-By the way, does Denial happy about this,
-
-maybe, he want the fbdev emulation 100% made in drm?
-
->>>       help
->>>         CRTC helpers for KMS drivers.
->>> @@ -135,11 +136,6 @@ config DRM_FBDEV_EMULATION
->>>       select FB_CFB_FILLRECT
->>>       select FB_CFB_COPYAREA
->>>       select FB_CFB_IMAGEBLIT
->>> -    select FB_DEFERRED_IO
->>> -    select FB_SYS_FOPS
->>> -    select FB_SYS_FILLRECT
->>> -    select FB_SYS_COPYAREA
->>> -    select FB_SYS_IMAGEBLIT
->>>       select FRAMEBUFFER_CONSOLE if !EXPERT
->>>       select FRAMEBUFFER_CONSOLE_DETECT_PRIMARY if FRAMEBUFFER_CONSOLE
->>>       default y
->>> diff --git a/drivers/gpu/drm/drm_fb_helper.c 
->>> b/drivers/gpu/drm/drm_fb_helper.c
->>> index 8724e08c518b..ba0a808f14ee 100644
->>> --- a/drivers/gpu/drm/drm_fb_helper.c
->>> +++ b/drivers/gpu/drm/drm_fb_helper.c
->>> @@ -729,113 +729,6 @@ void drm_fb_helper_deferred_io(struct fb_info 
->>> *info, struct list_head *pagerefli
->>>   }
->>>   EXPORT_SYMBOL(drm_fb_helper_deferred_io);
->>> -/**
->>> - * drm_fb_helper_sys_read - Implements struct &fb_ops.fb_read for 
->>> system memory
->>> - * @info: fb_info struct pointer
->>> - * @buf: userspace buffer to read from framebuffer memory
->>> - * @count: number of bytes to read from framebuffer memory
->>> - * @ppos: read offset within framebuffer memory
->>> - *
->>> - * Returns:
->>> - * The number of bytes read on success, or an error code otherwise.
->>> - */
->>> -ssize_t drm_fb_helper_sys_read(struct fb_info *info, char __user *buf,
->>> -                   size_t count, loff_t *ppos)
->>> -{
->>> -    return fb_sys_read(info, buf, count, ppos);
->>> -}
->>> -EXPORT_SYMBOL(drm_fb_helper_sys_read);
->>> -
->>> -/**
->>> - * drm_fb_helper_sys_write - Implements struct &fb_ops.fb_write for 
->>> system memory
->>> - * @info: fb_info struct pointer
->>> - * @buf: userspace buffer to write to framebuffer memory
->>> - * @count: number of bytes to write to framebuffer memory
->>> - * @ppos: write offset within framebuffer memory
->>> - *
->>> - * Returns:
->>> - * The number of bytes written on success, or an error code otherwise.
->>> - */
->>> -ssize_t drm_fb_helper_sys_write(struct fb_info *info, const char 
->>> __user *buf,
->>> -                size_t count, loff_t *ppos)
->>> -{
->>> -    struct drm_fb_helper *helper = info->par;
->>> -    loff_t pos = *ppos;
->>> -    ssize_t ret;
->>> -    struct drm_rect damage_area;
->>> -
->>> -    ret = fb_sys_write(info, buf, count, ppos);
->>> -    if (ret <= 0)
->>> -        return ret;
->>> -
->>> -    if (helper->funcs->fb_dirty) {
->>> -        drm_fb_helper_memory_range_to_clip(info, pos, ret, 
->>> &damage_area);
->>> -        drm_fb_helper_damage(helper, damage_area.x1, damage_area.y1,
->>> -                     drm_rect_width(&damage_area),
->>> -                     drm_rect_height(&damage_area));
->>> -    }
->>> -
->>> -    return ret;
->>> -}
->>> -EXPORT_SYMBOL(drm_fb_helper_sys_write);
->>> -
->>> -/**
->>> - * drm_fb_helper_sys_fillrect - wrapper around sys_fillrect
->>> - * @info: fbdev registered by the helper
->>> - * @rect: info about rectangle to fill
->>> - *
->>> - * A wrapper around sys_fillrect implemented by fbdev core
->>> - */
->>> -void drm_fb_helper_sys_fillrect(struct fb_info *info,
->>> -                const struct fb_fillrect *rect)
->>> -{
->>> -    struct drm_fb_helper *helper = info->par;
->>> -
->>> -    sys_fillrect(info, rect);
->>> -
->>> -    if (helper->funcs->fb_dirty)
->>> -        drm_fb_helper_damage(helper, rect->dx, rect->dy, 
->>> rect->width, rect->height);
->>> -}
->>> -EXPORT_SYMBOL(drm_fb_helper_sys_fillrect);
->>> -
->>> -/**
->>> - * drm_fb_helper_sys_copyarea - wrapper around sys_copyarea
->>> - * @info: fbdev registered by the helper
->>> - * @area: info about area to copy
->>> - *
->>> - * A wrapper around sys_copyarea implemented by fbdev core
->>> - */
->>> -void drm_fb_helper_sys_copyarea(struct fb_info *info,
->>> -                const struct fb_copyarea *area)
->>> -{
->>> -    struct drm_fb_helper *helper = info->par;
->>> -
->>> -    sys_copyarea(info, area);
->>> -
->>> -    if (helper->funcs->fb_dirty)
->>> -        drm_fb_helper_damage(helper, area->dx, area->dy, 
->>> area->width, area->height);
->>> -}
->>> -EXPORT_SYMBOL(drm_fb_helper_sys_copyarea);
->>> -
->>> -/**
->>> - * drm_fb_helper_sys_imageblit - wrapper around sys_imageblit
->>> - * @info: fbdev registered by the helper
->>> - * @image: info about image to blit
->>> - *
->>> - * A wrapper around sys_imageblit implemented by fbdev core
->>> - */
->>> -void drm_fb_helper_sys_imageblit(struct fb_info *info,
->>> -                 const struct fb_image *image)
->>> -{
->>> -    struct drm_fb_helper *helper = info->par;
->>> -
->>> -    sys_imageblit(info, image);
->>> -
->>> -    if (helper->funcs->fb_dirty)
->>> -        drm_fb_helper_damage(helper, image->dx, image->dy, 
->>> image->width, image->height);
->>> -}
->>> -EXPORT_SYMBOL(drm_fb_helper_sys_imageblit);
->>> -
->>>   /**
->>>    * drm_fb_helper_cfb_read - Implements struct &fb_ops.fb_read for 
->>> I/O memory
->>>    * @info: fb_info struct pointer
->>> diff --git a/drivers/gpu/drm/drm_fbdev_generic.c 
->>> b/drivers/gpu/drm/drm_fbdev_generic.c
->>> index 8e5148bf40bb..f53fc49e34a4 100644
->>> --- a/drivers/gpu/drm/drm_fbdev_generic.c
->>> +++ b/drivers/gpu/drm/drm_fbdev_generic.c
->>> @@ -34,6 +34,43 @@ static int drm_fbdev_generic_fb_release(struct 
->>> fb_info *info, int user)
->>>       return 0;
->>>   }
->>> +static ssize_t drm_fbdev_generic_fb_write(struct fb_info *info, 
->>> const char __user *buf,
->>> +                      size_t count, loff_t *ppos)
->>> +{
->>> +    struct drm_fb_helper *helper = info->par;
->>> +    loff_t pos = *ppos;
->>> +    ssize_t ret;
->>> +
->>> +    ret = fb_sys_write(info, buf, count, ppos);
->>> +    if (ret > 0)
->>> +        drm_fb_helper_damage_range(helper, pos, ret);
->>> +    return ret;
->>> +}
->>> +
->>> +static void drm_fbdev_generic_fb_fillrect(struct fb_info *info, 
->>> const struct fb_fillrect *rect)
->>> +{
->>> +    struct drm_fb_helper *helper = info->par;
->>> +
->>> +    sys_fillrect(info, rect);
->>> +    drm_fb_helper_damage(helper, rect->dx, rect->dy, rect->width, 
->>> rect->height);
->>> +}
->>> +
->>> +static void drm_fbdev_generic_fb_copyarea(struct fb_info *info, 
->>> const struct fb_copyarea *area)
->>> +{
->>> +    struct drm_fb_helper *helper = info->par;
->>> +
->>> +    sys_copyarea(info, area);
->>> +    drm_fb_helper_damage(helper, area->dx, area->dy, area->width, 
->>> area->height);
->>> +}
->>> +
->>> +static void drm_fbdev_generic_fb_imageblit(struct fb_info *info, 
->>> const struct fb_image *image)
->>> +{
->>> +    struct drm_fb_helper *helper = info->par;
->>> +
->>> +    sys_imageblit(info, image);
->>> +    drm_fb_helper_damage(helper, image->dx, image->dy, 
->>> image->width, image->height);
->>> +}
->>> +
->>>   static void drm_fbdev_generic_fb_destroy(struct fb_info *info)
->>>   {
->>>       struct drm_fb_helper *fb_helper = info->par;
->>> @@ -56,12 +93,12 @@ static const struct fb_ops 
->>> drm_fbdev_generic_fb_ops = {
->>>       .owner        = THIS_MODULE,
->>>       .fb_open    = drm_fbdev_generic_fb_open,
->>>       .fb_release    = drm_fbdev_generic_fb_release,
->>> -    .fb_read    = drm_fb_helper_sys_read,
->>> -    .fb_write    = drm_fb_helper_sys_write,
->>> +    .fb_read    = fb_sys_read,
->>> +    .fb_write    = drm_fbdev_generic_fb_write,
->>>       DRM_FB_HELPER_DEFAULT_OPS,
->>> -    .fb_fillrect    = drm_fb_helper_sys_fillrect,
->>> -    .fb_copyarea    = drm_fb_helper_sys_copyarea,
->>> -    .fb_imageblit    = drm_fb_helper_sys_imageblit,
->>> +    .fb_fillrect    = drm_fbdev_generic_fb_fillrect,
->>> +    .fb_copyarea    = drm_fbdev_generic_fb_copyarea,
->>> +    .fb_imageblit    = drm_fbdev_generic_fb_imageblit,
->>>       .fb_mmap    = fb_deferred_io_mmap,
->>>       .fb_destroy    = drm_fbdev_generic_fb_destroy,
->>>   };
->>> diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
->>> index 80c402f4e379..e3240d749a43 100644
->>> --- a/include/drm/drm_fb_helper.h
->>> +++ b/include/drm/drm_fb_helper.h
->>> @@ -259,18 +259,6 @@ void drm_fb_helper_damage_range(struct 
->>> drm_fb_helper *helper, off_t off, size_t
->>>   void drm_fb_helper_deferred_io(struct fb_info *info, struct 
->>> list_head *pagereflist);
->>> -ssize_t drm_fb_helper_sys_read(struct fb_info *info, char __user *buf,
->>> -                   size_t count, loff_t *ppos);
->>> -ssize_t drm_fb_helper_sys_write(struct fb_info *info, const char 
->>> __user *buf,
->>> -                size_t count, loff_t *ppos);
->>> -
->>> -void drm_fb_helper_sys_fillrect(struct fb_info *info,
->>> -                const struct fb_fillrect *rect);
->>> -void drm_fb_helper_sys_copyarea(struct fb_info *info,
->>> -                const struct fb_copyarea *area);
->>> -void drm_fb_helper_sys_imageblit(struct fb_info *info,
->>> -                 const struct fb_image *image);
->>> -
->>>   ssize_t drm_fb_helper_cfb_read(struct fb_info *info, char __user 
->>> *buf,
->>>                      size_t count, loff_t *ppos);
->>>   ssize_t drm_fb_helper_cfb_write(struct fb_info *info, const char 
->>> __user *buf,
->>> @@ -398,35 +386,6 @@ static inline int 
->>> drm_fb_helper_defio_init(struct drm_fb_helper *fb_helper)
->>>       return -ENODEV;
->>>   }
->>> -static inline ssize_t drm_fb_helper_sys_read(struct fb_info *info,
->>> -                         char __user *buf, size_t count,
->>> -                         loff_t *ppos)
->>> -{
->>> -    return -ENODEV;
->>> -}
->>> -
->>> -static inline ssize_t drm_fb_helper_sys_write(struct fb_info *info,
->>> -                          const char __user *buf,
->>> -                          size_t count, loff_t *ppos)
->>> -{
->>> -    return -ENODEV;
->>> -}
->>> -
->>> -static inline void drm_fb_helper_sys_fillrect(struct fb_info *info,
->>> -                          const struct fb_fillrect *rect)
->>> -{
->>> -}
->>> -
->>> -static inline void drm_fb_helper_sys_copyarea(struct fb_info *info,
->>> -                          const struct fb_copyarea *area)
->>> -{
->>> -}
->>> -
->>> -static inline void drm_fb_helper_sys_imageblit(struct fb_info *info,
->>> -                           const struct fb_image *image)
->>> -{
->>> -}
->>> -
->>>   static inline ssize_t drm_fb_helper_cfb_read(struct fb_info *info, 
->>> char __user *buf,
->>>                            size_t count, loff_t *ppos)
->>>   {
+> Main thing is to properly align that one you propose above with that check,
+> where we decide how many VDSC engines to use:
 >
+>          /*
+>           * VDSC engine operates at 1 Pixel per clock, so if peak pixel rate
+>           * is greater than the maximum Cdclock and if slice count is even
+>           * then we need to use 2 VDSC instances.
+>           */
+>          if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq) {
+>                  if (pipe_config->dsc.slice_count > 1) {
+>                          pipe_config->dsc.dsc_split = true;
+>                  } else {
+>                          drm_dbg_kms(&dev_priv->drm,
+>                                      "Cannot split stream to use 2 VDSC instances\n");
+>                          return -EINVAL;
+>                  }
+>          }
+>
+> Otherwise I agree that we should do that check preferrably in *_plane_min_cdclk
+> and use plane data rate which is adjusted after scaling is applied(I think we even have correspondent function there)
+> It is strange that scaling wasn't mentioned in BSpec formula.
+> I would also say that we should account for number of slices(i.e VDSC engines) now only in Bigjoiner case, but always, as I understand that number can be different not only for Bigjoiner cases.
+>
+> Stan
+>
+Hmm does it mean:
+
+if (!crtc_state->dsc.dsc_split) {
+
+         if (bigjoiner)
+
+             min_cdclk = compressed_bpp * Pixel clock / (PPC * Bigjoiner 
+Interface bits);
+
+     else
+
+             min_cdclk = compressed_bpp * Pixel clock;
+
+}
+
+For Pixel clock, should it not be crtc_state->hw.adjusted_mode->clock ?
+
+Regards,
+
+Ankit
+
+
+>>> +
+>>> +		min_cdclk = max(min_cdclk, min_cdclk_bj);
+>>> +	}
+>>> +
+>>> +	return min_cdclk;
+>>> +}
+>>> +
+>>>   int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+>>>   {
+>>>   	struct drm_i915_private *dev_priv =
+>>> @@ -2591,13 +2631,8 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+>>>   	/* Account for additional needs from the planes */
+>>>   	min_cdclk = max(intel_planes_min_cdclk(crtc_state), min_cdclk);
+>>>   
+>>> -	/*
+>>> -	 * When we decide to use only one VDSC engine, since
+>>> -	 * each VDSC operates with 1 ppc throughput, pixel clock
+>>> -	 * cannot be higher than the VDSC clock (cdclk)
+>>> -	 */
+>>> -	if (crtc_state->dsc.compression_enable && !crtc_state->dsc.dsc_split)
+>>> -		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
+>>> +	if (crtc_state->dsc.compression_enable)
+>>> +		min_cdclk = max(min_cdclk, intel_vdsc_min_cdclk(crtc_state));
+>>>   
+>>>   	/*
+>>>   	 * HACK. Currently for TGL/DG2 platforms we calculate
+>>> -- 
+>>> 2.25.1
+>> -- 
+>> Ville Syrjälä
+>> Intel
