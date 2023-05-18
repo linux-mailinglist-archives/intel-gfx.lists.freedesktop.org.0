@@ -1,79 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A943D7088EA
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 22:02:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C55708908
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 22:07:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31E4F10E560;
-	Thu, 18 May 2023 20:02:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1AF10E54B;
+	Thu, 18 May 2023 20:07:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53FF710E550
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 20:02:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1684440148;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=b8QBi0/mhuomVjhHGjilGHaXdKozwfsxXIJHR7XvYXM=;
- b=H3NCWwP1a6pAMlI4RtIOz+cFlTVG+BXWeEL0/a3LOYSDYOz/5SJgsHmIkVVuNKhovbsWa/
- eY/6a+dDljmvsZrfVVLAIxQo/nnwsxpQQPzxhtk1G8hx6og66uz6rBSEzXaEX0nj8nziN5
- tTyKLHx+9hvjoIgACef7dFYhZw/dIAI=
-Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
- [209.85.166.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-224-1Ch6YsQ0MmWMFAaurk9jYQ-1; Thu, 18 May 2023 16:02:24 -0400
-X-MC-Unique: 1Ch6YsQ0MmWMFAaurk9jYQ-1
-Received: by mail-io1-f71.google.com with SMTP id
- ca18e2360f4ac-763c341d627so197984739f.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 13:02:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684440144; x=1687032144;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=NxSZSODI2u28vy1MvKpnEmFi7Q8e7Naitxzu3Z7bWS4=;
- b=NnWD1fGqLRv/rGEdeGYwDMc8p4fakBLj3eLzSd9AaU8uKjfeREUz2Liq89/L0xMU/Q
- aBWz2svVWv1L1nw0Usk/k2OPBB/oJbgtsPiR7Ekh106UXIu+4SQSuDkWCuOfPFLekoTU
- cL8iQ2XohiTGSiAhCzopNcEHF04De02ugJMF8QfmM+tH006Zxs2J61DATO7P9SrQJO3F
- 4VZ1CxyVGqK5Ksj/FJ0S9NutYwhPr/L110MuUnAFuRNYKfuPWPDRIJh0Ot4HGDQch7h8
- cGmWf8GIYoVdkGCf+QvMENYn194llCKY0JPylY0JYYHroszoYNKF/9rvqQD4LUOwR95/
- g+xw==
-X-Gm-Message-State: AC+VfDxmRGotCTs5O3gDhReP0rPv6Wl2Dk7xWDo2kiXtj139cLTqRnik
- y33gcf14WbGLdx/mb523bKsM6e7fMZ8rFKmvvZgNr7A6mDSONv25g8JP1HNgiFKEbC7O2xn+EgP
- uEkFr6CHKz5m0NRzacYgeYvNzTopc
-X-Received: by 2002:a05:6602:42cc:b0:770:f25:eea with SMTP id
- ce12-20020a05660242cc00b007700f250eeamr8109521iob.4.1684440143735; 
- Thu, 18 May 2023 13:02:23 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ78r16hyXJua6dwpFFlo7TPCXcK29v0VmS1Dgb685o6EqQWCUg5zZuAs+XNJa9yraJYnBOI3w==
-X-Received: by 2002:a05:6602:42cc:b0:770:f25:eea with SMTP id
- ce12-20020a05660242cc00b007700f250eeamr8109505iob.4.1684440143240; 
- Thu, 18 May 2023 13:02:23 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- d66-20020a026245000000b0041672c963b3sm656062jac.50.2023.05.18.13.02.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 May 2023 13:02:22 -0700 (PDT)
-Date: Thu, 18 May 2023 14:02:20 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <20230518140220.0953074c.alex.williamson@redhat.com>
-In-Reply-To: <DS0PR11MB75291457BBD647819B855DA0C37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230513132136.15021-1-yi.l.liu@intel.com>
- <20230513132136.15021-10-yi.l.liu@intel.com>
- <20230517160131.254be76b.alex.williamson@redhat.com>
- <DS0PR11MB75291457BBD647819B855DA0C37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3DDAC10E54B;
+ Thu, 18 May 2023 20:07:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 35289A7DFF;
+ Thu, 18 May 2023 20:07:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6030147765086314357=="
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v5 09/10] vfio/pci: Extend
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Date: Thu, 18 May 2023 20:07:28 -0000
+Message-ID: <168444044818.2372.15093652054872578599@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230518063612.1044370-1-suraj.kandpal@intel.com>
+In-Reply-To: <20230518063612.1044370-1-suraj.kandpal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgSERD?=
+ =?utf-8?q?P_Cleanup?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,491 +40,386 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
- "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "clegoate@redhat.com" <clegoate@redhat.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 18 May 2023 13:21:57 +0000
-"Liu, Yi L" <yi.l.liu@intel.com> wrote:
+--===============6030147765086314357==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> > From: Alex Williamson <alex.williamson@redhat.com>
-> > Sent: Thursday, May 18, 2023 6:02 AM
-> >=20
-> > On Sat, 13 May 2023 06:21:35 -0700
-> > Yi Liu <yi.l.liu@intel.com> wrote:
-> >  =20
-> > > This makes VFIO_DEVICE_GET_PCI_HOT_RESET_INFO ioctl to use the iommuf=
-d_ctx =20
-> >=20
-> > s/makes/allows/?
-> >=20
-> > s/to//
-> >  =20
-> > > of the cdev device to check the ownership of the other affected devic=
-es.
-> > >
-> > > This returns devid for each of the affected devices. If it is bound t=
-o the
-> > > iommufd_ctx of the cdev device, _INFO reports a valid devid > 0; If i=
-t is
-> > > not opened by the calling user, but it belongs to the same iommu_grou=
-p of
-> > > a device that is bound to the iommufd_ctx of the cdev device, reports=
- devid
-> > > value of 0; If the device is un-owned device, configured within a dif=
-ferent
-> > > iommufd, or opened outside of the vfio device cdev API, the _INFO ioc=
-tl shall
-> > > report devid value of -1.
-> > >
-> > > devid >=3D0 doesn't block hot-reset as the affected devices are consi=
-dered to
-> > > be owned, while devid =3D=3D -1 will block the use of VFIO_DEVICE_PCI=
-_HOT_RESET
-> > > outside of proof-of-ownership calling conventions (ie. via legacy gro=
-up
-> > > accessed devices).
-> > >
-> > > This adds flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID to tell the user devid =
-is
-> > > returned in case of calling user get device fd from other software st=
-ack =20
-> >=20
-> > "other software stack"?  I think this is trying to say something like:
-> >=20
-> >   When VFIO_DEVICE_GET_PCI_HOT_RESET_INFO is called on an IOMMUFD
-> >   managed device, the new flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID is
-> >   reported to indicate the values returned are IOMMUFD devids rather
-> >   than group IDs as used when accessing vfio devices through the
-> >   conventional vfio group interface.  Additionally the flag
-> >   VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED will be reported in this mode if
-> >   all of the devices affected by the hot-reset are owned by either
-> >   virtue of being directly bound to the same iommufd context as the
-> >   calling device, or implicitly owned via a shared IOMMU group. =20
->=20
-> Yes. it is.
->=20
-> > > and adds flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED to tell user if al=
-l
-> > > the affected devices are owned, so user can know it without looping a=
-ll
-> > > the returned devids.
-> > >
-> > > Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
-> > > Suggested-by: Alex Williamson <alex.williamson@redhat.com>
-> > > Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> > > ---
-> > >  drivers/vfio/pci/vfio_pci_core.c | 52 ++++++++++++++++++++++++++++++=
---
-> > >  include/uapi/linux/vfio.h        | 46 +++++++++++++++++++++++++++-
-> > >  2 files changed, 95 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio=
-_pci_core.c
-> > > index 4df2def35bdd..57586be770af 100644
-> > > --- a/drivers/vfio/pci/vfio_pci_core.c
-> > > +++ b/drivers/vfio/pci/vfio_pci_core.c
-> > > @@ -27,6 +27,7 @@
-> > >  #include <linux/vgaarb.h>
-> > >  #include <linux/nospec.h>
-> > >  #include <linux/sched/mm.h>
-> > > +#include <linux/iommufd.h>
-> > >  #if IS_ENABLED(CONFIG_EEH)
-> > >  #include <asm/eeh.h>
-> > >  #endif
-> > > @@ -36,6 +37,10 @@
-> > >  #define DRIVER_AUTHOR   "Alex Williamson <alex.williamson@redhat.com=
->"
-> > >  #define DRIVER_DESC "core driver for VFIO based PCI devices"
-> > >
-> > > +#ifdef CONFIG_IOMMUFD
-> > > +MODULE_IMPORT_NS(IOMMUFD);
-> > > +#endif
-> > > +
-> > >  static bool nointxmask;
-> > >  static bool disable_vga;
-> > >  static bool disable_idle_d3;
-> > > @@ -776,6 +781,9 @@ struct vfio_pci_fill_info {
-> > >  =09int max;
-> > >  =09int cur;
-> > >  =09struct vfio_pci_dependent_device *devices;
-> > > +=09struct vfio_device *vdev;
-> > > +=09bool devid:1;
-> > > +=09bool dev_owned:1;
-> > >  };
-> > >
-> > >  static int vfio_pci_fill_devs(struct pci_dev *pdev, void *data)
-> > > @@ -790,7 +798,37 @@ static int vfio_pci_fill_devs(struct pci_dev *pd=
-ev, void *data)
-> > >  =09if (!iommu_group)
-> > >  =09=09return -EPERM; /* Cannot reset non-isolated devices */
-> > >
-> > > -=09fill->devices[fill->cur].group_id =3D iommu_group_id(iommu_group)=
-;
-> > > +=09if (fill->devid) {
-> > > +=09=09struct iommufd_ctx *iommufd =3D vfio_iommufd_physical_ictx(fil=
-l->vdev);
-> > > +=09=09struct vfio_device_set *dev_set =3D fill->vdev->dev_set;
-> > > +=09=09struct vfio_device *vdev;
-> > > +
-> > > +=09=09/*
-> > > +=09=09 * Report devid for the affected devices:
-> > > +=09=09 * - valid devid > 0 for the devices that are bound with
-> > > +=09=09 *   the iommufd of the calling device.
-> > > +=09=09 * - devid =3D=3D 0 for the devices that have not been opened
-> > > +=09=09 *   but have same group with one of the devices bound to
-> > > +=09=09 *   the iommufd of the calling device.
-> > > +=09=09 * - devid =3D=3D -1 for others, and clear dev_owned flag.
-> > > +=09=09 */
-> > > +=09=09vdev =3D vfio_find_device_in_devset(dev_set, &pdev->dev);
-> > > +=09=09if (vdev && iommufd =3D=3D vfio_iommufd_physical_ictx(vdev)) {
-> > > +=09=09=09int ret;
-> > > +
-> > > +=09=09=09ret =3D vfio_iommufd_physical_devid(vdev);
-> > > +=09=09=09if (WARN_ON(ret < 0))
-> > > +=09=09=09=09return ret;
-> > > +=09=09=09fill->devices[fill->cur].devid =3D ret; =20
-> >=20
-> > Nit, @devid seems like a better variable name here rather than @ret.
-> >  =20
-> > > +=09=09} else if (vdev && iommufd_ctx_has_group(iommufd, iommu_group)=
-) {
-> > > +=09=09=09fill->devices[fill->cur].devid =3D VFIO_PCI_DEVID_OWNED;
-> > > +=09=09} else {
-> > > +=09=09=09fill->devices[fill->cur].devid =3D VFIO_PCI_DEVID_NOT_OWNED=
-;
-> > > +=09=09=09fill->dev_owned =3D false;
-> > > +=09=09} =20
-> >=20
-> > I think we're not describing the requirements for this middle test
-> > correctly.  We're essentially only stating the iommufd_ctx_has_group()
-> > part of the requirement, but we're also enforcing a
-> > vfio_find_device_in_devset() requirement, which means the device is not
-> > just unopened within a group shared by the iommufd context, but it must
-> > also still be a device registered as a member of the devset, ie. it
-> > must be bound to a vfio driver. =20
->=20
-> Yes. This is to make it be par with hot-reset path. This is needed. Is it=
-?
+== Series Details ==
 
-Yes.  In supporting this null-array model, the kernel is taking on the
-responsibility to indicate that the hot-reset is available, which
-necessarily includes the devset test.  I think the logic we have is
-correct, but the documentation and comments should match the code as
-well.
+Series: HDCP Cleanup
+URL   : https://patchwork.freedesktop.org/series/117938/
+State : failure
 
-> > It's not a new requirement, it's imposed in the hot-reset ioctl itself,
-> > but it's new for the info ioctl given that it's now trying to report
-> > that the user can perform the reset for cdev callers.
-> >
-> > This also shares too much logic with vfio_device_owned() added in the
-> > next patch.  I think it might be cleaner to move the iommu_group_get() =
-to
-> > the group path below and change vfio_device_owned() to something that
-> > can be used here and in the reset path.  For example, if we had a
-> > function like:
-> >=20
-> > static int vfio_hot_reset_devid(struct vfio_device *vdev,
-> >                                 struct iommufd_ctx *iommufd_ctx)
-> > {
-> >         struct iommu_group *group;
-> >         int devid;
-> >=20
-> >         if (!vdev)
-> >                 return VFIO_PCI_DEVID_NOT_OWNED;
-> >=20
-> >         if (vfio_iommufd_physical_ictx(vdev) =3D=3D iommufd_ctx)
-> >                 return vfio_iommufd_physical_devid(vdev);
-> >=20
-> >         group =3D iommu_group_get(vdev->dev);
-> >         if (!group)
-> >                 return VFIO_PCI_DEVID_NOT_OWNED;
-> >=20
-> >         if (iommufd_ctx_has_group(iommufd_ctx, group))
-> >                 devid =3D VFIO_PCI_DEVID_OWNED;
-> >=20
-> >         iommu_group_put(group);
-> >=20
-> >         return devid;
-> > } =20
->=20
-> Thanks. This can be placed in vfio/iommufd.c, hence no need to
-> Import the IOMMUFD namespace in vfio_pci_core.c.
-> vfio_iommufd_physical_devid() can ebe static within vfio/iommufd.c
+== Summary ==
 
-Good, that's an improvement too.  Thanks,
+CI Bug Log - changes from CI_DRM_13162_full -> Patchwork_117938v1_full
+====================================================
 
-Alex
-=20
-> > It could be called above as:
-> >=20
-> > =09vdev =3D vfio_find_device_in_devset(dev_set, &pdev->dev);
-> > =09fill->devices[fill->cur].devid =3D
-> > =09=09=09vfio_hot_reset_devid(vdev, iommufd);
-> >=20
-> >=20
-> > And from vfio_pci_dev_set_hot_reset() as:
-> >=20
-> > =09bool owned;
-> >=20
-> > =09if (iommufd_ctx) {
-> > =09=09int devid =3D vfio_hot_reset_devid(&cur_vma->vdev,
-> > =09=09=09=09=09=09 iommufd_ctx);
-> >=20
-> > =09=09owned =3D (devid !=3D VFIO_PCI_DEVID_NOT_OWNED);
-> > =09} else
-> > =09=09owned =3D vfio_dev_in_groups(&cur_vma->vdev, groups);
-> >=20
-> > Any better? =20
->=20
-> Above looks good enough.
->=20
-> >  =20
-> > > +=09} else {
-> > > +=09=09fill->devices[fill->cur].group_id =3D iommu_group_id(iommu_gro=
-up);
-> > > +=09}
-> > >  =09fill->devices[fill->cur].segment =3D pci_domain_nr(pdev->bus);
-> > >  =09fill->devices[fill->cur].bus =3D pdev->bus->number;
-> > >  =09fill->devices[fill->cur].devfn =3D pdev->devfn;
-> > > @@ -1229,17 +1267,27 @@ static int vfio_pci_ioctl_get_pci_hot_reset_i=
-nfo(
-> > >  =09=09return -ENOMEM;
-> > >
-> > >  =09fill.devices =3D devices;
-> > > +=09fill.vdev =3D &vdev->vdev;
-> > >
-> > > +=09mutex_lock(&vdev->vdev.dev_set->lock);
-> > > +=09fill.devid =3D fill.dev_owned =3D vfio_device_cdev_opened(&vdev->=
-vdev);
-> > >  =09ret =3D vfio_pci_for_each_slot_or_bus(vdev->pdev, vfio_pci_fill_d=
-evs,
-> > >  =09=09=09=09=09    &fill, slot);
-> > > +=09mutex_unlock(&vdev->vdev.dev_set->lock);
-> > >
-> > >  =09/*
-> > >  =09 * If a device was removed between counting and filling, we may c=
-ome up
-> > >  =09 * short of fill.max.  If a device was added, we'll have a return=
- of
-> > >  =09 * -EAGAIN above.
-> > >  =09 */
-> > > -=09if (!ret)
-> > > +=09if (!ret) {
-> > >  =09=09hdr.count =3D fill.cur;
-> > > +=09=09if (fill.devid) {
-> > > +=09=09=09hdr.flags |=3D VFIO_PCI_HOT_RESET_FLAG_DEV_ID;
-> > > +=09=09=09if (fill.dev_owned)
-> > > +=09=09=09=09hdr.flags |=3D =20
-> > VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED; =20
-> > > +=09=09}
-> > > +=09} =20
-> >=20
-> > Does this clean up the flag and branching a bit? =20
->=20
-> Yes. =F0=9F=98=8A
->=20
-> >=20
-> > diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_p=
-ci_core.c
-> > index 737115d16a79..6a2a079e452d 100644
-> > --- a/drivers/vfio/pci/vfio_pci_core.c
-> > +++ b/drivers/vfio/pci/vfio_pci_core.c
-> > @@ -786,8 +786,7 @@ struct vfio_pci_fill_info {
-> >  =09int cur;
-> >  =09struct vfio_pci_dependent_device *devices;
-> >  =09struct vfio_device *vdev;
-> > -=09bool devid:1;
-> > -=09bool dev_owned:1;
-> > +=09u32 flags;
-> >  };
-> >=20
-> >  static int vfio_pci_fill_devs(struct pci_dev *pdev, void *data)
-> > @@ -802,7 +801,7 @@ static int vfio_pci_fill_devs(struct pci_dev *pdev,=
- void *data)
-> >  =09if (!iommu_group)
-> >  =09=09return -EPERM; /* Cannot reset non-isolated devices */
-> >=20
-> > -=09if (fill->devid) {
-> > +=09if (fill->flags & VFIO_PCI_HOT_RESET_FLAG_DEV_ID) {
-> >  =09=09struct iommufd_ctx *iommufd =3D vfio_iommufd_physical_ictx(fill-=
->vdev);
-> >  =09=09struct vfio_device_set *dev_set =3D fill->vdev->dev_set;
-> >  =09=09struct vfio_device *vdev;
-> > @@ -814,7 +813,7 @@ static int vfio_pci_fill_devs(struct pci_dev *pdev,=
- void *data)
-> >  =09=09 * - devid =3D=3D 0 for the devices that have not been opened
-> >  =09=09 *   but have same group with one of the devices bound to
-> >  =09=09 *   the iommufd of the calling device.
-> > -=09=09 * - devid =3D=3D -1 for others, and clear dev_owned flag.
-> > +=09=09 * - devid =3D=3D -1 for others, and clear owned flag.
-> >  =09=09 */
-> >  =09=09vdev =3D vfio_find_device_in_devset(dev_set, &pdev->dev);
-> >  =09=09if (vdev && iommufd =3D=3D vfio_iommufd_physical_ictx(vdev)) {
-> > @@ -828,7 +827,7 @@ static int vfio_pci_fill_devs(struct pci_dev *pdev,=
- void *data)
-> >  =09=09=09fill->devices[fill->cur].devid =3D VFIO_PCI_DEVID_OWNED;
-> >  =09=09} else {
-> >  =09=09=09fill->devices[fill->cur].devid =3D VFIO_PCI_DEVID_NOT_OWNED;
-> > -=09=09=09fill->dev_owned =3D false;
-> > +=09=09=09fill->flags &=3D ~VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED;
-> >  =09=09}
-> >  =09} else {
-> >  =09=09fill->devices[fill->cur].group_id =3D iommu_group_id(iommu_group=
-);
-> > @@ -1273,8 +1272,11 @@ static int vfio_pci_ioctl_get_pci_hot_reset_info=
-(
-> >  =09fill.devices =3D devices;
-> >  =09fill.vdev =3D &vdev->vdev;
-> >=20
-> > +=09if (vfio_device_cdev_opened(&vdev->vdev))
-> > +=09=09fill.flags |=3D VFIO_PCI_HOT_RESET_FLAG_DEV_ID |
-> > +=09=09=09     VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED;
-> > +
-> >  =09mutex_lock(&vdev->vdev.dev_set->lock);
-> > -=09fill.devid =3D fill.dev_owned =3D vfio_device_cdev_opened(&vdev->vd=
-ev);
-> >  =09ret =3D vfio_pci_for_each_slot_or_bus(vdev->pdev, vfio_pci_fill_dev=
-s,
-> >  =09=09=09=09=09    &fill, slot);
-> >  =09mutex_unlock(&vdev->vdev.dev_set->lock);
-> > @@ -1286,11 +1288,7 @@ static int vfio_pci_ioctl_get_pci_hot_reset_info=
-(
-> >  =09 */
-> >  =09if (!ret) {
-> >  =09=09hdr.count =3D fill.cur;
-> > -=09=09if (fill.devid) {
-> > -=09=09=09hdr.flags |=3D VFIO_PCI_HOT_RESET_FLAG_DEV_ID;
-> > -=09=09=09if (fill.dev_owned)
-> > -=09=09=09=09hdr.flags |=3D
-> > VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED;
-> > -=09=09}
-> > +=09=09hdr.flags =3D fill.flags;
-> >  =09}
-> >=20
-> >  reset_info_exit:
-> >=20
-> > Thanks,
-> > Alex =20
->=20
-> Thanks,
-> Yi Liu
->=20
-> > >
-> > >  reset_info_exit:
-> > >  =09if (copy_to_user(arg, &hdr, minsz))
-> > > diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
-> > > index 0552e8dcf0cb..01203215251a 100644
-> > > --- a/include/uapi/linux/vfio.h
-> > > +++ b/include/uapi/linux/vfio.h
-> > > @@ -650,11 +650,53 @@ enum {
-> > >   * VFIO_DEVICE_GET_PCI_HOT_RESET_INFO - _IOWR(VFIO_TYPE, VFIO_BASE +=
- 12,
-> > >   *=09=09=09=09=09      struct vfio_pci_hot_reset_info)
-> > >   *
-> > > + * This command is used to query the affected devices in the hot res=
-et for
-> > > + * a given device.
-> > > + *
-> > > + * This command always reports the segment, bus, and devfn informati=
-on for
-> > > + * each affected device, and selectively reports the group_id or dev=
-id per
-> > > + * the way how the calling device is opened.
-> > > + *
-> > > + *=09- If the calling device is opened via the traditional group/con=
-tainer
-> > > + *=09  API, group_id is reported.  User should check if it has owned=
- all
-> > > + *=09  the affected devices and provides a set of group fds to prove=
- the
-> > > + *=09  ownership in VFIO_DEVICE_PCI_HOT_RESET ioctl.
-> > > + *
-> > > + *=09- If the calling device is opened as a cdev, devid is reported.
-> > > + *=09  Flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID is set to indicate this
-> > > + *=09  data type.  For a given affected device, it is considered own=
-ed by
-> > > + *=09  this interface if it meets the following conditions:
-> > > + *=09  1) Has a valid devid within the iommufd_ctx of the calling de=
-vice.
-> > > + *=09     Ownership cannot be determined across separate iommufd_ctx=
- and the
-> > > + *=09     cdev calling conventions do not support a proof-of-ownersh=
-ip model
-> > > + *=09     as provided in the legacy group interface.  In this case a=
- valid
-> > > + *=09     devid with value greater than zero is provided in the retu=
-rn
-> > > + *=09     structure.
-> > > + *=09  2) Does not have a valid devid within the iommufd_ctx of the =
-calling
-> > > + *=09     device, but belongs to the same IOMMU group as the calling=
- device
-> > > + *=09     or another opened device that has a valid devid within the
-> > > + *=09     iommufd_ctx of the calling device.  This provides implicit=
- ownership
-> > > + *=09     for devices within the same DMA isolation context.  In thi=
-s case
-> > > + *=09     the invalid devid value of zero is provided in the return =
-structure.
-> > > + *
-> > > + *=09  A devid value of -1 is provided in the return structure for d=
-evices
-> > > + *=09  where ownership is not available.  Such devices prevent the u=
-se of
-> > > + *=09  VFIO_DEVICE_PCI_HOT_RESET outside of proof-of-ownership calli=
-ng
-> > > + *=09  conventions (ie. via legacy group accessed devices).
-> > > + *=09  Flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED would be set when a=
-ll the
-> > > + *=09  affected devices are owned by the user.  This flag is availab=
-le only
-> > > + *=09  when VFIO_PCI_HOT_RESET_FLAG_DEV_ID is set, otherwise reserve=
-d.
-> > > + *
-> > >   * Return: 0 on success, -errno on failure:
-> > >   *=09-enospc =3D insufficient buffer, -enodev =3D unsupported for de=
-vice.
-> > >   */
-> > >  struct vfio_pci_dependent_device {
-> > > -=09__u32=09group_id;
-> > > +=09union {
-> > > +=09=09__u32   group_id;
-> > > +=09=09__u32=09devid;
-> > > +#define VFIO_PCI_DEVID_OWNED=09=090
-> > > +#define VFIO_PCI_DEVID_NOT_OWNED=09-1
-> > > +=09};
-> > >  =09__u16=09segment;
-> > >  =09__u8=09bus;
-> > >  =09__u8=09devfn; /* Use PCI_SLOT/PCI_FUNC */
-> > > @@ -663,6 +705,8 @@ struct vfio_pci_dependent_device {
-> > >  struct vfio_pci_hot_reset_info {
-> > >  =09__u32=09argsz;
-> > >  =09__u32=09flags;
-> > > +#define VFIO_PCI_HOT_RESET_FLAG_DEV_ID=09=09(1 << 0)
-> > > +#define VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED=09(1 << 1)
-> > >  =09__u32=09count;
-> > >  =09struct vfio_pci_dependent_device=09devices[];
-> > >  }; =20
->=20
+Summary
+-------
 
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_117938v1_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_117938v1_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (7 -> 8)
+------------------------------
+
+  Additional (1): shard-rkl0 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_117938v1_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_flip@flip-vs-suspend-interruptible@b-dp1:
+    - shard-apl:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-apl2/igt@kms_flip@flip-vs-suspend-interruptible@b-dp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-apl1/igt@kms_flip@flip-vs-suspend-interruptible@b-dp1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_117938v1_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_fair@basic-none-solo@rcs0:
+    - shard-apl:          [PASS][3] -> [FAIL][4] ([i915#2842])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-apl6/igt@gem_exec_fair@basic-none-solo@rcs0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-apl3/igt@gem_exec_fair@basic-none-solo@rcs0.html
+
+  * igt@gem_pread@exhaustion:
+    - shard-glk:          NOTRUN -> [WARN][5] ([i915#2658])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@gem_pread@exhaustion.html
+
+  * igt@kms_ccs@pipe-a-bad-aux-stride-y_tiled_gen12_rc_ccs_cc:
+    - shard-glk:          NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#3886]) +2 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@kms_ccs@pipe-a-bad-aux-stride-y_tiled_gen12_rc_ccs_cc.html
+
+  * igt@kms_chamelium_color@ctm-blue-to-red:
+    - shard-glk:          NOTRUN -> [SKIP][7] ([fdo#109271]) +41 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@kms_chamelium_color@ctm-blue-to-red.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
+    - shard-apl:          [PASS][8] -> [FAIL][9] ([i915#2346])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-apl4/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-apl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+
+  * igt@kms_flip@2x-flip-vs-dpms:
+    - shard-snb:          NOTRUN -> [SKIP][10] ([fdo#109271]) +17 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-snb7/igt@kms_flip@2x-flip-vs-dpms.html
+
+  * igt@kms_plane_alpha_blend@alpha-basic@pipe-c-hdmi-a-1:
+    - shard-glk:          NOTRUN -> [FAIL][11] ([i915#7862]) +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@kms_plane_alpha_blend@alpha-basic@pipe-c-hdmi-a-1.html
+
+  * igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-5@pipe-b-vga-1:
+    - shard-snb:          NOTRUN -> [SKIP][12] ([fdo#109271] / [i915#4579]) +13 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-snb6/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-5@pipe-b-vga-1.html
+
+  * igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-c-hdmi-a-1:
+    - shard-glk:          NOTRUN -> [SKIP][13] ([fdo#109271] / [i915#4579]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-c-hdmi-a-1.html
+
+  * igt@kms_psr2_sf@cursor-plane-move-continuous-sf:
+    - shard-glk:          NOTRUN -> [SKIP][14] ([fdo#109271] / [i915#658])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@kms_psr2_sf@cursor-plane-move-continuous-sf.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_barrier_race@remote-request@rcs0:
+    - shard-glk:          [ABORT][15] ([i915#7461] / [i915#8211]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-glk3/igt@gem_barrier_race@remote-request@rcs0.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@gem_barrier_race@remote-request@rcs0.html
+
+  * igt@gem_exec_endless@dispatch@vecs0:
+    - {shard-tglu}:       [TIMEOUT][17] ([i915#3778]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-tglu-4/igt@gem_exec_endless@dispatch@vecs0.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-tglu-8/igt@gem_exec_endless@dispatch@vecs0.html
+
+  * igt@gem_lmem_swapping@smem-oom@lmem0:
+    - {shard-dg1}:        [TIMEOUT][19] ([i915#5493]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-dg1-18/igt@gem_lmem_swapping@smem-oom@lmem0.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-dg1-17/igt@gem_lmem_swapping@smem-oom@lmem0.html
+
+  * igt@i915_pm_rc6_residency@rc6-idle@vecs0:
+    - {shard-dg1}:        [FAIL][21] ([i915#3591]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-dg1-14/igt@i915_pm_rc6_residency@rc6-idle@vecs0.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-dg1-18/igt@i915_pm_rc6_residency@rc6-idle@vecs0.html
+
+  * igt@i915_pm_rpm@modeset-non-lpsp-stress-no-wait:
+    - {shard-rkl}:        [SKIP][23] ([i915#1397]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-rkl-7/igt@i915_pm_rpm@modeset-non-lpsp-stress-no-wait.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-rkl-3/igt@i915_pm_rpm@modeset-non-lpsp-stress-no-wait.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
+    - shard-glk:          [FAIL][25] ([i915#2346]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-glk5/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk5/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+
+  * igt@kms_flip@2x-flip-vs-expired-vblank-interruptible@bc-hdmi-a1-hdmi-a2:
+    - shard-glk:          [FAIL][27] ([i915#79]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-glk8/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible@bc-hdmi-a1-hdmi-a2.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk1/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible@bc-hdmi-a1-hdmi-a2.html
+
+  * igt@kms_flip@2x-plain-flip-fb-recreate@ab-hdmi-a1-hdmi-a2:
+    - shard-glk:          [FAIL][29] ([i915#2122]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-glk4/igt@kms_flip@2x-plain-flip-fb-recreate@ab-hdmi-a1-hdmi-a2.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk1/igt@kms_flip@2x-plain-flip-fb-recreate@ab-hdmi-a1-hdmi-a2.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
+  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#2658]: https://gitlab.freedesktop.org/drm/intel/issues/2658
+  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
+  [i915#2876]: https://gitlab.freedesktop.org/drm/intel/issues/2876
+  [i915#315]: https://gitlab.freedesktop.org/drm/intel/issues/315
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3591]: https://gitlab.freedesktop.org/drm/intel/issues/3591
+  [i915#3778]: https://gitlab.freedesktop.org/drm/intel/issues/3778
+  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
+  [i915#3955]: https://gitlab.freedesktop.org/drm/intel/issues/3955
+  [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4816]: https://gitlab.freedesktop.org/drm/intel/issues/4816
+  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
+  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
+  [i915#5493]: https://gitlab.freedesktop.org/drm/intel/issues/5493
+  [i915#5784]: https://gitlab.freedesktop.org/drm/intel/issues/5784
+  [i915#6268]: https://gitlab.freedesktop.org/drm/intel/issues/6268
+  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
+  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
+  [i915#7862]: https://gitlab.freedesktop.org/drm/intel/issues/7862
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#8011]: https://gitlab.freedesktop.org/drm/intel/issues/8011
+  [i915#8211]: https://gitlab.freedesktop.org/drm/intel/issues/8211
+  [i915#8292]: https://gitlab.freedesktop.org/drm/intel/issues/8292
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13162 -> Patchwork_117938v1
+
+  CI-20190529: 20190529
+  CI_DRM_13162: a3c32d9f10512cce402635651340a8adff36e6ce @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7294: e1ab60dc90fc49f6b2ec1b37f14b021e59455e73 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_117938v1: a3c32d9f10512cce402635651340a8adff36e6ce @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/index.html
+
+--===============6030147765086314357==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>HDCP Cleanup</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117938/">https://patchwork.freedesktop.org/series/117938/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13162_full -&gt; Patchwork_117938v1_full</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_117938v1_full absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_117938v1_full, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (7 -&gt; 8)</h2>
+<p>Additional (1): shard-rkl0 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_117938v1_full:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_flip@flip-vs-suspend-interruptible@b-dp1:<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-apl2/igt@kms_flip@flip-vs-suspend-interruptible@b-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-apl1/igt@kms_flip@flip-vs-suspend-interruptible@b-dp1.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_117938v1_full that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fair@basic-none-solo@rcs0:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-apl6/igt@gem_exec_fair@basic-none-solo@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-apl3/igt@gem_exec_fair@basic-none-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_pread@exhaustion:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@gem_pread@exhaustion.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2658">i915#2658</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-a-bad-aux-stride-y_tiled_gen12_rc_ccs_cc:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@kms_ccs@pipe-a-bad-aux-stride-y_tiled_gen12_rc_ccs_cc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3886">i915#3886</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_color@ctm-blue-to-red:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@kms_chamelium_color@ctm-blue-to-red.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +41 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-apl4/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-apl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-flip-vs-dpms:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-snb7/igt@kms_flip@2x-flip-vs-dpms.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@alpha-basic@pipe-c-hdmi-a-1:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@kms_plane_alpha_blend@alpha-basic@pipe-c-hdmi-a-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7862">i915#7862</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-5@pipe-b-vga-1:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-snb6/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-5@pipe-b-vga-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>) +13 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-c-hdmi-a-1:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-c-hdmi-a-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_sf@cursor-plane-move-continuous-sf:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@kms_psr2_sf@cursor-plane-move-continuous-sf.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/658">i915#658</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_barrier_race@remote-request@rcs0:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-glk3/igt@gem_barrier_race@remote-request@rcs0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8211">i915#8211</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk6/igt@gem_barrier_race@remote-request@rcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_endless@dispatch@vecs0:</p>
+<ul>
+<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-tglu-4/igt@gem_exec_endless@dispatch@vecs0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3778">i915#3778</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-tglu-8/igt@gem_exec_endless@dispatch@vecs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@smem-oom@lmem0:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-dg1-18/igt@gem_lmem_swapping@smem-oom@lmem0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5493">i915#5493</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-dg1-17/igt@gem_lmem_swapping@smem-oom@lmem0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rc6_residency@rc6-idle@vecs0:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-dg1-14/igt@i915_pm_rc6_residency@rc6-idle@vecs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3591">i915#3591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-dg1-18/igt@i915_pm_rc6_residency@rc6-idle@vecs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@modeset-non-lpsp-stress-no-wait:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-rkl-7/igt@i915_pm_rpm@modeset-non-lpsp-stress-no-wait.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-rkl-3/igt@i915_pm_rpm@modeset-non-lpsp-stress-no-wait.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-glk5/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk5/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-flip-vs-expired-vblank-interruptible@bc-hdmi-a1-hdmi-a2:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-glk8/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible@bc-hdmi-a1-hdmi-a2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/79">i915#79</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk1/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible@bc-hdmi-a1-hdmi-a2.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-plain-flip-fb-recreate@ab-hdmi-a1-hdmi-a2:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13162/shard-glk4/igt@kms_flip@2x-plain-flip-fb-recreate@ab-hdmi-a1-hdmi-a2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/shard-glk1/igt@kms_flip@2x-plain-flip-fb-recreate@ab-hdmi-a1-hdmi-a2.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13162 -&gt; Patchwork_117938v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13162: a3c32d9f10512cce402635651340a8adff36e6ce @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7294: e1ab60dc90fc49f6b2ec1b37f14b021e59455e73 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_117938v1: a3c32d9f10512cce402635651340a8adff36e6ce @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============6030147765086314357==--
