@@ -1,142 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54A87707CE7
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 11:32:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8024707C77
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 11:08:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B030010E4F7;
-	Thu, 18 May 2023 09:32:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20F5010E04D;
+	Thu, 18 May 2023 09:08:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C65F10E4F7;
- Thu, 18 May 2023 09:32:02 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5290610E04D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 09:07:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684402322; x=1715938322;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=nmg8GIogYPKL9iIC359ahzB2QqiDAkSC0BALsty60k4=;
- b=SOjjntINGzzd+WF9GXhzWOIlt5F0KmXJy2DCE+ENp+Pb/KMs1xQZLCuF
- Shqc9rnXmvqoNo9YzdVMn5VmiVvBgAh3LvdwUjfIk8o9k2eqQSVBXpGt6
- Y/XCv3OQrL7PfQ63Yw1SZZXKnnT4yPC9rjAOjVhq33Ycp0g8pM/6AjM+u
- j+r3PAeitUSXYTQ2uInpq9yZXFGjR6ABe2NLUYSh77SIt+joPo5HyYThz
- Lyp/G9ONgMslX/pyjtTjyh3i7mgtQsrINjDT8sbRP9CcgIWG5DquVgbJq
- SWgYgQ27d+1k1fBc5iw/yLyKL87dUVm9UqO1BPfRH4X0PArHev4NuWNxK w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="332387834"
-X-IronPort-AV: E=Sophos;i="5.99,284,1677571200"; d="scan'208";a="332387834"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2023 02:31:59 -0700
+ t=1684400879; x=1715936879;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=RHeiLADSwcnKaJHX0g1xOV4ES07h02xgXCimEqhkoDw=;
+ b=ADoYdWidX8KPO873m9bduRFNbKvF644ktPDllky972/GHDk7h4cQqWAg
+ 0e9NsYZ596fMG0DhUw3GPsizLFpYwoYrlEhWPROZe6QtE8brhCphz2L/W
+ Z6+U4HHJ9GL9LeHZDwnLRApGLn+3FNNk5MCq7wJR2RT8Q3mS5Xl+4ZYGU
+ IH2HTxOOlqIJcYsMUvA2zMXnYE1tDQDPkYm1HJPFkC8NBdcKyej4aqEvf
+ m4M4Oqq6m6vOTTL3nsJOACwufO2XucZTs8aeiNmrdmIz1XTVGugO9mmQ+
+ 8srxBRZI5qXrOfc7F87Emd/p5cz1sA8jBjcBavEWFBabECac0MvXX/3TU w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="415441143"
+X-IronPort-AV: E=Sophos;i="5.99,284,1677571200"; d="scan'208";a="415441143"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2023 02:07:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="702070702"
-X-IronPort-AV: E=Sophos;i="5.99,284,1677571200"; d="scan'208";a="702070702"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga002.jf.intel.com with ESMTP; 18 May 2023 02:31:59 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 18 May 2023 02:31:59 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 18 May 2023 02:31:58 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 18 May 2023 02:31:58 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.176)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 18 May 2023 02:31:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jnvex84q6Ui/ZhtIh22AEzRfXh9a7kcED0Ery1LsQiTlMICfmnnmNLvldRqUrJNm00aCQVgkUqVUgf7jyAf3dDYFkOpTwtbXHWnQnVJVTUhEtIg3XoQndDeKa4sQLH9WC7NTPhtsXb36G/dBMAnPaOB9AdfL6vuyuZXDocYM/pUHBzqlP9i6SEFaV+EmlQJzkW3Ls9TEhMreC7AZYz9CxBtu1IpiJCru5C4pVtFE8VxoizSjrF+4wV8oRdgu1FCzAsqL6F/CTBQBiDShRB57aBjQIyPJAXuTw1MTFDdPZR3QIvYfPig3DmG9VZ1JzO5q88PRlurrJfYuf4refVaqDg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FMRFuTOMEh5WApT3VJiWvJaemoQIFGZk5sIjw4yQuEI=;
- b=eaACjm9OTUb9Ksq+9hAgeCXSgFcf4JFrqOo2yifng88sfZJUL3dxAl8a7i09ynRSOKtXaYPwwApbeLrkEFHEwRPw/m52lYslIu8cUh9Fleu6HlLlF+v3CKpM0xligU42Zqctmnr//0TQzdDYBlKm5gmPGYUN4CcFTGzxchCjLnlXTsyMIuXxL0wslZprhGnAxlTgUX01EyS1q2/sPlJAXB/auE+bqfOByYXw02v8A0IY+407OxKvLjs3CpqIUPOA/9bauL+lBr0TojeaYyocOnQfFMlYyRYy286XY/B+LjZ56DQyFigHP/VTI4wcZ/tdvtekuSWmu3F3sWY8JzRzyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com (2603:10b6:8:71::6) by
- CH0PR11MB5250.namprd11.prod.outlook.com (2603:10b6:610:e1::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6411.19; Thu, 18 May 2023 09:31:50 +0000
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::a670:49f5:d602:e2e4]) by DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::a670:49f5:d602:e2e4%6]) with mapi id 15.20.6387.033; Thu, 18 May 2023
- 09:31:50 +0000
-Date: Thu, 18 May 2023 17:06:43 +0800
-From: Yan Zhao <yan.y.zhao@intel.com>
-To: Sean Christopherson <seanjc@google.com>
-Message-ID: <ZGXqo+tG35S2c+QQ@yzhao56-desk.sh.intel.com>
-References: <20230513003600.818142-1-seanjc@google.com>
- <20230513003600.818142-4-seanjc@google.com>
- <ZGNO5gYKOhhnslsp@yzhao56-desk.sh.intel.com>
- <ZGTpsvZed+r3Low1@google.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZGTpsvZed+r3Low1@google.com>
-X-ClientProxiedBy: SG2PR04CA0162.apcprd04.prod.outlook.com (2603:1096:4::24)
- To DS7PR11MB5966.namprd11.prod.outlook.com (2603:10b6:8:71::6)
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="696233191"
+X-IronPort-AV: E=Sophos;i="5.99,284,1677571200"; d="scan'208";a="696233191"
+Received: from cfeltham-mobl.ger.corp.intel.com (HELO [10.213.201.177])
+ ([10.213.201.177])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2023 02:07:59 -0700
+Message-ID: <1f6f00c0-a362-454c-53a3-740b559cdb88@linux.intel.com>
+Date: Thu, 18 May 2023 10:07:55 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5966:EE_|CH0PR11MB5250:EE_
-X-MS-Office365-Filtering-Correlation-Id: d96b28ec-0f90-4afd-99a7-08db5782b572
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jw7LY2g8x5bRRYzkajominM15/PeqwctmTnMDSG3kenHqHbHIqV1MS/0QlELhGOBzXnJmut6rdvKEvdr7kDaRRp7iiseqBgN0fEe8/eY9sHm2dimQm1DoDgUZjT77oPCnL8YrTB6hT64ncjgCg+vIVWSgrFBlCLyt3Pnmvchm9f7GRJmfuaxqWCchm1VwmjWifOLVSc0mO89rKlNbSZ11eBIlhu0GeD9mhk8PIk28jGTugq8nWZ+9uhFrsdpncZWMV5r9xO9Lb5I67ALCYt/0CCFNWVCQ/x5MUR+oIzTdZhpNtE+f1NEjQOHJVU0tH0YfIpmpBJw9QZpaG8f2vfCpIFPGl+E/S899kqSMPfc2RhLKFxSe3008Y1DsGEy6NtV8qsXGyayZ1j7E7QOX6hihBWxZvilW5aI+o364DR5G0LVPbV1LkOUMdC5hmxmABpdw6MSBSH+sjY4RI7OsU9jyB2D1RFK/cgOgrjx7v+m7+CC+xyeO+yXJLa3qO+ILaB3gfSoaAJgoGqqb4D1d+jTzDuWEK4GmeoB4B2kUzlrnJIPxMGBb7eSE9hVAcRUxAaS
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB5966.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(346002)(39860400002)(396003)(376002)(136003)(451199021)(8936002)(83380400001)(8676002)(2906002)(316002)(38100700002)(3450700001)(41300700001)(66476007)(66556008)(6916009)(4326008)(86362001)(66946007)(6486002)(82960400001)(6512007)(6506007)(5660300002)(26005)(6666004)(54906003)(478600001)(186003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NDyCoJj7x0yBEv9C68ald0Uc3+VsGold7ZnKWoMKcUWRX1LwrSdEeaSIfXBo?=
- =?us-ascii?Q?m8mVIfwHEO+cRpCt6cmZayqWFxQCMSbeSqjdmXsHU2dgc9N1HDQTto82oJZZ?=
- =?us-ascii?Q?8k+3FQhFOlTOlRTbK0NhcArmL6yR7kGEJq21NdFZ0kBrTaw6pXnxPrF1mSHo?=
- =?us-ascii?Q?FNY/XkSf39gyuD5IxOF7Jdyebg1ojqxVEdjTxM8iFVSnfmAJidV1sykeK3Zg?=
- =?us-ascii?Q?0RL/6vPCJOf0MHcpU9CCkgTn4ts0rT2nTbmQ8kydqLERncHuHGC72ILx3Tlf?=
- =?us-ascii?Q?+VDkAyUsWgvURqXU+9/oxbhl9W3LR1o5igoHx5T9PHgaPesYaizYRTZMj6s/?=
- =?us-ascii?Q?fUy1FUSYwvzSvxYE04BRDSyHd2/sxiP4Jd+dMqrRxq3zg7bvlxcZ22Ci15v2?=
- =?us-ascii?Q?GwZT6WP6AUsufO504H7bD/TeC4d20A1TAvGJhYzAHaXtX5ampE/B5L7jzOC8?=
- =?us-ascii?Q?wEqQE85a+nW6yL3Hpp98IgjmN7py9/FOxJmRR8tn++uftNlEfcREtMx0K5f4?=
- =?us-ascii?Q?dM/HFsPRZc2An2KIAK6EhsBY9FW89TkpHqgP4PMJeT94N1tVKOnwSGfP8eoF?=
- =?us-ascii?Q?2yGr/Ttm69xxH+9stAjf6dyNLSEn2gaW8VScaxS/o6NrX3uqOfhcQS0It2J4?=
- =?us-ascii?Q?WXJKVcKHAPX5p2VXStlIuNSL8EhfOcMzGXhX+iTD6fFdO4ECcunrT0+2dcVf?=
- =?us-ascii?Q?Q38OrgSnyPsgaApLOUiVLG1W1DRoOKfxVyhfo/LfgMELeC0swaknmA5u9anH?=
- =?us-ascii?Q?X+DaHF+h4Umt11ApbZNk0hGz2Pq2Vy/jrjn3yDNqD4iWk7tUuh0k46YY78bt?=
- =?us-ascii?Q?U5LmC36aeBfZVXRvgHIydEzOiEMbWhY4NDuV26TZE4J93YGDxmout2fTdyze?=
- =?us-ascii?Q?tglkES6mFQrLhjFwQhu/HnW1ZkcB7OkxK5vPYaAbjPHnT+xjwBcSBNsSYUn2?=
- =?us-ascii?Q?nIDEytDHiYiLlm/569KTQAZrw3UAGzGdbQ526Y+lFmjGmDoYrUFCAHaMTkPj?=
- =?us-ascii?Q?RAO+lCu8r46H65qHP+G9PRU5s4eEieneOEuj23qTC3C7WpOwQ0w5h3AG6SzR?=
- =?us-ascii?Q?yk1jFrWmKbr4Mm03/i1A9Qw+LyyVvMQvVQsyliGstlnvWz1WkORY4coF0beD?=
- =?us-ascii?Q?X+xwziJVkhZyZaY7tINHG/ToeHKTThUv3d7yRcLCTaUfbfLSJJOxbSkfkgXz?=
- =?us-ascii?Q?g1GKLGrn+XlgHPoS/RrTOXKlW+tGyC518Mi3++ZM3t52G0yDg+V568F7XXkG?=
- =?us-ascii?Q?aSFVDhw7af50BSq1mdAuD41ULMczBiEpPDeywWAFU50fGnvB5wajI5KbjnsJ?=
- =?us-ascii?Q?/P4XT0yWQ85fy1JOr2ni6KHHUAawLrarGhhvxuZ8DQkT0S6XC0g9InBtkD3S?=
- =?us-ascii?Q?z02/SPn9VBTNj39me/sWwIGrNe6QsAT/5byBH8pTeKOYqrO3NpbKgnCC/aMG?=
- =?us-ascii?Q?aJo0ZCziIAdTHJ/8+KjOHeJhV9CZ9xOGkfjtO8nIsWkLQnSSBVLIUK56RvcD?=
- =?us-ascii?Q?RdLmT4VIB/e4ETCJmy4yb97Wp0EVNMLGDiq0bBMJS+1cqsDexAjz9heXiCg4?=
- =?us-ascii?Q?dg0YC2zVcx+YdF1r+lZzLkLQUwdLbH4d6Vj8PL9Z?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d96b28ec-0f90-4afd-99a7-08db5782b572
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5966.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2023 09:31:50.6737 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZcGhs5FEqoVqinnYQ0eBjCMP4d8Mi9QR0dndK/kcFBfHgiyNPwqTyTqTrl0tQKGrkcBDf3yyxNj+MM7c8MP+mw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5250
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 03/28] drm/i915/gvt: Verify hugepages are
- contiguous in physical address space
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+References: <20230516233534.3610598-1-umesh.nerlige.ramappa@intel.com>
+ <20230516233534.3610598-2-umesh.nerlige.ramappa@intel.com>
+ <87cz2zpzw1.wl-ashutosh.dixit@intel.com>
+ <ZGR6ZnjlUqerD+nY@orsosgc001.jf.intel.com>
+ <0a1babb7-80cf-cfe7-4746-37b76934175a@linux.intel.com>
+ <87ednf3oyo.wl-ashutosh.dixit@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <87ednf3oyo.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v5 1/7] drm/i915/pmu: Change bitmask of
+ enabled events to u32
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,59 +68,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Yan Zhao <yan.y.zhao@intel.com>
-Cc: kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ben Gardon <bgardon@google.com>,
- Paolo Bonzini <pbonzini@redhat.com>, intel-gvt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 17, 2023 at 07:50:26AM -0700, Sean Christopherson wrote:
-> On Tue, May 16, 2023, Yan Zhao wrote:
-> > hi Sean
-> > 
-> > Do you think it's necessary to double check that struct page pointers
-> > are also contiguous?
+
+On 17/05/2023 17:25, Dixit, Ashutosh wrote:
+> On Wed, 17 May 2023 01:26:15 -0700, Tvrtko Ursulin wrote:
+>>
+>>
+>> On 17/05/2023 07:55, Umesh Nerlige Ramappa wrote:
+>>> On Tue, May 16, 2023 at 05:25:50PM -0700, Dixit, Ashutosh wrote:
+>>>> On Tue, 16 May 2023 16:35:28 -0700, Umesh Nerlige Ramappa wrote:
+>>>>>
+>>>>
+>>>> Hi Umesh/Tvrtko,
+>>>>
+>>>> Mostly repeating comments/questions made on the previous patch below.
+>>
+>> First of all thanks for improving this, my v1 obviously wasn't good enough.
+>>
+>>>>
+>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>
+>>>>> Having it as u64 was a confusing (but harmless) mistake.
+>>>>>
+>>>>> Also add some asserts to make sure the internal field does not overflow
+>>>>> in the future.
+>>>>>
+>>>>> v2: Fix WARN_ON firing for INTERRUPT event (Umesh)
+>>>>>
+>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>>>>> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+>>>>> ---
+>>>>>   drivers/gpu/drm/i915/i915_pmu.c | 26 ++++++++++++++++++--------
+>>>>>   1 file changed, 18 insertions(+), 8 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/i915_pmu.c
+>>>>> b/drivers/gpu/drm/i915/i915_pmu.c
+>>>>> index 7ece883a7d95..96543dce2db1 100644
+>>>>> --- a/drivers/gpu/drm/i915/i915_pmu.c
+>>>>> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+>>>>> @@ -50,7 +50,7 @@ static u8 engine_event_instance(struct perf_event
+>>>>> *event)
+>>>>>      return (event->attr.config >> I915_PMU_SAMPLE_BITS) & 0xff;
+>>>>>   }
+>>>>>
+>>>>> -static bool is_engine_config(u64 config)
+>>>>> +static bool is_engine_config(const u64 config)
+>>>>>   {
+>>>>>      return config < __I915_PMU_OTHER(0);
+>>>>>   }
+>>>>> @@ -88,9 +88,20 @@ static unsigned int config_bit(const u64 config)
+>>>>>          return other_bit(config);
+>>>>>   }
+>>>>>
+>>>>> -static u64 config_mask(u64 config)
+>>>>> +static u32 config_mask(const u64 config)
+>>>>>   {
+>>>>> -    return BIT_ULL(config_bit(config));
+>>>>> +    unsigned int bit = config_bit(config);
+>>>>
+>>>> Give that config_bit() can return -1 (I understand it is avoided in
+>>>> moving
+>>>> the code to config_mask from config_bit), maybe the code below should
+>>>> also
+>>>> have that check?
+>>>
+>>> config_mask is only called to check frequency related events in the code,
+>>> so I don't see it returing -1 here.
+>>
+>> Yeah that should be fine since -1 would make the below asserts fire
+>> anyway. (If it would get called from a different path in the future.)
+>>
+>>>>
+>>>>      int bit = config_bit(config);
+>>>>
+>>>>      if (bit != -1)
+>>>>      {
+>>>>          ...
+>>>>      }
+>>>>
+>>>> Though as mentioned below the 'if (__builtin_constant_p())' would have to
+>>>> go. Maybe the code could even have stayed in config_bit with the check.
+>>>>
+>>>>> +
+>>>>> +    if (__builtin_constant_p(config))
+>>>>> +        BUILD_BUG_ON(bit >
+>>>>> +                 BITS_PER_TYPE(typeof_member(struct i915_pmu,
+>>>>> +                             enable)) - 1);
+>>>>
+>>>> Given that config comes from the event (it is event->attr.config), can
+>>>> this
+>>>> ever be a builtin constant?
+>>>
+>>> Not sure about earlier code where these checks were inside config_bit(),
+>>> but with changes I made, I don't see this being a builtin
+>>> constant. However, nothing prevents a caller from just passing a
+>>> builtin_constant to this in future.
+>>
+>> Are you sure? I would have thought it would always be a compile time
+>> constant now that the check is in config_mask. Aahhh.. with the multi-tile
+>> changes maybe it can't unroll the loops and calculate the masks at compile
+>> time. Maybe it is a bit too much and we should drop the
+>> __builtin_constant_p branch? Probably..
 > 
-> No, the virtual address space should be irrelevant.  The only way it would be
-> problematic is if something in dma_map_page() expected to be able to access the
-> entire chunk of memory by getting the virtual address of only the first page,
-> but I can't imagine that code is reading or writing memory, let alone doing so
-> across a huge range of memory.
-Yes, I do find arm_iommu version of dma_map_page() access the memory by getting
-virtual address of pages passed in, but it's implemented as page by page, not only
-from the first page.
-
-dma_map_page
-  dma_map_page_attrs
-    ops->map_page
-      arm_iommu_map_page
-         __dma_page_cpu_to_dev
-           dma_cache_maint_page
-
-
-Just a little worried about the condition of PFNs are contiguous
-while they belong to different backends, e.g. one from system memory and
-one from MMIO.
-But I don't know how to avoid this without complicated checks.
-And this condition might not happen in practice.
-
-
+> Ah yes, with the code move to config_mask, they really all are compile time
+> constants (provided compiler can unroll the loops) so at least that is the
+> justfication for leaving the __builtin_constant_p in. So I'd probably just
+> leave it as is (though it is a bit too much).
 > 
-> > And do you like to also include a fix as below, which is to remove the
-> > warning in vfio_device_container_unpin_pages() when npage is 0?
-> > 
-> > @ -169,7 +173,8 @@ static int gvt_pin_guest_page(struct intel_vgpu *vgpu, unsigned long gfn,
-> >         *page = base_page;
-> >         return 0;
-> >  err:
-> > -       gvt_unpin_guest_page(vgpu, gfn, npage * PAGE_SIZE);
-> > +       if (npage)
-> > +               gvt_unpin_guest_page(vgpu, gfn, npage * PAGE_SIZE);
-> >         return ret;
-> >  }
+>> But I guess it is safe to use GEM_WARN_ON_ONCE instead of WARN_ON_ONCE
+>> since there are no external callers (nothing coming from event) now. That
+>> way at least production builds don't have to have the check.
 > 
-> Sure.  Want to give your SoB?  I'll write a changelog.
->
-Thanks!
-It's just a small code piece. Whatever is convenient for you :)
+> Hmm, there's a GEM_WARN_ON but no GEM_WARN_ON_ONCE. So leave that as is too
+> I guess.
+> 
+> So I'm ok with the code staying as is. Enough bike-shed on this already.
+
+Latest series looks fine to me and thanks for your patience. Hope you 
+would agree changing that one thing to u32 made more sense than changing 
+the other to u64 so bike shed wasn't for nothing.
+
+Regards,
+
+Tvrtko
