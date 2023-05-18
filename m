@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BE0F707D62
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 11:56:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4522707D64
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 11:56:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D60DE10E4F8;
-	Thu, 18 May 2023 09:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A11E10E4FA;
+	Thu, 18 May 2023 09:56:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EF8F10E503
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C855310E50D
  for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 09:56:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1684403794; x=1715939794;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ItXMgz9YAkwvbmsKOL7tEwaLhmR6kGeKQfZ5g+Tdo5c=;
- b=O/53tPUg/IMiQGRVqB8gVyv511w7Gra7MMYBJuXyHUiT+sfKrtBuUF1Q
- A+neGBMhQ/ilk7XQ7NP6+PAu9zPJOh4eKPmGBperKnjfCsOyVrI5gAS0D
- 2uwkuvM/cJETexLkx8V/MnYG8mZnUrXLkHPj53B4pRkRk7IUydGK7Lbtu
- QwGG6pTW0IsuaXVV0J64GaV6sbMONmbIxkQpsbU4U1/yIErRGTgL7sSym
- ezNUJKUTLtLaWmZwT7hIj8Ue4m4HcLVSW/vY9LX6MzfkRxTVNAXNo1YNO
- kKKnx6C/QsOgIK+eia+c36AwJu75iEY51WJCr7rDzOJuBzhTijsqw80Ht w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="438366677"
-X-IronPort-AV: E=Sophos;i="5.99,285,1677571200"; d="scan'208";a="438366677"
+ bh=De9wCg4v8c9CU4AKqhKwkTgAPSnfRMcAhDbXpWnnxd0=;
+ b=DOBy2ZyQy5+3kSVqHKJeLCdhw20V2xpDDzUBGXOukj4A4a82/ptuB3BF
+ g+YGmuYXTTSSzGNOo3hV5xqG2iwvlGDFCHPxF7RcJh7pUZ2gm5hFvEGia
+ J74pOC7hgVrhjhtq969I+X6aCXwLt4+ZPxWd3mXLRh5FJkTCpUXkip5nh
+ 4Ba+gmFXTWERDo74nURMiV7AXcwSolfP/9QhqbAnVhmM4yi4mFKLEfpi4
+ RLaEar1pXxDjOa3Rhdw8je3xw82wC3cRmPSuacaPA46vYYTBMZZYbtRvi
+ qDS3ysJYvJ6LKdHkGhSt/9P8xru0yJf5ZrO+xNsvczaoXHf+MrGWK5bCC A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="438366680"
+X-IronPort-AV: E=Sophos;i="5.99,285,1677571200"; d="scan'208";a="438366680"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2023 02:56:19 -0700
+ 18 May 2023 02:56:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="791897357"
-X-IronPort-AV: E=Sophos;i="5.99,285,1677571200"; d="scan'208";a="791897357"
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="791897361"
+X-IronPort-AV: E=Sophos;i="5.99,285,1677571200"; d="scan'208";a="791897361"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by FMSMGA003.fm.intel.com with ESMTP; 18 May 2023 02:56:18 -0700
+ by FMSMGA003.fm.intel.com with ESMTP; 18 May 2023 02:56:19 -0700
 From: Arun R Murthy <arun.r.murthy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 May 2023 15:19:15 +0530
-Message-Id: <20230518094916.1142812-5-arun.r.murthy@intel.com>
+Date: Thu, 18 May 2023 15:19:16 +0530
+Message-Id: <20230518094916.1142812-6-arun.r.murthy@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230518094916.1142812-1-arun.r.murthy@intel.com>
 References: <20230518094916.1142812-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/6] drm/i915/display: crtc property for global
- hist selective fetch
+Subject: [Intel-gfx] [PATCH 6/6] drm/i915/display: Enable global hist
+ Selective fetch
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,115 +60,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-User can provide the selective fetch co-ordinates for global histogram
-using crtc blob property. This patch adds the crtc blob property.
-The selective fetch can be done only on the y co-ordinate and cannot be
-done on the x co-ordinate.
+This patch enables support for selective fetch in global histogram.
+User can provide the selective fetch co-ordinates and only that region
+will be used in generating the histogram.
 
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c     | 45 +++++++++++++++++++
- .../drm/i915/display/intel_display_types.h    |  3 ++
- 2 files changed, 48 insertions(+)
+ .../gpu/drm/i915/display/intel_global_hist.c  | 65 +++++++++++++++++++
+ .../gpu/drm/i915/display/intel_global_hist.h  | 14 ++++
+ 2 files changed, 79 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 501bcf732aba..2a9dcf3b1a19 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -236,6 +236,9 @@ int intel_crtc_get_property(struct drm_crtc *crtc,
- 	else if (property == intel_crtc->global_hist_property)
- 		*val = (intel_crtc_state->global_hist) ?
- 			intel_crtc_state->global_hist->base.id : 0;
-+	else if (property == intel_crtc->global_hist_sf_clips_property)
-+		*val = (intel_crtc_state->global_hist_sf_clips) ?
-+			intel_crtc_state->global_hist_sf_clips->base.id : 0;
- 	else {
- 		drm_err(&i915->drm,
- 			       "Unknown property [PROP:%d:%s]\n",
-@@ -306,6 +309,18 @@ int intel_crtc_set_property(struct drm_crtc *crtc,
- 		return 0;
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_global_hist.c b/drivers/gpu/drm/i915/display/intel_global_hist.c
+index 874d80d1e41b..13ec68463eec 100644
+--- a/drivers/gpu/drm/i915/display/intel_global_hist.c
++++ b/drivers/gpu/drm/i915/display/intel_global_hist.c
+@@ -31,6 +31,48 @@
+ #include "intel_de.h"
+ #include "intel_global_hist.h"
  
-+	if (property == intel_crtc->global_hist_sf_clips_property) {
-+		intel_atomic_replace_property_blob_from_id(crtc->dev,
-+					&intel_crtc_state->global_hist_sf_clips,
-+					val,
-+					-1,
-+					sizeof(struct drm_rect),
-+					&replaced);
-+		if (replaced)
-+			intel_crtc_state->global_hist_sf_clips_updates = true;
-+		return 0;
-+	}
++#define MIN_SEGMENTS 32
++#define MAX_SEGMENTS 128
 +
- 	drm_dbg_atomic(&i915->drm, "Unknown property [PROP:%d:%s]\n",
- 		       property->base.id, property->name);
- 	return -EINVAL;
-@@ -903,11 +918,41 @@ void intel_attach_global_hist_property(struct intel_crtc *intel_crtc)
- 	drm_object_attach_property(&crtc->base, prop, blob->base.id);
- }
- 
-+/**
-+ * intel_attach_global_hist_sf_seg_property() - selective fetch segment property
-+ * @intel_crtc: pointer to struct intel_crtc on which global histogram is enabled
-+ *
-+ * "Global Histogram SF CLIPS" is the crtc porperty used to provide the
-+ * co-ordinates of the damage clips.
-+ */
-+void intel_attach_global_hist_sf_seg_property(struct intel_crtc * intel_crtc)
++static int intel_global_hist_calc_seg_size(struct drm_i915_private *dev_priv,
++		enum pipe pipe)
 +{
-+	struct drm_crtc *crtc = &intel_crtc->base;
-+	struct drm_device *dev = crtc->dev;
-+	struct drm_property *prop;
-+	struct drm_property_blob *blob;
++	uint32_t tmp, source_height;
++	uint16_t seg_size = MIN_SEGMENTS;
 +
-+	prop = intel_crtc->global_hist_sf_clips_property;
-+	if (prop == NULL) {
-+		prop = drm_property_create(dev,
-+			DRM_MODE_PROP_ATOMIC | DRM_MODE_PROP_BLOB,
-+			"Global Histogram SF CLIPS", 0);
-+		if (prop == NULL)
-+			return;
-+		intel_crtc->global_hist_sf_clips_property = prop;
++	/* Get the pipe source height from the pipesr register */
++	tmp = intel_de_read(dev_priv, PIPESRC(pipe));
++	source_height = REG_FIELD_GET(PIPESRC_HEIGHT_MASK, tmp) + 1;
++
++	while (seg_size <= source_height) {
++		if ((seg_size % source_height == 0) &&
++		   ((source_height / seg_size) < MAX_SEGMENTS))
++			break;
++		seg_size++;
 +	}
-+	blob = drm_property_create_blob(dev, sizeof(struct drm_rect *), NULL);
-+	intel_crtc->config->global_hist_sf_clips = blob;
 +
-+	drm_object_attach_property(&crtc->base, prop, blob->base.id);
++	return seg_size;
 +}
 +
- int intel_crtc_add_property(struct intel_crtc *intel_crtc)
++int intel_global_hist_sf_update_seg(struct drm_i915_private *i915,
++		enum pipe pipe, struct drm_rect *clip)
++{
++	uint16_t seg_size;
++
++	seg_size = intel_global_hist_calc_seg_size(i915, pipe);
++	if (!seg_size)
++		return -EINVAL;
++
++	intel_de_rmw(i915, DPST_SF_SEG(pipe),
++		     DPST_SF_SEG_SIZE_MASK | DPST_SF_SEG_START_MASK |
++		     DPST_SF_SEG_END_MASK,
++		     DPST_SF_SEG_SIZE(seg_size) |
++		     DPST_SF_SEG_START((clip->y2/seg_size) * seg_size) |
++		     DPST_SF_SEG_END((clip->y1/seg_size) * seg_size));
++
++	return 0;
++}
++
+ static int intel_global_hist_get_data(struct drm_i915_private *i915,
+ 		enum pipe pipe)
  {
- 	intel_attach_global_hist_en_property(intel_crtc);
- 	intel_attach_global_hist_property(intel_crtc);
- 	intel_attach_global_iet_property(intel_crtc);
-+	intel_attach_global_hist_sf_seg_property(intel_crtc);
- 
+@@ -258,6 +300,29 @@ int intel_global_hist_set_iet_lut(struct intel_crtc *intel_crtc, u32 *data)
  	return 0;
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 15d28e2305da..703593d4a52f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1371,8 +1371,10 @@ struct intel_crtc_state {
- 	int global_hist_en;
- 	struct drm_property_blob *global_iet;
- 	struct drm_property_blob *global_hist;
-+	struct drm_property_blob *global_hist_sf_clips;
- 	bool global_iet_changed;
- 	bool global_hist_en_changed;
-+	bool global_hist_sf_clips_updates;
- };
  
- enum intel_pipe_crc_source {
-@@ -1480,6 +1482,7 @@ struct intel_crtc {
- 	struct drm_property *global_hist_en_property;
- 	struct drm_property *global_iet_property;
- 	struct drm_property *global_hist_property;
-+	struct drm_property *global_hist_sf_clips_property;
- #ifdef CONFIG_DEBUG_FS
- 	struct intel_pipe_crc pipe_crc;
- 	u32 cpu_fifo_underrun_count;
++int intel_global_hist_sf_en(struct drm_i915_private *i915,
++		enum pipe pipe, struct drm_rect *clip)
++{
++	struct intel_crtc *intel_crtc = to_intel_crtc(
++			drm_crtc_from_index(&i915->drm, pipe));
++	struct intel_global_hist *global_hist = intel_crtc->global_hist;
++	uint32_t dpstsfctl;
++
++	/* If DPST is not enabled, enable it first */
++	if (!global_hist->enable)
++		intel_global_hist_enable(intel_crtc);
++
++	/* Program dpst selective fetch */
++	dpstsfctl = intel_de_read(i915, DPST_SF_CTL(pipe));
++	dpstsfctl |= DPST_SF_CTL_ENABLE;
++	intel_de_write(i915, DPST_SF_CTL(pipe), dpstsfctl);
++
++	/* Program the segment size */
++	intel_global_hist_sf_update_seg(i915, pipe, clip);
++
++	return 0;
++}
++
+ void intel_global_hist_deinit(struct intel_crtc *intel_crtc)
+ {
+ 	struct intel_global_hist *global_hist = intel_crtc->global_hist;
+diff --git a/drivers/gpu/drm/i915/display/intel_global_hist.h b/drivers/gpu/drm/i915/display/intel_global_hist.h
+index c6621bf4ea61..827c61badf66 100644
+--- a/drivers/gpu/drm/i915/display/intel_global_hist.h
++++ b/drivers/gpu/drm/i915/display/intel_global_hist.h
+@@ -82,6 +82,20 @@
+ #define GLOBAL_HIST_GUARDBAND_PRECISION_FACTOR 10000   // Precision factor for threshold guardband.
+ #define GLOBAL_HIST_DEFAULT_GUARDBAND_DELAY 0x04
+ 
++#define _DPST_SF_CTL_A					0x490D0
++#define _DPST_SF_CTL_B					0x491D0
++#define DPST_SF_CTL(pipe)				_MMIO_PIPE(pipe, _DPST_SF_CTL_A, _DPST_SF_CTL_B)
++#define DPST_SF_CTL_ENABLE				(1 << 31)
++#define _DPST_SF_SEG_A					0x490D4
++#define _DPST_SF_SEG_B					0x491D4
++#define DPST_SF_SEG(pipe)				_MMIO_PIPE(pipe, _DPST_SF_CTL_A, _DPST_SF_CTL_B)
++#define DPST_SF_SEG_START_MASK				REG_GENMASK(30, 24)
++#define DPST_SF_SEG_START(val)				REG_FIELD_PREP(DPST_SF_SEG_START_MASK, val)
++#define DPST_SF_SEG_END_MASK				REG_GENMASK(22, 16)
++#define DPST_SF_SEG_END(val)				REG_FIELD_PREP(DPST_SF_SEG_END_MASK, val)
++#define DPST_SF_SEG_SIZE_MASK				REG_GENMASK(15, 0)
++#define DPST_SF_SEG_SIZE(val)				REG_FIELD_PREP(DPST_SF_SEG_SIZE_MASK, val)
++
+ enum intel_global_hist_status {
+ 	INTEL_GLOBAL_HIST_ENABLE,
+ 	INTEL_GLOBAL_HIST_DISABLE,
 -- 
 2.25.1
 
