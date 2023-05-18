@@ -1,80 +1,79 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B48B2708888
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 21:43:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3D8670888E
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 May 2023 21:46:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBE2610E547;
-	Thu, 18 May 2023 19:43:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6BCA10E547;
+	Thu, 18 May 2023 19:46:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0C9710E134
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 19:43:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26C7A10E134
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 19:45:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1684439025;
+ s=mimecast20190719; t=1684439159;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=PA8QlisVvQUIBeB7cAo5RqDhEmfbmuvIuFemkqkHNmY=;
- b=SG0KXQZH+iTbfzvk5mPOQOAxaiiFBHPnSXFGFiwj97pufkShBB/tk3JgU1OTxxmFgNij2B
- JhGXEDAH12MMWnmiPRMO+fZrVM93mL8RgLrjte01aJlkAWzNrgQUfMQ4Lny9p8pL6VvoIb
- DM05Dmcu04kFoNxyVs+tOBuQE3KdwBY=
-Received: from mail-io1-f71.google.com (mail-io1-f71.google.com
- [209.85.166.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=YyW7RBXSmGHBAYv2QWmk4im2x9juM0YLLtgp7WpEXSw=;
+ b=GxDU6KSOKT9S/QYshuOav9fPauCeaoH3UInV2LZTcv7BidAeUxqABsbeAm+owx1HYn3DIM
+ MOK01ekkDJPKnalustXCGDA+q8P8kY8T7VRL/uWvLlgDwMybkqUhiTD+3eyu2m4nythI5Y
+ W6qpUG0i3UCuPz27lTaSRJCoVn58N98=
+Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
+ [209.85.166.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-616-KJJj1Fo2MQS1amXT3C3kuA-1; Thu, 18 May 2023 15:43:43 -0400
-X-MC-Unique: KJJj1Fo2MQS1amXT3C3kuA-1
-Received: by mail-io1-f71.google.com with SMTP id
- ca18e2360f4ac-76c65f950a8so200021939f.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 12:43:43 -0700 (PDT)
+ us-mta-512-n53gqvnsNkO5N12kZ5aYJA-1; Thu, 18 May 2023 15:45:56 -0400
+X-MC-Unique: n53gqvnsNkO5N12kZ5aYJA-1
+Received: by mail-io1-f72.google.com with SMTP id
+ ca18e2360f4ac-763997ab8cdso395124639f.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 May 2023 12:45:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684439023; x=1687031023;
+ d=1e100.net; s=20221208; t=1684439156; x=1687031156;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=PA8QlisVvQUIBeB7cAo5RqDhEmfbmuvIuFemkqkHNmY=;
- b=bkYasH2T+enpwz+GpEZXmtO0ivwvY1QKkuptdHGfURAwKKOi89NJFVPgoeZGT8k7zl
- Ht40YDSSwLjaixn5DzWIM44Swj1boJpESz8lE4Jw1ZsFXzjwSpWqMxvQAR9z33lPHboF
- XA6bX2q34B12ALm/wm62kRJkO3jEbWR/8jlojifDyt/hVRtkdA2uFa4bev40hhYsOoax
- sT+m3CA1ZMPpGFl38f2IkvNaYd0IOAHqwg76C1dCgs0hfyTulPDR6aJjNp3MwfmO8zJu
- WX3StUf4GsnWxlED1jjAepnPsxEwUBMJIe5UzowTm6ZSM5zY9IvF0jJNCiHlaP8qxVK1
- 7IQg==
-X-Gm-Message-State: AC+VfDw0V49vwEYRwuql2vn72LsHCIcGYtgXT2CKNVwbCruGmjzMZWpS
- 3/tCZYEC9+72Q4dNXvQvCdPm/WFOrTUKQURDOFay56En+Vw/5TdwEb+UUuX9oEMcU+yMQZ/D1dh
- zTlPgBAfCNiLfCM9gUMfe24a09ZkU
-X-Received: by 2002:a5d:94cd:0:b0:76c:8a8f:edc2 with SMTP id
- y13-20020a5d94cd000000b0076c8a8fedc2mr7297131ior.12.1684439023153; 
- Thu, 18 May 2023 12:43:43 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ4rw6SJnwSqjfCyaFRoKbONMXxWejcCpLIQx2vrAykC+soNBYYP2BWJo0LZ1SBw5bDgbglmXQ==
-X-Received: by 2002:a5d:94cd:0:b0:76c:8a8f:edc2 with SMTP id
- y13-20020a5d94cd000000b0076c8a8fedc2mr7297117ior.12.1684439022870; 
- Thu, 18 May 2023 12:43:42 -0700 (PDT)
+ bh=YyW7RBXSmGHBAYv2QWmk4im2x9juM0YLLtgp7WpEXSw=;
+ b=DUyhP+Dnmv5bHGMq2AmmoPx34JnRpWls3+iC6GtO+SX81/QT7kXk5p8NEZtQZRXoxw
+ 16oxBdNYcgpkgZNWZN0FUkUxZ/dYhruCmpIzmlbmNdUvKS7XTsLkrsBGJM7bMtWuwHcm
+ eOPanxkvx02ziDb8fceCWC7lMBDouy2YKl1JFHC3DyTs84KF7qu3WKKk3JEOU0UmRV2T
+ 20uOkJbKZtOlIgw6SGMDtmHw6Ww1n42IXHJwdjdk6vJg/wTj14lSGeu+POCJHp/gmHEx
+ Db1LhS7WIM207lQUUUssw/M4ea8sEtZx2sOEnMrZI+B1kyGHXpPinOR1TBrjXcXvyGBl
+ iWrw==
+X-Gm-Message-State: AC+VfDyjGria3GP2QjgrIwcr21s2aQ/IStJcnVjpsmp6PUJasz3EPCAN
+ sfaGuE45RdTSDOhs7Ux/tu+6XxhV7LXSaZqvq9Go21nVy+s2NcuZr1aF/QoCXfdP1NZZL3EN1aL
+ zfxc1lCZsIMdB+4xrsiWEyXdQdjpK
+X-Received: by 2002:a5d:8a0f:0:b0:76c:542f:d72d with SMTP id
+ w15-20020a5d8a0f000000b0076c542fd72dmr7574496iod.8.1684439155761; 
+ Thu, 18 May 2023 12:45:55 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6mLg71ghw6nUoJ1B4NGoNnfmwKaX7dGCH7IWZJcYah+MUSz+GwstUtbVvS/kPE6+ZuOI19yw==
+X-Received: by 2002:a5d:8a0f:0:b0:76c:542f:d72d with SMTP id
+ w15-20020a5d8a0f000000b0076c542fd72dmr7574467iod.8.1684439155504; 
+ Thu, 18 May 2023 12:45:55 -0700 (PDT)
 Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- w31-20020a056638379f00b00405f36ed05asm636935jal.55.2023.05.18.12.43.41
+ c12-20020a05660221cc00b007702f55116fsm599490ioc.38.2023.05.18.12.45.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 May 2023 12:43:41 -0700 (PDT)
-Date: Thu, 18 May 2023 13:43:40 -0600
+ Thu, 18 May 2023 12:45:54 -0700 (PDT)
+Date: Thu, 18 May 2023 13:45:53 -0600
 From: Alex Williamson <alex.williamson@redhat.com>
 To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <20230518134340.0a39629b.alex.williamson@redhat.com>
-In-Reply-To: <DS0PR11MB7529AD3369CE1F296086A607C37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
+Message-ID: <20230518134553.27fdf0b0.alex.williamson@redhat.com>
+In-Reply-To: <DS0PR11MB7529BAEF7080D2EA66912510C37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
 References: <20230513132136.15021-1-yi.l.liu@intel.com>
- <20230513132136.15021-2-yi.l.liu@intel.com>
- <20230517112609.78a3e916.alex.williamson@redhat.com>
- <ZGUbAzl985p5kX1Z@nvidia.com>
- <DS0PR11MB7529AD3369CE1F296086A607C37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230513132136.15021-8-yi.l.liu@intel.com>
+ <20230517131243.7028bf9c.alex.williamson@redhat.com>
+ <DS0PR11MB7529BAEF7080D2EA66912510C37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v5 01/10] vfio-iommufd: Create
- iommufd_access for noiommu devices
+Subject: Re: [Intel-gfx] [PATCH v5 07/10] vfio: Add helper to search
+ vfio_device in a dev_set
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,7 +96,7 @@ Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
  "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
  "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
  Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
  "Zhao, Yan Y" <yan.y.zhao@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "eric.auger@redhat.com" <eric.auger@redhat.com>,
@@ -111,27 +110,101 @@ Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 18 May 2023 12:23:29 +0000
+On Thu, 18 May 2023 12:31:07 +0000
 "Liu, Yi L" <yi.l.liu@intel.com> wrote:
 
-> > From: Jason Gunthorpe <jgg@nvidia.com>
-> > Sent: Thursday, May 18, 2023 2:21 AM
+> > From: Alex Williamson <alex.williamson@redhat.com>
+> > Sent: Thursday, May 18, 2023 3:13 AM
 > > 
-> > On Wed, May 17, 2023 at 11:26:09AM -0600, Alex Williamson wrote:
+> > On Sat, 13 May 2023 06:21:33 -0700
+> > Yi Liu <yi.l.liu@intel.com> wrote:
 > >   
-> > > It's not clear to me why we need a separate iommufd_access for
-> > > noiommu.  
+> > > There are drivers that need to search vfio_device within a given dev_set.
+> > > e.g. vfio-pci. So add a helper.
+> > >
+> > > Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> > > ---
+> > >  drivers/vfio/pci/vfio_pci_core.c |  8 +++-----
+> > >  drivers/vfio/vfio_main.c         | 15 +++++++++++++++
+> > >  include/linux/vfio.h             |  3 +++
+> > >  3 files changed, 21 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+> > > index 39e7823088e7..4df2def35bdd 100644
+> > > --- a/drivers/vfio/pci/vfio_pci_core.c
+> > > +++ b/drivers/vfio/pci/vfio_pci_core.c
+> > > @@ -2335,12 +2335,10 @@ static bool vfio_dev_in_groups(struct  
+> > vfio_pci_core_device *vdev,  
+> > >  static int vfio_pci_is_device_in_set(struct pci_dev *pdev, void *data)
+> > >  {
+> > >  	struct vfio_device_set *dev_set = data;
+> > > -	struct vfio_device *cur;
+> > >
+> > > -	list_for_each_entry(cur, &dev_set->device_list, dev_set_list)
+> > > -		if (cur->dev == &pdev->dev)
+> > > -			return 0;
+> > > -	return -EBUSY;
+> > > +	lockdep_assert_held(&dev_set->lock);
+> > > +
+> > > +	return vfio_find_device_in_devset(dev_set, &pdev->dev) ? 0 : -EBUSY;  
 > > 
-> > The point was to allocate an ID for the device so we can use that ID
-> > with the other interfaces in all cases.  
+> > Maybe an opportunity to revisit why this returns -EBUSY rather than
+> > something reasonable like -ENODEV.  It looks like we picked up the
+> > -EBUSY in a882c16a2b7e where I think it was trying to preserve the
+> > return of vfio_pci_try_zap_and_vma_lock_cb() but the return value here
+> > is not even propagated so this looks like an chance to have it make
+> > sense again.  Thanks,  
 > 
-> I guess Alex's question is why adding a new pointer named noiommu_access
-> while there is already the iommufd_access pointer named iommufd_access.
+> From the name of this function, yes, -ENODEV is better. is it
+> Ok to modify it to be -ENODEV in this patch or a separate one?
 
-Yes, precisely.  Sorry that was confusing, we need the access for
-noiommu but it's not clear why that access needs to be stored in a
-separate pointer when we can already differentiate noiommu devices
-otherwise.  Thanks,
+This patch is fine so long as it's noted in the commit log.  Thanks,
 
 Alex
+ 
+> > >  }
+> > >
+> > >  /*
+> > > diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> > > index f0ca33b2e1df..ab4f3a794f78 100644
+> > > --- a/drivers/vfio/vfio_main.c
+> > > +++ b/drivers/vfio/vfio_main.c
+> > > @@ -141,6 +141,21 @@ unsigned int vfio_device_set_open_count(struct  
+> > vfio_device_set *dev_set)  
+> > >  }
+> > >  EXPORT_SYMBOL_GPL(vfio_device_set_open_count);
+> > >
+> > > +struct vfio_device *
+> > > +vfio_find_device_in_devset(struct vfio_device_set *dev_set,
+> > > +			   struct device *dev)
+> > > +{
+> > > +	struct vfio_device *cur;
+> > > +
+> > > +	lockdep_assert_held(&dev_set->lock);
+> > > +
+> > > +	list_for_each_entry(cur, &dev_set->device_list, dev_set_list)
+> > > +		if (cur->dev == dev)
+> > > +			return cur;
+> > > +	return NULL;
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(vfio_find_device_in_devset);
+> > > +
+> > >  /*
+> > >   * Device objects - create, release, get, put, search
+> > >   */
+> > > diff --git a/include/linux/vfio.h b/include/linux/vfio.h
+> > > index fcbe084b18c8..4c17395ed4d2 100644
+> > > --- a/include/linux/vfio.h
+> > > +++ b/include/linux/vfio.h
+> > > @@ -259,6 +259,9 @@ void vfio_unregister_group_dev(struct vfio_device *device);
+> > >
+> > >  int vfio_assign_device_set(struct vfio_device *device, void *set_id);
+> > >  unsigned int vfio_device_set_open_count(struct vfio_device_set *dev_set);
+> > > +struct vfio_device *
+> > > +vfio_find_device_in_devset(struct vfio_device_set *dev_set,
+> > > +			   struct device *dev);
+> > >
+> > >  int vfio_mig_get_next_state(struct vfio_device *device,
+> > >  			    enum vfio_device_mig_state cur_fsm,  
+> 
 
