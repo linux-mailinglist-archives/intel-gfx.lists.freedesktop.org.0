@@ -1,55 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0E387098AD
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 May 2023 15:48:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 138EC709B5B
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 May 2023 17:31:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EB6410E280;
-	Fri, 19 May 2023 13:48:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F03310E552;
+	Fri, 19 May 2023 15:31:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77E7E10E3A1;
- Wed, 17 May 2023 05:02:41 +0000 (UTC)
-X-UUID: 97ba50cf53c147aaa6f2d5b5e43098f3-20230517
-X-CID-O-RULE: Release_Ham
-X-CID-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.22, REQID:d2b87ce7-df4a-4b37-adae-eb666f7a01d2, IP:15,
- URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACT
- ION:release,TS:-5
-X-CID-INFO: VERSION:1.1.22, REQID:d2b87ce7-df4a-4b37-adae-eb666f7a01d2, IP:15,
- UR
- L:0,TC:0,Content:-5,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
- N:release,TS:-5
-X-CID-META: VersionHash:120426c, CLOUDID:73f4116c-2f20-4998-991c-3b78627e4938,
- B
- ulkID:230517130233VKXSJLJ6,BulkQuantity:0,Recheck:0,SF:17|19|44|38|24|102,
- TC:nil,Content:0,EDM:-3,IP:-2,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
- ,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-UUID: 97ba50cf53c147aaa6f2d5b5e43098f3-20230517
-X-User: liucong2@kylinos.cn
-Received: from localhost.localdomain [(116.128.244.169)] by mailgw
- (envelope-from <liucong2@kylinos.cn>) (Generic MTA)
- with ESMTP id 247450098; Wed, 17 May 2023 13:02:31 +0800
-From: Cong Liu <liucong2@kylinos.cn>
-To: liucong2@kylinos.cn, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 17 May 2023 13:02:03 +0800
-Message-Id: <20230517050204.4111874-1-liucong2@kylinos.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230508085016.437836-1-liucong2@kylinos.cn>
-References: <20230508085016.437836-1-liucong2@kylinos.cn>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 83AAB10E4E3;
+ Fri, 19 May 2023 15:30:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 46B64AADEA;
+ Fri, 19 May 2023 15:30:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3707981738906788796=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 19 May 2023 13:48:05 +0000
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Fix memory leaks in function
- live_nop_switch
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Cong Liu" <liucong2@kylinos.cn>
+Date: Fri, 19 May 2023 15:30:58 -0000
+Message-ID: <168451025825.26992.9045166043972053094@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230508085016.437836-1-liucong2@kylinos.cn>
+In-Reply-To: <20230508085016.437836-1-liucong2@kylinos.cn>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_memory_leaks_in_function_live=5Fnop=5Fswitch_=28re?=
+ =?utf-8?b?djMp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,90 +41,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Be sure to properly free the allocated memory before exiting
-the live_nop_switch function.
+--===============3707981738906788796==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Cong Liu <liucong2@kylinos.cn>
-Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- .../gpu/drm/i915/gem/selftests/i915_gem_context.c  | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index a81fa6a20f5a..2fb125d0cb5e 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -66,7 +66,7 @@ static int live_nop_switch(void *arg)
- 		ctx[n] = live_context(i915, file);
- 		if (IS_ERR(ctx[n])) {
- 			err = PTR_ERR(ctx[n]);
--			goto out_file;
-+			goto out_ctx;
- 		}
- 	}
- 
-@@ -82,7 +82,7 @@ static int live_nop_switch(void *arg)
- 			this = igt_request_alloc(ctx[n], engine);
- 			if (IS_ERR(this)) {
- 				err = PTR_ERR(this);
--				goto out_file;
-+				goto out_ctx;
- 			}
- 			if (rq) {
- 				i915_request_await_dma_fence(this, &rq->fence);
-@@ -96,7 +96,7 @@ static int live_nop_switch(void *arg)
- 			intel_gt_set_wedged(to_gt(i915));
- 			i915_request_put(rq);
- 			err = -EIO;
--			goto out_file;
-+			goto out_ctx;
- 		}
- 		i915_request_put(rq);
- 
-@@ -107,7 +107,7 @@ static int live_nop_switch(void *arg)
- 
- 		err = igt_live_test_begin(&t, i915, __func__, engine->name);
- 		if (err)
--			goto out_file;
-+			goto out_ctx;
- 
- 		end_time = jiffies + i915_selftest.timeout_jiffies;
- 		for_each_prime_number_from(prime, 2, 8192) {
-@@ -120,7 +120,7 @@ static int live_nop_switch(void *arg)
- 				this = igt_request_alloc(ctx[n % nctx], engine);
- 				if (IS_ERR(this)) {
- 					err = PTR_ERR(this);
--					goto out_file;
-+					goto out_ctx;
- 				}
- 
- 				if (rq) { /* Force submission order */
-@@ -165,7 +165,7 @@ static int live_nop_switch(void *arg)
- 
- 		err = igt_live_test_end(&t);
- 		if (err)
--			goto out_file;
-+			goto out_ctx;
- 
- 		pr_info("Switch latencies on %s: 1 = %lluns, %lu = %lluns\n",
- 			engine->name,
-@@ -173,6 +173,8 @@ static int live_nop_switch(void *arg)
- 			prime - 1, div64_u64(ktime_to_ns(times[1]), prime - 1));
- 	}
- 
-+out_ctx:
-+	kfree(ctx);
- out_file:
- 	fput(file);
- 	return err;
--- 
-2.34.1
+Series: drm/i915: Fix memory leaks in function live_nop_switch (rev3)
+URL   : https://patchwork.freedesktop.org/series/117458/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_13166 -> Patchwork_117458v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/index.html
+
+Participating hosts (36 -> 36)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_117458v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][3] ([i915#1886] / [i915#7913])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg2-11:         [PASS][4] -> [ABORT][5] ([i915#7913] / [i915#7979])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13166/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-1:         [PASS][6] -> [ABORT][7] ([i915#4983] / [i915#7461] / [i915#8347] / [i915#8384])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13166/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@kms_chamelium_frames@hdmi-crc-fast:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271]) +14 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#4579])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/fi-kbl-soraka/igt@kms_setmode@basic-clone-single-crtc.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7979]: https://gitlab.freedesktop.org/drm/intel/issues/7979
+  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
+  [i915#8384]: https://gitlab.freedesktop.org/drm/intel/issues/8384
 
 
-No virus found
-		Checked by Hillstone Network AntiVirus
+Build changes
+-------------
+
+  * Linux: CI_DRM_13166 -> Patchwork_117458v3
+
+  CI-20190529: 20190529
+  CI_DRM_13166: d517ff66aa5fd8e8fd71831eb218aa6d1bb1a3c5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7296: f58eaf30c30c1cc9f00c8b5c596ee5c94d054198 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_117458v3: d517ff66aa5fd8e8fd71831eb218aa6d1bb1a3c5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+e460e25a1e46 drm/i915: Fix memory leaks in function live_nop_switch
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/index.html
+
+--===============3707981738906788796==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix memory leaks in function live_nop_switch (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117458/">https://patchwork.freedesktop.org/series/117458/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13166 -&gt; Patchwork_117458v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/index.html</p>
+<h2>Participating hosts (36 -&gt; 36)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_117458v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13166/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7979">i915#7979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13166/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8384">i915#8384</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117458v3/fi-kbl-soraka/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13166 -&gt; Patchwork_117458v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13166: d517ff66aa5fd8e8fd71831eb218aa6d1bb1a3c5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7296: f58eaf30c30c1cc9f00c8b5c596ee5c94d054198 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_117458v3: d517ff66aa5fd8e8fd71831eb218aa6d1bb1a3c5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>e460e25a1e46 drm/i915: Fix memory leaks in function live_nop_switch</p>
+
+</body>
+</html>
+
+--===============3707981738906788796==--
