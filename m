@@ -1,64 +1,143 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F81770910D
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 May 2023 09:56:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 992FB709114
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 May 2023 09:57:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D838B10E5D9;
-	Fri, 19 May 2023 07:56:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0065110E5DA;
+	Fri, 19 May 2023 07:57:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 646E110E5D9
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 May 2023 07:56:23 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BFBD10E5D9;
+ Fri, 19 May 2023 07:57:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684482983; x=1716018983;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=GBHXJcPGpgbOqV7tVKULG4K788Q2bGiKpW1NfOvEYj0=;
- b=EQbGnUECuwFPWH1hTLoUMr+It0g/VTUWrFlVCQ+jdUS/1RqtM5jS9vOw
- 26P017ipWoOc93+GqXkpZOtJl+xUYPQ47241rYJ584e5TGaIEPP32NWfl
- +opydAtAGf/gtnrBhjHVnUS9xX2sPE4dvD78aDTFTEdLAYhrPEIvCon5p
- 6vURTLJPGGhwBwPRUFSZf7fhVJkf4hEgF1y6CgcejdDSRQEmm7kmCs0j0
- eaDPJv7VWoTgLHx+rHK7DhMgbEis1EPUwMCd7adqPrsoFL1pY21afJM2f
- uwX/eFHLQcF2iqbJIfECW41uJMZALCt7rMijQIX30iTaGsXUgraN7NcpV g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="352330471"
-X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="352330471"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 00:56:22 -0700
+ t=1684483072; x=1716019072;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=/qxv4+BbNRAxTy6ZvbPt+94viybxSW0G8pXLM4yrke8=;
+ b=ljVVJrQz+yZq8+7Aje2m3UMzDwsAGum+ahggbQ6qHh/ngpBADe9RR0/b
+ trv0w9yubG+n+6WTt3jJ2LmwD0P8mDaOJM096VpBPiU5qvXcmt3SrR5/j
+ akbd4i9sQJ4Qvj/a03ngbwAKrAh5QMaIik9ZXIcR6Pd9IXFM1KBPx5bMF
+ cMkr/Alo9Hj1MnBjQiCRX5EO6q1TDftwriLu+PhUmh83iIpEIDgcHJuBl
+ 0Y2YdwJ8G9l0y4ikLd5R4ZWYsUnwTdeEATvqo/oPgDEAA+P8XgdBKnDdF
+ eylJzQUUv6kdlWpM6Hj44mwFiz8R7CHjftNO2YvX3HiZcvCfiNbcUls/V g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="415775426"
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="415775426"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2023 00:57:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="767523609"
-X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="767523609"
-Received: from aconnerx-mobl.ger.corp.intel.com (HELO [10.213.202.170])
- ([10.213.202.170])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 00:56:21 -0700
-Message-ID: <1bb8afa7-0cce-70e9-eb70-54a6325dc4cc@linux.intel.com>
-Date: Fri, 19 May 2023 08:56:19 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="826705687"
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="826705687"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga004.jf.intel.com with ESMTP; 19 May 2023 00:57:50 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 19 May 2023 00:57:50 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 19 May 2023 00:57:50 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.170)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Fri, 19 May 2023 00:57:49 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QpzNyD2X8bx+295c2FP6EhCvktKIr1GZUDF5BtLQOLEO2Fula1cer+WyC6ukPtf2+wbmTz36iI6NYIpN0oUtL5BRDAqB9iudcaM6R9DrQlE6YvBd7CUObk3TkYZHR0VLEyO1lNMK4UM7yblWSfGTBbAh+5u6wmXkExM5f8qRf/9lj46brkdK9w8FPcksHMnIzCTmBim26V7hBhmBwnPcfObmGdFo2yRZnfbDoRcmvl28nyycBv4HUUqG+fjv2IeKe0RHyX7DFOi2Y6v7LvJWrw+X3vULGzbbfOP/Ld36k7vvbQ9D6F2nTn3JAk6DqgTdx7mMgf+wgO54CE25aaCNfg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uugVYbZKC2aCkJAkxhKMvsJEp897KW/T+8/jJYIfOCk=;
+ b=XHpQDhqih1OvoFg4g5yLU7suEVCpxrFQNrCFZ+HQ4BLw9AA4N/2eNsj/Eu4KLzYpvgR9vN5rXfz92kJj8Gz9yA110NBPtLBRSn+sGxPOceHV8nleQPde5rooDJ+UXNxznkvJTfD1fheJZKECuRCbRPXsycO7qLibwTLw6HdZAOh6SrJOYGmSJyrFiQ9rpL+UOjRbV2IlBVvJn0xFdUWQeqptUooDGUusJcOoZvmFcNIYpT5xJhMeWNtHT36qMUp+ftGakisIbxwoGBZjNq0Wa4KpFsjl0i32/lfP8YMPUau60CWMuseB5QK5hoVY/L4iPukA+R1OVa+uA2wZobOJZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com (2603:10b6:408:135::18)
+ by CH0PR11MB5505.namprd11.prod.outlook.com (2603:10b6:610:d4::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.21; Fri, 19 May
+ 2023 07:57:48 +0000
+Received: from BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::73e9:b405:2cae:9174]) by BN9PR11MB5276.namprd11.prod.outlook.com
+ ([fe80::73e9:b405:2cae:9174%6]) with mapi id 15.20.6411.019; Fri, 19 May 2023
+ 07:57:47 +0000
+From: "Tian, Kevin" <kevin.tian@intel.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>, Alex Williamson
+ <alex.williamson@redhat.com>
+Thread-Topic: [PATCH v5 06/10] vfio-iommufd: Add helper to retrieve
+ iommufd_ctx and devid for vfio_device
+Thread-Index: AQHZhZ3ivLvfOE0VdkGiYgWNYrYwC69ey9SAgAFBgYCAATZ0YA==
+Date: Fri, 19 May 2023 07:57:47 +0000
+Message-ID: <BN9PR11MB5276570278B6FE08D93DE8EA8C7C9@BN9PR11MB5276.namprd11.prod.outlook.com>
+References: <20230513132136.15021-1-yi.l.liu@intel.com>
+ <20230513132136.15021-7-yi.l.liu@intel.com>
+ <20230517121517.4b7ceb52.alex.williamson@redhat.com>
+ <DS0PR11MB752963E14A652AEE1A1C2699C37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
+In-Reply-To: <DS0PR11MB752963E14A652AEE1A1C2699C37F9@DS0PR11MB7529.namprd11.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: "Coelho, Luciano" <luciano.coelho@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20230511082013.1313484-1-luciano.coelho@intel.com>
- <20230511082013.1313484-3-luciano.coelho@intel.com>
- <43e3f1e2-5910-6a3f-2282-44e4718bcd04@linux.intel.com>
- <294471856c7245b3e3aef29508bddb5f4ea33bfb.camel@intel.com>
- <5082e0dd-8af5-89f2-9ae5-7d5cc54e79f4@linux.intel.com>
- <a2cf2fdce2be46fbf90088a757f1a4da1723e9bd.camel@intel.com>
- <86e3e022-e2ac-cbff-d781-216a6028b039@linux.intel.com>
- <93206fb73f03329f58d2ece23e44a96afd5e7563.camel@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <93206fb73f03329f58d2ece23e44a96afd5e7563.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/gt: create workqueue dedicated
- to wake references
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR11MB5276:EE_|CH0PR11MB5505:EE_
+x-ms-office365-filtering-correlation-id: e17d197d-696f-47cd-6f8d-08db583ebc5c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: of+jxVaL/BzKbQllugyGt1tInLOimcDOcLLJBB2A0FFlRYUywFcT1mu0v35yfsnc5d0asXooTrix4zIUhekuLuXkBnUeLFffIR7GlAu+CHM/tGfVcteid6J2RBNZsOYBsQ1d6WOE18JfR0EDOPZ7YI4z4VApHxVN6CY5ncI1+YwioSrm6r5nfyue5/7DuTzjWJHeX21kwAeCyTldQ+JGQKwcJnK5S1XbWhXeh75L030azdiIdJQijuB07k2/eHrxxhlVYMRRHZFgsg4Unwh6TMJ7OyCJql74JHIRV1rUrHEkb/kQMCtFJnxgWP+ygtY+57jGvmTgIiZbPLQEULjjYafl7Aj38h6YJjS9bRK9QE+0GkXP5waNhiGwFufvPKhLeTbGMTG24sAKgbOCcK3nwlUqIW9wzD0t3QOcfQd7Hl/5BRG4M9GkMitCjpLoZ1H2FCn7mAbsH5/aQDEY6g28iroSSNwnJAB1kDG9NPSWPyiNSIljfJk6YFMWyBQNN+pdCmv16v7R8zy8Ogy0WxIYCHPGek8zDKEBKyaEiGobbrG2EDKtJ1+QEbAj2yjVYUKIpMXJmhzm79lzWCH+kOpPdot1W3zjzOD+fXDIcrUXMvyFI3TJChheXNk0FNpZortc
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5276.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(366004)(39860400002)(396003)(136003)(346002)(376002)(451199021)(86362001)(38070700005)(33656002)(110136005)(54906003)(316002)(4326008)(76116006)(66946007)(66556008)(66476007)(66446008)(64756008)(478600001)(7696005)(71200400001)(55016003)(8936002)(8676002)(5660300002)(52536014)(41300700001)(4744005)(2906002)(7416002)(38100700002)(122000001)(82960400001)(6506007)(26005)(9686003)(186003)(83380400001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?SJw0ItrYxDN1NvTWp81+NCZIEGQ4Vs7PccRgv9X7fzv3LavrpbTqFTovThNn?=
+ =?us-ascii?Q?+uSDLu3cfHLZOBj+RMaC+XAgccsG9nEf+KyEFhobOFmL6g328oiJY5afPxlB?=
+ =?us-ascii?Q?yQO1QQ1F/Im40Q4VAdZOK9PFRTaP2B6Tn6LSKXzO/HJeDtQ5VXlBjD7zgAmC?=
+ =?us-ascii?Q?jsnAWdoQ4/1mAz0KYjSmoIwrejyJvNQbTcUw648SsRj9ZAEN9jmxRn9G6lX9?=
+ =?us-ascii?Q?+t+auulGuJU7NgsqEvobQ08hH9datvgmFLQO6YC7Uyvzvyo9eXuU4P/Aga+M?=
+ =?us-ascii?Q?Dw2B/vAolJ5zBjBx+jdmTaL8HslJ1mKW5lD/g7jtuGAUGc+NVH1OSbUh4JsY?=
+ =?us-ascii?Q?OYzhZW6Hm7uIVo+nPifgBevQfb1fRaBbBNQYFyKTzwhmzef/C2njQoGK555w?=
+ =?us-ascii?Q?Ll0wWUycTunDOZCfsKHvA2hFeInibsRLKHR8NoRrHhpXvND0gzKONAu8b2JE?=
+ =?us-ascii?Q?6EHdLPTWq0BZaM+No6xESYSqG5Tmb1uKgl3l9IaurjGTDgXf4/im1puxTdKN?=
+ =?us-ascii?Q?4dc/4S6AJ4x8pF25UXhydQ4O9xLhilo5FO919TLqSTCqZMepoxsIAfQftiOQ?=
+ =?us-ascii?Q?ClvxS6vmNv0dJRRLJDIZyUcrwtGXj24Hak4LZI9s/FYiOo9sJktoYM0lP82E?=
+ =?us-ascii?Q?5xDAttVJAK25EpYUWci40dUh4pHCt5Yhsd1mImgs7DrBEP1ot9hcLhLdweSI?=
+ =?us-ascii?Q?WdIuZ2Tro35pN05yOTi/kbI9TsUwOMoQjKsT6gLeekWN2JCk44d6o6ga9MfZ?=
+ =?us-ascii?Q?tFQjMXj/0hWJkXSHnyzB0jfWeHrQmbHVisTZTv9ld7Jb8WN4AUKYyhYmMEJG?=
+ =?us-ascii?Q?HMkwZJ3+gJZhokklmEgEVEP8RdJ24TbBzYtV3m6dMljturdPq+ojGv2sj5ss?=
+ =?us-ascii?Q?vXnNJIXaCo3AOwCN7nGA2EJrY2ddMNFpvOEWaVaDttuxbQkWwgD7yMhbAXMj?=
+ =?us-ascii?Q?+CW9erliPyy5Gv/4O89j4SlXLgx14hVV4ZoIW02htktl6DARxcqibodekY5M?=
+ =?us-ascii?Q?UrjFDeMf5OrVaUIec2NDj8LjEPLH9+znYqBRzFPZciKYULTAaM2fYL6PXe4T?=
+ =?us-ascii?Q?pH4ttsNmQkGGNysSoVSNg84RQoxa0tWc6mw6iey1/l2ABXv4lM75PxhTyDu4?=
+ =?us-ascii?Q?aMqAzaOBTPwP4cOSnFMjJZW4su+3d4yTuNuX56oe4F+nlIyNezl7r5eK7fce?=
+ =?us-ascii?Q?N2xP1hhSbQ+pTWo4T5PtRnSPXui6PH3SIc5lIkey8uFsNZtP2Fmmue0xhe+q?=
+ =?us-ascii?Q?Du9XMV4oVzTMC6Ww+1ziuQJWfk4+dZbU6aM7M8Zb+M8WzMdTksXsaXW6Fy+9?=
+ =?us-ascii?Q?N1HGmjLs3b19v61OycGJc5lSpuqLqmBex7iPt9+R1VO/0w/lKlwlz24/x0UK?=
+ =?us-ascii?Q?Hk9A97koYajT1JZYvHWTJkIULunM47o/wd45tEKZSl81aWGCJlRDKgAy3ivk?=
+ =?us-ascii?Q?1725NWm/RXZ5444lfRoWPZ0CepykrK7YK4Iky4+RWiQ6SlOBT+OaOkLZewU7?=
+ =?us-ascii?Q?G357hj6j3FqiIcjj5VtEROUhoXOo3MmjObVXYOIaaEkvhTRR7iYNfIy56c/s?=
+ =?us-ascii?Q?lbQs2t4GvbOC/k30Vb5ounFFB0oiL0DN+vJRkXMU?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5276.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e17d197d-696f-47cd-6f8d-08db583ebc5c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 May 2023 07:57:47.4203 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: NFAQPi9R6j/jutrh7TWNlJwsSI/90LfDjccwPK8RuuVzZn7vWb7q0i8qS5Yf1kW4s8bvGVQ7F7NqQ+5dVVnJyQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5505
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5 06/10] vfio-iommufd: Add helper to
+ retrieve iommufd_ctx and devid for vfio_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,260 +150,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "Duan, 
+ Zhenzhong" <zhenzhong.duan@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
+ "Xu, Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "clegoate@redhat.com" <clegoate@redhat.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+> From: Liu, Yi L <yi.l.liu@intel.com>
+> Sent: Thursday, May 18, 2023 9:26 PM
+> > > +int vfio_iommufd_physical_devid(struct vfio_device *vdev)
+> > > +{
+> > > +	if (vdev->iommufd_device)
+> > > +		return iommufd_device_to_id(vdev->iommufd_device);
+> > > +	if (vdev->noiommu_access)
+> > > +		return iommufd_access_to_id(vdev->noiommu_access);
+> > > +	return -EINVAL;
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(vfio_iommufd_physical_devid);
+> >
+> > I think these exemplify that it would be better if both emulated and
+> > noiommu use the same iommufd_access pointer.  Thanks,
+>=20
+> Sure. Then I shall rename this helper. vfio_iommufd_device_devid()
+> What about your opinion?
+>=20
 
-On 17/05/2023 12:18, Coelho, Luciano wrote:
-> On Fri, 2023-05-12 at 13:16 +0100, Tvrtko Ursulin wrote:
->> On 12/05/2023 10:54, Coelho, Luciano wrote:
->>> On Fri, 2023-05-12 at 10:32 +0100, Tvrtko Ursulin wrote:
->>>> On 12/05/2023 10:10, Coelho, Luciano wrote:
->>>>> On Fri, 2023-05-12 at 10:04 +0100, Tvrtko Ursulin wrote:
->>>>>> On 11/05/2023 09:20, Luca Coelho wrote:
->>>>>>> Add a work queue in the intel_wakeref structure to be used exclusively
->>>>>>> by the wake reference mechanism.  This is needed in order to avoid
->>>>>>> using the system workqueue and relying on flush_scheduled_work().
->>>>>>>
->>>>>>> Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
->>>>>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>>>> Cc: Jani Nikula <jani.nikula@intel.com>
->>>>>>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>>>>>> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
->>>>>>> ---
->>>>>>>      drivers/gpu/drm/i915/gt/intel_engine_cs.c |  7 ++++++-
->>>>>>>      drivers/gpu/drm/i915/gt/intel_engine_pm.c | 15 ++++++++++++--
->>>>>>>      drivers/gpu/drm/i915/gt/intel_engine_pm.h |  3 ++-
->>>>>>>      drivers/gpu/drm/i915/gt/mock_engine.c     |  8 +++++++-
->>>>>>>      drivers/gpu/drm/i915/intel_wakeref.c      | 21 ++++++++++++++-----
->>>>>>>      drivers/gpu/drm/i915/intel_wakeref.h      | 25 +++++++++++++++--------
->>>>>>>      6 files changed, 60 insertions(+), 19 deletions(-)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>> index 0aff5bb13c53..6505bfa70cd0 100644
->>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>>>>>> @@ -1290,7 +1290,11 @@ static int engine_setup_common(struct intel_engine_cs *engine)
->>>>>>>      		goto err_cmd_parser;
->>>>>>>      
->>>>>>>      	intel_engine_init_execlists(engine);
->>>>>>> -	intel_engine_init__pm(engine);
->>>>>>> +
->>>>>>> +	err = intel_engine_init__pm(engine);
->>>>>>> +	if (err)
->>>>>>> +		goto err_cmd_parser;
->>>>>>> +
->>>>>>>      	intel_engine_init_retire(engine);
->>>>>>>      
->>>>>>>      	/* Use the whole device by default */
->>>>>>> @@ -1525,6 +1529,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
->>>>>>>      {
->>>>>>>      	GEM_BUG_ON(!list_empty(&engine->sched_engine->requests));
->>>>>>>      
->>>>>>> +	intel_engine_destroy__pm(engine);
->>>>>>>      	i915_sched_engine_put(engine->sched_engine);
->>>>>>>      	intel_breadcrumbs_put(engine->breadcrumbs);
->>>>>>>      
->>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
->>>>>>> index ee531a5c142c..859b62cf660f 100644
->>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
->>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
->>>>>>> @@ -294,14 +294,25 @@ static const struct intel_wakeref_ops wf_ops = {
->>>>>>>      	.put = __engine_park,
->>>>>>>      };
->>>>>>>      
->>>>>>> -void intel_engine_init__pm(struct intel_engine_cs *engine)
->>>>>>> +int intel_engine_init__pm(struct intel_engine_cs *engine)
->>>>>>>      {
->>>>>>>      	struct intel_runtime_pm *rpm = engine->uncore->rpm;
->>>>>>> +	int err;
->>>>>>> +
->>>>>>> +	err = intel_wakeref_init(&engine->wakeref, rpm, &wf_ops);
->>>>>>> +	if (err)
->>>>>>> +		return err;
->>>>>>>      
->>>>>>> -	intel_wakeref_init(&engine->wakeref, rpm, &wf_ops);
->>>>>>>      	intel_engine_init_heartbeat(engine);
->>>>>>>      
->>>>>>>      	intel_gsc_idle_msg_enable(engine);
->>>>>>> +
->>>>>>> +	return 0;
->>>>>>> +}
->>>>>>> +
->>>>>>> +void intel_engine_destroy__pm(struct intel_engine_cs *engine)
->>>>>>> +{
->>>>>>> +	intel_wakeref_destroy(&engine->wakeref);
->>>>>>>      }
->>>>>>>      
->>>>>>>      /**
->>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.h b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
->>>>>>> index d68675925b79..e8568f7d10c6 100644
->>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.h
->>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.h
->>>>>>> @@ -104,7 +104,8 @@ intel_engine_create_kernel_request(struct intel_engine_cs *engine)
->>>>>>>      	return rq;
->>>>>>>      }
->>>>>>>      
->>>>>>> -void intel_engine_init__pm(struct intel_engine_cs *engine);
->>>>>>> +int intel_engine_init__pm(struct intel_engine_cs *engine);
->>>>>>> +void intel_engine_destroy__pm(struct intel_engine_cs *engine);
->>>>>>>      
->>>>>>>      void intel_engine_reset_pinned_contexts(struct intel_engine_cs *engine);
->>>>>>>      
->>>>>>> diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
->>>>>>> index c0637bf799a3..0a3c702c21e2 100644
->>>>>>> --- a/drivers/gpu/drm/i915/gt/mock_engine.c
->>>>>>> +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
->>>>>>> @@ -336,6 +336,7 @@ static void mock_engine_release(struct intel_engine_cs *engine)
->>>>>>>      	intel_context_put(engine->kernel_context);
->>>>>>>      
->>>>>>>      	intel_engine_fini_retire(engine);
->>>>>>> +	intel_engine_destroy__pm(engine);
->>>>>>>      }
->>>>>>>      
->>>>>>>      struct intel_engine_cs *mock_engine(struct drm_i915_private *i915,
->>>>>>> @@ -393,6 +394,7 @@ struct intel_engine_cs *mock_engine(struct drm_i915_private *i915,
->>>>>>>      int mock_engine_init(struct intel_engine_cs *engine)
->>>>>>>      {
->>>>>>>      	struct intel_context *ce;
->>>>>>> +	int err;
->>>>>>>      
->>>>>>>      	INIT_LIST_HEAD(&engine->pinned_contexts_list);
->>>>>>>      
->>>>>>> @@ -402,7 +404,11 @@ int mock_engine_init(struct intel_engine_cs *engine)
->>>>>>>      	engine->sched_engine->private_data = engine;
->>>>>>>      
->>>>>>>      	intel_engine_init_execlists(engine);
->>>>>>> -	intel_engine_init__pm(engine);
->>>>>>> +
->>>>>>> +	err = intel_engine_init__pm(engine);
->>>>>>> +	if (err)
->>>>>>> +		return err;
->>>>>>> +
->>>>>>>      	intel_engine_init_retire(engine);
->>>>>>>      
->>>>>>>      	engine->breadcrumbs = intel_breadcrumbs_create(NULL);
->>>>>>> diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
->>>>>>> index dfd87d082218..6bae609e1312 100644
->>>>>>> --- a/drivers/gpu/drm/i915/intel_wakeref.c
->>>>>>> +++ b/drivers/gpu/drm/i915/intel_wakeref.c
->>>>>>> @@ -74,7 +74,7 @@ void __intel_wakeref_put_last(struct intel_wakeref *wf, unsigned long flags)
->>>>>>>      
->>>>>>>      	/* Assume we are not in process context and so cannot sleep. */
->>>>>>>      	if (flags & INTEL_WAKEREF_PUT_ASYNC || !mutex_trylock(&wf->mutex)) {
->>>>>>> -		mod_delayed_work(system_wq, &wf->work,
->>>>>>> +		mod_delayed_work(wf->wq, &wf->work,
->>>>>>>      				 FIELD_GET(INTEL_WAKEREF_PUT_DELAY, flags));
->>>>>>>      		return;
->>>>>>>      	}
->>>>>>> @@ -93,10 +93,10 @@ static void __intel_wakeref_put_work(struct work_struct *wrk)
->>>>>>>      	____intel_wakeref_put_last(wf);
->>>>>>>      }
->>>>>>>      
->>>>>>> -void __intel_wakeref_init(struct intel_wakeref *wf,
->>>>>>> -			  struct intel_runtime_pm *rpm,
->>>>>>> -			  const struct intel_wakeref_ops *ops,
->>>>>>> -			  struct intel_wakeref_lockclass *key)
->>>>>>> +int __intel_wakeref_init(struct intel_wakeref *wf,
->>>>>>> +			 struct intel_runtime_pm *rpm,
->>>>>>> +			 const struct intel_wakeref_ops *ops,
->>>>>>> +			 struct intel_wakeref_lockclass *key)
->>>>>>>      {
->>>>>>>      	wf->rpm = rpm;
->>>>>>>      	wf->ops = ops;
->>>>>>> @@ -105,9 +105,20 @@ void __intel_wakeref_init(struct intel_wakeref *wf,
->>>>>>>      	atomic_set(&wf->count, 0);
->>>>>>>      	wf->wakeref = 0;
->>>>>>>      
->>>>>>> +	wf->wq = alloc_workqueue("i1915-wakeref", 0, 0);
->>>>>>
->>>>>> Typo here -
->>>>>
->>>>> Oh, good catch! This is one of my "favorite" typos, for some reason.
->>>>
->>>> Yes, I had the same one. :) Patch 3/3 too.
->>>>
->>>>>>     I wanted to ask however - why does this particular wq
->>>>>> "deserves" to be dedicated and can't just use one of the
->>>>>> drm_i915_private ones?
->>>>>
->>>>> It's because there's no easy way to get access to the drm_i915_private
->>>>> structure from here.  And I don't think this work needs to be in sync
->>>>> with the rest of the works in i915.
->>>>
->>>> Yeah I don't think it needs to be synchronised either. Was just thinking
->>>> if we really need to be creating a bunch of separate workqueues (one per
->>>> engine) for not much use, or instead could just add a backpointer to
->>>> either intel_wakeref or intel_runtime_pm. Latter already has rpm->kdev
->>>> so could plausably be replaced with rpm->i915.
->>>>
->>>> Actually, looking at intel_runtime_pm_init_early, you could get to i915
->>>> via wf->rpm and container_of.
->>>
->>> Yeah, I considered that, but using container_of() can be problematic
->>> when we're not sure where exactly the element is coming from.  My worry
->>> was this:
->>>
->>> int intel_engine_init__pm(struct intel_engine_cs *engine)
->>> {
->>> 	struct intel_runtime_pm *rpm = engine->uncore->rpm;
->>> 	int err;
->>>
->>> 	err = intel_wakeref_init(&engine->wakeref, rpm, &wf_ops);
->>> [...]
->>> }
->>>
->>> In this case, we're getting to __intel_wakeref_init() with an *rpm that
->>> is coming from an intel_uncore structure and not from
->>> drm_i915_private...
->>
->> Right. Yes I agree that would be a flaky/questionable design, even if it
->> worked in practice. I'd just replace rpm->dev with rpm->i915 then. Not
->> feeling *that* strongly about it, but it just feels a waste to create a
->> bunch of workqueues for this.
-> 
-> How many engines do we typically have at runtime?
-
-Currently not that many I think. There were plans for like 18 per tile, 
-but I don't think it will be happening.
-
-> I was looking into getting the i915 struct via rpm->kdev and
-> container_of(), but it's not trivial either.  This is how we initialize
-> rpm->kdev:
-> 
-> void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm)
-> {
-> 	struct drm_i915_private *i915 =
-> 			container_of(rpm, struct drm_i915_private, runtime_pm);
-> 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> 	struct device *kdev = &pdev->dev;
-> 
-> 	rpm->kdev = kdev;
-> [...]
-> }
-> 
-> So, rpm->kdev actually points to the device structure from inside a
-> pci_dev.  i915->drm.dev points to the same device structure, but we
-> lose the pointer to the element inside i915, so there's no way to trace
-> it back.  We keep only the pointer to the element inside pci_dev.
-> 
-> Or did you mean that we should change the kdev pointer to an i915
-> pointer in intel_runtime_pm and derive kdev when needed? This would
-> cause some code shuffle.  And, currently, the wakeref code doesn't have
-> any references to drm_i915_private at all (or even to drm for that
-> matter)...
-
-Yes, that's what I meant. Struct intel_runtime_pm is only intimately 
-tied to i915 via lmem_userfault_list so I think conceptually it is fine. 
-But I haven't look at the level of churn it would require.
-
-> I don't know.  We could go either way.  I think it depends mostly on
-> how many engines instances we typically have, so we can weigh runtime
-> resources vs code complexity...
-
-Or we just go with Tetsuo's approach of a global i915_wq. For me that 
-one is completely fine.
-
-Regards,
-
-Tvrtko
+Probably just vfio_iommufd_device_id().
