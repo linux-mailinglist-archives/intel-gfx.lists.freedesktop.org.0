@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E687709BA6
+	by mail.lfdr.de (Postfix) with ESMTPS id C1613709BA7
 	for <lists+intel-gfx@lfdr.de>; Fri, 19 May 2023 17:50:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 245D610E5B5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D943910E5B4;
 	Fri, 19 May 2023 15:49:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4074D10E545
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AAF210E55B
  for <intel-gfx@lists.freedesktop.org>; Fri, 19 May 2023 15:49:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1684511389; x=1716047389;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=qH0zra8MWjzW157TJu44lU37iW4JiKKiuB+5sr1EUSg=;
- b=W18MNvEj/ibS5knVfQKtYOKZamu0fVZupXNQw4HMvbr2B/DtH2PBSeAM
- 2pniACCFG8WxVRdRZ670CKRO03RAm70cSFC1gWUQ4Mu32Xroh2d1nx+bf
- R24imhw2n94ES6OxuJw45M5o9sLAGexFNk2HbrRg6Ro9J/tm4sp9unZ+B
- NBu7+c538mBK2c5RnE2WFmH8EAfpqf4PwXEDyOdC396eDFci/qGJzikf4
- XFvxIi/bSrx818tRvRSCxBoXFl9HiNupESBxqh1fOsLZFIt98N/vN5e39
- KhKywlGvqBZjwoH/Wxa+/gnoL5KShY43MsBmVSoD/OvLSPJWKtcODl0CN A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="354759568"
-X-IronPort-AV: E=Sophos;i="6.00,177,1681196400"; d="scan'208";a="354759568"
+ bh=5foPLz3hX8+kvLpqF2fF0iQy+5fR4swqGym2SoYWqnQ=;
+ b=Q3+4hB3KJivsVxgNZJTJ4eEkvKz27w/tWpBkmMOyilNfFBtuZ8kMdi6s
+ 0T+1Ew5oy3teYWreqsWu+56IFGT6tj6WXpl3b8A8YZkRuzE4fcU7BBXVo
+ B3iD3Llc2dJJMzvoTvt6TXtQzAceSt8YU+lxHXVerLR9Z8S0juH50RAaH
+ agsftEQYTZmeQU014Od/QcLolEbXWmnxzmdO83VeJ0eME6ygBAt/ZUuaq
+ vDIq2Stk36+KdbFa7HxPFMovzaxCwuQl2KiwqwDUi5QvQYb0pXwb5DP7n
+ kpQUwTsA57vCuHyeSW9aSYDmh5S9OwyLfidAky8X6zXrVwMl++2F2VXpf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="354759569"
+X-IronPort-AV: E=Sophos;i="6.00,177,1681196400"; d="scan'208";a="354759569"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 May 2023 08:49:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="1032652189"
-X-IronPort-AV: E=Sophos;i="6.00,177,1681196400"; d="scan'208";a="1032652189"
+X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="1032652190"
+X-IronPort-AV: E=Sophos;i="6.00,177,1681196400"; d="scan'208";a="1032652190"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 May 2023 08:49:47 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 May 2023 08:49:43 -0700
-Message-Id: <20230519154946.3751971-5-umesh.nerlige.ramappa@intel.com>
+Date: Fri, 19 May 2023 08:49:44 -0700
+Message-Id: <20230519154946.3751971-6-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20230519154946.3751971-1-umesh.nerlige.ramappa@intel.com>
 References: <20230519154946.3751971-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v7 4/7] drm/i915/pmu: Transform PMU parking code
- to be GT based
+Subject: [Intel-gfx] [PATCH v7 5/7] drm/i915/pmu: Add reference counting to
+ the sampling timer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,123 +63,77 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Trivial prep work for full multi-tile enablement later.
+We do not want to have timers per tile and waste CPU cycles and energy via
+multiple wake-up sources, for a relatively un-important task of PMU
+sampling, so keeping a single timer works well. But we also do not want
+the first GT which goes idle to turn off the timer.
+
+Add some reference counting, via a mask of unparked GTs, to solve this.
+
+v2: Drop the check for unparked in i915_sample (Ashutosh)
+v3: Revert v2 (Tvrtko)
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_pm.c |  4 ++--
- drivers/gpu/drm/i915/i915_pmu.c       | 16 ++++++++--------
- drivers/gpu/drm/i915/i915_pmu.h       |  9 +++++----
- 3 files changed, 15 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/i915_pmu.c | 12 ++++++++++--
+ drivers/gpu/drm/i915/i915_pmu.h |  4 ++++
+ 2 files changed, 14 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index e02cb90723ae..c2e69bafd02b 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -87,7 +87,7 @@ static int __gt_unpark(struct intel_wakeref *wf)
- 
- 	intel_rc6_unpark(&gt->rc6);
- 	intel_rps_unpark(&gt->rps);
--	i915_pmu_gt_unparked(i915);
-+	i915_pmu_gt_unparked(gt);
- 	intel_guc_busyness_unpark(gt);
- 
- 	intel_gt_unpark_requests(gt);
-@@ -109,7 +109,7 @@ static int __gt_park(struct intel_wakeref *wf)
- 
- 	intel_guc_busyness_park(gt);
- 	i915_vma_parked(gt);
--	i915_pmu_gt_parked(i915);
-+	i915_pmu_gt_parked(gt);
- 	intel_rps_park(&gt->rps);
- 	intel_rc6_park(&gt->rc6);
- 
 diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 6d594f67f365..890693fdaf9e 100644
+index 890693fdaf9e..ecb57a94143e 100644
 --- a/drivers/gpu/drm/i915/i915_pmu.c
 +++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -228,11 +228,11 @@ static void init_rc6(struct i915_pmu *pmu)
- 	}
- }
- 
--static void park_rc6(struct drm_i915_private *i915)
-+static void park_rc6(struct intel_gt *gt)
- {
--	struct i915_pmu *pmu = &i915->pmu;
-+	struct i915_pmu *pmu = &gt->i915->pmu;
- 
--	pmu->sample[__I915_SAMPLE_RC6].cur = __get_rc6(to_gt(i915));
-+	pmu->sample[__I915_SAMPLE_RC6].cur = __get_rc6(gt);
- 	pmu->sleep_last = ktime_get_raw();
- }
- 
-@@ -247,16 +247,16 @@ static void __i915_pmu_maybe_start_timer(struct i915_pmu *pmu)
- 	}
- }
- 
--void i915_pmu_gt_parked(struct drm_i915_private *i915)
-+void i915_pmu_gt_parked(struct intel_gt *gt)
- {
--	struct i915_pmu *pmu = &i915->pmu;
-+	struct i915_pmu *pmu = &gt->i915->pmu;
- 
- 	if (!pmu->base.event_init)
- 		return;
- 
- 	spin_lock_irq(&pmu->lock);
- 
--	park_rc6(i915);
-+	park_rc6(gt);
- 
- 	/*
+@@ -262,7 +262,9 @@ void i915_pmu_gt_parked(struct intel_gt *gt)
  	 * Signal sampling timer to stop if only engine events are enabled and
-@@ -267,9 +267,9 @@ void i915_pmu_gt_parked(struct drm_i915_private *i915)
+ 	 * GPU went idle.
+ 	 */
+-	pmu->timer_enabled = pmu_needs_timer(pmu, false);
++	pmu->unparked &= ~BIT(gt->info.id);
++	if (pmu->unparked == 0)
++		pmu->timer_enabled = pmu_needs_timer(pmu, false);
+ 
  	spin_unlock_irq(&pmu->lock);
  }
+@@ -279,7 +281,10 @@ void i915_pmu_gt_unparked(struct intel_gt *gt)
+ 	/*
+ 	 * Re-enable sampling timer when GPU goes active.
+ 	 */
+-	__i915_pmu_maybe_start_timer(pmu);
++	if (pmu->unparked == 0)
++		__i915_pmu_maybe_start_timer(pmu);
++
++	pmu->unparked |= BIT(gt->info.id);
  
--void i915_pmu_gt_unparked(struct drm_i915_private *i915)
-+void i915_pmu_gt_unparked(struct intel_gt *gt)
- {
--	struct i915_pmu *pmu = &i915->pmu;
-+	struct i915_pmu *pmu = &gt->i915->pmu;
+ 	spin_unlock_irq(&pmu->lock);
+ }
+@@ -449,6 +454,9 @@ static enum hrtimer_restart i915_sample(struct hrtimer *hrtimer)
+ 	 */
  
- 	if (!pmu->base.event_init)
- 		return;
+ 	for_each_gt(gt, i915, i) {
++		if (!(pmu->unparked & BIT(i)))
++			continue;
++
+ 		engines_sample(gt, period_ns);
+ 
+ 		if (i == 0) /* FIXME */
 diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
-index c30f43319a78..a686fd7ccedf 100644
+index a686fd7ccedf..3a811266ac6a 100644
 --- a/drivers/gpu/drm/i915/i915_pmu.h
 +++ b/drivers/gpu/drm/i915/i915_pmu.h
-@@ -13,6 +13,7 @@
- #include <uapi/drm/i915_drm.h>
- 
- struct drm_i915_private;
-+struct intel_gt;
- 
- /*
-  * Non-engine events that we need to track enabled-disabled transition and
-@@ -151,15 +152,15 @@ int i915_pmu_init(void);
- void i915_pmu_exit(void);
- void i915_pmu_register(struct drm_i915_private *i915);
- void i915_pmu_unregister(struct drm_i915_private *i915);
--void i915_pmu_gt_parked(struct drm_i915_private *i915);
--void i915_pmu_gt_unparked(struct drm_i915_private *i915);
-+void i915_pmu_gt_parked(struct intel_gt *gt);
-+void i915_pmu_gt_unparked(struct intel_gt *gt);
- #else
- static inline int i915_pmu_init(void) { return 0; }
- static inline void i915_pmu_exit(void) {}
- static inline void i915_pmu_register(struct drm_i915_private *i915) {}
- static inline void i915_pmu_unregister(struct drm_i915_private *i915) {}
--static inline void i915_pmu_gt_parked(struct drm_i915_private *i915) {}
--static inline void i915_pmu_gt_unparked(struct drm_i915_private *i915) {}
-+static inline void i915_pmu_gt_parked(struct intel_gt *gt) {}
-+static inline void i915_pmu_gt_unparked(struct intel_gt *gt) {}
- #endif
- 
- #endif
+@@ -76,6 +76,10 @@ struct i915_pmu {
+ 	 * @lock: Lock protecting enable mask and ref count handling.
+ 	 */
+ 	spinlock_t lock;
++	/**
++	 * @unparked: GT unparked mask.
++	 */
++	unsigned int unparked;
+ 	/**
+ 	 * @timer: Timer for internal i915 PMU sampling.
+ 	 */
 -- 
 2.36.1
 
