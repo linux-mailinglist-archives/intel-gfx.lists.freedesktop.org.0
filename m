@@ -1,62 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0755709133
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 May 2023 10:02:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC85A7093E9
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 May 2023 11:44:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10EBE10E5DE;
-	Fri, 19 May 2023 08:02:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14C4F10E5ED;
+	Fri, 19 May 2023 09:44:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F174410E5DE;
- Fri, 19 May 2023 08:02:21 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D81710E14E;
+ Fri, 19 May 2023 09:44:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684483342; x=1716019342;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=pvHX4FU1nJIom3R41Op48ezQM67NpZ1J708tdnbqrLc=;
- b=XaN+P0GbDFGqBGuEm81xh8OpU7h765KeWKMpjF2fob32gA2X3vqv4UlY
- 58jsI6f8kknrN6GElpMvnH3dFwq2Y1ChSL2VbvCKLTZ4myi2fLGOIr4/L
- L2QHVNKN8QZcAT1GkrBO+ZqL6BOY5h1EHqRkv+SFUTLO/A8aTshH1VEiw
- 1fV4BeV0OxhQU9vRBN35IEdqpZfwm8tS0jxWtvoqn+H9pnXo2rjAnpL7Z
- G22fEz2yhNy2YRoLqf8RBth7/lX4W8vsz7NsMr7CFkOtR7RJvIR9NGMxt
- XgZzBIYwlnFJBS26ZhekrAqErsECWylwSiQyc9dIQ2/COiw0VSBv6GdY+ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="418003651"
-X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="418003651"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 01:02:05 -0700
+ t=1684489450; x=1716025450;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=k5ku8i7es5180fOXSDF5pK6pr/GNk+1BOW4h831KSYg=;
+ b=EktJXAPYSGnBmoYmJqf5HgoYFLANs2UaomfTBgeBs0o2wp2RSan6ef6W
+ VT2lYsBLX+8trR+uaKuk1OskKBZ7LqZVcxJ2P4y5MX3H8szwUw9VS35C0
+ OommRq04+G/TPsa4UpyjKp3b0qiHZqolVIMlF8cny7a+seVTwI4SyNwFC
+ 7JHvIiDiV5MOnRnY1C+YY1k4QCGDA+roi8ZI8t7F9vvb87xyYdX1lZ4kD
+ Gn8/JgcUFs9Sy28tT/dzNS4luC5Mj2dsn6xN/bZMqEPG4+gZWNt7zIi/D
+ InhkYRVEQeM5PhbdgUGGCCfSjs6KV2tHBGhIYsEW4ttD0vM3ozMJOlCO0 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="355557012"
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="355557012"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2023 02:44:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="702453300"
-X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="702453300"
-Received: from aconnerx-mobl.ger.corp.intel.com (HELO [10.213.202.170])
- ([10.213.202.170])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 01:02:03 -0700
-Message-ID: <da194d3a-3ecd-cb6b-a7d1-6e4a9d20b569@linux.intel.com>
-Date: Fri, 19 May 2023 09:02:01 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="876790171"
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="876790171"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.31.132])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2023 02:44:05 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org,
+	Andrzej Hajda <andrzej.hajda@intel.com>
+Date: Fri, 19 May 2023 11:43:43 +0200
+Message-Id: <20230519094343.157002-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <d8b73f88-d4aa-ed7e-09ea-5ad5ee803893@I-love.SAKURA.ne.jp>
- <5bbe7093-791e-5653-850b-aea343db3f3f@I-love.SAKURA.ne.jp>
- <87a0ab95-d3d2-91b3-1e89-aca3f86a99f5@I-love.SAKURA.ne.jp>
- <173905bb-78d5-4952-cc31-ab0d5697a169@I-love.SAKURA.ne.jp>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <173905bb-78d5-4952-cc31-ab0d5697a169@I-love.SAKURA.ne.jp>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: avoid flush_scheduled_work()
- usage
+Subject: [Intel-gfx] [PATCH i-g-t v3] tests/i915: Exercise coherency of
+ mmapped frame buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,658 +58,363 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Visible glitches have been observed when running graphics applications on
+Linux under Xen hypervisor.  Those observations have been confirmed with
+failures from kms_pwrite_crc IGT test that verifies data coherency of DRM
+frame buffer objects using hardware CRC checksums calculated by display
+controllers, exposed to userspace via debugfs.  Since not all applications
+exhibit the issue, we need to exercise more methods than just pwrite in
+order to identify all affected processing paths.
 
-On 18/05/2023 15:44, Tetsuo Handa wrote:
-> Like commit c4f135d643823a86 ("workqueue: Wrap flush_workqueue() using a
-> macro") says, flush_scheduled_work() is dangerous and will be forbidden.
-> 
-> i915 became the last flush_scheduled_work() user, but developers cannot
-> find time for auditing which work items does this flush_scheduled_work()
-> need to wait.
-> 
-> Therefore, for now let's start with blind/mechanical conversion within
-> the whole drivers/gpu/drm/i915/ directory, based on an assumption that
-> i915 does not need to wait for work items outside of this directory.
-> 
-> Link: https://lkml.kernel.org/r/87sfeita1p.fsf@intel.com
-> Signed-off-by: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
-> Changes in v4:
->    Refreshed using drm-tip.git.
-> 
-> Changes in v3:
->    Refreshed using drm-tip.git, for commit 40053823baad ("drm/i915/display:
->    move modeset probe/remove functions to intel_display_driver.c") moved
->    flush_scheduled_work() from intel_display.c to intel_display_driver.c .
-> 
->    Please check the comment from Daniel Vetter at
->    https://lkml.kernel.org/r/ZDuntOkUeh0Eve8a@phenom.ffwll.local .
+Create a new test focused on exercising coherency of future scanout
+buffers populated over mmap.  Cover all available mmap methods and caching
+modes expected to be device coherent.
 
-I can't help with that display code assesment but in general the 
-approach with a driver global wq works for me.
+v3: Drop redundant prerequisite checks (Andrzej),
+  - if (condition) return; construct gives shorter code than
+    if (!condition) continue; (Andrzej),
+  - gem_has_lmem() implies gem_has_mmap_offset(), flatten related nested
+    conditions.
+v2: Drop unused functions -- left-overs from unsuccessful negative subtest
+    attempts requiring consistent crc mismatches in non-coherent modes,
+  - since all subtests now call igt_assert_crc_equal(), move it from
+    subtest bodies to an updated and renamed helper,
+  - drop "derived from ..." info from copyrights comment (Kamil),
+  - fix order of includes (Kamil),
+  - fix whitespace (Kamil),
+  - Cc: Bhanuprakash (Kamil).
 
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Link: https://gitlab.freedesktop.org/drm/intel/-/issues/7648
+Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com> # v2
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+Hi Andrzej,
 
-I haven't read the patch in detail, just one thing caught my eye which 
-is that we already have a workqueue named "i915" (see 
-i915_workqueues_init). So I'd suggest naming the one from this patch 
-"i915-global" or something. Just so it is clearer if/when debugging aids 
-start firing what is what.
+Your requested optimisations applied.  I've introduced one more
+optimisation -- see changelog.  Please confirm your R-b still applies.
 
-Regards,
+Thanks,
+Janusz
 
-Tvrtko
 
-> 
-> Changes in v2:
->    Add missing alloc_workqueue() failure check.
-> 
->   drivers/gpu/drm/i915/display/intel_display.c   |  2 +-
->   .../drm/i915/display/intel_display_driver.c    |  2 +-
->   drivers/gpu/drm/i915/display/intel_dmc.c       |  2 +-
->   drivers/gpu/drm/i915/display/intel_dp.c        |  2 +-
->   .../drm/i915/display/intel_dp_link_training.c  |  2 +-
->   drivers/gpu/drm/i915/display/intel_drrs.c      |  2 +-
->   drivers/gpu/drm/i915/display/intel_fbc.c       |  2 +-
->   drivers/gpu/drm/i915/display/intel_fbdev.c     |  2 +-
->   drivers/gpu/drm/i915/display/intel_hdcp.c      | 18 +++++++++---------
->   drivers/gpu/drm/i915/display/intel_hotplug.c   | 12 ++++++------
->   drivers/gpu/drm/i915/display/intel_opregion.c  |  2 +-
->   drivers/gpu/drm/i915/display/intel_pps.c       |  2 +-
->   drivers/gpu/drm/i915/display/intel_psr.c       |  6 +++---
->   .../drm/i915/gt/intel_execlists_submission.c   |  4 ++--
->   drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c |  8 ++++----
->   drivers/gpu/drm/i915/gt/intel_gt_irq.c         |  2 +-
->   drivers/gpu/drm/i915/gt/intel_gt_requests.c    | 10 +++++-----
->   drivers/gpu/drm/i915/gt/intel_reset.c          |  2 +-
->   drivers/gpu/drm/i915/gt/intel_rps.c            | 14 +++++++-------
->   drivers/gpu/drm/i915/gt/selftest_engine_cs.c   |  2 +-
->   drivers/gpu/drm/i915/i915_drv.h                |  1 +
->   drivers/gpu/drm/i915/i915_module.c             |  7 +++++++
->   drivers/gpu/drm/i915/i915_request.c            |  2 +-
->   drivers/gpu/drm/i915/intel_wakeref.c           |  4 +++-
->   drivers/gpu/drm/i915/selftests/i915_sw_fence.c |  4 +++-
->   25 files changed, 64 insertions(+), 52 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 09320e14d75c..5f1ba9c908cb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7145,7 +7145,7 @@ intel_atomic_commit_ready(struct i915_sw_fence *fence,
->   				&to_i915(state->base.dev)->display.atomic_helper;
->   
->   			if (llist_add(&state->freed, &helper->free_list))
-> -				schedule_work(&helper->free_work);
-> +				queue_work(i915_wq, &helper->free_work);
->   			break;
->   		}
->   	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 60ce10fc7205..a20a9cfaab0e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -435,7 +435,7 @@ void intel_display_driver_remove_noirq(struct drm_i915_private *i915)
->   	intel_unregister_dsm_handler();
->   
->   	/* flush any delayed tasks or pending work */
-> -	flush_scheduled_work();
-> +	flush_workqueue(i915_wq);
->   
->   	intel_hdcp_component_fini(i915);
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> index 8a88de67ff0a..57d015006784 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -1057,7 +1057,7 @@ void intel_dmc_init(struct drm_i915_private *i915)
->   	i915->display.dmc.dmc = dmc;
->   
->   	drm_dbg_kms(&i915->drm, "Loading %s\n", dmc->fw_path);
-> -	schedule_work(&dmc->work);
-> +	queue_work(i915_wq, &dmc->work);
->   
->   	return;
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 4bec8cd7979f..4782bdfc7c61 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5251,7 +5251,7 @@ static void intel_dp_oob_hotplug_event(struct drm_connector *connector)
->   	spin_lock_irq(&i915->irq_lock);
->   	i915->display.hotplug.event_bits |= BIT(encoder->hpd_pin);
->   	spin_unlock_irq(&i915->irq_lock);
-> -	queue_delayed_work(system_wq, &i915->display.hotplug.hotplug_work, 0);
-> +	queue_delayed_work(i915_wq, &i915->display.hotplug.hotplug_work, 0);
->   }
->   
->   static const struct drm_connector_funcs intel_dp_connector_funcs = {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index 0952a707358c..06859fb6f30e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -1081,7 +1081,7 @@ static void intel_dp_schedule_fallback_link_training(struct intel_dp *intel_dp,
->   	}
->   
->   	/* Schedule a Hotplug Uevent to userspace to start modeset */
-> -	schedule_work(&intel_connector->modeset_retry_work);
-> +	queue_work(i915_wq, &intel_connector->modeset_retry_work);
->   }
->   
->   /* Perform the link training on all LTTPRs and the DPRX on a link. */
-> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-> index 760e63cdc0c8..8bacb734ad78 100644
-> --- a/drivers/gpu/drm/i915/display/intel_drrs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-> @@ -111,7 +111,7 @@ static void intel_drrs_set_state(struct intel_crtc *crtc,
->   
->   static void intel_drrs_schedule_work(struct intel_crtc *crtc)
->   {
-> -	mod_delayed_work(system_wq, &crtc->drrs.work, msecs_to_jiffies(1000));
-> +	mod_delayed_work(i915_wq, &crtc->drrs.work, msecs_to_jiffies(1000));
->   }
->   
->   static unsigned int intel_drrs_frontbuffer_bits(const struct intel_crtc_state *crtc_state)
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index 11bb8cf9c9d0..ba2c5b5c6e14 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -1600,7 +1600,7 @@ static void __intel_fbc_handle_fifo_underrun_irq(struct intel_fbc *fbc)
->   	if (READ_ONCE(fbc->underrun_detected))
->   		return;
->   
-> -	schedule_work(&fbc->underrun_work);
-> +	queue_work(i915_wq, &fbc->underrun_work);
->   }
->   
->   /**
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> index aab1ae74a8f7..e093270b6a4c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -689,7 +689,7 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
->   			/* Don't block our own workqueue as this can
->   			 * be run in parallel with other i915.ko tasks.
->   			 */
-> -			schedule_work(&dev_priv->display.fbdev.suspend_work);
-> +			queue_work(i915_wq, &dev_priv->display.fbdev.suspend_work);
->   			return;
->   		}
->   	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index dd539106ee5a..d981defc8b0a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -1001,7 +1001,7 @@ static void intel_hdcp_update_value(struct intel_connector *connector,
->   	hdcp->value = value;
->   	if (update_property) {
->   		drm_connector_get(&connector->base);
-> -		schedule_work(&hdcp->prop_work);
-> +		queue_work(i915_wq, &hdcp->prop_work);
->   	}
->   }
->   
-> @@ -2095,11 +2095,11 @@ static void intel_hdcp_check_work(struct work_struct *work)
->   		return;
->   
->   	if (!intel_hdcp2_check_link(connector))
-> -		schedule_delayed_work(&hdcp->check_work,
-> -				      DRM_HDCP2_CHECK_PERIOD_MS);
-> +		queue_delayed_work(i915_wq, &hdcp->check_work,
-> +				   DRM_HDCP2_CHECK_PERIOD_MS);
->   	else if (!intel_hdcp_check_link(connector))
-> -		schedule_delayed_work(&hdcp->check_work,
-> -				      DRM_HDCP_CHECK_PERIOD_MS);
-> +		queue_delayed_work(i915_wq, &hdcp->check_work,
-> +				   DRM_HDCP_CHECK_PERIOD_MS);
->   }
->   
->   static int i915_hdcp_component_bind(struct device *i915_kdev,
-> @@ -2398,7 +2398,7 @@ int intel_hdcp_enable(struct intel_atomic_state *state,
->   	}
->   
->   	if (!ret) {
-> -		schedule_delayed_work(&hdcp->check_work, check_link_interval);
-> +		queue_delayed_work(i915_wq, &hdcp->check_work, check_link_interval);
->   		intel_hdcp_update_value(connector,
->   					DRM_MODE_CONTENT_PROTECTION_ENABLED,
->   					true);
-> @@ -2473,7 +2473,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
->   		mutex_lock(&hdcp->mutex);
->   		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
->   		drm_connector_get(&connector->base);
-> -		schedule_work(&hdcp->prop_work);
-> +		queue_work(i915_wq, &hdcp->prop_work);
->   		mutex_unlock(&hdcp->mutex);
->   	}
->   
-> @@ -2490,7 +2490,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
->   		 */
->   		if (!desired_and_not_enabled && !content_protection_type_changed) {
->   			drm_connector_get(&connector->base);
-> -			schedule_work(&hdcp->prop_work);
-> +			queue_work(i915_wq, &hdcp->prop_work);
->   		}
->   	}
->   
-> @@ -2609,5 +2609,5 @@ void intel_hdcp_handle_cp_irq(struct intel_connector *connector)
->   	atomic_inc(&connector->hdcp.cp_irq_count);
->   	wake_up_all(&connector->hdcp.cp_irq_queue);
->   
-> -	schedule_delayed_work(&hdcp->check_work, 0);
-> +	queue_delayed_work(i915_wq, &hdcp->check_work, 0);
->   }
-> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> index 23a5e1a875f1..8247b3e02968 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> @@ -212,7 +212,7 @@ intel_hpd_irq_storm_switch_to_polling(struct drm_i915_private *dev_priv)
->   	/* Enable polling and queue hotplug re-enabling. */
->   	if (hpd_disabled) {
->   		drm_kms_helper_poll_enable(&dev_priv->drm);
-> -		mod_delayed_work(system_wq, &dev_priv->display.hotplug.reenable_work,
-> +		mod_delayed_work(i915_wq, &dev_priv->display.hotplug.reenable_work,
->   				 msecs_to_jiffies(HPD_STORM_REENABLE_DELAY));
->   	}
->   }
-> @@ -339,7 +339,7 @@ static void i915_digport_work_func(struct work_struct *work)
->   		spin_lock_irq(&dev_priv->irq_lock);
->   		dev_priv->display.hotplug.event_bits |= old_bits;
->   		spin_unlock_irq(&dev_priv->irq_lock);
-> -		queue_delayed_work(system_wq, &dev_priv->display.hotplug.hotplug_work, 0);
-> +		queue_delayed_work(i915_wq, &dev_priv->display.hotplug.hotplug_work, 0);
->   	}
->   }
->   
-> @@ -446,7 +446,7 @@ static void i915_hotplug_work_func(struct work_struct *work)
->   		dev_priv->display.hotplug.retry_bits |= retry;
->   		spin_unlock_irq(&dev_priv->irq_lock);
->   
-> -		mod_delayed_work(system_wq, &dev_priv->display.hotplug.hotplug_work,
-> +		mod_delayed_work(i915_wq, &dev_priv->display.hotplug.hotplug_work,
->   				 msecs_to_jiffies(HPD_RETRY_DELAY));
->   	}
->   }
-> @@ -577,7 +577,7 @@ void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
->   	if (queue_dig)
->   		queue_work(dev_priv->display.hotplug.dp_wq, &dev_priv->display.hotplug.dig_port_work);
->   	if (queue_hp)
-> -		queue_delayed_work(system_wq, &dev_priv->display.hotplug.hotplug_work, 0);
-> +		queue_delayed_work(i915_wq, &dev_priv->display.hotplug.hotplug_work, 0);
->   }
->   
->   /**
-> @@ -687,7 +687,7 @@ void intel_hpd_poll_enable(struct drm_i915_private *dev_priv)
->   	 * As well, there's no issue if we race here since we always reschedule
->   	 * this worker anyway
->   	 */
-> -	schedule_work(&dev_priv->display.hotplug.poll_init_work);
-> +	queue_work(i915_wq, &dev_priv->display.hotplug.poll_init_work);
->   }
->   
->   /**
-> @@ -715,7 +715,7 @@ void intel_hpd_poll_disable(struct drm_i915_private *dev_priv)
->   		return;
->   
->   	WRITE_ONCE(dev_priv->display.hotplug.poll_enabled, false);
-> -	schedule_work(&dev_priv->display.hotplug.poll_init_work);
-> +	queue_work(i915_wq, &dev_priv->display.hotplug.poll_init_work);
->   }
->   
->   void intel_hpd_init_early(struct drm_i915_private *i915)
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> index b7973a05d022..24c0a4abcc4d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -635,7 +635,7 @@ static void asle_work(struct work_struct *work)
->   void intel_opregion_asle_intr(struct drm_i915_private *dev_priv)
->   {
->   	if (dev_priv->display.opregion.asle)
-> -		schedule_work(&dev_priv->display.opregion.asle_work);
-> +		queue_work(i915_wq, &dev_priv->display.opregion.asle_work);
->   }
->   
->   #define ACPI_EV_DISPLAY_SWITCH (1<<0)
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index 5e7ba594e7e7..805bd0442d19 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -882,7 +882,7 @@ static void edp_panel_vdd_schedule_off(struct intel_dp *intel_dp)
->   	 * operations.
->   	 */
->   	delay = msecs_to_jiffies(intel_dp->pps.panel_power_cycle_delay * 5);
-> -	schedule_delayed_work(&intel_dp->pps.panel_vdd_work, delay);
-> +	queue_delayed_work(i915_wq, &intel_dp->pps.panel_vdd_work, delay);
->   }
->   
->   /*
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index ea0389c5f656..346ec839ab6c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -341,7 +341,7 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
->   		 */
->   		intel_de_rmw(dev_priv, imr_reg, 0, psr_irq_psr_error_bit_get(intel_dp));
->   
-> -		schedule_work(&intel_dp->psr.work);
-> +		queue_work(i915_wq, &intel_dp->psr.work);
->   	}
->   }
->   
-> @@ -2453,7 +2453,7 @@ tgl_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuffer_bits,
->   		return;
->   
->   	tgl_psr2_enable_dc3co(intel_dp);
-> -	mod_delayed_work(system_wq, &intel_dp->psr.dc3co_work,
-> +	mod_delayed_work(i915_wq, &intel_dp->psr.dc3co_work,
->   			 intel_dp->psr.dc3co_exit_delay);
->   }
->   
-> @@ -2493,7 +2493,7 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
->   		psr_force_hw_tracking_exit(intel_dp);
->   
->   		if (!intel_dp->psr.active && !intel_dp->psr.busy_frontbuffer_bits)
-> -			schedule_work(&intel_dp->psr.work);
-> +			queue_work(i915_wq, &intel_dp->psr.work);
->   	}
->   }
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> index 750326434677..e10d285ddb2c 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -2375,7 +2375,7 @@ static void execlists_capture(struct intel_engine_cs *engine)
->   		goto err_rq;
->   
->   	INIT_WORK(&cap->work, execlists_capture_work);
-> -	schedule_work(&cap->work);
-> +	queue_work(i915_wq, &cap->work);
->   	return;
->   
->   err_rq:
-> @@ -3680,7 +3680,7 @@ static void virtual_context_destroy(struct kref *kref)
->   	 * lock, we can delegate the free of the engine to an RCU worker.
->   	 */
->   	INIT_RCU_WORK(&ve->rcu, rcu_virtual_context_destroy);
-> -	queue_rcu_work(system_wq, &ve->rcu);
-> +	queue_rcu_work(i915_wq, &ve->rcu);
->   }
->   
->   static void virtual_engine_initial_hint(struct virtual_engine *ve)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-> index cadfd85785b1..54aa90dff33f 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
-> @@ -90,8 +90,8 @@ static void pool_free_work(struct work_struct *wrk)
->   		container_of(wrk, typeof(*pool), work.work);
->   
->   	if (pool_free_older_than(pool, HZ))
-> -		schedule_delayed_work(&pool->work,
-> -				      round_jiffies_up_relative(HZ));
-> +		queue_delayed_work(i915_wq, &pool->work,
-> +				   round_jiffies_up_relative(HZ));
->   }
->   
->   static void pool_retire(struct i915_active *ref)
-> @@ -116,8 +116,8 @@ static void pool_retire(struct i915_active *ref)
->   	WRITE_ONCE(node->age, jiffies ?: 1); /* 0 reserved for active nodes */
->   	spin_unlock_irqrestore(&pool->lock, flags);
->   
-> -	schedule_delayed_work(&pool->work,
-> -			      round_jiffies_up_relative(HZ));
-> +	queue_delayed_work(i915_wq, &pool->work,
-> +			   round_jiffies_up_relative(HZ));
->   }
->   
->   void intel_gt_buffer_pool_mark_used(struct intel_gt_buffer_pool_node *node)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> index 8f888d36f16d..5b38e9d53e8d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> @@ -376,7 +376,7 @@ static void gen7_parity_error_irq_handler(struct intel_gt *gt, u32 iir)
->   	if (iir & GT_RENDER_L3_PARITY_ERROR_INTERRUPT)
->   		gt->i915->l3_parity.which_slice |= 1 << 0;
->   
-> -	schedule_work(&gt->i915->l3_parity.error_work);
-> +	queue_work(i915_wq, &gt->i915->l3_parity.error_work);
->   }
->   
->   void gen6_gt_irq_handler(struct intel_gt *gt, u32 gt_iir)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> index 1dfd01668c79..683dc55d9191 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> @@ -116,7 +116,7 @@ void intel_engine_add_retire(struct intel_engine_cs *engine,
->   	GEM_BUG_ON(intel_engine_is_virtual(engine));
->   
->   	if (add_retire(engine, tl))
-> -		schedule_work(&engine->retire_work);
-> +		queue_work(i915_wq, &engine->retire_work);
->   }
->   
->   void intel_engine_init_retire(struct intel_engine_cs *engine)
-> @@ -207,8 +207,8 @@ static void retire_work_handler(struct work_struct *work)
->   	struct intel_gt *gt =
->   		container_of(work, typeof(*gt), requests.retire_work.work);
->   
-> -	schedule_delayed_work(&gt->requests.retire_work,
-> -			      round_jiffies_up_relative(HZ));
-> +	queue_delayed_work(i915_wq, &gt->requests.retire_work,
-> +			   round_jiffies_up_relative(HZ));
->   	intel_gt_retire_requests(gt);
->   }
->   
-> @@ -224,8 +224,8 @@ void intel_gt_park_requests(struct intel_gt *gt)
->   
->   void intel_gt_unpark_requests(struct intel_gt *gt)
->   {
-> -	schedule_delayed_work(&gt->requests.retire_work,
-> -			      round_jiffies_up_relative(HZ));
-> +	queue_delayed_work(i915_wq, &gt->requests.retire_work,
-> +			   round_jiffies_up_relative(HZ));
->   }
->   
->   void intel_gt_fini_requests(struct intel_gt *gt)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index 195ff72d7a14..f4e986f4c7c9 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -1625,7 +1625,7 @@ void __intel_init_wedge(struct intel_wedge_me *w,
->   	w->name = name;
->   
->   	INIT_DELAYED_WORK_ONSTACK(&w->work, intel_wedge_me);
-> -	schedule_delayed_work(&w->work, timeout);
-> +	queue_delayed_work(i915_wq, &w->work, timeout);
->   }
->   
->   void __intel_fini_wedge(struct intel_wedge_me *w)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> index e68a99205599..9221d88118e2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> @@ -133,12 +133,12 @@ static void rps_timer(struct timer_list *t)
->   		    rps->cur_freq < rps->max_freq_softlimit) {
->   			rps->pm_iir |= GEN6_PM_RP_UP_THRESHOLD;
->   			rps->pm_interval = 1;
-> -			schedule_work(&rps->work);
-> +			queue_work(i915_wq, &rps->work);
->   		} else if (100 * busy < rps->power.down_threshold * dt &&
->   			   rps->cur_freq > rps->min_freq_softlimit) {
->   			rps->pm_iir |= GEN6_PM_RP_DOWN_THRESHOLD;
->   			rps->pm_interval = 1;
-> -			schedule_work(&rps->work);
-> +			queue_work(i915_wq, &rps->work);
->   		} else {
->   			rps->last_adj = 0;
->   		}
-> @@ -973,7 +973,7 @@ static int rps_set_boost_freq(struct intel_rps *rps, u32 val)
->   	}
->   	mutex_unlock(&rps->lock);
->   	if (boost)
-> -		schedule_work(&rps->work);
-> +		queue_work(i915_wq, &rps->work);
->   
->   	return 0;
->   }
-> @@ -1025,7 +1025,7 @@ void intel_rps_boost(struct i915_request *rq)
->   			if (!atomic_fetch_inc(&slpc->num_waiters)) {
->   				GT_TRACE(rps_to_gt(rps), "boost fence:%llx:%llx\n",
->   					 rq->fence.context, rq->fence.seqno);
-> -				schedule_work(&slpc->boost_work);
-> +				queue_work(i915_wq, &slpc->boost_work);
->   			}
->   
->   			return;
-> @@ -1041,7 +1041,7 @@ void intel_rps_boost(struct i915_request *rq)
->   			 rq->fence.context, rq->fence.seqno);
->   
->   		if (READ_ONCE(rps->cur_freq) < rps->boost_freq)
-> -			schedule_work(&rps->work);
-> +			queue_work(i915_wq, &rps->work);
->   
->   		WRITE_ONCE(rps->boosts, rps->boosts + 1); /* debug only */
->   	}
-> @@ -1900,7 +1900,7 @@ void gen11_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
->   	gen6_gt_pm_mask_irq(gt, events);
->   
->   	rps->pm_iir |= events;
-> -	schedule_work(&rps->work);
-> +	queue_work(i915_wq, &rps->work);
->   }
->   
->   void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
-> @@ -1917,7 +1917,7 @@ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
->   		gen6_gt_pm_mask_irq(gt, events);
->   		rps->pm_iir |= events;
->   
-> -		schedule_work(&rps->work);
-> +		queue_work(i915_wq, &rps->work);
->   		spin_unlock(gt->irq_lock);
->   	}
->   
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_cs.c b/drivers/gpu/drm/i915/gt/selftest_engine_cs.c
-> index 542ce6d2de19..6938b5661f72 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_cs.c
-> @@ -27,7 +27,7 @@ static void perf_begin(struct intel_gt *gt)
->   
->   	/* Boost gpufreq to max [waitboost] and keep it fixed */
->   	atomic_inc(&gt->rps.num_waiters);
-> -	schedule_work(&gt->rps.work);
-> +	queue_work(i915_wq, &gt->rps.work);
->   	flush_work(&gt->rps.work);
->   }
->   
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 14c5338c96a6..18bafa694c35 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -931,4 +931,5 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->   #define HAS_LMEMBAR_SMEM_STOLEN(i915) (!HAS_LMEM(i915) && \
->   				       GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
->   
-> +extern struct workqueue_struct *i915_wq;
->   #endif
-> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
-> index 65acd7bf75d0..cf54373c33ba 100644
-> --- a/drivers/gpu/drm/i915/i915_module.c
-> +++ b/drivers/gpu/drm/i915/i915_module.c
-> @@ -19,6 +19,8 @@
->   #include "i915_vma.h"
->   #include "i915_vma_resource.h"
->   
-> +struct workqueue_struct *i915_wq;
-> +
->   static int i915_check_nomodeset(void)
->   {
->   	bool use_kms = true;
-> @@ -79,6 +81,9 @@ static int __init i915_init(void)
->   {
->   	int err, i;
->   
-> +	i915_wq = alloc_workqueue("i915", 0, 0);
-> +	if (!i915_wq)
-> +		return -ENOMEM;
->   	for (i = 0; i < ARRAY_SIZE(init_funcs); i++) {
->   		err = init_funcs[i].init();
->   		if (err < 0) {
-> @@ -86,6 +91,7 @@ static int __init i915_init(void)
->   				if (init_funcs[i].exit)
->   					init_funcs[i].exit();
->   			}
-> +			destroy_workqueue(i915_wq);
->   			return err;
->   		} else if (err > 0) {
->   			/*
-> @@ -113,6 +119,7 @@ static void __exit i915_exit(void)
->   		if (init_funcs[i].exit)
->   			init_funcs[i].exit();
->   	}
-> +	destroy_workqueue(i915_wq);
->   }
->   
->   module_init(i915_init);
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index 630a732aaecc..c4fc7b6f740c 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -290,7 +290,7 @@ static enum hrtimer_restart __rq_watchdog_expired(struct hrtimer *hrtimer)
->   
->   	if (!i915_request_completed(rq)) {
->   		if (llist_add(&rq->watchdog.link, &gt->watchdog.list))
-> -			schedule_work(&gt->watchdog.work);
-> +			queue_work(i915_wq, &gt->watchdog.work);
->   	} else {
->   		i915_request_put(rq);
->   	}
-> diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
-> index dfd87d082218..46bce57c2feb 100644
-> --- a/drivers/gpu/drm/i915/intel_wakeref.c
-> +++ b/drivers/gpu/drm/i915/intel_wakeref.c
-> @@ -9,6 +9,8 @@
->   #include "intel_runtime_pm.h"
->   #include "intel_wakeref.h"
->   
-> +extern struct workqueue_struct *i915_wq;
-> +
->   static void rpm_get(struct intel_wakeref *wf)
->   {
->   	wf->wakeref = intel_runtime_pm_get(wf->rpm);
-> @@ -74,7 +76,7 @@ void __intel_wakeref_put_last(struct intel_wakeref *wf, unsigned long flags)
->   
->   	/* Assume we are not in process context and so cannot sleep. */
->   	if (flags & INTEL_WAKEREF_PUT_ASYNC || !mutex_trylock(&wf->mutex)) {
-> -		mod_delayed_work(system_wq, &wf->work,
-> +		mod_delayed_work(i915_wq, &wf->work,
->   				 FIELD_GET(INTEL_WAKEREF_PUT_DELAY, flags));
->   		return;
->   	}
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_sw_fence.c b/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-> index daa985e5a19b..0d3396751ac5 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-> @@ -28,6 +28,8 @@
->   
->   #include "../i915_selftest.h"
->   
-> +extern struct workqueue_struct *i915_wq;
-> +
->   static int
->   fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->   {
-> @@ -540,7 +542,7 @@ static int test_ipc(void *arg)
->   
->   	ipc.value = 0;
->   	INIT_WORK_ONSTACK(&ipc.work, task_ipc);
-> -	schedule_work(&ipc.work);
-> +	queue_work(i915_wq, &ipc.work);
->   
->   	wait_for_completion(&ipc.started);
->   
+ tests/i915/kms_fb_coherency.c | 288 ++++++++++++++++++++++++++++++++++
+ tests/meson.build             |   1 +
+ 2 files changed, 289 insertions(+)
+ create mode 100644 tests/i915/kms_fb_coherency.c
+
+diff --git a/tests/i915/kms_fb_coherency.c b/tests/i915/kms_fb_coherency.c
+new file mode 100644
+index 0000000000..b530bf5dcd
+--- /dev/null
++++ b/tests/i915/kms_fb_coherency.c
+@@ -0,0 +1,288 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++/**
++ * TEST: kms_fb_coherency
++ * Description: Exercise coherency of future scanout buffer objects
++ */
++
++#include <errno.h>
++#include <limits.h>
++#include <stdbool.h>
++#include <stdio.h>
++#include <string.h>
++
++#include "igt.h"
++
++typedef struct {
++	int drm_fd;
++	igt_display_t display;
++	struct igt_fb fb[2];
++	igt_output_t *output;
++	igt_plane_t *primary;
++	enum pipe pipe;
++	igt_crc_t ref_crc;
++	igt_pipe_crc_t *pipe_crc;
++	uint32_t devid;
++} data_t;
++
++static void prepare_crtc(data_t *data)
++{
++	igt_display_t *display = &data->display;
++	igt_output_t *output = data->output;
++	drmModeModeInfo *mode;
++
++	igt_display_reset(display);
++	/* select the pipe we want to use */
++	igt_output_set_pipe(output, data->pipe);
++
++	mode = igt_output_get_mode(output);
++
++	/* create a white reference fb and flip to it */
++	igt_create_color_fb(data->drm_fd, mode->hdisplay, mode->vdisplay,
++			    DRM_FORMAT_XRGB8888, DRM_FORMAT_MOD_LINEAR,
++			    1.0, 1.0, 1.0, &data->fb[0]);
++
++	data->primary = igt_output_get_plane_type(output, DRM_PLANE_TYPE_PRIMARY);
++
++	igt_plane_set_fb(data->primary, &data->fb[0]);
++	igt_display_commit(display);
++
++	if (data->pipe_crc)
++		igt_pipe_crc_free(data->pipe_crc);
++
++	data->pipe_crc = igt_pipe_crc_new(data->drm_fd, data->pipe,
++					  IGT_PIPE_CRC_SOURCE_AUTO);
++
++	/* get reference crc for the white fb */
++	igt_pipe_crc_collect_crc(data->pipe_crc, &data->ref_crc);
++}
++
++static struct igt_fb *prepare_fb(data_t *data)
++{
++	igt_output_t *output = data->output;
++	struct igt_fb *fb = &data->fb[1];
++	drmModeModeInfo *mode;
++
++	prepare_crtc(data);
++
++	mode = igt_output_get_mode(output);
++
++	/* create a non-white fb we can overwrite later */
++	igt_create_pattern_fb(data->drm_fd, mode->hdisplay, mode->vdisplay,
++			      DRM_FORMAT_XRGB8888, DRM_FORMAT_MOD_LINEAR, fb);
++
++	/* flip to it to make it UC/WC and fully flushed */
++	drmModeSetPlane(data->drm_fd,
++			data->primary->drm_plane->plane_id,
++			output->config.crtc->crtc_id,
++			fb->fb_id, 0,
++			0, 0, fb->width, fb->height,
++			0, 0, fb->width << 16, fb->height << 16);
++
++	/* flip back the original white buffer */
++	drmModeSetPlane(data->drm_fd,
++			data->primary->drm_plane->plane_id,
++			output->config.crtc->crtc_id,
++			data->fb[0].fb_id, 0,
++			0, 0, fb->width, fb->height,
++			0, 0, fb->width << 16, fb->height << 16);
++
++	if (!gem_has_lmem(data->drm_fd)) {
++		uint32_t caching;
++
++		/* make sure caching mode has become UC/WT */
++		caching = gem_get_caching(data->drm_fd, fb->gem_handle);
++		igt_assert(caching == I915_CACHING_NONE ||
++			   caching == I915_CACHING_DISPLAY);
++	}
++
++	return fb;
++}
++
++static void check_buf_crc(data_t *data, void *buf, igt_fb_t *fb)
++{
++	igt_crc_t crc;
++
++	/* use memset to make the mmapped fb all white */
++	memset(buf, 0xff, fb->size);
++	munmap(buf, fb->size);
++
++	/* and flip to it */
++	drmModeSetPlane(data->drm_fd,
++			data->primary->drm_plane->plane_id,
++			data->output->config.crtc->crtc_id,
++			fb->fb_id, 0,
++			0, 0, fb->width, fb->height,
++			0, 0, fb->width << 16, fb->height << 16);
++
++	/* check that the crc is as expected, which requires that caches got flushed */
++	igt_pipe_crc_collect_crc(data->pipe_crc, &crc);
++	igt_assert_crc_equal(&crc, &data->ref_crc);
++}
++
++static void cleanup_crtc(data_t *data)
++{
++	igt_display_t *display = &data->display;
++	igt_output_t *output = data->output;
++
++	igt_pipe_crc_free(data->pipe_crc);
++	data->pipe_crc = NULL;
++
++	igt_plane_set_fb(data->primary, NULL);
++
++	igt_output_set_pipe(output, PIPE_ANY);
++	igt_display_commit(display);
++
++	igt_remove_fb(data->drm_fd, &data->fb[0]);
++	igt_remove_fb(data->drm_fd, &data->fb[1]);
++}
++
++static void test_mmap_gtt(data_t *data)
++{
++	igt_fb_t *fb;
++	void *buf;
++
++	fb = prepare_fb(data);
++
++	buf = gem_mmap__gtt(data->drm_fd, fb->gem_handle, fb->size, PROT_WRITE);
++
++	check_buf_crc(data, buf, fb);
++}
++
++static void test_mmap_offset_wc(data_t *data)
++{
++	igt_fb_t *fb;
++	void *buf;
++
++	fb = prepare_fb(data);
++
++	buf = gem_mmap_offset__wc(data->drm_fd, fb->gem_handle, 0, fb->size, PROT_WRITE);
++
++	check_buf_crc(data, buf, fb);
++}
++
++static void test_mmap_offset_uc(data_t *data)
++{
++	igt_fb_t *fb;
++	void *buf;
++
++	fb = prepare_fb(data);
++
++	/* mmap the fb */
++	buf = __gem_mmap_offset(data->drm_fd, fb->gem_handle, 0, fb->size, PROT_WRITE,
++				I915_MMAP_OFFSET_UC);
++	igt_assert(buf);
++
++	check_buf_crc(data, buf, fb);
++}
++
++static void test_mmap_offset_fixed(data_t *data)
++{
++	igt_fb_t *fb;
++	void *buf;
++
++	fb = prepare_fb(data);
++
++	/* mmap the fb */
++	buf = gem_mmap_offset__fixed(data->drm_fd, fb->gem_handle, 0, fb->size, PROT_WRITE);
++
++	check_buf_crc(data, buf, fb);
++}
++
++static void test_legacy_mmap_wc(data_t *data)
++{
++	igt_fb_t *fb;
++	void *buf;
++
++	fb = prepare_fb(data);
++
++	/* mmap the fb */
++	buf = gem_mmap__wc(data->drm_fd, fb->gem_handle, 0, fb->size, PROT_WRITE);
++
++	check_buf_crc(data, buf, fb);
++}
++
++static void select_valid_pipe_output_combo(data_t *data)
++{
++	igt_display_t *display = &data->display;
++
++	for_each_pipe_with_valid_output(display, data->pipe, data->output) {
++		igt_display_reset(display);
++
++		igt_output_set_pipe(data->output, data->pipe);
++		if (i915_pipe_output_combo_valid(display))
++			return;
++	}
++
++	igt_skip("no valid crtc/connector combinations found\n");
++}
++
++igt_main
++{
++	data_t data;
++
++	igt_fixture {
++		data.drm_fd = drm_open_driver_master(DRIVER_INTEL);
++
++		data.devid = intel_get_drm_devid(data.drm_fd);
++
++		kmstest_set_vt_graphics_mode();
++
++		igt_require_pipe_crc(data.drm_fd);
++
++		igt_display_require(&data.display, data.drm_fd);
++
++		select_valid_pipe_output_combo(&data);
++	}
++
++	/**
++	 * SUBTEST: memset-crc
++	 * Description: Use display controller CRC hardware to validate (non)coherency
++	 *		of memset operations on future scanout buffer objects
++	 *		mmapped with different mmap methods and different caching modes.
++	 */
++	igt_subtest_with_dynamic("memset-crc") {
++		if (gem_has_mappable_ggtt(data.drm_fd)) {
++			igt_dynamic("mmap-gtt")
++				test_mmap_gtt(&data);
++
++			cleanup_crtc(&data);
++		}
++
++		if (gem_mmap_offset__has_wc(data.drm_fd)) {
++			igt_dynamic("mmap-offset-wc")
++				test_mmap_offset_wc(&data);
++
++			cleanup_crtc(&data);
++		}
++
++		if (gem_has_lmem(data.drm_fd)) {
++			igt_dynamic("mmap-offset-fixed")
++				test_mmap_offset_fixed(&data);
++
++			cleanup_crtc(&data);
++
++		} else if (gem_has_mmap_offset(data.drm_fd)) {
++			igt_dynamic("mmap-offset-uc")
++				test_mmap_offset_uc(&data);
++
++			cleanup_crtc(&data);
++		}
++
++		if (gem_has_legacy_mmap(data.drm_fd) &&
++		    gem_mmap__has_wc(data.drm_fd)) {
++			igt_dynamic("mmap-legacy-wc")
++				test_legacy_mmap_wc(&data);
++
++			cleanup_crtc(&data);
++		}
++	}
++
++	igt_fixture {
++		igt_display_fini(&data.display);
++		close(data.drm_fd);
++	}
++}
+diff --git a/tests/meson.build b/tests/meson.build
+index 38f080f7c2..f71be1dbe5 100644
+--- a/tests/meson.build
++++ b/tests/meson.build
+@@ -224,6 +224,7 @@ i915_progs = [
+ 	'kms_ccs',
+ 	'kms_cdclk',
+ 	'kms_draw_crc',
++	'kms_fb_coherency',
+ 	'kms_fbcon_fbt',
+ 	'kms_fence_pin_leak',
+ 	'kms_flip_scaled_crc',
+-- 
+2.40.1
+
