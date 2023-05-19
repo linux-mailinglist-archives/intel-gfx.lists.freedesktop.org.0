@@ -1,40 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 842CA70A151
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 May 2023 23:09:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16E0370A164
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 May 2023 23:16:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 351C910E60D;
-	Fri, 19 May 2023 21:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4FEF10E615;
+	Fri, 19 May 2023 21:16:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A407610E584;
- Fri, 19 May 2023 21:09:49 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95B8910E60F;
+ Fri, 19 May 2023 21:16:43 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id EA7DB6181A;
- Fri, 19 May 2023 21:09:48 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 0C85C60C8A;
+ Fri, 19 May 2023 21:16:43 +0000 (UTC)
 Received: from rdvivi-mobl4 (unknown [192.55.55.52])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id D1892C433D2;
- Fri, 19 May 2023 21:09:45 +0000 (UTC)
-Date: Fri, 19 May 2023 17:09:43 -0400
+ by smtp.kernel.org (Postfix) with ESMTPSA id 96260C433D2;
+ Fri, 19 May 2023 21:16:38 +0000 (UTC)
+Date: Fri, 19 May 2023 17:16:36 -0400
 From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Cong Liu <liucong2@kylinos.cn>
-Message-ID: <ZGfll+nLPL2L6Zyz@rdvivi-mobl4>
-References: <20230508085016.437836-1-liucong2@kylinos.cn>
- <20230517050204.4111874-1-liucong2@kylinos.cn>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <ZGfnNBRUN72IXRjy@rdvivi-mobl4>
+References: <20230419154321.1993419-1-markyacoub@google.com>
+ <0c702f15-c842-8eab-cc95-83378236773c@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230517050204.4111874-1-liucong2@kylinos.cn>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix memory leaks in function
- live_nop_switch
+In-Reply-To: <0c702f15-c842-8eab-cc95-83378236773c@linaro.org>
+Subject: Re: [Intel-gfx] [PATCH v10 00/10] drm/hdcp: Pull HDCP
+ auth/exchange/check into helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,95 +46,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
+Cc: Mark Yacoub <markyacoub@chromium.org>, intel-gfx@lists.freedesktop.org,
+ Douglas Anderson <dianders@chromium.org>, seanpaul@chromium.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ freedreno@lists.freedesktop.org, Mark Yacoub <markyacoub@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 17, 2023 at 01:02:03PM +0800, Cong Liu wrote:
-> Be sure to properly free the allocated memory before exiting
-> the live_nop_switch function.
+On Fri, May 19, 2023 at 07:55:47PM +0300, Dmitry Baryshkov wrote:
+> On 19/04/2023 18:43, Mark Yacoub wrote:
+> > Hi all,
+> > This is v10 of the HDCP patches. The patches are authored by Sean Paul.
+> > I rebased and addressed the review comments in v6-v10.
+> > 
+> > Main change in v10 is handling the kernel test bot warnings.
+> > 
+> > Patches 1-4 focus on moving the common HDCP helpers to common DRM.
+> > This introduces a slight change in the original intel flow
+> > as it splits the unique driver protocol from the generic implementation.
+> > 
+> > Patches 5-7 split the HDCP flow on the i915 driver to make use of the common DRM helpers.
+> > 
+> > Patches 8-10 implement HDCP on MSM driver.
+> > 
+> > Thanks,
+> > -Mark Yacoub
+> > 
+> > Sean Paul (10):
+> >    drm/hdcp: Add drm_hdcp_atomic_check()
+> >    drm/hdcp: Avoid changing crtc state in hdcp atomic check
+> >    drm/hdcp: Update property value on content type and user changes
+> >    drm/hdcp: Expand HDCP helper library for enable/disable/check
+> >    drm/i915/hdcp: Consolidate HDCP setup/state cache
+> >    drm/i915/hdcp: Retain hdcp_capable return codes
+> >    drm/i915/hdcp: Use HDCP helpers for i915
+> >    dt-bindings: msm/dp: Add bindings for HDCP registers
+> >    arm64: dts: qcom: sc7180: Add support for HDCP in dp-controller
 > 
-> Signed-off-by: Cong Liu <liucong2@kylinos.cn>
-> Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-pushed, thanks for the patch
-
-> ---
->  .../gpu/drm/i915/gem/selftests/i915_gem_context.c  | 14 ++++++++------
->  1 file changed, 8 insertions(+), 6 deletions(-)
+> Dear i915 maintainers,
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> index a81fa6a20f5a..2fb125d0cb5e 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> @@ -66,7 +66,7 @@ static int live_nop_switch(void *arg)
->  		ctx[n] = live_context(i915, file);
->  		if (IS_ERR(ctx[n])) {
->  			err = PTR_ERR(ctx[n]);
-> -			goto out_file;
-> +			goto out_ctx;
->  		}
->  	}
->  
-> @@ -82,7 +82,7 @@ static int live_nop_switch(void *arg)
->  			this = igt_request_alloc(ctx[n], engine);
->  			if (IS_ERR(this)) {
->  				err = PTR_ERR(this);
-> -				goto out_file;
-> +				goto out_ctx;
->  			}
->  			if (rq) {
->  				i915_request_await_dma_fence(this, &rq->fence);
-> @@ -96,7 +96,7 @@ static int live_nop_switch(void *arg)
->  			intel_gt_set_wedged(to_gt(i915));
->  			i915_request_put(rq);
->  			err = -EIO;
-> -			goto out_file;
-> +			goto out_ctx;
->  		}
->  		i915_request_put(rq);
->  
-> @@ -107,7 +107,7 @@ static int live_nop_switch(void *arg)
->  
->  		err = igt_live_test_begin(&t, i915, __func__, engine->name);
->  		if (err)
-> -			goto out_file;
-> +			goto out_ctx;
->  
->  		end_time = jiffies + i915_selftest.timeout_jiffies;
->  		for_each_prime_number_from(prime, 2, 8192) {
-> @@ -120,7 +120,7 @@ static int live_nop_switch(void *arg)
->  				this = igt_request_alloc(ctx[n % nctx], engine);
->  				if (IS_ERR(this)) {
->  					err = PTR_ERR(this);
-> -					goto out_file;
-> +					goto out_ctx;
->  				}
->  
->  				if (rq) { /* Force submission order */
-> @@ -165,7 +165,7 @@ static int live_nop_switch(void *arg)
->  
->  		err = igt_live_test_end(&t);
->  		if (err)
-> -			goto out_file;
-> +			goto out_ctx;
->  
->  		pr_info("Switch latencies on %s: 1 = %lluns, %lu = %lluns\n",
->  			engine->name,
-> @@ -173,6 +173,8 @@ static int live_nop_switch(void *arg)
->  			prime - 1, div64_u64(ktime_to_ns(times[1]), prime - 1));
->  	}
->  
-> +out_ctx:
-> +	kfree(ctx);
->  out_file:
->  	fput(file);
->  	return err;
+> I wanted to ping you regarding this patch series. If there are no comments
+> for the series from you side, would it be possible to land Intel-specific
+> and generic patches into drm-intel tree? We will continue working on the msm
+> specific parts and merge them through the msm tree.
+
+pushed to drm-intel-next.
+
+should be propagated in a few weeks to drm-next on our next pull request.
+
+> 
+> >    drm/msm: Implement HDCP 1.x using the new drm HDCP helpers
+> > 
+> >   .../bindings/display/msm/dp-controller.yaml   |    7 +-
+> >   arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |    8 +
+> >   drivers/gpu/drm/display/drm_hdcp_helper.c     | 1224 +++++++++++++++++
+> >   drivers/gpu/drm/i915/display/intel_atomic.c   |    8 +-
+> >   drivers/gpu/drm/i915/display/intel_ddi.c      |   32 +-
+> >   .../drm/i915/display/intel_display_debugfs.c  |   12 +-
+> >   .../drm/i915/display/intel_display_types.h    |   51 +-
+> >   drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  352 ++---
+> >   drivers/gpu/drm/i915/display/intel_dp_mst.c   |   16 +-
+> >   drivers/gpu/drm/i915/display/intel_hdcp.c     | 1060 +++-----------
+> >   drivers/gpu/drm/i915/display/intel_hdcp.h     |   48 +-
+> >   drivers/gpu/drm/i915/display/intel_hdmi.c     |  267 ++--
+> >   drivers/gpu/drm/msm/Kconfig                   |    1 +
+> >   drivers/gpu/drm/msm/Makefile                  |    1 +
+> >   drivers/gpu/drm/msm/dp/dp_catalog.c           |  156 +++
+> >   drivers/gpu/drm/msm/dp/dp_catalog.h           |   18 +
+> >   drivers/gpu/drm/msm/dp/dp_debug.c             |   46 +-
+> >   drivers/gpu/drm/msm/dp/dp_debug.h             |   11 +-
+> >   drivers/gpu/drm/msm/dp/dp_display.c           |   39 +-
+> >   drivers/gpu/drm/msm/dp/dp_display.h           |    5 +
+> >   drivers/gpu/drm/msm/dp/dp_drm.c               |   39 +-
+> >   drivers/gpu/drm/msm/dp/dp_drm.h               |    7 +
+> >   drivers/gpu/drm/msm/dp/dp_hdcp.c              |  389 ++++++
+> >   drivers/gpu/drm/msm/dp/dp_hdcp.h              |   33 +
+> >   drivers/gpu/drm/msm/dp/dp_parser.c            |   14 +
+> >   drivers/gpu/drm/msm/dp/dp_parser.h            |    4 +
+> >   drivers/gpu/drm/msm/dp/dp_reg.h               |   30 +-
+> >   drivers/gpu/drm/msm/msm_atomic.c              |   19 +
+> >   include/drm/display/drm_hdcp.h                |  296 ++++
+> >   include/drm/display/drm_hdcp_helper.h         |   23 +
+> >   30 files changed, 2867 insertions(+), 1349 deletions(-)
+> >   create mode 100644 drivers/gpu/drm/msm/dp/dp_hdcp.c
+> >   create mode 100644 drivers/gpu/drm/msm/dp/dp_hdcp.h
+> > 
+> 
 > -- 
-> 2.34.1
+> With best wishes
+> Dmitry
 > 
-> 
-> No virus found
-> 		Checked by Hillstone Network AntiVirus
