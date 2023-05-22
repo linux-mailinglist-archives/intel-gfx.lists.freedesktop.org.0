@@ -2,27 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3207870BCFF
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 14:10:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F3B770BD41
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 14:16:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A47A410E2F2;
-	Mon, 22 May 2023 12:10:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C65D210E2F6;
+	Mon, 22 May 2023 12:16:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BE9CC10E2F2;
- Mon, 22 May 2023 12:10:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id ECAC010E2F6;
+ Mon, 22 May 2023 12:16:01 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 157DBAADE7;
- Mon, 22 May 2023 12:10:44 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E452FA47E9;
+ Mon, 22 May 2023 12:16:01 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============5523783572999530597=="
+ boundary="===============5639550184265841387=="
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Date: Mon, 22 May 2023 12:10:44 -0000
-Message-ID: <168475744404.28283.2090818696372204878@emeril.freedesktop.org>
+Date: Mon, 22 May 2023 12:16:01 -0000
+Message-ID: <168475776190.28282.5739883692588621586@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230518063612.1044370-1-suraj.kandpal@intel.com>
 In-Reply-To: <20230518063612.1044370-1-suraj.kandpal@intel.com>
@@ -45,7 +45,7 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5523783572999530597==
+--===============5639550184265841387==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -227,7 +227,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117938v1/index.html
 
---===============5523783572999530597==
+--===============5639550184265841387==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -400,4 +400,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============5523783572999530597==--
+--===============5639550184265841387==--
