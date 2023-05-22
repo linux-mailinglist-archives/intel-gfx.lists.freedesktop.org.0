@@ -1,52 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6DD170BFC0
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 15:28:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA9D70C065
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 15:55:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D27710E32A;
-	Mon, 22 May 2023 13:28:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B43FB10E32A;
+	Mon, 22 May 2023 13:55:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D0A910E158;
- Mon, 22 May 2023 13:28:03 +0000 (UTC)
-Received: from [192.168.2.171] (109-252-147-95.dynamic.spd-mgts.ru
- [109.252.147.95])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 4B93C6606D84;
- Mon, 22 May 2023 14:27:58 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1684762079;
- bh=keD/935Zu/vg8AvzQ/mBIJs8+l9o00PBHzFnRJHLzSg=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=DIyoGQY28KPe9vMso5QxUo+B+LjI47cH/U4JwbRsIiakuaiBSF/Y7imIYc/jDeXp8
- +wc9lthaCS+AlUh+d5looWfz4hmwb0n/H5azQr5MVPfR8jaUD0R1SXwnufnJTrVL69
- lIBXFbCYtxb4/OQ0m3YJveSKWwZ9TPETWj8txE4eYmPaSpI8XCkV+N8L/IHlhJPafV
- 59NZeqgqi1BB3nFLZVrnu28Pi4a+LFs8cpygwYjTK3JjRmaL/WujfMnZlzN7hVte1B
- 71W3VJWvV4T+e7VJJgD7pcZyh2Ry2S0QAlJtUkubAkrX9ypCaFK2g6cfDyKmqSBVwG
- YSaELA4697lcw==
-Message-ID: <abc2a8ab-0969-fbb6-8dec-b15c81df38e4@collabora.com>
-Date: Mon, 22 May 2023 16:27:50 +0300
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 993FD10E340;
+ Mon, 22 May 2023 13:54:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 920F7AADD7;
+ Mon, 22 May 2023 13:54:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-To: Emil Velikov <emil.l.velikov@gmail.com>
-References: <20230521205112.150206-1-dmitry.osipenko@collabora.com>
- <20230521205112.150206-7-dmitry.osipenko@collabora.com>
- <CACvgo52QvmZw5k_9dmBHPB25rTdLZJzVG_vNFr8or+3f5sVO=Q@mail.gmail.com>
-Content-Language: en-US
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <CACvgo52QvmZw5k_9dmBHPB25rTdLZJzVG_vNFr8or+3f5sVO=Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 6/6] drm/shmem-helper: Switch to
- reservation lock
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tetsuo Handa" <penguin-kernel@I-love.SAKURA.ne.jp>
+Date: Mon, 22 May 2023 13:54:58 -0000
+Message-ID: <168476369857.28281.17813264683001151534@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <d8b73f88-d4aa-ed7e-09ea-5ad5ee803893@I-love.SAKURA.ne.jp>
+In-Reply-To: <d8b73f88-d4aa-ed7e-09ea-5ad5ee803893@I-love.SAKURA.ne.jp>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_avoid_flush=5Fscheduled=5Fwork=28=29_usage_=28rev6?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,71 +41,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>,
- Gerd Hoffmann <kraxel@redhat.com>, kernel@collabora.com,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- linux-media@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Tomi Valkeinen <tomba@kernel.org>, linux-kernel@vger.kernel.org,
- Liam Mark <lmark@codeaurora.org>, Tomasz Figa <tfiga@chromium.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 5/22/23 16:02, Emil Velikov wrote:
-> Hi Dmitry,
-> 
-> Saw v3 fly by, so I had a quick look. Original RB still stands,
-> although I noticed a couple of non-blocking nitpicks.
-> 
-> On Sun, 21 May 2023 at 22:00, Dmitry Osipenko
-> <dmitry.osipenko@collabora.com> wrote:
-> 
->> -static int drm_gem_shmem_get_pages_locked(struct drm_gem_shmem_object *shmem)
->> +static int drm_gem_shmem_get_pages(struct drm_gem_shmem_object *shmem)
->>  {
-> 
-> Should this getter have a dma_resv_assert_held(shmem->base.resv); like
-> it's put brethren?
-> 
-> 
->> -void drm_gem_shmem_put_pages(struct drm_gem_shmem_object *shmem)
->> +static int drm_gem_shmem_pin_locked(struct drm_gem_shmem_object *shmem)
->> +{
->> +       int ret;
->> +
->> +       dma_resv_assert_held(shmem->base.resv);
->> +
->> +       ret = drm_gem_shmem_get_pages(shmem);
->> +
->> +       return ret;
-> 
-> With the assert_held in the getter, it would be less confusing to
-> inline this and the unpin_locked functions.
-> 
->> +}
->> +
->> +static void drm_gem_shmem_unpin_locked(struct drm_gem_shmem_object *shmem)
->>  {
->> -       mutex_lock(&shmem->pages_lock);
->> -       drm_gem_shmem_put_pages_locked(shmem);
->> -       mutex_unlock(&shmem->pages_lock);
->> +       dma_resv_assert_held(shmem->base.resv);
->> +
->> +       drm_gem_shmem_put_pages(shmem);
-> 
-> Side note: the putter has an assert_held so the extra one here seems quite odd.
-> 
-> As said at the top - with or w/o these nitpicks, the original RB still stands.
+== Series Details ==
 
-Good catch. I actually added assert_held to get_pages(), but in a later
-patch that is not part of this series.
+Series: drm/i915: avoid flush_scheduled_work() usage (rev6)
+URL   : https://patchwork.freedesktop.org/series/114608/
+State : warning
 
--- 
-Best regards,
-Dmitry
+== Summary ==
+
+Error: git fetch origin failed
+
 
