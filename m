@@ -2,51 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3FE070BE94
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 14:42:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B06A270BEEB
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 14:59:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 863CB10E307;
-	Mon, 22 May 2023 12:42:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A96510E316;
+	Mon, 22 May 2023 12:59:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2EDC10E307
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 May 2023 12:42:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684759335; x=1716295335;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=OyT18qbGqBjFKPdX7cKnU7af5qBm+WYHIiVfyGidlyg=;
- b=S9/5rirCY2htgGri4chR/M1OH2X94YYP/6fnnGrQQlI+5slol/BApJNr
- iOX7h+BnNhydqWj9YSreJT39ouaJjsy7nV3yRvfPCgc2wJ0bX4ATwCjc1
- MQjktXg4hBAs0NSA6UjuJPzVuSHQKVIHmYm+50t1TGiKuBuzDHokUkbXa
- 0rANcsEjUY+2qqxduCbRK4XEICzgcG5RR3zHMPc7zzVtqTC6F9DW/PB3s
- zpVPEkbxwo4JQWuraTXQRCPi68/VRaFyWz0fWHZ4qpPcsEqQQLsrKdo7J
- AXBcdFbaVtVXdIosPKlN+Qp8sps0yi5n6d5ZGW6UE4ay5ae5uRqawo+aV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="381135146"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="381135146"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 05:42:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="697630196"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="697630196"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 05:42:12 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 22 May 2023 14:42:05 +0200
-Message-Id: <20230522124205.368-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.39.0
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F5D510E313;
+ Mon, 22 May 2023 12:59:23 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id E208D614C7;
+ Mon, 22 May 2023 12:59:22 +0000 (UTC)
+Received: from rdvivi-mobl4 (unknown [192.55.54.48])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by smtp.kernel.org (Postfix) with ESMTPSA id 082DAC433D2;
+ Mon, 22 May 2023 12:59:18 +0000 (UTC)
+Date: Mon, 22 May 2023 08:59:11 -0400
+From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <ZGtnH5YJ8u6bMo4j@rdvivi-mobl4>
+References: <20230419154321.1993419-1-markyacoub@google.com>
+ <0c702f15-c842-8eab-cc95-83378236773c@linaro.org>
+ <ZGfnNBRUN72IXRjy@rdvivi-mobl4>
+ <27b4bce7-2f63-9199-71e6-4ed52a96d0c1@linaro.org>
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Wait for active retire before
- i915_active_fini()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <27b4bce7-2f63-9199-71e6-4ed52a96d0c1@linaro.org>
+Subject: Re: [Intel-gfx] [PATCH v10 00/10] drm/hdcp: Pull HDCP
+ auth/exchange/check into helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,34 +48,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andi.shyti@intel.com, chris.p.wilson@linux.intel.com,
- andrzej.hajda@intel.com, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Mark Yacoub <markyacoub@chromium.org>, intel-gfx@lists.freedesktop.org,
+ Douglas Anderson <dianders@chromium.org>, seanpaul@chromium.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ freedreno@lists.freedesktop.org, Mark Yacoub <markyacoub@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915_active_fini() finalizes the debug object, which can occur before
-the active retires and deactivates the debug object. Wait for one
-final time before calling i915_active_fini();
+On Sat, May 20, 2023 at 02:07:51AM +0300, Dmitry Baryshkov wrote:
+> On 20/05/2023 00:16, Rodrigo Vivi wrote:
+> > On Fri, May 19, 2023 at 07:55:47PM +0300, Dmitry Baryshkov wrote:
+> > > On 19/04/2023 18:43, Mark Yacoub wrote:
+> > > > Hi all,
+> > > > This is v10 of the HDCP patches. The patches are authored by Sean Paul.
+> > > > I rebased and addressed the review comments in v6-v10.
+> > > > 
+> > > > Main change in v10 is handling the kernel test bot warnings.
+> > > > 
+> > > > Patches 1-4 focus on moving the common HDCP helpers to common DRM.
+> > > > This introduces a slight change in the original intel flow
+> > > > as it splits the unique driver protocol from the generic implementation.
+> > > > 
+> > > > Patches 5-7 split the HDCP flow on the i915 driver to make use of the common DRM helpers.
+> > > > 
+> > > > Patches 8-10 implement HDCP on MSM driver.
+> > > > 
+> > > > Thanks,
+> > > > -Mark Yacoub
+> > > > 
+> > > > Sean Paul (10):
+> > > >     drm/hdcp: Add drm_hdcp_atomic_check()
+> > > >     drm/hdcp: Avoid changing crtc state in hdcp atomic check
+> > > >     drm/hdcp: Update property value on content type and user changes
+> > > >     drm/hdcp: Expand HDCP helper library for enable/disable/check
+> > > >     drm/i915/hdcp: Consolidate HDCP setup/state cache
+> > > >     drm/i915/hdcp: Retain hdcp_capable return codes
+> > > >     drm/i915/hdcp: Use HDCP helpers for i915
+> > > >     dt-bindings: msm/dp: Add bindings for HDCP registers
+> > > >     arm64: dts: qcom: sc7180: Add support for HDCP in dp-controller
+> > > 
+> > > Dear i915 maintainers,
+> > > 
+> > > I wanted to ping you regarding this patch series. If there are no comments
+> > > for the series from you side, would it be possible to land Intel-specific
+> > > and generic patches into drm-intel tree? We will continue working on the msm
+> > > specific parts and merge them through the msm tree.
+> > 
+> > pushed to drm-intel-next.
+> > 
+> > should be propagated in a few weeks to drm-next on our next pull request.
+> 
+> Probably there is some kind of confusion here. You've pushed the DSC
+> patches, while the response was sent to the HDCP series.
 
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/8311
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/i915_vma.c | 2 ++
- 1 file changed, 2 insertions(+)
+I'm sorry, my confusion for replying to the wrong thread.
 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 20a44788999e..bad698bece27 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -1710,6 +1710,8 @@ static void release_references(struct i915_vma *vma, struct intel_gt *gt,
- 	if (vm_ddestroy)
- 		i915_vm_resv_put(vma->vm);
- 
-+	/* Wait for async active retire */
-+	i915_active_wait(&vma->active);
- 	i915_active_fini(&vma->active);
- 	GEM_WARN_ON(vma->resource);
- 	i915_vma_free(vma);
--- 
-2.39.0
+So, on this one here I believe it would be helpful if there's a split
+in the series with the already reviewed ones related to i915 are resent
+separated from the rest, send with --subject-prefix="CI" so when that
+pass CI we just merge it through drm-intel-next
 
+
+> 
+> -- 
+> With best wishes
+> Dmitry
+> 
