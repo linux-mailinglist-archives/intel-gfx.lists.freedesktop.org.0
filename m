@@ -2,75 +2,149 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B473270CD60
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 00:01:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA47D70CD83
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 00:09:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DED6710E18B;
-	Mon, 22 May 2023 22:01:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A02210E39D;
+	Mon, 22 May 2023 22:09:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 373A510E18B
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 May 2023 22:01:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1684792889;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=O5EDSc5v1Qc3zvN3S4SFC5VgFZScH8vmGrx6LaWbAnc=;
- b=ilMJkjac4elKDxT7DitOdJACKFXwMCEhtH8g7uttycT/WX3KFoTbtnrdLxR4XeR+/L/IB6
- XR5WU96IqFXhlVfVKb8oitBvc3ZSWE3F5tAYjNojhj3FhlxLozOd/9WHdgPv5qGl+1MFvt
- TW4VU+qq0Si9qQIvpc1GWZIi5GX3N54=
-Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
- [209.85.166.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-360-YN_1HlneOrqV0dI8gpx_5Q-1; Mon, 22 May 2023 18:01:27 -0400
-X-MC-Unique: YN_1HlneOrqV0dI8gpx_5Q-1
-Received: by mail-il1-f199.google.com with SMTP id
- e9e14a558f8ab-3384bfb39b4so2234675ab.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 May 2023 15:01:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684792887; x=1687384887;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=O5EDSc5v1Qc3zvN3S4SFC5VgFZScH8vmGrx6LaWbAnc=;
- b=RpEvkwq/Z21a+1viKQTU/zucU//zv2O8vEuc0DSEdrETTi2EhpO5wG0MmrG2qHmJoK
- pYNl/qQvW9J1L5CYOQKBSBamPC5/noyp6PI9iqz2KIJD1R40vogdx94IhJXZwgl+3NHX
- hJ+oFLx4CEuxbkmJrIGgT/qKWiSgL2Gpw6YSK66m0Hb6UG6qE2RUkdiMxhy1B3ptTlxa
- vjqy0ZoXbAFBD2YTpR21spLOf8ETTQLNLdG1gvt2BkUE3AuJKYljx3ySfaBFO8PTI60d
- IES4Xq9YHCvTcCydREywqtDL5lO9EcTOdThE/yZnRlLQ9WxhcNfEJHDU6wbXmgF5HM2U
- oIAA==
-X-Gm-Message-State: AC+VfDx9LdCXW5nQR0q069b4Lg7DCxAFNCmaopKv354tGz53NI2nkrYU
- P6aA3InsWGaDLB5dP+oTqRJsrTQoG+yoAma5nf7mfgfS6jqDPTYL4nU6Z8m0+iXoF4O3HK50T5f
- KArkKXeFeNiUQivjGi3VETgvG4u8D
-X-Received: by 2002:a05:6e02:6d2:b0:33a:329f:24e1 with SMTP id
- p18-20020a056e0206d200b0033a329f24e1mr1819180ils.1.1684792886869; 
- Mon, 22 May 2023 15:01:26 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ5xemqPygQC5U9UB2AxSjRbSzUXv44JQFlOogWY8Qv5rSQxGXRmhHbfNr4FARPnEVGhwDgK5g==
-X-Received: by 2002:a05:6e02:6d2:b0:33a:329f:24e1 with SMTP id
- p18-20020a056e0206d200b0033a329f24e1mr1819154ils.1.1684792886570; 
- Mon, 22 May 2023 15:01:26 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- t9-20020a056638348900b0041889152a61sm1988125jal.97.2023.05.22.15.01.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 May 2023 15:01:26 -0700 (PDT)
-Date: Mon, 22 May 2023 16:01:24 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Yi Liu <yi.l.liu@intel.com>
-Message-ID: <20230522160124.768430b4.alex.williamson@redhat.com>
-In-Reply-To: <20230513132827.39066-20-yi.l.liu@intel.com>
-References: <20230513132827.39066-1-yi.l.liu@intel.com>
- <20230513132827.39066-20-yi.l.liu@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 054D710E39D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 May 2023 22:08:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684793339; x=1716329339;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Lf2bVtwqnixyri65cTdm6aEehcvEaAuhCtC+JXzxXxw=;
+ b=KJjxk7NBwn5G1cIdvP7cqNMcltNu+q2UF1yb7t6xxMmZkzzs8nQdEx0j
+ oPfSPHYVjD2/HwGKnx49zstiRf7aVb5q0Fq9c1/qzwkiMWVmZafOQHSSt
+ dudo3dwLfWNDPOYNyaOgd4ohoInqNG7PVppCNR+FrFF657S2i9I2WF6qY
+ vUa8CbHMY1WEYxON0CwE1XKjmr/gFESzPPqP7i83JhkUdXPU9AbC+iUSE
+ S7tFtdnpV4E7F4r0GI5RPUeB4is70C3Y30lLc7X/EaqPFbwMdomC+gUdP
+ 4Plnzi6DUQ/lVs+bnf3vSxVdP2qdogG59cf+pgODlDLzPvWCx+yhp5VvL Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="350566869"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="350566869"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 15:08:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="681120660"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="681120660"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga006.jf.intel.com with ESMTP; 22 May 2023 15:08:58 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Mon, 22 May 2023 15:08:58 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Mon, 22 May 2023 15:08:58 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Mon, 22 May 2023 15:08:58 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Mon, 22 May 2023 15:08:58 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=C1nvRAHI1OmFxCIWbWNYGX2z1xAASXkjIj5sVxqBXv6RLy+tIa69DBy62AVEkXz+M7roXf0H4RpX2dSazRZkEAtazJQ6u4eK8j4GgF3/0EQmpO+S4lU1huvO/NM9osNzuheEQ06KGKgTQmfEl7/kOTaRvvoE8cAdYavhz/X0eF7dABEZVS47Kbo0phxT0RXqbH2bogSCGksVTfAhQcC8iwgOmG5F0NZM1jvLYbFrs3f+u32pHFpCHH5o1uDmqF8PpXN9+f6GPHdDepVGpmPJ294K8DnsRPkR0xXi/r9z4oPjbp7Yrdrfh8STe2szi61St9uPTjrDtq62DSQaAu/XVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/I8dUim334NJyZCJpqiDU8qLJEOKj8X7aZTAgzc4V6w=;
+ b=gQCm/dBXuvQTu1ApQSKL9EJ7R8K70cJlwgvH/rmLKqEkjcqrQP99HR2X+BlEupgfO7H6ObxXdDF491A+jsg5WDGwxswvvpRmnhALpA30r2QwioU3/kc1DoJ0kbsghe5yt5WpDAH7CMC1GWy01fBfQOC6+EL2j9ta14IURmvm6D8PG5G1NKMuADbVKwfXKVq2vtpqvL2rR5oBN5PfkkyUDdFugpa3Mu/sLRd7Tpfh6JLrdMu1JBbuz2hJCXC4BrmaGGSaJAn2s2TpOpDRFsQeC4Ld5uXRNIPSxCw+MA/tH2rTR02k2ocGPIfYdg3bNejpFVXxayhx3bE0frxV1JSQ8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
+ SA1PR11MB7015.namprd11.prod.outlook.com (2603:10b6:806:2b8::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Mon, 22 May
+ 2023 22:08:55 +0000
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::daaa:41e1:8dc4:d281]) by DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::daaa:41e1:8dc4:d281%7]) with mapi id 15.20.6411.028; Mon, 22 May 2023
+ 22:08:55 +0000
+Date: Mon, 22 May 2023 15:08:42 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Message-ID: <ZGvn6vTwgEz7I5h/@orsosgc001.jf.intel.com>
+References: <20230519225642.134778-1-umesh.nerlige.ramappa@intel.com>
+ <87mt1wqfsz.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <87mt1wqfsz.wl-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: SJ0P220CA0029.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::13) To DM6PR11MB2987.namprd11.prod.outlook.com
+ (2603:10b6:5:65::14)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v11 19/23] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|SA1PR11MB7015:EE_
+X-MS-Office365-Filtering-Correlation-Id: 66c98cf4-3ef1-4767-1a7f-08db5b1121e3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6P5C9hko6SaDDfzGRzoFEsnZv5u9/PmozIeDtRFirByNvFIca/2SbziEE4b0hiTbLBuTCW8gry7uo6H9c+2JNw0GZcbqgb/P0BcutWFLjAZ0xHBLlbnT7nvWvltLZht2eUCYl1h0HzMn4q6FEyW2wmkp8EhneT1HCKT72pkQLWpaxeJTjadCohLUOUB//nnwTeXkKjHfXwYlSwoHZwcS+pD/ZzAeMKrhYaIIcocCSZD/tiVFTTzYea0OiQ7cFnWzTYY4wjWV3C+I/lUS+At9W43QQKj2SxCwmhHC4vLhZhfF9IopUMggYM06xV1/iGItUcoFs4rxizqVMzZdInXsXn6wXGKhW51aZvmLpKIEvNoOzcpu7yskC4xjfm5AzQKJVx9SUGbwsUHjAB1dOvgJOm3K8xOqdD0noIXGBWxjGc2WYD2xfSMPbhECGbZBdzbwwemlgAgswmzFRO3nnrDgzd4gF1qqhRQNZfFMMwz+a8wIft6kmcUihMozOjNiSJqw
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(366004)(136003)(346002)(376002)(39860400002)(396003)(451199021)(86362001)(6636002)(4326008)(66556008)(66476007)(316002)(2906002)(5660300002)(478600001)(41300700001)(66946007)(8936002)(6862004)(8676002)(966005)(6486002)(82960400001)(83380400001)(6666004)(38100700002)(6506007)(6512007)(26005)(186003);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VWhnblhkdE9oVTAvWlJlYmlLWkdObkNTMTNmOHN4N1hianRCTXFQNVVXMERN?=
+ =?utf-8?B?QlVDd1ZDRW9LdTZiUHczT2VRZStEU01tOEhYSHVkN3kwZXhKbzZYZnBSYjFz?=
+ =?utf-8?B?a1NOTGFNeC9OcUdkZGlLUk5rMHRweTZiOWhwY0RmM3BORU4rQjgrNFFoQmkv?=
+ =?utf-8?B?TG8wVndzTVZJMmRaQytwRlpJSGpSN1c5c0tDN2pBQTlrbjdZb2RDNjJERlZ3?=
+ =?utf-8?B?VG02SHhQbXErekFWTzZVN3VBWWE5U2hVS0VhM1VsSUJmc2I0ZVUwYVZkZW1T?=
+ =?utf-8?B?U2p2RFFkYzdJMkVNMFNZVDZ2Q1NTV2IzYVNxbWQyNE5GY0Z6a1BHZHhxdVls?=
+ =?utf-8?B?d1E2czgyRk1sbDFEMktrV1A5RjQvVFhKNGxMVnFET1JtVG1mN29CQXFCTC9P?=
+ =?utf-8?B?M245N1l5ZjByWVNRNFkzMGo1emRUS1poSzBzalV4a3BNU0RaNmhMMVNwZU1X?=
+ =?utf-8?B?S21nWjYzNVpGRkxpL1FwdktheCtCcURyT2h0Sm5ZeXpvZTNvZ09NMTJCNzc1?=
+ =?utf-8?B?Z2hYV3ZhRHF3eDFLclQyWDI1UXJKQmNUMWZhQ01IN1pqZXcyekhBZGJiMmdD?=
+ =?utf-8?B?RUFNdEpQRng2Q21CdHNZQXN2cmRDUlM0WCtNYnhOUXlGRWZGUW9xSlRYT3o0?=
+ =?utf-8?B?U2U5dzBnSjJqMmxUSWJBNlloR1JqODEwOWRydDRGZFhMck9OSjBYUGg5TjlU?=
+ =?utf-8?B?M3hkVDhoOS9qVElYNWFYRzJ5UVlxd0s2WU03TDdHSHltMmdNM2s0YjZDa0FK?=
+ =?utf-8?B?L1dNVWo0elNLR3k4RVphN0xYQ29MUEtRR015N3p5UHdEVlhrYXBMajNEaEtW?=
+ =?utf-8?B?dVBWSWI5ZFkyajdXZGMxNmpTK0psYStDblJjYWhZTmhCamxBRDlBbXZaRFg4?=
+ =?utf-8?B?VzArT2dDZ0d3SmpCKzFFNUlnR0NKVEZNMjd4WVNVTUxTanJLWWxuN09TOHNK?=
+ =?utf-8?B?WEN6UTl3VU9vdkdXL2owZDM3SzVXcWpDT3pqaDBoTk5vcXFqQ0IwZ25ydWNv?=
+ =?utf-8?B?YUhVSXQ0ZDU2NjhOSHdmK2VhZEtXOURZeGsyQ1p6N0pCQUVlck5Selpiekhq?=
+ =?utf-8?B?bXpGS3QxNXMvRWpsMEtYZ3d6bmZzcWMzdWRkVzhkVmt3N0llRm5td1FZdjVK?=
+ =?utf-8?B?Zlp3UVZIYU5ESUVqb3I4NzlNUjUwN29BRlRQdWozUm43bFY0d3I0ajRVVFRR?=
+ =?utf-8?B?QllrWCtUaGVVRGJQNXdMa3BTUlhJaTN3cldwLzQwTGFGNEtCTVo2T3I2YUt6?=
+ =?utf-8?B?QnRjeU0zNjlEc09NNnFZQTVNUUcxeVFrYnBWOGEvbmdXcDdqRytmL1dkcjYx?=
+ =?utf-8?B?Q3hXS0diYUMzb1VjdThkdlNNMTh5QUI4aGJ3MnJOMytYZEZ1M0JVczVQNENi?=
+ =?utf-8?B?aFRGT0xvY3QwdFgzb0E2VDUrcWp1UTJaNmhjaTRRYXhDR0dCNVhnMmhiS3Jq?=
+ =?utf-8?B?YXoxdTVFN00wSCtCTDNpYVJ5bDRkQW5sa0JoRzY5dG4xMXVKVXVYMUdLWUFB?=
+ =?utf-8?B?b05KZHpMSVF2UTNxSWJ1dVFJK0dCR2N0RkdNYTh6VTEyY1NMUlpVQkxTTTls?=
+ =?utf-8?B?Rko4NHRkcmpyQWtXSkNSVVR3TG5MRW5SbHhEM2Z5czRjZ2dwRGs1TzF3L1Bq?=
+ =?utf-8?B?VnpvRVduaTRKek5QOVNwbzBKR0VHTkZUT1dYUDlXT1BYckFiYzBxbGFiUWxE?=
+ =?utf-8?B?c0VENkJyVGR2cks2WksydWRXQmRSL3BBVUdnWUJFajdoQmdtMm5ZRFFYaDlW?=
+ =?utf-8?B?R3k3di83VTQ1ak9sbjZJTFhDT2V1SVR0YzJDU3E0cEtMekdlRm5EeGs2NGsy?=
+ =?utf-8?B?R09iSGZta2dCZS95akhuWEtxQnBFOWxKZ1Jqa25RQlcwemRBRnV1TWM4Y1BC?=
+ =?utf-8?B?NnQ1eHY5bldSQkg0bHlvaFZNb05wVnFkSFR5L1ZQcWZzdEtzUkovUS9sVUpj?=
+ =?utf-8?B?aVU3bnRnWGpLT2FONGVHbDVIb01iUzFhQVFYWEd0YWxwRnVvaGRqMFVibDlP?=
+ =?utf-8?B?SDdnQTJjM3h4MFpXaDBJQTgybys5TWVuMGVmbncyWHZRZVFNZmJWZytvdTJp?=
+ =?utf-8?B?b0d6ZUZycDdxcmcvOThCU3dTZkpQZWNQMlk3cHBHS1J1WHlPbzB3bDZTbHJU?=
+ =?utf-8?B?aktVa05qdTByNE9tcWt0SCtIUG5IUmNvZlhnOCtBeFZyeUpZeHl1L2FseVhG?=
+ =?utf-8?Q?oyYmr0Em3rv/XbQKJl8Quks=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66c98cf4-3ef1-4767-1a7f-08db5b1121e3
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2023 22:08:54.9146 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KT9tsaegIR3OcAvIFXtxhZp4RwDjx2RjXMM83r/Kd98eLJIu2IFjNfTsRuobA61vBgh/a+61LlAQ8w2CHJA6iWmFANdEv2eu5O/SpBgxDMo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7015
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] i915/perf: Avoid reading OA reports before
+ they land
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,311 +157,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
- chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, kvm@vger.kernel.org,
- lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
- jgg@nvidia.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
- eric.auger@redhat.com, intel-gvt-dev@lists.freedesktop.org,
- yi.y.sun@linux.intel.com, clegoate@redhat.com, cohuck@redhat.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- robin.murphy@arm.com
+Cc: Lionel G Landwerlin <lionel.g.landwerlin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 13 May 2023 06:28:23 -0700
-Yi Liu <yi.l.liu@intel.com> wrote:
+On Mon, May 22, 2023 at 01:20:12PM -0700, Dixit, Ashutosh wrote:
+>On Fri, 19 May 2023 15:56:42 -0700, Umesh Nerlige Ramappa wrote:
+>>
+>
+>Hi Umesh,
+>
+>> On DG2, capturing OA reports while running heavy render workloads
+>> sometimes results in invalid OA reports where 64-byte chunks inside
+>> reports have stale values. Under memory pressure, high OA sampling rates
+>> (13.3 us) and heavy render workload, occassionally, the OA HW TAIL
+>> pointer does not progress as fast as the sampling rate. When these
+>> glitches occur, the TAIL pointer takes approx. 200us to progress.  While
+>> this is expected behavior from the HW perspective, invalid reports are
+>> not expected.
+>>
+>> In oa_buffer_check_unlocked(), when we execute the if condition, we are
+>> updating the oa_buffer.tail to the aging tail and then setting pollin
+>> based on this tail value, however, we do not have a chance to rewind and
+>> validate the reports prior to setting pollin. The validation happens
+>> in a subsequent call to oa_buffer_check_unlocked(). If a read occurs
+>> before this validation, then we end up reading reports up until this
+>> oa_buffer.tail value which includes invalid reports. Though found on
+>> DG2, this affects all platforms.
+>>
+>> Set the pollin only in the else condition in oa_buffer_check_unlocked.
+>>
+>> Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/7484
+>> Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/7757
+>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_perf.c | 8 ++++----
+>>  1 file changed, 4 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+>> index 19d5652300ee..61536e3c4ac9 100644
+>> --- a/drivers/gpu/drm/i915/i915_perf.c
+>> +++ b/drivers/gpu/drm/i915/i915_perf.c
+>> @@ -545,7 +545,7 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
+>>	u32 gtt_offset = i915_ggtt_offset(stream->oa_buffer.vma);
+>>	int report_size = stream->oa_buffer.format->size;
+>>	unsigned long flags;
+>> -	bool pollin;
+>> +	bool pollin = false;
+>>	u32 hw_tail;
+>>	u64 now;
+>>	u32 partial_report_size;
+>> @@ -620,10 +620,10 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
+>>		stream->oa_buffer.tail = gtt_offset + tail;
+>>		stream->oa_buffer.aging_tail = gtt_offset + hw_tail;
+>>		stream->oa_buffer.aging_timestamp = now;
+>> -	}
+>>
+>> -	pollin = OA_TAKEN(stream->oa_buffer.tail - gtt_offset,
+>> -			  stream->oa_buffer.head - gtt_offset) >= report_size;
+>> +		pollin = OA_TAKEN(stream->oa_buffer.tail - gtt_offset,
+>> +				  stream->oa_buffer.head - gtt_offset) >= report_size;
+>> +	}
+>
+>The issue has been correctly identified above. But seems that the real
+>cause for the issue is not that pollin statement above is misplaced but
+>that updating the tail via aging is unreliable (at least with the present
+>timeout as you mention above). Also, it is not clear why we have tail aging
+>at all, since it seems we can detect when reports land (by checking
+>report_id and timestamp). So rather than move the pollin into the else, we
+>should just eliminate the if () part. And if we are eliminating the if ()
+>we can just eliminate the concept of tail aging from the code (and
+>comments) and rely solely on explicit detection of reports landing.
 
-> This adds ioctl for userspace to bind device cdev fd to iommufd.
-> 
->     VFIO_DEVICE_BIND_IOMMUFD: bind device to an iommufd, hence gain DMA
-> 			      control provided by the iommufd. open_device
-> 			      op is called after bind_iommufd op.
-> 
-> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-> Tested-by: Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> ---
->  drivers/vfio/device_cdev.c | 130 +++++++++++++++++++++++++++++++++++++
->  drivers/vfio/vfio.h        |  13 ++++
->  drivers/vfio/vfio_main.c   |   5 ++
->  include/linux/vfio.h       |   3 +-
->  include/uapi/linux/vfio.h  |  28 ++++++++
->  5 files changed, 178 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/vfio/device_cdev.c b/drivers/vfio/device_cdev.c
-> index 1c640016a824..291cc678a18b 100644
-> --- a/drivers/vfio/device_cdev.c
-> +++ b/drivers/vfio/device_cdev.c
-> @@ -3,6 +3,7 @@
->   * Copyright (c) 2023 Intel Corporation.
->   */
->  #include <linux/vfio.h>
-> +#include <linux/iommufd.h>
->  
->  #include "vfio.h"
->  
-> @@ -44,6 +45,135 @@ int vfio_device_fops_cdev_open(struct inode *inode, struct file *filep)
->  	return ret;
->  }
->  
-> +static void vfio_device_get_kvm_safe(struct vfio_device_file *df)
-> +{
-> +	spin_lock(&df->kvm_ref_lock);
-> +	if (df->kvm)
-> +		_vfio_device_get_kvm_safe(df->device, df->kvm);
-> +	spin_unlock(&df->kvm_ref_lock);
-> +}
-> +
-> +void vfio_device_cdev_close(struct vfio_device_file *df)
-> +{
-> +	struct vfio_device *device = df->device;
-> +
-> +	/*
-> +	 * In the time of close, there is no contention with another one
-> +	 * changing this flag.  So read df->access_granted without lock
-> +	 * and no smp_load_acquire() is ok.
-> +	 */
-> +	if (!df->access_granted)
-> +		return;
-> +
-> +	mutex_lock(&device->dev_set->lock);
-> +	vfio_device_close(df);
-> +	vfio_device_put_kvm(device);
-> +	iommufd_ctx_put(df->iommufd);
-> +	device->cdev_opened = false;
-> +	mutex_unlock(&device->dev_set->lock);
-> +	vfio_device_unblock_group(device);
-> +}
-> +
-> +static struct iommufd_ctx *vfio_get_iommufd_from_fd(int fd)
-> +{
-> +	struct iommufd_ctx *iommufd;
-> +	struct fd f;
-> +
-> +	f = fdget(fd);
-> +	if (!f.file)
-> +		return ERR_PTR(-EBADF);
-> +
-> +	iommufd = iommufd_ctx_from_file(f.file);
-> +
-> +	fdput(f);
-> +	return iommufd;
-> +}
-> +
-> +long vfio_device_ioctl_bind_iommufd(struct vfio_device_file *df,
-> +				    struct vfio_device_bind_iommufd __user *arg)
-> +{
-> +	struct vfio_device *device = df->device;
-> +	struct vfio_device_bind_iommufd bind;
-> +	unsigned long minsz;
-> +	int ret;
-> +
-> +	static_assert(__same_type(arg->out_devid, df->devid));
-> +
-> +	minsz = offsetofend(struct vfio_device_bind_iommufd, out_devid);
-> +
-> +	if (copy_from_user(&bind, arg, minsz))
-> +		return -EFAULT;
-> +
-> +	if (bind.argsz < minsz || bind.flags || bind.iommufd < 0)
-> +		return -EINVAL;
-> +
-> +	/* BIND_IOMMUFD only allowed for cdev fds */
-> +	if (df->group)
-> +		return -EINVAL;
-> +
-> +	if (vfio_device_is_noiommu(device) && !capable(CAP_SYS_RAWIO))
-> +		return -EPERM;
-> +
-> +	ret = vfio_device_block_group(device);
-> +	if (ret)
-> +		return ret;
-> +
-> +	mutex_lock(&device->dev_set->lock);
-> +	/* one device cannot be bound twice */
-> +	if (df->access_granted) {
-> +		ret = -EINVAL;
-> +		goto out_unlock;
-> +	}
-> +
-> +	df->iommufd = vfio_get_iommufd_from_fd(bind.iommufd);
-> +	if (IS_ERR(df->iommufd)) {
-> +		ret = PTR_ERR(df->iommufd);
-> +		df->iommufd = NULL;
-> +		goto out_unlock;
-> +	}
-> +
-> +	/*
-> +	 * Before the device open, get the KVM pointer currently
-> +	 * associated with the device file (if there is) and obtain
-> +	 * a reference.  This reference is held until device closed.
-> +	 * Save the pointer in the device for use by drivers.
-> +	 */
-> +	vfio_device_get_kvm_safe(df);
-> +
-> +	ret = vfio_device_open(df);
-> +	if (ret)
-> +		goto out_put_kvm;
-> +
-> +	ret = copy_to_user(&arg->out_devid, &df->devid,
-> +			   sizeof(df->devid)) ? -EFAULT : 0;
-> +	if (ret)
-> +		goto out_close_device;
-> +
-> +	/*
-> +	 * Paired with smp_load_acquire() in vfio_device_fops::ioctl/
-> +	 * read/write/mmap
-> +	 */
-> +	smp_store_release(&df->access_granted, true);
-> +	device->cdev_opened = true;
-> +	mutex_unlock(&device->dev_set->lock);
-> +
-> +	if (vfio_device_is_noiommu(device))
-> +		dev_warn(device->dev, "noiommu device is bound to iommufd by user "
-> +			 "(%s:%d)\n", current->comm, task_pid_nr(current));
+I thought so too, it would be much simpler code. Looks like Lionel 
+agrees with removing this code as well. 
 
-The noiommu kernel taint only happens in vfio_group_find_or_alloc(), so
-how does noiommu taint the kernel when !CONFIG_VFIO_GROUP?
+I do have a couple concerns though.
 
+- In the blocking case, i915_perf_read() path waits on a queue with the
+condition being oa_buffer_check_unlocked(). If sampling rate is high, 
+oa_buffer_check_unlocked will almost always return true. If we remove 
+the if block, we may run the rewind logic too often to detect reports 
+that landed. The aging logic is just giving a 100us buffer to avoid 
+repeated checks here if tail hasn't moved. (although tbh, 100 us is very 
+small).
 
-> +	return 0;
-> +
-> +out_close_device:
-> +	vfio_device_close(df);
-> +out_put_kvm:
-> +	vfio_device_put_kvm(device);
-> +	iommufd_ctx_put(df->iommufd);
-> +	df->iommufd = NULL;
-> +out_unlock:
-> +	mutex_unlock(&device->dev_set->lock);
-> +	vfio_device_unblock_group(device);
-> +	return ret;
-> +}
-> +
->  static char *vfio_device_devnode(const struct device *dev, umode_t *mode)
->  {
->  	return kasprintf(GFP_KERNEL, "vfio/devices/%s", dev_name(dev));
-> diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
-> index 6861f8ebb64d..8b359a7794be 100644
-> --- a/drivers/vfio/vfio.h
-> +++ b/drivers/vfio/vfio.h
-> @@ -279,6 +279,9 @@ static inline void vfio_device_del(struct vfio_device *device)
->  
->  void vfio_init_device_cdev(struct vfio_device *device);
->  int vfio_device_fops_cdev_open(struct inode *inode, struct file *filep);
-> +void vfio_device_cdev_close(struct vfio_device_file *df);
-> +long vfio_device_ioctl_bind_iommufd(struct vfio_device_file *df,
-> +				    struct vfio_device_bind_iommufd __user *arg);
->  int vfio_cdev_init(struct class *device_class);
->  void vfio_cdev_cleanup(void);
->  #else
-> @@ -302,6 +305,16 @@ static inline int vfio_device_fops_cdev_open(struct inode *inode,
->  	return 0;
->  }
->  
-> +static inline void vfio_device_cdev_close(struct vfio_device_file *df)
-> +{
-> +}
-> +
-> +static inline long vfio_device_ioctl_bind_iommufd(struct vfio_device_file *df,
-> +						  struct vfio_device_bind_iommufd __user *arg)
-> +{
-> +	return -EOPNOTSUPP;
-> +}
-> +
->  static inline int vfio_cdev_init(struct class *device_class)
->  {
->  	return 0;
-> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> index c87cc7afe92c..c9fa39ac4b02 100644
-> --- a/drivers/vfio/vfio_main.c
-> +++ b/drivers/vfio/vfio_main.c
-> @@ -574,6 +574,8 @@ static int vfio_device_fops_release(struct inode *inode, struct file *filep)
->  
->  	if (df->group)
->  		vfio_device_group_close(df);
-> +	else
-> +		vfio_device_cdev_close(df);
->  
->  	vfio_device_put_registration(device);
->  
-> @@ -1147,6 +1149,9 @@ static long vfio_device_fops_unl_ioctl(struct file *filep,
->  	struct vfio_device *device = df->device;
->  	int ret;
->  
-> +	if (cmd == VFIO_DEVICE_BIND_IOMMUFD)
-> +		return vfio_device_ioctl_bind_iommufd(df, (void __user *)arg);
-> +
->  	/* Paired with smp_store_release() following vfio_device_open() */
->  	if (!smp_load_acquire(&df->access_granted))
->  		return -EINVAL;
-> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-> index 873275419f13..cf9d082a623c 100644
-> --- a/include/linux/vfio.h
-> +++ b/include/linux/vfio.h
-> @@ -67,6 +67,7 @@ struct vfio_device {
->  	struct iommufd_device *iommufd_device;
->  	bool iommufd_attached;
->  #endif
-> +	bool cdev_opened:1;
->  };
->  
->  /**
-> @@ -169,7 +170,7 @@ vfio_iommufd_physical_devid(struct vfio_device *vdev)
->  
->  static inline bool vfio_device_cdev_opened(struct vfio_device *device)
->  {
-> -	return false;
-> +	return device->cdev_opened;
->  }
->  
->  /**
-> diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
-> index 24858b650562..07c917de31e9 100644
-> --- a/include/uapi/linux/vfio.h
-> +++ b/include/uapi/linux/vfio.h
-> @@ -194,6 +194,34 @@ struct vfio_group_status {
->  
->  /* --------------- IOCTLs for DEVICE file descriptors --------------- */
->  
-> +/*
-> + * VFIO_DEVICE_BIND_IOMMUFD - _IOR(VFIO_TYPE, VFIO_BASE + 19,
-> + *				   struct vfio_device_bind_iommufd)
-> + *
-> + * Bind a vfio_device to the specified iommufd.
-> + *
-> + * User is restricted from accessing the device before the binding operation
-> + * is completed.
-> + *
-> + * Unbind is automatically conducted when device fd is closed.
-> + *
-> + * @argsz:	 User filled size of this data.
-> + * @flags:	 Must be 0.
-> + * @iommufd:	 iommufd to bind.
-> + * @out_devid:	 The device id generated by this bind. devid is a handle for
-> + *		 this device/iommufd bond and can be used in IOMMUFD commands.
-> + *
-> + * Return: 0 on success, -errno on failure.
-> + */
-> +struct vfio_device_bind_iommufd {
-> +	__u32		argsz;
-> +	__u32		flags;
-> +	__s32		iommufd;
-> +	__u32		out_devid;
-> +};
-> +
-> +#define VFIO_DEVICE_BIND_IOMMUFD	_IO(VFIO_TYPE, VFIO_BASE + 19)
-> +
+- The other concern - by dropping all this aging logic, are we changing 
+   underlying behavior?
 
-Why is this preempting the first device ioctl below rather than being
-added in sequential order?  I'm also not sure what's at device ioctl 18
-that we started at 19.  VFIO_DEVICE_FEATURE is at 17.  Yes, they're
-hard to keep track of.  Thanks,
+- Is there a significant ROI on current patch vs. dropping all the aging 
+   logic?
 
-Alex
+>
+>Separately, there seems to be another related bug in the code, I have sent
+>a patch for that here:
+>
+>https://patchwork.freedesktop.org/series/118151/
 
->  /**
->   * VFIO_DEVICE_GET_INFO - _IOR(VFIO_TYPE, VFIO_BASE + 7,
->   *						struct vfio_device_info)
+That's a valid new issue and different from this one, but related to the 
+rewind logic. lgtm.
 
+Thanks,
+Umesh
+>
+>Thanks.
+>--
+>Ashutosh
