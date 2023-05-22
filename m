@@ -1,57 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ECF470C24E
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 17:23:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B81C70C250
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 17:24:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB91810E35D;
-	Mon, 22 May 2023 15:23:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7988310E35B;
+	Mon, 22 May 2023 15:24:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AB3E10E35D
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 May 2023 15:23:55 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4DB810E35B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 May 2023 15:24:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684769035; x=1716305035;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=qcNgew9yoNqf6KOoaCPK0gfMRmtqUt/MYvDCoG6L6qM=;
- b=FrLEkBQtYWQ2kSEF7p/Ib6UIyzJINlCdvgUERldVjbTA8E3aKuS7J+Fj
- uXb4N9kvbOVXqi+xeVLziuAvxWWYOKByPlGTQFDZO/3JHye8OGSVLvNmj
- fH/ILer1EM5mrfwKTIzpk62a6tcrYFkSNvFdQT+em3lRXXd4QGm/4N4ZH
- RU20LI5kbU1FVXucZVSHKKsw7/Qbb/4njaM4gTYmNOfaz2tc33Od9k5Oq
- gJ72+WCUu5HcP7KpdRqNkuO6pif9Tw4mB+AZ8867VYfMnloHWQYSmE1iW
- ss4hKZj68Din++al+f8Cldr9myp62+IOn29PAYsq7gc4Alo5qw1QykNnw A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="352972589"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="352972589"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 08:23:54 -0700
+ t=1684769092; x=1716305092;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=WVH5jgvyQ3BRI87xStpG+QDwdvTy483exya+4l9JYhg=;
+ b=FjpolrXLDsKxQ9V0TvOy9viJBpdvBO7cI/AzNCi7CQlTdMIuX0mN0T6y
+ 2aBckG+oGLs6Wnyrm680HLt6oFItCj1BQiJHp9dCUWy4S7J4pMaro5IPK
+ eQfB9RpfVbwbcH8pxbtzKRvdUPAm1xqxBcm+dduqeHmFB77SuZRQNEJ5c
+ /Lmhb/4FxRDaLulW6L2GdB8hnQnGn5bR6HqzyaYgoctMR0NPJr1S/Tqer
+ 3oXmDkKD0FuIUkti0jc5Qeqj3XuaLpmTWv6mI2o0TEsRmLlRoeqb4ftSX
+ CevZWnEoOWNXwGYIfmbDdQV90RyNcHvoX+hVegPE/wKBnSUd6vmVxUAei Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="381183075"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="381183075"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 08:24:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="768567397"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="768567397"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.31.35])
- ([10.213.31.35])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 08:23:53 -0700
-Message-ID: <45bd45ca-55e7-8239-9a4a-977cc2caca14@intel.com>
-Date: Mon, 22 May 2023 17:23:51 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="827743313"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="827743313"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 08:24:46 -0700
+Date: Mon, 22 May 2023 18:24:42 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Message-ID: <ZGuJOlTW5FGLcyuw@intel.com>
+References: <20230511231750.313467-1-vinod.govindapillai@intel.com>
+ <20230511231750.313467-9-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.0
-Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230522124205.368-1-nirmoy.das@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230522124205.368-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Wait for active retire before
- i915_active_fini()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230511231750.313467-9-vinod.govindapillai@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 8/8] drm/i915/display: provision to
+ suppress drm_warn in intel_get_crtc_new_encoder
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,40 +59,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andi.shyti@intel.com, chris.p.wilson@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, May 12, 2023 at 02:17:50AM +0300, Vinod Govindapillai wrote:
+> While configuring pmdemand parameters, there could be
+> intel_get_crtc_new_encoder call where encoders could be 0. To avoid
+> invoking drm_warn in such cases, use a parameter to indicate drm_warn
+> should be suppressed.
+> 
+> v2: checkpatch warning fixes
 
+I thought, last time we discussed this, wasn't it so that you mentioned
+that this patch will be removed?..
 
-On 22.05.2023 14:42, Nirmoy Das wrote:
-> i915_active_fini() finalizes the debug object, which can occur before
-> the active retires and deactivates the debug object. Wait for one
-> final time before calling i915_active_fini();
->
-> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8311
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Regards
-Andrzej
-
+> 
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > ---
->   drivers/gpu/drm/i915/i915_vma.c | 2 ++
->   1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 20a44788999e..bad698bece27 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -1710,6 +1710,8 @@ static void release_references(struct i915_vma *vma, struct intel_gt *gt,
->   	if (vm_ddestroy)
->   		i915_vm_resv_put(vma->vm);
->   
-> +	/* Wait for async active retire */
-> +	i915_active_wait(&vma->active);
->   	i915_active_fini(&vma->active);
->   	GEM_WARN_ON(vma->resource);
->   	i915_vma_free(vma);
-
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c     |  2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c     | 10 ++++++----
+>  drivers/gpu/drm/i915/display/intel_display.h     |  3 ++-
+>  drivers/gpu/drm/i915/display/intel_dpll.c        |  8 ++++----
+>  drivers/gpu/drm/i915/display/intel_pch_display.c |  2 +-
+>  drivers/gpu/drm/i915/display/intel_pmdemand.c    |  2 +-
+>  drivers/gpu/drm/i915/display/intel_snps_phy.c    |  2 +-
+>  7 files changed, 16 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index d94127e7448b..1a41a314f8d8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -2934,7 +2934,7 @@ void intel_c10pll_state_verify(struct intel_atomic_state *state,
+>  	    !intel_crtc_needs_fastset(new_crtc_state))
+>  		return;
+>  
+> -	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
+> +	encoder = intel_get_crtc_new_encoder(state, new_crtc_state, true);
+>  	phy = intel_port_to_phy(i915, encoder->port);
+>  
+>  	if (!intel_is_c10phy(i915, phy))
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index dd390a0586ef..fb2b77aaaa69 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -763,7 +763,8 @@ bool intel_has_pending_fb_unpin(struct drm_i915_private *dev_priv)
+>   */
+>  struct intel_encoder *
+>  intel_get_crtc_new_encoder(const struct intel_atomic_state *state,
+> -			   const struct intel_crtc_state *crtc_state)
+> +			   const struct intel_crtc_state *crtc_state,
+> +			   bool warn)
+>  {
+>  	const struct drm_connector_state *connector_state;
+>  	const struct drm_connector *connector;
+> @@ -782,9 +783,10 @@ intel_get_crtc_new_encoder(const struct intel_atomic_state *state,
+>  		num_encoders++;
+>  	}
+>  
+> -	drm_WARN(state->base.dev, num_encoders != 1,
+> -		 "%d encoders for pipe %c\n",
+> -		 num_encoders, pipe_name(master_crtc->pipe));
+> +	if (warn)
+> +		drm_WARN(state->base.dev, num_encoders != 1,
+> +			 "%d encoders for pipe %c\n",
+> +			 num_encoders, pipe_name(master_crtc->pipe));
+>  
+>  	return encoder;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index ac95961f68ba..4620ed991ff0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -501,7 +501,8 @@ bool intel_plane_uses_fence(const struct intel_plane_state *plane_state);
+>  
+>  struct intel_encoder *
+>  intel_get_crtc_new_encoder(const struct intel_atomic_state *state,
+> -			   const struct intel_crtc_state *crtc_state);
+> +			   const struct intel_crtc_state *crtc_state,
+> +			   bool warn);
+>  void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+>  				  struct intel_plane *plane);
+>  void intel_set_plane_visible(struct intel_crtc_state *crtc_state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+> index ca0f362a40e3..3101de274f9d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> @@ -940,7 +940,7 @@ static int hsw_crtc_compute_clock(struct intel_atomic_state *state,
+>  	struct intel_crtc_state *crtc_state =
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+>  	struct intel_encoder *encoder =
+> -		intel_get_crtc_new_encoder(state, crtc_state);
+> +		intel_get_crtc_new_encoder(state, crtc_state, true);
+>  	int ret;
+>  
+>  	if (DISPLAY_VER(dev_priv) < 11 &&
+> @@ -969,7 +969,7 @@ static int hsw_crtc_get_shared_dpll(struct intel_atomic_state *state,
+>  	struct intel_crtc_state *crtc_state =
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+>  	struct intel_encoder *encoder =
+> -		intel_get_crtc_new_encoder(state, crtc_state);
+> +		intel_get_crtc_new_encoder(state, crtc_state, true);
+>  
+>  	if (DISPLAY_VER(dev_priv) < 11 &&
+>  	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
+> @@ -984,7 +984,7 @@ static int dg2_crtc_compute_clock(struct intel_atomic_state *state,
+>  	struct intel_crtc_state *crtc_state =
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+>  	struct intel_encoder *encoder =
+> -		intel_get_crtc_new_encoder(state, crtc_state);
+> +		intel_get_crtc_new_encoder(state, crtc_state, true);
+>  	int ret;
+>  
+>  	ret = intel_mpllb_calc_state(crtc_state, encoder);
+> @@ -1003,7 +1003,7 @@ static int mtl_crtc_compute_clock(struct intel_atomic_state *state,
+>  	struct intel_crtc_state *crtc_state =
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+>  	struct intel_encoder *encoder =
+> -		intel_get_crtc_new_encoder(state, crtc_state);
+> +		intel_get_crtc_new_encoder(state, crtc_state, true);
+>  	enum phy phy = intel_port_to_phy(i915, encoder->port);
+>  	int ret;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> index 2411fe4dee8b..fa91a9f66422 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> @@ -427,7 +427,7 @@ void ilk_pch_enable(struct intel_atomic_state *state,
+>  		if (adjusted_mode->flags & DRM_MODE_FLAG_PVSYNC)
+>  			temp |= TRANS_DP_VSYNC_ACTIVE_HIGH;
+>  
+> -		port = intel_get_crtc_new_encoder(state, crtc_state)->port;
+> +		port = intel_get_crtc_new_encoder(state, crtc_state, true)->port;
+>  		drm_WARN_ON(&dev_priv->drm, port < PORT_B || port > PORT_D);
+>  		temp |= TRANS_DP_PORT_SEL(port);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+> index ea117189910f..b9821f8b0700 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+> @@ -224,7 +224,7 @@ int intel_pmdemand_atomic_check(struct intel_atomic_state *state)
+>  		if (!new_crtc_state->hw.active)
+>  			continue;
+>  
+> -		encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
+> +		encoder = intel_get_crtc_new_encoder(state, new_crtc_state, false);
+>  		if (!encoder)
+>  			continue;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> index a72677bf617b..a4d56a2a670a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> @@ -2012,7 +2012,7 @@ void intel_mpllb_state_verify(struct intel_atomic_state *state,
+>  	    !intel_crtc_needs_fastset(new_crtc_state))
+>  		return;
+>  
+> -	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
+> +	encoder = intel_get_crtc_new_encoder(state, new_crtc_state, true);
+>  	intel_mpllb_readout_hw_state(encoder, &mpllb_hw_state);
+>  
+>  #define MPLLB_CHECK(__name)						\
+> -- 
+> 2.34.1
+> 
