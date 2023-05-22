@@ -2,62 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B916470CAA0
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 22:16:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22A3970CAB7
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 22:17:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AEC110E373;
-	Mon, 22 May 2023 20:16:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57AEA10E37C;
+	Mon, 22 May 2023 20:17:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com
- [IPv6:2607:f8b0:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C054B10E373
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 May 2023 20:16:04 +0000 (UTC)
-Received: by mail-pg1-x52b.google.com with SMTP id
- 41be03b00d2f7-5307502146aso4516575a12.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 May 2023 13:16:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1684786564; x=1687378564;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=lqoDgNZ9G+pnENJHcgKxrrSDm2QXQ2DN2DVXwRpe84M=;
- b=THb6a7A4+ZDhhztCUfCFsPY/zH0txXyjC+97nEgRFTe1FP6hH7wG4Rx1Ek+S2QkeNF
- rROT12GKEBSriZA/G+nXPcCRbwKUoWabsNyX9y4bwg6gYnpx4jqfuiWo86AeIMljKk3j
- mtLnQUhAfjXjiVaWPWRf4oLQqhq9xk4iIH0sk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684786564; x=1687378564;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=lqoDgNZ9G+pnENJHcgKxrrSDm2QXQ2DN2DVXwRpe84M=;
- b=YHJXQyNPDsy9amOdT6N13Ojz3yA2qO7qGmIqWG/2IB81S2TAxHfhi/IPAKTy9/ztkk
- FfUGDZkwyFcvE+LYRPY5V7+S28kCB91gqWKuaQr9S37402MFgz1Xp9r+9950scTny/zp
- +e4XPM2MMyPufdFgYQawGfhB0PUM83oQsrO7mR8/xzmtSqofDb8qvon35LF0JseKem0p
- s8ElTwXS54k2ydiC6qOew3Nbg/u0D0YvKZcK/268NUTJvdyYjFz4GUiNjhg10j0K4xVs
- wxFa7P33Dwye7ohYDFzGmv1C71TN1O7Ou9c33DS+/9sxiUebqbqB8J8IJlu1VMkht7bt
- AmWQ==
-X-Gm-Message-State: AC+VfDwXQTn0DpaOwAbESBNNm0XyTBNFmIN85TV01SkWqW9nfmddufKD
- WWMZ7ix4usS9L7WunsqKwlBSGQ==
-X-Google-Smtp-Source: ACHHUZ5SQz5k2SFL2blrf696wn78BpsNXHQRqB45l9/xGKDzmS28pRewvtArfVcejoeUFg//+tPPxA==
-X-Received: by 2002:a17:90b:1003:b0:255:5bde:e6cc with SMTP id
- gm3-20020a17090b100300b002555bdee6ccmr5042944pjb.17.1684786564102; 
- Mon, 22 May 2023 13:16:04 -0700 (PDT)
-Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net.
- [198.0.35.241]) by smtp.gmail.com with ESMTPSA id
- ei13-20020a17090ae54d00b0024744818bc5sm6340408pjb.9.2023.05.22.13.16.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 May 2023 13:16:03 -0700 (PDT)
-Date: Mon, 22 May 2023 13:16:03 -0700
-From: Kees Cook <keescook@chromium.org>
-To: Azeem Shaikh <azeemshaikh38@gmail.com>
-Message-ID: <202305221316.2817AA4FC@keescook>
-References: <20230522155228.2336755-1-azeemshaikh38@gmail.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3817210E37A;
+ Mon, 22 May 2023 20:17:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684786674; x=1716322674;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=982noqbAMOmgA0reQGkrINQcNeHQ6NxxoGKNnbHUvag=;
+ b=HbyO48oSNydScKIVsxqtkAzooA0E2TNkhAbq1goJya0MDb8/9OjFE2f3
+ yOI3XJzaChR0UvZjK3wwfYiYncmhjo8q2o8TG4tS4bnsuwiLsNUfiu0UY
+ PnHbSyMY18kvkQ0W5lAvm1yrVMjNldZHkZrtMGbhwJ+na6ADSBfAvoBCz
+ PeB3SFHt3Qkh0Z2l5IvK5ZrY8Cyr/nN15ETzjQBQYFIor7FHoZRuYwk5Y
+ gMLNcSZ+bZDiXvwM42O6THyBWwO0/8elz198QTcJhdilsjnQKXExKiU92
+ 4kqvhPdobJiNeA2iLcPSbcGQ72ag90c+xb1q+5XOZT/XikDUTYmlG/7i9 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="439384879"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="439384879"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 13:17:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="706676116"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="706676116"
+Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 13:17:53 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 22 May 2023 13:17:49 -0700
+Message-Id: <20230522201749.4094742-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230522155228.2336755-1-azeemshaikh38@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Replace all non-returning strlcpy
- with strscpy
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/perf: Clear out entire reports after
+ reading if not power of 2 size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,28 +56,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 22, 2023 at 03:52:28PM +0000, Azeem Shaikh wrote:
-> strlcpy() reads the entire source buffer first.
-> This read may exceed the destination size limit.
-> This is both inefficient and can lead to linear read
-> overflows if a source string is not NUL-terminated [1].
-> In an effort to remove strlcpy() completely [2], replace
-> strlcpy() here with strscpy().
-> No return values were used, so direct replacement is safe.
-> 
-> [1] https://www.kernel.org/doc/html/latest/process/deprecated.html#strlcpy
-> [2] https://github.com/KSPP/linux/issues/89
-> 
-> Signed-off-by: Azeem Shaikh <azeemshaikh38@gmail.com>
+Clearing out report id and timestamp as means to detect unlanded reports
+only works if report size is power of 2. That is, only when report size is
+a sub-multiple of the OA buffer size can we be certain that reports will
+land at the same place each time in the OA buffer (after rewind). If report
+size is not a power of 2, we need to zero out the entire report to be able
+to detect unlanded reports reliably.
 
-Reviewed-by: Kees Cook <keescook@chromium.org>
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/i915_perf.c | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 19d5652300eeb..58284156428dc 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -877,12 +877,17 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
+ 			stream->oa_buffer.last_ctx_id = ctx_id;
+ 		}
+ 
+-		/*
+-		 * Clear out the report id and timestamp as a means to detect unlanded
+-		 * reports.
+-		 */
+-		oa_report_id_clear(stream, report32);
+-		oa_timestamp_clear(stream, report32);
++		if (is_power_of_2(report_size)) {
++			/*
++			 * Clear out the report id and timestamp as a means
++			 * to detect unlanded reports.
++			 */
++			oa_report_id_clear(stream, report32);
++			oa_timestamp_clear(stream, report32);
++		} else {
++			/* Zero out the entire report */
++			memset(report32, 0, report_size);
++		}
+ 	}
+ 
+ 	if (start_offset != *offset) {
 -- 
-Kees Cook
+2.38.0
+
