@@ -2,63 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D94C70BCDC
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 14:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD31F70BCDB
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 14:04:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FC4710E2FA;
-	Mon, 22 May 2023 12:04:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36EB110E2EF;
+	Mon, 22 May 2023 12:03:56 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-x114a.google.com (mail-yw1-x114a.google.com
- [IPv6:2607:f8b0:4864:20::114a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5881610E581
- for <Intel-gfx@lists.freedesktop.org>; Fri, 19 May 2023 19:36:59 +0000 (UTC)
-Received: by mail-yw1-x114a.google.com with SMTP id
- 00721157ae682-559c416b024so42239907b3.1
- for <Intel-gfx@lists.freedesktop.org>; Fri, 19 May 2023 12:36:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20221208; t=1684525018; x=1687117018;
- h=content-transfer-encoding:cc:to:from:subject:message-id:references
- :mime-version:in-reply-to:date:from:to:cc:subject:date:message-id
- :reply-to; bh=lltC1PgnqCtsXAHgdMoCNdxe+omg+7CA2KzrLfAXLTA=;
- b=CireAviPmLkSmdipBP++kE9/Z/o7A1zNeQMMSTF1gKfHO/AEAjTD/rPOLqqF4atyld
- Pumh00GD78+7qgLFEV37n9uuMr8mGc1R6N7SR7SyF9zPRvcZ1hUvWgFWtjNqjN7T/TAP
- FXQKWz6s32Rcbdvt3gNQz8NVamXZ9cWuApLKMiPoCyjiICn/Gv9rQvJthueqly+OEMEl
- 8+jkOA/GjpSx0MvFhq1QtIfoFDPlN7/zsnw85REjpTgZm7uC13dGdh2SljFNmQB+Jhya
- LlaKteGjngY/5nHdSrjNsrZsTrfENyhUhEOGzSatoWD7+AVvBDkjB36yigGuQoBR7hkj
- Pzxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684525018; x=1687117018;
- h=content-transfer-encoding:cc:to:from:subject:message-id:references
- :mime-version:in-reply-to:date:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=lltC1PgnqCtsXAHgdMoCNdxe+omg+7CA2KzrLfAXLTA=;
- b=MKrfAISg+3fd1btupyKME/6ytyPn+NLj7onlMZv5qWetBxNTLY+u7g9G6tcNu4YkRA
- UcMnuhhhOoWaIjpP24vT3LNai9WpOkPfiNYRvjY8GC4Rg0BVuwE2YpQ1qCONuzaZTO1y
- JE+ZK/GR3T6pNGnjc627ECaAKwEL3H7zMHT4HfvbXPQPscQL/D61BCWObjqwRkqfPn3t
- MqcBNwYdkB7rEVA5xcbaP1Ji/GKrQQ/ep9HOBHedrYhjk5odbPE1Urmq/PRoZy6UtIhg
- 4xSVf26MBMxY7u3GzgiktRwocHCdeqKFJXSzwUH+aV9C2UFzzklmLpcdHxPMoIQVGEMQ
- D20A==
-X-Gm-Message-State: AC+VfDymFrg546zFzxshm1RP5Ay8NFYBjmYH5qn2Oc5OvWL79dciMIQu
- HrpjjRcoTlNV6yjExVEdFqQAVhiXdEnL5g==
-X-Google-Smtp-Source: ACHHUZ4VOY8zSr3wK+p9w7ugyP1BBrvXNv1iLaCovvJCYG1Tew9sU3R7JGdy1cwVhKhYS+y1C4CufLm5yLkT0Q==
-X-Received: from farnsworth5.c.googlers.com
- ([fda3:e722:ac3:cc00:7f:e700:c0a8:3131])
- (user=prahladk job=sendgmr) by 2002:a81:a9c9:0:b0:561:c10b:6ebb with SMTP id
- g192-20020a81a9c9000000b00561c10b6ebbmr1869063ywh.1.1684525017968; Fri, 19
- May 2023 12:36:57 -0700 (PDT)
-Date: Fri, 19 May 2023 19:36:56 +0000
-In-Reply-To: <20230428081457.857009-5-tvrtko.ursulin@linux.intel.com>
-Mime-Version: 1.0
-References: <20230428081457.857009-5-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.40.1.698.g37aff9b760-goog
-Message-ID: <20230519193656.1929553-1-prahladk@google.com>
-From: Prahlad Kilambi <prahladk@google.com>
-To: tvrtko.ursulin@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 22 May 2023 12:04:32 +0000
-Subject: [Intel-gfx] [RFC 4/4] drm/i915: Expose RPS thresholds in sysfs
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42B6410E2D5;
+ Mon, 22 May 2023 12:03:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684757033; x=1716293033;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Bc8PzkqylcdnvZnk/5uAYYZ9JsPIVFoT0RDiNxJMQyM=;
+ b=jChO2mVORTXOrmDkLPsO4kO14uqUb1w4/ORJB0Q9E4rGjLKcbpgUjfIn
+ cJPMIKIzm5sCdkH5hHLAggOIQyZLjVVCMjIXiDqOPJSfdQqbhWNrUVBIR
+ BHGKkpYO1R0mOmJx7qDaYwM5jwYg41hYoFhch74QWj5+uAkmHkdfFOsna
+ uoBMH++zAWQkJvU0VFqw6FPiEFjWml9roErvRpvOoe68dnmsOBE0emzOp
+ lHJZt+HF3qiUSki7JeDPJMGFwASZzyI5hcvFPjgWVAknnIOff9OiBdyNS
+ u/pGUmPLNnbdec7fPVrwt3UxgfWanIKzrR5sK+eLawZW1fGGbeNexEjyA A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="416362746"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="416362746"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 05:03:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="680919005"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="680919005"
+Received: from tjepsen-mobl.amr.corp.intel.com (HELO [10.252.45.96])
+ ([10.252.45.96])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 05:03:50 -0700
+Message-ID: <ab7760d5-af5d-2dd7-83c3-9972e0b68c7a@linux.intel.com>
+Date: Mon, 22 May 2023 13:03:48 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+References: <20230428081457.857009-1-tvrtko.ursulin@linux.intel.com>
+ <20230428081457.857009-5-tvrtko.ursulin@linux.intel.com>
+ <3b2a7f29-6490-00d0-8f29-f8bd5cea0d11@linux.intel.com>
+ <ZGfiYracxton0/S5@rdvivi-mobl4>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ZGfiYracxton0/S5@rdvivi-mobl4>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC 4/4] drm/i915: Expose RPS thresholds in sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,19 +69,60 @@ Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> One question is are we able to find a "one size fits all" values.
 
-> However regardless of that, given we already expose frequency controls in=
- sysfs
-> with the same reasoning of allowing system owners explicit control if so =
-wanted,
-> I think exposing the thresholds can be equally justified.
+On 19/05/2023 21:56, Rodrigo Vivi wrote:
+> On Fri, Apr 28, 2023 at 09:44:53AM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 28/04/2023 09:14, Tvrtko Ursulin wrote:
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> User feedback indicates significant performance gains are possible in
+>>> specific games with non default RPS up/down thresholds.
+>>>
+>>> Expose these tunables via sysfs which will allow users to achieve best
+>>> performance when running games and best power efficiency elsewhere.
+>>>
+>>> Note this patch supports non GuC based platforms only.
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> References: https://gitlab.freedesktop.org/drm/intel/-/issues/8389
+>>
+>> [snip]
+>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+>>> index a5a7315f5ace..f790e81546ff 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+>>> @@ -2588,7 +2588,12 @@ static int rps_set_threshold(struct intel_rps *rps, u8 *threshold, u8 val)
+>>>    	ret = mutex_lock_interruptible(&rps->lock);
+>>>    	if (ret)
+>>>    		return ret;
+>>> -	*threshold = val;
+>>> +	if (*threshold != val) {
+>>> +		*threshold = val;
+>>> +		intel_rps_set(rps, clamp(rps->cur_freq,
+>>> +					 rps->min_freq_softlimit,
+>>> +					 rps->max_freq_softlimit));
+>>> +	}
+>>>    	mutex_unlock(&rps->lock);
+>>>    	return 0;
+>>
+>> This hunk belongs to a previous patch - moved locally.
+> 
+> I probably missed something then becuase I didn't miss this in any
+> of the previous patches. To the point that this looked like a new
+> separated patch.
 
-Exposing these RPS thresholds via sysfs allows for dynamic tuning of these =
-values at runtime. Common scenarios where we can benefit from variable freq=
-uency ramping include plugged in vs battery where differing thresholds allo=
-w to weight more for performance vs power. Data from testing on ChromeOS Ge=
-n12 platforms where GuC isn't enabled indicates gains > 10% across several =
-games. See https://gitlab.freedesktop.org/drm/intel/-/issues/8389#note_1890=
-428 for details.
+Depends how you look at it. 3/4 adds a helper which changes the 
+threshold, but it was only updating the sw state and so when those 
+values would actually get written into registers (derived) would depend 
+on the workload. So I thought it was important to move the call to 
+intel_rps_set, which actually will trigger hw reprogramming, into the 
+patch which claims to be adding the helper.
 
+Note v2 of the helper (just sent) which actually fixes this further by 
+forcing this re-programming to happen.
+
+Regards,
+
+Tvrtko
