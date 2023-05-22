@@ -2,40 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B06A270BEEB
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 14:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4830470BF06
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 15:02:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A96510E316;
-	Mon, 22 May 2023 12:59:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02FEC10E316;
+	Mon, 22 May 2023 13:02:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F5D510E313;
- Mon, 22 May 2023 12:59:23 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id E208D614C7;
- Mon, 22 May 2023 12:59:22 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 082DAC433D2;
- Mon, 22 May 2023 12:59:18 +0000 (UTC)
-Date: Mon, 22 May 2023 08:59:11 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <ZGtnH5YJ8u6bMo4j@rdvivi-mobl4>
-References: <20230419154321.1993419-1-markyacoub@google.com>
- <0c702f15-c842-8eab-cc95-83378236773c@linaro.org>
- <ZGfnNBRUN72IXRjy@rdvivi-mobl4>
- <27b4bce7-2f63-9199-71e6-4ed52a96d0c1@linaro.org>
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
+ [IPv6:2607:f8b0:4864:20::b33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB79E10E30F;
+ Mon, 22 May 2023 13:02:32 +0000 (UTC)
+Received: by mail-yb1-xb33.google.com with SMTP id
+ 3f1490d57ef6-ba81031424dso9135298276.2; 
+ Mon, 22 May 2023 06:02:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1684760551; x=1687352551;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=Oz4bQfIt7cNLLI3/bZ4OW8kbHhUS+fQ0VE6AH/7bMg4=;
+ b=lYD92GRkYdjfbP3e8fwuaSxDduqy48npOK4Yg9ZaOEmHqS/JPtCrce+EnaTh9VmSna
+ RHT7GBkDPyiY/W1+jvLGjxkh51jn+zxmI9OqgHEoEtA6ZjAC30eCAWTw4zIpfk4rWBWy
+ A1qvHTQQwDt/NDBe21ApIde4nz/UtIN9QIixfms/Elp7oFDo+K/CLz+WFH9CtzPzcwlv
+ rzv+9GIwfuw+VDp4MMJbBA5/iN9yQMMF+KMxRFF3Ge3uNa1QastQ+/BM0jUqgxWGYyfz
+ cZTsz43RMk9g0VkTvoP1GJLBnZ9NmdVPAanL5bVUqBvc4fFhRPHb/wZFuV7qE7SuuDXI
+ bn1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684760551; x=1687352551;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Oz4bQfIt7cNLLI3/bZ4OW8kbHhUS+fQ0VE6AH/7bMg4=;
+ b=FtzCfe6g+2++bwRX7walXl8KQal522BhJBw765YEWPz9Zo4stP1rvG/t3cKn7LNQ1v
+ i8o1ZkrR6lgx2Urxvcc+GvJySFFANymwvhxj6c+x+c+R9LHmn25VOmh+wRDo+AVqON4w
+ 6P9ivh9QCJCuJY2fpjv1rFhrANq3G++Fz3K43H1lwkcnXw5QNG5u1/C5jhZPVU3JMu/W
+ c9KItLeQziENNmst2nXvtD9TXvvdvHHIuKFvDW3o3AJXsqLbCfLPEAIkw20TFlTOJEqr
+ QBIQl0FapJqY5kUd8eIfsApW8Nc7EBiozV974D3q0gWKDCmqqmU3OdZrsFKs0feWscv4
+ g2+A==
+X-Gm-Message-State: AC+VfDwTOrSDnN4SxM+zRXQHBV6r3ni2867Ry5APaE6DIeUsSUkwVXnI
+ dbi9hBpEUGtz1rJh5r9sAm0Y1vPBDu5HNz93B74=
+X-Google-Smtp-Source: ACHHUZ6H/V3aromhsm0WeKkw3qoE/viYGpCdWeB7qDuWQFt6qRv5I58EjllHW4obHGmBc+ZmdwVtPh7vvXJ6Cb4sGGM=
+X-Received: by 2002:a25:cdc5:0:b0:ba6:a445:3317 with SMTP id
+ d188-20020a25cdc5000000b00ba6a4453317mr9276789ybf.39.1684760551555; Mon, 22
+ May 2023 06:02:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <27b4bce7-2f63-9199-71e6-4ed52a96d0c1@linaro.org>
-Subject: Re: [Intel-gfx] [PATCH v10 00/10] drm/hdcp: Pull HDCP
- auth/exchange/check into helpers
+References: <20230521205112.150206-1-dmitry.osipenko@collabora.com>
+ <20230521205112.150206-7-dmitry.osipenko@collabora.com>
+In-Reply-To: <20230521205112.150206-7-dmitry.osipenko@collabora.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Mon, 22 May 2023 14:02:19 +0100
+Message-ID: <CACvgo52QvmZw5k_9dmBHPB25rTdLZJzVG_vNFr8or+3f5sVO=Q@mail.gmail.com>
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v3 6/6] drm/shmem-helper: Switch to
+ reservation lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,69 +68,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Yacoub <markyacoub@chromium.org>, intel-gfx@lists.freedesktop.org,
- Douglas Anderson <dianders@chromium.org>, seanpaul@chromium.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- freedreno@lists.freedesktop.org, Mark Yacoub <markyacoub@google.com>
+Cc: dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, kernel@collabora.com,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ linux-media@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Tomi Valkeinen <tomba@kernel.org>, linux-kernel@vger.kernel.org,
+ Liam Mark <lmark@codeaurora.org>, Tomasz Figa <tfiga@chromium.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, May 20, 2023 at 02:07:51AM +0300, Dmitry Baryshkov wrote:
-> On 20/05/2023 00:16, Rodrigo Vivi wrote:
-> > On Fri, May 19, 2023 at 07:55:47PM +0300, Dmitry Baryshkov wrote:
-> > > On 19/04/2023 18:43, Mark Yacoub wrote:
-> > > > Hi all,
-> > > > This is v10 of the HDCP patches. The patches are authored by Sean Paul.
-> > > > I rebased and addressed the review comments in v6-v10.
-> > > > 
-> > > > Main change in v10 is handling the kernel test bot warnings.
-> > > > 
-> > > > Patches 1-4 focus on moving the common HDCP helpers to common DRM.
-> > > > This introduces a slight change in the original intel flow
-> > > > as it splits the unique driver protocol from the generic implementation.
-> > > > 
-> > > > Patches 5-7 split the HDCP flow on the i915 driver to make use of the common DRM helpers.
-> > > > 
-> > > > Patches 8-10 implement HDCP on MSM driver.
-> > > > 
-> > > > Thanks,
-> > > > -Mark Yacoub
-> > > > 
-> > > > Sean Paul (10):
-> > > >     drm/hdcp: Add drm_hdcp_atomic_check()
-> > > >     drm/hdcp: Avoid changing crtc state in hdcp atomic check
-> > > >     drm/hdcp: Update property value on content type and user changes
-> > > >     drm/hdcp: Expand HDCP helper library for enable/disable/check
-> > > >     drm/i915/hdcp: Consolidate HDCP setup/state cache
-> > > >     drm/i915/hdcp: Retain hdcp_capable return codes
-> > > >     drm/i915/hdcp: Use HDCP helpers for i915
-> > > >     dt-bindings: msm/dp: Add bindings for HDCP registers
-> > > >     arm64: dts: qcom: sc7180: Add support for HDCP in dp-controller
-> > > 
-> > > Dear i915 maintainers,
-> > > 
-> > > I wanted to ping you regarding this patch series. If there are no comments
-> > > for the series from you side, would it be possible to land Intel-specific
-> > > and generic patches into drm-intel tree? We will continue working on the msm
-> > > specific parts and merge them through the msm tree.
-> > 
-> > pushed to drm-intel-next.
-> > 
-> > should be propagated in a few weeks to drm-next on our next pull request.
-> 
-> Probably there is some kind of confusion here. You've pushed the DSC
-> patches, while the response was sent to the HDCP series.
+Hi Dmitry,
 
-I'm sorry, my confusion for replying to the wrong thread.
+Saw v3 fly by, so I had a quick look. Original RB still stands,
+although I noticed a couple of non-blocking nitpicks.
 
-So, on this one here I believe it would be helpful if there's a split
-in the series with the already reviewed ones related to i915 are resent
-separated from the rest, send with --subject-prefix="CI" so when that
-pass CI we just merge it through drm-intel-next
+On Sun, 21 May 2023 at 22:00, Dmitry Osipenko
+<dmitry.osipenko@collabora.com> wrote:
+
+> -static int drm_gem_shmem_get_pages_locked(struct drm_gem_shmem_object *shmem)
+> +static int drm_gem_shmem_get_pages(struct drm_gem_shmem_object *shmem)
+>  {
+
+Should this getter have a dma_resv_assert_held(shmem->base.resv); like
+it's put brethren?
 
 
-> 
-> -- 
-> With best wishes
-> Dmitry
-> 
+> -void drm_gem_shmem_put_pages(struct drm_gem_shmem_object *shmem)
+> +static int drm_gem_shmem_pin_locked(struct drm_gem_shmem_object *shmem)
+> +{
+> +       int ret;
+> +
+> +       dma_resv_assert_held(shmem->base.resv);
+> +
+> +       ret = drm_gem_shmem_get_pages(shmem);
+> +
+> +       return ret;
+
+With the assert_held in the getter, it would be less confusing to
+inline this and the unpin_locked functions.
+
+> +}
+> +
+> +static void drm_gem_shmem_unpin_locked(struct drm_gem_shmem_object *shmem)
+>  {
+> -       mutex_lock(&shmem->pages_lock);
+> -       drm_gem_shmem_put_pages_locked(shmem);
+> -       mutex_unlock(&shmem->pages_lock);
+> +       dma_resv_assert_held(shmem->base.resv);
+> +
+> +       drm_gem_shmem_put_pages(shmem);
+
+Side note: the putter has an assert_held so the extra one here seems quite odd.
+
+As said at the top - with or w/o these nitpicks, the original RB still stands.
+
+HTH o/
+-Emil
