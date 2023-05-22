@@ -2,52 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE46370CE4C
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 00:48:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0320970CE69
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 01:04:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 270C410E2BD;
-	Mon, 22 May 2023 22:48:45 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8AED10E2BD;
- Mon, 22 May 2023 22:48:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684795723; x=1716331723;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=SSf6czB7RFWymzZ8g6/n89HWSPQ/IV+AsfLozjESbMc=;
- b=Cpy1Tnjxvu4JSSHFA+TfOurakzcqXf4aSYHJFUZP2jOAwl8rhQBNL1hK
- ww/jFXq2H4PSo0W6717qUBthlGjUtDQjoeJNHRMGvNcJI7bkCRDD5UK8z
- EkzHK0PovnKCQaTwk0QKnS9ZQbfExJm0fnV3tfaOcgnX+GbNIr/NvI/RU
- uiP6doI6Ydl6RI6tUAfMKm77DqESRnZ56YJGeMyC70Y7b6hJeQY0n4miC
- I0XK0Zop0+CeeqE8/a6uqDkBcx/cepKw90Ch7WvVzg81hM8G3+yJBeMBJ
- KnlhuJ7rK61YrjdWWeJ6qNMJcZBu17a/w4U2hDHBhCF7ZfRvD4y1ytGkt Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="381305165"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="381305165"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 15:48:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="681132738"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="681132738"
-Received: from baumgarp-mobl3.ger.corp.intel.com (HELO intel.com)
- ([10.252.55.129])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 15:48:40 -0700
-Date: Tue, 23 May 2023 00:48:38 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <ZGvxRmNN2bG3i9Qb@ashyti-mobl2.lan>
-References: <20230522115928.588793-1-tvrtko.ursulin@linux.intel.com>
- <20230522115928.588793-2-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6471310E2C6;
+	Mon, 22 May 2023 23:04:38 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDF2410E2C6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 May 2023 23:04:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1684796675;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=w0+n/QgjpwGDdtheHaeJfYxk19jJm9VkMNETIgTtOVc=;
+ b=Gs3Ym+46w+Afh1I7sxszp7ZniL7sb2pCbiyEYAnRkgARlJTcyFOoz1WGYVGBe0ufHykhqZ
+ RBfdyHmv3c4gAG1nuEBL+XH8jLWWpwcKF17TaEKIBsnNQXX5RUiR9Ddy2xfTPMz1muWg+H
+ yF9sQ/xM+FO90fZvI1XJAVfUM0CReyk=
+Received: from mail-io1-f70.google.com (mail-io1-f70.google.com
+ [209.85.166.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-299-MCytv4k0Pmyp-T8DIkz6Uw-1; Mon, 22 May 2023 19:04:33 -0400
+X-MC-Unique: MCytv4k0Pmyp-T8DIkz6Uw-1
+Received: by mail-io1-f70.google.com with SMTP id
+ ca18e2360f4ac-760c58747cdso535055439f.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 May 2023 16:04:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684796673; x=1687388673;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=w0+n/QgjpwGDdtheHaeJfYxk19jJm9VkMNETIgTtOVc=;
+ b=Yv+F8FB+MXsKLVCY3PsD7EkkhAmHS4AqW+Y1gdA+aP0rLroBZGHRGbAikcM5K88d8F
+ 58v7G+nKUhokhIHBkgQS7UHyRSQw6e4cIkpurzfGZVzhW5FMR2ARqlrxuPTg1D+iXAoi
+ w5hBzSdMDve+EoqlSQQJZoZkaSrvypmT9FclavWN+SrjcPNVwlTKCmSglY/ed73F9GWT
+ z+lIsz+Uu1BMN1vYDlWtoJfVSCo7wBJcABitCmOlZGBhhjglFXK0xDm4YB9KzR+1G1cw
+ Im/UFnqFXH3aLFpljtAArhjGZPjBx6xZ4opFfcHbhlZwsxysE/2sJy0vmanFMu41wAtf
+ FVPA==
+X-Gm-Message-State: AC+VfDzmw9l4SFlxYQs57pEVpsx8VhCk/RfcROiSMBCQFFaXW1TrgxRb
+ SUSHYAFy3f//IEZCYi6TvzbekKnz0oASr/gDOV8TYe3UuyeKbdYJTZJJqqhqaHvEmDGuzoTKI9n
+ 5KhmTPUdtW+AVWvNmMdfDHfoKlbhh
+X-Received: by 2002:a5e:890f:0:b0:76e:fbc6:347d with SMTP id
+ k15-20020a5e890f000000b0076efbc6347dmr7364588ioj.20.1684796672722; 
+ Mon, 22 May 2023 16:04:32 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6Z8CUQuCHamNsEWTaswCX9W3UzFyBF5Ko9xA67aR5uOOig0LLcu/AMeAJp5EHdL25fonvk4A==
+X-Received: by 2002:a5e:890f:0:b0:76e:fbc6:347d with SMTP id
+ k15-20020a5e890f000000b0076efbc6347dmr7364559ioj.20.1684796672395; 
+ Mon, 22 May 2023 16:04:32 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ x26-20020a0566380cba00b00411b2414eb5sm1999079jad.94.2023.05.22.16.04.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 May 2023 16:04:31 -0700 (PDT)
+Date: Mon, 22 May 2023 17:04:29 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <20230522170429.2d5ca274.alex.williamson@redhat.com>
+In-Reply-To: <20230513132827.39066-22-yi.l.liu@intel.com>
+References: <20230513132827.39066-1-yi.l.liu@intel.com>
+ <20230513132827.39066-22-yi.l.liu@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230522115928.588793-2-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Record default rps threshold
- values
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v11 21/23] vfio: Determine noiommu device in
+ __vfio_register_dev()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,21 +84,249 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@kernel.org>, Intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
+ chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, kvm@vger.kernel.org,
+ lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
+ jgg@nvidia.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
+ eric.auger@redhat.com, intel-gvt-dev@lists.freedesktop.org,
+ yi.y.sun@linux.intel.com, clegoate@redhat.com, cohuck@redhat.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+On Sat, 13 May 2023 06:28:25 -0700
+Yi Liu <yi.l.liu@intel.com> wrote:
 
-On Mon, May 22, 2023 at 12:59:26PM +0100, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> This is to make the cdev path and group path consistent for the noiommu
+> devices registration. If vfio_noiommu is disabled, such registration
+> should fail. However, this check is vfio_device_set_group() which is part
+> of the vfio_group code. If the vfio_group code is compiled out, noiommu
+> devices would be registered even vfio_noiommu is disabled.
 > 
-> Record the default values as preparation for exposing the sysfs controls.
+> This adds vfio_device_set_noiommu() which can fail and calls it in the
+> device registration. For now, it never fails as long as
+> vfio_device_set_group() is successful. But when the vfio_group code is
+> compiled out, vfio_device_set_noiommu() would fail the noiommu devices
+> when vfio_noiommu is disabled.
+
+I'm lost.  After the next patch we end up with the following when
+CONFIG_VFIO_GROUP is set:
+
+static inline int vfio_device_set_noiommu(struct vfio_device *device)
+{
+        device->noiommu = IS_ENABLED(CONFIG_VFIO_NOIOMMU) &&
+                          device->group->type == VFIO_NO_IOMMU;
+        return 0;
+}
+
+I think this is relying on the fact that vfio_device_set_group() which
+is called immediately prior to this function would have performed the
+testing for noiommu and failed prior to this function being called and
+therefore there is no error return here.
+
+Note also here that I think CONFIG_VFIO_NOIOMMU was only being tested
+here previously so that a smart enough compiler would optimize out the
+entire function, we can never set a VFIO_NO_IOMMU type when
+!CONFIG_VFIO_NOIOMMU.  That's no longer the case if the function is
+refactored like this.
+
+When !CONFIG_VFIO_GROUP:
+
+static inline int vfio_device_set_noiommu(struct vfio_device *device)
+{
+        struct iommu_group *iommu_group;
+
+        iommu_group = iommu_group_get(device->dev);
+        if (!iommu_group) {
+                if (!IS_ENABLED(CONFIG_VFIO_NOIOMMU) || !vfio_noiommu)
+                        return -EINVAL;
+                device->noiommu = true;
+        } else {
+                iommu_group_put(iommu_group);
+                device->noiommu = false;
+        }
+
+        return 0;
+}
+
+Here again, the NOIOMMU config option is irrelevant, vfio_noiommu can
+only be true if the config option is enabled.  Therefore if there's no
+IOMMU group and the module option to enable noiommu is not set, return
+an error.
+
+It's really quite ugly that in one mode we rely on this function to
+generate the error and in the other mode it happens prior to getting
+here.
+
+The above could be simplified to something like:
+
+	iommu_group = iommu_group_get(device->dev);
+	if (!iommu_group && !vfio_iommu)
+		return -EINVAL;
+
+	device->noiommu = !iommu_group;
+	iommu_group_put(iommu_group); /* Accepts NULL */
+	return 0;
+
+Which would actually work regardless of CONFIG_VFIO_GROUP, where maybe
+this could then be moved before vfio_device_set_group() and become the
+de facto exit point for invalid noiommu configurations and maybe we
+could remove the test from the group code (with a comment to note that
+it's been tested prior)?  Thanks,
+
+Alex
+
+> As noiommu devices is checked and there are multiple places which needs
+> to test noiommu devices, this also adds a flag to mark noiommu devices.
+> Hence the callers of vfio_device_is_noiommu() can be converted to test
+> vfio_device->noiommu.
 > 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+> Tested-by: Nicolin Chen <nicolinc@nvidia.com>
+> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/device_cdev.c |  4 ++--
+>  drivers/vfio/group.c       |  2 +-
+>  drivers/vfio/iommufd.c     | 10 +++++-----
+>  drivers/vfio/vfio.h        |  7 ++++---
+>  drivers/vfio/vfio_main.c   |  6 +++++-
+>  include/linux/vfio.h       |  1 +
+>  6 files changed, 18 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/vfio/device_cdev.c b/drivers/vfio/device_cdev.c
+> index 3f14edb80a93..6d7f50ee535d 100644
+> --- a/drivers/vfio/device_cdev.c
+> +++ b/drivers/vfio/device_cdev.c
+> @@ -111,7 +111,7 @@ long vfio_device_ioctl_bind_iommufd(struct vfio_device_file *df,
+>  	if (df->group)
+>  		return -EINVAL;
+>  
+> -	if (vfio_device_is_noiommu(device) && !capable(CAP_SYS_RAWIO))
+> +	if (device->noiommu && !capable(CAP_SYS_RAWIO))
+>  		return -EPERM;
+>  
+>  	ret = vfio_device_block_group(device);
+> @@ -157,7 +157,7 @@ long vfio_device_ioctl_bind_iommufd(struct vfio_device_file *df,
+>  	device->cdev_opened = true;
+>  	mutex_unlock(&device->dev_set->lock);
+>  
+> -	if (vfio_device_is_noiommu(device))
+> +	if (device->noiommu)
+>  		dev_warn(device->dev, "noiommu device is bound to iommufd by user "
+>  			 "(%s:%d)\n", current->comm, task_pid_nr(current));
+>  	return 0;
+> diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
+> index 7aacbd9d08c9..bf4335bce892 100644
+> --- a/drivers/vfio/group.c
+> +++ b/drivers/vfio/group.c
+> @@ -192,7 +192,7 @@ static int vfio_device_group_open(struct vfio_device_file *df)
+>  		vfio_device_group_get_kvm_safe(device);
+>  
+>  	df->iommufd = device->group->iommufd;
+> -	if (df->iommufd && vfio_device_is_noiommu(device) && device->open_count == 0) {
+> +	if (df->iommufd && device->noiommu && device->open_count == 0) {
+>  		ret = vfio_iommufd_compat_probe_noiommu(device,
+>  							df->iommufd);
+>  		if (ret)
+> diff --git a/drivers/vfio/iommufd.c b/drivers/vfio/iommufd.c
+> index 799ea322a7d4..dfe706f1e952 100644
+> --- a/drivers/vfio/iommufd.c
+> +++ b/drivers/vfio/iommufd.c
+> @@ -71,7 +71,7 @@ int vfio_iommufd_bind(struct vfio_device_file *df)
+>  
+>  	lockdep_assert_held(&vdev->dev_set->lock);
+>  
+> -	if (vfio_device_is_noiommu(vdev))
+> +	if (vdev->noiommu)
+>  		return vfio_iommufd_noiommu_bind(vdev, ictx, &df->devid);
+>  
+>  	return vdev->ops->bind_iommufd(vdev, ictx, &df->devid);
+> @@ -86,7 +86,7 @@ int vfio_iommufd_compat_attach_ioas(struct vfio_device *vdev,
+>  	lockdep_assert_held(&vdev->dev_set->lock);
+>  
+>  	/* compat noiommu does not need to do ioas attach */
+> -	if (vfio_device_is_noiommu(vdev))
+> +	if (vdev->noiommu)
+>  		return 0;
+>  
+>  	ret = iommufd_vfio_compat_ioas_get_id(ictx, &ioas_id);
+> @@ -103,7 +103,7 @@ void vfio_iommufd_unbind(struct vfio_device_file *df)
+>  
+>  	lockdep_assert_held(&vdev->dev_set->lock);
+>  
+> -	if (vfio_device_is_noiommu(vdev)) {
+> +	if (vdev->noiommu) {
+>  		vfio_iommufd_noiommu_unbind(vdev);
+>  		return;
+>  	}
+> @@ -116,7 +116,7 @@ int vfio_iommufd_attach(struct vfio_device *vdev, u32 *pt_id)
+>  {
+>  	lockdep_assert_held(&vdev->dev_set->lock);
+>  
+> -	if (vfio_device_is_noiommu(vdev))
+> +	if (vdev->noiommu)
+>  		return 0;
+>  
+>  	return vdev->ops->attach_ioas(vdev, pt_id);
+> @@ -126,7 +126,7 @@ void vfio_iommufd_detach(struct vfio_device *vdev)
+>  {
+>  	lockdep_assert_held(&vdev->dev_set->lock);
+>  
+> -	if (!vfio_device_is_noiommu(vdev))
+> +	if (!vdev->noiommu)
+>  		vdev->ops->detach_ioas(vdev);
+>  }
+>  
+> diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
+> index 50553f67600f..c8579d63b2b9 100644
+> --- a/drivers/vfio/vfio.h
+> +++ b/drivers/vfio/vfio.h
+> @@ -106,10 +106,11 @@ bool vfio_device_has_container(struct vfio_device *device);
+>  int __init vfio_group_init(void);
+>  void vfio_group_cleanup(void);
+>  
+> -static inline bool vfio_device_is_noiommu(struct vfio_device *vdev)
+> +static inline int vfio_device_set_noiommu(struct vfio_device *device)
+>  {
+> -	return IS_ENABLED(CONFIG_VFIO_NOIOMMU) &&
+> -	       vdev->group->type == VFIO_NO_IOMMU;
+> +	device->noiommu = IS_ENABLED(CONFIG_VFIO_NOIOMMU) &&
+> +			  device->group->type == VFIO_NO_IOMMU;
+> +	return 0;
+>  }
+>  
+>  #if IS_ENABLED(CONFIG_VFIO_CONTAINER)
+> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
+> index 8c3f26b4929b..8979f320d620 100644
+> --- a/drivers/vfio/vfio_main.c
+> +++ b/drivers/vfio/vfio_main.c
+> @@ -289,8 +289,12 @@ static int __vfio_register_dev(struct vfio_device *device,
+>  	if (ret)
+>  		return ret;
+>  
+> +	ret = vfio_device_set_noiommu(device);
+> +	if (ret)
+> +		goto err_out;
+> +
+>  	ret = dev_set_name(&device->device, "%svfio%d",
+> -			   vfio_device_is_noiommu(device) ? "noiommu-" : "", device->index);
+> +			   device->noiommu ? "noiommu-" : "", device->index);
+>  	if (ret)
+>  		goto err_out;
+>  
+> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
+> index cf9d082a623c..fa13889e763f 100644
+> --- a/include/linux/vfio.h
+> +++ b/include/linux/vfio.h
+> @@ -68,6 +68,7 @@ struct vfio_device {
+>  	bool iommufd_attached;
+>  #endif
+>  	bool cdev_opened:1;
+> +	bool noiommu:1;
+>  };
+>  
+>  /**
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
-
-Andi
