@@ -1,52 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B48B70BCA9
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 13:58:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88D4070BCB8
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 May 2023 13:59:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93D1010E313;
-	Mon, 22 May 2023 11:58:08 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26DD610E308;
- Mon, 22 May 2023 11:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C36A10E2F1;
+	Mon, 22 May 2023 11:59:42 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CDFA10E011;
+ Mon, 22 May 2023 11:59:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684756685; x=1716292685;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FoJTA2x8O689fca/M93WyP56FZmqpQ0OhJBWveNQU+4=;
- b=OrCUsIIZwi/M3FQl9pzjo+PXLYQgy3V4YVWn2oUTsgQV1nAGQAKTzVBq
- YcEpRYdA94KV45QnAxCj68B/lreLrZ+19ANHM7Zh5+lrCc4X+Q8Dbcxoc
- QmWXw54VNWSR3Pwkflk1Z8HmFVFSbD1qiiTlu1s09lVHzQrs2ASZFHs7E
- aQiAuaglqefyTOfxEXSRPXc9pnujXia2nRwlNFZ8CbketFH1L9mSMSJfK
- R68XrzXrJGU3pY1gpfwRLmL8cCd+umux49N+Y3ObMw9Kxdy0J8BV3imif
- Kot3U5657YNEvQ6oTgfRsUje2y7rINabvjZrjj0KXgGJGRL14jkBOoAbV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="356128248"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="356128248"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 04:58:04 -0700
+ t=1684756779; x=1716292779;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5v2npK7RTLOPI1BrhrscqTvWXKFJqZFqHFfXMPAdUt0=;
+ b=XNTGe/wZWuyuLwbndzr+ohLNKvwghs/+DiHJBCHckqO8qGNS7RsE21u8
+ CRTzUyFdYU81tP0Gp0ZxckOyCi0Dcb7+Ek+dVwCWvHTdOPGI6TtTMXKxE
+ MIuMLgVpV+NEAjANJcpCmDugJ9+7CdoQVFto7qgog9xVBZZOVAH5QXaAK
+ fUwcxg4k3PJODI4Llc7nCcA9dISVGLTQ/eW2XFDQrXdMIlSCDZ0qQXuwN
+ gjWUrk7se51xxZsxbO2kbohLAEv8/hK1U2nlT8LoQVghWmhGFxIuhVVJ1
+ 3G1VnIcpbKAUIN/GuC0dKXbRwWvjCcQ3BaK1ik3ci+FiBpzmX/Qt6Q0NU Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="351749717"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="351749717"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 04:59:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="815660290"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="815660290"
-Received: from 984fee00a4c6.jf.intel.com ([10.165.58.231])
- by fmsmga002.fm.intel.com with ESMTP; 22 May 2023 04:58:03 -0700
-From: Yi Liu <yi.l.liu@intel.com>
-To: alex.williamson@redhat.com,
-	jgg@nvidia.com,
-	kevin.tian@intel.com
-Date: Mon, 22 May 2023 04:57:51 -0700
-Message-Id: <20230522115751.326947-11-yi.l.liu@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230522115751.326947-1-yi.l.liu@intel.com>
-References: <20230522115751.326947-1-yi.l.liu@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="793261520"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="793261520"
+Received: from tjepsen-mobl.amr.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.45.96])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 04:59:36 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon, 22 May 2023 12:59:25 +0100
+Message-Id: <20230522115928.588793-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 10/10] vfio/pci: Allow passing zero-length fd
- array in VFIO_DEVICE_PCI_HOT_RESET
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Move setting of rps thresholds to
+ init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,181 +58,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
- chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, yi.l.liu@intel.com,
- kvm@vger.kernel.org, lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org,
- nicolinc@nvidia.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
- eric.auger@redhat.com, intel-gvt-dev@lists.freedesktop.org,
- yi.y.sun@linux.intel.com, clegoate@redhat.com, cohuck@redhat.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- robin.murphy@arm.com
+Cc: Rodrigo Vivi <rodrigo.vivi@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is the way user to invoke hot-reset for the devices opened by cdev
-interface. User should check the flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED
-in the output of VFIO_DEVICE_GET_PCI_HOT_RESET_INFO ioctl before doing
-hot-reset for cdev devices.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
-Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+Since 36d516be867c ("drm/i915/gt: Switch to manual evaluation of RPS")
+thresholds are invariant so lets move their setting to init time.
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@kernel.org>
 ---
- drivers/vfio/pci/vfio_pci_core.c | 56 +++++++++++++++++++++++++-------
- include/uapi/linux/vfio.h        | 14 ++++++++
- 2 files changed, 59 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_rps.c | 27 ++++++++++++++++-----------
+ 1 file changed, 16 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
-index 890065f846e4..67f1cb426505 100644
---- a/drivers/vfio/pci/vfio_pci_core.c
-+++ b/drivers/vfio/pci/vfio_pci_core.c
-@@ -181,7 +181,8 @@ static void vfio_pci_probe_mmaps(struct vfio_pci_core_device *vdev)
- struct vfio_pci_group_info;
- static void vfio_pci_dev_set_try_reset(struct vfio_device_set *dev_set);
- static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
--				      struct vfio_pci_group_info *groups);
-+				      struct vfio_pci_group_info *groups,
-+				      struct iommufd_ctx *iommufd_ctx);
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index e68a99205599..791097eb9bfd 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -671,7 +671,6 @@ static void rps_set_power(struct intel_rps *rps, int new_power)
+ {
+ 	struct intel_gt *gt = rps_to_gt(rps);
+ 	struct intel_uncore *uncore = gt->uncore;
+-	u32 threshold_up = 0, threshold_down = 0; /* in % */
+ 	u32 ei_up = 0, ei_down = 0;
  
- /*
-  * INTx masking requires the ability to disable INTx signaling via PCI_COMMAND
-@@ -1301,8 +1302,7 @@ vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
- 	if (ret)
- 		return ret;
+ 	lockdep_assert_held(&rps->power.mutex);
+@@ -679,9 +678,6 @@ static void rps_set_power(struct intel_rps *rps, int new_power)
+ 	if (new_power == rps->power.mode)
+ 		return;
  
--	/* Somewhere between 1 and count is OK */
--	if (!array_count || array_count > count)
-+	if (array_count > count || vfio_device_cdev_opened(&vdev->vdev))
- 		return -EINVAL;
+-	threshold_up = 95;
+-	threshold_down = 85;
+-
+ 	/* Note the units here are not exactly 1us, but 1280ns. */
+ 	switch (new_power) {
+ 	case LOW_POWER:
+@@ -708,17 +704,22 @@ static void rps_set_power(struct intel_rps *rps, int new_power)
  
- 	group_fds = kcalloc(array_count, sizeof(*group_fds), GFP_KERNEL);
-@@ -1351,7 +1351,7 @@ vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
- 	info.count = array_count;
- 	info.files = files;
+ 	GT_TRACE(gt,
+ 		 "changing power mode [%d], up %d%% @ %dus, down %d%% @ %dus\n",
+-		 new_power, threshold_up, ei_up, threshold_down, ei_down);
++		 new_power,
++		 rps->power.up_threshold, ei_up,
++		 rps->power.down_threshold, ei_down);
  
--	ret = vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, &info);
-+	ret = vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, &info, NULL);
+ 	set(uncore, GEN6_RP_UP_EI,
+ 	    intel_gt_ns_to_pm_interval(gt, ei_up * 1000));
+ 	set(uncore, GEN6_RP_UP_THRESHOLD,
+-	    intel_gt_ns_to_pm_interval(gt, ei_up * threshold_up * 10));
++	    intel_gt_ns_to_pm_interval(gt,
++				       ei_up * rps->power.up_threshold * 10));
  
- hot_reset_release:
- 	for (file_idx--; file_idx >= 0; file_idx--)
-@@ -1380,7 +1380,11 @@ static int vfio_pci_ioctl_pci_hot_reset(struct vfio_pci_core_device *vdev,
- 	else if (pci_probe_reset_bus(vdev->pdev->bus))
- 		return -ENODEV;
+ 	set(uncore, GEN6_RP_DOWN_EI,
+ 	    intel_gt_ns_to_pm_interval(gt, ei_down * 1000));
+ 	set(uncore, GEN6_RP_DOWN_THRESHOLD,
+-	    intel_gt_ns_to_pm_interval(gt, ei_down * threshold_down * 10));
++	    intel_gt_ns_to_pm_interval(gt,
++				       ei_down *
++				       rps->power.down_threshold * 10));
  
--	return vfio_pci_ioctl_pci_hot_reset_groups(vdev, hdr.count, slot, arg);
-+	if (hdr.count)
-+		return vfio_pci_ioctl_pci_hot_reset_groups(vdev, hdr.count, slot, arg);
-+
-+	return vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, NULL,
-+					  vfio_iommufd_device_ictx(&vdev->vdev));
+ 	set(uncore, GEN6_RP_CONTROL,
+ 	    (GRAPHICS_VER(gt->i915) > 9 ? 0 : GEN6_RP_MEDIA_TURBO) |
+@@ -730,8 +731,6 @@ static void rps_set_power(struct intel_rps *rps, int new_power)
+ 
+ skip_hw_write:
+ 	rps->power.mode = new_power;
+-	rps->power.up_threshold = threshold_up;
+-	rps->power.down_threshold = threshold_down;
  }
  
- static int vfio_pci_ioctl_ioeventfd(struct vfio_pci_core_device *vdev,
-@@ -2347,13 +2351,16 @@ const struct pci_error_handlers vfio_pci_core_err_handlers = {
- };
- EXPORT_SYMBOL_GPL(vfio_pci_core_err_handlers);
+ static void gen6_rps_set_thresholds(struct intel_rps *rps, u8 val)
+@@ -1557,10 +1556,12 @@ void intel_rps_enable(struct intel_rps *rps)
+ 		return;
  
--static bool vfio_dev_in_groups(struct vfio_pci_core_device *vdev,
-+static bool vfio_dev_in_groups(struct vfio_device *vdev,
- 			       struct vfio_pci_group_info *groups)
- {
- 	unsigned int i;
+ 	GT_TRACE(rps_to_gt(rps),
+-		 "min:%x, max:%x, freq:[%d, %d]\n",
++		 "min:%x, max:%x, freq:[%d, %d], thresholds:[%u, %u]\n",
+ 		 rps->min_freq, rps->max_freq,
+ 		 intel_gpu_freq(rps, rps->min_freq),
+-		 intel_gpu_freq(rps, rps->max_freq));
++		 intel_gpu_freq(rps, rps->max_freq),
++		 rps->power.up_threshold,
++		 rps->power.down_threshold);
  
-+	if (!groups)
-+		return false;
-+
- 	for (i = 0; i < groups->count; i++)
--		if (vfio_file_has_dev(groups->files[i], &vdev->vdev))
-+		if (vfio_file_has_dev(groups->files[i], vdev))
- 			return true;
- 	return false;
- }
-@@ -2429,7 +2436,8 @@ static int vfio_pci_dev_set_pm_runtime_get(struct vfio_device_set *dev_set)
-  * get each memory_lock.
-  */
- static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
--				      struct vfio_pci_group_info *groups)
-+				      struct vfio_pci_group_info *groups,
-+				      struct iommufd_ctx *iommufd_ctx)
- {
- 	struct vfio_pci_core_device *cur_mem;
- 	struct vfio_pci_core_device *cur_vma;
-@@ -2459,11 +2467,37 @@ static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
- 		goto err_unlock;
- 
- 	list_for_each_entry(cur_vma, &dev_set->device_list, vdev.dev_set_list) {
-+		bool owned;
-+
- 		/*
--		 * Test whether all the affected devices are contained by the
--		 * set of groups provided by the user.
-+		 * Test whether all the affected devices can be reset by the
-+		 * user.
-+		 *
-+		 * If the user provides a set of groups, all the devices
-+		 * in the dev_set should be contained by the set of groups
-+		 * provided by the user.
-+		 *
-+		 * If the user provides a zero-length group fd array, then
-+		 * all the devices in the dev_set must be bound to the same
-+		 * iommufd_ctx as the input iommufd_ctx.  If there is any
-+		 * device that has not been bound to iommufd_ctx yet, check
-+		 * if its iommu_group has any device bound to the input
-+		 * iommufd_ctx Such devices can be considered owned by
-+		 * the input iommufd_ctx as the device cannot be owned
-+		 * by another iommufd_ctx when its iommu_group is owned.
-+		 *
-+		 * Otherwise, reset is not allowed.
- 		 */
--		if (!vfio_dev_in_groups(cur_vma, groups)) {
-+		if (iommufd_ctx) {
-+			int devid = vfio_iommufd_device_hot_reset_devid(&cur_vma->vdev,
-+									iommufd_ctx);
-+
-+			owned = (devid != VFIO_PCI_DEVID_NOT_OWNED);
-+		} else {
-+			owned = vfio_dev_in_groups(&cur_vma->vdev, groups);
-+		}
-+
-+		if (!owned) {
- 			ret = -EINVAL;
- 			goto err_undo;
+ 	GEM_BUG_ON(rps->max_freq < rps->min_freq);
+ 	GEM_BUG_ON(rps->idle_freq > rps->max_freq);
+@@ -2013,6 +2014,10 @@ void intel_rps_init(struct intel_rps *rps)
  		}
-diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
-index 01203215251a..24858b650562 100644
---- a/include/uapi/linux/vfio.h
-+++ b/include/uapi/linux/vfio.h
-@@ -686,6 +686,9 @@ enum {
-  *	  Flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED would be set when all the
-  *	  affected devices are owned by the user.  This flag is available only
-  *	  when VFIO_PCI_HOT_RESET_FLAG_DEV_ID is set, otherwise reserved.
-+ *	  When set, user could invoke VFIO_DEVICE_PCI_HOT_RESET with a zero
-+ *	  length fd array on the calling device as the ownership is validated
-+ *	  by iommufd_ctx.
-  *
-  * Return: 0 on success, -errno on failure:
-  *	-enospc = insufficient buffer, -enodev = unsupported for device.
-@@ -717,6 +720,17 @@ struct vfio_pci_hot_reset_info {
-  * VFIO_DEVICE_PCI_HOT_RESET - _IOW(VFIO_TYPE, VFIO_BASE + 13,
-  *				    struct vfio_pci_hot_reset)
-  *
-+ * Userspace requests hot reset for the devices it operates.  Due to the
-+ * underlying topology, multiple devices can be affected in the reset
-+ * while some might be opened by another user.  To avoid interference
-+ * the calling user must ensure all affected devices are owned by itself.
-+ *
-+ * As the ownership described by VFIO_DEVICE_GET_PCI_HOT_RESET_INFO, the
-+ * cdev opened devices must exclusively provide a zero-length fd array and
-+ * the group opened devices must exclusively use an array of group fds for
-+ * proof of ownership.  Mixed access to devices between cdev and legacy
-+ * groups are not supported by this interface.
-+ *
-  * Return: 0 on success, -errno on failure.
-  */
- struct vfio_pci_hot_reset {
+ 	}
+ 
++	/* Set default thresholds in % */
++	rps->power.up_threshold = 95;
++	rps->power.down_threshold = 85;
++
+ 	/* Finally allow us to boost to max by default */
+ 	rps->boost_freq = rps->max_freq;
+ 	rps->idle_freq = rps->min_freq;
 -- 
-2.34.1
+2.39.2
 
