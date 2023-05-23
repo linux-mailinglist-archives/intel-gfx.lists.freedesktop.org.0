@@ -2,47 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E199170E662
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 22:22:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC4870E679
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 22:31:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E236C10E4C4;
-	Tue, 23 May 2023 20:22:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4867510E4D0;
+	Tue, 23 May 2023 20:31:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 282DF10E4C4;
- Tue, 23 May 2023 20:22:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684873352; x=1716409352;
- h=date:from:to:cc:subject:message-id;
- bh=Kf9f0OGRY9TQv3y2LLjfG1lbGjzUqIHYHeUp//V1xVU=;
- b=QizNs5+ImjpxV+3d2Je6eYD6FwQ+h9DOI/9Xhr/DHFqVUrVFclRFqtx8
- kuuD5BzvmaFPs+U5vAehExwxxPvjAopgscNDj0Hr16Waj4CAt2AD+eguF
- 2L98L55ggoOP0p5DDwujdMv3fca9txwPrSN2t63xwUraYf2dFSiQ5ctaD
- VvdqgIHPGG269hYz2fcQM6WLwK1C4t5//8ki4e2qGnV4YaGy3BKPSblDA
- lVa3kO2/ZYL+k9rBSrkFBvStUhbc1pBzan+lV2kqgbQXv0MwQ4GD2YHWV
- 1SzTwl7N9t2gdgTWsWHOvkKwT8LCP2G08NjUjDTYptUVpDr9u9ShD6fHj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="419064533"
-X-IronPort-AV: E=Sophos;i="6.00,187,1681196400"; d="scan'208";a="419064533"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 13:22:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="707157550"
-X-IronPort-AV: E=Sophos;i="6.00,187,1681196400"; d="scan'208";a="707157550"
-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
- by fmsmga007.fm.intel.com with ESMTP; 23 May 2023 13:22:29 -0700
-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1q1YWa-000E3x-2q;
- Tue, 23 May 2023 20:22:28 +0000
-Date: Wed, 24 May 2023 04:21:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Message-ID: <20230523202157.Xwr6S%lkp@intel.com>
-User-Agent: s-nail v14.9.24
-Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
- 9f925874281f7e8855855d6210d6e29d844e4307
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 21C4F10E4CB;
+ Tue, 23 May 2023 20:31:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 99711A7DFF;
+ Tue, 23 May 2023 20:31:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Tue, 23 May 2023 20:31:23 -0000
+Message-ID: <168487388359.14424.3805391060802635825@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230523195609.73627-1-matthew.d.roper@intel.com>
+In-Reply-To: <20230523195609.73627-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_i915=3A_Move_display_identification/probing_under_display/_?=
+ =?utf-8?b?KHJldjMp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,308 +41,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-perf-users@vger.kernel.org,
- Linux Memory Management List <linux-mm@kvack.org>,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: INFO setup_repo_specs: /db/releases/20230524001904/lkp-src/repo/*/linux-next
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 9f925874281f7e8855855d6210d6e29d844e4307  Add linux-next specific files for 20230523
+== Series Details ==
 
-Error/Warning reports:
+Series: i915: Move display identification/probing under display/ (rev3)
+URL   : https://patchwork.freedesktop.org/series/117931/
+State : warning
 
-https://lore.kernel.org/oe-kbuild-all/202305230552.WOByQyYa-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202305231949.2mkdgZPN-lkp@intel.com
+== Summary ==
 
-Error/Warning: (recently discovered and may have been fixed)
+Error: dim checkpatch failed
+d9e8003baa3d drm/i915/display: Move display device info to header under display/
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:16: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#16: 
+new file mode 100644
 
-drivers/base/regmap/regcache-maple.c:113:23: warning: 'lower_index' is used uninitialized [-Wuninitialized]
-drivers/base/regmap/regcache-maple.c:113:36: warning: 'lower_last' is used uninitialized [-Wuninitialized]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_hw_sequencer.c:2292:31: error: 'struct hwseq_private_funcs' has no member named 'resync_fifo_dccg_dio'
-drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_hw_sequencer.c:2295:31: error: 'struct hwseq_private_funcs' has no member named 'resync_fifo_dccg_dio'
-drivers/gpu/drm/i915/display/intel_display.c:6012:3: warning: unannotated fall-through between switch labels [-Wimplicit-fallthrough]
+-:33: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
+#33: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:13:
++#define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
++	/* Keep in alphabetical order */ \
++	func(cursor_needs_physical); \
++	func(has_cdclk_crawl); \
++	func(has_cdclk_squash); \
++	func(has_ddi); \
++	func(has_dp_mst); \
++	func(has_dsb); \
++	func(has_fpga_dbg); \
++	func(has_gmch); \
++	func(has_hotplug); \
++	func(has_hti); \
++	func(has_ipc); \
++	func(has_overlay); \
++	func(has_psr); \
++	func(has_psr_hw_tracking); \
++	func(overlay_needs_physical); \
++	func(supports_tv);
 
-Unverified Error/Warning (likely false positive, please contact us if interested):
+-:33: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'func' - possible side-effects?
+#33: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:13:
++#define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
++	/* Keep in alphabetical order */ \
++	func(cursor_needs_physical); \
++	func(has_cdclk_crawl); \
++	func(has_cdclk_squash); \
++	func(has_ddi); \
++	func(has_dp_mst); \
++	func(has_dsb); \
++	func(has_fpga_dbg); \
++	func(has_gmch); \
++	func(has_hotplug); \
++	func(has_hti); \
++	func(has_ipc); \
++	func(has_overlay); \
++	func(has_psr); \
++	func(has_psr_hw_tracking); \
++	func(overlay_needs_physical); \
++	func(supports_tv);
 
-drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c:540 amdgpu_debugfs_mqd_read() warn: ignoring unreachable code.
-drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c:68 amdgpu_xcp_run_transition() error: buffer overflow 'xcp_mgr->xcp' 8 <= 8
-kernel/events/uprobes.c:478 uprobe_write_opcode() warn: passing zero to 'PTR_ERR'
-kernel/watchdog.c:40:19: sparse: sparse: symbol 'watchdog_hardlockup_user_enabled' was not declared. Should it be static?
-kernel/watchdog.c:41:19: sparse: sparse: symbol 'watchdog_softlockup_user_enabled' was not declared. Should it be static?
+-:33: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#33: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:13:
++#define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
++	/* Keep in alphabetical order */ \
++	func(cursor_needs_physical); \
++	func(has_cdclk_crawl); \
++	func(has_cdclk_squash); \
++	func(has_ddi); \
++	func(has_dp_mst); \
++	func(has_dsb); \
++	func(has_fpga_dbg); \
++	func(has_gmch); \
++	func(has_hotplug); \
++	func(has_hti); \
++	func(has_ipc); \
++	func(has_overlay); \
++	func(has_psr); \
++	func(has_psr_hw_tracking); \
++	func(overlay_needs_physical); \
++	func(supports_tv);
 
-Error/Warning ids grouped by kconfigs:
+total: 1 errors, 2 warnings, 1 checks, 127 lines checked
+8935a63f121f drm/i915: Convert INTEL_INFO()->display to a pointer
+-:241: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#241: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:43:
++					      DISPLAY_INFO(dev_priv)->trans_offsets[TRANSCODER_A] + \
 
-gcc_recent_errors
-|-- arc-allyesconfig
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_index-is-used-uninitialized
-|   `-- drivers-base-regmap-regcache-maple.c:warning:lower_last-is-used-uninitialized
-|-- arc-axs103_smp_defconfig
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_index-is-used-uninitialized
-|   `-- drivers-base-regmap-regcache-maple.c:warning:lower_last-is-used-uninitialized
-|-- arc-randconfig-c44-20230523
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_index-is-used-uninitialized
-|   `-- drivers-base-regmap-regcache-maple.c:warning:lower_last-is-used-uninitialized
-|-- arc-randconfig-m041-20230521
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_index-is-used-uninitialized
-|   `-- drivers-base-regmap-regcache-maple.c:warning:lower_last-is-used-uninitialized
-|-- arm-allmodconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_hw_sequencer.c:error:struct-hwseq_private_funcs-has-no-member-named-resync_fifo_dccg_dio
-|-- arm-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_hw_sequencer.c:error:struct-hwseq_private_funcs-has-no-member-named-resync_fifo_dccg_dio
-|-- arm-randconfig-s031-20230521
-|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
-|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
-|-- arm-randconfig-s041-20230521
-|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
-|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
-|-- i386-randconfig-m021
-|   `-- kernel-events-uprobes.c-uprobe_write_opcode()-warn:passing-zero-to-PTR_ERR
-|-- i386-randconfig-s001
-|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
-|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
-|-- i386-randconfig-s002
-|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
-|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
-|-- i386-randconfig-s003
-|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
-|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
-|-- ia64-randconfig-m041-20230522
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_hw_sequencer.c:error:struct-hwseq_private_funcs-has-no-member-named-resync_fifo_dccg_dio
-|-- ia64-randconfig-r026-20230522
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_hw_sequencer.c:error:struct-hwseq_private_funcs-has-no-member-named-resync_fifo_dccg_dio
-|-- m68k-randconfig-s042-20230521
-|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
-|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
-|-- mips-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_hw_sequencer.c:error:struct-hwseq_private_funcs-has-no-member-named-resync_fifo_dccg_dio
-|-- mips-randconfig-c041-20230521
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_hw_sequencer.c:error:struct-hwseq_private_funcs-has-no-member-named-resync_fifo_dccg_dio
-|-- nios2-randconfig-s033-20230521
-|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
-|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
-|-- powerpc-allmodconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_hw_sequencer.c:error:struct-hwseq_private_funcs-has-no-member-named-resync_fifo_dccg_dio
-|-- riscv-allmodconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_hw_sequencer.c:error:struct-hwseq_private_funcs-has-no-member-named-resync_fifo_dccg_dio
-|-- s390-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_hw_sequencer.c:error:struct-hwseq_private_funcs-has-no-member-named-resync_fifo_dccg_dio
-|-- s390-randconfig-m031-20230522
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c-amdgpu_gfx_enable_kcq()-warn:inconsistent-indenting
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_ring.c-amdgpu_debugfs_mqd_read()-warn:ignoring-unreachable-code.
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_xcp.c-amdgpu_xcp_run_transition()-error:buffer-overflow-xcp_mgr-xcp
-|-- sparc64-randconfig-s032-20230521
-|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
-|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
-|-- x86_64-randconfig-m001
-|   `-- kernel-events-uprobes.c-uprobe_write_opcode()-warn:passing-zero-to-PTR_ERR
-|-- x86_64-randconfig-s021
-|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
-|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
-|-- x86_64-randconfig-s022
-|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
-|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
-|-- x86_64-randconfig-s023
-|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
-|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
-`-- xtensa-randconfig-s051-20230521
-    `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_hw_sequencer.c:error:struct-hwseq_private_funcs-has-no-member-named-resync_fifo_dccg_dio
-clang_recent_errors
-`-- x86_64-randconfig-r025-20230522
-    `-- drivers-gpu-drm-i915-display-intel_display.c:warning:unannotated-fall-through-between-switch-labels
+-:1742: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'name' may be better as '(name)' to avoid precedence issues
+#1742: FILE: drivers/gpu/drm/i915/intel_device_info.c:141:
++#define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->display->name))
 
-elapsed time: 837m
+total: 0 errors, 1 warnings, 1 checks, 1610 lines checked
+d3676df51bad drm/i915/display: Move display runtime info to display structure
+-:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#71: FILE: drivers/gpu/drm/i915/display/intel_display.h:108:
++#define sprite_name(p, s) ((p) * DISPLAY_RUNTIME_INFO(dev_priv)->num_sprites[(p)] + (s) + 'A')
 
-configs tested: 184
-configs skipped: 12
+-:89: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#89: FILE: drivers/gpu/drm/i915/display/intel_display.h:232:
++		for_each_if (DISPLAY_RUNTIME_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
 
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-alpha                randconfig-r001-20230522   gcc  
-alpha                randconfig-r006-20230522   gcc  
-arc                              allyesconfig   gcc  
-arc                      axs103_smp_defconfig   gcc  
-arc                                 defconfig   gcc  
-arc                  randconfig-r011-20230522   gcc  
-arc                  randconfig-r043-20230521   gcc  
-arc                  randconfig-r043-20230522   gcc  
-arm                              allmodconfig   gcc  
-arm                              allyesconfig   gcc  
-arm          buildonly-randconfig-r004-20230522   gcc  
-arm          buildonly-randconfig-r005-20230521   clang
-arm                                 defconfig   gcc  
-arm                          pxa168_defconfig   clang
-arm                  randconfig-r004-20230521   gcc  
-arm                  randconfig-r005-20230521   gcc  
-arm                  randconfig-r015-20230521   clang
-arm                  randconfig-r016-20230522   gcc  
-arm                  randconfig-r046-20230521   clang
-arm                  randconfig-r046-20230522   gcc  
-arm                           sunxi_defconfig   gcc  
-arm                           u8500_defconfig   gcc  
-arm64                            allyesconfig   gcc  
-arm64        buildonly-randconfig-r006-20230521   clang
-arm64                               defconfig   gcc  
-arm64                randconfig-r021-20230521   gcc  
-arm64                randconfig-r024-20230522   clang
-csky         buildonly-randconfig-r003-20230522   gcc  
-csky                                defconfig   gcc  
-hexagon      buildonly-randconfig-r001-20230521   clang
-hexagon              randconfig-r004-20230522   clang
-hexagon              randconfig-r024-20230521   clang
-hexagon              randconfig-r041-20230521   clang
-hexagon              randconfig-r041-20230522   clang
-hexagon              randconfig-r045-20230521   clang
-hexagon              randconfig-r045-20230522   clang
-i386                              allnoconfig   clang
-i386                             allyesconfig   gcc  
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                 randconfig-a001-20230522   gcc  
-i386                 randconfig-a002-20230522   gcc  
-i386                 randconfig-a003-20230522   gcc  
-i386                 randconfig-a004-20230522   gcc  
-i386                 randconfig-a005-20230522   gcc  
-i386                 randconfig-a006-20230522   gcc  
-i386                 randconfig-i051-20230523   clang
-i386                 randconfig-i052-20230523   clang
-i386                 randconfig-i053-20230523   clang
-i386                 randconfig-i054-20230523   clang
-i386                 randconfig-i055-20230523   clang
-i386                 randconfig-i056-20230523   clang
-i386                 randconfig-i061-20230523   clang
-i386                 randconfig-i062-20230523   clang
-i386                 randconfig-i063-20230523   clang
-i386                 randconfig-i064-20230523   clang
-i386                 randconfig-i065-20230523   clang
-i386                 randconfig-i066-20230523   clang
-i386                 randconfig-r036-20230522   gcc  
-ia64                             allmodconfig   gcc  
-ia64         buildonly-randconfig-r001-20230522   gcc  
-ia64                                defconfig   gcc  
-ia64                 randconfig-r026-20230522   gcc  
-ia64                          tiger_defconfig   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch            randconfig-r003-20230521   gcc  
-loongarch            randconfig-r005-20230522   gcc  
-m68k                             alldefconfig   gcc  
-m68k                             allmodconfig   gcc  
-m68k                                defconfig   gcc  
-m68k                       m5208evb_defconfig   gcc  
-m68k                       m5475evb_defconfig   gcc  
-m68k                 randconfig-r021-20230522   gcc  
-m68k                 randconfig-r022-20230521   gcc  
-microblaze           randconfig-r002-20230522   gcc  
-microblaze           randconfig-r011-20230521   gcc  
-microblaze           randconfig-r015-20230522   gcc  
-microblaze           randconfig-r034-20230521   gcc  
-mips                             allmodconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                        bcm47xx_defconfig   gcc  
-mips         buildonly-randconfig-r002-20230522   clang
-mips                     loongson2k_defconfig   clang
-mips                 randconfig-r016-20230521   clang
-mips                 randconfig-r031-20230521   gcc  
-mips                 randconfig-r032-20230521   gcc  
-nios2                               defconfig   gcc  
-nios2                randconfig-r003-20230522   gcc  
-nios2                randconfig-r023-20230522   gcc  
-nios2                randconfig-r032-20230522   gcc  
-openrisc             randconfig-r012-20230521   gcc  
-parisc                              defconfig   gcc  
-parisc               randconfig-r036-20230521   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                 mpc834x_itx_defconfig   gcc  
-powerpc                      pcm030_defconfig   gcc  
-powerpc                      pmac32_defconfig   clang
-powerpc                      ppc40x_defconfig   gcc  
-powerpc              randconfig-r026-20230521   gcc  
-powerpc                    socrates_defconfig   clang
-powerpc                     tqm8540_defconfig   clang
-powerpc                         wii_defconfig   gcc  
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv                               defconfig   gcc  
-riscv                randconfig-r013-20230522   clang
-riscv                randconfig-r025-20230522   clang
-riscv                randconfig-r035-20230521   clang
-riscv                randconfig-r042-20230521   gcc  
-riscv                randconfig-r042-20230522   clang
-riscv                          rv32_defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-s390                 randconfig-r014-20230521   gcc  
-s390                 randconfig-r033-20230522   gcc  
-s390                 randconfig-r035-20230522   gcc  
-s390                 randconfig-r044-20230521   gcc  
-s390                 randconfig-r044-20230522   clang
-sh                               allmodconfig   gcc  
-sh           buildonly-randconfig-r004-20230521   gcc  
-sh           buildonly-randconfig-r005-20230522   gcc  
-sh                          polaris_defconfig   gcc  
-sh                   randconfig-r001-20230521   gcc  
-sh                          rsk7203_defconfig   gcc  
-sh                          sdk7786_defconfig   gcc  
-sh                            shmin_defconfig   gcc  
-sparc                               defconfig   gcc  
-sparc                randconfig-r012-20230522   gcc  
-sparc                randconfig-r034-20230522   gcc  
-um                             i386_defconfig   gcc  
-um                           x86_64_defconfig   gcc  
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64                              defconfig   gcc  
-x86_64                                  kexec   gcc  
-x86_64               randconfig-a001-20230522   gcc  
-x86_64               randconfig-a002-20230522   gcc  
-x86_64               randconfig-a003-20230522   gcc  
-x86_64               randconfig-a004-20230522   gcc  
-x86_64               randconfig-a005-20230522   gcc  
-x86_64               randconfig-a006-20230522   gcc  
-x86_64               randconfig-a011-20230522   clang
-x86_64               randconfig-a012-20230522   clang
-x86_64               randconfig-a013-20230522   clang
-x86_64               randconfig-a014-20230522   clang
-x86_64               randconfig-a015-20230522   clang
-x86_64               randconfig-a016-20230522   clang
-x86_64               randconfig-r022-20230522   clang
-x86_64               randconfig-x051-20230522   clang
-x86_64               randconfig-x052-20230522   clang
-x86_64               randconfig-x053-20230522   clang
-x86_64               randconfig-x054-20230522   clang
-x86_64               randconfig-x055-20230522   clang
-x86_64               randconfig-x056-20230522   clang
-x86_64               randconfig-x061-20230522   clang
-x86_64               randconfig-x062-20230522   clang
-x86_64               randconfig-x063-20230522   clang
-x86_64               randconfig-x064-20230522   clang
-x86_64               randconfig-x065-20230522   clang
-x86_64               randconfig-x066-20230522   clang
-x86_64               randconfig-x071-20230522   gcc  
-x86_64               randconfig-x072-20230522   gcc  
-x86_64               randconfig-x073-20230522   gcc  
-x86_64               randconfig-x074-20230522   gcc  
-x86_64               randconfig-x075-20230522   gcc  
-x86_64               randconfig-x076-20230522   gcc  
-x86_64               randconfig-x081-20230522   gcc  
-x86_64               randconfig-x082-20230522   gcc  
-x86_64               randconfig-x083-20230522   gcc  
-x86_64               randconfig-x084-20230522   gcc  
-x86_64               randconfig-x085-20230522   gcc  
-x86_64               randconfig-x086-20230522   gcc  
-x86_64                               rhel-8.3   gcc  
-xtensa                          iss_defconfig   gcc  
-xtensa               randconfig-r002-20230521   gcc  
-xtensa               randconfig-r033-20230521   gcc  
+-:197: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
+#197: FILE: drivers/gpu/drm/i915/i915_drv.h:208:
++	struct intel_display_runtime_info __display_runtime; /* Access with DISPLAY_RUNTIME_INFO() */
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+-:232: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#232: FILE: drivers/gpu/drm/i915/i915_drv.h:836:
++#define HAS_TRANSCODER(i915, trans)	 ((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & BIT(trans)) != 0)
+
+total: 0 errors, 3 warnings, 1 checks, 1066 lines checked
+eddc77d2575d drm/i915/display: Make display responsible for probing its own IP
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:46: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#46: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 1898 lines checked
+4ef775a00548 drm/i915/display: Handle GMD_ID identification in display code
+27a8a59ac49d drm/i915/display: Move feature test macros to intel_display_device.h
+-:24: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#24: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:37:
++#define HAS_CUR_FBC(i915)		(!HAS_GMCH(i915) && DISPLAY_VER(i915) >= 7)
+
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#25: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:38:
++#define HAS_D12_PLANE_MINIMIZATION(i915) (IS_ROCKETLAKE(i915) || IS_ALDERLAKE_S(i915))
+
+-:29: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#29: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:42:
++#define HAS_DOUBLE_BUFFERED_M_N(i915)	(DISPLAY_VER(i915) >= 9 || IS_BROADWELL(i915))
+
+-:31: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#31: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:44:
++#define HAS_DP20(i915)			(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
+
+-:39: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#39: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:52:
++#define HAS_GMBUS_BURST_READ(i915)	(DISPLAY_VER(i915) >= 10 || IS_KABYLAKE(i915))
+
+-:41: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#41: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:54:
++#define HAS_HW_SAGV_WM(i915)		(DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
+
+-:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#43: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:56:
++#define HAS_IPS(i915)			(IS_HSW_ULT(i915) || IS_BROADWELL(i915))
+
+-:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#45: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:58:
++#define HAS_MBUS_JOINING(i915)		(IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
+
+-:51: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#51: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:64:
++#define HAS_SAGV(i915)			(DISPLAY_VER(i915) >= 9 && !IS_LP(i915))
+
+total: 0 errors, 0 warnings, 9 checks, 161 lines checked
+
+
