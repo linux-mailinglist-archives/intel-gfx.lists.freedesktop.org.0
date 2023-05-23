@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D94870DA07
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 12:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10DB270DA0D
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 12:12:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3429D10E422;
-	Tue, 23 May 2023 10:10:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D864E10E430;
+	Tue, 23 May 2023 10:12:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93E4810E422
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 May 2023 10:10:40 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7042910E422
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 May 2023 10:12:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684836640; x=1716372640;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=1hIX0XhIC82gHSNzFRFmV3AjlUSmIiFazNaio01wFWg=;
- b=CxtUeRCM326gFVq+Cxq06FGOD6I/rtc4h3aLaCcRxM7ychKmQqGsB+s4
- /nWT882K9/IOZokAr2TMwON9zoM7I/5HOY7cgQivrPeJZCxVZYkn9CSM+
- kBh6q5y7YQJu+tZt9GvFMiC/9//9TcgK35Ag9r2jtKsVc3A76ZChDudB1
- d2lWWmUM4BEbzZa2MExPKk6PxOvDx9lyM5eZEZh6kN7GFibDOASPXc6WM
- 2BvgOI2El6R9VQ5cHGzQ9R6qri24MTJ5S+65PyUp+ffjSD4EkyPhJpelv
- qaxIULbhHThjZChB3pBd2wEGLohfMGGHmAIqjgML9DRJ6WLlXdaUhRJHY Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="350703294"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="350703294"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 03:10:40 -0700
+ t=1684836764; x=1716372764;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=OxDPqLUTlAb+ZbHYR3M1swn0MAcKXCXhZVo+yKMjJUU=;
+ b=K6xmQdCnzvdyJssQaHWPOGcxdIAmx/khb3VuJgJ9WRtFEp2wfpl82FV3
+ tWwyCnQnDWM7G1OdIQQwYayCpiiG0JKS5MdmR1lE+63TUic+qe6BhHMqS
+ 74lCZqNsu/dE6zavRi1y73L3zjX62iThhNI2StFOEn90XqZ245+LgepNg
+ VssY5I1Xi2snN4f6/oaWe9v9f9LTxQ7xbTdd1QnietOvuQHWCPrA97L3n
+ +dV/7sxHCMUGFU+pQ94QXDvfotRXGoj0hn5Hz6xq4IjtgnrzVJAfQBikv
+ oQdLrqWBqbXeZ2qZ0nKeHjFk1sN3PeV6RX9pYsXnQAiYVulgTHAouFHdw A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="352042052"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="352042052"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 03:12:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="734696123"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="734696123"
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="654321341"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="654321341"
 Received: from chauvina-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.53.70])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 03:10:38 -0700
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 03:12:41 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230518094916.1142812-2-arun.r.murthy@intel.com>
+In-Reply-To: <20230518094916.1142812-3-arun.r.murthy@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230518094916.1142812-1-arun.r.murthy@intel.com>
- <20230518094916.1142812-2-arun.r.murthy@intel.com>
-Date: Tue, 23 May 2023 13:10:36 +0300
-Message-ID: <871qj7mk83.fsf@intel.com>
+ <20230518094916.1142812-3-arun.r.murthy@intel.com>
+Date: Tue, 23 May 2023 13:12:39 +0300
+Message-ID: <87y1lfl5k8.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/display: global histogram irq
- handler
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915/display: global histogram
+ restrictions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,80 +64,67 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Thu, 18 May 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> With the enablement of global histogram, upon generation of histogram,
-> an interrupt is triggered. This patch handles the irq.
+> For global histogram the panel should be edp and should have pwm based
+> backlight controller. Flags are updated accordingly.
 >
 > Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-
-This needs a rebase I think.
-
 > ---
->  drivers/gpu/drm/i915/i915_irq.c | 6 +++++-
->  drivers/gpu/drm/i915/i915_reg.h | 5 +++--
->  2 files changed, 8 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_modeset_setup.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index e28bfb5f7347..d72fb6d9282d 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -43,6 +43,7 @@
->  #include "display/intel_hotplug.h"
->  #include "display/intel_lpe_audio.h"
->  #include "display/intel_psr.h"
-> +#include "display/intel_global_hist.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> index cd21b0ddbabb..975d6bdb59f3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> @@ -17,12 +17,14 @@
+>  #include "intel_crtc_state_dump.h"
+>  #include "intel_ddi.h"
+>  #include "intel_de.h"
+> +#include "intel_dp.h"
+>  #include "intel_display.h"
+>  #include "intel_display_power.h"
+>  #include "intel_display_types.h"
+>  #include "intel_modeset_setup.h"
+>  #include "intel_pch_display.h"
+>  #include "intel_pm.h"
+> +#include "intel_global_hist.h"
 >  
->  #include "gt/intel_breadcrumbs.h"
->  #include "gt/intel_gt.h"
-> @@ -2765,6 +2766,9 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  		ret = IRQ_HANDLED;
->  		intel_uncore_write(&dev_priv->uncore, GEN8_DE_PIPE_IIR(pipe), iir);
+>  static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
+>  					struct drm_modeset_acquire_ctx *ctx)
+> @@ -309,6 +311,7 @@ static void intel_sanitize_encoder(struct intel_encoder *encoder)
+>  	struct intel_crtc *crtc = to_intel_crtc(encoder->base.crtc);
+>  	struct intel_crtc_state *crtc_state = crtc ?
+>  		to_intel_crtc_state(crtc->base.state) : NULL;
+> +	struct intel_panel *panel;
 >  
-> +		if (iir & GEN9_PIPE_GLOBAL_HIST_EVENT)
-> +			intel_global_hist_irq_handler(dev_priv, pipe);
+>  	/*
+>  	 * We need to check both for a crtc link (meaning that the encoder is
+> @@ -376,6 +379,15 @@ static void intel_sanitize_encoder(struct intel_encoder *encoder)
+>  
+>  	if (HAS_DDI(i915))
+>  		intel_ddi_sanitize_encoder_pll_mapping(encoder);
 > +
->  		if (iir & GEN8_PIPE_VBLANK)
->  			intel_handle_vblank(dev_priv, pipe);
+> +	/* validate the global hist struct elements */
+> +	if (intel_dp_is_port_edp(i915, encoder->port)) {
+> +		crtc->global_hist->has_edp = true;
+> +		panel = &connector->panel;
+> +		if (panel->backlight.present == true)
+> +			crtc->global_hist->has_pwm = true;
+> +	}
+
+Again, the dependency on eDP and backlight is unnecessary policy.
+
+Side note, backlight being present doesn't mean "has pwm". It could be
+some other kind of backlight as well.
+
+BR,
+Jani.
+
+> +
+>  }
 >  
-> @@ -5043,7 +5047,7 @@ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
->  	struct intel_uncore *uncore = &dev_priv->uncore;
->  
->  	u32 de_pipe_masked = gen8_de_pipe_fault_mask(dev_priv) |
-> -		GEN8_PIPE_CDCLK_CRC_DONE;
-> +		GEN8_PIPE_CDCLK_CRC_DONE | GEN9_PIPE_GLOBAL_HIST_EVENT;
->  	u32 de_pipe_enables;
->  	u32 de_port_masked = gen8_de_port_aux_mask(dev_priv);
->  	u32 de_port_enables;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 94d0c8d14d43..546207ac4859 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -3887,7 +3887,7 @@
->  #define   PIPE_HOTPLUG_INTERRUPT_ENABLE		(1UL << 26)
->  #define   PIPE_VSYNC_INTERRUPT_ENABLE		(1UL << 25)
->  #define   PIPE_DISPLAY_LINE_COMPARE_ENABLE	(1UL << 24)
-> -#define   PIPE_DPST_EVENT_ENABLE		(1UL << 23)
-> +#define   PIPE_GLOBAL_HIST_EVENT_ENABLE		(1UL << 23)
->  #define   SPRITE0_FLIP_DONE_INT_EN_VLV		(1UL << 22)
->  #define   PIPE_LEGACY_BLC_EVENT_ENABLE		(1UL << 22)
->  #define   PIPE_ODD_FIELD_INTERRUPT_ENABLE	(1UL << 21)
-> @@ -3910,7 +3910,7 @@
->  #define   PIPE_HOTPLUG_INTERRUPT_STATUS		(1UL << 10)
->  #define   PIPE_VSYNC_INTERRUPT_STATUS		(1UL << 9)
->  #define   PIPE_DISPLAY_LINE_COMPARE_STATUS	(1UL << 8)
-> -#define   PIPE_DPST_EVENT_STATUS		(1UL << 7)
-> +#define   PIPE_GLOBAL_HIST_EVENT_STATUS		(1UL << 7)
->  #define   PIPE_A_PSR_STATUS_VLV			(1UL << 6)
->  #define   PIPE_LEGACY_BLC_EVENT_STATUS		(1UL << 6)
->  #define   PIPE_ODD_FIELD_INTERRUPT_STATUS	(1UL << 5)
-> @@ -5815,6 +5815,7 @@
->  #define  GEN8_PIPE_VSYNC		(1 << 1)
->  #define  GEN8_PIPE_VBLANK		(1 << 0)
->  #define  GEN9_PIPE_CURSOR_FAULT		(1 << 11)
-> +#define  GEN9_PIPE_GLOBAL_HIST_EVENT	(1 << 12)
->  #define  GEN11_PIPE_PLANE7_FAULT	(1 << 22)
->  #define  GEN11_PIPE_PLANE6_FAULT	(1 << 21)
->  #define  GEN11_PIPE_PLANE5_FAULT	(1 << 20)
+>  /* FIXME read out full plane state for all planes */
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
