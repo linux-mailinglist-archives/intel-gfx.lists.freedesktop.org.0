@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EFC270E927
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 00:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18FF370E943
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 00:51:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E74F10E544;
-	Tue, 23 May 2023 22:38:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71D1A10E54F;
+	Tue, 23 May 2023 22:51:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7261D10E544;
- Tue, 23 May 2023 22:38:37 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F0E6D10E54D;
+ Tue, 23 May 2023 22:51:36 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 69F8DA73C7;
- Tue, 23 May 2023 22:38:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6361398863720629619=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id E825FAADD8;
+ Tue, 23 May 2023 22:51:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 23 May 2023 22:38:37 -0000
-Message-ID: <168488151739.14423.7323044427633047213@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Tue, 23 May 2023 22:51:36 -0000
+Message-ID: <168488229692.14424.2123779928977030834@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <cover.1684327004.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1684327004.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/color=3A_register_=26_get_config_abstractions_=28rev2=29?=
+References: <20230523195609.73627-1-matthew.d.roper@intel.com>
+In-Reply-To: <20230523195609.73627-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_i915=3A_Move_display_identification/probing_under_display/_?=
+ =?utf-8?b?KHJldjQp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,316 +46,164 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6361398863720629619==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/color: register & get config abstractions (rev2)
-URL   : https://patchwork.freedesktop.org/series/117875/
-State : success
+Series: i915: Move display identification/probing under display/ (rev4)
+URL   : https://patchwork.freedesktop.org/series/117931/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_13176_full -> Patchwork_117875v2_full
-====================================================
+Error: dim checkpatch failed
+7ffe6d000c98 drm/i915/display: Move display device info to header under display/
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:16: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#16: 
+new file mode 100644
 
-Summary
--------
+-:33: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
+#33: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:13:
++#define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
++	/* Keep in alphabetical order */ \
++	func(cursor_needs_physical); \
++	func(has_cdclk_crawl); \
++	func(has_cdclk_squash); \
++	func(has_ddi); \
++	func(has_dp_mst); \
++	func(has_dsb); \
++	func(has_fpga_dbg); \
++	func(has_gmch); \
++	func(has_hotplug); \
++	func(has_hti); \
++	func(has_ipc); \
++	func(has_overlay); \
++	func(has_psr); \
++	func(has_psr_hw_tracking); \
++	func(overlay_needs_physical); \
++	func(supports_tv);
 
-  **SUCCESS**
+-:33: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'func' - possible side-effects?
+#33: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:13:
++#define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
++	/* Keep in alphabetical order */ \
++	func(cursor_needs_physical); \
++	func(has_cdclk_crawl); \
++	func(has_cdclk_squash); \
++	func(has_ddi); \
++	func(has_dp_mst); \
++	func(has_dsb); \
++	func(has_fpga_dbg); \
++	func(has_gmch); \
++	func(has_hotplug); \
++	func(has_hti); \
++	func(has_ipc); \
++	func(has_overlay); \
++	func(has_psr); \
++	func(has_psr_hw_tracking); \
++	func(overlay_needs_physical); \
++	func(supports_tv);
 
-  No regressions found.
+-:33: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#33: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:13:
++#define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
++	/* Keep in alphabetical order */ \
++	func(cursor_needs_physical); \
++	func(has_cdclk_crawl); \
++	func(has_cdclk_squash); \
++	func(has_ddi); \
++	func(has_dp_mst); \
++	func(has_dsb); \
++	func(has_fpga_dbg); \
++	func(has_gmch); \
++	func(has_hotplug); \
++	func(has_hti); \
++	func(has_ipc); \
++	func(has_overlay); \
++	func(has_psr); \
++	func(has_psr_hw_tracking); \
++	func(overlay_needs_physical); \
++	func(supports_tv);
 
-  
+total: 1 errors, 2 warnings, 1 checks, 127 lines checked
+6294f58b3d62 drm/i915: Convert INTEL_INFO()->display to a pointer
+-:241: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#241: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:43:
++					      DISPLAY_INFO(dev_priv)->trans_offsets[TRANSCODER_A] + \
 
-Participating hosts (7 -> 7)
-------------------------------
+-:1742: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'name' may be better as '(name)' to avoid precedence issues
+#1742: FILE: drivers/gpu/drm/i915/intel_device_info.c:141:
++#define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->display->name))
 
-  No changes in participating hosts
+total: 0 errors, 1 warnings, 1 checks, 1610 lines checked
+cebe73c61b1a drm/i915/display: Move display runtime info to display structure
+-:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#71: FILE: drivers/gpu/drm/i915/display/intel_display.h:108:
++#define sprite_name(p, s) ((p) * DISPLAY_RUNTIME_INFO(dev_priv)->num_sprites[(p)] + (s) + 'A')
 
-Known issues
-------------
+-:89: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#89: FILE: drivers/gpu/drm/i915/display/intel_display.h:232:
++		for_each_if (DISPLAY_RUNTIME_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
 
-  Here are the changes found in Patchwork_117875v2_full that come from known issues:
+-:197: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
+#197: FILE: drivers/gpu/drm/i915/i915_drv.h:208:
++	struct intel_display_runtime_info __display_runtime; /* Access with DISPLAY_RUNTIME_INFO() */
 
-### IGT changes ###
+-:232: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#232: FILE: drivers/gpu/drm/i915/i915_drv.h:836:
++#define HAS_TRANSCODER(i915, trans)	 ((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & BIT(trans)) != 0)
 
-#### Issues hit ####
+total: 0 errors, 3 warnings, 1 checks, 1066 lines checked
+401e0dc719b0 drm/i915/display: Make display responsible for probing its own IP
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:46: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#46: 
+new file mode 100644
 
-  * igt@gen9_exec_parse@allowed-single:
-    - shard-glk:          [PASS][1] -> [ABORT][2] ([i915#5566])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-glk2/igt@gen9_exec_parse@allowed-single.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-glk5/igt@gen9_exec_parse@allowed-single.html
+total: 0 errors, 1 warnings, 0 checks, 1898 lines checked
+f63573931151 drm/i915/display: Handle GMD_ID identification in display code
+9be3f41b9537 drm/i915/display: Move feature test macros to intel_display_device.h
+-:24: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#24: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:37:
++#define HAS_CUR_FBC(i915)		(!HAS_GMCH(i915) && DISPLAY_VER(i915) >= 7)
 
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
-    - shard-glk:          [PASS][3] -> [FAIL][4] ([IGT#6] / [i915#2346])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-glk9/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-glk1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#25: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:38:
++#define HAS_D12_PLANE_MINIMIZATION(i915) (IS_ROCKETLAKE(i915) || IS_ALDERLAKE_S(i915))
 
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-cur-indfb-draw-mmap-gtt:
-    - shard-snb:          NOTRUN -> [SKIP][5] ([fdo#109271]) +38 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-snb6/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-cur-indfb-draw-mmap-gtt.html
+-:29: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#29: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:42:
++#define HAS_DOUBLE_BUFFERED_M_N(i915)	(DISPLAY_VER(i915) >= 9 || IS_BROADWELL(i915))
 
-  * igt@kms_plane_scaling@plane-upscale-with-modifiers-20x20@pipe-b-vga-1:
-    - shard-snb:          NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#4579]) +14 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-snb4/igt@kms_plane_scaling@plane-upscale-with-modifiers-20x20@pipe-b-vga-1.html
+-:31: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#31: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:44:
++#define HAS_DP20(i915)			(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
 
-  * igt@kms_setmode@basic@pipe-a-vga-1:
-    - shard-snb:          NOTRUN -> [FAIL][7] ([i915#5465]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-snb4/igt@kms_setmode@basic@pipe-a-vga-1.html
+-:39: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#39: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:52:
++#define HAS_GMBUS_BURST_READ(i915)	(DISPLAY_VER(i915) >= 10 || IS_KABYLAKE(i915))
 
-  
-#### Possible fixes ####
+-:41: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#41: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:54:
++#define HAS_HW_SAGV_WM(i915)		(DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
 
-  * igt@drm_fdinfo@most-busy-idle-check-all@rcs0:
-    - {shard-rkl}:        [FAIL][8] ([i915#7742]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-rkl-1/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-rkl-6/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
+-:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#43: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:56:
++#define HAS_IPS(i915)			(IS_HSW_ULT(i915) || IS_BROADWELL(i915))
 
-  * igt@gem_ctx_exec@basic-nohangcheck:
-    - {shard-tglu}:       [FAIL][10] ([i915#6268]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-tglu-2/igt@gem_ctx_exec@basic-nohangcheck.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-tglu-9/igt@gem_ctx_exec@basic-nohangcheck.html
+-:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#45: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:58:
++#define HAS_MBUS_JOINING(i915)		(IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
 
-  * igt@gem_exec_whisper@basic-fds-priority-all:
-    - {shard-tglu}:       [INCOMPLETE][12] ([i915#6755] / [i915#7392]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-tglu-5/igt@gem_exec_whisper@basic-fds-priority-all.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-tglu-3/igt@gem_exec_whisper@basic-fds-priority-all.html
+-:51: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#51: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:64:
++#define HAS_SAGV(i915)			(DISPLAY_VER(i915) >= 9 && !IS_LP(i915))
 
-  * igt@gem_mmap_gtt@fault-concurrent-y:
-    - shard-snb:          [ABORT][14] ([i915#5161]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-snb6/igt@gem_mmap_gtt@fault-concurrent-y.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-snb6/igt@gem_mmap_gtt@fault-concurrent-y.html
-
-  * igt@i915_pm_rc6_residency@rc6-idle@vcs0:
-    - {shard-dg1}:        [FAIL][16] ([i915#3591]) -> [PASS][17] +1 similar issue
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-dg1-12/igt@i915_pm_rc6_residency@rc6-idle@vcs0.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-dg1-15/igt@i915_pm_rc6_residency@rc6-idle@vcs0.html
-
-  * igt@i915_pm_rpm@dpms-non-lpsp:
-    - {shard-rkl}:        [SKIP][18] ([i915#1397]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-rkl-7/igt@i915_pm_rpm@dpms-non-lpsp.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-rkl-4/igt@i915_pm_rpm@dpms-non-lpsp.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
-    - shard-apl:          [FAIL][20] ([IGT#6] / [i915#2346]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-apl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-apl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-
-  * igt@kms_flip@2x-plain-flip-fb-recreate@bc-hdmi-a1-hdmi-a2:
-    - shard-glk:          [FAIL][22] ([i915#2122]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-glk2/igt@kms_flip@2x-plain-flip-fb-recreate@bc-hdmi-a1-hdmi-a2.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-glk8/igt@kms_flip@2x-plain-flip-fb-recreate@bc-hdmi-a1-hdmi-a2.html
-
-  * igt@kms_flip@flip-vs-suspend@d-hdmi-a4:
-    - {shard-dg1}:        [INCOMPLETE][24] -> [PASS][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-dg1-14/igt@kms_flip@flip-vs-suspend@d-hdmi-a4.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-dg1-17/igt@kms_flip@flip-vs-suspend@d-hdmi-a4.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#6]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/6
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
-  [i915#1937]: https://gitlab.freedesktop.org/drm/intel/issues/1937
-  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
-  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
-  [i915#315]: https://gitlab.freedesktop.org/drm/intel/issues/315
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3591]: https://gitlab.freedesktop.org/drm/intel/issues/3591
-  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
-  [i915#3743]: https://gitlab.freedesktop.org/drm/intel/issues/3743
-  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
-  [i915#3955]: https://gitlab.freedesktop.org/drm/intel/issues/3955
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#426]: https://gitlab.freedesktop.org/drm/intel/issues/426
-  [i915#4538]: https://gitlab.freedesktop.org/drm/intel/issues/4538
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#5161]: https://gitlab.freedesktop.org/drm/intel/issues/5161
-  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
-  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
-  [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5465]: https://gitlab.freedesktop.org/drm/intel/issues/5465
-  [i915#5566]: https://gitlab.freedesktop.org/drm/intel/issues/5566
-  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
-  [i915#6268]: https://gitlab.freedesktop.org/drm/intel/issues/6268
-  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
-  [i915#6755]: https://gitlab.freedesktop.org/drm/intel/issues/6755
-  [i915#7392]: https://gitlab.freedesktop.org/drm/intel/issues/7392
-  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
-  [i915#7742]: https://gitlab.freedesktop.org/drm/intel/issues/7742
-  [i915#8292]: https://gitlab.freedesktop.org/drm/intel/issues/8292
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13176 -> Patchwork_117875v2
-
-  CI-20190529: 20190529
-  CI_DRM_13176: 216281f91018b24567e59ae46ce7e96fb92063cf @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7300: da81a90afee713460d783164f2456524623d3016 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_117875v2: 216281f91018b24567e59ae46ce7e96fb92063cf @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/index.html
-
---===============6361398863720629619==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 9 checks, 161 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/color: register &amp; get config abstractions (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117875/">https://patchwork.freedesktop.org/series/117875/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13176_full -&gt; Patchwork_117875v2_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (7 -&gt; 7)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_117875v2_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gen9_exec_parse@allowed-single:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-glk2/igt@gen9_exec_parse@allowed-single.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-glk5/igt@gen9_exec_parse@allowed-single.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5566">i915#5566</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-glk9/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-glk1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/6">IGT#6</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-cur-indfb-draw-mmap-gtt:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-snb6/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-cur-indfb-draw-mmap-gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +38 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-upscale-with-modifiers-20x20@pipe-b-vga-1:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-snb4/igt@kms_plane_scaling@plane-upscale-with-modifiers-20x20@pipe-b-vga-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>) +14 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic@pipe-a-vga-1:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-snb4/igt@kms_setmode@basic@pipe-a-vga-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5465">i915#5465</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@drm_fdinfo@most-busy-idle-check-all@rcs0:</p>
-<ul>
-<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-rkl-1/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7742">i915#7742</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-rkl-6/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_exec@basic-nohangcheck:</p>
-<ul>
-<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-tglu-2/igt@gem_ctx_exec@basic-nohangcheck.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6268">i915#6268</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-tglu-9/igt@gem_ctx_exec@basic-nohangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_whisper@basic-fds-priority-all:</p>
-<ul>
-<li>{shard-tglu}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-tglu-5/igt@gem_exec_whisper@basic-fds-priority-all.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6755">i915#6755</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7392">i915#7392</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-tglu-3/igt@gem_exec_whisper@basic-fds-priority-all.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@fault-concurrent-y:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-snb6/igt@gem_mmap_gtt@fault-concurrent-y.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5161">i915#5161</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-snb6/igt@gem_mmap_gtt@fault-concurrent-y.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rc6_residency@rc6-idle@vcs0:</p>
-<ul>
-<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-dg1-12/igt@i915_pm_rc6_residency@rc6-idle@vcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3591">i915#3591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-dg1-15/igt@i915_pm_rc6_residency@rc6-idle@vcs0.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@dpms-non-lpsp:</p>
-<ul>
-<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-rkl-7/igt@i915_pm_rpm@dpms-non-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-rkl-4/igt@i915_pm_rpm@dpms-non-lpsp.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-apl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/6">IGT#6</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-apl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-plain-flip-fb-recreate@bc-hdmi-a1-hdmi-a2:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-glk2/igt@kms_flip@2x-plain-flip-fb-recreate@bc-hdmi-a1-hdmi-a2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-glk8/igt@kms_flip@2x-plain-flip-fb-recreate@bc-hdmi-a1-hdmi-a2.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-suspend@d-hdmi-a4:</p>
-<ul>
-<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13176/shard-dg1-14/igt@kms_flip@flip-vs-suspend@d-hdmi-a4.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117875v2/shard-dg1-17/igt@kms_flip@flip-vs-suspend@d-hdmi-a4.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13176 -&gt; Patchwork_117875v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13176: 216281f91018b24567e59ae46ce7e96fb92063cf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7300: da81a90afee713460d783164f2456524623d3016 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_117875v2: 216281f91018b24567e59ae46ce7e96fb92063cf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============6361398863720629619==--
