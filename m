@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 159C170D870
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 11:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 972C070D936
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 11:36:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A3AB10E403;
-	Tue, 23 May 2023 09:07:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B40B10E41A;
+	Tue, 23 May 2023 09:36:24 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01ABC10E403;
- Tue, 23 May 2023 09:07:35 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A139610E419;
+ Tue, 23 May 2023 09:36:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684832856; x=1716368856;
+ t=1684834581; x=1716370581;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=q2XdwoMNEcAz8l0uxh+Zp+irSHa5iHZUlQC4vL26z0g=;
- b=A3LoGCqgtu/07xrnVXkUN35Ht2LbDPhLqEpQMAIXMVFcG35JMQMKhS/P
- EdSVu8UnEm6V3zzpBihrOJXX5pVKTpGITAP9oyuBvPS+Z4EWBUtZPScS9
- Vp/GrfCg/wu4zb/0Okd3Le/AAxW9y/Pnav/6+Pk+x2ejJNOzwFmDM5mH2
- dBRoEYhGDzPjaT8ScB9ZoFgiUrYVUj7P2/U5+TBT62xsUI0E0bvqJywRU
- m4CRNK23iRGBZh1B054W4cPgL7WhjjYhFWQf3eQtRViIfuF9zszDrT2fN
- DYeHo1HBWXba2IS9Hri3GxyZQwKYmgjy3rZUIhU9zPZE6b9w5kRq6hXwi g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="350691403"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="350691403"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 02:07:34 -0700
+ bh=jgXgtUpRvnxQ0fRRW90xKnQ1a2moiyyyzGwsGOJZFvQ=;
+ b=U15k53pj6Ru5ZriIH3KW6oPymenv2pjnQ7ZE5cMKr/FqhXeCz5SsJi6P
+ WPrjNDh8gVPvzUu1e8St4p9RWfvo+oEmV+Yo6XWyvUB2OJOpNxHS1ZhX4
+ kQCGA5FQlEv4nd6M06wQzrv9v63Pj8i1MK/Hmmr4gSAQGrAkHgELJMn/n
+ 2CeUwNN4GJMq/3Z3JiN071r5Ps6bJArPyPyigFM1OvdRRvH1ujS2OImpm
+ GIDcfY3nnl0yQlVJOebh+nJA0WFsMQuOFITnkOqU1dd8eVF2S7XVltHYC
+ bY35z3LX25NLSV4mmNC01Em3NnhoV36Pgy7DdsOLcnTFgUT/PIhBVxFs7 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="356417564"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="356417564"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 02:36:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="848189577"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="848189577"
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="950483780"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="950483780"
 Received: from cboylan-mobl.ger.corp.intel.com (HELO [10.213.203.203])
  ([10.213.203.203])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 02:07:33 -0700
-Message-ID: <f3402477-2880-a312-c6cc-bef79d7c2f57@linux.intel.com>
-Date: Tue, 23 May 2023 10:07:31 +0100
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 02:36:10 -0700
+Message-ID: <e6b80f3e-8734-9362-a38f-d35d108366a2@linux.intel.com>
+Date: Tue, 23 May 2023 10:36:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
 Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>
-References: <20230522115928.588793-1-tvrtko.ursulin@linux.intel.com>
- <20230522115928.588793-3-tvrtko.ursulin@linux.intel.com>
- <ZGv2J0t5XtMnYaXt@ashyti-mobl2.lan>
+To: Rob Clark <robdclark@chromium.org>
+References: <20230515133630.2163170-1-tvrtko.ursulin@linux.intel.com>
+ <CAJs_Fx4tPYkPo-Oc2BduuzC09OfkB3PbFwBQ3b7U9rG_Akh_Fw@mail.gmail.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <ZGv2J0t5XtMnYaXt@ashyti-mobl2.lan>
+In-Reply-To: <CAJs_Fx4tPYkPo-Oc2BduuzC09OfkB3PbFwBQ3b7U9rG_Akh_Fw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Add helpers for managing rps
- thresholds
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH i-g-t 0/2] gputop/intel_gpu_top: Move name
+ to be the last field
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,88 +64,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@kernel.org>, Intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 23/05/2023 00:09, Andi Shyti wrote:
-> Hi Tvrtko,
-> 
-> On Mon, May 22, 2023 at 12:59:27PM +0100, Tvrtko Ursulin wrote:
+On 15/05/2023 15:14, Rob Clark wrote:
+> On Mon, May 15, 2023 at 6:36 AM Tvrtko Ursulin
+> <tvrtko.ursulin@linux.intel.com> wrote:
+>>
 >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >>
->> In preparation for exposing via sysfs add helpers for managing rps
->> thresholds.
+>> Rob,
 >>
->> v2:
->>   * Force sw and hw re-programming on threshold change.
+>> I thought maybe when you add memory stats the same field order like top(1)
+>> would feel more natural? That is client name comes last and is left justified.
+>> All other stats then come in the middle, between PID and NAME.
 >>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@kernel.org>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_rps.c | 54 +++++++++++++++++++++++++++++
->>   drivers/gpu/drm/i915/gt/intel_rps.h |  4 +++
->>   2 files changed, 58 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
->> index 333abc8f7ecb..afde601a6111 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
->> @@ -16,7 +16,9 @@
->>   #include "intel_gt.h"
->>   #include "intel_gt_clock_utils.h"
->>   #include "intel_gt_irq.h"
->> +#include "intel_gt_pm.h"
->>   #include "intel_gt_pm_irq.h"
->> +#include "intel_gt_print.h"
->>   #include "intel_gt_regs.h"
->>   #include "intel_mchbar_regs.h"
->>   #include "intel_pcode.h"
->> @@ -2574,6 +2576,58 @@ int intel_rps_set_min_frequency(struct intel_rps *rps, u32 val)
->>   		return set_min_freq(rps, val);
->>   }
->>   
->> +u8 intel_rps_get_up_threshold(struct intel_rps *rps)
->> +{
->> +	return rps->power.up_threshold;
->> +}
->> +
->> +static int rps_set_threshold(struct intel_rps *rps, u8 *threshold, u8 val)
->> +{
->> +	int ret;
->> +
->> +	if (val > 100)
->> +		return -EINVAL;
->> +
->> +	ret = mutex_lock_interruptible(&rps->lock);
->> +	if (ret)
->> +		return ret;
->> +
->> +	if (*threshold == val)
->> +		goto out_unlock;
->> +
->> +	*threshold = val;
->> +
->> +	/* Force reset. */
->> +	rps->last_freq = -1;
->> +	mutex_lock(&rps->power.mutex);
->> +	rps->power.mode = -1;
->> +	mutex_unlock(&rps->power.mutex);
->> +
->> +	intel_rps_set(rps, clamp(rps->cur_freq,
->> +				 rps->min_freq_softlimit,
->> +				 rps->max_freq_softlimit));
+>> DRM minor 0
+>>      PID     render         copy         video     video-enhance  NAME
+>>     2704 |▌           ||            ||            ||            | kwin_x11
+>>     2734 |▏           ||            ||            ||            | plasmashell
+>>     3932 |            ||            ||            ||            | krunner
+>>     4414 |            ||            ||            ||            | xdg-desktop-por
+>> 1999477 |            ||            ||            ||            | firefox
+>> 2162094 |            ||            ||            ||            | thunderbir
 > 
-> why are you resetting here?
+> Seems like a good idea, and more in line with top/htop/nvtop
 
-I want to ensure the next calls to rps_set go past the "if (val == 
-rps->last_freq)" and "if (new_power == rps->power.mode)" checks (second 
-one via gen6_rps_set_thresholds->rps_set_power" so new values are 
-immediately programmed into the hardware and sw state reset and 
-re-calculated.
+A-b/R-b? Or you go ahead with meminfo changes and I can rebase this on 
+top later. I am okay either way.
 
 Regards,
 
 Tvrtko
+
+> BR,
+> -R
+> 
+>> intel-gpu-top: Intel Alderlake_s (Gen12) @ /dev/dri/card0 -   15/  15 MHz
+>>      99% RC6;  0.01/ 5.46 W;       34 irqs/s
+>>
+>>           ENGINES     BUSY                                        MI_SEMA MI_WAIT
+>>         Render/3D    1.31% |▌                                   |      0%      0%
+>>           Blitter    0.00% |                                    |      0%      0%
+>>             Video    0.00% |                                    |      0%      0%
+>>      VideoEnhance    0.00% |                                    |      0%      0%
+>>
+>>      PID   Render/3D      Blitter        Video      VideoEnhance  NAME
+>>     2734 |▏           ||            ||            ||            | plasmashell
+>>     2704 |▏           ||            ||            ||            | kwin_x11
+>>     1837 |▏           ||            ||            ||            | Xorg
+>> 3429732 |            ||            ||            ||            | kwrite
+>> 2162094 |            ||            ||            ||            | thunderbird
+>>
+>> Cc: Rob Clark <robdclark@chromium.org>
+>>
+>> Tvrtko Ursulin (2):
+>>    gputop: Move client name last
+>>    intel_gpu_top: Move client name last
+>>
+>>   tools/gputop.c        | 19 +++++++++----------
+>>   tools/intel_gpu_top.c | 19 +++++++++----------
+>>   2 files changed, 18 insertions(+), 20 deletions(-)
+>>
+>> --
+>> 2.37.2
+>>
