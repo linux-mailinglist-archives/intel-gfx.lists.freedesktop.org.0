@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE64270DCD5
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 14:45:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F06E970DCE3
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 14:47:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 454E710E43E;
-	Tue, 23 May 2023 12:45:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F235010E427;
+	Tue, 23 May 2023 12:47:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E56310E092;
- Tue, 23 May 2023 12:45:41 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AABD610E092;
+ Tue, 23 May 2023 12:47:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684845942; x=1716381942;
+ t=1684846072; x=1716382072;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=t6h0FlAXJcvs3LOcWpJqIAzFkFt2smH2I4j7SSm9lgw=;
- b=PgDTiYP/QVgRoA+FDKx2PPewOwTvFv2ENvr3sPxJQaBsWJxNMpt08opN
- MqnGSFaZ8NhQBnqQRnjDh/EhMvLZ1qbd6doGoGDO7iIkw4zoReNdlr5Ni
- VZZC35aPXnvcv5vBFY3PEzXegfytvobf27xSrZ8v0gJzTaJGzN0xQXFz2
- emns/Ow9DMi4/TZ3cUdYbTU9b7erZoCxn9yTMCof7QB37AluohpQM8Okn
- NqJUht1JV9K2vn60xIT+N2CSKYP3VDEy87fJqItN02LCStolPQIm/MXRu
- otQuCqI5LsuMxW+rIRIhbWTbrojWEeq+OW555tEiBLIBFoZK6TOqTznja w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="332837721"
-X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="332837721"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 05:45:41 -0700
+ bh=9dH2P6nCFQ8/gZLy0O5O1z/vgV1AQZu9VM2dGjlE3FE=;
+ b=hzaBA9Pm+54jdAvp2i/clxfjWUHIOWCEDMK3+o9ngfnC2bMU30ltePsQ
+ xJuOdWwFhWLu3r37zpNS3+11Ahh0sLyY2LYijzjTW+NubBwimcPscgR6I
+ 6vW1up5sTJaw6FH4pwpMXHj3bcvpDR8auuGN815danzvBu+ci7QQyl2Rc
+ rPu2RtIvC+9yB5f1/U5hCarbgP9w5OEC/+e7yKnu2sWcifVQHwBtulRbY
+ SKG14mUtvpu9SthtwenuXMLW20yb8i81wpjHF5Xu8d6cSWevHGHZ1zRBP
+ X415dvjy/XHSjVwdppW2w2bVCuJLhabZ58zSTyGmElSqraXggsLF5Ne/C A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="337810648"
+X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="337810648"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 05:47:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="950526864"
-X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="950526864"
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="706991909"
+X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="706991909"
 Received: from chauvina-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.53.70])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 05:45:39 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 05:47:49 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230522202314.3939499-4-matthew.d.roper@intel.com>
+In-Reply-To: <20230522202314.3939499-3-matthew.d.roper@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230522202314.3939499-1-matthew.d.roper@intel.com>
- <20230522202314.3939499-4-matthew.d.roper@intel.com>
-Date: Tue, 23 May 2023 15:45:36 +0300
-Message-ID: <87lehfkyhb.fsf@intel.com>
+ <20230522202314.3939499-3-matthew.d.roper@intel.com>
+Date: Tue, 23 May 2023 15:47:46 +0300
+Message-ID: <87ilcjkydp.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 3/6] drm/i915/display: Move display
- runtime info to display structure
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH v2 2/6] drm/i915: Convert
+ INTEL_INFO()->display to a pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,48 +60,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
  Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Mon, 22 May 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 9612c2ac4b00..7a8a12d12790 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -205,6 +205,7 @@ struct drm_i915_private {
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> index 4e23be2995bf..d0bf626d0360 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -138,7 +138,7 @@ void intel_device_info_print(const struct intel_device_info *info,
 >  
->  	const struct intel_device_info __info; /* Use INTEL_INFO() to access. */
->  	struct intel_runtime_info __runtime; /* Use RUNTIME_INFO() to access. */
-> +	struct intel_display_runtime_info __display_runtime; /* Access with DISPLAY_RUNTIME_INFO() */
-
-This could now live as a member of struct intel_display, dropping
-another display only member from struct drm_i915_private.
-
-AFAICT this can be a trivial movement patch on top, since almost all
-access is via DISPLAY_RUNTIME_INFO().
-
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index dd874a4db604..9c781b703c7b 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -41,10 +41,9 @@
->  #define PLATFORM(x) .platform = (x)
->  #define GEN(x) \
->  	.__runtime.graphics.ip.ver = (x), \
-> -	.__runtime.media.ip.ver = (x), \
-> -	.__runtime.display.ip.ver = (x)
-> +	.__runtime.media.ip.ver = (x)
+>  	drm_printf(p, "has_pooled_eu: %s\n", str_yes_no(runtime->has_pooled_eu));
 >  
-> -#define NO_DISPLAY .__runtime.pipe_mask = 0
+> -#define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->display.name))
+> +#define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->display->name))
+>  	DEV_INFO_DISPLAY_FOR_EACH_FLAG(PRINT_FLAG);
+>  #undef PRINT_FLAG
+>  
+> @@ -388,6 +388,8 @@ mkwrite_device_info(struct drm_i915_private *i915)
+>  	return (struct intel_device_info *)INTEL_INFO(i915);
+>  }
+>  
 > +static const struct intel_display_device_info no_display = { 0 };
 
-I think just {} is preferred for empty init, and dodges issues with some
-verbose compiler warnings with sub-struct init. Can also be fixed
-afterwards if there's no other need to do a respin.
+I think {} is preferred. Can be fixed afterwards if there's no other
+reason to do a respin.
+
+> +
+>  /**
+>   * intel_device_info_runtime_init - initialize runtime info
+>   * @dev_priv: the i915 device
+> @@ -538,7 +540,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+>  	if (!HAS_DISPLAY(dev_priv)) {
+>  		dev_priv->drm.driver_features &= ~(DRIVER_MODESET |
+>  						   DRIVER_ATOMIC);
+> -		memset(&info->display, 0, sizeof(info->display));
+> +		info->display = &no_display;
+
+Nice!
 
 Acked-by: Jani Nikula <jani.nikula@intel.com>
+
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
