@@ -1,153 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35ABC70D572
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 09:43:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EACE70D589
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 09:45:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2774210E3D8;
-	Tue, 23 May 2023 07:43:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF8B10E3D5;
+	Tue, 23 May 2023 07:45:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF6C510E3D5;
- Tue, 23 May 2023 07:43:14 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F38A10E3D5;
+ Tue, 23 May 2023 07:45:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684827794; x=1716363794;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=FDh8ACC3NqybdUncTP41VyXkVlM+Ej1aJGcnPn9WAVs=;
- b=P0JGhTqwbZ8tbU6UytYguKmohbE8ZqkPYlAjiTA1JXMq8Kno8N77SWxV
- UGz2OSnWsFqdQPaEL8fGq+hF/aCFmb1/wcXbdZuQdeWvQV59wY7a780nS
- 2Ef1FGjLVdUvtEAqhzq2EOv2BTcGNJad2zmYF8KECSUiuIhKovAB43vuf
- Uc8TyL24BOdkXDX7x/YtBZKHEZFF3GX1oWIDrK8Lt6lTOgbZhD5cS7WZu
- vTd78gan6DUqpSMFpvE9Xt9bfD3get9Jrq4jAcW0PUo6xkKow03WYo9OB
- 9GTlLihVA4dVCW644sOoYcoC3A9vLugW6g1EoJRQInPissm7xiEqnKgGO g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="342623622"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="342623622"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 00:42:50 -0700
+ t=1684827947; x=1716363947;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=+XuNquU2BT5kI1sDY5NPBd2Jyi3UOJ9DUxvALVdGnbs=;
+ b=MKWJFL/JBLGYvnLrSlkS6P/CbUp3CHr4UIsNzmP43RA2XWOa0PYrdBJk
+ fit4BgwDihVCBNDHQVNcUXMxQnUnombKaoDTRNvf9i/ECeOBkYVLtNk/J
+ DMOvkq5ExsmFMl/HKr2XvDFClXtUzN+UIwCbm63UR2l3deaJqbJO9ywAe
+ dD+yUzH8sx/ghpiWT4W/PuP01Lob7OYcldYzVnLQq44Lah0u3DdavU/7p
+ khS/utBaFOHKNOF27/DzgeeeAYs8YTcYQVVujDtiFZmTFfzJ2ph+QjAJa
+ frp2J/gf2VIaNAjOvVfRHpFb4uaZPsBVyOgWC9tAW8W9IYLsXR5bcor2y Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="355519135"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="355519135"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 00:45:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="1033957862"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="1033957862"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga005.fm.intel.com with ESMTP; 23 May 2023 00:42:49 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 23 May 2023 00:42:49 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 23 May 2023 00:42:49 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Tue, 23 May 2023 00:42:49 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Tue, 23 May 2023 00:42:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WWah24pAmVQw8GzPF4Rz65q1VirGahJpaxfsM9RpUk849SarQeC7q0uV9EHuRIoe6q1uG9EYdBQ5/l1I+x0euySfLdD7fwSJ2FKHuFxfWRstI2omy1p3qJW5tOYV+d98LvmvvTO13CQHJClkyUn+wTHRoQGBA6UBh1vbihvwne2x52je+y/Z8JksDHWFRvW4xrHODNI2yfA+mmMecPDbWLLwrL87DR78jrgRSlJQ95q+MRBsaeVj5lE7Gjadx8W5ed8255owSAzRzYnYfToINvIGtgZOag2MoGmyG0yIGWKX5YfL/WbQqj+CWnPTE5xyg7+9KMuVvfA3QHS8g7ECaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FDh8ACC3NqybdUncTP41VyXkVlM+Ej1aJGcnPn9WAVs=;
- b=iuyS9BTruZltKUJOu+rqes0d3u4jRxGDcJthTR/P9ZZl51lndk7dO7jrLsifoCQU0dAsEBfdnOxIbMnTwj0bjypDB2Qe6uZDaK4lE4cSpinP0PsZ28gdLO7bFeMv4vmqrWUsLIpEhDWQs0FhC1gTpr1f176Asx2J1bGYLpqUQXrvhRmlBRoFEylYKQ4Hg5AcrwGvtBWg6c+Zqz40/Kf9ahR/2LuJg6l3riO+ARLS63FX1ATNXTCfmn0iiCeiAEm4lnHAPrju9m1Qq3tEUmt6qCsYZgtYw+Bibj52iR+ZNAYZbGcjZsK6vrC3eZd2QARgN2JIayuwwnbil0luHONxEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from PH7PR11MB6722.namprd11.prod.outlook.com (2603:10b6:510:1ae::15)
- by SA0PR11MB4751.namprd11.prod.outlook.com (2603:10b6:806:73::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Tue, 23 May
- 2023 07:42:46 +0000
-Received: from PH7PR11MB6722.namprd11.prod.outlook.com
- ([fe80::aefa:6d71:572c:7369]) by PH7PR11MB6722.namprd11.prod.outlook.com
- ([fe80::aefa:6d71:572c:7369%5]) with mapi id 15.20.6411.028; Tue, 23 May 2023
- 07:42:46 +0000
-From: "Duan, Zhenzhong" <zhenzhong.duan@intel.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>, "alex.williamson@redhat.com"
- <alex.williamson@redhat.com>, "jgg@nvidia.com" <jgg@nvidia.com>, "Tian,
- Kevin" <kevin.tian@intel.com>
-Thread-Topic: [PATCH v11 00/23] Add vfio_device cdev for iommufd support
-Thread-Index: AQHZhZ7RJeFfD1vNyE63npVPZQkwIK9nhwNg
-Date: Tue, 23 May 2023 07:42:45 +0000
-Message-ID: <PH7PR11MB6722E2C0F6ACE056751AAED292409@PH7PR11MB6722.namprd11.prod.outlook.com>
-References: <20230513132827.39066-1-yi.l.liu@intel.com>
-In-Reply-To: <20230513132827.39066-1-yi.l.liu@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB6722:EE_|SA0PR11MB4751:EE_
-x-ms-office365-filtering-correlation-id: 00301385-ac55-491c-e23f-08db5b614c93
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: fWXkXiF7p1WKPbyNzkDWCd87Mk2BAC2ieKFgeBNwe1xapjH9GtB3TZwWO0oNtlpWGFf6zteWt6R8++sLkbS/1vGMw646zxakwxyjyGM4UBNmITl+P+mliijc0eLahetOS2VN6uOUrOwS8nwWHcj4Ood79jxqPGO8thAQCqBAT+2DsCWyxBAeZBkeqldokAExo5T/6+R1Qnz6DHvykTI5kk+HafWJvyawo+HP3YvPmTejl6YhGZRlDMaxRqzvwCdSJaQXOL1jnCJlCpg1vZ0IPohpggzHTrRkHKVg8Hm8xapzsQ67GFjBO443tGPorVUGzCXDEInupoltSCa+FK+YGbwWTvyuQ5xdhI51Qga8vjeSZgTt6hrCno79g7F3+jv1ybVpCpy6I615RZI7+ckeLR5TBO1pSOGwejA/hhsJpZfOUS0GjDlb3MBWAkHqEY9PIiM+ws02jEtCHOb/A3kOyfnTjUpNBzQscg13i0RejzJrMJ+ButerSXCQPTG72GieL0/AAJ7Am66Pc3QXmBE2tGqYToLqw6P7kdu41wSPs/1i/4Y/odYmzubV5ayhEg1fmHY4Ls8NAOcf/xOEM8xxeD9wUE6tsCmd1G9ZlUYs472AcG1klEd5Ixu09HOICbtIx+OZNG+u1xCwYRPumfLLBA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6722.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(136003)(366004)(376002)(39860400002)(346002)(451199021)(83380400001)(66574015)(71200400001)(8936002)(55016003)(52536014)(7416002)(5660300002)(33656002)(41300700001)(38070700005)(8676002)(2906002)(30864003)(122000001)(45080400002)(478600001)(86362001)(110136005)(54906003)(9686003)(6506007)(82960400001)(38100700002)(186003)(26005)(66446008)(66556008)(66476007)(7696005)(76116006)(316002)(4326008)(6636002)(966005)(64756008)(66946007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bk0vd2ZCSHhaMzBZS1Yya3R1c2N6Q08zcnpDNDBEQXBmYnZrbGVoY1RZeE5L?=
- =?utf-8?B?WDE3UTlVZmxnMmZoZ29iS2xBZkVBRVRINzN6OENoRFhMY2E5OE9WbUlJUGlz?=
- =?utf-8?B?VzNoRi9ZQUNVYzhSQjR5dUMzVy8rU0kyN3BhQUpRT1lGWGExYXJnZjJvSXRS?=
- =?utf-8?B?d0taa0JpRHkrbUNhYlFIaE1TUGFOK0NXTitIUzVMOW4xOVZUcG9VOVhwTXhM?=
- =?utf-8?B?cXR1ZEZhSTJkTmhRTWlOZTFzYnlRajRLU1BTc1pVblN2WExURHpUWDlwcEVQ?=
- =?utf-8?B?OGlDOUt5M3lEMjRwdzBlVEp1SDFjVldKKzgvRzVNVjlndTAvTmxmWFFHY0hV?=
- =?utf-8?B?dk50QjhDcWVFdC8wRHBXd1BoTGNlNVdFTXk5Ly9mbWtnY2Qrb2tLWHlVOEFC?=
- =?utf-8?B?Q1FVTUhTUTd1MCtuQWhXUXc5ZUUrc1pDZTRPM2RkTzhYcm9Rei9rS1FEcVl4?=
- =?utf-8?B?WlJzUUlpbEUvdzdCQ01uNms4RzRScXYvT0kvVE81ZHlJcjZQd0F6ZmJFSnQy?=
- =?utf-8?B?dm16a1ZuZlA0V01sdENHZmRDcllvd2NXMDRNK05RUWFIbFJiVnFrVXRRNElP?=
- =?utf-8?B?aEhRZWRCeDZlRDVIbVdCVG51ZG02VkFpV0VacEhMQ0VKa1JsVEFZK3IyL0xi?=
- =?utf-8?B?YmQ0RTF5NVNsN2gxM0EyT09IRE05OW5PemZpK05hdWE5MjlmK2UxQWdMMXdB?=
- =?utf-8?B?cEI0MGRTKzZXUFZRL05HVGtGeUhGZUloVTBjc04vRDc5SWp4N1F2NWYzbkR0?=
- =?utf-8?B?QllEZkM0aHpOUFVlaVFKTFEwRzZaY0YySjNIajhoNG1SVnU1VnZsNmxmcHdm?=
- =?utf-8?B?M2lJa0RUVHh4aXBsNENPU1A2MGZhU3l2QStxcFROUkFXUWQybGR5dHNXYTJw?=
- =?utf-8?B?NFNFK016bVdYNksrSmdwQ0RBZkhCMnQ0NjVPMGFTQkJGUW9GR2JwY1BvS2No?=
- =?utf-8?B?SEpEZVpVWjdxL2h2djk2R2pNeHZlSmNLQ3k1cEp4SG1jdWFpQnI2ZlkyVlND?=
- =?utf-8?B?VTFXOWxpK0ZoMnZHa1h0QTN4T1AwbTBYM1VpYVd3S0prUUlhaTNtMkVWRDRN?=
- =?utf-8?B?WS91eXBzcHM2L3ZnWHpXcHZQZUp6Y0tubVhpa0MrcDNlZC9kQXh1QlVGNDhK?=
- =?utf-8?B?cU5wSnk2YW1vUHgwU1FJVlJ3SWhhK3gzUW9mcGJLbjRGUVpiWE5lc00ra2VO?=
- =?utf-8?B?aDlTVWtsWjdIeDlDcUszSXZEQlRURDgrbWdkMFNGWGtoRHovWTNzK2RZazVm?=
- =?utf-8?B?OXhiQzhlbzdEVFNsNDZrUm1oMHdIanYwQVFjM2RVR2ttMUNGWTVyd09UNFF0?=
- =?utf-8?B?VmEvRzJvTEpZWVBkME1PNFEzQVN4MEtDQ1FFU0F1cXlOSUlIOHBsNUtFaHZq?=
- =?utf-8?B?RXE2NlZSYnZBMEdRMW03THJXRGE4NVBHU1FuRE9SczBKNzlrVENyd2tQS0JY?=
- =?utf-8?B?SkdtYkNDdjNkbXZSbHowL0EwRzR5SzA3aVlZZ1kwdlhoUEowclNYMnY3TmtN?=
- =?utf-8?B?bmovYk5nVmFaNXdQS3lIc0RRTXZ2aSs0TjFZTXZQR3kzMEVURmdQRit5WDNE?=
- =?utf-8?B?dTVlajR2WERZaU1seGZPS0RqRkp0SDJTQmJOSlc1TE0yZW9ScG1MdDZadXlG?=
- =?utf-8?B?b2F6eC9peDQySG04VTN0T1AzVGdiTTBiTUxTVHBISlJCZ3E1SkI3dkJOMUlS?=
- =?utf-8?B?NnNEOEZrejR0cXBGbnIxM2pNTno5N1daOHlYaGZSTXJoUkZLYkx3STRRVEpQ?=
- =?utf-8?B?ZWpDeEp0d0Z3bHk1Nm5rSTRHRDMwbVVhQTN5NXpuQnh1MEU2eEoyYUlzYjNn?=
- =?utf-8?B?RERTcEYwSm1mTHBWd2lUVC82b0drTmIxU1I2WWpWYVlsWWo0YWFOWG40R051?=
- =?utf-8?B?TTdNNTFpVFI1bG9yTjYxZXc5Uy9vN0NpaFZVaXhFYVhHeEx2cVJPM29rRE11?=
- =?utf-8?B?bzBQMTA5R1AyMGllVmYzVE8zUzlVQm01SnFtMzM3ZEVKUzdmRXR2MXNWeXdp?=
- =?utf-8?B?Y3hnWmNEYll3QXViQ3RsNjMzQTNEaXkxNVRqRmtTL0thWWdReW01d2hNQm1Y?=
- =?utf-8?B?Tmp3OVFnL0c1ZnJ5WklPeVhNd1poOEtBVlJnamdWNFUwYlRxL3hNTVNaRUVY?=
- =?utf-8?Q?hNhpd9DEGdlPWMJRbHRe6wilq?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="697960010"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="697960010"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.31.10])
+ ([10.213.31.10])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 00:45:46 -0700
+Message-ID: <5f0c56fb-7838-0ff1-ef40-8436da950eb1@intel.com>
+Date: Tue, 23 May 2023 09:45:44 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6722.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 00301385-ac55-491c-e23f-08db5b614c93
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2023 07:42:45.7559 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eAZdEPIJFWqLsJAK65+8kzGTg+Vi1kxSPpKUZZxTtIP7a8S0c2xGwHCG/g8Mx+axbBj27ntsJEyClEeRtQorK/iPfVBoCf2WxmqQwC9T8Ps=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4751
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v11 00/23] Add vfio_device cdev for iommufd
- support
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.11.0
+Content-Language: en-US
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230522202314.3939499-1-matthew.d.roper@intel.com>
+ <20230522202314.3939499-3-matthew.d.roper@intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230522202314.3939499-3-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2 2/6] drm/i915: Convert
+ INTEL_INFO()->display to a pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,282 +65,1806 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "clegoate@redhat.com" <clegoate@redhat.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IExpdSwgWWkgTCA8eWkubC5s
-aXVAaW50ZWwuY29tPg0KPlNlbnQ6IFNhdHVyZGF5LCBNYXkgMTMsIDIwMjMgOToyOCBQTQ0KPlRv
-OiBhbGV4LndpbGxpYW1zb25AcmVkaGF0LmNvbTsgamdnQG52aWRpYS5jb207IFRpYW4sIEtldmlu
-DQo+PGtldmluLnRpYW5AaW50ZWwuY29tPg0KPkNjOiBqb3JvQDhieXRlcy5vcmc7IHJvYmluLm11
-cnBoeUBhcm0uY29tOyBjb2h1Y2tAcmVkaGF0LmNvbTsNCj5lcmljLmF1Z2VyQHJlZGhhdC5jb207
-IG5pY29saW5jQG52aWRpYS5jb207IGt2bUB2Z2VyLmtlcm5lbC5vcmc7DQo+bWpyb3NhdG9AbGlu
-dXguaWJtLmNvbTsgY2hhby5wLnBlbmdAbGludXguaW50ZWwuY29tOyBMaXUsIFlpIEwNCj48eWku
-bC5saXVAaW50ZWwuY29tPjsgeWkueS5zdW5AbGludXguaW50ZWwuY29tOyBwZXRlcnhAcmVkaGF0
-LmNvbTsNCj5qYXNvd2FuZ0ByZWRoYXQuY29tOyBzaGFtZWVyYWxpLmtvbG90aHVtLnRob2RpQGh1
-YXdlaS5jb207DQo+bHVsdUByZWRoYXQuY29tOyBzdXJhdmVlLnN1dGhpa3VscGFuaXRAYW1kLmNv
-bTsgaW50ZWwtZ3Z0LQ0KPmRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmc7IGxpbnV4LQ0KPnMzOTBAdmdlci5rZXJuZWwub3JnOyBIYW8sIFh1
-ZG9uZyA8eHVkb25nLmhhb0BpbnRlbC5jb20+OyBaaGFvLCBZYW4gWQ0KPjx5YW4ueS56aGFvQGlu
-dGVsLmNvbT47IFh1LCBUZXJyZW5jZSA8dGVycmVuY2UueHVAaW50ZWwuY29tPjsgSmlhbmcsDQo+
-WWFudGluZyA8eWFudGluZy5qaWFuZ0BpbnRlbC5jb20+OyBEdWFuLCBaaGVuemhvbmcNCj48emhl
-bnpob25nLmR1YW5AaW50ZWwuY29tPjsgY2xlZ29hdGVAcmVkaGF0LmNvbQ0KPlN1YmplY3Q6IFtQ
-QVRDSCB2MTEgMDAvMjNdIEFkZCB2ZmlvX2RldmljZSBjZGV2IGZvciBpb21tdWZkIHN1cHBvcnQN
-Cj4NCj5FeGlzdGluZyBWRklPIHByb3ZpZGVzIGdyb3VwLWNlbnRyaWMgdXNlciBBUElzIGZvciB1
-c2Vyc3BhY2UuIFVzZXJzcGFjZSBvcGVucw0KPnRoZSAvZGV2L3ZmaW8vJGdyb3VwX2lkIGZpcnN0
-IGJlZm9yZSBnZXR0aW5nIGRldmljZSBmZCBhbmQgaGVuY2UgZ2V0dGluZyBhY2Nlc3MNCj50byBk
-ZXZpY2UuIFRoaXMgaXMgbm90IHRoZSBkZXNpcmVkIG1vZGVsIGZvciBpb21tdWZkLiBQZXIgdGhl
-IGNvbmNsdXNpb24gb2YNCj5jb21tdW5pdHkgZGlzY3Vzc2lvblsxXSwgaW9tbXVmZCBwcm92aWRl
-cyBkZXZpY2UtY2VudHJpYyBrQVBJcyBhbmQgcmVxdWlyZXMNCj5pdHMgY29uc3VtZXIgKGxpa2Ug
-VkZJTykgdG8gYmUgZGV2aWNlLWNlbnRyaWMgdXNlciBBUElzLiBTdWNoIHVzZXIgQVBJcyBhcmUg
-dXNlZA0KPnRvIGFzc29jaWF0ZSBkZXZpY2Ugd2l0aCBpb21tdWZkIGFuZCBhbHNvIHRoZSBJL08g
-YWRkcmVzcyBzcGFjZXMgbWFuYWdlZA0KPmJ5IHRoZSBpb21tdWZkLg0KPg0KPlRoaXMgc2VyaWVz
-IGZpcnN0IGludHJvZHVjZXMgYSBwZXIgZGV2aWNlIGZpbGUgc3RydWN0dXJlIHRvIGJlIHByZXBh
-cmVkIGZvcg0KPmZ1cnRoZXIgZW5oYW5jZW1lbnQgYW5kIHJlZmFjdG9ycyB0aGUga3ZtLXZmaW8g
-Y29kZSB0byBiZSBwcmVwYXJlZCBmb3INCj5hY2NlcHRpbmcgZGV2aWNlIGZpbGUgZnJvbSB1c2Vy
-c3BhY2UuIEFmdGVyIHRoaXMsIGFkZHMgYSBtZWNoYW5pc20gZm9yDQo+YmxvY2tpbmcgZGV2aWNl
-IGFjY2VzcyBiZWZvcmUgaW9tbXVmZCBiaW5kLiBUaGVuIHJlZmFjdG9ycyB0aGUgdmZpbyB0byBi
-ZQ0KPmFibGUgdG8gaGFuZGxlIGNkZXYgcGF0aCAoZS5nLiBpb21tdWZkIGJpbmRpbmcsIG5vLWlv
-bW11ZmQsIFtkZV1hdHRhY2ggaW9hcykuDQo+VGhpcyByZWZhY3RvciBpbmNsdWRlcyBtYWtpbmcg
-dGhlIGRldmljZV9vcGVuIGV4Y2x1c2l2ZSBiZXR3ZWVuIHRoZSBncm91cA0KPmFuZCB0aGUgY2Rl
-diBwYXRoLCBvbmx5IGFsbG93IHNpbmdsZSBkZXZpY2Ugb3BlbiBpbiBjZGV2IHBhdGg7IHZmaW8t
-aW9tbXVmZA0KPmNvZGUgaXMgYWxzbyByZWZhY3RvcmVkIHRvIHN1cHBvcnQgY2Rldi4gZS5nLiBz
-cGxpdCB0aGUgdmZpb19pb21tdWZkX2JpbmQoKQ0KPmludG8gdHdvIHN0ZXBzLiBFdmVudHVhbGx5
-LCBhZGRzIHRoZSBjZGV2IHN1cHBvcnQgZm9yIHZmaW8gZGV2aWNlIGFuZCB0aGUgbmV3DQo+aW9j
-dGxzLCB0aGVuIG1ha2VzIGdyb3VwIGluZnJhc3RydWN0dXJlIG9wdGlvbmFsIGFzIGl0IGlzIG5v
-dCBuZWVkZWQgd2hlbiB2ZmlvDQo+ZGV2aWNlIGNkZXYgaXMgY29tcGlsZWQuDQo+DQo+VGhpcyBz
-ZXJpZXMgaXMgYmFzZWQgb24gc29tZSBwcmVwYXJhdGlvbiB3b3JrcyBkb25lIHRvIHZmaW8gZW11
-bGF0ZWQNCj5kZXZpY2VzWzJdIGFuZCB2ZmlvIHBjaSBob3QgcmVzZXQgZW5oYW5jZW1lbnRzWzNd
-Lg0KPg0KPlRoaXMgc2VyaWVzIGlzIGEgcHJlcmVxdWlzaXRlIGZvciBpb21tdSBuZXN0aW5nIGZv
-ciB2ZmlvIGRldmljZVs0XSBbNV0uDQo+DQo+VGhlIGNvbXBsZXRlIGNvZGUgY2FuIGJlIGZvdW5k
-IGluIGJlbG93IGJyYW5jaCwgc2ltcGxlIHRlc3RzIGRvbmUgdG8gdGhlDQo+bGVnYWN5IGdyb3Vw
-IHBhdGggYW5kIHRoZSBjZGV2IHBhdGguIERyYWZ0IFFFTVUgYnJhbmNoIGNhbiBiZSBmb3VuZCBh
-dFs2XQ0KPkhvd2V2ZXIsIHRoZSBub2lvbW11IG1vZGUgdGVzdCBpcyBvbmx5IGRvbmUgd2l0aCBz
-b21lIGhhY2tzIGluIGtlcm5lbCBhbmQNCj5xZW11IHRvIGNoZWNrIGlmIHFlbXUgY2FuIGJvb3Qg
-d2l0aCBub2lvbW11IGRldmljZXMuDQo+DQo+aHR0cHM6Ly9naXRodWIuY29tL3lpbGl1MTc2NS9p
-b21tdWZkL3RyZWUvdmZpb19kZXZpY2VfY2Rldl92MTENCj4oY29uZmlnIENPTkZJR19JT01NVUZE
-PXkgQ09ORklHX1ZGSU9fREVWSUNFX0NERVY9eSkNCj4NCj5iYXNlLWNvbW1pdDogYjhiOTY3ZDVl
-YzY5MWJkZGI4ODNhYjJhYmJmYjhkNjMyYzk3MDUyZQ0KPg0KPlsxXQ0KPmh0dHBzOi8vbG9yZS5r
-ZXJuZWwub3JnL2t2bS9CTjlQUjExTUI1NDMzQjFFNEFFNUIwNDgwMzY5Rjk3MTc4QzE4OQ0KPkBC
-TjlQUjExTUI1NDMzLm5hbXByZDExLnByb2Qub3V0bG9vay5jb20vDQo+WzJdIGh0dHBzOi8vbG9y
-ZS5rZXJuZWwub3JnL2t2bS8yMDIzMDMyNzA5MzM1MS40NDUwNS0xLXlpLmwubGl1QGludGVsLmNv
-bS8gLQ0KPm1lcmdlZCBbM10gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcva3ZtLzIwMjMwNTEzMTMy
-MTM2LjE1MDIxLTEtDQo+eWkubC5saXVAaW50ZWwuY29tLw0KPls0XSBodHRwczovL2xvcmUua2Vy
-bmVsLm9yZy9saW51eC1pb21tdS8yMDIzMDUxMTE0Mzg0NC4yMjY5My0xLQ0KPnlpLmwubGl1QGlu
-dGVsLmNvbS8NCj5bNV0gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtaW9tbXUvMjAyMzA1
-MTExNDUxMTAuMjc3MDctMS0NCj55aS5sLmxpdUBpbnRlbC5jb20vI3QNCj5bNl0NCj5odHRwczov
-L2dpdGh1Yi5jb20veWlsaXUxNzY1L3FlbXUvdHJlZS9pb21tdWZkX3JmY3Y0Lm1pZy5yZXNldC52
-NF92YXIzDQo+DQo+Q2hhbmdlIGxvZzoNCj4NCj52MTE6DQo+IC0gQWRkIGJhY2sgdGhlIG5vaW9t
-bXUgZGV0ZXJtaW5hdGlvbiBhdCB2ZmlvIGRldmljZSByZWdpc3RyYXRpb24gcGF0Y2ggYW5kDQo+
-ICAgcHV0IGl0IHByaW9yIHRvIGNvbXBpbGluZyB2ZmlvX2dyb3VwIGNvZGUgb3B0aW9uYWxseSBh
-cyBjb21waWxpbmcgdmZpb19ncm91cA0KPiAgIG9wdGlvbmFseSBpcyB0aGUgbWFqb3IgcmVhc29u
-IGZvciBpdC4NCj4gLSBGaXggYSB0eXBvIHJlbGF0ZWQgdG8gU1BBUFIgKEPDqWRyaWMgTGUgR29h
-dGVyKQ0KPiAtIEFkZCB0LWIgZnJvbSBTaGFtZWVyYWxpIEtvbG90aHVtIFRob2RpLCB0ZXN0ZWQg
-b24gSGlTaWxpY29uIEQwNihBUk02NCkNCj5wbGF0Zm9ybQ0KPiAgIHdpdGggYSBOSUMgcGFzcy10
-aHJvdWdoDQo+DQo+djEwOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9rdm0vMjAyMzA0MjYxNTAz
-MjEuNDU0NDY1LTEtDQo+eWkubC5saXVAaW50ZWwuY29tLw0KPiAtIERyb3AgcGF0Y2ggMDMgb2Yg
-djkgYXMgdmZpb19maWxlX2lzX2dyb3VwKCkgaXMgc3RpbGwgbmVlZGVkIGJ5IHBjaSBob3QgcmVz
-ZXQNCj5wYXRoDQo+IC0gRHJvcCAxMSBvZiB2OSBwZXIgdGhlIGNoYW5nZSBvZiBub2lvbW11IHN1
-cHBvcnQNCj4gLSBNb3ZlIHBhdGNoIDE4IG9mIHY5IHRvIGhvdC1yZXNldCBzZXJpZXMgWzNdDQo+
-IC0gdmZpb19maWxlX2hhc19kZXZpY2VfYWNjZXNzKCkgaXMgZHJvcHBlZCBhcyBubyB1c2FnZSBu
-b3cgKGhvdC1yZXNldCBkb2VzDQo+bm90IGFjY2VwdA0KPiAgIGRldmljZSBmZCwgaGVuY2Ugbm8g
-bmVlZCBmb3IgdGhpcyBoZWxwZXIpDQo+IC0gTWlub3IgY2hhbmdlIHRvIHBhdGNoIDAyLCBtYWlu
-bHkgbWFrZSBpdCBiYWNrIHRvIHBhdGNoIHYyIG9mIHY2IHdoaWNoIGlzDQo+YmVmb3JlDQo+ICAg
-c3BsaXR0aW5nIGhvdC1yZXNldCBzZXJpZXMNCj4gLSBNaW5vciBjaGFuZ2UgaW4gMTAgYW5kIDEx
-IGR1ZSB0byByZWJhc2UNCj4gLSBGdW5jdGlvbmFsIGNoYW5nZXMgaW4gcGF0Y2ggMTksIDIwIGFu
-ZCAyMSBwZXIgdGhlIGxhdGVzdCBub2lvbW11IHN1cHBvcnQNCj4gICBwb2xpY3kuIG5vaW9tbXUg
-ZGV2aWNlIGNhbiBiZSBib3VuZCB0byB2YWxpZCBpb21tdWZkIG5vdywgdGhpcyBpcyBkaWZmZXJl
-bnQNCj4gICBmcm9tIHRoZSBwcmlvciBwb2xpY3kgaW4gd2hpY2ggbm9pb21tdSBkZXZpY2UgaXMg
-bm90IGFsbG93ZWQgdG8gYmUgYm91bmQgdG8NCj4gICB2YWxpZCBpb21tdWZkLiBTbyBtYXkgcGF5
-IG1vcmUgYXR0ZW50aW9uIG9uIHRoZSB0aHJlZSBwYXRjaGVzLCBwcmV2aW91cyByLQ0KPmINCj4g
-ICBhbmQgdC1iIGFyZSBkcm9wcGVkIGZvciB0aGVzZSB0aHJlZSBwYXRjaGVzLg0KPg0KPnY5OiBo
-dHRwczovL2xvcmUua2VybmVsLm9yZy9rdm0vMjAyMzA0MDExNTE4MzMuMTI0NzQ5LTEteWkubC5s
-aXVAaW50ZWwuY29tLw0KPiAtIFVzZSBzbXBfbG9hZF9hY3F1aXJlKCkgaW4gdmZpb19maWxlX2hh
-c19kZXZpY2VfYWNjZXNzKCkgZm9yIGRmLQ0KPj5hY2Nlc3NfZ3JhbnRlZCAoQWxleCkNCj4gLSBG
-aXggbG9jayBpbml0IGluIHBhdGNoIDE2IG9mIHY4IChKb24gUGFuLURvaCkNCj4gLSBTcGxpdCBw
-YXRjaCAyMCBvZiB2OCAoQWxleCkNCj4gLSBSZWZpbmUgbm9pb21tdSBsb2dpYyBpbiBCSU5EX0lP
-TU1VRkQgKEFsZXgpDQo+IC0gUmVtb3ZlIGRldl9jb29raWUgaW4gQklORF9JT01NVUZEIGlvY3Rs
-IChBbGV4LCBKYXNvbikNCj4gLSBSZW1vdmUgc3RhdGljX2Fzc2VydCBpbiBBVFRBQ0gvREVUQUNI
-IGlvY3RsIGhhbmRsaW5nIChBbGV4KQ0KPiAtIFJlbW92ZSBkZXZpY2UtPm9wcy0+YmluZF9pb21t
-dWZkIHByZXNlbmNlIGNoZWNrIGluDQo+QklORF9JT01NVUZEL0FUVEFDSC9ERVRBQ0ggaGFuZGxp
-bmcgKEFsZXgpDQo+IC0gUmVtb3ZlIFZGSU8gZGVwZW5kZWNueSBmb3IgVkZJT19DT05UQUlORVIg
-YXMgVkZJT19HUk9VUCBzaG91bGQNCj5pbXBseSBpdCAoQWxleCkNCj4gLSBJbXByb3ZlIHRoZSBk
-b2N1bWVudGF0aW9uIHBlciBzdWdnZXN0aW9ucyBmcm9tIEFsZXggb24gcGF0Y2ggMjQgb2YgdjgN
-Cj4oQWxleCkNCj4gLSBSZW1vdmUgV0FSTl9PTihkZi0+Z3JvdXApIGluIHZmaW9fZGV2aWNlX2dy
-b3VwX3VzZXNfY29udGFpbmVyKCkgb2YNCj5wYXRjaCAxMQ0KPiAtIEFkZCByLWIgZnJvbSBLZXZp
-biB0byBwYXRjaCAxOC8xOSBvZiB2OA0KPiAtIEFkZCByLWIgZnJvbSBKYXNvbiB0byBwYXRjaCAw
-My8xMC8xMSBvZiB2OA0KPiAtIEFkZCB0LWIgZnJvbSBZYW50aW5nIEppYW5nIGFuZCBOaWNvbGlu
-IENoZW4NCj4NCj52ODogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcva3ZtLzIwMjMwMzI3MDk0MDQ3
-LjQ3MjE1LTEteWkubC5saXVAaW50ZWwuY29tLw0KPiAtIEFkZCBwYXRjaCAxOCB0byBkZXRlcm1p
-bmUgbm9pb21tdSBkZXZpY2UgYXQgdmZpb19kZXZpY2UgcmVnaXN0cmF0aW9uDQo+KEphc29uKQ0K
-PiAtIEFkZCBwYXRjaCAxOSB0byBuYW1lIG5vaW9tbXUgZGV2aWNlIHdpdGggIm5vaW9tbXUtIiBw
-cmVmaXggdG8gYmUgcGFyDQo+d2l0aA0KPiAgIGdyb3VwIHBhdGgNCj4gLSBBZGQgci1iIGZyb20g
-S2V2aW4NCj4gLSBBZGQgdC1iIGZyb20gVGVycmVuY2UNCj4NCj52NzogaHR0cHM6Ly9sb3JlLmtl
-cm5lbC5vcmcva3ZtLzIwMjMwMzE2MTI1NTM0LjE3MjE2LTEteWkubC5saXVAaW50ZWwuY29tLw0K
-PiAtIFNwbGl0IHRoZSB2ZmlvLXBjaSBob3QgcmVzZXQgY2hhbmdlcyB0byBiZSBzZXBhcmF0ZSBw
-YXRjaCBzZXJpZXMgKEphc29uLCBLZXZpbikNCj4gLSBNb3JlIHBvbGlzaCBvbiBuby1pb21tdWZk
-IHN1cHBvcnQgKHBhdGNoIDExIC0gMTMpIGluIGNkZXYgcGF0aCAoS2V2aW4pDQo+IC0gaW9tbXVm
-ZF9hY2Nlc3NfZGV0YWNoKCkgaW4gcGF0Y2ggMTYgaXMgYWRkZWQgYnkgTmljIGZvciBlbXVsYXRl
-ZCBkZXZpY2VzDQo+KEtldmluLCBKYXNvbikNCj4NCj52NjogaHR0cHM6Ly9sb3JlLmtlcm5lbC5v
-cmcva3ZtLzIwMjMwMzA4MTMyOTAzLjQ2NTE1OS0xLQ0KPnlpLmwubGl1QGludGVsLmNvbS8jdA0K
-PiAtIEFkZCByLWIgZnJvbSBKYXNvbiBvbiBwYXRjaCAwMSAtIDA4IGFuZCAxMyBpbiB2NQ0KPiAt
-IEJhc2VkIG9uIHRoZSBwcmVyZXF1aXNpdGUgbWluaS1zZXJpZXMgd2hpY2ggbWFrZXMgdmZpbyBl
-bXVsYXRlZCBkZXZpY2VzDQo+ICAgYmUgcHJlcGFyZWQgdG8gY2RldiAoSmFzb24pDQo+IC0gQWRk
-IHRoZSBhcHByb2FjaCB0byBwYXNzIGEgc2V0IG9mIGRldmljZSBmZHMgdG8gZG8gaG90IHJlc2V0
-IG93bmVyc2hpcA0KPiAgIGNoZWNrLCB3aGlsZSB0aGUgemVyby1sZW5ndGggYXJyYXkgYXBwcm9h
-Y2ggaXMgYWxzbyBrZXB0LiAoSmFzb24sIEtldmluLCBBbGV4KQ0KPiAtIERyb3AgcGF0Y2ggMTAg
-b2YgdjUsIGl0IGlzIHJld29ya2VkIGJ5IHBhdGNoIDEzIGFuZCAxNyBpbiB2NiAoSmFzb24pDQo+
-IC0gU3RvcmUgdmZpb19ncm91cCBwb2ludGVyIGluIHZmaW9fZGV2aWNlX2ZpbGUgdG8gY2hlY2sg
-aWYgdXNlciBpcyB1c2luZw0KPiAgIGxlZ2FjeSB2ZmlvIGNvbnRhaW5lciAoSmFzb24pDQo+IC0g
-RHJvcCB0aGUgaXNfY2Rldl9kZXZpY2UgZmxhZyAoaW50cm9kdWNlZCBpbiBwYXRjaCAxNCBvZiB2
-NSkgYXMgdGhlIGdyb3VwDQo+ICAgcG9pbnRlciBzdG9yZWQgaW4gdmZpb19kZXZpY2VfZmlsZSBj
-YW4gY292ZXIgaXQuDQo+IC0gQWRkIGlvbW11X2dyb3VwIGNoZWNrIGluIHRoZSBjZGV2IG5vLWlv
-bW11IHBhdGggcGF0Y2ggMjQgKEtldmluKQ0KPiAtIEFkZCB0LWIgZnJvbSBUZXJyZW5jZSwgTmlj
-b2xpbiBhbmQgTWF0dGhldyAodGhhbmtzIGZvciB0aGUgaGVscCwgc29tZQ0KPnBhdGNoZXMNCj4g
-ICBhcmUgbmV3IGluIHRoaXMgdmVyc2lvbiwgc28gSSBqdXN0IGFkZGVkIHQtYiB0byB0aGUgcGF0
-Y2hlcyB0aGF0IGFyZSBhbHNvDQo+ICAgaW4gdjUgYW5kIG5vIGJpZyBjaGFuZ2UsIGZvciBvdGhl
-cnMgd291bGQgYWRkIGluIHRoaXMgdmVyc2lvbikuDQo+DQo+djU6IGh0dHBzOi8vbG9yZS5rZXJu
-ZWwub3JnL2t2bS8yMDIzMDIyNzExMTEzNS42MTcyOC0xLXlpLmwubGl1QGludGVsLmNvbS8NCj4g
-LSBBZGQgci1iIGZyb20gS2V2aW4gb24gcGF0Y2ggMDgsIDEzLCAxNCwgMTUgYW5kIDE3Lg0KPiAt
-IFJlbmFtZSBwYXRjaCAwMiB0byBsaW1pdCB0aGUgY2hhbmdlIGZvciBLVk0gZmFjaW5nIGtBUElz
-LiBUaGUgdmZpbyBwY2kNCj4gICBob3QgcmVzZXQgcGF0aCBvbmx5IGFjY2VwdHMgZ3JvdXAgZmls
-ZSB1bnRpbCBwYXRjaCAwOS4gKEtldmluKQ0KPiAtIFVwZGF0ZSBjb21tZW50IGFyb3VuZCBzbXBf
-bG9hZF9hY3F1aXJlKCZkZi0+YWNjZXNzX2dyYW50ZWQpIChZYW4pDQo+IC0gQWRvcHQgSmFzb24n
-cyBzdWdnZXN0aW9uIG9uIHRoZSB2ZmlvIHBjaSBob3QgcmVzZXQgcGF0aCwgcGFzc2luZyB6ZXJv
-LWxlbmd0aA0KPiAgIGZkIGFycmF5IHRvIGluZGljYXRlIHVzaW5nIGJvdW5kIGlvbW11ZmRfY3R4
-IGFzIG93bmVyc2hpcCBjaGVjay4gKEphc29uLA0KPktldmluKQ0KPiAtIERpcmVjdCByZWFkIGRm
-LT5hY2Nlc3NfZ3JhbnRlZCB2YWx1ZSBpbiB2ZmlvX2RldmljZV9jZGV2X2Nsb3NlKCkgKEtldmlu
-LCBZYW4sDQo+SmFzb24pDQo+IC0gV3JhcCB0aGUgaW9tbXVmZCBnZXQvcHV0IGludG8gYSBoZWxw
-ZXIgdG8gcmVmaW5lIHRoZSBlcnJvciBwYXRoIG9mDQo+ICAgdmZpb19kZXZpY2VfaW9jdGxfYmlu
-ZF9pb21tdWZkKCkuIChZYW4pDQo+DQo+djQ6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2t2bS8y
-MDIzMDIyMTAzNDgxMi4xMzgwNTEtMS15aS5sLmxpdUBpbnRlbC5jb20vDQo+IC0gQWRkIHItYiBm
-cm9tIEtldmluIG9uIHBhdGNoIDA5LzEwDQo+IC0gQWRkIGEgbGluZSBpbiBkZXZpY2VzL3ZmaW8u
-cnN0IHRvIGVtcGhhc2l6ZSB1c2VyIHNob3VsZCBhZGQgZ3JvdXAvZGV2aWNlIHRvDQo+ICAgS1ZN
-IHByaW9yIHRvIGludm9rZSBvcGVuX2RldmljZSBvcCB3aGljaCBtYXkgYmUgY2FsbGVkIGluIHRo
-ZQ0KPlZGSU9fR1JPVVBfR0VUX0RFVklDRV9GRA0KPiAgIG9yIFZGSU9fREVWSUNFX0JJTkRfSU9N
-TVVGRCBpb2N0bC4NCj4gLSBNb2RpZnkgVkZJT19HUk9VUC9WRklPX0RFVklDRV9DREVWIEtjb25m
-aWcgZGVwZW5kZW5jeSAoQWxleCkNCj4gLSBTZWxlY3QgVkZJT19HUk9VUCBmb3IgU1BBUFIgKEph
-c29uKQ0KPiAtIENoZWNrIGRldmljZSBmdWxseS1vcGVuZWQgaW4gUENJIGhvdHJlc2V0IHBhdGgg
-Zm9yIGRldmljZSBmZCAoSmFzb24pDQo+IC0gU2V0IGRmLT5hY2Nlc3NfZ3JhbnRlZCBpbiB0aGUg
-Y2FsbGVyIG9mIHZmaW9fZGV2aWNlX29wZW4oKSBzaW5jZQ0KPiAgIHRoZSBjYWxsZXIgbWF5IGZh
-aWwgaW4gb3RoZXIgb3BlcmF0aW9ucywgYnV0IGRmLT5hY2Nlc3NfZ3JhbnRlZA0KPiAgIGRvZXMg
-bm90IGFsbG93IGEgdHJ1ZSB0byBmYWxzZSBjaGFuZ2UuIFNvIGl0IHNob3VsZCBiZSBzZXQgb25s
-eSB3aGVuDQo+ICAgdGhlIG9wZW4gcGF0aCBpcyByZWFsbHkgZG9uZSBzdWNjZXNzZnVsbHkuIChZ
-YW4sIEtldmluKQ0KPiAtIEZpeCBtaXNzaW5nIGlvbW11ZmRfY3R4X3B1dCgpIGluIHRoZSBjZGV2
-IHBhdGggKFlhbikNCj4gLSBGaXggYW4gaXNzdWUgZm91bmQgaW4gdGVzdGluZyBleGNsdXNpb24g
-YmV0d2VlbiBncm91cCBhbmQgY2RldiBwYXRoLg0KPiAgIHZmaW9fZGV2aWNlX2NkZXZfY2xvc2Uo
-KSBzaG91bGQgY2hlY2sgZGYtPmFjY2Vzc19ncmFudGVkIGJlZm9yZSBoZWFkaW5nDQo+ICAgdG8g
-b3RoZXIgb3BlcmF0aW9ucy4NCj4gLSBVcGRhdGUgdmZpby5yc3QgZm9yIGlvbW11ZmQvY2Rldg0K
-Pg0KPnYzOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9rdm0vMjAyMzAyMTMxNTEzNDguNTY0NTEt
-MS15aS5sLmxpdUBpbnRlbC5jb20vDQo+IC0gQWRkIHItYiBmcm9tIEtldmluIG9uIHBhdGNoIDAz
-LCAwNiwgMDcsIDA4Lg0KPiAtIFJlZmluZSB0aGUgZ3JvdXAgYW5kIGNkZXYgcGF0aCBleGNsdXNp
-b24uIFJlbW92ZSB2ZmlvX2RldmljZTpzaW5nbGVfb3BlbjsNCj4gICBhZGQgdmZpb19ncm91cDo6
-Y2Rldl9kZXZpY2Vfb3Blbl9jbnQgdG8gYWNoaWV2ZSBleGx1Y3Npb24gYmV0d2VlbiBncm91cA0K
-PiAgIHBhdGggYW5kIGNkZXYgcGF0aCAoS2V2aW4sIEphc29uKQ0KPiAtIEZpeCBhIGJ1ZyBpbiB0
-aGUgZXJyb3IgaGFuZGxpbmcgcGF0aCAoWWFuIFpoYW8pDQo+IC0gQWRkcmVzcyBtaXNjIHJlbWFy
-a3MgZnJvbSBLZXZpbg0KPg0KPnYyOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9rdm0vMjAyMzAy
-MDYwOTA1MzIuOTU1OTgtMS15aS5sLmxpdUBpbnRlbC5jb20vDQo+IC0gQWRkIHItYiBmcm9tIEtl
-dmluIGFuZCBFcmljIG9uIHBhdGNoIDAxIDAyIDA0Lg0KPiAtICJTcGxpdCBrdm0vdmZpbzogUHJv
-dmlkZSBzdHJ1Y3Qga3ZtX2RldmljZV9vcHM6OnJlbGVhc2UoKSBpbnN0ZWQNCj5vZiA6OmRlc3Ry
-b3koKSINCj4gICBmcm9tIHRoaXMgc2VyaWVzIGFuZCBnb3QgYXBwbGllZC4gKEFsZXgsIEtldmlu
-LCBKYXNvbiwgTWF0aGhldykNCj4gLSBBZGQga3ZtX3JlZl9sb2NrIHRvIHByb3RlY3QgdmZpb19k
-ZXZpY2VfZmlsZS0+a3ZtIGluc3RlYWQgb2YgcmV1c2luZw0KPiAgIGRldl9zZXQtPmxvY2sgYXMg
-ZGVhZC1sb2NrIGlzIG9ic2VydmVkIHdpdGggdmZpby1hcCB3aGljaCB3b3VsZCB0cnkgdG8NCj4g
-ICBhY3F1aXJlIGt2bV9sb2NrLiBUaGlzIGlzIG9wcG9zaXRlIGxvY2sgb3JkZXIgd2l0aCBrdm1f
-ZGV2aWNlX3JlbGVhc2UoKQ0KPiAgIHdoaWNoIGhvbGRzIGt2bV9sb2NrIGZpcnN0IGFuZCB0aGVu
-IGhvbGQgZGV2X3NldC0+bG9jay4gKEtldmluKQ0KPiAtIFVzZSBhIHNlcGFyYXRlIGlvY3RsIGZv
-ciBkZXRhY2hpbmcgSU9BUy4gKEFsZXgpDQo+IC0gUmVuYW1lIHZmaW9fZGV2aWNlX2ZpbGU6OnNp
-bmdsZV9vcGVuIHRvIGJlIGlzX2NkZXZfZGV2aWNlIChLZXZpbiwgQWxleCkNCj4gLSBNb3ZlIHRo
-ZSB2ZmlvIGRldmljZSBjZGV2IGNvZGUgaW50byBkZXZpY2VfY2Rldi5jIGFuZCBhZGQgYQ0KPlZG
-SU9fREVWSUNFX0NERVYNCj4gICBrY29uZmlnIGZvciBpdC4gKEtldmluLCBKYXNvbikNCj4NCj52
-MTogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcva3ZtLzIwMjMwMTE3MTM0OTQyLjEwMTExMi0xLXlp
-LmwubGl1QGludGVsLmNvbS8NCj4gLSBGaXggdGhlIGNpcmN1bGFyIHJlZmNvdW50IGJldHdlZW4g
-a3ZtIHN0cnVjdCBhbmQgZGV2aWNlIGZpbGUgcmVmZXJlbmNlLg0KPihKYXNvbkcpDQo+IC0gQWRk
-cmVzcyBjb21tZW50cyBmcm9tIEtldmluVA0KPiAtIFJlbWFpbmVkIHRoZSBpb2N0bCBmb3IgZGV0
-YWNoLCBuZWVkcyB0byBBbGV4J3MgdGFzdGUNCj4NCj4oaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
-a3ZtL0JOOVBSMTFNQjUyNzZCRTlGNEIwNjEzRUU4NTkzMTcwMjhDRkY5DQo+QEJOOVBSMTFNQjUy
-NzYubmFtcHJkMTEucHJvZC5vdXRsb29rLmNvbS8pDQo+DQo+cmZjOiBodHRwczovL2xvcmUua2Vy
-bmVsLm9yZy9rdm0vMjAyMjEyMTkwODQ3MTguOTM0Mi0xLXlpLmwubGl1QGludGVsLmNvbS8NCj4N
-Cj5UaGFua3MsDQo+CVlpIExpdQ0KPg0KPk5pY29saW4gQ2hlbiAoMSk6DQo+ICBpb21tdWZkL2Rl
-dmljZTogQWRkIGlvbW11ZmRfYWNjZXNzX2RldGFjaCgpIEFQSQ0KPg0KPllpIExpdSAoMjIpOg0K
-PiAgdmZpbzogQWxsb2NhdGUgcGVyIGRldmljZSBmaWxlIHN0cnVjdHVyZQ0KPiAgdmZpbzogUmVm
-aW5lIHZmaW8gZmlsZSBrQVBJcyBmb3IgS1ZNDQo+ICB2ZmlvOiBBY2NlcHQgdmZpbyBkZXZpY2Ug
-ZmlsZSBpbiB0aGUgS1ZNIGZhY2luZyBrQVBJDQo+ICBrdm0vdmZpbzogUmVuYW1lIGt2bV92Zmlv
-X2dyb3VwIHRvIHByZXBhcmUgZm9yIGFjY2VwdGluZyB2ZmlvIGRldmljZQ0KPiAgICBmZA0KPiAg
-a3ZtL3ZmaW86IEFjY2VwdCB2ZmlvIGRldmljZSBmaWxlIGZyb20gdXNlcnNwYWNlDQo+ICB2Zmlv
-OiBQYXNzIHN0cnVjdCB2ZmlvX2RldmljZV9maWxlICogdG8gdmZpb19kZXZpY2Vfb3Blbi9jbG9z
-ZSgpDQo+ICB2ZmlvOiBCbG9jayBkZXZpY2UgYWNjZXNzIHZpYSBkZXZpY2UgZmQgdW50aWwgZGV2
-aWNlIGlzIG9wZW5lZA0KPiAgdmZpbzogQWRkIGNkZXZfZGV2aWNlX29wZW5fY250IHRvIHZmaW9f
-Z3JvdXANCj4gIHZmaW86IE1ha2UgdmZpb19kZXZpY2Vfb3BlbigpIHNpbmdsZSBvcGVuIGZvciBk
-ZXZpY2UgY2RldiBwYXRoDQo+ICB2ZmlvLWlvbW11ZmQ6IE1vdmUgbm9pb21tdSBjb21wYXQgcHJv
-YmUgb3V0IG9mIHZmaW9faW9tbXVmZF9iaW5kKCkNCj4gIHZmaW8taW9tbXVmZDogU3BsaXQgYmlu
-ZC9hdHRhY2ggaW50byB0d28gc3RlcHMNCj4gIHZmaW86IFJlY29yZCBkZXZpZCBpbiB2ZmlvX2Rl
-dmljZV9maWxlDQo+ICB2ZmlvLWlvbW11ZmQ6IEFkZCBkZXRhY2hfaW9hcyBzdXBwb3J0IGZvciBw
-aHlzaWNhbCBWRklPIGRldmljZXMNCj4gIHZmaW8taW9tbXVmZDogQWRkIGRldGFjaF9pb2FzIHN1
-cHBvcnQgZm9yIGVtdWxhdGVkIFZGSU8gZGV2aWNlcw0KPiAgdmZpbzogTmFtZSBub2lvbW11IHZm
-aW9fZGV2aWNlIHdpdGggIm5vaW9tbXUtIiBwcmVmaXgNCj4gIHZmaW86IE1vdmUgdmZpb19kZXZp
-Y2VfZ3JvdXBfdW5yZWdpc3RlcigpIHRvIGJlIHRoZSBmaXJzdCBvcGVyYXRpb24gaW4NCj4gICAg
-dW5yZWdpc3Rlcg0KPiAgdmZpbzogQWRkIGNkZXYgZm9yIHZmaW9fZGV2aWNlDQo+ICB2ZmlvOiBB
-ZGQgVkZJT19ERVZJQ0VfQklORF9JT01NVUZEDQo+ICB2ZmlvOiBBZGQgVkZJT19ERVZJQ0VfW0FU
-fERFXVRBQ0hfSU9NTVVGRF9QVA0KPiAgdmZpbzogRGV0ZXJtaW5lIG5vaW9tbXUgZGV2aWNlIGlu
-IF9fdmZpb19yZWdpc3Rlcl9kZXYoKQ0KPiAgdmZpbzogQ29tcGlsZSB2ZmlvX2dyb3VwIGluZnJh
-c3RydWN0dXJlIG9wdGlvbmFsbHkNCj4gIGRvY3M6IHZmaW86IEFkZCB2ZmlvIGRldmljZSBjZGV2
-IGRlc2NyaXB0aW9uDQo+DQo+IERvY3VtZW50YXRpb24vZHJpdmVyLWFwaS92ZmlvLnJzdCAgICAg
-ICAgICAgICB8IDE0MCArKysrKysrKystDQo+IERvY3VtZW50YXRpb24vdmlydC9rdm0vZGV2aWNl
-cy92ZmlvLnJzdCAgICAgICB8ICA0NyArKy0tDQo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d2dC9r
-dm1ndC5jICAgICAgICAgICAgICB8ICAgMSArDQo+IGRyaXZlcnMvaW9tbXUvaW9tbXVmZC9LY29u
-ZmlnICAgICAgICAgICAgICAgICB8ICAgNCArLQ0KPiBkcml2ZXJzL2lvbW11L2lvbW11ZmQvZGV2
-aWNlLmMgICAgICAgICAgICAgICAgfCAgNzYgKysrKystDQo+IGRyaXZlcnMvaW9tbXUvaW9tbXVm
-ZC9pb21tdWZkX3ByaXZhdGUuaCAgICAgICB8ICAgMiArDQo+IGRyaXZlcnMvczM5MC9jaW8vdmZp
-b19jY3dfb3BzLmMgICAgICAgICAgICAgICB8ICAgMSArDQo+IGRyaXZlcnMvczM5MC9jcnlwdG8v
-dmZpb19hcF9vcHMuYyAgICAgICAgICAgICB8ICAgMSArDQo+IGRyaXZlcnMvdmZpby9LY29uZmln
-ICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAyNSArKw0KPiBkcml2ZXJzL3ZmaW8vTWFrZWZp
-bGUgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDMgKy0NCj4gZHJpdmVycy92ZmlvL2Rldmlj
-ZV9jZGV2LmMgICAgICAgICAgICAgICAgICAgIHwgMjU4ICsrKysrKysrKysrKysrKysrKw0KPiBk
-cml2ZXJzL3ZmaW8vZnNsLW1jL3ZmaW9fZnNsX21jLmMgICAgICAgICAgICAgfCAgIDEgKw0KPiBk
-cml2ZXJzL3ZmaW8vZ3JvdXAuYyAgICAgICAgICAgICAgICAgICAgICAgICAgfCAxNTAgKysrKysr
-LS0tLQ0KPiBkcml2ZXJzL3ZmaW8vaW9tbXVmZC5jICAgICAgICAgICAgICAgICAgICAgICAgfCAx
-MjUgKysrKysrLS0tDQo+IC4uLi92ZmlvL3BjaS9oaXNpbGljb24vaGlzaV9hY2NfdmZpb19wY2ku
-YyAgICB8ICAgMiArDQo+IGRyaXZlcnMvdmZpby9wY2kvbWx4NS9tYWluLmMgICAgICAgICAgICAg
-ICAgICB8ICAgMSArDQo+IGRyaXZlcnMvdmZpby9wY2kvdmZpb19wY2kuYyAgICAgICAgICAgICAg
-ICAgICB8ICAgMSArDQo+IGRyaXZlcnMvdmZpby9wY2kvdmZpb19wY2lfY29yZS5jICAgICAgICAg
-ICAgICB8ICAxNiArLQ0KPiBkcml2ZXJzL3ZmaW8vcGxhdGZvcm0vdmZpb19hbWJhLmMgICAgICAg
-ICAgICAgfCAgIDEgKw0KPiBkcml2ZXJzL3ZmaW8vcGxhdGZvcm0vdmZpb19wbGF0Zm9ybS5jICAg
-ICAgICAgfCAgIDEgKw0KPiBkcml2ZXJzL3ZmaW8vdmZpby5oICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgfCAyMzggKysrKysrKysrKysrKystLQ0KPiBkcml2ZXJzL3ZmaW8vdmZpb19tYWluLmMg
-ICAgICAgICAgICAgICAgICAgICAgfCAyMjUgKysrKysrKysrKysrKy0tDQo+IGluY2x1ZGUvbGlu
-dXgvaW9tbXVmZC5oICAgICAgICAgICAgICAgICAgICAgICB8ICAgMSArDQo+IGluY2x1ZGUvbGlu
-dXgvdmZpby5oICAgICAgICAgICAgICAgICAgICAgICAgICB8ICA0NSArKy0NCj4gaW5jbHVkZS91
-YXBpL2xpbnV4L2t2bS5oICAgICAgICAgICAgICAgICAgICAgIHwgIDEzICstDQo+IGluY2x1ZGUv
-dWFwaS9saW51eC92ZmlvLmggICAgICAgICAgICAgICAgICAgICB8ICA4MCArKysrKysNCj4gc2Ft
-cGxlcy92ZmlvLW1kZXYvbWJvY2hzLmMgICAgICAgICAgICAgICAgICAgIHwgICAxICsNCj4gc2Ft
-cGxlcy92ZmlvLW1kZXYvbWRweS5jICAgICAgICAgICAgICAgICAgICAgIHwgICAxICsNCj4gc2Ft
-cGxlcy92ZmlvLW1kZXYvbXR0eS5jICAgICAgICAgICAgICAgICAgICAgIHwgICAxICsNCj4gdmly
-dC9rdm0vdmZpby5jICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgMTM3ICsrKysrLS0t
-LS0NCj4gMzAgZmlsZXMgY2hhbmdlZCwgMTM2NSBpbnNlcnRpb25zKCspLCAyMzMgZGVsZXRpb25z
-KC0pICBjcmVhdGUgbW9kZSAxMDA2NDQNCj5kcml2ZXJzL3ZmaW8vZGV2aWNlX2NkZXYuYw0KPg0K
-Pi0tDQo+Mi4zNC4xDQoNClRlc3RlZCBub2lvbW11IG1vZGUgaW4gdHdvIHdheXMsIGJvdGggdGVz
-dHMgcGFzc2VkLg0KT25lIHdheSBpcyBhbiBpeGdiZSBjYXJkIGluIG5vaW9tbXUgbW9kZSBwYXNz
-dGhyb3VnaGVkIHRvIGd1ZXN0IHdpdGhvdXQgZG9pbmcgRE1BKG5lZWQgY2hhbmdpbmcgcWVtdSB0
-byBvcGVuIG5vaW9tbXUgZGV2aWNlKS4NClRoZSBvdGhlciB3YXkgaXMgc2FtZSBpeGdiZSBjYXJk
-IHVzZWQgaW4gRFBESyB0byByZWNlaXZlIHBhY2thZ2VzIGZyb20gYW5vdGhlciBzZXJ2ZXIuDQoN
-ClRlc3RlZC1ieTogWmhlbnpob25nIER1YW4gPHpoZW56aG9uZy5kdWFuQGludGVsLmNvbT4NCg==
+On 22.05.2023 22:23, Matt Roper wrote:
+> Rather than embeddeding the display's device info within the main device
+> info structure, just provide a pointer to the display-specific
+> structure.  This is in preparation for moving the display device info
+> definitions into the display code itself and for eventually allowing the
+> pointer to be assigned at runtime on platforms that use GMD_ID for
+> device identification.
+> 
+> In the future, this will also eventually allow the same display device
+> info structures to be used outside the current i915 code (e.g., from the
+> Xe driver).
+> 
+> v2:
+>   - Move introduction of DISPLAY_INFO() to this patch.  (Andrzej)
+> 
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_color.c    |  31 +-
+>   drivers/gpu/drm/i915/display/intel_cursor.c   |   2 +-
+>   drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
+>   .../drm/i915/display/intel_display_power.c    |   6 +-
+>   .../drm/i915/display/intel_display_reg_defs.h |  14 +-
+>   drivers/gpu/drm/i915/display/intel_fb_pin.c   |   2 +-
+>   drivers/gpu/drm/i915/display/intel_hti.c      |   2 +-
+>   drivers/gpu/drm/i915/display/skl_watermark.c  |   8 +-
+>   drivers/gpu/drm/i915/i915_drv.h               |  29 +-
+>   drivers/gpu/drm/i915/i915_pci.c               | 579 ++++++++++++------
+>   drivers/gpu/drm/i915/intel_device_info.c      |   6 +-
+>   drivers/gpu/drm/i915/intel_device_info.h      |   2 +-
+>   12 files changed, 452 insertions(+), 231 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> index 07f1afe1d406..744b3a4ec99a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -1824,14 +1824,14 @@ static u32 intel_gamma_lut_tests(const struct intel_crtc_state *crtc_state)
+>   	if (lut_is_legacy(gamma_lut))
+>   		return 0;
+>   
+> -	return INTEL_INFO(i915)->display.color.gamma_lut_tests;
+> +	return DISPLAY_INFO(i915)->color.gamma_lut_tests;
+>   }
+>   
+>   static u32 intel_degamma_lut_tests(const struct intel_crtc_state *crtc_state)
+>   {
+>   	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+>   
+> -	return INTEL_INFO(i915)->display.color.degamma_lut_tests;
+> +	return DISPLAY_INFO(i915)->color.degamma_lut_tests;
+>   }
+>   
+>   static int intel_gamma_lut_size(const struct intel_crtc_state *crtc_state)
+> @@ -1842,14 +1842,14 @@ static int intel_gamma_lut_size(const struct intel_crtc_state *crtc_state)
+>   	if (lut_is_legacy(gamma_lut))
+>   		return LEGACY_LUT_LENGTH;
+>   
+> -	return INTEL_INFO(i915)->display.color.gamma_lut_size;
+> +	return DISPLAY_INFO(i915)->color.gamma_lut_size;
+>   }
+>   
+>   static u32 intel_degamma_lut_size(const struct intel_crtc_state *crtc_state)
+>   {
+>   	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+>   
+> -	return INTEL_INFO(i915)->display.color.degamma_lut_size;
+> +	return DISPLAY_INFO(i915)->color.degamma_lut_size;
+>   }
+>   
+>   static int check_lut_size(const struct drm_property_blob *lut, int expected)
+> @@ -2321,7 +2321,7 @@ static int glk_assign_luts(struct intel_crtc_state *crtc_state)
+>   		struct drm_property_blob *gamma_lut;
+>   
+>   		gamma_lut = create_resized_lut(i915, crtc_state->hw.gamma_lut,
+> -					       INTEL_INFO(i915)->display.color.degamma_lut_size,
+> +					       DISPLAY_INFO(i915)->color.degamma_lut_size,
+>   					       false);
+>   		if (IS_ERR(gamma_lut))
+>   			return PTR_ERR(gamma_lut);
+> @@ -2855,7 +2855,7 @@ static struct drm_property_blob *i9xx_read_lut_8(struct intel_crtc *crtc)
+>   static struct drm_property_blob *i9xx_read_lut_10(struct intel_crtc *crtc)
+>   {
+>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> -	u32 lut_size = INTEL_INFO(dev_priv)->display.color.gamma_lut_size;
+> +	u32 lut_size = DISPLAY_INFO(dev_priv)->color.gamma_lut_size;
+>   	enum pipe pipe = crtc->pipe;
+>   	struct drm_property_blob *blob;
+>   	struct drm_color_lut *lut;
+> @@ -2904,7 +2904,7 @@ static void i9xx_read_luts(struct intel_crtc_state *crtc_state)
+>   static struct drm_property_blob *i965_read_lut_10p6(struct intel_crtc *crtc)
+>   {
+>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> -	int i, lut_size = INTEL_INFO(dev_priv)->display.color.gamma_lut_size;
+> +	int i, lut_size = DISPLAY_INFO(dev_priv)->color.gamma_lut_size;
+>   	enum pipe pipe = crtc->pipe;
+>   	struct drm_property_blob *blob;
+>   	struct drm_color_lut *lut;
+> @@ -2954,7 +2954,7 @@ static void i965_read_luts(struct intel_crtc_state *crtc_state)
+>   static struct drm_property_blob *chv_read_cgm_degamma(struct intel_crtc *crtc)
+>   {
+>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> -	int i, lut_size = INTEL_INFO(dev_priv)->display.color.degamma_lut_size;
+> +	int i, lut_size = DISPLAY_INFO(dev_priv)->color.degamma_lut_size;
+>   	enum pipe pipe = crtc->pipe;
+>   	struct drm_property_blob *blob;
+>   	struct drm_color_lut *lut;
+> @@ -2980,7 +2980,7 @@ static struct drm_property_blob *chv_read_cgm_degamma(struct intel_crtc *crtc)
+>   static struct drm_property_blob *chv_read_cgm_gamma(struct intel_crtc *crtc)
+>   {
+>   	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> -	int i, lut_size = INTEL_INFO(i915)->display.color.gamma_lut_size;
+> +	int i, lut_size = DISPLAY_INFO(i915)->color.gamma_lut_size;
+>   	enum pipe pipe = crtc->pipe;
+>   	struct drm_property_blob *blob;
+>   	struct drm_color_lut *lut;
+> @@ -3044,7 +3044,7 @@ static struct drm_property_blob *ilk_read_lut_8(struct intel_crtc *crtc)
+>   static struct drm_property_blob *ilk_read_lut_10(struct intel_crtc *crtc)
+>   {
+>   	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> -	int i, lut_size = INTEL_INFO(i915)->display.color.gamma_lut_size;
+> +	int i, lut_size = DISPLAY_INFO(i915)->color.gamma_lut_size;
+>   	enum pipe pipe = crtc->pipe;
+>   	struct drm_property_blob *blob;
+>   	struct drm_color_lut *lut;
+> @@ -3228,7 +3228,7 @@ static void bdw_read_luts(struct intel_crtc_state *crtc_state)
+>   static struct drm_property_blob *glk_read_degamma_lut(struct intel_crtc *crtc)
+>   {
+>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> -	int i, lut_size = INTEL_INFO(dev_priv)->display.color.degamma_lut_size;
+> +	int i, lut_size = DISPLAY_INFO(dev_priv)->color.degamma_lut_size;
+>   	enum pipe pipe = crtc->pipe;
+>   	struct drm_property_blob *blob;
+>   	struct drm_color_lut *lut;
+> @@ -3293,7 +3293,7 @@ static struct drm_property_blob *
+>   icl_read_lut_multi_segment(struct intel_crtc *crtc)
+>   {
+>   	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> -	int i, lut_size = INTEL_INFO(i915)->display.color.gamma_lut_size;
+> +	int i, lut_size = DISPLAY_INFO(i915)->color.gamma_lut_size;
+>   	enum pipe pipe = crtc->pipe;
+>   	struct drm_property_blob *blob;
+>   	struct drm_color_lut *lut;
+> @@ -3471,8 +3471,8 @@ void intel_color_crtc_init(struct intel_crtc *crtc)
+>   
+>   	drm_mode_crtc_set_gamma_size(&crtc->base, 256);
+>   
+> -	gamma_lut_size = INTEL_INFO(i915)->display.color.gamma_lut_size;
+> -	degamma_lut_size = INTEL_INFO(i915)->display.color.degamma_lut_size;
+> +	gamma_lut_size = DISPLAY_INFO(i915)->color.gamma_lut_size;
+> +	degamma_lut_size = DISPLAY_INFO(i915)->color.degamma_lut_size;
+>   	has_ctm = degamma_lut_size != 0;
+>   
+>   	/*
+> @@ -3497,7 +3497,8 @@ int intel_color_init(struct drm_i915_private *i915)
+>   	if (DISPLAY_VER(i915) != 10)
+>   		return 0;
+>   
+> -	blob = create_linear_lut(i915, INTEL_INFO(i915)->display.color.degamma_lut_size);
+> +	blob = create_linear_lut(i915,
+> +				 DISPLAY_INFO(i915)->color.degamma_lut_size);
+>   	if (IS_ERR(blob))
+>   		return PTR_ERR(blob);
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> index 31bef0427377..3864da5f5c17 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -36,7 +36,7 @@ static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
+>   	const struct drm_i915_gem_object *obj = intel_fb_obj(fb);
+>   	u32 base;
+>   
+> -	if (INTEL_INFO(dev_priv)->display.cursor_needs_physical)
+> +	if (DISPLAY_INFO(dev_priv)->cursor_needs_physical)
+>   		base = sg_dma_address(obj->mm.pages->sgl);
+>   	else
+>   		base = intel_plane_ggtt_offset(plane_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index 205b3929b861..aa3a21ccd7fe 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -113,7 +113,7 @@ enum i9xx_plane_id {
+>   
+>   #define for_each_dbuf_slice(__dev_priv, __slice) \
+>   	for ((__slice) = DBUF_S1; (__slice) < I915_MAX_DBUF_SLICES; (__slice)++) \
+> -		for_each_if(INTEL_INFO(__dev_priv)->display.dbuf.slice_mask & BIT(__slice))
+> +		for_each_if(INTEL_INFO(__dev_priv)->display->dbuf.slice_mask & BIT(__slice))
+>   
+>   #define for_each_dbuf_slice_in_mask(__dev_priv, __slice, __mask) \
+>   	for_each_dbuf_slice((__dev_priv), (__slice)) \
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 6ed2ece89c3f..9c9a809c71f1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -1053,7 +1053,7 @@ void gen9_dbuf_slices_update(struct drm_i915_private *dev_priv,
+>   			     u8 req_slices)
+>   {
+>   	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
+> -	u8 slice_mask = INTEL_INFO(dev_priv)->display.dbuf.slice_mask;
+> +	u8 slice_mask = DISPLAY_INFO(dev_priv)->dbuf.slice_mask;
+>   	enum dbuf_slice slice;
+>   
+>   	drm_WARN(&dev_priv->drm, req_slices & ~slice_mask,
+> @@ -1113,7 +1113,7 @@ static void gen12_dbuf_slices_config(struct drm_i915_private *dev_priv)
+>   
+>   static void icl_mbus_init(struct drm_i915_private *dev_priv)
+>   {
+> -	unsigned long abox_regs = INTEL_INFO(dev_priv)->display.abox_mask;
+> +	unsigned long abox_regs = DISPLAY_INFO(dev_priv)->abox_mask;
+>   	u32 mask, val, i;
+>   
+>   	if (IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(dev_priv) >= 14)
+> @@ -1568,7 +1568,7 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
+>   	enum intel_dram_type type = dev_priv->dram_info.type;
+>   	u8 num_channels = dev_priv->dram_info.num_channels;
+>   	const struct buddy_page_mask *table;
+> -	unsigned long abox_mask = INTEL_INFO(dev_priv)->display.abox_mask;
+> +	unsigned long abox_mask = DISPLAY_INFO(dev_priv)->abox_mask;
+>   	int config, i;
+>   
+>   	/* BW_BUDDY registers are not used on dgpu's beyond DG1 */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_reg_defs.h b/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
+> index 755c1ea8225c..e0f82f28d8b3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
+> @@ -8,7 +8,7 @@
+>   
+>   #include "i915_reg_defs.h"
+>   
+> -#define DISPLAY_MMIO_BASE(dev_priv)	(INTEL_INFO(dev_priv)->display.mmio_offset)
+> +#define DISPLAY_MMIO_BASE(dev_priv)	(INTEL_INFO(dev_priv)->display->mmio_offset)
+
+Why not DISPLAY_INFO here and below?
+intel_display_reg_defs.h does not include header defining neither 
+DISPLAY_INFO neither INTEL_INFO, so no big difference in terms of 
+correctness/self-containment :)
+
+I do not know what is ultimate goal of the conversion.
+If part of it is to make INTEL_INFO/DISPLAY_INFO driver (i915/xe) 
+agnostic then it is probably fine, otherwise maybe it would be good to 
+add include i915_drv.h.
+
+r-b is valid anyway.
+
+Regards
+Andrzej
+
+>   
+>   #define VLV_DISPLAY_BASE		0x180000
+>   
+> @@ -36,14 +36,14 @@
+>    * Device info offset array based helpers for groups of registers with unevenly
+>    * spaced base offsets.
+>    */
+> -#define _MMIO_PIPE2(pipe, reg)		_MMIO(INTEL_INFO(dev_priv)->display.pipe_offsets[(pipe)] - \
+> -					      INTEL_INFO(dev_priv)->display.pipe_offsets[PIPE_A] + \
+> +#define _MMIO_PIPE2(pipe, reg)		_MMIO(INTEL_INFO(dev_priv)->display->pipe_offsets[(pipe)] - \
+> +					      INTEL_INFO(dev_priv)->display->pipe_offsets[PIPE_A] + \
+>   					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
+> -#define _MMIO_TRANS2(tran, reg)		_MMIO(INTEL_INFO(dev_priv)->display.trans_offsets[(tran)] - \
+> -					      INTEL_INFO(dev_priv)->display.trans_offsets[TRANSCODER_A] + \
+> +#define _MMIO_TRANS2(tran, reg)		_MMIO(INTEL_INFO(dev_priv)->display->trans_offsets[(tran)] - \
+> +					      INTEL_INFO(dev_priv)->display->trans_offsets[TRANSCODER_A] + \
+>   					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
+> -#define _MMIO_CURSOR2(pipe, reg)	_MMIO(INTEL_INFO(dev_priv)->display.cursor_offsets[(pipe)] - \
+> -					      INTEL_INFO(dev_priv)->display.cursor_offsets[PIPE_A] + \
+> +#define _MMIO_CURSOR2(pipe, reg)	_MMIO(INTEL_INFO(dev_priv)->display->cursor_offsets[(pipe)] - \
+> +					      INTEL_INFO(dev_priv)->display->cursor_offsets[PIPE_A] + \
+>   					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
+>   
+>   #endif /* __INTEL_DISPLAY_REG_DEFS_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> index 1aca7552a85d..fffd568070d4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> @@ -243,7 +243,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state)
+>   	struct i915_vma *vma;
+>   	bool phys_cursor =
+>   		plane->id == PLANE_CURSOR &&
+> -		INTEL_INFO(dev_priv)->display.cursor_needs_physical;
+> +		DISPLAY_INFO(dev_priv)->cursor_needs_physical;
+>   
+>   	if (!intel_fb_uses_dpt(fb)) {
+>   		vma = intel_pin_and_fence_fb_obj(fb, phys_cursor,
+> diff --git a/drivers/gpu/drm/i915/display/intel_hti.c b/drivers/gpu/drm/i915/display/intel_hti.c
+> index c518efebdf77..a92d008d4e6e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hti.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hti.c
+> @@ -15,7 +15,7 @@ void intel_hti_init(struct drm_i915_private *i915)
+>   	 * If the platform has HTI, we need to find out whether it has reserved
+>   	 * any display resources before we create our display outputs.
+>   	 */
+> -	if (INTEL_INFO(i915)->display.has_hti)
+> +	if (DISPLAY_INFO(i915)->has_hti)
+>   		i915->display.hti.state = intel_de_read(i915, HDPORT_STATE);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index 1c7e6468f3e3..d1245c847f1c 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -507,8 +507,8 @@ static u16 skl_ddb_entry_init(struct skl_ddb_entry *entry,
+>   
+>   static int intel_dbuf_slice_size(struct drm_i915_private *i915)
+>   {
+> -	return INTEL_INFO(i915)->display.dbuf.size /
+> -		hweight8(INTEL_INFO(i915)->display.dbuf.slice_mask);
+> +	return DISPLAY_INFO(i915)->dbuf.size /
+> +		hweight8(DISPLAY_INFO(i915)->dbuf.slice_mask);
+>   }
+>   
+>   static void
+> @@ -527,7 +527,7 @@ skl_ddb_entry_for_slices(struct drm_i915_private *i915, u8 slice_mask,
+>   	ddb->end = fls(slice_mask) * slice_size;
+>   
+>   	WARN_ON(ddb->start >= ddb->end);
+> -	WARN_ON(ddb->end > INTEL_INFO(i915)->display.dbuf.size);
+> +	WARN_ON(ddb->end > DISPLAY_INFO(i915)->dbuf.size);
+>   }
+>   
+>   static unsigned int mbus_ddb_offset(struct drm_i915_private *i915, u8 slice_mask)
+> @@ -2625,7 +2625,7 @@ skl_compute_ddb(struct intel_atomic_state *state)
+>   			    "Enabled dbuf slices 0x%x -> 0x%x (total dbuf slices 0x%x), mbus joined? %s->%s\n",
+>   			    old_dbuf_state->enabled_slices,
+>   			    new_dbuf_state->enabled_slices,
+> -			    INTEL_INFO(i915)->display.dbuf.slice_mask,
+> +			    DISPLAY_INFO(i915)->dbuf.slice_mask,
+>   			    str_yes_no(old_dbuf_state->joined_mbus),
+>   			    str_yes_no(new_dbuf_state->joined_mbus));
+>   	}
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 14c5338c96a6..9612c2ac4b00 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -408,6 +408,7 @@ static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
+>   	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
+>   
+>   #define INTEL_INFO(i915)	(&(i915)->__info)
+> +#define DISPLAY_INFO(i915)	(INTEL_INFO(i915)->display)
+>   #define RUNTIME_INFO(i915)	(&(i915)->__runtime)
+>   #define DRIVER_CAPS(i915)	(&(i915)->caps)
+>   
+> @@ -782,9 +783,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   	((sizes) & ~RUNTIME_INFO(i915)->page_sizes) == 0; \
+>   })
+>   
+> -#define HAS_OVERLAY(i915)		 (INTEL_INFO(i915)->display.has_overlay)
+> +#define HAS_OVERLAY(i915)		 (DISPLAY_INFO(i915)->has_overlay)
+>   #define OVERLAY_NEEDS_PHYSICAL(i915) \
+> -		(INTEL_INFO(i915)->display.overlay_needs_physical)
+> +		(DISPLAY_INFO(i915)->overlay_needs_physical)
+>   
+>   /* Early gen2 have a totally busted CS tlb and require pinned batches. */
+>   #define HAS_BROKEN_CS_TLB(i915)	(IS_I830(i915) || IS_I845G(i915))
+> @@ -806,8 +807,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>    */
+>   #define HAS_128_BYTE_Y_TILING(i915) (GRAPHICS_VER(i915) != 2 && \
+>   					 !(IS_I915G(i915) || IS_I915GM(i915)))
+> -#define SUPPORTS_TV(i915)		(INTEL_INFO(i915)->display.supports_tv)
+> -#define I915_HAS_HOTPLUG(i915)	(INTEL_INFO(i915)->display.has_hotplug)
+> +#define SUPPORTS_TV(i915)		(DISPLAY_INFO(i915)->supports_tv)
+> +#define I915_HAS_HOTPLUG(i915)	(DISPLAY_INFO(i915)->has_hotplug)
+>   
+>   #define HAS_FW_BLC(i915)	(DISPLAY_VER(i915) > 2)
+>   #define HAS_FBC(i915)	(RUNTIME_INFO(i915)->fbc_mask != 0)
+> @@ -817,18 +818,18 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   
+>   #define HAS_IPS(i915)	(IS_HSW_ULT(i915) || IS_BROADWELL(i915))
+>   
+> -#define HAS_DP_MST(i915)	(INTEL_INFO(i915)->display.has_dp_mst)
+> +#define HAS_DP_MST(i915)	(DISPLAY_INFO(i915)->has_dp_mst)
+>   #define HAS_DP20(i915)	(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
+>   
+>   #define HAS_DOUBLE_BUFFERED_M_N(i915)	(DISPLAY_VER(i915) >= 9 || IS_BROADWELL(i915))
+>   
+> -#define HAS_CDCLK_CRAWL(i915)	 (INTEL_INFO(i915)->display.has_cdclk_crawl)
+> -#define HAS_CDCLK_SQUASH(i915)	 (INTEL_INFO(i915)->display.has_cdclk_squash)
+> -#define HAS_DDI(i915)		 (INTEL_INFO(i915)->display.has_ddi)
+> -#define HAS_FPGA_DBG_UNCLAIMED(i915) (INTEL_INFO(i915)->display.has_fpga_dbg)
+> -#define HAS_PSR(i915)		 (INTEL_INFO(i915)->display.has_psr)
+> +#define HAS_CDCLK_CRAWL(i915)	 (DISPLAY_INFO(i915)->has_cdclk_crawl)
+> +#define HAS_CDCLK_SQUASH(i915)	 (DISPLAY_INFO(i915)->has_cdclk_squash)
+> +#define HAS_DDI(i915)		 (DISPLAY_INFO(i915)->has_ddi)
+> +#define HAS_FPGA_DBG_UNCLAIMED(i915) (DISPLAY_INFO(i915)->has_fpga_dbg)
+> +#define HAS_PSR(i915)		 (DISPLAY_INFO(i915)->has_psr)
+>   #define HAS_PSR_HW_TRACKING(i915) \
+> -	(INTEL_INFO(i915)->display.has_psr_hw_tracking)
+> +	(DISPLAY_INFO(i915)->has_psr_hw_tracking)
+>   #define HAS_PSR2_SEL_FETCH(i915)	 (DISPLAY_VER(i915) >= 12)
+>   #define HAS_TRANSCODER(i915, trans)	 ((RUNTIME_INFO(i915)->cpu_transcoder_mask & BIT(trans)) != 0)
+>   
+> @@ -839,7 +840,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   #define HAS_RPS(i915)	(INTEL_INFO(i915)->has_rps)
+>   
+>   #define HAS_DMC(i915)	(RUNTIME_INFO(i915)->has_dmc)
+> -#define HAS_DSB(i915)	(INTEL_INFO(i915)->display.has_dsb)
+> +#define HAS_DSB(i915)	(DISPLAY_INFO(i915)->has_dsb)
+>   #define HAS_DSC(__i915)		(RUNTIME_INFO(__i915)->has_dsc)
+>   #define HAS_HW_SAGV_WM(i915) (DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
+>   
+> @@ -869,7 +870,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>    */
+>   #define HAS_64K_PAGES(i915) (INTEL_INFO(i915)->has_64k_pages)
+>   
+> -#define HAS_IPC(i915)		(INTEL_INFO(i915)->display.has_ipc)
+> +#define HAS_IPC(i915)		(DISPLAY_INFO(i915)->has_ipc)
+>   #define HAS_SAGV(i915)		(DISPLAY_VER(i915) >= 9 && !IS_LP(i915))
+>   
+>   #define HAS_REGION(i915, i) (RUNTIME_INFO(i915)->memory_regions & (i))
+> @@ -889,7 +890,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   
+>   #define HAS_GLOBAL_MOCS_REGISTERS(i915)	(INTEL_INFO(i915)->has_global_mocs)
+>   
+> -#define HAS_GMCH(i915) (INTEL_INFO(i915)->display.has_gmch)
+> +#define HAS_GMCH(i915) (DISPLAY_INFO(i915)->has_gmch)
+>   
+>   #define HAS_GMD_ID(i915)	(INTEL_INFO(i915)->has_gmd_id)
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index e4a19161afce..dd874a4db604 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -47,43 +47,43 @@
+>   #define NO_DISPLAY .__runtime.pipe_mask = 0
+>   
+>   #define I845_PIPE_OFFSETS \
+> -	.display.pipe_offsets = { \
+> +	.pipe_offsets = { \
+>   		[TRANSCODER_A] = PIPE_A_OFFSET,	\
+>   	}, \
+> -	.display.trans_offsets = { \
+> +	.trans_offsets = { \
+>   		[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
+>   	}
+>   
+>   #define I9XX_PIPE_OFFSETS \
+> -	.display.pipe_offsets = { \
+> +	.pipe_offsets = { \
+>   		[TRANSCODER_A] = PIPE_A_OFFSET,	\
+>   		[TRANSCODER_B] = PIPE_B_OFFSET, \
+>   	}, \
+> -	.display.trans_offsets = { \
+> +	.trans_offsets = { \
+>   		[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
+>   		[TRANSCODER_B] = TRANSCODER_B_OFFSET, \
+>   	}
+>   
+>   #define IVB_PIPE_OFFSETS \
+> -	.display.pipe_offsets = { \
+> +	.pipe_offsets = { \
+>   		[TRANSCODER_A] = PIPE_A_OFFSET,	\
+>   		[TRANSCODER_B] = PIPE_B_OFFSET, \
+>   		[TRANSCODER_C] = PIPE_C_OFFSET, \
+>   	}, \
+> -	.display.trans_offsets = { \
+> +	.trans_offsets = { \
+>   		[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
+>   		[TRANSCODER_B] = TRANSCODER_B_OFFSET, \
+>   		[TRANSCODER_C] = TRANSCODER_C_OFFSET, \
+>   	}
+>   
+>   #define HSW_PIPE_OFFSETS \
+> -	.display.pipe_offsets = { \
+> +	.pipe_offsets = { \
+>   		[TRANSCODER_A] = PIPE_A_OFFSET,	\
+>   		[TRANSCODER_B] = PIPE_B_OFFSET, \
+>   		[TRANSCODER_C] = PIPE_C_OFFSET, \
+>   		[TRANSCODER_EDP] = PIPE_EDP_OFFSET, \
+>   	}, \
+> -	.display.trans_offsets = { \
+> +	.trans_offsets = { \
+>   		[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
+>   		[TRANSCODER_B] = TRANSCODER_B_OFFSET, \
+>   		[TRANSCODER_C] = TRANSCODER_C_OFFSET, \
+> @@ -91,44 +91,44 @@
+>   	}
+>   
+>   #define CHV_PIPE_OFFSETS \
+> -	.display.pipe_offsets = { \
+> +	.pipe_offsets = { \
+>   		[TRANSCODER_A] = PIPE_A_OFFSET, \
+>   		[TRANSCODER_B] = PIPE_B_OFFSET, \
+>   		[TRANSCODER_C] = CHV_PIPE_C_OFFSET, \
+>   	}, \
+> -	.display.trans_offsets = { \
+> +	.trans_offsets = { \
+>   		[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
+>   		[TRANSCODER_B] = TRANSCODER_B_OFFSET, \
+>   		[TRANSCODER_C] = CHV_TRANSCODER_C_OFFSET, \
+>   	}
+>   
+>   #define I845_CURSOR_OFFSETS \
+> -	.display.cursor_offsets = { \
+> +	.cursor_offsets = { \
+>   		[PIPE_A] = CURSOR_A_OFFSET, \
+>   	}
+>   
+>   #define I9XX_CURSOR_OFFSETS \
+> -	.display.cursor_offsets = { \
+> +	.cursor_offsets = { \
+>   		[PIPE_A] = CURSOR_A_OFFSET, \
+>   		[PIPE_B] = CURSOR_B_OFFSET, \
+>   	}
+>   
+>   #define CHV_CURSOR_OFFSETS \
+> -	.display.cursor_offsets = { \
+> +	.cursor_offsets = { \
+>   		[PIPE_A] = CURSOR_A_OFFSET, \
+>   		[PIPE_B] = CURSOR_B_OFFSET, \
+>   		[PIPE_C] = CHV_CURSOR_C_OFFSET, \
+>   	}
+>   
+>   #define IVB_CURSOR_OFFSETS \
+> -	.display.cursor_offsets = { \
+> +	.cursor_offsets = { \
+>   		[PIPE_A] = CURSOR_A_OFFSET, \
+>   		[PIPE_B] = IVB_CURSOR_B_OFFSET, \
+>   		[PIPE_C] = IVB_CURSOR_C_OFFSET, \
+>   	}
+>   
+>   #define TGL_CURSOR_OFFSETS \
+> -	.display.cursor_offsets = { \
+> +	.cursor_offsets = { \
+>   		[PIPE_A] = CURSOR_A_OFFSET, \
+>   		[PIPE_B] = IVB_CURSOR_B_OFFSET, \
+>   		[PIPE_C] = IVB_CURSOR_C_OFFSET, \
+> @@ -136,29 +136,29 @@
+>   	}
+>   
+>   #define I845_COLORS \
+> -	.display.color = { .gamma_lut_size = 256 }
+> +	.color = { .gamma_lut_size = 256 }
+>   #define I9XX_COLORS \
+> -	.display.color = { .gamma_lut_size = 129, \
+> +	.color = { .gamma_lut_size = 129, \
+>   		   .gamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING, \
+>   	}
+>   #define ILK_COLORS \
+> -	.display.color = { .gamma_lut_size = 1024 }
+> +	.color = { .gamma_lut_size = 1024 }
+>   #define IVB_COLORS \
+> -	.display.color = { .degamma_lut_size = 1024, .gamma_lut_size = 1024 }
+> +	.color = { .degamma_lut_size = 1024, .gamma_lut_size = 1024 }
+>   #define CHV_COLORS \
+> -	.display.color = { \
+> +	.color = { \
+>   		.degamma_lut_size = 65, .gamma_lut_size = 257, \
+>   		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING, \
+>   		.gamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING, \
+>   	}
+>   #define GLK_COLORS \
+> -	.display.color = { \
+> +	.color = { \
+>   		.degamma_lut_size = 33, .gamma_lut_size = 1024, \
+>   		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING | \
+>   				     DRM_COLOR_LUT_EQUAL_CHANNELS, \
+>   	}
+>   #define ICL_COLORS \
+> -	.display.color = { \
+> +	.color = { \
+>   		.degamma_lut_size = 33, .gamma_lut_size = 262145, \
+>   		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING | \
+>   				     DRM_COLOR_LUT_EQUAL_CHANNELS, \
+> @@ -205,15 +205,24 @@
+>   #define GEN_DEFAULT_REGIONS \
+>   	.__runtime.memory_regions = REGION_SMEM | REGION_STOLEN_SMEM
+>   
+> +#define I830_DISPLAY \
+> +	.has_overlay = 1, \
+> +	.cursor_needs_physical = 1, \
+> +	.overlay_needs_physical = 1, \
+> +	.has_gmch = 1, \
+> +	I9XX_PIPE_OFFSETS, \
+> +	I9XX_CURSOR_OFFSETS, \
+> +	I9XX_COLORS
+> +
+> +static const struct intel_display_device_info i830_display = {
+> +	I830_DISPLAY,
+> +};
+> +
+>   #define I830_FEATURES \
+>   	GEN(2), \
+>   	.is_mobile = 1, \
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+> -	.display.has_overlay = 1, \
+> -	.display.cursor_needs_physical = 1, \
+> -	.display.overlay_needs_physical = 1, \
+> -	.display.has_gmch = 1, \
+>   	.gpu_reset_clobbers_display = true, \
+>   	.has_3d_pipeline = 1, \
+>   	.hws_needs_physical = 1, \
+> @@ -223,20 +232,26 @@
+>   	.has_coherent_ggtt = false, \
+>   	.dma_mask_size = 32, \
+>   	.max_pat_index = 3, \
+> -	I9XX_PIPE_OFFSETS, \
+> -	I9XX_CURSOR_OFFSETS, \
+> -	I9XX_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+>   	GEN_DEFAULT_REGIONS, \
+>   	LEGACY_CACHELEVEL
+>   
+> +#define I845_DISPLAY \
+> +	.has_overlay = 1, \
+> +	.overlay_needs_physical = 1, \
+> +	.has_gmch = 1, \
+> +	I845_PIPE_OFFSETS, \
+> +	I845_CURSOR_OFFSETS, \
+> +	I845_COLORS
+> +
+> +static const struct intel_display_device_info i845_display = {
+> +	I845_DISPLAY,
+> +};
+> +
+>   #define I845_FEATURES \
+>   	GEN(2), \
+>   	.__runtime.pipe_mask = BIT(PIPE_A), \
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A), \
+> -	.display.has_overlay = 1, \
+> -	.display.overlay_needs_physical = 1, \
+> -	.display.has_gmch = 1, \
+>   	.has_3d_pipeline = 1, \
+>   	.gpu_reset_clobbers_display = true, \
+>   	.hws_needs_physical = 1, \
+> @@ -246,9 +261,6 @@
+>   	.has_coherent_ggtt = false, \
+>   	.dma_mask_size = 32, \
+>   	.max_pat_index = 3, \
+> -	I845_PIPE_OFFSETS, \
+> -	I845_CURSOR_OFFSETS, \
+> -	I845_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+>   	GEN_DEFAULT_REGIONS, \
+>   	LEGACY_CACHELEVEL
+> @@ -256,30 +268,81 @@
+>   static const struct intel_device_info i830_info = {
+>   	I830_FEATURES,
+>   	PLATFORM(INTEL_I830),
+> +	.display = &i830_display,
+>   };
+>   
+>   static const struct intel_device_info i845g_info = {
+>   	I845_FEATURES,
+>   	PLATFORM(INTEL_I845G),
+> +	.display = &i845_display,
+> +};
+> +
+> +static const struct intel_display_device_info i85x_display = {
+> +	I830_DISPLAY,
+>   };
+>   
+>   static const struct intel_device_info i85x_info = {
+>   	I830_FEATURES,
+>   	PLATFORM(INTEL_I85X),
+> +	.display = &i85x_display,
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+>   };
+>   
+> +static const struct intel_display_device_info i865g_display = {
+> +	I845_DISPLAY,
+> +};
+> +
+>   static const struct intel_device_info i865g_info = {
+>   	I845_FEATURES,
+>   	PLATFORM(INTEL_I865G),
+> +	.display = &i865g_display,
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+>   };
+>   
+> +#define GEN3_DISPLAY \
+> +	.has_gmch = 1, \
+> +	.has_overlay = 1, \
+> +	I9XX_PIPE_OFFSETS, \
+> +	I9XX_CURSOR_OFFSETS, \
+> +	I9XX_COLORS
+> +
+> +static const struct intel_display_device_info i915g_display = {
+> +	GEN3_DISPLAY,
+> +	.cursor_needs_physical = 1,
+> +	.overlay_needs_physical = 1,
+> +};
+> +
+> +static const struct intel_display_device_info i915gm_display = {
+> +	GEN3_DISPLAY,
+> +	.cursor_needs_physical = 1,
+> +	.overlay_needs_physical = 1,
+> +	.supports_tv = 1,
+> +};
+> +
+> +static const struct intel_display_device_info i945g_display = {
+> +	GEN3_DISPLAY,
+> +	.has_hotplug = 1,
+> +	.cursor_needs_physical = 1,
+> +	.overlay_needs_physical = 1,
+> +};
+> +
+> +static const struct intel_display_device_info i945gm_display = {
+> +	GEN3_DISPLAY,
+> +	.has_hotplug = 1,
+> +	.cursor_needs_physical = 1,
+> +	.overlay_needs_physical = 1,
+> +	.supports_tv = 1,
+> +};
+> +
+> +static const struct intel_display_device_info g33_display = {
+> +	GEN3_DISPLAY,
+> +	.has_hotplug = 1,
+> +};
+> +
+>   #define GEN3_FEATURES \
+>   	GEN(3), \
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+> -	.display.has_gmch = 1, \
+>   	.gpu_reset_clobbers_display = true, \
+>   	.__runtime.platform_engine_mask = BIT(RCS0), \
+>   	.has_3d_pipeline = 1, \
+> @@ -287,9 +350,6 @@ static const struct intel_device_info i865g_info = {
+>   	.has_coherent_ggtt = true, \
+>   	.dma_mask_size = 32, \
+>   	.max_pat_index = 3, \
+> -	I9XX_PIPE_OFFSETS, \
+> -	I9XX_CURSOR_OFFSETS, \
+> -	I9XX_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+>   	GEN_DEFAULT_REGIONS, \
+>   	LEGACY_CACHELEVEL
+> @@ -297,10 +357,8 @@ static const struct intel_device_info i865g_info = {
+>   static const struct intel_device_info i915g_info = {
+>   	GEN3_FEATURES,
+>   	PLATFORM(INTEL_I915G),
+> +	.display = &i915g_display,
+>   	.has_coherent_ggtt = false,
+> -	.display.cursor_needs_physical = 1,
+> -	.display.has_overlay = 1,
+> -	.display.overlay_needs_physical = 1,
+>   	.hws_needs_physical = 1,
+>   	.unfenced_needs_alignment = 1,
+>   };
+> @@ -308,11 +366,8 @@ static const struct intel_device_info i915g_info = {
+>   static const struct intel_device_info i915gm_info = {
+>   	GEN3_FEATURES,
+>   	PLATFORM(INTEL_I915GM),
+> +	.display = &i915gm_display,
+>   	.is_mobile = 1,
+> -	.display.cursor_needs_physical = 1,
+> -	.display.has_overlay = 1,
+> -	.display.overlay_needs_physical = 1,
+> -	.display.supports_tv = 1,
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+>   	.hws_needs_physical = 1,
+>   	.unfenced_needs_alignment = 1,
+> @@ -321,10 +376,7 @@ static const struct intel_device_info i915gm_info = {
+>   static const struct intel_device_info i945g_info = {
+>   	GEN3_FEATURES,
+>   	PLATFORM(INTEL_I945G),
+> -	.display.has_hotplug = 1,
+> -	.display.cursor_needs_physical = 1,
+> -	.display.has_overlay = 1,
+> -	.display.overlay_needs_physical = 1,
+> +	.display = &i945g_display,
+>   	.hws_needs_physical = 1,
+>   	.unfenced_needs_alignment = 1,
+>   };
+> @@ -332,12 +384,8 @@ static const struct intel_device_info i945g_info = {
+>   static const struct intel_device_info i945gm_info = {
+>   	GEN3_FEATURES,
+>   	PLATFORM(INTEL_I945GM),
+> +	.display = &i945gm_display,
+>   	.is_mobile = 1,
+> -	.display.has_hotplug = 1,
+> -	.display.cursor_needs_physical = 1,
+> -	.display.has_overlay = 1,
+> -	.display.overlay_needs_physical = 1,
+> -	.display.supports_tv = 1,
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+>   	.hws_needs_physical = 1,
+>   	.unfenced_needs_alignment = 1,
+> @@ -346,16 +394,14 @@ static const struct intel_device_info i945gm_info = {
+>   static const struct intel_device_info g33_info = {
+>   	GEN3_FEATURES,
+>   	PLATFORM(INTEL_G33),
+> -	.display.has_hotplug = 1,
+> -	.display.has_overlay = 1,
+> +	.display = &g33_display,
+>   	.dma_mask_size = 36,
+>   };
+>   
+>   static const struct intel_device_info pnv_g_info = {
+>   	GEN3_FEATURES,
+>   	PLATFORM(INTEL_PINEVIEW),
+> -	.display.has_hotplug = 1,
+> -	.display.has_overlay = 1,
+> +	.display = &g33_display,
+>   	.dma_mask_size = 36,
+>   };
+>   
+> @@ -363,17 +409,41 @@ static const struct intel_device_info pnv_m_info = {
+>   	GEN3_FEATURES,
+>   	PLATFORM(INTEL_PINEVIEW),
+>   	.is_mobile = 1,
+> -	.display.has_hotplug = 1,
+> -	.display.has_overlay = 1,
+> +	.display = &g33_display,
+>   	.dma_mask_size = 36,
+>   };
+>   
+> +#define GEN4_DISPLAY \
+> +	.has_hotplug = 1, \
+> +	.has_gmch = 1, \
+> +	I9XX_PIPE_OFFSETS, \
+> +	I9XX_CURSOR_OFFSETS, \
+> +	I9XX_COLORS
+> +
+> +static const struct intel_display_device_info i965g_display = {
+> +	GEN4_DISPLAY,
+> +	.has_overlay = 1,
+> +};
+> +
+> +static const struct intel_display_device_info i965gm_display = {
+> +	GEN4_DISPLAY,
+> +	.has_overlay = 1,
+> +	.supports_tv = 1,
+> +};
+> +
+> +static const struct intel_display_device_info g45_display = {
+> +	GEN4_DISPLAY,
+> +};
+> +
+> +static const struct intel_display_device_info gm45_display = {
+> +	GEN4_DISPLAY,
+> +	.supports_tv = 1,
+> +};
+> +
+>   #define GEN4_FEATURES \
+>   	GEN(4), \
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+> -	.display.has_hotplug = 1, \
+> -	.display.has_gmch = 1, \
+>   	.gpu_reset_clobbers_display = true, \
+>   	.__runtime.platform_engine_mask = BIT(RCS0), \
+>   	.has_3d_pipeline = 1, \
+> @@ -381,9 +451,6 @@ static const struct intel_device_info pnv_m_info = {
+>   	.has_coherent_ggtt = true, \
+>   	.dma_mask_size = 36, \
+>   	.max_pat_index = 3, \
+> -	I9XX_PIPE_OFFSETS, \
+> -	I9XX_CURSOR_OFFSETS, \
+> -	I9XX_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+>   	GEN_DEFAULT_REGIONS, \
+>   	LEGACY_CACHELEVEL
+> @@ -391,7 +458,7 @@ static const struct intel_device_info pnv_m_info = {
+>   static const struct intel_device_info i965g_info = {
+>   	GEN4_FEATURES,
+>   	PLATFORM(INTEL_I965G),
+> -	.display.has_overlay = 1,
+> +	.display = &i965g_display,
+>   	.hws_needs_physical = 1,
+>   	.has_snoop = false,
+>   };
+> @@ -399,10 +466,9 @@ static const struct intel_device_info i965g_info = {
+>   static const struct intel_device_info i965gm_info = {
+>   	GEN4_FEATURES,
+>   	PLATFORM(INTEL_I965GM),
+> +	.display = &i965gm_display,
+>   	.is_mobile = 1,
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+> -	.display.has_overlay = 1,
+> -	.display.supports_tv = 1,
+>   	.hws_needs_physical = 1,
+>   	.has_snoop = false,
+>   };
+> @@ -411,6 +477,7 @@ static const struct intel_device_info g45_info = {
+>   	GEN4_FEATURES,
+>   	PLATFORM(INTEL_G45),
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0),
+> +	.display = &g45_display,
+>   	.gpu_reset_clobbers_display = false,
+>   };
+>   
+> @@ -419,8 +486,8 @@ static const struct intel_device_info gm45_info = {
+>   	PLATFORM(INTEL_GM45),
+>   	.is_mobile = 1,
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+> -	.display.supports_tv = 1,
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0),
+> +	.display = &gm45_display,
+>   	.gpu_reset_clobbers_display = false,
+>   };
+>   
+> @@ -428,7 +495,6 @@ static const struct intel_device_info gm45_info = {
+>   	GEN(5), \
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+> -	.display.has_hotplug = 1, \
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0), \
+>   	.has_3d_pipeline = 1, \
+>   	.has_snoop = true, \
+> @@ -437,21 +503,34 @@ static const struct intel_device_info gm45_info = {
+>   	.has_rc6 = 0, \
+>   	.dma_mask_size = 36, \
+>   	.max_pat_index = 3, \
+> -	I9XX_PIPE_OFFSETS, \
+> -	I9XX_CURSOR_OFFSETS, \
+> -	ILK_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+>   	GEN_DEFAULT_REGIONS, \
+>   	LEGACY_CACHELEVEL
+>   
+> +#define ILK_DISPLAY \
+> +	.has_hotplug = 1, \
+> +	I9XX_PIPE_OFFSETS, \
+> +	I9XX_CURSOR_OFFSETS, \
+> +	ILK_COLORS
+> +
+> +static const struct intel_display_device_info ilk_d_display = {
+> +	ILK_DISPLAY,
+> +};
+> +
+>   static const struct intel_device_info ilk_d_info = {
+>   	GEN5_FEATURES,
+>   	PLATFORM(INTEL_IRONLAKE),
+> +	.display = &ilk_d_display,
+> +};
+> +
+> +static const struct intel_display_device_info ilk_m_display = {
+> +	ILK_DISPLAY,
+>   };
+>   
+>   static const struct intel_device_info ilk_m_info = {
+>   	GEN5_FEATURES,
+>   	PLATFORM(INTEL_IRONLAKE),
+> +	.display = &ilk_m_display,
+>   	.is_mobile = 1,
+>   	.has_rps = true,
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+> @@ -461,7 +540,6 @@ static const struct intel_device_info ilk_m_info = {
+>   	GEN(6), \
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+> -	.display.has_hotplug = 1, \
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A), \
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
+>   	.has_3d_pipeline = 1, \
+> @@ -475,24 +553,30 @@ static const struct intel_device_info ilk_m_info = {
+>   	.max_pat_index = 3, \
+>   	.__runtime.ppgtt_type = INTEL_PPGTT_ALIASING, \
+>   	.__runtime.ppgtt_size = 31, \
+> -	I9XX_PIPE_OFFSETS, \
+> -	I9XX_CURSOR_OFFSETS, \
+> -	ILK_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+>   	GEN_DEFAULT_REGIONS, \
+>   	LEGACY_CACHELEVEL
+>   
+> +static const struct intel_display_device_info snb_display = {
+> +	.has_hotplug = 1,
+> +	I9XX_PIPE_OFFSETS,
+> +	I9XX_CURSOR_OFFSETS,
+> +	ILK_COLORS,
+> +};
+> +
+>   #define SNB_D_PLATFORM \
+>   	GEN6_FEATURES, \
+>   	PLATFORM(INTEL_SANDYBRIDGE)
+>   
+>   static const struct intel_device_info snb_d_gt1_info = {
+>   	SNB_D_PLATFORM,
+> +	.display = &snb_display,
+>   	.gt = 1,
+>   };
+>   
+>   static const struct intel_device_info snb_d_gt2_info = {
+>   	SNB_D_PLATFORM,
+> +	.display = &snb_display,
+>   	.gt = 2,
+>   };
+>   
+> @@ -504,11 +588,13 @@ static const struct intel_device_info snb_d_gt2_info = {
+>   
+>   static const struct intel_device_info snb_m_gt1_info = {
+>   	SNB_M_PLATFORM,
+> +	.display = &snb_display,
+>   	.gt = 1,
+>   };
+>   
+>   static const struct intel_device_info snb_m_gt2_info = {
+>   	SNB_M_PLATFORM,
+> +	.display = &snb_display,
+>   	.gt = 2,
+>   };
+>   
+> @@ -516,7 +602,6 @@ static const struct intel_device_info snb_m_gt2_info = {
+>   	GEN(7), \
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C), \
+> -	.display.has_hotplug = 1, \
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A), \
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
+>   	.has_3d_pipeline = 1, \
+> @@ -530,9 +615,6 @@ static const struct intel_device_info snb_m_gt2_info = {
+>   	.max_pat_index = 3, \
+>   	.__runtime.ppgtt_type = INTEL_PPGTT_ALIASING, \
+>   	.__runtime.ppgtt_size = 31, \
+> -	IVB_PIPE_OFFSETS, \
+> -	IVB_CURSOR_OFFSETS, \
+> -	IVB_COLORS, \
+>   	GEN_DEFAULT_PAGE_SIZES, \
+>   	GEN_DEFAULT_REGIONS, \
+>   	LEGACY_CACHELEVEL
+> @@ -542,13 +624,22 @@ static const struct intel_device_info snb_m_gt2_info = {
+>   	PLATFORM(INTEL_IVYBRIDGE), \
+>   	.has_l3_dpf = 1
+>   
+> +static const struct intel_display_device_info ivb_display = {
+> +	.has_hotplug = 1,
+> +	IVB_PIPE_OFFSETS,
+> +	IVB_CURSOR_OFFSETS,
+> +	IVB_COLORS,
+> +};
+> +
+>   static const struct intel_device_info ivb_d_gt1_info = {
+>   	IVB_D_PLATFORM,
+> +	.display = &ivb_display,
+>   	.gt = 1,
+>   };
+>   
+>   static const struct intel_device_info ivb_d_gt2_info = {
+>   	IVB_D_PLATFORM,
+> +	.display = &ivb_display,
+>   	.gt = 2,
+>   };
+>   
+> @@ -560,11 +651,13 @@ static const struct intel_device_info ivb_d_gt2_info = {
+>   
+>   static const struct intel_device_info ivb_m_gt1_info = {
+>   	IVB_M_PLATFORM,
+> +	.display = &ivb_display,
+>   	.gt = 1,
+>   };
+>   
+>   static const struct intel_device_info ivb_m_gt2_info = {
+>   	IVB_M_PLATFORM,
+> +	.display = &ivb_display,
+>   	.gt = 2,
+>   };
+>   
+> @@ -576,18 +669,26 @@ static const struct intel_device_info ivb_q_info = {
+>   	.has_l3_dpf = 1,
+>   };
+>   
+> +static const struct intel_display_device_info vlv_display = {
+> +	.has_gmch = 1,
+> +	.has_hotplug = 1,
+> +	.mmio_offset = VLV_DISPLAY_BASE,
+> +	I9XX_PIPE_OFFSETS,
+> +	I9XX_CURSOR_OFFSETS,
+> +	I9XX_COLORS,
+> +};
+> +
+>   static const struct intel_device_info vlv_info = {
+>   	PLATFORM(INTEL_VALLEYVIEW),
+>   	GEN(7),
+>   	.is_lp = 1,
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
+> +	.display = &vlv_display,
+>   	.has_runtime_pm = 1,
+>   	.has_rc6 = 1,
+>   	.has_reset_engine = true,
+>   	.has_rps = true,
+> -	.display.has_gmch = 1,
+> -	.display.has_hotplug = 1,
+>   	.dma_mask_size = 40,
+>   	.max_pat_index = 3,
+>   	.__runtime.ppgtt_type = INTEL_PPGTT_ALIASING,
+> @@ -595,10 +696,6 @@ static const struct intel_device_info vlv_info = {
+>   	.has_snoop = true,
+>   	.has_coherent_ggtt = false,
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0),
+> -	.display.mmio_offset = VLV_DISPLAY_BASE,
+> -	I9XX_PIPE_OFFSETS,
+> -	I9XX_CURSOR_OFFSETS,
+> -	I9XX_COLORS,
+>   	GEN_DEFAULT_PAGE_SIZES,
+>   	GEN_DEFAULT_REGIONS,
+>   	LEGACY_CACHELEVEL,
+> @@ -609,11 +706,7 @@ static const struct intel_device_info vlv_info = {
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+>   		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP), \
+> -	.display.has_ddi = 1, \
+> -	.display.has_fpga_dbg = 1, \
+> -	.display.has_dp_mst = 1, \
+>   	.has_rc6p = 0 /* RC6p removed-by HSW */, \
+> -	HSW_PIPE_OFFSETS, \
+>   	.has_runtime_pm = 1
+>   
+>   #define HSW_PLATFORM \
+> @@ -621,18 +714,31 @@ static const struct intel_device_info vlv_info = {
+>   	PLATFORM(INTEL_HASWELL), \
+>   	.has_l3_dpf = 1
+>   
+> +static const struct intel_display_device_info hsw_display = {
+> +	.has_ddi = 1,
+> +	.has_dp_mst = 1,
+> +	.has_fpga_dbg = 1,
+> +	.has_hotplug = 1,
+> +	HSW_PIPE_OFFSETS,
+> +	IVB_CURSOR_OFFSETS,
+> +	IVB_COLORS,
+> +};
+> +
+>   static const struct intel_device_info hsw_gt1_info = {
+>   	HSW_PLATFORM,
+> +	.display = &hsw_display,
+>   	.gt = 1,
+>   };
+>   
+>   static const struct intel_device_info hsw_gt2_info = {
+>   	HSW_PLATFORM,
+> +	.display = &hsw_display,
+>   	.gt = 2,
+>   };
+>   
+>   static const struct intel_device_info hsw_gt3_info = {
+>   	HSW_PLATFORM,
+> +	.display = &hsw_display,
+>   	.gt = 3,
+>   };
+>   
+> @@ -645,22 +751,35 @@ static const struct intel_device_info hsw_gt3_info = {
+>   	.__runtime.ppgtt_size = 48, \
+>   	.has_64bit_reloc = 1
+>   
+> +static const struct intel_display_device_info bdw_display = {
+> +	.has_ddi = 1,
+> +	.has_dp_mst = 1,
+> +	.has_fpga_dbg = 1,
+> +	.has_hotplug = 1,
+> +	HSW_PIPE_OFFSETS,
+> +	IVB_CURSOR_OFFSETS,
+> +	IVB_COLORS,
+> +};
+> +
+>   #define BDW_PLATFORM \
+>   	GEN8_FEATURES, \
+>   	PLATFORM(INTEL_BROADWELL)
+>   
+>   static const struct intel_device_info bdw_gt1_info = {
+>   	BDW_PLATFORM,
+> +	.display = &bdw_display,
+>   	.gt = 1,
+>   };
+>   
+>   static const struct intel_device_info bdw_gt2_info = {
+>   	BDW_PLATFORM,
+> +	.display = &bdw_display,
+>   	.gt = 2,
+>   };
+>   
+>   static const struct intel_device_info bdw_rsvd_info = {
+>   	BDW_PLATFORM,
+> +	.display = &bdw_display,
+>   	.gt = 3,
+>   	/* According to the device ID those devices are GT3, they were
+>   	 * previously treated as not GT3, keep it like that.
+> @@ -669,17 +788,27 @@ static const struct intel_device_info bdw_rsvd_info = {
+>   
+>   static const struct intel_device_info bdw_gt3_info = {
+>   	BDW_PLATFORM,
+> +	.display = &bdw_display,
+>   	.gt = 3,
+>   	.__runtime.platform_engine_mask =
+>   		BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS1),
+>   };
+>   
+> +static const struct intel_display_device_info chv_display = {
+> +	.has_hotplug = 1,
+> +	.has_gmch = 1,
+> +	.mmio_offset = VLV_DISPLAY_BASE,
+> +	CHV_PIPE_OFFSETS,
+> +	CHV_CURSOR_OFFSETS,
+> +	CHV_COLORS,
+> +};
+> +
+>   static const struct intel_device_info chv_info = {
+>   	PLATFORM(INTEL_CHERRYVIEW),
+>   	GEN(8),
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
+> -	.display.has_hotplug = 1,
+> +	.display = &chv_display,
+>   	.is_lp = 1,
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0),
+>   	.has_64bit_reloc = 1,
+> @@ -687,7 +816,6 @@ static const struct intel_device_info chv_info = {
+>   	.has_rc6 = 1,
+>   	.has_rps = true,
+>   	.has_logical_ring_contexts = 1,
+> -	.display.has_gmch = 1,
+>   	.dma_mask_size = 39,
+>   	.max_pat_index = 3,
+>   	.__runtime.ppgtt_type = INTEL_PPGTT_FULL,
+> @@ -695,10 +823,6 @@ static const struct intel_device_info chv_info = {
+>   	.has_reset_engine = 1,
+>   	.has_snoop = true,
+>   	.has_coherent_ggtt = false,
+> -	.display.mmio_offset = VLV_DISPLAY_BASE,
+> -	CHV_PIPE_OFFSETS,
+> -	CHV_CURSOR_OFFSETS,
+> -	CHV_COLORS,
+>   	GEN_DEFAULT_PAGE_SIZES,
+>   	GEN_DEFAULT_REGIONS,
+>   	LEGACY_CACHELEVEL,
+> @@ -714,12 +838,22 @@ static const struct intel_device_info chv_info = {
+>   	GEN9_DEFAULT_PAGE_SIZES, \
+>   	.__runtime.has_dmc = 1, \
+>   	.has_gt_uc = 1, \
+> -	.__runtime.has_hdcp = 1, \
+> -	.display.has_ipc = 1, \
+> -	.display.has_psr = 1, \
+> -	.display.has_psr_hw_tracking = 1, \
+> -	.display.dbuf.size = 896 - 4, /* 4 blocks for bypass path allocation */ \
+> -	.display.dbuf.slice_mask = BIT(DBUF_S1)
+> +	.__runtime.has_hdcp = 1
+> +
+> +static const struct intel_display_device_info skl_display = {
+> +	.dbuf.size = 896 - 4, /* 4 blocks for bypass path allocation */ \
+> +	.dbuf.slice_mask = BIT(DBUF_S1),
+> +	.has_ddi = 1,
+> +	.has_dp_mst = 1,
+> +	.has_fpga_dbg = 1,
+> +	.has_hotplug = 1,
+> +	.has_ipc = 1,
+> +	.has_psr = 1,
+> +	.has_psr_hw_tracking = 1,
+> +	HSW_PIPE_OFFSETS,
+> +	IVB_CURSOR_OFFSETS,
+> +	IVB_COLORS,
+> +};
+>   
+>   #define SKL_PLATFORM \
+>   	GEN9_FEATURES, \
+> @@ -727,11 +861,13 @@ static const struct intel_device_info chv_info = {
+>   
+>   static const struct intel_device_info skl_gt1_info = {
+>   	SKL_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 1,
+>   };
+>   
+>   static const struct intel_device_info skl_gt2_info = {
+>   	SKL_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 2,
+>   };
+>   
+> @@ -743,19 +879,19 @@ static const struct intel_device_info skl_gt2_info = {
+>   
+>   static const struct intel_device_info skl_gt3_info = {
+>   	SKL_GT3_PLUS_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 3,
+>   };
+>   
+>   static const struct intel_device_info skl_gt4_info = {
+>   	SKL_GT3_PLUS_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 4,
+>   };
+>   
+>   #define GEN9_LP_FEATURES \
+>   	GEN(9), \
+>   	.is_lp = 1, \
+> -	.display.dbuf.slice_mask = BIT(DBUF_S1), \
+> -	.display.has_hotplug = 1, \
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+> @@ -763,17 +899,12 @@ static const struct intel_device_info skl_gt4_info = {
+>   		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
+>   	.has_3d_pipeline = 1, \
+>   	.has_64bit_reloc = 1, \
+> -	.display.has_ddi = 1, \
+> -	.display.has_fpga_dbg = 1, \
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A), \
+>   	.__runtime.has_hdcp = 1, \
+> -	.display.has_psr = 1, \
+> -	.display.has_psr_hw_tracking = 1, \
+>   	.has_runtime_pm = 1, \
+>   	.__runtime.has_dmc = 1, \
+>   	.has_rc6 = 1, \
+>   	.has_rps = true, \
+> -	.display.has_dp_mst = 1, \
+>   	.has_logical_ring_contexts = 1, \
+>   	.has_gt_uc = 1, \
+>   	.dma_mask_size = 39, \
+> @@ -782,27 +913,46 @@ static const struct intel_device_info skl_gt4_info = {
+>   	.has_reset_engine = 1, \
+>   	.has_snoop = true, \
+>   	.has_coherent_ggtt = false, \
+> -	.display.has_ipc = 1, \
+>   	.max_pat_index = 3, \
+> -	HSW_PIPE_OFFSETS, \
+> -	IVB_CURSOR_OFFSETS, \
+> -	IVB_COLORS, \
+>   	GEN9_DEFAULT_PAGE_SIZES, \
+>   	GEN_DEFAULT_REGIONS, \
+>   	LEGACY_CACHELEVEL
+>   
+> +#define GEN9_LP_DISPLAY \
+> +	.dbuf.slice_mask = BIT(DBUF_S1), \
+> +	.has_dp_mst = 1, \
+> +	.has_ddi = 1, \
+> +	.has_fpga_dbg = 1, \
+> +	.has_hotplug = 1, \
+> +	.has_ipc = 1, \
+> +	.has_psr = 1, \
+> +	.has_psr_hw_tracking = 1, \
+> +	HSW_PIPE_OFFSETS, \
+> +	IVB_CURSOR_OFFSETS, \
+> +	IVB_COLORS
+> +
+> +static const struct intel_display_device_info bxt_display = {
+> +	GEN9_LP_DISPLAY,
+> +	.dbuf.size = 512 - 4, /* 4 blocks for bypass path allocation */
+> +};
+> +
+>   static const struct intel_device_info bxt_info = {
+>   	GEN9_LP_FEATURES,
+>   	PLATFORM(INTEL_BROXTON),
+> -	.display.dbuf.size = 512 - 4, /* 4 blocks for bypass path allocation */
+> +	.display = &bxt_display,
+> +};
+> +
+> +static const struct intel_display_device_info glk_display = {
+> +	GEN9_LP_DISPLAY,
+> +	.dbuf.size = 1024 - 4, /* 4 blocks for bypass path allocation */
+> +	GLK_COLORS,
+>   };
+>   
+>   static const struct intel_device_info glk_info = {
+>   	GEN9_LP_FEATURES,
+>   	PLATFORM(INTEL_GEMINILAKE),
+>   	.__runtime.display.ip.ver = 10,
+> -	.display.dbuf.size = 1024 - 4, /* 4 blocks for bypass path allocation */
+> -	GLK_COLORS,
+> +	.display = &glk_display,
+>   };
+>   
+>   #define KBL_PLATFORM \
+> @@ -811,16 +961,19 @@ static const struct intel_device_info glk_info = {
+>   
+>   static const struct intel_device_info kbl_gt1_info = {
+>   	KBL_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 1,
+>   };
+>   
+>   static const struct intel_device_info kbl_gt2_info = {
+>   	KBL_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 2,
+>   };
+>   
+>   static const struct intel_device_info kbl_gt3_info = {
+>   	KBL_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 3,
+>   	.__runtime.platform_engine_mask =
+>   		BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS1),
+> @@ -832,16 +985,19 @@ static const struct intel_device_info kbl_gt3_info = {
+>   
+>   static const struct intel_device_info cfl_gt1_info = {
+>   	CFL_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 1,
+>   };
+>   
+>   static const struct intel_device_info cfl_gt2_info = {
+>   	CFL_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 2,
+>   };
+>   
+>   static const struct intel_device_info cfl_gt3_info = {
+>   	CFL_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 3,
+>   	.__runtime.platform_engine_mask =
+>   		BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS1),
+> @@ -853,11 +1009,13 @@ static const struct intel_device_info cfl_gt3_info = {
+>   
+>   static const struct intel_device_info cml_gt1_info = {
+>   	CML_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 1,
+>   };
+>   
+>   static const struct intel_device_info cml_gt2_info = {
+>   	CML_PLATFORM,
+> +	.display = &skl_display,
+>   	.gt = 2,
+>   };
+>   
+> @@ -869,39 +1027,51 @@ static const struct intel_device_info cml_gt2_info = {
+>   #define GEN11_FEATURES \
+>   	GEN9_FEATURES, \
+>   	GEN11_DEFAULT_PAGE_SIZES, \
+> -	.display.abox_mask = BIT(0), \
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+>   		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
+>   		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
+> -	.display.pipe_offsets = { \
+> -		[TRANSCODER_A] = PIPE_A_OFFSET, \
+> -		[TRANSCODER_B] = PIPE_B_OFFSET, \
+> -		[TRANSCODER_C] = PIPE_C_OFFSET, \
+> -		[TRANSCODER_EDP] = PIPE_EDP_OFFSET, \
+> -		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET, \
+> -		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET, \
+> -	}, \
+> -	.display.trans_offsets = { \
+> -		[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
+> -		[TRANSCODER_B] = TRANSCODER_B_OFFSET, \
+> -		[TRANSCODER_C] = TRANSCODER_C_OFFSET, \
+> -		[TRANSCODER_EDP] = TRANSCODER_EDP_OFFSET, \
+> -		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET, \
+> -		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET, \
+> -	}, \
+>   	GEN(11), \
+> -	ICL_COLORS, \
+> -	.display.dbuf.size = 2048, \
+> -	.display.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2), \
+>   	.__runtime.has_dsc = 1, \
+>   	.has_coherent_ggtt = false, \
+>   	.has_logical_ring_elsq = 1
+>   
+> +static const struct intel_display_device_info gen11_display = {
+> +	.abox_mask = BIT(0),
+> +	.dbuf.size = 2048,
+> +	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2),
+> +	.has_ddi = 1,
+> +	.has_dp_mst = 1,
+> +	.has_fpga_dbg = 1,
+> +	.has_hotplug = 1,
+> +	.has_ipc = 1,
+> +	.has_psr = 1,
+> +	.has_psr_hw_tracking = 1,
+> +	.pipe_offsets = {
+> +		[TRANSCODER_A] = PIPE_A_OFFSET,
+> +		[TRANSCODER_B] = PIPE_B_OFFSET,
+> +		[TRANSCODER_C] = PIPE_C_OFFSET,
+> +		[TRANSCODER_EDP] = PIPE_EDP_OFFSET,
+> +		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET,
+> +		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET,
+> +	},
+> +	.trans_offsets = {
+> +		[TRANSCODER_A] = TRANSCODER_A_OFFSET,
+> +		[TRANSCODER_B] = TRANSCODER_B_OFFSET,
+> +		[TRANSCODER_C] = TRANSCODER_C_OFFSET,
+> +		[TRANSCODER_EDP] = TRANSCODER_EDP_OFFSET,
+> +		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET,
+> +		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET,
+> +	},
+> +	IVB_CURSOR_OFFSETS,
+> +	ICL_COLORS,
+> +};
+> +
+>   static const struct intel_device_info icl_info = {
+>   	GEN11_FEATURES,
+>   	PLATFORM(INTEL_ICELAKE),
+>   	.__runtime.platform_engine_mask =
+>   		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+> +	.display = &gen11_display,
+>   };
+>   
+>   static const struct intel_device_info ehl_info = {
+> @@ -909,6 +1079,7 @@ static const struct intel_device_info ehl_info = {
+>   	PLATFORM(INTEL_ELKHARTLAKE),
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(VCS0) | BIT(VECS0),
+>   	.__runtime.ppgtt_size = 36,
+> +	.display = &gen11_display,
+>   };
+>   
+>   static const struct intel_device_info jsl_info = {
+> @@ -916,17 +1087,34 @@ static const struct intel_device_info jsl_info = {
+>   	PLATFORM(INTEL_JASPERLAKE),
+>   	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(VCS0) | BIT(VECS0),
+>   	.__runtime.ppgtt_size = 36,
+> +	.display = &gen11_display,
+>   };
+>   
+>   #define GEN12_FEATURES \
+>   	GEN11_FEATURES, \
+>   	GEN(12), \
+> -	.display.abox_mask = GENMASK(2, 1), \
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+>   		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) | \
+>   		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
+> -	.display.pipe_offsets = { \
+> +	TGL_CACHELEVEL, \
+> +	.has_global_mocs = 1, \
+> +	.has_pxp = 1, \
+> +	.max_pat_index = 3
+> +
+> +#define XE_D_DISPLAY \
+> +	.abox_mask = GENMASK(2, 1), \
+> +	.dbuf.size = 2048, \
+> +	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2), \
+> +	.has_ddi = 1, \
+> +	.has_dp_mst = 1, \
+> +	.has_dsb = 1, \
+> +	.has_fpga_dbg = 1, \
+> +	.has_hotplug = 1, \
+> +	.has_ipc = 1, \
+> +	.has_psr = 1, \
+> +	.has_psr_hw_tracking = 1, \
+> +	.pipe_offsets = { \
+>   		[TRANSCODER_A] = PIPE_A_OFFSET, \
+>   		[TRANSCODER_B] = PIPE_B_OFFSET, \
+>   		[TRANSCODER_C] = PIPE_C_OFFSET, \
+> @@ -934,7 +1122,7 @@ static const struct intel_device_info jsl_info = {
+>   		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET, \
+>   		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET, \
+>   	}, \
+> -	.display.trans_offsets = { \
+> +	.trans_offsets = { \
+>   		[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
+>   		[TRANSCODER_B] = TRANSCODER_B_OFFSET, \
+>   		[TRANSCODER_C] = TRANSCODER_C_OFFSET, \
+> @@ -943,30 +1131,36 @@ static const struct intel_device_info jsl_info = {
+>   		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET, \
+>   	}, \
+>   	TGL_CURSOR_OFFSETS, \
+> -	TGL_CACHELEVEL, \
+> -	.has_global_mocs = 1, \
+> -	.has_pxp = 1, \
+> -	.display.has_dsb = 1, \
+> -	.max_pat_index = 3
+> +	ICL_COLORS
+> +
+> +static const struct intel_display_device_info tgl_display = {
+> +	XE_D_DISPLAY,
+> +};
+>   
+>   static const struct intel_device_info tgl_info = {
+>   	GEN12_FEATURES,
+>   	PLATFORM(INTEL_TIGERLAKE),
+>   	.__runtime.platform_engine_mask =
+>   		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+> +	.display = &tgl_display,
+> +};
+> +
+> +static const struct intel_display_device_info rkl_display = {
+> +	XE_D_DISPLAY,
+> +	.abox_mask = BIT(0),
+> +	.has_hti = 1,
+> +	.has_psr_hw_tracking = 0,
+>   };
+>   
+>   static const struct intel_device_info rkl_info = {
+>   	GEN12_FEATURES,
+>   	PLATFORM(INTEL_ROCKETLAKE),
+> -	.display.abox_mask = BIT(0),
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+>   		BIT(TRANSCODER_C),
+> -	.display.has_hti = 1,
+> -	.display.has_psr_hw_tracking = 0,
+>   	.__runtime.platform_engine_mask =
+>   		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0),
+> +	.display = &rkl_display,
+>   };
+>   
+>   #define DGFX_FEATURES \
+> @@ -989,43 +1183,43 @@ static const struct intel_device_info dg1_info = {
+>   		BIT(VCS0) | BIT(VCS2),
+>   	/* Wa_16011227922 */
+>   	.__runtime.ppgtt_size = 47,
+> +	.display = &tgl_display,
+> +};
+> +
+> +static const struct intel_display_device_info adl_s_display = {
+> +	XE_D_DISPLAY,
+> +	.has_hti = 1,
+> +	.has_psr_hw_tracking = 0,
+>   };
+>   
+>   static const struct intel_device_info adl_s_info = {
+>   	GEN12_FEATURES,
+>   	PLATFORM(INTEL_ALDERLAKE_S),
+>   	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+> -	.display.has_hti = 1,
+> -	.display.has_psr_hw_tracking = 0,
+>   	.__runtime.platform_engine_mask =
+>   		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+>   	.dma_mask_size = 39,
+> +	.display = &adl_s_display,
+>   };
+>   
+>   #define XE_LPD_FEATURES \
+> -	.display.abox_mask = GENMASK(1, 0),					\
+> -	.display.color = {							\
+> +	.abox_mask = GENMASK(1, 0),						\
+> +	.color = {								\
+>   		.degamma_lut_size = 129, .gamma_lut_size = 1024,		\
+>   		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |		\
+> -				     DRM_COLOR_LUT_EQUAL_CHANNELS,		\
+> +		DRM_COLOR_LUT_EQUAL_CHANNELS,					\
+>   	},									\
+> -	.display.dbuf.size = 4096,						\
+> -	.display.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |	\
+> +	.dbuf.size = 4096,							\
+> +	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |		\
+>   		BIT(DBUF_S4),							\
+> -	.display.has_ddi = 1,							\
+> -	.__runtime.has_dmc = 1,							\
+> -	.display.has_dp_mst = 1,						\
+> -	.display.has_dsb = 1,							\
+> -	.__runtime.has_dsc = 1,							\
+> -	.__runtime.fbc_mask = BIT(INTEL_FBC_A),					\
+> -	.display.has_fpga_dbg = 1,						\
+> -	.__runtime.has_hdcp = 1,						\
+> -	.display.has_hotplug = 1,						\
+> -	.display.has_ipc = 1,							\
+> -	.display.has_psr = 1,							\
+> -	.__runtime.display.ip.ver = 13,							\
+> -	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),	\
+> -	.display.pipe_offsets = {						\
+> +	.has_ddi = 1,								\
+> +	.has_dp_mst = 1,							\
+> +	.has_dsb = 1,								\
+> +	.has_fpga_dbg = 1,							\
+> +	.has_hotplug = 1,							\
+> +	.has_ipc = 1,								\
+> +	.has_psr = 1,								\
+> +	.pipe_offsets = {							\
+>   		[TRANSCODER_A] = PIPE_A_OFFSET,					\
+>   		[TRANSCODER_B] = PIPE_B_OFFSET,					\
+>   		[TRANSCODER_C] = PIPE_C_OFFSET,					\
+> @@ -1033,7 +1227,7 @@ static const struct intel_device_info adl_s_info = {
+>   		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET,				\
+>   		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET,				\
+>   	},									\
+> -	.display.trans_offsets = {						\
+> +	.trans_offsets = {						\
+>   		[TRANSCODER_A] = TRANSCODER_A_OFFSET,				\
+>   		[TRANSCODER_B] = TRANSCODER_B_OFFSET,				\
+>   		[TRANSCODER_C] = TRANSCODER_C_OFFSET,				\
+> @@ -1043,18 +1237,31 @@ static const struct intel_device_info adl_s_info = {
+>   	},									\
+>   	TGL_CURSOR_OFFSETS
+>   
+> +#define XE_LPD_RUNTIME \
+> +	.__runtime.has_dmc = 1,							\
+> +	.__runtime.has_dsc = 1,							\
+> +	.__runtime.fbc_mask = BIT(INTEL_FBC_A),					\
+> +	.__runtime.has_hdcp = 1,						\
+> +	.__runtime.display.ip.ver = 13,							\
+> +	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D)
+> +
+> +static const struct intel_display_device_info xe_lpd_display = {
+> +	XE_LPD_FEATURES,
+> +	.has_cdclk_crawl = 1,
+> +	.has_psr_hw_tracking = 0,
+> +};
+> +
+>   static const struct intel_device_info adl_p_info = {
+>   	GEN12_FEATURES,
+> -	XE_LPD_FEATURES,
+> +	XE_LPD_RUNTIME,
+>   	PLATFORM(INTEL_ALDERLAKE_P),
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+>   			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
+>   			       BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
+> -	.display.has_cdclk_crawl = 1,
+> -	.display.has_psr_hw_tracking = 0,
+>   	.__runtime.platform_engine_mask =
+>   		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+>   	.__runtime.ppgtt_size = 48,
+> +	.display = &xe_lpd_display,
+>   	.dma_mask_size = 39,
+>   };
+>   
+> @@ -1125,18 +1332,23 @@ static const struct intel_device_info xehpsdv_info = {
+>   	.has_guc_deprivilege = 1, \
+>   	.has_heci_pxp = 1, \
+>   	.has_media_ratio_mode = 1, \
+> -	.display.has_cdclk_squash = 1, \
+>   	.__runtime.platform_engine_mask = \
+>   		BIT(RCS0) | BIT(BCS0) | \
+>   		BIT(VECS0) | BIT(VECS1) | \
+>   		BIT(VCS0) | BIT(VCS2) | \
+>   		BIT(CCS0) | BIT(CCS1) | BIT(CCS2) | BIT(CCS3)
+>   
+> +static const struct intel_display_device_info xe_hpd_display = {
+> +	XE_LPD_FEATURES,
+> +	.has_cdclk_squash = 1,
+> +};
+> +
+>   static const struct intel_device_info dg2_info = {
+>   	DG2_FEATURES,
+> -	XE_LPD_FEATURES,
+> +	XE_LPD_RUNTIME,
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+>   			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+> +	.display = &xe_hpd_display,
+>   };
+>   
+>   static const struct intel_device_info ats_m_info = {
+> @@ -1174,11 +1386,9 @@ static const struct intel_device_info pvc_info = {
+>   	PVC_CACHELEVEL,
+>   };
+>   
+> -#define XE_LPDP_FEATURES	\
+> -	XE_LPD_FEATURES,	\
+> +#define XE_LPDP_RUNTIME	\
+> +	XE_LPD_RUNTIME,	\
+>   	.__runtime.display.ip.ver = 14,	\
+> -	.display.has_cdclk_crawl = 1, \
+> -	.display.has_cdclk_squash = 1, \
+>   	.__runtime.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B)
+>   
+>   static const struct intel_gt_definition xelpmp_extra_gt[] = {
+> @@ -1191,9 +1401,15 @@ static const struct intel_gt_definition xelpmp_extra_gt[] = {
+>   	{}
+>   };
+>   
+> +static const struct intel_display_device_info xe_lpdp_display = {
+> +	XE_LPD_FEATURES,
+> +	.has_cdclk_crawl = 1,
+> +	.has_cdclk_squash = 1,
+> +};
+> +
+>   static const struct intel_device_info mtl_info = {
+>   	XE_HP_FEATURES,
+> -	XE_LPDP_FEATURES,
+> +	XE_LPDP_RUNTIME,
+>   	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+>   			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+>   	/*
+> @@ -1204,6 +1420,7 @@ static const struct intel_device_info mtl_info = {
+>   	.__runtime.graphics.ip.rel = 70,
+>   	.__runtime.media.ip.ver = 13,
+>   	PLATFORM(INTEL_METEORLAKE),
+> +	.display = &xe_lpdp_display,
+>   	.extra_gt_list = xelpmp_extra_gt,
+>   	.has_flat_ccs = 0,
+>   	.has_gmd_id = 1,
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> index 4e23be2995bf..d0bf626d0360 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -138,7 +138,7 @@ void intel_device_info_print(const struct intel_device_info *info,
+>   
+>   	drm_printf(p, "has_pooled_eu: %s\n", str_yes_no(runtime->has_pooled_eu));
+>   
+> -#define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->display.name))
+> +#define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->display->name))
+>   	DEV_INFO_DISPLAY_FOR_EACH_FLAG(PRINT_FLAG);
+>   #undef PRINT_FLAG
+>   
+> @@ -388,6 +388,8 @@ mkwrite_device_info(struct drm_i915_private *i915)
+>   	return (struct intel_device_info *)INTEL_INFO(i915);
+>   }
+>   
+> +static const struct intel_display_device_info no_display = { 0 };
+> +
+>   /**
+>    * intel_device_info_runtime_init - initialize runtime info
+>    * @dev_priv: the i915 device
+> @@ -538,7 +540,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+>   	if (!HAS_DISPLAY(dev_priv)) {
+>   		dev_priv->drm.driver_features &= ~(DRIVER_MODESET |
+>   						   DRIVER_ATOMIC);
+> -		memset(&info->display, 0, sizeof(info->display));
+> +		info->display = &no_display;
+>   
+>   		runtime->cpu_transcoder_mask = 0;
+>   		memset(runtime->num_sprites, 0, sizeof(runtime->num_sprites));
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index 96f6bdb04b1b..f212e02e6582 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -259,7 +259,7 @@ struct intel_device_info {
+>   	DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
+>   #undef DEFINE_FLAG
+>   
+> -	struct intel_display_device_info display;
+> +	const struct intel_display_device_info *display;
+>   
+>   	/*
+>   	 * Initial runtime info. Do not access outside of i915_driver_create().
+
