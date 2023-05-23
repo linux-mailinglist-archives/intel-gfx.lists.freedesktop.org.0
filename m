@@ -2,43 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7AC370CFB1
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 02:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B6FF70CFC2
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 02:46:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49F7E10E035;
-	Tue, 23 May 2023 00:43:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF25510E2D7;
+	Tue, 23 May 2023 00:46:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (mail.ozlabs.org
- [IPv6:2404:9400:2221:ea00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE64D10E035
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 May 2023 00:43:37 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4QQFt63zXKz4x48;
- Tue, 23 May 2023 10:43:26 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1684802607;
- bh=wR7JFpABtkHvbbbYe13yOqB8fGX0TUQ0Yg/dvCpATgQ=;
- h=Date:From:To:Cc:Subject:From;
- b=aiVkLfrqtzR/YRF1FRXNPa5R0Wo+GriJRGMXbmjmcDt4w8A8idVfKqd2K2hL4Ufn0
- GtazcmuCp0h5Kq12941imoEtNR2zvBO7VE0xuOxUfI+6KJhcJueSWCCcC/zMk4sd5V
- fcJy5xl/IIMLeEE1uKUxz5v7Sxnl0gpipGAIYznJsuvNaQfbsDX7HuUeNWJIIIkq0m
- ify3NYx7rOR1wzdIR7UeCoEbdj00ebmPaJsMWaR/yw6BogXIAOvVU7ZKJCRki7fakb
- w22uOVC8LM+Nm236sidFl7vfUCcNITaCvNaCAiYmQqnUFUhMKSWRLuHkq7exBHesF8
- Eo/f67ksSTPjA==
-Date: Tue, 23 May 2023 10:43:24 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20230523104324.602c426a@canb.auug.org.au>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4DED10E2D7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 May 2023 00:46:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684802790; x=1716338790;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7FuX703lpqEwCt92W/gtK96UcfgNJcrxKHzVo8a0J9E=;
+ b=Mg97SNvESuwti/FIqBHN8u7YOu5IqUj7KkbfyJD+x9ZAkmImq8IhvGlI
+ umn+84GnZGMFGqfRIQD0mrqsZhfnGI+Mb5XVmQ4pin++NUwenS1s4z/eD
+ hvYB4wblJCt810OYyGHuXRxDGQNlFPV10GjiVtYcydjzSh9xTWEa+TkvF
+ xigvMp/12e3DEFHKYBcSWN+v+fZYJeGrE7aDOvOnCsw4ZOM431ygbg1Qk
+ QrgqtnYtYsSLvHfFIL5YFPss4pRiZf1JpSa8Hqn1l/VGSfbmn69y7zQyl
+ l/gQIDLjDAGHVl9iF0hTl96hW4e5F1dHyeVpNnQbDR1j9+1IzFPvXFEn0 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="351932922"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="351932922"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 17:46:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="877985945"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="877985945"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by orsmga005.jf.intel.com with ESMTP; 22 May 2023 17:46:28 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 23 May 2023 06:14:52 +0530
+Message-Id: <20230523004455.1206533-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/VanIubOJiW/o7W59wYZSUZ=";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
- Linus' tree
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/3] HDCP Cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,102 +54,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Artur Weber <aweber.kernel@gmail.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/VanIubOJiW/o7W59wYZSUZ=
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Some basic cleanup of hdcp code.
+Consists of 
+-rename dev_priv to i915.
+-move away from master naming rename it to arbiter.
+-rename comp_mutex to hdcp_mutex.
 
-Hi all,
+--v2
+-remove redundant i915_hdcp_comp_master declaration [Chaitanya]
+-some tweaks to commit message of patch 2 and 3 [Chaitanya]
 
-Today's linux-next merge of the drm-misc tree got a conflict in:
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-  MAINTAINERS
+Suraj Kandpal (3):
+  drm/i915/hdcp: Rename dev_priv to i915
+  drm/i915/hdcp: Move away from master naming to arbiter
+  drm/i915/hdcp: Rename comp_mutex to hdcp_mutex
 
-between commit:
+ .../gpu/drm/i915/display/intel_display_core.h |   7 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 652 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_hdcp.h     |   6 +-
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c |  16 +-
+ drivers/gpu/drm/i915/i915_driver.c            |   2 +-
+ drivers/misc/mei/hdcp/mei_hdcp.c              |  26 +-
+ include/drm/i915_hdcp_interface.h             |   4 +-
+ 7 files changed, 356 insertions(+), 357 deletions(-)
 
-  80e62bc8487b ("MAINTAINERS: re-sort all entries and fields")
+-- 
+2.25.1
 
-from Linus' tree and commit:
-
-  0dd53308f74f ("MAINTAINERS: Add entry for Samsung S6D7AA0 LCD panel contr=
-oller driver")
-
-from the drm-misc tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc MAINTAINERS
-index 8e18bbafa740,7cc2bfa4af6f..000000000000
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@@ -6700,6 -6663,35 +6700,12 @@@ S:	Maintaine
-  F:	Documentation/devicetree/bindings/display/panel/samsung,s6d27a1.yaml
-  F:	drivers/gpu/drm/panel/panel-samsung-s6d27a1.c
- =20
-+ DRM DRIVER FOR SAMSUNG S6D7AA0 PANELS
-+ M:	Artur Weber <aweber.kernel@gmail.com>
-+ S:	Maintained
-+ F:	Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
-+ F:	drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
-+=20
- -DRM DRIVER FOR SITRONIX ST7703 PANELS
- -M:	Guido G=C3=BCnther <agx@sigxcpu.org>
- -R:	Purism Kernel Team <kernel@puri.sm>
- -R:	Ondrej Jirman <megous@megous.com>
- -S:	Maintained
- -F:	Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.y=
-aml
- -F:	drivers/gpu/drm/panel/panel-sitronix-st7703.c
- -
- -DRM DRIVER FOR FIRMWARE FRAMEBUFFERS
- -M:	Thomas Zimmermann <tzimmermann@suse.de>
- -M:	Javier Martinez Canillas <javierm@redhat.com>
- -L:	dri-devel@lists.freedesktop.org
- -S:	Maintained
- -T:	git git://anongit.freedesktop.org/drm/drm-misc
- -F:	drivers/gpu/drm/drm_aperture.c
- -F:	drivers/gpu/drm/tiny/ofdrm.c
- -F:	drivers/gpu/drm/tiny/simpledrm.c
- -F:	drivers/video/aperture.c
- -F:	drivers/video/nomodeset.c
- -F:	include/drm/drm_aperture.h
- -F:	include/linux/aperture.h
- -F:	include/video/nomodeset.h
- -
-  DRM DRIVER FOR SITRONIX ST7586 PANELS
-  M:	David Lechner <david@lechnology.com>
-  S:	Maintained
-
---Sig_/VanIubOJiW/o7W59wYZSUZ=
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmRsDCwACgkQAVBC80lX
-0GxlHwgAoqNefHg17EErrEPKdWYkBzpCztwGe7VJBOBwNT43gcHifK71DiEv10dL
-E0xKvMv3324zlcv6kCaj4dDuPUoQ7KoPVdD7zNNfKepJuFyXNVh1JGbX6fJnkRza
-R32DacwEkHG+ol+yK/2hJA8JjtY/Yz6JghiZBkRiAFj9bOjomDLTUiSz1Kkk+yLG
-mGUvy7o2KFsMISj40q/y5hAW9cyAg2riv7bUvD+Kdk6+HCIm4n2C08Gad1GheEJ4
-MWYFs6P8frtxZpMfmVh7YtuH3ZjPcOU6H0vipIvZWfqVbQ5wJqAJOIwS+SwaVbzJ
-XIv2eodeuJoZgZ5TEz2IIFQS0mpC0Q==
-=HmDe
------END PGP SIGNATURE-----
-
---Sig_/VanIubOJiW/o7W59wYZSUZ=--
