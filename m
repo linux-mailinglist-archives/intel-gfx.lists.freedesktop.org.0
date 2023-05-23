@@ -2,52 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F06E970DCE3
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 14:47:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C997C70DD01
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 14:51:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F235010E427;
-	Tue, 23 May 2023 12:47:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C482A10E436;
+	Tue, 23 May 2023 12:51:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AABD610E092;
- Tue, 23 May 2023 12:47:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684846072; x=1716382072;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=9dH2P6nCFQ8/gZLy0O5O1z/vgV1AQZu9VM2dGjlE3FE=;
- b=hzaBA9Pm+54jdAvp2i/clxfjWUHIOWCEDMK3+o9ngfnC2bMU30ltePsQ
- xJuOdWwFhWLu3r37zpNS3+11Ahh0sLyY2LYijzjTW+NubBwimcPscgR6I
- 6vW1up5sTJaw6FH4pwpMXHj3bcvpDR8auuGN815danzvBu+ci7QQyl2Rc
- rPu2RtIvC+9yB5f1/U5hCarbgP9w5OEC/+e7yKnu2sWcifVQHwBtulRbY
- SKG14mUtvpu9SthtwenuXMLW20yb8i81wpjHF5Xu8d6cSWevHGHZ1zRBP
- X415dvjy/XHSjVwdppW2w2bVCuJLhabZ58zSTyGmElSqraXggsLF5Ne/C A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="337810648"
-X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="337810648"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 05:47:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="706991909"
-X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="706991909"
-Received: from chauvina-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.53.70])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 05:47:49 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230522202314.3939499-3-matthew.d.roper@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230522202314.3939499-1-matthew.d.roper@intel.com>
- <20230522202314.3939499-3-matthew.d.roper@intel.com>
-Date: Tue, 23 May 2023 15:47:46 +0300
-Message-ID: <87ilcjkydp.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B01F10E436
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 May 2023 12:51:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1684846286;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=bAprbvbicDzO/i64xE13RGPcGm8TJil9TJRhodKNwUQ=;
+ b=hVhRB8enzylof6R4Ig1i3YHEyc4XslDvvqKip/RvEgOazSohscBp03djEdFUT9YdPJuIEa
+ S/mqJgilESy2+BW0UXbpPxcoQOg0nRmF7NLwrLdW3sSY3AtEkSOHoDwhc1KOJQlu1NBGaA
+ LE/0WbN+STxjdRp0QF6zuJ+PDoAbY6o=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-324-vrc8-oSWPhekVyojsAB-OQ-1; Tue, 23 May 2023 08:51:23 -0400
+X-MC-Unique: vrc8-oSWPhekVyojsAB-OQ-1
+Received: by mail-qk1-f200.google.com with SMTP id
+ af79cd13be357-75b04cf87c0so238690485a.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 May 2023 05:51:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684846283; x=1687438283;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=bAprbvbicDzO/i64xE13RGPcGm8TJil9TJRhodKNwUQ=;
+ b=hC5p18jMhTjfGn83vUFqY3YTUb3HE7HXyBLIzHtnWWIbHfcStWpruF34c9Il4Z6l3b
+ 1JbWYCXY6eKaLeoLuHQx51zxhqlRkEpF1xZhnwlQ1Vwc9P6kZX/NuCgQytBpqqzSi1Kl
+ IiVVSWhy36Q5S9D/6zvkjMZMXG1MVu2zADXDcKUfm29xaqL98vN6n7mVboJKojyW8Mn3
+ y49Mb1CSRvX+DYExNyXOHBR1B5KbunihRFCCD1HFzrW2klipvlu27cVVwam8Nup1jvtZ
+ 7mrf4sdNbhbvhMB6B98PS4HGkyPY+Rq6sc5qurlu78+V1y3zBRi8O7+X6QlSEA5MbZA7
+ wMrQ==
+X-Gm-Message-State: AC+VfDwG16sdoJxb0lhWfu+KAr27HlNd6ggATfa64eEODiw4cqw3RJ24
+ bk6Imm5Kpx4Yy80M+fKrRQ3OwmyZeAp4Kzzpum84sfzNaaR0lOTz6dnPeEDwSBPycTUCVBFDoUZ
+ 6YpQIX4Jmvtn97Pi6QySjSA1xsEm3
+X-Received: by 2002:a37:88f:0:b0:75b:23a0:e7ed with SMTP id
+ 137-20020a37088f000000b0075b23a0e7edmr3850967qki.78.1684846282949; 
+ Tue, 23 May 2023 05:51:22 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7GUZvQqUqL8jnjS5iId8YX67qOidNHrEO9Bxwn07WXAbE7b7d2NbJu1BrYJ46XQnyjQLxqgg==
+X-Received: by 2002:a37:88f:0:b0:75b:23a0:e7ed with SMTP id
+ 137-20020a37088f000000b0075b23a0e7edmr3850948qki.78.1684846282675; 
+ Tue, 23 May 2023 05:51:22 -0700 (PDT)
+Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
+ (nat-pool-bos-t.redhat.com. [66.187.233.206])
+ by smtp.gmail.com with ESMTPSA id
+ c3-20020ae9e203000000b0075b35e72a21sm7626qkc.86.2023.05.23.05.51.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 23 May 2023 05:51:21 -0700 (PDT)
+From: Tom Rix <trix@redhat.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@gmail.com,
+ daniel@ffwll.ch, nathan@kernel.org, ndesaulniers@google.com,
+ ville.syrjala@linux.intel.com, imre.deak@intel.com,
+ arun.r.murthy@intel.com, lucas.demarchi@intel.com
+Date: Tue, 23 May 2023 08:51:16 -0400
+Message-Id: <20230523125116.1669057-1-trix@redhat.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [Intel-xe] [PATCH v2 2/6] drm/i915: Convert
- INTEL_INFO()->display to a pointer
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
+Subject: [Intel-gfx] [PATCH] drm/i915: simplify switch to if-elseif
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,50 +85,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: Tom Rix <trix@redhat.com>, intel-gfx@lists.freedesktop.org,
+ llvm@lists.linux.dev, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 22 May 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index 4e23be2995bf..d0bf626d0360 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -138,7 +138,7 @@ void intel_device_info_print(const struct intel_device_info *info,
->  
->  	drm_printf(p, "has_pooled_eu: %s\n", str_yes_no(runtime->has_pooled_eu));
->  
-> -#define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->display.name))
-> +#define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->display->name))
->  	DEV_INFO_DISPLAY_FOR_EACH_FLAG(PRINT_FLAG);
->  #undef PRINT_FLAG
->  
-> @@ -388,6 +388,8 @@ mkwrite_device_info(struct drm_i915_private *i915)
->  	return (struct intel_device_info *)INTEL_INFO(i915);
->  }
->  
-> +static const struct intel_display_device_info no_display = { 0 };
+clang with W=1 reports
+drivers/gpu/drm/i915/display/intel_display.c:6012:3: error: unannotated
+  fall-through between switch labels [-Werror,-Wimplicit-fallthrough]
+                case I915_FORMAT_MOD_X_TILED:
+                ^
 
-I think {} is preferred. Can be fixed afterwards if there's no other
-reason to do a respin.
+Only one case and the default does anything in this switch, so it should
+be changed to an if-elseif.
 
-> +
->  /**
->   * intel_device_info_runtime_init - initialize runtime info
->   * @dev_priv: the i915 device
-> @@ -538,7 +540,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
->  	if (!HAS_DISPLAY(dev_priv)) {
->  		dev_priv->drm.driver_features &= ~(DRIVER_MODESET |
->  						   DRIVER_ATOMIC);
-> -		memset(&info->display, 0, sizeof(info->display));
-> +		info->display = &no_display;
+Signed-off-by: Tom Rix <trix@redhat.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 14 +++++---------
+ 1 file changed, 5 insertions(+), 9 deletions(-)
 
-Nice!
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 0490c6412ab5..1f852e49fc20 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5994,8 +5994,7 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+ 		 * Need to verify this for all gen9 platforms to enable
+ 		 * this selectively if required.
+ 		 */
+-		switch (new_plane_state->hw.fb->modifier) {
+-		case DRM_FORMAT_MOD_LINEAR:
++		if (new_plane_state->hw.fb->modifier == DRM_FORMAT_MOD_LINEAR) {
+ 			/*
+ 			 * FIXME: Async on Linear buffer is supported on ICL as
+ 			 * but with additional alignment and fbc restrictions
+@@ -6008,13 +6007,10 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+ 					    plane->base.base.id, plane->base.name);
+ 				return -EINVAL;
+ 			}
+-
+-		case I915_FORMAT_MOD_X_TILED:
+-		case I915_FORMAT_MOD_Y_TILED:
+-		case I915_FORMAT_MOD_Yf_TILED:
+-		case I915_FORMAT_MOD_4_TILED:
+-			break;
+-		default:
++		} else if (!(new_plane_state->hw.fb->modifier == I915_FORMAT_MOD_X_TILED ||
++			     new_plane_state->hw.fb->modifier == I915_FORMAT_MOD_Y_TILED ||
++			     new_plane_state->hw.fb->modifier == I915_FORMAT_MOD_Yf_TILED ||
++			     new_plane_state->hw.fb->modifier == I915_FORMAT_MOD_4_TILED)) {
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[PLANE:%d:%s] Modifier does not support async flips\n",
+ 				    plane->base.base.id, plane->base.name);
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.27.0
+
