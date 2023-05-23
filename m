@@ -1,52 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C879270DD2B
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 15:07:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70FFA70DD47
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 15:14:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C591310E030;
-	Tue, 23 May 2023 13:07:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5962510E030;
+	Tue, 23 May 2023 13:14:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08E2A10E030;
- Tue, 23 May 2023 13:07:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 601EB10E438
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 May 2023 13:14:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684847244; x=1716383244;
+ t=1684847646; x=1716383646;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=pjhJABw4NPeqWAE0kx7Dc0GnJ+vs++85R1+DDftQIBw=;
- b=npRvaX4ZMJMO1Zzl/yJpEhjd9KsZO4Q8W4u42rcSNFnbc1WUA8eVwJB6
- hF9AFHtOZ66K5Xov7eeLO3QDcDgG4/ARaVEO6kwlM7nFV2Hu3pwZnBaDw
- AToNnhjQX7KWKbPsX1KZ7ckXsitXlROMr8YS11vzOYnb1KPSSZaY/RCXe
- Y7hnTuglRBoPg03JaGjYyN8aC2HrP9t4WtGYYi4AxNTo/fKARaXYwzTU3
- ooBTXfC/EQ3y8fvtpeU5eYuB4dtOcC/zjUKskAr3daZxdTTnQo3szWvME
- Suf+vmZeEQxULsaGrrf+mTiJi98H1EI/FITjgLlCgZTn57/iOyjHbcQHR Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="353255477"
-X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="353255477"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ message-id:mime-version:content-transfer-encoding;
+ bh=U8JxV+xjWO+Vmf9+2lHw7fon59GDfLNQBdFLaxvIn2Y=;
+ b=AbAJnm+ySC/eqolkJbsNclmmixAjwB5oBwqfxqlhuLSFvAibfD0QFfwD
+ 3zcbpMPqzFhJrK6ClPRDM9IGugPJE57qKF6dfbiYsxWAXDxtXqjjOK8tL
+ lU897DH/UZhrXU6Vm6zm4aNR8kXm7BYBLx6ysQ4K1elHC1TaguNyTS3Ur
+ RG1Qj+VhYz93oZMtvdj1JLVqq5uSji/9ea7SV/PUysxr3r1kyh6cthbWq
+ lGP23TnYuvxTVvrbiUAwXya1v8Ff+n5m9XmyMXSXqx7R59A1TqOdXThkM
+ eFIheU27hP4Fusxxb6iz8KFBPQl4j7RlsajylhdBPjfZBMp10kMRK4uai Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="353256977"
+X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="353256977"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 06:07:22 -0700
+ 23 May 2023 06:14:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="698043555"
-X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="698043555"
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="736871085"
+X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="736871085"
 Received: from chauvina-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.53.70])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 06:07:20 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230522202314.3939499-1-matthew.d.roper@intel.com>
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 06:14:03 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <c752c626934552a0b57850dc6b3c7697d143de05.camel@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230522202314.3939499-1-matthew.d.roper@intel.com>
-Date: Tue, 23 May 2023 16:07:17 +0300
-Message-ID: <87a5xvkxh6.fsf@intel.com>
+References: <20230522230759.153112-1-vinod.govindapillai@intel.com>
+ <20230522230759.153112-3-vinod.govindapillai@intel.com>
+ <87fs7nmnet.fsf@intel.com>
+ <c752c626934552a0b57850dc6b3c7697d143de05.camel@intel.com>
+Date: Tue, 23 May 2023 16:14:00 +0300
+Message-ID: <877cszkx5z.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 0/6] i915: Move display
- identification/probing under display/
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v6 2/7] drm/i915: update the QGV point
+ frequency calculations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,94 +64,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: "Syrjala, Ville" <ville.syrjala@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 22 May 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
-> Since i915's display code will soon be shared by two DRM drivers (i915
-> and Xe), it makes sense for the display code itself to be responsible
-> for recognizing the platform it's running on rather than relying on the
-> making the top-level DRM driver handle this.  This also becomes more
-> important for all platforms MTL and beyond where we're not really
-> supposed to identify platform behavior by PCI device ID anymore, but
-> rather by the hardware IP version reported by the device through the
-> GMD_ID register.
+On Tue, 23 May 2023, "Govindapillai, Vinod" <vinod.govindapillai@intel.com>=
+ wrote:
+> On Tue, 2023-05-23 at 12:01 +0300, Jani Nikula wrote:
+>> On Tue, 23 May 2023, Vinod Govindapillai <vinod.govindapillai@intel.com>=
+ wrote:
+>> > From MTL onwwards, pcode locks the QGV point based on peak BW of
+>> > the intended QGV point passed by the driver. So the peak BW
+>> > calculation must match the value expected by the pcode. Update
+>> > the calculations as per the Bspec.
+>> >=20
+>> > v2: use DIV_ROUND_* macro for the calculations (Ville)
+>> >=20
+>> > Bspec: 64636
+>> >=20
+>> > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+>> > Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+>> > ---
+>> > =C2=A0drivers/gpu/drm/i915/display/intel_bw.c | 2 +-
+>> > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>> >=20
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm=
+/i915/display/intel_bw.c
+>> > index ab405c48ca3a..c8075a37c3ab 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+>> > @@ -182,7 +182,7 @@ static int mtl_read_qgv_point_info(struct drm_i915=
+_private *dev_priv,
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0val2 =3D intel_uncore_=
+read(&dev_priv->uncore,
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MTL_MEM_SS_INFO_QGV_POINT_=
+HIGH(point));
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dclk =3D REG_FIELD_GET=
+(MTL_DCLK_MASK, val);
+>> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sp->dclk =3D DIV_ROUND_UP((=
+16667 * dclk), 1000);
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sp->dclk =3D DIV_ROUND_CLOS=
+EST(16667 * dclk + 500, 1000);
+>>=20
+>> What's with the +500 there?
 >
-> This series creates a more well-defined split between display and
-> non-display deviceinfo/runtimeinfo and then moves the definition of the
-> display-specific feature flags under the display/ code.  Finally, it
-> switches MTL (and all future platforms), to select the display feature
-> flags based on the hardware's GMD_ID identification.
+> This is what pcode expects. Somehow pcode use this formula and we have to=
+ exactly match this. Got
+> this confirmed from Art.
 
-My primary gripe with this series is that I didn't think of it myself.
+I'm guessing all it really means is to round to closest, and they
+specified it like that instead of saying "round to closest".
 
-I was always hung up on making device info (i915->__info) itself a
-pointer, and got stuck there.
+Essentially (x + (div/2)) / div is what DIV_ROUND_CLOSEST() does.
 
-Nice job, and many thanks!
-
-I see that there are already a bunch of reviews, so I didn't dig into
-all the details. I left some nitpicky comments, but nothing that can't
-be fixed later.
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
+It's odd to do it *twice*, and surely not what they expect.
 
 BR,
 Jani.
 
 >
-> v2:
->  - Move DISPLAY_INFO() definition one patch earlier.  (Andrzej)
->  - Rename display's runtime default structure to __runtime_defaults to
->    make it more clear what the purpose is.  (Andrzej)
->  - Simplify copy of runtime defaults to per-device runtime data.
->    (Andrzej)
->  - Fix uninitialized ptr use on error path during device probe. (lkp)
->  - Add extra patch moving display-specific feature test macros to
->    display/intel_display_device.h
+> BR
+> Vinod
 >
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+>>=20
+>> BR,
+>> Jani.
+>>=20
+>>=20
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sp->t_rp =3D REG_FIELD=
+_GET(MTL_TRP_MASK, val);
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sp->t_rcd =3D REG_FIEL=
+D_GET(MTL_TRCD_MASK, val);
+>>=20
 >
-> Matt Roper (5):
->   drm/i915/display: Move display device info to header under display/
->   drm/i915: Convert INTEL_INFO()->display to a pointer
->   drm/i915/display: Move display runtime info to display structure
->   drm/i915/display: Make display responsible for probing its own IP
->   drm/i915/display: Handle GMD_ID identification in display code
->   drm/i915/display: Move feature test macros to intel_display_device.h
->
->  drivers/gpu/drm/i915/Makefile                 |   2 +
->  drivers/gpu/drm/i915/display/intel_color.c    |  31 +-
->  drivers/gpu/drm/i915/display/intel_crtc.c     |   2 +-
->  drivers/gpu/drm/i915/display/intel_cursor.c   |   4 +-
->  drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
->  drivers/gpu/drm/i915/display/intel_display.h  |  10 +-
->  .../drm/i915/display/intel_display_device.c   | 764 ++++++++++++++++++
->  .../drm/i915/display/intel_display_device.h   | 129 +++
->  .../drm/i915/display/intel_display_power.c    |   6 +-
->  .../drm/i915/display/intel_display_reg_defs.h |  14 +-
->  drivers/gpu/drm/i915/display/intel_fb_pin.c   |   2 +-
->  drivers/gpu/drm/i915/display/intel_fbc.c      |   6 +-
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |   2 +-
->  drivers/gpu/drm/i915/display/intel_hti.c      |   2 +-
->  .../drm/i915/display/skl_universal_plane.c    |   2 +-
->  drivers/gpu/drm/i915/display/skl_watermark.c  |   8 +-
->  drivers/gpu/drm/i915/i915_driver.c            |  17 +-
->  drivers/gpu/drm/i915/i915_drv.h               |  65 +-
->  drivers/gpu/drm/i915/i915_pci.c               | 382 +--------
->  drivers/gpu/drm/i915/i915_reg.h               |  33 -
->  drivers/gpu/drm/i915/intel_device_info.c      | 113 +--
->  drivers/gpu/drm/i915/intel_device_info.h      |  67 +-
->  drivers/gpu/drm/i915/intel_step.c             |   8 +-
->  23 files changed, 1030 insertions(+), 641 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_display_device.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_display_device.h
 
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
