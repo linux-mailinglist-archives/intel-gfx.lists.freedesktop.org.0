@@ -1,58 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7665D70D6A4
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 10:06:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AB8B70D6B1
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 May 2023 10:08:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF49710E3DD;
-	Tue, 23 May 2023 08:06:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DBB910E028;
+	Tue, 23 May 2023 08:08:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED7D010E3D8;
- Tue, 23 May 2023 08:06:01 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0449310E028;
+ Tue, 23 May 2023 08:08:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684829161; x=1716365161;
+ t=1684829318; x=1716365318;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=Bgh4dxLw9bTbI/7CiEaIemyqQkCysAZumwTBmjCakAE=;
- b=mmrg1InmB/JL70pne916ifp26H0zHFxyDfgkJeFDy4xHHNeMFxfGFVIU
- aBKa+AidK2aCbbdihqu8GELBnQKgkag9t5AmEPpwPK97PBH181wW9CCmn
- yusGu997KQmWMEhpa9F8O24wDvi2+mnphY4r1HZqPheankSE+p/ODt/X7
- vi/B72DJMK8QcpeeU2BxYJ+Bvk5Ls7eTAxfYwzKgJvumhZL77se9+i9wS
- dbR6oh3RaFD2YxhZojDEjNWSfBk/3J3NH0NmJiaU/F/E/cJ9hOtvNUiDt
- 5wcuDi3OEos8vcEW8lXn2oxYjB+PHrj05FyuwQy7Rt0q3NXfRL0XgSQ80 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="333533133"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="333533133"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 01:03:08 -0700
+ bh=GpqryGurZdHdQoY5Kt1dxLs11Q+CmoxqiRU7Fp5OPDg=;
+ b=esMwt2UQ/Fd9I0IyYT4QlsvmmmcUwM0W9c9Mb9IXOFnqmv6kMBD4G1NI
+ Fr+LzTCLv/QvjdjIMqn3G+LCkiQ0yR5khRZHEhMmc/cee31VdUGRGJwGd
+ YEhPxjTf6ZJe4lUsui7fAodRYKWv5U2zezcnrty1boVfBqRl8pzeMoF1U
+ W3i9qfPJLK7UB7mYTLRayX/1Ejo3fl41qpEk8mBExdxJbiLON3m4KCNPD
+ hXPvB1Li7BYPsaHTIXoHqRQ0lGIVy8AJP3AEiT3xsFqmRcUFwtS9mrYa5
+ Dc6cm6iUhHYS5DIJ+lkQN4/0c9JqtysjcZyIBCnjs92R8yhqGo5XVgo0S w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="350678317"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="350678317"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 01:08:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="706888755"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="706888755"
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="768908426"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="768908426"
 Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.31.10])
  ([10.213.31.10])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 01:03:04 -0700
-Message-ID: <7827e158-1b75-45be-5680-8c9a03333305@intel.com>
-Date: Tue, 23 May 2023 10:03:02 +0200
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 01:06:07 -0700
+Message-ID: <4e4c4e63-8cd6-f0db-f807-796d18b428c4@intel.com>
+Date: Tue, 23 May 2023 10:06:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.11.0
 Content-Language: en-US
 To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
 References: <20230522202314.3939499-1-matthew.d.roper@intel.com>
- <20230522202314.3939499-6-matthew.d.roper@intel.com>
+ <20230522202314.3939499-7-matthew.d.roper@intel.com>
 From: Andrzej Hajda <andrzej.hajda@intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
  Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230522202314.3939499-6-matthew.d.roper@intel.com>
+In-Reply-To: <20230522202314.3939499-7-matthew.d.roper@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 5/6] drm/i915/display: Handle GMD_ID
- identification in display code
+Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm/i915/display: Move feature test
+ macros to intel_display_device.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,29 +70,8 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 22.05.2023 22:23, Matt Roper wrote:
-> For platforms with GMD_ID support (i.e., everything MTL and beyond),
-> identification of the display IP present should be based on the contents
-> of the GMD_ID register rather than a PCI devid match.
-> 
-> Note that since GMD_ID readout requires access to the PCI BAR, a slight
-> change to the driver init sequence is needed --- pci_enable_device() is
-> now called before i915_driver_create().
-> 
-> v2:
->   - Fix use of uninitialized i915 pointer in error path if
->     pci_enable_device() fails before the i915 device is created.  (lkp)
->   - Use drm_device parameter to intel_display_device_probe.  This goes
->     against i915 conventions, but since the primary goal here is to make
->     it easy to call this function from other drivers (like Xe) and since
->     we don't need anything from the i915 structure, this seems like an
->     exception where drm_device is a more natural fit.
-
-I am curious about how this driver separation will look like. I guess 
-there will be common struct for both drivers (i915, xe), lets call it 
-intel_display (maybe even existing one, slightly extended). In this case 
-intel_display_device_probe could use it instead of drm_device, but this 
-can wait for later conversion steps.
-
+> It makes sense to keep the display feature test macros centralized
+> within the display code.
 > 
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
@@ -100,199 +79,188 @@ Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
 Regards
 Andrzej
-
 > ---
->   .../drm/i915/display/intel_display_device.c   | 64 +++++++++++++++++--
->   .../drm/i915/display/intel_display_device.h   |  5 +-
->   drivers/gpu/drm/i915/i915_driver.c            | 17 +++--
->   drivers/gpu/drm/i915/intel_device_info.c      | 12 ++--
->   4 files changed, 81 insertions(+), 17 deletions(-)
+>   .../drm/i915/display/intel_display_device.h   | 40 +++++++++++++
+>   drivers/gpu/drm/i915/i915_drv.h               | 60 -------------------
+>   2 files changed, 40 insertions(+), 60 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-> index 3c5941c8788d..6605487c3890 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> @@ -6,7 +6,10 @@
->   #include <drm/i915_pciids.h>
->   #include <drm/drm_color_mgmt.h>
->   #include <linux/mod_devicetable.h>
-> +#include <linux/pci.h>
->   
-> +#include "i915_drv.h"
-> +#include "i915_reg.h"
->   #include "intel_display_device.h"
->   #include "intel_display_power.h"
->   #include "intel_display_reg_defs.h"
-> @@ -692,18 +695,69 @@ static const struct pci_device_id intel_display_ids[] = {
->   	INTEL_RPLP_IDS(&xe_lpd_display),
->   	INTEL_DG2_IDS(&xe_hpd_display),
->   
-> -	/* FIXME: Replace this with a GMD_ID lookup */
-> -	INTEL_MTL_IDS(&xe_lpdp_display),
-> +	/*
-> +	 * Do not add any GMD_ID-based platforms to this list.  They will
-> +	 * be probed automatically based on the IP version reported by
-> +	 * the hardware.
-> +	 */
->   };
->   
-> +struct {
-> +	u16 ver;
-> +	u16 rel;
-> +	const struct intel_display_device_info *display;
-> +} gmdid_display_map[] = {
-> +	{ 14,  0, &xe_lpdp_display },
-> +};
-> +
-> +static const struct intel_display_device_info *
-> +probe_gmdid_display(struct drm_device *drm, u16 *ver, u16 *rel, u16 *step)
-> +{
-> +	struct pci_dev *pdev = to_pci_dev(drm->dev);
-> +	void __iomem *addr;
-> +	u32 val;
-> +	int i;
-> +
-> +	addr = pci_iomap_range(pdev, 0, i915_mmio_reg_offset(GMD_ID_DISPLAY), sizeof(u32));
-> +	if (!addr) {
-> +		drm_err(drm, "Cannot map MMIO BAR to read display GMD_ID\n");
-> +		return &no_display;
-> +	}
-> +
-> +	val = ioread32(addr);
-> +	pci_iounmap(pdev, addr);
-> +
-> +	if (val == 0)
-> +		/* Platform doesn't have display */
-> +		return &no_display;
-> +
-> +	*ver = REG_FIELD_GET(GMD_ID_ARCH_MASK, val);
-> +	*rel = REG_FIELD_GET(GMD_ID_RELEASE_MASK, val);
-> +	*step = REG_FIELD_GET(GMD_ID_STEP, val);
-> +
-> +	for (i = 0; i < ARRAY_SIZE(gmdid_display_map); i++)
-> +		if (*ver == gmdid_display_map[i].ver &&
-> +		    *rel == gmdid_display_map[i].rel)
-> +			return gmdid_display_map[i].display;
-> +
-> +	drm_err(drm, "Unrecognized display IP version %d.%02d; disabling display.\n",
-> +		*ver, *rel);
-> +	return &no_display;
-> +}
-> +
->   const struct intel_display_device_info *
-> -intel_display_device_probe(u16 pci_devid)
-> +intel_display_device_probe(struct drm_device *drm, bool has_gmdid,
-> +			   u16 *gmdid_ver, u16 *gmdid_rel, u16 *gmdid_step)
->   {
-> +	struct pci_dev *pdev = to_pci_dev(drm->dev);
->   	int i;
->   
-> +	if (has_gmdid)
-> +		return probe_gmdid_display(drm, gmdid_ver, gmdid_rel, gmdid_step);
-> +
->   	for (i = 0; i < ARRAY_SIZE(intel_display_ids); i++) {
-> -		if (intel_display_ids[i].device == pci_devid)
-> -			return (struct intel_display_device_info *)intel_display_ids[i].driver_data;
-> +		if (intel_display_ids[i].device == pdev->device)
-> +			return (const struct intel_display_device_info *)intel_display_ids[i].driver_data;
->   	}
->   
->   	return &no_display;
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index 1f7d08b3ad6b..2a14943313ad 100644
+> index 2a14943313ad..343def9e7933 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_device.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -80,7 +80,10 @@ struct intel_display_device_info {
->   	} color;
->   };
+> @@ -29,6 +29,46 @@
+>   	func(overlay_needs_physical); \
+>   	func(supports_tv);
 >   
-> +struct drm_device;
+> +#define HAS_ASYNC_FLIPS(i915)		(DISPLAY_VER(i915) >= 5)
+> +#define HAS_CDCLK_CRAWL(i915)		(DISPLAY_INFO(i915)->has_cdclk_crawl)
+> +#define HAS_CDCLK_SQUASH(i915)		(DISPLAY_INFO(i915)->has_cdclk_squash)
+> +#define HAS_CUR_FBC(i915)		(!HAS_GMCH(i915) && DISPLAY_VER(i915) >= 7)
+> +#define HAS_D12_PLANE_MINIMIZATION(i915) (IS_ROCKETLAKE(i915) || IS_ALDERLAKE_S(i915))
+> +#define HAS_DDI(i915)			(DISPLAY_INFO(i915)->has_ddi)
+> +#define HAS_DISPLAY(i915)		(DISPLAY_RUNTIME_INFO(i915)->pipe_mask != 0)
+> +#define HAS_DMC(i915)			(DISPLAY_RUNTIME_INFO(i915)->has_dmc)
+> +#define HAS_DOUBLE_BUFFERED_M_N(i915)	(DISPLAY_VER(i915) >= 9 || IS_BROADWELL(i915))
+> +#define HAS_DP_MST(i915)		(DISPLAY_INFO(i915)->has_dp_mst)
+> +#define HAS_DP20(i915)			(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
+> +#define HAS_DPT(i915)			(DISPLAY_VER(i915) >= 13)
+> +#define HAS_DSB(i915)			(DISPLAY_INFO(i915)->has_dsb)
+> +#define HAS_DSC(__i915)			(DISPLAY_RUNTIME_INFO(__i915)->has_dsc)
+> +#define HAS_FBC(i915)			(DISPLAY_RUNTIME_INFO(i915)->fbc_mask != 0)
+> +#define HAS_FPGA_DBG_UNCLAIMED(i915)	(DISPLAY_INFO(i915)->has_fpga_dbg)
+> +#define HAS_FW_BLC(i915)		(DISPLAY_VER(i915) > 2)
+> +#define HAS_GMBUS_IRQ(i915)		(DISPLAY_VER(i915) >= 4)
+> +#define HAS_GMBUS_BURST_READ(i915)	(DISPLAY_VER(i915) >= 10 || IS_KABYLAKE(i915))
+> +#define HAS_GMCH(i915)			(DISPLAY_INFO(i915)->has_gmch)
+> +#define HAS_HW_SAGV_WM(i915)		(DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
+> +#define HAS_IPC(i915)			(DISPLAY_INFO(i915)->has_ipc)
+> +#define HAS_IPS(i915)			(IS_HSW_ULT(i915) || IS_BROADWELL(i915))
+> +#define HAS_LSPCON(i915)		(IS_DISPLAY_VER(i915, 9, 10))
+> +#define HAS_MBUS_JOINING(i915)		(IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
+> +#define HAS_MSO(i915)			(DISPLAY_VER(i915) >= 12)
+> +#define HAS_OVERLAY(i915)		(DISPLAY_INFO(i915)->has_overlay)
+> +#define HAS_PSR(i915)			(DISPLAY_INFO(i915)->has_psr)
+> +#define HAS_PSR_HW_TRACKING(i915)	(DISPLAY_INFO(i915)->has_psr_hw_tracking)
+> +#define HAS_PSR2_SEL_FETCH(i915)	(DISPLAY_VER(i915) >= 12)
+> +#define HAS_SAGV(i915)			(DISPLAY_VER(i915) >= 9 && !IS_LP(i915))
+> +#define HAS_TRANSCODER(i915, trans)	((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & \
+> +					  BIT(trans)) != 0)
+> +#define HAS_VRR(i915)			(DISPLAY_VER(i915) >= 11)
+> +#define INTEL_NUM_PIPES(i915)		(hweight8(DISPLAY_RUNTIME_INFO(i915)->pipe_mask))
+> +#define I915_HAS_HOTPLUG(i915)		(DISPLAY_INFO(i915)->has_hotplug)
+> +#define OVERLAY_NEEDS_PHYSICAL(i915)	(DISPLAY_INFO(i915)->overlay_needs_physical)
+> +#define SUPPORTS_TV(i915)		(DISPLAY_INFO(i915)->supports_tv)
 > +
->   const struct intel_display_device_info *
-> -intel_display_device_probe(u16 pci_devid);
-> +intel_display_device_probe(struct drm_device *drm, bool has_gmdid,
-> +			   u16 *ver, u16 *rel, u16 *step);
+> +
+>   struct intel_display_runtime_info {
+>   	struct {
+>   		u16 ver;
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 7a8a12d12790..64f383fe7e23 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -785,10 +785,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   	((sizes) & ~RUNTIME_INFO(i915)->page_sizes) == 0; \
+>   })
 >   
->   #endif
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 522733a89946..37532e55327d 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -754,13 +754,17 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->   	struct drm_i915_private *i915;
->   	int ret;
->   
-> -	i915 = i915_driver_create(pdev, ent);
-> -	if (IS_ERR(i915))
-> -		return PTR_ERR(i915);
+> -#define HAS_OVERLAY(i915)		 (DISPLAY_INFO(i915)->has_overlay)
+> -#define OVERLAY_NEEDS_PHYSICAL(i915) \
+> -		(DISPLAY_INFO(i915)->overlay_needs_physical)
 > -
->   	ret = pci_enable_device(pdev);
-> -	if (ret)
-> -		goto out_fini;
-> +	if (ret) {
-> +		pr_err("Failed to enable graphics device: %pe\n", ERR_PTR(ret));
-> +		return ret;
-> +	}
-> +
-> +	i915 = i915_driver_create(pdev, ent);
-> +	if (IS_ERR(i915)) {
-> +		ret = PTR_ERR(i915);
-> +		goto out_pci_disable;
-> +	}
+>   /* Early gen2 have a totally busted CS tlb and require pinned batches. */
+>   #define HAS_BROKEN_CS_TLB(i915)	(IS_I830(i915) || IS_I845G(i915))
 >   
->   	ret = i915_driver_early_probe(i915);
->   	if (ret < 0)
-> @@ -843,7 +847,6 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->   	i915_driver_late_release(i915);
->   out_pci_disable:
->   	pci_disable_device(pdev);
-> -out_fini:
->   	i915_probe_error(i915, "Device initialization failed (%d)\n", ret);
->   	return ret;
->   }
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index e1507ae59f2d..85105639d55d 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -345,7 +345,6 @@ static void ip_ver_read(struct drm_i915_private *i915, u32 offset, struct intel_
->   static void intel_ipver_early_init(struct drm_i915_private *i915)
->   {
->   	struct intel_runtime_info *runtime = RUNTIME_INFO(i915);
-> -	struct intel_display_runtime_info *display_runtime = DISPLAY_RUNTIME_INFO(i915);
+> @@ -799,41 +795,12 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   #define NEEDS_WaRsDisableCoarsePowerGating(i915)			\
+>   	(IS_SKL_GT3(i915) || IS_SKL_GT4(i915))
 >   
->   	if (!HAS_GMD_ID(i915)) {
->   		drm_WARN_ON(&i915->drm, RUNTIME_INFO(i915)->graphics.ip.ver > 12);
-> @@ -366,8 +365,6 @@ static void intel_ipver_early_init(struct drm_i915_private *i915)
->   		RUNTIME_INFO(i915)->graphics.ip.ver = 12;
->   		RUNTIME_INFO(i915)->graphics.ip.rel = 70;
->   	}
-> -	ip_ver_read(i915, i915_mmio_reg_offset(GMD_ID_DISPLAY),
-> -		    (struct intel_ip_version *)&display_runtime->ip);
->   	ip_ver_read(i915, i915_mmio_reg_offset(GMD_ID_MEDIA),
->   		    &runtime->media.ip);
->   }
-> @@ -574,6 +571,7 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
->   {
->   	struct intel_device_info *info;
->   	struct intel_runtime_info *runtime;
-> +	u16 ver, rel, step;
+> -#define HAS_GMBUS_IRQ(i915) (DISPLAY_VER(i915) >= 4)
+> -#define HAS_GMBUS_BURST_READ(i915) (DISPLAY_VER(i915) >= 11 || \
+> -					IS_GEMINILAKE(i915) || \
+> -					IS_KABYLAKE(i915))
+> -
+>   /* With the 945 and later, Y tiling got adjusted so that it was 32 128-byte
+>    * rows, which changed the alignment requirements and fence programming.
+>    */
+>   #define HAS_128_BYTE_Y_TILING(i915) (GRAPHICS_VER(i915) != 2 && \
+>   					 !(IS_I915G(i915) || IS_I915GM(i915)))
+> -#define SUPPORTS_TV(i915)		(DISPLAY_INFO(i915)->supports_tv)
+> -#define I915_HAS_HOTPLUG(i915)	(DISPLAY_INFO(i915)->has_hotplug)
 >   
->   	/* Setup the write-once "constant" device info */
->   	info = mkwrite_device_info(i915);
-> @@ -584,8 +582,14 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
->   	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
+> -#define HAS_FW_BLC(i915)	(DISPLAY_VER(i915) > 2)
+> -#define HAS_FBC(i915)	(DISPLAY_RUNTIME_INFO(i915)->fbc_mask != 0)
+> -#define HAS_CUR_FBC(i915)	(!HAS_GMCH(i915) && DISPLAY_VER(i915) >= 7)
+> -
+> -#define HAS_DPT(i915)	(DISPLAY_VER(i915) >= 13)
+> -
+> -#define HAS_IPS(i915)	(IS_HSW_ULT(i915) || IS_BROADWELL(i915))
+> -
+> -#define HAS_DP_MST(i915)	(DISPLAY_INFO(i915)->has_dp_mst)
+> -#define HAS_DP20(i915)	(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
+> -
+> -#define HAS_DOUBLE_BUFFERED_M_N(i915)	(DISPLAY_VER(i915) >= 9 || IS_BROADWELL(i915))
+> -
+> -#define HAS_CDCLK_CRAWL(i915)	 (DISPLAY_INFO(i915)->has_cdclk_crawl)
+> -#define HAS_CDCLK_SQUASH(i915)	 (DISPLAY_INFO(i915)->has_cdclk_squash)
+> -#define HAS_DDI(i915)		 (DISPLAY_INFO(i915)->has_ddi)
+> -#define HAS_FPGA_DBG_UNCLAIMED(i915) (DISPLAY_INFO(i915)->has_fpga_dbg)
+> -#define HAS_PSR(i915)		 (DISPLAY_INFO(i915)->has_psr)
+> -#define HAS_PSR_HW_TRACKING(i915) \
+> -	(DISPLAY_INFO(i915)->has_psr_hw_tracking)
+> -#define HAS_PSR2_SEL_FETCH(i915)	 (DISPLAY_VER(i915) >= 12)
+> -#define HAS_TRANSCODER(i915, trans)	 ((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & BIT(trans)) != 0)
 >   
->   	/* Probe display support */
-> -	info->display = intel_display_device_probe(device_id);
-> +	info->display = intel_display_device_probe(&i915->drm, info->has_gmd_id,
-> +						   &ver, &rel, &step);
->   	*DISPLAY_RUNTIME_INFO(i915) = DISPLAY_INFO(i915)->__runtime_defaults;
-> +	if (info->has_gmd_id) {
-> +		DISPLAY_RUNTIME_INFO(i915)->ip.ver = ver;
-> +		DISPLAY_RUNTIME_INFO(i915)->ip.rel = rel;
-> +		DISPLAY_RUNTIME_INFO(i915)->ip.step = step;
-> +	}
+>   #define HAS_RC6(i915)		 (INTEL_INFO(i915)->has_rc6)
+>   #define HAS_RC6p(i915)		 (INTEL_INFO(i915)->has_rc6p)
+> @@ -841,11 +808,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
 >   
->   	runtime->device_id = device_id;
->   }
+>   #define HAS_RPS(i915)	(INTEL_INFO(i915)->has_rps)
+>   
+> -#define HAS_DMC(i915)	(DISPLAY_RUNTIME_INFO(i915)->has_dmc)
+> -#define HAS_DSB(i915)	(DISPLAY_INFO(i915)->has_dsb)
+> -#define HAS_DSC(__i915)		(DISPLAY_RUNTIME_INFO(__i915)->has_dsc)
+> -#define HAS_HW_SAGV_WM(i915) (DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
+> -
+>   #define HAS_HECI_PXP(i915) \
+>   	(INTEL_INFO(i915)->has_heci_pxp)
+>   
+> @@ -854,8 +816,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   
+>   #define HAS_HECI_GSC(i915) (HAS_HECI_PXP(i915) || HAS_HECI_GSCFI(i915))
+>   
+> -#define HAS_MSO(i915)		(DISPLAY_VER(i915) >= 12)
+> -
+>   #define HAS_RUNTIME_PM(i915) (INTEL_INFO(i915)->has_runtime_pm)
+>   #define HAS_64BIT_RELOC(i915) (INTEL_INFO(i915)->has_64bit_reloc)
+>   
+> @@ -872,9 +832,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>    */
+>   #define HAS_64K_PAGES(i915) (INTEL_INFO(i915)->has_64k_pages)
+>   
+> -#define HAS_IPC(i915)		(DISPLAY_INFO(i915)->has_ipc)
+> -#define HAS_SAGV(i915)		(DISPLAY_VER(i915) >= 9 && !IS_LP(i915))
+> -
+>   #define HAS_REGION(i915, i) (RUNTIME_INFO(i915)->memory_regions & (i))
+>   #define HAS_LMEM(i915) HAS_REGION(i915, REGION_LMEM)
+>   
+> @@ -892,12 +849,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   
+>   #define HAS_GLOBAL_MOCS_REGISTERS(i915)	(INTEL_INFO(i915)->has_global_mocs)
+>   
+> -#define HAS_GMCH(i915) (DISPLAY_INFO(i915)->has_gmch)
+> -
+>   #define HAS_GMD_ID(i915)	(INTEL_INFO(i915)->has_gmd_id)
+>   
+> -#define HAS_LSPCON(i915) (IS_DISPLAY_VER(i915, 9, 10))
+> -
+>   #define HAS_L3_CCS_READ(i915) (INTEL_INFO(i915)->has_l3_ccs_read)
+>   
+>   /* DPF == dynamic parity feature */
+> @@ -905,14 +858,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   #define NUM_L3_SLICES(i915) (IS_HSW_GT3(i915) ? \
+>   				 2 : HAS_L3_DPF(i915))
+>   
+> -#define INTEL_NUM_PIPES(i915) (hweight8(DISPLAY_RUNTIME_INFO(i915)->pipe_mask))
+> -
+> -#define HAS_DISPLAY(i915) (DISPLAY_RUNTIME_INFO(i915)->pipe_mask != 0)
+> -
+> -#define HAS_VRR(i915)	(DISPLAY_VER(i915) >= 11)
+> -
+> -#define HAS_ASYNC_FLIPS(i915)		(DISPLAY_VER(i915) >= 5)
+> -
+>   /* Only valid when HAS_DISPLAY() is true */
+>   #define INTEL_DISPLAY_ENABLED(i915) \
+>   	(drm_WARN_ON(&(i915)->drm, !HAS_DISPLAY(i915)),		\
+> @@ -922,11 +867,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>   #define HAS_GUC_DEPRIVILEGE(i915) \
+>   	(INTEL_INFO(i915)->has_guc_deprivilege)
+>   
+> -#define HAS_D12_PLANE_MINIMIZATION(i915) (IS_ROCKETLAKE(i915) || \
+> -					      IS_ALDERLAKE_S(i915))
+> -
+> -#define HAS_MBUS_JOINING(i915) (IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
+> -
+>   #define HAS_3D_PIPELINE(i915)	(INTEL_INFO(i915)->has_3d_pipeline)
+>   
+>   #define HAS_ONE_EU_PER_FUSE_BIT(i915)	(INTEL_INFO(i915)->has_one_eu_per_fuse_bit)
 
