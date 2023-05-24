@@ -1,77 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E614270FF17
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 22:20:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DC0470FF27
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 22:23:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DFA510E60B;
-	Wed, 24 May 2023 20:20:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07B1510E68B;
+	Wed, 24 May 2023 20:23:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2074510E60B
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 May 2023 20:20:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1684959604;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EegkfqA5EXlXDaMvCtZ7J4hr1cwSStqvb2N7Cuhj6OE=;
- b=e65UivLOZ9Nbc/i6q+36HDYHMgqRZGmKlpjXqTex9e0g2KJpvGNV6Cy8pNIwIsLEMqArq4
- JQeHs4JjTixwskbBivfayAbJaq0TYsnLG5K2BNHKOJi4lj79QZx0LjBzoGCKJUGfm2Sa4I
- f7hqnZ3WsmbcbARwAzS17Isq0PPmkQA=
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-510-RK3d8hqWOx-PQg2KWrnh4Q-1; Wed, 24 May 2023 16:20:01 -0400
-X-MC-Unique: RK3d8hqWOx-PQg2KWrnh4Q-1
-Received: by mail-il1-f200.google.com with SMTP id
- e9e14a558f8ab-3381af7e466so19545015ab.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 May 2023 13:20:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684959600; x=1687551600;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=EegkfqA5EXlXDaMvCtZ7J4hr1cwSStqvb2N7Cuhj6OE=;
- b=gG69hXEyVIHk941G2wM/yeMmpTTIcjdNdLWa7xbqxxpJv7+YZT9Wq6qO8GsqWENpKY
- 26XIGR2QATwZftanopecgv6fDedk5cx4+f5KAVIJIm6PSUfz5oOZXkJmsVsnBbeiK8NV
- 1HVyOAfBGWTVaslSf0N2uRlJ+LMJBQ6mTEjXDbGzQz0116w5j3uFzRS9sWbIcahKxiSd
- aZQHxqswC7KoE4vRkIJLey1UnDSO2ZK6JOE6UBhPVXzBxZHrjlUE/gfUfvNPZIPNbTi/
- P6ICB9SoYO3WEg4Yp6l2Lls6uueBoZgFm63CJqlThdwV29iU9uwJoauhLnBFzYZ3sr3j
- wEyg==
-X-Gm-Message-State: AC+VfDxsfcfAHjsHNMblDgsQJTeqM629uZHQBmuUcO8YrdMJUDw1L1wi
- mruk7RyPFzq9XyVL1nu7x2IcGMblZyx9JmtweWLViZRzFF7WBJR0MSYwgISCJv7+bxaZepHtNUM
- glpyq1wOS3y96PBtzQ+0luG38fKew
-X-Received: by 2002:a92:d389:0:b0:328:8770:b9c2 with SMTP id
- o9-20020a92d389000000b003288770b9c2mr12706854ilo.14.1684959600173; 
- Wed, 24 May 2023 13:20:00 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ6FYSLSN+5lwBDopAeR4Gv749KmekrgMjBNu5QEmxHCyoEg5poCQBqc1LLm7wH3pqfsS9JOPQ==
-X-Received: by 2002:a92:d389:0:b0:328:8770:b9c2 with SMTP id
- o9-20020a92d389000000b003288770b9c2mr12706825ilo.14.1684959599888; 
- Wed, 24 May 2023 13:19:59 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- b1-20020a029581000000b003c4e02148e5sm3333184jai.53.2023.05.24.13.19.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 May 2023 13:19:59 -0700 (PDT)
-Date: Wed, 24 May 2023 14:19:56 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Yi Liu <yi.l.liu@intel.com>
-Message-ID: <20230524141956.3655fab5.alex.williamson@redhat.com>
-In-Reply-To: <20230522115751.326947-11-yi.l.liu@intel.com>
-References: <20230522115751.326947-1-yi.l.liu@intel.com>
- <20230522115751.326947-11-yi.l.liu@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+Received: from 189.cn (ptr.189.cn [183.61.185.104])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 592A610E60B;
+ Wed, 24 May 2023 20:23:17 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.43:58108.1468850436
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
+ by 189.cn (HERMES) with SMTP id B33AC100180;
+ Thu, 25 May 2023 04:23:11 +0800 (CST)
+Received: from  ([114.242.206.180])
+ by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
+ 2b835748eb104f6ba76bb66e8bd6e61b for tzimmermann@suse.de; 
+ Thu, 25 May 2023 04:23:13 CST
+X-Transaction-ID: 2b835748eb104f6ba76bb66e8bd6e61b
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Message-ID: <9e7588e4-8d4e-99a9-e39f-7b94cc8e3ad4@189.cn>
+Date: Thu, 25 May 2023 04:23:11 +0800
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ javierm@redhat.com, sam@ravnborg.org
+References: <20230524092150.11776-13-tzimmermann@suse.de>
+Content-Language: en-US
+From: Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <20230524092150.11776-13-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v6 10/10] vfio/pci: Allow passing
- zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+Subject: Re: [Intel-gfx] [v4,
+ 12/13] drm/fbdev-generic: Implement dedicated fbdev I/O helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,209 +54,323 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
- chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, kvm@vger.kernel.org,
- lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
- jgg@nvidia.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
- eric.auger@redhat.com, intel-gvt-dev@lists.freedesktop.org,
- yi.y.sun@linux.intel.com, clegoate@redhat.com, cohuck@redhat.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- robin.murphy@arm.com
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 22 May 2023 04:57:51 -0700
-Yi Liu <yi.l.liu@intel.com> wrote:
+Tested-by: Sui Jingfeng <suijingfeng@loongson.cn>
 
-> This is the way user to invoke hot-reset for the devices opened by cdev
-> interface. User should check the flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED
-> in the output of VFIO_DEVICE_GET_PCI_HOT_RESET_INFO ioctl before doing
-> hot-reset for cdev devices.
-> 
-> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+
+This version works fine, I have tested it On LoongArch with 
+drm/loongson(v14) as it is most handy for me.
+
+Also because it using fbdev-generic. fbdev of IGT report no error. Then 
+I run fbtest from geert[1],
+
+
+Before apply your patch:
+
+
+Benchmarking... 10x10 squares: 468.39 Mpixels/s
+Benchmarking... 20x20 squares: 985.02 Mpixels/s
+Benchmarking... 50x50 squares: 2247.22 Mpixels/s
+Benchmarking... 100x100 squares: 2242.30 Mpixels/s
+Benchmarking... 200x200 squares: 2883.18 Mpixels/s
+Benchmarking... 500x500 squares: 3642.18 Mpixels/s
+Benchmarking... 1000x1000 squares: 3992.77 Mpixels/s
+Benchmarking... R5 circles: 261.90 Mpixels/s
+Benchmarking... R10 circles: 596.27 Mpixels/s
+Benchmarking... R25 circles: 1513.96 Mpixels/s
+Benchmarking... R50 circles: 1965.07 Mpixels/s
+Benchmarking... R100 circles: 2470.75 Mpixels/s
+Benchmarking... R250 circles: 3288.00 Mpixels/s
+Benchmarking... R500 circles: 3705.66 Mpixels/s
+
+
+After apply your patch:
+
+
+Benchmarking... 10x10 squares: 477.04 Mpixels/s
+Benchmarking... 20x20 squares: 1021.07 Mpixels/s
+Benchmarking... 50x50 squares: 2315.70 Mpixels/s
+Benchmarking... 100x100 squares: 2267.69 Mpixels/s
+Benchmarking... 200x200 squares: 3006.28 Mpixels/s
+Benchmarking... 500x500 squares: 3761.44 Mpixels/s
+Benchmarking... 1000x1000 squares: 4112.49 Mpixels/s
+Benchmarking... R5 circles: 269.19 Mpixels/s
+Benchmarking... R10 circles: 620.77 Mpixels/s
+Benchmarking... R25 circles: 1559.02 Mpixels/s
+Benchmarking... R50 circles: 2027.36 Mpixels/s
+Benchmarking... R100 circles: 2574.42 Mpixels/s
+Benchmarking... R250 circles: 3363.28 Mpixels/s
+Benchmarking... R500 circles: 3815.51 Mpixels/s
+
+
+It seems that this bring a little bit performance gain.
+
+Directly operate on video RAM is slower than have a shadow in system RAM.
+
+I also test this patch in intel i3-8100 @ 3.6Ghz, the results show that 
+i915 is a bit slower.
+
+Because it operate directly on device memory.
+
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/fbtest.git
+
+
+On 2023/5/24 17:21, Thomas Zimmermann wrote:
+> Implement dedicated fbdev helpers for framebuffer I/O instead
+> of using DRM's helpers. Use an fbdev generator macro for
+> deferred I/O to create the callbacks. Fbdev-generic was the
+> only caller of the DRM helpers, so remove them from the helper
+> module.
+>
+> v4:
+> 	* generate deferred-I/O helpers
+> 	* use initializer macros for fb_ops
+> v2:
+> 	* use FB_SYS_HELPERS_DEFERRED option
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 > ---
->  drivers/vfio/pci/vfio_pci_core.c | 56 +++++++++++++++++++++++++-------
->  include/uapi/linux/vfio.h        | 14 ++++++++
->  2 files changed, 59 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
-> index 890065f846e4..67f1cb426505 100644
-> --- a/drivers/vfio/pci/vfio_pci_core.c
-> +++ b/drivers/vfio/pci/vfio_pci_core.c
-> @@ -181,7 +181,8 @@ static void vfio_pci_probe_mmaps(struct vfio_pci_core_device *vdev)
->  struct vfio_pci_group_info;
->  static void vfio_pci_dev_set_try_reset(struct vfio_device_set *dev_set);
->  static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
-> -				      struct vfio_pci_group_info *groups);
-> +				      struct vfio_pci_group_info *groups,
-> +				      struct iommufd_ctx *iommufd_ctx);
->  
->  /*
->   * INTx masking requires the ability to disable INTx signaling via PCI_COMMAND
-> @@ -1301,8 +1302,7 @@ vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
->  	if (ret)
->  		return ret;
->  
-> -	/* Somewhere between 1 and count is OK */
-> -	if (!array_count || array_count > count)
-> +	if (array_count > count || vfio_device_cdev_opened(&vdev->vdev))
->  		return -EINVAL;
->  
->  	group_fds = kcalloc(array_count, sizeof(*group_fds), GFP_KERNEL);
-> @@ -1351,7 +1351,7 @@ vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
->  	info.count = array_count;
->  	info.files = files;
->  
-> -	ret = vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, &info);
-> +	ret = vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, &info, NULL);
->  
->  hot_reset_release:
->  	for (file_idx--; file_idx >= 0; file_idx--)
-> @@ -1380,7 +1380,11 @@ static int vfio_pci_ioctl_pci_hot_reset(struct vfio_pci_core_device *vdev,
->  	else if (pci_probe_reset_bus(vdev->pdev->bus))
->  		return -ENODEV;
->  
-> -	return vfio_pci_ioctl_pci_hot_reset_groups(vdev, hdr.count, slot, arg);
-> +	if (hdr.count)
-> +		return vfio_pci_ioctl_pci_hot_reset_groups(vdev, hdr.count, slot, arg);
+>   drivers/gpu/drm/Kconfig             |   6 +-
+>   drivers/gpu/drm/drm_fb_helper.c     | 107 ----------------------------
+>   drivers/gpu/drm/drm_fbdev_generic.c |  11 ++-
+>   include/drm/drm_fb_helper.h         |  41 -----------
+>   4 files changed, 6 insertions(+), 159 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 77fb10ddd8a2..92a782827b7b 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -95,6 +95,7 @@ config DRM_KUNIT_TEST
+>   config DRM_KMS_HELPER
+>   	tristate
+>   	depends on DRM
+> +	select FB_SYS_HELPERS_DEFERRED if DRM_FBDEV_EMULATION
+>   	help
+>   	  CRTC helpers for KMS drivers.
+>   
+> @@ -135,11 +136,6 @@ config DRM_FBDEV_EMULATION
+>   	select FB_CFB_FILLRECT
+>   	select FB_CFB_COPYAREA
+>   	select FB_CFB_IMAGEBLIT
+> -	select FB_DEFERRED_IO
+> -	select FB_SYS_FOPS
+> -	select FB_SYS_FILLRECT
+> -	select FB_SYS_COPYAREA
+> -	select FB_SYS_IMAGEBLIT
+>   	select FRAMEBUFFER_CONSOLE if !EXPERT
+>   	select FRAMEBUFFER_CONSOLE_DETECT_PRIMARY if FRAMEBUFFER_CONSOLE
+>   	default y
+> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+> index cb03099fd2e3..bab6b252f02a 100644
+> --- a/drivers/gpu/drm/drm_fb_helper.c
+> +++ b/drivers/gpu/drm/drm_fb_helper.c
+> @@ -736,113 +736,6 @@ void drm_fb_helper_deferred_io(struct fb_info *info, struct list_head *pagerefli
+>   }
+>   EXPORT_SYMBOL(drm_fb_helper_deferred_io);
+>   
+> -/**
+> - * drm_fb_helper_sys_read - Implements struct &fb_ops.fb_read for system memory
+> - * @info: fb_info struct pointer
+> - * @buf: userspace buffer to read from framebuffer memory
+> - * @count: number of bytes to read from framebuffer memory
+> - * @ppos: read offset within framebuffer memory
+> - *
+> - * Returns:
+> - * The number of bytes read on success, or an error code otherwise.
+> - */
+> -ssize_t drm_fb_helper_sys_read(struct fb_info *info, char __user *buf,
+> -			       size_t count, loff_t *ppos)
+> -{
+> -	return fb_sys_read(info, buf, count, ppos);
+> -}
+> -EXPORT_SYMBOL(drm_fb_helper_sys_read);
+> -
+> -/**
+> - * drm_fb_helper_sys_write - Implements struct &fb_ops.fb_write for system memory
+> - * @info: fb_info struct pointer
+> - * @buf: userspace buffer to write to framebuffer memory
+> - * @count: number of bytes to write to framebuffer memory
+> - * @ppos: write offset within framebuffer memory
+> - *
+> - * Returns:
+> - * The number of bytes written on success, or an error code otherwise.
+> - */
+> -ssize_t drm_fb_helper_sys_write(struct fb_info *info, const char __user *buf,
+> -				size_t count, loff_t *ppos)
+> -{
+> -	struct drm_fb_helper *helper = info->par;
+> -	loff_t pos = *ppos;
+> -	ssize_t ret;
+> -	struct drm_rect damage_area;
+> -
+> -	ret = fb_sys_write(info, buf, count, ppos);
+> -	if (ret <= 0)
+> -		return ret;
+> -
+> -	if (helper->funcs->fb_dirty) {
+> -		drm_fb_helper_memory_range_to_clip(info, pos, ret, &damage_area);
+> -		drm_fb_helper_damage(helper, damage_area.x1, damage_area.y1,
+> -				     drm_rect_width(&damage_area),
+> -				     drm_rect_height(&damage_area));
+> -	}
+> -
+> -	return ret;
+> -}
+> -EXPORT_SYMBOL(drm_fb_helper_sys_write);
+> -
+> -/**
+> - * drm_fb_helper_sys_fillrect - wrapper around sys_fillrect
+> - * @info: fbdev registered by the helper
+> - * @rect: info about rectangle to fill
+> - *
+> - * A wrapper around sys_fillrect implemented by fbdev core
+> - */
+> -void drm_fb_helper_sys_fillrect(struct fb_info *info,
+> -				const struct fb_fillrect *rect)
+> -{
+> -	struct drm_fb_helper *helper = info->par;
+> -
+> -	sys_fillrect(info, rect);
+> -
+> -	if (helper->funcs->fb_dirty)
+> -		drm_fb_helper_damage(helper, rect->dx, rect->dy, rect->width, rect->height);
+> -}
+> -EXPORT_SYMBOL(drm_fb_helper_sys_fillrect);
+> -
+> -/**
+> - * drm_fb_helper_sys_copyarea - wrapper around sys_copyarea
+> - * @info: fbdev registered by the helper
+> - * @area: info about area to copy
+> - *
+> - * A wrapper around sys_copyarea implemented by fbdev core
+> - */
+> -void drm_fb_helper_sys_copyarea(struct fb_info *info,
+> -				const struct fb_copyarea *area)
+> -{
+> -	struct drm_fb_helper *helper = info->par;
+> -
+> -	sys_copyarea(info, area);
+> -
+> -	if (helper->funcs->fb_dirty)
+> -		drm_fb_helper_damage(helper, area->dx, area->dy, area->width, area->height);
+> -}
+> -EXPORT_SYMBOL(drm_fb_helper_sys_copyarea);
+> -
+> -/**
+> - * drm_fb_helper_sys_imageblit - wrapper around sys_imageblit
+> - * @info: fbdev registered by the helper
+> - * @image: info about image to blit
+> - *
+> - * A wrapper around sys_imageblit implemented by fbdev core
+> - */
+> -void drm_fb_helper_sys_imageblit(struct fb_info *info,
+> -				 const struct fb_image *image)
+> -{
+> -	struct drm_fb_helper *helper = info->par;
+> -
+> -	sys_imageblit(info, image);
+> -
+> -	if (helper->funcs->fb_dirty)
+> -		drm_fb_helper_damage(helper, image->dx, image->dy, image->width, image->height);
+> -}
+> -EXPORT_SYMBOL(drm_fb_helper_sys_imageblit);
+> -
+>   /**
+>    * drm_fb_helper_cfb_read - Implements struct &fb_ops.fb_read for I/O memory
+>    * @info: fb_info struct pointer
+> diff --git a/drivers/gpu/drm/drm_fbdev_generic.c b/drivers/gpu/drm/drm_fbdev_generic.c
+> index 8e5148bf40bb..98ae703848a0 100644
+> --- a/drivers/gpu/drm/drm_fbdev_generic.c
+> +++ b/drivers/gpu/drm/drm_fbdev_generic.c
+> @@ -34,6 +34,10 @@ static int drm_fbdev_generic_fb_release(struct fb_info *info, int user)
+>   	return 0;
+>   }
+>   
+> +FB_GEN_DEFAULT_DEFERRED_SYS_OPS(drm_fbdev_generic,
+> +				drm_fb_helper_damage_range,
+> +				drm_fb_helper_damage_area);
 > +
-> +	return vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, NULL,
-> +					  vfio_iommufd_device_ictx(&vdev->vdev));
->  }
->  
->  static int vfio_pci_ioctl_ioeventfd(struct vfio_pci_core_device *vdev,
-> @@ -2347,13 +2351,16 @@ const struct pci_error_handlers vfio_pci_core_err_handlers = {
->  };
->  EXPORT_SYMBOL_GPL(vfio_pci_core_err_handlers);
->  
-> -static bool vfio_dev_in_groups(struct vfio_pci_core_device *vdev,
-> +static bool vfio_dev_in_groups(struct vfio_device *vdev,
->  			       struct vfio_pci_group_info *groups)
->  {
->  	unsigned int i;
->  
-> +	if (!groups)
-> +		return false;
-> +
->  	for (i = 0; i < groups->count; i++)
-> -		if (vfio_file_has_dev(groups->files[i], &vdev->vdev))
-> +		if (vfio_file_has_dev(groups->files[i], vdev))
->  			return true;
->  	return false;
->  }
-> @@ -2429,7 +2436,8 @@ static int vfio_pci_dev_set_pm_runtime_get(struct vfio_device_set *dev_set)
->   * get each memory_lock.
->   */
->  static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
-> -				      struct vfio_pci_group_info *groups)
-> +				      struct vfio_pci_group_info *groups,
-> +				      struct iommufd_ctx *iommufd_ctx)
->  {
->  	struct vfio_pci_core_device *cur_mem;
->  	struct vfio_pci_core_device *cur_vma;
-> @@ -2459,11 +2467,37 @@ static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
->  		goto err_unlock;
->  
->  	list_for_each_entry(cur_vma, &dev_set->device_list, vdev.dev_set_list) {
-> +		bool owned;
-> +
->  		/*
-> -		 * Test whether all the affected devices are contained by the
-> -		 * set of groups provided by the user.
-> +		 * Test whether all the affected devices can be reset by the
-> +		 * user.
-> +		 *
-> +		 * If the user provides a set of groups, all the devices
-> +		 * in the dev_set should be contained by the set of groups
-> +		 * provided by the user.
-
-"If called from a group opened device and the user provides a set of
-groups,..."
-
-> +		 *
-> +		 * If the user provides a zero-length group fd array, then
-
-"If called from a cdev opened device and the user provides a
-zero-length array,..."
-
-
-> +		 * all the devices in the dev_set must be bound to the same
-> +		 * iommufd_ctx as the input iommufd_ctx.  If there is any
-> +		 * device that has not been bound to iommufd_ctx yet, check
-> +		 * if its iommu_group has any device bound to the input
-> +		 * iommufd_ctx Such devices can be considered owned by
-
-"."...........................^
-
-> +		 * the input iommufd_ctx as the device cannot be owned
-> +		 * by another iommufd_ctx when its iommu_group is owned.
-> +		 *
-> +		 * Otherwise, reset is not allowed.
-
-
-In the case where a non-null array is provided,
-vfio_pci_ioctl_pci_hot_reset_groups() explicitly tests
-vfio_device_cdev_opened(), so we exclude cdev devices from providing a
-group list.  However, what prevents a compat opened group device from
-providing a null array?
-
-I thought it would be that this function is called with groups == NULL
-and therefore the vfio_dev_in_groups() test below fails, but I don't
-think that's true for a compat opened device.  Thanks,
-
-Alex
-
-
->  		 */
-> -		if (!vfio_dev_in_groups(cur_vma, groups)) {
-> +		if (iommufd_ctx) {
-> +			int devid = vfio_iommufd_device_hot_reset_devid(&cur_vma->vdev,
-> +									iommufd_ctx);
-> +
-> +			owned = (devid != VFIO_PCI_DEVID_NOT_OWNED);
-> +		} else {
-> +			owned = vfio_dev_in_groups(&cur_vma->vdev, groups);
-> +		}
-> +
-> +		if (!owned) {
->  			ret = -EINVAL;
->  			goto err_undo;
->  		}
-> diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
-> index 01203215251a..24858b650562 100644
-> --- a/include/uapi/linux/vfio.h
-> +++ b/include/uapi/linux/vfio.h
-> @@ -686,6 +686,9 @@ enum {
->   *	  Flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED would be set when all the
->   *	  affected devices are owned by the user.  This flag is available only
->   *	  when VFIO_PCI_HOT_RESET_FLAG_DEV_ID is set, otherwise reserved.
-> + *	  When set, user could invoke VFIO_DEVICE_PCI_HOT_RESET with a zero
-> + *	  length fd array on the calling device as the ownership is validated
-> + *	  by iommufd_ctx.
->   *
->   * Return: 0 on success, -errno on failure:
->   *	-enospc = insufficient buffer, -enodev = unsupported for device.
-> @@ -717,6 +720,17 @@ struct vfio_pci_hot_reset_info {
->   * VFIO_DEVICE_PCI_HOT_RESET - _IOW(VFIO_TYPE, VFIO_BASE + 13,
->   *				    struct vfio_pci_hot_reset)
->   *
-> + * Userspace requests hot reset for the devices it operates.  Due to the
-> + * underlying topology, multiple devices can be affected in the reset
-> + * while some might be opened by another user.  To avoid interference
-> + * the calling user must ensure all affected devices are owned by itself.
-> + *
-> + * As the ownership described by VFIO_DEVICE_GET_PCI_HOT_RESET_INFO, the
-> + * cdev opened devices must exclusively provide a zero-length fd array and
-> + * the group opened devices must exclusively use an array of group fds for
-> + * proof of ownership.  Mixed access to devices between cdev and legacy
-> + * groups are not supported by this interface.
-> + *
->   * Return: 0 on success, -errno on failure.
->   */
->  struct vfio_pci_hot_reset {
-
+>   static void drm_fbdev_generic_fb_destroy(struct fb_info *info)
+>   {
+>   	struct drm_fb_helper *fb_helper = info->par;
+> @@ -56,13 +60,8 @@ static const struct fb_ops drm_fbdev_generic_fb_ops = {
+>   	.owner		= THIS_MODULE,
+>   	.fb_open	= drm_fbdev_generic_fb_open,
+>   	.fb_release	= drm_fbdev_generic_fb_release,
+> -	.fb_read	= drm_fb_helper_sys_read,
+> -	.fb_write	= drm_fb_helper_sys_write,
+> +	FB_DEFAULT_DEFERRED_OPS(drm_fbdev_generic),
+>   	DRM_FB_HELPER_DEFAULT_OPS,
+> -	.fb_fillrect	= drm_fb_helper_sys_fillrect,
+> -	.fb_copyarea	= drm_fb_helper_sys_copyarea,
+> -	.fb_imageblit	= drm_fb_helper_sys_imageblit,
+> -	.fb_mmap	= fb_deferred_io_mmap,
+>   	.fb_destroy	= drm_fbdev_generic_fb_destroy,
+>   };
+>   
+> diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
+> index 7d5804882be7..b50fd0c0b713 100644
+> --- a/include/drm/drm_fb_helper.h
+> +++ b/include/drm/drm_fb_helper.h
+> @@ -258,18 +258,6 @@ void drm_fb_helper_damage_area(struct fb_info *info, u32 x, u32 y, u32 width, u3
+>   
+>   void drm_fb_helper_deferred_io(struct fb_info *info, struct list_head *pagereflist);
+>   
+> -ssize_t drm_fb_helper_sys_read(struct fb_info *info, char __user *buf,
+> -			       size_t count, loff_t *ppos);
+> -ssize_t drm_fb_helper_sys_write(struct fb_info *info, const char __user *buf,
+> -				size_t count, loff_t *ppos);
+> -
+> -void drm_fb_helper_sys_fillrect(struct fb_info *info,
+> -				const struct fb_fillrect *rect);
+> -void drm_fb_helper_sys_copyarea(struct fb_info *info,
+> -				const struct fb_copyarea *area);
+> -void drm_fb_helper_sys_imageblit(struct fb_info *info,
+> -				 const struct fb_image *image);
+> -
+>   ssize_t drm_fb_helper_cfb_read(struct fb_info *info, char __user *buf,
+>   			       size_t count, loff_t *ppos);
+>   ssize_t drm_fb_helper_cfb_write(struct fb_info *info, const char __user *buf,
+> @@ -397,35 +385,6 @@ static inline int drm_fb_helper_defio_init(struct drm_fb_helper *fb_helper)
+>   	return -ENODEV;
+>   }
+>   
+> -static inline ssize_t drm_fb_helper_sys_read(struct fb_info *info,
+> -					     char __user *buf, size_t count,
+> -					     loff_t *ppos)
+> -{
+> -	return -ENODEV;
+> -}
+> -
+> -static inline ssize_t drm_fb_helper_sys_write(struct fb_info *info,
+> -					      const char __user *buf,
+> -					      size_t count, loff_t *ppos)
+> -{
+> -	return -ENODEV;
+> -}
+> -
+> -static inline void drm_fb_helper_sys_fillrect(struct fb_info *info,
+> -					      const struct fb_fillrect *rect)
+> -{
+> -}
+> -
+> -static inline void drm_fb_helper_sys_copyarea(struct fb_info *info,
+> -					      const struct fb_copyarea *area)
+> -{
+> -}
+> -
+> -static inline void drm_fb_helper_sys_imageblit(struct fb_info *info,
+> -					       const struct fb_image *image)
+> -{
+> -}
+> -
+>   static inline ssize_t drm_fb_helper_cfb_read(struct fb_info *info, char __user *buf,
+>   					     size_t count, loff_t *ppos)
+>   {
