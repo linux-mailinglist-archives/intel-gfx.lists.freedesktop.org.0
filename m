@@ -2,50 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AFF371003C
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 23:56:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD39710046
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 23:57:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93D6D10E63A;
-	Wed, 24 May 2023 21:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1721E10E619;
+	Wed, 24 May 2023 21:57:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEEEB10E619;
- Wed, 24 May 2023 21:56:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684965395; x=1716501395;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Wq08tgAEt5cN82Szhoa/cg2K5vQa/EFjXnznBgmQeVs=;
- b=QhRcPOk+N2GGFYbHsOWCGFP3rbEtkryohC7E60BQOU6r9f+41MWkYRQm
- TmNNGa/tWMmojh+cimZ89a9HvVzP6ndNnMT7NZVDfZ29s2I/hwTit5VZM
- 7ePKLHMw1ye5KKqPDPL/dpNwOdAaPXlrrqdDb1w8n0Qd0u0fbPBiCzxyB
- eQAq+r8Bf7M2rjYPTxnas7jMWcbk6Wl5abtZA6cQU1n9gXnrStZu89Ewl
- I6AovV48CpBGIweuUFwZTc/Qn80vl3f7sTcUTBQ2ZygEeMy2XB2IVkVdB
- wqNVfdDw+wxz//bX9JP3mABbDOaQYWmST0VBsT6rQxc2Hr1WOVrHYAss4 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="343165157"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="343165157"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 14:56:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="848929680"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="848929680"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 14:56:33 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 24 May 2023 14:56:29 -0700
-Message-Id: <20230524215629.97920-3-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20230524215629.97920-1-ashutosh.dixit@intel.com>
-References: <20230524215629.97920-1-ashutosh.dixit@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7FC0210E619;
+ Wed, 24 May 2023 21:57:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 77179AADE0;
+ Wed, 24 May 2023 21:57:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Make PMU sample array
- two-dimensional
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nathan Chancellor" <nathan@kernel.org>
+Date: Wed, 24 May 2023 21:57:49 -0000
+Message-ID: <168496546948.11316.16355469997077130039@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230524-intel_async_flip_check_hw-implicit-fallthrough-v1-1-83de89e376a1@kernel.org>
+In-Reply-To: <20230524-intel_async_flip_check_hw-implicit-fallthrough-v1-1-83de89e376a1@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Fix_clang_-Wimplicit-fallthrough_in_intel=5Fasy?=
+ =?utf-8?b?bmNfZmxpcF9jaGVja19odygp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,77 +41,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andrzej.hajda@intel.com, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No functional changes but we can remove some unsightly index computation
-and read/write functions if we convert the PMU sample array from a
-one-dimensional to a two-dimensional array.
+== Series Details ==
 
-v2: Retain read/store helpers (Tvrtko)
+Series: drm/i915: Fix clang -Wimplicit-fallthrough in intel_async_flip_check_hw()
+URL   : https://patchwork.freedesktop.org/series/118311/
+State : warning
 
-Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/i915/i915_pmu.c | 16 +++-------------
- drivers/gpu/drm/i915/i915_pmu.h |  2 +-
- 2 files changed, 4 insertions(+), 14 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 09313cf9316b4..f96fe92dca4e4 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -191,31 +191,21 @@ static inline s64 ktime_since_raw(const ktime_t kt)
- 	return ktime_to_ns(ktime_sub(ktime_get_raw(), kt));
- }
- 
--static unsigned int
--__sample_idx(struct i915_pmu *pmu, unsigned int gt_id, int sample)
--{
--	unsigned int idx = gt_id * __I915_NUM_PMU_SAMPLERS + sample;
--
--	GEM_BUG_ON(idx >= ARRAY_SIZE(pmu->sample));
--
--	return idx;
--}
--
- static u64 read_sample(struct i915_pmu *pmu, unsigned int gt_id, int sample)
- {
--	return pmu->sample[__sample_idx(pmu, gt_id, sample)].cur;
-+	return pmu->sample[gt_id][sample].cur;
- }
- 
- static void
- store_sample(struct i915_pmu *pmu, unsigned int gt_id, int sample, u64 val)
- {
--	pmu->sample[__sample_idx(pmu, gt_id, sample)].cur = val;
-+	pmu->sample[gt_id][sample].cur = val;
- }
- 
- static void
- add_sample_mult(struct i915_pmu *pmu, unsigned int gt_id, int sample, u32 val, u32 mul)
- {
--	pmu->sample[__sample_idx(pmu, gt_id, sample)].cur += mul_u32_u32(val, mul);
-+	pmu->sample[gt_id][sample].cur += mul_u32_u32(val, mul);
- }
- 
- static u64 get_rc6(struct intel_gt *gt)
-diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
-index 33d80fbaab8bc..d20592e7db999 100644
---- a/drivers/gpu/drm/i915/i915_pmu.h
-+++ b/drivers/gpu/drm/i915/i915_pmu.h
-@@ -127,7 +127,7 @@ struct i915_pmu {
- 	 * Only global counters are held here, while the per-engine ones are in
- 	 * struct intel_engine_cs.
- 	 */
--	struct i915_pmu_sample sample[I915_PMU_MAX_GTS * __I915_NUM_PMU_SAMPLERS];
-+	struct i915_pmu_sample sample[I915_PMU_MAX_GTS][__I915_NUM_PMU_SAMPLERS];
- 	/**
- 	 * @sleep_last: Last time GT parked for RC6 estimation.
- 	 */
--- 
-2.38.0
+Error: dim checkpatch failed
+e13a550c56f5 drm/i915: Fix clang -Wimplicit-fallthrough in intel_async_flip_check_hw()
+-:32: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#32: 
+Reported-by: Tom Rix <trix@redhat.com>
+Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
+
+-:34: WARNING:BAD_SIGN_OFF: Duplicate signature
+#34: 
+Reported-by: kernel test robot <lkp@intel.com>
+
+-:34: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#34: 
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
+
+-:35: WARNING:BAD_SIGN_OFF: Duplicate signature
+#35: 
+Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
+
+-:35: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#35: 
+Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
+Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
+
+-:36: WARNING:BAD_SIGN_OFF: Duplicate signature
+#36: 
+Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
+
+-:36: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#36: 
+Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
+Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+
+-:37: WARNING:BAD_SIGN_OFF: Duplicate signature
+#37: 
+Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+
+total: 0 errors, 8 warnings, 0 checks, 7 lines checked
+
 
