@@ -2,52 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A2670F6B8
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 14:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DEC970F6BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 14:42:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E595C10E675;
-	Wed, 24 May 2023 12:42:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D08F10E0F5;
+	Wed, 24 May 2023 12:42:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16F8B10E67F
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 May 2023 12:42:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684932139; x=1716468139;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=vtW/TW2tZRODEzHuc4H5RBGY07D3++gtHwFCGe0Rldk=;
- b=cFPqeXROy4vnrLuKBkDWjv1C5TyDLWwR/X7JmA3n32CiERB33pwC/2l0
- wgLZxZltTv/B3tjWQxDx3zAQD9kQRnjNJcV9g6do/Zimuu5vN2tXvzsXq
- sZbH3m8Zuoz83epjTXv2aEudpTTmdhmN6DbxfyJKbxXGFfAbZ05KM9RMI
- X6VC4wWt+8CRfVFVCTk+mnwN8H4Yjzuv59qt//Px6Myef/LuvXIjOZ/WA
- XRFDFy3Bj6WKXZvsXBauUaYxiaLinqipQUN8WVppltM4D3d6vqft2O2nh
- uHbSE3yM0b7wm5btY8jb0e0n2ZZfqXPXr7rMbSI5T10wy2iOTmw2DMKwi w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="353575780"
-X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="353575780"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 05:42:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="828562058"
-X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="828562058"
-Received: from kathrine-mobl2.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.251.223.215])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 05:42:14 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 24 May 2023 15:41:24 +0300
-Message-Id: <20230524124124.378194-8-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230524124124.378194-1-vinod.govindapillai@intel.com>
-References: <20230524124124.378194-1-vinod.govindapillai@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA57B10E67A;
+ Wed, 24 May 2023 12:42:41 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id BDEC321908;
+ Wed, 24 May 2023 12:42:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1684932159; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=+gw7pgTyOFohuD0Ks7NIo0IXAxUDTF1zu84kJ0UrqPY=;
+ b=kEtE4UoCdeyAcn1eXgWULawpskP4nBSYoIiezaVk3GrCHoExSmthuAbQF3GX3T7KfpchQq
+ bNr7AgrOn8ZUFw2rZRzsU5clD9TZATHemokhhyD8RFytC0nfhxaotxHviFnfwDhrBO7e7s
+ 68ds1pRqAsG1Wbu3mmVFgxhN6F80ve8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1684932159;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=+gw7pgTyOFohuD0Ks7NIo0IXAxUDTF1zu84kJ0UrqPY=;
+ b=mnS+AohxZBQqvkszfT5oIoK6+TM5uMA/dLp/WYRIHWBADFjkZHUdoLD9eoUTWT/icOUPdq
+ apeyrYsXXp5+ulCQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 839E413425;
+ Wed, 24 May 2023 12:42:39 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id sSZLHz8GbmQebwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Wed, 24 May 2023 12:42:39 +0000
+Date: Wed, 24 May 2023 14:42:37 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20230524124237.GA25416@linux-uq9g>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v7 7/7] drm/i915/mtl: Add support for PM DEMAND
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,909 +64,291 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ville.syrjala@intel.com
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Mika Kahola <mika.kahola@intel.com>
+Hi Dave and Daniel,
 
-MTL introduces a new way to instruct the PUnit with
-power and bandwidth requirements of DE. Add the functionality
-to program the registers and handle waits using interrupts.
-The current wait time for timeouts is programmed for 10 msecs to
-factor in the worst case scenarios. Changes made to use REG_BIT
-for a register that we touched(GEN8_DE_MISC_IER _MMIO).
+here is this week's PR for drm-misc-next. I'm taking over while Maxime
+is away. There's support for a few more panels and bridges. In fbdev,
+I/O helpers are now implemented within the architecture code. DRM's
+shmobile driver received some updates.
 
-Wa_14016740474 is added which applies to Xe_LPD+ display
+Best regards
+Thomas
 
-v2: checkpatch warning fixes, simplify program pmdemand part
+drm-misc-next-2023-05-24:
+drm-misc-next for v6.5:
 
-v3: update to dbufs and pipes values to pmdemand register(stan)
-    Removed the macro usage in update_pmdemand_values()
+UAPI Changes:
 
-v4: move the pmdemand_pre_plane_update before cdclk update
-    pmdemand_needs_update included cdclk params comparisons
-    pmdemand_state NULL check (Gustavo)
-    pmdemand.o in sorted order in the makefile (Jani)
-    update pmdemand misc irq handler loop (Gustavo)
-    active phys bitmask and programming correction (Gustavo)
+Cross-subsystem Changes:
 
-v5: simplify pmdemand_state structure
-    simplify methods to find active phys and max port clock
-    Timeout in case of previou pmdemand task pending (Gustavo)
+ * fbdev: Move framebuffer I/O helpers to <asm/fb.h>, fix naming
 
-v6: rebasing
-    updates to max_ddiclk calculations (Gustavo)
-    updates to active_phys count method (Gustavo)
+ * firmware: Init sysfb as early as possible
 
-Bspec: 66451, 64636, 64602, 64603
-Cc: Matt Atwood <matthew.s.atwood@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: JosÃ© Roberto de Souza <jose.souza@intel.com>
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_display.c  |  14 +
- .../gpu/drm/i915/display/intel_display_core.h |   9 +
- .../drm/i915/display/intel_display_driver.c   |   7 +
- .../gpu/drm/i915/display/intel_display_irq.c  |  23 +-
- .../drm/i915/display/intel_display_power.c    |   8 +
- drivers/gpu/drm/i915/display/intel_pmdemand.c | 550 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_pmdemand.h |  24 +
- drivers/gpu/drm/i915/i915_reg.h               |  36 +-
- 9 files changed, 668 insertions(+), 4 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_pmdemand.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_pmdemand.h
+Core Changes:
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index dd9ca69f4998..358463d02a57 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -273,6 +273,7 @@ i915-y += \
- 	display/intel_pch_display.o \
- 	display/intel_pch_refclk.o \
- 	display/intel_plane_initial.o \
-+	display/intel_pmdemand.o \
- 	display/intel_psr.o \
- 	display/intel_quirks.o \
- 	display/intel_sprite.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0490c6412ab5..b3bb2c607650 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -99,6 +99,7 @@
- #include "intel_pcode.h"
- #include "intel_pipe_crc.h"
- #include "intel_plane_initial.h"
-+#include "intel_pmdemand.h"
- #include "intel_pps.h"
- #include "intel_psr.h"
- #include "intel_sdvo.h"
-@@ -6343,6 +6344,10 @@ int intel_atomic_check(struct drm_device *dev,
- 			return ret;
- 	}
- 
-+	ret = intel_pmdemand_atomic_check(state);
-+	if (ret)
-+		goto fail;
-+
- 	ret = intel_atomic_check_crtcs(state);
- 	if (ret)
- 		goto fail;
-@@ -6988,6 +6993,14 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
- 		crtc->config = new_crtc_state;
- 
-+	/*
-+	 * In XE_LPD+ Pmdemand combines many parameters such as voltage index,
-+	 * plls, cdclk frequency, QGV point selection parameter etc. Voltage
-+	 * index, cdclk/ddiclk frequencies are supposed to be configured before
-+	 * the cdclk config is set.
-+	 */
-+	intel_pmdemand_pre_plane_update(state);
-+
- 	if (state->modeset) {
- 		drm_atomic_helper_update_legacy_modeset_state(dev, &state->base);
- 
-@@ -7107,6 +7120,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		intel_verify_planes(state);
- 
- 	intel_sagv_post_plane_update(state);
-+	intel_pmdemand_post_plane_update(state);
- 
- 	drm_atomic_helper_commit_hw_done(&state->base);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 9f66d734edf6..ae45b2c42eb1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -345,6 +345,15 @@ struct intel_display {
- 		struct intel_global_obj obj;
- 	} dbuf;
- 
-+	struct {
-+		wait_queue_head_t waitqueue;
-+
-+		/* mutex to protect pmdemand programming sequence */
-+		struct mutex lock;
-+
-+		struct intel_global_obj obj;
-+	} pmdemand;
-+
- 	struct {
- 		/*
- 		 * dkl.phy_lock protects against concurrent access of the
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 60ce10fc7205..dc8de861339d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -47,6 +47,7 @@
- #include "intel_opregion.h"
- #include "intel_overlay.h"
- #include "intel_plane_initial.h"
-+#include "intel_pmdemand.h"
- #include "intel_pps.h"
- #include "intel_quirks.h"
- #include "intel_vga.h"
-@@ -211,6 +212,8 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
- 	if (ret < 0)
- 		goto cleanup_vga;
- 
-+	intel_pmdemand_init_early(i915);
-+
- 	intel_power_domains_init_hw(i915, false);
- 
- 	if (!HAS_DISPLAY(i915))
-@@ -240,6 +243,10 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
- 	if (ret)
- 		goto cleanup_vga_client_pw_domain_dmc;
- 
-+	ret = intel_pmdemand_init(i915);
-+	if (ret)
-+		goto cleanup_vga_client_pw_domain_dmc;
-+
- 	init_llist_head(&i915->display.atomic_helper.free_list);
- 	INIT_WORK(&i915->display.atomic_helper.free_work,
- 		  intel_atomic_helper_free_state_worker);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 3b2a287d2041..0b3739310f81 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -18,6 +18,7 @@
- #include "intel_fifo_underrun.h"
- #include "intel_gmbus.h"
- #include "intel_hotplug_irq.h"
-+#include "intel_pmdemand.h"
- #include "intel_psr.h"
- #include "intel_psr_regs.h"
- 
-@@ -827,12 +828,27 @@ static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
- 		return GEN8_DE_PIPE_IRQ_FAULT_ERRORS;
- }
- 
-+static void intel_pmdemand_irq_handler(struct drm_i915_private *dev_priv)
-+{
-+	wake_up_all(&dev_priv->display.pmdemand.waitqueue);
-+}
-+
- static void
- gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
- {
- 	bool found = false;
- 
--	if (iir & GEN8_DE_MISC_GSE) {
-+	if (DISPLAY_VER(dev_priv) >= 14) {
-+		if (iir & (XELPDP_PMDEMAND_RSP |
-+			   XELPDP_PMDEMAND_RSPTOUT_ERR)) {
-+			if (iir & XELPDP_PMDEMAND_RSPTOUT_ERR)
-+				drm_dbg(&dev_priv->drm,
-+					"Error waiting for Punit PM Demand Response\n");
-+
-+			intel_pmdemand_irq_handler(dev_priv);
-+			found = true;
-+		}
-+	} else if (iir & GEN8_DE_MISC_GSE) {
- 		intel_opregion_asle_intr(dev_priv);
- 		found = true;
- 	}
-@@ -1576,7 +1592,10 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
- 	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
- 		de_port_masked |= BXT_DE_PORT_GMBUS;
- 
--	if (DISPLAY_VER(dev_priv) >= 11) {
-+	if (DISPLAY_VER(dev_priv) >= 14) {
-+		de_misc_masked |= XELPDP_PMDEMAND_RSPTOUT_ERR |
-+				  XELPDP_PMDEMAND_RSP;
-+	} else if (DISPLAY_VER(dev_priv) >= 11) {
- 		enum port port;
- 
- 		if (intel_bios_is_dsi_present(dev_priv, &port))
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 6ed2ece89c3f..59de308234a6 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -20,6 +20,7 @@
- #include "intel_mchbar_regs.h"
- #include "intel_pch_refclk.h"
- #include "intel_pcode.h"
-+#include "intel_pmdemand.h"
- #include "intel_pps_regs.h"
- #include "intel_snps_phy.h"
- #include "skl_watermark.h"
-@@ -1085,6 +1086,10 @@ static void gen9_dbuf_enable(struct drm_i915_private *dev_priv)
- 	dev_priv->display.dbuf.enabled_slices =
- 		intel_enabled_dbuf_slices_mask(dev_priv);
- 
-+	if (DISPLAY_VER(dev_priv) >= 14)
-+		intel_program_dbuf_pmdemand(dev_priv, BIT(DBUF_S1) |
-+					    dev_priv->display.dbuf.enabled_slices);
-+
- 	/*
- 	 * Just power up at least 1 slice, we will
- 	 * figure out later which slices we have and what we need.
-@@ -1096,6 +1101,9 @@ static void gen9_dbuf_enable(struct drm_i915_private *dev_priv)
- static void gen9_dbuf_disable(struct drm_i915_private *dev_priv)
- {
- 	gen9_dbuf_slices_update(dev_priv, 0);
-+
-+	if (DISPLAY_VER(dev_priv) >= 14)
-+		intel_program_dbuf_pmdemand(dev_priv, 0);
- }
- 
- static void gen12_dbuf_slices_config(struct drm_i915_private *dev_priv)
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-new file mode 100644
-index 000000000000..ff0e9183bfac
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -0,0 +1,550 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright Â© 2023 Intel Corporation
-+ */
-+
-+#include <linux/bitops.h>
-+
-+#include "i915_drv.h"
-+#include "i915_reg.h"
-+#include "intel_bw.h"
-+#include "intel_cdclk.h"
-+#include "intel_cx0_phy.h"
-+#include "intel_de.h"
-+#include "intel_display.h"
-+#include "intel_display_trace.h"
-+#include "intel_pmdemand.h"
-+#include "skl_watermark.h"
-+
-+struct pmdemand_params {
-+	u16 qclk_gv_bw;
-+	u8 voltage_index;
-+	u8 qclk_gv_index;
-+	u8 active_pipes;
-+	u8 dbufs;
-+	/* Total number of non type C active phys from active_phys_mask */
-+	u8 active_phys;
-+	u16 cdclk_freq_mhz;
-+	/* max from ddi_clocks[]*/
-+	u16 ddiclk_max;
-+	u8 scalers;
-+};
-+
-+struct intel_pmdemand_state {
-+	struct intel_global_state base;
-+
-+	/* Maintain a persistent list of port clocks across all crtcs */
-+	int ddi_clocks[I915_MAX_PIPES];
-+
-+	/* Maintain a persistent list of non type C phys mask */
-+	u16 active_phys_mask;
-+
-+	/* Parameters to be configured in the pmdemand registers */
-+	struct pmdemand_params params;
-+};
-+
-+#define to_intel_pmdemand_state(x) container_of((x), \
-+						struct intel_pmdemand_state, \
-+						base)
-+static struct intel_global_state *
-+intel_pmdemand_duplicate_state(struct intel_global_obj *obj)
-+{
-+	struct intel_pmdemand_state *pmdmnd_state;
-+
-+	pmdmnd_state = kmemdup(obj->state, sizeof(*pmdmnd_state), GFP_KERNEL);
-+	if (!pmdmnd_state)
-+		return NULL;
-+
-+	return &pmdmnd_state->base;
-+}
-+
-+static void intel_pmdemand_destroy_state(struct intel_global_obj *obj,
-+					 struct intel_global_state *state)
-+{
-+	kfree(state);
-+}
-+
-+static const struct intel_global_state_funcs intel_pmdemand_funcs = {
-+	.atomic_duplicate_state = intel_pmdemand_duplicate_state,
-+	.atomic_destroy_state = intel_pmdemand_destroy_state,
-+};
-+
-+static struct intel_pmdemand_state *
-+intel_atomic_get_pmdemand_state(struct intel_atomic_state *state)
-+{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	struct intel_global_state *pmdemand_state =
-+		intel_atomic_get_global_obj_state(state,
-+						  &i915->display.pmdemand.obj);
-+
-+	if (IS_ERR(pmdemand_state))
-+		return ERR_CAST(pmdemand_state);
-+
-+	return to_intel_pmdemand_state(pmdemand_state);
-+}
-+
-+static struct intel_pmdemand_state *
-+intel_atomic_get_old_pmdemand_state(struct intel_atomic_state *state)
-+{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	struct intel_global_state *pmdemand_state =
-+		intel_atomic_get_old_global_obj_state(state,
-+						      &i915->display.pmdemand.obj);
-+
-+	if (!pmdemand_state)
-+		return NULL;
-+
-+	return to_intel_pmdemand_state(pmdemand_state);
-+}
-+
-+static struct intel_pmdemand_state *
-+intel_atomic_get_new_pmdemand_state(struct intel_atomic_state *state)
-+{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	struct intel_global_state *pmdemand_state =
-+		intel_atomic_get_new_global_obj_state(state,
-+						      &i915->display.pmdemand.obj);
-+
-+	if (!pmdemand_state)
-+		return NULL;
-+
-+	return to_intel_pmdemand_state(pmdemand_state);
-+}
-+
-+int intel_pmdemand_init(struct drm_i915_private *i915)
-+{
-+	struct intel_pmdemand_state *pmdemand_state;
-+
-+	pmdemand_state = kzalloc(sizeof(*pmdemand_state), GFP_KERNEL);
-+	if (!pmdemand_state)
-+		return -ENOMEM;
-+
-+	intel_atomic_global_obj_init(i915, &i915->display.pmdemand.obj,
-+				     &pmdemand_state->base,
-+				     &intel_pmdemand_funcs);
-+
-+	if (IS_MTL_DISPLAY_STEP(i915, STEP_A0, STEP_C0))
-+		/* Wa_14016740474 */
-+		intel_de_rmw(i915, XELPD_CHICKEN_DCPR_3, 0, DMD_RSP_TIMEOUT_DISABLE);
-+
-+	return 0;
-+}
-+
-+void intel_pmdemand_init_early(struct drm_i915_private *i915)
-+{
-+	mutex_init(&i915->display.pmdemand.lock);
-+	init_waitqueue_head(&i915->display.pmdemand.waitqueue);
-+}
-+
-+static void pmdemand_update_max_ddiclk(struct intel_atomic_state *state,
-+				       struct intel_pmdemand_state *pmd_state)
-+{
-+	int max_ddiclk = 0;
-+	struct intel_crtc *crtc;
-+	int i;
-+	const struct intel_crtc_state *new_crtc_state;
-+
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
-+		pmd_state->ddi_clocks[crtc->pipe] = new_crtc_state->port_clock;
-+
-+	for (i = 0; i < ARRAY_SIZE(pmd_state->ddi_clocks); i++)
-+		max_ddiclk = max(pmd_state->ddi_clocks[i], max_ddiclk);
-+
-+	pmd_state->params.ddiclk_max = DIV_ROUND_UP(max_ddiclk, 1000);
-+}
-+
-+static struct intel_encoder *
-+pmdemand_get_crtc_old_encoder(const struct intel_atomic_state *state,
-+			      const struct intel_crtc_state *crtc_state)
-+{
-+	const struct drm_connector_state *connector_state;
-+	const struct drm_connector *connector;
-+	struct intel_encoder *encoder = NULL;
-+	struct intel_crtc *master_crtc;
-+	int i;
-+
-+	master_crtc = intel_master_crtc(crtc_state);
-+
-+	for_each_old_connector_in_state(&state->base, connector, connector_state, i) {
-+		if (connector_state->crtc != &master_crtc->base)
-+			continue;
-+
-+		encoder = to_intel_encoder(connector_state->best_encoder);
-+	}
-+
-+	return encoder;
-+}
-+
-+static void
-+pmdemand_update_active_non_tc_phys(struct drm_i915_private *i915,
-+				   const struct intel_atomic_state *state,
-+				   struct intel_pmdemand_state *pmd_state)
-+{
-+	struct intel_crtc *crtc;
-+	int i;
-+	const struct intel_crtc_state *new_crtc_state, *old_crtc_state;
-+
-+	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-+					    new_crtc_state, i){
-+		struct intel_encoder *encoder;
-+		enum phy phy;
-+
-+		if (!intel_crtc_needs_modeset(new_crtc_state))
-+			continue;
-+
-+		if (new_crtc_state->hw.active) {
-+			encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
-+			if (!encoder)
-+				continue;
-+
-+			phy = intel_port_to_phy(i915, encoder->port);
-+
-+			if (intel_phy_is_tc(i915, phy))
-+				continue;
-+
-+			pmd_state->active_phys_mask |= BIT(phy);
-+		} else if (old_crtc_state->hw.active) {
-+			encoder = pmdemand_get_crtc_old_encoder(state, old_crtc_state);
-+			if (!encoder)
-+				continue;
-+
-+			phy = intel_port_to_phy(i915, encoder->port);
-+			pmd_state->active_phys_mask &= ~BIT(phy);
-+		}
-+	}
-+
-+	pmd_state->params.active_phys = hweight16(pmd_state->active_phys_mask);
-+}
-+
-+static bool pmdemand_needs_update(struct intel_atomic_state *state)
-+{
-+	bool states_checked = false;
-+	struct intel_crtc *crtc;
-+	int i;
-+	const struct intel_crtc_state *new_crtc_state, *old_crtc_state;
-+
-+	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-+					    new_crtc_state, i) {
-+		const struct intel_bw_state *new_bw_state, *old_bw_state;
-+		const struct intel_cdclk_state *new_cdclk_state;
-+		const struct intel_cdclk_state *old_cdclk_state;
-+		const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
-+
-+		if (old_crtc_state->port_clock != new_crtc_state->port_clock)
-+			return true;
-+
-+		/*
-+		 * For the below settings once through the loop is enough.
-+		 * Some pmdemand_atomic_check calls might trigger read lock not
-+		 * taken assert if these following checks are kept outside this
-+		 * loop.
-+		 */
-+		if (states_checked)
-+			continue;
-+
-+		new_bw_state = intel_atomic_get_new_bw_state(state);
-+		old_bw_state = intel_atomic_get_old_bw_state(state);
-+		if (new_bw_state && new_bw_state->qgv_point_peakbw !=
-+		    old_bw_state->qgv_point_peakbw)
-+			return true;
-+
-+		new_dbuf_state = intel_atomic_get_new_dbuf_state(state);
-+		old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
-+		if (new_dbuf_state && new_dbuf_state->active_pipes !=
-+		    old_dbuf_state->active_pipes)
-+			return true;
-+
-+		new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
-+		old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
-+		if (new_cdclk_state &&
-+		    (new_cdclk_state->logical.cdclk !=
-+		     old_cdclk_state->logical.cdclk ||
-+		     new_cdclk_state->logical.voltage_level !=
-+		     old_cdclk_state->logical.voltage_level))
-+			return true;
-+
-+		states_checked = true;
-+	}
-+
-+	return false;
-+}
-+
-+int intel_pmdemand_atomic_check(struct intel_atomic_state *state)
-+{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	const struct intel_bw_state *new_bw_state;
-+	const struct intel_cdclk_state *new_cdclk_state;
-+	const struct intel_dbuf_state *new_dbuf_state;
-+	struct intel_pmdemand_state *new_pmdemand_state;
-+	int ret;
-+
-+	if (DISPLAY_VER(i915) < 14)
-+		return 0;
-+
-+	if (!pmdemand_needs_update(state))
-+		return 0;
-+
-+	new_pmdemand_state = intel_atomic_get_pmdemand_state(state);
-+	if (IS_ERR(new_pmdemand_state))
-+		return PTR_ERR(new_pmdemand_state);
-+
-+	ret = intel_atomic_lock_global_state(&new_pmdemand_state->base);
-+	if (ret)
-+		return ret;
-+
-+	new_bw_state = intel_atomic_get_bw_state(state);
-+	if (IS_ERR(new_bw_state))
-+		return PTR_ERR(new_bw_state);
-+
-+	/* firmware will calculate the qclck_gc_index, requirement is set to 0 */
-+	new_pmdemand_state->params.qclk_gv_index = 0;
-+	new_pmdemand_state->params.qclk_gv_bw =
-+		min_t(u16, new_bw_state->qgv_point_peakbw, 0xffff);
-+
-+	new_dbuf_state = intel_atomic_get_dbuf_state(state);
-+	if (IS_ERR(new_dbuf_state))
-+		return PTR_ERR(new_dbuf_state);
-+
-+	new_pmdemand_state->params.active_pipes =
-+		min_t(u8, hweight8(new_dbuf_state->active_pipes), 3);
-+
-+	new_cdclk_state = intel_atomic_get_cdclk_state(state);
-+	if (IS_ERR(new_cdclk_state))
-+		return PTR_ERR(new_cdclk_state);
-+
-+	new_pmdemand_state->params.voltage_index =
-+		new_cdclk_state->logical.voltage_level;
-+	new_pmdemand_state->params.cdclk_freq_mhz =
-+		DIV_ROUND_UP(new_cdclk_state->logical.cdclk, 1000);
-+
-+	pmdemand_update_max_ddiclk(state, new_pmdemand_state);
-+
-+	pmdemand_update_active_non_tc_phys(i915, state, new_pmdemand_state);
-+
-+	/*
-+	 * Setting scalers to max as it can not be calculated during flips and
-+	 * fastsets without taking global states locks.
-+	 */
-+	new_pmdemand_state->params.scalers = 7;
-+
-+	ret = intel_atomic_serialize_global_state(&new_pmdemand_state->base);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static bool intel_pmdemand_check_prev_transaction(struct drm_i915_private *i915)
-+{
-+	return !(intel_de_wait_for_clear(i915,
-+					 XELPDP_INITIATE_PMDEMAND_REQUEST(1),
-+					 XELPDP_PMDEMAND_REQ_ENABLE, 10) ||
-+		 intel_de_wait_for_clear(i915,
-+					 GEN12_DCPR_STATUS_1,
-+					 XELPDP_PMDEMAND_INFLIGHT_STATUS, 10));
-+}
-+
-+static bool intel_pmdemand_req_complete(struct drm_i915_private *i915)
-+{
-+	return !(intel_de_read(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1)) &
-+		 XELPDP_PMDEMAND_REQ_ENABLE);
-+}
-+
-+static int intel_pmdemand_wait(struct drm_i915_private *i915)
-+{
-+	DEFINE_WAIT(wait);
-+	int ret;
-+	const unsigned int timeout_ms = 10;
-+
-+	ret = wait_event_timeout(i915->display.pmdemand.waitqueue,
-+				 intel_pmdemand_req_complete(i915),
-+				 msecs_to_jiffies_timeout(timeout_ms));
-+	if (ret == 0)
-+		drm_err(&i915->drm,
-+			"timed out waiting for Punit PM Demand Response\n");
-+
-+	return ret;
-+}
-+
-+/* Required to be programmed during Display Init Sequences. */
-+void intel_program_dbuf_pmdemand(struct drm_i915_private *i915,
-+				 u8 dbuf_slices)
-+{
-+	u32 dbufs = min_t(u32, hweight8(dbuf_slices), 3);
-+
-+	mutex_lock(&i915->display.pmdemand.lock);
-+	if (drm_WARN_ON(&i915->drm,
-+			!intel_pmdemand_check_prev_transaction(i915)))
-+		goto unlock;
-+
-+	intel_de_rmw(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(0),
-+		     XELPDP_PMDEMAND_DBUFS_MASK, XELPDP_PMDEMAND_DBUFS(dbufs));
-+	intel_de_rmw(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1), 0,
-+		     XELPDP_PMDEMAND_REQ_ENABLE);
-+
-+	intel_pmdemand_wait(i915);
-+
-+unlock:
-+	mutex_unlock(&i915->display.pmdemand.lock);
-+}
-+
-+static void update_pmdemand_values(const struct intel_pmdemand_state *new,
-+				   const struct intel_pmdemand_state *old,
-+				   u32 *reg1, u32 *reg2)
-+{
-+	u32 plls, tmp;
-+
-+	/*
-+	 * The pmdemand parameter updates happens in two steps. Pre plane and
-+	 * post plane updates. During the pre plane, as DE might still be
-+	 * handling with some old operations, to avoid unwanted performance
-+	 * issues, program the pmdemand parameters with higher of old and new
-+	 * values. And then after once settled, use the new parameter values
-+	 * as part of the post plane update.
-+	 */
-+
-+	/* Set 1*/
-+	*reg1 &= ~XELPDP_PMDEMAND_QCLK_GV_BW_MASK;
-+	tmp = old ? max(old->params.qclk_gv_bw, new->params.qclk_gv_bw) :
-+		    new->params.qclk_gv_bw;
-+	*reg1 |= XELPDP_PMDEMAND_QCLK_GV_BW(tmp);
-+
-+	*reg1 &= ~XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK;
-+	tmp = old ? max(old->params.voltage_index, new->params.voltage_index) :
-+		    new->params.voltage_index;
-+	*reg1 |= XELPDP_PMDEMAND_VOLTAGE_INDEX(tmp);
-+
-+	*reg1 &= ~XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK;
-+	tmp = old ? max(old->params.qclk_gv_index, new->params.qclk_gv_index) :
-+		    new->params.qclk_gv_index;
-+	*reg1 |= XELPDP_PMDEMAND_QCLK_GV_INDEX(tmp);
-+
-+	*reg1 &= ~XELPDP_PMDEMAND_PIPES_MASK;
-+	tmp = old ? max(old->params.active_pipes, new->params.active_pipes) :
-+		    new->params.active_pipes;
-+	*reg1 |= XELPDP_PMDEMAND_PIPES(tmp);
-+
-+	*reg1 &= ~XELPDP_PMDEMAND_PHYS_MASK;
-+	plls = old ? max(old->params.active_phys, new->params.active_phys) :
-+		     new->params.active_phys;
-+	plls = min_t(u32, plls, 7);
-+	*reg1 |= XELPDP_PMDEMAND_PHYS(plls);
-+
-+	/* Set 2*/
-+	*reg2 &= ~XELPDP_PMDEMAND_CDCLK_FREQ_MASK;
-+	tmp = old ? max(old->params.cdclk_freq_mhz,
-+			new->params.cdclk_freq_mhz) :
-+		    new->params.cdclk_freq_mhz;
-+	*reg2 |= XELPDP_PMDEMAND_CDCLK_FREQ(tmp);
-+
-+	*reg2 &= ~XELPDP_PMDEMAND_DDICLK_FREQ_MASK;
-+	tmp = old ? max(old->params.ddiclk_max, new->params.ddiclk_max) :
-+		    new->params.ddiclk_max;
-+	*reg2 |= XELPDP_PMDEMAND_DDICLK_FREQ(tmp);
-+
-+	*reg2 &= ~XELPDP_PMDEMAND_SCALERS_MASK;
-+	tmp = old ? max(old->params.scalers, new->params.scalers) :
-+		    new->params.scalers;
-+	*reg2 |= XELPDP_PMDEMAND_SCALERS(tmp);
-+
-+	/*
-+	 * Active_PLLs starts with 1 because of CDCLK PLL.
-+	 * TODO: Missing to account genlock filter when it gets used.
-+	 */
-+	plls = min_t(u32, plls + 1, 7);
-+	*reg2 &= ~XELPDP_PMDEMAND_PLLS_MASK;
-+	*reg2 |= XELPDP_PMDEMAND_PLLS(plls);
-+}
-+
-+static void intel_program_pmdemand(struct drm_i915_private *i915,
-+				   const struct intel_pmdemand_state *new,
-+				   const struct intel_pmdemand_state *old)
-+{
-+	bool changed = false;
-+	u32 reg1, mod_reg1;
-+	u32 reg2, mod_reg2;
-+
-+	mutex_lock(&i915->display.pmdemand.lock);
-+	if (drm_WARN_ON(&i915->drm,
-+			!intel_pmdemand_check_prev_transaction(i915)))
-+		goto unlock;
-+
-+	reg1 = intel_de_read(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(0));
-+	mod_reg1 = reg1;
-+
-+	reg2 = intel_de_read(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1));
-+	mod_reg2 = reg2;
-+
-+	update_pmdemand_values(new, old, &mod_reg1, &mod_reg2);
-+
-+	if (reg1 != mod_reg1) {
-+		intel_de_write(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(0),
-+			       mod_reg1);
-+		changed = true;
-+	}
-+
-+	if (reg2 != mod_reg2) {
-+		intel_de_write(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1),
-+			       mod_reg2);
-+		changed = true;
-+	}
-+
-+	/* Initiate pm demand request only if register values are changed */
-+	if (!changed)
-+		goto unlock;
-+
-+	drm_dbg_kms(&i915->drm,
-+		    "initate pmdemand request values: (0x%x 0x%x)\n",
-+		    mod_reg1, mod_reg2);
-+
-+	intel_de_rmw(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1), 0,
-+			XELPDP_PMDEMAND_REQ_ENABLE);
-+
-+	intel_pmdemand_wait(i915);
-+
-+unlock:
-+	mutex_unlock(&i915->display.pmdemand.lock);
-+}
-+
-+static bool
-+intel_pmdemand_state_changed(const struct intel_pmdemand_state *new,
-+			     const struct intel_pmdemand_state *old)
-+{
-+	return memcmp(&new->params, &old->params, sizeof(new->params)) != 0;
-+}
-+
-+void intel_pmdemand_pre_plane_update(struct intel_atomic_state *state)
-+{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	const struct intel_pmdemand_state *new_pmdmnd_state =
-+		intel_atomic_get_new_pmdemand_state(state);
-+	const struct intel_pmdemand_state *old_pmdmnd_state =
-+		intel_atomic_get_old_pmdemand_state(state);
-+
-+	if (DISPLAY_VER(i915) < 14)
-+		return;
-+
-+	if (!new_pmdmnd_state ||
-+	    !intel_pmdemand_state_changed(new_pmdmnd_state, old_pmdmnd_state))
-+		return;
-+
-+	intel_program_pmdemand(i915, new_pmdmnd_state, old_pmdmnd_state);
-+}
-+
-+void intel_pmdemand_post_plane_update(struct intel_atomic_state *state)
-+{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	const struct intel_pmdemand_state *new_pmdmnd_state =
-+		intel_atomic_get_new_pmdemand_state(state);
-+	const struct intel_pmdemand_state *old_pmdmnd_state =
-+		intel_atomic_get_old_pmdemand_state(state);
-+
-+	if (DISPLAY_VER(i915) < 14)
-+		return;
-+
-+	if (!new_pmdmnd_state ||
-+	    !intel_pmdemand_state_changed(new_pmdmnd_state, old_pmdmnd_state))
-+		return;
-+
-+	intel_program_pmdemand(i915, new_pmdmnd_state, NULL);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.h b/drivers/gpu/drm/i915/display/intel_pmdemand.h
-new file mode 100644
-index 000000000000..2883b5d97a44
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.h
-@@ -0,0 +1,24 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright Â© 2023 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_PMDEMAND_H__
-+#define __INTEL_PMDEMAND_H__
-+
-+#include <linux/types.h>
-+
-+struct drm_i915_private;
-+struct intel_atomic_state;
-+struct intel_crtc_state;
-+struct intel_plane_state;
-+
-+void intel_pmdemand_init_early(struct drm_i915_private *i915);
-+int intel_pmdemand_init(struct drm_i915_private *i915);
-+void intel_program_dbuf_pmdemand(struct drm_i915_private *i915,
-+				 u8 dbuf_slices);
-+void intel_pmdemand_pre_plane_update(struct intel_atomic_state *state);
-+void intel_pmdemand_post_plane_update(struct intel_atomic_state *state);
-+int intel_pmdemand_atomic_check(struct intel_atomic_state *state);
-+
-+#endif /* __INTEL_PMDEMAND_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 2a9ab8de8421..91fb12b65c92 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4450,8 +4450,10 @@
- #define GEN8_DE_MISC_IMR _MMIO(0x44464)
- #define GEN8_DE_MISC_IIR _MMIO(0x44468)
- #define GEN8_DE_MISC_IER _MMIO(0x4446c)
--#define  GEN8_DE_MISC_GSE		(1 << 27)
--#define  GEN8_DE_EDP_PSR		(1 << 19)
-+#define  XELPDP_PMDEMAND_RSPTOUT_ERR	REG_BIT(27)
-+#define  GEN8_DE_MISC_GSE		REG_BIT(27)
-+#define  GEN8_DE_EDP_PSR		REG_BIT(19)
-+#define  XELPDP_PMDEMAND_RSP		REG_BIT(3)
- 
- #define GEN8_PCU_ISR _MMIO(0x444e0)
- #define GEN8_PCU_IMR _MMIO(0x444e4)
-@@ -4536,6 +4538,33 @@
- #define  XELPDP_DP_ALT_HPD_LONG_DETECT		REG_BIT(1)
- #define  XELPDP_DP_ALT_HPD_SHORT_DETECT		REG_BIT(0)
- 
-+#define XELPDP_INITIATE_PMDEMAND_REQUEST(dword)		_MMIO(0x45230 + 4 * (dword))
-+#define  XELPDP_PMDEMAND_QCLK_GV_BW_MASK		REG_GENMASK(31, 16)
-+#define  XELPDP_PMDEMAND_QCLK_GV_BW(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_QCLK_GV_BW_MASK, x)
-+#define  XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK		REG_GENMASK(14, 12)
-+#define  XELPDP_PMDEMAND_VOLTAGE_INDEX(x)		REG_FIELD_PREP(XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK, x)
-+#define  XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK		REG_GENMASK(11, 8)
-+#define  XELPDP_PMDEMAND_QCLK_GV_INDEX(x)		REG_FIELD_PREP(XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK, x)
-+#define  XELPDP_PMDEMAND_PIPES_MASK			REG_GENMASK(7, 6)
-+#define  XELPDP_PMDEMAND_PIPES(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_PIPES_MASK, x)
-+#define  XELPDP_PMDEMAND_DBUFS_MASK			REG_GENMASK(5, 4)
-+#define  XELPDP_PMDEMAND_DBUFS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_DBUFS_MASK, x)
-+#define  XELPDP_PMDEMAND_PHYS_MASK			REG_GENMASK(2, 0)
-+#define  XELPDP_PMDEMAND_PHYS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_PHYS_MASK, x)
-+
-+#define  XELPDP_PMDEMAND_REQ_ENABLE			REG_BIT(31)
-+#define  XELPDP_PMDEMAND_CDCLK_FREQ_MASK		REG_GENMASK(30, 20)
-+#define  XELPDP_PMDEMAND_CDCLK_FREQ(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_CDCLK_FREQ_MASK, x)
-+#define  XELPDP_PMDEMAND_DDICLK_FREQ_MASK		REG_GENMASK(18, 8)
-+#define  XELPDP_PMDEMAND_DDICLK_FREQ(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_DDICLK_FREQ_MASK, x)
-+#define  XELPDP_PMDEMAND_SCALERS_MASK			REG_GENMASK(6, 4)
-+#define  XELPDP_PMDEMAND_SCALERS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_SCALERS_MASK, x)
-+#define  XELPDP_PMDEMAND_PLLS_MASK			REG_GENMASK(2, 0)
-+#define  XELPDP_PMDEMAND_PLLS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_PLLS_MASK, x)
-+
-+#define GEN12_DCPR_STATUS_1				_MMIO(0x46440)
-+#define  XELPDP_PMDEMAND_INFLIGHT_STATUS		REG_BIT(26)
-+
- #define ILK_DISPLAY_CHICKEN2	_MMIO(0x42004)
- /* Required on all Ironlake and Sandybridge according to the B-Spec. */
- #define   ILK_ELPIN_409_SELECT	REG_BIT(25)
-@@ -4695,6 +4724,9 @@
- #define   DCPR_SEND_RESP_IMM			REG_BIT(25)
- #define   DCPR_CLEAR_MEMSTAT_DIS		REG_BIT(24)
- 
-+#define XELPD_CHICKEN_DCPR_3			_MMIO(0x46438)
-+#define   DMD_RSP_TIMEOUT_DISABLE		REG_BIT(19)
-+
- #define SKL_DFSM			_MMIO(0x51000)
- #define   SKL_DFSM_DISPLAY_PM_DISABLE	(1 << 27)
- #define   SKL_DFSM_DISPLAY_HDCP_DISABLE	(1 << 25)
+ * DRM scheduler: Rename interfaces
+
+ * ttm: Store ttm_device_funcs in .rodata
+
+ * Replace strlcpy() with strscpy() in various places
+
+ * Cleanups
+
+Driver Changes:
+
+ * bridge: analogix: Fix endless probe loop; samsung-dsim: Support
+   swapping clock/data polarity; tc358767: Use devm_ Cleanups;
+
+ * gma500: Fix I/O-memory access
+
+ * panel: boe-tv101wum-nl6: Improve initialization;  sharp-ls043t1le001:
+	  Mode fixes;  simple: Add BOE EV121WXM-N10-1850 plus DT bindings;
+	  AddS6D7AA0 plus DT bindings;  Cleanups
+
+ * ssd1307x: Style fixes
+
+ * sun4i: Release clocks
+
+ * msm: Fix I/O-memory access
+
+ * nouveau: Cleanups
+
+ * shmobile: Support Renesas; Enable framebuffer console; Various fixes
+
+ * vkms: Fix RGB565 conversion
+The following changes since commit 4795c78768bcbd58d4ffab650674d314dc6dd772:
+
+  drm: sun4i: calculate proper DCLK rate for DSI (2023-05-10 16:03:19 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-05-24
+
+for you to fetch changes up to 4bd65789ba847f39e37e0041c10aad5dff1760b6:
+
+  drm: shmobile: Make DRM_SHMOBILE visible on Renesas SoC platforms (2023-05-24 14:00:49 +0200)
+
+----------------------------------------------------------------
+drm-misc-next for v6.5:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+ * fbdev: Move framebuffer I/O helpers to <asm/fb.h>, fix naming
+
+ * firmware: Init sysfb as early as possible
+
+Core Changes:
+
+ * DRM scheduler: Rename interfaces
+
+ * ttm: Store ttm_device_funcs in .rodata
+
+ * Replace strlcpy() with strscpy() in various places
+
+ * Cleanups
+
+Driver Changes:
+
+ * bridge: analogix: Fix endless probe loop; samsung-dsim: Support
+   swapping clock/data polarity; tc358767: Use devm_ Cleanups;
+
+ * gma500: Fix I/O-memory access
+
+ * panel: boe-tv101wum-nl6: Improve initialization;  sharp-ls043t1le001:
+	  Mode fixes;  simple: Add BOE EV121WXM-N10-1850 plus DT bindings;
+	  AddS6D7AA0 plus DT bindings;  Cleanups
+
+ * ssd1307x: Style fixes
+
+ * sun4i: Release clocks
+
+ * msm: Fix I/O-memory access
+
+ * nouveau: Cleanups
+
+ * shmobile: Support Renesas; Enable framebuffer console; Various fixes
+
+ * vkms: Fix RGB565 conversion
+
+----------------------------------------------------------------
+Alexander Stein (1):
+      drm/bridge: tc358767: Switch to devm MIPI-DSI helpers
+
+Anup Sharma (1):
+      gpu: drm: bridge: No need to set device_driver owner
+
+Arnd Bergmann (1):
+      drm/nouveau: dispnv50: fix missing-prototypes warning
+
+Artur Weber (4):
+      dt-bindings: display: panel: Add Samsung S6D7AA0 LCD panel controller
+      drm/panel: Add Samsung S6D7AA0 panel controller driver
+      MAINTAINERS: Add entry for Samsung S6D7AA0 LCD panel controller driver
+      drm/panel: samsung-s6d7aa0: use pointer for drm_mode in panel desc struct
+
+Azeem Shaikh (2):
+      drm/bridge: dw-hdmi: Replace all non-returning strlcpy with strscpy
+      dma-buf/sw_sync: Replace all non-returning strlcpy with strscpy
+
+Cong Yang (1):
+      drm/panel: Modify innolux hj110iz panel initial code
+
+Dmitry Baryshkov (2):
+      drm/panel: sharp-ls043t1le01: adjust mode settings
+      drm/panel: sharp-ls043t1le01: drop dummy functions and data fields
+
+Fabio Estevam (1):
+      dt-bindings: samsung,mipi-dsim: Add 'lane-polarities'
+
+Francesco Dolcini (1):
+      drm/bridge: tc358768: remove unneeded semicolon
+
+Geert Uytterhoeven (5):
+      drm: shmobile: Use %p4cc to print fourcc codes
+      drm: shmobile: Add support for DRM_FORMAT_XRGB8888
+      drm: shmobile: Switch to drm_crtc_init_with_planes()
+      drm: shmobile: Add missing call to drm_fbdev_generic_setup()
+      drm: shmobile: Make DRM_SHMOBILE visible on Renesas SoC platforms
+
+Huacai Chen (1):
+      drivers/firmware: Move sysfb_init() from device_initcall to subsys_initcall_sync
+
+Jani Nikula (1):
+      drm/ttm: let struct ttm_device_funcs be placed in rodata
+
+Javier Martinez Canillas (1):
+      drm/ssd130x: Fix include guard name
+
+Krzysztof Kozlowski (1):
+      drm/nouveau: constify pointers to hwmon_channel_info
+
+Liu Ying (2):
+      dt-bindings: display: simple: Add BOE EV121WXM-N10-1850 panel
+      drm/panel: panel-simple: Add BOE EV121WXM-N10-1850 panel support
+
+Luben Tuikov (2):
+      drm/sched: Rename to drm_sched_can_queue()
+      drm/sched: Rename to drm_sched_wakeup_if_can_queue()
+
+Marek Vasut (2):
+      dt-bindings: display: bridge: tc358867: Document TC358867/TC9595 compatible
+      drm: bridge: samsung-dsim: Implement support for clock/data polarity swap
+
+Maíra Canal (2):
+      drm: Add fixed-point helper to get rounded integer values
+      drm/vkms: Fix RGB565 pixel conversion
+
+Nícolas F. R. A. Prado (1):
+      drm/bridge: anx7625: Prevent endless probe loop
+
+Shuijing Li (2):
+      drm/panel: boe-tv101wum-nl6: Remove extra delay
+      drm/panel: boe-tv101wum-nl6: Fine tune the panel power sequence
+
+Sui Jingfeng (1):
+      drm/drm_atomic_helper.c: fix a typo
+
+Thomas Zimmermann (9):
+      fbdev/hitfb: Cast I/O offset to address
+      fbdev/matrox: Remove trailing whitespaces
+      ipu-v3: Include <linux/io.h>
+      fbdev: Include <linux/io.h> in various drivers
+      fbdev: Include <linux/fb.h> instead of <asm/fb.h>
+      fbdev: Move framebuffer I/O helpers into <asm/fb.h>
+      fbdev: Rename fb_mem*() helpers
+      drm/gma500: Clear fbdev framebuffer with fb_memset_io()
+      drm/msm: Use struct fb_info.screen_buffer
+
+Tom Rix (1):
+      drm/nouveau/acr/ga102: set variable ga102_gsps storage-class-specifier to static
+
+XuDong Liu (1):
+      drm: sun4i_tcon: use devm_clk_get_enabled in `sun4i_tcon_init_clocks`
+
+ .../bindings/display/bridge/samsung,mipi-dsim.yaml |  23 +
+ .../bindings/display/bridge/toshiba,tc358767.yaml  |  14 +-
+ .../bindings/display/panel/panel-simple.yaml       |   2 +
+ .../bindings/display/panel/samsung,s6d7aa0.yaml    |  70 +++
+ MAINTAINERS                                        |   6 +
+ arch/ia64/include/asm/fb.h                         |  20 +
+ arch/loongarch/include/asm/fb.h                    |  21 +
+ arch/mips/include/asm/fb.h                         |  22 +
+ arch/parisc/video/fbdev.c                          |   3 +-
+ arch/sparc/include/asm/fb.h                        |  20 +
+ arch/sparc/video/fbdev.c                           |   1 -
+ arch/x86/video/fbdev.c                             |   2 -
+ drivers/dma-buf/sw_sync.c                          |   2 +-
+ drivers/firmware/sysfb.c                           |   2 +-
+ drivers/gpu/drm/bridge/analogix/anx7625.c          | 128 +++--
+ drivers/gpu/drm/bridge/samsung-dsim.c              |  28 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   2 +-
+ drivers/gpu/drm/bridge/tc358767.c                  |   4 +-
+ drivers/gpu/drm/bridge/tc358768.c                  |   2 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |   2 +-
+ drivers/gpu/drm/gma500/fbdev.c                     |   2 +-
+ drivers/gpu/drm/msm/msm_fbdev.c                    |   6 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c            |   1 +
+ drivers/gpu/drm/nouveau/nouveau_hwmon.c            |   2 +-
+ drivers/gpu/drm/nouveau/nv50_display.h             |   4 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c    |   2 +-
+ drivers/gpu/drm/panel/Kconfig                      |   7 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c     | 404 ++++++++------
+ drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c      | 585 +++++++++++++++++++++
+ drivers/gpu/drm/panel/panel-sharp-ls043t1le01.c    |  43 +-
+ drivers/gpu/drm/panel/panel-simple.c               |  34 ++
+ drivers/gpu/drm/scheduler/sched_entity.c           |   4 +-
+ drivers/gpu/drm/scheduler/sched_main.c             |  15 +-
+ drivers/gpu/drm/shmobile/Kconfig                   |   4 +-
+ drivers/gpu/drm/shmobile/shmob_drm_crtc.c          |  35 +-
+ drivers/gpu/drm/shmobile/shmob_drm_drv.c           |   3 +
+ drivers/gpu/drm/shmobile/shmob_drm_kms.c           |   9 +-
+ drivers/gpu/drm/shmobile/shmob_drm_plane.c         |   5 +
+ drivers/gpu/drm/solomon/ssd130x.h                  |   6 +-
+ drivers/gpu/drm/sun4i/sun4i_tcon.c                 |  19 +-
+ drivers/gpu/drm/ttm/ttm_device.c                   |   2 +-
+ drivers/gpu/drm/vkms/vkms_formats.c                |  12 +-
+ drivers/gpu/ipu-v3/ipu-prv.h                       |   1 +
+ drivers/staging/sm750fb/sm750.c                    |   2 +-
+ drivers/video/fbdev/arcfb.c                        |   1 +
+ drivers/video/fbdev/aty/atyfb.h                    |   2 +
+ drivers/video/fbdev/aty/mach64_cursor.c            |   2 +-
+ drivers/video/fbdev/chipsfb.c                      |   2 +-
+ drivers/video/fbdev/core/fb_io_fops.c              |   4 +-
+ drivers/video/fbdev/core/fbcon.c                   |   1 -
+ drivers/video/fbdev/core/fbmem.c                   |   2 -
+ drivers/video/fbdev/hitfb.c                        | 122 +++--
+ drivers/video/fbdev/kyro/fbdev.c                   |   2 +-
+ drivers/video/fbdev/matrox/matroxfb_accel.c        |   6 +-
+ drivers/video/fbdev/matrox/matroxfb_base.h         |   4 +-
+ drivers/video/fbdev/pvr2fb.c                       |   2 +-
+ drivers/video/fbdev/sstfb.c                        |   2 +-
+ drivers/video/fbdev/stifb.c                        |   4 +-
+ drivers/video/fbdev/tdfxfb.c                       |   2 +-
+ drivers/video/fbdev/wmt_ge_rops.c                  |   2 +
+ include/asm-generic/fb.h                           | 102 ++++
+ include/drm/bridge/samsung-dsim.h                  |   2 +
+ include/drm/drm_fixed.h                            |   6 +
+ include/drm/gpu_scheduler.h                        |   2 +-
+ include/drm/ttm/ttm_device.h                       |   4 +-
+ include/linux/fb.h                                 |  55 +-
+ 67 files changed, 1476 insertions(+), 437 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
+
 -- 
-2.34.1
-
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
