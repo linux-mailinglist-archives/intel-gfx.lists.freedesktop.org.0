@@ -2,52 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D471170F932
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 16:52:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B6370F9C7
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 17:07:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27FF410E22D;
-	Wed, 24 May 2023 14:52:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 854BC10E275;
+	Wed, 24 May 2023 15:07:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97B1C10E22D
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 May 2023 14:52:36 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04BEC10E2B8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 May 2023 15:07:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684939956; x=1716475956;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=tWwty6LoJOvc20Ju+vTcqq/Uw1LeobzW/fY0bvtyKSk=;
- b=MeDFuBme0OW2nIBl1iKhos7XYOJrSBvZACU5d0WtX5lM/ZiKyGMxi2Xj
- 2RLwdbmSm1lcC+UQ9Lg7unAuBzKR7P+qhnqKUGAkTN+chwZebF/h+/fok
- /UCcdSPmWE7cDi4whndUS5drCA8VQRcFKUO64yV6PR8+85TNg7xBpO2lO
- bGi8/52/LTpbwQ7n5ruSwk7BXY8KWo/2o+6dC4EOBeqlmSeOs2xHyrX8K
- nfPHq7uMr0rJvevf5xjDK5naVM8Rb+4zkKAIyePkTY5mFPrdls8g5Pj2k
- 6LPuDK8mHbDlKYRYyaIAvUYSlscDipTjLfPXeafpsYeLYt2RC5iK+Oc/C w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="439945431"
-X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="439945431"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 07:52:35 -0700
+ t=1684940869; x=1716476869;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9JsckpSp/Q80LauUtKVHsDUiMTXk9qSMve37hbTxELs=;
+ b=nDLkWO5MUCY9xpX+yIa9mMg0Z6G1BRg7oeFz/HoToA2LAgQf2dqPDH1d
+ zOV6BvcP+eKmcw+UH7qrzSjKwslhU7HgY8WmZoKqAeHY/iMNxF98BLkKa
+ 7LTY5ih4Y7ahNclkoFfRuLbV53z5CgNWNp+xS28dyhfiK378fFoEozzTM
+ JTRjiz/weHhC3N41jARArc38DGA80VKA9Gb753ARr0/kA9a+9DExyTGeP
+ GEDemdsMRuVbDInsQGo5pbrSAgNkhLmxLwsrqUotX2ZCtc56plAHlFubH
+ RGASAfREZ4oBuBeElnFa5fZ1fNqsEIvmWj1LqhNFdeTpXqJSkieHoKYSD Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="352439312"
+X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="352439312"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2023 08:07:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="1034559963"
-X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="1034559963"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga005.fm.intel.com with SMTP; 24 May 2023 07:52:33 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 24 May 2023 17:52:32 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="794228813"
+X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="794228813"
+Received: from unknown (HELO sorvi2.fi.intel.com) ([10.237.72.194])
+ by FMSMGA003.fm.intel.com with ESMTP; 24 May 2023 08:07:21 -0700
+From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 24 May 2023 17:52:32 +0300
-Message-Id: <20230524145232.7426-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <20230511165534.10266-8-ville.syrjala@linux.intel.com>
-References: <20230511165534.10266-8-ville.syrjala@linux.intel.com>
+Date: Wed, 24 May 2023 18:01:52 +0300
+Message-Id: <20230524150152.136371-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 7/7] drm/i915: Convert HSW/BDW to use
- port_mask for DDI probe
+Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Reset only one lane in case of MFD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,113 +57,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+In case when only two or less lanes are owned such as MFD (DP-alt with x2 lanes)
+we need to reset only one lane (lane0). With only x2 lanes we don't need
+to poll for the phy current status on both lanes since only the owned lane
+will respond.
 
-Make HSW/BDW use port_mask for output probing as well.
-To achieve that the strap checks are moved into
-intel_ddi_init() itself. Or should we move them to the
-runtime port_mask init instead? Maybe not since the hardware
-is still there, just not connected to anything.
-
-v2: Account for DDI-E in strap detection
-    Keep to the old CRT->DDI init order
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c     | 29 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_display.c | 23 +++-------------
- 2 files changed, 33 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 39 ++++++++++++--------
+ 1 file changed, 23 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index a5ca4b9d1e3e..7d1bab460973 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4660,6 +4660,29 @@ static void intel_ddi_encoder_shutdown(struct intel_encoder *encoder)
- #define port_tc_name(port) ((port) - PORT_TC1 + '1')
- #define tc_port_name(tc_port) ((tc_port) - TC_PORT_1 + '1')
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index ee6902118860..b8c812c5b33f 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2528,13 +2528,23 @@ static u32 intel_cx0_get_pclk_refclk_ack(u8 lane_mask)
+ 	return val;
+ }
  
-+static bool port_strap_detected(struct drm_i915_private *i915, enum port port)
-+{
-+	/* straps not used on skl+ */
-+	if (DISPLAY_VER(i915) >= 9)
-+		return true;
-+
-+	switch (port) {
-+	case PORT_A:
-+		return intel_de_read(i915, DDI_BUF_CTL(PORT_A)) & DDI_INIT_DISPLAY_DETECTED;
-+	case PORT_B:
-+		return intel_de_read(i915, SFUSE_STRAP) & SFUSE_STRAP_DDIB_DETECTED;
-+	case PORT_C:
-+		return intel_de_read(i915, SFUSE_STRAP) & SFUSE_STRAP_DDIC_DETECTED;
-+	case PORT_D:
-+		return intel_de_read(i915, SFUSE_STRAP) & SFUSE_STRAP_DDID_DETECTED;
-+	case PORT_E:
-+		return true; /* no strap for DDI-E */
-+	default:
-+		MISSING_CASE(port);
-+		return false;
-+	}
-+}
-+
- void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+-/* FIXME: Some Type-C cases need not reset both the lanes. Handle those cases. */
+-static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915, enum port port,
++static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915,
++				     struct intel_encoder *encoder,
+ 				     bool lane_reversal)
  {
- 	struct intel_digital_port *dig_port;
-@@ -4668,6 +4691,12 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 	bool init_hdmi, init_dp;
- 	enum phy phy = intel_port_to_phy(dev_priv, port);
++	enum port port = encoder->port;
+ 	enum phy phy = intel_port_to_phy(i915, port);
++	u8 fia_max =  intel_tc_port_fia_max_lane_count(enc_to_dig_port(encoder));
+ 	u8 lane_mask = lane_reversal ? INTEL_CX0_LANE1 :
+ 				  INTEL_CX0_LANE0;
++	u32 lane_pipe_reset = fia_max > 2 ?
++			      XELPDP_LANE_PIPE_RESET(0) |
++			      XELPDP_LANE_PIPE_RESET(1) :
++			      XELPDP_LANE_PIPE_RESET(0);
++	u32 lane_phy_current_status = fia_max > 2 ?
++				      XELPDP_LANE_PHY_CURRENT_STATUS(0) |
++				      XELPDP_LANE_PHY_CURRENT_STATUS(1) :
++				      XELPDP_LANE_PHY_CURRENT_STATUS(0);
  
-+	if (!port_strap_detected(dev_priv, port)) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Port %c strap not detected\n", port_name(port));
-+		return;
-+	}
-+
- 	if (!assert_port_valid(dev_priv, port))
- 		return;
+ 	if (__intel_de_wait_for_register(i915, XELPDP_PORT_BUF_CTL1(port),
+ 					 XELPDP_PORT_BUF_SOC_PHY_READY,
+@@ -2545,23 +2555,24 @@ static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915, enum port po
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index fd3b5fc801e6..d9b5a552a2ed 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7350,9 +7350,12 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
+ 	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(port),
+ 		     XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1),
+-		     XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1));
++		     lane_pipe_reset);
  
--	if (DISPLAY_VER(dev_priv) >= 9) {
-+	if (HAS_DDI(dev_priv)) {
- 		enum port port;
+ 	if (__intel_de_wait_for_register(i915, XELPDP_PORT_BUF_CTL2(port),
+-					 XELPDP_LANE_PHY_CURRENT_STATUS(0) |
+-					 XELPDP_LANE_PHY_CURRENT_STATUS(1),
+-					 XELPDP_LANE_PHY_CURRENT_STATUS(0) |
+-					 XELPDP_LANE_PHY_CURRENT_STATUS(1),
++					 lane_phy_current_status, lane_phy_current_status,
+ 					 XELPDP_PORT_RESET_START_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dus.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
  
-+		if (intel_ddi_crt_present(dev_priv))
-+			intel_crt_init(dev_priv);
-+
- 		for_each_port_masked(port, RUNTIME_INFO(dev_priv)->port_mask)
- 			intel_ddi_init(dev_priv, port);
+ 	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(port),
+-		     intel_cx0_get_pclk_refclk_request(INTEL_CX0_BOTH_LANES),
++		     intel_cx0_get_pclk_refclk_request(fia_max > 2 ?
++						       INTEL_CX0_BOTH_LANES :
++						       INTEL_CX0_LANE0),
+ 		     intel_cx0_get_pclk_refclk_request(lane_mask));
  
-@@ -7363,24 +7366,6 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 	if (__intel_de_wait_for_register(i915, XELPDP_PORT_CLOCK_CTL(port),
+-					 intel_cx0_get_pclk_refclk_ack(INTEL_CX0_BOTH_LANES),
++					 intel_cx0_get_pclk_refclk_ack(fia_max > 2 ?
++								       INTEL_CX0_BOTH_LANES :
++								       INTEL_CX0_LANE0),
+ 					 intel_cx0_get_pclk_refclk_ack(lane_mask),
+ 					 XELPDP_REFCLK_ENABLE_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "PHY %c failed to request refclk after %dus.\n",
+@@ -2571,13 +2582,9 @@ static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915, enum port po
+ 					    CX0_P2_STATE_RESET);
+ 	intel_cx0_setup_powerdown(i915, port);
  
- 		if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
- 			vlv_dsi_init(dev_priv);
--	} else if (HAS_DDI(dev_priv)) {
--		u32 found;
--
--		if (intel_ddi_crt_present(dev_priv))
--			intel_crt_init(dev_priv);
--
--		/* Haswell uses DDI functions to detect digital outputs. */
--		found = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_A)) & DDI_INIT_DISPLAY_DETECTED;
--		if (found)
--			intel_ddi_init(dev_priv, PORT_A);
--
--		found = intel_de_read(dev_priv, SFUSE_STRAP);
--		if (found & SFUSE_STRAP_DDIB_DETECTED)
--			intel_ddi_init(dev_priv, PORT_B);
--		if (found & SFUSE_STRAP_DDIC_DETECTED)
--			intel_ddi_init(dev_priv, PORT_C);
--		if (found & SFUSE_STRAP_DDID_DETECTED)
--			intel_ddi_init(dev_priv, PORT_D);
- 	} else if (HAS_PCH_SPLIT(dev_priv)) {
- 		int found;
+-	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(port),
+-		     XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1),
+-		     0);
++	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(port), lane_pipe_reset, 0);
  
+-	if (intel_de_wait_for_clear(i915, XELPDP_PORT_BUF_CTL2(port),
+-				    XELPDP_LANE_PHY_CURRENT_STATUS(0) |
+-				    XELPDP_LANE_PHY_CURRENT_STATUS(1),
++	if (intel_de_wait_for_clear(i915, XELPDP_PORT_BUF_CTL2(port), lane_phy_current_status,
+ 				    XELPDP_PORT_RESET_END_TIMEOUT))
+ 		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dms.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_END_TIMEOUT);
+@@ -2705,7 +2712,7 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	intel_program_port_clock_ctl(encoder, crtc_state, lane_reversal);
+ 
+ 	/* 2. Bring PHY out of reset. */
+-	intel_cx0_phy_lane_reset(i915, encoder->port, lane_reversal);
++	intel_cx0_phy_lane_reset(i915, encoder, lane_reversal);
+ 
+ 	/*
+ 	 * 3. Change Phy power state to Ready.
 -- 
-2.39.3
+2.34.1
 
