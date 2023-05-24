@@ -2,32 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FF4670FEA3
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 21:41:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2148170FED1
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 21:56:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE4110E4D8;
-	Wed, 24 May 2023 19:41:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E84F10E60A;
+	Wed, 24 May 2023 19:56:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9EE2210E4D8;
- Wed, 24 May 2023 19:41:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 97C3FAADD7;
- Wed, 24 May 2023 19:41:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1162616785313042493=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87A1410E60A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 May 2023 19:56:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1684958178;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=77aRHVOjxxzrEPrNZ5aBBuwqoTrOdL50WaOnvMmOw1I=;
+ b=CoH0Q/+bVoUtHAZRXqdSijCo/VVaBbsOhJRvZUBs/Chxj6JRoEArJ4cfwQUtjPT6ozUn7r
+ LEx5mJ/9dvPef4LbZduTTWt0DfiLr0/kXrk2u4f2Ze7TWw0aU66TIPxBQL8wyJKwNp0aBN
+ TK2RZMzaWJeXFjOjEruJGjinoDhMdII=
+Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
+ [209.85.166.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-13-CDT-5PvkMK-RYELB38HXYw-1; Wed, 24 May 2023 15:56:17 -0400
+X-MC-Unique: CDT-5PvkMK-RYELB38HXYw-1
+Received: by mail-io1-f72.google.com with SMTP id
+ ca18e2360f4ac-7749b49ce95so40333339f.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 May 2023 12:56:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684958176; x=1687550176;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=77aRHVOjxxzrEPrNZ5aBBuwqoTrOdL50WaOnvMmOw1I=;
+ b=LeWhBsxFDzWmXEvxFUjL5ue81wah+pMrKs8iXz5BUqv3HsxfDvarCQqCm9glZvOp1E
+ vYLZ7NTCOojRHjS3wGez1t1myaZpP3pyR40CKvdwtHma1LUQW9i1uGafbPKzVv4jkgt3
+ NRhcqY97Xgo0l+HcFqBQBntL6IiO50s8RSWjg7EadiTml/P3l2jZSWzfHrOtk+U3S3D+
+ FGPwb7HZpRRyAplN+xu/s3MOQeQODb2kzUneWY3Z9YeaAnaDMeLVjiJsey5SDuCMcGZe
+ FdXPdTqc2lun+WkATWzbdtc0vzFtsf300lzjRi5ghLzVj7Vf6ZIp+/orW/yJallXflUY
+ CnJw==
+X-Gm-Message-State: AC+VfDzqTArJnYAiHV/ALzpzRzP6woNkQW7D0OHnVJBd4hadypPA2tzf
+ jgWMjTQ+uh2oDwlySDZ3rQDDdzfMwXiBjohnpNW39Y4v1x4E9sxNYmsGXKrifkJeVrRAJZl/vBf
+ pfe6OOVY4RwQhPw2B+H66sITVyp+H
+X-Received: by 2002:a6b:d818:0:b0:774:9994:d321 with SMTP id
+ y24-20020a6bd818000000b007749994d321mr1187104iob.16.1684958176310; 
+ Wed, 24 May 2023 12:56:16 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ5qv3g6oPbRgTR57grGdr8r+O8x/shxqA7XTBpTMaXSC0ZRjS8C2qfoVIoQDH8o1AsrXXB1XQ==
+X-Received: by 2002:a6b:d818:0:b0:774:9994:d321 with SMTP id
+ y24-20020a6bd818000000b007749994d321mr1187077iob.16.1684958175914; 
+ Wed, 24 May 2023 12:56:15 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ i18-20020a02ca52000000b0041a9dc8a96asm3336228jal.172.2023.05.24.12.56.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 24 May 2023 12:56:05 -0700 (PDT)
+Date: Wed, 24 May 2023 13:56:03 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <20230524135603.33ee3d91.alex.williamson@redhat.com>
+In-Reply-To: <20230522115751.326947-10-yi.l.liu@intel.com>
+References: <20230522115751.326947-1-yi.l.liu@intel.com>
+ <20230522115751.326947-10-yi.l.liu@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Date: Wed, 24 May 2023 19:41:18 -0000
-Message-ID: <168495727861.11316.3674129250895933034@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230524092150.11776-1-tzimmermann@suse.de>
-In-Reply-To: <20230524092150.11776-1-tzimmermann@suse.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/fbdev=3A_Remove_DRM=27s_helpers_for_fbdev_I/O_=28rev4=29?=
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v6 09/10] vfio/pci: Extend
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,352 +84,322 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
+ chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, kvm@vger.kernel.org,
+ lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
+ jgg@nvidia.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
+ eric.auger@redhat.com, intel-gvt-dev@lists.freedesktop.org,
+ yi.y.sun@linux.intel.com, clegoate@redhat.com, cohuck@redhat.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1162616785313042493==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 22 May 2023 04:57:50 -0700
+Yi Liu <yi.l.liu@intel.com> wrote:
 
-== Series Details ==
+> This allows VFIO_DEVICE_GET_PCI_HOT_RESET_INFO ioctl use the iommufd_ctx
+> of the cdev device to check the ownership of the other affected devices.
+> 
+> When VFIO_DEVICE_GET_PCI_HOT_RESET_INFO is called on an IOMMUFD managed
+> device, the new flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID is reported to indicate
+> the values returned are IOMMUFD devids rather than group IDs as used when
+> accessing vfio devices through the conventional vfio group interface.
+> Additionally the flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED will be reported
+> in this mode if all of the devices affected by the hot-reset are owned by
+> either virtue of being directly bound to the same iommufd context as the
+> calling device, or implicitly owned via a shared IOMMU group.
+> 
+> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
+> Suggested-by: Alex Williamson <alex.williamson@redhat.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/iommufd.c           | 57 ++++++++++++++++++++++++++++++++
+>  drivers/vfio/pci/vfio_pci_core.c | 40 ++++++++++++++++++----
+>  include/linux/vfio.h             | 16 +++++++++
+>  include/uapi/linux/vfio.h        | 46 +++++++++++++++++++++++++-
+>  4 files changed, 151 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/vfio/iommufd.c b/drivers/vfio/iommufd.c
+> index 356dd215a8d5..4dae9ab94eed 100644
+> --- a/drivers/vfio/iommufd.c
+> +++ b/drivers/vfio/iommufd.c
+> @@ -106,6 +106,63 @@ void vfio_iommufd_unbind(struct vfio_device *vdev)
+>  		vdev->ops->unbind_iommufd(vdev);
+>  }
+>  
+> +struct iommufd_ctx *vfio_iommufd_device_ictx(struct vfio_device *vdev)
+> +{
+> +	if (vdev->iommufd_device)
+> +		return iommufd_device_to_ictx(vdev->iommufd_device);
+> +	if (vdev->iommufd_access)
+> +		return iommufd_access_to_ictx(vdev->iommufd_access);
+> +	return NULL;
+> +}
+> +EXPORT_SYMBOL_GPL(vfio_iommufd_device_ictx);
+> +
+> +static int vfio_iommufd_device_id(struct vfio_device *vdev)
+> +{
+> +	if (vdev->iommufd_device)
+> +		return iommufd_device_to_id(vdev->iommufd_device);
+> +	if (vdev->iommufd_access)
+> +		return iommufd_access_to_id(vdev->iommufd_access);
+> +	return -EINVAL;
+> +}
+> +
+> +/*
+> + * Return devid for vfio_device if the device is owned by the input
+> + * ictx.
+> + * - valid devid > 0 for the device that are bound to the input
+> + *   iommufd_ctx.
+> + * - devid == VFIO_PCI_DEVID_OWNED for the devices that have not
+> + *   been opened but but other device within its group has been
 
-Series: drm/fbdev: Remove DRM's helpers for fbdev I/O (rev4)
-URL   : https://patchwork.freedesktop.org/series/117671/
-State : success
+"but but"
 
-== Summary ==
+> + *   bound to the input iommufd_ctx.
+> + * - devid == VFIO_PCI_DEVID_NOT_OWNED for others. e.g. vdev is
+> + *   NULL.
+> + */
+> +int vfio_iommufd_device_hot_reset_devid(struct vfio_device *vdev,
+> +					struct iommufd_ctx *ictx)
+> +{
+> +	struct iommu_group *group;
+> +	int devid;
+> +
+> +	if (!vdev)
+> +		return VFIO_PCI_DEVID_NOT_OWNED;
+> +
+> +	if (vfio_iommufd_device_ictx(vdev) == ictx)
+> +		return vfio_iommufd_device_id(vdev);
+> +
+> +	group = iommu_group_get(vdev->dev);
+> +	if (!group)
+> +		return VFIO_PCI_DEVID_NOT_OWNED;
+> +
+> +	if (iommufd_ctx_has_group(ictx, group))
+> +		devid = VFIO_PCI_DEVID_OWNED;
+> +	else
+> +		devid = VFIO_PCI_DEVID_NOT_OWNED;
+> +
+> +	iommu_group_put(group);
+> +
+> +	return devid;
+> +}
+> +EXPORT_SYMBOL_GPL(vfio_iommufd_device_hot_reset_devid);
+> +
+>  /*
+>   * The physical standard ops mean that the iommufd_device is bound to the
+>   * physical device vdev->dev that was provided to vfio_init_group_dev(). Drivers
+> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+> index 3a2f67675036..890065f846e4 100644
+> --- a/drivers/vfio/pci/vfio_pci_core.c
+> +++ b/drivers/vfio/pci/vfio_pci_core.c
+> @@ -27,6 +27,7 @@
+>  #include <linux/vgaarb.h>
+>  #include <linux/nospec.h>
+>  #include <linux/sched/mm.h>
+> +#include <linux/iommufd.h>
+>  #if IS_ENABLED(CONFIG_EEH)
+>  #include <asm/eeh.h>
+>  #endif
+> @@ -776,26 +777,42 @@ struct vfio_pci_fill_info {
+>  	int max;
+>  	int cur;
+>  	struct vfio_pci_dependent_device *devices;
+> +	struct vfio_device *vdev;
+> +	u32 flags;
+>  };
+>  
+>  static int vfio_pci_fill_devs(struct pci_dev *pdev, void *data)
+>  {
+>  	struct vfio_pci_fill_info *fill = data;
+> -	struct iommu_group *iommu_group;
+>  
+>  	if (fill->cur == fill->max)
+>  		return -EAGAIN; /* Something changed, try again */
+>  
+> -	iommu_group = iommu_group_get(&pdev->dev);
+> -	if (!iommu_group)
+> -		return -EPERM; /* Cannot reset non-isolated devices */
+> +	if (fill->flags & VFIO_PCI_HOT_RESET_FLAG_DEV_ID) {
+> +		struct iommufd_ctx *iommufd = vfio_iommufd_device_ictx(fill->vdev);
+> +		struct vfio_device_set *dev_set = fill->vdev->dev_set;
+> +		struct vfio_device *vdev;
+> +
+> +		vdev = vfio_find_device_in_devset(dev_set, &pdev->dev);
+> +		fill->devices[fill->cur].devid =
+> +			vfio_iommufd_device_hot_reset_devid(vdev, iommufd);
+> +		/* If devid is VFIO_PCI_DEVID_NOT_OWNED, clear owned flag. */
+> +		if (fill->devices[fill->cur].devid == VFIO_PCI_DEVID_NOT_OWNED)
+> +			fill->flags &= ~VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED;
+> +	} else {
+> +		struct iommu_group *iommu_group;
+> +
+> +		iommu_group = iommu_group_get(&pdev->dev);
+> +		if (!iommu_group)
+> +			return -EPERM; /* Cannot reset non-isolated devices */
+>  
+> -	fill->devices[fill->cur].group_id = iommu_group_id(iommu_group);
+> +		fill->devices[fill->cur].group_id = iommu_group_id(iommu_group);
+> +		iommu_group_put(iommu_group);
+> +	}
+>  	fill->devices[fill->cur].segment = pci_domain_nr(pdev->bus);
+>  	fill->devices[fill->cur].bus = pdev->bus->number;
+>  	fill->devices[fill->cur].devfn = pdev->devfn;
+>  	fill->cur++;
+> -	iommu_group_put(iommu_group);
+>  	return 0;
+>  }
+>  
+> @@ -1229,17 +1246,26 @@ static int vfio_pci_ioctl_get_pci_hot_reset_info(
+>  		return -ENOMEM;
+>  
+>  	fill.devices = devices;
+> +	fill.vdev = &vdev->vdev;
+>  
+> +	if (vfio_device_cdev_opened(&vdev->vdev))
+> +		fill.flags |= VFIO_PCI_HOT_RESET_FLAG_DEV_ID |
+> +			     VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED;
+> +
+> +	mutex_lock(&vdev->vdev.dev_set->lock);
+>  	ret = vfio_pci_for_each_slot_or_bus(vdev->pdev, vfio_pci_fill_devs,
+>  					    &fill, slot);
+> +	mutex_unlock(&vdev->vdev.dev_set->lock);
+>  
+>  	/*
+>  	 * If a device was removed between counting and filling, we may come up
+>  	 * short of fill.max.  If a device was added, we'll have a return of
+>  	 * -EAGAIN above.
+>  	 */
+> -	if (!ret)
+> +	if (!ret) {
+>  		hdr.count = fill.cur;
+> +		hdr.flags = fill.flags;
+> +	}
+>  
+>  reset_info_exit:
+>  	if (copy_to_user(arg, &hdr, minsz))
+> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
+> index ee120d2d530b..382a7b119c7c 100644
+> --- a/include/linux/vfio.h
+> +++ b/include/linux/vfio.h
+> @@ -114,6 +114,9 @@ struct vfio_device_ops {
+>  };
+>  
+>  #if IS_ENABLED(CONFIG_IOMMUFD)
+> +struct iommufd_ctx *vfio_iommufd_device_ictx(struct vfio_device *vdev);
+> +int vfio_iommufd_device_hot_reset_devid(struct vfio_device *vdev,
+> +					struct iommufd_ctx *ictx);
+>  int vfio_iommufd_physical_bind(struct vfio_device *vdev,
+>  			       struct iommufd_ctx *ictx, u32 *out_device_id);
+>  void vfio_iommufd_physical_unbind(struct vfio_device *vdev);
+> @@ -123,6 +126,19 @@ int vfio_iommufd_emulated_bind(struct vfio_device *vdev,
+>  void vfio_iommufd_emulated_unbind(struct vfio_device *vdev);
+>  int vfio_iommufd_emulated_attach_ioas(struct vfio_device *vdev, u32 *pt_id);
+>  #else
+> +static inline struct iommufd_ctx *
+> +vfio_iommufd_device_ictx(struct vfio_device *vdev)
+> +{
+> +	return NULL;
+> +}
+> +
+> +static inline int
+> +vfio_iommufd_device_hot_reset_devid(struct vfio_device *vdev,
+> +				    struct iommufd_ctx *ictx)
+> +{
+> +	return VFIO_PCI_DEVID_NOT_OWNED;
+> +}
+> +
+>  #define vfio_iommufd_physical_bind                                      \
+>  	((int (*)(struct vfio_device *vdev, struct iommufd_ctx *ictx,   \
+>  		  u32 *out_device_id)) NULL)
+> diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
+> index 0552e8dcf0cb..01203215251a 100644
+> --- a/include/uapi/linux/vfio.h
+> +++ b/include/uapi/linux/vfio.h
+> @@ -650,11 +650,53 @@ enum {
+>   * VFIO_DEVICE_GET_PCI_HOT_RESET_INFO - _IOWR(VFIO_TYPE, VFIO_BASE + 12,
+>   *					      struct vfio_pci_hot_reset_info)
+>   *
+> + * This command is used to query the affected devices in the hot reset for
+> + * a given device.
+> + *
+> + * This command always reports the segment, bus, and devfn information for
+> + * each affected device, and selectively reports the group_id or devid per
+> + * the way how the calling device is opened.
+> + *
+> + *	- If the calling device is opened via the traditional group/container
+> + *	  API, group_id is reported.  User should check if it has owned all
+> + *	  the affected devices and provides a set of group fds to prove the
+> + *	  ownership in VFIO_DEVICE_PCI_HOT_RESET ioctl.
+> + *
+> + *	- If the calling device is opened as a cdev, devid is reported.
+> + *	  Flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID is set to indicate this
+> + *	  data type.  For a given affected device, it is considered owned by
+> + *	  this interface if it meets the following conditions:
+> + *	  1) Has a valid devid within the iommufd_ctx of the calling device.
+> + *	     Ownership cannot be determined across separate iommufd_ctx and the
+> + *	     cdev calling conventions do not support a proof-of-ownership model
+> + *	     as provided in the legacy group interface.  In this case a valid
+> + *	     devid with value greater than zero is provided in the return
+> + *	     structure.
+> + *	  2) Does not have a valid devid within the iommufd_ctx of the calling
+> + *	     device, but belongs to the same IOMMU group as the calling device
+> + *	     or another opened device that has a valid devid within the
+> + *	     iommufd_ctx of the calling device.  This provides implicit ownership
+> + *	     for devices within the same DMA isolation context.  In this case
+> + *	     the invalid devid value of zero is provided in the return structure.
+> + *
+> + *	  A devid value of -1 is provided in the return structure for devices
 
-CI Bug Log - changes from CI_DRM_13187 -> Patchwork_117671v4
-====================================================
+s/zero/VFIO_PCI_DEVID_OWNED/
 
-Summary
--------
+s/-1/VFIO_PCI_DEVID_NOT_OWNED/
 
-  **SUCCESS**
+2) above and previously in the code comment where I noted the repeated
+"but" still doesn't actually describe the requirement as I noted in the
+last review.  The user implicitly owns a device if they own another
+device within the IOMMU group, but we also impose a dev_set requirement
+in the hot reset path.  All affected devices need to be represented in
+the dev_set, ex. bound to a vfio driver.  It's possible that requirement
+might be relaxed in the new DMA ownership model, but as it is right
+now, the code enforces that requirement and any new discussion about
+what makes hot-reset available should note both the ownership and
+dev_set requirement.  Thanks,
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/index.html
-
-Participating hosts (39 -> 37)
-------------------------------
-
-  Additional (1): fi-tgl-1115g4 
-  Missing    (3): fi-kbl-soraka fi-snb-2520m bat-mtlp-6 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_117671v4 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-cfl-8700k:       [PASS][1] -> [FAIL][2] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13187/fi-cfl-8700k/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-cfl-8700k/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([i915#7456])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@debugfs_test@basic-hwmon.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][4] ([i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][5] ([i915#4613]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([i915#3546] / [i915#7561])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-2:         [PASS][7] -> [ABORT][8] ([i915#7913] / [i915#7982])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13187/bat-rpls-2/igt@i915_selftest@live@requests.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/bat-rpls-2/igt@i915_selftest@live@requests.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-tgl-1115g4:      NOTRUN -> [INCOMPLETE][9] ([i915#7443] / [i915#8102])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium_edid@dp-edid-read:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([i915#7828]) +7 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@kms_chamelium_edid@dp-edid-read.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][11] ([i915#4103]) +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][12] ([fdo#109285])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][13] ([i915#1845] / [i915#5354]) +2 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][14] ([fdo#110189]) +3 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@kms_psr@cursor_plane_move.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][15] ([i915#3555] / [i915#4579])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@guc:
-    - bat-rpls-1:         [DMESG-WARN][16] ([i915#7852]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13187/bat-rpls-1/igt@i915_selftest@live@guc.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/bat-rpls-1/igt@i915_selftest@live@guc.html
-
-  * igt@i915_selftest@live@migrate:
-    - bat-dg2-11:         [DMESG-WARN][18] ([i915#7699]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13187/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/bat-dg2-11/igt@i915_selftest@live@migrate.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
-    - bat-dg2-8:          [FAIL][20] ([i915#7932]) -> [PASS][21] +1 similar issue
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13187/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-
-  
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#7443]: https://gitlab.freedesktop.org/drm/intel/issues/7443
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7852]: https://gitlab.freedesktop.org/drm/intel/issues/7852
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
-  [i915#8102]: https://gitlab.freedesktop.org/drm/intel/issues/8102
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+Alex
 
 
-Build changes
--------------
+> + *	  where ownership is not available.  Such devices prevent the use of
+> + *	  VFIO_DEVICE_PCI_HOT_RESET outside of proof-of-ownership calling
+> + *	  conventions (ie. via legacy group accessed devices).
+> + *	  Flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED would be set when all the
+> + *	  affected devices are owned by the user.  This flag is available only
+> + *	  when VFIO_PCI_HOT_RESET_FLAG_DEV_ID is set, otherwise reserved.
+> + *
+>   * Return: 0 on success, -errno on failure:
+>   *	-enospc = insufficient buffer, -enodev = unsupported for device.
+>   */
+>  struct vfio_pci_dependent_device {
+> -	__u32	group_id;
+> +	union {
+> +		__u32   group_id;
+> +		__u32	devid;
+> +#define VFIO_PCI_DEVID_OWNED		0
+> +#define VFIO_PCI_DEVID_NOT_OWNED	-1
+> +	};
+>  	__u16	segment;
+>  	__u8	bus;
+>  	__u8	devfn; /* Use PCI_SLOT/PCI_FUNC */
+> @@ -663,6 +705,8 @@ struct vfio_pci_dependent_device {
+>  struct vfio_pci_hot_reset_info {
+>  	__u32	argsz;
+>  	__u32	flags;
+> +#define VFIO_PCI_HOT_RESET_FLAG_DEV_ID		(1 << 0)
+> +#define VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED	(1 << 1)
+>  	__u32	count;
+>  	struct vfio_pci_dependent_device	devices[];
+>  };
 
-  * Linux: CI_DRM_13187 -> Patchwork_117671v4
-
-  CI-20190529: 20190529
-  CI_DRM_13187: e72bc131968e21d9deeae208605481c93581f142 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7303: 8f09a9f1da506db907b549bb477f3233b5416733 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_117671v4: e72bc131968e21d9deeae208605481c93581f142 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-ffade2f59f54 drm/i915: Implement dedicated fbdev I/O helpers
-cdb008958eb0 drm/fbdev-generic: Implement dedicated fbdev I/O helpers
-974676246000 drm/fb-helper: Export helpers for marking damage areas
-67b1d9088081 drm/tegra: Use regular fbdev I/O helpers
-3988c35b6667 drm/omapdrm: Use regular fbdev I/O helpers
-5574eab2867b drm/msm: Use regular fbdev I/O helpers
-1d2febacc1c0 drm/fbdev-dma: Use regular fbdev I/O helpers
-0ce24a602ae1 drm/radeon: Use regular fbdev I/O helpers
-4c8977cbdfa8 drm/gma500: Use regular fbdev I/O helpers
-d6281963d8d5 drm/exynos: Use regular fbdev I/O helpers
-f8c3dfd92983 drm/armada: Use regular fbdev I/O helpers
-e49a2fbbc911 fbdev: Add initializer macros for struct fb_ops
-b7684883b5c2 fbdev: Add Kconfig options to select different fb_ops helpers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/index.html
-
---===============1162616785313042493==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/fbdev: Remove DRM&#39;s helpers for fbdev I/O (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117671/">https://patchwork.freedesktop.org/series/117671/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13187 -&gt; Patchwork_117671v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/index.html</p>
-<h2>Participating hosts (39 -&gt; 37)</h2>
-<p>Additional (1): fi-tgl-1115g4 <br />
-  Missing    (3): fi-kbl-soraka fi-snb-2520m bat-mtlp-6 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_117671v4 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13187/fi-cfl-8700k/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-cfl-8700k/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13187/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/bat-rpls-2/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7443">i915#7443</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8102">i915#8102</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_edid@dp-edid-read:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@kms_chamelium_edid@dp-edid-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@guc:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13187/bat-rpls-1/igt@i915_selftest@live@guc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7852">i915#7852</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/bat-rpls-1/igt@i915_selftest@live@guc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13187/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13187/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117671v4/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13187 -&gt; Patchwork_117671v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13187: e72bc131968e21d9deeae208605481c93581f142 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7303: 8f09a9f1da506db907b549bb477f3233b5416733 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_117671v4: e72bc131968e21d9deeae208605481c93581f142 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>ffade2f59f54 drm/i915: Implement dedicated fbdev I/O helpers<br />
-cdb008958eb0 drm/fbdev-generic: Implement dedicated fbdev I/O helpers<br />
-974676246000 drm/fb-helper: Export helpers for marking damage areas<br />
-67b1d9088081 drm/tegra: Use regular fbdev I/O helpers<br />
-3988c35b6667 drm/omapdrm: Use regular fbdev I/O helpers<br />
-5574eab2867b drm/msm: Use regular fbdev I/O helpers<br />
-1d2febacc1c0 drm/fbdev-dma: Use regular fbdev I/O helpers<br />
-0ce24a602ae1 drm/radeon: Use regular fbdev I/O helpers<br />
-4c8977cbdfa8 drm/gma500: Use regular fbdev I/O helpers<br />
-d6281963d8d5 drm/exynos: Use regular fbdev I/O helpers<br />
-f8c3dfd92983 drm/armada: Use regular fbdev I/O helpers<br />
-e49a2fbbc911 fbdev: Add initializer macros for struct fb_ops<br />
-b7684883b5c2 fbdev: Add Kconfig options to select different fb_ops helpers</p>
-
-</body>
-</html>
-
---===============1162616785313042493==--
