@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9884670F570
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 13:38:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 314E270F5B6
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 13:56:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0124010E661;
-	Wed, 24 May 2023 11:38:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E8E710E65A;
+	Wed, 24 May 2023 11:56:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6550710E0AD;
- Wed, 24 May 2023 11:38:23 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6E5210E65A;
+ Wed, 24 May 2023 11:56:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684928303; x=1716464303;
+ t=1684929394; x=1716465394;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=2GIXZQlp65qJPDxk+w9V0JKpUuiCZOFsTYn8sgCDelg=;
- b=fOFgBtimPxV7aovy0+L1T0POPQ80FGo+3RDI0GXLHU6YCjWOj8NArv/B
- MkbbWUgWV4rR1uW++2aDwKTMfh8nO/KipRqRXgGc4YybPdb+Ykrllg9ro
- DCrkmtRyqDFuOQepGp51QVWpwZhqWhlXxc2dcAXHicBwjcjBFSTyvprxZ
- 3VEhcvrceTQtACoyTuS7Pc/s3CiWGBwfl6kTWmHoz666rLBfseyfFpxZj
- AOzO9vUEVzWcmvFkwyN/Pa69ohE5gkcnoYuNx42PzqY6AYKq1I5uWqvcQ
- nuFkX3yik6VsmBCfQ48F9dGWj+0WxY9sk/5jKt568WeI6h+LUQP4xXNdJ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="356760818"
-X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="356760818"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 04:38:22 -0700
+ bh=2M75/3f2zuPoKT8zUlYJqnZto7dEX5INKB2TBMcY3XU=;
+ b=fxkK66hv6c2k8x8ZhEXh/w2F6gY7oVMpscR+oOAYK0geObd0MfqdJygR
+ uLEFg0lMia+UDsydlQ1SnuCHXm9HIM+GupUBQZnwe7HWqixK9Oc+plkrL
+ KkIhmzyp7U0LXN5xZ8RLYUuPYggp75SuJTgSDeDQ7ad6QO7zaeFThB3Qn
+ m+Idu8bucDDRJisVNq2CO87EpAKM3rPBWSjivnfDSd9zU9p8IhVzkSZij
+ nVtGfLCYyaS1sia1jtY6Y4NB1il7w36Y5m51kb1EC2d2lItqekyhf5TvZ
+ nMiBenAS0uwFYjq2JPGpjWE4xfaHSrRzhAlPICLnmjSXo7186rF8MSkxS Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="417000050"
+X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="417000050"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2023 04:56:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="816542654"
-X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="816542654"
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="794163701"
+X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="794163701"
 Received: from bmhacket-mobl.ger.corp.intel.com (HELO [10.213.218.245])
  ([10.213.218.245])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 04:38:20 -0700
-Message-ID: <beaf5d7d-a611-6c87-efa7-5b4c87e5ac7d@linux.intel.com>
-Date: Wed, 24 May 2023 12:38:18 +0100
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2023 04:56:32 -0700
+Message-ID: <37a0e8fc-efbc-973f-f163-235b9482f21c@linux.intel.com>
+Date: Wed, 24 May 2023 12:56:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
 Content-Language: en-US
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230523151918.4170499-1-ashutosh.dixit@intel.com>
- <20230523151918.4170499-3-ashutosh.dixit@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>, fei.yang@intel.com
+References: <20230519051103.3404990-1-fei.yang@intel.com>
+ <ZGx7Quf+ArHnXOR0@ashyti-mobl2.lan>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20230523151918.4170499-3-ashutosh.dixit@intel.com>
+In-Reply-To: <ZGx7Quf+ArHnXOR0@ashyti-mobl2.lan>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Make PMU sample array
- two-dimensional
+Subject: Re: [Intel-gfx] [PATCH v10 0/2] drm/i915: Allow user to set cache
+ at BO creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,175 +64,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ dri-devel@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 23/05/2023 16:19, Ashutosh Dixit wrote:
-> No functional changes but we can remove some unsightly index computation
-> and read/write functions if we convert the PMU sample array from a
-> one-dimensional to a two-dimensional array.
+On 23/05/2023 09:37, Andi Shyti wrote:
+> Hi Fei,
 > 
-> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_pmu.c | 60 ++++++++++-----------------------
->   drivers/gpu/drm/i915/i915_pmu.h |  2 +-
->   2 files changed, 19 insertions(+), 43 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index b47d890d4ada1..137e0df9573ee 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -195,33 +195,6 @@ static inline s64 ktime_since_raw(const ktime_t kt)
->   	return ktime_to_ns(ktime_sub(ktime_get_raw(), kt));
->   }
->   
-> -static unsigned int
-> -__sample_idx(struct i915_pmu *pmu, unsigned int gt_id, int sample)
-> -{
-> -	unsigned int idx = gt_id * __I915_NUM_PMU_SAMPLERS + sample;
-> -
-> -	GEM_BUG_ON(idx >= ARRAY_SIZE(pmu->sample));
-> -
-> -	return idx;
-> -}
-> -
-> -static u64 read_sample(struct i915_pmu *pmu, unsigned int gt_id, int sample)
-> -{
-> -	return pmu->sample[__sample_idx(pmu, gt_id, sample)].cur;
-> -}
-> -
-> -static void
-> -store_sample(struct i915_pmu *pmu, unsigned int gt_id, int sample, u64 val)
-> -{
-> -	pmu->sample[__sample_idx(pmu, gt_id, sample)].cur = val;
-> -}
-> -
-> -static void
-> -add_sample_mult(struct i915_pmu *pmu, unsigned int gt_id, int sample, u32 val, u32 mul)
-> -{
-> -	pmu->sample[__sample_idx(pmu, gt_id, sample)].cur += mul_u32_u32(val, mul);
-> -}
+> finally... pushed in drm-intel-gt-next! :)
 
-IMO read and store helpers could have stayed and just changed the 
-implementation. Like add_sample_mult which you just moved. I would have 
-been a smaller patch. So dunno.. a bit of a reluctant r-b.
+I had to revert this (uapi commit only) by force pushing, luckily it was 
+the top commit.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+1)
+IGT is not merged yet.
+
+2)
+The tools/include/uapi/drm/i915_drm.h part of the patch was not removed.
+
+Please fix both issues before re-sending and re-merging.
 
 Regards,
 
 Tvrtko
-
-> -
->   static u64 get_rc6(struct intel_gt *gt)
->   {
->   	struct drm_i915_private *i915 = gt->i915;
-> @@ -240,7 +213,7 @@ static u64 get_rc6(struct intel_gt *gt)
->   	spin_lock_irqsave(&pmu->lock, flags);
->   
->   	if (awake) {
-> -		store_sample(pmu, gt_id, __I915_SAMPLE_RC6, val);
-> +		pmu->sample[gt_id][__I915_SAMPLE_RC6].cur = val;
->   	} else {
->   		/*
->   		 * We think we are runtime suspended.
-> @@ -250,13 +223,13 @@ static u64 get_rc6(struct intel_gt *gt)
->   		 * counter value.
->   		 */
->   		val = ktime_since_raw(pmu->sleep_last[gt_id]);
-> -		val += read_sample(pmu, gt_id, __I915_SAMPLE_RC6);
-> +		val += pmu->sample[gt_id][__I915_SAMPLE_RC6].cur;
->   	}
->   
-> -	if (val < read_sample(pmu, gt_id, __I915_SAMPLE_RC6_LAST_REPORTED))
-> -		val = read_sample(pmu, gt_id, __I915_SAMPLE_RC6_LAST_REPORTED);
-> +	if (val < pmu->sample[gt_id][__I915_SAMPLE_RC6_LAST_REPORTED].cur)
-> +		val = pmu->sample[gt_id][__I915_SAMPLE_RC6_LAST_REPORTED].cur;
->   	else
-> -		store_sample(pmu, gt_id, __I915_SAMPLE_RC6_LAST_REPORTED, val);
-> +		pmu->sample[gt_id][__I915_SAMPLE_RC6_LAST_REPORTED].cur = val;
->   
->   	spin_unlock_irqrestore(&pmu->lock, flags);
->   
-> @@ -275,9 +248,8 @@ static void init_rc6(struct i915_pmu *pmu)
->   		with_intel_runtime_pm(gt->uncore->rpm, wakeref) {
->   			u64 val = __get_rc6(gt);
->   
-> -			store_sample(pmu, i, __I915_SAMPLE_RC6, val);
-> -			store_sample(pmu, i, __I915_SAMPLE_RC6_LAST_REPORTED,
-> -				     val);
-> +			pmu->sample[i][__I915_SAMPLE_RC6].cur = val;
-> +			pmu->sample[i][__I915_SAMPLE_RC6_LAST_REPORTED].cur = val;
->   			pmu->sleep_last[i] = ktime_get_raw();
->   		}
->   	}
-> @@ -287,7 +259,7 @@ static void park_rc6(struct intel_gt *gt)
->   {
->   	struct i915_pmu *pmu = &gt->i915->pmu;
->   
-> -	store_sample(pmu, gt->info.id, __I915_SAMPLE_RC6, __get_rc6(gt));
-> +	pmu->sample[gt->info.id][__I915_SAMPLE_RC6].cur = __get_rc6(gt);
->   	pmu->sleep_last[gt->info.id] = ktime_get_raw();
->   }
->   
-> @@ -428,6 +400,12 @@ engines_sample(struct intel_gt *gt, unsigned int period_ns)
->   	}
->   }
->   
-> +static void
-> +add_sample_mult(struct i915_pmu_sample *sample, u32 val, u32 mul)
-> +{
-> +	sample->cur += mul_u32_u32(val, mul);
-> +}
-> +
->   static bool
->   frequency_sampling_enabled(struct i915_pmu *pmu, unsigned int gt)
->   {
-> @@ -467,12 +445,12 @@ frequency_sample(struct intel_gt *gt, unsigned int period_ns)
->   		if (!val)
->   			val = intel_gpu_freq(rps, rps->cur_freq);
->   
-> -		add_sample_mult(pmu, gt_id, __I915_SAMPLE_FREQ_ACT,
-> +		add_sample_mult(&pmu->sample[gt_id][__I915_SAMPLE_FREQ_ACT],
->   				val, period_ns / 1000);
->   	}
->   
->   	if (pmu->enable & config_mask(__I915_PMU_REQUESTED_FREQUENCY(gt_id))) {
-> -		add_sample_mult(pmu, gt_id, __I915_SAMPLE_FREQ_REQ,
-> +		add_sample_mult(&pmu->sample[gt_id][__I915_SAMPLE_FREQ_REQ],
->   				intel_rps_get_requested_frequency(rps),
->   				period_ns / 1000);
->   	}
-> @@ -673,14 +651,12 @@ static u64 __i915_pmu_event_read(struct perf_event *event)
->   		switch (config) {
->   		case I915_PMU_ACTUAL_FREQUENCY:
->   			val =
-> -			   div_u64(read_sample(pmu, gt_id,
-> -					       __I915_SAMPLE_FREQ_ACT),
-> +			   div_u64(pmu->sample[gt_id][__I915_SAMPLE_FREQ_ACT].cur,
->   				   USEC_PER_SEC /* to MHz */);
->   			break;
->   		case I915_PMU_REQUESTED_FREQUENCY:
->   			val =
-> -			   div_u64(read_sample(pmu, gt_id,
-> -					       __I915_SAMPLE_FREQ_REQ),
-> +			   div_u64(pmu->sample[gt_id][__I915_SAMPLE_FREQ_REQ].cur,
->   				   USEC_PER_SEC /* to MHz */);
->   			break;
->   		case I915_PMU_INTERRUPTS:
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
-> index 33d80fbaab8bc..d20592e7db999 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.h
-> +++ b/drivers/gpu/drm/i915/i915_pmu.h
-> @@ -127,7 +127,7 @@ struct i915_pmu {
->   	 * Only global counters are held here, while the per-engine ones are in
->   	 * struct intel_engine_cs.
->   	 */
-> -	struct i915_pmu_sample sample[I915_PMU_MAX_GTS * __I915_NUM_PMU_SAMPLERS];
-> +	struct i915_pmu_sample sample[I915_PMU_MAX_GTS][__I915_NUM_PMU_SAMPLERS];
->   	/**
->   	 * @sleep_last: Last time GT parked for RC6 estimation.
->   	 */
