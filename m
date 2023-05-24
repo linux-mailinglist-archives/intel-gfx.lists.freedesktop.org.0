@@ -2,50 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1A3870FEEC
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 22:02:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E614270FF17
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 22:20:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 178F410E614;
-	Wed, 24 May 2023 20:02:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DFA510E60B;
+	Wed, 24 May 2023 20:20:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C503710E68D;
- Wed, 24 May 2023 20:02:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684958535; x=1716494535;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=INm+3w/Sf5TZuZLCBL0p2vBIjxHMTFVrZB/R3l+sV9A=;
- b=AAGgm2fsCAdB1alPIPiKKDRxnI+XHVMkKGRqJmEfKJfMNy2B59AHtJLp
- jZmiwOSvmmm2weN/2XWIXl75LRKZbdrMPBzlwZiHJbeCRv0zXg5jGWrIo
- HaEV9OprOmeWe3uLokbCtx6jfX509q0eom1Xf4dbtNkERFe8vjB1pGwNu
- Bz0Ab2mSfaZpByB/L+ZktiiWE+avvHabpWYjMGeQBGbBsbrAiDyn2qlnJ
- 9wq3Wc6DUjONWiBA6GzJnNLlRendMe5GLQldv57unWpALAarMky7CwGZe
- IS+ypsHt0e7H3Ua3XMcRu1M0w/9NXr1M+ScQWM6ifRr0XZ7wCUx0cZorJ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="352523013"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="352523013"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 13:02:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="704491870"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="704491870"
-Received: from fyang16-desk.jf.intel.com ([10.24.96.243])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 13:02:13 -0700
-From: fei.yang@intel.com
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 24 May 2023 13:02:55 -0700
-Message-Id: <20230524200255.443021-2-fei.yang@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230524200255.443021-1-fei.yang@intel.com>
-References: <20230524200255.443021-1-fei.yang@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2074510E60B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 May 2023 20:20:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1684959604;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=EegkfqA5EXlXDaMvCtZ7J4hr1cwSStqvb2N7Cuhj6OE=;
+ b=e65UivLOZ9Nbc/i6q+36HDYHMgqRZGmKlpjXqTex9e0g2KJpvGNV6Cy8pNIwIsLEMqArq4
+ JQeHs4JjTixwskbBivfayAbJaq0TYsnLG5K2BNHKOJi4lj79QZx0LjBzoGCKJUGfm2Sa4I
+ f7hqnZ3WsmbcbARwAzS17Isq0PPmkQA=
+Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
+ [209.85.166.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-510-RK3d8hqWOx-PQg2KWrnh4Q-1; Wed, 24 May 2023 16:20:01 -0400
+X-MC-Unique: RK3d8hqWOx-PQg2KWrnh4Q-1
+Received: by mail-il1-f200.google.com with SMTP id
+ e9e14a558f8ab-3381af7e466so19545015ab.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 May 2023 13:20:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684959600; x=1687551600;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=EegkfqA5EXlXDaMvCtZ7J4hr1cwSStqvb2N7Cuhj6OE=;
+ b=gG69hXEyVIHk941G2wM/yeMmpTTIcjdNdLWa7xbqxxpJv7+YZT9Wq6qO8GsqWENpKY
+ 26XIGR2QATwZftanopecgv6fDedk5cx4+f5KAVIJIm6PSUfz5oOZXkJmsVsnBbeiK8NV
+ 1HVyOAfBGWTVaslSf0N2uRlJ+LMJBQ6mTEjXDbGzQz0116w5j3uFzRS9sWbIcahKxiSd
+ aZQHxqswC7KoE4vRkIJLey1UnDSO2ZK6JOE6UBhPVXzBxZHrjlUE/gfUfvNPZIPNbTi/
+ P6ICB9SoYO3WEg4Yp6l2Lls6uueBoZgFm63CJqlThdwV29iU9uwJoauhLnBFzYZ3sr3j
+ wEyg==
+X-Gm-Message-State: AC+VfDxsfcfAHjsHNMblDgsQJTeqM629uZHQBmuUcO8YrdMJUDw1L1wi
+ mruk7RyPFzq9XyVL1nu7x2IcGMblZyx9JmtweWLViZRzFF7WBJR0MSYwgISCJv7+bxaZepHtNUM
+ glpyq1wOS3y96PBtzQ+0luG38fKew
+X-Received: by 2002:a92:d389:0:b0:328:8770:b9c2 with SMTP id
+ o9-20020a92d389000000b003288770b9c2mr12706854ilo.14.1684959600173; 
+ Wed, 24 May 2023 13:20:00 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6FYSLSN+5lwBDopAeR4Gv749KmekrgMjBNu5QEmxHCyoEg5poCQBqc1LLm7wH3pqfsS9JOPQ==
+X-Received: by 2002:a92:d389:0:b0:328:8770:b9c2 with SMTP id
+ o9-20020a92d389000000b003288770b9c2mr12706825ilo.14.1684959599888; 
+ Wed, 24 May 2023 13:19:59 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ b1-20020a029581000000b003c4e02148e5sm3333184jai.53.2023.05.24.13.19.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 24 May 2023 13:19:59 -0700 (PDT)
+Date: Wed, 24 May 2023 14:19:56 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <20230524141956.3655fab5.alex.williamson@redhat.com>
+In-Reply-To: <20230522115751.326947-11-yi.l.liu@intel.com>
+References: <20230522115751.326947-1-yi.l.liu@intel.com>
+ <20230522115751.326947-11-yi.l.liu@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v12 1/1] drm/i915: Allow user to set cache at BO
- creation
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v6 10/10] vfio/pci: Allow passing
+ zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,197 +84,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com,
- Matt Roper <matthew.d.roper@intel.com>
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
+ chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, kvm@vger.kernel.org,
+ lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
+ jgg@nvidia.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
+ eric.auger@redhat.com, intel-gvt-dev@lists.freedesktop.org,
+ yi.y.sun@linux.intel.com, clegoate@redhat.com, cohuck@redhat.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Fei Yang <fei.yang@intel.com>
+On Mon, 22 May 2023 04:57:51 -0700
+Yi Liu <yi.l.liu@intel.com> wrote:
 
-To comply with the design that buffer objects shall have immutable
-cache setting through out their life cycle, {set, get}_caching ioctl's
-are no longer supported from MTL onward. With that change caching
-policy can only be set at object creation time. The current code
-applies a default (platform dependent) cache setting for all objects.
-However this is not optimal for performance tuning. The patch extends
-the existing gem_create uAPI to let user set PAT index for the object
-at creation time.
-The new extension is platform independent, so UMD's can switch to using
-this extension for older platforms as well, while {set, get}_caching are
-still supported on these legacy paltforms for compatibility reason.
+> This is the way user to invoke hot-reset for the devices opened by cdev
+> interface. User should check the flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED
+> in the output of VFIO_DEVICE_GET_PCI_HOT_RESET_INFO ioctl before doing
+> hot-reset for cdev devices.
+> 
+> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Tested-by: Yanting Jiang <yanting.jiang@intel.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/pci/vfio_pci_core.c | 56 +++++++++++++++++++++++++-------
+>  include/uapi/linux/vfio.h        | 14 ++++++++
+>  2 files changed, 59 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+> index 890065f846e4..67f1cb426505 100644
+> --- a/drivers/vfio/pci/vfio_pci_core.c
+> +++ b/drivers/vfio/pci/vfio_pci_core.c
+> @@ -181,7 +181,8 @@ static void vfio_pci_probe_mmaps(struct vfio_pci_core_device *vdev)
+>  struct vfio_pci_group_info;
+>  static void vfio_pci_dev_set_try_reset(struct vfio_device_set *dev_set);
+>  static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
+> -				      struct vfio_pci_group_info *groups);
+> +				      struct vfio_pci_group_info *groups,
+> +				      struct iommufd_ctx *iommufd_ctx);
+>  
+>  /*
+>   * INTx masking requires the ability to disable INTx signaling via PCI_COMMAND
+> @@ -1301,8 +1302,7 @@ vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
+>  	if (ret)
+>  		return ret;
+>  
+> -	/* Somewhere between 1 and count is OK */
+> -	if (!array_count || array_count > count)
+> +	if (array_count > count || vfio_device_cdev_opened(&vdev->vdev))
+>  		return -EINVAL;
+>  
+>  	group_fds = kcalloc(array_count, sizeof(*group_fds), GFP_KERNEL);
+> @@ -1351,7 +1351,7 @@ vfio_pci_ioctl_pci_hot_reset_groups(struct vfio_pci_core_device *vdev,
+>  	info.count = array_count;
+>  	info.files = files;
+>  
+> -	ret = vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, &info);
+> +	ret = vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, &info, NULL);
+>  
+>  hot_reset_release:
+>  	for (file_idx--; file_idx >= 0; file_idx--)
+> @@ -1380,7 +1380,11 @@ static int vfio_pci_ioctl_pci_hot_reset(struct vfio_pci_core_device *vdev,
+>  	else if (pci_probe_reset_bus(vdev->pdev->bus))
+>  		return -ENODEV;
+>  
+> -	return vfio_pci_ioctl_pci_hot_reset_groups(vdev, hdr.count, slot, arg);
+> +	if (hdr.count)
+> +		return vfio_pci_ioctl_pci_hot_reset_groups(vdev, hdr.count, slot, arg);
+> +
+> +	return vfio_pci_dev_set_hot_reset(vdev->vdev.dev_set, NULL,
+> +					  vfio_iommufd_device_ictx(&vdev->vdev));
+>  }
+>  
+>  static int vfio_pci_ioctl_ioeventfd(struct vfio_pci_core_device *vdev,
+> @@ -2347,13 +2351,16 @@ const struct pci_error_handlers vfio_pci_core_err_handlers = {
+>  };
+>  EXPORT_SYMBOL_GPL(vfio_pci_core_err_handlers);
+>  
+> -static bool vfio_dev_in_groups(struct vfio_pci_core_device *vdev,
+> +static bool vfio_dev_in_groups(struct vfio_device *vdev,
+>  			       struct vfio_pci_group_info *groups)
+>  {
+>  	unsigned int i;
+>  
+> +	if (!groups)
+> +		return false;
+> +
+>  	for (i = 0; i < groups->count; i++)
+> -		if (vfio_file_has_dev(groups->files[i], &vdev->vdev))
+> +		if (vfio_file_has_dev(groups->files[i], vdev))
+>  			return true;
+>  	return false;
+>  }
+> @@ -2429,7 +2436,8 @@ static int vfio_pci_dev_set_pm_runtime_get(struct vfio_device_set *dev_set)
+>   * get each memory_lock.
+>   */
+>  static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
+> -				      struct vfio_pci_group_info *groups)
+> +				      struct vfio_pci_group_info *groups,
+> +				      struct iommufd_ctx *iommufd_ctx)
+>  {
+>  	struct vfio_pci_core_device *cur_mem;
+>  	struct vfio_pci_core_device *cur_vma;
+> @@ -2459,11 +2467,37 @@ static int vfio_pci_dev_set_hot_reset(struct vfio_device_set *dev_set,
+>  		goto err_unlock;
+>  
+>  	list_for_each_entry(cur_vma, &dev_set->device_list, vdev.dev_set_list) {
+> +		bool owned;
+> +
+>  		/*
+> -		 * Test whether all the affected devices are contained by the
+> -		 * set of groups provided by the user.
+> +		 * Test whether all the affected devices can be reset by the
+> +		 * user.
+> +		 *
+> +		 * If the user provides a set of groups, all the devices
+> +		 * in the dev_set should be contained by the set of groups
+> +		 * provided by the user.
 
-BSpec: 45101
+"If called from a group opened device and the user provides a set of
+groups,..."
 
-Test igt@gem_create@create_ext_set_pat posted at
-https://patchwork.freedesktop.org/series/118314/
+> +		 *
+> +		 * If the user provides a zero-length group fd array, then
 
-Tested with https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22878
+"If called from a cdev opened device and the user provides a
+zero-length array,..."
 
-Signed-off-by: Fei Yang <fei.yang@intel.com>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Acked-by: Jordan Justen <jordan.l.justen@intel.com>
-Tested-by: Jordan Justen <jordan.l.justen@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_create.c | 36 +++++++++++++++++++
- drivers/gpu/drm/i915/gem/i915_gem_object.c |  6 ++++
- include/uapi/drm/i915_drm.h                | 41 ++++++++++++++++++++++
- 3 files changed, 83 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-index bfe1dbda4cb7..644a936248ad 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-@@ -245,6 +245,7 @@ struct create_ext {
- 	unsigned int n_placements;
- 	unsigned int placement_mask;
- 	unsigned long flags;
-+	unsigned int pat_index;
- };
- 
- static void repr_placements(char *buf, size_t size,
-@@ -394,11 +395,39 @@ static int ext_set_protected(struct i915_user_extension __user *base, void *data
- 	return 0;
- }
- 
-+static int ext_set_pat(struct i915_user_extension __user *base, void *data)
-+{
-+	struct create_ext *ext_data = data;
-+	struct drm_i915_private *i915 = ext_data->i915;
-+	struct drm_i915_gem_create_ext_set_pat ext;
-+	unsigned int max_pat_index;
-+
-+	BUILD_BUG_ON(sizeof(struct drm_i915_gem_create_ext_set_pat) !=
-+		     offsetofend(struct drm_i915_gem_create_ext_set_pat, rsvd));
-+
-+	if (copy_from_user(&ext, base, sizeof(ext)))
-+		return -EFAULT;
-+
-+	max_pat_index = INTEL_INFO(i915)->max_pat_index;
-+
-+	if (ext.pat_index > max_pat_index) {
-+		drm_dbg(&i915->drm, "PAT index is invalid: %u\n",
-+			ext.pat_index);
-+		return -EINVAL;
-+	}
-+
-+	ext_data->pat_index = ext.pat_index;
-+
-+	return 0;
-+}
-+
- static const i915_user_extension_fn create_extensions[] = {
- 	[I915_GEM_CREATE_EXT_MEMORY_REGIONS] = ext_set_placements,
- 	[I915_GEM_CREATE_EXT_PROTECTED_CONTENT] = ext_set_protected,
-+	[I915_GEM_CREATE_EXT_SET_PAT] = ext_set_pat,
- };
- 
-+#define PAT_INDEX_NOT_SET	0xffff
- /**
-  * i915_gem_create_ext_ioctl - Creates a new mm object and returns a handle to it.
-  * @dev: drm device pointer
-@@ -418,6 +447,7 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
- 	if (args->flags & ~I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS)
- 		return -EINVAL;
- 
-+	ext_data.pat_index = PAT_INDEX_NOT_SET;
- 	ret = i915_user_extensions(u64_to_user_ptr(args->extensions),
- 				   create_extensions,
- 				   ARRAY_SIZE(create_extensions),
-@@ -454,5 +484,11 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
- 	if (IS_ERR(obj))
- 		return PTR_ERR(obj);
- 
-+	if (ext_data.pat_index != PAT_INDEX_NOT_SET) {
-+		i915_gem_object_set_pat_index(obj, ext_data.pat_index);
-+		/* Mark pat_index is set by UMD */
-+		obj->pat_set_by_user = true;
-+	}
-+
- 	return i915_gem_publish(obj, file, &args->size, &args->handle);
- }
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 46a19b099ec8..97ac6fb37958 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -208,6 +208,12 @@ bool i915_gem_object_can_bypass_llc(struct drm_i915_gem_object *obj)
- 	if (!(obj->flags & I915_BO_ALLOC_USER))
- 		return false;
- 
-+	/*
-+	 * Always flush cache for UMD objects at creation time.
-+	 */
-+	if (obj->pat_set_by_user)
-+		return true;
-+
- 	/*
- 	 * EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
- 	 * possible for userspace to bypass the GTT caching bits set by the
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index f31dfacde601..4083a23e0614 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -3679,9 +3679,13 @@ struct drm_i915_gem_create_ext {
- 	 *
- 	 * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
- 	 * struct drm_i915_gem_create_ext_protected_content.
-+	 *
-+	 * For I915_GEM_CREATE_EXT_SET_PAT usage see
-+	 * struct drm_i915_gem_create_ext_set_pat.
- 	 */
- #define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
- #define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
-+#define I915_GEM_CREATE_EXT_SET_PAT 2
- 	__u64 extensions;
- };
- 
-@@ -3796,6 +3800,43 @@ struct drm_i915_gem_create_ext_protected_content {
- 	__u32 flags;
- };
- 
-+/**
-+ * struct drm_i915_gem_create_ext_set_pat - The
-+ * I915_GEM_CREATE_EXT_SET_PAT extension.
-+ *
-+ * If this extension is provided, the specified caching policy (PAT index) is
-+ * applied to the buffer object.
-+ *
-+ * Below is an example on how to create an object with specific caching policy:
-+ *
-+ * .. code-block:: C
-+ *
-+ *      struct drm_i915_gem_create_ext_set_pat set_pat_ext = {
-+ *              .base = { .name = I915_GEM_CREATE_EXT_SET_PAT },
-+ *              .pat_index = 0,
-+ *      };
-+ *      struct drm_i915_gem_create_ext create_ext = {
-+ *              .size = PAGE_SIZE,
-+ *              .extensions = (uintptr_t)&set_pat_ext,
-+ *      };
-+ *
-+ *      int err = ioctl(fd, DRM_IOCTL_I915_GEM_CREATE_EXT, &create_ext);
-+ *      if (err) ...
-+ */
-+struct drm_i915_gem_create_ext_set_pat {
-+	/** @base: Extension link. See struct i915_user_extension. */
-+	struct i915_user_extension base;
-+	/**
-+	 * @pat_index: PAT index to be set
-+	 * PAT index is a bit field in Page Table Entry to control caching
-+	 * behaviors for GPU accesses. The definition of PAT index is
-+	 * platform dependent and can be found in hardware specifications,
-+	 */
-+	__u32 pat_index;
-+	/** @rsvd: reserved for future use */
-+	__u32 rsvd;
-+};
-+
- /* ID of the protected content session managed by i915 when PXP is active */
- #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
- 
--- 
-2.25.1
+> +		 * all the devices in the dev_set must be bound to the same
+> +		 * iommufd_ctx as the input iommufd_ctx.  If there is any
+> +		 * device that has not been bound to iommufd_ctx yet, check
+> +		 * if its iommu_group has any device bound to the input
+> +		 * iommufd_ctx Such devices can be considered owned by
+
+"."...........................^
+
+> +		 * the input iommufd_ctx as the device cannot be owned
+> +		 * by another iommufd_ctx when its iommu_group is owned.
+> +		 *
+> +		 * Otherwise, reset is not allowed.
+
+
+In the case where a non-null array is provided,
+vfio_pci_ioctl_pci_hot_reset_groups() explicitly tests
+vfio_device_cdev_opened(), so we exclude cdev devices from providing a
+group list.  However, what prevents a compat opened group device from
+providing a null array?
+
+I thought it would be that this function is called with groups == NULL
+and therefore the vfio_dev_in_groups() test below fails, but I don't
+think that's true for a compat opened device.  Thanks,
+
+Alex
+
+
+>  		 */
+> -		if (!vfio_dev_in_groups(cur_vma, groups)) {
+> +		if (iommufd_ctx) {
+> +			int devid = vfio_iommufd_device_hot_reset_devid(&cur_vma->vdev,
+> +									iommufd_ctx);
+> +
+> +			owned = (devid != VFIO_PCI_DEVID_NOT_OWNED);
+> +		} else {
+> +			owned = vfio_dev_in_groups(&cur_vma->vdev, groups);
+> +		}
+> +
+> +		if (!owned) {
+>  			ret = -EINVAL;
+>  			goto err_undo;
+>  		}
+> diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
+> index 01203215251a..24858b650562 100644
+> --- a/include/uapi/linux/vfio.h
+> +++ b/include/uapi/linux/vfio.h
+> @@ -686,6 +686,9 @@ enum {
+>   *	  Flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED would be set when all the
+>   *	  affected devices are owned by the user.  This flag is available only
+>   *	  when VFIO_PCI_HOT_RESET_FLAG_DEV_ID is set, otherwise reserved.
+> + *	  When set, user could invoke VFIO_DEVICE_PCI_HOT_RESET with a zero
+> + *	  length fd array on the calling device as the ownership is validated
+> + *	  by iommufd_ctx.
+>   *
+>   * Return: 0 on success, -errno on failure:
+>   *	-enospc = insufficient buffer, -enodev = unsupported for device.
+> @@ -717,6 +720,17 @@ struct vfio_pci_hot_reset_info {
+>   * VFIO_DEVICE_PCI_HOT_RESET - _IOW(VFIO_TYPE, VFIO_BASE + 13,
+>   *				    struct vfio_pci_hot_reset)
+>   *
+> + * Userspace requests hot reset for the devices it operates.  Due to the
+> + * underlying topology, multiple devices can be affected in the reset
+> + * while some might be opened by another user.  To avoid interference
+> + * the calling user must ensure all affected devices are owned by itself.
+> + *
+> + * As the ownership described by VFIO_DEVICE_GET_PCI_HOT_RESET_INFO, the
+> + * cdev opened devices must exclusively provide a zero-length fd array and
+> + * the group opened devices must exclusively use an array of group fds for
+> + * proof of ownership.  Mixed access to devices between cdev and legacy
+> + * groups are not supported by this interface.
+> + *
+>   * Return: 0 on success, -errno on failure.
+>   */
+>  struct vfio_pci_hot_reset {
 
