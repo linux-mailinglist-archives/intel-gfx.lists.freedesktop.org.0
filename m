@@ -2,46 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACD3E70FF8A
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 22:57:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6367670FF8E
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 May 2023 23:01:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50B8410E078;
-	Wed, 24 May 2023 20:57:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFFE810E695;
+	Wed, 24 May 2023 21:01:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 189.cn (ptr.189.cn [183.61.185.103])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3529610E078;
- Wed, 24 May 2023 20:57:25 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.41:58142.1244876690
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
- by 189.cn (HERMES) with SMTP id 51D8A100213;
- Thu, 25 May 2023 04:57:21 +0800 (CST)
-Received: from  ([114.242.206.180])
- by gateway-151646-dep-75648544bd-xwndj with ESMTP id
- e61342de702a4626938f836262ec9ff2 for tzimmermann@suse.de; 
- Thu, 25 May 2023 04:57:23 CST
-X-Transaction-ID: e61342de702a4626938f836262ec9ff2
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Message-ID: <07e6077f-8a5c-54b9-29d0-57f1bc868fef@189.cn>
-Date: Thu, 25 May 2023 04:57:21 +0800
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A2C4310E68B;
+ Wed, 24 May 2023 21:01:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9BE13A0093;
+ Wed, 24 May 2023 21:01:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- javierm@redhat.com, sam@ravnborg.org
-References: <20230524092150.11776-3-tzimmermann@suse.de>
-From: Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <20230524092150.11776-3-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [v4,
- 02/13] fbdev: Add initializer macros for struct fb_ops
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Date: Wed, 24 May 2023 21:01:51 -0000
+Message-ID: <168496211163.11320.13777110011479323778@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230524142210.3779331-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20230524142210.3779331-1-ankit.k.nautiyal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_DSC_misc_fixes_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,186 +40,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
+
+Series: DSC misc fixes (rev2)
+URL   : https://patchwork.freedesktop.org/series/117662/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+b10a4676a2aa drm/i915/dp: Consider output_format while computing dsc bpp
+dbccd6cff618 drm/i915/dp_mst: Use output_format to get the final link bpp
+8bbe5380e875 drm/i915/dp: Use consistent name for link bpp and compressed bpp
+92059b35e485 drm/i915/dp: Update Bigjoiner interface bits for computing compressed bpp
+9e9e98f2fbfc drm/i915/display: Account for DSC not split case while computing cdclk
+-:29: ERROR:SPACING: spaces required around that '?' (ctx:VxW)
+#29: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:2502:
++		return crtc_state->dsc.dsc_split? pixel_rate : DIV_ROUND_UP(pixel_rate, 2);
+ 		                                ^
+
+-:47: ERROR:SPACING: spaces required around that '?' (ctx:VxW)
+#47: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:270:
++	return crtc_state->dsc.dsc_split? pixel_rate : DIV_ROUND_UP(pixel_rate, 2);
+ 	                                ^
+
+total: 2 errors, 0 warnings, 0 checks, 26 lines checked
+6a490f6860e7 drm/i915/intel_cdclk: Add vdsc with bigjoiner constraints on min_cdlck
+1ecb7fa0e5c0 drm/i915/dp: Remove extra logs for printing DSC info
+a336a696d218 drm/display/dp: Fix the DP DSC Receiver cap size
+0d5cc05b6cb2 drm/i915/dp: Avoid forcing DSC BPC for MST case
+423ba7d5ddef drm/i915/dp: Check min bpc DSC limits for dsc_force_bpc also
+4af99f62352d drm/i915/dp: Avoid left shift of DSC output bpp by 4
+158a8d6b00c3 drm/i915/dp: Rename helper to get DSC max pipe_bpp
+491e5c1b87fc drm/i915/dp: Get optimal link config to have best compressed bpp
+-:75: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#75: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1681:
++									  adjusted_mode->crtc_hdisplay,
+
+-:76: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#76: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1682:
++									  pipe_config->bigjoiner_pipes,
+
+-:77: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#77: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1683:
++									  pipe_config->output_format,
+
+total: 0 errors, 3 warnings, 0 checks, 377 lines checked
+7e6ad7c73571 drm/i915: Query compressed bpp properly using correct DPCD and DP Spec info
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#7: 
+Currently we seem to be using wrong DPCD register for reading compressed bpps,
+
+-:62: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#62: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1799:
++	dsc_sink_max_bpp = intel_dp_dsc_sink_max_compressed_bpp(intel_dp, pipe_config, pipe_bpp / 3);
+
+-:117: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#117: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:236:
++	max_compressed_bpp = intel_dp_dsc_sink_max_compressed_bpp(intel_dp, crtc_state, max_bpp / 3);
+
+-:126: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#126: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:242:
++	max_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915, max_compressed_bpp, crtc_state->pipe_bpp);
+
+-:127: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#127: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:243:
++	min_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915, min_compressed_bpp, crtc_state->pipe_bpp);
+
+total: 0 errors, 5 warnings, 0 checks, 107 lines checked
 
 
-we love your patch:
-
-
-On 2023/5/24 17:21, Thomas Zimmermann wrote:
-> For framebuffers in I/O and system memory, add macros that set
-> struct fb_ops to the respective callback functions.
->
-> For deferred I/O, add macros that generate callback functions with
-> damage handling. Add initializer macros that set struct fb_ops to
-> the generated callbacks.
->
-> These macros can remove a lot boilerplate code from fbdev drivers.
-> The drivers are supposed to use the macro that is required for its
-> framebuffer. Each macro is split into smaller helpers, so that
-> drivers with non-standard callbacks can pick and customize callbacks
-> as needed. There are individual helper macros for read/write, mmap
-> and drawing.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->   include/linux/fb.h | 112 +++++++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 112 insertions(+)
->
-> diff --git a/include/linux/fb.h b/include/linux/fb.h
-> index 2cf8efcb9e32..731472a2bb62 100644
-> --- a/include/linux/fb.h
-> +++ b/include/linux/fb.h
-> @@ -538,9 +538,31 @@ extern ssize_t fb_io_read(struct fb_info *info, char __user *buf,
->   extern ssize_t fb_io_write(struct fb_info *info, const char __user *buf,
->   			   size_t count, loff_t *ppos);
->   
-> +/*
-> + * Initializes struct fb_ops for framebuffers in I/O memory.
-> + */
-> +
-> +#define __FB_DEFAULT_IO_OPS_RDWR \
-> +	.fb_read	= fb_io_read, \
-> +	.fb_write	= fb_io_write
-> +
-> +#define __FB_DEFAULT_IO_OPS_DRAW \
-> +        .fb_fillrect	= cfb_fillrect, \
-> +        .fb_copyarea	= cfb_copyarea, \
-> +        .fb_imageblit	= cfb_imageblit
-
-Here,  it seems that your text editor replace the tap with space, but 
-I'm OK.
-
-I'm asking because I see other __FB__DEFAULT_* macro begin with tabs.
-
-> +#define __FB_DEFAULT_IO_OPS_MMAP \
-> +	.fb_mmap	= NULL // default implementation
-> +
-> +#define FB_DEFAULT_IO_OPS \
-> +	__FB_DEFAULT_IO_OPS_RDWR, \
-> +	__FB_DEFAULT_IO_OPS_DRAW, \
-> +	__FB_DEFAULT_IO_OPS_MMAP
-> +
->   /*
->    * Drawing operations where framebuffer is in system RAM
->    */
-> +
->   extern void sys_fillrect(struct fb_info *info, const struct fb_fillrect *rect);
->   extern void sys_copyarea(struct fb_info *info, const struct fb_copyarea *area);
->   extern void sys_imageblit(struct fb_info *info, const struct fb_image *image);
-> @@ -549,6 +571,27 @@ extern ssize_t fb_sys_read(struct fb_info *info, char __user *buf,
->   extern ssize_t fb_sys_write(struct fb_info *info, const char __user *buf,
->   			    size_t count, loff_t *ppos);
->   
-> +/*
-> + * Initializes struct fb_ops for framebuffers in system memory.
-> + */
-> +
-> +#define __FB_DEFAULT_SYS_OPS_RDWR \
-> +	.fb_read	= fb_sys_read, \
-> +	.fb_write	= fb_sys_write
-> +
-> +#define __FB_DEFAULT_SYS_OPS_DRAW \
-> +        .fb_fillrect	= sys_fillrect, \
-> +        .fb_copyarea	= sys_copyarea, \
-> +        .fb_imageblit	= sys_imageblit
-> +
-> +#define __FB_DEFAULT_SYS_OPS_MMAP \
-> +	.fb_mmap	= NULL // default implementation
-> +
-> +#define FB_DEFAULT_SYS_OPS \
-> +	__FB_DEFAULT_SYS_OPS_RDWR, \
-> +	__FB_DEFAULT_SYS_OPS_DRAW, \
-> +	__FB_DEFAULT_SYS_OPS_MMAP
-> +
->   /* drivers/video/fbmem.c */
->   extern int register_framebuffer(struct fb_info *fb_info);
->   extern void unregister_framebuffer(struct fb_info *fb_info);
-> @@ -604,6 +647,75 @@ extern void fb_deferred_io_cleanup(struct fb_info *info);
->   extern int fb_deferred_io_fsync(struct file *file, loff_t start,
->   				loff_t end, int datasync);
->   
-> +/*
-> + * Generate callbacks for deferred I/O
-> + */
-> +
-> +#define __FB_GEN_DEFAULT_DEFERRED_OPS_RDWR(__prefix, __damage_range, __mode) \
-> +	static ssize_t __prefix ## _defio_read(struct fb_info *info, char __user *buf, \
-> +					       size_t count, loff_t *ppos) \
-> +	{ \
-> +		return fb_ ## __mode ## _read(info, buf, count, ppos); \
-> +	} \
-> +	static ssize_t __prefix ## _defio_write(struct fb_info *info, const char __user *buf, \
-> +						size_t count, loff_t *ppos) \
-> +	{ \
-> +		unsigned long offset = *ppos; \
-> +		ssize_t ret = fb_ ## __mode ## _write(info, buf, count, ppos); \
-> +		if (ret > 0) \
-> +			__damage_range(info, offset, ret); \
-> +		return ret; \
-> +	}
-> +
-> +#define __FB_GEN_DEFAULT_DEFERRED_OPS_DRAW(__prefix, __damage_area, __mode) \
-> +	static void __prefix ## _defio_fillrect(struct fb_info *info, \
-> +						const struct fb_fillrect *rect) \
-> +	{ \
-> +		__mode ## _fillrect(info, rect); \
-> +		__damage_area(info, rect->dx, rect->dy, rect->width, rect->height); \
-> +	} \
-> +	static void __prefix ## _defio_copyarea(struct fb_info *info, \
-> +						const struct fb_copyarea *area) \
-> +	{ \
-> +		__mode ## _copyarea(info, area); \
-> +		__damage_area(info, area->dx, area->dy, area->width, area->height); \
-> +	} \
-> +	static void __prefix ## _defio_imageblit(struct fb_info *info, \
-> +						 const struct fb_image *image) \
-> +	{ \
-> +		__mode ## _imageblit(info, image); \
-> +		__damage_area(info, image->dx, image->dy, image->width, image->height); \
-> +	}
-> +
-> +#define FB_GEN_DEFAULT_DEFERRED_IO_OPS(__prefix, __damage_range, __damage_area) \
-> +	__FB_GEN_DEFAULT_DEFERRED_OPS_RDWR(__prefix, __damage_range, io) \
-> +	__FB_GEN_DEFAULT_DEFERRED_OPS_DRAW(__prefix, __damage_area, cfb)
-> +
-> +#define FB_GEN_DEFAULT_DEFERRED_SYS_OPS(__prefix, __damage_range, __damage_area) \
-> +	__FB_GEN_DEFAULT_DEFERRED_OPS_RDWR(__prefix, __damage_range, sys) \
-> +	__FB_GEN_DEFAULT_DEFERRED_OPS_DRAW(__prefix, __damage_area, sys)
-> +
-> +/*
-> + * Initializes struct fb_ops for deferred I/O.
-> + */
-> +
-> +#define __FB_DEFAULT_DEFERRED_OPS_RDWR(__prefix) \
-> +	.fb_read	= __prefix ## _defio_read, \
-> +	.fb_write	= __prefix ## _defio_write
-> +
-> +#define __FB_DEFAULT_DEFERRED_OPS_DRAW(__prefix) \
-> +        .fb_fillrect	= __prefix ## _defio_fillrect, \
-> +        .fb_copyarea	= __prefix ## _defio_copyarea, \
-> +        .fb_imageblit	= __prefix ## _defio_imageblit
-
-Here also,  '.fb_fillrect', '.fb_copyarea' and '.fb_imageblit' begin 
-with space, but I'm OK.
-
-I'm asking because I see other __FB__DEFAULT_* macro begin with tabs.
-
-> +#define __FB_DEFAULT_DEFERRED_OPS_MMAP(__prefix) \
-> +	.fb_mmap	= fb_deferred_io_mmap
-> +
-> +#define FB_DEFAULT_DEFERRED_OPS(__prefix) \
-> +	__FB_DEFAULT_DEFERRED_OPS_RDWR(__prefix), \
-> +	__FB_DEFAULT_DEFERRED_OPS_DRAW(__prefix), \
-> +	__FB_DEFAULT_DEFERRED_OPS_MMAP(__prefix)
-> +
->   static inline bool fb_be_math(struct fb_info *info)
->   {
->   #ifdef CONFIG_FB_FOREIGN_ENDIAN
