@@ -2,143 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B22B71032C
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 05:04:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9BA171033A
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 05:17:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4808810E6AD;
-	Thu, 25 May 2023 03:04:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 006D810E6B1;
+	Thu, 25 May 2023 03:17:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9694910E6AB;
- Thu, 25 May 2023 03:04:00 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C94AC10E6B3;
+ Thu, 25 May 2023 03:17:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684983840; x=1716519840;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=LIFXKZn2FbVW+8CecIsBjNvXE0Q4G/MsntHY67Frs6Q=;
- b=U+7QGahaK94jyt1EVkG1rf/jc0ziqqq7JkD/2MDqg2C6E8Zladjij4fa
- 8ggpjirw4Jgy17dk7M5xPAauQcxSVioFw4cg6R/YDP7GNLZCJQ0I9p7rC
- nagXPM4qeitBWgkNnn2Vg/l49SlFamNNAV86mnXJM6oduvCPCV7FHYi8t
- G2ybd/4iOkKvU7hf6ztsIGoE/yIzJtx/DYYBroC3w+gUgj1g83UJjomm8
- KKiUMy0dnvXtA+F3PajqcM1d54DZFytVwhIbTEW6iHvl460XaaaC8Xpqo
- AKw3qL6A41gnaMGoJIUS3naIF8rSbNxjgX18VsDJbUOHYmpuutRvGUMdm A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="351273425"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="351273425"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 20:03:58 -0700
+ t=1684984654; x=1716520654;
+ h=date:from:to:cc:subject:message-id;
+ bh=rGF7bJDuC9HkXMKz/2MVhGFmVqEFCFiZ72imjZjWERA=;
+ b=B/ZUqRjvlqB4xEwFHerUjBSE+B3BDtqcDjegZfaCfKtuPXR1iuLgqJos
+ iJmXZWBmxkUEFx7bMoa/rgztvUbKw84cQ5tK5xrBF7gdBjlmhtBnGub0j
+ eIvv8F+BxKpgU3Za9WCx9H/QnQwEuK8OtKmSFRkB0UbZ8Yyx0agYciI3C
+ dFPrveDNk/WbuI6QSTLEewDIdoDYBsZqbSyrDzEcgM6yWVJRi3RaRRecD
+ 9SecEwNUOX6+ADMoFOn4QKzaDOvyb23Md/TH9psfinI/qfYCg6Jeu4Qbu
+ Ee1XNCaW1g84SyBHnNlsJ3jZF/X66q+4r35A945t36vE8AAHbE1CrKR+3 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="343237191"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="343237191"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2023 20:17:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="707816241"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="707816241"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga007.fm.intel.com with ESMTP; 24 May 2023 20:03:58 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 24 May 2023 20:03:57 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 24 May 2023 20:03:57 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 24 May 2023 20:03:57 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Csw72rPrYfz0qbrQx2TY9lAf9mbok/bNBnXGCOjh/vrA5NMsL+m5qrCXYLj2doX69Gw9N+zrvJlzWJcMXS8KEaULYSbXh4O7D8BuNUk7+/ZaCnjlFv3fjzx4zfzeVgsKNdl7hFJoBNnTNihdmzoHPCm3uEv5dwrDyZJAh7dHIsNdDT6EXsgTdgfXU+wreWMnhmevxJoGvzZ7Ur5hVL/dgH/niy6Rdhxn4XNoJXP54e+qe+zt/WORAt8CGOoIh7UdagMHad9wCPEW2pNZ6gZtSPkkG1WA0rpSpNU30bcpaVlh6c2d3dBxKa78ceatU2kiiZcb9+hmGiHkCGWXsWunoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ivy9vix8Ez83JSxZQNfJJpb1qXOakgWMnTt/S8YxBwk=;
- b=iOQp7LFH3fwCNkrtb3i2xksHbgxufW6RNDZdQSO5rZs9r3jq54rjO2VFFzYPBffwif5NLPbU58Fqi6ZOIA1anyjE9U/aZ8qHyVAlGR8gxclpu+l2uBjD6z85NSRQ/WpQSYtm+x8ml/YFb+EwbWgRvgcmslZeyOVOpwiz66rLu248wF2/DOotmaMFwiGAy9UFsTCPFXug24LoThgk9fwQuRcI+WYcZe+CqHUJTfU/rqPh1azF214SBzAL+7WcA6YZTJruBauVsXMnBlCi5Ilj/1muW8SjkVEQtjZ8URdu49VAzT3TxPg68Z7v6yzZJmj3/lc5DYo4me0UFHjPjj7cwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by PH7PR11MB8456.namprd11.prod.outlook.com (2603:10b6:510:2fe::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Thu, 25 May
- 2023 03:03:55 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::5b44:8f52:dbeb:18e5]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::5b44:8f52:dbeb:18e5%3]) with mapi id 15.20.6411.028; Thu, 25 May 2023
- 03:03:55 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: Alex Williamson <alex.williamson@redhat.com>
-Thread-Topic: [PATCH v11 20/23] vfio: Add VFIO_DEVICE_[AT|DE]TACH_IOMMUFD_PT
-Thread-Index: AQHZhZ7iKUbaAh4TKEGwflpEYDXvra9m6p0AgAAxWMCAAPVhgIAAqe5QgADjLACAAASTYA==
-Date: Thu, 25 May 2023 03:03:54 +0000
-Message-ID: <DS0PR11MB7529407F01EE55AE4A0A9F1FC3469@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230513132827.39066-1-yi.l.liu@intel.com>
- <20230513132827.39066-21-yi.l.liu@intel.com>
- <20230522161534.32f3bf8e.alex.williamson@redhat.com>
- <DS0PR11MB7529096D1BE1D337BA50884BC3409@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230523095025.1898297c.alex.williamson@redhat.com>
- <DS0PR11MB75292161F081F27C0650EFB3C3419@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230524093142.3cac798e.alex.williamson@redhat.com>
-In-Reply-To: <20230524093142.3cac798e.alex.williamson@redhat.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|PH7PR11MB8456:EE_
-x-ms-office365-filtering-correlation-id: bc35c024-8185-4d34-8d46-08db5cccad19
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: xdhfwol3joclhwyFbuNGbGG0hlv9m9A+Wh4lLqRm+p9JqSGs5IvplrjURSowpMDF+XLdzkZLFKjD4MTX1m++oKytSD18h3q1TW3qg04iBWmIa5y8SKxhQA9WYdbk/4wyWlYfjjMno64OZiT2r5ru3unwN/N3HBKByj+bfD1xOBjJliGvAM6R1LgsTyV/68uY9ssk9HkiSkFkq8bffmR6XkumxdnvMxWKRmV7F05zfroNkoaBh/X0PYgbXt+nmgyg9HjFoZfyeYLvbBWKPo8F/q9TIpOz0UOdNZydLKORv+zvlLfBhQ8W/GW/wVlEmm4wpKfDfY6ZbPv/m8kl00iSPOzitXTJNexUBhS8SG45o4Z1w8tbUFRv2M9bw/QmZqshxtuU86rGuxhwA0j4MeOn7SgP5QjttdIuwM2EeZycPtRTPF1lC/BcBPYuK5EQovJpQUWbhBqYqgOWwLOqCqkR6rSZ3g+r8wnqhwbNG1YRLvKzpcYm97FHe7fhOFFJp7Kn/D3JkH/vxi9TPCLq+7DZbG4zEyhxe/sxkJ/kNYkF77jEpufpCQbTHV4yV3R+gHwlyf3zxqPqlHZojK/3FPQzXWvGjY2BuvK4ujnNN3Os42a5TCQ+XIu/523G2u2hdeYv4p4H8Pr0v6TtmJiSs7dTx1DSiPuLiq7Zk8fHefTmDTY=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(366004)(396003)(376002)(136003)(39860400002)(451199021)(83380400001)(54906003)(38070700005)(86362001)(478600001)(38100700002)(33656002)(66899021)(186003)(66476007)(76116006)(64756008)(66556008)(4326008)(6916009)(66946007)(2906002)(26005)(71200400001)(82960400001)(316002)(9686003)(6506007)(66446008)(41300700001)(7696005)(52536014)(55016003)(7416002)(5660300002)(8936002)(8676002)(122000001)(13296009)(83133001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?k2eAOSy242nhMgHNSlFja+fDS/spmMR7Sn88vncTWJ8iW0u7bac328s7bMGg?=
- =?us-ascii?Q?Zy3IzFhmmi91WcLKEOhfuccZrNchBkRiMp2lcm2cvK2WVxErRc0LWfSDkj1H?=
- =?us-ascii?Q?Bdnwm8FnXHfYbcq0+rFCqOyWd0RP0zeNcotXti8yCV1h+m7iZ6oRNICrQEmO?=
- =?us-ascii?Q?3kSsvTM3uh0lbqAuWM8khcaby8f8PtTZtYjy/8QjD1YxTlpkXxIkIrFxcWTg?=
- =?us-ascii?Q?sZkc4GEZ4VeNie1UqmIJ4c0bwTmCuSmGVu+WJhE4SrggYS5NqRI4uF16MNY5?=
- =?us-ascii?Q?v0ryP+UlYvRipCqgg+2FQRD6NiFgKeS8ujwUJRRBBOpu9h6opo5/hDXYw2cm?=
- =?us-ascii?Q?tk0Gfs6Qei5KwPk7XyuVngkIfZc+1y6yPwzz88VU68Buen70McfyG+ohcGTg?=
- =?us-ascii?Q?0PzpDDvTOb81wDGWUTeFmZRLt9bav8DcIW6x55qKiuGX3dDHEmIakGUpdn/+?=
- =?us-ascii?Q?i+Ridhik0xbf8nAhxoud02KCSXhqMkerIUVWb7W0hfzKYpI3wMXRQtHTadUa?=
- =?us-ascii?Q?smy9sv1+NSUpT1bByj6jg8TXcseEEkIHFE4wvn3/khXBatXgF1cFDB+7QzDF?=
- =?us-ascii?Q?LrW7QlIxff5Kal/W20g6x50kHl9/oEkWzfDdrUa/gyDzbS7LcScNySO10Kzr?=
- =?us-ascii?Q?j34LfceVCzX1afPshlcQPnVR7hojGI15q6oMWBqOoiXhkG+SsSmndSRVSJXt?=
- =?us-ascii?Q?/2iGvDZnmlO5Ly1y0TEdTnC0U+1aDSTZDVKzKppjFoFsNp6lQlQzGHwC4LdG?=
- =?us-ascii?Q?rcg9o6z59m/51Rtvgw+ezLjtlQ7mERVceoWXTlFxAkxs4wwGTMQZA1E5cQhp?=
- =?us-ascii?Q?uLqsTfvrgX5ADcWH8I/qmKoXJUzyxeSRXGPMIEwMxl22yiheED3oI5TvaDQ3?=
- =?us-ascii?Q?X7ZhpQZzZ+vcI8lh2GMagBBy9MWTH1Syje2rXlsyhx8rfeM7c+QyTZO2qqdS?=
- =?us-ascii?Q?v7anjWChsqF0wBAUBc/QEbrCaoSJ69jKFDm7wuGIE1rVA6YOKsJoxpm33/Lq?=
- =?us-ascii?Q?GMC573fOdH1BvaRSCLpblyDFz5CrToe6QfMiR+ZiHo7yT8qBlZRvYkdLI9pQ?=
- =?us-ascii?Q?IcIZIPdKdASdrCxqVjaG+7YxBHbUYwG8FCsg0hMiyct+rfrSKeiT/WZG0eeE?=
- =?us-ascii?Q?Ab9FbRxpqe3hit1R6qVvpi8VL8UsksVm+yuQFzOWmQdM6qtjPGuRnv0wxhT5?=
- =?us-ascii?Q?5ebijl9+djvVSVKIHzMZKd8NGADGmCGDFHKKMP5DcBH4ltuZ/RM9nNjuRWFa?=
- =?us-ascii?Q?xvqzFPd4Z5amunRarL320eudujYZ8ND9p+zcnWgupRwI5tyvUxELX213hyLn?=
- =?us-ascii?Q?kTYC1NynWmPqAWBLNIIeFL5V9ZZO1p6VCDlJPLSpVNyYs/HN+XGqXUChP2nO?=
- =?us-ascii?Q?rKsNEnf9gNN5HZ5wGtXDwxY/dxRItB5KSsj2x7lthiTT6Dwo8DNnDu8R0Y02?=
- =?us-ascii?Q?3Ju1vQvOcrGT3q3SpOo4bmhYSUqS3qvzlceAOtXKuI8l+Si9Uhp6bk05YZPO?=
- =?us-ascii?Q?RO9iOJVq1EQbdNnIJ+J4LdsOAgki3e8RYyXQvBirsXMhozqOaa+FBrFvYwwK?=
- =?us-ascii?Q?GplOh1m7zyUcg07mq+8yD89Ztquqbg7r8Yf43kQz?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc35c024-8185-4d34-8d46-08db5cccad19
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 May 2023 03:03:54.9717 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qkaSy+g0wMpgl+FpGLyD77ObG+Ux3Cjxl86bhojowYEpgByX6Ca3yI/7MkAraO5iD16UVBDarjvFVtqxIoGRDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8456
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v11 20/23] vfio: Add
- VFIO_DEVICE_[AT|DE]TACH_IOMMUFD_PT
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="794463813"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="794463813"
+Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
+ by FMSMGA003.fm.intel.com with ESMTP; 24 May 2023 20:17:31 -0700
+Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1q21Tm-000FPR-2i;
+ Thu, 25 May 2023 03:17:30 +0000
+Date: Thu, 25 May 2023 11:16:32 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Message-ID: <20230525031632.GDH30%lkp@intel.com>
+User-Agent: s-nail v14.9.24
+Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
+ cf09e328589a2ed7f6c8d90f2edb697fb4f8a96b
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,139 +55,264 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "Duan, 
- Zhenzhong" <zhenzhong.duan@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
- "Xu, Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "clegoate@redhat.com" <clegoate@redhat.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: linux-xfs@vger.kernel.org,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ intel-gfx@lists.freedesktop.org, linux-parisc@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Alex Williamson <alex.williamson@redhat.com>
-> Sent: Wednesday, May 24, 2023 11:32 PM
->=20
-> On Wed, 24 May 2023 02:12:14 +0000
-> "Liu, Yi L" <yi.l.liu@intel.com> wrote:
->=20
-> > > From: Alex Williamson <alex.williamson@redhat.com>
-> > > Sent: Tuesday, May 23, 2023 11:50 PM
-> > >
-> > > On Tue, 23 May 2023 01:20:17 +0000
-> > > "Liu, Yi L" <yi.l.liu@intel.com> wrote:
-> > >
-> > > > > From: Alex Williamson <alex.williamson@redhat.com>
-> > > > > Sent: Tuesday, May 23, 2023 6:16 AM
-> > > > >
-> > > > > On Sat, 13 May 2023 06:28:24 -0700
-> > > > > Yi Liu <yi.l.liu@intel.com> wrote:
-> > > > >
-> > > > > >  	return kasprintf(GFP_KERNEL, "vfio/devices/%s", dev_name(dev)=
-);
-> > > > > > diff --git a/drivers/vfio/iommufd.c b/drivers/vfio/iommufd.c
-> > > > > > index 83575b65ea01..799ea322a7d4 100644
-> > > > > > --- a/drivers/vfio/iommufd.c
-> > > > > > +++ b/drivers/vfio/iommufd.c
-> > > > > > @@ -112,6 +112,24 @@ void vfio_iommufd_unbind(struct vfio_devic=
-e_file *df)
-> > > > > >  		vdev->ops->unbind_iommufd(vdev);
-> > > > > >  }
-> > > > > >
-> > > > > > +int vfio_iommufd_attach(struct vfio_device *vdev, u32 *pt_id)
-> > > > > > +{
-> > > > > > +	lockdep_assert_held(&vdev->dev_set->lock);
-> > > > > > +
-> > > > > > +	if (vfio_device_is_noiommu(vdev))
-> > > > > > +		return 0;
-> > > > >
-> > > > > Isn't this an invalid operation for a noiommu cdev, ie. -EINVAL? =
- We
-> > > > > return success and copy back the provided pt_id, why would a user=
- not
-> > > > > consider it a bug that they can't use whatever value was there wi=
-th
-> > > > > iommufd?
-> > > >
-> > > > Yes, this is the question I asked in [1]. At that time, it appears =
-to me
-> > > > that better to allow it [2]. Maybe it's more suitable to ask it her=
-e.
-> > >
-> > > From an API perspective it seems wrong.  We return success without
-> > > doing anything.  A user would be right to consider it a bug that the
-> > > attach operation works but there's not actually any association to th=
-e
-> > > IOAS.  Thanks,
-> >
-> > The current version is kind of tradeoff based on prior remarks when
-> > I asked the question. As prior comment[2], it appears to me the attach
-> > shall success for noiommu devices as well, but per your remark it seems
-> > not in plan. So anyway, we may just fail the attach/detach for noiommu
-> > devices. Is it?
->=20
-> If a user creates an ioas within an iommufd, attaches a device to that
-> ioas and populates it with mappings, wouldn't the user expect the
-> device to have access to and honor those mappings?  I think that's the
-> path we're headed down if we report a successful attach of a noiommu
-> device to an ioas.
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: cf09e328589a2ed7f6c8d90f2edb697fb4f8a96b  Add linux-next specific files for 20230524
 
-makes sense. Let's just fail attach/detach for noiommu devices.
+Error/Warning reports:
 
->=20
-> We need to keep in mind that noiommu was meant to be a minimally
-> intrusive mechanism to provide a dummy vfio IOMMU backend and satisfy
-> the group requirements, solely for the purpose of making use of the
-> vfio device interface and without providing any DMA mapping services or
-> expectations.  IMO, an argument that we need the attach op to succeed in
-> order to avoid too much disruption in userspace code is nonsense.  On
-> the contrary, userspace needs to be very aware of this difference and
-> we shouldn't invest effort trying to make noiommu more convenient to
-> use.  It's inherently unsafe.
->=20
-> I'm not fond of what a mess noiommu has become with cdev, we're well
-> beyond the minimal code trickery of the legacy implementation.  I hate
-> to ask, but could we reiterate our requirements for noiommu as a part of
-> the native iommufd interface for vfio?  The nested userspace requirement
-> is gone now that hypervisors have vIOMMU support, so my assumption is
-> that this is only for bare metal systems without an IOMMU, which
-> ideally are less and less prevalent.  Are there any noiommu userspaces
-> that are actually going to adopt the noiommu cdev interface?  What
-> terrible things happen if noiommu only exists in the vfio group compat
-> interface to iommufd and at some distant point in the future dies when
-> that gets disabled?
+https://lore.kernel.org/oe-kbuild-all/202305240732.wUCsRNAj-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202305241902.UvHtMoxa-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202305250935.6XsyIBcZ-lkp@intel.com
 
-vIOMMU may introduce some performance deduction if there
-are frequent map/unmap. As far as I know, some cloud service
-providers are more willing to use noiommu mode within VM.
-Besides the performance consideration, using a booting a VM
-without vIOMMU is supposed to be more robust. But I'm not
-sure if the noiommu userspace will adapt to cdev noiommu.
-Perhaps yes if group may be deprecated in future.
+Error/Warning: (recently discovered and may have been fixed)
 
-> > btw. Should we document it somewhere as well? E.g. noiommu userspace
-> > does not support attach/detach? Userspace should know it is opening
-> > noiommu devices.
->=20
-> Documentation never hurts.  This is such a specialized use case I'm not
-> sure we've bothered to do much documentation for noiommu previously.
+arch/parisc/kernel/traps.c:312:25: error: 'SPINLOCK_BREAK_INSN' undeclared (first use in this function)
+drivers/base/regmap/regcache-maple.c:113:23: warning: 'lower_index' is used uninitialized [-Wuninitialized]
+drivers/base/regmap/regcache-maple.c:113:36: warning: 'lower_last' is used uninitialized [-Wuninitialized]
+drivers/gpu/drm/i915/display/intel_display.c:6012:3: error: unannotated fall-through between switch labels [-Werror,-Wimplicit-fallthrough]
+drivers/gpu/drm/i915/display/intel_display.c:6012:3: warning: unannotated fall-through between switch labels [-Wimplicit-fallthrough]
+drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c:312:14: error: initializer element is not a compile-time constant
 
-Seems no, I didn't find special documentation for noiommu. Perhaps
-a comment in the source code is enough. Depends on your taste.
+Unverified Error/Warning (likely false positive, please contact us if interested):
 
-Regards,
-Yi Liu
+fs/xfs/scrub/fscounters.c:459 xchk_fscounters() warn: ignoring unreachable code.
+kernel/watchdog.c:40:19: sparse: sparse: symbol 'watchdog_hardlockup_user_enabled' was not declared. Should it be static?
+kernel/watchdog.c:41:19: sparse: sparse: symbol 'watchdog_softlockup_user_enabled' was not declared. Should it be static?
+
+Error/Warning ids grouped by kconfigs:
+
+gcc_recent_errors
+|-- alpha-randconfig-s053-20230524
+|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
+|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
+|-- arc-allyesconfig
+|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_index-is-used-uninitialized
+|   `-- drivers-base-regmap-regcache-maple.c:warning:lower_last-is-used-uninitialized
+|-- csky-randconfig-s032-20230524
+|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
+|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
+|-- i386-randconfig-m021-20230524
+|   `-- fs-xfs-scrub-fscounters.c-xchk_fscounters()-warn:ignoring-unreachable-code.
+|-- i386-randconfig-s001-20230524
+|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
+|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
+|-- i386-randconfig-s002-20230524
+|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
+|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
+|-- i386-randconfig-s003-20230524
+|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
+|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
+|-- ia64-randconfig-s053-20230524
+|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
+|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
+|-- parisc-randconfig-r015-20230524
+|   `-- arch-parisc-kernel-traps.c:error:SPINLOCK_BREAK_INSN-undeclared-(first-use-in-this-function)
+|-- parisc-randconfig-s033-20230524
+|   `-- arch-parisc-kernel-traps.c:error:SPINLOCK_BREAK_INSN-undeclared-(first-use-in-this-function)
+|-- x86_64-randconfig-s021-20230524
+|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
+|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
+|-- x86_64-randconfig-s022-20230524
+|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
+|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
+|-- x86_64-randconfig-s023-20230524
+|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
+|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
+|-- x86_64-randconfig-s041-20230524
+|   |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
+|   `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
+`-- x86_64-randconfig-s042-20230524
+    |-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_hardlockup_user_enabled-was-not-declared.-Should-it-be-static
+    `-- kernel-watchdog.c:sparse:sparse:symbol-watchdog_softlockup_user_enabled-was-not-declared.-Should-it-be-static
+clang_recent_errors
+|-- i386-randconfig-i011-20230524
+|   `-- drivers-gpu-drm-i915-display-intel_display.c:warning:unannotated-fall-through-between-switch-labels
+|-- i386-randconfig-i014-20230524
+|   `-- drivers-gpu-drm-i915-display-intel_display.c:warning:unannotated-fall-through-between-switch-labels
+|-- i386-randconfig-i015-20230524
+|   `-- drivers-gpu-drm-i915-display-intel_display.c:error:unannotated-fall-through-between-switch-labels-Werror-Wimplicit-fallthrough
+|-- riscv-buildonly-randconfig-r002-20230524
+|   `-- drivers-gpu-drm-panel-panel-samsung-s6d7aa0.c:error:initializer-element-is-not-a-compile-time-constant
+|-- x86_64-randconfig-r025-20230522
+|   `-- drivers-gpu-drm-i915-display-intel_display.c:warning:unannotated-fall-through-between-switch-labels
+|-- x86_64-randconfig-x091-20230524
+|   `-- drivers-gpu-drm-i915-display-intel_display.c:warning:unannotated-fall-through-between-switch-labels
+`-- x86_64-randconfig-x096-20230524
+    `-- drivers-gpu-drm-i915-display-intel_display.c:warning:unannotated-fall-through-between-switch-labels
+
+elapsed time: 1262m
+
+configs tested: 159
+configs skipped: 4
+
+tested configs:
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+alpha                randconfig-r022-20230521   gcc  
+alpha                randconfig-r024-20230521   gcc  
+alpha                randconfig-r025-20230521   gcc  
+alpha                randconfig-r026-20230522   gcc  
+arc                              allyesconfig   gcc  
+arc                          axs101_defconfig   gcc  
+arc                                 defconfig   gcc  
+arc                  randconfig-r023-20230521   gcc  
+arc                  randconfig-r023-20230522   gcc  
+arc                  randconfig-r032-20230524   gcc  
+arc                  randconfig-r034-20230524   gcc  
+arc                  randconfig-r036-20230524   gcc  
+arc                  randconfig-r043-20230524   gcc  
+arm                              alldefconfig   clang
+arm                              allmodconfig   gcc  
+arm                              allyesconfig   gcc  
+arm                         at91_dt_defconfig   gcc  
+arm                                 defconfig   gcc  
+arm                  randconfig-r035-20230524   clang
+arm                  randconfig-r046-20230524   gcc  
+arm                         s5pv210_defconfig   clang
+arm                           stm32_defconfig   gcc  
+arm                         wpcm450_defconfig   gcc  
+arm64                            allyesconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                randconfig-r011-20230524   clang
+arm64                randconfig-r012-20230524   clang
+arm64                randconfig-r021-20230522   clang
+csky                             alldefconfig   gcc  
+csky                                defconfig   gcc  
+csky                 randconfig-r006-20230524   gcc  
+csky                 randconfig-r014-20230524   gcc  
+hexagon      buildonly-randconfig-r001-20230524   clang
+hexagon      buildonly-randconfig-r004-20230524   clang
+hexagon              randconfig-r024-20230522   clang
+hexagon              randconfig-r041-20230524   clang
+hexagon              randconfig-r045-20230524   clang
+i386                             allyesconfig   gcc  
+i386                              debian-10.3   gcc  
+i386                                defconfig   gcc  
+i386                 randconfig-i011-20230524   clang
+i386                 randconfig-i012-20230524   clang
+i386                 randconfig-i013-20230524   clang
+i386                 randconfig-i014-20230524   clang
+i386                 randconfig-i015-20230524   clang
+i386                 randconfig-i016-20230524   clang
+i386                 randconfig-i056-20230524   gcc  
+i386                 randconfig-i061-20230524   gcc  
+i386                 randconfig-i062-20230524   gcc  
+i386                 randconfig-i063-20230524   gcc  
+i386                 randconfig-i064-20230524   gcc  
+i386                 randconfig-i065-20230524   gcc  
+i386                 randconfig-i066-20230524   gcc  
+ia64                             allmodconfig   gcc  
+ia64                                defconfig   gcc  
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch            randconfig-r031-20230524   gcc  
+m68k                             allmodconfig   gcc  
+m68k         buildonly-randconfig-r003-20230524   gcc  
+m68k                                defconfig   gcc  
+microblaze   buildonly-randconfig-r006-20230524   gcc  
+microblaze           randconfig-r013-20230524   gcc  
+mips                             allmodconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                           ci20_defconfig   gcc  
+mips                         cobalt_defconfig   gcc  
+mips                         db1xxx_defconfig   gcc  
+mips                     loongson1c_defconfig   clang
+mips                        qi_lb60_defconfig   clang
+mips                          rb532_defconfig   gcc  
+mips                          rm200_defconfig   clang
+mips                         rt305x_defconfig   gcc  
+nios2        buildonly-randconfig-r005-20230524   gcc  
+nios2                               defconfig   gcc  
+nios2                randconfig-r033-20230524   gcc  
+openrisc             randconfig-r001-20230524   gcc  
+parisc                              defconfig   gcc  
+parisc               randconfig-r015-20230524   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                 mpc8315_rdb_defconfig   clang
+powerpc                 mpc834x_itx_defconfig   gcc  
+powerpc              randconfig-r021-20230521   gcc  
+powerpc                     tqm8540_defconfig   clang
+riscv                            allmodconfig   gcc  
+riscv                             allnoconfig   gcc  
+riscv        buildonly-randconfig-r002-20230524   clang
+riscv                               defconfig   gcc  
+riscv                randconfig-r004-20230524   gcc  
+riscv                randconfig-r042-20230524   clang
+riscv                          rv32_defconfig   gcc  
+s390                             allmodconfig   gcc  
+s390                             allyesconfig   gcc  
+s390                                defconfig   gcc  
+s390                 randconfig-r026-20230521   gcc  
+s390                 randconfig-r044-20230524   clang
+sh                               allmodconfig   gcc  
+sh                             espt_defconfig   gcc  
+sh                   randconfig-r002-20230524   gcc  
+sh                   randconfig-r016-20230524   gcc  
+sh                   secureedge5410_defconfig   gcc  
+sh                     sh7710voipgw_defconfig   gcc  
+sh                  sh7785lcr_32bit_defconfig   gcc  
+sparc                               defconfig   gcc  
+um                             i386_defconfig   gcc  
+um                           x86_64_defconfig   gcc  
+x86_64                            allnoconfig   gcc  
+x86_64                           allyesconfig   gcc  
+x86_64                              defconfig   gcc  
+x86_64                                  kexec   gcc  
+x86_64               randconfig-a001-20230524   gcc  
+x86_64               randconfig-a002-20230524   gcc  
+x86_64               randconfig-a003-20230524   gcc  
+x86_64               randconfig-a004-20230524   gcc  
+x86_64               randconfig-a005-20230524   gcc  
+x86_64               randconfig-a011-20230524   clang
+x86_64               randconfig-a012-20230524   clang
+x86_64               randconfig-a013-20230524   clang
+x86_64               randconfig-a014-20230524   clang
+x86_64               randconfig-a015-20230524   clang
+x86_64               randconfig-a016-20230524   clang
+x86_64               randconfig-r022-20230522   clang
+x86_64               randconfig-r025-20230522   clang
+x86_64               randconfig-x051-20230524   clang
+x86_64               randconfig-x052-20230524   clang
+x86_64               randconfig-x053-20230524   clang
+x86_64               randconfig-x054-20230524   clang
+x86_64               randconfig-x055-20230524   clang
+x86_64               randconfig-x056-20230524   clang
+x86_64               randconfig-x061-20230524   clang
+x86_64               randconfig-x062-20230524   clang
+x86_64               randconfig-x063-20230524   clang
+x86_64               randconfig-x064-20230524   clang
+x86_64               randconfig-x065-20230524   clang
+x86_64               randconfig-x066-20230524   clang
+x86_64               randconfig-x071-20230524   gcc  
+x86_64               randconfig-x072-20230524   gcc  
+x86_64               randconfig-x073-20230524   gcc  
+x86_64               randconfig-x074-20230524   gcc  
+x86_64               randconfig-x075-20230524   gcc  
+x86_64               randconfig-x076-20230524   gcc  
+x86_64               randconfig-x081-20230524   gcc  
+x86_64               randconfig-x082-20230524   gcc  
+x86_64               randconfig-x083-20230524   gcc  
+x86_64               randconfig-x084-20230524   gcc  
+x86_64               randconfig-x085-20230524   gcc  
+x86_64               randconfig-x086-20230524   gcc  
+x86_64               randconfig-x091-20230524   clang
+x86_64               randconfig-x092-20230524   clang
+x86_64               randconfig-x093-20230524   clang
+x86_64               randconfig-x094-20230524   clang
+x86_64               randconfig-x095-20230524   clang
+x86_64               randconfig-x096-20230524   clang
+x86_64                               rhel-8.3   gcc  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
