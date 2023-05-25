@@ -1,31 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59B7471095C
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 11:58:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB8771095F
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 11:59:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1108610E899;
-	Thu, 25 May 2023 09:58:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FE6410E898;
+	Thu, 25 May 2023 09:59:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 449AF10E888;
- Thu, 25 May 2023 09:58:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1EC010E898
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 May 2023 09:59:49 +0000 (UTC)
 Received: from 91-155-254-196.elisa-laajakaista.fi ([91.155.254.196]
  helo=[192.168.100.137])
  by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <luca@coelho.fi>) id 1q27jl-008cR5-R2;
- Thu, 25 May 2023 12:58:27 +0300
-Message-ID: <42f08a82863017a9382aa393bb9b8c44af49cf42.camel@coelho.fi>
+ (envelope-from <luca@coelho.fi>) id 1q27l3-008cRM-00;
+ Thu, 25 May 2023 12:59:46 +0300
+Message-ID: <1257e342f8272b2e53bd5235610f9b4d31269a3b.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- dri-devel@lists.freedesktop.org
-Date: Thu, 25 May 2023 12:58:24 +0300
-In-Reply-To: <20230502143906.2401-12-ville.syrjala@linux.intel.com>
-References: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
- <20230502143906.2401-12-ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Thu, 25 May 2023 12:59:44 +0300
+In-Reply-To: <20230525094942.941123-1-jani.nikula@intel.com>
+References: <20230525094942.941123-1-jani.nikula@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -34,7 +32,8 @@ X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
  TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [Intel-gfx] [PATCH 11/11] drm/i915: Reduce combo PHY log spam
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gsc: use system include style for
+ drm headers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,68 +46,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2023-05-02 at 17:39 +0300, Ville Syrjala wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Thu, 2023-05-25 at 12:49 +0300, Jani Nikula wrote:
+> Use <> instead of "" for including headers from include/.
 >=20
-> We always check whether combo PHYs need to be re-initialized
-> after disabling DC states, which leads to log spam. Switch things
-> around so that we only log something when we actually have to
-> re-initialized a PHY.
->=20
-> The log spam was exacerbated by commit 41b4c7fe72b6 ("drm/i915:
-> Disable DC states for all commits") since we now disable DC
-> states far more often.
->=20
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Fixes: 8a9bf29546a1 ("drm/i915/gsc: add initial support for GSC proxy")
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_combo_phy.c | 17 ++++++++---------
->  1 file changed, 8 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu=
-/drm/i915/display/intel_combo_phy.c
-> index 922a6d87b553..ee843f2b1af1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> @@ -114,10 +114,6 @@ static bool icl_verify_procmon_ref_values(struct drm=
-_i915_private *dev_priv,
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c b/drivers/gpu/d=
+rm/i915/gt/uc/intel_gsc_proxy.c
+> index ebee0b5a2c1d..5f138de3c14f 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
+> @@ -5,8 +5,8 @@
 > =20
->  	procmon =3D icl_get_procmon_ref_values(dev_priv, phy);
+>  #include <linux/component.h>
 > =20
-> -	drm_dbg_kms(&dev_priv->drm,
-> -		    "Combo PHY %c Voltage/Process Info : %s\n",
-> -		    phy_name(phy), procmon->name);
-> -
->  	ret =3D check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW1(phy),
->  			    (0xff << 16) | 0xff, procmon->dw1);
->  	ret &=3D check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW9(phy),
-> @@ -312,14 +308,17 @@ static void icl_combo_phys_init(struct drm_i915_pri=
-vate *dev_priv)
->  	enum phy phy;
+> -#include "drm/i915_component.h"
+> -#include "drm/i915_gsc_proxy_mei_interface.h"
+> +#include <drm/i915_component.h>
+> +#include <drm/i915_gsc_proxy_mei_interface.h>
 > =20
->  	for_each_combo_phy(dev_priv, phy) {
-> +		const struct icl_procmon *procmon;
->  		u32 val;
-> =20
-> -		if (icl_combo_phy_verify_state(dev_priv, phy)) {
-> -			drm_dbg(&dev_priv->drm,
-> -				"Combo PHY %c already enabled, won't reprogram it.\n",
-> -				phy_name(phy));
-> +		if (icl_combo_phy_verify_state(dev_priv, phy))
->  			continue;
-> -		}
-> +
-> +		procmon =3D icl_get_procmon_ref_values(dev_priv, phy);
-> +
-> +		drm_dbg(&dev_priv->drm,
-> +			"Initializing combo PHY %c (Voltage/Process Info : %s)\n",
-> +			phy_name(phy), procmon->name);
-> =20
->  		if (!has_phy_misc(dev_priv, phy))
->  			goto skip_phy_misc;
+>  #include "gt/intel_gt.h"
+>  #include "gt/intel_gt_print.h"
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
