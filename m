@@ -2,55 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86A56710780
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 10:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C848E7107AF
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 10:37:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0BBA10E7F8;
-	Thu, 25 May 2023 08:33:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D4F310E806;
+	Thu, 25 May 2023 08:37:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72C5710E80B;
- Thu, 25 May 2023 08:33:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685003592; x=1716539592;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=eD8q5gLj0eiJelC5PcGJjCTwUkSnkPU1oZXcQsEa+d8=;
- b=GetT2zij82DTKtvNAF8uWHDIIOnMZKxhQhHCzagw07cxDjGEsyPhSiZx
- 68eb9jtADs+kmQII1HkbqViyCnC5KFN4Gidi7jMKM1W4zT4f4rNv0IgEK
- khNxVvLMMj2czBJqgVNeQKyIS+Od8LgV2xULbsRv0LGuiqUI2KvMoEnXD
- zC7eNYisUL5J/qBcaw8kkPgQxcJuQL9+81JcbRLrZiZLBEx/KkUJ1ow1T
- d/amiOoWsHOT4aT2x2wdjKJx7imQyb7cDyk9D3566ipGDgRez8g4sT/DZ
- ICPqXoGLdrXc1ribpCBu3szk41thT0BuZO2rQGQLUJrB1EU60xyrUCMt0 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="440184799"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="440184799"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 01:33:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="879022910"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="879022910"
-Received: from moiraric-mobl.ger.corp.intel.com (HELO [10.213.234.103])
- ([10.213.234.103])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 01:33:09 -0700
-Message-ID: <78124d6f-7f46-afbe-d320-9dad77082f3b@linux.intel.com>
-Date: Thu, 25 May 2023 09:33:08 +0100
+Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A34F10E7F8;
+ Thu, 25 May 2023 08:37:19 +0000 (UTC)
+Received: from 91-155-254-196.elisa-laajakaista.fi ([91.155.254.196]
+ helo=[192.168.100.137])
+ by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <luca@coelho.fi>) id 1q26TD-008cKg-TS;
+ Thu, 25 May 2023 11:37:17 +0300
+Message-ID: <4e3be3e8a391f69c12de3b803ca3203711e77b3c.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ dri-devel@lists.freedesktop.org
+Date: Thu, 25 May 2023 11:37:10 +0300
+In-Reply-To: <20230502143906.2401-7-ville.syrjala@linux.intel.com>
+References: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
+ <20230502143906.2401-7-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: fei.yang@intel.com, intel-gfx@lists.freedesktop.org
-References: <20230524200255.443021-1-fei.yang@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230524200255.443021-1-fei.yang@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v12 0/1] drm/i915: Allow user to set cache
- at BO creation
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [Intel-gfx] [PATCH 06/11] drm/i915: Fix FEC state dump
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,46 +47,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 2023-05-02 at 17:39 +0300, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> Stop dumping state while reading it out. We have a proper
+> place for that stuff.
+>=20
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_crtc_state_dump.c    |  2 ++
+>  drivers/gpu/drm/i915/display/intel_ddi.c            | 13 +++----------
+>  2 files changed, 5 insertions(+), 10 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drive=
+rs/gpu/drm/i915/display/intel_crtc_state_dump.c
+> index 0cdcaa49656f..91242ffe0768 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> @@ -257,6 +257,8 @@ void intel_crtc_state_dump(const struct intel_crtc_st=
+ate *pipe_config,
+>  		intel_dump_m_n_config(pipe_config, "dp m2_n2",
+>  				      pipe_config->lane_count,
+>  				      &pipe_config->dp_m2_n2);
+> +		drm_dbg_kms(&i915->drm, "fec: %s\n",
+> +			    str_enabled_disabled(pipe_config->fec_enable));
+>  	}
+> =20
+>  	drm_dbg_kms(&i915->drm, "framestart delay: %d, MSA timing delay: %d\n",
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 41cfa28166e4..4246133950fd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3725,17 +3725,10 @@ static void intel_ddi_read_func_ctl(struct intel_=
+encoder *encoder,
+>  		intel_cpu_transcoder_get_m2_n2(crtc, cpu_transcoder,
+>  					       &pipe_config->dp_m2_n2);
+> =20
+> -		if (DISPLAY_VER(dev_priv) >=3D 11) {
+> -			i915_reg_t dp_tp_ctl =3D dp_tp_ctl_reg(encoder, pipe_config);
+> -
+> +		if (DISPLAY_VER(dev_priv) >=3D 11)
+>  			pipe_config->fec_enable =3D
+> -				intel_de_read(dev_priv, dp_tp_ctl) & DP_TP_CTL_FEC_ENABLE;
+> -
+> -			drm_dbg_kms(&dev_priv->drm,
+> -				    "[ENCODER:%d:%s] Fec status: %u\n",
+> -				    encoder->base.base.id, encoder->base.name,
+> -				    pipe_config->fec_enable);
+> -		}
+> +				intel_de_read(dev_priv,
+> +					      dp_tp_ctl_reg(encoder, pipe_config)) & DP_TP_CTL_FEC_ENABLE;
+> =20
+>  		if (dig_port->lspcon.active && dig_port->dp.has_hdmi_sink)
+>  			pipe_config->infoframes.enable |=3D
 
-On 24/05/2023 21:02, fei.yang@intel.com wrote:
-> From: Fei Yang <fei.yang@intel.com>
-> 
-> This series introduce a new extension for GEM_CREATE,
-> 1. end support for set caching ioctl [PATCH 1/2]
-> 2. add set_pat extension for gem_create [PATCH 2/2]
-> 
-> v2: drop one patch that was merged separately
->      commit 341ad0e8e254 ("drm/i915/mtl: Add PTE encode function")
-> v3: rebased on https://patchwork.freedesktop.org/series/117082/
-> v4: fix missing unlock introduced in v3, and
->      solve a rebase conflict
-> v5: replace obj->cache_level with pat_set_by_user,
->      fix i915_cache_level_str() for legacy platforms.
-> v6: rebased on https://patchwork.freedesktop.org/series/117480/
-> v7: rebased on https://patchwork.freedesktop.org/series/117528/
-> v8: dropped the two dependent patches that has been merged
->      separately. Add IGT link and Tested-by (MESA).
-> v9: addressing comments (Andi)
-> v10: acked-by and tested-by MESA
-> v11: drop "end support for set caching ioctl" (merged)
->       remove tools/include/uapi/drm/i915_drm.h
-> v12: drop Bspec reference in comment. add to commit message instead
-> 
-> Fei Yang (1):
->    drm/i915: Allow user to set cache at BO creation
-> 
->   drivers/gpu/drm/i915/gem/i915_gem_create.c | 36 +++++++++++++++++++
->   drivers/gpu/drm/i915/gem/i915_gem_object.c |  6 ++++
->   include/uapi/drm/i915_drm.h                | 41 ++++++++++++++++++++++
->   3 files changed, 83 insertions(+)
-> 
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-Do you also have a Test-with: run against the new IGT somewhere?
-
-Regards,
-
-Tvrtko
+--
+Cheers,
+Luca.
