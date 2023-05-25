@@ -2,57 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E219E7105C2
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 08:45:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F8A67106C4
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 09:56:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF6710ED0F;
-	Thu, 25 May 2023 06:45:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 317CD10E891;
+	Thu, 25 May 2023 07:56:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD24B10E6B0;
- Thu, 25 May 2023 06:45:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684997141; x=1716533141;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=sls89+aDfzj+zo9cjx73tQNm8S7wFlPFhfr7Asf2lzg=;
- b=bSZ21WW1Bo6w6QflcakDcmAloMezsdzP6LJIM+D7HK8JzNJglBcS0YzR
- l5yNcBcvXBamfWldbSl7WAsQdL7bCIEXOvfQTzD40GB6NiPG7qFlmMB3Z
- en2sS68DtEoM9llPfJiZo5QWgFeHaGxbO+R/6W+mBcZSeNc3SxApSfUlq
- kRbr8vCFMVY0sTncYHlLeRW+O1i3cBOQqKCcEGRfkNYSZOTT3NsM0Hg0i
- wA4Q+u2utaqZVhlVRAIs5DQ+aYLZUX4A1+lk/xaMm5SKxl7OYk3zBozF9
- 61tmKyberarrKuJQqgH8IKlbsbzaUgHh0QwiJA+ip+Q9fFDj1wR+kXs0u g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="419522167"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="419522167"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 23:45:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="704685798"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="704685798"
-Received: from szwolins-mobl1.ger.corp.intel.com (HELO [10.213.31.180])
- ([10.213.31.180])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 23:45:39 -0700
-Message-ID: <2ca66c7b-725f-854b-c855-86de031e23ec@intel.com>
-Date: Thu, 25 May 2023 08:45:37 +0200
+Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12E9110E82A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 May 2023 07:56:09 +0000 (UTC)
+Received: from 91-155-254-196.elisa-laajakaista.fi ([91.155.254.196]
+ helo=[192.168.100.137])
+ by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <luca@coelho.fi>) id 1q25pM-008cGd-MN;
+ Thu, 25 May 2023 10:56:06 +0300
+Message-ID: <53e856c15a36e9ffef9f215880299f6aadb59d61.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ dri-devel@lists.freedesktop.org
+Date: Thu, 25 May 2023 10:56:03 +0300
+In-Reply-To: <20230502143906.2401-4-ville.syrjala@linux.intel.com>
+References: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
+ <20230502143906.2401-4-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.0
-Content-Language: en-US
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230524215629.97920-1-ashutosh.dixit@intel.com>
- <20230524215629.97920-2-ashutosh.dixit@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230524215629.97920-2-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/pmu: Turn off the timer to
- sample frequencies when GT is parked
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [Intel-gfx] [PATCH 03/11] drm/i915/mst: Read out FEC state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,97 +47,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 24.05.2023 23:56, Ashutosh Dixit wrote:
-> pmu_needs_timer() keeps the timer running even when GT is parked,
-> ostensibly to sample requested/actual frequencies. However
-> frequency_sample() has the following:
->
-> 	/* Report 0/0 (actual/requested) frequency while parked. */
-> 	if (!intel_gt_pm_get_if_awake(gt))
-> 		return;
->
-> The above code prevents frequencies to be sampled while the GT is
-> parked. So we might as well turn off the sampling timer itself in this
-> case and save CPU cycles/power.
->
-> v2: Instead of turning freq bits off, return false, since no counters will
->      run after this change when GT is parked (Tvrtko)
-> v3: Remove gpu_active argument of pmu_needs_timer (Andrzej)
->
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Regards
-Andrzej
+On Tue, 2023-05-02 at 17:38 +0300, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> The MST codepath is missing FEC readout. Add it.
+>=20
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->   drivers/gpu/drm/i915/i915_pmu.c | 16 +++++-----------
->   1 file changed, 5 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index a814583e19fd7..09313cf9316b4 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -139,7 +139,7 @@ static u32 frequency_enabled_mask(void)
->   	return mask;
->   }
->   
-> -static bool pmu_needs_timer(struct i915_pmu *pmu, bool gpu_active)
-> +static bool pmu_needs_timer(struct i915_pmu *pmu)
->   {
->   	struct drm_i915_private *i915 = container_of(pmu, typeof(*i915), pmu);
->   	u32 enable;
-> @@ -157,17 +157,11 @@ static bool pmu_needs_timer(struct i915_pmu *pmu, bool gpu_active)
->   	 */
->   	enable &= frequency_enabled_mask() | ENGINE_SAMPLE_MASK;
->   
-> -	/*
-> -	 * When the GPU is idle per-engine counters do not need to be
-> -	 * running so clear those bits out.
-> -	 */
-> -	if (!gpu_active)
-> -		enable &= ~ENGINE_SAMPLE_MASK;
->   	/*
->   	 * Also there is software busyness tracking available we do not
->   	 * need the timer for I915_SAMPLE_BUSY counter.
->   	 */
-> -	else if (i915->caps.scheduler & I915_SCHEDULER_CAP_ENGINE_BUSY_STATS)
-> +	if (i915->caps.scheduler & I915_SCHEDULER_CAP_ENGINE_BUSY_STATS)
->   		enable &= ~BIT(I915_SAMPLE_BUSY);
->   
->   	/*
-> @@ -295,7 +289,7 @@ static void park_rc6(struct intel_gt *gt)
->   
->   static void __i915_pmu_maybe_start_timer(struct i915_pmu *pmu)
->   {
-> -	if (!pmu->timer_enabled && pmu_needs_timer(pmu, true)) {
-> +	if (!pmu->timer_enabled && pmu_needs_timer(pmu)) {
->   		pmu->timer_enabled = true;
->   		pmu->timer_last = ktime_get();
->   		hrtimer_start_range_ns(&pmu->timer,
-> @@ -321,7 +315,7 @@ void i915_pmu_gt_parked(struct intel_gt *gt)
->   	 */
->   	pmu->unparked &= ~BIT(gt->info.id);
->   	if (pmu->unparked == 0)
-> -		pmu->timer_enabled = pmu_needs_timer(pmu, false);
-> +		pmu->timer_enabled = false;
->   
->   	spin_unlock_irq(&pmu->lock);
->   }
-> @@ -827,7 +821,7 @@ static void i915_pmu_disable(struct perf_event *event)
->   	 */
->   	if (--pmu->enable_count[bit] == 0) {
->   		pmu->enable &= ~BIT(bit);
-> -		pmu->timer_enabled &= pmu_needs_timer(pmu, true);
-> +		pmu->timer_enabled &= pmu_needs_timer(pmu);
->   	}
->   
->   	spin_unlock_irqrestore(&pmu->lock, flags);
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 55f36d9d509c..41cfa28166e4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3763,6 +3763,11 @@ static void intel_ddi_read_func_ctl(struct intel_e=
+ncoder *encoder,
+>  		intel_cpu_transcoder_get_m1_n1(crtc, cpu_transcoder,
+>  					       &pipe_config->dp_m_n);
+> =20
+> +		if (DISPLAY_VER(dev_priv) >=3D 11)
+> +			pipe_config->fec_enable =3D
+> +				intel_de_read(dev_priv,
+> +					      dp_tp_ctl_reg(encoder, pipe_config)) & DP_TP_CTL_FEC_ENABLE;
+> +
+>  		pipe_config->infoframes.enable |=3D
+>  			intel_hdmi_infoframes_enabled(encoder, pipe_config);
+>  		break;
+
+LGTM.
+
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+
+--
+Cheers,
+Luca.
 
