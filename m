@@ -2,46 +2,143 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13216710305
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 04:46:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B22B71032C
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 05:04:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1332C10E490;
-	Thu, 25 May 2023 02:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4808810E6AD;
+	Thu, 25 May 2023 03:04:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 189.cn (ptr.189.cn [183.61.185.102])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9B5C610E115;
- Thu, 25 May 2023 02:46:44 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.43:46928.396511249
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
- by 189.cn (HERMES) with SMTP id 8581D10019D;
- Thu, 25 May 2023 10:46:38 +0800 (CST)
-Received: from  ([114.242.206.180])
- by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
- 9709e195ba63476a998a9e94ccfb8749 for tzimmermann@suse.de; 
- Thu, 25 May 2023 10:46:40 CST
-X-Transaction-ID: 9709e195ba63476a998a9e94ccfb8749
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Message-ID: <b07609eb-8093-47c8-2368-8dd9ad7a71cd@189.cn>
-Date: Thu, 25 May 2023 10:46:37 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- javierm@redhat.com, sam@ravnborg.org
-References: <20230524092150.11776-13-tzimmermann@suse.de>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9694910E6AB;
+ Thu, 25 May 2023 03:04:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684983840; x=1716519840;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=LIFXKZn2FbVW+8CecIsBjNvXE0Q4G/MsntHY67Frs6Q=;
+ b=U+7QGahaK94jyt1EVkG1rf/jc0ziqqq7JkD/2MDqg2C6E8Zladjij4fa
+ 8ggpjirw4Jgy17dk7M5xPAauQcxSVioFw4cg6R/YDP7GNLZCJQ0I9p7rC
+ nagXPM4qeitBWgkNnn2Vg/l49SlFamNNAV86mnXJM6oduvCPCV7FHYi8t
+ G2ybd/4iOkKvU7hf6ztsIGoE/yIzJtx/DYYBroC3w+gUgj1g83UJjomm8
+ KKiUMy0dnvXtA+F3PajqcM1d54DZFytVwhIbTEW6iHvl460XaaaC8Xpqo
+ AKw3qL6A41gnaMGoJIUS3naIF8rSbNxjgX18VsDJbUOHYmpuutRvGUMdm A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="351273425"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="351273425"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2023 20:03:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="707816241"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="707816241"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga007.fm.intel.com with ESMTP; 24 May 2023 20:03:58 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Wed, 24 May 2023 20:03:57 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Wed, 24 May 2023 20:03:57 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Wed, 24 May 2023 20:03:57 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Csw72rPrYfz0qbrQx2TY9lAf9mbok/bNBnXGCOjh/vrA5NMsL+m5qrCXYLj2doX69Gw9N+zrvJlzWJcMXS8KEaULYSbXh4O7D8BuNUk7+/ZaCnjlFv3fjzx4zfzeVgsKNdl7hFJoBNnTNihdmzoHPCm3uEv5dwrDyZJAh7dHIsNdDT6EXsgTdgfXU+wreWMnhmevxJoGvzZ7Ur5hVL/dgH/niy6Rdhxn4XNoJXP54e+qe+zt/WORAt8CGOoIh7UdagMHad9wCPEW2pNZ6gZtSPkkG1WA0rpSpNU30bcpaVlh6c2d3dBxKa78ceatU2kiiZcb9+hmGiHkCGWXsWunoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ivy9vix8Ez83JSxZQNfJJpb1qXOakgWMnTt/S8YxBwk=;
+ b=iOQp7LFH3fwCNkrtb3i2xksHbgxufW6RNDZdQSO5rZs9r3jq54rjO2VFFzYPBffwif5NLPbU58Fqi6ZOIA1anyjE9U/aZ8qHyVAlGR8gxclpu+l2uBjD6z85NSRQ/WpQSYtm+x8ml/YFb+EwbWgRvgcmslZeyOVOpwiz66rLu248wF2/DOotmaMFwiGAy9UFsTCPFXug24LoThgk9fwQuRcI+WYcZe+CqHUJTfU/rqPh1azF214SBzAL+7WcA6YZTJruBauVsXMnBlCi5Ilj/1muW8SjkVEQtjZ8URdu49VAzT3TxPg68Z7v6yzZJmj3/lc5DYo4me0UFHjPjj7cwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
+ by PH7PR11MB8456.namprd11.prod.outlook.com (2603:10b6:510:2fe::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Thu, 25 May
+ 2023 03:03:55 +0000
+Received: from DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::5b44:8f52:dbeb:18e5]) by DS0PR11MB7529.namprd11.prod.outlook.com
+ ([fe80::5b44:8f52:dbeb:18e5%3]) with mapi id 15.20.6411.028; Thu, 25 May 2023
+ 03:03:55 +0000
+From: "Liu, Yi L" <yi.l.liu@intel.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Thread-Topic: [PATCH v11 20/23] vfio: Add VFIO_DEVICE_[AT|DE]TACH_IOMMUFD_PT
+Thread-Index: AQHZhZ7iKUbaAh4TKEGwflpEYDXvra9m6p0AgAAxWMCAAPVhgIAAqe5QgADjLACAAASTYA==
+Date: Thu, 25 May 2023 03:03:54 +0000
+Message-ID: <DS0PR11MB7529407F01EE55AE4A0A9F1FC3469@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230513132827.39066-1-yi.l.liu@intel.com>
+ <20230513132827.39066-21-yi.l.liu@intel.com>
+ <20230522161534.32f3bf8e.alex.williamson@redhat.com>
+ <DS0PR11MB7529096D1BE1D337BA50884BC3409@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230523095025.1898297c.alex.williamson@redhat.com>
+ <DS0PR11MB75292161F081F27C0650EFB3C3419@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230524093142.3cac798e.alex.williamson@redhat.com>
+In-Reply-To: <20230524093142.3cac798e.alex.williamson@redhat.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <20230524092150.11776-13-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [v4,
- 12/13] drm/fbdev-generic: Implement dedicated fbdev I/O helpers
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|PH7PR11MB8456:EE_
+x-ms-office365-filtering-correlation-id: bc35c024-8185-4d34-8d46-08db5cccad19
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: xdhfwol3joclhwyFbuNGbGG0hlv9m9A+Wh4lLqRm+p9JqSGs5IvplrjURSowpMDF+XLdzkZLFKjD4MTX1m++oKytSD18h3q1TW3qg04iBWmIa5y8SKxhQA9WYdbk/4wyWlYfjjMno64OZiT2r5ru3unwN/N3HBKByj+bfD1xOBjJliGvAM6R1LgsTyV/68uY9ssk9HkiSkFkq8bffmR6XkumxdnvMxWKRmV7F05zfroNkoaBh/X0PYgbXt+nmgyg9HjFoZfyeYLvbBWKPo8F/q9TIpOz0UOdNZydLKORv+zvlLfBhQ8W/GW/wVlEmm4wpKfDfY6ZbPv/m8kl00iSPOzitXTJNexUBhS8SG45o4Z1w8tbUFRv2M9bw/QmZqshxtuU86rGuxhwA0j4MeOn7SgP5QjttdIuwM2EeZycPtRTPF1lC/BcBPYuK5EQovJpQUWbhBqYqgOWwLOqCqkR6rSZ3g+r8wnqhwbNG1YRLvKzpcYm97FHe7fhOFFJp7Kn/D3JkH/vxi9TPCLq+7DZbG4zEyhxe/sxkJ/kNYkF77jEpufpCQbTHV4yV3R+gHwlyf3zxqPqlHZojK/3FPQzXWvGjY2BuvK4ujnNN3Os42a5TCQ+XIu/523G2u2hdeYv4p4H8Pr0v6TtmJiSs7dTx1DSiPuLiq7Zk8fHefTmDTY=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(366004)(396003)(376002)(136003)(39860400002)(451199021)(83380400001)(54906003)(38070700005)(86362001)(478600001)(38100700002)(33656002)(66899021)(186003)(66476007)(76116006)(64756008)(66556008)(4326008)(6916009)(66946007)(2906002)(26005)(71200400001)(82960400001)(316002)(9686003)(6506007)(66446008)(41300700001)(7696005)(52536014)(55016003)(7416002)(5660300002)(8936002)(8676002)(122000001)(13296009)(83133001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?k2eAOSy242nhMgHNSlFja+fDS/spmMR7Sn88vncTWJ8iW0u7bac328s7bMGg?=
+ =?us-ascii?Q?Zy3IzFhmmi91WcLKEOhfuccZrNchBkRiMp2lcm2cvK2WVxErRc0LWfSDkj1H?=
+ =?us-ascii?Q?Bdnwm8FnXHfYbcq0+rFCqOyWd0RP0zeNcotXti8yCV1h+m7iZ6oRNICrQEmO?=
+ =?us-ascii?Q?3kSsvTM3uh0lbqAuWM8khcaby8f8PtTZtYjy/8QjD1YxTlpkXxIkIrFxcWTg?=
+ =?us-ascii?Q?sZkc4GEZ4VeNie1UqmIJ4c0bwTmCuSmGVu+WJhE4SrggYS5NqRI4uF16MNY5?=
+ =?us-ascii?Q?v0ryP+UlYvRipCqgg+2FQRD6NiFgKeS8ujwUJRRBBOpu9h6opo5/hDXYw2cm?=
+ =?us-ascii?Q?tk0Gfs6Qei5KwPk7XyuVngkIfZc+1y6yPwzz88VU68Buen70McfyG+ohcGTg?=
+ =?us-ascii?Q?0PzpDDvTOb81wDGWUTeFmZRLt9bav8DcIW6x55qKiuGX3dDHEmIakGUpdn/+?=
+ =?us-ascii?Q?i+Ridhik0xbf8nAhxoud02KCSXhqMkerIUVWb7W0hfzKYpI3wMXRQtHTadUa?=
+ =?us-ascii?Q?smy9sv1+NSUpT1bByj6jg8TXcseEEkIHFE4wvn3/khXBatXgF1cFDB+7QzDF?=
+ =?us-ascii?Q?LrW7QlIxff5Kal/W20g6x50kHl9/oEkWzfDdrUa/gyDzbS7LcScNySO10Kzr?=
+ =?us-ascii?Q?j34LfceVCzX1afPshlcQPnVR7hojGI15q6oMWBqOoiXhkG+SsSmndSRVSJXt?=
+ =?us-ascii?Q?/2iGvDZnmlO5Ly1y0TEdTnC0U+1aDSTZDVKzKppjFoFsNp6lQlQzGHwC4LdG?=
+ =?us-ascii?Q?rcg9o6z59m/51Rtvgw+ezLjtlQ7mERVceoWXTlFxAkxs4wwGTMQZA1E5cQhp?=
+ =?us-ascii?Q?uLqsTfvrgX5ADcWH8I/qmKoXJUzyxeSRXGPMIEwMxl22yiheED3oI5TvaDQ3?=
+ =?us-ascii?Q?X7ZhpQZzZ+vcI8lh2GMagBBy9MWTH1Syje2rXlsyhx8rfeM7c+QyTZO2qqdS?=
+ =?us-ascii?Q?v7anjWChsqF0wBAUBc/QEbrCaoSJ69jKFDm7wuGIE1rVA6YOKsJoxpm33/Lq?=
+ =?us-ascii?Q?GMC573fOdH1BvaRSCLpblyDFz5CrToe6QfMiR+ZiHo7yT8qBlZRvYkdLI9pQ?=
+ =?us-ascii?Q?IcIZIPdKdASdrCxqVjaG+7YxBHbUYwG8FCsg0hMiyct+rfrSKeiT/WZG0eeE?=
+ =?us-ascii?Q?Ab9FbRxpqe3hit1R6qVvpi8VL8UsksVm+yuQFzOWmQdM6qtjPGuRnv0wxhT5?=
+ =?us-ascii?Q?5ebijl9+djvVSVKIHzMZKd8NGADGmCGDFHKKMP5DcBH4ltuZ/RM9nNjuRWFa?=
+ =?us-ascii?Q?xvqzFPd4Z5amunRarL320eudujYZ8ND9p+zcnWgupRwI5tyvUxELX213hyLn?=
+ =?us-ascii?Q?kTYC1NynWmPqAWBLNIIeFL5V9ZZO1p6VCDlJPLSpVNyYs/HN+XGqXUChP2nO?=
+ =?us-ascii?Q?rKsNEnf9gNN5HZ5wGtXDwxY/dxRItB5KSsj2x7lthiTT6Dwo8DNnDu8R0Y02?=
+ =?us-ascii?Q?3Ju1vQvOcrGT3q3SpOo4bmhYSUqS3qvzlceAOtXKuI8l+Si9Uhp6bk05YZPO?=
+ =?us-ascii?Q?RO9iOJVq1EQbdNnIJ+J4LdsOAgki3e8RYyXQvBirsXMhozqOaa+FBrFvYwwK?=
+ =?us-ascii?Q?GplOh1m7zyUcg07mq+8yD89Ztquqbg7r8Yf43kQz?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bc35c024-8185-4d34-8d46-08db5cccad19
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 May 2023 03:03:54.9717 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qkaSy+g0wMpgl+FpGLyD77ObG+Ux3Cjxl86bhojowYEpgByX6Ca3yI/7MkAraO5iD16UVBDarjvFVtqxIoGRDQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8456
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v11 20/23] vfio: Add
+ VFIO_DEVICE_[AT|DE]TACH_IOMMUFD_PT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,265 +151,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "Duan, 
+ Zhenzhong" <zhenzhong.duan@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
+ "Xu, Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "clegoate@redhat.com" <clegoate@redhat.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Sui Jingfeng <suijingfeng@loongson.cn>
+> From: Alex Williamson <alex.williamson@redhat.com>
+> Sent: Wednesday, May 24, 2023 11:32 PM
+>=20
+> On Wed, 24 May 2023 02:12:14 +0000
+> "Liu, Yi L" <yi.l.liu@intel.com> wrote:
+>=20
+> > > From: Alex Williamson <alex.williamson@redhat.com>
+> > > Sent: Tuesday, May 23, 2023 11:50 PM
+> > >
+> > > On Tue, 23 May 2023 01:20:17 +0000
+> > > "Liu, Yi L" <yi.l.liu@intel.com> wrote:
+> > >
+> > > > > From: Alex Williamson <alex.williamson@redhat.com>
+> > > > > Sent: Tuesday, May 23, 2023 6:16 AM
+> > > > >
+> > > > > On Sat, 13 May 2023 06:28:24 -0700
+> > > > > Yi Liu <yi.l.liu@intel.com> wrote:
+> > > > >
+> > > > > >  	return kasprintf(GFP_KERNEL, "vfio/devices/%s", dev_name(dev)=
+);
+> > > > > > diff --git a/drivers/vfio/iommufd.c b/drivers/vfio/iommufd.c
+> > > > > > index 83575b65ea01..799ea322a7d4 100644
+> > > > > > --- a/drivers/vfio/iommufd.c
+> > > > > > +++ b/drivers/vfio/iommufd.c
+> > > > > > @@ -112,6 +112,24 @@ void vfio_iommufd_unbind(struct vfio_devic=
+e_file *df)
+> > > > > >  		vdev->ops->unbind_iommufd(vdev);
+> > > > > >  }
+> > > > > >
+> > > > > > +int vfio_iommufd_attach(struct vfio_device *vdev, u32 *pt_id)
+> > > > > > +{
+> > > > > > +	lockdep_assert_held(&vdev->dev_set->lock);
+> > > > > > +
+> > > > > > +	if (vfio_device_is_noiommu(vdev))
+> > > > > > +		return 0;
+> > > > >
+> > > > > Isn't this an invalid operation for a noiommu cdev, ie. -EINVAL? =
+ We
+> > > > > return success and copy back the provided pt_id, why would a user=
+ not
+> > > > > consider it a bug that they can't use whatever value was there wi=
+th
+> > > > > iommufd?
+> > > >
+> > > > Yes, this is the question I asked in [1]. At that time, it appears =
+to me
+> > > > that better to allow it [2]. Maybe it's more suitable to ask it her=
+e.
+> > >
+> > > From an API perspective it seems wrong.  We return success without
+> > > doing anything.  A user would be right to consider it a bug that the
+> > > attach operation works but there's not actually any association to th=
+e
+> > > IOAS.  Thanks,
+> >
+> > The current version is kind of tradeoff based on prior remarks when
+> > I asked the question. As prior comment[2], it appears to me the attach
+> > shall success for noiommu devices as well, but per your remark it seems
+> > not in plan. So anyway, we may just fail the attach/detach for noiommu
+> > devices. Is it?
+>=20
+> If a user creates an ioas within an iommufd, attaches a device to that
+> ioas and populates it with mappings, wouldn't the user expect the
+> device to have access to and honor those mappings?  I think that's the
+> path we're headed down if we report a successful attach of a noiommu
+> device to an ioas.
 
+makes sense. Let's just fail attach/detach for noiommu devices.
 
-On 2023/5/24 17:21, Thomas Zimmermann wrote:
-> Implement dedicated fbdev helpers for framebuffer I/O instead
-> of using DRM's helpers. Use an fbdev generator macro for
-> deferred I/O to create the callbacks. Fbdev-generic was the
-> only caller of the DRM helpers, so remove them from the helper
-> module.
->
-> v4:
-> 	* generate deferred-I/O helpers
-> 	* use initializer macros for fb_ops
-> v2:
-> 	* use FB_SYS_HELPERS_DEFERRED option
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->   drivers/gpu/drm/Kconfig             |   6 +-
->   drivers/gpu/drm/drm_fb_helper.c     | 107 ----------------------------
->   drivers/gpu/drm/drm_fbdev_generic.c |  11 ++-
->   include/drm/drm_fb_helper.h         |  41 -----------
->   4 files changed, 6 insertions(+), 159 deletions(-)
->
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index 77fb10ddd8a2..92a782827b7b 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -95,6 +95,7 @@ config DRM_KUNIT_TEST
->   config DRM_KMS_HELPER
->   	tristate
->   	depends on DRM
-> +	select FB_SYS_HELPERS_DEFERRED if DRM_FBDEV_EMULATION
->   	help
->   	  CRTC helpers for KMS drivers.
->   
-> @@ -135,11 +136,6 @@ config DRM_FBDEV_EMULATION
->   	select FB_CFB_FILLRECT
->   	select FB_CFB_COPYAREA
->   	select FB_CFB_IMAGEBLIT
-> -	select FB_DEFERRED_IO
-> -	select FB_SYS_FOPS
-> -	select FB_SYS_FILLRECT
-> -	select FB_SYS_COPYAREA
-> -	select FB_SYS_IMAGEBLIT
->   	select FRAMEBUFFER_CONSOLE if !EXPERT
->   	select FRAMEBUFFER_CONSOLE_DETECT_PRIMARY if FRAMEBUFFER_CONSOLE
->   	default y
-> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-> index cb03099fd2e3..bab6b252f02a 100644
-> --- a/drivers/gpu/drm/drm_fb_helper.c
-> +++ b/drivers/gpu/drm/drm_fb_helper.c
-> @@ -736,113 +736,6 @@ void drm_fb_helper_deferred_io(struct fb_info *info, struct list_head *pagerefli
->   }
->   EXPORT_SYMBOL(drm_fb_helper_deferred_io);
->   
-> -/**
-> - * drm_fb_helper_sys_read - Implements struct &fb_ops.fb_read for system memory
-> - * @info: fb_info struct pointer
-> - * @buf: userspace buffer to read from framebuffer memory
-> - * @count: number of bytes to read from framebuffer memory
-> - * @ppos: read offset within framebuffer memory
-> - *
-> - * Returns:
-> - * The number of bytes read on success, or an error code otherwise.
-> - */
-> -ssize_t drm_fb_helper_sys_read(struct fb_info *info, char __user *buf,
-> -			       size_t count, loff_t *ppos)
-> -{
-> -	return fb_sys_read(info, buf, count, ppos);
-> -}
-> -EXPORT_SYMBOL(drm_fb_helper_sys_read);
-> -
-> -/**
-> - * drm_fb_helper_sys_write - Implements struct &fb_ops.fb_write for system memory
-> - * @info: fb_info struct pointer
-> - * @buf: userspace buffer to write to framebuffer memory
-> - * @count: number of bytes to write to framebuffer memory
-> - * @ppos: write offset within framebuffer memory
-> - *
-> - * Returns:
-> - * The number of bytes written on success, or an error code otherwise.
-> - */
-> -ssize_t drm_fb_helper_sys_write(struct fb_info *info, const char __user *buf,
-> -				size_t count, loff_t *ppos)
-> -{
-> -	struct drm_fb_helper *helper = info->par;
-> -	loff_t pos = *ppos;
-> -	ssize_t ret;
-> -	struct drm_rect damage_area;
-> -
-> -	ret = fb_sys_write(info, buf, count, ppos);
-> -	if (ret <= 0)
-> -		return ret;
-> -
-> -	if (helper->funcs->fb_dirty) {
-> -		drm_fb_helper_memory_range_to_clip(info, pos, ret, &damage_area);
-> -		drm_fb_helper_damage(helper, damage_area.x1, damage_area.y1,
-> -				     drm_rect_width(&damage_area),
-> -				     drm_rect_height(&damage_area));
-> -	}
-> -
-> -	return ret;
-> -}
-> -EXPORT_SYMBOL(drm_fb_helper_sys_write);
-> -
-> -/**
-> - * drm_fb_helper_sys_fillrect - wrapper around sys_fillrect
-> - * @info: fbdev registered by the helper
-> - * @rect: info about rectangle to fill
-> - *
-> - * A wrapper around sys_fillrect implemented by fbdev core
-> - */
-> -void drm_fb_helper_sys_fillrect(struct fb_info *info,
-> -				const struct fb_fillrect *rect)
-> -{
-> -	struct drm_fb_helper *helper = info->par;
-> -
-> -	sys_fillrect(info, rect);
-> -
-> -	if (helper->funcs->fb_dirty)
-> -		drm_fb_helper_damage(helper, rect->dx, rect->dy, rect->width, rect->height);
-> -}
-> -EXPORT_SYMBOL(drm_fb_helper_sys_fillrect);
-> -
-> -/**
-> - * drm_fb_helper_sys_copyarea - wrapper around sys_copyarea
-> - * @info: fbdev registered by the helper
-> - * @area: info about area to copy
-> - *
-> - * A wrapper around sys_copyarea implemented by fbdev core
-> - */
-> -void drm_fb_helper_sys_copyarea(struct fb_info *info,
-> -				const struct fb_copyarea *area)
-> -{
-> -	struct drm_fb_helper *helper = info->par;
-> -
-> -	sys_copyarea(info, area);
-> -
-> -	if (helper->funcs->fb_dirty)
-> -		drm_fb_helper_damage(helper, area->dx, area->dy, area->width, area->height);
-> -}
-> -EXPORT_SYMBOL(drm_fb_helper_sys_copyarea);
-> -
-> -/**
-> - * drm_fb_helper_sys_imageblit - wrapper around sys_imageblit
-> - * @info: fbdev registered by the helper
-> - * @image: info about image to blit
-> - *
-> - * A wrapper around sys_imageblit implemented by fbdev core
-> - */
-> -void drm_fb_helper_sys_imageblit(struct fb_info *info,
-> -				 const struct fb_image *image)
-> -{
-> -	struct drm_fb_helper *helper = info->par;
-> -
-> -	sys_imageblit(info, image);
-> -
-> -	if (helper->funcs->fb_dirty)
-> -		drm_fb_helper_damage(helper, image->dx, image->dy, image->width, image->height);
-> -}
-> -EXPORT_SYMBOL(drm_fb_helper_sys_imageblit);
-> -
->   /**
->    * drm_fb_helper_cfb_read - Implements struct &fb_ops.fb_read for I/O memory
->    * @info: fb_info struct pointer
-> diff --git a/drivers/gpu/drm/drm_fbdev_generic.c b/drivers/gpu/drm/drm_fbdev_generic.c
-> index 8e5148bf40bb..98ae703848a0 100644
-> --- a/drivers/gpu/drm/drm_fbdev_generic.c
-> +++ b/drivers/gpu/drm/drm_fbdev_generic.c
-> @@ -34,6 +34,10 @@ static int drm_fbdev_generic_fb_release(struct fb_info *info, int user)
->   	return 0;
->   }
->   
-> +FB_GEN_DEFAULT_DEFERRED_SYS_OPS(drm_fbdev_generic,
-> +				drm_fb_helper_damage_range,
-> +				drm_fb_helper_damage_area);
-> +
->   static void drm_fbdev_generic_fb_destroy(struct fb_info *info)
->   {
->   	struct drm_fb_helper *fb_helper = info->par;
-> @@ -56,13 +60,8 @@ static const struct fb_ops drm_fbdev_generic_fb_ops = {
->   	.owner		= THIS_MODULE,
->   	.fb_open	= drm_fbdev_generic_fb_open,
->   	.fb_release	= drm_fbdev_generic_fb_release,
-> -	.fb_read	= drm_fb_helper_sys_read,
-> -	.fb_write	= drm_fb_helper_sys_write,
-> +	FB_DEFAULT_DEFERRED_OPS(drm_fbdev_generic),
->   	DRM_FB_HELPER_DEFAULT_OPS,
-> -	.fb_fillrect	= drm_fb_helper_sys_fillrect,
-> -	.fb_copyarea	= drm_fb_helper_sys_copyarea,
-> -	.fb_imageblit	= drm_fb_helper_sys_imageblit,
-> -	.fb_mmap	= fb_deferred_io_mmap,
->   	.fb_destroy	= drm_fbdev_generic_fb_destroy,
->   };
->   
-> diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
-> index 7d5804882be7..b50fd0c0b713 100644
-> --- a/include/drm/drm_fb_helper.h
-> +++ b/include/drm/drm_fb_helper.h
-> @@ -258,18 +258,6 @@ void drm_fb_helper_damage_area(struct fb_info *info, u32 x, u32 y, u32 width, u3
->   
->   void drm_fb_helper_deferred_io(struct fb_info *info, struct list_head *pagereflist);
->   
-> -ssize_t drm_fb_helper_sys_read(struct fb_info *info, char __user *buf,
-> -			       size_t count, loff_t *ppos);
-> -ssize_t drm_fb_helper_sys_write(struct fb_info *info, const char __user *buf,
-> -				size_t count, loff_t *ppos);
-> -
-> -void drm_fb_helper_sys_fillrect(struct fb_info *info,
-> -				const struct fb_fillrect *rect);
-> -void drm_fb_helper_sys_copyarea(struct fb_info *info,
-> -				const struct fb_copyarea *area);
-> -void drm_fb_helper_sys_imageblit(struct fb_info *info,
-> -				 const struct fb_image *image);
-> -
->   ssize_t drm_fb_helper_cfb_read(struct fb_info *info, char __user *buf,
->   			       size_t count, loff_t *ppos);
->   ssize_t drm_fb_helper_cfb_write(struct fb_info *info, const char __user *buf,
-> @@ -397,35 +385,6 @@ static inline int drm_fb_helper_defio_init(struct drm_fb_helper *fb_helper)
->   	return -ENODEV;
->   }
->   
-> -static inline ssize_t drm_fb_helper_sys_read(struct fb_info *info,
-> -					     char __user *buf, size_t count,
-> -					     loff_t *ppos)
-> -{
-> -	return -ENODEV;
-> -}
-> -
-> -static inline ssize_t drm_fb_helper_sys_write(struct fb_info *info,
-> -					      const char __user *buf,
-> -					      size_t count, loff_t *ppos)
-> -{
-> -	return -ENODEV;
-> -}
-> -
-> -static inline void drm_fb_helper_sys_fillrect(struct fb_info *info,
-> -					      const struct fb_fillrect *rect)
-> -{
-> -}
-> -
-> -static inline void drm_fb_helper_sys_copyarea(struct fb_info *info,
-> -					      const struct fb_copyarea *area)
-> -{
-> -}
-> -
-> -static inline void drm_fb_helper_sys_imageblit(struct fb_info *info,
-> -					       const struct fb_image *image)
-> -{
-> -}
-> -
->   static inline ssize_t drm_fb_helper_cfb_read(struct fb_info *info, char __user *buf,
->   					     size_t count, loff_t *ppos)
->   {
+>=20
+> We need to keep in mind that noiommu was meant to be a minimally
+> intrusive mechanism to provide a dummy vfio IOMMU backend and satisfy
+> the group requirements, solely for the purpose of making use of the
+> vfio device interface and without providing any DMA mapping services or
+> expectations.  IMO, an argument that we need the attach op to succeed in
+> order to avoid too much disruption in userspace code is nonsense.  On
+> the contrary, userspace needs to be very aware of this difference and
+> we shouldn't invest effort trying to make noiommu more convenient to
+> use.  It's inherently unsafe.
+>=20
+> I'm not fond of what a mess noiommu has become with cdev, we're well
+> beyond the minimal code trickery of the legacy implementation.  I hate
+> to ask, but could we reiterate our requirements for noiommu as a part of
+> the native iommufd interface for vfio?  The nested userspace requirement
+> is gone now that hypervisors have vIOMMU support, so my assumption is
+> that this is only for bare metal systems without an IOMMU, which
+> ideally are less and less prevalent.  Are there any noiommu userspaces
+> that are actually going to adopt the noiommu cdev interface?  What
+> terrible things happen if noiommu only exists in the vfio group compat
+> interface to iommufd and at some distant point in the future dies when
+> that gets disabled?
+
+vIOMMU may introduce some performance deduction if there
+are frequent map/unmap. As far as I know, some cloud service
+providers are more willing to use noiommu mode within VM.
+Besides the performance consideration, using a booting a VM
+without vIOMMU is supposed to be more robust. But I'm not
+sure if the noiommu userspace will adapt to cdev noiommu.
+Perhaps yes if group may be deprecated in future.
+
+> > btw. Should we document it somewhere as well? E.g. noiommu userspace
+> > does not support attach/detach? Userspace should know it is opening
+> > noiommu devices.
+>=20
+> Documentation never hurts.  This is such a specialized use case I'm not
+> sure we've bothered to do much documentation for noiommu previously.
+
+Seems no, I didn't find special documentation for noiommu. Perhaps
+a comment in the source code is enough. Depends on your taste.
+
+Regards,
+Yi Liu
