@@ -2,144 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44FE4710F94
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 17:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6954871102F
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 17:59:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93F9410E17A;
-	Thu, 25 May 2023 15:29:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE28310E6C2;
+	Thu, 25 May 2023 15:59:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61FC210E17A;
- Thu, 25 May 2023 15:29:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685028594; x=1716564594;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:mime-version;
- bh=WFgBhjZpOv79lFlmgDblfPICrUbV8jqdxaURgvMPKjs=;
- b=ipvgjnCj5RBAb1PqWVGhRVYkveuLT0jK6V6ErM4RR1FlI9ajrbYln/fH
- zkq+pdzoC6vTzN0wPJcH0t5CAg6A2b3lYY1y0FRi8goxJcifixyvxP972
- VDEtys8h/BjrJcP7SmNIgNn9lG9mDfFpQvlu9RyNxcqoNScqU2IkG4jYR
- vdW7qz5u8H0fV8oH1yyajrhOWuWW05iRh8y8KVwe7KLk0omtoMjsDb270
- Ld5FVg6HjRGWvRg9/rT/p9U92l2jOEbYJTAB0BCUXbNASIhPZThMd0Cct
- gd2IZ2wn4sAQu6lmrk75A7n6CZqTDTnhoT2Y6zHbm3aIk8QGR7YXO6iJi g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="419662741"
-X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; 
- d="scan'208,217";a="419662741"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 08:29:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="699022728"
-X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; 
- d="scan'208,217";a="699022728"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga007.jf.intel.com with ESMTP; 25 May 2023 08:29:52 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 25 May 2023 08:29:52 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 25 May 2023 08:29:52 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 25 May 2023 08:29:52 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tj0SfIg2uVfQ8W7sSW7y+TZP5IVJy/r7dyiCEbPd3yXG5eDJHxBP+SNQE/Xoveuqldog8t8DXdDvk7DOR3jptF89RHBG2MLgfAQ8fsTld68FpWnsjknaRz9cAC/QI10X+odG8G8QMJb3i6NbvA9Kb+2Av+P236EtVE6Qd1dhAdNW8bErZ4zFONGWn9vPiVu/Dyx2CMDc5K2gyH8yy2pyPpO2BG593t9+D+DX+qu5vnEPyZoaImzOsPGQF9mYbUaH3/rTR5n3r58gBWKnTqKZAzJ761tfe4B7siM0rgrAvuik6l7jwTWRw4AQqEC4GZXmPDURRsBQsh+t4pnAKQmPVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KaC5f7dt9SEr7Jhgrx9ISIPiIlzWngERd/IzTkAgPNo=;
- b=feDjAQ2b3oi2CkORP1MkLWecwESPkcZWT71MmHjk6v6zB6ZPxyW91Rc7V/7mxedVK6nKIOrwgo4Nr7BrfOShzCaAEDQkolYRp8gGQVnS+g6eA2CpPxwxHwv14M8rfFOybhDMB6lEhnf3pzmjivrBIf5gS9+Z3EhV1b36UMOP0YYdS3GDVikY3y5cWXoM+1LA40mgtVPg0azh6V6G3HSZtkkBjrNdaBLzS5j8d1e8uY+WXNa7k8O87v6WGCjD0RdTBMQFAFHx4YD3zO6nEdatbFb1S56WTcqIadU44eGwlRrHXS4cNh5qyIkYkHkqCiONej6ToQhWyn9jKn+sTfymfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BYAPR11MB2567.namprd11.prod.outlook.com (2603:10b6:a02:c5::32)
- by SN7PR11MB7538.namprd11.prod.outlook.com (2603:10b6:806:32b::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Thu, 25 May
- 2023 15:29:45 +0000
-Received: from BYAPR11MB2567.namprd11.prod.outlook.com
- ([fe80::8ec1:2f24:6309:c008]) by BYAPR11MB2567.namprd11.prod.outlook.com
- ([fe80::8ec1:2f24:6309:c008%3]) with mapi id 15.20.6433.015; Thu, 25 May 2023
- 15:29:45 +0000
-From: "Yang, Fei" <fei.yang@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v12 0/1] drm/i915: Allow user to set cache at
- BO creation
-Thread-Index: AQHZjnqnJ8PZ7Ur6xkyxJe9rIFJU0a9qqhsAgABvbA+AAAS9MA==
-Date: Thu, 25 May 2023 15:29:44 +0000
-Message-ID: <BYAPR11MB2567BACAC55CB9906E9FF49B9A469@BYAPR11MB2567.namprd11.prod.outlook.com>
-References: <20230524200255.443021-1-fei.yang@intel.com>
- <78124d6f-7f46-afbe-d320-9dad77082f3b@linux.intel.com>
- <BYAPR11MB25673475B8C523F25A54DC029A469@BYAPR11MB2567.namprd11.prod.outlook.com>
-In-Reply-To: <BYAPR11MB25673475B8C523F25A54DC029A469@BYAPR11MB2567.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR11MB2567:EE_|SN7PR11MB7538:EE_
-x-ms-office365-filtering-correlation-id: 0011c5f4-e528-41e8-d94d-08db5d34de20
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ok7I9XBhOaoYeuFZovLvMbWx0TtxgTuH/JCy8JUDOXlcu2bCIT3QCyo8gKOnc8i4kEE3tHMf40LUEWz/JJf2eaDq2P/B/KpOhs1QyGdeXZF7E599OFo+eLrrwFfqWXw1cJGppVVs4ikCUPAxEIUakzjWIOFg6vWIlBKxoUf0lOpFcVYNYLmy9Akl5zttpEszdy5I0KIj/TC9HVWl1h9KQKMPSMhLfJl4k41qv6vgYX1YazMntwVLLm8TFYkvJuLvUAOL49pvQet1cjFeYBku6m6ZS4Z5Xk4v/YeoIVtVxW7c47/3iJ1iBTgYBezKt3wApg1IOkLwxmBF/me7Pvf6zJb3+O407cygjKaGRJhKGqOwuhBj1unEr/AjbJBvwwucgiD5e56MhBNs8fCt7kitUhtYtNPGbqVl4XnRJJb0USR9c6V97qGHVMOcCeealLO9iwtii8SQgNPVBzAn53jPXOBlSIxO/PjnxRJDVGvhnRFE8T7z67bRRih44KwQvtVGIa+txwAzSkMUNgcaOHwDAsLYJKQBf+Hdny1MIuM77hKjbqT8GgP54TjZMtY4gjaQ
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2567.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(366004)(376002)(39860400002)(396003)(136003)(451199021)(8676002)(8936002)(76116006)(5660300002)(52536014)(186003)(83380400001)(2940100002)(26005)(122000001)(86362001)(6506007)(53546011)(38100700002)(9686003)(82960400001)(166002)(38070700005)(41300700001)(7696005)(33656002)(55016003)(966005)(71200400001)(64756008)(66556008)(66446008)(478600001)(110136005)(316002)(66946007)(66476007)(4326008)(54906003)(2906002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Qf+Mpypbw7XBMHJ2Vi1NIH80p2koOPUTiDlkkxCY6TxjUyg+Qubdjy66Ck7s?=
- =?us-ascii?Q?P1Scytnfu5jBlze9B1UxlNGnL5wngHQVA2pem5jx96c3lgFl91U6wyFlmWzu?=
- =?us-ascii?Q?lDyAQeh6LDbcG2wmZnctPzLcIQLryvZnoBukzzO4asKCG2wrcONE/zb/qGEc?=
- =?us-ascii?Q?od9J//2+p7TnYEfL5uwFonfi7j6fkE2KP0LU4wpYfhILbM1v/zKsSIA01A77?=
- =?us-ascii?Q?S2DrFfrSj93CqgaFXtb5AdgZEjvzCWdQAk8w8/jTa/5L3jYsGzdEM+Nls4ds?=
- =?us-ascii?Q?vEjQg+ZKRZr+MBMI7kpZ9DxvFP99Or94Q1E6G+LqePhcTj4fjORtYN5CnhF3?=
- =?us-ascii?Q?+TsgPkhF2NBs2VASWU6EAuh9W31qVsc3amSeejITGiDZY6Y3QG/JCXnwNsir?=
- =?us-ascii?Q?rZQYEjpmPtPjCLZGrJTaG95K5UZDh1fyMg96iqSXcGtkhO/G51r/N8xT6RDy?=
- =?us-ascii?Q?yYjmz+GowlNZdDP/N79IdlER2rjsFk4P2id1txMhS+Fv+EEeksqk2Yr2b8z8?=
- =?us-ascii?Q?3gBCArGsZlfQIiUnE/MHTnobK8irWplNMWcQWuKugltdY+3b2upyWFN7LtEb?=
- =?us-ascii?Q?GNCociqwx+t98kTVRxZJGKn+hIX68IhNpPmQ01946u/DC9EU2mwKjc+6soft?=
- =?us-ascii?Q?0Bk+J/w3BSLPzmGGVaHBTMEp+S6f0Ffl1lX+4vHmmoWC5wDhtY6Al/9QegeI?=
- =?us-ascii?Q?OewGtVLyXV/GbbPwclIboTfb2fOSHUiEpe0iDQ/cZXWn/Ia75EhpQ570HIHV?=
- =?us-ascii?Q?fYcLBY1zEj+y/r0RGABLbNeFZ6gk4fvCrGFd5luMB78jB432uMOCk/XOeizG?=
- =?us-ascii?Q?2EGctdX+fluWMpjOa+PbkhQ6OXcT8Ep7hJun3HOTJLZc8vE4pGzifHM4iG99?=
- =?us-ascii?Q?b5KPKNgLD2+7RugX1uZRiQY5+LOJLjkpZixeGPGDNSVSxhR13LBSGePZwvmE?=
- =?us-ascii?Q?BDDGOWoA1cZW9uio+/gzrkWmbGtoI6KlryC9ae+rpOHEFOom06EMAwGRC6k2?=
- =?us-ascii?Q?bts9FZHMjAjUxLowIMlUIrqhhDJn+MJ3jIn1h5sr53TzgOReRFS9W2MPNctK?=
- =?us-ascii?Q?ZYPlPcbbU/StQ+dKT8/UlG0r0f5s2ye2MJupWealqwXQIyESflSLeCUL9yYU?=
- =?us-ascii?Q?O7khJoDqKZyZq+HqdzrRA66ZBRCI1MTY8jXXB0cKXOp7e8oLmjojWwW5+gpu?=
- =?us-ascii?Q?ngiaLA5lzweptwVQWi78FfWAJDULuGrPonCSredYwn6sFTrKSE6SdubyRzpK?=
- =?us-ascii?Q?79AYmvH42vGiiph9IpZklJY34t1Q6jI8Lhak89BOCMDmvDRSdKpK5j0rxFNs?=
- =?us-ascii?Q?GbU/J3ppf7zxubhDG8ahNJF8oG2SbN4zQ4G7+4+3zIN0+xEtpJFu8kZizNTE?=
- =?us-ascii?Q?wC9B+q26Myw1FT9sSRKNUDC9ZfNqmmURwIvbJQEL1lU+WFFG8QbgEhTviXtN?=
- =?us-ascii?Q?U3kUlu9Vb28njL+lQbOtnGX9PNLcpoe3epmwjAk2oUcJfiRL5t3IfUcy5+Db?=
- =?us-ascii?Q?zTijSd7vNVqmuNRiuV0+p6GUJDDeFsjXDppmMFw370kXzqV8VNouOR3aAhUM?=
- =?us-ascii?Q?A4e/mGx4DNaf1yjCoSA=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_BYAPR11MB2567BACAC55CB9906E9FF49B9A469BYAPR11MB2567namp_"
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5121610E6BD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 May 2023 15:59:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1685030386;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=TsUdauS8oAnL4ydDKikkdnZdQQ7qgtOSloz4PnB1yMk=;
+ b=f/FDqSP1440KEnbCbRT2lwId9uFEMU8hxjnrgpvg5GDZhsDD5RECSXCO4+nyz3ce7fFh0/
+ /oWMFgN9qjjm7JStxmxexndvinnVeLZkiYk8VUCyfHIQKmz/c17W5SoZJObLd5Nes+eZe3
+ /iKa09ZHZOj1X+ywpt+kXfEumB+vwkk=
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com
+ [209.85.166.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-657-5z14pqijMFiynr4ilMK07A-1; Thu, 25 May 2023 11:59:42 -0400
+X-MC-Unique: 5z14pqijMFiynr4ilMK07A-1
+Received: by mail-io1-f69.google.com with SMTP id
+ ca18e2360f4ac-760c58747cdso449545339f.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 May 2023 08:59:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1685030382; x=1687622382;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=TsUdauS8oAnL4ydDKikkdnZdQQ7qgtOSloz4PnB1yMk=;
+ b=TkscNynautebGMYO8tiSQxPYZkcflEUIS6WXWt4WLDnPUmKlaHyjLGGBlwOPQHCWtY
+ 153mIRh33W1vYF3pFgCDK+lOo6ogOpFUgLovpvIyZnwr32KFyWYeO7XJYalrKDG7veOg
+ 0oj5UU+0Pg77aBxmCUWM8+ZlE/vaqcXw6vmzBvA4P4Y4hYfahprTQBRBG/DBcHhAvHLH
+ 9Zw80mnBoUAWdXvgSJsHRI8mSzsH7uFDWJkChAZpTeMy18crzbj5O08E4pjXm6IYV6M1
+ GMTxuqufUYY1EYsgl6jt659LorwtBmZNmnjLoIfNiK5gi+Dx6TZ3KPNFMRxc+NIzLfzK
+ fn6A==
+X-Gm-Message-State: AC+VfDxnhZ9ehtyS8WA7ZYLstd/oWc+Z6fHgVdGd04sfMyt/hFeyHDzw
+ P+sMUz7rFhIJ3dK0+8PRiwHqwII9XDIlymizbs8y9sM2ytlIh5pDsNDL0EBmuruthWvu5lkQdwM
+ Ifkgo+9XmAxxSlfXh+jeKLCaJspTy
+X-Received: by 2002:a5e:cb0c:0:b0:774:8aee:7e5c with SMTP id
+ p12-20020a5ecb0c000000b007748aee7e5cmr5771367iom.16.1685030381901; 
+ Thu, 25 May 2023 08:59:41 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6RmBKbvUUCpZ8rftXOee/+HrBYFX5cHIc3BcBvhdGn7Kpa+mHXP8Mk5ojhtIHMhIYkHJsEZA==
+X-Received: by 2002:a5e:cb0c:0:b0:774:8aee:7e5c with SMTP id
+ p12-20020a5ecb0c000000b007748aee7e5cmr5771328iom.16.1685030381540; 
+ Thu, 25 May 2023 08:59:41 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ p4-20020a5d9844000000b00774861745efsm51591ios.49.2023.05.25.08.59.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 25 May 2023 08:59:40 -0700 (PDT)
+Date: Thu, 25 May 2023 09:59:39 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: "Liu, Yi L" <yi.l.liu@intel.com>
+Message-ID: <20230525095939.37ddb8ce.alex.williamson@redhat.com>
+In-Reply-To: <DS0PR11MB7529407F01EE55AE4A0A9F1FC3469@DS0PR11MB7529.namprd11.prod.outlook.com>
+References: <20230513132827.39066-1-yi.l.liu@intel.com>
+ <20230513132827.39066-21-yi.l.liu@intel.com>
+ <20230522161534.32f3bf8e.alex.williamson@redhat.com>
+ <DS0PR11MB7529096D1BE1D337BA50884BC3409@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230523095025.1898297c.alex.williamson@redhat.com>
+ <DS0PR11MB75292161F081F27C0650EFB3C3419@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230524093142.3cac798e.alex.williamson@redhat.com>
+ <DS0PR11MB7529407F01EE55AE4A0A9F1FC3469@DS0PR11MB7529.namprd11.prod.outlook.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2567.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0011c5f4-e528-41e8-d94d-08db5d34de20
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 May 2023 15:29:44.9159 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IU0s00jrOm2D41NlCshqQXARVv66AleDm7HS3kgVbD2Xkd5AOXPPZZvXoDJNDrcNLbbkxL+Ffp8evJ3+y9IOMQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7538
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v12 0/1] drm/i915: Allow user to set cache
- at BO creation
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v11 20/23] vfio: Add
+ VFIO_DEVICE_[AT|DE]TACH_IOMMUFD_PT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,261 +90,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
+ "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
+ Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
+ "peterx@redhat.com" <peterx@redhat.com>, "Xu,
+ Terrence" <terrence.xu@intel.com>,
+ "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
+ "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
+ Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
+ "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
+ "Zhao, Yan Y" <yan.y.zhao@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "eric.auger@redhat.com" <eric.auger@redhat.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
+ "clegoate@redhat.com" <clegoate@redhat.com>,
+ "cohuck@redhat.com" <cohuck@redhat.com>,
+ "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
+ "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
+ "robin.murphy@arm.com" <robin.murphy@arm.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_BYAPR11MB2567BACAC55CB9906E9FF49B9A469BYAPR11MB2567namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Thu, 25 May 2023 03:03:54 +0000
+"Liu, Yi L" <yi.l.liu@intel.com> wrote:
 
-Sorry replied on top of wrong thread.
+> > From: Alex Williamson <alex.williamson@redhat.com>
+> > Sent: Wednesday, May 24, 2023 11:32 PM
+> > 
+> > On Wed, 24 May 2023 02:12:14 +0000
+> > "Liu, Yi L" <yi.l.liu@intel.com> wrote:
+> >   
+> > > > From: Alex Williamson <alex.williamson@redhat.com>
+> > > > Sent: Tuesday, May 23, 2023 11:50 PM
+> > > >
+> > > > On Tue, 23 May 2023 01:20:17 +0000
+> > > > "Liu, Yi L" <yi.l.liu@intel.com> wrote:
+> > > >  
+> > > > > > From: Alex Williamson <alex.williamson@redhat.com>
+> > > > > > Sent: Tuesday, May 23, 2023 6:16 AM
+> > > > > >
+> > > > > > On Sat, 13 May 2023 06:28:24 -0700
+> > > > > > Yi Liu <yi.l.liu@intel.com> wrote:
+> > > > > >  
+> > > > > > >  	return kasprintf(GFP_KERNEL, "vfio/devices/%s", dev_name(dev));
+> > > > > > > diff --git a/drivers/vfio/iommufd.c b/drivers/vfio/iommufd.c
+> > > > > > > index 83575b65ea01..799ea322a7d4 100644
+> > > > > > > --- a/drivers/vfio/iommufd.c
+> > > > > > > +++ b/drivers/vfio/iommufd.c
+> > > > > > > @@ -112,6 +112,24 @@ void vfio_iommufd_unbind(struct vfio_device_file *df)
+> > > > > > >  		vdev->ops->unbind_iommufd(vdev);
+> > > > > > >  }
+> > > > > > >
+> > > > > > > +int vfio_iommufd_attach(struct vfio_device *vdev, u32 *pt_id)
+> > > > > > > +{
+> > > > > > > +	lockdep_assert_held(&vdev->dev_set->lock);
+> > > > > > > +
+> > > > > > > +	if (vfio_device_is_noiommu(vdev))
+> > > > > > > +		return 0;  
+> > > > > >
+> > > > > > Isn't this an invalid operation for a noiommu cdev, ie. -EINVAL?  We
+> > > > > > return success and copy back the provided pt_id, why would a user not
+> > > > > > consider it a bug that they can't use whatever value was there with
+> > > > > > iommufd?  
+> > > > >
+> > > > > Yes, this is the question I asked in [1]. At that time, it appears to me
+> > > > > that better to allow it [2]. Maybe it's more suitable to ask it here.  
+> > > >
+> > > > From an API perspective it seems wrong.  We return success without
+> > > > doing anything.  A user would be right to consider it a bug that the
+> > > > attach operation works but there's not actually any association to the
+> > > > IOAS.  Thanks,  
+> > >
+> > > The current version is kind of tradeoff based on prior remarks when
+> > > I asked the question. As prior comment[2], it appears to me the attach
+> > > shall success for noiommu devices as well, but per your remark it seems
+> > > not in plan. So anyway, we may just fail the attach/detach for noiommu
+> > > devices. Is it?  
+> > 
+> > If a user creates an ioas within an iommufd, attaches a device to that
+> > ioas and populates it with mappings, wouldn't the user expect the
+> > device to have access to and honor those mappings?  I think that's the
+> > path we're headed down if we report a successful attach of a noiommu
+> > device to an ioas.  
+> 
+> makes sense. Let's just fail attach/detach for noiommu devices.
+> 
+> > 
+> > We need to keep in mind that noiommu was meant to be a minimally
+> > intrusive mechanism to provide a dummy vfio IOMMU backend and satisfy
+> > the group requirements, solely for the purpose of making use of the
+> > vfio device interface and without providing any DMA mapping services or
+> > expectations.  IMO, an argument that we need the attach op to succeed in
+> > order to avoid too much disruption in userspace code is nonsense.  On
+> > the contrary, userspace needs to be very aware of this difference and
+> > we shouldn't invest effort trying to make noiommu more convenient to
+> > use.  It's inherently unsafe.
+> > 
+> > I'm not fond of what a mess noiommu has become with cdev, we're well
+> > beyond the minimal code trickery of the legacy implementation.  I hate
+> > to ask, but could we reiterate our requirements for noiommu as a part of
+> > the native iommufd interface for vfio?  The nested userspace requirement
+> > is gone now that hypervisors have vIOMMU support, so my assumption is
+> > that this is only for bare metal systems without an IOMMU, which
+> > ideally are less and less prevalent.  Are there any noiommu userspaces
+> > that are actually going to adopt the noiommu cdev interface?  What
+> > terrible things happen if noiommu only exists in the vfio group compat
+> > interface to iommufd and at some distant point in the future dies when
+> > that gets disabled?  
+> 
+> vIOMMU may introduce some performance deduction if there
+> are frequent map/unmap.
 
-From: Yang, Fei <fei.yang@intel.com>
-Sent: Thursday, May 25, 2023 8:12 AM
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>; intel-gfx@lists.freede=
-sktop.org
-Cc: dri-devel@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v12 0/1] drm/i915: Allow user to set cache =
-at BO creation
+We use passthrough mode of the vIOMMU to negate that overhead for guest
+drivers and vfio drivers have typically learned by now that dynamic
+mappings using the vfio type1 mapping API are a bad idea.
 
+> As far as I know, some cloud service
+> providers are more willing to use noiommu mode within VM.
 
-Sounds weird to have a platform restriction on uAPI though. UMD not using t=
-his extension is not a problem, is it?
+Sure, the VM itself is still isolated by the host IOMMU, but it's
+clearly an extra maintenance and development burden when we should
+instead be encouraging those use cases to use vIOMMU rather than
+porting to a different noiommu uAPI.  Even if the host is not exposed,
+any sort of security and support best practices in the guest should
+favor a vIOMMU solution.
 
+> Besides the performance consideration, using a booting a VM
+> without vIOMMU is supposed to be more robust. But I'm not
 
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com<mailto:tvrtko.ursulin@=
-linux.intel.com>>
-Sent: Thursday, May 25, 2023 1:33 AM
-To: Yang, Fei <fei.yang@intel.com<mailto:fei.yang@intel.com>>; intel-gfx@li=
-sts.freedesktop.org<mailto:intel-gfx@lists.freedesktop.org> <intel-gfx@list=
-s.freedesktop.org<mailto:intel-gfx@lists.freedesktop.org>>
-Cc: dri-devel@lists.freedesktop.org<mailto:dri-devel@lists.freedesktop.org>=
- <dri-devel@lists.freedesktop.org<mailto:dri-devel@lists.freedesktop.org>>;=
- Vivi, Rodrigo <rodrigo.vivi@intel.com<mailto:rodrigo.vivi@intel.com>>
-Subject: Re: [Intel-gfx] [PATCH v12 0/1] drm/i915: Allow user to set cache =
-at BO creation
+What claims do you have to support lack of robustness in vIOMMU?  Can
+they be fixed?
 
+> sure if the noiommu userspace will adapt to cdev noiommu.
+> Perhaps yes if group may be deprecated in future.
 
-On 24/05/2023 21:02, fei.yang@intel.com<mailto:fei.yang@intel.com> wrote:
-> From: Fei Yang <fei.yang@intel.com<mailto:fei.yang@intel.com>>
->
-> This series introduce a new extension for GEM_CREATE,
-> 1. end support for set caching ioctl [PATCH 1/2]
-> 2. add set_pat extension for gem_create [PATCH 2/2]
->
-> v2: drop one patch that was merged separately
->      commit 341ad0e8e254 ("drm/i915/mtl: Add PTE encode function")
-> v3: rebased on https://patchwork.freedesktop.org/series/117082/
-> v4: fix missing unlock introduced in v3, and
->      solve a rebase conflict
-> v5: replace obj->cache_level with pat_set_by_user,
->      fix i915_cache_level_str() for legacy platforms.
-> v6: rebased on https://patchwork.freedesktop.org/series/117480/
-> v7: rebased on https://patchwork.freedesktop.org/series/117528/
-> v8: dropped the two dependent patches that has been merged
->      separately. Add IGT link and Tested-by (MESA).
-> v9: addressing comments (Andi)
-> v10: acked-by and tested-by MESA
-> v11: drop "end support for set caching ioctl" (merged)
->       remove tools/include/uapi/drm/i915_drm.h
-> v12: drop Bspec reference in comment. add to commit message instead
->
-> Fei Yang (1):
->    drm/i915: Allow user to set cache at BO creation
->
->   drivers/gpu/drm/i915/gem/i915_gem_create.c | 36 +++++++++++++++++++
->   drivers/gpu/drm/i915/gem/i915_gem_object.c |  6 ++++
->   include/uapi/drm/i915_drm.h                | 41 ++++++++++++++++++++++
->   3 files changed, 83 insertions(+)
->
+Deprecation is going to take a long time.  IMO, the VM use cases should
+all be encouraged to adopt a vIOMMU solution rather than port to a new
+cdev noiommu interface.  The question then is whether there are ongoing
+bare metal noiommu use cases and how long those will drag out the vfio
+group deprecation.  We could always add noiommu to the native vfio cdev
+interface later if there's still demand.
 
-Do you also have a Test-with: run against the new IGT somewhere?
+> > > btw. Should we document it somewhere as well? E.g. noiommu userspace
+> > > does not support attach/detach? Userspace should know it is opening
+> > > noiommu devices.  
+> > 
+> > Documentation never hurts.  This is such a specialized use case I'm not
+> > sure we've bothered to do much documentation for noiommu previously.  
+> 
+> Seems no, I didn't find special documentation for noiommu. Perhaps
+> a comment in the source code is enough. Depends on your taste.
 
-Regards,
+If we're only continuing the group compat noiommu support, I can't very
+well require new documentation.  We have a simple model there, noiommu
+devices only support the noiommu container type and provide no mapping
+interfaces.  The iommufd interface relative to noiommu seems more
+nuanced and probably needs to documentation should we decide to pursue
+it. Thanks,
 
-Tvrtko
+Alex
 
---_000_BYAPR11MB2567BACAC55CB9906E9FF49B9A469BYAPR11MB2567namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@DengXian";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle22
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:brea=
-k-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Sorry replied on top of wrong thread.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Yang, Fei &lt;fei.yang@intel.com&gt; <b=
-r>
-<b>Sent:</b> Thursday, May 25, 2023 8:12 AM<br>
-<b>To:</b> Tvrtko Ursulin &lt;tvrtko.ursulin@linux.intel.com&gt;; intel-gfx=
-@lists.freedesktop.org<br>
-<b>Cc:</b> dri-devel@lists.freedesktop.org; Vivi, Rodrigo &lt;rodrigo.vivi@=
-intel.com&gt;<br>
-<b>Subject:</b> Re: [Intel-gfx] [PATCH v12 0/1] drm/i915: Allow user to set=
- cache at BO creation<o:p></o:p></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoPlainText"><span style=3D"color:black">Sounds weird to have =
-a platform restriction on uAPI though. UMD not using this extension is not =
-a problem, is it?&nbsp;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">&nbsp;<o:p></o:p></sp=
-an></p>
-</div>
-<div id=3D"divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"color:black">From:</span></b><span=
- style=3D"color:black"> Tvrtko Ursulin &lt;<a href=3D"mailto:tvrtko.ursulin=
-@linux.intel.com">tvrtko.ursulin@linux.intel.com</a>&gt;</span><o:p></o:p><=
-/p>
-</div>
-<div>
-<p class=3D"MsoNormal"><b><span style=3D"color:black">Sent:</span></b><span=
- style=3D"color:black"> Thursday, May 25, 2023 1:33 AM<br>
-<b>To:</b> Yang, Fei &lt;<a href=3D"mailto:fei.yang@intel.com">fei.yang@int=
-el.com</a>&gt;;
-<a href=3D"mailto:intel-gfx@lists.freedesktop.org">intel-gfx@lists.freedesk=
-top.org</a> &lt;<a href=3D"mailto:intel-gfx@lists.freedesktop.org">intel-gf=
-x@lists.freedesktop.org</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:dri-devel@lists.freedesktop.org">dri-devel@lis=
-ts.freedesktop.org</a> &lt;<a href=3D"mailto:dri-devel@lists.freedesktop.or=
-g">dri-devel@lists.freedesktop.org</a>&gt;; Vivi, Rodrigo &lt;<a href=3D"ma=
-ilto:rodrigo.vivi@intel.com">rodrigo.vivi@intel.com</a>&gt;<br>
-<b>Subject:</b> Re: [Intel-gfx] [PATCH v12 0/1] drm/i915: Allow user to set=
- cache at BO creation</span>
-<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-</div>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal"><br>
-On 24/05/2023 21:02, <a href=3D"mailto:fei.yang@intel.com">fei.yang@intel.c=
-om</a> wrote:<br>
-&gt; From: Fei Yang &lt;<a href=3D"mailto:fei.yang@intel.com">fei.yang@inte=
-l.com</a>&gt;<br>
-&gt; <br>
-&gt; This series introduce a new extension for GEM_CREATE,<br>
-&gt; 1. end support for set caching ioctl [PATCH 1/2]<br>
-&gt; 2. add set_pat extension for gem_create [PATCH 2/2]<br>
-&gt; <br>
-&gt; v2: drop one patch that was merged separately<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; commit 341ad0e8e254 (&quot;drm/i915/mtl:=
- Add PTE encode function&quot;)<br>
-&gt; v3: rebased on <a href=3D"https://patchwork.freedesktop.org/series/117=
-082/">https://patchwork.freedesktop.org/series/117082/</a><br>
-&gt; v4: fix missing unlock introduced in v3, and<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; solve a rebase conflict<br>
-&gt; v5: replace obj-&gt;cache_level with pat_set_by_user,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fix i915_cache_level_str() for legacy pl=
-atforms.<br>
-&gt; v6: rebased on <a href=3D"https://patchwork.freedesktop.org/series/117=
-480/">https://patchwork.freedesktop.org/series/117480/</a><br>
-&gt; v7: rebased on <a href=3D"https://patchwork.freedesktop.org/series/117=
-528/">https://patchwork.freedesktop.org/series/117528/</a><br>
-&gt; v8: dropped the two dependent patches that has been merged<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; separately. Add IGT link and Tested-by (=
-MESA).<br>
-&gt; v9: addressing comments (Andi)<br>
-&gt; v10: acked-by and tested-by MESA<br>
-&gt; v11: drop &quot;end support for set caching ioctl&quot; (merged)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; remove tools/include/uapi/drm/i915=
-_drm.h<br>
-&gt; v12: drop Bspec reference in comment. add to commit message instead<br=
->
-&gt; <br>
-&gt; Fei Yang (1):<br>
-&gt;&nbsp;&nbsp;&nbsp; drm/i915: Allow user to set cache at BO creation<br>
-&gt; <br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/i915/gem/i915_gem_create.c | 36 ++++++++++=
-+++++++++<br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/i915/gem/i915_gem_object.c |&nbsp; 6 ++++<=
-br>
-&gt;&nbsp;&nbsp; include/uapi/drm/i915_drm.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 41 ++++++++++=
-++++++++++++<br>
-&gt;&nbsp;&nbsp; 3 files changed, 83 insertions(+)<br>
-&gt; <br>
-<br>
-Do you also have a Test-with: run against the new IGT somewhere?<br>
-<br>
-Regards,<br>
-<br>
-Tvrtko<o:p></o:p></p>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_BYAPR11MB2567BACAC55CB9906E9FF49B9A469BYAPR11MB2567namp_--
