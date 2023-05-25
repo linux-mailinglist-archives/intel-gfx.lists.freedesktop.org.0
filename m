@@ -1,145 +1,121 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EFF7710CE2
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 15:02:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE438710DB9
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 15:59:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C933E10E12B;
-	Thu, 25 May 2023 13:02:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 492EB10E165;
+	Thu, 25 May 2023 13:59:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8404510E067;
- Thu, 25 May 2023 13:02:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685019733; x=1716555733;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ah15E2my+A/6U3CvW3j3cfa4BWtIOoyH0omyPKTtYFM=;
- b=fZdLTkZKDIfvI68g223wTA/TVTZgtFoF2W4i6vN6jDeeeFBVkR4D+YGR
- FI2Sa6Qu93l6EoCVN58JDF1KLrIrEfvU+fOh+spVXaabtXlQx9GHo3w5S
- oiBz5GUgH/PJcsYymZBHcAwKkbLX0IMIfpLSjulcrQwzuhJqW8Ay/9CfR
- NOPUwA2cCKJOo7aht29fzgKaFqWQoBhvcRU1d5atknCcLC3dfXbvO1gpO
- 1pGXTrTH4Tn0Yh5jw0kryfbnP0zcuRKoYB3q1KFVA0E6IoxkvY1qY2yuR
- CDQ2+vNlGWtfCBFZrRzLUJ9ByxYRABTOsGQTaNDTa8XaqLBOvXNMtN+Mb Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="382124551"
-X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; d="scan'208";a="382124551"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 06:02:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="708003283"
-X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; d="scan'208";a="708003283"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga007.fm.intel.com with ESMTP; 25 May 2023 06:02:08 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 25 May 2023 06:02:08 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 25 May 2023 06:02:07 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 25 May 2023 06:02:07 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 25 May 2023 06:02:07 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2072.outbound.protection.outlook.com [40.107.220.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9607210E163;
+ Thu, 25 May 2023 13:59:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TEQ3NRugBstO1Tomz9dYiYrQ3zvtdOl58RYCsD/oE8UHJNndX/8MAc63uw942N0xs2TTBKKitlXhCrmHf3T1ezIfhNwrbKR8Ikt+yCW+76LfNCEZSDbPI2Er1H6qZZoQR6nVVxIfAdbBXFBC1dUuN3GipZH+CWSfc/YlgN+lM897nQn9GTmNpUSso8d/G4GfaW6sxx5vT7oh3+KcJLaIfoWUSzuN27aRZu/azFmiZ+Qlh9/3t+3tuLJ1PafTXrkHnXm5zVGmlbPifSvtRMuj8UTXOPUcxCBrg9eCc4GHESiJwVvqLhRGYHwrmYwU8a6QG4JQCVXU417rO78NTKcGEQ==
+ b=Fbgt+MnmGjeO18JF5ch7sEbBgvx5ZLkR0AA+u+EZbOI/eKxCESAoStRCa+MBvAr1NeNIM0XpA067Ao9kdW5MV2gocGljqzDhgyHQA8SFDM9mVz7Zw4pCu4rkoGOLI0BpOs9r23NTxsfSIitp8cj16zx9wDOGfd1HDG5eLDaceQhobs0HOWB8vLj7tfK5iq0E+O1dpO/a4SpY2DSTIxIz7ePStg91odsrwxrv5eaP8h3KBI7VHX5Bv8rWzEJy5WgEQPPxjEPONyWafiSXSODJp4xTGAJKeuwl+MM/kHpeDEdfl6WfmBQ+H0LoX4+uIVNgTR9px/n2ZEFLoBum40lewA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rSuAefxVN4dxvLKB80h3ktHN2mZCsHTqARzwhYbfv3A=;
- b=BKqPh+cyryMvw412aip1TfHouU524iGNe1zRFe05+UATvdy5PdJCz+0T5Ys4/zAqqZb9UCbsj0Hgk5PHfWE/YvL+bHBPanJRUFMFvUmCnadoQFABqbmj4cO8qy5xYAL4A7CHdo6C2u+Q7uUnnnAPdkZvP0XKrTp6CQQx6nToTUY7u0t1YlMYsMmmGqkt87qz6K8y5vWlwSzu/liNUVKSvqDfhArydAJjg/8CVW4K3YIMk9CeMP9c0hN0GWx9Od7ilxLq2bIHJzZtKOTIZ1ocVuoH9CVsQsPzUYsXK/HbG96TURguXnI19uvzQAm7Dm1lDr6AEwU8zrnUUD3TUi4w3w==
+ bh=Ty1Ye3UbO7rqfkWwwdbTy37yaN2YOGk6ot4/vJmN2BM=;
+ b=DHhp2WlBBwRVmwlVZD1nziNaRZeSC9rm8RBlrYJj+Ott3t1nKd8PCTHDkQfbHK88klAoh+/LQAPvC0YhzauZKZleV2RlTPAxqEmR45eooIyClgQvXZilfQvoAUNCxN9fTekPw8vPGDwzVFqlu/Dq8//MjXZ1YUTlEWMwBBvc5j41MOTp0xGUcZwi7Vab5lvg5Jt/dbJDfn+F4/+e5Xxay1QyOzg7Wsu/ss0wc7TzTGrFo255gl28rgdeToer9qJmgRpfUlTO0lPuqxTvH/UqfRFsDjr9ObagvGuLwmfJ4iVuYlQmu2+X5C87mD13KYWklLTNCv0vwrfhSWhE6eh9qQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by SJ2PR11MB8321.namprd11.prod.outlook.com (2603:10b6:a03:546::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Thu, 25 May
- 2023 13:02:05 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::5b44:8f52:dbeb:18e5]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::5b44:8f52:dbeb:18e5%3]) with mapi id 15.20.6411.028; Thu, 25 May 2023
- 13:02:04 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: Alex Williamson <alex.williamson@redhat.com>
-Thread-Topic: [PATCH v6 09/10] vfio/pci: Extend
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
-Thread-Index: AQHZjKSwmm8rv7BAt0eU9VbGFQ2Xy69p2kCAgAEPLxA=
-Date: Thu, 25 May 2023 13:02:04 +0000
-Message-ID: <DS0PR11MB752935203F87D69D4468B890C3469@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230522115751.326947-1-yi.l.liu@intel.com>
- <20230522115751.326947-10-yi.l.liu@intel.com>
- <20230524135603.33ee3d91.alex.williamson@redhat.com>
-In-Reply-To: <20230524135603.33ee3d91.alex.williamson@redhat.com>
-Accept-Language: en-US
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ty1Ye3UbO7rqfkWwwdbTy37yaN2YOGk6ot4/vJmN2BM=;
+ b=N69Qw6TZB53xOzIfVIq7KzGEEFLnLi+5EsSDFBZCAPPu3YWZHIIM+OhpfDlNhBj8pJ9f5DQkru5bc3hfArxSilqvCIvMYf+uiVMeOcN5myOI17pY2poM95HDGzAhh4sQlDgSyyOzLkEcIx9LraIwc7EeUjPUElmLMzHaZKSskgY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by PH7PR12MB7187.namprd12.prod.outlook.com (2603:10b6:510:203::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.15; Thu, 25 May
+ 2023 13:59:45 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::e566:9ca5:28e0:a42b]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::e566:9ca5:28e0:a42b%4]) with mapi id 15.20.6411.028; Thu, 25 May 2023
+ 13:59:45 +0000
+Message-ID: <f7db4c6c-24df-b723-7710-490355082c24@amd.com>
+Date: Thu, 25 May 2023 15:59:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|SJ2PR11MB8321:EE_
-x-ms-office365-filtering-correlation-id: 20faa3ab-e1eb-4de5-2896-08db5d203cfb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ZzI7P4KRGvfTLatQ2Fvkiy6gaRbLdNRhEFWIKYzbtPEsVQIL2NZY/NFInZw/0cFcQZdTTG2/0BbKq3cO94UsCmS5qfbKccR07awx/Ly9OGRY4/KKxRqBojGjJjF9frSncHyYHpRf/D9fMvSxn7o5T+9gWgqGmt9w5W9YoeVQfRBISfJtltlZ+LLJAi/zxCchwTbyyHH4thT2Gp4ZJs8T0anqJci8SSWu4wrkpfVIwnN8hXvNIJmGQN5Zn/R1EqqIdcJBm5MVhneJ5udX+hCOvztr3zuBp2PFFhMeHTE8WWWEXOhN1sgzHC/ip0D3G1ZDwnkMiLcPyTzvQWx7PE9DiGQo7onK1yV/ejxn9QOOvhniHf3yvPYsUYNEAFBgXTPi8m62uwUmVWrQTy3YxHpEUO8DBuja9FRp+BPkQvNIVSy2vL5JrTycbJKnPMYixmkUuhfSVL5+8AiAbAT0PRDZ+Wv5mUeIAdmUU0dY7rdE1KvIpc2wjkXJfltt3yeYGYlazI+JMtDXWwCGdSbVQ+4p0k8JbNg5jAjxC70dV2tToOXbM3Pqb2uSDZECjNKDXjE9R4zzVcjIHLGnu3dioPVstgEbsVdclHkJs4IVrzC7z4H3yBoJPo6u4hpNbBpdc3wr
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(376002)(396003)(346002)(136003)(366004)(451199021)(4326008)(41300700001)(7696005)(71200400001)(26005)(9686003)(82960400001)(316002)(6506007)(55016003)(122000001)(5660300002)(52536014)(7416002)(8936002)(8676002)(38100700002)(478600001)(86362001)(83380400001)(54906003)(38070700005)(2906002)(33656002)(186003)(6916009)(76116006)(64756008)(66556008)(66446008)(66476007)(66946007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?0p6nkIaQj7vQZybo4zGjW8xhGw0Pt2lTR+UkWlX4CTKe4bn0pwShhOcY9U/6?=
- =?us-ascii?Q?O1uRyUYK2ZEdZUN0jew/3VwoR83WEJxD8syoJmiozTLGS3rriKjw8+nyG8hR?=
- =?us-ascii?Q?wXGURsucFI0okbJO+TAH/SbePEpa9ulX3KTkW+/H6juFCM3aWvHBWiVhKDTI?=
- =?us-ascii?Q?8SdK/WQhbVsEbnLu1sYwFxmFQ09iSbkgDnslkRg7CIjckUMj8DaXR9AQivFE?=
- =?us-ascii?Q?faEVhh1i1TuiE7wIDOVogihpldg5vJSKEPycwF/ovnVgVeQX75HFjbzSmGpI?=
- =?us-ascii?Q?vGXhLOMWGGugmnCS/6b24JP420Xf1RRFGhoT4h0oXCTPGq4mcLE+kqMgZs4z?=
- =?us-ascii?Q?U7nmuYLuETnV7z8YzV1EH5EPFrjrY5xKoy4wRo5tRT2zUOxbUy4SwOIbgPC+?=
- =?us-ascii?Q?EXXF1qf0YLcdVpH4eTYO3FClTnFl2yVxuo0mE/TCICC+Rnt+7VOlD9ViLvQj?=
- =?us-ascii?Q?gSEneTpwDzxg90X7+GIkLbs9/KXA9lo7sQawEqq1xXE5f/n0mGK2mbGCE95t?=
- =?us-ascii?Q?McXZtdmvu46fQ1eFpG4N9X9K7DExu45pTSAQUQDZCTACBbTViOM68H3wiz6c?=
- =?us-ascii?Q?FOe6TMUqCT+3DQOsgrecMQ2ezedN3miQBYGjOecLdtwWWQKU9WllqUzwgU5P?=
- =?us-ascii?Q?sPk6pkEDnM+mPETxf79OLnZxpDJnugOVmZEvSyhoRg7lI2QwzxWfomsrp+J0?=
- =?us-ascii?Q?SPyjprkdiGrCOtcf80UGoqjQCuKne5qOONQOrPbzHpGf2VlLdHGEx10Cuf+g?=
- =?us-ascii?Q?bghLUr/swWPG+54t0lVyGcSdOLVzDiZ9Ilv3cuYzRHtq2PwKwTDBvuIeFLTn?=
- =?us-ascii?Q?8sx+OIWTiadXjjJOrpZw0sBXU+7GhsX5WVUS6YdLy69kvU1upJY5aVD5jHhg?=
- =?us-ascii?Q?eE8lLBQ4Zaqz7Dw3xYxDLv5hf4SltnoLkyWg902hYlvBrVON89g5B/BhcF0g?=
- =?us-ascii?Q?mBVBq/Ew0KGfoQO2VLvHDgNw9w67T16lki8euNnJFQDiX0et2GSXR/XFy9o/?=
- =?us-ascii?Q?b+WP8hQesNNXlTOYezAGUDZn2CCDbWu+x6hUwolw4JvnL4zVyr4UNYv7HTed?=
- =?us-ascii?Q?IJuBY9g86kO3SPcM9Lf7oOZ8OL/x+6J29uyD5TappyMssPFyV1vUexCTz2rA?=
- =?us-ascii?Q?RmiXxFvXJGNc1ZmabRxn0i2bO44Cf5NukeP3B69iUQmxpk21ibPN/FHFIYwH?=
- =?us-ascii?Q?1OFIwT4OB+CQ4vMSQV4aLvwc2CYS/kjZaReXz+ze5i1Q/PPyNw5j53Bc0rTQ?=
- =?us-ascii?Q?zy8mBzlO6uIcnb0zUNaI+oS3+5z+6hKFYKz0dTPC9k9gfSigh76A5rhWN+u9?=
- =?us-ascii?Q?zoZDufev53sN4qUEeqX6Gj72BOZchlC3CcWkYtdZGGB+0wvUmrZKEGIXXv61?=
- =?us-ascii?Q?9gfvc/I/lLIdccvjWj5WLdH5wey1aF/uadgOSRNS2aw++qtLaRVFDVz9uHL7?=
- =?us-ascii?Q?orYrFHoiA68uBo94QWEBHVNdEM9E+7Yteum+0bR01aEkWzQ7IkKDLXwQcFWP?=
- =?us-ascii?Q?dpeX57eHwsNrQoWnqf4Dt8Xcdp0gf14Cf5+YMEEK9+I8FHMRYvOKAD86Y8bC?=
- =?us-ascii?Q?FmFiiYmQHZGfb1UKwV0R2f2UN6XNsGmeKQLdlI7v?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+References: <20230505141719.332109-1-thomas.hellstrom@linux.intel.com>
+ <f5ac5b8ceacda35f435e7e6945429c2168314aae.camel@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <f5ac5b8ceacda35f435e7e6945429c2168314aae.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR2P281CA0098.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9c::6) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|PH7PR12MB7187:EE_
+X-MS-Office365-Filtering-Correlation-Id: a5582ff4-8d55-42ea-712f-08db5d284b7a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2mxtYa1gMUV/ABUbfGGkqenxYANbQ5AnACmPEa9Nv39BgqBogrO5or98XHRXaYyUVXLL0IqwItFaJW63HTgVB1VXzrWfeHiPmtxr7RXpPzBCF0UwRGiqshpEOMkaX1eqk1gJlF+A6lr3P+GqtCw88c71jVi6taYuMk1przk1jgoOEZkbMt34RSim/TGbWSqNDveyqyvIf6iMr4pezcpDI+j9tYPjidejJS3kzw5464b0WFmul12Id8lJdTAlk6XhPJGSGREmdZKaE38NmB2GGbwgJTUZl5uf+hecfVGcg/9yXgWgNLK9scl0Cj0JkdwJlWJhnLNRKdi+L0fOJszkQ574gLmocc9q17IFArXLK0xMRzb6Eu/js8+abiVK6KGzXVcQQ1HwUig7ZuCsY92lcR04bjtgl0/qrDSi8KC5H3UEDXv0cN4CqMZ8XXGODIUEvnarGc6tVVnwgLLLNrGoZaZ/MilGmGEB0TYdHEB8oFb/guQrJYm/ir0ZvM32dLR71C1cDUTQ0A4NGKAoOF3kZvAAsPWiw1dRi8m4r52s3Vz44oknhV1lNuCugyNzU6EE48Nb9g3ikGurvAjZOr/mUVxVdKrFWJ2sozRzbYy3IuLsMm0QsUqaCEVJyTrcU6+jU6VZDuFNeap8j1IQk/unVg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(366004)(346002)(396003)(39860400002)(376002)(136003)(451199021)(2616005)(4326008)(5660300002)(31696002)(8936002)(8676002)(86362001)(38100700002)(2906002)(83380400001)(66574015)(316002)(41300700001)(36756003)(6666004)(478600001)(31686004)(6486002)(186003)(66556008)(66946007)(66476007)(6512007)(6506007)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RytpT2pvTlRoaEZlc3cvU2lpZGRCSElDZUNMSGtTdDVIc0lYakdUV1I5SmEr?=
+ =?utf-8?B?SmRVeWJhUHh4SktSbmVxZEpMVDFtY0pSeE1EaUx1eTh2VE5oUXQvY1lPeVp6?=
+ =?utf-8?B?NlpOdHcyb1VuZG4yUE9rVXJWNnV6aC9iOWxMYWJvK1IrSjhlWHdrQWVlUCtO?=
+ =?utf-8?B?dlpjL0ZGeTRVNDZnMDFkQVQvekFTWXNUSldFdk5wL1ZTTlpORVZsdW9KNnJD?=
+ =?utf-8?B?MDZ6bEhMRGYrSnBlN3QrS1dLU3Bib0dCb29ZMU95djE4cktBOUhXT3laYnVk?=
+ =?utf-8?B?OXIwUnVNVFlTYURUeTIrbEpJUVBOZlV2dDZ4UldGT1NpK1FrcGd3QTY1cEdt?=
+ =?utf-8?B?RVlZeVpHc2RSaWczVmxQeFM5RFNUUTRaVG9CU0FMZy9Bam4zQXJzeHh4RlV1?=
+ =?utf-8?B?ZlRaMzRDOU1xVGx4SUgvbVJ5OFBLdG9YWlJiU0RLeFkxOVN6U2pLTmFYMWll?=
+ =?utf-8?B?b2dpUUpQQlY3MWNVRmRjVUFNL3k1UHdQc0hXdkdlOUlCVGQ1T0hYNmgvb1BH?=
+ =?utf-8?B?M0REb2tITm5ORnRLRllCa3VxNUUzYmRINVN6WGF2WmdLekNGZFpOVTV6V01n?=
+ =?utf-8?B?VEhYcVJJejlaSWhIWm9wSEo2K0lVNXNkUVB4U0t0NUNjelhtUXovOFJDOGln?=
+ =?utf-8?B?WkxUeURkT1JDN1pZSERuQlEvVktsMVVUZDZ1UXJGQnFBQzBGT3VNbWZRaURQ?=
+ =?utf-8?B?VTZOd3lSNzZqK0QxdklUcmJ6cUp2VVc2RG5FYVFVYm5XSlFkaVVsMlpWM3JW?=
+ =?utf-8?B?elp1RnpxYkpnbUlmcTFydXp4RGFhRDZSMFdhQnBUaHZEdFNKQXRmUmxpN2Vu?=
+ =?utf-8?B?d3RCMUZDaTNHT0tzM2NNRHNaS0ZNR2xWY0YwbWF1SUVVL2dFd0lXUXJtMTRm?=
+ =?utf-8?B?N2RqdlBxSzYvNUJYYnBMWTFLaW5mQlRGWG56RTFiZkFPcGs2Yjh2NXc4Q2ZF?=
+ =?utf-8?B?VHNSUi9CVGt5d1g2RVJ1SGlUcmhhNHk3dzFwSDBNNGVldnFFb013Y3o2Nnpn?=
+ =?utf-8?B?Yk9XZ2hRaW5xVUZKMlhOb0ZRcFZBNGVTKzQ3TzlUU2VVbnhjZEs0VmNFQU9j?=
+ =?utf-8?B?cklMeUhLZ1AzVi93SGluM0x1NElpekp1OXBEbWlEQnRpVFM4U0FaR1ZPSXda?=
+ =?utf-8?B?VzUxZ1NEVUw4eGdYbjNNdFdLcSt1enFxZ1BGcmp5ZU1DMFhOSlUvU0NTbE5s?=
+ =?utf-8?B?cFREVGw4Zk9oMUV1UGJ4T1VoaTRSN0JMOXM4a2JLMlJjTFluc3Nid085QVlW?=
+ =?utf-8?B?Q0NOMTJYeHdBUkh1aDB6aWlQeFEyZHp1ek1nRnMzNWJkWlZ1VzFjYVA5cy9H?=
+ =?utf-8?B?VTV2L3ZsQ0w2SlZMUkNhUVlMMlg0d3g4ejB0cXcxa0dvSmJ3WllRR1NxQ3lE?=
+ =?utf-8?B?MTFoS1I2SHlHMmVGVGdRNDBSMHYyZFJlUTYwSk5ZemxOcTJFdFZqb3VPdnlF?=
+ =?utf-8?B?RzhYeitrcDkvQVhra0MrMThEenMrQ0szWWhwMkdTR09lREpHTWVWUnU3aEZ0?=
+ =?utf-8?B?bG9tU2ptcEhYOE9qZ1J1ekFlOUVPakpQWTYwWHhBNmtWUmRRMDhjT3pQZHhm?=
+ =?utf-8?B?MEVXT0RwSmVRbERiRFJXVUw5L1ZMUmFIdGkrU2h2SjR2OUhFay8vZi9PQUcz?=
+ =?utf-8?B?TjVmejl6ckNuanl3TG9RZWJ4RWF0VHBvNWFKOGRiRnBqTGg0VTlReTZIMGhZ?=
+ =?utf-8?B?SzE2WUlsamV4WDZkNWU2b05tb2R3Qjk1N2dLeEtOWklWdXVtVjc4N2puRVdz?=
+ =?utf-8?B?YTFjVktqbGlhTjcySVZDaER4bFlYeEY3MnJMVXY5M2VLRlNoOUxvYUhTTkc5?=
+ =?utf-8?B?cXpkajBmL0ZtTUxaMTlGTkJiMVRwZ1o3dXp5ZC9VeWRlWUtKUDRuazhxWEcr?=
+ =?utf-8?B?SEZMNmVjNFgySmU2d1Yvck0yNUhaekdWdUQ4cXFVY1J2WGFwKy9Edmo1UGVw?=
+ =?utf-8?B?OUpyUm9ZN2pyTXVwT0xJb3R1NWpORmxWQjNFZmwrRzZDVkthYmRkYXV3aG1G?=
+ =?utf-8?B?UEh0STE5NlZSbTk1bTVBeXpTUFVyM0xIZXJ4VmYyK3hQUzNFT01XNldwdVQ0?=
+ =?utf-8?B?SFU4Z2tvVUsrLzJYakhrdjNHcmhMNTJ5RjdIZElGeDYvTHdjcEJlL25NdGEr?=
+ =?utf-8?B?K3RwVkIrMkVwMDJGOGgrZFI2djBaS0R1K2FWaVVZU01UNERiRE5HS1VsS1dQ?=
+ =?utf-8?Q?WAJ4pPFV4TJS3R9A0SMyuX5J13y5EnMQV0vJFKRxeRKv?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5582ff4-8d55-42ea-712f-08db5d284b7a
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20faa3ab-e1eb-4de5-2896-08db5d203cfb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 May 2023 13:02:04.6317 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3PNRjlFuMxXPaHIPXa5Jnx2pIOSVs+WOVhpR4poY1Vfi+W/PsxbV/a7TB4ZsxNmV+Mq1lhWSvqn5Er+Icwq9Wg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8321
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v6 09/10] vfio/pci: Extend
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2023 13:59:45.1723 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NqVt1UJy68Y0Z3tuZJLpDmf9IG2pDsFL5bjnmuVWC+kxB6o6Ob+02rn+1YpuhENF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7187
+Subject: Re: [Intel-gfx] [RFC PATCH] drm/ttm: Allow the driver to resolve a
+ WW transaction rollback
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,193 +128,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "Duan, 
- Zhenzhong" <zhenzhong.duan@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
- "Xu, Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "jgg@nvidia.com" <jgg@nvidia.com>,
- "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "clegoate@redhat.com" <clegoate@redhat.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Alex Williamson <alex.williamson@redhat.com>
-> Sent: Thursday, May 25, 2023 3:56 AM
-> On Mon, 22 May 2023 04:57:50 -0700
-> Yi Liu <yi.l.liu@intel.com> wrote:
->=20
-> > +
-> > +/*
-> > + * Return devid for vfio_device if the device is owned by the input
-> > + * ictx.
-> > + * - valid devid > 0 for the device that are bound to the input
-> > + *   iommufd_ctx.
-> > + * - devid =3D=3D VFIO_PCI_DEVID_OWNED for the devices that have not
-> > + *   been opened but but other device within its group has been
->=20
-> "but but"
+Am 25.05.23 um 14:59 schrieb Thomas Hellström:
+> On Fri, 2023-05-05 at 16:17 +0200, Thomas Hellström wrote:
+>> Allow drivers to resolve a WW transaction rollback. This allows for
+>> 1) Putting a lower-priority transaction to sleep allowing another to
+>> succeed instead both fighting using trylocks.
+>> 2) Letting the driver know whether a received -ENOMEM is the result
+>> of
+>> competition with another WW transaction, which can be resolved using
+>> rollback and retry or a real -ENOMEM which should be propagated back
+>> to user-space as a failure.
+>>
+>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Christian, Any objections?
 
-Thanks for catching it.
+General idea sounds like what I had in mind as well, but I've moved both 
+my office and household in the last two weeks and are now digging 
+through >800 unread mails/patches.
 
->=20
-> > + *   bound to the input iommufd_ctx.
-> > + * - devid =3D=3D VFIO_PCI_DEVID_NOT_OWNED for others. e.g. vdev is
-> > + *   NULL.
-> > + */
-> > +int vfio_iommufd_device_hot_reset_devid(struct vfio_device *vdev,
-> > +					struct iommufd_ctx *ictx)
-> > +{
-> > +	struct iommu_group *group;
-> > +	int devid;
-> > +
-> > +	if (!vdev)
-> > +		return VFIO_PCI_DEVID_NOT_OWNED;
-> > +
-> > +	if (vfio_iommufd_device_ictx(vdev) =3D=3D ictx)
-> > +		return vfio_iommufd_device_id(vdev);
-> > +
-> > +	group =3D iommu_group_get(vdev->dev);
-> > +	if (!group)
-> > +		return VFIO_PCI_DEVID_NOT_OWNED;
-> > +
-> > +	if (iommufd_ctx_has_group(ictx, group))
-> > +		devid =3D VFIO_PCI_DEVID_OWNED;
-> > +	else
-> > +		devid =3D VFIO_PCI_DEVID_NOT_OWNED;
-> > +
-> > +	iommu_group_put(group);
-> > +
-> > +	return devid;
-> > +}
+Give me some days to catch up and I can take a detailed look.
 
-> > --- a/include/uapi/linux/vfio.h
-> > +++ b/include/uapi/linux/vfio.h
-> > @@ -650,11 +650,53 @@ enum {
-> >   * VFIO_DEVICE_GET_PCI_HOT_RESET_INFO - _IOWR(VFIO_TYPE, VFIO_BASE + 1=
-2,
-> >   *					      struct vfio_pci_hot_reset_info)
-> >   *
-> > + * This command is used to query the affected devices in the hot reset=
- for
-> > + * a given device.
-> > + *
-> > + * This command always reports the segment, bus, and devfn information=
- for
-> > + * each affected device, and selectively reports the group_id or devid=
- per
-> > + * the way how the calling device is opened.
-> > + *
-> > + *	- If the calling device is opened via the traditional group/contain=
-er
-> > + *	  API, group_id is reported.  User should check if it has owned all
-> > + *	  the affected devices and provides a set of group fds to prove the
-> > + *	  ownership in VFIO_DEVICE_PCI_HOT_RESET ioctl.
-> > + *
-> > + *	- If the calling device is opened as a cdev, devid is reported.
-> > + *	  Flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID is set to indicate this
-> > + *	  data type.  For a given affected device, it is considered owned b=
-y
-> > + *	  this interface if it meets the following conditions:
-> > + *	  1) Has a valid devid within the iommufd_ctx of the calling device=
-.
-> > + *	     Ownership cannot be determined across separate iommufd_ctx and=
- the
-> > + *	     cdev calling conventions do not support a proof-of-ownership m=
-odel
-> > + *	     as provided in the legacy group interface.  In this case a val=
-id
-> > + *	     devid with value greater than zero is provided in the return
-> > + *	     structure.
-> > + *	  2) Does not have a valid devid within the iommufd_ctx of the call=
-ing
-> > + *	     device, but belongs to the same IOMMU group as the calling dev=
-ice
-> > + *	     or another opened device that has a valid devid within the
-> > + *	     iommufd_ctx of the calling device.  This provides implicit own=
-ership
-> > + *	     for devices within the same DMA isolation context.  In this ca=
-se
-> > + *	     the invalid devid value of zero is provided in the return stru=
-cture.
-> > + *
-> > + *	  A devid value of -1 is provided in the return structure for devic=
-es
->=20
-> s/zero/VFIO_PCI_DEVID_OWNED/
->=20
-> s/-1/VFIO_PCI_DEVID_NOT_OWNED/
+Christian.
 
-Will do.
-
-> 2) above and previously in the code comment where I noted the repeated
-> "but" still doesn't actually describe the requirement as I noted in the
-> last review.  The user implicitly owns a device if they own another
-> device within the IOMMU group, but we also impose a dev_set requirement
-> in the hot reset path.  All affected devices need to be represented in
-> the dev_set, ex. bound to a vfio driver.
-
-Yes. it is. Btw. dev_set is not visible to user. Is it good to mention it
-in uapi header especially w.r.t. the below potential relaxing of this
-requirement?
-
->  It's possible that requirement
-> might be relaxed in the new DMA ownership model, but as it is right
-> now, the code enforces that requirement and any new discussion about
-> what makes hot-reset available should note both the ownership and
-> dev_set requirement.  Thanks,
-
-I think your point is that if an iommufd_ctx has acquired DMA ownerhisp
-of an iommu_group, it means the device is owned. And it should not
-matter whether all the devices in the iommu_group is present in the
-dev_set. It is allowed that some devices are bound to pci-stub or
-pcieport driver. Is it?
-
-Actually I have a doubt on it. IIUC, the above requirement on dev_set
-is to ensure the reset to the devices are protected by the dev_set->lock.
-So that either the reset issued by driver itself or a hot reset request
-from user, there is no race. But if a device is not in the dev_set, then
-hot reset request from user might race with the bound driver. DMA ownership
-only guarantees the drivers won't handle DMA via DMA API which would have
-conflict with DMA mappings from user. I'm not sure if it is able to
-guarantee reset is exclusive as well. I see pci-stub and pcieport driver
-are the only two drivers that set the driver_managed_dma flag besides the
-vfio drivers. pci-stub may be fine. not sure about pcieport driver.
-
-   #   line  filename / context / line
-   1     39  drivers/pci/pci-stub.c <<GLOBAL>>
-             .driver_managed_dma =3D true,
-   2    796  drivers/pci/pcie/portdrv.c <<GLOBAL>>
-             .driver_managed_dma =3D true,
-   3    607  drivers/vfio/fsl-mc/vfio_fsl_mc.c <<GLOBAL>>
-             .driver_managed_dma =3D true,
-   4   1459  drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c <<GLOBAL>>
-             .driver_managed_dma =3D true,
-   5   1374  drivers/vfio/pci/mlx5/main.c <<GLOBAL>>
-             .driver_managed_dma =3D true,
-   6    203  drivers/vfio/pci/vfio_pci.c <<GLOBAL>>
-             .driver_managed_dma =3D true,
-   7    139  drivers/vfio/platform/vfio_amba.c <<GLOBAL>>
-             .driver_managed_dma =3D true,
-   8    120  drivers/vfio/platform/vfio_platform.c <<GLOBAL>>
-             .driver_managed_dma =3D true,
-
-Anyhow, I think this is not a must so far. is it? Even doable, it shall
-be done in the future. :-)
-
-Regards,
-Yi Liu
+>
+> /Thomas
+>
+>
+>> ---
+>>   drivers/gpu/drm/ttm/ttm_bo.c | 17 +++++++++++++++--
+>>   include/drm/ttm/ttm_bo.h     |  2 ++
+>>   2 files changed, 17 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
+>> b/drivers/gpu/drm/ttm/ttm_bo.c
+>> index bd5dae4d1624..c3ccbea2be3e 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+>> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+>> @@ -561,6 +561,10 @@ static int ttm_mem_evict_wait_busy(struct
+>> ttm_buffer_object *busy_bo,
+>>          if (!busy_bo || !ticket)
+>>                  return -EBUSY;
+>>   
+>> +       /* We want to resolve contention before trying to lock again.
+>> */
+>> +       if (ctx->propagate_edeadlk && ctx->contended_bo)
+>> +               return  -EDEADLK;
+>> +
+>>          if (ctx->interruptible)
+>>                  r = dma_resv_lock_interruptible(busy_bo->base.resv,
+>>                                                            ticket);
+>> @@ -575,7 +579,15 @@ static int ttm_mem_evict_wait_busy(struct
+>> ttm_buffer_object *busy_bo,
+>>          if (!r)
+>>                  dma_resv_unlock(busy_bo->base.resv);
+>>   
+>> -       return r == -EDEADLK ? -EBUSY : r;
+>> +       if (r == -EDEADLK) {
+>> +               if (ctx->propagate_edeadlk) {
+>> +                       ttm_bo_get(busy_bo);
+>> +                       ctx->contended_bo = busy_bo;
+>> +               }
+>> +               r = -EBUSY;
+>> +       }
+>> +
+>> +       return r;
+>>   }
+>>   
+>>   int ttm_mem_evict_first(struct ttm_device *bdev,
+>> @@ -816,7 +828,7 @@ int ttm_bo_mem_space(struct ttm_buffer_object
+>> *bo,
+>>                          goto error;
+>>          }
+>>   
+>> -       ret = -ENOMEM;
+>> +       ret = (ctx->propagate_edeadlk && ctx->contended_bo) ? -
+>> EDEADLK : -ENOMEM;
+>>          if (!type_found) {
+>>                  pr_err(TTM_PFX "No compatible memory type found\n");
+>>                  ret = -EINVAL;
+>> @@ -913,6 +925,7 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
+>>                  if (ret)
+>>                          return ret;
+>>          }
+>> +
+>>          return 0;
+>>   }
+>>   EXPORT_SYMBOL(ttm_bo_validate);
+>> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+>> index 8b113c384236..d8e35a794ce5 100644
+>> --- a/include/drm/ttm/ttm_bo.h
+>> +++ b/include/drm/ttm/ttm_bo.h
+>> @@ -181,8 +181,10 @@ struct ttm_operation_ctx {
+>>          bool gfp_retry_mayfail;
+>>          bool allow_res_evict;
+>>          bool force_alloc;
+>> +       bool propagate_edeadlk;
+>>          struct dma_resv *resv;
+>>          uint64_t bytes_moved;
+>> +       struct ttm_buffer_object *contended_bo;
+>>   };
+>>   
+>>   /**
 
