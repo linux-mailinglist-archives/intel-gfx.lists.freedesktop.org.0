@@ -1,39 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB8771095F
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 11:59:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19A26710982
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 12:10:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FE6410E898;
-	Thu, 25 May 2023 09:59:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A45910E8A6;
+	Thu, 25 May 2023 10:10:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1EC010E898
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 May 2023 09:59:49 +0000 (UTC)
-Received: from 91-155-254-196.elisa-laajakaista.fi ([91.155.254.196]
- helo=[192.168.100.137])
- by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <luca@coelho.fi>) id 1q27l3-008cRM-00;
- Thu, 25 May 2023 12:59:46 +0300
-Message-ID: <1257e342f8272b2e53bd5235610f9b4d31269a3b.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Thu, 25 May 2023 12:59:44 +0300
-In-Reply-To: <20230525094942.941123-1-jani.nikula@intel.com>
-References: <20230525094942.941123-1-jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ABD510E8A6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 May 2023 10:10:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685009440; x=1716545440;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=N8G4G3ASy9mQvpFfHNU1wk0OUmJ1YEzsrjcXc+PAQUc=;
+ b=EytDwOve6xGV0bPfuoZYtvd8HDvurWjqTNcFjFTS9BIIcNVoHmciukFF
+ ObmC3j16yDxLTqy/wn8p1yX2qGjbNsnIncW83gXmCaAAkeQ1zRLBxQuc8
+ lhMWRJykkF/XOxJ4zninRsorpTgo1Fnm5NaDeURxrD+UTAEu4cEdMAypN
+ 50NYF3t/HxVqqiEA+lAL30P/Lbqg1iHAFoCE80Ov4jxZQ8IJRq7LiTdE2
+ A6aBAfH4KMe8zt8IJpLq/QEqSzjDvD1fc3E79FVCvQqM7JfxG0XJAjwvU
+ DAG3K/rncMFZgBQwrabKd1/kEDsyzEWODs5EfLzEFzaO+wxkmCNNvtb20 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="352690233"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="352690233"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2023 03:10:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="794599388"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="794599388"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by FMSMGA003.fm.intel.com with ESMTP; 25 May 2023 03:10:37 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 25 May 2023 13:10:36 +0300
+Message-Id: <20230525101036.21564-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gsc: use system include style for
- drm headers
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix the disabling sequence for
+ Bigjoiner
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,40 +56,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2023-05-25 at 12:49 +0300, Jani Nikula wrote:
-> Use <> instead of "" for including headers from include/.
->=20
-> Fixes: 8a9bf29546a1 ("drm/i915/gsc: add initial support for GSC proxy")
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c b/drivers/gpu/d=
-rm/i915/gt/uc/intel_gsc_proxy.c
-> index ebee0b5a2c1d..5f138de3c14f 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
-> @@ -5,8 +5,8 @@
-> =20
->  #include <linux/component.h>
-> =20
-> -#include "drm/i915_component.h"
-> -#include "drm/i915_gsc_proxy_mei_interface.h"
-> +#include <drm/i915_component.h>
-> +#include <drm/i915_gsc_proxy_mei_interface.h>
-> =20
->  #include "gt/intel_gt.h"
->  #include "gt/intel_gt_print.h"
+According to BSpec 49190, when enabling crtcs, we first setup
+slave and then master crtc, however for disabling it should go
+vice versa, i.e first master, then slave, however current code
+does disabling in a same way as enabling. Fix this, by skipping
+non-master crtcs, instead of non-slaves.
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---
-Cheers,
-Luca.
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 0490c6412ab5..68958ba0ef49 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6662,7 +6662,7 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
+ 		 */
+ 		if (!is_trans_port_sync_slave(old_crtc_state) &&
+ 		    !intel_dp_mst_is_slave_trans(old_crtc_state) &&
+-		    !intel_crtc_is_bigjoiner_slave(old_crtc_state))
++		    !intel_crtc_is_bigjoiner_master(old_crtc_state))
+ 			continue;
+ 
+ 		intel_old_crtc_state_disables(state, old_crtc_state,
+-- 
+2.37.3
+
