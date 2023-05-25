@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9FD77108C1
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 11:23:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F34467108D6
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 11:27:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7982E10E133;
-	Thu, 25 May 2023 09:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28F6210E85B;
+	Thu, 25 May 2023 09:27:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D6EC10E133;
- Thu, 25 May 2023 09:23:04 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25D3010E85B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 May 2023 09:27:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685006584; x=1716542584;
+ t=1685006825; x=1716542825;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/GppYPfESLOi0JHBQPIuFHQkEMrivIc3fjf4d77i7TU=;
- b=d8PPVLK0gWSwCcZqMG2myJPRVoEELbhOgM+xVcsAbMDyTdJ2b75zp2d/
- phteOy2H/jT1f6M+7qrZibLjAQ3DbX3VrWO6loXFcOrEXbUdD6VP1ilfJ
- +sPYVYiUqW0HUCKJC6B1L4991SoTA8sUBiuIpHwIBf9XGdliOGzMTz9l6
- Vk2DxeSnLfl+J02JDOOHGsO6e1Ll5aLrbv6NmnO1QZU9+2rFQA8SaU6e1
- oWqwVnT0AtHiboJAod+geZS315nFjv/0hKthzdRCHC7bXcRMaq2SjMQxj
- bOfysUmjQwgrqfC0GmGL6dIh7Lt9HbSZgjSmSqsFYtrI3dPs0+b1RDJGq w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="338412463"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="338412463"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 02:23:02 -0700
+ message-id:mime-version:content-transfer-encoding;
+ bh=Xhu80SbuTuI4TacncamhYZqYhCEeg3W/KuvDGuSFhPI=;
+ b=TCI93tzcJgUm2CXk8DYy5p1/ZD+uZLFw0ikqOVaGXFGFlxi3N4SaNo67
+ EFW9OJNAgFEGBnvNaQRNSJaYO0EKs8XzkSl42fH6qfPtqyHnbu6xNljKk
+ cN9Ul9XkQy4/TutPWlCLKyFuuUOzg4aUEj3jKT9hVKEOFQok+9nECxPyT
+ txt79G3DPoYyJ/2KxeOaa55T0zDQHkQPYNBjkCxBAx9t1lEYuHBObRw4R
+ fXJxuQCdsjV/bG2GoIwMwCp2QwX+PK09gOh0NR3buFt5gxAhVzdCZTeJY
+ N/2rBC7+GTtzn7KAteEein08R8CLp2k7Jk5BQep3MZkXvbiYNyyFeYKi7 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="343309969"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="343309969"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2023 02:27:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="951383409"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="951383409"
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="735488077"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="735488077"
 Received: from emontau-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.42.201])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 02:22:59 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2023 02:27:02 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-In-Reply-To: <20230511175446.282041-1-krzysztof.kozlowski@linaro.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Ville Syrjala
+ <ville.syrjala@linux.intel.com>
+In-Reply-To: <3glsg3b2nmdtzb3yijhijr2gjkwb7oaih4pwl5qiry2qrjvc3s@qk2upnfz4fjd>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230511175446.282041-1-krzysztof.kozlowski@linaro.org>
-Date: Thu, 25 May 2023 12:22:57 +0300
-Message-ID: <87a5xskbny.fsf@intel.com>
+References: <20230511165534.10266-1-ville.syrjala@linux.intel.com>
+ <20230511165534.10266-4-ville.syrjala@linux.intel.com>
+ <3glsg3b2nmdtzb3yijhijr2gjkwb7oaih4pwl5qiry2qrjvc3s@qk2upnfz4fjd>
+Date: Thu, 25 May 2023 12:27:00 +0300
+Message-ID: <877cswkbh7.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [RESEND PATCH] drm/i915: constify pointers to
- hwmon_channel_info
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915: Assert that device info
+ bitmasks have enough bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,51 +63,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 11 May 2023, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> Statically allocated array of pointers to hwmon_channel_info can be made
-> const for safety.
+On Wed, 24 May 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Thu, May 11, 2023 at 07:55:30PM +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
+>>From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>
+>>Sprinkle in some BUILD_BUG_ON()s to make sure some of
+>>the bitmasks used in the device info have enough bits.
+>>
+>>Do we have a better place for this sort of stuff?
+>
+> it's being moved to display/, so I'd say the intel_display_device_info.c
+> is a better place. What about using a static_assert() and leave them
+> near the top of the file?
 
-Btw if you want to further make things const, the compound literals
-defined by HWMON_CHANNEL_INFO() still end up mutable, even if they're
-only referenced inline using a const pointer. If possible, would be nice
-to add const there too.
+I'm afraid the whole series needs a rebase too.
 
 BR,
 Jani.
 
 >
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  drivers/gpu/drm/i915/i915_hwmon.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Lucas De Marchi
 >
-> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-> index 8e7dccc8d3a0..e99e8c97ef01 100644
-> --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> @@ -267,7 +267,7 @@ static const struct attribute_group *hwm_groups[] = {
->  	NULL
->  };
->  
-> -static const struct hwmon_channel_info *hwm_info[] = {
-> +static const struct hwmon_channel_info * const hwm_info[] = {
->  	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT),
->  	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
->  	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
-> @@ -275,7 +275,7 @@ static const struct hwmon_channel_info *hwm_info[] = {
->  	NULL
->  };
->  
-> -static const struct hwmon_channel_info *hwm_gt_info[] = {
-> +static const struct hwmon_channel_info * const hwm_gt_info[] = {
->  	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
->  	NULL
->  };
+>>
+>>Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>---
+>> drivers/gpu/drm/i915/intel_device_info.c | 4 ++++
+>> 1 file changed, 4 insertions(+)
+>>
+>>diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
+915/intel_device_info.c
+>>index bb10e8e78a94..ce257446b712 100644
+>>--- a/drivers/gpu/drm/i915/intel_device_info.c
+>>+++ b/drivers/gpu/drm/i915/intel_device_info.c
+>>@@ -414,6 +414,10 @@ void intel_device_info_runtime_init(struct drm_i915_=
+private *dev_priv)
+>> 	struct intel_runtime_info *runtime =3D RUNTIME_INFO(dev_priv);
+>> 	enum pipe pipe;
+>>
+>>+	BUILD_BUG_ON(BITS_PER_TYPE(runtime->pipe_mask) < I915_MAX_PIPES);
+>>+	BUILD_BUG_ON(BITS_PER_TYPE(runtime->cpu_transcoder_mask) < I915_MAX_TRA=
+NSCODERS);
+>>+	BUILD_BUG_ON(BITS_PER_TYPE(runtime->port_mask) < I915_MAX_PORTS);
+>>+
+>> 	/* Wa_14011765242: adl-s A0,A1 */
+>> 	if (IS_ADLS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A2))
+>> 		for_each_pipe(dev_priv, pipe)
+>>--=20
+>>2.39.3
+>>
 
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
