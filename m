@@ -1,53 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EEC57106F7
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 10:12:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86A56710780
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 May 2023 10:33:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32F4D10E80B;
-	Thu, 25 May 2023 08:12:06 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF11110E7ED;
- Thu, 25 May 2023 08:12:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0BBA10E7F8;
+	Thu, 25 May 2023 08:33:14 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72C5710E80B;
+ Thu, 25 May 2023 08:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685002324; x=1716538324;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=b8PFk1db7qRA/Sx9j33l/xEeSFSE6Uz3x7Ra6fQOEqQ=;
- b=hNgFAWdSss1yXA+8t//TVAHNBuczzjKd6RazoOOcvZyAq9EMO1Gzy5bg
- 3BzN0B1BWk2Ou+B9L3Mz11GNPW+cu/HiCWDdWJqPj2r20oMz36DLrAjOb
- 5s59v12+8OexyUciFyp6b6GJ2Z34dq7WFqzpMg9+9O1aVN9gGd4gdyKgS
- H7BtzKMoW3rt6Nw73xC+Q/OzmWMGW02XS9Pd57RCI+fe2N/oI4AHExEyA
- abGIGj3UrmTgxhu1iFXYySuZaG8g81ckqP1slDpQSa0B04el0AoF6vD2b
- COnn/UXwY6L9T/L5Qdz0j/+s5wE64YnAI6/5T1AGrd7eGNsYVkqKt/ZeU w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="417288516"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="417288516"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 01:11:53 -0700
+ t=1685003592; x=1716539592;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=eD8q5gLj0eiJelC5PcGJjCTwUkSnkPU1oZXcQsEa+d8=;
+ b=GetT2zij82DTKtvNAF8uWHDIIOnMZKxhQhHCzagw07cxDjGEsyPhSiZx
+ 68eb9jtADs+kmQII1HkbqViyCnC5KFN4Gidi7jMKM1W4zT4f4rNv0IgEK
+ khNxVvLMMj2czBJqgVNeQKyIS+Od8LgV2xULbsRv0LGuiqUI2KvMoEnXD
+ zC7eNYisUL5J/qBcaw8kkPgQxcJuQL9+81JcbRLrZiZLBEx/KkUJ1ow1T
+ d/amiOoWsHOT4aT2x2wdjKJx7imQyb7cDyk9D3566ipGDgRez8g4sT/DZ
+ ICPqXoGLdrXc1ribpCBu3szk41thT0BuZO2rQGQLUJrB1EU60xyrUCMt0 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="440184799"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="440184799"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2023 01:33:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="655123009"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="655123009"
-Received: from moiraric-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="879022910"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="879022910"
+Received: from moiraric-mobl.ger.corp.intel.com (HELO [10.213.234.103])
  ([10.213.234.103])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 01:11:51 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 25 May 2023 09:11:33 +0100
-Message-Id: <20230525081133.215292-6-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230525081133.215292-1-tvrtko.ursulin@linux.intel.com>
-References: <20230525081133.215292-1-tvrtko.ursulin@linux.intel.com>
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2023 01:33:09 -0700
+Message-ID: <78124d6f-7f46-afbe-d320-9dad77082f3b@linux.intel.com>
+Date: Thu, 25 May 2023 09:33:08 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915: Include RPS threshold in error
- state
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: fei.yang@intel.com, intel-gfx@lists.freedesktop.org
+References: <20230524200255.443021-1-fei.yang@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230524200255.443021-1-fei.yang@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v12 0/1] drm/i915: Allow user to set cache
+ at BO creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,62 +63,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Now that we allow them to be modified, lets include them in the error
-state so it is visible when they have been modified in GPU hang triage.
+On 24/05/2023 21:02, fei.yang@intel.com wrote:
+> From: Fei Yang <fei.yang@intel.com>
+> 
+> This series introduce a new extension for GEM_CREATE,
+> 1. end support for set caching ioctl [PATCH 1/2]
+> 2. add set_pat extension for gem_create [PATCH 2/2]
+> 
+> v2: drop one patch that was merged separately
+>      commit 341ad0e8e254 ("drm/i915/mtl: Add PTE encode function")
+> v3: rebased on https://patchwork.freedesktop.org/series/117082/
+> v4: fix missing unlock introduced in v3, and
+>      solve a rebase conflict
+> v5: replace obj->cache_level with pat_set_by_user,
+>      fix i915_cache_level_str() for legacy platforms.
+> v6: rebased on https://patchwork.freedesktop.org/series/117480/
+> v7: rebased on https://patchwork.freedesktop.org/series/117528/
+> v8: dropped the two dependent patches that has been merged
+>      separately. Add IGT link and Tested-by (MESA).
+> v9: addressing comments (Andi)
+> v10: acked-by and tested-by MESA
+> v11: drop "end support for set caching ioctl" (merged)
+>       remove tools/include/uapi/drm/i915_drm.h
+> v12: drop Bspec reference in comment. add to commit message instead
+> 
+> Fei Yang (1):
+>    drm/i915: Allow user to set cache at BO creation
+> 
+>   drivers/gpu/drm/i915/gem/i915_gem_create.c | 36 +++++++++++++++++++
+>   drivers/gpu/drm/i915/gem/i915_gem_object.c |  6 ++++
+>   include/uapi/drm/i915_drm.h                | 41 ++++++++++++++++++++++
+>   3 files changed, 83 insertions(+)
+> 
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_gpu_error.c | 5 +++++
- drivers/gpu/drm/i915/i915_gpu_error.h | 5 +++++
- 2 files changed, 10 insertions(+)
+Do you also have a Test-with: run against the new IGT somewhere?
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index ec368e700235..f9733c159b9b 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -740,6 +740,8 @@ static void err_print_gt_global_nonguc(struct drm_i915_error_state_buf *m,
- 	err_printf(m, "GT awake: %s\n", str_yes_no(gt->awake));
- 	err_printf(m, "CS timestamp frequency: %u Hz, %d ns\n",
- 		   gt->clock_frequency, gt->clock_period_ns);
-+	err_printf(m, "RPS thresholds up/down: %u/%u %%\n",
-+		   gt->rps.up_threshold, gt->rps.down_threshold);
- 	err_printf(m, "EIR: 0x%08x\n", gt->eir);
- 	err_printf(m, "PGTBL_ER: 0x%08x\n", gt->pgtbl_er);
- 
-@@ -2025,6 +2027,9 @@ intel_gt_coredump_alloc(struct intel_gt *gt, gfp_t gfp, u32 dump_flags)
- 	gc->_gt = gt;
- 	gc->awake = intel_gt_pm_is_awake(gt);
- 
-+	gc->rps.up_threshold = gt->rps.power.up_threshold;
-+	gc->rps.down_threshold = gt->rps.power.down_threshold;
-+
- 	gt_record_display_regs(gc);
- 	gt_record_global_nonguc_regs(gc);
- 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-index a78c061ce26f..6d2996ad2abb 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.h
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-@@ -140,6 +140,11 @@ struct intel_gt_coredump {
- 	bool awake;
- 	bool simulated;
- 
-+	struct {
-+		u8 up_threshold;
-+		u8 down_threshold;
-+	} rps;
-+
- 	struct intel_gt_info info;
- 
- 	/* Generic register state */
--- 
-2.39.2
+Regards,
 
+Tvrtko
