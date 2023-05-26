@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E472712389
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 11:27:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49AAB71245E
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 12:16:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A871910E1BD;
-	Fri, 26 May 2023 09:27:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3F7210E7DE;
+	Fri, 26 May 2023 10:16:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43E0E10E1BD;
- Fri, 26 May 2023 09:27:24 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C327610E7D7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 May 2023 10:16:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685093244; x=1716629244;
+ t=1685096201; x=1716632201;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=jHcCh+fBmY6y1fe/LaQpp+BF1fauVowgXBtCO+UU9y4=;
- b=mVagUdiZw+R8T5ggr3BWtyg9wAiMMm16SCstgRH0OeOGdvhBrQailii/
- X9FUZvgWBR9QkMIWk8uTQBh93gB8MxWTpYPHmC+xDaT8qaMNNBJhiOPHq
- saPPVQgH+IFmY8BfDAEXRCRCdVIsone4Kd+k1EWHJVRkO/QPxQ8UjAlO+
- jfShiR8AQbj/8Gw4OIzIRw+cBTlSyjEczasQre3o3llIkrQl/gVC5+gS5
- UbgiGAi8EmkX3Lj4vubjvKfa/PmDjojhqz4ZT30MJIY3plWVfhQ21Z7DU
- K3fvDHBY0mCR++DTC3A0s/wWQfAd6RnTh6LeT7vhqkt9fCOYYMh4rsAH5 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="440516523"
-X-IronPort-AV: E=Sophos;i="6.00,193,1681196400"; d="scan'208";a="440516523"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 02:27:23 -0700
+ bh=ES0TeegCRM83F7+AkpQA2MY935G5WUXgPZb5HcizWFk=;
+ b=EwfN+fi9BiHpbIgxEk497k0khtURyQl9VryKqu9DTKCY2cSOhDhSMeVb
+ UkcLvPx/oo2hs6A/+o3CariUXdflMrGJ3Ybc9GnjwY+K8ZRkMUV6s3oTA
+ t4+xMSz5AhkYmdqtvIh46XcU6HfsbLzwect+CY+Oaun8J7Wa4tEalkKtR
+ U1HaZmSROgoNnLL/ctZyFUhFyolKS/lwQWGNg8b2z4hwR2mTIc3V3J294
+ pZ70MWvkLXroPfNIzr+G7wI0A815kWNOjp+RwML3F43bP1AIZiIb1TvrP
+ lGVKdhsb8I8RamQ20YmmKgIqAejZT1F0huNgR8c/2IjeNrtmz003x+Mfv w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="382414429"
+X-IronPort-AV: E=Sophos;i="6.00,193,1681196400"; d="scan'208";a="382414429"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2023 03:16:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="817469267"
-X-IronPort-AV: E=Sophos;i="6.00,193,1681196400"; d="scan'208";a="817469267"
-Received: from rdota-mobl.ger.corp.intel.com (HELO localhost) ([10.252.44.87])
- by fmsmga002-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2023 02:27:18 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tom Rix <trix@redhat.com>, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@gmail.com,
- daniel@ffwll.ch, nathan@kernel.org, ndesaulniers@google.com,
- ville.syrjala@linux.intel.com, imre.deak@intel.com,
- arun.r.murthy@intel.com, lucas.demarchi@intel.com
-In-Reply-To: <874jo3kwl6.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="699378651"
+X-IronPort-AV: E=Sophos;i="6.00,193,1681196400"; d="scan'208";a="699378651"
+Received: from akervine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.216])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2023 03:16:39 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <b8ffd141-fedb-6d0a-0bf5-1e6080b53e1f@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230523125116.1669057-1-trix@redhat.com>
- <874jo3kwl6.fsf@intel.com>
-Date: Fri, 26 May 2023 12:27:16 +0300
-Message-ID: <87y1lbigsr.fsf@intel.com>
+References: <20230525094942.941123-1-jani.nikula@intel.com>
+ <b8ffd141-fedb-6d0a-0bf5-1e6080b53e1f@intel.com>
+Date: Fri, 26 May 2023 13:16:36 +0300
+Message-ID: <87v8gfieij.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: simplify switch to if-elseif
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gsc: use system include style for
+ drm headers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,94 +61,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tom Rix <trix@redhat.com>, intel-gfx@lists.freedesktop.org,
- llvm@lists.linux.dev, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 23 May 2023, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Tue, 23 May 2023, Tom Rix <trix@redhat.com> wrote:
->> clang with W=1 reports
->> drivers/gpu/drm/i915/display/intel_display.c:6012:3: error: unannotated
->>   fall-through between switch labels [-Werror,-Wimplicit-fallthrough]
->>                 case I915_FORMAT_MOD_X_TILED:
->>                 ^
+On Thu, 25 May 2023, "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com> wrote:
+> On 5/25/2023 2:49 AM, Jani Nikula wrote:
+>> Use <> instead of "" for including headers from include/.
 >>
->> Only one case and the default does anything in this switch, so it should
->> be changed to an if-elseif.
+>> Fixes: 8a9bf29546a1 ("drm/i915/gsc: add initial support for GSC proxy")
+>> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >
-> Thanks for the patch.
->
-> If I wanted to fix this quickly, I'd just add the break in there.
+> dumb mistake, thanks for fixing it
 
-I've just applied [1] doing this.
+It happens, no worries.
 
-I'm still open to the cleanup suggested below, if you're up for it.
+> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
+Thanks for the reviews, pushed to drm-intel-gt-next.
 
 BR,
 Jani.
 
 
-[1] https://patchwork.freedesktop.org/patch/msgid/20230524-intel_async_flip_check_hw-implicit-fallthrough-v1-1-83de89e376a1@kernel.org
-
 >
-> If I wanted to fix this properly, I'd add a function
-> modifier_supports_async_flips() or something, and replace the switch
-> with:
+> Daniele
 >
-> 	if (!modifier_supports_async_flips(i915, new_plane_state->hw.fb->modifier)) {
-> 		drm_dbg_kms(&i915->drm, "[PLANE:%d:%s] Modifier does not support async flips\n",
-> 			plane->base.base.id, plane->base.name);
-> 		return -EINVAL;
-> 	}
->
-> But I wouldn't just replace the switch with if-elseif. It doesn't help
-> with the overall feeling that intel_async_flip_check_hw() is too long.
->
-> BR,
-> Jani.
->
->
->>
->> Signed-off-by: Tom Rix <trix@redhat.com>
 >> ---
->>  drivers/gpu/drm/i915/display/intel_display.c | 14 +++++---------
->>  1 file changed, 5 insertions(+), 9 deletions(-)
+>>   drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 0490c6412ab5..1f852e49fc20 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -5994,8 +5994,7 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
->>  		 * Need to verify this for all gen9 platforms to enable
->>  		 * this selectively if required.
->>  		 */
->> -		switch (new_plane_state->hw.fb->modifier) {
->> -		case DRM_FORMAT_MOD_LINEAR:
->> +		if (new_plane_state->hw.fb->modifier == DRM_FORMAT_MOD_LINEAR) {
->>  			/*
->>  			 * FIXME: Async on Linear buffer is supported on ICL as
->>  			 * but with additional alignment and fbc restrictions
->> @@ -6008,13 +6007,10 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
->>  					    plane->base.base.id, plane->base.name);
->>  				return -EINVAL;
->>  			}
->> -
->> -		case I915_FORMAT_MOD_X_TILED:
->> -		case I915_FORMAT_MOD_Y_TILED:
->> -		case I915_FORMAT_MOD_Yf_TILED:
->> -		case I915_FORMAT_MOD_4_TILED:
->> -			break;
->> -		default:
->> +		} else if (!(new_plane_state->hw.fb->modifier == I915_FORMAT_MOD_X_TILED ||
->> +			     new_plane_state->hw.fb->modifier == I915_FORMAT_MOD_Y_TILED ||
->> +			     new_plane_state->hw.fb->modifier == I915_FORMAT_MOD_Yf_TILED ||
->> +			     new_plane_state->hw.fb->modifier == I915_FORMAT_MOD_4_TILED)) {
->>  			drm_dbg_kms(&i915->drm,
->>  				    "[PLANE:%d:%s] Modifier does not support async flips\n",
->>  				    plane->base.base.id, plane->base.name);
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
+>> index ebee0b5a2c1d..5f138de3c14f 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
+>> @@ -5,8 +5,8 @@
+>>   
+>>   #include <linux/component.h>
+>>   
+>> -#include "drm/i915_component.h"
+>> -#include "drm/i915_gsc_proxy_mei_interface.h"
+>> +#include <drm/i915_component.h>
+>> +#include <drm/i915_gsc_proxy_mei_interface.h>
+>>   
+>>   #include "gt/intel_gt.h"
+>>   #include "gt/intel_gt_print.h"
+>
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
