@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62640712ACF
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 18:39:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58E11712AD0
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 18:39:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B238910E812;
-	Fri, 26 May 2023 16:39:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C281410E817;
+	Fri, 26 May 2023 16:39:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F16810E824
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 May 2023 16:39:04 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B2E910E824;
+ Fri, 26 May 2023 16:39:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685119144; x=1716655144;
+ t=1685119149; x=1716655149;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hRDjaWP+ETw6kRXLPtFEoxIQPgv2pvb7KQQ0F80fovw=;
- b=Xn5uZmDk154NKMHtmoZ+Mamg/lBUCSDSHUE2WG2KkzlP2Im4TGJka1HA
- 5sAxvARb4iymmSgeGPxm4SrKOWm9LDA6n4ZN4BOQ+NZIWBVO1zYx2OtIX
- p4HdGTcjS/SOfn7sMud/Zow8I0mwqtHJdAz7gQnzmYduqb+fTsPsZYhnw
- ZprrLiic64qsnSQpUAzYbN0h58epQsDX3Co+Ey8MKsxxkElBpVaunNrlb
- /533VFaGo44fS+39DSxpt1/EZ14AL2rvK945eD1kGZ3F3HRKqj2nVn3oD
- 6EMQhRroKqaHAjkfUX3Z8Ve5eQ6LahwYgrDOQtP/1ysK6W1dgBRn65Rrx Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="333872448"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="333872448"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 09:39:03 -0700
+ bh=qpeOPviOSpuDkEmBcvIVIfA2YGl0hIe+9aDqFD0vl4g=;
+ b=gV6dpdGeriHlAmlFMVNdstoLBGhyDdn3+jcqCHCBhsYBAyYfiGfGqWBy
+ QqtWuCsdUpMNwgoGJo0V5AGydNw+E7MiIOfnV9++a3XSRt5SvRKV+a+8n
+ 7E2z4p8JLBbgn7nLlH4KznFZWuYDxjteT1coMbaJQgo9C6yEnACZin672
+ axv0KrRptDTXmis8F1AFQzpFDKe/WA7D2pjfR6/yMmVMsQfiaro8cxUiq
+ J+GsG6R7n/W5G14mevqHqrtE3QZAXpwSrzl8gWo3pq5e1K9Xyiftvv2+V
+ EHKe1yv25c4RLOiw6Gd0HQRkFghnBNvlBha9b8LpCdhrzT6Btl6lAKiaw g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="420006276"
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="420006276"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2023 09:39:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="817608597"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="817608597"
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="951949687"
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="951949687"
 Received: from akervine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.55.216])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 09:39:02 -0700
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2023 09:39:06 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 26 May 2023 19:38:06 +0300
-Message-Id: <eb041f426bc3d76ef7a0ea906f99367cbf439b1a.1685119007.git.jani.nikula@intel.com>
+Date: Fri, 26 May 2023 19:38:07 +0300
+Message-Id: <7e1c475bf123eca6935a1be099cc0608bed49b0b.1685119007.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1685119006.git.jani.nikula@intel.com>
 References: <cover.1685119006.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 13/15] drm/i915: annotate maybe unused but set
- intel_crtc_state variables
+Subject: [Intel-gfx] [PATCH 14/15] drm/i915/gvt: annotate maybe unused
+ gma_bottom variables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,49 +60,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: jani.nikula@intel.com, intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Prepare for re-enabling -Wunused-but-set-variable.
 
-for_each_new_intel_crtc_in_state() requires passing in a struct
-intel_crtc_state pointer, which it uses, but in a few places this leads
-to warning about unused but set variables. Annotate them with
+Lacking a better idea, annotate the gma_bottom variables with
 __maybe_unused.
 
+Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Zhi Wang <zhi.a.wang@intel.com>
+Cc: intel-gvt-dev@lists.freedesktop.org
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- drivers/gpu/drm/i915/display/skl_watermark.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a1e635ab0315..4854d8ff6e1e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5707,7 +5707,7 @@ static int intel_atomic_check_planes(struct intel_atomic_state *state)
+---
+
+Frankly I'm not sure what to do with these. Maybe the variables should
+be dropped altogether?
+---
+ drivers/gpu/drm/i915/gvt/cmd_parser.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+index 3c4ae1da0d41..2801e17e5522 100644
+--- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
++++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+@@ -2833,7 +2833,7 @@ static int command_scan(struct parser_exec_state *s,
  
- static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
+ static int scan_workload(struct intel_vgpu_workload *workload)
  {
--	struct intel_crtc_state *crtc_state;
-+	struct intel_crtc_state __maybe_unused *crtc_state;
- 	struct intel_crtc *crtc;
- 	int i;
+-	unsigned long gma_head, gma_tail, gma_bottom;
++	unsigned long gma_head, gma_tail, __maybe_unused gma_bottom;
+ 	struct parser_exec_state s;
+ 	int ret = 0;
  
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index d1245c847f1c..063929a42a42 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2900,7 +2900,7 @@ static int
- skl_compute_wm(struct intel_atomic_state *state)
+@@ -2874,7 +2874,7 @@ static int scan_workload(struct intel_vgpu_workload *workload)
+ static int scan_wa_ctx(struct intel_shadow_wa_ctx *wa_ctx)
  {
- 	struct intel_crtc *crtc;
--	struct intel_crtc_state *new_crtc_state;
-+	struct intel_crtc_state __maybe_unused *new_crtc_state;
- 	int ret, i;
  
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+-	unsigned long gma_head, gma_tail, gma_bottom, ring_size, ring_tail;
++	unsigned long gma_head, gma_tail, __maybe_unused gma_bottom, ring_size, ring_tail;
+ 	struct parser_exec_state s;
+ 	int ret = 0;
+ 	struct intel_vgpu_workload *workload = container_of(wa_ctx,
 -- 
 2.39.2
 
