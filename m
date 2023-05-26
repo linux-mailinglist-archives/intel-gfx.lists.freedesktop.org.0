@@ -1,55 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E3AA712BB0
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 19:23:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E652F712BC1
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 19:29:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C330110E1DF;
-	Fri, 26 May 2023 17:23:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7620E10E1DF;
+	Fri, 26 May 2023 17:29:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E271E10E1DF
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 May 2023 17:22:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9AE710E1DD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 May 2023 17:29:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685121779; x=1716657779;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=uhTErQM7M6OR4li49P/i5gHsHFZLgB3kMrfwLA62gAA=;
- b=TEWBcuvafNPLoeKUA4kf+eVUl9yXM334Pt1Szzrlq5joGMKYykF4zVBO
- hmT0VgPbFHg1Ianz07VTorf9bazT50Q5EtlRjiyjbMq/xwBhnlXnxfiTQ
- Ng77vDnRTRzGG1LLvCr4LDv1yyIQMTqKHqIG9kO6O3ZPkqpk7SNH06ptD
- 2qirNKPMn/KM6LI0NVuDM6lMMsw8J8+1NCwYzmP7RYrfE8iG/OrHXdvb2
- Zwa8fedN5fCcrXTjNXVvY2la5AUjNefQKfdy3GxCIF36ru9wCihO9LN4Q
- FKZpDSkFoz8rUPlXofwWO7zsYbc9i5VkOpzNBnVLezcPscicPXBJcniH9 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="382504300"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="382504300"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ t=1685122167; x=1716658167;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=51NBcCKBfzU/lO0FoVrmOwMwIpM8ACZEId/PP51mbAc=;
+ b=Ovcx46oaoC++TS25wj/bk4blxTy7gsHUYAMn4kksiEkTNneeeXIOJypd
+ ffLANtdWmb/2O0kAPNT+q40VzTLJt4HU8Wg6e332Zgwdiq+7oDimOYtrU
+ bY2bXak9KdtldWwwfm7FUnpsdzkj0Ost1jNSN31Y4tc/Dj9aje/XGaJvs
+ 7Xt5gQU3bMQdHdrnRPEiUiRP2BfOTfgdo4jcxInXXQ4x/v0KMQcCCK4rP
+ hAfmRWHj2EODnMenxRYbY8oqo30pzy/c5BFSvvLZFJdw2V681pOGBYCAM
+ fWP88ONsPaQCYHY/7s+muvGCHAhfBkX0WIlpUl+RK18ABl4FatqYNKn6W A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="382506259"
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="382506259"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 10:22:59 -0700
+ 26 May 2023 10:29:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="699481527"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="699481527"
-Received: from akervine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.55.216])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 10:22:57 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <ZHDjIbKT8-X5m5VW@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1685119006.git.jani.nikula@intel.com>
- <0988d237e56c56568f035053da8e2e2308a17d3a.1685119007.git.jani.nikula@intel.com>
- <ZHDjIbKT8-X5m5VW@intel.com>
-Date: Fri, 26 May 2023 20:22:54 +0300
-Message-ID: <87h6rzhus1.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="655712732"
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="655712732"
+Received: from cyrillet-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.53.219])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2023 10:29:25 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Fei Yang <fei.yang@intel.com>
+Date: Fri, 26 May 2023 19:29:12 +0200
+Message-Id: <20230526172913.2016775-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 01/15] drm/i915/plane: warn on non-zero
- plane offset
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [CI v12 0/1] drm/i915: Allow user to set cache at BO
+ creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,68 +58,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 26 May 2023, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, May 26, 2023 at 07:37:54PM +0300, Jani Nikula wrote:
->> We assume the plane offset is 0. Warn if it's not. This also fixes a
->> warn on unused but set variable offset.
->>=20
->> Suggested-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/i9xx_plane.c          | 2 ++
->>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 1 +
->>  2 files changed, 3 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm=
-/i915/display/i9xx_plane.c
->> index 616654adbfb8..b52a681ca85e 100644
->> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
->> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
->> @@ -1037,6 +1037,8 @@ i9xx_get_initial_plane_config(struct intel_crtc *c=
-rtc,
->>  	}
->>  	plane_config->base =3D base;
->>=20=20
->> +	drm_WARN_ON(&dev_priv->drm, offset !=3D 0);
->> +
->
-> The gen2/3 codepath doesn't appear to initialize offset at all.
+From: Fei Yang <fei.yang@intel.com>
 
-Right. I wonder why I didn't get a warning about using an uninitialized
-variable.
+[ Just resending this patch to in order to have the results from the igt's
+written for this patch ]
 
->
-> With that fixed this is
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+This series introduce a new extension for GEM_CREATE,
+1. end support for set caching ioctl [PATCH 1/2]
+2. add set_pat extension for gem_create [PATCH 2/2]
 
-Thanks, v2 sent.
+v2: drop one patch that was merged separately
+    commit 341ad0e8e254 ("drm/i915/mtl: Add PTE encode function")
+v3: rebased on https://patchwork.freedesktop.org/series/117082/
+v4: fix missing unlock introduced in v3, and
+    solve a rebase conflict
+v5: replace obj->cache_level with pat_set_by_user,
+    fix i915_cache_level_str() for legacy platforms.
+v6: rebased on https://patchwork.freedesktop.org/series/117480/
+v7: rebased on https://patchwork.freedesktop.org/series/117528/
+v8: dropped the two dependent patches that has been merged
+    separately. Add IGT link and Tested-by (MESA).
+v9: addressing comments (Andi)
+v10: acked-by and tested-by MESA
+v11: drop "end support for set caching ioctl" (merged)
+     remove tools/include/uapi/drm/i915_drm.h
+v12: drop Bspec reference in comment. add to commit message instead
 
+Test-with: 20230526172221.1438998-2-fei.yang@intel.com
 
->
->>  	val =3D intel_de_read(dev_priv, PIPESRC(pipe));
->>  	fb->width =3D REG_FIELD_GET(PIPESRC_WIDTH_MASK, val) + 1;
->>  	fb->height =3D REG_FIELD_GET(PIPESRC_HEIGHT_MASK, val) + 1;
->> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/driver=
-s/gpu/drm/i915/display/skl_universal_plane.c
->> index 36070d86550f..6b01a0b68b97 100644
->> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> @@ -2529,6 +2529,7 @@ skl_get_initial_plane_config(struct intel_crtc *cr=
-tc,
->>  	plane_config->base =3D base;
->>=20=20
->>  	offset =3D intel_de_read(dev_priv, PLANE_OFFSET(pipe, plane_id));
->> +	drm_WARN_ON(&dev_priv->drm, offset !=3D 0);
->>=20=20
->>  	val =3D intel_de_read(dev_priv, PLANE_SIZE(pipe, plane_id));
->>  	fb->height =3D REG_FIELD_GET(PLANE_HEIGHT_MASK, val) + 1;
->> --=20
->> 2.39.2
+Fei Yang (1):
+  drm/i915: Allow user to set cache at BO creation
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+ drivers/gpu/drm/i915/gem/i915_gem_create.c | 36 +++++++++++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_object.c |  6 ++++
+ include/uapi/drm/i915_drm.h                | 41 ++++++++++++++++++++++
+ 3 files changed, 83 insertions(+)
+
+-- 
+2.40.1
+
