@@ -2,47 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3799B71309C
-	for <lists+intel-gfx@lfdr.de>; Sat, 27 May 2023 01:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F7C7130BB
+	for <lists+intel-gfx@lfdr.de>; Sat, 27 May 2023 01:55:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8482010E175;
-	Fri, 26 May 2023 23:48:19 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6689E10E1F8;
+	Fri, 26 May 2023 23:54:59 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2655F10E175
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 May 2023 23:48:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC9D310E0EE;
+ Fri, 26 May 2023 23:54:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685144898; x=1716680898;
- h=from:to:subject:date:message-id:mime-version:
+ t=1685145296; x=1716681296;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=hBtKTIItALTlUn9oOFgBk7FqwDWjS7q+9G1YQ+bbo/w=;
- b=gF4dIcQWdam0JESgAkJR3MCs3HkzXK3owaqVos8CwlNhkAI0QutFlN6R
- iLciMKZ0hDQjAkbMP3gT1FHFurjMkLVkaHptZbeWJY3D4p5xqJpxkDwdk
- qrOz7sdXlGzrtAJ17RaDQzAIQAOgXr6YSJIMJdpp44JU8Yt+XX5W+pUbv
- aFgvqo9cuSyn4oNIYjld8lX+KSsTIaZ5Oi0NdJK0h/9o02+XVsNkOxkU6
- n8OVAKNgNyro1T5tVsL6PAuK0A8rKAmDzHEZOfk4Wfny+8wEnBybtffFN
- HoksY+JzJHDaHZ8+e8uw/WZc79yUQoeiCSI6fT+FQpz9j/2TGhw4lC1lF w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="356715206"
-X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="356715206"
+ bh=gsB4GFU82aNS83OLCrGEgiRDANTxFJCz47CcEbyV+6E=;
+ b=M/qgk9fDLXtbWGbeQSeLNP4WpGORZ49MoqtBxFQ1pz4mdWScuBb6Klpf
+ Cx8rG7sCwrhJ1vuMqxwSFmwuLx1e45NRNFny1YkRPrx5kRtpzw1F3/wKA
+ chU4qhotSNd/F9ofs6u8AhHy1j9FNR2mIshcjZtkyWgdqsQQ65imHDmaA
+ Gn6yXsd+Y+sjvzPpng78cZxXZMXeD40H1/hL/sWXJNB/HGuxNiNYpSQrW
+ 9txDDrq+7QaW8juGoT2cgxvaNaNAZFm7JtMuoprgJEuigPkhTD1dwz9T1
+ vWD5L3yid56IbAYHjj/x5xsMTR0+mHl8PQt5o+OqzW2XqT5T/AcRt1LIi w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="356716168"
+X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="356716168"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 16:48:16 -0700
+ 26 May 2023 16:54:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="829665196"
-X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="829665196"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 16:48:16 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 26 May 2023 16:48:06 -0700
-Message-Id: <20230526234806.1333661-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.40.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="829667547"
+X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="829667547"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by orsmga004.jf.intel.com with ESMTP; 26 May 2023 16:54:55 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Fri, 26 May 2023 16:55:35 -0700
+Message-Id: <20230526235538.2230780-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI] PR for MTL HuC v8.5.0
+Subject: [Intel-gfx] [PATCH 0/3] Use FAST_REQUEST mechanism for non-blocking
+ H2G calls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,26 +57,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following changes since commit d11ae98478d52548172918511f949aa92193f2c6:
+From: John Harrison <John.C.Harrison@Intel.com>
 
-  brcm: Add symlinks from Pine64 devices to AW-CM256SM.txt (2023-05-25 08:26:29 -0400)
+The GuC interface supports a mechanism for returning errors against
+non-blocking H2G calls. This is called FAST_REQUEST. Given that the
+call is asynchronous, matching the returned error up is difficult.
+However, getting any error at all back is better than no error.
 
-are available in the Git repository at:
+If any such errors are reported, then extra tracking support can be
+compiled in for manual debug.
 
-  git://anongit.freedesktop.org/drm/drm-firmware mtl_huc_8.5.0
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
-for you to fetch changes up to eb86681057e248375ec91f6c340c671cfbf75501:
 
-  i915: Add HuC v8.5.0 for MTL (2023-05-26 16:44:50 -0700)
+Michal Wajdeczko (3):
+  drm/i915/guc: Use FAST_REQUEST for non-blocking H2G calls
+  drm/i915/guc: Update log for unsolicited CTB response
+  drm/i915/guc: Track all sent actions to GuC
 
-----------------------------------------------------------------
-Daniele Ceraolo Spurio (1):
-      i915: Add HuC v8.5.0 for MTL
+ drivers/gpu/drm/i915/Kconfig.debug            |  1 +
+ .../gpu/drm/i915/gt/uc/abi/guc_messages_abi.h | 30 +++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 79 ++++++++++++++++---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     | 11 +++
+ 4 files changed, 112 insertions(+), 9 deletions(-)
 
- WHENCE               |   3 +++
- i915/mtl_huc_gsc.bin | Bin 0 -> 565248 bytes
- 2 files changed, 3 insertions(+)
- create mode 100755 i915/mtl_huc_gsc.bin
+-- 
+2.39.1
+
