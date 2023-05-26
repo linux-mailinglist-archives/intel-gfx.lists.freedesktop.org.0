@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E1A71261B
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 13:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF97071261F
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 14:00:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AE3010E7EE;
-	Fri, 26 May 2023 11:59:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6178010E1C8;
+	Fri, 26 May 2023 12:00:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
- [IPv6:2a00:1450:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 021AC10E7EE
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 May 2023 11:59:37 +0000 (UTC)
-Received: by mail-wm1-x32d.google.com with SMTP id
- 5b1f17b1804b1-3f50020e0f8so12158525e9.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 May 2023 04:59:37 -0700 (PDT)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
+ [IPv6:2a00:1450:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B051A10E7F7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 May 2023 12:00:18 +0000 (UTC)
+Received: by mail-wr1-x431.google.com with SMTP id
+ ffacd0b85a97d-30ad8f33f1aso316291f8f.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 May 2023 05:00:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1685102376; x=1687694376;
+ d=linaro.org; s=google; t=1685102416; x=1687694416;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :from:to:cc:subject:date:message-id:reply-to;
- bh=xmuBDrlBpQbtrys/Qf8AocII7gV0XMhC8+i/ej21270=;
- b=HtZKWKl6N4Hu9jhvdgpgoBwmpeb0KQxF6iy25p4ERux2pJYIJQbc74jN/4Z6Wh49DJ
- OkolH5SrvNC3axkhttZ7uy0n6eA4Rw1aKcNKRw8ySrqVJoEf1sleGn16+OLzFpSHtXbn
- WwgBETxaKo/ymJvkuMiomvLYwZiyJuTDiLB78oNxBnFhkfMfWkdxczLQpHStsmeZuX84
- yLSozzy9hs4GzjV5aG4+HqQTrjOEjJnxTNUFikz1NmmPKy/YNtBe5GcU3G8k85n5Y9Mz
- QwGbfk3eaZSh25DHpM+wNFiEKyHqvGmmVsWYCqn2CT+pPoNoELnh8mIwuIVsM4tEknfx
- M9oQ==
+ bh=PNw1JrVcUaFUn8SY5IQEGg3p4I4nojatCiRN5cWsBGc=;
+ b=iS4tiQkEWbWxoliIa8oguOeIyfhWY1G6oGpFw/oxtb7wXuVCDC5Vay2RrcWSZKmlyY
+ v+hVNscolQVnLsvdlO2b5d7Pw9mX4awkPk/dUMooMZoT5ZuRzB+2MQKNBagcHTO8m3fU
+ 2QmDF0WOieMHmtO6OQO5XaySDNKWHvlWRXJW+bITgqtK7D4hPxTse1esPqKHAzSjJMyK
+ oqskfYEPYq6pZR4f+2KFoG2g2ATjs5mUo/ntqPIkT+AMCPYeWS7KPlWY4BG4gb7qi+Mr
+ eg3d/4tIbZA0yLYDZRRLdUdniVAv6MwHL6rEFsakgJk+EJrLrdB7joU7HuA/gQzYmttK
+ OOoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1685102376; x=1687694376;
+ d=1e100.net; s=20221208; t=1685102416; x=1687694416;
  h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=xmuBDrlBpQbtrys/Qf8AocII7gV0XMhC8+i/ej21270=;
- b=fvJPacERab6AlMlSuW6g8ln3GU7+RpCdIx8p++LUjwzlpstAWh50WF3q1DWNz/qYH6
- 7CpHZ8y64mApN9JJntr4PSK8gpa5XhrnUpX9xUqlAn+xzGEPkhgzPvFlFrwTK6K5TS75
- VnskNPYG78QjM9VnDrPchxhDD9xgTDb13xD1A+eN6qkruE6Ha8A9mwuvneYzNrF8kd/J
- qxCV/f2tBdcmpptqvxeIYhbneWOq8gtVpiTACrsmJ+ICvKUVD11ew4zlqq/F1tZMcw8p
- 5wmSK6odJO217u7T6agjcmLvWK6FOsYNAAxWNOy7CaFXcdM+uJQRD4oYuZz9WH5m+Idv
- aRpA==
-X-Gm-Message-State: AC+VfDwhTOvFYhjAz8XOHb1HJmmFUdfx6+MU06moUUeicAIea/LOK2JV
- P05/pYJO8Sn/N3cnbkIrdft+qdaWwik/1FZvTA8=
-X-Google-Smtp-Source: ACHHUZ6KQQagZsTWWsJi4zpOqN7RHhUd2mr8Ex4eBHrdpPfHi/9Qg5DZ7Po3996wiMzpzGgjNg3P+A==
-X-Received: by 2002:adf:e2c8:0:b0:309:4642:8795 with SMTP id
- d8-20020adfe2c8000000b0030946428795mr4663108wrj.12.1685102376168; 
- Fri, 26 May 2023 04:59:36 -0700 (PDT)
+ bh=PNw1JrVcUaFUn8SY5IQEGg3p4I4nojatCiRN5cWsBGc=;
+ b=IrDrKA+ffyvlIN8vsx1zH6Yoh4Nh3IwgOCyNxMrgEc+zItQXCxLwEAleDu2BsSy9xg
+ /xm0VpM7JspWmYl1xlgoWykPUUaU98c6n0hdpa4oVHOchT4Me+8W1BlMqjOPWShAgl+N
+ HzW1AA3hysCmtVdQzk5WQfxdE7ionJaUs0FHP3cdctyF1eDEY1Z0BgUXE1xJ1dAyls/4
+ yUm9Cf6sAvbbyNybeinj21olh1oP26+KFyizmKFrOr/EATyXOq7gMi3McI+uZT6mQ5wD
+ rKVzVjR/tVOaabWTQfIBs19XMn6nx/FMpi0vO+jczFYV9/aUZEkTksU7jIccWuQsp0gl
+ sFtA==
+X-Gm-Message-State: AC+VfDxiDA2f/kkO5FMPeiLJc4S/7m5vL3uc3Yg83ttTKfdem0PfQBxs
+ E+N+DE31hzd6xI4YzBXhp3VfUQ==
+X-Google-Smtp-Source: ACHHUZ5bqXvav+oFBaRGQGWO0s8fJkZPWAvsxfOGL05ptU4e85bBumsEHjaBq6F1jLNT0syDdV/wwA==
+X-Received: by 2002:adf:f151:0:b0:306:2b83:2d32 with SMTP id
+ y17-20020adff151000000b003062b832d32mr1287770wro.43.1685102416805; 
+ Fri, 26 May 2023 05:00:16 -0700 (PDT)
 Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- s26-20020a7bc39a000000b003f42328b5d9sm4992147wmj.39.2023.05.26.04.59.33
+ 13-20020a05600c24cd00b003f4dde07956sm8627339wmu.42.2023.05.26.05.00.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 26 May 2023 04:59:34 -0700 (PDT)
-Date: Fri, 26 May 2023 14:59:31 +0300
+ Fri, 26 May 2023 05:00:15 -0700 (PDT)
+Date: Fri, 26 May 2023 15:00:12 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <f6b876f1-4dd7-4d96-bee5-966817cc1644@kili.mountain>
+To: matthew.d.roper@intel.com
+Message-ID: <55236f93-dcc5-481e-b788-9f7e95b129d8@kili.mountain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: fix an error code in copy()
+Subject: [Intel-gfx] [bug report] drm/i915/display: Handle GMD_ID
+ identification in display code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,39 +69,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Return the error code if i915_gem_object_create_internal() fails,
-instead of returning success.
+Hello Matt Roper,
 
-Fixes: cf586021642d ("drm/i915/gt: Pipelined page migration")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- drivers/gpu/drm/i915/gt/selftest_migrate.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+The patch 12e6f6dc78e4: "drm/i915/display: Handle GMD_ID
+identification in display code" from May 23, 2023, leads to the
+following Smatch static checker warning:
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-index e677f2da093d..a26429fd5326 100644
---- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-@@ -55,8 +55,10 @@ static int copy(struct intel_migrate *migrate,
- 
- 	sz = src->base.size;
- 	dst = i915_gem_object_create_internal(i915, sz);
--	if (IS_ERR(dst))
-+	if (IS_ERR(dst)) {
-+		err = PTR_ERR(dst);
- 		goto err_free_src;
-+	}
- 
- 	for_i915_gem_ww(&ww, err, true) {
- 		err = i915_gem_object_lock(src, &ww);
--- 
-2.39.2
+	drivers/gpu/drm/i915/i915_driver.c:850 i915_driver_probe()
+	error: 'i915' dereferencing possible ERR_PTR()
 
+drivers/gpu/drm/i915/i915_driver.c
+    752 int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+    753 {
+    754         struct drm_i915_private *i915;
+    755         int ret;
+    756 
+    757         ret = pci_enable_device(pdev);
+    758         if (ret) {
+    759                 pr_err("Failed to enable graphics device: %pe\n", ERR_PTR(ret));
+    760                 return ret;
+    761         }
+    762 
+    763         i915 = i915_driver_create(pdev, ent);
+    764         if (IS_ERR(i915)) {
+    765                 ret = PTR_ERR(i915);
+    766                 goto out_pci_disable;
+                        ^^^^^^^^^^^^^^^^^^^^^
+i915 is an error pointer.
+
+    767         }
+    768 
+    769         ret = i915_driver_early_probe(i915);
+    770         if (ret < 0)
+    771                 goto out_pci_disable;
+    772 
+
+[ snip ]
+
+    819         return 0;
+    820 
+    821 out_cleanup_gem:
+    822         i915_gem_suspend(i915);
+    823         i915_gem_driver_remove(i915);
+    824         i915_gem_driver_release(i915);
+    825 out_cleanup_modeset2:
+    826         /* FIXME clean up the error path */
+    827         intel_display_driver_remove(i915);
+    828         intel_irq_uninstall(i915);
+    829         intel_display_driver_remove_noirq(i915);
+    830         goto out_cleanup_modeset;
+    831 out_cleanup_irq:
+    832         intel_irq_uninstall(i915);
+    833 out_cleanup_modeset:
+    834         intel_display_driver_remove_nogem(i915);
+    835 out_cleanup_hw:
+    836         i915_driver_hw_remove(i915);
+    837         intel_memory_regions_driver_release(i915);
+    838         i915_ggtt_driver_release(i915);
+    839         i915_gem_drain_freed_objects(i915);
+    840         i915_ggtt_driver_late_release(i915);
+    841 out_cleanup_mmio:
+    842         i915_driver_mmio_release(i915);
+    843 out_tiles_cleanup:
+    844         intel_gt_release_all(i915);
+    845 out_runtime_pm_put:
+    846         enable_rpm_wakeref_asserts(&i915->runtime_pm);
+    847         i915_driver_late_release(i915);
+    848 out_pci_disable:
+    849         pci_disable_device(pdev);
+--> 850         i915_probe_error(i915, "Device initialization failed (%d)\n", ret);
+                                 ^^^^
+Oops.
+
+    851         return ret;
+    852 }
+
+regards,
+dan carpenter
