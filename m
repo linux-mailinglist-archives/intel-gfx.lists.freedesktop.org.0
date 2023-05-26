@@ -2,55 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 471E27127C9
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 15:51:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EA0D712813
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 16:11:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A393110E1D0;
-	Fri, 26 May 2023 13:51:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E32D10E085;
+	Fri, 26 May 2023 14:11:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A48EE10E1D0;
- Fri, 26 May 2023 13:51:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685109071; x=1716645071;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=NYHHPvuGwTS6sRjBiIefJvhPU7bR4RFR1Z108I+9q1s=;
- b=aMEAFQoWZUdpzkPOjT3yDB8hmoiuj6AA5uoCRTIO84gt2Ecotlj4Ad2l
- 9cI+L11yhDay9sMvY6O6ENCEuqlY2bnkMpUECK6guTIpf7eRNpIDjAEgH
- /JGS4oCSz6QNkiyX2DeAEL3yPC3tnhJr+uxqwJoyW3Ga5UEOF8wGrbG3X
- XEh054yQ/8tgQldZrR25ksqyU78XyQjF1mb1V10lrpYg5NoBrr6dCOpHI
- arWJVwkZZQWg8K01h5J/LOCe64I3311kteKHmbQMmt8HXh55QkcPXxJpC
- nPQ08867xMqsVlLq6IHS3HzEsO9OsWE4e/ndLwZZzX3d1E1F4sTfah1H7 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="351712983"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="351712983"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 06:51:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="682725655"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="682725655"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga006.jf.intel.com with SMTP; 26 May 2023 06:51:08 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 26 May 2023 16:51:07 +0300
-Date: Fri, 26 May 2023 16:51:07 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Message-ID: <ZHC5S2HGOkv0LO1w@intel.com>
-References: <20230413164916.4221-1-ville.syrjala@linux.intel.com>
- <20230413164916.4221-7-ville.syrjala@linux.intel.com>
- <DM4PR11MB636079BEDB4092FAC1E8D776F4469@DM4PR11MB6360.namprd11.prod.outlook.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ADD6510E085;
+ Fri, 26 May 2023 14:11:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A760CA00CC;
+ Fri, 26 May 2023 14:11:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6241591924583279901=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM4PR11MB636079BEDB4092FAC1E8D776F4469@DM4PR11MB6360.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 6/7] drm/i915: No 10bit gamma on desktop
- gen3 parts
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dan Carpenter" <dan.carpenter@linaro.org>
+Date: Fri, 26 May 2023 14:11:06 -0000
+Message-ID: <168511026665.32386.8065114274455216231@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <f6b876f1-4dd7-4d96-bee5-966817cc1644@kili.mountain>
+In-Reply-To: <f6b876f1-4dd7-4d96-bee5-966817cc1644@kili.mountain>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_fix_an_error_code_in_copy=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,119 +40,262 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 25, 2023 at 09:25:46PM +0000, Shankar, Uma wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville Syrjala
-> > Sent: Thursday, April 13, 2023 10:19 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Cc: dri-devel@lists.freedesktop.org
-> > Subject: [Intel-gfx] [PATCH v2 6/7] drm/i915: No 10bit gamma on desktop gen3 parts
-> > 
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Apparently desktop gen3 parts don't support the 10bit gamma mode at all. Stop
-> > claiming otherwise.
-> > 
-> > As is the case with pipe A on gen3 mobile parts, the PIPECONF gamma mode bit can
-> > be set but it has no effect on the output.
-> > 
-> > PNV seems to be the only slight exception, but generally the desktop PNV variant
-> > looks more like a mobile part so this is not entirely surprising.
-> 
-> Couldn't check the relevant spec to re-confirm, trusting your judgment here.
+--===============6241591924583279901==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The spec isn't helpful here actually. Real world testing on every
-gen3 platform was needed to be sure how this works.
+== Series Details ==
 
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Series: drm/i915/selftests: fix an error code in copy()
+URL   : https://patchwork.freedesktop.org/series/118427/
+State : success
 
-Thanks.
+== Summary ==
 
-> 
-> > Fixes: 67630bacae23 ("drm/i915: Add 10bit gamma mode for gen2/3")
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_pci.c | 8 +++++++-
-> >  1 file changed, 7 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c index
-> > cddb6e197972..305c05c3f93b 100644
-> > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > @@ -250,13 +250,13 @@ static const struct intel_device_info i865g_info = {
-> >  	.dma_mask_size = 32, \
-> >  	I9XX_PIPE_OFFSETS, \
-> >  	I9XX_CURSOR_OFFSETS, \
-> > -	I9XX_COLORS, \
-> >  	GEN_DEFAULT_PAGE_SIZES, \
-> >  	GEN_DEFAULT_REGIONS
-> > 
-> >  static const struct intel_device_info i915g_info = {
-> >  	GEN3_FEATURES,
-> >  	PLATFORM(INTEL_I915G),
-> > +	I845_COLORS,
-> >  	.has_coherent_ggtt = false,
-> >  	.display.cursor_needs_physical = 1,
-> >  	.display.has_overlay = 1,
-> > @@ -268,6 +268,7 @@ static const struct intel_device_info i915g_info = {  static
-> > const struct intel_device_info i915gm_info = {
-> >  	GEN3_FEATURES,
-> >  	PLATFORM(INTEL_I915GM),
-> > +	I9XX_COLORS,
-> >  	.is_mobile = 1,
-> >  	.display.cursor_needs_physical = 1,
-> >  	.display.has_overlay = 1,
-> > @@ -281,6 +282,7 @@ static const struct intel_device_info i915gm_info = {  static
-> > const struct intel_device_info i945g_info = {
-> >  	GEN3_FEATURES,
-> >  	PLATFORM(INTEL_I945G),
-> > +	I845_COLORS,
-> >  	.display.has_hotplug = 1,
-> >  	.display.cursor_needs_physical = 1,
-> >  	.display.has_overlay = 1,
-> > @@ -292,6 +294,7 @@ static const struct intel_device_info i945g_info = {  static
-> > const struct intel_device_info i945gm_info = {
-> >  	GEN3_FEATURES,
-> >  	PLATFORM(INTEL_I945GM),
-> > +	I9XX_COLORS,
-> >  	.is_mobile = 1,
-> >  	.display.has_hotplug = 1,
-> >  	.display.cursor_needs_physical = 1,
-> > @@ -306,6 +309,7 @@ static const struct intel_device_info i945gm_info = {  static
-> > const struct intel_device_info g33_info = {
-> >  	GEN3_FEATURES,
-> >  	PLATFORM(INTEL_G33),
-> > +	I845_COLORS,
-> >  	.display.has_hotplug = 1,
-> >  	.display.has_overlay = 1,
-> >  	.dma_mask_size = 36,
-> > @@ -314,6 +318,7 @@ static const struct intel_device_info g33_info = {  static
-> > const struct intel_device_info pnv_g_info = {
-> >  	GEN3_FEATURES,
-> >  	PLATFORM(INTEL_PINEVIEW),
-> > +	I9XX_COLORS,
-> >  	.display.has_hotplug = 1,
-> >  	.display.has_overlay = 1,
-> >  	.dma_mask_size = 36,
-> > @@ -322,6 +327,7 @@ static const struct intel_device_info pnv_g_info = {  static
-> > const struct intel_device_info pnv_m_info = {
-> >  	GEN3_FEATURES,
-> >  	PLATFORM(INTEL_PINEVIEW),
-> > +	I9XX_COLORS,
-> >  	.is_mobile = 1,
-> >  	.display.has_hotplug = 1,
-> >  	.display.has_overlay = 1,
-> > --
-> > 2.39.2
-> 
+CI Bug Log - changes from CI_DRM_13195 -> Patchwork_118427v1
+====================================================
 
--- 
-Ville Syrjälä
-Intel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/index.html
+
+Participating hosts (38 -> 38)
+------------------------------
+
+  Additional (1): bat-mtlp-6 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_118427v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [PASS][1] -> [DMESG-FAIL][2] ([i915#5334])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13195/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-rpls-1:         NOTRUN -> [DMESG-WARN][3] ([i915#6367])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-rpls-1/igt@i915_selftest@live@slpc.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-rpls-1:         NOTRUN -> [ABORT][4] ([i915#6687] / [i915#7978])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         NOTRUN -> [SKIP][5] ([i915#1845] / [i915#5354])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@load:
+    - {bat-adlp-11}:      [ABORT][6] ([i915#4423] / [i915#8189]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13195/bat-adlp-11/igt@i915_module_load@load.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-adlp-11/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@gt_mocs:
+    - {bat-mtlp-8}:       [DMESG-FAIL][8] ([i915#7059]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13195/bat-mtlp-8/igt@i915_selftest@live@gt_mocs.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-mtlp-8/igt@i915_selftest@live@gt_mocs.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - bat-rpls-2:         [DMESG-FAIL][10] ([i915#4258] / [i915#7913]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13195/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-1:         [ABORT][12] ([i915#4983] / [i915#7461] / [i915#8347] / [i915#8384]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13195/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#6]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/6
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
+  [i915#4342]: https://gitlab.freedesktop.org/drm/intel/issues/4342
+  [i915#4423]: https://gitlab.freedesktop.org/drm/intel/issues/4423
+  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
+  [i915#7059]: https://gitlab.freedesktop.org/drm/intel/issues/7059
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
+  [i915#8189]: https://gitlab.freedesktop.org/drm/intel/issues/8189
+  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
+  [i915#8384]: https://gitlab.freedesktop.org/drm/intel/issues/8384
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13195 -> Patchwork_118427v1
+
+  CI-20190529: 20190529
+  CI_DRM_13195: 8de6f7d7e58a51740d5bcaf203d2eb4a94762f5d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7305: 09aa9628059a93510b658dcc731ae4c8bd223790 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_118427v1: 8de6f7d7e58a51740d5bcaf203d2eb4a94762f5d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+989e26e2f710 drm/i915/selftests: fix an error code in copy()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/index.html
+
+--===============6241591924583279901==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftests: fix an error code in copy()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118427/">https://patchwork.freedesktop.org/series/118427/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13195 -&gt; Patchwork_118427v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/index.html</p>
+<h2>Participating hosts (38 -&gt; 38)</h2>
+<p>Additional (1): bat-mtlp-6 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_118427v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13195/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-rpls-1/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>{bat-adlp-11}:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13195/bat-adlp-11/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4423">i915#4423</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8189">i915#8189</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-adlp-11/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_mocs:</p>
+<ul>
+<li>{bat-mtlp-8}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13195/bat-mtlp-8/igt@i915_selftest@live@gt_mocs.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7059">i915#7059</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-mtlp-8/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13195/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4258">i915#4258</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13195/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8384">i915#8384</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118427v1/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13195 -&gt; Patchwork_118427v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13195: 8de6f7d7e58a51740d5bcaf203d2eb4a94762f5d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7305: 09aa9628059a93510b658dcc731ae4c8bd223790 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_118427v1: 8de6f7d7e58a51740d5bcaf203d2eb4a94762f5d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>989e26e2f710 drm/i915/selftests: fix an error code in copy()</p>
+
+</body>
+</html>
+
+--===============6241591924583279901==--
