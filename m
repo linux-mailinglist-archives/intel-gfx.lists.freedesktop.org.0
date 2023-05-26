@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E1AA712C0B
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 19:50:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E55712C11
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 May 2023 19:52:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DF3410E1E1;
-	Fri, 26 May 2023 17:50:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21A5810E1E1;
+	Fri, 26 May 2023 17:52:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F332B10E1E1
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 May 2023 17:50:29 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB65A10E1E1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 May 2023 17:52:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685123429; x=1716659429;
+ t=1685123522; x=1716659522;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=K6j9TB+O7v6k8fGExde5lyeuQ+tViMEdcB7t2z2jAzM=;
- b=cG9MznC6PAC1Km8t1EziuBNnMDIhiAv+lqdjbL1hvr0Imj4OHbgOAs3o
- 8ryo+6uVX5lrYTYpBBE02kfWBGOie572FyvJv+qnTLByxxxDKAlDWI8OY
- WidiY+GGvsXk9Rj30VPK0ahXhJlJ6QjP86WmAyrvO7q9n6SBqrKWF4Rtl
- tfRP2rnvZCMzWTnThC6JbCrBHeXGulFPIu+re6dktdJl1L+gIfyvG0eUg
- /By3/vG9uc4y4fZBgpgTDfOfDsvFcahm/jWyHX5vCi/U8fCUiJKcDUnHG
- Qh0xf6PWK7x5aozN8BUXgY2IBo8Shq+MZUClbnBE3vfDOGXK67U2ROQCE A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="354277911"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="354277911"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 10:50:29 -0700
+ bh=H7MGlmbFcti3nCpGHdmGoVb6/ibCWm/VFn4CRdpMU4I=;
+ b=Ps2T+LMKkTvTTweJh031RrkIkH1k/2IzT4eBMn8n7TYJyPuTZ5bSMzdQ
+ tWCvaNL5xn0aP8Pd83UmFdcWocnF8y61v2zG4gCljFpaOM2UUGGxs2DOZ
+ /bQusmz7i2/bqhVgRz7ZMbOA7Crc2q4kIG7XnwSSddd84J4Er6XYdctCq
+ x9sAGi7xxUnatB04f8jDz9hpOH1dkuCrwW2z02ofCoKwmzdZIANDxkEKe
+ hiOE7pr3B4FfMDXPi4giuCu6K7VE5xV3N9qvzTLu64oXhDM9MB0pigN0+
+ 0swHvjp+YFW3Wc7jIsG0ZtuwGCxJE9QSWszthHVxdIFDAOWDDJ7bPUPDP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="420024374"
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="420024374"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2023 10:51:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="879614637"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="879614637"
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="738354992"
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="738354992"
 Received: from cyrillet-mobl.ger.corp.intel.com (HELO intel.com)
  ([10.252.53.219])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 10:50:28 -0700
-Date: Fri, 26 May 2023 19:50:25 +0200
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2023 10:51:51 -0700
+Date: Fri, 26 May 2023 19:51:48 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZHDxYQ3oep0K/5xO@ashyti-mobl2.lan>
+Message-ID: <ZHDxtK5eC2dwOuK7@ashyti-mobl2.lan>
 References: <cover.1685119006.git.jani.nikula@intel.com>
- <9ee9e7d7a0a7ad4ff03c14e64b95d3fbcb7885a4.1685119007.git.jani.nikula@intel.com>
+ <d542f25bffd5a50ff621bee93415a972c7768a2a.1685119007.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9ee9e7d7a0a7ad4ff03c14e64b95d3fbcb7885a4.1685119007.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 10/15] drm/i915/gem: annotate maybe unused
- but set variable c
+In-Reply-To: <d542f25bffd5a50ff621bee93415a972c7768a2a.1685119007.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 08/15] drm/i915/gt/uc: drop unused but set
+ variable sseu
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,38 +66,44 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Jani,
 
-On Fri, May 26, 2023 at 07:38:03PM +0300, Jani Nikula wrote:
+On Fri, May 26, 2023 at 07:38:01PM +0300, Jani Nikula wrote:
 > Prepare for re-enabling -Wunused-but-set-variable.
 > 
-> The variable 'c' appears unused, but I'm not sure what should be done
-> with it. Annotate it with __maybe_unused.
+> Apparently sseu is leftover from commit 9a92732f040a ("drm/i915/gt: Add
+> general DSS steering iterator to intel_gt_mcr").
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c | 2 --
+>  1 file changed, 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> index cad4a6017f4b..33d5d5178103 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> @@ -455,7 +455,7 @@ shmem_pwrite(struct drm_i915_gem_object *obj,
->  		struct page *page;
->  		void *data, *vaddr;
->  		int err;
-> -		char c;
-> +		char __maybe_unused c;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+> index 0ff864da92df..331cec07c125 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c
+> @@ -301,7 +301,6 @@ guc_capture_alloc_steered_lists(struct intel_guc *guc,
+>  	const struct __guc_mmio_reg_descr_group *list;
+>  	struct __guc_mmio_reg_descr_group *extlists;
+>  	struct __guc_mmio_reg_descr *extarray;
+> -	struct sseu_dev_info *sseu;
+>  	bool has_xehpg_extregs;
+>  
+>  	/* steered registers currently only exist for the render-class */
+> @@ -318,7 +317,6 @@ guc_capture_alloc_steered_lists(struct intel_guc *guc,
+>  	if (has_xehpg_extregs)
+>  		num_steer_regs += ARRAY_SIZE(xehpg_extregs);
+>  
+> -	sseu = &gt->info.sseu;
 
-Yes... it's only initialized... maybe we need to come out with a
-version of __get_user() that doesn't need 'c'. I think the
-__maybe_unused fits good here.
+leftovers...
 
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
+Thanks,
 Andi
 
+>  	for_each_ss_steering(iter, gt, slice, subslice)
+>  		num_tot_regs += num_steer_regs;
 >  
->  		len = PAGE_SIZE - pg;
->  		if (len > remain)
 > -- 
 > 2.39.2
