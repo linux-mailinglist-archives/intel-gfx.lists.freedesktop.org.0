@@ -1,33 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AC0C713187
-	for <lists+intel-gfx@lfdr.de>; Sat, 27 May 2023 03:36:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 437967131CB
+	for <lists+intel-gfx@lfdr.de>; Sat, 27 May 2023 03:50:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A045110E206;
-	Sat, 27 May 2023 01:36:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76BB110E210;
+	Sat, 27 May 2023 01:50:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C8BCB10E206;
- Sat, 27 May 2023 01:35:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C2324AADDA;
- Sat, 27 May 2023 01:35:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5519484312499296350=="
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFE3510E210
+ for <intel-gfx@lists.freedesktop.org>; Sat, 27 May 2023 01:50:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685152251; x=1716688251;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Rsh+RBw7jdLWkoUiWuNALH6mFWkV8lXdb78kX2g6PzI=;
+ b=I0Am62qvAqNXuQn3ZQtSHVbRFSh93g2epKdtu9oQGuiSnMfwwIBhvdpP
+ Bo9DGQ5DluqT2kRkBzOooQI5jXsTziVXJHpMEy1GNq90m7AmN5Ffbbbb1
+ h2SOlHWEsPiWe2i0qY8XtzxeNolY8fWp7AWi2D5eW90k0gwPXH6gEDAUS
+ ra+pVTA5pCCkjzumVGUenCkJa7jybd98E7d5RIdmTXTpirA0qDtk8DetP
+ gRFt94cgfECqMS5tbOyuWKotUA0nqth1CI7jIcvEXVVRovSVaxnBqPQ5p
+ hxEQ7mKaXGoIRJOU9FvW/SJoBEjocHP2exijQVZCqyJMYc9hu6OEJr9b8 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="382596618"
+X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="382596618"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2023 18:50:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="770494810"
+X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="770494810"
+Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
+ by fmsmga008.fm.intel.com with ESMTP; 26 May 2023 18:50:49 -0700
+Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1q2j4y-000Ji8-2b;
+ Sat, 27 May 2023 01:50:48 +0000
+Date: Sat, 27 May 2023 09:50:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <202305270919.ttCZVsAy-lkp@intel.com>
+References: <0988d237e56c56568f035053da8e2e2308a17d3a.1685119007.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-Date: Sat, 27 May 2023 01:35:57 -0000
-Message-ID: <168515135776.24037.14920623975708890937@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230527005242.1346093-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20230527005242.1346093-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_HuC_loading_and_authentication_for_MTL_=28rev5=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0988d237e56c56568f035053da8e2e2308a17d3a.1685119007.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 01/15] drm/i915/plane: warn on non-zero
+ plane offset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,255 +61,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5519484312499296350==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Jani,
 
-== Series Details ==
+kernel test robot noticed the following build warnings:
 
-Series: drm/i915: HuC loading and authentication for MTL (rev5)
-URL   : https://patchwork.freedesktop.org/series/117080/
-State : success
+[auto build test WARNING on drm-tip/drm-tip]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-plane-warn-on-non-zero-plane-offset/20230527-003951
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/0988d237e56c56568f035053da8e2e2308a17d3a.1685119007.git.jani.nikula%40intel.com
+patch subject: [Intel-gfx] [PATCH 01/15] drm/i915/plane: warn on non-zero plane offset
+config: i386-randconfig-i076-20230526 (https://download.01.org/0day-ci/archive/20230527/202305270919.ttCZVsAy-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        mkdir -p ~/bin
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/40c3d9e9221e230ab6f0b2e3051b6c4566a1e852
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jani-Nikula/drm-i915-plane-warn-on-non-zero-plane-offset/20230527-003951
+        git checkout 40c3d9e9221e230ab6f0b2e3051b6c4566a1e852
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang ~/bin/make.cross W=1 O=build_dir ARCH=i386 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang ~/bin/make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
 
-CI Bug Log - changes from CI_DRM_13196 -> Patchwork_117080v5
-====================================================
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202305270919.ttCZVsAy-lkp@intel.com/
 
-Summary
--------
+All warnings (new ones prefixed by >>):
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/index.html
-
-Participating hosts (39 -> 38)
-------------------------------
-
-  Additional (1): bat-mtlp-6 
-  Missing    (2): bat-atsm-1 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_117080v5 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][1] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/fi-skl-6600u/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][2] ([i915#1845] / [i915#5354]) +2 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@read-crc:
-    - bat-adlp-9:         NOTRUN -> [SKIP][3] ([i915#3546]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3:
-    - bat-dg2-9:          [PASS][4] -> [FAIL][5] ([fdo#103375])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13196/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - fi-skl-6600u:       [ABORT][6] -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13196/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - {bat-mtlp-8}:       [SKIP][8] ([i915#3595]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13196/bat-mtlp-8/igt@gem_huc_copy@huc-copy.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/bat-mtlp-8/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_selftest@live@slpc:
-    - {bat-mtlp-8}:       [DMESG-WARN][10] ([i915#6367]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13196/bat-mtlp-8/igt@i915_selftest@live@slpc.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/bat-mtlp-8/igt@i915_selftest@live@slpc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#6]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/6
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#3595]: https://gitlab.freedesktop.org/drm/intel/issues/3595
-  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4342]: https://gitlab.freedesktop.org/drm/intel/issues/4342
-  [i915#4423]: https://gitlab.freedesktop.org/drm/intel/issues/4423
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#8189]: https://gitlab.freedesktop.org/drm/intel/issues/8189
-  [i915#8497]: https://gitlab.freedesktop.org/drm/intel/issues/8497
+>> drivers/gpu/drm/i915/display/i9xx_plane.c:1027:13: warning: variable 'offset' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+           } else if (DISPLAY_VER(dev_priv) >= 4) {
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_drv.h:433:27: note: expanded from macro 'DISPLAY_VER'
+   #define DISPLAY_VER(i915)       (DISPLAY_RUNTIME_INFO(i915)->ip.ver)
+                                   ^
+   drivers/gpu/drm/i915/display/i9xx_plane.c:1040:30: note: uninitialized use occurs here
+           drm_WARN_ON(&dev_priv->drm, offset != 0);
+                                       ^~~~~~
+   include/drm/drm_print.h:630:19: note: expanded from macro 'drm_WARN_ON'
+           drm_WARN((drm), (x), "%s",                                      \
+                            ^
+   include/drm/drm_print.h:620:7: note: expanded from macro 'drm_WARN'
+           WARN(condition, "%s %s: " format,                               \
+                ^~~~~~~~~
+   include/asm-generic/bug.h:131:25: note: expanded from macro 'WARN'
+           int __ret_warn_on = !!(condition);                              \
+                                  ^~~~~~~~~
+   drivers/gpu/drm/i915/display/i9xx_plane.c:1027:9: note: remove the 'if' if its condition is always true
+           } else if (DISPLAY_VER(dev_priv) >= 4) {
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/i9xx_plane.c:983:23: note: initialize the variable 'offset' to silence this warning
+           u32 val, base, offset;
+                                ^
+                                 = 0
+   1 warning generated.
 
 
-Build changes
--------------
+vim +1027 drivers/gpu/drm/i915/display/i9xx_plane.c
 
-  * Linux: CI_DRM_13196 -> Patchwork_117080v5
+2a3014490cd18a Dave Airlie   2021-02-05   973  
+2a3014490cd18a Dave Airlie   2021-02-05   974  void
+2a3014490cd18a Dave Airlie   2021-02-05   975  i9xx_get_initial_plane_config(struct intel_crtc *crtc,
+2a3014490cd18a Dave Airlie   2021-02-05   976  			      struct intel_initial_plane_config *plane_config)
+2a3014490cd18a Dave Airlie   2021-02-05   977  {
+2a3014490cd18a Dave Airlie   2021-02-05   978  	struct drm_device *dev = crtc->base.dev;
+2a3014490cd18a Dave Airlie   2021-02-05   979  	struct drm_i915_private *dev_priv = to_i915(dev);
+2a3014490cd18a Dave Airlie   2021-02-05   980  	struct intel_plane *plane = to_intel_plane(crtc->base.primary);
+2a3014490cd18a Dave Airlie   2021-02-05   981  	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
+2a3014490cd18a Dave Airlie   2021-02-05   982  	enum pipe pipe;
+2a3014490cd18a Dave Airlie   2021-02-05   983  	u32 val, base, offset;
+2a3014490cd18a Dave Airlie   2021-02-05   984  	int fourcc, pixel_format;
+2a3014490cd18a Dave Airlie   2021-02-05   985  	unsigned int aligned_height;
+2a3014490cd18a Dave Airlie   2021-02-05   986  	struct drm_framebuffer *fb;
+2a3014490cd18a Dave Airlie   2021-02-05   987  	struct intel_framebuffer *intel_fb;
+2a3014490cd18a Dave Airlie   2021-02-05   988  
+2a3014490cd18a Dave Airlie   2021-02-05   989  	if (!plane->get_hw_state(plane, &pipe))
+2a3014490cd18a Dave Airlie   2021-02-05   990  		return;
+2a3014490cd18a Dave Airlie   2021-02-05   991  
+2a3014490cd18a Dave Airlie   2021-02-05   992  	drm_WARN_ON(dev, pipe != crtc->pipe);
+2a3014490cd18a Dave Airlie   2021-02-05   993  
+2a3014490cd18a Dave Airlie   2021-02-05   994  	intel_fb = kzalloc(sizeof(*intel_fb), GFP_KERNEL);
+2a3014490cd18a Dave Airlie   2021-02-05   995  	if (!intel_fb) {
+2a3014490cd18a Dave Airlie   2021-02-05   996  		drm_dbg_kms(&dev_priv->drm, "failed to alloc fb\n");
+2a3014490cd18a Dave Airlie   2021-02-05   997  		return;
+2a3014490cd18a Dave Airlie   2021-02-05   998  	}
+2a3014490cd18a Dave Airlie   2021-02-05   999  
+2a3014490cd18a Dave Airlie   2021-02-05  1000  	fb = &intel_fb->base;
+2a3014490cd18a Dave Airlie   2021-02-05  1001  
+2a3014490cd18a Dave Airlie   2021-02-05  1002  	fb->dev = dev;
+2a3014490cd18a Dave Airlie   2021-02-05  1003  
+2a3014490cd18a Dave Airlie   2021-02-05  1004  	val = intel_de_read(dev_priv, DSPCNTR(i9xx_plane));
+2a3014490cd18a Dave Airlie   2021-02-05  1005  
+005e95377249cb Matt Roper    2021-03-19  1006  	if (DISPLAY_VER(dev_priv) >= 4) {
+428cb15d5b0031 Ville Syrjälä 2022-01-21  1007  		if (val & DISP_TILED) {
+2a3014490cd18a Dave Airlie   2021-02-05  1008  			plane_config->tiling = I915_TILING_X;
+2a3014490cd18a Dave Airlie   2021-02-05  1009  			fb->modifier = I915_FORMAT_MOD_X_TILED;
+2a3014490cd18a Dave Airlie   2021-02-05  1010  		}
+2a3014490cd18a Dave Airlie   2021-02-05  1011  
+428cb15d5b0031 Ville Syrjälä 2022-01-21  1012  		if (val & DISP_ROTATE_180)
+2a3014490cd18a Dave Airlie   2021-02-05  1013  			plane_config->rotation = DRM_MODE_ROTATE_180;
+2a3014490cd18a Dave Airlie   2021-02-05  1014  	}
+2a3014490cd18a Dave Airlie   2021-02-05  1015  
+2a3014490cd18a Dave Airlie   2021-02-05  1016  	if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B &&
+428cb15d5b0031 Ville Syrjälä 2022-01-21  1017  	    val & DISP_MIRROR)
+2a3014490cd18a Dave Airlie   2021-02-05  1018  		plane_config->rotation |= DRM_MODE_REFLECT_X;
+2a3014490cd18a Dave Airlie   2021-02-05  1019  
+428cb15d5b0031 Ville Syrjälä 2022-01-21  1020  	pixel_format = val & DISP_FORMAT_MASK;
+2a3014490cd18a Dave Airlie   2021-02-05  1021  	fourcc = i9xx_format_to_fourcc(pixel_format);
+2a3014490cd18a Dave Airlie   2021-02-05  1022  	fb->format = drm_format_info(fourcc);
+2a3014490cd18a Dave Airlie   2021-02-05  1023  
+2a3014490cd18a Dave Airlie   2021-02-05  1024  	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
+2a3014490cd18a Dave Airlie   2021-02-05  1025  		offset = intel_de_read(dev_priv, DSPOFFSET(i9xx_plane));
+428cb15d5b0031 Ville Syrjälä 2022-01-21  1026  		base = intel_de_read(dev_priv, DSPSURF(i9xx_plane)) & DISP_ADDR_MASK;
+005e95377249cb Matt Roper    2021-03-19 @1027  	} else if (DISPLAY_VER(dev_priv) >= 4) {
 
-  CI-20190529: 20190529
-  CI_DRM_13196: 9e0c716f834ec17dbf96c47c8b5a2b32c4f483cd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7307: f0714273cd896c637759b3790f485308c4c97008 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_117080v5: 9e0c716f834ec17dbf96c47c8b5a2b32c4f483cd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-e24f35a8858c drm/i915/huc: define HuC FW version for MTL
-9b229ef0ae3e drm/i915/mtl/huc: Use the media gt for the HuC getparam
-83f554710722 drm/i915/mtl/huc: auth HuC via GSC
-c37ca25ab902 drm/i915/huc: differentiate the 2 steps of the MTL HuC auth flow
-e45539b0b59a drm/i915/huc: Load GSC-enabled HuC via DMA xfer if the fuse says so
-590f5331fc1b drm/i915/huc: Parse the GSC-enabled HuC binary
-835e51c7b4e6 drm/i915/uc: perma-pin firmwares
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/index.html
-
---===============5519484312499296350==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: HuC loading and authentication for MTL (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117080/">https://patchwork.freedesktop.org/series/117080/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13196 -&gt; Patchwork_117080v5</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/index.html</p>
-<h2>Participating hosts (39 -&gt; 38)</h2>
-<p>Additional (1): bat-mtlp-6 <br />
-  Missing    (2): bat-atsm-1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_117080v5 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/fi-skl-6600u/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/bat-adlp-9/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13196/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/bat-dg2-9/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13196/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/fi-skl-6600u/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>{bat-mtlp-8}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13196/bat-mtlp-8/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3595">i915#3595</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/bat-mtlp-8/igt@gem_huc_copy@huc-copy.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>{bat-mtlp-8}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13196/bat-mtlp-8/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117080v5/bat-mtlp-8/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13196 -&gt; Patchwork_117080v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13196: 9e0c716f834ec17dbf96c47c8b5a2b32c4f483cd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7307: f0714273cd896c637759b3790f485308c4c97008 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_117080v5: 9e0c716f834ec17dbf96c47c8b5a2b32c4f483cd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>e24f35a8858c drm/i915/huc: define HuC FW version for MTL<br />
-9b229ef0ae3e drm/i915/mtl/huc: Use the media gt for the HuC getparam<br />
-83f554710722 drm/i915/mtl/huc: auth HuC via GSC<br />
-c37ca25ab902 drm/i915/huc: differentiate the 2 steps of the MTL HuC auth flow<br />
-e45539b0b59a drm/i915/huc: Load GSC-enabled HuC via DMA xfer if the fuse says so<br />
-590f5331fc1b drm/i915/huc: Parse the GSC-enabled HuC binary<br />
-835e51c7b4e6 drm/i915/uc: perma-pin firmwares</p>
-
-</body>
-</html>
-
---===============5519484312499296350==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
