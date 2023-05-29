@@ -2,53 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50E9A714882
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 May 2023 13:30:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D041E7148B3
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 May 2023 13:38:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D22410E283;
-	Mon, 29 May 2023 11:30:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2C1210E0A9;
+	Mon, 29 May 2023 11:38:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9551410E0A9;
- Mon, 29 May 2023 11:29:59 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Dxy+q1jHRk1DQCAA--.765S3;
- Mon, 29 May 2023 19:29:57 +0800 (CST)
-Received: from openarena.loongson.cn (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8AxQbS0jHRkhdd+AA--.10790S2; 
- Mon, 29 May 2023 19:29:57 +0800 (CST)
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-Date: Mon, 29 May 2023 19:29:56 +0800
-Message-Id: <20230529112956.2083389-1-suijingfeng@loongson.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4F2B10E0A9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 May 2023 11:38:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685360326; x=1716896326;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9uxU6JkaGVvMk+SukshAde43XO0KPqujU25RXSeiQ4A=;
+ b=S+N6HEywklWtDDniVVQ5uvvbiixn9ZeqorPrJtbCdaBZ5C/tGc2nQrys
+ fRN9+XTUG/dUAAEX7GaTOMdrlVkbV58GQsHm1bHXJ+KSENb0BRPDgme7o
+ VruqBymd/JsVTGh6JcHqO+AWbweuBoi/tv+kO0cRWo2HECE+xpno0OLKJ
+ Id8Q266o05zXLSK78lM0O9/9OyWUOE+Z9z6MKicc57uEhouIgxVxtME+R
+ LhWmSKUXT+WhpPOTi3vMYg4G7lQrluzuSocrDe8dFU/PDwhKn1elBXlQN
+ j/X6LE+Li2DGA/OOALApgU7YnW0C1LlpfHBlPeUdNwsxFivVtEfhiXKlf Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10724"; a="441042485"
+X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="441042485"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2023 04:38:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10724"; a="880361047"
+X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="880361047"
+Received: from iswiersz-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.191])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2023 04:38:43 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 29 May 2023 14:38:39 +0300
+Message-Id: <20230529113839.1966864-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxQbS0jHRkhdd+AA--.10790S2
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBjvdXoWrKw1rGFWxZF15AFyDXF4fXwb_yoW3AFc_Aa
- 4xAr15u348ArZ29r43Aas8GFWfKa4rtw4kCF1fJrnrWFy2yrn0kws5WrWaqF9xCrs8AF43
- X3Z0gFZ8JanxKjkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
- xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
- b7kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3w
- AFIxvE14AKwVWUXVWUAwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK
- 6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7
- xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWle2I2
- 62IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4
- CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvj
- eVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCF04k20xvY0x0EwIxGrwCFx2IqxV
- CFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r10
- 6r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxV
- WUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG
- 6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr
- 1UYxBIdaVFxhVjvjDU0xZFpf9x07j1WlkUUUUU=
-Subject: [Intel-gfx] [PATCH v2] drm/i915_drm.h: fix a typo
+Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Fix a use-after-free when
+ intel_edp_init_connector fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,31 +58,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
- 'rbiter' -> 'arbiter'
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+We enable the DP aux channel during probe, but may free the connector
+soon afterwards. Ensure the DP aux display power put (and any other
+async put for that matter) is completed before everything is freed, to
+prevent a use-after-free in icl_aux_pw_to_phy(), called from
+icl_combo_phy_aux_power_well_disable.
+
+v2 by Jani:
+- do a regular flush before freeing dig_port
+
+Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
 ---
- include/drm/i915_drm.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/drm/i915_drm.h b/include/drm/i915_drm.h
-index 7adce327c1c2..adff68538484 100644
---- a/include/drm/i915_drm.h
-+++ b/include/drm/i915_drm.h
-@@ -42,7 +42,7 @@ extern struct resource intel_graphics_stolen_res;
-  * The Bridge device's PCI config space has information about the
-  * fb aperture size and the amount of pre-reserved memory.
-  * This is all handled in the intel-gtt.ko module. i915.ko only
-- * cares about the vga bit for the vga rbiter.
-+ * cares about the vga bit for the vga arbiter.
-  */
- #define INTEL_GMCH_CTRL		0x52
- #define INTEL_GMCH_VGA_DISABLE  (1 << 1)
+v2 of https://patchwork.freedesktop.org/patch/msgid/20221220094618.207126-1-maarten.lankhorst@linux.intel.com
+
+The encoder cleanup paths could use some cleanup and unification, but do
+what's needed here.
+---
+ drivers/gpu/drm/i915/display/g4x_dp.c    | 2 ++
+ drivers/gpu/drm/i915/display/intel_ddi.c | 2 ++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+index 112d91d81fdc..e8147c18fa93 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.c
++++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+@@ -1379,6 +1379,8 @@ bool g4x_dp_init(struct drm_i915_private *dev_priv,
+ 	return true;
+ 
+ err_init_connector:
++	/* aync put accesses the dig_port, ensure it's done before free */
++	intel_display_power_flush_work(dev_priv);
+ 	drm_encoder_cleanup(encoder);
+ err_encoder_init:
+ 	kfree(intel_connector);
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index d1a9a3cf94b5..dfa1c44dc442 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4971,6 +4971,8 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 	return;
+ 
+ err:
++	/* aync put accesses the dig_port, ensure it's done before free */
++	intel_display_power_flush_work(dev_priv);
+ 	drm_encoder_cleanup(&encoder->base);
+ 	kfree(dig_port);
+ }
 -- 
-2.25.1
+2.39.2
 
