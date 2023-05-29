@@ -1,66 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2580D714702
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 May 2023 11:24:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88701714703
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 May 2023 11:24:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D454010E260;
-	Mon, 29 May 2023 09:23:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11FCA10E260;
+	Mon, 29 May 2023 09:24:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1642310E260
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 May 2023 09:23:56 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id
- ffacd0b85a97d-30a892c45c4so1760943f8f.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 May 2023 02:23:55 -0700 (PDT)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
+ [IPv6:2a00:1450:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06D5010E260
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 May 2023 09:24:51 +0000 (UTC)
+Received: by mail-wm1-x335.google.com with SMTP id
+ 5b1f17b1804b1-3f6d01d390bso31701565e9.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 May 2023 02:24:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1685352234; x=1687944234;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=NLmlALnUbgkHhYs0dU0B8ygb/CN6AfjP9uJKhCTmqDg=;
- b=ORW7/SkxzVLZBUnKSyKhzhSf55RsFRHhGrXkOPV7xuHpH5W2PaeY3BVZvsJ9EQhWvm
- VkYFWzlYc4IMPk8LZ9im3gWyxu2kQui9RHfY37axMqUoPinJULLEe7FxC/OzHTCmHTd/
- EcJwW054/Zt6J51W+13CGeZBv/0yu4h4iL7500LG1SlSP3FfJUyPWtzJ3TAjiVgWoCZ5
- MmgE7op+jZeRn7SI++39Ca2onk0Pl9EEtsy72/V28T2BP2XbibGgP1fmTw/JFghf37oX
- oxFzGPM9S+Zsgv0VmjMaHrmcWzJKxvHvooEMewT/9PumCKV0KkmeI9uNBVO2ChS8fRNp
- axmg==
+ d=linaro.org; s=google; t=1685352290; x=1687944290;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=QRLZEYJ+H8EN7y3GZIpuw1BMcpjgLOv6rJrIAMINwSs=;
+ b=LzdFQsf6OP8r5/d5qFU4nbMpsmIlqSSigfmksiAC8ZGfjzPyBjPEZ67Cku14Ajghxn
+ dUk/Uei5GOurSem/4QquE5yyY46V4fj7dyYdWQ/sFZMEHN66Omfc92xOuEqtVRTVIfis
+ 7g57/Vt2mtWqjpAokiD5Tnn6k9eyphMdmE3tuH82VvGIdfr84dKqoiS/ixLv6WrZYW9P
+ O/HMxPpsXFzNC9FA5a/Jl7SVOiz/HCsv1P+x2WhNw9RgsLKxSRl8OpOeCqDY9tbKlgD8
+ uCHAuURgG+OdgJBZ+27qgeZiKqgTBj1lxMM4s1345b5szbMEmO+3ZnEe580K3WrTuLHG
+ zKSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1685352234; x=1687944234;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=NLmlALnUbgkHhYs0dU0B8ygb/CN6AfjP9uJKhCTmqDg=;
- b=FXiUd7BeiYpurbjtt1XLeOyhgyHzZULczK7SIQW7EjyYcCSzEYc8DF8QtJoj9bbzDL
- u4CjMJjLdmgyXxRp8Q+nVB0eKE++EHhOQq/pJuS1/GXbG8rvSXVBu97UhPmeaQlo+9zO
- ApFuWrCFlbFLsKPNNXNErxxlVdV40OWXjoGG62ubEECXdcoQ0PsrR2UH4BQKwtiuNuwR
- +TYbPwCHRfeMAstP8a+yZq0iUPidy4ikwxFjfmVMb2yAPjVefmYnw7MCNWSCoYzHhq9R
- j870B/ofYYCLkwyLqD5LGpm1fUnC5InzDRaexTBUXxDo+99Hqou4UQyd6iEUHJfazh3B
- yG2Q==
-X-Gm-Message-State: AC+VfDzJXAR++4zRU8drW3CxL2QXgxCPEr51DeIFxMCy8jhmyyNjRLpu
- fxKVv3zaokgHLrsdnrQw719usg==
-X-Google-Smtp-Source: ACHHUZ6LfT0cbPv77k6LopPIIpKkbXDST6H/0tSm6tr0vN4C6xcxx/iZEeNn/T2KwJBWZ8RBz9TbgQ==
-X-Received: by 2002:adf:f6c3:0:b0:309:303b:3dc5 with SMTP id
- y3-20020adff6c3000000b00309303b3dc5mr8769285wrp.7.1685352233980; 
- Mon, 29 May 2023 02:23:53 -0700 (PDT)
+ d=1e100.net; s=20221208; t=1685352290; x=1687944290;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=QRLZEYJ+H8EN7y3GZIpuw1BMcpjgLOv6rJrIAMINwSs=;
+ b=N9vFpORnfm0AfXxnyuBGETn2/6hGYZd0JZXnWeWHkqwAWnhGcTW6Kuc0R9CaBd3GUN
+ CrcuuLGjytl/5AY9zLKQ2suX7a3CIIny8f0obYgqf9gYperqPFjPNmmHLrfLG3OtfJtX
+ q/Vtl2WkZdSHxqgRQlAE4rKQ/tvFRw+JwV8sqRJfLpr6VsWs2Bxj4/S1CqCBE6uZ2qsi
+ rWbyihniqC+an/8ixg0IvRciOXbk82o4o6WkHot1+ThDCxx+0l5ZAZ3rsTo3SqLtkupr
+ c5dt0CPpgPJlHM1med8RDmfovS9kYLB572TUrBJf2aUiKWUE4AgIiQ/N775LwVx+atby
+ 7aPw==
+X-Gm-Message-State: AC+VfDzreO/HBqYFNli/vZ+8xYw9t6qkQkF7DLo2+8Uj/La0jOtDSUcz
+ BPJAfiyXmkW56qrsE2fJRYGUWTfgBybF1ohSzek=
+X-Google-Smtp-Source: ACHHUZ5nqs49rS1mtEWRIifcGMgABcd5KxrkUT/Jq6Sulc6TKEtx4b/1QJzbw+8ujuFjsbYnOmxP2w==
+X-Received: by 2002:a05:600c:27ca:b0:3f6:1141:7cc1 with SMTP id
+ l10-20020a05600c27ca00b003f611417cc1mr10284245wmb.26.1685352290188; 
+ Mon, 29 May 2023 02:24:50 -0700 (PDT)
 Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- b5-20020a5d45c5000000b002fda1b12a0bsm13212360wrs.2.2023.05.29.02.23.51
+ e21-20020a05600c219500b003f4fffccd73sm13689432wme.9.2023.05.29.02.24.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 May 2023 02:23:52 -0700 (PDT)
-Date: Mon, 29 May 2023 12:23:49 +0300
+ Mon, 29 May 2023 02:24:48 -0700 (PDT)
+Date: Mon, 29 May 2023 12:24:46 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev,
- Vinod Govindapillai <vinod.govindapillai@intel.com>,
+To: oe-kbuild@lists.linux.dev, Jani Nikula <jani.nikula@intel.com>,
  intel-gfx@lists.freedesktop.org
-Message-ID: <423616a6-2f7b-4be4-b608-de16ccf3a620@kili.mountain>
+Message-ID: <67cd1180-7ffb-46f6-ab30-717219a654fe@kili.mountain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230526125055.39886-7-vinod.govindapillai@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v8 6/7] drm/i915/mtl: find the best QGV
- point for the SAGV configuration
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0988d237e56c56568f035053da8e2e2308a17d3a.1685119007.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 01/15] drm/i915/plane: warn on non-zero
+ plane offset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,115 +74,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ville.syrjala@intel.com, oe-kbuild-all@lists.linux.dev
+Cc: jani.nikula@intel.com, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Vinod,
+Hi Jani,
 
 kernel test robot noticed the following build warnings:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vinod-Govindapillai/drm-i915-fix-the-derating-percentage-for-MTL/20230526-205305
+url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-plane-warn-on-non-zero-plane-offset/20230527-003951
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230526125055.39886-7-vinod.govindapillai%40intel.com
-patch subject: [Intel-gfx] [PATCH v8 6/7] drm/i915/mtl: find the best QGV point for the SAGV configuration
-config: i386-randconfig-m021-20230526 (https://download.01.org/0day-ci/archive/20230528/202305280253.Ab8bRV2w-lkp@intel.com/config)
+patch link:    https://lore.kernel.org/r/0988d237e56c56568f035053da8e2e2308a17d3a.1685119007.git.jani.nikula%40intel.com
+patch subject: [Intel-gfx] [PATCH 01/15] drm/i915/plane: warn on non-zero plane offset
+config: x86_64-randconfig-m031-20230526 (https://download.01.org/0day-ci/archive/20230528/202305280453.8yzCMS2i-lkp@intel.com/config)
 compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
 
 If you fix the issue, kindly add following tag where applicable
 | Reported-by: kernel test robot <lkp@intel.com>
 | Reported-by: Dan Carpenter <error27@gmail.com>
-| Closes: https://lore.kernel.org/r/202305280253.Ab8bRV2w-lkp@intel.com/
+| Closes: https://lore.kernel.org/r/202305280453.8yzCMS2i-lkp@intel.com/
 
-New smatch warnings:
-drivers/gpu/drm/i915/display/intel_bw.c:845 mtl_find_qgv_points() error: buffer overflow 'i915->display.bw.max' 6 <= 6
+smatch warnings:
+drivers/gpu/drm/i915/display/i9xx_plane.c:1040 i9xx_get_initial_plane_config() error: uninitialized symbol 'offset'.
 
-Old smatch warnings:
-drivers/gpu/drm/i915/display/intel_bw.c:852 mtl_find_qgv_points() error: buffer overflow 'i915->display.bw.max' 6 <= 6
+vim +/offset +1040 drivers/gpu/drm/i915/display/i9xx_plane.c
 
-vim +845 drivers/gpu/drm/i915/display/intel_bw.c
+2a3014490cd18a Dave Airlie   2021-02-05   974  void
+2a3014490cd18a Dave Airlie   2021-02-05   975  i9xx_get_initial_plane_config(struct intel_crtc *crtc,
+2a3014490cd18a Dave Airlie   2021-02-05   976  			      struct intel_initial_plane_config *plane_config)
+2a3014490cd18a Dave Airlie   2021-02-05   977  {
+2a3014490cd18a Dave Airlie   2021-02-05   978  	struct drm_device *dev = crtc->base.dev;
+2a3014490cd18a Dave Airlie   2021-02-05   979  	struct drm_i915_private *dev_priv = to_i915(dev);
+2a3014490cd18a Dave Airlie   2021-02-05   980  	struct intel_plane *plane = to_intel_plane(crtc->base.primary);
+2a3014490cd18a Dave Airlie   2021-02-05   981  	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
+2a3014490cd18a Dave Airlie   2021-02-05   982  	enum pipe pipe;
+2a3014490cd18a Dave Airlie   2021-02-05   983  	u32 val, base, offset;
+2a3014490cd18a Dave Airlie   2021-02-05   984  	int fourcc, pixel_format;
+2a3014490cd18a Dave Airlie   2021-02-05   985  	unsigned int aligned_height;
+2a3014490cd18a Dave Airlie   2021-02-05   986  	struct drm_framebuffer *fb;
+2a3014490cd18a Dave Airlie   2021-02-05   987  	struct intel_framebuffer *intel_fb;
+2a3014490cd18a Dave Airlie   2021-02-05   988  
+2a3014490cd18a Dave Airlie   2021-02-05   989  	if (!plane->get_hw_state(plane, &pipe))
+2a3014490cd18a Dave Airlie   2021-02-05   990  		return;
+2a3014490cd18a Dave Airlie   2021-02-05   991  
+2a3014490cd18a Dave Airlie   2021-02-05   992  	drm_WARN_ON(dev, pipe != crtc->pipe);
+2a3014490cd18a Dave Airlie   2021-02-05   993  
+2a3014490cd18a Dave Airlie   2021-02-05   994  	intel_fb = kzalloc(sizeof(*intel_fb), GFP_KERNEL);
+2a3014490cd18a Dave Airlie   2021-02-05   995  	if (!intel_fb) {
+2a3014490cd18a Dave Airlie   2021-02-05   996  		drm_dbg_kms(&dev_priv->drm, "failed to alloc fb\n");
+2a3014490cd18a Dave Airlie   2021-02-05   997  		return;
+2a3014490cd18a Dave Airlie   2021-02-05   998  	}
+2a3014490cd18a Dave Airlie   2021-02-05   999  
+2a3014490cd18a Dave Airlie   2021-02-05  1000  	fb = &intel_fb->base;
+2a3014490cd18a Dave Airlie   2021-02-05  1001  
+2a3014490cd18a Dave Airlie   2021-02-05  1002  	fb->dev = dev;
+2a3014490cd18a Dave Airlie   2021-02-05  1003  
+2a3014490cd18a Dave Airlie   2021-02-05  1004  	val = intel_de_read(dev_priv, DSPCNTR(i9xx_plane));
+2a3014490cd18a Dave Airlie   2021-02-05  1005  
+005e95377249cb Matt Roper    2021-03-19  1006  	if (DISPLAY_VER(dev_priv) >= 4) {
+428cb15d5b0031 Ville Syrjälä 2022-01-21  1007  		if (val & DISP_TILED) {
+2a3014490cd18a Dave Airlie   2021-02-05  1008  			plane_config->tiling = I915_TILING_X;
+2a3014490cd18a Dave Airlie   2021-02-05  1009  			fb->modifier = I915_FORMAT_MOD_X_TILED;
+2a3014490cd18a Dave Airlie   2021-02-05  1010  		}
+2a3014490cd18a Dave Airlie   2021-02-05  1011  
+428cb15d5b0031 Ville Syrjälä 2022-01-21  1012  		if (val & DISP_ROTATE_180)
+2a3014490cd18a Dave Airlie   2021-02-05  1013  			plane_config->rotation = DRM_MODE_ROTATE_180;
+2a3014490cd18a Dave Airlie   2021-02-05  1014  	}
+2a3014490cd18a Dave Airlie   2021-02-05  1015  
+2a3014490cd18a Dave Airlie   2021-02-05  1016  	if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B &&
+428cb15d5b0031 Ville Syrjälä 2022-01-21  1017  	    val & DISP_MIRROR)
+2a3014490cd18a Dave Airlie   2021-02-05  1018  		plane_config->rotation |= DRM_MODE_REFLECT_X;
+2a3014490cd18a Dave Airlie   2021-02-05  1019  
+428cb15d5b0031 Ville Syrjälä 2022-01-21  1020  	pixel_format = val & DISP_FORMAT_MASK;
+2a3014490cd18a Dave Airlie   2021-02-05  1021  	fourcc = i9xx_format_to_fourcc(pixel_format);
+2a3014490cd18a Dave Airlie   2021-02-05  1022  	fb->format = drm_format_info(fourcc);
+2a3014490cd18a Dave Airlie   2021-02-05  1023  
+2a3014490cd18a Dave Airlie   2021-02-05  1024  	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
+2a3014490cd18a Dave Airlie   2021-02-05  1025  		offset = intel_de_read(dev_priv, DSPOFFSET(i9xx_plane));
+428cb15d5b0031 Ville Syrjälä 2022-01-21  1026  		base = intel_de_read(dev_priv, DSPSURF(i9xx_plane)) & DISP_ADDR_MASK;
+005e95377249cb Matt Roper    2021-03-19  1027  	} else if (DISPLAY_VER(dev_priv) >= 4) {
+2a3014490cd18a Dave Airlie   2021-02-05  1028  		if (plane_config->tiling)
+2a3014490cd18a Dave Airlie   2021-02-05  1029  			offset = intel_de_read(dev_priv,
+2a3014490cd18a Dave Airlie   2021-02-05  1030  					       DSPTILEOFF(i9xx_plane));
+2a3014490cd18a Dave Airlie   2021-02-05  1031  		else
+2a3014490cd18a Dave Airlie   2021-02-05  1032  			offset = intel_de_read(dev_priv,
+2a3014490cd18a Dave Airlie   2021-02-05  1033  					       DSPLINOFF(i9xx_plane));
+428cb15d5b0031 Ville Syrjälä 2022-01-21  1034  		base = intel_de_read(dev_priv, DSPSURF(i9xx_plane)) & DISP_ADDR_MASK;
+2a3014490cd18a Dave Airlie   2021-02-05  1035  	} else {
+2a3014490cd18a Dave Airlie   2021-02-05  1036  		base = intel_de_read(dev_priv, DSPADDR(i9xx_plane));
 
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  806  static int mtl_find_qgv_points(struct drm_i915_private *i915,
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  807  			       unsigned int data_rate,
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  808  			       unsigned int num_active_planes,
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  809  			       const struct intel_bw_state *old_bw_state,
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  810  			       struct intel_bw_state *new_bw_state)
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  811  {
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  812  	unsigned int best_rate = UINT_MAX;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  813  	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  814  	unsigned int qgv_peak_bw  = 0;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  815  	int i;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  816  	int ret;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  817  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  818  	ret = intel_atomic_lock_global_state(&new_bw_state->base);
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  819  	if (ret)
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  820  		return ret;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  821  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  822  	/*
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  823  	 * If SAGV cannot be enabled, disable the pcode SAGV by passing all 1's
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  824  	 * for qgv peak bw in PM Demand request. So assign UINT_MAX if SAGV is
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  825  	 * not enabled. PM Demand code will clamp the value for the register
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  826  	 */
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  827  	if (!intel_can_enable_sagv(i915, new_bw_state)) {
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  828  		new_bw_state->qgv_point_peakbw = UINT_MAX;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  829  		drm_dbg_kms(&i915->drm, "No SAGV, use UINT_MAX as peak bw.");
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  830  		goto out;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  831  	}
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  832  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  833  	/*
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  834  	 * Find the best QGV point by comparing the data_rate with max data rate
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  835  	 * offered per plane group
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  836  	 */
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  837  	for (i = 0; i < num_qgv_points; i++) {
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  838  		unsigned int bw_index =
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  839  			tgl_max_bw_index(i915, num_active_planes, i);
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  840  		unsigned int max_data_rate;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  841  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  842  		if (bw_index > ARRAY_SIZE(i915->display.bw.max))
+offset not initialized on this path.
 
-Should be >= ARRAY_SIZE()
-
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  843  			continue;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  844  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26 @845  		max_data_rate = i915->display.bw.max[bw_index].deratedbw[i];
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  846  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  847  		if (max_data_rate < data_rate)
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  848  			continue;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  849  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  850  		if (max_data_rate - data_rate < best_rate) {
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  851  			best_rate = max_data_rate - data_rate;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  852  			qgv_peak_bw = i915->display.bw.max[bw_index].peakbw[i];
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  853  		}
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  854  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  855  		drm_dbg_kms(&i915->drm, "QGV point %d: max bw %d required %d qgv_peak_bw: %d\n",
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  856  			    i, max_data_rate, data_rate, qgv_peak_bw);
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  857  	}
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  858  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  859  	drm_dbg_kms(&i915->drm, "Matching peaks QGV bw: %d for required data rate: %d\n",
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  860  		    qgv_peak_bw, data_rate);
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  861  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  862  	/*
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  863  	 * The display configuration cannot be supported if no QGV point
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  864  	 * satisfying the required data rate is found
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  865  	 */
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  866  	if (qgv_peak_bw == 0) {
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  867  		drm_dbg_kms(&i915->drm, "No QGV points for bw %d for display configuration(%d active planes).\n",
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  868  			    data_rate, num_active_planes);
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  869  		return -EINVAL;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  870  	}
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  871  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  872  	/* MTL PM DEMAND expects QGV BW parameter in multiples of 100 mbps */
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  873  	new_bw_state->qgv_point_peakbw = DIV_ROUND_CLOSEST(qgv_peak_bw, 100);
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  874  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  875  out:
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  876  	if (new_bw_state->qgv_point_peakbw != old_bw_state->qgv_point_peakbw)  {
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  877  		ret = intel_atomic_serialize_global_state(&new_bw_state->base);
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  878  		if (ret)
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  879  			return ret;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  880  	}
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  881  
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  882  	return 0;
-a10fe26325bd3a Vinod Govindapillai 2023-05-26  883  }
+2a3014490cd18a Dave Airlie   2021-02-05  1037  	}
+2a3014490cd18a Dave Airlie   2021-02-05  1038  	plane_config->base = base;
+2a3014490cd18a Dave Airlie   2021-02-05  1039  
+40c3d9e9221e23 Jani Nikula   2023-05-26 @1040  	drm_WARN_ON(&dev_priv->drm, offset != 0);
 
 -- 
 0-DAY CI Kernel Test Service
