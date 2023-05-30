@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2386B715986
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 May 2023 11:09:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 727AB715984
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 May 2023 11:09:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E4BA10E386;
-	Tue, 30 May 2023 09:09:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8D210E385;
+	Tue, 30 May 2023 09:09:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA85110E384;
- Tue, 30 May 2023 09:09:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 027D510E386;
+ Tue, 30 May 2023 09:09:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685437757; x=1716973757;
+ t=1685437762; x=1716973762;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MYjoDgLZOOzUTE8coBLZbMWIjXvD1hmZJl4+qP4wxEk=;
- b=QxmEEx93lrmSGh6VUyR3ZPr1b/lCvpvYm7quDqxMdGvBw64e1jPDzjR3
- qGthBi3QeRWE8/o7I+PGbYPIDdNWa1wY715h5uuENsdYWIZZCJVUcR+Ru
- ayEuj7t9Dh2s59D40js8VOULo5UvdaXIWgTgSFjP6LG6LV8M1Q6j8GD5J
- sIiQ1TNDylbahzGIcCIzuzhN3AuLxqzmBF2INFoudnisqBwm0egipBvG2
- +HQQYtlAO9MGoG85qOz8rpaeo3gUY5C3xg72hfxzwBIUvH4iljZJfl6Pn
- 6aGagLECzevc886obBo1tN2G+IYwEZIeiISzOkobEm/Po7j2MdvmrNhXp A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="354872603"
-X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="354872603"
+ bh=iOOLBfLwiKsWoCvn5Nsv5WTESUgLcQKcpOV60NlpGsE=;
+ b=GwxJtFKe0kcHRGiaGnBGXv3FJir3NSP3tX2ZWEhmInDglsAPG8hFpLio
+ VN/CvSyWEgUsNIdxqi/n7LfOvApe0NQ/G02yTSDlumRT7w+0q2xsr5TzK
+ BHzj+cCpVm4oloajKkJ4goLRdZfCTUvglS04HuolU1phOmCfMvEPjE1wB
+ i7YexS2ivNaex3Sn3hQQJDyZ1IPavi78UyViEyEPD5jjHt/n8d3qz4gg4
+ eqclZhwSwY8JTl2zBGhUoM1h3dklMSyRyph9EEf308PrndhYaAiY0P7h2
+ F29Ihj1bCc+oYiFD0J64nkLiAHX9oWoEfkKt8+P6jvg5Rn45MPkm4f0PJ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="354872622"
+X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="354872622"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 02:09:17 -0700
+ 30 May 2023 02:09:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="683875145"
-X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="683875145"
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="683875196"
+X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="683875196"
 Received: from kleve-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.47.8])
  by orsmga006-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2023 02:09:15 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2023 02:09:20 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 May 2023 12:08:21 +0300
-Message-Id: <4ab5ec994670ea50f95c8079c1f1ae915940b00f.1685437501.git.jani.nikula@intel.com>
+Date: Tue, 30 May 2023 12:08:22 +0300
+Message-Id: <429cd6f23366cb4cace4fa13cf92ad068aca64dd.1685437501.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1685437500.git.jani.nikula@intel.com>
 References: <cover.1685437500.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 09/13] drm/edid: add
+Subject: [Intel-gfx] [PATCH v2 10/13] drm/i915/lvds: switch to
  drm_edid_read_switcheroo()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,69 +63,39 @@ Cc: jani.nikula@intel.com, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a switcheroo variant to the struct drm_edid based EDID read
-functions.
+Use drm_edid_read_switcheroo() to switch from struct edid to struct
+drm_edid.
 
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Lukas Wunner <lukas@wunner.de>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/drm_edid.c | 29 +++++++++++++++++++++++++++++
- include/drm/drm_edid.h     |  2 ++
- 2 files changed, 31 insertions(+)
+ drivers/gpu/drm/i915/display/intel_lvds.c | 13 ++-----------
+ 1 file changed, 2 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index 813ce00a106a..941f3d53a701 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -2844,6 +2844,35 @@ struct edid *drm_get_edid_switcheroo(struct drm_connector *connector,
- }
- EXPORT_SYMBOL(drm_get_edid_switcheroo);
- 
-+/**
-+ * drm_edid_read_switcheroo - get EDID data for a vga_switcheroo output
-+ * @connector: connector we're probing
-+ * @adapter: I2C adapter to use for DDC
-+ *
-+ * Wrapper around drm_edid_read_ddc() for laptops with dual GPUs using one set
-+ * of outputs. The wrapper adds the requisite vga_switcheroo calls to
-+ * temporarily switch DDC to the GPU which is retrieving EDID.
-+ *
-+ * Return: Pointer to valid EDID or %NULL if we couldn't find any.
-+ */
-+const struct drm_edid *drm_edid_read_switcheroo(struct drm_connector *connector,
-+						struct i2c_adapter *adapter)
-+{
-+	struct drm_device *dev = connector->dev;
-+	struct pci_dev *pdev = to_pci_dev(dev->dev);
-+	const struct drm_edid *drm_edid;
-+
-+	if (drm_WARN_ON_ONCE(dev, !dev_is_pci(dev->dev)))
-+		return NULL;
-+
-+	vga_switcheroo_lock_ddc(pdev);
-+	drm_edid = drm_edid_read_ddc(connector, adapter);
-+	vga_switcheroo_unlock_ddc(pdev);
-+
-+	return drm_edid;
-+}
-+EXPORT_SYMBOL(drm_edid_read_switcheroo);
-+
- /**
-  * drm_edid_duplicate - duplicate an EDID and the extensions
-  * @edid: EDID to duplicate
-diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
-index 571885d32907..169755d3de19 100644
---- a/include/drm/drm_edid.h
-+++ b/include/drm/drm_edid.h
-@@ -613,6 +613,8 @@ const struct drm_edid *drm_edid_read_ddc(struct drm_connector *connector,
- const struct drm_edid *drm_edid_read_custom(struct drm_connector *connector,
- 					    int (*read_block)(void *context, u8 *buf, unsigned int block, size_t len),
- 					    void *context);
-+const struct drm_edid *drm_edid_read_switcheroo(struct drm_connector *connector,
-+						struct i2c_adapter *adapter);
- int drm_edid_connector_update(struct drm_connector *connector,
- 			      const struct drm_edid *edid);
- int drm_edid_connector_add_modes(struct drm_connector *connector);
+diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+index 1f4349a12a02..3ace56979b70 100644
+--- a/drivers/gpu/drm/i915/display/intel_lvds.c
++++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+@@ -944,17 +944,8 @@ void intel_lvds_init(struct drm_i915_private *i915)
+ 	 */
+ 	mutex_lock(&i915->drm.mode_config.mutex);
+ 	if (vga_switcheroo_handler_flags() & VGA_SWITCHEROO_CAN_SWITCH_DDC) {
+-		const struct edid *edid;
+-
+-		/* FIXME: Make drm_get_edid_switcheroo() return drm_edid */
+-		edid = drm_get_edid_switcheroo(&connector->base,
+-					       intel_gmbus_get_adapter(i915, pin));
+-		if (edid) {
+-			drm_edid = drm_edid_alloc(edid, (edid->extensions + 1) * EDID_LENGTH);
+-			kfree(edid);
+-		} else {
+-			drm_edid = NULL;
+-		}
++		drm_edid = drm_edid_read_switcheroo(&connector->base,
++						    intel_gmbus_get_adapter(i915, pin));
+ 	} else {
+ 		drm_edid = drm_edid_read_ddc(&connector->base,
+ 					     intel_gmbus_get_adapter(i915, pin));
 -- 
 2.39.2
 
