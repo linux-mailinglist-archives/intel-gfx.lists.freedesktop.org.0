@@ -1,76 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25A8D737417
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:28:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 272E0737418
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:28:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 147FA10E37F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15E9210E380;
 	Tue, 20 Jun 2023 18:28:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
- [IPv6:2a00:1450:4864:20::336])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ADE610E75D
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 May 2023 20:30:02 +0000 (UTC)
-Received: by mail-wm1-x336.google.com with SMTP id
- 5b1f17b1804b1-3f42ba32e24so215795e9.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 May 2023 13:30:02 -0700 (PDT)
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com
+ [IPv6:2607:f8b0:4864:20::1034])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B52BE10E12B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 May 2023 13:49:16 +0000 (UTC)
+Received: by mail-pj1-x1034.google.com with SMTP id
+ 98e67ed59e1d1-256e1d87998so95074a91.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 May 2023 06:49:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=tessares.net; s=google; t=1685046600; x=1687638600;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=KpMGG8xImlDkqBATRluOoCQ+0G0nxNJZCtKY+pxwMpA=;
- b=NL0EX6/H88L3/duJLGNldX6FVc864XY+R00ohvr+ICNoEIX6CkE9Z12+2Pn21sYWz1
- fqEfxKmu8b17oJLFja8/HxbTX7/13X/d3jvliRnKcCL5o0gu7HMoz/3qHMtZEvPltVqA
- wkoRjWENQ7+GFman8KVYBQnz295yByLuabrGeRAy63hZWE4HQ/WXDjjWRUdF6cBHkEc1
- jri0vXDscHWWc86+fjc6eIDXXtCcJXgAryO/gMactDAeMMauaUQFqPU4wPykpxFyyIr6
- JYLh8Gj8skPhNs6zH1xj14mKcX0EEDCNldNz90BGNWDVXfC6rhSazgG/9N0vuzcxtFaQ
- nNgQ==
+ d=heitbaum.com; s=google; t=1685454555; x=1688046555;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=7p73ODufu1/P74FptI7FRwaCItiP1sKbYRvV3n+M0V0=;
+ b=PzarIwSIhRYrd8a9D1iPGmwviHC2XZt4+tfx7iv3dKbXBCvqRWGx9WoPv5WraiCSjm
+ zgD8EF2ExxnBmzqJqpZ2xnxBOoQJjgm+v6OMnfUESSyJmbUZtTzVruClSMIw+5cXpChR
+ k23PLH32rOaJYk7OJBiywbIPGc16TrY6HegpM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1685046600; x=1687638600;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
+ d=1e100.net; s=20221208; t=1685454555; x=1688046555;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=KpMGG8xImlDkqBATRluOoCQ+0G0nxNJZCtKY+pxwMpA=;
- b=L7zlOUj5kego+cv2mmr18+snzURqdLDzLinrwzAwoel8jifGGLbjrmeHnfyBOxxB1T
- VLInefkdCVOsj5/wQ0qSwZ13MNdv7Kf/6jMK70ZzUeDPhE1kdhjwsLIXJ0llq6gc+NIH
- yDP9Dsu0jp5+9OXCIfxWmxxuDrHFbASCELcIu8h/6mrfpsgTzs/eHfg2rlBFyoX6Udbo
- fC8qgy6zt9+bBky2yVhSGPjaYXllSP2IDwFdmJYUnmwd5zaWpxM0GgTNPtUFtvRX3rNv
- VnJ1py3TbRG//J3Y6a0p7ythuCsqJH2KhCDvIvKrDTWWwTnxLziXmTiRvMbY0nuhc3DA
- zI9A==
-X-Gm-Message-State: AC+VfDzcfUeKLV7LxNtizEFZjFeNeikKWwjGnl6l2//4Yf0xQX9UU5zR
- dWBSn/HviCzeLSkjXRpZCC9yjw==
-X-Google-Smtp-Source: ACHHUZ4PexvjlMAM/TtsIgybNpAfwmX0zkAmpQB0DP94UjoG/L9hVa0OrqzyLg4x+TSxOSgSUCOgYA==
-X-Received: by 2002:a05:600c:2111:b0:3f6:fb2:add4 with SMTP id
- u17-20020a05600c211100b003f60fb2add4mr3086171wml.33.1685046600132; 
- Thu, 25 May 2023 13:30:00 -0700 (PDT)
-Received: from ?IPV6:2a02:578:8593:1200:bb9d:a59a:c33b:e36?
- ([2a02:578:8593:1200:bb9d:a59a:c33b:e36])
- by smtp.gmail.com with ESMTPSA id
- y12-20020a1c4b0c000000b003f4290720d0sm6602440wma.47.2023.05.25.13.29.59
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 25 May 2023 13:29:59 -0700 (PDT)
-Message-ID: <39da7e41-dd07-b8bc-57b9-19b05fdfbeac@tessares.net>
-Date: Thu, 25 May 2023 22:29:58 +0200
+ bh=7p73ODufu1/P74FptI7FRwaCItiP1sKbYRvV3n+M0V0=;
+ b=hZ4gE6N9DV9KsgRUx0LnhGssx8AHnXkW2amjzYoh6tNw2QHbUgaZQD9vhHp4SQin46
+ Gn1D5h9Qi9Ii3odAJUJJSiLvl03Itj08DVtJ8E4MKD7m7r0hkqZg0efYD+Pae67lXscB
+ l2fsJU+B2LLm50I5a6kwXLDIctd7j6rSuSURdgL73da7Nh9c1wNYv1XEDYb++IZVx/il
+ 7HBMd3n7axRXehFhhdzqEVkcZwgec5k6LeF8cr1m71y1tRwFYjBj+SnjHmo/caFOmafB
+ olVh+GgyZoe1V2GnKS/h5WgrdE3JjYcW+c59B7DC5BbPQS+DWmTpYzW9i60h7m4kxmYc
+ j9Aw==
+X-Gm-Message-State: AC+VfDykraHIFCPUUfBerk0BjJR+/tQtWneGH/HWR5QXde0L0oyOhOdb
+ 8OP0APj3Mhc2VcWAMvbfk9wYP7Psab6Oy8I4G0J9Fg==
+X-Google-Smtp-Source: ACHHUZ4XSEbkBWzXynP47Hjpm8/ECtPpTXOj/WE0fHRVvYpYN5zxii/+M2F6b3VEOWryyJa4ue4xRw==
+X-Received: by 2002:a17:90a:fe13:b0:255:a8fb:a72a with SMTP id
+ ck19-20020a17090afe1300b00255a8fba72amr2573662pjb.32.1685454555527; 
+ Tue, 30 May 2023 06:49:15 -0700 (PDT)
+Received: from 5e905162a5a7 ([122.199.31.3]) by smtp.gmail.com with ESMTPSA id
+ nn6-20020a17090b38c600b002508f0ac3edsm4246116pjb.53.2023.05.30.06.49.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 30 May 2023 06:49:14 -0700 (PDT)
+Date: Tue, 30 May 2023 13:49:07 +0000
+From: Rudi Heitbaum <rudi@heitbaum.com>
+To: Imre Deak <imre.deak@intel.com>, Dave Airlie <airlied@redhat.com>,
+ Dave Airlie <airlied@gmail.com>
+Message-ID: <20230530134907.GA8@5e905162a5a7>
+References: <20230510103131.1618266-2-imre.deak@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-GB
-To: Nick Desaulniers <ndesaulniers@google.com>,
- Nathan Chancellor <nathan@kernel.org>
-References: <20230524-intel_async_flip_check_hw-implicit-fallthrough-v1-1-83de89e376a1@kernel.org>
- <CAKwvOd=jZJouuNMd3Rvc--goA0EXPHcf6cHXUA6W1kXJg2ay2w@mail.gmail.com>
- <20230524184103.GA324296@dev-arch.thelio-3990X>
- <CAKwvOdm=Zk8YhrPptN3k7UQo+1n7Ws=Qox=BwTR9bbjPJJYz8A@mail.gmail.com>
-From: Matthieu Baerts <matthieu.baerts@tessares.net>
-In-Reply-To: <CAKwvOdm=Zk8YhrPptN3k7UQo+1n7Ws=Qox=BwTR9bbjPJJYz8A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230510103131.1618266-2-imre.deak@intel.com>
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:28:21 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix clang -Wimplicit-fallthrough
- in intel_async_flip_check_hw()
+Subject: Re: [Intel-gfx] [v4,
+ 01/14] drm/i915: Fix PIPEDMC disabling for a bigjoiner configuration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,103 +73,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, trix@redhat.com, intel-gfx@lists.freedesktop.org,
- patches@lists.linux.dev, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com, Joe Perches <joe@perches.com>,
- Naresh Kamboju <naresh.kamboju@linaro.org>,
- Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nick,
+Hi Imre/Dave,
 
-On 24/05/2023 20:56, Nick Desaulniers wrote:
-> On Wed, May 24, 2023 at 11:41â€¯AM Nathan Chancellor <nathan@kernel.org> wrote:
->>
->> On Wed, May 24, 2023 at 11:32:32AM -0700, Nick Desaulniers wrote:
->>> On Wed, May 24, 2023 at 8:38â€¯AM Nathan Chancellor <nathan@kernel.org> wrote:
->>>>
->>>> Clang warns:
->>>>
->>>>   drivers/gpu/drm/i915/display/intel_display.c:6012:3: error: unannotated fall-through between switch labels [-Werror,-Wimplicit-fallthrough]
->>>>                   case I915_FORMAT_MOD_X_TILED:
->>>>                   ^
->>>>   drivers/gpu/drm/i915/display/intel_display.c:6012:3: note: insert 'break;' to avoid fall-through
->>>>                   case I915_FORMAT_MOD_X_TILED:
->>>>                   ^
->>>>                   break;
->>>>   1 error generated.
->>>>
->>>> Clang is a little more pedantic than GCC, which does not warn when
->>>> falling through to a case that is just break or return. Clang's version
->>>> is more in line with the kernel's own stance in deprecated.rst, which
->>>> states that all switch/case blocks must end in either break,
->>>> fallthrough, continue, goto, or return. Add the missing break to silence
->>>> the warning.
->>>>
->>>> Fixes: 937859485aef ("drm/i915: Support Async Flip on Linear buffers")
->>>> Reported-by: kernel test robot <lkp@intel.com>
->>>> Closes: https://lore.kernel.org/202305241902.UvHtMoxa-lkp@intel.com/
->>>> Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
->>>> Closes: https://lore.kernel.org/CA+G9fYv68V3ewK0Qj-syQj7qX-hQr0H1MFL=QFNuDoE_J2Zu-g@mail.gmail.com/
->>>> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
->>>
->>> Thanks for the patch! I've never seen the closes tag before, that's
->>> new to me. Can you tell me more about it?
->>
->> It is new to me (at least in the context of the kernel) as well. I only
->> used it over Link: because checkpatch.pl told me to:
->>
->> WARNING: Reported-by: should be immediately followed by Closes: with a URL to the report
->> #26:
->> Reported-by: kernel test robot <lkp@intel.com>
->> Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
->>
->> WARNING: Reported-by: should be immediately followed by Closes: with a URL to the report
->> #27:
->> Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
->> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
->>
->> It was Link: for a bit but commit 44c31888098a ("checkpatch: allow
->> Closes tags with links") changed it to Closes:. Looks odd to me but
->> whatever the linter says I suppose.
->>
->> Thanks for the review!
->>
->> Cheers,
->> Nathan
->>
->>> A few more tags
->>>
->>> Reported-by: Tom Rix <trix@redhat.com>
->>> Link: https://lore.kernel.org/all/20230523125116.1669057-1-trix@redhat.com/
->>> Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
+Ref: [v4,01/14] drm/i915: Fix PIPEDMC disabling for a bigjoiner configuration
+     [git pull] drm fixes for 6.4-rc4
+     drm-fixes-2023-05-26:
+     drm fixes for 6.4-rc4
+
+This patch has caused a regression between 6.4-rc3 and 6.4-rc4. Other
+tested kernels include 6.3.4 work fine. Dropping the patch allows the decode
+playback of media via Kodi. Without dropping the patch - the media
+starts and stutters then ceases to play.
+
+There is an additional issue that 6.4-rc4 audio playback is also failing
+(where 6.4-rc3 was fine), I have not yet tracked this down.
+
+This is all on:
+DMI: Intel(R) Client Systems NUC12WSKi7/NUC12WSBi7, BIOS WSADL357.0087.2023.0306.1931 03/06/2023
+12th Gen Intel(R) Core(TM) i7-1260P (family: 0x6, model: 0x9a, stepping: 0x3)
+microcode: updated early: 0x429 -> 0x42a, date = 2023-02-14
+
+Regards
+
+Rudi
+
+On Wed, May 10, 2023 at 01:31:18PM +0300, Imre Deak wrote:
+> For a bigjoiner configuration display->crtc_disable() will be called
+> first for the slave CRTCs and then for the master CRTC. However slave
+> CRTCs will be actually disabled only after the master CRTC is disabled
+> (from the encoder disable hooks called with the master CRTC state).
+> Hence the slave PIPEDMCs can be disabled only after the master CRTC is
+> disabled, make this so.
 > 
-> Ah then I guess my link tag should have been
+> intel_encoders_post_pll_disable() must be called only for the master
+> CRTC, as for the other two encoder disable hooks. While at it fix this
+> up as well. This didn't cause a problem, since
+> intel_encoders_post_pll_disable() will call the corresponding hook only
+> for an encoder/connector connected to the given CRTC, however slave
+> CRTCs will have no associated encoder/connector.
 > 
-> Closes: https://lore.kernel.org/all/20230523125116.1669057-1-trix@redhat.com/
+> Fixes: 3af2ff0840be ("drm/i915: Enable a PIPEDMC whenever its corresponding pipe is enabled")
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
 > 
-> I hope the author of
-> commit 44c31888098a ("checkpatch: allow Closes tags with links")
-> has coordinated with the maintainer of b4, so that b4 recognizes Closes tags.
-> b4 v0.12.2 does not pick up Closes tags.
-
-I'm sorry for the troubles caused by this series, that was not the
-intension.
-
-When looking at modifying b4 to support the Closes tag, I realised the
-Link tag from your previous message [1] was not taken as well. Was it
-just me?
-
-If no, I just sent patches for b4, see [2]. I hope it will help!
-
-Cheers,
-Matt
-
-[1]
-https://lore.kernel.org/all/CAKwvOd=jZJouuNMd3Rvc--goA0EXPHcf6cHXUA6W1kXJg2ay2w@mail.gmail.com/
-[2]
-https://lore.kernel.org/tools/20230525-closes-tags-v1-0-ed41b1773cb6@tessares.net/T/
--- 
-Tessares | Belgium | Hybrid Access Solutions
-www.tessares.net
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 1d5d42a408035..116fa52290b84 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1702,9 +1702,17 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
+>  
+>  	intel_disable_shared_dpll(old_crtc_state);
+>  
+> -	intel_encoders_post_pll_disable(state, crtc);
+> +	if (!intel_crtc_is_bigjoiner_slave(old_crtc_state)) {
+> +		struct intel_crtc *slave_crtc;
+> +
+> +		intel_encoders_post_pll_disable(state, crtc);
+>  
+> -	intel_dmc_disable_pipe(i915, crtc->pipe);
+> +		intel_dmc_disable_pipe(i915, crtc->pipe);
+> +
+> +		for_each_intel_crtc_in_pipe_mask(&i915->drm, slave_crtc,
+> +						 intel_crtc_bigjoiner_slave_pipes(old_crtc_state))
+> +			intel_dmc_disable_pipe(i915, slave_crtc->pipe);
+> +	}
+>  }
+>  
+>  static void i9xx_pfit_enable(const struct intel_crtc_state *crtc_state)
