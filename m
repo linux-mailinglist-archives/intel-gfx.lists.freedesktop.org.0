@@ -1,53 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE41F716CE6
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 May 2023 20:54:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44664716CE4
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 May 2023 20:54:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 236D510E417;
-	Tue, 30 May 2023 18:54:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E61010E40D;
+	Tue, 30 May 2023 18:54:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA46B10E413;
- Tue, 30 May 2023 18:54:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9A5D10E407
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 May 2023 18:54:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685472847; x=1717008847;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=0kulKMLy7Yg0yE/BDh7sWLThl83dTtSuMe48DHfeets=;
- b=oKDCTPai7NSSvJjNE9W0cFGe2BrXju9fjsLFcjYCB7sc6NZHN7mW9JrK
- GLmkfOvX+hWZm24NuHl997+YjjIlDzQBQIwwMfUwIRZB3mjSu0qWSJTp/
- coe5pmwCd8itX4ic5fIEVu2okUZmmr8gzWNEjRvFMXXwHhE7H4ze9pT5o
- cKmk++RQCX0c+Z+CQbhYxjnWV4lMSz4AZFuXPSjwDPA0TsyeqH+cYDtv8
- ExCYeysXtg7OdTkGvWRjDFI38vGRHUZiey8peM/kCWg5Qod6aqRrevR5d
- 3wQien28qkahr8qPv/duR0sMPLqHlc005Jk3TPfmLqUFksLXw9d5bXeDT Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="418504061"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="418504061"
+ t=1685472843; x=1717008843;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=87mTrwnU+tWUWLn/gNFyCcTfAEJ26BMQYDVJymIBZx8=;
+ b=BdarZUyCOJINHVw5H6w8OGN8nMkMHnbPSa+ZebXvcHzNPFLLlPBEZ3Wg
+ pqwogoPDTW3WiIMMC3XgfdKG7rC52oDGCLM0+udGu2XenurdMMWYr9Xz1
+ DVUWgNW39pcjZYSdKTuWTruQQ9TNgypcGYf5dBg1AzG8YGX/IATOW8gkB
+ V5TblPukfIxp7+E26vwANeruySRzwVH8vTWuqBhNeyVkW4Ocz6KjW3CjS
+ JiaqCx8VIohvNeOO0+4xAoD09f4UVpxH2taf7C/1BWilqfn9q+JBtqsOO
+ 0Nl5knmCFy4JsAbkRBPUcJepDxiQsscHlRB7sQrfIg9C+cZSbQDzxjHFt w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="418504043"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="418504043"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 11:54:07 -0700
+ 30 May 2023 11:54:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="796381521"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="796381521"
-Received: from amyachev-mobl3.ccr.corp.intel.com (HELO intel.com)
- ([10.252.53.184])
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="796381468"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="796381468"
+Received: from anushasr-simics.jf.intel.com ([10.165.21.205])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 11:54:04 -0700
-Date: Tue, 30 May 2023 20:54:01 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Nathan Chancellor <nathan@kernel.org>
-Message-ID: <ZHZGSbiIG3PNAfCQ@ashyti-mobl2.lan>
-References: <20230530-i915-gt-cache_level-wincompatible-function-pointer-types-strict-v1-0-54501d598229@kernel.org>
- <20230530-i915-gt-cache_level-wincompatible-function-pointer-types-strict-v1-1-54501d598229@kernel.org>
+ 30 May 2023 11:53:56 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 30 May 2023 11:55:24 -0700
+Message-Id: <20230530185529.3378520-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230530-i915-gt-cache_level-wincompatible-function-pointer-types-strict-v1-1-54501d598229@kernel.org>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Fix second parameter type
- of pre-gen8 pte_encode callbacks
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/5] s/ADL/ALDERLAKE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,64 +55,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, trix@redhat.com, intel-gfx@lists.freedesktop.org,
- ndesaulniers@google.com, patches@lists.linux.dev,
- dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nathan,
+Replace all occurences of ADL -> ALDERLAKE in
+platform and subplatform defines. This way there is a
+consistent pattern to how platforms are referred. While
+the change is minor and could be combined to have lesser patches,
+splitting to per subpaltform for easier cherrypicks, if needed.
 
-On Tue, May 30, 2023 at 11:24:38AM -0700, Nathan Chancellor wrote:
-> When booting a kernel compiled with CONFIG_CFI_CLANG (kCFI), there is a
-> CFI failure in ggtt_probe_common() when trying to call hsw_pte_encode()
-> via an indirect call:
-> 
->   [    5.030027] CFI failure at ggtt_probe_common+0xd1/0x130 [i915] (target: hsw_pte_encode+0x0/0x30 [i915]; expected type: 0xf5c1d0fc)
-> 
-> With kCFI, indirect calls are validated against their expected type
-> versus actual type and failures occur when the two types do not match.
-> 
-> clang's -Wincompatible-function-pointer-types-strict can catch this at
-> compile time but it is not enabled for the kernel yet:
-> 
->   drivers/gpu/drm/i915/gt/intel_ggtt.c:1155:23: error: incompatible function pointer types assigning to 'u64 (*)(dma_addr_t, unsigned int, u32)' (aka 'unsigned long long (*)(unsigned int, unsigned int, unsigned int)') from 'u64 (dma_addr_t,
->   enum i915_cache_level, u32)' (aka 'unsigned long long (unsigned int, enum i915_cache_level, unsigned int)') [-Werror,-Wincompatible-function-pointer-types-strict]
->                   ggtt->vm.pte_encode = iris_pte_encode;
->                                       ^ ~~~~~~~~~~~~~~~
->   drivers/gpu/drm/i915/gt/intel_ggtt.c:1157:23: error: incompatible function pointer types assigning to 'u64 (*)(dma_addr_t, unsigned int, u32)' (aka 'unsigned long long (*)(unsigned int, unsigned int, unsigned int)') from 'u64 (dma_addr_t,
->   enum i915_cache_level, u32)' (aka 'unsigned long long (unsigned int, enum i915_cache_level, unsigned int)') [-Werror,-Wincompatible-function-pointer-types-strict]
->                   ggtt->vm.pte_encode = hsw_pte_encode;
->                                       ^ ~~~~~~~~~~~~~~
->   drivers/gpu/drm/i915/gt/intel_ggtt.c:1159:23: error: incompatible function pointer types assigning to 'u64 (*)(dma_addr_t, unsigned int, u32)' (aka 'unsigned long long (*)(unsigned int, unsigned int, unsigned int)') from 'u64 (dma_addr_t,
->   enum i915_cache_level, u32)' (aka 'unsigned long long (unsigned int, enum i915_cache_level, unsigned int)') [-Werror,-Wincompatible-function-pointer-types-strict]
->                   ggtt->vm.pte_encode = byt_pte_encode;
->                                       ^ ~~~~~~~~~~~~~~
->   drivers/gpu/drm/i915/gt/intel_ggtt.c:1161:23: error: incompatible function pointer types assigning to 'u64 (*)(dma_addr_t, unsigned int, u32)' (aka 'unsigned long long (*)(unsigned int, unsigned int, unsigned int)') from 'u64 (dma_addr_t,
->   enum i915_cache_level, u32)' (aka 'unsigned long long (unsigned int, enum i915_cache_level, unsigned int)') [-Werror,-Wincompatible-function-pointer-types-strict]
->                   ggtt->vm.pte_encode = ivb_pte_encode;
->                                       ^ ~~~~~~~~~~~~~~
->   drivers/gpu/drm/i915/gt/intel_ggtt.c:1163:23: error: incompatible function pointer types assigning to 'u64 (*)(dma_addr_t, unsigned int, u32)' (aka 'unsigned long long (*)(unsigned int, unsigned int, unsigned int)') from 'u64 (dma_addr_t,
->   enum i915_cache_level, u32)' (aka 'unsigned long long (unsigned int, enum i915_cache_level, unsigned int)') [-Werror,-Wincompatible-function-pointer-types-strict]
->                   ggtt->vm.pte_encode = snb_pte_encode;
->                                       ^ ~~~~~~~~~~~~~~
->   5 errors generated.
-> 
-> In this case, the pre-gen8 pte_encode functions have a second parameter
-> type of 'enum i915_cache_level' whereas the function pointer prototype
-> in 'struct i915_address_space' expects a second parameter type of
-> 'unsigned int'.
-> 
-> Update the second parameter of the callbacks and the comment above them
-> noting that these statements are still valid, which matches other
-> functions and files, to clear up the kCFI failures at run time.
-> 
-> Fixes: 9275277d5324 ("drm/i915: use pat_index instead of cache_level")
-> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+Anusha Srivatsa (5):
+  drm/i915/adlp: s/ADLP/ALDERLAKE_P for display and graphics step
+  drm/i915/rplp: s/ADLP/ALDERLAKE_P for RPLP defines
+  drm/i915/rplu: s/ADLP/ALDERLAKE_P in RPLU defines
+  drm/i915/adln: s/ADLP/ALDERLAKE_P in ADLN defines
+  drm/i915/adls: s/ADLS/ALDERLAKE_S in platform and subplatform  defines
 
-That's correct!
+ drivers/gpu/drm/i915/display/intel_cdclk.c       |  4 ++--
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c         |  8 ++++----
+ .../gpu/drm/i915/display/skl_universal_plane.c   |  4 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c  |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c            |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c         |  2 +-
+ drivers/gpu/drm/i915/i915_drv.h                  | 16 ++++++++--------
+ drivers/gpu/drm/i915/intel_device_info.c         |  2 +-
+ drivers/gpu/drm/i915/intel_step.c                |  6 +++---
+ 10 files changed, 24 insertions(+), 24 deletions(-)
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+-- 
+2.25.1
 
-Thanks,
-Andi
