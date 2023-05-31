@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63E78717BBD
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 11:22:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AE3E717BDB
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 11:27:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C59BD10E1C7;
-	Wed, 31 May 2023 09:22:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C41B10E4A5;
+	Wed, 31 May 2023 09:27:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E0CE10E1C7;
- Wed, 31 May 2023 09:22:24 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F15E010E1C7;
+ Wed, 31 May 2023 09:27:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685524944; x=1717060944;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=/r3gcWQoto+MLlyTLPUbCGxj9ry+CDxBwsAjSjiaVNU=;
- b=ShaI1L/5rPFhQcl2VxCgwsHlazW/+QNjca9XHv7KIYzhZZGVFhQCQX9m
- 4JffLUBuwKPOEMxEHJveDw61On99V+mqUbqZEQHaQxewGM2VYgUArzYAi
- FxOX6lFfSCWCdWhJVXK8+snysyILnfxpollSoCrUalinxD5/CE8xoE3id
- TBcxBcVkLSQg0qUBYa0vfemXtzNc2FOTqBrslRuOhRTL7rdvA9OIyHo1L
- S5MCtmZB44VJrWREUVPki7lhgjwemTOUc597t2ftxz6TOGINTXByDzXBW
- aebEzDZwTuWU/A0IPcvWBi46cyueTfBnXZ5az9SGs065ozvsrDLDpzSGW g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="357575107"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="357575107"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 02:22:23 -0700
+ t=1685525237; x=1717061237;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=0BkFncGuKbBjsyHlKU6yc44s8b/xzuGQ8DcI/EMXRlw=;
+ b=auEsBUOuGDiIgkcNr+M5YKn0NYmDIMSKKmuElDSWTlMtGq31wxIW51hm
+ JXvmUokqOnYp2QlDPk05zlt61nMKU0v2k7qmlfHxV26856z3aqeYc2LoO
+ 5H7OmcoWOyj13x/V/Jk33N5ed0+PT9sQWtsj9ZrZlOL/HINc5r1zYwPCA
+ 1J7wWrxPR7oGs0aUeptWHgSzNrnNlIkSagrWTpJtLc9mY2cu69ewol1Ay
+ QXobgYcyuoJC7Y7rLyVeZpKdMUUDXwjnRPd04UodxdBBEJYHbYc4HYOZK
+ QcGy2uC5hEGVdDhMBzeOgltB3IIs3tmGo+jRIWRj9uR5jhZEQfl9Jwxje A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="383447146"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="383447146"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2023 02:27:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="881103740"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="881103740"
-Received: from itaraban-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.47.19])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 02:22:20 -0700
-Date: Wed, 31 May 2023 11:22:16 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Yang Li <yang.lee@linux.alibaba.com>
-Message-ID: <ZHcRyNg1aGHJOBSB@ashyti-mobl2.lan>
-References: <20230531021714.125078-1-yang.lee@linux.alibaba.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="831154029"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="831154029"
+Received: from eladcoh1-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.46.230])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2023 02:27:13 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>
+In-Reply-To: <ZHbdr8YdISKvFrWD@debian-scheme>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230531020411.18987-1-zhi.a.wang@intel.com>
+ <ZHbdr8YdISKvFrWD@debian-scheme>
+Date: Wed, 31 May 2023 12:27:11 +0300
+Message-ID: <878rd4hmvk.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230531021714.125078-1-yang.lee@linux.alibaba.com>
-Subject: Re: [Intel-gfx] [PATCH -next] drm/i915: remove unreachable code
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH RESEND] drm/i915/gvt: remove unused variable
+ gma_bottom in command parser
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,52 +60,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- rodrigo.vivi@intel.com, airlied@gmail.com
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Yang,
+On Wed, 31 May 2023, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
+> On 2023.05.31 02:04:11 +0000, Zhi Wang wrote:
+>> Remove unused variable gma_bottom in scan_workload() and scan_wa_ctx().
+>> commit be1da7070aea ("drm/i915/gvt: vGPU command scanner") introduces
+>> gma_bottom in several functions to calculate the size of the command
+>> buffer. However, some of them are set but actually unused.
+>> 
+>> When compiling the code with ccflags -Wunused-but-set-variable, gcc
+>> throws warnings.
+>> 
+>> Remove unused variables to avoid the gcc warnings. Tested via compiling
+>> the code with ccflags -Wunused-but-set-variable.
+>> 
+>> Fixes: be1da7070aea ("drm/i915/gvt: vGPU command scanner")
+>> Suggested-by: Jani Nikula <jani.nikula@intel.com>
+>> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+>> Cc: intel-gvt-dev@lists.freedesktop.org
+>> Signed-off-by: Zhi Wang <zhi.a.wang@intel.com>
+>> ---
+>
+> Good with me. I think I also caught this before but never send the change..
+> Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
 
-On Wed, May 31, 2023 at 10:17:14AM +0800, Yang Li wrote:
-> The code after the return will not be executed, so remove them.
-> 
-> Eliminate the following warning:
-> drivers/gpu/drm/i915/display/intel_color.c:1808 intel_color_prepare_commit() warn: ignoring unreachable code.
-> 
-> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=5342
-> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_color.c | 5 -----
->  1 file changed, 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index 8966e6560516..0bfebac1e3e2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -1804,11 +1804,6 @@ void intel_color_prepare_commit(struct intel_crtc_state *crtc_state)
->  
->  	/* FIXME DSB has issues loading LUTs, disable it for now */
->  	return;
-> -
-> -	if (!crtc_state->pre_csc_lut && !crtc_state->post_csc_lut)
-> -		return;
-> -
-> -	crtc_state->dsb = intel_dsb_prepare(crtc, 1024);
+I'd like to pick this up via drm-intel-next if that's all right.
 
-yeah... it's an ugly bit, from my side:
+BR,
+Jani.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+>
+>>  drivers/gpu/drm/i915/gvt/cmd_parser.c | 6 ++----
+>>  1 file changed, 2 insertions(+), 4 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+>> index 3c4ae1da0d41..05f9348b7a9d 100644
+>> --- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
+>> +++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+>> @@ -2833,7 +2833,7 @@ static int command_scan(struct parser_exec_state *s,
+>>  
+>>  static int scan_workload(struct intel_vgpu_workload *workload)
+>>  {
+>> -	unsigned long gma_head, gma_tail, gma_bottom;
+>> +	unsigned long gma_head, gma_tail;
+>>  	struct parser_exec_state s;
+>>  	int ret = 0;
+>>  
+>> @@ -2843,7 +2843,6 @@ static int scan_workload(struct intel_vgpu_workload *workload)
+>>  
+>>  	gma_head = workload->rb_start + workload->rb_head;
+>>  	gma_tail = workload->rb_start + workload->rb_tail;
+>> -	gma_bottom = workload->rb_start +  _RING_CTL_BUF_SIZE(workload->rb_ctl);
+>>  
+>>  	s.buf_type = RING_BUFFER_INSTRUCTION;
+>>  	s.buf_addr_type = GTT_BUFFER;
+>> @@ -2874,7 +2873,7 @@ static int scan_workload(struct intel_vgpu_workload *workload)
+>>  static int scan_wa_ctx(struct intel_shadow_wa_ctx *wa_ctx)
+>>  {
+>>  
+>> -	unsigned long gma_head, gma_tail, gma_bottom, ring_size, ring_tail;
+>> +	unsigned long gma_head, gma_tail, ring_size, ring_tail;
+>>  	struct parser_exec_state s;
+>>  	int ret = 0;
+>>  	struct intel_vgpu_workload *workload = container_of(wa_ctx,
+>> @@ -2891,7 +2890,6 @@ static int scan_wa_ctx(struct intel_shadow_wa_ctx *wa_ctx)
+>>  			PAGE_SIZE);
+>>  	gma_head = wa_ctx->indirect_ctx.guest_gma;
+>>  	gma_tail = wa_ctx->indirect_ctx.guest_gma + ring_tail;
+>> -	gma_bottom = wa_ctx->indirect_ctx.guest_gma + ring_size;
+>>  
+>>  	s.buf_type = RING_BUFFER_INSTRUCTION;
+>>  	s.buf_addr_type = GTT_BUFFER;
+>> -- 
+>> 2.25.1
+>> 
 
-but would be nice to hear from Ville who has added the return in
-a first place.
-
-Andi
-
->  }
->  
->  void intel_color_cleanup_commit(struct intel_crtc_state *crtc_state)
-> -- 
-> 2.20.1.7.g153144c
+-- 
+Jani Nikula, Intel Open Source Graphics Center
