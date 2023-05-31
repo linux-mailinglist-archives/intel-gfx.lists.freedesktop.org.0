@@ -2,51 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38F4F718AA7
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 21:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BC31718D32
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 23:35:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 382A110E033;
-	Wed, 31 May 2023 19:58:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94BBF10E1EB;
+	Wed, 31 May 2023 21:35:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1369110E033;
- Wed, 31 May 2023 19:58:29 +0000 (UTC)
-Received: from [192.168.2.24] (109-252-150-34.dynamic.spd-mgts.ru
- [109.252.150.34])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id E13B26605718;
- Wed, 31 May 2023 20:58:22 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1685563104;
- bh=dCBQxEeV0Iw3HAIDzbjdU57qicANUXXtSRWbBbZaZfY=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=ElE3acRDApuw17RRzTN9VV+kygun7yJqVN9+uz8G81714zkzjTrQA5ChZzqizOGba
- /RnQoS7Kr8cZ0LPALUF/bGZY/Zw4fiKDlksKoo7LBogbHFjvXPOI6wmr+uqi/mSpbc
- D1ASAqPqd77jLEyNeuU2YVQsP3P9WzR+qsV3cw8BvAa9v8ueC80IOLE4RwMGNOCJug
- caIWXEOMGOX/XgIvm9osJf0LnvYCqg4NyfD4rtcwZbRFVRu5gOth5CVW4ZXRoFUdv6
- tK1b0PzaaPNph//JupOGOcHkGUc48epxEbiN/BakIBdAQ8ZU5Y0N263W5HlyAMYhqJ
- P9Wd7TS1Auxww==
-Message-ID: <91466907-d4e1-1619-27a8-a49a01cbc8f1@collabora.com>
-Date: Wed, 31 May 2023 22:58:19 +0300
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68A8510E1EB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 31 May 2023 21:35:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685568953; x=1717104953;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zSgWQD3RFg1e/HYQ5hkrg9qnSpflKaARDxF9kbBOLmk=;
+ b=bk2KNyPytNS0ZCXBX/WpEswLBQw8MetmN1yFdfHWLGqCStl6YN5RFww8
+ 2mKm+Lz02EYSyB3OjCZIMOYMaYV1yQYswYnK02BzA1FG9Dx7XdOZyUqgT
+ oWjneHpT+JUfHFOD8TUeIC6IdNys7uj25vWzsC+BSOipaaNdtaCkY3QgV
+ NmhzW7MRG1Qi11oaBCijP/bB2IwmgAG9vYxNlLAtFyMqJHyTt/PVDFXaA
+ 4xCCuwYReiLWn2xd0QjmpbqIGqFaazy7Jh7wX8cmBUaHrYmNus1OJO9Po
+ wfcFnDei0RvfedHh35OZQplgG5yJkYyiHtAR08Uu6ooZoBcU4wE6Bmsxz w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="354219046"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="354219046"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2023 14:35:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="740119518"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="740119518"
+Received: from unknown (HELO msatwood-mobl.jf.intel.com) ([10.24.12.141])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2023 14:35:51 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 31 May 2023 14:35:47 -0700
+Message-Id: <20230531213547.1525692-1-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-References: <20230529223935.2672495-1-dmitry.osipenko@collabora.com>
- <20230529223935.2672495-6-dmitry.osipenko@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20230529223935.2672495-6-dmitry.osipenko@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v4 5/6] dma-buf: Change locking policy for
- mmap()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: sync I915_PMU_MAX_GTS to I915_MAX_GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,38 +55,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Arnd Bergmann <arnd@arndb.de>,
- intel-gfx@lists.freedesktop.org, Marek Szyprowski <m.szyprowski@samsung.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Tomasz Figa <tfiga@chromium.org>, Tomi Valkeinen <tomba@kernel.org>,
- John Stultz <jstultz@google.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, linux-tegra@vger.kernel.org,
- kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 5/30/23 01:39, Dmitry Osipenko wrote:
-> Change locking policy of mmap() callback, making exporters responsible
-> for handling dma-buf reservation locking. Previous locking policy stated
-> that dma-buf is locked for both importers and exporters by the dma-buf
-> core, which caused a deadlock problem for DRM drivers in a case of
-> self-imported dma-bufs which required to take the lock from the DRM
-> exporter side.
-> 
-> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
-> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> ---
->  drivers/dma-buf/dma-buf.c | 17 +++--------------
->  1 file changed, 3 insertions(+), 14 deletions(-)
+Set I915_PMU_MAX_GTS to value in I915_MAX_GT, theres no reason for these
+values to be different.
 
-Christian, you acked the drm patch of this series sometime ago, perhaps
-it also implies implicit ack to this patch, but I'd prefer to have the
-explicit ack. I'll apply this series to drm-misc later this week if
-you'll approve this dma-buf change. Thanks in advance!
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+---
+ drivers/gpu/drm/i915/i915_pmu.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
+index 33d80fbaab8b..aa929d8c224a 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.h
++++ b/drivers/gpu/drm/i915/i915_pmu.h
+@@ -38,7 +38,7 @@ enum {
+ 	__I915_NUM_PMU_SAMPLERS
+ };
+ 
+-#define I915_PMU_MAX_GTS 2
++#define I915_PMU_MAX_GTS 4
+ 
+ /*
+  * How many different events we track in the global PMU mask.
 -- 
-Best regards,
-Dmitry
+2.40.0
 
