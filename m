@@ -2,54 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B83B717F13
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 13:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 239EF717FB4
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 14:15:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 948DF10E0BE;
-	Wed, 31 May 2023 11:52:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8850110E1C5;
+	Wed, 31 May 2023 12:15:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCAB410E0BE
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 May 2023 11:52:19 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EECF10E1C5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 31 May 2023 12:15:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685533939; x=1717069939;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=oCXuhC4z+ZREVqFCM4Y6TpzV31CGRUW/qzOYX8Eguek=;
- b=eEb1jUSkLR1zpHdXfbbZJ9TO87MW2f0aJwUEV2Hql0DfRoFR9uVCrStv
- MrBB9mih/b+NGc+TGSmz9qBA8syHBAkJGN+pjOllYxX/w45v16WjrPe/l
- Z9IGfcSTLimaaOLqJS9nAAooMqbUNxGtFBwGmj0uBoAUOCvrssslhrWzY
- oHv2xARZyX+9aeDU6silUxykCKB3WL9b91zkvl9MgTkz2yQ/UetoDq3J2
- udGPnaghrWNFjvt12JGxGJCNQwBZBPtfH7t22ZGBL9qlCNpuKyVmmpT/b
- FftKrz5YJdBqGVDnfgOIkbNf4TWVkpiMbLwCPnLl2W1PSLby/Y2tnEXHs w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="420978879"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="420978879"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 04:52:15 -0700
+ t=1685535325; x=1717071325;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=s5fyuU6+a2hh1f00zDflXGOs9XfV3JsPDMPj9DkfjCs=;
+ b=B+ch5owwwygDX2ZhXkhYVBUCRjVaPjuX9i1+zrYwSqtOMb/ke2Z3yHxT
+ I/me7OpxIdG9frGHMfco0e8xsZd8YZyVVZYIZsUSiaGxCWvVVjplv/gjg
+ ZAzAqj4ddHpkv6zOdmxFgCJ0BZ55anIjVosWqBDeKMaN80AH3wfocIy7h
+ nZwyNxK63s3uA0t+zZbRpH6UDikNUbpQan0cVy81JfCI+NA3/qf8VuzFk
+ QHlST5FDVCL9LSk9DN5fQwkkIlgMQ5pjc0s1NHXTPPUoyiCnbVfEFZidw
+ Lt80/H7+q1MnzS9EhZd/OS6M51EW8aub53Fw9F5P9kXkUNKSc+4PptC/7 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="352714895"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="352714895"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2023 05:14:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="776731175"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="776731175"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.7.108])
- ([10.213.7.108])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 04:52:04 -0700
-Message-ID: <f03e077a-538b-5ff2-5932-f2d2c2ec0662@intel.com>
-Date: Wed, 31 May 2023 13:52:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.2
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-gfx@lists.freedesktop.org
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="710046842"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="710046842"
+Received: from itaraban-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.47.19])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2023 05:14:56 -0700
+Date: Wed, 31 May 2023 14:14:53 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <ZHc6PX+ejjVHN8Lx@ashyti-mobl2.lan>
 References: <20230517132230.1102553-1-tejas.upadhyay@intel.com>
-Content-Language: en-US
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230517132230.1102553-1-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ <f03e077a-538b-5ff2-5932-f2d2c2ec0662@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f03e077a-538b-5ff2-5932-f2d2c2ec0662@intel.com>
 Subject: Re: [Intel-gfx] [PATCH V2] drm/i915/gt: Add workaround 14016712196
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,116 +59,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 17.05.2023 15:22, Tejas Upadhyay wrote:
-> Wa_14016712196 implementation for mtl
+Hi Andrzej,
+
+> > @@ -218,6 +242,16 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+> >   		u32 flags = 0;
+> >   		u32 *cs, count;
+> > +		/* Wa_14016712196 */
+> > +		if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+> > +		    IS_MTL_GRAPHICS_STEP(engine->i915, P, STEP_A0, STEP_B0)) {
+> > +			/* dummy PIPE_CONTROL + depth flush */
+> > +			cs = intel_ring_begin(rq, 6);
+> > +			err = mtl_dummy_pipe_control(rq, cs);
+> > +			if (err)
+> > +				return err;
+> > +		}
+> > +
 > 
-> Bspec: 72197
+> In case gen12_emit_flush_rcs is called with EMIT_BARRIER = (EMIT_INVALIDATE
+> | EMIT_FLUSH) dummy pipe will be inserted twice, is it OK?
+
+good point... I also meant to ask this, indeed. I assumed that
+before the pipe control we needed the dummy pipe. Is that the
+case, Tejas?
+
+> >   		flags |= PIPE_CONTROL_COMMAND_CACHE_INVALIDATE;
+> >   		flags |= PIPE_CONTROL_TLB_INVALIDATE;
+> >   		flags |= PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE;
+> > @@ -733,6 +767,13 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+> >   		     PIPE_CONTROL_DC_FLUSH_ENABLE |
+> >   		     PIPE_CONTROL_FLUSH_ENABLE);
+> > +	/* Wa_14016712196 */
+> > +	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> > +	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+> > +		/* dummy PIPE_CONTROL + depth flush */
+> > +		cs = gen12_emit_pipe_control(cs, 0,
+> > +					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
 > 
-> V2:
->    - Fix  kernel test robot warnings
+> How do we know there is enough space for dummy pipe?
+
+This should be ensured by intel_ring_begin().
+
+Andi
+
+> Regards
+> Andrzej
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-
-I do not think robot reported lack of this wa :), putting lkp in 
-changelog should be enough.
-
-
-> Closes: https://lore.kernel.org/oe-kbuild-all/202305121525.3EWdGoBY-lkp@intel.com/
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 41 ++++++++++++++++++++++++
->   1 file changed, 41 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> index e1c76e5bfa82..737eb515544b 100644
-> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> @@ -177,14 +177,38 @@ u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv
->   	return cs;
->   }
->   
-> +static int mtl_dummy_pipe_control(struct i915_request *rq, u32 *cs)
-> +{
-> +	if (IS_ERR(cs))
-> +		return PTR_ERR(cs);
-> +	cs = gen12_emit_pipe_control(cs,
-> +				     0,
-> +				     PIPE_CONTROL_DEPTH_CACHE_FLUSH,
-> +				     LRC_PPHWSP_SCRATCH_ADDR);
-> +	intel_ring_advance(rq, cs);
-> +
-> +	return 0;
-> +}
-> +
->   int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
->   {
->   	struct intel_engine_cs *engine = rq->engine;
-> +	int err;
->   
->   	if (mode & EMIT_FLUSH) {
->   		u32 flags = 0;
->   		u32 *cs;
->   
-> +		/* Wa_14016712196 */
-> +		if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
-> +		    IS_MTL_GRAPHICS_STEP(engine->i915, P, STEP_A0, STEP_B0)) {
-> +			/* dummy PIPE_CONTROL + depth flush */
-> +			cs = intel_ring_begin(rq, 6);
-> +			err = mtl_dummy_pipe_control(rq, cs);
-> +			if (err)
-> +				return err;
-
-Like Andi suggested, you can replace above sequence with:
-	cs = mtl_dummy_pipe_control(rq);
-
-
-> +		}
-> +
->   		flags |= PIPE_CONTROL_TILE_CACHE_FLUSH;
->   		flags |= PIPE_CONTROL_FLUSH_L3;
->   		flags |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
-> @@ -218,6 +242,16 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
->   		u32 flags = 0;
->   		u32 *cs, count;
->   
-> +		/* Wa_14016712196 */
-> +		if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
-> +		    IS_MTL_GRAPHICS_STEP(engine->i915, P, STEP_A0, STEP_B0)) {
-> +			/* dummy PIPE_CONTROL + depth flush */
-> +			cs = intel_ring_begin(rq, 6);
-> +			err = mtl_dummy_pipe_control(rq, cs);
-> +			if (err)
-> +				return err;
-> +		}
-> +
-
-In case gen12_emit_flush_rcs is called with EMIT_BARRIER = 
-(EMIT_INVALIDATE | EMIT_FLUSH) dummy pipe will be inserted twice, is it OK?
-
->   		flags |= PIPE_CONTROL_COMMAND_CACHE_INVALIDATE;
->   		flags |= PIPE_CONTROL_TLB_INVALIDATE;
->   		flags |= PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE;
-> @@ -733,6 +767,13 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
->   		     PIPE_CONTROL_DC_FLUSH_ENABLE |
->   		     PIPE_CONTROL_FLUSH_ENABLE);
->   
-> +	/* Wa_14016712196 */
-> +	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
-> +	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
-> +		/* dummy PIPE_CONTROL + depth flush */
-> +		cs = gen12_emit_pipe_control(cs, 0,
-> +					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
-
-How do we know there is enough space for dummy pipe?
-
-Regards
-Andrzej
-
-> +
->   	if (GRAPHICS_VER(i915) == 12 && GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
->   		/* Wa_1409600907 */
->   		flags |= PIPE_CONTROL_DEPTH_STALL;
-
+> > +
+> >   	if (GRAPHICS_VER(i915) == 12 && GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
+> >   		/* Wa_1409600907 */
+> >   		flags |= PIPE_CONTROL_DEPTH_STALL;
