@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE8B071872B
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 18:17:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5444371874F
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 18:27:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72A3010E4F2;
-	Wed, 31 May 2023 16:17:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57F8210E102;
+	Wed, 31 May 2023 16:26:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C092210E4F2;
- Wed, 31 May 2023 16:17:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685549843; x=1717085843;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=NP8J/yvcR/yss1+daiu7aMG7qEaHT3dVfT6aXQ7JXm8=;
- b=eeoJyLcXvVhjwvoK5fNVynjwQa+1vy3E2khe1bJ9391wWz7qFWaxJn9+
- 8VflVa5XiVtoVoW/0PNyyrR9SpRXQ3Z2p0b+T9ZUi17t3Pnnh6jUCh7lP
- +Egiq9DVfIQdmLQ4IpbU+yHMxWpQLhtUsoGhXbexgoS3x6MCB89fVlq1X
- kJIhWaSU/YOqGvGfBO7arQf2bgxseWTRFvNnMMl3U3+2bb7gR1mteQmqy
- bVWWjWEo/EtpiA2+5hQmDa2TjlZzJJdooXHtOkopSylA1EM9KgzRl9UrO
- flAtge3aIW5m/clNEuwsymBfC3mDl0yjO7y99sXLUJKFs95MPOe7ILxCk g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="383550892"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="383550892"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 09:14:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="1037117690"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="1037117690"
-Received: from lkp-server01.sh.intel.com (HELO fb1ced2c09fb) ([10.239.97.150])
- by fmsmga005.fm.intel.com with ESMTP; 31 May 2023 09:14:31 -0700
-Received: from kbuild by fb1ced2c09fb with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1q4OT0-0001Tr-3A;
- Wed, 31 May 2023 16:14:30 +0000
-Date: Thu, 1 Jun 2023 00:13:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yang Li <yang.lee@linux.alibaba.com>, airlied@gmail.com
-Message-ID: <202306010001.gUxZYcyb-lkp@intel.com>
-References: <20230531021714.125078-1-yang.lee@linux.alibaba.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CCCDE10E102;
+ Wed, 31 May 2023 16:26:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C5BE8AADD6;
+ Wed, 31 May 2023 16:26:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230531021714.125078-1-yang.lee@linux.alibaba.com>
-Subject: Re: [Intel-gfx] [PATCH -next] drm/i915: remove unreachable code
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
+Date: Wed, 31 May 2023 16:26:56 -0000
+Message-ID: <168555041678.17616.2693800683113560398@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230530185529.3378520-1-anusha.srivatsa@intel.com>
+In-Reply-To: <20230530185529.3378520-1-anusha.srivatsa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_s/ADL/ALDERLAKE?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,59 +40,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, rodrigo.vivi@intel.com,
- Abaci Robot <abaci@linux.alibaba.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Yang Li <yang.lee@linux.alibaba.com>,
- oe-kbuild-all@lists.linux.dev
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Yang,
+== Series Details ==
 
-kernel test robot noticed the following build warnings:
+Series: s/ADL/ALDERLAKE
+URL   : https://patchwork.freedesktop.org/series/118596/
+State : warning
 
-[auto build test WARNING on next-20230530]
+== Summary ==
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yang-Li/drm-i915-remove-unreachable-code/20230531-101832
-base:   next-20230530
-patch link:    https://lore.kernel.org/r/20230531021714.125078-1-yang.lee%40linux.alibaba.com
-patch subject: [PATCH -next] drm/i915: remove unreachable code
-config: x86_64-rhel-8.3 (https://download.01.org/0day-ci/archive/20230601/202306010001.gUxZYcyb-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/58232a66b9d21d80bc6b478e2a8fb1443da3adfc
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Yang-Li/drm-i915-remove-unreachable-code/20230531-101832
-        git checkout 58232a66b9d21d80bc6b478e2a8fb1443da3adfc
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 olddefconfig
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+Error: dim checkpatch failed
+4fc3d4f72d67 drm/i915/adlp: s/ADLP/ALDERLAKE_P for display and graphics step
+-:7: WARNING:TYPO_SPELLING: 'platfrom' may be misspelled - perhaps 'platform'?
+#7: 
+Driver refers to the platfrom Alderlake P as ADLP in places
+                     ^^^^^^^^
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306010001.gUxZYcyb-lkp@intel.com/
+-:111: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#111: FILE: drivers/gpu/drm/i915/i915_drv.h:672:
++#define IS_ALDERLAKE_P_DISPLAY_STEP(__i915, since, until) \
+ 	(IS_ALDERLAKE_P(__i915) && \
+ 	 IS_DISPLAY_STEP(__i915, since, until))
 
-All warnings (new ones prefixed by >>):
+-:116: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#116: FILE: drivers/gpu/drm/i915/i915_drv.h:676:
++#define IS_ALDERLAKE_P_GRAPHICS_STEP(__i915, since, until) \
+ 	(IS_ALDERLAKE_P(__i915) && \
+ 	 IS_GRAPHICS_STEP(__i915, since, until))
 
-   drivers/gpu/drm/i915/display/intel_color.c: In function 'intel_color_prepare_commit':
->> drivers/gpu/drm/i915/display/intel_color.c:1803:28: warning: unused variable 'crtc' [-Wunused-variable]
-    1803 |         struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-         |                            ^~~~
+total: 0 errors, 1 warnings, 2 checks, 77 lines checked
+6da159fe5a5e drm/i915/rplp: s/ADLP/ALDERLAKE_P for RPLP defines
+eeff70227232 drm/i915/rplu: s/ADLP/ALDERLAKE_P in RPLU defines
+e941cc927ade drm/i915/adln: s/ADLP/ALDERLAKE_P in ADLN defines
+fcf47d823462 drm/i915/adls: s/ADLS/ALDERLAKE_S in platform and subplatform defines
+-:7: WARNING:TYPO_SPELLING: 'platfrom' may be misspelled - perhaps 'platform'?
+#7: 
+Driver refers to the platfrom Alderlake S as ADLS in places
+                     ^^^^^^^^
+
+-:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#45: FILE: drivers/gpu/drm/i915/i915_drv.h:664:
++#define IS_ALDERLAKE_S_DISPLAY_STEP(__i915, since, until) \
+ 	(IS_ALDERLAKE_S(__i915) && \
+ 	 IS_DISPLAY_STEP(__i915, since, until))
+
+-:50: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#50: FILE: drivers/gpu/drm/i915/i915_drv.h:668:
++#define IS_ALDERLAKE_S_GRAPHICS_STEP(__i915, since, until) \
+ 	(IS_ALDERLAKE_S(__i915) && \
+ 	 IS_GRAPHICS_STEP(__i915, since, until))
+
+total: 0 errors, 1 warnings, 2 checks, 45 lines checked
 
 
-vim +/crtc +1803 drivers/gpu/drm/i915/display/intel_color.c
-
-3962ca4e080a52 Ville Syrjälä 2023-03-20  1800  
-efb2b57edf20c3 Ville Syrjälä 2022-11-23  1801  void intel_color_prepare_commit(struct intel_crtc_state *crtc_state)
-efb2b57edf20c3 Ville Syrjälä 2022-11-23  1802  {
-b358c3b98813b1 Ville Syrjälä 2022-11-23 @1803  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-b358c3b98813b1 Ville Syrjälä 2022-11-23  1804  
-2487ae0bcb53a7 Ville Syrjälä 2022-11-23  1805  	/* FIXME DSB has issues loading LUTs, disable it for now */
-2487ae0bcb53a7 Ville Syrjälä 2022-11-23  1806  	return;
-efb2b57edf20c3 Ville Syrjälä 2022-11-23  1807  }
-efb2b57edf20c3 Ville Syrjälä 2022-11-23  1808  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
