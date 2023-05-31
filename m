@@ -1,54 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2E67185D3
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 17:13:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B99071861E
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 17:23:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA65F10E0CF;
-	Wed, 31 May 2023 15:13:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0B0B10E0CF;
+	Wed, 31 May 2023 15:23:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BF7010E0A0;
- Wed, 31 May 2023 15:13:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685545995; x=1717081995;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=pkvIS56LJlTWTGyi2HnGWszdEfL1rhbN+Tmd0Oo4Aro=;
- b=bH9wsaX+u1liGUknPk6gnpF36qSEImrYnsIQAZ6otFAvqQ+GsumNo+AL
- 1m4k6ovDBZ0ZSkNwq0/RZy5lcqrvRGOGGJmwKZHQ358flWIR69X4mMBx2
- e8oU3iN0uggcaqTyw5pTe45iquHWDaNN7B764qsnZo8YyUebYx5Ytbsi+
- RbyMRFBt9TkJwCZjegdUR8JWLBspdFQVL/wpxIZOcMSOrYSMRDbHhhK87
- fsv4mgeVTyuYvii+X06QpVnWH72LZpFXD6zC27vUqOg81Qjpjh9V72PQs
- LyQivcrMBmnf8eqRrRCC3VLfAUEQFwxr3DZbKOMfKG3xAARG30eq2UYOZ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="421037581"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="421037581"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 08:12:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="684417433"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="684417433"
-Received: from eladcoh1-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.46.230])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 08:12:43 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>
-In-Reply-To: <cover.1685437500.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1685437500.git.jani.nikula@intel.com>
-Date: Wed, 31 May 2023 18:12:41 +0300
-Message-ID: <87wn0ofsba.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 45AF910E0CF;
+ Wed, 31 May 2023 15:23:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 42D5CAADE0;
+ Wed, 31 May 2023 15:23:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 00/13] drm/display & drm/i915: more
- struct drm_edid conversions
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nathan Chancellor" <nathan@kernel.org>
+Date: Wed, 31 May 2023 15:23:41 -0000
+Message-ID: <168554662126.17618.16359354559904233329@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230530-i915-pxp-size_t-wformat-v1-1-9631081e2e5b@kernel.org>
+In-Reply-To: <20230530-i915-pxp-size_t-wformat-v1-1-9631081e2e5b@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/pxp=3A_Fix_size=5Ft_format_specifier_in_gsccs=5Fse?=
+ =?utf-8?b?bmRfbWVzc2FnZSgp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,31 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 30 May 2023, Jani Nikula <jani.nikula@intel.com> wrote:
-> Rebase of https://patchwork.freedesktop.org/series/116813/
->
-> Move struct drm_edid conversions forward.
->
-> There are still some drm_edid_raw() stragglers, but this nudges things
-> forward nicely.
->
-> Jani Nikula (13):
->   drm/edid: parse display info has_audio similar to is_hdmi
->   drm/display/dp_mst: drop has_audio from struct drm_dp_mst_port
->   drm/edid: add drm_edid_read_switcheroo()
->   drm/edid: make drm_edid_duplicate() safe to call with NULL parameter
->   drm/display/dp_mst: convert to struct drm_edid
+== Series Details ==
 
-Maarten, Maxime, Thomas, can I get an ack for merging the above commits
-via drm-intel, please?
+Series: drm/i915/pxp: Fix size_t format specifier in gsccs_send_message()
+URL   : https://patchwork.freedesktop.org/series/118593/
+State : warning
 
-BR,
-Jani.
+== Summary ==
+
+Error: dim checkpatch failed
+702a41400915 drm/i915/pxp: Fix size_t format specifier in gsccs_send_message()
+-:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#18: 
+                   from drivers/gpu/drm/i915/gem/i915_gem_context_types.h:20,
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
