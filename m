@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F27F0717D3A
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 12:34:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 968DF717D61
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 12:49:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A959010E4A8;
-	Wed, 31 May 2023 10:34:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B68510E4B0;
+	Wed, 31 May 2023 10:49:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2386A10E4A8
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 May 2023 10:34:08 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCC7310E4AC;
+ Wed, 31 May 2023 10:49:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685529248; x=1717065248;
+ t=1685530173; x=1717066173;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=KLD1QsPlTBo6skkcvDsLhgLyj7suT/wsuKRo06h/QSw=;
- b=P+NfK9SuHQ7Y5XHIxChSavNXhuuJ2TbOcP5Z2Jhse4C/murFMoVYOb0N
- AXOlpL2kTnQzFj9MI3S7U7lIrOBZI4Ihg9H34hPQXmy474eJahZoDRnB1
- XRAcdmWkCdnGmpDs19mwSTfSdKXYuf/rvdz5Mt+c7nuhU2YWslP7aomg3
- iskukNGjBIfT5l91s7C/DA43Iby7AfU4Vy3g43ruj3r6S7sOo08WDOzym
- QZfALP1tBAj+JI98+bqgQ74+ELT9Y1QP4LKz56xT0+IXRqaqRZPhQq/8+
- CZ99J6AKoode1OGdQ8bPwRmQavQEyw0jc97YRngFmj1N5h2EL3gcQOOm/ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="335544037"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="335544037"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 03:34:06 -0700
+ bh=P4OtVBdvXMpW1v+dbrVU/sDkueZddN43qStMW7Uj/tg=;
+ b=g/WKUfk/s/NUWS7EN/cOZ/YVA6NokcF8kuHQ07Rk/UoDsrvOcMQqjlgp
+ kXg3upidAfVVBOUnRJyz9CEJ9VoXKOeMDpSwL8NBh0gIPbfgqiYgfWpLW
+ E4mbWHB3kJwBjWc2Rs7DXqq9koggvDLn//9dtsof8Hvn6KCEgOMtNsGx/
+ 220oh442ETKuGT0yqRiPuB/+bUJzQD9nvsk//RVXjgejAegSezkVcIk8+
+ Z1fjYzqcstmlY83ktAjsiHi/uWd8kMYF1jQnqI0JUG2JTmAFYU6gfAe+a
+ /uckaTRHizHM/8pz9Im5eg2TgDucZQxZLO5v8r8RMSpUQYQShGbkyOocB w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="357591208"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="357591208"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2023 03:49:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="706824093"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="706824093"
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="851166045"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="851166045"
 Received: from itaraban-mobl.ger.corp.intel.com (HELO intel.com)
  ([10.252.47.19])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 03:34:03 -0700
-Date: Wed, 31 May 2023 12:33:59 +0200
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2023 03:49:29 -0700
+Date: Wed, 31 May 2023 12:49:26 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-Message-ID: <ZHcil9Bb0vSpH6TK@ashyti-mobl2.lan>
-References: <20230517132230.1102553-1-tejas.upadhyay@intel.com>
- <ZHZlJFaIZNOTmFVN@ashyti-mobl2.lan>
- <SJ1PR11MB6204E0F351F3BDA0727E71EA81489@SJ1PR11MB6204.namprd11.prod.outlook.com>
+To: fei.yang@intel.com, Carl Zhang <carl.zhang@intel.com>
+Message-ID: <ZHcmNnr5p2e7wXYe@ashyti-mobl2.lan>
+References: <20230524200255.443021-1-fei.yang@intel.com>
+ <20230524200255.443021-2-fei.yang@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <SJ1PR11MB6204E0F351F3BDA0727E71EA81489@SJ1PR11MB6204.namprd11.prod.outlook.com>
-Subject: Re: [Intel-gfx] [PATCH V2] drm/i915/gt: Add workaround 14016712196
+In-Reply-To: <20230524200255.443021-2-fei.yang@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v12 1/1] drm/i915: Allow user to set cache
+ at BO creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,27 +60,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tejas,
+Hi Carl,
 
-> > 
-> > I'm wondering, though, if we can put both dummy pipe and real pipe in the
-> > same command and advance the ring only once at the end... nevermind.
+On Wed, May 24, 2023 at 01:02:55PM -0700, fei.yang@intel.com wrote:
+> From: Fei Yang <fei.yang@intel.com>
 > 
-> As we have conditional ring increments, we cant decide ring size at start in ring begin for whole bunch at once. Though double checking.
+> To comply with the design that buffer objects shall have immutable
+> cache setting through out their life cycle, {set, get}_caching ioctl's
+> are no longer supported from MTL onward. With that change caching
+> policy can only be set at object creation time. The current code
+> applies a default (platform dependent) cache setting for all objects.
+> However this is not optimal for performance tuning. The patch extends
+> the existing gem_create uAPI to let user set PAT index for the object
+> at creation time.
+> The new extension is platform independent, so UMD's can switch to using
+> this extension for older platforms as well, while {set, get}_caching are
+> still supported on these legacy paltforms for compatibility reason.
+> 
+> BSpec: 45101
+> 
+> Test igt@gem_create@create_ext_set_pat posted at
+> https://patchwork.freedesktop.org/series/118314/
+> 
+> Tested with https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22878
+> 
+> Signed-off-by: Fei Yang <fei.yang@intel.com>
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Acked-by: Jordan Justen <jordan.l.justen@intel.com>
+> Tested-by: Jordan Justen <jordan.l.justen@intel.com>
 
-yes, you add it conditionally. Check, e.g., the control:
+was it your intention to ack this patch?
 
-	if (!HAS_FLAT_CCS(rq->engine->i915))
-		count = 8 + 4;
-	else
-		count = 8;
-
-In the second if block. You are basically doing the same thing.
-
-But I'm not strong with this.
-
+Thanks,
 Andi
