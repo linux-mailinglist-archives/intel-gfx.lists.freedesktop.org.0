@@ -2,50 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A109F718401
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 15:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EB287184E6
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 16:26:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECFAC10E4CA;
-	Wed, 31 May 2023 13:56:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE2DB10E4EA;
+	Wed, 31 May 2023 14:26:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0E0610E4CA
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 May 2023 13:56:29 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A82C10E4EA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 31 May 2023 14:26:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685541389; x=1717077389;
+ t=1685543202; x=1717079202;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=NocyHY64pgeXcybgwr3QURguLtAQN+W7x3xSDJT15GU=;
- b=Pc6fvMLjeaUcqNg7sBWIGP/wBocVrGuoYgb9Ra8/nSBvttcu+r3Pgt0V
- AWFvH1yBbzBDy8a3c8lBiffrpIJDkj76vxCvFF3sy92xv/+01RQmyfGAQ
- g0ZFIKB/78OCaFszH1Fqr2WxnhTNzInIakIcS5SwEe9S6pRluhzNxZmDK
- nyk6CSwcB+UVCIy3MN2jWFpeA6KYKV4HrJUauNr0b+ePldHOtoJ12Z5wF
- 9eKTukbUzD65h9uZpVA3CqN5QMEhkxXzrT37OpGGGYQrtpqGfTdat6deZ
- IV46yx5tXlvY1Pwpwdkvy/C/aoQfL0M0tNrWEU+1yp/TGWcEQrfCs2CwJ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="441599199"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="441599199"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 06:56:28 -0700
+ bh=AEbVx0fR4Z0mY2jIxgSELxaymg1tEg7CzvOJzofgViE=;
+ b=OsSGsLL8t1+OeHOjzvoNZv8FDTjgLaLuHfTt1QaGxCkwYZ7AKdhm9WH2
+ o3HDzjImIDvsFGA2BJQPSOOfZvzU5aW3ZAhvJW2GACnkV1KtNftMzktED
+ frKVWRtZ1vsRrQPdZu7ihVorIBQ4dlZYO3WOiWsI3K3kxey4iNsdzYUCV
+ Ncso+2mH/+O8rvi7Wdl2ejLq+lcwWLh2agZ4xXIJBQa4IIauSuGX2p78P
+ RL9T/yKHqp1Z/fEaKdRX0h0M6/+fro+LrWCHEzXq6RrOUW5vDphYzOTqG
+ q4zrGf4/1SFTodEnE5t43bdK3xckvM7/ae7dYZROxYhJbKE/rJ5EfyszH A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="418745396"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="418745396"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2023 07:26:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="736683653"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="736683653"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga008.jf.intel.com with SMTP; 31 May 2023 06:56:26 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 31 May 2023 16:56:25 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657336784"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657336784"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orsmga003.jf.intel.com with ESMTP; 31 May 2023 07:26:40 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 31 May 2023 16:56:25 +0300
-Message-Id: <20230531135625.3467-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.3
+Date: Wed, 31 May 2023 20:02:14 +0530
+Message-Id: <20230531143214.1650701-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: No 10bit gamma on desktop gen3
- parts
+Subject: [Intel-gfx] [PATCH V3] drm/i915/gt: Add workaround 14016712196
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,94 +57,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Wa_14016712196 implementation for mtl
 
-Apparently desktop gen3 parts don't support the
-10bit gamma mode at all. Stop claiming otherwise.
+Bspec: 72197
 
-As is the case with pipe A on gen3 mobile parts, the
-PIPECONF gamma mode bit can be set but it has no
-effect on the output.
+V3:
+  - Wrap dummy pipe control stuff in API - Andi
+V2:
+  - Fix  kernel test robot warnings
 
-PNV seems to be the only slight exception, but generally
-the desktop PNV variant looks more like a mobile part so
-this is not entirely surprising.
-
-Fixes: 67630bacae23 ("drm/i915: Add 10bit gamma mode for gen2/3")
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202305121525.3EWdGoBY-lkp@intel.com/
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_device.c  | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 39 ++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index a513ac8f71a3..7e1af980e8ce 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -219,7 +219,6 @@ static const struct intel_display_device_info i865g_display = {
- 	.has_overlay = 1, \
- 	I9XX_PIPE_OFFSETS, \
- 	I9XX_CURSOR_OFFSETS, \
--	I9XX_COLORS, \
- 	\
- 	.__runtime_defaults.ip.ver = 3, \
- 	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
-@@ -228,12 +227,14 @@ static const struct intel_display_device_info i865g_display = {
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index e1c76e5bfa82..206947f1fc7c 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -177,6 +177,30 @@ u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv
+ 	return cs;
+ }
  
- static const struct intel_display_device_info i915g_display = {
- 	GEN3_DISPLAY,
-+	I845_COLORS,
- 	.cursor_needs_physical = 1,
- 	.overlay_needs_physical = 1,
- };
- 
- static const struct intel_display_device_info i915gm_display = {
- 	GEN3_DISPLAY,
-+	I9XX_COLORS,
- 	.cursor_needs_physical = 1,
- 	.overlay_needs_physical = 1,
- 	.supports_tv = 1,
-@@ -243,6 +244,7 @@ static const struct intel_display_device_info i915gm_display = {
- 
- static const struct intel_display_device_info i945g_display = {
- 	GEN3_DISPLAY,
-+	I845_COLORS,
- 	.has_hotplug = 1,
- 	.cursor_needs_physical = 1,
- 	.overlay_needs_physical = 1,
-@@ -250,6 +252,7 @@ static const struct intel_display_device_info i945g_display = {
- 
- static const struct intel_display_device_info i945gm_display = {
- 	GEN3_DISPLAY,
-+	I9XX_COLORS,
- 	.has_hotplug = 1,
- 	.cursor_needs_physical = 1,
- 	.overlay_needs_physical = 1,
-@@ -260,6 +263,13 @@ static const struct intel_display_device_info i945gm_display = {
- 
- static const struct intel_display_device_info g33_display = {
- 	GEN3_DISPLAY,
-+	I845_COLORS,
-+	.has_hotplug = 1,
-+};
++static u32 *mtl_dummy_pipe_control(struct i915_request *rq)
++{
++	u32 *cs;
 +
-+static const struct intel_display_device_info pnv_display = {
-+	GEN3_DISPLAY,
-+	I9XX_COLORS,
- 	.has_hotplug = 1,
- };
++	/* Wa_14016712196 */
++	if (IS_MTL_GRAPHICS_STEP(rq->engine->i915, M, STEP_A0, STEP_B0) ||
++	    IS_MTL_GRAPHICS_STEP(rq->engine->i915, P, STEP_A0, STEP_B0)) {
++		int ret;
++
++		/* dummy PIPE_CONTROL + depth flush */
++		cs = intel_ring_begin(rq, 6);
++		ret = IS_ERR(cs);
++		if (ret)
++			return ERR_PTR(ret);
++		cs = gen12_emit_pipe_control(cs,
++					     0,
++					     PIPE_CONTROL_DEPTH_CACHE_FLUSH,
++					     LRC_PPHWSP_SCRATCH_ADDR);
++		intel_ring_advance(rq, cs);
++	}
++
++	return cs;
++}
++
+ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+ {
+ 	struct intel_engine_cs *engine = rq->engine;
+@@ -185,6 +209,10 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+ 		u32 flags = 0;
+ 		u32 *cs;
  
-@@ -672,8 +682,8 @@ static const struct {
- 	INTEL_I965GM_IDS(&i965gm_display),
- 	INTEL_GM45_IDS(&gm45_display),
- 	INTEL_G45_IDS(&g45_display),
--	INTEL_PINEVIEW_G_IDS(&g33_display),
--	INTEL_PINEVIEW_M_IDS(&g33_display),
-+	INTEL_PINEVIEW_G_IDS(&pnv_display),
-+	INTEL_PINEVIEW_M_IDS(&pnv_display),
- 	INTEL_IRONLAKE_D_IDS(&ilk_d_display),
- 	INTEL_IRONLAKE_M_IDS(&ilk_m_display),
- 	INTEL_SNB_D_IDS(&snb_display),
++		cs = mtl_dummy_pipe_control(rq);
++		if (IS_ERR(cs))
++			return PTR_ERR(cs);
++
+ 		flags |= PIPE_CONTROL_TILE_CACHE_FLUSH;
+ 		flags |= PIPE_CONTROL_FLUSH_L3;
+ 		flags |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
+@@ -218,6 +246,10 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+ 		u32 flags = 0;
+ 		u32 *cs, count;
+ 
++		cs = mtl_dummy_pipe_control(rq);
++		if (IS_ERR(cs))
++			return PTR_ERR(cs);
++
+ 		flags |= PIPE_CONTROL_COMMAND_CACHE_INVALIDATE;
+ 		flags |= PIPE_CONTROL_TLB_INVALIDATE;
+ 		flags |= PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE;
+@@ -733,6 +765,13 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ 		     PIPE_CONTROL_DC_FLUSH_ENABLE |
+ 		     PIPE_CONTROL_FLUSH_ENABLE);
+ 
++	/* Wa_14016712196 */
++	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
++	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++		/* dummy PIPE_CONTROL + depth flush */
++		cs = gen12_emit_pipe_control(cs, 0,
++					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
++
+ 	if (GRAPHICS_VER(i915) == 12 && GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
+ 		/* Wa_1409600907 */
+ 		flags |= PIPE_CONTROL_DEPTH_STALL;
 -- 
-2.39.3
+2.25.1
 
