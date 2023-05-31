@@ -2,48 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EC187186EB
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 18:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE8B071872B
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 May 2023 18:17:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4480810E4F1;
-	Wed, 31 May 2023 16:00:25 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CF4C10E1CB;
- Wed, 31 May 2023 16:00:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72A3010E4F2;
+	Wed, 31 May 2023 16:17:25 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C092210E4F2;
+ Wed, 31 May 2023 16:17:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685548823; x=1717084823;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9VCiQaigMGXKNyziAsRtTdCC8bH1CTMeHx7t9epsfnE=;
- b=Lv1yWjdvh0ux5CvU7QPOFut+7JvAMm9KcEbMUSaWPME2Mwin6HhR1Ikg
- 7zRhJ8xucPHy0nAzmUR9bGjqNe7BRG34DLHrVcv/YPa/mvjlvW4xSj6yP
- xwDO8PPJBgpMGQjaw5q/MZi9bFRe+ynBbygFPuYyCT3rAd7NsI7QOc85p
- +PxyZfGqXjkPWMRYQYg4BJ1knPRzq2sdHlmZvOfR5xlNzB5vwC2rq5Hgj
- lnO4g6Or4aWbXVVZGBrYK1Oc69BIwYKHUP5pv3apsHseXV9Biotoi4Ljt
- zdecmfTvWZvf01s9EXgQFcE4j43+DDOEY5V2epEhWc5yVzbYmdLuBPlKQ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="344797678"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="344797678"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 08:58:53 -0700
+ t=1685549843; x=1717085843;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=NP8J/yvcR/yss1+daiu7aMG7qEaHT3dVfT6aXQ7JXm8=;
+ b=eeoJyLcXvVhjwvoK5fNVynjwQa+1vy3E2khe1bJ9391wWz7qFWaxJn9+
+ 8VflVa5XiVtoVoW/0PNyyrR9SpRXQ3Z2p0b+T9ZUi17t3Pnnh6jUCh7lP
+ +Egiq9DVfIQdmLQ4IpbU+yHMxWpQLhtUsoGhXbexgoS3x6MCB89fVlq1X
+ kJIhWaSU/YOqGvGfBO7arQf2bgxseWTRFvNnMMl3U3+2bb7gR1mteQmqy
+ bVWWjWEo/EtpiA2+5hQmDa2TjlZzJJdooXHtOkopSylA1EM9KgzRl9UrO
+ flAtge3aIW5m/clNEuwsymBfC3mDl0yjO7y99sXLUJKFs95MPOe7ILxCk g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="383550892"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="383550892"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2023 09:14:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="710129975"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="710129975"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmsmga007.fm.intel.com with ESMTP; 31 May 2023 08:58:52 -0700
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Wed, 31 May 2023 08:59:42 -0700
-Message-Id: <20230531155942.441862-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.39.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="1037117690"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="1037117690"
+Received: from lkp-server01.sh.intel.com (HELO fb1ced2c09fb) ([10.239.97.150])
+ by fmsmga005.fm.intel.com with ESMTP; 31 May 2023 09:14:31 -0700
+Received: from kbuild by fb1ced2c09fb with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1q4OT0-0001Tr-3A;
+ Wed, 31 May 2023 16:14:30 +0000
+Date: Thu, 1 Jun 2023 00:13:40 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yang Li <yang.lee@linux.alibaba.com>, airlied@gmail.com
+Message-ID: <202306010001.gUxZYcyb-lkp@intel.com>
+References: <20230531021714.125078-1-yang.lee@linux.alibaba.com>
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc: Remove some obsolete definitions
+In-Reply-To: <20230531021714.125078-1-yang.lee@linux.alibaba.com>
+Subject: Re: [Intel-gfx] [PATCH -next] drm/i915: remove unreachable code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,71 +60,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
+Cc: intel-gfx@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ Abaci Robot <abaci@linux.alibaba.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Yang Li <yang.lee@linux.alibaba.com>,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+Hi Yang,
 
-There were a bunch of defines and structures left over from an API
-update a very long time ago. Remove them.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h | 33 ---------------------
- 1 file changed, 33 deletions(-)
+[auto build test WARNING on next-20230530]
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-index 4e57bd09d50d9..b4d56eccfb1f0 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-@@ -35,13 +35,6 @@
- #define GUC_MAX_CONTEXT_ID		65535
- #define	GUC_INVALID_CONTEXT_ID		GUC_MAX_CONTEXT_ID
- 
--#define GUC_RENDER_ENGINE		0
--#define GUC_VIDEO_ENGINE		1
--#define GUC_BLITTER_ENGINE		2
--#define GUC_VIDEOENHANCE_ENGINE		3
--#define GUC_VIDEO_ENGINE2		4
--#define GUC_MAX_ENGINES_NUM		(GUC_VIDEO_ENGINE2 + 1)
--
- #define GUC_RENDER_CLASS		0
- #define GUC_VIDEO_CLASS			1
- #define GUC_VIDEOENHANCE_CLASS		2
-@@ -499,32 +492,6 @@ struct guc_log_buffer_state {
- 	u32 version;
- } __packed;
- 
--struct guc_ctx_report {
--	u32 report_return_status;
--	u32 reserved1[64];
--	u32 affected_count;
--	u32 reserved2[2];
--} __packed;
--
--/* GuC Shared Context Data Struct */
--struct guc_shared_ctx_data {
--	u32 addr_of_last_preempted_data_low;
--	u32 addr_of_last_preempted_data_high;
--	u32 addr_of_last_preempted_data_high_tmp;
--	u32 padding;
--	u32 is_mapped_to_proxy;
--	u32 proxy_ctx_id;
--	u32 engine_reset_ctx_id;
--	u32 media_reset_count;
--	u32 reserved1[8];
--	u32 uk_last_ctx_switch_reason;
--	u32 was_reset;
--	u32 lrca_gpu_addr;
--	u64 execlist_ctx;
--	u32 reserved2[66];
--	struct guc_ctx_report preempt_ctx_report[GUC_MAX_ENGINES_NUM];
--} __packed;
--
- /* This action will be programmed in C1BC - SOFT_SCRATCH_15_REG */
- enum intel_guc_recv_message {
- 	INTEL_GUC_RECV_MSG_CRASH_DUMP_POSTED = BIT(1),
+url:    https://github.com/intel-lab-lkp/linux/commits/Yang-Li/drm-i915-remove-unreachable-code/20230531-101832
+base:   next-20230530
+patch link:    https://lore.kernel.org/r/20230531021714.125078-1-yang.lee%40linux.alibaba.com
+patch subject: [PATCH -next] drm/i915: remove unreachable code
+config: x86_64-rhel-8.3 (https://download.01.org/0day-ci/archive/20230601/202306010001.gUxZYcyb-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/58232a66b9d21d80bc6b478e2a8fb1443da3adfc
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yang-Li/drm-i915-remove-unreachable-code/20230531-101832
+        git checkout 58232a66b9d21d80bc6b478e2a8fb1443da3adfc
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 olddefconfig
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306010001.gUxZYcyb-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/gpu/drm/i915/display/intel_color.c: In function 'intel_color_prepare_commit':
+>> drivers/gpu/drm/i915/display/intel_color.c:1803:28: warning: unused variable 'crtc' [-Wunused-variable]
+    1803 |         struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+         |                            ^~~~
+
+
+vim +/crtc +1803 drivers/gpu/drm/i915/display/intel_color.c
+
+3962ca4e080a52 Ville Syrjälä 2023-03-20  1800  
+efb2b57edf20c3 Ville Syrjälä 2022-11-23  1801  void intel_color_prepare_commit(struct intel_crtc_state *crtc_state)
+efb2b57edf20c3 Ville Syrjälä 2022-11-23  1802  {
+b358c3b98813b1 Ville Syrjälä 2022-11-23 @1803  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+b358c3b98813b1 Ville Syrjälä 2022-11-23  1804  
+2487ae0bcb53a7 Ville Syrjälä 2022-11-23  1805  	/* FIXME DSB has issues loading LUTs, disable it for now */
+2487ae0bcb53a7 Ville Syrjälä 2022-11-23  1806  	return;
+efb2b57edf20c3 Ville Syrjälä 2022-11-23  1807  }
+efb2b57edf20c3 Ville Syrjälä 2022-11-23  1808  
+
 -- 
-2.39.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
