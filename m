@@ -1,46 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43E2371F4D1
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 23:36:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CBC771F51D
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 23:53:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A51E10E5D6;
-	Thu,  1 Jun 2023 21:36:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE6F510E5DD;
+	Thu,  1 Jun 2023 21:53:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1511710E5D6;
- Thu,  1 Jun 2023 21:36:32 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id D8CA564983;
- Thu,  1 Jun 2023 21:36:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82DE6C433EF;
- Thu,  1 Jun 2023 21:36:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1685655391;
- bh=yOSVSaBHwx99uPQB7KLl4DIUi1SqOYChg3IttbqyV3s=;
- h=From:To:Cc:Subject:Date:From;
- b=Sljypvo10RdZDzMPSueWmMp22OytLYWcXo1+/y3i1x/uVunStdLlpLopvGA7c069d
- Fmf7lV8XkrHq9uO+wrtziKrSGRV+zmTmecN6elCyO1Li4eFR/mZj3Z1G7+nPBefPKT
- ZX1rd5xEYM0HffHF3CZiepUxJcV815NfhdF27u6VFZNEoF29vc2+vg4dssw+BjEcc5
- NiAV4B7ebvhRN3DtoXx8zd0fSVdUf0PlAx7aSm1SL2FMtETCBBMe9PdqYSy/2Tt+H3
- rDBZft6N4Z8a1w3LeOMTRofsdAJyKzmsPFeroG7mj6RNBENHvRXIAGhEXYOk9Camak
- 9ydAGaZ2jSZtg==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Date: Thu,  1 Jun 2023 23:36:10 +0200
-Message-Id: <20230601213624.3510244-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 36CB710E5DC;
+ Thu,  1 Jun 2023 21:53:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2EF50AADDA;
+ Thu,  1 Jun 2023 21:53:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/pxp: use correct format string for
- size_t
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Date: Thu, 01 Jun 2023 21:53:30 -0000
+Message-ID: <168565641018.16227.14071554180469613609@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230601160350.43888-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20230601160350.43888-1-vinod.govindapillai@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_mtl=3A_add_support_for_pmdemand_=28rev12=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,42 +40,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>,
- Alan Previn <alan.previn.teres.alexis@intel.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+== Series Details ==
 
-While 'unsigned long' needs the %ld format string, size_t needs the %z
-modifier:
+Series: mtl: add support for pmdemand (rev12)
+URL   : https://patchwork.freedesktop.org/series/116949/
+State : warning
 
-drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c: In function 'gsccs_send_message':
-include/drm/drm_print.h:456:39: error: format '%ld' expects argument of type 'long int', but argument 4 has type 'size_t' {aka 'unsigned int'} [-Werror=format=]
-  456 |         dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+== Summary ==
 
-Fixes: dc9ac125d81fa ("drm/i915/pxp: Add GSC-CS backend to send GSC fw messages")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Error: dim checkpatch failed
+8ae8740d3ed0 drm/i915: fix the derating percentage for MTL
+277951603ecd drm/i915: update the QGV point frequency calculations
+2d21cda650ba drm/i915: store the peak bw per QGV point
+a7ee7441f55e drm/i915: extract intel_bw_check_qgv_points()
+74a46c7841e5 drm/i915: modify max_bw to return index to intel_bw_info
+c3f2f3aae217 drm/i915/mtl: find the best QGV point for the SAGV configuration
+b8e50275587b drm/i915/mtl: Add support for PM DEMAND
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:352: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#352: 
+new file mode 100644
 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
-index 8dc41de3f6f74..290ed5ac487de 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
-@@ -143,7 +143,7 @@ gsccs_send_message(struct intel_pxp *pxp,
- 
- 	reply_size = header->message_size - sizeof(*header);
- 	if (reply_size > msg_out_size_max) {
--		drm_warn(&i915->drm, "caller with insufficient PXP reply size %u (%ld)\n",
-+		drm_warn(&i915->drm, "caller with insufficient PXP reply size %u (%zd)\n",
- 			 reply_size, msg_out_size_max);
- 		reply_size = msg_out_size_max;
- 	}
--- 
-2.39.2
+-:967: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#967: FILE: drivers/gpu/drm/i915/i915_reg.h:4511:
++#define  XELPDP_PMDEMAND_QCLK_GV_BW(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_QCLK_GV_BW_MASK, x)
+
+-:969: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#969: FILE: drivers/gpu/drm/i915/i915_reg.h:4513:
++#define  XELPDP_PMDEMAND_VOLTAGE_INDEX(x)		REG_FIELD_PREP(XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK, x)
+
+-:971: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#971: FILE: drivers/gpu/drm/i915/i915_reg.h:4515:
++#define  XELPDP_PMDEMAND_QCLK_GV_INDEX(x)		REG_FIELD_PREP(XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK, x)
+
+-:973: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#973: FILE: drivers/gpu/drm/i915/i915_reg.h:4517:
++#define  XELPDP_PMDEMAND_PIPES(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_PIPES_MASK, x)
+
+-:975: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#975: FILE: drivers/gpu/drm/i915/i915_reg.h:4519:
++#define  XELPDP_PMDEMAND_DBUFS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_DBUFS_MASK, x)
+
+-:981: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#981: FILE: drivers/gpu/drm/i915/i915_reg.h:4525:
++#define  XELPDP_PMDEMAND_CDCLK_FREQ(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_CDCLK_FREQ_MASK, x)
+
+-:983: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#983: FILE: drivers/gpu/drm/i915/i915_reg.h:4527:
++#define  XELPDP_PMDEMAND_DDICLK_FREQ(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_DDICLK_FREQ_MASK, x)
+
+-:985: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#985: FILE: drivers/gpu/drm/i915/i915_reg.h:4529:
++#define  XELPDP_PMDEMAND_SCALERS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_SCALERS_MASK, x)
+
+total: 0 errors, 9 warnings, 0 checks, 870 lines checked
+
 
