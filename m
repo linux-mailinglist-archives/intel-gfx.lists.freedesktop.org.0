@@ -2,46 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC43471F1F1
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 20:33:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8640171F261
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 20:51:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4957C10E19E;
-	Thu,  1 Jun 2023 18:33:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFEC910E5A2;
+	Thu,  1 Jun 2023 18:51:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D65E10E19E
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 18:32:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6857710E59F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 18:51:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685644379; x=1717180379;
+ t=1685645461; x=1717181461;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=3CmWiCNHinvVoDMOGtvz7SSLeLwhBS0XeDZ+j4Q1970=;
- b=esGuyDV1WzjI6/lB4aIsZa1+/Evg6qk6AgQqYL1Os4OW6wh+dDBWieul
- 4laxEsBYc6A2vGIJZtgBFHJ/BE9XTjXuSkDR4VnvW4htAY9Un+1Fy8Gbb
- UBuRL+tIj3YC+BL6sTFUvR/YkXLtW5ZAaKBsZE668XQwoG/dCYiZZJ+Fo
- h5j3IO//WmPV3E/w+Fx9hVOJGwlJjmxK2t/aivj6O2Y/P3eH9diKI0M39
- l83QI9PHIv5H4sUxP64yOs30QTZPW9WKyleEsvmaWXpCLTGNjrSEpM6+j
- s/LQO8finlZ9c5/ToVyx2uc67biHQWMxicFkguG0RvKG3mVsjC5qRH70e w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="353143203"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="353143203"
+ bh=lo+PdzA4LMdnwsAX3NgkryXu5X58oZVgY6ws2II1Yzo=;
+ b=BIyHz7wEgduHJJ+LBNJ1VTuYvJmaw5H27doFD13voE+3BnzM+Z5fdHY9
+ fK0P36lDccgAnKtNUEa56PYdr7njPksRMI5iWBfQCIR2LrL/ijiU/E/iK
+ 6b0c3ouKMG0qMJsuet3YFC21zGdDqeHKgmwvWUsgh6BU2OLbY3uJSbCD7
+ eID6NVd/RJ22CHI6gXXgD1+hjIgqtxJKibh+ckwx+njMhrh5SVL5ymn4Y
+ rZs/+ThhTStPQQUdA2J7tl4BcwbpI55TuniAxBmh1XhfZrYwhCL4KPJNn
+ DdRyir4za0smZTpV0LLXWlJcbVzK333bKZgIlnp2z79boIlKg7dvUztwZ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="353148911"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="353148911"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 11:32:58 -0700
+ 01 Jun 2023 11:51:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="707463750"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="707463750"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="707475504"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="707475504"
 Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.212.190.91])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 11:32:18 -0700
-Date: Thu, 01 Jun 2023 11:22:18 -0700
-Message-ID: <87wn0nujol.wl-ashutosh.dixit@intel.com>
+ 01 Jun 2023 11:50:59 -0700
+Date: Thu, 01 Jun 2023 11:30:44 -0700
+Message-ID: <87v8g7ujaj.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Matt Atwood <matthew.s.atwood@intel.com>
-In-Reply-To: <20230531213547.1525692-1-matthew.s.atwood@intel.com>
+In-Reply-To: <87wn0nujol.wl-ashutosh.dixit@intel.com>
 References: <20230531213547.1525692-1-matthew.s.atwood@intel.com>
+ <87wn0nujol.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -65,50 +66,67 @@ Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 31 May 2023 14:35:47 -0700, Matt Atwood wrote:
+On Thu, 01 Jun 2023 11:22:18 -0700, Dixit, Ashutosh wrote:
 >
-
-Hi Matt,
-
-> Set I915_PMU_MAX_GTS to value in I915_MAX_GT, theres no reason for these
-> values to be different.
+> On Wed, 31 May 2023 14:35:47 -0700, Matt Atwood wrote:
+> >
 >
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-
-I don't believe the mailer actually Cc'd us. I just saw this and am Cc'ing
-the people who authored/reviewed the previous series now.
-
-> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_pmu.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Hi Matt,
 >
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
-> index 33d80fbaab8b..aa929d8c224a 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.h
-> +++ b/drivers/gpu/drm/i915/i915_pmu.h
-> @@ -38,7 +38,7 @@ enum {
->	__I915_NUM_PMU_SAMPLERS
->  };
->
-> -#define I915_PMU_MAX_GTS 2
-> +#define I915_PMU_MAX_GTS 4
+> > Set I915_PMU_MAX_GTS to value in I915_MAX_GT, theres no reason for these
+> > values to be different.
 
-This was a discussed during the previous review and it was decided to keep
-the two values (I915_PMU_MAX_GTS and I915_MAX_GT) different. There are
-currently no platforms and there will be no i915 supported platforms with
-MAX_GT 4. So I prefer to leave the values as they currently are. Unless
-Umesh or Tvrtko agrees to this patch.
+Also, we can't be so sure so as to be able to say "theres no reason for
+these values to be different" till we have actually verified it. E.g. there
+are various bitfields in the code which might not fit in a u32 if we
+increase MAX_GT from 2 to 4. Has this been verified?
+
+If anything, to keep the code from doing unnecessary stuff, IMO I915_MAX_GT
+should be reduced to 2 and should be increased to 4 only once/if we have
+i915 supported platforms with 4 GT's.
 
 Thanks.
 --
 Ashutosh
 
+
+> >
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> > Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
 >
->  /*
->   * How many different events we track in the global PMU mask.
+> I don't believe the mailer actually Cc'd us. I just saw this and am Cc'ing
+> the people who authored/reviewed the previous series now.
+>
+> > Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_pmu.h | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
+> > index 33d80fbaab8b..aa929d8c224a 100644
+> > --- a/drivers/gpu/drm/i915/i915_pmu.h
+> > +++ b/drivers/gpu/drm/i915/i915_pmu.h
+> > @@ -38,7 +38,7 @@ enum {
+> >	__I915_NUM_PMU_SAMPLERS
+> >  };
+> >
+> > -#define I915_PMU_MAX_GTS 2
+> > +#define I915_PMU_MAX_GTS 4
+>
+> This was a discussed during the previous review and it was decided to keep
+> the two values (I915_PMU_MAX_GTS and I915_MAX_GT) different. There are
+> currently no platforms and there will be no i915 supported platforms with
+> MAX_GT 4. So I prefer to leave the values as they currently are. Unless
+> Umesh or Tvrtko agrees to this patch.
+>
+> Thanks.
 > --
-> 2.40.0
+> Ashutosh
 >
+> >
+> >  /*
+> >   * How many different events we track in the global PMU mask.
+> > --
+> > 2.40.0
+> >
