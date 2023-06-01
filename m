@@ -1,51 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B238C719F46
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 16:11:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61875719F38
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 16:09:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1941210E142;
-	Thu,  1 Jun 2023 14:11:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC42310E142;
+	Thu,  1 Jun 2023 14:09:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6A4910E142
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 14:11:25 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8036610E131;
+ Thu,  1 Jun 2023 14:09:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685628685; x=1717164685;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=Pd9iOYd+n422V2MPI4xRW/GrkcP5PvB+PdgokdgTGfo=;
- b=gRxSl8BtRE0//OKS5WBDZGjWXE7/vjuGjlTyp7EDwfAkpfdtX7xPx+QC
- rcnf+s3GnZQhCmlwKkFe1BsEDblJ3VKeNIQvkpDV9RhEEvJfT1fQSjrTH
- cXrsBwT1Tjx3zRkrpPOW6tiMzBgXkco00IlxQC3rFDvaSoC97aP7mqwKa
- xuDdwbvYKU9FU1R1NEIKroZZyTpkUX7G9MOhRKN/UOrVJsITtMOV5ts1x
- XTKIqhO7PFPuAIcB01k4cwGlPrk7XXiKOAPlSvY3s8wzOOcfClnFLwpRr
- jVC+52Ne8VeSF4KHWyDhv3VApmEEmgFGWLeoQXewtxQ277BJy/9lFvW0i Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="358857876"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="358857876"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 07:00:53 -0700
+ t=1685628553; x=1717164553;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=mil7lhAZxpLhYqIms/MfsdGRrP6/pDWG4A0XpIhr0LU=;
+ b=ZoMfqB+HbBOZZ3ZGbw1y/hBlrh1fRxMzeoPCeaPQrmTqsnZVJKapeY2w
+ UK3tG7o2iEBmzKvMi0DiRwPFY6GTFi9SB4PuRrNkrPylacaQt4VBt9Cdx
+ nLLjrK3Mce9EJEG1uFxOGI/DKNSD7Uy0Bri+tQMVfzrkHWDZDPYc1v5Bo
+ TrBWMf1PNXkWGA9KuVL5dWRSCm0o09QWqhmS+/cYbS5unG5JzNDcKm8fv
+ 5roo0zbCVe0Zkm8jr49MmApeslBWGIZfexlxs1vIMy5xKT8pXTLBexDJ4
+ QvC/w5HV57joEBGX8gkb1IwPFFHV+5C2K4MACrv/ehoS+7gxUSUH3dkKc Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="353063861"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="353063861"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 07:09:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="772433182"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="772433182"
-Received: from unknown (HELO localhost) ([10.237.66.162])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 07:00:52 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230601102757.187114-1-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230601051503.175869-1-arun.r.murthy@intel.com>
- <20230601102757.187114-1-arun.r.murthy@intel.com>
-Date: Thu, 01 Jun 2023 17:00:49 +0300
-Message-ID: <87ilc7ffji.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="831593851"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="831593851"
+Received: from amnerie-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.2.192])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 07:09:07 -0700
+Date: Thu, 1 Jun 2023 17:09:03 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <ZHimf55x/DyXYar1@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCHv2] drm/i915/display: Print useful
- information on error
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,50 +55,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 01 Jun 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> For modifier not supporting async flip, print the modifier and display
-> version. Helps in reading the error message.
->
-> v2: Reframe the error message (Jani)
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index f51a55f4e9d0..adaba43bde2b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6012,8 +6012,9 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
->  			 */
->  			if (DISPLAY_VER(i915) < 12) {
->  				drm_dbg_kms(&i915->drm,
-> -					    "[PLANE:%d:%s] Modifier does not support async flips\n",
-> -					    plane->base.base.id, plane->base.name);
-> +					    "[PLANE:%d:%s] Modifier 0x%llx does not support asyn flip on display ver %d\n",
+Hi Dave & Daniel,
 
-*async
+One fix appeared this morning, related to OA API for
+non-power-of-two reports.
 
-> +					    plane->base.base.id, plane->base.name,
-> +					    new_plane_state->hw.fb->modifier, DISPLAY_VER(i915));
->  				return -EINVAL;
->  			}
->  			break;
-> @@ -6025,8 +6026,9 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
->  			break;
->  		default:
->  			drm_dbg_kms(&i915->drm,
-> -				    "[PLANE:%d:%s] Modifier does not support async flips\n",
-> -				    plane->base.base.id, plane->base.name);
-> +				    "[PLANE:%d:%s] Modifier 0x%llx does not support async flip\n",
-> +				    plane->base.base.id, plane->base.name,
-> +				    new_plane_state->hw.fb->modifier);
->  			return -EINVAL;
->  		}
+Full CI results not in yet, BAT is looking good so please check
+before pulling the trigger.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Regards, Joonas
+
+***
+
+drm-intel-fixes-2023-06-01:
+
+- Fix for OA reporting to allow detecting non-power-of-two reports
+
+The following changes since commit 7877cb91f1081754a1487c144d85dc0d2e2e7fc4:
+
+  Linux 6.4-rc4 (2023-05-28 07:49:00 -0400)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-06-01
+
+for you to fetch changes up to 62fe398761cd06a428e6f367aba84732a2f1c268:
+
+  drm/i915/perf: Clear out entire reports after reading if not power of 2 size (2023-06-01 09:41:58 +0300)
+
+----------------------------------------------------------------
+- Fix for OA reporting to allow detecting non-power-of-two reports
+
+----------------------------------------------------------------
+Ashutosh Dixit (1):
+      drm/i915/perf: Clear out entire reports after reading if not power of 2 size
+
+ drivers/gpu/drm/i915/i915_perf.c | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
