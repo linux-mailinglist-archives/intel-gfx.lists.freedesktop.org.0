@@ -1,49 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA83571F0E8
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 19:38:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 404CF71F0F7
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 19:40:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5035510E59C;
-	Thu,  1 Jun 2023 17:38:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F406410E24F;
+	Thu,  1 Jun 2023 17:40:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7607010E59C
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 17:38:09 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4455E10E24F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 17:40:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685641089; x=1717177089;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wXf4F1CyRcsESqM6noDQi3vW5DhNgAJLWr0SoU9TyGE=;
- b=di99huKZ8mpXexzI7OxzZTdK42gtDH2qeBPUYUegvP9ILhbcU3/md8AE
- oKu7EVs0riZNw+hu2N0ffu0Y+ssj0qEfhOFjITHNJR1VgufFfIsyfaZka
- 88eUizca1doHtFHseIBYRc8hOl/ZJWoFNrDsGX+K5qtu8b6c9q05nPFmB
- K+fg9b0/QrSsTTRxneezJwTr8XZyltGki9jpsqjnevzXtrzpzFEMkphI4
- rGmmRwD9A1G44M50xZogl+WyNqApxpI7+ikIKOSEJ/zmpvbf7CYJKCIhZ
- 9mTvcguKjp+XK6oFPNT9m3AQjjZF2L0kCKvRqGdRU+cAgiUHTm4DZtEGu A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="354488602"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="354488602"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 10:38:08 -0700
+ t=1685641251; x=1717177251;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=W29tvmqUxhg0QhI8fEIknsvGsjh3CpjREUwf6m4Obwk=;
+ b=O/V0UIKZaU5xPEpeoa+N7uLKAAcmgY6LTZwVJT7V/4JYBkO4AZl4csKm
+ Yb6wU5irOsb6yeCw3eR5VJW/Q5SkPGE0nnOoczho5NMER23GF/uUncKfT
+ 6COfd201oHPR3ne92+kq1PrilpR7yb4u0cveKHGkYnj8fv6AhnO5MTDUR
+ udHOdDQXVpohLXaePuNOQCMcg4iRJ00akl8IPar+LSF301io+MMm+Rvp1
+ 7uwgg7GY7FVxgFzsLrCw7UCB8kA6O15c67Gp39ezGoEMwMQ6gpRvkGlOx
+ GM2maOt8aOsRMC5dbdb5p9D0Qxe8QIDH3oinfIfmwDQUhy6fPLh36GmkK g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="419157945"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="419157945"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 10:40:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="881711589"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="881711589"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 10:38:07 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 10:38:04 -0700
-Message-Id: <20230601173804.557756-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.40.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="831655314"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="831655314"
+Received: from mborsali-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.251.208.75])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 10:40:49 -0700
+Date: Thu, 1 Jun 2023 19:40:46 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Message-ID: <ZHjYHkAbzfd2lEBo@ashyti-mobl2.lan>
+References: <20230531213547.1525692-1-matthew.s.atwood@intel.com>
+ <ZHfAsU7tQ+qD5sBk@ashyti-mobl2.lan>
+ <ZHfFGr2j14/pK+tX@msatwood-mobl>
+ <ZHfHA7jAMh3TjtIl@ashyti-mobl2.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix error handling if driver creation
- fails during probe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZHfHA7jAMh3TjtIl@ashyti-mobl2.lan>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: sync I915_PMU_MAX_GTS to
+ I915_MAX_GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,36 +62,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, Dan Carpenter <dan.carpenter@linaro.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If i915_driver_create() fails to create a valid 'i915' object, we
-should just disable the PCI device and return immediately without trying
-to call i915_probe_error() that relies on a valid i915 pointer.
+Hi Matt,
 
-Fixes: 12e6f6dc78e4 ("drm/i915/display: Handle GMD_ID identification in display code")
-Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/i915_driver.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> > > > --- a/drivers/gpu/drm/i915/i915_pmu.h
+> > > > +++ b/drivers/gpu/drm/i915/i915_pmu.h
+> > > > @@ -38,7 +38,7 @@ enum {
+> > > >  	__I915_NUM_PMU_SAMPLERS
+> > > >  };
+> > > >  
+> > > > -#define I915_PMU_MAX_GTS 2
+> > > > +#define I915_PMU_MAX_GTS 4
+> > > 
+> > > right! Why not having
+> > > 
+> > > 	#define I915_PMU_MAX_GTS	I915_MAX_GT
+> > > 
+> > > or... why having I915_PMU_MAX_GTS at all?
+> > Originally I went the route of s/I915_PMU_MAX_GTS/I915_MAX_GT/g.
+> > However, this introduces many changes to where you then move
+> > I915_MAX_GT to and #include blocks in fiels that require these values.
+> > In the end I decided it was better to keep define and just change the
+> > value.
+> 
+> OK, makes sense, then how about
+> 
+>  	#define I915_PMU_MAX_GTS	I915_MAX_GT
+> 
+> i915_pmu.h has visibility on I915_MAX_GT.
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index c3ab5c32d492..5c3fc57cc4fe 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -762,8 +762,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 
- 	i915 = i915_driver_create(pdev, ent);
- 	if (IS_ERR(i915)) {
--		ret = PTR_ERR(i915);
--		goto out_pci_disable;
-+		pci_disable_device(pdev);
-+		return PTR_ERR(i915);
- 	}
- 
- 	ret = i915_driver_early_probe(i915);
--- 
-2.40.1
+ops... it doesn't... sorry!
 
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+
+Andi
+
+> Andi
+> 
+> > > 
+> > > Andi
+> > > 
+> > > >  /*
+> > > >   * How many different events we track in the global PMU mask.
+> > > > -- 
+> > > > 2.40.0
+> > MattA
