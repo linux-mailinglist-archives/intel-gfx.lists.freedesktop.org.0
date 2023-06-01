@@ -2,49 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9972719650
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 11:03:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5FB9719664
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 11:09:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CAC810E21B;
-	Thu,  1 Jun 2023 09:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC0FF10E52E;
+	Thu,  1 Jun 2023 09:09:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 358DB10E21B
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 09:03:54 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6E7810E52E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 09:09:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685610234; x=1717146234;
+ t=1685610585; x=1717146585;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=PDbopT5dF2xGITX3cviIHOaeh6R+BajMISpyXFBwj/Q=;
- b=ARMJyJzTQRmup2Tuzi8hs2cRsjL4wuGtsYQZPr+Ss29TwoQj8i1tsS6y
- HnlkVedxTYZzJhoWPIxSaSOssud2pLMidKi6QJuFN6DOd49S32i0nuh37
- 8Hoie3/LNRPc6XcS12F93rIBFdJYoZF0zUYvt0wJinEpL2+8DfJMxEqMu
- o/gvdvOWZBz8FZc4/05umh4l5rJAWE1O3TDnnB5uW7wLncwjIlWvwYBuo
- Dqko/TUbJ8zH4pOEmr+D9x6sA61rXdrX78KJUvXyKStOPvGxUgkfIT8GA
- YSEITlhe+Q5tTluuv5WFh28rgQaVCSIl5fKKkwFCiCNVLOMfkiepDF415 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="335121666"
-X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="335121666"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 02:03:53 -0700
+ bh=Nut0thRDV2urZSn6VGTmLce8dgQV2ul0hYJzjbxbOuI=;
+ b=LwdovcheNYafiP3e3iEVHBnAf0GV4VVxxcvCPedvqnpwOzFbXZZZnXBF
+ i+xqQp4HpvkuRSrr04fA0TjaIoPWv7BXGsPJi0m67TqBjV0n6h6mWJhNO
+ KudPyEMmEnUJvcX2Mcwpixk8Pj6IV1FCJw1G0VK8VkeTkTYcWNoOOPIne
+ 0jGfST8/P4WkptgMYb0P19tFB7RckNwsEgY/v6KXAIRRoxBDXlaR+HDsd
+ 7vyfKVhYsCkZJjWEb4YCKYnh6AUSFPmxKHbhJCB/SsnoETNv6UKCJ0+Zs
+ 6XiO/E/wNk71zqsjyezqLN79twQ7lI0DgVtkap24sYjqWisWun+6XXZtO w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="335853475"
+X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="335853475"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 02:09:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="701463376"
-X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="701463376"
-Received: from lhogeweg-mobl.ger.corp.intel.com (HELO hazy.ger.corp.intel.com)
- ([10.252.55.20])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 02:03:51 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="797069712"
+X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="797069712"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by FMSMGA003.fm.intel.com with ESMTP; 01 Jun 2023 02:09:43 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 12:03:38 +0300
-Message-Id: <20230601090338.80284-1-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.39.2
+Date: Thu,  1 Jun 2023 14:45:18 +0530
+Message-Id: <20230601091518.1698066-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: pre-initialize some values in
- probe_gmdid_display()
+Subject: [Intel-gfx] [PATCH V4] drm/i915/gt: Add workaround 14016712196
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,37 +57,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When intel_display_device_probe() (and, subsequently,
-probe_gmdid_display()) returns, the caller expects ver, rel and step
-to be initialized.  Since there's no way to check that there was a
-failure and no_display was returned without some further refactoring,
-pre-initiliaze all these values to zero to keep it simple and safe.
+For mtl, workaround suggests that, SW insert a
+dummy PIPE_CONTROL prior to PIPE_CONTROL which
+contains a post sync: Timestamp or Write Immediate.
 
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+Bspec: 72197
+
+V4:
+  - Update commit message, avoid returing cs - Andi/Matt
+V3:
+  - Wrap dummy pipe control stuff in API - Andi
+V2:
+  - Fix  kernel test robot warnings
+
+Closes: https://lore.kernel.org/oe-kbuild-all/202305121525.3EWdGoBY-lkp@intel.com/
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 40 ++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 464df1764a86..fb6354e9e704 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -731,6 +731,15 @@ probe_gmdid_display(struct drm_i915_private *i915, u16 *ver, u16 *rel, u16 *step
- 	u32 val;
- 	int i;
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index e1c76e5bfa82..9e3d4323f36f 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -177,14 +177,42 @@ u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv
+ 	return cs;
+ }
  
-+	/* The caller expects to ver, rel and step to be initialized
-+	 * here, and there's no good way to check when there was a
-+	 * failure and no_display was returned.  So initialize all these
-+	 * values here zero, to be sure.
-+	 */
-+	*ver = 0;
-+	*rel = 0;
-+	*step = 0;
++static int mtl_dummy_pipe_control(struct i915_request *rq)
++{
++	/* Wa_14016712196 */
++	if (IS_MTL_GRAPHICS_STEP(rq->engine->i915, M, STEP_A0, STEP_B0) ||
++	    IS_MTL_GRAPHICS_STEP(rq->engine->i915, P, STEP_A0, STEP_B0)) {
++		int ret = 0;
++		u32 *cs;
 +
- 	addr = pci_iomap_range(pdev, 0, i915_mmio_reg_offset(GMD_ID_DISPLAY), sizeof(u32));
- 	if (!addr) {
- 		drm_err(&i915->drm, "Cannot map MMIO BAR to read display GMD_ID\n");
++		/* dummy PIPE_CONTROL + depth flush */
++		cs = intel_ring_begin(rq, 6);
++		ret = IS_ERR(cs);
++		if (ret)
++			return PTR_ERR(cs);
++		cs = gen12_emit_pipe_control(cs,
++					     0,
++					     PIPE_CONTROL_DEPTH_CACHE_FLUSH,
++					     LRC_PPHWSP_SCRATCH_ADDR);
++		intel_ring_advance(rq, cs);
++	}
++
++	return 0;
++}
++
+ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+ {
+ 	struct intel_engine_cs *engine = rq->engine;
+ 
+ 	if (mode & EMIT_FLUSH) {
+ 		u32 flags = 0;
++		int err;
+ 		u32 *cs;
+ 
++		err = mtl_dummy_pipe_control(rq);
++		if (err)
++			return err;
++
+ 		flags |= PIPE_CONTROL_TILE_CACHE_FLUSH;
+ 		flags |= PIPE_CONTROL_FLUSH_L3;
+ 		flags |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
+@@ -217,6 +245,11 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+ 	if (mode & EMIT_INVALIDATE) {
+ 		u32 flags = 0;
+ 		u32 *cs, count;
++		int err;
++
++		err = mtl_dummy_pipe_control(rq);
++		if (err)
++			return err;
+ 
+ 		flags |= PIPE_CONTROL_COMMAND_CACHE_INVALIDATE;
+ 		flags |= PIPE_CONTROL_TLB_INVALIDATE;
+@@ -733,6 +766,13 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ 		     PIPE_CONTROL_DC_FLUSH_ENABLE |
+ 		     PIPE_CONTROL_FLUSH_ENABLE);
+ 
++	/* Wa_14016712196 */
++	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
++	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++		/* dummy PIPE_CONTROL + depth flush */
++		cs = gen12_emit_pipe_control(cs, 0,
++					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
++
+ 	if (GRAPHICS_VER(i915) == 12 && GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
+ 		/* Wa_1409600907 */
+ 		flags |= PIPE_CONTROL_DEPTH_STALL;
 -- 
-2.39.2
+2.25.1
 
