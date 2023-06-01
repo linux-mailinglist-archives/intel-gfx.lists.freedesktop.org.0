@@ -1,47 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5FB9719664
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 11:09:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A294719741
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 11:42:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC0FF10E52E;
-	Thu,  1 Jun 2023 09:09:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B7810E1AF;
+	Thu,  1 Jun 2023 09:41:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6E7810E52E
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 09:09:45 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 283EA10E1AF
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 09:41:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685610585; x=1717146585;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Nut0thRDV2urZSn6VGTmLce8dgQV2ul0hYJzjbxbOuI=;
- b=LwdovcheNYafiP3e3iEVHBnAf0GV4VVxxcvCPedvqnpwOzFbXZZZnXBF
- i+xqQp4HpvkuRSrr04fA0TjaIoPWv7BXGsPJi0m67TqBjV0n6h6mWJhNO
- KudPyEMmEnUJvcX2Mcwpixk8Pj6IV1FCJw1G0VK8VkeTkTYcWNoOOPIne
- 0jGfST8/P4WkptgMYb0P19tFB7RckNwsEgY/v6KXAIRRoxBDXlaR+HDsd
- 7vyfKVhYsCkZJjWEb4YCKYnh6AUSFPmxKHbhJCB/SsnoETNv6UKCJ0+Zs
- 6XiO/E/wNk71zqsjyezqLN79twQ7lI0DgVtkap24sYjqWisWun+6XXZtO w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="335853475"
-X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="335853475"
+ t=1685612517; x=1717148517;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=ByrLGAVs4a8HrhpdDh0avsDze7bVQpCLP2jjeYDLJDc=;
+ b=cYrH5XEZp0J/YHGvVnui9GLAQiXO9aMYPrU3X9IJWQ27DQl9lBdQN5pR
+ 6DLc4wbxfNRvJ8FLDBkfq6GYulud9ipHYaQqkCX0ReKElrdoivQzGSDs9
+ vRN9Xp025CJyysFXADNjQ/k+8LuJ0WPy406an6udgeOVf/L52ew99sRoq
+ Ktj0mceFt9H6LW4pbwZU3fRYoW+8XWVlRCzvU/S35rZOUyysst5rTuy6u
+ eZA2TtkRt5xa0BET4UPLQz6S+ns/ZvWqGn4KxDR7FRVXcM3K2S/84D8Su
+ qv/BPEVVbMJxYVUHNXsIqjN0+8OqECGjA5+cgvkOKlieAobRvx1EnvICl A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="335129025"
+X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="335129025"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 02:09:44 -0700
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 02:41:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="797069712"
-X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="797069712"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by FMSMGA003.fm.intel.com with ESMTP; 01 Jun 2023 02:09:43 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 14:45:18 +0530
-Message-Id: <20230601091518.1698066-1-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="797077156"
+X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="797077156"
+Received: from rbals-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.178])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 02:41:55 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230601051503.175869-1-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230601051503.175869-1-arun.r.murthy@intel.com>
+Date: Thu, 01 Jun 2023 12:41:53 +0300
+Message-ID: <87leh3frj2.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH V4] drm/i915/gt: Add workaround 14016712196
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Print usefull information
+ on error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,98 +61,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For mtl, workaround suggests that, SW insert a
-dummy PIPE_CONTROL prior to PIPE_CONTROL which
-contains a post sync: Timestamp or Write Immediate.
+On Thu, 01 Jun 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> For modifier not supporting async flip, print the modifier and display
+> version. Helps in reading the error message.
+>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index f51a55f4e9d0..0877f1e251a0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -6012,8 +6012,9 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+>  			 */
+>  			if (DISPLAY_VER(i915) < 12) {
+>  				drm_dbg_kms(&i915->drm,
+> -					    "[PLANE:%d:%s] Modifier does not support async flips\n",
+> -					    plane->base.base.id, plane->base.name);
+> +					    "[PLANE:%d:%s] Asyn flip on modifier 0x%llx not supported on Display Ver %d\n",
 
-Bspec: 72197
+How about:
 
-V4:
-  - Update commit message, avoid returing cs - Andi/Matt
-V3:
-  - Wrap dummy pipe control stuff in API - Andi
-V2:
-  - Fix  kernel test robot warnings
+"Modifier 0x%llx does not support async flips on display ver %d\n"
 
-Closes: https://lore.kernel.org/oe-kbuild-all/202305121525.3EWdGoBY-lkp@intel.com/
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 40 ++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+> +					    plane->base.base.id, plane->base.name,
+> +					    new_plane_state->hw.fb->modifier, DISPLAY_VER(i915));
+>  				return -EINVAL;
+>  			}
+>  			break;
+> @@ -6025,8 +6026,9 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+>  			break;
+>  		default:
+>  			drm_dbg_kms(&i915->drm,
+> -				    "[PLANE:%d:%s] Modifier does not support async flips\n",
+> -				    plane->base.base.id, plane->base.name);
+> +				    "[PLANE:%d:%s] Unknown modifier 0x%llx ! async flip not supported\n",
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-index e1c76e5bfa82..9e3d4323f36f 100644
---- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-@@ -177,14 +177,42 @@ u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv
- 	return cs;
- }
- 
-+static int mtl_dummy_pipe_control(struct i915_request *rq)
-+{
-+	/* Wa_14016712196 */
-+	if (IS_MTL_GRAPHICS_STEP(rq->engine->i915, M, STEP_A0, STEP_B0) ||
-+	    IS_MTL_GRAPHICS_STEP(rq->engine->i915, P, STEP_A0, STEP_B0)) {
-+		int ret = 0;
-+		u32 *cs;
-+
-+		/* dummy PIPE_CONTROL + depth flush */
-+		cs = intel_ring_begin(rq, 6);
-+		ret = IS_ERR(cs);
-+		if (ret)
-+			return PTR_ERR(cs);
-+		cs = gen12_emit_pipe_control(cs,
-+					     0,
-+					     PIPE_CONTROL_DEPTH_CACHE_FLUSH,
-+					     LRC_PPHWSP_SCRATCH_ADDR);
-+		intel_ring_advance(rq, cs);
-+	}
-+
-+	return 0;
-+}
-+
- int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
- {
- 	struct intel_engine_cs *engine = rq->engine;
- 
- 	if (mode & EMIT_FLUSH) {
- 		u32 flags = 0;
-+		int err;
- 		u32 *cs;
- 
-+		err = mtl_dummy_pipe_control(rq);
-+		if (err)
-+			return err;
-+
- 		flags |= PIPE_CONTROL_TILE_CACHE_FLUSH;
- 		flags |= PIPE_CONTROL_FLUSH_L3;
- 		flags |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
-@@ -217,6 +245,11 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
- 	if (mode & EMIT_INVALIDATE) {
- 		u32 flags = 0;
- 		u32 *cs, count;
-+		int err;
-+
-+		err = mtl_dummy_pipe_control(rq);
-+		if (err)
-+			return err;
- 
- 		flags |= PIPE_CONTROL_COMMAND_CACHE_INVALIDATE;
- 		flags |= PIPE_CONTROL_TLB_INVALIDATE;
-@@ -733,6 +766,13 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
- 		     PIPE_CONTROL_DC_FLUSH_ENABLE |
- 		     PIPE_CONTROL_FLUSH_ENABLE);
- 
-+	/* Wa_14016712196 */
-+	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
-+	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
-+		/* dummy PIPE_CONTROL + depth flush */
-+		cs = gen12_emit_pipe_control(cs, 0,
-+					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
-+
- 	if (GRAPHICS_VER(i915) == 12 && GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
- 		/* Wa_1409600907 */
- 		flags |= PIPE_CONTROL_DEPTH_STALL;
+It's not unknown, it just doesn't support async flips? Why the
+exclamation mark?
+
+How about:
+
+"Modifier 0x%llx does not support async flips\n"
+
+> +				    plane->base.base.id, plane->base.name,
+> +				    new_plane_state->hw.fb->modifier);
+>  			return -EINVAL;
+>  		}
+
 -- 
-2.25.1
-
+Jani Nikula, Intel Open Source Graphics Center
