@@ -1,51 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FE9C719818
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 12:01:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE2F3719948
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 12:19:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F48110E231;
-	Thu,  1 Jun 2023 10:01:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA2AF10E246;
+	Thu,  1 Jun 2023 10:19:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF26B10E231
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 10:01:03 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F1EC10E22F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 10:19:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685613663; x=1717149663;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=dGF2w953eUVUUDf2jSDnhWGd9pv4edPd8ZOpufBVMRY=;
- b=ARmcql1KQX3pSc6nrEn670nq51uGzZznXn4OqZTs2tD27Jh1RGO4XCwT
- O6yl+OjB4cy8LFvoFlzUo90dopgex+n+ZSv0xvmhcAHScgn3WbhIzE7b7
- uZv3jRxQDW04EA8SVr+QKAdwrwrxB73KrHrXMYahfbIilpKKCVhpP7E0Q
- EZ75rPBUXMMHEuVdvfsN8VrM5Q0YSSeX7blw2OxK40Tv4mnHcs0AVCz/X
- xpDyWX6/mjUr9Rn4ih6mRBvnkSGk4cJwxNFdkStcfNl9ue6pH0+RkSP1N
- 0+KWAnJqL1j9zkJUW063oBsF6SCA5NdsoPLFbKyfFlv7Q05zZ1TcP3C80 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="441875363"
-X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="441875363"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 03:01:02 -0700
+ t=1685614745; x=1717150745;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/tqIIItXbrMwPBwhZNQcfKPnr1dSO9z9aoIoEgR+HhM=;
+ b=Smbjz1EGVm7B1cWrYjrrIPPTU4kVJch4Rb8QCCReCaZaLBO16KvLivke
+ Lb57HG6RVGHzlhmjNkhbcl0tlcktYn71okhH2yAdmlyYXsQxOv2mbafCS
+ aXaYxVDN3CNaR59Np7V5/YkMy5IslxLt9DYVgV5+q8NiOVegHIbL7sjb6
+ WxIX3ZOcEUhEuctlWxzA8TKGrgIj8mFB4p3ZI8gK3sEsv4/+Cm8Ejhu2+
+ 4uy/xi73TO4RqdSyORQw29mhjs+3JS5WCbyrE22K9wWQ6xKSjln94aTxD
+ o+tEOV7EvJgwBYOgZ3MPir0n1zr/0ilhoVTG48CjO1bnAYoB9YexCwRbc w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="383788646"
+X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="383788646"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 03:18:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="772369830"
-X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="772369830"
-Received: from mborsali-mobl.amr.corp.intel.com (HELO intel.com)
- ([10.251.208.75])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 03:01:01 -0700
-Date: Thu, 1 Jun 2023 12:00:58 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Message-ID: <ZHhsWkGpv+i384gP@ashyti-mobl2.lan>
-References: <20230601091518.1698066-1-tejas.upadhyay@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="701491290"
+X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="701491290"
+Received: from unknown (HELO sorvi2.fi.intel.com) ([10.237.72.194])
+ by orsmga007.jf.intel.com with ESMTP; 01 Jun 2023 03:18:41 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  1 Jun 2023 13:13:14 +0300
+Message-Id: <20230601101314.332392-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230601091518.1698066-1-tejas.upadhyay@intel.com>
-Subject: Re: [Intel-gfx] [PATCH V4] drm/i915/gt: Add workaround 14016712196
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/mtl: Reset only one lane in case of
+ MFD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,118 +55,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 01, 2023 at 02:45:18PM +0530, Tejas Upadhyay wrote:
-> For mtl, workaround suggests that, SW insert a
-> dummy PIPE_CONTROL prior to PIPE_CONTROL which
-> contains a post sync: Timestamp or Write Immediate.
-> 
-> Bspec: 72197
-> 
-> V4:
->   - Update commit message, avoid returing cs - Andi/Matt
-> V3:
->   - Wrap dummy pipe control stuff in API - Andi
-> V2:
->   - Fix  kernel test robot warnings
-> 
-> Closes: https://lore.kernel.org/oe-kbuild-all/202305121525.3EWdGoBY-lkp@intel.com/
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 40 ++++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> index e1c76e5bfa82..9e3d4323f36f 100644
-> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> @@ -177,14 +177,42 @@ u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv
->  	return cs;
->  }
->  
-> +static int mtl_dummy_pipe_control(struct i915_request *rq)
-> +{
-> +	/* Wa_14016712196 */
-> +	if (IS_MTL_GRAPHICS_STEP(rq->engine->i915, M, STEP_A0, STEP_B0) ||
-> +	    IS_MTL_GRAPHICS_STEP(rq->engine->i915, P, STEP_A0, STEP_B0)) {
-> +		int ret = 0;
+In case when only two or less transmit lanes are owned such as MFD
+(DP-alt with x2 lanes) we need to reset only one data lane (lane0).
+With only x2 lanes we don't need to poll for the phy current
+status on both data lanes since only the owned data lane will respond.
 
-I think this is not needed.
+v2: Find better naming for lanes and revise the commit message (Luca)
 
-> +		u32 *cs;
-> +
-> +		/* dummy PIPE_CONTROL + depth flush */
-> +		cs = intel_ring_begin(rq, 6);
-> +		ret = IS_ERR(cs);
+Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com> (v1)
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 39 ++++++++++++--------
+ 1 file changed, 23 insertions(+), 16 deletions(-)
 
-not needed.
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index ee6902118860..0600fdcd06ef 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2528,13 +2528,23 @@ static u32 intel_cx0_get_pclk_refclk_ack(u8 lane_mask)
+ 	return val;
+ }
+ 
+-/* FIXME: Some Type-C cases need not reset both the lanes. Handle those cases. */
+-static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915, enum port port,
++static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915,
++				     struct intel_encoder *encoder,
+ 				     bool lane_reversal)
+ {
++	enum port port = encoder->port;
+ 	enum phy phy = intel_port_to_phy(i915, port);
++	bool both_lanes =  intel_tc_port_fia_max_lane_count(enc_to_dig_port(encoder)) > 2;
+ 	u8 lane_mask = lane_reversal ? INTEL_CX0_LANE1 :
+ 				  INTEL_CX0_LANE0;
++	u32 lane_pipe_reset = both_lanes ?
++			      XELPDP_LANE_PIPE_RESET(0) |
++			      XELPDP_LANE_PIPE_RESET(1) :
++			      XELPDP_LANE_PIPE_RESET(0);
++	u32 lane_phy_current_status = both_lanes ?
++				      XELPDP_LANE_PHY_CURRENT_STATUS(0) |
++				      XELPDP_LANE_PHY_CURRENT_STATUS(1) :
++				      XELPDP_LANE_PHY_CURRENT_STATUS(0);
+ 
+ 	if (__intel_de_wait_for_register(i915, XELPDP_PORT_BUF_CTL1(port),
+ 					 XELPDP_PORT_BUF_SOC_PHY_READY,
+@@ -2545,23 +2555,24 @@ static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915, enum port po
+ 
+ 	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(port),
+ 		     XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1),
+-		     XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1));
++		     lane_pipe_reset);
+ 
+ 	if (__intel_de_wait_for_register(i915, XELPDP_PORT_BUF_CTL2(port),
+-					 XELPDP_LANE_PHY_CURRENT_STATUS(0) |
+-					 XELPDP_LANE_PHY_CURRENT_STATUS(1),
+-					 XELPDP_LANE_PHY_CURRENT_STATUS(0) |
+-					 XELPDP_LANE_PHY_CURRENT_STATUS(1),
++					 lane_phy_current_status, lane_phy_current_status,
+ 					 XELPDP_PORT_RESET_START_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dus.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+ 
+ 	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(port),
+-		     intel_cx0_get_pclk_refclk_request(INTEL_CX0_BOTH_LANES),
++		     intel_cx0_get_pclk_refclk_request(both_lanes ?
++						       INTEL_CX0_BOTH_LANES :
++						       INTEL_CX0_LANE0),
+ 		     intel_cx0_get_pclk_refclk_request(lane_mask));
+ 
+ 	if (__intel_de_wait_for_register(i915, XELPDP_PORT_CLOCK_CTL(port),
+-					 intel_cx0_get_pclk_refclk_ack(INTEL_CX0_BOTH_LANES),
++					 intel_cx0_get_pclk_refclk_ack(both_lanes ?
++								       INTEL_CX0_BOTH_LANES :
++								       INTEL_CX0_LANE0),
+ 					 intel_cx0_get_pclk_refclk_ack(lane_mask),
+ 					 XELPDP_REFCLK_ENABLE_TIMEOUT_US, 0, NULL))
+ 		drm_warn(&i915->drm, "PHY %c failed to request refclk after %dus.\n",
+@@ -2571,13 +2582,9 @@ static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915, enum port po
+ 					    CX0_P2_STATE_RESET);
+ 	intel_cx0_setup_powerdown(i915, port);
+ 
+-	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(port),
+-		     XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1),
+-		     0);
++	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(port), lane_pipe_reset, 0);
+ 
+-	if (intel_de_wait_for_clear(i915, XELPDP_PORT_BUF_CTL2(port),
+-				    XELPDP_LANE_PHY_CURRENT_STATUS(0) |
+-				    XELPDP_LANE_PHY_CURRENT_STATUS(1),
++	if (intel_de_wait_for_clear(i915, XELPDP_PORT_BUF_CTL2(port), lane_phy_current_status,
+ 				    XELPDP_PORT_RESET_END_TIMEOUT))
+ 		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dms.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_END_TIMEOUT);
+@@ -2705,7 +2712,7 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	intel_program_port_clock_ctl(encoder, crtc_state, lane_reversal);
+ 
+ 	/* 2. Bring PHY out of reset. */
+-	intel_cx0_phy_lane_reset(i915, encoder->port, lane_reversal);
++	intel_cx0_phy_lane_reset(i915, encoder, lane_reversal);
+ 
+ 	/*
+ 	 * 3. Change Phy power state to Ready.
+-- 
+2.34.1
 
-> +		if (ret)
-> +			return PTR_ERR(cs);
-
-if (IS_ERR(cs))
-	return PTR_ERR(cs);
-
-with this change:
-
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
-
-Andi
-
-> +		cs = gen12_emit_pipe_control(cs,
-> +					     0,
-> +					     PIPE_CONTROL_DEPTH_CACHE_FLUSH,
-> +					     LRC_PPHWSP_SCRATCH_ADDR);
-> +		intel_ring_advance(rq, cs);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
->  {
->  	struct intel_engine_cs *engine = rq->engine;
->  
->  	if (mode & EMIT_FLUSH) {
->  		u32 flags = 0;
-> +		int err;
->  		u32 *cs;
->  
-> +		err = mtl_dummy_pipe_control(rq);
-> +		if (err)
-> +			return err;
-> +
->  		flags |= PIPE_CONTROL_TILE_CACHE_FLUSH;
->  		flags |= PIPE_CONTROL_FLUSH_L3;
->  		flags |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
-> @@ -217,6 +245,11 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
->  	if (mode & EMIT_INVALIDATE) {
->  		u32 flags = 0;
->  		u32 *cs, count;
-> +		int err;
-> +
-> +		err = mtl_dummy_pipe_control(rq);
-> +		if (err)
-> +			return err;
->  
->  		flags |= PIPE_CONTROL_COMMAND_CACHE_INVALIDATE;
->  		flags |= PIPE_CONTROL_TLB_INVALIDATE;
-> @@ -733,6 +766,13 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
->  		     PIPE_CONTROL_DC_FLUSH_ENABLE |
->  		     PIPE_CONTROL_FLUSH_ENABLE);
->  
-> +	/* Wa_14016712196 */
-> +	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
-> +	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
-> +		/* dummy PIPE_CONTROL + depth flush */
-> +		cs = gen12_emit_pipe_control(cs, 0,
-> +					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
-> +
->  	if (GRAPHICS_VER(i915) == 12 && GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
->  		/* Wa_1409600907 */
->  		flags |= PIPE_CONTROL_DEPTH_STALL;
-> -- 
-> 2.25.1
