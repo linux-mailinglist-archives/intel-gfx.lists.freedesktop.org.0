@@ -2,79 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EE3171EEBF
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 18:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBC7371F06D
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 19:15:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C097C10E581;
-	Thu,  1 Jun 2023 16:24:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1111D10E24C;
+	Thu,  1 Jun 2023 17:15:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE1BE10E153;
- Thu,  1 Jun 2023 16:24:33 +0000 (UTC)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 351Ce1mY025423; Thu, 1 Jun 2023 16:24:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com;
- h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=WNAynx4tlKqXRZp5kDxLG89UEaNImx42SZIHHfZDXfM=;
- b=atZgqiL3xeyOLWRoxI/AOXm9BRSfaqwpC4rhRKLyCk0Z9xVR3pMTmp7XwSSTUilh5F9M
- KXMmV3g1Jauy+YqoSRv/a2lDUY8G1mMcqaAiWyxC1oN7PAUe+tLIBOTwzKqHVYLF5kd0
- k2gGtqi41UBn6/GzRM8aOsgp2azkKhpB5J+y+SV0Dd30t1O9LylTT+l6zZTjl48izrgQ
- oLxUXunDWxsSP6DTjLU2jei8gTIzUGfAIJXJ7sGWoCgmbYYRA6CMl3vaEFuyHol0Ffsq
- cNN9EajVbR8NzSfeczRWlVJgqVvm5kBEC9746PqLrcZiC/CDHFzyT0IacMrINDy4tcvv qA== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qxugrgn8n-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 01 Jun 2023 16:24:26 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 351GOPRD013298
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 1 Jun 2023 16:24:25 GMT
-Received: from [10.110.26.45] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 1 Jun 2023
- 09:24:21 -0700
-Message-ID: <d6fc9ce5-75e8-3b8d-a598-beb3cc18fd2a@quicinc.com>
-Date: Thu, 1 Jun 2023 09:24:19 -0700
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ACD910E23E;
+ Thu,  1 Jun 2023 17:15:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685639706; x=1717175706;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=Bcy/ynrEhm2Z+U2KWpiwDh+s4djqsOh2Rl2GPeadFNI=;
+ b=cXtfvFqL6K74Arl22cU/QkLb3EUjkWM7jnEz/vD2K/wMDytWmFrggfs4
+ nsRx8qjMZDQy5Odbw4M4+9TkFTYNHyESfcBFw0Hhk1xBMS7nY29ki8c1d
+ +haRCtkjWq1TaT6O4JF2ZuepQ1rJlYn+8wIr4XxcI4lJbjh7HJcxSXY0D
+ taDP54bSK+LEfelyfbgz+K+yYM1UbS9Aa/NQVyVAFjnTxGOXaJciJlbRc
+ k0waheVuYnZIigP6wVKaa6KrXD/lwzjaeOaBtagAasUAJZuf6J5q2nVgv
+ 7KASCH+ILfY5JZcHkazxQ1MltW+zl1xyDGs1KdIj7yQGWtncGOqgVWTWD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="340245001"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="340245001"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 10:14:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="737191768"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="737191768"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.9.133])
+ ([10.213.9.133])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 10:14:52 -0700
+Message-ID: <b7811942-da09-7295-4774-46360715f147@intel.com>
+Date: Thu, 1 Jun 2023 19:14:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
+ Firefox/102.0 Thunderbird/102.11.2
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: "David S . Miller" <davem@davemloft.net>, Jakub Kicinski
+ <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>
+References: <20230224-track_gt-v8-0-4b6517e61be6@intel.com>
+ <55aa19b3-58d4-02ae-efd1-c3f3d0f21ce6@intel.com>
+ <ZFVhx2PBdcwpNNl0@rdvivi-mobl4>
+ <bb49bbd6-1ff2-8dba-11d1-6b6ab2ccd986@intel.com>
 Content-Language: en-US
-To: Thomas Zimmermann <tzimmermann@suse.de>, <daniel@ffwll.ch>,
- <airlied@gmail.com>, <maarten.lankhorst@linux.intel.com>,
- <mripard@kernel.org>, <javierm@redhat.com>, <sam@ravnborg.org>,
- <suijingfeng@loongson.cn>
-References: <20230530150253.22758-1-tzimmermann@suse.de>
- <20230530150253.22758-12-tzimmermann@suse.de>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20230530150253.22758-12-tzimmermann@suse.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-ORIG-GUID: BwxUl_z5rEwYNDxEuLg0AizkPvjkYHQB
-X-Proofpoint-GUID: BwxUl_z5rEwYNDxEuLg0AizkPvjkYHQB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-06-01_08,2023-05-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501
- lowpriorityscore=0 mlxscore=0 mlxlogscore=657 spamscore=0 impostorscore=0
- malwarescore=0 bulkscore=0 adultscore=0 clxscore=1011 phishscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2306010142
-Subject: Re: [Intel-gfx] [PATCH v5 11/13] drm/msm: Use regular fbdev I/O
- helpers
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <bb49bbd6-1ff2-8dba-11d1-6b6ab2ccd986@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v8 0/7] drm/i915: use ref_tracker library
+ for tracking wakerefs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,41 +68,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
+Cc: netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Rodrigo Vivi <rodrigo.vivi@kernel.org>,
+ David Airlie <airlied@gmail.com>, Dmitry Vyukov <dvyukov@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+On 08.05.2023 19:16, Andrzej Hajda wrote:
+> On 05.05.2023 22:06, Rodrigo Vivi wrote:
+>> On Thu, May 04, 2023 at 06:27:53PM +0200, Andrzej Hajda wrote:
+>>> Hi maintainers of net and i915,
+>>>
+>>> On 25.04.2023 00:05, Andrzej Hajda wrote:
+>>>> This is revived patchset improving ref_tracker library and converting
+>>>> i915 internal tracker to ref_tracker.
+>>>> The old thread ended without consensus about small kernel allocations,
+>>>> which are performed under spinlock.
+>>>> I have tried to solve the problem by splitting the calls, but it 
+>>>> results
+>>>> in complicated API, so I went back to original solution.
+>>>> If there are better solutions I am glad to discuss them.
+>>>> Meanwhile I send original patchset with addressed remaining comments.
 
-On 5/30/2023 8:02 AM, Thomas Zimmermann wrote:
-> Use the regular fbdev helpers for framebuffer I/O instead of DRM's
-> helpers. Msm does not use damage handling, so DRM's fbdev helpers
-> are mere wrappers around the fbdev code.
-> 
-> By using fbdev helpers directly within each DRM fbdev emulation,
-> we can eventually remove DRM's wrapper functions entirely.
-> 
-> Msm's fbdev emulation has been incomplete as it didn't implement
-> damage handling. Partilly fix this by implementing damage handling
-> for write and draw operation. It is still missing for mmaped pages.
-> 
-> v4:
-> 	* use initializer macros for struct fb_ops
-> 	* partially support damage handling
-> v2:
-> 	* use FB_SYS_HELPERS option
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: Sean Paul <sean@poorly.run>
-> ---
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Ping on the series, everything reviewed.
+Eric, Dave, Jakub, could you take patches 1-4 via net tree?
+
+Regards
+Andrzej
+
+>>>>
+>>>> To: Jani Nikula <jani.nikula@linux.intel.com>
+>>>> To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>>> To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>> To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>>>> To: David Airlie <airlied@gmail.com>
+>>>> To: Daniel Vetter <daniel@ffwll.ch>
+>>>> To: Eric Dumazet <edumazet@google.com>
+>>>> Cc: linux-kernel@vger.kernel.org
+>>>> Cc: intel-gfx@lists.freedesktop.org
+>>>> Cc: dri-devel@lists.freedesktop.org
+>>>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>>>> Cc: netdev@vger.kernel.org
+>>>> Cc: Jakub Kicinski <kuba@kernel.org>
+>>>> Cc: Dmitry Vyukov <dvyukov@google.com>
+>>>> Cc: "David S. Miller" <davem@davemloft.net>
+>>>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+>>>> Cc: Das, Nirmoy <nirmoy.das@linux.intel.com>
+>>>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>>>>
+>>>> ---
+>>>> Changes in v8:
+>>>> - addressed comments from Eric, Zhou and CI, thanks,
+>>>> - added ref_tracker_dir_init name argument to all callers in one patch
+>>>> - moved intel_wakeref_tracker_show to *.c
+>>>> - s/intel_wakeref_tracker_show/intel_ref_tracker_show/
+>>>> - removed 'default n' from Kconfig
+>>>> - changed strlcpy to strscpy,
+>>>> - removed assignement from if condition,
+>>>> - removed long lines from patch description
+>>>> - added tags
+>>>> - Link to v7: 
+>>>> https://lore.kernel.org/r/20230224-track_gt-v7-0-11f08358c1ec@intel.com
+>>>>
+>>>> Changes in v7:
+>>>> - removed 8th patch (hold wakeref), as it was already merged
+>>>> - added tags (thx Andi)
+>>>> - Link to v6: 
+>>>> https://lore.kernel.org/r/20230224-track_gt-v6-0-0dc8601fd02f@intel.com
+>>>>
+>>>> Changes in v6:
+>>>> - rebased to solve minor conflict and allow CI testing
+>>>> - Link to v5: 
+>>>> https://lore.kernel.org/r/20230224-track_gt-v5-0-77be86f2c872@intel.com
+>>>>
+>>>> Changes in v5 (thx Andi for review):
+>>>> - use *_locked convention instead of __*,
+>>>> - improved commit messages,
+>>>> - re-worked i915 patches, squashed separation and conversion patches,
+>>>> - added tags,
+>>>> - Link to v4: 
+>>>> https://lore.kernel.org/r/20230224-track_gt-v4-0-464e8ab4c9ab@intel.com
+>>>>
+>>>> Changes in v4:
+>>>> - split "Separate wakeref tracking" to smaller parts
+>>>> - fixed typos,
+>>>> - Link to v1-v3: https://patchwork.freedesktop.org/series/100327/
+>>>>
+>>>> ---
+>>>> Andrzej Hajda (7):
+>>>>         lib/ref_tracker: add unlocked leak print helper
+>>>>         lib/ref_tracker: improve printing stats
+>>>>         lib/ref_tracker: add printing to memory buffer
+>>>>         lib/ref_tracker: remove warnings in case of allocation failure
+>>>>         drm/i915: Correct type of wakeref variable
+>>>>         drm/i915: Replace custom intel runtime_pm tracker with 
+>>>> ref_tracker library
+>>>>         drm/i915: Track gt pm wakerefs
+>>>
+>>> Finally all patches are reviewed.
+>>> Question to network and i915 maintainers, how to merge this patchset:
+>>> 1. Patches 1-4 belongs rather to network domain (especially patch 2).
+>>> 2. Patches 5-7 are for i915.
+>>
+>> Well, probably the easiest way to avoid conflicts would be to send
+>> this right now through the net repo.
+>>
+>> And hold patches 5-7 after drm-intel-next can backmerge them.
+>>
+>> At this point I believe we would be looking at 6.5-rc2
+>> backmerge to drm-intel-next in likely 11 weeks from now.
+>>
+>> Do we have any urgency on them? Looking to all the changes in
+>> i915 I believe we will get many conflicts if we let all these
+>> i915 patches go through net tree as well.
+> 
+> 
+> Eric, Dave, Jakub, could you take patches 1-4?
+> 
+> Regards
+> Andrzej
+> 
+> 
+>>
+>>>
+>>> What would be the best way to do it?
+>>>
+>>> Regards
+>>> Andrzej
+>>>
+>>>
+>>>
+>>>>
+>>>>    drivers/gpu/drm/i915/Kconfig.debug                 |  18 ++
+>>>>    drivers/gpu/drm/i915/display/intel_display_power.c |   2 +-
+>>>>    drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |   7 +-
+>>>>    .../drm/i915/gem/selftests/i915_gem_coherency.c    |  10 +-
+>>>>    drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |  14 +-
+>>>>    drivers/gpu/drm/i915/gt/intel_breadcrumbs.c        |  13 +-
+>>>>    drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h  |   3 +-
+>>>>    drivers/gpu/drm/i915/gt/intel_context.h            |   4 +-
+>>>>    drivers/gpu/drm/i915/gt/intel_context_types.h      |   2 +
+>>>>    drivers/gpu/drm/i915/gt/intel_engine_pm.c          |   7 +-
+>>>>    drivers/gpu/drm/i915/gt/intel_engine_types.h       |   2 +
+>>>>    .../gpu/drm/i915/gt/intel_execlists_submission.c   |   2 +-
+>>>>    drivers/gpu/drm/i915/gt/intel_gt_pm.c              |  12 +-
+>>>>    drivers/gpu/drm/i915/gt/intel_gt_pm.h              |  38 +++-
+>>>>    drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c      |   4 +-
+>>>>    drivers/gpu/drm/i915/gt/selftest_engine_cs.c       |  20 +-
+>>>>    drivers/gpu/drm/i915/gt/selftest_gt_pm.c           |   5 +-
+>>>>    drivers/gpu/drm/i915/gt/selftest_reset.c           |  10 +-
+>>>>    drivers/gpu/drm/i915/gt/selftest_rps.c             |  17 +-
+>>>>    drivers/gpu/drm/i915/gt/selftest_slpc.c            |   5 +-
+>>>>    drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  |  12 +-
+>>>>    drivers/gpu/drm/i915/i915_driver.c                 |   2 +-
+>>>>    drivers/gpu/drm/i915/i915_pmu.c                    |  16 +-
+>>>>    drivers/gpu/drm/i915/intel_runtime_pm.c            | 221 
+>>>> ++-------------------
+>>>>    drivers/gpu/drm/i915/intel_runtime_pm.h            |  11 +-
+>>>>    drivers/gpu/drm/i915/intel_wakeref.c               |  35 +++-
+>>>>    drivers/gpu/drm/i915/intel_wakeref.h               |  73 ++++++-
+>>>>    include/linux/ref_tracker.h                        |  25 ++-
+>>>>    lib/ref_tracker.c                                  | 179 
+>>>> ++++++++++++++---
+>>>>    lib/test_ref_tracker.c                             |   2 +-
+>>>>    net/core/dev.c                                     |   2 +-
+>>>>    net/core/net_namespace.c                           |   4 +-
+>>>>    32 files changed, 445 insertions(+), 332 deletions(-)
+>>>> ---
+>>>> base-commit: 4d0066a1c0763d50b6fb017e27d12b081ce21b57
+>>>> change-id: 20230224-track_gt-1b3da8bdacd7
+>>>>
+>>>> Best regards,
+>>>
+> 
