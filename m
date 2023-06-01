@@ -2,47 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE2F3719948
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 12:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F367199E4
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jun 2023 12:35:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA2AF10E246;
-	Thu,  1 Jun 2023 10:19:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A412310E21E;
+	Thu,  1 Jun 2023 10:35:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F1EC10E22F
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 10:19:05 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 582C110E21E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jun 2023 10:35:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685614745; x=1717150745;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/tqIIItXbrMwPBwhZNQcfKPnr1dSO9z9aoIoEgR+HhM=;
- b=Smbjz1EGVm7B1cWrYjrrIPPTU4kVJch4Rb8QCCReCaZaLBO16KvLivke
- Lb57HG6RVGHzlhmjNkhbcl0tlcktYn71okhH2yAdmlyYXsQxOv2mbafCS
- aXaYxVDN3CNaR59Np7V5/YkMy5IslxLt9DYVgV5+q8NiOVegHIbL7sjb6
- WxIX3ZOcEUhEuctlWxzA8TKGrgIj8mFB4p3ZI8gK3sEsv4/+Cm8Ejhu2+
- 4uy/xi73TO4RqdSyORQw29mhjs+3JS5WCbyrE22K9wWQ6xKSjln94aTxD
- o+tEOV7EvJgwBYOgZ3MPir0n1zr/0ilhoVTG48CjO1bnAYoB9YexCwRbc w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="383788646"
-X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="383788646"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 03:18:43 -0700
+ t=1685615727; x=1717151727;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/6f4lYE4AP9V43fpUINI3G3o6GCDKuCO12rfg7N6dcQ=;
+ b=DDI2QUSXQX18W3ZAsAaRGreJGOvZKYIIY7gDyhTn9GFqYmR0J3e7wIgn
+ 5MWzaWH8SCTtg+RFsCP5ye3Ib9ToTz9Zfews+a2lwgfRmaapdHA+Venvd
+ a917W1/FXd5WpXIAfkeny7RG13q2IYtpVYFV7Ft9E22D3KG4wZ1EuxJHu
+ H0csJk8C3xzTfRQ84WEyJofoltQxrW/HPdes8aWTVoin5/N3dqS4+2mNZ
+ ml7xrRXzqZJRGLKbXM/I+Pa8xZnLXwV33R69ScqMTDpRv1Uyy0oLQgBwz
+ 5ESiB3osPrgf3NiSHZWKx3pCrDEmCz9aTu/wok4+mg7QQzZUs6L7Sx7Se w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="421306052"
+X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="421306052"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 03:35:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="701491290"
-X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="701491290"
-Received: from unknown (HELO sorvi2.fi.intel.com) ([10.237.72.194])
- by orsmga007.jf.intel.com with ESMTP; 01 Jun 2023 03:18:41 -0700
-From: Mika Kahola <mika.kahola@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="881558692"
+X-IronPort-AV: E=Sophos;i="6.00,209,1681196400"; d="scan'208";a="881558692"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orsmga005.jf.intel.com with ESMTP; 01 Jun 2023 03:35:24 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 13:13:14 +0300
-Message-Id: <20230601101314.332392-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.34.1
+Date: Thu,  1 Jun 2023 15:57:57 +0530
+Message-Id: <20230601102757.187114-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230601051503.175869-1-arun.r.murthy@intel.com>
+References: <20230601051503.175869-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/mtl: Reset only one lane in case of
- MFD
+Subject: [Intel-gfx] [PATCHv2] drm/i915/display: Print useful information on
+ error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,106 +60,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In case when only two or less transmit lanes are owned such as MFD
-(DP-alt with x2 lanes) we need to reset only one data lane (lane0).
-With only x2 lanes we don't need to poll for the phy current
-status on both data lanes since only the owned data lane will respond.
+For modifier not supporting async flip, print the modifier and display
+version. Helps in reading the error message.
 
-v2: Find better naming for lanes and revise the commit message (Luca)
+v2: Reframe the error message (Jani)
 
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com> (v1)
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 39 ++++++++++++--------
- 1 file changed, 23 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index ee6902118860..0600fdcd06ef 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2528,13 +2528,23 @@ static u32 intel_cx0_get_pclk_refclk_ack(u8 lane_mask)
- 	return val;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f51a55f4e9d0..adaba43bde2b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6012,8 +6012,9 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+ 			 */
+ 			if (DISPLAY_VER(i915) < 12) {
+ 				drm_dbg_kms(&i915->drm,
+-					    "[PLANE:%d:%s] Modifier does not support async flips\n",
+-					    plane->base.base.id, plane->base.name);
++					    "[PLANE:%d:%s] Modifier 0x%llx does not support asyn flip on display ver %d\n",
++					    plane->base.base.id, plane->base.name,
++					    new_plane_state->hw.fb->modifier, DISPLAY_VER(i915));
+ 				return -EINVAL;
+ 			}
+ 			break;
+@@ -6025,8 +6026,9 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+ 			break;
+ 		default:
+ 			drm_dbg_kms(&i915->drm,
+-				    "[PLANE:%d:%s] Modifier does not support async flips\n",
+-				    plane->base.base.id, plane->base.name);
++				    "[PLANE:%d:%s] Modifier 0x%llx does not support async flip\n",
++				    plane->base.base.id, plane->base.name,
++				    new_plane_state->hw.fb->modifier);
+ 			return -EINVAL;
+ 		}
  
--/* FIXME: Some Type-C cases need not reset both the lanes. Handle those cases. */
--static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915, enum port port,
-+static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915,
-+				     struct intel_encoder *encoder,
- 				     bool lane_reversal)
- {
-+	enum port port = encoder->port;
- 	enum phy phy = intel_port_to_phy(i915, port);
-+	bool both_lanes =  intel_tc_port_fia_max_lane_count(enc_to_dig_port(encoder)) > 2;
- 	u8 lane_mask = lane_reversal ? INTEL_CX0_LANE1 :
- 				  INTEL_CX0_LANE0;
-+	u32 lane_pipe_reset = both_lanes ?
-+			      XELPDP_LANE_PIPE_RESET(0) |
-+			      XELPDP_LANE_PIPE_RESET(1) :
-+			      XELPDP_LANE_PIPE_RESET(0);
-+	u32 lane_phy_current_status = both_lanes ?
-+				      XELPDP_LANE_PHY_CURRENT_STATUS(0) |
-+				      XELPDP_LANE_PHY_CURRENT_STATUS(1) :
-+				      XELPDP_LANE_PHY_CURRENT_STATUS(0);
- 
- 	if (__intel_de_wait_for_register(i915, XELPDP_PORT_BUF_CTL1(port),
- 					 XELPDP_PORT_BUF_SOC_PHY_READY,
-@@ -2545,23 +2555,24 @@ static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915, enum port po
- 
- 	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(port),
- 		     XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1),
--		     XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1));
-+		     lane_pipe_reset);
- 
- 	if (__intel_de_wait_for_register(i915, XELPDP_PORT_BUF_CTL2(port),
--					 XELPDP_LANE_PHY_CURRENT_STATUS(0) |
--					 XELPDP_LANE_PHY_CURRENT_STATUS(1),
--					 XELPDP_LANE_PHY_CURRENT_STATUS(0) |
--					 XELPDP_LANE_PHY_CURRENT_STATUS(1),
-+					 lane_phy_current_status, lane_phy_current_status,
- 					 XELPDP_PORT_RESET_START_TIMEOUT_US, 0, NULL))
- 		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dus.\n",
- 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
- 
- 	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(port),
--		     intel_cx0_get_pclk_refclk_request(INTEL_CX0_BOTH_LANES),
-+		     intel_cx0_get_pclk_refclk_request(both_lanes ?
-+						       INTEL_CX0_BOTH_LANES :
-+						       INTEL_CX0_LANE0),
- 		     intel_cx0_get_pclk_refclk_request(lane_mask));
- 
- 	if (__intel_de_wait_for_register(i915, XELPDP_PORT_CLOCK_CTL(port),
--					 intel_cx0_get_pclk_refclk_ack(INTEL_CX0_BOTH_LANES),
-+					 intel_cx0_get_pclk_refclk_ack(both_lanes ?
-+								       INTEL_CX0_BOTH_LANES :
-+								       INTEL_CX0_LANE0),
- 					 intel_cx0_get_pclk_refclk_ack(lane_mask),
- 					 XELPDP_REFCLK_ENABLE_TIMEOUT_US, 0, NULL))
- 		drm_warn(&i915->drm, "PHY %c failed to request refclk after %dus.\n",
-@@ -2571,13 +2582,9 @@ static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915, enum port po
- 					    CX0_P2_STATE_RESET);
- 	intel_cx0_setup_powerdown(i915, port);
- 
--	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(port),
--		     XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1),
--		     0);
-+	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(port), lane_pipe_reset, 0);
- 
--	if (intel_de_wait_for_clear(i915, XELPDP_PORT_BUF_CTL2(port),
--				    XELPDP_LANE_PHY_CURRENT_STATUS(0) |
--				    XELPDP_LANE_PHY_CURRENT_STATUS(1),
-+	if (intel_de_wait_for_clear(i915, XELPDP_PORT_BUF_CTL2(port), lane_phy_current_status,
- 				    XELPDP_PORT_RESET_END_TIMEOUT))
- 		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dms.\n",
- 			 phy_name(phy), XELPDP_PORT_RESET_END_TIMEOUT);
-@@ -2705,7 +2712,7 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 	intel_program_port_clock_ctl(encoder, crtc_state, lane_reversal);
- 
- 	/* 2. Bring PHY out of reset. */
--	intel_cx0_phy_lane_reset(i915, encoder->port, lane_reversal);
-+	intel_cx0_phy_lane_reset(i915, encoder, lane_reversal);
- 
- 	/*
- 	 * 3. Change Phy power state to Ready.
 -- 
-2.34.1
+2.25.1
 
