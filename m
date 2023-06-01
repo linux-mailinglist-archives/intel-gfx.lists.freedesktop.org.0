@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F62471F6AA
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 01:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC2A571F6AB
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 01:31:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56F5510E600;
-	Thu,  1 Jun 2023 23:31:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B44A410E603;
+	Thu,  1 Jun 2023 23:31:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5F52610E600;
- Thu,  1 Jun 2023 23:31:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id BC97E10E603;
+ Thu,  1 Jun 2023 23:31:47 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 583EEA882E;
- Thu,  1 Jun 2023 23:31:45 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B9DAEACC20;
+ Thu,  1 Jun 2023 23:31:47 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 01 Jun 2023 23:31:45 -0000
-Message-ID: <168566230533.16228.4833082144425902064@emeril.freedesktop.org>
+Date: Thu, 01 Jun 2023 23:31:47 -0000
+Message-ID: <168566230775.16230.17546274844242273341@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230601212535.675751-1-matthew.d.roper@intel.com>
 In-Reply-To: <20230601212535.675751-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/display=3A_Extract_display_init_from_intel=5Fdevic?=
- =?utf-8?q?e=5Finfo=5Fruntime=5Finit?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/display=3A_Extract_display_init_from_intel=5Fdevice=5F?=
+ =?utf-8?q?info=5Fruntime=5Finit?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,12 +54,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-7e88c49f41ae drm/i915/display: Extract display init from intel_device_info_runtime_init
--:304: CHECK:SPACING: No space is necessary after a cast
-#304: FILE: drivers/gpu/drm/i915/intel_device_info.c:416:
-+	BUILD_BUG_ON(BITS_PER_TYPE(intel_engine_mask_t) < I915_NUM_ENGINES);
-
-total: 0 errors, 0 warnings, 1 checks, 291 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
