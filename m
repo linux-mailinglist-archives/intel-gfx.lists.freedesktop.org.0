@@ -2,60 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF09F72085D
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 19:29:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3A21720889
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 19:42:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58D5E10E5EB;
-	Fri,  2 Jun 2023 17:29:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C79D10E0C4;
+	Fri,  2 Jun 2023 17:42:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id DE98010E5E2;
- Fri,  2 Jun 2023 17:29:16 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Dxy+rqJnpkU7UDAA--.3692S3;
- Sat, 03 Jun 2023 01:29:14 +0800 (CST)
-Received: from [10.20.42.43] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8BxLL7pJnpkQTOGAA--.20415S3; 
- Sat, 03 Jun 2023 01:29:14 +0800 (CST)
-Message-ID: <711700af-d081-7cf1-8d5e-2bedb9c63539@loongson.cn>
-Date: Sat, 3 Jun 2023 01:29:13 +0800
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28B5810E0C4
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 17:42:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685727764; x=1717263764;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=CFzUWGehUj/AThbWBM3WzDCggzyqSyMGPCj7AikaIP8=;
+ b=Sy1KqP+1SMPgf97xtcUU5s5umuf8Ax9uE5Om3MVlwy6k1o3bbvvxuW82
+ PPA34NHcTaac+A4dhDBRi5D5URLMEIeEPxZukQuQ84p5V/1PMLUL1gno0
+ v+9iWBHi0W7onlgGxLXL2nswsa0n0Wu1DwNZxYAy244tvbK9uCa03rXE+
+ o8dDurYAkcatQLdfCYle+74BNsmY6cCnB/f5Fjk6PMMPSNHlD6I43x96y
+ PN4uXpD8ZVRcR07wLE/NwFT64h++kI9nOLa5DvBp+fagxro2wSTWWNYlK
+ CaQpZ3VzNJNH4WZSsTMECaW29zaZj0FArIkekksysESGFvxBSfFVLRNrI g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="442302715"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="442302715"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 10:42:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="777765012"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="777765012"
+Received: from jwerner6-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.111])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 10:42:42 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: imre.deak@intel.com, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <Y6S/msVyeS9dZoGH@ideak-desk.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20221222201804.1380963-1-maarten.lankhorst@linux.intel.com>
+ <Y6S/msVyeS9dZoGH@ideak-desk.fi.intel.com>
+Date: Fri, 02 Jun 2023 20:42:39 +0300
+Message-ID: <878rd1dals.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-References: <20230529112956.2083389-1-suijingfeng@loongson.cn>
- <87edmtdbgk.fsf@intel.com>
-Content-Language: en-US
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-Organization: Loongson
-In-Reply-To: <87edmtdbgk.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID: AQAAf8BxLL7pJnpkQTOGAA--.20415S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBjvdXoW7XFy7ZF4UCw1DKrW7JF1kXwb_yoWDZFX_Ja
- yxAryku348JFy09F43Aa4DCF9xKa95tw48G3Z3XF1xWFyIyF90kws5WrWSqa43GF4fCrsx
- uan0gFn8AF4agjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
- xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
- 27kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3w
- AFIxvE14AKwVWUGVWUXwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK
- 6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r1j6r4UM28EF7
- xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r4UJwAS0I0E
- 0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzV
- Aqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S
- 6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21l42xK82
- IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC2
- 0s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMI
- IF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF
- 0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87
- Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07URa0PUUUUU=
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915_drm.h: fix a typo
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Flush power delayed put when
+ connector init failed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,42 +60,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-
-On 2023/6/3 01:24, Jani Nikula wrote:
-> On Mon, 29 May 2023, Sui Jingfeng <suijingfeng@loongson.cn> wrote:
->>   'rbiter' -> 'arbiter'
->>
->> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
-> Pushed to drm-intel-next, thanks for the patch.
-Thanks for your kindness and guidance.
-> BR,
-> Jani.
->
+On Thu, 22 Dec 2022, Imre Deak <imre.deak@intel.com> wrote:
+> On Thu, Dec 22, 2022 at 09:18:04PM +0100, Maarten Lankhorst wrote:
+>> When intel_dp_init_connector fails, some power wells used in dp aux
+>> communication may not be completely disabled yet. This may result in a
+>> null pointer dereference when icl_aux_pw_to_phy() is called from
+>> icl_combo_phy_aux_power_well_disable() after the encoder and connector
+>> are already freed.
+>> 
+>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Imre Deak <imre.deak@intel.com>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
 >> ---
->>   include/drm/i915_drm.h | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/include/drm/i915_drm.h b/include/drm/i915_drm.h
->> index 7adce327c1c2..adff68538484 100644
->> --- a/include/drm/i915_drm.h
->> +++ b/include/drm/i915_drm.h
->> @@ -42,7 +42,7 @@ extern struct resource intel_graphics_stolen_res;
->>    * The Bridge device's PCI config space has information about the
->>    * fb aperture size and the amount of pre-reserved memory.
->>    * This is all handled in the intel-gtt.ko module. i915.ko only
->> - * cares about the vga bit for the vga rbiter.
->> + * cares about the vga bit for the vga arbiter.
->>    */
->>   #define INTEL_GMCH_CTRL		0x52
->>   #define INTEL_GMCH_VGA_DISABLE  (1 << 1)
+>> This approach better?
+>
+> Looks ok to me, thanks for fixing it. I think Jani's idea is good to
+> refactor things wrt. the encoder hooks, but imo that could be done later
+> keeping the fix simpler, so:
+>
+> Acked-by: Imre Deak <imre.deak@intel.com>
+
+I missed this one. Pushed to din now, thanks for the patch and ack.
+
+BR,
+Jani.
+
+
+>
+>> 
+>>  drivers/gpu/drm/i915/display/intel_dp.c | 1 +
+>>  1 file changed, 1 insertion(+)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index bf80f296a8fd..8cf1d6ca86f4 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -5492,6 +5492,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+>>  	return true;
+>>  
+>>  fail:
+>> +	intel_display_power_flush_work(dev_priv);
+>>  	drm_connector_cleanup(connector);
+>>  
+>>  	return false;
+>> -- 
+>> 2.37.2
+>> 
 
 -- 
-Jingfeng
-
+Jani Nikula, Intel Open Source Graphics Center
