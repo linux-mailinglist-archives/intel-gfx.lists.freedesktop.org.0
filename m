@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7652D7207E3
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 18:46:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B85D97207EF
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 18:50:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DCF510E05B;
-	Fri,  2 Jun 2023 16:46:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2357110E5DD;
+	Fri,  2 Jun 2023 16:50:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A34BF10E05B
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 16:46:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A70A10E05B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 16:50:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685724378; x=1717260378;
+ t=1685724641; x=1717260641;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=Pzc9nmrtFqv5HvfPNTos4olnDncJX2cTGxAxV3hF3rc=;
- b=ZsY5ObQpCNl0fI/DYWfRyZreOp9wpWcZR6w/oeTqOLWnyr9Wc/R026CM
- +4KZ6fOP/WY4hu3p7K7R3gvor8U8/JCyW/ufHxvL2t3mjPt250aC+59up
- C8o1TrAe2Fev724ZcxMlfxTiyK6MPV0cG236fbTuJnTRCeNN/Z1jqla5W
- pFgJNeut1bLsmdxZmXZ86BXdCl7MxBd98eL+eH6sweShP04gGaShQhodG
- vvde987OdeeoGPwJLEzjwELCnrnbbQxVDSC0LGqnfOZhzkQ2KK6LO15NY
- sGDv8+qd+Im5vaZW1mAeX17yqxnovvff/gViGFz8zr4qan8uMLG8iUmL3 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="353407633"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="353407633"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ bh=rkmjCgcEdCO8OTxz4qCugHk1fg4q3oA9rI2DRMIjtdQ=;
+ b=jg8+gxYblJ5VH8CGfQqIRDnZn8NIzNq0DDwWwgbjluv7kwCYKgvfvVdN
+ j42GbTbF7n+opyec9jUEnTebuMPlgDRv6Wzj+WrpEYHhvhZ/xltsS7cNS
+ G86K4ZRjekRaQTdTNLbL+fTyCAS9RXA2IVk+WYSJGavF2VnMObJocVKd6
+ itRHCoT9+RyWgufMmMY0su9CsLQQ7N7pOrwtoOeHx0GJN9mP81G+ZM4CJ
+ qmkjc/31l91/2Th7FOjy7yQSxSVTwdzePs+HjwOlnzoEmDGe1kbA/CTeY
+ bomBFKPapcJLLBJjJS6SFVMHp2soD+LFH+kxggjqg+GF1EixclsY2487/ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="353408628"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="353408628"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 09:46:17 -0700
+ 02 Jun 2023 09:50:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="702013974"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="702013974"
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="777754396"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="777754396"
 Received: from jwerner6-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.111])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 09:46:16 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 09:50:37 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230530061417.2384188-2-jouni.hogander@intel.com>
+In-Reply-To: <20230530061417.2384188-3-jouni.hogander@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230530061417.2384188-1-jouni.hogander@intel.com>
- <20230530061417.2384188-2-jouni.hogander@intel.com>
-Date: Fri, 02 Jun 2023 19:46:12 +0300
-Message-ID: <87sfb9dd7v.fsf@intel.com>
+ <20230530061417.2384188-3-jouni.hogander@intel.com>
+Date: Fri, 02 Jun 2023 19:50:34 +0300
+Message-ID: <87o7lxdd0l.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 1/4] drm/i915: Add macros to get i915
- device from i915_gem_object
+Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/i915: Add getter/setter for
+ i915_gem_object->frontbuffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,132 +66,250 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 30 May 2023, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> We want to stop touching directly i915_gem_object struct members in
-> intel_frontbuffer code. As a part of this we add helper macro to get i915
-> device from i915_gem_object.
+> Add getter/setter for i915_gem_object->frontbuffer and use it instead of
+> directly touching i915_gem_object->frontbuffer frontbuffer pointer.
+
+Before going into the details (which, at a glance, look fine) I think we
+need to talk about the potential performance impact. I've never seen any
+other reason for the static inlines here than avoiding a function call
+when possible. Are there any other reasons? Is that a useless
+micro-optimization or something that could have an impact? On what?
+
+BR,
+Jani.
+
 >
 > Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_frontbuffer.c   | 18 +++++++++---------
->  .../gpu/drm/i915/gem/i915_gem_object_types.h   |  3 +++
->  2 files changed, 12 insertions(+), 9 deletions(-)
+>  .../gpu/drm/i915/display/intel_frontbuffer.c  | 18 ++---
+>  .../gpu/drm/i915/display/intel_frontbuffer.h  | 27 -------
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c    | 70 ++++++++++++++++++-
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  6 ++
+>  drivers/gpu/drm/i915/i915_vma.c               |  2 +-
+>  5 files changed, 81 insertions(+), 42 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/g=
 pu/drm/i915/display/intel_frontbuffer.c
-> index 17a7aa8b28c2..3ce0436a0c7d 100644
+> index 3ce0436a0c7d..41ac65c98720 100644
 > --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
 > +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-> @@ -167,7 +167,7 @@ void __intel_fb_invalidate(struct intel_frontbuffer *=
-front,
->  			   enum fb_op_origin origin,
->  			   unsigned int frontbuffer_bits)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(front->obj->base.dev);
-> +	struct drm_i915_private *i915 =3D intel_bo_to_i915(front->obj);
->=20=20
->  	if (origin =3D=3D ORIGIN_CS) {
->  		spin_lock(&i915->display.fb_tracking.lock);
-> @@ -188,7 +188,7 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
->  		      enum fb_op_origin origin,
->  		      unsigned int frontbuffer_bits)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(front->obj->base.dev);
-> +	struct drm_i915_private *i915 =3D intel_bo_to_i915(front->obj);
->=20=20
->  	if (origin =3D=3D ORIGIN_CS) {
->  		spin_lock(&i915->display.fb_tracking.lock);
-> @@ -221,14 +221,14 @@ static void frontbuffer_retire(struct i915_active *=
-ref)
->  }
->=20=20
->  static void frontbuffer_release(struct kref *ref)
-> -	__releases(&to_i915(front->obj->base.dev)->display.fb_tracking.lock)
-> +	__releases(&intel_bo_to_i915(front->obj)->display.fb_tracking.lock)
->  {
->  	struct intel_frontbuffer *front =3D
->  		container_of(ref, typeof(*front), ref);
->  	struct drm_i915_gem_object *obj =3D front->obj;
->  	struct i915_vma *vma;
->=20=20
-> -	drm_WARN_ON(obj->base.dev, atomic_read(&front->bits));
-> +	drm_WARN_ON(&intel_bo_to_i915(obj)->drm, atomic_read(&front->bits));
->=20=20
->  	spin_lock(&obj->vma.lock);
->  	for_each_ggtt_vma(vma, obj) {
-> @@ -238,7 +238,7 @@ static void frontbuffer_release(struct kref *ref)
+> @@ -237,7 +237,7 @@ static void frontbuffer_release(struct kref *ref)
+>  	}
 >  	spin_unlock(&obj->vma.lock);
 >=20=20
->  	RCU_INIT_POINTER(obj->frontbuffer, NULL);
-> -	spin_unlock(&to_i915(obj->base.dev)->display.fb_tracking.lock);
-> +	spin_unlock(&intel_bo_to_i915(obj)->display.fb_tracking.lock);
+> -	RCU_INIT_POINTER(obj->frontbuffer, NULL);
+> +	i915_gem_object_set_frontbuffer(obj, NULL);
+>  	spin_unlock(&intel_bo_to_i915(obj)->display.fb_tracking.lock);
 >=20=20
 >  	i915_active_fini(&front->write);
->=20=20
-> @@ -249,7 +249,7 @@ static void frontbuffer_release(struct kref *ref)
->  struct intel_frontbuffer *
+> @@ -250,9 +250,9 @@ struct intel_frontbuffer *
 >  intel_frontbuffer_get(struct drm_i915_gem_object *obj)
 >  {
-> -	struct drm_i915_private *i915 =3D to_i915(obj->base.dev);
-> +	struct drm_i915_private *i915 =3D intel_bo_to_i915(obj);
->  	struct intel_frontbuffer *front;
+>  	struct drm_i915_private *i915 =3D intel_bo_to_i915(obj);
+> -	struct intel_frontbuffer *front;
+> +	struct intel_frontbuffer *front, *front_ret;
 >=20=20
->  	front =3D __intel_frontbuffer_get(obj);
-> @@ -286,7 +286,7 @@ void intel_frontbuffer_put(struct intel_frontbuffer *=
-front)
->  {
->  	kref_put_lock(&front->ref,
->  		      frontbuffer_release,
-> -		      &to_i915(front->obj->base.dev)->display.fb_tracking.lock);
-> +		      &intel_bo_to_i915(front->obj)->display.fb_tracking.lock);
+> -	front =3D __intel_frontbuffer_get(obj);
+> +	front =3D i915_gem_object_get_frontbuffer(obj);
+>  	if (front)
+>  		return front;
+>=20=20
+> @@ -269,16 +269,10 @@ intel_frontbuffer_get(struct drm_i915_gem_object *o=
+bj)
+>  			 I915_ACTIVE_RETIRE_SLEEPS);
+>=20=20
+>  	spin_lock(&i915->display.fb_tracking.lock);
+> -	if (rcu_access_pointer(obj->frontbuffer)) {
+> -		kfree(front);
+> -		front =3D rcu_dereference_protected(obj->frontbuffer, true);
+> -		kref_get(&front->ref);
+> -	} else {
+> -		i915_gem_object_get(obj);
+> -		rcu_assign_pointer(obj->frontbuffer, front);
+> -	}
+> +	front_ret =3D i915_gem_object_set_frontbuffer(obj, front);
+>  	spin_unlock(&i915->display.fb_tracking.lock);
+> -
+> +	if (front_ret !=3D front)
+> +		kfree(front);
+>  	return front;
 >  }
 >=20=20
->  /**
-> @@ -315,13 +315,13 @@ void intel_frontbuffer_track(struct intel_frontbuff=
-er *old,
->  	BUILD_BUG_ON(I915_MAX_PLANES > INTEL_FRONTBUFFER_BITS_PER_PIPE);
+> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers/g=
+pu/drm/i915/display/intel_frontbuffer.h
+> index 3c474ed937fb..eeccc847331d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+> @@ -75,33 +75,6 @@ void intel_frontbuffer_flip(struct drm_i915_private *i=
+915,
 >=20=20
->  	if (old) {
-> -		drm_WARN_ON(old->obj->base.dev,
-> +		drm_WARN_ON(&intel_bo_to_i915(old->obj)->drm,
->  			    !(atomic_read(&old->bits) & frontbuffer_bits));
->  		atomic_andnot(frontbuffer_bits, &old->bits);
->  	}
+>  void intel_frontbuffer_put(struct intel_frontbuffer *front);
 >=20=20
->  	if (new) {
-> -		drm_WARN_ON(new->obj->base.dev,
-> +		drm_WARN_ON(&intel_bo_to_i915(new->obj)->drm,
->  			    atomic_read(&new->bits) & frontbuffer_bits);
->  		atomic_or(frontbuffer_bits, &new->bits);
->  	}
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/g=
-pu/drm/i915/gem/i915_gem_object_types.h
-> index e72c57716bee..658bdac2a75f 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> @@ -718,6 +718,9 @@ struct drm_i915_gem_object {
->  	};
->  };
+> -static inline struct intel_frontbuffer *
+> -__intel_frontbuffer_get(const struct drm_i915_gem_object *obj)
+> -{
+> -	struct intel_frontbuffer *front;
+> -
+> -	if (likely(!rcu_access_pointer(obj->frontbuffer)))
+> -		return NULL;
+> -
+> -	rcu_read_lock();
+> -	do {
+> -		front =3D rcu_dereference(obj->frontbuffer);
+> -		if (!front)
+> -			break;
+> -
+> -		if (unlikely(!kref_get_unless_zero(&front->ref)))
+> -			continue;
+> -
+> -		if (likely(front =3D=3D rcu_access_pointer(obj->frontbuffer)))
+> -			break;
+> -
+> -		intel_frontbuffer_put(front);
+> -	} while (1);
+> -	rcu_read_unlock();
+> -
+> -	return front;
+> -}
+> -
+>  struct intel_frontbuffer *
+>  intel_frontbuffer_get(struct drm_i915_gem_object *obj);
 >=20=20
-> +#define intel_bo_to_drm_bo(bo) ((bo)->base)
-
-All of the foo_to_bar() things we have operate on and return pointers,
-and I think this one should too.
-
-I.e. (&(bo)->base)
-
-> +#define intel_bo_to_i915(bo) to_i915(intel_bo_to_drm_bo(bo).dev)
-
-And consequently this needs to have ->dev.
-
-Other than that,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
-> +
->  static inline struct drm_i915_gem_object *
->  to_intel_bo(struct drm_gem_object *gem)
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm=
+/i915/gem/i915_gem_object.c
+> index 46a19b099ec8..6945e903e106 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -463,7 +463,7 @@ void __i915_gem_object_flush_frontbuffer(struct drm_i=
+915_gem_object *obj,
 >  {
+>  	struct intel_frontbuffer *front;
+>=20=20
+> -	front =3D __intel_frontbuffer_get(obj);
+> +	front =3D i915_gem_object_get_frontbuffer(obj);
+>  	if (front) {
+>  		intel_frontbuffer_flush(front, origin);
+>  		intel_frontbuffer_put(front);
+> @@ -475,7 +475,7 @@ void __i915_gem_object_invalidate_frontbuffer(struct =
+drm_i915_gem_object *obj,
+>  {
+>  	struct intel_frontbuffer *front;
+>=20=20
+> -	front =3D __intel_frontbuffer_get(obj);
+> +	front =3D i915_gem_object_get_frontbuffer(obj);
+>  	if (front) {
+>  		intel_frontbuffer_invalidate(front, origin);
+>  		intel_frontbuffer_put(front);
+> @@ -952,6 +952,72 @@ bool i915_gem_object_has_unknown_state(struct drm_i9=
+15_gem_object *obj)
+>  	return obj->mm.unknown_state;
+>  }
+>=20=20
+> +/**
+> + * i915_gem_object_get_frontbuffer - Get the object's frontbuffer
+> + * @obj: The object whose frontbuffer to get.
+> + *
+> + * Get pointer to object's frontbuffer if such exists. Please note that =
+RCU
+> + * mechanism is used to handle e.g. ongoing removal of frontbuffer point=
+er.
+> + *
+> + * Return: pointer to object's frontbuffer is such exists or NULL
+> + */
+> +struct intel_frontbuffer *
+> +i915_gem_object_get_frontbuffer(const struct drm_i915_gem_object *obj)
+> +{
+> +	struct intel_frontbuffer *front;
+> +
+> +	if (likely(!rcu_access_pointer(obj->frontbuffer)))
+> +		return NULL;
+> +
+> +	rcu_read_lock();
+> +	do {
+> +		front =3D rcu_dereference(obj->frontbuffer);
+> +		if (!front)
+> +			break;
+> +
+> +		if (unlikely(!kref_get_unless_zero(&front->ref)))
+> +			continue;
+> +
+> +		if (likely(front =3D=3D rcu_access_pointer(obj->frontbuffer)))
+> +			break;
+> +
+> +		intel_frontbuffer_put(front);
+> +	} while (1);
+> +	rcu_read_unlock();
+> +
+> +	return front;
+> +}
+> +
+> +/**
+> + * i915_gem_object_set_frontbuffer - Set the object's frontbuffer
+> + * @obj: The object whose frontbuffer to set.
+> + * @front: The frontbuffer to set
+> + *
+> + * Set object's frontbuffer pointer. If frontbuffer is already set for t=
+he
+> + * object keep it and return it's pointer to the caller. Please note tha=
+t RCU
+> + * mechanism is used to handle e.g. ongoing removal of frontbuffer point=
+er.
+> + *
+> + * Return: pointer to frontbuffer which was set.
+> + */
+> +struct intel_frontbuffer *
+> +i915_gem_object_set_frontbuffer(struct drm_i915_gem_object *obj,
+> +				struct intel_frontbuffer *front)
+> +{
+> +	struct intel_frontbuffer *front_ret =3D front;
+> +
+> +	if (!front) {
+> +		RCU_INIT_POINTER(obj->frontbuffer, NULL);
+> +	} else if (rcu_access_pointer(obj->frontbuffer)) {
+> +		front_ret =3D rcu_dereference_protected(obj->frontbuffer, true);
+> +		kref_get(&front_ret->ref);
+> +	} else {
+> +		drm_gem_object_get(&intel_bo_to_drm_bo(obj));
+> +		rcu_assign_pointer(obj->frontbuffer, front);
+> +	}
+> +
+> +	return front_ret;
+> +}
+> +
+>  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>  #include "selftests/huge_gem_object.c"
+>  #include "selftests/huge_pages.c"
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm=
+/i915/gem/i915_gem_object.h
+> index 884a17275b3a..69c5fa91152a 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -891,4 +891,10 @@ static inline int i915_gem_object_userptr_validate(s=
+truct drm_i915_gem_object *o
+>=20=20
+>  #endif
+>=20=20
+> +struct intel_frontbuffer *
+> +i915_gem_object_get_frontbuffer(const struct drm_i915_gem_object *obj);
+> +struct intel_frontbuffer *
+> +i915_gem_object_set_frontbuffer(struct drm_i915_gem_object *obj,
+> +				struct intel_frontbuffer *front);
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_=
+vma.c
+> index ffb425ba591c..c66ff2157f6a 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -1908,7 +1908,7 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
+>  	if (flags & EXEC_OBJECT_WRITE) {
+>  		struct intel_frontbuffer *front;
+>=20=20
+> -		front =3D __intel_frontbuffer_get(obj);
+> +		front =3D i915_gem_object_get_frontbuffer(obj);
+>  		if (unlikely(front)) {
+>  			if (intel_frontbuffer_invalidate(front, ORIGIN_CS))
+>  				i915_active_add_request(&front->write, rq);
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
