@@ -1,55 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4940B720819
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 19:03:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C483F720855
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 19:24:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0B2610E209;
-	Fri,  2 Jun 2023 17:03:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5D2D10E5DC;
+	Fri,  2 Jun 2023 17:24:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90B7710E209
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 17:03:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1014210E5D9;
+ Fri,  2 Jun 2023 17:24:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685725383; x=1717261383;
+ t=1685726658; x=1717262658;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=JESbA4rHrGMWy9OHgzsRKK5dn+cEpD3fTpO+7ZhIJR0=;
- b=GAWDvxeof6qjw3zD0EYddgynQBkGDO9H5ea2RBamvgoMPr2UKClKRG84
- aOVIaFLBnNXadDI5d2IF1nCSVZzSicOmZDZ6pMilpYl78KQZUuc7PhNzv
- gjtuzELULQC4dSB2rxMi4fv4EMo+i4mkFOpl9inQtonygGb+LSrjshKLe
- Ge6/6H/NvIi107p2sjvUZ3o8Z56lBzYHoBDoQdfxb/c16HzB/aD1gTcWI
- y0iUQ5grBtsOMK6h3M97kAPHzaVWtUdCk2iYf45zXMuBx/C7n3pMWizay
- zouR56AAefGmAfhbHc5FlH3QSNyz0YfV/wNsx5UFngFzTNLOneJlJgy4p Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="358348171"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="358348171"
+ bh=KE+as3H7u1LdHKfriftsu8T7yzvJ4/Tz3dDvVlcxVLI=;
+ b=IzA7RyxjDseCJ+hbZUTv7saL4ioamaYDoq5zMfLbM0hVzcHm4M9WIMIU
+ EvcggAmMizMkr43ZE7DWDb0/MN4U839I04bUaC6SKngQTjcUXFnaA/nW4
+ 2Fznv6RsuaF+onNB3acs/bDvjacfQMbvcB3lcLT+rDnx/YCffhJ4Ika1W
+ /gSfTjwtwPaBEkBNfwUr2LelSWxLkGLMWlJdmcZkJFybZkle4qp+sTAtr
+ ucjXNAs2GMp68JpSCPOulG3FCq9Vb/4lKkWCAZl+v0tGiantOURtYUTb/
+ h9WCHaVJkUWK9YaDHjQZXEbSH2/m71klSjuGvCPZnwAooQGHIjFlc+RGl Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="358352776"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="358352776"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 10:03:02 -0700
+ 02 Jun 2023 10:24:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="740881921"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="740881921"
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="740890801"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="740890801"
 Received: from jwerner6-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.111])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 10:03:01 -0700
+ 02 Jun 2023 10:24:14 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Zhi Wang <zhi.wang.linux@gmail.com>
-In-Reply-To: <168555222135.17615.4107362582795659089@emeril.freedesktop.org>
+To: Sui Jingfeng <suijingfeng@loongson.cn>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+In-Reply-To: <20230529112956.2083389-1-suijingfeng@loongson.cn>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230531020411.18987-1-zhi.a.wang@intel.com>
- <168555222135.17615.4107362582795659089@emeril.freedesktop.org>
-Date: Fri, 02 Jun 2023 20:02:58 +0300
-Message-ID: <87h6rpdcfx.fsf@intel.com>
+References: <20230529112956.2083389-1-suijingfeng@loongson.cn>
+Date: Fri, 02 Jun 2023 20:24:11 +0300
+Message-ID: <87edmtdbgk.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gvt=3A_remove_unused_variable_gma=5Fbottom_in_comm?=
- =?utf-8?q?and_parser_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915_drm.h: fix a typo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,34 +61,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 31 May 2023, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
+On Mon, 29 May 2023, Sui Jingfeng <suijingfeng@loongson.cn> wrote:
+>  'rbiter' -> 'arbiter'
 >
-> Series: drm/i915/gvt: remove unused variable gma_bottom in command parser (rev2)
-> URL   : https://patchwork.freedesktop.org/series/118512/
-> State : warning
->
-> == Summary ==
->
-> Error: dim checkpatch failed
-> c6878ab01be9 drm/i915/gvt: remove unused variable gma_bottom in command parser
-> -:63: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Zhi Wang <zhi.wang.linux@gmail.com>' != 'Signed-off-by: Zhi Wang <zhi.a.wang@intel.com>'
+> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
 
-I can fix this while applying, but please indicate whether you intended
-to have From: Zhi Wang <zhi.a.wang@intel.com> or Signed-off-by: Zhi Wang
-<zhi.wang.linux@gmail.com>.
+Pushed to drm-intel-next, thanks for the patch.
 
 BR,
 Jani.
 
+> ---
+>  include/drm/i915_drm.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> total: 0 errors, 1 warnings, 0 checks, 30 lines checked
->
->
+> diff --git a/include/drm/i915_drm.h b/include/drm/i915_drm.h
+> index 7adce327c1c2..adff68538484 100644
+> --- a/include/drm/i915_drm.h
+> +++ b/include/drm/i915_drm.h
+> @@ -42,7 +42,7 @@ extern struct resource intel_graphics_stolen_res;
+>   * The Bridge device's PCI config space has information about the
+>   * fb aperture size and the amount of pre-reserved memory.
+>   * This is all handled in the intel-gtt.ko module. i915.ko only
+> - * cares about the vga bit for the vga rbiter.
+> + * cares about the vga bit for the vga arbiter.
+>   */
+>  #define INTEL_GMCH_CTRL		0x52
+>  #define INTEL_GMCH_VGA_DISABLE  (1 << 1)
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
