@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AAC3720327
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 15:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A418972040C
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 16:11:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A7A210E055;
-	Fri,  2 Jun 2023 13:23:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0662E10E693;
+	Fri,  2 Jun 2023 14:11:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2846510E055
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 13:23:27 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 101D610E693
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 14:11:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685712207; x=1717248207;
+ t=1685715095; x=1717251095;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=BIwH5acRI4OAYruwEyoVfglO5xjN5OSoNP1lvCXPiS4=;
- b=JJNJj7mceqEmxgQxoTgkl57RIIq8NGdqEqofpLv6Z6xFOVv5aurWfFHM
- doz4PmiQDMdCXXzhzuTYG10hbp3x3TZO/3Q82qcXhxB9ikIFCaP3ErRkS
- 5t7d2Pa4Ml9VGZtKAS3jaxQGsGi9/Q+v08tb9WLk08GQCGfaciJR9EBWo
- N6smIKbpbvucz4SE4qpZ1CaOcLGkqy559ZOGsWQfh2k+tx1GzCVIwbd2q
- wgxaBcvOIpKNIApitMorIX3nUN6cB0oEQ4yAn1aEMRg1r6HJI/KwfZHNM
- g3UiMnxxt8tRVj/AdrKygkfGQPFUd9Jdq+Qs57DQitQauw53RC2jCK3dH A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="421681740"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="421681740"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 06:23:26 -0700
+ bh=iHnTy+rGdynPSN2oUg3l6ddZoSKYljpn1oATVCjWczE=;
+ b=VllVIeXyN0k+j1gh2PGCuwLHX/lue1SgD+6tyy7TpMHM/B1oEnQf+4Pq
+ GM1n+knw5xPv6Bn2ep4cZpD6nFANsm4UGNq4b51f5gb2qpOEUOZnYHu1e
+ bCd7Nxe7OcoA3xhQk+mcxkcuzbuY6AL41H5Y+pkSc/U7nGIv7w95ldVAZ
+ GynVVfy66tZOFzoPZRaOLm+/uLAy3OvyaT2wVGoBnKV4PvpsAQfiDvFKN
+ W395YT8qXBWCvZcjVle7+6b9yyt2D5Pw05Qd8LGEnJaGjnOtByiqe5NaZ
+ p5b6nzqDkr+FsF21BLlhxbKANqhm8t1hboBXv48548/o+PKT1ShOWDjR1 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="335489224"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="335489224"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 07:11:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="777665817"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="777665817"
-Received: from jwerner6-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.55.111])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 06:23:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  2 Jun 2023 16:23:21 +0300
-Message-Id: <20230602132321.3199445-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="772897285"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="772897285"
+Received: from gsavorni-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.251.210.46])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 07:11:32 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>
+Date: Fri,  2 Jun 2023 16:11:27 +0200
+Message-Id: <20230602141127.291372-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/debugfs: stop using edid_blob_ptr
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Use the correct error value when
+ kernel_context() fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,55 +57,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: Nathan Chancellor <nathan@kernel.org>, Andi Shyti <andi.shyti@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Only the EDID code and sysfs should look at the EDID property. Stop
-using it.
+kernel_context() returns an error pointer. Use pointer-error
+conversion functions to evaluate its return value, rather than
+checking for a '0' return.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Fixes: eb5c10cbbc2f ("drm/i915: Remove I915_USER_PRIORITY_SHIFT")
+Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Chris Wilson < chris@chris-wilson.co.uk>
+Cc: <stable@vger.kernel.org> # v5.13+
 ---
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_execlists.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 2a4df62692a6..165e2c7e3126 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -6,6 +6,7 @@
- #include <linux/string_helpers.h>
+diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+index 736b89a8ecf54..4202df5b8c122 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
++++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+@@ -1530,8 +1530,8 @@ static int live_busywait_preempt(void *arg)
+ 	struct drm_i915_gem_object *obj;
+ 	struct i915_vma *vma;
+ 	enum intel_engine_id id;
+-	int err = -ENOMEM;
+ 	u32 *map;
++	int err;
  
- #include <drm/drm_debugfs.h>
-+#include <drm/drm_edid.h>
- #include <drm/drm_fourcc.h>
+ 	/*
+ 	 * Verify that even without HAS_LOGICAL_RING_PREEMPTION, we can
+@@ -1539,13 +1539,17 @@ static int live_busywait_preempt(void *arg)
+ 	 */
  
- #include "hsw_ips.h"
-@@ -228,19 +229,18 @@ static void intel_hdcp_info(struct seq_file *m,
- 	seq_puts(m, "\n");
- }
+ 	ctx_hi = kernel_context(gt->i915, NULL);
+-	if (!ctx_hi)
+-		return -ENOMEM;
++	if (IS_ERR(ctx_hi))
++		return PTR_ERR(ctx_hi);
++
+ 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
  
--static void intel_dp_info(struct seq_file *m,
--			  struct intel_connector *intel_connector)
-+static void intel_dp_info(struct seq_file *m, struct intel_connector *connector)
- {
--	struct intel_encoder *intel_encoder = intel_attached_encoder(intel_connector);
-+	struct intel_encoder *intel_encoder = intel_attached_encoder(connector);
- 	struct intel_dp *intel_dp = enc_to_intel_dp(intel_encoder);
--	const struct drm_property_blob *edid = intel_connector->base.edid_blob_ptr;
-+	const struct edid *edid = drm_edid_raw(connector->detect_edid);
+ 	ctx_lo = kernel_context(gt->i915, NULL);
+-	if (!ctx_lo)
++	if (IS_ERR(ctx_lo)) {
++		err = PTR_ERR(ctx_lo);
+ 		goto err_ctx_hi;
++	}
++
+ 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
  
- 	seq_printf(m, "\tDPCD rev: %x\n", intel_dp->dpcd[DP_DPCD_REV]);
- 	seq_printf(m, "\taudio support: %s\n",
--		   str_yes_no(intel_connector->base.display_info.has_audio));
-+		   str_yes_no(connector->base.display_info.has_audio));
- 
- 	drm_dp_downstream_debug(m, intel_dp->dpcd, intel_dp->downstream_ports,
--				edid ? edid->data : NULL, &intel_dp->aux);
-+				edid, &intel_dp->aux);
- }
- 
- static void intel_dp_mst_info(struct seq_file *m,
+ 	obj = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
 -- 
-2.39.2
+2.40.1
 
