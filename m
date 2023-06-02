@@ -1,40 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C5A71FC39
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 10:40:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C01BD71FC95
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 10:51:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1579110E209;
-	Fri,  2 Jun 2023 08:40:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6FDE10E22A;
+	Fri,  2 Jun 2023 08:51:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7D4610E209
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 08:40:12 +0000 (UTC)
-Received: from 91-156-6-72.elisa-laajakaista.fi ([91.156.6.72]
- helo=[192.168.100.137])
- by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <luca@coelho.fi>) id 1q50KL-008mCd-Fm;
- Fri, 02 Jun 2023 11:40:08 +0300
-Message-ID: <0b56d0bdf0f49038548ae53a36d5af4d5c9cd8aa.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Jouni =?ISO-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>, 
- intel-gfx@lists.freedesktop.org
-Date: Fri, 02 Jun 2023 11:40:04 +0300
-In-Reply-To: <20230530101649.2549949-1-jouni.hogander@intel.com>
-References: <20230530101649.2549949-1-jouni.hogander@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC7DB10E22A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 08:51:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685695912; x=1717231912;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=thfg9ZSdnWCorkT1ZRnAraRCs/BmjQv+7pbwYIrdFdw=;
+ b=AGkjXC59jd3omnlOCy6TvPXLxdL10zJ5C47Pi98m7nSAtbrkmJgRBX2/
+ kI7Oz3ntSWrmpqn44zFm/2rYC0DSIsm/6RDATM8fE0+WxXgyERWdwibqV
+ 0h5zRFvxjocrqxsy+SSxzq3a7RufK/3hfY35soDc2Ifs4jgVzeKwALrGf
+ j5UJn/AfEEx+ss4pRrkMm6JNPqh4omZFtdIHK7NKSJ8Aj77CLx8LRfh2z
+ W/XUxQxtLRr6Oi984Nab/xKkS2KgQaerzgOBHYTQxP3iQ3vNsPBtObSyW
+ 7ENeuw36JXLSwNgXU+hUnz+vSF3Pyp6/FBbQi9NeMjOK4+X6hc8yL5m9j Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="419350667"
+X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; d="scan'208";a="419350667"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 01:51:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="658195626"
+X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; d="scan'208";a="658195626"
+Received: from gsavorni-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.251.210.46])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 01:51:49 -0700
+Date: Fri, 2 Jun 2023 10:51:45 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Message-ID: <ZHmtoZAbBftPTTY3@ashyti-mobl2.lan>
+References: <20230531213547.1525692-1-matthew.s.atwood@intel.com>
+ <87wn0nujol.wl-ashutosh.dixit@intel.com>
+ <87v8g7ujaj.wl-ashutosh.dixit@intel.com>
+ <87ttvqvhj7.wl-ashutosh.dixit@intel.com>
+ <ZHk6cg5IIZUUI8Nj@ashyti-mobl2.lan>
+ <87pm6elfam.wl-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,URIBL_BLOCKED autolearn=ham autolearn_force=no
- version=3.4.6
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Use 18 fast wake AUX sync len
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87pm6elfam.wl-ashutosh.dixit@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: sync I915_PMU_MAX_GTS to
+ I915_MAX_GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,50 +64,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2023-05-30 at 13:16 +0300, Jouni H=C3=B6gander wrote:
-> HW default for wake sync pulses is 18. 10 precarge and 8 preamble. There =
-is
+Hi Ashutosh,
 
-Small typo: s/precarge/precharge/
+> > > > > > Set I915_PMU_MAX_GTS to value in I915_MAX_GT, theres no reason for these
+> > > > > > values to be different.
+> > > >
+> > > > Also, we can't be so sure so as to be able to say "theres no reason for
+> > > > these values to be different" till we have actually verified it. E.g. there
+> > > > are various bitfields in the code which might not fit in a u32 if we
+> > > > increase MAX_GT from 2 to 4. Has this been verified?
+> > > >
+> > > > If anything, to keep the code from doing unnecessary stuff, IMO I915_MAX_GT
+> > > > should be reduced to 2 and should be increased to 4 only once/if we have
+> > > > i915 supported platforms with 4 GT's.
+> > >
+> > > Matt explained the issue offline to me (it would have helped to explain the
+> > > reason for the patch in the commit message). The issue is that in uses of
+> > > for_each_gt such as below (there are others too in the PMU code):
+> > >
+> > >         for_each_gt(gt, i915, i) {
+> > >                 intel_wakeref_t wakeref;
+> > >
+> > >                 with_intel_runtime_pm(gt->uncore->rpm, wakeref) {
+> > >                         u64 val = __get_rc6(gt);
+> > >
+> > >                         store_sample(pmu, i, __I915_SAMPLE_RC6, val);
+> > >                         store_sample(pmu, i, __I915_SAMPLE_RC6_LAST_REPORTED,
+> > >                                      val);
+> > >                         pmu->sleep_last[i] = ktime_get_raw();
+> > >                 }
+> > >         }
+> > >
+> > > static checkers are complaining that for_each_gt can read/write outside the
+> > > bounds of PMU arrays. Because absent gt's will be NULL in for_each_gt this
+> > > cannot really happen but we still need to keep static checkers happy.
+> > >
+> > > So to resolve this issue we need I915_PMU_MAX_GTS and I915_MAX_GT to have
+> > > the same value. So either we need to increase I915_PMU_MAX_GTS to 4 or
+> > > reduce I915_MAX_GT to 2.
+> >
+> > the number of GT's is a GPU concept and should remain as such all
+> > over the GPU. If max GT is 4 then it should be 4 everywhere.
+> >
+> > The I915_PMU_MAX_GTS define should not exist at all as it is
+> > creating this sort of inconsistencies and everything should refer
+> > to a single I915_MAX_GT. The reason for having I915_PMU_MAX_GTS,
+> > in a first place, is purely practical to avoid over inclusions.
+> > Still I consider it hacky.
+> >
+> > On the other had, already I915_MAX_GT is a hardcoded value and
+> > many times there have been discussions about removing it and
+> > fetch it dynamically during the i915 boot. But this requires
+> > quite a good amount of refactoring that no one is willing to do.
+> >
+> > If we can't get rid of I915_PMU_MAX_GTS then I strongly believe
+> > it should be aligned with I915_MAX_GT and for this reason I gave
+> > my r-b. The use of for_each_gt() is a clear consequence of this
+> > difference.
+> 
+> Yes, not disagreeing. At this point I think my preferred solution is
+> something like:
+> 
+> #define I915_MAX_GT 2
+> #define I915_PMU_MAX_GTS I915_MAX_GT
 
+#ifndef I915_MAX_GT
+#define I915_MAX_GT 2
+#endif
+#define I915_PMU_MAX_GTS I915_MAX_GT
 
-> no reason to change this especially as it is causing problems with certai=
-n
-> eDP panels.
->=20
-> v3: Change "Fixes:" commit
-> v2: Remove "fast wake" repeat from subject
->=20
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> Fixes: e1c71f8f9180 ("drm/i915: Fix fast wake AUX sync len")
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8475
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_aux.c
-> index 0c27db8ae4f1..197c6e81db14 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -129,7 +129,7 @@ static int intel_dp_aux_sync_len(void)
-> =20
->  static int intel_dp_aux_fw_sync_len(void)
->  {
-> -	int precharge =3D 16; /* 10-16 */
-> +	int precharge =3D 10; /* 10-16 */
->  	int preamble =3D 8;
-> =20
->  	return precharge + preamble;
+Side note: I915_PMU_MAX_GTS in plural is not the best of the
+names as we don't really know what the 'S' stands for, is it
+G.T.S. or GT's? MAX_GT is already intrinsically plural.
 
-If this really solves the problem, and since the comment clearly says
-that the range is from 10 to 16, it looks good to me.
+> Unless someone can explain why I915_MAX_GT cannot be 2. As I see it,
+> there's no need for I915_MAX_GT to be 4 after xehpsdv disappeared and
+> support for future platforms is moving to xe.
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Nothing wrong, you can try sending a patch and kick-start a
+discussion, let's also see what CI thinks about.
 
---
-Cheers,
-Luca.
+Andi
