@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9892972040E
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 16:12:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB816720412
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 16:13:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 039CE10E69D;
-	Fri,  2 Jun 2023 14:12:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46B6810E69E;
+	Fri,  2 Jun 2023 14:12:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE3E610E69D
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 14:12:24 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 137C210E69E
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 14:12:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685715144; x=1717251144;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xF1907D/qgWUPoUUuzud9W0aoD2VDWcrHzH0dxVJSvs=;
- b=m9fUjignpr2qQ+lPOzwP1BMPV0jhZx35vI70UBx+tN/6/xlw+V5Eun0D
- rExjMtbL2jJwCGu3SMGqzM+uVk94fSMKaqIjUqBFfwAflFdgrhSSMaCQc
- 4bfTL9BcZ4PBLIfkhS+y3nUiKhvolb7xkRazqSxpw0TRN2rN4rs8nE5Ev
- IRB4S1fJQfHiUu7g2MSiUJQ0khk4NSZTwX0gCXemdgtgIBpZqpn4QUlpg
- ZUn4shEF3Gve1lji7FNa5sdnWEK+kQo6/33IK0UPsEOa4HveFZCEVIoSC
- YRol3iBJ2JailddYh7j1l3vPj1ZNfUfrLZMA4mcNVKwzZR+EmM8QBJxyg g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="354723555"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="354723555"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 07:12:23 -0700
+ t=1685715177; x=1717251177;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=TPM0D0hqO3RwEFL1ObfFYtTDlPgch8h1aYWSTA+Ysj0=;
+ b=GzwsE87COFyflzcRvcPryjtIfU5j6B0Ypktn1Pyq8QI2HsOtc54rOdQQ
+ vwUJOabMje/xcoUrvx/T8EZpNPQ2pnc4QXmgYmKciDN6A4BU708S65r7l
+ w1GLfN+90AFOOsCOP7IN/MdmvtOBZUtxDsTy/u/FPaqUx+sQubEvBEeV0
+ W/3TIs+Hzie8o5X1A+kln1lZ/8AoyPPrU4J9f/MYKCXots7sglZWTl3lg
+ fg8Fb8AAxX+l1htC32PbFZVILA+nt9WE5QawbIY1ydFOublag0kUSuqcW
+ GzglN79qPqcR6wotG8vgxkPoR2RQNUPj6RcbjkAOgAiMuzt6/4GDVDWXg Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="359177346"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="359177346"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 07:12:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="831995792"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="831995792"
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="658289508"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="658289508"
 Received: from gsavorni-mobl1.ger.corp.intel.com (HELO intel.com)
  ([10.251.210.46])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 07:12:21 -0700
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 07:12:54 -0700
+Date: Fri, 2 Jun 2023 16:12:51 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Intel GFX <intel-gfx@lists.freedesktop.org>
-Date: Fri,  2 Jun 2023 16:12:11 +0200
-Message-Id: <20230602141211.291418-1-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Message-ID: <ZHn44w+3gjE4BCtJ@ashyti-mobl2.lan>
+References: <20230602141127.291372-1-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI] drm/i915/pxp: Fix size_t format specifier in
- gsccs_send_message()
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230602141127.291372-1-andi.shyti@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Use the correct error value
+ when kernel_context() fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,79 +59,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nathan Chancellor <nathan@kernel.org>, Andi Shyti <andi.shyti@kernel.org>
+Cc: Nathan Chancellor <nathan@kernel.org>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Andi Shyti <andi.shyti@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Nathan Chancellor <nathan@kernel.org>
+Hi Nathan and all,
 
-When building ARCH=i386 allmodconfig, the following warning occurs:
-
-  In file included from include/linux/device.h:15,
-                   from include/linux/node.h:18,
-                   from include/linux/cpu.h:17,
-                   from include/linux/static_call.h:135,
-                   from arch/x86/include/asm/perf_event.h:5,
-                   from include/linux/perf_event.h:25,
-                   from drivers/gpu/drm/i915/i915_pmu.h:11,
-                   from drivers/gpu/drm/i915/gt/intel_engine_types.h:21,
-                   from drivers/gpu/drm/i915/gt/intel_context_types.h:18,
-                   from drivers/gpu/drm/i915/gem/i915_gem_context_types.h:20,
-                   from drivers/gpu/drm/i915/i915_request.h:34,
-                   from drivers/gpu/drm/i915/i915_active.h:13,
-                   from drivers/gpu/drm/i915/gt/intel_context.h:13,
-                   from drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c:8:
-  drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c: In function 'gsccs_send_message':
-  include/drm/drm_print.h:456:39: error: format '%ld' expects argument of type 'long int', but argument 4 has type 'size_t' {aka 'unsigned int'} [-Werror=format=]
-    456 |         dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
-        |                                       ^~~~~~~~
-  include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-    110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-        |                              ^~~
-  include/linux/dev_printk.h:146:61: note: in expansion of macro 'dev_fmt'
-    146 |         dev_printk_index_wrap(_dev_warn, KERN_WARNING, dev, dev_fmt(fmt), ##__VA_ARGS__)
-        |                                                             ^~~~~~~
-  include/drm/drm_print.h:456:9: note: in expansion of macro 'dev_warn'
-    456 |         dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
-        |         ^~~~
-  include/drm/drm_print.h:466:9: note: in expansion of macro '__drm_printk'
-    466 |         __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
-        |         ^~~~~~~~~~~~
-  drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c:146:17: note: in expansion of macro 'drm_warn'
-    146 |                 drm_warn(&i915->drm, "caller with insufficient PXP reply size %u (%ld)\n",
-        |                 ^~~~~~~~
-  cc1: all warnings being treated as errors
-
-Use the '%zu' format specifier, as the variable is a 'size_t'.
-
-Fixes: dc9ac125d81f ("drm/i915/pxp: Add GSC-CS backend to send GSC fw messages")
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
----
-Hi,
-
-CI execution was interrupted at some point, so that I'm being
-overzealous and respinning it. I bet within this weekend we will
-have the results.
+please ignore, I sent the wrong file.
 
 Andi
 
- drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
-index 8dc41de3f6f74..a217821eb0fbb 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
-@@ -143,7 +143,7 @@ gsccs_send_message(struct intel_pxp *pxp,
- 
- 	reply_size = header->message_size - sizeof(*header);
- 	if (reply_size > msg_out_size_max) {
--		drm_warn(&i915->drm, "caller with insufficient PXP reply size %u (%ld)\n",
-+		drm_warn(&i915->drm, "caller with insufficient PXP reply size %u (%zu)\n",
- 			 reply_size, msg_out_size_max);
- 		reply_size = msg_out_size_max;
- 	}
--- 
-2.40.1
-
+On Fri, Jun 02, 2023 at 04:11:27PM +0200, Andi Shyti wrote:
+> kernel_context() returns an error pointer. Use pointer-error
+> conversion functions to evaluate its return value, rather than
+> checking for a '0' return.
+> 
+> Fixes: eb5c10cbbc2f ("drm/i915: Remove I915_USER_PRIORITY_SHIFT")
+> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Chris Wilson < chris@chris-wilson.co.uk>
+> Cc: <stable@vger.kernel.org> # v5.13+
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_execlists.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> index 736b89a8ecf54..4202df5b8c122 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> @@ -1530,8 +1530,8 @@ static int live_busywait_preempt(void *arg)
+>  	struct drm_i915_gem_object *obj;
+>  	struct i915_vma *vma;
+>  	enum intel_engine_id id;
+> -	int err = -ENOMEM;
+>  	u32 *map;
+> +	int err;
+>  
+>  	/*
+>  	 * Verify that even without HAS_LOGICAL_RING_PREEMPTION, we can
+> @@ -1539,13 +1539,17 @@ static int live_busywait_preempt(void *arg)
+>  	 */
+>  
+>  	ctx_hi = kernel_context(gt->i915, NULL);
+> -	if (!ctx_hi)
+> -		return -ENOMEM;
+> +	if (IS_ERR(ctx_hi))
+> +		return PTR_ERR(ctx_hi);
+> +
+>  	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
+>  
+>  	ctx_lo = kernel_context(gt->i915, NULL);
+> -	if (!ctx_lo)
+> +	if (IS_ERR(ctx_lo)) {
+> +		err = PTR_ERR(ctx_lo);
+>  		goto err_ctx_hi;
+> +	}
+> +
+>  	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
+>  
+>  	obj = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
+> -- 
+> 2.40.1
