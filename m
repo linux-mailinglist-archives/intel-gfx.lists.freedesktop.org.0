@@ -2,51 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB816720412
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 16:13:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E26B9720413
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 16:13:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46B6810E69E;
-	Fri,  2 Jun 2023 14:12:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6223E10E699;
+	Fri,  2 Jun 2023 14:13:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 137C210E69E
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 14:12:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0247810E699
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 14:13:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685715177; x=1717251177;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=TPM0D0hqO3RwEFL1ObfFYtTDlPgch8h1aYWSTA+Ysj0=;
- b=GzwsE87COFyflzcRvcPryjtIfU5j6B0Ypktn1Pyq8QI2HsOtc54rOdQQ
- vwUJOabMje/xcoUrvx/T8EZpNPQ2pnc4QXmgYmKciDN6A4BU708S65r7l
- w1GLfN+90AFOOsCOP7IN/MdmvtOBZUtxDsTy/u/FPaqUx+sQubEvBEeV0
- W/3TIs+Hzie8o5X1A+kln1lZ/8AoyPPrU4J9f/MYKCXots7sglZWTl3lg
- fg8Fb8AAxX+l1htC32PbFZVILA+nt9WE5QawbIY1ydFOublag0kUSuqcW
- GzglN79qPqcR6wotG8vgxkPoR2RQNUPj6RcbjkAOgAiMuzt6/4GDVDWXg Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="359177346"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="359177346"
+ t=1685715223; x=1717251223;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=6FlVzKx6wAT7k2ndM/75W+FO62fSVNbGqTf/6mip8UQ=;
+ b=V1jK3DHHgdvXw/uN1s/NA8L29BoB65x6mG9ji5cg/tWJGab1jWRmlbcV
+ LzyNa8j3w/I+foH5tA78gwbQb+997jsBlSQvvhHHUKM90j8pn/qAlwLRa
+ 7j2SJQlTGAUHZX/dCZ9OlV6UlkdLxMrTETcRohhUJ4pZVYNJKx0af4YvD
+ 3zF9I6yW344s3MfE5O/ea0Auj+xGjTLoBU43vYf7MtsWp7/eWiuNatIx/
+ z5KNlRUKjg+rB9i07L7MK6UHbHq2qiJUtFMi7Ct7yL1fi2ZlbUyqNxNn5
+ 9kFympXt8hKJFVMvNn/m/gGr70srKNrNGsjHEH0/GB+lO8p42zzfOcaKc A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="359177460"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="359177460"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 07:12:56 -0700
+ 02 Jun 2023 07:13:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="658289508"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="658289508"
-Received: from gsavorni-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.251.210.46])
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="658289743"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="658289743"
+Received: from jwerner6-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.111])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 07:12:54 -0700
-Date: Fri, 2 Jun 2023 16:12:51 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <ZHn44w+3gjE4BCtJ@ashyti-mobl2.lan>
-References: <20230602141127.291372-1-andi.shyti@linux.intel.com>
+ 02 Jun 2023 07:13:40 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230531134806.23065-4-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230531134806.23065-1-ville.syrjala@linux.intel.com>
+ <20230531134806.23065-4-ville.syrjala@linux.intel.com>
+Date: Fri, 02 Jun 2023 17:13:37 +0300
+Message-ID: <87pm6edka6.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230602141127.291372-1-andi.shyti@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Use the correct error value
- when kernel_context() fails
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 3/7] drm/i915: Assert that device info
+ bitmasks have enough bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,66 +62,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nathan Chancellor <nathan@kernel.org>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Andi Shyti <andi.shyti@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nathan and all,
+On Wed, 31 May 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Sprinkle in some BUILD_BUG_ON()s to make sure some of
+> the bitmasks used in the device info have enough bits.
+>
+> Do we have a better place for this sort of stuff?
 
-please ignore, I sent the wrong file.
+*grin* intel_display_device_info_runtime_init()
 
-Andi
+https://patchwork.freedesktop.org/patch/msgid/20230601212535.675751-1-matth=
+ew.d.roper@intel.com
 
-On Fri, Jun 02, 2023 at 04:11:27PM +0200, Andi Shyti wrote:
-> kernel_context() returns an error pointer. Use pointer-error
-> conversion functions to evaluate its return value, rather than
-> checking for a '0' return.
-> 
-> Fixes: eb5c10cbbc2f ("drm/i915: Remove I915_USER_PRIORITY_SHIFT")
-> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Chris Wilson < chris@chris-wilson.co.uk>
-> Cc: <stable@vger.kernel.org> # v5.13+
+It'll conflict, again. :/
+
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/selftest_execlists.c | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> index 736b89a8ecf54..4202df5b8c122 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> @@ -1530,8 +1530,8 @@ static int live_busywait_preempt(void *arg)
->  	struct drm_i915_gem_object *obj;
->  	struct i915_vma *vma;
->  	enum intel_engine_id id;
-> -	int err = -ENOMEM;
->  	u32 *map;
-> +	int err;
->  
->  	/*
->  	 * Verify that even without HAS_LOGICAL_RING_PREEMPTION, we can
-> @@ -1539,13 +1539,17 @@ static int live_busywait_preempt(void *arg)
->  	 */
->  
->  	ctx_hi = kernel_context(gt->i915, NULL);
-> -	if (!ctx_hi)
-> -		return -ENOMEM;
-> +	if (IS_ERR(ctx_hi))
-> +		return PTR_ERR(ctx_hi);
+>  drivers/gpu/drm/i915/intel_device_info.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
+915/intel_device_info.c
+> index f79142983f28..8a35005c46c0 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -419,6 +419,10 @@ void intel_device_info_runtime_init(struct drm_i915_=
+private *dev_priv)
+>  		DISPLAY_RUNTIME_INFO(dev_priv);
+>  	enum pipe pipe;
+>=20=20
+> +	BUILD_BUG_ON(BITS_PER_TYPE(display_runtime->pipe_mask) < I915_MAX_PIPES=
+);
+> +	BUILD_BUG_ON(BITS_PER_TYPE(display_runtime->cpu_transcoder_mask) < I915=
+_MAX_TRANSCODERS);
+> +	BUILD_BUG_ON(BITS_PER_TYPE(display_runtime->port_mask) < I915_MAX_PORTS=
+);
 > +
->  	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
->  
->  	ctx_lo = kernel_context(gt->i915, NULL);
-> -	if (!ctx_lo)
-> +	if (IS_ERR(ctx_lo)) {
-> +		err = PTR_ERR(ctx_lo);
->  		goto err_ctx_hi;
-> +	}
-> +
->  	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
->  
->  	obj = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
-> -- 
-> 2.40.1
+>  	/* Wa_14011765242: adl-s A0,A1 */
+>  	if (IS_ADLS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A2))
+>  		for_each_pipe(dev_priv, pipe)
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
