@@ -2,60 +2,109 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 055D773742B
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41959737422
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:29:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 703C810E38F;
-	Tue, 20 Jun 2023 18:29:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E7D810E37C;
+	Tue, 20 Jun 2023 18:29:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com
- [IPv6:2607:f8b0:4864:20::52c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFA9410E4B3
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 May 2023 11:32:02 +0000 (UTC)
-Received: by mail-pg1-x52c.google.com with SMTP id
- 41be03b00d2f7-53fb4ee9ba1so1080747a12.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 May 2023 04:32:02 -0700 (PDT)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2117.outbound.protection.outlook.com [40.107.220.117])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B1BA10E60C;
+ Fri,  2 Jun 2023 18:50:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RUMcpw4qtTPt8cffT/hELuBVwmiFMhBvp44riQiEz/YK6cV3CuTnsvwDCHGfxtP+NP+eh4b2Et5Iv5D4ZOvATB6aez3R3g53aQ0aaOqHwTmDPKoFPnwbF7r2ffAcMDxIQtfyXDBhwqoz9hWhA13xKHdD6nn/LnRqy3d2n+M/2clbGBzr3odOv3oLiwnZgQndLrDnsHaxemXVSbiNM9J8U0NO57nyS5P7dR0aKYZGIX9/zocaDzSdp/GVKGBm4NYuqS/A9dxmvtJKFCIhgtubYWym7ZC21cPR/jwzIACtG/BB30LYuO15YyKtwHtZo70XfbJ9lNUjqQOM8FP5omOClA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iGp/RelLSKQh9skSR/gRuj4R3y6z9zeQxcjTv7v46OE=;
+ b=LVKLOxOHbUriwUsTecAAvZZS45JjJg7zzNvp05GnOI1opPpAjSWJbuTpLs2sPCWet8XprnkjyZyNuI3QZ47PnoaBIavt4et8028eqa8jpUWNa+1YGCGnFT+9wv32jrl53UWcfyze2jcnFee2ALLPqqzZuh1SxokSX1/xBnLliP2w3npW/Z3PbhDyf/KCRI8vchsrCrm+8RIAptk52+Op0EsgioxE1ljQ1lw4AMubAcglpOZ5KWddXNp32up0nO6kyFBVCdeO8UtjWc+YzC5xnSEyQj/a9I0lZ9o3xWB8EgXMdyLA+1kSmPCw2DCmEkUex7sTI8cU+wCZnFaQJXD+4w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
+ dkim=pass header.d=corigine.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=heitbaum.com; s=google; t=1685532722; x=1688124722;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=t+QshJt/PdyfRodhCY0yXtcG2lF/vT/ZBreOHflG6Y4=;
- b=UhOihmEs45qAYMynSTSjHQR1VfJ2+HA1k2nsMaDzrL3Lmv07qiXLvOtAGE09yFghLv
- mmvfwvn23QTlh8BzTtZB4xej33ZljTYY1+0uaAyXNy5xemBi9mVH+HfuMREXm/zTd1xw
- ONF3IfIuOkgK03fZZjL+ldMXhribgFz5p0ZmM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1685532722; x=1688124722;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=t+QshJt/PdyfRodhCY0yXtcG2lF/vT/ZBreOHflG6Y4=;
- b=dszY5IGR9B3RGn5ZMde1hagchiJ4LymlkxcTuZ/5MnwIuaszqiTQvTu6GrwAExDF2A
- 8mcPUr6f7aQBtxTbDJxj57sXVJIRlrBhYaLzC8ChffY0Xqq2Hs7IsS7K7YMGA+9aSnSm
- ZfbMDM27eme5ye9suG+YnaXec7xmpJ78UUIMcXW6Muf1BYl5BAHbJXslQg8JvtHckaFl
- oNJSYAokSBiGw6BNUVt4yMX2+d/ITVIe7461R5ntfoyU3WkveEFjqkaXJ5T9P+LnZNJy
- NrEOyZKYA3UO0DKDCRF9gEoHjwuRqxVhfawAYkosT0inplDO76zP/qddxU3aKdok/0xE
- R5Lg==
-X-Gm-Message-State: AC+VfDwWpHF1YH2KQMWu0oH150kTUIwVILvO2Tkk2OGfNlLTYro/MZSW
- pYf/V6JWVqT2IaXFWbFAjfgKUErL6VJfrWEuxjmNRQ==
-X-Google-Smtp-Source: ACHHUZ62xxeN0UvZ6AfOp3UiFMvl+rj1MK3P65nEgN+MksK2PakIdxE8i0in1vq/GVGJmdjdawbCXA2Xhomkv45ftEs=
-X-Received: by 2002:a17:90a:b013:b0:247:ab52:d5d8 with SMTP id
- x19-20020a17090ab01300b00247ab52d5d8mr4436508pjq.26.1685532721781; Wed, 31
- May 2023 04:32:01 -0700 (PDT)
+ d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iGp/RelLSKQh9skSR/gRuj4R3y6z9zeQxcjTv7v46OE=;
+ b=wBWxaT6XMT2B2VjtZQP+w6wrsujJX5lpKjCNskzX3EQHFi+ceOzb/4jy0bDQBfLNyHDWy4oRiPwxkNmjSYlHlOrN63Ml/dbb3uo/yx+k5jkVDIaABIFFv8AwSHkxAx6cb5MZ2h+Irf3+lp+u7mJ30/j2rYBYxatne73vm7fDq54=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=corigine.com;
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
+ by LV3PR13MB6430.namprd13.prod.outlook.com (2603:10b6:408:197::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.12; Fri, 2 Jun
+ 2023 18:50:18 +0000
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::5e55:9a39:751f:55f6]) by PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::5e55:9a39:751f:55f6%3]) with mapi id 15.20.6455.026; Fri, 2 Jun 2023
+ 18:50:18 +0000
+Date: Fri, 2 Jun 2023 20:50:11 +0200
+From: Simon Horman <simon.horman@corigine.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <ZHo54/ycgGUxjiiw@corigine.com>
+References: <20230224-track_gt-v9-0-5b47a33f55d1@intel.com>
+ <20230224-track_gt-v9-2-5b47a33f55d1@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230224-track_gt-v9-2-5b47a33f55d1@intel.com>
+X-ClientProxiedBy: AM9P195CA0018.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21f::23) To PH0PR13MB4842.namprd13.prod.outlook.com
+ (2603:10b6:510:78::6)
 MIME-Version: 1.0
-References: <20230510103131.1618266-2-imre.deak@intel.com>
- <20230530134907.GA8@5e905162a5a7> <ZHcJhs4ySOGojBvZ@ideak-desk>
-In-Reply-To: <ZHcJhs4ySOGojBvZ@ideak-desk>
-From: Rudi Heitbaum <rudi@heitbaum.com>
-Date: Wed, 31 May 2023 21:31:49 +1000
-Message-ID: <CAG9oJsnuSAveS1g6qyE7ZhSEdGOV1U6kogmiEg7vT9Le1t8wOw@mail.gmail.com>
-To: imre.deak@intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|LV3PR13MB6430:EE_
+X-MS-Office365-Filtering-Correlation-Id: bd155795-984c-49ef-2162-08db639a35ff
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SCTzp5v+71yIT9+vcXBLh5abtNK8JoVqQ2UzDtgNd0EncFCHMA99F/wzoJ3SH0F73zvg5/a7Rxsi1LmcBwzUn02BxhOYC5FYLYMiCfEX779hHyO+twnAS1+i5+t6duMMo+4k+fpqHgyJ/5jz0/JyDgjpALLmcESO9wixjUTgnKuph4w3FJtdAyTvilGEwCP0RhxehetzaDCexIssrPJIexkdlhYpT2fspKYVdQzIvWrb8trF42CEsWu7bt088gR2JdLimTmjIsEOvk46+OvRnJtUf8gn+skkzz1VMB3BfsBu2mj5mXeumlDXRhhYzHdDbM64AVoHEbDmaeo9K3GUGzeJorH9iajq7QFdIvv+eKm7S/K+Jb5JVzWZmMQNBHAHikQsVUiK2z5v2E7irkWEjr5bynMxoi6fNyrqm8HroiZ+IhLOASVl5r/5tdKZi4gIMueMb2Tiw6FAvZ+0IV6oM/v1fVLqVwQPHt3yZ8f+viate0Ec3yzNbMmDFBDlQI6l7B/u1bs1fdit8wFutY2X/m1ka72gYEF+fjIfcN5joZEMHiw9+s8eNLqZeZlBCX5O
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR13MB4842.namprd13.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(136003)(346002)(396003)(376002)(366004)(39840400004)(451199021)(36756003)(2616005)(83380400001)(4744005)(2906002)(86362001)(38100700002)(6486002)(41300700001)(316002)(6666004)(5660300002)(8676002)(8936002)(478600001)(54906003)(66556008)(4326008)(66946007)(6506007)(6512007)(26005)(66476007)(6916009)(186003)(7416002)(44832011);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OVA2HZl7oxRLWsgiBrBKa6x7qzAAa2GKtQKsectGzHjgefpsH9zZP4OdHSvd?=
+ =?us-ascii?Q?rrjElZ7/bRzlzizoexqxfrre5lskD8jLj6PUecR+j0UXkPw0qCJTaiFj+Bxk?=
+ =?us-ascii?Q?YpTOQsFVvv0dnyRRktCl1DgUlPVS5pCqBDR6eG1WGRxbn6jLAmGJzlRqmPZQ?=
+ =?us-ascii?Q?BhYyovyx/mphu4OBrj13E2z55DxMHBAH/ppiB/v4MN4kbUoTXCaYU7xt2phu?=
+ =?us-ascii?Q?KUe3uS3F69v0bwNVeN1OCbL+xi494rZRHNmWSN11Eg0Gh8meBuwKvtNfvrnW?=
+ =?us-ascii?Q?kd/w+st5wIyG2fsmnJPWHpjOIFqm+LB5b+Jd9LtR0WWL9uwNcizzKnxUxRE1?=
+ =?us-ascii?Q?c+vcGhcOkegTnpc4WZdEE/Vr/zBDnJdwvI77qWRJ1XvlzrUN7yNgr6QmT58B?=
+ =?us-ascii?Q?teQW4nEfyuwy+Ldn3lcUz7t3Ib7cYuWV8t5Jxv5ax340bm4ztLDbhtVWOEO4?=
+ =?us-ascii?Q?FMD0dSLxA92+NjLHD4EDH0O5h1WHYgdLGnbjUwhtQS5mtFr2AYHLM8R5ybmz?=
+ =?us-ascii?Q?0zKiZVy7WxjI8S3YWvBjS48EPcwj1eDDQtURuvPMOuaR5fgMZ9jQemld+B+Y?=
+ =?us-ascii?Q?otxq+m5SymEjJyhWSrDVjFDcyvaFsyCMOAdSvVzDj3YfmYpd9+WsMdtk2j4Y?=
+ =?us-ascii?Q?75Ihrw0nFNp0fgeU1mbFIL1i3V6w2D20wV3RrCxemFEIEt/VrTPK0kLbaV6S?=
+ =?us-ascii?Q?BUydqxUsN72RRTM+4VmSP4/XJM9xlFT6RjYPuJsPJkRtaMEG+uzJsou4ZR0P?=
+ =?us-ascii?Q?2lUUGTvQ2MC3vj2a8eoFfeYKNE6XADOENYYLQ6Nar0JoHA2cOito8lmt+qHW?=
+ =?us-ascii?Q?rOUNftcv0W4ddsBalU1E8Tr429NgAJQGNU13s3FGAlxRoUmVWpEEKje7sR4e?=
+ =?us-ascii?Q?S1E0rP0UXUeXo2HcuAoFfebYZJrddrrwlQIE1gDDN52THQTSCmGsCvaL/ypB?=
+ =?us-ascii?Q?gp16fxJgWWxBYybeveM3I+GSo4HtfhDnRqAFT41HGCmwO2MbDp/3xTGWjAEA?=
+ =?us-ascii?Q?Qobn2X/yxem3DYDbYCri08fSGwsB1ojcVCK9in/z6uSAwbcwngbWYaug2VfT?=
+ =?us-ascii?Q?nkUcqsmk1yhgeXpz/dnSbahPuNGXowFHebMi5s1nJlZb6UNBO2l84ow/KrcK?=
+ =?us-ascii?Q?xIMH0KNZEv3VAiW5ELATwo156Des3JAH1pD+vIi7117j6nzRdo3Jh8fAeoOy?=
+ =?us-ascii?Q?8cfq1kykERnjmG9U2MaEZiaxFM5WRmvJZOgeyCQNiq7qaxT4eEcpNPvQsyJp?=
+ =?us-ascii?Q?UimDE2x0GSh3FTRvOyE+1WELbdoetU0dqfbXf8yEVxTRxP5psSQ0ldoyYqdJ?=
+ =?us-ascii?Q?uPNTWC9mO8FShdq8cHOKBCp8wGeS0fkS1+kjtrv7vn6ILIbO5mkMlW5P9KKd?=
+ =?us-ascii?Q?7dqNZyP1ZpckOp8ffAP7BD6XQReaVId8IuSSiFUYQk38d6xqL/2YluhuYwRK?=
+ =?us-ascii?Q?sHZOJRuiwqI/u2vHGbwN59xvStokC1kjACNA0aSThhyCZ9cAANJLX0AM5gXZ?=
+ =?us-ascii?Q?Y0ZMh3OFd3EYFIi0ctKnb1FLsh3KgzWN2lmHWT8Q6xAERdQD5/wA07ClW72h?=
+ =?us-ascii?Q?WvfCRkae2usHBzs0IxAPRDXJr8EkUS758TiBgmNRXi4EMc7uGsPdvpwQGQ/T?=
+ =?us-ascii?Q?fQ=3D=3D?=
+X-OriginatorOrg: corigine.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd155795-984c-49ef-2162-08db639a35ff
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2023 18:50:18.7686 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SxxXJKcLXxwIPii58dT4LyqQUtQMBMdVZlp1w7obwVA8XdIYdbl1Rn4C3sCsMoQR1NmktJvKJjD2mzU7xfkqgsDaLjQrqNlfNzrxaRZZb8k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR13MB6430
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:28:21 +0000
-Subject: Re: [Intel-gfx] [v4,
- 01/14] drm/i915: Fix PIPEDMC disabling for a bigjoiner configuration
+Subject: Re: [Intel-gfx] [PATCH v9 2/4] lib/ref_tracker: improve printing
+ stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,120 +117,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>,
- intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Dave Airlie <airlied@redhat.com>, Dave Airlie <airlied@gmail.com>
+Cc: netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Eric Dumazet <edumazet@google.com>, dri-devel@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Jakub Kicinski <kuba@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, Dmitry Vyukov <dvyukov@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Imre,
+On Fri, Jun 02, 2023 at 12:21:34PM +0200, Andrzej Hajda wrote:
+> In case the library is tracking busy subsystem, simply
+> printing stack for every active reference will spam log
+> with long, hard to read, redundant stack traces. To improve
+> readabilty following changes have been made:
 
-Raised the ticket and was able to capture the logs for you.
+Hi Andrzej,
 
-https://gitlab.freedesktop.org/drm/intel/-/issues/8559
+in case you have to respin for some other reason, you may want to consider:
 
-Thanks
-Rudi
+  readabilty -> readability
 
-On Wed, 31 May 2023 at 18:47, Imre Deak <imre.deak@intel.com> wrote:
->
-> On Tue, May 30, 2023 at 01:49:07PM +0000, Rudi Heitbaum wrote:
-> Hi Rudi,
->
-> Could you open a ticket at
-> https://gitlab.freedesktop.org/drm/intel/-/issues/new
->
-> attaching a dmesg log after booting with drm.debug=3D0xe, with the
-> messages from boot-up until the issue happens?
->
-> Thanks,
-> Imre
->
-> > Hi Imre/Dave,
-> >
-> > Ref: [v4,01/14] drm/i915: Fix PIPEDMC disabling for a bigjoiner configu=
-ration
-> >      [git pull] drm fixes for 6.4-rc4
-> >      drm-fixes-2023-05-26:
-> >      drm fixes for 6.4-rc4
-> >
-> > This patch has caused a regression between 6.4-rc3 and 6.4-rc4. Other
-> > tested kernels include 6.3.4 work fine. Dropping the patch allows the d=
-ecode
-> > playback of media via Kodi. Without dropping the patch - the media
-> > starts and stutters then ceases to play.
-> >
-> > There is an additional issue that 6.4-rc4 audio playback is also failin=
-g
-> > (where 6.4-rc3 was fine), I have not yet tracked this down.
-> >
-> > This is all on:
-> > DMI: Intel(R) Client Systems NUC12WSKi7/NUC12WSBi7, BIOS WSADL357.0087.=
-2023.0306.1931 03/06/2023
-> > 12th Gen Intel(R) Core(TM) i7-1260P (family: 0x6, model: 0x9a, stepping=
-: 0x3)
-> > microcode: updated early: 0x429 -> 0x42a, date =3D 2023-02-14
-> >
-> > Regards
-> >
-> > Rudi
-> >
-> > On Wed, May 10, 2023 at 01:31:18PM +0300, Imre Deak wrote:
-> > > For a bigjoiner configuration display->crtc_disable() will be called
-> > > first for the slave CRTCs and then for the master CRTC. However slave
-> > > CRTCs will be actually disabled only after the master CRTC is disable=
-d
-> > > (from the encoder disable hooks called with the master CRTC state).
-> > > Hence the slave PIPEDMCs can be disabled only after the master CRTC i=
-s
-> > > disabled, make this so.
-> > >
-> > > intel_encoders_post_pll_disable() must be called only for the master
-> > > CRTC, as for the other two encoder disable hooks. While at it fix thi=
-s
-> > > up as well. This didn't cause a problem, since
-> > > intel_encoders_post_pll_disable() will call the corresponding hook on=
-ly
-> > > for an encoder/connector connected to the given CRTC, however slave
-> > > CRTCs will have no associated encoder/connector.
-> > >
-> > > Fixes: 3af2ff0840be ("drm/i915: Enable a PIPEDMC whenever its corresp=
-onding pipe is enabled")
-> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> > > Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++++--
-> > >  1 file changed, 10 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
-pu/drm/i915/display/intel_display.c
-> > > index 1d5d42a408035..116fa52290b84 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -1702,9 +1702,17 @@ static void hsw_crtc_disable(struct intel_atom=
-ic_state *state,
-> > >
-> > >     intel_disable_shared_dpll(old_crtc_state);
-> > >
-> > > -   intel_encoders_post_pll_disable(state, crtc);
-> > > +   if (!intel_crtc_is_bigjoiner_slave(old_crtc_state)) {
-> > > +           struct intel_crtc *slave_crtc;
-> > > +
-> > > +           intel_encoders_post_pll_disable(state, crtc);
-> > >
-> > > -   intel_dmc_disable_pipe(i915, crtc->pipe);
-> > > +           intel_dmc_disable_pipe(i915, crtc->pipe);
-> > > +
-> > > +           for_each_intel_crtc_in_pipe_mask(&i915->drm, slave_crtc,
-> > > +                                            intel_crtc_bigjoiner_sla=
-ve_pipes(old_crtc_state))
-> > > +                   intel_dmc_disable_pipe(i915, slave_crtc->pipe);
-> > > +   }
-> > >  }
-> > >
-> > >  static void i9xx_pfit_enable(const struct intel_crtc_state *crtc_sta=
-te)
+...
