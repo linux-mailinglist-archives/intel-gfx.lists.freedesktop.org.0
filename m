@@ -1,33 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA0837205A5
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 17:14:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D95DC7205BC
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 17:17:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E894610E053;
-	Fri,  2 Jun 2023 15:14:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F4A810E0A8;
+	Fri,  2 Jun 2023 15:17:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1347310E02C;
- Fri,  2 Jun 2023 15:14:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D05A0A882E;
- Fri,  2 Jun 2023 15:14:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C75210E053;
+ Fri,  2 Jun 2023 15:17:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685719060; x=1717255060;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=74UhatMK3UUnku/iBSUieKfKmyh3IZ573NQGhAHsK3w=;
+ b=DVEZsSVOHxt9jhb4UZFg9TZYakbhIIggik8+qQDkJkpXbHp181jXVaQy
+ Lr+MP5eGVCNPTRTkiYZ6L03V+FddbmFoLoXDrp4iPYQJwrqS+1KYCJk1z
+ D2e5fQ6lhVqOa5s/F0zKuqlWjlNcHBQXCBDZ61B3kNLd8+yylS5mXxmSD
+ n0a8ORnDcefnOI0qZaIiivNWF/cH8Y/tSMOiK22NuXc3HL66RdQwE22p1
+ jTsc4xvFlI6zq+eoqX8QX9xGbhJa9QIT+c88P+HF+LoleC2JeZBrtCO4w
+ sEu+IaF7PVYYs8TokMuGUb+zHuBTd6K1E6nJDqDhtO2Gm/LoWscP+GeVT g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="340522819"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="340522819"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 08:17:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="707887171"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="707887171"
+Received: from jwerner6-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.111])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 08:17:35 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>, Nathan Chancellor
+ <nathan@kernel.org>
+In-Reply-To: <ZHZQ1gAWjdDql4Oi@ashyti-mobl2.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230530-i915-pxp-size_t-wformat-v1-1-9631081e2e5b@kernel.org>
+ <ZHZQ1gAWjdDql4Oi@ashyti-mobl2.lan>
+Date: Fri, 02 Jun 2023 18:17:32 +0300
+Message-ID: <87zg5hdhbn.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alex Williamson" <alex.williamson@redhat.com>
-Date: Fri, 02 Jun 2023 15:14:24 -0000
-Message-ID: <168571886482.15698.9720228185150243871@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230602121515.79374-1-yi.l.liu@intel.com>
-In-Reply-To: <20230602121515.79374-1-yi.l.liu@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Enhance_vfio_PCI_hot_reset_for_vfio_cdev_device_=28rev5=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pxp: Fix size_t format specifier
+ in gsccs_send_message()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,38 +61,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: alan.previn.teres.alexis@intel.com, intel-gfx@lists.freedesktop.org,
+ patches@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 30 May 2023, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> Hi Nathan,
+>
+> On Tue, May 30, 2023 at 11:37:56AM -0700, Nathan Chancellor wrote:
+>> When building ARCH=i386 allmodconfig, the following warning occurs:
+>> 
+>>   In file included from include/linux/device.h:15,
+>>                    from include/linux/node.h:18,
+>>                    from include/linux/cpu.h:17,
+>>                    from include/linux/static_call.h:135,
+>>                    from arch/x86/include/asm/perf_event.h:5,
+>>                    from include/linux/perf_event.h:25,
+>>                    from drivers/gpu/drm/i915/i915_pmu.h:11,
+>>                    from drivers/gpu/drm/i915/gt/intel_engine_types.h:21,
+>>                    from drivers/gpu/drm/i915/gt/intel_context_types.h:18,
+>>                    from drivers/gpu/drm/i915/gem/i915_gem_context_types.h:20,
+>>                    from drivers/gpu/drm/i915/i915_request.h:34,
+>>                    from drivers/gpu/drm/i915/i915_active.h:13,
+>>                    from drivers/gpu/drm/i915/gt/intel_context.h:13,
+>>                    from drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c:8:
+>>   drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c: In function 'gsccs_send_message':
+>>   include/drm/drm_print.h:456:39: error: format '%ld' expects argument of type 'long int', but argument 4 has type 'size_t' {aka 'unsigned int'} [-Werror=format=]
+>>     456 |         dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+>>         |                                       ^~~~~~~~
+>>   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+>>     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+>>         |                              ^~~
+>>   include/linux/dev_printk.h:146:61: note: in expansion of macro 'dev_fmt'
+>>     146 |         dev_printk_index_wrap(_dev_warn, KERN_WARNING, dev, dev_fmt(fmt), ##__VA_ARGS__)
+>>         |                                                             ^~~~~~~
+>>   include/drm/drm_print.h:456:9: note: in expansion of macro 'dev_warn'
+>>     456 |         dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+>>         |         ^~~~
+>>   include/drm/drm_print.h:466:9: note: in expansion of macro '__drm_printk'
+>>     466 |         __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+>>         |         ^~~~~~~~~~~~
+>>   drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c:146:17: note: in expansion of macro 'drm_warn'
+>>     146 |                 drm_warn(&i915->drm, "caller with insufficient PXP reply size %u (%ld)\n",
+>>         |                 ^~~~~~~~
+>>   cc1: all warnings being treated as errors
+>> 
+>> Use the '%zu' format specifier, as the variable is a 'size_t'.
+>> 
+>> Fixes: dc9ac125d81f ("drm/i915/pxp: Add GSC-CS backend to send GSC fw messages")
+>> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+>
+> yes, as specified in Documentation/core-api/printk-formats.rst.
+>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
-Series: Enhance vfio PCI hot reset for vfio cdev device (rev5)
-URL   : https://patchwork.freedesktop.org/series/116991/
-State : warning
+Thanks for the patch and review, pushed to drm-intel-gt-next. The CI
+failure was about hdac, hardly anything to do with this one.
 
-== Summary ==
-
-Error: dim checkpatch failed
-f87b519b0c61 vfio/pci: Update comment around group_fd get in vfio_pci_ioctl_pci_hot_reset()
-7bb647905c96 vfio/pci: Move the existing hot reset logic to be a helper
--:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#6: 
-This prepares to add another method for hot reset. The major hot reset logic
-
-total: 0 errors, 1 warnings, 0 checks, 99 lines checked
-7f5d0638a299 iommufd: Reserve all negative IDs in the iommufd xarray
-f121ad27c9d3 iommufd: Add iommufd_ctx_has_group()
-3bbd0b1fd6f9 iommufd: Add helper to retrieve iommufd_ctx and devid
-f38953b3e72a vfio: Mark cdev usage in vfio_device
--:8: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#8: 
-cdev path yet, so the vfio_device_cdev_opened() helper always returns false.
-
-total: 0 errors, 1 warnings, 0 checks, 11 lines checked
-caf12fc9c4de vfio: Add helper to search vfio_device in a dev_set
-9425c8cc330c vfio/pci: Extend VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
-0b7683a235f1 vfio/pci: Allow passing zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+BR,
+Jani.
 
 
+>
+> Thanks,
+> Andi
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
