@@ -2,154 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6675072063C
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 17:33:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 998B37206AA
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 17:56:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF48F10E18D;
-	Fri,  2 Jun 2023 15:33:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CB3310E5C8;
+	Fri,  2 Jun 2023 15:55:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8B4B10E18D;
- Fri,  2 Jun 2023 15:33:01 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A48FF10E055;
+ Fri,  2 Jun 2023 15:55:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685719981; x=1717255981;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=d8+A4k8Wp3lq5ChBnVzpIRy26JWjQ3LMRDSPPfMsWQM=;
- b=h1ED61vVmU0WAPGo1qx7s+JHYYpeNAYY9a87iiPPOWrrEZF/2FgsQweZ
- +YVvB4TKI1aV2zFZEAISZ1InMDeafBeab1MJ97UfWZBK8OkfVes9OcNb8
- DKrVISpSpAI1qQd9tBQNN92LsvHUuTKVh/8Iv7i1QXsGIBPz3sTFyUWYv
- BCyy96XAM7el8sn2BriQvGA7CXygkclBM5CtoNgBlXqOy1Y8ZrvxiXrKV
- e4qa+9ugYiSatO6NymGBiflk6nfJeCNdkdM6AuY5U0Bu2M2Fogh6whOOE
- V4OfUb/yh24VUDCwRA3Hw7i/Sm0MeXDMqCwlg2OUkveX3yXyWWbkzN+Gd g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="345474130"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="345474130"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 08:33:00 -0700
+ t=1685721351; x=1717257351;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GCQEUTEOhwnTHFGFCTPY9s1/gDuQ3ukOZz2DIGan4ow=;
+ b=TINlzvXxq+mHEmavAgiefqEWALdcZ6Ke4g1gAVeEV2cj2CcrDNhQ591b
+ yFqnRQj6HtROqrkpDBHgpyX2J+0noN92A4v5q5s2DicXR3jZDLR+2sSl0
+ Ynym8cudAihMdH4lVk/T8xNOSvsEW7lQoqYIBcAMc6mQRcvA2uGl+Ahsn
+ CYGKoGbPXkeFD0I4YseBYn2nC8hCeJ3gwRfCwEj1y5B/q8MlddSNhdBlY
+ NmmAGz4S5ofA7CH7iDqUJj/hgbI7uW+7Ij2i7VOmbb1eRixsnNG/Qpe2c
+ ZbbY94bKa77atv0rcNPeDJ9cntsMwEazGj8+xLvVlhXkwW7Fn/k6s9fnP g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="442277967"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="442277967"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 08:55:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="685346445"
-X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="685346445"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga006.jf.intel.com with ESMTP; 02 Jun 2023 08:33:00 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 2 Jun 2023 08:33:00 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 2 Jun 2023 08:33:00 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Fri, 2 Jun 2023 08:33:00 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Fri, 2 Jun 2023 08:32:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eGM9cBf9Qo4qojxuMmk1DbB+9mhgdKarVoyjAMDQDSFG0d/FHbMJ8eY+ZYOrGaA85aeFGvgfgdv7rmPPlQTJpNLsm48NjWeJJesFskqKnpXG+eLtWfElDk+Oy0eYHqikEDkLCkkDeIKuXDqSJFy6oKFeMfMKL7iBEouG67ZHTWEyNXQkaqiLOwUqIEGS7X3aVhJa3yZEfdboh8eqFEel0eD52EhcqB5J6rQQlyE8+gJjOzvFZP0L4/if8BOgt7XI71szc0aCu2JF362rTY2xqbtfxiTgqzxMbGbokV5FlgzLCjWvf7SkGnXbRFfyq19u6Ucf5BaGKz3ioCFg+tHrLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=d8+A4k8Wp3lq5ChBnVzpIRy26JWjQ3LMRDSPPfMsWQM=;
- b=Fl7raguqKb6Pv1TpDtY9oPc3kzwBH39epVxEZqt2xAXagG98bM3gdmCFosczI+ZIYanUzKzWGR6JWn7HIpc7jkSGSd7Ks+by/t3rleFJZxECrvqDI/JmOD6AVeHzlEzXuZPf8bqWAEvYrsFHezCBt3gvcgUv3lwoP/bxm9J15jajWE3DO7A/8eYh6q6iqALVMIRqRoJiBAA/q2QxmGFwGgorzYL62DkDcpb4pqINykd+qN8uZfMB2Bn8Bc7ykHlIitFHv4mFRZ0IFSSXtfDbaDsRb5aT6fKPlraKLjhZwPxXNJdBaDS4bSXI6jZxCv7BrmQsrxcws2vvI6MJC/v+FA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5751.namprd11.prod.outlook.com (2603:10b6:8:12::16) by
- BL3PR11MB6362.namprd11.prod.outlook.com (2603:10b6:208:3b5::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6411.17; Fri, 2 Jun 2023 15:32:52 +0000
-Received: from DM8PR11MB5751.namprd11.prod.outlook.com
- ([fe80::11d1:e192:b174:e851]) by DM8PR11MB5751.namprd11.prod.outlook.com
- ([fe80::11d1:e192:b174:e851%4]) with mapi id 15.20.6455.020; Fri, 2 Jun 2023
- 15:32:51 +0000
-From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/pxp: Optimize GET_PARAM:PXP_STATUS
-Thread-Index: AQHZlLD0p2IK67TQZEK5cgGsrQKNUq93e74AgAAp2YA=
-Date: Fri, 2 Jun 2023 15:32:50 +0000
-Message-ID: <ce544e21da67306a406920f5cd72504619ffbe3f.camel@intel.com>
-References: <20230601174553.2410741-1-alan.previn.teres.alexis@intel.com>
- <87y1l2dnjt.fsf@intel.com>
-In-Reply-To: <87y1l2dnjt.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.1-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5751:EE_|BL3PR11MB6362:EE_
-x-ms-office365-filtering-correlation-id: b78b6fbc-c4c5-4eed-f1b4-08db637ea052
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WZyGV2cS6ptZJpEjQ8/qetk0HEdYiywXH9lU0t8zfUNvdaDzs/0ikfakJ8ku1KiNtza/fTmfTgsA71/LO1INREEBqBqWcg+VvwB0TPAahiEjhAE3J/6mX78eoFZgqulbwcYy4xOjxYagQ0CzEFMGFqpOQjM0sAMe0Z0qaFaqG67Udp4Mc1zSl8JHDYtX7u2fCLqU8bjboQwFNvmPeu/6OX6M4sjkHgSdmX5SYH3Jpn2Pf7qhYw/4j6A76EepWWclqrGcwOQr/9DIHJ+83lntYq+MYJG7wA3HRM/rTFSo6+0Y9kwQnpJ12TLxp7S8BmaA1vYoiY9AZv0inUK0ZOhv4IzsgEs+j9cjZqUb7k1DWHlO7ChufSOE9zdzsnFqMXTetAOOvYSDgyo/xKdP2O8VZwSVRXdwoOMmG1Qs+hJNoKRX5aWhrBbPenHMYIlIZUCQWcnFkz3T0JOBInm6VoL6RRj5O9h57S6us5Hr7HRY4116b25okcBN8gujwLeWmgiDZ47Rpo80S9qRwcgfF+HlMKxjG/btJDR8ghFlew/glXCwGl5E/qkmSun1gYq9wsqpKOyGEu0BlBtmVoyDMfiF3fxNhzyathbqvL3Fr1ahtFI=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5751.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(396003)(39860400002)(346002)(136003)(366004)(451199021)(6486002)(41300700001)(6512007)(83380400001)(8936002)(8676002)(186003)(36756003)(2616005)(2906002)(6506007)(26005)(5660300002)(86362001)(38070700005)(966005)(91956017)(66476007)(64756008)(66556008)(66446008)(82960400001)(66946007)(76116006)(4326008)(110136005)(478600001)(122000001)(316002)(71200400001)(38100700002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VHY4WTEya2RBUVAyYXExZ3UveGdFZGlyRThrTGN0WW5IRVYwUzFldG01OVRw?=
- =?utf-8?B?ZGVZdjhlTlJPNzJsRTg4L09DVzZGejNSNWVqV3Z3T2c5RmdqMGFMNUZlUDJC?=
- =?utf-8?B?V25tODZ3NEhWVFV5OEt4QzFoMnk5RWtzU1VPaGRlWWh3LzNibnVFKy9jKy80?=
- =?utf-8?B?S1h2N2xJd2hkR2Q0cXRBV3UvVXIzUDlRMmFvMExOTEI5MEZNeDNZYkVjNmtY?=
- =?utf-8?B?OGFnem1ZaVhSTm94cTBMQmdIQ2tjQmR1LzhSQUl4Y21oTXAzaERxZkpCWjJ6?=
- =?utf-8?B?VG1RTDF6TnkzeWZxelcrU2RFTzZjMVpXbjZWVHFSZmFDei9PTFB5ZGxJNDh2?=
- =?utf-8?B?S3p0L3oyQ2tHN0EzUG5PYzJRSUsreEFRcHh1eEhQa29QOWRvUVBoMERlaEhn?=
- =?utf-8?B?R2czY01WdVhBYS9kUFJqdWRRQjQxelJBbXVGek43a01yZ280TGN1dndrM2M0?=
- =?utf-8?B?QTgvc0kyZXdCOVdrMW1xVDVWQlFCdDE0NC9ldmlFS3pMV3g2NHpDWEdVb0NV?=
- =?utf-8?B?SUN0K3hOZ3NPbzhyL1JJbVZpVUE1aW0rVTBIeVZGTkh3Qm5rcVR6SVRLakg3?=
- =?utf-8?B?S0MzcFFPeHJHN3hkbEdYSTZycFFSMjJmY1dhWVJDMWo4U2prQWp1ZkluUUtj?=
- =?utf-8?B?bTZ6czBrNzhEZDdOV2J1cXFOd1hBYzFJQndheWZCR3ltVjc4Q0llaDhGQ0hT?=
- =?utf-8?B?cWV2cHFkVFJ2T08rUWM3dEdPQzZkb0RsQU1nV0cwcjMwVE94bUxXMDdnaUJY?=
- =?utf-8?B?N3VkeTduVzR0QzFHOGd6YTlQMC9YWDE1MmVtaFh2K0Zieis5aXNVaTdON3R5?=
- =?utf-8?B?TkR1MlRWcm9RTm9TUlh0TlNhZXhhaERmZm54SkhaZytQUjBLMG55TzdpMG9h?=
- =?utf-8?B?WnNRcWtFTnUxUlViV3h3SFNqZFRuU1Zsa3JwNXIzVDBFcG92SWc2UmdiSHR2?=
- =?utf-8?B?cm1YQmdwcDA0NGg4Sk4rTWFOV3Faa2thRzVUTmF4Q2d0MEF0MjVuT0xaVkR6?=
- =?utf-8?B?UU05V0g3S1lOaXlDSlByZDdPTHZNZVBkZ3hyajFWU1FlaGJZNWM5cWIxekRi?=
- =?utf-8?B?WCtkOUt1Ync3MExoN3JjT2lrTmh3eWQ0ZEJBNFo1c3VtZnBZS1NUTWlBKzJ4?=
- =?utf-8?B?czBMdmh2UmY5cGEzcHRoa1VQZ3l4SW5sWCtVOFYzNVpjWGdidHdxRUQzNVg3?=
- =?utf-8?B?VmwrZGNDQjZxcWQ5S0hCd3h0OXI2cTJpS1lnV0lDcVFWL2xiWEFab0FzNVl3?=
- =?utf-8?B?R3VOeFhXS3BNQXpqaFZJNGtzWGFtYXBlMysxeUMxQ2xUc3VVQ3cyYmExZmJW?=
- =?utf-8?B?QnpCay92cEtUajBXUTkySnYrb3dTeWthVlVrejFsZCtEZk1hQzdOcUZKbU0r?=
- =?utf-8?B?d1k2TjNQV1Izd3J0eDJHa3cvK0tTaUg0aHRjS3hJMVNreGdFMFhoN3YyNkoz?=
- =?utf-8?B?bkQxQWdRd2N0bVRIOUdoZ0w2RGdGL1NrV2lBb3NxZjVnQ1hIWXJvbTJ6ZTVQ?=
- =?utf-8?B?NTJKbkx0eU1xQmJ2QlRSNnZXMUJYN0hFNDlWRjVrN0hGaEUwRmRlZmVHUzZp?=
- =?utf-8?B?WjBNWXdoamo3QzFVdE9hSm1FMHRnblVpRWN6ZU42MDJDcGdnT1hBdFRrUmZr?=
- =?utf-8?B?bWJTQ1hnWFRjU3JNdDZ2Y1FuMDk3dm1kWjlaNUJMSVdyLzV2MVZqcTczWDUv?=
- =?utf-8?B?bFZ4ekpsbzNXb1gvWTNNNzdPT3Vud0pUNUh5ZWpJdmNyRlVyOS9hMkh5UXQ3?=
- =?utf-8?B?UEhBZWtMQ09ka1VWYmVGMXpUVU1LWWtGci9xOVFaeGw0OU1JOUxZU2RTb21S?=
- =?utf-8?B?Z01IVS9taTZlT1FTdmc1NlROaFZsUFZqNVl4eHRzY1p0WXg4Uk1Dem9SWmFQ?=
- =?utf-8?B?NUQ5V3J2U21kK3dvTDlGMm9oMGZkUkRCRURlMVdyVHF0eDdKQVZUT2lMK25Q?=
- =?utf-8?B?aU5xRVdWTURveUc3dWFZQy80bHByZ0M0QUNCSlFySVBTamExVEx0Q081bUdU?=
- =?utf-8?B?SzA1VnB0NDhsM29KSmQ4Z3BXVVlSYnVxU2NwSEZLQ28wVk42WlY3SVNPQXZu?=
- =?utf-8?B?Yjg4OERHQ2NlRHRCNjJKTDBwditlNC9vZVg5WGF2NVpKSU5GYWZIdktOS3Yz?=
- =?utf-8?B?VFkxK01mOS9ndEVZTkswOHBpNmp0dXpoNmNPenNJMk5FOFBhOCtRU3A4STJM?=
- =?utf-8?Q?517u8Qe0p3rpqRUiMsk+/zo=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F5B8235838DDCA499A8A4EAFE5401318@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="777740725"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="777740725"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by fmsmga004.fm.intel.com with ESMTP; 02 Jun 2023 08:55:50 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  2 Jun 2023 08:55:48 -0700
+Message-Id: <20230602155548.2561259-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5751.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b78b6fbc-c4c5-4eed-f1b4-08db637ea052
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jun 2023 15:32:50.9523 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Nn2HHfxRUWes5Vw4gWH2Y3p6LCV4He0zJQyOXHKgcRMuRkCPON+3GUPy45P97jPE37ljQThQTc0Vf+csabR+8c9SXQ8gk3Nqe5aqjbNKRLt4Ti85ua/qIX6xqQ1BgTaq
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6362
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pxp: Optimize GET_PARAM:PXP_STATUS
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/pxp: Optimize GET_PARAM:PXP_STATUS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,28 +54,243 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhhbmtzIEphbmkgLSB3aWxsIHJldiB0aGlzIHVwIGFuZCBmaXggdGhlc2UuDQoNCk9uIEZyaSwg
-MjAyMy0wNi0wMiBhdCAxNjowMyArMDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6DQo+IE9uIFRodSwg
-MDEgSnVuIDIwMjMsIEFsYW4gUHJldmluIDxhbGFuLnByZXZpbi50ZXJlcy5hbGV4aXNAaW50ZWwu
-Y29tPiB3cm90ZToNCj4gPiBBZnRlciByZWNlbnQgZGlzY3Vzc2lvbnMgd2l0aCBNZXNhIGZvbGtz
-LCBpdCB3YXMgcmVxdWVzdGVkDQo+ID4gdGhhdCB3ZSBvcHRpbWl6ZSBpOTE1J3MgR0VUX1BBUkFN
-IGZvciB0aGUgUFhQX1NUQVRVUyB3aXRob3V0DQo+ID4gY2hhbmdpbmcgdGhlIFVBUEkgc3BlYy4N
-Cj4gPiANCj4gPiBUaGlzIHBhdGNoIGFkZHMgdGhpcyBhZGRpdGlvbmFsIG9wdGltaXphdGlvbnM6
-DQo+IA0KPiBOaXRwaWNrLCBwbGVhc2UgYXZvaWQgIlRoaXMgcGF0Y2giLiBJdCdzIHJlZHVuZGFu
-dCwgYW5kIGFmdGVyIHRoZSBwYXRjaA0KPiBnZXRzIGFwcGxpZWQgaXQgYmVjb21lcyBhIGNvbW1p
-dCwgbm90IGEgcGF0Y2guDQo+IA0KPiBJbnN0ZWFkLCB1c2UgdGhlIGltcGVyYXRpdmUgbW9vZCwg
-ZS5nLiAiQWRkIHRoZXNlIGFkZGl0aW9uYWwNCj4gb3B0aW1pemF0aW9ucyIuDQo+IA0KPiBTZWUg
-aHR0cHM6Ly9kb2NzLmtlcm5lbC5vcmcvcHJvY2Vzcy9zdWJtaXR0aW5nLXBhdGNoZXMuaHRtbCNk
-ZXNjcmliZS15b3VyLWNoYW5nZXMNCmFsYW46c25pcA0KDQo+IA0KPiA+IC1pbnQgaW50ZWxfcHhw
-X2dldF9yZWFkaW5lc3Nfc3RhdHVzKHN0cnVjdCBpbnRlbF9weHAgKnB4cCkNCj4gPiAraW50IGlu
-dGVsX3B4cF9nZXRfcmVhZGluZXNzX3N0YXR1cyhzdHJ1Y3QgaW50ZWxfcHhwICpweHAsIGludCB0
-aW1lb3V0KQ0KPiANCj4gSXQgd291bGQgaGVscCB0aGUgcmVhZGVyIGlmIHlvdSBuYW1lZCB0aGUg
-cGFyYW1ldGVyIHRpbWVvdXRfbXMuIEFzc3VtaW5nDQo+IHRoZSB1bml0IGlzIG1zLg0KYWxhbjpz
-bmlwDQoNCj4gPiAtaXNfZndfZXJyX3BsYXRmb3JtX2NvbmZpZyh1MzIgdHlwZSkNCj4gPiAraXNf
-ZndfZXJyX3BsYXRmb3JtX2NvbmZpZyh1MzIgdHlwZSwgc3RydWN0IGludGVsX3B4cCAqcHhwKQ0K
-PiANCj4gSXQncyBjdXN0b21hcnkgdG8gaGF2ZSB0aGUgcGFyYW1ldGVycyBvcmRlcmVkIGZyb20g
-aGlnaGVyIGNvbnRleHQgdG8NCj4gbG93ZXIuDQo+IA0KDQphbGFuOnNuaXANCg0K
+After recent discussions with Mesa folks, it was requested
+that we optimize i915's GET_PARAM for the PXP_STATUS without
+changing the UAPI spec.
+
+Add these additional optimizations:
+   - If any PXP initializatoin flow failed, then ensure that
+     we catch it so that we can change the returned PXP_STATUS
+     from "2" (i.e. 'PXP is supported but not yet ready')
+     to "-ENODEV". This typically should not happen and if it
+     does, we have a platform configuration issue.
+   - If a PXP arbitration session creation event failed
+     due to incorrect firmware version or blocking SOC fusing
+     or blocking BIOS configuration (platform reasons that won't
+     change if we retry), then reflect that blockage by also
+     returning -ENODEV in the GET_PARAM:PXP_STATUS.
+   - GET_PARAM:PXP_STATUS should not wait at all if PXP is
+     supported but non-i915 dependencies (component-driver /
+     firmware) we are still pending to complete the init flows.
+     In this case, just return "2" immediately (i.e. 'PXP is
+     supported but not yet ready').
+
+Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c  | 11 +++++++++-
+ drivers/gpu/drm/i915/i915_getparam.c       |  2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp.c       | 25 ++++++++++++++++++----
+ drivers/gpu/drm/i915/pxp/intel_pxp.h       |  2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c |  7 +++---
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c   |  7 +++---
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h |  9 ++++++++
+ 7 files changed, 50 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c
+index fb0984f875f9..4dd744c96a37 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c
+@@ -42,8 +42,17 @@ static void gsc_work(struct work_struct *work)
+ 		}
+ 
+ 		ret = intel_gsc_proxy_request_handler(gsc);
+-		if (ret)
++		if (ret) {
++			if (actions & GSC_ACTION_FW_LOAD) {
++				/*
++				 * a proxy request failure that came together with the
++				 * firmware load action means the last part of init has
++				 * failed so GSC fw won't be usable after this
++				 */
++				intel_uc_fw_change_status(&gsc->fw, INTEL_UC_FIRMWARE_LOAD_FAIL);
++			}
+ 			goto out_put;
++		}
+ 
+ 		/* mark the GSC FW init as done the first time we run this */
+ 		if (actions & GSC_ACTION_FW_LOAD) {
+diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+index 6f11d7eaa91a..1b2ee98a158a 100644
+--- a/drivers/gpu/drm/i915/i915_getparam.c
++++ b/drivers/gpu/drm/i915/i915_getparam.c
+@@ -105,7 +105,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+ 			return value;
+ 		break;
+ 	case I915_PARAM_PXP_STATUS:
+-		value = intel_pxp_get_readiness_status(i915->pxp);
++		value = intel_pxp_get_readiness_status(i915->pxp, 1);
+ 		if (value < 0)
+ 			return value;
+ 		break;
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+index bb2e15329f34..5677377f3bb2 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+@@ -359,21 +359,38 @@ void intel_pxp_end(struct intel_pxp *pxp)
+ 	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+ }
+ 
++static bool pxp_required_fw_failed(struct intel_pxp *pxp)
++{
++	if (__intel_uc_fw_status(&pxp->ctrl_gt->uc.huc.fw) == INTEL_UC_FIRMWARE_LOAD_FAIL)
++		return true;
++	if (HAS_ENGINE(pxp->ctrl_gt, GSC0) &&
++	    __intel_uc_fw_status(&pxp->ctrl_gt->uc.gsc.fw) == INTEL_UC_FIRMWARE_LOAD_FAIL)
++		return true;
++
++	return false;
++}
++
+ /*
+  * this helper is used by both intel_pxp_start and by
+  * the GET_PARAM IOCTL that user space calls. Thus, the
+  * return values here should match the UAPI spec.
+  */
+-int intel_pxp_get_readiness_status(struct intel_pxp *pxp)
++int intel_pxp_get_readiness_status(struct intel_pxp *pxp, int timeout_ms)
+ {
+ 	if (!intel_pxp_is_enabled(pxp))
+ 		return -ENODEV;
+ 
++	if (pxp_required_fw_failed(pxp))
++		return -ENODEV;
++
++	if (pxp->platform_cfg_is_bad)
++		return -ENODEV;
++
+ 	if (HAS_ENGINE(pxp->ctrl_gt, GSC0)) {
+-		if (wait_for(intel_pxp_gsccs_is_ready_for_sessions(pxp), 250))
++		if (wait_for(intel_pxp_gsccs_is_ready_for_sessions(pxp), timeout_ms))
+ 			return 2;
+ 	} else {
+-		if (wait_for(pxp_component_bound(pxp), 250))
++		if (wait_for(pxp_component_bound(pxp), timeout_ms))
+ 			return 2;
+ 	}
+ 	return 1;
+@@ -387,7 +404,7 @@ int intel_pxp_start(struct intel_pxp *pxp)
+ {
+ 	int ret = 0;
+ 
+-	ret = intel_pxp_get_readiness_status(pxp);
++	ret = intel_pxp_get_readiness_status(pxp, 250);
+ 	if (ret < 0)
+ 		return ret;
+ 	else if (ret > 1)
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+index 17254c3f1267..d9372f6f7797 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+@@ -26,7 +26,7 @@ void intel_pxp_fini_hw(struct intel_pxp *pxp);
+ void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp);
+ void intel_pxp_tee_end_arb_fw_session(struct intel_pxp *pxp, u32 arb_session_id);
+ 
+-int intel_pxp_get_readiness_status(struct intel_pxp *pxp);
++int intel_pxp_get_readiness_status(struct intel_pxp *pxp, int timeout_ms);
+ int intel_pxp_get_backend_timeout_ms(struct intel_pxp *pxp);
+ int intel_pxp_start(struct intel_pxp *pxp);
+ void intel_pxp_end(struct intel_pxp *pxp);
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
+index a217821eb0fb..ff7c961cda82 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
+@@ -17,12 +17,13 @@
+ #include "intel_pxp_types.h"
+ 
+ static bool
+-is_fw_err_platform_config(u32 type)
++is_fw_err_platform_config(struct intel_pxp *pxp, u32 type)
+ {
+ 	switch (type) {
+ 	case PXP_STATUS_ERROR_API_VERSION:
+ 	case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
+ 	case PXP_STATUS_PLATFCONFIG_KF1_BAD:
++		pxp->platform_cfg_is_bad = true;
+ 		return true;
+ 	default:
+ 		break;
+@@ -225,7 +226,7 @@ int intel_pxp_gsccs_create_session(struct intel_pxp *pxp,
+ 	if (ret) {
+ 		drm_err(&i915->drm, "Failed to init session %d, ret=[%d]\n", arb_session_id, ret);
+ 	} else if (msg_out.header.status != 0) {
+-		if (is_fw_err_platform_config(msg_out.header.status)) {
++		if (is_fw_err_platform_config(pxp, msg_out.header.status)) {
+ 			drm_info_once(&i915->drm,
+ 				      "PXP init-session-%d failed due to BIOS/SOC:0x%08x:%s\n",
+ 				      arb_session_id, msg_out.header.status,
+@@ -268,7 +269,7 @@ void intel_pxp_gsccs_end_arb_fw_session(struct intel_pxp *pxp, u32 session_id)
+ 		drm_err(&i915->drm, "Failed to inv-stream-key-%u, ret=[%d]\n",
+ 			session_id, ret);
+ 	} else if (msg_out.header.status != 0) {
+-		if (is_fw_err_platform_config(msg_out.header.status)) {
++		if (is_fw_err_platform_config(pxp, msg_out.header.status)) {
+ 			drm_info_once(&i915->drm,
+ 				      "PXP inv-stream-key-%u failed due to BIOS/SOC :0x%08x:%s\n",
+ 				      session_id, msg_out.header.status,
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+index 1ce07d7e8769..1de054126c6d 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+@@ -20,12 +20,13 @@
+ #include "intel_pxp_types.h"
+ 
+ static bool
+-is_fw_err_platform_config(u32 type)
++is_fw_err_platform_config(struct intel_pxp *pxp, u32 type)
+ {
+ 	switch (type) {
+ 	case PXP_STATUS_ERROR_API_VERSION:
+ 	case PXP_STATUS_PLATFCONFIG_KF1_NOVERIF:
+ 	case PXP_STATUS_PLATFCONFIG_KF1_BAD:
++		pxp->platform_cfg_is_bad = true;
+ 		return true;
+ 	default:
+ 		break;
+@@ -339,7 +340,7 @@ int intel_pxp_tee_cmd_create_arb_session(struct intel_pxp *pxp,
+ 	if (ret) {
+ 		drm_err(&i915->drm, "Failed to send tee msg init arb session, ret=[%d]\n", ret);
+ 	} else if (msg_out.header.status != 0) {
+-		if (is_fw_err_platform_config(msg_out.header.status)) {
++		if (is_fw_err_platform_config(pxp, msg_out.header.status)) {
+ 			drm_info_once(&i915->drm,
+ 				      "PXP init-arb-session-%d failed due to BIOS/SOC:0x%08x:%s\n",
+ 				      arb_session_id, msg_out.header.status,
+@@ -387,7 +388,7 @@ void intel_pxp_tee_end_arb_fw_session(struct intel_pxp *pxp, u32 session_id)
+ 		drm_err(&i915->drm, "Failed to send tee msg for inv-stream-key-%u, ret=[%d]\n",
+ 			session_id, ret);
+ 	} else if (msg_out.header.status != 0) {
+-		if (is_fw_err_platform_config(msg_out.header.status)) {
++		if (is_fw_err_platform_config(pxp, msg_out.header.status)) {
+ 			drm_info_once(&i915->drm,
+ 				      "PXP inv-stream-key-%u failed due to BIOS/SOC :0x%08x:%s\n",
+ 				      session_id, msg_out.header.status,
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+index 1a8765866b8b..7e11fa8034b2 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+@@ -26,6 +26,15 @@ struct intel_pxp {
+ 	 */
+ 	struct intel_gt *ctrl_gt;
+ 
++	/**
++	 * @platform_cfg_is_bad: used to track if any prior arb session creation resulted
++	 * in a failure that was caused by a platform configuration issue, meaning that
++	 * failure will not get resolved without a change to the platform (not kernel)
++	 * such as BIOS configuration, firwmware update, etc. This bool gets reflected when
++	 * GET_PARAM:I915_PARAM_PXP_STATUS is called.
++	 */
++	bool platform_cfg_is_bad;
++
+ 	/**
+ 	 * @kcr_base: base mmio offset for the KCR engine which is different on legacy platforms
+ 	 * vs newer platforms where the KCR is inside the media-tile.
+
+base-commit: 0b6ed0bbb17dfe081649990abbd42ddb41e09d42
+-- 
+2.39.0
+
