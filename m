@@ -2,54 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C0FB71F72F
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 02:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4494F71F73E
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jun 2023 02:44:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A699610E01F;
-	Fri,  2 Jun 2023 00:40:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFD2E10E618;
+	Fri,  2 Jun 2023 00:44:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05FC810E01F
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 00:40:23 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 068B810E04A;
+ Fri,  2 Jun 2023 00:44:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685666424; x=1717202424;
+ t=1685666647; x=1717202647;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=WV8Jm0zI+bn6oejpR4LuauOorRKGHxOAA5bls+WoeHE=;
- b=IGZduXgkS/FR55hLBFY6/6o6Vp3kC+d4nCr1YenkgdH0yxAwh3w23s3o
- gwpwBsi3n19dPTSMBB+P0cnhQ+OPIdWKRZEYF7ZKD1Pr/LfuoKHp6NYpk
- RiToyZKzwfqxkhpaN6zrJLs4Av5dMGGSUhuorSzvcMWXhCsazfssxTf03
- 4+Zuhk2h7WXujVX2KPRx4cfHbQWl1mV6PcpEFuq+s4cIu60wymOr3k8hx
- 65K43TFYfSRUOZt/jIcSm8BPj7Z7PltzX/f6Y8AXIzOx0vsjoUM1xwpnw
- WZE+8MRAr471DjOibPNlMOqlmvoyn7h3JNzPLAfhsFrJyhnRj6sHjjw6H g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="336092550"
-X-IronPort-AV: E=Sophos;i="6.00,211,1681196400"; d="scan'208";a="336092550"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 17:40:23 -0700
+ bh=wJ/OSP0ckFfzwVnZAaDMF9t5J0/dICf1DZ8XGD9GwWg=;
+ b=mFWnu82Ey8R88YV3/JY6gzCiZx10NGpwRL7txPSRIV67muhe8jE8o5/F
+ QGC8ZsmlzUrUIcnp4NOOe3OmWs3+cD+rtWWSU8lEw2tq1sEmEhKLUmAS2
+ fRViWRhwJgVxkI1O+Ee2oloyEfsHCx4XuwG6IM/QV9hLyeKFMPM1A7bQL
+ 6NvNcAiLFv7liOW4dcLSNSnAuIkSW32MwioKmxkc70GUmz/7e4mGSm+ss
+ NNq2svFR4y/0EQ6n4qH2meXNeXbGgxl7jj9gRiRziRwrvd4npxZVz8sEU
+ vH/aPVxajeQUhbFgIzl7qsr5XwhX7chgcN20dhEeajWPEIRaMyFFnYBH5 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="353222244"
+X-IronPort-AV: E=Sophos;i="6.00,211,1681196400"; d="scan'208";a="353222244"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 17:44:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="820047672"
-X-IronPort-AV: E=Sophos;i="6.00,211,1681196400"; d="scan'208";a="820047672"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="737318294"
+X-IronPort-AV: E=Sophos;i="6.00,211,1681196400"; d="scan'208";a="737318294"
 Received: from gsavorni-mobl1.ger.corp.intel.com (HELO intel.com)
  ([10.251.210.46])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 17:40:21 -0700
-Date: Fri, 2 Jun 2023 02:40:18 +0200
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 17:44:00 -0700
+Date: Fri, 2 Jun 2023 02:43:56 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Message-ID: <ZHk6cg5IIZUUI8Nj@ashyti-mobl2.lan>
-References: <20230531213547.1525692-1-matthew.s.atwood@intel.com>
- <87wn0nujol.wl-ashutosh.dixit@intel.com>
- <87v8g7ujaj.wl-ashutosh.dixit@intel.com>
- <87ttvqvhj7.wl-ashutosh.dixit@intel.com>
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+Message-ID: <ZHk7TIGDwjN3vcdu@ashyti-mobl2.lan>
+References: <20230601213624.3510244-1-arnd@kernel.org>
+ <a97c3bbb260587a352a6d8d228e65cc6ae8fd59e.camel@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87ttvqvhj7.wl-ashutosh.dixit@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: sync I915_PMU_MAX_GTS to
- I915_MAX_GT
+In-Reply-To: <a97c3bbb260587a352a6d8d228e65cc6ae8fd59e.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pxp: use correct format string for
+ size_t
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,77 +60,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "arnd@kernel.org" <arnd@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "airlied@gmail.com" <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ashutosh,
+Hi Arnd,
 
-On Thu, Jun 01, 2023 at 05:23:24PM -0700, Dixit, Ashutosh wrote:
-> On Thu, 01 Jun 2023 11:30:44 -0700, Dixit, Ashutosh wrote:
-> >
-> > On Thu, 01 Jun 2023 11:22:18 -0700, Dixit, Ashutosh wrote:
-> > >
-> > > On Wed, 31 May 2023 14:35:47 -0700, Matt Atwood wrote:
-> > > >
-> > >
-> > > Hi Matt,
-> > >
-> > > > Set I915_PMU_MAX_GTS to value in I915_MAX_GT, theres no reason for these
-> > > > values to be different.
-> >
-> > Also, we can't be so sure so as to be able to say "theres no reason for
-> > these values to be different" till we have actually verified it. E.g. there
-> > are various bitfields in the code which might not fit in a u32 if we
-> > increase MAX_GT from 2 to 4. Has this been verified?
-> >
-> > If anything, to keep the code from doing unnecessary stuff, IMO I915_MAX_GT
-> > should be reduced to 2 and should be increased to 4 only once/if we have
-> > i915 supported platforms with 4 GT's.
+On Thu, Jun 01, 2023 at 10:00:27PM +0000, Teres Alexis, Alan Previn wrote:
+> On Thu, 2023-06-01 at 23:36 +0200, Arnd Bergmann wrote:
+> > From: Arnd Bergmann <arnd@arndb.de>
+> > 
+> > While 'unsigned long' needs the %ld format string, size_t needs the %z
+> > modifier:
 > 
-> Matt explained the issue offline to me (it would have helped to explain the
-> reason for the patch in the commit message). The issue is that in uses of
-> for_each_gt such as below (there are others too in the PMU code):
+> alan:snip
 > 
->         for_each_gt(gt, i915, i) {
->                 intel_wakeref_t wakeref;
 > 
->                 with_intel_runtime_pm(gt->uncore->rpm, wakeref) {
->                         u64 val = __get_rc6(gt);
-> 
->                         store_sample(pmu, i, __I915_SAMPLE_RC6, val);
->                         store_sample(pmu, i, __I915_SAMPLE_RC6_LAST_REPORTED,
->                                      val);
->                         pmu->sleep_last[i] = ktime_get_raw();
->                 }
->         }
-> 
-> static checkers are complaining that for_each_gt can read/write outside the
-> bounds of PMU arrays. Because absent gt's will be NULL in for_each_gt this
-> cannot really happen but we still need to keep static checkers happy.
-> 
-> So to resolve this issue we need I915_PMU_MAX_GTS and I915_MAX_GT to have
-> the same value. So either we need to increase I915_PMU_MAX_GTS to 4 or
-> reduce I915_MAX_GT to 2.
+> > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
+> > @@ -143,7 +143,7 @@ gsccs_send_message(struct intel_pxp *pxp,
+> >  
+> >  	reply_size = header->message_size - sizeof(*header);
+> >  	if (reply_size > msg_out_size_max) {
+> > -		drm_warn(&i915->drm, "caller with insufficient PXP reply size %u (%ld)\n",
+> > +		drm_warn(&i915->drm, "caller with insufficient PXP reply size %u (%zd)\n",
+> >  			 reply_size, msg_out_size_max);
+> >  		reply_size = msg_out_size_max;
+> >  	}
+> Thanks Arnd for catching this, although i believe Nathan sumbmitted a patch for the same fix yesterday and received an RB from Andi.
 
-the number of GT's is a GPU concept and should remain as such all
-over the GPU. If max GT is 4 then it should be 4 everywhere.
+yes, the patch is here:
 
-The I915_PMU_MAX_GTS define should not exist at all as it is
-creating this sort of inconsistencies and everything should refer
-to a single I915_MAX_GT. The reason for having I915_PMU_MAX_GTS,
-in a first place, is purely practical to avoid over inclusions.
-Still I consider it hacky.
+https://patchwork.freedesktop.org/patch/540272/?series=118593&rev=1
 
-On the other had, already I915_MAX_GT is a hardcoded value and
-many times there have been discussions about removing it and
-fetch it dynamically during the i915 boot. But this requires
-quite a good amount of refactoring that no one is willing to do.
+I'm waiting for full CI results to merge this.
 
-If we can't get rid of I915_PMU_MAX_GTS then I strongly believe
-it should be aligned with I915_MAX_GT and for this reason I gave
-my r-b. The use of for_each_gt() is a clear consequence of this
-difference.
-
-Thanks for chiming in,
+Thanks,
 Andi
