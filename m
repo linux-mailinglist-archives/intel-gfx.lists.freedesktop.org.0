@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601C2722A2F
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jun 2023 17:04:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06D4D722A4F
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jun 2023 17:08:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5A410E2C8;
-	Mon,  5 Jun 2023 15:04:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C64510E2E2;
+	Mon,  5 Jun 2023 15:08:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C98B510E2B6;
- Mon,  5 Jun 2023 15:04:32 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11BBA10E2D3
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 15:08:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685977472; x=1717513472;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=1RjZRxyaGZbsDN3KVJJy9A/eP5QxEFeX3mpJSrufzKo=;
- b=JSIlPTkhbDSr6EdQxtE5Z4cbOPspjQilMqIdLmPI9b+T3/8j6nyrkv6I
- cYJ+yyUeYMoNYif9rNaFHc9aHJ1ESPNk+uOEbNKMMqfNueMmd/xFekgdx
- aCWYPIGCpmjuzWMNMqgAwxId8zXpqkQEYMYpktF+Szd3O6rdirnoDHDNq
- LTQ9knvY5juLf0wwA6+Y2qMln0ELJXOn/xT5BUOcA5uwQ9PVMQp35Cyy1
- k9CwlGXOQ/gH7ARTZBlu6Iyo8m5T6uBeeQfq5XhnYO8muEGN60G2kf9FG
- IN2VbGVGSjibeQgIcP4UBHtCdC12qrqhoQQsQq+5CW2R8efx28XZTdIWq g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="336010556"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="336010556"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 08:04:17 -0700
+ t=1685977722; x=1717513722;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=YI0uNZHnX7IneKAB56Uuy/kbLmsdDoZN80G0Qkh9GKc=;
+ b=bVVOnACxLbZNGFcu8bCnIxeALS6JqMhjIycT5DVB40avPtoIX8mNKnag
+ VYm3PLFPgg0SSsb0FnanmHd2MEL5hLnbKLbluASEKnfCLzqfVJ5m91D5z
+ UZgkbarRihebHyEzVx/WiVaq5tdIrorsqjq5/pcORcyWVdYHgGpM+YwC+
+ eFXlhRFa5K3IwWXfl6JUw3hV4mlpE6SkHjcQnUwjIJ2j7qemmyorECa1S
+ frfEK8ULEzl0sp0IHYIKxpbyYlxSyAay+NVV2H1XlCX44YHzNsST+/XVE
+ JgqybPB4pwGCa/SXmShxhnZpWPZBLQ0Mo7Eoud9DUy8wtDtCbPffFWpeq w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="336745695"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="336745695"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2023 08:06:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="659127419"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="659127419"
-Received: from twgeistx-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.249.42.176])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 08:04:14 -0700
-Date: Mon, 5 Jun 2023 17:04:08 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <ZH35aKO5BlAPERPB@ashyti-mobl2.lan>
-References: <20230531171008.1738759-1-fei.yang@intel.com>
- <f7000b2e-e809-3801-48ba-d2a242dcb124@linux.intel.com>
- <2bc9cf75-e8b8-5a98-682b-630685bbe839@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="853002183"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="853002183"
+Received: from moelschl-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.32.122])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2023 08:06:27 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <168551428578.17615.13321848387509410861@emeril.freedesktop.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230530111534.871403-1-luciano.coelho@intel.com>
+ <168551428578.17615.13321848387509410861@emeril.freedesktop.org>
+Date: Mon, 05 Jun 2023 18:06:25 +0300
+Message-ID: <87r0qqaqz2.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2bc9cf75-e8b8-5a98-682b-630685bbe839@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v15 0/1] drm/i915: Allow user to set cache
- at BO creation
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_implement_internal_workqueues_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,64 +62,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 05, 2023 at 10:16:22AM +0100, Tvrtko Ursulin wrote:
-> 
-> On 05/06/2023 09:53, Tvrtko Ursulin wrote:
-> > 
-> > On 31/05/2023 18:10, fei.yang@intel.com wrote:
-> > > From: Fei Yang <fei.yang@intel.com>
-> > > 
-> > > This series introduce a new extension for GEM_CREATE,
-> > > 1. end support for set caching ioctl [PATCH 1/2]
-> > > 2. add set_pat extension for gem_create [PATCH 2/2]
-> > > 
-> > > v2: drop one patch that was merged separately
-> > >      commit 341ad0e8e254 ("drm/i915/mtl: Add PTE encode function")
-> > > v3: rebased on https://patchwork.freedesktop.org/series/117082/
-> > > v4: fix missing unlock introduced in v3, and
-> > >      solve a rebase conflict
-> > > v5: replace obj->cache_level with pat_set_by_user,
-> > >      fix i915_cache_level_str() for legacy platforms.
-> > > v6: rebased on https://patchwork.freedesktop.org/series/117480/
-> > > v7: rebased on https://patchwork.freedesktop.org/series/117528/
-> > > v8: dropped the two dependent patches that has been merged
-> > >      separately. Add IGT link and Tested-by (MESA).
-> > > v9: addressing comments (Andi)
-> > > v10: acked-by and tested-by MESA
-> > > v11: drop "end support for set caching ioctl" (merged)
-> > >       remove tools/include/uapi/drm/i915_drm.h
-> > > v12: drop Bspec reference in comment. add to commit message instead
-> > > v13: sent to test with igt@gem_create@create-ext-set-pat
-> > > v14: sent to test with igt@gem_create@create-ext-set-pat
-> > > v15: update commit message with documentation note and t-b/a-b from
-> > >       Media driver folks.
-> > > 
-> > > Fei Yang (1):
-> > >    drm/i915: Allow user to set cache at BO creation
-> > > 
-> > >   drivers/gpu/drm/i915/gem/i915_gem_create.c | 36 +++++++++++++++++++
-> > >   drivers/gpu/drm/i915/gem/i915_gem_object.c |  6 ++++
-> > >   include/uapi/drm/i915_drm.h                | 41 ++++++++++++++++++++++
-> > >   3 files changed, 83 insertions(+)
-> > > 
-> > 
-> > Try with:
-> > 
-> > Test-with: 20230526172221.1438998-1-fei.yang@intel.com
-> > 
-> > That is how it is supposed to be done, to do a CI run against a test
-> > case not yet merged that is.
-> 
-> Or I see that IGT has been since merged so you probably have results
-> already?
+On Wed, 31 May 2023, Patchwork <patchwork@emeril.freedesktop.org> wrote:
+> #### Possible regressions ####
+>
+>   * igt@gem_close_race@basic-process:
+>     - fi-blb-e6850:       [PASS][1] -> [ABORT][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13203/fi-blb-e6850/igt@gem_close_race@basic-process.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117618v3/fi-blb-e6850/igt@gem_close_race@basic-process.html
+>     - fi-hsw-4770:        [PASS][3] -> [ABORT][4]
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13203/fi-hsw-4770/igt@gem_close_race@basic-process.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117618v3/fi-hsw-4770/igt@gem_close_race@basic-process.html
+>     - fi-elk-e7500:       [PASS][5] -> [ABORT][6]
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13203/fi-elk-e7500/igt@gem_close_race@basic-process.html
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117618v3/fi-elk-e7500/igt@gem_close_race@basic-process.html
+>
+>   * igt@i915_selftest@live@evict:
+>     - bat-adlp-9:         [PASS][7] -> [ABORT][8]
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13203/bat-adlp-9/igt@i915_selftest@live@evict.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117618v3/bat-adlp-9/igt@i915_selftest@live@evict.html
+>     - bat-rpls-2:         [PASS][9] -> [ABORT][10]
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13203/bat-rpls-2/igt@i915_selftest@live@evict.html
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117618v3/bat-rpls-2/igt@i915_selftest@live@evict.html
+>     - bat-adlm-1:         [PASS][11] -> [ABORT][12]
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13203/bat-adlm-1/igt@i915_selftest@live@evict.html
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117618v3/bat-adlm-1/igt@i915_selftest@live@evict.html
+>     - bat-rpls-1:         [PASS][13] -> [ABORT][14]
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13203/bat-rpls-1/igt@i915_selftest@live@evict.html
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_117618v3/bat-rpls-1/igt@i915_selftest@live@evict.html
 
-CI has stopped somewhere in the BAT tests. Can anyone hit the
-"Test revision 1 again" button? Fei, would you?
+This still fails consistently, I have no clue why, and the above aren't
+even remotely related to display.
 
-We had it tested some revisions back, though.
+What now? Tvrtko?
 
-Andi
+BR,
+Jani.
+
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
