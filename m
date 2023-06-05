@@ -2,50 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFE32722276
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jun 2023 11:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63DF7722278
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jun 2023 11:46:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 680F510E277;
-	Mon,  5 Jun 2023 09:46:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B9F410E27C;
+	Mon,  5 Jun 2023 09:46:09 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1CBD10E272
- for <Intel-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 09:46:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89FA810E272
+ for <Intel-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 09:46:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685958365; x=1717494365;
+ t=1685958366; x=1717494366;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=jjpfOxfgjrG11wWq42iXND+QyAPClktxVyHfvupdRKQ=;
- b=bcEGJiCxR97CUsGSiq9g3JjuCAKtm7/mNM194SELMyOPP7sDSqp/RjhH
- Iakd4E/Oe5MCZ40kXVv1I9kZbduEBt3gqK5KpE5O8DpDoWtTdq0XeIqDM
- jzlroswhGDEgBeJLO1BVeF/ByQ7rpMR5WeHU6nXr63INb3Ge7Z60rEhYz
- BHSHVImHrCkCemfXjTJ3nc7AMH0CoDApxkU6XKmPE5++0DmUCFda65G3e
- CR8J2q1BUVpu96YHjFc2NeF1YtpCL7M+Qguyp2ab7h1F1ZrKNw8qJD4eS
- qvjWJEwa+RFQ41W3w3h9F76FAdKvKskXof9mEVoc0gRpotgaDMr8eiylH A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="336682998"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="336682998"
+ bh=+nW8raZKAXdJGmhot6gh+COWAuiuGKfmAU+0FwzPoKI=;
+ b=PWppbuhItnvAB0BD1hxRFFbYANjrMIZw9hfzEpuN4oQ74OKrJyIpI5WK
+ NKCp37gyRWaf0/XoX6LH4Uox09tDHsD82bw2HA7/GprHbt9VboIaUopHF
+ ViEUj4CVd35KTQQ7uRklZgoh5FB6Ypzg5AxD6torAMd+BzyHax54y+FK+
+ YKOguQQ0iG7ShL+KKZCoxk/SnVOt5wJkABBBWm6Q0FzJjjY0KZdVe28UV
+ VHukd+9pdlHHnEAvAfYcMuu2HZA2O8rSw5e08tPO13WLm1mRvu9YzvoCx
+ YUCYOOycqTMHql565RMZfQYpSsbvYYxLl0qf8p8Efdo4HBKWLoPBpYvrT Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="336683006"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="336683006"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 02:46:05 -0700
+ 05 Jun 2023 02:46:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="741656537"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="741656537"
+X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="741656540"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="741656540"
 Received: from mloughma-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.238.159])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 02:46:04 -0700
+ 05 Jun 2023 02:46:05 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Mon,  5 Jun 2023 10:45:54 +0100
-Message-Id: <20230605094556.207399-2-tvrtko.ursulin@linux.intel.com>
+Date: Mon,  5 Jun 2023 10:45:55 +0100
+Message-Id: <20230605094556.207399-3-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230605094556.207399-1-tvrtko.ursulin@linux.intel.com>
 References: <20230605094556.207399-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 2/4] drm/i915: Record default rps threshold values
+Subject: [Intel-gfx] [CI 3/4] drm/i915: Add helpers for managing rps
+ thresholds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,45 +64,109 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Record the default values as preparation for exposing the sysfs controls.
+In preparation for exposing via sysfs add helpers for managing rps
+thresholds.
+
+v2:
+ * Force sw and hw re-programming on threshold change.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@kernel.org>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_types.h | 3 +++
- drivers/gpu/drm/i915/gt/intel_rps.c      | 2 ++
- 2 files changed, 5 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_rps.c | 54 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_rps.h |  4 +++
+ 2 files changed, 58 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index f08c2556aa25..1b22d7a50665 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -83,6 +83,9 @@ enum intel_submission_method {
- struct gt_defaults {
- 	u32 min_freq;
- 	u32 max_freq;
-+
-+	u8 rps_up_threshold;
-+	u8 rps_down_threshold;
- };
- 
- enum intel_gt_type {
 diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 791097eb9bfd..333abc8f7ecb 100644
+index 333abc8f7ecb..afde601a6111 100644
 --- a/drivers/gpu/drm/i915/gt/intel_rps.c
 +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -2016,7 +2016,9 @@ void intel_rps_init(struct intel_rps *rps)
+@@ -16,7 +16,9 @@
+ #include "intel_gt.h"
+ #include "intel_gt_clock_utils.h"
+ #include "intel_gt_irq.h"
++#include "intel_gt_pm.h"
+ #include "intel_gt_pm_irq.h"
++#include "intel_gt_print.h"
+ #include "intel_gt_regs.h"
+ #include "intel_mchbar_regs.h"
+ #include "intel_pcode.h"
+@@ -2574,6 +2576,58 @@ int intel_rps_set_min_frequency(struct intel_rps *rps, u32 val)
+ 		return set_min_freq(rps, val);
+ }
  
- 	/* Set default thresholds in % */
- 	rps->power.up_threshold = 95;
-+	rps_to_gt(rps)->defaults.rps_up_threshold = rps->power.up_threshold;
- 	rps->power.down_threshold = 85;
-+	rps_to_gt(rps)->defaults.rps_down_threshold = rps->power.down_threshold;
++u8 intel_rps_get_up_threshold(struct intel_rps *rps)
++{
++	return rps->power.up_threshold;
++}
++
++static int rps_set_threshold(struct intel_rps *rps, u8 *threshold, u8 val)
++{
++	int ret;
++
++	if (val > 100)
++		return -EINVAL;
++
++	ret = mutex_lock_interruptible(&rps->lock);
++	if (ret)
++		return ret;
++
++	if (*threshold == val)
++		goto out_unlock;
++
++	*threshold = val;
++
++	/* Force reset. */
++	rps->last_freq = -1;
++	mutex_lock(&rps->power.mutex);
++	rps->power.mode = -1;
++	mutex_unlock(&rps->power.mutex);
++
++	intel_rps_set(rps, clamp(rps->cur_freq,
++				 rps->min_freq_softlimit,
++				 rps->max_freq_softlimit));
++
++out_unlock:
++	mutex_unlock(&rps->lock);
++
++	return ret;
++}
++
++int intel_rps_set_up_threshold(struct intel_rps *rps, u8 threshold)
++{
++	return rps_set_threshold(rps, &rps->power.up_threshold, threshold);
++}
++
++u8 intel_rps_get_down_threshold(struct intel_rps *rps)
++{
++	return rps->power.down_threshold;
++}
++
++int intel_rps_set_down_threshold(struct intel_rps *rps, u8 threshold)
++{
++	return rps_set_threshold(rps, &rps->power.down_threshold, threshold);
++}
++
+ static void intel_rps_set_manual(struct intel_rps *rps, bool enable)
+ {
+ 	struct intel_uncore *uncore = rps_to_uncore(rps);
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+index a3fa987aa91f..92fb01f5a452 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.h
++++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+@@ -37,6 +37,10 @@ void intel_rps_mark_interactive(struct intel_rps *rps, bool interactive);
  
- 	/* Finally allow us to boost to max by default */
- 	rps->boost_freq = rps->max_freq;
+ int intel_gpu_freq(struct intel_rps *rps, int val);
+ int intel_freq_opcode(struct intel_rps *rps, int val);
++u8 intel_rps_get_up_threshold(struct intel_rps *rps);
++int intel_rps_set_up_threshold(struct intel_rps *rps, u8 threshold);
++u8 intel_rps_get_down_threshold(struct intel_rps *rps);
++int intel_rps_set_down_threshold(struct intel_rps *rps, u8 threshold);
+ u32 intel_rps_read_actual_frequency(struct intel_rps *rps);
+ u32 intel_rps_read_actual_frequency_fw(struct intel_rps *rps);
+ u32 intel_rps_get_requested_frequency(struct intel_rps *rps);
 -- 
 2.39.2
 
