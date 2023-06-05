@@ -1,154 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E01F57222CB
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jun 2023 11:59:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1B9E722309
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jun 2023 12:10:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86BBB10E1C0;
-	Mon,  5 Jun 2023 09:59:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF2BF10E194;
+	Mon,  5 Jun 2023 10:10:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF26610E1C0
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 09:59:51 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A50B10E194
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 10:10:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685959191; x=1717495191;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=wo/6jB020ZtOSd3eEaD2VkkfClns6BXtqTgeRnSEOyk=;
- b=jrY8gb7Wwaa35VknIwQrxBwO6X4oF4Y4Z9u9k7zq/SeNrGMdn+8PGLYJ
- laXZmxHGpZUkjAlYTjXZybgeZnJ+th+XzfaXLG+7dWBmbKRMjq9Sri3Nv
- 5GM1Kpi5ZUqcXgaLFSlLacxpf67RQstbz/PJZFvBpdYpf5lUsBymqaSJ6
- J00B3inBujkQnqoG1Dtpd+E+NwMvZ6hx5BFgykLB4CTaPj+N1lELmMMop
- eMAr6VWrfAvxm3JY5ppjcLLkNkJo8WZa9LHukp3rhtjBexDUaM0e51QiY
- xT3FpbdIbgGs1tAAJul8vO41XA3dM/Qi8AfDQrzbPd2dLTPO6kGAxqnvO g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="355185982"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="355185982"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 02:59:50 -0700
+ t=1685959801; x=1717495801;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=u0RDndRPwBu2zO+m2TbC/yTcLDq3zw1scc0jwNw7ZD0=;
+ b=iBw8nEzE1hCDOHZNgKFC3N437njPZCiEYOVhvSH+mbiRFJSPuCyjgtMW
+ QY80P3CUON617FFNYkt3eGTQREotDb16ARy5L3XBRz/kMlIAxHk8EZwP4
+ gWTUJ7tXB1E+NrS5oF63cCwIgRE0n4CAWXUwj65UXZO0ylnI0jSCEv+FI
+ DTSzF+jM01s89lCFJUTumMSkTgWHw7pf5lagJlnfcM3yl+d7feC3wo80K
+ Ff2vwZ/hfxw59qqi73sfShsl6T1fvhAZ09GAQQ91FiRsq7/aUTGs633S+
+ r15t5bVRSuLN7v+kpJz+iTGbHwQxITngkqbCWCAw11iFD6ev9B98r3QFG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="336687154"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="336687154"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2023 03:09:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="798359333"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="798359333"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by FMSMGA003.fm.intel.com with ESMTP; 05 Jun 2023 02:59:50 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 5 Jun 2023 02:59:50 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Mon, 5 Jun 2023 02:59:50 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.104)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Mon, 5 Jun 2023 02:59:50 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JnqNciB6QCtAj6beaJwI/V+LRvUgFawLom7+IaiQ7hbbpM2lssYLP1/bzC30yK3yXwJlN/3Mop/koUgS0UF2xMGwU4ugo84XIkFgx9vXgwMLYJDPSS6phRFb7pOZ/0ab0U2BJwjnFpqRlrdiIIQr3GNa74pRMVGscQWLcYjAYzq/5JG5OvIOoDXm9dh0cfZCx6W4tswW/vLcyQDZO52nz+7xkWl7oURkGIWXh7CzPUdlFCwxxyuSPEe2dze1kJhDFMg0Y4dhKCH941uFTV81c2pg366ZYfVVB8CfB51mD4tYEB+HqCwSnzFEIn8NYi0XXox6uwvOtpxflc0DU7k42Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wo/6jB020ZtOSd3eEaD2VkkfClns6BXtqTgeRnSEOyk=;
- b=SDiZMO6BOoA6R4lUJKFHNUN6N1V5JlUwRnfT+BY13msh/1v4ismdQoUvY67XVvJpb1woBcxV5WIUmyBWc/oVxYX4BJq5E/3o6AsfYeCt68d7uhUfpEe63gvvM1WirhYcLHZLuLXIciA6aDb0RUGteBLjecHuCSvTmMrlV6IxlPKbjmiAhLlwnWsEqW4Twfwu6hZ7NX0CXRPNJaI87B+RZSwaWZzgg0QdyxxCpjXEcp1jKeD72irHreCPM8l5fCKNrdeVX5eng/nlrQnd+7SAUsScDLFAIn3M/LYdA5hVaq70evvsFOlshp+2VVQfWJCfXZWWUBRn0/JN0FNURvg/fQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CO1PR11MB4962.namprd11.prod.outlook.com (2603:10b6:303:99::23)
- by CO1PR11MB4931.namprd11.prod.outlook.com (2603:10b6:303:9d::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Mon, 5 Jun
- 2023 09:59:48 +0000
-Received: from CO1PR11MB4962.namprd11.prod.outlook.com
- ([fe80::24e5:66a2:aa47:4886]) by CO1PR11MB4962.namprd11.prod.outlook.com
- ([fe80::24e5:66a2:aa47:4886%4]) with mapi id 15.20.6455.027; Mon, 5 Jun 2023
- 09:59:48 +0000
-From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [PATCH v12 6/7] drm/i915/mtl: find the best QGV point for the
- SAGV configuration
-Thread-Index: AQHZl5MRj6AE84TjCECjxOtHFxwjD697+cQA
-Date: Mon, 5 Jun 2023 09:59:47 +0000
-Message-ID: <60cb72d491c1466ed392b9be394369e84adb4714.camel@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="741668534"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="741668534"
+Received: from unknown (HELO ideak-desk) ([10.237.72.78])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2023 03:09:40 -0700
+Date: Mon, 5 Jun 2023 13:09:40 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Message-ID: <ZH20ZFR2Rf5kudak@ideak-desk>
 References: <20230601160350.43888-1-vinod.govindapillai@intel.com>
- <20230601160350.43888-7-vinod.govindapillai@intel.com>
- <ZH2vhnVeskAXdbPj@ideak-desk>
-In-Reply-To: <ZH2vhnVeskAXdbPj@ideak-desk>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CO1PR11MB4962:EE_|CO1PR11MB4931:EE_
-x-ms-office365-filtering-correlation-id: bfd78fa7-af27-433b-d0c9-08db65ab98a9
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +wiGcY8xy0XWN44R1hQRTzWM65DncQT+J106/DzZm+g/RUlTOOSNJww4KWuP/NYL89ySkogDb6eyduv+tOBm8k7B2Sh4u5rK/49trKmqRXmf1dMWylwvgzCD+GdmXHKzhJpNkbQcmTv+1VSeqMKfd+J9OJO1CAaPU8+twpz5+BGZkhFqBPyK7FwBtOtCvNfep5OKqdkXikY7wIG/R6W+VhIq+9ey0D6oSfKiJT3OmXjzoCLCG124Wp2auQvdFHZ2EloXny2TYabXM5vnqzlDUDMw0Tfta4+ALDi5yNbQyLXOcFjtmTYudL/Z9s1OpTvQAmZK6l676wq9OI5/SQQbfNqmyBOSQlKvNrdXxr+1O1j272BI+7Kvnc/u7tEsPphpY2Eo/rJYMQD9piFKvnOnB/3t+S+wQI5gNPec6yGq8EPkyk1V7p995l0sgpgYeYDS0oIwp8WEkf6DiITpiuUZy2CY49mCORYMxip+CFDvjXRPjQQd0qBmX8Sxqfw9vIWpC4840LcNhTxHHaNunODOQIfEreuVy8pJVEX2Z931RQ52Joeo5xn8Kf3hIuYX0LQhFKadM/fdo+FTjbNM+H3L5kN/Vm6F3ZmKu530TMkXUvY=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB4962.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(396003)(136003)(39860400002)(376002)(366004)(451199021)(6512007)(6506007)(26005)(966005)(36756003)(83380400001)(86362001)(38070700005)(122000001)(82960400001)(38100700002)(186003)(2616005)(41300700001)(37006003)(2906002)(478600001)(76116006)(66946007)(91956017)(66476007)(66556008)(66446008)(64756008)(6636002)(4326008)(8936002)(8676002)(6862004)(316002)(5660300002)(6486002)(66899021)(71200400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eDkxMTZjcWdwZjRZeEhxcU54TSt0N0FWaGFrWFJacXQweHJ2b2xWK3R5ZytX?=
- =?utf-8?B?L3A2eWpxWTF1cGdQSUdOWkFxb0EzU01vZ29ETWlaalFyNDJTTDdKQWVlbXN0?=
- =?utf-8?B?czE1ZUlVVnNia1BoMWZGbHBQcXJwaDlSbXZFaU5YblVRVnhVNUsyVllMMzFl?=
- =?utf-8?B?a05tcXlwVXAyVkg0VnJaRVNjeWJyekR5LzIxZzRiZWs0NEJYekVJRDI1KzEr?=
- =?utf-8?B?Ymp4VERacFJEVDJKV2RqdlR2SksrTkx0enVyaU5ENm5SYlovdDlueUg5ckVP?=
- =?utf-8?B?Um1uakZZbDAzYm00eTQzTkxmcVQwbFRGeFFVQnBaZk9xZXNGNlQxR2IzRWpC?=
- =?utf-8?B?L2NwRkRsdnViNzVySVdpdHRMSHhvckI3aVRNcnpGNVQrb2R0QUhTeXpJSlds?=
- =?utf-8?B?Tmxybi9yTWJxSElaeWNUanJzZzNaKytyOXlYdmdLRnV2Z3o4T1NMSXBlR0lL?=
- =?utf-8?B?YStGOGlUdFErditGSDhBakVPVjdBTDdpcXVKVTV0eHRLWWtYNnc5YUZWTWhV?=
- =?utf-8?B?V0NodVZEMXkzRWZxdU5tUFBiWUg1ZE5ycTliekVaTThUa0xvMUNnZm9LaW05?=
- =?utf-8?B?K3BxM3FRR3JrK0h6NVdFb0Rab3M0VHorUUI0MXJIWVFSMXBTcjNxd1c4ZG93?=
- =?utf-8?B?bWJSU3NsT2dWZkVvdkF1UkwzOWs0bmU5dFoyVGluQWtocmxFZkNGNkRrZkhL?=
- =?utf-8?B?UE5lbDZLd1QzMTl3ZkNQWWVkdnlZQ3pMMVJsdi9PVFVhZXlxNHNuVno3TndW?=
- =?utf-8?B?U2NJUXQ0UXFiYzYvdktNT3ZwYWlQVFdwV2FUVXZiV3VYcnVwN0IvRTdaYTFv?=
- =?utf-8?B?eDBtMXVoSlRGUFo0VDg5WDNLdkVlL3QyaVNtMmFtU2Q1bjQ3eUJ3R3lvWjdP?=
- =?utf-8?B?UC9ZMHpmMk5sV1VVWExNU2ZRbUhINmdpR0pRMGIzSzlZUkF5aVhQRU5vWnY0?=
- =?utf-8?B?NkdPend5Tlg4eTV2WVMyU1BLRGd1a3BsMUowbE1SM21hQ2Jzc3FkNGtyVXMy?=
- =?utf-8?B?UVEyTndNeWxxOVg0aTZuU3pOVDlUZ0V6aE1lM2gvM0xqc05WYklHWk5qdkl4?=
- =?utf-8?B?bEEwVHA5OWhhMitwbFVKZkdYMmY5WlF6TlRKK1JLVkIzOUFLR3U0aEtaNG5U?=
- =?utf-8?B?YS95anhCMWk3d0pBVGlrb0NvaFJRM2tvS0VKY01JZTVmK0FIQWhnU0VTSGd1?=
- =?utf-8?B?Z1dTcnVjVnF0bEFIQ3pjYmtpbUxFVmxGbXI3dVk3N3pUVFd5NTJwU21aQVhN?=
- =?utf-8?B?bjFxUVVjQUQ3OEl5SUU0aG1rb3R0VmJ6Um1pUGZPN2RoSzNsOEd4TXVVcW5u?=
- =?utf-8?B?M2hTK01TWTVsRHZERk80VlArQzFLMUNsbzNMU214T2VGek1ONkpwbHRhd1E1?=
- =?utf-8?B?ZjZpT2ZWbTh3NG05OEVRQU1HYlJ1R3pyUnJwckNPeSs0ei9aSG1jV1U5TGgv?=
- =?utf-8?B?eVdBT3NVQzdOM0duaThzWFFLdlFrSVh3SXo5bzFZOTh6aEVkcENWZVNlNTZr?=
- =?utf-8?B?OElLMEgyR25PTXBaOTR1WG1Jd1ljWGphWmJNQ0xRREx0bnIwaDhSNllWNXZ4?=
- =?utf-8?B?WlprYm45d2lLc0FkeXBtR1M1QTRWUGVDYng3cHZkYUNwNmhKNkxoWnJtSm5h?=
- =?utf-8?B?Yk11MEpvK1kzYUc0dXRLN3B4TmJFamE0VjIrREJTOFc3RSt0dUpxaUR2QnNu?=
- =?utf-8?B?bnBybUZ5VksxQ1RYWGFjditZd3VFOHBUZkwrdFpNaXdzNnJNZDJNQjNobUVO?=
- =?utf-8?B?QjdzWTB0UlhCREFQSU5YK3RuSU9XUi9tbHluYkNSdmdTMEVxMm1OdTBzcWVP?=
- =?utf-8?B?d0NxM3ZpY2ZxZ09vQm9kMU1JWXUzTnVSUmNrcjkrcWRjMFBGbWZxWGQzcmVn?=
- =?utf-8?B?U3J3YUJxa00yazM3ZGkzeUdaa2xqT1ZtN0hvS2hhY3BOVDBlb28xVzVCRTM2?=
- =?utf-8?B?MWRyWlBodFpxUmFMUEQxeFVZUEJ1dTVSdEZ5L3R1OTVuVk95VmIwanJyT3NX?=
- =?utf-8?B?b0N6c0x3THFwczNKZ3pMNUJ3RGFXV2ZLWWRiYkpxa3hMQmllOWJpOGRLbVRa?=
- =?utf-8?B?Z3F0SUhRUm9NaGdUREJrVUFTc1VPNTdmUFJITkh0LzNBdEtZSmdZT1AzeXJE?=
- =?utf-8?B?NXpaUFUrb2xMc0VGYlJ0S3dDL1ErUDZJZW1TdERBSGhsMEVab0xob1VsQXFW?=
- =?utf-8?Q?1EP0JEEb+SNsxVFQ0pp5kWo=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B06575F389466E4DA4B580B557DF3B7C@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ <20230601160350.43888-8-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4962.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bfd78fa7-af27-433b-d0c9-08db65ab98a9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2023 09:59:47.8037 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jZROuaCeov1bml58nL+LJHZvd8YbFvDHlmzlulXg7OXZr+HPLRvwURRoUGwwp3C+1OvhqV9y33QjYNsoFZxCWXhy3UA2DAXqfJjGYqFIpFE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4931
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v12 6/7] drm/i915/mtl: find the best QGV
- point for the SAGV configuration
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230601160350.43888-8-vinod.govindapillai@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v12 7/7] drm/i915/mtl: Add support for PM
+ DEMAND
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,146 +60,1057 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIzLTA2LTA1IGF0IDEyOjQ5ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6Cj4gT24g
-VGh1LCBKdW4gMDEsIDIwMjMgYXQgMDc6MDM6NDlQTSArMDMwMCwgVmlub2QgR292aW5kYXBpbGxh
-aSB3cm90ZToKPiA+IEZyb20gTVRMIG9ud2FyZHMsIHdlIG5lZWQgdG8gZmluZCB0aGUgYmVzdCBR
-R1YgcG9pbnQgYmFzZWQgb24KPiA+IHRoZSByZXF1aXJlZCBkYXRhIHJhdGUgYW5kIHBhc3MgdGhl
-IHBlYWsgQlcgb2YgdGhhdCBwb2ludCB0bwo+ID4gdGhlIHB1bml0IHRvIGxvY2sgdGhlIGNvcnJl
-c3BvbmRpbmcgUUdWIHBvaW50Lgo+ID4gCj4gPiB2MTogRml4IGZvciB3YXJuaW5nIGZyb20ga2Vy
-bmVsIHRlc3Qgcm9ib3QKPiA+IAo+ID4gQnNwZWM6IDY0NjM2Cj4gPiAKPiA+IFJlcG9ydGVkLWJ5
-OiBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGludGVsLmNvbT4KPiA+IENsb3NlczogaHR0cHM6Ly9s
-b3JlLmtlcm5lbC5vcmcvci8yMDIzMDUyODAyNTMuQWI4YlJWMnctbGtwQGludGVsLmNvbS8KPiA+
-IFJlcG9ydGVkLWJ5OiBEYW4gQ2FycGVudGVyIDxlcnJvcjI3QGdtYWlsLmNvbT4KPiA+IENsb3Nl
-czogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvci8yMDIzMDUyODAyNTMuQWI4YlJWMnctbGtwQGlu
-dGVsLmNvbS8KPiA+IFNpZ25lZC1vZmYtYnk6IFZpbm9kIEdvdmluZGFwaWxsYWkgPHZpbm9kLmdv
-dmluZGFwaWxsYWlAaW50ZWwuY29tPgo+ID4gUmV2aWV3ZWQtYnk6IFN0YW5pc2xhdiBMaXNvdnNr
-aXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPgo+ID4gLS0tCj4gPiDCoGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYyB8IDg3ICsrKysrKysrKysrKysrKysrKysr
-KysrKy0KPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9idy5oIHzCoCA2
-ICsrCj4gPiDCoDIgZmlsZXMgY2hhbmdlZCwgOTEgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMo
-LSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfYncuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYwo+ID4gaW5k
-ZXggYjFjYmVkYTBiMmUzLi43NjcyOTYzZGM0OWMgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfYncuYwo+ID4gQEAgLTgwMyw2ICs4MDMsODUgQEAgaW50ZWxfYXRv
-bWljX2dldF9id19zdGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKPiA+IMKg
-wqDCoMKgwqDCoMKgwqByZXR1cm4gdG9faW50ZWxfYndfc3RhdGUoYndfc3RhdGUpOwo+ID4gwqB9
-Cj4gPiDCoAo+ID4gK3N0YXRpYyBpbnQgbXRsX2ZpbmRfcWd2X3BvaW50cyhzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqaTkxNSwKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHVuc2lnbmVkIGludCBkYXRhX3JhdGUsCj4gPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1
-bnNpZ25lZCBpbnQgbnVtX2FjdGl2ZV9wbGFuZXMsCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb25zdCBzdHJ1Y3QgaW50ZWxf
-Yndfc3RhdGUgKm9sZF9id19zdGF0ZSwKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBpbnRlbF9id19zdGF0ZSAqbmV3
-X2J3X3N0YXRlKQo+ID4gK3sKPiA+ICvCoMKgwqDCoMKgwqDCoHVuc2lnbmVkIGludCBiZXN0X3Jh
-dGUgPSBVSU5UX01BWDsKPiA+ICvCoMKgwqDCoMKgwqDCoHVuc2lnbmVkIGludCBudW1fcWd2X3Bv
-aW50cyA9IGk5MTUtPmRpc3BsYXkuYncubWF4WzBdLm51bV9xZ3ZfcG9pbnRzOwo+ID4gK8KgwqDC
-oMKgwqDCoMKgdW5zaWduZWQgaW50IHFndl9wZWFrX2J3wqAgPSAwOwo+ID4gK8KgwqDCoMKgwqDC
-oMKgaW50IGk7Cj4gPiArwqDCoMKgwqDCoMKgwqBpbnQgcmV0Owo+ID4gKwo+ID4gK8KgwqDCoMKg
-wqDCoMKgcmV0ID0gaW50ZWxfYXRvbWljX2xvY2tfZ2xvYmFsX3N0YXRlKCZuZXdfYndfc3RhdGUt
-PmJhc2UpOwo+ID4gK8KgwqDCoMKgwqDCoMKgaWYgKHJldCkKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Owo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgLyoKPiA+
-ICvCoMKgwqDCoMKgwqDCoCAqIElmIFNBR1YgY2Fubm90IGJlIGVuYWJsZWQsIGRpc2FibGUgdGhl
-IHBjb2RlIFNBR1YgYnkgcGFzc2luZyBhbGwgMSdzCj4gPiArwqDCoMKgwqDCoMKgwqAgKiBmb3Ig
-cWd2IHBlYWsgYncgaW4gUE0gRGVtYW5kIHJlcXVlc3QuIFNvIGFzc2lnbiBVSU5UX01BWCBpZiBT
-QUdWIGlzCj4gPiArwqDCoMKgwqDCoMKgwqAgKiBub3QgZW5hYmxlZC4gUE0gRGVtYW5kIGNvZGUg
-d2lsbCBjbGFtcCB0aGUgdmFsdWUgZm9yIHRoZSByZWdpc3Rlcgo+ID4gK8KgwqDCoMKgwqDCoMKg
-ICovCj4gPiArwqDCoMKgwqDCoMKgwqBpZiAoIWludGVsX2Nhbl9lbmFibGVfc2FndihpOTE1LCBu
-ZXdfYndfc3RhdGUpKSB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbmV3X2J3
-X3N0YXRlLT5xZ3ZfcG9pbnRfcGVha2J3ID0gVUlOVF9NQVg7Cj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwgIk5vIFNBR1YsIHVzZSBVSU5U
-X01BWCBhcyBwZWFrIGJ3LiIpOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGdv
-dG8gb3V0Owo+ID4gK8KgwqDCoMKgwqDCoMKgfQo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgLyoK
-PiA+ICvCoMKgwqDCoMKgwqDCoCAqIEZpbmQgdGhlIGJlc3QgUUdWIHBvaW50IGJ5IGNvbXBhcmlu
-ZyB0aGUgZGF0YV9yYXRlIHdpdGggbWF4IGRhdGEgcmF0ZQo+ID4gK8KgwqDCoMKgwqDCoMKgICog
-b2ZmZXJlZCBwZXIgcGxhbmUgZ3JvdXAKPiA+ICvCoMKgwqDCoMKgwqDCoCAqLwo+ID4gK8KgwqDC
-oMKgwqDCoMKgZm9yIChpID0gMDsgaSA8IG51bV9xZ3ZfcG9pbnRzOyBpKyspIHsKPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB1bnNpZ25lZCBpbnQgYndfaW5kZXggPQo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB0Z2xfbWF4X2J3X2lu
-ZGV4KGk5MTUsIG51bV9hY3RpdmVfcGxhbmVzLCBpKTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqB1bnNpZ25lZCBpbnQgbWF4X2RhdGFfcmF0ZTsKPiA+ICsKPiA+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAoYndfaW5kZXggPj0gQVJSQVlfU0laRShpOTE1LT5k
-aXNwbGF5LmJ3Lm1heCkpCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoGNvbnRpbnVlOwo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoG1heF9kYXRhX3JhdGUgPSBpOTE1LT5kaXNwbGF5LmJ3Lm1heFtid19pbmRleF0uZGVyYXRl
-ZGJ3W2ldOwo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChtYXhf
-ZGF0YV9yYXRlIDwgZGF0YV9yYXRlKQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBjb250aW51ZTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqBpZiAobWF4X2RhdGFfcmF0ZSAtIGRhdGFfcmF0ZSA8IGJlc3RfcmF0ZSkgewo+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBiZXN0X3Jh
-dGUgPSBtYXhfZGF0YV9yYXRlIC0gZGF0YV9yYXRlOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBxZ3ZfcGVha19idyA9IGk5MTUtPmRpc3BsYXkuYncu
-bWF4W2J3X2luZGV4XS5wZWFrYndbaV07Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgfQo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRybV9kYmdfa21z
-KCZpOTE1LT5kcm0sICJRR1YgcG9pbnQgJWQ6IG1heCBidyAlZCByZXF1aXJlZCAlZCBxZ3ZfcGVh
-a19idzogJWRcbiIsCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBpLCBtYXhfZGF0YV9yYXRlLCBkYXRhX3JhdGUsIHFndl9wZWFrX2J3KTsK
-PiA+ICvCoMKgwqDCoMKgwqDCoH0KPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoGRybV9kYmdfa21z
-KCZpOTE1LT5kcm0sICJNYXRjaGluZyBwZWFrcyBRR1YgYnc6ICVkIGZvciByZXF1aXJlZCBkYXRh
-IHJhdGU6ICVkXG4iLAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBx
-Z3ZfcGVha19idywgZGF0YV9yYXRlKTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoC8qCj4gPiAr
-wqDCoMKgwqDCoMKgwqAgKiBUaGUgZGlzcGxheSBjb25maWd1cmF0aW9uIGNhbm5vdCBiZSBzdXBw
-b3J0ZWQgaWYgbm8gUUdWIHBvaW50Cj4gPiArwqDCoMKgwqDCoMKgwqAgKiBzYXRpc2Z5aW5nIHRo
-ZSByZXF1aXJlZCBkYXRhIHJhdGUgaXMgZm91bmQKPiA+ICvCoMKgwqDCoMKgwqDCoCAqLwo+ID4g
-K8KgwqDCoMKgwqDCoMKgaWYgKHFndl9wZWFrX2J3ID09IDApIHsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiTm8gUUdWIHBvaW50cyBm
-b3IgYncgJWQgZm9yIGRpc3BsYXkgY29uZmlndXJhdGlvbiglZAo+ID4gYWN0aXZlIHBsYW5lcyku
-XG4iLAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgZGF0YV9yYXRlLCBudW1fYWN0aXZlX3BsYW5lcyk7Cj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgcmV0dXJuIC1FSU5WQUw7Cj4gPiArwqDCoMKgwqDCoMKgwqB9Cj4gPiAr
-Cj4gPiArwqDCoMKgwqDCoMKgwqAvKiBNVEwgUE0gREVNQU5EIGV4cGVjdHMgUUdWIEJXIHBhcmFt
-ZXRlciBpbiBtdWx0aXBsZXMgb2YgMTAwIG1icHMgKi8KPiA+ICvCoMKgwqDCoMKgwqDCoG5ld19i
-d19zdGF0ZS0+cWd2X3BvaW50X3BlYWtidyA9IERJVl9ST1VORF9DTE9TRVNUKHFndl9wZWFrX2J3
-LCAxMDApOwo+ID4gKwo+ID4gK291dDoKPiA+ICvCoMKgwqDCoMKgwqDCoGlmIChuZXdfYndfc3Rh
-dGUtPnFndl9wb2ludF9wZWFrYncgIT0gb2xkX2J3X3N0YXRlLT5xZ3ZfcG9pbnRfcGVha2J3KcKg
-IHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXQgPSBpbnRlbF9hdG9taWNf
-c2VyaWFsaXplX2dsb2JhbF9zdGF0ZSgmbmV3X2J3X3N0YXRlLT5iYXNlKTsKPiAKPiBxZ3ZfcG9p
-bnRfYmVha2J3IGlzIHVzZWQgYXMgYSBwYXJhbWV0ZXIgZm9yIHRoZSBwbWRlbWFuZCBjb21tYW5k
-LCBmb3IKPiB3aGljaCB0aGVyZSBpcyBhIGNoZWNrIGxhdGVyIHdoZXRoZXIgcHJvZ3JhbW1pbmcg
-aXQgaXMgcmVxdWlyZWQgb3Igbm90Lgo+IFNvIHdoeSBpcyBnbG9iYWwgc3RhdGUgc2VyaWFsaXpl
-ZCBoZXJlPwoKWWVzLiBnb29kIHBvaW50LiBUaGlzIG5lZWQgbm90IHRvIGJlIHNlcmlhbGl6ZWQg
-aGVyZS4gV2lsbCByZW1vdmUgaXQuCgpUaGFua3MKVmlub2QKCj4gCj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgaWYgKHJldCkKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIHJldDsKPiA+ICvCoMKgwqDCoMKgwqDCoH0KPiA+
-ICsKPiA+ICvCoMKgwqDCoMKgwqDCoHJldHVybiAwOwo+ID4gK30KPiA+ICsKPiA+IMKgc3RhdGlj
-IGludCBpY2xfZmluZF9xZ3ZfcG9pbnRzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+
-ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHVuc2lnbmVkIGludCBkYXRhX3JhdGUsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdW5zaWduZWQgaW50IG51bV9h
-Y3RpdmVfcGxhbmVzLAo+ID4gQEAgLTkyOCw4ICsxMDA3LDEyIEBAIHN0YXRpYyBpbnQgaW50ZWxf
-YndfY2hlY2tfcWd2X3BvaW50cyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKPiA+IMKg
-Cj4gPiDCoMKgwqDCoMKgwqDCoMKgZGF0YV9yYXRlID0gRElWX1JPVU5EX1VQKGRhdGFfcmF0ZSwg
-MTAwMCk7Cj4gPiDCoAo+ID4gLcKgwqDCoMKgwqDCoMKgcmV0dXJuIGljbF9maW5kX3Fndl9wb2lu
-dHMoaTkxNSwgZGF0YV9yYXRlLCBudW1fYWN0aXZlX3BsYW5lcywKPiA+IC3CoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgb2xk
-X2J3X3N0YXRlLCBuZXdfYndfc3RhdGUpOwo+ID4gK8KgwqDCoMKgwqDCoMKgaWYgKERJU1BMQVlf
-VkVSKGk5MTUpID49IDE0KQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVy
-biBtdGxfZmluZF9xZ3ZfcG9pbnRzKGk5MTUsIGRhdGFfcmF0ZSwgbnVtX2FjdGl2ZV9wbGFuZXMs
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBvbGRfYndfc3RhdGUsIG5ld19id19zdGF0
-ZSk7Cj4gPiArwqDCoMKgwqDCoMKgwqBlbHNlCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgcmV0dXJuIGljbF9maW5kX3Fndl9wb2ludHMoaTkxNSwgZGF0YV9yYXRlLCBudW1fYWN0
-aXZlX3BsYW5lcywKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG9sZF9id19zdGF0ZSwg
-bmV3X2J3X3N0YXRlKTsKPiA+IMKgfQo+ID4gwqAKPiA+IMKgc3RhdGljIGJvb2wgaW50ZWxfYndf
-c3RhdGVfY2hhbmdlZChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKPiA+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmggYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmgKPiA+IGluZGV4IGYyMDI5MjE0Mzc0NS4uNjdh
-ZTY2YTNmY2RkIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9idy5oCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3
-LmgKPiA+IEBAIC0zNCw2ICszNCwxMiBAQCBzdHJ1Y3QgaW50ZWxfYndfc3RhdGUgewo+ID4gwqDC
-oMKgwqDCoMKgwqDCoC8qIGJpdG1hc2sgb2YgYWN0aXZlIHBpcGVzICovCj4gPiDCoMKgwqDCoMKg
-wqDCoMKgdTggYWN0aXZlX3BpcGVzOwo+ID4gwqAKPiA+ICvCoMKgwqDCoMKgwqDCoC8qCj4gPiAr
-wqDCoMKgwqDCoMKgwqAgKiBGcm9tIE1UTCBvbndhcmRzLCB0byBsb2NrIGEgUUdWIHBvaW50LCBw
-dW5pdCBleHBlY3RzIHRoZSBwZWFrIEJXIG9mCj4gPiArwqDCoMKgwqDCoMKgwqAgKiB0aGUgc2Vs
-ZWN0ZWQgUUdWIHBvaW50IGFzIHRoZSBwYXJhbWV0ZXIgaW4gbXVsdGlwbGVzIG9mIDEwME1CL3MK
-PiA+ICvCoMKgwqDCoMKgwqDCoCAqLwo+ID4gK8KgwqDCoMKgwqDCoMKgdW5zaWduZWQgaW50IHFn
-dl9wb2ludF9wZWFrYnc7Cj4gPiArCj4gPiDCoMKgwqDCoMKgwqDCoMKgLyoKPiA+IMKgwqDCoMKg
-wqDCoMKgwqAgKiBDdXJyZW50IFFHViBwb2ludHMgbWFzaywgd2hpY2ggcmVzdHJpY3RzCj4gPiDC
-oMKgwqDCoMKgwqDCoMKgICogc29tZSBwYXJ0aWN1bGFyIFNBR1Ygc3RhdGVzLCBub3QgdG8gY29u
-ZnVzZQo+ID4gLS0gCj4gPiAyLjM0LjEKPiA+IAoK
+On Thu, Jun 01, 2023 at 07:03:50PM +0300, Vinod Govindapillai wrote:
+> From: Mika Kahola <mika.kahola@intel.com>
+> 
+> MTL introduces a new way to instruct the PUnit with
+> power and bandwidth requirements of DE. Add the functionality
+> to program the registers and handle waits using interrupts.
+> The current wait time for timeouts is programmed for 10 msecs to
+> factor in the worst case scenarios. Changes made to use REG_BIT
+> for a register that we touched(GEN8_DE_MISC_IER _MMIO).
+> 
+> Wa_14016740474 is added which applies to Xe_LPD+ display
+> 
+> v2: checkpatch warning fixes, simplify program pmdemand part
+> 
+> v3: update to dbufs and pipes values to pmdemand register(stan)
+>     Removed the macro usage in update_pmdemand_values()
+> 
+> v4: move the pmdemand_pre_plane_update before cdclk update
+>     pmdemand_needs_update included cdclk params comparisons
+>     pmdemand_state NULL check (Gustavo)
+>     pmdemand.o in sorted order in the makefile (Jani)
+>     update pmdemand misc irq handler loop (Gustavo)
+>     active phys bitmask and programming correction (Gustavo)
+> 
+> v5: simplify pmdemand_state structure
+>     simplify methods to find active phys and max port clock
+>     Timeout in case of previou pmdemand task pending (Gustavo)
+> 
+> v6: rebasing
+>     updates to max_ddiclk calculations (Gustavo)
+>     updates to active_phys count method (Gustavo)
+> 
+> v7: use two separate loop to iterate throug old and new
+>     crtc states to calculate the active phys (Gustavo)
+> 
+> v8: use uniform function names (Gustavo)
+> 
+> v9: For phys change iterate through connectors (Imre)
+>     Look for change in phys for pmdemand update (Gustavo, Imre)
+>     Some more stlying changes (Imre)
+>     Update pmdemand state during HW readout/sanitize (Imre)
+> 
+> v10: Fix CI checkpatch warnings
+> 
+> v11: use correct pmdemand object pointer during hw readout,
+>      simplify the check for phys need update (Gustavo)
+> 
+> Bspec: 66451, 64636, 64602, 64603
+> Cc: Matt Atwood <matthew.s.atwood@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Acked-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |   1 +
+>  drivers/gpu/drm/i915/display/intel_display.c  |  14 +
+>  .../gpu/drm/i915/display/intel_display_core.h |   9 +
+>  .../drm/i915/display/intel_display_driver.c   |   7 +
+>  .../gpu/drm/i915/display/intel_display_irq.c  |  23 +-
+>  .../drm/i915/display/intel_display_power.c    |  14 +-
+>  .../drm/i915/display/intel_modeset_setup.c    |  18 +
+>  drivers/gpu/drm/i915/display/intel_pmdemand.c | 525 ++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_pmdemand.h |  56 ++
+>  drivers/gpu/drm/i915/i915_reg.h               |  36 +-
+>  10 files changed, 697 insertions(+), 6 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_pmdemand.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_pmdemand.h
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 1c9ed4c52760..2cd8de174bf6 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -269,6 +269,7 @@ i915-y += \
+>  	display/intel_pch_display.o \
+>  	display/intel_pch_refclk.o \
+>  	display/intel_plane_initial.o \
+> +	display/intel_pmdemand.o \
+>  	display/intel_psr.o \
+>  	display/intel_quirks.o \
+>  	display/intel_sprite.o \
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index f51a55f4e9d0..5cbf5eae2414 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -99,6 +99,7 @@
+>  #include "intel_pcode.h"
+>  #include "intel_pipe_crc.h"
+>  #include "intel_plane_initial.h"
+> +#include "intel_pmdemand.h"
+>  #include "intel_pps.h"
+>  #include "intel_psr.h"
+>  #include "intel_sdvo.h"
+> @@ -6352,6 +6353,10 @@ int intel_atomic_check(struct drm_device *dev,
+>  			return ret;
+>  	}
+>  
+> +	ret = intel_pmdemand_atomic_check(state);
+> +	if (ret)
+> +		goto fail;
+> +
+>  	ret = intel_atomic_check_crtcs(state);
+>  	if (ret)
+>  		goto fail;
+> @@ -6997,6 +7002,14 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+>  		crtc->config = new_crtc_state;
+>  
+> +	/*
+> +	 * In XE_LPD+ Pmdemand combines many parameters such as voltage index,
+> +	 * plls, cdclk frequency, QGV point selection parameter etc. Voltage
+> +	 * index, cdclk/ddiclk frequencies are supposed to be configured before
+> +	 * the cdclk config is set.
+> +	 */
+> +	intel_pmdemand_pre_plane_update(state);
+> +
+>  	if (state->modeset) {
+>  		drm_atomic_helper_update_legacy_modeset_state(dev, &state->base);
+>  
+> @@ -7116,6 +7129,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  		intel_verify_planes(state);
+>  
+>  	intel_sagv_post_plane_update(state);
+> +	intel_pmdemand_post_plane_update(state);
+>  
+>  	drm_atomic_helper_commit_hw_done(&state->base);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index dd8e08c8598f..8d2243c71dd8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -345,6 +345,15 @@ struct intel_display {
+>  		struct intel_global_obj obj;
+>  	} dbuf;
+>  
+> +	struct {
+> +		wait_queue_head_t waitqueue;
+> +
+> +		/* mutex to protect pmdemand programming sequence */
+> +		struct mutex lock;
+> +
+> +		struct intel_global_obj obj;
+> +	} pmdemand;
+> +
+>  	struct {
+>  		/*
+>  		 * dkl.phy_lock protects against concurrent access of the
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index 60ce10fc7205..dc8de861339d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -47,6 +47,7 @@
+>  #include "intel_opregion.h"
+>  #include "intel_overlay.h"
+>  #include "intel_plane_initial.h"
+> +#include "intel_pmdemand.h"
+>  #include "intel_pps.h"
+>  #include "intel_quirks.h"
+>  #include "intel_vga.h"
+> @@ -211,6 +212,8 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
+>  	if (ret < 0)
+>  		goto cleanup_vga;
+>  
+> +	intel_pmdemand_init_early(i915);
+> +
+>  	intel_power_domains_init_hw(i915, false);
+>  
+>  	if (!HAS_DISPLAY(i915))
+> @@ -240,6 +243,10 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
+>  	if (ret)
+>  		goto cleanup_vga_client_pw_domain_dmc;
+>  
+> +	ret = intel_pmdemand_init(i915);
+> +	if (ret)
+> +		goto cleanup_vga_client_pw_domain_dmc;
+> +
+>  	init_llist_head(&i915->display.atomic_helper.free_list);
+>  	INIT_WORK(&i915->display.atomic_helper.free_work,
+>  		  intel_atomic_helper_free_state_worker);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index 3b2a287d2041..0b3739310f81 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -18,6 +18,7 @@
+>  #include "intel_fifo_underrun.h"
+>  #include "intel_gmbus.h"
+>  #include "intel_hotplug_irq.h"
+> +#include "intel_pmdemand.h"
+>  #include "intel_psr.h"
+>  #include "intel_psr_regs.h"
+>  
+> @@ -827,12 +828,27 @@ static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
+>  		return GEN8_DE_PIPE_IRQ_FAULT_ERRORS;
+>  }
+>  
+> +static void intel_pmdemand_irq_handler(struct drm_i915_private *dev_priv)
+> +{
+> +	wake_up_all(&dev_priv->display.pmdemand.waitqueue);
+> +}
+> +
+>  static void
+>  gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+>  {
+>  	bool found = false;
+>  
+> -	if (iir & GEN8_DE_MISC_GSE) {
+> +	if (DISPLAY_VER(dev_priv) >= 14) {
+> +		if (iir & (XELPDP_PMDEMAND_RSP |
+> +			   XELPDP_PMDEMAND_RSPTOUT_ERR)) {
+> +			if (iir & XELPDP_PMDEMAND_RSPTOUT_ERR)
+> +				drm_dbg(&dev_priv->drm,
+> +					"Error waiting for Punit PM Demand Response\n");
+> +
+> +			intel_pmdemand_irq_handler(dev_priv);
+> +			found = true;
+> +		}
+> +	} else if (iir & GEN8_DE_MISC_GSE) {
+>  		intel_opregion_asle_intr(dev_priv);
+>  		found = true;
+>  	}
+> @@ -1576,7 +1592,10 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+>  	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+>  		de_port_masked |= BXT_DE_PORT_GMBUS;
+>  
+> -	if (DISPLAY_VER(dev_priv) >= 11) {
+> +	if (DISPLAY_VER(dev_priv) >= 14) {
+> +		de_misc_masked |= XELPDP_PMDEMAND_RSPTOUT_ERR |
+> +				  XELPDP_PMDEMAND_RSP;
+> +	} else if (DISPLAY_VER(dev_priv) >= 11) {
+>  		enum port port;
+>  
+>  		if (intel_bios_is_dsi_present(dev_priv, &port))
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 9c9a809c71f1..db827cf3c9ca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -20,6 +20,7 @@
+>  #include "intel_mchbar_regs.h"
+>  #include "intel_pch_refclk.h"
+>  #include "intel_pcode.h"
+> +#include "intel_pmdemand.h"
+>  #include "intel_pps_regs.h"
+>  #include "intel_snps_phy.h"
+>  #include "skl_watermark.h"
+> @@ -1082,20 +1083,29 @@ void gen9_dbuf_slices_update(struct drm_i915_private *dev_priv,
+>  
+>  static void gen9_dbuf_enable(struct drm_i915_private *dev_priv)
+>  {
+> +	u8 slices_mask;
+> +
+>  	dev_priv->display.dbuf.enabled_slices =
+>  		intel_enabled_dbuf_slices_mask(dev_priv);
+>  
+> +	slices_mask = BIT(DBUF_S1) | dev_priv->display.dbuf.enabled_slices;
+> +
+> +	if (DISPLAY_VER(dev_priv) >= 14)
+> +		intel_pmdemand_program_dbuf(dev_priv, slices_mask);
+> +
+>  	/*
+>  	 * Just power up at least 1 slice, we will
+>  	 * figure out later which slices we have and what we need.
+>  	 */
+> -	gen9_dbuf_slices_update(dev_priv, BIT(DBUF_S1) |
+> -				dev_priv->display.dbuf.enabled_slices);
+> +	gen9_dbuf_slices_update(dev_priv, slices_mask);
+>  }
+>  
+>  static void gen9_dbuf_disable(struct drm_i915_private *dev_priv)
+>  {
+>  	gen9_dbuf_slices_update(dev_priv, 0);
+> +
+> +	if (DISPLAY_VER(dev_priv) >= 14)
+> +		intel_pmdemand_program_dbuf(dev_priv, 0);
+>  }
+>  
+>  static void gen12_dbuf_slices_config(struct drm_i915_private *dev_priv)
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> index 5ff99ca7f1de..9940e484c98e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> @@ -26,6 +26,7 @@
+>  #include "intel_fifo_underrun.h"
+>  #include "intel_modeset_setup.h"
+>  #include "intel_pch_display.h"
+> +#include "intel_pmdemand.h"
+>  #include "intel_tc.h"
+>  #include "intel_vblank.h"
+>  #include "intel_wm.h"
+> @@ -151,6 +152,8 @@ static void intel_crtc_disable_noatomic_complete(struct intel_crtc *crtc)
+>  		to_intel_cdclk_state(i915->display.cdclk.obj.state);
+>  	struct intel_dbuf_state *dbuf_state =
+>  		to_intel_dbuf_state(i915->display.dbuf.obj.state);
+> +	struct intel_pmdemand_state *pmdemand_state =
+> +		to_intel_pmdemand_state(i915->display.pmdemand.obj.state);
+>  	struct intel_crtc_state *crtc_state =
+>  		to_intel_crtc_state(crtc->base.state);
+>  	enum pipe pipe = crtc->pipe;
+> @@ -174,6 +177,8 @@ static void intel_crtc_disable_noatomic_complete(struct intel_crtc *crtc)
+>  
+>  	bw_state->data_rate[pipe] = 0;
+>  	bw_state->num_active_planes[pipe] = 0;
+> +
+> +	pmdemand_state->ddi_clocks[pipe] = 0;
+
+active_phys_mask needs to be updated as well.
+
+>  }
+>  
+>  /*
+> @@ -661,6 +666,9 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+>  		to_intel_cdclk_state(i915->display.cdclk.obj.state);
+>  	struct intel_dbuf_state *dbuf_state =
+>  		to_intel_dbuf_state(i915->display.dbuf.obj.state);
+> +	struct intel_pmdemand_state *pmdemand_state =
+> +		to_intel_pmdemand_state(i915->display.pmdemand.obj.state);
+> +	u16 active_phys = 0;
+>  	enum pipe pipe;
+>  	struct intel_crtc *crtc;
+>  	struct intel_encoder *encoder;
+> @@ -742,6 +750,8 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+>  
+>  	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
+>  	for_each_intel_connector_iter(connector, &conn_iter) {
+> +		enum phy phy;
+> +
+>  		if (connector->get_hw_state(connector)) {
+>  			struct intel_crtc_state *crtc_state;
+>  			struct intel_crtc *crtc;
+> @@ -764,6 +774,10 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+>  					drm_connector_mask(&connector->base);
+>  				crtc_state->uapi.encoder_mask |=
+>  					drm_encoder_mask(&encoder->base);
+> +
+> +				phy = intel_port_to_phy(i915, encoder->port);
+> +				if (!intel_phy_is_tc(i915, phy))
+> +					active_phys |= BIT(phy);
+>  			}
+>  		} else {
+>  			connector->base.dpms = DRM_MODE_DPMS_OFF;
+> @@ -776,6 +790,8 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+>  	}
+>  	drm_connector_list_iter_end(&conn_iter);
+>  
+> +	pmdemand_state->active_phys_mask = active_phys;
+> +
+>  	for_each_intel_crtc(&i915->drm, crtc) {
+>  		struct intel_bw_state *bw_state =
+>  			to_intel_bw_state(i915->display.bw.obj.state);
+> @@ -840,6 +856,8 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+>  		cdclk_state->min_cdclk[crtc->pipe] = min_cdclk;
+>  		cdclk_state->min_voltage_level[crtc->pipe] =
+>  			crtc_state->min_voltage_level;
+> +		pmdemand_state->ddi_clocks[crtc->pipe] =
+> +			crtc_state->port_clock;
+
+pmdemand_state->params stays still uninitialized.
+
+>  
+>  		intel_bw_crtc_update(bw_state, crtc_state);
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+> new file mode 100644
+> index 000000000000..89dc4d52b091
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+> @@ -0,0 +1,525 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#include <linux/bitops.h>
+> +
+> +#include "i915_drv.h"
+> +#include "i915_reg.h"
+> +#include "intel_atomic.h"
+> +#include "intel_bw.h"
+> +#include "intel_cdclk.h"
+> +#include "intel_de.h"
+> +#include "intel_display_trace.h"
+> +#include "intel_pmdemand.h"
+> +#include "skl_watermark.h"
+> +
+> +static struct intel_global_state *
+> +intel_pmdemand_duplicate_state(struct intel_global_obj *obj)
+> +{
+> +	struct intel_pmdemand_state *pmdemand_state;
+> +
+> +	pmdemand_state = kmemdup(obj->state, sizeof(*pmdemand_state), GFP_KERNEL);
+> +	if (!pmdemand_state)
+> +		return NULL;
+> +
+> +	return &pmdemand_state->base;
+> +}
+> +
+> +static void intel_pmdemand_destroy_state(struct intel_global_obj *obj,
+> +					 struct intel_global_state *state)
+> +{
+> +	kfree(state);
+> +}
+> +
+> +static const struct intel_global_state_funcs intel_pmdemand_funcs = {
+> +	.atomic_duplicate_state = intel_pmdemand_duplicate_state,
+> +	.atomic_destroy_state = intel_pmdemand_destroy_state,
+> +};
+> +
+> +static struct intel_pmdemand_state *
+> +intel_atomic_get_pmdemand_state(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	struct intel_global_state *pmdemand_state =
+> +		intel_atomic_get_global_obj_state(state,
+> +						  &i915->display.pmdemand.obj);
+> +
+> +	if (IS_ERR(pmdemand_state))
+> +		return ERR_CAST(pmdemand_state);
+> +
+> +	return to_intel_pmdemand_state(pmdemand_state);
+> +}
+> +
+> +static struct intel_pmdemand_state *
+> +intel_atomic_get_old_pmdemand_state(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	struct intel_global_state *pmdemand_state =
+> +		intel_atomic_get_old_global_obj_state(state,
+> +						      &i915->display.pmdemand.obj);
+> +
+> +	if (!pmdemand_state)
+> +		return NULL;
+> +
+> +	return to_intel_pmdemand_state(pmdemand_state);
+> +}
+> +
+> +static struct intel_pmdemand_state *
+> +intel_atomic_get_new_pmdemand_state(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	struct intel_global_state *pmdemand_state =
+> +		intel_atomic_get_new_global_obj_state(state,
+> +						      &i915->display.pmdemand.obj);
+> +
+> +	if (!pmdemand_state)
+> +		return NULL;
+> +
+> +	return to_intel_pmdemand_state(pmdemand_state);
+> +}
+> +
+> +int intel_pmdemand_init(struct drm_i915_private *i915)
+> +{
+> +	struct intel_pmdemand_state *pmdemand_state;
+> +
+> +	pmdemand_state = kzalloc(sizeof(*pmdemand_state), GFP_KERNEL);
+> +	if (!pmdemand_state)
+> +		return -ENOMEM;
+> +
+> +	intel_atomic_global_obj_init(i915, &i915->display.pmdemand.obj,
+> +				     &pmdemand_state->base,
+> +				     &intel_pmdemand_funcs);
+> +
+> +	if (IS_MTL_DISPLAY_STEP(i915, STEP_A0, STEP_C0))
+> +		/* Wa_14016740474 */
+> +		intel_de_rmw(i915, XELPD_CHICKEN_DCPR_3, 0, DMD_RSP_TIMEOUT_DISABLE);
+> +
+> +	return 0;
+> +}
+> +
+> +void intel_pmdemand_init_early(struct drm_i915_private *i915)
+> +{
+> +	mutex_init(&i915->display.pmdemand.lock);
+> +	init_waitqueue_head(&i915->display.pmdemand.waitqueue);
+> +}
+> +
+> +static void
+> +intel_pmdemand_update_max_ddiclk(struct intel_atomic_state *state,
+> +				 struct intel_pmdemand_state *pmdemand_state)
+> +{
+> +	int max_ddiclk = 0;
+> +	struct intel_crtc *crtc;
+> +	int i;
+> +	const struct intel_crtc_state *new_crtc_state;
+> +
+> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+> +		pmdemand_state->ddi_clocks[crtc->pipe] =
+> +			new_crtc_state->port_clock;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(pmdemand_state->ddi_clocks); i++)
+> +		max_ddiclk = max(pmdemand_state->ddi_clocks[i], max_ddiclk);
+> +
+> +	pmdemand_state->params.ddiclk_max = DIV_ROUND_UP(max_ddiclk, 1000);
+> +}
+> +
+> +static void
+> +intel_pmdemand_update_phys_mask(struct drm_i915_private *i915,
+> +				struct intel_atomic_state *state,
+> +				struct drm_connector_state *conn_state,
+> +				bool for_old_state, u16 *phys_mask)
+> +{
+> +	struct intel_crtc *crtc = to_intel_crtc(conn_state->crtc);
+> +	struct intel_encoder *encoder = to_intel_encoder(conn_state->best_encoder);
+> +	struct intel_crtc_state *crtc_state;
+> +	enum phy phy;
+> +
+> +	if (!crtc || !encoder)
+> +		return;
+> +
+> +	phy = intel_port_to_phy(i915, encoder->port);
+> +	if (intel_phy_is_tc(i915, phy))
+> +		return;
+> +
+> +	if (for_old_state)
+> +		crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
+> +	else
+> +		crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
+> +
+> +	if (!crtc_state->hw.active)
+> +		return;
+> +
+> +	if (for_old_state)
+> +		*phys_mask &= ~BIT(phy);
+> +	else
+> +		*phys_mask |= BIT(phy);
+> +}
+> +
+> +static void
+> +intel_pmdemand_update_active_non_tc_phys(struct drm_i915_private *i915,
+> +					 struct intel_atomic_state *state,
+> +					 struct intel_pmdemand_state *pmdemand_state)
+> +{
+> +	u16 *phys_mask = &pmdemand_state->active_phys_mask;
+> +	struct drm_connector *connector;
+> +	int i;
+> +	struct drm_connector_state *old_conn_state, *new_conn_state;
+> +
+> +	for_each_oldnew_connector_in_state(&state->base, connector,
+> +					   old_conn_state, new_conn_state, i) {
+> +		if (!intel_connector_needs_modeset(state, connector))
+> +			continue;
+> +
+> +		/* First clear the active phys in the old connector state */
+> +		intel_pmdemand_update_phys_mask(i915, state, old_conn_state,
+> +						true, phys_mask);
+> +
+> +		/* Then set the active phys in new connector state */
+> +		intel_pmdemand_update_phys_mask(i915, state, new_conn_state,
+> +						false, phys_mask);
+> +	}
+> +
+> +	pmdemand_state->params.active_phys = hweight16(*phys_mask);
+> +}
+> +
+> +static bool intel_pmdemand_needs_update(struct intel_atomic_state *state)
+> +{
+> +	struct intel_crtc *crtc;
+> +	int i;
+> +	const struct intel_bw_state *new_bw_state, *old_bw_state;
+> +	const struct intel_cdclk_state *new_cdclk_state, *old_cdclk_state;
+> +	const struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+> +	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
+> +	struct drm_connector *connector;
+> +	struct drm_connector_state *new_conn_state;
+> +
+> +	new_bw_state = intel_atomic_get_new_bw_state(state);
+> +	old_bw_state = intel_atomic_get_old_bw_state(state);
+> +	if (new_bw_state && new_bw_state->qgv_point_peakbw !=
+> +	    old_bw_state->qgv_point_peakbw)
+> +		return true;
+> +
+> +	new_dbuf_state = intel_atomic_get_new_dbuf_state(state);
+> +	old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
+> +	if (new_dbuf_state &&
+> +	    (new_dbuf_state->active_pipes !=
+> +	     old_dbuf_state->active_pipes ||
+> +	     new_dbuf_state->enabled_slices !=
+> +	     old_dbuf_state->enabled_slices))
+> +		return true;
+> +
+> +	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+> +	old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
+> +	if (new_cdclk_state &&
+> +	    (new_cdclk_state->actual.cdclk !=
+> +	     old_cdclk_state->actual.cdclk ||
+> +	     new_cdclk_state->actual.voltage_level !=
+> +	     old_cdclk_state->actual.voltage_level))
+> +		return true;
+> +
+> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> +					    new_crtc_state, i)
+> +		if (new_crtc_state->port_clock != old_crtc_state->port_clock)
+> +			return true;
+> +
+> +	for_each_new_connector_in_state(&state->base, connector,
+> +					new_conn_state, i)
+> +		if (intel_connector_needs_modeset(state, connector))
+> +			return true;
+
+It's straightforward to prevent the update if the encoders don't change
+or both the old and new encoders have a TypeC PHY, so let's check for that
+here.
+
+> +
+> +	return false;
+> +}
+> +
+> +int intel_pmdemand_atomic_check(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	const struct intel_bw_state *new_bw_state;
+> +	const struct intel_cdclk_state *new_cdclk_state;
+> +	const struct intel_dbuf_state *new_dbuf_state;
+> +	struct intel_pmdemand_state *new_pmdemand_state;
+> +	int ret;
+> +
+> +	if (DISPLAY_VER(i915) < 14)
+> +		return 0;
+> +
+> +	if (!intel_pmdemand_needs_update(state))
+> +		return 0;
+> +
+> +	new_pmdemand_state = intel_atomic_get_pmdemand_state(state);
+> +	if (IS_ERR(new_pmdemand_state))
+> +		return PTR_ERR(new_pmdemand_state);
+> +
+> +	ret = intel_atomic_lock_global_state(&new_pmdemand_state->base);
+> +	if (ret)
+> +		return ret;
+> +
+> +	new_bw_state = intel_atomic_get_bw_state(state);
+> +	if (IS_ERR(new_bw_state))
+> +		return PTR_ERR(new_bw_state);
+> +
+> +	/* firmware will calculate the qclck_gc_index, requirement is set to 0 */
+> +	new_pmdemand_state->params.qclk_gv_index = 0;
+> +	new_pmdemand_state->params.qclk_gv_bw =
+> +		min_t(u16, new_bw_state->qgv_point_peakbw, 0xffff);
+
+The above clamping doesn't work as expected.
+
+> +
+> +	new_dbuf_state = intel_atomic_get_dbuf_state(state);
+> +	if (IS_ERR(new_dbuf_state))
+> +		return PTR_ERR(new_dbuf_state);
+> +
+> +	new_pmdemand_state->params.active_pipes =
+> +		min_t(u8, hweight8(new_dbuf_state->active_pipes), 3);
+> +	new_pmdemand_state->params.active_dbufs =
+> +		min_t(u8,
+> +		      hweight8(BIT(DBUF_S1) | new_dbuf_state->enabled_slices),
+
+enabled_slices will be up-to-date wrt. DBUF_S1, so no need to include it
+here.
+
+> +		      3);
+> +
+> +	new_cdclk_state = intel_atomic_get_cdclk_state(state);
+> +	if (IS_ERR(new_cdclk_state))
+> +		return PTR_ERR(new_cdclk_state);
+> +
+> +	new_pmdemand_state->params.voltage_index =
+> +		new_cdclk_state->actual.voltage_level;
+> +	new_pmdemand_state->params.cdclk_freq_mhz =
+> +		DIV_ROUND_UP(new_cdclk_state->actual.cdclk, 1000);
+> +
+> +	intel_pmdemand_update_max_ddiclk(state, new_pmdemand_state);
+> +
+> +	intel_pmdemand_update_active_non_tc_phys(i915, state, new_pmdemand_state);
+> +
+> +	/*
+> +	 * Setting scalers to max as it can not be calculated during flips and
+> +	 * fastsets without taking global states locks.
+> +	 */
+> +	new_pmdemand_state->params.scalers = 7;
+> +
+> +	ret = intel_atomic_serialize_global_state(&new_pmdemand_state->base);
+
+This won't work if modesetting is not allowed by this commit, which
+doesn't allow adding additional (enabled) CRTCs to the state (thanks
+for Ville for pointing this out).
+
+What I think we could do is to serialize the state only if
+state->base.allow_modeset == true and if that's not the case program
+only a more conservative pmdemand state than the current HW state in the
+pre/post plane update hooks (the correctness of which would be ensured
+by the pmdemand mutex taken there and that changing to a more
+conservative state should be valid at any point).
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static bool intel_pmdemand_check_prev_transaction(struct drm_i915_private *i915)
+> +{
+> +	return !(intel_de_wait_for_clear(i915,
+> +					 XELPDP_INITIATE_PMDEMAND_REQUEST(1),
+> +					 XELPDP_PMDEMAND_REQ_ENABLE, 10) ||
+> +		 intel_de_wait_for_clear(i915,
+> +					 GEN12_DCPR_STATUS_1,
+> +					 XELPDP_PMDEMAND_INFLIGHT_STATUS, 10));
+> +}
+> +
+> +static bool intel_pmdemand_req_complete(struct drm_i915_private *i915)
+> +{
+> +	return !(intel_de_read(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1)) &
+> +		 XELPDP_PMDEMAND_REQ_ENABLE);
+> +}
+> +
+> +static void intel_pmdemand_wait(struct drm_i915_private *i915)
+> +{
+> +	const unsigned int timeout_ms = 10;
+
+Redundant variable.
+
+> +
+> +	if (!wait_event_timeout(i915->display.pmdemand.waitqueue,
+> +				intel_pmdemand_req_complete(i915),
+> +				msecs_to_jiffies_timeout(timeout_ms)))
+> +		drm_err(&i915->drm,
+> +			"timed out waiting for Punit PM Demand Response\n");
+> +}
+> +
+> +/* Required to be programmed during Display Init Sequences. */
+> +void intel_pmdemand_program_dbuf(struct drm_i915_private *i915,
+> +				 u8 dbuf_slices)
+> +{
+> +	u32 dbufs = min_t(u32, hweight8(dbuf_slices), 3);
+> +
+> +	mutex_lock(&i915->display.pmdemand.lock);
+> +	if (drm_WARN_ON(&i915->drm,
+> +			!intel_pmdemand_check_prev_transaction(i915)))
+> +		goto unlock;
+> +
+> +	intel_de_rmw(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(0),
+> +		     XELPDP_PMDEMAND_DBUFS_MASK, XELPDP_PMDEMAND_DBUFS(dbufs));
+> +	intel_de_rmw(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1), 0,
+> +		     XELPDP_PMDEMAND_REQ_ENABLE);
+> +
+> +	intel_pmdemand_wait(i915);
+> +
+> +unlock:
+> +	mutex_unlock(&i915->display.pmdemand.lock);
+> +}
+> +
+> +static void
+> +intel_pmdemand_update_params(const struct intel_pmdemand_state *new,
+> +			     const struct intel_pmdemand_state *old,
+> +			     u32 *reg1, u32 *reg2)
+> +{
+> +	u32 plls, tmp;
+> +
+> +	/*
+> +	 * The pmdemand parameter updates happens in two steps. Pre plane and
+> +	 * post plane updates. During the pre plane, as DE might still be
+> +	 * handling with some old operations, to avoid unwanted performance
+> +	 * issues, program the pmdemand parameters with higher of old and new
+> +	 * values. And then after once settled, use the new parameter values
+> +	 * as part of the post plane update.
+> +	 */
+> +
+> +	/* Set 1*/
+> +	*reg1 &= ~XELPDP_PMDEMAND_QCLK_GV_BW_MASK;
+> +	tmp = old ? max(old->params.qclk_gv_bw, new->params.qclk_gv_bw) :
+> +		    new->params.qclk_gv_bw;
+> +	*reg1 |= XELPDP_PMDEMAND_QCLK_GV_BW(tmp);
+> +
+> +	*reg1 &= ~XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK;
+> +	tmp = old ? max(old->params.voltage_index, new->params.voltage_index) :
+> +		    new->params.voltage_index;
+> +	*reg1 |= XELPDP_PMDEMAND_VOLTAGE_INDEX(tmp);
+> +
+> +	*reg1 &= ~XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK;
+> +	tmp = old ? max(old->params.qclk_gv_index, new->params.qclk_gv_index) :
+> +		    new->params.qclk_gv_index;
+> +	*reg1 |= XELPDP_PMDEMAND_QCLK_GV_INDEX(tmp);
+> +
+> +	*reg1 &= ~XELPDP_PMDEMAND_PIPES_MASK;
+> +	tmp = old ? max(old->params.active_pipes, new->params.active_pipes) :
+> +		    new->params.active_pipes;
+> +	*reg1 |= XELPDP_PMDEMAND_PIPES(tmp);
+> +
+> +	*reg1 &= ~XELPDP_PMDEMAND_DBUFS_MASK;
+> +	tmp = old ? max(old->params.active_dbufs, new->params.active_dbufs) :
+> +		    new->params.active_dbufs;
+> +	*reg1 |= XELPDP_PMDEMAND_DBUFS(tmp);
+> +
+> +	*reg1 &= ~XELPDP_PMDEMAND_PHYS_MASK;
+> +	plls = old ? max(old->params.active_phys, new->params.active_phys) :
+> +		     new->params.active_phys;
+> +	plls = min_t(u32, plls, 7);
+> +	*reg1 |= XELPDP_PMDEMAND_PHYS(plls);
+> +
+> +	/* Set 2*/
+> +	*reg2 &= ~XELPDP_PMDEMAND_CDCLK_FREQ_MASK;
+> +	tmp = old ? max(old->params.cdclk_freq_mhz,
+> +			new->params.cdclk_freq_mhz) :
+> +		    new->params.cdclk_freq_mhz;
+> +	*reg2 |= XELPDP_PMDEMAND_CDCLK_FREQ(tmp);
+> +
+> +	*reg2 &= ~XELPDP_PMDEMAND_DDICLK_FREQ_MASK;
+> +	tmp = old ? max(old->params.ddiclk_max, new->params.ddiclk_max) :
+> +		    new->params.ddiclk_max;
+> +	*reg2 |= XELPDP_PMDEMAND_DDICLK_FREQ(tmp);
+> +
+> +	*reg2 &= ~XELPDP_PMDEMAND_SCALERS_MASK;
+> +	tmp = old ? max(old->params.scalers, new->params.scalers) :
+> +		    new->params.scalers;
+> +	*reg2 |= XELPDP_PMDEMAND_SCALERS(tmp);
+> +
+> +	/*
+> +	 * Active_PLLs starts with 1 because of CDCLK PLL.
+> +	 * TODO: Missing to account genlock filter when it gets used.
+> +	 */
+> +	plls = min_t(u32, plls + 1, 7);
+> +	*reg2 &= ~XELPDP_PMDEMAND_PLLS_MASK;
+> +	*reg2 |= XELPDP_PMDEMAND_PLLS(plls);
+> +}
+> +
+> +static void
+> +intel_pmdemand_program_params(struct drm_i915_private *i915,
+> +			      const struct intel_pmdemand_state *new,
+> +			      const struct intel_pmdemand_state *old)
+> +{
+> +	bool changed = false;
+> +	u32 reg1, mod_reg1;
+> +	u32 reg2, mod_reg2;
+> +
+> +	mutex_lock(&i915->display.pmdemand.lock);
+> +	if (drm_WARN_ON(&i915->drm,
+> +			!intel_pmdemand_check_prev_transaction(i915)))
+> +		goto unlock;
+> +
+> +	reg1 = intel_de_read(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(0));
+> +	mod_reg1 = reg1;
+> +
+> +	reg2 = intel_de_read(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1));
+> +	mod_reg2 = reg2;
+> +
+> +	intel_pmdemand_update_params(new, old, &mod_reg1, &mod_reg2);
+> +
+> +	if (reg1 != mod_reg1) {
+> +		intel_de_write(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(0),
+> +			       mod_reg1);
+> +		changed = true;
+> +	}
+> +
+> +	if (reg2 != mod_reg2) {
+> +		intel_de_write(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1),
+> +			       mod_reg2);
+> +		changed = true;
+> +	}
+> +
+> +	/* Initiate pm demand request only if register values are changed */
+> +	if (!changed)
+> +		goto unlock;
+> +
+> +	drm_dbg_kms(&i915->drm,
+> +		    "initate pmdemand request values: (0x%x 0x%x)\n",
+> +		    mod_reg1, mod_reg2);
+> +
+> +	intel_de_rmw(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1), 0,
+> +		     XELPDP_PMDEMAND_REQ_ENABLE);
+> +
+> +	intel_pmdemand_wait(i915);
+> +
+> +unlock:
+> +	mutex_unlock(&i915->display.pmdemand.lock);
+> +}
+> +
+> +static bool
+> +intel_pmdemand_state_changed(const struct intel_pmdemand_state *new,
+> +			     const struct intel_pmdemand_state *old)
+> +{
+> +	return memcmp(&new->params, &old->params, sizeof(new->params)) != 0;
+> +}
+> +
+> +void intel_pmdemand_pre_plane_update(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	const struct intel_pmdemand_state *new_pmdemand_state =
+> +		intel_atomic_get_new_pmdemand_state(state);
+> +	const struct intel_pmdemand_state *old_pmdemand_state =
+> +		intel_atomic_get_old_pmdemand_state(state);
+> +
+> +	if (DISPLAY_VER(i915) < 14)
+> +		return;
+> +
+> +	if (!new_pmdemand_state ||
+> +	    !intel_pmdemand_state_changed(new_pmdemand_state,
+> +					  old_pmdemand_state))
+> +		return;
+> +
+> +	WARN_ON(!new_pmdemand_state->base.changed);
+> +
+> +	intel_pmdemand_program_params(i915, new_pmdemand_state,
+> +				      old_pmdemand_state);
+> +}
+> +
+> +void intel_pmdemand_post_plane_update(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> +	const struct intel_pmdemand_state *new_pmdemand_state =
+> +		intel_atomic_get_new_pmdemand_state(state);
+> +	const struct intel_pmdemand_state *old_pmdemand_state =
+> +		intel_atomic_get_old_pmdemand_state(state);
+> +
+> +	if (DISPLAY_VER(i915) < 14)
+> +		return;
+> +
+> +	if (!new_pmdemand_state ||
+> +	    !intel_pmdemand_state_changed(new_pmdemand_state,
+> +					  old_pmdemand_state))
+> +		return;
+> +
+> +	WARN_ON(!new_pmdemand_state->base.changed);
+> +
+> +	intel_pmdemand_program_params(i915, new_pmdemand_state, NULL);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.h b/drivers/gpu/drm/i915/display/intel_pmdemand.h
+> new file mode 100644
+> index 000000000000..c1c9b93934bb
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.h
+> @@ -0,0 +1,56 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_PMDEMAND_H__
+> +#define __INTEL_PMDEMAND_H__
+> +
+> +#include "intel_display_limits.h"
+> +#include "intel_global_state.h"
+> +
+> +struct drm_i915_private;
+> +struct intel_atomic_state;
+> +struct intel_crtc_state;
+> +struct intel_plane_state;
+> +
+> +struct pmdemand_params {
+> +	u16 qclk_gv_bw;
+> +	u8 voltage_index;
+> +	u8 qclk_gv_index;
+> +	u8 active_pipes;
+> +	u8 active_dbufs;
+> +	/* Total number of non type C active phys from active_phys_mask */
+> +	u8 active_phys;
+> +	u16 cdclk_freq_mhz;
+> +	/* max from ddi_clocks[] */
+> +	u16 ddiclk_max;
+> +	u8 scalers;
+> +};
+> +
+> +struct intel_pmdemand_state {
+> +	struct intel_global_state base;
+> +
+> +	/* Maintain a persistent list of port clocks across all crtcs */
+> +	int ddi_clocks[I915_MAX_PIPES];
+> +
+> +	/* Maintain a persistent list of non type C phys mask */
+> +	u16 active_phys_mask;
+> +
+> +	/* Parameters to be configured in the pmdemand registers */
+> +	struct pmdemand_params params;
+> +};
+> +
+> +#define to_intel_pmdemand_state(x) container_of((x), \
+> +						struct intel_pmdemand_state, \
+> +						base)
+> +
+> +void intel_pmdemand_init_early(struct drm_i915_private *i915);
+> +int intel_pmdemand_init(struct drm_i915_private *i915);
+> +void intel_pmdemand_program_dbuf(struct drm_i915_private *i915,
+> +				 u8 dbuf_slices);
+> +void intel_pmdemand_pre_plane_update(struct intel_atomic_state *state);
+> +void intel_pmdemand_post_plane_update(struct intel_atomic_state *state);
+> +int intel_pmdemand_atomic_check(struct intel_atomic_state *state);
+> +
+> +#endif /* __INTEL_PMDEMAND_H__ */
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 0523418129c5..6d34d9f59b1c 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -4418,8 +4418,10 @@
+>  #define GEN8_DE_MISC_IMR _MMIO(0x44464)
+>  #define GEN8_DE_MISC_IIR _MMIO(0x44468)
+>  #define GEN8_DE_MISC_IER _MMIO(0x4446c)
+> -#define  GEN8_DE_MISC_GSE		(1 << 27)
+> -#define  GEN8_DE_EDP_PSR		(1 << 19)
+> +#define  XELPDP_PMDEMAND_RSPTOUT_ERR	REG_BIT(27)
+> +#define  GEN8_DE_MISC_GSE		REG_BIT(27)
+> +#define  GEN8_DE_EDP_PSR		REG_BIT(19)
+> +#define  XELPDP_PMDEMAND_RSP		REG_BIT(3)
+>  
+>  #define GEN8_PCU_ISR _MMIO(0x444e0)
+>  #define GEN8_PCU_IMR _MMIO(0x444e4)
+> @@ -4504,6 +4506,33 @@
+>  #define  XELPDP_DP_ALT_HPD_LONG_DETECT		REG_BIT(1)
+>  #define  XELPDP_DP_ALT_HPD_SHORT_DETECT		REG_BIT(0)
+>  
+> +#define XELPDP_INITIATE_PMDEMAND_REQUEST(dword)		_MMIO(0x45230 + 4 * (dword))
+> +#define  XELPDP_PMDEMAND_QCLK_GV_BW_MASK		REG_GENMASK(31, 16)
+> +#define  XELPDP_PMDEMAND_QCLK_GV_BW(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_QCLK_GV_BW_MASK, x)
+> +#define  XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK		REG_GENMASK(14, 12)
+> +#define  XELPDP_PMDEMAND_VOLTAGE_INDEX(x)		REG_FIELD_PREP(XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK, x)
+> +#define  XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK		REG_GENMASK(11, 8)
+> +#define  XELPDP_PMDEMAND_QCLK_GV_INDEX(x)		REG_FIELD_PREP(XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK, x)
+> +#define  XELPDP_PMDEMAND_PIPES_MASK			REG_GENMASK(7, 6)
+> +#define  XELPDP_PMDEMAND_PIPES(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_PIPES_MASK, x)
+> +#define  XELPDP_PMDEMAND_DBUFS_MASK			REG_GENMASK(5, 4)
+> +#define  XELPDP_PMDEMAND_DBUFS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_DBUFS_MASK, x)
+> +#define  XELPDP_PMDEMAND_PHYS_MASK			REG_GENMASK(2, 0)
+> +#define  XELPDP_PMDEMAND_PHYS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_PHYS_MASK, x)
+> +
+> +#define  XELPDP_PMDEMAND_REQ_ENABLE			REG_BIT(31)
+> +#define  XELPDP_PMDEMAND_CDCLK_FREQ_MASK		REG_GENMASK(30, 20)
+> +#define  XELPDP_PMDEMAND_CDCLK_FREQ(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_CDCLK_FREQ_MASK, x)
+> +#define  XELPDP_PMDEMAND_DDICLK_FREQ_MASK		REG_GENMASK(18, 8)
+> +#define  XELPDP_PMDEMAND_DDICLK_FREQ(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_DDICLK_FREQ_MASK, x)
+> +#define  XELPDP_PMDEMAND_SCALERS_MASK			REG_GENMASK(6, 4)
+> +#define  XELPDP_PMDEMAND_SCALERS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_SCALERS_MASK, x)
+> +#define  XELPDP_PMDEMAND_PLLS_MASK			REG_GENMASK(2, 0)
+> +#define  XELPDP_PMDEMAND_PLLS(x)			REG_FIELD_PREP(XELPDP_PMDEMAND_PLLS_MASK, x)
+> +
+> +#define GEN12_DCPR_STATUS_1				_MMIO(0x46440)
+> +#define  XELPDP_PMDEMAND_INFLIGHT_STATUS		REG_BIT(26)
+> +
+>  #define ILK_DISPLAY_CHICKEN2	_MMIO(0x42004)
+>  /* Required on all Ironlake and Sandybridge according to the B-Spec. */
+>  #define   ILK_ELPIN_409_SELECT	REG_BIT(25)
+> @@ -4663,6 +4692,9 @@
+>  #define   DCPR_SEND_RESP_IMM			REG_BIT(25)
+>  #define   DCPR_CLEAR_MEMSTAT_DIS		REG_BIT(24)
+>  
+> +#define XELPD_CHICKEN_DCPR_3			_MMIO(0x46438)
+> +#define   DMD_RSP_TIMEOUT_DISABLE		REG_BIT(19)
+> +
+>  #define SKL_DFSM			_MMIO(0x51000)
+>  #define   SKL_DFSM_DISPLAY_PM_DISABLE	(1 << 27)
+>  #define   SKL_DFSM_DISPLAY_HDCP_DISABLE	(1 << 25)
+> -- 
+> 2.34.1
+> 
