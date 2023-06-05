@@ -1,52 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 289FB722158
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jun 2023 10:46:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D94722173
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jun 2023 10:53:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A99A310E1A5;
-	Mon,  5 Jun 2023 08:46:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65F0A10E1A5;
+	Mon,  5 Jun 2023 08:53:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84AF710E1A5
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 08:46:08 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D57810E1A3;
+ Mon,  5 Jun 2023 08:53:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685954768; x=1717490768;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=jBhlG4lrEk8Mkhir7L5iCQVxp85ImYcDvXl3DPtV/GA=;
- b=YINeZt1vQxbB21jeS6UkKwNQDNPnZBkwdSEakB3Ih3l6Ir1m/vNoR1fa
- lm92pw7Ub53InePOwQf8w4J+7izrJSNNwlOBQ8vHTr3S0Vp7LxZ+Nms4C
- +k/djt2qnMdnLSIJPlu+jp1w8enaplhroMocoxHp7Z+3tF2TgaorVw2oC
- pY5jZXhWFolkfAc7d4ygDZvn+xlBadrNcm1sqyokM0OLPkVbzBnCqkiIR
- +tNGyVCCQrdRH1pVZn2z/XiPc1w7uVNI8/zFGExE03CYhuPkUMdd8oSDz
- RRbqg9rpIdo7fyV7sTZBbbIjDUR/wDWE4W+H/RLQlsk0IRsMshZ5B4e41 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="336670800"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="336670800"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 01:46:08 -0700
+ t=1685955199; x=1717491199;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=PJ4ErH8PxlMaCu9Ud28R4bgGYuccLpOJEA9x+7v/SZo=;
+ b=kFzOOleErGlR1n6jbzqw6fcEtcQwW2zGyhWP8stsIDwYspRK1nRpzq+V
+ bmxvj9ZgzMJ2g9H+QwJ3TVEPIc+TR+kdJ94qepxRQj4TpcJFSLpPcSLy9
+ aTzbfMiUuaGfeJN6xBuU6AHQn6dCh2qcJM50ObUEvh6pnmarHm+61ThXm
+ bEYvW+LJkU5Xa8PsKW1nAXPt/ZmBRK0RhhD+1p51td/aErtL9+XPmNQsu
+ vz8a5SDHhL4xFqf9GcoObE1JnxCq+Q4GgXOjq6lLNFvJ+Dw89+1OkTRpk
+ 1qaxszg4s0pfH+C0pxvE2Kxb496UTegcYzHw6ufhqqCTSRm96LAvNtNPh Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="422143292"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="422143292"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2023 01:53:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="741629457"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="741629457"
-Received: from egrabovs-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.56.198])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 01:46:06 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230602181450.1151368-1-matthew.d.roper@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230602181450.1151368-1-matthew.d.roper@intel.com>
-Date: Mon, 05 Jun 2023 11:46:04 +0300
-Message-ID: <873536cn5f.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="711739157"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="711739157"
+Received: from mloughma-mobl1.ger.corp.intel.com (HELO [10.213.238.159])
+ ([10.213.238.159])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2023 01:53:17 -0700
+Message-ID: <f7000b2e-e809-3801-48ba-d2a242dcb124@linux.intel.com>
+Date: Mon, 5 Jun 2023 09:53:05 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Extract display init
- from intel_device_info_runtime_init
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+To: fei.yang@intel.com, intel-gfx@lists.freedesktop.org
+References: <20230531171008.1738759-1-fei.yang@intel.com>
+Content-Language: en-US
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230531171008.1738759-1-fei.yang@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v15 0/1] drm/i915: Allow user to set cache
+ at BO creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,372 +63,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 02 Jun 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
-> Moving display-specific runtime info initialization into display/ makes
-> the display code more self-contained and also makes it easier to call
-> from the Xe driver.
->
-> v2:
->  - Drop unnecessary display/ prefix from #includes.  (Jani)
->  - Clear runtime info if fusing leaves no pipes remaining, the same as
->    we do when fusing indicates the entire display controller is
->    unavailable.  (Jani)
->  - Move adjustment of DRIVER_MODESET / DRIVER_ATOMIC after call to
->    intel_display_device_info_runtime_init(); HAS_DISPLAY may have
->    changed to false during the runtime init.  (Jani)
->
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On 31/05/2023 18:10, fei.yang@intel.com wrote:
+> From: Fei Yang <fei.yang@intel.com>
+> 
+> This series introduce a new extension for GEM_CREATE,
+> 1. end support for set caching ioctl [PATCH 1/2]
+> 2. add set_pat extension for gem_create [PATCH 2/2]
+> 
+> v2: drop one patch that was merged separately
+>      commit 341ad0e8e254 ("drm/i915/mtl: Add PTE encode function")
+> v3: rebased on https://patchwork.freedesktop.org/series/117082/
+> v4: fix missing unlock introduced in v3, and
+>      solve a rebase conflict
+> v5: replace obj->cache_level with pat_set_by_user,
+>      fix i915_cache_level_str() for legacy platforms.
+> v6: rebased on https://patchwork.freedesktop.org/series/117480/
+> v7: rebased on https://patchwork.freedesktop.org/series/117528/
+> v8: dropped the two dependent patches that has been merged
+>      separately. Add IGT link and Tested-by (MESA).
+> v9: addressing comments (Andi)
+> v10: acked-by and tested-by MESA
+> v11: drop "end support for set caching ioctl" (merged)
+>       remove tools/include/uapi/drm/i915_drm.h
+> v12: drop Bspec reference in comment. add to commit message instead
+> v13: sent to test with igt@gem_create@create-ext-set-pat
+> v14: sent to test with igt@gem_create@create-ext-set-pat
+> v15: update commit message with documentation note and t-b/a-b from
+>       Media driver folks.
+> 
+> Fei Yang (1):
+>    drm/i915: Allow user to set cache at BO creation
+> 
+>   drivers/gpu/drm/i915/gem/i915_gem_create.c | 36 +++++++++++++++++++
+>   drivers/gpu/drm/i915/gem/i915_gem_object.c |  6 ++++
+>   include/uapi/drm/i915_drm.h                | 41 ++++++++++++++++++++++
+>   3 files changed, 83 insertions(+)
+> 
 
-> ---
->  .../drm/i915/display/intel_display_device.c   | 127 +++++++++++++++
->  .../drm/i915/display/intel_display_device.h   |   1 +
->  drivers/gpu/drm/i915/intel_device_info.c      | 154 ++----------------
->  3 files changed, 144 insertions(+), 138 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-> index 464df1764a86..967bac29b5d5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> @@ -9,6 +9,8 @@
->  
->  #include "i915_drv.h"
->  #include "i915_reg.h"
-> +#include "intel_de.h"
-> +#include "intel_display.h"
->  #include "intel_display_device.h"
->  #include "intel_display_power.h"
->  #include "intel_display_reg_defs.h"
-> @@ -778,3 +780,128 @@ intel_display_device_probe(struct drm_i915_private *i915, bool has_gmdid,
->  
->  	return &no_display;
->  }
-> +
-> +void intel_display_device_info_runtime_init(struct drm_i915_private *i915)
-> +{
-> +	struct intel_display_runtime_info *display_runtime = DISPLAY_RUNTIME_INFO(i915);
-> +	enum pipe pipe;
-> +
-> +	/* Wa_14011765242: adl-s A0,A1 */
-> +	if (IS_ADLS_DISPLAY_STEP(i915, STEP_A0, STEP_A2))
-> +		for_each_pipe(i915, pipe)
-> +			display_runtime->num_scalers[pipe] = 0;
-> +	else if (DISPLAY_VER(i915) >= 11) {
-> +		for_each_pipe(i915, pipe)
-> +			display_runtime->num_scalers[pipe] = 2;
-> +	} else if (DISPLAY_VER(i915) >= 9) {
-> +		display_runtime->num_scalers[PIPE_A] = 2;
-> +		display_runtime->num_scalers[PIPE_B] = 2;
-> +		display_runtime->num_scalers[PIPE_C] = 1;
-> +	}
-> +
-> +	if (DISPLAY_VER(i915) >= 13 || HAS_D12_PLANE_MINIMIZATION(i915))
-> +		for_each_pipe(i915, pipe)
-> +			display_runtime->num_sprites[pipe] = 4;
-> +	else if (DISPLAY_VER(i915) >= 11)
-> +		for_each_pipe(i915, pipe)
-> +			display_runtime->num_sprites[pipe] = 6;
-> +	else if (DISPLAY_VER(i915) == 10)
-> +		for_each_pipe(i915, pipe)
-> +			display_runtime->num_sprites[pipe] = 3;
-> +	else if (IS_BROXTON(i915)) {
-> +		/*
-> +		 * Skylake and Broxton currently don't expose the topmost plane as its
-> +		 * use is exclusive with the legacy cursor and we only want to expose
-> +		 * one of those, not both. Until we can safely expose the topmost plane
-> +		 * as a DRM_PLANE_TYPE_CURSOR with all the features exposed/supported,
-> +		 * we don't expose the topmost plane at all to prevent ABI breakage
-> +		 * down the line.
-> +		 */
-> +
-> +		display_runtime->num_sprites[PIPE_A] = 2;
-> +		display_runtime->num_sprites[PIPE_B] = 2;
-> +		display_runtime->num_sprites[PIPE_C] = 1;
-> +	} else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
-> +		for_each_pipe(i915, pipe)
-> +			display_runtime->num_sprites[pipe] = 2;
-> +	} else if (DISPLAY_VER(i915) >= 5 || IS_G4X(i915)) {
-> +		for_each_pipe(i915, pipe)
-> +			display_runtime->num_sprites[pipe] = 1;
-> +	}
-> +
-> +	if ((IS_DGFX(i915) || DISPLAY_VER(i915) >= 14) &&
-> +	    !(intel_de_read(i915, GU_CNTL_PROTECTED) & DEPRESENT)) {
-> +		drm_info(&i915->drm, "Display not present, disabling\n");
-> +		goto display_fused_off;
-> +	}
-> +
-> +	if (IS_GRAPHICS_VER(i915, 7, 8) && HAS_PCH_SPLIT(i915)) {
-> +		u32 fuse_strap = intel_de_read(i915, FUSE_STRAP);
-> +		u32 sfuse_strap = intel_de_read(i915, SFUSE_STRAP);
-> +
-> +		/*
-> +		 * SFUSE_STRAP is supposed to have a bit signalling the display
-> +		 * is fused off. Unfortunately it seems that, at least in
-> +		 * certain cases, fused off display means that PCH display
-> +		 * reads don't land anywhere. In that case, we read 0s.
-> +		 *
-> +		 * On CPT/PPT, we can detect this case as SFUSE_STRAP_FUSE_LOCK
-> +		 * should be set when taking over after the firmware.
-> +		 */
-> +		if (fuse_strap & ILK_INTERNAL_DISPLAY_DISABLE ||
-> +		    sfuse_strap & SFUSE_STRAP_DISPLAY_DISABLED ||
-> +		    (HAS_PCH_CPT(i915) &&
-> +		     !(sfuse_strap & SFUSE_STRAP_FUSE_LOCK))) {
-> +			drm_info(&i915->drm,
-> +				 "Display fused off, disabling\n");
-> +			goto display_fused_off;
-> +		} else if (fuse_strap & IVB_PIPE_C_DISABLE) {
-> +			drm_info(&i915->drm, "PipeC fused off\n");
-> +			display_runtime->pipe_mask &= ~BIT(PIPE_C);
-> +			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
-> +		}
-> +	} else if (DISPLAY_VER(i915) >= 9) {
-> +		u32 dfsm = intel_de_read(i915, SKL_DFSM);
-> +
-> +		if (dfsm & SKL_DFSM_PIPE_A_DISABLE) {
-> +			display_runtime->pipe_mask &= ~BIT(PIPE_A);
-> +			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_A);
-> +			display_runtime->fbc_mask &= ~BIT(INTEL_FBC_A);
-> +		}
-> +		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
-> +			display_runtime->pipe_mask &= ~BIT(PIPE_B);
-> +			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
-> +		}
-> +		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
-> +			display_runtime->pipe_mask &= ~BIT(PIPE_C);
-> +			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
-> +		}
-> +
-> +		if (DISPLAY_VER(i915) >= 12 &&
-> +		    (dfsm & TGL_DFSM_PIPE_D_DISABLE)) {
-> +			display_runtime->pipe_mask &= ~BIT(PIPE_D);
-> +			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_D);
-> +		}
-> +
-> +		if (!display_runtime->pipe_mask)
-> +			goto display_fused_off;
-> +
-> +		if (dfsm & SKL_DFSM_DISPLAY_HDCP_DISABLE)
-> +			display_runtime->has_hdcp = 0;
-> +
-> +		if (dfsm & SKL_DFSM_DISPLAY_PM_DISABLE)
-> +			display_runtime->fbc_mask = 0;
-> +
-> +		if (DISPLAY_VER(i915) >= 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
-> +			display_runtime->has_dmc = 0;
-> +
-> +		if (IS_DISPLAY_VER(i915, 10, 12) &&
-> +		    (dfsm & GLK_DFSM_DISPLAY_DSC_DISABLE))
-> +			display_runtime->has_dsc = 0;
-> +	}
-> +
-> +	return;
-> +
-> +display_fused_off:
-> +	memset(display_runtime, 0, sizeof(*display_runtime));
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index 2aa82cbdf1c5..4f931258d81d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -124,5 +124,6 @@ struct intel_display_device_info {
->  const struct intel_display_device_info *
->  intel_display_device_probe(struct drm_i915_private *i915, bool has_gmdid,
->  			   u16 *ver, u16 *rel, u16 *step);
-> +void intel_display_device_info_runtime_init(struct drm_i915_private *i915);
->  
->  #endif
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index 2f79d232b04a..6e49caf241a5 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -27,9 +27,7 @@
->  #include <drm/drm_print.h>
->  #include <drm/i915_pciids.h>
->  
-> -#include "display/intel_cdclk.h"
-> -#include "display/intel_de.h"
-> -#include "display/intel_display.h"
-> +#include "display/intel_display_device.h"
->  #include "gt/intel_gt_regs.h"
->  #include "i915_drv.h"
->  #include "i915_reg.h"
-> @@ -411,153 +409,33 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_device_info *info = mkwrite_device_info(dev_priv);
->  	struct intel_runtime_info *runtime = RUNTIME_INFO(dev_priv);
-> -	struct intel_display_runtime_info *display_runtime =
-> -		DISPLAY_RUNTIME_INFO(dev_priv);
-> -	enum pipe pipe;
->  
-> -	/* Wa_14011765242: adl-s A0,A1 */
-> -	if (IS_ADLS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A2))
-> -		for_each_pipe(dev_priv, pipe)
-> -			display_runtime->num_scalers[pipe] = 0;
-> -	else if (DISPLAY_VER(dev_priv) >= 11) {
-> -		for_each_pipe(dev_priv, pipe)
-> -			display_runtime->num_scalers[pipe] = 2;
-> -	} else if (DISPLAY_VER(dev_priv) >= 9) {
-> -		display_runtime->num_scalers[PIPE_A] = 2;
-> -		display_runtime->num_scalers[PIPE_B] = 2;
-> -		display_runtime->num_scalers[PIPE_C] = 1;
-> -	}
-> -
-> -	BUILD_BUG_ON(BITS_PER_TYPE(intel_engine_mask_t) < I915_NUM_ENGINES);
-> -
-> -	if (DISPLAY_VER(dev_priv) >= 13 || HAS_D12_PLANE_MINIMIZATION(dev_priv))
-> -		for_each_pipe(dev_priv, pipe)
-> -			display_runtime->num_sprites[pipe] = 4;
-> -	else if (DISPLAY_VER(dev_priv) >= 11)
-> -		for_each_pipe(dev_priv, pipe)
-> -			display_runtime->num_sprites[pipe] = 6;
-> -	else if (DISPLAY_VER(dev_priv) == 10)
-> -		for_each_pipe(dev_priv, pipe)
-> -			display_runtime->num_sprites[pipe] = 3;
-> -	else if (IS_BROXTON(dev_priv)) {
-> -		/*
-> -		 * Skylake and Broxton currently don't expose the topmost plane as its
-> -		 * use is exclusive with the legacy cursor and we only want to expose
-> -		 * one of those, not both. Until we can safely expose the topmost plane
-> -		 * as a DRM_PLANE_TYPE_CURSOR with all the features exposed/supported,
-> -		 * we don't expose the topmost plane at all to prevent ABI breakage
-> -		 * down the line.
-> -		 */
-> -
-> -		display_runtime->num_sprites[PIPE_A] = 2;
-> -		display_runtime->num_sprites[PIPE_B] = 2;
-> -		display_runtime->num_sprites[PIPE_C] = 1;
-> -	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
-> -		for_each_pipe(dev_priv, pipe)
-> -			display_runtime->num_sprites[pipe] = 2;
-> -	} else if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv)) {
-> -		for_each_pipe(dev_priv, pipe)
-> -			display_runtime->num_sprites[pipe] = 1;
-> -	}
-> -
-> -	if (HAS_DISPLAY(dev_priv) &&
-> -	    (IS_DGFX(dev_priv) || DISPLAY_VER(dev_priv) >= 14) &&
-> -	    !(intel_de_read(dev_priv, GU_CNTL_PROTECTED) & DEPRESENT)) {
-> -		drm_info(&dev_priv->drm, "Display not present, disabling\n");
-> -
-> -		display_runtime->pipe_mask = 0;
-> -	}
-> -
-> -	if (HAS_DISPLAY(dev_priv) && IS_GRAPHICS_VER(dev_priv, 7, 8) &&
-> -	    HAS_PCH_SPLIT(dev_priv)) {
-> -		u32 fuse_strap = intel_de_read(dev_priv, FUSE_STRAP);
-> -		u32 sfuse_strap = intel_de_read(dev_priv, SFUSE_STRAP);
-> -
-> -		/*
-> -		 * SFUSE_STRAP is supposed to have a bit signalling the display
-> -		 * is fused off. Unfortunately it seems that, at least in
-> -		 * certain cases, fused off display means that PCH display
-> -		 * reads don't land anywhere. In that case, we read 0s.
-> -		 *
-> -		 * On CPT/PPT, we can detect this case as SFUSE_STRAP_FUSE_LOCK
-> -		 * should be set when taking over after the firmware.
-> -		 */
-> -		if (fuse_strap & ILK_INTERNAL_DISPLAY_DISABLE ||
-> -		    sfuse_strap & SFUSE_STRAP_DISPLAY_DISABLED ||
-> -		    (HAS_PCH_CPT(dev_priv) &&
-> -		     !(sfuse_strap & SFUSE_STRAP_FUSE_LOCK))) {
-> -			drm_info(&dev_priv->drm,
-> -				 "Display fused off, disabling\n");
-> -			display_runtime->pipe_mask = 0;
-> -		} else if (fuse_strap & IVB_PIPE_C_DISABLE) {
-> -			drm_info(&dev_priv->drm, "PipeC fused off\n");
-> -			display_runtime->pipe_mask &= ~BIT(PIPE_C);
-> -			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
-> -		}
-> -	} else if (HAS_DISPLAY(dev_priv) && DISPLAY_VER(dev_priv) >= 9) {
-> -		u32 dfsm = intel_de_read(dev_priv, SKL_DFSM);
-> -
-> -		if (dfsm & SKL_DFSM_PIPE_A_DISABLE) {
-> -			display_runtime->pipe_mask &= ~BIT(PIPE_A);
-> -			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_A);
-> -			display_runtime->fbc_mask &= ~BIT(INTEL_FBC_A);
-> -		}
-> -		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
-> -			display_runtime->pipe_mask &= ~BIT(PIPE_B);
-> -			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
-> -		}
-> -		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
-> -			display_runtime->pipe_mask &= ~BIT(PIPE_C);
-> -			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
-> -		}
-> -
-> -		if (DISPLAY_VER(dev_priv) >= 12 &&
-> -		    (dfsm & TGL_DFSM_PIPE_D_DISABLE)) {
-> -			display_runtime->pipe_mask &= ~BIT(PIPE_D);
-> -			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_D);
-> -		}
-> -
-> -		if (dfsm & SKL_DFSM_DISPLAY_HDCP_DISABLE)
-> -			display_runtime->has_hdcp = 0;
-> -
-> -		if (dfsm & SKL_DFSM_DISPLAY_PM_DISABLE)
-> -			display_runtime->fbc_mask = 0;
-> -
-> -		if (DISPLAY_VER(dev_priv) >= 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
-> -			display_runtime->has_dmc = 0;
-> -
-> -		if (IS_DISPLAY_VER(dev_priv, 10, 12) &&
-> -		    (dfsm & GLK_DFSM_DISPLAY_DSC_DISABLE))
-> -			display_runtime->has_dsc = 0;
-> -	}
-> -
-> -	if (GRAPHICS_VER(dev_priv) == 6 && i915_vtd_active(dev_priv)) {
-> -		drm_info(&dev_priv->drm,
-> -			 "Disabling ppGTT for VT-d support\n");
-> -		runtime->ppgtt_type = INTEL_PPGTT_NONE;
-> -	}
-> -
-> -	runtime->rawclk_freq = intel_read_rawclk(dev_priv);
-> -	drm_dbg(&dev_priv->drm, "rawclk rate: %d kHz\n", runtime->rawclk_freq);
-> +	if (HAS_DISPLAY(dev_priv))
-> +		intel_display_device_info_runtime_init(dev_priv);
->  
-> +	/* Display may have been disabled by runtime init */
->  	if (!HAS_DISPLAY(dev_priv)) {
->  		dev_priv->drm.driver_features &= ~(DRIVER_MODESET |
->  						   DRIVER_ATOMIC);
->  		info->display = &no_display;
-> -
-> -		display_runtime->cpu_transcoder_mask = 0;
-> -		memset(display_runtime->num_sprites, 0, sizeof(display_runtime->num_sprites));
-> -		memset(display_runtime->num_scalers, 0, sizeof(display_runtime->num_scalers));
-> -		display_runtime->fbc_mask = 0;
-> -		display_runtime->has_hdcp = false;
-> -		display_runtime->has_dmc = false;
-> -		display_runtime->has_dsc = false;
->  	}
->  
->  	/* Disable nuclear pageflip by default on pre-g4x */
->  	if (!dev_priv->params.nuclear_pageflip &&
->  	    DISPLAY_VER(dev_priv) < 5 && !IS_G4X(dev_priv))
->  		dev_priv->drm.driver_features &= ~DRIVER_ATOMIC;
-> +
-> +	BUILD_BUG_ON(BITS_PER_TYPE(intel_engine_mask_t) < I915_NUM_ENGINES);
-> +
-> +	if (GRAPHICS_VER(dev_priv) == 6 && i915_vtd_active(dev_priv)) {
-> +		drm_info(&dev_priv->drm,
-> +			 "Disabling ppGTT for VT-d support\n");
-> +		runtime->ppgtt_type = INTEL_PPGTT_NONE;
-> +	}
-> +
-> +	runtime->rawclk_freq = intel_read_rawclk(dev_priv);
-> +	drm_dbg(&dev_priv->drm, "rawclk rate: %d kHz\n", runtime->rawclk_freq);
-> +
->  }
->  
->  /*
+Try with:
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Test-with: 20230526172221.1438998-1-fei.yang@intel.com
+
+That is how it is supposed to be done, to do a CI run against a test 
+case not yet merged that is.
+
+Regards,
+
+Tvrtko
