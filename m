@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B8C2722FE8
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jun 2023 21:39:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B176F7230BB
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jun 2023 22:10:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A56110E1DD;
-	Mon,  5 Jun 2023 19:39:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0383810E052;
+	Mon,  5 Jun 2023 20:10:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B662F10E1DD
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 19:39:33 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A45510E023;
+ Mon,  5 Jun 2023 20:10:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685993973; x=1717529973;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=x2/AWoHzmWbyytrPhMJJVUKgEGf4y++t7cgCSHh8Ges=;
- b=NcuRrySuNu7S923MR/X/SscU9bHrL78sjeG5HUWfVkwWR46MLGVTqdnV
- Wey6A0K0trZxYfBFUiVpNN3Kqcu0tQ9q9PPFnYRyPbK6fiwz55yklmSdB
- j4fH6SC1u4mzT++AfOZt7lqhVszCUowTuRxNyZD/6NeLb5wQsluzPB/2w
- l/D+aIrs/tMlDMzyxA4p3q+fumPxWLI723PoTwAw3TbqqJhEJfPOjvTVq
- I3x+bkVaTmMSBSh2KYKPk0iJ6f04ZmZUp23t99kRA6EkqYRa5S4IVVjER
- axeBPo65CGMEpfFXvw1PNOMpX2w+GTxBpWNKlUfFAXRNJqLAGs+7aSNGm A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="384775246"
-X-IronPort-AV: E=Sophos;i="6.00,218,1681196400"; d="scan'208";a="384775246"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 12:39:32 -0700
+ t=1685995833; x=1717531833;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hLwisyULdhNBdeB6X2y5EN5644QKNMsAYwDgMiAFebA=;
+ b=EeGpCH3MvU/LkvRa451R4v0RzUZVGIatZkl8tu72lqm+mgivrGR0fF+5
+ hD8oCQ3zX6gn/iwbrgrwXHEDCKjcyWw6yya25gV55XiXnyhzCgoJnVLN0
+ SHV4InuP2CLY1KaRKWTs3UTbXTX7mNSzpiz05TrxiiQdnykDwUmi3F2vo
+ yeDUG8VdQfvaFDHLm2Juvi+Vg/KvQPfUsg79qQi1TLVUEOFYve5XuNN6j
+ bm+V6o5yTdN+82jkBegK1kiA493I46e4JOnTeisAdJl7U2M4ioH4OhkGj
+ KCFpjE/abi+8RkQH2vGMOf/FyZmi+F45Ow5eJPh/Nc1D4cOaFtHga9FiE w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="355324338"
+X-IronPort-AV: E=Sophos;i="6.00,218,1681196400"; d="scan'208";a="355324338"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2023 13:10:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="773851024"
-X-IronPort-AV: E=Sophos;i="6.00,218,1681196400"; d="scan'208";a="773851024"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 12:39:32 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="738472750"
+X-IronPort-AV: E=Sophos;i="6.00,218,1681196400"; d="scan'208";a="738472750"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2023 13:10:29 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  5 Jun 2023 12:39:23 -0700
-Message-Id: <20230605193923.1836048-3-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20230605193923.1836048-1-umesh.nerlige.ramappa@intel.com>
-References: <20230605193923.1836048-1-umesh.nerlige.ramappa@intel.com>
+Date: Mon,  5 Jun 2023 22:10:21 +0200
+Message-Id: <20230605201021.13928-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 2/2] i915/perf: Do not add ggtt offset to
- hw_tail
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix a VMA UAF for multi-gt platform
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,39 +59,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-ggtt offset for hw_tail is not required for the calculations, so drop
-it.
+Ensure correct handling of closed VMAs on multi-gt platforms to prevent
+Use-After-Free. Currently, when GT0 goes idle, closed VMAs that are
+exclusively added to GT0's closed_vma link (gt->closed_vma) and
+subsequently freed by i915_vma_parked(), which assumes the entire GPU is
+idle. However, on platforms with multiple GTs, such as MTL, GT1 may
+remain active while GT0 is idle. This causes GT0 to mistakenly consider
+the closed VMAs in its closed_vma list as unnecessary, potentially
+leading to Use-After-Free issues if a job for GT1 attempts to access a
+freed VMA.
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Although we do take a wakeref for GT0 but it happens later, after
+evaluating VMAs. To mitigate this, it is necessary to hold a GT0 wakeref
+early.
+
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Chris Wilson <chris.p.wilson@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index a8d43bf1f6d5..0a111b281578 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -565,7 +565,7 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- 	partial_report_size %= report_size;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 5fb459ea4294..adcf8837dfe6 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -2692,6 +2692,7 @@ static int
+ eb_select_engine(struct i915_execbuffer *eb)
+ {
+ 	struct intel_context *ce, *child;
++	struct intel_gt *gt;
+ 	unsigned int idx;
+ 	int err;
  
- 	/* Subtract partial amount off the tail */
--	hw_tail = gtt_offset + OA_TAKEN(hw_tail, partial_report_size);
-+	hw_tail = OA_TAKEN(hw_tail, partial_report_size);
+@@ -2715,10 +2716,16 @@ eb_select_engine(struct i915_execbuffer *eb)
+ 		}
+ 	}
+ 	eb->num_batches = ce->parallel.number_children + 1;
++	gt = ce->engine->gt;
  
- 	/* NB: The head we observe here might effectively be a little
- 	 * out of date. If a read() is in progress, the head could be
-@@ -574,7 +574,6 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- 	head = stream->oa_buffer.head - gtt_offset;
- 	read_tail = stream->oa_buffer.tail - gtt_offset;
+ 	for_each_child(ce, child)
+ 		intel_context_get(child);
+ 	intel_gt_pm_get(ce->engine->gt);
++	/* Keep GT0 active on MTL so that i915_vma_parked() doesn't
++	 * free VMAs while execbuf ioctl is validating VMAs.
++	 */
++	if (gt != to_gt(gt->i915))
++		intel_gt_pm_get(to_gt(ce->engine->gt->i915));
  
--	hw_tail -= gtt_offset;
- 	tail = hw_tail;
+ 	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
+ 		err = intel_context_alloc_state(ce);
+@@ -2757,6 +2764,9 @@ eb_select_engine(struct i915_execbuffer *eb)
+ 	return err;
  
- 	/* Walk the stream backward until we find a report with report
+ err:
++	if (ce->engine->gt != to_gt(ce->engine->gt->i915))
++		intel_gt_pm_get(to_gt(ce->engine->gt->i915));
++
+ 	intel_gt_pm_put(ce->engine->gt);
+ 	for_each_child(ce, child)
+ 		intel_context_put(child);
+@@ -2770,6 +2780,8 @@ eb_put_engine(struct i915_execbuffer *eb)
+ 	struct intel_context *child;
+ 
+ 	i915_vm_put(eb->context->vm);
++	if (eb->gt != to_gt(eb->gt->i915))
++		intel_gt_pm_put(to_gt(eb->gt->i915));
+ 	intel_gt_pm_put(eb->gt);
+ 	for_each_child(eb->context, child)
+ 		intel_context_put(child);
 -- 
-2.36.1
+2.39.0
 
