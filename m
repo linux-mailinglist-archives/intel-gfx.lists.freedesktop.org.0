@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 010F9723567
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 04:43:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D75772357E
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 04:53:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F194B10E175;
-	Tue,  6 Jun 2023 02:43:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC38210E207;
+	Tue,  6 Jun 2023 02:53:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0995D10E175;
- Tue,  6 Jun 2023 02:43:01 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D644B10E175;
+ Tue,  6 Jun 2023 02:53:31 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 002CAAADD6;
- Tue,  6 Jun 2023 02:43:00 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CE9BBAA01E;
+ Tue,  6 Jun 2023 02:53:31 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: john.c.harrison@intel.com
-Date: Tue, 06 Jun 2023 02:43:00 -0000
-Message-ID: <168601938096.22676.17875506002679287509@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Tue, 06 Jun 2023 02:53:31 -0000
+Message-ID: <168602001180.22675.8014151098474993983@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230605205431.852088-1-John.C.Harrison@Intel.com>
-In-Reply-To: <20230605205431.852088-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/guc=3A_Force_a_reset_on_internal_GuC_error?=
+References: <20230606022402.2048235-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20230606022402.2048235-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_GSC_FW_support_for_MTL_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,14 +47,27 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/guc: Force a reset on internal GuC error
-URL   : https://patchwork.freedesktop.org/series/118890/
-State : warning
+Series: drm/i915: GSC FW support for MTL (rev2)
+URL   : https://patchwork.freedesktop.org/series/117396/
+State : failure
 
 == Summary ==
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.o
+drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.c:28:6: error: no previous prototype for ‘intel_gsc_uc_debugfs_register’ [-Werror=missing-prototypes]
+   28 | void intel_gsc_uc_debugfs_register(struct intel_gsc_uc *gsc_uc, struct dentry *root)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+make[5]: *** [scripts/Makefile.build:252: drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.o] Error 1
+make[4]: *** [scripts/Makefile.build:494: drivers/gpu/drm/i915] Error 2
+make[3]: *** [scripts/Makefile.build:494: drivers/gpu/drm] Error 2
+make[2]: *** [scripts/Makefile.build:494: drivers/gpu] Error 2
+make[1]: *** [scripts/Makefile.build:494: drivers] Error 2
+make: *** [Makefile:2026: .] Error 2
+Build failed, no error log produced
 
 
