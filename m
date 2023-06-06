@@ -1,53 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95710724E5A
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 22:56:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B399C724EC8
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 23:28:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98AC510E3CB;
-	Tue,  6 Jun 2023 20:56:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9861710E3CE;
+	Tue,  6 Jun 2023 21:28:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 814D810E3C6;
- Tue,  6 Jun 2023 20:56:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686084972; x=1717620972;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=KYUOnIJQnuEKIr0g00zoHbgpkceEv3o2sCZTrc1FSv4=;
- b=CE6u3UzQnOa4xqs+1/4I3FZ8J8lKDdEx//KRp6NlRYEJ8vD70J3Yphsj
- zoBHeo8WwiXA9RH6DmgwJwp5/F/8PL4sVsQtDjGPeAunwmkRYMmI6Vg45
- 1mpFvwjN/kGIr6FhGyEAVRzDrMM0iGk+2PAOPBe6hqppWRk62Ul5mMm3f
- gQJqWkH9p2eHpuqmOMU9tdzs5+dyyGbZtQY56X7h8YMOLIM7eTihZcRyq
- Iu4DsrO7yHgRJxciRfqMm305N2zqDufZ4bUO9j8TX+OapMamVmY4/mdWA
- c6XOOajaU999xdRKzGQ98wCDaDasEUT7ED5fPuWcikopT9KcGzfi28HL3 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="359261867"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="359261867"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 13:56:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="712339641"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="712339641"
-Received: from yuguen-mobl2.ger.corp.intel.com (HELO intel.com)
- ([10.252.57.68])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 13:56:08 -0700
-Date: Tue, 6 Jun 2023 22:56:02 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <ZH+dYpOpl5/11Eg4@ashyti-mobl2.lan>
-References: <20230606202755.8719-1-nirmoy.das@intel.com>
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com
+ [IPv6:2607:f8b0:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60CFE10E3CE
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 21:28:29 +0000 (UTC)
+Received: by mail-pf1-x42a.google.com with SMTP id
+ d2e1a72fcca58-650c89c7e4fso6784168b3a.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 06 Jun 2023 14:28:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1686086908; x=1688678908;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=2sxRgoat8T+i5BlkEmmYkTauekQlW2JTibKZA6oBH7A=;
+ b=KOlMnU2csedCuB+1N3G5sryayb2bGRmTmpeKSm7Db0/Yce0WZlnRrfipyKn3YaL9YB
+ Gh9Mg52A/JXAKuTUNb0GJxYurFksnJ6ReX19vi5D1ZG1vz5L4RkBT9q4cU5a8eQVWG1w
+ 4Ajg7TegZnd7DSSTzd8BjqIPevIDAyAmqOz5o=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1686086908; x=1688678908;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=2sxRgoat8T+i5BlkEmmYkTauekQlW2JTibKZA6oBH7A=;
+ b=kLtfHWVuZbek/+0Du3TYzBlcQhrF/9KtG7C0E3OXz0PDJqRRNwJNRycYZ6QfIgPabM
+ xfjjuVcWoPTE5rOL6zux7IgxzLJbDEhEBMO+i0INUSy0v6VuCOYzY9TAyD9wT0vlQ5BO
+ BUeOppWjMeqq5wdtMaAcMcxVrZoeVMhFB4gIFpR+/uoyxaUSvcmz7FM4J16qCciXb7Od
+ SEOIlcQLu4xjVIqV6R4p1E9NgKRK145zIItAXx7WBeNyFdnN1RDd2ndL3SmuX3mazHNN
+ X5oIVt7xqWDDIfXY+/XZEpN2EGf8mtESjr60FbddtH5AmtJu9f3k3il3SLP5LeuZUL4Q
+ jaCw==
+X-Gm-Message-State: AC+VfDy0WTOHX9ysMEx8fDMYuvOOR5KyLSrfVE4T8XJV4Rj8ugzB8on4
+ 5cDChO1dhe8POXTYtOZ6EEJOjA==
+X-Google-Smtp-Source: ACHHUZ6eVUGZvSc9BvXgHjP7hdptxeL7cYFm1fPWsO5lOhIXnPYN0sjI0aNLWvnZWtY+hKL8M+USsg==
+X-Received: by 2002:a05:6a00:1585:b0:652:c336:e63e with SMTP id
+ u5-20020a056a00158500b00652c336e63emr4458187pfk.31.1686086908535; 
+ Tue, 06 Jun 2023 14:28:28 -0700 (PDT)
+Received: from ballway1.c.googlers.com.com
+ (97.173.125.34.bc.googleusercontent.com. [34.125.173.97])
+ by smtp.gmail.com with ESMTPSA id
+ m3-20020aa78a03000000b005a8173829d5sm7283325pfa.66.2023.06.06.14.28.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 06 Jun 2023 14:28:28 -0700 (PDT)
+From: Allen Ballway <ballway@chromium.org>
+To: jani.nikula@linux.intel.com
+Date: Tue,  6 Jun 2023 21:25:13 +0000
+Message-ID: <20230606211901.1.I06e778109090b5dc85c44da7b742d185aa6adb59@changeid>
+X-Mailer: git-send-email 2.41.0.162.gfafddb0af9-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230606202755.8719-1-nirmoy.das@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix a VMA UAF for multi-gt
- platform
+Subject: [Intel-gfx] [PATCH] drm/i915/quirk: Add quirk for devices that
+ cannot be dimmed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,108 +69,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Thomas =?iso-8859-15?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Allen Ballway <ballway@chromium.org>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nirmoy,
+Cybernet T10C cannot be dimmed without the backlight strobing. Create a
+new quirk to lock the minimum brightness to the highest supported value.
+This aligns the device with its behavior on Windows, which will not
+lower the brightness below maximum.
 
-On Tue, Jun 06, 2023 at 10:27:55PM +0200, Nirmoy Das wrote:
-> Ensure correct handling of closed VMAs on multi-gt platforms to prevent
-> Use-After-Free. Currently, when GT0 goes idle, closed VMAs that are
-> exclusively added to GT0's closed_vma link (gt->closed_vma) and
-> subsequently freed by i915_vma_parked(), which assumes the entire GPU is
-> idle. However, on platforms with multiple GTs, such as MTL, GT1 may
-> remain active while GT0 is idle. This causes GT0 to mistakenly consider
-> the closed VMAs in its closed_vma list as unnecessary, potentially
-> leading to Use-After-Free issues if a job for GT1 attempts to access a
-> freed VMA.
-> 
-> Although we do take a wakeref for GT0 but it happens later, after
-> evaluating VMAs. To mitigate this, it is necessary to hold a GT0 wakeref
-> early.
-> 
-> v2: Use gt id to detect multi-tile(Andi)
->     Fix the incorrect error path.
-> 
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Chris Wilson <chris.p.wilson@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
-> Tested-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Signed-off-by: Allen Ballway <ballway@chromium.org>
+---
 
-I wonder if we need any Fixes tag here, maybe this:
+ .../gpu/drm/i915/display/intel_backlight.c    |  6 +++++
+ drivers/gpu/drm/i915/display/intel_quirks.c   | 27 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
+ 3 files changed, 34 insertions(+)
 
-Fixes: d93939730347 ("drm/i915: Remove the vma refcount")
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index 2e8f17c045222..863a33245a3d7 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -1192,6 +1192,11 @@ static u32 get_backlight_min_vbt(struct intel_connector *connector)
 
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 3aeede6aee4d..c2a67435acfa 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -2683,6 +2683,7 @@ static int
->  eb_select_engine(struct i915_execbuffer *eb)
->  {
->  	struct intel_context *ce, *child;
-> +	struct intel_gt *gt;
->  	unsigned int idx;
->  	int err;
->  
-> @@ -2706,10 +2707,16 @@ eb_select_engine(struct i915_execbuffer *eb)
->  		}
->  	}
->  	eb->num_batches = ce->parallel.number_children + 1;
-> +	gt = ce->engine->gt;
->  
->  	for_each_child(ce, child)
->  		intel_context_get(child);
->  	intel_gt_pm_get(ce->engine->gt);
-> +	/* Keep GT0 active on MTL so that i915_vma_parked() doesn't
-> +	 * free VMAs while execbuf ioctl is validating VMAs.
-> +	 */
-> +	if (gt->info.id)
-> +		intel_gt_pm_get(to_gt(gt->i915));
->  
->  	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
->  		err = intel_context_alloc_state(ce);
-> @@ -2748,6 +2755,9 @@ eb_select_engine(struct i915_execbuffer *eb)
->  	return err;
->  
->  err:
-> +	if (gt->info.id)
-> +		intel_gt_pm_put(to_gt(gt->i915));
-> +
->  	intel_gt_pm_put(ce->engine->gt);
->  	for_each_child(ce, child)
->  		intel_context_put(child);
-> @@ -2761,6 +2771,8 @@ eb_put_engine(struct i915_execbuffer *eb)
->  	struct intel_context *child;
->  
->  	i915_vm_put(eb->context->vm);
-> +	if (eb->gt->info.id)
-> +		intel_gt_pm_put(to_gt(eb->gt->i915));
->  	intel_gt_pm_put(eb->gt);
+ 	drm_WARN_ON(&i915->drm, panel->backlight.pwm_level_max == 0);
 
-I would add a comment up here, just not to scare people when they
-see this.
++	if (intel_has_quirk(i915, QUIRK_NO_DIM)) {
++		/* Cannot dim backlight, set minimum to hightest value */
++		return panel->backlight.pwm_level_max - 1;
++	}
++
+ 	/*
+ 	 * XXX: If the vbt value is 255, it makes min equal to max, which leads
+ 	 * to problems. There are such machines out there. Either our
+@@ -1206,6 +1211,7 @@ static u32 get_backlight_min_vbt(struct intel_connector *connector)
+ 			    connector->panel.vbt.backlight.min_brightness, min);
+ 	}
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
++
+ 	/* vbt value is a coefficient in range [0..255] */
+ 	return scale(min, 0, 255, 0, panel->backlight.pwm_level_max);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index a280448df771a..910c95840a539 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -65,6 +65,12 @@ static void quirk_no_pps_backlight_power_hook(struct drm_i915_private *i915)
+ 	drm_info(&i915->drm, "Applying no pps backlight power quirk\n");
+ }
 
-Andi
++static void quirk_no_dim(struct drm_i915_private *i915)
++{
++	intel_set_quirk(i915, QUIRK_NO_DIM);
++	drm_info(&i915->drm, "Applying no dim quirk\n");
++}
++
+ struct intel_quirk {
+ 	int device;
+ 	int subsystem_vendor;
+@@ -90,6 +96,12 @@ static int intel_dmi_no_pps_backlight(const struct dmi_system_id *id)
+ 	return 1;
+ }
 
->  	for_each_child(eb->context, child)
->  		intel_context_put(child);
-> -- 
-> 2.39.0
++static int intel_dmi_no_dim(const struct dmi_system_id *id)
++{
++	DRM_INFO("No dimming allowed on %s\n", id->ident);
++	return 1;
++}
++
+ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+ 	{
+ 		.dmi_id_list = &(const struct dmi_system_id[]) {
+@@ -136,6 +148,20 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+ 		},
+ 		.hook = quirk_no_pps_backlight_power_hook,
+ 	},
++	{
++		.dmi_id_list = &(const struct dmi_system_id[]) {
++			{
++				.callback = intel_dmi_no_dim,
++				.ident = "Cybernet T10C Tablet",
++				.matches = {DMI_EXACT_MATCH(DMI_BOARD_VENDOR,
++							    "Cybernet Manufacturing Inc."),
++					    DMI_EXACT_MATCH(DMI_BOARD_NAME, "T10C Tablet"),
++				},
++			},
++			{ }
++		},
++		.hook = quirk_no_dim,
++	},
+ };
+
+ static struct intel_quirk intel_quirks[] = {
+@@ -218,6 +244,7 @@ void intel_init_quirks(struct drm_i915_private *i915)
+ 		     q->subsystem_device == PCI_ANY_ID))
+ 			q->hook(i915);
+ 	}
++
+ 	for (i = 0; i < ARRAY_SIZE(intel_dmi_quirks); i++) {
+ 		if (dmi_check_system(*intel_dmi_quirks[i].dmi_id_list) != 0)
+ 			intel_dmi_quirks[i].hook(i915);
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+index 10a4d163149fd..b41c7bbf0a5e3 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.h
++++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+@@ -17,6 +17,7 @@ enum intel_quirk_id {
+ 	QUIRK_INVERT_BRIGHTNESS,
+ 	QUIRK_LVDS_SSC_DISABLE,
+ 	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
++	QUIRK_NO_DIM,
+ };
+
+ void intel_init_quirks(struct drm_i915_private *i915);
+--
+2.41.0.162.gfafddb0af9-goog
+
