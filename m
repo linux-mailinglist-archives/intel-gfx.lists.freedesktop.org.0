@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3E0C724CBC
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 21:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD28A724CBE
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 21:15:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C090F10E3A6;
-	Tue,  6 Jun 2023 19:15:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF14C10E3B2;
+	Tue,  6 Jun 2023 19:15:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 022AE10E39E
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 19:15:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4F8110E3A7
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 19:15:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686078917; x=1717614917;
+ t=1686078919; x=1717614919;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=wc2F8bztOxgIb7HkrcJZGyIIFTl/gbZ9i6QOSDuwBJ8=;
- b=ZsuhODb9mAeh2+xvTg6PRkoE68CWkxYPBrn/ZOhir/OnexDbQdlkKgx+
- HLET804NaJSSk/mega3kMkhLPLEaxpDWYU5XZ8UlZYHosQ1eKmqMLYOWU
- grsbw/1SZDo+9qd/37WNkhvmtYO4tiCgVj5DsQ8a9+r3xtSk3tG6h4Qoo
- zGc9SNbBQ2q1L8fke8G+7zj2TjtXkoMJk32dL6DS9QginfsgOs4/FDNNt
- dvfYLQbV7g5nJ13SxPBIsg4R7WFcPwbhdWmynCE5hsaNvv/AygBHvfati
- SN5p+0zF6MxzQFcCk5+v0F2ItyyuIuMw+OH6CS5VTnFGavEuE8S7kA5Xf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="443146236"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="443146236"
+ bh=MIrjJkakCuwz3AnptQlYuj5XCEN4GeQH37X+5nF47Mw=;
+ b=cOVxeQMRswRcBm5/AhfRI+207s6//riXlJx3EcN5tP71c8qIl6wncNP2
+ Y1BkTn5byQQcv6maMiUXljAgySamwV2tUPh2TkJYScGOUjU+QaEsSpqhA
+ rozOpZdLSVXva+QDtqadotM2Gds5gsNZ4LsMQuJcH0qWyk5q4aoVq0G0w
+ l1UkdtqVRrCPCN+9V24W8tiFV83MIjOAIjcoEnPDhNXPtbohQ4q7GId3V
+ 45iTIUoKwbjb0LApPmCL5z7LGFjc16SpuDQIr6S9Rd9/POEeNWbe1Navu
+ BkYMYylzAbrN18ze5MLLIitTYBcQOgfwYRkxRM+MKdvIaF9Grk4ca4j4W A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="443146250"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="443146250"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 12:15:16 -0700
+ 06 Jun 2023 12:15:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="709187013"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="709187013"
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="709187025"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="709187025"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 06 Jun 2023 12:15:14 -0700
+ by orsmga002.jf.intel.com with SMTP; 06 Jun 2023 12:15:17 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 06 Jun 2023 22:15:14 +0300
+ Tue, 06 Jun 2023 22:15:16 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  6 Jun 2023 22:14:48 +0300
-Message-Id: <20230606191504.18099-4-ville.syrjala@linux.intel.com>
+Date: Tue,  6 Jun 2023 22:14:49 +0300
+Message-Id: <20230606191504.18099-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.3
 In-Reply-To: <20230606191504.18099-1-ville.syrjala@linux.intel.com>
 References: <20230606191504.18099-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 03/19] drm/i915/dsb: Dump the DSB command
- buffer when DSB fails
+Subject: [Intel-gfx] [PATCH v2 04/19] drm/i915/dsb: Define more DSB bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,66 +64,67 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Dump the full DSB command buffers and head/tail pointers if the
-the DSB hasn't completed its job in time.
+Define all the DSB register bits so I don't have to look through
+bspec to find them.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 33 +++++++++++++++++++++---
- 1 file changed, 30 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb_regs.h | 31 +++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 97e593d9f100..42911abcd3ab 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -93,6 +93,22 @@ static bool assert_dsb_has_room(struct intel_dsb *dsb)
- 			 crtc->base.base.id, crtc->base.name, dsb->id);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb_regs.h b/drivers/gpu/drm/i915/display/intel_dsb_regs.h
+index 12535d478775..210e2665441d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb_regs.h
+@@ -37,6 +37,19 @@
+ #define DSB_DEBUG(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) + 0x14)
+ #define DSB_POLLMASK(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) + 0x1c)
+ #define DSB_STATUS(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) + 0x24)
++#define   DSB_HP_IDLE_STATUS		REG_BIT(31)
++#define   DSB_DEWAKE_STATUS		REG_BIT(30)
++#define   DSB_REQARB_SM_STATE_MASK	REG_GENMASK(29, 27)
++#define   DSB_SAFE_WINDOW_LIVE		REG_BIT(26)
++#define   DSB_VTDFAULT_ARB_SM_STATE_MASK	REG_GENMASK(25, 23)
++#define   DSB_TLBTRANS_SM_STATE_MASK	REG_GENMASK(21, 20)
++#define   DSB_SAFE_WINDOW		REG_BIT(19)
++#define   DSB_POINTERS_SM_STATE_MASK	REG_GENMASK(18, 17)
++#define   DSB_BUSY_ON_DELAYED_VBLANK	REG_BIT(16)
++#define   DSB_MMIO_ARB_SM_STATE_MASK	REG_GENMASK(15, 13)
++#define   DSB_MMIO_INST_SM_STATE_MASK	REG_GENMASK(11, 7)
++#define   DSB_RESET_SM_STATE_MASK	REG_GENMASK(5, 4)
++#define   DSB_RUN_SM_STATE_MASK		REG_GENMASK(2, 0)
+ #define DSB_INTERRUPT(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) + 0x28)
+ #define   DSB_ATS_FAULT_INT_EN		REG_BIT(20)
+ #define   DSB_GTT_FAULT_INT_EN		REG_BIT(19)
+@@ -58,10 +71,28 @@
+ #define   DSB_RM_READY_TIMEOUT_VALUE(x)	REG_FIELD_PREP(DSB_RM_READY_TIMEOUT_VALUE, (x)) /* usec */
+ #define DSB_RMTIMEOUTREG_CAPTURE(pipe, id)	_MMIO(DSBSL_INSTANCE(pipe, id) + 0x34)
+ #define DSB_PMCTRL(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) + 0x38)
++#define   DSB_ENABLE_DEWAKE		REG_BIT(31)
++#define   DSB_SCANLINE_FOR_DEWAKE_MASK	REG_GENMASK(30, 0)
++#define   DSB_SCANLINE_FOR_DEWAKE(x)	REG_FIELD_PREP(DSB_SCANLINE_FOR_DEWAKE_MASK, (x))
+ #define DSB_PMCTRL_2(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) + 0x3c)
++#define   DSB_MMIOGEN_DEWAKE_DIS	REG_BIT(31)
++#define   DSB_FORCE_DEWAKE		REG_BIT(23)
++#define   DSB_BLOCK_DEWAKE_EXTENSION	REG_BIT(15)
++#define   DSB_OVERRIDE_DC5_DC6_OK	REG_BIT(7)
+ #define DSB_PF_LN_LOWER(pipe, id)	_MMIO(DSBSL_INSTANCE(pipe, id) + 0x40)
+ #define DSB_PF_LN_UPPER(pipe, id)	_MMIO(DSBSL_INSTANCE(pipe, id) + 0x44)
+ #define DSB_BUFRPT_CNT(pipe, id)	_MMIO(DSBSL_INSTANCE(pipe, id) + 0x48)
+ #define DSB_CHICKEN(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) + 0xf0)
++#define   DSB_FORCE_DMA_SYNC_RESET	REG_BIT(31)
++#define   DSB_FORCE_VTD_ENGIE_RESET	REG_BIT(30)
++#define   DSB_DISABLE_IPC_DEMOTE	REG_BIT(29)
++#define   DSB_SKIP_WAITS_EN		REG_BIT(23)
++#define   DSB_EXTEND_HP_IDLE		REG_BIT(16)
++#define   DSB_CTRL_WAIT_SAFE_WINDOW	REG_BIT(15)
++#define   DSB_CTRL_NO_WAIT_VBLANK	REG_BIT(14)
++#define   DSB_INST_WAIT_SAFE_WINDOW	REG_BIT(7)
++#define   DSB_INST_NO_WAIT_VBLANK	REG_BIT(6)
++#define   DSB_MMIOGEN_DEWAKE_DIS_CHICKEN	REG_BIT(2)
++#define   DSB_DISABLE_MMIO_COUNT_FOR_INDEXED	REG_BIT(0)
  
-+static void intel_dsb_dump(struct intel_dsb *dsb)
-+{
-+	struct intel_crtc *crtc = dsb->crtc;
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	const u32 *buf = dsb->cmd_buf;
-+	int i;
-+
-+	drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] DSB %d commands {\n",
-+		    crtc->base.base.id, crtc->base.name, dsb->id);
-+	for (i = 0; i < ALIGN(dsb->free_pos, 64 / 4); i += 4)
-+		drm_dbg_kms(&i915->drm,
-+			    " 0x%08x: 0x%08x 0x%08x 0x%08x 0x%08x\n",
-+			    i * 4, buf[i], buf[i+1], buf[i+2], buf[i+3]);
-+	drm_dbg_kms(&i915->drm, "}\n");
-+}
-+
- static bool is_dsb_busy(struct drm_i915_private *i915, enum pipe pipe,
- 			enum dsb_id id)
- {
-@@ -258,10 +274,21 @@ void intel_dsb_wait(struct intel_dsb *dsb)
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
- 
--	if (wait_for(!is_dsb_busy(dev_priv, pipe, dsb->id), 1))
-+	if (wait_for(!is_dsb_busy(dev_priv, pipe, dsb->id), 1)) {
-+		u32 offset = i915_ggtt_offset(dsb->vma);
-+
-+		intel_de_write_fw(dev_priv, DSB_CTRL(pipe, dsb->id),
-+				  DSB_ENABLE | DSB_HALT);
-+
- 		drm_err(&dev_priv->drm,
--			"[CRTC:%d:%s] DSB %d timed out waiting for idle\n",
--			crtc->base.base.id, crtc->base.name, dsb->id);
-+			"[CRTC:%d:%s] DSB %d timed out waiting for idle (current head=0x%x, head=0x%x, tail=0x%x)\n",
-+			crtc->base.base.id, crtc->base.name, dsb->id,
-+			intel_de_read_fw(dev_priv, DSB_CURRENT_HEAD(pipe, dsb->id)) - offset,
-+			intel_de_read_fw(dev_priv, DSB_HEAD(pipe, dsb->id)) - offset,
-+			intel_de_read_fw(dev_priv, DSB_TAIL(pipe, dsb->id)) - offset);
-+
-+		intel_dsb_dump(dsb);
-+	}
- 
- 	/* Attempt to reset it */
- 	dsb->free_pos = 0;
+ #endif /* __INTEL_DSB_REGS_H__ */
 -- 
 2.39.3
 
