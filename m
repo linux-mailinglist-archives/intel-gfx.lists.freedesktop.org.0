@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6C5D7242C5
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 14:44:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E70177242C6
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 14:44:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F225D10E338;
-	Tue,  6 Jun 2023 12:44:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E0C410E33F;
+	Tue,  6 Jun 2023 12:44:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8161410E338;
- Tue,  6 Jun 2023 12:44:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id EAE0910E338;
+ Tue,  6 Jun 2023 12:44:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 79A6DACC27;
- Tue,  6 Jun 2023 12:44:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E74FDAADFC;
+ Tue,  6 Jun 2023 12:44:45 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Date: Tue, 06 Jun 2023 12:44:43 -0000
-Message-ID: <168605548349.22675.8988069096494351586@emeril.freedesktop.org>
+Date: Tue, 06 Jun 2023 12:44:45 -0000
+Message-ID: <168605548594.22676.8486392530976950691@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230606091627.462293-1-andi.shyti@linux.intel.com>
 In-Reply-To: <20230606091627.462293-1-andi.shyti@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Allow_user_to_set_cache_at_BO_creation?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Allow_user_to_set_cache_at_BO_creation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,12 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-61d84b10017c drm/i915: Allow user to set cache at BO creation
--:23: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#23: 
-https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/tiger-lake.html
-
-total: 0 errors, 1 warnings, 0 checks, 136 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
