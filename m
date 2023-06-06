@@ -2,55 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B392724090
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 13:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A73FC7240A3
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 13:15:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37BAE10E220;
-	Tue,  6 Jun 2023 11:12:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25CFC10E220;
+	Tue,  6 Jun 2023 11:15:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DFE510E21F;
- Tue,  6 Jun 2023 11:12:17 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A882F10E220;
+ Tue,  6 Jun 2023 11:15:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686049937; x=1717585937;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:to:subject:from:cc:message-id:date;
- bh=Hny5tNm2JvoOCazlWLYnJ5ZVMcMCAdG9E5+PlKRxZ+M=;
- b=FReFkWXUjfB603LBKe8pcI7xNF4XKTa9UpMqp1frW9lxVx87NHs41JWr
- S0qtl9lUn/xiIyH14CWy0NCuqt+8Rn6yk+FP3E1we6W4tmnEVgMq3fJZ3
- tuwgW2/9R/v3lYoGkWhLdHAZKNdMUWP0f6WTDMofCmvx0d6d3Y/HCl8dC
- u7SWYAma4C7cdwdLfhYZZvQn62/kfgu6adsxlSm113aZlZn9JoSGXoARf
- bbgQg+CSgJEV9axopZDyPNQ8S4uEwMy1/JkPgS/7fCLorMON852mzexJ2
- xaAnGH9D5EHRuKfN1qbuRe6zgGBr//jH2gxspUxOV9csGfIxHln9RTgJm Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="443015226"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="443015226"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 04:12:11 -0700
+ t=1686050103; x=1717586103;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ovPlpw2hIo6ckI6MPzIS0HwU1hhEufTIrY0AN3MthdQ=;
+ b=e8z9xF5lw3CFiZqWfam+UFhxQb+eB3aHkkiZEtcki71aVbP/xsIIORAw
+ 4KJlr7/nXPsOjao8vWhdcWzGkNwyOsC82HND3H9pMXt6t3oFQG2jT3T2O
+ VTLcmt/uTFUqoXvmbkdKsikSV8/HlhZD6gX9LUnqWcc3VRPlbyIGIuBVD
+ sJ6yozGISsUd7Pgq/SEZqtjoP3lUCczmkE+oTwC//48Z+rLdc1llcHzWD
+ bW0wS1s/gkJaSF/BRcoH81L/75lvW/oBJ/MCefOAw4ZABNHvN0W3J7f7a
+ D10zrOAJ5CoOfUnTFkJfndvlGoEx5jEPsI3Q1a0A6z1ZfpQuchHhciYwa w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="359092898"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="359092898"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2023 04:15:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="712170491"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="712170491"
-Received: from qfortuin-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.20.157])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 04:12:06 -0700
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ZH8H3ovN20uVO+tK@ashyti-mobl2.lan>
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="833191798"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="833191798"
+Received: from yuguen-mobl2.ger.corp.intel.com (HELO intel.com)
+ ([10.252.57.68])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2023 04:14:59 -0700
+Date: Tue, 6 Jun 2023 13:14:53 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <ZH8VLY8a9d7i96cw@ashyti-mobl2.lan>
 References: <20230606100042.482345-1-andi.shyti@linux.intel.com>
  <20230606100042.482345-2-andi.shyti@linux.intel.com>
  <ec219702-8608-e919-cbcd-f271646845d1@linux.intel.com>
  <ZH8H3ovN20uVO+tK@ashyti-mobl2.lan>
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <168604992363.24014.14317865195655387952@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Tue, 06 Jun 2023 14:12:03 +0300
+ <168604992363.24014.14317865195655387952@jlahtine-mobl.ger.corp.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <168604992363.24014.14317865195655387952@jlahtine-mobl.ger.corp.intel.com>
 Subject: Re: [Intel-gfx] [PATCH v17 1/1] drm/i915: Allow user to set cache
  at BO creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,77 +64,49 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Lihao Gu <lihao.gu@intel.com>, Intel GFX <intel-gfx@lists.freedesktop.org>,
- DRI Devel <dri-devel@lists.freedesktop.org>, Carl Zhang <carl.zhang@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Carl Zhang <carl.zhang@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Andi Shyti (2023-06-06 13:18:06)
-> On Tue, Jun 06, 2023 at 11:10:04AM +0100, Tvrtko Ursulin wrote:
-> >=20
-> > On 06/06/2023 11:00, Andi Shyti wrote:
-> > > From: Fei Yang <fei.yang@intel.com>
-> > >=20
-> > > To comply with the design that buffer objects shall have immutable
-> > > cache setting through out their life cycle, {set, get}_caching ioctl's
-> > > are no longer supported from MTL onward. With that change caching
-> > > policy can only be set at object creation time. The current code
-> > > applies a default (platform dependent) cache setting for all objects.
-> > > However this is not optimal for performance tuning. The patch extends
-> > > the existing gem_create uAPI to let user set PAT index for the object
-> > > at creation time.
-> > > The new extension is platform independent, so UMD's can switch to usi=
-ng
-> > > this extension for older platforms as well, while {set, get}_caching =
-are
-> > > still supported on these legacy paltforms for compatibility reason.
-> > > However, since PAT index was not clearly defined for platforms prior =
-to
-> > > GEN12 (TGL), so we are limiting this externsion to GEN12+ platforms
-> > > only. See ext_set_pat() in for the implementation details.
-> > >=20
-> > > Note: The documentation related to the PAT/MOCS tables is currently
-> > > available for Tiger Lake here:
-> > > https://www.intel.com/content/www/us/en/docs/graphics-for-linux/devel=
-oper-reference/1-0/tiger-lake.html
-> > >=20
-> > > BSpec: 45101
-> > >=20
-> > > Mesa support has been submitted in this merge request:
-> > > https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22878
-> > >=20
-> > > The media driver is supported by the following commits:
-> > > https://github.com/intel/media-driver/commit/92c00a857433ebb34ec575e9=
-834f473c6fcb6341
-> > > https://github.com/intel/media-driver/commit/fd375cf2c5e1f6bf6b43258f=
-f797b3134aadc9fd
-> > > https://github.com/intel/media-driver/commit/08dd244b22484770a33464c2=
-c8ae85430e548000
+> > > > To comply with the design that buffer objects shall have immutable
+> > > > cache setting through out their life cycle, {set, get}_caching ioctl's
+> > > > are no longer supported from MTL onward. With that change caching
+> > > > policy can only be set at object creation time. The current code
+> > > > applies a default (platform dependent) cache setting for all objects.
+> > > > However this is not optimal for performance tuning. The patch extends
+> > > > the existing gem_create uAPI to let user set PAT index for the object
+> > > > at creation time.
+> > > > The new extension is platform independent, so UMD's can switch to using
+> > > > this extension for older platforms as well, while {set, get}_caching are
+> > > > still supported on these legacy paltforms for compatibility reason.
+> > > > However, since PAT index was not clearly defined for platforms prior to
+> > > > GEN12 (TGL), so we are limiting this externsion to GEN12+ platforms
+> > > > only. See ext_set_pat() in for the implementation details.
+> > > > 
+> > > > Note: The documentation related to the PAT/MOCS tables is currently
+> > > > available for Tiger Lake here:
+> > > > https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/tiger-lake.html
+> > > > 
+> > > > BSpec: 45101
+> > > > 
+> > > > Mesa support has been submitted in this merge request:
+> > > > https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22878
+> > > > 
+> > > > The media driver is supported by the following commits:
+> > > > https://github.com/intel/media-driver/commit/92c00a857433ebb34ec575e9834f473c6fcb6341
+> > > > https://github.com/intel/media-driver/commit/fd375cf2c5e1f6bf6b43258ff797b3134aadc9fd
+> > > > https://github.com/intel/media-driver/commit/08dd244b22484770a33464c2c8ae85430e548000
+> 
+> Andi, let's still get these corrected before merging once the media-driver
+> revert is completed.
 
-Andi, let's still get these corrected before merging once the media-driver
-revert is completed.
+Sure!
 
-Regards, Joonas
+At least this doesn't need a new version to be respinned.
 
-> > > The IGT test related to this change is
-> > > igt@gem_create@create-ext-set-pat
-> > >=20
-> > > Signed-off-by: Fei Yang <fei.yang@intel.com>
-> > > Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> > > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > > Acked-by: Jordan Justen <jordan.l.justen@intel.com>
-> > > Tested-by: Jordan Justen <jordan.l.justen@intel.com>
-> > > Acked-by: Carl Zhang <carl.zhang@intel.com>
-> > > Tested-by: Lihao Gu <lihao.gu@intel.com>
-> > > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> >=20
-> > Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->=20
-> Fiuuu! Thanks a lot, Tvrtko!
->=20
-> As soon as CI gives green light, I will get this in.
->=20
-> Andi
+Please, Carl, link the new pull request and I will update the
+commit log.
+
+Andi
