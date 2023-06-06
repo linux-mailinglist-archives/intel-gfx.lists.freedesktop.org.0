@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 206D0724CD3
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 21:15:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FCF1724CD7
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 21:15:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84E3D10E3AA;
-	Tue,  6 Jun 2023 19:15:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED6AC10E3A4;
+	Tue,  6 Jun 2023 19:15:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88CB810E3A4
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 19:15:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2D4F10E3A1
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 19:15:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686078936; x=1717614936;
+ t=1686078941; x=1717614941;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=mLRl2XF+szxW+ejv7TZ3L3flq0S2yNg2yQBw1MMTzV8=;
- b=Xe5IpLnt7T5YHu0Iig9DSzQSJ9e/EhuTJBlANCyh8c7QsJ4xLZHwq9Dw
- 375nKV742uyHadqYj0o5qf9mHbOMD+ok3iOxcZ1s8lfXlB/lcRMGwOl7+
- 5p+q+RPvA+S9sKG634Ob3qVGG5FmQVwQaASTj4zdn3K1uvN62b6jOuQGQ
- vzLbLFNyVnn5Az+CzGrTSpmsnmJ2ROcDgfMw3IY+D5fjCsTpQzTy/LGdm
- vEPlBu/oQjKwdMqKIOVRClvU4wTnN7zhmrr5wz1+0DBjtsAy2K6/+/EWX
- WorwrpXLLcY5XnPY3V/ffgKcNIaoFyaVvBTZvx2WNo7BrOpsHSPJG72fm w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="443146313"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="443146313"
+ bh=LNWY+tRjaDCRf0SdsUghdTId0WjvMbKH1f+OrGcj6ac=;
+ b=OFk9hOwnE21KZQaL2WSOnHmMMbbiHdfrOOqy0goTIN8YhnEA7dmfBDhD
+ S5yBViaVIv3xKMa2IBCdOkR17yLlEei2JbE5D3VnBLGDzkt6rrUtx0Iny
+ FhTzk8K1iYGTeLbSfeQv71B/tNUNQHtZEtf50JoUzESna7dYaPtrvGy4Q
+ cAcuTilVcwxk+st0Nw9cXL3DrhEl2fUKHI08Urm4vot5QIRtimxS2PpCT
+ KttKy4HINx9U+TNmGgcM5lWYhUrdoEE5YE0Wb97J/Y9G6HAbicnrItCCP
+ jJe+d9V0rlO9D0pSs7dtkfqQ+qMcJ+seyU1ZXL1BD7QdO/Ix02ntlkfAE Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="443146322"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="443146322"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 12:15:36 -0700
+ 06 Jun 2023 12:15:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="709187087"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="709187087"
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="709187089"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="709187089"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 06 Jun 2023 12:15:34 -0700
+ by orsmga002.jf.intel.com with SMTP; 06 Jun 2023 12:15:37 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 06 Jun 2023 22:15:33 +0300
+ Tue, 06 Jun 2023 22:15:36 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  6 Jun 2023 22:14:54 +0300
-Message-Id: <20230606191504.18099-10-ville.syrjala@linux.intel.com>
+Date: Tue,  6 Jun 2023 22:14:55 +0300
+Message-Id: <20230606191504.18099-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.3
 In-Reply-To: <20230606191504.18099-1-ville.syrjala@linux.intel.com>
 References: <20230606191504.18099-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 09/19] drm/i915/dsb: Introduce
- intel_dsb_reg_write_masked()
+Subject: [Intel-gfx] [PATCH v2 10/19] drm/i915/dsb: Add support for
+ non-posted DSB registers writes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,59 +65,61 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add a function for emitting masked register writes.
-
-Note that the mask is implemented through bvyte enables,
-so can only mask off aligned 8bit sets of bits.
+Writing specific transcoder registers (and as it turns out, the
+legacy LUT as well) via DSB needs a magic sequence to emit
+non-posted register writes. Add a helper for this.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 18 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dsb.h |  2 ++
- 2 files changed, 20 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 20 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dsb.h |  3 +++
+ 2 files changed, 23 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 4ef799c087b4..6be353fdc7fc 100644
+index 6be353fdc7fc..73d609507f24 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -234,6 +234,24 @@ void intel_dsb_reg_write(struct intel_dsb *dsb,
- 	}
+@@ -261,6 +261,26 @@ void intel_dsb_noop(struct intel_dsb *dsb, int count)
+ 			       DSB_OPCODE_NOOP << DSB_OPCODE_SHIFT);
  }
  
-+static u32 intel_dsb_mask_to_byte_en(u32 mask)
++void intel_dsb_nonpost_start(struct intel_dsb *dsb)
 +{
-+	return (!!(mask & 0xff000000) << 3 |
-+		!!(mask & 0x00ff0000) << 2 |
-+		!!(mask & 0x0000ff00) << 1 |
-+		!!(mask & 0x000000ff) << 0);
++	struct intel_crtc *crtc = dsb->crtc;
++	enum pipe pipe = crtc->pipe;
++
++	intel_dsb_reg_write_masked(dsb, DSB_CTRL(pipe, dsb->id),
++				   DSB_NON_POSTED, DSB_NON_POSTED);
++	intel_dsb_noop(dsb, 4);
 +}
 +
-+/* Note: mask implemented via byte enables! */
-+void intel_dsb_reg_write_masked(struct intel_dsb *dsb,
-+				i915_reg_t reg, u32 mask, u32 val)
++void intel_dsb_nonpost_end(struct intel_dsb *dsb)
 +{
-+	intel_dsb_emit(dsb, val,
-+		       (DSB_OPCODE_MMIO_WRITE << DSB_OPCODE_SHIFT) |
-+		       (intel_dsb_mask_to_byte_en(mask) << DSB_BYTE_EN_SHIFT) |
-+		       i915_mmio_reg_offset(reg));
++	struct intel_crtc *crtc = dsb->crtc;
++	enum pipe pipe = crtc->pipe;
++
++	intel_dsb_reg_write_masked(dsb, DSB_CTRL(pipe, dsb->id),
++				   DSB_NON_POSTED, 0);
++	intel_dsb_noop(dsb, 4);
 +}
 +
- void intel_dsb_noop(struct intel_dsb *dsb, int count)
+ static void intel_dsb_align_tail(struct intel_dsb *dsb)
  {
- 	int i;
+ 	u32 aligned_tail, tail;
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index 5a08bc21beda..983b0d58ad44 100644
+index 983b0d58ad44..54e9e1dc31ee 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.h
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -19,6 +19,8 @@ void intel_dsb_finish(struct intel_dsb *dsb);
- void intel_dsb_cleanup(struct intel_dsb *dsb);
- void intel_dsb_reg_write(struct intel_dsb *dsb,
- 			 i915_reg_t reg, u32 val);
-+void intel_dsb_reg_write_masked(struct intel_dsb *dsb,
-+				i915_reg_t reg, u32 mask, u32 val);
+@@ -22,6 +22,9 @@ void intel_dsb_reg_write(struct intel_dsb *dsb,
+ void intel_dsb_reg_write_masked(struct intel_dsb *dsb,
+ 				i915_reg_t reg, u32 mask, u32 val);
  void intel_dsb_noop(struct intel_dsb *dsb, int count);
++void intel_dsb_nonpost_start(struct intel_dsb *dsb);
++void intel_dsb_nonpost_end(struct intel_dsb *dsb);
++
  void intel_dsb_commit(struct intel_dsb *dsb,
  		      bool wait_for_vblank);
+ void intel_dsb_wait(struct intel_dsb *dsb);
 -- 
 2.39.3
 
