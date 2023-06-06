@@ -2,32 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 893FD724931
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 18:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54BB9724938
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 18:33:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80F5F10E380;
-	Tue,  6 Jun 2023 16:32:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D10B210E37B;
+	Tue,  6 Jun 2023 16:33:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C24D910E380;
- Tue,  6 Jun 2023 16:32:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BAB35A00CC;
- Tue,  6 Jun 2023 16:32:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4FE310E37B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 16:33:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686069233; x=1717605233;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=P1q6rVmOF/6IGNt1dQ0OrhY1sUDstftmwkOwbaFR67I=;
+ b=e1KeXVBRpa/MqEJn9rTpJXB5kmrhVZW+2vlRzNH9vB4n34Xg9Kd9JTla
+ 8eZXMoSXZTkq0LaRLHpphN1HyFvZlIXKclAlw+Z7/epDEEEV4wEuWgXIX
+ leJ6acyDtxWscLOLc9pEbUdXb5wIeqkkZVuQgZWSI+MtbCiarNL+lobIz
+ QetrPSlPnD/kX48vyw3UN3T2tSAFm8J6hHo1+XeG8WLJgpQxZSuwTGSMH
+ RXb3UnfuhyqZj0hXG6WuaLqMSkIpaecT3dBnHMg/7fjfP3acHS4sSzr1W
+ pMhQR4YRupkE0xvgsXYKDKgK02b4H/Q9LYc/nTfwB0kBDm+JeyXmPbwRu w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="336356327"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="336356327"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2023 09:33:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="774187029"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="774187029"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2023 09:33:53 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: linux-firmware@kernel.org
+Date: Tue,  6 Jun 2023 09:33:45 -0700
+Message-Id: <20230606163345.2058790-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Coelho, Luciano" <luciano.coelho@intel.com>
-Date: Tue, 06 Jun 2023 16:32:22 -0000
-Message-ID: <168606914273.22676.15654906810575686577@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230606162332.312409-1-luciano.coelho@intel.com>
-In-Reply-To: <20230606162332.312409-1-luciano.coelho@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_implement_internal_workqueues?=
+Subject: [Intel-gfx] PR for HuC v8.5.0 for MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,36 +55,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jwboyer@kernel.org, intel-gfx@lists.freedesktop.org, kyle@kernel.org,
+ ben@decadent.org.uk
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The following changes since commit fc90c59beebd551dde5fe5eb3e76d36651ba08fb:
 
-Series: drm/i915: implement internal workqueues
-URL   : https://patchwork.freedesktop.org/series/118947/
-State : failure
+  Merge branch 'db410c' of https://github.com/lumag/linux-firmware (2023-05-31 07:35:15 -0400)
 
-== Summary ==
+are available in the Git repository at:
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  INSTALL libsubcmd_headers
-  CC [M]  drivers/gpu/drm/i915/display/intel_hdcp.o
-drivers/gpu/drm/i915/display/intel_hdcp.c: In function ‘intel_hdcp_enable’:
-drivers/gpu/drm/i915/display/intel_hdcp.c:2403:22: error: ‘dev_priv’ undeclared (first use in this function); did you mean ‘dev_crit’?
- 2403 |   queue_delayed_work(dev_priv->unordered_wq, &hdcp->check_work,
-      |                      ^~~~~~~~
-      |                      dev_crit
-drivers/gpu/drm/i915/display/intel_hdcp.c:2403:22: note: each undeclared identifier is reported only once for each function it appears in
-make[5]: *** [scripts/Makefile.build:252: drivers/gpu/drm/i915/display/intel_hdcp.o] Error 1
-make[4]: *** [scripts/Makefile.build:494: drivers/gpu/drm/i915] Error 2
-make[3]: *** [scripts/Makefile.build:494: drivers/gpu/drm] Error 2
-make[2]: *** [scripts/Makefile.build:494: drivers/gpu] Error 2
-make[1]: *** [scripts/Makefile.build:494: drivers] Error 2
-make: *** [Makefile:2026: .] Error 2
-Build failed, no error log produced
+  git://anongit.freedesktop.org/drm/drm-firmware mtl_huc_v8.5.0
 
+for you to fetch changes up to 5de33fb45cee8d83abfe17e9e85bd74d51a2653f:
 
+  i915: Add HuC v8.5.0 for MTL (2023-06-06 09:24:40 -0700)
+
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (1):
+      i915: Add HuC v8.5.0 for MTL
+
+ WHENCE               |   3 +++
+ i915/mtl_huc_gsc.bin | Bin 0 -> 565248 bytes
+ 2 files changed, 3 insertions(+)
+ create mode 100755 i915/mtl_huc_gsc.bin
