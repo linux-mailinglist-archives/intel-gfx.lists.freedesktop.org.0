@@ -1,61 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DACD723B64
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 10:24:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB06B723BA2
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 10:27:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D4EB10E2CE;
-	Tue,  6 Jun 2023 08:24:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A22F610E2F0;
+	Tue,  6 Jun 2023 08:27:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2453B10E2CE
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 08:24:03 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id
- ffacd0b85a97d-30e5289105cso59542f8f.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 06 Jun 2023 01:24:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1686039841; x=1688631841;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Cu00erad5bhnLhrnHtwRHa2XDxNFsi3EuA1QgEK2MPg=;
- b=izIWW1PrYM03lQFHH/qXUTUE4kbL8MXfzNUe7V1iIEoaSdn3we/K/6t9S+ZqkRZqln
- 1jy6J4W7vFxq15cjA6LgJOb2yy2bCKrdllkpO9NNqIsTtnWdBDPMfQ1Iaxb6ZM38y8sa
- Fp9GGLui/y1XXnx6xgV68OJAj8lAU43Lnmgh6fQk9szZ+Vbl6wOsDC90u2z84fWDop1r
- kvo0TzjnXu1deUqfoOrfsukbgD7qEBnjYuNg7vdfcS/fU6n0Rqwii/IhkGwfqaFXHu96
- qUy4+c1cIY46Cf0KFcSUPij1lDsdV2KzRqa334LylXd4aHZv0r5l0ZnkluBBA2WAP4lu
- v5GQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686039841; x=1688631841;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Cu00erad5bhnLhrnHtwRHa2XDxNFsi3EuA1QgEK2MPg=;
- b=ZpU+MZm4dUZTwrNw5T4nQ49Iq5RKQZi3RQWDfE9c/TiMbuyevRNLQ+rZMLOfW/2YnR
- P59Fq9xz0WfSJHn5a7xniiRz+ogb1sbzMnkIH3OIwSkYntiWwDdf9XL+tVTY6ivFE9/q
- 6OcL4eqml99NrqR0+jCELHGFMfjlwvcjyIdHPgjtPlNtQbOowZ0KhSsIMihCD+n+hDzf
- fVJEICXdTncz4EhkC2GhH061dHwxYRxgRAfGPIxu3m3ag2hFve2M7afX+6YJnO4ey+Bf
- r+kWKj/HPCTPQSczWN0XtgArCoWcn9PwGD3aXCGE1E3vL3YyGtskrg4sAJXMashunRVO
- iD9Q==
-X-Gm-Message-State: AC+VfDytxUFCiwGkktAKx4w+Q1DIWdEd4CRQrJJoUWfghKSp173DbENl
- s6oEMGQ9O89L4IngJZVUSM7WSg==
-X-Google-Smtp-Source: ACHHUZ4+U56Oim5d9z0fzzpQFWt87wPRBPzyCzagTvFDjwvOyFAFiNq+4kkmkNkoElYtiOJuv5pJvw==
-X-Received: by 2002:adf:f7c8:0:b0:30a:f20b:e71 with SMTP id
- a8-20020adff7c8000000b0030af20b0e71mr1198004wrq.33.1686039841487; 
- Tue, 06 Jun 2023 01:24:01 -0700 (PDT)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- h14-20020a5d504e000000b00300aee6c9cesm11936977wrt.20.2023.06.06.01.23.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 06 Jun 2023 01:24:00 -0700 (PDT)
-Date: Tue, 6 Jun 2023 11:23:56 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <ZH7tHLRZ9oBjedjN@moroto>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C99110E2CE;
+ Tue,  6 Jun 2023 08:27:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686040031; x=1717576031;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=GIsyVGPDgE8PKkZxjDGVz34LapzyMmYSOROpzep7GcI=;
+ b=iKMIzD4wHDg54OmENG6ieHHobGcZSIiJ55PCc0u4DVbBJXJSL9bDMEyJ
+ yneufqMaXEiX9FoVk0V3AajZt5fMdE6r1XlA6U9PN6cpgRwbtKUFe4QlO
+ 9KWnZ1kmMObQo0zPu/htHJ6dz0w4MWU77DhNTySOM5+TFHBfikaCUghli
+ PR2xbeTLCnG9QVb2QuWhSBAsc6/g2VQFhhdM5Bc2covceyuW6ZgVcYmc9
+ /iEk+BMoiNOhZFrl+FhYhvib9nCY5GPA2gWOqExXVAAaCvy7f5xw3ny5i
+ ftD3X5IasGiuWDow7sb/xkTwfIypAJyKk1dljy0+8yXMsVir3m13Hj/Al A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="336960758"
+X-IronPort-AV: E=Sophos;i="6.00,219,1681196400"; d="scan'208";a="336960758"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2023 01:27:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="703073891"
+X-IronPort-AV: E=Sophos;i="6.00,219,1681196400"; d="scan'208";a="703073891"
+Received: from lkp-server01.sh.intel.com (HELO 15ab08e44a81) ([10.239.97.150])
+ by orsmga007.jf.intel.com with ESMTP; 06 Jun 2023 01:27:09 -0700
+Received: from kbuild by 15ab08e44a81 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1q6S20-00051r-1d;
+ Tue, 06 Jun 2023 08:27:08 +0000
+Date: Tue, 6 Jun 2023 16:26:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202306061637.gecTQnQd-lkp@intel.com>
+References: <20230606022402.2048235-5-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix a NULL vs IS_ERR() bug
+In-Reply-To: <20230606022402.2048235-5-daniele.ceraolospurio@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 4/5] drm/i915/mtl/gsc: Add a gsc_info
+ debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,37 +61,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- Suren Baghdasaryan <surenb@google.com>, Matthew Auld <matthew.auld@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The mmap_offset_attach() function returns error pointers, it doesn't
-return NULL.
+Hi Daniele,
 
-Fixes: eaee1c085863 ("drm/i915: Add a function to mmap framebuffer obj")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+kernel test robot noticed the following build errors:
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index 4e7a838ab7bd..aa4d842d4c5a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -1085,8 +1085,8 @@ int i915_gem_fb_mmap(struct drm_i915_gem_object *obj, struct vm_area_struct *vma
- 		/* handle stolen and smem objects */
- 		mmap_type = i915_ggtt_has_aperture(ggtt) ? I915_MMAP_TYPE_GTT : I915_MMAP_TYPE_WC;
- 		mmo = mmap_offset_attach(obj, mmap_type, NULL);
--		if (!mmo)
--			return -ENODEV;
-+		if (IS_ERR(mmo))
-+			return PTR_ERR(mmo);
- 	}
- 
- 	/*
+[auto build test ERROR on drm-tip/drm-tip]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Daniele-Ceraolo-Spurio/drm-i915-gsc-fixes-and-updates-for-GSC-memory-allocation/20230606-102510
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230606022402.2048235-5-daniele.ceraolospurio%40intel.com
+patch subject: [Intel-gfx] [PATCH v2 4/5] drm/i915/mtl/gsc: Add a gsc_info debugfs
+config: i386-defconfig (https://download.01.org/0day-ci/archive/20230606/202306061637.gecTQnQd-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build):
+        git remote add drm-tip git://anongit.freedesktop.org/drm/drm-tip
+        git fetch drm-tip drm-tip
+        git checkout drm-tip/drm-tip
+        b4 shazam https://lore.kernel.org/r/20230606022402.2048235-5-daniele.ceraolospurio@intel.com
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=i386 olddefconfig
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306061637.gecTQnQd-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.c:28:6: error: no previous prototype for 'intel_gsc_uc_debugfs_register' [-Werror=missing-prototypes]
+      28 | void intel_gsc_uc_debugfs_register(struct intel_gsc_uc *gsc_uc, struct dentry *root)
+         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   cc1: all warnings being treated as errors
+
+
+vim +/intel_gsc_uc_debugfs_register +28 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.c
+
+    27	
+  > 28	void intel_gsc_uc_debugfs_register(struct intel_gsc_uc *gsc_uc, struct dentry *root)
+
 -- 
-2.39.2
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
