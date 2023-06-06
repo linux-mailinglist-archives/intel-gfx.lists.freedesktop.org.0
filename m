@@ -2,48 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86125724F78
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jun 2023 00:15:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FCDC724FED
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jun 2023 00:34:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEB2210E3DB;
-	Tue,  6 Jun 2023 22:15:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC3010E3FA;
+	Tue,  6 Jun 2023 22:34:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B14CD10E19B;
- Tue,  6 Jun 2023 22:15:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686089716; x=1717625716;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=OCshV4vi//ZRemMrlAfACm3yUYuC1FndE2VlA77WpPE=;
- b=QPdA42z3bJ1F9SGZEqx4PjSQsLwSkM6rKSysk3AUewvXHfDdUh6KTR9X
- xKOqnP/kyMCuDBMTZrldNd0xJ423kG2POw8gPTvC8Hekj1Iia8vFHJddE
- Z8m65gO/M2VUuBlLo2uWidyiBaF9bwVfUcxRxhqUVve31kvTSTLZXybWn
- /CIT1Cj3zLad6t8c+JiBC4uSsdKV3ZGohWpRN1bim4SMnFgRS+R0OmVV4
- NwY6PDS2YSvWhMvJF9yi/rl/sApQva7zh5yJ5ZA/BTtMbtzwbMRszJNyO
- qfuj7FCi4H+Vs1i4LrLFhrCgFw8/6/PXQ9vGWtdMgCU5r7XghBKgJpNmx w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="346420152"
-X-IronPort-AV: E=Sophos;i="6.00,222,1681196400"; d="scan'208";a="346420152"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 15:15:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="742341998"
-X-IronPort-AV: E=Sophos;i="6.00,222,1681196400"; d="scan'208";a="742341998"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga001.jf.intel.com with ESMTP; 06 Jun 2023 15:15:10 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	igt-dev@lists.freedesktop.org
-Date: Tue,  6 Jun 2023 15:14:18 -0700
-Message-Id: <20230606221418.296888-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 98BCF10E3E6;
+ Tue,  6 Jun 2023 22:34:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 91E45AADD6;
+ Tue,  6 Jun 2023 22:34:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t] tests/gem_ctx_persistence: Skip hang
- subtest with GuC
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 06 Jun 2023 22:34:39 -0000
+Message-ID: <168609087956.22671.9186717589817092512@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230606191504.18099-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230606191504.18099-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Load_LUTs_with_DSB_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,30 +40,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hang subtest is not supported with GuC submission enabled.
+== Series Details ==
 
-Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- tests/i915/gem_ctx_persistence.c | 2 ++
- 1 file changed, 2 insertions(+)
+Series: drm/i915: Load LUTs with DSB (rev2)
+URL   : https://patchwork.freedesktop.org/series/113042/
+State : warning
 
-diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
-index df9b1c491..d2558354e 100644
---- a/tests/i915/gem_ctx_persistence.c
-+++ b/tests/i915/gem_ctx_persistence.c
-@@ -577,6 +577,8 @@ static void test_nohangcheck_hang(int i915, const intel_ctx_cfg_t *cfg)
- 	int testable_engines = 0;
- 	int dir;
- 
-+	igt_require(!gem_using_guc_submission(i915));
-+
- 	cleanup(i915);
- 
- 	/*
--- 
-2.38.1
+== Summary ==
+
+Error: dim checkpatch failed
+35a5ec5257a0 drm/i915: Constify LUT entries in checker
+018aa36a0ba6 drm/i915/dsb: Use non-locked register access
+7f1c6c879158 drm/i915/dsb: Dump the DSB command buffer when DSB fails
+-:34: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#34: FILE: drivers/gpu/drm/i915/display/intel_dsb.c:108:
++			    i * 4, buf[i], buf[i+1], buf[i+2], buf[i+3]);
+ 			                        ^
+
+-:34: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#34: FILE: drivers/gpu/drm/i915/display/intel_dsb.c:108:
++			    i * 4, buf[i], buf[i+1], buf[i+2], buf[i+3]);
+ 			                                  ^
+
+-:34: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#34: FILE: drivers/gpu/drm/i915/display/intel_dsb.c:108:
++			    i * 4, buf[i], buf[i+1], buf[i+2], buf[i+3]);
+ 			                                            ^
+
+total: 0 errors, 0 warnings, 3 checks, 46 lines checked
+0a4d1ee3a7dc drm/i915/dsb: Define more DSB bits
+38081eebc4d0 drm/i915/dsb: Define the contents of some intstructions bit better
+9f17b48cfa11 drm/i915/dsb: Avoid corrupting the first register write
+c42dd35aefce drm/i915/dsb: Don't use indexed writes when byte enables are not all set
+3fbf457bbf91 drm/i915/dsb: Introduce intel_dsb_noop()
+dac21505a69f drm/i915/dsb: Introduce intel_dsb_reg_write_masked()
+31801d2a8474 drm/i915/dsb: Add support for non-posted DSB registers writes
+855a48b16b6a drm/i915/dsb: Don't use DSB to load the LUTs during full modeset
+2c4cd85c5f78 drm/i915/dsb: Load LUTs using the DSB during vblank
+cfe38d031292 drm/i915/dsb: Use non-posted register writes for legacy LUT
+dd012e35d761 drm/i915/dsb: Evade transcoder undelayed vblank when using DSB
+941cfcdee747 drm/i915: Introduce skl_watermark_max_latency()
+2fb1138ee512 drm/i915: Introudce intel_crtc_scanline_to_hw()
+952b6004f60c drm/i915/dsb: Use DEwake to combat PkgC latency
+d88af6de0a61 drm/i915/dsb: Re-instate DSB for LUT updates
+c745478e5c12 drm/i915: Do state check for color management changes
+
 
