@@ -1,52 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04124724E21
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 22:28:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A121F724E2D
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 22:35:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64F4610E00D;
-	Tue,  6 Jun 2023 20:28:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC66610E3C6;
+	Tue,  6 Jun 2023 20:35:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83A1610E00D;
- Tue,  6 Jun 2023 20:28:16 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91DC710E3C6;
+ Tue,  6 Jun 2023 20:35:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686083296; x=1717619296;
- h=from:to:cc:subject:date:message-id:mime-version:
+ t=1686083753; x=1717619753;
+ h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=s+K+vxUE+t/ISNlBl0LenW79AMapYZsPQdTU2l40Vzk=;
- b=nFk+wApo5EnoRdlHmlfUWY2+ZU5uU2G0gdiKIIqJ5Lb10St6kC1HtaWW
- GzHXZuGzcw6tEocWa/mP97d896LiKlFA3FW+Br/mjjUtaA27EnhNdPBDG
- lLHo+9k531vTMrXVs0jTud4iS7W6R1b/Eohd42M+CEkSbnalpdIXySyaD
- LT2wd97S7k95oo2uZC/vqXHZ+yLpbf/jLOP4PUGfNSitOn+4WADQndOli
- GDziNWzewxrAiVtqf1rTQT/saEzM6rkkHZMgYvulhJIiRjAGYekXHwvld
- d3blf88oPyX3Keo0CHhzvLjYp4bUYD/M1IaJPNv8pYKQ47pGh3RQLLfNR w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="356803662"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="356803662"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 13:28:04 -0700
+ bh=V6a6Q6qlRI11cEKHOjWkDFAeRzr/gEuKS6rsu3eTJRI=;
+ b=dhL5fGab0iMa88Fv4RDygW1l/2oZ1QGbyruBlwrnbxa+BiqFWnJEgzEe
+ dFY3tP360ZW9F1kK5q0hiYVQs04XDMj5KKtEnP4rsdbeWHVkdpIug7ypF
+ oOYiZM/47F/cG9YRGz3hm8VHrDwJrvTEeUcfLK1g8BsVinjzZxyuM/lqv
+ 72tAN5lJgEV8BkyVkCU/QqrxpCS7fh5id62+j9qwmwXNLfq5gXgLwPEmv
+ XIiZrvzwyQXIj9jOF3M9ufkMIho5BwC2ROj8A5aU4TrosAtUmxlpJgm+B
+ PykpsUoZRKb8+x4eFsZYWofzbANzGBuB7oitFMM2oxU3fFzLuUkivrku9 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="385108864"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="385108864"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2023 13:35:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="686667627"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="686667627"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 13:28:01 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  6 Jun 2023 22:27:55 +0200
-Message-Id: <20230606202755.8719-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.39.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="712336605"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="712336605"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by fmsmga007.fm.intel.com with ESMTP; 06 Jun 2023 13:35:52 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	igt-dev@lists.freedesktop.org
+Date: Tue,  6 Jun 2023 13:35:35 -0700
+Message-Id: <20230606203535.292739-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Fix a VMA UAF for multi-gt platform
+Subject: [Intel-gfx] [PATCH i-g-t] tests/i915_pm_freq_api: Add a suspend
+ subtest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,94 +56,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ensure correct handling of closed VMAs on multi-gt platforms to prevent
-Use-After-Free. Currently, when GT0 goes idle, closed VMAs that are
-exclusively added to GT0's closed_vma link (gt->closed_vma) and
-subsequently freed by i915_vma_parked(), which assumes the entire GPU is
-idle. However, on platforms with multiple GTs, such as MTL, GT1 may
-remain active while GT0 is idle. This causes GT0 to mistakenly consider
-the closed VMAs in its closed_vma list as unnecessary, potentially
-leading to Use-After-Free issues if a job for GT1 attempts to access a
-freed VMA.
+Verify that SLPC API works as expected after a suspend.
 
-Although we do take a wakeref for GT0 but it happens later, after
-evaluating VMAs. To mitigate this, it is necessary to hold a GT0 wakeref
-early.
-
-v2: Use gt id to detect multi-tile(Andi)
-    Fix the incorrect error path.
-
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Chris Wilson <chris.p.wilson@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
-Tested-by: Andi Shyti <andi.shyti@linux.intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ tests/i915/i915_pm_freq_api.c | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 3aeede6aee4d..c2a67435acfa 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2683,6 +2683,7 @@ static int
- eb_select_engine(struct i915_execbuffer *eb)
- {
- 	struct intel_context *ce, *child;
-+	struct intel_gt *gt;
- 	unsigned int idx;
- 	int err;
+diff --git a/tests/i915/i915_pm_freq_api.c b/tests/i915/i915_pm_freq_api.c
+index 9005cd220..f35f1f8e0 100644
+--- a/tests/i915/i915_pm_freq_api.c
++++ b/tests/i915/i915_pm_freq_api.c
+@@ -18,6 +18,9 @@
+  *
+  * SUBTEST: freq-reset
+  * Description: Test basic freq API works after a reset
++ *
++ * SUBTEST: freq-suspend
++ * Description: Test basic freq API works after a runtime suspend
+  */
  
-@@ -2706,10 +2707,16 @@ eb_select_engine(struct i915_execbuffer *eb)
- 		}
- 	}
- 	eb->num_batches = ce->parallel.number_children + 1;
-+	gt = ce->engine->gt;
+ IGT_TEST_DESCRIPTION("Test SLPC freq API");
+@@ -99,6 +102,24 @@ static void test_reset(int i915, int dirfd, int gt)
+ 	igt_assert(get_freq(dirfd, RPS_MAX_FREQ_MHZ) == rpn);
+ }
  
- 	for_each_child(ce, child)
- 		intel_context_get(child);
- 	intel_gt_pm_get(ce->engine->gt);
-+	/* Keep GT0 active on MTL so that i915_vma_parked() doesn't
-+	 * free VMAs while execbuf ioctl is validating VMAs.
-+	 */
-+	if (gt->info.id)
-+		intel_gt_pm_get(to_gt(gt->i915));
- 
- 	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
- 		err = intel_context_alloc_state(ce);
-@@ -2748,6 +2755,9 @@ eb_select_engine(struct i915_execbuffer *eb)
- 	return err;
- 
- err:
-+	if (gt->info.id)
-+		intel_gt_pm_put(to_gt(gt->i915));
++static void test_suspend(int i915, int dirfd, int gt)
++{
++	uint32_t rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
 +
- 	intel_gt_pm_put(ce->engine->gt);
- 	for_each_child(ce, child)
- 		intel_context_put(child);
-@@ -2761,6 +2771,8 @@ eb_put_engine(struct i915_execbuffer *eb)
- 	struct intel_context *child;
++	igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0);
++	igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rpn) > 0);
++	usleep(ACT_FREQ_LATENCY_US);
++	igt_assert(get_freq(dirfd, RPS_MIN_FREQ_MHZ) == rpn);
++	igt_assert(get_freq(dirfd, RPS_MAX_FREQ_MHZ) == rpn);
++
++	/* Manually trigger a suspend */
++	igt_system_suspend_autoresume(SUSPEND_STATE_S3,
++				      SUSPEND_TEST_NONE);
++
++	igt_assert(get_freq(dirfd, RPS_MIN_FREQ_MHZ) == rpn);
++	igt_assert(get_freq(dirfd, RPS_MAX_FREQ_MHZ) == rpn);
++}
++
+ igt_main
+ {
+ 	int i915 = -1;
+@@ -143,6 +164,15 @@ igt_main
+ 				test_reset(i915, dirfd, gt);
+ 	}
  
- 	i915_vm_put(eb->context->vm);
-+	if (eb->gt->info.id)
-+		intel_gt_pm_put(to_gt(eb->gt->i915));
- 	intel_gt_pm_put(eb->gt);
- 	for_each_child(eb->context, child)
- 		intel_context_put(child);
++	igt_describe("Test basic freq API works after suspend");
++	igt_subtest_with_dynamic_f("freq-suspend") {
++		int dirfd, gt;
++
++		for_each_sysfs_gt_dirfd(i915, dirfd, gt)
++			igt_dynamic_f("gt%u", gt)
++				test_suspend(i915, dirfd, gt);
++	}
++
+ 	igt_fixture {
+ 		int dirfd, gt;
+ 		/* Restore frequencies */
 -- 
-2.39.0
+2.38.1
 
