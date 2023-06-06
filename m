@@ -1,53 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1E17724957
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 18:40:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE96724A36
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 19:29:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D2AD10E385;
-	Tue,  6 Jun 2023 16:40:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D41B10E391;
+	Tue,  6 Jun 2023 17:29:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0268010E37B
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 16:40:03 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0EF210E391
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 17:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686069604; x=1717605604;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ht7/fN+/RaaJDQ1aapZ6PMdIlLaZy8unEu/HNmIET2Y=;
- b=UpwEo689TMjqNWJsyYQVJa7g5hntshmc9e1mrx4QNz745m0pfTSrJnQv
- jMU3Z+AoPMYosnIQvfEhwPAsPhwK5QdZGuKhTDwEfqedMvKlFOQUw/PNR
- 9L6cv5GY7o89G57fH41pRQcoQbMx+F58nn1Pb0TRkXmq3c2zBENsJStnd
- ZaDJxt+FIkt+7/eDCjT1TcVXhR/7/WiRZoTVWr8KCTBlpStQLKkS9kdiD
- hcJNJoisA5TdufuRnYdVuxEhjzEbYtm8WQeVGFqRNGR/TyRTiz9SxCcc/
- DLfHjT9qysoahLbUk908kxgKbu2NKcxhlWrRdbrYWb6DIBX/+idAOCT+P g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="355588616"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="355588616"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 09:40:03 -0700
+ t=1686072593; x=1717608593;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jWa9bHWOkmjsSCJMDbGTqX5oeAFQbbiAjEqsAl39GeI=;
+ b=Fve+vJk/JpsCv++FManZ4TOBVwQFt42TGmC+e4SeXUH+Re6kEcx2E2g/
+ UUBCqUUPmPtLxEef6IjZwUezZx8Zj5AM5Z6EwC/C22kutCh2ug5bdEhlp
+ IIyS5tWpCxujYxr3CPDV9oM/Xqs+N98NwxblJ1mbSUSTsEMqLmvjB87ig
+ Rkk4P+JZ32ThgfrCoWkiO3oE2BLmlgjwhmX3Cvb8rkTBISspsxG3+v0dK
+ Ka7PTlkwBSAbhGjXjaeNfRnV9qTCoh5HNGYHrZAIndgIhGK6gnuMlaGtj
+ iNXlGwUjiInr8j1Tpw0NSqj+0u/L9ZZh7XgPeUygfC1HvvGbQXBUTADd7 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="346350770"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="346350770"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2023 10:28:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="709134990"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="709134990"
-Received: from tburszty-mobl2.ger.corp.intel.com (HELO
- hazy.ger.corp.intel.com) ([10.251.210.244])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 09:40:01 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="686626373"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="686626373"
+Received: from unknown (HELO ideak-desk.fi.intel.com) ([10.237.72.78])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2023 10:28:21 -0700
+From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  6 Jun 2023 19:39:42 +0300
-Message-Id: <20230606163942.330052-4-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230606163942.330052-1-luciano.coelho@intel.com>
-References: <20230606163942.330052-1-luciano.coelho@intel.com>
+Date: Tue,  6 Jun 2023 20:28:22 +0300
+Message-Id: <20230606172822.1891897-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 3/3] drm/i915/selftests: add local workqueue
- for SW fence selftest
+Subject: [Intel-gfx] [PATCH] drm/i915/adlp+: Allow DC states along with PW2
+ only for PWB functionality
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,67 +56,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of using a global workqueue for the SW fence selftest,
-allocate a separate one temporarily only while running the test.
+A recent bspec update added a restriction on when DC states can be enabled:
 
-Cc: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+[Before enabling DC states:]
+
+"""
+PG2 can be kept enabled only because PGB requires PG2.
+Do not use PG2 functions, such as type-C DDIs.
+
+DMC will dynamically control PG1, PGA, PG2, PGB.
+"""
+
+Accordingly prevent DC states if PW2 (aka PG2) is enabled for any other
+functionality.
+
+Bpsec: 49193
+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/selftests/i915_sw_fence.c | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+ .../drm/i915/display/intel_display_power_map.c   | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_sw_fence.c b/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-index daa985e5a19b..8f5ce71fa453 100644
---- a/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_sw_fence.c
-@@ -523,12 +523,19 @@ static void task_ipc(struct work_struct *work)
- static int test_ipc(void *arg)
- {
- 	struct task_ipc ipc;
-+	struct workqueue_struct *wq;
- 	int ret = 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+index 1118ee9d224ca..5ad04cd42c158 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+@@ -1252,10 +1252,18 @@ I915_DECL_PW_DOMAINS(xelpd_pwdoms_pw_a,
+ 	POWER_DOMAIN_INIT);
  
-+	wq = alloc_workqueue("i1915-selftest", 0, 0);
-+	if (wq == NULL)
-+		return -ENOMEM;
-+
- 	/* Test use of i915_sw_fence as an interprocess signaling mechanism */
- 	ipc.in = alloc_fence();
--	if (!ipc.in)
--		return -ENOMEM;
-+	if (!ipc.in) {
-+		ret = -ENOMEM;
-+		goto err_work;
-+	}
- 	ipc.out = alloc_fence();
- 	if (!ipc.out) {
- 		ret = -ENOMEM;
-@@ -540,7 +547,7 @@ static int test_ipc(void *arg)
+ #define XELPD_DC_OFF_PORT_POWER_DOMAINS \
++	POWER_DOMAIN_PORT_DDI_LANES_C, \
++	POWER_DOMAIN_PORT_DDI_LANES_D, \
++	POWER_DOMAIN_PORT_DDI_LANES_E, \
+ 	POWER_DOMAIN_PORT_DDI_LANES_TC1, \
+ 	POWER_DOMAIN_PORT_DDI_LANES_TC2, \
+ 	POWER_DOMAIN_PORT_DDI_LANES_TC3, \
+ 	POWER_DOMAIN_PORT_DDI_LANES_TC4, \
++	POWER_DOMAIN_VGA, \
++	POWER_DOMAIN_AUDIO_PLAYBACK, \
++	POWER_DOMAIN_AUX_IO_C, \
++	POWER_DOMAIN_AUX_IO_D, \
++	POWER_DOMAIN_AUX_IO_E, \
+ 	POWER_DOMAIN_AUX_C, \
+ 	POWER_DOMAIN_AUX_D, \
+ 	POWER_DOMAIN_AUX_E, \
+@@ -1272,14 +1280,6 @@ I915_DECL_PW_DOMAINS(xelpd_pwdoms_pw_a,
+ 	XELPD_PW_B_POWER_DOMAINS, \
+ 	XELPD_PW_C_POWER_DOMAINS, \
+ 	XELPD_PW_D_POWER_DOMAINS, \
+-	POWER_DOMAIN_PORT_DDI_LANES_C, \
+-	POWER_DOMAIN_PORT_DDI_LANES_D, \
+-	POWER_DOMAIN_PORT_DDI_LANES_E, \
+-	POWER_DOMAIN_VGA, \
+-	POWER_DOMAIN_AUDIO_PLAYBACK, \
+-	POWER_DOMAIN_AUX_IO_C, \
+-	POWER_DOMAIN_AUX_IO_D, \
+-	POWER_DOMAIN_AUX_IO_E, \
+ 	XELPD_DC_OFF_PORT_POWER_DOMAINS
  
- 	ipc.value = 0;
- 	INIT_WORK_ONSTACK(&ipc.work, task_ipc);
--	schedule_work(&ipc.work);
-+	queue_work(wq, &ipc.work);
- 
- 	wait_for_completion(&ipc.started);
- 
-@@ -563,6 +570,9 @@ static int test_ipc(void *arg)
- 	free_fence(ipc.out);
- err_in:
- 	free_fence(ipc.in);
-+err_work:
-+	destroy_workqueue(wq);
-+
- 	return ret;
- }
- 
+ I915_DECL_PW_DOMAINS(xelpd_pwdoms_pw_2,
 -- 
-2.39.2
+2.37.2
 
