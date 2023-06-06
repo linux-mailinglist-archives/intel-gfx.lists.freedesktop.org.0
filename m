@@ -1,48 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54BB9724938
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 18:33:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D413724954
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jun 2023 18:40:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D10B210E37B;
-	Tue,  6 Jun 2023 16:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC0F610E37B;
+	Tue,  6 Jun 2023 16:40:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4FE310E37B
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 16:33:53 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 914CF10E37B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 16:40:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686069233; x=1717605233;
+ t=1686069602; x=1717605602;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=P1q6rVmOF/6IGNt1dQ0OrhY1sUDstftmwkOwbaFR67I=;
- b=e1KeXVBRpa/MqEJn9rTpJXB5kmrhVZW+2vlRzNH9vB4n34Xg9Kd9JTla
- 8eZXMoSXZTkq0LaRLHpphN1HyFvZlIXKclAlw+Z7/epDEEEV4wEuWgXIX
- leJ6acyDtxWscLOLc9pEbUdXb5wIeqkkZVuQgZWSI+MtbCiarNL+lobIz
- QetrPSlPnD/kX48vyw3UN3T2tSAFm8J6hHo1+XeG8WLJgpQxZSuwTGSMH
- RXb3UnfuhyqZj0hXG6WuaLqMSkIpaecT3dBnHMg/7fjfP3acHS4sSzr1W
- pMhQR4YRupkE0xvgsXYKDKgK02b4H/Q9LYc/nTfwB0kBDm+JeyXmPbwRu w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="336356327"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="336356327"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 09:33:53 -0700
+ bh=/7Yiv5e5WoT57T+WwahkH9Yqet6Jptbmz3BWwXUbSHE=;
+ b=F35b/Jd/zrzuN9Q8xXuCB8dr243o4RRHw4anAAziJi5iGdBX2yYaTau3
+ Rb6+K0HND81bOmK71FSbOGjjO9huMS+tyWdCWcq6hMB/1JqsnfRMZWBHO
+ z+0c9YEuyhdZhT/HgM3IVUSzgR/0ABVepJpg2lK6AOZi3HdGLcxjoy7NN
+ ZTTPzbmYFbi9A8ZBLnJehVqVt34hTOoWcPipkSl3kueVmOny3qT7vrJ58
+ HPSaEpLQpGRzFwOxox8JhFeokqAaYwr6/kYTraIMdL5k+MhkcHwv6acfS
+ f/cCmybIHesb9jnwdbmDz9K2pfpMp2NwmtZ+7w1iQIVoK/h4LJ50u0IYo Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="355588573"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="355588573"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2023 09:39:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="774187029"
-X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="774187029"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 09:33:53 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: linux-firmware@kernel.org
-Date: Tue,  6 Jun 2023 09:33:45 -0700
-Message-Id: <20230606163345.2058790-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.40.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="709134932"
+X-IronPort-AV: E=Sophos;i="6.00,221,1681196400"; d="scan'208";a="709134932"
+Received: from tburszty-mobl2.ger.corp.intel.com (HELO
+ hazy.ger.corp.intel.com) ([10.251.210.244])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2023 09:39:55 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  6 Jun 2023 19:39:39 +0300
+Message-Id: <20230606163942.330052-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] PR for HuC v8.5.0 for MTL
+Subject: [Intel-gfx] [PATCH v5 0/3] drm/i915: implement internal workqueues
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,28 +57,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jwboyer@kernel.org, intel-gfx@lists.freedesktop.org, kyle@kernel.org,
- ben@decadent.org.uk
+Cc: rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following changes since commit fc90c59beebd551dde5fe5eb3e76d36651ba08fb:
+Hi,
 
-  Merge branch 'db410c' of https://github.com/lumag/linux-firmware (2023-05-31 07:35:15 -0400)
+This series implements internal workqueues in the i915 driver in order
+to avoid using the system queue.  We add one generic workqueue in the
+drm_i915_private structure, one specific for wake references and one
+in a self-test.
 
-are available in the Git repository at:
+This is based on Tetsuo's work[1] and is required to get rid of the
+flush_scheduled_work() usage.
 
-  git://anongit.freedesktop.org/drm/drm-firmware mtl_huc_v8.5.0
+As discussed, we can either take Tetsuo's implementation first, which
+uses a module-global workqueue, and then my series on top of that, to
+change the implementation to per-device workqueues, or apply my series
+directly.  And a third option would be to keep the workqueue as
+module-global.  I'm fine with any of this options.  It's up to the
+maintainers to decide which one to take.
 
-for you to fetch changes up to 5de33fb45cee8d83abfe17e9e85bd74d51a2653f:
+In v2:
+   * Removed per-engine workqueue and wakeref-specific queue;
+   * Renamed the workqueue name from "i915-wq" to "unordered_wq";
+   * Added comment about when the new workqueue should be used;
+   * Changed wakeref structs to store i915 instead of rpm;
 
-  i915: Add HuC v8.5.0 for MTL (2023-06-06 09:24:40 -0700)
+In v3:
+   * Fixed queue to destroy in the init error path;
+   * Improved the new queue's description a bit;
+   * Removed stray empty-line removal;
 
-----------------------------------------------------------------
-Daniele Ceraolo Spurio (1):
-      i915: Add HuC v8.5.0 for MTL
+In v4:
+   * Fixed the queue used in __intel_wakeref_put_last(), we were
+     accidentally using the ordered workqueue.  Thanks, Tvrtko!
 
- WHENCE               |   3 +++
- i915/mtl_huc_gsc.bin | Bin 0 -> 565248 bytes
- 2 files changed, 3 insertions(+)
- create mode 100755 i915/mtl_huc_gsc.bin
+In v5:
+   * Fix compilation error cause by change from dev_priv to i915 in
+     intel_hdcp_enable().
+
+Please review.
+
+[1] https://patchwork.freedesktop.org/series/114608/
+
+Cheers,
+Luca.
+
+
+Luca Coelho (3):
+  drm/i915: use pointer to i915 instead of rpm in wakeref
+  drm/i915: add a dedicated workqueue inside drm_i915_private
+  drm/i915/selftests: add local workqueue for SW fence selftest
+
+ drivers/gpu/drm/i915/display/intel_display.c  |  5 ++--
+ .../drm/i915/display/intel_display_driver.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
+ .../drm/i915/display/intel_dp_link_training.c |  3 ++-
+ drivers/gpu/drm/i915/display/intel_drrs.c     |  4 +++-
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  3 ++-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 23 +++++++++++--------
+ drivers/gpu/drm/i915/display/intel_hotplug.c  | 18 ++++++++++-----
+ drivers/gpu/drm/i915/display/intel_opregion.c |  3 ++-
+ drivers/gpu/drm/i915/display/intel_pps.c      |  4 +++-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  8 ++++---
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  4 +---
+ .../drm/i915/gt/intel_execlists_submission.c  |  5 ++--
+ .../gpu/drm/i915/gt/intel_gt_buffer_pool.c    | 10 ++++----
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c   | 10 ++++----
+ drivers/gpu/drm/i915/gt/intel_reset.c         |  2 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c           | 20 ++++++++--------
+ drivers/gpu/drm/i915/gt/selftest_engine_cs.c  |  2 +-
+ drivers/gpu/drm/i915/i915_driver.c            | 13 +++++++++++
+ drivers/gpu/drm/i915/i915_drv.h               | 10 ++++++++
+ drivers/gpu/drm/i915/i915_request.c           |  2 +-
+ drivers/gpu/drm/i915/intel_runtime_pm.c       |  2 +-
+ drivers/gpu/drm/i915/intel_wakeref.c          | 22 ++++++++++--------
+ drivers/gpu/drm/i915/intel_wakeref.h          | 12 +++++-----
+ .../gpu/drm/i915/selftests/i915_sw_fence.c    | 16 ++++++++++---
+ 29 files changed, 136 insertions(+), 77 deletions(-)
+
+-- 
+2.39.2
+
