@@ -2,155 +2,159 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7940B726A9D
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jun 2023 22:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F215D727058
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jun 2023 23:12:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3092610E53F;
-	Wed,  7 Jun 2023 20:17:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD3010E54E;
+	Wed,  7 Jun 2023 21:12:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C25610E53F;
- Wed,  7 Jun 2023 20:17:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05F2A10E54E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Jun 2023 21:12:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686169049; x=1717705049;
- h=message-id:date:subject:to:references:from:in-reply-to:
- mime-version; bh=E6UDVjcPdFsljHzyWJtPeqtGUlqkbs2Rjoec/TuoQz0=;
- b=HqT5wvjzIMMN1DaCnWoObvtR4PGnkWjTLZsO0RXDKEKwOQmxP32zKARa
- xIjUrpb7LQ49q0P7bQKoGQopdqgs5tsaTzsR2ySgLK01UL06ZxOmKYiM9
- V/tEmxMh1IiQlcfkvB+aqdD0fVFOSgVUea44hL8eVNy3mUboSSS6aq5Ua
- rcrBeLK46FT+4xo8q8GkAIVMiJoXl+mDHlc5ublS3D/n3mVCs7f0Aifto
- 8sKPv9Nl6f1uA/ZaodCQt5yPUpQvxp+PeZ8kt6urd23WtsLXF1SuADF4C
- oYwoxJ7ZQGkoWDN9y3p9AxTHEhnkPGFyABz9Q7+MF5Uk8hbw1RuATHbpC Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="360428713"
-X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; 
- d="scan'208,217";a="360428713"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ t=1686172340; x=1717708340;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=pkvMQ02dHbU/fvT7ecKLJ4kr/icYIW91hyx7l9U3XOU=;
+ b=m8xMQOgyMRRdsl2pwmcagUo7UF3PsxaZopuxnmhO9MjVi7UVoN3XESRI
+ 1P2JIGS8qVhY7llxSSCnB11Pk/LCXkt9/yk37benhk58ewO4Z/gvTWNE7
+ 1gP5hodTT6217W1BcD13/Y9Qd6wVLSoiMrUhf4OsNQHesP2oFqKam3HIc
+ mf0s8IHAIqnIpXkzXsUWVE9YNx0iSiG+vG10y9ygwqjmNBBybZX0e7vV0
+ l8GrssirXsL7ZgtnKD9ueuXL/RC9/ifXCHlCficqZzU3hGqVFn9/C8v82
+ czuYKuwTPwreBbs7sn92RHqW1jttX5wl5WuNlUpF9qkktFCZoxW1gJ9wH Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="360442298"
+X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; d="scan'208";a="360442298"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2023 13:17:28 -0700
+ 07 Jun 2023 14:12:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="703795414"
-X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; 
- d="scan'208,217";a="703795414"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga007.jf.intel.com with ESMTP; 07 Jun 2023 13:17:27 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="774787381"
+X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; d="scan'208";a="774787381"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga008.fm.intel.com with ESMTP; 07 Jun 2023 14:12:17 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 7 Jun 2023 13:17:27 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.23; Wed, 7 Jun 2023 14:12:17 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 7 Jun 2023 13:17:26 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.23; Wed, 7 Jun 2023 14:12:16 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 7 Jun 2023 13:17:26 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Wed, 7 Jun 2023 14:12:16 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 7 Jun 2023 13:17:26 -0700
+ 15.1.2507.23; Wed, 7 Jun 2023 14:12:15 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PnyVnydfbppffi5shjr/zN091E1RPbOJLeoxerE/2jJWlnNem1geP+hyHurT2UcAWTqHDag99cDZQr5NBKjSefsZV8d2XaMSDrlhPXayyJFvSvXCP/RCyZL3s2GB9pqc20u0NTN6LgrTycsBHOSBOxP5J784B9zUtSLZVjzX4YkNs+qJljfqwKXxyMD9jnZJ0NKJFESNaMtTmN83GK5Y3HUZYWy664AAxZ5F455dktApVxubQumG8MPmXZfSVtK9VKXsDbzLxy8JyL3p30FbqKfhuOOjrB6esvl+88MFfEp/Zq30dlvaYhjkZrfoiMS/3zXMpliO/HKgNUJqArFmNQ==
+ b=b26w0THIYAg9Ew+TZyfapESwqKDu3OEM6Chssp0sS69p3atWny66saLryUMndvpZDyEL8iq8emcssBJFzBt5lZx1aJWc9sxChcAX2Vp3e6HswXmvARL5x+y0hJbVX59lNU4fWNSRHjvMvIX1OWny15rBFty/4bI1EYptccy3DyeAa1BIEbw0a6WGY41F/3RSxPV52l/JE1B21VwqhvZjCC9CvOmDtYAAIgiN3QJ027uQkMEvkBOvDjSXl1ixbFw0eh/6qL7J7NWsaTyZ6q39cZ79/sf6bKM5RN2KivWTNF33493VFmiFIbQ/kbi9WXJGXAzM8Ghyaf8ii6xB08/6zA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BQE3FPEWW8bOcavZZrw5yCvMeAxwdl6ImwHndHLlfLo=;
- b=avH8rqjSM5WFmx5cbYnjS+Cr9fvxKdKqNAUyB86Rj/yBYmTyz9F0zmmsdlhwniXro3VSFawuBwhrbOLz+4aYavOlX+T/OxkhY7p+sFuiFEF8MEtUZbsDWBxhsqE8DoO9Dg4UBvDM4FySpQAYUuF/+bAYOeR/12xToFvVGAEBiQgRK75LuYRHzhhUrpQh3d8aIj4vYHXLjh9C095Lp1zMWYqZKmLeanBo6zVCRg78d+vg0ZpZSSmjYC7yGTYIkuN8WWtDtM2hxQjdWBCwsZXEjdgVhBX4JBtiY2FrCTaJmaxNEYoNdGXF1OF0zZo1vIX42VJxYOajURqN0y6IFCLlEg==
+ bh=pkvMQ02dHbU/fvT7ecKLJ4kr/icYIW91hyx7l9U3XOU=;
+ b=X1VsE8Po33PU+dpgKc0zmKuwnIzwWCwy/Uf8GPTDocLR8N4x6lGl21rUUPk0f4LeXdc4pfwtWfYd7NUxreg0uwxmH0jXR35masqEwkhxox31XydB1TXCbMhitiZTS1s+0bCXWeP7wCN3wIBTEr13n0jyLilsivYzO7eOnuaZQJyEujYXlEpcYcrsCrgukwI+uPq33uqhGWojyt7XFPFlbjHL24uKaeFRn9Puw/IW5DgM/UEQR9dFGQZCuc7QgbispDZJPXVO9j+91L+vh5ubMejF08R0LI5hR+3l3PCH2y58sh1gsFW7Sp14nnq5q94hEACFknKQR95ksUKUm/OSpg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by SJ0PR11MB4832.namprd11.prod.outlook.com (2603:10b6:a03:2dd::12)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from MN0PR11MB5963.namprd11.prod.outlook.com (2603:10b6:208:372::10)
+ by DS7PR11MB6013.namprd11.prod.outlook.com (2603:10b6:8:70::21) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Wed, 7 Jun
- 2023 20:17:24 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::8a8c:99c0:4a8e:fcd5]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::8a8c:99c0:4a8e:fcd5%6]) with mapi id 15.20.6455.030; Wed, 7 Jun 2023
- 20:17:24 +0000
-Content-Type: multipart/alternative;
- boundary="------------HEhgcsUi7IAv2M4XgRJyjuXw"
-Message-ID: <7900227e-781d-d093-c625-e26bfdeb2203@intel.com>
-Date: Wed, 7 Jun 2023 13:17:22 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.2
-Content-Language: en-GB
-To: Zhanjun Dong <zhanjun.dong@intel.com>, <intel-gfx@lists.freedesktop.org>, 
- <dri-devel@lists.freedesktop.org>, Umesh Nerlige Ramappa
- <umesh.nerlige.ramappa@intel.com>, Daniele Ceraolo Spurio
- <daniele.ceraolospurio@intel.com>
-References: <20230607190350.287644-1-zhanjun.dong@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20230607190350.287644-1-zhanjun.dong@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0098.namprd13.prod.outlook.com
- (2603:10b6:a03:2c5::13) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|SJ0PR11MB4832:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0d88e12f-7a05-43b1-0a02-08db679434b7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Kf0GDg5GtVquM1dcwJ/Z7C6ftgLmAOIXFl/mW2mJ3HCKco2sa6tzkzHLhS9fb13UHoyAqD8f31hryURLDwYdkJKO9V2osTLTPfyPzWyyVCeRzqK9WPTPpA8lyzZ3l3tVr2Q6OcKMdOmjc3fE6HMZdQ0lVW/cdoJ3FSxFbQtUprr9vG3/K5YJRr/yM/gdFTvE84F1mgUfdfHUKL3d+KT+dbz8lXuMTEvemdcvWNfEMqcQ5XbzuufK5qPJ0xktloQT7PII+nywyBvFVwcof1mH4EnXhFUAzgC5ZIBx8JEZkNoMDbVQNCzTY4Lgoc8Xs1SSXuydlq8eTHpXWv045tiA/AayWMlITY1Zr9A7zWp+GbLGCFa1TtV8SR+vjOMD9mvHi6WHcTSQEVNzcDIUeFSqOhWKfT9GSukH3qiUj+wOz40+w/lLI/kAR41ky1Oxua1y/yEqre93oUDjbCqcPCyODAf+IS/C092KparO5kOD1Uq434Aq6DTJqyYRfIRG7266AyRs3seQG0aIkGLqfu9YheuLMv5mSX6J7IJqUq+dBzgtWDMxzT35tvJlN4AgWHV1ijc0G60VS6Q8eleDyXTeVxg9wi5oFxmhXtqK5G9sDZzMPbtxeDNtXriI/z61xWJNxCpx22Byn9qAnixFU+qmbg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(376002)(396003)(366004)(346002)(136003)(451199021)(33964004)(6486002)(2906002)(82960400001)(30864003)(66946007)(66476007)(66556008)(450100002)(110136005)(36756003)(38100700002)(5660300002)(8936002)(86362001)(8676002)(31696002)(41300700001)(478600001)(6636002)(316002)(2616005)(31686004)(53546011)(26005)(6512007)(6506007)(186003)(83380400001)(43740500002)(45980500001);
+ 2023 21:12:13 +0000
+Received: from MN0PR11MB5963.namprd11.prod.outlook.com
+ ([fe80::6984:19a5:fe1c:dfec]) by MN0PR11MB5963.namprd11.prod.outlook.com
+ ([fe80::6984:19a5:fe1c:dfec%7]) with mapi id 15.20.6455.030; Wed, 7 Jun 2023
+ 21:12:13 +0000
+From: "Edgecombe, Rick P" <rick.p.edgecombe@intel.com>
+To: "Hansen, Dave" <dave.hansen@intel.com>,
+ "janusz.krzysztofik@linux.intel.com" <janusz.krzysztofik@linux.intel.com>,
+ "bp@alien8.de" <bp@alien8.de>
+Thread-Topic: [PATCH v2] x86/mm: Fix PAT bit missing from page protection
+ modify mask
+Thread-Index: AQHZmYS6GTi4WqcQaEiK5O6PEyZEPg==
+Date: Wed, 7 Jun 2023 21:12:13 +0000
+Message-ID: <ad762335fd209fd8c1555401bc03e196eb53caef.camel@intel.com>
+References: <20230607152308.125787-2-janusz.krzysztofik@linux.intel.com>
+ <a20344fd-8130-013e-e773-acae81aad55a@intel.com>
+ <38324471.J2Yia2DhmK@jkrzyszt-mobl2.ger.corp.intel.com>
+In-Reply-To: <38324471.J2Yia2DhmK@jkrzyszt-mobl2.ger.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.44.4-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR11MB5963:EE_|DS7PR11MB6013:EE_
+x-ms-office365-filtering-correlation-id: d8b470d0-816e-4217-4d8c-08db679bdd73
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 3F/EOxb9zXSSS58BgabjKRuQ1BFKMYrg+ci03IlvdBuUdOXmgZKYXSxPUqeexwAijorY9Y45jg20BTyyW7MIkdRN8oybsBaohlMc4j8hGwvaMpvSwh7rMudcFZ25qu4198oJRSA8bEFF0F0Laxu347qLwCv1OUxy2Sk0tJqrMTisLSyx8B3WkUGlVbGUAKS9QAHnTl4GPK/2cvGCFzxacVs8EirEXltrKhyW7KC6FZOfjbbsjBrDuq4LzIo61JSLq1kJiftew84PRQvUW3Jg8ZpAU534p27PpzlqgywwN6uMsUsmDJAQ/st0Jnnanp3rHDPlMCE9NUfzleel9nW8KBzC9OfK12x+Nt6tqsmV43OY1T9DEAT4mzJ6KxjWDdb0TNsXhSij+jhpf+bv/fECU13jSyTXDazwLz3gCFSWFv3J5NRKeWVY/+SUkLlXLyMSPs83iQsNdkBW334vEaNoWd+XkQg56Ht/h6J6hVEN4lEHkwfH+SS6pGlzEt9aL6hvgBO3QjjWTDyFAOTfkY1ZWH2YxonFlmvyLa0c5sFaORlvYOKoJT/Q9u1xVdE5NnJwchtDo+qNn2Y/DtCzsyzY79M7RMbJZsflQE/VKYXdtD77k31p3maCf4AgBJ8OO5t6
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB5963.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(376002)(39860400002)(366004)(136003)(346002)(451199021)(6512007)(53546011)(38100700002)(6506007)(2616005)(41300700001)(6486002)(26005)(186003)(83380400001)(71200400001)(478600001)(110136005)(54906003)(64756008)(66476007)(91956017)(122000001)(66446008)(4326008)(82960400001)(76116006)(316002)(66946007)(8676002)(7416002)(66556008)(8936002)(5660300002)(38070700005)(86362001)(36756003)(2906002);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V3FHendEZzMxMnRKSEV0N05KMkUzYXdCVDUzRzluL0JLbVFadmZpRWVNbStq?=
- =?utf-8?B?NitsVXR1Q3BWUkVPVHNJZ0N3bGgwUUNpOGxEbHpxOEtqK1dqTVFzbmNSdyta?=
- =?utf-8?B?V2NGYklCdHdHK1p5TjR6YktVdnF4ZmhwY2w4eHlHc1ZOUytpaXBxczBma0lv?=
- =?utf-8?B?RGp1TUQ0cjdNdWhHU0c0K2dIRkdrNUVIN2hBY0VOZWc1OVBGUWtXMXhKR0d1?=
- =?utf-8?B?NHdPVVlNTDRoZUF4MVpCcFRTZGhtWWZxNm56ZlpKMWljZHZDWWV2cVhHMTFl?=
- =?utf-8?B?dVlTQ3ZYeVJLVzBobU5LeVdhc1ozc3VYcmdDNVFYc0tZclprLzVzMU0yMElG?=
- =?utf-8?B?Z0xOcFlOcHc4K3ZZdG56MHFaeW9hWGcwbGZ5ZzlMQ2NDWTZaSVkvZjd3STBC?=
- =?utf-8?B?aXFwbDhIVE9ZTmdUbGNYVjNIQ3BLTlZ1Wi9ZYlUyQmlvc1NGUnJkYi96NTdE?=
- =?utf-8?B?WXA5c1Rtb0Y2WitJWXFlZkhOaThTb3ByUTUzNFkyMkpvbVMwYTdyZnU1MTVW?=
- =?utf-8?B?a3B4V2JtbmdLUHJCa0lKaWIvRm1taHY5aEJENU1EeW83L3ZUWDNLRFRKbUZ2?=
- =?utf-8?B?WVlyWGtuR004NnhadGNoK2Q5TWdHNjl0Q0trWUxUT05ncGl1L09kUEh5RW5J?=
- =?utf-8?B?WmtucHNlL2UxZFZKRXJ6dEV5SGxBeUdhbXB5K0VoSEhTRHJLZ1l3NlBKMWFU?=
- =?utf-8?B?ZTgyMTMrWmZ5SUh6THhwN0RnU2phdnNvMVpCdnRDelBXbWJUcFU5dWVNcS80?=
- =?utf-8?B?VURVNXZ6NkwvRVFucTFRK09MNzBCM2gzUHFoV2tFWGhldVZZTVd6MHpPcUpu?=
- =?utf-8?B?cVJJbHkvQ1ZDcXdGcDVveWNiZlZGV0F6eUFPQkJzaUJWTmVhVUQwdWRSMmlM?=
- =?utf-8?B?NUUrRHNCSlNLKzlialpxUUdNTEFBVDlZY29VTkpmQjlGaWtGdzJWaGZ6UENy?=
- =?utf-8?B?aGxFbVV3c0tJSlV6NTNNZzZpQ05iRVRhYUlUZ3o0eERYWnlManAxcE5Jd1lj?=
- =?utf-8?B?ckFiTEhrZkJyK09IendEUlV0TjZmK0lqR0thTGd6UkVjejhPWkNENStWYjQ1?=
- =?utf-8?B?bHNnUCtXVGdhT0U3L2txaHplc1NFMlZEWWY0RkJZQUtjZnhxMUZtQlFybWdT?=
- =?utf-8?B?MGR1YUZQWEc0b1QyTkY4Yk8vUlhISXlWSXJjbXZ5UjJpbDE3ZmxRYWM4RVVH?=
- =?utf-8?B?ekJLM1JvTkFUOFZnQXhicWVIbHVsR2tDUDQ4MHB0UjZ2MHowWjJuL0JBMjNu?=
- =?utf-8?B?R0g3RFVwaXhhMmRUMjFBWW4rTFdzSVlxY0JVSHowWmNuZnZ3ME84V3pQL2RQ?=
- =?utf-8?B?NzJIVThTNldjblcwV3FQaEZEMjRxYzgwc2ZxZ1NFVVkxZ3R5ZE44UFRSbGVW?=
- =?utf-8?B?TW9vZkRYQmZwNUprT3UvQng5eE1nTXF5ZHF0NkZpZ1MzVm4ySWdoVHQ4QWk3?=
- =?utf-8?B?bGN4RzBXby9BajFTTUJ3cHJSVGlMeEJQQ1dCSGZPSjNBNHBIN0NldUR3bE9R?=
- =?utf-8?B?ekdKTmRBTXdqTGsxRkNVVnFvSU83ZFRtWmhjcXVJZ1dLczhLRCtZN1M3Ujdq?=
- =?utf-8?B?ZklKZDh3SmFSMWQ4MGM0NTlBc25kSDhuRk83N3JzenF3cm9IV1ZCN0hNUitt?=
- =?utf-8?B?M2t1NFRiSURQdDdQVFhES3RaWG94Z1p3akZkSnlubmtDZnQ4YXRtNHhrakJm?=
- =?utf-8?B?Qk1wZTdBVjhpT3gzaks3MUVPNEpyTlBhemVxZUgzTHFWZzZSRFV1SFQ2Y1RG?=
- =?utf-8?B?MUVhVFNlZjNxUHQxTSt5T3FFZktacW04a01QeSsrNkVjN2VuNkszRDFGdjQw?=
- =?utf-8?B?TjFWY05qRzhtNlQ1Rm1RR3JJKzBiTFI5eTdYUEtUYjBTYkhrd3VyZnNxSzIv?=
- =?utf-8?B?UUtpczRwMjBYMnlBSzk5bEpIMVh1N1VTSit1UDRaTkNYY2Z4aVFtZFh0WnFY?=
- =?utf-8?B?WThuUEJQOHB1M3RUc3BSbE1nSXhPeVo1NGpha25odjhQL3ZjVEVmRkNVNzFs?=
- =?utf-8?B?U2U4S0dSS2U3RUFjTGpUMEovUk9iSmFBWnYzeXVnVlNkQWxkTWFReElaY3Mv?=
- =?utf-8?B?YS9NMUptWGlXVzN1UVF1RzhDb0EzdkNkVkZjaVFsR3RKeWUyRm9ERmI3OGV0?=
- =?utf-8?B?dTZzblk0MWk2N2Z3bUljOXJTcHdFTkt3cDc0bzBPZFdtTGJiS1JhU0ZKRDl5?=
- =?utf-8?B?eGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d88e12f-7a05-43b1-0a02-08db679434b7
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?S0N5MXh1c0YrY0pnWUxESURrS1BGUnF3Q1Rqa0p6TTRtZllkZnpYa2xOOVZm?=
+ =?utf-8?B?dVhzUG9HWkdHQnNXWTd3R2ZUMHhKSGd2QVRocjhVMVRCa2FKWFVZekRRYUgy?=
+ =?utf-8?B?RnpyMnFtd0ZLS0dEU2UwZ1RKcUFlbVorZExnUS91SlFUL3ZBRGgrQ3FGY3BQ?=
+ =?utf-8?B?OGhLdS9iRzJiaTkvOWlhbU9ES2tGQ3Axa2d4VXdNODlGWmRlS2ZnbkhwV2hz?=
+ =?utf-8?B?RmE5NDRTMVhMYUVaMm5mVFBueENNUGxNak1wRVdwN2lOaC9KYjE4OFVJWmsw?=
+ =?utf-8?B?dEY1UXRPSVFIRFFubWlCQnhId1ZOQkIyejlGZUVBM0xiZU5jOFJLd0ZxeSs2?=
+ =?utf-8?B?T0pSdGhzZzRZbHV2ZXIwNWhJZEJBQUR3U1lQZFZCTVVIUjRJRVRWNzkvSUZN?=
+ =?utf-8?B?UXFKa1N0TVR4bjh1U0xucWxqZlc2LzZ6M0o4REhCY0pHUm82WWxvZWpHcXBo?=
+ =?utf-8?B?cktMNXo1YnZmRTNabEMxbGpoT2xQL3d2d0JUNmJZQ2NBd0ZKM2RlcmNjcGJB?=
+ =?utf-8?B?N3UwRmxYRE9rZzFyell5STZUZ3daaUdlUW5nM2drOXZZTVFKNnZkalp6NmJz?=
+ =?utf-8?B?YmgxQXMxNmxZQzEvWUlzSkpua0pYUDJlYUVqb21rL3VjZ284L2FBSDNnYXl4?=
+ =?utf-8?B?RFZSWnpjL0JKeE1HdzM0RmFkcUIvZnNkeTBZazZqenJVdmVRbzZwRG1UTitn?=
+ =?utf-8?B?T0VzMUIrTTBFQ2lEaml6SEhvd1ZPV1pmbGk3eHR2TUh3YmNFSjJlSGxISUla?=
+ =?utf-8?B?NklkeWRKclBmOHBSbmh4djRjb0t4cWYwVXl2UDcrbm9SWVdmNzVBU3U0Sy9X?=
+ =?utf-8?B?TURCWXF4K05SUWtuS2o1LzJHUHRZOHA4ZUxpQmliZW5Da1NrNWkvWGFDVk8r?=
+ =?utf-8?B?Rm5JUjZIR3RSaTRRSzlzZDBPNjRWK1B3OXZ5MkczOUdYVFZYZkQyZm11L2RP?=
+ =?utf-8?B?Ukx3OFZpYXlnT1JDSVZvQlJFQW90U1h6QnArYzRwaS9wNFdDYUJxNk5pa1Rh?=
+ =?utf-8?B?WVIyUnUzNi9sMllRVHNFKzdteDNqcVdzdTBMNHFxWkE4ZG01NVVURnRFblFM?=
+ =?utf-8?B?bDl0NDBYZktXWFpJd3pMTU9pM0o5ZjdwbUN4bXhabFVJYmlmenNNd0liSHVD?=
+ =?utf-8?B?bU5kRExkRmc5bUlCaUFQaUVsNGlsQ1N6enErbGJIckpyMUtIbkxzcjFTd3dB?=
+ =?utf-8?B?c1lNWktzMFFFa1dXRUdxdnRWV0VMN2FnQ3ZzZGFndk9jM0FyYlVoTm9ES2hP?=
+ =?utf-8?B?cGV1cUhzdWZSSVcvbS9mT1N4Wmw4aDJBOGJGZmw5cUNYRkg4UjFNNkJKb21y?=
+ =?utf-8?B?bUtEcU1OK1M3Yjd3YThkYUFkdksvc2FLN0JVYm54Rkh1a2txT0FqZi8rV0Vl?=
+ =?utf-8?B?c0x5dXZNcSt5ZGFtYWJCdVc2M3NpbFRYOVlHZW9OTlBURi80ZlIvK0c3blpI?=
+ =?utf-8?B?aHFEQlloNTlNcit2UGhLSi96RDRzVk1NalRTRE1OVlJZUlM0eENFVWVtZC9B?=
+ =?utf-8?B?REJaM2xZTVdSdnk0TlJva2VQclh2ayszeFdVODhUaFpBQ2o2NEJrTExHdzdk?=
+ =?utf-8?B?RndnZ1Y4M1lYZ0FZWmYrcWg1ZzZORVlxZGN0L1hiQndLT0N5K2g4Q1NXSkdS?=
+ =?utf-8?B?alBMeENQdW9JZ3MybUNDOVM1RTMzbU05TEhIeVM1RVVoQ1lwdit5b2RzWTVM?=
+ =?utf-8?B?ZE9PbWZvbGFIY2dVaW8xVmxnNXhDTjZJRUtFTU91NXd5Y1RVYXZ0RkdFWWZJ?=
+ =?utf-8?B?VlZacEhWMmpoSHduUTlKLzlyUzNDekEwZDhzakY3dU1tdFg3VFpBWmNvckFz?=
+ =?utf-8?B?blFxUCtYaEx4WFFVL0E3TXFjaVZJeVNBdnN3MThoVnNqaVYrNnpYeUNGaGlq?=
+ =?utf-8?B?ZCtQU09KaUJ5cDZsbVE3Mld5eDVLQWozS1lMSXUydmFVM3lXY3FCV2E0UG8x?=
+ =?utf-8?B?N1pzdlIrWXE4ZFB1UXI5NEhJUThCc1dTMDZxeEo0b3NyMlowWnhmK0xYM3hR?=
+ =?utf-8?B?QVRGc3QzTE45MlJDTitlRndWTnkyeDkvK1JmUzQ2S0phdFlLS2l3OERQckxP?=
+ =?utf-8?B?eU81SXo4T0pTd2lONk9tZDlZbUpzMW05OFVXWWY2VmdVbWZ2cE1vRks1a3J2?=
+ =?utf-8?B?YnhIVHVuUTBWUUU0MEM2NTRpbTBvb0hKSUJWclZjbm5WS0x3T2o0em1KbDZl?=
+ =?utf-8?B?WWc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A181C98A2045E74BA86C8A52478F3E34@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2023 20:17:24.1751 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eJVV+L9ixoauRGM9HNeA9oD54lQuQmbuzVw0iAJ6YDgrB6acJ4vVkeP8ygplvxkuTbSn5zqUmGvbZ6Yz73BvA+NH11piQcDElBC/2SQjITY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4832
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB5963.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8b470d0-816e-4217-4d8c-08db679bdd73
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2023 21:12:13.5530 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cx9b8567L2BUP+j7cbXAQ0WskU6YdIYh4XhDCH4vU7ewyutCDcp2mar7YkSHx9bb44UAqsX+ByfIBGpgREKGp/wYjFfeZK0ZwTRz0xjXNl0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6013
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Avoid circular locking dependency
- when flush delayed work on gt reset
+Subject: Re: [Intel-gfx] [PATCH v2] x86/mm: Fix PAT bit missing from page
+ protection modify mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,471 +167,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Gross, Jurgen" <jgross@suse.com>, "x86@kernel.org" <x86@kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "hannes@cmpxchg.org" <hannes@cmpxchg.org>,
+ "mingo@redhat.com" <mingo@redhat.com>, "hpa@zytor.com" <hpa@zytor.com>,
+ "tglx@linutronix.de" <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---------------HEhgcsUi7IAv2M4XgRJyjuXw
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 6/7/2023 12:03, Zhanjun Dong wrote:
-> This attempts to avoid circular locking dependency between flush delayed work and intel_gt_reset.
-> Switched from cancel_delayed_work_sync to cancel_delayed_work, the non-sync version for reset path, it is safe as the worker has the trylock code to handle the lock; Meanwhile keep the sync version for park/fini to ensure the worker is not still running during suspend or shutdown.
->
-> WARNING: possible circular locking dependency detected
-> 6.4.0-rc1-drmtip_1340-g31e3463b0edb+ #1 Not tainted
-> ------------------------------------------------------
-> kms_pipe_crc_ba/6415 is trying to acquire lock:
-> ffff88813e6cc640 ((work_completion)(&(&guc->timestamp.work)->work)){+.+.}-{0:0}, at: __flush_work+0x42/0x530
->
-> but task is already holding lock:
-> ffff88813e6cce90 (&gt->reset.mutex){+.+.}-{3:3}, at: intel_gt_reset+0x19e/0x470 [i915]
->
-> which lock already depends on the new lock.
->
-> the existing dependency chain (in reverse order) is:
->
-> -> #3 (&gt->reset.mutex){+.+.}-{3:3}:
->          lock_acquire+0xd8/0x2d0
->          i915_gem_shrinker_taints_mutex+0x31/0x50 [i915]
->          intel_gt_init_reset+0x65/0x80 [i915]
->          intel_gt_common_init_early+0xe1/0x170 [i915]
->          intel_root_gt_init_early+0x48/0x60 [i915]
->          i915_driver_probe+0x671/0xcb0 [i915]
->          i915_pci_probe+0xdc/0x210 [i915]
->          pci_device_probe+0x95/0x120
->          really_probe+0x164/0x3c0
->          __driver_probe_device+0x73/0x160
->          driver_probe_device+0x19/0xa0
->          __driver_attach+0xb6/0x180
->          bus_for_each_dev+0x77/0xd0
->          bus_add_driver+0x114/0x210
->          driver_register+0x5b/0x110
->          __pfx_vgem_open+0x3/0x10 [vgem]
->          do_one_initcall+0x57/0x270
->          do_init_module+0x5f/0x220
->          load_module+0x1ca4/0x1f00
->          __do_sys_finit_module+0xb4/0x130
->          do_syscall_64+0x3c/0x90
->          entry_SYSCALL_64_after_hwframe+0x72/0xdc
->
-> -> #2 (fs_reclaim){+.+.}-{0:0}:
->          lock_acquire+0xd8/0x2d0
->          fs_reclaim_acquire+0xac/0xe0
->          kmem_cache_alloc+0x32/0x260
->          i915_vma_instance+0xb2/0xc60 [i915]
->          i915_gem_object_ggtt_pin_ww+0x175/0x370 [i915]
->          vm_fault_gtt+0x22d/0xf60 [i915]
->          __do_fault+0x2f/0x1d0
->          do_pte_missing+0x4a/0xd20
->          __handle_mm_fault+0x5b0/0x790
->          handle_mm_fault+0xa2/0x230
->          do_user_addr_fault+0x3ea/0xa10
->          exc_page_fault+0x68/0x1a0
->          asm_exc_page_fault+0x26/0x30
->
-> -> #1 (&gt->reset.backoff_srcu){++++}-{0:0}:
->          lock_acquire+0xd8/0x2d0
->          _intel_gt_reset_lock+0x57/0x330 [i915]
->          guc_timestamp_ping+0x35/0x130 [i915]
->          process_one_work+0x250/0x510
->          worker_thread+0x4f/0x3a0
->          kthread+0xff/0x130
->          ret_from_fork+0x29/0x50
->
-> -> #0 ((work_completion)(&(&guc->timestamp.work)->work)){+.+.}-{0:0}:
->          check_prev_add+0x90/0xc60
->          __lock_acquire+0x1998/0x2590
->          lock_acquire+0xd8/0x2d0
->          __flush_work+0x74/0x530
->          __cancel_work_timer+0x14f/0x1f0
->          intel_guc_submission_reset_prepare+0x81/0x4b0 [i915]
->          intel_uc_reset_prepare+0x9c/0x120 [i915]
->          reset_prepare+0x21/0x60 [i915]
->          intel_gt_reset+0x1dd/0x470 [i915]
->          intel_gt_reset_global+0xfb/0x170 [i915]
->          intel_gt_handle_error+0x368/0x420 [i915]
->          intel_gt_debugfs_reset_store+0x5c/0xc0 [i915]
->          i915_wedged_set+0x29/0x40 [i915]
->          simple_attr_write_xsigned.constprop.0+0xb4/0x110
->          full_proxy_write+0x52/0x80
->          vfs_write+0xc5/0x4f0
->          ksys_write+0x64/0xe0
->          do_syscall_64+0x3c/0x90
->          entry_SYSCALL_64_after_hwframe+0x72/0xdc
->
-> other info that might help us debug this:
->   Chain exists of:
->    (work_completion)(&(&guc->timestamp.work)->work) --> fs_reclaim --> &gt->reset.mutex
->    Possible unsafe locking scenario:
->          CPU0                    CPU1
->          ----                    ----
->     lock(&gt->reset.mutex);
->                                  lock(fs_reclaim);
->                                  lock(&gt->reset.mutex);
->     lock((work_completion)(&(&guc->timestamp.work)->work));
->
->   *** DEADLOCK ***
->   3 locks held by kms_pipe_crc_ba/6415:
->    #0: ffff888101541430 (sb_writers#15){.+.+}-{0:0}, at: ksys_write+0x64/0xe0
->    #1: ffff888136c7eab8 (&attr->mutex){+.+.}-{3:3}, at: simple_attr_write_xsigned.constprop.0+0x47/0x110
->    #2: ffff88813e6cce90 (&gt->reset.mutex){+.+.}-{3:3}, at: intel_gt_reset+0x19e/0x470 [i915]
->
-> Signed-off-by: Zhanjun Dong<zhanjun.dong@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 15 +++++++++------
->   1 file changed, 9 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index a0e3ef1c65d2..cca6960d3490 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1357,9 +1357,12 @@ static void guc_enable_busyness_worker(struct intel_guc *guc)
->   	mod_delayed_work(system_highpri_wq, &guc->timestamp.work, guc->timestamp.ping_delay);
->   }
->   
-> -static void guc_cancel_busyness_worker(struct intel_guc *guc)
-> +static void guc_cancel_busyness_worker(struct intel_guc *guc, bool sync)
->   {
-> -	cancel_delayed_work_sync(&guc->timestamp.work);
-> +	if (sync)
-> +		cancel_delayed_work_sync(&guc->timestamp.work);
-> +	else
-> +		cancel_delayed_work(&guc->timestamp.work);
->   }
->   
->   static void __reset_guc_busyness_stats(struct intel_guc *guc)
-> @@ -1370,7 +1373,7 @@ static void __reset_guc_busyness_stats(struct intel_guc *guc)
->   	unsigned long flags;
->   	ktime_t unused;
->   
-> -	guc_cancel_busyness_worker(guc);
-> +	guc_cancel_busyness_worker(guc, 0);
-Should use true/false rather than 1/0 for bool values.
-
-Also, this needs a comment actually in the code, not just in the patch 
-description. E.g.:
-
-    Attempting a synchronous cancel within the reset path leads to a
-    circular mutex locking complaint by lockdep. However, it is safe to
-    use an asynchronous cancel here. If the worker does actually run
-    concurrently with a reset then it will early exit due to the
-    mutex_trylock call rather than block.
-
-
->   
->   	spin_lock_irqsave(&guc->timestamp.lock, flags);
->   
-> @@ -1485,7 +1488,7 @@ static int guc_init_engine_stats(struct intel_guc *guc)
->   
->   static void guc_fini_engine_stats(struct intel_guc *guc)
->   {
-> -	guc_cancel_busyness_worker(guc);
-> +	guc_cancel_busyness_worker(guc, 1);
->   }
->   
->   void intel_guc_busyness_park(struct intel_gt *gt)
-> @@ -1500,7 +1503,7 @@ void intel_guc_busyness_park(struct intel_gt *gt)
->   	 * and causes an unclaimed register access warning. Cancel the worker
->   	 * synchronously here.
->   	 */
-> -	guc_cancel_busyness_worker(guc);
-> +	guc_cancel_busyness_worker(guc, 1);
->   
->   	/*
->   	 * Before parking, we should sample engine busyness stats if we need to.
-> @@ -4503,7 +4506,7 @@ int intel_guc_submission_enable(struct intel_guc *guc)
->   /* Note: By the time we're here, GuC may have already been reset */
->   void intel_guc_submission_disable(struct intel_guc *guc)
->   {
-> -	guc_cancel_busyness_worker(guc);
-> +	guc_cancel_busyness_worker(guc, 0);
-Hmm. I think this is going to need breaking up further back in the stack.
-
-We definitely want to be doing a synchronous cancel in the general case 
-of disabling submission (e.g. due to suspend or driver unload). But if 
-this is happening as part of a reset call stack, then it is a problem.
-
-AFAICT, the only way _submission_disable would be called within a reset 
-is if __uc_init_hw() failed for some reason. So one option would be to 
-add the sync/async flag to _submission_disable() as well and just make 
-the init failure case async with other callers being sync.
-
-A better option might be to add an 'are busyness stats enabled' boolean 
-to the guc structure. And inside the cancel function, early exit if the 
-worker is not actually enabled (and set the flag anywhere and everywhere 
-that does a mod_work to enable it, which is just 
-guc_enable_busyness_worker() I think?). That would mean that multiple 
-disables do nothing. So e.g. a failed reset will cancel the worker 
-asynchronously in reset prepare but then not try to cancel it again 
-synchronously in submission disable. Hmm, except that init_hw has 
-already enabled the worker by that point :(.
-
-FYC: Umesh and Daniele... any thoughts?
-
-I would be tempted to say is there any way we can just add a lockdep 
-annotation to ignore this issue? The lockdep splat described in the 
-patch description above seems like a false positive to me. Sure the 
-reset lock is held by the reset code which is now trying to 
-synchronously flush the busyness worker thread which also takes the 
-reset lock. But the busyness worker thread does a trylock and will abort 
-if the lock is already held. So no issue...
-
-However. I think we do have a genuine issue with the internal delayed 
-worker lock itself, which has maybe shown up in other lockdep splat 
-reports. For example, if a worker thread triggers a reset (e.g. anything 
-reset related coming in via a G2H) then the reset code is running inside 
-a worker thread. Which is maybe holding an internal kernel worker thread 
-lock? So if the reset path does a synchronous cancel of another worker 
-thread, that also requires taking the worker thread lock and thus a 
-deadlock occurs.
-
-John.
-
-
->   
->   	/* Semaphore interrupt disable and route to host */
->   	guc_route_semaphores(guc, false);
-
---------------HEhgcsUi7IAv2M4XgRJyjuXw
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    On 6/7/2023 12:03, Zhanjun Dong wrote:<br>
-    <blockquote type="cite" cite="mid:20230607190350.287644-1-zhanjun.dong@intel.com">
-      <pre class="moz-quote-pre" wrap="">This attempts to avoid circular locking dependency between flush delayed work and intel_gt_reset.
-Switched from cancel_delayed_work_sync to cancel_delayed_work, the non-sync version for reset path, it is safe as the worker has the trylock code to handle the lock; Meanwhile keep the sync version for park/fini to ensure the worker is not still running during suspend or shutdown.
-
-WARNING: possible circular locking dependency detected
-6.4.0-rc1-drmtip_1340-g31e3463b0edb+ #1 Not tainted
-------------------------------------------------------
-kms_pipe_crc_ba/6415 is trying to acquire lock:
-ffff88813e6cc640 ((work_completion)(&amp;(&amp;guc-&gt;timestamp.work)-&gt;work)){+.+.}-{0:0}, at: __flush_work+0x42/0x530
-
-but task is already holding lock:
-ffff88813e6cce90 (&amp;gt-&gt;reset.mutex){+.+.}-{3:3}, at: intel_gt_reset+0x19e/0x470 [i915]
-
-which lock already depends on the new lock.
-
-the existing dependency chain (in reverse order) is:
-
--&gt; #3 (&amp;gt-&gt;reset.mutex){+.+.}-{3:3}:
-        lock_acquire+0xd8/0x2d0
-        i915_gem_shrinker_taints_mutex+0x31/0x50 [i915]
-        intel_gt_init_reset+0x65/0x80 [i915]
-        intel_gt_common_init_early+0xe1/0x170 [i915]
-        intel_root_gt_init_early+0x48/0x60 [i915]
-        i915_driver_probe+0x671/0xcb0 [i915]
-        i915_pci_probe+0xdc/0x210 [i915]
-        pci_device_probe+0x95/0x120
-        really_probe+0x164/0x3c0
-        __driver_probe_device+0x73/0x160
-        driver_probe_device+0x19/0xa0
-        __driver_attach+0xb6/0x180
-        bus_for_each_dev+0x77/0xd0
-        bus_add_driver+0x114/0x210
-        driver_register+0x5b/0x110
-        __pfx_vgem_open+0x3/0x10 [vgem]
-        do_one_initcall+0x57/0x270
-        do_init_module+0x5f/0x220
-        load_module+0x1ca4/0x1f00
-        __do_sys_finit_module+0xb4/0x130
-        do_syscall_64+0x3c/0x90
-        entry_SYSCALL_64_after_hwframe+0x72/0xdc
-
--&gt; #2 (fs_reclaim){+.+.}-{0:0}:
-        lock_acquire+0xd8/0x2d0
-        fs_reclaim_acquire+0xac/0xe0
-        kmem_cache_alloc+0x32/0x260
-        i915_vma_instance+0xb2/0xc60 [i915]
-        i915_gem_object_ggtt_pin_ww+0x175/0x370 [i915]
-        vm_fault_gtt+0x22d/0xf60 [i915]
-        __do_fault+0x2f/0x1d0
-        do_pte_missing+0x4a/0xd20
-        __handle_mm_fault+0x5b0/0x790
-        handle_mm_fault+0xa2/0x230
-        do_user_addr_fault+0x3ea/0xa10
-        exc_page_fault+0x68/0x1a0
-        asm_exc_page_fault+0x26/0x30
-
--&gt; #1 (&amp;gt-&gt;reset.backoff_srcu){++++}-{0:0}:
-        lock_acquire+0xd8/0x2d0
-        _intel_gt_reset_lock+0x57/0x330 [i915]
-        guc_timestamp_ping+0x35/0x130 [i915]
-        process_one_work+0x250/0x510
-        worker_thread+0x4f/0x3a0
-        kthread+0xff/0x130
-        ret_from_fork+0x29/0x50
-
--&gt; #0 ((work_completion)(&amp;(&amp;guc-&gt;timestamp.work)-&gt;work)){+.+.}-{0:0}:
-        check_prev_add+0x90/0xc60
-        __lock_acquire+0x1998/0x2590
-        lock_acquire+0xd8/0x2d0
-        __flush_work+0x74/0x530
-        __cancel_work_timer+0x14f/0x1f0
-        intel_guc_submission_reset_prepare+0x81/0x4b0 [i915]
-        intel_uc_reset_prepare+0x9c/0x120 [i915]
-        reset_prepare+0x21/0x60 [i915]
-        intel_gt_reset+0x1dd/0x470 [i915]
-        intel_gt_reset_global+0xfb/0x170 [i915]
-        intel_gt_handle_error+0x368/0x420 [i915]
-        intel_gt_debugfs_reset_store+0x5c/0xc0 [i915]
-        i915_wedged_set+0x29/0x40 [i915]
-        simple_attr_write_xsigned.constprop.0+0xb4/0x110
-        full_proxy_write+0x52/0x80
-        vfs_write+0xc5/0x4f0
-        ksys_write+0x64/0xe0
-        do_syscall_64+0x3c/0x90
-        entry_SYSCALL_64_after_hwframe+0x72/0xdc
-
-other info that might help us debug this:
- Chain exists of:
-  (work_completion)(&amp;(&amp;guc-&gt;timestamp.work)-&gt;work) --&gt; fs_reclaim --&gt; &amp;gt-&gt;reset.mutex
-  Possible unsafe locking scenario:
-        CPU0                    CPU1
-        ----                    ----
-   lock(&amp;gt-&gt;reset.mutex);
-                                lock(fs_reclaim);
-                                lock(&amp;gt-&gt;reset.mutex);
-   lock((work_completion)(&amp;(&amp;guc-&gt;timestamp.work)-&gt;work));
-
- *** DEADLOCK ***
- 3 locks held by kms_pipe_crc_ba/6415:
-  #0: ffff888101541430 (sb_writers#15){.+.+}-{0:0}, at: ksys_write+0x64/0xe0
-  #1: ffff888136c7eab8 (&amp;attr-&gt;mutex){+.+.}-{3:3}, at: simple_attr_write_xsigned.constprop.0+0x47/0x110
-  #2: ffff88813e6cce90 (&amp;gt-&gt;reset.mutex){+.+.}-{3:3}, at: intel_gt_reset+0x19e/0x470 [i915]
-
-Signed-off-by: Zhanjun Dong <a class="moz-txt-link-rfc2396E" href="mailto:zhanjun.dong@intel.com">&lt;zhanjun.dong@intel.com&gt;</a>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index a0e3ef1c65d2..cca6960d3490 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1357,9 +1357,12 @@ static void guc_enable_busyness_worker(struct intel_guc *guc)
- 	mod_delayed_work(system_highpri_wq, &amp;guc-&gt;timestamp.work, guc-&gt;timestamp.ping_delay);
- }
- 
--static void guc_cancel_busyness_worker(struct intel_guc *guc)
-+static void guc_cancel_busyness_worker(struct intel_guc *guc, bool sync)
- {
--	cancel_delayed_work_sync(&amp;guc-&gt;timestamp.work);
-+	if (sync)
-+		cancel_delayed_work_sync(&amp;guc-&gt;timestamp.work);
-+	else
-+		cancel_delayed_work(&amp;guc-&gt;timestamp.work);
- }
- 
- static void __reset_guc_busyness_stats(struct intel_guc *guc)
-@@ -1370,7 +1373,7 @@ static void __reset_guc_busyness_stats(struct intel_guc *guc)
- 	unsigned long flags;
- 	ktime_t unused;
- 
--	guc_cancel_busyness_worker(guc);
-+	guc_cancel_busyness_worker(guc, 0);</pre>
-    </blockquote>
-    Should use true/false rather than 1/0 for bool values.<br>
-    <br>
-    Also, this needs a comment actually in the code, not just in the
-    patch description. E.g.:<br>
-    <blockquote>Attempting a synchronous cancel within the reset path
-      leads to a circular mutex locking complaint by lockdep. However,
-      it is safe to use an asynchronous cancel here. If the worker does
-      actually run concurrently with a reset then it will early exit due
-      to the mutex_trylock call rather than block.<br>
-    </blockquote>
-    <br>
-    <blockquote type="cite" cite="mid:20230607190350.287644-1-zhanjun.dong@intel.com">
-      <pre class="moz-quote-pre" wrap="">
- 
- 	spin_lock_irqsave(&amp;guc-&gt;timestamp.lock, flags);
- 
-@@ -1485,7 +1488,7 @@ static int guc_init_engine_stats(struct intel_guc *guc)
- 
- static void guc_fini_engine_stats(struct intel_guc *guc)
- {
--	guc_cancel_busyness_worker(guc);
-+	guc_cancel_busyness_worker(guc, 1);
- }
- 
- void intel_guc_busyness_park(struct intel_gt *gt)
-@@ -1500,7 +1503,7 @@ void intel_guc_busyness_park(struct intel_gt *gt)
- 	 * and causes an unclaimed register access warning. Cancel the worker
- 	 * synchronously here.
- 	 */
--	guc_cancel_busyness_worker(guc);
-+	guc_cancel_busyness_worker(guc, 1);
- 
- 	/*
- 	 * Before parking, we should sample engine busyness stats if we need to.
-@@ -4503,7 +4506,7 @@ int intel_guc_submission_enable(struct intel_guc *guc)
- /* Note: By the time we're here, GuC may have already been reset */
- void intel_guc_submission_disable(struct intel_guc *guc)
- {
--	guc_cancel_busyness_worker(guc);
-+	guc_cancel_busyness_worker(guc, 0);</pre>
-    </blockquote>
-    Hmm. I think this is going to need breaking up further back in the
-    stack.<br>
-    <br>
-    We definitely want to be doing a synchronous cancel in the general
-    case of disabling submission (e.g. due to suspend or driver unload).
-    But if this is happening as part of a reset call stack, then it is a
-    problem.<br>
-    <br>
-    AFAICT, the only way _submission_disable would be called within a
-    reset is if __uc_init_hw() failed for some reason. So one option
-    would be to add the sync/async flag to _submission_disable() as well
-    and just make the init failure case async with other callers being
-    sync.<br>
-    <br>
-    A better option might be to add an 'are busyness stats enabled'
-    boolean to the guc structure. And inside the cancel function, early
-    exit if the worker is not actually enabled (and set the flag
-    anywhere and everywhere that does a mod_work to enable it, which is
-    just guc_enable_busyness_worker() I think?). That would mean that
-    multiple disables do nothing. So e.g. a failed reset will cancel the
-    worker asynchronously in reset prepare but then not try to cancel it
-    again synchronously in submission disable. Hmm, except that init_hw
-    has already enabled the worker by that point :(.<br>
-    <br>
-    FYC: Umesh and Daniele... any thoughts?<br>
-    <br>
-    I would be tempted to say is there any way we can just add a lockdep
-    annotation to ignore this issue? The lockdep splat described in the
-    patch description above seems like a false positive to me. Sure the
-    reset lock is held by the reset code which is now trying to
-    synchronously flush the busyness worker thread which also takes the
-    reset lock. But the busyness worker thread does a trylock and will
-    abort if the lock is already held. So no issue...<br>
-    <br>
-    However. I think we do have a genuine issue with the internal
-    delayed worker lock itself, which has maybe shown up in other
-    lockdep splat reports. For example, if a worker thread triggers a
-    reset (e.g. anything reset related coming in via a G2H) then the
-    reset code is running inside a worker thread. Which is maybe holding
-    an internal kernel worker thread lock? So if the reset path does a
-    synchronous cancel of another worker thread, that also requires
-    taking the worker thread lock and thus a deadlock occurs.<br>
-    <br>
-    John.<br>
-    <br>
-    <br>
-    <blockquote type="cite" cite="mid:20230607190350.287644-1-zhanjun.dong@intel.com">
-      <pre class="moz-quote-pre" wrap="">
- 
- 	/* Semaphore interrupt disable and route to host */
- 	guc_route_semaphores(guc, false);
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------HEhgcsUi7IAv2M4XgRJyjuXw--
+T24gV2VkLCAyMDIzLTA2LTA3IGF0IDE5OjExICswMjAwLCBKYW51c3ogS3J6eXN6dG9maWsgd3Jv
+dGU6DQo+IE9uIFdlZG5lc2RheSwgNyBKdW5lIDIwMjMgMTc6MzE6MjQgQ0VTVCBEYXZlIEhhbnNl
+biB3cm90ZToNCj4gPiBPbiA2LzcvMjMgMDg6MjMsIEphbnVzeiBLcnp5c3p0b2ZpayB3cm90ZToN
+Cj4gPiA+IA0KPiA+ID4gRXh0ZW5kIGJpdG1hc2sgdXNlZCBieSBwZ3Byb3RfbW9kaWZ5KCkgZm9y
+IHNlbGVjdGluZyBiaXRzIHRvIGJlDQo+ID4gPiBwcmVzZXJ2ZWQNCj4gPiA+IHdpdGggX1BBR0Vf
+UEFUIGJpdC7CoCBIb3dldmVyLCBzaW5jZSB0aGF0IGJpdCBjYW4gYmUgcmV1c2VkIGFzDQo+ID4g
+PiBfUEFHRV9QU0UsDQo+ID4gPiBhbmQgdGhlIF9QQUdFX0NIR19NQVNLIHN5bWJvbCwgcHJpbWFy
+bHkgdXNlZCBieSBwdGVfbW9kaWZ5KCksIGlzDQo+ID4gPiBsaWtlbHkNCj4gPiA+IGludGVudGlv
+bmFsbHkgZGVmaW5lZCB3aXRoIHRoYXQgYml0IG5vdCBzZXQsIGtlZXAgdGhhdCBzeW1ib2wNCj4g
+PiA+IHVuY2hhbmdlZC4NCj4gPiANCj4gPiBJJ20gcmVhbGx5IGhhdmluZyBhIGhhcmQgdGltZSBw
+YXJzaW5nIHdoYXQgdGhhdCBsYXN0IHNlbnRlbmNlIGlzDQo+ID4gc2F5aW5nLg0KPiA+IA0KPiA+
+IENvdWxkIHlvdSB0cnkgYWdhaW4sIHBsZWFzZT8NCj4gDQo+IE9LLCBidXQgdGhlbiBJIG5lZWQg
+dG8gZ2V0IG15IGRvdWJ0cyBhZGRyZXNzZWQgYnkgc29tZW9uZSBmaXJzdCwNCj4gb3RoZXJ3aXNl
+IEknbSANCj4gbm90IGFibGUgdG8gcHJvdmlkZSBhIGJldHRlciBqdXN0aWZpY2F0aW9uIGZyb20g
+bXkgaGVhcnQuDQo+IA0KPiBUaGUgaXNzdWUgbmVlZHMgdG8gYmUgZml4ZWQgYnkgaW5jbHVkaW5n
+IF9QQUdFX1BBVCBiaXQgaW50byBhIGJpdG1hc2sNCj4gdXNlZCANCj4gYnkgcGdwcm90X21vZGlm
+eSgpIGZvciBzZWxlY3RpbmcgYml0cyB0byBiZSBwcmVzZXJ2ZWQuwqAgV2UgY2FuIGVpdGhlcg0K
+PiBkbyANCj4gdGhhdCBpbnRlcm5hbGx5IHRvIHBncHJvdF9tb2RpZnkoKSAobXkgaW5pdGlhbCBw
+cm9wb3NhbCwgd2hpY2ggbXkNCj4gcG9vcmx5IA0KPiB3b3JkZWQgcGFyYWdyYXBoIHdhcyBzdGls
+bCB0cnlpbmcgdG8gZGVzY3JpYmUgYW5kIGp1c3RpZnkpLCBvciBieQ0KPiBtYWtpbmcgDQo+IF9Q
+QUdFX1BBVCBhIHBhcnQgb2YgX1BBR0VfQ0hHX01BU0ssIGFzIHN1Z2dlc3RlZCBieSBCb3Jpc2xh
+diBhbmQNCj4gcmVmbGVjdGVkIGluIA0KPiBteSB2MiBjaGFuZ2Vsb2cuwqAgQnV0IGZvciB0aGUg
+bGF0dGVyLCBJIHRoaW5rIHdlIG5lZWQgdG8gbWFrZSBzdXJlDQo+IHRoYXQgd2UgDQo+IGRvbid0
+IGJyZWFrIG90aGVyIHVzZXJzIG9mIF9QQUdFX0NIR19NQVNLLsKgIE1heWJlIEJvcmlzbGF2IGNh
+bg0KPiBjb25maXJtIHRoYXQncyANCj4gdGhlIGNhc2UuDQo+IA0KPiBTaW5jZSBfUEFHRV9QQVQg
+aXMgdGhlIHNhbWUgYXMgX1BBR0VfUFNFLCBfSFBBR0VfQ0hHX01BU0sgLS0gYSBodWdlDQo+IHBt
+ZHMnIA0KPiBjb3VudGVycGFydCBvZiBfUEFHRV9DSEdfTUFTSywgaW50cm9kdWNlZCBieSBjb21t
+aXQgYzQ4OWYxMjU3YjhjDQo+ICgidGhwOiBhZGQgDQo+IHBtZF9tb2RpZnkiKSwgZGVmaW5lZCBh
+cyAoX1BBR0VfQ0hHX01BU0sgfCBfUEFHRV9QU0UpIC0tIHdpbGwgbm8NCj4gbG9uZ2VyIGRpZmZl
+ciANCj4gZnJvbSBfUEFHRV9DSEdfTUFTSyBhcyBzb29uIGFzIHdlIGFkZCBfUEFHRV9QQVQgYml0
+IHRvIHRoZSBsYXR0ZXIuwqANCj4gSWYgc3VjaCANCj4gbW9kaWZpY2F0aW9uIG9mIF9QQUdFX0NI
+R19NQVNLIHdhcyBpcnJlbGV2YW50IHRvIGl0cyB1c2VycyB0aGVuIG9uZQ0KPiBtYXkgYXNrIA0K
+PiB3aHkgYSBuZXcgc3ltYm9sIHdhcyBpbnRyb2R1Y2VkIGluc3RlYWQgb2YgcmV1c2luZyB0aGUg
+ZXhpc3Rpbmcgb25lDQo+IHdpdGggdGhhdCANCj4gb3RoZXJ3aXNlIGlycmVsZXZhbnQgYml0IChf
+UEFHRV9QU0UgaW4gdGhhdCBjYXNlKSBhZGRlZC7CoCBJJ3ZlDQo+IGluaXRpYWxseSANCj4gYXNz
+dW1lZCB0aGF0IGtlZXBpbmcgX1BBR0VfQ0hHX01BU0sgd2l0aG91dCBfUEFHRV9QU0UgKHZlbCBf
+UEFHRV9QQVQpDQo+IGluY2x1ZGVkIA0KPiBpbnRvIGl0IHdhcyBpbnRlbnRpb25hbCBmb3Igc29t
+ZSByZWFzb24uwqAgTWF5YmUgSm9oYW5uZXMgV2VpbmVyLCB0aGUNCj4gYXV0aG9yIG9mIA0KPiB0
+aGF0IHBhdGNoIChhZGRpbmcgaGltIHRvIENjOiksIGNvdWxkIHNoZWQgbW9yZSBsaWdodCBvbiB0
+aGF0Lg0KDQpTbyBzaW5jZSBfUEFHRV9QU0UgaXMgYWN0dWFsbHkgdGhlIHNhbWUgdmFsdWUgYXMg
+X1BBR0VfUEFULCB5b3UgZG9uJ3QNCmFjdHVhbGx5IG5lZWQgdG8gaGF2ZSBfUEFHRV9QU0UgaW4g
+X0hQQUdFX0NIR19NQVNLIGluIG9yZGVyIHRvIGdldA0KZnVuY3Rpb25hbCBjb3JyZWN0bmVzcy4g
+SXMgdGhhdCByaWdodD8NCg0KSSB0aGluayBpdCBpcyBzdGlsbCBhIGxpdHRsZSBoaWRkZW4gKGV2
+ZW4gYmVmb3JlIHRoaXMpIGFuZCBJIHdvbmRlcg0KYWJvdXQgc2VwYXJhdGluZyBvdXQgdGhlIGNv
+bW1vbiBiaXRzIGludG8sIGxpa2UsIF9DT01NT05fUEFHRV9DSEdfTUFTSw0Kb3Igc29tZXRoaW5n
+LiBUaGVuIHNldHRpbmcgc3BlY2lmaWMgUEFHRSBhbmQgSFBBR0UgYml0cyAobGlrZQ0KX1BBR0Vf
+UEFULCBfUEFHRV9QU0UgYW5kIF9QQUdFX1BBVF9MQVJHRSkgaW4gdGhlaXIgc3BlY2lmaWMgZGVm
+aW5lLg0KV291bGQgaXQgYmUgbW9yZSByZWFkYWJsZSB0aGF0IHdheT8NCg0KDQo=
