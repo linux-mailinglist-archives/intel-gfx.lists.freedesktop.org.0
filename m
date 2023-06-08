@@ -1,52 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A9C4728359
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 17:12:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC75A7283CB
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 17:34:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 094BB10E5DF;
-	Thu,  8 Jun 2023 15:12:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DCBB10E0B8;
+	Thu,  8 Jun 2023 15:34:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CCDD10E5DF
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 15:12:14 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4611010E0B8;
+ Thu,  8 Jun 2023 15:34:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686237134; x=1717773134;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Bd6xbUdW+D32letWQINfCjv62egxi7m5eeFJZFnh6hY=;
- b=Jx/1gkRFce80pCs51/cNxre/mshzeyiEURHeTW/xj3W0gg6XukIVg0g1
- 3DJoSz88oiirgbZ3nr08EZXKjTy5cQ95qbBJ5t8m/GgAk9Q+MEplCxa/b
- vdyjSLeWmR+qac3ZjWkaZskZ8J3HzZ3GYp/1VrovDlK6k5mB8kBDHFahI
- 4tvS0WKBuqIGUnnZT28Qpl0dfsIMbP+AXRafgkLffFii1QSLAhhH62BGX
- zG+BCvARUPb5RIhfK2mOrlUEM5ePMEFPIEQiwMnwelx8PAc5O3ZFzW5C3
- sBer6psHAiE1OrL6dkzLxy1Y9P1Fzin+8okOQ2AM3q2LlSlHN3s1aspP3 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="423201688"
-X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="423201688"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2023 08:09:26 -0700
+ t=1686238490; x=1717774490;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=Sy9tlv6ZaWAkRETGtbxvEMc95D8XZ5Kbs6wHvWGezss=;
+ b=gFps5VXYHbdBL2Wo4qaLnk0T2jt6ZWc36imr6YfwKA/2rGlxTEjTUkZY
+ wgBJYEHX+g/iNfqn/xKIXh3tJMHTbDlff/9sqAyLX7OtCSHpzUHryXHnr
+ D2CdLfZF+qH3tBbm5SBYt2it0ayGIUqETjOcXPc1Vypw9ayF2AzIusWsf
+ 9addLWNM8zerSMFKW2IygWCKqXBwGIrYIOan5cqgjV3Ku2IS5dHOsxb4R
+ yYzhppNUVdSOAe4HvCJMYVBs7lSll/wwpAsnpA0YfRjiF7e/ClSI/K+jF
+ MnxmdF9KPIqtBvws+BI7+KJopqaw42LonDAIYPyxGbL6OSYpKGACDosBc Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="443709001"
+X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="443709001"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 08:34:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="956751567"
-X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="956751567"
-Received: from unknown (HELO localhost) ([10.237.66.162])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2023 08:09:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  8 Jun 2023 18:09:05 +0300
-Message-Id: <0badc36ce6dd6b030507bdfd8a42ab984fb38d12.1686236840.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1686236840.git.jani.nikula@intel.com>
-References: <cover.1686236840.git.jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="739797780"
+X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="739797780"
+Received: from rirwin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.213.239.227])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 08:34:46 -0700
+Date: Thu, 8 Jun 2023 16:34:44 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <ZIH09fqe5v5yArsu@tursulin-desk>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915: make device info a const pointer
- to rodata
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,93 +55,234 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Finally we can get rid of the pseudo-const write-once device info, and
-convert it into a const pointer to device info in rodata.
+Hi Dave, Daniel,
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h          |  4 ++--
- drivers/gpu/drm/i915/intel_device_info.c | 17 ++++-------------
- 2 files changed, 6 insertions(+), 15 deletions(-)
+Here goes the final pull request for 6.5.
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 2d8331d435f1..788438b19e65 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -203,7 +203,7 @@ struct drm_i915_private {
- 	/* i915 device parameters */
- 	struct i915_params params;
- 
--	const struct intel_device_info __info; /* Use INTEL_INFO() to access. */
-+	const struct intel_device_info *__info; /* Use INTEL_INFO() to access. */
- 	struct intel_runtime_info __runtime; /* Use RUNTIME_INFO() to access. */
- 	struct intel_driver_caps caps;
- 
-@@ -405,7 +405,7 @@ static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
- 	     (engine__) && (engine__)->uabi_class == (class__); \
- 	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
- 
--#define INTEL_INFO(i915)	(&(i915)->__info)
-+#define INTEL_INFO(i915)	((i915)->__info)
- #define RUNTIME_INFO(i915)	(&(i915)->__runtime)
- #define DISPLAY_INFO(i915)	((i915)->display.info.__device_info)
- #define DISPLAY_RUNTIME_INFO(i915)	(&(i915)->display.info.__runtime_info)
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index d51bbdbe53ab..0ef001d22ab2 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -360,13 +360,6 @@ void intel_device_info_runtime_init_early(struct drm_i915_private *i915)
- 	intel_device_info_subplatform_init(i915);
- }
- 
--/* FIXME: Remove this, and make device info a const pointer to rodata. */
--static struct intel_device_info *
--mkwrite_device_info(struct drm_i915_private *i915)
--{
--	return (struct intel_device_info *)INTEL_INFO(i915);
--}
--
- static const struct intel_display_device_info no_display = {};
- 
- /**
-@@ -426,26 +419,24 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
- 				     u16 device_id,
- 				     const struct intel_device_info *match_info)
- {
--	struct intel_device_info *info;
- 	struct intel_runtime_info *runtime;
- 	u16 ver, rel, step;
- 
--	/* Setup the write-once "constant" device info */
--	info = mkwrite_device_info(i915);
--	memcpy(info, match_info, sizeof(*info));
-+	/* Setup INTEL_INFO() */
-+	i915->__info = match_info;
- 
- 	/* Initialize initial runtime info from static const data and pdev. */
- 	runtime = RUNTIME_INFO(i915);
- 	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
- 
- 	/* Probe display support */
--	i915->display.info.__device_info = intel_display_device_probe(i915, info->has_gmd_id,
-+	i915->display.info.__device_info = intel_display_device_probe(i915, HAS_GMD_ID(i915),
- 								      &ver, &rel, &step);
- 	memcpy(DISPLAY_RUNTIME_INFO(i915),
- 	       &DISPLAY_INFO(i915)->__runtime_defaults,
- 	       sizeof(*DISPLAY_RUNTIME_INFO(i915)));
- 
--	if (info->has_gmd_id) {
-+	if (HAS_GMD_ID(i915)) {
- 		DISPLAY_RUNTIME_INFO(i915)->ip.ver = ver;
- 		DISPLAY_RUNTIME_INFO(i915)->ip.rel = rel;
- 		DISPLAY_RUNTIME_INFO(i915)->ip.step = step;
--- 
-2.39.2
+A few improvements to robustness of dealing with GuC communication issues,
+compute applications, small BAR systems perf/OA monitoring.
 
+Then a little bit more of Meteorlake enablement which this time round
+includes the HuC loading code, another workaround, and UAPI for letting Mesa
+set the PAT index when creating buffer objects.
+
+And a bunch of small cleanups for different kconfig options, compilers, or
+failures in error handling in selftests for hyphotetical scenarios. Some code
+base cleanups here and there too.
+
+Regards,
+
+Tvrtko
+
+drm-intel-gt-next-2023-06-08:
+UAPI Changes:
+
+- I915_GEM_CREATE_EXT_SET_PAT for Mesa on Meteorlake.
+
+Driver Changes:
+
+Fixes/improvements/new stuff:
+
+- Use large rings for compute contexts (Chris Wilson)
+- Better logging/debug of unexpected GuC communication issues (Michal Wajdeczko)
+- Clear out entire reports after reading if not power of 2 size (Ashutosh Dixit)
+- Limit lmem allocation size to succeed on SmallBars (Andrzej Hajda)
+- perf/OA capture robustness improvements on DG2 (Umesh Nerlige Ramappa)
+- Fix error code in intel_gsc_uc_heci_cmd_submit_nonpriv() (Dan Carpenter)
+
+Future platform enablement:
+
+- Add workaround 14016712196 (Tejas Upadhyay)
+- HuC loading for MTL (Daniele Ceraolo Spurio)
+- Allow user to set cache at BO creation (Fei Yang)
+
+Miscellaneous:
+
+- Use system include style for drm headers (Jani Nikula)
+- Drop legacy CTB definitions (Michal Wajdeczko)
+- Turn off the timer to sample frequencies when GT is parked (Ashutosh Dixit)
+- Make PMU sample array two-dimensional (Ashutosh Dixit)
+- Use the correct error value when kernel_context() fails (Andi Shyti)
+- Fix second parameter type of pre-gen8 pte_encode callbacks (Nathan Chancellor)
+- Fix parameter in gmch_ggtt_insert_{entries, page}() (Nathan Chancellor)
+- Fix size_t format specifier in gsccs_send_message() (Nathan Chancellor)
+- Use the fdinfo helper (Tvrtko Ursulin)
+- Add some missing error propagation (Tvrtko Ursulin)
+- Reduce I915_MAX_GT to 2 (Matt Atwood)
+- Rename I915_PMU_MAX_GTS to I915_PMU_MAX_GT (Matt Atwood)
+- Remove some obsolete definitions (John Harrison)
+
+Merges:
+
+- Merge drm/drm-next into drm-intel-gt-next (Tvrtko Ursulin)
+The following changes since commit 2e1492835e439fceba57a5b0f9b17da8e78ffa3d:
+
+  Merge tag 'drm-misc-next-2023-06-01' of git://anongit.freedesktop.org/drm/drm-misc into drm-next (2023-06-02 13:39:00 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2023-06-08
+
+for you to fetch changes up to 24335848e543dc95c9e2ffa0108d879ffefd0442:
+
+  drm/i915/gsc: Fix error code in intel_gsc_uc_heci_cmd_submit_nonpriv() (2023-06-08 02:11:04 +0200)
+
+----------------------------------------------------------------
+UAPI Changes:
+
+- I915_GEM_CREATE_EXT_SET_PAT for Mesa on Meteorlake.
+
+Driver Changes:
+
+Fixes/improvements/new stuff:
+
+- Use large rings for compute contexts (Chris Wilson)
+- Better logging/debug of unexpected GuC communication issues (Michal Wajdeczko)
+- Clear out entire reports after reading if not power of 2 size (Ashutosh Dixit)
+- Limit lmem allocation size to succeed on SmallBars (Andrzej Hajda)
+- perf/OA capture robustness improvements on DG2 (Umesh Nerlige Ramappa)
+- Fix error code in intel_gsc_uc_heci_cmd_submit_nonpriv() (Dan Carpenter)
+
+Future platform enablement:
+
+- Add workaround 14016712196 (Tejas Upadhyay)
+- HuC loading for MTL (Daniele Ceraolo Spurio)
+- Allow user to set cache at BO creation (Fei Yang)
+
+Miscellaneous:
+
+- Use system include style for drm headers (Jani Nikula)
+- Drop legacy CTB definitions (Michal Wajdeczko)
+- Turn off the timer to sample frequencies when GT is parked (Ashutosh Dixit)
+- Make PMU sample array two-dimensional (Ashutosh Dixit)
+- Use the correct error value when kernel_context() fails (Andi Shyti)
+- Fix second parameter type of pre-gen8 pte_encode callbacks (Nathan Chancellor)
+- Fix parameter in gmch_ggtt_insert_{entries, page}() (Nathan Chancellor)
+- Fix size_t format specifier in gsccs_send_message() (Nathan Chancellor)
+- Use the fdinfo helper (Tvrtko Ursulin)
+- Add some missing error propagation (Tvrtko Ursulin)
+- Reduce I915_MAX_GT to 2 (Matt Atwood)
+- Rename I915_PMU_MAX_GTS to I915_PMU_MAX_GT (Matt Atwood)
+- Remove some obsolete definitions (John Harrison)
+
+Merges:
+
+- Merge drm/drm-next into drm-intel-gt-next (Tvrtko Ursulin)
+
+----------------------------------------------------------------
+Andi Shyti (1):
+      drm/i915/gt: Use the correct error value when kernel_context() fails
+
+Andrzej Hajda (1):
+      drm/i915/gt: limit lmem allocation size to succeed on SmallBars
+
+Ashutosh Dixit (3):
+      drm/i915/perf: Clear out entire reports after reading if not power of 2 size
+      drm/i915/pmu: Turn off the timer to sample frequencies when GT is parked
+      drm/i915/pmu: Make PMU sample array two-dimensional
+
+Chris Wilson (1):
+      drm/i915/gem: Use large rings for compute contexts
+
+Dan Carpenter (1):
+      drm/i915/gsc: Fix error code in intel_gsc_uc_heci_cmd_submit_nonpriv()
+
+Daniele Ceraolo Spurio (7):
+      drm/i915/uc: perma-pin firmwares
+      drm/i915/huc: Parse the GSC-enabled HuC binary
+      drm/i915/huc: Load GSC-enabled HuC via DMA xfer if the fuse says so
+      drm/i915/huc: differentiate the 2 steps of the MTL HuC auth flow
+      drm/i915/mtl/huc: auth HuC via GSC
+      drm/i915/mtl/huc: Use the media gt for the HuC getparam
+      drm/i915/huc: define HuC FW version for MTL
+
+Fei Yang (1):
+      drm/i915: Allow user to set cache at BO creation
+
+Jani Nikula (1):
+      drm/i915/gsc: use system include style for drm headers
+
+John Harrison (1):
+      drm/i915/guc: Remove some obsolete definitions
+
+Matt Atwood (2):
+      drm/i915: Reduce I915_MAX_GT to 2
+      drm/i915: rename I915_PMU_MAX_GTS to I915_PMU_MAX_GT
+
+Michal Wajdeczko (4):
+      drm/i915/guc: Use FAST_REQUEST for non-blocking H2G calls
+      drm/i915/guc: Update log for unsolicited CTB response
+      drm/i915/guc: Track all sent actions to GuC
+      drm/i915/guc: Drop legacy CTB definitions
+
+Nathan Chancellor (3):
+      drm/i915/gt: Fix second parameter type of pre-gen8 pte_encode callbacks
+      drm/i915/gt: Fix parameter in gmch_ggtt_insert_{entries, page}()
+      drm/i915/pxp: Fix size_t format specifier in gsccs_send_message()
+
+Tejas Upadhyay (1):
+      drm/i915/gt: Add workaround 14016712196
+
+Tvrtko Ursulin (3):
+      Merge drm/drm-next into drm-intel-gt-next
+      drm/i915: Use the fdinfo helper
+      drm/i915/selftests: Add some missing error propagation
+
+Umesh Nerlige Ramappa (2):
+      i915/perf: Drop the aging_tail logic in perf OA
+      i915/perf: Do not add ggtt offset to hw_tail
+
+ drivers/gpu/drm/i915/Kconfig.debug                 |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_context.c        |   6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_create.c         |  40 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_object.c         |   6 +
+ .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |  14 +-
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c           |  38 ++++
+ drivers/gpu/drm/i915/gt/intel_ggtt.c               |  29 +--
+ drivers/gpu/drm/i915/gt/intel_ggtt_gmch.c          |   8 +-
+ drivers/gpu/drm/i915/gt/selftest_execlists.c       |  12 +-
+ drivers/gpu/drm/i915/gt/selftest_tlb.c             |  11 +-
+ .../drm/i915/gt/uc/abi/guc_communication_ctb_abi.h |  21 --
+ drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h  |  30 +++
+ .../gpu/drm/i915/gt/uc/intel_gsc_binary_headers.h  |  74 +++++++
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c       |   4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c          |  34 ++-
+ .../drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c  |   4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c             |   2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c          |  81 ++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h          |  11 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h        |  33 ---
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c             | 224 ++++++++++++++------
+ drivers/gpu/drm/i915/gt/uc/intel_huc.h             |  26 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c          | 235 ++++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h          |   6 +-
+ drivers/gpu/drm/i915/gt/uc/intel_huc_print.h       |  21 ++
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c              |  10 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.h              |   2 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c           | 133 +++++++-----
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h           |  26 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h       |   6 -
+ drivers/gpu/drm/i915/i915_driver.c                 |   6 +-
+ drivers/gpu/drm/i915/i915_drm_client.c             |  65 +-----
+ drivers/gpu/drm/i915/i915_drm_client.h             |  22 +-
+ drivers/gpu/drm/i915/i915_drv.h                    |   4 +-
+ drivers/gpu/drm/i915/i915_gem.c                    |   6 +-
+ drivers/gpu/drm/i915/i915_getparam.c               |   6 +-
+ drivers/gpu/drm/i915/i915_perf.c                   | 121 +++++------
+ drivers/gpu/drm/i915/i915_perf_types.h             |  12 --
+ drivers/gpu/drm/i915/i915_pmu.c                    |  34 +--
+ drivers/gpu/drm/i915/i915_pmu.h                    |   8 +-
+ drivers/gpu/drm/i915/i915_reg.h                    |   3 +
+ .../gpu/drm/i915/pxp/intel_pxp_cmd_interface_43.h  |  17 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c         |   4 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_huc.c           |   2 +-
+ include/uapi/drm/i915_drm.h                        |  44 +++-
+ 45 files changed, 1058 insertions(+), 444 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_binary_headers.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_huc_print.h
