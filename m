@@ -2,32 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D2CC7287E0
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 21:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F44572881D
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 21:19:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B306310E60A;
-	Thu,  8 Jun 2023 19:14:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6343510E60F;
+	Thu,  8 Jun 2023 19:19:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 23A9910E60A;
- Thu,  8 Jun 2023 19:14:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1C81BAADDD;
- Thu,  8 Jun 2023 19:14:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1987563340304529458=="
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CE1010E60C;
+ Thu,  8 Jun 2023 19:19:27 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 7A33B65086;
+ Thu,  8 Jun 2023 19:19:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92FB1C433EF;
+ Thu,  8 Jun 2023 19:19:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1686251965;
+ bh=mLOUm1pw4C1bDmEn+GaVOq6LXGOEbnXZs3/jiHFU1DM=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=q/EIiaYKROJXw5aWMOmXQm05vasG29mD1HvxujqhVsHhdELsZmFIs0ClxmC7WiAX7
+ pEDhavxGKH9JK9OGkfCuDp2amYp/WOg5Y2LrhU9MZlXZ4/xE1HV1bRlxnKcomcsWkR
+ 4+GMU4SgGL7XXun73X7WHdOTucn8cTm3mfXWanYzj/XFv1W3VkrMwp7zrRhjdRhDMH
+ eijuUshcLlTMkzqIO6AJlUN8M0rj5t6WiZxBWvhs5IpoMI2a8fcjs2lXu+3ZDTLq/b
+ H/mneTO9NcemhZa9tKZIBF6eU2gmVXxy9Y7gPiurzDIX7f5m7Ii+QJJ1K1TBvZu+/w
+ Sr+ngLYBLaBsA==
+Date: Thu, 8 Jun 2023 14:19:24 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Sui Jingfeng <15330273260@189.cn>
+Message-ID: <20230608191924.GA1210122@bhelgaas>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 08 Jun 2023 19:14:37 -0000
-Message-ID: <168625167709.18386.8917723412021824108@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1686236840.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1686236840.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_further_device_info_cleanups?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230608114322.604887-5-15330273260@189.cn>
+Subject: Re: [Intel-gfx] [PATCH v3 4/4] PCI/VGA: introduce is_boot_device
+ function callback to vga_client_register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,242 +52,242 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Sui Jingfeng <suijingfeng@loongson.cn>, David Airlie <airlied@gmail.com>,
+ Yi Liu <yi.l.liu@intel.com>, kvm@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Jason Gunthorpe <jgg@ziepe.ca>,
+ Ben Skeggs <bskeggs@redhat.com>, linux-pci@vger.kernel.org,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Kevin Tian <kevin.tian@intel.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Bokun Zhang <Bokun.Zhang@amd.com>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ loongson-kernel@lists.loongnix.cn, Abhishek Sahu <abhsahu@nvidia.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Yishai Hadas <yishaih@nvidia.com>, Li Yi <liyi@loongson.cn>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Cornelia Huck <cohuck@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1987563340304529458==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Jun 08, 2023 at 07:43:22PM +0800, Sui Jingfeng wrote:
+> From: Sui Jingfeng <suijingfeng@loongson.cn>
+> 
+> The vga_is_firmware_default() function is arch-dependent, which doesn't
+> sound right. At least, it also works on the Mips and LoongArch platforms.
+> Tested with the drm/amdgpu and drm/radeon drivers. However, it's difficult
+> to enumerate all arch-driver combinations. I'm wrong if there is only one
+> exception.
+> 
+> With the observation that device drivers typically have better knowledge
+> about which PCI bar contains the firmware framebuffer, which could avoid
+> the need to iterate all of the PCI BARs.
+> 
+> But as a PCI function at pci/vgaarb.c, vga_is_firmware_default() is
+> probably not suitable to make such an optimization for a specific device.
+> 
+> There are PCI display controllers that don't have a dedicated VRAM bar,
+> this function will lose its effectiveness in such a case. Luckily, the
+> device driver can provide an accurate workaround.
+> 
+> Therefore, this patch introduces a callback that allows the device driver
+> to tell the VGAARB if the device is the default boot device. This patch
+> only intends to introduce the mechanism, while the implementation is left
+> to the device driver authors. Also honor the comment: "Clients have two
+> callback mechanisms they can use"
 
-== Series Details ==
+s/bar/BAR/ (several)
 
-Series: drm/i915: further device info cleanups
-URL   : https://patchwork.freedesktop.org/series/119086/
-State : success
+Nothing here uses the callback.  I don't want to merge this until we
+have a user.
 
-== Summary ==
+I'm not sure why the device driver should know whether its device is
+the default boot device.
 
-CI Bug Log - changes from CI_DRM_13253 -> Patchwork_119086v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/index.html
-
-Participating hosts (35 -> 34)
-------------------------------
-
-  Missing    (1): fi-kbl-soraka 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_119086v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-2:         NOTRUN -> [ABORT][1] ([i915#4983] / [i915#7461] / [i915#7913] / [i915#8347])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/bat-rpls-2/igt@i915_selftest@live@reset.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - fi-glk-j4005:       NOTRUN -> [SKIP][2] ([fdo#109271])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/fi-glk-j4005/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:
-    - bat-dg2-8:          [PASS][3] -> [FAIL][4] ([i915#7932]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][5] ([i915#5334]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-glk-j4005:       [ABORT][7] ([i915#6217]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@i915_selftest@live@mman:
-    - bat-rpls-2:         [TIMEOUT][9] ([i915#6794] / [i915#7392]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-rpls-2/igt@i915_selftest@live@mman.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/bat-rpls-2/igt@i915_selftest@live@mman.html
-
-  * {igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-6}:
-    - {bat-adlp-11}:      [ABORT][11] ([i915#4423]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-6.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-6.html
-
-  * {igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5}:
-    - {bat-adlp-11}:      [DMESG-WARN][13] ([i915#4309] / [i915#4423]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4309]: https://gitlab.freedesktop.org/drm/intel/issues/4309
-  [i915#4423]: https://gitlab.freedesktop.org/drm/intel/issues/4423
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6217]: https://gitlab.freedesktop.org/drm/intel/issues/6217
-  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
-  [i915#6868]: https://gitlab.freedesktop.org/drm/intel/issues/6868
-  [i915#7392]: https://gitlab.freedesktop.org/drm/intel/issues/7392
-  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13253 -> Patchwork_119086v1
-
-  CI-20190529: 20190529
-  CI_DRM_13253: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7322: 2dd77d6d827a308caae49ce3eba759c2bab394ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_119086v1: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-871c4e10f705 drm/i915: make device info a const pointer to rodata
-c4ec2fa6b628 drm/i915: move display device and runtime info to struct intel_display
-a77ead28e1eb drm/i915: fix display info usage
-2f04d344b415 drm/i915: separate display info printing from the rest
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/index.html
-
---===============1987563340304529458==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: further device info cleanups</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119086/">https://patchwork.freedesktop.org/series/119086/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13253 -&gt; Patchwork_119086v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/index.html</p>
-<h2>Participating hosts (35 -&gt; 34)</h2>
-<p>Missing    (1): fi-kbl-soraka </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_119086v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/bat-rpls-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/fi-glk-j4005/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc@pipe-d-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6217">i915#6217</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-rpls-2/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7392">i915#7392</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/bat-rpls-2/igt@i915_selftest@live@mman.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-6}:</p>
-<ul>
-<li>{bat-adlp-11}:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-6.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4423">i915#4423</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-6.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5}:</p>
-<ul>
-<li>{bat-adlp-11}:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4309">i915#4309</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4423">i915#4423</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119086v1/bat-adlp-11/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-5.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13253 -&gt; Patchwork_119086v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13253: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7322: 2dd77d6d827a308caae49ce3eba759c2bab394ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_119086v1: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>871c4e10f705 drm/i915: make device info a const pointer to rodata<br />
-c4ec2fa6b628 drm/i915: move display device and runtime info to struct intel_display<br />
-a77ead28e1eb drm/i915: fix display info usage<br />
-2f04d344b415 drm/i915: separate display info printing from the rest</p>
-
-</body>
-</html>
-
---===============1987563340304529458==--
+> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
+>  drivers/gpu/drm/i915/display/intel_vga.c   |  3 +--
+>  drivers/gpu/drm/nouveau/nouveau_vga.c      |  2 +-
+>  drivers/gpu/drm/radeon/radeon_device.c     |  2 +-
+>  drivers/pci/vgaarb.c                       | 22 ++++++++++++++++++----
+>  drivers/vfio/pci/vfio_pci_core.c           |  2 +-
+>  include/linux/vgaarb.h                     |  8 +++++---
+>  7 files changed, 28 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 5c7d40873ee2..7a096f2d5c16 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -3960,7 +3960,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+>  	/* this will fail for cards that aren't VGA class devices, just
+>  	 * ignore it */
+>  	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
+> -		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode);
+> +		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode, NULL);
+>  
+>  	px = amdgpu_device_supports_px(ddev);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
+> index 286a0bdd28c6..98d7d4dffe9f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vga.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
+> @@ -115,7 +115,6 @@ intel_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
+>  
+>  int intel_vga_register(struct drm_i915_private *i915)
+>  {
+> -
+>  	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+>  	int ret;
+>  
+> @@ -127,7 +126,7 @@ int intel_vga_register(struct drm_i915_private *i915)
+>  	 * then we do not take part in VGA arbitration and the
+>  	 * vga_client_register() fails with -ENODEV.
+>  	 */
+> -	ret = vga_client_register(pdev, intel_vga_set_decode);
+> +	ret = vga_client_register(pdev, intel_vga_set_decode, NULL);
+>  	if (ret && ret != -ENODEV)
+>  		return ret;
+>  
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
+> index f8bf0ec26844..162b4f4676c7 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_vga.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
+> @@ -92,7 +92,7 @@ nouveau_vga_init(struct nouveau_drm *drm)
+>  		return;
+>  	pdev = to_pci_dev(dev->dev);
+>  
+> -	vga_client_register(pdev, nouveau_vga_set_decode);
+> +	vga_client_register(pdev, nouveau_vga_set_decode, NULL);
+>  
+>  	/* don't register Thunderbolt eGPU with vga_switcheroo */
+>  	if (pci_is_thunderbolt_attached(pdev))
+> diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+> index afbb3a80c0c6..71f2ff39d6a1 100644
+> --- a/drivers/gpu/drm/radeon/radeon_device.c
+> +++ b/drivers/gpu/drm/radeon/radeon_device.c
+> @@ -1425,7 +1425,7 @@ int radeon_device_init(struct radeon_device *rdev,
+>  	/* if we have > 1 VGA cards, then disable the radeon VGA resources */
+>  	/* this will fail for cards that aren't VGA class devices, just
+>  	 * ignore it */
+> -	vga_client_register(rdev->pdev, radeon_vga_set_decode);
+> +	vga_client_register(rdev->pdev, radeon_vga_set_decode, NULL);
+>  
+>  	if (rdev->flags & RADEON_IS_PX)
+>  		runtime = true;
+> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+> index b0bf4952a95d..d3dab61e0ef2 100644
+> --- a/drivers/pci/vgaarb.c
+> +++ b/drivers/pci/vgaarb.c
+> @@ -53,6 +53,7 @@ struct vga_device {
+>  	bool bridge_has_one_vga;
+>  	bool is_firmware_default;	/* device selected by firmware */
+>  	unsigned int (*set_decode)(struct pci_dev *pdev, bool decode);
+> +	bool (*is_boot_device)(struct pci_dev *pdev);
+>  };
+>  
+>  static LIST_HEAD(vga_list);
+> @@ -614,10 +615,17 @@ static bool vga_is_boot_device(struct vga_device *vgadev)
+>  	if (boot_vga && boot_vga->is_firmware_default)
+>  		return false;
+>  
+> -	if (vga_is_firmware_default(pdev)) {
+> -		vgadev->is_firmware_default = true;
+> +	/*
+> +	 * Ask the device driver first, if registered. Fallback to the
+> +	 * default implement if the callback is non-exist.
+> +	 */
+> +	if (vgadev->is_boot_device)
+> +		vgadev->is_firmware_default = vgadev->is_boot_device(pdev);
+> +	else
+> +		vgadev->is_firmware_default = vga_is_firmware_default(pdev);
+> +
+> +	if (vgadev->is_firmware_default)
+>  		return true;
+> -	}
+>  
+>  	/*
+>  	 * A legacy VGA device has MEM and IO enabled and any bridges
+> @@ -954,6 +962,10 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
+>   * @set_decode callback: If a client can disable its GPU VGA resource, it
+>   * will get a callback from this to set the encode/decode state.
+>   *
+> + * @is_boot_device: callback to the device driver, query if a client is the
+> + * default boot device, as the device driver typically has better knowledge
+> + * if specific device is the boot device. But this callback is optional.
+> + *
+>   * Rationale: we cannot disable VGA decode resources unconditionally, some
+>   * single GPU laptops seem to require ACPI or BIOS access to the VGA registers
+>   * to control things like backlights etc. Hopefully newer multi-GPU laptops do
+> @@ -969,7 +981,8 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
+>   * Returns: 0 on success, -1 on failure
+>   */
+>  int vga_client_register(struct pci_dev *pdev,
+> -		unsigned int (*set_decode)(struct pci_dev *pdev, bool decode))
+> +		unsigned int (*set_decode)(struct pci_dev *pdev, bool decode),
+> +		bool (*is_boot_device)(struct pci_dev *pdev))
+>  {
+>  	int ret = -ENODEV;
+>  	struct vga_device *vgadev;
+> @@ -981,6 +994,7 @@ int vga_client_register(struct pci_dev *pdev,
+>  		goto bail;
+>  
+>  	vgadev->set_decode = set_decode;
+> +	vgadev->is_boot_device = is_boot_device;
+>  	ret = 0;
+>  
+>  bail:
+> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+> index a5ab416cf476..2a8873a330ba 100644
+> --- a/drivers/vfio/pci/vfio_pci_core.c
+> +++ b/drivers/vfio/pci/vfio_pci_core.c
+> @@ -2067,7 +2067,7 @@ static int vfio_pci_vga_init(struct vfio_pci_core_device *vdev)
+>  	if (ret)
+>  		return ret;
+>  
+> -	ret = vga_client_register(pdev, vfio_pci_set_decode);
+> +	ret = vga_client_register(pdev, vfio_pci_set_decode, NULL);
+>  	if (ret)
+>  		return ret;
+>  	vga_set_legacy_decoding(pdev, vfio_pci_set_decode(pdev, false));
+> diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
+> index d36225c582ee..66fe80ffad76 100644
+> --- a/include/linux/vgaarb.h
+> +++ b/include/linux/vgaarb.h
+> @@ -50,7 +50,8 @@ struct pci_dev *vga_default_device(void);
+>  void vga_set_default_device(struct pci_dev *pdev);
+>  int vga_remove_vgacon(struct pci_dev *pdev);
+>  int vga_client_register(struct pci_dev *pdev,
+> -		unsigned int (*set_decode)(struct pci_dev *pdev, bool state));
+> +		unsigned int (*set_decode)(struct pci_dev *pdev, bool state),
+> +		bool (*is_boot_device)(struct pci_dev *pdev));
+>  #else /* CONFIG_VGA_ARB */
+>  static inline void vga_set_legacy_decoding(struct pci_dev *pdev,
+>  		unsigned int decodes)
+> @@ -76,7 +77,8 @@ static inline int vga_remove_vgacon(struct pci_dev *pdev)
+>  	return 0;
+>  }
+>  static inline int vga_client_register(struct pci_dev *pdev,
+> -		unsigned int (*set_decode)(struct pci_dev *pdev, bool state))
+> +		unsigned int (*set_decode)(struct pci_dev *pdev, bool state),
+> +		bool (*is_boot_device)(struct pci_dev *pdev))
+>  {
+>  	return 0;
+>  }
+> @@ -114,7 +116,7 @@ static inline int vga_get_uninterruptible(struct pci_dev *pdev,
+>  
+>  static inline void vga_client_unregister(struct pci_dev *pdev)
+>  {
+> -	vga_client_register(pdev, NULL);
+> +	vga_client_register(pdev, NULL, NULL);
+>  }
+>  
+>  #endif /* LINUX_VGA_H */
+> -- 
+> 2.25.1
+> 
