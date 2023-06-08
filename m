@@ -1,34 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E066728B7B
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 01:00:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15A9E728B89
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 01:07:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B014C10E61A;
-	Thu,  8 Jun 2023 23:00:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62AA210E61C;
+	Thu,  8 Jun 2023 23:07:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 70FBD10E61A;
- Thu,  8 Jun 2023 23:00:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0EBEFAADF1;
- Thu,  8 Jun 2023 23:00:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5784874748684803325=="
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC0D10E61A;
+ Thu,  8 Jun 2023 23:07:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686265639; x=1717801639;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/4BfqoosU5KCSMdFMjRRMwCf221KOJ1Xt6Mtdl/c/Eo=;
+ b=Hn4SfHDb9XqVpY/K2aGqG7c3DuIZQtMzQoKXK1H2FWBs5g4BMw9/kpKw
+ KJk83z3Qm41PKQBX5EAQ+n4NVcCusCPMzW7FWXtgvXCFQ0w1O4pMvzHvl
+ hHECHptqYxOPz1a+IpHGktQ6VtHMCwgiQzJCwtiY9ZpfQkmGC6WrE4c+P
+ oHul4ZUBp8bgG1kE2KPSBvL3iPrY8EnueLWFe+aNpywlJMBCFOgZwnAkM
+ qQwuI2ElBCcPEEPxtKJUq3kFZKG8odt0ze47uhI2tygmR2nuDdZLod/Tn
+ K5DBSvi62N7Qp3E3+niLlNedVf0M90DCF4L4cY6nmg+1XRlyE+r59Skni Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="356342329"
+X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="356342329"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 16:07:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="884371586"
+X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="884371586"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by orsmga005.jf.intel.com with ESMTP; 08 Jun 2023 16:07:17 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  8 Jun 2023 16:07:16 -0700
+Message-Id: <20230608230716.3079594-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gil Dekel" <gildekel@chromium.org>
-Date: Thu, 08 Jun 2023 23:00:36 -0000
-Message-ID: <168626523603.18384.18319629363562463478@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230608220037.1555814-1-gildekel@chromium.org>
-In-Reply-To: <20230608220037.1555814-1-gildekel@chromium.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/tc=3A_Use_standard_ternary_operator_instead_of_GCC_extens?=
- =?utf-8?q?ion?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gsc: take a wakeref for the
+ proxy-init-completion check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,212 +55,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5784874748684803325==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Ensure intel_gsc_uc_fw_init_done and intel_gsc_uc_fw_proxy_init
+takes a wakeref before reading GSC Shim registers.
 
-== Series Details ==
+NOTE: another patch in review also adds a call from selftest to
+this same function. (https://patchwork.freedesktop.org/series/117713/)
+which is why i am adding the wakeref inside the callee, not the
+caller.
 
-Series: drm/i915/tc: Use standard ternary operator instead of GCC extension
-URL   : https://patchwork.freedesktop.org/series/119098/
-State : success
+v2: - add a helper, 'gsc_uc_get_fw_status' for both callers
+      (Daniele Ceraolo)
 
-== Summary ==
+Fixes: 99afb7cc8c44 ("drm/i915/pxp: Add ARB session creation and cleanup")
+Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
 
-CI Bug Log - changes from CI_DRM_13253 -> Patchwork_119098v1
-====================================================
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
+index f46eb17a7a98..60e9c6c9e775 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
+@@ -24,21 +24,27 @@ static bool gsc_is_in_reset(struct intel_uncore *uncore)
+ 	       GSC_FW_CURRENT_STATE_RESET;
+ }
+ 
+-bool intel_gsc_uc_fw_proxy_init_done(struct intel_gsc_uc *gsc)
++static u32 gsc_uc_get_fw_status(struct intel_uncore *uncore)
+ {
+-	struct intel_uncore *uncore = gsc_uc_to_gt(gsc)->uncore;
+-	u32 fw_status = intel_uncore_read(uncore, GSC_FW_STATUS_REG);
++	intel_wakeref_t wakeref;
++	u32 fw_status = 0;
+ 
+-	return REG_FIELD_GET(GSC_FW_CURRENT_STATE, fw_status) ==
++	with_intel_runtime_pm(uncore->rpm, wakeref)
++		fw_status = intel_uncore_read(uncore, GSC_FW_STATUS_REG);
++
++	return fw_status;
++}
++
++bool intel_gsc_uc_fw_proxy_init_done(struct intel_gsc_uc *gsc)
++{
++	return REG_FIELD_GET(GSC_FW_CURRENT_STATE,
++			     gsc_uc_get_fw_status(gsc_uc_to_gt(gsc)->uncore)) ==
+ 	       GSC_FW_PROXY_STATE_NORMAL;
+ }
+ 
+ bool intel_gsc_uc_fw_init_done(struct intel_gsc_uc *gsc)
+ {
+-	struct intel_uncore *uncore = gsc_uc_to_gt(gsc)->uncore;
+-	u32 fw_status = intel_uncore_read(uncore, GSC_FW_STATUS_REG);
+-
+-	return fw_status & GSC_FW_INIT_COMPLETE_BIT;
++	return gsc_uc_get_fw_status(gsc_uc_to_gt(gsc)->uncore) & GSC_FW_INIT_COMPLETE_BIT;
+ }
+ 
+ static int emit_gsc_fw_load(struct i915_request *rq, struct intel_gsc_uc *gsc)
 
-Summary
--------
+base-commit: 27187d09511e1d47dbaaf91c7332319551a8edab
+-- 
+2.39.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/index.html
-
-Participating hosts (35 -> 35)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_119098v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg2-11:         [PASS][1] -> [ABORT][2] ([i915#7913] / [i915#7979])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-2:         NOTRUN -> [ABORT][3] ([i915#4983] / [i915#7461] / [i915#7913] / [i915#8347])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/bat-rpls-2/igt@i915_selftest@live@reset.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - fi-glk-j4005:       NOTRUN -> [SKIP][4] ([fdo#109271])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/fi-glk-j4005/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][5] ([i915#5334]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-glk-j4005:       [ABORT][7] ([i915#6217]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@i915_selftest@live@mman:
-    - bat-rpls-2:         [TIMEOUT][9] ([i915#6794] / [i915#7392]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-rpls-2/igt@i915_selftest@live@mman.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/bat-rpls-2/igt@i915_selftest@live@mman.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4423]: https://gitlab.freedesktop.org/drm/intel/issues/4423
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6217]: https://gitlab.freedesktop.org/drm/intel/issues/6217
-  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
-  [i915#7392]: https://gitlab.freedesktop.org/drm/intel/issues/7392
-  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7979]: https://gitlab.freedesktop.org/drm/intel/issues/7979
-  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13253 -> Patchwork_119098v1
-
-  CI-20190529: 20190529
-  CI_DRM_13253: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7322: 2dd77d6d827a308caae49ce3eba759c2bab394ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_119098v1: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-bb14476710ee drm/i915/tc: Use standard ternary operator instead of GCC extension
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/index.html
-
---===============5784874748684803325==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/tc: Use standard ternary operator instead of GCC extension</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119098/">https://patchwork.freedesktop.org/series/119098/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13253 -&gt; Patchwork_119098v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/index.html</p>
-<h2>Participating hosts (35 -&gt; 35)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_119098v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7979">i915#7979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/bat-rpls-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/fi-glk-j4005/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6217">i915#6217</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-rpls-2/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7392">i915#7392</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119098v1/bat-rpls-2/igt@i915_selftest@live@mman.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13253 -&gt; Patchwork_119098v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13253: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7322: 2dd77d6d827a308caae49ce3eba759c2bab394ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_119098v1: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>bb14476710ee drm/i915/tc: Use standard ternary operator instead of GCC extension</p>
-
-</body>
-</html>
-
---===============5784874748684803325==--
