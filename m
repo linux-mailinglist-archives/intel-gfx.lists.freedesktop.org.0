@@ -2,50 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4305A727ADA
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 11:09:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D48727AF0
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 11:14:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 086D710E40F;
-	Thu,  8 Jun 2023 09:09:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5083510E061;
+	Thu,  8 Jun 2023 09:14:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E26C010E59A
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 09:09:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF54810E061
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 09:14:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686215345; x=1717751345;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=9ksScD8m2cHrqk6KN+bf7ebpGK9c5KJGVa0csOxTFlI=;
- b=RRth0uEX6kZIBzxpgFwWBadXJiDXALL/sIsp5eZZXlSI48bWKXvwg1En
- 7z/n1s9Ttdkeq3ayYBS0WZ0PkmdJ9Tkqh832DmZQ0o/SVZbrAmz7T1feV
- tKwymW+1N4v2ym9NOGx2hbA1vi0NJZ3DSvTPWs3chBrOpeNho7XksVK3s
- n3Pxb9kFMUwlqz6xLc/ruv7shaFUitHZNjbnsMb5SE28cEgdm+T2hYOlC
- U0yZqvH+djh3hBiPZ5Jwu17B+OSDD+T7lZkxRlip1R7P3yTZ6vpyao42G
- GylsEZxDqgys9JOITCj5bt7T/ABmbVj+H+PN8PZLdw/Ha1XII1bZQxZIo A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="357264318"
-X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="357264318"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1686215669; x=1717751669;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=GRA74k9GkQLyZhb1WWpRYRBQ/5RvohBZQdsiLR7m1mA=;
+ b=CtLg0qVOTlQdYR6+I3Wm3xS6t5pGkDfdoh9AMyvd4mGQX4QmkRhEP1RM
+ smu/p6NAGTNStbDZwYSX+eCDyUsNwd/hMHFl8i7FoTgtSS/6K5Ww+e/3r
+ fLMC7IaCuctQeEHH6A6Jf4X4RM7YOt/4F3CWO1vwXwJIQ+edBzAGkWgf6
+ 2q9u2TosS1jr+oaRvbKEYkp1uKjYO1ltBo54l2xJiHVS4bgc4W1RqLyHs
+ fIb+bWaGSpMKrEJ4Mc86xU/SRHRbH1zL5CuttNomfKsXjoq13tCAMRwX7
+ 8Q2ZqCAGXEe8rj60VY7yQBFmfX6wCM+J4UmRM6D24kPOJNlcSvFPlSb3O A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="357265787"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="357265787"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2023 02:08:16 -0700
+ 08 Jun 2023 02:14:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="739627966"
-X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="739627966"
-Received: from ovaispap-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.59.117])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2023 02:08:13 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230608082800.509420-1-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230608082800.509420-1-arun.r.murthy@intel.com>
-Date: Thu, 08 Jun 2023 12:08:12 +0300
-Message-ID: <87r0qms4n7.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="779808035"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="779808035"
+Received: from rirwin-mobl3.ger.corp.intel.com (HELO [10.213.239.227])
+ ([10.213.239.227])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 02:14:28 -0700
+Message-ID: <a791b5a0-8e02-0df8-91bd-7cbdde5c768b@linux.intel.com>
+Date: Thu, 8 Jun 2023 10:14:26 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/dp: On AUX xfer timeout
- restart freshly
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: intel-gfx@lists.freedesktop.org,
+ Patchwork <patchwork@emeril.freedesktop.org>,
+ Luca Coelho <luciano.coelho@intel.com>
+References: <20230606163942.330052-1-luciano.coelho@intel.com>
+ <168612689851.21181.14667691404906605680@emeril.freedesktop.org>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <168612689851.21181.14667691404906605680@emeril.freedesktop.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_implement_internal_workqueues_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,104 +70,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 08 Jun 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> As part of restart on AUX xfer timeout, check for busy status and then
-> start sending the data.
 
-Why?
+On 07/06/2023 09:34, Patchwork wrote:
 
-Always answer the question "why" in the commit messages. The commit
-message is completely inadequate for the changes.
+8<
 
-BR,
-Jani.
+>       IGT changes
+> 
+> 
+>         Possible regressions
+> 
+>   *
+> 
+>     igt@i915_selftest@mock@requests:
+> 
+>       o
+> 
+>         shard-apl: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13237/shard-apl1/igt@i915_selftest@mock@requests.html> -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118947v2/shard-apl1/igt@i915_selftest@mock@requests.html>
+> 
+>       o
+> 
+>         shard-snb: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13237/shard-snb6/igt@i915_selftest@mock@requests.html> -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118947v2/shard-snb6/igt@i915_selftest@mock@requests.html>
+> 
+>       o
+> 
+>         shard-glk: PASS
+>         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13237/shard-glk9/igt@i915_selftest@mock@requests.html> -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118947v2/shard-glk6/igt@i915_selftest@mock@requests.html>
 
+Could be missing wq creation/destruction in
+mock_gem_device/mock_device_release.
 
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 50 +++++++++------------
->  1 file changed, 22 insertions(+), 28 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> index 197c6e81db14..25090542dd9f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -273,30 +273,6 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  	 * it using the same AUX CH simultaneously
->  	 */
->  
-> -	/* Try to wait for any previous AUX channel activity */
-> -	for (try = 0; try < 3; try++) {
-> -		status = intel_de_read_notrace(i915, ch_ctl);
-> -		if ((status & DP_AUX_CH_CTL_SEND_BUSY) == 0)
-> -			break;
-> -		msleep(1);
-> -	}
-> -	/* just trace the final value */
-> -	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
-> -
-> -	if (try == 3) {
-> -		const u32 status = intel_de_read(i915, ch_ctl);
-> -
-> -		if (status != intel_dp->aux_busy_last_status) {
-> -			drm_WARN(&i915->drm, 1,
-> -				 "%s: not started (status 0x%08x)\n",
-> -				 intel_dp->aux.name, status);
-> -			intel_dp->aux_busy_last_status = status;
-> -		}
-> -
-> -		ret = -EBUSY;
-> -		goto out;
-> -	}
-> -
->  	/* Only 5 data registers! */
->  	if (drm_WARN_ON(&i915->drm, send_bytes > 20 || recv_size > 20)) {
->  		ret = -E2BIG;
-> @@ -304,14 +280,31 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  	}
->  
->  	while ((aux_clock_divider = intel_dp->get_aux_clock_divider(intel_dp, clock++))) {
-> -		u32 send_ctl = intel_dp->get_aux_send_ctl(intel_dp,
-> +		/* Must try at least 3 times according to DP spec */
-> +		for (try = 0; try < 5; try++) {
-> +			u32 send_ctl = intel_dp->get_aux_send_ctl(intel_dp,
->  							  send_bytes,
->  							  aux_clock_divider);
->  
-> -		send_ctl |= aux_send_ctl_flags;
-> +			send_ctl |= aux_send_ctl_flags;
-> +
-> +			/* Try to wait for any previous AUX channel activity */
-> +			status = intel_dp_aux_wait_done(intel_dp);
-> +			/* just trace the final value */
-> +			trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
-> +
-> +			if (status & DP_AUX_CH_CTL_SEND_BUSY) {
-> +				drm_WARN(&i915->drm, 1,
-> +					 "%s: not started, previous Tx still in process (status 0x%08x)\n",
-> +					 intel_dp->aux.name, status);
-> +				intel_dp->aux_busy_last_status = status;
-> +				if (try > 3) {
-> +					ret = -EBUSY;
-> +					goto out;
-> +				} else
-> +					continue;
-> +			}
->  
-> -		/* Must try at least 3 times according to DP spec */
-> -		for (try = 0; try < 5; try++) {
->  			/* Load the send data into the aux channel data registers */
->  			for (i = 0; i < send_bytes; i += 4)
->  				intel_de_write(i915, ch_data[i >> 2],
-> @@ -321,6 +314,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  			/* Send the command and wait for it to complete */
->  			intel_de_write(i915, ch_ctl, send_ctl);
->  
-> +			/* TODO: if typeC then 4.2ms else 800us. For DG2 add 1.5ms for both cases */
->  			status = intel_dp_aux_wait_done(intel_dp);
->  
->  			/* Clear done status and any errors */
+Regards,
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Tvrtko
