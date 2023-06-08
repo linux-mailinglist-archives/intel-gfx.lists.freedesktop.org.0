@@ -1,61 +1,146 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8931072768B
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 07:16:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9252B7276A3
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 07:25:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0DBC10E442;
-	Thu,  8 Jun 2023 05:16:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C87B610E576;
+	Thu,  8 Jun 2023 05:25:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47D2110E442
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 05:16:00 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id E7CCA1FDCC;
- Thu,  8 Jun 2023 05:15:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1686201357; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=9gJiPyN5uUZaRAOL4t3zxuJ8jj+Ni5BCZiIrfQ/IHUU=;
- b=cKcE1uop5+F6xdcx/Atk5SQDtYt+7VXjwx8fCTaozF33UZ164NNXqWEs+lJYS7EfPDCUcX
- 8LbGtWExk9UXiS3aBkz6zbTjHeepc/3Lm0dzg2qfGxgBU3/Win7D5qk8a6Gcelw0Fp7i/U
- jpAuedcGlmS22C6pp3MXpf6pUUUEV+U=
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 7572D1346D;
- Thu,  8 Jun 2023 05:15:57 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 4AFuGg1kgWSUAQAAMHmgww
- (envelope-from <jgross@suse.com>); Thu, 08 Jun 2023 05:15:57 +0000
-Message-ID: <a05f418a-2b5f-9417-8b4a-cbdcafddbcd5@suse.com>
-Date: Thu, 8 Jun 2023 07:15:56 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B08B310E576
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 05:25:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686201940; x=1717737940;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=ITAwN7GGCMSXH6Om9REaNEMhMw/9LwiW4gY7WsKqtok=;
+ b=Vgo7anl5insqZgBEE4oTT0lXA0iLpzJEl3K1e0ShB1jTs+mbFeQ9kueN
+ x/cXn7STf5V3jJ/nsg90hnvsy2WqndeanZNRAeiB9MRB5kicS/J8pingc
+ sbaj/Cik/OHu6Kjrrb6oDB4VTupEAUkcWvvQihsfei+NYsRUfJ/7AApOW
+ 5Ga9uN0/RPbzgAKQryqCLZQW6AI+Vor0Vx6DUObzc8n3f69sHB16YyOvo
+ zv6LyJcBCoZA/NuuV9Uqr1o9n75/ybDrBmT3t5ys9AGKjfHei1/4PuUAe
+ /NynhRc5laTWMWcFmxAt6HjtBfvrVmwkP88wLTC0hxm3VVKR18RmpjhBl Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="356063551"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="356063551"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2023 22:25:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="834022278"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="834022278"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga004.jf.intel.com with ESMTP; 07 Jun 2023 22:25:39 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Wed, 7 Jun 2023 22:25:39 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Wed, 7 Jun 2023 22:25:38 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Wed, 7 Jun 2023 22:25:38 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.106)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Wed, 7 Jun 2023 22:25:38 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e7hs9ceSdxTEpW86VBYi4DUAnkz/g1lM6S0pDIt/GBDap+2Ag2jqXkwILAod9/EIIRtezYQGwtZPNSbEb+lw3IYPEM1LW5ktJtb6JXxNAQJfRbYViMKRPeGUmPDwAYC6plcUVBXd/MZfRWhNoYK4YH05g6bRScvi/C/+hggrEW4QceIGlOgzsNLVBM/G3RGT/EZ1Y0JBOFZ2uDc1AFUB/FwFjI5y26oIXARbh7EmBma5nZO8g1cAmoRYw2x7s7xXuE8OuNl512KeN4kMfY8+gm+SlG3iIbwFVC6sf9VSasIExc8ntHfwNgckUmoil/KRltUdm7asEZtLsvnXx06uig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GbkpPu+yHYXspDsknLh/ZdgomSuXwJa5WK9y62pZtaE=;
+ b=PHQftBIreM4K0Zbj3kDHbK2+fWCa9cFvhJnx35SzIugZhf/1qZ9ZLcJaBg8vUG2DHDuoVBIWYZ8745Qw2lt0KEzloOLliiyWUV3qAQod8P79BFYUR/eSUbAxcYoKlgVZoUIravyIpN0VB7yJnr+zH6igwpHrYb8QJr3Jav+rumhonp92wwRYU4tFAEQprkUUweUjdadna550rotGe6sjnXaM1Lqeq5jGcgw7SK7rr3Vir7/IZubvbwPe2MsNuUn/GVnHWoY5i2OVvntwfpMV1UU//OK11gSUQVJvATtAQiPR3ZuXHbjTe9drN44sTyIxsrXcdntjuKMjtFkfHvNo4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB5971.namprd11.prod.outlook.com (2603:10b6:8:5e::7) by
+ CH0PR11MB5249.namprd11.prod.outlook.com (2603:10b6:610:e0::17) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6455.33; Thu, 8 Jun 2023 05:25:37 +0000
+Received: from DM4PR11MB5971.namprd11.prod.outlook.com
+ ([fe80::df8c:4a33:f53a:9a2e]) by DM4PR11MB5971.namprd11.prod.outlook.com
+ ([fe80::df8c:4a33:f53a:9a2e%5]) with mapi id 15.20.6455.037; Thu, 8 Jun 2023
+ 05:25:36 +0000
+From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
+To: "Lee, Shawn C" <shawn.c.lee@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [v2] drm/i915/mtl: Add new vswing table for C20 phy to support
+ DP 1.4
+Thread-Index: AQHZmb8+iEDFvqW4XkSGVzsb2eE8Mq+AXrow
+Date: Thu, 8 Jun 2023 05:25:36 +0000
+Message-ID: <DM4PR11MB5971AD46D6523586A89293DB8750A@DM4PR11MB5971.namprd11.prod.outlook.com>
+References: <20230606104306.32001-1-shawn.c.lee@intel.com>
+ <20230608040944.7874-1-shawn.c.lee@intel.com>
+In-Reply-To: <20230608040944.7874-1-shawn.c.lee@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: "Edgecombe, Rick P" <rick.p.edgecombe@intel.com>,
- "Hansen, Dave" <dave.hansen@intel.com>,
- "janusz.krzysztofik@linux.intel.com" <janusz.krzysztofik@linux.intel.com>,
- "bp@alien8.de" <bp@alien8.de>
-References: <20230607152308.125787-2-janusz.krzysztofik@linux.intel.com>
- <a20344fd-8130-013e-e773-acae81aad55a@intel.com>
- <38324471.J2Yia2DhmK@jkrzyszt-mobl2.ger.corp.intel.com>
- <ad762335fd209fd8c1555401bc03e196eb53caef.camel@intel.com>
-From: Juergen Gross <jgross@suse.com>
-In-Reply-To: <ad762335fd209fd8c1555401bc03e196eb53caef.camel@intel.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------X0gF9tLy8wFWtDwR07yfl1wR"
-Subject: Re: [Intel-gfx] [PATCH v2] x86/mm: Fix PAT bit missing from page
- protection modify mask
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB5971:EE_|CH0PR11MB5249:EE_
+x-ms-office365-filtering-correlation-id: d8cc8699-a2e2-4b65-d5fa-08db67e0ca37
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: fpvJwVaQvab0wmd2JuSv/stGAMLlhek7EhSIBtFHYwyg1CNJxUNZichpyv9rYmgnUb6zriuo2QwUrS2sxGDwQzct0XyFMECFVKHrQ2EZmMw29u+b1r7EAksXRDNgZeXBLPlfU8TLUp5XqM9PNaSGrvOXuPDys5u0JMTLQXL+GLCPwU06w0iIh7ejj5J+kACQ79MxEhGON5NRZCuOUjMiES3ttyJlH60eCT8fcICxHIA7GdzpVWcyzDpl9ZXpnZvxDPf0euz7mD8VO1A/utS4GFyBfrMZEiYHLUr0JTVfW8ApHk+Zvnp3PuZFDsldioEqip3QVQiFgHrQpYhlnz95x2h9sA0PqiYbrZoVIqD4jzXuvGuG4QhGRMn5gG8+9G7ZEOORSEnf41BgtjFcz4/7GmbFouk0HUv2wZ7Vw04NSS+MvHp9dkgYBiWHk9hP9ICGNODYBhT/+uZ+POvRe9DBJAmuhoEtTHUPkqB0iF1CckY5Du7dH/HePuzBwQGV65/nLD3oeYc1WphmU6uGEi67XuBZedQKP8mlhDKT9V1fDPXStMOlwfDDt8+2CJMjWuFeQne6MShgJP0CrPLsOqQlHwfMwzyTaw2ZQUHzeROUVhrVoVWl54LA2Wte7vJFXycs
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5971.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(376002)(396003)(136003)(366004)(39860400002)(451199021)(76116006)(66446008)(4326008)(64756008)(66946007)(66476007)(66556008)(8936002)(8676002)(55016003)(107886003)(316002)(110136005)(54906003)(2906002)(41300700001)(478600001)(5660300002)(52536014)(71200400001)(7696005)(6506007)(26005)(9686003)(53546011)(33656002)(83380400001)(186003)(82960400001)(38070700005)(86362001)(122000001)(38100700002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?p4Mrko2hRdh9odzXQIQlX8/TUOMsR5MMobzD8Mct9JF8IEd32VabcUgnKinp?=
+ =?us-ascii?Q?lMGEwl3K3ZJZS2p/1G8ScF53eHZ3bm4iPr3Oh8NxKjzUmyayoBKNPBJ1auMl?=
+ =?us-ascii?Q?bxwxAKHtX2imyUsaYwcIVC6M31Bpbq8fBv+uySJTpSxLmTw2G9SscNPbo46M?=
+ =?us-ascii?Q?FT/x//JAwUssaD62P0cizVk4p3SIJEO0zgFBZLE9EmUauA9nq5e7a7iB2TgQ?=
+ =?us-ascii?Q?BibG+wmrtSJSVWMleaFvwOWvuSgPDQ+uz6tZ4lkaEjB/YOxJYXASVNYAk06y?=
+ =?us-ascii?Q?uRInpdTTXxB5eIy0ECqjpGRamsoqIKkIlvaysfUzxH/aRjXs1nUqEgPTKGv/?=
+ =?us-ascii?Q?wAmyt+sLTGzL2B9FFWU6A6KxEVayXFNbWkf3ZdYMj9HPHW8Vv+C9hIqEjpvO?=
+ =?us-ascii?Q?a9tNbYZ2AjeXlQkg137HOMvgQ/PrFJzhG2T6eT2TZjaslVsQ2gdU/c386wEp?=
+ =?us-ascii?Q?vmrSj7MvZsRPDKuTqAwsZBE2yiLFiJkM8MUGtkJhSqHLpP09crOuzZR/HV8e?=
+ =?us-ascii?Q?7xPmT2GVuhXMfvCEXvUrGSkX7ifac+Qo3/RKRxtPLw0IvCPQzMtLccHV0g3t?=
+ =?us-ascii?Q?trY+r4C/ut0HNMeXjLpXWjDYOt/CauowT04fwDwHGgSC3iUKYQR+WCfk9UF+?=
+ =?us-ascii?Q?sYdQABI+ic1AnVzgu+rMHn2+fA05fQn+ZALrYgE7LskGj3DMchrs4X7JjWcJ?=
+ =?us-ascii?Q?uZ3leP5vT7BrYO44PEdrhnIH2whWdMYxOtUO2AQR8/owYIwBrx54MZL9R8PR?=
+ =?us-ascii?Q?7spzv+KQ+zvlDy1JXWcOQZkTzRfITFpVmNDF92Fx8b1YYsuav25QCEAN6tv/?=
+ =?us-ascii?Q?pdMCiotUmXnUr06PiDMQztlctd2mDNbXhOsVWGtG+y/a6FKVOlcD4neM/Hbg?=
+ =?us-ascii?Q?UChDjAMWmcqf5v0Dyy1IMZYvRMJlMAFD/H34OYh0A3pQa2F3I2VEFvNgkdNY?=
+ =?us-ascii?Q?qC3hUzh6knIRJ721zMnhkkcN3hijwH4TskpOyIH9E0hjbmN/C5+/cKEkmdYO?=
+ =?us-ascii?Q?jkbDyMe8UDxZ09qUckMonJYno5rZfJ9b0YieoHebQlxUPd4fSseiiKcxXDJo?=
+ =?us-ascii?Q?XdUFHTHu/wXJNtBM3ZCX5MAMepxluZnvPHzUYa9aE0Au6qgwc1VBiLbh9+Bo?=
+ =?us-ascii?Q?TAIo9oZ5CVAXiCgih7Pyciv6HY8761D3xH7y6mKmefYcTvhw0c3y/AFE8yFD?=
+ =?us-ascii?Q?BzURms7BNbtPXbZoi8ioTUB9cXSvQtUOagTLgCXveMzI13b8IEK7KVs3G9LH?=
+ =?us-ascii?Q?ukblTOVU96I0xneZFR7N3YNhngjadQBLYFCAv4uPAS9R1QiMILBKamg83q89?=
+ =?us-ascii?Q?3pLIo6A3UYdfrsA9nzNnUhlI27ASuFGo2AyrY27tSKMBCzGTyjzphgWaNg0g?=
+ =?us-ascii?Q?4BN0EBdkOtgGDXjuFtFT9a5mEsY3UUaRByXLBoKRzIWaIyxImFFfXpAgBpQh?=
+ =?us-ascii?Q?pqPIwvKU/BFKJvqQpr++OQUlFCOIf8a9c5nWzIDoRbL+7f9gO+4LWrv2uCGc?=
+ =?us-ascii?Q?IEg0z0vdqbCEXU6/cJHKslprUWQt04+/jzIHlRqjhi1GGfXY5lmvu1Pi+t9G?=
+ =?us-ascii?Q?N/rS5k/Hw4KC5Hyvtm+iWPU9sFifJQxnPX8wUS4lhRS3b1/zVFXl0fjMyLH1?=
+ =?us-ascii?Q?xA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5971.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8cc8699-a2e2-4b65-d5fa-08db67e0ca37
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jun 2023 05:25:36.5680 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3RsQLljOe8KCSSgA5qFkw8YGEgZsxOyeLHcoJgIq+oSbMLEhrmO5dNNyEqJpsXGBgZooCwXPAKSV4SKLcFZspXw6b7omUUAPVbAQQnClAQY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5249
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [v2] drm/i915/mtl: Add new vswing table for C20 phy
+ to support DP 1.4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,179 +153,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "x86@kernel.org" <x86@kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "hannes@cmpxchg.org" <hannes@cmpxchg.org>,
- "mingo@redhat.com" <mingo@redhat.com>, "hpa@zytor.com" <hpa@zytor.com>,
- "tglx@linutronix.de" <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------X0gF9tLy8wFWtDwR07yfl1wR
-Content-Type: multipart/mixed; boundary="------------ixkpeHNCvDt32YUyICLMJjrk";
- protected-headers="v1"
-From: Juergen Gross <jgross@suse.com>
-To: "Edgecombe, Rick P" <rick.p.edgecombe@intel.com>,
- "Hansen, Dave" <dave.hansen@intel.com>,
- "janusz.krzysztofik@linux.intel.com" <janusz.krzysztofik@linux.intel.com>,
- "bp@alien8.de" <bp@alien8.de>
-Cc: "dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
- "x86@kernel.org" <x86@kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "hpa@zytor.com" <hpa@zytor.com>, "mingo@redhat.com" <mingo@redhat.com>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "andi.shyti@linux.intel.com" <andi.shyti@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "hannes@cmpxchg.org" <hannes@cmpxchg.org>
-Message-ID: <a05f418a-2b5f-9417-8b4a-cbdcafddbcd5@suse.com>
-Subject: Re: [PATCH v2] x86/mm: Fix PAT bit missing from page protection
- modify mask
-References: <20230607152308.125787-2-janusz.krzysztofik@linux.intel.com>
- <a20344fd-8130-013e-e773-acae81aad55a@intel.com>
- <38324471.J2Yia2DhmK@jkrzyszt-mobl2.ger.corp.intel.com>
- <ad762335fd209fd8c1555401bc03e196eb53caef.camel@intel.com>
-In-Reply-To: <ad762335fd209fd8c1555401bc03e196eb53caef.camel@intel.com>
+Hi Shawn,
 
---------------ixkpeHNCvDt32YUyICLMJjrk
-Content-Type: multipart/mixed; boundary="------------n7B8OwmlJAnv5K3wOMPfXf96"
+> -----Original Message-----
+> From: Lee, Shawn C <shawn.c.lee@intel.com>
+> Sent: Wednesday, June 7, 2023 9:10 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Lee, Shawn C <shawn.c.lee@intel.com>; Kahola, Mika
+> <mika.kahola@intel.com>; Taylor, Clinton A <clinton.a.taylor@intel.com>;
+> Sripada, Radhakrishna <radhakrishna.sripada@intel.com>; Shankar, Uma
+> <uma.shankar@intel.com>
+> Subject: [v2] drm/i915/mtl: Add new vswing table for C20 phy to support D=
+P 1.4
+>=20
+> Add vswing table to support DP 1.4 for C20 phy.
+>=20
+> v2: rename mtl_c10_trans
+>=20
+> Bspec: 74104
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> Cc: Mika Kahola <mika.kahola@intel.com>
+> Cc: Clint Taylor <Clinton.A.Taylor@intel.com>
+> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+> Reviewed-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> ---
+>  .../drm/i915/display/intel_ddi_buf_trans.c    | 25 +++++++++++++++++--
+>  1 file changed, 23 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> index b7d20485bde5..a6276a9ba61c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> @@ -1049,12 +1049,26 @@ static const union intel_ddi_buf_trans_entry
+> _mtl_c10_trans_dp14[] =3D {
+>  	{ .snps =3D { 62, 0, 0  } },      /* preset 9 */
+>  };
+>=20
+> -static const struct intel_ddi_buf_trans mtl_cx0_trans =3D {
+> +static const struct intel_ddi_buf_trans mtl_cx0_trans_dp14 =3D {
+This should be renamed to mtl_c10_trans_dp14 as this no longer applies to c=
+20 phy.
 
---------------n7B8OwmlJAnv5K3wOMPfXf96
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Only if it applies to both c10 and c20 phys, should it be used as cx0 phy.=
+=20
+>  	.entries =3D _mtl_c10_trans_dp14,
+>  	.num_entries =3D ARRAY_SIZE(_mtl_c10_trans_dp14),
+>  	.hdmi_default_entry =3D ARRAY_SIZE(_mtl_c10_trans_dp14) - 1,
+>  };
+>=20
+> +/* DP1.4 */
+> +static const union intel_ddi_buf_trans_entry _mtl_c20_trans_dp14[] =3D {
+> +	{ .snps =3D { 20, 0, 0  } },      /* preset 0 */
+> +	{ .snps =3D { 24, 0, 4  } },      /* preset 1 */
+> +	{ .snps =3D { 30, 0, 9  } },      /* preset 2 */
+> +	{ .snps =3D { 34, 0, 14 } },      /* preset 3 */
+> +	{ .snps =3D { 29, 0, 0  } },      /* preset 4 */
+> +	{ .snps =3D { 34, 0, 5  } },      /* preset 5 */
+> +	{ .snps =3D { 38, 0, 10 } },      /* preset 6 */
+> +	{ .snps =3D { 36, 0, 0  } },      /* preset 7 */
+> +	{ .snps =3D { 40, 0, 6  } },      /* preset 8 */
+> +	{ .snps =3D { 48, 0, 0  } },      /* preset 9 */
+> +};
+> +
+>  /* DP2.0 */
+>  static const union intel_ddi_buf_trans_entry _mtl_c20_trans_uhbr[] =3D {
+>  	{ .snps =3D { 48, 0, 0 } },       /* preset 0 */
+> @@ -1090,6 +1104,11 @@ static const struct intel_ddi_buf_trans
+> mtl_c20_trans_hdmi =3D {
+>  	.hdmi_default_entry =3D 0,
+>  };
+>=20
+> +static const struct intel_ddi_buf_trans mtl_c20_trans_dp14 =3D {
+> +	.entries =3D _mtl_c20_trans_dp14,
+> +	.num_entries =3D ARRAY_SIZE(_mtl_c20_trans_dp14),
+Just like in c10 case add
+	.hdmi_default_entry =3D ARRAY_SIZE(_mtl_c20_trans_dp14) - 1,
 
-T24gMDcuMDYuMjMgMjM6MTIsIEVkZ2Vjb21iZSwgUmljayBQIHdyb3RlOg0KPiBPbiBXZWQs
-IDIwMjMtMDYtMDcgYXQgMTk6MTEgKzAyMDAsIEphbnVzeiBLcnp5c3p0b2ZpayB3cm90ZToN
-Cj4+IE9uIFdlZG5lc2RheSwgNyBKdW5lIDIwMjMgMTc6MzE6MjQgQ0VTVCBEYXZlIEhhbnNl
-biB3cm90ZToNCj4+PiBPbiA2LzcvMjMgMDg6MjMsIEphbnVzeiBLcnp5c3p0b2ZpayB3cm90
-ZToNCj4+Pj4NCj4+Pj4gRXh0ZW5kIGJpdG1hc2sgdXNlZCBieSBwZ3Byb3RfbW9kaWZ5KCkg
-Zm9yIHNlbGVjdGluZyBiaXRzIHRvIGJlDQo+Pj4+IHByZXNlcnZlZA0KPj4+PiB3aXRoIF9Q
-QUdFX1BBVCBiaXQuwqAgSG93ZXZlciwgc2luY2UgdGhhdCBiaXQgY2FuIGJlIHJldXNlZCBh
-cw0KPj4+PiBfUEFHRV9QU0UsDQo+Pj4+IGFuZCB0aGUgX1BBR0VfQ0hHX01BU0sgc3ltYm9s
-LCBwcmltYXJseSB1c2VkIGJ5IHB0ZV9tb2RpZnkoKSwgaXMNCj4+Pj4gbGlrZWx5DQo+Pj4+
-IGludGVudGlvbmFsbHkgZGVmaW5lZCB3aXRoIHRoYXQgYml0IG5vdCBzZXQsIGtlZXAgdGhh
-dCBzeW1ib2wNCj4+Pj4gdW5jaGFuZ2VkLg0KPj4+DQo+Pj4gSSdtIHJlYWxseSBoYXZpbmcg
-YSBoYXJkIHRpbWUgcGFyc2luZyB3aGF0IHRoYXQgbGFzdCBzZW50ZW5jZSBpcw0KPj4+IHNh
-eWluZy4NCj4+Pg0KPj4+IENvdWxkIHlvdSB0cnkgYWdhaW4sIHBsZWFzZT8NCj4+DQo+PiBP
-SywgYnV0IHRoZW4gSSBuZWVkIHRvIGdldCBteSBkb3VidHMgYWRkcmVzc2VkIGJ5IHNvbWVv
-bmUgZmlyc3QsDQo+PiBvdGhlcndpc2UgSSdtDQo+PiBub3QgYWJsZSB0byBwcm92aWRlIGEg
-YmV0dGVyIGp1c3RpZmljYXRpb24gZnJvbSBteSBoZWFydC4NCj4+DQo+PiBUaGUgaXNzdWUg
-bmVlZHMgdG8gYmUgZml4ZWQgYnkgaW5jbHVkaW5nIF9QQUdFX1BBVCBiaXQgaW50byBhIGJp
-dG1hc2sNCj4+IHVzZWQNCj4+IGJ5IHBncHJvdF9tb2RpZnkoKSBmb3Igc2VsZWN0aW5nIGJp
-dHMgdG8gYmUgcHJlc2VydmVkLsKgIFdlIGNhbiBlaXRoZXINCj4+IGRvDQo+PiB0aGF0IGlu
-dGVybmFsbHkgdG8gcGdwcm90X21vZGlmeSgpIChteSBpbml0aWFsIHByb3Bvc2FsLCB3aGlj
-aCBteQ0KPj4gcG9vcmx5DQo+PiB3b3JkZWQgcGFyYWdyYXBoIHdhcyBzdGlsbCB0cnlpbmcg
-dG8gZGVzY3JpYmUgYW5kIGp1c3RpZnkpLCBvciBieQ0KPj4gbWFraW5nDQo+PiBfUEFHRV9Q
-QVQgYSBwYXJ0IG9mIF9QQUdFX0NIR19NQVNLLCBhcyBzdWdnZXN0ZWQgYnkgQm9yaXNsYXYg
-YW5kDQo+PiByZWZsZWN0ZWQgaW4NCj4+IG15IHYyIGNoYW5nZWxvZy7CoCBCdXQgZm9yIHRo
-ZSBsYXR0ZXIsIEkgdGhpbmsgd2UgbmVlZCB0byBtYWtlIHN1cmUNCj4+IHRoYXQgd2UNCj4+
-IGRvbid0IGJyZWFrIG90aGVyIHVzZXJzIG9mIF9QQUdFX0NIR19NQVNLLsKgIE1heWJlIEJv
-cmlzbGF2IGNhbg0KPj4gY29uZmlybSB0aGF0J3MNCj4+IHRoZSBjYXNlLg0KPj4NCj4+IFNp
-bmNlIF9QQUdFX1BBVCBpcyB0aGUgc2FtZSBhcyBfUEFHRV9QU0UsIF9IUEFHRV9DSEdfTUFT
-SyAtLSBhIGh1Z2UNCj4+IHBtZHMnDQo+PiBjb3VudGVycGFydCBvZiBfUEFHRV9DSEdfTUFT
-SywgaW50cm9kdWNlZCBieSBjb21taXQgYzQ4OWYxMjU3YjhjDQo+PiAoInRocDogYWRkDQo+
-PiBwbWRfbW9kaWZ5IiksIGRlZmluZWQgYXMgKF9QQUdFX0NIR19NQVNLIHwgX1BBR0VfUFNF
-KSAtLSB3aWxsIG5vDQo+PiBsb25nZXIgZGlmZmVyDQo+PiBmcm9tIF9QQUdFX0NIR19NQVNL
-IGFzIHNvb24gYXMgd2UgYWRkIF9QQUdFX1BBVCBiaXQgdG8gdGhlIGxhdHRlci4NCj4+IElm
-IHN1Y2gNCj4+IG1vZGlmaWNhdGlvbiBvZiBfUEFHRV9DSEdfTUFTSyB3YXMgaXJyZWxldmFu
-dCB0byBpdHMgdXNlcnMgdGhlbiBvbmUNCj4+IG1heSBhc2sNCj4+IHdoeSBhIG5ldyBzeW1i
-b2wgd2FzIGludHJvZHVjZWQgaW5zdGVhZCBvZiByZXVzaW5nIHRoZSBleGlzdGluZyBvbmUN
-Cj4+IHdpdGggdGhhdA0KPj4gb3RoZXJ3aXNlIGlycmVsZXZhbnQgYml0IChfUEFHRV9QU0Ug
-aW4gdGhhdCBjYXNlKSBhZGRlZC7CoCBJJ3ZlDQo+PiBpbml0aWFsbHkNCj4+IGFzc3VtZWQg
-dGhhdCBrZWVwaW5nIF9QQUdFX0NIR19NQVNLIHdpdGhvdXQgX1BBR0VfUFNFICh2ZWwgX1BB
-R0VfUEFUKQ0KPj4gaW5jbHVkZWQNCj4+IGludG8gaXQgd2FzIGludGVudGlvbmFsIGZvciBz
-b21lIHJlYXNvbi7CoCBNYXliZSBKb2hhbm5lcyBXZWluZXIsIHRoZQ0KPj4gYXV0aG9yIG9m
-DQo+PiB0aGF0IHBhdGNoIChhZGRpbmcgaGltIHRvIENjOiksIGNvdWxkIHNoZWQgbW9yZSBs
-aWdodCBvbiB0aGF0Lg0KPiANCj4gU28gc2luY2UgX1BBR0VfUFNFIGlzIGFjdHVhbGx5IHRo
-ZSBzYW1lIHZhbHVlIGFzIF9QQUdFX1BBVCwgeW91IGRvbid0DQo+IGFjdHVhbGx5IG5lZWQg
-dG8gaGF2ZSBfUEFHRV9QU0UgaW4gX0hQQUdFX0NIR19NQVNLIGluIG9yZGVyIHRvIGdldA0K
-PiBmdW5jdGlvbmFsIGNvcnJlY3RuZXNzLiBJcyB0aGF0IHJpZ2h0Pw0KPiANCj4gSSB0aGlu
-ayBpdCBpcyBzdGlsbCBhIGxpdHRsZSBoaWRkZW4gKGV2ZW4gYmVmb3JlIHRoaXMpIGFuZCBJ
-IHdvbmRlcg0KPiBhYm91dCBzZXBhcmF0aW5nIG91dCB0aGUgY29tbW9uIGJpdHMgaW50bywg
-bGlrZSwgX0NPTU1PTl9QQUdFX0NIR19NQVNLDQo+IG9yIHNvbWV0aGluZy4gVGhlbiBzZXR0
-aW5nIHNwZWNpZmljIFBBR0UgYW5kIEhQQUdFIGJpdHMgKGxpa2UNCj4gX1BBR0VfUEFULCBf
-UEFHRV9QU0UgYW5kIF9QQUdFX1BBVF9MQVJHRSkgaW4gdGhlaXIgc3BlY2lmaWMgZGVmaW5l
-Lg0KPiBXb3VsZCBpdCBiZSBtb3JlIHJlYWRhYmxlIHRoYXQgd2F5Pw0KDQpJJ2QgZ28gdGhh
-dCByb3V0ZS4gSSBkb24ndCB0aGluayB3ZSBzaG91bGQgcmVseSBvbiBfUEFHRV9QU0UgPT0g
-X1BBR0VfUEFUDQpoZXJlLg0KDQoNCkp1ZXJnZW4NCg==
---------------n7B8OwmlJAnv5K3wOMPfXf96
-Content-Type: application/pgp-keys; name="OpenPGP_0xB0DE9DD628BF132F.asc"
-Content-Disposition: attachment; filename="OpenPGP_0xB0DE9DD628BF132F.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
+--Radhakrishna(RK) Sripada
+> +};
+> +
+>  static const struct intel_ddi_buf_trans mtl_c20_trans_uhbr =3D {
+>  	.entries =3D _mtl_c20_trans_uhbr,
+>  	.num_entries =3D ARRAY_SIZE(_mtl_c20_trans_uhbr),
+> @@ -1678,8 +1697,10 @@ mtl_get_cx0_buf_trans(struct intel_encoder
+> *encoder,
+>  		return intel_get_buf_trans(&mtl_c20_trans_uhbr, n_entries);
+>  	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
+> !(intel_is_c10phy(i915, phy)))
+>  		return intel_get_buf_trans(&mtl_c20_trans_hdmi, n_entries);
+> +	else if (!intel_is_c10phy(i915, phy))
+> +		return intel_get_buf_trans(&mtl_c20_trans_dp14, n_entries);
+>  	else
+> -		return intel_get_buf_trans(&mtl_cx0_trans, n_entries);
+> +		return intel_get_buf_trans(&mtl_cx0_trans_dp14, n_entries);
+>  }
+>=20
+>  void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+> --
+> 2.17.1
 
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-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
-jR/i1DG86lem3iBDXzXsZDn8R38=3D
-=3D2wuH
------END PGP PUBLIC KEY BLOCK-----
-
---------------n7B8OwmlJAnv5K3wOMPfXf96--
-
---------------ixkpeHNCvDt32YUyICLMJjrk--
-
---------------X0gF9tLy8wFWtDwR07yfl1wR
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsB5BAABCAAjFiEEhRJncuj2BJSl0Jf3sN6d1ii/Ey8FAmSBZAwFAwAAAAAACgkQsN6d1ii/Ey+F
-Ugf/XrQi7H83HuZ1iffJSMxvR+1fFL+034evWdq3z+1Y2/lVHjRnr/iYDc/ovbsKAP3BBhUPezOa
-ZhPyItEe1vX18CJuLLYynBpo881t+VNBFCbDrnAxix5LQaOwbYCewv7GA9y2muVEDGJxLJ3v0BZV
-scy1a8hJKiu+oKdumYLAa6seRBQhU1e+VYkRWQQXjoyrLGFYMycMbnVCeKF63bpV4OgpMKlkkaVW
-r4gAvozSbvjPgMTaTwGZ29M9rER5B45IgUA6Im2QlaNHS6pfqFu0cDvJtGWbu4EZm1g6XsVjwjV0
-JOJCBbcRLMgvqh7zek2uo4ha9rH2C7ocJnOtXxl1sQ==
-=ODRz
------END PGP SIGNATURE-----
-
---------------X0gF9tLy8wFWtDwR07yfl1wR--
