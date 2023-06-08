@@ -1,60 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D48727AF0
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 11:14:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90C16727AF4
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 11:14:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5083510E061;
-	Thu,  8 Jun 2023 09:14:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D365310E0A8;
+	Thu,  8 Jun 2023 09:14:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF54810E061
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 09:14:29 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B46F410E40F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 09:14:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686215669; x=1717751669;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=GRA74k9GkQLyZhb1WWpRYRBQ/5RvohBZQdsiLR7m1mA=;
- b=CtLg0qVOTlQdYR6+I3Wm3xS6t5pGkDfdoh9AMyvd4mGQX4QmkRhEP1RM
- smu/p6NAGTNStbDZwYSX+eCDyUsNwd/hMHFl8i7FoTgtSS/6K5Ww+e/3r
- fLMC7IaCuctQeEHH6A6Jf4X4RM7YOt/4F3CWO1vwXwJIQ+edBzAGkWgf6
- 2q9u2TosS1jr+oaRvbKEYkp1uKjYO1ltBo54l2xJiHVS4bgc4W1RqLyHs
- fIb+bWaGSpMKrEJ4Mc86xU/SRHRbH1zL5CuttNomfKsXjoq13tCAMRwX7
- 8Q2ZqCAGXEe8rj60VY7yQBFmfX6wCM+J4UmRM6D24kPOJNlcSvFPlSb3O A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="357265787"
-X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="357265787"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2023 02:14:29 -0700
+ t=1686215694; x=1717751694;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=SQqAyhKSX5qhLY6Fwi6SQxNr5Zj/b0+D1hzClta9R58=;
+ b=bUGjDeAK0jsTL/0dnaNcJrHPLbbH8a2FJ3HA80iUIq4S9ZcDo4oXlY/V
+ BFYBh6H5UlUXVGdmTnszutqHxSHyNrpN8CgJRYo093yc8JxruI086Qfb3
+ uBg4ik1o2mD8KolwNUBEssHK7W11HmIU8xBHMHfVjQU96JIM+xK93Ar31
+ HpMPwo8HfIWO1EKmhyue2/onziiA7eiQNKSpf4+uneQGgDIfQ4A4KmVgY
+ lgRlvgZ4jCiX0A4Ixo3bZvx3uXTE4ysnEQei5cn6Ci/p3sEMPUOw4hu1w
+ BJ3i3wUnl596L1EdZcy/ZIJfvoXSUft/gwoyRqPE1LBShsKsiGzZ9MAxB g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="336887819"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="336887819"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 02:14:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="779808035"
-X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="779808035"
-Received: from rirwin-mobl3.ger.corp.intel.com (HELO [10.213.239.227])
- ([10.213.239.227])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2023 02:14:28 -0700
-Message-ID: <a791b5a0-8e02-0df8-91bd-7cbdde5c768b@linux.intel.com>
-Date: Thu, 8 Jun 2023 10:14:26 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: intel-gfx@lists.freedesktop.org,
- Patchwork <patchwork@emeril.freedesktop.org>,
- Luca Coelho <luciano.coelho@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="704008259"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="704008259"
+Received: from ovaispap-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.117])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 02:14:52 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230606163942.330052-1-luciano.coelho@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230606163942.330052-1-luciano.coelho@intel.com>
- <168612689851.21181.14667691404906605680@emeril.freedesktop.org>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <168612689851.21181.14667691404906605680@emeril.freedesktop.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_implement_internal_workqueues_=28rev2=29?=
+Date: Thu, 08 Jun 2023 12:14:49 +0300
+Message-ID: <87o7lqs4c6.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v5 0/3] drm/i915: implement internal
+ workqueues
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,41 +59,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 06 Jun 2023, Luca Coelho <luciano.coelho@intel.com> wrote:
+> Hi,
+>
+> This series implements internal workqueues in the i915 driver in order
+> to avoid using the system queue.  We add one generic workqueue in the
+> drm_i915_private structure, one specific for wake references and one
+> in a self-test.
+>
+> This is based on Tetsuo's work[1] and is required to get rid of the
+> flush_scheduled_work() usage.
+>
+> As discussed, we can either take Tetsuo's implementation first, which
+> uses a module-global workqueue, and then my series on top of that, to
+> change the implementation to per-device workqueues, or apply my series
+> directly.  And a third option would be to keep the workqueue as
+> module-global.  I'm fine with any of this options.  It's up to the
+> maintainers to decide which one to take.
+>
+> In v2:
+>    * Removed per-engine workqueue and wakeref-specific queue;
+>    * Renamed the workqueue name from "i915-wq" to "unordered_wq";
+>    * Added comment about when the new workqueue should be used;
+>    * Changed wakeref structs to store i915 instead of rpm;
+>
+> In v3:
+>    * Fixed queue to destroy in the init error path;
+>    * Improved the new queue's description a bit;
+>    * Removed stray empty-line removal;
+>
+> In v4:
+>    * Fixed the queue used in __intel_wakeref_put_last(), we were
+>      accidentally using the ordered workqueue.  Thanks, Tvrtko!
+>
+> In v5:
+>    * Fix compilation error cause by change from dev_priv to i915 in
+>      intel_hdcp_enable().
+>
+> Please review.
 
-On 07/06/2023 09:34, Patchwork wrote:
+mock i915 device also needs to have
+i915->unordered_wq. mock_gem_device() in selftests/mock_gem_device.c
 
-8<
+https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118947v2/shard-apl1/igt@i915_selftest@mock@requests.html
 
->       IGT changes
-> 
-> 
->         Possible regressions
-> 
->   *
-> 
->     igt@i915_selftest@mock@requests:
-> 
->       o
-> 
->         shard-apl: PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13237/shard-apl1/igt@i915_selftest@mock@requests.html> -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118947v2/shard-apl1/igt@i915_selftest@mock@requests.html>
-> 
->       o
-> 
->         shard-snb: PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13237/shard-snb6/igt@i915_selftest@mock@requests.html> -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118947v2/shard-snb6/igt@i915_selftest@mock@requests.html>
-> 
->       o
-> 
->         shard-glk: PASS
->         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13237/shard-glk9/igt@i915_selftest@mock@requests.html> -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118947v2/shard-glk6/igt@i915_selftest@mock@requests.html>
+BR,
+Jani.
 
-Could be missing wq creation/destruction in
-mock_gem_device/mock_device_release.
 
-Regards,
+>
+> [1] https://patchwork.freedesktop.org/series/114608/
+>
+> Cheers,
+> Luca.
+>
+>
+> Luca Coelho (3):
+>   drm/i915: use pointer to i915 instead of rpm in wakeref
+>   drm/i915: add a dedicated workqueue inside drm_i915_private
+>   drm/i915/selftests: add local workqueue for SW fence selftest
+>
+>  drivers/gpu/drm/i915/display/intel_display.c  |  5 ++--
+>  .../drm/i915/display/intel_display_driver.c   |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dmc.c      |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
+>  .../drm/i915/display/intel_dp_link_training.c |  3 ++-
+>  drivers/gpu/drm/i915/display/intel_drrs.c     |  4 +++-
+>  drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
+>  drivers/gpu/drm/i915/display/intel_fbdev.c    |  3 ++-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     | 23 +++++++++++--------
+>  drivers/gpu/drm/i915/display/intel_hotplug.c  | 18 ++++++++++-----
+>  drivers/gpu/drm/i915/display/intel_opregion.c |  3 ++-
+>  drivers/gpu/drm/i915/display/intel_pps.c      |  4 +++-
+>  drivers/gpu/drm/i915/display/intel_psr.c      |  8 ++++---
+>  drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  4 +---
+>  .../drm/i915/gt/intel_execlists_submission.c  |  5 ++--
+>  .../gpu/drm/i915/gt/intel_gt_buffer_pool.c    | 10 ++++----
+>  drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_requests.c   | 10 ++++----
+>  drivers/gpu/drm/i915/gt/intel_reset.c         |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_rps.c           | 20 ++++++++--------
+>  drivers/gpu/drm/i915/gt/selftest_engine_cs.c  |  2 +-
+>  drivers/gpu/drm/i915/i915_driver.c            | 13 +++++++++++
+>  drivers/gpu/drm/i915/i915_drv.h               | 10 ++++++++
+>  drivers/gpu/drm/i915/i915_request.c           |  2 +-
+>  drivers/gpu/drm/i915/intel_runtime_pm.c       |  2 +-
+>  drivers/gpu/drm/i915/intel_wakeref.c          | 22 ++++++++++--------
+>  drivers/gpu/drm/i915/intel_wakeref.h          | 12 +++++-----
+>  .../gpu/drm/i915/selftests/i915_sw_fence.c    | 16 ++++++++++---
+>  29 files changed, 136 insertions(+), 77 deletions(-)
 
-Tvrtko
+-- 
+Jani Nikula, Intel Open Source Graphics Center
