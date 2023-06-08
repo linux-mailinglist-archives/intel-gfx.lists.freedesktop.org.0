@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD335728978
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 22:31:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C02E728979
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 22:31:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF4D210E61F;
-	Thu,  8 Jun 2023 20:31:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A35CF10E614;
+	Thu,  8 Jun 2023 20:31:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3C5E10E614
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 20:31:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D1BA10E61C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 20:31:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686256266; x=1717792266;
+ t=1686256270; x=1717792270;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=D2kg5CXICjvHjlwr9wTyvvkUT2LVZm/+FIMxuXpXZ9Q=;
- b=nP+x2kO1qQdayDTSFIpZuJp8ziNL5gPbZPkVY08Kyt3ilWacua1qJ89C
- o6GCjHimGKC/renHMDjn7iiBx/QZpxRguAtkPrKcmEPOdkCCYk8JUmQR+
- mpqpQPP3cj5eHFMXUQ/X0GbHikeEkifuQp61IjoCRmFnwVI4HUut65u3k
- lHAEEbrCk0HOjM9Huzkz3EbuzsXrm2vUEBNAj94/Pj0BPuMMfegeDkc2u
- GePiCHZdwaoz69cCXqB+q7PeLBnYVJnnp+CPq8NDm+mYbrNRd7piY8hJt
- PLxsYa2L/12CrW8R7YB8u2MTl/2iZidi4Sxx/3/PMADFtGLeu+WorkDs1 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="421012629"
-X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="421012629"
+ bh=F5n0hkwo//otJuxkMrr6HBiDRcjfvUg3gusiRZtqnBI=;
+ b=X7v05ZJhWhTeLLMyV19kQEFMUNQ9xiejlQsoFkyeSfT1tEaYBgy5k6aM
+ 0Wct1N+6+HCElT78RDDHTz2KkGiACdyH/HNu4DMQKWJHbZxgmsAR6D6YI
+ e+5Ndegx1AMrCORcIXNEmdQm9RUUTJXpaAj2/p+lb+ghX8Iv4btr/8U5j
+ 2RU+uKVbF0A77bgw3IRcxaTP3leuV3F3QPYe9sCIU3tv3v6DF6J/8dbE4
+ Bu+KPAnRLdN2iYUsmk731l2MfORFfg7HkV+8A2KsbQfXnl0eAnSYkIZGQ
+ HTEHpJKsDfoplVeaj8j7dJFFBf8szVkfQ83JEO8Q/uRyHw1BPbKkeP3FN g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="421012639"
+X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="421012639"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2023 13:31:06 -0700
+ 08 Jun 2023 13:31:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="710100645"
-X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="710100645"
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="710100666"
+X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="710100666"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 08 Jun 2023 13:31:04 -0700
+ by orsmga002.jf.intel.com with SMTP; 08 Jun 2023 13:31:07 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 08 Jun 2023 23:31:03 +0300
+ Thu, 08 Jun 2023 23:31:06 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  8 Jun 2023 23:30:46 +0300
-Message-Id: <20230608203057.23759-3-ville.syrjala@linux.intel.com>
+Date: Thu,  8 Jun 2023 23:30:47 +0300
+Message-Id: <20230608203057.23759-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.3
 In-Reply-To: <20230608203057.23759-1-ville.syrjala@linux.intel.com>
 References: <20230608203057.23759-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 02/13] drm/i915/dsi: Do display on sequence
- later on icl+
+Subject: [Intel-gfx] [PATCH v2 03/13] drm/i915/dsi: Print the VBT MIPI
+ sequence delay duration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,38 +66,28 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Doing the init OTP and display on DSI sequences back to back
-doesn't really make any sense (a single sequence would suffice
-then). Move the display on sequence to be done just before
-backlight on, which is also what Windows does.
+Help out debugging things by printing out how long the VBT
+delay sequence is supposed to wait.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index d55725a71ba8..d60cf4592bc7 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1139,7 +1139,6 @@ static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+index c7935ea498c4..e56ec3f2d84a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
++++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+@@ -235,7 +235,7 @@ static const u8 *mipi_exec_delay(struct intel_dsi *intel_dsi, const u8 *data)
+ 	struct drm_i915_private *i915 = to_i915(intel_dsi->base.base.dev);
+ 	u32 delay = *((const u32 *) data);
  
- 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_INIT_OTP);
--	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DISPLAY_ON);
+-	drm_dbg_kms(&i915->drm, "\n");
++	drm_dbg_kms(&i915->drm, "%d usecs\n", delay);
  
- 	/* ensure all panel commands dispatched before enabling transcoder */
- 	wait_for_cmds_dispatched_to_panel(encoder);
-@@ -1240,6 +1239,8 @@ static void gen11_dsi_enable(struct intel_atomic_state *state,
- 	/* step6d: enable dsi transcoder */
- 	gen11_dsi_enable_transcoder(encoder);
- 
-+	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DISPLAY_ON);
-+
- 	/* step7: enable backlight */
- 	intel_backlight_enable(crtc_state, conn_state);
- 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_BACKLIGHT_ON);
+ 	usleep_range(delay, delay + 10);
+ 	data += 4;
 -- 
 2.39.3
 
