@@ -1,48 +1,71 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00C0E727BB2
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 11:44:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D62727C55
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 12:07:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BCCA10E40F;
-	Thu,  8 Jun 2023 09:44:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D17C10E5A8;
+	Thu,  8 Jun 2023 10:07:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03EA110E40F;
- Thu,  8 Jun 2023 09:44:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686217444; x=1717753444;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZC13/Z7K5UzCUa4RG+GFE2n/vlJjJ7uXtEfI6PO5ADM=;
- b=FQcTyNuPV155+0alShCDnVTeXUSYPSZ4+JChzu0ISE70LcPdm2q/rXZE
- j3zUzPvtVwvO0DxrxJ8hQ17mQsAMBfzGQHHbQNS8jP2nRI2YB2YFIZfTb
- 17SRLkWnRfuxGLW33acgsvDI228wfe29QXQFsPzIEXYIujFcGkbxMyD6C
- sm9VmGtLP5HmUn7WRpB97XJ41kWKXdDCh7LmZ5b+w5WQbJK47ycvN3VIA
- iT7NvukmnytkdBqqOaJg7Ob7pOihym8kSTxFvRDtA6e280OknjjvPPP3f
- bfMi38UGOBoFktuqjgD8dU/vi1dFUV0WCzE69UlDP2iCGqwqiIWqveN70 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="337619938"
-X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="337619938"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2023 02:44:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="799764057"
-X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="799764057"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by FMSMGA003.fm.intel.com with ESMTP; 08 Jun 2023 02:44:02 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu,  8 Jun 2023 15:12:47 +0530
-Message-Id: <20230608094247.812488-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEE9C10E5A4;
+ Thu,  8 Jun 2023 10:07:25 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id
+ ffacd0b85a97d-30e53cacc10so289874f8f.0; 
+ Thu, 08 Jun 2023 03:07:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1686218844; x=1688810844;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=e9pgMIbtNGvt+dZacrjStBRF6ycRamKEcgmVWNACzbk=;
+ b=B6VsdJXuVBxjoRidl/rWXx6lyaYIQFvp6tWrCs2klKJkfmNI5IfqRB3FYJE9QNs7XZ
+ VQPgYaeyFzIYXB5Qpd/UPFXCdx1Tt4cK2F0Yg+wx1WstWHbLwafT2d40KyEmd2oKkwYA
+ 3bxFngz+IU0+Thmfq3uXmK/BY/AWKCJVbkrTotOodhq24zTiVThPtuYwc9t6S6rKfFp2
+ pF+8vUbFK+BP92TFQDj+8Rjr/GiO0xtV0yygankwhNC7hAIMpLN9emUgK+APb6Lc1MuH
+ CLfmfwi9lWlB/u3pQfxTOqJCt4IWpB/1eObhNw/6SceyHfK9l0c0S+97IU3Yahb7pTwG
+ gfIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1686218844; x=1688810844;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=e9pgMIbtNGvt+dZacrjStBRF6ycRamKEcgmVWNACzbk=;
+ b=ZgrM7DCTOdkfGmf6jRz6O+YisTf+X/CXQ8SpZp/p4ABeq7KJQGC73G0zkxInWACckZ
+ rk87CDPcv2GayvROS+Vl+NYC+R01o+6ITMegpQHbOExgvtUR3s2dzhvc6S09xYv+X9we
+ pfwycEIYwiaoStFUfiz+uQN6ZE2SxZTL6algPmlnBd9cJ3L6TnCSYMuFdLbYKJDqT+fa
+ sj0cSF9MT3bMRFFnHdSFBRd8W7hP5fhcdESH0SdoETZ15noScMSn41le2qGVJs0XJxTC
+ iKa9M0goXUmOmV6opxXx+5adVjTQymHmjgNHu213P4/GFigM9GeP9njGnR28Sxl23pNt
+ tsxQ==
+X-Gm-Message-State: AC+VfDzAH08J6CyjXsPQE3oQyRn21edTNSmJES+KTzW1QPDsissUiiGV
+ +2azr8AFZxTS3U281J2AOm8=
+X-Google-Smtp-Source: ACHHUZ5UbkzYfeP23mP06MNOclTBsL8+JGEjJfF81Bk0/Obd6/6ehp942TML9tFOWhsksM+sPC42jA==
+X-Received: by 2002:adf:ee8e:0:b0:30e:3da5:46e5 with SMTP id
+ b14-20020adfee8e000000b0030e3da546e5mr7274154wro.59.1686218843798; 
+ Thu, 08 Jun 2023 03:07:23 -0700 (PDT)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
+ q3-20020adff503000000b002ca864b807csm1141756wro.0.2023.06.08.03.07.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 08 Jun 2023 03:07:23 -0700 (PDT)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Gustavo Sousa <gustavo.sousa@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Date: Thu,  8 Jun 2023 11:07:22 +0100
+Message-Id: <20230608100722.1148771-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC] fbcon: Reschedule cursor worker if try lock fails
+Subject: [Intel-gfx] [PATCH][next] drm/i915/mtl: Fix spelling mistake
+ "initate" -> "initiate"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,60 +78,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With the removal of timer implementation for cursor work[1],
-the cursor delayed work does not get rescheduled if it fails
-to acquire the console lock. This change pushes the cursor
-work to the queue if we fail to acquire the lock.
+There is a spelling mistake in a drm_dbg_kms message. Fix it.
 
-This has been found to cause issue during the resume sequence
-of the IGT test kms_fbcon_fbt@fbc-suspend[2]. The test expects
-cursor blinking to start after the system resumes from suspend
-state.
-
- fbcon_resumed()
-	 redraw_screen()
-		 set_cursor()
-			 fb_flashcursor()
-
-But the cursor work fails to acuire the lock and it never gets
-rescheduled unless some other function comes in and invokes
-fbcon_add_cursor_work() which adds the worker to the queue.
-From empirical evidence this happens if we tweak the console
-log level.
-
-Re-scheduling the work heals the issue. I am not sure if this
-is the best solution we can have, particularly with the "Fix me"
-comment which indicates a bigger underlying problem. Hence, the
-RFC.
-
-[1] 3b0fb6ab25("fbcon: Use delayed work for cursor")
-[2] https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13243/shard-glk2/igt@kms_fbcon_fbt@fbc-suspend.html
-
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 ---
- drivers/video/fbdev/core/fbcon.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-index c6c9d040bdec..b98ea62836ae 100644
---- a/drivers/video/fbdev/core/fbcon.c
-+++ b/drivers/video/fbdev/core/fbcon.c
-@@ -357,8 +357,11 @@ static void fb_flashcursor(struct work_struct *work)
- 	/* instead we just fail to flash the cursor if we can't get
- 	 * the lock instead of blocking fbcon deinit */
- 	ret = console_trylock();
--	if (ret == 0)
-+	if (ret == 0) {
-+		queue_delayed_work(system_power_efficient_wq, &ops->cursor_work,
-+						   ops->cur_blink_jiffies);
- 		return;
-+	}
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index f7608d363634..f59e1e962e3d 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -555,7 +555,7 @@ intel_pmdemand_program_params(struct drm_i915_private *i915,
+ 		goto unlock;
  
- 	/* protected by console_lock */
- 	info = ops->info;
+ 	drm_dbg_kms(&i915->drm,
+-		    "initate pmdemand request values: (0x%x 0x%x)\n",
++		    "initiate pmdemand request values: (0x%x 0x%x)\n",
+ 		    mod_reg1, mod_reg2);
+ 
+ 	intel_de_rmw(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1), 0,
 -- 
-2.25.1
+2.30.2
 
