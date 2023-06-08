@@ -1,33 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14D957286BD
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 19:58:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 614317286D5
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 20:05:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD25710E604;
-	Thu,  8 Jun 2023 17:58:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC5C10E02A;
+	Thu,  8 Jun 2023 18:05:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0162B10E604;
- Thu,  8 Jun 2023 17:58:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F1D74AADE1;
- Thu,  8 Jun 2023 17:58:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B91B510E02A;
+ Thu,  8 Jun 2023 18:05:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686247534; x=1717783534;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zCTJdtnkcpmOancjphQjoi8Fc52zspwZt/0opV21MRw=;
+ b=Ysmywu7eZ/FXq7XRxrEeI5ubi/qes8idlBfD0n4aHNyv/oJ5iMW7CHya
+ qsoqEor4nHUkW5u7b1oJCW8DtPcA1wIwvQKCuaINPZxuJ5xmBsZQvwKzQ
+ 967M6CrHn6BogGf2EiGXp0cGRObOPeXUNInWPfR4ufT3X/c8nyRMCzc8/
+ +EWZuW7l/1Wnap1osldO9Vh+2yt07s+kWx4l+4b894uMZdojoX1tCyZDt
+ 6539CrLjM979iIGQTUWVi65uNOVGKShIzhEXI4vjExE9NF/d88ShE9t1k
+ HHOgq527uqb9MlFMq0JX+EvI0XEd54HfTODyduIXiQrtn0X8JiDJq5m3b g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="337746634"
+X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="337746634"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 11:04:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="687444617"
+X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="687444617"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by orsmga006.jf.intel.com with ESMTP; 08 Jun 2023 11:04:06 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  8 Jun 2023 11:04:05 -0700
+Message-Id: <20230608180405.3059026-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Luca Coelho" <luciano.coelho@intel.com>
-Date: Thu, 08 Jun 2023 17:58:17 -0000
-Message-ID: <168624709798.18386.8939150671865745127@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1686231190.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1686231190.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_implement_internal_workqueues_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v1] drm/i915/gsc: take a wakeref for the
+ proxy-init-completion check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +55,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Ensure intel_gsc_uc_fw_init_done and intel_gsc_uc_fw_proxy_init
+takes a wakeref before reading GSC Shim registers.
 
-Series: drm/i915: implement internal workqueues (rev4)
-URL   : https://patchwork.freedesktop.org/series/118947/
-State : warning
+NOTE: another patch in review also adds a call from selftest to
+this same function. (https://patchwork.freedesktop.org/series/117713/)
+which is why i am adding the wakeref inside the callee, not the
+caller.
 
-== Summary ==
+Fixes: 99afb7cc8c44 ("drm/i915/pxp: Add ARB session creation and cleanup")
+Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
+index f46eb17a7a98..1e5a8b2bdac9 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
+@@ -27,7 +27,11 @@ static bool gsc_is_in_reset(struct intel_uncore *uncore)
+ bool intel_gsc_uc_fw_proxy_init_done(struct intel_gsc_uc *gsc)
+ {
+ 	struct intel_uncore *uncore = gsc_uc_to_gt(gsc)->uncore;
+-	u32 fw_status = intel_uncore_read(uncore, GSC_FW_STATUS_REG);
++	intel_wakeref_t wakeref;
++	u32 fw_status;
++
++	with_intel_runtime_pm(uncore->rpm, wakeref)
++		fw_status = intel_uncore_read(uncore, GSC_FW_STATUS_REG);
+ 
+ 	return REG_FIELD_GET(GSC_FW_CURRENT_STATE, fw_status) ==
+ 	       GSC_FW_PROXY_STATE_NORMAL;
+@@ -36,7 +40,11 @@ bool intel_gsc_uc_fw_proxy_init_done(struct intel_gsc_uc *gsc)
+ bool intel_gsc_uc_fw_init_done(struct intel_gsc_uc *gsc)
+ {
+ 	struct intel_uncore *uncore = gsc_uc_to_gt(gsc)->uncore;
+-	u32 fw_status = intel_uncore_read(uncore, GSC_FW_STATUS_REG);
++	intel_wakeref_t wakeref;
++	u32 fw_status;
++
++	with_intel_runtime_pm(uncore->rpm, wakeref)
++		fw_status = intel_uncore_read(uncore, GSC_FW_STATUS_REG);
+ 
+ 	return fw_status & GSC_FW_INIT_COMPLETE_BIT;
+ }
 
+base-commit: 27187d09511e1d47dbaaf91c7332319551a8edab
+-- 
+2.39.0
 
