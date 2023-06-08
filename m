@@ -2,32 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 445DD728B03
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 00:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71FFE728B0C
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 00:27:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCC8110E61A;
-	Thu,  8 Jun 2023 22:17:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C0F110E62C;
+	Thu,  8 Jun 2023 22:27:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 82AF810E61A;
- Thu,  8 Jun 2023 22:17:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 78A42A03D2;
- Thu,  8 Jun 2023 22:17:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0255802685041580445=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7C1B10E629
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 22:27:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1686263223;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=+i3hbSxCtGfqeGfoJw1Ae6QO7FGXzU3FKdQTLPV41wM=;
+ b=B57a693qbcrH+1Z9AfXspZjw6VEZy32FQsXFGBJHTyiR/xCetV4qDecmFHF61ahQF18hZL
+ Dhu2h0f9yxOF9UHwKh9JgHr+uPsJXxzeeQ+Rp/mqfF/rCZDB4FF1JnCD6j5B8VXvQ1kMsz
+ pRZLC4zMI9yZ4HL/SQwAi2ebf1O586Y=
+Received: from mail-io1-f72.google.com (mail-io1-f72.google.com
+ [209.85.166.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-295-eyclhq1HMC2ONuK77Y89tA-1; Thu, 08 Jun 2023 18:27:02 -0400
+X-MC-Unique: eyclhq1HMC2ONuK77Y89tA-1
+Received: by mail-io1-f72.google.com with SMTP id
+ ca18e2360f4ac-77ad8444d82so46960639f.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 08 Jun 2023 15:27:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1686263222; x=1688855222;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=+i3hbSxCtGfqeGfoJw1Ae6QO7FGXzU3FKdQTLPV41wM=;
+ b=RlJbJapQAtYz/dQuWYWSHvVFEY/yERxdjt9R4IaP3+KlBqidXADccpCYmP0oJELQ4h
+ r83VIYJxfkr7WQlOWxbf/Ud6eNDP00bo0Vc9uqZyWWbA+UEqBOv1sVYwjp8Epw2yUlP5
+ 8KpQb7lZ5Di7o3rISOvnMyuo2yVti4x55Kw1msXtCl3+6p8Z22kq/VfqND7FSksEMSMZ
+ W4IXQAcgYVGk3GCXWyQwpLVWjeUulqgBkVfrGzZ1oB7QBjl/63bpWE7+vkvLIjy2a1rk
+ Eelpelzw9kBkezCVAg9T3+IVY9XV86QecwJGyBVOTDQMxVsh8qBo16xDIUsfeom/gqw+
+ tMyQ==
+X-Gm-Message-State: AC+VfDzjzt7m5TLEdJAma1PHeDfTCwjFBCVhT4uTFHGRPid4V7e2C8BR
+ jo3VVpv08SPgQuS19aHFFASMv8ElKfMDsDfxNkMif7jOugQKHcsj5bAlRCrg3EPLr5zjIKXDxz8
+ agGL+05yF3b6Fc91XaGFxIAB8qtyl
+X-Received: by 2002:a5e:834d:0:b0:775:5f74:f4c7 with SMTP id
+ y13-20020a5e834d000000b007755f74f4c7mr15105435iom.17.1686263221760; 
+ Thu, 08 Jun 2023 15:27:01 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ5fIcaWd14KZySkBjd3YmCC4QO0Lm7VbUcjSZolTnee5AtLfgxh8+xxsSHDnIlQUk0qvjp0mg==
+X-Received: by 2002:a5e:834d:0:b0:775:5f74:f4c7 with SMTP id
+ y13-20020a5e834d000000b007755f74f4c7mr15105411iom.17.1686263221294; 
+ Thu, 08 Jun 2023 15:27:01 -0700 (PDT)
+Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
+ l25-20020a02ccf9000000b004186c617328sm542252jaq.90.2023.06.08.15.27.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 08 Jun 2023 15:27:00 -0700 (PDT)
+Date: Thu, 8 Jun 2023 16:26:59 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <20230608162659.59b0522f.alex.williamson@redhat.com>
+In-Reply-To: <20230602121515.79374-9-yi.l.liu@intel.com>
+References: <20230602121515.79374-1-yi.l.liu@intel.com>
+ <20230602121515.79374-9-yi.l.liu@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Venkatesh Reddy, Sushma" <sushma.venkatesh.reddy@intel.com>
-Date: Thu, 08 Jun 2023 22:17:01 -0000
-Message-ID: <168626262146.18385.9010228799869908120@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230608110103.777594-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20230608110103.777594-1-andi.shyti@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_a_VMA_UAF_for_multi-gt_platform_=28rev7=29?=
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v7 8/9] vfio/pci: Extend
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,236 +84,311 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
+ chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, kvm@vger.kernel.org,
+ lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
+ jgg@nvidia.com, kevin.tian@intel.com, yan.y.zhao@intel.com,
+ intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
+ intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
+ clegoate@redhat.com, cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
+ suravee.suthikulpanit@amd.com, robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0255802685041580445==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri,  2 Jun 2023 05:15:14 -0700
+Yi Liu <yi.l.liu@intel.com> wrote:
 
-== Series Details ==
+> This allows VFIO_DEVICE_GET_PCI_HOT_RESET_INFO ioctl use the iommufd_ctx
+> of the cdev device to check the ownership of the other affected devices.
+> 
+> When VFIO_DEVICE_GET_PCI_HOT_RESET_INFO is called on an IOMMUFD managed
+> device, the new flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID is reported to indicate
+> the values returned are IOMMUFD devids rather than group IDs as used when
+> accessing vfio devices through the conventional vfio group interface.
+> Additionally the flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED will be reported
+> in this mode if all of the devices affected by the hot-reset are owned by
+> either virtue of being directly bound to the same iommufd context as the
+> calling device, or implicitly owned via a shared IOMMU group.
+> 
+> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
+> Suggested-by: Alex Williamson <alex.williamson@redhat.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
+> ---
+>  drivers/vfio/iommufd.c           | 49 +++++++++++++++++++++++++++++++
+>  drivers/vfio/pci/vfio_pci_core.c | 47 +++++++++++++++++++++++++-----
+>  include/linux/vfio.h             | 16 ++++++++++
+>  include/uapi/linux/vfio.h        | 50 +++++++++++++++++++++++++++++++-
+>  4 files changed, 154 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/vfio/iommufd.c b/drivers/vfio/iommufd.c
+> index 88b00c501015..a04f3a493437 100644
+> --- a/drivers/vfio/iommufd.c
+> +++ b/drivers/vfio/iommufd.c
+> @@ -66,6 +66,55 @@ void vfio_iommufd_unbind(struct vfio_device *vdev)
+>  		vdev->ops->unbind_iommufd(vdev);
+>  }
+>  
+> +struct iommufd_ctx *vfio_iommufd_device_ictx(struct vfio_device *vdev)
+> +{
+> +	if (vdev->iommufd_device)
+> +		return iommufd_device_to_ictx(vdev->iommufd_device);
+> +	return NULL;
+> +}
+> +EXPORT_SYMBOL_GPL(vfio_iommufd_device_ictx);
+> +
+> +static int vfio_iommufd_device_id(struct vfio_device *vdev)
+> +{
+> +	if (vdev->iommufd_device)
+> +		return iommufd_device_to_id(vdev->iommufd_device);
+> +	return -EINVAL;
 
-Series: drm/i915: Fix a VMA UAF for multi-gt platform (rev7)
-URL   : https://patchwork.freedesktop.org/series/118887/
-State : success
+If this is actually reachable, it allows us to return -EINVAL as a
+devid in the reset-info ioctl, which is not a defined value.  Should
+this return VFIO_PCI_DEVID_NOT_OWNED or do you want to catch the errno
+value in the caller?  Thanks,
 
-== Summary ==
+Alex
 
-CI Bug Log - changes from CI_DRM_13253 -> Patchwork_118887v7
-====================================================
+> +}
+> +
+> +/*
+> + * Return devid for a device which is affected by hot-reset.
+> + * - valid devid > 0 for the device that is bound to the input
+> + *   iommufd_ctx.
+> + * - devid == VFIO_PCI_DEVID_OWNED for the device that has not
+> + *   been bound to any iommufd_ctx but other device within its
+> + *   group has been bound to the input iommufd_ctx.
+> + * - devid == VFIO_PCI_DEVID_NOT_OWNED for others. e.g. device
+> + *   is bound to other iommufd_ctx etc.
+> + */
+> +int vfio_iommufd_device_hot_reset_devid(struct vfio_device *vdev,
+> +					struct iommufd_ctx *ictx)
+> +{
+> +	struct iommu_group *group;
+> +	int devid;
+> +
+> +	if (vfio_iommufd_device_ictx(vdev) == ictx)
+> +		return vfio_iommufd_device_id(vdev);
+> +
+> +	group = iommu_group_get(vdev->dev);
+> +	if (!group)
+> +		return VFIO_PCI_DEVID_NOT_OWNED;
+> +
+> +	if (iommufd_ctx_has_group(ictx, group))
+> +		devid = VFIO_PCI_DEVID_OWNED;
+> +	else
+> +		devid = VFIO_PCI_DEVID_NOT_OWNED;
+> +
+> +	iommu_group_put(group);
+> +
+> +	return devid;
+> +}
+> +EXPORT_SYMBOL_GPL(vfio_iommufd_device_hot_reset_devid);
+> +
+>  /*
+>   * The physical standard ops mean that the iommufd_device is bound to the
+>   * physical device vdev->dev that was provided to vfio_init_group_dev(). Drivers
+> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
+> index 3a2f67675036..a615a223cdef 100644
+> --- a/drivers/vfio/pci/vfio_pci_core.c
+> +++ b/drivers/vfio/pci/vfio_pci_core.c
+> @@ -27,6 +27,7 @@
+>  #include <linux/vgaarb.h>
+>  #include <linux/nospec.h>
+>  #include <linux/sched/mm.h>
+> +#include <linux/iommufd.h>
+>  #if IS_ENABLED(CONFIG_EEH)
+>  #include <asm/eeh.h>
+>  #endif
+> @@ -776,26 +777,49 @@ struct vfio_pci_fill_info {
+>  	int max;
+>  	int cur;
+>  	struct vfio_pci_dependent_device *devices;
+> +	struct vfio_device *vdev;
+> +	u32 flags;
+>  };
+>  
+>  static int vfio_pci_fill_devs(struct pci_dev *pdev, void *data)
+>  {
+>  	struct vfio_pci_fill_info *fill = data;
+> -	struct iommu_group *iommu_group;
+>  
+>  	if (fill->cur == fill->max)
+>  		return -EAGAIN; /* Something changed, try again */
+>  
+> -	iommu_group = iommu_group_get(&pdev->dev);
+> -	if (!iommu_group)
+> -		return -EPERM; /* Cannot reset non-isolated devices */
+> +	if (fill->flags & VFIO_PCI_HOT_RESET_FLAG_DEV_ID) {
+> +		struct iommufd_ctx *iommufd = vfio_iommufd_device_ictx(fill->vdev);
+> +		struct vfio_device_set *dev_set = fill->vdev->dev_set;
+> +		struct vfio_device *vdev;
+>  
+> -	fill->devices[fill->cur].group_id = iommu_group_id(iommu_group);
+> +		/*
+> +		 * hot-reset requires all affected devices be represented in
+> +		 * the dev_set.
+> +		 */
+> +		vdev = vfio_find_device_in_devset(dev_set, &pdev->dev);
+> +		if (!vdev)
+> +			fill->devices[fill->cur].devid = VFIO_PCI_DEVID_NOT_OWNED;
+> +		else
+> +			fill->devices[fill->cur].devid =
+> +				vfio_iommufd_device_hot_reset_devid(vdev, iommufd);
+> +		/* If devid is VFIO_PCI_DEVID_NOT_OWNED, clear owned flag. */
+> +		if (fill->devices[fill->cur].devid == VFIO_PCI_DEVID_NOT_OWNED)
+> +			fill->flags &= ~VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED;
+> +	} else {
+> +		struct iommu_group *iommu_group;
+> +
+> +		iommu_group = iommu_group_get(&pdev->dev);
+> +		if (!iommu_group)
+> +			return -EPERM; /* Cannot reset non-isolated devices */
+> +
+> +		fill->devices[fill->cur].group_id = iommu_group_id(iommu_group);
+> +		iommu_group_put(iommu_group);
+> +	}
+>  	fill->devices[fill->cur].segment = pci_domain_nr(pdev->bus);
+>  	fill->devices[fill->cur].bus = pdev->bus->number;
+>  	fill->devices[fill->cur].devfn = pdev->devfn;
+>  	fill->cur++;
+> -	iommu_group_put(iommu_group);
+>  	return 0;
+>  }
+>  
+> @@ -1229,17 +1253,26 @@ static int vfio_pci_ioctl_get_pci_hot_reset_info(
+>  		return -ENOMEM;
+>  
+>  	fill.devices = devices;
+> +	fill.vdev = &vdev->vdev;
+> +
+> +	if (vfio_device_cdev_opened(&vdev->vdev))
+> +		fill.flags |= VFIO_PCI_HOT_RESET_FLAG_DEV_ID |
+> +			     VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED;
+>  
+> +	mutex_lock(&vdev->vdev.dev_set->lock);
+>  	ret = vfio_pci_for_each_slot_or_bus(vdev->pdev, vfio_pci_fill_devs,
+>  					    &fill, slot);
+> +	mutex_unlock(&vdev->vdev.dev_set->lock);
+>  
+>  	/*
+>  	 * If a device was removed between counting and filling, we may come up
+>  	 * short of fill.max.  If a device was added, we'll have a return of
+>  	 * -EAGAIN above.
+>  	 */
+> -	if (!ret)
+> +	if (!ret) {
+>  		hdr.count = fill.cur;
+> +		hdr.flags = fill.flags;
+> +	}
+>  
+>  reset_info_exit:
+>  	if (copy_to_user(arg, &hdr, minsz))
+> diff --git a/include/linux/vfio.h b/include/linux/vfio.h
+> index ee120d2d530b..382a7b119c7c 100644
+> --- a/include/linux/vfio.h
+> +++ b/include/linux/vfio.h
+> @@ -114,6 +114,9 @@ struct vfio_device_ops {
+>  };
+>  
+>  #if IS_ENABLED(CONFIG_IOMMUFD)
+> +struct iommufd_ctx *vfio_iommufd_device_ictx(struct vfio_device *vdev);
+> +int vfio_iommufd_device_hot_reset_devid(struct vfio_device *vdev,
+> +					struct iommufd_ctx *ictx);
+>  int vfio_iommufd_physical_bind(struct vfio_device *vdev,
+>  			       struct iommufd_ctx *ictx, u32 *out_device_id);
+>  void vfio_iommufd_physical_unbind(struct vfio_device *vdev);
+> @@ -123,6 +126,19 @@ int vfio_iommufd_emulated_bind(struct vfio_device *vdev,
+>  void vfio_iommufd_emulated_unbind(struct vfio_device *vdev);
+>  int vfio_iommufd_emulated_attach_ioas(struct vfio_device *vdev, u32 *pt_id);
+>  #else
+> +static inline struct iommufd_ctx *
+> +vfio_iommufd_device_ictx(struct vfio_device *vdev)
+> +{
+> +	return NULL;
+> +}
+> +
+> +static inline int
+> +vfio_iommufd_device_hot_reset_devid(struct vfio_device *vdev,
+> +				    struct iommufd_ctx *ictx)
+> +{
+> +	return VFIO_PCI_DEVID_NOT_OWNED;
+> +}
+> +
+>  #define vfio_iommufd_physical_bind                                      \
+>  	((int (*)(struct vfio_device *vdev, struct iommufd_ctx *ictx,   \
+>  		  u32 *out_device_id)) NULL)
+> diff --git a/include/uapi/linux/vfio.h b/include/uapi/linux/vfio.h
+> index 0552e8dcf0cb..70cc31e6b1ce 100644
+> --- a/include/uapi/linux/vfio.h
+> +++ b/include/uapi/linux/vfio.h
+> @@ -650,11 +650,57 @@ enum {
+>   * VFIO_DEVICE_GET_PCI_HOT_RESET_INFO - _IOWR(VFIO_TYPE, VFIO_BASE + 12,
+>   *					      struct vfio_pci_hot_reset_info)
+>   *
+> + * This command is used to query the affected devices in the hot reset for
+> + * a given device.
+> + *
+> + * This command always reports the segment, bus, and devfn information for
+> + * each affected device, and selectively reports the group_id or devid per
+> + * the way how the calling device is opened.
+> + *
+> + *	- If the calling device is opened via the traditional group/container
+> + *	  API, group_id is reported.  User should check if it has owned all
+> + *	  the affected devices and provides a set of group fds to prove the
+> + *	  ownership in VFIO_DEVICE_PCI_HOT_RESET ioctl.
+> + *
+> + *	- If the calling device is opened as a cdev, devid is reported.
+> + *	  Flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID is set to indicate this
+> + *	  data type.  All the affected devices should be represented in
+> + *	  the dev_set, ex. bound to a vfio driver, and also be owned by
+> + *	  this interface which is determined by the following conditions:
+> + *	  1) Has a valid devid within the iommufd_ctx of the calling device.
+> + *	     Ownership cannot be determined across separate iommufd_ctx and
+> + *	     the cdev calling conventions do not support a proof-of-ownership
+> + *	     model as provided in the legacy group interface.  In this case
+> + *	     valid devid with value greater than zero is provided in the return
+> + *	     structure.
+> + *	  2) Does not have a valid devid within the iommufd_ctx of the calling
+> + *	     device, but belongs to the same IOMMU group as the calling device
+> + *	     or another opened device that has a valid devid within the
+> + *	     iommufd_ctx of the calling device.  This provides implicit ownership
+> + *	     for devices within the same DMA isolation context.  In this case
+> + *	     the devid value of VFIO_PCI_DEVID_OWNED is provided in the return
+> + *	     structure.
+> + *
+> + *	  A devid value of VFIO_PCI_DEVID_NOT_OWNED is provided in the return
+> + *	  structure for affected devices where device is NOT represented in the
+> + *	  dev_set or ownership is not available.  Such devices prevent the use
+> + *	  of VFIO_DEVICE_PCI_HOT_RESET ioctl outside of the proof-of-ownership
+> + *	  calling conventions (ie. via legacy group accessed devices).  Flag
+> + *	  VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED would be set when all the
+> + *	  affected devices are represented in the dev_set and also owned by
+> + *	  the user.  This flag is available only when
+> + *	  flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID is set, otherwise reserved.
+> + *
+>   * Return: 0 on success, -errno on failure:
+>   *	-enospc = insufficient buffer, -enodev = unsupported for device.
+>   */
+>  struct vfio_pci_dependent_device {
+> -	__u32	group_id;
+> +	union {
+> +		__u32   group_id;
+> +		__u32	devid;
+> +#define VFIO_PCI_DEVID_OWNED		0
+> +#define VFIO_PCI_DEVID_NOT_OWNED	-1
+> +	};
+>  	__u16	segment;
+>  	__u8	bus;
+>  	__u8	devfn; /* Use PCI_SLOT/PCI_FUNC */
+> @@ -663,6 +709,8 @@ struct vfio_pci_dependent_device {
+>  struct vfio_pci_hot_reset_info {
+>  	__u32	argsz;
+>  	__u32	flags;
+> +#define VFIO_PCI_HOT_RESET_FLAG_DEV_ID		(1 << 0)
+> +#define VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED	(1 << 1)
+>  	__u32	count;
+>  	struct vfio_pci_dependent_device	devices[];
+>  };
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/index.html
-
-Participating hosts (35 -> 35)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_118887v7 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      [PASS][1] -> [DMESG-FAIL][2] ([i915#5334] / [i915#7872])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         [PASS][3] -> [ABORT][4] ([i915#4983] / [i915#7461] / [i915#8347] / [i915#8384])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         NOTRUN -> [DMESG-WARN][5] ([i915#6367])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/bat-rpls-2/igt@i915_selftest@live@slpc.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - fi-glk-j4005:       NOTRUN -> [SKIP][6] ([fdo#109271])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/fi-glk-j4005/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
-    - bat-dg2-8:          [PASS][7] -> [FAIL][8] ([i915#7932]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [DMESG-FAIL][9] ([i915#5334]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-glk-j4005:       [ABORT][11] ([i915#6217]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@i915_selftest@live@mman:
-    - bat-rpls-2:         [TIMEOUT][13] ([i915#6794] / [i915#7392]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-rpls-2/igt@i915_selftest@live@mman.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/bat-rpls-2/igt@i915_selftest@live@mman.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#4423]: https://gitlab.freedesktop.org/drm/intel/issues/4423
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6217]: https://gitlab.freedesktop.org/drm/intel/issues/6217
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
-  [i915#7392]: https://gitlab.freedesktop.org/drm/intel/issues/7392
-  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
-  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
-  [i915#8384]: https://gitlab.freedesktop.org/drm/intel/issues/8384
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13253 -> Patchwork_118887v7
-
-  CI-20190529: 20190529
-  CI_DRM_13253: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7322: 2dd77d6d827a308caae49ce3eba759c2bab394ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_118887v7: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-363ac36daa2c drm/i915: Fix a VMA UAF for multi-gt platform
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/index.html
-
---===============0255802685041580445==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix a VMA UAF for multi-gt platform (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118887/">https://patchwork.freedesktop.org/series/118887/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13253 -&gt; Patchwork_118887v7</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/index.html</p>
-<h2>Participating hosts (35 -&gt; 35)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_118887v7 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8384">i915#8384</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/fi-glk-j4005/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6217">i915#6217</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/fi-glk-j4005/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13253/bat-rpls-2/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7392">i915#7392</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_118887v7/bat-rpls-2/igt@i915_selftest@live@mman.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13253 -&gt; Patchwork_118887v7</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13253: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7322: 2dd77d6d827a308caae49ce3eba759c2bab394ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_118887v7: b5faf562ea160e9dcd7f95b737753ce44134b266 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>363ac36daa2c drm/i915: Fix a VMA UAF for multi-gt platform</p>
-
-</body>
-</html>
-
---===============0255802685041580445==--
