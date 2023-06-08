@@ -2,52 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FEB5728986
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 22:32:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEA687289AF
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 22:52:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9208A10E622;
-	Thu,  8 Jun 2023 20:32:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DBB410E613;
+	Thu,  8 Jun 2023 20:52:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9E5710E619
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 20:32:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686256327; x=1717792327;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=giMfbUyXxFq0jGYW9TYHEFOvh34DgNZsJNwku/VFtQ4=;
- b=Wxzotr65k8IlK+ghYT/a9wkau5GVbp/udciUZjO8GxSbnI52nhOkhAmV
- 4pwN6oFyrc+UxxfCzvtZexdTV/szyyyGErvjT3TVaKDr+H+2P8ccuaGNz
- xqkPRDoC7QLkYFX4NV7gw/addXvZ6ENAWwZ/uC/QXci6yltwewCKUL4zM
- 8HOk7dmXPxupDOE7et9XYzLTKmRuet4gi2KnPVMJHwROnXSCk+WZOcV16
- oYgJUTrFE8IyDLzIVMQoPffAQAYGIQZ1kLaLCI+zg0KD9bE4lRyAqeZa8
- NaZW/TdDOR8JV1YCbLZu1Ne1KZTkNySgzdCdQy6gqo0k96fKk9PGZKthn A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="421012775"
-X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="421012775"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2023 13:31:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="710100911"
-X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="710100911"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 08 Jun 2023 13:31:39 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 08 Jun 2023 23:31:38 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  8 Jun 2023 23:30:57 +0300
-Message-Id: <20230608203057.23759-14-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <20230608203057.23759-1-ville.syrjala@linux.intel.com>
-References: <20230608203057.23759-1-ville.syrjala@linux.intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A65D10E087
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 20:52:12 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id A046064E2A;
+ Thu,  8 Jun 2023 20:52:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C73D1C433D2;
+ Thu,  8 Jun 2023 20:52:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1686257530;
+ bh=dZRF0wu4p8bFAXmnVVu+7pXv++o6TuoR/UAe4rtPADA=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=kydLsX4FK+/GlVwJwgrTWO+uQisApyThlieEqq2y/E1IZewKB9VmsQp35KAwMls/n
+ thQohIYKhutjOfbq/aTGeVZZ5lOI7VvHI/Qt9v+QgKXyJGVvTOlmN6Tifb1dxvTiez
+ OhM6WQuU/38O2/xKwbvPgikTPY3EVfGMWtPxyzx/dcXiKMLDgDMoI/zwr+fM3jgfbo
+ LBHmK7Bt6U+CXDZZkZJSMc2RB+Ulwphz8XmmpCBFJTqo0Cp591M3TmZFU4oIzBAvxf
+ Tmcu/hEuvl28hkK/v6qPJkNk47VB1d58oPnP9TI4IEoh172Uy+FNZoC2fMipLCR3dk
+ SWXQBQjvRwbrg==
+Date: Thu, 8 Jun 2023 15:52:08 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: "David E. Box" <david.e.box@linux.intel.com>
+Message-ID: <20230608205208.GA1214785@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 13/13] drm/i915/dsi: Remove weird
- has_pch_encoder asserts
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230411213323.1362300-1-david.e.box@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH V2] PCI: Move VMD ASPM/LTR fix to PCI quirk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,49 +51,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: me@adhityamohan.in, kw@linux.com, lorenzo.pieralisi@arm.com,
+ robh@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ rafael@kernel.org, linux-kernel@vger.kernel.org, hch@infradead.org,
+ jonathan.derrick@linux.dev, bhelgaas@google.com, nirmal.patel@linux.intel.com,
+ michael.a.bottini@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, Apr 11, 2023 at 02:33:23PM -0700, David E. Box wrote:
+> In commit f492edb40b54 ("PCI: vmd: Add quirk to configure PCIe ASPM and
+> LTR") the VMD driver calls pci_enabled_link_state as a callback from
+> pci_bus_walk. Both will acquire the pci_bus_sem lock leading to a lockdep
+> warning. Instead of doing the pci_bus_walk, move the fix to quirks.c using
+> DECLARE_PCI_FIXUP_FINAL.
 
-No idea why the DSI code is feeling the need to assert that
-has_pch_encoder must not be set. PCH encoders aren't even a
-thing on any platform that has DSI.
+s/pci_enabled_link_state/pci_enable_link_state/
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c | 2 --
- drivers/gpu/drm/i915/display/vlv_dsi.c | 2 --
- 2 files changed, 4 deletions(-)
+Add "()" after pci_enable_link_state() and pci_bus_walk() to make it
+obvious they're functions.
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index c040cd226a41..59a2a289d9be 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1245,8 +1245,6 @@ static void gen11_dsi_enable(struct intel_atomic_state *state,
- 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 
--	drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
--
- 	/* Wa_1409054076:icl,jsl,ehl */
- 	icl_apply_kvmr_pipe_a_wa(encoder, crtc->pipe, true);
- 
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 33ada1a736d8..a96e7d028c5c 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -817,8 +817,6 @@ static void bxt_dsi_enable(struct intel_atomic_state *state,
- 			   const struct intel_crtc_state *crtc_state,
- 			   const struct drm_connector_state *conn_state)
- {
--	drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
--
- 	intel_crtc_vblank_on(crtc_state);
- }
- 
--- 
-2.39.3
+> ...
+> +++ b/drivers/pci/quirks.c
+> @@ -6023,3 +6023,75 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2d, dpc_log_size);
+>  DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2f, dpc_log_size);
+>  DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a31, dpc_log_size);
+>  #endif
+> +
+> +#ifdef CONFIG_VMD
+> +/*
+> + * Enable ASPM on the PCIE root ports under VMD and set the default LTR of the
+> + * storage devices on platforms where these values are not configured by BIOS.
+> + * This is needed for laptops, which require these settings for proper power
+> + * management of the SoC.
 
+s/PCIE/PCIe/ to match spec usage.
+
+> + */
+> +#define VMD_DEVICE_LTR	0x1003	/* 3145728 ns */
+
+It would be nice to know how this value was derived.  But I know we
+had this hard-coded value before, so it's not new with this patch.
+
+> +static void quirk_intel_vmd(struct pci_dev *pdev)
+
+I think this quirk could possibly stay in
+drivers/pci/controller/vmd.c, couldn't it?  It has a lot of
+VMD-specific knowledge that it would nice to contain in vmd.c.
+
+> +{
+> +	struct pci_dev *parent;
+> +	u16 ltr = VMD_DEVICE_LTR;
+
+I don't think "ltr" is an improvement over using "VMD_DEVICE_LTR"
+below.
+
+> +	u32 ltr_reg;
+> +	int pos;
+> +
+> +	/* Check in VMD domain */
+> +	if (pci_domain_nr(pdev->bus) < 0x10000)
+> +		return;
+
+If in vmd.c, maybe could identify devices under a VMD by checking
+pdev->bus->ops as vmd_acpi_find_companion() does?
+
+> +	/* Get Root Port */
+> +	parent = pci_upstream_bridge(pdev);
+> +	if (!parent || parent->vendor != PCI_VENDOR_ID_INTEL)
+> +		return;
+> +
+> +	/* Get VMD Host Bridge */
+> +	parent = to_pci_dev(parent->dev.parent);
+> +	if (!parent)
+> +		return;
+> +
+> +	/* Get RAID controller */
+> +	parent = to_pci_dev(parent->dev.parent);
+> +	if (!parent)
+> +		return;
+> +
+> +	switch (parent->device) {
+> +	case 0x467f:
+> +	case 0x4c3d:
+> +	case 0xa77f:
+> +	case 0x7d0b:
+> +	case 0xad0b:
+> +	case 0x9a0b:
+> +		break;
+> +	default:
+> +		return;
+> +	}
+> +
+> +	pci_enable_link_state(pdev, PCIE_LINK_STATE_ALL);
+
+Seems like you would want to set LTR *before* enabling the link
+states?
+
+> +	pos = pci_find_ext_capability(pdev, PCI_EXT_CAP_ID_LTR);
+> +	if (!pos)
+> +		return;
+> +
+> +	/* Skip if the max snoop LTR is non-zero, indicating BIOS has set it */
+> +	pci_read_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, &ltr_reg);
+> +	if (!!(ltr_reg & (PCI_LTR_VALUE_MASK | PCI_LTR_SCALE_MASK)))
+> +		return;
+> +
+> +	/*
+> +	 * Set the LTR values to the maximum required by the platform to
+> +	 * allow the deepest power management savings. Write as a DWORD where
+> +	 * the lower word is the max snoop latency and the upper word is the
+> +	 * max non-snoop latency.
+
+This comment suggests that the LTR value is platform-dependent, which
+is what I would expect, but the code and the hard-coded VMD_DEVICE_LTR
+value don't have any platform dependencies.  Again, nothing new in
+*this* patch; that's true in the current tree, too.
+
+> +	ltr_reg = (ltr << 16) | ltr;
+> +	pci_write_config_dword(pdev, pos + PCI_LTR_MAX_SNOOP_LAT, ltr_reg);
+> +	pci_info(pdev, "LTR set by VMD PCI quick\n");
+
+s/quick/quirk/
+
+> +
+> +}
+> +DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_ANY_ID, PCI_ANY_ID,
+> +			      PCI_CLASS_STORAGE_EXPRESS, 0, quirk_intel_vmd);
+> +#endif
+> -- 
+> 2.34.1
+> 
