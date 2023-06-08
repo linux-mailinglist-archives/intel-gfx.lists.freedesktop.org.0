@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 567CA72735A
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 01:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CB42727398
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 02:11:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8057010E571;
-	Wed,  7 Jun 2023 23:52:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 000B210E574;
+	Thu,  8 Jun 2023 00:10:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9F7B910E571;
- Wed,  7 Jun 2023 23:52:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 99688A00E6;
- Wed,  7 Jun 2023 23:52:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0805707533895940554=="
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFA4F10E574
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 00:10:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686183056; x=1717719056;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=b5Yp99t/4F/ho4lG5w0t57Lz87gdGg2J7dHYOlU8mwc=;
+ b=Gwh9NJVuSygpdpgr2jWjC1qGWsdCvVLt8CATDQO8iUiyy/MljguhQMGP
+ u0ONCR4NCLC1WXZv0Lk7z1R3tpx3/yUBc3iO5IwQg6R8BgP7cFocAScyf
+ mfdfgRmyLYRrld0TV7eH9ZrdiC3MWS/PVVzslP5CEltUS7z9yp1/VlwsX
+ DTfSndihNrjGyXSfIP9spJ19XUO19I2jD3m3sKK2F3yG2EwMAP6UTGhwD
+ ebDYs9WyqCvFKTp6xjOOCaKx1gfS0A95qCVNhdjNcJanMAczIltWBeenE
+ N8larHmYbEy4MupMS0D6CYMXEB3bPCUTfiuMthYu2KSqJigcQVb83SESW g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="346759461"
+X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; d="scan'208";a="346759461"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2023 17:10:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="822377361"
+X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; d="scan'208";a="822377361"
+Received: from operepel-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.58.149])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2023 17:10:51 -0700
+Date: Thu, 8 Jun 2023 02:10:44 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Message-ID: <ZIEchIIx5J2jDZlV@ashyti-mobl2.lan>
+References: <ZH7sr+Vs4zOQoouU@moroto>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
-Date: Wed, 07 Jun 2023 23:52:37 -0000
-Message-ID: <168618195760.21184.5410954351082633781@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230607152308.125787-2-janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20230607152308.125787-2-janusz.krzysztofik@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgeDg2?=
- =?utf-8?q?/mm=3A_Fix_PAT_bit_missing_from_page_protection_modify_mask_=28?=
- =?utf-8?q?rev2=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZH7sr+Vs4zOQoouU@moroto>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gsc: Fix error code in
+ intel_gsc_uc_heci_cmd_submit_nonpriv()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,186 +59,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0805707533895940554==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dan,
 
-== Series Details ==
+On Tue, Jun 06, 2023 at 11:22:07AM +0300, Dan Carpenter wrote:
+> This should return negative -EAGAIN instead of positive EAGAIN.
+> 
+> Fixes: e5e1e6d28ebc ("drm/i915/pxp: Add MTL helpers to submit Heci-Cmd-Packet to GSC")
+> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
 
-Series: x86/mm: Fix PAT bit missing from page protection modify mask (rev2)
-URL   : https://patchwork.freedesktop.org/series/116883/
-State : success
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13245 -> Patchwork_116883v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/index.html
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Missing    (3): fi-kbl-soraka bat-rpls-2 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_116883v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-rpls-1:         NOTRUN -> [ABORT][1] ([i915#6687] / [i915#7978])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@requests:
-    - bat-rpls-1:         [ABORT][2] ([i915#4983] / [i915#7911] / [i915#7920]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13245/bat-rpls-1/igt@i915_selftest@live@requests.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/bat-rpls-1/igt@i915_selftest@live@requests.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@d-dp1:
-    - bat-adlp-9:         [FAIL][4] ([i915#4190]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13245/bat-adlp-9/igt@kms_flip@basic-flip-vs-modeset@d-dp1.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/bat-adlp-9/igt@kms_flip@basic-flip-vs-modeset@d-dp1.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
-    - bat-dg2-8:          [FAIL][6] ([i915#7932]) -> [PASS][7] +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13245/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#4190]: https://gitlab.freedesktop.org/drm/intel/issues/4190
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#6763]: https://gitlab.freedesktop.org/drm/intel/issues/6763
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7920]: https://gitlab.freedesktop.org/drm/intel/issues/7920
-  [i915#7932]: https://gitlab.freedesktop.org/drm/intel/issues/7932
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13245 -> Patchwork_116883v2
-
-  CI-20190529: 20190529
-  CI_DRM_13245: 1e46797563ae19f55a141a03d4b8a4e3a41e467b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7321: f52cfd53f353fdaca537c810fbc35e09ffd07345 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_116883v2: 1e46797563ae19f55a141a03d4b8a4e3a41e467b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-fc38f0fc2352 x86/mm: Fix PAT bit missing from page protection modify mask
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/index.html
-
---===============0805707533895940554==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>x86/mm: Fix PAT bit missing from page protection modify mask (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116883/">https://patchwork.freedesktop.org/series/116883/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13245 -&gt; Patchwork_116883v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/index.html</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): fi-kbl-soraka bat-rpls-2 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116883v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_suspend@basic-s3-without-i915:<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13245/bat-rpls-1/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7920">i915#7920</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/bat-rpls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@d-dp1:</p>
-<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13245/bat-adlp-9/igt@kms_flip@basic-flip-vs-modeset@d-dp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4190">i915#4190</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/bat-adlp-9/igt@kms_flip@basic-flip-vs-modeset@d-dp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13245/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7932">i915#7932</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116883v2/bat-dg2-8/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13245 -&gt; Patchwork_116883v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13245: 1e46797563ae19f55a141a03d4b8a4e3a41e467b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7321: f52cfd53f353fdaca537c810fbc35e09ffd07345 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_116883v2: 1e46797563ae19f55a141a03d4b8a4e3a41e467b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>fc38f0fc2352 x86/mm: Fix PAT bit missing from page protection modify mask</p>
-
-</body>
-</html>
-
---===============0805707533895940554==--
+Andi
