@@ -2,33 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E7B77280C7
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 15:01:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5158A72812E
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 15:21:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA0410E5B2;
-	Thu,  8 Jun 2023 13:01:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AF1610E5B5;
+	Thu,  8 Jun 2023 13:21:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A855A10E5B2;
- Thu,  8 Jun 2023 13:01:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A0C23AADD2;
- Thu,  8 Jun 2023 13:01:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0547243850703648509=="
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74ABF10E5B5
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jun 2023 13:21:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686230510; x=1717766510;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=7LFCJpqQk3CtFV+JOHfXY2sfWnruFCxaYOEoUTkSQJU=;
+ b=eFW/8zw9HSCy2lMsLtBhFpB6UFU+bRQ+WXPW0oEefuqMm+R/bKrE/hOb
+ JtN3wSnI6LKl0SRT2kzwJOKFCHxQj/HatvqW2wa8Xang6Ot4xxqh8f0+C
+ Xe327N0AvX/SfFgAnXF3SDcAIdSUnFHKlODq8NSUw67KiX389wtuexp7g
+ zH2GVuGg7tfqVhxbdhIcHB9haApmrTmwkLBB0VXbghP8NYV60LYml+HW7
+ Slhc9C9Nytjx68xne8p1Fpxwlznbuv2/ZqS8k8hcjKAtLwo19uZ57AiQo
+ f+f2rNJq7TelwbQOZWRx+kFU1J2xcRTRMRwaQU/hF9dmCFkrWJ3/hSl9x g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="336935990"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="336935990"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 06:19:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="709979904"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="709979904"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.20.186])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 06:19:14 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: "Hansen, Dave" <dave.hansen@intel.com>, "bp@alien8.de" <bp@alien8.de>,
+ "Edgecombe, Rick P" <rick.p.edgecombe@intel.com>
+Date: Thu, 08 Jun 2023 15:19:12 +0200
+Message-ID: <3942492.ZaRXLXkqSa@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <8bcfad6697316e200f78bd13e737345dc0436404.camel@intel.com>
+References: <20230607152308.125787-2-janusz.krzysztofik@linux.intel.com>
+ <20819659.0c2gjJ1VT2@jkrzyszt-mobl2.ger.corp.intel.com>
+ <8bcfad6697316e200f78bd13e737345dc0436404.camel@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Colin Ian King" <colin.i.king@gmail.com>
-Date: Thu, 08 Jun 2023 13:01:16 -0000
-Message-ID: <168622927665.18384.4755666445563740704@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230608100722.1148771-1-colin.i.king@gmail.com>
-In-Reply-To: <20230608100722.1148771-1-colin.i.king@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/mtl=3A_Fix_spelling_mistake_=22initate=22_-=3E_=22initiat?=
- =?utf-8?q?e=22?=
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [Intel-gfx] [PATCH v2] x86/mm: Fix PAT bit missing from page
+ protection modify mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,320 +63,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Gross, Jurgen" <jgross@suse.com>, "x86@kernel.org" <x86@kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "hannes@cmpxchg.org" <hannes@cmpxchg.org>,
+ "mingo@redhat.com" <mingo@redhat.com>, "hpa@zytor.com" <hpa@zytor.com>,
+ "tglx@linutronix.de" <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0547243850703648509==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thursday, 8 June 2023 00:47:36 CEST Edgecombe, Rick P wrote:
+> On Wed, 2023-06-07 at 23:33 +0200, Janusz Krzysztofik wrote:
+> > > So since _PAGE_PSE is actually the same value as _PAGE_PAT, you
+> > > don't
+> > > actually need to have _PAGE_PSE in _HPAGE_CHG_MASK in order to get
+> > > functional correctness. Is that right?
+> > 
+> > As soon as we add _PAGE_PAT to _PAGE_CHG_MASK -- yes, that's right. 
+> > But we 
+> > may still want to add _PAGE_PSE to _HPAGE_CHG_MASK to have the need
+> > for that 
+> > bit explicitly documented.
+> 
+> _PAGE_PSE is already in _HPAGE_CHG_MASK though, right? I'm confused.
 
-== Series Details ==
+Yes, it is, sorry for confusion.  I should have said: we may still want to 
+keep _PAGE_PSE explicitly added to _HPAGE_CHK_MASK to have the reason for 
+including that bit documented.
 
-Series: drm/i915/mtl: Fix spelling mistake "initate" -> "initiate"
-URL   : https://patchwork.freedesktop.org/series/119063/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13249 -> Patchwork_119063v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/index.html
-
-Participating hosts (34 -> 35)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_119063v1:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-d-dp-1}:
-    - bat-dg2-8:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13249/bat-dg2-8/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-d-dp-1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-dg2-8/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-d-dp-1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_119063v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][5] ([i915#1886] / [i915#7913])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@migrate:
-    - bat-dg2-11:         [PASS][6] -> [DMESG-WARN][7] ([i915#7699])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13249/bat-dg2-11/igt@i915_selftest@live@migrate.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-dg2-11/igt@i915_selftest@live@migrate.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-rpls-1:         NOTRUN -> [ABORT][8] ([i915#6687] / [i915#7978])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_chamelium_frames@hdmi-crc-fast:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271]) +14 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html
-
-  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-    - bat-dg1-7:          NOTRUN -> [SKIP][10] ([i915#7828])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-dg1-7/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-adlp-9:         NOTRUN -> [SKIP][11] ([i915#3546]) +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-dg1-7:          NOTRUN -> [SKIP][12] ([i915#1845] / [i915#4078])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-dg1-7/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][13] ([fdo#109271] / [i915#4579])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/fi-kbl-soraka/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@vgem_basic@dmabuf-export:
-    - bat-atsm-1:         [PASS][14] -> [INCOMPLETE][15] ([i915#2295])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13249/bat-atsm-1/igt@vgem_basic@dmabuf-export.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-atsm-1/igt@vgem_basic@dmabuf-export.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg1-7:          [ABORT][16] ([i915#4983]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13249/bat-dg1-7/igt@i915_selftest@live@hangcheck.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-dg1-7/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-rpls-1:         [ABORT][18] ([i915#4983] / [i915#7461] / [i915#8347] / [i915#8384]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13249/bat-rpls-1/igt@i915_selftest@live@reset.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-rpls-1/igt@i915_selftest@live@reset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4423]: https://gitlab.freedesktop.org/drm/intel/issues/4423
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
-  [i915#8384]: https://gitlab.freedesktop.org/drm/intel/issues/8384
+Thanks,
+Janusz
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_13249 -> Patchwork_119063v1
-
-  CI-20190529: 20190529
-  CI_DRM_13249: e5065ee5a0b23e3f970315def269ac363bcb212f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7322: 2dd77d6d827a308caae49ce3eba759c2bab394ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_119063v1: e5065ee5a0b23e3f970315def269ac363bcb212f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-5a74f729012c drm/i915/mtl: Fix spelling mistake "initate" -> "initiate"
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/index.html
-
---===============0547243850703648509==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/mtl: Fix spelling mistake &quot;initate&quot; -&gt; &quot;initiate&quot;</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119063/">https://patchwork.freedesktop.org/series/119063/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/index.html</a></td></tr>
-
-</table>
+> 
+> > 
+> > > 
+> > > I think it is still a little hidden (even before this) and I wonder
+> > > about separating out the common bits into, like,
+> > > _COMMON_PAGE_CHG_MASK
+> > > or something. Then setting specific PAGE and HPAGE bits (like
+> > > _PAGE_PAT, _PAGE_PSE and _PAGE_PAT_LARGE) in their specific define.
+> > > Would it be more readable that way?
+> > 
+> > Yes, I think that's a good idea, and I can use it in my patch.
+> > 
+> > The question if _PAGE_PAT vel _PAGE_PSE added to _PAGE_CHG_MASK is
+> > really 
+> > harmless for pte_modify() and its users is still open for me though.
+> 
+> When you say "vel", this is similar to the english acronym "AKA" I
+> think?
+> 
+> So I think you mean, when you add _PAGE_PAT to _PAGE_CHG_MASK, you are
+> also adding _PAGE_PSE to it. So does that cause any problems? I see,
+> good question... 
+> 
+> vm_page_prot is used when creating PTEs and huge PMDs, and the setter
+> only uses _PAGE_CHG_MASK, even though it won't actually know where that
+> prot is going to end up.
+> 
+> Having _PAGE_PAT/PSE in _PAGE_CHG_MASK certainly doesn't make it easier
+> to think about. One thing it's favor though is vm_page_prot is not
+> applied to page table entries that are pointing to other page table
+> entries (PSE = 0). So you shouldn't accidentally set PSE=1. And
+> _PAGE_PSE shouldn't be being set in there, so you also shouldn't
+> accidentally be setting PAT=1.
+> 
+> But yea, I see why you are concerned. I would /guess/ it would be ok
+> functionally. That probably doesn't help much...
+> 
 
 
-    <h1>CI Bug Log - changes from CI_DRM_13249 -&gt; Patchwork_119063v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/index.html</p>
-<h2>Participating hosts (34 -&gt; 35)</h2>
-<p>Additional (1): fi-kbl-soraka </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_119063v1:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>{igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-d-dp-1}:<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13249/bat-dg2-8/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-d-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-dg2-8/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-d-dp-1.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_119063v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13249/bat-dg2-11/igt@i915_selftest@live@migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-dg2-11/igt@i915_selftest@live@migrate.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/fi-kbl-soraka/igt@kms_chamelium_frames@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +14 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-dg1-7/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-dg1-7/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/fi-kbl-soraka/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@dmabuf-export:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13249/bat-atsm-1/igt@vgem_basic@dmabuf-export.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-atsm-1/igt@vgem_basic@dmabuf-export.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13249/bat-dg1-7/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-dg1-7/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13249/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8384">i915#8384</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119063v1/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13249 -&gt; Patchwork_119063v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13249: e5065ee5a0b23e3f970315def269ac363bcb212f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7322: 2dd77d6d827a308caae49ce3eba759c2bab394ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_119063v1: e5065ee5a0b23e3f970315def269ac363bcb212f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>5a74f729012c drm/i915/mtl: Fix spelling mistake "initate" -&gt; "initiate"</p>
 
-</body>
-</html>
 
---===============0547243850703648509==--
