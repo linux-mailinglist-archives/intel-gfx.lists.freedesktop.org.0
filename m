@@ -2,33 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16C70727ECF
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 13:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03CB3727F19
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 13:43:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABACB10E05D;
-	Thu,  8 Jun 2023 11:31:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E1EE10E10C;
+	Thu,  8 Jun 2023 11:43:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BE22510E05D;
- Thu,  8 Jun 2023 11:31:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AD32DA73C7;
- Thu,  8 Jun 2023 11:31:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from 189.cn (ptr.189.cn [183.61.185.103])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D819910E05D;
+ Thu,  8 Jun 2023 11:43:30 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.41:48916.660287130
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+ by 189.cn (HERMES) with SMTP id BE9E61001E1;
+ Thu,  8 Jun 2023 19:43:24 +0800 (CST)
+Received: from  ([114.242.206.180])
+ by gateway-151646-dep-75648544bd-xwndj with ESMTP id
+ 7729ef043a1042388f426189986bb73b for alexander.deucher@amd.com; 
+ Thu, 08 Jun 2023 19:43:27 CST
+X-Transaction-ID: 7729ef043a1042388f426189986bb73b
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+From: Sui Jingfeng <15330273260@189.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Bokun Zhang <Bokun.Zhang@amd.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
+ Sui Jingfeng <suijingfeng@loongson.cn>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>,
+ Yishai Hadas <yishaih@nvidia.com>, Abhishek Sahu <abhsahu@nvidia.com>,
+ Yi Liu <yi.l.liu@intel.com>
+Date: Thu,  8 Jun 2023 19:43:18 +0800
+Message-Id: <20230608114322.604887-1-15330273260@189.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Date: Thu, 08 Jun 2023 11:31:57 -0000
-Message-ID: <168622391770.18387.7079563515623261993@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230608093218.511280-1-arun.r.murthy@intel.com>
-In-Reply-To: <20230608093218.511280-1-arun.r.murthy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/display/dp=3A_On_AUX_xfer_timeout_restart_freshly_?=
- =?utf-8?b?KHJldjIp?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/4] PCI/VGA: introduce is_boot_device
+ function callback to vga_client_register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,30 +70,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-Series: drm/i915/display/dp: On AUX xfer timeout restart freshly (rev2)
-URL   : https://patchwork.freedesktop.org/series/119055/
-State : warning
+Patch 1,2 and 3 do basic clean up to the vgaarb module.
+Patch 4 introduce is_boot_device function callback to vga_client_register
 
-== Summary ==
+Sui Jingfeng (4):
+  PCI/VGA: tidy up the code and comment format
+  PCI/VGA: Use unsigned type for the io_state variable
+  PCI/VGA: only deal with VGA class devices
+  PCI/VGA: introduce is_boot_device function callback to
+    vga_client_register
 
-Error: dim checkpatch failed
-2a1723da181b drm/i915/display/dp: On AUX xfer timeout restart freshly
--:6: WARNING:TYPO_SPELLING: 'begining' may be misspelled - perhaps 'beginning'?
-#6: 
-At the begining of the aux transfer a check for aux control busy bit is
-       ^^^^^^^^
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_vga.c   |  3 +-
+ drivers/gpu/drm/nouveau/nouveau_vga.c      |  2 +-
+ drivers/gpu/drm/radeon/radeon_device.c     |  2 +-
+ drivers/pci/vgaarb.c                       | 72 +++++++++++++---------
+ drivers/vfio/pci/vfio_pci_core.c           |  2 +-
+ include/linux/vgaarb.h                     | 16 ++---
+ 7 files changed, 57 insertions(+), 42 deletions(-)
 
--:79: CHECK:BRACES: Unbalanced braces around else statement
-#79: FILE: drivers/gpu/drm/i915/display/intel_dp_aux.c:304:
-+				} else
-
-total: 0 errors, 1 warnings, 1 checks, 72 lines checked
-
+-- 
+2.25.1
 
