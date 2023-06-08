@@ -2,69 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D62727C55
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 12:07:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95802727CB3
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jun 2023 12:24:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D17C10E5A8;
-	Thu,  8 Jun 2023 10:07:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D36710E410;
+	Thu,  8 Jun 2023 10:24:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEE9C10E5A4;
- Thu,  8 Jun 2023 10:07:25 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id
- ffacd0b85a97d-30e53cacc10so289874f8f.0; 
- Thu, 08 Jun 2023 03:07:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1686218844; x=1688810844;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=e9pgMIbtNGvt+dZacrjStBRF6ycRamKEcgmVWNACzbk=;
- b=B6VsdJXuVBxjoRidl/rWXx6lyaYIQFvp6tWrCs2klKJkfmNI5IfqRB3FYJE9QNs7XZ
- VQPgYaeyFzIYXB5Qpd/UPFXCdx1Tt4cK2F0Yg+wx1WstWHbLwafT2d40KyEmd2oKkwYA
- 3bxFngz+IU0+Thmfq3uXmK/BY/AWKCJVbkrTotOodhq24zTiVThPtuYwc9t6S6rKfFp2
- pF+8vUbFK+BP92TFQDj+8Rjr/GiO0xtV0yygankwhNC7hAIMpLN9emUgK+APb6Lc1MuH
- CLfmfwi9lWlB/u3pQfxTOqJCt4IWpB/1eObhNw/6SceyHfK9l0c0S+97IU3Yahb7pTwG
- gfIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686218844; x=1688810844;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=e9pgMIbtNGvt+dZacrjStBRF6ycRamKEcgmVWNACzbk=;
- b=ZgrM7DCTOdkfGmf6jRz6O+YisTf+X/CXQ8SpZp/p4ABeq7KJQGC73G0zkxInWACckZ
- rk87CDPcv2GayvROS+Vl+NYC+R01o+6ITMegpQHbOExgvtUR3s2dzhvc6S09xYv+X9we
- pfwycEIYwiaoStFUfiz+uQN6ZE2SxZTL6algPmlnBd9cJ3L6TnCSYMuFdLbYKJDqT+fa
- sj0cSF9MT3bMRFFnHdSFBRd8W7hP5fhcdESH0SdoETZ15noScMSn41le2qGVJs0XJxTC
- iKa9M0goXUmOmV6opxXx+5adVjTQymHmjgNHu213P4/GFigM9GeP9njGnR28Sxl23pNt
- tsxQ==
-X-Gm-Message-State: AC+VfDzAH08J6CyjXsPQE3oQyRn21edTNSmJES+KTzW1QPDsissUiiGV
- +2azr8AFZxTS3U281J2AOm8=
-X-Google-Smtp-Source: ACHHUZ5UbkzYfeP23mP06MNOclTBsL8+JGEjJfF81Bk0/Obd6/6ehp942TML9tFOWhsksM+sPC42jA==
-X-Received: by 2002:adf:ee8e:0:b0:30e:3da5:46e5 with SMTP id
- b14-20020adfee8e000000b0030e3da546e5mr7274154wro.59.1686218843798; 
- Thu, 08 Jun 2023 03:07:23 -0700 (PDT)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
- [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
- q3-20020adff503000000b002ca864b807csm1141756wro.0.2023.06.08.03.07.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 Jun 2023 03:07:23 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Gustavo Sousa <gustavo.sousa@intel.com>, intel-gfx@lists.freedesktop.org,
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1630E10E410;
+ Thu,  8 Jun 2023 10:24:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686219870; x=1717755870;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=0kSBNlHK2bsytGA9aO1JMLSbfCDZkZdpa9AQY9EE1gA=;
+ b=mh5fSYyqHeJVeUlqeFP8Qyt615icAgtmorFpXbOeCuaxApmUjov2I2xQ
+ d5MjA9FtyM21lni0y5SW5BV24ssMVuENx5QX4mKIw9wwDQyTQFMspf9yP
+ wQGHISu/Ur/fxl0BFRxRewHr0ZEjDKoUWHd9/J9eqtXdzdTHAjstidecY
+ S5drux9AOv1OiqIipJql4mSiaIrmqQTzly2sS9Nxmp4GUIU0r/NVDsrJY
+ pTQp/XCiyeDQb+rh4I/KHUELk0+kWMyzPQeLtLuG3xJCAtU/9KwN0ZQ0I
+ 2D8l3NN/YAcE5Gt03XOWbmMkUC8tX5wHQXwZFXhWxhsFQjpeVpLbzCKm4 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="443637479"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="443637479"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 03:24:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="713068553"
+X-IronPort-AV: E=Sophos;i="6.00,226,1681196400"; d="scan'208";a="713068553"
+Received: from unknown (HELO localhost) ([10.237.66.162])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 03:24:26 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Colin Ian King <colin.i.king@gmail.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Gustavo Sousa
+ <gustavo.sousa@intel.com>, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Date: Thu,  8 Jun 2023 11:07:22 +0100
-Message-Id: <20230608100722.1148771-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230608100722.1148771-1-colin.i.king@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230608100722.1148771-1-colin.i.king@gmail.com>
+Date: Thu, 08 Jun 2023 13:24:23 +0300
+Message-ID: <87h6ris148.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH][next] drm/i915/mtl: Fix spelling mistake
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH][next] drm/i915/mtl: Fix spelling mistake
  "initate" -> "initiate"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,26 +67,30 @@ Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is a spelling mistake in a drm_dbg_kms message. Fix it.
+On Thu, 08 Jun 2023, Colin Ian King <colin.i.king@gmail.com> wrote:
+> There is a spelling mistake in a drm_dbg_kms message. Fix it.
+>
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_pmdemand.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index f7608d363634..f59e1e962e3d 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -555,7 +555,7 @@ intel_pmdemand_program_params(struct drm_i915_private *i915,
- 		goto unlock;
- 
- 	drm_dbg_kms(&i915->drm,
--		    "initate pmdemand request values: (0x%x 0x%x)\n",
-+		    "initiate pmdemand request values: (0x%x 0x%x)\n",
- 		    mod_reg1, mod_reg2);
- 
- 	intel_de_rmw(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1), 0,
+> ---
+>  drivers/gpu/drm/i915/display/intel_pmdemand.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+> index f7608d363634..f59e1e962e3d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+> @@ -555,7 +555,7 @@ intel_pmdemand_program_params(struct drm_i915_private *i915,
+>  		goto unlock;
+>  
+>  	drm_dbg_kms(&i915->drm,
+> -		    "initate pmdemand request values: (0x%x 0x%x)\n",
+> +		    "initiate pmdemand request values: (0x%x 0x%x)\n",
+>  		    mod_reg1, mod_reg2);
+>  
+>  	intel_de_rmw(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1), 0,
+
 -- 
-2.30.2
-
+Jani Nikula, Intel Open Source Graphics Center
