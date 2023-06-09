@@ -1,50 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08001729AEC
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 15:03:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22A97729B45
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 15:15:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A2248911F;
-	Fri,  9 Jun 2023 13:03:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0570A10E6A1;
+	Fri,  9 Jun 2023 13:15:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D476610E69D
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jun 2023 13:03:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686315803; x=1717851803;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=B9j6KPnGI5sD7s8Q0BlmWPjFLlcPwmzNWwIAy7uvtPw=;
- b=FmH19j6YEJ0vSLUZwlzBI5MsLcCsQrND+BNjCnj1Ni4evGsBeV/WjjLB
- LKiMnGXRifB5Mfsp65gtGZpef6CpDA56MqpQ7NtwWNhTb5bptITeLXw6W
- FZrAF3e2fILPhnABOkB16h0Jey4w4m2iIcGPbCk/ibTX0bIF2PzBe+FMq
- vetEtBD8Mk3EyPK2O4cSSX+tRZtR+Do6u0X4pq/5NlFp4r5yKwY+DAo/A
- waFPnX2ms0rNY6NJRvS4jRNsnqO4+SJ5ZGd/ZUW1S0g41aM5erTTspOeu
- HKciJBTmYLFpjxoesbK115BK5WQGRxZzyNu+B50xASOzKh4k8Sx4JiBMX g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="337226252"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="337226252"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 06:03:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="710356718"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="710356718"
-Received: from pdrab-mobl1.ger.corp.intel.com (HELO
- jkrzyszt-mobl2.ger.corp.intel.com) ([10.213.11.29])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 06:03:19 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>
-Date: Fri,  9 Jun 2023 15:01:41 +0200
-Message-ID: <20230609130140.182781-2-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B3D210E6D0
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jun 2023 13:15:50 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 8C7A91FDF3;
+ Fri,  9 Jun 2023 13:15:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1686316548; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Yo4cl1WAqmybln6WLAf5iaMaSZ3/6pIFafYp/P84fXQ=;
+ b=NjHXkgiI4CQeWO5uSSZ6zaXykMG+1bBCBHV0fT42czfctMKbc0y4NEV4vOWk5oeQOSzwhI
+ mX0SGL2nrveba4HuIkpl9KLsNzZX8SvQ32DQlZgX5eO8nZK81xeFs6mwcix1jwtsGAeZmo
+ ME2NiytyyZr5fEyvDKgt6t9zDNa4VY4=
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 372E013A47;
+ Fri,  9 Jun 2023 13:15:48 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id u1z+CwQmg2QkUgAAMHmgww
+ (envelope-from <jgross@suse.com>); Fri, 09 Jun 2023 13:15:48 +0000
+Message-ID: <4f9b820e-4f6b-0547-6422-16a863435604@suse.com>
+Date: Fri, 9 Jun 2023 15:15:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] x86/mm: Fix PAT bit missing from page
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>
+References: <20230609130140.182781-2-janusz.krzysztofik@linux.intel.com>
+Content-Language: en-US
+From: Juergen Gross <jgross@suse.com>
+In-Reply-To: <20230609130140.182781-2-janusz.krzysztofik@linux.intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------f0Jyu9YOJsOJQgEzdLNf0MFE"
+Subject: Re: [Intel-gfx] [PATCH v3] x86/mm: Fix PAT bit missing from page
  protection modify mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,115 +63,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>, intel-gfx@lists.freedesktop.org,
- x86@kernel.org, linux-kernel@vger.kernel.org,
- =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
- <marmarek@invisiblethingslab.com>, Ingo Molnar <mingo@redhat.com>,
- "H. Peter Anvin" <hpa@zytor.com>, Thomas Gleixner <tglx@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, x86@kernel.org,
+ linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Marek_Marczykowski-G=c3=b3recki?= <marmarek@invisiblethingslab.com>,
+ Ingo Molnar <mingo@redhat.com>, "H. Peter Anvin" <hpa@zytor.com>,
+ Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Visible glitches have been observed when running graphics applications on
-Linux under Xen hypervisor.  Those observations have been confirmed with
-failures from kms_pwrite_crc Intel GPU test that verifies data coherency
-of DRM frame buffer objects using hardware CRC checksums calculated by
-display controllers, exposed to userspace via debugfs.  Affected
-processing paths have then been identified with new IGT test variants that
-mmap the objects using different methods and caching modes [1].
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------f0Jyu9YOJsOJQgEzdLNf0MFE
+Content-Type: multipart/mixed; boundary="------------y20Gc09UE3OiN5pMc4DCC0Bv";
+ protected-headers="v1"
+From: Juergen Gross <jgross@suse.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>,
+ linux-kernel@vger.kernel.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Marek_Marczykowski-G=c3=b3recki?= <marmarek@invisiblethingslab.com>
+Message-ID: <4f9b820e-4f6b-0547-6422-16a863435604@suse.com>
+Subject: Re: [PATCH v3] x86/mm: Fix PAT bit missing from page protection
+ modify mask
+References: <20230609130140.182781-2-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20230609130140.182781-2-janusz.krzysztofik@linux.intel.com>
 
-When running as a Xen PV guest, Linux uses Xen provided PAT configuration
-which is different from its native one.  In particular, Xen specific PTE
-encoding of write-combining caching, likely used by graphics applications,
-differs from the Linux default one found among statically defined minimal
-set of supported modes.  Since Xen defines PTE encoding of the WC mode as
-_PAGE_PAT, it no longer belongs to the minimal set, depends on correct
-handling of _PAGE_PAT bit, and can be mismatched with write-back caching.
+--------------y20Gc09UE3OiN5pMc4DCC0Bv
+Content-Type: multipart/mixed; boundary="------------1DoquptYreU3XTkw7uD0Ps6l"
 
-When a user calls mmap() for a DRM buffer object, DRM device specific
-.mmap file operation, called from mmap_region(), takes care of setting PTE
-encoding bits in a vm_page_prot field of an associated virtual memory area
-structure.  Unfortunately, _PAGE_PAT bit is not preserved when the vma's
-.vm_flags are then applied to .vm_page_prot via vm_set_page_prot().  Bits
-to be preserved are determined with _PAGE_CHG_MASK symbol that doesn't
-cover _PAGE_PAT.  As a consequence, WB caching is requested instead of WC
-when running under Xen (also, WP is silently changed to WT, and UC
-downgraded to UC_MINUS).  When running on bare metal, WC is not affected,
-but WP and WT extra modes are unintentionally replaced with WC and UC,
-respectively.
+--------------1DoquptYreU3XTkw7uD0Ps6l
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-WP and WT modes, encoded with _PAGE_PAT bit set, were introduced by commit
-281d4078bec3 ("x86: Make page cache mode a real type").  Care was taken
-to extend _PAGE_CACHE_MASK symbol with that additional bit, but that
-symbol has never been used for identification of bits preserved when
-applying page protection flags.  Support for all cache modes under Xen,
-including the problematic WC mode, was then introduced by commit
-47591df50512 ("xen: Support Xen pv-domains using PAT").
+T24gMDkuMDYuMjMgMTU6MDEsIEphbnVzeiBLcnp5c3p0b2ZpayB3cm90ZToNCj4gVmlzaWJs
+ZSBnbGl0Y2hlcyBoYXZlIGJlZW4gb2JzZXJ2ZWQgd2hlbiBydW5uaW5nIGdyYXBoaWNzIGFw
+cGxpY2F0aW9ucyBvbg0KPiBMaW51eCB1bmRlciBYZW4gaHlwZXJ2aXNvci4gIFRob3NlIG9i
+c2VydmF0aW9ucyBoYXZlIGJlZW4gY29uZmlybWVkIHdpdGgNCj4gZmFpbHVyZXMgZnJvbSBr
+bXNfcHdyaXRlX2NyYyBJbnRlbCBHUFUgdGVzdCB0aGF0IHZlcmlmaWVzIGRhdGEgY29oZXJl
+bmN5DQo+IG9mIERSTSBmcmFtZSBidWZmZXIgb2JqZWN0cyB1c2luZyBoYXJkd2FyZSBDUkMg
+Y2hlY2tzdW1zIGNhbGN1bGF0ZWQgYnkNCj4gZGlzcGxheSBjb250cm9sbGVycywgZXhwb3Nl
+ZCB0byB1c2Vyc3BhY2UgdmlhIGRlYnVnZnMuICBBZmZlY3RlZA0KPiBwcm9jZXNzaW5nIHBh
+dGhzIGhhdmUgdGhlbiBiZWVuIGlkZW50aWZpZWQgd2l0aCBuZXcgSUdUIHRlc3QgdmFyaWFu
+dHMgdGhhdA0KPiBtbWFwIHRoZSBvYmplY3RzIHVzaW5nIGRpZmZlcmVudCBtZXRob2RzIGFu
+ZCBjYWNoaW5nIG1vZGVzIFsxXS4NCj4gDQo+IFdoZW4gcnVubmluZyBhcyBhIFhlbiBQViBn
+dWVzdCwgTGludXggdXNlcyBYZW4gcHJvdmlkZWQgUEFUIGNvbmZpZ3VyYXRpb24NCj4gd2hp
+Y2ggaXMgZGlmZmVyZW50IGZyb20gaXRzIG5hdGl2ZSBvbmUuICBJbiBwYXJ0aWN1bGFyLCBY
+ZW4gc3BlY2lmaWMgUFRFDQo+IGVuY29kaW5nIG9mIHdyaXRlLWNvbWJpbmluZyBjYWNoaW5n
+LCBsaWtlbHkgdXNlZCBieSBncmFwaGljcyBhcHBsaWNhdGlvbnMsDQo+IGRpZmZlcnMgZnJv
+bSB0aGUgTGludXggZGVmYXVsdCBvbmUgZm91bmQgYW1vbmcgc3RhdGljYWxseSBkZWZpbmVk
+IG1pbmltYWwNCj4gc2V0IG9mIHN1cHBvcnRlZCBtb2Rlcy4gIFNpbmNlIFhlbiBkZWZpbmVz
+IFBURSBlbmNvZGluZyBvZiB0aGUgV0MgbW9kZSBhcw0KPiBfUEFHRV9QQVQsIGl0IG5vIGxv
+bmdlciBiZWxvbmdzIHRvIHRoZSBtaW5pbWFsIHNldCwgZGVwZW5kcyBvbiBjb3JyZWN0DQo+
+IGhhbmRsaW5nIG9mIF9QQUdFX1BBVCBiaXQsIGFuZCBjYW4gYmUgbWlzbWF0Y2hlZCB3aXRo
+IHdyaXRlLWJhY2sgY2FjaGluZy4NCj4gDQo+IFdoZW4gYSB1c2VyIGNhbGxzIG1tYXAoKSBm
+b3IgYSBEUk0gYnVmZmVyIG9iamVjdCwgRFJNIGRldmljZSBzcGVjaWZpYw0KPiAubW1hcCBm
+aWxlIG9wZXJhdGlvbiwgY2FsbGVkIGZyb20gbW1hcF9yZWdpb24oKSwgdGFrZXMgY2FyZSBv
+ZiBzZXR0aW5nIFBURQ0KPiBlbmNvZGluZyBiaXRzIGluIGEgdm1fcGFnZV9wcm90IGZpZWxk
+IG9mIGFuIGFzc29jaWF0ZWQgdmlydHVhbCBtZW1vcnkgYXJlYQ0KPiBzdHJ1Y3R1cmUuICBV
+bmZvcnR1bmF0ZWx5LCBfUEFHRV9QQVQgYml0IGlzIG5vdCBwcmVzZXJ2ZWQgd2hlbiB0aGUg
+dm1hJ3MNCj4gLnZtX2ZsYWdzIGFyZSB0aGVuIGFwcGxpZWQgdG8gLnZtX3BhZ2VfcHJvdCB2
+aWEgdm1fc2V0X3BhZ2VfcHJvdCgpLiAgQml0cw0KPiB0byBiZSBwcmVzZXJ2ZWQgYXJlIGRl
+dGVybWluZWQgd2l0aCBfUEFHRV9DSEdfTUFTSyBzeW1ib2wgdGhhdCBkb2Vzbid0DQo+IGNv
+dmVyIF9QQUdFX1BBVC4gIEFzIGEgY29uc2VxdWVuY2UsIFdCIGNhY2hpbmcgaXMgcmVxdWVz
+dGVkIGluc3RlYWQgb2YgV0MNCj4gd2hlbiBydW5uaW5nIHVuZGVyIFhlbiAoYWxzbywgV1Ag
+aXMgc2lsZW50bHkgY2hhbmdlZCB0byBXVCwgYW5kIFVDDQo+IGRvd25ncmFkZWQgdG8gVUNf
+TUlOVVMpLiAgV2hlbiBydW5uaW5nIG9uIGJhcmUgbWV0YWwsIFdDIGlzIG5vdCBhZmZlY3Rl
+ZCwNCj4gYnV0IFdQIGFuZCBXVCBleHRyYSBtb2RlcyBhcmUgdW5pbnRlbnRpb25hbGx5IHJl
+cGxhY2VkIHdpdGggV0MgYW5kIFVDLA0KPiByZXNwZWN0aXZlbHkuDQo+IA0KPiBXUCBhbmQg
+V1QgbW9kZXMsIGVuY29kZWQgd2l0aCBfUEFHRV9QQVQgYml0IHNldCwgd2VyZSBpbnRyb2R1
+Y2VkIGJ5IGNvbW1pdA0KPiAyODFkNDA3OGJlYzMgKCJ4ODY6IE1ha2UgcGFnZSBjYWNoZSBt
+b2RlIGEgcmVhbCB0eXBlIikuICBDYXJlIHdhcyB0YWtlbg0KPiB0byBleHRlbmQgX1BBR0Vf
+Q0FDSEVfTUFTSyBzeW1ib2wgd2l0aCB0aGF0IGFkZGl0aW9uYWwgYml0LCBidXQgdGhhdA0K
+PiBzeW1ib2wgaGFzIG5ldmVyIGJlZW4gdXNlZCBmb3IgaWRlbnRpZmljYXRpb24gb2YgYml0
+cyBwcmVzZXJ2ZWQgd2hlbg0KPiBhcHBseWluZyBwYWdlIHByb3RlY3Rpb24gZmxhZ3MuICBT
+dXBwb3J0IGZvciBhbGwgY2FjaGUgbW9kZXMgdW5kZXIgWGVuLA0KPiBpbmNsdWRpbmcgdGhl
+IHByb2JsZW1hdGljIFdDIG1vZGUsIHdhcyB0aGVuIGludHJvZHVjZWQgYnkgY29tbWl0DQo+
+IDQ3NTkxZGY1MDUxMiAoInhlbjogU3VwcG9ydCBYZW4gcHYtZG9tYWlucyB1c2luZyBQQVQi
+KS4NCj4gDQo+IFRoZSBpc3N1ZSBuZWVkcyB0byBiZSBmaXhlZCBieSBpbmNsdWRpbmcgX1BB
+R0VfUEFUIGJpdCBpbnRvIGEgYml0bWFzayB1c2VkDQo+IGJ5IHBncHJvdF9tb2RpZnkoKSBm
+b3Igc2VsZWN0aW5nIGJpdHMgdG8gYmUgcHJlc2VydmVkLiAgV2UgY2FuIGRvIHRoYXQNCj4g
+ZWl0aGVyIGludGVybmFsbHkgdG8gcGdwcm90X21vZGlmeSgpIChhcyBpbml0aWFsbHkgcHJv
+cG9zZWQpLCBvciBieSBtYWtpbmcNCj4gX1BBR0VfUEFUIGEgcGFydCBvZiBfUEFHRV9DSEdf
+TUFTSy4gIElmIHdlIGdvIGZvciB0aGUgbGF0dGVyIHRoZW4sIHNpbmNlDQo+IF9QQUdFX1BB
+VCBpcyB0aGUgc2FtZSBhcyBfUEFHRV9QU0UsIHdlIG5lZWQgdG8gbm90ZSB0aGF0IF9IUEFH
+RV9DSEdfTUFTSw0KPiAtLSBhIGh1Z2UgcG1kcycgY291bnRlcnBhcnQgb2YgX1BBR0VfQ0hH
+X01BU0ssIGludHJvZHVjZWQgYnkgY29tbWl0DQo+IGM0ODlmMTI1N2I4YyAoInRocDogYWRk
+IHBtZF9tb2RpZnkiKSwgZGVmaW5lZCBhcyAoX1BBR0VfQ0hHX01BU0sgfA0KPiBfUEFHRV9Q
+U0UpIC0tIHdpbGwgbm8gbG9uZ2VyIGRpZmZlciBmcm9tIF9QQUdFX0NIR19NQVNLLiAgSWYg
+c3VjaA0KPiBtb2RpZmljYXRpb24gb2YgX1BBR0VfQ0hHX01BU0sgd2FzIGlycmVsZXZhbnQg
+dG8gaXRzIHVzZXJzIHRoZW4gb25lIG1pZ2h0DQo+IHdvbmRlciB3aHkgdGhhdCBuZXcgX0hQ
+QUdFX0NIR19NQVNLIHN5bWJvbCB3YXMgaW50cm9kdWNlZCBpbnN0ZWFkIG9mDQo+IHJldXNp
+bmcgdGhlIGV4aXN0aW5nIG9uZSB3aXRoIHRoYXQgb3RoZXJ3aXNlIGlycmVsZXZhbnQgYml0
+IChfUEFHRV9QU0UgaW4NCj4gdGhhdCBjYXNlKSBhZGRlZC4NCj4gDQo+IEFzc3VtZSB0aGF0
+IGFkZGluZyBfUEFHRV9QQVQgdG8gX1BBR0VfQ0hHX01BU0sgZG9lc24ndCBicmVhayBwdGVf
+bW9kaWZ5KCkNCj4gYW5kIGl0cyB1c2VycywgYW5kIGdvIGZvciBpdC4gIEFsc28sIGFkZCBf
+UEFHRV9QQVRfTEFSR0UgdG8NCj4gX0hQQUdFX0NIR19NQVNLIGZvciBzeW1tZXRyeS4gIEZv
+ciBiZXR0ZXIgY2xhcml0eSwgc3BsaXQgb3V0IGNvbW1vbiBiaXRzDQo+IGZyb20gYm90aCBz
+eW1ib2xzIHRvIGFub3RoZXIgb25lIGFuZCB1c2UgaXQgdG9nZXRoZXIgd2l0aCBzcGVjaWZp
+YyBiaXRzDQo+IHdoZW4gZGVmaW5pbmcgdGhlIG1hc2tzLg0KPiANCj4gdjM6IFNlcGFyYXRl
+IG91dCBjb21tb24gYml0cyBvZiBfUEFHRV9DSEdfTUFTSyBhbmQgX0hQQUdFX0NIR19NQVNL
+IGludG8NCj4gICAgICBfQ09NTU9OX1BBR0VfQ0hHX01BU0sgKFJpY2spLA0KPiAgICAtIGZp
+eCBoYXJkIHRvIHBhcnNlIHdvcmRpbmcgb2YgJ3doYXQnIHBhcnQgb2YgY29tbWl0IGRlc2Ny
+aXB0aW9uIChvbg0KPiAgICAgIERhdmUncyByZXF1ZXN0KS4NCj4gdjI6IEtlZXAgcGdwcm90
+X21vZGlmeSgpIHVudG91Y2hlZCwgbWFrZSBfUEFHRV9QQVQgcGFydCBvZiBfUEFHRV9DSEdf
+TUFTSw0KPiAgICAgIGluc3RlYWQgKEJvcmlzbGF2KSwNCj4gICAgLSBhbHNvIGFkZCBfUEFH
+RV9QQVRfTEFSR0UgdG8gX0hQQUdFX0NIR19NQVNLIChKdWVyZ2VuKS4NCj4gDQo+IFsxXSBo
+dHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2lndC1ncHUtdG9vbHMvLS9jb21t
+aXQvMGYwNzU0NDEzZjE0DQo+IA0KPiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNr
+dG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMvNzY0OA0KPiBGaXhlczogMjgxZDQwNzhiZWMz
+ICgieDg2OiBNYWtlIHBhZ2UgY2FjaGUgbW9kZSBhIHJlYWwgdHlwZSIpDQo+IFNpZ25lZC1v
+ZmYtYnk6IEphbnVzeiBLcnp5c3p0b2ZpayA8amFudXN6LmtyenlzenRvZmlrQGxpbnV4Lmlu
+dGVsLmNvbT4NCj4gVGVzdGVkLWJ5OiBNYXJlayBNYXJjenlrb3dza2ktR8OzcmVja2kgPG1h
+cm1hcmVrQGludmlzaWJsZXRoaW5nc2xhYi5jb20+DQo+IFJldmlld2VkLWJ5OiBBbmRpIFNo
+eXRpIDxhbmRpLnNoeXRpQGxpbnV4LmludGVsLmNvbT4NCj4gQWNrZWQtYnk6IEp1ZXJnZW4g
+R3Jvc3MgPGpncm9zc0BzdXNlLmNvbT4gIyB2MQ0KPiBDYzogQm9yaXNsYXYgUGV0a292IDxi
+cEBhbGllbjguZGU+DQo+IENjOiBEYXZlIEhhbnNlbiA8ZGF2ZS5oYW5zZW5AaW50ZWwuY29t
+Pg0KPiBDYzogIkVkZ2Vjb21iZSwgUmljayBQIiA8cmljay5wLmVkZ2Vjb21iZUBpbnRlbC5j
+b20+DQo+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnICMgdjMuMTkrDQoNClJldmlld2Vk
+LWJ5OiBKdWVyZ2VuIEdyb3NzIDxqZ3Jvc3NAc3VzZS5jb20+DQoNCg0KSnVlcmdlbg0KDQo=
 
-The issue needs to be fixed by including _PAGE_PAT bit into a bitmask used
-by pgprot_modify() for selecting bits to be preserved.  We can do that
-either internally to pgprot_modify() (as initially proposed), or by making
-_PAGE_PAT a part of _PAGE_CHG_MASK.  If we go for the latter then, since
-_PAGE_PAT is the same as _PAGE_PSE, we need to note that _HPAGE_CHG_MASK
--- a huge pmds' counterpart of _PAGE_CHG_MASK, introduced by commit
-c489f1257b8c ("thp: add pmd_modify"), defined as (_PAGE_CHG_MASK |
-_PAGE_PSE) -- will no longer differ from _PAGE_CHG_MASK.  If such
-modification of _PAGE_CHG_MASK was irrelevant to its users then one might
-wonder why that new _HPAGE_CHG_MASK symbol was introduced instead of
-reusing the existing one with that otherwise irrelevant bit (_PAGE_PSE in
-that case) added.
+--------------1DoquptYreU3XTkw7uD0Ps6l
+Content-Type: application/pgp-keys; name="OpenPGP_0xB0DE9DD628BF132F.asc"
+Content-Disposition: attachment; filename="OpenPGP_0xB0DE9DD628BF132F.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
 
-Assume that adding _PAGE_PAT to _PAGE_CHG_MASK doesn't break pte_modify()
-and its users, and go for it.  Also, add _PAGE_PAT_LARGE to
-_HPAGE_CHG_MASK for symmetry.  For better clarity, split out common bits
-from both symbols to another one and use it together with specific bits
-when defining the masks.
+-----BEGIN PGP PUBLIC KEY BLOCK-----
 
-v3: Separate out common bits of _PAGE_CHG_MASK and _HPAGE_CHG_MASK into
-    _COMMON_PAGE_CHG_MASK (Rick),
-  - fix hard to parse wording of 'what' part of commit description (on
-    Dave's request).
-v2: Keep pgprot_modify() untouched, make _PAGE_PAT part of _PAGE_CHG_MASK
-    instead (Borislav),
-  - also add _PAGE_PAT_LARGE to _HPAGE_CHG_MASK (Juergen).
+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
+jR/i1DG86lem3iBDXzXsZDn8R38=3D
+=3D2wuH
+-----END PGP PUBLIC KEY BLOCK-----
 
-[1] https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/0f0754413f14
+--------------1DoquptYreU3XTkw7uD0Ps6l--
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7648
-Fixes: 281d4078bec3 ("x86: Make page cache mode a real type")
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Tested-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Acked-by: Juergen Gross <jgross@suse.com> # v1
-Cc: Borislav Petkov <bp@alien8.de>
-Cc: Dave Hansen <dave.hansen@intel.com>
-Cc: "Edgecombe, Rick P" <rick.p.edgecombe@intel.com>
-Cc: stable@vger.kernel.org # v3.19+
----
- arch/x86/include/asm/pgtable_types.h | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+--------------y20Gc09UE3OiN5pMc4DCC0Bv--
 
-diff --git a/arch/x86/include/asm/pgtable_types.h b/arch/x86/include/asm/pgtable_types.h
-index 447d4bee25c48..97533e6b1c61b 100644
---- a/arch/x86/include/asm/pgtable_types.h
-+++ b/arch/x86/include/asm/pgtable_types.h
-@@ -125,11 +125,12 @@
-  * instance, and is *not* included in this mask since
-  * pte_modify() does modify it.
-  */
--#define _PAGE_CHG_MASK	(PTE_PFN_MASK | _PAGE_PCD | _PAGE_PWT |		\
--			 _PAGE_SPECIAL | _PAGE_ACCESSED | _PAGE_DIRTY |	\
--			 _PAGE_SOFT_DIRTY | _PAGE_DEVMAP | _PAGE_ENC |  \
--			 _PAGE_UFFD_WP)
--#define _HPAGE_CHG_MASK (_PAGE_CHG_MASK | _PAGE_PSE)
-+#define _COMMON_PAGE_CHG_MASK	(PTE_PFN_MASK | _PAGE_PCD | _PAGE_PWT |	       \
-+				 _PAGE_SPECIAL | _PAGE_ACCESSED | _PAGE_DIRTY |\
-+				 _PAGE_SOFT_DIRTY | _PAGE_DEVMAP | _PAGE_ENC | \
-+				 _PAGE_UFFD_WP)
-+#define _PAGE_CHG_MASK	(_COMMON_PAGE_CHG_MASK | _PAGE_PAT)
-+#define _HPAGE_CHG_MASK (_COMMON_PAGE_CHG_MASK | _PAGE_PSE | _PAGE_PAT_LARGE)
- 
- /*
-  * The cache modes defined here are used to translate between pure SW usage
--- 
-2.41.0
+--------------f0Jyu9YOJsOJQgEzdLNf0MFE
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
+-----BEGIN PGP SIGNATURE-----
+
+wsB5BAABCAAjFiEEhRJncuj2BJSl0Jf3sN6d1ii/Ey8FAmSDJgMFAwAAAAAACgkQsN6d1ii/Ey8l
+cggAgiU5NRc9SSU8E4eys2nUYYyaDRXpsyUVMLUF9nn8VGXYQaoDto563gf0rLj4Wrh59Dsz5BpH
+WEtGAMJJkMGN5eX7ED52ryg73g5M3sJsBx4eumJfU6x3OWOJctSvlGf7S/K2BJ5nHvHdcpngYetR
+SFAqmzXJfC1LZKLpBINK4wreJX3g3S50+i3UOX0eKcGWpYarBs/w31cqvaFDeP9UXuMJ/GJHdsE6
+wBHXPP3qSzR7lxaR+v8BaUHkEHLJF8BqumyoICkocmuBAtWjlZ3Z01z8DzRpDrPwaz84LKToWAGk
+ChdD/2/igaRAY3v0b8MFA/dugly3klNQnNdeUnZCsw==
+=3+6Q
+-----END PGP SIGNATURE-----
+
+--------------f0Jyu9YOJsOJQgEzdLNf0MFE--
