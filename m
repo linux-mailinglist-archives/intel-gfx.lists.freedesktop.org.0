@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4584729C82
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 16:14:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 385B1729C83
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 16:14:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 042DD10E6C0;
-	Fri,  9 Jun 2023 14:14:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68A8610E6C3;
+	Fri,  9 Jun 2023 14:14:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05E0110E6C0
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jun 2023 14:14:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE7C10E6C3
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jun 2023 14:14:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686320084; x=1717856084;
+ t=1686320088; x=1717856088;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=TlWk0IEGh86nBHZ18xQ8uGb0uh1w6XaVJYPl/YFBPqo=;
- b=jiPnrtN7l/3LLgA1y26l2KD6n76LWt1CFp/RJHEE+muD0FbwOTbW3LWW
- o0xB931s8m56pDnsDazoyj1oQmXunUapx2MaNulYXdq4L+AegSBWdHGFd
- mF0t//qOkjjoCR5FMq24mOTZho6zHXe+0g/wjBry2nTYaDPM6Kfnl7SpR
- YW08T6mWqpWSxzh0XGuj5yDoCz2pWNVW4+AoQtQRFMrCtD1lJpbQKpPgA
- 3mIKKiv48jhLmuhK1fdFVKaxhh+JiDJeNe6LWWLNI74VGfziSjW7EGtYK
- hHAazOAeH7dQ3OfNGvOElZkH/1u0yKvx5nrW5S/pWtEMLpH+UG/acMcWf A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="385966581"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="385966581"
+ bh=a2JJMHX9edtYLrZtXZ38VIlwC7FW8uoXAIOffnWBG1s=;
+ b=Q6zffzxTXFUK7+tZqqEj5FBVbZ3snmigMh5m5VeH4d1xXNIVz3ZboMz0
+ J+N4jfIZmEaGIbQE0c0IfWWhO5GMlNgzSi8SuHtozG0f6rRApYaT6L5AU
+ b0TyKQrgTGyK0r1jwz+d0sIeML6hyY+YMHJCoShfKEu7YIMJjDNW24Dcx
+ 0at6LYolvLRUZHtLxoz/vyfOczoNJPKJ9PjnmWd5Yz51M0w10+zlxEgB0
+ DEorBUIWCt/7MHkjHVzXzofvbaNyRf+tVNemLnOXIMSa000znJk/L3Ti1
+ 8EaKcfAs9RGSt/FIgYaD02bcadrWDBOf/v+pVlPfWT6r91vf9va6LZBOU A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="385966601"
+X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="385966601"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 07:14:44 -0700
+ 09 Jun 2023 07:14:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="740183153"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="740183153"
+X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="740183160"
+X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="740183160"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga008.jf.intel.com with SMTP; 09 Jun 2023 07:14:42 -0700
+ by orsmga008.jf.intel.com with SMTP; 09 Jun 2023 07:14:45 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 09 Jun 2023 17:14:42 +0300
+ Fri, 09 Jun 2023 17:14:45 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  9 Jun 2023 17:14:03 +0300
-Message-Id: <20230609141404.12729-13-ville.syrjala@linux.intel.com>
+Date: Fri,  9 Jun 2023 17:14:04 +0300
+Message-Id: <20230609141404.12729-14-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.3
 In-Reply-To: <20230609141404.12729-1-ville.syrjala@linux.intel.com>
 References: <20230609141404.12729-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 12/13] drm/i915/psr: Allow PSR with sprite
- enabled on hsw/bdw
+Subject: [Intel-gfx] [PATCH v2 13/13] drm/i915/psr: Re-enable PSR1 on hsw/bdw
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,45 +64,35 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Can't see why we'd want the sprite blocking PSR entry.
-Mask it out.
+All known issues fixed now, so re-enable PSR1 on hsw/bdw.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 4 ++++
- drivers/gpu/drm/i915/display/intel_psr.c     | 4 ++++
- 2 files changed, 8 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_device.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 5c7fdc82ac22..8eb1572793ef 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3153,6 +3153,10 @@ static void bdw_set_pipe_misc(const struct intel_crtc_state *crtc_state)
- 	if (DISPLAY_VER(dev_priv) >= 12)
- 		val |= PIPE_MISC_PIXEL_ROUNDING_TRUNC;
- 
-+	/* allow PSR with sprite enabled */
-+	if (IS_BROADWELL(dev_priv))
-+		val |= PIPE_MISC_PSR_MASK_SPRITE_ENABLE;
-+
- 	intel_de_write(dev_priv, PIPE_MISC(crtc->pipe), val);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 97e609365db4..5bb24c1a54d7 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1409,6 +1409,10 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 	if (IS_DISPLAY_VER(dev_priv, 9, 10))
- 		mask |= EDP_PSR_DEBUG_MASK_DISP_REG_WRITE;
- 
-+	/* allow PSR with sprite enabled */
-+	if (IS_HASWELL(dev_priv))
-+		mask |= EDP_PSR_DEBUG_MASK_SPRITE_ENABLE;
-+
- 	intel_de_write(dev_priv, psr_debug_reg(dev_priv, cpu_transcoder), mask);
- 
- 	psr_irq_control(intel_dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 3fd30e7f0062..c48642f897e2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -380,6 +380,8 @@ static const struct intel_display_device_info hsw_display = {
+ 	.has_dp_mst = 1,
+ 	.has_fpga_dbg = 1,
+ 	.has_hotplug = 1,
++	.has_psr = 1,
++	.has_psr_hw_tracking = 1,
+ 	HSW_PIPE_OFFSETS,
+ 	IVB_CURSOR_OFFSETS,
+ 	IVB_COLORS,
+@@ -397,6 +399,8 @@ static const struct intel_display_device_info bdw_display = {
+ 	.has_dp_mst = 1,
+ 	.has_fpga_dbg = 1,
+ 	.has_hotplug = 1,
++	.has_psr = 1,
++	.has_psr_hw_tracking = 1,
+ 	HSW_PIPE_OFFSETS,
+ 	IVB_CURSOR_OFFSETS,
+ 	IVB_COLORS,
 -- 
 2.39.3
 
