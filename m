@@ -2,57 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE6B3729C73
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 16:12:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C077729C75
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 16:14:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEF4D10E6AF;
-	Fri,  9 Jun 2023 14:12:51 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B983510E6AC;
- Fri,  9 Jun 2023 14:12:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 094C010E6AF;
+	Fri,  9 Jun 2023 14:14:11 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E792E10E6AD
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jun 2023 14:14:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686319968; x=1717855968;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=kJBpfpkIvDQDRsUOXdS3ZxWSPVTNUSX10+Cnfi2IzkE=;
- b=FJ8jOK4wwOCHeTujFBW7zScmRyNfRMVjUoJ68cC+g7hZfUoVGm3ftpvF
- 5wESV+aPhA757WLQm5Zu85gUQErEhGpo/AlUkBBQ117rSFlHbbL3la3/4
- pXS20FpyWZBuA4245P6P853gY/S/Ded1VLjx/fHuC83jjhmyCNfSKtDZ2
- Wbm0BgMeMOCEluJi4Z517izu9Y18afTysGitymD5jUIt+9txlVsVrzLQT
- TlAyd5OhjmdxqI3IwmwM0yzBKXyZ7xWAW5Bb7Jbib9p0nDsf1I0unPcrq
- 1WEEDmkU5l4q7Q6QbpeCsfQxG+evp/mESiItyi8Tetc9lvKko9V70pJlb g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="355093296"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="355093296"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 07:12:47 -0700
+ t=1686320048; x=1717856048;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xu1KOMAlAD8zFumZYAMBS7Azr9thzreq2hKHRaTYiSA=;
+ b=FlpEDEBInu8EccOR+zDS+no9Ab+hTC/K15HnHP/+FU2eqJLl1KT2OZah
+ frbUDx75M2oGk++KSZwjqnYtL4jQ89cvbker+6apcSXClJ23WGS7owpfn
+ KsuW5WnxZwjTKZ1WbxGOjdU2iWeF0xRZ+cMpBM5dHR0/Dpjy94aSXuZ/v
+ jXzHXh7r9/i7KUH6raKJ+7/4PTvG/MhtrJlsPDXI74H3zz3WH8gC6CS+v
+ +Gli6givW3yTD7m3hTluP/o12Ttsv5Zi50jTy/E8FMh+F0mMbUm9Ve3Pz
+ RFF5hVjHxlil1vZWW0KgLA4SLKFRSvuzPeuNF/tdpm5qY02+9FCkiXl1w g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="385966273"
+X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="385966273"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2023 07:14:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="800233912"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="800233912"
-Received: from pjdillon-mobl1.ger.corp.intel.com (HELO [10.213.210.241])
- ([10.213.210.241])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 07:12:46 -0700
-Message-ID: <bfa71c75-4b61-ce17-8eba-0aa48ec14097@linux.intel.com>
-Date: Fri, 9 Jun 2023 15:12:44 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="740183017"
+X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="740183017"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga008.jf.intel.com with SMTP; 09 Jun 2023 07:14:05 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 09 Jun 2023 17:14:04 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  9 Jun 2023 17:13:51 +0300
+Message-Id: <20230609141404.12729-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.39.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230609121143.1232420-1-tvrtko.ursulin@linux.intel.com>
- <20230609121143.1232420-7-tvrtko.ursulin@linux.intel.com>
- <2faa3900-6456-136c-0a1a-8629ed6d3784@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <2faa3900-6456-136c-0a1a-8629ed6d3784@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 6/8] drm: Add drm_gem_prime_fd_to_handle_obj
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 00/13] drm/i915/psr: Restore HSW/BDW PSR1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,42 +60,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On 09/06/2023 13:44, Iddamsetty, Aravind wrote:
-> On 09-06-2023 17:41, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> I need a new flavour of the drm_gem_prime_fd_to_handle helper, one which
->> will return a reference to a newly created GEM objects (if created), in
->> order to enable tracking of imported i915 GEM objects in the following
->> patch.
-> 
-> instead of this what if we implement the open call back in i915
-> 
-> struct drm_gem_object_funcs {
-> 
->          /**
->           * @open:
->           *
->           * Called upon GEM handle creation.
->           *
->           * This callback is optional.
->           */
->          int (*open)(struct drm_gem_object *obj, struct drm_file *file);
-> 
-> which gets called whenever a handle(drm_gem_handle_create_tail) is
-> created and in the open we can check if to_intel_bo(obj)->base.dma_buf
-> then it is imported if not it is owned or created by it.
+Fix all the obvious issues affecting HSW/BDW PSR1 and
+restore it back to life.
 
-I wanted to track as much memory usage as we have which is buffer object 
-backed, including page tables and contexts. And since those are not user 
-visible (they don't have handles), they wouldn't be covered by the 
-obj->funcs->open() callback.
+The PC8+ vs. init_clock_gating() problem also affects
+some non-PSR workarounds as well.
 
-If we wanted to limit to objects with handles we could simply do what 
-Rob proposed and that is to walk the handles idr. But that does not feel 
-like the right direction to me. Open for discussion I guess.
+v2: Rebase (due to irq code movement mostly)
+    Deal with review comments wrt. the AUX setup
 
-Regards,
+Ville Syrjälä (13):
+  drm/i915: Re-init clock gating on coming out of PC8+
+  drm/i915/psr: Fix BDW PSR AUX CH data register offsets
+  drm/i915/psr: Wrap PSR1 register with functions
+  drm/i915/psr: Reintroduce HSW PSR1 registers
+  drm/i915/psr: Bring back HSW/BDW PSR AUX CH registers/setup
+  drm/i915/psr: HSW/BDW have no PSR2
+  drm/i915/psr: Restore PSR interrupt handler for HSW
+  drm/i915/psr: Implement WaPsrDPAMaskVBlankInSRD:hsw
+  drm/i915/psr: Implement WaPsrDPRSUnmaskVBlankInSRD:hsw
+  drm/i915/psr: Do no mask display register writes on hsw/bdw
+  drm/i915/psr: Don't skip both TP1 and TP2/3 on hsw/bdw
+  drm/i915/psr: Allow PSR with sprite enabled on hsw/bdw
+  drm/i915/psr: Re-enable PSR1 on hsw/bdw
 
-Tvrtko
+ drivers/gpu/drm/i915/display/intel_display.c  |   4 +
+ .../drm/i915/display/intel_display_device.c   |   4 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |  14 ++
+ .../drm/i915/display/intel_display_power.c    |   6 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.h   |   3 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 196 ++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |  18 +-
+ drivers/gpu/drm/i915/intel_clock_gating.c     |  11 +
+ 9 files changed, 217 insertions(+), 41 deletions(-)
+
+-- 
+2.39.3
+
