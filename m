@@ -1,53 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36D7372A625
-	for <lists+intel-gfx@lfdr.de>; Sat, 10 Jun 2023 00:09:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F50B72A659
+	for <lists+intel-gfx@lfdr.de>; Sat, 10 Jun 2023 00:46:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4CED10E044;
-	Fri,  9 Jun 2023 22:09:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B734C10E034;
+	Fri,  9 Jun 2023 22:46:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76A3710E044
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jun 2023 22:09:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686348569; x=1717884569;
- h=message-id:subject:from:reply-to:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=JyKROlUh59LWiqVu8pN1iIJu6dhV7Bm4M5JDFHZtIcI=;
- b=W/09lT0V2fje8cwia9mG8visKMLSCrVnpzf36vr0eMKHvmuumWdC4i/8
- pU0eZDvrWFt9t+v9uWbcPuoI8tU1nj5xa7xuNY2AX+E40fFX8Uxx+Um9F
- QdPLTljiReAdnoSN/cROlxYwhwj7+mAYu2SX0yPgxvX9ldZFBY63HD3t0
- LqRgTCsHj/EXziC2wTTyW/Sn4lXko9H2Ak6Mjiur0vWacq3LWfU5W4a7c
- KsBDpOMlmmp59h74oYVvLdpjw1nCO/0Nfz2kzEK7bl8BqONR5m7QGW7IH
- 4RqU0JzcTMxLF2CT4OuP2lMK12mOgik1QunUpnUvN8X+zTEaZ+CbVe4Ag A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="386064700"
-X-IronPort-AV: E=Sophos;i="6.00,230,1681196400"; d="scan'208";a="386064700"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 15:09:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="854877369"
-X-IronPort-AV: E=Sophos;i="6.00,230,1681196400"; d="scan'208";a="854877369"
-Received: from linux.intel.com ([10.54.29.200])
- by fmsmga001.fm.intel.com with ESMTP; 09 Jun 2023 15:09:27 -0700
-Received: from ralawler-mobl1.amr.corp.intel.com (unknown [10.209.72.97])
- by linux.intel.com (Postfix) with ESMTP id E9B9C580109;
- Fri,  9 Jun 2023 15:09:26 -0700 (PDT)
-Message-ID: <fd3212e6f74dee60c66dee821f601e9440c5ae67.camel@linux.intel.com>
-From: "David E. Box" <david.e.box@linux.intel.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Date: Fri, 09 Jun 2023 15:09:26 -0700
-In-Reply-To: <20230608205208.GA1214785@bhelgaas>
-References: <20230608205208.GA1214785@bhelgaas>
-Organization: David E. Box
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu1 
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07A2C10E034
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jun 2023 22:46:40 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id EF9D865BAF;
+ Fri,  9 Jun 2023 22:46:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BDEDC433D2;
+ Fri,  9 Jun 2023 22:46:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1686350799;
+ bh=FtH2QZMQ1JGLR5r1ba0Fxz9Y54cyrhKmVHcch9tZEDk=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=Agn8Af7OQtIjX5cP6IES+ilkotj4Z7zQAzTJvkjdjpvLFieQB8/DcAAfHtq8cCIWw
+ KW23YjJGYbnv/V3p+6deXqEdKK+HuLpcMqkCq+6n0oc0msVhsyOMAxYRNXasoYXazH
+ qHFkyo3Dz/Cvjci/qnvPUy3ZzjI9mErBKxNExx0/PviMNEdSyWfmV4MNUbRJgoOjWR
+ JPW1XVMlet6/b4aiIaybZbaLpy1BIPle9ohpdvyx+BRXe1UZVF/WQrHSRpiGsak3Ws
+ +y5v3zA/ixzLke0yyAlzeo9VUwpSR13uFfR4x+z7MOmncuwsrJ7QpFEnw0Gldy52o8
+ fWHM4wAGZFYFA==
+Date: Fri, 9 Jun 2023 17:46:37 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: "David E. Box" <david.e.box@linux.intel.com>
+Message-ID: <20230609224637.GA1267887@bhelgaas>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fd3212e6f74dee60c66dee821f601e9440c5ae67.camel@linux.intel.com>
 Subject: Re: [Intel-gfx] [PATCH V2] PCI: Move VMD ASPM/LTR fix to PCI quirk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,7 +51,6 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: david.e.box@linux.intel.com
 Cc: me@adhityamohan.in, kw@linux.com, lorenzo.pieralisi@arm.com,
  robh@kernel.org, linux-pci@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  rafael@kernel.org, linux-kernel@vger.kernel.org, hch@infradead.org,
@@ -70,195 +59,59 @@ Cc: me@adhityamohan.in, kw@linux.com, lorenzo.pieralisi@arm.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Bjorn,
+On Fri, Jun 09, 2023 at 03:09:26PM -0700, David E. Box wrote:
+> Hi Bjorn,
+> 
+> On Thu, 2023-06-08 at 15:52 -0500, Bjorn Helgaas wrote:
+> > On Tue, Apr 11, 2023 at 02:33:23PM -0700, David E. Box wrote:
+> > > In commit f492edb40b54 ("PCI: vmd: Add quirk to configure PCIe ASPM and
+> > > LTR") the VMD driver calls pci_enabled_link_state as a callback from
+> > > pci_bus_walk. Both will acquire the pci_bus_sem lock leading to a lockdep
+> > > warning. Instead of doing the pci_bus_walk, move the fix to quirks.c using
+> > > DECLARE_PCI_FIXUP_FINAL.
 
-On Thu, 2023-06-08 at 15:52 -0500, Bjorn Helgaas wrote:
-> On Tue, Apr 11, 2023 at 02:33:23PM -0700, David E. Box wrote:
-> > In commit f492edb40b54 ("PCI: vmd: Add quirk to configure PCIe ASPM and
-> > LTR") the VMD driver calls pci_enabled_link_state as a callback from
-> > pci_bus_walk. Both will acquire the pci_bus_sem lock leading to a lockd=
-ep
-> > warning. Instead of doing the pci_bus_walk, move the fix to quirks.c us=
-ing
-> > DECLARE_PCI_FIXUP_FINAL.
->=20
-> s/pci_enabled_link_state/pci_enable_link_state/
->=20
-> Add "()" after pci_enable_link_state() and pci_bus_walk() to make it
-> obvious they're functions.
->=20
-> > ...
-> > +++ b/drivers/pci/quirks.c
-> > @@ -6023,3 +6023,75 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x=
-9a2d,
-> > dpc_log_size);
-> > =C2=A0DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a2f, dpc_log_siz=
-e);
-> > =C2=A0DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a31, dpc_log_siz=
-e);
-> > =C2=A0#endif
-> > +
-> > +#ifdef CONFIG_VMD
-> > +/*
-> > + * Enable ASPM on the PCIE root ports under VMD and set the default LT=
-R of
-> > the
-> > + * storage devices on platforms where these values are not configured =
-by
-> > BIOS.
-> > + * This is needed for laptops, which require these settings for proper
-> > power
-> > + * management of the SoC.
->=20
-> s/PCIE/PCIe/ to match spec usage.
->=20
-> > + */
-> > +#define VMD_DEVICE_LTR=C2=A00x1003=C2=A0=C2=A0/* 3145728 ns */
->=20
-> It would be nice to know how this value was derived.=C2=A0 But I know we
-> had this hard-coded value before, so it's not new with this patch.
+> > > +#define VMD_DEVICE_LTR 0x1003  /* 3145728 ns */
+> > 
+> > It would be nice to know how this value was derived.  But I know we
+> > had this hard-coded value before, so it's not new with this patch.
+> 
+> Do you mean to show the multiplier that determines that value or to
+> say why this particular number was chosen? For the latter, it the
+> largest that could be set (given the multipier options) that will
+> allow the SoC to get to it's lowest power state. And it's the same
+> so far on all the SoCs covered by the VMD driver.
 
-Do you mean to show the multiplier that determines that value or to say why=
- this
-particular number was chosen? For the latter, it the largest that could be =
-set
-(given the multipier options) that will allow the SoC to get to it's lowest
-power state. And it's the same so far on all the SoCs covered by the VMD dr=
-iver.
+Oh, sorry, I meant "why this number was chosen".  PCIe r6.0, sec
+7.8.2, says this capability allows software to provide "platform
+latency information," so I assume this is somehow dependent on
+platform, but I really don't understand the details of how LTR works,
+and we didn't have an explanation before, so this was just a "if you
+happen to know, it might be useful here" comment.
 
->=20
-> > +static void quirk_intel_vmd(struct pci_dev *pdev)
->=20
-> I think this quirk could possibly stay in
-> drivers/pci/controller/vmd.c, couldn't it?=C2=A0 It has a lot of
-> VMD-specific knowledge that it would nice to contain in vmd.c.
+> > > +static void quirk_intel_vmd(struct pci_dev *pdev)
+> > 
+> > I think this quirk could possibly stay in
+> > drivers/pci/controller/vmd.c, couldn't it?  It has a lot of
+> > VMD-specific knowledge that it would nice to contain in vmd.c.
+> 
+> I may have misunderstood your comment on V1 then. But you suggested
+> that this would be typically done as PCI_FIXUP so that the PCI core
+> could call it and we could avoid the locking issue that was seen
+> while walking the bus in vmd.c.
 
-I may have misunderstood your comment on V1 then. But you suggested that th=
-is
-would be typically done as PCI_FIXUP so that the PCI core could call it and=
- we
-could avoid the locking issue that was seen while walking the bus in vmd.c.
+Right, I think it makes sense to be a DECLARE_PCI_FIXUP_CLASS_FINAL(),
+but I was thinking that it could be implemented in vmd.c and still be
+called by the PCI core.
 
-https://lore.kernel.org/lkml/ab9bf3032ed46fc0586e089edc5aac6e71b331d8.camel=
-@linux.intel.com/T/#m09dc05ef56b8d9f104f91594f582251b6088d24d
+But now I'm uncertain since vmd.c can be compiled as a module, and I'm
+not sure how that could work, since pci_fixup_device() calls things in
+the __start_pci_fixups_final[] table, and I don't see how loading a
+module would insert the fixup entry into that table.
 
->=20
-> > +{
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pci_dev *parent;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u16 ltr =3D VMD_DEVICE_LTR;
->=20
-> I don't think "ltr" is an improvement over using "VMD_DEVICE_LTR"
-> below.
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 ltr_reg;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int pos;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Check in VMD domain */
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (pci_domain_nr(pdev->bus)=
- < 0x10000)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0return;
->=20
-> If in vmd.c, maybe could identify devices under a VMD by checking
-> pdev->bus->ops as vmd_acpi_find_companion() does?
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Get Root Port */
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0parent =3D pci_upstream_brid=
-ge(pdev);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!parent || parent->vendo=
-r !=3D PCI_VENDOR_ID_INTEL)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0return;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Get VMD Host Bridge */
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0parent =3D to_pci_dev(parent=
-->dev.parent);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!parent)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0return;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Get RAID controller */
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0parent =3D to_pci_dev(parent=
-->dev.parent);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!parent)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0return;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0switch (parent->device) {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0case 0x467f:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0case 0x4c3d:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0case 0xa77f:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0case 0x7d0b:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0case 0xad0b:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0case 0x9a0b:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0break;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0default:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0return;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pci_enable_link_state(pdev, =
-PCIE_LINK_STATE_ALL);
->=20
-> Seems like you would want to set LTR *before* enabling the link
-> states?
+So maybe it needs to be in quirks.c after all.
 
-Yes that would be better. We'll still want to check if the LTR is set first
-though because if it is then we don't need to do either.
+I think my only remaining questions here are about how to identify
+devices below VMD and the order of enabling ASPM states vs setting
+LTR.
 
-David
-
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pos =3D pci_find_ext_capabil=
-ity(pdev, PCI_EXT_CAP_ID_LTR);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!pos)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0return;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Skip if the max snoop LTR=
- is non-zero, indicating BIOS has set it
-> > */
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pci_read_config_dword(pdev, =
-pos + PCI_LTR_MAX_SNOOP_LAT, &ltr_reg);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!!(ltr_reg & (PCI_LTR_VA=
-LUE_MASK | PCI_LTR_SCALE_MASK)))
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0return;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Set the LTR values to the=
- maximum required by the platform to
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * allow the deepest power m=
-anagement savings. Write as a DWORD
-> > where
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * the lower word is the max=
- snoop latency and the upper word is the
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * max non-snoop latency.
->=20
-> This comment suggests that the LTR value is platform-dependent, which
-> is what I would expect, but the code and the hard-coded VMD_DEVICE_LTR
-> value don't have any platform dependencies.=C2=A0 Again, nothing new in
-> *this* patch; that's true in the current tree, too.
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ltr_reg =3D (ltr << 16) | lt=
-r;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pci_write_config_dword(pdev,=
- pos + PCI_LTR_MAX_SNOOP_LAT, ltr_reg);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pci_info(pdev, "LTR set by V=
-MD PCI quick\n");
->=20
-> s/quick/quirk/
->=20
-> > +
-> > +}
-> > +DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_ANY_ID, PCI_ANY_ID,
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 PCI_CLASS_STORAGE_EXPRESS, 0,
-> > quirk_intel_vmd);
-> > +#endif
-> > --=20
-> > 2.34.1
-> >=20
-
+Bjorn
