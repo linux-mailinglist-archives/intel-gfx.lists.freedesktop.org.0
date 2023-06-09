@@ -2,58 +2,152 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4AEC7299A8
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 14:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69D04729A3E
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 14:45:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F239310E25E;
-	Fri,  9 Jun 2023 12:22:25 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8437B10E25B;
- Fri,  9 Jun 2023 12:22:22 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Bxa+p8GYNk_xUBAA--.3213S3;
- Fri, 09 Jun 2023 20:22:20 +0800 (CST)
-Received: from [10.20.42.43] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8CxReR6GYNkDyELAA--.33801S3; 
- Fri, 09 Jun 2023 20:22:18 +0800 (CST)
-Message-ID: <8e7fe36d-0d0d-bab4-9ace-a738d7a48111@loongson.cn>
-Date: Fri, 9 Jun 2023 20:22:18 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-To: Bjorn Helgaas <helgaas@kernel.org>, Sui Jingfeng <15330273260@189.cn>
-References: <20230608191221.GA1209912@bhelgaas>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E30E10E693;
+	Fri,  9 Jun 2023 12:45:06 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C776510E693;
+ Fri,  9 Jun 2023 12:45:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686314703; x=1717850703;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=VVIZo6WcJDGDGlRCmgdm7a/F5TiWx9ljDBxlVEvrVC8=;
+ b=i7+hBok3rjQIoUgL9kwwupy5aPGv3fUe4V8KU7bDo1Cq9fKV7q51zU+l
+ IJRxwMu8Ah9bMbZlKWmTyplAegoO19k+lwJ/c/snQJjNkQ1KV8XABNLC0
+ FnC0YGpypJVtccMIw4DvrL8oZ4bGe2xPO+Tz7QQg8VHeAqs9iPa1j6P9A
+ 5yi/Lv1BX9GvK46686MqmXzXdlkWv2nlCS6D60baBJ315mhVb2dkTrggF
+ L48R9u4sbbJB0+O+8IWFm7omkwkQlBQUmP7JHyWAlJ09ywFnj48Ofpbj0
+ HatCA58pbysiUn8xcANk5kC4mQBySPdTN6vEEYXgd5zDuBvaiTQ5CM5Oe A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="443957335"
+X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="443957335"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2023 05:45:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="743478464"
+X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="743478464"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga001.jf.intel.com with ESMTP; 09 Jun 2023 05:45:02 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 9 Jun 2023 05:45:02 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 9 Jun 2023 05:45:01 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 9 Jun 2023 05:45:01 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Fri, 9 Jun 2023 05:45:01 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MIm4PxF43MlfnvWv21hK1Qp+Rm8o7fBQLVZQt4gdoKW57/GeMLJ53QiPlngNNiRuosvwp5F7ribuN0TjIYbL7uYlHb+ocfBY76x5995a6UEUbmkYS7N4z66n2TTpimMlVG69QgCVlr+lWK6L17Q4SAmzG2LCOd3B9r5v3j1y5KwU1a2Q3MW4g5IzrV2gXssp09aIjGZcKg+fK7ITst8V4CEDD0tCj4PGeHkI+EBvr56bPuDU8nNMsSH+T4uK40NQlERI8jp0ScoLS1TowLKO8DRWXC4KQKgnlApmPYYvR//2R+qGs1hrXgDfqNwIYxSR3CTh7f4qYKSMqjdpfN7Meg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SnRgpOYq8W/1huwEIc+hblxgb5wxRhuNI2jONmCKMWA=;
+ b=jY8+/HJl0N+wKbxynXHAwnN9W1eb2TgzX4T+T8D9a3TQPvu4FyNkB+CXdYpEKd0qzf7GQXLyfJts+Y5msaDvsraf4kDtjYw3QmeGsSCcLyNjRca43taGcoROe5/bVY2ligBCYavyYTJzDo2Zfm4Om/if92yhEUb63Z+U6UNDNYC20IgDeF996lXHwqxamAE/Tnr7xgw52H12ts/qRgakHWaULVVw1JgyUz2qFJ2eTENgrBpujwh6eoFxR2aQlVL9DDiNsVC9TFuuD1SMekd87z0aAIh+NWUe05BWjeEUAi7NmXr8ngTzUD3anRXIKOM9THabYeJ71w7IadxNVeBizg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CH0PR11MB5474.namprd11.prod.outlook.com (2603:10b6:610:d5::8)
+ by CH0PR11MB8190.namprd11.prod.outlook.com (2603:10b6:610:188::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Fri, 9 Jun
+ 2023 12:45:01 +0000
+Received: from CH0PR11MB5474.namprd11.prod.outlook.com
+ ([fe80::6082:8da2:e39:aeff]) by CH0PR11MB5474.namprd11.prod.outlook.com
+ ([fe80::6082:8da2:e39:aeff%4]) with mapi id 15.20.6455.030; Fri, 9 Jun 2023
+ 12:45:01 +0000
+Message-ID: <2faa3900-6456-136c-0a1a-8629ed6d3784@intel.com>
+Date: Fri, 9 Jun 2023 18:14:49 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.11.2
 Content-Language: en-US
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-Organization: Loongson
-In-Reply-To: <20230608191221.GA1209912@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxReR6GYNkDyELAA--.33801S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxtFyUWw4rAr48JFykGFykZwc_yoW7ZF4Dpa
- yrGayfKrWkWF17Cryav3WUZFy5u39Yya4fKr4Ykw1YkanxCryFqFyrKrW5A3W7JrZrGF10
- vFWUt3W7Wa1qqagCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUPlb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
- xVWxJr0_GcWln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
- xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
- 6r1DMcIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwI
- xGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAK
- I48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrV
- AFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWrXVW8Jr1l
- IxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxV
- AFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4U
- JVWxJr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvjDU0xZFpf9x07
- jhl19UUUUU=
-Subject: Re: [Intel-gfx] [PATCH v3 3/4] PCI/VGA: only deal with VGA class
- devices
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ <Intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+References: <20230609121143.1232420-1-tvrtko.ursulin@linux.intel.com>
+ <20230609121143.1232420-7-tvrtko.ursulin@linux.intel.com>
+From: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
+In-Reply-To: <20230609121143.1232420-7-tvrtko.ursulin@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN0PR01CA0047.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:49::11) To CH0PR11MB5474.namprd11.prod.outlook.com
+ (2603:10b6:610:d5::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH0PR11MB5474:EE_|CH0PR11MB8190:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1702251-aee3-45b0-4128-08db68e756d6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: pOfT+N2F5PrxoaCfz4PjQY4M9/FeCDpNNu1av6HDg7bacKLcnRB56yjIk9LgMhy2S0WyJam5C2UY5Fe3wkUYslcv8otsqkgVWgGwe81RqvjtwAo0YqaC1RBkYC2dPuSr/Cs5jRax+pXtqeD+pv8qa78gCcHftvg+KtaKXHrEkcBTztmFyZKD2XE5ixxtXp8dx/C8veC8vu6/75FD+xg7C7hYZQ5aAWytpodTH8oY7xObMqL7NyW5EYYZum4GZpB0iCW5iZnmI12ulNFpDoO1dN+FzZ6r1XOAnyDfH1psbZV9xKbE1l9C/1lu45IJwiGjdWUsONKB991SKOft8M1epTwdF0D2YpW/3Gv+6VKsA6q6UidlgpSUVKzMXt5aB0bgUEfComIoUjCxI9zB8bmVO52sjWPJ1xH8nzY9C19fe9+HxmK4VAJI8NRAUdJtQNu7fQPXfaEyl/AJxaD/hyFm4RRxvyYOS3egJdSzfqeKNbQ4WNbyQOs5SPFaCJ9OJSRu7QznSj6IpRT5v+ghKCDtFs7e5ZW7NuZl/zzaqi4X6x+beqCHiQzLkK9zMzpnek78CGYsuAZjELlftrQwBAJCn5oHm6oqKteGvBGNlDE6Al9CwW+k7zOCMNk0WfZB8iqOuC6OyTh5Hli/R9MJpCoJUg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5474.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(366004)(136003)(39860400002)(346002)(376002)(451199021)(66476007)(478600001)(8676002)(5660300002)(36756003)(86362001)(2906002)(8936002)(31696002)(316002)(4326008)(66556008)(66946007)(82960400001)(38100700002)(31686004)(83380400001)(41300700001)(6512007)(6506007)(26005)(2616005)(53546011)(186003)(6666004)(6486002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VDZIR2w0a2pqQ1lzeTk1Qk82YmlsakF2Tkg1ZkpsUStwUnZJbTlmZDRCQXAv?=
+ =?utf-8?B?MW5DV1ZFL2t0aW5VSXAwbm9qYU1tZEFMVkd5cDl5L2tWQ2hxQzh0QkwwWnlX?=
+ =?utf-8?B?R3FodkE3dFgxR1oySEprK3RtQmlrN1dWTm5HdkVpYjltK2JPemZ1SlA2aE5F?=
+ =?utf-8?B?MEJBRHN2V0lGYU4xUmdlYWR0NGJuOFl1RFk5b29pLzdYNHFTMDBGNjNQQkl0?=
+ =?utf-8?B?L1Q1L1pXOHVDcjkySHVoaGtoZU54ZjBYZkVIRVNGQTdobDZrTll2dk5weFNl?=
+ =?utf-8?B?YmwrQUd1Yyt2OW9TV0Q1YU1WY3lqZkpBV0QrcjBJNDJoaGthL2ZSZVY1eWhK?=
+ =?utf-8?B?QnhFQ05EWG5nc1U2NVh4K3Q4dHk0bEQ5VWxqVnc1L0hUSW1OeXZGajNDaFUy?=
+ =?utf-8?B?dWhtbGI0c24xalEzaFkxRGxGZXM4OXFXcUlSU25RTHNiRGE4N082cEFEUTA4?=
+ =?utf-8?B?bHVYMFkzUU5CNGJRa1NNaGJWNm0xZ0hrMCtiaEJUSFJEa0VUODBtNkhnbkh5?=
+ =?utf-8?B?eWFDMlFwUGV5V3VGeXFzZEJYajVWbkh4enZYUWNxTE15VWV5S0ZUcndYeXhQ?=
+ =?utf-8?B?Y3EvbTgveU15K3NIRWtJWS9FMmZmb2JDeFFic3lEcW1XZUUrRjFSVUdJMmNt?=
+ =?utf-8?B?cVBtMXhqTmgrQ0xwbWYyMHh1Y3VWa3RzOVR5SVBQQ3VLTzBSd1lMb0ZUSVpn?=
+ =?utf-8?B?eHRzajJLQlNtM09IQXl2eWd1UFJrVHpZTGVjNVlFUXR6MVRCOTR1Wm44YWVm?=
+ =?utf-8?B?T3hsZ0txL2lDcjhNeVpacUVmTmtyeVZCWk5DSXV0d2oyenAwZVk4cHNMY3Q0?=
+ =?utf-8?B?Z2JVVFlwWmJBQnhkaEFvQUNlT2VGemR0TFZtcnM2Y3NSMGNQbEovK0N5dE9y?=
+ =?utf-8?B?SGFMNFpBcWUvOWNtVXltYkpzWC82WCt3MlZzNlYwbmNmUCtxeDZaR082c0E0?=
+ =?utf-8?B?b2Z6ZnYxL2k0cmNiUkZEM0xyTXlzc05CUnVNTUhzWG1nTjE4UTEycmkwcnll?=
+ =?utf-8?B?TWRMdm5HdXZqMVZkeUtnQ05nWm1OTWg0MGxxVlAwQUVtM0cydnREcm1sbDND?=
+ =?utf-8?B?d21mNWJPZ01SRk5COUlEYkhqMWlSNDN1aFNzWkhNNExwbXlRSGxBRXY0cWov?=
+ =?utf-8?B?Szl2bWpOVDVhc3hsR29EVlVwRlVhbzRHWW1ISUtMOVhxMzBhbGtwQUVpZktw?=
+ =?utf-8?B?QWZVRUtvNnIyMlhVbTQyOG9tZDdFUGtrL0FjQURsSytIay9lc3NQR1gzSlFj?=
+ =?utf-8?B?d3JiQVZFQ1BqdEdYVXByNW11Skp3c255WVpFZi9VMlBabkIzUnMxd1BDQ1hL?=
+ =?utf-8?B?cG1KUlU2eHZpOVV3U0FhWkwxYmlmczQwQVVsSDZLbHhucnEvcnU3Um96a0gv?=
+ =?utf-8?B?T2tGT2RKMHpjM1B0M0RWNDJRcHlsd0htZHVtL3U4N25hbGsrR1QrM2JKU3pD?=
+ =?utf-8?B?b1VZZjg1QS8vL0luVkJjaEZyRnJ2ZGpCU094TmtWU2FnK2wxZ2M0aWMyN0VL?=
+ =?utf-8?B?NS8zZXQrUWxuNHZGcWsxK1MzOTFnT2pTSmFpUmVhNW16c2FWVmk2ZUJqOEdO?=
+ =?utf-8?B?SS9zQlJMOGRsRkdUYkdrK3luT1dzYmc4UEgvMXBzZnFhM1VrZUkranI5NWpB?=
+ =?utf-8?B?VmpoZkQ2bDhuS2V1aXZKcHF1bG1kSm5POWJwbUJlanVHVU00T0c3VWFIOXc0?=
+ =?utf-8?B?QkNwTmFhRGYreHJZMDQrNUpDK3BHTnhUTkZoMUJ2bHFlbTduNXNzZEhxTXVm?=
+ =?utf-8?B?Rk1SRll5ZC9IR0dkQkRMcGcvL2V0YjFDNG1GUkdWOHhVTVVCOVFSV2hFcDVY?=
+ =?utf-8?B?VnJXRUtOenRlN2RuWWFUallmUkpSYjAxSWRyNlFWaFVxWkJadEZodTMxMTln?=
+ =?utf-8?B?elMrcllzWUN4ME9qNTFBK3AvbHl5SDdrVk04d2N6Ynk3TTU4YjJFWGl3emdY?=
+ =?utf-8?B?cUpEMFhRRml4NUR6SklsKzNDM2lORm85azVyZDRQL01LZHJDcktlb2orWXRN?=
+ =?utf-8?B?THV5ZTZPcXI4QlFSd2ZVVkFObThjQVU5cTZ1WUFXRjhRb1hKWFE2WXdRd1NI?=
+ =?utf-8?B?Y0dOSzV1WmF6VTg4NE85eUhIWk42ajlLVHFMWEtuZjZ3SEl1aUJWbEF4QnZp?=
+ =?utf-8?B?ZHh4dnJabEpLeEYzQUw2aGh4NDBadjFBY1JuWXgwSG1waVpVbVJEUXd5ZEdM?=
+ =?utf-8?B?Nmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1702251-aee3-45b0-4128-08db68e756d6
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5474.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2023 12:45:01.0180 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TvWnfWD+hUOkwZkeRwc3OGFwufvezqtVlfseYmZQmpWVVgsPkwhYtU5nv7kDWticKpLQEGzi5DZKjanTf4dUZjIy3t/hBCfXmxxB43kSwdo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB8190
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 6/8] drm: Add drm_gem_prime_fd_to_handle_obj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,216 +160,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- David Airlie <airlied@gmail.com>, Yi Liu <yi.l.liu@intel.com>,
- kvm@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
- linux-pci@vger.kernel.org, Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Kevin Tian <kevin.tian@intel.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Bokun Zhang <Bokun.Zhang@amd.com>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- loongson-kernel@lists.loongnix.cn, Abhishek Sahu <abhsahu@nvidia.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Yishai Hadas <yishaih@nvidia.com>, Li Yi <liyi@loongson.cn>,
- Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Cornelia Huck <cohuck@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-On 2023/6/9 03:12, Bjorn Helgaas wrote:
-> Start with verb and capitalize to match ("Deal only with ...")
->
-> On Thu, Jun 08, 2023 at 07:43:21PM +0800, Sui Jingfeng wrote:
->> From: Sui Jingfeng <suijingfeng@loongson.cn>
->>
->> vgaarb only deal with the VGA devcie(pdev->class == 0x0300), so replace the
->> pci_get_subsys() function with pci_get_class(). Filter the non pci display
->> device out. There no need to process the non display PCI device.
-> s/non pci/non-PCI/
-> s/non display/non-display/
->
-> This is fine, and I'll merge this, but someday I would like to get rid
-> of the bus_register_notifier() and call vga_arbiter_add_pci_device()
-> and vga_arbiter_del_pci_device() directly from the PCI core.
-
-Nice idea!
 
 
-But I'm wondering there are traps in this.
+On 09-06-2023 17:41, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> I need a new flavour of the drm_gem_prime_fd_to_handle helper, one which
+> will return a reference to a newly created GEM objects (if created), in
+> order to enable tracking of imported i915 GEM objects in the following
+> patch.
 
-The pci_notifier in vgaarb.c is still need on Mips platform.
+instead of this what if we implement the open call back in i915
 
-Because of loading order problems.
+struct drm_gem_object_funcs {
 
-On MIPS system, PCI devices are enumerated by pcibios_init(),
+        /**
+         * @open:
+         *
+         * Called upon GEM handle creation.
+         *
+         * This callback is optional.
+         */
+        int (*open)(struct drm_gem_object *obj, struct drm_file *file);
 
-which runs after vga_arb_device_init(). This is true until now.
+which gets called whenever a handle(drm_gem_handle_create_tail) is
+created and in the open we can check if to_intel_bo(obj)->base.dma_buf
+then it is imported if not it is owned or created by it.
 
-When vga_arb_device_init() function get called, it will capture nothing.
+Thanks,
+Aravind.
 
-On that time, the system have no PCI device enumerated.
-
-Because of this, there are various problems in the past.
-
-This is the reason we still need the notifier,
-
-we need a way to capture the PCI display device after vgaarb already 
-loaded(finished).
-
-
-On complex case, there are ASpeed BMC, loongson integrated display 
-controller,
-
-and radeon discrete video card co-exist on Loongson 3B4000 server.
-
-I have fixed various bug at our downstream(linux-4.19) environment.
-
-
-I have fixed a bug on downstream involved with aspeed bmc, by workaround[1].
-
-Chen Huacai grabbing my patch[1] and rewrite it, submit together with 
-him-self's.
-
-Its fine,  but those patch still look paleness in the front of Loongson 
-integrated display controller.
-
-Loongson integrated display controller don't has a dedicated VRAM bar.
-
-vga_is_firmware_default() will lose its effectiveness then.
-
-This is the reason we reveal our patch(0004 in this series) to face 
-upstream.
-
-Its not only for loongson integrated display controller through.
-
-Its not uncommon that ARM servers have A aspeed BMC and discrete amdgpu 
-or old radeon card.
-
-Let the device drivers gave us a hint probably can help to resolve 
-multi-video card co-exist
-
-problem.
-
-Consider that sometime user want to use integrate gpu, sometime user 
-want to use discrete gpu.
-
-Also, during driver developing(or debugging),
-
-driver writer may want override the default boot device.
-
-
-vgaarb probable shouldn't make the decision
-
-without giving the device driver a chance to override.
-
-
-Beside,  vga_is_firmware_default() only apply for PCI display device.
-
-On ARM64 system, there are a lot of platform device.
-
-If we move this function back to the device driver,
-
-it probably applicable for a platform display controller + one/two PCI 
-display devices case.
-
-
-We find a method at downstream during we get efifb works LoongArch platform.
-
-We can utilize the screen_info, screen_info say where's the firmware 
-framebuffer is located at.
-
-Drivers for specific hardware platform perhaps know more clearly than 
-vgaarb.
-
-if it is the default boot device.
-
-
-[1] 
-https://lore.kernel.org/all/20210514080025.1828197-6-chenhuacai@loongson.cn/
-
-> Or if you wanted to do that now, that would be even better :)
->
-> Bjorn
->
->> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
->> ---
->>   drivers/pci/vgaarb.c | 22 ++++++++++++----------
->>   1 file changed, 12 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
->> index 7f0347f4f6fd..b0bf4952a95d 100644
->> --- a/drivers/pci/vgaarb.c
->> +++ b/drivers/pci/vgaarb.c
->> @@ -756,10 +756,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
->>   	struct pci_dev *bridge;
->>   	u16 cmd;
->>   
->> -	/* Only deal with VGA class devices */
->> -	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
->> -		return false;
->> -
->>   	/* Allocate structure */
->>   	vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
->>   	if (vgadev == NULL) {
->> @@ -1499,7 +1495,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->>   	struct pci_dev *pdev = to_pci_dev(dev);
->>   	bool notify = false;
->>   
->> -	vgaarb_dbg(dev, "%s\n", __func__);
->> +	/* Only deal with VGA class devices */
->> +	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
->> +		return 0;
->>   
->>   	/* For now we're only intereted in devices added and removed. I didn't
->>   	 * test this thing here, so someone needs to double check for the
->> @@ -1509,6 +1507,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->>   	else if (action == BUS_NOTIFY_DEL_DEVICE)
->>   		notify = vga_arbiter_del_pci_device(pdev);
->>   
->> +	vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
->> +
->>   	if (notify)
->>   		vga_arbiter_notify_clients();
->>   	return 0;
->> @@ -1533,8 +1533,8 @@ static struct miscdevice vga_arb_device = {
->>   
->>   static int __init vga_arb_device_init(void)
->>   {
->> +	struct pci_dev *pdev = NULL;
->>   	int rc;
->> -	struct pci_dev *pdev;
->>   
->>   	rc = misc_register(&vga_arb_device);
->>   	if (rc < 0)
->> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
->>   	/* We add all PCI devices satisfying VGA class in the arbiter by
->>   	 * default
->>   	 */
->> -	pdev = NULL;
->> -	while ((pdev =
->> -		pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
->> -			       PCI_ANY_ID, pdev)) != NULL)
->> +	while (1) {
->> +		pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
->> +		if (!pdev)
->> +			break;
->> +
->>   		vga_arbiter_add_pci_device(pdev);
->> +	};
->>   
->>   	pr_info("loaded\n");
->>   	return rc;
->> -- 
->> 2.25.1
->>
--- 
-Jingfeng
-
+> 
+> Minor code reshuffule and only trivial additions on top of
+> drm_gem_prime_fd_to_handle.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>  drivers/gpu/drm/drm_prime.c | 41 ++++++++++++++++++++++++++++++++-----
+>  include/drm/drm_prime.h     |  4 ++++
+>  2 files changed, 40 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
+> index d29dafce9bb0..ef75f67e3057 100644
+> --- a/drivers/gpu/drm/drm_prime.c
+> +++ b/drivers/gpu/drm/drm_prime.c
+> @@ -284,11 +284,12 @@ void drm_gem_dmabuf_release(struct dma_buf *dma_buf)
+>  EXPORT_SYMBOL(drm_gem_dmabuf_release);
+>  
+>  /**
+> - * drm_gem_prime_fd_to_handle - PRIME import function for GEM drivers
+> + * drm_gem_prime_fd_to_handle_obj - PRIME import function for GEM drivers
+>   * @dev: drm_device to import into
+>   * @file_priv: drm file-private structure
+>   * @prime_fd: fd id of the dma-buf which should be imported
+>   * @handle: pointer to storage for the handle of the imported buffer object
+> + * @objp: optional pointer in which reference to created GEM object can be returned
+>   *
+>   * This is the PRIME import function which must be used mandatorily by GEM
+>   * drivers to ensure correct lifetime management of the underlying GEM object.
+> @@ -297,9 +298,10 @@ EXPORT_SYMBOL(drm_gem_dmabuf_release);
+>   *
+>   * Returns 0 on success or a negative error code on failure.
+>   */
+> -int drm_gem_prime_fd_to_handle(struct drm_device *dev,
+> -			       struct drm_file *file_priv, int prime_fd,
+> -			       uint32_t *handle)
+> +int drm_gem_prime_fd_to_handle_obj(struct drm_device *dev,
+> +				   struct drm_file *file_priv, int prime_fd,
+> +				   uint32_t *handle,
+> +				   struct drm_gem_object **objp)
+>  {
+>  	struct dma_buf *dma_buf;
+>  	struct drm_gem_object *obj;
+> @@ -336,7 +338,8 @@ int drm_gem_prime_fd_to_handle(struct drm_device *dev,
+>  
+>  	/* _handle_create_tail unconditionally unlocks dev->object_name_lock. */
+>  	ret = drm_gem_handle_create_tail(file_priv, obj, handle);
+> -	drm_gem_object_put(obj);
+> +	if (!objp)
+> +		drm_gem_object_put(obj);
+>  	if (ret)
+>  		goto out_put;
+>  
+> @@ -348,6 +351,9 @@ int drm_gem_prime_fd_to_handle(struct drm_device *dev,
+>  
+>  	dma_buf_put(dma_buf);
+>  
+> +	if (objp)
+> +		*objp = obj;
+> +
+>  	return 0;
+>  
+>  fail:
+> @@ -356,6 +362,8 @@ int drm_gem_prime_fd_to_handle(struct drm_device *dev,
+>  	 */
+>  	drm_gem_handle_delete(file_priv, *handle);
+>  	dma_buf_put(dma_buf);
+> +	if (objp)
+> +		drm_gem_object_put(obj);
+>  	return ret;
+>  
+>  out_unlock:
+> @@ -365,6 +373,29 @@ int drm_gem_prime_fd_to_handle(struct drm_device *dev,
+>  	dma_buf_put(dma_buf);
+>  	return ret;
+>  }
+> +EXPORT_SYMBOL(drm_gem_prime_fd_to_handle_obj);
+> +
+> +/**
+> + * drm_gem_prime_fd_to_handle - PRIME import function for GEM drivers
+> + * @dev: drm_device to import into
+> + * @file_priv: drm file-private structure
+> + * @prime_fd: fd id of the dma-buf which should be imported
+> + * @handle: pointer to storage for the handle of the imported buffer object
+> + *
+> + * This is the PRIME import function which must be used mandatorily by GEM
+> + * drivers to ensure correct lifetime management of the underlying GEM object.
+> + * The actual importing of GEM object from the dma-buf is done through the
+> + * &drm_driver.gem_prime_import driver callback.
+> + *
+> + * Returns 0 on success or a negative error code on failure.
+> + */
+> +int drm_gem_prime_fd_to_handle(struct drm_device *dev,
+> +			       struct drm_file *file_priv, int prime_fd,
+> +			       uint32_t *handle)
+> +{
+> +	return drm_gem_prime_fd_to_handle_obj(dev, file_priv, prime_fd, handle,
+> +					      NULL);
+> +}
+>  EXPORT_SYMBOL(drm_gem_prime_fd_to_handle);
+>  
+>  int drm_prime_fd_to_handle_ioctl(struct drm_device *dev, void *data,
+> diff --git a/include/drm/drm_prime.h b/include/drm/drm_prime.h
+> index 2a1d01e5b56b..10d145ce6586 100644
+> --- a/include/drm/drm_prime.h
+> +++ b/include/drm/drm_prime.h
+> @@ -69,6 +69,10 @@ void drm_gem_dmabuf_release(struct dma_buf *dma_buf);
+>  
+>  int drm_gem_prime_fd_to_handle(struct drm_device *dev,
+>  			       struct drm_file *file_priv, int prime_fd, uint32_t *handle);
+> +int drm_gem_prime_fd_to_handle_obj(struct drm_device *dev,
+> +				   struct drm_file *file_priv, int prime_fd,
+> +				   uint32_t *handle,
+> +				   struct drm_gem_object **obj);
+>  int drm_gem_prime_handle_to_fd(struct drm_device *dev,
+>  			       struct drm_file *file_priv, uint32_t handle, uint32_t flags,
+>  			       int *prime_fd);
