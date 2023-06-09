@@ -2,48 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0949D7299E7
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 14:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4AEC7299A8
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 14:22:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C00E10E693;
-	Fri,  9 Jun 2023 12:27:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F239310E25E;
+	Fri,  9 Jun 2023 12:22:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E55E10E693
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jun 2023 12:27:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686313629; x=1717849629;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=TEG62EAb2O7zrRm1lEPFssNE+s2zBzU7pto+fEvy+zY=;
- b=dX8VmwAXpX85O99rdnJUtvY8iTicD4sSaTVMgDpJNrVsNmOcR8DgOPaU
- sASxkJbd7MSiRrxI1uDxFGadZjXdnTc7rhfiUjyA8j9H0CvQ2N4l95NSp
- 4m3BAWAv3MktmRhBNr8+JAB6NeCmrhJTQqEJxiBCq7ADVvE5s363iWcKV
- 6sV2i9zGjwuoj8+0IfpKKoVvFooyNxUSLkwGhoHkvn4g1Zj3vgbqN5Cyq
- 5uS4O3ixv5pY7MkJKRUcd4VlRZZI4YZjVPihhrQsxGC6Uiac89fjHreH5
- DmMJpKh+RD/0BGuDXc1cbdRfHakHIvU5svf35AeRQ/JnSrOqvTrl/v9s9 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="385946634"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; 
- d="scan'208,223";a="385946634"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 05:27:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="823053760"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; 
- d="scan'208,223";a="823053760"
-Received: from unknown (HELO sorvi2.fi.intel.com) ([10.237.72.194])
- by fmsmga002.fm.intel.com with ESMTP; 09 Jun 2023 05:27:07 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  9 Jun 2023 15:21:30 +0300
-Message-Id: <20230609122130.69794-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8437B10E25B;
+ Fri,  9 Jun 2023 12:22:22 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8Bxa+p8GYNk_xUBAA--.3213S3;
+ Fri, 09 Jun 2023 20:22:20 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8CxReR6GYNkDyELAA--.33801S3; 
+ Fri, 09 Jun 2023 20:22:18 +0800 (CST)
+Message-ID: <8e7fe36d-0d0d-bab4-9ace-a738d7a48111@loongson.cn>
+Date: Fri, 9 Jun 2023 20:22:18 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+To: Bjorn Helgaas <helgaas@kernel.org>, Sui Jingfeng <15330273260@189.cn>
+References: <20230608191221.GA1209912@bhelgaas>
+Content-Language: en-US
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+Organization: Loongson
+In-Reply-To: <20230608191221.GA1209912@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/mtl: Cleanup usage of phy lane reset
+X-CM-TRANSID: AQAAf8CxReR6GYNkDyELAA--.33801S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxtFyUWw4rAr48JFykGFykZwc_yoW7ZF4Dpa
+ yrGayfKrWkWF17Cryav3WUZFy5u39Yya4fKr4Ykw1YkanxCryFqFyrKrW5A3W7JrZrGF10
+ vFWUt3W7Wa1qqagCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUPlb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+ xVWxJr0_GcWln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
+ xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
+ 6r1DMcIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwI
+ xGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAK
+ I48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrV
+ AFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWrXVW8Jr1l
+ IxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxV
+ AFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4U
+ JVWxJr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvjDU0xZFpf9x07
+ jhl19UUUUU=
+Subject: Re: [Intel-gfx] [PATCH v3 3/4] PCI/VGA: only deal with VGA class
+ devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,70 +66,216 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ David Airlie <airlied@gmail.com>, Yi Liu <yi.l.liu@intel.com>,
+ kvm@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
+ linux-pci@vger.kernel.org, Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Kevin Tian <kevin.tian@intel.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Bokun Zhang <Bokun.Zhang@amd.com>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ loongson-kernel@lists.loongnix.cn, Abhishek Sahu <abhsahu@nvidia.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Yishai Hadas <yishaih@nvidia.com>, Li Yi <liyi@loongson.cn>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Cornelia Huck <cohuck@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From PICA message bus we wait for acknowledgment from
-read/write commands. In case of an error, we reset the
-bus for the next command.
+Hi,
 
-Current implementation ends up resetting message bus twice
-in cases where error is not the timeout. Since, we only need
-to reset message bus once, let's move reset to corresponding
-timeout error and drop the excess reset function calls from
-read/write functions.
+On 2023/6/9 03:12, Bjorn Helgaas wrote:
+> Start with verb and capitalize to match ("Deal only with ...")
+>
+> On Thu, Jun 08, 2023 at 07:43:21PM +0800, Sui Jingfeng wrote:
+>> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>>
+>> vgaarb only deal with the VGA devcie(pdev->class == 0x0300), so replace the
+>> pci_get_subsys() function with pci_get_class(). Filter the non pci display
+>> device out. There no need to process the non display PCI device.
+> s/non pci/non-PCI/
+> s/non display/non-display/
+>
+> This is fine, and I'll merge this, but someday I would like to get rid
+> of the bus_register_notifier() and call vga_arbiter_add_pci_device()
+> and vga_arbiter_del_pci_device() directly from the PCI core.
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+Nice idea!
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 0600fdcd06ef..f235df5646ed 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -116,6 +116,7 @@ static int intel_cx0_wait_for_ack(struct drm_i915_private *i915, enum port port,
- 					 XELPDP_MSGBUS_TIMEOUT_SLOW, val)) {
- 		drm_dbg_kms(&i915->drm, "PHY %c Timeout waiting for message ACK. Status: 0x%x\n",
- 			    phy_name(phy), *val);
-+		intel_cx0_bus_reset(i915, port, lane);
- 		return -ETIMEDOUT;
- 	}
- 
-@@ -158,10 +159,8 @@ static int __intel_cx0_read_once(struct drm_i915_private *i915, enum port port,
- 		       XELPDP_PORT_M2P_ADDRESS(addr));
- 
- 	ack = intel_cx0_wait_for_ack(i915, port, XELPDP_PORT_P2M_COMMAND_READ_ACK, lane, &val);
--	if (ack < 0) {
--		intel_cx0_bus_reset(i915, port, lane);
-+	if (ack < 0)
- 		return ack;
--	}
- 
- 	intel_clear_response_ready_flag(i915, port, lane);
- 
-@@ -202,6 +201,7 @@ static int __intel_cx0_write_once(struct drm_i915_private *i915, enum port port,
- 				  int lane, u16 addr, u8 data, bool committed)
- {
- 	enum phy phy = intel_port_to_phy(i915, port);
-+	int ack;
- 	u32 val;
- 
- 	if (intel_de_wait_for_clear(i915, XELPDP_PORT_M2P_MSGBUS_CTL(port, lane),
-@@ -230,10 +230,9 @@ static int __intel_cx0_write_once(struct drm_i915_private *i915, enum port port,
- 	}
- 
- 	if (committed) {
--		if (intel_cx0_wait_for_ack(i915, port, XELPDP_PORT_P2M_COMMAND_WRITE_ACK, lane, &val) < 0) {
--			intel_cx0_bus_reset(i915, port, lane);
--			return -EINVAL;
--		}
-+		ack = intel_cx0_wait_for_ack(i915, port, XELPDP_PORT_P2M_COMMAND_WRITE_ACK, lane, &val);
-+		if (ack < 0)
-+			return ack;
- 	} else if ((intel_de_read(i915, XELPDP_PORT_P2M_MSGBUS_STATUS(port, lane)) &
- 		    XELPDP_PORT_P2M_ERROR_SET)) {
- 		drm_dbg_kms(&i915->drm,
+
+But I'm wondering there are traps in this.
+
+The pci_notifier in vgaarb.c is still need on Mips platform.
+
+Because of loading order problems.
+
+On MIPS system, PCI devices are enumerated by pcibios_init(),
+
+which runs after vga_arb_device_init(). This is true until now.
+
+When vga_arb_device_init() function get called, it will capture nothing.
+
+On that time, the system have no PCI device enumerated.
+
+Because of this, there are various problems in the past.
+
+This is the reason we still need the notifier,
+
+we need a way to capture the PCI display device after vgaarb already 
+loaded(finished).
+
+
+On complex case, there are ASpeed BMC, loongson integrated display 
+controller,
+
+and radeon discrete video card co-exist on Loongson 3B4000 server.
+
+I have fixed various bug at our downstream(linux-4.19) environment.
+
+
+I have fixed a bug on downstream involved with aspeed bmc, by workaround[1].
+
+Chen Huacai grabbing my patch[1] and rewrite it, submit together with 
+him-self's.
+
+Its fine,  but those patch still look paleness in the front of Loongson 
+integrated display controller.
+
+Loongson integrated display controller don't has a dedicated VRAM bar.
+
+vga_is_firmware_default() will lose its effectiveness then.
+
+This is the reason we reveal our patch(0004 in this series) to face 
+upstream.
+
+Its not only for loongson integrated display controller through.
+
+Its not uncommon that ARM servers have A aspeed BMC and discrete amdgpu 
+or old radeon card.
+
+Let the device drivers gave us a hint probably can help to resolve 
+multi-video card co-exist
+
+problem.
+
+Consider that sometime user want to use integrate gpu, sometime user 
+want to use discrete gpu.
+
+Also, during driver developing(or debugging),
+
+driver writer may want override the default boot device.
+
+
+vgaarb probable shouldn't make the decision
+
+without giving the device driver a chance to override.
+
+
+Beside,  vga_is_firmware_default() only apply for PCI display device.
+
+On ARM64 system, there are a lot of platform device.
+
+If we move this function back to the device driver,
+
+it probably applicable for a platform display controller + one/two PCI 
+display devices case.
+
+
+We find a method at downstream during we get efifb works LoongArch platform.
+
+We can utilize the screen_info, screen_info say where's the firmware 
+framebuffer is located at.
+
+Drivers for specific hardware platform perhaps know more clearly than 
+vgaarb.
+
+if it is the default boot device.
+
+
+[1] 
+https://lore.kernel.org/all/20210514080025.1828197-6-chenhuacai@loongson.cn/
+
+> Or if you wanted to do that now, that would be even better :)
+>
+> Bjorn
+>
+>> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+>> ---
+>>   drivers/pci/vgaarb.c | 22 ++++++++++++----------
+>>   1 file changed, 12 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+>> index 7f0347f4f6fd..b0bf4952a95d 100644
+>> --- a/drivers/pci/vgaarb.c
+>> +++ b/drivers/pci/vgaarb.c
+>> @@ -756,10 +756,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
+>>   	struct pci_dev *bridge;
+>>   	u16 cmd;
+>>   
+>> -	/* Only deal with VGA class devices */
+>> -	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+>> -		return false;
+>> -
+>>   	/* Allocate structure */
+>>   	vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
+>>   	if (vgadev == NULL) {
+>> @@ -1499,7 +1495,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+>>   	struct pci_dev *pdev = to_pci_dev(dev);
+>>   	bool notify = false;
+>>   
+>> -	vgaarb_dbg(dev, "%s\n", __func__);
+>> +	/* Only deal with VGA class devices */
+>> +	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+>> +		return 0;
+>>   
+>>   	/* For now we're only intereted in devices added and removed. I didn't
+>>   	 * test this thing here, so someone needs to double check for the
+>> @@ -1509,6 +1507,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+>>   	else if (action == BUS_NOTIFY_DEL_DEVICE)
+>>   		notify = vga_arbiter_del_pci_device(pdev);
+>>   
+>> +	vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
+>> +
+>>   	if (notify)
+>>   		vga_arbiter_notify_clients();
+>>   	return 0;
+>> @@ -1533,8 +1533,8 @@ static struct miscdevice vga_arb_device = {
+>>   
+>>   static int __init vga_arb_device_init(void)
+>>   {
+>> +	struct pci_dev *pdev = NULL;
+>>   	int rc;
+>> -	struct pci_dev *pdev;
+>>   
+>>   	rc = misc_register(&vga_arb_device);
+>>   	if (rc < 0)
+>> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
+>>   	/* We add all PCI devices satisfying VGA class in the arbiter by
+>>   	 * default
+>>   	 */
+>> -	pdev = NULL;
+>> -	while ((pdev =
+>> -		pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
+>> -			       PCI_ANY_ID, pdev)) != NULL)
+>> +	while (1) {
+>> +		pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
+>> +		if (!pdev)
+>> +			break;
+>> +
+>>   		vga_arbiter_add_pci_device(pdev);
+>> +	};
+>>   
+>>   	pr_info("loaded\n");
+>>   	return rc;
+>> -- 
+>> 2.25.1
+>>
 -- 
-2.34.1
+Jingfeng
 
