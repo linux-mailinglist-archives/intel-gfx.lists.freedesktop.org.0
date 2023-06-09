@@ -2,58 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9650872990E
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 14:08:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F2D9729933
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 14:11:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5F7B10E694;
-	Fri,  9 Jun 2023 12:08:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FAFD10E6A3;
+	Fri,  9 Jun 2023 12:11:53 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02F0010E694;
- Fri,  9 Jun 2023 12:08:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECCBA10E6A1;
+ Fri,  9 Jun 2023 12:11:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686312500; x=1717848500;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=wHsk/r7TrGDab6Wxp2HJrKOkkbH7GLthxRsjehaiUYU=;
- b=BE+IoceNUjQxZt+lf/GpecwFsJNu07QbQHjEsws6lRNmmBPZc4zrn39J
- YWyWZ/wsoTQNr2ybWRPLqJcj7//1FfX8tmKZni9DaCDYiRGdNZyhYPs5j
- jcp5NSoRYSywoxTrweDrsqMb0n8cyyF6OiIhzQfFD1W9wSc5KvuxiEZMZ
- bEHwgAOAOpT1VVhJWDnpuIhnzjLsShD7BBBhMmiKGy1OpTOzzvWs2F75w
- ASXXGjDGn1+IiMrcM2Migl2qwtuHxs4AP5zTJwTzl+k2u/zNzTrCZCEI4
- GkLWSMHfpzZx5vATUBMclvFGdBPAVLyx746q8x1AA3EYFzzy7Fs0YZXpf w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="356473746"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="356473746"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ t=1686312711; x=1717848711;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7nx0YyXted1LRrLD4YVfVdsRF1zysLfKI0bnhsC4Frs=;
+ b=Us2aggpdPuhxfNoXqI0vkMSu04wdlPRJNAMezjTUKp6EXguSCnPrEt/y
+ cmcrKbXgDyZhfbgivod2Bk8P58pqyhVCq+sodHaUt0SeBQaGlR32L+pX6
+ hrpWxW42GPIPe0xL11/HsBYJ2VUN183N54eiS7k1miYJO/C+nTZpiMUuI
+ 5p7LvCRKrv0btax7SlJtkW+PGspV1Am5GZ+CPmdICnkVRcKgBH5af8qkN
+ 5Xcxm2SKT07PJT1PWdZOBhuIvzq/joY78BfFW0TUI824Ff/bcTdtj1ycD
+ I37kqjBz/eGnKD7pFL/rqRgy3WpRUXp02T5BMlc+jTF3rMqiTeGuHtAQx A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="356474734"
+X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="356474734"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 05:08:18 -0700
+ 09 Jun 2023 05:11:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="1040480704"
-X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="1040480704"
-Received: from pjdillon-mobl1.ger.corp.intel.com (HELO [10.213.210.241])
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="740150817"
+X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; d="scan'208";a="740150817"
+Received: from pjdillon-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.210.241])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 05:08:13 -0700
-Message-ID: <982c7f98-eaf8-7709-a90d-e192b666ade7@linux.intel.com>
-Date: Fri, 9 Jun 2023 13:08:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230608145133.1059554-1-tvrtko.ursulin@linux.intel.com>
- <20230608145133.1059554-2-tvrtko.ursulin@linux.intel.com>
- <b0990625-1d73-8b6d-d094-5e58be5ad6b0@intel.com>
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2023 05:11:49 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <b0990625-1d73-8b6d-d094-5e58be5ad6b0@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: Track buffer objects
- belonging to clients
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri,  9 Jun 2023 13:11:35 +0100
+Message-Id: <20230609121143.1232420-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/8] fdinfo memory stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,99 +61,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-On 09/06/2023 05:16, Iddamsetty, Aravind wrote:
-> On 08-06-2023 20:21, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> In order to show per client memory usage lets start tracking which
->> objects belong to which clients.
->>
->> We start with objects explicitly created by object creation UAPI and
->> track it on a new per client lists, protected by a new per client lock.
->> In order for delayed destruction (post client exit), we make tracked
->> objects hold references to the owning client.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_create.c    | 32 ++++++++++++++--
->>   drivers/gpu/drm/i915/gem/i915_gem_object.c    |  6 +++
->>   .../gpu/drm/i915/gem/i915_gem_object_types.h  | 12 ++++++
->>   drivers/gpu/drm/i915/i915_drm_client.c        | 36 +++++++++++++++++-
->>   drivers/gpu/drm/i915/i915_drm_client.h        | 37 ++++++++++++++++++-
->>   drivers/gpu/drm/i915/i915_gem.c               |  2 +-
->>   6 files changed, 119 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
->> index d24c0ce8805c..4f1957638207 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
->> @@ -11,6 +11,7 @@
->>   #include "gem/i915_gem_region.h"
->>   #include "pxp/intel_pxp.h"
->>   
->> +#include "i915_drm_client.h"
->>   #include "i915_drv.h"
->>   #include "i915_gem_create.h"
->>   #include "i915_trace.h"
->> @@ -164,6 +165,14 @@ __i915_gem_object_create_user(struct drm_i915_private *i915, u64 size,
->>   						 n_placements, 0);
->>   }
->>   
->> +static void add_file_obj(struct drm_file *file,
->> +			 struct drm_i915_gem_object *obj)
->> +{
->> +	struct drm_i915_file_private *fpriv = file->driver_priv;
->> +
->> +	i915_drm_client_add_object(fpriv->client, obj);
->> +}
->> +
->>   int
->>   i915_gem_dumb_create(struct drm_file *file,
->>   		     struct drm_device *dev,
->> @@ -174,6 +183,7 @@ i915_gem_dumb_create(struct drm_file *file,
->>   	enum intel_memory_type mem_type;
->>   	int cpp = DIV_ROUND_UP(args->bpp, 8);
->>   	u32 format;
->> +	int ret;
->>   
->>   	switch (cpp) {
->>   	case 1:
->> @@ -212,7 +222,12 @@ i915_gem_dumb_create(struct drm_file *file,
->>   	if (IS_ERR(obj))
->>   		return PTR_ERR(obj);
->>   
->> -	return i915_gem_publish(obj, file, &args->size, &args->handle);
->> +	ret = i915_gem_publish(obj, file, &args->size, &args->handle);
->> +
->> +	if (!ret)
->> +		add_file_obj(file, obj);
->> +
->> +	return ret;
->>   }
->>   
->>   /**
->> @@ -229,6 +244,7 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
->>   	struct drm_i915_gem_create *args = data;
->>   	struct drm_i915_gem_object *obj;
->>   	struct intel_memory_region *mr;
->> +	int ret;
->>   
->>   	mr = intel_memory_region_by_type(i915, INTEL_MEMORY_SYSTEM);
->>   
->> @@ -236,7 +252,12 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
->>   	if (IS_ERR(obj))
->>   		return PTR_ERR(obj);
-> 
-> Do we intend to track only client created objects and not imported ?
-> or is that taken care by this "obj->base.handle_count > 1"
+I added tracking of most classes of objects which contribute to client's memory
+footprint and accouting along the similar lines as in Rob's msm code. Then
+printing it out to fdinfo using the drm helper Rob added.
 
-I missed the imports, now added in v3 of the series.
+Accounting by keeping per client lists may not be the most effient method,
+perhaps we should simply add and subtract stats directly at convenient sites,
+but that too is not straightforward due no existing connection between buffer
+objects and clients. Possibly some other tricky bits in the buffer sharing
+deparment. So lets see if this works for now. Infrequent reader penalty should
+not be too bad (may be even useful to dump the lists in debugfs?) and additional
+list_head per object pretty much drowns in the noise.
 
-They wouldn't have been handled by the above check in the importer - 
-only the exporter would have seen (sometimes) changes in the ratio of 
-total vs shared.
+Example fdinfo with the series applied:
 
-Regards,
+# cat /proc/1383/fdinfo/8
+pos:    0
+flags:  02100002
+mnt_id: 21
+ino:    397
+drm-driver:     i915
+drm-client-id:  18
+drm-pdev:       0000:00:02.0
+drm-total-system:       125 MiB
+drm-shared-system:      16 MiB
+drm-active-system:      110 MiB
+drm-resident-system:    125 MiB
+drm-purgeable-system:   2 MiB
+drm-total-stolen-system:        0
+drm-shared-stolen-system:       0
+drm-active-stolen-system:       0
+drm-resident-stolen-system:     0
+drm-purgeable-stolen-system:    0
+drm-engine-render:      25662044495 ns
+drm-engine-copy:        0 ns
+drm-engine-video:       0 ns
+drm-engine-video-enhance:       0 ns
 
-Tvrtko
+Example gputop output (local patches currently):
+
+DRM minor 0
+ PID     SMEM  SMEMRSS   render     copy     video    NAME
+1233     124M     124M |████████||        ||        ||        | neverball
+1130      59M      59M |█▌      ||        ||        ||        | Xorg
+1207      12M      12M |        ||        ||        ||        | xfwm4
+
+v2:
+ * Now actually per client.
+
+v3:
+ * Track imported dma-buf objects.
+
+P.S. Patch 1 in the series is to silence a false positive lockdep splat due
+fence signaling annotations.
+
+Tvrtko Ursulin (8):
+  dma-fence: Bypass signaling annotation from dma_fence_is_signaled
+  drm/i915: Track buffer objects belonging to clients
+  drm/i915: Record which clients own a VM
+  drm/i915: Track page table backing store usage
+  drm/i915: Account ring buffer and context state storage
+  drm: Add drm_gem_prime_fd_to_handle_obj
+  drm/i915: Track imported dma-buf objects in memory stats
+  drm/i915: Implement fdinfo memory stats printing
+
+ drivers/dma-buf/dma-fence.c                   |  26 +++-
+ drivers/gpu/drm/drm_prime.c                   |  41 ++++++-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  17 ++-
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   3 +
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |  32 ++++-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  32 +++++
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.h    |   7 ++
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   6 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  12 ++
+ .../gpu/drm/i915/gem/selftests/mock_context.c |   4 +-
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |   6 +
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |   1 +
+ drivers/gpu/drm/i915/i915_driver.c            |   2 +-
+ drivers/gpu/drm/i915/i915_drm_client.c        | 113 +++++++++++++++++-
+ drivers/gpu/drm/i915/i915_drm_client.h        |  45 ++++++-
+ drivers/gpu/drm/i915/i915_gem.c               |   2 +-
+ include/drm/drm_prime.h                       |   4 +
+ include/linux/dma-fence.h                     |   3 +-
+ 18 files changed, 332 insertions(+), 24 deletions(-)
+
+-- 
+2.39.2
+
