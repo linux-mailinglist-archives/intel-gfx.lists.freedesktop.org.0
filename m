@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F18F372938B
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 10:44:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09FCF7293D8
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 10:54:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7611810E667;
-	Fri,  9 Jun 2023 08:44:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DE9610E662;
+	Fri,  9 Jun 2023 08:54:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DF0510E65A
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jun 2023 08:44:24 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D0A810E662
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jun 2023 08:54:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686300264; x=1717836264;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iqEH6KTC1mnAxkEIgrcpkCPVl2/qXmgXLvtLk8yby5M=;
- b=D1DLW5qIcJNHpdvvrKYn+EPE3P9DVuirXqyldUeVaDlDeGNk9MZzrBK7
- evJh89/BXKV+qpLJZNyTFcSbWJhiIWua5Li7xQMIyQ5LQLzs94cN5esYe
- jQsmYxlHJveLyqJf/LmeDZtICRU758q+a+3nqKDKSH2gEdrQfSaRtl4Xm
- zY7nbInr2M5eM5ZWJ+ruqCLi0lf+TJj+8FSpmkaOfWqdLOzs96Nb3Hyxs
- uu2xPXXXsr1J3bsH5BgeYc9QXLLoVHlrrGMmjQ49adWPsjrrN7jGaJ7Q5
- XWyJTPQ1SiU9WAMg4OTTs0z0U0GOAiaq7mkgiuGFV8WOujkJ1i1+0Q0Gb A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="357553443"
-X-IronPort-AV: E=Sophos;i="6.00,228,1681196400"; d="scan'208";a="357553443"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 01:44:12 -0700
+ t=1686300879; x=1717836879;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=esNwtBhteNPS/4x0vUEud3US6c1LOe2vgg3eDLWbsFE=;
+ b=LnPaRWlHtHOrJjk0tyvJBuKNx/js/rdP7hS2s/HUYxvnnYyQ5QDpbyEJ
+ r1iqXf/ScIetvLEVRJLVHXDeqLEo+blOU/gxt3fNhgnaRZCAW2w8BxB4+
+ PQxHCf30e/u69cMRGJ850q43uefv8IKvwZxlarE4+c2SSUfOWvkEYC0Ov
+ /QYf7aQ9bdwLdoWDiJbXL6qTGZGX46tV/2vNcHuG1wDIbtW0jc4HF5V6i
+ 47+JkPr45r2DZzcV1pLaiIAhh1dHbkJ9L4zz48Zo6ah1ejaJwg1HugBVO
+ ItV/2CvRxrTvlRkz6TDbZDgm5Z0cFfuRZD3lSJXCP+D8idH2c0gZdVNj0 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="337912406"
+X-IronPort-AV: E=Sophos;i="6.00,228,1681196400"; d="scan'208";a="337912406"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2023 01:54:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="884501575"
-X-IronPort-AV: E=Sophos;i="6.00,228,1681196400"; d="scan'208";a="884501575"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orsmga005.jf.intel.com with ESMTP; 09 Jun 2023 01:44:10 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="780232131"
+X-IronPort-AV: E=Sophos;i="6.00,228,1681196400"; d="scan'208";a="780232131"
+Received: from cohenyu1-mobl.ger.corp.intel.com (HELO
+ jhogande-mobl1.ger.corp.intel.com) ([10.251.211.144])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2023 01:54:35 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  9 Jun 2023 14:15:04 +0530
-Message-Id: <20230609084504.1929424-5-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230609084504.1929424-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20230609084504.1929424-1-mitulkumar.ajitkumar.golani@intel.com>
+Date: Fri,  9 Jun 2023 11:53:56 +0300
+Message-Id: <20230609085359.1259932-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 4/4] drm/i915/display: Initialize and compute HDMI
- Audio source cap
+Subject: [Intel-gfx] [PATCH 0/3] Move stolen memory handling details into
+ i915_gem_stolen
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,96 +59,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Initialize the audio capabilities for HDMI by setting them to their
-maximum supported values and then call a function to compute these
-capabilities into SADs. The audio capabilities for HDMI include
-parameters such as supported frequency and channel configurations.
-By computing these capabilities into SADs, we can determine which
-audio formats are supported.
+We are preparing for Xe driver. Stolen memory handling will be
+different in Xe driver. Due to this we want to remove all stolen
+memory handling details away from FBC code.
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdmi.c | 37 +++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_hdmi.h |  1 +
- 2 files changed, 38 insertions(+)
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index aa822ee5fbda..c71110a1a44a 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2277,6 +2277,40 @@ bool intel_hdmi_compute_has_hdmi_sink(struct intel_encoder *encoder,
- 		!intel_hdmi_is_cloned(crtc_state);
- }
- 
-+static unsigned int calc_audio_bw(int channel, int frequency)
-+{
-+	int bits_per_sample = 32;
-+	unsigned int bandwidth = channel * frequency * bits_per_sample;
-+	return bandwidth;
-+}
-+
-+void
-+intel_hdmi_audio_compute_config(struct intel_crtc_state *pipe_config)
-+{
-+	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
-+	int num_of_channel, aud_rates[7] = {192000, 176000, 96000, 88000, 48000, 44100, 32000};
-+	unsigned int audio_req_bandwidth, available_blank_bandwidth, vblank, hblank;
-+
-+	hblank = adjusted_mode->htotal - adjusted_mode->hdisplay;
-+	vblank = adjusted_mode->vtotal - adjusted_mode->vdisplay;
-+	available_blank_bandwidth = hblank * vblank *
-+				    drm_mode_vrefresh(adjusted_mode) * pipe_config->pipe_bpp;
-+	for (num_of_channel = 8; num_of_channel > 0; num_of_channel--) {
-+		for (int index = 0; index < 7; index++) {
-+			audio_req_bandwidth = calc_audio_bw(num_of_channel,
-+							    aud_rates[index]);
-+			if (audio_req_bandwidth < available_blank_bandwidth) {
-+				pipe_config->audio_config.max_frequency = aud_rates[index];
-+				pipe_config->audio_config.max_channel = num_of_channel;
-+				return;
-+			}
-+		}
-+	}
-+
-+	pipe_config->audio_config.max_frequency = 0;
-+	pipe_config->audio_config.max_channel = 0;
-+}
-+
- int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *pipe_config,
- 			      struct drm_connector_state *conn_state)
-@@ -2344,6 +2378,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 			pipe_config->hdmi_high_tmds_clock_ratio = true;
- 		}
- 	}
-+	intel_hdmi_audio_compute_config(pipe_config);
- 
- 	intel_hdmi_compute_gcp_infoframe(encoder, pipe_config,
- 					 conn_state);
-@@ -2368,6 +2403,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 		return -EINVAL;
- 	}
- 
-+	intel_audio_compute_eld(pipe_config);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-index 6b39df38d57a..6df303daf348 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-@@ -27,6 +27,7 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- bool intel_hdmi_compute_has_hdmi_sink(struct intel_encoder *encoder,
- 				      const struct intel_crtc_state *crtc_state,
- 				      const struct drm_connector_state *conn_state);
-+void intel_hdmi_audio_compute_config(struct intel_crtc_state *pipe_config);
- int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *pipe_config,
- 			      struct drm_connector_state *conn_state);
+Jouni Högander (3):
+  drm/i915: Move stolen memory handling into i915_gem_stolen
+  drm/i915/fbc: Make FBC check stolen at use time
+  drm/i915/fbc: Moved fence related code away from intel_fbc
+
+ drivers/gpu/drm/i915/display/intel_fbc.c   | 64 ++++++++++++----------
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 37 +++++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h | 13 +++++
+ drivers/gpu/drm/i915/gt/intel_gt_types.h   |  2 +
+ drivers/gpu/drm/i915/i915_vma.h            |  5 ++
+ 5 files changed, 91 insertions(+), 30 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
