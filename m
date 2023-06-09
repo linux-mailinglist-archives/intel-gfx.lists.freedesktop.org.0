@@ -1,110 +1,156 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C97B729D0B
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 16:38:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D49B729DF7
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jun 2023 17:13:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39B1110E0A3;
-	Fri,  9 Jun 2023 14:38:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49E8B10E6C4;
+	Fri,  9 Jun 2023 15:13:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2063.outbound.protection.outlook.com [40.107.93.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FA8D10E0A3;
- Fri,  9 Jun 2023 14:38:21 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31A2D10E6C2;
+ Fri,  9 Jun 2023 15:13:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686323584; x=1717859584;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:mime-version;
+ bh=C/iumIPmFQFvor5wpeCqxvBmebxR5522iL7dArEz2Mw=;
+ b=cWPBLABItoVxPDdIpnW+LX6dkaB/SvYw+7y+W80criBxQxU5A/HOmwJW
+ CGVZ/uEgXGicvqRZzrMAoffA9WHEoVJ5JtyiFeYzAyhwcOyWBGyBWRdHR
+ odKGiI0ZKuqPZ7guo6Q5hlqcouhajXSyr2BwYDCy7bjfThBxsJrAV6kQ2
+ T3ZcV6NyF0B1PDb7mjtLDCER1eXirm68Pv/e+sRv81ySt/rj301+rLBiS
+ GrnrO+seWHfYMgMxiIYPWybjtEB3Iyg9ksDi116cD/6XcoNAr1X7fg2dk
+ ux29EUC/1r7YIoLs4+k93PT4Krb+wKqAJ/5Yhj43CeaazbwWbGW82M5KS w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="337977151"
+X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; 
+ d="scan'208,217";a="337977151"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2023 08:13:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="1040507719"
+X-IronPort-AV: E=Sophos;i="6.00,229,1681196400"; 
+ d="scan'208,217";a="1040507719"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga005.fm.intel.com with ESMTP; 09 Jun 2023 08:13:02 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 9 Jun 2023 08:13:02 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 9 Jun 2023 08:13:02 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 9 Jun 2023 08:13:01 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Fri, 9 Jun 2023 08:13:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I1Ff2fOD8FS8lXdW6uyqLtNW28z15TrGIUp7hCEh77QoZfxk3A2QAzNjBWE3lMfeXaL8jLsx/a3IY3XHlkcNWGhaUeAsBBEIqg/AXRQjr8+L/NG3DTb3jiEnuG4gfe0xgU8jCBgUiZE+b2hGqZ+RckgLR2NPUCvBTJIrzIIVRPMdT6Ur4vzwFz5w7/EMWfdM+7oGsm9FvyMuIUEGqEEV9NhydKLs/IGP3V4PsqVwvNVWzC8kjmSkNmaOndzU2IuxY1OcAigiub09wm3BrLwLdRexADtji8F1N7SpV8aDPFpT0L4SKVp7+1Qk8t7pMY9j6Kmc/MFu/vSyffCNJTpR7Q==
+ b=TzousUJ/Rcrj/aValaVf1TDyct8gYKNADipDwALM/CnDy8nw+rJhy7NM1RFRFp4s9UETFMNQyojylhxXy7SrOCPu1wmPjnavQkOypQDtSA24B3WbsLNlczcMQgSW5DvB6GhydyNPhNNbLmiMHFV/rd5p5Hc/76crfNsBMzoYjzdnq5n06mInZmr/SXb9zG1+ZbasV+AD/XmwhK5LOUo7Dh398T6umiTkXcYk3dECLeNiGAzIzpjHhcvJxp9gJz81Q0yZtEwlJ0kkMXc2oEFZyRCp9uVwJM2niRJfnwngpt9SBr9HoJ3ZoVjH6dD8Kx8VPDNwQUkc7I1KwoQTXu9UBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pjbHLKYRVU+/wLcoIIbQm+61mg+/cl/Nd+M1lVWyetk=;
- b=U3X26hXpIKsr5Nr66JcQ7pbdpT5K9eyHFckQ3CsVRWNOptf+dz/OysGvhzXUVEQPRa2jLf6flB2p3DAP/W/SgndmK2sZqjcRhwdH0WQr0NO2vrB+0CksBGNr4dPidHX0ZNC6FVWgcaHzNPyZDWCfGDkpUCLyiROs0idYGYkiLXQ1gKEInYFABrDJTo5fs9DkP+OfUhHZRG8XF0i38z0qr0LYrdQ09sY0fxHo7LcUj+vPb7ZhyJaJAsYN2SQsAFBKXtu2PNvsrvdbwWvrlxHnzq6rAkVbHPtdlDEWyKMAKIYSYfQufl/VWPOEywM/8MGAkM8b383pR6jWz0G4kvU5wA==
+ bh=C/iumIPmFQFvor5wpeCqxvBmebxR5522iL7dArEz2Mw=;
+ b=f54wybxXLqfLfEwYksXH3Vv1SjpEGmP/qNvraJzduRo3q1TzwuRYRkIRCaz55diJtQSM+dAA8kLkTSUcm+EWdpe31MO9LWOrm5pfYgOUYPu/HpR/7wVCQjvstOGwO5OzcN4SMfScUDSDAJgJjJbc/Vg7gQvFbePPkCgpR1Fu5vrJBooueRkBrA/HYNPXWFh4CLQMinzAubJ0N1EFpqGJ2/k+ujqUv/1D5ohcPtS8GAQtVRnaqzjyIgr5rPk5OMetUOM5Nx+z/bpK+bXAw+j+SLS14/fR2f6AiFwCTKHon+yLZYpSforDcv7Wbj069BGmAAW7uEZJTeFtegDejiVsZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pjbHLKYRVU+/wLcoIIbQm+61mg+/cl/Nd+M1lVWyetk=;
- b=aMLBFzFikVtoJxZSxUSJc7Expe7fP8iqln6LLiPXG051gi8uaI/JVKjDqh0CaIzEWQglilQfO598gXCIQjeHYPPlwDicy1CxJs2ZtKvmsCz6FkjT+Qs2Jvh3zMsa40ZMIl1Vr+B+jl5q73eA3m/o48xmz9vatCKvm8LcdHuWGbAJcKekmuIhQC6PaliLIYVUhRX2+C+8xij7GwO0uLnzKo2R1TqeWKCaxwTnSTNnZd7OLDLmCKXSF/oLcnPqnPcxtJq+vaC3GQggKwmZ+jy4sWcBtLmpRyKU7oOtql0/fnY/YIXLDmNSqpdfGDim/o4NpIbJJnlLJl+5CDZ6JDPfbw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by CH0PR12MB5155.namprd12.prod.outlook.com (2603:10b6:610:ba::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.44; Fri, 9 Jun
- 2023 14:38:19 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f7a7:a561:87e9:5fab]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f7a7:a561:87e9:5fab%6]) with mapi id 15.20.6455.030; Fri, 9 Jun 2023
- 14:38:19 +0000
-Date: Fri, 9 Jun 2023 11:38:17 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <ZIM5WTWhWi7jjd6U@nvidia.com>
-References: <20230602121515.79374-1-yi.l.liu@intel.com>
- <20230602121515.79374-10-yi.l.liu@intel.com>
- <20230608163018.70bf3345.alex.williamson@redhat.com>
- <DS0PR11MB7529919796EF251B6D65D26BC351A@DS0PR11MB7529.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DS0PR11MB7529919796EF251B6D65D26BC351A@DS0PR11MB7529.namprd11.prod.outlook.com>
-X-ClientProxiedBy: SJ2PR07CA0013.namprd07.prod.outlook.com
- (2603:10b6:a03:505::15) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BYAPR11MB2567.namprd11.prod.outlook.com (2603:10b6:a02:c5::32)
+ by SJ0PR11MB6789.namprd11.prod.outlook.com (2603:10b6:a03:47f::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.28; Fri, 9 Jun
+ 2023 15:13:00 +0000
+Received: from BYAPR11MB2567.namprd11.prod.outlook.com
+ ([fe80::28b4:ae85:a4f0:3f46]) by BYAPR11MB2567.namprd11.prod.outlook.com
+ ([fe80::28b4:ae85:a4f0:3f46%4]) with mapi id 15.20.6455.034; Fri, 9 Jun 2023
+ 15:12:59 +0000
+From: "Yang, Fei" <fei.yang@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>, "Zhang, Carl"
+ <carl.zhang@intel.com>
+Thread-Topic: [PATCH v17 1/1] drm/i915: Allow user to set cache at BO creation
+Thread-Index: AQHZmF3TD+PHG5JckUCREhL+ccwPOK99jWQAgAACPgCAAA8TgIAAAMuAgAETVQCAABloAIAAAsCAgANykACAAFSM4A==
+Date: Fri, 9 Jun 2023 15:12:59 +0000
+Message-ID: <BYAPR11MB2567170796F88BB7DFF0DE0C9A51A@BYAPR11MB2567.namprd11.prod.outlook.com>
+References: <20230606100042.482345-1-andi.shyti@linux.intel.com>
+ <20230606100042.482345-2-andi.shyti@linux.intel.com>
+ <ec219702-8608-e919-cbcd-f271646845d1@linux.intel.com>
+ <ZH8H3ovN20uVO+tK@ashyti-mobl2.lan>
+ <168604992363.24014.14317865195655387952@jlahtine-mobl.ger.corp.intel.com>
+ <ZH8VLY8a9d7i96cw@ashyti-mobl2.lan>
+ <PH0PR11MB5579C119BEF9653A9A20CC4E8753A@PH0PR11MB5579.namprd11.prod.outlook.com>
+ <ZIARdL44LW5BEysa@ashyti-mobl2.lan>
+ <PH0PR11MB55793C2F3B66887186CF68198753A@PH0PR11MB5579.namprd11.prod.outlook.com>
+ <ZIL4HNonFakDqJtB@ashyti-mobl2.lan>
+In-Reply-To: <ZIL4HNonFakDqJtB@ashyti-mobl2.lan>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BYAPR11MB2567:EE_|SJ0PR11MB6789:EE_
+x-ms-office365-filtering-correlation-id: 86b03650-f9ac-453c-c9b2-08db68fc0311
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: PhOTA6JPIKQOD/OoF9WNJnQ/awIleMAEF0oqvIw4NnivEElhbMyQFNB29x4BQvMJNwyNm0oqaoQfAL5jq/bQREIalIov9A3AkfRcwn1DBKJET5WCL7OvMrJYP+3Uyb/5W/peTVrcVNCT0qq0JMaTgtd+nDk1IeU6xhMrGjS8pnLoSf28mEiWxuMJnRhHkfFvlKqszjhzP0XNWXpiRawyaO2efS9/Ut53tGb7qmlCLLatJhSVAQ81Pt5tUswfTSwtDM9BScHhBUQJc9W5+h9W6ESTkxzPR1azYYZk1cCk4ZiIzfTJoISfYidwqLxQJF0OJDxEYnG7OJSOmYc8N49mcI31IPPHPl6ezx4F7ym8uM3E6ge0JNuLO4K/Q4dm4wR8u/2bR9GOmfXAgTZ9zUnYjQRQ58rrjxJe308MOEcl7thOUVyJS7z8H4sS8nLnx2iJGLhYyy26YngF95P4lmHL3prjfja+BHcQkgefGTIwFURy3rDQZlMVh9ni768o2o+thKkHpi9Jtp+FBM2BCZchqF/0nVWPNHITQA63eelI4VvUaEJE87gn3omBJBzqIbq7WcQu5U/DstUpnuJ7ZJyuGw4Ua1h7V53OzZPEthINBdVdqiLJfb4XpDXeF3SdWSaZ
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2567.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(366004)(346002)(136003)(376002)(396003)(39860400002)(451199021)(38070700005)(8676002)(66476007)(66946007)(76116006)(19627405001)(66446008)(66556008)(52536014)(64756008)(8936002)(110136005)(6636002)(5660300002)(4326008)(41300700001)(55016003)(54906003)(2906002)(478600001)(186003)(122000001)(26005)(86362001)(38100700002)(6506007)(9686003)(316002)(82960400001)(7696005)(71200400001)(83380400001)(33656002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?poEg0piy1ozmADLHJxtwN/qKGr0+k8ib2stapWCHRJbIDlyqGmv5cPo0FO?=
+ =?iso-8859-1?Q?JRAXS7PICySKtyXluUYLzDBvZC0XENm7Da0e3qWgx7LQeCYqDpZO5f9fcO?=
+ =?iso-8859-1?Q?O0fXNog+vxh8TdvbWJdetJP3xEyIOALOUF+wvIu1SB07mSovZKSR4qTJyc?=
+ =?iso-8859-1?Q?tYLAUD0GLQePJeeV+O2Dio+3qOzDfyzi3kjd/nBe5t/eluxD5Nm6ztrGlR?=
+ =?iso-8859-1?Q?/BDVXtzwqMYrnrrDpE03e73lYr43RfAS9fp3g/wmSF0zzM/gBzzZ5MN3WA?=
+ =?iso-8859-1?Q?Q4Y7iJIR0hHuW30+tCM8Lc3VVgHkq4WCOIA8uOA59SEp7lbGwzjFBuDDii?=
+ =?iso-8859-1?Q?2xg3xGiaZXEx4PG4Q5FVYFPLzXBa32JeV5gsO76G6qaWJsi3dY5yTF3tY1?=
+ =?iso-8859-1?Q?TSaIr9Js2NzhlfcOUfC50KuHziiV4UEzoGK7a33TFPjCfQS585g++1sHrh?=
+ =?iso-8859-1?Q?p+oezizgH9kQEj0BHMl11jIkr3wpz6sqztt2XOeBvrIR+jV31uRqo96JhE?=
+ =?iso-8859-1?Q?yyJXuj0bKYBrwmO0jhBx/eZm67HEhlfdYqzz3LKU5d4ncCYWKWQF2jozmO?=
+ =?iso-8859-1?Q?DFOLManKrXwcDeRpCLD3X9LGVjsaU7sH0frr2Sp/BKcTldO4k8u3gfTzWR?=
+ =?iso-8859-1?Q?sv1BzE+QY+IGKju5OF5kvf/f3PSXP68z3PDDyiULt6zvWrxVMqCnBAblcX?=
+ =?iso-8859-1?Q?rSJkS0k5qYAY1aKaja4jaXvj9QE2MWzYmdfEFn/09zTSMOSX9Tbm/LINzJ?=
+ =?iso-8859-1?Q?c656FS5FIWXopdtPqAPysO3e5mKcKT9v2ujyR38upUm/oxv8/D2wdm6BEf?=
+ =?iso-8859-1?Q?qdkun4qbPqSlSb/olf0CAq7hAmapJZuDqNtK7KV2cX494ZHIH+x7+9l2PD?=
+ =?iso-8859-1?Q?WgWApd0DuqjbLBOzFGMU7uTONSXgU4LkahOGSazP7mNPdM38xu21eV5eRU?=
+ =?iso-8859-1?Q?/S+vqmwO9ZnuRFjgZO0nyxzo7gGz7MNZsPlcUwuNw31w9Xaq8jlon78eCo?=
+ =?iso-8859-1?Q?uq/vnRT+BydCvN2l/8FpQaTzT99208LA/B0WHPpaT/XSa2F3f/IZKlWz8m?=
+ =?iso-8859-1?Q?T/CuKCPKmvp1NMmEykOVerL5V7O7ZsyCoINVeBcVfqhYP5ner6eASv9hcC?=
+ =?iso-8859-1?Q?BqGm0495WTEvmJjH8fnxwNiBHfkeoYvD0t8cQp5rMEysUKAqb9ix9lz8Um?=
+ =?iso-8859-1?Q?tQ2JiQzTvxXhP7cF+Vyj6dLOfGZcOFtEikA6Y9kLeH6qeF7GSS24Q2Tn7y?=
+ =?iso-8859-1?Q?aR+llsmMcPvp0GC4MM+lRs3qvqW7LsMlyiUxWvIiUAEDFS/WbuCMYsmC19?=
+ =?iso-8859-1?Q?Tew19iypFFot032t5yKM6n3bkMCtPLPkW2ZswlOr86qSD4g6C/UaboTprC?=
+ =?iso-8859-1?Q?SyPPJKOYgeEjjeH4wU1FJ81nAhMwQQOTaSg96hM1jifEPJ+evW+AklflDk?=
+ =?iso-8859-1?Q?aZ3vZEls8gYrXSSqfD31KwDWKhtKb3y9jZh8yNrYrHvXBBif5LSMpplpzj?=
+ =?iso-8859-1?Q?AUMS1NxjMwk5n2RS8Ks1FVQS+zTzJhnZvSq6NweWVfdao3rimNrJcU1zJD?=
+ =?iso-8859-1?Q?dVWygrpu7vBn03U6uxFjNpWSEPPUMUfNmGjkXg+4yE41c2JtlNEuVYr3i6?=
+ =?iso-8859-1?Q?dBsEbHuNyDttQ=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_BYAPR11MB2567170796F88BB7DFF0DE0C9A51ABYAPR11MB2567namp_"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|CH0PR12MB5155:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d6c9029-592e-4312-efea-08db68f72b1f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: e58PhGawH5MiDVCvW8ikt+CIBDfwwcodosfudGkSstdWqK4eqmB0pk0CrwY+7ivby2RxKYUtW6SFI57W/CtcNj2fRm/KZmBnTc5eLRy/YrwcL1UebOM19X407UprYMIKNUIP+gor/7Ft//kWo2Xr1IjuWJi+IuwNiQqDTHhWbztatRi3Q+GltR3IVTeYlrEEzSaLpIJpA7jEx4AIYqTm015fUUMmidQ84j2ePTpnFlNcA24uLWgLKMK0k8nJmc11NgtLbL1XT/eBP1EpxcyOo8rikTDqbS5GOEBwW47uZtOqL7Ua3R6zqJm2Hz3+JFuSF9VuHz9LfHEW3seh21VALiJdcA57KKKUeyvuGOslx5uB9E6z0Ve3t3TMavMNrUm6LwLsuukqnSUuoPq5xP+Kg5A4fym3VMS+6FU6LUbPaioYVXBiJbIxM8WXUj07LTqP+IeVhc15quBELfrJ/hl+pz663IwXWGdjVDpDhTOhQjUgw6d5Dlc+pYUnlsUy7h1F5Yia27/KZ51678W8Y+Bijx+c57t92zmNPk8HHp0OGXj2uQ4rTdBXz2gtNTYyEc2W
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(39860400002)(376002)(346002)(366004)(396003)(451199021)(2616005)(186003)(6506007)(6512007)(26005)(86362001)(4326008)(66946007)(316002)(41300700001)(5660300002)(4744005)(2906002)(7416002)(6916009)(66476007)(66556008)(38100700002)(54906003)(478600001)(36756003)(8676002)(8936002)(6486002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?H5ptZhP3Olbzx82Lhk1G8OMnML64MWT9k/s1lnmubS9V6NRpp75U1bBlhGDv?=
- =?us-ascii?Q?MPx/CPomzOaaR+JE+3CBAi4hdU9ICwCjk5dHPik6gedu8oUSEqvm0FsqyhEE?=
- =?us-ascii?Q?OfFEirY5Wvm7Zg3DHIC+pc2fJETgUe2tAMqVYwmuUYRce8T62+oJ8MhhWwSF?=
- =?us-ascii?Q?QVQPiDb+yRxtTGk/c6YJZeDFy8c0ylZm6LJt1Kd9VjTCl0Ik+qntgHTxjvv2?=
- =?us-ascii?Q?Ch/fvvxTOC7jGpfVL3Gz5mW5IECMinYGTkDzTn35WVlxqPS9dkWFZu/QQrFs?=
- =?us-ascii?Q?EpH5taGpWjwEcZVKC1487Uw/SJ8IxIgiR7TmyijWAHZb9nOE6JuhHb1qiJ+U?=
- =?us-ascii?Q?rbYNw0sgFjlfb4IEh7wF27DkWX3W6p/u0x0tyCUsrS3h5iwRlICDT/PbAs+h?=
- =?us-ascii?Q?ctqEto1/StaJFOBqt2YD3J3fR/enag53XfRf0bEbNk6tnMDBoalWyX8MSjJt?=
- =?us-ascii?Q?k0Bn60XF/pB/hEvF4NwgiTx2rxRqv0mPQcr0tz7555CaFpiTkFAbCGRaTHzc?=
- =?us-ascii?Q?kGMMPCSFoqNNPIlj6Dz4915fqnNpwuXay4XqUk2B3OHyMh9yEiTIl2kj/IWe?=
- =?us-ascii?Q?6gq2B14y5eW8JtSy7gD1sxgTU6GbF2o94Ph5rxmHdBLhUAr23scNdsgMD4Bb?=
- =?us-ascii?Q?k+Dps4ii7UPm7OxzSI19VGqsRwAcpbP9ofVx5fjV2cg+FB29btA/ZXdXlXka?=
- =?us-ascii?Q?o/PRCfHJUlDvpf+cebCOWb2QA1iTEX/oV1skTD7DktZIjN/+uFPci1h3RqdR?=
- =?us-ascii?Q?ARqoj5+cV6uiGaW4y4m3/XzY4Aee6dceg1Wg/keonfpV7c0I7/F17HUcCt29?=
- =?us-ascii?Q?TwOM+p7Nro1Dqv7JSBsR+AT5Uz6fBVWC6H3gtQE3nGOMoVKJzaTNiOqCerzl?=
- =?us-ascii?Q?7HrZTCcYnwhv3Ma+ftw9k2Wo1nor9qtdfDZWvZjZuk+LkbjYll2KnMNNTGj9?=
- =?us-ascii?Q?wZdt9oWHwOsIIFfbfJ8B7/jqZVRy874qLpR+wJa4Ot0dTTUocUBNa6c+nGwi?=
- =?us-ascii?Q?iranx/y+F2hFHYBoWgZwS4jwqNyE0eQaW3OPETTR5BdFnw7Ym7fB0sru3Z5L?=
- =?us-ascii?Q?cHCPt4fJKvs340GIa2oNxuM3XQ8k0Z5rB7vgl1O9si5d4EWxz1cI1iV26cHC?=
- =?us-ascii?Q?oe2RxKy73rSKRsz1PwmHYq46dBSIlMn8Cq8qlCtpqorHxkEvdVQPXLaio0pt?=
- =?us-ascii?Q?/wdcfUOVOILmyC13WgDak7E9bceiinvxWdXVz4+gy50T7hsjTc5npIM7JpIn?=
- =?us-ascii?Q?5KkURrJR+o8/adP0WC6qEzc7itQnUbR2L7SLnOJsrEzckmmr6Tk5tpShhOg8?=
- =?us-ascii?Q?khzn7zhIeWwiAczDVB3vkXjmfBeHOZTlL/Au46u+MU1/K6Yi1p/tL0dkQuvY?=
- =?us-ascii?Q?IA/kSoTcg5zYyL7Wi3TtecWIaeq831Rc8wxUYfFRmKAjVop8h6WzFCXhcep3?=
- =?us-ascii?Q?EA3IZc6FNEF6fGEE3r9N2MoCrFGxkfBcEiZxhI3gf/1brjZkQpmdplsiumO4?=
- =?us-ascii?Q?59RJz6OxwJqMENwoPvAYJ39wjbDkp5N0aQkPDsAs1E1ejBpEvucogxyRIw0y?=
- =?us-ascii?Q?3UyvZJqfI5aSLkVxkoVoqyxW49Y16341ImvcVeXn?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d6c9029-592e-4312-efea-08db68f72b1f
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2023 14:38:19.4273 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XE37SwTF/S03TuHKchoCkOdm36Rx5tb/6JZ9i1OJeHWElTd/F0wHRS0qgSC5WXkX
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5155
-Subject: Re: [Intel-gfx] [PATCH v7 9/9] vfio/pci: Allow passing zero-length
- fd array in VFIO_DEVICE_PCI_HOT_RESET
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2567.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86b03650-f9ac-453c-c9b2-08db68fc0311
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jun 2023 15:12:59.5371 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: iFKQZvbzxp4bLQntFjgcd+dK7j/OpkdJyoEtwM9kAWIZ8tDMHedCn5zAQwUYbaj/ufEWeIvmwLOfFbAp2CiiqQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6789
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v17 1/1] drm/i915: Allow user to set cache
+ at BO creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,37 +163,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
- "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Tian,
- Kevin" <kevin.tian@intel.com>, "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "clegoate@redhat.com" <clegoate@redhat.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: "Gu, Lihao" <lihao.gu@intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, "Roper,
+ Matthew D" <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 09, 2023 at 12:13:58AM +0000, Liu, Yi L wrote:
+--_000_BYAPR11MB2567170796F88BB7DFF0DE0C9A51ABYAPR11MB2567namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-> > Other than this and the couple other comments, the series looks ok to
-> > me.  We still need acks from Jason for iommufd on 3-5.  Thanks,
-> 
-> Thanks, perhaps one more version after getting feedback from Jason.
+> Hi Carl,
+>
+>>>> besides this, ask a dumb question.
+>>>> How we retrieve the pat_index from a shared resource though dma_buf fd=
+?
+>>>> maybe we need to know whether it could be CPU cached if we want map it=
+.
+>>>> Of course, looks there are no real usage to access it though CPU.
+>>>> Just use it directly without any pat related options ?
+>>>
+>>> I am not understanding. Do you want to ask the PAT table to the driver?=
+ Are
+>>> you referring to the CPU PAT index?
+>>>
+>>> In any case, if I understood correctly, you don't necessarily always ne=
+ed to
+>>> set the PAT options and the cache options will fall into the default va=
+lues.
+>>>
+>>> Please let me know if I haven't answered the question.
+>>>
+>>
+>> If mesa create a resource , then use DRM_IOCTL_PRIME_HANDLE_TO_FD conver=
+t it to a dma fd.
+>> Then share it to media, media use DRM_IOCTL_PRIME_FD_TO_HANDLE convert i=
+t to a gem bo.
+>> But media does not know the PAT index , because mesa create it and set i=
+t.
+>> So, if media want to call DRM_IOCTL_I915_GEM_MMAP_OFFSET, media does not=
+ know whether it could be WB.
+>
+> That's a good point. To be honest I am not really sure how this
+> is handled.
+>
+> Fei, Jordan? Do you have suggestion here?
 
-Yes, perhaps today I can reach it
+Is it possible to pass the PAT setting when sharing the fd?
+Or perhaps we should have kept the get_caching ioctl functional?
+Joonas, could you chime in here?
 
-Jason
+> Andi
+
+--_000_BYAPR11MB2567170796F88BB7DFF0DE0C9A51ABYAPR11MB2567namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof ContentPasted0">
+&gt; Hi Carl,
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; besides this, ask a dumb que=
+stion.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; How we retrieve the pat_inde=
+x from a shared resource though dma_buf fd?</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; maybe we need to know whethe=
+r it could be CPU cached if we want map it.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; Of course, looks there are n=
+o real usage to access it though CPU.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; Just use it directly without=
+ any pat related options ?</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; I am not understanding. Do you w=
+ant to ask the PAT table to the driver? Are</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; you referring to the CPU PAT ind=
+ex?</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; In any case, if I understood cor=
+rectly, you don't necessarily always need to</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; set the PAT options and the cach=
+e options will fall into the default values.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; Please let me know if I haven't =
+answered the question.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; If mesa create a resource , then use=
+ DRM_IOCTL_PRIME_HANDLE_TO_FD convert it to a dma fd.</div>
+<div class=3D"ContentPasted0">&gt;&gt; Then share it to media, media use DR=
+M_IOCTL_PRIME_FD_TO_HANDLE convert it to a gem bo.</div>
+<div class=3D"ContentPasted0">&gt;&gt; But media does not know the PAT inde=
+x , because mesa create it and set it.</div>
+<div class=3D"ContentPasted0">&gt;&gt; So, if media want to call DRM_IOCTL_=
+I915_GEM_MMAP_OFFSET, media does not know whether it could be WB.</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; That's a good point. To be honest I am n=
+ot really sure how this</div>
+<div class=3D"ContentPasted0">&gt; is handled.</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; Fei, Jordan? Do you have suggestion here=
+?</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">Is it possible to pass the PAT setting when s=
+haring the fd?</div>
+<div class=3D"ContentPasted0">Or perhaps we should have kept the get_cachin=
+g ioctl functional?</div>
+<div class=3D"ContentPasted0">Joonas, could you chime in here?</div>
+<div><br class=3D"ContentPasted0">
+</div>
+&gt; Andi<br>
+</div>
+</body>
+</html>
+
+--_000_BYAPR11MB2567170796F88BB7DFF0DE0C9A51ABYAPR11MB2567namp_--
