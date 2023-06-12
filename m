@@ -1,75 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0AC672CF9B
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jun 2023 21:33:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5657B72CFC7
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jun 2023 21:42:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2242010E2CA;
-	Mon, 12 Jun 2023 19:33:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A76F010E06F;
+	Mon, 12 Jun 2023 19:42:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 911F610E0D4;
- Mon, 12 Jun 2023 19:33:11 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Cx8Oj2codk9woEAA--.6819S3;
- Tue, 13 Jun 2023 03:33:10 +0800 (CST)
-Received: from openarena.loongson.cn (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8Ax6OT1codkpR4XAA--.813S2; 
- Tue, 13 Jun 2023 03:33:09 +0800 (CST)
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Hawking Zhang <Hawking.Zhang@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
- Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Bokun Zhang <Bokun.Zhang@amd.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
- Sui Jingfeng <suijingfeng@loongson.cn>, Jason Gunthorpe <jgg@ziepe.ca>,
- Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>,
- Yishai Hadas <yishaih@nvidia.com>, Abhishek Sahu <abhsahu@nvidia.com>,
- Yi Liu <yi.l.liu@intel.com>
-Date: Tue, 13 Jun 2023 03:33:01 +0800
-Message-Id: <20230612193309.197571-1-suijingfeng@loongson.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77B8E10E2CE;
+ Mon, 12 Jun 2023 19:42:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686598965; x=1718134965;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Mfq5DiwNFvwJVJJqgPECNTxcRfc+UheY8p9trsahyFc=;
+ b=Lpy1pUEPpxippFxnrDuop7/dTqyQvuDH7/Su1lrlQILoKG6DJlK6xMVl
+ FPA07r5LCrMxVa2UcWOhiEm8O4Tk9RROZ9Grv/K6plcvvofKRqOyt1cIe
+ O78xBxBEjfhn4bvpoZqqtZl7tZoRXDDoYtnvZYDZv6lBpCDgKXisFdi4m
+ S/PeFS8qDSK8X3k894XdUlUcgZBP+YMLC7avAhagwUnlWGWk+OA+ADJ5S
+ d+PvfAkH+FMk6RD9ZfDK5cTJopTLUOfBZYJnPXEdg91mrB88P5MaUdEYO
+ dU2UCj/i4TVE5FdMYzKAY8OMi36Yqzxrwz3fL2/Pp6wxxfkZ3HiFyFhPq g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10739"; a="342831960"
+X-IronPort-AV: E=Sophos;i="6.00,236,1681196400"; d="scan'208";a="342831960"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2023 12:42:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10739"; a="855783552"
+X-IronPort-AV: E=Sophos;i="6.00,236,1681196400"; d="scan'208";a="855783552"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by fmsmga001.fm.intel.com with ESMTP; 12 Jun 2023 12:42:29 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	igt-dev@lists.freedesktop.org
+Date: Mon, 12 Jun 2023 12:42:13 -0700
+Message-Id: <20230612194213.528058-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Ax6OT1codkpR4XAA--.813S2
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7ZrWUZF45Zr4kur18tFW3XFc_yoW8tr1rpF
- 45GF9xAr95Jr4akry7Aw4xZFy5Zan7CayfKr9rCw13u3W3Cry8trWqyFWrK34DJrWxAF10
- qr9xKryUCF1qvrXCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUBFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
- Gr0_Gr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYI
- kI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWU
- twAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI4
- 8JMxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
- 6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwV
- AFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWrXVW8Jr1lIxkGc2Ij64vIr41lIxAIcVC0I7IY
- x2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26c
- xKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAF
- wI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jFfOwUUUUU=
-Subject: [Intel-gfx] [PATCH v6 0/8] PCI/VGA: introduce is_boot_device
- function callback to vga_client_register
+Subject: [Intel-gfx] [PATCH v2 i-g-t] tests/i915_pm_freq_api: Add a suspend
+ subtest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,58 +56,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
- amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The vga_is_firmware_default() function is arch-dependent, it's probably
-wrong if we simply remove the arch guard. As the VRAM BAR which contains
-firmware framebuffer may move, while the lfb_base and lfb_size members of
-the screen_info does not change accordingly. In short, it should take the
-re-allocation of the PCI BAR into consideration.
+Verify that SLPC API works as expected after a suspend. Added
+another subtest that does multiple GT resets and checks freq api
+works as expected after each one.
 
-With the observation that device drivers or video aperture helpers may
-have better knowledge about which PCI bar contains the firmware fb,
-which could avoid the need to iterate all of the PCI BARs. But as a PCI
-function at pci/vgaarb.c, vga_is_firmware_default() is not suitable to
-make such an optimization since it is loaded too early.
+We now check requested frequency instead of soft min/max after a
+reset or suspend. That ensures the soft limits got applied
+correctly at init. Also, disable efficient freq before starting the
+test which allows current freq to be consistent with SLPC min freq.
 
-There are PCI display controllers that don't have a dedicated VRAM bar,
-this function will lose its effectiveness in such a case. Luckily, the
-device driver can provide an accurate workaround.
+v2: Restore freq in exit handler (Ashutosh)
 
-Therefore, this patch introduces a callback that allows the device driver
-to tell the VGAARB if the device is the default boot device. Also honor
-the comment: "Clients have two callback mechanisms they can use"
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ tests/i915/i915_pm_freq_api.c | 89 +++++++++++++++++++++++++++--------
+ 1 file changed, 69 insertions(+), 20 deletions(-)
 
-Sui Jingfeng (8):
-  PCI/VGA: Use unsigned type for the io_state variable
-  PCI/VGA: Deal only with VGA class devices
-  PCI/VGA: Tidy up the code and comment format
-  PCI/VGA: Replace full MIT license text with SPDX identifier
-  video/aperture: Add a helper to detect if an aperture contains
-    firmware FB
-  PCI/VGA: Introduce is_boot_device function callback to
-    vga_client_register
-  drm/amdgpu: Implement the is_boot_device callback function
-  drm/radeon: Implement the is_boot_device callback function
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  12 +-
- drivers/gpu/drm/drm_aperture.c             |  16 +++
- drivers/gpu/drm/i915/display/intel_vga.c   |   3 +-
- drivers/gpu/drm/nouveau/nouveau_vga.c      |   2 +-
- drivers/gpu/drm/radeon/radeon_device.c     |  12 +-
- drivers/pci/vgaarb.c                       | 153 +++++++++++++--------
- drivers/vfio/pci/vfio_pci_core.c           |   2 +-
- drivers/video/aperture.c                   |  29 ++++
- include/drm/drm_aperture.h                 |   2 +
- include/linux/aperture.h                   |   7 +
- include/linux/vgaarb.h                     |  35 ++---
- 11 files changed, 184 insertions(+), 89 deletions(-)
-
+diff --git a/tests/i915/i915_pm_freq_api.c b/tests/i915/i915_pm_freq_api.c
+index 9005cd220..4e1d4edca 100644
+--- a/tests/i915/i915_pm_freq_api.c
++++ b/tests/i915/i915_pm_freq_api.c
+@@ -18,6 +18,12 @@
+  *
+  * SUBTEST: freq-reset
+  * Description: Test basic freq API works after a reset
++ *
++ * SUBTEST: freq-reset-multiple
++ * Description: Test basic freq API works after multiple resets
++ *
++ * SUBTEST: freq-suspend
++ * Description: Test basic freq API works after a runtime suspend
+  */
+ 
+ IGT_TEST_DESCRIPTION("Test SLPC freq API");
+@@ -79,31 +85,64 @@ static void test_freq_basic_api(int dirfd, int gt)
+ 
+ }
+ 
+-static void test_reset(int i915, int dirfd, int gt)
++static void test_reset(int i915, int dirfd, int gt, int count)
+ {
+ 	uint32_t rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
+ 	int fd;
+ 
++	for (int i = 0; i < count; i++) {
++		igt_assert_f(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0,
++			     "Failed after %d good cycles\n", i);
++		igt_assert_f(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rpn) > 0,
++			     "Failed after %d good cycles\n", i);
++		usleep(ACT_FREQ_LATENCY_US);
++		igt_assert_f(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn,
++			     "Failed after %d good cycles\n", i);
++
++		/* Manually trigger a GT reset */
++		fd = igt_debugfs_gt_open(i915, gt, "reset", O_WRONLY);
++		igt_require(fd >= 0);
++		igt_ignore_warn(write(fd, "1\n", 2));
++
++		igt_assert_f(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn,
++			     "Failed after %d good cycles\n", i);
++	}
++	close(fd);
++}
++
++static void test_suspend(int i915, int dirfd, int gt)
++{
++	uint32_t rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
++
+ 	igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0);
+ 	igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rpn) > 0);
+ 	usleep(ACT_FREQ_LATENCY_US);
+-	igt_assert(get_freq(dirfd, RPS_MIN_FREQ_MHZ) == rpn);
++	igt_assert(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn);
+ 
+-	/* Manually trigger a GT reset */
+-	fd = igt_debugfs_gt_open(i915, gt, "reset", O_WRONLY);
+-	igt_require(fd >= 0);
+-	igt_ignore_warn(write(fd, "1\n", 2));
+-	close(fd);
++	/* Manually trigger a suspend */
++	igt_system_suspend_autoresume(SUSPEND_STATE_S3,
++				      SUSPEND_TEST_NONE);
+ 
+-	igt_assert(get_freq(dirfd, RPS_MIN_FREQ_MHZ) == rpn);
+-	igt_assert(get_freq(dirfd, RPS_MAX_FREQ_MHZ) == rpn);
++	igt_assert(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn);
+ }
+ 
+-igt_main
++int i915 = -1;
++uint32_t *stash_min, *stash_max;
++
++static void restore_sysfs_freq(int sig)
+ {
+-	int i915 = -1;
+-	uint32_t *stash_min, *stash_max;
++	int dirfd, gt;
++	/* Restore frequencies */
++	for_each_sysfs_gt_dirfd(i915, dirfd, gt) {
++		igt_pm_ignore_slpc_efficient_freq(i915, dirfd, false);
++		igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, stash_max[gt]) > 0);
++		igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, stash_min[gt]) > 0);
++	}
++	close(i915);
++}
+ 
++igt_main
++{
+ 	igt_fixture {
+ 		int num_gts, dirfd, gt;
+ 
+@@ -122,7 +161,9 @@ igt_main
+ 		for_each_sysfs_gt_dirfd(i915, dirfd, gt) {
+ 			stash_min[gt] = get_freq(dirfd, RPS_MIN_FREQ_MHZ);
+ 			stash_max[gt] = get_freq(dirfd, RPS_MAX_FREQ_MHZ);
++			igt_pm_ignore_slpc_efficient_freq(i915, dirfd, true);
+ 		}
++		igt_install_exit_handler(restore_sysfs_freq);
+ 	}
+ 
+ 	igt_describe("Test basic API for controlling min/max GT frequency");
+@@ -140,16 +181,24 @@ igt_main
+ 
+ 		for_each_sysfs_gt_dirfd(i915, dirfd, gt)
+ 			igt_dynamic_f("gt%u", gt)
+-				test_reset(i915, dirfd, gt);
++				test_reset(i915, dirfd, gt, 1);
+ 	}
+ 
+-	igt_fixture {
++	igt_describe("Test basic freq API works after multiple resets");
++	igt_subtest_with_dynamic_f("freq-reset-multiple") {
+ 		int dirfd, gt;
+-		/* Restore frequencies */
+-		for_each_sysfs_gt_dirfd(i915, dirfd, gt) {
+-			igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, stash_max[gt]) > 0);
+-			igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, stash_min[gt]) > 0);
+-		}
+-		close(i915);
++
++		for_each_sysfs_gt_dirfd(i915, dirfd, gt)
++			igt_dynamic_f("gt%u", gt)
++				test_reset(i915, dirfd, gt, 50);
++	}
++
++	igt_describe("Test basic freq API works after suspend");
++	igt_subtest_with_dynamic_f("freq-suspend") {
++		int dirfd, gt;
++
++		for_each_sysfs_gt_dirfd(i915, dirfd, gt)
++			igt_dynamic_f("gt%u", gt)
++				test_suspend(i915, dirfd, gt);
+ 	}
+ }
 -- 
-2.25.1
+2.38.1
 
