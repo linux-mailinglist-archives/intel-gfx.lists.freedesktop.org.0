@@ -2,58 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3C4E72BA63
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jun 2023 10:26:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6460F72BFC5
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jun 2023 12:47:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73A9210E1BD;
-	Mon, 12 Jun 2023 08:26:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DED610E1F9;
+	Mon, 12 Jun 2023 10:47:12 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ADFD10E1BB;
- Mon, 12 Jun 2023 08:26:09 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5EBC10E1F7;
+ Mon, 12 Jun 2023 10:47:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686558369; x=1718094369;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+ogtnKRJGWjGfBa+VpYTRfrIADIeHv6/eKXf/S8bk9w=;
- b=E00VCtILdpVES5a6Dxp6ETsFqSvk5fXnDyTyOxoRmBJK4bZb5HsyL2Pv
- aPTq0euLOa8jRbf36cyyv3pHF29wi5bD5MXvRBLHt1dpGuN6FrBvW8eTT
- WyN6riMQ1xMh7Xk+AQYOfograGgMcwf6t8Vv5+NPRqaq1jLfZoQdjgYIl
- mYaJL5V373wllwep+k8iwl9MGvEzt3wwJdwyWbh9v4jjpmMMvgeEZmtSN
- cwYZ1wCM9IBAVWsAqzc9z4Zv1tj6seazRqZmsMSMJLfWrThyl9d5ReQuq
- uZ/b0gm1l8U6LwLnEj4VpjPYpIm2he1qRx8Z9k2bzlFzlQ7fsxDBzS0f9 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10738"; a="347628151"
-X-IronPort-AV: E=Sophos;i="6.00,236,1681196400"; d="scan'208";a="347628151"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2023 01:26:06 -0700
+ t=1686566829; x=1718102829;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tPZUXG0c75fqC9S4gwjHrV4NIZEpBLJXut/FmdDIJNU=;
+ b=bymcgFLUsAW3s5IjPKRQX2nqw8U3lT4URG1dt0g600tl3W4nY3pVCD2A
+ G5CwftjX8H5ZozoY7OD4dDxSMOzAnGz1B/F4woFhjy879i9PD2oGPjk7l
+ M5zWjipEVYWy7UZ1WuFmI95fUwQJofN52zGEHEhJIDRW3mGnk6+Z8Vhl/
+ KLWMMBMsD8Qzxl8JGX1JFgTPoimBbMiUVlGrWL4tfsfluAsJ00CmV+5tg
+ TbyeBd4uCEsunXFMLFs4kNpthh05pcxsFbu3uF5l2FB7wfXNMsyaQ/DE7
+ /tFAMCDXt0K5LF11hpnRNI5pqHxWaQMYeGzRKZQ3bxtnHRDBf3JnnZuPc A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10738"; a="342693228"
+X-IronPort-AV: E=Sophos;i="6.00,236,1681196400"; d="scan'208";a="342693228"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2023 03:47:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10738"; a="744248327"
-X-IronPort-AV: E=Sophos;i="6.00,236,1681196400"; d="scan'208";a="744248327"
-Received: from mcantwex-mobl.ger.corp.intel.com (HELO [10.213.224.167])
+X-IronPort-AV: E=McAfee;i="6600,9927,10738"; a="835439459"
+X-IronPort-AV: E=Sophos;i="6.00,236,1681196400"; d="scan'208";a="835439459"
+Received: from mcantwex-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.224.167])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2023 01:26:04 -0700
-Message-ID: <55cddc4c-9a95-2c92-84d9-b2ea60c358c2@linux.intel.com>
-Date: Mon, 12 Jun 2023 09:26:01 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Rob Clark <robdclark@gmail.com>
-References: <20230609121143.1232420-1-tvrtko.ursulin@linux.intel.com>
- <20230609121143.1232420-7-tvrtko.ursulin@linux.intel.com>
- <2faa3900-6456-136c-0a1a-8629ed6d3784@intel.com>
- <bfa71c75-4b61-ce17-8eba-0aa48ec14097@linux.intel.com>
- <CAF6AEGtcezsfSV3kqdbPUHGN8Pr1Jwo78fvtDQ4aGVZ+b8Ni_w@mail.gmail.com>
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2023 03:47:06 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <CAF6AEGtcezsfSV3kqdbPUHGN8Pr1Jwo78fvtDQ4aGVZ+b8Ni_w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon, 12 Jun 2023 11:46:53 +0100
+Message-Id: <20230612104658.1386996-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 6/8] drm: Add drm_gem_prime_fd_to_handle_obj
+Subject: [Intel-gfx] [PATCH v4 0/5] fdinfo memory stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,82 +58,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-On 09/06/2023 18:09, Rob Clark wrote:
-> On Fri, Jun 9, 2023 at 7:12 AM Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
->>
->>
->> On 09/06/2023 13:44, Iddamsetty, Aravind wrote:
->>> On 09-06-2023 17:41, Tvrtko Ursulin wrote:
->>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>
->>>> I need a new flavour of the drm_gem_prime_fd_to_handle helper, one which
->>>> will return a reference to a newly created GEM objects (if created), in
->>>> order to enable tracking of imported i915 GEM objects in the following
->>>> patch.
->>>
->>> instead of this what if we implement the open call back in i915
->>>
->>> struct drm_gem_object_funcs {
->>>
->>>           /**
->>>            * @open:
->>>            *
->>>            * Called upon GEM handle creation.
->>>            *
->>>            * This callback is optional.
->>>            */
->>>           int (*open)(struct drm_gem_object *obj, struct drm_file *file);
->>>
->>> which gets called whenever a handle(drm_gem_handle_create_tail) is
->>> created and in the open we can check if to_intel_bo(obj)->base.dma_buf
->>> then it is imported if not it is owned or created by it.
->>
->> I wanted to track as much memory usage as we have which is buffer object
->> backed, including page tables and contexts. And since those are not user
->> visible (they don't have handles), they wouldn't be covered by the
->> obj->funcs->open() callback.
->>
->> If we wanted to limit to objects with handles we could simply do what
->> Rob proposed and that is to walk the handles idr. But that does not feel
->> like the right direction to me. Open for discussion I guess.
-> 
-> I guess you just have a few special case objects per context?
+I added tracking of most classes of objects which contribute to client's memory
+footprint and accouting along the similar lines as in Rob's msm code. Then
+printing it out to fdinfo using the drm helper Rob added.
 
-Per context we have context image (register state etc) and ring buffer 
-(command emission), per engine.
+Accounting by keeping per client lists may not be the most effient method,
+perhaps we should simply add and subtract stats directly at convenient sites,
+but that too is not straightforward due no existing connection between buffer
+objects and clients. Possibly some other tricky bits in the buffer sharing
+deparment. So lets see if this works for now. Infrequent reader penalty should
+not be too bad (may be even useful to dump the lists in debugfs?) and additional
+list_head per object pretty much drowns in the noise.
 
-Then we have all the page table backing store per each VM/ppgtt/context 
-allocated as GEM objects.
+Example fdinfo with the series applied:
 
-> Wouldn't it be easier to just track _those_ specially and append them
-> to the results after doing the normal idr table walk?
+# cat /proc/1383/fdinfo/8
+pos:    0
+flags:  02100002
+mnt_id: 21
+ino:    397
+drm-driver:     i915
+drm-client-id:  18
+drm-pdev:       0000:00:02.0
+drm-total-system:       125 MiB
+drm-shared-system:      16 MiB
+drm-active-system:      110 MiB
+drm-resident-system:    125 MiB
+drm-purgeable-system:   2 MiB
+drm-total-stolen-system:        0
+drm-shared-stolen-system:       0
+drm-active-stolen-system:       0
+drm-resident-stolen-system:     0
+drm-purgeable-stolen-system:    0
+drm-engine-render:      25662044495 ns
+drm-engine-copy:        0 ns
+drm-engine-video:       0 ns
+drm-engine-video-enhance:       0 ns
 
-In a way yes and in a way it is not as elegant. IMHO at least.
-> (Also, doing something special for dma-buf smells a bit odd..
-> considering that we also have legacy flink name based sharing as
-> well.)
+Example gputop output (local patches currently):
 
-It's not really special, just needed to return a tuple of (object, 
-handle) from the prime import helper. So it can plug into the very same 
-tracking I use from other paths.
+DRM minor 0
+ PID     SMEM  SMEMRSS   render     copy     video    NAME
+1233     124M     124M |████████||        ||        ||        | neverball
+1130      59M      59M |█▌      ||        ||        ||        | Xorg
+1207      12M      12M |        ||        ||        ||        | xfwm4
 
-I was going for some kind of elegance with one loop - single tracking - 
-as long as I had to add new list head to our buffer object.
+v2:
+ * Now actually per client.
 
-Anyway, I can re-spin a simplified version (fewer patches) with two 
-loops. Only downside is that the new list head will only be used for 
-internal objects.
+v3:
+ * Track imported dma-buf objects.
 
-Regards,
+v4:
+ * Rely on DRM GEM handles for tracking user objects.
+ * Fix internal object accounting (no placements).
 
-Tvrtko
+Tvrtko Ursulin (5):
+  drm/i915: Add ability for tracking buffer objects per client
+  drm/i915: Record which client owns a VM
+  drm/i915: Track page table backing store usage
+  drm/i915: Account ring buffer and context state storage
+  drm/i915: Implement fdinfo memory stats printing
 
-P.S.
-Flink I indeed missed. Is that used nowadays btw?
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  11 +-
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   3 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   5 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  12 ++
+ .../gpu/drm/i915/gem/selftests/mock_context.c |   4 +-
+ drivers/gpu/drm/i915/gt/intel_context.c       |   8 ++
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |   6 +
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |   1 +
+ drivers/gpu/drm/i915/i915_drm_client.c        | 124 +++++++++++++++++-
+ drivers/gpu/drm/i915/i915_drm_client.h        |  42 +++++-
+ drivers/gpu/drm/i915/i915_gem.c               |   2 +-
+ 11 files changed, 210 insertions(+), 8 deletions(-)
+
+-- 
+2.39.2
+
