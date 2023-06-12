@@ -2,43 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2051872C615
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jun 2023 15:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64DF372C681
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jun 2023 15:53:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83CEC10E04D;
-	Mon, 12 Jun 2023 13:35:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BD0610E039;
+	Mon, 12 Jun 2023 13:53:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6FE710E04D;
- Mon, 12 Jun 2023 13:35:47 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id E30E1616FD;
- Mon, 12 Jun 2023 13:35:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1F1AC433D2;
- Mon, 12 Jun 2023 13:35:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1686576946;
- bh=qAGctGPmTEGb8Q322023xH/8ic4A2qSPM1FKoiXCBSk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=QvDxDyruXr+m7Nhq2DHbE0eMq5Bv0/Vs2UIxhO1PWnbg0RpNbROQQ5QB/y1lEB1nt
- ZL1O4J8dEmi33KST4wq8FgbUVFfzUMR6n3Z3R1GTC4IyWFW00ncK7P51eA08JXQPze
- Zp4+Te3auFeleRBfNrA0AX+fzfh1CHJ3EsEq6/Wt0UQfsyFPxI3bpRPyCW8dShDV4v
- AOWIm/TJhAPQ4S9N56JhjTxGWe71+OEYKlxPdyW2zPQCcAcgtjnx6CZUQqOXsD/dJb
- IoMN2TehnUo8DvHbJvllWjDXLgB252JvWBVLkyeBVog4bKehA2aflV1oxP5+W+PYH1
- tk1qIdNsos5hA==
-Date: Mon, 12 Jun 2023 15:35:42 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Arnd Bergmann <arnd@kernel.org>
-Message-ID: <20230612133542.knm4edwlk2nhfboj@intel.intel>
-References: <20230612124408.521325-1-arnd@kernel.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 111D510E04D;
+ Mon, 12 Jun 2023 13:53:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 09B5FAADDD;
+ Mon, 12 Jun 2023 13:53:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Date: Mon, 12 Jun 2023 13:53:26 -0000
+Message-ID: <168657800601.26643.13000354279228933033@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230612124408.521325-1-arnd@kernel.org>
 In-Reply-To: <20230612124408.521325-1-arnd@kernel.org>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gmch: avoid unused variable warning
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gmch=3A_avoid_unused_variable_warning?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,59 +40,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Arnd,
+== Series Details ==
 
-On Mon, Jun 12, 2023 at 02:43:59PM +0200, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> When CONFIG_PNP is disabled, the mchbar_addr variable is only written but
-> not read:
-> 
-> drivers/gpu/drm/i915/soc/intel_gmch.c: In function 'intel_alloc_mchbar_resource':
-> drivers/gpu/drm/i915/soc/intel_gmch.c:41:13: error: variable 'mchbar_addr' set but not used [-Werror=unused-but-set-variable]
->    41 |         u64 mchbar_addr;
->       |             ^~~~~~~~~~~
-> 
-> No idea why this showed up now, but it's easy to fix by changing the #ifdef to
-> an IS_ENABLED() check that the compiler can see through.
-> 
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Series: drm/i915/gmch: avoid unused variable warning
+URL   : https://patchwork.freedesktop.org/series/119197/
+State : warning
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+== Summary ==
 
-Andi
+Error: dim checkpatch failed
+578f7e0a22b6 drm/i915/gmch: avoid unused variable warning
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#14: 
+No idea why this showed up now, but it's easy to fix by changing the #ifdef to
 
-> ---
-> I saw this last week already, so it's likely that someone else already sent
-> a fix for it.
-> 
->  drivers/gpu/drm/i915/soc/intel_gmch.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.c b/drivers/gpu/drm/i915/soc/intel_gmch.c
-> index 6d0204942f7a5..49c7fb16e934f 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_gmch.c
-> +++ b/drivers/gpu/drm/i915/soc/intel_gmch.c
-> @@ -47,11 +47,9 @@ intel_alloc_mchbar_resource(struct drm_i915_private *i915)
->  	mchbar_addr = ((u64)temp_hi << 32) | temp_lo;
->  
->  	/* If ACPI doesn't have it, assume we need to allocate it ourselves */
-> -#ifdef CONFIG_PNP
-> -	if (mchbar_addr &&
-> +	if (IS_ENABLED(CONFIG_PNP) && mchbar_addr &&
->  	    pnp_range_reserved(mchbar_addr, mchbar_addr + MCHBAR_SIZE))
->  		return 0;
-> -#endif
->  
->  	/* Get some space for it */
->  	i915->gmch.mch_res.name = "i915 MCHBAR";
-> -- 
-> 2.39.2
-> 
+total: 0 errors, 1 warnings, 0 checks, 12 lines checked
+
+
