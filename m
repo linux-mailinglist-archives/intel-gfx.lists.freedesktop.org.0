@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C8DC72C4BF
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jun 2023 14:45:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6982872C4C1
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jun 2023 14:45:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8825E10E22F;
-	Mon, 12 Jun 2023 12:45:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C985D10E22B;
+	Mon, 12 Jun 2023 12:45:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EB2B210E22F;
- Mon, 12 Jun 2023 12:45:03 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CFB2110E22B;
+ Mon, 12 Jun 2023 12:45:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CF220AADD5;
- Mon, 12 Jun 2023 12:45:03 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 450F2AADF1;
+ Mon, 12 Jun 2023 12:45:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Mon, 12 Jun 2023 12:45:03 -0000
-Message-ID: <168657390384.26643.1892347545289894479@emeril.freedesktop.org>
+Date: Mon, 12 Jun 2023 12:45:06 -0000
+Message-ID: <168657390628.26645.3431374317741494949@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230612104658.1386996-1-tvrtko.ursulin@linux.intel.com>
 In-Reply-To: <20230612104658.1386996-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_fdinfo_memory_stats_=28rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?fdinfo_memory_stats_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,16 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-0e7a9361b003 drm/i915: Add ability for tracking buffer objects per client
-e0e7d111353c drm/i915: Record which client owns a VM
-8645bd51fede drm/i915: Track page table backing store usage
-eb2fd9e3fbbe drm/i915: Account ring buffer and context state storage
-02d2f2e3e48f drm/i915: Implement fdinfo memory stats printing
--:87: WARNING:SPACING: space prohibited between function name and open parenthesis '('
-#87: FILE: drivers/gpu/drm/i915/i915_drm_client.c:109:
-+	idr_for_each_entry (&file->object_idr, obj, id)
-
-total: 0 errors, 1 warnings, 0 checks, 90 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
