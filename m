@@ -2,76 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB3CC72D4C2
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jun 2023 01:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1D2772D798
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jun 2023 05:00:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 915A910E1E7;
-	Mon, 12 Jun 2023 23:06:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2482910E004;
+	Tue, 13 Jun 2023 03:00:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C24B110E12E
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jun 2023 23:06:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1686611192;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=jzuT5ihaFMxsJ3+RTycHd7EHLIMAzmb3vK/ZKM5/qTg=;
- b=gS/DS3I5EZzhrGcRiFe+wBYqaDSYsg1Irf1xU0cNKKY9r/psN/VGXdABrGtTZqr3YanDfD
- CJhfAYQRWKm99Glaoi9WTXEnUNCauiaA0qmdsV9eEsO3poEDJeQDUKD+0j5IaQejeTcwI7
- v1D0vxDGbk+Gr+dmIhGG7VodYhlMaJA=
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-350-h4d3cd7DPKevd8wVBGh8EA-1; Mon, 12 Jun 2023 19:06:31 -0400
-X-MC-Unique: h4d3cd7DPKevd8wVBGh8EA-1
-Received: by mail-il1-f200.google.com with SMTP id
- e9e14a558f8ab-34055a1cc0fso9997305ab.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jun 2023 16:06:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686611191; x=1689203191;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=jzuT5ihaFMxsJ3+RTycHd7EHLIMAzmb3vK/ZKM5/qTg=;
- b=gcGmrYdTOJhuhMALvwvo4BxDz5WLhN5oKclVMwnRWY3pcZmXHrDhmfSXG1D4pB8hzE
- NGAnjKRQEj9T7W68qv7qVkTBfpLJySAgKUt2bFLIDk0Eqgq3vDf3wMdoadiqr3cXdi+L
- nIE51Iy5wx8EPkgcJscBwiHFX0VE0DG9UoMR1QUk/Lm1Z0S0ufmPyap9tSzjY2Kznjqu
- 0hnVB17BdPZmb4gsyR/mDf7qxDKDR9hJKsBSKZbnXmwz0D7D6TIwb+weOoTJv0/F83iE
- qk3c4M2jPV8MYIELos/dISY4lcg3HvXqhct8xQxM5gPETA+4hAJhT8QVNh9K5SsiZZ41
- NTpQ==
-X-Gm-Message-State: AC+VfDzfcH4cT2a9k/VngIGdRlImHPphV7OW+AXDL2yoq2onx9ul5gvs
- R3jDZBqq9EbmSrBdfahTsDzZSaj/gwRGEzGTbeqw/qYYw0b7Sni6VIngMVETua1xGiVz1G6zEHj
- kcDd7tKFnZwWnXZZdWAVBXqdJSqSQ
-X-Received: by 2002:a05:6e02:6cd:b0:33e:8195:5a4 with SMTP id
- p13-20020a056e0206cd00b0033e819505a4mr9207715ils.20.1686611190862; 
- Mon, 12 Jun 2023 16:06:30 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ6fCZIDEEqrbYB4cary74GxrtYZsk3ZYW38NV3ohTMoXgw2nkM3edVOyo2DnKMZQ9osya4fOA==
-X-Received: by 2002:a05:6e02:6cd:b0:33e:8195:5a4 with SMTP id
- p13-20020a056e0206cd00b0033e819505a4mr9207679ils.20.1686611190566; 
- Mon, 12 Jun 2023 16:06:30 -0700 (PDT)
-Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- u12-20020a056e02080c00b0033fdce8e86esm227329ilm.80.2023.06.12.16.06.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 12 Jun 2023 16:06:29 -0700 (PDT)
-Date: Mon, 12 Jun 2023 17:06:28 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Yi Liu <yi.l.liu@intel.com>
-Message-ID: <20230612170628.661ab2a6.alex.williamson@redhat.com>
-In-Reply-To: <20230602121653.80017-25-yi.l.liu@intel.com>
-References: <20230602121653.80017-1-yi.l.liu@intel.com>
- <20230602121653.80017-25-yi.l.liu@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 132FB10E004;
+ Tue, 13 Jun 2023 03:00:41 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8DxDevV24dkQmMEAA--.9387S3;
+ Tue, 13 Jun 2023 11:00:37 +0800 (CST)
+Received: from openarena.loongson.cn (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8BxC8rV24dkOkAYAA--.60391S2; 
+ Tue, 13 Jun 2023 11:00:37 +0800 (CST)
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+To: Bjorn Helgaas <bhelgaas@google.com>
+Date: Tue, 13 Jun 2023 11:00:27 +0800
+Message-Id: <20230613030035.216556-1-suijingfeng@loongson.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v12 24/24] docs: vfio: Add vfio device cdev
- description
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxC8rV24dkOkAYAA--.60391S2
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7ZrWUZF45Zr4kur18tFW3XFc_yoW8trWkpF
+ 45KF9xAr95JF4akry7Aw4xZFy5Zan7CayfKr9rCw1a93W5Cry8trWqyFWrK34DJrWxAF4r
+ tr9xKry7GF1qvrXCm3ZEXasCq-sJn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUkFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+ 6r4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27w
+ Aqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE
+ 14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCF04k20xvY0x
+ 0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E
+ 7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcV
+ C0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF
+ 04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7
+ CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jOuc_UUUUU=
+Subject: [Intel-gfx] [PATCH v7 0/8] PCI/VGA: Introduce is_boot_device
+ function callback to vga_client_register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,189 +58,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
- chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, kvm@vger.kernel.org,
- lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
- jgg@nvidia.com, kevin.tian@intel.com, yan.y.zhao@intel.com,
- intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
- intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
- clegoate@redhat.com, cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
- suravee.suthikulpanit@amd.com, robin.murphy@arm.com
+Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Sui Jingfeng <15330273260@189.cn>, amd-gfx@lists.freedesktop.org,
+ linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri,  2 Jun 2023 05:16:53 -0700
-Yi Liu <yi.l.liu@intel.com> wrote:
+From: Sui Jingfeng <15330273260@189.cn>
 
-> This gives notes for userspace applications on device cdev usage.
-> 
-> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> ---
->  Documentation/driver-api/vfio.rst | 132 ++++++++++++++++++++++++++++++
->  1 file changed, 132 insertions(+)
-> 
-> diff --git a/Documentation/driver-api/vfio.rst b/Documentation/driver-api/vfio.rst
-> index 363e12c90b87..f00c9b86bda0 100644
-> --- a/Documentation/driver-api/vfio.rst
-> +++ b/Documentation/driver-api/vfio.rst
-> @@ -239,6 +239,130 @@ group and can access them as follows::
->  	/* Gratuitous device reset and go... */
->  	ioctl(device, VFIO_DEVICE_RESET);
->  
-> +IOMMUFD and vfio_iommu_type1
-> +----------------------------
-> +
-> +IOMMUFD is the new user API to manage I/O page tables from userspace.
-> +It intends to be the portal of delivering advanced userspace DMA
-> +features (nested translation [5]_, PASID [6]_, etc.) while also providing
-> +a backwards compatibility interface for existing VFIO_TYPE1v2_IOMMU use
-> +cases.  Eventually the vfio_iommu_type1 driver, as well as the legacy
-> +vfio container and group model is intended to be deprecated.
-> +
-> +The IOMMUFD backwards compatibility interface can be enabled two ways.
-> +In the first method, the kernel can be configured with
-> +CONFIG_IOMMUFD_VFIO_CONTAINER, in which case the IOMMUFD subsystem
-> +transparently provides the entire infrastructure for the VFIO
-> +container and IOMMU backend interfaces.  The compatibility mode can
-> +also be accessed if the VFIO container interface, ie. /dev/vfio/vfio is
-> +simply symlink'd to /dev/iommu.  Note that at the time of writing, the
-> +compatibility mode is not entirely feature complete relative to
-> +VFIO_TYPE1v2_IOMMU (ex. DMA mapping MMIO) and does not attempt to
-> +provide compatibility to the VFIO_SPAPR_TCE_IOMMU interface.  Therefore
-> +it is not generally advisable at this time to switch from native VFIO
-> +implementations to the IOMMUFD compatibility interfaces.
-> +
-> +Long term, VFIO users should migrate to device access through the cdev
-> +interface described below, and native access through the IOMMUFD
-> +provided interfaces.
-> +
-> +VFIO Device cdev
-> +----------------
-> +
-> +Traditionally user acquires a device fd via VFIO_GROUP_GET_DEVICE_FD
-> +in a VFIO group.
-> +
-> +With CONFIG_VFIO_DEVICE_CDEV=y the user can now acquire a device fd
-> +by directly opening a character device /dev/vfio/devices/vfioX where
-> +"X" is the number allocated uniquely by VFIO for registered devices.
-> +cdev interface does not support noiommu, so user should use the legacy
-> +group interface if noiommu is needed.
-> +
-> +The cdev only works with IOMMUFD.  Both VFIO drivers and applications
-> +must adapt to the new cdev security model which requires using
-> +VFIO_DEVICE_BIND_IOMMUFD to claim DMA ownership before starting to
-> +actually use the device.  Once BIND succeeds then a VFIO device can
-> +be fully accessed by the user.
-> +
-> +VFIO device cdev doesn't rely on VFIO group/container/iommu drivers.
-> +Hence those modules can be fully compiled out in an environment
-> +where no legacy VFIO application exists.
-> +
-> +So far SPAPR does not support IOMMUFD yet.  So it cannot support device
-> +cdev neither.
+The vga_is_firmware_default() function is arch-dependent, it's probably
+wrong if we simply remove the arch guard. As the VRAM BAR which contains
+firmware framebuffer may move, while the lfb_base and lfb_size members of
+the screen_info does not change accordingly. In short, it should take the
+re-allocation of the PCI BAR into consideration.
 
-s/neither/either/
+With the observation that device drivers or video aperture helpers may
+have better knowledge about which PCI bar contains the firmware fb,
+which could avoid the need to iterate all of the PCI BARs. But as a PCI
+function at pci/vgaarb.c, vga_is_firmware_default() is not suitable to
+make such an optimization since it is loaded too early.
 
-Unless I missed it, we've not described that vfio device cdev access is
-still bound by IOMMU group semantics, ie. there can be one DMA owner
-for the group.  That's a pretty common failure point for multi-function
-consumer device use cases, so the why, where, and how it fails should
-be well covered.
+There are PCI display controllers that don't have a dedicated VRAM bar,
+this function will lose its effectiveness in such a case. Luckily, the
+device driver can provide an accurate workaround.
 
-In general there's been a lot of cross collaboration to get the series
-this far.  I see an abundance of Tested-by, but unfortunately not a lot
-of Reviewed-by beyond about the first 1/3rd of the series.  Thanks,
+Therefore, this patch introduces a callback that allows the device driver
+to tell the VGAARB if the device is the default boot device. Also honor
+the comment: "Clients have two callback mechanisms they can use"
 
-Alex
+Sui Jingfeng (8):
+  PCI/VGA: Use unsigned type for the io_state variable
+  PCI/VGA: Deal only with VGA class devices
+  PCI/VGA: Tidy up the code and comment format
+  PCI/VGA: Replace full MIT license text with SPDX identifier
+  video/aperture: Add a helper to detect if an aperture contains
+    firmware FB
+  PCI/VGA: Introduce is_boot_device function callback to
+    vga_client_register
+  drm/amdgpu: Implement the is_boot_device callback function
+  drm/radeon: Implement the is_boot_device callback function
 
-> +
-> +Device cdev Example
-> +-------------------
-> +
-> +Assume user wants to access PCI device 0000:6a:01.0::
-> +
-> +	$ ls /sys/bus/pci/devices/0000:6a:01.0/vfio-dev/
-> +	vfio0
-> +
-> +This device is therefore represented as vfio0.  The user can verify
-> +its existence::
-> +
-> +	$ ls -l /dev/vfio/devices/vfio0
-> +	crw------- 1 root root 511, 0 Feb 16 01:22 /dev/vfio/devices/vfio0
-> +	$ cat /sys/bus/pci/devices/0000:6a:01.0/vfio-dev/vfio0/dev
-> +	511:0
-> +	$ ls -l /dev/char/511\:0
-> +	lrwxrwxrwx 1 root root 21 Feb 16 01:22 /dev/char/511:0 -> ../vfio/devices/vfio0
-> +
-> +Then provide the user with access to the device if unprivileged
-> +operation is desired::
-> +
-> +	$ chown user:user /dev/vfio/devices/vfio0
-> +
-> +Finally the user could get cdev fd by::
-> +
-> +	cdev_fd = open("/dev/vfio/devices/vfio0", O_RDWR);
-> +
-> +An opened cdev_fd doesn't give the user any permission of accessing
-> +the device except binding the cdev_fd to an iommufd.  After that point
-> +then the device is fully accessible including attaching it to an
-> +IOMMUFD IOAS/HWPT to enable userspace DMA::
-> +
-> +	struct vfio_device_bind_iommufd bind = {
-> +		.argsz = sizeof(bind),
-> +		.flags = 0,
-> +	};
-> +	struct iommu_ioas_alloc alloc_data  = {
-> +		.size = sizeof(alloc_data),
-> +		.flags = 0,
-> +	};
-> +	struct vfio_device_attach_iommufd_pt attach_data = {
-> +		.argsz = sizeof(attach_data),
-> +		.flags = 0,
-> +	};
-> +	struct iommu_ioas_map map = {
-> +		.size = sizeof(map),
-> +		.flags = IOMMU_IOAS_MAP_READABLE |
-> +			 IOMMU_IOAS_MAP_WRITEABLE |
-> +			 IOMMU_IOAS_MAP_FIXED_IOVA,
-> +		.__reserved = 0,
-> +	};
-> +
-> +	iommufd = open("/dev/iommu", O_RDWR);
-> +
-> +	bind.iommufd = iommufd;
-> +	ioctl(cdev_fd, VFIO_DEVICE_BIND_IOMMUFD, &bind);
-> +
-> +	ioctl(iommufd, IOMMU_IOAS_ALLOC, &alloc_data);
-> +	attach_data.pt_id = alloc_data.out_ioas_id;
-> +	ioctl(cdev_fd, VFIO_DEVICE_ATTACH_IOMMUFD_PT, &attach_data);
-> +
-> +	/* Allocate some space and setup a DMA mapping */
-> +	map.user_va = (int64_t)mmap(0, 1024 * 1024, PROT_READ | PROT_WRITE,
-> +				    MAP_PRIVATE | MAP_ANONYMOUS, 0, 0);
-> +	map.iova = 0; /* 1MB starting at 0x0 from device view */
-> +	map.length = 1024 * 1024;
-> +	map.ioas_id = alloc_data.out_ioas_id;;
-> +
-> +	ioctl(iommufd, IOMMU_IOAS_MAP, &map);
-> +
-> +	/* Other device operations as stated in "VFIO Usage Example" */
-> +
->  VFIO User API
->  -------------------------------------------------------------------------------
->  
-> @@ -566,3 +690,11 @@ This implementation has some specifics:
->  				\-0d.1
->  
->  	00:1e.0 PCI bridge: Intel Corporation 82801 PCI Bridge (rev 90)
-> +
-> +.. [5] Nested translation is an IOMMU feature which supports two stage
-> +   address translations.  This improves the address translation efficiency
-> +   in IOMMU virtualization.
-> +
-> +.. [6] PASID stands for Process Address Space ID, introduced by PCI
-> +   Express.  It is a prerequisite for Shared Virtual Addressing (SVA)
-> +   and Scalable I/O Virtualization (Scalable IOV).
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  12 +-
+ drivers/gpu/drm/drm_aperture.c             |  16 +++
+ drivers/gpu/drm/i915/display/intel_vga.c   |   3 +-
+ drivers/gpu/drm/nouveau/nouveau_vga.c      |   2 +-
+ drivers/gpu/drm/radeon/radeon_device.c     |  12 +-
+ drivers/pci/vgaarb.c                       | 153 +++++++++++++--------
+ drivers/vfio/pci/vfio_pci_core.c           |   2 +-
+ drivers/video/aperture.c                   |  29 ++++
+ include/drm/drm_aperture.h                 |   2 +
+ include/linux/aperture.h                   |   7 +
+ include/linux/vgaarb.h                     |  35 ++---
+ 11 files changed, 184 insertions(+), 89 deletions(-)
+
+-- 
+2.25.1
 
