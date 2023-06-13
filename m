@@ -1,79 +1,79 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30E8272E589
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jun 2023 16:19:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C2072E5A2
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jun 2023 16:24:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8554610E25F;
-	Tue, 13 Jun 2023 14:19:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE2A110E26A;
+	Tue, 13 Jun 2023 14:24:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E2B810E26A
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jun 2023 14:19:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE39610E265
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jun 2023 14:24:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1686665960;
+ s=mimecast20190719; t=1686666273;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=hh7dDn79BmR3GsS4yLCOwuPTkSZ8D9roEztDs6aeojo=;
- b=AIiqWlPIm3oJNIA6wkO5C1P82xn7fhpB5Jw2PjyVYFEfCRL1Z2a62TgZNIcBFm/TQsBTTM
- XWVoTQILiRhdAQB7KF9blaipJmYVh/1bCuqUerqOJR86eK+RSyTvvoZEVtv0rVAUufA/En
- rxLUU/s4gD8CmGhcO1J6xsOMZ4qPUuM=
-Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
- [209.85.166.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=uNaTTX2jpfAAP/LJoW3TLJvil6qu1dd8mTfnU5F8em0=;
+ b=Q8oVyZv87ec/kdtpyS0v9pUu7ugUnln9IyWdA9AlbXwHNZB20RYmZ/In2lzUNQqRcxxpX6
+ vHbZrTlmKbTcGztGwq3g4P/0wXLf+0EMZ1D8UbIRzvwrD4RcmOtLZy33av2oEb7zB/ff0g
+ Pxu/phordQPCvLtrkbxa52WbTwgawKw=
+Received: from mail-il1-f198.google.com (mail-il1-f198.google.com
+ [209.85.166.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-275-9ffWAJkQPjadP0ExkjORhQ-1; Tue, 13 Jun 2023 10:19:17 -0400
-X-MC-Unique: 9ffWAJkQPjadP0ExkjORhQ-1
-Received: by mail-il1-f200.google.com with SMTP id
- e9e14a558f8ab-33d34e7c905so64223245ab.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jun 2023 07:19:16 -0700 (PDT)
+ us-mta-163-y4Aj3LR-PVmzlstZRV6VYA-1; Tue, 13 Jun 2023 10:24:30 -0400
+X-MC-Unique: y4Aj3LR-PVmzlstZRV6VYA-1
+Received: by mail-il1-f198.google.com with SMTP id
+ e9e14a558f8ab-33b2e96ea07so59827265ab.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jun 2023 07:24:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686665956; x=1689257956;
+ d=1e100.net; s=20221208; t=1686666270; x=1689258270;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=hh7dDn79BmR3GsS4yLCOwuPTkSZ8D9roEztDs6aeojo=;
- b=lGluv3PNitm2AmLsm16PaYpCHoTJ2EfRk8HX8w8d/s2/fT3VKcIRQ35txPjEeP8B/e
- 4fyUexDndYkfD6FxUpmeuBFjVpGEDzXEHdrAQQXEDhGHZWUIcGaDQ2oN+dqiRo5uTky2
- mylomSDXOIzsUVajkgct+kjJcX+S8aeUTw0piJhGdJpgsGs8ygg+QLGSyMrX6WYt4RV8
- 6FQRxtXTKYrR8qBtGh7w0bQpWG5i7H1trPKCtMEENDz+MVzr1+LWSVhD1iMHwa6b04nd
- 4q9+J3Q+LDE6xg0QKhX2QvDXsoFcXYf61KywLO2xiQbk8pZBAo3M2n+YFcn+QwipARX2
- SEzQ==
-X-Gm-Message-State: AC+VfDza+VqwoTXwrv8+h6WKa8pUrDpTruD7yEc/5M0R+M61TXHqsmE9
- DQA16pkFEAxr8eoRjZZ/LDga4N3CnSKDrYdmRz2jKJutgSO7C0BVsRpt4ISCbQE8B2IkkD0q3IP
- hb2R1QpVAjBNVG6AOgUBQA+cH4Ssm
-X-Received: by 2002:a92:d84e:0:b0:340:7ab6:1f49 with SMTP id
- h14-20020a92d84e000000b003407ab61f49mr1362185ilq.20.1686665955819; 
- Tue, 13 Jun 2023 07:19:15 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ70y+1gcH35hXRid2B015UTZDwXVqcqVbwY3awzvwLMsL0aeKs+cVPwaqIPq185U12jr3QsrQ==
-X-Received: by 2002:a92:d84e:0:b0:340:7ab6:1f49 with SMTP id
- h14-20020a92d84e000000b003407ab61f49mr1362166ilq.20.1686665955589; 
- Tue, 13 Jun 2023 07:19:15 -0700 (PDT)
+ bh=uNaTTX2jpfAAP/LJoW3TLJvil6qu1dd8mTfnU5F8em0=;
+ b=A7RL5+dUOa/nmdEIxFuVIBQWjlj0SCOdhwDdPV5KeLoCT4hezVKhbr3GTsjPk3QO7z
+ bCrm8jD4IC1IWM70CVoco8US/4F5lyCQFPWTRx3elCneqAtUQDwoihp3miz62OufKOCr
+ vZbVjFgeb7JR3KFY6preB7TxlXaUi7dQUeKMvFSIrMXwtryDPER1LCfH3hhsxoT9H1+t
+ 2GUHh3W99EUvcd7Dxmu8RqCYdoRP71XksfcFGFOofAmGh8kCrx2SAbEJEmfsms9x80tH
+ zhrqS43rOndviOBEFTo9R/WRSw8tSp2vSBDuZpNX2lRjA37YM+uhXiOyxDT3WW/G4abK
+ rfyw==
+X-Gm-Message-State: AC+VfDxk677x58mNrrcVWCLoj3sIYNCBXZbCibWVv0BWcb5HCclqh6I6
+ y5RP5nBLcaWXVx6qwXJ9w2+4gNZvjSqi4PLOQG7JkKKYHBGesJwS8Iapsy0UvrX9ytd8QeGqMZ9
+ GSEElk+CgUNJ+p0ddqkE7hW2yJn33
+X-Received: by 2002:a92:d7cd:0:b0:32b:5e:e22a with SMTP id
+ g13-20020a92d7cd000000b0032b005ee22amr10785993ilq.17.1686666269814; 
+ Tue, 13 Jun 2023 07:24:29 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ5KU1E6AFjVveX2o9hXRzGdCkKtng9KR4tZYBJtO5BSqSOb3FWAM0AzE8jKPCez7h5MNkFahQ==
+X-Received: by 2002:a92:d7cd:0:b0:32b:5e:e22a with SMTP id
+ g13-20020a92d7cd000000b0032b005ee22amr10785970ilq.17.1686666269583; 
+ Tue, 13 Jun 2023 07:24:29 -0700 (PDT)
 Received: from redhat.com ([38.15.36.239]) by smtp.gmail.com with ESMTPSA id
- r5-20020a92ce85000000b0032a8e1ba829sm3844570ilo.16.2023.06.13.07.19.14
+ ee24-20020a056638293800b0041658c1838asm3436802jab.81.2023.06.13.07.24.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 13 Jun 2023 07:19:14 -0700 (PDT)
-Date: Tue, 13 Jun 2023 08:19:13 -0600
+ Tue, 13 Jun 2023 07:24:29 -0700 (PDT)
+Date: Tue, 13 Jun 2023 08:24:27 -0600
 From: Alex Williamson <alex.williamson@redhat.com>
 To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <20230613081913.279dea9e.alex.williamson@redhat.com>
-In-Reply-To: <DS0PR11MB7529AE3701E154BF4C092E57C355A@DS0PR11MB7529.namprd11.prod.outlook.com>
+Message-ID: <20230613082427.453748f5.alex.williamson@redhat.com>
+In-Reply-To: <DS0PR11MB7529B0A71849EA06DA953BBCC355A@DS0PR11MB7529.namprd11.prod.outlook.com>
 References: <20230602121653.80017-1-yi.l.liu@intel.com>
- <20230602121653.80017-22-yi.l.liu@intel.com>
- <20230612164228.65b500e0.alex.williamson@redhat.com>
- <DS0PR11MB7529AE3701E154BF4C092E57C355A@DS0PR11MB7529.namprd11.prod.outlook.com>
+ <20230602121653.80017-25-yi.l.liu@intel.com>
+ <20230612170628.661ab2a6.alex.williamson@redhat.com>
+ <DS0PR11MB7529B0A71849EA06DA953BBCC355A@DS0PR11MB7529.namprd11.prod.outlook.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v12 21/24] vfio: Determine noiommu device in
- __vfio_register_dev()
+Subject: Re: [Intel-gfx] [PATCH v12 24/24] docs: vfio: Add vfio device cdev
+ description
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,150 +111,110 @@ Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 13 Jun 2023 05:53:42 +0000
+On Tue, 13 Jun 2023 12:01:51 +0000
 "Liu, Yi L" <yi.l.liu@intel.com> wrote:
 
 > > From: Alex Williamson <alex.williamson@redhat.com>
-> > Sent: Tuesday, June 13, 2023 6:42 AM
+> > Sent: Tuesday, June 13, 2023 7:06 AM
 > > 
-> > On Fri,  2 Jun 2023 05:16:50 -0700
+> > On Fri,  2 Jun 2023 05:16:53 -0700
 > > Yi Liu <yi.l.liu@intel.com> wrote:
 > >   
-> > > This moves the noiommu device determination and noiommu taint out of
-> > > vfio_group_find_or_alloc(). noiommu device is determined in
-> > > __vfio_register_dev() and result is stored in flag vfio_device->noiommu,
-> > > the noiommu taint is added in the end of __vfio_register_dev().
+> > > This gives notes for userspace applications on device cdev usage.
 > > >
-> > > This is also a preparation for compiling out vfio_group infrastructure
-> > > as it makes the noiommu detection and taint common between the cdev path
-> > > and group path though cdev path does not support noiommu.  
-> > 
-> > Does this really still make sense?  The motivation for the change is
-> > really not clear without cdev support for noiommu.  Thanks,  
-> 
-> I think it still makes sense. When CONFIG_VFIO_GROUP==n, the kernel
-> only supports cdev interface. If there is noiommu device, vfio should
-> fail the registration. So, the noiommu determination is still needed. But
-> I'd admit the taint might still be in the group code.
-
-How is there going to be a noiommu device when VFIO_GROUP is unset?
-Thanks,
-
-Alex
-
-
-> > > Suggested-by: Alex Williamson <alex.williamson@redhat.com>
+> > > Reviewed-by: Kevin Tian <kevin.tian@intel.com>
 > > > Signed-off-by: Yi Liu <yi.l.liu@intel.com>
 > > > ---
-> > >  drivers/vfio/group.c     | 15 ---------------
-> > >  drivers/vfio/vfio_main.c | 31 ++++++++++++++++++++++++++++++-
-> > >  include/linux/vfio.h     |  1 +
-> > >  3 files changed, 31 insertions(+), 16 deletions(-)
+> > >  Documentation/driver-api/vfio.rst | 132 ++++++++++++++++++++++++++++++
+> > >  1 file changed, 132 insertions(+)
 > > >
-> > > diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
-> > > index 653b62f93474..64cdd0ea8825 100644
-> > > --- a/drivers/vfio/group.c
-> > > +++ b/drivers/vfio/group.c
-> > > @@ -668,21 +668,6 @@ static struct vfio_group *vfio_group_find_or_alloc(struct  
-> > device *dev)  
-> > >  	struct vfio_group *group;
+> > > diff --git a/Documentation/driver-api/vfio.rst b/Documentation/driver-api/vfio.rst
+> > > index 363e12c90b87..f00c9b86bda0 100644
+> > > --- a/Documentation/driver-api/vfio.rst
+> > > +++ b/Documentation/driver-api/vfio.rst
+> > > @@ -239,6 +239,130 @@ group and can access them as follows::
+> > >  	/* Gratuitous device reset and go... */
+> > >  	ioctl(device, VFIO_DEVICE_RESET);
 > > >
-> > >  	iommu_group = iommu_group_get(dev);
-> > > -	if (!iommu_group && vfio_noiommu) {
-> > > -		/*
-> > > -		 * With noiommu enabled, create an IOMMU group for devices that
-> > > -		 * don't already have one, implying no IOMMU hardware/driver
-> > > -		 * exists.  Taint the kernel because we're about to give a DMA
-> > > -		 * capable device to a user without IOMMU protection.
-> > > -		 */
-> > > -		group = vfio_noiommu_group_alloc(dev, VFIO_NO_IOMMU);
-> > > -		if (!IS_ERR(group)) {
-> > > -			add_taint(TAINT_USER, LOCKDEP_STILL_OK);
-> > > -			dev_warn(dev, "Adding kernel taint for vfio-noiommu group on  
-> > device\n");  
-> > > -		}
-> > > -		return group;
-> > > -	}
-> > > -
-> > >  	if (!iommu_group)
-> > >  		return ERR_PTR(-EINVAL);
-> > >
-> > > diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> > > index 6d8f9b0f3637..00a699b9f76b 100644
-> > > --- a/drivers/vfio/vfio_main.c
-> > > +++ b/drivers/vfio/vfio_main.c
-> > > @@ -265,6 +265,18 @@ static int vfio_init_device(struct vfio_device *device, struct  
-> > device *dev,  
-> > >  	return ret;
-> > >  }
-> > >
-> > > +static int vfio_device_set_noiommu(struct vfio_device *device)
-> > > +{
-> > > +	struct iommu_group *iommu_group = iommu_group_get(device->dev);
+> > > +IOMMUFD and vfio_iommu_type1
+> > > +----------------------------
 > > > +
-> > > +	if (!iommu_group && !vfio_noiommu)
-> > > +		return -EINVAL;
+> > > +IOMMUFD is the new user API to manage I/O page tables from userspace.
+> > > +It intends to be the portal of delivering advanced userspace DMA
+> > > +features (nested translation [5]_, PASID [6]_, etc.) while also providing
+> > > +a backwards compatibility interface for existing VFIO_TYPE1v2_IOMMU use
+> > > +cases.  Eventually the vfio_iommu_type1 driver, as well as the legacy
+> > > +vfio container and group model is intended to be deprecated.
 > > > +
-> > > +	device->noiommu = !iommu_group;
-> > > +	iommu_group_put(iommu_group); /* Accepts NULL */
-> > > +	return 0;
-> > > +}
+> > > +The IOMMUFD backwards compatibility interface can be enabled two ways.
+> > > +In the first method, the kernel can be configured with
+> > > +CONFIG_IOMMUFD_VFIO_CONTAINER, in which case the IOMMUFD subsystem
+> > > +transparently provides the entire infrastructure for the VFIO
+> > > +container and IOMMU backend interfaces.  The compatibility mode can
+> > > +also be accessed if the VFIO container interface, ie. /dev/vfio/vfio is
+> > > +simply symlink'd to /dev/iommu.  Note that at the time of writing, the
+> > > +compatibility mode is not entirely feature complete relative to
+> > > +VFIO_TYPE1v2_IOMMU (ex. DMA mapping MMIO) and does not attempt to
+> > > +provide compatibility to the VFIO_SPAPR_TCE_IOMMU interface.  Therefore
+> > > +it is not generally advisable at this time to switch from native VFIO
+> > > +implementations to the IOMMUFD compatibility interfaces.
 > > > +
-> > >  static int __vfio_register_dev(struct vfio_device *device,
-> > >  			       enum vfio_group_type type)
-> > >  {
-> > > @@ -277,6 +289,13 @@ static int __vfio_register_dev(struct vfio_device *device,
-> > >  		     !device->ops->detach_ioas)))
-> > >  		return -EINVAL;
-> > >
-> > > +	/* Only physical devices can be noiommu device */
-> > > +	if (type == VFIO_IOMMU) {
-> > > +		ret = vfio_device_set_noiommu(device);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +	}
+> > > +Long term, VFIO users should migrate to device access through the cdev
+> > > +interface described below, and native access through the IOMMUFD
+> > > +provided interfaces.
 > > > +
-> > >  	/*
-> > >  	 * If the driver doesn't specify a set then the device is added to a
-> > >  	 * singleton set just for itself.
-> > > @@ -288,7 +307,8 @@ static int __vfio_register_dev(struct vfio_device *device,
-> > >  	if (ret)
-> > >  		return ret;
-> > >
-> > > -	ret = vfio_device_set_group(device, type);
-> > > +	ret = vfio_device_set_group(device,
-> > > +				    device->noiommu ? VFIO_NO_IOMMU : type);
-> > >  	if (ret)
-> > >  		return ret;
-> > >
-> > > @@ -301,6 +321,15 @@ static int __vfio_register_dev(struct vfio_device *device,
-> > >
-> > >  	vfio_device_group_register(device);
-> > >
-> > > +	if (device->noiommu) {
-> > > +		/*
-> > > +		 * noiommu deivces have no IOMMU hardware/driver.  Taint the
-> > > +		 * kernel because we're about to give a DMA capable device to
-> > > +		 * a user without IOMMU protection.
-> > > +		 */
-> > > +		add_taint(TAINT_USER, LOCKDEP_STILL_OK);
-> > > +		dev_warn(device->dev, "Adding kernel taint for vfio-noiommu on  
-> > device\n");  
-> > > +	}
-> > >  	return 0;
-> > >  err_out:
-> > >  	vfio_device_remove_group(device);
-> > > diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-> > > index e80a8ac86e46..183e620009e7 100644
-> > > --- a/include/linux/vfio.h
-> > > +++ b/include/linux/vfio.h
-> > > @@ -67,6 +67,7 @@ struct vfio_device {
-> > >  	bool iommufd_attached;
-> > >  #endif
-> > >  	bool cdev_opened:1;
-> > > +	bool noiommu:1;
-> > >  };
-> > >
-> > >  /**  
+> > > +VFIO Device cdev
+> > > +----------------
+> > > +
+> > > +Traditionally user acquires a device fd via VFIO_GROUP_GET_DEVICE_FD
+> > > +in a VFIO group.
+> > > +
+> > > +With CONFIG_VFIO_DEVICE_CDEV=y the user can now acquire a device fd
+> > > +by directly opening a character device /dev/vfio/devices/vfioX where
+> > > +"X" is the number allocated uniquely by VFIO for registered devices.
+> > > +cdev interface does not support noiommu, so user should use the legacy
+> > > +group interface if noiommu is needed.
+> > > +
+> > > +The cdev only works with IOMMUFD.  Both VFIO drivers and applications
+> > > +must adapt to the new cdev security model which requires using
+> > > +VFIO_DEVICE_BIND_IOMMUFD to claim DMA ownership before starting to
+> > > +actually use the device.  Once BIND succeeds then a VFIO device can
+> > > +be fully accessed by the user.
+> > > +
+> > > +VFIO device cdev doesn't rely on VFIO group/container/iommu drivers.
+> > > +Hence those modules can be fully compiled out in an environment
+> > > +where no legacy VFIO application exists.
+> > > +
+> > > +So far SPAPR does not support IOMMUFD yet.  So it cannot support device
+> > > +cdev neither.  
+> > 
+> > s/neither/either/  
 > 
+> Got it.
+> 
+> > 
+> > Unless I missed it, we've not described that vfio device cdev access is
+> > still bound by IOMMU group semantics, ie. there can be one DMA owner
+> > for the group.  That's a pretty common failure point for multi-function
+> > consumer device use cases, so the why, where, and how it fails should
+> > be well covered.  
+> 
+> Yes. this needs to be documented. How about below words:
+> 
+> vfio device cdev access is still bound by IOMMU group semantics, ie. there
+> can be only one DMA owner for the group.  Devices belonging to the same
+> group can not be bound to multiple iommufd_ctx.
+
+... or shared between native kernel and vfio drivers.
+
+
+>  The users that try to bind
+> such device to different iommufd shall be failed in VFIO_DEVICE_BIND_IOMMUFD
+> which is the start point to get full access for the device.
+
+"A violation of this ownership requirement will fail at the
+VFIO_DEVICE_BIND_IOMMUFD ioctl, which gates full device access."
+
+Thanks,
+Alex
 
