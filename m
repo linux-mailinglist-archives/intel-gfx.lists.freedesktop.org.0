@@ -2,50 +2,106 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 673B072E014
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jun 2023 12:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C615372E1E9
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jun 2023 13:46:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3BA810E368;
-	Tue, 13 Jun 2023 10:49:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E537210E392;
+	Tue, 13 Jun 2023 11:46:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB57E10E368
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jun 2023 10:49:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686653365; x=1718189365;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=UB6QBz4d/J3v8qM61aqIOb05VBpKMRx/efjztlSjcns=;
- b=S9EslevnmVoS1iXiqiZrl4N4/u9lXo/Le+/yx2dZs07sY08VCKLCrSqe
- TZzvgUNYaG3tFdGw+7FskCJm3qA9uW3TZX4XHYGJRVa6v2rO6gICc1Y/5
- 3x/C4LF5anTohrDARVQmKDh+hnka7EQdZJv2wqAiVBvW64IIy1k82tY0/
- 4JLmSb9xWDFOTi5qWvuGMy0b3WrKUt1+LBjTjeLFppbQmvp1Igre1YNNg
- k1+jrSDb4yhKI+77qb8E8VgsdIjGog31ZkXgfIiNj9+fkXhIzdYwj2jiQ
- t4H0GIRJS9bGkYnC5hC3zvMQfY4y6eCHXn+o5VbOAKDnHJfpbaCSX4kGv g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10739"; a="337932168"
-X-IronPort-AV: E=Sophos;i="6.00,239,1681196400"; d="scan'208";a="337932168"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2023 03:49:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10739"; a="958366034"
-X-IronPort-AV: E=Sophos;i="6.00,239,1681196400"; d="scan'208";a="958366034"
-Received: from unknown (HELO ideak-desk) ([10.237.72.78])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2023 03:49:23 -0700
-Date: Tue, 13 Jun 2023 13:49:25 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Message-ID: <ZIhJte34Usxx19/J@ideak-desk>
-References: <20230613044239.691706-1-arun.r.murthy@intel.com>
-MIME-Version: 1.0
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8DD710E06A;
+ Tue, 13 Jun 2023 11:46:12 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=C+U3wsFgVQYA8G6fEM2Xos8lOzKVV8aU1esEuUs2V7bLN+tcYu+M6yGIZ+ytCyKemZv58/vHqKnJSV3QMr1bQPcSlggd2ap0P5BXQpqs7pSqPjBQalN1XkTKxgenWZCzecEVoxb16CXfgiFsBPjxRjF/ryGmY1B7e73n7Iz1hG+SvGMYW7bXOwgvqrC10AUVzig9VGutTnnvxEzRo/DBOEuCV3foI9smIMO041SS8X5bFWNOZ0YqhSKZBtinpun6438UV1XZZGfXUGAma4t2M0AL1NWUOEk3MH9fkpr7S6RmyF54TTXXbq+Mvo4iJPZz/XeDkKfefH0yelvymFqSJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Jr3Fo31H+YCvBb4dDOs/EfIGSmv+DlPDtX7g+aFApNw=;
+ b=GcbFXX4WcWVo1kNOFWbilfX3F0QLAzL+WEC0PLcr7X8Q5pFON3eoezrIvzz1YVu+a2S7S2kMg39zPFHbbwhROheA4BdEkLouvr4hc3gllUIlEwI7T+/NHk1J4IjDNV3UfTzBDmmhrJXLktDDkvh2Msk3h3asV0eU9Y+iM4rWlQ+Xc6iCHZXKE5ztBYcSkVblwFnq/XJoKkyQWZk+mEtUnibFG0CkyXL3FwW5kOcFu3zAl6Ryf9PW3kRluflTjc8zfbPMrQ+x/AkEKweIt34mqq9a9Xat//fDEsfkIE5wmh3JlmHXfkt/N8Q+mtWoE4LlEFPtd5XP/8uXnRpXcmbMaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Jr3Fo31H+YCvBb4dDOs/EfIGSmv+DlPDtX7g+aFApNw=;
+ b=cv6qe/CokualE+OoJLyE7EJfnjd2b6zYncHIbTYUGWmX3EHUI1rMGbL5k4hAL8jTE3JgxBrJCRZFX/UxvLJ8wnndKsTcvK0MI6eAghmkfBuijLGorFKdybhY1vZ9BF8Qib8yVkZd/GVqFxyGr6iNzXHAeyn6AYoX2DesArf2WCGPyFHcboa+ioPpV2F8pubxTlifaAlFe+YRl91qeHLqW/WzTftnwGsnMui1GyhafdW48Ryf1AAZo8tVarHZkkbeOKwSJ1dR6LB7NKS7yByosFeTTW3qIDPFDV0HgdJe+dsj52fc88HQqH1YeH1Kh6jOrIVrs54Oe+B/YqWKYfnNEQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by BL1PR12MB5318.namprd12.prod.outlook.com (2603:10b6:208:31d::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.38; Tue, 13 Jun
+ 2023 11:46:10 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::f7a7:a561:87e9:5fab]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::f7a7:a561:87e9:5fab%6]) with mapi id 15.20.6455.030; Tue, 13 Jun 2023
+ 11:46:10 +0000
+Date: Tue, 13 Jun 2023 08:46:09 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <ZIhXAXJiFJwe4r+X@nvidia.com>
+References: <20230602121515.79374-1-yi.l.liu@intel.com>
+ <20230602121515.79374-5-yi.l.liu@intel.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230613044239.691706-1-arun.r.murthy@intel.com>
-Subject: Re: [Intel-gfx] [PATCHv3] drm/i915/display/dp: On AUX xfer timeout
- restart freshly
+In-Reply-To: <20230602121515.79374-5-yi.l.liu@intel.com>
+X-ClientProxiedBy: MN2PR16CA0051.namprd16.prod.outlook.com
+ (2603:10b6:208:234::20) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|BL1PR12MB5318:EE_
+X-MS-Office365-Filtering-Correlation-Id: 82cb3a5f-888b-4e36-8f3f-08db6c03c856
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6MIaudHQHf2wh6qLmue1px3B4R7Z2YvXofiWNmH5kKF7Dqtp6UVlhTgZi7c1QGj2HYlkbC9skZOaKovbD8eKZdFFm9OXKayyGOK70d2pA+per38fEsV0emq24yNQACr0hZo2Xwr2UQgotV/6Z3mq7MMXHgIWjsOy3uDsTbyHFc74qzoBUWndNHudyxnxb2zzJPInBvH5qkdeO49wwBUj3dwqAoxvwEn3B20NkakJ1qSWKVKqnvluGIEWgtynusSGpCCDwt4tg0AAsUGRmFU5fR1OxGoP7KQ0RKa4DcPX/UCEk65kPD1nYSYFHAcu7HnFivf9mWKjzWSpNYiuyRChY0SIrnq6FpUjZPTdfORxGdDilc9x94T7hNDr5wXxeqir8vJOD7oZaRfiV0abOxx3ND/VF811cCdgvcqujCop38vg+EKDW9Y6KkChwySXkiIn9+YI8zYEzLPTRmZXLCa3KSGE3/YM5f7FlidmKTBhXDhvJjmcQoQYpgwag7qzVKKYguYhR8xsjb2Jh8eWmutK8umFwSgPPb+tJKwkNf/U9G9VCJ6z745BtAvYcd8feDWA1zJIr204rNR6AxtJh0V40qQ9KcpbkDL435JGcMPjVSYEaNElDZAUkvAd0PKoQJMHug+L0IMKFd2ttY3tc0R2h5DFUNKzSI3U+mFO6At4l2o=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(366004)(396003)(346002)(39860400002)(376002)(136003)(451199021)(36756003)(86362001)(4744005)(2906002)(7416002)(5660300002)(6486002)(186003)(6506007)(6512007)(26005)(478600001)(66946007)(66476007)(4326008)(66556008)(316002)(38100700002)(6916009)(2616005)(41300700001)(8936002)(8676002)(67856001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/aWUF9wLwiFqg9HeYC9OCz0TKajBREDa3bEM9DKL+gIaeNkf3MWrS3kTAcYY?=
+ =?us-ascii?Q?mDpG2NLV2qKytgj1Pnop2SFERO5e7897au3Ab0Z3veCEYnKzN2hK3k52bLcb?=
+ =?us-ascii?Q?YsXoZMnr42cqh+W6Cut9J0rKDN27cwLQhDViDo4qPzEsYXtjOuVNNAs+HDkC?=
+ =?us-ascii?Q?tu40/wf9OJgayjGNR9e40wN2sWOcPvNRIikm1GulBjeHrcnbtl0pBegOtxOW?=
+ =?us-ascii?Q?L9LOfnn176G7cVgFQDkXva+qBPThwoJhSGCQZmZhc4l8VBiDMqfd9DdHjqeD?=
+ =?us-ascii?Q?uciU5TQBjnoGgFvVaDmpv8c1hiwgHp1eRrDJNW/EKemPp7ZJ8CknaFV7wxzQ?=
+ =?us-ascii?Q?JEsSbeB6PotFXeJ12Ft+tIdeca5YDtjoHNpSBUm5/i++yQwSQhY6utkMdjLu?=
+ =?us-ascii?Q?036MWeugn6JpkKz2nJoFfGDXjLgRTS83Gqe7TxoH4VCRJzy0H0KlmxoIKET/?=
+ =?us-ascii?Q?d5Bc162ROIxnFM5u9e66RHYdZKfwUTcIqsCdgOBzYMnB8sqZQDvWr6KmM6wE?=
+ =?us-ascii?Q?7AbkEbbca0TihuoOtckOydTqbBXk5YwmBcrqhQOmc3dhtC3pXH9bnvWI1Pr/?=
+ =?us-ascii?Q?v5X7WufLoVaJIPieqW/8W/ddhTcAwuw/dhVYdOV7gRTD0OrgenJLx6jy27yM?=
+ =?us-ascii?Q?H3bC/KgTnRtQ60YdoDeX5oIf6dOPAZdmcqH0uUG7Y3oXP2kftNmBuyHdeJ4S?=
+ =?us-ascii?Q?NTakAktPjNl65RYij8dkz2zA4MZZRBAuea/BEs71AyKzP8AbQ8eFuqmzSxp1?=
+ =?us-ascii?Q?j+MEB24LN3Fl4HPwBjLcBIEsk7dZ9Mqsqj5lquKfeqAdS3HOdnC9bMumZjzM?=
+ =?us-ascii?Q?cwexB1Uv9GI5iidDcVB1x9VUexyJzE9Ou6xJOfXVHINjf8mKW94XA/952jXc?=
+ =?us-ascii?Q?d58tA4NuqBcUTweMb4w+9zQxLyYcXH5F3AVGBiJNBBw/+l1HokxElzVDu/mI?=
+ =?us-ascii?Q?SJQp0waxMVxTI4NtrgMt6dLk+9aaBilbB88OdnjtiRMhnC17CAPA/22mJcas?=
+ =?us-ascii?Q?2iwkKmE9YT8mJHsNSOrKgeo1OcaCskxATBW1rxqRGtdDXjifTuMa6OVxwMEf?=
+ =?us-ascii?Q?xC3FayX0lxu5vc7bIA3SI2ItvShWiIBhiqMJQUzjw5b3Y+5L6fdEj9IoG287?=
+ =?us-ascii?Q?EJc6lfPMK7bXFLVl5PRBaWOKqYhPO5KyceINtTKvtTGOAEGk1Y8pqxRavmhn?=
+ =?us-ascii?Q?MPOzK32OVHFfPH2ePSofSKYMtDiU3/PtUT/K+Nl/gZ8FWfuEiJqYHnL8ytUX?=
+ =?us-ascii?Q?iByLfD+RgAb/QDJgk30HgWQcpq3k0TFGXD4SzzPPc3DEI5/Z/5ARgWFoESuT?=
+ =?us-ascii?Q?/1KCdgTP7HaP/ddt16ZFlyL+p6Ehj3vxXohDfs8hzHFF9XFGtLq5hiSsWrIR?=
+ =?us-ascii?Q?pD8plc3bR7UZHrqppiU8EJpWvAkmmaL2Tj4Cn10KinW91By9E6Sv56zeAZNH?=
+ =?us-ascii?Q?YLduh6Lk6eSFscYveN0lnbtj//Gdls6g5pjr9kyWaWr7zNLzotSbXpO8pdtw?=
+ =?us-ascii?Q?f9ARnRkkltFkYGsHNZp5aNlfcllCZGs4fewGKIi/oZngeZIXlwhviiO41FX1?=
+ =?us-ascii?Q?EhGjrke+WeWRFmrrra2z3Ds2QjHCl7ik5sTV6eQl?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82cb3a5f-888b-4e36-8f3f-08db6c03c856
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2023 11:46:10.6249 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8V7v2ebeGwO9Gc5uHwgY/BNi34tMuvgX9i2v4gjZYT0OfxAM0j7BAyv4zrLTrGAC
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5318
+Subject: Re: [Intel-gfx] [PATCH v7 4/9] iommufd: Add iommufd_ctx_has_group()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,175 +114,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
+ chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, kvm@vger.kernel.org,
+ lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
+ kevin.tian@intel.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
+ eric.auger@redhat.com, intel-gvt-dev@lists.freedesktop.org,
+ yi.y.sun@linux.intel.com, clegoate@redhat.com, cohuck@redhat.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 13, 2023 at 10:12:39AM +0530, Arun R Murthy wrote:
-> On AUX transfer timeout, as per DP spec need to retry for 3 times and
-> has to be restarted freshly.
+On Fri, Jun 02, 2023 at 05:15:10AM -0700, Yi Liu wrote:
+> This adds the helper to check if any device within the given iommu_group
+> has been bound with the iommufd_ctx. This is helpful for the checking on
+> device ownership for the devices which have not been bound but cannot be
+> bound to any other iommufd_ctx as the iommu_group has been bound.
 > 
-> v3: handle timeout and dont rely on register value on timeout (Imre)
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> Tested-by: Terrence Xu <terrence.xu@intel.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
 > ---
->  .../drm/i915/display/intel_display_types.h    |  1 -
->  drivers/gpu/drm/i915/display/intel_dp_aux.c   | 72 +++++++++----------
->  2 files changed, 34 insertions(+), 39 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 2d8297f8d088..0942b109b4ca 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1741,7 +1741,6 @@ struct intel_dp {
->  	/* sink or branch descriptor */
->  	struct drm_dp_desc desc;
->  	struct drm_dp_aux aux;
-> -	u32 aux_busy_last_status;
->  	u8 train_set[4];
->  
->  	struct intel_pps pps;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> index 0c27db8ae4f1..244b4d7d716d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -36,25 +36,24 @@ static void intel_dp_aux_unpack(u32 src, u8 *dst, int dst_bytes)
->  		dst[i] = src >> ((3 - i) * 8);
->  }
->  
-> -static u32
-> -intel_dp_aux_wait_done(struct intel_dp *intel_dp)
-> +static int
-> +intel_dp_aux_wait_done(struct intel_dp *intel_dp, u32 *status)
->  {
->  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
->  	const unsigned int timeout_ms = 10;
-> -	u32 status;
->  	int ret;
->  
->  	ret = __intel_de_wait_for_register(i915, ch_ctl,
->  					   DP_AUX_CH_CTL_SEND_BUSY, 0,
-> -					   2, timeout_ms, &status);
-> +					   50, timeout_ms, status);
->  
->  	if (ret == -ETIMEDOUT)
->  		drm_err(&i915->drm,
->  			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
-> -			intel_dp->aux.name, timeout_ms, status);
-> +			intel_dp->aux.name, timeout_ms, *status);
->  
-> -	return status;
-> +	return ret;
->  }
->  
->  static u32 g4x_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
-> @@ -186,10 +185,7 @@ static u32 skl_get_aux_send_ctl(struct intel_dp *intel_dp,
->  	 */
->  	ret = DP_AUX_CH_CTL_SEND_BUSY |
->  		DP_AUX_CH_CTL_DONE |
-> -		DP_AUX_CH_CTL_INTERRUPT |
+>  drivers/iommu/iommufd/device.c | 30 ++++++++++++++++++++++++++++++
+>  include/linux/iommufd.h        |  8 ++++++++
+>  2 files changed, 38 insertions(+)
 
-The above one-liner change, also applied in g4x_get_aux_send_ctl()
-should be a separate patch.
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
-> -		DP_AUX_CH_CTL_TIME_OUT_ERROR |
->  		DP_AUX_CH_CTL_TIME_OUT_MAX |
-> -		DP_AUX_CH_CTL_RECEIVE_ERROR |
->  		DP_AUX_CH_CTL_MESSAGE_SIZE(send_bytes) |
->  		DP_AUX_CH_CTL_FW_SYNC_PULSE_SKL(intel_dp_aux_fw_sync_len()) |
->  		DP_AUX_CH_CTL_SYNC_PULSE_SKL(intel_dp_aux_sync_len());
-> @@ -273,30 +269,6 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  	 * it using the same AUX CH simultaneously
->  	 */
->  
-> -	/* Try to wait for any previous AUX channel activity */
-> -	for (try = 0; try < 3; try++) {
-> -		status = intel_de_read_notrace(i915, ch_ctl);
-> -		if ((status & DP_AUX_CH_CTL_SEND_BUSY) == 0)
-> -			break;
-> -		msleep(1);
-> -	}
-> -	/* just trace the final value */
-> -	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
-> -
-> -	if (try == 3) {
-> -		const u32 status = intel_de_read(i915, ch_ctl);
-> -
-> -		if (status != intel_dp->aux_busy_last_status) {
-> -			drm_WARN(&i915->drm, 1,
-> -				 "%s: not started (status 0x%08x)\n",
-> -				 intel_dp->aux.name, status);
-> -			intel_dp->aux_busy_last_status = status;
-> -		}
-> -
-> -		ret = -EBUSY;
-> -		goto out;
-> -	}
-> -
->  	/* Only 5 data registers! */
->  	if (drm_WARN_ON(&i915->drm, send_bytes > 20 || recv_size > 20)) {
->  		ret = -E2BIG;
-> @@ -304,14 +276,31 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  	}
->  
->  	while ((aux_clock_divider = intel_dp->get_aux_clock_divider(intel_dp, clock++))) {
-> -		u32 send_ctl = intel_dp->get_aux_send_ctl(intel_dp,
-> +		/* Must try at least 3 times according to DP spec */
-> +		for (try = 0; try < 5; try++) {
-> +			u32 send_ctl = intel_dp->get_aux_send_ctl(intel_dp,
->  							  send_bytes,
->  							  aux_clock_divider);
->  
-> -		send_ctl |= aux_send_ctl_flags;
-> +			send_ctl |= aux_send_ctl_flags;
-> +
-> +			/* Try to wait for any previous AUX channel activity */
-> +			/* TODO: if typeC then 4.2ms else 800us. For DG2 add 1.5ms for both cases */
-> +			ret = intel_dp_aux_wait_done(intel_dp, &status);
-> +			/* just trace the final value */
-> +			trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
-> +
-> +			/* On timeout dont read the status bits as its not updated */
-> +			if (ret == -ETIMEDOUT) {
-> +				drm_WARN(&i915->drm, 1,
-> +					 "%s: not started, previous Tx still in process (status 0x%08x)\n",
-> +					 intel_dp->aux.name, status);
-> +				if (try > 3)
-> +					goto out;
-> +				else
-> +					continue;
-> +			}
->  
-> -		/* Must try at least 3 times according to DP spec */
-> -		for (try = 0; try < 5; try++) {
->  			/* Load the send data into the aux channel data registers */
->  			for (i = 0; i < send_bytes; i += 4)
->  				intel_de_write(i915, ch_data[i >> 2],
-> @@ -320,8 +309,15 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  
->  			/* Send the command and wait for it to complete */
->  			intel_de_write(i915, ch_ctl, send_ctl);
-> +			intel_de_rmw(i915, ch_ctl, DP_AUX_CH_CTL_INTERRUPT |
-> +				     DP_AUX_CH_CTL_TIME_OUT_ERROR |
-> +				     DP_AUX_CH_CTL_RECEIVE_ERROR, 0);
->  
-> -			status = intel_dp_aux_wait_done(intel_dp);
-
-The review comments were not addressed and these changes still don't
-make sense to me. What I meant is - instead of all the above changes -
-bailing out at this point if DP_AUX_CH_CTL_SEND_BUSY is still set in
-status.
-
-> +			ret = intel_dp_aux_wait_done(intel_dp, &status);
-> +
-> +			/* On timeout dont read the status bits as its not updated */
-> +			if (ret == -ETIMEDOUT)
-> +				continue;
->  
->  			/* Clear done status and any errors */
->  			intel_de_write(i915, ch_ctl,
-> -- 
-> 2.25.1
-> 
+Jason
