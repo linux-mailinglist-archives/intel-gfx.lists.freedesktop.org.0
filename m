@@ -2,54 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C75A737423
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 811A0737426
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:29:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6D3010E384;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7BAE10E38A;
 	Tue, 20 Jun 2023 18:29:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 376 seconds by postgrey-1.36 at gabe;
- Wed, 14 Jun 2023 16:03:21 UTC
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net
- (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
- by gabe.freedesktop.org (Postfix) with ESMTP id 64CCC10E0B4;
- Wed, 14 Jun 2023 16:03:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fudan.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
- Message-Id; bh=Pn345bV35kHjk6YsQq8dmYqZoHyOvoQvv+9XtR7M7h0=; b=2
- sya0aFb/QdDdY7WFrQAIFe42FVXCIFZaY7h7lWLT56EHnJtnK8nuAphvz0zhskmd
- TnmI+JGPDqhG4rZf0lVodqiiL1JQdsVZAPl74GhdpaYYXiL7xiwRy9gp7O3np0y0
- BeAxRq7ENrrOHzpK0KVv+NdtIBb0Zs1dutjTTPiyqQ=
-Received: from ubuntu.localdomain (unknown [10.230.35.76])
- by app1 (Coremail) with SMTP id XAUFCgD3__cs44lk3qXsAA--.4023S2;
- Wed, 14 Jun 2023 23:56:29 +0800 (CST)
-From: Chenyuan Mi <cymi20@fudan.edu.cn>
-To: jani.nikula@linux.intel.com
-Date: Wed, 14 Jun 2023 08:56:26 -0700
-Message-Id: <20230614155626.119999-1-cymi20@fudan.edu.cn>
-X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID: XAUFCgD3__cs44lk3qXsAA--.4023S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7XF47uFWrJrW7GrWkJw17trb_yoWDWFXEg3
- WrArnayry2krZ8tF12yrWfuryfK3Wjvr1ktryftr93CwnFyryUtrn7Jw17Wr1xJay7JFW8
- Aw15uFsxtwnrGjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUbTAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
- 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
- A2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
- 6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
- Cq3wAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
- 0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Gr0_Cr
- 1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IE
- rcIFxwACI402YVCY1x02628vn2kIc2xKxwCY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I
- 8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
- xVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
- AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
- cIk0rVWrJr0_WFyUJwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14
- v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUOxhLUUUUU
-X-CM-SenderInfo: isqsiiisuqikmt6i3vldqovvfxof0/
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
+ [205.220.177.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 446EC10E16D;
+ Wed, 14 Jun 2023 20:41:47 +0000 (UTC)
+Received: from pps.filterd (m0333520.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 35EJtEOa018110; Wed, 14 Jun 2023 20:41:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding;
+ s=corp-2023-03-30; bh=PHe5HfxjOkcRnacOoCZlGZI8u+HsglkIVmO3NBIpEb8=;
+ b=Oc/Lq8ZjDXzr+arONZeMk3tXQjhxFPq2/fgtAOPLOJsmKtdo4SFaz/9zfUHcAZVPiXEj
+ nvQaLcwlWg55ZLe/gJLUCncJHmETlq56NkoTo0zInfBabGO3wdVzlqQkqnat4fkfeob9
+ NCtg1oObbGUe6PgDtVP2+ToXZR7Ib9xsROHwK1uBuEywCgglVhjUR1LhL233H1WAOxCX
+ 0FOHhFOC7jRSuR3CQ2nyVRXCXjsRgjLJs5eiNO6mrt2+FxNsJ1LySNFMIwws/5/8uC9V
+ fjAeiq0v5BcR8HwLBK+2Ee4B9vvTidC0SxeVVRFNXipvJZAA4je+xmQ4Vz27WlRM0qaX Xg== 
+Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta03.appoci.oracle.com [130.35.103.27])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3r4h7d8jeq-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Wed, 14 Jun 2023 20:41:16 +0000
+Received: from pps.filterd
+ (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.19/8.17.1.19)
+ with ESMTP id 35EKYLXc008966; Wed, 14 Jun 2023 20:41:15 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+ by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
+ 3r4fm6bquq-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Wed, 14 Jun 2023 20:41:15 +0000
+Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 35EKfEmi021978;
+ Wed, 14 Jun 2023 20:41:14 GMT
+Received: from ca-dev112.us.oracle.com (ca-dev112.us.oracle.com
+ [10.129.136.47])
+ by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id
+ 3r4fm6bqtm-1; Wed, 14 Jun 2023 20:41:14 +0000
+From: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Date: Wed, 14 Jun 2023 13:41:06 -0700
+Message-ID: <20230614204109.3071989-1-harshit.m.mogalapalli@oracle.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-06-14_14,2023-06-14_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+ bulkscore=0 phishscore=0
+ mlxscore=0 suspectscore=0 malwarescore=0 mlxlogscore=999 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
+ definitions=main-2306140181
+X-Proofpoint-ORIG-GUID: aW4V0k6qElqU-6NSCbtVSQLe_FsutlCL
+X-Proofpoint-GUID: aW4V0k6qElqU-6NSCbtVSQLe_FsutlCL
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:28:21 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix missing check for return value of
- dev_get_platdata()
+Subject: [Intel-gfx] [PATCH next] drm/i915/huc: Fix missing error code in
+ intel_huc_init()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,39 +91,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chenyuan Mi <cymi20@fudan.edu.cn>, intel-gfx@lists.freedesktop.org,
- lucas.demarchi@intel.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, andrzej.hajda@intel.com, daniel@ffwll.ch,
- rodrigo.vivi@intel.com, airlied@gmail.com
+Cc: error27@gmail.com, dan.carpenter@linaro.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The dev_get_platdata() function may return NULL, which may
-cause null pointer deference, and most other callsites of
-dev_get_platdata() do Null check. Add Null check for return
-value of dev_get_platdata().
+Smatch warns:
+	drivers/gpu/drm/i915/gt/uc/intel_huc.c:388
+	    intel_huc_init() warn: missing error code 'err'
 
-Found by our static analysis tool.
+When the allocation of VMAs fail: The value of err is zero at this
+point and it is passed to PTR_ERR and also finally returning zero which
+is success instead of failure.
 
-Signed-off-by: Chenyuan Mi <cymi20@fudan.edu.cn>
+Fix this by adding the missing error code when VMA allocation fails.
+
+Fixes: 08872cb13a71 ("drm/i915/mtl/huc: auth HuC via GSC")
+Signed-off-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
 ---
- drivers/gpu/drm/i915/display/intel_lpe_audio.c | 3 +++
- 1 file changed, 3 insertions(+)
+Found using Static analysis with Smatch, only compile tested.
+---
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-index 5863763de530..a1655ddbe910 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-@@ -336,6 +336,9 @@ void intel_lpe_audio_notify(struct drm_i915_private *dev_priv,
- 		return;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+index e0afd8f89502..ddd146265beb 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+@@ -384,6 +384,7 @@ int intel_huc_init(struct intel_huc *huc)
  
- 	pdata = dev_get_platdata(&dev_priv->display.audio.lpe.platdev->dev);
-+	if (!pdata)
-+		return;
-+
- 	ppdata = &pdata->port[port - PORT_B];
- 
- 	spin_lock_irqsave(&pdata->lpe_audio_slock, irqflags);
+ 		vma = intel_guc_allocate_vma(&gt->uc.guc, PXP43_HUC_AUTH_INOUT_SIZE * 2);
+ 		if (IS_ERR(vma)) {
++			err = PTR_ERR(vma);
+ 			huc_info(huc, "Failed to allocate heci pkt\n");
+ 			goto out;
+ 		}
 -- 
-2.17.1
+2.41.0
 
