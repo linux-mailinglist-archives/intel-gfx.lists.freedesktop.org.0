@@ -1,69 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EAFA73741E
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:29:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C75A737423
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:29:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 836D010E388;
-	Tue, 20 Jun 2023 18:28:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6D3010E384;
+	Tue, 20 Jun 2023 18:29:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
- [IPv6:2607:f8b0:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D275310E12A;
- Wed, 14 Jun 2023 12:36:06 +0000 (UTC)
-Received: by mail-pf1-x435.google.com with SMTP id
- d2e1a72fcca58-6537d2a8c20so5259125b3a.2; 
- Wed, 14 Jun 2023 05:36:06 -0700 (PDT)
+X-Greylist: delayed 376 seconds by postgrey-1.36 at gabe;
+ Wed, 14 Jun 2023 16:03:21 UTC
+Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net
+ (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 64CCC10E0B4;
+ Wed, 14 Jun 2023 16:03:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1686746165; x=1689338165;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=4e+Pwp+021TOiqEOI55JQb3RjMEOtcdSeHsod/nYw0o=;
- b=V+SK9acdDTnYBrQKZHF8LeRsGMn16ZHTwKjr6/V6NkXCuBoLLzDUu2M0Nfa+OFigNK
- V4mQFdEHDLPFNGAHcke1u4x7oi0gwn+8sSer3mbHXMTPH4KzJ9EHm7s6O7S8YuK2HChJ
- /3Z/Ndb5PEZlD/1RlJPV63dLNOflrGTYfxFYmOhTgJ6/K7qwLvsbI1BmE0URxNHCVRXo
- 9R2P0rV1z6rLJ6IfG7arZAz9VmdPMFRQ6xpVawkJQ1w+PTLcc2T9pMQa4lhz4V2yo/EW
- +EQhBPpZFjsn/mbRUj0tN2+wlhbExNE2qB0PJFzysg1AAEeDMpDC6NSsKLyfXZ0iDzEN
- VSnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686746165; x=1689338165;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=4e+Pwp+021TOiqEOI55JQb3RjMEOtcdSeHsod/nYw0o=;
- b=RiavSbgxVowel/jI1zKggqqF62sZMlzSTe2QrQCV67M5gcMB1Pz1gk0eOzgn98Yxlb
- uDRiQ7tyWp2b+hETN98FnrZlKfdfevW0PvBhDjww8a4sJUSsp1v8a7SeNi+G4HDAWz0O
- rAlQWaTHPkcmVHAwJ7hq+QMbuGhRlcNbq1L82CAXfw2dH1mMGZJAM7kD0JiasEV8yocZ
- k9Dbq7uF5eoDspeTGGkjaEqweWFX4ReKeHP1y9Bk0v/CsSwCl3DKNv66PZ8Bj+u8Gp8I
- Y7AqKIWnK33aYcorG+FVtx3oPj6+T//XHTezo+TfA1hqGe/NGxvo4BYH5cmVIG2WYzzN
- Jm2g==
-X-Gm-Message-State: AC+VfDz6Z5nHcx+ZFvNshqLw7gqPLfLSWQMsZssH5qbymxmO+4ReoDCw
- BiA6ZK4FLErO+P/mVFe5I7QbbT+AE5qdwonI
-X-Google-Smtp-Source: ACHHUZ4+dJFI8HJ6v4oIutm5MrkaLnh0wkcAaLETYhTmKqSAen1q8lTzmzcujbzgFoRsU+WyzbV+Tg==
-X-Received: by 2002:a05:6a00:2352:b0:665:bd58:c948 with SMTP id
- j18-20020a056a00235200b00665bd58c948mr2301728pfj.8.1686746164598; 
- Wed, 14 Jun 2023 05:36:04 -0700 (PDT)
-Received: from sumitra.com ([117.245.169.18]) by smtp.gmail.com with ESMTPSA id
- j1-20020aa78001000000b00634dde2992bsm10250199pfi.132.2023.06.14.05.35.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 14 Jun 2023 05:36:04 -0700 (PDT)
-Date: Wed, 14 Jun 2023 05:35:56 -0700
-From: Sumitra Sharma <sumitraartsy@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Message-ID: <20230614123556.GA381200@sumitra.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+ d=fudan.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
+ Message-Id; bh=Pn345bV35kHjk6YsQq8dmYqZoHyOvoQvv+9XtR7M7h0=; b=2
+ sya0aFb/QdDdY7WFrQAIFe42FVXCIFZaY7h7lWLT56EHnJtnK8nuAphvz0zhskmd
+ TnmI+JGPDqhG4rZf0lVodqiiL1JQdsVZAPl74GhdpaYYXiL7xiwRy9gp7O3np0y0
+ BeAxRq7ENrrOHzpK0KVv+NdtIBb0Zs1dutjTTPiyqQ=
+Received: from ubuntu.localdomain (unknown [10.230.35.76])
+ by app1 (Coremail) with SMTP id XAUFCgD3__cs44lk3qXsAA--.4023S2;
+ Wed, 14 Jun 2023 23:56:29 +0800 (CST)
+From: Chenyuan Mi <cymi20@fudan.edu.cn>
+To: jani.nikula@linux.intel.com
+Date: Wed, 14 Jun 2023 08:56:26 -0700
+Message-Id: <20230614155626.119999-1-cymi20@fudan.edu.cn>
+X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID: XAUFCgD3__cs44lk3qXsAA--.4023S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7XF47uFWrJrW7GrWkJw17trb_yoWDWFXEg3
+ WrArnayry2krZ8tF12yrWfuryfK3Wjvr1ktryftr93CwnFyryUtrn7Jw17Wr1xJay7JFW8
+ Aw15uFsxtwnrGjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUbTAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+ 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+ A2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
+ 6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+ Cq3wAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+ 0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Gr0_Cr
+ 1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IE
+ rcIFxwACI402YVCY1x02628vn2kIc2xKxwCY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I
+ 8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
+ xVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
+ AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
+ cIk0rVWrJr0_WFyUJwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14
+ v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUOxhLUUUUU
+X-CM-SenderInfo: isqsiiisuqikmt6i3vldqovvfxof0/
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:28:21 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: Call page_address() on page acquired
- with GFP_KERNEL flag
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix missing check for return value of
+ dev_get_platdata()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,40 +62,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Deepak R Varma <drv@mailo.com>, Fabio <fmdefrancesco@gmail.com>,
- Ira Weiny <ira.weiny@intel.com>, Sumitra Sharma <sumitraartsy@gmail.com>
+Cc: Chenyuan Mi <cymi20@fudan.edu.cn>, intel-gfx@lists.freedesktop.org,
+ lucas.demarchi@intel.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, andrzej.hajda@intel.com, daniel@ffwll.ch,
+ rodrigo.vivi@intel.com, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pages allocated with GFP_KERNEL cannot come from Highmem.
-That is why there is no need to call kmap() on them.
+The dev_get_platdata() function may return NULL, which may
+cause null pointer deference, and most other callsites of
+dev_get_platdata() do Null check. Add Null check for return
+value of dev_get_platdata().
 
-Therefore, don't call kmap() on the page coming from
-vma_res->bi.pages using for_each_sgt_page() in
-i915_vma_coredump_create().
+Found by our static analysis tool.
 
-Use a plain page_address() to get the kernel address instead.
-
-Signed-off-by: Sumitra Sharma <sumitraartsy@gmail.com>
+Signed-off-by: Chenyuan Mi <cymi20@fudan.edu.cn>
 ---
- drivers/gpu/drm/i915/i915_gpu_error.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lpe_audio.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index f020c0086fbc..6f51cb4fc55c 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1164,9 +1164,8 @@ i915_vma_coredump_create(const struct intel_gt *gt,
+diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+index 5863763de530..a1655ddbe910 100644
+--- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+@@ -336,6 +336,9 @@ void intel_lpe_audio_notify(struct drm_i915_private *dev_priv,
+ 		return;
  
- 			drm_clflush_pages(&page, 1);
+ 	pdata = dev_get_platdata(&dev_priv->display.audio.lpe.platdev->dev);
++	if (!pdata)
++		return;
++
+ 	ppdata = &pdata->port[port - PORT_B];
  
--			s = kmap(page);
-+			s = page_address(page);
- 			ret = compress_page(compress, s, dst, false);
--			kunmap(page);
- 
- 			drm_clflush_pages(&page, 1);
- 
+ 	spin_lock_irqsave(&pdata->lpe_audio_slock, irqflags);
 -- 
-2.25.1
+2.17.1
 
