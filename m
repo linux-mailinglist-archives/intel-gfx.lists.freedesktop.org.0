@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1163272F210
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jun 2023 03:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 875C272F226
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jun 2023 03:49:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 054DC10E079;
-	Wed, 14 Jun 2023 01:37:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C960710E079;
+	Wed, 14 Jun 2023 01:48:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0ACD010E079;
- Wed, 14 Jun 2023 01:37:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6578610E079;
+ Wed, 14 Jun 2023 01:48:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 030BDAADD5;
- Wed, 14 Jun 2023 01:37:22 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5D63CAADF0;
+ Wed, 14 Jun 2023 01:48:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Wed, 14 Jun 2023 01:37:22 -0000
-Message-ID: <168670664298.17429.14158792007641748436@emeril.freedesktop.org>
+To: "Radhakrishna Sripada" <radhakrishna.sripada@intel.com>
+Date: Wed, 14 Jun 2023 01:48:56 -0000
+Message-ID: <168670733634.17430.6463905698742429494@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230613235227.2395687-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20230613235227.2395687-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gsc=3A_define_gsc_fw?=
+References: <20230614001315.1552497-1-radhakrishna.sripada@intel.com>
+In-Reply-To: <20230614001315.1552497-1-radhakrishna.sripada@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBB?=
+ =?utf-8?q?dd_mmio_register_rw_tracing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,26 +47,21 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gsc: define gsc fw
-URL   : https://patchwork.freedesktop.org/series/119310/
-State : warning
+Series: Add mmio register rw tracing
+URL   : https://patchwork.freedesktop.org/series/119311/
+State : failure
 
 == Summary ==
 
-Error: dim checkpatch failed
-d4e081946b3a drm/i915/gsc: define gsc fw
--:66: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'major_' - possible side-effects?
-#66: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:242:
-+#define GSC_FW_BLOB(prefix_, major_, minor_) \
-+	UC_FW_BLOB_NEW(major_, minor_, 0, true, \
-+		       MAKE_GSC_FW_PATH(prefix_, major_, minor_))
-
--:66: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'minor_' - possible side-effects?
-#66: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:242:
-+#define GSC_FW_BLOB(prefix_, major_, minor_) \
-+	UC_FW_BLOB_NEW(major_, minor_, 0, true, \
-+		       MAKE_GSC_FW_PATH(prefix_, major_, minor_))
-
-total: 0 errors, 0 warnings, 2 checks, 71 lines checked
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/119311/revisions/1/mbox/ not applied
+Applying: drm/xe: Move mmio read/write functions to xe_mmio.c
+error: sha1 information is lacking or useless (drivers/gpu/drm/xe/xe_mmio.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/xe: Move mmio read/write functions to xe_mmio.c
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
 
