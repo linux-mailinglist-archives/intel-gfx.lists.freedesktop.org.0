@@ -1,59 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CAC272FBA6
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jun 2023 12:50:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37EF772FC6C
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jun 2023 13:30:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20C2910E24E;
-	Wed, 14 Jun 2023 10:50:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D70710E445;
+	Wed, 14 Jun 2023 11:29:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0116A10E24E;
- Wed, 14 Jun 2023 10:50:36 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8AxW+p7m4lkURgFAA--.10857S3;
- Wed, 14 Jun 2023 18:50:35 +0800 (CST)
-Received: from [10.20.42.43] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8DxK8p6m4lkKIUaAA--.1634S3; 
- Wed, 14 Jun 2023 18:50:34 +0800 (CST)
-Message-ID: <dbf0d89f-717a-1f78-aef2-f30506751d4d@loongson.cn>
-Date: Wed, 14 Jun 2023 18:50:34 +0800
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com
+ [IPv6:2a00:1450:4864:20::130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8819A10E126;
+ Wed, 14 Jun 2023 11:29:54 +0000 (UTC)
+Received: by mail-lf1-x130.google.com with SMTP id
+ 2adb3069b0e04-4f769c37d26so391761e87.1; 
+ Wed, 14 Jun 2023 04:29:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1686742192; x=1689334192;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Q/7I47zyCqB6kKEoO0RSLVUlfmCOuGYcUDxHa82mWc8=;
+ b=f7qA81G63kL7Kvv1mc76MrGbpAvnPJG5dDhl4IQVCOUQhqaPrE/2Jux3+5NiQITnGo
+ 8az+lX8hBDP2LY3NkJ8wuuKOutddg3yfLO7How1xZAkUAq4gh6lT1hyvc61Df3tZDHs3
+ PkO+M5xrZ82jUmIOpHBw3ZrJ02cfz82/CD6E9fhpxlslpyEJ++1xouJxkbuBzhCTCS+Z
+ XG8Boj8bIDKp7yT3PWEPnK7qB5Ti1DEDnjURd55zedsM/sSoUcB61JIc64wMIGl/PElv
+ RSweyuEf38k/eZcG7lBGEY1T678aHf6mF1hh2TcobjkfCrTNnvXuufZg2UAsokIMJEN5
+ nZcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1686742192; x=1689334192;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Q/7I47zyCqB6kKEoO0RSLVUlfmCOuGYcUDxHa82mWc8=;
+ b=C4peA/WToutIRE64kxWEwqw9NySdsskt6UqNkTIGSGRvQ22J45OLNexAj0uuB5bJBl
+ JSqP2zkAV4DmZ91UYwMi3uCKuU5z3/yltCP1tak8vWKHZWesLaPHfIyTud9qLNR1PpZV
+ dw5a/EkY88hGH9zIrUVpqcW/lGN283PDrL8AYJW4QgLsBCasgQhQDXzGfODiODOrchgL
+ rGfK71aP4OLN9BeChaTtuPUG7G/d5z9/ixxQdkC4BGNEv8k/4ivt2qeypEncibBmThez
+ 4sle3pVgx0JtbHf4n+9DqJJaENEAVufNkgkHQCxSvL294SA6Plu4QZUIrZIBFpc5iegU
+ zhzA==
+X-Gm-Message-State: AC+VfDzJV+NEUedcMYVkWkt8ryoVrYHLSrGi1AQxtzQk3nBlflXhK2Ux
+ LtnNsKOY5YbEETpo3+l/9KJUNp3OkcI=
+X-Google-Smtp-Source: ACHHUZ6EzDtFkY+01GLLd9j6A3HU2CY6mPIxp0m/umgreIXXTh/TmSXWLOjo+d1SdcdO9ZuMiwsqYg==
+X-Received: by 2002:ac2:5a0c:0:b0:4f6:2846:b1fb with SMTP id
+ q12-20020ac25a0c000000b004f62846b1fbmr8196019lfn.18.1686742191915; 
+ Wed, 14 Jun 2023 04:29:51 -0700 (PDT)
+Received: from ?IPV6:2a00:e180:15e4:4200:3c54:f73b:1892:7271?
+ ([2a00:e180:15e4:4200:3c54:f73b:1892:7271])
+ by smtp.gmail.com with ESMTPSA id
+ 17-20020a05600c22d100b003f8044b3436sm16821017wmg.23.2023.06.14.04.29.50
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 14 Jun 2023 04:29:51 -0700 (PDT)
+Message-ID: <fc5157cc-6f23-a74f-efcc-66bd7e093de7@gmail.com>
+Date: Wed, 14 Jun 2023 13:29:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-To: Sui Jingfeng <15330273260@189.cn>, Bjorn Helgaas <bhelgaas@google.com>
-References: <20230613030151.216625-1-15330273260@189.cn>
- <20230613030151.216625-3-15330273260@189.cn>
 Content-Language: en-US
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-Organization: Loongson
-In-Reply-To: <20230613030151.216625-3-15330273260@189.cn>
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ javierm@redhat.com, sam@ravnborg.org, suijingfeng@loongson.cn
+References: <20230530150253.22758-1-tzimmermann@suse.de>
+ <20230530150253.22758-3-tzimmermann@suse.de>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20230530150253.22758-3-tzimmermann@suse.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxK8p6m4lkKIUaAA--.1634S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxXr43WFyxtr4ruFWDXr4xAFc_yoW5tr1xpF
- yrGa45KrW8Ga4xW3y2qF18ZFy5ZFZ0ka4rtr42k34FkFWqkw1qqF95GFyYq343JrWkJF1I
- qa1ayrnruanFgabCm3ZEXasCq-sJn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUv2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v2
- 6rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I
- 8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AK
- xVWxJVW8Jr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4
- CEbIxvr21l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG
- 67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MI
- IYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E
- 14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWxJV
- W8Jr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU13E
- fUUUUUU==
-Subject: Re: [Intel-gfx] [PATCH v7 2/8] PCI/VGA: Deal only with VGA class
- devices
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v5 02/13] fbdev: Add initializer macros for
+ struct fb_ops
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,126 +81,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
-On 2023/6/13 11:01, Sui Jingfeng wrote:
-> From: Sui Jingfeng <suijingfeng@loongson.cn>
+
+Am 30.05.23 um 17:02 schrieb Thomas Zimmermann:
+> For framebuffers in I/O and system memory, add macros that set
+> struct fb_ops to the respective callback functions.
 >
-> Deal only with the VGA devcie(pdev->class == 0x0300), so replace the
-> pci_get_subsys() function with pci_get_class(). Filter the non-PCI display
-> device(pdev->class != 0x0300) out. There no need to process the non-display
-> PCI device.
+> For deferred I/O, add macros that generate callback functions with
+> damage handling. Add initializer macros that set struct fb_ops to
+> the generated callbacks.
 >
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+> These macros can remove a lot boilerplate code from fbdev drivers.
+> The drivers are supposed to use the macro that is required for its
+> framebuffer. Each macro is split into smaller helpers, so that
+> drivers with non-standard callbacks can pick and customize callbacks
+> as needed. There are individual helper macros for read/write, mmap
+> and drawing.
+>
+> v5:
+> 	* fix whitespace errors (Jingfeng)
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 > ---
->   drivers/pci/vgaarb.c | 22 ++++++++++++----------
->   1 file changed, 12 insertions(+), 10 deletions(-)
+>   include/linux/fb.h | 112 +++++++++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 112 insertions(+)
 >
-> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
-> index c1bc6c983932..22a505e877dc 100644
-> --- a/drivers/pci/vgaarb.c
-> +++ b/drivers/pci/vgaarb.c
-> @@ -754,10 +754,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
->   	struct pci_dev *bridge;
->   	u16 cmd;
+> diff --git a/include/linux/fb.h b/include/linux/fb.h
+> index 2cf8efcb9e32..ce6823e157e6 100644
+> --- a/include/linux/fb.h
+> +++ b/include/linux/fb.h
+> @@ -538,9 +538,31 @@ extern ssize_t fb_io_read(struct fb_info *info, char __user *buf,
+>   extern ssize_t fb_io_write(struct fb_info *info, const char __user *buf,
+>   			   size_t count, loff_t *ppos);
 >   
-> -	/* Only deal with VGA class devices */
-> -	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
-> -		return false;
-> -
-
-Hi, here is probably a bug fixing.
-
-For an example, nvidia render only GPU typically has 0x0380.
-
-at its PCI class number, but  render only GPU should not participate in 
-the arbitration.
-
-As it shouldn't snoop the legacy fixed VGA address.
-
-It(render only GPU) can not display anything.
-
-
-But 0x0380 >> 8 = 0x03, the filter  failed.
-
-
->   	/* Allocate structure */
->   	vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
->   	if (vgadev == NULL) {
-> @@ -1500,7 +1496,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->   	struct pci_dev *pdev = to_pci_dev(dev);
->   	bool notify = false;
->   
-> -	vgaarb_dbg(dev, "%s\n", __func__);
-> +	/* Only deal with VGA class devices */
-> +	if (pdev->class != PCI_CLASS_DISPLAY_VGA << 8)
-> +		return 0;
-
-So here we only care 0x0300, my initial intent is to make an optimization,
-
-nowadays sane display graphic card should all has 0x0300 as its PCI 
-class number, is this complete right?
-
-```
-
-#define PCI_BASE_CLASS_DISPLAY        0x03
-#define PCI_CLASS_DISPLAY_VGA        0x0300
-#define PCI_CLASS_DISPLAY_XGA        0x0301
-#define PCI_CLASS_DISPLAY_3D        0x0302
-#define PCI_CLASS_DISPLAY_OTHER        0x0380
-
-```
-
-Any ideas ?
-
->   	/* For now we're only intereted in devices added and removed. I didn't
->   	 * test this thing here, so someone needs to double check for the
-> @@ -1510,6 +1508,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->   	else if (action == BUS_NOTIFY_DEL_DEVICE)
->   		notify = vga_arbiter_del_pci_device(pdev);
->   
-> +	vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
+> +/*
+> + * Initializes struct fb_ops for framebuffers in I/O memory.
+> + */
 > +
->   	if (notify)
->   		vga_arbiter_notify_clients();
->   	return 0;
-> @@ -1534,8 +1534,8 @@ static struct miscdevice vga_arb_device = {
->   
->   static int __init vga_arb_device_init(void)
->   {
-> +	struct pci_dev *pdev = NULL;
->   	int rc;
-> -	struct pci_dev *pdev;
->   
->   	rc = misc_register(&vga_arb_device);
->   	if (rc < 0)
-> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
->   
->   	/* We add all PCI devices satisfying VGA class in the arbiter by
->   	 * default */
-> -	pdev = NULL;
-> -	while ((pdev =
-> -		pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
-> -			       PCI_ANY_ID, pdev)) != NULL)
-> +	while (1) {
-> +		pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
-> +		if (!pdev)
-> +			break;
+> +#define __FB_DEFAULT_IO_OPS_RDWR \
+> +	.fb_read	= fb_io_read, \
+> +	.fb_write	= fb_io_write
 > +
->   		vga_arbiter_add_pci_device(pdev);
+> +#define __FB_DEFAULT_IO_OPS_DRAW \
+> +	.fb_fillrect	= cfb_fillrect, \
+> +	.fb_copyarea	= cfb_copyarea, \
+> +	.fb_imageblit	= cfb_imageblit
+> +
+> +#define __FB_DEFAULT_IO_OPS_MMAP \
+> +	.fb_mmap	= NULL // default implementation
+
+// style comment in a macro? That's usually a very bad idea.
+
+Christian.
+
+> +
+> +#define FB_DEFAULT_IO_OPS \
+> +	__FB_DEFAULT_IO_OPS_RDWR, \
+> +	__FB_DEFAULT_IO_OPS_DRAW, \
+> +	__FB_DEFAULT_IO_OPS_MMAP
+> +
+>   /*
+>    * Drawing operations where framebuffer is in system RAM
+>    */
+> +
+>   extern void sys_fillrect(struct fb_info *info, const struct fb_fillrect *rect);
+>   extern void sys_copyarea(struct fb_info *info, const struct fb_copyarea *area);
+>   extern void sys_imageblit(struct fb_info *info, const struct fb_image *image);
+> @@ -549,6 +571,27 @@ extern ssize_t fb_sys_read(struct fb_info *info, char __user *buf,
+>   extern ssize_t fb_sys_write(struct fb_info *info, const char __user *buf,
+>   			    size_t count, loff_t *ppos);
+>   
+> +/*
+> + * Initializes struct fb_ops for framebuffers in system memory.
+> + */
+> +
+> +#define __FB_DEFAULT_SYS_OPS_RDWR \
+> +	.fb_read	= fb_sys_read, \
+> +	.fb_write	= fb_sys_write
+> +
+> +#define __FB_DEFAULT_SYS_OPS_DRAW \
+> +	.fb_fillrect	= sys_fillrect, \
+> +	.fb_copyarea	= sys_copyarea, \
+> +	.fb_imageblit	= sys_imageblit
+> +
+> +#define __FB_DEFAULT_SYS_OPS_MMAP \
+> +	.fb_mmap	= NULL // default implementation
+> +
+> +#define FB_DEFAULT_SYS_OPS \
+> +	__FB_DEFAULT_SYS_OPS_RDWR, \
+> +	__FB_DEFAULT_SYS_OPS_DRAW, \
+> +	__FB_DEFAULT_SYS_OPS_MMAP
+> +
+>   /* drivers/video/fbmem.c */
+>   extern int register_framebuffer(struct fb_info *fb_info);
+>   extern void unregister_framebuffer(struct fb_info *fb_info);
+> @@ -604,6 +647,75 @@ extern void fb_deferred_io_cleanup(struct fb_info *info);
+>   extern int fb_deferred_io_fsync(struct file *file, loff_t start,
+>   				loff_t end, int datasync);
+>   
+> +/*
+> + * Generate callbacks for deferred I/O
+> + */
+> +
+> +#define __FB_GEN_DEFAULT_DEFERRED_OPS_RDWR(__prefix, __damage_range, __mode) \
+> +	static ssize_t __prefix ## _defio_read(struct fb_info *info, char __user *buf, \
+> +					       size_t count, loff_t *ppos) \
+> +	{ \
+> +		return fb_ ## __mode ## _read(info, buf, count, ppos); \
+> +	} \
+> +	static ssize_t __prefix ## _defio_write(struct fb_info *info, const char __user *buf, \
+> +						size_t count, loff_t *ppos) \
+> +	{ \
+> +		unsigned long offset = *ppos; \
+> +		ssize_t ret = fb_ ## __mode ## _write(info, buf, count, ppos); \
+> +		if (ret > 0) \
+> +			__damage_range(info, offset, ret); \
+> +		return ret; \
 > +	}
->   
->   	pr_info("loaded\n");
->   	return rc;
-
--- 
-Jingfeng
+> +
+> +#define __FB_GEN_DEFAULT_DEFERRED_OPS_DRAW(__prefix, __damage_area, __mode) \
+> +	static void __prefix ## _defio_fillrect(struct fb_info *info, \
+> +						const struct fb_fillrect *rect) \
+> +	{ \
+> +		__mode ## _fillrect(info, rect); \
+> +		__damage_area(info, rect->dx, rect->dy, rect->width, rect->height); \
+> +	} \
+> +	static void __prefix ## _defio_copyarea(struct fb_info *info, \
+> +						const struct fb_copyarea *area) \
+> +	{ \
+> +		__mode ## _copyarea(info, area); \
+> +		__damage_area(info, area->dx, area->dy, area->width, area->height); \
+> +	} \
+> +	static void __prefix ## _defio_imageblit(struct fb_info *info, \
+> +						 const struct fb_image *image) \
+> +	{ \
+> +		__mode ## _imageblit(info, image); \
+> +		__damage_area(info, image->dx, image->dy, image->width, image->height); \
+> +	}
+> +
+> +#define FB_GEN_DEFAULT_DEFERRED_IO_OPS(__prefix, __damage_range, __damage_area) \
+> +	__FB_GEN_DEFAULT_DEFERRED_OPS_RDWR(__prefix, __damage_range, io) \
+> +	__FB_GEN_DEFAULT_DEFERRED_OPS_DRAW(__prefix, __damage_area, cfb)
+> +
+> +#define FB_GEN_DEFAULT_DEFERRED_SYS_OPS(__prefix, __damage_range, __damage_area) \
+> +	__FB_GEN_DEFAULT_DEFERRED_OPS_RDWR(__prefix, __damage_range, sys) \
+> +	__FB_GEN_DEFAULT_DEFERRED_OPS_DRAW(__prefix, __damage_area, sys)
+> +
+> +/*
+> + * Initializes struct fb_ops for deferred I/O.
+> + */
+> +
+> +#define __FB_DEFAULT_DEFERRED_OPS_RDWR(__prefix) \
+> +	.fb_read	= __prefix ## _defio_read, \
+> +	.fb_write	= __prefix ## _defio_write
+> +
+> +#define __FB_DEFAULT_DEFERRED_OPS_DRAW(__prefix) \
+> +	.fb_fillrect	= __prefix ## _defio_fillrect, \
+> +	.fb_copyarea	= __prefix ## _defio_copyarea, \
+> +	.fb_imageblit	= __prefix ## _defio_imageblit
+> +
+> +#define __FB_DEFAULT_DEFERRED_OPS_MMAP(__prefix) \
+> +	.fb_mmap	= fb_deferred_io_mmap
+> +
+> +#define FB_DEFAULT_DEFERRED_OPS(__prefix) \
+> +	__FB_DEFAULT_DEFERRED_OPS_RDWR(__prefix), \
+> +	__FB_DEFAULT_DEFERRED_OPS_DRAW(__prefix), \
+> +	__FB_DEFAULT_DEFERRED_OPS_MMAP(__prefix)
+> +
+>   static inline bool fb_be_math(struct fb_info *info)
+>   {
+>   #ifdef CONFIG_FB_FOREIGN_ENDIAN
 
