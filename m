@@ -2,152 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A46872FFAD
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jun 2023 15:13:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD5D172FFE8
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jun 2023 15:22:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E2A110E45C;
-	Wed, 14 Jun 2023 13:13:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5796A10E455;
+	Wed, 14 Jun 2023 13:22:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EFBC10E45A;
- Wed, 14 Jun 2023 13:13:08 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F85610E455;
+ Wed, 14 Jun 2023 13:22:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686748388; x=1718284388;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=1+NpWkgTU5ZpI3XuqD4cf527XLFgWT3b58d+3IvvBds=;
- b=k0qg7Kl55j6e8eHzdIBy1Yrdv35TruBROqvOePEtEMmui+86zsSMaCVl
- Z0NxYPEOh62SP1R4hI38Mb8VU29HAHYcGPYclHvYsk2IySTG/66dML/EK
- hCGvoO/xcNV3ibxRT3exZigD7E2hDy+xXO3/89itOHV1lrpPPubOCbxU/
- QKV9LsU4cconLvBwy6/hGhOYGO8EzgBq9C22BQIBv1nc8akGPndS3ZcdH
- 65W9wiGb+WDdN3eJCrDszoebpkSqIWSS0HnpGJt6E8ZrJFLiON1/GcBbz
- NA3Dd35CgAnmsv4PY5sgf2Wf8qUkErliIZMEayIkcqGS8B+kd3I9Ut9WU Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="348266937"
-X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="348266937"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 06:13:00 -0700
+ t=1686748950; x=1718284950;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=krZlgUF812lZ1Msg1luNdv0RZ6yxrI7AK5Nw8giEATI=;
+ b=UDMs43fsWXq0FQ965v2WXm403z8zZhfMfZ/4iOO4qNlQ9oW5K77TcfBj
+ VikN3Scej99lDxoKk3wnYp8/2W3sRfU7GztTF+cVtsYGQIxLDnaWrA3TO
+ 4oVwLDS7ZbCGaGmclrIlbk4S0VE5kQh6c3rDT8ebglzHjyfUHgt1dnwSN
+ VZ6RYqLRYVoT/8bZAhJKsqo8W/er4ccJDlwPfSF4LnWuG8hyq5syS747/
+ ElAoSO95Ss1/Eu4RzvT3imBPUfys8O8msngQfmZIFUw2Sj3O8GxYoHRes
+ 7cOxXHMIM22i8EX7xwtKtXfIKwz7/FQeh+IjBtzL3XWvrXYvThltwWcDL A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="444977889"
+X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="444977889"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 06:22:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="662398783"
-X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="662398783"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga003.jf.intel.com with ESMTP; 14 Jun 2023 06:12:59 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 14 Jun 2023 06:12:58 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 14 Jun 2023 06:12:58 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 14 Jun 2023 06:12:58 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.176)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 14 Jun 2023 06:12:57 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lATMMREvO43UtCDy4/omEkqhOLUZQiWR//9Qco1xvd5RnfHZlqoQ4cM2hxZV/UkVZH6IuibdNVC5aEhDD2iwoGKrOnuTzAj0o3SOzgqicY6YiDgD2pMxEIBS1eANdaPjeMUdAJGCp+6wPAfcJayTTim30MtKQ485M2zRqxZoKhVuqJo4KkgK601wRxHt5OSj2lX3HGEJ+xGml8wHjo5BdYAz4OlPThpTP08rZGPbqVUWCayUcvf/rbaE/E4bfL6LbKQINsVElSa3LqLKdR7uvjZrtjZslzmZYUUUz+SeSc0lxyYe66LAQUigRRDwYT5I6whFdpIsH2AShj313Ry5PA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NKXNL9yDpvW0lbXuw1i4S3YXeYV+X5Z9M0UiLqE0xJE=;
- b=PbiKJgspoGfHhGa8H64zhESdwcSjjwgBJKv/Tm+5K+8oi4taj32iHyQSM0C6/UalVD9eNUsFerDbJzi5ZPmqfVOM7i8Q6NEd3GLZNItizytlh0ZIsWFt8U0Ie8EeaGCCuJ9cVrCOAM+wFvObmsvP9DWw5jLqTV+4Ndo7vFq95Uh+J6yEASvG0AId+o5bPFteLWY64yWMQhmW6QnrYnj2lnhZLa0pJvRPCk4pKXu+kLWrxH/1hbveZO7RUGl5o6a+s1PwUmq8n6yGpn+nW2KrBVzMC1GEUxPfpEfKZRSnaj7ospvuzpRYoJsVFSO6Ru1ipNwAFMuK7JxzaA37UZUdGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by SA1PR11MB7062.namprd11.prod.outlook.com (2603:10b6:806:2b3::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.24; Wed, 14 Jun
- 2023 13:12:50 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::5b44:8f52:dbeb:18e5]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::5b44:8f52:dbeb:18e5%3]) with mapi id 15.20.6455.045; Wed, 14 Jun 2023
- 13:12:50 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>, "Tian, Kevin" <kevin.tian@intel.com>
-Thread-Topic: [PATCH v12 21/24] vfio: Determine noiommu device in
- __vfio_register_dev()
-Thread-Index: AQHZlUw5Bdx6t/Ptjk+i/O1PZ4IdNK+H07wAgAB3NRCAAI6EgIAAArTAgAAFeACAAABSUIAABoqAgAAiIoCAAAWUgIAAK4AAgABxqjCAAC4LgIAABP9AgAAFiwCAAGVuAIAADBWw
-Date: Wed, 14 Jun 2023 13:12:50 +0000
-Message-ID: <DS0PR11MB7529918D45D6402639F9ED68C35AA@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230613084828.7af51055.alex.williamson@redhat.com>
- <DS0PR11MB7529E84BCB100DE620FD2468C355A@DS0PR11MB7529.namprd11.prod.outlook.com>
- <20230613091301.56986440.alex.williamson@redhat.com>
- <20230613111511.425bdeae.alex.williamson@redhat.com>
- <ZIiozfqet185iLIs@nvidia.com>
- <20230613141050.29e7a22b.alex.williamson@redhat.com>
- <DS0PR11MB7529F2D5EF95E9E1D63C9264C35AA@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB52761B4E9C401A46FA5B4F2E8C5AA@BN9PR11MB5276.namprd11.prod.outlook.com>
- <DS0PR11MB7529E50A3F122449AAE5733FC35AA@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB5276FF400A7860DD23CF222B8C5AA@BN9PR11MB5276.namprd11.prod.outlook.com>
- <ZImxMHrOHHwbpNmd@nvidia.com>
-In-Reply-To: <ZImxMHrOHHwbpNmd@nvidia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|SA1PR11MB7062:EE_
-x-ms-office365-filtering-correlation-id: 964318ee-99c9-41bc-1743-08db6cd90e2b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +yJaarYliRYmzOR8KgVH9eQPjIJLi4SaOpjOZaGiHOLmIpqDkgcFTUhP79aowXx7c5fLIQLuTlnpedUtkjWCzt/fboXZlmripuN27B6OcciNTsdt0Qu+hznF/BbsLOYk1HuIk52UGxGho3t9OHmn9UX1be8+JcBBoGxNYr/br89n0i1P3xVZj9Y1WVxHw2ysiWHkymShB4Ad+qNDbX+KUA96+nyqqZ/xEC/3pqdCh9fr4KM8Oya2ChNFrI7rIaCqOGjvrlv2h1K0ZtymDQhoAfKMJn5vrTwvpB41i1sndW27y0ZW6NzJeEWvfZULSJkkJkJ4MHIq9abeCW2NBf1p89d4BjYo44yJpkbkWYlU00ykLoQReMtcf+5TsUpuZkGBgKaNIu7tPWBQuI7jpQiQPW9R+JFwwP2WZyYV2+/Z8hZQx/4YGz4B3QHbVCvRX3ZKQEzF2x2jNHPNuJpnhlrVD2JPMpo4G9y72dv2gpLcH8OBTfZEfqgzVKJq/3bpvBMBC9g7Xu/aCNB2pRAVW3l5r2X9W2CGvw/sOop7Qj8ykCHVA51rjTYMmQnLiMviNXeGbGyKgYI29p08Mc9iqqK0pt/I/yU2WglYIDKA7vuInJ2gCsm1EhImRmM+WrrIbXAz
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(136003)(366004)(396003)(346002)(39860400002)(376002)(451199021)(7416002)(6506007)(8936002)(26005)(71200400001)(52536014)(5660300002)(53546011)(38100700002)(8676002)(186003)(6636002)(122000001)(4326008)(9686003)(66446008)(64756008)(66476007)(316002)(66946007)(76116006)(66899021)(2906002)(38070700005)(82960400001)(66556008)(54906003)(7696005)(33656002)(110136005)(478600001)(86362001)(55016003)(83380400001)(41300700001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?kuIGCkIbAa9JuTivqLdCQjaQBs1zyka0vIxczd5w+vELgoScaZmJIEibm9OM?=
- =?us-ascii?Q?J11BTentIRPJw0ADddbdjI3iRylqUmCY9pnQytzny2PqQBHsXq2I4vPgou19?=
- =?us-ascii?Q?Rsn/+d4cKoka9ySYU2Nase5fd1UCb6RO1UC9qq197yYqwVKOtuJS5vkhIx9Q?=
- =?us-ascii?Q?icXb4Ti/soKd6t7FxQW90CfYLSEPrIhml3Z059bIYfP0aeJYQHxbblZtUn9S?=
- =?us-ascii?Q?34AShSNOB2ek3cXxy4TH1AenVMj6GUcydT0V1sqBGy99Hv5DC6nS/d6NX4nO?=
- =?us-ascii?Q?NPzqhgRz54V6IbU+0sypU/mGsGEY7cf+X1y9QGWKN1JZX7NGEWU7uGPPdfwK?=
- =?us-ascii?Q?tSitIgNxb8ROnUCOf1/nP5wlRQMqshBgAfAK6KlumGm/NeMk08KDuzarIr2j?=
- =?us-ascii?Q?CmQZj4LMD4GSetqpxl8uGcSv7v1NJkHA+uOD8XylOpmckYkkBvtZM6lEw9/4?=
- =?us-ascii?Q?zBj/ie/cXK25exgDgVBkEN4AAlamjy4J8pL2O0LIU1/1oNFMay6uKDJdEPMr?=
- =?us-ascii?Q?5nj99zWiu4LLZzVJUA6h7GVqIwA5GEbwmS9uoM17TKzK/P1aaW95xEJxRlL3?=
- =?us-ascii?Q?cClS0KTzlw33SPEi8KpGE+HnI328bTEG8TNKxQhtpWwhulp+IuszrD0Vcntx?=
- =?us-ascii?Q?SW8yWrACpHCSyF2a9j+Ol+RY8Gu6VJyrmMh9MpOmSnuCKCVh/2TnPF0xtCGp?=
- =?us-ascii?Q?8AsQCeFbJqBZWAK867eIn4JkqtPkRXCB+ioGtri7gdalQBRrvYcKxGADjjKG?=
- =?us-ascii?Q?W/a5A1u0+Epb9zls2DixN13dyHFd2snMN39tKW+654ifgkTn5Uut6pcaE5/P?=
- =?us-ascii?Q?J/RRQvmHfZOEE/DVYhxDZ27ffJ36efD6gG8TO8oTXPvK/L3ZrQQMhP+mY+Vz?=
- =?us-ascii?Q?xbYOLxNVoxZeVUxS+o7e6x57H8BngCh3iKfy780dMSyNu1grwWw353X8RCDX?=
- =?us-ascii?Q?xViFlA1/y+5mK82G/ZE9tUJ/q5+jKBvK0WEDuk2rEoWrksWztzy3p3oTvLu5?=
- =?us-ascii?Q?xtpmbQSAlptKeej/4ec+Tkc1g3AEoslhnFFsxIxnvnbFU2MxCZLU1m/tFjRR?=
- =?us-ascii?Q?0UIULLqMzHCc1h27ha9BlR+vhSSpCmWmpR7VoX7tCEZlbZ5bDD6fTi8xH4mE?=
- =?us-ascii?Q?Nj4kGiPhLtXHU0Lyc/UkV4H8SDaVJQCAie89FOH8RpFNUbVuRcjjeC3Z0Q4A?=
- =?us-ascii?Q?MaIy3zo0jCR9X5RnfXRV9f2XZBnRySoj1QtWBpD4TOlQGk8hhG9O7WCJ10aX?=
- =?us-ascii?Q?2pv7l98z7hAR1QpOLC6yaDIoM20JlG6+Qhw6OpA07oamOkwKwids9DaEdVbp?=
- =?us-ascii?Q?n/Z3Qjuy/wcnJpNXkm8fu1GLdmNMihYlG989y7xIYclAtrehEFHR7mzExJYp?=
- =?us-ascii?Q?OiW8/nrfVrXDPtAlTN5xDYtxRmDX8N3Ck+JkiSiWEQB8W6ikUrSln0qmmEpL?=
- =?us-ascii?Q?NaYPQLLmQH6vX25x/DTOddm68+jiCBIWKYHqJkcbmg6nJ898toewyjKMj2iY?=
- =?us-ascii?Q?kfYBLM8RNteRN0PYMcBSiTVN7uiFVwNaw+lrAe/z4so+jMOvyUFvjR8p0iEY?=
- =?us-ascii?Q?14aQR1F9RHc8zE6/lFcI34RjIOtkkKuxl6oRAIno?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="801899074"
+X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="801899074"
+Received: from sobyrne-mobl1.ger.corp.intel.com (HELO [10.213.224.182])
+ ([10.213.224.182])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 06:22:25 -0700
+Message-ID: <bebd57fc-7135-dc97-701e-54cb9c2955c0@linux.intel.com>
+Date: Wed, 14 Jun 2023 14:22:23 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 964318ee-99c9-41bc-1743-08db6cd90e2b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2023 13:12:50.4006 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WVb1D901+FakZBeg5OnEMp43DDHPekr9lTeTO0kXsf+VCOO4TEV6PHI4ecG4l6JVpE/mGYqbGrTHeG3BGBP1Gg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7062
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v12 21/24] vfio: Determine noiommu device in
- __vfio_register_dev()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Sumitra Sharma <sumitraartsy@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20230614123556.GA381200@sumitra.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230614123556.GA381200@sumitra.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Call page_address() on page
+ acquired with GFP_KERNEL flag
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,158 +68,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "Duan, 
- Zhenzhong" <zhenzhong.duan@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
- "Xu, Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "clegoate@redhat.com" <clegoate@redhat.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: Deepak R Varma <drv@mailo.com>, Fabio <fmdefrancesco@gmail.com>,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>, Ira Weiny <ira.weiny@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Jason Gunthorpe <jgg@nvidia.com>
-> Sent: Wednesday, June 14, 2023 8:23 PM
-> On Wed, Jun 14, 2023 at 06:20:10AM +0000, Tian, Kevin wrote:
-> > > From: Liu, Yi L <yi.l.liu@intel.com>
-> > > Sent: Wednesday, June 14, 2023 2:14 PM
-> > >
-> > >
-> > > > With that I think Jason's suggestion is to lift that test into main=
-.c:
-> > > >
-> > > > int vfio_register_group_dev(struct vfio_device *device)
-> > > > {
-> > > > 	/*
-> > > > 	 * VFIO always sets IOMMU_CACHE because we offer no way for
-> > > userspace to
-> > > > 	 * restore cache coherency. It has to be checked here because it i=
-s
-> > > only
-> > > > 	 * valid for cases where we are using iommu groups.
-> > > > 	 */
-> > > > 	if (type =3D=3D VFIO_IOMMU && !vfio_device_is_noiommu(device) &&
-> > > > 	    !device_iommu_capable(dev, IOMMU_CAP_CACHE_COHERENCY))
-> > > > 		return ERR_PTR(-EINVAL);
-> > >
-> > > vfio_device_is_noiommu() needs to be called after vfio_device_set_gro=
-up().
-> > > Otherwise, it's always false. So still needs to call it in the
-> > > __vfio_register_dev().
-> >
-> > yes
->=20
-> Right, but it needs to be in vfio_main.c, not in the group.c - so
-> another patch should be added to move it.
 
-I've got a patch as below to move it.
+On 14/06/2023 13:35, Sumitra Sharma wrote:
+> Pages allocated with GFP_KERNEL cannot come from Highmem.
+> That is why there is no need to call kmap() on them.
 
-From 306e71325d255eef34a1c44312bf9cdc8c302faa Mon Sep 17 00:00:00 2001
-From: Yi Liu <yi.l.liu@intel.com>
-Date: Wed, 14 Jun 2023 00:37:52 -0700
-Subject: [PATCH] vfio: Move the IOMMU_CAP_CACHE_COHERENCY check in
- __vfio_register_dev()
-
-The IOMMU_CAP_CACHE_COHERENCY check only applies to the physical devices
-that are IOMMU-backed. This change prepares for compiling the vfio_group
-infrastructure optionally as cdev does not support the physical devices
-that are not IOMMU-backed. This check help to fail the device registration
-for such devices if only vfio_group infrastructure is compiled out.
-
-Signed-off-by: Yi Liu <yi.l.liu@intel.com>
----
- drivers/vfio/group.c     | 10 ----------
- drivers/vfio/vfio_main.c | 11 +++++++++++
- 2 files changed, 11 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
-index 41a09a2df690..c2e0128323a7 100644
---- a/drivers/vfio/group.c
-+++ b/drivers/vfio/group.c
-@@ -687,16 +687,6 @@ static struct vfio_group *vfio_group_find_or_alloc(str=
-uct device *dev)
- 	if (!iommu_group)
- 		return ERR_PTR(-EINVAL);
-=20
--	/*
--	 * VFIO always sets IOMMU_CACHE because we offer no way for userspace to
--	 * restore cache coherency. It has to be checked here because it is only
--	 * valid for cases where we are using iommu groups.
--	 */
--	if (!device_iommu_capable(dev, IOMMU_CAP_CACHE_COHERENCY)) {
--		iommu_group_put(iommu_group);
--		return ERR_PTR(-EINVAL);
--	}
--
- 	mutex_lock(&vfio.group_lock);
- 	group =3D vfio_group_find_from_iommu(iommu_group);
- 	if (group) {
-diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-index 51c80eb32af6..ffb4585b7f0e 100644
---- a/drivers/vfio/vfio_main.c
-+++ b/drivers/vfio/vfio_main.c
-@@ -292,6 +292,17 @@ static int __vfio_register_dev(struct vfio_device *dev=
-ice,
- 	if (ret)
- 		return ret;
-=20
-+	/*
-+	 * VFIO always sets IOMMU_CACHE because we offer no way for userspace to
-+	 * restore cache coherency. It has to be checked here because it is only
-+	 * valid for cases where we are using iommu groups.
-+	 */
-+	if (type =3D=3D VFIO_IOMMU && !vfio_device_is_noiommu(device) &&
-+	    !device_iommu_capable(device->dev, IOMMU_CAP_CACHE_COHERENCY)) {
-+		ret =3D -EINVAL;
-+		goto err_out;
-+	}
-+
- 	ret =3D vfio_device_add(device);
- 	if (ret)
- 		goto err_out;
---=20
-2.34.1
-
-> I prefer the idea that vfio_device_is_noiommu() works in all the
-> kconfig scenarios rather than adding #ifdefs.
-
-But the vfio_group would be empty when CONFIG_VFIO_GROUP is unset.
-From what I got now, when CONFIG_VFIO_GROUP is unset, the stub
-function always returns false.
-
-#if IS_ENABLED(CONFIG_VFIO_GROUP)
-struct vfio_group {
-	...;
-};
-
-static inline bool vfio_device_is_noiommu(struct vfio_device *vdev)
-{
-        return IS_ENABLED(CONFIG_VFIO_NOIOMMU) &&
-               vdev->group->type =3D=3D VFIO_NO_IOMMU;
-}
-#else
-struct vfio_group;
-
-static inline bool vfio_device_is_noiommu(struct vfio_device *vdev)
-{
-        return false;
-}
-#endif
+Are you sure it is GFP_KERNEL backed and not tmpfs? I am not sure myself 
+so let me copy Matt and Thomas if they happen to know off hand.
 
 Regards,
-Yi Liu
 
+Tvrtko
+
+> Therefore, don't call kmap() on the page coming from
+> vma_res->bi.pages using for_each_sgt_page() in
+> i915_vma_coredump_create().
+> 
+> Use a plain page_address() to get the kernel address instead.
+> 
+> Signed-off-by: Sumitra Sharma <sumitraartsy@gmail.com>
+> ---
+>   drivers/gpu/drm/i915/i915_gpu_error.c | 3 +--
+>   1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index f020c0086fbc..6f51cb4fc55c 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -1164,9 +1164,8 @@ i915_vma_coredump_create(const struct intel_gt *gt,
+>   
+>   			drm_clflush_pages(&page, 1);
+>   
+> -			s = kmap(page);
+> +			s = page_address(page);
+>   			ret = compress_page(compress, s, dst, false);
+> -			kunmap(page);
+>   
+>   			drm_clflush_pages(&page, 1);
+>   
