@@ -1,49 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E828B730AD1
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jun 2023 00:37:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93267730BCB
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jun 2023 01:55:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCA6489149;
-	Wed, 14 Jun 2023 22:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4420710E0EC;
+	Wed, 14 Jun 2023 23:55:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5A1D89149
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jun 2023 22:36:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686782216; x=1718318216;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fWRMU1jRU9sH0TBwO5y4b1HdOdxuhpDRvzVBX8gNkGc=;
- b=QZMernipqExaWzbl4655VXyG+HXzkTBGes603cmEN6VF1MeOHH55LbEb
- GYoj/ZESsgMvRvnPjionZFd6kJeaEfqTyY75BdQunW/fgtB72w9ZmtC8q
- U0n8oIW5ho3h0fYIcVnY3WzF02QqzyGUcupUIxK1qGCGqETcFtL1yHSSm
- BEyrqrDsttWiw+ezPYlJnQPIUnLT/nkOlqzOoTHKCIYqMWhmiqcv2TV4T
- E7qfeKKqpENvz40EvakXZwyBMFSsSN5NsxbmNkh12SebQMrP7i6gzSbIU
- 2dByYvna70ZA6gD2DpvJdMhXqgdsWi+P/qjIL4Xlj97eU9pUzCTvQeNuh g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="422353086"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="422353086"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 15:36:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="782268621"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="782268621"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 15:36:54 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 Jun 2023 15:36:46 -0700
-Message-Id: <20230614223646.2583633-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.40.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI] drm/i915/huc: Fix missing error code in
- intel_huc_init()
+Received: from mail-pf1-x44a.google.com (mail-pf1-x44a.google.com
+ [IPv6:2607:f8b0:4864:20::44a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7999610E0EC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jun 2023 23:55:09 +0000 (UTC)
+Received: by mail-pf1-x44a.google.com with SMTP id
+ d2e1a72fcca58-652e21cc2c4so4375671b3a.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jun 2023 16:55:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20221208; t=1686786908; x=1689378908;
+ h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=/Db8KxnSVPTgowcGe/Isx7RarF8FooosNlupn6FMqKw=;
+ b=68d1A1Tig/1eII5XPEXfOHqu8vpkYRpuCsx6V036uwEMnTYmARW+qtNlVFv2rP+VWC
+ uo3W/U8U+kL4Jub3FaVUEkCksUs4NZtX/RP/E97McWOR8Hn9ATAfO1iIoNMbi7FoQeXO
+ Oj+lL7ZfXaFg0Mxk72zcyhcrDagaT/KVbr1+/vtcVgKVtwHe/E12VdTqjsHZlSN+UH56
+ AChyg27Vj4/vL+rUQdhZvLfQ1xpQmGOLlYA+/WL/QWYoctM6tR2XkuEgY8hmPF9idUfP
+ M52HcGC1uy8xT1XxvHFK9K5h+BfR3cnWBw+DZBNt9qZECy7Me42syUKKxmefvPww3pHo
+ HcFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1686786908; x=1689378908;
+ h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=/Db8KxnSVPTgowcGe/Isx7RarF8FooosNlupn6FMqKw=;
+ b=dWMbRN4Wj92Eih/01Be8WnDfyn0mDy4JNLoOiteMlU4UPEbgnlpKrVUIQH+uhOOepX
+ xtDMCLjRVHR1orE+A7AnRzc2ZjLBJZ2CUb4RgIc7Iu16/fJapjsKRRgIWP9FMeqsRA7d
+ zNLlCJPLKTDKaMHazIuxdwTC7dztqrNZ0QFvmZt4Cu1IobUOJBPJROIdlB/K7tP4jKpa
+ oKO3DfmHibnBEjxECtHbfPUBAx26f0K9T06ryZgxxinJ6+Ocvg38wqSsSn9RC8+p/nvS
+ 4OlgJocL+r4UB1pAclwMFMjoSC+KZ5WBdOjxuXo23070Avu7sR4cmmA/SKdd7kbVB3a6
+ /YQQ==
+X-Gm-Message-State: AC+VfDzjc2rMAeIivPjhTlkSDt8the0m72fCK2MDteD3LTf746KaSc/i
+ CgUbXM94mreLuF9tOi9cvaJpFBdR91MMEG0=
+X-Google-Smtp-Source: ACHHUZ4yAK39q4ouqLMpS+/Pahz2jLeOi1I3Slr+1pfwmFRaJ8eG44NErNa8BnzbvcHJLnhPEQ6oL68eBiUoG8I=
+X-Received: from pceballos.c.googlers.com
+ ([fda3:e722:ac3:cc00:24:72f4:c0a8:128c])
+ (user=pceballos job=sendgmr) by 2002:a05:6a00:1909:b0:64d:2cb0:c623 with SMTP
+ id y9-20020a056a00190900b0064d2cb0c623mr1109527pfi.4.1686786908572; Wed, 14
+ Jun 2023 16:55:08 -0700 (PDT)
+Date: Wed, 14 Jun 2023 23:54:52 +0000
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.41.0.162.gfafddb0af9-goog
+Message-ID: <20230614235452.3765265-1-pceballos@google.com>
+From: Pablo Ceballos <pceballos@google.com>
+To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Subject: [Intel-gfx] [PATCH v2] drm/i915/display/lspcon: Increase LSPCON
+ mode settle timeout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,45 +67,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Sam Ravnborg <sam@ravnborg.org>, Pablo Ceballos <pceballos@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+This is to eliminate all cases of "*ERROR* LSPCON mode hasn't settled",
+followed by link training errors. Intel engineers recommended increasing
+this timeout and that does resolve the issue.
 
-Smatch warns:
-	drivers/gpu/drm/i915/gt/uc/intel_huc.c:388
-	    intel_huc_init() warn: missing error code 'err'
+On some CometLake-based device designs the Parade PS175 takes more than
+400ms to settle in PCON mode. 100 reboot trials on one device resulted
+in a median settle time of 440ms and a maximum of 444ms. Even after
+increasing the timeout to 500ms, 2% of devices still had this error. So
+this increases the timeout to 800ms.
 
-When the allocation of VMAs fail: The value of err is zero at this
-point and it is passed to PTR_ERR and also finally returning zero which
-is success instead of failure.
-
-Fix this by adding the missing error code when VMA allocation fails.
-
-Fixes: 08872cb13a71 ("drm/i915/mtl/huc: auth HuC via GSC")
-Signed-off-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Pablo Ceballos <pceballos@google.com>
 ---
 
-Re-sending for testing, because it looks like the original didn't make
-it to intel-gfx and patchwork.
+Changelog since v1:
+- Added more details in the commit message
 
- drivers/gpu/drm/i915/gt/uc/intel_huc.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_lspcon.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-index d3a7219e9ed1..bb95bdd1c3f9 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-@@ -384,6 +384,7 @@ int intel_huc_init(struct intel_huc *huc)
+diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
+index bb3b5355a0d9..d7299fdc43ad 100644
+--- a/drivers/gpu/drm/i915/display/intel_lspcon.c
++++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+@@ -167,7 +167,7 @@ static enum drm_lspcon_mode lspcon_wait_mode(struct intel_lspcon *lspcon,
+ 	drm_dbg_kms(&i915->drm, "Waiting for LSPCON mode %s to settle\n",
+ 		    lspcon_mode_name(mode));
  
- 		vma = intel_guc_allocate_vma(&gt->uc.guc, PXP43_HUC_AUTH_INOUT_SIZE * 2);
- 		if (IS_ERR(vma)) {
-+			err = PTR_ERR(vma);
- 			huc_info(huc, "Failed to allocate heci pkt\n");
- 			goto out;
- 		}
+-	wait_for((current_mode = lspcon_get_current_mode(lspcon)) == mode, 400);
++	wait_for((current_mode = lspcon_get_current_mode(lspcon)) == mode, 800);
+ 	if (current_mode != mode)
+ 		drm_err(&i915->drm, "LSPCON mode hasn't settled\n");
+ 
 -- 
-2.40.0
+2.41.0.162.gfafddb0af9-goog
 
