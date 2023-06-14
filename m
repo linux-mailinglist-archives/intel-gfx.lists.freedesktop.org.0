@@ -1,116 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4182E730615
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jun 2023 19:31:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD84730778
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jun 2023 20:42:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6489410E12B;
-	Wed, 14 Jun 2023 17:30:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50EE110E177;
+	Wed, 14 Jun 2023 18:42:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2043.outbound.protection.outlook.com [40.107.93.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1661210E12B;
- Wed, 14 Jun 2023 17:30:56 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SZyqkaHrUAoDvF5VeelLuCm+YvNu9mXXwZO9i/SskxrskaWxdDyXLosb2zPFFMxAhWWnghVNagxzhxUt/iTf7iJFO+LXTEFg4FSIIBQmDPb0vI6WgJpu04MGV23HXEOf47BK2hP58WPQF0+jnW5S3hLyF0nX4fxqN3NdhHJ34vzg0ycLvAa0FPUCZR7I7LQrn7Lxd/EjEuXiQ6Y1aLctSq/yFc+ATNMUJ8zMpPrZuhBG2s4LYIKsS0DUXeHS6+V0loX3ux1Yyl5JgEJJugMtsYxPkeeA9vPOXTUbTyQtF+40jmV3vxhVyT1WLz1HPzZh8fyPsPF72zZtIeyMWdMUOA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DeMADfgaUTcwOla0KPnXpa8mFr/d3az1NruE65+bhmc=;
- b=f8dcV8FhDz2EfRUq/BlfLPBuEYyD0rz3LiO3mN++UGaE5hiDB4KKPweK7jnJShsaqn/sncarxmC/UF1OEJ0IWhUemRtXH4JkqzvK4wgIHvtVk2ePg0S3H6oESI/jJttdVnwnx2arKUVKsiPj4Bhdv5ZHgyEtNEp8RmcJRlZSsLC26YIXVYwlRR2lWvvSBN1DXZ1Es8cm2Mq3XZ2uUkzj6Z8N+v8u7fXjqnXxUY02l3y5wcRnqPAOMi45vi8O8ZImzMuNaOQ7cny7XEeFfNTJ+c+8I9vpHLli61meKQI8Q+6HQJFAZZtDopchjT7TldHMxU1iAi3Ura/pgG6lCWWaxQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DeMADfgaUTcwOla0KPnXpa8mFr/d3az1NruE65+bhmc=;
- b=me3wF8Moj8o2j9hX+Ht/WhUl6MS8U4krSCCkQtUVeH500DbXsFVEZP8Nrpo20NBb+T07JaAN+1hqAg/8eRWIrHDR+4XzGPoGEwoC/oCBeRn87608WvY/6Q4QByIB3ny5WYxRLs0xoBCrCZFmUIFX6aTTnDWYZH7esmBwV9QYT4LJqH4S6mF4bVbqNM42c5T0v95OGZhYj5p7aoNCgsrZszBsutWZQ3n0OZdICwh/I4hblNHIYb2ZhQdC6QUr4GEDEhRHrZs5E8IW3ZiFVpvRfDkzC8P21PghPVvEucuqhttI2/RUJsMXBcpR5TJYuQOnXqCovvdNWdhvoQmx70fe9A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by BY5PR12MB4097.namprd12.prod.outlook.com (2603:10b6:a03:213::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.37; Wed, 14 Jun
- 2023 17:30:53 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f7a7:a561:87e9:5fab]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f7a7:a561:87e9:5fab%7]) with mapi id 15.20.6477.037; Wed, 14 Jun 2023
- 17:30:53 +0000
-Date: Wed, 14 Jun 2023 14:30:50 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>
-Message-ID: <ZIn5SihJ45URLlQ/@nvidia.com>
-References: <20230613091301.56986440.alex.williamson@redhat.com>
- <20230613111511.425bdeae.alex.williamson@redhat.com>
- <ZIiozfqet185iLIs@nvidia.com>
- <20230613141050.29e7a22b.alex.williamson@redhat.com>
- <DS0PR11MB7529F2D5EF95E9E1D63C9264C35AA@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB52761B4E9C401A46FA5B4F2E8C5AA@BN9PR11MB5276.namprd11.prod.outlook.com>
- <DS0PR11MB7529E50A3F122449AAE5733FC35AA@DS0PR11MB7529.namprd11.prod.outlook.com>
- <BN9PR11MB5276FF400A7860DD23CF222B8C5AA@BN9PR11MB5276.namprd11.prod.outlook.com>
- <ZImxMHrOHHwbpNmd@nvidia.com>
- <DS0PR11MB7529918D45D6402639F9ED68C35AA@DS0PR11MB7529.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DS0PR11MB7529918D45D6402639F9ED68C35AA@DS0PR11MB7529.namprd11.prod.outlook.com>
-X-ClientProxiedBy: SJ0PR03CA0276.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::11) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|BY5PR12MB4097:EE_
-X-MS-Office365-Filtering-Correlation-Id: d836360c-ad52-4e33-ca75-08db6cfd1a93
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pZ+QO2/JR1AGWj1feF3scfwEscA3QAwUJ33G3YRM98vDksKQk1WHfKD+/nEJOlr87h/u13UKCF3e2zMcGo/ORSNvGAVg47yTlkYLVeVqU66e6XNP9wdgYAm7wUEeOeQmasA/6uSMirkF6KZ4q5rOnc6QEyB0x7fIuD3IzNZlS95FwvYdhOZxyD0SSZw17Ia+8/IO1xv66xe41ssszPyeGZAPGX8+29EuGT0VNnghyvnwGnk/RmgqRtTTctCR9bVbIF3My+jKczUZYCjADNF8wsj0UFBwWmE6W5WTxtw9teNxzsOL1e9wtMQ4aRoR3bJgOrMVkQWafu5THqzxI6IizVt/lTFdLkgIf1cIEMQcx/dPhKWb6uyp9cmcLxbJukX6RKynuVIEOr89wbqmBrqWwcmPzRTmBSMw2KoBgDio2YkyhiYNyAVuqx+YcwksYgpS7hweTrk9AuVUz20yTW18w/dSpWk2JiENNGapru843qufdUrzAqRwfZyxk6PXweAy7vPSOpbrY3MX9mjoerds7xlSn7aEEh96MwzVKWK1rXLlT2kVOgg03MVLY0+tGYkC
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(366004)(346002)(136003)(376002)(396003)(39860400002)(451199021)(83380400001)(5660300002)(186003)(6506007)(66899021)(2906002)(2616005)(7416002)(41300700001)(6512007)(8936002)(26005)(8676002)(6486002)(316002)(54906003)(36756003)(478600001)(38100700002)(4326008)(66556008)(66476007)(86362001)(66946007)(6916009);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pX/sH4ko/EWTkHJSzDL9gehYCbaNubCHQd8Phh0m8zI6wEKzdlNIkGSNW7DB?=
- =?us-ascii?Q?QG9Vallx4fwsAcXUkTu9co6Bwe7iVZJrsHSlOH2jRVqfN4MCswjnWS+CHDHd?=
- =?us-ascii?Q?DFcHQoPIyxVWJ+gtU6995FtUPZnjTKVpLkTwRd/9MZEzVEVTLPkqBiP/c8/h?=
- =?us-ascii?Q?8rO8mRZhWeLWJ7yZZnATsx/vNX5M0PJdx93KlodgNEef38ea0iSYE+/rWWvb?=
- =?us-ascii?Q?+V1LUAaZs4iuQ/Xhlk9fm9eQqBr4D6Jgx6uw/KCnFuqoqaG0Bb0iom8tKAix?=
- =?us-ascii?Q?4exZs386Z6ojjfXE2+wNaL/lyOYEVicq+87HpkAJIqpMvl9kHIFrMc30gOFI?=
- =?us-ascii?Q?2eaIpEQjdhWoc9JIfnFJicZ3EiUqDTDybqhs1sRYgPVFBQJAj728Mor5D2Vi?=
- =?us-ascii?Q?EsHRfqUfb0PITWzwolIIbLiMgm0C0ZH7AuG3sWnS2XNstx9zQyL1VA8jDvty?=
- =?us-ascii?Q?u2p9Ol0wG++E7Nrdwv5fQDCIBDnZOmeJtFfYRSOaIuC0tergrOxiNAp9153t?=
- =?us-ascii?Q?cu6TEDjwlM6BQFvD06x405rKWPcI0KYs9WWHe/rv3+lgjYNFhKEwUOkVCnZk?=
- =?us-ascii?Q?Swn7Lt2MFiF31SlFECcdd0cVExZX3exMd8SAVYiHM2k8J2nlByMY3W0ZDqgR?=
- =?us-ascii?Q?yRmiuOoCc9x8UgCsUgc/nqo5GbvlD0ZIoIUPeNjt2gongGmFbRD8bqjBCvIz?=
- =?us-ascii?Q?hwNYEtC3ar/GErOkM6qzJSulSaYf6h6zwGlqkv30AAZuc63MdU5KnxZC2mjq?=
- =?us-ascii?Q?+W5uOxNO4PGXpfeq8ipFRXCj+vkLa262VMd0ahKLio/BzlCFwUPVPAN3w5I9?=
- =?us-ascii?Q?VBQpSLcHoTFRST+zuLTrCWA+AgNx1hd0aZWFOQV/gk3jNCG3j5xDHSQWhCD1?=
- =?us-ascii?Q?w91TaJ5y0XnxaUBdlOlRuwWY1R1XnTJpmW7MJiPtxYpPA3sGQwQDrOIY+NTR?=
- =?us-ascii?Q?ZFScRxoLMUz1WlYLn1jB7oH6ged4Hw7xp6tFtiNDU9bA+2pu8WVNHLJ15qoz?=
- =?us-ascii?Q?XhREr2A4L9SGLL23xcIGmjGdXFxsOdf6RtLkiGPxvE2fHbcaGO/E3Vt6SLfv?=
- =?us-ascii?Q?uwAe8QcjUPOtcppXH2dJBl6wWUK56Vqq3bZ5s+dxinCSn2opNagayM6z+v8B?=
- =?us-ascii?Q?UJIVSfqGrECTG/jjvnWZ+eszkMBJNF67M9YhF16BoD/mUcECP13hT2WAzPRD?=
- =?us-ascii?Q?LvUYi0hCxMc/EMx2yZtPeT/rnmdwPIsxCqJrntO+tDcv5XVZQvlXSZX1a5pB?=
- =?us-ascii?Q?C78sUxAE7sPa8yTjv8+Pn9hDaihzNh62BgnedahCV/UrHGwmq9UB6U/lR61d?=
- =?us-ascii?Q?16rW+BgpLULJWSyGYfoA5+lgFyS68c+CTe5XVyL5AlvSO6XZcmGRrIMKHG/l?=
- =?us-ascii?Q?Q41m1XPQ2nt2Pnq7+4TNf+LAOlPU5XZdx74sUr+zL9m9r5/Ot4wyGdvtC/s7?=
- =?us-ascii?Q?xftn51WXy18tJcK1KjxkXQJ+C64mDYxUSZ1QkesAZ7wweQsHGG+Or/sr3W+8?=
- =?us-ascii?Q?odh9xFJ5r+WtCJvCrP4Uoq2p9ga76ZDsXoW93ny7WGtdy7XsNih/LLQ6Li6A?=
- =?us-ascii?Q?hsBbYuVXf02sRQJApCk1I1SX0V7z3cJCABBsK1bc?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d836360c-ad52-4e33-ca75-08db6cfd1a93
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2023 17:30:53.4774 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AscMcF2B2erWNzGuyUFpo5tyJUlym9832XX2BpipnDsI6A+NGbwzYv9XoNm9rgMk
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4097
-Subject: Re: [Intel-gfx] [PATCH v12 21/24] vfio: Determine noiommu device in
- __vfio_register_dev()
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5614910E177
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jun 2023 18:42:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686768150; x=1718304150;
+ h=date:from:to:cc:subject:message-id;
+ bh=NrAIYtXU/PqQjwGTIerTLpDp8yZRtzwBUpq6VeZVJPY=;
+ b=fszsXEDUSjKF6T7SLVNMcIsSZ29Jn7k6zN4LA4SKPxggjeMbI/kGQdQ2
+ OWVL8+o/80QgNx9ffSot1KvYUuw+pgI6PnsTg24uTzwAaTivlvXAe4nnt
+ lWcbdflkBjJ0slDIoUOEwX/ZmZqkOMqIcEGwqV7gQS8cYOZWMEjqTKz12
+ +KJRU5qCCn5eTLpl7B7IuUcOzaWo/9Lp6c5UgJv6je/nc+GWCVIFwq6Zn
+ ieCxue3QYSBZ591rnfOotPZgFy6pKmm/rku8IiGXUz6OD94uo8mVuiu3K
+ VrHFvTi3DgOddjcSbP4ubmJzJ9IWMzyeXmU0ByOR/5Q+vBgKrPqa45YGz w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="358704648"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="358704648"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 11:42:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="886371524"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="886371524"
+Received: from lkp-server02.sh.intel.com (HELO d59cacf64e9e) ([10.239.97.151])
+ by orsmga005.jf.intel.com with ESMTP; 14 Jun 2023 11:42:24 -0700
+Received: from kbuild by d59cacf64e9e with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1q9VRn-0000xZ-1f;
+ Wed, 14 Jun 2023 18:42:23 +0000
+Date: Thu, 15 Jun 2023 02:42:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Message-ID: <202306150255.nUNQao5u-lkp@intel.com>
+User-Agent: s-nail v14.9.24
+Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
+ b16049b21162bb649cdd8519642a35972b7910fe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,85 +55,287 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "Duan, Zhenzhong" <zhenzhong.duan@intel.com>,
- "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Tian,
- Kevin" <kevin.tian@intel.com>, "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "clegoate@redhat.com" <clegoate@redhat.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: linux-cifs@vger.kernel.org, linux-parisc@vger.kernel.org,
+ Linux Memory Management List <linux-mm@kvack.org>, linux-net-drivers@amd.com,
+ netdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-usb@vger.kernel.org, apparmor@lists.ubuntu.com,
+ lvs-devel@vger.kernel.org, linux-ide@vger.kernel.org,
+ linux-kselftest@vger.kernel.org, linux-rdma@vger.kernel.org,
+ samba-technical@lists.samba.org, linux-integrity@vger.kernel.org,
+ rcu@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-leds@vger.kernel.org, kunit-dev@googlegroups.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 14, 2023 at 01:12:50PM +0000, Liu, Yi L wrote:
-> diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
-> index 41a09a2df690..c2e0128323a7 100644
-> --- a/drivers/vfio/group.c
-> +++ b/drivers/vfio/group.c
-> @@ -687,16 +687,6 @@ static struct vfio_group *vfio_group_find_or_alloc(struct device *dev)
->  	if (!iommu_group)
->  		return ERR_PTR(-EINVAL);
->  
-> -	/*
-> -	 * VFIO always sets IOMMU_CACHE because we offer no way for userspace to
-> -	 * restore cache coherency. It has to be checked here because it is only
-> -	 * valid for cases where we are using iommu groups.
-> -	 */
-> -	if (!device_iommu_capable(dev, IOMMU_CAP_CACHE_COHERENCY)) {
-> -		iommu_group_put(iommu_group);
-> -		return ERR_PTR(-EINVAL);
-> -	}
-> -
->  	mutex_lock(&vfio.group_lock);
->  	group = vfio_group_find_from_iommu(iommu_group);
->  	if (group) {
-> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> index 51c80eb32af6..ffb4585b7f0e 100644
-> --- a/drivers/vfio/vfio_main.c
-> +++ b/drivers/vfio/vfio_main.c
-> @@ -292,6 +292,17 @@ static int __vfio_register_dev(struct vfio_device *device,
->  	if (ret)
->  		return ret;
->  
-> +	/*
-> +	 * VFIO always sets IOMMU_CACHE because we offer no way for userspace to
-> +	 * restore cache coherency. It has to be checked here because it is only
-> +	 * valid for cases where we are using iommu groups.
-> +	 */
-> +	if (type == VFIO_IOMMU && !vfio_device_is_noiommu(device) &&
-> +	    !device_iommu_capable(device->dev, IOMMU_CAP_CACHE_COHERENCY)) {
-> +		ret = -EINVAL;
-> +		goto err_out;
-> +	}
-> +
->  	ret = vfio_device_add(device);
->  	if (ret)
->  		goto err_out;
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: b16049b21162bb649cdd8519642a35972b7910fe  Add linux-next specific files for 20230614
 
-Yes that looks right
+Error/Warning reports:
 
-> 
-> > I prefer the idea that vfio_device_is_noiommu() works in all the
-> > kconfig scenarios rather than adding #ifdefs.
-> 
-> But the vfio_group would be empty when CONFIG_VFIO_GROUP is unset.
-> From what I got now, when CONFIG_VFIO_GROUP is unset, the stub
-> function always returns false.
+https://lore.kernel.org/oe-kbuild-all/202306122223.HHER4zOo-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306132237.Z4LJE8bP-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306140505.ZTBob65w-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306141702.ZaO9V2lk-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306141719.MJHClSrC-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306141920.TTvpsXwJ-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306141934.UKmM9bFX-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306142017.23VmBLmG-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306142023.vjEaFkk5-lkp@intel.com
 
-It seems fine, you could also put the ifdef inside the stub
+Error/Warning: (recently discovered and may have been fixed)
 
-Jason
+Documentation/networking/device_drivers/ethernet/mellanox/mlx5/switchdev.rst:57: WARNING: Unexpected indentation.
+Documentation/networking/device_drivers/ethernet/mellanox/mlx5/switchdev.rst:66: WARNING: undefined label: documentation/networking/devlink/devlink-params.rst (if the link has no caption the label must precede a section header)
+arch/parisc/kernel/pdt.c:65:6: warning: no previous prototype for 'arch_report_meminfo' [-Wmissing-prototypes]
+drivers/ata/pata_octeon_cf.c:835:7: error: call to undeclared function 'of_property_read_reg'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+drivers/char/mem.c:164:25: error: implicit declaration of function 'unxlate_dev_mem_ptr'; did you mean 'xlate_dev_mem_ptr'? [-Werror=implicit-function-declaration]
+drivers/gpu/drm/i915/display/intel_display_power.h:255:70: error: declaration of 'struct seq_file' will not be visible outside of this function [-Werror,-Wvisibility]
+drivers/gpu/drm/i915/display/intel_display_power.h:256:70: error: declaration of 'struct seq_file' will not be visible outside of this function [-Werror,-Wvisibility]
+drivers/gpu/drm/i915/i915_driver.c:1806:17: error: use of undeclared identifier 'i915_drm_client_fdinfo'
+drivers/leds/leds-cht-wcove.c:144:21: warning: no previous prototype for 'cht_wc_leds_brightness_get' [-Wmissing-prototypes]
+drivers/net/ethernet/sfc/ef100_netdev.c:313: undefined reference to `efx_tc_netdev_event'
+drivers/net/ethernet/sfc/ef100_netdev.c:329: undefined reference to `efx_tc_netevent_event'
+kernel/rcu/rcuscale.c:301:20: error: use of undeclared identifier 'get_rcu_tasks_gp_kthread'; did you mean 'get_rcu_tasks_trace_gp_kthread'?
+kernel/rcu/rcuscale.c:322:14: error: use of undeclared identifier 'tasks_scale_read_lock'
+kernel/rcu/rcuscale.c:323:16: error: use of undeclared identifier 'tasks_scale_read_unlock'
+kernel/rcu/rcuscale.c:330:20: error: use of undeclared identifier 'get_rcu_tasks_rude_gp_kthread'; did you mean 'get_rcu_tasks_trace_gp_kthread'?
+kernel/rcu/tasks.h:1113:21: warning: no previous prototype for function 'get_rcu_tasks_gp_kthread' [-Wmissing-prototypes]
+lib/kunit/executor_test.c:138:4: warning: cast from 'void (*)(const void *)' to 'kunit_action_t *' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-strict]
+lib/kunit/test.c:775:38: warning: cast from 'void (*)(const void *)' to 'kunit_action_t *' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-strict]
+security/apparmor/policy_unpack.c:1144: warning: expecting prototype for verify_dfa_accept_xindex(). Prototype was for verify_dfa_accept_index() instead
+
+Unverified Error/Warning (likely false positive, please contact us if interested):
+
+drivers/char/tpm/tpm_tis_spi_main.c:137 tpm_tis_spi_transfer_half() error: uninitialized symbol 'ret'.
+drivers/net/ethernet/emulex/benet/be_main.c:2460 be_rx_compl_process_gro() error: buffer overflow '((skb_end_pointer(skb)))->frags' 17 <= u16max
+drivers/net/ethernet/mellanox/mlx5/core/lib/devcom.c:98 mlx5_devcom_register_device() error: uninitialized symbol 'tmp_dev'.
+drivers/usb/cdns3/cdns3-starfive.c:23: warning: expecting prototype for cdns3(). Prototype was for USB_STRAP_HOST() instead
+fs/smb/client/cifsfs.c:982 cifs_smb3_do_mount() warn: possible memory leak of 'cifs_sb'
+fs/smb/client/cifssmb.c:4089 CIFSFindFirst() warn: missing error code? 'rc'
+fs/smb/client/cifssmb.c:4216 CIFSFindNext() warn: missing error code? 'rc'
+fs/smb/client/connect.c:2775 cifs_match_super() error: 'tlink' dereferencing possible ERR_PTR()
+fs/smb/client/connect.c:2974 generic_ip_connect() error: we previously assumed 'socket' could be null (see line 2962)
+mm/mempolicy.c:1225 new_folio() error: uninitialized symbol 'address'.
+
+Error/Warning ids grouped by kconfigs:
+
+gcc_recent_errors
+|-- i386-allyesconfig
+|   `-- drivers-leds-leds-cht-wcove.c:warning:no-previous-prototype-for-cht_wc_leds_brightness_get
+|-- i386-randconfig-i014-20230614
+|   |-- drivers-net-ethernet-sfc-ef100_netdev.c:undefined-reference-to-efx_tc_netdev_event
+|   `-- drivers-net-ethernet-sfc-ef100_netdev.c:undefined-reference-to-efx_tc_netevent_event
+|-- i386-randconfig-m021-20230614
+|   |-- fs-smb-client-cifsfs.c-cifs_smb3_do_mount()-warn:possible-memory-leak-of-cifs_sb
+|   |-- fs-smb-client-cifssmb.c-CIFSFindFirst()-warn:missing-error-code-rc
+|   |-- fs-smb-client-cifssmb.c-CIFSFindNext()-warn:missing-error-code-rc
+|   |-- fs-smb-client-connect.c-cifs_match_super()-error:tlink-dereferencing-possible-ERR_PTR()
+|   `-- fs-smb-client-connect.c-generic_ip_connect()-error:we-previously-assumed-socket-could-be-null-(see-line-)
+|-- parisc-allyesconfig
+|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
+|-- parisc-defconfig
+|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
+|-- parisc-generic-64bit_defconfig
+|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
+|-- parisc-randconfig-c004-20230614
+|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
+|-- parisc-randconfig-r012-20230614
+|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
+|-- parisc-randconfig-r024-20230612
+|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
+|-- parisc-randconfig-s042-20230614
+|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
+|-- parisc64-defconfig
+|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
+|-- riscv-allmodconfig
+|   `-- drivers-usb-cdns3-cdns3-starfive.c:warning:expecting-prototype-for-cdns3().-Prototype-was-for-USB_STRAP_HOST()-instead
+|-- riscv-allyesconfig
+|   `-- drivers-usb-cdns3-cdns3-starfive.c:warning:expecting-prototype-for-cdns3().-Prototype-was-for-USB_STRAP_HOST()-instead
+|-- riscv-randconfig-s031-20230612
+|   |-- arch-riscv-kernel-signal.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-void-noderef-__user-datap-got-void
+|   `-- arch-riscv-kernel-signal.c:sparse:sparse:incorrect-type-in-initializer-(different-address-spaces)-expected-void-__x-got-void-noderef-__user-assigned-datap
+|-- sh-allmodconfig
+|   `-- drivers-char-mem.c:error:implicit-declaration-of-function-unxlate_dev_mem_ptr
+|-- x86_64-allnoconfig
+|   |-- Documentation-networking-device_drivers-ethernet-mellanox-mlx5-switchdev.rst:WARNING:Unexpected-indentation.
+|   `-- Documentation-networking-device_drivers-ethernet-mellanox-mlx5-switchdev.rst:WARNING:undefined-label:documentation-networking-devlink-devlink-params.rst-(if-the-link-has-no-caption-the-label-must-prec
+|-- x86_64-allyesconfig
+|   `-- drivers-leds-leds-cht-wcove.c:warning:no-previous-prototype-for-cht_wc_leds_brightness_get
+|-- x86_64-randconfig-m001-20230612
+|   |-- drivers-net-ethernet-mellanox-mlx5-core-lib-devcom.c-mlx5_devcom_register_device()-error:uninitialized-symbol-tmp_dev-.
+|   |-- fs-smb-client-cifsfs.c-cifs_smb3_do_mount()-warn:possible-memory-leak-of-cifs_sb
+|   |-- fs-smb-client-cifssmb.c-CIFSFindFirst()-warn:missing-error-code-rc
+|   |-- fs-smb-client-cifssmb.c-CIFSFindNext()-warn:missing-error-code-rc
+|   |-- fs-smb-client-connect.c-cifs_match_super()-error:tlink-dereferencing-possible-ERR_PTR()
+|   `-- fs-smb-client-connect.c-generic_ip_connect()-error:we-previously-assumed-socket-could-be-null-(see-line-)
+`-- x86_64-randconfig-m031-20230611
+    |-- drivers-char-tpm-tpm_tis_spi_main.c-tpm_tis_spi_transfer_half()-error:uninitialized-symbol-ret-.
+    |-- drivers-net-ethernet-emulex-benet-be_main.c-be_rx_compl_process_gro()-error:buffer-overflow-((skb_end_pointer(skb)))-frags-u16max
+    `-- mm-mempolicy.c-new_folio()-error:uninitialized-symbol-address-.
+clang_recent_errors
+|-- arm-randconfig-r046-20230614
+|   |-- kernel-rcu-rcuscale.c:error:use-of-undeclared-identifier-get_rcu_tasks_gp_kthread
+|   `-- kernel-rcu-tasks.h:warning:no-previous-prototype-for-function-get_rcu_tasks_gp_kthread
+|-- hexagon-randconfig-r032-20230612
+|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|-- hexagon-randconfig-r041-20230612
+|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|-- hexagon-randconfig-r041-20230614
+|   |-- kernel-rcu-rcuscale.c:error:use-of-undeclared-identifier-get_rcu_tasks_rude_gp_kthread
+|   |-- kernel-rcu-rcuscale.c:error:use-of-undeclared-identifier-tasks_scale_read_lock
+|   `-- kernel-rcu-rcuscale.c:error:use-of-undeclared-identifier-tasks_scale_read_unlock
+|-- hexagon-randconfig-r045-20230612
+|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|-- i386-buildonly-randconfig-r005-20230614
+|   `-- drivers-gpu-drm-i915-display-intel_display_power.h:error:declaration-of-struct-seq_file-will-not-be-visible-outside-of-this-function-Werror-Wvisibility
+|-- i386-randconfig-i001-20230614
+|   `-- security-apparmor-policy_unpack.c:warning:expecting-prototype-for-verify_dfa_accept_xindex().-Prototype-was-for-verify_dfa_accept_index()-instead
+|-- mips-randconfig-r016-20230614
+|   |-- drivers-ata-pata_octeon_cf.c:error:call-to-undeclared-function-of_property_read_reg-ISO-C99-and-later-do-not-support-implicit-function-declarations
+|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|-- x86_64-buildonly-randconfig-r006-20230614
+|   `-- drivers-gpu-drm-i915-i915_driver.c:error:use-of-undeclared-identifier-i915_drm_client_fdinfo
+|-- x86_64-randconfig-a001-20230612
+|   `-- drivers-gpu-drm-i915-display-intel_display_power.h:error:declaration-of-struct-seq_file-will-not-be-visible-outside-of-this-function-Werror-Wvisibility
+`-- x86_64-randconfig-a005-20230614
+    `-- net-netfilter-ipvs-ip_vs_proto.o:warning:objtool:.init.text:unexpected-end-of-section
+
+elapsed time: 723m
+
+configs tested: 125
+configs skipped: 5
+
+tested configs:
+alpha                            allyesconfig   gcc  
+alpha        buildonly-randconfig-r002-20230614   gcc  
+alpha                               defconfig   gcc  
+alpha                randconfig-r005-20230612   gcc  
+alpha                randconfig-r025-20230612   gcc  
+arc                              allyesconfig   gcc  
+arc          buildonly-randconfig-r003-20230614   gcc  
+arc                                 defconfig   gcc  
+arc                  randconfig-r043-20230612   gcc  
+arm                              allmodconfig   gcc  
+arm                              allyesconfig   gcc  
+arm                     am200epdkit_defconfig   clang
+arm                                 defconfig   gcc  
+arm                            dove_defconfig   clang
+arm                            hisi_defconfig   gcc  
+arm                         lpc18xx_defconfig   gcc  
+arm                         lpc32xx_defconfig   clang
+arm                       multi_v4t_defconfig   gcc  
+arm                        mvebu_v5_defconfig   clang
+arm                  randconfig-r046-20230612   clang
+arm                       spear13xx_defconfig   clang
+arm                           sunxi_defconfig   gcc  
+arm                         vf610m4_defconfig   gcc  
+arm64                            allyesconfig   gcc  
+arm64                               defconfig   gcc  
+csky                                defconfig   gcc  
+hexagon              randconfig-r032-20230612   clang
+hexagon              randconfig-r041-20230612   clang
+hexagon              randconfig-r045-20230612   clang
+i386                             alldefconfig   gcc  
+i386                             allyesconfig   gcc  
+i386                              debian-10.3   gcc  
+i386                                defconfig   gcc  
+i386                 randconfig-i001-20230614   clang
+i386                 randconfig-i002-20230614   clang
+i386                 randconfig-i003-20230614   clang
+i386                 randconfig-i004-20230614   clang
+i386                 randconfig-i005-20230614   clang
+i386                 randconfig-i006-20230614   clang
+i386                 randconfig-i011-20230614   gcc  
+i386                 randconfig-i012-20230614   gcc  
+i386                 randconfig-i013-20230614   gcc  
+i386                 randconfig-i014-20230614   gcc  
+i386                 randconfig-i015-20230614   gcc  
+i386                 randconfig-i016-20230614   gcc  
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch            randconfig-r021-20230612   gcc  
+loongarch            randconfig-r031-20230612   gcc  
+loongarch            randconfig-r035-20230612   gcc  
+m68k                             allmodconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+microblaze           randconfig-r004-20230612   gcc  
+mips                             allmodconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                            gpr_defconfig   gcc  
+mips                           jazz_defconfig   gcc  
+mips                    maltaup_xpa_defconfig   gcc  
+mips                 randconfig-r003-20230612   gcc  
+mips                 randconfig-r016-20230614   clang
+nios2                               defconfig   gcc  
+nios2                randconfig-r034-20230612   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                generic-64bit_defconfig   gcc  
+parisc               randconfig-r012-20230614   gcc  
+parisc               randconfig-r024-20230612   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc      buildonly-randconfig-r005-20230614   gcc  
+powerpc                   lite5200b_defconfig   clang
+powerpc                 mpc8540_ads_defconfig   gcc  
+powerpc                     sequoia_defconfig   gcc  
+riscv                            allmodconfig   gcc  
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   gcc  
+riscv        buildonly-randconfig-r001-20230614   gcc  
+riscv        buildonly-randconfig-r004-20230614   gcc  
+riscv                               defconfig   gcc  
+riscv                randconfig-r002-20230612   clang
+riscv                randconfig-r006-20230612   clang
+riscv                randconfig-r023-20230612   gcc  
+riscv                randconfig-r042-20230612   gcc  
+riscv                          rv32_defconfig   gcc  
+s390                             allmodconfig   gcc  
+s390                             allyesconfig   gcc  
+s390                                defconfig   gcc  
+s390                 randconfig-r011-20230614   gcc  
+s390                 randconfig-r014-20230614   gcc  
+s390                 randconfig-r044-20230612   gcc  
+sh                               alldefconfig   gcc  
+sh                               allmodconfig   gcc  
+sh           buildonly-randconfig-r006-20230614   gcc  
+sh                          polaris_defconfig   gcc  
+sh                   randconfig-r001-20230612   gcc  
+sh                   randconfig-r036-20230612   gcc  
+sh                           se7343_defconfig   gcc  
+sparc                            allyesconfig   gcc  
+sparc                               defconfig   gcc  
+um                               alldefconfig   clang
+um                             i386_defconfig   gcc  
+um                           x86_64_defconfig   clang
+um                           x86_64_defconfig   gcc  
+x86_64                           allyesconfig   gcc  
+x86_64                              defconfig   gcc  
+x86_64                                  kexec   gcc  
+x86_64               randconfig-a001-20230612   clang
+x86_64               randconfig-a002-20230612   clang
+x86_64               randconfig-a003-20230612   clang
+x86_64               randconfig-a004-20230612   clang
+x86_64               randconfig-a005-20230612   clang
+x86_64               randconfig-a006-20230612   clang
+x86_64               randconfig-a011-20230612   gcc  
+x86_64               randconfig-a012-20230612   gcc  
+x86_64               randconfig-a013-20230612   gcc  
+x86_64               randconfig-a014-20230612   gcc  
+x86_64               randconfig-a015-20230612   gcc  
+x86_64               randconfig-a016-20230612   gcc  
+x86_64               randconfig-r022-20230612   gcc  
+x86_64               randconfig-r033-20230612   clang
+x86_64                          rhel-8.3-rust   clang
+x86_64                               rhel-8.3   gcc  
+xtensa                         virt_defconfig   gcc  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
