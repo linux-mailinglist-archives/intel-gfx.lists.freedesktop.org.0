@@ -2,56 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E7E731D39
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jun 2023 17:59:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 928BE731EDD
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jun 2023 19:25:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3531610E515;
-	Thu, 15 Jun 2023 15:59:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E029910E52D;
+	Thu, 15 Jun 2023 17:25:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C06CE10E0A4;
- Thu, 15 Jun 2023 15:58:59 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1EC110E52C;
+ Thu, 15 Jun 2023 17:25:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686844739; x=1718380739;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=LZa6EpnGegWMGroiF8gOVmJKRW3LU37iwvOPShYDQxM=;
- b=aKddHE/YMNhF6a60+vvHh62SIskrhPmgDeRdmgblX88K6ACGJtqIhR85
- skV/gvngNnSWBZ0FweAa9YwB2LDWShgFKiG65eXUUxQCiUHecmBqGRNRF
- VqY//J0byS+n5FE3YFWrRV/CXLhpppQyX+ZL/dSWjHHr9mhgtEaRYoBe7
- +iIaX4jL3TBtjgk5U12OrwI/mVlBu8TjICi10HsE2a85+ghaIFMVHOnuR
- zUJEZ03k56STFyaK/dF1PQLf0Lxpitp7qCt5fMZjAi2ENikEeqW1251sT
- QwxBrhJpqkgAVamc6lEpDtwcMy8amgOwCD70Q895CqN+3p0Dv6G9/VwJ+ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="356450352"
-X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="356450352"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2023 08:58:40 -0700
+ t=1686849954; x=1718385954;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=KNOwT5u6/oERUnVVoJx0lTpj15acWEDle2bZM4pVdsg=;
+ b=QmpTDuq5spsR99zp5+7sGKnvEUNeTHRbVmgsN1sEBIkT0Ouccr0VYWyG
+ 0FYoXsTjKgPa4K4AS2wzP3KmPfOaWHe8PU/hF1OHrJnSx8LUs1pGlgNxh
+ LrG8kvC+DIAtegRcKYXxlzoiPlqj3IGULWnqu5JJj3xwM4VkJ7jS2xpbO
+ 4g4iULE2eRlb60dGhFwFAm2lRCJS+Fbkf8IRUoGigxH98URAU7ToQWkJm
+ TVAcw406YjCKH00wYBmZLFaP/FnTsZg5fDHHCXsUHyhaAnFKdy04nCZaD
+ kydjfpHa4HdVx02OvNegT0mhAsjNolWQ1BP4xQHs9ebWAmMWIq/p7Yfmp Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="362399367"
+X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="362399367"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2023 10:17:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="715680016"
-X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="715680016"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by fmsmga007.fm.intel.com with ESMTP; 15 Jun 2023 08:58:36 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1q9pMo-003yji-0e; Thu, 15 Jun 2023 18:58:34 +0300
-Date: Thu, 15 Jun 2023 18:58:33 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <ZIs1KQOeunnBeha2@smile.fi.intel.com>
-References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
- <20230509051403.2748545-3-lucas.demarchi@intel.com>
- <ZF4fi5B7PPlgZBOI@smile.fi.intel.com>
- <5wfbihhliddinlvsh23dejbuffiz45ecs3wb37qcwyqd3hjfcm@wyhqnobiiu22>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5wfbihhliddinlvsh23dejbuffiz45ecs3wb37qcwyqd3hjfcm@wyhqnobiiu22>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH 2/3] linux/bits.h: Add fixed-width GENMASK
- and BIT macros
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="706764290"
+X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="706764290"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.255.230.186])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2023 10:17:08 -0700
+Date: Thu, 15 Jun 2023 10:04:30 -0700
+Message-ID: <87wn04y7vl.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+In-Reply-To: <20230609220252.410740-1-vinay.belgaumkar@intel.com>
+References: <20230609220252.410740-1-vinay.belgaumkar@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc/slpc: Apply min softlimit
+ correctly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,45 +61,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- intel-gfx@lists.freedesktop.org, Kevin Brodsky <kevin.brodsky@arm.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Thomas Gleixner <tglx@linutronix.de>, Masahiro Yamada <masahiroy@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 12, 2023 at 09:29:23AM -0700, Lucas De Marchi wrote:
-> On Fri, May 12, 2023 at 02:14:19PM +0300, Andy Shevchenko wrote:
-> > On Mon, May 08, 2023 at 10:14:02PM -0700, Lucas De Marchi wrote:
-> > > Add GENMASK_U32(), GENMASK_U16() and GENMASK_U8()  macros to create
-> > > masks for fixed-width types and also the corresponding BIT_U32(),
-> > > BIT_U16() and BIT_U8().
-> > 
-> > Why?
-> 
-> to create the masks/values for device registers that are
-> of a certain width, preventing mistakes like:
-> 
-> 	#define REG1		0x10
-> 	#define REG1_ENABLE	BIT(17)
-> 	#define REG1_FOO	GENMASK(16, 15);
-> 
-> 	register_write(REG1_ENABLE, REG1);
-> 
-> 
-> ... if REG1 is a 16bit register for example. There were mistakes in the
-> past in the i915 source leading to the creation of the REG_* variants on
-> top of normal GENMASK/BIT (see last patch and commit 09b434d4f6d2
-> ("drm/i915: introduce REG_BIT() and REG_GENMASK() to define register
-> contents")
+On Fri, 09 Jun 2023 15:02:52 -0700, Vinay Belgaumkar wrote:
+>
 
-Doesn't it look like something for bitfield.h candidate?
-If your definition doesn't fit the given mask, bail out.
+Hi Vinay,
 
--- 
-With Best Regards,
-Andy Shevchenko
+> We were skipping when min_softlimit was equal to RPn. We need to apply
+> it rergardless as efficient frequency will push the SLPC min to RPe.
+> This will break scenarios where user sets a min softlimit < RPe before
+> reset and then performs a GT reset.
+>
+> Fixes: 95ccf312a1e4 ("drm/i915/guc/slpc: Allow SLPC to use efficient frequency")
+>
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> index 01b75529311c..ee9f83af7cf6 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> @@ -606,7 +606,7 @@ static int slpc_set_softlimits(struct intel_guc_slpc *slpc)
+>		if (unlikely(ret))
+>			return ret;
+>		slpc_to_gt(slpc)->defaults.min_freq = slpc->min_freq_softlimit;
+> -	} else if (slpc->min_freq_softlimit != slpc->min_freq) {
+> +	} else {
+>		return intel_guc_slpc_set_min_freq(slpc,
+>						   slpc->min_freq_softlimit);
+
+IMO the current code is unnecessarily complicated and confusing and similar
+changes (with a little tweaking) should be made for max_freq too. But at
+least this is a step in the right direction so:
+
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
 
+
+>	}
+> --
+> 2.38.1
+>
