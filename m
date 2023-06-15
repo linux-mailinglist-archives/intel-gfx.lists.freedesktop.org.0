@@ -1,47 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68F9D7310E8
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jun 2023 09:36:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 702A57310E7
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jun 2023 09:36:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46C0510E17C;
-	Thu, 15 Jun 2023 07:36:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE5C610E162;
+	Thu, 15 Jun 2023 07:36:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1252C10E17C
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jun 2023 07:36:18 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02A5910E162
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jun 2023 07:36:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1686814578; x=1718350578;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=wWtgAI9DMveOwoYSmt9/eg0CMZsSsx3jUIsrY27SwG4=;
- b=iykbgTbEASnji0+bmLAYdPRXTKYT+ssc2HzWXbMYdIwmPeLrbNM4w1PP
- PYR8vTHvINVCylzWxmdXQG6/i1xzTj3NsyJedO3UzGIic4xpH6vp+cvYY
- K36VksB/g/XgkXaAvFTCGXk1KeTeAqx/Nh4ApgxDXo13Kx5M+KEwz0gv/
- SeJ0Fhi6nmz1iuBca3U743S1A34NYXrvDtU4HM9cbAQ0C/s4+yqNfGVVT
- DOVoYaU2Fz0eoAsv8x/36zyOOZQ4EHzcB/2bqPkykoHDintP1SESkeNyg
- Dh0mJ69kWtatbfvE+FXhrjY7CEtif/LdBzHfT99NJZXCXI/8T02x/5cb4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="343539250"
-X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="343539250"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=P/NO7uvVsryAgTIeqJrEd1/SK2kgiSqa1+h8wsy9WVI=;
+ b=KK6gyV5Cps9BAE5zkeWESNCBIG/pUgkndoxztdh52OBlccwZjnojR4sy
+ rcmU1lUIdaH8VdjOsPS+ghz5BDyS6RTIgqToJKqMPv+DWiGFbEaOTmTCk
+ TEA+eoF4YXr/D6VntvsADqPxd17DjZjSR9V0mpDdWZuTmDwPl35O6WMj+
+ vh/kxUZkqk5Z8yALUJnnRe7XucryQchc+jPzuUrl5P44qvvhdmDS77W02
+ ldZUD3ZeF/MbB/qEPBdfDuk/s2MwsjGmHhOoZuKurxlYAAfO1ebNYRziW
+ ZlF5G62tfWcUyooGXbAnVz4HGYfwsdydKePEAm1u5sx59buuQMImXX3+T w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="348509566"
+X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="348509566"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Jun 2023 00:36:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="959092507"
-X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="959092507"
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="712355577"
+X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="712355577"
 Received: from lkp-server02.sh.intel.com (HELO d59cacf64e9e) ([10.239.97.151])
- by fmsmga006.fm.intel.com with ESMTP; 15 Jun 2023 00:36:14 -0700
+ by orsmga002.jf.intel.com with ESMTP; 15 Jun 2023 00:36:15 -0700
 Received: from kbuild by d59cacf64e9e with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1q9hWg-0001cC-22;
+ (envelope-from <lkp@intel.com>) id 1q9hWg-0001cG-27;
  Thu, 15 Jun 2023 07:36:14 +0000
-Date: Thu, 15 Jun 2023 15:35:26 +0800
+Date: Thu, 15 Jun 2023 15:35:27 +0800
 From: kernel test robot <lkp@intel.com>
 To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
  intel-gfx@lists.freedesktop.org
-Message-ID: <202306151559.EK0S8n5W-lkp@intel.com>
+Message-ID: <202306151523.wIGn4dME-lkp@intel.com>
 References: <20230615050015.3105902-8-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -75,7 +75,7 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Dnyaneshwar-Bhadane/drm-i
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
 patch link:    https://lore.kernel.org/r/20230615050015.3105902-8-dnyaneshwar.bhadane%40intel.com
 patch subject: [Intel-gfx] [PATCH 07/11] drm/i915/adlp: s/ADLP/ALDERLAKE_P for display and graphics step
-config: i386-defconfig (https://download.01.org/0day-ci/archive/20230615/202306151559.EK0S8n5W-lkp@intel.com/config)
+config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20230615/202306151523.wIGn4dME-lkp@intel.com/config)
 compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
 reproduce (this is a W=1 build):
         git remote add drm-tip git://anongit.freedesktop.org/drm/drm-tip
@@ -84,13 +84,13 @@ reproduce (this is a W=1 build):
         b4 shazam https://lore.kernel.org/r/20230615050015.3105902-8-dnyaneshwar.bhadane@intel.com
         # save the config file
         mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 olddefconfig
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
+        make W=1 O=build_dir ARCH=x86_64 olddefconfig
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306151559.EK0S8n5W-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306151523.wIGn4dME-lkp@intel.com/
 
 All errors (new ones prefixed by >>):
 
