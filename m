@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702A57310E7
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jun 2023 09:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 111C77310E6
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jun 2023 09:36:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE5C610E162;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33E5810E15E;
 	Thu, 15 Jun 2023 07:36:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02A5910E162
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAE0B10E15E
  for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jun 2023 07:36:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686814578; x=1718350578;
+ t=1686814577; x=1718350577;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=P/NO7uvVsryAgTIeqJrEd1/SK2kgiSqa1+h8wsy9WVI=;
- b=KK6gyV5Cps9BAE5zkeWESNCBIG/pUgkndoxztdh52OBlccwZjnojR4sy
- rcmU1lUIdaH8VdjOsPS+ghz5BDyS6RTIgqToJKqMPv+DWiGFbEaOTmTCk
- TEA+eoF4YXr/D6VntvsADqPxd17DjZjSR9V0mpDdWZuTmDwPl35O6WMj+
- vh/kxUZkqk5Z8yALUJnnRe7XucryQchc+jPzuUrl5P44qvvhdmDS77W02
- ldZUD3ZeF/MbB/qEPBdfDuk/s2MwsjGmHhOoZuKurxlYAAfO1ebNYRziW
- ZlF5G62tfWcUyooGXbAnVz4HGYfwsdydKePEAm1u5sx59buuQMImXX3+T w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="348509566"
-X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="348509566"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=5U2kanocFYb0i1Lwp7uWsUlytGEt8zDrfQz+VduwMR0=;
+ b=CHVEbGhVB7qX1ChLISJje5yU6y1fXMe8Sov6EhBAY6dpC3BlPyqfVG7E
+ C4uU37o/LVol3J5qme6R8mzf31cw4zm8wtVVEnvxs461pWR8T34I1YXZ3
+ D5khALZadUQjVlsAnIcPN+NFQXLumHsFTqQ+Csaywwnlnojwjjo/vx/IU
+ Kqshlta3SLHWgbBt5RgFhSB2uvIo3kZB1BMntnfd9VSJQSk8yXO21rwkP
+ w48cdeOdbBZpcc+qFoP/cBQGh1b2acRYTKQu6nduN/nykL554oOM0y8g+
+ MZ+aWcMWme6NkUSx9CZ//6X6v/Ldto00ghzMCR8PQr4MTmorag15m2+K+ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="343539248"
+X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="343539248"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Jun 2023 00:36:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="712355577"
-X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="712355577"
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="959092503"
+X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="959092503"
 Received: from lkp-server02.sh.intel.com (HELO d59cacf64e9e) ([10.239.97.151])
- by orsmga002.jf.intel.com with ESMTP; 15 Jun 2023 00:36:15 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 15 Jun 2023 00:36:14 -0700
 Received: from kbuild by d59cacf64e9e with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1q9hWg-0001cG-27;
+ (envelope-from <lkp@intel.com>) id 1q9hWg-0001cA-1y;
  Thu, 15 Jun 2023 07:36:14 +0000
-Date: Thu, 15 Jun 2023 15:35:27 +0800
+Date: Thu, 15 Jun 2023 15:35:35 +0800
 From: kernel test robot <lkp@intel.com>
 To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
  intel-gfx@lists.freedesktop.org
-Message-ID: <202306151523.wIGn4dME-lkp@intel.com>
+Message-ID: <202306151502.QcAZXboK-lkp@intel.com>
 References: <20230615050015.3105902-8-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -67,15 +67,15 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Dnyaneshwar,
 
-kernel test robot noticed the following build errors:
+kernel test robot noticed the following build warnings:
 
-[auto build test ERROR on drm-tip/drm-tip]
+[auto build test WARNING on drm-tip/drm-tip]
 
 url:    https://github.com/intel-lab-lkp/linux/commits/Dnyaneshwar-Bhadane/drm-i915-TGL-s-TGL-TIGERLAKE-for-platform-subplatform-defines/20230615-130242
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
 patch link:    https://lore.kernel.org/r/20230615050015.3105902-8-dnyaneshwar.bhadane%40intel.com
 patch subject: [Intel-gfx] [PATCH 07/11] drm/i915/adlp: s/ADLP/ALDERLAKE_P for display and graphics step
-config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20230615/202306151523.wIGn4dME-lkp@intel.com/config)
+config: i386-debian-10.3 (https://download.01.org/0day-ci/archive/20230615/202306151502.QcAZXboK-lkp@intel.com/config)
 compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
 reproduce (this is a W=1 build):
         git remote add drm-tip git://anongit.freedesktop.org/drm/drm-tip
@@ -84,25 +84,25 @@ reproduce (this is a W=1 build):
         b4 shazam https://lore.kernel.org/r/20230615050015.3105902-8-dnyaneshwar.bhadane@intel.com
         # save the config file
         mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 olddefconfig
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/i915/
+        make W=1 O=build_dir ARCH=i386 olddefconfig
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306151523.wIGn4dME-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306151502.QcAZXboK-lkp@intel.com/
 
-All errors (new ones prefixed by >>):
+All warnings (new ones prefixed by >>):
 
    drivers/gpu/drm/i915/display/intel_cdclk.c: In function 'intel_init_cdclk_hooks':
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3562:17: error: this 'if' clause does not guard... [-Werror=misleading-indentation]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3562:17: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
     3562 |                 if (IS_ALDERLAKE_P_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
          |                 ^~
    drivers/gpu/drm/i915/display/intel_cdclk.c:3564:25: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
     3564 |                         dev_priv->display.funcs.cdclk = &tgl_cdclk_funcs;
          |                         ^~~~~~~~
    drivers/gpu/drm/i915/display/intel_cdclk.c: At top level:
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3572:11: error: expected identifier or '(' before 'else'
+   drivers/gpu/drm/i915/display/intel_cdclk.c:3572:11: error: expected identifier or '(' before 'else'
     3572 |         } else if (IS_ROCKETLAKE(dev_priv)) {
          |           ^~~~
    drivers/gpu/drm/i915/display/intel_cdclk.c:3575:11: error: expected identifier or '(' before 'else'
@@ -180,21 +180,22 @@ All errors (new ones prefixed by >>):
    drivers/gpu/drm/i915/display/intel_cdclk.c:3630:11: error: expected identifier or '(' before 'else'
     3630 |         } else if (IS_I830(dev_priv)) {
          |           ^~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3634:9: error: expected identifier or '(' before 'if'
+   drivers/gpu/drm/i915/display/intel_cdclk.c:3634:9: error: expected identifier or '(' before 'if'
     3634 |         if (drm_WARN(&dev_priv->drm, !dev_priv->display.funcs.cdclk,
          |         ^~
    In file included from arch/x86/include/asm/bug.h:87,
                     from include/linux/bug.h:5,
-                    from include/linux/cpumask.h:14,
-                    from arch/x86/include/asm/cpumask.h:5,
-                    from arch/x86/include/asm/msr.h:11,
-                    from arch/x86/include/asm/processor.h:23,
+                    from include/linux/fortify-string.h:5,
+                    from include/linux/string.h:254,
+                    from arch/x86/include/asm/page_32.h:18,
+                    from arch/x86/include/asm/page.h:14,
+                    from arch/x86/include/asm/processor.h:20,
                     from arch/x86/include/asm/timex.h:5,
                     from include/linux/timex.h:67,
                     from include/linux/time32.h:13,
                     from include/linux/time.h:60,
                     from drivers/gpu/drm/i915/display/intel_cdclk.c:24:
->> include/asm-generic/bug.h:135:2: error: expected identifier or '(' before ')' token
+   include/asm-generic/bug.h:135:2: error: expected identifier or '(' before ')' token
      135 | })
          |  ^
    include/drm/drm_print.h:620:9: note: in expansion of macro 'WARN'
@@ -203,85 +204,84 @@ All errors (new ones prefixed by >>):
    drivers/gpu/drm/i915/display/intel_cdclk.c:3634:13: note: in expansion of macro 'drm_WARN'
     3634 |         if (drm_WARN(&dev_priv->drm, !dev_priv->display.funcs.cdclk,
          |             ^~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3637:1: error: expected identifier or '(' before '}' token
+   drivers/gpu/drm/i915/display/intel_cdclk.c:3637:1: error: expected identifier or '(' before '}' token
     3637 | }
          | ^
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3543:39: error: 'i830_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3543:39: warning: 'i830_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3543 | static const struct intel_cdclk_funcs i830_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3538:39: error: 'i845g_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3538:39: warning: 'i845g_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3538 | static const struct intel_cdclk_funcs i845g_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3533:39: error: 'i85x_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3533:39: warning: 'i85x_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3533 | static const struct intel_cdclk_funcs i85x_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3528:39: error: 'i865g_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3528:39: warning: 'i865g_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3528 | static const struct intel_cdclk_funcs i865g_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3523:39: error: 'i915g_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3523:39: warning: 'i915g_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3523 | static const struct intel_cdclk_funcs i915g_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3518:39: error: 'i915gm_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3518:39: warning: 'i915gm_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3518 | static const struct intel_cdclk_funcs i915gm_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3511:39: error: 'i945gm_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3511:39: warning: 'i945gm_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3511 | static const struct intel_cdclk_funcs i945gm_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3506:39: error: 'g33_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3506:39: warning: 'g33_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3506 | static const struct intel_cdclk_funcs g33_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3501:39: error: 'pnv_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3501:39: warning: 'pnv_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3501 | static const struct intel_cdclk_funcs pnv_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3494:39: error: 'i965gm_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3494:39: warning: 'i965gm_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3494 | static const struct intel_cdclk_funcs i965gm_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3487:39: error: 'gm45_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3487:39: warning: 'gm45_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3487 | static const struct intel_cdclk_funcs gm45_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3482:39: error: 'ilk_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3482:39: warning: 'ilk_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3482 | static const struct intel_cdclk_funcs ilk_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3477:39: error: 'fixed_400mhz_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3477:39: warning: 'fixed_400mhz_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3477 | static const struct intel_cdclk_funcs fixed_400mhz_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3471:39: error: 'hsw_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3471:39: warning: 'hsw_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3471 | static const struct intel_cdclk_funcs hsw_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_cdclk.c:3465:39: error: 'vlv_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3465:39: warning: 'vlv_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3465 | static const struct intel_cdclk_funcs vlv_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cdclk.c:3459:39: error: 'chv_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3459:39: warning: 'chv_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3459 | static const struct intel_cdclk_funcs chv_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cdclk.c:3453:39: error: 'bdw_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3453:39: warning: 'bdw_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3453 | static const struct intel_cdclk_funcs bdw_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cdclk.c:3447:39: error: 'skl_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3447:39: warning: 'skl_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3447 | static const struct intel_cdclk_funcs skl_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cdclk.c:3440:39: error: 'bxt_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+>> drivers/gpu/drm/i915/display/intel_cdclk.c:3440:39: warning: 'bxt_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3440 | static const struct intel_cdclk_funcs bxt_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cdclk.c:3433:39: error: 'icl_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+   drivers/gpu/drm/i915/display/intel_cdclk.c:3433:39: warning: 'icl_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3433 | static const struct intel_cdclk_funcs icl_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cdclk.c:3426:39: error: 'ehl_cdclk_funcs' defined but not used [-Werror=unused-const-variable=]
+   drivers/gpu/drm/i915/display/intel_cdclk.c:3426:39: warning: 'ehl_cdclk_funcs' defined but not used [-Wunused-const-variable=]
     3426 | static const struct intel_cdclk_funcs ehl_cdclk_funcs = {
          |                                       ^~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cdclk.c:1272:38: error: 'rkl_cdclk_table' defined but not used [-Werror=unused-const-variable=]
+   drivers/gpu/drm/i915/display/intel_cdclk.c:1272:38: warning: 'rkl_cdclk_table' defined but not used [-Wunused-const-variable=]
     1272 | static const struct intel_cdclk_vals rkl_cdclk_table[] = {
          |                                      ^~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cdclk.c:1248:38: error: 'icl_cdclk_table' defined but not used [-Werror=unused-const-variable=]
+   drivers/gpu/drm/i915/display/intel_cdclk.c:1248:38: warning: 'icl_cdclk_table' defined but not used [-Wunused-const-variable=]
     1248 | static const struct intel_cdclk_vals icl_cdclk_table[] = {
          |                                      ^~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cdclk.c:1241:38: error: 'glk_cdclk_table' defined but not used [-Werror=unused-const-variable=]
+   drivers/gpu/drm/i915/display/intel_cdclk.c:1241:38: warning: 'glk_cdclk_table' defined but not used [-Wunused-const-variable=]
     1241 | static const struct intel_cdclk_vals glk_cdclk_table[] = {
          |                                      ^~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cdclk.c:1232:38: error: 'bxt_cdclk_table' defined but not used [-Werror=unused-const-variable=]
+   drivers/gpu/drm/i915/display/intel_cdclk.c:1232:38: warning: 'bxt_cdclk_table' defined but not used [-Wunused-const-variable=]
     1232 | static const struct intel_cdclk_vals bxt_cdclk_table[] = {
          |                                      ^~~~~~~~~~~~~~~
-   cc1: all warnings being treated as errors
 
 
 vim +/if +3562 drivers/gpu/drm/i915/display/intel_cdclk.c
@@ -433,7 +433,7 @@ vim +/if +3562 drivers/gpu/drm/i915/display/intel_cdclk.c
   3569				dev_priv->display.cdclk.table = adlp_cdclk_table;
   3570				dev_priv->display.funcs.cdclk = &tgl_cdclk_funcs;
   3571			}
-> 3572		} else if (IS_ROCKETLAKE(dev_priv)) {
+  3572		} else if (IS_ROCKETLAKE(dev_priv)) {
   3573			dev_priv->display.funcs.cdclk = &tgl_cdclk_funcs;
   3574			dev_priv->display.cdclk.table = rkl_cdclk_table;
   3575		} else if (DISPLAY_VER(dev_priv) >= 12) {
