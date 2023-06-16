@@ -1,33 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93F8D73330C
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jun 2023 16:03:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D5B7733325
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jun 2023 16:08:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0541D10E634;
-	Fri, 16 Jun 2023 14:03:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC8910E637;
+	Fri, 16 Jun 2023 14:08:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9DBCC10E633;
- Fri, 16 Jun 2023 14:03:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 97837AADE4;
- Fri, 16 Jun 2023 14:03:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4F9210E637
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jun 2023 14:08:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686924503; x=1718460503;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LQnPDVxM9v1lnT80bkfOuyiD54DdARHqyCWfsqd6Hms=;
+ b=cXvW0zO9AY7a7IFQUKTm3u4vFOilLiPPmkCNjC5I77iWV7DLYlctcipL
+ Lkwowk0P4Tv8Pt6YDIwTZqaVowDPCrrmwjL1zDRstdpwh5YSPwIloB1iG
+ MWKt+fiMmXxu+PQtBaR7JcCoxSExchqxCLa1S6HKSs9UB9RgLt5NFdwwR
+ 4U3tNe3ha0SDBIkhTH3VNDVCHwLzWkmBVBCGzAn94ls5602M5B69KN5r7
+ eaHFvXpLXnntc3VAwKuU/R6Of42jVkeLDPVyRn0RCBMdRUsnryn2VSbt+
+ 6rUuWqxI8nxL6UVQUsPhtbgstho2Jgg1bF3aOP7HDZhVq+MmmtVXlBdWH w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="343957774"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="343957774"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 07:08:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="712882917"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="712882917"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
+ by orsmga002.jf.intel.com with SMTP; 16 Jun 2023 07:08:20 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 16 Jun 2023 17:08:20 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 16 Jun 2023 17:08:13 +0300
+Message-Id: <20230616140820.11726-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.39.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Yi Liu" <yi.l.liu@intel.com>
-Date: Fri, 16 Jun 2023 14:03:49 -0000
-Message-ID: <168692422958.9829.420842907424654976@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230616093946.68711-1-yi.l.liu@intel.com>
-In-Reply-To: <20230616093946.68711-1-yi.l.liu@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBB?=
- =?utf-8?q?dd_vfio=5Fdevice_cdev_for_iommufd_support_=28rev17=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/7] drm/i915: Init DDI ports based on
+ port_mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,42 +58,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: Add vfio_device cdev for iommufd support (rev17)
-URL   : https://patchwork.freedesktop.org/series/113696/
-State : failure
+Introduce port_mask into the device info and utilize it
+it initalize DDI ports instead of hand rolling each
+intel_ddi_init() call per platform+port.
 
-== Summary ==
+This is an intermediate step towards initializing
+DDI/DP/HDMI/DSI ports purely based on VBT information.
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/113696/revisions/17/mbox/ not applied
-Applying: vfio: Allocate per device file structure
-Applying: vfio: Refine vfio file kAPIs for KVM
-Applying: vfio: Accept vfio device file in the KVM facing kAPI
-Applying: kvm/vfio: Prepare for accepting vfio device fd
-Applying: kvm/vfio: Accept vfio device file from userspace
-Applying: vfio: Pass struct vfio_device_file * to vfio_device_open/close()
-Applying: vfio: Block device access via device fd until device is opened
-Applying: vfio: Add cdev_device_open_cnt to vfio_group
-Applying: vfio: Make vfio_df_open() single open for device cdev path
-Applying: vfio-iommufd: Move noiommu compat validation out of vfio_iommufd_bind()
-Applying: vfio-iommufd: Split bind/attach into two steps
-Applying: vfio: Record devid in vfio_device_file
-Applying: vfio-iommufd: Add detach_ioas support for physical VFIO devices
-Applying: iommufd/device: Add iommufd_access_detach() API
-Applying: vfio-iommufd: Add detach_ioas support for emulated VFIO devices
-error: sha1 information is lacking or useless (drivers/vfio/iommufd.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0015 vfio-iommufd: Add detach_ioas support for emulated VFIO devices
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+v2: rebased due to intel_display_device.c
+v3: Drop DDI-C on TGL for now, fix TGL TC5/6 mixup, rebase due to DSI stuff
 
+Ville Syrjälä (7):
+  drm/i915: Remove bogus DDI-F from hsw/bdw output init
+  drm/i915: Introduce device info port_mask
+  drm/i915: Assert that device info bitmasks have enough bits
+  drm/i915: Assert that the port being initialized is valid
+  drm/i915: Beef up SDVO/HDMI port checks
+  drm/i915: Init DDI outputs based on port_mask on skl+
+  drm/i915: Convert HSW/BDW to use port_mask for DDI probe
+
+ drivers/gpu/drm/i915/display/g4x_dp.c         |   3 +
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |  20 +++
+ drivers/gpu/drm/i915/display/intel_crt.c      |   2 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  32 ++++
+ drivers/gpu/drm/i915/display/intel_display.c  |  99 ++---------
+ drivers/gpu/drm/i915/display/intel_display.h  |   2 +
+ .../drm/i915/display/intel_display_device.c   | 162 ++++++++++++------
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_dvo.c      |   2 +
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  20 ++-
+ drivers/gpu/drm/i915/intel_device_info.c      |   4 +
+ 11 files changed, 210 insertions(+), 137 deletions(-)
+
+-- 
+2.39.3
 
