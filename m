@@ -1,62 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE0B173287E
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jun 2023 09:11:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6EC6732911
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jun 2023 09:39:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3B2810E5AB;
-	Fri, 16 Jun 2023 07:11:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98CEB10E5C4;
+	Fri, 16 Jun 2023 07:39:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id C97E510E091;
- Fri, 16 Jun 2023 07:11:11 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Bx7eoLC4xkoOAFAA--.12645S3;
- Fri, 16 Jun 2023 15:11:07 +0800 (CST)
-Received: from [10.20.42.43] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8AxZuQLC4xk+_0cAA--.16734S3; 
- Fri, 16 Jun 2023 15:11:07 +0800 (CST)
-Message-ID: <3c1c86ab-96ea-aa1c-c9c5-9a4012644fd6@loongson.cn>
-Date: Fri, 16 Jun 2023 15:11:07 +0800
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6212310E5C1;
+ Fri, 16 Jun 2023 07:39:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686901188; x=1718437188;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=zR/q57BnaqCgd/85u6YxIJpWBkIsG+pQaZNyG6A2gJQ=;
+ b=lEbc7iZpWGH61zPhtXWk7i8SiLLVFaS/7stNG8kDidFQlk6/YumJSgrb
+ DNDxN/SUdwlR5w4jvNYAD8Z1IQOUYl5OiUauPqzq618OQ0My+rsEpqv+S
+ khpDlUVwIoSsrKPbx+IoBuKGXO5nTqYcpUxs0RIXTd9gudcjk7sLuMiS9
+ sUEQQ2CN4pe3l0WnpMwGiZhL7NSg7S8KmUEeXQfOGz3BkrzMgFcbfrLlf
+ 1cgMU99UYVG2XwC5tDDpMmsW8IEUJ/zcyTjiVLSiO0+Ne2wSXNGkk7GNB
+ PngkIfjeyfU1Yd0uRIvQufsMaBjX7ERM/ctve/DcPL/HOY6nk5el5hZCE Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="359157210"
+X-IronPort-AV: E=Sophos;i="6.00,246,1681196400"; d="scan'208";a="359157210"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 00:39:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="825643779"
+X-IronPort-AV: E=Sophos;i="6.00,246,1681196400"; d="scan'208";a="825643779"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.62.27])
+ ([10.252.62.27])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 00:39:46 -0700
+Message-ID: <02e78707-5266-16d1-3dbf-b1d5aab87e51@linux.intel.com>
+Date: Fri, 16 Jun 2023 09:39:44 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+To: Zhanjun Dong <zhanjun.dong@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20230615224343.965937-1-zhanjun.dong@intel.com>
 Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
-References: <20230613030151.216625-1-15330273260@189.cn>
- <20230613030151.216625-3-15330273260@189.cn>
- <dbf0d89f-717a-1f78-aef2-f30506751d4d@loongson.cn>
- <CADnq5_N6vVtzH6tzguZdHnP_TdRoG1G-Cr94O+X03jvtk=vhag@mail.gmail.com>
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-Organization: Loongson
-In-Reply-To: <CADnq5_N6vVtzH6tzguZdHnP_TdRoG1G-Cr94O+X03jvtk=vhag@mail.gmail.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20230615224343.965937-1-zhanjun.dong@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxZuQLC4xk+_0cAA--.16734S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3Xw1Utryrury5AF4rCFyrKrX_yoW7Ar48pF
- WrCay5KrW8JFy7C342qr1kXFyYv3sYya4rJF4rK3sakFZ0yr98WryrKry5u3yxGrZ5GF1I
- vw4UJF9rua9YqagCm3ZEXasCq-sJn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUv2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
- xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
- 1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv
- 67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
- AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
- F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
- ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
- xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
- 1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU1Ek
- sDUUUUU==
-Subject: Re: [Intel-gfx] [PATCH v7 2/8] PCI/VGA: Deal only with VGA class
- devices
+Subject: Re: [Intel-gfx] [PATCH] Remove incorrect hard coded cache
+ coherrency setting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,195 +63,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Sui Jingfeng <15330273260@189.cn>, amd-gfx@lists.freedesktop.org,
- linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Zhanjun,
 
-On 2023/6/16 05:11, Alex Deucher wrote:
-> On Wed, Jun 14, 2023 at 6:50 AM Sui Jingfeng <suijingfeng@loongson.cn> wrote:
->> Hi,
->>
->> On 2023/6/13 11:01, Sui Jingfeng wrote:
->>> From: Sui Jingfeng <suijingfeng@loongson.cn>
->>>
->>> Deal only with the VGA devcie(pdev->class == 0x0300), so replace the
->>> pci_get_subsys() function with pci_get_class(). Filter the non-PCI display
->>> device(pdev->class != 0x0300) out. There no need to process the non-display
->>> PCI device.
->>>
->>> Cc: Bjorn Helgaas <bhelgaas@google.com>
->>> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
->>> ---
->>>    drivers/pci/vgaarb.c | 22 ++++++++++++----------
->>>    1 file changed, 12 insertions(+), 10 deletions(-)
->>>
->>> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
->>> index c1bc6c983932..22a505e877dc 100644
->>> --- a/drivers/pci/vgaarb.c
->>> +++ b/drivers/pci/vgaarb.c
->>> @@ -754,10 +754,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
->>>        struct pci_dev *bridge;
->>>        u16 cmd;
->>>
->>> -     /* Only deal with VGA class devices */
->>> -     if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
->>> -             return false;
->>> -
->> Hi, here is probably a bug fixing.
->>
->> For an example, nvidia render only GPU typically has 0x0380.
->>
->> as its PCI class number, but render only GPU should not participate in
->> the arbitration.
->>
->> As it shouldn't snoop the legacy fixed VGA address.
->>
->> It(render only GPU) can not display anything.
->>
->>
->> But 0x0380 >> 8 = 0x03, the filter  failed.
->>
->>
->>>        /* Allocate structure */
->>>        vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
->>>        if (vgadev == NULL) {
->>> @@ -1500,7 +1496,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->>>        struct pci_dev *pdev = to_pci_dev(dev);
->>>        bool notify = false;
->>>
->>> -     vgaarb_dbg(dev, "%s\n", __func__);
->>> +     /* Only deal with VGA class devices */
->>> +     if (pdev->class != PCI_CLASS_DISPLAY_VGA << 8)
->>> +             return 0;
->> So here we only care 0x0300, my initial intent is to make an optimization,
->>
->> nowadays sane display graphic card should all has 0x0300 as its PCI
->> class number, is this complete right?
->>
->> ```
->>
->> #define PCI_BASE_CLASS_DISPLAY        0x03
->> #define PCI_CLASS_DISPLAY_VGA        0x0300
->> #define PCI_CLASS_DISPLAY_XGA        0x0301
->> #define PCI_CLASS_DISPLAY_3D        0x0302
->> #define PCI_CLASS_DISPLAY_OTHER        0x0380
->>
->> ```
->>
->> Any ideas ?
-> I'm not quite sure what you are asking about here.
+Patch subject should specify component. In this case it should be
 
-To be honest, I'm worried about the PCI devices which has a
+drm/i915/gt:  Remove incorrect hard coded cache coherency setting
 
-PCI_CLASS_DISPLAY_XGA as its PCI class number.
-
-As those devices are very uncommon in the real world.
+On 6/16/2023 12:43 AM, Zhanjun Dong wrote:
+> The previouse i915_gem_object_create_internal already set it with proper value before function return. This hard coded setting is incorrect for platforms like MTL, thus need to be removed.
 
 
-$ find . -name "*.c" -type f | xargs grep "PCI_CLASS_DISPLAY_XGA"
+This needs to be wrapped. Try ./scripts/checkpatch.pl on the patch to  
+find out more.
 
+Otherwise It makes sense to remove that line.
 
-Grep the "PCI_CLASS_DISPLAY_XGA" in the linux kernel tree got ZERO,
+Thanks,
 
-there no code reference this macro. So I think it seems safe to ignore 
-the XGA ?
+Nirmoy
 
-
-PCI_CLASS_DISPLAY_3D and PCI_CLASS_DISPLAY_OTHER are used to annotate 
-the render-only GPU.
-
-And render-only GPU can't decode the fixed VGA address space, it is safe 
-to ignore them.
-
-
->   For vga_arb, we
-> only care about VGA class devices since those should be on the only
-> ones that might have VGA routed to them.
-
->   However, as VGA gets deprecated,
-
-We need the vgaarb for a system with multiple video card.
-
-Not only because some Legacy VGA devices implemented
-
-on PCI will typically have the same "hard-decoded" addresses;
-
-But also these video card need to participate in the arbitration,
-
-determine the default boot device.
-
-
-Nowadays, the 'VGA devices' here is stand for the Graphics card
-
-which is capable of display something on the screen.
-
-We still need vgaarb to select the default boot device.
-
-
-> you'll have more non VGA PCI classes for devices which
-> could be the pre-OS console device.
-
-Ah, we still want  do this(by applying this patch) first,
-
-and then we will have the opportunity to see who will crying if 
-something is broken. Will know more then.
-
-But drop this patch or revise it with more consideration is also 
-acceptable.
-
-
-I asking about suggestion and/or review.
-
-> Alex
 >
->>>        /* For now we're only intereted in devices added and removed. I didn't
->>>         * test this thing here, so someone needs to double check for the
->>> @@ -1510,6 +1508,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->>>        else if (action == BUS_NOTIFY_DEL_DEVICE)
->>>                notify = vga_arbiter_del_pci_device(pdev);
->>>
->>> +     vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
->>> +
->>>        if (notify)
->>>                vga_arbiter_notify_clients();
->>>        return 0;
->>> @@ -1534,8 +1534,8 @@ static struct miscdevice vga_arb_device = {
->>>
->>>    static int __init vga_arb_device_init(void)
->>>    {
->>> +     struct pci_dev *pdev = NULL;
->>>        int rc;
->>> -     struct pci_dev *pdev;
->>>
->>>        rc = misc_register(&vga_arb_device);
->>>        if (rc < 0)
->>> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
->>>
->>>        /* We add all PCI devices satisfying VGA class in the arbiter by
->>>         * default */
->>> -     pdev = NULL;
->>> -     while ((pdev =
->>> -             pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
->>> -                            PCI_ANY_ID, pdev)) != NULL)
->>> +     while (1) {
->>> +             pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
->>> +             if (!pdev)
->>> +                     break;
->>> +
->>>                vga_arbiter_add_pci_device(pdev);
->>> +     }
->>>
->>>        pr_info("loaded\n");
->>>        return rc;
->> --
->> Jingfeng
->>
--- 
-Jingfeng
-
+> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_timeline.c | 2 --
+>   1 file changed, 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> index b9640212d659..693d18e14b00 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> @@ -26,8 +26,6 @@ static struct i915_vma *hwsp_alloc(struct intel_gt *gt)
+>   	if (IS_ERR(obj))
+>   		return ERR_CAST(obj);
+>   
+> -	i915_gem_object_set_cache_coherency(obj, I915_CACHE_LLC);
+> -
+>   	vma = i915_vma_instance(obj, &gt->ggtt->vm, NULL);
+>   	if (IS_ERR(vma))
+>   		i915_gem_object_put(obj);
