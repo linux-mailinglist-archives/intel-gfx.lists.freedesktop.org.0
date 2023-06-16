@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 295EB73332C
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jun 2023 16:09:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F348D73332D
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jun 2023 16:09:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 706CE10E63E;
-	Fri, 16 Jun 2023 14:09:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7138310E641;
+	Fri, 16 Jun 2023 14:09:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7330E10E63B
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jun 2023 14:09:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 390A010E63E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jun 2023 14:09:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686924543; x=1718460543;
+ t=1686924545; x=1718460545;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=34nDTfbWA22Pvh36IeHWzUtdQdXMlZ8nb//LAmnXV1c=;
- b=GyyIcVGnR6bct18cFKKay/An1XfGPtzNitvAVUyO+ZUxbBIzIvvhBdEq
- BlCHARFG4YGPeG3tHx1NzkGvDyuaPg5cNWyEl9vv+riQIA04kIDux4/10
- 9CU6ZtjiqH6jaw3CIh5eKr/kMnS1M4qsSjHZMWGjIiszC1gu+KCV/9wnk
- onv+Qx8VxvBLneDTky9RXW5CIoKZokDD14tcNRd1RF/N/K96kWVbPBMR5
- hX2fovg/llfHaf6s+nSJdP86MrNCSYYf+PQxFMvxDxSBpEwSaxcljH9Sd
- 3VlsjCSFCu7a8/R+IkR+Qe1HVkWRq+UjzzT0lwXJCNDHC3aIc9QJ0MGf5 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="343957893"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="343957893"
+ bh=/JDHpN1ighAV7Y1RaZR7FsQyVNdl6GaKAE3Ag/pMHDs=;
+ b=lMOtJmtINT/eaj+WCYV+GLOnn+hO+NVFEepTlxiJ4SRKm1ixcSitXNXB
+ rPvVcuqFSYo1r60IzP+hzL+rBeK/hhX9djpWsB50bPEkDotgvFPggdyUt
+ NnK44LbpwSpPko7kf5wXM3EF455mIt6ZFlXgKpRW1TSA7cGP+TlN7uttL
+ tp3e83D9vCNXTZJ66g6uiSWRaTGeF07cwgG5jh9OXmqgQmYcloByYeCxJ
+ oH4gVqBsKdgFN3ALVd3U/7Wjq4kwYI7cg5aThxyee1gUw5saty9kx7XMv
+ W8ZCPMJzSTgxw4WiJ5rV9M+uNKBpMBD4zmfqIXcGdn+55P4XyWmlnhN4e g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="343957905"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="343957905"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2023 07:08:43 -0700
+ 16 Jun 2023 07:08:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="712883126"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="712883126"
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="712883164"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="712883164"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga002.jf.intel.com with SMTP; 16 Jun 2023 07:08:41 -0700
+ by orsmga002.jf.intel.com with SMTP; 16 Jun 2023 07:08:44 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 16 Jun 2023 17:08:40 +0300
+ Fri, 16 Jun 2023 17:08:43 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 16 Jun 2023 17:08:19 +0300
-Message-Id: <20230616140820.11726-7-ville.syrjala@linux.intel.com>
+Date: Fri, 16 Jun 2023 17:08:20 +0300
+Message-Id: <20230616140820.11726-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.3
 In-Reply-To: <20230616140820.11726-1-ville.syrjala@linux.intel.com>
 References: <20230616140820.11726-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 6/7] drm/i915: Init DDI outputs based on
- port_mask on skl+
+Subject: [Intel-gfx] [PATCH v3 7/7] drm/i915: Convert HSW/BDW to use
+ port_mask for DDI probe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,112 +66,111 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Instead of listing every platform's possible DDI outputs
-in intel_setup_outputs() just loop over the new port_mask
-to achieve the same thing.
+Make HSW/BDW use port_mask for output probing as well.
+To achieve that the strap checks are moved into
+intel_ddi_init() itself. Or should we move them to the
+runtime port_mask init instead? Maybe not since the hardware
+is still there, just not connected to anything.
 
-HSW/BDW were left as is since they still look at the straps
-as well.
-
-DSI is still a mess. For now just check for the relevant
-platforms explicitly.
+v2: Account for DDI-E in strap detection
+    Keep to the old CRT->DDI init order
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 80 ++++----------------
- 1 file changed, 13 insertions(+), 67 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c     | 29 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display.c | 23 +++-------------
+ 2 files changed, 33 insertions(+), 19 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 62bf6cc136ad..61722556bb47 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4653,6 +4653,29 @@ static void intel_ddi_tc_encoder_shutdown_complete(struct intel_encoder *encoder
+ #define port_tc_name(port) ((port) - PORT_TC1 + '1')
+ #define tc_port_name(tc_port) ((tc_port) - TC_PORT_1 + '1')
+ 
++static bool port_strap_detected(struct drm_i915_private *i915, enum port port)
++{
++	/* straps not used on skl+ */
++	if (DISPLAY_VER(i915) >= 9)
++		return true;
++
++	switch (port) {
++	case PORT_A:
++		return intel_de_read(i915, DDI_BUF_CTL(PORT_A)) & DDI_INIT_DISPLAY_DETECTED;
++	case PORT_B:
++		return intel_de_read(i915, SFUSE_STRAP) & SFUSE_STRAP_DDIB_DETECTED;
++	case PORT_C:
++		return intel_de_read(i915, SFUSE_STRAP) & SFUSE_STRAP_DDIC_DETECTED;
++	case PORT_D:
++		return intel_de_read(i915, SFUSE_STRAP) & SFUSE_STRAP_DDID_DETECTED;
++	case PORT_E:
++		return true; /* no strap for DDI-E */
++	default:
++		MISSING_CASE(port);
++		return false;
++	}
++}
++
+ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ {
+ 	struct intel_digital_port *dig_port;
+@@ -4661,6 +4684,12 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 	bool init_hdmi, init_dp;
+ 	enum phy phy = intel_port_to_phy(dev_priv, port);
+ 
++	if (!port_strap_detected(dev_priv, port)) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "Port %c strap not detected\n", port_name(port));
++		return;
++	}
++
+ 	if (!assert_port_valid(dev_priv, port))
+ 		return;
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 669e0cb6e392..3273ed4fa834 100644
+index 3273ed4fa834..e87bb4e57b50 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7404,73 +7404,19 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+@@ -7404,9 +7404,12 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
  	if (!HAS_DISPLAY(dev_priv))
  		return;
  
--	if (IS_METEORLAKE(dev_priv)) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_TC1);
--		intel_ddi_init(dev_priv, PORT_TC2);
--		intel_ddi_init(dev_priv, PORT_TC3);
--		intel_ddi_init(dev_priv, PORT_TC4);
--	} else if (IS_DG2(dev_priv)) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_C);
--		intel_ddi_init(dev_priv, PORT_D_XELPD);
--		intel_ddi_init(dev_priv, PORT_TC1);
--	} else if (IS_ALDERLAKE_P(dev_priv)) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_TC1);
--		intel_ddi_init(dev_priv, PORT_TC2);
--		intel_ddi_init(dev_priv, PORT_TC3);
--		intel_ddi_init(dev_priv, PORT_TC4);
--		icl_dsi_init(dev_priv);
--	} else if (IS_ALDERLAKE_S(dev_priv)) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_TC1);
--		intel_ddi_init(dev_priv, PORT_TC2);
--		intel_ddi_init(dev_priv, PORT_TC3);
--		intel_ddi_init(dev_priv, PORT_TC4);
--	} else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv)) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_TC1);
--		intel_ddi_init(dev_priv, PORT_TC2);
--	} else if (DISPLAY_VER(dev_priv) >= 12) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_TC1);
--		intel_ddi_init(dev_priv, PORT_TC2);
--		intel_ddi_init(dev_priv, PORT_TC3);
--		intel_ddi_init(dev_priv, PORT_TC4);
--		intel_ddi_init(dev_priv, PORT_TC5);
--		intel_ddi_init(dev_priv, PORT_TC6);
--		icl_dsi_init(dev_priv);
--	} else if (IS_JSL_EHL(dev_priv)) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_C);
--		intel_ddi_init(dev_priv, PORT_D);
--		icl_dsi_init(dev_priv);
--	} else if (DISPLAY_VER(dev_priv) == 11) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_C);
--		intel_ddi_init(dev_priv, PORT_D);
--		intel_ddi_init(dev_priv, PORT_E);
--		intel_ddi_init(dev_priv, PORT_F);
--		icl_dsi_init(dev_priv);
--	} else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_C);
--		vlv_dsi_init(dev_priv);
--	} else if (DISPLAY_VER(dev_priv) >= 9) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_C);
--		intel_ddi_init(dev_priv, PORT_D);
--		intel_ddi_init(dev_priv, PORT_E);
-+	if (DISPLAY_VER(dev_priv) >= 9) {
-+		enum port port;
+-	if (DISPLAY_VER(dev_priv) >= 9) {
++	if (HAS_DDI(dev_priv)) {
+ 		enum port port;
+ 
++		if (intel_ddi_crt_present(dev_priv))
++			intel_crt_init(dev_priv);
 +
-+		for_each_port_masked(port, DISPLAY_RUNTIME_INFO(dev_priv)->port_mask)
-+			intel_ddi_init(dev_priv, port);
-+
-+		/* FIXME do something about DSI */
-+		if (IS_ALDERLAKE_P(dev_priv) || IS_TIGERLAKE(dev_priv) ||
-+		    DISPLAY_VER(dev_priv) == 11)
-+			icl_dsi_init(dev_priv);
-+
-+		if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
-+			vlv_dsi_init(dev_priv);
- 	} else if (HAS_DDI(dev_priv)) {
- 		u32 found;
+ 		for_each_port_masked(port, DISPLAY_RUNTIME_INFO(dev_priv)->port_mask)
+ 			intel_ddi_init(dev_priv, port);
+ 
+@@ -7417,24 +7420,6 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 
+ 		if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+ 			vlv_dsi_init(dev_priv);
+-	} else if (HAS_DDI(dev_priv)) {
+-		u32 found;
+-
+-		if (intel_ddi_crt_present(dev_priv))
+-			intel_crt_init(dev_priv);
+-
+-		/* Haswell uses DDI functions to detect digital outputs. */
+-		found = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_A)) & DDI_INIT_DISPLAY_DETECTED;
+-		if (found)
+-			intel_ddi_init(dev_priv, PORT_A);
+-
+-		found = intel_de_read(dev_priv, SFUSE_STRAP);
+-		if (found & SFUSE_STRAP_DDIB_DETECTED)
+-			intel_ddi_init(dev_priv, PORT_B);
+-		if (found & SFUSE_STRAP_DDIC_DETECTED)
+-			intel_ddi_init(dev_priv, PORT_C);
+-		if (found & SFUSE_STRAP_DDID_DETECTED)
+-			intel_ddi_init(dev_priv, PORT_D);
+ 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+ 		int found;
  
 -- 
 2.39.3
