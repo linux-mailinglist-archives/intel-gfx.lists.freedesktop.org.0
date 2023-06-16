@@ -2,32 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64E5732D25
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jun 2023 12:14:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2536732D44
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jun 2023 12:17:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FD0D10E151;
-	Fri, 16 Jun 2023 10:14:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F29610E5C5;
+	Fri, 16 Jun 2023 10:17:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E8C5A10E151;
- Fri, 16 Jun 2023 10:14:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E24D3AADD5;
- Fri, 16 Jun 2023 10:14:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F0F510E047;
+ Fri, 16 Jun 2023 10:17:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686910657; x=1718446657;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=p9l3rC4lvWmIcDE6S4P319s7+1UjqTQtD/uy17dtOa4=;
+ b=oDkNHXtsFmTFZGI4pZqK1orZkLbdFrC8ldgsxIzjfKcdOXDqUYNdgmAY
+ EALGf38CfIWUMs59cLS+Y07IuxG+26j/ZwCOf8cDNF+C5yQ455CB/1s1k
+ y8djngrtOpnfz1+5e5dAORX7znCbbhok+zwSwuaFJ418H5GEIBiBl1p7m
+ 1IEtFMFXSVdfVQXgR6qd3wokn9iiXZCgZAkZXS8PILYNxuuvvkGEkJPoM
+ LAUm2OYr1RWSZJoVLvmLvLRbXZBqJCnuej22LrWdiINmwQ6m2crlZcOXn
+ ogNSdqtfMc4ICqjVK7oTghKs+8rCDkFS677wwOrTO7UQdHZaOjapvIKpo Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="445560377"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="445560377"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 03:16:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="742618866"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="742618866"
+Received: from vyashin-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.36.124])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 03:16:53 -0700
+Date: Fri, 16 Jun 2023 12:16:49 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Arnd Bergmann <arnd@kernel.org>
+Message-ID: <ZIw2kdx9+DCmUZUV@ashyti-mobl2.lan>
+References: <20230616093158.3568480-1-arnd@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jason Gunthorpe" <jgg@nvidia.com>
-Date: Fri, 16 Jun 2023 10:14:18 -0000
-Message-ID: <168691045892.9829.15645990326249523520@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230616093042.65094-1-yi.l.liu@intel.com>
-In-Reply-To: <20230616093042.65094-1-yi.l.liu@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Enhance_vfio_PCI_hot_reset_for_vfio_cdev_device_=28rev8=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230616093158.3568480-1-arnd@kernel.org>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: make i915_drm_client_fdinfo()
+ reference conditional again
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,39 +59,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Arnd Bergmann <arnd@arndb.de>, Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Arnd,
 
-Series: Enhance vfio PCI hot reset for vfio cdev device (rev8)
-URL   : https://patchwork.freedesktop.org/series/116991/
-State : warning
+On Fri, Jun 16, 2023 at 11:31:47AM +0200, Arnd Bergmann wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
+> 
+> The function is only defined if CONFIG_PROC_FS is enabled:
+> 
+> ld.lld: error: undefined symbol: i915_drm_client_fdinfo
+> >>> referenced by i915_driver.c
+> >>>               drivers/gpu/drm/i915/i915_driver.o:(i915_drm_driver) in archive vmlinux.a
+> 
+> Use the PTR_IF() helper to make the reference NULL otherwise.
+> 
+> Fixes: e894b724c316d ("drm/i915: Use the fdinfo helper")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+>  drivers/gpu/drm/i915/i915_driver.c     | 2 +-
+>  drivers/gpu/drm/i915/i915_drm_client.h | 2 --
+>  2 files changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 75cbc43b326dd..0ad0c5885ec27 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -1816,7 +1816,7 @@ static const struct drm_driver i915_drm_driver = {
+>  	.open = i915_driver_open,
+>  	.lastclose = i915_driver_lastclose,
+>  	.postclose = i915_driver_postclose,
+> -	.show_fdinfo = i915_drm_client_fdinfo,
+> +	.show_fdinfo = PTR_IF(IS_ENABLED(CONFIG_PROC_FS), i915_drm_client_fdinfo),
+>  
+>  	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
+>  	.prime_fd_to_handle = drm_gem_prime_fd_to_handle,
+> diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
+> index 4c18b99e10a4e..67816c912bca1 100644
+> --- a/drivers/gpu/drm/i915/i915_drm_client.h
+> +++ b/drivers/gpu/drm/i915/i915_drm_client.h
+> @@ -47,8 +47,6 @@ static inline void i915_drm_client_put(struct i915_drm_client *client)
+>  
+>  struct i915_drm_client *i915_drm_client_alloc(void);
+>  
+> -#ifdef CONFIG_PROC_FS
+>  void i915_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file);
+> -#endif
 
-== Summary ==
+nice! This is becoming the new trend now.
 
-Error: dim checkpatch failed
-bbf7d5109b70 vfio/pci: Update comment around group_fd get in vfio_pci_ioctl_pci_hot_reset()
-20a69119fe6e vfio/pci: Move the existing hot reset logic to be a helper
--:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#6: 
-This prepares to add another method for hot reset. The major hot reset logic
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
-total: 0 errors, 1 warnings, 0 checks, 99 lines checked
-5827269728db iommufd: Reserve all negative IDs in the iommufd xarray
-7f95aa488081 iommufd: Add iommufd_ctx_has_group()
-fe3e3a790452 iommufd: Add helper to retrieve iommufd_ctx and devid
-97e3dbafa2d7 vfio: Mark cdev usage in vfio_device
--:8: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#8: 
-cdev path yet, so the vfio_device_cdev_opened() helper always returns false.
-
-total: 0 errors, 1 warnings, 0 checks, 11 lines checked
-046903816932 vfio: Add helper to search vfio_device in a dev_set
-8d8bcf84cee9 vfio/pci: Extend VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
-5f281038039a vfio/pci: Copy hot-reset device info to userspace in the devices loop
-f4eff917ccab vfio/pci: Allow passing zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
-
-
+Andi
