@@ -2,71 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5F2737419
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:28:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3D8737425
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:29:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A59B10E386;
-	Tue, 20 Jun 2023 18:28:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 411A710E382;
+	Tue, 20 Jun 2023 18:29:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com
- [IPv6:2607:f8b0:4864:20::535])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58CBB10E00D;
- Sat, 17 Jun 2023 18:04:29 +0000 (UTC)
-Received: by mail-pg1-x535.google.com with SMTP id
- 41be03b00d2f7-543ae674f37so1012188a12.1; 
- Sat, 17 Jun 2023 11:04:29 -0700 (PDT)
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com
+ [IPv6:2607:f8b0:4864:20::331])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8F0E10E00D;
+ Sat, 17 Jun 2023 18:26:19 +0000 (UTC)
+Received: by mail-ot1-x331.google.com with SMTP id
+ 46e09a7af769-6b2b7ca1c5eso1692685a34.0; 
+ Sat, 17 Jun 2023 11:26:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1687025068; x=1689617068;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=TAXkLrzOYTyQH4veg/Dt+9+g8a33rt2RkO+aGzgEOIA=;
- b=EPj4hELLQ/zwqn/azC16NEZei2+FnhMoui6L4UfP+pc7OUzilqwcpT1vzX2af90O5L
- NzyKK+UoT7FhGRFHmi87jGoNKutjag5SCA3fzfFi0kAirpG3LuMPgbv/SbozPR4RCb6f
- 1wyueZswBpStzhmO18cUEcxC3+SrmyfDEopp20ZR4TNwF/+t/MfNjJrBfrsBB0y6hxPg
- 3slnv6LFNDUU4qfge+mCv9MCICKRB49EUpT3oqU0zgcxA84rO3qwJH3K1Hgk+rGIAZOr
- zlWXF9fZUx7rZAnrFsscVQ3eNluXuE+qJpH6/Trli8TwQKjxAiBnOOx98qS3alCdopfK
- 9V1A==
+ d=gmail.com; s=20221208; t=1687026378; x=1689618378;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=iAOhlvHTcWXeb9PboEkspmfVbcV594RGj9F/z1tmu4Y=;
+ b=DWYFOewOzfcxwUvqtdocgz991WeelZUqOziEmq3Yr1OOBIRlZZZ0Nnzb7tGqJ+WhvZ
+ UKCDxM4SD0iyTQC2LQPSnoYvHqvPTSbhi2EpJHXBZuN+zWmtNPGy3z37fgO+DDMDjTO6
+ SsSJ0BxgCV29PYyve4O/PEa5snOgcrgclkBGg4yovHC0pfal5ILNoTh3nawLfqGzUdQl
+ mBbAvMYXthloGbzpjwO/+YL0LBMR4Gvzvi+hCsHsuXi6jbWx8BJ/9wTWqC+LfhNfmIEM
+ 4GI/jnS+Wu8R0TofM1bt19kKhf31PegFr7HOoF+OZLjfbem0CtAKF4ZffGd+zIqmErHc
+ 2GbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687025068; x=1689617068;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=TAXkLrzOYTyQH4veg/Dt+9+g8a33rt2RkO+aGzgEOIA=;
- b=jbDdwC4+cTtP4K2EzxgCcfCoOGPbIjeJT+sw1EliK5Nu4eW32Nl0olHeG4pxiHeZPF
- HovKxubMIWHVuNLmn/rW/WTHoqmdRSXplTi25oRGlR+1pBPGHeAU2i4AE82M4c3ND6SB
- 3t9maJ0sYFJCGnKSwFYjtNZp+snCC8x6TWiGUDiD7wM7upna1FvW4afIxTBFxWUExunR
- iZWOyOokxIM1sVEowOSflDQhkJSoxuVriyWddRBfMCxKruPgDz9Pqzo+R3cRyibCDiYW
- pS+rMSWtbTgqqQr13Om/UqiLJKRf2biWvfohRWo6XSOAXf8cytgxpH4FxMYuPvfSh2Tr
- HZuw==
-X-Gm-Message-State: AC+VfDzKvZjttUtvJ9CeHhr98YGh9TodBFLwx9Rv/kCJOUSp/e1wkdlc
- VkAh5fga+UXas0ug2ewNGPw=
-X-Google-Smtp-Source: ACHHUZ6PvHQ/Ekv32QbsmQuxA6xm6VWsWXZcW5Y38eZX3M54/kRRT71RSXLM/IMiHAuIDJSvQx6pZA==
-X-Received: by 2002:a05:6a20:5483:b0:11f:9124:ab1a with SMTP id
- i3-20020a056a20548300b0011f9124ab1amr1335789pzk.6.1687025068298; 
- Sat, 17 Jun 2023 11:04:28 -0700 (PDT)
+ d=1e100.net; s=20221208; t=1687026378; x=1689618378;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=iAOhlvHTcWXeb9PboEkspmfVbcV594RGj9F/z1tmu4Y=;
+ b=dfZF1MXkoK/17QwZ5ABdYjcLkXioMK+Fwi/XBpvGkQDmAKKfQAabYYQfZWxPjhWQkx
+ 3PWXHhOeNNYBz9dFrGFC/nrL51pEKTjcA5rtaMR1kSCzIpH/DGKXzbbo3loAazgbJ5S8
+ y8sPunYiBz2IntTacrb+UZ91VRveI9OqnGT0zbOCxZIajfyXpMb67FyjwMQGLRdXyxXk
+ WvcL/3hNIOnF6m561naMl827jDbEJmvErRaoh0XYj2VdzuFV+mU4t/aocaV8JoKhzc1V
+ 7C53vTFtwjxRLRl3eYlgpnGNOxjO+E9wGG1rtAKZ5ZYC13CpQ6IlHNqconbd5P36WdU7
+ 3FPw==
+X-Gm-Message-State: AC+VfDxq8MTBw10/MJiCXZXRmThyKs1W63WOih04OPKaHBkxRMsGXnQV
+ TjSRlJK/qZba/eXy8SenBoI=
+X-Google-Smtp-Source: ACHHUZ56YUUTSc04n4jtBmXQunTwc6aTvQHQknF6ljrYQVzDoYqxNZifQoRcL1NlfF1RF9LJPzbkNw==
+X-Received: by 2002:a05:6359:c1e:b0:12b:dd43:b0a5 with SMTP id
+ gn30-20020a0563590c1e00b0012bdd43b0a5mr2815690rwb.24.1687026378312; 
+ Sat, 17 Jun 2023 11:26:18 -0700 (PDT)
 Received: from sumitra.com ([117.199.158.52]) by smtp.gmail.com with ESMTPSA id
- d24-20020aa78698000000b0065fd8075ba0sm853873pfo.212.2023.06.17.11.04.23
+ ik26-20020a170902ab1a00b001b20dc1b3c9sm1646501plb.200.2023.06.17.11.26.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 17 Jun 2023 11:04:27 -0700 (PDT)
-Date: Sat, 17 Jun 2023 11:04:20 -0700
+ Sat, 17 Jun 2023 11:26:17 -0700 (PDT)
+Date: Sat, 17 Jun 2023 11:26:09 -0700
 From: Sumitra Sharma <sumitraartsy@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Message-ID: <20230617180420.GA410966@sumitra.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <20230617182609.GA410998@sumitra.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <69d7af2f-f4c2-5a7d-ce69-c38be5660c74@shipmail.org>
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:28:21 +0000
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Replace kmap() with
- kmap_local_page()
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Call page_address() on page
+ acquired with GFP_KERNEL flag
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,54 +74,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Deepak R Varma <drv@mailo.com>, Fabio <fmdefrancesco@gmail.com>,
- Ira Weiny <ira.weiny@intel.com>, Sumitra Sharma <sumitraartsy@gmail.com>
+Cc: Sumitra Sharma <sumitraartsy@gmail.com>, Ira Weiny <ira.weiny@intel.com>,
+ Deepak R Varma <drv@mailo.com>, Fabio <fmdefrancesco@gmail.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Thomas Hellstrom <thomas.hellstrom@intel.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-kmap() has been deprecated in favor of the kmap_local_page()
-due to high cost, restricted mapping space, the overhead of a
-global lock for synchronization, and making the process sleep
-in the absence of free slots.
 
-kmap_local_page() is faster than kmap() and offers thread-local
-and CPU-local mappings, take pagefaults in a local kmap region
-and preserves preemption by saving the mappings of outgoing tasks
-and restoring those of the incoming one during a context switch.
+On Wed, Jun 14, 2023 at 05:30:25PM +0200, Thomas Hellstrˆm (Intel) wrote:
+> 
+> On 6/14/23 15:22, Tvrtko Ursulin wrote:
+> > 
+> > On 14/06/2023 13:35, Sumitra Sharma wrote:
+> > > Pages allocated with GFP_KERNEL cannot come from Highmem.
+> > > That is why there is no need to call kmap() on them.
+> > 
+> > Are you sure it is GFP_KERNEL backed and not tmpfs? I am not sure myself
+> > so let me copy Matt and Thomas if they happen to know off hand.
+>
 
-The mapping is kept thread local in the function
-‚Äúi915_vma_coredump_create‚Äù in i915_gpu_error.c
+Hello,
 
-Therefore, replace kmap() with kmap_local_page().
+Yes it is true that the pages have not been acquired using the GFP_KERNEL.
 
-Suggested-by: Ira Weiny <ira.weiny@intel.com>
+I confused the allocation of the struct 'i915_vma_resource' tracking the 
+pages with the allocation of the pages themselves.
 
-Signed-off-by: Sumitra Sharma <sumitraartsy@gmail.com>
----
+This was noted by my mentor Ira Weiny <ira.weiny@intel.com>.
 
-Changes in v2:
-	- Replace kmap() with kmap_local_page().
-	- Change commit subject and message.
+> It looks to me these are shmem pages or TTM pages. Both could be highmem. So
+> I think kmap is the correct choice here.
+> 
 
- drivers/gpu/drm/i915/i915_gpu_error.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+However, the kmap() will not be the correct choice here and kmap_local_page()
+must be used instead. I have created a v2 patch for the same
+https://lore.kernel.org/lkml/20230617180420.GA410966@sumitra.com/
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index f020c0086fbc..bc41500eedf5 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1164,9 +1164,9 @@ i915_vma_coredump_create(const struct intel_gt *gt,
- 
- 			drm_clflush_pages(&page, 1);
- 
--			s = kmap(page);
-+			s = kmap_local_page(page);
- 			ret = compress_page(compress, s, dst, false);
--			kunmap(page);
-+			kunmap_local(s);
- 
- 			drm_clflush_pages(&page, 1);
- 
--- 
-2.25.1
+Thank you for helping me.
 
+Regards
+Sumitra
+
+> /Thomas
+>
+> 
+> 
+> 
+> > 
+> > Regards,
+> > 
+> > Tvrtko
+> > 
+> > > Therefore, don't call kmap() on the page coming from
+> > > vma_res->bi.pages using for_each_sgt_page() in
+> > > i915_vma_coredump_create().
+> > > 
+> > > Use a plain page_address() to get the kernel address instead.
+> > > 
+> > > Signed-off-by: Sumitra Sharma <sumitraartsy@gmail.com>
+> > > ---
+> > > † drivers/gpu/drm/i915/i915_gpu_error.c | 3 +--
+> > > † 1 file changed, 1 insertion(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c
+> > > b/drivers/gpu/drm/i915/i915_gpu_error.c
+> > > index f020c0086fbc..6f51cb4fc55c 100644
+> > > --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> > > +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> > > @@ -1164,9 +1164,8 @@ i915_vma_coredump_create(const struct intel_gt
+> > > *gt,
+> > > † ††††††††††††† drm_clflush_pages(&page, 1);
+> > > † -††††††††††† s = kmap(page);
+> > > +††††††††††† s = page_address(page);
+> > > ††††††††††††† ret = compress_page(compress, s, dst, false);
+> > > -††††††††††† kunmap(page);
+> > > † ††††††††††††† drm_clflush_pages(&page, 1);
