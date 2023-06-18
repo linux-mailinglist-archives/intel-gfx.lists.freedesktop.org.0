@@ -2,64 +2,155 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00DD734619
-	for <lists+intel-gfx@lfdr.de>; Sun, 18 Jun 2023 14:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7848673478E
+	for <lists+intel-gfx@lfdr.de>; Sun, 18 Jun 2023 20:11:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDC5410E130;
-	Sun, 18 Jun 2023 12:11:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 535B210E0F2;
+	Sun, 18 Jun 2023 18:11:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7E53210E084;
- Sun, 18 Jun 2023 12:11:21 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Cxd+ln9I5knIQGAA--.11592S3;
- Sun, 18 Jun 2023 20:11:19 +0800 (CST)
-Received: from [10.20.42.43] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8AxJeRn9I5kzfseAA--.21964S3; 
- Sun, 18 Jun 2023 20:11:19 +0800 (CST)
-Message-ID: <c2cdc3ca-20de-0133-b198-1118fcea7902@loongson.cn>
-Date: Sun, 18 Jun 2023 20:11:19 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>
-References: <20230613030151.216625-1-15330273260@189.cn>
- <20230613030151.216625-3-15330273260@189.cn>
- <dbf0d89f-717a-1f78-aef2-f30506751d4d@loongson.cn>
- <CADnq5_N6vVtzH6tzguZdHnP_TdRoG1G-Cr94O+X03jvtk=vhag@mail.gmail.com>
- <3c1c86ab-96ea-aa1c-c9c5-9a4012644fd6@loongson.cn>
- <CADnq5_Px-HWfwetv8LZsCnCeV7SMt_uqtLwMVK7648ZQiP2RCQ@mail.gmail.com>
- <f08b6a76-6c90-b59b-ff43-c779ef759d09@loongson.cn>
- <CADnq5_PFoM2O8mCd6+VFfu9Nc-Hg_HTnwEMxrq0FGRpva1kKiA@mail.gmail.com>
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-Organization: Loongson
-In-Reply-To: <CADnq5_PFoM2O8mCd6+VFfu9Nc-Hg_HTnwEMxrq0FGRpva1kKiA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4098C10E0DF;
+ Sun, 18 Jun 2023 18:11:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687111880; x=1718647880;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=xqV/iUbRiFrycllg8J07B/DjmjrRyp2L9bWjdCAWp7Y=;
+ b=IA+vGrhBYuXfwQKud22Zipe9I3BnhTQVfn+4Wsla4Kr49XOcc9bNwCvb
+ x72QKzGu8k3UYx90XawD+RXTWE+Xg/jnXwxCoPb+MWolsykh2bgqzuD4a
+ mm+EaHDRF9RYSEsJr6rBtisxLjE5EQbP8OLMGW5xDslT9QuTiL7CKOMe8
+ ADk18m2akVAdULlvXerLT1x8jd2nnwaRzzaMvkusNH4cWsrSjOSIFFq75
+ lv0k2d0pacGqQsfKHgP1+C3hmVrtz2T6eFmweBahr8UBJwaZ7ZC7vhsR0
+ 76OVrdqfIOGl52VHWxIBIg7UWz7b7+k7IR9ai8lS2tHjBxBXoN69m+WgY A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="339834199"
+X-IronPort-AV: E=Sophos;i="6.00,253,1681196400"; d="scan'208";a="339834199"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2023 11:11:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="837640827"
+X-IronPort-AV: E=Sophos;i="6.00,253,1681196400"; d="scan'208";a="837640827"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga004.jf.intel.com with ESMTP; 18 Jun 2023 11:11:19 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Sun, 18 Jun 2023 11:11:18 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Sun, 18 Jun 2023 11:11:18 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Sun, 18 Jun 2023 11:11:18 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.103)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Sun, 18 Jun 2023 11:11:17 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BF2+vfhImdz03VfuAUr08JFB5eRadP5inldapbRp8jjvy4eUdSC1lQODB9YzXL5D73PBAMpVEpvd/Shspc532CEta8puwR0aENGfIR114VJahCu+Y1WPH5ZMyeggiSUGUcxiXBGcgikNJ9KYGguRlGxPEvEfQcMgyscqH+2aNsLRCB0rx6fO3oCiYQqIXPcn3U4cCUKaNIyBKW7Fn3I/Zd8fRh3IxiRxim2rhLz3add/AvuXKTW7ocld8R38frw5l8aV12Z/S1m5Qa9W0aQH/0pPUaG2v8bl2C4gQLeB91bDAHbOpYX1LKk3UX0hm/zMZ0+zbxfQkmF9ebz2aZpRhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xVVSXzlLtQdGMUAdH4wZXZ/pdgYiGaS1oeTRmCjz4Ww=;
+ b=NwHXREZW84C2RAZqInh3lt6aTnRPwE3g7eEUA/jIJR3Lg2tMbOwYRTMsqXC2GUB9n32quN/YG/kv0ydWFX9sLBjTJFxP3g1MCFiGvMiTdAZO+P9wd928GRRgNPCIKDo0hrjjDptMyMnE098DNzaOEcXSByD7ArQLzO72gbKLGsIHGOC2DMLLskXL81DGuveLyHkXn5nh1Nfq8dpxFMulMthX2XHkgsOAIi6E/8Wss8cApAUOtjKELk/y/E5t2MlCho3OB8OVxP7vSNilgnV53NLBlOdW06WOqQy6EczZws4xODWbqSUQaukk80T7NLT5VZK6dFJXlVklnqaTjWcFvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SA1PR11MB6733.namprd11.prod.outlook.com (2603:10b6:806:25c::17)
+ by CYYPR11MB8358.namprd11.prod.outlook.com (2603:10b6:930:c9::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.37; Sun, 18 Jun
+ 2023 18:11:16 +0000
+Received: from SA1PR11MB6733.namprd11.prod.outlook.com
+ ([fe80::7237:cab8:f7f:52a5]) by SA1PR11MB6733.namprd11.prod.outlook.com
+ ([fe80::7237:cab8:f7f:52a5%7]) with mapi id 15.20.6500.031; Sun, 18 Jun 2023
+ 18:11:15 +0000
+Date: Sun, 18 Jun 2023 11:11:08 -0700
+From: Ira Weiny <ira.weiny@intel.com>
+To: Sumitra Sharma <sumitraartsy@gmail.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, Thomas
+ =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <648f48bc3d3c2_1de3f9294a3@iweiny-mobl.notmuch>
+References: <20230617180420.GA410966@sumitra.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxJeRn9I5kzfseAA--.21964S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3Zr4kXFW7uF1fWr1kJF47Awc_yoWDAr47pF
- WrGFW5KF4kJr17Gr12qw18JFyYvryrJFyrXr1rJw1Ykrn0yr1UJryrKr45u34xJrs5Gr12
- vr4UJry7uF15ZagCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUvIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAF
- wI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
- 1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv
- 67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
- AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
- F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
- ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
- xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
- 4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jO
- F4_UUUUU=
-Subject: Re: [Intel-gfx] [PATCH v7 2/8] PCI/VGA: Deal only with VGA class
- devices
+In-Reply-To: <20230617180420.GA410966@sumitra.com>
+X-ClientProxiedBy: SJ0PR05CA0207.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::32) To SA1PR11MB6733.namprd11.prod.outlook.com
+ (2603:10b6:806:25c::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA1PR11MB6733:EE_|CYYPR11MB8358:EE_
+X-MS-Office365-Filtering-Correlation-Id: 26b1cb24-f28e-4bbd-6f51-08db702767ab
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: qjRWiYd+1HnEfQd3lZWdQhZG9UxceONL8+adwN5aeZ3Nh3B2swAFAjWc9Yw4HVI51Dij5F3iSnv+qzznTvqm+ccJTw5JclM1S+U4ahJJe8lZXxWEb16+6dAbySUK3hpxPE31wpfAHW2LRCqVTx2WXJJeNBquhbmhRM4vBZBWRZGIh9U4e3GSVkoIYOK+hwMZ9/fMk7rx5th+jVo6sXF7fYqmVnsa7poAL/q6XH0v+Ig9xaSh+iQ6RNkjQZq5WFPpDzI6PtGdGP4ze/2QzGpoq/8zSdQR55wA+o4l5YbthSf5j779B0aizTzruUgnP+mmmPFCbJ9K+d6WcFYrn75xpod6ua3ggQtkT3lp0PDkw2H4lwrS0Wh74tbxMUFg5sAEXuPV3bHTfstGngRaee8qEa39SLmoAJinC5yvZTgQwFwHiLoD4jNDMF6MrTd+wB8m7uoxTHeA+DWWltWCVIAxKEEK1OcUZ8jYuufMNRvllQAfPS0qkdTXJP9/AQFWZGYqxu2rSyM0riWMFxULQu4sResim2t73h5SFIKXKsyNn9UeAY53Xb1YGN/UapnL1b7TH42moTQv8hvFrwrEnB5o0A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA1PR11MB6733.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(396003)(376002)(39860400002)(366004)(136003)(451199021)(66556008)(9686003)(8936002)(6486002)(8676002)(26005)(41300700001)(6512007)(82960400001)(478600001)(921005)(66946007)(38100700002)(86362001)(66476007)(4326008)(316002)(110136005)(54906003)(6666004)(44832011)(5660300002)(186003)(7416002)(966005)(83380400001)(6506007)(66899021)(2906002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bTQ4WkMxUnlEOUFpb29jeHlrVDh0WExFZkRSLzA5aytOVHAvdHQzWXZuTUR0?=
+ =?utf-8?B?MFNVNXpKQ1dhcGxsT05WcWY2eURES2hqL2EvZTJqbjUwMjY3bjBpWGJoQ2l6?=
+ =?utf-8?B?SU04OE9YSWhjUkNmU0pVNGtjWjZxNXFudzJzRFpidENUZjAvamk1SC8rQmNp?=
+ =?utf-8?B?OGxuYzMvVVFuZUl1QmpUR0dIWlh3MkZONEdwWEVQOXE0WEV3VS9SSERjUnA4?=
+ =?utf-8?B?L3REL095RGU2OVJtNHEvSGtVSE5QWTdSSjJiQy9yU3pvaXlvNlBtcERGWld2?=
+ =?utf-8?B?UkpOM2RkQkFlN2p2WjZjRFZwWEE0aTRYeXNIOHBSU0JqK2lQVXFrOXF6Y2NN?=
+ =?utf-8?B?anVudTFhdm1hWU9UbHJpL0VaYjUzNVNpQ1VWUkJ0TGd6TW94d3ltWk93eVFn?=
+ =?utf-8?B?dVRFUWpNblNqNVl5M2NhTUJCZkRsS0RMcm5CRmliTWVYTC9TeWdvSSswREhK?=
+ =?utf-8?B?ZmJCbFg1SnBrN0x3clBRcUNxWVVKcXV1elRGa3RURzdpdFgzM0FKZ2FMQzJW?=
+ =?utf-8?B?RDd0UDh4ajNsYjh4WHhVeGNyMmRET3UxTDZyemNjbWdVSHFIRTdVd2Joa256?=
+ =?utf-8?B?M0hsMVFMYnZFYlg1WFF1NHJhenZmbkdlR0M5djZNcVlBOTg4TEJIWDFqNVNE?=
+ =?utf-8?B?UlhPS0Z1Tkhrd3diQUNuNUt6L3FGQUd1OGg1QlQ3ZmsvM1FrbEpWZEF5Skhw?=
+ =?utf-8?B?bHNmSldhbkw0LzUwd1F3NkpQWUt4U3c0U2c3S0tOWVJ6OGxhblpVL3BoRkZj?=
+ =?utf-8?B?aEtMaHdQMUZCZm5BZUJHNSt3SFlVM20veGRrN3M4dDRDZ3c2SlVPdFZQQkdQ?=
+ =?utf-8?B?UFFZZGdCeFI5MXlFSW05d24rbG1ZSkdjd1FFTm83ZVAvNTJtYjBwaXBMVUxH?=
+ =?utf-8?B?MisraHJId0psS01sUStTUTMxNmRLYmZ0WjJ0OVpXaWFLSFpDellhUVRwaHh4?=
+ =?utf-8?B?ZksvYXk1R0VnM1o0c0o2RXFscDRhTUpXSEl0WUhNQm9peUI1KzJncDZyV2tL?=
+ =?utf-8?B?OUNFOUpBZjdQbDQ4SldXWWVnNDNrSEY0NDRQRHlVc1BZRzFxSzhjOVlSNTdy?=
+ =?utf-8?B?VzNvbU9sTkwxL1lzVUlhZTJxWjVEMDhwWUp0TlczYUxQRkNUdjVxSE9ZaWho?=
+ =?utf-8?B?aGFSOWRrVkduMmxrcEh1K1E0Zlh0Mk9SQ2d5aWJvbXYydkc2SWt0bTViL2hR?=
+ =?utf-8?B?Vy9XTEJHMXFrQ2l3U3JoQ2drZHZQQy9hT1BVU0ZDY083SzlOLzd2dTRqeWxO?=
+ =?utf-8?B?TUdzV2JyaVFGWjhOMXZBVng4VEVXYkt6SWYwRVhrOWtKdStsb2h1dmFteWl4?=
+ =?utf-8?B?OHRQbFhYTGZ0QmJON3Vocy8yWm90WmxyNjFKS2l3VWJMV05EajREeHJXdmlj?=
+ =?utf-8?B?dWFFOHpzSUJWZHpzWndLc0NLMmo3WUtzTmJweGZmNS9odlVaekNCMDFnTmx2?=
+ =?utf-8?B?S2hxWEpOUmFoRUlqQURWTGVidlBYMXNSNWRpYlJlKzBPdWorL1RDL0dPQkhx?=
+ =?utf-8?B?bTJnU1hiUVh3Qi9xbE1tekYwc2Vmc1RiTE9HdGNLVFBmOEg5ZGtTWW04bkcv?=
+ =?utf-8?B?b0lDdnJJeUErR2srbUJqWWNWeFd4TzFRVkU2WWRoYXdRNVRiVXpWdmhqSVpM?=
+ =?utf-8?B?aGZ2QzRzTSsvSDdIVEVrbURzYWlxQ2ZoQ2JHeFNkenVuWUUwUFlCN205Z0d3?=
+ =?utf-8?B?Y2FhbjVnYlR3V0JmNE9FbDMrNFNXQTVJc3REcTZHR1ZaYnJacTZBNFBVSzZW?=
+ =?utf-8?B?amJuZDlnN0JQNXpQQ014TWluZmZNWTBDOHpCU2N1eElTTWtad2thTjBWWWpw?=
+ =?utf-8?B?eE9iSjFuLzJJd0JwR0ZqNHQ1SHlrNUVGVlIxQTVaMkpBamhxZzFQQkZCQlBY?=
+ =?utf-8?B?MUYrSGRZZUV6eXN6cUEyL2JHREZGQldJOXdtU0tnQnZOS0V1YUV3Sm0wOEV0?=
+ =?utf-8?B?STRMalFKZmNqMEFCTlV0Nm81QWZ2aW5Ga0kvWXN0RVMxRmtONHF1eEpWKy9q?=
+ =?utf-8?B?ay9TMTRLVlU0MWkybVJDMXJZUlJyU0dacE9LK2RoR3NNT1lMQkR1OWlCcy9G?=
+ =?utf-8?B?MlRDR1ozckNKVGZMSk9Sd3ZXenhPaWhteHVVSmEwMW1KajNzNU5MS0xtTmhq?=
+ =?utf-8?Q?NZ+AuDGB8q9qjdUErnG6rr0xZ?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 26b1cb24-f28e-4bbd-6f51-08db702767ab
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB6733.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2023 18:11:15.2309 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Xtj5Dzb99TbtFiVzRlZrcKZICE0fc2xRKQldOhcZq4LkUcevWBgnFCEAPD/2Sx/4Jg0XABBHR+9SldOIfn7b1g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8358
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Replace kmap() with
+ kmap_local_page()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,314 +163,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Sui Jingfeng <15330273260@189.cn>, amd-gfx@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, linux-pci@vger.kernel.org,
- Bjorn Helgaas <bhelgaas@google.com>
+Cc: Deepak R Varma <drv@mailo.com>, Fabio <fmdefrancesco@gmail.com>,
+ Ira Weiny <ira.weiny@intel.com>, Sumitra Sharma <sumitraartsy@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Sumitra Sharma wrote:
+> kmap() has been deprecated in favor of the kmap_local_page()
+> due to high cost, restricted mapping space, the overhead of a
+> global lock for synchronization, and making the process sleep
+> in the absence of free slots.
+> 
+> kmap_local_page() is faster than kmap() and offers thread-local
+> and CPU-local mappings, take pagefaults in a local kmap region
+> and preserves preemption by saving the mappings of outgoing tasks
+> and restoring those of the incoming one during a context switch.
+> 
+> The mapping is kept thread local in the function
+> “i915_vma_coredump_create” in i915_gpu_error.c
+> 
+> Therefore, replace kmap() with kmap_local_page().
+> 
+> Suggested-by: Ira Weiny <ira.weiny@intel.com>
+> 
 
-On 2023/6/16 22:34, Alex Deucher wrote:
-> On Fri, Jun 16, 2023 at 10:22 AM Sui Jingfeng <suijingfeng@loongson.cn> wrote:
->>
->> On 2023/6/16 21:41, Alex Deucher wrote:
->>> On Fri, Jun 16, 2023 at 3:11 AM Sui Jingfeng <suijingfeng@loongson.cn> wrote:
->>>> Hi,
->>>>
->>>> On 2023/6/16 05:11, Alex Deucher wrote:
->>>>> On Wed, Jun 14, 2023 at 6:50 AM Sui Jingfeng <suijingfeng@loongson.cn> wrote:
->>>>>> Hi,
->>>>>>
->>>>>> On 2023/6/13 11:01, Sui Jingfeng wrote:
->>>>>>> From: Sui Jingfeng <suijingfeng@loongson.cn>
->>>>>>>
->>>>>>> Deal only with the VGA devcie(pdev->class == 0x0300), so replace the
->>>>>>> pci_get_subsys() function with pci_get_class(). Filter the non-PCI display
->>>>>>> device(pdev->class != 0x0300) out. There no need to process the non-display
->>>>>>> PCI device.
->>>>>>>
->>>>>>> Cc: Bjorn Helgaas <bhelgaas@google.com>
->>>>>>> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
->>>>>>> ---
->>>>>>>      drivers/pci/vgaarb.c | 22 ++++++++++++----------
->>>>>>>      1 file changed, 12 insertions(+), 10 deletions(-)
->>>>>>>
->>>>>>> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
->>>>>>> index c1bc6c983932..22a505e877dc 100644
->>>>>>> --- a/drivers/pci/vgaarb.c
->>>>>>> +++ b/drivers/pci/vgaarb.c
->>>>>>> @@ -754,10 +754,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
->>>>>>>          struct pci_dev *bridge;
->>>>>>>          u16 cmd;
->>>>>>>
->>>>>>> -     /* Only deal with VGA class devices */
->>>>>>> -     if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
->>>>>>> -             return false;
->>>>>>> -
->>>>>> Hi, here is probably a bug fixing.
->>>>>>
->>>>>> For an example, nvidia render only GPU typically has 0x0380.
->>>>>>
->>>>>> as its PCI class number, but render only GPU should not participate in
->>>>>> the arbitration.
->>>>>>
->>>>>> As it shouldn't snoop the legacy fixed VGA address.
->>>>>>
->>>>>> It(render only GPU) can not display anything.
->>>>>>
->>>>>>
->>>>>> But 0x0380 >> 8 = 0x03, the filter  failed.
->>>>>>
->>>>>>
->>>>>>>          /* Allocate structure */
->>>>>>>          vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
->>>>>>>          if (vgadev == NULL) {
->>>>>>> @@ -1500,7 +1496,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->>>>>>>          struct pci_dev *pdev = to_pci_dev(dev);
->>>>>>>          bool notify = false;
->>>>>>>
->>>>>>> -     vgaarb_dbg(dev, "%s\n", __func__);
->>>>>>> +     /* Only deal with VGA class devices */
->>>>>>> +     if (pdev->class != PCI_CLASS_DISPLAY_VGA << 8)
->>>>>>> +             return 0;
->>>>>> So here we only care 0x0300, my initial intent is to make an optimization,
->>>>>>
->>>>>> nowadays sane display graphic card should all has 0x0300 as its PCI
->>>>>> class number, is this complete right?
->>>>>>
->>>>>> ```
->>>>>>
->>>>>> #define PCI_BASE_CLASS_DISPLAY        0x03
->>>>>> #define PCI_CLASS_DISPLAY_VGA        0x0300
->>>>>> #define PCI_CLASS_DISPLAY_XGA        0x0301
->>>>>> #define PCI_CLASS_DISPLAY_3D        0x0302
->>>>>> #define PCI_CLASS_DISPLAY_OTHER        0x0380
->>>>>>
->>>>>> ```
->>>>>>
->>>>>> Any ideas ?
->>>>> I'm not quite sure what you are asking about here.
->>>> To be honest, I'm worried about the PCI devices which has a
->>>>
->>>> PCI_CLASS_DISPLAY_XGA as its PCI class number.
->>>>
->>>> As those devices are very uncommon in the real world.
->>>>
->>>>
->>>> $ find . -name "*.c" -type f | xargs grep "PCI_CLASS_DISPLAY_XGA"
->>>>
->>>>
->>>> Grep the "PCI_CLASS_DISPLAY_XGA" in the linux kernel tree got ZERO,
->>>>
->>>> there no code reference this macro. So I think it seems safe to ignore
->>>> the XGA ?
->>>>
->>>>
->>>> PCI_CLASS_DISPLAY_3D and PCI_CLASS_DISPLAY_OTHER are used to annotate
->>>> the render-only GPU.
->>>>
->>>> And render-only GPU can't decode the fixed VGA address space, it is safe
->>>> to ignore them.
->>>>
->>>>
->>>>>     For vga_arb, we
->>>>> only care about VGA class devices since those should be on the only
->>>>> ones that might have VGA routed to them.
->>>>>     However, as VGA gets deprecated,
->>>> We need the vgaarb for a system with multiple video card.
->>>>
->>>> Not only because some Legacy VGA devices implemented
->>>>
->>>> on PCI will typically have the same "hard-decoded" addresses;
->>>>
->>>> But also these video card need to participate in the arbitration,
->>>>
->>>> determine the default boot device.
->>> But couldn't the boot device be determined via what whatever resources
->>> were used by the pre-OS console?
->> I don't know what you are refer to by saying  pre-OS console, UEFI
->> SHELL,  UEFI GOP  or something like that.
->>
-> Right.  Before the OS loads the platform firmware generally sets up
-> something for display.  That could be GOP or vesa or some other
-> platform specific protocol.
->
->> If you are referring to the framebuffer driver which light up the screen
->> before the Linux kernel is loaded .
->>
->>
->> Then, what you have said is true,  the boot device is determined by the
->> pre-OS console.
->>
->> But the problem is how does the Linux kernel(vgaarb) could know which
->> one is the default boot device
->>
->> on a multiple GPU machine.  Relaying on the firmware fb's address and
->> size is what the mechanism
->>
->> we already in using.
-> Right.  It shouldn't need to depend on vgaarb.
->
->>
->>>    I feel like that should be separate from vgaarb.
->> Emm, this really deserved another patch, please ?
->>
->>>    vgaarb should handle PCI VGA routing and some other
->>> mechanism should be used to determine what device provided the pre-OS
->>> console.
->> If the new mechanism need the firmware changed, then this probably break
->> the old machine.
->>
->> Also, this probably will get all arch involved. to get the new mechanism
->> supported.
->>
->> The testing pressure and review power needed is quite large.
->>
->> drm/amdgpu and drm/radeon already being used on X86, ARM64,  Mips and
->> more arch...
->>
->> The reviewing process will became quite difficult then.
->>
->> vgaarb is really what we already in use, and being used more than ten
->> years ...
+NIT: No need for the line break between Suggested-by and your signed off line.
 
-This base class is defined for all types of display controllers.
+> Signed-off-by: Sumitra Sharma <sumitraartsy@gmail.com>
+> ---
+> 
+> Changes in v2:
+> 	- Replace kmap() with kmap_local_page().
 
-For VGA devices (Sub-Class 00h), the Programming Interface byte is 
-divided into a bit field that identifies additional video controller 
-compatibilities.
+Generally it is customary to attribute a change like this to those who
+suggested it in a V1 review.
 
-A device can support multiple interfaces by using the bit map to 
-indicate which interfaces are supported.
+For example:
 
-For the XGA devices (Sub-Class 01h), only the standard XGA interface is 
-defined.
+ 	- Tvrtko/Thomas: Use kmap_local_page() instead of page_address()
 
-Sub-Class 02h is for controllers that have hardware support for 3D 
-operations and are not VGA compatible.
+Also I don't see Thomas on the new email list.  Since he took the time to
+review V1 he might want to check this version out.  I've added him to the
+'To:' list.
 
+Also a link to V1 is nice.  B4 formats it like this:
 
-> Yes, it works for x86 (and a few other platforms) today because of the
-> VGA legacy, so we can look at VGA routing to determine this.  But even
-> today, we don't need VGA routing to determine what was the primary
-> display before starting the OS.  We could probably have a platform
-> independent way to handle this by looking at the bread crumbs leftover
-> from the pre-OS environment.
+- Link to v1: https://lore.kernel.org/all/20230614123556.GA381200@sumitra.com/
 
-Yes, I agree with you.
+All that said the code looks good to me.  So with the above changes.
 
->   E.g., for pre-UEFI platforms, we can
-> look at VGA routing.  For UEFI platforms we can look at what GOP left
-> us.  For various non-UEFI ARM/PPC/MIPS/etc. platforms we can look at
-> whatever breadcrumbs those pre-OS environments left.  That way when
-> VGA goes away, we can have a clean break and you won't need vgaarb if
-> the platform has no VGA devices.
+Reviewed-by: Ira Weiny <ira.weiny@intel.com>
 
-Yes, I agree with you.
+> 	- Change commit subject and message.
+> 
+>  drivers/gpu/drm/i915/i915_gpu_error.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index f020c0086fbc..bc41500eedf5 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -1164,9 +1164,9 @@ i915_vma_coredump_create(const struct intel_gt *gt,
+>  
+>  			drm_clflush_pages(&page, 1);
+>  
+> -			s = kmap(page);
+> +			s = kmap_local_page(page);
+>  			ret = compress_page(compress, s, dst, false);
+> -			kunmap(page);
+> +			kunmap_local(s);
+>  
+>  			drm_clflush_pages(&page, 1);
+>  
+> -- 
+> 2.25.1
+> 
 
-
-Then, move vga_is_firmware_default() function to video/aperture.c also ?
-
-Because this function shouldn't be platform dependent,
-
-can be usable as long as the PCI resource relocation don't happen  (The 
-vram bar don't move),
-
-And screen_info is more about video specifci thing.
-
-
-Yes your are right, it seems that the selection of the default boot 
-device shouldn't depend on vgaarb.
-
-As vgaarb is only for PCI vga compatible display controller.
-
-It seems that platform display controller device should also 
-participated in the arbitration.
-
-Emm, but that may a bit difficult. Because we rely on the PCI notifier 
-to snoop the bound between the drm driver and device,
-
-call back to use if successful. So, what should I do next?  as a first step?
-
-> Alex
->
->>
->>> Alex
->>>
->>>> Nowadays, the 'VGA devices' here is stand for the Graphics card
->>>>
->>>> which is capable of display something on the screen.
->>>>
->>>> We still need vgaarb to select the default boot device.
->>>>
->>>>
->>>>> you'll have more non VGA PCI classes for devices which
->>>>> could be the pre-OS console device.
->>>> Ah, we still want  do this(by applying this patch) first,
->>>>
->>>> and then we will have the opportunity to see who will crying if
->>>> something is broken. Will know more then.
->>>>
->>>> But drop this patch or revise it with more consideration is also
->>>> acceptable.
->>>>
->>>>
->>>> I asking about suggestion and/or review.
->>>>
->>>>> Alex
->>>>>
->>>>>>>          /* For now we're only intereted in devices added and removed. I didn't
->>>>>>>           * test this thing here, so someone needs to double check for the
->>>>>>> @@ -1510,6 +1508,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->>>>>>>          else if (action == BUS_NOTIFY_DEL_DEVICE)
->>>>>>>                  notify = vga_arbiter_del_pci_device(pdev);
->>>>>>>
->>>>>>> +     vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
->>>>>>> +
->>>>>>>          if (notify)
->>>>>>>                  vga_arbiter_notify_clients();
->>>>>>>          return 0;
->>>>>>> @@ -1534,8 +1534,8 @@ static struct miscdevice vga_arb_device = {
->>>>>>>
->>>>>>>      static int __init vga_arb_device_init(void)
->>>>>>>      {
->>>>>>> +     struct pci_dev *pdev = NULL;
->>>>>>>          int rc;
->>>>>>> -     struct pci_dev *pdev;
->>>>>>>
->>>>>>>          rc = misc_register(&vga_arb_device);
->>>>>>>          if (rc < 0)
->>>>>>> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
->>>>>>>
->>>>>>>          /* We add all PCI devices satisfying VGA class in the arbiter by
->>>>>>>           * default */
->>>>>>> -     pdev = NULL;
->>>>>>> -     while ((pdev =
->>>>>>> -             pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
->>>>>>> -                            PCI_ANY_ID, pdev)) != NULL)
->>>>>>> +     while (1) {
->>>>>>> +             pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
->>>>>>> +             if (!pdev)
->>>>>>> +                     break;
->>>>>>> +
->>>>>>>                  vga_arbiter_add_pci_device(pdev);
->>>>>>> +     }
->>>>>>>
->>>>>>>          pr_info("loaded\n");
->>>>>>>          return rc;
->>>>>> --
->>>>>> Jingfeng
->>>>>>
->>>> --
->>>> Jingfeng
->>>>
->> --
->> Jingfeng
->>
--- 
-Jingfeng
 
