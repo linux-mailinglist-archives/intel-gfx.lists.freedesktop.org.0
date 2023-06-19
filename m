@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121E6735B06
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jun 2023 17:22:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DC31735B2A
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jun 2023 17:33:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44D2310E21F;
-	Mon, 19 Jun 2023 15:22:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44A4F10E056;
+	Mon, 19 Jun 2023 15:33:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60D2F10E21F;
- Mon, 19 Jun 2023 15:22:45 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43C9010E056
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 15:33:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687188165; x=1718724165;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GCMyK+xJ6tV0MhOJSpsZLG7SrNrk3ubg6srKYqjeUnI=;
- b=eHtMqQsJbrZQJZYAjxynVHHrhFLd9+3B/5PDUi7zmnzvji/syG6bV/gN
- MmMHJ8kwbFZL8UAOHVQ5Njz1OWF8ne8nkg6KUFuPl6ob/bx3jVERgxIGd
- OUwvgxodAqEg/BbV/XVAt1gYML29hGwXJftQsMO67ye7t0whySTvaVf4C
- xwt1Q+NvfFb/zwMamQIxQF5tcUkxtw6lk78PRf5rsZyQKoiU9BBTrwMjg
- psP5pgspEeMX9f+6nk1Kf2WBf+k62DeynlJrvOL7seRapJGtTvq6KSVRT
- pGgIXWLl/hsuD+/CnRi6BsCaEuHrbVJazvksApCYJXYDMmvYevO0+YG52 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="349381565"
-X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="349381565"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2023 08:22:45 -0700
+ t=1687188780; x=1718724780;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Vdwm5voVHPErfE2rWalFZaGMxaPkdXIQbEgIO2p35NY=;
+ b=VyFZf9HK8aMcFp3/GDwwjPsx0hYRbFAJAHKB5NYp2fZfBDWJrHg02e7y
+ RZAtFfW7FC2VE4AVK9IOuwglT/ckKHgpJj8kpZ+NdRC/UL/Lkw2ooECXQ
+ pTR1CAUqelDshZydkS6VKhSjlZ9ttg5VA/cDHWsRMCUA/ioXe38jlNq99
+ PkbqeKY3mjY14f7vvZahVHdv4VCqcRzS0wSh5Dar61vYWOb4j8oIxP1Kf
+ iIjOWrMbqb4M3wmlwkN9DjaOfL9ou2G/SBWjUIIWhRxQ5mEV5yPUzNces
+ 8hhiHrQ6btTR3ztzmn/g0bHecWhyxHpKqERUncvLAi+T7A1AU1g+gdIjg g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="357148870"
+X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="357148870"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2023 08:32:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="858250611"
-X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="858250611"
-Received: from yeidelbe-mobl.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.162])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2023 08:22:43 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 19 Jun 2023 17:22:22 +0200
-Message-Id: <20230619152222.11733-7-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230619152222.11733-1-thomas.hellstrom@linux.intel.com>
-References: <20230619152222.11733-1-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="826622655"
+X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="826622655"
+Received: from fuhrberg-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.37.35])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2023 08:32:57 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Kai Vehmanen <kai.vehmanen@linux.intel.com>, Mitul Golani
+ <mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <alpine.DEB.2.22.394.2306191423170.3532114@eliteleevi.tm.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230609174212.1946930-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20230609174212.1946930-3-mitulkumar.ajitkumar.golani@intel.com>
+ <alpine.DEB.2.22.394.2306191423170.3532114@eliteleevi.tm.intel.com>
+Date: Mon, 19 Jun 2023 18:32:54 +0300
+Message-ID: <878rcfjwm1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 6/6] drm/ttm: Don't shadow the operation
- context
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RFC 2/3] drm/i915/display: Configure and
+ initialize HDMI audio capabilities
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,48 +62,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, jyri.sarha@linux.intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-ttm_bo_swapout() shadows the ttm operation context which may cause
-major confusion in driver callbacks when swapping out !TTM_PL_SYSTEM
-memory. Fix this by reusing the operation context argument to
-ttm_bo_swapout().
+On Mon, 19 Jun 2023, Kai Vehmanen <kai.vehmanen@linux.intel.com> wrote:
+> Hey,
+>
+> replying to 9th June version (my mistake), but I checked the 15th June
+> patch version and comments applied to that one as well:
+>
+> On Fri, 9 Jun 2023, Mitul Golani wrote:
+>
+>> Initialize the source audio capabilities for HDMI in crtc_state
+>> property by setting them to their maximum supported values,
+>> including max_channel and max_frequency. This allows for the
+>> calculation of HDMI audio source capabilities with respect to
+>> the available mode bandwidth. These capabilities encompass
+>> parameters such as supported frequency and channel configurations.
+> [...]
+>> @@ -1131,6 +1131,12 @@ struct intel_crtc_state {
+>>  
+>>  	struct {
+>>  		bool has_audio;
+>> +
+>> +		/* Audio rate in Hz */
+>> +		int max_frequency;
+>> +
+>> +		/* Number of audio channels */
+>> +		int max_channel;
+>>  	} audio;
+>
+> Comment on this below.
+>
+>> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> @@ -2277,6 +2277,40 @@ bool intel_hdmi_compute_has_hdmi_sink(struct intel_encoder *encoder,
+>>  		!intel_hdmi_is_cloned(crtc_state);
+>>  }
+>>  
+>> +static unsigned int calc_audio_bw(int channel, int frequency)
+>> +{
+>> +	int bits_per_sample = 32;
+>> +	unsigned int bandwidth = channel * frequency * bits_per_sample;
+>
+> Maybe unsigned for bits_per_sample as well?
 
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: <dri-devel@lists.freedesktop.org>
-Cc: <intel-gfx@lists.freedesktop.org>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Acked-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/ttm/ttm_bo.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Personally, I'd always go for signed ints. Integer promotions are hard.
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index bd5dae4d1624..615d30c4262d 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -1154,7 +1154,6 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
- 	 * Move to system cached
- 	 */
- 	if (bo->resource->mem_type != TTM_PL_SYSTEM) {
--		struct ttm_operation_ctx ctx = { false, false };
- 		struct ttm_resource *evict_mem;
- 		struct ttm_place hop;
- 
-@@ -1164,7 +1163,7 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
- 		if (unlikely(ret))
- 			goto out;
- 
--		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, &ctx, &hop);
-+		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
- 		if (unlikely(ret != 0)) {
- 			WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput - likely driver bug.\n");
- 			goto out;
+BR,
+Jani.
+
+
+> And not sure how fixed this 
+> is, but having 32 as a define at start file with more descriptive name
+> might be a good idea as well. I.e. this is the audio sample container
+> size used in all calculations.
+>
+>> +void
+>> +intel_hdmi_audio_compute_config(struct intel_crtc_state *pipe_config)
+>> +{
+>> +	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+>> +	int num_of_channel, aud_rates[7] = {192000, 176000, 96000, 88000, 48000, 44100, 32000};
+>> +	unsigned int audio_req_bandwidth, available_blank_bandwidth, vblank, hblank;
+>> +
+>> +	hblank = adjusted_mode->htotal - adjusted_mode->hdisplay;
+>> +	vblank = adjusted_mode->vtotal - adjusted_mode->vdisplay;
+>> +	available_blank_bandwidth = hblank * vblank *
+>> +				    drm_mode_vrefresh(adjusted_mode) * pipe_config->pipe_bpp;
+>> +	for (num_of_channel = 8; num_of_channel > 0; num_of_channel--) {
+>
+> The maximum channel count of 8 would deserve its own define. It's pretty
+> much a constant coming from the specs, but still avoid magic numbers in 
+> code would be preferable. Or we remove this altoghter, see below...
+>
+>> +		for (int index = 0; index < 7; index++) {
+>> +			audio_req_bandwidth = calc_audio_bw(num_of_channel,
+>> +							    aud_rates[index]);
+>> +			if (audio_req_bandwidth < available_blank_bandwidth) {
+>
+> <= ?
+>
+>> +				pipe_config->audio.max_frequency = aud_rates[index];
+>> +				pipe_config->audio.max_channel = num_of_channel;
+>> +				return;
+>> +			}
+>
+> This will hit a problem if we have a case where bandwidth is not enough 
+> for 5.1 at 192kHz, but it is enough for 2ch 192kHz audio. This approach
+> forces us to give preference to either channel acount or sampling rate.
+>
+> What if we just store the 'max audio samples per second' into pipe config:
+>
+>  - have "int max_audio_samples_per_second;" in pipe_config
+>  - pipe_config->audio.max_audio_samples_per_second = 
+> available_blank_bandwidth / 32; 
+>
+> Then when filtering SADs, the invidial channels+rate combination 
+> of each SAD is compared to the max_audio_samples_per_second and based
+> on that, the SAD is either filter or passed on. What do you think?
+>
+> Br, Kai
+>
+
 -- 
-2.40.1
-
+Jani Nikula, Intel Open Source Graphics Center
