@@ -2,68 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE99A734CE6
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jun 2023 09:59:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F294734DDB
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jun 2023 10:34:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D0CE10E19F;
-	Mon, 19 Jun 2023 07:59:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C811010E1BA;
+	Mon, 19 Jun 2023 08:34:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB26210E19F;
- Mon, 19 Jun 2023 07:59:56 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 0B2B240A80;
- Mon, 19 Jun 2023 09:59:54 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.2
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.091,
- T_SCC_BODY_TEXT_LINE=-0.01, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Authentication-Results: ste-pvt-msa1.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id JHJ22o8d7g3u; Mon, 19 Jun 2023 09:59:52 +0200 (CEST)
-Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id C78C840A59;
- Mon, 19 Jun 2023 09:59:51 +0200 (CEST)
-Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
- [155.4.205.35])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 54A4D3631FE;
- Mon, 19 Jun 2023 09:59:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1687161591; bh=lKpentDuo+eUKVk60Qur3HgdnqCuR/j+T/VCjjRUt7M=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=GcxwNuF54lCuOZXO+hvxmf/SIrp7aDVR10nTeNMRwqYBO0EB23LW8ABDYY8m4mHCg
- iHIV1LT68QCjY6XT7vu9SmocuyOv2F70kadxdODdRKCie7KSE+Orv8bdx6BYl1QuZE
- gQgcBv3Urn2A5VlaJALdM8I8szMp1zEkd+G4h2Eg=
-Message-ID: <f2cc785b-f34a-2a71-78b1-18b4f37de24b@shipmail.org>
-Date: Mon, 19 Jun 2023 09:59:50 +0200
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C11A10E1BA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 08:34:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687163684; x=1718699684;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jcvrMktmmutqBnOYAi+WpZi82r2q5RHNT0dyJsyTWSQ=;
+ b=K91LAlM3BBhPgZGfpCjgLi7c20Ia1Hfk5sAMjvP7o4tdNht/ba+fkgUl
+ uVFwUN8wEd7dRMR6coRmZtzoucOILysJx5e3cJmVUZTONjSfOUV4Y6T58
+ v9Ez5AcUUBVWg8cIWkY7lnwoFu3pEjOFVuECR+uaSP04spSp9oS7BtiIV
+ XYYnB92RE85Ny26gQ/T1eFBASPfmr/iE1NB6oh+YRhTbJN/Q9iWPwlH2r
+ jkcQ4FBdOjgS7+Rg2iHQM54lcm8gaXi352LQ1cn6Xl0PP13zVOz55+Nju
+ d1v8L/uuCZxXkUm3QqrcnzlQ+cJ/VEfbRiDEX0oWpfIffwvSwc0BmINqL A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="362112558"
+X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="362112558"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2023 01:34:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="803544670"
+X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="803544670"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by FMSMGA003.fm.intel.com with ESMTP; 19 Jun 2023 01:34:41 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 19 Jun 2023 13:57:15 +0530
+Message-Id: <20230619082715.922094-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
-Content-Language: en-US
-To: Ira Weiny <ira.weiny@intel.com>, Sumitra Sharma <sumitraartsy@gmail.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20230617180420.GA410966@sumitra.com>
- <648f48bc3d3c2_1de3f9294a3@iweiny-mobl.notmuch>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <648f48bc3d3c2_1de3f9294a3@iweiny-mobl.notmuch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Replace kmap() with
- kmap_local_page()
+Subject: [Intel-gfx] [PATCHv4] drm/i915/display/dp: On AUX xfer timeout
+ restart freshly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,85 +55,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Deepak R Varma <drv@mailo.com>, Fabio <fmdefrancesco@gmail.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+At the beginning of the aux transfer a check for aux control busy bit is
+done. Then as per the spec on aux transfer timeout, need to retry
+freshly for 3 times with a delay which is taken care by the control
+register.
+On each of these 3 trials a check for busy has to be done so as to start
+freshly.
 
-On 6/18/23 20:11, Ira Weiny wrote:
-> Sumitra Sharma wrote:
->> kmap() has been deprecated in favor of the kmap_local_page()
->> due to high cost, restricted mapping space, the overhead of a
->> global lock for synchronization, and making the process sleep
->> in the absence of free slots.
->>
->> kmap_local_page() is faster than kmap() and offers thread-local
->> and CPU-local mappings, take pagefaults in a local kmap region
->> and preserves preemption by saving the mappings of outgoing tasks
->> and restoring those of the incoming one during a context switch.
->>
->> The mapping is kept thread local in the function
->> “i915_vma_coredump_create” in i915_gpu_error.c
->>
->> Therefore, replace kmap() with kmap_local_page().
->>
->> Suggested-by: Ira Weiny <ira.weiny@intel.com>
->>
-> NIT: No need for the line break between Suggested-by and your signed off line.
->
->> Signed-off-by: Sumitra Sharma <sumitraartsy@gmail.com>
->> ---
->>
->> Changes in v2:
->> 	- Replace kmap() with kmap_local_page().
-> Generally it is customary to attribute a change like this to those who
-> suggested it in a V1 review.
->
-> For example:
->
->   	- Tvrtko/Thomas: Use kmap_local_page() instead of page_address()
->
-> Also I don't see Thomas on the new email list.  Since he took the time to
-> review V1 he might want to check this version out.  I've added him to the
-> 'To:' list.
+v2: updated the commit message
+v4: check for SEND_BUSY after write (Imre)
 
-Thanks.
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 58 +++++++++------------
+ 1 file changed, 26 insertions(+), 32 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 21b50a5c8a85..abe8047fac39 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -226,6 +226,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 	int i, ret, recv_bytes;
+ 	int try, clock = 0;
+ 	u32 status;
++	u32 send_ctl;
+ 	bool vdd;
+ 
+ 	ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
+@@ -273,45 +274,36 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 	 * it using the same AUX CH simultaneously
+ 	 */
+ 
+-	/* Try to wait for any previous AUX channel activity */
+-	for (try = 0; try < 3; try++) {
+-		status = intel_de_read_notrace(i915, ch_ctl);
+-		if ((status & DP_AUX_CH_CTL_SEND_BUSY) == 0)
+-			break;
+-		msleep(1);
+-	}
+-	/* just trace the final value */
+-	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
+-
+-	if (try == 3) {
+-		const u32 status = intel_de_read(i915, ch_ctl);
+-
+-		if (status != intel_dp->aux_busy_last_status) {
+-			drm_WARN(&i915->drm, 1,
+-				 "%s: not started (status 0x%08x)\n",
+-				 intel_dp->aux.name, status);
+-			intel_dp->aux_busy_last_status = status;
+-		}
+-
+-		ret = -EBUSY;
+-		goto out;
+-	}
+-
+ 	/* Only 5 data registers! */
+ 	if (drm_WARN_ON(&i915->drm, send_bytes > 20 || recv_size > 20)) {
+ 		ret = -E2BIG;
+ 		goto out;
+ 	}
++	send_ctl = intel_dp->get_aux_send_ctl(intel_dp,
++					      send_bytes,
++					      aux_clock_divider);
++	send_ctl |= aux_send_ctl_flags;
+ 
+ 	while ((aux_clock_divider = intel_dp->get_aux_clock_divider(intel_dp, clock++))) {
+-		u32 send_ctl = intel_dp->get_aux_send_ctl(intel_dp,
+-							  send_bytes,
+-							  aux_clock_divider);
+-
+-		send_ctl |= aux_send_ctl_flags;
+-
+-		/* Must try at least 3 times according to DP spec */
++		/* Re-visit : Must try at least 3 times according to DP spec */
+ 		for (try = 0; try < 5; try++) {
++			/* Try to wait for any previous AUX channel activity */
++			status = intel_dp_aux_wait_done(intel_dp);
++			/* just trace the final value */
++			trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
++
++			if (status & DP_AUX_CH_CTL_SEND_BUSY) {
++				drm_WARN(&i915->drm, 1,
++					 "%s: not started, previous Tx still in process (status 0x%08x)\n",
++					 intel_dp->aux.name, status);
++				intel_dp->aux_busy_last_status = status;
++				if (try > 3) {
++					ret = -EBUSY;
++					goto out;
++				} else
++					continue;
++			}
++
+ 			/* Load the send data into the aux channel data registers */
+ 			for (i = 0; i < send_bytes; i += 4)
+ 				intel_de_write(i915, ch_data[i >> 2],
+@@ -321,6 +313,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 			/* Send the command and wait for it to complete */
+ 			intel_de_write(i915, ch_ctl, send_ctl);
+ 
++			/* TODO: if typeC then 4.2ms else 800us. For DG2 add 1.5ms for both cases */
+ 			status = intel_dp_aux_wait_done(intel_dp);
+ 
+ 			/* Clear done status and any errors */
+@@ -335,7 +328,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 			 *   Timeout errors from the HW already meet this
+ 			 *   requirement so skip to next iteration
+ 			 */
+-			if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR)
++			if (status & (DP_AUX_CH_CTL_TIME_OUT_ERROR |
++						DP_AUX_CH_CTL_SEND_BUSY))
+ 				continue;
+ 
+ 			if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
+-- 
+2.25.1
 
-> Also a link to V1 is nice.  B4 formats it like this:
->
-> - Link to v1: https://lore.kernel.org/all/20230614123556.GA381200@sumitra.com/
->
-> All that said the code looks good to me.  So with the above changes.
->
-> Reviewed-by: Ira Weiny <ira.weiny@intel.com>
-
-LGTM. Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-
-
->
->> 	- Change commit subject and message.
->>
->>   drivers/gpu/drm/i915/i915_gpu_error.c | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
->> index f020c0086fbc..bc41500eedf5 100644
->> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
->> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
->> @@ -1164,9 +1164,9 @@ i915_vma_coredump_create(const struct intel_gt *gt,
->>   
->>   			drm_clflush_pages(&page, 1);
->>   
->> -			s = kmap(page);
->> +			s = kmap_local_page(page);
->>   			ret = compress_page(compress, s, dst, false);
->> -			kunmap(page);
->> +			kunmap_local(s);
->>   
->>   			drm_clflush_pages(&page, 1);
->>   
->> -- 
->> 2.25.1
->>
