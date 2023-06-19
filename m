@@ -2,52 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB97D7355A6
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jun 2023 13:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59FEC7355BD
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jun 2023 13:28:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC39210E1E8;
-	Mon, 19 Jun 2023 11:22:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8016210E1E8;
+	Mon, 19 Jun 2023 11:28:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AE1210E1E8
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 11:22:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687173778; x=1718709778;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=sGwtsI2/8TeVWzP9H22/12l2JlXYmpemiEQolSKexfM=;
- b=SeS7UkzvYDsy+jE5BpasqT2kWj8beH3hfqDGDnTQbkZDcjiln3P/h1mD
- uSLmv0lxrlChXTRql4zuSYOMrDrf5t58D9WVlLl9zepjDXqEYYhjYFQsa
- /7diKsDmP6TgM3dR7OzizfpqWfiqWPqx/TTA+DbVaxbdIUaVHge1rmX9Z
- tyJoYjHzWxXcNx+qD+vzpK6EEel6LsJghYl9fSX2kbxu0qtNNAGYVjYK0
- SFBLxE3eZixFeHmUpfjXLKElhyOX2isDJevMvHnr+aJYOw21aL75phHMs
- JKU8CRhNbvcsF54vfFQ1g/kML6B0wNVRyYax50sNiu2Odjtr+SVISvpQj Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="349327608"
-X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="349327608"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2023 04:22:57 -0700
-X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="747546518"
-X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="747546518"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2023 04:22:56 -0700
-Date: Mon, 19 Jun 2023 14:19:50 +0300 (EEST)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20230609174212.1946930-4-mitulkumar.ajitkumar.golani@intel.com>
-Message-ID: <alpine.DEB.2.22.394.2306191406420.3532114@eliteleevi.tm.intel.com>
-References: <20230609174212.1946930-1-mitulkumar.ajitkumar.golani@intel.com>
- <20230609174212.1946930-4-mitulkumar.ajitkumar.golani@intel.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C971910E1E8;
+ Mon, 19 Jun 2023 11:28:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6AE74A0169;
+ Mon, 19 Jun 2023 11:28:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Subject: Re: [Intel-gfx] [RFC 3/3] drm/i915/display: Add wrapper to Compute
- SAD
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Date: Mon, 19 Jun 2023 11:28:01 -0000
+Message-ID: <168717408140.16528.3771420464243398318@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230619082715.922094-1-arun.r.murthy@intel.com>
+In-Reply-To: <20230619082715.922094-1-arun.r.murthy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display/dp=3A_On_AUX_xfer_timeout_restart_freshly_?=
+ =?utf-8?b?KHJldjQp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,64 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, jyri.sarha@linux.intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-[+Jyri]
+Series: drm/i915/display/dp: On AUX xfer timeout restart freshly (rev4)
+URL   : https://patchwork.freedesktop.org/series/119055/
+State : warning
 
-On Fri, 9 Jun 2023, Mitul Golani wrote:
+== Summary ==
 
-> Compute SADs that takes into account the supported rate and channel
-> based on the capabilities of the audio source. This wrapper function
-> should encapsulate the logic for determining the supported rate and
-> channel and should return a set of SADs that are compatible with the
-> source.
+Error: dim checkpatch failed
+c655062f3d72 drm/i915/display/dp: On AUX xfer timeout restart freshly
+-:91: CHECK:BRACES: Unbalanced braces around else statement
+#91: FILE: drivers/gpu/drm/i915/display/intel_dp_aux.c:303:
++				} else
 
-In general looks good. A few minor comments inline:
+total: 0 errors, 0 warnings, 1 checks, 90 lines checked
 
-> +static u8 get_supported_freq_mask(struct intel_crtc_state *crtc_state)
-> +{
-> +	int audio_freq_hz[] = {32000, 44100, 48000, 88000, 96000, 176000, 192000, 0};
-> +	u8 mask = 0;
-> +
-> +	for (u8 index = 0; index < ARRAY_SIZE(audio_freq_hz); index++) {
 
-Minor nitpick: the use of "u8" in many places seems a bit misleading. It 
-seems for many places (like the "index" here), you can just use int. 
-But right, the SAD mask is 8bit, so maybe the get_support_freq_mask()
-is still warranted to return a u8 mask.
-
-> +void intel_audio_compute_eld(struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-> +	u8 *eld, *sad, index, mask = 0;
-> +
-> +	eld = crtc_state->eld;
-> +	if (!eld) {
-> +		drm_err(&i915->drm, "failed to locate eld\n");
-> +		return;
-> +	}
-> +
-> +	sad = (u8 *)parse_sad(eld);
-> +	if (sad) {
-> +		mask = get_supported_freq_mask(crtc_state);
-> +
-> +		for (index = 0; index < drm_eld_sad_count(eld); index++, sad += 3) {
-> +			/*
-> +			 *  Respect to source restrictions. If source limit is greater than sink
-> +			 *  capabilities then follow to sink's highest supported rate.
-> +			 */
-
-Minor: maybe reword "Respect source restricitions. Limit capabilities to a 
-subset that is supported both by the source and the sink."?
-
-> +			if (drm_sad_to_channels(sad) >= crtc_state->audio.max_channel) {
-> +				sad[0] &= ~0x7;
-> +				sad[0] |= crtc_state->audio.max_channel - 1;
-
-Can we add a debug trace here in case the channel count is limited? 
-
-Br, Kai
