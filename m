@@ -1,55 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A623735926
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jun 2023 16:08:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 121E6735B06
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jun 2023 17:22:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C37DC10E207;
-	Mon, 19 Jun 2023 14:08:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44D2310E21F;
+	Mon, 19 Jun 2023 15:22:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5252D10E207
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 14:08:02 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60D2F10E21F;
+ Mon, 19 Jun 2023 15:22:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687183682; x=1718719682;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Z7JmNa7DLBrcbACOjFLzyo65LFtQS2huhGOQYnvrURI=;
- b=JMvqhb2CkbgZIiwn7H/kwgeKKCdQWrFJvweK1HVUYSWqYVUqbLo5gSEp
- PfE1lgXwcLd9RORwvynaxBl76oXMUizQF7Fdyax0VHuBwrelwCGhOus40
- rNAW/EZAYamIHMaEaOzQWdEeGmA6s4gsq4WDHLBUET/wU7w7nezJga3b4
- hOvC3Xa7lOnBKVX9izV2B4nkrbsyVPN0NLb8R9lszQNAI7IW3b3u/gwFE
- EI/1++p25QApYn64QjXNhJnmHOjiGNePZCCik631IW7ePKnqZ65aRwhhy
- 6Sw5/RZ+ezGJ31FNjB845HFnt0VpUfiddwlM7NItLv72kYBzgdeoeq2hF Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="339979213"
-X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="339979213"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2023 07:06:26 -0700
+ t=1687188165; x=1718724165;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=GCMyK+xJ6tV0MhOJSpsZLG7SrNrk3ubg6srKYqjeUnI=;
+ b=eHtMqQsJbrZQJZYAjxynVHHrhFLd9+3B/5PDUi7zmnzvji/syG6bV/gN
+ MmMHJ8kwbFZL8UAOHVQ5Njz1OWF8ne8nkg6KUFuPl6ob/bx3jVERgxIGd
+ OUwvgxodAqEg/BbV/XVAt1gYML29hGwXJftQsMO67ye7t0whySTvaVf4C
+ xwt1Q+NvfFb/zwMamQIxQF5tcUkxtw6lk78PRf5rsZyQKoiU9BBTrwMjg
+ psP5pgspEeMX9f+6nk1Kf2WBf+k62DeynlJrvOL7seRapJGtTvq6KSVRT
+ pGgIXWLl/hsuD+/CnRi6BsCaEuHrbVJazvksApCYJXYDMmvYevO0+YG52 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="349381565"
+X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="349381565"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2023 08:22:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="826590563"
-X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="826590563"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.45.73])
- ([10.249.45.73])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2023 07:06:24 -0700
-Message-ID: <d8764556-b4d2-6896-9699-25abfe444f69@linux.intel.com>
-Date: Mon, 19 Jun 2023 16:06:22 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="858250611"
+X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="858250611"
+Received: from yeidelbe-mobl.ger.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.162])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2023 08:22:43 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 19 Jun 2023 17:22:22 +0200
+Message-Id: <20230619152222.11733-7-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230619152222.11733-1-thomas.hellstrom@linux.intel.com>
+References: <20230619152222.11733-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- Dan Carpenter <dan.carpenter@linaro.org>
-References: <ZH7tHLRZ9oBjedjN@moroto> <ZH760GjGM+7XdTa5@ashyti-mobl2.lan>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <ZH760GjGM+7XdTa5@ashyti-mobl2.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix a NULL vs IS_ERR() bug
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 6/6] drm/ttm: Don't shadow the operation
+ context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,31 +60,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org, Matthew Auld <matthew.auld@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Suren Baghdasaryan <surenb@google.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pushed to gt-next.
+ttm_bo_swapout() shadows the ttm operation context which may cause
+major confusion in driver callbacks when swapping out !TTM_PL_SYSTEM
+memory. Fix this by reusing the operation context argument to
+ttm_bo_swapout().
 
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: <dri-devel@lists.freedesktop.org>
+Cc: <intel-gfx@lists.freedesktop.org>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Acked-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/ttm/ttm_bo.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Thanks,
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index bd5dae4d1624..615d30c4262d 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -1154,7 +1154,6 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+ 	 * Move to system cached
+ 	 */
+ 	if (bo->resource->mem_type != TTM_PL_SYSTEM) {
+-		struct ttm_operation_ctx ctx = { false, false };
+ 		struct ttm_resource *evict_mem;
+ 		struct ttm_place hop;
+ 
+@@ -1164,7 +1163,7 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+ 		if (unlikely(ret))
+ 			goto out;
+ 
+-		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, &ctx, &hop);
++		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
+ 		if (unlikely(ret != 0)) {
+ 			WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput - likely driver bug.\n");
+ 			goto out;
+-- 
+2.40.1
 
-Nirmoy
-
-On 6/6/2023 11:22 AM, Andi Shyti wrote:
-> Hi Dan,
->
-> On Tue, Jun 06, 2023 at 11:23:56AM +0300, Dan Carpenter wrote:
->> The mmap_offset_attach() function returns error pointers, it doesn't
->> return NULL.
->>
->> Fixes: eaee1c085863 ("drm/i915: Add a function to mmap framebuffer obj")
->> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
-> Thanks for this series of fixes!
->
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->
-> Andi
