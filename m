@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F59734A0C
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jun 2023 04:17:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5F35734A23
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jun 2023 04:24:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 476B610E119;
-	Mon, 19 Jun 2023 02:17:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8F3910E14B;
+	Mon, 19 Jun 2023 02:23:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 189.cn (ptr.189.cn [183.61.185.104])
- by gabe.freedesktop.org (Postfix) with ESMTP id 604F610E108;
- Mon, 19 Jun 2023 02:17:32 +0000 (UTC)
-HMM_SOURCE_IP: 10.64.8.43:35506.1764402843
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3D1A510E098;
+ Mon, 19 Jun 2023 02:23:56 +0000 (UTC)
+HMM_SOURCE_IP: 10.64.8.41:49476.941168508
 HMM_ATTACHE_NUM: 0000
 HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
- by 189.cn (HERMES) with SMTP id 2B4E01001CA;
- Mon, 19 Jun 2023 10:17:25 +0800 (CST)
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+ by 189.cn (HERMES) with SMTP id 1E2E1102981;
+ Mon, 19 Jun 2023 10:23:44 +0800 (CST)
 Received: from  ([114.242.206.180])
- by gateway-151646-dep-75648544bd-7vx9t with ESMTP id
- cbd68cba8c4f443bb65940078c2927dd for suijingfeng@loongson.cn; 
- Mon, 19 Jun 2023 10:17:28 CST
-X-Transaction-ID: cbd68cba8c4f443bb65940078c2927dd
+ by gateway-151646-dep-75648544bd-xwndj with ESMTP id
+ 98b384fdfd3f4a748b7a9c050bde1861 for suijingfeng@loongson.cn; 
+ Mon, 19 Jun 2023 10:23:55 CST
+X-Transaction-ID: 98b384fdfd3f4a748b7a9c050bde1861
 X-Real-From: 15330273260@189.cn
 X-Receive-IP: 114.242.206.180
 X-MEDUSA-Status: 0
-Message-ID: <827ede8b-b7b8-5aae-0816-244928b16897@189.cn>
-Date: Mon, 19 Jun 2023 10:17:24 +0800
+Message-ID: <bef70e09-491a-9f40-1cad-1b413896de2e@189.cn>
+Date: Mon, 19 Jun 2023 10:23:43 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
@@ -69,11 +69,10 @@ Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
 On 2023/6/18 20:11, Sui Jingfeng wrote:
-> call back to use if successful
+> And screen_info is more about video specifci thing. 
 
 
-Call back to us if the drm device driver bound to the PCI GPU successfully
+screen_info is something more about video specific thing.
 
