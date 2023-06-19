@@ -1,67 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3D8737425
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:29:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BDCF737416
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:28:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 411A710E382;
-	Tue, 20 Jun 2023 18:29:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E98D610E37E;
+	Tue, 20 Jun 2023 18:28:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com
- [IPv6:2607:f8b0:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8F0E10E00D;
- Sat, 17 Jun 2023 18:26:19 +0000 (UTC)
-Received: by mail-ot1-x331.google.com with SMTP id
- 46e09a7af769-6b2b7ca1c5eso1692685a34.0; 
- Sat, 17 Jun 2023 11:26:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1687026378; x=1689618378;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=iAOhlvHTcWXeb9PboEkspmfVbcV594RGj9F/z1tmu4Y=;
- b=DWYFOewOzfcxwUvqtdocgz991WeelZUqOziEmq3Yr1OOBIRlZZZ0Nnzb7tGqJ+WhvZ
- UKCDxM4SD0iyTQC2LQPSnoYvHqvPTSbhi2EpJHXBZuN+zWmtNPGy3z37fgO+DDMDjTO6
- SsSJ0BxgCV29PYyve4O/PEa5snOgcrgclkBGg4yovHC0pfal5ILNoTh3nawLfqGzUdQl
- mBbAvMYXthloGbzpjwO/+YL0LBMR4Gvzvi+hCsHsuXi6jbWx8BJ/9wTWqC+LfhNfmIEM
- 4GI/jnS+Wu8R0TofM1bt19kKhf31PegFr7HOoF+OZLjfbem0CtAKF4ZffGd+zIqmErHc
- 2GbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687026378; x=1689618378;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=iAOhlvHTcWXeb9PboEkspmfVbcV594RGj9F/z1tmu4Y=;
- b=dfZF1MXkoK/17QwZ5ABdYjcLkXioMK+Fwi/XBpvGkQDmAKKfQAabYYQfZWxPjhWQkx
- 3PWXHhOeNNYBz9dFrGFC/nrL51pEKTjcA5rtaMR1kSCzIpH/DGKXzbbo3loAazgbJ5S8
- y8sPunYiBz2IntTacrb+UZ91VRveI9OqnGT0zbOCxZIajfyXpMb67FyjwMQGLRdXyxXk
- WvcL/3hNIOnF6m561naMl827jDbEJmvErRaoh0XYj2VdzuFV+mU4t/aocaV8JoKhzc1V
- 7C53vTFtwjxRLRl3eYlgpnGNOxjO+E9wGG1rtAKZ5ZYC13CpQ6IlHNqconbd5P36WdU7
- 3FPw==
-X-Gm-Message-State: AC+VfDxq8MTBw10/MJiCXZXRmThyKs1W63WOih04OPKaHBkxRMsGXnQV
- TjSRlJK/qZba/eXy8SenBoI=
-X-Google-Smtp-Source: ACHHUZ56YUUTSc04n4jtBmXQunTwc6aTvQHQknF6ljrYQVzDoYqxNZifQoRcL1NlfF1RF9LJPzbkNw==
-X-Received: by 2002:a05:6359:c1e:b0:12b:dd43:b0a5 with SMTP id
- gn30-20020a0563590c1e00b0012bdd43b0a5mr2815690rwb.24.1687026378312; 
- Sat, 17 Jun 2023 11:26:18 -0700 (PDT)
-Received: from sumitra.com ([117.199.158.52]) by smtp.gmail.com with ESMTPSA id
- ik26-20020a170902ab1a00b001b20dc1b3c9sm1646501plb.200.2023.06.17.11.26.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 17 Jun 2023 11:26:17 -0700 (PDT)
-Date: Sat, 17 Jun 2023 11:26:09 -0700
-From: Sumitra Sharma <sumitraartsy@gmail.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <20230617182609.GA410998@sumitra.com>
+X-Greylist: delayed 525 seconds by postgrey-1.36 at gabe;
+ Mon, 19 Jun 2023 03:11:37 UTC
+Received: from angie.orcam.me.uk (angie.orcam.me.uk [IPv6:2001:4190:8020::34])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E92A810E18B;
+ Mon, 19 Jun 2023 03:11:37 +0000 (UTC)
+Received: by angie.orcam.me.uk (Postfix, from userid 500)
+ id BF25592009C; Mon, 19 Jun 2023 05:02:48 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+ by angie.orcam.me.uk (Postfix) with ESMTP id B0C1092009B;
+ Mon, 19 Jun 2023 04:02:48 +0100 (BST)
+Date: Mon, 19 Jun 2023 04:02:48 +0100 (BST)
+From: "Maciej W. Rozycki" <macro@orcam.me.uk>
+To: Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <20230613030151.216625-3-15330273260@189.cn>
+Message-ID: <alpine.DEB.2.21.2306190339590.14084@angie.orcam.me.uk>
+References: <20230613030151.216625-1-15330273260@189.cn>
+ <20230613030151.216625-3-15330273260@189.cn>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <69d7af2f-f4c2-5a7d-ce69-c38be5660c74@shipmail.org>
+Content-Type: text/plain; charset=US-ASCII
 X-Mailman-Approved-At: Tue, 20 Jun 2023 18:28:21 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Call page_address() on page
- acquired with GFP_KERNEL flag
+Subject: Re: [Intel-gfx] [PATCH v7 2/8] PCI/VGA: Deal only with VGA class
+ devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,81 +44,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sumitra Sharma <sumitraartsy@gmail.com>, Ira Weiny <ira.weiny@intel.com>,
- Deepak R Varma <drv@mailo.com>, Fabio <fmdefrancesco@gmail.com>,
+Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
+ kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Thomas Hellstrom <thomas.hellstrom@intel.com>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Matthew Auld <matthew.auld@intel.com>
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, 13 Jun 2023, Sui Jingfeng wrote:
 
-On Wed, Jun 14, 2023 at 05:30:25PM +0200, Thomas Hellström (Intel) wrote:
-> 
-> On 6/14/23 15:22, Tvrtko Ursulin wrote:
-> > 
-> > On 14/06/2023 13:35, Sumitra Sharma wrote:
-> > > Pages allocated with GFP_KERNEL cannot come from Highmem.
-> > > That is why there is no need to call kmap() on them.
-> > 
-> > Are you sure it is GFP_KERNEL backed and not tmpfs? I am not sure myself
-> > so let me copy Matt and Thomas if they happen to know off hand.
->
+> Deal only with the VGA devcie(pdev->class == 0x0300), so replace the
 
-Hello,
+ Typo here: s/devcie/device/.
 
-Yes it is true that the pages have not been acquired using the GFP_KERNEL.
+> pci_get_subsys() function with pci_get_class(). Filter the non-PCI display
+> device(pdev->class != 0x0300) out. There no need to process the non-display
+> PCI device.
 
-I confused the allocation of the struct 'i915_vma_resource' tracking the 
-pages with the allocation of the pages themselves.
+ I've only come across this patch series now.  Without diving into what 
+this code actually does I have just one question as a matter of interest.
 
-This was noted by my mentor Ira Weiny <ira.weiny@intel.com>.
+> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+> index c1bc6c983932..22a505e877dc 100644
+> --- a/drivers/pci/vgaarb.c
+> +++ b/drivers/pci/vgaarb.c
+> @@ -1500,7 +1496,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
+>  	struct pci_dev *pdev = to_pci_dev(dev);
+>  	bool notify = false;
+>  
+> -	vgaarb_dbg(dev, "%s\n", __func__);
+> +	/* Only deal with VGA class devices */
+> +	if (pdev->class != PCI_CLASS_DISPLAY_VGA << 8)
+> +		return 0;
 
-> It looks to me these are shmem pages or TTM pages. Both could be highmem. So
-> I think kmap is the correct choice here.
-> 
+ Hmm, shouldn't this also handle PCI_CLASS_NOT_DEFINED_VGA?  As far as I 
+know it is the equivalent of PCI_CLASS_DISPLAY_VGA for PCI <= 2.0 devices 
+that were implemented before the idea of PCI device classes has developed 
+into its current form.  I may have such a VGA device somewhere.
 
-However, the kmap() will not be the correct choice here and kmap_local_page()
-must be used instead. I have created a v2 patch for the same
-https://lore.kernel.org/lkml/20230617180420.GA410966@sumitra.com/
-
-Thank you for helping me.
-
-Regards
-Sumitra
-
-> /Thomas
->
-> 
-> 
-> 
-> > 
-> > Regards,
-> > 
-> > Tvrtko
-> > 
-> > > Therefore, don't call kmap() on the page coming from
-> > > vma_res->bi.pages using for_each_sgt_page() in
-> > > i915_vma_coredump_create().
-> > > 
-> > > Use a plain page_address() to get the kernel address instead.
-> > > 
-> > > Signed-off-by: Sumitra Sharma <sumitraartsy@gmail.com>
-> > > ---
-> > >   drivers/gpu/drm/i915/i915_gpu_error.c | 3 +--
-> > >   1 file changed, 1 insertion(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c
-> > > b/drivers/gpu/drm/i915/i915_gpu_error.c
-> > > index f020c0086fbc..6f51cb4fc55c 100644
-> > > --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> > > +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> > > @@ -1164,9 +1164,8 @@ i915_vma_coredump_create(const struct intel_gt
-> > > *gt,
-> > >                 drm_clflush_pages(&page, 1);
-> > >   -            s = kmap(page);
-> > > +            s = page_address(page);
-> > >               ret = compress_page(compress, s, dst, false);
-> > > -            kunmap(page);
-> > >                 drm_clflush_pages(&page, 1);
+  Maciej
