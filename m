@@ -1,53 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C2A47372FE
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 19:34:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5230D737310
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 19:41:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4910F10E30D;
-	Tue, 20 Jun 2023 17:34:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE7CB10E309;
+	Tue, 20 Jun 2023 17:41:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7116610E30A
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jun 2023 17:34:01 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5576710E309;
+ Tue, 20 Jun 2023 17:41:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687282442; x=1718818442;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=XRml7CJNAID7lVQIQASMgWs5XuSHvj0f4jK57UfVFDI=;
- b=fvQf6Haj4GgfyxbfZv66gZg8nUYeN6OSeef8jFTqaLCPKyYRtEFW+M3J
- yvOtDYjvr80MmmgE/2bVCZJxIouR4F8w1AIGHMPKaDC+zyO0r6PjT9h7S
- E18omLhsar4uXI/R7aY9r/uMQUsCz+DQYo4JS9IwFpKeQ6LwJnqqtYPPv
- RlhXYOTa3eK4qxBStlZ0gWvShxgceHE8hMBwAU7ERTBnTZQQFTSlGZwtA
- /CoQ02Z5IeI3pTo/yJSyA+ibTwXJaYsIk4+/e9xQpk6CLFRSSG9L4QOci
- EG2c0LlM+Int/LOh7KTNDyFOCDJZ4Z2T8TzzfmhxhaTtfr1AnSyouH873 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="363353840"
-X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="363353840"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2023 10:33:00 -0700
+ t=1687282877; x=1718818877;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=YU32wILb4tnhc0im+7dQGm/pq5C2AUFMvZXmoqqj258=;
+ b=X6RqOLNLt1eKuIx8ceRXb+zXgpBIe+MwoxKN4iD/t1LreXrJal208UHY
+ R4CrzDf/R2Pj4v8YHAkOFRv/x4u2Ea1tEO9pkQSSUUAL07QtotaSkrn47
+ P4+89axzw2zFhiKE8PlJeRdTjTG9khfRFE67P9sO5Hce2v4wXY1HnInRo
+ Q7oPL1mcU2LXSecE41U7AuamJ0Pf8fYd9V5bEm1jmAb3UAo8DtfuYDJn0
+ KqnkVOC9WB93CVns/T8T0sX0cxaVstkvvqIoYR8F55q6fegtMQCEkAq3K
+ f5aINdfs/1p2X3lvcHss0nUeUBBcYEqFGmznTDGd+x4+DmRMV0yaj1w4/ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="357427865"
+X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="357427865"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2023 10:41:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="804029180"
-X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="804029180"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by FMSMGA003.fm.intel.com with SMTP; 20 Jun 2023 10:32:58 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 20 Jun 2023 20:32:58 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 20 Jun 2023 20:32:42 +0300
-Message-Id: <20230620173242.26923-6-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <20230620173242.26923-1-ville.syrjala@linux.intel.com>
-References: <20230620173242.26923-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="691531828"
+X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="691531828"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orsmga006.jf.intel.com with ESMTP; 20 Jun 2023 10:41:12 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1qBfLq-005JYh-1p; Tue, 20 Jun 2023 20:41:10 +0300
+Date: Tue, 20 Jun 2023 20:41:10 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <ZJHkthMktY83pwvy@smile.fi.intel.com>
+References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
+ <20230509051403.2748545-3-lucas.demarchi@intel.com>
+ <ZF4fi5B7PPlgZBOI@smile.fi.intel.com> <87pm75kd0h.fsf@intel.com>
+ <ZF4j0NPoBGMBT8CO@smile.fi.intel.com> <87mt29kc34.fsf@intel.com>
+ <ZIs0CC2J7nu0LHEK@smile.fi.intel.com> <875y7igph5.fsf@intel.com>
+ <ZJG91zMQW3Rnvdbe@smile.fi.intel.com>
+ <amgwl5mthhqgvgkqnor6tjfcr3x3pgwvpqin5efwwjfpdhvvpa@vhzhiq5mzsdg>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 5/5] drm/i915: Try to initialize DDI/ICL+ DSI
- ports for every VBT child device
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <amgwl5mthhqgvgkqnor6tjfcr3x3pgwvpqin5efwwjfpdhvvpa@vhzhiq5mzsdg>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 2/3] linux/bits.h: Add
+ fixed-width GENMASK and BIT macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,392 +67,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Kevin Brodsky <kevin.brodsky@arm.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Thomas Gleixner <tglx@linutronix.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Masahiro Yamada <masahiroy@kernel.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, Jun 20, 2023 at 10:25:21AM -0700, Lucas De Marchi wrote:
+> On Tue, Jun 20, 2023 at 05:55:19PM +0300, Andy Shevchenko wrote:
+> > On Tue, Jun 20, 2023 at 05:47:34PM +0300, Jani Nikula wrote:
+> > > On Thu, 15 Jun 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> > > > On Fri, May 12, 2023 at 02:45:19PM +0300, Jani Nikula wrote:
+> > > >> On Fri, 12 May 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> > > >> > On Fri, May 12, 2023 at 02:25:18PM +0300, Jani Nikula wrote:
+> > > >> >> On Fri, 12 May 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> > > >> >> > On Mon, May 08, 2023 at 10:14:02PM -0700, Lucas De Marchi wrote:
+> > > >> >> >> Add GENMASK_U32(), GENMASK_U16() and GENMASK_U8()  macros to create
+> > > >> >> >> masks for fixed-width types and also the corresponding BIT_U32(),
+> > > >> >> >> BIT_U16() and BIT_U8().
 
-Try to deal with duplicate child devices for the same DDI port
-by attempting to initialize them in VBT defined order The first
-on to succeed for a specific DDI port will be the one we use.
+> > > >> >> > Why?
+> > > >> >>
+> > > >> >> The main reason is that GENMASK() and BIT() size varies for 32/64 bit
+> > > >> >> builds.
+> > > >> >
+> > > >> > When needed GENMASK_ULL() can be used (with respective castings perhaps)
+> > > >> > and BIT_ULL(), no?
+> > > >>
+> > > >> How does that help with making them the same 32-bit size on both 32 and
+> > > >> 64 bit builds?
+> > > >
+> > > > 	u32 x = GENMASK();
+> > > > 	u64 y = GENMASK_ULL();
+> > > >
+> > > > No? Then use in your code either x or y. Note that I assume that the parameters
+> > > > to GENMASK*() are built-time constants. Is it the case for you?
+> > > 
+> > > What's wrong with wanting to define macros with specific size, depending
+> > > on e.g. hardware registers instead of build size?
+> > 
+> > Nothing, but I think the problem is smaller than it's presented.
+> 
+> not sure about big/small problem you are talking about. It's a problem
+> for when the *device* register is a 32b fixed width, which is
+> independent from the CPU you are running on. We also have registers that
+> are u16 and u64. Having fixed-width GENMASK and BIT helps avoiding
+> mistakes like below. Just to use one example, the diff below builds
+> fine on my 64b machine, yet it's obviously wrong:
+> 
+> 	$ git diff 	diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> 	index 0b414eae1683..692a0ad9a768 100644
+> 	--- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> 	+++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> 	@@ -261,8 +261,8 @@ static u32 rw_with_mcr_steering_fw(struct intel_gt *gt,
+> 			 * No need to save old steering reg value.
+> 			 */
+> 			intel_uncore_write_fw(uncore, MTL_MCR_SELECTOR,
+> 	-                                     REG_FIELD_PREP(MTL_MCR_GROUPID, group) |
+> 	-                                     REG_FIELD_PREP(MTL_MCR_INSTANCEID, instance) |
+> 	+                                     FIELD_PREP(MTL_MCR_GROUPID, group) |
+> 	+                                     FIELD_PREP(MTL_MCR_INSTANCEID, instance) |
+> 					      (rw_flag == FW_REG_READ ? GEN11_MCR_MULTICAST : 0));
+> 		} else if (GRAPHICS_VER(uncore->i915) >= 11) {
+> 			mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
+> 	diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> 	index 718cb2c80f79..c42bc2900c6a 100644
+> 	--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> 	+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> 	@@ -80,8 +80,8 @@
+> 	 #define   GEN11_MCR_SLICE_MASK                 GEN11_MCR_SLICE(0xf)
+> 	 #define   GEN11_MCR_SUBSLICE(subslice)         (((subslice) & 0x7) << 24)
+> 	 #define   GEN11_MCR_SUBSLICE_MASK              GEN11_MCR_SUBSLICE(0x7)
+> 	-#define   MTL_MCR_GROUPID                      REG_GENMASK(11, 8)
+> 	-#define   MTL_MCR_INSTANCEID                   REG_GENMASK(3, 0)
+> 	+#define   MTL_MCR_GROUPID                      GENMASK(32, 8)
+> 	+#define   MTL_MCR_INSTANCEID                   GENMASK(3, 0)
+> 	 	 #define IPEIR_I965                             _MMIO(0x2064)
+> 	 #define IPEHR_I965                             _MMIO(0x2068)
+> 
+> If the driver didn't support 32b CPUs, this would even go unnoticed.
 
-We'll also get rid of i915->display.vbt.ports[] here as any conflicts
-will now be handled at encoder registration time rather than during
-VBT parsing. Note that intel_bios_encoder_data_lookup() still remaims
-for pre-DDI DP/HDMI ports as those don't (at least yet) use VBT
-driven initialization.
+So, what does prevent you from using GENMASK_ULL()?
 
-TODO: DSI dual link handling is sketchy at best
+Another point, you may teach GENMASK() to issue a warning if hi and/or lo
+bigger than BITS_PER_LONG.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c        | 11 ++--
- drivers/gpu/drm/i915/display/icl_dsi.h        |  6 +-
- drivers/gpu/drm/i915/display/intel_bios.c     | 65 ++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_bios.h     |  6 ++
- drivers/gpu/drm/i915/display/intel_ddi.c      | 49 +++++++++++---
- drivers/gpu/drm/i915/display/intel_ddi.h      |  5 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 11 +---
- .../gpu/drm/i915/display/intel_display_core.h |  2 -
- 8 files changed, 107 insertions(+), 48 deletions(-)
+I still don't see the usefulness of that churn.
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 59a2a289d9be..475f4f587c79 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1933,16 +1933,14 @@ static void icl_dsi_add_properties(struct intel_connector *connector)
- 						       fixed_mode->vdisplay);
- }
- 
--void icl_dsi_init(struct drm_i915_private *dev_priv)
-+void icl_dsi_init(struct drm_i915_private *dev_priv,
-+		  const struct intel_bios_encoder_data *devdata,
-+		  enum port port)
- {
- 	struct intel_dsi *intel_dsi;
- 	struct intel_encoder *encoder;
- 	struct intel_connector *intel_connector;
- 	struct drm_connector *connector;
--	enum port port;
--
--	if (!intel_bios_is_dsi_present(dev_priv, &port))
--		return;
- 
- 	intel_dsi = kzalloc(sizeof(*intel_dsi), GFP_KERNEL);
- 	if (!intel_dsi)
-@@ -1958,6 +1956,8 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
- 	intel_dsi->attached_connector = intel_connector;
- 	connector = &intel_connector->base;
- 
-+	encoder->devdata = devdata;
-+
- 	/* register DSI encoder with DRM subsystem */
- 	drm_encoder_init(&dev_priv->drm, &encoder->base, &gen11_dsi_encoder_funcs,
- 			 DRM_MODE_ENCODER_DSI, "DSI %c", port_name(port));
-@@ -1995,7 +1995,6 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
- 
- 	intel_dsi->panel_power_off_time = ktime_get_boottime();
- 
--	encoder->devdata = intel_bios_encoder_data_lookup(dev_priv, port);
- 	intel_bios_init_panel_late(dev_priv, &intel_connector->panel, encoder->devdata, NULL);
- 
- 	mutex_lock(&dev_priv->drm.mode_config.mutex);
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.h b/drivers/gpu/drm/i915/display/icl_dsi.h
-index b4861b56b5b2..ac42f2dc21ec 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.h
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.h
-@@ -6,10 +6,14 @@
- #ifndef __ICL_DSI_H__
- #define __ICL_DSI_H__
- 
-+enum port;
- struct drm_i915_private;
-+struct intel_bios_encoder_data;
- struct intel_crtc_state;
- 
--void icl_dsi_init(struct drm_i915_private *i915);
-+void icl_dsi_init(struct drm_i915_private *i915,
-+		  const struct intel_bios_encoder_data *devdata,
-+		  enum port port);
- void icl_dsi_frame_update(struct intel_crtc_state *crtc_state);
- 
- #endif /* __ICL_DSI_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index d1bf725ee9b3..7d2e843681f3 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2484,7 +2484,7 @@ intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata)
- 		devdata->child.device_type & DEVICE_TYPE_INTERNAL_CONNECTOR;
- }
- 
--static bool
-+bool
- intel_bios_encoder_supports_dsi(const struct intel_bios_encoder_data *devdata)
- {
- 	return devdata->child.device_type & DEVICE_TYPE_MIPI_OUTPUT;
-@@ -2542,13 +2542,19 @@ static bool is_port_valid(struct drm_i915_private *i915, enum port port)
- 	return true;
- }
- 
--static void print_ddi_port(const struct intel_bios_encoder_data *devdata,
--			   enum port port)
-+static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
- {
- 	struct drm_i915_private *i915 = devdata->i915;
- 	const struct child_device_config *child = &devdata->child;
- 	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb, supports_tbt;
- 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
-+	enum port port;
-+
-+	port = dvo_port_to_port(i915, child->dvo_port);
-+	if (port == PORT_NONE && DISPLAY_VER(i915) >= 11)
-+		port = dsi_dvo_port_to_port(i915, child->dvo_port);
-+	if (port == PORT_NONE)
-+		return;
- 
- 	is_dvi = intel_bios_encoder_supports_dvi(devdata);
- 	is_dp = intel_bios_encoder_supports_dp(devdata);
-@@ -2628,16 +2634,7 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
- 		return;
- 	}
- 
--	if (i915->display.vbt.ports[port]) {
--		drm_dbg_kms(&i915->drm,
--			    "More than one child device for port %c in VBT, using the first.\n",
--			    port_name(port));
--		return;
--	}
--
- 	sanitize_device_type(devdata, port);
--
--	i915->display.vbt.ports[port] = devdata;
- }
- 
- static bool has_ddi_port_info(struct drm_i915_private *i915)
-@@ -2648,7 +2645,6 @@ static bool has_ddi_port_info(struct drm_i915_private *i915)
- static void parse_ddi_ports(struct drm_i915_private *i915)
- {
- 	struct intel_bios_encoder_data *devdata;
--	enum port port;
- 
- 	if (!has_ddi_port_info(i915))
- 		return;
-@@ -2656,10 +2652,8 @@ static void parse_ddi_ports(struct drm_i915_private *i915)
- 	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node)
- 		parse_ddi_port(devdata);
- 
--	for_each_port(port) {
--		if (i915->display.vbt.ports[port])
--			print_ddi_port(i915->display.vbt.ports[port], port);
--	}
-+	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node)
-+		print_ddi_port(devdata);
- }
- 
- static void
-@@ -3584,5 +3578,40 @@ bool intel_bios_encoder_hpd_invert(const struct intel_bios_encoder_data *devdata
- const struct intel_bios_encoder_data *
- intel_bios_encoder_data_lookup(struct drm_i915_private *i915, enum port port)
- {
--	return i915->display.vbt.ports[port];
-+	struct intel_bios_encoder_data *devdata;
-+
-+	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node) {
-+		const struct child_device_config *child = &devdata->child;
-+		enum port p;
-+
-+		p = dvo_port_to_port(i915, child->dvo_port);
-+		if (p == PORT_NONE && DISPLAY_VER(i915) >= 11)
-+			p = dsi_dvo_port_to_port(i915, child->dvo_port);
-+
-+		if (p == port)
-+			return devdata;
-+	}
-+
-+	return NULL;
-+}
-+
-+void intel_bios_for_each_encoder(struct drm_i915_private *i915,
-+				 void (*func)(struct drm_i915_private *i915,
-+					      const struct intel_bios_encoder_data *devdata,
-+					      enum port port))
-+{
-+	struct intel_bios_encoder_data *devdata;
-+
-+	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node) {
-+		const struct child_device_config *child = &devdata->child;
-+		enum port port;
-+
-+		port = dvo_port_to_port(i915, child->dvo_port);
-+		if (port == PORT_NONE && DISPLAY_VER(i915) >= 11)
-+			port = dsi_dvo_port_to_port(i915, child->dvo_port);
-+		if (port == PORT_NONE)
-+			continue;
-+
-+		func(i915, devdata, port);
-+	}
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 45fae97d9719..fdc847211a84 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -263,6 +263,7 @@ bool intel_bios_encoder_supports_dp(const struct intel_bios_encoder_data *devdat
- bool intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata);
-+bool intel_bios_encoder_supports_dsi(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_dp_dual_mode(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_is_lspcon(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_lane_reversal(const struct intel_bios_encoder_data *devdata);
-@@ -276,4 +277,9 @@ int intel_bios_hdmi_ddc_pin(const struct intel_bios_encoder_data *devdata);
- int intel_bios_hdmi_level_shift(const struct intel_bios_encoder_data *devdata);
- int intel_bios_hdmi_max_tmds_clock(const struct intel_bios_encoder_data *devdata);
- 
-+void intel_bios_for_each_encoder(struct drm_i915_private *i915,
-+				 void (*func)(struct drm_i915_private *i915,
-+					      const struct intel_bios_encoder_data *devdata,
-+					      enum port port));
-+
- #endif /* _INTEL_BIOS_H_ */
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 9e4e6482aa26..7bfcd52e4645 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -32,6 +32,7 @@
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
-+#include "icl_dsi.h"
- #include "intel_audio.h"
- #include "intel_audio_regs.h"
- #include "intel_backlight.h"
-@@ -4684,11 +4685,32 @@ static bool need_aux_ch(struct intel_encoder *encoder, bool init_dp)
- 	return init_dp || intel_phy_is_tc(i915, phy);
- }
- 
--void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
-+static bool assert_has_icl_dsi(struct drm_i915_private *i915)
-+{
-+	return !drm_WARN(&i915->drm, !IS_ALDERLAKE_P(i915) &&
-+			 !IS_TIGERLAKE(i915) && DISPLAY_VER(i915) != 11,
-+			 "Platform does not support DSI\n");
-+}
-+
-+static bool port_in_use(struct drm_i915_private *i915, enum port port)
-+{
-+	struct intel_encoder *encoder;
-+
-+	for_each_intel_encoder(&i915->drm, encoder) {
-+		/* FIXME what about second port for dual link DSI? */
-+		if (encoder->port == port)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
-+void intel_ddi_init(struct drm_i915_private *dev_priv,
-+		    const struct intel_bios_encoder_data *devdata,
-+		    enum port port)
- {
- 	struct intel_digital_port *dig_port;
- 	struct intel_encoder *encoder;
--	const struct intel_bios_encoder_data *devdata;
- 	bool init_hdmi, init_dp;
- 	enum phy phy = intel_port_to_phy(dev_priv, port);
- 
-@@ -4701,6 +4723,21 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 	if (!assert_port_valid(dev_priv, port))
- 		return;
- 
-+	if (port_in_use(dev_priv, port)) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Port %c already claimed\n", port_name(port));
-+		return;
-+	}
-+
-+	if (intel_bios_encoder_supports_dsi(devdata)) {
-+		/* BXT/GLK handled elsewhere, for now at least */
-+		if (!assert_has_icl_dsi(dev_priv))
-+			return;
-+
-+		icl_dsi_init(dev_priv, devdata, port);
-+		return;
-+	}
-+
- 	/*
- 	 * On platforms with HTI (aka HDPORT), if it's enabled at boot it may
- 	 * have taken over some of the PHYs and made them unavailable to the
-@@ -4713,14 +4750,6 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 		return;
- 	}
- 
--	devdata = intel_bios_encoder_data_lookup(dev_priv, port);
--	if (!devdata) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "VBT says port %c is not present\n",
--			    port_name(port));
--		return;
--	}
--
- 	init_hdmi = intel_bios_encoder_supports_dvi(devdata) ||
- 		intel_bios_encoder_supports_hdmi(devdata);
- 	init_dp = intel_bios_encoder_supports_dp(devdata);
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
-index 2bc034042a93..10d586b0a9c0 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.h
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-@@ -11,6 +11,7 @@
- struct drm_connector_state;
- struct drm_i915_private;
- struct intel_atomic_state;
-+struct intel_bios_encoder_data;
- struct intel_connector;
- struct intel_crtc;
- struct intel_crtc_state;
-@@ -50,7 +51,9 @@ void hsw_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
- 				const struct intel_crtc_state *crtc_state);
- void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
- 			     enum port port);
--void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port);
-+void intel_ddi_init(struct drm_i915_private *dev_priv,
-+		    const struct intel_bios_encoder_data *devdata,
-+		    enum port port);
- bool intel_ddi_get_hw_state(struct intel_encoder *encoder, enum pipe *pipe);
- void intel_ddi_enable_transcoder_func(struct intel_encoder *encoder,
- 				      const struct intel_crtc_state *crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 43d6ba980780..836d3a1c797a 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -53,7 +53,6 @@
- #include "i915_utils.h"
- #include "i9xx_plane.h"
- #include "i9xx_wm.h"
--#include "icl_dsi.h"
- #include "intel_atomic.h"
- #include "intel_atomic_plane.h"
- #include "intel_audio.h"
-@@ -7409,18 +7408,10 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 		return;
- 
- 	if (HAS_DDI(dev_priv)) {
--		enum port port;
--
- 		if (intel_ddi_crt_present(dev_priv))
- 			intel_crt_init(dev_priv);
- 
--		for_each_port_masked(port, DISPLAY_RUNTIME_INFO(dev_priv)->port_mask)
--			intel_ddi_init(dev_priv, port);
--
--		/* FIXME do something about DSI */
--		if (IS_ALDERLAKE_P(dev_priv) || IS_TIGERLAKE(dev_priv) ||
--		    DISPLAY_VER(dev_priv) == 11)
--			icl_dsi_init(dev_priv);
-+		intel_bios_for_each_encoder(dev_priv, intel_ddi_init);
- 
- 		if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
- 			vlv_dsi_init(dev_priv);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 8d2243c71dd8..56c596ca7cbf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -33,7 +33,6 @@ struct i915_audio_component;
- struct i915_hdcp_arbiter;
- struct intel_atomic_state;
- struct intel_audio_funcs;
--struct intel_bios_encoder_data;
- struct intel_cdclk_funcs;
- struct intel_cdclk_vals;
- struct intel_color_funcs;
-@@ -218,7 +217,6 @@ struct intel_vbt_data {
- 	struct list_head display_devices;
- 	struct list_head bdb_blocks;
- 
--	struct intel_bios_encoder_data *ports[I915_MAX_PORTS]; /* Non-NULL if port present. */
- 	struct sdvo_device_mapping {
- 		u8 initialized;
- 		u8 dvo_port;
+> Lucas De Marchi
+> 
+> > And there are already header for bitfields with a lot of helpers
+> > for (similar) cases if not yours.
+> > 
+> > > What would you use for printk format if you wanted to to print
+> > > GENMASK()?
+> > 
+> > %lu, no?
+
 -- 
-2.39.3
+With Best Regards,
+Andy Shevchenko
+
 
