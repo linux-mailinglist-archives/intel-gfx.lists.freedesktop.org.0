@@ -2,47 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C504973621B
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 05:16:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A77073620F
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 05:13:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D71510E07F;
-	Tue, 20 Jun 2023 03:16:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D97810E121;
+	Tue, 20 Jun 2023 03:13:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD34110E07F
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jun 2023 03:16:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687231009; x=1718767009;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RjCaKY+pa+ox5SKwnmlBML1D+6FhlcZ27jumhdfnCqg=;
- b=M9bVd0OOpFEHABU6RbDONeb5ZGv1ZKlXH3JEalpdLyBFl3g+92v+YegC
- FOfbm4OfJx63zU+nm2QMGRhxt4ksRx4ij/dczPjFJI3kNAsG+QHgn/q/E
- 411PoCJFV/mPZeNE/Yo0ZOTMT7l6XnbBQI60/TdwLH1oOEZhiXtkrcDBq
- VcWoSczMh/F7Wsgzpmdcm3dET0UhlvyJqkwyOm+ZKhlaHl6rq7nSW2tPb
- HPKl7EfH9bYuejzcrE/6uwYZVMqAerwreG1VacfOsY7GoeSTy60s5Iu7X
- SON9MU86E63CrgTEWJoN0xk21fQLWVpgXy0iegfxAhP8rHHRk0y+n/Eef A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="349481793"
-X-IronPort-AV: E=Sophos;i="6.00,256,1681196400"; d="scan'208";a="349481793"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2023 20:16:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="838054139"
-X-IronPort-AV: E=Sophos;i="6.00,256,1681196400"; d="scan'208";a="838054139"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orsmga004.jf.intel.com with ESMTP; 19 Jun 2023 20:16:46 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 20 Jun 2023 08:39:21 +0530
-Message-Id: <20230620030921.986811-1-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 60B4210E16F;
+ Tue, 20 Jun 2023 03:13:48 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8Ax0OhqGZFkqgcHAA--.12544S3;
+ Tue, 20 Jun 2023 11:13:46 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8DxbMpnGZFkax4hAA--.18888S3; 
+ Tue, 20 Jun 2023 11:13:43 +0800 (CST)
+Message-ID: <5c3b5f2e-00c6-efba-1239-cdf96285d6a2@loongson.cn>
+Date: Tue, 20 Jun 2023 11:13:43 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: "Limonciello, Mario" <mario.limonciello@amd.com>,
+ Sui Jingfeng <15330273260@189.cn>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>, Pan Xinhui <Xinhui.Pan@amd.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ YiPeng Chai <YiPeng.Chai@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Bokun Zhang <Bokun.Zhang@amd.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>, Li Yi <liyi@loongson.cn>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
+ Cornelia Huck <cohuck@redhat.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Abhishek Sahu <abhsahu@nvidia.com>, Yi Liu <yi.l.liu@intel.com>
+References: <20230612192550.197053-1-15330273260@189.cn>
+ <20230612192550.197053-3-15330273260@189.cn>
+ <5b6fdf65-b354-94a9-f883-be820157efad@amd.com>
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+Organization: Loongson
+In-Reply-To: <5b6fdf65-b354-94a9-f883-be820157efad@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCHv5] drm/i915/display/dp: On AUX xfer timeout
- restart freshly
+X-CM-TRANSID: AQAAf8DxbMpnGZFkax4hAA--.18888S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxGF4UCF4xWFy8AFW5CF1Dtwc_yoW5KrWDpF
+ ykJFW5GryUWwn7Gw12qr1UXFy5XrWUJa4DJr409a4jkr4UAryjqFy8XryYgr1UJrWkJF1U
+ Jr1Utr17Z3W7JabCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUPab4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+ 6r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
+ xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
+ 6r1DMcIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
+ 1lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxG
+ rwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14
+ v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Wrv_Gr1UMIIY
+ rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JFI_Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14
+ v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8
+ JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU3jjgUU
+ UUU
+Subject: Re: [Intel-gfx] [PATCH v6 2/8] PCI/VGA: Deal only with VGA class
+ devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,124 +89,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-At the beginning of the aux transfer a check for aux control busy bit is
-done. Then as per the spec on aux transfer timeout, need to retry
-freshly for 3 times with a delay which is taken care by the control
-register.
-On each of these 3 trials a check for busy has to be done so as to start
-freshly.
+Hi,
 
-v2: updated the commit message
-v4: check for SEND_BUSY after write (Imre)
-v5: reverted the send_ctl to the while loop (Jani)
+On 2023/6/20 02:12, Limonciello, Mario wrote:
+>
+> On 6/12/2023 2:25 PM, Sui Jingfeng wrote:
+>> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>>
+>> Deal only with the VGA devcie(pdev->class == 0x0300), so replace the
+>> pci_get_subsys() function with pci_get_class(). Filter the non-PCI 
+>> display
+>> device(pdev->class != 0x0300) out. There no need to process the 
+>> non-display
+>> PCI device.
+>>
+>> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+>> ---
+> This also means that deleting a PCI device no longer needs
+> to walk the list.
+>
+> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
+>
+Thanks a lot,
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_aux.c | 56 ++++++++++-----------
- 1 file changed, 26 insertions(+), 30 deletions(-)
+can you help to resend this precious R-B to the V7 of this series [1],
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index 21b50a5c8a85..495e7b91db58 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -226,6 +226,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	int i, ret, recv_bytes;
- 	int try, clock = 0;
- 	u32 status;
-+	u32 send_ctl;
- 	bool vdd;
- 
- 	ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
-@@ -273,30 +274,6 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	 * it using the same AUX CH simultaneously
- 	 */
- 
--	/* Try to wait for any previous AUX channel activity */
--	for (try = 0; try < 3; try++) {
--		status = intel_de_read_notrace(i915, ch_ctl);
--		if ((status & DP_AUX_CH_CTL_SEND_BUSY) == 0)
--			break;
--		msleep(1);
--	}
--	/* just trace the final value */
--	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
--
--	if (try == 3) {
--		const u32 status = intel_de_read(i915, ch_ctl);
--
--		if (status != intel_dp->aux_busy_last_status) {
--			drm_WARN(&i915->drm, 1,
--				 "%s: not started (status 0x%08x)\n",
--				 intel_dp->aux.name, status);
--			intel_dp->aux_busy_last_status = status;
--		}
--
--		ret = -EBUSY;
--		goto out;
--	}
--
- 	/* Only 5 data registers! */
- 	if (drm_WARN_ON(&i915->drm, send_bytes > 20 || recv_size > 20)) {
- 		ret = -E2BIG;
-@@ -304,14 +281,31 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	}
- 
- 	while ((aux_clock_divider = intel_dp->get_aux_clock_divider(intel_dp, clock++))) {
--		u32 send_ctl = intel_dp->get_aux_send_ctl(intel_dp,
--							  send_bytes,
--							  aux_clock_divider);
--
-+		send_ctl = intel_dp->get_aux_send_ctl(intel_dp,
-+						      send_bytes,
-+						      aux_clock_divider);
- 		send_ctl |= aux_send_ctl_flags;
- 
--		/* Must try at least 3 times according to DP spec */
-+		/* FIXME: Must try at least 3 times according to DP spec */
- 		for (try = 0; try < 5; try++) {
-+			/* Try to wait for any previous AUX channel activity */
-+			status = intel_dp_aux_wait_done(intel_dp);
-+			/* just trace the final value */
-+			trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
-+
-+			if (status & DP_AUX_CH_CTL_SEND_BUSY) {
-+				drm_WARN(&i915->drm, 1,
-+					 "%s: not started, previous Tx still in process (status 0x%08x)\n",
-+					 intel_dp->aux.name, status);
-+				intel_dp->aux_busy_last_status = status;
-+				if (try > 3) {
-+					ret = -EBUSY;
-+					goto out;
-+				} else {
-+					continue;
-+				}
-+			}
-+
- 			/* Load the send data into the aux channel data registers */
- 			for (i = 0; i < send_bytes; i += 4)
- 				intel_de_write(i915, ch_data[i >> 2],
-@@ -321,6 +315,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 			/* Send the command and wait for it to complete */
- 			intel_de_write(i915, ch_ctl, send_ctl);
- 
-+			/* TODO: if typeC then 4.2ms else 800us. For DG2 add 1.5ms for both cases */
- 			status = intel_dp_aux_wait_done(intel_dp);
- 
- 			/* Clear done status and any errors */
-@@ -335,7 +330,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 			 *   Timeout errors from the HW already meet this
- 			 *   requirement so skip to next iteration
- 			 */
--			if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR)
-+			if (status & (DP_AUX_CH_CTL_TIME_OUT_ERROR |
-+				      DP_AUX_CH_CTL_SEND_BUSY))
- 				continue;
- 
- 			if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
+This is V6.
+
+[1] https://patchwork.freedesktop.org/series/119250/
+
+>>   drivers/pci/vgaarb.c | 22 ++++++++++++----------
+>>   1 file changed, 12 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+>> index c1bc6c983932..22a505e877dc 100644
+>> --- a/drivers/pci/vgaarb.c
+>> +++ b/drivers/pci/vgaarb.c
+>> @@ -754,10 +754,6 @@ static bool vga_arbiter_add_pci_device(struct 
+>> pci_dev *pdev)
+>>       struct pci_dev *bridge;
+>>       u16 cmd;
+>>   -    /* Only deal with VGA class devices */
+>> -    if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
+>> -        return false;
+>> -
+>>       /* Allocate structure */
+>>       vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
+>>       if (vgadev == NULL) {
+>> @@ -1500,7 +1496,9 @@ static int pci_notify(struct notifier_block 
+>> *nb, unsigned long action,
+>>       struct pci_dev *pdev = to_pci_dev(dev);
+>>       bool notify = false;
+>>   -    vgaarb_dbg(dev, "%s\n", __func__);
+>> +    /* Only deal with VGA class devices */
+>> +    if (pdev->class != PCI_CLASS_DISPLAY_VGA << 8)
+>> +        return 0;
+>>         /* For now we're only intereted in devices added and removed. 
+>> I didn't
+>>        * test this thing here, so someone needs to double check for the
+>> @@ -1510,6 +1508,8 @@ static int pci_notify(struct notifier_block 
+>> *nb, unsigned long action,
+>>       else if (action == BUS_NOTIFY_DEL_DEVICE)
+>>           notify = vga_arbiter_del_pci_device(pdev);
+>>   +    vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
+>> +
+>>       if (notify)
+>>           vga_arbiter_notify_clients();
+>>       return 0;
+>> @@ -1534,8 +1534,8 @@ static struct miscdevice vga_arb_device = {
+>>     static int __init vga_arb_device_init(void)
+>>   {
+>> +    struct pci_dev *pdev = NULL;
+>>       int rc;
+>> -    struct pci_dev *pdev;
+>>         rc = misc_register(&vga_arb_device);
+>>       if (rc < 0)
+>> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
+>>         /* We add all PCI devices satisfying VGA class in the arbiter by
+>>        * default */
+>> -    pdev = NULL;
+>> -    while ((pdev =
+>> -        pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
+>> -                   PCI_ANY_ID, pdev)) != NULL)
+>> +    while (1) {
+>> +        pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
+>> +        if (!pdev)
+>> +            break;
+>> +
+>>           vga_arbiter_add_pci_device(pdev);
+>> +    }
+>>         pr_info("loaded\n");
+>>       return rc;
+
 -- 
-2.25.1
+Jingfeng
 
