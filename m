@@ -1,42 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6443A73738C
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:12:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D283C7373A3
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 20:19:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4047B10E198;
-	Tue, 20 Jun 2023 18:12:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4956510E23E;
+	Tue, 20 Jun 2023 18:19:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-41104.protonmail.ch (mail-41104.protonmail.ch
- [185.70.41.104])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 759D210E198
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jun 2023 18:12:23 +0000 (UTC)
-Date: Tue, 20 Jun 2023 18:12:06 +0000
-Authentication-Results: mail-41104.protonmail.ch;
- dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
- header.b="SCWOgswk"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail; t=1687284734; x=1687543934;
- bh=GtbBTDHru8D51gxY0nixzxGVoKTku4w5U+AcR1WfGuw=;
- h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
- Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
- b=SCWOgswk/6WqR/mh4+6xFnIS90qxxtjhORdALv6wVWvJAC+HKWNzvqlBS5VP/5vrv
- SE0dtXbM0zNizkAWGTRXmgc9Q0Rh8cyxpyF5O1ZDMTa8gvIB383tsgCyoQtcTiEg2U
- csbJkQudL1HXkvhejDm5gMvfo53dAhmwznp2O2lsDJVM8GDMckd2xGpt9VvBeuw4tM
- vfhv3DA4hmwBLswOGu/irk+3d59o1LDUZS17+NrUk8//6mLgMdasPzAGKr8TDUY75b
- XsyI9cW7LxvWO63S4QeT0QToYoxPynVw97U4Q+cVxY56boOXQ5GQhpQEHKioox6lR6
- XK5lMdr1iolcQ==
-To: intel-gfx@lists.freedesktop.org
-From: Simon Ser <contact@emersion.fr>
-Message-ID: <20230620181203.272076-1-contact@emersion.fr>
-Feedback-ID: 1358184:user:proton
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C9F010E0CC;
+ Tue, 20 Jun 2023 18:19:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687285169; x=1718821169;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=fxp7O1IFxzgSra3+U3m4CdtMmU0xIakqiwOKj7ZMuzc=;
+ b=drQ4exi1zC82dS29KaQ8wCmwHmtvs8XpEiEcJG4Zk46iXkzPEYRG9p22
+ d+gfWswQDcdDcIEMJWgeJSrMedQafmwKe3zvNkFfLYn+nW2XODLXAbBUk
+ SP8qtLmh+zN+NeI/RnFB3zTVrfla7qJ7nnrGAjo4LheouNsPkbgZIUFIV
+ DzU5Vy9cVOEbxS7FibR9ge/UXNXK5v3qfisI3w5mw1IiWMtllFdnchEwK
+ SC9foQMcZeoeexjsjORyxe01kqbPbhRaURdgqPqyypJWm1LTWAJdu/gI4
+ jZVoS6p8I0DU7Bq1VazxgCOE7UCaeR9hg9axDC9bY7SaQK+IJDIrgknPE w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="363368703"
+X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="363368703"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2023 11:19:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="838309700"
+X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="838309700"
+Received: from dshvarts-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.62.204])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2023 11:19:23 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>
+In-Reply-To: <ZJHkthMktY83pwvy@smile.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
+ <20230509051403.2748545-3-lucas.demarchi@intel.com>
+ <ZF4fi5B7PPlgZBOI@smile.fi.intel.com> <87pm75kd0h.fsf@intel.com>
+ <ZF4j0NPoBGMBT8CO@smile.fi.intel.com> <87mt29kc34.fsf@intel.com>
+ <ZIs0CC2J7nu0LHEK@smile.fi.intel.com> <875y7igph5.fsf@intel.com>
+ <ZJG91zMQW3Rnvdbe@smile.fi.intel.com>
+ <amgwl5mthhqgvgkqnor6tjfcr3x3pgwvpqin5efwwjfpdhvvpa@vhzhiq5mzsdg>
+ <ZJHkthMktY83pwvy@smile.fi.intel.com>
+Date: Tue, 20 Jun 2023 21:19:20 +0300
+Message-ID: <87ttv2f13r.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: [Intel-gfx] [PATCH] i915/display/hotplug: use
- drm_kms_helper_connector_hotplug_event()
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 2/3] linux/bits.h: Add
+ fixed-width GENMASK and BIT macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,70 +67,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Kevin Brodsky <kevin.brodsky@arm.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Thomas Gleixner <tglx@linutronix.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Masahiro Yamada <masahiroy@kernel.org>,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This adds more information to the hotplug uevent and lets user-space
-know that it's about a particular connector only.
+On Tue, 20 Jun 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> So, what does prevent you from using GENMASK_ULL()?
+>
+> Another point, you may teach GENMASK() to issue a warning if hi and/or lo
+> bigger than BITS_PER_LONG.
 
-Signed-off-by: Simon Ser <contact@emersion.fr>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hotplug.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+What good does that do if you want the warning for a fixed size
+different from unsigned long or long long? Worse, sizeof(long) depends
+on arch, while the GENMASK you want depends on the use case.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm=
-/i915/display/intel_hotplug.c
-index 1160fa20433b..605c6e05a169 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -376,6 +376,7 @@ static void i915_hotplug_work_func(struct work_struct *=
-work)
- =09u32 changed =3D 0, retry =3D 0;
- =09u32 hpd_event_bits;
- =09u32 hpd_retry_bits;
-+=09struct drm_connector *first_changed_connector =3D NULL;
-=20
- =09mutex_lock(&dev_priv->drm.mode_config.mutex);
- =09drm_dbg_kms(&dev_priv->drm, "running encoder hotplug functions\n");
-@@ -428,6 +429,10 @@ static void i915_hotplug_work_func(struct work_struct =
-*work)
- =09=09=09=09break;
- =09=09=09case INTEL_HOTPLUG_CHANGED:
- =09=09=09=09changed |=3D hpd_bit;
-+=09=09=09=09if (!first_changed_connector) {
-+=09=09=09=09=09drm_connector_get(&connector->base);
-+=09=09=09=09=09first_changed_connector =3D &connector->base;
-+=09=09=09=09}
- =09=09=09=09break;
- =09=09=09case INTEL_HOTPLUG_RETRY:
- =09=09=09=09retry |=3D hpd_bit;
-@@ -438,9 +443,14 @@ static void i915_hotplug_work_func(struct work_struct =
-*work)
- =09drm_connector_list_iter_end(&conn_iter);
- =09mutex_unlock(&dev_priv->drm.mode_config.mutex);
-=20
--=09if (changed)
-+=09if (hweight32(changed) =3D=3D 1)
-+=09=09drm_kms_helper_connector_hotplug_event(first_changed_connector);
-+=09else if (changed)
- =09=09drm_kms_helper_hotplug_event(&dev_priv->drm);
-=20
-+=09if (first_changed_connector)
-+=09=09drm_connector_put(first_changed_connector);
-+
- =09/* Remove shared HPD pins that have changed */
- =09retry &=3D ~changed;
- =09if (retry) {
---=20
-2.41.0
+> I still don't see the usefulness of that churn.
+
+This thread is turning into a prime example of why drivers and
+subsystems reinvent their own wheels instead of trying to get generally
+useful stuff merged in kernel headers. :p
 
 
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
