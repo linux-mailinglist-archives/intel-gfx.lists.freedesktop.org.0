@@ -2,57 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D26B736F47
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 16:55:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7996473710F
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jun 2023 17:58:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC8E10E2F2;
-	Tue, 20 Jun 2023 14:55:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3176F10E2F8;
+	Tue, 20 Jun 2023 15:58:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAE4F10E18A;
- Tue, 20 Jun 2023 14:55:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687272925; x=1718808925;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=XMXMVTVfJHIhMV47ofWnIv/F0uVJolD1m6tGtB1qTuU=;
- b=oDMrTeRIo2xw4K6jhj0WWhPv0hhz9xk4NYvx3yE+IWQ9s4gcspWJk8DH
- UPSGdvSnXuk8IQ+Nr7JBMyCuqRnmVqrPjrJI9mlTYoJMVb72bZxHc7uAG
- SbbLoPVkYlDophHu3swLKtJa7Cwu1cjvJpTbQcWyDHrXEArlEUncrS//R
- sniMBjfdhyT5tiJPqamHLXnBMOLJEFZMwPXnW5Mygt1Gusr7viQErsdz/
- Fs3OCThQuJ1zw5FqQnYYpmg4h/Mqv5t3Y257CTCkovJ2qeUNGuwWTjw/R
- LeKmOu0N/x6JWOMF/w9MxtmcJATeQ9ztViJZubn9Q70jo7EyemggSyj+J Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="389150707"
-X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="389150707"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2023 07:55:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="858613967"
-X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="858613967"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by fmsmga001.fm.intel.com with ESMTP; 20 Jun 2023 07:55:22 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1qBclM-005HUm-0V; Tue, 20 Jun 2023 17:55:20 +0300
-Date: Tue, 20 Jun 2023 17:55:19 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <ZJG91zMQW3Rnvdbe@smile.fi.intel.com>
-References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
- <20230509051403.2748545-3-lucas.demarchi@intel.com>
- <ZF4fi5B7PPlgZBOI@smile.fi.intel.com> <87pm75kd0h.fsf@intel.com>
- <ZF4j0NPoBGMBT8CO@smile.fi.intel.com> <87mt29kc34.fsf@intel.com>
- <ZIs0CC2J7nu0LHEK@smile.fi.intel.com> <875y7igph5.fsf@intel.com>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C88D410E2F7;
+ Tue, 20 Jun 2023 15:58:20 +0000 (UTC)
+Received: from [192.168.2.254] (109-252-154-132.dynamic.spd-mgts.ru
+ [109.252.154.132])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 59F9B6600359;
+ Tue, 20 Jun 2023 16:58:16 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1687276697;
+ bh=ls7zvLRnqt5Y8THKltOoAvNQHWOG4mAX3GW6W2X4FOI=;
+ h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+ b=BANzgbj+v61rPNNrF22H7ot9g3O9aOVblDPX03ehAkIYmdK/pOgHmG82/ArIZV8Hi
+ ONnbjrL4ZXrkGAvQlnYGIBQoqsdXVmI8/RGLt49jpn0BRCcUq4XLim+wMEZxpJ5FEE
+ VGyNS+iXCW3E/C0pGHsLrm12X7SiEwEd8tDFabhaKOcf/KkV4bxJOPHxLkGozcXWwK
+ veGcVL3wWEf0HlJMaQo+RWSakvZzysjQikWYeCIRU6Xgo/9j3fQlKQRq5zTGYP6cJ1
+ 6lNXRGk9WOi6ulayQaVeMGl/p1KJ14LtJJZJ6zYgQkznXz0R4QdiP9pzSPkBqn1SbD
+ FMkPCLTEHDO4A==
+Message-ID: <1a04706a-caee-114c-6b6e-e4fdb815e619@collabora.com>
+Date: Tue, 20 Jun 2023 18:58:13 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <875y7igph5.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH 2/3] linux/bits.h: Add fixed-width GENMASK
- and BIT macros
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.1
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <20230529223935.2672495-1-dmitry.osipenko@collabora.com>
+ <20230529223935.2672495-6-dmitry.osipenko@collabora.com>
+ <91466907-d4e1-1619-27a8-a49a01cbc8f1@collabora.com>
+Content-Language: en-US
+In-Reply-To: <91466907-d4e1-1619-27a8-a49a01cbc8f1@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v4 5/6] dma-buf: Change locking policy for
+ mmap()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,58 +59,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrew Morton <akpm@linux-foundation.org>, intel-gfx@lists.freedesktop.org,
- Kevin Brodsky <kevin.brodsky@arm.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Thomas Gleixner <tglx@linutronix.de>,
- Masahiro Yamada <masahiroy@kernel.org>, intel-xe@lists.freedesktop.org
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Arnd Bergmann <arnd@arndb.de>,
+ intel-gfx@lists.freedesktop.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Tomasz Figa <tfiga@chromium.org>, Tomi Valkeinen <tomba@kernel.org>,
+ John Stultz <jstultz@google.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-tegra@vger.kernel.org,
+ kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 20, 2023 at 05:47:34PM +0300, Jani Nikula wrote:
-> On Thu, 15 Jun 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> > On Fri, May 12, 2023 at 02:45:19PM +0300, Jani Nikula wrote:
-> >> On Fri, 12 May 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> >> > On Fri, May 12, 2023 at 02:25:18PM +0300, Jani Nikula wrote:
-> >> >> On Fri, 12 May 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> >> >> > On Mon, May 08, 2023 at 10:14:02PM -0700, Lucas De Marchi wrote:
-> >> >> >> Add GENMASK_U32(), GENMASK_U16() and GENMASK_U8()  macros to create
-> >> >> >> masks for fixed-width types and also the corresponding BIT_U32(),
-> >> >> >> BIT_U16() and BIT_U8().
-> >> >> >
-> >> >> > Why?
-> >> >> 
-> >> >> The main reason is that GENMASK() and BIT() size varies for 32/64 bit
-> >> >> builds.
-> >> >
-> >> > When needed GENMASK_ULL() can be used (with respective castings perhaps)
-> >> > and BIT_ULL(), no?
-> >> 
-> >> How does that help with making them the same 32-bit size on both 32 and
-> >> 64 bit builds?
-> >
-> > 	u32 x = GENMASK();
-> > 	u64 y = GENMASK_ULL();
-> >
-> > No? Then use in your code either x or y. Note that I assume that the parameters
-> > to GENMASK*() are built-time constants. Is it the case for you?
+On 5/31/23 22:58, Dmitry Osipenko wrote:
+> On 5/30/23 01:39, Dmitry Osipenko wrote:
+>> Change locking policy of mmap() callback, making exporters responsible
+>> for handling dma-buf reservation locking. Previous locking policy stated
+>> that dma-buf is locked for both importers and exporters by the dma-buf
+>> core, which caused a deadlock problem for DRM drivers in a case of
+>> self-imported dma-bufs which required to take the lock from the DRM
+>> exporter side.
+>>
+>> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
+>> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+>> ---
+>>  drivers/dma-buf/dma-buf.c | 17 +++--------------
+>>  1 file changed, 3 insertions(+), 14 deletions(-)
 > 
-> What's wrong with wanting to define macros with specific size, depending
-> on e.g. hardware registers instead of build size?
+> Christian, you acked the drm patch of this series sometime ago, perhaps
+> it also implies implicit ack to this patch, but I'd prefer to have the
+> explicit ack. I'll apply this series to drm-misc later this week if
+> you'll approve this dma-buf change. Thanks in advance!
 
-Nothing, but I think the problem is smaller than it's presented.
-And there are already header for bitfields with a lot of helpers
-for (similar) cases if not yours.
-
-> What would you use for printk format if you wanted to to print
-> GENMASK()?
-
-%lu, no?
+I'll merge the patches tomorrow. If there are any additional comments,
+then please don't hesitate to post them.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Dmitry
 
