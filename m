@@ -2,53 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C666D73824B
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jun 2023 13:25:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D978738261
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jun 2023 13:48:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB4C10E444;
-	Wed, 21 Jun 2023 11:25:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4EF710E449;
+	Wed, 21 Jun 2023 11:48:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09CC010E451
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jun 2023 11:25:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687346729; x=1718882729;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=kj8bws7Brpe0EFZ8yZ/ZbRpmxlpoJ6ec8bmLCKeSIwE=;
- b=RB8Ta332+KnGo7mMAKqADw0TWp1ZNuQ4AD9Nco4uWNYExCXoW67zoonf
- QHRBor6l+C3L+DOOOQKMlFjay2kAiF2j4p4awDLg7TM+EMsZLzEfcBhzt
- WmJbp0/GMmU1Abd1QzNCv4GM92s7548Vzvux8m7JhKrvKNEgEMraYMEhR
- HDBEIvfBJXvBd1v8Ugp0NSCBmSF+uvWKXhuZ3JxNwfRfkJrsW39nuYhep
- JVaOvFGG3ZcndtwFCoJLQ01OnQcT/+EMIvp+q40o4AjADiRfEs8+VZk3b
- EEgcyiukh/guN7gZKAE6rE9WOkovIzhKYrigC7z4b05dCGHLvyXqZSOlp w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="349875849"
-X-IronPort-AV: E=Sophos;i="6.00,260,1681196400"; d="scan'208";a="349875849"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2023 04:25:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="714440262"
-X-IronPort-AV: E=Sophos;i="6.00,260,1681196400"; d="scan'208";a="714440262"
-Received: from unknown (HELO localhost) ([10.237.66.162])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2023 04:25:07 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <6b22396b-2667-8f69-06db-8ee5a9b775d0@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230615095421.3135415-1-dnyaneshwar.bhadane@intel.com>
- <87y1kef64p.fsf@intel.com>
- <6b22396b-2667-8f69-06db-8ee5a9b775d0@linux.intel.com>
-Date: Wed, 21 Jun 2023 14:25:04 +0300
-Message-ID: <87legd2h2n.fsf@intel.com>
+Received: from mblankhorst.nl (lankhorst.se
+ [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE84C10E444
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jun 2023 11:48:38 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 21 Jun 2023 13:48:26 +0200
+Message-Id: <20230621114827.167713-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 00/11] Replace acronym with full platform
- name in defines.
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Swap ggtt_vma during legacy
+ cursor update
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,17 +37,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 21 Jun 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> Historically we were not avoiding churn if we could sense a real
-> gain.
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cursor.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-I tried but failed to say, if we're going to churn, let's at least go
-through this properly instead of churning, and then churning again, and
-again.
-
-BR,
-Jani.
-
-
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 4962247911d41..6f34098ea314d 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -688,9 +688,8 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	if (ret)
+ 		goto out_free;
+ 
+-	ret = intel_plane_pin_fb(new_plane_state);
+-	if (ret)
+-		goto out_free;
++	/* magic trick! */
++	swap(new_plane_state->ggtt_vma, old_plane_state->ggtt_vma);
+ 
+ 	intel_frontbuffer_flush(to_intel_frontbuffer(new_plane_state->hw.fb),
+ 				ORIGIN_CURSOR_UPDATE);
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.39.2
+
