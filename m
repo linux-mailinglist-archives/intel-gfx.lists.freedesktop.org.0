@@ -2,53 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01DE1737DF8
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jun 2023 11:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAC3F737E2A
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jun 2023 11:16:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C0D710E41D;
-	Wed, 21 Jun 2023 09:02:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 475E510E41E;
+	Wed, 21 Jun 2023 09:16:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4C5210E41D
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jun 2023 09:02:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687338125; x=1718874125;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=jEOTqVp5SSPMDLqdf1H2LYnz//ptgovPvpuNKA/hnzo=;
- b=fLb5NWG7Uyx4nlImhIpQL5pbGHQMshOh0w0lWe60opxxl4VHxW8CdGjK
- cn14+uT2r9VeT5H2u2adcYCieR23SDfYC4TiQ2QkQJb+XByhIs7Fvj2oO
- vdNJRw665sPDm0YpCMCTwsZRZbEFEecC5ffPGl3G+tpbeLtVHRe1I8lsp
- eIXbQAern+hzvYh9K+J7rinvupflJY/RsnLZYHLn4UNWAQOUqxRL6zQo9
- uxz9x35+xZ20pXlGGCosIlqph0Y3+wpS+te0jWUxJ2N/DNTDfJXH6PmhM
- RKISCP/8YatTlGjSO2gvTFLsJtLSKFFPh7XKDt2OZ0qinq/bjpqRdZ+A6 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="363534938"
-X-IronPort-AV: E=Sophos;i="6.00,260,1681196400"; d="scan'208";a="363534938"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2023 02:01:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="691769678"
-X-IronPort-AV: E=Sophos;i="6.00,260,1681196400"; d="scan'208";a="691769678"
-Received: from dafnaroz-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.63.122])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2023 02:01:41 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Murthy, Arun R"
- <arun.r.murthy@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <SN7PR11MB6750DC684457557AB55AC161E35DA@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230620025243.979317-1-arun.r.murthy@intel.com>
- <SN7PR11MB6750DC684457557AB55AC161E35DA@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Wed, 21 Jun 2023 12:01:38 +0300
-Message-ID: <87ttv1dw99.fsf@intel.com>
+X-Greylist: delayed 557 seconds by postgrey-1.36 at gabe;
+ Wed, 21 Jun 2023 09:16:19 UTC
+Received: from pio-pvt-msa3.bahnhof.se (pio-pvt-msa3.bahnhof.se [79.136.2.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AFB910E41F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jun 2023 09:16:19 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTP id 9233E3FA9A;
+ Wed, 21 Jun 2023 11:06:59 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.201
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.201 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.091,
+ T_SCC_BODY_TEXT_LINE=-0.01] autolearn=ham autolearn_force=no
+Authentication-Results: pio-pvt-msa3.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from pio-pvt-msa3.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa3.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id n0VbiRymwsKG; Wed, 21 Jun 2023 11:06:58 +0200 (CEST)
+Received: by pio-pvt-msa3.bahnhof.se (Postfix) with ESMTPA id 5645E3FA67;
+ Wed, 21 Jun 2023 11:06:57 +0200 (CEST)
+Received: from [192.168.0.209] (unknown [134.191.232.81])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 16B553631FE;
+ Wed, 21 Jun 2023 11:06:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1687338416; bh=ASHe5V5zHsS9gHNX0/ImqDfplWNdOYDmwlVBv/l+V5U=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=ahm6S886OmI+vdOHzg4L1cVK8vLVBmZrhYjLIAVqt3PSzQ7efHi5TZbOv1o6fOGFV
+ 2QL6tStvv7uVzKKraE4pgvthvBHSjKSVEGuWxmvUsDRqhwihq6A+AHkjh4vUF6Mg0v
+ ifVIyJshfIiyBrsM4Zf+yPpecBRw/RHJlDYiA9aY=
+Message-ID: <79e1f37f-3ffa-0195-860b-08cc890d810e@shipmail.org>
+Date: Wed, 21 Jun 2023 11:06:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/dp: Remove support for
- UHBR13.5
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.1
+Content-Language: en-US
+To: Sumitra Sharma <sumitraartsy@gmail.com>, Ira Weiny <ira.weiny@intel.com>
+References: <20230620180759.GA419158@sumitra.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <20230620180759.GA419158@sumitra.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Replace kmap() with
+ kmap_local_page()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,48 +67,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Deepak R Varma <drv@mailo.com>, Fabio <fmdefrancesco@gmail.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 21 Jun 2023, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> As per the DP2.1 Spec support for UHBR13.5 is optional. Hence removing the
->> support for UHBR13.5
->> UHBR10 can be used for 6k panels.
+
+On 6/20/23 20:07, Sumitra Sharma wrote:
+> On Tue, Jun 20, 2023 at 06:23:38AM -0700, Ira Weiny wrote:
+>> Sumitra Sharma wrote:
+>>> On Sun, Jun 18, 2023 at 11:11:08AM -0700, Ira Weiny wrote:
+>>>> Sumitra Sharma wrote:
+>>>>> kmap() has been deprecated in favor of the kmap_local_page()
+>>>>> due to high cost, restricted mapping space, the overhead of a
+>>>>> global lock for synchronization, and making the process sleep
+>>>>> in the absence of free slots.
+>>>>>
+>>>>> kmap_local_page() is faster than kmap() and offers thread-local
+>>>>> and CPU-local mappings, take pagefaults in a local kmap region
+>>>>> and preserves preemption by saving the mappings of outgoing tasks
+>>>>> and restoring those of the incoming one during a context switch.
+>>>>>
+>>>>> The mapping is kept thread local in the function
+>>>>> “i915_vma_coredump_create” in i915_gpu_error.c
+>>>>>
+>>>>> Therefore, replace kmap() with kmap_local_page().
+>>>>>
+>>>>> Suggested-by: Ira Weiny <ira.weiny@intel.com>
+>>>>>
+>>>> NIT: No need for the line break between Suggested-by and your signed off line.
+>>>>
+>>> Hi Ira,
+>>>
+>>> What does NIT stand for?
+>> Shorthand for 'nitpicking'.
 >>
->> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
->
-> Looks Good to me
-
-How? There are a *lot* of things that are optional in the DP specs.
-
-BR,
-Jani.
-
-
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> "giving too much attention to details that are not important, especially
+>> as a way of criticizing: "
 >>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
->> b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 9f40da20e88d..54ddc953e5bc 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -465,7 +465,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
->>       };
->>       static const int icl_rates[] = {
->>               162000, 216000, 270000, 324000, 432000, 540000, 648000,
->> 810000,
->> -             1000000, 1350000,
->> +             1000000,
->>       };
->>       static const int bxt_rates[] = {
->>               162000, 216000, 243000, 270000, 324000, 432000, 540000
->> --
->> 2.25.1
+>> 	- https://dictionary.cambridge.org/dictionary/english/nitpicking
+>>
+>> Via email this is a way for authors of an email to indicate something is
+>> technically wrong but while nicely acknowledging that it is not very
+>> significant and could be seen as overly critical.
+>>
+>> For this particular comment I'm showing something to pay attention to next
+>> time but that was not a big deal this time around.
+>>
+> Hi Ira,
 >
+> Thank for your explanation on NIT.
+>
+>
+>>> Thank you. I will take care about the line breaks.
+>>>
+>>>>> Signed-off-by: Sumitra Sharma <sumitraartsy@gmail.com>
+>>>>> ---
+>>>>>
+>>>>> Changes in v2:
+>>>>> 	- Replace kmap() with kmap_local_page().
+>>>> Generally it is customary to attribute a change like this to those who
+>>>> suggested it in a V1 review.
+>>>>
+>>>> For example:
+>>>>
+>>>>   	- Tvrtko/Thomas: Use kmap_local_page() instead of page_address()
+>>>>
+>>>> Also I don't see Thomas on the new email list.  Since he took the time to
+>>>> review V1 he might want to check this version out.  I've added him to the
+>>>> 'To:' list.
+>>>>
+>>>> Also a link to V1 is nice.  B4 formats it like this:
+>>>>
+>>>> - Link to v1: https://lore.kernel.org/all/20230614123556.GA381200@sumitra.com/
+>>>>
+>>>> All that said the code looks good to me.  So with the above changes.
+>>>>
+>>>> Reviewed-by: Ira Weiny <ira.weiny@intel.com>
+>>>>
+>>> I have noted down the points mentioned above. Thank you again.
+>>>
+>>> I am not supposed to create another version of this patch for
+>>> adding the above mentions, as you and Thomas both gave this patch
+>>> a reviewed-by tag. Right?
+>>>
+>> Based on this response[*] from Tvrtko I think this version can move
+>> through without a v3.
+> Okay!
+>
+>
+> Thanks & regards
+> Sumitra
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+I think one thing worth mentioning in the context of this patch is that 
+IIRC kmap_local_page() will block offlining of the mapping CPU until 
+kunmap_local(), so while I haven't seen any guidelines around the usage 
+of this api for long-held mappings, I figure it's wise to keep the 
+mapping duration short, or at least avoid sleeping with a 
+kmap_local_page() map active.
+
+I figured, while page compression is probably to be considered "slow" 
+it's probably not slow enough to motivate kmap() instead of 
+kmap_local_page(), but if anyone feels differently, perhaps it should be 
+considered.
+
+With that said, my Reviewed-by: still stands.
+
+/Thomas
+
+>
+>> Thanks!
+>> Ira
+>>
+>> [*] https://lore.kernel.org/all/bcb0a1d2-cd4d-a56f-1ee6-7ccfdd2f7b38@linux.intel.com/
+>>
+>> <quote>
+>> Thanks all! I'll just re-send the patch for our CI, since it didn't get
+>> picked up automatically (stuck in moderation perhaps), with all r-b tags
+>> added and extra line space removed and merge it if results will be green.
+>>
+>> Regards,
+>>
+>> Tvrtko
+>> </quote>
+>>
+>>
+>>> Thanks & regards
+>>> Sumitra
+>>>
+>>> PS: I am new to the open source vocabulary terms.
+>>>
+>>>>> 	- Change commit subject and message.
+>>>>>
+>>>>>   drivers/gpu/drm/i915/i915_gpu_error.c | 4 ++--
+>>>>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>>>> index f020c0086fbc..bc41500eedf5 100644
+>>>>> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>>>>> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>>>> @@ -1164,9 +1164,9 @@ i915_vma_coredump_create(const struct intel_gt *gt,
+>>>>>   
+>>>>>   			drm_clflush_pages(&page, 1);
+>>>>>   
+>>>>> -			s = kmap(page);
+>>>>> +			s = kmap_local_page(page);
+>>>>>   			ret = compress_page(compress, s, dst, false);
+>>>>> -			kunmap(page);
+>>>>> +			kunmap_local(s);
+>>>>>   
+>>>>>   			drm_clflush_pages(&page, 1);
+>>>>>   
+>>>>> -- 
+>>>>> 2.25.1
+>>>>>
+>>>>
+>>
