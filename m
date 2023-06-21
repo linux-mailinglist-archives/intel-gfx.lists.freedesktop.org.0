@@ -2,48 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175B77378CC
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jun 2023 03:43:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6506F7378EF
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jun 2023 04:12:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C64B210E39F;
-	Wed, 21 Jun 2023 01:43:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B70FB10E3A1;
+	Wed, 21 Jun 2023 02:12:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E214810E39F;
- Wed, 21 Jun 2023 01:43:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687311811; x=1718847811;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aB/M3UQ834Fhfjfdo8glqMohyce10p7/5ngnqjpbj4Q=;
- b=V34xzrE5KKRopw4k7icNb9/GzL976K6qX0DUoRGEC660mK0YXHACILTO
- 4GQ0p4rmd6a/g4CVOF6xTpjHJC6FD4sojoa/XfnxT3ZyuByjW1r9QObf5
- 0YPVzNGSjmRj5pjNBJ4cCVxsH3Nk5tuaP2EFRRFkDgr1liQ7npwqV/te6
- 0DuvHnyU5iGlRRk/1VnNsjrPsxUfGISb9Q/q4nfV/nwEFWyH5XHGY9eRv
- K3MpIjDDDs4bAep87ynb2B/DXoRLVzigh7L30gxJ1e2Iv6M+xP2LVGSm0
- 0ptTun9dVjr+uURlZV8UaUL0Wgd5aWe4zD8R3Bjn2PwyotFZo7wxh6rSB g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="423699190"
-X-IronPort-AV: E=Sophos;i="6.00,258,1681196400"; d="scan'208";a="423699190"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2023 18:43:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="838435884"
-X-IronPort-AV: E=Sophos;i="6.00,258,1681196400"; d="scan'208";a="838435884"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga004.jf.intel.com with ESMTP; 20 Jun 2023 18:43:30 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue, 20 Jun 2023 18:42:57 -0700
-Message-Id: <20230621014257.1769564-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3095810E3A0;
+ Wed, 21 Jun 2023 02:12:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2A69EA7DFF;
+ Wed, 21 Jun 2023 02:12:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/guc/slpc: Apply min softlimit
- correctly
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "pengfuyuan" <pengfuyuan@kylinos.cn>
+Date: Wed, 21 Jun 2023 02:12:55 -0000
+Message-ID: <168731357517.7800.4066815039518902371@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230524104052.1488836-1-pengfuyuan@kylinos.cn>
+In-Reply-To: <20230524104052.1488836-1-pengfuyuan@kylinos.cn>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/pxp=3Afix_kernel-doc_trivial_warnings?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,45 +40,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The scenario being fixed here is depicted in the following sequence-
+== Series Details ==
 
-modprobe i915
-echo 1 > /sys/class/drm/card0/gt/gt0/slpc_ignore_eff_freq
-echo 300 > /sys/class/drm/card0/gt_min_freq_mhz (RPn)
-cat /sys/class/drm/card0/gt_cur_freq_mhz --> cur == RPn as expected
-echo 1 > /sys/kernel/debug/dri/0/gt0/reset --> reset
-cat /sys/class/drm/card0/gt_min_freq_mhz --> cached freq is RPn
-cat /sys/class/drm/card0/gt_cur_freq_mhz --> it's not RPn, but RPe!!
+Series: drm/i915/pxp:fix kernel-doc trivial warnings
+URL   : https://patchwork.freedesktop.org/series/119624/
+State : failure
 
-When SLPC reinitializes, it sets SLPC min freq to efficient frequency.
-Even if we disable efficient freq post that, we should restore the cached
-min freq (via H2G) for it to take effect.
+== Summary ==
 
-v2: Clarify commit message (Ashutosh)
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/119624/revisions/1/mbox/ not applied
+Applying: drm/i915/pxp:fix kernel-doc trivial warnings
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/i915/pxp:fix kernel-doc trivial warnings
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
-Fixes: 95ccf312a1e4 ("drm/i915/guc/slpc: Allow SLPC to use efficient frequency")
-Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-index 01b75529311c..ee9f83af7cf6 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-@@ -606,7 +606,7 @@ static int slpc_set_softlimits(struct intel_guc_slpc *slpc)
- 		if (unlikely(ret))
- 			return ret;
- 		slpc_to_gt(slpc)->defaults.min_freq = slpc->min_freq_softlimit;
--	} else if (slpc->min_freq_softlimit != slpc->min_freq) {
-+	} else {
- 		return intel_guc_slpc_set_min_freq(slpc,
- 						   slpc->min_freq_softlimit);
- 	}
--- 
-2.38.1
 
