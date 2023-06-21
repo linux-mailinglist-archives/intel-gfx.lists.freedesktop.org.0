@@ -1,52 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0ABF737C06
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jun 2023 09:28:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12084737C09
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jun 2023 09:32:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4E0210E091;
-	Wed, 21 Jun 2023 07:28:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F5EC10E096;
+	Wed, 21 Jun 2023 07:32:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 320F689FEA
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jun 2023 07:28:31 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 408D210E096
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jun 2023 07:32:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687332510; x=1718868510;
+ t=1687332724; x=1718868724;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=Ry0MaYZ95p0VBkF93SJg8YXeLLr4hxzRpVdgSBpLu3g=;
- b=mQH8tZh4wiUXMaObl4daogBVQoszQ/exWqI6V6cisdxdq/JsIjNq2Rcr
- iR2X+kg1i9WAsOdE0flOttww7WnwTRgXReZ/i74CmXQVHSBMSM3GrPaCs
- vxTKPcHeUHNhikle1PH14i+493HMiuvteksUtzgkj/rj/OAP4Rln/JYJJ
- 8P3WQgeUw/VzKKyv7oO07Ad28HwLHv5p6UP8leYJ0sEwFW4NA20o2+SMi
- EaEnM0BXP3j1wTKPmOi3TdvzicfLAWTp0YW9rYBK2B7O7Z9k3v8Q28KO+
- GfV+TreAoYm785J+2fgXggvtGGjj/OdGSSFAUmSW76fYNqABlPga77g5J g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="339711749"
-X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="339711749"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2023 00:28:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="779742088"
-X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="779742088"
+ mime-version; bh=j3aYYMzwS2kpknJTUxPAT7XkYJV8bqRtVIoLqytw4R8=;
+ b=cC8VEQcQfTb5va8lUKR2tQ5LSd9mjPa3ly0dekTsSppTXMdfOEppqAoe
+ XR1Dfvjt9OEX93GymaZvBfUC8sYtP+aAw5k2RObVlRuhDtIi9VXmmhjl2
+ gXzUcXFyphWMHVDiX9NwM67wEi9q7BeKabFxSMkq0XynHT/16GK2iRk2X
+ mJl6PL2g8RNS2LyiqwefolpdSgqtloQpeL4evavgGevmPqUNVt92YRdmN
+ idRgczuQG/kOf5qwJDHe95er8MU4y677N06xyraAHvvuDeyIdHr/cRXMr
+ /ohexJXZVvI327YVjIkQU86QxQ5YZHn9HZEfSQFesBOivyFzBqu3Gu0Cg Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="340437837"
+X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="340437837"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2023 00:32:03 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="748524462"
+X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="748524462"
 Received: from dafnaroz-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.63.122])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2023 00:28:28 -0700
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2023 00:31:59 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230621014156.1994797-1-suraj.kandpal@intel.com>
+To: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>, "Taylor,
+ Clinton A" <clinton.a.taylor@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <DM4PR11MB59710DEADAFD5A823AEE78F1875CA@DM4PR11MB5971.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230621013524.1994538-1-suraj.kandpal@intel.com>
- <20230621014156.1994797-1-suraj.kandpal@intel.com>
-Date: Wed, 21 Jun 2023 10:28:25 +0300
-Message-ID: <87pm5pff52.fsf@intel.com>
+References: <20230616210028.1601533-1-radhakrishna.sripada@intel.com>
+ <f78a4825e63acc93ae6f4bde4916e66ca1f0c3db.camel@intel.com>
+ <DM4PR11MB59710DEADAFD5A823AEE78F1875CA@DM4PR11MB5971.namprd11.prod.outlook.com>
+Date: Wed, 21 Jun 2023 10:31:52 +0300
+Message-ID: <87legdfezb.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/hdcp: Add a debug statment at
- hdcp2 capability check
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Skip using vbt
+ hdmi_level_shifter selection on MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,41 +64,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 21 Jun 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Add a debug statement at hdcp2 capability check which indicates if
-> GSC CS is causing hdcp2 incapability
->
-> --v2
-> -correcting typo in commit header
+On Tue, 20 Jun 2023, "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com> wrote:
+> Merged. Thank you for the review.
 
-Maybe fix the other typo as well? ;)
+Where are the CI results?
+
+Please never merge patches without CI results.
 
 BR,
 Jani.
 
 >
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> --Radhakrishna(RK) Sripada
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 5ed450111f77..73fe84fc9bf5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -177,8 +177,11 @@ bool intel_hdcp2_capable(struct intel_connector *connector)
->  		struct intel_gt *gt = i915->media_gt;
->  		struct intel_gsc_uc *gsc = gt ? &gt->uc.gsc : NULL;
->  
-> -		if (!gsc || !intel_uc_fw_is_running(&gsc->fw))
-> +		if (!gsc || !intel_uc_fw_is_running(&gsc->fw)) {
-> +			drm_dbg_kms(&i915->drm,
-> +				    "GSC components required for HDCP2.2 are not ready\n");
->  			return false;
-> +		}
->  	}
->  
->  	/* MEI/GSC interface is solid depending on which is used */
+>> -----Original Message-----
+>> From: Taylor, Clinton A <clinton.a.taylor@intel.com>
+>> Sent: Tuesday, June 20, 2023 2:10 PM
+>> To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>; intel-
+>> gfx@lists.freedesktop.org
+>> Cc: Lee, Shawn C <shawn.c.lee@intel.com>; Almahallawy, Khaled
+>> <khaled.almahallawy@intel.com>
+>> Subject: Re: [PATCH] drm/i915/mtl: Skip using vbt hdmi_level_shifter selection
+>> on MTL
+>> 
+>> On Fri, 2023-06-16 at 14:00 -0700, Radhakrishna Sripada wrote:
+>> > The hdmi_level_shifter part of General Bytes definition in VBT, which was
+>> > used for choosing different levels on earlier platforms is now a hidden
+>> > optin and shows the default value of 0. The level shifter is now to be
+>> > deduced from hdmi_default_entry in  intel_ddi_buf_trans for each phy.
+>> >
+>> > Skip providing the default hw provided value to force driver to choose hdmi
+>> > default entry.
+>> >
+>> > Bspec: 20124
+>> > Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>
+>> > Cc: Lee Shawn C <shawn.c.lee@intel.com>
+>> > Cc: Clint Taylor <Clinton.A.Taylor@intel.com>
+>> > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_bios.c | 3 ++-
+>> >  1 file changed, 2 insertions(+), 1 deletion(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
+>> > b/drivers/gpu/drm/i915/display/intel_bios.c
+>> > index 34a397adbd6b..4b9bf76e137d 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>> > @@ -2615,7 +2615,8 @@ intel_bios_encoder_is_lspcon(const struct
+>> intel_bios_encoder_data
+>> > *devdata)
+>> >  /* This is an index in the HDMI/DVI DDI buffer translation table, or -1 */
+>> >  int intel_bios_hdmi_level_shift(const struct intel_bios_encoder_data
+>> *devdata)
+>> >  {
+>> > -	if (!devdata || devdata->i915->display.vbt.version < 158)
+>> > +	if (!devdata || devdata->i915->display.vbt.version < 158 ||
+>> > +	    DISPLAY_VER(devdata->i915) >= 14)
+>> >  		return -1;
+>> >
+>> Reviewed-by: Clint Taylor <Clinton.A.Taylor@intel.com>
+>> 
+>> -Clint
+>> 
+>> >  	return devdata->child.hdmi_level_shifter_value;
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
