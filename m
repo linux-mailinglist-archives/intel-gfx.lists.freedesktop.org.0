@@ -1,29 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 189AD739052
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jun 2023 21:44:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE9BC73908A
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jun 2023 22:07:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7557210E353;
-	Wed, 21 Jun 2023 19:44:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C2BF10E356;
+	Wed, 21 Jun 2023 20:07:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45F5D10E353;
- Wed, 21 Jun 2023 19:44:07 +0000 (UTC)
-Message-ID: <e96b1965-ba67-7cc5-2358-826eb5b9b998@lankhorst.se>
-Date: Wed, 21 Jun 2023 21:43:59 +0200
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7A97210E356;
+ Wed, 21 Jun 2023 20:07:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 731DEA0169;
+ Wed, 21 Jun 2023 20:07:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 21 Jun 2023 20:07:38 -0000
+Message-ID: <168737805843.7798.14465997022158184269@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230621094824.2348732-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20230621094824.2348732-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm=3A_Update_file_owner_during_use?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,48 +40,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+== Series Details ==
 
-Midsummer is nearly here! So sending the pull request a bit early.
+Series: drm: Update file owner during use
+URL   : https://patchwork.freedesktop.org/series/119670/
+State : warning
 
-Cheers!
-~Maarten
+== Summary ==
 
-drm-misc-fixes-2023-06-21:
-drm-misc-fixes for v6.4:
-- Qaic imported dma-buf fix.
-- Fix null pointer deref when printing a dp-mst message.
-The following changes since commit 45a3e24f65e90a047bef86f927ebdc4c710edaa1:
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-   Linux 6.4-rc7 (2023-06-18 14:06:27 -0700)
 
-are available in the Git repository at:
-
-   git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-06-21
-
-for you to fetch changes up to 54d217406afe250d7a768783baaa79a035f21d38:
-
-   drm: use mgr->dev in drm_dbg_kms in drm_dp_add_payload_part2 
-(2023-06-20 16:00:09 -0400)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.4:
-- Qaic imported dma-buf fix.
-- Fix null pointer deref when printing a dp-mst message.
-
-----------------------------------------------------------------
-Jeff Layton (1):
-       drm: use mgr->dev in drm_dbg_kms in drm_dp_add_payload_part2
-
-Pranjal Ramajor Asha Kanojiya (1):
-       accel/qaic: Call DRM helper function to destroy prime GEM
-
-  drivers/accel/qaic/qaic_data.c                | 4 ++--
-  drivers/gpu/drm/display/drm_dp_mst_topology.c | 2 +-
-  2 files changed, 3 insertions(+), 3 deletions(-)
