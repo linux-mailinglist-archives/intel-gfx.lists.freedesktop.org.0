@@ -2,66 +2,107 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ADF373A468
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 17:12:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D6473A4B2
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 17:22:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D399D10E585;
-	Thu, 22 Jun 2023 15:12:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 980C810E589;
+	Thu, 22 Jun 2023 15:22:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7F3210E581;
- Thu, 22 Jun 2023 15:12:04 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 05F651FDD2;
- Thu, 22 Jun 2023 15:12:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1687446723; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=DxyEqnSQyZKokKZ2LU3qC8/yrgR0FWi1mwbmN5xCk9E=;
- b=N9B19ELEkGrxV0suLxXhGZQpBLV2Yb7u7uZXemMcT2Ad1Ns9qHJoy72l2ulfj/9tDqlLBb
- GVFwd6rBAVc5H15+Kb7yFySUdw5/Q+tDegqObQNCQUjja9lcvWjOK2f2isXuCAjrFX5YBO
- 5+wd+oOgRBQuiRPGEInEXCDzdjlKZqA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1687446723;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=DxyEqnSQyZKokKZ2LU3qC8/yrgR0FWi1mwbmN5xCk9E=;
- b=n5V8ZHTPzF9VGJZMIFTWsPNIcgfy7jzHlKJbRGMIHWOaWYvwD7wX3oB3QALl4YmQglroUj
- lTp+6+OznWDE/zCA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id A96C013905;
- Thu, 22 Jun 2023 15:12:02 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id tmWdKMJklGScKwAAMHmgww
- (envelope-from <vbabka@suse.cz>); Thu, 22 Jun 2023 15:12:02 +0000
-Message-ID: <cf0d9b12-6491-bf23-b464-9d01e5781203@suse.cz>
-Date: Thu, 22 Jun 2023 17:12:02 +0200
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2043.outbound.protection.outlook.com [40.107.244.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78D5B10E589;
+ Thu, 22 Jun 2023 15:22:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YAiTX4UI1j3669kzF2gj3tKN+QGXjqBUxgVPq6kUyTphKSyknuFi5+HSUnEmcdtsMmirn/BoQIolaVW/WaCs17VGd8OiEAZrSK9FiC7HIeSYZxTyit5juQxgWlyfHN589yxm/lxZBHLF1KG10mC4xsvwsfJg2wX53vs7Zxv20XoEBzZqwa4LKe3UKIQfriMBfCT7HGLxUC4w2U0D9zoX35RvMpHvvZtmmqJ+mDr8JslcwLcc4CU2amlI72wJvrA+rB+RJoHMfXdb+j5sF1yjdriY3rda5tDQfCM2er5sAhgJ+zS2ddx6FrQiasVsCLMEQonsRXf6M+krOLwKyzRg1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PSyyYMV8Qt3yyJHY6MecavTMkvU7xyACdUAnFaaruOw=;
+ b=RTtsXKIWn70Dx8PSmJuppINDBwRnsTMqkbPmLy2/X+8R0U01Xa2eQ9SwfEDCgnl0H23G/oSxPNMnuhKEmpdwLziWtGRVEgLUGV62CTcPZgTftiuEiunpKCV7XJstvENAnRqSycCnZhBhse745g7348f19rv503DVcsHlRQcNzQglPUDYh//k/4MIWUIXP/YmiTlVt2aMe37ktAylU8pSRBqZ4RDt6c84u3Yr57+qOgEswnYyPX316xoapnx7vPa+fYFfwYmFKfsLrBM0dbf3aqcggvRqOKj6eIgeLM0gZOmh1vF5NmwQ1oH7lp5bK0YzsSKQoJVZcrjTcBVxDKA0wQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PSyyYMV8Qt3yyJHY6MecavTMkvU7xyACdUAnFaaruOw=;
+ b=jYJqYRdgq56tAk1em/6H6hR4Or1pdlX5Jd4gIIwp7WbzyVGjFLvglaPnO/Q55QWkEl+VSskb2fEVdd9O+4gV0yVKw9pxhIRJyDcgHEPDXphgsIyXHhxbXe2gks0amXaFjx0ivy9/I+sblnHk8TL71c1rVUhrFW39QFfiSRLZg6I87z5Urf8wkvie/WnOx+lVCyezMb1R/1/o3hGX1Ox+oPvzF5BzbvOaZ74mOTV0jOoh8UAt1+rfDiYpz5FAEC3r9spkRGQiQ7r6HM1jow1nHPUo40xH0QFqe/ja05acP0M+pUavRcAcAeXKg39ss/V2ezVi5FD8StbeErpKGeP/Lg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by MW3PR12MB4505.namprd12.prod.outlook.com (2603:10b6:303:5a::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Thu, 22 Jun
+ 2023 15:22:07 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::f7a7:a561:87e9:5fab]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::f7a7:a561:87e9:5fab%7]) with mapi id 15.20.6521.024; Thu, 22 Jun 2023
+ 15:22:07 +0000
+Date: Thu, 22 Jun 2023 12:22:04 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Yi Liu <yi.l.liu@intel.com>
+Message-ID: <ZJRnHO0p+pPgBZdr@nvidia.com>
+References: <20230616093042.65094-1-yi.l.liu@intel.com>
+ <20230616093042.65094-9-yi.l.liu@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230616093042.65094-9-yi.l.liu@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0086.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::31) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Content-Language: en-US
-To: Qi Zheng <zhengqi.arch@bytedance.com>, akpm@linux-foundation.org,
- david@fromorbit.com, tkhai@ya.ru, roman.gushchin@linux.dev,
- djwong@kernel.org, brauner@kernel.org, paulmck@kernel.org, tytso@mit.edu
-References: <20230622085335.77010-1-zhengqi.arch@bytedance.com>
- <20230622085335.77010-25-zhengqi.arch@bytedance.com>
-From: Vlastimil Babka <vbabka@suse.cz>
-In-Reply-To: <20230622085335.77010-25-zhengqi.arch@bytedance.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 24/29] mm: vmscan: make global slab shrink
- lockless
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MW3PR12MB4505:EE_
+X-MS-Office365-Filtering-Correlation-Id: f126cb1a-2dd9-45c3-4590-08db733470ae
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: w2RumfsEAmAghMFsudr+/3SXK0R2IwC4tawhY2p6gzWxbkC8PM3WK5Ug6sl3ia1HCoS1tMeh7OEp75eOn70U7fV1soFL4cHBHSxFHPcuBIBHcemJrueKING4nbWgPRj8F4Q4vl9YZZI0uW/WOmykz8mcvs/ltHOD4x7w6ssnYvh7kzwHbVj3vMJHhv0YdF1B8W0qsVxEzFfcwOB/H8NGf4I5Z3mzUpx291CUBFbnq/M/gtZ9POPA0Y0oY+w0+zBaq17HMkYq/7ul38InPigtlp/82IId3nbR3eMgbEZTOC/MvVoqbKVFdM1LoE4zumzQAj1IDtSvuPXOzkizEjwAqCi28SPszKplNXSFOfOcJWzO32HcQWYOsTYStwOwurlQOP2vig37QlO0/6V+ckZdg95sxdM/QkdgYHOm/h8wgu+tcneXNxx9wXF54B95qOAEHqtKlwvasSWhj+Ni9mhhzTY+DVG5bsyn5nimUzHLk68SzKXWzoKurZLmetn4zAX3Hykp9nEGIUAqD/tRlSX6AVhGOOmEXKadz9T9OgfnFquIAQxL7n8pG0au24CeN/LlyU/xXDzcpUfTy4usDg2+ePHp8iWK/vbvxRbQE03MyXI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(366004)(136003)(376002)(346002)(396003)(39860400002)(451199021)(38100700002)(86362001)(316002)(2616005)(66556008)(66476007)(6916009)(8676002)(41300700001)(8936002)(66946007)(4326008)(7416002)(83380400001)(5660300002)(6506007)(6486002)(6666004)(478600001)(26005)(6512007)(186003)(36756003)(2906002)(67856001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rCKwYx/QE93rkM/AURpqCnTTVv8JNr9EZPNNMq5/Hv6T40ERvk+z0eZaaNNG?=
+ =?us-ascii?Q?3BvamjZEuctoUADslJui937VFFotxFBW9VnkUu0iCaR9RRxscdLIc+mp/9BK?=
+ =?us-ascii?Q?ax/4BzPnutkTVtu4koThDaw2E8rjJrlZEWEAB0qbk1Ewh8Qj+917JJs/d8BY?=
+ =?us-ascii?Q?k8ckkBfO4wkXEFp/EtntVI+5DHfj6/E6aEKNl+sl568Wo6WgrKF3EIKakT6H?=
+ =?us-ascii?Q?F+5ahcPsPmGdjZPax5iyjnI1IGEiOS7SIyrIvFIcTZ+Aop9ZIjI2P6GsyGgS?=
+ =?us-ascii?Q?P/bVejVyYqSjHxv68jsmge05LLldO4c2sxaPGui6RwACa7O26G9OdG2dBf7e?=
+ =?us-ascii?Q?hefQP0S4d9U1WATToGjtehbLwaWj0x6dndL8EnQai2cDWUBAYu7q8l94PomG?=
+ =?us-ascii?Q?XFNt/8uysmCu7fLCdcnBxnOZhh1r/jBv/NhHINPPQfJKEHy7ETrw5yhs2X4e?=
+ =?us-ascii?Q?H+m2oYs7LAdTmo4OjVpnCrdZ8BQhjfc6ngw8W/q7Dkl0GvIkL93+ADHq6yL6?=
+ =?us-ascii?Q?YEz+MCSW02w1xW+JmweIUm0lYxVtYBWrEgaBLu2Lcm5VF9+AfAdn/OO+2u3j?=
+ =?us-ascii?Q?Y25C+Jr0WPv/dmBHsPGWi96NObxlXLymF17wQ6/83/tG6OYEWt4eOy71Y6Ti?=
+ =?us-ascii?Q?sJeOmjEFuQDnWiWMPksvpxmGXT5haluncJ89Pv6I4EuQcTHTfLhMCuu+Ipc5?=
+ =?us-ascii?Q?cLRJnR8A/6UEQu2bCjDE0rS/hWrvAfTX4j7ednOgvFJtg8x4seyf8CaHpw2/?=
+ =?us-ascii?Q?/rVJ24YLuiZAvC29CYvD7mZK2Zjss15mNIDnKUFXpuOvnuZ74KFJxG2QBdNC?=
+ =?us-ascii?Q?5JCrj6J/WWcoyquYP+R3KHepYIMlQWO17DmqJv31wJMG6c8IPAZsHPBxKcgG?=
+ =?us-ascii?Q?YdsdBmZ80NOtibUn/c3w9ONQd5PHrEW8Zb+oDfcVP8L23KOXFaBjYyBJojze?=
+ =?us-ascii?Q?fW/wqJ8xWvxJfGjM6JPrBVJKAGCzSXw+o2LDOooxUrrII7MdL5yLjlEoFFX3?=
+ =?us-ascii?Q?cZVo7HQkeleADQZTPrllCMRK6Spnh/rzIfxHgUIQuueC5Ax31OPSXN717EuV?=
+ =?us-ascii?Q?tgB51sgAT9G/tlGAabnESIytkwyNHqHmHDEVEGjwT1v93zo3iXg+fEC5nJp0?=
+ =?us-ascii?Q?PqIbAi9PNhy9381H7Z/g+5DiJ3/9Bas7st6wD73xuxvmjGBhskDGbfb/1r2l?=
+ =?us-ascii?Q?RM0UmtUdLTq68NWQ68LCd85KjtYchl8MILSdwYespC8iddX1Hzl0ZlqvCJiU?=
+ =?us-ascii?Q?nSx/Oypo74ZuN5VXMErvrFLdgATP5Vrxn7JtcrFQ3heql86uB8kIT4lpUizB?=
+ =?us-ascii?Q?im0gXKjsBlQHPNvhWV9IG+l68HUjwWLlmHOgAoiYD7X0pcMdSsmLcZTRIteR?=
+ =?us-ascii?Q?HkazSWtZV6zI2swrZDUyhv4w1ugJq9F3QnVsJzZbBZMLqze21rY+ooiKPDQr?=
+ =?us-ascii?Q?95ZzNWr4vVEaSz43Fb2sCXIzFqTKSEXsUCp6nPNa2p4YzEoztYFisVHvMf2G?=
+ =?us-ascii?Q?FlEUpZShI1y6BoaQV2Q3b8WzjcMjvJreNOXmEEgYdRGd6KzsaUEg3M3XSTTF?=
+ =?us-ascii?Q?mOMF97JanwlnfzzWSWrKE9VOW5mC4XRuKUvWLEOV?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f126cb1a-2dd9-45c3-4590-08db733470ae
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2023 15:22:07.0961 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WzBTZEMfMmURCulwy+waT691VAGABUD94PGJx94YYC2ACBqvjuEHKkocu4rlteHF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4505
+Subject: Re: [Intel-gfx] [PATCH v8 08/10] vfio/pci: Extend
+ VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,264 +115,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-bcache@vger.kernel.org, linux-xfs@vger.kernel.org,
- linux-nfs@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linux-raid@vger.kernel.org, linux-mm@kvack.org, dm-devel@redhat.com,
- linux-fsdevel@vger.kernel.org, linux-ext4@vger.kernel.org,
- linux-btrfs@vger.kernel.org
+Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
+ zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
+ chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, kvm@vger.kernel.org,
+ lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
+ kevin.tian@intel.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
+ eric.auger@redhat.com, intel-gvt-dev@lists.freedesktop.org,
+ yi.y.sun@linux.intel.com, clegoate@redhat.com, cohuck@redhat.com,
+ shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
+ robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 6/22/23 10:53, Qi Zheng wrote:
-> The shrinker_rwsem is a global read-write lock in
-> shrinkers subsystem, which protects most operations
-> such as slab shrink, registration and unregistration
-> of shrinkers, etc. This can easily cause problems in
-> the following cases.
+On Fri, Jun 16, 2023 at 02:30:40AM -0700, Yi Liu wrote:
+> This allows VFIO_DEVICE_GET_PCI_HOT_RESET_INFO ioctl use the iommufd_ctx
+> of the cdev device to check the ownership of the other affected devices.
 > 
-> 1) When the memory pressure is high and there are many
->    filesystems mounted or unmounted at the same time,
->    slab shrink will be affected (down_read_trylock()
->    failed).
+> When VFIO_DEVICE_GET_PCI_HOT_RESET_INFO is called on an IOMMUFD managed
+> device, the new flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID is reported to indicate
+> the values returned are IOMMUFD devids rather than group IDs as used when
+> accessing vfio devices through the conventional vfio group interface.
+> Additionally the flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED will be reported
+> in this mode if all of the devices affected by the hot-reset are owned by
+> either virtue of being directly bound to the same iommufd context as the
+> calling device, or implicitly owned via a shared IOMMU group.
 > 
->    Such as the real workload mentioned by Kirill Tkhai:
-> 
->    ```
->    One of the real workloads from my experience is start
->    of an overcommitted node containing many starting
->    containers after node crash (or many resuming containers
->    after reboot for kernel update). In these cases memory
->    pressure is huge, and the node goes round in long reclaim.
->    ```
-> 
-> 2) If a shrinker is blocked (such as the case mentioned
->    in [1]) and a writer comes in (such as mount a fs),
->    then this writer will be blocked and cause all
->    subsequent shrinker-related operations to be blocked.
-> 
-> Even if there is no competitor when shrinking slab, there
-> may still be a problem. If we have a long shrinker list
-> and we do not reclaim enough memory with each shrinker,
-> then the down_read_trylock() may be called with high
-> frequency. Because of the poor multicore scalability of
-> atomic operations, this can lead to a significant drop
-> in IPC (instructions per cycle).
-> 
-> We used to implement the lockless slab shrink with
-> SRCU [1], but then kernel test robot reported -88.8%
-> regression in stress-ng.ramfs.ops_per_sec test case [2],
-> so we reverted it [3].
-> 
-> This commit uses the refcount+RCU method [4] proposed by
-> by Dave Chinner to re-implement the lockless global slab
-> shrink. The memcg slab shrink is handled in the subsequent
-> patch.
-> 
-> Currently, the shrinker instances can be divided into
-> the following three types:
-> 
-> a) global shrinker instance statically defined in the kernel,
-> such as workingset_shadow_shrinker.
-> 
-> b) global shrinker instance statically defined in the kernel
-> modules, such as mmu_shrinker in x86.
-> 
-> c) shrinker instance embedded in other structures.
-> 
-> For case a, the memory of shrinker instance is never freed.
-> For case b, the memory of shrinker instance will be freed
-> after the module is unloaded. But we will call synchronize_rcu()
-> in free_module() to wait for RCU read-side critical section to
-> exit. For case c, the memory of shrinker instance will be
-> dynamically freed by calling kfree_rcu(). So we can use
-> rcu_read_{lock,unlock}() to ensure that the shrinker instance
-> is valid.
-> 
-> The shrinker::refcount mechanism ensures that the shrinker
-> instance will not be run again after unregistration. So the
-> structure that records the pointer of shrinker instance can be
-> safely freed without waiting for the RCU read-side critical
-> section.
-> 
-> In this way, while we implement the lockless slab shrink, we
-> don't need to be blocked in unregister_shrinker() to wait
-> RCU read-side critical section.
-> 
-> The following are the test results:
-> 
-> stress-ng --timeout 60 --times --verify --metrics-brief --ramfs 9 &
-> 
-> 1) Before applying this patchset:
-> 
->  setting to a 60 second run per stressor
->  dispatching hogs: 9 ramfs
->  stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s
->                            (secs)    (secs)    (secs)   (real time) (usr+sys time)
->  ramfs            880623     60.02      7.71    226.93     14671.45        3753.09
->  ramfs:
->           1 System Management Interrupt
->  for a 60.03s run time:
->     5762.40s available CPU time
->        7.71s user time   (  0.13%)
->      226.93s system time (  3.94%)
->      234.64s total time  (  4.07%)
->  load average: 8.54 3.06 2.11
->  passed: 9: ramfs (9)
->  failed: 0
->  skipped: 0
->  successful run completed in 60.03s (1 min, 0.03 secs)
-> 
-> 2) After applying this patchset:
-> 
->  setting to a 60 second run per stressor
->  dispatching hogs: 9 ramfs
->  stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s
->                            (secs)    (secs)    (secs)   (real time) (usr+sys time)
->  ramfs            847562     60.02      7.44    230.22     14120.66        3566.23
->  ramfs:
->           4 System Management Interrupts
->  for a 60.12s run time:
->     5771.95s available CPU time
->        7.44s user time   (  0.13%)
->      230.22s system time (  3.99%)
->      237.66s total time  (  4.12%)
->  load average: 8.18 2.43 0.84
->  passed: 9: ramfs (9)
->  failed: 0
->  skipped: 0
->  successful run completed in 60.12s (1 min, 0.12 secs)
-> 
-> We can see that the ops/s has hardly changed.
-> 
-> [1]. https://lore.kernel.org/lkml/20230313112819.38938-1-zhengqi.arch@bytedance.com/
-> [2]. https://lore.kernel.org/lkml/202305230837.db2c233f-yujie.liu@intel.com/
-> [3]. https://lore.kernel.org/all/20230609081518.3039120-1-qi.zheng@linux.dev/
-> [4]. https://lore.kernel.org/lkml/ZIJhou1d55d4H1s0@dread.disaster.area/
-> 
-> Signed-off-by: Qi Zheng <zhengqi.arch@bytedance.com>
+> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
+> Suggested-by: Alex Williamson <alex.williamson@redhat.com>
+> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
 > ---
->  include/linux/shrinker.h |  6 ++++++
->  mm/vmscan.c              | 33 ++++++++++++++-------------------
->  2 files changed, 20 insertions(+), 19 deletions(-)
-> 
-> diff --git a/include/linux/shrinker.h b/include/linux/shrinker.h
-> index 7bfeb2f25246..b0c6c2df9db8 100644
-> --- a/include/linux/shrinker.h
-> +++ b/include/linux/shrinker.h
-> @@ -74,6 +74,7 @@ struct shrinker {
->  
->  	refcount_t refcount;
->  	struct completion completion_wait;
-> +	struct rcu_head rcu;
->  
->  	void *private_data;
->  
-> @@ -123,6 +124,11 @@ struct shrinker *shrinker_alloc_and_init(count_objects_cb count,
->  void shrinker_free(struct shrinker *shrinker);
->  void unregister_and_free_shrinker(struct shrinker *shrinker);
->  
-> +static inline bool shrinker_try_get(struct shrinker *shrinker)
-> +{
-> +	return refcount_inc_not_zero(&shrinker->refcount);
-> +}
-> +
->  static inline void shrinker_put(struct shrinker *shrinker)
->  {
->  	if (refcount_dec_and_test(&shrinker->refcount))
-> diff --git a/mm/vmscan.c b/mm/vmscan.c
-> index 6f9c4750effa..767569698946 100644
-> --- a/mm/vmscan.c
-> +++ b/mm/vmscan.c
-> @@ -57,6 +57,7 @@
->  #include <linux/khugepaged.h>
->  #include <linux/rculist_nulls.h>
->  #include <linux/random.h>
-> +#include <linux/rculist.h>
->  
->  #include <asm/tlbflush.h>
->  #include <asm/div64.h>
-> @@ -742,7 +743,7 @@ void register_shrinker_prepared(struct shrinker *shrinker)
->  	down_write(&shrinker_rwsem);
->  	refcount_set(&shrinker->refcount, 1);
->  	init_completion(&shrinker->completion_wait);
-> -	list_add_tail(&shrinker->list, &shrinker_list);
-> +	list_add_tail_rcu(&shrinker->list, &shrinker_list);
->  	shrinker->flags |= SHRINKER_REGISTERED;
->  	shrinker_debugfs_add(shrinker);
->  	up_write(&shrinker_rwsem);
-> @@ -800,7 +801,7 @@ void unregister_shrinker(struct shrinker *shrinker)
->  	wait_for_completion(&shrinker->completion_wait);
->  
->  	down_write(&shrinker_rwsem);
-> -	list_del(&shrinker->list);
-> +	list_del_rcu(&shrinker->list);
->  	shrinker->flags &= ~SHRINKER_REGISTERED;
->  	if (shrinker->flags & SHRINKER_MEMCG_AWARE)
->  		unregister_memcg_shrinker(shrinker);
-> @@ -845,7 +846,7 @@ EXPORT_SYMBOL(shrinker_free);
->  void unregister_and_free_shrinker(struct shrinker *shrinker)
->  {
->  	unregister_shrinker(shrinker);
-> -	kfree(shrinker);
-> +	kfree_rcu(shrinker, rcu);
->  }
->  EXPORT_SYMBOL(unregister_and_free_shrinker);
->  
-> @@ -1067,33 +1068,27 @@ static unsigned long shrink_slab(gfp_t gfp_mask, int nid,
->  	if (!mem_cgroup_disabled() && !mem_cgroup_is_root(memcg))
->  		return shrink_slab_memcg(gfp_mask, nid, memcg, priority);
->  
-> -	if (!down_read_trylock(&shrinker_rwsem))
-> -		goto out;
-> -
-> -	list_for_each_entry(shrinker, &shrinker_list, list) {
-> +	rcu_read_lock();
-> +	list_for_each_entry_rcu(shrinker, &shrinker_list, list) {
->  		struct shrink_control sc = {
->  			.gfp_mask = gfp_mask,
->  			.nid = nid,
->  			.memcg = memcg,
->  		};
->  
-> +		if (!shrinker_try_get(shrinker))
-> +			continue;
-> +		rcu_read_unlock();
+>  drivers/vfio/iommufd.c           | 44 ++++++++++++++++++++++++++
+>  drivers/vfio/pci/vfio_pci_core.c | 54 +++++++++++++++++++++++++++-----
+>  include/linux/vfio.h             | 14 +++++++++
+>  include/uapi/linux/vfio.h        | 50 ++++++++++++++++++++++++++++-
+>  4 files changed, 154 insertions(+), 8 deletions(-)
 
-I don't think you can do this unlock?
+I would have put patch 9 before this one, but it is OK this way too
 
-> +
->  		ret = do_shrink_slab(&sc, shrinker, priority);
->  		if (ret == SHRINK_EMPTY)
->  			ret = 0;
->  		freed += ret;
-> -		/*
-> -		 * Bail out if someone want to register a new shrinker to
-> -		 * prevent the registration from being stalled for long periods
-> -		 * by parallel ongoing shrinking.
-> -		 */
-> -		if (rwsem_is_contended(&shrinker_rwsem)) {
-> -			freed = freed ? : 1;
-> -			break;
-> -		}
-> -	}
->  
-> -	up_read(&shrinker_rwsem);
-> -out:
-> +		rcu_read_lock();
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
-That new rcu_read_lock() won't help AFAIK, the whole
-list_for_each_entry_rcu() needs to be under the single rcu_read_lock() to be
-safe.
-
-IIUC this is why Dave in [4] suggests unifying shrink_slab() with
-shrink_slab_memcg(), as the latter doesn't iterate the list but uses IDR.
-
-> +		shrinker_put(shrinker);
-> +	}
-> +	rcu_read_unlock();
->  	cond_resched();
->  	return freed;
->  }
-
+Jason
