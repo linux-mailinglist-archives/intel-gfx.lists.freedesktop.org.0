@@ -1,45 +1,73 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9127473FE24
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 16:38:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65FB473FE25
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 16:38:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B714810E2F5;
-	Tue, 27 Jun 2023 14:38:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73B4110E2F9;
+	Tue, 27 Jun 2023 14:38:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 561 seconds by postgrey-1.36 at gabe;
- Thu, 22 Jun 2023 08:35:20 UTC
-Received: from out-48.mta0.migadu.com (out-48.mta0.migadu.com [91.218.175.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21E1310E4FA
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 08:35:20 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1687422388;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=oQpOCkSVz0jjdFm4oEP2NJJ+zKFOVCxqbVN/b6qKeiM=;
- b=Vou+QBcBsFfrycM2PkKySs/6vc7t4z2y+ESRPtdGGBu1nh2ELX2n3XwLyStu2J7FwIsey0
- GRSdEt3Uk6O3X+qjfRuw6k2zIEyamPbwTm+TOHkS5CEaR6KvBgQJdhpJF9uZHGex1bKqla
- yWmLNi3h067slmAnbRZ3GfDMps2hTHE=
-From: Qi Zheng <qi.zheng@linux.dev>
-To: akpm@linux-foundation.org, david@fromorbit.com, tkhai@ya.ru,
- vbabka@suse.cz, roman.gushchin@linux.dev, djwong@kernel.org,
- brauner@kernel.org, paulmck@kernel.org, tytso@mit.edu
-Date: Thu, 22 Jun 2023 08:24:27 +0000
-Message-Id: <20230622082454.4090236-3-qi.zheng@linux.dev>
-In-Reply-To: <20230622082454.4090236-1-qi.zheng@linux.dev>
-References: <20230622082454.4090236-1-qi.zheng@linux.dev>
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com
+ [IPv6:2001:4860:4864:20::30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9827410E4FC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 08:31:44 +0000 (UTC)
+Received: by mail-oa1-x30.google.com with SMTP id
+ 586e51a60fabf-1aa25c5cf0eso1108869fac.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 01:31:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=bytedance.com; s=google; t=1687422703; x=1690014703;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=jRx5u0dIx9qFXm7I93dXe9q/QmQ9W+wUToPS3aLpk1M=;
+ b=BLxeO0dy+qXx3mtPibK1S1/Or5zgBKyR+cJ+WdJudKlQtS/Nsabue7QFfygOG9X37C
+ JNC/knOS3tjYOQOseW33zi2F030DsgTWZcCvwE6mko6OoqIenxumjcv5Z8/rnxAjBO3/
+ xtucKEfCtZqg/VNDj8oOitF8gRCgoGC+eaFgizTMA41zH3SGC3RP8SzsV7WNcZX8qR+q
+ 6s7WskcQisgXsEcLIkuFshZF5uF8hpqRK404CDzKPS3hFNRImlWGDWKvxDEmNrhw0M34
+ cglWSueSHGyZNjK3S6DZy/VJBgyCTc7gX8Qm2fkIbSjNxChukxDTKOPYSzno2UgfFI9l
+ y7Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1687422703; x=1690014703;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=jRx5u0dIx9qFXm7I93dXe9q/QmQ9W+wUToPS3aLpk1M=;
+ b=U0bidYN83/d3IcmpXRBRT5I6mKrpsc1gPTJIdOVhEmZAsj6W9s8ApejCCpjBETYPao
+ TFrcGVN5XXnrIZKfmP9HUyKt+hfO7ylkbs3a3H1q7sczIgO00WAYPxvXxlK1BhD52wMM
+ jq6CuYOW6aQhFqel5Y9+4jxDDC7aWstKWktGfJGL9CToeXOwAQU5feH3iNRbkVO+ZkT7
+ UXCV2a4Vqse+o6kXjkGWGRbzuoM5V48khJRXcVFU091fAa9gfYHjmtmB2k3WSbptZdz5
+ fOUgtyjoH4A1y/Dp3J1pJI/Q47tV6WLm0dmuIIgESIQ19UIBg39YyH3m5+GEWy0cN6+q
+ 9jtw==
+X-Gm-Message-State: AC+VfDxKdb4aq3p8kkiK7RQ4tPGWZf+g6WMGSSdJsYd2SLHPJWwDdbW5
+ xNk5shk+LVNjmv8TUv9SCLM4ww==
+X-Google-Smtp-Source: ACHHUZ4rJo+IPtTRaPya+U1JdMgc+u3gA3krnJKF3F08hxGt0uoHrxZAqg1izlNZ+SOIkOa4AMphOQ==
+X-Received: by 2002:a05:6830:19c1:b0:6b1:6db4:556f with SMTP id
+ p1-20020a05683019c100b006b16db4556fmr10609999otp.3.1687422702698; 
+ Thu, 22 Jun 2023 01:31:42 -0700 (PDT)
+Received: from [10.4.168.167] ([139.177.225.254])
+ by smtp.gmail.com with ESMTPSA id
+ y17-20020a63e251000000b0050a0227a4bcsm4369684pgj.57.2023.06.22.01.31.24
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 22 Jun 2023 01:31:42 -0700 (PDT)
+Message-ID: <52bf599c-3c3a-7dfc-30b3-f3a2af5f29a8@bytedance.com>
+Date: Thu, 22 Jun 2023 16:31:22 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.12.0
+To: Qi Zheng <qi.zheng@linux.dev>, akpm@linux-foundation.org,
+ david@fromorbit.com, tkhai@ya.ru, vbabka@suse.cz, roman.gushchin@linux.dev,
+ djwong@kernel.org, brauner@kernel.org, paulmck@kernel.org, tytso@mit.edu
+References: <20230622082454.4090236-1-qi.zheng@linux.dev>
+Content-Language: en-US
+From: Qi Zheng <zhengqi.arch@bytedance.com>
+In-Reply-To: <20230622082454.4090236-1-qi.zheng@linux.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 27 Jun 2023 14:38:30 +0000
-Subject: [Intel-gfx] [PATCH 02/29] mm: vmscan: introduce some helpers for
- dynamically allocating shrinker
+Subject: Re: [Intel-gfx] [External] [PATCH 00/29] use refcount+RCU method to
+ implement lockless slab shrink
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,8 +86,7 @@ Cc: mst@redhat.com, neilb@suse.de, jasowang@redhat.com,
  namit@vmware.com, marijn.suijten@somainline.org, airlied@gmail.com,
  agk@redhat.com, robh@kernel.org, senozhatsky@chromium.org, david@redhat.com,
  clm@fb.com, steven.price@arm.com, alyssa.rosenzweig@collabora.com,
- Qi Zheng <zhengqi.arch@bytedance.com>, josef@toxicpanda.com,
- linux-ext4@vger.kernel.org, kent.overstreet@gmail.com,
+ josef@toxicpanda.com, linux-ext4@vger.kernel.org, kent.overstreet@gmail.com,
  xuanzhuo@linux.alibaba.com, linux-arm-msm@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, snitzer@kernel.org, quic_abhinavk@quicinc.com,
  colyli@suse.de, linux-raid@vger.kernel.org, linux-fsdevel@vger.kernel.org,
@@ -73,102 +100,6 @@ Cc: mst@redhat.com, neilb@suse.de, jasowang@redhat.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Qi Zheng <zhengqi.arch@bytedance.com>
+This patch set failed to send due to the following reasons, please ignore.
 
-Introduce some helpers for dynamically allocating shrinker instance,
-and their uses are as follows:
-
-1. shrinker_alloc_and_init()
-
-Used to allocate and initialize a shrinker instance, the priv_data
-parameter is used to pass the pointer of the previously embedded
-structure of the shrinker instance.
-
-2. shrinker_free()
-
-Used to free the shrinker instance when the registration of shrinker
-fails.
-
-3. unregister_and_free_shrinker()
-
-Used to unregister and free the shrinker instance, and the kfree()
-will be changed to kfree_rcu() later.
-
-Signed-off-by: Qi Zheng <zhengqi.arch@bytedance.com>
----
- include/linux/shrinker.h | 12 ++++++++++++
- mm/vmscan.c              | 35 +++++++++++++++++++++++++++++++++++
- 2 files changed, 47 insertions(+)
-
-diff --git a/include/linux/shrinker.h b/include/linux/shrinker.h
-index 43e6fcabbf51..8e9ba6fa3fcc 100644
---- a/include/linux/shrinker.h
-+++ b/include/linux/shrinker.h
-@@ -107,6 +107,18 @@ extern void unregister_shrinker(struct shrinker *shrinker);
- extern void free_prealloced_shrinker(struct shrinker *shrinker);
- extern void synchronize_shrinkers(void);
- 
-+typedef unsigned long (*count_objects_cb)(struct shrinker *s,
-+					  struct shrink_control *sc);
-+typedef unsigned long (*scan_objects_cb)(struct shrinker *s,
-+					 struct shrink_control *sc);
-+
-+struct shrinker *shrinker_alloc_and_init(count_objects_cb count,
-+					 scan_objects_cb scan, long batch,
-+					 int seeks, unsigned flags,
-+					 void *priv_data);
-+void shrinker_free(struct shrinker *shrinker);
-+void unregister_and_free_shrinker(struct shrinker *shrinker);
-+
- #ifdef CONFIG_SHRINKER_DEBUG
- extern int shrinker_debugfs_add(struct shrinker *shrinker);
- extern struct dentry *shrinker_debugfs_detach(struct shrinker *shrinker,
-diff --git a/mm/vmscan.c b/mm/vmscan.c
-index 45d17c7cc555..64ff598fbad9 100644
---- a/mm/vmscan.c
-+++ b/mm/vmscan.c
-@@ -809,6 +809,41 @@ void unregister_shrinker(struct shrinker *shrinker)
- }
- EXPORT_SYMBOL(unregister_shrinker);
- 
-+struct shrinker *shrinker_alloc_and_init(count_objects_cb count,
-+					 scan_objects_cb scan, long batch,
-+					 int seeks, unsigned flags,
-+					 void *priv_data)
-+{
-+	struct shrinker *shrinker;
-+
-+	shrinker = kzalloc(sizeof(struct shrinker), GFP_KERNEL);
-+	if (!shrinker)
-+		return NULL;
-+
-+	shrinker->count_objects = count;
-+	shrinker->scan_objects = scan;
-+	shrinker->batch = batch;
-+	shrinker->seeks = seeks;
-+	shrinker->flags = flags;
-+	shrinker->private_data = priv_data;
-+
-+	return shrinker;
-+}
-+EXPORT_SYMBOL(shrinker_alloc_and_init);
-+
-+void shrinker_free(struct shrinker *shrinker)
-+{
-+	kfree(shrinker);
-+}
-+EXPORT_SYMBOL(shrinker_free);
-+
-+void unregister_and_free_shrinker(struct shrinker *shrinker)
-+{
-+	unregister_shrinker(shrinker);
-+	kfree(shrinker);
-+}
-+EXPORT_SYMBOL(unregister_and_free_shrinker);
-+
- /**
-  * synchronize_shrinkers - Wait for all running shrinkers to complete.
-  *
--- 
-2.30.2
-
+	4.7.1 Error: too many recipients from 49.7.199.65
