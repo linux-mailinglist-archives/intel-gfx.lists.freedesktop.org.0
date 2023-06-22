@@ -2,42 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ECB873ACED
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jun 2023 01:10:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F19F73AD53
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jun 2023 01:46:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 758D010E012;
-	Thu, 22 Jun 2023 23:10:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23AB110E0A1;
+	Thu, 22 Jun 2023 23:46:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (mail.ozlabs.org
- [IPv6:2404:9400:2221:ea00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 313AC10E012;
- Thu, 22 Jun 2023 23:10:05 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4QnGL06y7Dz4x04;
- Fri, 23 Jun 2023 09:10:00 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1687475401;
- bh=Au03f7xLQfTU2zow8kOeULaIyTtn+azYlLTURG5opPk=;
- h=Date:From:To:Cc:Subject:From;
- b=lM2ZH+CLh6C8eUltDZw1FWOHmaJFteS6TZ39ccZ35Vzg02rPzOwR7geK+K5CqSyLk
- g76xi9QVCbQCxz6GZOElpmzn+u1RWzGnrJuLYuuGR6qH1hqi9UTa3Ma3AZAvZJpl7B
- 8NwB9+T+sg7pwH71Ixkk+2ecL3o9dDcVjE2T/E4BvNoC+2nqLQ2JB8z0/pRmwKGARk
- 1hulHaqZ0hne9wb6CPHX9xsw9M6u/PzqUS744bJDGr8BuoFoDIPt0SzDW3HNIFLhCI
- s/fTPeedv+jGLq/jOe8eFxRcOznx6p0zNFrFg26dC5qRWyPBxivIaYm35Mh+UINVHE
- goEH2oekgaFGA==
-Date: Fri, 23 Jun 2023 09:09:59 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20230623090959.7b5ce510@canb.auug.org.au>
+X-Greylist: delayed 565 seconds by postgrey-1.36 at gabe;
+ Thu, 22 Jun 2023 23:46:49 UTC
+Received: from smtp67.iad3a.emailsrvr.com (smtp67.iad3a.emailsrvr.com
+ [173.203.187.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17A0210E5B6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 23:46:48 +0000 (UTC)
+X-Auth-ID: kenneth@whitecape.org
+Received: by smtp25.relay.iad3a.emailsrvr.com (Authenticated sender:
+ kenneth-AT-whitecape.org) with ESMTPSA id 5FD2C23976; 
+ Thu, 22 Jun 2023 19:37:22 -0400 (EDT)
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Date: Thu, 22 Jun 2023 16:37:21 -0700
+Message-ID: <3337022.2OMYdDKdcH@mizzik>
+In-Reply-To: <20230622182731.3765039-2-lucas.demarchi@intel.com>
+References: <20230622182731.3765039-1-lucas.demarchi@intel.com>
+ <20230622182731.3765039-2-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/v9Y/GsEo/xYLhTB/J0WD7wg";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: build failure after merge of the
- drm-misc-fixes tree
+Content-Type: multipart/signed; boundary="nextPart23769370.ZV0zXJHA5L";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Classification-ID: fa98ef4b-1604-47dd-b2b5-2b1b6ee0f044-1-1
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/gt: Fix context workarounds
+ with non-masked regs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,63 +44,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>, Yunxiang Li <Yunxiang.Li@amd.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, stable@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/v9Y/GsEo/xYLhTB/J0WD7wg
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+--nextPart23769370.ZV0zXJHA5L
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Kenneth Graunke <kenneth@whitecape.org>
+Date: Thu, 22 Jun 2023 16:37:21 -0700
+Message-ID: <3337022.2OMYdDKdcH@mizzik>
+In-Reply-To: <20230622182731.3765039-2-lucas.demarchi@intel.com>
+MIME-Version: 1.0
 
-Hi all,
+On Thursday, June 22, 2023 11:27:30 AM PDT Lucas De Marchi wrote:
+> Most of the context workarounds tweak masked registers, but not all. For
+> masked registers, when writing the value it's sufficient to just write
+> the wa->set_bits since that will take care of both the clr and set bits
+> as well as not overwriting other bits.
+> 
+> However there are some workarounds, the registers are non-masked. Up
+> until now the driver was simply emitting a MI_LOAD_REGISTER_IMM with the
+> set_bits to program the register via the GPU in the WA bb. This has the
+> side effect of overwriting the content of the register outside of bits
+> that should be set and also doesn't handle the bits that should be
+> cleared.
+> 
+> Kenneth reported that on DG2, mesa was seeing a weird behavior due to
+> the kernel programming of L3SQCREG5 in dg2_ctx_gt_tuning_init(). With
+> the GPU idle, that register could be read via intel_reg as 0x00e001ff,
+> but during a 3D workload it would change to 0x0000007f. So the
+> programming of that tuning was affecting more than the bits in
+> L3_PWM_TIMER_INIT_VAL_MASK. Matt Roper noticed the lack of rmw for the
+> context workarounds due to the use of MI_LOAD_REGISTER_IMM.
+> 
+> So, for registers that are not masked, read its value via mmio, modify
+> and then set it in the buffer to be written by the GPU. This should take
+> care in a simple way of programming just the bits required by the
+> tuning/workaround. If in future there are registers that involved that
+> can't be read by the CPU, a more complex approach may be required like
+> a) issuing additional instructions to read and modify; or b) scan the
+> golden context and patch it in place before saving it; or something
+> else. But for now this should suffice.
+> 
+> Scanning the context workarounds for all platforms, these are the
+> impacted ones with the respective registers
+> 
+> 	mtl: DRAW_WATERMARK
+> 	mtl/dg2: XEHP_L3SQCREG5, XEHP_FF_MODE2
+> 	gen12: GEN12_FF_MODE2
 
-After merging the drm-misc-fixes tree, today's linux-next build (x86_64
-allmodconfig) failed like this:
+Speaking of GEN12_FF_MODE2...there's a big scary comment above that
+workaround write which says that register "will return the wrong value
+when read."  I think with this patch, we'll start doing a RMW cycle for
+the register, which could mix in some of this "wrong value".  The
+comment mentions that the intention is to write the whole register,
+as the default value is 0 for all fields.
 
-In file included from include/linux/build_bug.h:5,
-                 from include/linux/init.h:5,
-                 from include/linux/io.h:10,
-                 from include/linux/iosys-map.h:10,
-                 from drivers/gpu/drm/ttm/ttm_resource.c:25:
-drivers/gpu/drm/ttm/ttm_resource.c: In function 'ttm_lru_bulk_move_del':
-drivers/gpu/drm/ttm/ttm_resource.c:117:40: error: suggest parentheses aroun=
-d '&&' within '||' [-Werror=3Dparentheses]
-  117 |                      pos->first =3D=3D res && pos->last =3D=3D res)=
-) {
-      |                      ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
-include/linux/compiler.h:77:45: note: in definition of macro 'unlikely'
-   77 | # define unlikely(x)    __builtin_expect(!!(x), 0)
-      |                                             ^
-cc1: all warnings being treated as errors
+Maybe what we want to do is change gen12_ctx_gt_tuning_init to do
 
-Caused by commit
+    wa_write(wal, GEN12_FF_MODE2, FF_MODE2_TDS_TIMER_128);
 
-  4481913607e5 ("drm/ttm: fix bulk_move corruption when adding a entry")
+so it has a clear mask of ~0 instead of FF_MODE2_TDS_TIMER_MASK, and
+then in this patch update your condition below from
 
-I have used the drm-misc-fixes tree from next-20230622 for today.
++		if (wa->masked_reg || wa->set == U32_MAX) {
 
---=20
-Cheers,
-Stephen Rothwell
+to
 
---Sig_/v9Y/GsEo/xYLhTB/J0WD7wg
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
++		if (wa->masked_reg || wa->set == U32_MAX || wa->clear == U32_MAX) {
+
+because if we're clearing all bits then we don't care about doing a
+read-modify-write either.
+
+--Ken
+
+--nextPart23769370.ZV0zXJHA5L
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmSU1McACgkQAVBC80lX
-0GzBhwf9HFCkLl4s9TP1QEAZRSX6wn7Ei8uIrr3+3jSl5+3CWcHQI8+36xX+xKHt
-MNWV+SXZ4slmE+jh8Lr5dWIO5LdnjahB5YEsDfh3ZIQEFEMNzLK5ar+SZ95LZGZM
-7mrD4N35iI8s0z50WifBB5vK201vPtbwXA9y+Gzr7lvvSuLYSHRWYc3fJN/S1PpZ
-pyM9fTc1dr51Ul8cEXgHhWSR5VDScR5SdxoXoVuC34QcdS8GmPAEEBUxZeQ0GxIO
-QzZbs2p2wyHSknvv3Sto9eEkgxp0iQ/67237xMr+6LjRFTU67tIaIk9kVB7rOQVg
-spL5OnukNcjZ5sJmNar2vieHB9IYVw==
-=v0YD
+iQIzBAABCAAdFiEE6OtbNAgc4e6ibv4ZW1vaBx1JzDgFAmSU2zEACgkQW1vaBx1J
+zDi2Dg//a2kNxu7B2APmRk9aNgVr1so4zaW2qGlqsfqUmUZFVIU0fBOE1KKE7C2p
+15II2rsMTU1695AdfR83F/qt8AV3thWOd7drE7f3jh1TTxahlZVdipqLvJ/UG8FK
+GVjUO90+UWNI9WJycrB6QjdnVlgWz/VsBfzBuZH8TQDdp+ko4hwhoPEzqHSlpsNd
+XPvZyDiDU7Xoj59/sGUbFOrBoZANC56HKsLeaVpLLof2KCOi5LUZzmQ+kIYrkmYa
+zvsMuLhfWEtcS15bwSY6eTFT9NqV00/PuQAt0Jdg/IfGx7wm1OIYRnpHYnDAimUz
++JgKXAEFBC3dyWucfUSQb6/UPEuHm+9COXnFso3sOFaWCVBEBklRuobEk+O0RmXe
+naIuGsgV2vGtzhFGrmKu9NLNO86qgaENMOjhdS+9t+Z0ws+3I/SNyXB2TkAZ0k21
+nEDgMVaO+FkjivyqDfiDwoiTIvtLrONWB7SSv7wdZze3mws2GpY14X3yF7GLkNCJ
+TWjVGnntSIjF7gLnnNnK5hnWl1uN/NrjQpf2j8WkIvUu32C0dErddY0PwNZFT6Tp
+yjtONwRcs3/4IJaAdyPC5u2/Qu9DkGubTqdcwsvNeTEPMC+bKAUgkyiI3anKtw5e
+4S1oTin2BTwRx5q4pNy3tDKvKLEYiDVCEWCiHMc9loek7EvPd1Q=
+=t4AT
 -----END PGP SIGNATURE-----
 
---Sig_/v9Y/GsEo/xYLhTB/J0WD7wg--
+--nextPart23769370.ZV0zXJHA5L--
+
+
+
