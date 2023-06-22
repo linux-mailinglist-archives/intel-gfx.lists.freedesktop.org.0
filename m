@@ -2,59 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA4CD7396A7
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 07:08:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 316777396BB
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 07:16:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D96C10E4CA;
-	Thu, 22 Jun 2023 05:08:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD7B710E4C2;
+	Thu, 22 Jun 2023 05:16:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 469BB10E4C2;
- Thu, 22 Jun 2023 05:08:23 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Axz8dE15NkH1cAAA--.545S3;
- Thu, 22 Jun 2023 13:08:20 +0800 (CST)
-Received: from [10.20.42.43] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8BxrM4_15Nk16ABAA--.9048S3; 
- Thu, 22 Jun 2023 13:08:15 +0800 (CST)
-Message-ID: <0dd961ae-78a7-0b67-af51-008ecbcdbbef@loongson.cn>
-Date: Thu, 22 Jun 2023 13:08:15 +0800
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9756910E4C2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 05:16:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687410960; x=1718946960;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cCLPgXZNjrj/AX7Hh2dDFzOsMA3YfS1DpUB2Z3+/LkI=;
+ b=In223yas3KJ4rp4A4CaDCUKViNfSQDtsler+lT71IIXhc58dOElVRtkS
+ 6xeDSqanS02v1G+3zzlzQVks24IyRsMnkkuUqToVmiuLnJkO+yXLqAF0Q
+ GVm6+85S0RKKPiZjEXz4nGV6cEKgvywESANYDMCTuv9IceZlOkDUm8eyf
+ qyfqidYe/u1qRIbVzcQb+x8647zgrmP55eKpYFWH9qNV4pLSzJxkMEh8r
+ ezNvFG6V1W6l/sd05lq46zrJ1L4L99VJFCMnhXd8GNHOgg3U4dbUaWEuF
+ VD9JF6gtg3v7d2JOQUFrMVTmYUXLbay7qcBPamOgigTmLz0Jk7dmi82zg w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="360407700"
+X-IronPort-AV: E=Sophos;i="6.00,262,1681196400"; d="scan'208";a="360407700"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2023 22:15:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="804641774"
+X-IronPort-AV: E=Sophos;i="6.00,262,1681196400"; d="scan'208";a="804641774"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by FMSMGA003.fm.intel.com with ESMTP; 21 Jun 2023 22:15:58 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 22 Jun 2023 10:38:30 +0530
+Message-Id: <20230622050830.1145626-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Sui Jingfeng <15330273260@189.cn>, Bjorn Helgaas <bhelgaas@google.com>
-References: <20230613030151.216625-1-15330273260@189.cn>
- <20230613030151.216625-7-15330273260@189.cn>
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-Organization: Loongson
-In-Reply-To: <20230613030151.216625-7-15330273260@189.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID: AQAAf8BxrM4_15Nk16ABAA--.9048S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3KF1DJw4UAw1xZry3ur45Jwc_yoWDtF13pF
- 4rJF15Ar97ZF4I9w47Xa4UAFyYv3y0va4fGrW7A34Y9a43Ar9YgF9YyFy5tryxJrZrCF43
- tryDKFWxuF1jvFcCm3ZEXasCq-sJn29KB7ZKAUJUUUUf529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUPvb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
- 6r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
- xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
- 6r1DMcIj6I8E87Iv67AKxVWxJVW8Jr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI4
- 8JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vI
- r41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67
- AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26rWY6r4UJwCI
- c40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267
- AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Cr0_
- Gr1UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWIevJa73UjIFyTuYvjxUsl
- 4iUUUUU
-Subject: Re: [Intel-gfx] [PATCH v7 6/8] PCI/VGA: Introduce is_boot_device
- function callback to vga_client_register
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [DO_NOT_REVIEW PATCH] drm/i915/display/dp: On AUX xfer
+ timeout restart freshly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,273 +55,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Cornelia Huck <cohuck@redhat.com>,
- Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Likun Gao <Likun.Gao@amd.com>,
- David Airlie <airlied@gmail.com>, Yi Liu <yi.l.liu@intel.com>,
- kvm@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
- linux-pci@vger.kernel.org, Kevin Tian <kevin.tian@intel.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Bokun Zhang <Bokun.Zhang@amd.com>, intel-gfx@lists.freedesktop.org,
- Abhishek Sahu <abhsahu@nvidia.com>, Maxime Ripard <mripard@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Yishai Hadas <yishaih@nvidia.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+At the beginning of the aux transfer a check for aux control busy bit is
+done. Then as per the spec on aux transfer timeout, need to retry
+freshly for 3 times with a delay which is taken care by the control
+register.
+On each of these 3 trials a check for busy has to be done so as to start
+freshly.
 
+v2: updated the commit message
+v4: check for SEND_BUSY after write (Imre)
+v5: reverted the send_ctl to the while loop (Jani)
+v6: Fixed the BAT failure
 
-A nouveau developer(Lyude) from redhat send me a R-B,
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 36 ++++++++++++++-------
+ 1 file changed, 24 insertions(+), 12 deletions(-)
 
-Thanks for the developers of nouveau project.
-
-
-Please allow me add a link[1] here.
-
-
-[1] 
-https://lore.kernel.org/all/0afadc69f99a36bc9d03ecf54ff25859dbc10e28.camel@redhat.com/
-
-
-On 2023/6/13 11:01, Sui Jingfeng wrote:
-> From: Sui Jingfeng <suijingfeng@loongson.cn>
->
-> The vga_is_firmware_default() function is arch-dependent, it's probably
-> wrong if we simply remove the arch guard. As the VRAM BAR which contains
-> firmware framebuffer may move, while the lfb_base and lfb_size members of
-> the screen_info does not change accordingly. In short, it should take the
-> re-allocation of the PCI BAR into consideration.
->
-> With the observation that device drivers or video aperture helpers may
-> have better knowledge about which PCI bar contains the firmware fb,
-> which could avoid the need to iterate all of the PCI BARs. But as a PCI
-> function at pci/vgaarb.c, vga_is_firmware_default() is not suitable to
-> make such an optimization since it is loaded too early.
->
-> There are PCI display controllers that don't have a dedicated VRAM bar,
-> this function will lose its effectiveness in such a case. Luckily, the
-> device driver can provide an accurate workaround.
->
-> Therefore, this patch introduces a callback that allows the device driver
-> to tell the VGAARB if the device is the default boot device. This patch
-> only intends to introduce the mechanism, while the implementation is left
-> to the device driver authors. Also honor the comment: "Clients have two
-> callback mechanisms they can use"
->
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Christian Konig <christian.koenig@amd.com>
-> Cc: Pan Xinhui <Xinhui.Pan@amd.com>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Alex Williamson <alex.williamson@redhat.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-> Cc: Mario Limonciello <mario.limonciello@amd.com>
-> Cc: Lijo Lazar <lijo.lazar@amd.com>
-> Cc: YiPeng Chai <YiPeng.Chai@amd.com>
-> Cc: Bokun Zhang <Bokun.Zhang@amd.com>
-> Cc: Likun Gao <Likun.Gao@amd.com>
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> CC: Kevin Tian <kevin.tian@intel.com>
-> Cc: Cornelia Huck <cohuck@redhat.com>
-> Cc: Yishai Hadas <yishaih@nvidia.com>
-> Cc: Abhishek Sahu <abhsahu@nvidia.com>
-> Cc: Yi Liu <yi.l.liu@intel.com>
-> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
->   drivers/gpu/drm/i915/display/intel_vga.c   |  3 +--
->   drivers/gpu/drm/nouveau/nouveau_vga.c      |  2 +-
->   drivers/gpu/drm/radeon/radeon_device.c     |  2 +-
->   drivers/pci/vgaarb.c                       | 21 ++++++++++++++++++++-
->   drivers/vfio/pci/vfio_pci_core.c           |  2 +-
->   include/linux/vgaarb.h                     |  8 +++++---
->   7 files changed, 30 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 5c7d40873ee2..7a096f2d5c16 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -3960,7 +3960,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
->   	/* this will fail for cards that aren't VGA class devices, just
->   	 * ignore it */
->   	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
-> -		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode);
-> +		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode, NULL);
->   
->   	px = amdgpu_device_supports_px(ddev);
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-> index 286a0bdd28c6..98d7d4dffe9f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vga.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
-> @@ -115,7 +115,6 @@ intel_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
->   
->   int intel_vga_register(struct drm_i915_private *i915)
->   {
-> -
->   	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
->   	int ret;
->   
-> @@ -127,7 +126,7 @@ int intel_vga_register(struct drm_i915_private *i915)
->   	 * then we do not take part in VGA arbitration and the
->   	 * vga_client_register() fails with -ENODEV.
->   	 */
-> -	ret = vga_client_register(pdev, intel_vga_set_decode);
-> +	ret = vga_client_register(pdev, intel_vga_set_decode, NULL);
->   	if (ret && ret != -ENODEV)
->   		return ret;
->   
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
-> index f8bf0ec26844..162b4f4676c7 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_vga.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
-> @@ -92,7 +92,7 @@ nouveau_vga_init(struct nouveau_drm *drm)
->   		return;
->   	pdev = to_pci_dev(dev->dev);
->   
-> -	vga_client_register(pdev, nouveau_vga_set_decode);
-> +	vga_client_register(pdev, nouveau_vga_set_decode, NULL);
->   
->   	/* don't register Thunderbolt eGPU with vga_switcheroo */
->   	if (pci_is_thunderbolt_attached(pdev))
-> diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-> index afbb3a80c0c6..71f2ff39d6a1 100644
-> --- a/drivers/gpu/drm/radeon/radeon_device.c
-> +++ b/drivers/gpu/drm/radeon/radeon_device.c
-> @@ -1425,7 +1425,7 @@ int radeon_device_init(struct radeon_device *rdev,
->   	/* if we have > 1 VGA cards, then disable the radeon VGA resources */
->   	/* this will fail for cards that aren't VGA class devices, just
->   	 * ignore it */
-> -	vga_client_register(rdev->pdev, radeon_vga_set_decode);
-> +	vga_client_register(rdev->pdev, radeon_vga_set_decode, NULL);
->   
->   	if (rdev->flags & RADEON_IS_PX)
->   		runtime = true;
-> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
-> index ceb914245383..c574898380f0 100644
-> --- a/drivers/pci/vgaarb.c
-> +++ b/drivers/pci/vgaarb.c
-> @@ -53,6 +53,7 @@ struct vga_device {
->   	bool bridge_has_one_vga;
->   	bool is_firmware_default;	/* device selected by firmware */
->   	unsigned int (*set_decode)(struct pci_dev *pdev, bool decode);
-> +	bool (*is_boot_device)(struct pci_dev *pdev);
->   };
->   
->   static LIST_HEAD(vga_list);
-> @@ -969,6 +970,10 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
->    * @set_decode callback: If a client can disable its GPU VGA resource, it
->    * will get a callback from this to set the encode/decode state.
->    *
-> + * @is_boot_device: callback to the device driver, query if a client is the
-> + * default boot device, as the device driver typically has better knowledge
-> + * if specific device is the boot device. But this callback is optional.
-> + *
->    * Rationale: we cannot disable VGA decode resources unconditionally, some
->    * single GPU laptops seem to require ACPI or BIOS access to the VGA registers
->    * to control things like backlights etc. Hopefully newer multi-GPU laptops do
-> @@ -984,7 +989,8 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
->    * Returns: 0 on success, -1 on failure
->    */
->   int vga_client_register(struct pci_dev *pdev,
-> -		unsigned int (*set_decode)(struct pci_dev *pdev, bool decode))
-> +		unsigned int (*set_decode)(struct pci_dev *pdev, bool decode),
-> +		bool (*is_boot_device)(struct pci_dev *pdev))
->   {
->   	int ret = -ENODEV;
->   	struct vga_device *vgadev;
-> @@ -996,6 +1002,7 @@ int vga_client_register(struct pci_dev *pdev,
->   		goto bail;
->   
->   	vgadev->set_decode = set_decode;
-> +	vgadev->is_boot_device = is_boot_device;
->   	ret = 0;
->   
->   bail:
-> @@ -1523,6 +1530,18 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->   		notify = vga_arbiter_add_pci_device(pdev);
->   	else if (action == BUS_NOTIFY_DEL_DEVICE)
->   		notify = vga_arbiter_del_pci_device(pdev);
-> +	else if (action == BUS_NOTIFY_BOUND_DRIVER) {
-> +		struct vga_device *vgadev = vgadev_find(pdev);
-> +		bool boot_dev = false;
-> +
-> +		if (vgadev && vgadev->is_boot_device)
-> +			boot_dev = vgadev->is_boot_device(pdev);
-> +
-> +		if (boot_dev) {
-> +			vgaarb_info(&pdev->dev, "Set as boot device (dictated by driver)\n");
-> +			vga_set_default_device(pdev);
-> +		}
-> +	}
->   
->   	vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
->   
-> diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
-> index a5ab416cf476..2a8873a330ba 100644
-> --- a/drivers/vfio/pci/vfio_pci_core.c
-> +++ b/drivers/vfio/pci/vfio_pci_core.c
-> @@ -2067,7 +2067,7 @@ static int vfio_pci_vga_init(struct vfio_pci_core_device *vdev)
->   	if (ret)
->   		return ret;
->   
-> -	ret = vga_client_register(pdev, vfio_pci_set_decode);
-> +	ret = vga_client_register(pdev, vfio_pci_set_decode, NULL);
->   	if (ret)
->   		return ret;
->   	vga_set_legacy_decoding(pdev, vfio_pci_set_decode(pdev, false));
-> diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
-> index 97129a1bbb7d..dfde5a6ba55a 100644
-> --- a/include/linux/vgaarb.h
-> +++ b/include/linux/vgaarb.h
-> @@ -33,7 +33,8 @@ struct pci_dev *vga_default_device(void);
->   void vga_set_default_device(struct pci_dev *pdev);
->   int vga_remove_vgacon(struct pci_dev *pdev);
->   int vga_client_register(struct pci_dev *pdev,
-> -		unsigned int (*set_decode)(struct pci_dev *pdev, bool state));
-> +		unsigned int (*set_decode)(struct pci_dev *pdev, bool state),
-> +		bool (*is_boot_device)(struct pci_dev *pdev));
->   #else /* CONFIG_VGA_ARB */
->   static inline void vga_set_legacy_decoding(struct pci_dev *pdev,
->   		unsigned int decodes)
-> @@ -59,7 +60,8 @@ static inline int vga_remove_vgacon(struct pci_dev *pdev)
->   	return 0;
->   }
->   static inline int vga_client_register(struct pci_dev *pdev,
-> -		unsigned int (*set_decode)(struct pci_dev *pdev, bool state))
-> +		unsigned int (*set_decode)(struct pci_dev *pdev, bool state),
-> +		bool (*is_boot_device)(struct pci_dev *pdev))
->   {
->   	return 0;
->   }
-> @@ -97,7 +99,7 @@ static inline int vga_get_uninterruptible(struct pci_dev *pdev,
->   
->   static inline void vga_client_unregister(struct pci_dev *pdev)
->   {
-> -	vga_client_register(pdev, NULL);
-> +	vga_client_register(pdev, NULL, NULL);
->   }
->   
->   #endif /* LINUX_VGA_H */
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 197c6e81db14..bebe9a337e37 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -37,7 +37,7 @@ static void intel_dp_aux_unpack(u32 src, u8 *dst, int dst_bytes)
+ }
+ 
+ static u32
+-intel_dp_aux_wait_done(struct intel_dp *intel_dp)
++intel_dp_aux_wait_for(struct intel_dp *intel_dp, u32 mask, u32 val)
+ {
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
+@@ -45,8 +45,7 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+ 	u32 status;
+ 	int ret;
+ 
+-	ret = __intel_de_wait_for_register(i915, ch_ctl,
+-					   DP_AUX_CH_CTL_SEND_BUSY, 0,
++	ret = __intel_de_wait_for_register(i915, ch_ctl, mask, val,
+ 					   2, timeout_ms, &status);
+ 
+ 	if (ret == -ETIMEDOUT)
+@@ -321,13 +320,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 			/* Send the command and wait for it to complete */
+ 			intel_de_write(i915, ch_ctl, send_ctl);
+ 
+-			status = intel_dp_aux_wait_done(intel_dp);
+-
+-			/* Clear done status and any errors */
+-			intel_de_write(i915, ch_ctl,
+-				       status | DP_AUX_CH_CTL_DONE |
+-				       DP_AUX_CH_CTL_TIME_OUT_ERROR |
+-				       DP_AUX_CH_CTL_RECEIVE_ERROR);
++			status = intel_dp_aux_wait_for(intel_dp,
++						       DP_AUX_CH_CTL_DONE, 1);
+ 
+ 			/*
+ 			 * DP CTS 1.2 Core Rev 1.1, 4.2.1.1 & 4.2.1.2
+@@ -335,15 +329,33 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 			 *   Timeout errors from the HW already meet this
+ 			 *   requirement so skip to next iteration
+ 			 */
+-			if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR)
++			if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR) {
++				/* Clear the timeout error */
++				intel_de_rmw(i915, ch_ctl, DP_AUX_CH_CTL_TIME_OUT_ERROR, 0);
++
++				/* Clear all errors */
++				status = intel_de_read(i915, ch_ctl);
++				intel_de_write(i915, ch_ctl, status);
+ 				continue;
++			}
+ 
+ 			if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
++				/* Clear the reveive error */
++				intel_de_rmw(i915, ch_ctl, DP_AUX_CH_CTL_RECEIVE_ERROR, 0);
+ 				usleep_range(400, 500);
++				/* Clear all errors */
++				status = intel_de_read(i915, ch_ctl);
++				intel_de_write(i915, ch_ctl, status);
+ 				continue;
+ 			}
+-			if (status & DP_AUX_CH_CTL_DONE)
++			if (status & DP_AUX_CH_CTL_DONE) {
++				/* Clear aux done */
++				intel_de_rmw(i915, ch_ctl, DP_AUX_CH_CTL_DONE, 0);
++				/* Clear all errors */
++				status = intel_de_read(i915, ch_ctl);
++				intel_de_write(i915, ch_ctl, status);
+ 				goto done;
++			}
+ 		}
+ 	}
+ 
 -- 
-Jingfeng
+2.25.1
 
