@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9966A739E66
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 12:20:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E23AB739E6A
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 12:21:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B17B10E546;
-	Thu, 22 Jun 2023 10:20:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F63F10E547;
+	Thu, 22 Jun 2023 10:21:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0605010E082;
- Thu, 22 Jun 2023 10:20:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 841F110E545;
+ Thu, 22 Jun 2023 10:21:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687429245; x=1718965245;
+ t=1687429260; x=1718965260;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8NHvqn83ZvFUkevP/WNZb8GNDLDy33tL9NNl4xX0eyI=;
- b=iqBEj0eVAincUrBv8L2wp1iJ2ztxqZcuTBJWJrUVMSw7+rFtiyLLKuoQ
- JydqwvJOKaDRK/qLbqB87BfH1AAp84JKCNj+uNGXTMFOr8dwnaklJNZmn
- RA3NyaFYa2VXNYsVQkZ3AwLLi2VCWbNcJ9ZPf2cdY7CP0NxelOocxQd2h
- vtxl9Ue8T1N8y9bvNVz/N0UZYLsmCW8tNOm0MOTUymPzWsC+oayaNAEAh
- tGYq8CSercoxn2voNm9FikgHX1vO1qPUEB0iLN7cfUwtaTxW6Ce1hNrXN
- kwYn2N5nrrEQeYMtSk+IZ7lTpiQ2NyvUf5zdvRZajzRLWHUMY+HPMSGys g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="345182273"
-X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; d="scan'208";a="345182273"
+ bh=n9z5G10dFEpvSF9s/7DggC7dqDZF2o/8gaNO2uyYJ5k=;
+ b=ilI2v4mbJns+prEp1eWu4qOZM+yntxQi92RzNyK4P2MtEAb6rakYsKXZ
+ 8nVcIxkxUdY6XMKbK8nQLG94yYE5MIIxL8xub1Mo9XwxfHyFMbZcUrg1j
+ eRyZz/Bt9h8yhZOAEfBQWHw7rXJvAOmhkWj2DzVrRA6OD00Nt3IIxP2QO
+ K3FTVdGwIkWgYBRYz9qFvXiHHb3oVXYOPVByw6DzJDRL3wwW5FP8JP66Q
+ vm8JgGi4m4nB7Wv6IjEn3JQcxJ/iyl7qmaH5sWtuZTk/ZW9RioMcgCWuq
+ 3A6U8ftJBpBxHwyplccG9Rlquy7+I9HFnXUCnxaHHvzc1OOl/HQeb8QDm A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="345182364"
+X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; d="scan'208";a="345182364"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2023 03:14:53 -0700
+ 22 Jun 2023 03:15:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="692194052"
-X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; d="scan'208";a="692194052"
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="692194358"
+X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; d="scan'208";a="692194358"
 Received: from shari19x-mobl1.gar.corp.intel.com (HELO
  thellstr-mobl1.intel.com) ([10.249.254.173])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2023 03:14:49 -0700
+ 22 Jun 2023 03:14:59 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Jun 2023 12:14:10 +0200
-Message-Id: <20230622101412.78426-3-thomas.hellstrom@linux.intel.com>
+Date: Thu, 22 Jun 2023 12:14:11 +0200
+Message-Id: <20230622101412.78426-4-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230622101412.78426-1-thomas.hellstrom@linux.intel.com>
 References: <20230622101412.78426-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/4] drm/ttm: Don't shadow the operation context
+Subject: [Intel-gfx] [PATCH 3/4] drm/ttm: Don't leak a resource on eviction
+ error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,52 +61,57 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
  intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, Roger He <Hongbo.He@amd.com>,
+ stable@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
  dri-devel@lists.freedesktop.org,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-ttm_bo_swapout() shadows the ttm operation context which may cause
-major confusion in driver callbacks when swapping out !TTM_PL_SYSTEM
-memory. Fix this by reusing the operation context argument to
-ttm_bo_swapout().
+On eviction errors other than -EMULTIHOP we were leaking a resource.
+Fix.
 
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: Roger He <Hongbo.He@amd.com>
-Cc: <dri-devel@lists.freedesktop.org>
-Cc: <intel-gfx@lists.freedesktop.org>
-Cc: <stable@vger.kernel.org> # v4.16+
-Fixes: dc947770cf34 ("drm/ttm: enable swapout for reserved BOs during allocation")
+Fixes: 403797925768 ("drm/ttm: Fix multihop assert on eviction.")
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Christian Koenig <christian.koenig@amd.com>
+Cc: Huang Rui <ray.huang@amd.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v5.15+
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Acked-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index bd5dae4d1624..615d30c4262d 100644
+index 615d30c4262d..89530f2a027f 100644
 --- a/drivers/gpu/drm/ttm/ttm_bo.c
 +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -1154,7 +1154,6 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
- 	 * Move to system cached
- 	 */
- 	if (bo->resource->mem_type != TTM_PL_SYSTEM) {
--		struct ttm_operation_ctx ctx = { false, false };
- 		struct ttm_resource *evict_mem;
- 		struct ttm_place hop;
- 
-@@ -1164,7 +1163,7 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
- 		if (unlikely(ret))
- 			goto out;
- 
--		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, &ctx, &hop);
-+		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
- 		if (unlikely(ret != 0)) {
- 			WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput - likely driver bug.\n");
- 			goto out;
+@@ -462,14 +462,14 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
+ 	ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
+ 	if (ret == -EMULTIHOP) {
+ 		ret = ttm_bo_bounce_temp_buffer(bo, &evict_mem, ctx, &hop);
+-		if (ret) {
+-			if (ret != -ERESTARTSYS && ret != -EINTR)
+-				pr_err("Buffer eviction failed\n");
+-			ttm_resource_free(bo, &evict_mem);
+-			goto out;
+-		}
+-		/* try and move to final place now. */
+-		goto bounce;
++		if (!ret)
++			/* try and move to final place now. */
++			goto bounce;
++	}
++	if (ret) {
++		ttm_resource_free(bo, &evict_mem);
++		if (ret != -ERESTARTSYS && ret != -EINTR)
++			pr_err("Buffer eviction failed\n");
+ 	}
+ out:
+ 	return ret;
 -- 
 2.40.1
 
