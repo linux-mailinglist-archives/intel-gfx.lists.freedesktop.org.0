@@ -2,107 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D6473A4B2
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 17:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0FE673A4D5
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 17:26:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 980C810E589;
-	Thu, 22 Jun 2023 15:22:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9267510E58F;
+	Thu, 22 Jun 2023 15:26:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2043.outbound.protection.outlook.com [40.107.244.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78D5B10E589;
- Thu, 22 Jun 2023 15:22:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YAiTX4UI1j3669kzF2gj3tKN+QGXjqBUxgVPq6kUyTphKSyknuFi5+HSUnEmcdtsMmirn/BoQIolaVW/WaCs17VGd8OiEAZrSK9FiC7HIeSYZxTyit5juQxgWlyfHN589yxm/lxZBHLF1KG10mC4xsvwsfJg2wX53vs7Zxv20XoEBzZqwa4LKe3UKIQfriMBfCT7HGLxUC4w2U0D9zoX35RvMpHvvZtmmqJ+mDr8JslcwLcc4CU2amlI72wJvrA+rB+RJoHMfXdb+j5sF1yjdriY3rda5tDQfCM2er5sAhgJ+zS2ddx6FrQiasVsCLMEQonsRXf6M+krOLwKyzRg1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PSyyYMV8Qt3yyJHY6MecavTMkvU7xyACdUAnFaaruOw=;
- b=RTtsXKIWn70Dx8PSmJuppINDBwRnsTMqkbPmLy2/X+8R0U01Xa2eQ9SwfEDCgnl0H23G/oSxPNMnuhKEmpdwLziWtGRVEgLUGV62CTcPZgTftiuEiunpKCV7XJstvENAnRqSycCnZhBhse745g7348f19rv503DVcsHlRQcNzQglPUDYh//k/4MIWUIXP/YmiTlVt2aMe37ktAylU8pSRBqZ4RDt6c84u3Yr57+qOgEswnYyPX316xoapnx7vPa+fYFfwYmFKfsLrBM0dbf3aqcggvRqOKj6eIgeLM0gZOmh1vF5NmwQ1oH7lp5bK0YzsSKQoJVZcrjTcBVxDKA0wQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PSyyYMV8Qt3yyJHY6MecavTMkvU7xyACdUAnFaaruOw=;
- b=jYJqYRdgq56tAk1em/6H6hR4Or1pdlX5Jd4gIIwp7WbzyVGjFLvglaPnO/Q55QWkEl+VSskb2fEVdd9O+4gV0yVKw9pxhIRJyDcgHEPDXphgsIyXHhxbXe2gks0amXaFjx0ivy9/I+sblnHk8TL71c1rVUhrFW39QFfiSRLZg6I87z5Urf8wkvie/WnOx+lVCyezMb1R/1/o3hGX1Ox+oPvzF5BzbvOaZ74mOTV0jOoh8UAt1+rfDiYpz5FAEC3r9spkRGQiQ7r6HM1jow1nHPUo40xH0QFqe/ja05acP0M+pUavRcAcAeXKg39ss/V2ezVi5FD8StbeErpKGeP/Lg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by MW3PR12MB4505.namprd12.prod.outlook.com (2603:10b6:303:5a::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Thu, 22 Jun
- 2023 15:22:07 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f7a7:a561:87e9:5fab]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f7a7:a561:87e9:5fab%7]) with mapi id 15.20.6521.024; Thu, 22 Jun 2023
- 15:22:07 +0000
-Date: Thu, 22 Jun 2023 12:22:04 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Yi Liu <yi.l.liu@intel.com>
-Message-ID: <ZJRnHO0p+pPgBZdr@nvidia.com>
-References: <20230616093042.65094-1-yi.l.liu@intel.com>
- <20230616093042.65094-9-yi.l.liu@intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230616093042.65094-9-yi.l.liu@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0086.namprd05.prod.outlook.com
- (2603:10b6:a03:332::31) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23AE010E589;
+ Thu, 22 Jun 2023 15:26:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687447608; x=1718983608;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MsOHNhkZdw47mpRisnLrelTXF7tLgbhgwW8ZJ6fjMEk=;
+ b=NHBGYTw9cNPL0ge9cxuEAb6Nlj9giTy0qrGKC6m4Oga/zXt89RXD/Iq6
+ fTWNTEfPHiEoN7O9UUsSHIdQsREvVEat5jCDzATP52XN8rWjMoxW3eTaT
+ FtrPohqDWkv1jh07VhKEWpP8GnCiVIio6uhv1OQs5ssc9JbYW2FYZlUYk
+ wvNRiUz23Tj6GPXyhMrqV3Mk7A5r7PEIH14LI4AUU6/CBNjF1sMByjmTg
+ GOo5B+UusKd5mYHIJctNNLSaQqZPtEukHI9mUbqB6Irjgl254pCPUBrYC
+ dOPtwMtaMygpoborVdbpXHw34qKRLbX1EZH5yIGykCPxtK1VaaRN2Oi6B g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="340858721"
+X-IronPort-AV: E=Sophos;i="6.01,149,1684825200"; d="scan'208";a="340858721"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 08:26:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="1045223063"
+X-IronPort-AV: E=Sophos;i="6.01,149,1684825200"; d="scan'208";a="1045223063"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.12])
+ by fmsmga005.fm.intel.com with ESMTP; 22 Jun 2023 08:26:46 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Thu, 22 Jun 2023 08:26:44 -0700
+Message-Id: <20230622152644.169400-1-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MW3PR12MB4505:EE_
-X-MS-Office365-Filtering-Correlation-Id: f126cb1a-2dd9-45c3-4590-08db733470ae
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: w2RumfsEAmAghMFsudr+/3SXK0R2IwC4tawhY2p6gzWxbkC8PM3WK5Ug6sl3ia1HCoS1tMeh7OEp75eOn70U7fV1soFL4cHBHSxFHPcuBIBHcemJrueKING4nbWgPRj8F4Q4vl9YZZI0uW/WOmykz8mcvs/ltHOD4x7w6ssnYvh7kzwHbVj3vMJHhv0YdF1B8W0qsVxEzFfcwOB/H8NGf4I5Z3mzUpx291CUBFbnq/M/gtZ9POPA0Y0oY+w0+zBaq17HMkYq/7ul38InPigtlp/82IId3nbR3eMgbEZTOC/MvVoqbKVFdM1LoE4zumzQAj1IDtSvuPXOzkizEjwAqCi28SPszKplNXSFOfOcJWzO32HcQWYOsTYStwOwurlQOP2vig37QlO0/6V+ckZdg95sxdM/QkdgYHOm/h8wgu+tcneXNxx9wXF54B95qOAEHqtKlwvasSWhj+Ni9mhhzTY+DVG5bsyn5nimUzHLk68SzKXWzoKurZLmetn4zAX3Hykp9nEGIUAqD/tRlSX6AVhGOOmEXKadz9T9OgfnFquIAQxL7n8pG0au24CeN/LlyU/xXDzcpUfTy4usDg2+ePHp8iWK/vbvxRbQE03MyXI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(366004)(136003)(376002)(346002)(396003)(39860400002)(451199021)(38100700002)(86362001)(316002)(2616005)(66556008)(66476007)(6916009)(8676002)(41300700001)(8936002)(66946007)(4326008)(7416002)(83380400001)(5660300002)(6506007)(6486002)(6666004)(478600001)(26005)(6512007)(186003)(36756003)(2906002)(67856001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rCKwYx/QE93rkM/AURpqCnTTVv8JNr9EZPNNMq5/Hv6T40ERvk+z0eZaaNNG?=
- =?us-ascii?Q?3BvamjZEuctoUADslJui937VFFotxFBW9VnkUu0iCaR9RRxscdLIc+mp/9BK?=
- =?us-ascii?Q?ax/4BzPnutkTVtu4koThDaw2E8rjJrlZEWEAB0qbk1Ewh8Qj+917JJs/d8BY?=
- =?us-ascii?Q?k8ckkBfO4wkXEFp/EtntVI+5DHfj6/E6aEKNl+sl568Wo6WgrKF3EIKakT6H?=
- =?us-ascii?Q?F+5ahcPsPmGdjZPax5iyjnI1IGEiOS7SIyrIvFIcTZ+Aop9ZIjI2P6GsyGgS?=
- =?us-ascii?Q?P/bVejVyYqSjHxv68jsmge05LLldO4c2sxaPGui6RwACa7O26G9OdG2dBf7e?=
- =?us-ascii?Q?hefQP0S4d9U1WATToGjtehbLwaWj0x6dndL8EnQai2cDWUBAYu7q8l94PomG?=
- =?us-ascii?Q?XFNt/8uysmCu7fLCdcnBxnOZhh1r/jBv/NhHINPPQfJKEHy7ETrw5yhs2X4e?=
- =?us-ascii?Q?H+m2oYs7LAdTmo4OjVpnCrdZ8BQhjfc6ngw8W/q7Dkl0GvIkL93+ADHq6yL6?=
- =?us-ascii?Q?YEz+MCSW02w1xW+JmweIUm0lYxVtYBWrEgaBLu2Lcm5VF9+AfAdn/OO+2u3j?=
- =?us-ascii?Q?Y25C+Jr0WPv/dmBHsPGWi96NObxlXLymF17wQ6/83/tG6OYEWt4eOy71Y6Ti?=
- =?us-ascii?Q?sJeOmjEFuQDnWiWMPksvpxmGXT5haluncJ89Pv6I4EuQcTHTfLhMCuu+Ipc5?=
- =?us-ascii?Q?cLRJnR8A/6UEQu2bCjDE0rS/hWrvAfTX4j7ednOgvFJtg8x4seyf8CaHpw2/?=
- =?us-ascii?Q?/rVJ24YLuiZAvC29CYvD7mZK2Zjss15mNIDnKUFXpuOvnuZ74KFJxG2QBdNC?=
- =?us-ascii?Q?5JCrj6J/WWcoyquYP+R3KHepYIMlQWO17DmqJv31wJMG6c8IPAZsHPBxKcgG?=
- =?us-ascii?Q?YdsdBmZ80NOtibUn/c3w9ONQd5PHrEW8Zb+oDfcVP8L23KOXFaBjYyBJojze?=
- =?us-ascii?Q?fW/wqJ8xWvxJfGjM6JPrBVJKAGCzSXw+o2LDOooxUrrII7MdL5yLjlEoFFX3?=
- =?us-ascii?Q?cZVo7HQkeleADQZTPrllCMRK6Spnh/rzIfxHgUIQuueC5Ax31OPSXN717EuV?=
- =?us-ascii?Q?tgB51sgAT9G/tlGAabnESIytkwyNHqHmHDEVEGjwT1v93zo3iXg+fEC5nJp0?=
- =?us-ascii?Q?PqIbAi9PNhy9381H7Z/g+5DiJ3/9Bas7st6wD73xuxvmjGBhskDGbfb/1r2l?=
- =?us-ascii?Q?RM0UmtUdLTq68NWQ68LCd85KjtYchl8MILSdwYespC8iddX1Hzl0ZlqvCJiU?=
- =?us-ascii?Q?nSx/Oypo74ZuN5VXMErvrFLdgATP5Vrxn7JtcrFQ3heql86uB8kIT4lpUizB?=
- =?us-ascii?Q?im0gXKjsBlQHPNvhWV9IG+l68HUjwWLlmHOgAoiYD7X0pcMdSsmLcZTRIteR?=
- =?us-ascii?Q?HkazSWtZV6zI2swrZDUyhv4w1ugJq9F3QnVsJzZbBZMLqze21rY+ooiKPDQr?=
- =?us-ascii?Q?95ZzNWr4vVEaSz43Fb2sCXIzFqTKSEXsUCp6nPNa2p4YzEoztYFisVHvMf2G?=
- =?us-ascii?Q?FlEUpZShI1y6BoaQV2Q3b8WzjcMjvJreNOXmEEgYdRGd6KzsaUEg3M3XSTTF?=
- =?us-ascii?Q?mOMF97JanwlnfzzWSWrKE9VOW5mC4XRuKUvWLEOV?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f126cb1a-2dd9-45c3-4590-08db733470ae
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2023 15:22:07.0961 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WzBTZEMfMmURCulwy+waT691VAGABUD94PGJx94YYC2ACBqvjuEHKkocu4rlteHF
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4505
-Subject: Re: [Intel-gfx] [PATCH v8 08/10] vfio/pci: Extend
- VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Remove incorrect hard coded cache
+ coherrency setting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,43 +56,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
- chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org, kvm@vger.kernel.org,
- lulu@redhat.com, yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
- kevin.tian@intel.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
- eric.auger@redhat.com, intel-gvt-dev@lists.freedesktop.org,
- yi.y.sun@linux.intel.com, clegoate@redhat.com, cohuck@redhat.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- robin.murphy@arm.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 16, 2023 at 02:30:40AM -0700, Yi Liu wrote:
-> This allows VFIO_DEVICE_GET_PCI_HOT_RESET_INFO ioctl use the iommufd_ctx
-> of the cdev device to check the ownership of the other affected devices.
-> 
-> When VFIO_DEVICE_GET_PCI_HOT_RESET_INFO is called on an IOMMUFD managed
-> device, the new flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID is reported to indicate
-> the values returned are IOMMUFD devids rather than group IDs as used when
-> accessing vfio devices through the conventional vfio group interface.
-> Additionally the flag VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED will be reported
-> in this mode if all of the devices affected by the hot-reset are owned by
-> either virtue of being directly bound to the same iommufd context as the
-> calling device, or implicitly owned via a shared IOMMU group.
-> 
-> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
-> Suggested-by: Alex Williamson <alex.williamson@redhat.com>
-> Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> ---
->  drivers/vfio/iommufd.c           | 44 ++++++++++++++++++++++++++
->  drivers/vfio/pci/vfio_pci_core.c | 54 +++++++++++++++++++++++++++-----
->  include/linux/vfio.h             | 14 +++++++++
->  include/uapi/linux/vfio.h        | 50 ++++++++++++++++++++++++++++-
->  4 files changed, 154 insertions(+), 8 deletions(-)
+The previouse i915_gem_object_create_internal already set it with proper
+value before function return. This hard coded setting is incorrect for
+platforms like MTL, thus need to be removed.
 
-I would have put patch 9 before this one, but it is OK this way too
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_timeline.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index b9640212d659..693d18e14b00 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -26,8 +26,6 @@ static struct i915_vma *hwsp_alloc(struct intel_gt *gt)
+ 	if (IS_ERR(obj))
+ 		return ERR_CAST(obj);
+ 
+-	i915_gem_object_set_cache_coherency(obj, I915_CACHE_LLC);
+-
+ 	vma = i915_vma_instance(obj, &gt->ggtt->vm, NULL);
+ 	if (IS_ERR(vma))
+ 		i915_gem_object_put(obj);
+-- 
+2.34.1
 
-Jason
