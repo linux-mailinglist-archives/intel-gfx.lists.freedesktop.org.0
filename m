@@ -1,65 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEDE073A739
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 19:28:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B745473A758
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 19:35:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3813410E594;
-	Thu, 22 Jun 2023 17:28:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C5C510E59E;
+	Thu, 22 Jun 2023 17:35:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com
- [IPv6:2607:f8b0:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 985BE10E593
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 17:28:23 +0000 (UTC)
-Received: by mail-ot1-x32d.google.com with SMTP id
- 46e09a7af769-6b5e9468720so1129584a34.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 10:28:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1687454902; x=1690046902;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=LG+SNuCveJ3k9ZN/Bizrp7A+pc/Q1Y7lTPWIVH04fxs=;
- b=T4I3aijPx32FFgw6FOHR4Ruv4anJ/z6F+8J8R3KxSSBtkaY0EbMuS4skm/dDmK8OpR
- vFlZY+b5HP+SGUiOwEE/tsifiyA746cimvL34ghxa5Mpuk2IcHRB8IbkcivmgGhDw76h
- 4R7f5O8draGsNBPtqFpB4troLWRAbfbUXGljQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687454902; x=1690046902;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=LG+SNuCveJ3k9ZN/Bizrp7A+pc/Q1Y7lTPWIVH04fxs=;
- b=hIVR2IaQVJ2gmvpBitpB7YVeRl0Jxg/A5grkQNyNwypu2Oby/dG8WFNAevkEkeY1sr
- foFB4uQifB/MnklHm6Fgi9+1enMvlxyMmXe+x8I7HAheFV50uT2JuQyvgMWHhcxLpZJG
- QopWB8G1Jglg+/NPKAf1KK0P0BaqUYLqNFUHuWzrXa7ohC8wrXbY/s0uohMz7I6WUzFz
- b5zDPSWseRw/81iEj+7smhHUA1N25nH9cpbdQsZOTWUhpVDLCmox7pBspqQWyti3aQI8
- kEHVZ6mY76SSN32AfP3AFgCs4tvN9A13RkMScLkVCA8Hrf3n8s8BrIpCi9gLf+H6Rmmg
- VByw==
-X-Gm-Message-State: AC+VfDztXBKrEQz+mOEL/rd8wTQFbRGRrnCtUv/W7NfmMD7uMhMQ3snH
- ZMjUfP6Umrv66CAezypwS4Uh3G8TgZbIWNCCaTU=
-X-Google-Smtp-Source: ACHHUZ6aaAPgxRA2SMPMem3yPU+gg1InPzmqDPfdl3P3URnZ3GiIprPeBfYXA2NatKXYAXb9bAdDHg==
-X-Received: by 2002:a05:6808:6243:b0:398:9ee4:1dac with SMTP id
- dt3-20020a056808624300b003989ee41dacmr21175501oib.32.1687454902406; 
- Thu, 22 Jun 2023 10:28:22 -0700 (PDT)
-Received: from ballway1.c.googlers.com.com
- (97.173.125.34.bc.googleusercontent.com. [34.125.173.97])
- by smtp.gmail.com with ESMTPSA id
- q15-20020a17090a064f00b002533ce5b261sm36645pje.10.2023.06.22.10.28.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 22 Jun 2023 10:28:22 -0700 (PDT)
-From: Allen Ballway <ballway@chromium.org>
-To: ballway@chromium.org
-Date: Thu, 22 Jun 2023 17:28:15 +0000
-Message-ID: <20230622172817.2281527-1-ballway@chromium.org>
-X-Mailer: git-send-email 2.41.0.162.gfafddb0af9-goog
-In-Reply-To: <20230606211901.1.I06e778109090b5dc85c44da7b742d185aa6adb59@changeid>
-References: <20230606211901.1.I06e778109090b5dc85c44da7b742d185aa6adb59@changeid>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/quirk: Add quirk for devices that
- cannot be dimmed
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 570D910E5A3;
+ Thu, 22 Jun 2023 17:35:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687455317; x=1718991317;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=qQvuCjvsoem96rKY3S4Dt47cQLOLV1Vhki8UyWDWIg0=;
+ b=WxGK+eX9o14OHUDjN2oKWF4ISg2FgIcPTqqoLQnpWAnJZEtj46lDLjId
+ 4FeiLPSvXuz1/BN/GI95udDNODRq9/jQbpmTA74g+UpJN030vwnTZ2OkD
+ tAf3eyDxBPLNrBV+XfR49eosh5ghjc+BwhQxkv8+FI62zUReYUnD1IyzK
+ w1lWAKwsCpQayFVLty1XVBEsnE1fTFn/mVubal/Dxp5pmhl95ZuP3lZH7
+ jixtxFMfyjfxpF4rQTgzRIvHTTEy7GmsYrXpRvtWLaSIXcN5ZvSVrwGi3
+ 71oE0ryfUcpdTTOoFQ6z1Lg2WJbG+wkF7NnB0jqgQXf6YnFondAJHv3ey Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="364006606"
+X-IronPort-AV: E=Sophos;i="6.01,149,1684825200"; d="scan'208";a="364006606"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 10:35:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="718183652"
+X-IronPort-AV: E=Sophos;i="6.01,149,1684825200"; d="scan'208";a="718183652"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.104.164])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 10:35:00 -0700
+Date: Thu, 22 Jun 2023 10:33:36 -0700
+Message-ID: <87sfajs8pb.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+In-Reply-To: <20230616155048.1013239-1-vinay.belgaumkar@intel.com>
+References: <20230616155048.1013239-1-vinay.belgaumkar@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH v3 i-g-t] tests/i915_pm_freq_api:
+ Add a suspend subtest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,112 +61,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Cybernet T10C cannot be dimmed without the backlight strobing. Create a
-new quirk to lock the minimum brightness to the highest supported value.
-This aligns the device with its behavior on Windows, which will not
-lower the brightness below maximum.
+On Fri, 16 Jun 2023 08:50:48 -0700, Vinay Belgaumkar wrote:
+>
+> Verify that SLPC API works as expected after a suspend. Added
+> another subtest that does multiple GT resets and checks freq api
+> works as expected after each one.
+>
+> We now check requested frequency instead of soft min/max after a
+> reset or suspend. That ensures the soft limits got applied
+> correctly at init. Also, disable efficient freq before starting the
+> test which allows current freq to be consistent with SLPC min freq.
+>
 
-Signed-off-by: Allen Ballway <ballway@chromium.org>
----
-V1 -> V2: Fix style issue.
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
- .../gpu/drm/i915/display/intel_backlight.c    |  5 ++++
- drivers/gpu/drm/i915/display/intel_quirks.c   | 27 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
- 3 files changed, 33 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index 2e8f17c045222..049e95105e8b6 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -1192,6 +1192,11 @@ static u32 get_backlight_min_vbt(struct intel_connector *connector)
-
- 	drm_WARN_ON(&i915->drm, panel->backlight.pwm_level_max == 0);
-
-+	if (intel_has_quirk(i915, QUIRK_NO_DIM)) {
-+		/* Cannot dim backlight, set minimum to hightest value */
-+		return panel->backlight.pwm_level_max - 1;
-+	}
-+
- 	/*
- 	 * XXX: If the vbt value is 255, it makes min equal to max, which leads
- 	 * to problems. There are such machines out there. Either our
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index a280448df771a..910c95840a539 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -65,6 +65,12 @@ static void quirk_no_pps_backlight_power_hook(struct drm_i915_private *i915)
- 	drm_info(&i915->drm, "Applying no pps backlight power quirk\n");
- }
-
-+static void quirk_no_dim(struct drm_i915_private *i915)
-+{
-+	intel_set_quirk(i915, QUIRK_NO_DIM);
-+	drm_info(&i915->drm, "Applying no dim quirk\n");
-+}
-+
- struct intel_quirk {
- 	int device;
- 	int subsystem_vendor;
-@@ -90,6 +96,12 @@ static int intel_dmi_no_pps_backlight(const struct dmi_system_id *id)
- 	return 1;
- }
-
-+static int intel_dmi_no_dim(const struct dmi_system_id *id)
-+{
-+	DRM_INFO("No dimming allowed on %s\n", id->ident);
-+	return 1;
-+}
-+
- static const struct intel_dmi_quirk intel_dmi_quirks[] = {
- 	{
- 		.dmi_id_list = &(const struct dmi_system_id[]) {
-@@ -136,6 +148,20 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
- 		},
- 		.hook = quirk_no_pps_backlight_power_hook,
- 	},
-+	{
-+		.dmi_id_list = &(const struct dmi_system_id[]) {
-+			{
-+				.callback = intel_dmi_no_dim,
-+				.ident = "Cybernet T10C Tablet",
-+				.matches = {DMI_EXACT_MATCH(DMI_BOARD_VENDOR,
-+							    "Cybernet Manufacturing Inc."),
-+					    DMI_EXACT_MATCH(DMI_BOARD_NAME, "T10C Tablet"),
-+				},
-+			},
-+			{ }
-+		},
-+		.hook = quirk_no_dim,
-+	},
- };
-
- static struct intel_quirk intel_quirks[] = {
-@@ -218,6 +244,7 @@ void intel_init_quirks(struct drm_i915_private *i915)
- 		     q->subsystem_device == PCI_ANY_ID))
- 			q->hook(i915);
- 	}
-+
- 	for (i = 0; i < ARRAY_SIZE(intel_dmi_quirks); i++) {
- 		if (dmi_check_system(*intel_dmi_quirks[i].dmi_id_list) != 0)
- 			intel_dmi_quirks[i].hook(i915);
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index 10a4d163149fd..b41c7bbf0a5e3 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -17,6 +17,7 @@ enum intel_quirk_id {
- 	QUIRK_INVERT_BRIGHTNESS,
- 	QUIRK_LVDS_SSC_DISABLE,
- 	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
-+	QUIRK_NO_DIM,
- };
-
- void intel_init_quirks(struct drm_i915_private *i915);
---
-2.41.0.162.gfafddb0af9-goog
-
+> v2: Restore freq in exit handler (Ashutosh)
+> v3: Free the allocated stash arrays
+>
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> ---
+>  tests/i915/i915_pm_freq_api.c | 92 +++++++++++++++++++++++++++--------
+>  1 file changed, 71 insertions(+), 21 deletions(-)
+>
+> diff --git a/tests/i915/i915_pm_freq_api.c b/tests/i915/i915_pm_freq_api.c
+> index 9005cd220..522abee35 100644
+> --- a/tests/i915/i915_pm_freq_api.c
+> +++ b/tests/i915/i915_pm_freq_api.c
+> @@ -18,6 +18,12 @@
+>   *
+>   * SUBTEST: freq-reset
+>   * Description: Test basic freq API works after a reset
+> + *
+> + * SUBTEST: freq-reset-multiple
+> + * Description: Test basic freq API works after multiple resets
+> + *
+> + * SUBTEST: freq-suspend
+> + * Description: Test basic freq API works after a runtime suspend
+>   */
+>
+>  IGT_TEST_DESCRIPTION("Test SLPC freq API");
+> @@ -49,7 +55,6 @@ static void test_freq_basic_api(int dirfd, int gt)
+>	rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
+>	rp0 = get_freq(dirfd, RPS_RP0_FREQ_MHZ);
+>	rpe = get_freq(dirfd, RPS_RP1_FREQ_MHZ);
+> -	igt_info("System min freq: %dMHz; max freq: %dMHz\n", rpn, rp0);
+>
+>	/*
+>	 * Negative bound tests
+> @@ -79,31 +84,66 @@ static void test_freq_basic_api(int dirfd, int gt)
+>
+>  }
+>
+> -static void test_reset(int i915, int dirfd, int gt)
+> +static void test_reset(int i915, int dirfd, int gt, int count)
+>  {
+>	uint32_t rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
+>	int fd;
+>
+> +	for (int i = 0; i < count; i++) {
+> +		igt_assert_f(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0,
+> +			     "Failed after %d good cycles\n", i);
+> +		igt_assert_f(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rpn) > 0,
+> +			     "Failed after %d good cycles\n", i);
+> +		usleep(ACT_FREQ_LATENCY_US);
+> +		igt_assert_f(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn,
+> +			     "Failed after %d good cycles\n", i);
+> +
+> +		/* Manually trigger a GT reset */
+> +		fd = igt_debugfs_gt_open(i915, gt, "reset", O_WRONLY);
+> +		igt_require(fd >= 0);
+> +		igt_ignore_warn(write(fd, "1\n", 2));
+> +
+> +		igt_assert_f(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn,
+> +			     "Failed after %d good cycles\n", i);
+> +	}
+> +	close(fd);
+> +}
+> +
+> +static void test_suspend(int i915, int dirfd, int gt)
+> +{
+> +	uint32_t rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
+> +
+>	igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0);
+>	igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rpn) > 0);
+>	usleep(ACT_FREQ_LATENCY_US);
+> -	igt_assert(get_freq(dirfd, RPS_MIN_FREQ_MHZ) == rpn);
+> +	igt_assert(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn);
+>
+> -	/* Manually trigger a GT reset */
+> -	fd = igt_debugfs_gt_open(i915, gt, "reset", O_WRONLY);
+> -	igt_require(fd >= 0);
+> -	igt_ignore_warn(write(fd, "1\n", 2));
+> -	close(fd);
+> +	/* Manually trigger a suspend */
+> +	igt_system_suspend_autoresume(SUSPEND_STATE_S3,
+> +				      SUSPEND_TEST_NONE);
+>
+> -	igt_assert(get_freq(dirfd, RPS_MIN_FREQ_MHZ) == rpn);
+> -	igt_assert(get_freq(dirfd, RPS_MAX_FREQ_MHZ) == rpn);
+> +	igt_assert(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn);
+>  }
+>
+> -igt_main
+> +int i915 = -1;
+> +uint32_t *stash_min, *stash_max;
+> +
+> +static void restore_sysfs_freq(int sig)
+>  {
+> -	int i915 = -1;
+> -	uint32_t *stash_min, *stash_max;
+> +	int dirfd, gt;
+> +	/* Restore frequencies */
+> +	for_each_sysfs_gt_dirfd(i915, dirfd, gt) {
+> +		igt_pm_ignore_slpc_efficient_freq(i915, dirfd, false);
+> +		igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, stash_max[gt]) > 0);
+> +		igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, stash_min[gt]) > 0);
+> +	}
+> +	free(stash_min);
+> +	free(stash_max);
+> +	close(i915);
+> +}
+>
+> +igt_main
+> +{
+>	igt_fixture {
+>		int num_gts, dirfd, gt;
+>
+> @@ -122,7 +162,9 @@ igt_main
+>		for_each_sysfs_gt_dirfd(i915, dirfd, gt) {
+>			stash_min[gt] = get_freq(dirfd, RPS_MIN_FREQ_MHZ);
+>			stash_max[gt] = get_freq(dirfd, RPS_MAX_FREQ_MHZ);
+> +			igt_pm_ignore_slpc_efficient_freq(i915, dirfd, true);
+>		}
+> +		igt_install_exit_handler(restore_sysfs_freq);
+>	}
+>
+>	igt_describe("Test basic API for controlling min/max GT frequency");
+> @@ -140,16 +182,24 @@ igt_main
+>
+>		for_each_sysfs_gt_dirfd(i915, dirfd, gt)
+>			igt_dynamic_f("gt%u", gt)
+> -				test_reset(i915, dirfd, gt);
+> +				test_reset(i915, dirfd, gt, 1);
+>	}
+>
+> -	igt_fixture {
+> +	igt_describe("Test basic freq API works after multiple resets");
+> +	igt_subtest_with_dynamic_f("freq-reset-multiple") {
+>		int dirfd, gt;
+> -		/* Restore frequencies */
+> -		for_each_sysfs_gt_dirfd(i915, dirfd, gt) {
+> -			igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, stash_max[gt]) > 0);
+> -			igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, stash_min[gt]) > 0);
+> -		}
+> -		close(i915);
+> +
+> +		for_each_sysfs_gt_dirfd(i915, dirfd, gt)
+> +			igt_dynamic_f("gt%u", gt)
+> +				test_reset(i915, dirfd, gt, 50);
+> +	}
+> +
+> +	igt_describe("Test basic freq API works after suspend");
+> +	igt_subtest_with_dynamic_f("freq-suspend") {
+> +		int dirfd, gt;
+> +
+> +		for_each_sysfs_gt_dirfd(i915, dirfd, gt)
+> +			igt_dynamic_f("gt%u", gt)
+> +				test_suspend(i915, dirfd, gt);
+>	}
+>  }
+> --
+> 2.38.1
+>
