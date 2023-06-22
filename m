@@ -1,67 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F2A73FE40
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 16:39:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EC2473FE56
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 16:39:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88C6910E326;
-	Tue, 27 Jun 2023 14:38:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 348B810E329;
+	Tue, 27 Jun 2023 14:38:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com
- [IPv6:2607:f8b0:4864:20::32a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2336710E366;
- Thu, 22 Jun 2023 02:23:13 +0000 (UTC)
-Received: by mail-ot1-x32a.google.com with SMTP id
- 46e09a7af769-6b2f0a140b7so6064114a34.3; 
- Wed, 21 Jun 2023 19:23:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1687400593; x=1689992593;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=x2t5KAjltcM5MEsffCq+OvNauZAaIEtA44G2Tn8lRMA=;
- b=hs0Gq/uSBcccPWXW2uHShGyCbqTNr5lfgn2C+U7Rgn8MSxTAzH66a7FsgwXqDZCzKx
- FhnThtX55MCK6kQ4g1uIudOlgfLfkj69AajOWTpDRaGaLDLwiD6A61yremIxMUDsKRR9
- 0/k9tUY23sOJ2g2FvehpRA5K2CZwBBdM1bF5cS8Q/gisW4jBZbXyeHOdt9kWp4IT/4Bz
- clIoY7qINaNC3C/5QfctLh1Gg4lJzvGY6/7OfnEd17Wk4OLW4oHKXVzFYtolMQCq5xRp
- tOzmlvPucCheWyY6VoY8G1njAqNdc7Uv0YnrsnZN7SsCSGL5ncfnK1cHhY4Nk7dssOcP
- dAhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687400593; x=1689992593;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=x2t5KAjltcM5MEsffCq+OvNauZAaIEtA44G2Tn8lRMA=;
- b=CWFeoruQLFxFMbaBMTASJ/UmEe6CE0JFkbnT3rJaVKVskTNekI2WgMKN7Cv3AQ88pV
- ty/ihG1u2D8wUku5lRKFauhSLCQI5aXzSazr6w+Ix666Qd/qLnOLYcezsajAoATfi4oS
- hgxRlV/IPo3sSBHvbePgPjnXCv7eI2VJ0LooqbSItPdZuZJLgWtfPajxae4HLusKPN/1
- KZvxLJSqVG6k53csZRm6iKkLYacWzJh/Sxgl6THAOgv5NMpqGOl3CXY2DXn9cV0vQzo9
- edAZogcojmWxT+LmrKAiym4wcIrcBOLo0U+6Bh35Zrf9Ki9f5Fu011nySmx970V/43bi
- RwqQ==
-X-Gm-Message-State: AC+VfDzwbHOivxpgtf/bNj7dy2IPxWYHOIUhn3msVcXpJotP3iKI1kw/
- 232WpnOSIcDwbKtixMBAvJQ=
-X-Google-Smtp-Source: ACHHUZ5xuQ0EpTo0pYQIl7XVvUVKkvpc4PnJ+XIFTlvdeUeiV51ju2NbVBXzB5xo/V1YXS//k+hFVQ==
-X-Received: by 2002:a05:6830:1d5a:b0:6b5:8762:cf6c with SMTP id
- p26-20020a0568301d5a00b006b58762cf6cmr8876245oth.34.1687400592706; 
- Wed, 21 Jun 2023 19:23:12 -0700 (PDT)
-Received: from localhost ([216.228.127.131]) by smtp.gmail.com with ESMTPSA id
- g13-20020a63e60d000000b005307501cfe4sm3718043pgh.44.2023.06.21.19.23.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Jun 2023 19:23:12 -0700 (PDT)
-Date: Wed, 21 Jun 2023 19:20:59 -0700
-From: Yury Norov <yury.norov@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <ZJOwC5LIEySpduQJ@yury-ThinkPad>
-References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
- <20230509051403.2748545-3-lucas.demarchi@intel.com>
+Received: from out-50.mta0.migadu.com (out-50.mta0.migadu.com [91.218.175.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6320910E504
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 08:35:20 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1687422353;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=e1+xh+RWSStYbNLR0oQ989/HYJlswcKDbAXjdjN9B80=;
+ b=xvxAUOPZhkHxrz5auj/DvSbIPb+YBm0mm/vwQb+qVqQ4Y/6eX3JXDb6dSCEU7ngRnO9vZp
+ O1vW9hnvD6U+9SnmCeCg5ZUrSUfXFFxy4z0h/xJZBOF+zNdyhiwiBFgPQwcZSbT11oROSx
+ 3e1QwRBTHYpO3Pr2o6/qbeDKmmtUgn0=
+From: Qi Zheng <qi.zheng@linux.dev>
+To: akpm@linux-foundation.org, david@fromorbit.com, tkhai@ya.ru,
+ vbabka@suse.cz, roman.gushchin@linux.dev, djwong@kernel.org,
+ brauner@kernel.org, paulmck@kernel.org, tytso@mit.edu
+Date: Thu, 22 Jun 2023 08:24:25 +0000
+Message-Id: <20230622082454.4090236-1-qi.zheng@linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230509051403.2748545-3-lucas.demarchi@intel.com>
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Tue, 27 Jun 2023 14:38:30 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/3] linux/bits.h: Add fixed-width GENMASK
- and BIT macros
+Subject: [Intel-gfx] [PATCH 00/29] use refcount+RCU method to implement
+ lockless slab shrink
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,187 +47,327 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrew Morton <akpm@linux-foundation.org>, intel-gfx@lists.freedesktop.org,
- Kevin Brodsky <kevin.brodsky@arm.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Masahiro Yamada <masahiroy@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>, Thomas Gleixner <tglx@linutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- intel-xe@lists.freedesktop.org
+Cc: mst@redhat.com, neilb@suse.de, jasowang@redhat.com,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linux-mm@kvack.org, song@kernel.org, dm-devel@redhat.com, ray.huang@amd.com,
+ namit@vmware.com, marijn.suijten@somainline.org, airlied@gmail.com,
+ agk@redhat.com, robh@kernel.org, senozhatsky@chromium.org, david@redhat.com,
+ clm@fb.com, steven.price@arm.com, alyssa.rosenzweig@collabora.com,
+ Qi Zheng <zhengqi.arch@bytedance.com>, josef@toxicpanda.com,
+ linux-ext4@vger.kernel.org, kent.overstreet@gmail.com,
+ xuanzhuo@linux.alibaba.com, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, snitzer@kernel.org, quic_abhinavk@quicinc.com,
+ colyli@suse.de, linux-raid@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-bcache@vger.kernel.org, viro@zeniv.linux.org.uk, dsterba@suse.com,
+ linux-nfs@vger.kernel.org, tomeu.vizoso@collabora.com, kolga@netapp.com,
+ gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+ linux-xfs@vger.kernel.org, minchan@kernel.org, chuck.lever@oracle.com,
+ daniel@ffwll.ch, jack@suse.com, dmitry.baryshkov@linaro.org,
+ adilger.kernel@dilger.ca, freedreno@lists.freedesktop.org,
+ christian.koenig@amd.com, linux-btrfs@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Lucas, all!
+From: Qi Zheng <zhengqi.arch@bytedance.com>
 
-(Thanks, Andy, for pointing to this thread.)
+Hi all,
 
-On Mon, May 08, 2023 at 10:14:02PM -0700, Lucas De Marchi wrote:
-> Add GENMASK_U32(), GENMASK_U16() and GENMASK_U8()  macros to create
-> masks for fixed-width types and also the corresponding BIT_U32(),
-> BIT_U16() and BIT_U8().
+1. Background
+=============
 
-Can you split BIT() and GENMASK() material to separate patches?
+We used to implement the lockless slab shrink with SRCU [1], but then kernel
+test robot reported -88.8% regression in stress-ng.ramfs.ops_per_sec test
+case [2], so we reverted it [3].
 
-> All of those depend on a new "U" suffix added to the integer constant.
-> Due to naming clashes it's better to call the macro U32. Since C doesn't
-> have a proper suffix for short and char types, the U16 and U18 variants
-> just use U32 with one additional check in the BIT_* macros to make
-> sure the compiler gives an error when the those types overflow.
+This patch series aims to re-implement the lockless slab shrink using the
+refcount+RCU method proposed by Dave Chinner [4].
 
-I feel like I don't understand the sentence...
+[1]. https://lore.kernel.org/lkml/20230313112819.38938-1-zhengqi.arch@bytedance.com/
+[2]. https://lore.kernel.org/lkml/202305230837.db2c233f-yujie.liu@intel.com/
+[3]. https://lore.kernel.org/all/20230609081518.3039120-1-qi.zheng@linux.dev/
+[4]. https://lore.kernel.org/lkml/ZIJhou1d55d4H1s0@dread.disaster.area/
 
-> The BIT_U16() and BIT_U8() need the help of GENMASK_INPUT_CHECK(),
-> as otherwise they would allow an invalid bit to be passed. Hence
-> implement them in include/linux/bits.h rather than together with
-> the other BIT* variants.
+2. Implementation
+=================
 
-I don't think it's a good way to go because BIT() belongs to a more basic
-level than GENMASK(). Not mentioning possible header dependency issues.
-If you need to test against tighter numeric region, I'd suggest to
-do the same trick as  GENMASK_INPUT_CHECK() does, but in uapi/linux/const.h
-directly. Something like:
-        #define _U8(x)		(CONST_GT(U8_MAX, x) + _AC(x, U))
+Currently, the shrinker instances can be divided into the following three types:
 
-> The following test file is is used to test this:
-> 
-> 	$ cat mask.c
-> 	#include <linux/types.h>
-> 	#include <linux/bits.h>
-> 
-> 	static const u32 a = GENMASK_U32(31, 0);
-> 	static const u16 b = GENMASK_U16(15, 0);
-> 	static const u8 c = GENMASK_U8(7, 0);
-> 	static const u32 x = BIT_U32(31);
-> 	static const u16 y = BIT_U16(15);
-> 	static const u8 z = BIT_U8(7);
-> 
-> 	#if FAIL
-> 	static const u32 a2 = GENMASK_U32(32, 0);
-> 	static const u16 b2 = GENMASK_U16(16, 0);
-> 	static const u8 c2 = GENMASK_U8(8, 0);
-> 	static const u32 x2 = BIT_U32(32);
-> 	static const u16 y2 = BIT_U16(16);
-> 	static const u8 z2 = BIT_U8(8);
-> 	#endif
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  include/linux/bits.h       | 22 ++++++++++++++++++++++
->  include/uapi/linux/const.h |  2 ++
->  include/vdso/const.h       |  1 +
->  3 files changed, 25 insertions(+)
-> 
-> diff --git a/include/linux/bits.h b/include/linux/bits.h
-> index 7c0cf5031abe..ff4786c99b8c 100644
-> --- a/include/linux/bits.h
-> +++ b/include/linux/bits.h
-> @@ -42,4 +42,26 @@
->  #define GENMASK_ULL(h, l) \
->  	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_ULL(h, l))
->  
-> +#define __GENMASK_U32(h, l) \
-> +	(((~U32(0)) - (U32(1) << (l)) + 1) & \
-> +	 (~U32(0) >> (32 - 1 - (h))))
-> +#define GENMASK_U32(h, l) \
-> +	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_U32(h, l))
-> +
-> +#define __GENMASK_U16(h, l) \
-> +	((U32(0xffff) - (U32(1) << (l)) + 1) & \
-> +	 (U32(0xffff) >> (16 - 1 - (h))))
-> +#define GENMASK_U16(h, l) \
-> +	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_U16(h, l))
-> +
-> +#define __GENMASK_U8(h, l) \
-> +	(((U32(0xff)) - (U32(1) << (l)) + 1) & \
-> +	 (U32(0xff) >> (8 - 1 - (h))))
-> +#define GENMASK_U8(h, l) \
-> +	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_U8(h, l))
+a) global shrinker instance statically defined in the kernel, such as
+   workingset_shadow_shrinker.
 
-[...]
+b) global shrinker instance statically defined in the kernel modules, such as
+   mmu_shrinker in x86.
 
-I see nothing wrong with fixed-wight versions of GENMASK if it helps
-people to write safer code. Can you please in commit message mention
-the exact patch(es) that added a bug related to GENMASK() misuse? It
-would be easier to advocate the purpose of new API with that in mind.
+c) shrinker instance embedded in other structures.
 
-Regarding implementation - we should avoid copy-pasting in cases
-like this. Below is the patch that I boot-tested for x86_64 and
-compile-tested for arm64.
+For *case a*, the memory of shrinker instance is never freed. For *case b*, the
+memory of shrinker instance will be freed after the module is unloaded. But we
+will call synchronize_rcu() in free_module() to wait for RCU read-side critical
+section to exit. For *case c*, we need to dynamically allocate these shrinker
+instances, then the memory of shrinker instance can be dynamically freed alone
+by calling kfree_rcu(). Then we can use rcu_read_{lock,unlock}() to ensure that
+the shrinker instance is valid.
 
-It looks less opencoded, and maybe Andy will be less skeptical about
-this approach because of less maintenance burden. Please take it if
-you like for v2.
+The shrinker::refcount mechanism ensures that the shrinker instance will not be
+run again after unregistration. So the structure that records the pointer of
+shrinker instance can be safely freed without waiting for the RCU read-side
+critical section.
+
+In this way, while we implement the lockless slab shrink, we don't need to be
+blocked in unregister_shrinker() to wait RCU read-side critical section.
+
+PATCH 1 ~ 2: infrastructure for dynamically allocating shrinker instances
+PATCH 3 ~ 21: dynamically allocate the shrinker instances in case c
+PATCH 22: introduce pool_shrink_rwsem to implement private synchronize_shrinkers()
+PATCH 23 ~ 28: implement the lockless slab shrink
+PATCH 29: move shrinker-related code into a separate file
+
+3. Testing
+==========
+
+3.1 slab shrink stress test
+---------------------------
+
+We can reproduce the down_read_trylock() hotspot through the following script:
+
+```
+
+DIR="/root/shrinker/memcg/mnt"
+
+do_create()
+{
+    mkdir -p /sys/fs/cgroup/memory/test
+    mkdir -p /sys/fs/cgroup/perf_event/test
+    echo 4G > /sys/fs/cgroup/memory/test/memory.limit_in_bytes
+    for i in `seq 0 $1`;
+    do
+        mkdir -p /sys/fs/cgroup/memory/test/$i;
+        echo $$ > /sys/fs/cgroup/memory/test/$i/cgroup.procs;
+        echo $$ > /sys/fs/cgroup/perf_event/test/cgroup.procs;
+        mkdir -p $DIR/$i;
+    done
+}
+
+do_mount()
+{
+    for i in `seq $1 $2`;
+    do
+        mount -t tmpfs $i $DIR/$i;
+    done
+}
+
+do_touch()
+{
+    for i in `seq $1 $2`;
+    do
+        echo $$ > /sys/fs/cgroup/memory/test/$i/cgroup.procs;
+        echo $$ > /sys/fs/cgroup/perf_event/test/cgroup.procs;
+            dd if=/dev/zero of=$DIR/$i/file$i bs=1M count=1 &
+    done
+}
+
+case "$1" in
+  touch)
+    do_touch $2 $3
+    ;;
+  test)
+    do_create 4000
+    do_mount 0 4000
+    do_touch 0 3000
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+```
+
+Save the above script, then run test and touch commands. Then we can use the
+following perf command to view hotspots:
+
+perf top -U -F 999 [-g]
+
+1) Before applying this patchset:
+
+  35.34%  [kernel]             [k] down_read_trylock
+  18.44%  [kernel]             [k] shrink_slab
+  15.98%  [kernel]             [k] pv_native_safe_halt
+  15.08%  [kernel]             [k] up_read
+   5.33%  [kernel]             [k] idr_find
+   2.71%  [kernel]             [k] _find_next_bit
+   2.21%  [kernel]             [k] shrink_node
+   1.29%  [kernel]             [k] shrink_lruvec
+   0.66%  [kernel]             [k] do_shrink_slab
+   0.33%  [kernel]             [k] list_lru_count_one
+   0.33%  [kernel]             [k] __radix_tree_lookup
+   0.25%  [kernel]             [k] mem_cgroup_iter
+
+-   82.19%    19.49%  [kernel]                  [k] shrink_slab
+   - 62.00% shrink_slab
+        36.37% down_read_trylock
+        15.52% up_read
+        5.48% idr_find
+        3.38% _find_next_bit
+      + 0.98% do_shrink_slab
+
+2) After applying this patchset:
+
+  46.83%  [kernel]           [k] shrink_slab
+  20.52%  [kernel]           [k] pv_native_safe_halt
+   8.85%  [kernel]           [k] do_shrink_slab
+   7.71%  [kernel]           [k] _find_next_bit
+   1.72%  [kernel]           [k] xas_descend
+   1.70%  [kernel]           [k] shrink_node
+   1.44%  [kernel]           [k] shrink_lruvec
+   1.43%  [kernel]           [k] mem_cgroup_iter
+   1.28%  [kernel]           [k] xas_load
+   0.89%  [kernel]           [k] super_cache_count
+   0.84%  [kernel]           [k] xas_start
+   0.66%  [kernel]           [k] list_lru_count_one
+
+-   65.50%    40.44%  [kernel]                  [k] shrink_slab
+   - 22.96% shrink_slab
+        13.11% _find_next_bit
+      - 9.91% do_shrink_slab
+         - 1.59% super_cache_count
+              0.92% list_lru_count_one
+
+We can see that the first perf hotspot becomes shrink_slab, which is what we
+expect.
+
+3.2 registeration and unregisteration stress test
+-------------------------------------------------
+
+Run the command below to test:
+
+stress-ng --timeout 60 --times --verify --metrics-brief --ramfs 9 &
+
+1) Before applying this patchset:
+
+ setting to a 60 second run per stressor
+ dispatching hogs: 9 ramfs
+ stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s
+                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+ ramfs            880623     60.02      7.71    226.93     14671.45        3753.09
+ ramfs:
+          1 System Management Interrupt
+ for a 60.03s run time:
+    5762.40s available CPU time
+       7.71s user time   (  0.13%)
+     226.93s system time (  3.94%)
+     234.64s total time  (  4.07%)
+ load average: 8.54 3.06 2.11
+ passed: 9: ramfs (9)
+ failed: 0
+ skipped: 0
+ successful run completed in 60.03s (1 min, 0.03 secs)
+
+2) After applying this patchset:
+
+ setting to a 60 second run per stressor
+ dispatching hogs: 9 ramfs
+ stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s
+                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+ ramfs            847562     60.02      7.44    230.22     14120.66        3566.23
+ ramfs:
+          4 System Management Interrupts
+ for a 60.12s run time:
+    5771.95s available CPU time
+       7.44s user time   (  0.13%)
+     230.22s system time (  3.99%)
+     237.66s total time  (  4.12%)
+ load average: 8.18 2.43 0.84
+ passed: 9: ramfs (9)
+ failed: 0
+ skipped: 0
+ successful run completed in 60.12s (1 min, 0.12 secs)
+
+We can see that the ops/s has hardly changed.
+
+This series is based on next-20230613.
+
+Comments and suggestions are welcome.
 
 Thanks,
-Yury
+Qi.
 
-From 39c5b35075df67e7d88644470ca78a3486367c02 Mon Sep 17 00:00:00 2001
-From: Yury Norov <yury.norov@gmail.com>
-Date: Wed, 21 Jun 2023 15:27:29 -0700
-Subject: [PATCH] bits: introduce fixed-type genmasks
+Qi Zheng (29):
+  mm: shrinker: add shrinker::private_data field
+  mm: vmscan: introduce some helpers for dynamically allocating shrinker
+  drm/i915: dynamically allocate the i915_gem_mm shrinker
+  drm/msm: dynamically allocate the drm-msm_gem shrinker
+  drm/panfrost: dynamically allocate the drm-panfrost shrinker
+  dm: dynamically allocate the dm-bufio shrinker
+  dm zoned: dynamically allocate the dm-zoned-meta shrinker
+  md/raid5: dynamically allocate the md-raid5 shrinker
+  bcache: dynamically allocate the md-bcache shrinker
+  vmw_balloon: dynamically allocate the vmw-balloon shrinker
+  virtio_balloon: dynamically allocate the virtio-balloon shrinker
+  mbcache: dynamically allocate the mbcache shrinker
+  ext4: dynamically allocate the ext4-es shrinker
+  jbd2,ext4: dynamically allocate the jbd2-journal shrinker
+  NFSD: dynamically allocate the nfsd-client shrinker
+  NFSD: dynamically allocate the nfsd-reply shrinker
+  xfs: dynamically allocate the xfs-buf shrinker
+  xfs: dynamically allocate the xfs-inodegc shrinker
+  xfs: dynamically allocate the xfs-qm shrinker
+  zsmalloc: dynamically allocate the mm-zspool shrinker
+  fs: super: dynamically allocate the s_shrink
+  drm/ttm: introduce pool_shrink_rwsem
+  mm: shrinker: add refcount and completion_wait fields
+  mm: vmscan: make global slab shrink lockless
+  mm: vmscan: make memcg slab shrink lockless
+  mm: shrinker: make count and scan in shrinker debugfs lockless
+  mm: vmscan: hold write lock to reparent shrinker nr_deferred
+  mm: shrinkers: convert shrinker_rwsem to mutex
+  mm: shrinker: move shrinker-related code into a separate file
 
-Generalize __GENMASK() to support different types, and implement
-fixed-types versions of GENMASK() based on it.
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  27 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   3 +-
+ drivers/gpu/drm/msm/msm_drv.h                 |   2 +-
+ drivers/gpu/drm/msm/msm_gem_shrinker.c        |  25 +-
+ drivers/gpu/drm/panfrost/panfrost_device.h    |   2 +-
+ .../gpu/drm/panfrost/panfrost_gem_shrinker.c  |  24 +-
+ drivers/gpu/drm/ttm/ttm_pool.c                |  15 +
+ drivers/md/bcache/bcache.h                    |   2 +-
+ drivers/md/bcache/btree.c                     |  23 +-
+ drivers/md/bcache/sysfs.c                     |   2 +-
+ drivers/md/dm-bufio.c                         |  23 +-
+ drivers/md/dm-cache-metadata.c                |   2 +-
+ drivers/md/dm-thin-metadata.c                 |   2 +-
+ drivers/md/dm-zoned-metadata.c                |  25 +-
+ drivers/md/raid5.c                            |  28 +-
+ drivers/md/raid5.h                            |   2 +-
+ drivers/misc/vmw_balloon.c                    |  16 +-
+ drivers/virtio/virtio_balloon.c               |  26 +-
+ fs/btrfs/super.c                              |   2 +-
+ fs/ext4/ext4.h                                |   2 +-
+ fs/ext4/extents_status.c                      |  21 +-
+ fs/jbd2/journal.c                             |  32 +-
+ fs/kernfs/mount.c                             |   2 +-
+ fs/mbcache.c                                  |  39 +-
+ fs/nfsd/netns.h                               |   4 +-
+ fs/nfsd/nfs4state.c                           |  20 +-
+ fs/nfsd/nfscache.c                            |  33 +-
+ fs/proc/root.c                                |   2 +-
+ fs/super.c                                    |  40 +-
+ fs/xfs/xfs_buf.c                              |  25 +-
+ fs/xfs/xfs_buf.h                              |   2 +-
+ fs/xfs/xfs_icache.c                           |  27 +-
+ fs/xfs/xfs_mount.c                            |   4 +-
+ fs/xfs/xfs_mount.h                            |   2 +-
+ fs/xfs/xfs_qm.c                               |  24 +-
+ fs/xfs/xfs_qm.h                               |   2 +-
+ include/linux/fs.h                            |   2 +-
+ include/linux/jbd2.h                          |   2 +-
+ include/linux/shrinker.h                      |  35 +-
+ mm/Makefile                                   |   4 +-
+ mm/shrinker.c                                 | 750 ++++++++++++++++++
+ mm/shrinker_debug.c                           |  26 +-
+ mm/vmscan.c                                   | 702 ----------------
+ mm/zsmalloc.c                                 |  28 +-
+ 44 files changed, 1128 insertions(+), 953 deletions(-)
+ create mode 100644 mm/shrinker.c
 
-Signed-off-by: Yury Norov <yury.norov@gmail.com>
----
- include/linux/bitops.h |  1 -
- include/linux/bits.h   | 22 ++++++++++++----------
- 2 files changed, 12 insertions(+), 11 deletions(-)
-
-diff --git a/include/linux/bitops.h b/include/linux/bitops.h
-index 2ba557e067fe..1db50c69cfdb 100644
---- a/include/linux/bitops.h
-+++ b/include/linux/bitops.h
-@@ -15,7 +15,6 @@
- #  define aligned_byte_mask(n) (~0xffUL << (BITS_PER_LONG - 8 - 8*(n)))
- #endif
- 
--#define BITS_PER_TYPE(type)	(sizeof(type) * BITS_PER_BYTE)
- #define BITS_TO_LONGS(nr)	__KERNEL_DIV_ROUND_UP(nr, BITS_PER_TYPE(long))
- #define BITS_TO_U64(nr)		__KERNEL_DIV_ROUND_UP(nr, BITS_PER_TYPE(u64))
- #define BITS_TO_U32(nr)		__KERNEL_DIV_ROUND_UP(nr, BITS_PER_TYPE(u32))
-diff --git a/include/linux/bits.h b/include/linux/bits.h
-index 7c0cf5031abe..cb94128171b2 100644
---- a/include/linux/bits.h
-+++ b/include/linux/bits.h
-@@ -6,6 +6,8 @@
- #include <vdso/bits.h>
- #include <asm/bitsperlong.h>
- 
-+#define BITS_PER_TYPE(type)	(sizeof(type) * BITS_PER_BYTE)
-+
- #define BIT_MASK(nr)		(UL(1) << ((nr) % BITS_PER_LONG))
- #define BIT_WORD(nr)		((nr) / BITS_PER_LONG)
- #define BIT_ULL_MASK(nr)	(ULL(1) << ((nr) % BITS_PER_LONG_LONG))
-@@ -30,16 +32,16 @@
- #define GENMASK_INPUT_CHECK(h, l) 0
- #endif
- 
--#define __GENMASK(h, l) \
--	(((~UL(0)) - (UL(1) << (l)) + 1) & \
--	 (~UL(0) >> (BITS_PER_LONG - 1 - (h))))
--#define GENMASK(h, l) \
--	(GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
-+#define __GENMASK(t, h, l) \
-+	(GENMASK_INPUT_CHECK(h, l) + \
-+	 (((t)~0ULL - ((t)(1) << (l)) + 1) & \
-+	 ((t)~0ULL >> (BITS_PER_TYPE(t) - 1 - (h)))))
- 
--#define __GENMASK_ULL(h, l) \
--	(((~ULL(0)) - (ULL(1) << (l)) + 1) & \
--	 (~ULL(0) >> (BITS_PER_LONG_LONG - 1 - (h))))
--#define GENMASK_ULL(h, l) \
--	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_ULL(h, l))
-+#define GENMASK(h, l)		__GENMASK(unsigned long,  h, l)
-+#define GENMASK_ULL(h, l)	__GENMASK(unsigned long long, h, l)
-+#define GENMASK_U8(h, l)	__GENMASK(u8,  h, l)
-+#define GENMASK_U16(h, l)	__GENMASK(u16, h, l)
-+#define GENMASK_U32(h, l)	__GENMASK(u32, h, l)
-+#define GENMASK_U64(h, l)	__GENMASK(u64, h, l)
- 
- #endif	/* __LINUX_BITS_H */
 -- 
-2.39.2
+2.30.2
 
