@@ -1,34 +1,141 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A948E73A905
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 21:36:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0CE173A914
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 21:41:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 214AB89861;
-	Thu, 22 Jun 2023 19:36:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4284510E028;
+	Thu, 22 Jun 2023 19:41:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CBD3A89861;
- Thu, 22 Jun 2023 19:36:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C4820AA01E;
- Thu, 22 Jun 2023 19:36:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2343729010541270308=="
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03FEE10E028
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 19:41:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687462884; x=1718998884;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=0FmeQdB6Wv1gd70fsADxJNHw7QNhpCWvwe11VaK8ots=;
+ b=kpBUkrpNnboWU6uguAiHGv7PGjQCiDOiJJaXnVh7PojC7LBYerEtCLt0
+ 1frny+7BmtZeM9Z+uD7lW0F+QzghucEmbHWl7ibJFa8Y9LjgQAtH/OT1X
+ C5sBTL9H0Ci8ST/3mZAHPFJ5q/FgBQJtYPMwIPVpBuqTeOC2RFb5SX6dL
+ FDECcyGkeo/kpVhRn18jIl0muBPmimGOh2V7fxfc/DTL3AHRT4iJzn6Ie
+ Nu0Qg20CiHqY67kBTg5AnQngVhaqyBVnwQfT2DKzBlCFCW/0pvV5i2fID
+ ArWog5sDuCxH7jUercJWd6AYYjz14HMjdWFJETltUQFXtp8XMq41Yq0l/ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="446967426"
+X-IronPort-AV: E=Sophos;i="6.01,149,1684825200"; d="scan'208";a="446967426"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 12:41:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="665189235"
+X-IronPort-AV: E=Sophos;i="6.01,149,1684825200"; d="scan'208";a="665189235"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga003.jf.intel.com with ESMTP; 22 Jun 2023 12:41:23 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 22 Jun 2023 12:41:23 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 22 Jun 2023 12:41:22 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Thu, 22 Jun 2023 12:41:22 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Thu, 22 Jun 2023 12:41:20 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QMz69hLLocB2kMDAjqfBFILymoCIPAokDx3JuNE/iCy5RW0PWclFHkRJpNzaw21fYFjjp8FeqX9gIWnUWS4eU/jpHE3+X58JWgOQfghSY2wqIKOM2AYAa2GE0S0QAhaV8fHohDddfU2POF+WR2HzcClhjTyM8Qfbfpc88ECO01sPqR2y3xYj7sLn7hX+P4UIGL9d0AlLLIgw5ctE10+Uhhql64a/4rrgBCQg51NCQA6ZCIs6v8yxgaSSmt/CEvr7HGVysNk9Rw2rXGjDbwEHkBKBMa56PK0OmRWVwOb4OgNZrQQFzpTfq/WCnzyA5/VGrmkXqPEBL2Bw/ly56+owwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dSHBIS6jHengNycvSl+Oe1xqBqihGP8qXyiuMvl+c6c=;
+ b=AUsabxce32iAwy1x7Ylgn06AXZp0hGRhyRdu1fjoHJXK7gKY03XEcFbzb+lYF86diE+UM1MQOlyll1h0e26Wa1msGnH5BQj0yJw5M7y5mCGdzXwlmFsbGrEAtOkaHcJWQ+3NfC8pv6va8izOZo8WEJZM6x28Gum9z5flCVrZzyXz8R227NW2Oawwb1b/YpmDOmD1XwLWEXQSTC4xrshgxN16nw+4vO+99U2WWotu85roOwGxHX1R//8Gq/TvcG/5YV0yKzC8/TNLku0aK9qRPtvZZNLG1jwRMd7vWr20frKxcpAg4S2AZSnE/X+/NwW2V07en7DSf5FYQxUnoHsJag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by IA1PR11MB6217.namprd11.prod.outlook.com (2603:10b6:208:3eb::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Thu, 22 Jun
+ 2023 19:41:19 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::44e7:c479:62f4:3eb4%7]) with mapi id 15.20.6521.023; Thu, 22 Jun 2023
+ 19:41:19 +0000
+Date: Thu, 22 Jun 2023 12:41:16 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Message-ID: <2ptiei3lil5peekrmbw7gkp4diwr4nw4g36yhp675yuekrdpd4@at2yysa6dgrb>
+References: <20230613215245.1551145-1-radhakrishna.sripada@intel.com>
+ <20230613215245.1551145-4-radhakrishna.sripada@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20230613215245.1551145-4-radhakrishna.sripada@intel.com>
+X-ClientProxiedBy: MW4PR04CA0348.namprd04.prod.outlook.com
+ (2603:10b6:303:8a::23) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Date: Thu, 22 Jun 2023 19:36:39 -0000
-Message-ID: <168746259976.4870.13113796271002196116@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230621013524.1994538-1-suraj.kandpal@intel.com>
-In-Reply-To: <20230621013524.1994538-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_Add_a_debug_statment_at_hcdp2_capability_check_?=
- =?utf-8?b?KHJldjMp?=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA1PR11MB6217:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec28f1b6-470b-4850-f2e3-08db7358a680
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Dwr0Au28Tel8wfRLXLAtQ02d1SqG8rTxge6HLGDjsVHNzesm0l7C+CUzXwozm2h357yiJIQvX85powtesgyEWARo7R2hiw3ulPilG87VFd3c/FgLOyichNJYMIjF2+8JcW7FC+I8EZ6HFVdzEbWRH/unFU2GLgQLV3IquMybxpvZpXYZnNXrcfza0BSs32TG/LP3X2V9mgg+tZNCCSvb8exEuhhVrPhmnRZBikoG5IcJPxR402pBNk7jWMQDOC2dUco8Z9I4uuNwDShB2MEJxQOeqo/I1ApGJFqjIvy8Qycyq8Te4u614ZUvELyCTHGNP/Al+hAcUqSsuzwcSNLBnVQD6Je5VXiEdi2qFit0pjfErvw+LZJuM8+i1KCfmrBcX01bbF44fQy/j5uljhk23N5i07+8t+Vcis53fTzzoqaNnNQHGarTgaqmw6to0XvWSV7foZ87lrdB8dyhdOhc1KYN5RKQhYOhcxI3/Ri0Pb/TyKYlyY6XJkEJLrcOOAo/Mb2NZhtt72ZpoFgqQpRtA4Wyys1ZoNs2QgNxEdbWOF/GU27GLbzLWQbQQJxSJoGr
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(366004)(376002)(396003)(39860400002)(346002)(136003)(451199021)(66946007)(66556008)(4326008)(316002)(6636002)(66476007)(8936002)(6506007)(6512007)(8676002)(9686003)(41300700001)(186003)(26005)(6666004)(6486002)(33716001)(2906002)(5660300002)(6862004)(478600001)(82960400001)(38100700002)(83380400001)(86362001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lCPdhnNoyhlWpAH5ev60urlHxF2WUPVHpfBa4e7hNL/Hw9BTtqs6Kp1bNV6w?=
+ =?us-ascii?Q?fgY0wh76bj1AYTA55CQ3tXzhKE25wb3uzjCQNid7uwcW1VpAJ9hKKeYEVNM1?=
+ =?us-ascii?Q?phO8Pkbyx1iDkhs5raEsyLcwByuIhXs0nJ1Xkv36jwVcXECK84hV9ElDXgtJ?=
+ =?us-ascii?Q?gEmyoqxamgCPsf5brLXlYTf/AXLVqIknn0lsWnAQn76vkHKjzivUWrBjiC0Y?=
+ =?us-ascii?Q?zR20IabIQo7cpCm+kKCj3kvpuoe6sXxwkvvdiyfgP62a+xMkmQgwFoLtX8Xz?=
+ =?us-ascii?Q?4kSrL99MkX7nXiW7LY+utI/pWiJI9VhlvSJX9bWY16zgWzk0sNmGsbqLlZ5s?=
+ =?us-ascii?Q?3BQ4WyTY4HqbFwhNwGy8dINnKvIy6T7EWW0RzUvY9LSif8RhlO8DT13Hcx4b?=
+ =?us-ascii?Q?R8KgMXSpwW5SYiFlM7be3VLZsEulh3Ayzump8F44wzE99SGELteqvcO+ViGu?=
+ =?us-ascii?Q?w0TEUnb3nEsQWrUcNRpuyGOyEuXElH/6RWdzYIbL3b7BNseN6hi+P6xZBKUI?=
+ =?us-ascii?Q?wjiNpfTPATY9EE/zdsWC2UbWJ+Mnd91gxGyLEZtT6+V5zUBI9ohtWMAYzdtq?=
+ =?us-ascii?Q?eLNEKTdydq3+cRkQ/5sHJuTEoe2q2A5ermLfK4hyZay/3/kd8KUmgTdcfnIn?=
+ =?us-ascii?Q?pmNZEXccTRvye+XyVFVfpdNYDjxmEd2f83NHpcKZIAXuki++EXSAn3WDA89X?=
+ =?us-ascii?Q?J473Shv6bbcC/UTtQGJudgn8nRMqjlEmAjCX8K4U4z4IIyS1ythBC68nW9X8?=
+ =?us-ascii?Q?s7L8V1G9JLU2v9MgUuIVEvGyeEwYahW83QGJjpmiQITU6hhH47ZaATBQ8bh8?=
+ =?us-ascii?Q?JhMV9JfyxcMN+iO3aOoQBHJS6e0MKv3ylun4RVSz6xgIUkvdyg3SnCh29PpR?=
+ =?us-ascii?Q?IaZ+0yqrX5dFT8NiCQ1970ZoRY/i0cGelXRuWu6uON9zCu4xrL/PvMP6dYh4?=
+ =?us-ascii?Q?v6Bchk4xt9IwYWCwxQ/Ded+pHzRZynWlRnMau/nTOPv5j+cw5nn1NsjiCDG/?=
+ =?us-ascii?Q?6+5uUSrhHHUx8E1y2w6pyQTUWEb0aEsYLNuGlHkNs7wz8YOd1UqK2dwyz2Pz?=
+ =?us-ascii?Q?Sl7Vpo+cPslU92kItckM+ur8tsPH6BjDqDFmgmwfGEdMya7AUjn7ddYVa9pq?=
+ =?us-ascii?Q?5pOB8rFQpS1lrdMyJKS2ypwznN2Q1WMt3eaQbmBAJB3J9YssYMUdMjNcg85U?=
+ =?us-ascii?Q?zbWZaUU3WfwhdaF5NXWX2eB6PHwOqf9C3RbdacfSv8Z0nHcYVM/oBGmtVVtS?=
+ =?us-ascii?Q?eQ/G/AKsZ6b0N7obYZiyMaoXYziicdXS4tEHtYjtIBxegOCwCBGk3X0IQ7Ss?=
+ =?us-ascii?Q?z+VBTE0g7ev5EyShtMuWYrpENiUQVWCMyF91xTogjzA3J856ZuOa9zFDcXfw?=
+ =?us-ascii?Q?RV8BtuIKRDdvsM6p7k7ohaQ0zUBUC3VXw649DFxuFbUv7G3EFEqk1UhWu4tB?=
+ =?us-ascii?Q?jxzPwmCEskvtw2jecUvwTkxTEVV7l/Nr5AUmZ903jaG1nUvF2qv+ZCbwLp0P?=
+ =?us-ascii?Q?BLgPK7swg5IdXfAiyU3cRhPfL2RXHMUhGVB88f3JySyp56pZluBgdaxnbUHu?=
+ =?us-ascii?Q?qOR/Nxkf2+D42le4VF0Ohi9JHeZ403SaOhsEqL/bghde4p5ciImM/ztg1fI3?=
+ =?us-ascii?Q?tw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec28f1b6-470b-4850-f2e3-08db7358a680
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2023 19:41:19.2761 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0c/ZVpH4APtqYuc+iZRfUnzLvZv1CiJPMBDVCopwW/uOauK/nXPE2GBXPNr4nwEMOKdyfQaoZTGiRxnxcgYhCgd8uTdu6D1Qkqoct6GcFAg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6217
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Make
+ intel_crtc_get_vblank_counter use no trace hw reads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,2141 +148,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2343729010541270308==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/hdcp: Add a debug statment at hcdp2 capability check (rev3)
-URL   : https://patchwork.freedesktop.org/series/119641/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13300_full -> Patchwork_119641v3_full
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_119641v3_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_119641v3_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (7 -> 8)
-------------------------------
-
-  Additional (1): shard-dg2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_119641v3_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_vblank@pipe-b-accuracy-idle:
-    - shard-glk:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-glk9/igt@kms_vblank@pipe-b-accuracy-idle.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-glk9/igt@kms_vblank@pipe-b-accuracy-idle.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_pm_rpm@i2c:
-    - {shard-dg2}:        NOTRUN -> [FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-dg2-2/igt@i915_pm_rpm@i2c.html
-
-  * igt@kms_content_protection@lic@pipe-a-dp-4:
-    - {shard-dg2}:        NOTRUN -> [TIMEOUT][4] +1 similar issue
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-dg2-11/igt@kms_content_protection@lic@pipe-a-dp-4.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_13300_full and Patchwork_119641v3_full:
-
-### New IGT tests (140) ###
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-linear-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-linear-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-linear-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-linear-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-x-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-x-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-x-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-x-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-linear-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-linear-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-linear-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-linear-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-x-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-x-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-x-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-x-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-linear-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-linear-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-linear-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-linear-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-x-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-x-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-x-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-x-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-linear:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-x:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-linear-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-linear-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-linear-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-linear-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-x-to-4:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-x-to-4-mc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-x-to-4-rc_ccs:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-x-to-4-rc_ccs-cc:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_lowres@tiling-none@pipe-a-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_lowres@tiling-none@pipe-b-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_lowres@tiling-none@pipe-c-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_lowres@tiling-none@pipe-d-hdmi-a-3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_scaling@plane-downscale-with-pixel-format-factor-0-5@pipe-b-dp-2:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_scaling@plane-downscale-with-pixel-format-factor-0-5@pipe-c-dp-2:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_scaling@plane-downscale-with-rotation-factor-0-5@pipe-b-dp-2:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_scaling@plane-downscale-with-rotation-factor-0-5@pipe-c-dp-2:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-b-dp-2:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-c-dp-2:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_scaling@planes-downscale-factor-0-75@pipe-b-dp-2:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_plane_scaling@planes-downscale-factor-0-75@pipe-c-dp-2:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_119641v3_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@drm_fdinfo@most-busy-idle-check-all@rcs0:
-    - shard-rkl:          [PASS][5] -> [FAIL][6] ([i915#7742])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-1/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-2/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
-
-  * igt@gem_barrier_race@remote-request@rcs0:
-    - shard-apl:          [PASS][7] -> [ABORT][8] ([i915#7461] / [i915#8211] / [i915#8234])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-apl1/igt@gem_barrier_race@remote-request@rcs0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-apl2/igt@gem_barrier_race@remote-request@rcs0.html
-
-  * igt@gem_ctx_exec@basic-nohangcheck:
-    - shard-rkl:          [PASS][9] -> [FAIL][10] ([i915#6268])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-7/igt@gem_ctx_exec@basic-nohangcheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-7/igt@gem_ctx_exec@basic-nohangcheck.html
-
-  * igt@gem_exec_fair@basic-none@bcs0:
-    - shard-rkl:          [PASS][11] -> [FAIL][12] ([i915#2842])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-6/igt@gem_exec_fair@basic-none@bcs0.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-6/igt@gem_exec_fair@basic-none@bcs0.html
-
-  * igt@gem_exec_fair@basic-pace-solo@rcs0:
-    - shard-glk:          [PASS][13] -> [FAIL][14] ([i915#2842])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-glk1/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-glk7/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-
-  * igt@i915_pm_rpm@modeset-lpsp-stress:
-    - shard-rkl:          [PASS][15] -> [SKIP][16] ([i915#1397]) +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-7/igt@i915_pm_rpm@modeset-lpsp-stress.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-1/igt@i915_pm_rpm@modeset-lpsp-stress.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
-    - shard-glk:          [PASS][17] -> [FAIL][18] ([i915#2346])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-glk6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-glk3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-rkl:          NOTRUN -> [SKIP][19] ([i915#3555] / [i915#4579])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-2/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-a-hdmi-a-1:
-    - shard-snb:          NOTRUN -> [SKIP][20] ([fdo#109271]) +10 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-snb1/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-a-hdmi-a-1.html
-
-  * igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-a-hdmi-a-2:
-    - shard-rkl:          NOTRUN -> [SKIP][21] ([i915#5176])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-1/igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-a-hdmi-a-2.html
-
-  * igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-b-hdmi-a-2:
-    - shard-rkl:          NOTRUN -> [SKIP][22] ([i915#4579] / [i915#5176])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-1/igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-b-hdmi-a-2.html
-
-  * igt@kms_plane_scaling@plane-upscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-1:
-    - shard-snb:          NOTRUN -> [SKIP][23] ([fdo#109271] / [i915#4579]) +5 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-snb1/igt@kms_plane_scaling@plane-upscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-1.html
-
-  * igt@kms_rotation_crc@primary-y-tiled-reflect-x-0:
-    - shard-rkl:          [PASS][24] -> [ABORT][25] ([i915#7461])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-6/igt@kms_rotation_crc@primary-y-tiled-reflect-x-0.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-4/igt@kms_rotation_crc@primary-y-tiled-reflect-x-0.html
-
-  
-#### Possible fixes ####
-
-  * igt@drm_fdinfo@most-busy-check-all@rcs0:
-    - shard-rkl:          [FAIL][26] ([i915#7742]) -> [PASS][27]
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-4/igt@drm_fdinfo@most-busy-check-all@rcs0.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-2/igt@drm_fdinfo@most-busy-check-all@rcs0.html
-
-  * igt@gem_ctx_exec@basic-nohangcheck:
-    - shard-tglu:         [FAIL][28] ([i915#6268]) -> [PASS][29]
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-tglu-10/igt@gem_ctx_exec@basic-nohangcheck.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-tglu-3/igt@gem_ctx_exec@basic-nohangcheck.html
-
-  * igt@gem_ctx_persistence@legacy-engines-hostile@bsd:
-    - shard-apl:          [FAIL][30] ([i915#2410]) -> [PASS][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-apl2/igt@gem_ctx_persistence@legacy-engines-hostile@bsd.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-apl4/igt@gem_ctx_persistence@legacy-engines-hostile@bsd.html
-
-  * igt@gem_eio@in-flight-contexts-10ms:
-    - shard-apl:          [TIMEOUT][32] ([i915#3063]) -> [PASS][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-apl4/igt@gem_eio@in-flight-contexts-10ms.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-apl4/igt@gem_eio@in-flight-contexts-10ms.html
-
-  * igt@gem_exec_fair@basic-pace-solo@rcs0:
-    - shard-rkl:          [FAIL][34] ([i915#2842]) -> [PASS][35]
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-7/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-7/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-
-  * igt@i915_pm_rpm@modeset-lpsp-stress:
-    - {shard-dg1}:        [SKIP][36] ([i915#1397]) -> [PASS][37] +1 similar issue
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-dg1-14/igt@i915_pm_rpm@modeset-lpsp-stress.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-dg1-19/igt@i915_pm_rpm@modeset-lpsp-stress.html
-
-  * igt@kms_vblank@pipe-c-accuracy-idle:
-    - shard-glk:          [FAIL][38] ([i915#8713]) -> [PASS][39]
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-glk3/igt@kms_vblank@pipe-c-accuracy-idle.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-glk8/igt@kms_vblank@pipe-c-accuracy-idle.html
-
-  * igt@perf_pmu@semaphore-busy@vcs1:
-    - {shard-dg1}:        [FAIL][40] ([i915#4349]) -> [PASS][41] +2 similar issues
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-dg1-15/igt@perf_pmu@semaphore-busy@vcs1.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-dg1-13/igt@perf_pmu@semaphore-busy@vcs1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_fbcon_fbt@psr:
-    - shard-rkl:          [SKIP][42] ([fdo#110189] / [i915#3955]) -> [SKIP][43] ([i915#3955])
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-2/igt@kms_fbcon_fbt@psr.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-6/igt@kms_fbcon_fbt@psr.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
-  [fdo#109283]: https://bugs.freedesktop.org/show_bug.cgi?id=109283
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
-  [fdo#109291]: https://bugs.freedesktop.org/show_bug.cgi?id=109291
-  [fdo#109302]: https://bugs.freedesktop.org/show_bug.cgi?id=109302
-  [fdo#109303]: https://bugs.freedesktop.org/show_bug.cgi?id=109303
-  [fdo#109309]: https://bugs.freedesktop.org/show_bug.cgi?id=109309
-  [fdo#109314]: https://bugs.freedesktop.org/show_bug.cgi?id=109314
-  [fdo#109506]: https://bugs.freedesktop.org/show_bug.cgi?id=109506
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [fdo#111614]: https://bugs.freedesktop.org/show_bug.cgi?id=111614
-  [fdo#111767]: https://bugs.freedesktop.org/show_bug.cgi?id=111767
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [fdo#112283]: https://bugs.freedesktop.org/show_bug.cgi?id=112283
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
-  [i915#1769]: https://gitlab.freedesktop.org/drm/intel/issues/1769
-  [i915#1839]: https://gitlab.freedesktop.org/drm/intel/issues/1839
-  [i915#1902]: https://gitlab.freedesktop.org/drm/intel/issues/1902
-  [i915#1937]: https://gitlab.freedesktop.org/drm/intel/issues/1937
-  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
-  [i915#2410]: https://gitlab.freedesktop.org/drm/intel/issues/2410
-  [i915#2434]: https://gitlab.freedesktop.org/drm/intel/issues/2434
-  [i915#2436]: https://gitlab.freedesktop.org/drm/intel/issues/2436
-  [i915#2437]: https://gitlab.freedesktop.org/drm/intel/issues/2437
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
-  [i915#2705]: https://gitlab.freedesktop.org/drm/intel/issues/2705
-  [i915#280]: https://gitlab.freedesktop.org/drm/intel/issues/280
-  [i915#284]: https://gitlab.freedesktop.org/drm/intel/issues/284
-  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
-  [i915#2856]: https://gitlab.freedesktop.org/drm/intel/issues/2856
-  [i915#3063]: https://gitlab.freedesktop.org/drm/intel/issues/3063
-  [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3297]: https://gitlab.freedesktop.org/drm/intel/issues/3297
-  [i915#3299]: https://gitlab.freedesktop.org/drm/intel/issues/3299
-  [i915#3318]: https://gitlab.freedesktop.org/drm/intel/issues/3318
-  [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
-  [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
-  [i915#3469]: https://gitlab.freedesktop.org/drm/intel/issues/3469
-  [i915#3539]: https://gitlab.freedesktop.org/drm/intel/issues/3539
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3591]: https://gitlab.freedesktop.org/drm/intel/issues/3591
-  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
-  [i915#3936]: https://gitlab.freedesktop.org/drm/intel/issues/3936
-  [i915#3955]: https://gitlab.freedesktop.org/drm/intel/issues/3955
-  [i915#4036]: https://gitlab.freedesktop.org/drm/intel/issues/4036
-  [i915#404]: https://gitlab.freedesktop.org/drm/intel/issues/404
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4087]: https://gitlab.freedesktop.org/drm/intel/issues/4087
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4235]: https://gitlab.freedesktop.org/drm/intel/issues/4235
-  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
-  [i915#4349]: https://gitlab.freedesktop.org/drm/intel/issues/4349
-  [i915#4387]: https://gitlab.freedesktop.org/drm/intel/issues/4387
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#4423]: https://gitlab.freedesktop.org/drm/intel/issues/4423
-  [i915#4537]: https://gitlab.freedesktop.org/drm/intel/issues/4537
-  [i915#4538]: https://gitlab.freedesktop.org/drm/intel/issues/4538
-  [i915#4579]: https://gitlab.freedesktop.org/drm/intel/issues/4579
-  [i915#4771]: https://gitlab.freedesktop.org/drm/intel/issues/4771
-  [i915#4812]: https://gitlab.freedesktop.org/drm/intel/issues/4812
-  [i915#4816]: https://gitlab.freedesktop.org/drm/intel/issues/4816
-  [i915#4818]: https://gitlab.freedesktop.org/drm/intel/issues/4818
-  [i915#4852]: https://gitlab.freedesktop.org/drm/intel/issues/4852
-  [i915#4854]: https://gitlab.freedesktop.org/drm/intel/issues/4854
-  [i915#4860]: https://gitlab.freedesktop.org/drm/intel/issues/4860
-  [i915#4879]: https://gitlab.freedesktop.org/drm/intel/issues/4879
-  [i915#4880]: https://gitlab.freedesktop.org/drm/intel/issues/4880
-  [i915#4881]: https://gitlab.freedesktop.org/drm/intel/issues/4881
-  [i915#4885]: https://gitlab.freedesktop.org/drm/intel/issues/4885
-  [i915#4958]: https://gitlab.freedesktop.org/drm/intel/issues/4958
-  [i915#5107]: https://gitlab.freedesktop.org/drm/intel/issues/5107
-  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5460]: https://gitlab.freedesktop.org/drm/intel/issues/5460
-  [i915#5461]: https://gitlab.freedesktop.org/drm/intel/issues/5461
-  [i915#5784]: https://gitlab.freedesktop.org/drm/intel/issues/5784
-  [i915#5793]: https://gitlab.freedesktop.org/drm/intel/issues/5793
-  [i915#5882]: https://gitlab.freedesktop.org/drm/intel/issues/5882
-  [i915#5889]: https://gitlab.freedesktop.org/drm/intel/issues/5889
-  [i915#5892]: https://gitlab.freedesktop.org/drm/intel/issues/5892
-  [i915#5978]: https://gitlab.freedesktop.org/drm/intel/issues/5978
-  [i915#6118]: https://gitlab.freedesktop.org/drm/intel/issues/6118
-  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
-  [i915#6122]: https://gitlab.freedesktop.org/drm/intel/issues/6122
-  [i915#6188]: https://gitlab.freedesktop.org/drm/intel/issues/6188
-  [i915#6227]: https://gitlab.freedesktop.org/drm/intel/issues/6227
-  [i915#6228]: https://gitlab.freedesktop.org/drm/intel/issues/6228
-  [i915#6268]: https://gitlab.freedesktop.org/drm/intel/issues/6268
-  [i915#6334]: https://gitlab.freedesktop.org/drm/intel/issues/6334
-  [i915#6524]: https://gitlab.freedesktop.org/drm/intel/issues/6524
-  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
-  [i915#6596]: https://gitlab.freedesktop.org/drm/intel/issues/6596
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6805]: https://gitlab.freedesktop.org/drm/intel/issues/6805
-  [i915#6880]: https://gitlab.freedesktop.org/drm/intel/issues/6880
-  [i915#6953]: https://gitlab.freedesktop.org/drm/intel/issues/6953
-  [i915#7091]: https://gitlab.freedesktop.org/drm/intel/issues/7091
-  [i915#7118]: https://gitlab.freedesktop.org/drm/intel/issues/7118
-  [i915#7173]: https://gitlab.freedesktop.org/drm/intel/issues/7173
-  [i915#7331]: https://gitlab.freedesktop.org/drm/intel/issues/7331
-  [i915#7356]: https://gitlab.freedesktop.org/drm/intel/issues/7356
-  [i915#7387]: https://gitlab.freedesktop.org/drm/intel/issues/7387
-  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#7679]: https://gitlab.freedesktop.org/drm/intel/issues/7679
-  [i915#7697]: https://gitlab.freedesktop.org/drm/intel/issues/7697
-  [i915#7701]: https://gitlab.freedesktop.org/drm/intel/issues/7701
-  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
-  [i915#7742]: https://gitlab.freedesktop.org/drm/intel/issues/7742
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7892]: https://gitlab.freedesktop.org/drm/intel/issues/7892
-  [i915#8011]: https://gitlab.freedesktop.org/drm/intel/issues/8011
-  [i915#8211]: https://gitlab.freedesktop.org/drm/intel/issues/8211
-  [i915#8213]: https://gitlab.freedesktop.org/drm/intel/issues/8213
-  [i915#8228]: https://gitlab.freedesktop.org/drm/intel/issues/8228
-  [i915#8234]: https://gitlab.freedesktop.org/drm/intel/issues/8234
-  [i915#8247]: https://gitlab.freedesktop.org/drm/intel/issues/8247
-  [i915#8292]: https://gitlab.freedesktop.org/drm/intel/issues/8292
-  [i915#8304]: https://gitlab.freedesktop.org/drm/intel/issues/8304
-  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
-  [i915#8381]: https://gitlab.freedesktop.org/drm/intel/issues/8381
-  [i915#8411]: https://gitlab.freedesktop.org/drm/intel/issues/8411
-  [i915#8414]: https://gitlab.freedesktop.org/drm/intel/issues/8414
-  [i915#8502]: https://gitlab.freedesktop.org/drm/intel/issues/8502
-  [i915#8516]: https://gitlab.freedesktop.org/drm/intel/issues/8516
-  [i915#8555]: https://gitlab.freedesktop.org/drm/intel/issues/8555
-  [i915#8588]: https://gitlab.freedesktop.org/drm/intel/issues/8588
-  [i915#8623]: https://gitlab.freedesktop.org/drm/intel/issues/8623
-  [i915#8661]: https://gitlab.freedesktop.org/drm/intel/issues/8661
-  [i915#8708]: https://gitlab.freedesktop.org/drm/intel/issues/8708
-  [i915#8713]: https://gitlab.freedesktop.org/drm/intel/issues/8713
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13300 -> Patchwork_119641v3
-
-  CI-20190529: 20190529
-  CI_DRM_13300: d1d0a512457b695fdac987b02d0df4389905140f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7343: ec3d9b6e5c552ab6b811f9ed2abe6a00baf4b38b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_119641v3: d1d0a512457b695fdac987b02d0df4389905140f @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/index.html
-
---===============2343729010541270308==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Add a debug statment at hcdp2 capability check (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119641/">https://patchwork.freedesktop.org/series/119641/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13300_full -&gt; Patchwork_119641v3_full</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_119641v3_full absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_119641v3_full, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (7 -&gt; 8)</h2>
-<p>Additional (1): shard-dg2 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_119641v3_full:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_vblank@pipe-b-accuracy-idle:<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-glk9/igt@kms_vblank@pipe-b-accuracy-idle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-glk9/igt@kms_vblank@pipe-b-accuracy-idle.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@i2c:</p>
-<ul>
-<li>{shard-dg2}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-dg2-2/igt@i915_pm_rpm@i2c.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@lic@pipe-a-dp-4:</p>
-<ul>
-<li>{shard-dg2}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-dg2-11/igt@kms_content_protection@lic@pipe-a-dp-4.html">TIMEOUT</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_13300_full and Patchwork_119641v3_full:</p>
-<h3>New IGT tests (140)</h3>
-<ul>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-mc_ccs-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-cc-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-rc_ccs-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-4-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-linear-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-linear-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-linear-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-linear-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-x-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-x-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-x-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-a-x-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-mc_ccs-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-cc-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-rc_ccs-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-4-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-linear-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-linear-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-linear-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-linear-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-x-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-x-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-x-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-b-x-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-mc_ccs-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-cc-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-rc_ccs-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-4-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-linear-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-linear-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-linear-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-linear-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-x-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-x-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-x-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-c-x-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-mc_ccs-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-cc-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-rc_ccs-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-linear:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-4-to-x:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-linear-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-linear-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-linear-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-linear-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-x-to-4:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-x-to-4-mc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-x-to-4-rc_ccs:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_tiling@flip-change-tiling@dp-4-pipe-d-x-to-4-rc_ccs-cc:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_lowres@tiling-none@pipe-a-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_lowres@tiling-none@pipe-b-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_lowres@tiling-none@pipe-c-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_lowres@tiling-none@pipe-d-hdmi-a-3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-downscale-with-pixel-format-factor-0-5@pipe-b-dp-2:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-downscale-with-pixel-format-factor-0-5@pipe-c-dp-2:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-downscale-with-rotation-factor-0-5@pipe-b-dp-2:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-downscale-with-rotation-factor-0-5@pipe-c-dp-2:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-b-dp-2:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-c-dp-2:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-75@pipe-b-dp-2:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-75@pipe-c-dp-2:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_119641v3_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@drm_fdinfo@most-busy-idle-check-all@rcs0:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-1/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-2/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7742">i915#7742</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_barrier_race@remote-request@rcs0:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-apl1/igt@gem_barrier_race@remote-request@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-apl2/igt@gem_barrier_race@remote-request@rcs0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8211">i915#8211</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8234">i915#8234</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_exec@basic-nohangcheck:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-7/igt@gem_ctx_exec@basic-nohangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-7/igt@gem_ctx_exec@basic-nohangcheck.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6268">i915#6268</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none@bcs0:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-6/igt@gem_exec_fair@basic-none@bcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-6/igt@gem_exec_fair@basic-none@bcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-glk1/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-glk7/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@modeset-lpsp-stress:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-7/igt@i915_pm_rpm@modeset-lpsp-stress.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-1/igt@i915_pm_rpm@modeset-lpsp-stress.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-glk6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-glk3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@bpc-switch-suspend:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-2/igt@kms_hdr@bpc-switch-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-a-hdmi-a-1:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-snb1/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-a-hdmi-a-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +10 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-a-hdmi-a-2:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-1/igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-a-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-b-hdmi-a-2:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-1/igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-b-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-upscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-1:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-snb1/igt@kms_plane_scaling@plane-upscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4579">i915#4579</a>) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_rotation_crc@primary-y-tiled-reflect-x-0:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-6/igt@kms_rotation_crc@primary-y-tiled-reflect-x-0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-4/igt@kms_rotation_crc@primary-y-tiled-reflect-x-0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@drm_fdinfo@most-busy-check-all@rcs0:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-4/igt@drm_fdinfo@most-busy-check-all@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7742">i915#7742</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-2/igt@drm_fdinfo@most-busy-check-all@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_exec@basic-nohangcheck:</p>
-<ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-tglu-10/igt@gem_ctx_exec@basic-nohangcheck.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6268">i915#6268</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-tglu-3/igt@gem_ctx_exec@basic-nohangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_persistence@legacy-engines-hostile@bsd:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-apl2/igt@gem_ctx_persistence@legacy-engines-hostile@bsd.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2410">i915#2410</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-apl4/igt@gem_ctx_persistence@legacy-engines-hostile@bsd.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@in-flight-contexts-10ms:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-apl4/igt@gem_eio@in-flight-contexts-10ms.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3063">i915#3063</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-apl4/igt@gem_eio@in-flight-contexts-10ms.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-7/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-7/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@modeset-lpsp-stress:</p>
-<ul>
-<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-dg1-14/igt@i915_pm_rpm@modeset-lpsp-stress.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-dg1-19/igt@i915_pm_rpm@modeset-lpsp-stress.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vblank@pipe-c-accuracy-idle:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-glk3/igt@kms_vblank@pipe-c-accuracy-idle.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8713">i915#8713</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-glk8/igt@kms_vblank@pipe-c-accuracy-idle.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@perf_pmu@semaphore-busy@vcs1:</p>
-<ul>
-<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-dg1-15/igt@perf_pmu@semaphore-busy@vcs1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4349">i915#4349</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-dg1-13/igt@perf_pmu@semaphore-busy@vcs1.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_fbcon_fbt@psr:<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13300/shard-rkl-2/igt@kms_fbcon_fbt@psr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119641v3/shard-rkl-6/igt@kms_fbcon_fbt@psr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13300 -&gt; Patchwork_119641v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13300: d1d0a512457b695fdac987b02d0df4389905140f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7343: ec3d9b6e5c552ab6b811f9ed2abe6a00baf4b38b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_119641v3: d1d0a512457b695fdac987b02d0df4389905140f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============2343729010541270308==--
+On Tue, Jun 13, 2023 at 02:52:44PM -0700, Radhakrishna Sripada wrote:
+>intel_crtc_get_vblank_counter is used in many places in the display
+>tracing infrastructure. For a clean execution of the tracing assignment,
+>ensure that any necessary HW reads would not further trigger another trace,
+>to prevent nesting of trace events.
+
+
+it's not clear what "nesting" means in this patch series. For me
+"nesting" would be if in the middle of a trace event it triggered
+another trace event. Given our current infra, I don't see how that
+would be possible.
+
+Do you mean that certain register accesses are being reported twice
+since they are being recorded in 2 different layers like intel_de and
+intel_uncore? If so, can you add in the commit message what is the call
+chain you're seeing? The indirections in intel_de_read_fw() are not so
+easy to follow, but from a quick look I don't see that happening here.
+
+intel_de_read_fw()
+   intel_uncore_read_fw()
+     __raw_uncore_read32() <-- no trace here
+   trace_i915_reg_rw()
+
+What makes intel_de_read_fw() call special in this intel_vblank.c that
+is not the case in all the hundred other places this function is called?
+
+The trace_i915_reg_rw() in intel_de_read_fw() was added exactly because
+__raw_uncore_read32() doesn't trace.
+
+In xe, we should probably override the intel_de_read_fw() with a
+xe-specific function that just leaves the trace out, delegated to
+xe_mmio().
+
+
+Btw, see the comment on top of intel_uncore_read_fw() that nobody reads
+and calls to those "raw" accessors are added, making the i915_reg_rw
+trace almost useless.
+
+	$ git grep intel_uncore_read_fw | wc -l
+	65
+
+The _fw() suffix was meant as: you first take the forcewake, then
+you access a bunch of registers, then release the forcewake. The
+non-trace is a bad side effect with no clue on the name of the function,
+just a comment on top of it.
+
+Lucas De Marchi
+
+
+>
+>Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+>---
+> drivers/gpu/drm/i915/display/intel_vblank.c | 7 ++++---
+> 1 file changed, 4 insertions(+), 3 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+>index f5659ebd08eb..55f3389fa220 100644
+>--- a/drivers/gpu/drm/i915/display/intel_vblank.c
+>+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+>@@ -103,7 +103,7 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
+> 	 * we get a low value that's stable across two reads of the high
+> 	 * register.
+> 	 */
+>-	frame = intel_de_read64_2x32(dev_priv, PIPEFRAMEPIXEL(pipe), PIPEFRAME(pipe));
+>+	frame = intel_de_read64_2x32_notrace(dev_priv, PIPEFRAMEPIXEL(pipe), PIPEFRAME(pipe));
+>
+> 	pixel = frame & PIPE_PIXEL_MASK;
+> 	frame = (frame >> PIPE_FRAME_LOW_SHIFT) & 0xffffff;
+>@@ -125,7 +125,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
+> 	if (!vblank->max_vblank_count)
+> 		return 0;
+>
+>-	return intel_de_read(dev_priv, PIPE_FRMCOUNT_G4X(pipe));
+>+	return intel_de_read_notrace(dev_priv, PIPE_FRMCOUNT_G4X(pipe));
+> }
+>
+> static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
+>@@ -324,7 +324,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+> 		 * We can split this into vertical and horizontal
+> 		 * scanout position.
+> 		 */
+>-		position = (intel_de_read_fw(dev_priv, PIPEFRAMEPIXEL(pipe)) & PIPE_PIXEL_MASK) >> PIPE_PIXEL_SHIFT;
+>+		position = (intel_de_read_fw_notrace(dev_priv, PIPEFRAMEPIXEL(pipe)) &
+>+			    PIPE_PIXEL_MASK) >> PIPE_PIXEL_SHIFT;
+>
+> 		/* convert to pixel counts */
+> 		vbl_start *= htotal;
+>-- 
+>2.34.1
+>
