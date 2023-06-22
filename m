@@ -2,156 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 688B1739D8D
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 11:38:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47437739D8F
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 11:38:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC4D810E508;
-	Thu, 22 Jun 2023 09:38:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 959BF10E50B;
+	Thu, 22 Jun 2023 09:38:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7580310E508
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 09:38:22 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D71889B62
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 09:38:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687426702; x=1718962702;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=Ojvur8eBxVp0P8MKDU4PaUYK9KxX/wwmLE0HJ4vKA9g=;
- b=kz1+5a8ViqaiiSpsCzsMlnvQgii0Wyg/WfOtaVO/EtHFIuGvv+PtVbyP
- 8F1MEamMV2nZswdaYed/ecL9NDreCL5RJFs+q62Bpl3SMrpV6wQYSbUHf
- e/U6gsJyqE5hHT+NuX9FB2QoJYHlj8F0h//TS4itZ3fduAur0z5TJXnMU
- NJzAPwkBCR6hVFo74lWxqUbj4WTauSlXxDqB/+yBQIstRYfa3Vp9eoliJ
- Jq6dR74PKJVelqGKgRSnJ7pMOg3bsZ2nYLZ1ohME9vBSeRh5ypEXCaZqI
- xV3KL2lxuJIAonGwdYOu6BDkKSFA0VCppKAnEcq6J132zFazkVE2DStRx Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="363863015"
-X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; d="scan'208";a="363863015"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2023 02:38:21 -0700
+ t=1687426731; x=1718962731;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=WxcjYf5v+qgNDvHjOX57QxjTD5rAiG3FLuEd9DtROcg=;
+ b=R4+xEOB0mxog5FC3Bt2UW9M/6C9rRqIp7qSWOKifggqVR5DXzyfVVr5b
+ OGzg2GsKYejeG2xMOFPCkhO6MStq+XjxtmiorBVg03MUjrBG7Fo7HNL7v
+ 1qapXulfc3omyEOz2sa9l17Nblo4BmQsxD30SdB6X6G/+oTYQRVsJJ8Jc
+ NRIo+l85/m64Iy0H1vjCA8WpdP6DNnEIkg6Fbs043TjnWZxcVWcJc4Cas
+ SWZHWe5/l2nk8boFtN7ZBQVpPvNpSTKxOP36lmhdjpG3Uw1G4XqAjp8+i
+ wiqc2xwWpy4AfWtRdTFmpN+tLYflyymZU7QW8xwL5Ip1Ggzku3Ej7vmPO A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="390128714"
+X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; d="scan'208";a="390128714"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 02:38:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="714825545"
-X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; d="scan'208";a="714825545"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga002.jf.intel.com with ESMTP; 22 Jun 2023 02:38:21 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 22 Jun 2023 02:38:20 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 22 Jun 2023 02:38:20 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 22 Jun 2023 02:38:20 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 22 Jun 2023 02:38:19 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P5sEyNIBoz1FlE9qqUhSL+EWeN884JH9csC+rqclIQZH0ij13iCNU2wkDuUADlnqDf+1lyY0TbYKi2tjhJDqUwgiu+TO2mSyFz/rk812UZ+mvzJrgkDzw62rnsPcFX/VoK0MNJThePfdU8vokKtNvthB0N02Fxjul60qnVnk09XxYtZ9QLn5lbo9+pMUy9TV9ZY0TH/+K10MVebIKAKNM/FMApJhvXxVP4iQAq/z5MKbfnWRhxNE0g0MKf/7xqgiV0nQsf3qkWBf7K50zFRynNOiCnhgd2OeK3lkQ38d2RdvH5/5K8p8E6y7RNcr1ZbzxZNj8yyGZ8ZGk1fwZIyQFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ojvur8eBxVp0P8MKDU4PaUYK9KxX/wwmLE0HJ4vKA9g=;
- b=Znsh0rBJE1fm6mcMrDduwPZbu2GFBR+6dIcReKYsOxprpBV7avrFnE5CF2d/yWB5G8Y0NmLANr3jDrAt3dWjge4eWbQpFzxRpmM1Ka+E1dafXFTU9pbndbs1WIeRlG/5Z6WfVrcvlXChw/qZDWc/1lQ42+FdwVhPUhm0DwpUUeijUPKsz+Jv+57s2xND0GvyT0pa3/p/jw5DQzcjoEvYZZ2mbbvpHIrJsE03x49V0wJWnjhbspZxcH/YBi+VgXF1WuEgOqlfvnGERrAs6/Tjwmy1RObGHur7ZL5DEyIEqhULbbP1XpXtxZ/PhUEDrHsMQt/vdVhXDsx3Gq8cUZ4ZQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
- CO6PR11MB5620.namprd11.prod.outlook.com (2603:10b6:303:13e::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Thu, 22 Jun
- 2023 09:38:17 +0000
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::2796:34e3:dbb9:fe97]) by DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::2796:34e3:dbb9:fe97%5]) with mapi id 15.20.6521.023; Thu, 22 Jun 2023
- 09:38:17 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 4/4] drm/i915: Prevent needless toggling of
- DC states during modesets
-Thread-Index: AQHZoIOLDCEP0ye3UUmMhd+Ax992R6+WmYMA
-Date: Thu, 22 Jun 2023 09:38:17 +0000
-Message-ID: <d710121ff42741cd1bf05d60361b731775acbfec.camel@intel.com>
-References: <20230616185104.2502003-1-imre.deak@intel.com>
- <20230616185104.2502003-4-imre.deak@intel.com>
-In-Reply-To: <20230616185104.2502003-4-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|CO6PR11MB5620:EE_
-x-ms-office365-filtering-correlation-id: 8e3f9ab0-ee83-40df-9ed3-08db73046881
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sSRH7sIq0Y0pr38aP8GZXlRlh5r4kOQXD+vbm43CgiYkre+6ZOSSpvnwB5i/18IZUT1tKtCbJ9CUPlZ/7PdIEIzf8RP/muquz96HZbxFA84dbZUM1aCIKwtpMEl/2ZLfgwcMjtFW3XHHcJIvzldE4a1r5ClJCZl3n+QyezgW2Q14DtCPT38hyisWGXvM2yLoejN0a48g0QPOFErfivswZ2XnU6eB4XzwR+O0D1b6OkVDYjjLoj1dxY5V1KwptZG5LW/FkjDPwQ1fSf2c5sPA7FhrEoYvzr8EW07h2ESNnQwMvIM4HZUTsOu+SWlW/cBTIGa+7zKXSr43swT/SiNpwt4tciBXvQe4n0/PCQodteKb1w+hhcA0M3Q0ETSWGZOmycBCfw0vrhdrCA3IFmAwVVw3/9JgtUmRzUP34R4SzQxCQrsA6WPblZcEbVgiX+x5GjbH2zqKojSuX2rGsJ4AwEV+YZStFWwMRs+R4zKlqNdUSkfedf1OSUqfyQso8BzTB6E5SPjT2r89890C3t9dtqR9HbVHP9LPDGZ7HZ1axBzyBJ6y2RdsYW9svaxR+N1dxKERsYHG/6QxAPGDY/Z0D0ryJP0sQ2CrMia8mKI4wsx6rUSzvU7q3dIIcHp5lDQY
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(346002)(136003)(39860400002)(396003)(366004)(451199021)(41300700001)(5660300002)(8936002)(8676002)(6636002)(316002)(64756008)(66476007)(66446008)(66946007)(66556008)(76116006)(91956017)(2906002)(2616005)(6506007)(186003)(83380400001)(6512007)(26005)(71200400001)(36756003)(38070700005)(86362001)(82960400001)(38100700002)(122000001)(6486002)(110136005)(478600001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cko1QUZTS3dwWEtuUGh6NVErUFh5OEg2MjVWcVpDZzlEQXZJOTFGbUNtLzVJ?=
- =?utf-8?B?OFBqTThvdkhnb0VjbWF1VkpaMnJ5VTNUNkNHQWYvV1VwdTcxN2N6YTZZckZ1?=
- =?utf-8?B?S2lYdXpzVG5zdzRSN3orUTVJVUZod1RpM1lxSDVNUUwyRXpEYmVIYTgyVnVk?=
- =?utf-8?B?ZHQ1dlFVeDl3djhXR09iYXFlN2dtbXFsdnRpd1NxaVgxdW1HblFmbVNxMTM2?=
- =?utf-8?B?Z2prUmsrbWlDa2JtL2R2d3dvVWVidXZFU1E2Sjh0dWUzYlZDeHpTSUxhUkRa?=
- =?utf-8?B?K3FrbFd6VEpWQVRJa0NISFhzTzd6Wm1qZWQvelJQU2llMW9YZHU2TVZKbGZR?=
- =?utf-8?B?UGVPS2RFbnhXU0xReVR3Rlg5aUozdkxrY3RpRXovaGs4V3FBcDZyNk1qN0sr?=
- =?utf-8?B?VElWVGxiR1dQTVFVRis1NUJnWkJXS09MUW1jRWlxZzhNMXBlajd2OCt5K3gx?=
- =?utf-8?B?TVdqbCtBK0hXU1RkODMxM1JMdDlsWTFiYnI1TVBMYk9xK1EvVk1mSE9VUkNO?=
- =?utf-8?B?Z2s3TDN5QVBrMVByY2E3eG1IbGt1ejBOc1ZwdFc5Vzc5V1NaTmd5cmNmcUR0?=
- =?utf-8?B?UlhOS0tGSkhSZ1ZOQ1poVnhCVDNRZDN3amdiSkdlZ0FBVXQ5S2c4K3RBdjIy?=
- =?utf-8?B?ZmtGOURMVDhqd0dJRTlHVVR4M1lhQUlqVEovVFNxdjd6OFpoT0ZZUEhmQzk0?=
- =?utf-8?B?T1VhbkFiSmpLTVpxdkpmcDhoOHE3d1VXYnpSSHVUSzdFeENlL1VEbEJpaU54?=
- =?utf-8?B?WGpIc054TVpDT0ZqQWY0bnI1WWVYOTVmQ1dNT3IrKy9DQ3JsQTVyOUx2NURq?=
- =?utf-8?B?QndESmpJOW1taDIxUnlqMUl4bWgwRWN0THRGZ1U3TmtINkIwNW5ERG1EZDZI?=
- =?utf-8?B?SWtZemZ2ZjV5ZWJRWUY2MEhyc2gvSkp5R2FwZ2lDQVE4K2pGUk5WbE5WVzhj?=
- =?utf-8?B?dXVPWkY3YmtXSmxtRTl4ZXU2WllCdU5kak0rVGZVVExnWjEvNEVoS0REYUlr?=
- =?utf-8?B?Vk1mUFJsN1c5Vk1oa09RSEVrWlBpVm9ZL3l1N1NsTkNLNmJIQllSOXFDMzZU?=
- =?utf-8?B?cEFvMjYxYjVOOUpyMGxJSlBkODFONjZYYjA4VjFLbWI3RmtQV1VCUWpXMUJE?=
- =?utf-8?B?TXoyNGs4N2JuZ0FKdldaSmtIS1FMLzkrMEUxUFcxNU1GUlBsSzNiQnk1cnhS?=
- =?utf-8?B?OVBESktIZ1k0aUlKTFJVMXArVFlORWVSVGVxdWFCSnNCV1Z4T1lNVzFDVzN4?=
- =?utf-8?B?UGNqR0JZQVcxWkQ1ZEdBUXhQc1h4blVoQXdyc0NUdXdad0FqMmduWDI1ZnZs?=
- =?utf-8?B?dmtZUzJPR2g4b2t2YlA0bU5mL29zZE5IeXhGMDUxK3lBQXkxaTFJSllTbzE2?=
- =?utf-8?B?VDRJZUZzT3VDMldrR2YwdDR3ckVDSWRJd080d01vZ3JwdTdENG9DWCs0aElp?=
- =?utf-8?B?L0tWeEorckxKdUMxc0JKRXhrZ2JaRjd1TVhnUzNtb0dyM1BPSTRJZWxjeWZK?=
- =?utf-8?B?OElJd1d3am1WMUQyWExnMlVxRVhuSERScmZrV2dBUTZHN2QwWVI2SFIxeGRV?=
- =?utf-8?B?YS9LM2p5UFdoMlpGUTdvSTVUTWpyZ2hjK1luU0t6SDFLcS83cGZpcCs5cmlr?=
- =?utf-8?B?YXgwUk5QelExaHg1VHJzcDkrQ3ZteEVLTVVycmRRZnhKSXNzWERtT3lhblFs?=
- =?utf-8?B?QkRHcWg0VXpTS1BlYXNyZm8yM3RyRWZPQkZRT01BcGFtcTRvbzBjRUdqakww?=
- =?utf-8?B?TFNwUE9LQm9Na0UvYVcyRzd3c3hUYzBZSWtFVFlDbU9xbkNRQ1BVWFVwVjE4?=
- =?utf-8?B?QTBYajU0UWxwa1ZYNEFUV0hzVGcrU09uUXdtWjM1SXo3QlM1bHRvQVRBWk42?=
- =?utf-8?B?RnFtL05SaFZJbG1ld1loVkhQSFhVU3pjYnFONHpFQ3pybkczTXlVOGUyejla?=
- =?utf-8?B?RFdELzZXYTc4QXlaY2tDV04wRXYrRWtXWnBPcmJEbFZmdkhZSDQreGcwaDUy?=
- =?utf-8?B?QVhxaFFCMHVncTZmMWNxMHdrVHlLOWt1eE5NMGFsM2dpK1ZDbzlCZDFtRUNF?=
- =?utf-8?B?aTFyWjRpM0FCVTZXVlRqamJjRUpFOWF4VS9BaGhDTE5yUEI0VjJDVkZDQlYz?=
- =?utf-8?B?SFdPUFBGakVIbmV6U1h3MG1CNWhaYmtKS0FUbzZPYzFpSlZXL3R2WmR5UkxR?=
- =?utf-8?B?ZEE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <5A6FF177D7165644AEF95FCA8C1A7169@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="692178751"
+X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; d="scan'208";a="692178751"
+Received: from gdoolan-mobl1.ger.corp.intel.com (HELO [10.213.228.155])
+ ([10.213.228.155])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 02:38:48 -0700
+Message-ID: <8b48b5a2-8cc7-2b55-720c-e9b472900cc2@linux.intel.com>
+Date: Thu, 22 Jun 2023 10:38:46 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e3f9ab0-ee83-40df-9ed3-08db73046881
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jun 2023 09:38:17.3031 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Tv3htrE0l/D9ZLulbnV9TG7tOucyDaZI39TsBfavPZrknxd/9LdnDuUdRZMY7v0eICIO6MZuZEA+GDyPKq1rIEMDZSTSpRi9E4hsDiQzJbk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5620
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Prevent needless toggling of
- DC states during modesets
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Matt Roper <matthew.d.roper@intel.com>
+References: <20230615095421.3135415-1-dnyaneshwar.bhadane@intel.com>
+ <20230616114200.3228284-1-dnyaneshwar.bhadane@intel.com>
+ <20230616114200.3228284-12-dnyaneshwar.bhadane@intel.com>
+ <a2a59852-d13a-50e8-7491-fd2f95709419@linux.intel.com>
+ <20230621211104.GE5433@mdroper-desk1.amr.corp.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230621211104.GE5433@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 11/11] drm/i915/mtl: s/MTL/METEORLAKE for
+ platform/subplatform defines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,46 +67,472 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIzLTA2LTE2IGF0IDIxOjUxICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IERD
-IHN0YXRlcyBhcmUgZGlzYWJsZWQgLyByZS1lbmFibGVkIGFyb3VuZCBlYWNoIG1vZGVzZXQsIHdo
-aWNoIG1heQ0KPiBsZWFkDQo+IHRvIGEgbmVlZGxlc3Mgb2ZmLT5vbi0+b2ZmIHRvZ2dsaW5nIG9m
-IHRoZSBEQ19vZmYgcG93ZXIgd2VsbC4gVGhpcw0KPiBoYXMNCj4gc29tZSBvdmVyaGVhZCBhcyB0
-b2dnbGluZyBEQyBzdGF0ZXMgaW52b2x2ZXMgcnVubmluZyBhIERNQyBmaXJtd2FyZQ0KPiBoYW5k
-bGVyIGFuZCBhbHNvIHJ1bm5pbmcgYSBwZXJpb2RpYyBmaXJtd2FyZSBoYW5kbGVyIHdoaWxlIERD
-IHN0YXRlcw0KPiBhcmUNCj4gZW5hYmxlZC4gVGhlIGxpbWl0IG9mIHdoZW4gREMgc3RhdGVzIGhh
-dmUgYSBiZW5lZml0IGlzIGF0IDMwIEZQUw0KPiAodXNpbmcNCj4gREMzY28pIGFuZCBiZWxvdyAz
-MCBGUFMgKHVzaW5nIERDNS82KSwgd2hlcmUgdGhlIGZpcm13YXJlIGNhbg0KPiBhY3R1YWxseQ0K
-PiBkaXNhYmxlIGNsb2NrcyAvIHBvd2VyIG9mZiBwb3dlciB3ZWxscy4gQWNjb3JkaW5nbHkgZGVs
-YXkgcG93ZXJpbmcNCj4gb2ZmDQo+IHRoZSBEQ19vZmYgcG93ZXJ3ZWxsICh3aGljaCByZS1lbmFi
-bGVzIERDIHN0YXRlcykgYnkgMTcgbXMgYXQgdGhlIGVuZA0KPiBvZg0KPiBhIG1vZGVzZXQgdG8g
-YXZvaWQgdGhlIGFib3ZlIG92ZXJoZWFkIGF0IG9yIGFib3ZlIDYwIEZQUy4NCg0KSSdtIHdvbmRl
-cmluZyBpbiB3aGljaCBjYXNlIHRoaXMgdG9nZ2xpbmcgd291bGQgaGFwcGVuIGFuZCBob3cgdGhl
-DQpwYXRjaCBoZWxwcyBpdC4gV2UgaGF2ZSBQU1IgaWRsZSBmcmFtZXMgY29uZmlndXJlZCA+IDYu
-IEkuZS4gT25seSBhZnRlcg0KNiBmcmFtZXMgd2l0aG91dCBjaGFuZ2VzIG91ciBIVyBpcyBzdXBw
-b3NlZCB0byBlbnRlciBEQzUvNi4gVGhpcyBpcw0KcHVyZWx5IHdpdGggUFNSIGdsYXNzZXMgb24u
-IERvIHdlIGhhdmUgc29tZSBvdGhlciAodGhhbiBQU1IpIHVzZS1jYXNlDQp0aGlzIGlzIHRhcmdl
-dGluZyB3aGVyZSBEQzUvREM2IHdvdWxkIGJlIHBvc3NpYmxlIHdoaWxlIGRpc3BsYXkgaXMgb24/
-DQoNCg0KPiBTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+DQo+
-IC0tLQ0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwg
-NiArKysrKy0NCj4gwqAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9u
-KC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kaXNwbGF5LmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
-YXkuYw0KPiBpbmRleCBkZDUyYzY4OTI2N2Y0Li5kZTc3ZDEzMGQ2ZjlmIDEwMDY0NA0KPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiBAQCAtNzE0OCw3
-ICs3MTQ4LDExIEBAIHN0YXRpYyB2b2lkIGludGVsX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QN
-Cj4gaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgKi8NCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpbnRlbF91bmNv
-cmVfYXJtX3VuY2xhaW1lZF9tbWlvX2RldGVjdGlvbigmZGV2X3ByaXYtDQo+ID51bmNvcmUpOw0K
-PiDCoMKgwqDCoMKgwqDCoMKgfQ0KPiAtwqDCoMKgwqDCoMKgwqBpbnRlbF9kaXNwbGF5X3Bvd2Vy
-X3B1dChkZXZfcHJpdiwgUE9XRVJfRE9NQUlOX0RDX09GRiwNCj4gd2FrZXJlZik7DQo+ICvCoMKg
-wqDCoMKgwqDCoC8qDQo+ICvCoMKgwqDCoMKgwqDCoCAqIERlbGF5IHJlLWVuYWJsaW5nIERDIHN0
-YXRlcyBieSAxNyBtcyB0byBhdm9pZCB0aGUgb2ZmLT5vbi0NCj4gPm9mZg0KPiArwqDCoMKgwqDC
-oMKgwqAgKiB0b2dnbGluZyBvdmVyaGVhZCBhdCBhbmQgYWJvdmUgNjAgRlBTLg0KPiArwqDCoMKg
-wqDCoMKgwqAgKi8NCj4gK8KgwqDCoMKgwqDCoMKgaW50ZWxfZGlzcGxheV9wb3dlcl9wdXRfYXN5
-bmNfZGVsYXkoZGV2X3ByaXYsDQo+IFBPV0VSX0RPTUFJTl9EQ19PRkYsIHdha2VyZWYsIDE3KTsN
-Cj4gwqDCoMKgwqDCoMKgwqDCoGludGVsX3J1bnRpbWVfcG1fcHV0KCZkZXZfcHJpdi0+cnVudGlt
-ZV9wbSwgc3RhdGUtPndha2VyZWYpOw0KPiDCoA0KPiDCoMKgwqDCoMKgwqDCoMKgLyoNCg0K
+
+On 21/06/2023 22:11, Matt Roper wrote:
+> On Fri, Jun 16, 2023 at 01:05:08PM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 16/06/2023 12:42, Dnyaneshwar Bhadane wrote:
+>>> Follow consistent naming convention. Replace MTL with
+>>> METEORLAKE
+>>>
+>>> Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
+>>>    drivers/gpu/drm/i915/display/intel_pmdemand.c |  2 +-
+>>>    drivers/gpu/drm/i915/display/intel_psr.c      | 10 ++---
+>>>    .../drm/i915/display/skl_universal_plane.c    |  4 +-
+>>>    drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |  8 ++--
+>>>    drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+>>>    .../drm/i915/gt/intel_execlists_submission.c  |  2 +-
+>>>    drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |  4 +-
+>>>    drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 +-
+>>>    drivers/gpu/drm/i915/gt/intel_rc6.c           |  2 +-
+>>>    drivers/gpu/drm/i915/gt/intel_workarounds.c   | 44 +++++++++----------
+>>>    drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  4 +-
+>>>    .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  4 +-
+>>>    drivers/gpu/drm/i915/i915_drv.h               |  6 +--
+>>>    drivers/gpu/drm/i915/i915_perf.c              |  4 +-
+>>>    15 files changed, 51 insertions(+), 51 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+>>> index 7f8b2d7713c7..6358a8b26172 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+>>> @@ -1093,7 +1093,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+>>>    	/* Wa_14016291713 */
+>>>    	if ((IS_DISPLAY_VER(i915, 12, 13) ||
+>>> -	     IS_MTL_DISPLAY_STEP(i915, STEP_A0, STEP_C0)) &&
+>>> +	     IS_METEORLAKE_DISPLAY_STEP(i915, STEP_A0, STEP_C0)) &&
+>>>    	    crtc_state->has_psr) {
+>>>    		plane_state->no_fbc_reason = "PSR1 enabled (Wa_14016291713)";
+>>>    		return 0;
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+>>> index f7608d363634..8c3158b188ef 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+>>> @@ -92,7 +92,7 @@ int intel_pmdemand_init(struct drm_i915_private *i915)
+>>>    				     &pmdemand_state->base,
+>>>    				     &intel_pmdemand_funcs);
+>>> -	if (IS_MTL_DISPLAY_STEP(i915, STEP_A0, STEP_C0))
+>>> +	if (IS_METEORLAKE_DISPLAY_STEP(i915, STEP_A0, STEP_C0))
+>>>    		/* Wa_14016740474 */
+>>>    		intel_de_rmw(i915, XELPD_CHICKEN_DCPR_3, 0, DMD_RSP_TIMEOUT_DISABLE);
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+>>> index cf82cc295319..00c98c2b4324 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>>> @@ -1247,7 +1247,7 @@ static void wm_optimization_wa(struct intel_dp *intel_dp,
+>>>    	bool set_wa_bit = false;
+>>>    	/* Wa_14015648006 */
+>>> -	if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
+>>> +	if (IS_METEORLAKE_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
+>>>    	    IS_DISPLAY_VER(dev_priv, 11, 13))
+>>>    		set_wa_bit |= crtc_state->wm_level_disabled;
+>>> @@ -1320,7 +1320,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+>>>    		 * All supported adlp panels have 1-based X granularity, this may
+>>>    		 * cause issues if non-supported panels are used.
+>>>    		 */
+>>> -		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+>>> +		if (IS_METEORLAKE_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+>>>    			intel_de_rmw(dev_priv, MTL_CHICKEN_TRANS(cpu_transcoder), 0,
+>>>    				     ADLP_1_BASED_X_GRANULARITY);
+>>>    		else if (IS_ALDERLAKE_P(dev_priv))
+>>> @@ -1328,7 +1328,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+>>>    				     ADLP_1_BASED_X_GRANULARITY);
+>>>    		/* Wa_16012604467:adlp,mtl[a0,b0] */
+>>> -		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+>>> +		if (IS_METEORLAKE_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+>>>    			intel_de_rmw(dev_priv,
+>>>    				     MTL_CLKGATE_DIS_TRANS(cpu_transcoder), 0,
+>>>    				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS);
+>>> @@ -1489,7 +1489,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+>>>    	if (intel_dp->psr.psr2_enabled) {
+>>>    		/* Wa_16012604467:adlp,mtl[a0,b0] */
+>>> -		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+>>> +		if (IS_METEORLAKE_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+>>>    			intel_de_rmw(dev_priv,
+>>>    				     MTL_CLKGATE_DIS_TRANS(cpu_transcoder),
+>>>    				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS, 0);
+>>> @@ -1963,7 +1963,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+>>>    		goto skip_sel_fetch_set_loop;
+>>>    	/* Wa_14014971492 */
+>>> -	if ((IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
+>>> +	if ((IS_METEORLAKE_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
+>>>    	     IS_ALDERLAKE_P(dev_priv) || IS_TIGERLAKE(dev_priv)) &&
+>>>    	    crtc_state->splitter.enable)
+>>>    		pipe_clip.y1 = 0;
+>>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>>> index 636a88827a8f..2458a9ea25ba 100644
+>>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>>> @@ -2169,8 +2169,8 @@ static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
+>>>    				 enum pipe pipe, enum plane_id plane_id)
+>>>    {
+>>>    	/* Wa_14017240301 */
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>
+>> Reading this casually, the amount of the checks exactly like the above
+>> smells like we could easily add a "is mtl graphics step" helper which does
+>> not care about the subplatform variant and make the source and binary more
+>> compact. Might as well while churning the codebase.
+>>
+>> Something like:
+>>
+>> #define IS_ANY_MTL_GRAPHICS_STEP(__i915, since, until) \
+>> 	(IS_METEORLAKE(__i915) && \
+>> 	 IS_GRAPHICS_STEP(__i915, since, until))
+>>
+>> ?
+>>
+>> MTL_ANY, ANY_MTL, or a 3rd option I don't know.
+> 
+> I'm not sure I agree with this; the hardware design forked, meaning that
+> even though some workarounds will be common between both branches of the
+> hardware design, each branch is also expected to have its own unique
+> workarounds as well.  The steppings for the "common" workarounds may or
+> may not be the same between branches (it's mostly luck that they happen
+> to align for the A steppings of these two variants).  This is basically
+> the same situation as DG2's G10/G11/G12 variants, although for MTL is
+> seems the timing for the forks made it more common for the stepping
+> bounds to wind up being the same; there's no real expectation that that
+> will continue to hold true for future workarounds, or for future
+> variants of this IP that might show up in the future.
+
+Hmm quick grep shows that currently we have 15 call sites of 
+IS_MTL_GRAPHICS_STEP which are 100% duplicated for M and P variants. And 
+only 8 call sites which apply to one platform only. And a bunch of them 
+have STEP_FOREVER as the end point. Which suggests the design was forked 
+well into the design life and is not expected to diverge further, no?
+
+So for MTL I am not sure what exactly would be the disadvantage of 
+taking the pragmatic approach and consolidating?
+
+It is not the most important thing in the grand scheme of things, I just 
+found it unsightly...
+
+> Actually what we really need to do is disassociate workaround like this
+> from the platform ("MTL") entirely and tie them solely to the IP's
+> version/stepping.  Given how graphics, media, and display IP have been
+> separated in a more fundamental manner at the hardware level, it's very
+> possible that some future platform could directly re-use one of the IP
+> versions we currently associate with "MTL," but provide different IP
+> versions for the other IP blocks.  Ultimately we want workarounds for
+> GMDID-based platforms something more along the lines of
+> 
+>     if (IS_GMDID_GRAPHICS_STEP(IP_VER(12, 71), STEP_B0, STEP_D0))
+>             ...
+
+On i915 I'd say only if we expect significant number of new platforms to 
+be added. Otherwise I'd see no benefit to the churn and it would most 
+likely just add lines of source and inflate the binary size. Unless it 
+could be shown it would make some strange conditionals much easier to 
+understand.
+
+Regards,
+
+Tvrtko
+
+> That way if a platform has graphics version 12.71 hardware in the listed
+> stepping range, then the workaround applies.  It doesn't matter whether
+> the platform containing that IP version is one of today's Meteor Lake
+> platforms, or some future "FooBar Lake" that happens to re-use the same
+> chiplet in an otherwise new design.
+> 
+> Of course changes to workaround bound handling is probably something for
+> a separate patch series; it's a bit beyond the scope of the direct
+> renaming that Dnyaneshwar's series is focused on.
+> 
+> 
+> Matt
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>    		return false;
+>>>    	/* Wa_22011186057 */
+>>> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+>>> index 3173e811463d..ec0771dc662a 100644
+>>> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+>>> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+>>> @@ -180,8 +180,8 @@ u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv
+>>>    static int mtl_dummy_pipe_control(struct i915_request *rq)
+>>>    {
+>>>    	/* Wa_14016712196 */
+>>> -	if (IS_MTL_GRAPHICS_STEP(rq->engine->i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(rq->engine->i915, P, STEP_A0, STEP_B0)) {
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(rq->engine->i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(rq->engine->i915, P, STEP_A0, STEP_B0)) {
+>>>    		u32 *cs;
+>>>    		/* dummy PIPE_CONTROL + depth flush */
+>>> @@ -765,8 +765,8 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+>>>    		     PIPE_CONTROL_FLUSH_ENABLE);
+>>>    	/* Wa_14016712196 */
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>>    		/* dummy PIPE_CONTROL + depth flush */
+>>>    		cs = gen12_emit_pipe_control(cs, 0,
+>>>    					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>> index 0aff5bb13c53..f9af6b1a7c01 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>> @@ -1616,7 +1616,7 @@ static int __intel_engine_stop_cs(struct intel_engine_cs *engine,
+>>>    	 * Wa_22011802037: Prior to doing a reset, ensure CS is
+>>>    	 * stopped, set ring stop bit and prefetch disable bit to halt CS
+>>>    	 */
+>>> -	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+>>>    	    (GRAPHICS_VER(engine->i915) >= 11 &&
+>>>    	    GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70)))
+>>>    		intel_uncore_write_fw(uncore, RING_MODE_GEN7(engine->mmio_base),
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>>> index 2ebd937f3b4c..901ecd59afbc 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>>> @@ -3001,7 +3001,7 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
+>>>    	 * Wa_22011802037: In addition to stopping the cs, we need
+>>>    	 * to wait for any pending mi force wakeups
+>>>    	 */
+>>> -	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+>>>    	    (GRAPHICS_VER(engine->i915) >= 11 &&
+>>>    	    GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70)))
+>>>    		intel_engine_wait_for_pending_mi_fw(engine);
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+>>> index 0b414eae1683..1dc7180eeb27 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+>>> @@ -166,8 +166,8 @@ void intel_gt_mcr_init(struct intel_gt *gt)
+>>>    		gt->steering_table[OADDRM] = xelpmp_oaddrm_steering_table;
+>>>    	} else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70)) {
+>>>    		/* Wa_14016747170 */
+>>> -		if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> -		    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>> +		if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> +		    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>>    			fuse = REG_FIELD_GET(MTL_GT_L3_EXC_MASK,
+>>>    					     intel_uncore_read(gt->uncore,
+>>>    							       MTL_GT_ACTIVITY_FACTOR));
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>> index a4ec20aaafe2..cd9a76f048f3 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>> @@ -1370,8 +1370,8 @@ gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
+>>>    					      cs, GEN12_GFX_CCS_AUX_NV);
+>>>    	/* Wa_16014892111 */
+>>> -	if (IS_MTL_GRAPHICS_STEP(ce->engine->i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(ce->engine->i915, P, STEP_A0, STEP_B0) ||
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(ce->engine->i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(ce->engine->i915, P, STEP_A0, STEP_B0) ||
+>>>    	    IS_DG2(ce->engine->i915))
+>>>    		cs = dg2_emit_draw_watermark_setting(cs);
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+>>> index 58bb1c55294c..cc8b09b8a7fa 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+>>> @@ -526,7 +526,7 @@ static bool rc6_supported(struct intel_rc6 *rc6)
+>>>    		return false;
+>>>    	}
+>>> -	if (IS_MTL_MEDIA_STEP(gt->i915, STEP_A0, STEP_B0) &&
+>>> +	if (IS_METEORLAKE_MEDIA_STEP(gt->i915, STEP_A0, STEP_B0) &&
+>>>    	    gt->type == GT_MEDIA) {
+>>>    		drm_notice(&i915->drm,
+>>>    			   "Media RC6 disabled on A step\n");
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>> index 2337bc52d9f1..10a4e0fc23ec 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>> @@ -819,8 +819,8 @@ static void mtl_ctx_gt_tuning_init(struct intel_engine_cs *engine,
+>>>    	dg2_ctx_gt_tuning_init(engine, wal);
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
+>>>    		wa_add(wal, DRAW_WATERMARK, VERT_WM_VAL, 0x3FF, 0, false);
+>>>    }
+>>> @@ -831,8 +831,8 @@ static void mtl_ctx_workarounds_init(struct intel_engine_cs *engine,
+>>>    	mtl_ctx_gt_tuning_init(engine, wal);
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
+>>>    		/* Wa_14014947963 */
+>>>    		wa_masked_field_set(wal, VF_PREEMPTION,
+>>>    				    PREEMPTION_VERTEX_COUNT, 0x4000);
+>>> @@ -1716,8 +1716,8 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+>>>    	/* Wa_22016670082 */
+>>>    	wa_write_or(wal, GEN12_SQCNT1, GEN12_STRICT_RAR_ENABLE);
+>>> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0)) {
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0)) {
+>>>    		/* Wa_14014830051 */
+>>>    		wa_mcr_write_clr(wal, SARB_CHICKEN1, COMP_CKN_IN);
+>>> @@ -2413,15 +2413,15 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>>>    {
+>>>    	struct drm_i915_private *i915 = engine->i915;
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
+>>>    		/* Wa_22014600077 */
+>>>    		wa_mcr_masked_en(wal, GEN10_CACHE_MODE_SS,
+>>>    				 ENABLE_EU_COUNT_FOR_TDL_FLUSH);
+>>>    	}
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>>    	    IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+>>>    	    IS_DG2_G11(i915) || IS_DG2_G12(i915)) {
+>>>    		/* Wa_1509727124 */
+>>> @@ -2431,7 +2431,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>>>    	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+>>>    	    IS_DG2_G11(i915) || IS_DG2_G12(i915) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0)) {
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0)) {
+>>>    		/* Wa_22012856258 */
+>>>    		wa_mcr_masked_en(wal, GEN8_ROW_CHICKEN2,
+>>>    				 GEN12_DISABLE_READ_SUPPRESSION);
+>>> @@ -3016,13 +3016,13 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+>>>    				 GEN11_INDIRECT_STATE_BASE_ADDR_OVERRIDE);
+>>>    	}
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
+>>>    		/* Wa_14017856879 */
+>>>    		wa_mcr_masked_en(wal, GEN9_ROW_CHICKEN3, MTL_DISABLE_FIX_FOR_EOT_FLUSH);
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>>    		/*
+>>>    		 * Wa_14017066071
+>>>    		 * Wa_14017654203
+>>> @@ -3030,13 +3030,13 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+>>>    		wa_mcr_masked_en(wal, GEN10_SAMPLER_MODE,
+>>>    				 MTL_DISABLE_SAMPLER_SC_OOO);
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>>    		/* Wa_22015279794 */
+>>>    		wa_mcr_masked_en(wal, GEN10_CACHE_MODE_SS,
+>>>    				 DISABLE_PREFETCH_INTO_IC);
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>>    	    IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+>>>    	    IS_DG2_G11(i915) || IS_DG2_G12(i915)) {
+>>>    		/* Wa_22013037850 */
+>>> @@ -3044,16 +3044,16 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+>>>    				DISABLE_128B_EVICTION_COMMAND_UDW);
+>>>    	}
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>>    	    IS_PONTEVECCHIO(i915) ||
+>>>    	    IS_DG2(i915)) {
+>>>    		/* Wa_22014226127 */
+>>>    		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0, DISABLE_D8_D16_COASLESCE);
+>>>    	}
+>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>> +	    IS_METEORLAKE_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>>    	    IS_DG2(i915)) {
+>>>    		/* Wa_18017747507 */
+>>>    		wa_masked_en(wal, VFG_PREEMPTION_CHICKEN, POLYGON_TRIFAN_LINELOOP_DISABLE);
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>> index 2eb891b270ae..3af0fcd7dd57 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>> @@ -277,7 +277,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+>>>    		flags |= GUC_WA_GAM_CREDITS;
+>>>    	/* Wa_14014475959 */
+>>> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+>>>    	    IS_DG2(gt->i915))
+>>>    		flags |= GUC_WA_HOLD_CCS_SWITCHOUT;
+>>> @@ -292,7 +292,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+>>>    		flags |= GUC_WA_DUAL_QUEUE;
+>>>    	/* Wa_22011802037: graphics version 11/12 */
+>>> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+>>>    	    (GRAPHICS_VER(gt->i915) >= 11 &&
+>>>    	    GRAPHICS_VER_FULL(gt->i915) < IP_VER(12, 70)))
+>>>    		flags |= GUC_WA_PRE_PARSER;
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> index a0e3ef1c65d2..5914c7348aba 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>> @@ -1658,7 +1658,7 @@ static void guc_engine_reset_prepare(struct intel_engine_cs *engine)
+>>>    	 * Wa_22011802037: In addition to stopping the cs, we need
+>>>    	 * to wait for any pending mi force wakeups
+>>>    	 */
+>>> -	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+>>> +	if (IS_METEORLAKE_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+>>>    	    (GRAPHICS_VER(engine->i915) >= 11 &&
+>>>    	     GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70))) {
+>>>    		intel_engine_stop_cs(engine);
+>>> @@ -4267,7 +4267,7 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
+>>>    	/* Wa_14014475959:dg2 */
+>>>    	if (engine->class == COMPUTE_CLASS)
+>>> -		if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+>>> +		if (IS_METEORLAKE_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+>>>    		    IS_DG2(engine->i915))
+>>>    			engine->flags |= I915_ENGINE_USES_WA_HOLD_CCS_SWITCHOUT;
+>>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>>> index ef828e7de2ec..c6ad78381dd1 100644
+>>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>>> @@ -688,15 +688,15 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>>>    #define IS_XEHPSDV_GRAPHICS_STEP(__i915, since, until) \
+>>>    	(IS_XEHPSDV(__i915) && IS_GRAPHICS_STEP(__i915, since, until))
+>>> -#define IS_MTL_GRAPHICS_STEP(__i915, variant, since, until) \
+>>> +#define IS_METEORLAKE_GRAPHICS_STEP(__i915, variant, since, until) \
+>>>    	(IS_SUBPLATFORM(__i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_##variant) && \
+>>>    	 IS_GRAPHICS_STEP(__i915, since, until))
+>>> -#define IS_MTL_DISPLAY_STEP(__i915, since, until) \
+>>> +#define IS_METEORLAKE_DISPLAY_STEP(__i915, since, until) \
+>>>    	(IS_METEORLAKE(__i915) && \
+>>>    	 IS_DISPLAY_STEP(__i915, since, until))
+>>> -#define IS_MTL_MEDIA_STEP(__i915, since, until) \
+>>> +#define IS_METEORLAKE_MEDIA_STEP(__i915, since, until) \
+>>>    	(IS_METEORLAKE(__i915) && \
+>>>    	 IS_MEDIA_STEP(__i915, since, until))
+>>> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+>>> index 0a111b281578..e943ffbaecbc 100644
+>>> --- a/drivers/gpu/drm/i915/i915_perf.c
+>>> +++ b/drivers/gpu/drm/i915/i915_perf.c
+>>> @@ -4214,7 +4214,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>>>    	 * C6 disable in BIOS. Fail if Media C6 is enabled on steppings where OAM
+>>>    	 * does not work as expected.
+>>>    	 */
+>>> -	if (IS_MTL_MEDIA_STEP(props->engine->i915, STEP_A0, STEP_C0) &&
+>>> +	if (IS_METEORLAKE_MEDIA_STEP(props->engine->i915, STEP_A0, STEP_C0) &&
+>>>    	    props->engine->oa_group->type == TYPE_OAM &&
+>>>    	    intel_check_bios_c6_setup(&props->engine->gt->rc6)) {
+>>>    		drm_dbg(&perf->i915->drm,
+>>> @@ -5322,7 +5322,7 @@ int i915_perf_ioctl_version(struct drm_i915_private *i915)
+>>>    	 * C6 disable in BIOS. If Media C6 is enabled in BIOS, return version 6
+>>>    	 * to indicate that OA media is not supported.
+>>>    	 */
+>>> -	if (IS_MTL_MEDIA_STEP(i915, STEP_A0, STEP_C0)) {
+>>> +	if (IS_METEORLAKE_MEDIA_STEP(i915, STEP_A0, STEP_C0)) {
+>>>    		struct intel_gt *gt;
+>>>    		int i;
+> 
