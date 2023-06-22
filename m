@@ -2,141 +2,143 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA1773ABD3
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jun 2023 23:50:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A59C73AC73
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jun 2023 00:20:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85C7810E5A4;
-	Thu, 22 Jun 2023 21:50:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 163F810E5B6;
+	Thu, 22 Jun 2023 22:20:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5EA210E5A4
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 21:50:41 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BA3210E37B;
+ Thu, 22 Jun 2023 22:20:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687470641; x=1719006641;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=QRS4Q2SDSihDWSBOYqHUcg8muvJwVPyyE3bg0wptAVQ=;
- b=csRhufZvEILxYyGerFJiuRAtb8KQwaAyf+JgPsUABzyxsaybQ8y13++x
- yTaPXkTyp3yaNDPPlX1u91H7ZLWm10tu+cwWpLe6vvnnOtsNJ2Q2VcsPX
- +eTVbtIpIcK3wvZDPQmzavu+9OjBbNZu9rgaHBdQGi2ocNYcEW4MmVS2l
- 7hat+owuB5w1VMlBYvYxGEJ7wue0aHugBgjq0vf08bvVji6zBgxUDyEiN
- oxDOtR1JvIZWw4x1LsprVK9ARudVXewPuYVisiP5WYhpmE8t+KvZ3asH3
- CoHYVcjJsv5/rsbWPtyKDGfDp+irRaZxlRDk7HVWuh3EY3dbnLXptUQA1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="345383621"
-X-IronPort-AV: E=Sophos;i="6.01,150,1684825200"; d="scan'208";a="345383621"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2023 14:50:40 -0700
+ t=1687472439; x=1719008439;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ mime-version; bh=5RAKYAgPCyNVwCUA0aEqVktcaevqs7f68XOjD7qYUCQ=;
+ b=S/Yo2SYjU20EP1hHZemruIsfzBjOpOLkYQjE+s/F5k9UvQpNBf2wGDWu
+ U8wE/8zRbdFsQUsbGJHP6/AG/y7fHCJ2dxyL2cOx5o546bt+UVYRaEuiL
+ I7q3b50AJ1FQ6Us9fJr+WjK9pW4Na3Ei3KxLEgs0Cs1lgYupVH0rv2Dd4
+ I9Jsa6z0TTkZfxHPlx78RTnAjxA28eJ5hATvZpxqpOnSqS+3OQDJJxYl3
+ 1c3ASSPvUink4GwFGC/fTI7rsRLy/3EKF1SY+1EXRgVhXSFIebtihB8lx
+ KpxSqCTMdL2zuOqOsdAbKSXkcKNPjWyzMjLEO9ysttMvie7cHAPxUfLm3 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="364073923"
+X-IronPort-AV: E=Sophos;i="6.01,150,1684825200"; 
+ d="scan'208,217";a="364073923"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 15:20:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="839223516"
-X-IronPort-AV: E=Sophos;i="6.01,150,1684825200"; d="scan'208";a="839223516"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga004.jf.intel.com with ESMTP; 22 Jun 2023 14:50:40 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="780405723"
+X-IronPort-AV: E=Sophos;i="6.01,150,1684825200"; 
+ d="scan'208,217";a="780405723"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga008.fm.intel.com with ESMTP; 22 Jun 2023 15:20:37 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 22 Jun 2023 14:50:40 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.23; Thu, 22 Jun 2023 15:20:37 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 22 Jun 2023 14:50:40 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.49) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Thu, 22 Jun 2023 15:20:37 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 22 Jun 2023 14:50:39 -0700
+ 15.1.2507.23; Thu, 22 Jun 2023 15:20:37 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q0xdR6bxaUINBiravlTqzGLHgacj0qI4cm03EyFC8/9gP4V4c6zGUYcrUcE37CO1BGkUtEY1+5kwxFI37pXcHZS7gn4oc/GKbxWqvN+4lLb66E0iYI6HR/vtxDGxCZmHhcBB2647EcvcXy81Ous8Pc9LLNp29w6uwzXt5VDGabe+PAlMiT7e+SyqPjd0NKwmkMAogKr1oLgdis2bwMQtpvvspga2kTJRsA7SwCQ2lWHbX4/cer9SvOCjeDgoCa5r4LnGrietbEk6TjJ2hfOPusQUc8vd6dbF7n89rm+VcA2L0AECeQC4ikO7v12DLmbi8rliSVOPk6vbZwmlfS0Bpg==
+ b=XdAWBDDRq7TFCjj95seUvCQ8d91MNHBUzAutJF8AdLIZHFj6AhWxBhT1Z/VHyZ7fe6wIRMRvPbm4mjRhZ1YPvUPgiMlrzPCFa8nhPpxVhJOlqHJIrG5ncM4Avin5Ib8NjeN7e+mf10tcnURqn0fCNgQxPKTYS/NIMiJxDvX48/bpCPbwxNU68QMKqxL2bxlF6rC3kdzl53UntMVRgLl/wsnwXlLv/kgJj5KpOQtr3y+DXlbiTrFte7chbMlrLJiylyy2MFmeYh9Z+izNJwi4QvTf2HoGqEoy9rVy5Pe2Q3H5IfssxVXt3KjiusjDqkIs+D3OtHvEKOV+4Xd9A2wqiA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QKq2JD0H7k7Rqus9teb9YAW+piCz69ph/nRR6wRP2M0=;
- b=kPDppBa9qhTpB8n0Tp2L6w9Qci3H0K8dzdbQ/6wA5ehF36xULlSxtAHUrNDgWZD1y4pC+7n/rdV5BrBlTdsFwtZbB93RU7PvJM6lT9zNabCpy0nzIjM9KPlwiqOujXd0KToFZ1+h6VRzgbK36yXjxbnUL9/GMCpSGhPCe8xT+wVNx4ztq7QbUCbyjyi93GauJTI1eyqbpqDkqDaUdfcLNup04AX2ym52k/Y+p5Xx1CHc/tSbIMsa3RKs3znVOtsGf2u+sHZ4AwSdmnFJLZoAJRTNZNWoBojSm6jVmEfBkX1YWEuv7/vIxl3bkvrgssG0/JxlBTwSZhrHuObKVqSMqA==
+ bh=x+MAUSCeuNCNB8r5JpuR07PwftbNyrd5s8PONycyTNA=;
+ b=e70HOLS03rygC/CuBTACJgQBoms645ikzp5i3tFMcgcUB98xe9rotON2a9jIntjWRr/9ztZkthEZXfEVpBfZI/7j9zDb1F1O19UYV6ETQjaduklUE7d4FmYi7vxm8hzfkjvmMeljx6DXU9T8xXk9l6RygJ2bR+1V2DK/IWp50X/0iHTyxGvI0cY1aAa+wrorj+8KBHazSuSI0fY9mr9iwB8yeFmj16N+/5OUXQXLZ+ireQXv4EsM14MbIPsYHmBY9J1VrbsxBBTiOpyyuxQn+9NCX91D0xnRqwF/GXoWuqAMGTRg+KcS9OtZXej338EcCYYGoFOq6NlRJ/WQOdJtpg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB5971.namprd11.prod.outlook.com (2603:10b6:8:5e::7) by
- MN0PR11MB6112.namprd11.prod.outlook.com (2603:10b6:208:3cc::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6521.23; Thu, 22 Jun 2023 21:50:37 +0000
-Received: from DM4PR11MB5971.namprd11.prod.outlook.com
- ([fe80::df8c:4a33:f53a:9a2e]) by DM4PR11MB5971.namprd11.prod.outlook.com
- ([fe80::df8c:4a33:f53a:9a2e%5]) with mapi id 15.20.6521.024; Thu, 22 Jun 2023
- 21:50:37 +0000
-From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 3/4] drm/i915: Make
- intel_crtc_get_vblank_counter use no trace hw reads
-Thread-Index: AQHZnkGY1F4AX1zHKU2mqzuvdtniS6+XRoEAgAABFvA=
-Date: Thu, 22 Jun 2023 21:50:37 +0000
-Message-ID: <DM4PR11MB59716C40C881D985C9959A528722A@DM4PR11MB5971.namprd11.prod.outlook.com>
-References: <20230613215245.1551145-1-radhakrishna.sripada@intel.com>
- <20230613215245.1551145-4-radhakrishna.sripada@intel.com>
- <2ptiei3lil5peekrmbw7gkp4diwr4nw4g36yhp675yuekrdpd4@at2yysa6dgrb>
-In-Reply-To: <2ptiei3lil5peekrmbw7gkp4diwr4nw4g36yhp675yuekrdpd4@at2yysa6dgrb>
+Received: from BYAPR11MB2567.namprd11.prod.outlook.com (2603:10b6:a02:c5::32)
+ by MW6PR11MB8438.namprd11.prod.outlook.com (2603:10b6:303:241::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Thu, 22 Jun
+ 2023 22:20:35 +0000
+Received: from BYAPR11MB2567.namprd11.prod.outlook.com
+ ([fe80::28b4:ae85:a4f0:3f46]) by BYAPR11MB2567.namprd11.prod.outlook.com
+ ([fe80::28b4:ae85:a4f0:3f46%4]) with mapi id 15.20.6521.020; Thu, 22 Jun 2023
+ 22:20:35 +0000
+From: "Yang, Fei" <fei.yang@intel.com>
+To: "Dong, Zhanjun" <zhanjun.dong@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/gt: Remove incorrect hard coded
+ cache coherrency setting
+Thread-Index: AQHZpR4Cacq0e8isXEyNeScfx6YBBa+XY4um
+Date: Thu, 22 Jun 2023 22:20:35 +0000
+Message-ID: <BYAPR11MB2567EBC3DA33B7D1D4DABD599A22A@BYAPR11MB2567.namprd11.prod.outlook.com>
+References: <20230622152644.169400-1-zhanjun.dong@intel.com>
+In-Reply-To: <20230622152644.169400-1-zhanjun.dong@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+msip_labels: 
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB5971:EE_|MN0PR11MB6112:EE_
-x-ms-office365-filtering-correlation-id: c1ec93ca-968d-4aee-b060-08db736ab6b8
+x-ms-traffictypediagnostic: BYAPR11MB2567:EE_|MW6PR11MB8438:EE_
+x-ms-office365-filtering-correlation-id: d55c5840-7a75-4611-73fc-08db736ee6b5
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +AiGMr2cUyiIlZNmzu9ih42nsn+9iXBmzkm67yk1o4yM1eOVZjK1mvVYv406nBTwVAI0Nd7oFELXqovD0hCsDu04sNYOyw8gaIeuraHTsh1UESeUqYgQHsj8N6vXMidx6CsNckeUkqwCsMhAIvDbK2N7kiBiNsVlXYXm2G86GVK01mpwqRiHPKX9k8IdlIUNwp1tkK9Y54HS+TIlUmNeQabQWBrgj4ZPpzbCR7PBwHD6/XOD50bSTucK11I8pUniWC5zyU9n2Wvf3jXqASZHceOTpCi4Pe4rCM/Yuwbk+geJb3AuA1ErJlbNEyqkPtgAdTyN2yt3YPMNOFFI/+rhX4lN1ejVElx5myWTru6WVPHaIcpxvRE4sdxypRkiK6Iqh1cLHwBQxgj9wuvGV6U8suB6nd67lSOj2GiZtzyuAI5v+LxrvIrI9rBfj9wA3wsjQ+ALMlxjV2OLTRO9cBDmOhIf2wRGU8kIms4NKPt8px2dRS89wQo9UWRlX85uODEe683+qRpuIzEE2j1hHQjWXF4dqDyY4v5ivjkKnGnn5RlL3l5AjN9/GbY9ELvDTZeHwfD5C5rPmIFLSw2G32c9ovpk079tTYxAFRmsBnvqgsbvURVLjyHp8yaReco1/4Aq
+x-microsoft-antispam-message-info: yIvdh08Lr96wJf/ECPepTUsj+nI4PFax4wlC8sof+eGNMysMFXz9nOivIoxbHzHVe8OIqJMn1b/QYr7NsY7LsGNp+p2/d0KP0ft4XEVCUUjC48o3Bg+l5AiWMxf4SpzSu823UO08h5gcmSIWwD8z9bwKVnVZ/7VsMtImQPM3bW7/XgQHJ+jJGeU3wTZoYQoW1NvhIyxISPGoqHwzqqmqnKxT5frg6CZRuDkhiBpJqz1swsbBt0v4PSOaoBf+DxY7R9jqyc0cdEp2mLwSzBTYEgdZePrRxoTxpkNAFCvN9Rv79FjpKiylBFdAumJZ/HVdA+Vk8zsSTazx2nXZ/Lg8I9aSrrjfnAumwtiO1Sm0WZhn6mkT+vXP3JxP44JWn0gprM4BCn7qAZw7NfNdB9waDHpHDLjR39aKg3ERC1jTaFpc14FbvpchUF7VeSGBTC4jRkpds5HmrpHUsByXPo7VMOiMoJQOgYIMLJt9icLYz+uavJP52F6Rk0URf+ube0/Hjdnr/P82UEYpLiC7rjBhRXNU+AIoK0qmVjhRZKvVdFHMgfVqcHs5tOdbD52h/RdpzObPzq7gEpnXEXW91Yc1B4FqX3txLKNz4o2h/iGSwl0Flg61FFbPavTmdc3UkPBc
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5971.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(136003)(366004)(396003)(346002)(39860400002)(451199021)(38100700002)(7696005)(83380400001)(186003)(53546011)(6506007)(9686003)(55016003)(71200400001)(33656002)(122000001)(66446008)(66476007)(76116006)(316002)(4326008)(6636002)(66556008)(64756008)(38070700005)(66946007)(2906002)(8936002)(8676002)(26005)(6862004)(86362001)(52536014)(5660300002)(41300700001)(54906003)(82960400001)(478600001);
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2567.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(346002)(136003)(366004)(39860400002)(376002)(451199021)(52536014)(8676002)(8936002)(5660300002)(122000001)(82960400001)(38100700002)(38070700005)(2906002)(478600001)(55016003)(71200400001)(186003)(110136005)(86362001)(33656002)(7696005)(19627405001)(6506007)(26005)(9686003)(83380400001)(91956017)(450100002)(66476007)(66556008)(66446008)(66946007)(76116006)(64756008)(41300700001)(316002);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?vOP29+MQFzbC3w+06plOKcNhA7ydmvnJeZpSVW1aTCcVKTWrod1q28rpWSW8?=
- =?us-ascii?Q?AiGTWAlHTEp5Fq7t7J/U5BQzOKMAbnu66e37NoUITZTy2XyL21f4OfCqL2NJ?=
- =?us-ascii?Q?7RofprSrP94iw7KxYcu2TgrABcS8oo5ITpGE8L6YMcJhqBZTUXrbTPCsmwau?=
- =?us-ascii?Q?HXZzUSwDBum7TptxfmB+QKmx8BeX5W+Y0+Xv5Jf6ClzFDlSdM0Qrmc6O2GLs?=
- =?us-ascii?Q?PFNEKhyMAK2kbbr4yltShP1Vkcwpa7YiHEsj5PbnfJ2k/pvAkMt5A6LWjGfp?=
- =?us-ascii?Q?f+smdlmqQ+4YI0oQX0xlB08ESgmy9tq+TNkvHSYkXd8iPdyqwnvCo4Poma3G?=
- =?us-ascii?Q?/eyBXxHEQMaDdCZ8a5TI2ri6PA+u19FgMvbEgzPnZddUygjUML1gLbUYVBlr?=
- =?us-ascii?Q?/rl3aYQ36v78o83DHlaDnBuDc9PaFFusWwvx/2V/+ZynBagwRyIqapXNGgI6?=
- =?us-ascii?Q?XJfDnn5gkSCVe/piETnDGoInknSBWUla8u+Qevxq9t/hwR+1nUK3ITjpdoDw?=
- =?us-ascii?Q?tyqqcXFEDgcixiZ3cmBwCG9U7/rgfb4t5urf1HgNzux3SsRaBanfE/d5FbJS?=
- =?us-ascii?Q?wSt23prY4YX6H/GHkDsSYiVCycsLZh4VyxWSvac6FBbIhYGzUAkWNGnqm5RD?=
- =?us-ascii?Q?IQy1JW5UStvB0XHSLelyzcnJC2f1mWSnX+BZlO5nfLa580h4waZN4U4xk0kv?=
- =?us-ascii?Q?MudDBwu8mcpUAemOkK0oqAEBh+NxbXGF+TQNF/kIbOMG7VVxMSO049RbcFA5?=
- =?us-ascii?Q?g0ejdtbrHL1IrwNAW/erbcbpv9PhjjGA7OcONCqypeqGNSZpvV6qqw9bkQci?=
- =?us-ascii?Q?SVbbmoAwf3khUfxr41OjHZIrifgUZ7LZPIpp8ErdGogz9/to5lCn56rB/Voc?=
- =?us-ascii?Q?SJj942y5nhuKu5RdwWqEsm+MbOTXZjVwN9L7N6y4KeGXl3MzWGffZEBkuvpz?=
- =?us-ascii?Q?GWVSv6EbywAdFctbcnjtZysul/llmBGG6AwTt3dtfFdkN4xE+OO47lVybAx9?=
- =?us-ascii?Q?LERCI1m7d487i6GEqfwfCrs2TY8Jf3kYxhwg3qdu8VWz25tsZmnhIQnG/Kez?=
- =?us-ascii?Q?RHOfgaBqkcridmgA82WObccEFhNcLf+hn9KKi/MIVBm8GnUfF6SwuRVY/fDH?=
- =?us-ascii?Q?NH0PMe2uscKzM7E1nGPbD/ztcsE6LN59A8d/fxmP6Ky4Wy2hGjmhVMR+O+x5?=
- =?us-ascii?Q?PuWEePpeBp0LxHzGkn75WdBXaUrD+SR4hgBh48tgXMWf/FCgVTQMeRjsa9io?=
- =?us-ascii?Q?Eql9yaIrf6Px9qgrAh3GonXlAhb5ZeQu9SrgV4PCNQfzFeRd12DLaJOmJ/am?=
- =?us-ascii?Q?UimxyCzb6kBrczKD88iT+vO6jhfCyp1c53vlCCw7m5/kDGvZvWInai1fMNYo?=
- =?us-ascii?Q?lNqD13VEN7QciUOjpc6/Yp55gFpfy6UR2YRbpbEPNqvkyrEHm/57BXNFmDq6?=
- =?us-ascii?Q?ETMyxoJlF0Kw+GBLYE278ccg3Ew0xcIBWAH6SjbQixkemlE5ziyQX2NDJ/C+?=
- =?us-ascii?Q?emlNvSe19IPwwuh17DKWCsRfnECOwrD/XcCzj78BSh6mbFXAQulwrSsaou/6?=
- =?us-ascii?Q?3f7JDU9L+Rm7Z5kuHOkg+RCBh+HiNTBpBqJMDufxPZny5lu7G+jutjIGFao/?=
- =?us-ascii?Q?XA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?tyOcUXHksP7u61gyEtNwPovxvPXFpXvauJo/ENRamBdkPkDDsPG3FYoYua?=
+ =?iso-8859-1?Q?hSE2O2/ZH9rHh7L7iocwptGe3AUVujP6tlKN08ZWIJXF02PRdohuXrpJ4K?=
+ =?iso-8859-1?Q?njKeUoOLuQT8EAEkBvJ4jpif0gzufYEyKJ+B272Ooqwkn1qCK1xKVp0DCo?=
+ =?iso-8859-1?Q?XHLUdTR3cujLDX2QXnnU6Ks83C8CAzY0/wh8gO7eC+Ux3Q+hQjmxKxmCWI?=
+ =?iso-8859-1?Q?c9PsJoafxTAUR6l6YWlDu1y/bmYfk6+1l5bJFZ1Te/GRZ8Td9ZX9WLqLVx?=
+ =?iso-8859-1?Q?gAs5jRyRtmtYenlifIIUMTLjojAr4euz2UL5EVTx0iQ8kwSIqYLJVlqL0f?=
+ =?iso-8859-1?Q?EcWCgwj1uRi0n8c56Itt2oQ7MGpcPd+YP+mrrR0kio9AO9T6wUHCMrnoBn?=
+ =?iso-8859-1?Q?GvdSQfpx/ooj40tZWCxxWsYmU1ux48YO/mamUq8CVhCpEz+FdgemeTADH9?=
+ =?iso-8859-1?Q?xMSWAAAmqbXspybOWOdnC+rfjzuWTnEnic1fwPKLsiTQrHXv1Mfkj3M53o?=
+ =?iso-8859-1?Q?itOXhGilYHt2hpeOcPFbagXMln8lhtSzGu1R/q5nKNKfY5Bjy5Ogz6VL0u?=
+ =?iso-8859-1?Q?PJ6HM6DnUwYVhGxyt5Y0hKVDaTvf/Zy9NQFPuVS8ieyFpLX6x1iJnxnM7x?=
+ =?iso-8859-1?Q?l40gaUJ6QTPSroYP6rl8gmAlhXTGfbtd74RWIvPHaFDEb1C+hUOnOxHseA?=
+ =?iso-8859-1?Q?ggg1+TSlpzfWCxYrNWhaX1RQgo9UKu80hpJ5PU2ooyMIyQYcXb4JtkEGkl?=
+ =?iso-8859-1?Q?n0COj/BkXHfmviYJFhwQPp0trVxNpe4crSd2DXJpC6A1IfF/tTFlbFU6nB?=
+ =?iso-8859-1?Q?vOq298KT076UDqdd790/bggf1oIq00uQcju4n+imuDuNfd0bAXwyVjq1cI?=
+ =?iso-8859-1?Q?03h3/PgToA0jasn9U66uIR/vTDB/5pzdRWZ4GYUDEVGHZou/xbN7fnKjKl?=
+ =?iso-8859-1?Q?Hj6yo//1TV4pqgAcHaM+rM9HhT/qTou7O3J6h/aqPzcTzdMMpB7GFzGPfh?=
+ =?iso-8859-1?Q?XJO3yossUjwtj5s++f4LfmkAzA1cTVUYd/ckoEIHp34qVBtNC8OxWpXOor?=
+ =?iso-8859-1?Q?8+pAdtUs2wuGLfjIXoJPLd9QMuseHyRy97BimM6A47Ii0qUZnBGrxa29df?=
+ =?iso-8859-1?Q?HOasLqIqx18pdqSy4XqYTZu7ikA/e9jKC2ujaY+74bTZL+QjTiXem96Vy+?=
+ =?iso-8859-1?Q?p+/6nJHYWSswQNh5XB/1glUtN5LTS861lyhS9BQ/LmWhO1gU0fVuIjkGNe?=
+ =?iso-8859-1?Q?FDsmEDv3kI/hOzYTMNIhNQsSWBXq3bUUTNRtdo3W7X5I7QuGEZuT6yy6DC?=
+ =?iso-8859-1?Q?WNa6zZiwajXQgpPlstxupmSF1wa7q97pVy8Ajq2bevJDke6iDqX/XzB+BZ?=
+ =?iso-8859-1?Q?twdLUuTCS5cy2CUgX6hzY2XPy1OzLYDbpvz8uE5WJmicPvh50gL6eoqLyz?=
+ =?iso-8859-1?Q?GzA2m8am7wzh0OMoGYaZavQo17+vJ2bXWgo+NXIQaybt5YOIKbgXh1eKVi?=
+ =?iso-8859-1?Q?9ubsFtN0S0N1QnnlbWyHS700rBUBALJH3FcEedRpxZF7tQGPrQC6FjYsrh?=
+ =?iso-8859-1?Q?ryLP+tJ0voHrU9c9PzAP6UfWYPvoOx0XlgbAyJDpTVHDEghJGrZeh6nVjJ?=
+ =?iso-8859-1?Q?aKHc8sVexrQG4=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_BYAPR11MB2567EBC3DA33B7D1D4DABD599A22ABYAPR11MB2567namp_"
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5971.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1ec93ca-968d-4aee-b060-08db736ab6b8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jun 2023 21:50:37.1894 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2567.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d55c5840-7a75-4611-73fc-08db736ee6b5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jun 2023 22:20:35.7130 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: D80VotNzguACdmmOsmHC4mFV8yFR1PqQbBAAzk9x4EGSsXMNVSmzzoC3eQIDqM5l90bdgR1oG4GhOpFn1k+KVkcDc/SrAcRWak84UIoRwP0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6112
+X-MS-Exchange-CrossTenant-userprincipalname: N7iev8yDxG1YQbCeenb4mnEVv0KP5gotCUqgR6jnJ4E4kap7bHRJKibOLPYzCUtIzMtBuh71F5n3OOLRTFRw4Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR11MB8438
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Make
- intel_crtc_get_vblank_counter use no trace hw reads
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Remove incorrect hard coded
+ cache coherrency setting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,143 +151,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Lucas,
+--_000_BYAPR11MB2567EBC3DA33B7D1D4DABD599A22ABYAPR11MB2567namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: De Marchi, Lucas <lucas.demarchi@intel.com>
-> Sent: Thursday, June 22, 2023 12:41 PM
-> To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; Maarten Lankhorst
-> <maarten.lankhorst@linux.intel.com>
-> Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Make
-> intel_crtc_get_vblank_counter use no trace hw reads
->=20
-> On Tue, Jun 13, 2023 at 02:52:44PM -0700, Radhakrishna Sripada wrote:
-> >intel_crtc_get_vblank_counter is used in many places in the display
-> >tracing infrastructure. For a clean execution of the tracing assignment,
-> >ensure that any necessary HW reads would not further trigger another tra=
-ce,
-> >to prevent nesting of trace events.
->=20
->=20
-> it's not clear what "nesting" means in this patch series. For me
-> "nesting" would be if in the middle of a trace event it triggered
-> another trace event. Given our current infra, I don't see how that
-> would be possible.
+> The previouse i915_gem_object_create_internal already set it with proper
+> value before function return. This hard coded setting is incorrect for
+> platforms like MTL, thus need to be removed.
+>
+> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_timeline.c | 2 --
+>  1 file changed, 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i=
+915/gt/intel_timeline.c
+> index b9640212d659..693d18e14b00 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> @@ -26,8 +26,6 @@ static struct i915_vma *hwsp_alloc(struct intel_gt *gt)
+>          if (IS_ERR(obj))
+>                  return ERR_CAST(obj);
+>
+> -       i915_gem_object_set_cache_coherency(obj, I915_CACHE_LLC);
+> -
 
-Intel_crtc_get_vblank_counter/intel_get_crtc_scanline is used at many of th=
-e
-trace events defined in intel_display_trace.h like intel_pipe_{en,dis}able,=
- intel_pipe_crc
-during the assign phase to capture the current vblank and scanline values. =
-However those
-functions indeed use traceable versions of register reads making a nested t=
-race call.
+Does this change really fix the coherency issue?
+I consulted with Chris and he said that the hwsp is purposely set to be
+cacheable. The mapping on CPU side also indicates it's cacheable,
 
-<snip>
-   kworker/u29:0-153   [007]   402.314951: kernel_stack:                =3D=
-> trace_event_raw_event_i915_reg_rw
-        =3D> __intel_get_crtc_scanline
-        =3D> intel_get_crtc_scanline
-        =3D> trace_event_raw_event_intel_plane_update_noarm
-        =3D> intel_plane_update_noarm
-        =3D> intel_crtc_planes_update_noarm
-        =3D> intel_update_crtc
-        =3D> skl_commit_modeset_enables
-</snip>
+        intel_timeline_pin_map(struct intel_timeline *timeline)
+        {
+                struct drm_i915_gem_object *obj =3D timeline->hwsp_ggtt->ob=
+j;
+                u32 ofs =3D offset_in_page(timeline->hwsp_offset);
+                void *vaddr;
 
->=20
-> Do you mean that certain register accesses are being reported twice
-> since they are being recorded in 2 different layers like intel_de and
-> intel_uncore? If so, can you add in the commit message what is the call
-> chain you're seeing? The indirections in intel_de_read_fw() are not so
-> easy to follow, but from a quick look I don't see that happening here.
+                vaddr =3D i915_gem_object_pin_map(obj, I915_MAP_WB);
+                ...
+        }
 
-I haven't observed those style of reporting twice.
+>          vma =3D i915_vma_instance(obj, &gt->ggtt->vm, NULL);
+>          if (IS_ERR(vma))
+>                  i915_gem_object_put(obj);
+> --
+> 2.34.1
 
---Radhakrishna(RK) Sripada
->=20
-> intel_de_read_fw()
->    intel_uncore_read_fw()
->      __raw_uncore_read32() <-- no trace here
->    trace_i915_reg_rw()
->=20
-> What makes intel_de_read_fw() call special in this intel_vblank.c that
-> is not the case in all the hundred other places this function is called?
->=20
-> The trace_i915_reg_rw() in intel_de_read_fw() was added exactly because
-> __raw_uncore_read32() doesn't trace.
->=20
-> In xe, we should probably override the intel_de_read_fw() with a
-> xe-specific function that just leaves the trace out, delegated to
-> xe_mmio().
->=20
->=20
-> Btw, see the comment on top of intel_uncore_read_fw() that nobody reads
-> and calls to those "raw" accessors are added, making the i915_reg_rw
-> trace almost useless.
->=20
-> 	$ git grep intel_uncore_read_fw | wc -l
-> 	65
->=20
-> The _fw() suffix was meant as: you first take the forcewake, then
-> you access a bunch of registers, then release the forcewake. The
-> non-trace is a bad side effect with no clue on the name of the function,
-> just a comment on top of it.
->=20
-> Lucas De Marchi
->=20
->=20
-> >
-> >Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> >Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> >---
-> > drivers/gpu/drm/i915/display/intel_vblank.c | 7 ++++---
-> > 1 file changed, 4 insertions(+), 3 deletions(-)
-> >
-> >diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c
-> b/drivers/gpu/drm/i915/display/intel_vblank.c
-> >index f5659ebd08eb..55f3389fa220 100644
-> >--- a/drivers/gpu/drm/i915/display/intel_vblank.c
-> >+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-> >@@ -103,7 +103,7 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
-> > 	 * we get a low value that's stable across two reads of the high
-> > 	 * register.
-> > 	 */
-> >-	frame =3D intel_de_read64_2x32(dev_priv, PIPEFRAMEPIXEL(pipe),
-> PIPEFRAME(pipe));
-> >+	frame =3D intel_de_read64_2x32_notrace(dev_priv,
-> PIPEFRAMEPIXEL(pipe), PIPEFRAME(pipe));
-> >
-> > 	pixel =3D frame & PIPE_PIXEL_MASK;
-> > 	frame =3D (frame >> PIPE_FRAME_LOW_SHIFT) & 0xffffff;
-> >@@ -125,7 +125,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
-> > 	if (!vblank->max_vblank_count)
-> > 		return 0;
-> >
-> >-	return intel_de_read(dev_priv, PIPE_FRMCOUNT_G4X(pipe));
-> >+	return intel_de_read_notrace(dev_priv, PIPE_FRMCOUNT_G4X(pipe));
-> > }
-> >
-> > static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc=
- *crtc)
-> >@@ -324,7 +324,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc
-> *_crtc,
-> > 		 * We can split this into vertical and horizontal
-> > 		 * scanout position.
-> > 		 */
-> >-		position =3D (intel_de_read_fw(dev_priv, PIPEFRAMEPIXEL(pipe))
-> & PIPE_PIXEL_MASK) >> PIPE_PIXEL_SHIFT;
-> >+		position =3D (intel_de_read_fw_notrace(dev_priv,
-> PIPEFRAMEPIXEL(pipe)) &
-> >+			    PIPE_PIXEL_MASK) >> PIPE_PIXEL_SHIFT;
-> >
-> > 		/* convert to pixel counts */
-> > 		vbl_start *=3D htotal;
-> >--
-> >2.34.1
-> >
+
+--_000_BYAPR11MB2567EBC3DA33B7D1D4DABD599A22ABYAPR11MB2567namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof ContentPasted0">
+&gt; The previouse i915_gem_object_create_internal already set it with prop=
+er
+<div class=3D"ContentPasted0">&gt; value before function return. This hard =
+coded setting is incorrect for</div>
+<div class=3D"ContentPasted0">&gt; platforms like MTL, thus need to be remo=
+ved.</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; Signed-off-by: Zhanjun Dong &lt;zhanjun.=
+dong@intel.com&gt;</div>
+<div class=3D"ContentPasted0">&gt; ---</div>
+<div class=3D"ContentPasted0">&gt; &nbsp;drivers/gpu/drm/i915/gt/intel_time=
+line.c | 2 --</div>
+<div class=3D"ContentPasted0">&gt; &nbsp;1 file changed, 2 deletions(-)</di=
+v>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; diff --git a/drivers/gpu/drm/i915/gt/int=
+el_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c</div>
+<div class=3D"ContentPasted0">&gt; index b9640212d659..693d18e14b00 100644<=
+/div>
+<div class=3D"ContentPasted0">&gt; --- a/drivers/gpu/drm/i915/gt/intel_time=
+line.c</div>
+<div class=3D"ContentPasted0">&gt; +++ b/drivers/gpu/drm/i915/gt/intel_time=
+line.c</div>
+<div class=3D"ContentPasted0">&gt; @@ -26,8 +26,6 @@ static struct i915_vma=
+ *hwsp_alloc(struct intel_gt *gt)</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (IS=
+_ERR(obj))</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp;return ERR_CAST(obj);</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; - &nbsp; &nbsp; &nbsp; i915_gem_object_s=
+et_cache_coherency(obj, I915_CACHE_LLC);</div>
+<div class=3D"ContentPasted0">&gt; -</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">Does this change really fix the coherency iss=
+ue?</div>
+<div class=3D"ContentPasted0">I consulted with Chris and he said that the h=
+wsp is purposely set to be</div>
+<div class=3D"ContentPasted0">cacheable. The mapping on CPU side also indic=
+ates it's cacheable,</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; &nbsp; &nbsp; intel_timeline_pi=
+n_map(struct intel_timeline *timeline)</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; &nbsp; &nbsp; {</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; struct drm_i915_gem_object *obj =3D timeline-&gt;hwsp_ggtt-&gt;o=
+bj;</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; u32 ofs =3D offset_in_page(timeline-&gt;hwsp_offset);</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; void *vaddr;</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; vaddr =3D i915_gem_object_pin_map(obj, I915_MAP_WB);</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; ...</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;vma =
+=3D i915_vma_instance(obj, &amp;gt-&gt;ggtt-&gt;vm, NULL);</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (IS=
+_ERR(vma))</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp;i915_gem_object_put(obj);</div>
+<div class=3D"ContentPasted0">&gt; --</div>
+<div class=3D"ContentPasted0">&gt; 2.34.1</div>
+<br>
+</div>
+</body>
+</html>
+
+--_000_BYAPR11MB2567EBC3DA33B7D1D4DABD599A22ABYAPR11MB2567namp_--
