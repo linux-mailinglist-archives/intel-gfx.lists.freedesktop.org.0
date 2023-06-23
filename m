@@ -1,40 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E04B173B44B
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jun 2023 12:01:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF9A173B4A6
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jun 2023 12:09:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 280E310E633;
-	Fri, 23 Jun 2023 10:01:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B13BB10E114;
+	Fri, 23 Jun 2023 10:09:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9C48510E106;
- Fri, 23 Jun 2023 10:01:19 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 61950C14;
- Fri, 23 Jun 2023 03:02:02 -0700 (PDT)
-Received: from [10.1.30.17] (e122027.cambridge.arm.com [10.1.30.17])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E25C23F64C;
- Fri, 23 Jun 2023 03:01:13 -0700 (PDT)
-Message-ID: <35f80572-0ba2-be54-c947-fcbe2d71ed5e@arm.com>
-Date: Fri, 23 Jun 2023 11:01:11 +0100
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 229DC10E106;
+ Fri, 23 Jun 2023 10:09:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687514957; x=1719050957;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=VtI+F7w8zUSN4t2IcSOaAAgaQxyebYYTdd5VADyoUKE=;
+ b=j9onvaNT48O7hNwO+wyXhn9c3Vib3rVkV5pImEnPnIPIMQW45cFp4KoV
+ mFZJ+m4OWHtudG14aTdIWjMj2o63pqlFJwJGlmVkHuV4zXWFwGsG+oo+o
+ VQmON3MAP197NhlLk2LS0zPMb9byLfNLDjMcYsbCDtQoTFmuwdWApS6ab
+ iH165ZXY7zVNKVHBpaJGVEqNRvWjUFRBJ/wrjI7W3VpGkKuu6MiAiRvit
+ XQMz7AeQa3gCf/fTcjQjKCdOdSgeoU3bkoUb+zTUg7gIMuVFHjmYmxYYb
+ dp7hzS69f9QmVMTly/sn7YlRO3njyLGhP+XdJp32NSk3uQ4g4/QpZIP4s w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="350497497"
+X-IronPort-AV: E=Sophos;i="6.01,151,1684825200"; d="scan'208";a="350497497"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2023 03:09:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="828325701"
+X-IronPort-AV: E=Sophos;i="6.01,151,1684825200"; d="scan'208";a="828325701"
+Received: from jholtom-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.213.26.235])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2023 03:09:14 -0700
+Date: Fri, 23 Jun 2023 12:09:12 +0200
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Message-ID: <20230623100912.wkozejeujh5d6yzo@kamilkon-desk1>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>
+References: <20230616155048.1013239-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-To: Qi Zheng <qi.zheng@linux.dev>, akpm@linux-foundation.org,
- david@fromorbit.com, tkhai@ya.ru, vbabka@suse.cz, roman.gushchin@linux.dev,
- djwong@kernel.org, brauner@kernel.org, paulmck@kernel.org, tytso@mit.edu
-References: <20230622083932.4090339-1-qi.zheng@linux.dev>
- <20230622083932.4090339-6-qi.zheng@linux.dev>
-Content-Language: en-GB
-From: Steven Price <steven.price@arm.com>
-In-Reply-To: <20230622083932.4090339-6-qi.zheng@linux.dev>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 05/29] drm/panfrost: dynamically allocate
- the drm-panfrost shrinker
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230616155048.1013239-1-vinay.belgaumkar@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 i-g-t] tests/i915_pm_freq_api: Add a
+ suspend subtest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,166 +63,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-raid@vger.kernel.org, linux-nfs@vger.kernel.org, dm-devel@redhat.com,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, linux-xfs@vger.kernel.org,
- linux-mm@kvack.org, linux-bcache@vger.kernel.org,
- Qi Zheng <zhengqi.arch@bytedance.com>, linux-fsdevel@vger.kernel.org,
- linux-ext4@vger.kernel.org, freedreno@lists.freedesktop.org,
- linux-btrfs@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 22/06/2023 09:39, Qi Zheng wrote:
-> From: Qi Zheng <zhengqi.arch@bytedance.com>
+Hi Vinay,
+
+small nit, see below.
+
+On 2023-06-16 at 08:50:48 -0700, Vinay Belgaumkar wrote:
+> Verify that SLPC API works as expected after a suspend. Added
+> another subtest that does multiple GT resets and checks freq api
+> works as expected after each one.
 > 
-> In preparation for implementing lockless slab shrink,
-> we need to dynamically allocate the drm-panfrost shrinker,
-> so that it can be freed asynchronously using kfree_rcu().
-> Then it doesn't need to wait for RCU read-side critical
-> section when releasing the struct panfrost_device.
+> We now check requested frequency instead of soft min/max after a
+> reset or suspend. That ensures the soft limits got applied
+> correctly at init. Also, disable efficient freq before starting the
+> test which allows current freq to be consistent with SLPC min freq.
 > 
-> Signed-off-by: Qi Zheng <zhengqi.arch@bytedance.com>
+> v2: Restore freq in exit handler (Ashutosh)
+> v3: Free the allocated stash arrays
+> 
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 > ---
->  drivers/gpu/drm/panfrost/panfrost_device.h    |  2 +-
->  .../gpu/drm/panfrost/panfrost_gem_shrinker.c  | 24 ++++++++++---------
->  2 files changed, 14 insertions(+), 12 deletions(-)
+>  tests/i915/i915_pm_freq_api.c | 92 +++++++++++++++++++++++++++--------
+>  1 file changed, 71 insertions(+), 21 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_device.h b/drivers/gpu/drm/panfrost/panfrost_device.h
-> index b0126b9fbadc..e667e5689353 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_device.h
-> +++ b/drivers/gpu/drm/panfrost/panfrost_device.h
-> @@ -118,7 +118,7 @@ struct panfrost_device {
+> diff --git a/tests/i915/i915_pm_freq_api.c b/tests/i915/i915_pm_freq_api.c
+> index 9005cd220..522abee35 100644
+> --- a/tests/i915/i915_pm_freq_api.c
+> +++ b/tests/i915/i915_pm_freq_api.c
+> @@ -18,6 +18,12 @@
+>   *
+>   * SUBTEST: freq-reset
+>   * Description: Test basic freq API works after a reset
+> + *
+> + * SUBTEST: freq-reset-multiple
+> + * Description: Test basic freq API works after multiple resets
+> + *
+> + * SUBTEST: freq-suspend
+> + * Description: Test basic freq API works after a runtime suspend
+>   */
 >  
->  	struct mutex shrinker_lock;
->  	struct list_head shrinker_list;
-> -	struct shrinker shrinker;
-> +	struct shrinker *shrinker;
+>  IGT_TEST_DESCRIPTION("Test SLPC freq API");
+> @@ -49,7 +55,6 @@ static void test_freq_basic_api(int dirfd, int gt)
+>  	rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
+>  	rp0 = get_freq(dirfd, RPS_RP0_FREQ_MHZ);
+>  	rpe = get_freq(dirfd, RPS_RP1_FREQ_MHZ);
+> -	igt_info("System min freq: %dMHz; max freq: %dMHz\n", rpn, rp0);
 >  
->  	struct panfrost_devfreq pfdevfreq;
->  };
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c b/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
-> index bf0170782f25..2a5513eb9e1f 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
-> @@ -18,8 +18,7 @@
->  static unsigned long
->  panfrost_gem_shrinker_count(struct shrinker *shrinker, struct shrink_control *sc)
+>  	/*
+>  	 * Negative bound tests
+> @@ -79,31 +84,66 @@ static void test_freq_basic_api(int dirfd, int gt)
+>  
+>  }
+>  
+> -static void test_reset(int i915, int dirfd, int gt)
+> +static void test_reset(int i915, int dirfd, int gt, int count)
 >  {
-> -	struct panfrost_device *pfdev =
-> -		container_of(shrinker, struct panfrost_device, shrinker);
-> +	struct panfrost_device *pfdev = shrinker->private_data;
->  	struct drm_gem_shmem_object *shmem;
->  	unsigned long count = 0;
+>  	uint32_t rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
+>  	int fd;
 >  
-> @@ -65,8 +64,7 @@ static bool panfrost_gem_purge(struct drm_gem_object *obj)
->  static unsigned long
->  panfrost_gem_shrinker_scan(struct shrinker *shrinker, struct shrink_control *sc)
->  {
-> -	struct panfrost_device *pfdev =
-> -		container_of(shrinker, struct panfrost_device, shrinker);
-> +	struct panfrost_device *pfdev = shrinker->private_data;
->  	struct drm_gem_shmem_object *shmem, *tmp;
->  	unsigned long freed = 0;
->  
-> @@ -100,10 +98,15 @@ panfrost_gem_shrinker_scan(struct shrinker *shrinker, struct shrink_control *sc)
->  void panfrost_gem_shrinker_init(struct drm_device *dev)
->  {
->  	struct panfrost_device *pfdev = dev->dev_private;
-> -	pfdev->shrinker.count_objects = panfrost_gem_shrinker_count;
-> -	pfdev->shrinker.scan_objects = panfrost_gem_shrinker_scan;
-> -	pfdev->shrinker.seeks = DEFAULT_SEEKS;
-> -	WARN_ON(register_shrinker(&pfdev->shrinker, "drm-panfrost"));
+> +	for (int i = 0; i < count; i++) {
+> +		igt_assert_f(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0,
+> +			     "Failed after %d good cycles\n", i);
+> +		igt_assert_f(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rpn) > 0,
+> +			     "Failed after %d good cycles\n", i);
+> +		usleep(ACT_FREQ_LATENCY_US);
+> +		igt_assert_f(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn,
+> +			     "Failed after %d good cycles\n", i);
 > +
-> +	pfdev->shrinker = shrinker_alloc_and_init(panfrost_gem_shrinker_count,
-> +						  panfrost_gem_shrinker_scan, 0,
-> +						  DEFAULT_SEEKS, 0, pfdev);
-> +	if (pfdev->shrinker &&
-> +	    register_shrinker(pfdev->shrinker, "drm-panfrost")) {
-> +		shrinker_free(pfdev->shrinker);
-> +		WARN_ON(1);
+> +		/* Manually trigger a GT reset */
+> +		fd = igt_debugfs_gt_open(i915, gt, "reset", O_WRONLY);
+> +		igt_require(fd >= 0);
+
+Move these open and require before for() loop.
+
+Regards,
+Kamil
+
+> +		igt_ignore_warn(write(fd, "1\n", 2));
+> +
+> +		igt_assert_f(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn,
+> +			     "Failed after %d good cycles\n", i);
 > +	}
-
-So we didn't have good error handling here before, but this is
-significantly worse. Previously if register_shrinker() failed then the
-driver could safely continue without a shrinker - it would waste memory
-but still function.
-
-However we now have two failure conditions:
- * shrinker_alloc_init() returns NULL. No warning and NULL deferences
-   will happen later.
-
- * register_shrinker() fails, shrinker_free() will free pdev->shrinker
-   we get a warning, but followed by a use-after-free later.
-
-I think we need to modify panfrost_gem_shrinker_init() to be able to
-return an error, so a change something like the below (untested) before
-your change.
-
-Steve
-
-----8<---
-diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c
-b/drivers/gpu/drm/panfrost/panfrost_drv.c
-index bbada731bbbd..f705bbdea360 100644
---- a/drivers/gpu/drm/panfrost/panfrost_drv.c
-+++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
-@@ -598,10 +598,14 @@ static int panfrost_probe(struct platform_device
-*pdev)
- 	if (err < 0)
- 		goto err_out1;
-
--	panfrost_gem_shrinker_init(ddev);
-+	err = panfrost_gem_shrinker_init(ddev);
-+	if (err)
-+		goto err_out2;
-
- 	return 0;
-
-+err_out2:
-+	drm_dev_unregister(ddev);
- err_out1:
- 	pm_runtime_disable(pfdev->dev);
- 	panfrost_device_fini(pfdev);
-diff --git a/drivers/gpu/drm/panfrost/panfrost_gem.h
-b/drivers/gpu/drm/panfrost/panfrost_gem.h
-index ad2877eeeccd..863d2ec8d4f0 100644
---- a/drivers/gpu/drm/panfrost/panfrost_gem.h
-+++ b/drivers/gpu/drm/panfrost/panfrost_gem.h
-@@ -81,7 +81,7 @@ panfrost_gem_mapping_get(struct panfrost_gem_object *bo,
- void panfrost_gem_mapping_put(struct panfrost_gem_mapping *mapping);
- void panfrost_gem_teardown_mappings_locked(struct panfrost_gem_object *bo);
-
--void panfrost_gem_shrinker_init(struct drm_device *dev);
-+int panfrost_gem_shrinker_init(struct drm_device *dev);
- void panfrost_gem_shrinker_cleanup(struct drm_device *dev);
-
- #endif /* __PANFROST_GEM_H__ */
-diff --git a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
-b/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
-index bf0170782f25..90265b37636f 100644
---- a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
-+++ b/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
-@@ -97,13 +97,17 @@ panfrost_gem_shrinker_scan(struct shrinker
-*shrinker, struct shrink_control *sc)
-  *
-  * This function registers and sets up the panfrost shrinker.
-  */
--void panfrost_gem_shrinker_init(struct drm_device *dev)
-+int panfrost_gem_shrinker_init(struct drm_device *dev)
- {
- 	struct panfrost_device *pfdev = dev->dev_private;
-+	int ret;
-+
- 	pfdev->shrinker.count_objects = panfrost_gem_shrinker_count;
- 	pfdev->shrinker.scan_objects = panfrost_gem_shrinker_scan;
- 	pfdev->shrinker.seeks = DEFAULT_SEEKS;
--	WARN_ON(register_shrinker(&pfdev->shrinker, "drm-panfrost"));
-+	ret = register_shrinker(&pfdev->shrinker, "drm-panfrost");
-+
-+	return ret;
- }
-
- /**
-
+> +	close(fd);
+> +}
+> +
+> +static void test_suspend(int i915, int dirfd, int gt)
+> +{
+> +	uint32_t rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
+> +
+>  	igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0);
+>  	igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rpn) > 0);
+>  	usleep(ACT_FREQ_LATENCY_US);
+> -	igt_assert(get_freq(dirfd, RPS_MIN_FREQ_MHZ) == rpn);
+> +	igt_assert(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn);
+>  
+> -	/* Manually trigger a GT reset */
+> -	fd = igt_debugfs_gt_open(i915, gt, "reset", O_WRONLY);
+> -	igt_require(fd >= 0);
+> -	igt_ignore_warn(write(fd, "1\n", 2));
+> -	close(fd);
+> +	/* Manually trigger a suspend */
+> +	igt_system_suspend_autoresume(SUSPEND_STATE_S3,
+> +				      SUSPEND_TEST_NONE);
+>  
+> -	igt_assert(get_freq(dirfd, RPS_MIN_FREQ_MHZ) == rpn);
+> -	igt_assert(get_freq(dirfd, RPS_MAX_FREQ_MHZ) == rpn);
+> +	igt_assert(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn);
+>  }
+>  
+> -igt_main
+> +int i915 = -1;
+> +uint32_t *stash_min, *stash_max;
+> +
+> +static void restore_sysfs_freq(int sig)
+>  {
+> -	int i915 = -1;
+> -	uint32_t *stash_min, *stash_max;
+> +	int dirfd, gt;
+> +	/* Restore frequencies */
+> +	for_each_sysfs_gt_dirfd(i915, dirfd, gt) {
+> +		igt_pm_ignore_slpc_efficient_freq(i915, dirfd, false);
+> +		igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, stash_max[gt]) > 0);
+> +		igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, stash_min[gt]) > 0);
+> +	}
+> +	free(stash_min);
+> +	free(stash_max);
+> +	close(i915);
+> +}
+>  
+> +igt_main
+> +{
+>  	igt_fixture {
+>  		int num_gts, dirfd, gt;
+>  
+> @@ -122,7 +162,9 @@ igt_main
+>  		for_each_sysfs_gt_dirfd(i915, dirfd, gt) {
+>  			stash_min[gt] = get_freq(dirfd, RPS_MIN_FREQ_MHZ);
+>  			stash_max[gt] = get_freq(dirfd, RPS_MAX_FREQ_MHZ);
+> +			igt_pm_ignore_slpc_efficient_freq(i915, dirfd, true);
+>  		}
+> +		igt_install_exit_handler(restore_sysfs_freq);
+>  	}
+>  
+>  	igt_describe("Test basic API for controlling min/max GT frequency");
+> @@ -140,16 +182,24 @@ igt_main
+>  
+>  		for_each_sysfs_gt_dirfd(i915, dirfd, gt)
+>  			igt_dynamic_f("gt%u", gt)
+> -				test_reset(i915, dirfd, gt);
+> +				test_reset(i915, dirfd, gt, 1);
+>  	}
+>  
+> -	igt_fixture {
+> +	igt_describe("Test basic freq API works after multiple resets");
+> +	igt_subtest_with_dynamic_f("freq-reset-multiple") {
+>  		int dirfd, gt;
+> -		/* Restore frequencies */
+> -		for_each_sysfs_gt_dirfd(i915, dirfd, gt) {
+> -			igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, stash_max[gt]) > 0);
+> -			igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, stash_min[gt]) > 0);
+> -		}
+> -		close(i915);
+> +
+> +		for_each_sysfs_gt_dirfd(i915, dirfd, gt)
+> +			igt_dynamic_f("gt%u", gt)
+> +				test_reset(i915, dirfd, gt, 50);
+> +	}
+> +
+> +	igt_describe("Test basic freq API works after suspend");
+> +	igt_subtest_with_dynamic_f("freq-suspend") {
+> +		int dirfd, gt;
+> +
+> +		for_each_sysfs_gt_dirfd(i915, dirfd, gt)
+> +			igt_dynamic_f("gt%u", gt)
+> +				test_suspend(i915, dirfd, gt);
+>  	}
+>  }
+> -- 
+> 2.38.1
+> 
