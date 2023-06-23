@@ -2,61 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3645F73FE4F
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 16:39:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC3F73FE7A
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 16:40:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D86810E330;
-	Tue, 27 Jun 2023 14:38:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03ECE10E318;
+	Tue, 27 Jun 2023 14:40:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com
- [IPv6:2a00:1450:4864:20::129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C303610E63E;
- Fri, 23 Jun 2023 14:18:26 +0000 (UTC)
-Received: by mail-lf1-x129.google.com with SMTP id
- 2adb3069b0e04-4f8775126d3so858156e87.1; 
- Fri, 23 Jun 2023 07:18:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1687529904; x=1690121904;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=U03ByJLEXBVMFxhG8e0O73cGqPopBbGVt9AAt3CnnZM=;
- b=TywO85a77leSYCYVzYOanKoYa/s0ry32wpUrlEPzIhxZoGCaQs4jLZLSuvKMxBRSr+
- TbsGogQpwLOF+rgYk/CyTwqloBlNuD8fJEweLuRiNozRHTFlrD5lDd7+9avg+CQ9MgTM
- 3NeNQ6SjuKvYW/h/6rmzX6ITBol7wIruscuj+zEIp+E6QNcBcAXEMSQV0OAye1V+K0WH
- IzEPw2+nBwMnUlvmly78g7ZGJr/xOC4JJohFIcJfH+Novulicc/nemrxnOoESSeW3KYG
- JFw/aKSW1VA6uVKgz1V2F9qLKxnTP/2DNimF/UcFJFDvaNOEmrMQ2SGXFJk5USkAjMlR
- TvMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687529904; x=1690121904;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=U03ByJLEXBVMFxhG8e0O73cGqPopBbGVt9AAt3CnnZM=;
- b=az+qAgWk2jtn4T4nKJ2Io8Lhfehohb5KYe1a+2EVD5r9WuHYszOBz6UvBIcBVqT8Bm
- 4iM7s4wLoxGj1cUpyAyQ2UiLYmzvQpUyWUuvXPxv9J93h/HNjNdZq0t3Qwvxs2QnxSVG
- SISNn9gjl5FEXeXQbIl2cgMU/uueCWP34EXdD6XzwL2srgYQfqXYdzbfVC7XNxj6NqoP
- qw3BKGat7Dei6x5FH2sRVM9oEEMcwZ8K8bf49H/euTP0h2vg7uyxPpI1o/EfNN0S8ePM
- F4MY/hheJ96UH2piQXSkPNBAM0Gj7UexuJXP5wqkDLxsRhdM6DvhoO5BU1lCPeNDZ4qg
- avZQ==
-X-Gm-Message-State: AC+VfDxe6+MT3ZtPHpHEmH0SAe6HzFUAlRRhfJa/ysmF5TKtQGUoJWS3
- DT8WfJg9o+O655P+/2uB9yP/5DLG3/s6e1SMh3M=
-X-Google-Smtp-Source: ACHHUZ5gD5e0fXJGAEuWY1GjpdaeAwxiN2MHag9P+QRePRiowthqZsR1lYoSq+npkE5Bp5epdKwCAQwNu+Xp8lfnykI=
-X-Received: by 2002:ac2:4f13:0:b0:4f9:6b06:129e with SMTP id
- k19-20020ac24f13000000b004f96b06129emr3293665lfr.65.1687529904252; Fri, 23
- Jun 2023 07:18:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230622085335.77010-1-zhengqi.arch@bytedance.com>
- <20230622085335.77010-6-zhengqi.arch@bytedance.com>
-In-Reply-To: <20230622085335.77010-6-zhengqi.arch@bytedance.com>
-From: Bobs_Email <robertharoldlee@gmail.com>
-Date: Fri, 23 Jun 2023 07:18:11 -0700
-Message-ID: <CADMFwCv+BsVM51nBNwMTAe5LbfSFGrjzkWEww-ZtGwrhAV+_4Q@mail.gmail.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA5A10E6CA;
+ Fri, 23 Jun 2023 21:49:40 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id EC17D60F93;
+ Fri, 23 Jun 2023 21:49:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1671C433C8;
+ Fri, 23 Jun 2023 21:49:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1687556978;
+ bh=bPOn8vNljb4Kts16IvF12pTxf9JAyk3Q+pkgmofKYTI=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=l4LxiaK6FHJV+LaN+k19qJLvpsW7q6peMpRqQDAloqrBAb7yaQiFzdxyJRQOlUbhL
+ XBecHa58jNv7ky9A034GYSD2hm6ptEDQNutUwI9YecVIS3WmPXE3L9OmXsZUz8kwS8
+ TTwQFFfOfOtb8MAgVm196q6ZTVuewtnjos3fSTZ9GEVB31g3k5MJS42AVjc5SzUh/V
+ FyhyE7GMMMzgjXlbaXwq0dZEfCVwkgehGZA7UY2GwQKM2vvvfQX8LDHnVUTOmbhZdZ
+ 3Ac0f71z1GBnxhPGwb/beOuZzWJU5QKmGVyY8UMScHTrLfTWh6qN+V7ajaXz+LKLHt
+ /jQ/IQ+1PydAw==
+Date: Fri, 23 Jun 2023 17:49:34 -0400
+From: Chuck Lever <cel@kernel.org>
 To: Qi Zheng <zhengqi.arch@bytedance.com>
-Content-Type: multipart/alternative; boundary="0000000000007dacb305feccace6"
+Message-ID: <ZJYTbnmRKF7j3CHW@manet.1015granger.net>
+References: <20230622085335.77010-1-zhengqi.arch@bytedance.com>
+ <20230622085335.77010-16-zhengqi.arch@bytedance.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230622085335.77010-16-zhengqi.arch@bytedance.com>
 X-Mailman-Approved-At: Tue, 27 Jun 2023 14:38:30 +0000
-Subject: Re: [Intel-gfx] [PATCH 05/29] drm/panfrost: dynamically allocate
- the drm-panfrost shrinker
+Subject: Re: [Intel-gfx] [PATCH 15/29] NFSD: dynamically allocate the
+ nfsd-client shrinker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,228 +67,86 @@ Cc: djwong@kernel.org, roman.gushchin@linux.dev, david@fromorbit.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---0000000000007dacb305feccace6
-Content-Type: text/plain; charset="UTF-8"
-
-Please remove Bob Lee from this email group.
-He is deceased
-
-
-On Thu, Jun 22, 2023, 1:56 AM Qi Zheng <zhengqi.arch@bytedance.com> wrote:
-
+On Thu, Jun 22, 2023 at 04:53:21PM +0800, Qi Zheng wrote:
 > In preparation for implementing lockless slab shrink,
-> we need to dynamically allocate the drm-panfrost shrinker,
+> we need to dynamically allocate the nfsd-client shrinker,
 > so that it can be freed asynchronously using kfree_rcu().
 > Then it doesn't need to wait for RCU read-side critical
-> section when releasing the struct panfrost_device.
->
+> section when releasing the struct nfsd_net.
+> 
 > Signed-off-by: Qi Zheng <zhengqi.arch@bytedance.com>
+
+For 15/29 and 16/29 of this series:
+
+Acked-by: Chuck Lever <chuck.lever@oracle.com>
+
+
 > ---
->  drivers/gpu/drm/panfrost/panfrost_device.h    |  2 +-
->  .../gpu/drm/panfrost/panfrost_gem_shrinker.c  | 24 ++++++++++---------
->  2 files changed, 14 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_device.h
-> b/drivers/gpu/drm/panfrost/panfrost_device.h
-> index b0126b9fbadc..e667e5689353 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_device.h
-> +++ b/drivers/gpu/drm/panfrost/panfrost_device.h
-> @@ -118,7 +118,7 @@ struct panfrost_device {
->
->         struct mutex shrinker_lock;
->         struct list_head shrinker_list;
-> -       struct shrinker shrinker;
-> +       struct shrinker *shrinker;
->
->         struct panfrost_devfreq pfdevfreq;
+>  fs/nfsd/netns.h     |  2 +-
+>  fs/nfsd/nfs4state.c | 20 ++++++++++++--------
+>  2 files changed, 13 insertions(+), 9 deletions(-)
+> 
+> diff --git a/fs/nfsd/netns.h b/fs/nfsd/netns.h
+> index ec49b200b797..f669444d5336 100644
+> --- a/fs/nfsd/netns.h
+> +++ b/fs/nfsd/netns.h
+> @@ -195,7 +195,7 @@ struct nfsd_net {
+>  	int			nfs4_max_clients;
+>  
+>  	atomic_t		nfsd_courtesy_clients;
+> -	struct shrinker		nfsd_client_shrinker;
+> +	struct shrinker		*nfsd_client_shrinker;
+>  	struct work_struct	nfsd_shrinker_work;
 >  };
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
-> b/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
-> index bf0170782f25..2a5513eb9e1f 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
-> @@ -18,8 +18,7 @@
->  static unsigned long
->  panfrost_gem_shrinker_count(struct shrinker *shrinker, struct
-> shrink_control *sc)
+>  
+> diff --git a/fs/nfsd/nfs4state.c b/fs/nfsd/nfs4state.c
+> index 6e61fa3acaf1..a06184270548 100644
+> --- a/fs/nfsd/nfs4state.c
+> +++ b/fs/nfsd/nfs4state.c
+> @@ -4388,8 +4388,7 @@ static unsigned long
+>  nfsd4_state_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
 >  {
-> -       struct panfrost_device *pfdev =
-> -               container_of(shrinker, struct panfrost_device, shrinker);
-> +       struct panfrost_device *pfdev = shrinker->private_data;
->         struct drm_gem_shmem_object *shmem;
->         unsigned long count = 0;
->
-> @@ -65,8 +64,7 @@ static bool panfrost_gem_purge(struct drm_gem_object
-> *obj)
->  static unsigned long
->  panfrost_gem_shrinker_scan(struct shrinker *shrinker, struct
-> shrink_control *sc)
->  {
-> -       struct panfrost_device *pfdev =
-> -               container_of(shrinker, struct panfrost_device, shrinker);
-> +       struct panfrost_device *pfdev = shrinker->private_data;
->         struct drm_gem_shmem_object *shmem, *tmp;
->         unsigned long freed = 0;
->
-> @@ -100,10 +98,15 @@ panfrost_gem_shrinker_scan(struct shrinker *shrinker,
-> struct shrink_control *sc)
->  void panfrost_gem_shrinker_init(struct drm_device *dev)
->  {
->         struct panfrost_device *pfdev = dev->dev_private;
-> -       pfdev->shrinker.count_objects = panfrost_gem_shrinker_count;
-> -       pfdev->shrinker.scan_objects = panfrost_gem_shrinker_scan;
-> -       pfdev->shrinker.seeks = DEFAULT_SEEKS;
-> -       WARN_ON(register_shrinker(&pfdev->shrinker, "drm-panfrost"));
+>  	int count;
+> -	struct nfsd_net *nn = container_of(shrink,
+> -			struct nfsd_net, nfsd_client_shrinker);
+> +	struct nfsd_net *nn = shrink->private_data;
+>  
+>  	count = atomic_read(&nn->nfsd_courtesy_clients);
+>  	if (!count)
+> @@ -8094,14 +8093,19 @@ static int nfs4_state_create_net(struct net *net)
+>  	INIT_WORK(&nn->nfsd_shrinker_work, nfsd4_state_shrinker_worker);
+>  	get_net(net);
+>  
+> -	nn->nfsd_client_shrinker.scan_objects = nfsd4_state_shrinker_scan;
+> -	nn->nfsd_client_shrinker.count_objects = nfsd4_state_shrinker_count;
+> -	nn->nfsd_client_shrinker.seeks = DEFAULT_SEEKS;
+> -
+> -	if (register_shrinker(&nn->nfsd_client_shrinker, "nfsd-client"))
+> +	nn->nfsd_client_shrinker = shrinker_alloc_and_init(nfsd4_state_shrinker_count,
+> +							   nfsd4_state_shrinker_scan,
+> +							   0, DEFAULT_SEEKS, 0,
+> +							   nn);
+> +	if (!nn->nfsd_client_shrinker)
+>  		goto err_shrinker;
 > +
-> +       pfdev->shrinker =
-> shrinker_alloc_and_init(panfrost_gem_shrinker_count,
-> +
->  panfrost_gem_shrinker_scan, 0,
-> +                                                 DEFAULT_SEEKS, 0, pfdev);
-> +       if (pfdev->shrinker &&
-> +           register_shrinker(pfdev->shrinker, "drm-panfrost")) {
-> +               shrinker_free(pfdev->shrinker);
-> +               WARN_ON(1);
-> +       }
->  }
->
->  /**
-> @@ -116,7 +119,6 @@ void panfrost_gem_shrinker_cleanup(struct drm_device
-> *dev)
->  {
->         struct panfrost_device *pfdev = dev->dev_private;
->
-> -       if (pfdev->shrinker.nr_deferred) {
-> -               unregister_shrinker(&pfdev->shrinker);
-> -       }
-> +       if (pfdev->shrinker->nr_deferred)
-> +               unregister_and_free_shrinker(pfdev->shrinker);
->  }
-> --
+> +	if (register_shrinker(nn->nfsd_client_shrinker, "nfsd-client"))
+> +		goto err_register;
+>  	return 0;
+>  
+> +err_register:
+> +	shrinker_free(nn->nfsd_client_shrinker);
+>  err_shrinker:
+>  	put_net(net);
+>  	kfree(nn->sessionid_hashtbl);
+> @@ -8197,7 +8201,7 @@ nfs4_state_shutdown_net(struct net *net)
+>  	struct list_head *pos, *next, reaplist;
+>  	struct nfsd_net *nn = net_generic(net, nfsd_net_id);
+>  
+> -	unregister_shrinker(&nn->nfsd_client_shrinker);
+> +	unregister_and_free_shrinker(nn->nfsd_client_shrinker);
+>  	cancel_work(&nn->nfsd_shrinker_work);
+>  	cancel_delayed_work_sync(&nn->laundromat_work);
+>  	locks_end_grace(&nn->nfsd4_manager);
+> -- 
 > 2.30.2
->
->
-
---0000000000007dacb305feccace6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Please remove Bob Lee from this email group.<div dir=3D"a=
-uto">He is deceased</div><div dir=3D"auto"><br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jun 22, 2023=
-, 1:56 AM Qi Zheng &lt;<a href=3D"mailto:zhengqi.arch@bytedance.com">zhengq=
-i.arch@bytedance.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
->In preparation for implementing lockless slab shrink,<br>
-we need to dynamically allocate the drm-panfrost shrinker,<br>
-so that it can be freed asynchronously using kfree_rcu().<br>
-Then it doesn&#39;t need to wait for RCU read-side critical<br>
-section when releasing the struct panfrost_device.<br>
-<br>
-Signed-off-by: Qi Zheng &lt;<a href=3D"mailto:zhengqi.arch@bytedance.com" t=
-arget=3D"_blank" rel=3D"noreferrer">zhengqi.arch@bytedance.com</a>&gt;<br>
----<br>
-=C2=A0drivers/gpu/drm/panfrost/panfrost_device.h=C2=A0 =C2=A0 |=C2=A0 2 +-<=
-br>
-=C2=A0.../gpu/drm/panfrost/panfrost_gem_shrinker.c=C2=A0 | 24 ++++++++++---=
-------<br>
-=C2=A02 files changed, 14 insertions(+), 12 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/panfrost/panfrost_device.h b/drivers/gpu/drm/p=
-anfrost/panfrost_device.h<br>
-index b0126b9fbadc..e667e5689353 100644<br>
---- a/drivers/gpu/drm/panfrost/panfrost_device.h<br>
-+++ b/drivers/gpu/drm/panfrost/panfrost_device.h<br>
-@@ -118,7 +118,7 @@ struct panfrost_device {<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct mutex shrinker_lock;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct list_head shrinker_list;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0struct shrinker shrinker;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0struct shrinker *shrinker;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct panfrost_devfreq pfdevfreq;<br>
-=C2=A0};<br>
-diff --git a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c b/drivers/gpu=
-/drm/panfrost/panfrost_gem_shrinker.c<br>
-index bf0170782f25..2a5513eb9e1f 100644<br>
---- a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c<br>
-+++ b/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c<br>
-@@ -18,8 +18,7 @@<br>
-=C2=A0static unsigned long<br>
-=C2=A0panfrost_gem_shrinker_count(struct shrinker *shrinker, struct shrink_=
-control *sc)<br>
-=C2=A0{<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0struct panfrost_device *pfdev =3D<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0container_of(shrink=
-er, struct panfrost_device, shrinker);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0struct panfrost_device *pfdev =3D shrinker-&gt;=
-private_data;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct drm_gem_shmem_object *shmem;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 unsigned long count =3D 0;<br>
-<br>
-@@ -65,8 +64,7 @@ static bool panfrost_gem_purge(struct drm_gem_object *obj=
-)<br>
-=C2=A0static unsigned long<br>
-=C2=A0panfrost_gem_shrinker_scan(struct shrinker *shrinker, struct shrink_c=
-ontrol *sc)<br>
-=C2=A0{<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0struct panfrost_device *pfdev =3D<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0container_of(shrink=
-er, struct panfrost_device, shrinker);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0struct panfrost_device *pfdev =3D shrinker-&gt;=
-private_data;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct drm_gem_shmem_object *shmem, *tmp;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 unsigned long freed =3D 0;<br>
-<br>
-@@ -100,10 +98,15 @@ panfrost_gem_shrinker_scan(struct shrinker *shrinker, =
-struct shrink_control *sc)<br>
-=C2=A0void panfrost_gem_shrinker_init(struct drm_device *dev)<br>
-=C2=A0{<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct panfrost_device *pfdev =3D dev-&gt;dev_p=
-rivate;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0pfdev-&gt;shrinker.count_objects =3D panfrost_g=
-em_shrinker_count;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0pfdev-&gt;shrinker.scan_objects =3D panfrost_ge=
-m_shrinker_scan;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0pfdev-&gt;shrinker.seeks =3D DEFAULT_SEEKS;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0WARN_ON(register_shrinker(&amp;pfdev-&gt;shrink=
-er, &quot;drm-panfrost&quot;));<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0pfdev-&gt;shrinker =3D shrinker_alloc_and_init(=
-panfrost_gem_shrinker_count,<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0panfrost_gem_shrinker_scan, 0,<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0DEFAULT_SEEKS, 0, pfdev);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0if (pfdev-&gt;shrinker &amp;&amp;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0register_shrinker(pfdev-&gt;shrin=
-ker, &quot;drm-panfrost&quot;)) {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0shrinker_free(pfdev=
--&gt;shrinker);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0WARN_ON(1);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-=C2=A0}<br>
-<br>
-=C2=A0/**<br>
-@@ -116,7 +119,6 @@ void panfrost_gem_shrinker_cleanup(struct drm_device *d=
-ev)<br>
-=C2=A0{<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct panfrost_device *pfdev =3D dev-&gt;dev_p=
-rivate;<br>
-<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0if (pfdev-&gt;shrinker.nr_deferred) {<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0unregister_shrinker=
-(&amp;pfdev-&gt;shrinker);<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0if (pfdev-&gt;shrinker-&gt;nr_deferred)<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0unregister_and_free=
-_shrinker(pfdev-&gt;shrinker);<br>
-=C2=A0}<br>
--- <br>
-2.30.2<br>
-<br>
-</blockquote></div>
-
---0000000000007dacb305feccace6--
+> 
