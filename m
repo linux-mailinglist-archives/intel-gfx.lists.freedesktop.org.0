@@ -2,37 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D433E73B3D8
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jun 2023 11:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E04B173B44B
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jun 2023 12:01:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 045A410E633;
-	Fri, 23 Jun 2023 09:42:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 280E310E633;
+	Fri, 23 Jun 2023 10:01:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-4022.proton.ch (mail-4022.proton.ch [185.70.40.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA76110E032
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jun 2023 09:42:46 +0000 (UTC)
-Date: Fri, 23 Jun 2023 09:42:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail; t=1687513363; x=1687772563;
- bh=gT/hFPfbITG4VFPtNeo5wwjwThRz+wCwdxQi8gMQgRU=;
- h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
- Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
- b=swE33TT9/MK2TY8wU6FxZBZWfAFn3FIJLh5qZ+jfLRK6VoK4kflk5ND9GwyFFpHX5
- DYcusR5tx8wKp9D6pt7MQjGs1DtkmirGqEIQ4/R0DiBA0NoPm9vUnZGCkSFL0ODaqW
- 6eDy5IKFtMsDS0Js25eGQZFcBk3i68z7KCGBnmqpdl0MuHanWJT8U6dDna11clBdug
- Pjh//SpX+pupBi2Qxz8W1GG6vFV3BqR1pyuYW303+vJiTNZl8Y+a3h32YfpAuLUFlx
- D5m8anhYkx9s/rHNzBnOMU59/4Yjxo9mdO4SOfvgGT4jSmZBHsE3+KkG0covy452Xk
- lYgUwh1sOrOlg==
-To: intel-gfx@lists.freedesktop.org
-From: Simon Ser <contact@emersion.fr>
-Message-ID: <20230623094229.120264-1-contact@emersion.fr>
-Feedback-ID: 1358184:user:proton
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9C48510E106;
+ Fri, 23 Jun 2023 10:01:19 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 61950C14;
+ Fri, 23 Jun 2023 03:02:02 -0700 (PDT)
+Received: from [10.1.30.17] (e122027.cambridge.arm.com [10.1.30.17])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E25C23F64C;
+ Fri, 23 Jun 2023 03:01:13 -0700 (PDT)
+Message-ID: <35f80572-0ba2-be54-c947-fcbe2d71ed5e@arm.com>
+Date: Fri, 23 Jun 2023 11:01:11 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: [Intel-gfx] [PATCH v2] i915/display/hotplug: use
- drm_kms_helper_connector_hotplug_event()
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+To: Qi Zheng <qi.zheng@linux.dev>, akpm@linux-foundation.org,
+ david@fromorbit.com, tkhai@ya.ru, vbabka@suse.cz, roman.gushchin@linux.dev,
+ djwong@kernel.org, brauner@kernel.org, paulmck@kernel.org, tytso@mit.edu
+References: <20230622083932.4090339-1-qi.zheng@linux.dev>
+ <20230622083932.4090339-6-qi.zheng@linux.dev>
+Content-Language: en-GB
+From: Steven Price <steven.price@arm.com>
+In-Reply-To: <20230622083932.4090339-6-qi.zheng@linux.dev>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 05/29] drm/panfrost: dynamically allocate
+ the drm-panfrost shrinker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,75 +47,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: linux-raid@vger.kernel.org, linux-nfs@vger.kernel.org, dm-devel@redhat.com,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org, linux-xfs@vger.kernel.org,
+ linux-mm@kvack.org, linux-bcache@vger.kernel.org,
+ Qi Zheng <zhengqi.arch@bytedance.com>, linux-fsdevel@vger.kernel.org,
+ linux-ext4@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-btrfs@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This adds more information to the hotplug uevent and lets user-space
-know that it's about a particular connector only.
+On 22/06/2023 09:39, Qi Zheng wrote:
+> From: Qi Zheng <zhengqi.arch@bytedance.com>
+> 
+> In preparation for implementing lockless slab shrink,
+> we need to dynamically allocate the drm-panfrost shrinker,
+> so that it can be freed asynchronously using kfree_rcu().
+> Then it doesn't need to wait for RCU read-side critical
+> section when releasing the struct panfrost_device.
+> 
+> Signed-off-by: Qi Zheng <zhengqi.arch@bytedance.com>
+> ---
+>  drivers/gpu/drm/panfrost/panfrost_device.h    |  2 +-
+>  .../gpu/drm/panfrost/panfrost_gem_shrinker.c  | 24 ++++++++++---------
+>  2 files changed, 14 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_device.h b/drivers/gpu/drm/panfrost/panfrost_device.h
+> index b0126b9fbadc..e667e5689353 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_device.h
+> +++ b/drivers/gpu/drm/panfrost/panfrost_device.h
+> @@ -118,7 +118,7 @@ struct panfrost_device {
+>  
+>  	struct mutex shrinker_lock;
+>  	struct list_head shrinker_list;
+> -	struct shrinker shrinker;
+> +	struct shrinker *shrinker;
+>  
+>  	struct panfrost_devfreq pfdevfreq;
+>  };
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c b/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
+> index bf0170782f25..2a5513eb9e1f 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
+> @@ -18,8 +18,7 @@
+>  static unsigned long
+>  panfrost_gem_shrinker_count(struct shrinker *shrinker, struct shrink_control *sc)
+>  {
+> -	struct panfrost_device *pfdev =
+> -		container_of(shrinker, struct panfrost_device, shrinker);
+> +	struct panfrost_device *pfdev = shrinker->private_data;
+>  	struct drm_gem_shmem_object *shmem;
+>  	unsigned long count = 0;
+>  
+> @@ -65,8 +64,7 @@ static bool panfrost_gem_purge(struct drm_gem_object *obj)
+>  static unsigned long
+>  panfrost_gem_shrinker_scan(struct shrinker *shrinker, struct shrink_control *sc)
+>  {
+> -	struct panfrost_device *pfdev =
+> -		container_of(shrinker, struct panfrost_device, shrinker);
+> +	struct panfrost_device *pfdev = shrinker->private_data;
+>  	struct drm_gem_shmem_object *shmem, *tmp;
+>  	unsigned long freed = 0;
+>  
+> @@ -100,10 +98,15 @@ panfrost_gem_shrinker_scan(struct shrinker *shrinker, struct shrink_control *sc)
+>  void panfrost_gem_shrinker_init(struct drm_device *dev)
+>  {
+>  	struct panfrost_device *pfdev = dev->dev_private;
+> -	pfdev->shrinker.count_objects = panfrost_gem_shrinker_count;
+> -	pfdev->shrinker.scan_objects = panfrost_gem_shrinker_scan;
+> -	pfdev->shrinker.seeks = DEFAULT_SEEKS;
+> -	WARN_ON(register_shrinker(&pfdev->shrinker, "drm-panfrost"));
+> +
+> +	pfdev->shrinker = shrinker_alloc_and_init(panfrost_gem_shrinker_count,
+> +						  panfrost_gem_shrinker_scan, 0,
+> +						  DEFAULT_SEEKS, 0, pfdev);
+> +	if (pfdev->shrinker &&
+> +	    register_shrinker(pfdev->shrinker, "drm-panfrost")) {
+> +		shrinker_free(pfdev->shrinker);
+> +		WARN_ON(1);
+> +	}
 
-v2: don't rely on the changed HPD pin bitmask to count changed
-    connectors (Jani)
+So we didn't have good error handling here before, but this is
+significantly worse. Previously if register_shrinker() failed then the
+driver could safely continue without a shrinker - it would waste memory
+but still function.
 
-Signed-off-by: Simon Ser <contact@emersion.fr>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hotplug.c | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+However we now have two failure conditions:
+ * shrinker_alloc_init() returns NULL. No warning and NULL deferences
+   will happen later.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm=
-/i915/display/intel_hotplug.c
-index 1160fa20433b..0ff5ed46ae1e 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -376,6 +376,8 @@ static void i915_hotplug_work_func(struct work_struct *=
-work)
- =09u32 changed =3D 0, retry =3D 0;
- =09u32 hpd_event_bits;
- =09u32 hpd_retry_bits;
-+=09struct drm_connector *first_changed_connector =3D NULL;
-+=09int changed_connectors =3D 0;
-=20
- =09mutex_lock(&dev_priv->drm.mode_config.mutex);
- =09drm_dbg_kms(&dev_priv->drm, "running encoder hotplug functions\n");
-@@ -428,6 +430,11 @@ static void i915_hotplug_work_func(struct work_struct =
-*work)
- =09=09=09=09break;
- =09=09=09case INTEL_HOTPLUG_CHANGED:
- =09=09=09=09changed |=3D hpd_bit;
-+=09=09=09=09changed_connectors++;
-+=09=09=09=09if (!first_changed_connector) {
-+=09=09=09=09=09drm_connector_get(&connector->base);
-+=09=09=09=09=09first_changed_connector =3D &connector->base;
-+=09=09=09=09}
- =09=09=09=09break;
- =09=09=09case INTEL_HOTPLUG_RETRY:
- =09=09=09=09retry |=3D hpd_bit;
-@@ -438,9 +445,14 @@ static void i915_hotplug_work_func(struct work_struct =
-*work)
- =09drm_connector_list_iter_end(&conn_iter);
- =09mutex_unlock(&dev_priv->drm.mode_config.mutex);
-=20
--=09if (changed)
-+=09if (changed_connectors =3D=3D 1)
-+=09=09drm_kms_helper_connector_hotplug_event(first_changed_connector);
-+=09else if (changed_connectors > 0)
- =09=09drm_kms_helper_hotplug_event(&dev_priv->drm);
-=20
-+=09if (first_changed_connector)
-+=09=09drm_connector_put(first_changed_connector);
+ * register_shrinker() fails, shrinker_free() will free pdev->shrinker
+   we get a warning, but followed by a use-after-free later.
+
+I think we need to modify panfrost_gem_shrinker_init() to be able to
+return an error, so a change something like the below (untested) before
+your change.
+
+Steve
+
+----8<---
+diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c
+b/drivers/gpu/drm/panfrost/panfrost_drv.c
+index bbada731bbbd..f705bbdea360 100644
+--- a/drivers/gpu/drm/panfrost/panfrost_drv.c
++++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
+@@ -598,10 +598,14 @@ static int panfrost_probe(struct platform_device
+*pdev)
+ 	if (err < 0)
+ 		goto err_out1;
+
+-	panfrost_gem_shrinker_init(ddev);
++	err = panfrost_gem_shrinker_init(ddev);
++	if (err)
++		goto err_out2;
+
+ 	return 0;
+
++err_out2:
++	drm_dev_unregister(ddev);
+ err_out1:
+ 	pm_runtime_disable(pfdev->dev);
+ 	panfrost_device_fini(pfdev);
+diff --git a/drivers/gpu/drm/panfrost/panfrost_gem.h
+b/drivers/gpu/drm/panfrost/panfrost_gem.h
+index ad2877eeeccd..863d2ec8d4f0 100644
+--- a/drivers/gpu/drm/panfrost/panfrost_gem.h
++++ b/drivers/gpu/drm/panfrost/panfrost_gem.h
+@@ -81,7 +81,7 @@ panfrost_gem_mapping_get(struct panfrost_gem_object *bo,
+ void panfrost_gem_mapping_put(struct panfrost_gem_mapping *mapping);
+ void panfrost_gem_teardown_mappings_locked(struct panfrost_gem_object *bo);
+
+-void panfrost_gem_shrinker_init(struct drm_device *dev);
++int panfrost_gem_shrinker_init(struct drm_device *dev);
+ void panfrost_gem_shrinker_cleanup(struct drm_device *dev);
+
+ #endif /* __PANFROST_GEM_H__ */
+diff --git a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
+b/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
+index bf0170782f25..90265b37636f 100644
+--- a/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
++++ b/drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
+@@ -97,13 +97,17 @@ panfrost_gem_shrinker_scan(struct shrinker
+*shrinker, struct shrink_control *sc)
+  *
+  * This function registers and sets up the panfrost shrinker.
+  */
+-void panfrost_gem_shrinker_init(struct drm_device *dev)
++int panfrost_gem_shrinker_init(struct drm_device *dev)
+ {
+ 	struct panfrost_device *pfdev = dev->dev_private;
++	int ret;
 +
- =09/* Remove shared HPD pins that have changed */
- =09retry &=3D ~changed;
- =09if (retry) {
---=20
-2.41.0
+ 	pfdev->shrinker.count_objects = panfrost_gem_shrinker_count;
+ 	pfdev->shrinker.scan_objects = panfrost_gem_shrinker_scan;
+ 	pfdev->shrinker.seeks = DEFAULT_SEEKS;
+-	WARN_ON(register_shrinker(&pfdev->shrinker, "drm-panfrost"));
++	ret = register_shrinker(&pfdev->shrinker, "drm-panfrost");
++
++	return ret;
+ }
 
+ /**
 
