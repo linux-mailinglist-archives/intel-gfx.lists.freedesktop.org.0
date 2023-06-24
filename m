@@ -2,135 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4504373C4CF
-	for <lists+intel-gfx@lfdr.de>; Sat, 24 Jun 2023 01:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9683B73C50E
+	for <lists+intel-gfx@lfdr.de>; Sat, 24 Jun 2023 02:11:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7946710E013;
-	Fri, 23 Jun 2023 23:32:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A355010E6E4;
+	Sat, 24 Jun 2023 00:11:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B34E10E013
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jun 2023 23:32:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687563162; x=1719099162;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=8SJo4V0PD4456LDrQYHOQbcSdVPPYuqerLVcyvuxhLE=;
- b=Q+dk1/tErJbJyKkYbIKy+tZCLjGd5Dsrd0QRFbf1BVLVoYnVm6iYnowG
- Yx7obU+RKPYfCYro5AP6BwtFf0QMA50C65iFAWB5AGQdXk0EReJcnCHUX
- EOPcegTeXrvWPHMdd5PWwb0nWSOyjay3F9juMF4km8IYfixcIM7+443+P
- 83166bjJ/ZxE7+R4/rluTlDO9qc3MO+iNgUW/m+kFrxd6c05DcEjrwk+f
- ICKepatA/QaaLC2rO1Qmanjr7PywHcfmorLEbTEm6Y2b3ihGC0tLTITxR
- YzJSAEUYLrRkA73g912nBkrqan2BHif3dQlpJ6POlU8LM+AOyUeAVLkUA A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10750"; a="350655012"
-X-IronPort-AV: E=Sophos;i="6.01,153,1684825200"; d="scan'208";a="350655012"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2023 16:32:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10750"; a="709613040"
-X-IronPort-AV: E=Sophos;i="6.01,153,1684825200"; d="scan'208";a="709613040"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga007.jf.intel.com with ESMTP; 23 Jun 2023 16:32:40 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 23 Jun 2023 16:32:40 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Fri, 23 Jun 2023 16:32:40 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.174)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Fri, 23 Jun 2023 16:32:40 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cg/y/Yvc+CMy4t4RoclUPKN5ivl3+1EhCTaURU5khPf+POBcsKCPa6zbRrlTeCc9hyYokVT95qjTrofRQkUAkHJdjPvSjlDyQCvz13sADGNb0OQSAQpW6zjyMWsSsj3NtGJyI/pz/nClA5zRHKnIPrYdltoNGWIJNmY0Pp3HD8265W8LtcgUmdINVfZ6napoD4QohSPukn7K2V+2soU0pvf+A4jFoKIUayqLp8XmH5LmgknC/En9NXHG7XGo9QTs6uVDV7Npm5ZQzxBcOQpYr6CNslkrgZn0OfTqYAKJQU6GMADkXbQUXu5Bl1nwgO/8Q/nWCistjJv3qHHA1IIPTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=16DLOn7NTKeTDFR8KAjjfhIy3DcWYT7YK+J9ghV35cw=;
- b=DvMLvLLtumr8IP80J6Jy7d0lIbHDAHnLEKYBKSCMRqJIdrm9FFxU9YgLYPnQvda8mIVi8OfO7TXQcbXOibhiTggURZChSoNU4B+eCVFd2orWCVqMg7nJaG/hxBFd/+p8vgmsh0XOtibBw5UpbkcwHLkCqV7KwU+CE1NTwIVxkQcgkrJrqNYEFNBOGCTNjVfZY1zR/ChwtG8LDo17vVRCQHEd27QwLGn/iMxk/XoEBk6ICfLQQVJfgklmjxNkLfNV/AWViKGvgvo0fBtSnqWbG5aX8piWcOrn8DtQ7dDUie48A/L2Fwm0YMQ8VNHxuoiQVnaxEEixGXYSsZ91wNc9ZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.26; Fri, 23 Jun
- 2023 23:32:38 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::9f98:8f3c:a608:8396]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::9f98:8f3c:a608:8396%7]) with mapi id 15.20.6521.024; Fri, 23 Jun 2023
- 23:32:38 +0000
-Date: Fri, 23 Jun 2023 16:32:35 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: "Kalvala, Haridhar" <haridhar.kalvala@intel.com>
-Message-ID: <20230623233235.GM6953@mdroper-desk1.amr.corp.intel.com>
-References: <20230616225041.3922719-1-matthew.d.roper@intel.com>
- <238f3e22-6475-7c36-d63c-016194c192d9@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <238f3e22-6475-7c36-d63c-016194c192d9@intel.com>
-X-ClientProxiedBy: BY3PR03CA0005.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::10) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
+ [IPv6:2a00:1450:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B4E410E6E2;
+ Sat, 24 Jun 2023 00:11:00 +0000 (UTC)
+Received: by mail-wr1-x42d.google.com with SMTP id
+ ffacd0b85a97d-307d58b3efbso1235471f8f.0; 
+ Fri, 23 Jun 2023 17:11:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1687565459; x=1690157459;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=juyXTwoXsD5mc3/9HxZ2a7x6dEyqzG8iNP0iF/NU/Ww=;
+ b=MmN/SfQTVSwstgn9DyjaDtUGPN9gGSs1fKgJhKyBKThnqBlzJRMvrsZXPQhG7IZe6l
+ Iol5bu6RICV3a7Kqq6nWPWp79EDI0fSs17/LPya2OphEWx0/r9XarsggkZW+1Uk+abec
+ 0EgxJvWiL3xLH5ZW89jXCzFzF9gaY0Q8rTnblSu5fBESLpe3k1XgFH9ijWHl3DAv69Rf
+ uE9zuWu4Isj/VgmfQzMy0sh0KPHMbR2QzZMzAyM6n32bIAf8xcUPAr/nxTixnHPoCiJa
+ TVoabV46gMriN1+rwOxHV3Kn7Mviu0ySlzK0u+mp4cHVFeJwhpsMdoOtPYSBEYe3zoix
+ pwQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1687565459; x=1690157459;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=juyXTwoXsD5mc3/9HxZ2a7x6dEyqzG8iNP0iF/NU/Ww=;
+ b=EmxG7VgRjBlRm75wDIBfmEi2TfyuALyVOjzH9MnyH/rieXhmTwlMEflQ/KWvMUJWpy
+ gRiOsMgh7XgJAizgO8sSCoUpZAfMdzR6VLa+zFsxS7iuJHxLR51JOJ51sO4krIR5SZiY
+ QosEtrixJ6fSLLLv91fGMUddLKt7ge8MZgjweQVtjFrMsnjt2e1Y7BurUOkZzf3D9BMR
+ /ZtQ084+wpgx+m/1nIr32vay+6p5PHAp8uzq0sktNWy72WYwCKKZckjQdZ6KhZSfRiY5
+ wP1JVcOAERTx6dujHNGsBOLnlXbMVs5ni0K7a6tAP+vHXR/G/7r9OjprIg6tgsK2J/4R
+ HFaA==
+X-Gm-Message-State: AC+VfDzldtMmFNOxFHf4qxD6QWH5HKvYtsIL+dJyfOLXTvbF43b06o0c
+ 8WDYh/h5Y0F+rq8z5rzHkc8=
+X-Google-Smtp-Source: ACHHUZ6D9PWnBQdf3d3SThJ9JLZtU4v+kNtjDQQ2li9rSnIWX6+2xdfWvLrW/AnkbHXPW810+7mpQA==
+X-Received: by 2002:adf:f847:0:b0:309:3af4:8c8c with SMTP id
+ d7-20020adff847000000b003093af48c8cmr14124282wrq.54.1687565459046; 
+ Fri, 23 Jun 2023 17:10:59 -0700 (PDT)
+Received: from suse.localnet (host-79-23-105-164.retail.telecomitalia.it.
+ [79.23.105.164]) by smtp.gmail.com with ESMTPSA id
+ j9-20020a5d4649000000b0030aefa3a957sm653882wrs.28.2023.06.23.17.10.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 23 Jun 2023 17:10:58 -0700 (PDT)
+From: "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Sumitra Sharma <sumitraartsy@gmail.com>,
+ Thomas =?ISO-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>
+Date: Sat, 24 Jun 2023 02:10:56 +0200
+Message-ID: <3747290.kQq0lBPeGt@suse>
+In-Reply-To: <20230617180420.GA410966@sumitra.com>
+References: <20230617180420.GA410966@sumitra.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|CH3PR11MB8441:EE_
-X-MS-Office365-Filtering-Correlation-Id: 09ba595b-742c-4838-a90a-08db74422153
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5PhPQI1QOtgLXW/MpVh6cnPoB7bJguCtrmrf7z6+ROWLXZH+ppjwIRkvfoUEVjMQsy8iTcntVNqh/A+o/W+gZ8k0OytQXtIhX7Y4oOKnH+VB824eR87yot1nxkj9Pf+PssZ2TPc0AP+YKQWT6H6TdVasANTS09gjzWoIROJFnZFFQ3f+BHv93nPX8wRFmRNh7OJANu7gt7wT1BlqVikmmQv9mtNVthukn+EIIn4QQ9negfymnJ5qEdM0fm2Ol2nTH4UQaodzto9i4CBBBA47QQpr9q0K0KlABxnq4YK5lDi9+U/lT+orFUiSpF8Zs/VWoTPPEkNzJGBI7n5vHUouigbreukRI33k4yymx13itWcIXhkl0seuYO+ySauFVLeqIWjr8/iwp9gu5jHiEFNYXsBv8WE6jmcLeSJSiv1mdD4mGNkTwg4AJmLPAD9WDZz9PdeFSE5JECtxXN5aHqKFsE3wNfi1JaqaU11A16AVnbYOS/Cc298fgzMZ/HOQ/i71T8kcM2JGSOvXCaqQzpAa5xa5KYoLQ23Vmo21xnkPheiuNwEs5pc2Ix5LEp6Cx9yN
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(396003)(366004)(136003)(346002)(39860400002)(451199021)(2906002)(6486002)(38100700002)(6666004)(83380400001)(82960400001)(6512007)(6506007)(1076003)(53546011)(186003)(86362001)(41300700001)(26005)(478600001)(316002)(6862004)(6636002)(66476007)(66946007)(33656002)(8936002)(8676002)(5660300002)(66556008)(4326008);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pvlhiBqVtl+oR/7UbqHW/18t+F40FSrGuKK20tk+bV8yV6DFbrMYunRVfCRA?=
- =?us-ascii?Q?ccvb8ok1ekVTxk5mj5AMoFIomQSB0HcLvMib1rY5XIn9+1YHqB76GkUcm0UE?=
- =?us-ascii?Q?w6j150ZtrPe/N7yQrwJnvSVue4HShLvKsijJk/A68Gsex+0ynOP9u7oqWa4L?=
- =?us-ascii?Q?l3uNQS93STnkqJt3sw787Ho64P6P0LKpLlUpVJtcVMwGfVEj9EmNkdBZKnkr?=
- =?us-ascii?Q?sp1JEBNn+yV02QAxtEi5DgvU/xxHfhb5694SlNDfoyfIIN42GSn1WXu44gjU?=
- =?us-ascii?Q?xYEbFYh/WoFQugnXp6usIbsdGNsTKF65D5RCB+juQXORyzHOe+rCdvgEl7D7?=
- =?us-ascii?Q?DBFYX6EWAdYfgBKDiubk0Wr1m+6CI+dwuQqQl8Q4ao/w8sWzG07z5l/YAZlL?=
- =?us-ascii?Q?ma2I+/aFz/bX6L7rCAerSElazT+ndhy33yEur9bVv+1KMUFt76N5DpQ9M+kO?=
- =?us-ascii?Q?mEYHJ9Bt2vBgtMDKz9T09sH6z7J3b9j9ujb11jwWfHyRL0MIbEgj/WZTdzPq?=
- =?us-ascii?Q?48UEw0YMZ8OrRzj/FRmBcQwTnkxs19HZ31TzIZ2LZgYdfTNQW6Lm3QtHhQUd?=
- =?us-ascii?Q?1Zz/OF/SRgpE8rsECFi93AUuFz1obfMJ0JCn8/XZosUmYwhbv0fY4MNoYmZV?=
- =?us-ascii?Q?K42HoczJQWcjOWrJ26wXnOVgFk7z//s3KUo3KOXKOd3v2kb+Ut1vg5/OSDUn?=
- =?us-ascii?Q?BcPpaM2/9OFH8gxaZJJQHEqBtOSVOJvr+lwuyxjhhpeXqh5nkarS0iBCq19u?=
- =?us-ascii?Q?xnYZqGQud7hMP+ElgNNgS8xYU+UpkY626WQxoQkTV7gSiFDpSya999erPxo3?=
- =?us-ascii?Q?Gwbe2n0CLY3URDYW41x6s9uRFzS4GlyM+lKjOslq+w8+RSMbmZUXjZEzT6dA?=
- =?us-ascii?Q?V1lc+JOmGpLrUQk1GZr4kD/atc+Qat2zq9MCp3g5agmS6Pfofm+TWc5tkJjp?=
- =?us-ascii?Q?8f7ulDq18+Xg8J1PyLajTMun2vJ4xXLWzQ6h9d1ys0rBWmzzTZOJXip+dLMd?=
- =?us-ascii?Q?hgWAM1HZE8aT9WP7Kg/a0YL9VUG0dVgDG/w9wI3lipY89JfPsxFJcxSPx0hS?=
- =?us-ascii?Q?GxHE4QQskYm47m3t2m6Axd5ioBBZcpyZnDdiQRKpfGkNz5z/CbhKo4fn6hsP?=
- =?us-ascii?Q?X8uLmNBTiUcFhyBFShYN5pzPri9XmRmHcjnbcsrtXI/qNKm0C+/yiadSJyxz?=
- =?us-ascii?Q?Hc7XXMGYzf29cEyKlcPICOZAWUojCsQH190Hrs0TLc2qSNS/VXEZTKbocMJu?=
- =?us-ascii?Q?j1/2ySqXih04db3Q8V/D43WpgP074gHivECiYf3nzX1IHPH+ZMAESTxhg4+O?=
- =?us-ascii?Q?dOGdlM0mMkkzNMK9nTwRhA3CP7ExWZLN9CwQaS4cCf0utDuGX7m3Z7s8oHUU?=
- =?us-ascii?Q?VzzM7L67En/JU8OjgCB9pkcnz7eqVixpS7SadEx0Lfdn+wTWg7WgPHZ9nxAR?=
- =?us-ascii?Q?E678TLdcf0GpaGOgxaLAE4+SNot3QANQFyUQbAbMymw1upzcb4khCOjqKmgF?=
- =?us-ascii?Q?ESBEFQX6rzilvY+7qs1KmgQdD+1Vk0S3V+w/voqiqeNz0LOEX+eUfTRm5k6/?=
- =?us-ascii?Q?5fpCIsfTuWILIWBaMjrGIxsal5g91+4CojbgboxINUAfY2/5SZU4qgGhKWGR?=
- =?us-ascii?Q?7Q=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09ba595b-742c-4838-a90a-08db74422153
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2023 23:32:38.1427 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vjKqam9woZY+neiKFjI55UegLBePH7wnAIQLYitA6pEyrr98nZMnwd5OKnOBtyEjlNvreDC0rRnpwXTjDTyDtJqDAHqZ9L82YrD4SNUGP1o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8441
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Extend Wa_14015795083 platforms
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Replace kmap() with
+ kmap_local_page()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,71 +81,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Deepak R Varma <drv@mailo.com>, Ira Weiny <ira.weiny@intel.com>,
+ Sumitra Sharma <sumitraartsy@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 22, 2023 at 04:24:49PM +0530, Kalvala, Haridhar wrote:
-> 
-> On 6/17/2023 4:20 AM, Matt Roper wrote:
-> > This workaround was already implemented for DG2, PVC, and some steppings
-> > of MTL, but the workaround database has now been updated to extend this
-> > workaround to TGL, RKL, DG1, and ADL.
-> > 
-> > v2:
-> >   - Skip readback verification for these extra gen12lp platforms.  On
-> >     some of the platforms, the firmware locks this register, preventing
-> >     the driver from making any modifications.  We should still try to
-> >     apply the workaround, but if the register is locked and the value
-> >     doesn't stick, that's semi-expected and not something we want to flag
-> >     as a driver error on debug builds.
-> 
-> Hi Matt,
-> 
-> Looks good to me.
-> 
-> Reviewed-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
+On sabato 17 giugno 2023 20:04:20 CEST Sumitra Sharma wrote:
+> kmap() has been deprecated in favor of the kmap_local_page()
+> due to high cost, restricted mapping space, the overhead of a
+> global lock for synchronization, and making the process sleep
+> in the absence of free slots.
+>=20
+> kmap_local_page() is faster than kmap() and offers thread-local
+> and CPU-local mappings, take pagefaults in a local kmap region
 
-Applied to drm-intel-gt-next.  Thanks for the review.
+NIT: _can_ take pagefaults in a local kmap region
+
+> and preserves preemption by saving the mappings of outgoing tasks
+> and restoring those of the incoming one during a context switch.
+>=20
+> The mapping is kept thread local in the function
+> =E2=80=9Ci915_vma_coredump_create=E2=80=9D in i915_gpu_error.c
+>=20
+> Therefore, replace kmap() with kmap_local_page().
+>=20
+> Suggested-by: Ira Weiny <ira.weiny@intel.com>
+>=20
+> Signed-off-by: Sumitra Sharma <sumitraartsy@gmail.com>
+> ---
+>=20
+> Changes in v2:
+> 	- Replace kmap() with kmap_local_page().
+> 	- Change commit subject and message.
+
+With the changes that Ira suggested and the minor fix I'm proposing to the=
+=20
+commit message, it looks good to me too, so this patch is...=20
+
+Reviewed-by: Fabio M. De Francesco <fmdefrancesco@gmail.com>
+
+However, as far as I'm concerned, our nits don't necessarily require any ne=
+wer=20
+version, especially because Tvrtko has already sent this patch for their CI.
+
+Thanks,
+
+=46abio
+
+P.S.: As Sumitra says both kmap() and kmap_local_page() allows preemption i=
+n=20
+non atomic context.=20
+
+=46urthermore, Tvrtko confirmed that the pages can come from HIGHMEM, there=
+fore=20
+kmap_local_page for local temporary mapping is unavoidable.
+
+Last thing... Thomas thinks he wants to make it run atomically (if I=20
+understood one of his messages correctly). As I already responded, nothing=
+=20
+prevents someone does another patch just to disable preemption (or to enter=
+=20
+atomic context by other means) around the code marked by kmap_local_page() =
+/=20
+kunmap_local() because these functions work perfectly _also_ in atomic cont=
+ext=20
+(including interrupts). But this is not something that Sumitra should be=20
+worried about.
+
+>=20
+>  drivers/gpu/drm/i915/i915_gpu_error.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c
+> b/drivers/gpu/drm/i915/i915_gpu_error.c index f020c0086fbc..bc41500eedf5
+> 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -1164,9 +1164,9 @@ i915_vma_coredump_create(const struct intel_gt *gt,
+>=20
+>  			drm_clflush_pages(&page, 1);
+>=20
+> -			s =3D kmap(page);
+> +			s =3D kmap_local_page(page);
+>  			ret =3D compress_page(compress, s, dst, false);
+> -			kunmap(page);
+> +			kunmap_local(s);
+>=20
+>  			drm_clflush_pages(&page, 1);
+>=20
+> --
+> 2.25.1
 
 
-Matt
 
-> 
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_workarounds.c | 12 ++++++++++++
-> >   1 file changed, 12 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > index 4d2dece96011..4bb83c435a70 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > @@ -1485,6 +1485,18 @@ gen12_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
-> >   	/* Wa_14011059788:tgl,rkl,adl-s,dg1,adl-p */
-> >   	wa_mcr_write_or(wal, GEN10_DFR_RATIO_EN_AND_CHICKEN, DFR_DISABLE);
-> > +
-> > +	/*
-> > +	 * Wa_14015795083
-> > +	 *
-> > +	 * Firmware on some gen12 platforms locks the MISCCPCTL register,
-> > +	 * preventing i915 from modifying it for this workaround.  Skip the
-> > +	 * readback verification for this workaround on debug builds; if the
-> > +	 * workaround doesn't stick due to firmware behavior, it's not an error
-> > +	 * that we want CI to flag.
-> > +	 */
-> > +	wa_add(wal, GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE,
-> > +	       0, 0, false);
-> >   }
-> >   static void
-> 
-> -- 
-> Regards,
-> Haridhar Kalvala
-> 
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
