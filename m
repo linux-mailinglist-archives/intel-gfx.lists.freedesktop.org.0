@@ -1,76 +1,73 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1297373FE53
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D621D73FE54
 	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 16:39:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0B5710E33B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A59AB10E33A;
 	Tue, 27 Jun 2023 14:38:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com
- [IPv6:2607:f8b0:4864:20::630])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DED6710E18D
- for <intel-gfx@lists.freedesktop.org>; Sat, 24 Jun 2023 11:08:29 +0000 (UTC)
-Received: by mail-pl1-x630.google.com with SMTP id
- d9443c01a7336-1b693afe799so2529985ad.1
- for <intel-gfx@lists.freedesktop.org>; Sat, 24 Jun 2023 04:08:29 -0700 (PDT)
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com
+ [IPv6:2607:f8b0:4864:20::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A6E810E18D
+ for <intel-gfx@lists.freedesktop.org>; Sat, 24 Jun 2023 11:17:29 +0000 (UTC)
+Received: by mail-pl1-x631.google.com with SMTP id
+ d9443c01a7336-1b693afe799so2541455ad.1
+ for <intel-gfx@lists.freedesktop.org>; Sat, 24 Jun 2023 04:17:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bytedance.com; s=google; t=1687604909; x=1690196909;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
+ d=bytedance.com; s=google; t=1687605449; x=1690197449;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=7tnz7s8ew6fhhs0dR9M9QnK0rlCy7+XAhEAWksz3vrg=;
- b=UmCBKPF4sv1MHFXsiXJ20hfDGRh4FqZyWNYAXvwJ4aTGGxIidAh9WvDmw+TkimJm1h
- mWSpmHZ6C1d0YyoGyiszU38sSq69kPhXPhm56U4+6FVITcJ1CEZHjLEmCAtp6wktOCK/
- DxOdRsySk1sXqY68RWF0JOe4/zeVPJtvQ9lHfsJ6x6SdMyQcNVrIa4NXa7fRi6mlad+o
- t//wFgxPhT7EPECahYPUyLpil8jkwMy0/+XEXxUh0Le8+U2ufonOfsscVTgC+SrRoDCH
- iM7noG8OLDFE0tdGr8824/JUhvbwrqjbGrrMdkGxtRD/cnqrUyFsNqPJcdX8JFikXXu+
- BdTw==
+ bh=T15O6xQIwkBwwHtvfiEExn4sWPaOJ+WY8Ww0WTBtsp8=;
+ b=CYbPeV4zw+1THiloHL2+ypjCEv/Id/OqdEvK4Gbzyx+byuca+5y6cAMB03scGpNQnd
+ SSB/7Anoxb0IyXh7PuVlGbhgdQdF/LJkm6iAy37RUchzkDnhJHkx6mrv3F5vKgoyQyPy
+ OIasGq/04a4yIeBx66N81aJ+oDLEzr/c57Z4snA4iQkl0+r7Z1fxQw1D3B6O1TLBBXtU
+ +6bRquokuMgWUCPSNTKWaKx0RTO9dV5TrEkx6qXy9qwlyog+mmdaA1jG00RymxjmBaI/
+ eUJ0hTbMfoOPJPyWkTS38C3ZPCIA3M/x6cjkzBrGwhlDHNcmA3/i0KhFITfJt8SeOUy8
+ iVYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687604909; x=1690196909;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
+ d=1e100.net; s=20221208; t=1687605449; x=1690197449;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=7tnz7s8ew6fhhs0dR9M9QnK0rlCy7+XAhEAWksz3vrg=;
- b=HKU/kY9ke6I1Exjag1gOyk4GDCE9K69KfyzW+nvAWjw3HaVCkRC+FvSQH2Or39lMRB
- 6aSTtXwYxQpMMoRUG1n8UHhNNPDogbJRLxsXCAmQn0ZaC5XDBF7w1SaRyvwkTsT2gGt6
- X3fTNsNk6AwVNtT+qeOXETa3voOEv5ap7+Xy6EX3IqZCmDuegSGQm70KyCG+dGZYdF2k
- BmmorGEHrvAP8L1CE0WMVK2LO4di8bzRXik1sdd6FBQERDpQ2B56nl4ReLsx8uq3x1FQ
- OTzM3KzVUPKhs0C1JzOpF4DPYIQye9sFDLaoQl87GQ5P/QHJza5o1apgkQlZhisiaelL
- vjUQ==
-X-Gm-Message-State: AC+VfDzXOn4zP2X3v21qbKZxUvAdhZSn7GkyMaqXXvObI30qVkNrsdCr
- Iee09qPTOnaAZ7iMF5KvZTjaow==
-X-Google-Smtp-Source: ACHHUZ48xugwBy1Yb59MA7iADNA4mtjxjJVDK/TEG1GiFnnp8kgPq3uDjFXVnvd+Ayx9tItAR27KLA==
-X-Received: by 2002:a17:903:32c4:b0:1b3:e352:6d88 with SMTP id
- i4-20020a17090332c400b001b3e3526d88mr29305254plr.6.1687604908733; 
- Sat, 24 Jun 2023 04:08:28 -0700 (PDT)
+ bh=T15O6xQIwkBwwHtvfiEExn4sWPaOJ+WY8Ww0WTBtsp8=;
+ b=elR5rizvKyS3poUxnD3OoLxOtZ+KUnx8GMNaOz7wbamAbAuVSc9xCBkizUpBK3iGhc
+ LxmjhjkABW07lu8mUbkJXhMTaJHzvGjMFb2sAPQXYIFV9ypq/YanW2VJBeLZcshPBqP3
+ oJ/AQxUdzPCgUnVgjgfcI8rbllYGiLF7NKs8/FykghFnKCxYhqkIbJXHepOehFaD4YVr
+ CBrPxUlZZcWmYksNk9Cibyvja+DXqXilzvKpXoIuItn60i5s6fSOpf1RegyCSQqH5xjV
+ gh+sG0+N7AGGGJdKJ0WQjgcMKkyzc/kqfsV26A8V+U9WEM7XX8iAKA9HZHRAK8Djzzq3
+ pSbw==
+X-Gm-Message-State: AC+VfDwdwEZxYAiiiqyDTrT+DV77iGoVNp3Lt3aI07ox7N0W9FMUSIHy
+ kgeg/DXqogM+xkgM92A3y1O0cQ==
+X-Google-Smtp-Source: ACHHUZ6FdOiaHAk7I6ISkFgljzCcZyK3aCzvXyKEVanrKS23oGi4259EOvC6Ypj8Kzv6/iuF/wHf7Q==
+X-Received: by 2002:a17:902:ecc6:b0:1ae:1364:6086 with SMTP id
+ a6-20020a170902ecc600b001ae13646086mr29288550plh.2.1687605448727; 
+ Sat, 24 Jun 2023 04:17:28 -0700 (PDT)
 Received: from [10.4.162.153] ([139.177.225.251])
  by smtp.gmail.com with ESMTPSA id
- bg6-20020a1709028e8600b001b3d0aff88fsm1021644plb.109.2023.06.24.04.08.21
+ c13-20020a170902d48d00b001ab0a30c895sm1034090plg.202.2023.06.24.04.17.20
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 24 Jun 2023 04:08:28 -0700 (PDT)
-Message-ID: <a7baf44a-1eb8-d4e1-d112-93cf9cdb7beb@bytedance.com>
-Date: Sat, 24 Jun 2023 19:08:18 +0800
+ Sat, 24 Jun 2023 04:17:28 -0700 (PDT)
+Message-ID: <8107f6d1-2f86-46f1-2b31-263928499ab6@bytedance.com>
+Date: Sat, 24 Jun 2023 19:17:17 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
  Gecko/20100101 Thunderbird/102.12.0
-To: Dave Chinner <david@fromorbit.com>, paulmck@kernel.org
-References: <20230622085335.77010-1-zhengqi.arch@bytedance.com>
- <20230622085335.77010-25-zhengqi.arch@bytedance.com>
- <cf0d9b12-6491-bf23-b464-9d01e5781203@suse.cz>
- <ZJU708VIyJ/3StAX@dread.disaster.area>
- <a21047bb-3b87-a50a-94a7-f3fa4847bc08@bytedance.com>
- <ZJYaYv4pACmCaBoT@dread.disaster.area>
 Content-Language: en-US
+To: Chuck Lever <cel@kernel.org>
+References: <20230622085335.77010-1-zhengqi.arch@bytedance.com>
+ <20230622085335.77010-16-zhengqi.arch@bytedance.com>
+ <ZJYTbnmRKF7j3CHW@manet.1015granger.net>
 From: Qi Zheng <zhengqi.arch@bytedance.com>
-In-Reply-To: <ZJYaYv4pACmCaBoT@dread.disaster.area>
+In-Reply-To: <ZJYTbnmRKF7j3CHW@manet.1015granger.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 27 Jun 2023 14:38:30 +0000
-Subject: Re: [Intel-gfx] [PATCH 24/29] mm: vmscan: make global slab shrink
- lockless
+Subject: Re: [Intel-gfx] [PATCH 15/29] NFSD: dynamically allocate the
+ nfsd-client shrinker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,93 +80,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-bcache@vger.kernel.org, linux-xfs@vger.kernel.org, brauner@kernel.org,
- tytso@mit.edu, djwong@kernel.org, intel-gfx@lists.freedesktop.org,
- roman.gushchin@linux.dev, linux-kernel@vger.kernel.org,
+Cc: djwong@kernel.org, roman.gushchin@linux.dev, david@fromorbit.com,
  dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linux-raid@vger.kernel.org, linux-mm@kvack.org, dm-devel@redhat.com,
- linux-btrfs@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
- linux-ext4@vger.kernel.org, linux-nfs@vger.kernel.org,
- Vlastimil Babka <vbabka@suse.cz>, tkhai@ya.ru
+ linux-mm@kvack.org, dm-devel@redhat.com, linux-ext4@vger.kernel.org,
+ paulmck@kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-nfs@vger.kernel.org,
+ linux-raid@vger.kernel.org, linux-bcache@vger.kernel.org, vbabka@suse.cz,
+ brauner@kernel.org, tytso@mit.edu, linux-kernel@vger.kernel.org,
+ linux-xfs@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ akpm@linux-foundation.org, linux-btrfs@vger.kernel.org, tkhai@ya.ru
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave,
+Hi Chuck,
 
-On 2023/6/24 06:19, Dave Chinner wrote:
-> On Fri, Jun 23, 2023 at 09:10:57PM +0800, Qi Zheng wrote:
->> On 2023/6/23 14:29, Dave Chinner wrote:
->>> On Thu, Jun 22, 2023 at 05:12:02PM +0200, Vlastimil Babka wrote:
->>>> On 6/22/23 10:53, Qi Zheng wrote:
->>> Yes, I suggested the IDR route because radix tree lookups under RCU
->>> with reference counted objects are a known safe pattern that we can
->>> easily confirm is correct or not.  Hence I suggested the unification
->>> + IDR route because it makes the life of reviewers so, so much
->>> easier...
+On 2023/6/24 05:49, Chuck Lever wrote:
+> On Thu, Jun 22, 2023 at 04:53:21PM +0800, Qi Zheng wrote:
+>> In preparation for implementing lockless slab shrink,
+>> we need to dynamically allocate the nfsd-client shrinker,
+>> so that it can be freed asynchronously using kfree_rcu().
+>> Then it doesn't need to wait for RCU read-side critical
+>> section when releasing the struct nfsd_net.
 >>
->> In fact, I originally planned to try the unification + IDR method you
->> suggested at the beginning. But in the case of CONFIG_MEMCG disabled,
->> the struct mem_cgroup is not even defined, and root_mem_cgroup and
->> shrinker_info will not be allocated.  This required more code changes, so
->> I ended up keeping the shrinker_list and implementing the above pattern.
+>> Signed-off-by: Qi Zheng <zhengqi.arch@bytedance.com>
 > 
-> Yes. Go back and read what I originally said needed to be done
-> first. In the case of CONFIG_MEMCG=n, a dummy root memcg still needs
-> to exist that holds all of the global shrinkers. Then shrink_slab()
-> is only ever passed a memcg that should be iterated.
+> For 15/29 and 16/29 of this series:
 > 
-> Yes, it needs changes external to the shrinker code itself to be
-> made to work. And even if memcg's are not enabled, we can still use
-> the memcg structures to ensure a common abstraction is used for the
-> shrinker tracking infrastructure....
+> Acked-by: Chuck Lever <chuck.lever@oracle.com>
 
-Yeah, what I imagined before was to define a more concise struct
-mem_cgroup in the case of CONFIG_MEMCG=n, then allocate a dummy root
-memcg on system boot:
+Thanks for your review! :)
 
-#ifdef !CONFIG_MEMCG
-
-struct shrinker_info {
-	struct rcu_head rcu;
-	atomic_long_t *nr_deferred;
-	unsigned long *map;
-	int map_nr_max;
-};
-
-struct mem_cgroup_per_node {
-	struct shrinker_info __rcu	*shrinker_info;
-};
-
-struct mem_cgroup {
-	struct mem_cgroup_per_node *nodeinfo[];
-};
-
-#endif
-
-But I have a concern: if all global shrinkers are tracking with the
-info->map of root memcg, a shrinker->id needs to be assigned to them,
-which will cause info->map_nr_max to become larger than before, then
-making the traversal of info->map slower.
-
-> 
->> If the above pattern is not safe, I will go back to the unification +
->> IDR method.
-> 
-> And that is exactly how we got into this mess in the first place....
-
-I only found one similar pattern in the kernel:
-
-fs/smb/server/oplock.c:find_same_lease_key/smb_break_all_levII_oplock/lookup_lease_in_table
-
-But IIUC, the refcount here needs to be decremented after holding
-rcu lock as I did above.
-
-So regardless of whether we choose unification + IDR in the end, I still
-want to confirm whether the pattern I implemented above is safe. :)
+And I will implement the APIs suggested by Dave in 02/29 in
+the v2, so there will be some changes here, but it should
+not be much. So I will keep your Acked-bys in the v2.
 
 Thanks,
 Qi
 
 > 
-> -Dave
+> 
+>> ---
+>>   fs/nfsd/netns.h     |  2 +-
+>>   fs/nfsd/nfs4state.c | 20 ++++++++++++--------
+>>   2 files changed, 13 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/fs/nfsd/netns.h b/fs/nfsd/netns.h
+>> index ec49b200b797..f669444d5336 100644
+>> --- a/fs/nfsd/netns.h
+>> +++ b/fs/nfsd/netns.h
+>> @@ -195,7 +195,7 @@ struct nfsd_net {
+>>   	int			nfs4_max_clients;
+>>   
+>>   	atomic_t		nfsd_courtesy_clients;
+>> -	struct shrinker		nfsd_client_shrinker;
+>> +	struct shrinker		*nfsd_client_shrinker;
+>>   	struct work_struct	nfsd_shrinker_work;
+>>   };
+>>   
+>> diff --git a/fs/nfsd/nfs4state.c b/fs/nfsd/nfs4state.c
+>> index 6e61fa3acaf1..a06184270548 100644
+>> --- a/fs/nfsd/nfs4state.c
+>> +++ b/fs/nfsd/nfs4state.c
+>> @@ -4388,8 +4388,7 @@ static unsigned long
+>>   nfsd4_state_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
+>>   {
+>>   	int count;
+>> -	struct nfsd_net *nn = container_of(shrink,
+>> -			struct nfsd_net, nfsd_client_shrinker);
+>> +	struct nfsd_net *nn = shrink->private_data;
+>>   
+>>   	count = atomic_read(&nn->nfsd_courtesy_clients);
+>>   	if (!count)
+>> @@ -8094,14 +8093,19 @@ static int nfs4_state_create_net(struct net *net)
+>>   	INIT_WORK(&nn->nfsd_shrinker_work, nfsd4_state_shrinker_worker);
+>>   	get_net(net);
+>>   
+>> -	nn->nfsd_client_shrinker.scan_objects = nfsd4_state_shrinker_scan;
+>> -	nn->nfsd_client_shrinker.count_objects = nfsd4_state_shrinker_count;
+>> -	nn->nfsd_client_shrinker.seeks = DEFAULT_SEEKS;
+>> -
+>> -	if (register_shrinker(&nn->nfsd_client_shrinker, "nfsd-client"))
+>> +	nn->nfsd_client_shrinker = shrinker_alloc_and_init(nfsd4_state_shrinker_count,
+>> +							   nfsd4_state_shrinker_scan,
+>> +							   0, DEFAULT_SEEKS, 0,
+>> +							   nn);
+>> +	if (!nn->nfsd_client_shrinker)
+>>   		goto err_shrinker;
+>> +
+>> +	if (register_shrinker(nn->nfsd_client_shrinker, "nfsd-client"))
+>> +		goto err_register;
+>>   	return 0;
+>>   
+>> +err_register:
+>> +	shrinker_free(nn->nfsd_client_shrinker);
+>>   err_shrinker:
+>>   	put_net(net);
+>>   	kfree(nn->sessionid_hashtbl);
+>> @@ -8197,7 +8201,7 @@ nfs4_state_shutdown_net(struct net *net)
+>>   	struct list_head *pos, *next, reaplist;
+>>   	struct nfsd_net *nn = net_generic(net, nfsd_net_id);
+>>   
+>> -	unregister_shrinker(&nn->nfsd_client_shrinker);
+>> +	unregister_and_free_shrinker(nn->nfsd_client_shrinker);
+>>   	cancel_work(&nn->nfsd_shrinker_work);
+>>   	cancel_delayed_work_sync(&nn->laundromat_work);
+>>   	locks_end_grace(&nn->nfsd4_manager);
+>> -- 
+>> 2.30.2
+>>
