@@ -1,103 +1,141 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6BCE73D2FD
-	for <lists+intel-gfx@lfdr.de>; Sun, 25 Jun 2023 20:26:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 250D473D307
+	for <lists+intel-gfx@lfdr.de>; Sun, 25 Jun 2023 20:40:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0E7810E0F7;
-	Sun, 25 Jun 2023 18:26:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 925FA10E085;
+	Sun, 25 Jun 2023 18:39:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2055.outbound.protection.outlook.com [40.107.220.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 116C110E0F7;
- Sun, 25 Jun 2023 18:26:49 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E52D10E085;
+ Sun, 25 Jun 2023 18:39:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687718394; x=1719254394;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=q6R71amRjNIc5cllZZ5FPVU9/46mtY678jxBRQOQ7pQ=;
+ b=JTRVH29Fqkw1z2EBFWt0tkYMPPJHPw9yACyRcUMA7/nFup7SgzoTxYR9
+ G+wVJlkR7GPE0Y6HUBGF8xoZa9A+grleq8QRVajqT9Olk1uiLbIThHwx/
+ U5W3QkKcmhmi55C6rTCRP0YjRMs7mF7FPlTPzoCQHtctdNaZtDZyOYU+g
+ 6zlNATVcNaX/FToeyj0s0Hvw6P/72Gi3cN05UVKU2kYmWFPq7ufZEsg8f
+ CNC1SCkOSRzppsNveEZ009dO5GxK3mfF3suDC8ITt878I4GcXsQ+F12se
+ XJYE1tGGz/HhpgHzwX18rsEII78DlTFwsKeFnnCHZvOFmzPoOUHSaKBpa A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="447487191"
+X-IronPort-AV: E=Sophos;i="6.01,157,1684825200"; d="scan'208";a="447487191"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2023 11:39:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="745546243"
+X-IronPort-AV: E=Sophos;i="6.01,157,1684825200"; d="scan'208";a="745546243"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga008.jf.intel.com with ESMTP; 25 Jun 2023 11:39:52 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Sun, 25 Jun 2023 11:39:52 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Sun, 25 Jun 2023 11:39:51 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Sun, 25 Jun 2023 11:39:51 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.45) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Sun, 25 Jun 2023 11:39:51 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HvAroJRlH2oJ88yRH9UwB6mOu+qcRPz3i4/UwxXrtBGFG7ikfbL5MFg/pzaME32VpKashjtmOWQF5wCPc0Ff8WxKXjxuluJmeCr3xBiy4m+RrV4G9WPS6uvm2Wcm6BuGH594KJKlcq1fE2EnOpymiRV6CknZdqNunLaUb1qQAIXQQqgMk9vZojb2aLEUDUSD/KbSbx5g5EyVZrTBoMbh3NFDp2xXM58PPp5IX2xIGrok7VI9wycWGR3EymL0Z0a82W5Y0CJckYqMTUjA6xCZQzYd1KtutL+gJhsC614ViifwA8rUM4wU5/uZD4X8bOmYihe4IaDUmMf7u3OEVY6uSw==
+ b=PrHA5yty8nwi+QS6SgOOAIys38bY5p1B5bSTcxIMzhjkdJ3ecrw9+dd+lH94IHEHVnmHINgFolK7VEq/fIvI7GbxwwaPxZfpv34GRsjQjN17zrvdOiZ6fZpqexCQinJUIPxJ/VOYj2bYcr4lFF2Kst66S1ZaByxVN5eMlQp2O4XrQTlSAnN+qHF1/Axk9fuMcrMRm4YFf2XIASzC9+8QlgO6AEMIiQdoFFb7AT6dqJuDYsVvTYZgyNZlaaBG3kxZjFIQKLwQnp++hedcETmuy86Ow1Pq75YD6OXp8o5f+awP1Bjbx2fczMBic/ebl2xY2RUXycrsfbUbS+KWtnrnlw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y1t3tA2Yw5+S3c0+J79Vj23MunTI8fZ9uxj7AzecAaY=;
- b=O9h69WynlVu7cNOGE2ZML2rN0WoOkda89zNZmkqwOk1n/g9VFY7BSfPFfv4+fLLaISUPLZb8PsyUA2YcWKbcyqK1BrrR9IgwTAJtCCSunXSs3V8PGhel+Cs5QR+ZumEWdrjAwKO89fsfu0MdmTpH7TUDdgnd6g7LseYQzSYVHrSeGxB+C40mg0AntyWlX9WDo5gaNp7SODEoypg3yaC3nVBeco0QttLvYEx9QlKqjB2XhS3r5LOSLQRAX0YosQ8eXh5NMHYEwz2FxbYMbEAnb0SInBLbru8aTDTF6uA8zp62kYFb9VB3pPm4AVez1cIOYd9T7QuU2f579TxW1HfnDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=intel.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y1t3tA2Yw5+S3c0+J79Vj23MunTI8fZ9uxj7AzecAaY=;
- b=aqV5D76QNq8lKNfvxJQDQ8PkIEwcDaYJbJ2AGvK/MjiTbommCWNl7LA5xVMUR8S0i0w1cpAe5fil1CcWBcbl4fVGpaZkW7BPPwPq0p9WaHTPue4xbMMy64M0YjUk89VEotjmqYo4iicSY+vbXgD2bQl7ldQSBs1HKF9stzyS8ZFGJ10XdtX8FoDkdfPYFb0KdkM9uv6+8y5de6YPIugQNQLZikpx96/9eQgWjNgc825SouGp6ua6PUdM49gAOGN4IekENNGx34QUeAKoRLozDjoSeZee7M/NhWSoDFk4hzGYGUtydbxLtZ0vYHAN/p0++rymIEvNB1tVRPaBO8ccxw==
-Received: from MW4PR04CA0234.namprd04.prod.outlook.com (2603:10b6:303:87::29)
- by CYYPR12MB9016.namprd12.prod.outlook.com (2603:10b6:930:c4::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Sun, 25 Jun
- 2023 18:26:46 +0000
-Received: from CO1NAM11FT014.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:87:cafe::13) by MW4PR04CA0234.outlook.office365.com
- (2603:10b6:303:87::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.33 via Frontend
- Transport; Sun, 25 Jun 2023 18:26:46 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- CO1NAM11FT014.mail.protection.outlook.com (10.13.175.99) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6500.47 via Frontend Transport; Sun, 25 Jun 2023 18:26:46 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Sun, 25 Jun 2023
- 11:26:43 -0700
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.37; Sun, 25 Jun 2023 11:26:43 -0700
-Received: from Asurada-Nvidia (10.127.8.9) by mail.nvidia.com (10.126.190.180)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37 via Frontend
- Transport; Sun, 25 Jun 2023 11:26:42 -0700
-Date: Sun, 25 Jun 2023 11:26:35 -0700
-From: Nicolin Chen <nicolinc@nvidia.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <ZJiE6uvcKNYp2Sl3@Asurada-Nvidia>
-References: <20230602121653.80017-1-yi.l.liu@intel.com>
- <20230602121653.80017-15-yi.l.liu@intel.com>
- <ZJWpDFRuG/HCXjHN@nvidia.com>
-MIME-Version: 1.0
+ bh=wjUm3GHKyAEYM9ErdytRh8lkcURDOG0751m1LMoHwCg=;
+ b=VaUnOu2iM7iG/T5w+GQ33mX2wPuv9NWzyzNTWSb1Ryysq5q7hF9ACbNA0tVIdhPLCw4c6OWl5e73K829LqL5A0BFloc9xb9fkOg4A14X+CONDKLXVBd28cPT53MR111F33ziZMg+en6WpFypXtfVQyorA1WOWMRJNdc+cjreAtT8KxPbDMWhy5n2IsbnVLgNO1NtCPlrtbObCULNQYWeeoezY8e7oJ0/xnZnoW6JA5qYOIfMlTnYa+WmUkiBQRtA6aTVs5VnvudM6O9l/H1HzcJBd60oKh1D8OIhqDlFWoLrkszSPhDe5B+EBGR/Kxppq9yYRHPowdC3lcr+lPjM0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ DS7PR11MB6223.namprd11.prod.outlook.com (2603:10b6:8:98::19) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6521.26; Sun, 25 Jun 2023 18:39:47 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::9f98:8f3c:a608:8396]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::9f98:8f3c:a608:8396%7]) with mapi id 15.20.6521.024; Sun, 25 Jun 2023
+ 18:39:47 +0000
+Date: Sun, 25 Jun 2023 11:39:43 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20230625183943.GO5433@mdroper-desk1.amr.corp.intel.com>
+References: <20230624171757.3906095-1-lucas.demarchi@intel.com>
+ <20230624171757.3906095-3-lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <ZJWpDFRuG/HCXjHN@nvidia.com>
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
+In-Reply-To: <20230624171757.3906095-3-lucas.demarchi@intel.com>
+X-ClientProxiedBy: BYAPR01CA0011.prod.exchangelabs.com (2603:10b6:a02:80::24)
+ To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT014:EE_|CYYPR12MB9016:EE_
-X-MS-Office365-Filtering-Correlation-Id: ca4c0a4d-c21a-4290-1c27-08db75a9bbd0
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|DS7PR11MB6223:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e593201-fc13-40ec-f09a-08db75ab8cd1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XUQVFAY1Hjzh8x/FTEv0kfPViKDT11iA78kWLE6XJ8Z7CnQrxdKxVabr4UJ3yr6FPXmj/C6fTj8UzXd4yK3wrX6bWorrktDoRoxSGp8XcOmsFavLhoRDV27EhKV5/xkDUii3Crkmh25QuRFeWISnc9Qyr37ouHlGmOZFlg5SghPMKNKeGtKdrdbvzt1K0+hWodikmwvSzLd6vwYlaSxBI/MtWGdsgm9H2hC/Ui57/QWj4sPhQagJHM2Zj9fORSyZMBq0iVlYwo1hPysrFv/t8HQpVh4eoaJB1aGN/9GbU8iIBKovabjF/p8dcG/7CTDpN6zilumSBbYhFLtXf9Pw4zh6e54nnTFDNxc8ghGIOY48dBMavPujDAGZtdGYAhfyZcuKw2aHvRU6+AOtzKoPZKkRsCjlyiu9oip1jyDbgvYYJJEtEkg7u2qaap1CBZ9FOguwGpGNPPz5kPt1vybgVP3caQVlobozME3NbNFYE1vGRBMecBqlaz7GKuCh6nw+tE0ss+OCxIevSv7m4RVOXbcpIZ02fa/JCaf/9nlXwscCZIQGlIm6pN2rGr4eUd2iIGKH3qxdjGdXtDFtJY53gXjtQ17AlF6HyBmcNLPORJuVe00wdUrTA0YWG8meH+2UKe56k+0NVa+JsA8QwbUm9xRfu/UHXUNvADbQNcWp+SAsmFuvhxO4Geinin8HOnR7rcn8GkxgEhmaLnEgmoyxbS1jxjcBq+rHmzOguE8zYFI=
-X-Forefront-Antispam-Report: CIP:216.228.118.232; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc7edge1.nvidia.com; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(376002)(136003)(346002)(396003)(451199021)(46966006)(40470700004)(36840700001)(82310400005)(36860700001)(40460700003)(70206006)(356005)(5660300002)(7416002)(6862004)(33716001)(55016003)(8936002)(8676002)(41300700001)(86362001)(6636002)(40480700001)(4326008)(316002)(7636003)(70586007)(82740400003)(47076005)(9686003)(26005)(2906002)(186003)(478600001)(6666004)(83380400001)(336012)(426003)(54906003);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2023 18:26:46.2864 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca4c0a4d-c21a-4290-1c27-08db75a9bbd0
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.118.232];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT014.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB9016
-Subject: Re: [Intel-gfx] [PATCH v12 14/24] iommufd/device: Add
- iommufd_access_detach() API
+X-Microsoft-Antispam-Message-Info: dj7YrlkhD5DbPF5iqJs8P+1rj9Eqy0PCRfUmHNpPUvNJcrlWVK9j6yaqHq5zrvslC8I971iZuKrOnwA9yreBJky/QdNeh8LyaTgT6f8L9zWxJPN2RAJIFPrgbu5fFQ+hsDVSYYBGoymn7jRjTRiizvukjhbAcOjszf29mLJDo6+Uwo4NaF7D1sZ2Wy33w2ZNtAKuyyqlu88kU/QSlg43cU+m24eLoKOARAPwiNxVzdvsdDrpX7h/YGuCDoyT/WqejmC/mccwl00MG2z3VUIqLKm4tVdBrltSwWStzWWMnOERUG0ii7oq6bEoquJxDM52s4EffAkWLbZnEduZ3128NrkV00GNOXjcCuhT0t2SghJ9a8mrKGZG8xUTkFSV9N+O2aKqcm7qgAWxyP52/TZPeB+dHVKvAK2pOdACCYqyAEfUjLtZUAiU5Xm3S8rwjMyTIDriu89HifvLCK92OwNeObXnRJfh/5wjbDK36HBuTYREyu1AxJSz9zd1UzTU2lqBlgHc9W9RPEwjDGxGguTvaq4IjhbRkXN8tBY9fJ8tGes2JyvAwCWkKDTwIWwsd9NC
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(136003)(396003)(376002)(366004)(39860400002)(346002)(451199021)(316002)(66946007)(66556008)(66476007)(33656002)(6636002)(4326008)(478600001)(8936002)(8676002)(6862004)(5660300002)(86362001)(41300700001)(6486002)(2906002)(26005)(186003)(6512007)(6506007)(1076003)(38100700002)(6666004)(83380400001)(82960400001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Jn4iW8noojmz7K0cU+WklWkgpDKNdkedq0TNeZGlzbWlwVVTUAovl9OXj5R3?=
+ =?us-ascii?Q?icpBlpPrDWkSVUGHcq8E/AYZtuqQJZlZhJ/VXa1MHaM/pPDCpj42coTnmd1V?=
+ =?us-ascii?Q?btpsTFFSSm8bepLmX7dlY0R31CB4C9I0GSdzuLk3mvZzh9AjmsdHexWuS1x5?=
+ =?us-ascii?Q?zNdyA4tuZd1lOGGUQVNkPxaMOaRW7MoKFVBD18yvCoydjXkCiq3UAfVjs9qX?=
+ =?us-ascii?Q?/23T8Aq1TkWB15xZgJq3bAhiDwHFaAGmX+pETWE7D84EHd9Nvb6Ugg/AqdNo?=
+ =?us-ascii?Q?tVnG5vtuCnHRVVTyRxVCfrywXPsFxHIV4j6lRFD+H8VYMjxb1oGiwFaOr3mJ?=
+ =?us-ascii?Q?8LoXP0cIc3kP3p3V2rx8k9ah5bUgmbBJ8A9NsnJlB/j0iOqv2GCiqu2+gXP5?=
+ =?us-ascii?Q?iXDQskhvGX6mbYOuMREtBG8BZ3R5mBZx1lzahfrsuFHx0kH9XtoHPxwm+e+3?=
+ =?us-ascii?Q?aowyBYBeLgV1VtKqvBCHQKESDCm3MyyJZqVTg4VcO6eocYk7GiN4WuiGqQTP?=
+ =?us-ascii?Q?zAglTFIiQ9AYhrKJb+NJueY8z9hfLFSAs4dwDH3IoVcwPypPbdLVqVr3Khca?=
+ =?us-ascii?Q?0G03xAEzClFPbVC7xzsXlFkTQNakAyufp5cjY7VgngDkuW05RSTVUAFzDFDg?=
+ =?us-ascii?Q?2Y/a/AK+SpJqaugSz1dMjRArjO6AQ5nRoSC9a39PAE7+7oudMNvWERLO8C80?=
+ =?us-ascii?Q?FDOVe/1P7QA0GITfaPmK4fxUFn38RcvxgEVepqEH3W0A/lsRbZoq5121GPeG?=
+ =?us-ascii?Q?Za6Z7bIVb9Xo+Q81WPMnSyLv8OiZC5OAqcWOjjdqydWbqchk4vY3Eh3dfVY9?=
+ =?us-ascii?Q?lhF9lxFcN3EJ42MSwj3ACo6MNn/s8G/KMCU3OH4w1p/gg0bOEZPz0YbrYQ3y?=
+ =?us-ascii?Q?xl5DGz3sDiESlMt0ELRBA4caoIvllINBBT9vuvjc5Uz1n/OtUjs4w6etIGxT?=
+ =?us-ascii?Q?Q3SzroL4IfBg6kycV/Fb512/cOPJz0b/RYjDCfXWgFGCLvdksDptfyiQ3KA5?=
+ =?us-ascii?Q?5qVkm+ApoEyirNrGMlP7tGZVaLOmBwGPbrrXhIOg9Kqum7XGD5PVqjoDOA7M?=
+ =?us-ascii?Q?GoCoLLcN23l5wo6hb6TmrXiAuqAr/XGLCPIz0JWo1SdlZWltTZ8oGFiN8zf1?=
+ =?us-ascii?Q?X+AvD+gjNFJkHVSmehlRmBdy4sUfi/r2MKxntFfDCXXkYoNO/nIU9q25kE3j?=
+ =?us-ascii?Q?outCY+2xqh2zlJ/X4JD234FcTDvpLchQfKS9Q4Dh6TPVh1zeLZxqc3jv/txW?=
+ =?us-ascii?Q?cxdg1C2+p5BIYhiu+JkChTh08qcniZRqSh8hYwmyLiipHMgxNyRs/Tb+UrcP?=
+ =?us-ascii?Q?NsH/Y40EeZmk+i6nxJ6cQdV890nsMLmEMGNXJgTUL4t1FAA8y80ZdbBYEK4n?=
+ =?us-ascii?Q?veYmIPit+yqNLhUqJCys2UVZUZAPjPHY4zZUUUGZeLba5w8AcPL0Kpw0E9gA?=
+ =?us-ascii?Q?r2YOlob5ftXOZ7U45kHXQp1OtdjC5fAH48x/7lHptHhzFf3bF2ehOKk1/nJc?=
+ =?us-ascii?Q?EPny5eEyT3Rmb2YPI3SAcrZO904xTVKyghr5ZTR50CZkU5ouRE569qBfq5i/?=
+ =?us-ascii?Q?I7zrW+rqj5v1S+HX9I4I+hAC0NnTK6rbvoUkzNuiPfJz0C05CdXgljOgLQwW?=
+ =?us-ascii?Q?UA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e593201-fc13-40ec-f09a-08db75ab8cd1
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2023 18:39:46.8909 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +9nVouQG7ahxmTRyK4qnTTby4w8SNdRwEkk4OFiu1Mvd7jntZoERQmCr05Q/Cl4Nhg8wkUgMQHPx5ECJsBqF/xvgI/E858VNd0hAqicIryc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6223
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 2/6] drm/i915/gt: Clear all bits from
+ GEN12_FF_MODE2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,100 +148,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
- chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org,
- Yi Liu <yi.l.liu@intel.com>, kvm@vger.kernel.org, lulu@redhat.com,
- yanting.jiang@intel.com, joro@8bytes.org, kevin.tian@intel.com,
- yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org, eric.auger@redhat.com,
- intel-gvt-dev@lists.freedesktop.org, yi.y.sun@linux.intel.com,
- clegoate@redhat.com, cohuck@redhat.com, shameerali.kolothum.thodi@huawei.com,
- suravee.suthikulpanit@amd.com, robin.murphy@arm.com
+Cc: intel-gfx@lists.freedesktop.org, Kenneth Graunke <kenneth@whitecape.org>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 23, 2023 at 11:15:40AM -0300, Jason Gunthorpe wrote:
-
-> > +static void __iommufd_access_detach(struct iommufd_access *access)
-> > +{
-> > +	struct iommufd_ioas *cur_ioas = access->ioas;
-> > +
-> > +	lockdep_assert_held(&access->ioas_lock);
-> > +	/*
-> > +	 * Set ioas to NULL to block any further iommufd_access_pin_pages().
-> > +	 * iommufd_access_unpin_pages() can continue using access->ioas_unpin.
-> > +	 */
-> > +	access->ioas = NULL;
-> > +
-> > +	if (access->ops->unmap) {
-> > +		mutex_unlock(&access->ioas_lock);
-> > +		access->ops->unmap(access->data, 0, ULONG_MAX);
-> > +		mutex_lock(&access->ioas_lock);
-> > +	}
-> > +	iopt_remove_access(&cur_ioas->iopt, access);
-> > +	refcount_dec(&cur_ioas->obj.users);
-> > +}
-> > +
-> > +void iommufd_access_detach(struct iommufd_access *access)
-> > +{
-> > +	mutex_lock(&access->ioas_lock);
-> > +	if (WARN_ON(!access->ioas))
-> > +		goto out;
-> > +	__iommufd_access_detach(access);
-> > +out:
-> > +	access->ioas_unpin = NULL;
-> > +	mutex_unlock(&access->ioas_lock);
-> > +}
-> > +EXPORT_SYMBOL_NS_GPL(iommufd_access_detach, IOMMUFD);
+On Sat, Jun 24, 2023 at 10:17:53AM -0700, Lucas De Marchi wrote:
+> Right now context workarounds don't do a rmw and instead only write to
+> the register. Since 2 separate programmings to the same register are
+> coalesced into a single write, this is not problematic for
+> GEN12_FF_MODE2 since both TDS and GS timer are going to be written
+> together and the other remaining bits be zeroed.
 > 
-> There is not really any benefit to make this two functions
-
-The __iommufd_access_detach() will be used by replace() in the
-following series. Yet, let's merge them here then. And I'll add
-__iommufd_access_detach() back in the replace series.
-
-> > int iommufd_access_attach(struct iommufd_access *access, u32 ioas_id)
-> > {
-> [..]
-> > 	if (access->ioas) {
+> However in order to fix other workarounds that may want to preserve the
+> unrelated bits in the same register, context workarounds need to
+> be changed to a rmw. To prepare for that, move the programming of
+> GEN12_FF_MODE2 to a single place so the value passed for "clear" can
+> be all the bits. Otherwise the second workaround would be dropped as
+> it'd be detected as overwriting a previously programmed workaround.
 > 
-> if (access->ioas || access->ioas_unpin) {
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Ack.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-> But I wonder if it should be a WARN_ON? Does VFIO protect against
-> the userspace racing detach and attach, or do we expect to do it here?
-
-VFIO has a vdev->iommufd_attached flag to prevent a double call
-of this function. And detach and attach there also have a mutex
-protection. So it should be a WARN_ON here, I think.
-
-> > @@ -579,8 +620,8 @@ void iommufd_access_notify_unmap(struct io_pagetable *iopt, unsigned long iova,
-> >  void iommufd_access_unpin_pages(struct iommufd_access *access,
-> >  				unsigned long iova, unsigned long length)
-> >  {
-> > -	struct io_pagetable *iopt = &access->ioas->iopt;
-> >  	struct iopt_area_contig_iter iter;
-> > +	struct io_pagetable *iopt;
-> >  	unsigned long last_iova;
-> >  	struct iopt_area *area;
-> >  
-> > @@ -588,6 +629,13 @@ void iommufd_access_unpin_pages(struct iommufd_access *access,
-> >  	    WARN_ON(check_add_overflow(iova, length - 1, &last_iova)))
-> >  		return;
-> >  
-> > +	mutex_lock(&access->ioas_lock);
-> > +	if (!access->ioas_unpin) {
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 51 +++++++--------------
+>  1 file changed, 17 insertions(+), 34 deletions(-)
 > 
-> This should be WARN_ON(), the driver has done something wrong if we
-> call this after the access has been detached.
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 8f8346df3c18..7d48bd57b6ef 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -693,40 +693,11 @@ static void dg2_ctx_gt_tuning_init(struct intel_engine_cs *engine,
+>  		   0, false);
+>  }
+>  
+> -/*
+> - * These settings aren't actually workarounds, but general tuning settings that
+> - * need to be programmed on several platforms.
+> - */
+> -static void gen12_ctx_gt_tuning_init(struct intel_engine_cs *engine,
+> -				     struct i915_wa_list *wal)
+> -{
+> -	/*
+> -	 * Although some platforms refer to it as Wa_1604555607, we need to
+> -	 * program it even on those that don't explicitly list that
+> -	 * workaround.
+> -	 *
+> -	 * Note that the programming of this register is further modified
+> -	 * according to the FF_MODE2 guidance given by Wa_1608008084:gen12.
+> -	 * Wa_1608008084 tells us the FF_MODE2 register will return the wrong
+> -	 * value when read. The default value for this register is zero for all
+> -	 * fields and there are no bit masks. So instead of doing a RMW we
+> -	 * should just write TDS timer value. For the same reason read
+> -	 * verification is ignored.
+> -	 */
+> -	wa_add(wal,
+> -	       GEN12_FF_MODE2,
+> -	       FF_MODE2_TDS_TIMER_MASK,
+> -	       FF_MODE2_TDS_TIMER_128,
+> -	       0, false);
+> -}
+> -
+>  static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
+>  				       struct i915_wa_list *wal)
+>  {
+>  	struct drm_i915_private *i915 = engine->i915;
+>  
+> -	gen12_ctx_gt_tuning_init(engine, wal);
+> -
+>  	/*
+>  	 * Wa_1409142259:tgl,dg1,adl-p
+>  	 * Wa_1409347922:tgl,dg1,adl-p
+> @@ -748,15 +719,27 @@ static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
+>  			    GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL);
+>  
+>  	/*
+> -	 * Wa_16011163337
+> +	 * Wa_16011163337 - GS_TIMER
+> +	 *
+> +	 * TDS_TIMER: Although some platforms refer to it as Wa_1604555607, we
+> +	 * need to program it even on those that don't explicitly list that
+> +	 * workaround.
+> +	 *
+> +	 * Note that the programming of GEN12_FF_MODE2 is further modified
+> +	 * according to the FF_MODE2 guidance given by Wa_1608008084.
+> +	 * Wa_1608008084 tells us the FF_MODE2 register will return the wrong
+> +	 * value when read from the CPU.
+>  	 *
+> -	 * Like in gen12_ctx_gt_tuning_init(), read verification is ignored due
+> -	 * to Wa_1608008084.
+> +	 * The default value for this register is zero for all fields.
+> +	 * So instead of doing a RMW we should just write the desired values
+> +	 * for TDS and GS timers. Note that since the readback can't be trusted,
+> +	 * the clear mask is just set to ~0 to make sure other bits are not
+> +	 * inadvertently set. For the same reason read verification is ignored.
+>  	 */
+>  	wa_add(wal,
+>  	       GEN12_FF_MODE2,
+> -	       FF_MODE2_GS_TIMER_MASK,
+> -	       FF_MODE2_GS_TIMER_224,
+> +	       ~0,
+> +	       FF_MODE2_TDS_TIMER_128 | FF_MODE2_GS_TIMER_224,
+>  	       0, false);
+>  
+>  	if (!IS_DG1(i915)) {
+> -- 
+> 2.40.1
+> 
 
-Ack. Also adding a line of comments for that:
-+       /*
-+        * The driver must be doing something wrong if it calls this before an
-+        * iommufd_access_attach() or after an iommufd_access_detach().
-+        */
-+       if (WARN_ON(!access->ioas_unpin)) {
-
-Thanks
-Nic
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
