@@ -2,39 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3821B73DEBE
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 14:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A2EB73DEEB
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 14:22:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 223F910E0D6;
-	Mon, 26 Jun 2023 12:19:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A76110E04B;
+	Mon, 26 Jun 2023 12:22:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60EFD10E04B
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jun 2023 12:18:58 +0000 (UTC)
-Received: from 91-155-254-218.elisa-laajakaista.fi ([91.155.254.218]
- helo=[192.168.100.137])
- by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <luca@coelho.fi>) id 1qDlBE-009GRl-Of;
- Mon, 26 Jun 2023 15:18:53 +0300
-Message-ID: <e1bef6bb59b788b737ed9f461b2aa525f46d2e8b.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>, 
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4CAF10E04B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jun 2023 12:22:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687782124; x=1719318124;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=SeTwuq4x7Ne3ONEoQPEnny1/g8ysNM2oFzoG8k0KaCg=;
+ b=eUdJ3eBjWNxTqkKCFd4zdldl6uH24pPWnp52+xgzAjLpeuid7ZR3FbXK
+ rVIpu/BHeA9eLg99a1KKYWTivvtVj3SAYwyKRYDsBRd+4vHHmTzG3i1mU
+ mQ2rgmexAcRoHA7FlHPBTtR1RXHPU7RhmR4Q1dxlMUIvf+63FcpOPMRzZ
+ +2LEBbfRfe5bTO1N21nPC/oMK17gN0w8chAixiYUt7817yXDKt8JYgagu
+ O14jeiHeBWkfWnJF+lLiUAs06bivGbxOUCKC2XoiAxQFdMc3M/1wRre2I
+ xv/gChWXmzijjWKTKZW8YlVXz4v6g5n9ZWFnER7Lkr+wKVWODbYzY1Ppw g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="447639103"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="447639103"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 05:22:03 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="751058496"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="751058496"
+Received: from avhiruda-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.252.41.186])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 05:21:56 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
  intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Jun 2023 15:18:52 +0300
-In-Reply-To: <20230626082821.2085-1-stanislav.lisovskiy@intel.com>
-References: <20230626082821.2085-1-stanislav.lisovskiy@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+In-Reply-To: <20230626055444.1113796-2-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230626055444.1113796-1-chaitanya.kumar.borah@intel.com>
+ <20230626055444.1113796-2-chaitanya.kumar.borah@intel.com>
+Date: Mon, 26 Jun 2023 15:21:37 +0300
+Message-ID: <87mt0mv2ge.fsf@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fail if DSC compression
- requirement is less than platform supports
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/color: Add function to load
+ degamma LUT in MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,62 +62,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2023-06-26 at 11:28 +0300, Stanislav Lisovskiy wrote:
-> Currently we just clamp that value to the highest supported one, however =
-that
-> means, we are not able to fit this into our available bandwidth range, so=
- we
-> might see glitches or FIFO underruns.
-> While choosing less compressed bpp than min bpp required to handle the mo=
-de is
-> harmless and might even save some bandwidth, choosing higher compressed b=
-pp than
-> min bpp required to handle the required mode config, can cause issues.
-> So in that case lets just conclude that even with DSC, we are not able to=
- comply
-> with bandwidth requirements and fail.
->=20
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+On Mon, 26 Jun 2023, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> MTL onwards Degamma LUT/PRE-CSC LUT precision has been increased from
+> 16 bits to 24 bits. Currently, drm framework only supports LUTs up to 16
+> bit precision. Until a new uapi comes along to support higher bitdepth,
+> upscale the values sent from userland to 24 bit before writing into the
+> HW to continue supporting degamma on MTL.
+>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 9f40da20e88d..8696a1f02805 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -713,8 +713,17 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_p=
-rivate *i915, u32 bpp, u32 p
-> =20
->  		/*
->  		 * According to BSpec, 27 is the max DSC output bpp,
-> -		 * 8 is the min DSC output bpp
-> +		 * 8 is the min DSC output bpp.
-> +		 * While we can still clamp higher bpp values to 27, saving bandwidth,
-> +		 * if it is required to oompress up to bpp < 8, means we can't do
+>  drivers/gpu/drm/i915/display/intel_color.c | 42 ++++++++++++++++++++--
+>  1 file changed, 40 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> index 8966e6560516..25c73e2e6fa3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -1498,6 +1498,38 @@ static void glk_load_degamma_lut(const struct intel_crtc_state *crtc_state,
+>  	ilk_lut_write(crtc_state, PRE_CSC_GAMC_INDEX(pipe), 0);
+>  }
+>  
+> +static void mtl_load_degamma_lut(const struct intel_crtc_state *crtc_state,
+> +				 const struct drm_property_blob *blob)
+> +{
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	struct drm_color_lut *degamma_lut = blob->data;
+> +	enum pipe pipe = crtc->pipe;
+> +	int i, lut_size = drm_color_lut_size(blob);
+> +
+> +	/*
+> +	 * When setting the auto-increment bit, the hardware seems to
+> +	 * ignore the index bits, so we need to reset it to index 0
+> +	 * separately.
+> +	 */
+> +	intel_de_write_fw(i915, PRE_CSC_GAMC_INDEX(pipe), 0);
+> +	intel_de_write_fw(i915, PRE_CSC_GAMC_INDEX(pipe),
+> +			  PRE_CSC_GAMC_AUTO_INCREMENT);
+> +
+> +	for (i = 0; i < lut_size; i++) {
+> +		u64 word = mul_u32_u32(degamma_lut[i].green, (1 << 24)) / (1 << 16);
+> +		u32 lut_val = (word & 0xffffff);
+> +
+> +		intel_de_write_fw(i915, PRE_CSC_GAMC_DATA(pipe),
+> +				  lut_val);
+> +	}
+> +	/* Clamp values > 1.0. */
+> +	while (i++ < glk_degamma_lut_size(i915))
+> +		intel_de_write_fw(i915, PRE_CSC_GAMC_DATA(pipe), 1 << 24);
+> +
+> +	intel_de_write_fw(i915, PRE_CSC_GAMC_INDEX(pipe), 0);
+> +}
 
-Small typo, "compress".
+Please adjust glk_load_degamma_lut() instead of copy-pasting the entire
+thing with small modifications. One of which is breaking dsb use.
+
+You'll probably also want to add small conversion helpers between 16 and
+24 bits instead of doing them inline.
+
+BR,
+Jani.
 
 
-> +		 * that and probably means we can't fit the required mode, even with
-> +		 * DSC enabled.
->  		 */
-> +		if (bits_per_pixel < 8) {
-> +			drm_dbg_kms(&i915->drm, "Unsupported BPP %u, min 8\n",
-> +				    bits_per_pixel);
-> +			return 0;
-> +		}
->  		bits_per_pixel =3D clamp_t(u32, bits_per_pixel, 8, 27);
+> +
+>  static void glk_load_luts(const struct intel_crtc_state *crtc_state)
+>  {
+>  	const struct drm_property_blob *pre_csc_lut = crtc_state->pre_csc_lut;
+> @@ -1635,11 +1667,17 @@ icl_program_gamma_multi_segment(const struct intel_crtc_state *crtc_state)
+>  
+>  static void icl_load_luts(const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>  	const struct drm_property_blob *pre_csc_lut = crtc_state->pre_csc_lut;
+>  	const struct drm_property_blob *post_csc_lut = crtc_state->post_csc_lut;
+>  
+> -	if (pre_csc_lut)
+> -		glk_load_degamma_lut(crtc_state, pre_csc_lut);
+> +	if (pre_csc_lut) {
+> +		if (DISPLAY_VER(i915) >= 14)
+> +			mtl_load_degamma_lut(crtc_state, pre_csc_lut);
+> +		else
+> +			glk_load_degamma_lut(crtc_state, pre_csc_lut);
+> +	}
+>  
+>  	switch (crtc_state->gamma_mode & GAMMA_MODE_MODE_MASK) {
+>  	case GAMMA_MODE_MODE_8BIT:
 
-I guess you don't need to clamp anymore but could use min_t(u32,
-bits_per_pixel, 27) now, right? Actually, you don't even need to type
-it, so min(bits_per_pixel, 27) should suffice.
-
-
->  	} else {
->  		/* Find the nearest match in the array of known BPPs from VESA */
-
---
-Cheers,
-Luca.
+-- 
+Jani Nikula, Intel Open Source Graphics Center
