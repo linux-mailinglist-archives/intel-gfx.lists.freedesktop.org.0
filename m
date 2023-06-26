@@ -1,58 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45C9E73DEF2
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 14:23:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AEF673DEFB
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 14:23:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E4CA10E0D6;
-	Mon, 26 Jun 2023 12:23:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C231310E04B;
+	Mon, 26 Jun 2023 12:23:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB33310E04B;
- Mon, 26 Jun 2023 12:23:12 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1721410E04B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jun 2023 12:23:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687782193; x=1719318193;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=QAtvPIkccnlu6Ank7qJ23cw0df5MPmI943wyhruOK7I=;
- b=iffn1ogjyP2EIv9pBoMUAeJwJFfw0z2VhdKqnvD8mpKSSwbDlrbtayoV
- IBrUdzuvGGwfxzG2woBWaMou0KRcDyEAesmvSIVxo2Fv3gIp02IizLL3A
- WbkHM1xCU2FnGGt/NsnK4RM1fCj3X1TapyZDvsuJWVlrRa2aU5Kk8nP6/
- EpoxS4oyLFopXTGTS+XG8MEtwxENuXwIpvMMPwYQfMqKjkFWmLmqlNVsq
- d8h4SK/V5ygfBb6L/jB+Y2rz6TPu4Q+xBxNuT2ZmzfZV107soKwfP6kBm
- 9WDpuULkxZTGhoshWKbcre+2naMKS4PdWWVeqPjrxeV4La1FSN24yfK+J Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="424921618"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="424921618"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 05:23:11 -0700
+ t=1687782231; x=1719318231;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=tGtYRN4b7lRlvDvmKI5Q+CEJjEbPv46LrjEnab2n0CU=;
+ b=j/0Jw9R2vBmk1JcxeCdDN2WPb/ji5IJ5MCLvmhAQBG3ZIp/PXRxjsoto
+ vjNZ08klZtBG3AS6XQRMXZNern8QWJRJ44BU/ydEes5UuhmUors1PLzsr
+ mZWarm9GNLml8hpMH0MWsiacikvyk3lbJyNhTa1T4hfsVfLU88+eCg/jL
+ yGhV+iKtP4KWqWi8NXOjsm/a1XxxJwPrk/3jP4dSRJ8gYlRf8lLMHmPTe
+ QyA6+sicsLpdEZ4yWJsXSnpClyyZ0h82McZRyBQwgcMFQso/XkmgWe5DQ
+ 9L0HKrUYofnfvbfLPxX1cN3AFj/YbfO+33GQiGHNz4VDTXQYKkPxqsfI1 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="360116358"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="360116358"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 05:23:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="1046490771"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="1046490771"
-Received: from ettammin-mobl1.ger.corp.intel.com (HELO [10.249.254.105])
- ([10.249.254.105])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 05:23:09 -0700
-Message-ID: <e7098908-811b-3d26-5b72-b57afd8a1fdd@linux.intel.com>
-Date: Mon, 26 Jun 2023 14:23:06 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="693457589"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="693457589"
+Received: from avhiruda-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.252.41.186])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 05:23:45 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230626055444.1113796-3-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230626055444.1113796-1-chaitanya.kumar.borah@intel.com>
+ <20230626055444.1113796-3-chaitanya.kumar.borah@intel.com>
+Date: Mon, 26 Jun 2023 15:23:26 +0300
+Message-ID: <87jzvqv2dd.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-xe@lists.freedesktop.org
-References: <20230626091450.14757-1-thomas.hellstrom@linux.intel.com>
- <20230626091450.14757-5-thomas.hellstrom@linux.intel.com>
- <f63137cd-2032-1598-a1d7-484248ef1d02@gmail.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <f63137cd-2032-1598-a1d7-484248ef1d02@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/ttm: Don't leak a resource on
- swapout move error
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/color: For MTL convert 24 bit
+ lut values to 16 bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,55 +60,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Christian,
-
-Will you take a look at 2/4 as well? Will you merge these?
-
-Thanks,
-
-Thomas
-
-
-On 6/26/23 13:33, Christian König wrote:
-> Am 26.06.23 um 11:14 schrieb Thomas Hellström:
->> If moving the bo to system for swapout failed, we were leaking
->> a resource. Fix.
->>
->> Fixes: bfa3357ef9ab ("drm/ttm: allocate resource object instead of 
->> embedding it v2")
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: "Christian König" <ckoenig.leichtzumerken@gmail.com>
->> Cc: dri-devel@lists.freedesktop.org
->> Cc: <stable@vger.kernel.org> # v5.14+
->> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
->> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+On Mon, 26 Jun 2023, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> For MTL and beyond, convert back the 24 bit lut values
+> read from HW to 16 bit values to maintain parity with
+> userspace values. This way we avoid pipe config mismatch
+> for pre-csc lut values.
 >
-> Reviewed-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_color.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 >
->> ---
->>   drivers/gpu/drm/ttm/ttm_bo.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
->> index c0e3bbd21d3d..d9a8f227f310 100644
->> --- a/drivers/gpu/drm/ttm/ttm_bo.c
->> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
->> @@ -1166,6 +1166,7 @@ int ttm_bo_swapout(struct ttm_buffer_object 
->> *bo, struct ttm_operation_ctx *ctx,
->>           ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
->>           if (unlikely(ret != 0)) {
->>               WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput 
->> - likely driver bug.\n");
->> +            ttm_resource_free(bo, &evict_mem);
->>               goto out;
->>           }
->>       }
->
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> index 25c73e2e6fa3..856191640e71 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -3477,6 +3477,14 @@ static struct drm_property_blob *glk_read_degamma_lut(struct intel_crtc *crtc)
+>  	for (i = 0; i < lut_size; i++) {
+>  		u32 val = intel_de_read_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe));
+>  
+> +		/*
+> +		 * For MTL and beyond, convert back the 24 bit lut values
+> +		 * read from HW to 16 bit values to maintain parity with
+> +		 * userspace values
+> +		 */
+> +		if (DISPLAY_VER(dev_priv) >= 14)
+> +			val = mul_u32_u32(val, (1 << 16)) / (1 << 24);
+> +
+
+Here too please add a small helper for the conversion.
+
+BR,
+Jani.
+
+>  		lut[i].red = val;
+>  		lut[i].green = val;
+>  		lut[i].blue = val;
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
