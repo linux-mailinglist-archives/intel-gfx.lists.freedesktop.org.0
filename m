@@ -1,39 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE6E873DE6F
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 14:06:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0C3873DE76
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 14:07:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4435288EFF;
-	Mon, 26 Jun 2023 12:06:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6115510E1F4;
+	Mon, 26 Jun 2023 12:07:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B795388EFF
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jun 2023 12:05:59 +0000 (UTC)
-Received: from 91-155-254-218.elisa-laajakaista.fi ([91.155.254.218]
- helo=[192.168.100.137])
- by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <luca@coelho.fi>) id 1qDkyf-009GQw-JW;
- Mon, 26 Jun 2023 15:05:56 +0300
-Message-ID: <bc4a92cfd83b6c0338bdf32e58098a328d8a4ed6.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Jun 2023 15:05:53 +0300
-In-Reply-To: <20230621123156.14907-2-jani.nikula@intel.com>
-References: <20230621123156.14907-1-jani.nikula@intel.com>
- <20230621123156.14907-2-jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13BD710E1F4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jun 2023 12:07:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687781234; x=1719317234;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=H8dqRFtlr4xZqq0dkECqhl+tnqlCQ8m3jMcIwLihfB8=;
+ b=fH5URp3aMywlLLeE5cb+krEu4+UxNbjPfIALUKTLAnArAB7GLvX99pD6
+ 28WzOGwpEBsCGqGdaNR+MkfYe5hhhI3eeotfpPIAyogk2hpIS+yBpyhvu
+ JByax4EzToRQE6FS8PiO5wYwXjb1JSbzmzPNz5GN7fhgiMUaAd01JyS/2
+ quXniTdyZQoLAeHD0+RLdR8+fDdK7vVzQWIikoI6jKfGQYxLCJPaGZZqi
+ ZV+gTKR6YgnUv3zcCa6B5+pVeP7giypATgcd06zZ5hlUqnYSPaz9IYn/D
+ hV+1ixQB3MyaOtWtC5JivsQVDQj/7bbiXmwo30N2fOgvrXk8gXgTI3TfB w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="447636840"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="447636840"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 05:07:13 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="751055025"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="751055025"
+Received: from avhiruda-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.252.41.186])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 05:07:10 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230626075254.1183894-1-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230626061043.1162688-1-chaitanya.kumar.borah@intel.com>
+ <20230626075254.1183894-1-chaitanya.kumar.borah@intel.com>
+Date: Mon, 26 Jun 2023 15:06:55 +0300
+Message-ID: <87r0pyv34w.fsf@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: fix Sphinx indentation warning
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add forward declaration
+ for struct seq_file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,45 +63,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2023-06-21 at 15:31 +0300, Jani Nikula wrote:
-> Fix Sphinx warning about unexpected indent.
->=20
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Mon, 26 Jun 2023, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> With change [1], visibility of struct seq_file is lost in
+> intel_display_power.h leading to build errors. Add forward
+> declaration.
+>
+> [1] ef104443bffa ("procfs: consolidate arch_report_meminfo declaration")
+>
+> v2: Use forward declaration instead of headerfile inclusion [Jani]
+>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+
+Hey, thanks for the patch, this would've been fine, but looks like Imre
+just pushed commit f4fab137dd2b ("drm/i915: Add missing forward
+declarations/includes to display power headers") which adds the forward
+declaration among other things.
+
+Sorry for the trouble.
+
+BR,
+Jani.
+
 > ---
->  drivers/gpu/drm/i915/gt/uc/intel_huc.c | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i91=
-5/gt/uc/intel_huc.c
-> index bb95bdd1c3f9..23aa1b0e0166 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> @@ -26,6 +26,7 @@
->   * The kernel driver is only responsible for loading the HuC firmware an=
-d
->   * triggering its security authentication. This is done differently depe=
-nding
->   * on the platform:
-> + *
->   * - older platforms (from Gen9 to most Gen12s): the load is performed v=
-ia DMA
->   *   and the authentication via GuC
->   * - DG2: load and authentication are both performed via GSC.
-> @@ -33,6 +34,7 @@
->   *   not-DG2 older platforms), while the authentication is done in 2-ste=
-ps,
->   *   a first auth for clear-media workloads via GuC and a second one for=
- all
->   *   workloads via GSC.
-> + *
->   * On platforms where the GuC does the authentication, to correctly do s=
-o the
->   * HuC binary must be loaded before the GuC one.
->   * Loading the HuC is optional; however, not using the HuC might negativ=
-ely
+>  drivers/gpu/drm/i915/display/intel_display_power.h | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+> index be1a87bde0c9..0ba268e566b0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> @@ -16,6 +16,7 @@ enum port;
+>  struct drm_i915_private;
+>  struct i915_power_well;
+>  struct intel_encoder;
+> +struct seq_file;
+>  
+>  /*
+>   * Keep the pipe, transcoder, port (DDI_LANES,DDI_IO,AUX) domain instances
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
-
---
-Cheers,
-Luca.
+-- 
+Jani Nikula, Intel Open Source Graphics Center
