@@ -2,55 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B44773DD83
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 13:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D4B73DD9C
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 13:33:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C62F10E1E3;
-	Mon, 26 Jun 2023 11:30:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 761F210E1E3;
+	Mon, 26 Jun 2023 11:33:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B25110E1E3
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jun 2023 11:30:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687779052; x=1719315052;
- h=date:from:to:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=erVs2tr+5IAMspqwAMznk9PWcPdpJdnIBEUcTu/v7M4=;
- b=Qiz7f6G3+Z/MPlFEPgnqfenKnn/iX/Q3n0jypdYUZ03q6uOsCsviArKb
- 1RxLrcGvl25MIWV2Drd2o2XHuVvQPxKX8Ip7oy0DraE4AG7VUq2jTeShN
- wKun7B2PdKLsyRr+3A72/YqZgqQmfO/zoRtUELBE5L36BVjbLkYuskb2V
- tfjskp5S2V02zeEgZzbWhE0dV/zUOxK4HQTpTFAKgpDSqe2jEeS6/QdWh
- QGzne+afdrm3mrHBOOjn4CoxQZ8R+e5IHoi2mPNGt9KnPmca/st0FIKuJ
- 6saGrYKoqbiIb5rgWiTYZDmyeGI9XXjCQ+UjsArtQNzySHi2Vk+djkOOI Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="351017121"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="351017121"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 04:30:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="860669769"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="860669769"
-Received: from unknown (HELO ideak-desk) ([10.237.72.78])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 04:30:49 -0700
-Date: Mon, 26 Jun 2023 14:30:54 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org, Randy Dunlap <rdunlap@infradead.org>,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Message-ID: <ZJl27ndY44aItpXe@ideak-desk>
-References: <20230616185104.2502003-1-imre.deak@intel.com>
- <168745530616.4872.11591194417903199851@emeril.freedesktop.org>
- <ZJSLiKv1GaHqizjU@ideak-desk>
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEC3010E1E3;
+ Mon, 26 Jun 2023 11:33:03 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id
+ ffacd0b85a97d-311367a3e12so4385014f8f.2; 
+ Mon, 26 Jun 2023 04:33:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1687779182; x=1690371182;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=+SRZEwipWy/cjOgEXgKgnNMeRlmoMeF7Dl+vBl4nmyI=;
+ b=SDlbF25K8CznCfDXhIQspLYCYiziLOk5/eskJUr+xpO5seAEQ6lJmPo8Xrp54wb72q
+ p+PQ423QOfOuArzmwjCl+nJuJUDnMVRi+k0xOZ+oq2CAd1ygaZRYddDLem17dAZLwsIw
+ UEd6VRquDR6rsZlp4qpMxDALmIGjfEdlfsnaOjsRE2z7x5i2kNiZ/5jFgi1B/EXNSrav
+ gaNTYUJ/s+OFqgQzFI8pAdHAprmywKwNVXXho544UrbpCUIrYvlyWvGM7WTPyNZGWejr
+ emluld6C6B42FvWApLfisxICs804QJt5a23iyD8h5X/BceGX72K+r8z0QsBJadCLDw28
+ qX7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1687779182; x=1690371182;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=+SRZEwipWy/cjOgEXgKgnNMeRlmoMeF7Dl+vBl4nmyI=;
+ b=j+jDEzJYJ0WzQznrxSG3Nmo0IvTTPFYbkC2HiVklw2F7wx7o0M8nqDjXSYQIqS+XRQ
+ Agh/qcMlerZQ3pGJ6dDShgNJNK8Vfkei3f2LgA3QqZo1D/seLt1+vT4mTpkpV2xjqn58
+ CoT6uQdOPbYPxGKzWrBWlaUA1QSHU6Ikz1oty+e9mhgpG/NFKu4n8nS8mAircSSyTsx0
+ dqQk+4/zkLvJ4WrpVPbNFLpVw3oZ/S2k+jmAyUA4Xr/56EoGYVqYtOC7YT0UXKb2VV/Q
+ /fabZAiCGFX9JdoUk/I9kgvOMxEfUFGdDG7x4K00pL+JSWQu3+C6ghl/XPeh4J5Buzsi
+ BMTg==
+X-Gm-Message-State: AC+VfDzxOLDC+W0KJUgszT2sDRhKutVmH6HXzfvlfulhzwFWDp4C74kU
+ vsIWm4N3ZiJmhctjO4fyng4=
+X-Google-Smtp-Source: ACHHUZ4yUVe1NS+g9PNDkBGGvzC4bdn2WCFLjpynRmfAcWWAU1VoJXhjGm1U4gu7U5oeFzwBnVNLeg==
+X-Received: by 2002:adf:fd49:0:b0:311:e96:a6f2 with SMTP id
+ h9-20020adffd49000000b003110e96a6f2mr23242376wrs.29.1687779181492; 
+ Mon, 26 Jun 2023 04:33:01 -0700 (PDT)
+Received: from ?IPV6:2a00:e180:158d:7600:d62f:c4fb:6eee:7b87?
+ ([2a00:e180:158d:7600:d62f:c4fb:6eee:7b87])
+ by smtp.gmail.com with ESMTPSA id
+ t1-20020adfe441000000b00313f45f74a8sm1564636wrm.103.2023.06.26.04.33.00
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 26 Jun 2023 04:33:01 -0700 (PDT)
+Message-ID: <aa189924-795c-0bd0-1a85-b60445572153@gmail.com>
+Date: Mon, 26 Jun 2023 13:32:59 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZJSLiKv1GaHqizjU@ideak-desk>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_Add_missing_forward_dec?=
- =?utf-8?q?larations/includes_to_display_power_headers_=28rev2=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230626091450.14757-1-thomas.hellstrom@linux.intel.com>
+ <20230626091450.14757-4-thomas.hellstrom@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20230626091450.14757-4-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 3/4] drm/ttm: Don't leak a resource on
+ eviction error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,170 +80,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
+ dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 22, 2023 at 08:57:28PM +0300, Imre Deak wrote:
-> On Thu, Jun 22, 2023 at 05:35:06PM +0000, Patchwork wrote:
-> > == Series Details ==
-> > 
-> > Series: series starting with [1/4] drm/i915: Add missing forward declarations/includes to display power headers (rev2)
-> > URL   : https://patchwork.freedesktop.org/series/119480/
-> > State : failure
+Am 26.06.23 um 11:14 schrieb Thomas Hellström:
+> On eviction errors other than -EMULTIHOP we were leaking a resource.
+> Fix.
+>
+> v2:
+> - Avoid yet another goto (Andi Shyti)
+>
+> Fixes: 403797925768 ("drm/ttm: Fix multihop assert on eviction.")
+> Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v5.15+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com> #v1
 
-Patchset is pushed to drm-intel-next, thanks for the reviews.
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
-The failure is unrelated, see below.
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo.c | 22 +++++++++++-----------
+>   1 file changed, 11 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index 615d30c4262d..c0e3bbd21d3d 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -458,18 +458,18 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
+>   		goto out;
+>   	}
+>   
+> -bounce:
+> -	ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
+> -	if (ret == -EMULTIHOP) {
+> +	do {
+> +		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
+> +		if (ret != -EMULTIHOP)
+> +			break;
+> +
+>   		ret = ttm_bo_bounce_temp_buffer(bo, &evict_mem, ctx, &hop);
+> -		if (ret) {
+> -			if (ret != -ERESTARTSYS && ret != -EINTR)
+> -				pr_err("Buffer eviction failed\n");
+> -			ttm_resource_free(bo, &evict_mem);
+> -			goto out;
+> -		}
+> -		/* try and move to final place now. */
+> -		goto bounce;
+> +	} while (!ret);
+> +
+> +	if (ret) {
+> +		ttm_resource_free(bo, &evict_mem);
+> +		if (ret != -ERESTARTSYS && ret != -EINTR)
+> +			pr_err("Buffer eviction failed\n");
+>   	}
+>   out:
+>   	return ret;
 
-> > 
-> > == Summary ==
-> > 
-> > CI Bug Log - changes from CI_DRM_13309 -> Patchwork_119480v2
-> > ====================================================
-> > 
-> > Summary
-> > -------
-> > 
-> >   **FAILURE**
-> > 
-> >   Serious unknown changes coming with Patchwork_119480v2 absolutely need to be
-> >   verified manually.
-> >   
-> >   If you think the reported changes have nothing to do with the changes
-> >   introduced in Patchwork_119480v2, please notify your bug team to allow them
-> >   to document this new failure mode, which will reduce false positives in CI.
-> > 
-> >   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/index.html
-> > 
-> > Participating hosts (43 -> 41)
-> > ------------------------------
-> > 
-> >   Missing    (2): fi-kbl-soraka fi-snb-2520m 
-> > 
-> > Possible new issues
-> > -------------------
-> > 
-> >   Here are the unknown changes that may have been introduced in Patchwork_119480v2:
-> > 
-> > ### IGT changes ###
-> > 
-> > #### Possible regressions ####
-> > 
-> >   * igt@i915_pm_rpm@basic-pci-d3-state:
-> >     - bat-mtlp-8:         [PASS][1] -> [ABORT][2]
-> >    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13309/bat-mtlp-8/igt@i915_pm_rpm@basic-pci-d3-state.html
-> >    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/bat-mtlp-8/igt@i915_pm_rpm@basic-pci-d3-state.html
-> 
-> The test passes, however there is a lockdep problem:
-> <4>[  396.831915] kworker/20:1H/251 is trying to acquire lock:
-> <4>[  396.837189] ffffffff82761100 (fs_reclaim){+.+.}-{0:0}, at: __kmem_cache_alloc_node+0x30/0x1b0
-> <4>[  396.845661]
->                   but task is already holding lock:
-> <4>[  396.851448] ffff8881043c5840 (&gt->reset.backoff_srcu){++++}-{0:0}, at: _intel_gt_reset_lock+0x172/0x330 [i915]
-> 
-> Can't see it related (as the only relevant thing is runtime suspend,
-> getting delayed by 17ms after this change, which shouldn't make a
-> difference).
-> 
-> Looks like some GuC vs. memory shrinker lockdep problem, filed already
-> on other platforms at:
-> https://gitlab.freedesktop.org/drm/intel/-/issues/8668
-> 
-> > Known issues
-> > ------------
-> > 
-> >   Here are the changes found in Patchwork_119480v2 that come from known issues:
-> > 
-> > ### IGT changes ###
-> > 
-> > #### Issues hit ####
-> > 
-> >   * igt@i915_selftest@live@guc:
-> >     - bat-rpls-1:         [PASS][3] -> [DMESG-WARN][4] ([i915#7852])
-> >    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13309/bat-rpls-1/igt@i915_selftest@live@guc.html
-> >    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/bat-rpls-1/igt@i915_selftest@live@guc.html
-> > 
-> >   * igt@i915_selftest@live@hangcheck:
-> >     - bat-adlp-9:         [PASS][5] -> [ABORT][6] ([i915#7677] / [i915#7913])
-> >    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13309/bat-adlp-9/igt@i915_selftest@live@hangcheck.html
-> >    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/bat-adlp-9/igt@i915_selftest@live@hangcheck.html
-> > 
-> >   * igt@i915_selftest@live@requests:
-> >     - bat-mtlp-6:         [PASS][7] -> [DMESG-FAIL][8] ([i915#7269])
-> >    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13309/bat-mtlp-6/igt@i915_selftest@live@requests.html
-> >    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/bat-mtlp-6/igt@i915_selftest@live@requests.html
-> > 
-> >   * igt@i915_selftest@live@slpc:
-> >     - bat-rpls-2:         NOTRUN -> [DMESG-WARN][9] ([i915#6367])
-> >    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/bat-rpls-2/igt@i915_selftest@live@slpc.html
-> >     - bat-rpls-1:         [PASS][10] -> [DMESG-WARN][11] ([i915#6367])
-> >    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13309/bat-rpls-1/igt@i915_selftest@live@slpc.html
-> >    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/bat-rpls-1/igt@i915_selftest@live@slpc.html
-> > 
-> >   * igt@i915_suspend@basic-s2idle-without-i915:
-> >     - bat-rpls-2:         NOTRUN -> [ABORT][12] ([i915#6687] / [i915#8668])
-> >    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-> > 
-> >   * igt@kms_chamelium_hpd@common-hpd-after-suspend:
-> >     - bat-dg2-11:         NOTRUN -> [SKIP][13] ([i915#7828])
-> >    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/bat-dg2-11/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
-> > 
-> >   
-> > #### Possible fixes ####
-> > 
-> >   * igt@i915_selftest@live@requests:
-> >     - bat-dg2-11:         [ABORT][14] ([i915#7913]) -> [PASS][15]
-> >    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13309/bat-dg2-11/igt@i915_selftest@live@requests.html
-> >    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/bat-dg2-11/igt@i915_selftest@live@requests.html
-> > 
-> >   * igt@i915_selftest@live@reset:
-> >     - bat-rpls-2:         [ABORT][16] ([i915#4983] / [i915#7461] / [i915#7913] / [i915#8347]) -> [PASS][17]
-> >    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13309/bat-rpls-2/igt@i915_selftest@live@reset.html
-> >    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/bat-rpls-2/igt@i915_selftest@live@reset.html
-> > 
-> >   
-> > #### Warnings ####
-> > 
-> >   * igt@kms_psr@primary_mmap_gtt:
-> >     - bat-rplp-1:         [SKIP][18] ([i915#1072]) -> [ABORT][19] ([i915#8442])
-> >    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13309/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html
-> >    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html
-> > 
-> >   
-> >   [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-> >   [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
-> >   [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-> >   [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-> >   [i915#7269]: https://gitlab.freedesktop.org/drm/intel/issues/7269
-> >   [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
-> >   [i915#7677]: https://gitlab.freedesktop.org/drm/intel/issues/7677
-> >   [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-> >   [i915#7852]: https://gitlab.freedesktop.org/drm/intel/issues/7852
-> >   [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-> >   [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
-> >   [i915#8442]: https://gitlab.freedesktop.org/drm/intel/issues/8442
-> >   [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-> > 
-> > 
-> > Build changes
-> > -------------
-> > 
-> >   * Linux: CI_DRM_13309 -> Patchwork_119480v2
-> > 
-> >   CI-20190529: 20190529
-> >   CI_DRM_13309: af67b02abf56a5018cd885c94d7611241052e98f @ git://anongit.freedesktop.org/gfx-ci/linux
-> >   IGT_7346: 29302a0d57bcf10cb553f5d7ff5bb99166a19bba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-> >   Patchwork_119480v2: af67b02abf56a5018cd885c94d7611241052e98f @ git://anongit.freedesktop.org/gfx-ci/linux
-> > 
-> > 
-> > ### Linux commits
-> > 
-> > 00c643450930 drm/i915: Prevent needless toggling of DC states during modesets
-> > 18d2155db09b drm/i915: Add way to specify the power-off delay of a display power domain
-> > d7dab5293389 drm/i915: Remove redundant forward declarations from display power headers
-> > 1088d3e9cdc5 drm/i915: Add missing forward declarations/includes to display power headers
-> > 
-> > == Logs ==
-> > 
-> > For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119480v2/index.html
