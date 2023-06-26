@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B96073DC3D
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 12:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A395A73DC41
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 12:31:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E90510E0B7;
-	Mon, 26 Jun 2023 10:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD26C10E12C;
+	Mon, 26 Jun 2023 10:31:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 23D1910E0B7;
- Mon, 26 Jun 2023 10:31:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id A979910E12C;
+ Mon, 26 Jun 2023 10:31:32 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 16FACA882E;
- Mon, 26 Jun 2023 10:31:30 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A6A87A882E;
+ Mon, 26 Jun 2023 10:31:32 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Date: Mon, 26 Jun 2023 10:31:30 -0000
-Message-ID: <168777549009.5704.4302020500660220772@emeril.freedesktop.org>
+Date: Mon, 26 Jun 2023 10:31:32 -0000
+Message-ID: <168777549267.5704.9537109316150281219@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230626061043.1162688-1-chaitanya.kumar.borah@intel.com>
 In-Reply-To: <20230626061043.1162688-1-chaitanya.kumar.borah@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/display=3A_Add_header_file_for_struct_seq=5Ffile_?=
- =?utf-8?b?KHJldjIp?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/display=3A_Add_header_file_for_struct_seq=5Ffile_=28re?=
+ =?utf-8?b?djIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,12 +54,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-2cbe7a6b6366 drm/i915/display: Add forward declaration for struct seq_file
--:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ef104443bffa ("procfs: consolidate arch_report_meminfo declaration")'
-#10: 
-[1] ef104443bffa ("procfs: consolidate arch_report_meminfo declaration")
-
-total: 1 errors, 0 warnings, 0 checks, 7 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
