@@ -2,46 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EBCA73E2BA
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 17:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DF6B73E2FF
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 17:15:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8F7910E222;
-	Mon, 26 Jun 2023 15:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 692DE10E229;
+	Mon, 26 Jun 2023 15:15:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 921A510E220;
- Mon, 26 Jun 2023 15:05:03 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id EB7686607102;
- Mon, 26 Jun 2023 16:04:59 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1687791900;
- bh=T+GZ94CPOEJIWUlPYIfXorGvR/Sh0JZZkuAsk5WcZx4=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=FTCio2cIYi9e+GDIRHOFlyZYHAdE2Ngr8Y5wnAX5yIrg+rUxf5t1lYnnjgX9qOxpR
- 8TgluAe3tRRZsXBXYpVqXbBIG38vOCMCUh3NFAo3JXo9cgwxUYMY3LzrlkjxP0nZRy
- Ju0jDl4L0JfV8wIvcrRIWeeoAVIXfs6Sk0M3KOyxOzMeLPE7GXkWBh04QBh1vzWOTC
- 6daaRNGS15yokSHBBnUbUVCFmHO6dOnJbSxuJdUotFoEYk5FMyVifyk94+gWpLX+3M
- FqgLekolCAyGpyJivHGO34yxDTEaKxHhTEbS+5KhG4H2+ZjPtz42F+9dkL6irYVFxU
- NTWnBtOaL2ATg==
-Date: Mon, 26 Jun 2023 17:04:57 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Message-ID: <20230626170420.45826ac7@collabora.com>
-In-Reply-To: <20230314022659.1816246-4-dmitry.osipenko@collabora.com>
-References: <20230314022659.1816246-1-dmitry.osipenko@collabora.com>
- <20230314022659.1816246-4-dmitry.osipenko@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4B2110E229;
+ Mon, 26 Jun 2023 15:15:33 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id
+ 5b1f17b1804b1-3f9c2913133so44422555e9.1; 
+ Mon, 26 Jun 2023 08:15:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1687792531; x=1690384531;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=PmRfirqXfSvkyoAOVtCyAnitstVlhaC7q73gfVyb+4M=;
+ b=Tz3rIQUnMqhrKtipZlRQ8sTMEJdS6wklxEeNVoGqe3XAeOD0UTPdSzU2qgGrltKqFi
+ RIMyxRSqw+dgR8vnDhIFK91ubOr+jvEBmk+UgYvi38nW8hCsqQApZjBKDtxsh9rfMJhF
+ zTs/D2G4m+/nqDyI7UhxwD7M4YF3TZmdTnbyV/5ylE0wXb7b+CIsyMCMxzgCTO/Um/ws
+ cMHmSGN5MKInTke/cSFNpdLqUjypIM9SFlyXlSCntJBBaMH3LzrSIk7ZWCOLplFESPDc
+ 0LupZyhvQnlbOhX5EbY6+j/d/Z3Z/Kz+FjROZ5ES26qnp7UoyVjjh9/HnXgeFRHLLRtT
+ tPGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1687792531; x=1690384531;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=PmRfirqXfSvkyoAOVtCyAnitstVlhaC7q73gfVyb+4M=;
+ b=krbLv7k8ALyP/jepq3IzTJ1xMnndAbcoVB1jD6Diyw6bIEuFiXmOH72CJwBo33oGx8
+ Xe+1D78JiFCRJ8IPCtWjSdyiEK7tfJCMQLzI+/mgCrs/CG+P81L/xeYE7xYO6sIQ2QIj
+ hkFaSYH0ImvkNM1+jKj/jT+ey2CyZMa/qi97OFgN1Y1/7XDtkAmK3OfY/GxAdhFdQuq+
+ Xkys4MosozppB7F6+UFZEeIWK9AL+EwLioLhnHJrUKScx57VE74BIb13rdYMWbaP2IFS
+ OO1x/KpjRxjAD1Yl6hZGOqC811lbkAXA8NmQ1dTKA/N4TgRRYHpyDHWaTkciTVY6+7vs
+ Utbw==
+X-Gm-Message-State: AC+VfDxmsh3rZRVh0boMFrLpVOl/AYdgWL8HM1EN1ESZPeL4rlvVKnMB
+ ClDmkFIgZqlHiA2D56b9Mb0=
+X-Google-Smtp-Source: ACHHUZ5GC9RZ5QCTpLhMVxwupOthRTX84J9A9FhGSg/kiJCyizTE4+re4OC1YLSKt8hn616Hrc4NJA==
+X-Received: by 2002:a7b:ce09:0:b0:3f6:536:a4b2 with SMTP id
+ m9-20020a7bce09000000b003f60536a4b2mr24178300wmc.27.1687792531467; 
+ Mon, 26 Jun 2023 08:15:31 -0700 (PDT)
+Received: from ?IPV6:2a00:e180:158d:7600:862:d9d5:c1f7:84a1?
+ ([2a00:e180:158d:7600:862:d9d5:c1f7:84a1])
+ by smtp.gmail.com with ESMTPSA id
+ 21-20020a05600c22d500b003f96d10eafbsm8012451wmg.12.2023.06.26.08.15.30
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 26 Jun 2023 08:15:30 -0700 (PDT)
+Message-ID: <8b22c855-c84d-4b56-c94b-a3a079ab3037@gmail.com>
+Date: Mon, 26 Jun 2023 17:15:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v13 03/10] drm/shmem-helper: Add
- pages_pin_count field
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230626091450.14757-1-thomas.hellstrom@linux.intel.com>
+ <20230626091450.14757-3-thomas.hellstrom@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20230626091450.14757-3-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/ttm: Don't shadow the operation
+ context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,102 +80,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
- kernel@collabora.com, Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org, Sumit Semwal <sumit.semwal@linaro.org>,
- Daniel Almeida <daniel.almeida@collabora.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Daniel Stone <daniel@fooishbar.org>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Gerd Hoffmann <kraxel@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Steven Price <steven.price@arm.com>, David Airlie <airlied@gmail.com>,
- Chia-I Wu <olvaffe@gmail.com>, virtualization@lists.linux-foundation.org,
- Qiang Yu <yuq825@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, Roger He <Hongbo.He@amd.com>,
+ dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dmitry,
+Am 26.06.23 um 11:14 schrieb Thomas Hellström:
+> ttm_bo_swapout() shadows the ttm operation context which may cause
+> major confusion in driver callbacks when swapping out !TTM_PL_SYSTEM
+> memory. Fix this by reusing the operation context argument to
+> ttm_bo_swapout().
+>
+> Cc: "Christian König" <christian.koenig@amd.com>
+> Cc: Roger He <Hongbo.He@amd.com>
+> Cc: <dri-devel@lists.freedesktop.org>
+> Cc: <intel-gfx@lists.freedesktop.org>
+> Cc: <stable@vger.kernel.org> # v4.16+
+> Fixes: dc947770cf34 ("drm/ttm: enable swapout for reserved BOs during allocation")
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Acked-by: Matthew Brost <matthew.brost@intel.com>
 
-Sorry for chiming in only now :-/.
+We intentionally didn't used the parameter here, but I absolutely can't 
+figure out why.
 
-On Tue, 14 Mar 2023 05:26:52 +0300
-Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
-
-> And new pages_pin_count field to struct drm_gem_shmem_object that will
-> determine whether pages are evictable by memory shrinker. The pages will
-> be evictable only when pages_pin_count=0. This patch prepares code for
-> addition of the memory shrinker that will utilize the new field.
-> 
-> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> ---
->  drivers/gpu/drm/drm_gem_shmem_helper.c | 7 +++++++
->  include/drm/drm_gem_shmem_helper.h     | 9 +++++++++
->  2 files changed, 16 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> index 4da9c9c39b9a..81d61791f874 100644
-> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> @@ -277,6 +277,8 @@ static int drm_gem_shmem_pin_locked(struct drm_gem_shmem_object *shmem)
->  	drm_WARN_ON(obj->dev, obj->import_attach);
->  
->  	ret = drm_gem_shmem_get_pages(shmem);
-> +	if (!ret)
-> +		shmem->pages_pin_count++;
->  
->  	return ret;
->  }
-> @@ -289,7 +291,12 @@ static void drm_gem_shmem_unpin_locked(struct drm_gem_shmem_object *shmem)
->  
->  	drm_WARN_ON(obj->dev, obj->import_attach);
->  
-> +	if (drm_WARN_ON_ONCE(obj->dev, !shmem->pages_pin_count))
-> +		return;
-> +
->  	drm_gem_shmem_put_pages(shmem);
-> +
-> +	shmem->pages_pin_count--;
->  }
->  
->  /**
-> diff --git a/include/drm/drm_gem_shmem_helper.h b/include/drm/drm_gem_shmem_helper.h
-> index 20ddcd799df9..7d823c9fc480 100644
-> --- a/include/drm/drm_gem_shmem_helper.h
-> +++ b/include/drm/drm_gem_shmem_helper.h
-> @@ -39,6 +39,15 @@ struct drm_gem_shmem_object {
->  	 */
->  	unsigned int pages_use_count;
->  
-> +	/**
-> +	 * @pages_pin_count:
-> +	 *
-> +	 * Reference count on the pinned pages table.
-> +	 * The pages allowed to be evicted by memory shrinker
-> +	 * only when the count is zero.
-> +	 */
-> +	unsigned int pages_pin_count;
-
-s/pages_pin_count/pin_count/ ?
-
-And do we really need both pages_pin_count and pages_use_count. Looks
-like they both serve the same purpose, with one exception:
-pages_use_count is also incremented in the get_pages_sgt_locked() path,
-but you probably don't want it to prevent GEM eviction. Assuming
-your goal with this pin_count field is to check if a GEM object is
-evictable, it can be done with something like
-
-bool
-drm_gem_shmem_is_evictable_locked(struct drm_gem_shmem_object *shmem)
-{
-	dma_resv_assert_held(shmem->base.resv);
-
-	return shmem->pages_use_count == (shmem->sgt ? 1 : 0);
-}
-
-I mean, I'm not against renaming pages_use_count into pin_count, but,
-unless I'm missing something, I don't see a good reason to keep both.
+Feel free to add my rb, but let's give it some time upstream before you 
+base anything on top of this. Just in case we missed something.
 
 Regards,
+Christian.
 
-Boris
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo.c | 3 +--
+>   1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index bd5dae4d1624..615d30c4262d 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -1154,7 +1154,6 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+>   	 * Move to system cached
+>   	 */
+>   	if (bo->resource->mem_type != TTM_PL_SYSTEM) {
+> -		struct ttm_operation_ctx ctx = { false, false };
+>   		struct ttm_resource *evict_mem;
+>   		struct ttm_place hop;
+>   
+> @@ -1164,7 +1163,7 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
+>   		if (unlikely(ret))
+>   			goto out;
+>   
+> -		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, &ctx, &hop);
+> +		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
+>   		if (unlikely(ret != 0)) {
+>   			WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput - likely driver bug.\n");
+>   			goto out;
+
