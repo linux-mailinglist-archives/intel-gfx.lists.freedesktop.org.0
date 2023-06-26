@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD3C573D812
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 08:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6EB073D8ED
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 09:55:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D0C210E07B;
-	Mon, 26 Jun 2023 06:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC8810E19D;
+	Mon, 26 Jun 2023 07:55:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA5C810E07B
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jun 2023 06:55:13 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 615EF10E19D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jun 2023 07:55:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687762513; x=1719298513;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=SsfO0+1T0wDaadjWyw6hzJ9vDhVeR0jI3/zPV+N4Vt8=;
- b=gA9mwnOfy8lyW0YiPT0a7UWHjipS0pGUo2BYS/0stDXz8++ru/LUR4zA
- CW9mIgBLiC0cqtIcZwOg5SwOcRQKXwjtqICYoG0OZvqkVITnPvFyJ/B8V
- xuR8h/BQRFJ26YMiditwkef0zr1tQq9k/mbe7HrE9/J4Aq7DX9KQABdLk
- dioCSrE23ufBjNbBb7RoAZb+QGgaZjJk98YBPytlRz8BofUzCWk29POQ/
- sy2MiOdYGjUNGnwIIU+eZ0yuVm07vev6r7YML4trzOfULSJY3j4y0/TFt
- Tt1Bndm6b5bjh0hTPK7OrPWFyUlgBHzbiDLf/B4Zani3wVlUEb2LuCPqs Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="424865173"
-X-IronPort-AV: E=Sophos;i="6.01,158,1684825200"; d="scan'208";a="424865173"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2023 23:55:12 -0700
+ t=1687766131; x=1719302131;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=GeseM36ysdm7otLzchAdTeL8TZ2Rz80SdrEvhPFsc+c=;
+ b=UhFhrRp3bIQGgXxSP8QbYSEkbh2xpLID/4boehfsWwwjKD1jp+bolmZO
+ Is7LKfP55+QYKgPVi4DmKpciYNkqUsDEkV0vhgO8/tDgWSUxKqTB4wPqF
+ qBHMQ4S9bCCcnHxfXJab9F5j5JIQOQnrQhTe2XJDoNaVsG0uQWXIF9/n4
+ yzOT7ABJk4ooXfPg9eJC7UANTFBr+okCfI453hVJ/U1g2KhvukDNsPmWt
+ K0pbMDzUpYeu7XkB39mTXQeuDWl70dhK6+tX5XavorcfG3prxTyG4U+jh
+ ZckllfVCvQYOteAcPEb4ASmhkPEkSrdFnVn/J95G5QaKvvBZL/QSiI5/n g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="447585774"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="447585774"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 00:55:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="716002682"
-X-IronPort-AV: E=Sophos;i="6.01,158,1684825200"; d="scan'208";a="716002682"
-Received: from mkomuves-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.63.201])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2023 23:55:10 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- intel-gfx@lists.freedesktop.org
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="860592086"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="860592086"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmsmga001.fm.intel.com with ESMTP; 26 Jun 2023 00:55:28 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 26 Jun 2023 13:22:53 +0530
+Message-Id: <20230626075254.1183894-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230626061043.1162688-1-chaitanya.kumar.borah@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230626061043.1162688-1-chaitanya.kumar.borah@intel.com>
-Date: Mon, 26 Jun 2023 09:54:55 +0300
-Message-ID: <87mt0myaps.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add header file for
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Add forward declaration for
  struct seq_file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,39 +60,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 26 Jun 2023, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
-> With change [1], visibility of struct seq_file is lost in
-> intel_display_power.h leading to build errors. Add header
-> file explicitly to restore visibility.
->
-> [1] ef104443bffa ("procfs: consolidate arch_report_meminfo declaration")
->
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.h | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index be1a87bde0c9..888993079a7b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -6,6 +6,8 @@
->  #ifndef __INTEL_DISPLAY_POWER_H__
->  #define __INTEL_DISPLAY_POWER_H__
->  
-> +#include <linux/seq_file.h>
-> +
+With change [1], visibility of struct seq_file is lost in
+intel_display_power.h leading to build errors. Add forward
+declaration.
 
-Always prefer a forward declaration over an include when it's
-sufficient.
+[1] ef104443bffa ("procfs: consolidate arch_report_meminfo declaration")
 
-BR,
-Jani.
+v2: Use forward declaration instead of headerfile inclusion [Jani]
 
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.h | 1 +
+ 1 file changed, 1 insertion(+)
 
->  #include "intel_wakeref.h"
->  
->  enum aux_ch;
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+index be1a87bde0c9..0ba268e566b0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+@@ -16,6 +16,7 @@ enum port;
+ struct drm_i915_private;
+ struct i915_power_well;
+ struct intel_encoder;
++struct seq_file;
+ 
+ /*
+  * Keep the pipe, transcoder, port (DDI_LANES,DDI_IO,AUX) domain instances
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
