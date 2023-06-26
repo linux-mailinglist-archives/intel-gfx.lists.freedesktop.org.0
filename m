@@ -1,52 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9517173E026
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 15:05:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D86F973E035
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 15:08:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B95F10E1FD;
-	Mon, 26 Jun 2023 13:05:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C51E810E20B;
+	Mon, 26 Jun 2023 13:08:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06F2C10E0EB;
- Mon, 26 Jun 2023 13:05:40 +0000 (UTC)
-Received: from [192.168.2.254] (109-252-154-132.dynamic.spd-mgts.ru
- [109.252.154.132])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits))
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id BCCD36606EF9;
- Mon, 26 Jun 2023 14:05:35 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1687784737;
- bh=UduXksLELXstu/IT+fN/u2qfAoyq+jaxriMeJJQvIMM=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=NrgukjA1DHJj1g7zNjrN/5FsxxcF05ysjW5CddwQDyvmub9yTZmZfcfCi1zocvuQs
- tKnhwifaeyEv0gyFrsBp6pXUKEIJ/jD1c/vVStDTe71ma2gejUp/lAZSQNd2YRsOtK
- ZGqTay3e0HR9Y/knPtp+nSSlzp9ZoJ9w9E5wdGHJ5Yu0cCVFiNTAUJojSddZ/qoT5M
- osqOer+obrMLx/wHp7XfRlUOn7AmJmt+eNmgm6D5uDi81CFyspZ0ecmB+tRUDOvqNs
- b7ZDWOIvFbSmlfJL+d6Xs9g08fKOHWnL3rIJ65Re1zJ41jLzy/SMKKBFvqjwnhXW0Y
- 2kOyALaDANEeQ==
-Message-ID: <4f652b3b-8691-84f4-037a-64950a30d496@collabora.com>
-Date: Mon, 26 Jun 2023 16:05:33 +0300
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C34A910E1F7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jun 2023 13:08:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687784884; x=1719320884;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qtBHQWYnNsiXJ46yUKt+Gp7LFJpHhH4B6RzQ4C5bpxo=;
+ b=LsNWvdiWOOk5Sx7NsC2iUA/P0ig5WMdzZNCSlVugTBfnENlryFJfa2eT
+ UG9MXWKzQedhNzEZxz6HW5MpBdOVIcp6hLNxHWelu+IWuJz53cZXZnm6S
+ pvelVx2LA7a9j4sBukB0OY6s4i0Q+iDo311mnJMxyi+F9wQlzmIMlvUmY
+ 3++4sn0qFUlHNLFRAQTskDBwcpVwcfYwksxzzWARuNqVu2EzJOxXHKYvh
+ wchj4FhO7Xm7dgQKns5s7zShCe+sWKlEU+rS18ukKsofV+iSdhpnU9I+a
+ mihytKXx1zjzmOCQpXqqK/ZcSyojquT3D4z0KRCrZVHUROL4vjpqTXg5F Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="391564800"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="391564800"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 06:07:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="1046495875"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="1046495875"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmsmga005.fm.intel.com with ESMTP; 26 Jun 2023 06:07:28 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 26 Jun 2023 18:35:55 +0530
+Message-Id: <20230626130555.2391750-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
-Content-Language: en-US
-To: Boris Brezillon <boris.brezillon@collabora.com>
-References: <20230529223935.2672495-1-dmitry.osipenko@collabora.com>
- <20230529223935.2672495-7-dmitry.osipenko@collabora.com>
- <20230626114014.2c837255@collabora.com>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20230626114014.2c837255@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v4 6/6] drm/shmem-helper: Switch to
- reservation lock
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/vdsc: Remove FIXME in
+ intel_dsc_compute_config
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,34 +55,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>,
- Gerd Hoffmann <kraxel@redhat.com>, kernel@collabora.com,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- linux-media@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Tomi Valkeinen <tomba@kernel.org>, linux-kernel@vger.kernel.org,
- Tomasz Figa <tfiga@chromium.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 6/26/23 12:40, Boris Brezillon wrote:
-> I think here is the major problem I have with this patch: you've made
-> drm_gem_shmem_{get_pages,pin}() private, which forces me to call
-> drm_gem_shmem_pin() in a path where I already acquired the resv lock
-> (using the drm_exec infra proposed by Christian). That would
-> probably work if you were letting ret == -EALREADY go through, but I'm
-> wondering if it wouldn't be preferable to expose
-> drm_gem_shmem_pin_locked().
+Remove the FIXME and the code related to it as after verification
+it does seem the previous values were typos and no hardware spec
+mentions using these particular rc_params.
 
-You should be free to expose the necessary functions. They are private
-because nobody need them so far and we don't want to export unused
-functions.
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index bd9116d2cd76..d27e84696f31 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -237,18 +237,6 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
+ 
+ 		if (ret)
+ 			return ret;
+-
+-		/*
+-		 * FIXME: verify that the hardware actually needs these
+-		 * modifications rather than them being simple typos.
+-		 */
+-		if (compressed_bpp == 6 &&
+-		    vdsc_cfg->bits_per_component == 8)
+-			vdsc_cfg->rc_quant_incr_limit1 = 23;
+-
+-		if (compressed_bpp == 8 &&
+-		    vdsc_cfg->bits_per_component == 14)
+-			vdsc_cfg->rc_range_params[0].range_bpg_offset = 0;
+ 	}
+ 
+ 	/*
 -- 
-Best regards,
-Dmitry
+2.25.1
 
