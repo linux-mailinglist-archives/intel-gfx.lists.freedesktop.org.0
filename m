@@ -1,52 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FAB073E115
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 15:53:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0F0D73E13A
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jun 2023 15:56:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5014910E20A;
-	Mon, 26 Jun 2023 13:53:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0C7110E207;
+	Mon, 26 Jun 2023 13:56:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F35FD10E20A
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jun 2023 13:53:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687787586; x=1719323586;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=YNCRDpv0ZROzPXORzYfsY8DM4Jo6J26S/B/xtatNh6w=;
- b=Uy7+PljKubXH46Xw92dTCh6lVqaMmArHW5CAYL71jxOcZE7tTTcch/9G
- +rOjKRX1uevGcnOeB+MDVosNgwS7nm1H+/qtip5QVAoJD0bZL3H/QAo1+
- yaNLO2BrnKDin9Kj6N68bVKnFUQK7NJ8SdOYCnF6Si+Tl6DLrfmOk8No/
- +YliSd+Gz9EFltZPBCG5a5wN+6BQpFJJB21TaPEsd579GHJZNiDLg5zDa
- NpnNSp+Tln0KxwjaRUE38eJtXPmOunOpvHD9UmaIisAgoLSZ1mfvntL8o
- OEH4iSpHyqgzVT0vbd3yj/iymHJ0YGN0Yr99qt1IiTcIUrXyai3e6MQER w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="358767718"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="358767718"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 06:52:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="781444927"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="781444927"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 06:52:27 -0700
-Date: Mon, 26 Jun 2023 16:52:20 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Luca Coelho <luca@coelho.fi>
-Message-ID: <ZJmYFA8eAcl/TmzQ@intel.com>
-References: <20230626082821.2085-1-stanislav.lisovskiy@intel.com>
- <e1bef6bb59b788b737ed9f461b2aa525f46d2e8b.camel@coelho.fi>
+Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C75DF10E207
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jun 2023 13:56:45 +0000 (UTC)
+Received: from 91-155-254-218.elisa-laajakaista.fi ([91.155.254.218]
+ helo=[192.168.100.137])
+ by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <luca@coelho.fi>) id 1qDmhr-009GX4-O9;
+ Mon, 26 Jun 2023 16:56:41 +0300
+Message-ID: <85bc887748d4058e8f2d8924db8ea73cf8c8e3be.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Mon, 26 Jun 2023 16:56:39 +0300
+In-Reply-To: <20230626130555.2391750-1-suraj.kandpal@intel.com>
+References: <20230626130555.2391750-1-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e1bef6bb59b788b737ed9f461b2aa525f46d2e8b.camel@coelho.fi>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fail if DSC compression
- requirement is less than platform supports
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/vdsc: Remove FIXME in
+ intel_dsc_compute_config
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,69 +46,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 26, 2023 at 03:18:52PM +0300, Luca Coelho wrote:
-> On Mon, 2023-06-26 at 11:28 +0300, Stanislav Lisovskiy wrote:
-> > Currently we just clamp that value to the highest supported one, however that
-> > means, we are not able to fit this into our available bandwidth range, so we
-> > might see glitches or FIFO underruns.
-> > While choosing less compressed bpp than min bpp required to handle the mode is
-> > harmless and might even save some bandwidth, choosing higher compressed bpp than
-> > min bpp required to handle the required mode config, can cause issues.
-> > So in that case lets just conclude that even with DSC, we are not able to comply
-> > with bandwidth requirements and fail.
-> > 
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 11 ++++++++++-
-> >  1 file changed, 10 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 9f40da20e88d..8696a1f02805 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -713,8 +713,17 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_private *i915, u32 bpp, u32 p
-> >  
-> >  		/*
-> >  		 * According to BSpec, 27 is the max DSC output bpp,
-> > -		 * 8 is the min DSC output bpp
-> > +		 * 8 is the min DSC output bpp.
-> > +		 * While we can still clamp higher bpp values to 27, saving bandwidth,
-> > +		 * if it is required to oompress up to bpp < 8, means we can't do
-> 
-> Small typo, "compress".
+On Mon, 2023-06-26 at 18:35 +0530, Suraj Kandpal wrote:
+> Remove the FIXME and the code related to it as after verification
+> it does seem the previous values were typos and no hardware spec
+> mentions using these particular rc_params.
+>=20
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/=
+i915/display/intel_vdsc.c
+> index bd9116d2cd76..d27e84696f31 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -237,18 +237,6 @@ int intel_dsc_compute_params(struct intel_crtc_state=
+ *pipe_config)
+> =20
+>  		if (ret)
+>  			return ret;
+> -
+> -		/*
+> -		 * FIXME: verify that the hardware actually needs these
+> -		 * modifications rather than them being simple typos.
+> -		 */
+> -		if (compressed_bpp =3D=3D 6 &&
+> -		    vdsc_cfg->bits_per_component =3D=3D 8)
+> -			vdsc_cfg->rc_quant_incr_limit1 =3D 23;
+> -
+> -		if (compressed_bpp =3D=3D 8 &&
+> -		    vdsc_cfg->bits_per_component =3D=3D 14)
+> -			vdsc_cfg->rc_range_params[0].range_bpg_offset =3D 0;
+>  	}
+> =20
+>  	/*
 
-Thanks for spotting
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-> 
-> 
-> > +		 * that and probably means we can't fit the required mode, even with
-> > +		 * DSC enabled.
-> >  		 */
-> > +		if (bits_per_pixel < 8) {
-> > +			drm_dbg_kms(&i915->drm, "Unsupported BPP %u, min 8\n",
-> > +				    bits_per_pixel);
-> > +			return 0;
-> > +		}
-> >  		bits_per_pixel = clamp_t(u32, bits_per_pixel, 8, 27);
-> 
-> I guess you don't need to clamp anymore but could use min_t(u32,
-> bits_per_pixel, 27) now, right? Actually, you don't even need to type
-> it, so min(bits_per_pixel, 27) should suffice.
-
-Yep, was thinking about that, was willing to leave clamp just as an additional
-check "just in case", but probably you are right. 
-
-Stan
-
-> 
-> 
-> >  	} else {
-> >  		/* Find the nearest match in the array of known BPPs from VESA */
-> 
-> --
-> Cheers,
-> Luca.
+--
+Cheers,
+Luca.
