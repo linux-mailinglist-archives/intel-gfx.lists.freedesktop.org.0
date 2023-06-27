@@ -1,52 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C8737402F3
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 20:12:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3602374033C
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 20:30:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 219A710E2F8;
-	Tue, 27 Jun 2023 18:12:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5558D10E030;
+	Tue, 27 Jun 2023 18:30:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D477810E2F8
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jun 2023 18:12:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687889528; x=1719425528;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=/la/HVkhwvDyW1+UXwBedCuZNTMYaT4GqxMqiK0IKXA=;
- b=MQOnJM5/TadwzirSUN1VAHjRQl3SoxUBIwIIzh7li4/2fJD/wMUL+Njx
- k4pRX/GOzh2VxlbzIkTbbG/owJYA8SN9g1x3VnnH+7RTBwItm3CKcd25w
- mCmQFSyeQ37Ff9gI22NzjU975d/gqUYqnApwO+eQfkVoD1t1l7+mXxiVL
- BapvDs5wym+V8DTx5LzIK4JXs0VCiMdyhO6BalUUBcgHSxCkRn3HCAPs9
- S6NjjkcjyAB7qWg2X/9ol/zSsEkqSdvg0GXBMbbrXBAunB5lVS2jaTKEi
- rmAZ5qEo5gIe7K6sKmbdc7SHC9pSEUis8veE/gJnrnirwbvusdWvExmq6 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="392262232"
-X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="392262232"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2023 11:12:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="710738102"
-X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="710738102"
-Received: from unknown (HELO ideak-desk) ([10.237.72.78])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2023 11:12:06 -0700
-Date: Tue, 27 Jun 2023 21:12:11 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Message-ID: <ZJsmWgF7innuBvIy@ideak-desk>
-References: <20230627153451.2834196-1-mitulkumar.ajitkumar.golani@intel.com>
- <20230627153451.2834196-2-mitulkumar.ajitkumar.golani@intel.com>
+X-Greylist: delayed 369 seconds by postgrey-1.36 at gabe;
+ Tue, 27 Jun 2023 18:30:02 UTC
+Received: from knopi.disroot.org (knopi.disroot.org [178.21.23.139])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A41010E030
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jun 2023 18:30:02 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by disroot.org (Postfix) with ESMTP id C5A3D402C8;
+ Tue, 27 Jun 2023 20:23:49 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from knopi.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 4mLcOPf5stLo; Tue, 27 Jun 2023 20:23:48 +0200 (CEST)
+From: Carlos Eduardo Gallo Filho <gcarlos@disroot.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+ t=1687890228; bh=pLNhNjla8VA0jESGDcl+r03g5pKhwn2en6STGAjDebw=;
+ h=From:To:Cc:Subject:Date;
+ b=cFZdg5TC6VtXCZjMQYERogQq6NJE5is1P3TCXQiKjVTHysSga6eItPnqis5GoDgBd
+ +okaEbFb9H/S2Uhe3hOZf8K1weNIYdm+qg52bpeUqIt56WaJ23gvPOt/Ad6g2UF6TU
+ sfQzXorMxwwSIQfIMrFQkKynjxi392IYvQPYhdwgp/VIPHJPoLSom7Xikzht3prB4T
+ J7UOETEqmzsYY3H2YONFLhymygJzIn1yO9LjAMH0B7BhYCCORO6t+bzQBeP10qjxpk
+ ZHAQzLqmjCxEYJiHuQeyPIqDlTPGb3Mmd03l/7XmqdTdeJTa7tdb1JLHJVRQbYltms
+ 2Kibl+BP+oNoQ==
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Tue, 27 Jun 2023 15:22:39 -0300
+Message-Id: <20230627182239.15676-1-gcarlos@disroot.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230627153451.2834196-2-mitulkumar.ajitkumar.golani@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/display: HDMI2.0/DP1p62Gbps
- skew violation when there is skew between DL PCLK
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm: Replace drm_framebuffer plane size
+ functions with its equivalents
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,90 +51,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, andrealmeid@igalia.com, daniel@ffwll.ch,
+ tales.aparecida@gmail.com, Carlos Eduardo Gallo Filho <gcarlos@disroot.org>,
+ mripard@kernel.org, mairacanal@riseup.net, tzimmermann@suse.de,
+ rodrigo.vivi@intel.com, airlied@gmail.com, arthurgrillo@riseup.net
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 27, 2023 at 09:04:51PM +0530, Mitul Golani wrote:
-> When doing type-C PHY voltage swing programming for HDMI and
-> DP 1.62Gbps, program DKLP_PCS_GLUE_TX_DPCNTL2[loadgen_sharing_pmd_disable]
-> to '1'. For other DP frequencies, program
-> DKLP_PCS_GLUE_TX_DPCNTL2[loadgen_sharing_pmd_disable] to '0'.
-> 
-> This Workaround is specific to Display Version 13
-> 
-> Wa_15010727533
-> 
-> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 13 +++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h          |  6 ++++++
->  2 files changed, 19 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 61722556bb47..5a6f048f4f1c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -1362,6 +1362,19 @@ static void tgl_dkl_phy_set_signal_levels(struct intel_encoder *encoder,
->  		intel_dkl_phy_rmw(dev_priv, DKL_TX_DPCNTL2(tc_port, ln),
->  				  DKL_TX_DP20BITMODE, 0);
->  
-> +		if (DISPLAY_VER(dev_priv) == 13) {
+The functions drm_framebuffer_plane{width,height} and
+fb_plane_{width,height} do exactly the same job of its
+equivalents drm_format_info_plane_{width,height} from drm_fourcc.
 
-The above check here is equivalent to IS_ALDERLAKE_P(), so the
-programming should be done under that condition below, along with the
-other bits in DKL_TX_DPCNTL2.
+The only reason to have these functions on drm_framebuffer
+would be if they would added a abstraction layer to call it just
+passing a drm_framebuffer pointer and the desired plane index,
+which is not the case, where these functions actually implements
+just part of it. In the actual implementation, every call to both
+drm_framebuffer_plane_{width,height} and fb_plane_{width,height} should
+pass some drm_framebuffer attribute, which is the same as calling the
+drm_format_info_plane_{width,height} functions.
 
-Also the WA is limited to STEP_A0 .. STEP_C0.
+The drm_format_info_pane_{width,height} functions are much more
+consistent in both its implementation and its location on code. The
+kind of calculation that they do is intrinsically derivated from the
+drm_format_info struct and has not to do with drm_framebuffer, except
+by the potential motivation described above, which is still not a good
+justificative to have drm_framebuffer functions to calculate it.
 
-> +			if ((crtc_state->port_clock == 594000 &&
-> +			    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) ||
-> +			    (crtc_state->port_clock == 162000 &&
-> +			    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP))) {
-> +				intel_de_rmw(dev_priv, DKLP_TX_DPCNTL2(tc_port),
-> +					     LOADGEN_SHARING_PMD_DISABLE, 1);
+So, replace each drm_framebuffer_plane_{width,height} and
+fb_plane_{width,height} call to drm_format_info_plane_{width,height}
+and remove them.
 
-Must use intel_dkl_phy_rmw() with DKL regs.
+Signed-off-by: Carlos Eduardo Gallo Filho <gcarlos@disroot.org>
+---
+ drivers/gpu/drm/drm_framebuffer.c       | 64 ++-----------------------
+ drivers/gpu/drm/i915/display/intel_fb.c |  2 +-
+ include/drm/drm_framebuffer.h           |  5 --
+ 3 files changed, 5 insertions(+), 66 deletions(-)
 
-> +			} else {
-> +				intel_de_rmw(dev_priv, DKLP_TX_DPCNTL2(tc_port),
-> +					     LOADGEN_SHARING_PMD_DISABLE, 0);
-> +			}
-> +		}
-> +
->  		if (IS_ALDERLAKE_P(dev_priv)) {
->  			u32 val;
->  
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index dcf64e32cd54..5487301d4ad3 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -6663,4 +6663,10 @@ enum skl_power_gate {
->  
->  #define MTL_MEDIA_GSI_BASE		0x380000
->  
-> +#define _DKLP_PCS_GLUE_TX_DPCNTL2	0xB68
+diff --git a/drivers/gpu/drm/drm_framebuffer.c b/drivers/gpu/drm/drm_framebuffer.c
+index aff3746dedfb..efed4cd7965e 100644
+--- a/drivers/gpu/drm/drm_framebuffer.c
++++ b/drivers/gpu/drm/drm_framebuffer.c
+@@ -151,24 +151,6 @@ int drm_mode_addfb_ioctl(struct drm_device *dev,
+ 	return drm_mode_addfb(dev, data, file_priv);
+ }
+ 
+-static int fb_plane_width(int width,
+-			  const struct drm_format_info *format, int plane)
+-{
+-	if (plane == 0)
+-		return width;
+-
+-	return DIV_ROUND_UP(width, format->hsub);
+-}
+-
+-static int fb_plane_height(int height,
+-			   const struct drm_format_info *format, int plane)
+-{
+-	if (plane == 0)
+-		return height;
+-
+-	return DIV_ROUND_UP(height, format->vsub);
+-}
+-
+ static int framebuffer_check(struct drm_device *dev,
+ 			     const struct drm_mode_fb_cmd2 *r)
+ {
+@@ -196,8 +178,8 @@ static int framebuffer_check(struct drm_device *dev,
+ 	info = drm_get_format_info(dev, r);
+ 
+ 	for (i = 0; i < info->num_planes; i++) {
+-		unsigned int width = fb_plane_width(r->width, info, i);
+-		unsigned int height = fb_plane_height(r->height, info, i);
++		unsigned int width = drm_format_info_plane_width(info, r->width, i);
++		unsigned int height = drm_format_info_plane_height(info, r->height, i);
+ 		unsigned int block_size = info->char_per_block[i];
+ 		u64 min_pitch = drm_format_info_min_pitch(info, i, width);
+ 
+@@ -1136,44 +1118,6 @@ void drm_framebuffer_remove(struct drm_framebuffer *fb)
+ }
+ EXPORT_SYMBOL(drm_framebuffer_remove);
+ 
+-/**
+- * drm_framebuffer_plane_width - width of the plane given the first plane
+- * @width: width of the first plane
+- * @fb: the framebuffer
+- * @plane: plane index
+- *
+- * Returns:
+- * The width of @plane, given that the width of the first plane is @width.
+- */
+-int drm_framebuffer_plane_width(int width,
+-				const struct drm_framebuffer *fb, int plane)
+-{
+-	if (plane >= fb->format->num_planes)
+-		return 0;
+-
+-	return fb_plane_width(width, fb->format, plane);
+-}
+-EXPORT_SYMBOL(drm_framebuffer_plane_width);
+-
+-/**
+- * drm_framebuffer_plane_height - height of the plane given the first plane
+- * @height: height of the first plane
+- * @fb: the framebuffer
+- * @plane: plane index
+- *
+- * Returns:
+- * The height of @plane, given that the height of the first plane is @height.
+- */
+-int drm_framebuffer_plane_height(int height,
+-				 const struct drm_framebuffer *fb, int plane)
+-{
+-	if (plane >= fb->format->num_planes)
+-		return 0;
+-
+-	return fb_plane_height(height, fb->format, plane);
+-}
+-EXPORT_SYMBOL(drm_framebuffer_plane_height);
+-
+ void drm_framebuffer_print_info(struct drm_printer *p, unsigned int indent,
+ 				const struct drm_framebuffer *fb)
+ {
+@@ -1189,8 +1133,8 @@ void drm_framebuffer_print_info(struct drm_printer *p, unsigned int indent,
+ 
+ 	for (i = 0; i < fb->format->num_planes; i++) {
+ 		drm_printf_indent(p, indent + 1, "size[%u]=%dx%d\n", i,
+-				  drm_framebuffer_plane_width(fb->width, fb, i),
+-				  drm_framebuffer_plane_height(fb->height, fb, i));
++				  drm_format_info_plane_width(fb->format, fb->width, i),
++				  drm_format_info_plane_height(fb->format, fb->height, i));
+ 		drm_printf_indent(p, indent + 1, "pitch[%u]=%u\n", i, fb->pitches[i]);
+ 		drm_printf_indent(p, indent + 1, "offset[%u]=%u\n", i, fb->offsets[i]);
+ 		drm_printf_indent(p, indent + 1, "obj[%u]:%s\n", i,
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 446bbf7986b6..5de2453ff7a3 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1113,7 +1113,7 @@ static int intel_fb_offset_to_xy(int *x, int *y,
+ 		return -EINVAL;
+ 	}
+ 
+-	height = drm_framebuffer_plane_height(fb->height, fb, color_plane);
++	height = drm_format_info_plane_height(fb->format, fb->height, color_plane);
+ 	height = ALIGN(height, intel_tile_height(fb, color_plane));
+ 
+ 	/* Catch potential overflows early */
+diff --git a/include/drm/drm_framebuffer.h b/include/drm/drm_framebuffer.h
+index 0dcc07b68654..80ece7b6dd9b 100644
+--- a/include/drm/drm_framebuffer.h
++++ b/include/drm/drm_framebuffer.h
+@@ -292,11 +292,6 @@ static inline void drm_framebuffer_assign(struct drm_framebuffer **p,
+ 	     &fb->head != (&(dev)->mode_config.fb_list);			\
+ 	     fb = list_next_entry(fb, head))
+ 
+-int drm_framebuffer_plane_width(int width,
+-				const struct drm_framebuffer *fb, int plane);
+-int drm_framebuffer_plane_height(int height,
+-				 const struct drm_framebuffer *fb, int plane);
+-
+ /**
+  * struct drm_afbc_framebuffer - a special afbc frame buffer object
+  *
+-- 
+2.39.3
 
-These registers are defined in intel_dkl_phy_regs.h.
-
-Not sure about the above offset. There's been updates to the spec and I
-think the last known good value is 0x02c8 defined at
-
-Bspec 49295
-
-That is just the already defined DKL_TX_DPCNTL2.
-
-> +#define LOADGEN_SHARING_PMD_DISABLE	REG_BIT(2)
-
-This doesn't seem to match either bspec 55359, where bit 2 is
-cfg_dp20bitmode and bit 12 is loadgen_sharing_pmd_disable.
-
-> +#define DKLP_TX_DPCNTL2(tc_port)	_MMIO(_PORT(tc_port, \
-> +						    _DKL_PHY1_BASE, \
-> +						    _DKL_PHY2_BASE) + \
-> +						    _DKLP_PCS_GLUE_TX_DPCNTL2)
->  #endif /* _I915_REG_H_ */
-> -- 
-> 2.25.1
-> 
