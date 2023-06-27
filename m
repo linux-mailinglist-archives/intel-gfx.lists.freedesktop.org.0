@@ -2,47 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E7B73F058
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 03:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A43C73F0A9
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 03:54:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2684A10E268;
-	Tue, 27 Jun 2023 01:23:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 915DF10E278;
+	Tue, 27 Jun 2023 01:54:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E47DA10E268
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jun 2023 01:23:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687829026; x=1719365026;
- h=date:from:to:cc:subject:message-id;
- bh=M8nCIoe7kTxc9Ig5mKDgF4P2+mZfoLv6sPtI8q067os=;
- b=Mj2JKeGpEYfFHnc0zKSBn3TcLOYyAolPO7oICtJAhC8EtpjQT2nka8d+
- tPSN3gDCG5tlIB75WutDYd+7cH6GlTYVD514/hzCjdD/4etp3GYhhGWK4
- MxxKOrbs6TRzV8RrI3gb7GN5FSfJrCclvyJuoMqYgWsQ2YloCcSKkAEoL
- B9kEonptm9hskMYbRZyb3dE2CGsU2vstYhW3CMnGBM1fktp4lnxn8phDD
- Kc9XlEygThoY/VSjBZUtL2H7qSau14uwOc8bMDO2o20kAZGAabR2pcfTM
- o2kJLJXnV9dkWHfNGyGZRMUQs4soZFKBqZGZLlr32hIpYrpUoac6rsWTr w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="360303203"
-X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="360303203"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 18:23:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="746028807"
-X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="746028807"
-Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
- by orsmga008.jf.intel.com with ESMTP; 26 Jun 2023 18:23:42 -0700
-Received: from kbuild by 783282924a45 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qDxQj-000BQX-3C;
- Tue, 27 Jun 2023 01:23:41 +0000
-Date: Tue, 27 Jun 2023 09:22:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Message-ID: <202306270937.nbX3swxD-lkp@intel.com>
-User-Agent: s-nail v14.9.24
-Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
- 60e7c4a25da68cd826719b685babbd23e73b85b0
+Received: from gandalf.ozlabs.org (mail.ozlabs.org
+ [IPv6:2404:9400:2221:ea00::3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EFC610E274;
+ Tue, 27 Jun 2023 01:54:40 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Qqnp209DBz4wb6;
+ Tue, 27 Jun 2023 11:54:33 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1687830875;
+ bh=RRajNkNOmZ7k6F/p7wmvGLYlz9dAU7dhw4zq91Sf2i8=;
+ h=Date:From:To:Cc:Subject:From;
+ b=kGYYiwiL1YXQkNnZ5HOR9k/2YfORMdjyglVwTjbwG5iIGUg0pLhIC2Z5+Tqh11lpo
+ PAGrMvXAZj6xrsJnoot7tTkHJLArlZZBMGNII/4WP9V/k9nObblgVC5d4ZJJDB+wVf
+ rJemaPmOES9zyZeCBjbGb2FzoqF5IojIshloWsozYTwouPM7Rjg/llRIAiFzQleh1Q
+ /xUQ2OYiFD1S10LjbIJ+kpqc4+6oUKSXmz2I/e9+gNIDosh7xjN29Wj4wYrVkioi9B
+ 8g4DKeFNKqR5zs0q8uE/msFCMrBO7YJo8KZzz1Fw199r6Jpp1PCpcJ2idwh/ZD5UkG
+ wOaD/OmuJNOng==
+Date: Tue, 27 Jun 2023 11:54:32 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20230627115432.6179f0ea@canb.auug.org.au>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="Sig_/A0wej4cPb9Y4mYG4zvi4GKW";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: [Intel-gfx] linux-next: manual merge of the drm tree with the
+ drm-misc-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,220 +50,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-parisc@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-usb@vger.kernel.org,
- Linux Memory Management List <linux-mm@kvack.org>,
- linux-kselftest@vger.kernel.org, linux-btrfs@vger.kernel.org,
- kunit-dev@googlegroups.com
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 60e7c4a25da68cd826719b685babbd23e73b85b0  Add linux-next specific files for 20230626
+--Sig_/A0wej4cPb9Y4mYG4zvi4GKW
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Error/Warning reports:
+Hi all,
 
-https://lore.kernel.org/oe-kbuild-all/202306122223.HHER4zOo-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202306262024.HUr6WfyW-lkp@intel.com
+Today's linux-next merge of the drm tree got a conflict in:
 
-Error/Warning: (recently discovered and may have been fixed)
+  include/drm/gpu_scheduler.h
 
-arch/parisc/kernel/pdt.c:66:6: warning: no previous prototype for 'arch_report_meminfo' [-Wmissing-prototypes]
-drivers/char/mem.c:164:25: error: implicit declaration of function 'unxlate_dev_mem_ptr'; did you mean 'xlate_dev_mem_ptr'? [-Werror=implicit-function-declaration]
-drivers/gpu/drm/i915/display/intel_display_power.h:255:70: error: declaration of 'struct seq_file' will not be visible outside of this function [-Werror,-Wvisibility]
-drivers/gpu/drm/i915/display/intel_display_power.h:256:70: error: declaration of 'struct seq_file' will not be visible outside of this function [-Werror,-Wvisibility]
-lib/kunit/executor_test.c:138:4: warning: cast from 'void (*)(const void *)' to 'kunit_action_t *' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-strict]
-lib/kunit/test.c:775:38: warning: cast from 'void (*)(const void *)' to 'kunit_action_t *' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-strict]
+between commit:
 
-Unverified Error/Warning (likely false positive, please contact us if interested):
+  db8b4968a8d0 ("drm/sched: Call drm_sched_fence_set_parent() from drm_sche=
+d_fence_scheduled()")
 
-drivers/usb/cdns3/cdns3-starfive.c:23: warning: expecting prototype for cdns3(). Prototype was for USB_STRAP_HOST() instead
-fs/btrfs/volumes.c:6407 btrfs_map_block() error: we previously assumed 'mirror_num_ret' could be null (see line 6244)
-lib/kunit/test.c:336 __kunit_abort() warn: ignoring unreachable code.
-{standard input}: Error: local label `"2" (instance number 9 of a fb label)' is not defined
-{standard input}:1097: Error: pcrel too far
+from the drm-misc-fixes tree and commit:
 
-Error/Warning ids grouped by kconfigs:
+  539f9ee4b52a ("drm/scheduler: properly forward fence errors")
 
-gcc_recent_errors
-|-- i386-randconfig-m021-20230625
-|   `-- fs-btrfs-volumes.c-btrfs_map_block()-error:we-previously-assumed-mirror_num_ret-could-be-null-(see-line-)
-|-- parisc-allyesconfig
-|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
-|-- parisc-defconfig
-|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
-|-- parisc-generic-64bit_defconfig
-|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
-|-- parisc-randconfig-r012-20230626
-|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
-|-- parisc-randconfig-r026-20230626
-|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
-|-- parisc-randconfig-r053-20230625
-|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
-|-- parisc64-defconfig
-|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
-|-- powerpc-randconfig-m041-20230625
-|   `-- lib-kunit-test.c-__kunit_abort()-warn:ignoring-unreachable-code.
-|-- riscv-allmodconfig
-|   `-- drivers-usb-cdns3-cdns3-starfive.c:warning:expecting-prototype-for-cdns3().-Prototype-was-for-USB_STRAP_HOST()-instead
-|-- riscv-allyesconfig
-|   `-- drivers-usb-cdns3-cdns3-starfive.c:warning:expecting-prototype-for-cdns3().-Prototype-was-for-USB_STRAP_HOST()-instead
-|-- sh-allmodconfig
-|   |-- drivers-char-mem.c:error:implicit-declaration-of-function-unxlate_dev_mem_ptr
-|   |-- standard-input:Error:local-label-(instance-number-of-a-fb-label)-is-not-defined
-|   `-- standard-input:Error:pcrel-too-far
-|-- sh-rsk7201_defconfig
-|   `-- drivers-char-mem.c:error:implicit-declaration-of-function-unxlate_dev_mem_ptr
-|-- sh-se7619_defconfig
-|   `-- drivers-char-mem.c:error:implicit-declaration-of-function-unxlate_dev_mem_ptr
-`-- sparc64-randconfig-r053-20230625
-    `-- net-bluetooth-hci_conn.c:WARNING-opportunity-for-kmemdup
-clang_recent_errors
-|-- arm-randconfig-r016-20230626
-|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|-- hexagon-randconfig-r041-20230626
-|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|-- i386-randconfig-i004-20230626
-|   `-- drivers-gpu-drm-i915-display-intel_display_power.h:error:declaration-of-struct-seq_file-will-not-be-visible-outside-of-this-function-Werror-Wvisibility
-|-- um-randconfig-r024-20230626
-|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-`-- x86_64-randconfig-r004-20230626
-    `-- drivers-gpu-drm-i915-display-intel_display_power.h:error:declaration-of-struct-seq_file-will-not-be-visible-outside-of-this-function-Werror-Wvisibility
+from the drm tree.
 
-elapsed time: 1076m
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
 
-configs tested: 124
-configs skipped: 8
+--=20
+Cheers,
+Stephen Rothwell
 
-tested configs:
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-alpha                randconfig-r002-20230626   gcc  
-alpha                randconfig-r036-20230626   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                        nsim_700_defconfig   gcc  
-arc                  randconfig-r023-20230626   gcc  
-arc                  randconfig-r043-20230626   gcc  
-arm                              allmodconfig   gcc  
-arm                              allyesconfig   gcc  
-arm                       aspeed_g4_defconfig   clang
-arm                                 defconfig   gcc  
-arm                      footbridge_defconfig   gcc  
-arm                           h3600_defconfig   gcc  
-arm                       imx_v4_v5_defconfig   clang
-arm                          ixp4xx_defconfig   clang
-arm                        multi_v7_defconfig   gcc  
-arm                             mxs_defconfig   clang
-arm                       netwinder_defconfig   clang
-arm                  randconfig-r003-20230626   gcc  
-arm                  randconfig-r006-20230626   gcc  
-arm                  randconfig-r016-20230626   clang
-arm                  randconfig-r034-20230626   gcc  
-arm                  randconfig-r046-20230626   clang
-arm                         s5pv210_defconfig   clang
-arm                        spear3xx_defconfig   clang
-arm64                            allyesconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                randconfig-r031-20230626   clang
-csky                                defconfig   gcc  
-csky                 randconfig-r013-20230626   gcc  
-hexagon              randconfig-r041-20230626   clang
-hexagon              randconfig-r045-20230626   clang
-i386                             alldefconfig   gcc  
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-r004-20230626   clang
-i386         buildonly-randconfig-r005-20230626   clang
-i386         buildonly-randconfig-r006-20230626   clang
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                 randconfig-i001-20230626   clang
-i386                 randconfig-i002-20230626   clang
-i386                 randconfig-i003-20230626   clang
-i386                 randconfig-i004-20230626   clang
-i386                 randconfig-i005-20230626   clang
-i386                 randconfig-i006-20230626   clang
-i386                 randconfig-i011-20230626   gcc  
-i386                 randconfig-i012-20230626   gcc  
-i386                 randconfig-i013-20230626   gcc  
-i386                 randconfig-i014-20230626   gcc  
-i386                 randconfig-i015-20230626   gcc  
-i386                 randconfig-i016-20230626   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-m68k                             allmodconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-m68k                          hp300_defconfig   gcc  
-m68k                 randconfig-r011-20230626   gcc  
-m68k                 randconfig-r015-20230626   gcc  
-microblaze           randconfig-r005-20230626   gcc  
-mips                             allmodconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                          ath79_defconfig   clang
-mips                           ip22_defconfig   clang
-mips                     loongson2k_defconfig   clang
-mips                          malta_defconfig   clang
-mips                malta_qemu_32r6_defconfig   clang
-mips                      maltaaprp_defconfig   clang
-mips                 randconfig-r035-20230626   gcc  
-nios2                               defconfig   gcc  
-nios2                randconfig-r032-20230626   gcc  
-openrisc                            defconfig   gcc  
-openrisc                 simple_smp_defconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc                generic-64bit_defconfig   gcc  
-parisc               randconfig-r012-20230626   gcc  
-parisc               randconfig-r026-20230626   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                      arches_defconfig   gcc  
-powerpc                   currituck_defconfig   gcc  
-powerpc                      pcm030_defconfig   gcc  
-powerpc              randconfig-r021-20230626   gcc  
-powerpc                    socrates_defconfig   clang
-riscv                            alldefconfig   clang
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   gcc  
-riscv                               defconfig   gcc  
-riscv                randconfig-r042-20230626   gcc  
-riscv                          rv32_defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-s390                 randconfig-r044-20230626   gcc  
-sh                               allmodconfig   gcc  
-sh                                  defconfig   gcc  
-sh                          rsk7201_defconfig   gcc  
-sh                           se7619_defconfig   gcc  
-sh                  sh7785lcr_32bit_defconfig   gcc  
-sparc                            allyesconfig   gcc  
-sparc                               defconfig   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   clang
-um                                  defconfig   gcc  
-um                             i386_defconfig   gcc  
-um                   randconfig-r024-20230626   clang
-um                           x86_64_defconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64       buildonly-randconfig-r001-20230626   clang
-x86_64       buildonly-randconfig-r002-20230626   clang
-x86_64       buildonly-randconfig-r003-20230626   clang
-x86_64                              defconfig   gcc  
-x86_64                                  kexec   gcc  
-x86_64               randconfig-r022-20230626   gcc  
-x86_64                          rhel-8.3-rust   clang
-x86_64                               rhel-8.3   gcc  
-xtensa                generic_kc705_defconfig   gcc  
+diff --cc include/drm/gpu_scheduler.h
+index b29e347b10a9,e95b4837e5a3..000000000000
+--- a/include/drm/gpu_scheduler.h
++++ b/include/drm/gpu_scheduler.h
+@@@ -581,16 -581,18 +581,17 @@@ void drm_sched_entity_push_job(struct d
+  void drm_sched_entity_set_priority(struct drm_sched_entity *entity,
+  				   enum drm_sched_priority priority);
+  bool drm_sched_entity_is_ready(struct drm_sched_entity *entity);
++ int drm_sched_entity_error(struct drm_sched_entity *entity);
+ =20
+ -void drm_sched_fence_set_parent(struct drm_sched_fence *s_fence,
+ -				struct dma_fence *fence);
+  struct drm_sched_fence *drm_sched_fence_alloc(
+  	struct drm_sched_entity *s_entity, void *owner);
+  void drm_sched_fence_init(struct drm_sched_fence *fence,
+  			  struct drm_sched_entity *entity);
+  void drm_sched_fence_free(struct drm_sched_fence *fence);
+ =20
+ -void drm_sched_fence_scheduled(struct drm_sched_fence *fence);
+ +void drm_sched_fence_scheduled(struct drm_sched_fence *fence,
+ +			       struct dma_fence *parent);
+- void drm_sched_fence_finished(struct drm_sched_fence *fence);
++ void drm_sched_fence_finished(struct drm_sched_fence *fence, int result);
+ =20
+  unsigned long drm_sched_suspend_timeout(struct drm_gpu_scheduler *sched);
+  void drm_sched_resume_timeout(struct drm_gpu_scheduler *sched,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--Sig_/A0wej4cPb9Y4mYG4zvi4GKW
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmSaQVgACgkQAVBC80lX
+0GxhOQgAkVrLri2QnnyvU6f9lijKRB7p/0cLsfeP1cDKHbT43E4C6gDIydnHifeh
+Nlz/fxPU0HZfQufeLcP+8TVakK6o478QX5hyChWUQtNGyANdziaE9Kss7An5apd5
+YhW44XlEqhZuj8keVmGIX2v8B/4BNk/23llsIUQT7qGGr8nE4fmHBnWeiDfst6f4
+KJR/FQPeCY57TW1cdZlj4EFNjkVjY4RYgOd3La4TjpmCA3ybDp6ZKZXyGAAdfpfE
+LPic3ty1GH6y3syIikHuu6OFGWs7MR5a3FApw0TdqrAsFd9GGWBWpuHbx+RgV6o/
+JmI0uiryCD6c/5aI9QF6V/4Nv4vFUg==
+=FoQ1
+-----END PGP SIGNATURE-----
+
+--Sig_/A0wej4cPb9Y4mYG4zvi4GKW--
