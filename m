@@ -2,76 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B5C73FE7C
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 16:40:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C37F973FD52
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 16:05:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3606D10E301;
-	Tue, 27 Jun 2023 14:40:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF4F810E2E7;
+	Tue, 27 Jun 2023 14:05:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com
- [IPv6:2607:f8b0:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D3C610E0EC
- for <intel-gfx@lists.freedesktop.org>; Sun, 25 Jun 2023 03:15:12 +0000 (UTC)
-Received: by mail-pf1-x42f.google.com with SMTP id
- d2e1a72fcca58-657c4bcad0bso494641b3a.1
- for <intel-gfx@lists.freedesktop.org>; Sat, 24 Jun 2023 20:15:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bytedance.com; s=google; t=1687662910; x=1690254910;
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=TKI5JnbDIC0GxIDWgHq4O/cOoJK+mFi4lHzSLMfVTqU=;
- b=ZAMx9Z9f9sidua+INHohqUOzi6qohVG8u4jVCH5kW+5KNZXm213btXme0+oY3eiFas
- kJ1eg2nzkYdYzNdOe7oa9qHmaJUnXCYxjS+yzRkh4fKBRaJsJ8sThwNTH8lHQfNkQNAM
- VzcFUF7+yXpjBTL7GbZNoITLErtoJw0Vjk1rTp/DbKRrvAbdhI1W9mMFrodUhQiTOgU4
- x87qi5B+whZkF6jL19/UUqYgrCxdv27BCv4u4d4gCY3C0TEpHKxxaHXbF0gjifwSN242
- 21vqEHW8Cm8PCiF/LjQeQL8d9CMETY+gbtFossFoUbQJa5ZrwnE/J5ioBpxXDyTlqBxM
- qigg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687662910; x=1690254910;
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=TKI5JnbDIC0GxIDWgHq4O/cOoJK+mFi4lHzSLMfVTqU=;
- b=GgfKJlKl4KtNiQ1XXUFxVFQ7M9aUC1dWQWk7wJLWQAJLbC3k1SFZe41fHSEt3ngcQr
- n4SGKB9l95r6uA+3ES8O78N1O6hnQSaCPfXc7GxQyjicMh7qATT9R2ZhD9eDPqEseHAu
- /oz3dIjLAXKX5zaqxYZzr8d5R6AvBF3apAVrFlfeokuXZGbpi2c9yFlKpoQ+rDHEGxhv
- ezpsdUvPq76MuJTQP5Ria+45paWLzJgZhu7eMfyyedQmTZAv46eEPhgJ+mW5f+7Pu5Bb
- Ec/XKjahb4+g8rJu19A+HaKtuGpLlwRa9Z/9QP0QEnL60/AmKb6m4LIzoN5jhwne6KJ3
- Ze0w==
-X-Gm-Message-State: AC+VfDzjcxy1qvhHCq4AVOoJBkGJacxaCq4tak97bVrQxWyo6vQK2PsB
- H8RsR6xF+dX7S9TbKr6XeTc9ig==
-X-Google-Smtp-Source: ACHHUZ4cDGND46+rMO/jpoItKK6gyWoVPMpHTImOruhTgKiq3D9MdRMxw7KZsaNY9vtDgu3MtWReMw==
-X-Received: by 2002:a05:6a20:8426:b0:11f:7829:6d6c with SMTP id
- c38-20020a056a20842600b0011f78296d6cmr28507253pzd.3.1687662910560; 
- Sat, 24 Jun 2023 20:15:10 -0700 (PDT)
-Received: from [10.70.252.135] ([203.208.167.146])
- by smtp.gmail.com with ESMTPSA id
- r9-20020a62e409000000b0066642f95bc5sm1648412pfh.35.2023.06.24.20.15.03
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 24 Jun 2023 20:15:10 -0700 (PDT)
-Message-ID: <00641d5b-86a3-f5d1-02ee-13b4f815df75@bytedance.com>
-Date: Sun, 25 Jun 2023 11:15:01 +0800
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B4F010E2E8;
+ Tue, 27 Jun 2023 14:05:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687874742; x=1719410742;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=A0BHjWoHFeCPHiEZfaGz7c0sHBpwOQmClpVoUUpMDD4=;
+ b=CMf3UJE0N/F3GNk36bPhDUGG0/MPWud/IqS97KH6I/ZWV+mc7VFd6Ke5
+ XuB5PK3pJYYo/YFZT1RvXanfS+PYkLP+19vxGmg2Wt/sM1QYQAP3h20Jv
+ fRFbB5Pck//bX5VLyJTd/rUCKr2ggqsEED3d26f2mbTm0kzz+FIS/WH+u
+ dVpjX3Vgvbo8AFrhi9zxAZH4q48pcQ/26PyLkvnemFNmyMtjX6MI0bdJf
+ vOwOXpD066ImEBGaCpy849FtjeFpDRPccEKqQ/++iriYD3etIC1pYI7HD
+ PdUkudvj6kDgy2XICYXn6Gpv1swRUWfir/mVgjXF2kPsgFr+Z7Mpkuv4+ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="341916134"
+X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="341916134"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2023 07:05:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="710648903"
+X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="710648903"
+Received: from acarotti-mobl1.ger.corp.intel.com (HELO [10.213.230.65])
+ ([10.213.230.65])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2023 07:05:29 -0700
+Message-ID: <b22c7111-0587-19b5-d912-9d07b81d2bb0@linux.intel.com>
+Date: Tue, 27 Jun 2023 15:05:26 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.12.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
 Content-Language: en-US
-From: Qi Zheng <zhengqi.arch@bytedance.com>
-To: Dave Chinner <david@fromorbit.com>, paulmck@kernel.org
-References: <20230622085335.77010-1-zhengqi.arch@bytedance.com>
- <20230622085335.77010-25-zhengqi.arch@bytedance.com>
- <cf0d9b12-6491-bf23-b464-9d01e5781203@suse.cz>
- <ZJU708VIyJ/3StAX@dread.disaster.area>
- <a21047bb-3b87-a50a-94a7-f3fa4847bc08@bytedance.com>
- <ZJYaYv4pACmCaBoT@dread.disaster.area>
- <a7baf44a-1eb8-d4e1-d112-93cf9cdb7beb@bytedance.com>
-In-Reply-To: <a7baf44a-1eb8-d4e1-d112-93cf9cdb7beb@bytedance.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, fei.yang@intel.com,
+ intel-gfx@lists.freedesktop.org
+References: <20230509165200.1740-1-fei.yang@intel.com>
+ <20230509165200.1740-2-fei.yang@intel.com> <874jmtt4pb.fsf@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <874jmtt4pb.fsf@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 27 Jun 2023 14:38:30 +0000
-Subject: Re: [Intel-gfx] [PATCH 24/29] mm: vmscan: make global slab shrink
- lockless
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v8 1/2] drm/i915: preparation for using PAT
+ index
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,106 +65,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: djwong@kernel.org, roman.gushchin@linux.dev,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linux-mm@kvack.org, dm-devel@redhat.com, linux-ext4@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-nfs@vger.kernel.org, RCU <rcu@vger.kernel.org>,
- linux-bcache@vger.kernel.org, Vlastimil Babka <vbabka@suse.cz>,
- linux-raid@vger.kernel.org, brauner@kernel.org, tytso@mit.edu,
- linux-kernel@vger.kernel.org, linux-xfs@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
- linux-btrfs@vger.kernel.org, tkhai@ya.ru
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-
-On 2023/6/24 19:08, Qi Zheng wrote:
-> Hi Dave,
-> 
-> On 2023/6/24 06:19, Dave Chinner wrote:
->> On Fri, Jun 23, 2023 at 09:10:57PM +0800, Qi Zheng wrote:
->>> On 2023/6/23 14:29, Dave Chinner wrote:
->>>> On Thu, Jun 22, 2023 at 05:12:02PM +0200, Vlastimil Babka wrote:
->>>>> On 6/22/23 10:53, Qi Zheng wrote:
->>>> Yes, I suggested the IDR route because radix tree lookups under RCU
->>>> with reference counted objects are a known safe pattern that we can
->>>> easily confirm is correct or not.  Hence I suggested the unification
->>>> + IDR route because it makes the life of reviewers so, so much
->>>> easier...
->>>
->>> In fact, I originally planned to try the unification + IDR method you
->>> suggested at the beginning. But in the case of CONFIG_MEMCG disabled,
->>> the struct mem_cgroup is not even defined, and root_mem_cgroup and
->>> shrinker_info will not be allocated.  This required more code 
->>> changes, so
->>> I ended up keeping the shrinker_list and implementing the above pattern.
+On 27/06/2023 14:28, Jani Nikula wrote:
+> On Tue, 09 May 2023, fei.yang@intel.com wrote:
+>> From: Fei Yang <fei.yang@intel.com>
 >>
->> Yes. Go back and read what I originally said needed to be done
->> first. In the case of CONFIG_MEMCG=n, a dummy root memcg still needs
->> to exist that holds all of the global shrinkers. Then shrink_slab()
->> is only ever passed a memcg that should be iterated.
+>> This patch is a preparation for replacing enum i915_cache_level with PAT
+>> index. Caching policy for buffer objects is set through the PAT index in
+>> PTE, the old i915_cache_level is not sufficient to represent all caching
+>> modes supported by the hardware.
 >>
->> Yes, it needs changes external to the shrinker code itself to be
->> made to work. And even if memcg's are not enabled, we can still use
->> the memcg structures to ensure a common abstraction is used for the
->> shrinker tracking infrastructure....
-> 
-> Yeah, what I imagined before was to define a more concise struct
-> mem_cgroup in the case of CONFIG_MEMCG=n, then allocate a dummy root
-> memcg on system boot:
-> 
-> #ifdef !CONFIG_MEMCG
-> 
-> struct shrinker_info {
->      struct rcu_head rcu;
->      atomic_long_t *nr_deferred;
->      unsigned long *map;
->      int map_nr_max;
-> };
-> 
-> struct mem_cgroup_per_node {
->      struct shrinker_info __rcu    *shrinker_info;
-> };
-> 
-> struct mem_cgroup {
->      struct mem_cgroup_per_node *nodeinfo[];
-> };
-> 
-> #endif
-> 
-> But I have a concern: if all global shrinkers are tracking with the
-> info->map of root memcg, a shrinker->id needs to be assigned to them,
-> which will cause info->map_nr_max to become larger than before, then
-> making the traversal of info->map slower.
-
-But most of the system is 'sb-xxx' shrinker instances, they all have
-the SHRINKER_MEMCG_AWARE flag, so it should have little impact on the
-speed of traversing info->map. ;)
-
-> 
+>> Preparing the transition by adding some platform dependent data structures
+>> and helper functions to translate the cache_level to pat_index.
 >>
->>> If the above pattern is not safe, I will go back to the unification +
->>> IDR method.
+>> cachelevel_to_pat: a platform dependent array mapping cache_level to
+>>                     pat_index.
 >>
->> And that is exactly how we got into this mess in the first place....
-> 
-> I only found one similar pattern in the kernel:
-> 
-> fs/smb/server/oplock.c:find_same_lease_key/smb_break_all_levII_oplock/lookup_lease_in_table
-> 
-> But IIUC, the refcount here needs to be decremented after holding
-> rcu lock as I did above.
-> 
-> So regardless of whether we choose unification + IDR in the end, I still
-> want to confirm whether the pattern I implemented above is safe. :)
-
-Also + RCU mailing list.
-
-> 
-> Thanks,
-> Qi
-> 
+>> max_pat_index: the maximum PAT index recommended in hardware specification
+>>                 Needed for validating the PAT index passed in from user
+>>                 space.
 >>
->> -Dave
+>> i915_gem_get_pat_index: function to convert cache_level to PAT index.
+>>
+>> obj_to_i915(obj): macro moved to header file for wider usage.
+>>
+>> I915_MAX_CACHE_LEVEL: upper bound of i915_cache_level for the
+>>                        convenience of coding.
+>>
+>> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Signed-off-by: Fei Yang <fei.yang@intel.com>
+>> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+>> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> 
+> [snip]
+> 
+>> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+>> index f6a7c0bd2955..0eda8b4ee17f 100644
+>> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+>> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+>> @@ -123,7 +123,9 @@ struct drm_i915_private *mock_gem_device(void)
+>>   	static struct dev_iommu fake_iommu = { .priv = (void *)-1 };
+>>   #endif
+>>   	struct drm_i915_private *i915;
+>> +	struct intel_device_info *i915_info;
+>>   	struct pci_dev *pdev;
+>> +	unsigned int i;
+>>   	int ret;
+>>   
+>>   	pdev = kzalloc(sizeof(*pdev), GFP_KERNEL);
+>> @@ -180,6 +182,13 @@ struct drm_i915_private *mock_gem_device(void)
+>>   		I915_GTT_PAGE_SIZE_2M;
+>>   
+>>   	RUNTIME_INFO(i915)->memory_regions = REGION_SMEM;
+>> +
+>> +	/* simply use legacy cache level for mock device */
+>> +	i915_info = (struct intel_device_info *)INTEL_INFO(i915);
+> 
+> This is not okay. It's not okay to modify device info at runtime. This
+> is why we've separated runtime info from device info. This is why we've
+> made device info const, and localized the modifications to a couple of
+> places.
+> 
+> If you need to modify it, it belongs in runtime info. Even if it's only
+> ever modified for mock devices.
+> 
+> We were at the brink of being able to finally convert INTEL_INFO() into
+> a pointer to const rodata [1], where you are unable to modify it, but
+> this having been merged as commit 5e352e32aec2 ("drm/i915: preparation
+> for using PAT index") sets us back. (With [1] this oopses trying to
+> modify read-only data.)
+> 
+> This has been posted to the public list 20+ times, and nobody noticed or
+> pointed this out?!
+> 
+> Throwing away const should be a huge red flag to any developer or
+> reviewer. Hell, *any* cast should be.
+> 
+> I've got a patch ready moving cachelevel_to_pat and max_pat_index to
+> runtime info. It's not great, since we'd be doing it only for the mock
+> device. Better ideas? I'm not waiting long.
+> 
+> 
+> BR,
+> Jani.
+> 
+> 
+> [1] https://patchwork.freedesktop.org/patch/msgid/0badc36ce6dd6b030507bdfd8a42ab984fb38d12.1686236840.git.jani.nikula@intel.com
+> 
+> 
+>> +	i915_info->max_pat_index = 3;
+>> +	for (i = 0; i < I915_MAX_CACHE_LEVEL; i++)
+>> +		i915_info->cachelevel_to_pat[i] = i;
+>> +
+
+I'd simply suggest having a local static const table for the mock 
+device. It should be trivial once i915->__info becomes a pointer so in 
+that series I guess.
+
+While I am here - Fei - any plans to work on the promised cleanup? 
+Abstracting the caching modes with a hw agnostic sw/driver 
+representation, if you remember what we discussed.
+
+Regards,
+
+Tvrtko
