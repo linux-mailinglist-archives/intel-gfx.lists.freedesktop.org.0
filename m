@@ -2,57 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C37F973FD52
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 16:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A546173FDA5
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jun 2023 16:20:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF4F810E2E7;
-	Tue, 27 Jun 2023 14:05:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A095110E301;
+	Tue, 27 Jun 2023 14:20:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B4F010E2E8;
- Tue, 27 Jun 2023 14:05:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687874742; x=1719410742;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=A0BHjWoHFeCPHiEZfaGz7c0sHBpwOQmClpVoUUpMDD4=;
- b=CMf3UJE0N/F3GNk36bPhDUGG0/MPWud/IqS97KH6I/ZWV+mc7VFd6Ke5
- XuB5PK3pJYYo/YFZT1RvXanfS+PYkLP+19vxGmg2Wt/sM1QYQAP3h20Jv
- fRFbB5Pck//bX5VLyJTd/rUCKr2ggqsEED3d26f2mbTm0kzz+FIS/WH+u
- dVpjX3Vgvbo8AFrhi9zxAZH4q48pcQ/26PyLkvnemFNmyMtjX6MI0bdJf
- vOwOXpD066ImEBGaCpy849FtjeFpDRPccEKqQ/++iriYD3etIC1pYI7HD
- PdUkudvj6kDgy2XICYXn6Gpv1swRUWfir/mVgjXF2kPsgFr+Z7Mpkuv4+ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="341916134"
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="341916134"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2023 07:05:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="710648903"
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="710648903"
-Received: from acarotti-mobl1.ger.corp.intel.com (HELO [10.213.230.65])
- ([10.213.230.65])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2023 07:05:29 -0700
-Message-ID: <b22c7111-0587-19b5-d912-9d07b81d2bb0@linux.intel.com>
-Date: Tue, 27 Jun 2023 15:05:26 +0100
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AF8B610E2EB;
+ Tue, 27 Jun 2023 14:20:19 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8CxpMQh8JpkmSYDAA--.4997S3;
+ Tue, 27 Jun 2023 22:20:17 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8Cx7yMh8Jpk41gMAA--.9031S3; 
+ Tue, 27 Jun 2023 22:20:17 +0800 (CST)
+Message-ID: <628f718b-bcbc-6a3b-6e7f-40148160b5b7@loongson.cn>
+Date: Tue, 27 Jun 2023 22:20:17 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
 Content-Language: en-US
-To: Jani Nikula <jani.nikula@linux.intel.com>, fei.yang@intel.com,
- intel-gfx@lists.freedesktop.org
-References: <20230509165200.1740-1-fei.yang@intel.com>
- <20230509165200.1740-2-fei.yang@intel.com> <874jmtt4pb.fsf@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <874jmtt4pb.fsf@intel.com>
+To: Sui Jingfeng <15330273260@189.cn>, Bjorn Helgaas <bhelgaas@google.com>
+References: <20230613030151.216625-1-15330273260@189.cn>
+ <20230613030151.216625-9-15330273260@189.cn>
+From: Sui Jingfeng <suijingfeng@loongson.cn>
+Organization: Loongson
+In-Reply-To: <20230613030151.216625-9-15330273260@189.cn>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v8 1/2] drm/i915: preparation for using PAT
- index
+X-CM-TRANSID: AQAAf8Cx7yMh8Jpk41gMAA--.9031S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj9xXoWrXrykAr1fCw4kWr1xAw43Jwc_yoWxXFc_Wr
+ Z2k3ykC3W8XFZ7XFW2q398CrySyayrAryUJwnrtFn7W342kr4qvF1Du3sYqFy3A3W7Cr13
+ Wrn8tw4jya45ZosvyTuYvTs0mTUanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvT
+ s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+ cSsGvfJTRUUUbgxYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+ vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+ w2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+ W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+ 6r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
+ xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1q
+ 6rW5McIj6I8E87Iv67AKxVWxJVW8Jr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI4
+ 8JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vI
+ r41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67
+ AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIY
+ rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Gr0_Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14
+ v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWxJVW8
+ Jr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvjDU0xZFpf9x07j873
+ kUUUUU=
+Subject: Re: [Intel-gfx] [PATCH v7 8/8] drm/radeon: Implement the
+ is_boot_device callback function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,113 +67,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, linux-pci@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Christian Konig <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 27/06/2023 14:28, Jani Nikula wrote:
-> On Tue, 09 May 2023, fei.yang@intel.com wrote:
->> From: Fei Yang <fei.yang@intel.com>
->>
->> This patch is a preparation for replacing enum i915_cache_level with PAT
->> index. Caching policy for buffer objects is set through the PAT index in
->> PTE, the old i915_cache_level is not sufficient to represent all caching
->> modes supported by the hardware.
->>
->> Preparing the transition by adding some platform dependent data structures
->> and helper functions to translate the cache_level to pat_index.
->>
->> cachelevel_to_pat: a platform dependent array mapping cache_level to
->>                     pat_index.
->>
->> max_pat_index: the maximum PAT index recommended in hardware specification
->>                 Needed for validating the PAT index passed in from user
->>                 space.
->>
->> i915_gem_get_pat_index: function to convert cache_level to PAT index.
->>
->> obj_to_i915(obj): macro moved to header file for wider usage.
->>
->> I915_MAX_CACHE_LEVEL: upper bound of i915_cache_level for the
->>                        convenience of coding.
->>
->> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Fei Yang <fei.yang@intel.com>
->> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> 
-> [snip]
-> 
->> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
->> index f6a7c0bd2955..0eda8b4ee17f 100644
->> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
->> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
->> @@ -123,7 +123,9 @@ struct drm_i915_private *mock_gem_device(void)
->>   	static struct dev_iommu fake_iommu = { .priv = (void *)-1 };
->>   #endif
->>   	struct drm_i915_private *i915;
->> +	struct intel_device_info *i915_info;
->>   	struct pci_dev *pdev;
->> +	unsigned int i;
->>   	int ret;
->>   
->>   	pdev = kzalloc(sizeof(*pdev), GFP_KERNEL);
->> @@ -180,6 +182,13 @@ struct drm_i915_private *mock_gem_device(void)
->>   		I915_GTT_PAGE_SIZE_2M;
->>   
->>   	RUNTIME_INFO(i915)->memory_regions = REGION_SMEM;
->> +
->> +	/* simply use legacy cache level for mock device */
->> +	i915_info = (struct intel_device_info *)INTEL_INFO(i915);
-> 
-> This is not okay. It's not okay to modify device info at runtime. This
-> is why we've separated runtime info from device info. This is why we've
-> made device info const, and localized the modifications to a couple of
-> places.
-> 
-> If you need to modify it, it belongs in runtime info. Even if it's only
-> ever modified for mock devices.
-> 
-> We were at the brink of being able to finally convert INTEL_INFO() into
-> a pointer to const rodata [1], where you are unable to modify it, but
-> this having been merged as commit 5e352e32aec2 ("drm/i915: preparation
-> for using PAT index") sets us back. (With [1] this oopses trying to
-> modify read-only data.)
-> 
-> This has been posted to the public list 20+ times, and nobody noticed or
-> pointed this out?!
-> 
-> Throwing away const should be a huge red flag to any developer or
-> reviewer. Hell, *any* cast should be.
-> 
-> I've got a patch ready moving cachelevel_to_pat and max_pat_index to
-> runtime info. It's not great, since we'd be doing it only for the mock
-> device. Better ideas? I'm not waiting long.
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
-> [1] https://patchwork.freedesktop.org/patch/msgid/0badc36ce6dd6b030507bdfd8a42ab984fb38d12.1686236840.git.jani.nikula@intel.com
-> 
-> 
->> +	i915_info->max_pat_index = 3;
->> +	for (i = 0; i < I915_MAX_CACHE_LEVEL; i++)
->> +		i915_info->cachelevel_to_pat[i] = i;
->> +
+PING ?
 
-I'd simply suggest having a local static const table for the mock 
-device. It should be trivial once i915->__info becomes a pointer so in 
-that series I guess.
 
-While I am here - Fei - any plans to work on the promised cleanup? 
-Abstracting the caching modes with a hw agnostic sw/driver 
-representation, if you remember what we discussed.
+On 2023/6/13 11:01, Sui Jingfeng wrote:
+> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>
+> [why]
+>
+> The vga_is_firmware_default() defined in drivers/pci/vgaarb.c is
+> arch-dependent, it's a dummy on non-x86 architectures currently.
+> This made VGAARB lost an important condition for the arbitration.
+> It could still be wrong even if we remove the #ifdef and #endif guards.
+> because the PCI bar will move (resource re-allocation).
+>
+> [how]
+>
+> The device that owns the firmware framebuffer should be the default boot
+> device. This patch adds an arch-independent function to enforce this rule
 
-Regards,
+-- 
+Jingfeng
 
-Tvrtko
