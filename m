@@ -2,33 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25190741460
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jun 2023 16:56:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E499074149E
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jun 2023 17:10:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 500FD10E106;
-	Wed, 28 Jun 2023 14:56:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35BD410E106;
+	Wed, 28 Jun 2023 15:10:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B127A10E379;
- Wed, 28 Jun 2023 14:56:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AA0D7A882E;
- Wed, 28 Jun 2023 14:56:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8D0810E106
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Jun 2023 15:10:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687965035; x=1719501035;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=QtAG7jywCIiGxnG9rlD19faE4bb7jVMmfCyTkIss+W0=;
+ b=FKATFGOFXDM29bHBkPHD8Db9WnNKE9CFCIBwoXO4X3wLpISM5HIUHq6P
+ pPgPvl3xLc6iIu4Rr7dipYmjyyhgpZMEI9wAj2Npu1A7J/P370bWNQzsP
+ 5gwQWi05Ptq9VYji4DTMVj0CGj7O3NVcQKYfZll53keWKaTWd3ch9KeBD
+ 3p0GMBHiJAuv3WSZoJeEIfKKUzIAgDRYkNDHc8Cn2VQt5iNOBmiAjoqmh
+ zmTGxvXSeG3pWL80pXSkxBpPuTG5jGscn9do5qKvsBzuV7114nCVv1+Ra
+ n9EjxAmzQci3zWZF8idvLtRDSBG7hhhLhgPwC0G73hdFkIHwGiy5GkR6d w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="360726744"
+X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="360726744"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2023 08:10:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="694298872"
+X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="694298872"
+Received: from lzhiguno-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.165])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2023 08:10:33 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230628141017.18937-1-stanislav.lisovskiy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230628141017.18937-1-stanislav.lisovskiy@intel.com>
+Date: Wed, 28 Jun 2023 18:10:15 +0300
+Message-ID: <87o7kzsjvs.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Wed, 28 Jun 2023 14:56:48 -0000
-Message-ID: <168796420869.32036.1613644993223537204@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230628100816.16528-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20230628100816.16528-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Don=27t_rely_that_2_VDSC_engines_are_always_eno?=
- =?utf-8?q?ugh_for_pixel_rate?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't preserve dpll_hw_state for
+ slave crtc in Bigjoiner
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,30 +59,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 28 Jun 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+> If we are using Bigjoiner dpll_hw_state is supposed to be exactly
+> same as for master crtc, so no need to save it's state for slave crtc.
 
-Series: drm/i915: Don't rely that 2 VDSC engines are always enough for pixel rate
-URL   : https://patchwork.freedesktop.org/series/119967/
-State : warning
+Could this help with [1]?
 
-== Summary ==
+BR,
+Jani.
 
-Error: dim checkpatch failed
-f10b5f4e2d3d drm/i915: Don't rely that 2 VDSC engines are always enough for pixel rate
--:37: ERROR:CODE_INDENT: code indent should use tabs where possible
-#37: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:2617:
-+^I^I^I          crtc_state->pixel_rate);$
+[1] https://gitlab.freedesktop.org/drm/intel/-/issues/8720
 
--:37: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#37: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:2617:
-+		min_cdclk = max_t(int, min_cdclk * crtc_state->dsc.slice_count,
-+			          crtc_state->pixel_rate);
+>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 43d6ba980780..c3e93bdde29d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4568,7 +4568,6 @@ copy_bigjoiner_crtc_state_modeset(struct intel_atomic_state *state,
+>  	saved_state->uapi = slave_crtc_state->uapi;
+>  	saved_state->scaler_state = slave_crtc_state->scaler_state;
+>  	saved_state->shared_dpll = slave_crtc_state->shared_dpll;
+> -	saved_state->dpll_hw_state = slave_crtc_state->dpll_hw_state;
+>  	saved_state->crc_enabled = slave_crtc_state->crc_enabled;
+>  
+>  	intel_crtc_free_hw_state(slave_crtc_state);
 
-total: 1 errors, 0 warnings, 1 checks, 16 lines checked
-
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
