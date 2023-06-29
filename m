@@ -2,51 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DE63742501
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jun 2023 13:32:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BF1B742509
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jun 2023 13:38:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31A8F10E127;
-	Thu, 29 Jun 2023 11:32:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C96A210E164;
+	Thu, 29 Jun 2023 11:38:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8478610E127
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jun 2023 11:32:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688038354; x=1719574354;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=CjJULbKu46uQDMAdMc12qbNeCxsW0OwffvcWGvSTaEA=;
- b=b39Phq3pn/shbdD9JA7Uo7Nb0x1asPZZRlW6dGbjMJCjIpMVjWanv4Cx
- CpaT2MUGqWfU6vWDCUChJZkiwrLVOnMV23lDUtamgM9moIDhOAmPKtxCm
- 8Qs6N3qX0u3EQwTLAUEk1+HDdoWWjKF5+QfEfR7C9jMR16MJqWFrL9KmV
- WMa4F7SnGPbnl80CPx+/uJ74Y1nHPvt8cAX8ohVS6+g4BBul8w139mqWa
- S5SI8VPysv7cwUbxnMakHe2IyJnzxHn07nfozujnDp6V5JDcFvADAGI2B
- yQztYe+o9b5z+mBvcV16qmCdpVgHPAOlONfntbnawl7E6TmEDwQZG3mmk w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="448466101"
-X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="448466101"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2023 04:32:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="717326875"
-X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="717326875"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2023 04:32:32 -0700
-Date: Thu, 29 Jun 2023 14:32:22 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <ZJ1rxgwwBBDnKL0C@intel.com>
-References: <20230628141017.18937-1-stanislav.lisovskiy@intel.com>
- <87o7kzsjvs.fsf@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B31C210E156;
+ Thu, 29 Jun 2023 11:38:19 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id D2EE71F8C2;
+ Thu, 29 Jun 2023 11:38:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1688038695; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=1gbWZyTdA6MKn6rkpQxBAfq32MNcc6SRve+UKkcnXTs=;
+ b=KwXakjw6HrM/PJAEOH4GZ6fykn2qXtJVoY1dP/bnohTaYOVz8JVMzpqBR+9Dfi2Q0hZ+rx
+ xFjPRjRxjx1YAbTlzj7Q3yp8MVpGDKG136mVmTBSoVlgXNBf3A5gdWq13za/e9IxYSkD4M
+ d71hKebsuJEhr7smGo5r0sV04mUXPUU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1688038695;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=1gbWZyTdA6MKn6rkpQxBAfq32MNcc6SRve+UKkcnXTs=;
+ b=LEJENkEJ/Twp4JPTM9trKtLKgKb3HYS2Z1r0wfoL/BMZml9fGSGjkVwzFuEK6HwTkl6Yec
+ EzHaopqJa/FdvVCQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 93CE813905;
+ Thu, 29 Jun 2023 11:38:15 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id KzIaIydtnWTOPwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 29 Jun 2023 11:38:15 +0000
+Date: Thu, 29 Jun 2023 13:38:14 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20230629113814.GA10448@linux-uq9g>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <87o7kzsjvs.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't preserve dpll_hw_state for
- slave crtc in Bigjoiner
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,48 +64,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 28, 2023 at 06:10:15PM +0300, Jani Nikula wrote:
-> On Wed, 28 Jun 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
-> > If we are using Bigjoiner dpll_hw_state is supposed to be exactly
-> > same as for master crtc, so no need to save it's state for slave crtc.
-> 
-> Could this help with [1]?
-> 
-> BR,
-> Jani.
-> 
-> [1] https://gitlab.freedesktop.org/drm/intel/-/issues/8720
+Hi Dave and Daniel,
 
-I don't think that would help, here this is mostly a cosmetic fix
-to remove dmesg warn caused by slave crtc sw/hw state mismatch, because
-we don't calculate pll state for slave crtc in Bigjoiner, but still try
-to verify it against the values in the correspodent hw.
+only one trivial bugfix this week.
 
-Stan
+Best regards
+Thomas
 
-> 
-> >
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 1 -
-> >  1 file changed, 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 43d6ba980780..c3e93bdde29d 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -4568,7 +4568,6 @@ copy_bigjoiner_crtc_state_modeset(struct intel_atomic_state *state,
-> >  	saved_state->uapi = slave_crtc_state->uapi;
-> >  	saved_state->scaler_state = slave_crtc_state->scaler_state;
-> >  	saved_state->shared_dpll = slave_crtc_state->shared_dpll;
-> > -	saved_state->dpll_hw_state = slave_crtc_state->dpll_hw_state;
-> >  	saved_state->crc_enabled = slave_crtc_state->crc_enabled;
-> >  
-> >  	intel_crtc_free_hw_state(slave_crtc_state);
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+drm-misc-next-fixes-2023-06-29:
+Short summary of fixes pull:
+
+ * fbdev: Fix module infos on sparc
+The following changes since commit cf683e8870bd4be0fd6b98639286700a35088660:
+
+  fbdev: Use /* */ comment in initializer macro (2023-06-15 10:45:17 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2023-06-29
+
+for you to fetch changes up to 861c249cd782cb9f2d5a881bbb32e8da7f0c1192:
+
+  arch/sparc: Add module license and description for fbdev helpers (2023-06-29 13:30:02 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+ * fbdev: Fix module infos on sparc
+
+----------------------------------------------------------------
+Thomas Zimmermann (1):
+      arch/sparc: Add module license and description for fbdev helpers
+
+ arch/sparc/video/fbdev.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+(HRB 36809, AG Nürnberg)
+Geschäftsführer: Felix Imendörffer
