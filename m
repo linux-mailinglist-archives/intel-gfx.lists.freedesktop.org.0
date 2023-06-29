@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06FDB74252F
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jun 2023 13:53:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59B56742647
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jun 2023 14:23:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA3A110E13A;
-	Thu, 29 Jun 2023 11:53:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99D8410E3CE;
+	Thu, 29 Jun 2023 12:23:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE4C110E13A
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jun 2023 11:53:39 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17B0310E1B1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jun 2023 12:22:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688039619; x=1719575619;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=5GRfvowUHhZzqa0Fd0D6XuaCQYgLZaRGMS+5X2rltj0=;
- b=iDI/WEqi9k7JeUre12Pt+YJhYleGCaMjDHpp/Hvt7UF8ETrq5zYt0fZl
- ffMDRcDm98ZdGbJUVYBk9Z4ipgkby7w3Fhd6Dq9VSRMlKOe5RfzZ4wcVt
- HCCZvWfEkYgkDhy8WYJZLyTnHpwm7smSuVuiGd5i/1s5aLCg07fVUykjO
- v57p6g4Jkyaa38NWJwwxC4yhJnOLqjwCExpP+vsYVgEf7BQkN5lo/6BeV
- NMhszb8N4gj4bFL6LSxSmVLnnOlAescU7Mx68jnrVHhuyTWkLTFQZlHt0
- Ed1AvnPTK1atUaVxbt41glL7n/oc+Tq0mf564ehnn2Hlt0mU4AHhXIlaN g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="341670548"
-X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="341670548"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2023 04:53:38 -0700
+ t=1688041380; x=1719577380;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ghDfm2x4UBHnOmfXSU38MaJoOgjQsHyss8BtDsHR0CQ=;
+ b=fh+jSkYqYiKNXujH3ZD3l5Uvd25+VbHxkIEvdiGBj52IcplZAq+3o4Mh
+ umVYybQLqXZrMNbYFrqXGp7hLSNZ55TxKn9kIw8JH7JAxajxB20Jng8CJ
+ gCaklYHpe+XRW7/etv85Bf5JhFUApIpG1M105RNBYUPMKS0Kunxh97Ddr
+ aWdtYm/2KJF0na1G+OhfcY98qYeChU7VA8MQ15CzgfgaWIrp6BZyh4Nxj
+ cx2jckZjzFl/ov7J37ZfH9Pbsf7+RHgcKZL+QQcOh40A+2UTBbySmHP9U
+ 41vj5lHLIxMaKwh01Ez+58xxZE02TpGI2b8Sf/o9uHMF5XCTKm6YI8ypV Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="359579155"
+X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="359579155"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2023 05:22:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="752608731"
-X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="752608731"
-Received: from gkarray-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.252.49.226])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2023 04:53:35 -0700
-Date: Thu, 29 Jun 2023 13:53:30 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZJ1wuqD8WeF3zXmn@ashyti-mobl2.lan>
-References: <cover.1687878757.git.jani.nikula@intel.com>
- <b0db62045a96a3fd4cf123685da88cc777f9b485.1687878757.git.jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="747011368"
+X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="747011368"
+Received: from unknown (HELO localhost) ([10.237.66.162])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2023 05:22:57 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+In-Reply-To: <ZJ1rxgwwBBDnKL0C@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230628141017.18937-1-stanislav.lisovskiy@intel.com>
+ <87o7kzsjvs.fsf@intel.com> <ZJ1rxgwwBBDnKL0C@intel.com>
+Date: Thu, 29 Jun 2023 15:22:37 +0300
+Message-ID: <878rc2sbjm.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b0db62045a96a3fd4cf123685da88cc777f9b485.1687878757.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm/i915: use mock device info for
- creating mock device
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't preserve dpll_hw_state for
+ slave crtc in Bigjoiner
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,34 +59,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+On Thu, 29 Jun 2023, "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com> wrote:
+> On Wed, Jun 28, 2023 at 06:10:15PM +0300, Jani Nikula wrote:
+>> On Wed, 28 Jun 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+>> > If we are using Bigjoiner dpll_hw_state is supposed to be exactly
+>> > same as for master crtc, so no need to save it's state for slave crtc.
+>> 
+>> Could this help with [1]?
+>> 
+>> BR,
+>> Jani.
+>> 
+>> [1] https://gitlab.freedesktop.org/drm/intel/-/issues/8720
+>
+> I don't think that would help, here this is mostly a cosmetic fix
+> to remove dmesg warn caused by slave crtc sw/hw state mismatch, because
+> we don't calculate pll state for slave crtc in Bigjoiner, but still try
+> to verify it against the values in the correspodent hw.
 
-On Tue, Jun 27, 2023 at 06:13:58PM +0300, Jani Nikula wrote:
-> Instead of modifying the device info on the fly, use static const mock
-> device info.
-> 
-> It's not okay to modify device info at runtime; we've added separate
-> runtime info for info that needs to be modified at runtime. We've added
-> safeguards to device info to prevent it from being modified, but commit
-> 5e352e32aec2 ("drm/i915: preparation for using PAT index") just cast the
-> const away and modified it anyway. This prevents device info from being
-> moved to rodata.
-> 
-> Fixes: 5e352e32aec2 ("drm/i915: preparation for using PAT index")
-> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Fei Yang <fei.yang@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+I think that's one part of what's going in the bug, but I guess just for
+a different phy.
 
-thanks for fixing this!
+BR,
+Jani.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+>
+> Stan
+>
+>> 
+>> >
+>> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_display.c | 1 -
+>> >  1 file changed, 1 deletion(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> > index 43d6ba980780..c3e93bdde29d 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> > @@ -4568,7 +4568,6 @@ copy_bigjoiner_crtc_state_modeset(struct intel_atomic_state *state,
+>> >  	saved_state->uapi = slave_crtc_state->uapi;
+>> >  	saved_state->scaler_state = slave_crtc_state->scaler_state;
+>> >  	saved_state->shared_dpll = slave_crtc_state->shared_dpll;
+>> > -	saved_state->dpll_hw_state = slave_crtc_state->dpll_hw_state;
+>> >  	saved_state->crc_enabled = slave_crtc_state->crc_enabled;
+>> >  
+>> >  	intel_crtc_free_hw_state(slave_crtc_state);
+>> 
+>> -- 
+>> Jani Nikula, Intel Open Source Graphics Center
 
-Andi
+-- 
+Jani Nikula, Intel Open Source Graphics Center
