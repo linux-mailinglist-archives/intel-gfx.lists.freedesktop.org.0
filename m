@@ -2,39 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BE67426F9
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jun 2023 15:08:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23568742768
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jun 2023 15:31:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8502B10E3CA;
-	Thu, 29 Jun 2023 13:08:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2836910E120;
+	Thu, 29 Jun 2023 13:31:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61CAF10E3CA
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jun 2023 13:07:59 +0000 (UTC)
-Received: from 91-155-254-218.elisa-laajakaista.fi ([91.155.254.218]
- helo=[192.168.100.137])
- by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <luca@coelho.fi>) id 1qErNL-009LAJ-9A;
- Thu, 29 Jun 2023 16:07:56 +0300
-Message-ID: <b0d08fc3262215241ef2d731d61741ab93f295d9.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>, 
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C13910E120
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jun 2023 13:31:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1688045497; x=1719581497;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Q/M7KqhJhDHFZcJ2g1yYM49FbWyz3LseTJoFwTOYPIo=;
+ b=VdbJNu6glHu2KQJ01qFf+fyEithiawVAvEL1+UPr99fxfnCfVso4AA6k
+ e9+EocuakWOmC0E76w56rDhk6ULZD2YkGA5rp4bHlH837XgsFVpg6K6nE
+ YmvOvHRvfH5BkeyouXZMc9Py3LOtLhjqhTYHjGXVLXL46iAbEIl+GjKy0
+ unmLaVvs7og9suJg8fcO958t8xtCcUHACm588wzbBEb4gKJX8RaMNntQN
+ eDp7C0Vo8zbhDbR9x0xBRff9kPKDGh+fmJXJfCGeuK8rm2OhVGO8FHl4B
+ Iqv113ftx5X2d58LHQxJuMj6Xsdt3lITtl31dd0fbsN0gSNrp+fwkQQDd w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="342444601"
+X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="342444601"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2023 06:31:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="717359592"
+X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="717359592"
+Received: from unknown (HELO localhost) ([10.237.66.162])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2023 06:31:20 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Jun 2023 16:07:54 +0300
-In-Reply-To: <20230629122534.8815-1-stanislav.lisovskiy@intel.com>
-References: <20230629122534.8815-1-stanislav.lisovskiy@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+In-Reply-To: <87bkgyse0z.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1687878757.git.jani.nikula@intel.com>
+ <f31933222f44e4a9224e41399a96896eb243e653.1687878757.git.jani.nikula@intel.com>
+ <4e6f881b-1a5c-2b09-5e20-17aaee5f2d58@linux.intel.com>
+ <87bkgyse0z.fsf@intel.com>
+Date: Thu, 29 Jun 2023 16:30:58 +0300
+Message-ID: <875y76s8dp.fsf@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fail if DSC compression
- requirement is less than platform supports
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm/i915: make device info a const
+ pointer to rodata
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,61 +62,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2023-06-29 at 15:25 +0300, Stanislav Lisovskiy wrote:
-> Currently we just clamp that value to the highest supported one, however =
-that
-> means, we are not able to fit this into our available bandwidth range, so=
- we
-> might see glitches or FIFO underruns.
-> While choosing less compressed bpp than min bpp required to handle the mo=
-de is
-> harmless and might even save some bandwidth, choosing higher compressed b=
-pp than
-> min bpp required to handle the required mode config, can cause issues.
-> So in that case lets just conclude that even with DSC, we are not able to=
- comply
-> with bandwidth requirements and fail.
->=20
-> v2: - s/clamp_t/min_t/ (Luca Coelho)
->=20
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 9f40da20e88d..03675620e3ea 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -713,9 +713,18 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_p=
-rivate *i915, u32 bpp, u32 p
-> =20
->  		/*
->  		 * According to BSpec, 27 is the max DSC output bpp,
-> -		 * 8 is the min DSC output bpp
-> +		 * 8 is the min DSC output bpp.
-> +		 * While we can still clamp higher bpp values to 27, saving bandwidth,
-> +		 * if it is required to oompress up to bpp < 8, means we can't do
-> +		 * that and probably means we can't fit the required mode, even with
-> +		 * DSC enabled.
->  		 */
-> -		bits_per_pixel =3D clamp_t(u32, bits_per_pixel, 8, 27);
-> +		if (bits_per_pixel < 8) {
-> +			drm_dbg_kms(&i915->drm, "Unsupported BPP %u, min 8\n",
-> +				    bits_per_pixel);
-> +			return 0;
-> +		}
-> +		bits_per_pixel =3D min_t(u32, bits_per_pixel, 27);
->  	} else {
->  		/* Find the nearest match in the array of known BPPs from VESA */
->  		for (i =3D 0; i < ARRAY_SIZE(valid_dsc_bpp) - 1; i++) {
+On Thu, 29 Jun 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Thu, 29 Jun 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>> On 27/06/2023 16:14, Jani Nikula wrote:
+>>> Finally we can get rid of the pseudo-const write-once device info, and
+>>> convert it into a const pointer to device info in rodata.
+>>> 
+>>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/i915_drv.h          |  4 ++--
+>>>   drivers/gpu/drm/i915/intel_device_info.c | 17 ++++-------------
+>>>   2 files changed, 6 insertions(+), 15 deletions(-)
+>>> 
+>>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>>> index 8947d1201298..682ef2b5c7d5 100644
+>>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>>> @@ -203,7 +203,7 @@ struct drm_i915_private {
+>>>   	/* i915 device parameters */
+>>>   	struct i915_params params;
+>>>   
+>>> -	const struct intel_device_info __info; /* Use INTEL_INFO() to access. */
+>>> +	const struct intel_device_info *__info; /* Use INTEL_INFO() to access. */
+>>>   	struct intel_runtime_info __runtime; /* Use RUNTIME_INFO() to access. */
+>>>   	struct intel_driver_caps caps;
+>>>   
+>>> @@ -415,7 +415,7 @@ static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
+>>>   	     (engine__) && (engine__)->uabi_class == (class__); \
+>>>   	     (engine__) = rb_to_uabi_engine(rb_next(&(engine__)->uabi_node)))
+>>>   
+>>> -#define INTEL_INFO(i915)	(&(i915)->__info)
+>>> +#define INTEL_INFO(i915)	((i915)->__info)
+>>>   #define RUNTIME_INFO(i915)	(&(i915)->__runtime)
+>>>   #define DISPLAY_INFO(i915)	((i915)->display.info.__device_info)
+>>>   #define DISPLAY_RUNTIME_INFO(i915)	(&(i915)->display.info.__runtime_info)
+>>> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+>>> index 0740922cd71f..ea0ec6174ce5 100644
+>>> --- a/drivers/gpu/drm/i915/intel_device_info.c
+>>> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+>>> @@ -364,13 +364,6 @@ void intel_device_info_runtime_init_early(struct drm_i915_private *i915)
+>>>   	intel_device_info_subplatform_init(i915);
+>>>   }
+>>>   
+>>> -/* FIXME: Remove this, and make device info a const pointer to rodata. */
+>>> -static struct intel_device_info *
+>>> -mkwrite_device_info(struct drm_i915_private *i915)
+>>> -{
+>>> -	return (struct intel_device_info *)INTEL_INFO(i915);
+>>> -}
+>>> -
+>>>   static const struct intel_display_device_info no_display = {};
+>>>   
+>>>   /**
+>>> @@ -430,26 +423,24 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
+>>>   				     u16 device_id,
+>>>   				     const struct intel_device_info *match_info)
+>>>   {
+>>> -	struct intel_device_info *info;
+>>>   	struct intel_runtime_info *runtime;
+>>>   	u16 ver, rel, step;
+>>>   
+>>> -	/* Setup the write-once "constant" device info */
+>>> -	info = mkwrite_device_info(i915);
+>>> -	memcpy(info, match_info, sizeof(*info));
+>>> +	/* Setup INTEL_INFO() */
+>>> +	i915->__info = match_info;
+>>>   
+>>>   	/* Initialize initial runtime info from static const data and pdev. */
+>>>   	runtime = RUNTIME_INFO(i915);
+>>>   	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
+>>>   
+>>>   	/* Probe display support */
+>>> -	i915->display.info.__device_info = intel_display_device_probe(i915, info->has_gmd_id,
+>>> +	i915->display.info.__device_info = intel_display_device_probe(i915, HAS_GMD_ID(i915),
+>>
+>> Why does intel_display_device_probe need an explicit has_gmdid when it
+>> could use HAS_GMD_ID itself?
+>
+> I think all of the display related initialization from this function
+> should be moved within intel_display_device_probe() in follow-up.
+>
+>> But anyway, LGTM. If it saves you some time before the other time zone 
+>> comes online:
+>>
+>> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+And pushed the series to drm-intel-next, thanks for the reviews
+everyone!
 
---
-Cheers,
-Luca.
+BR,
+Jani.
+
+>
+> Thanks,
+> Jani.
+>
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>   								      &ver, &rel, &step);
+>>>   	memcpy(DISPLAY_RUNTIME_INFO(i915),
+>>>   	       &DISPLAY_INFO(i915)->__runtime_defaults,
+>>>   	       sizeof(*DISPLAY_RUNTIME_INFO(i915)));
+>>>   
+>>> -	if (info->has_gmd_id) {
+>>> +	if (HAS_GMD_ID(i915)) {
+>>>   		DISPLAY_RUNTIME_INFO(i915)->ip.ver = ver;
+>>>   		DISPLAY_RUNTIME_INFO(i915)->ip.rel = rel;
+>>>   		DISPLAY_RUNTIME_INFO(i915)->ip.step = step;
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
