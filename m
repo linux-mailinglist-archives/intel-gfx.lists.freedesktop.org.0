@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59B56742647
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jun 2023 14:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CDD574264D
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jun 2023 14:25:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99D8410E3CE;
-	Thu, 29 Jun 2023 12:23:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8465689798;
+	Thu, 29 Jun 2023 12:25:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17B0310E1B1
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jun 2023 12:22:59 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30F1D89798
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jun 2023 12:25:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688041380; x=1719577380;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ghDfm2x4UBHnOmfXSU38MaJoOgjQsHyss8BtDsHR0CQ=;
- b=fh+jSkYqYiKNXujH3ZD3l5Uvd25+VbHxkIEvdiGBj52IcplZAq+3o4Mh
- umVYybQLqXZrMNbYFrqXGp7hLSNZ55TxKn9kIw8JH7JAxajxB20Jng8CJ
- gCaklYHpe+XRW7/etv85Bf5JhFUApIpG1M105RNBYUPMKS0Kunxh97Ddr
- aWdtYm/2KJF0na1G+OhfcY98qYeChU7VA8MQ15CzgfgaWIrp6BZyh4Nxj
- cx2jckZjzFl/ov7J37ZfH9Pbsf7+RHgcKZL+QQcOh40A+2UTBbySmHP9U
- 41vj5lHLIxMaKwh01Ez+58xxZE02TpGI2b8Sf/o9uHMF5XCTKm6YI8ypV Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="359579155"
-X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="359579155"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2023 05:22:59 -0700
+ t=1688041539; x=1719577539;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5AL81eUE0GoOgBqTxFY/A/LegwG/1QV+zLWcgoQX0kc=;
+ b=k+upuU+FrHsIk5Xf9OGkpSEKUtK3fIHTBtewff6luzCMSiRZzJpHp0P5
+ a5c3CjjWwo8XpbZ28Z8aAyr8c1KAFi/5yy2tPOUuM8gcmfbkkZ7OWOaRg
+ UBtWST0marW9rKfqbtyJ9dNn9b4lvdYG3N18CgizOPxdlfX3eFE7k4r9l
+ 3z79hA0ZgSDXwaYobwj629pNW/HHwKsi6yxVdTNr8IhZ6L223woDy3fNG
+ vxjFnVtu6H1asixQX8XA0z20bH6fTxhnHBOBV2pJXKQXjmEsE/tdRH0fd
+ tVtLLpmumlj4eYKEOPJJkplmaF6uD/kqPg5HfKlmaFczh3p4at69U3+uW Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="425763294"
+X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="425763294"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2023 05:25:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="747011368"
-X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="747011368"
-Received: from unknown (HELO localhost) ([10.237.66.162])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2023 05:22:57 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-In-Reply-To: <ZJ1rxgwwBBDnKL0C@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230628141017.18937-1-stanislav.lisovskiy@intel.com>
- <87o7kzsjvs.fsf@intel.com> <ZJ1rxgwwBBDnKL0C@intel.com>
-Date: Thu, 29 Jun 2023 15:22:37 +0300
-Message-ID: <878rc2sbjm.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="807284719"
+X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="807284719"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by FMSMGA003.fm.intel.com with ESMTP; 29 Jun 2023 05:25:36 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 29 Jun 2023 15:25:34 +0300
+Message-Id: <20230629122534.8815-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't preserve dpll_hw_state for
- slave crtc in Bigjoiner
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Fail if DSC compression requirement
+ is less than platform supports
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,59 +56,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 29 Jun 2023, "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com> wrote:
-> On Wed, Jun 28, 2023 at 06:10:15PM +0300, Jani Nikula wrote:
->> On Wed, 28 Jun 2023, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
->> > If we are using Bigjoiner dpll_hw_state is supposed to be exactly
->> > same as for master crtc, so no need to save it's state for slave crtc.
->> 
->> Could this help with [1]?
->> 
->> BR,
->> Jani.
->> 
->> [1] https://gitlab.freedesktop.org/drm/intel/-/issues/8720
->
-> I don't think that would help, here this is mostly a cosmetic fix
-> to remove dmesg warn caused by slave crtc sw/hw state mismatch, because
-> we don't calculate pll state for slave crtc in Bigjoiner, but still try
-> to verify it against the values in the correspodent hw.
+Currently we just clamp that value to the highest supported one, however that
+means, we are not able to fit this into our available bandwidth range, so we
+might see glitches or FIFO underruns.
+While choosing less compressed bpp than min bpp required to handle the mode is
+harmless and might even save some bandwidth, choosing higher compressed bpp than
+min bpp required to handle the required mode config, can cause issues.
+So in that case lets just conclude that even with DSC, we are not able to comply
+with bandwidth requirements and fail.
 
-I think that's one part of what's going in the bug, but I guess just for
-a different phy.
+v2: - s/clamp_t/min_t/ (Luca Coelho)
 
-BR,
-Jani.
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
->
-> Stan
->
->> 
->> >
->> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_display.c | 1 -
->> >  1 file changed, 1 deletion(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> > index 43d6ba980780..c3e93bdde29d 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> > @@ -4568,7 +4568,6 @@ copy_bigjoiner_crtc_state_modeset(struct intel_atomic_state *state,
->> >  	saved_state->uapi = slave_crtc_state->uapi;
->> >  	saved_state->scaler_state = slave_crtc_state->scaler_state;
->> >  	saved_state->shared_dpll = slave_crtc_state->shared_dpll;
->> > -	saved_state->dpll_hw_state = slave_crtc_state->dpll_hw_state;
->> >  	saved_state->crc_enabled = slave_crtc_state->crc_enabled;
->> >  
->> >  	intel_crtc_free_hw_state(slave_crtc_state);
->> 
->> -- 
->> Jani Nikula, Intel Open Source Graphics Center
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 9f40da20e88d..03675620e3ea 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -713,9 +713,18 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_private *i915, u32 bpp, u32 p
+ 
+ 		/*
+ 		 * According to BSpec, 27 is the max DSC output bpp,
+-		 * 8 is the min DSC output bpp
++		 * 8 is the min DSC output bpp.
++		 * While we can still clamp higher bpp values to 27, saving bandwidth,
++		 * if it is required to oompress up to bpp < 8, means we can't do
++		 * that and probably means we can't fit the required mode, even with
++		 * DSC enabled.
+ 		 */
+-		bits_per_pixel = clamp_t(u32, bits_per_pixel, 8, 27);
++		if (bits_per_pixel < 8) {
++			drm_dbg_kms(&i915->drm, "Unsupported BPP %u, min 8\n",
++				    bits_per_pixel);
++			return 0;
++		}
++		bits_per_pixel = min_t(u32, bits_per_pixel, 27);
+ 	} else {
+ 		/* Find the nearest match in the array of known BPPs from VESA */
+ 		for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp) - 1; i++) {
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.37.3
+
