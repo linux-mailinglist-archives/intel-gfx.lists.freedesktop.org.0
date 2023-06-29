@@ -2,57 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 823DC7426CF
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jun 2023 14:57:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96BE67426F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jun 2023 15:08:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2710E10E13E;
-	Thu, 29 Jun 2023 12:57:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8502B10E3CA;
+	Thu, 29 Jun 2023 13:08:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10DB510E13E
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jun 2023 12:57:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688043455; x=1719579455;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=1bwYlrpA6mTl0BB1BInckeKe2Qka4OS85d5bObidDBM=;
- b=UVYYrrqy7lffxMD+BEGhgo6lij6l/F8bD1oRKDWjlHd/tFuQDENfxE4I
- P4hGpgl7bm5yA6qXczAeNlwybA7OpeVeLOXuIj7jYduS9iix5/bBvDtvh
- 2mp0ePv3yzd/BRLxF8Rn3CFifnNferbRw/WpPe+up30MtyAjt22dyZnrq
- noVSOSWtuQSRcl6AxJptHuUPwAI42G4M/pH/RPRoSJvZOStpsuMU/QYEA
- yaK35I5tMK2FYz8utssgMIFb3haHiNmVrnB/KrxVzZJHDtkYi0EwJndKD
- plOhlNKOsO+fsiV0Ak8nY4Kv17vXX5dNtT7zqy0gONafecwoNYR/L5a3q A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="342437587"
-X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="342437587"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2023 05:57:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="747019418"
-X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; d="scan'208";a="747019418"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.1.119])
- ([10.213.1.119])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2023 05:57:31 -0700
-Message-ID: <5ff4429f-e7a4-0d78-fad4-213dd8ee20a0@intel.com>
-Date: Thu, 29 Jun 2023 14:57:28 +0200
+Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61CAF10E3CA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jun 2023 13:07:59 +0000 (UTC)
+Received: from 91-155-254-218.elisa-laajakaista.fi ([91.155.254.218]
+ helo=[192.168.100.137])
+ by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <luca@coelho.fi>) id 1qErNL-009LAJ-9A;
+ Thu, 29 Jun 2023 16:07:56 +0300
+Message-ID: <b0d08fc3262215241ef2d731d61741ab93f295d9.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Date: Thu, 29 Jun 2023 16:07:54 +0300
+In-Reply-To: <20230629122534.8815-1-stanislav.lisovskiy@intel.com>
+References: <20230629122534.8815-1-stanislav.lisovskiy@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.12.0
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-References: <cover.1687878757.git.jani.nikula@intel.com>
- <b0db62045a96a3fd4cf123685da88cc777f9b485.1687878757.git.jani.nikula@intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <b0db62045a96a3fd4cf123685da88cc777f9b485.1687878757.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm/i915: use mock device info for
- creating mock device
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fail if DSC compression
+ requirement is less than platform supports
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,127 +47,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 27.06.2023 17:13, Jani Nikula wrote:
-> Instead of modifying the device info on the fly, use static const mock
-> device info.
->
-> It's not okay to modify device info at runtime; we've added separate
-> runtime info for info that needs to be modified at runtime. We've added
-> safeguards to device info to prevent it from being modified, but commit
-> 5e352e32aec2 ("drm/i915: preparation for using PAT index") just cast the
-> const away and modified it anyway. This prevents device info from being
-> moved to rodata.
->
-> Fixes: 5e352e32aec2 ("drm/i915: preparation for using PAT index")
-> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Fei Yang <fei.yang@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-
-Regards
-Andrzej
+On Thu, 2023-06-29 at 15:25 +0300, Stanislav Lisovskiy wrote:
+> Currently we just clamp that value to the highest supported one, however =
+that
+> means, we are not able to fit this into our available bandwidth range, so=
+ we
+> might see glitches or FIFO underruns.
+> While choosing less compressed bpp than min bpp required to handle the mo=
+de is
+> harmless and might even save some bandwidth, choosing higher compressed b=
+pp than
+> min bpp required to handle the required mode config, can cause issues.
+> So in that case lets just conclude that even with DSC, we are not able to=
+ comply
+> with bandwidth requirements and fail.
+>=20
+> v2: - s/clamp_t/min_t/ (Luca Coelho)
+>=20
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > ---
->   .../gpu/drm/i915/selftests/mock_gem_device.c  | 45 ++++++++++---------
->   1 file changed, 24 insertions(+), 21 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> index 09d4bbcdcdbf..4de6a4e8280d 100644
-> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> @@ -118,15 +118,31 @@ static void mock_gt_probe(struct drm_i915_private *i915)
->   	i915->gt[0]->name = "Mock GT";
->   }
->   
-> +static const struct intel_device_info mock_info = {
-> +	.__runtime.graphics.ip.ver = -1,
-> +	.__runtime.page_sizes = (I915_GTT_PAGE_SIZE_4K |
-> +				 I915_GTT_PAGE_SIZE_64K |
-> +				 I915_GTT_PAGE_SIZE_2M),
-> +	.__runtime.memory_regions = REGION_SMEM,
-> +	.__runtime.platform_engine_mask = BIT(0),
-> +
-> +	/* simply use legacy cache level for mock device */
-> +	.max_pat_index = 3,
-> +	.cachelevel_to_pat = {
-> +		[I915_CACHE_NONE]   = 0,
-> +		[I915_CACHE_LLC]    = 1,
-> +		[I915_CACHE_L3_LLC] = 2,
-> +		[I915_CACHE_WT]     = 3,
-> +	},
-> +};
-> +
->   struct drm_i915_private *mock_gem_device(void)
->   {
->   #if IS_ENABLED(CONFIG_IOMMU_API) && defined(CONFIG_INTEL_IOMMU)
->   	static struct dev_iommu fake_iommu = { .priv = (void *)-1 };
->   #endif
->   	struct drm_i915_private *i915;
-> -	struct intel_device_info *i915_info;
->   	struct pci_dev *pdev;
-> -	unsigned int i;
->   	int ret;
->   
->   	pdev = kzalloc(sizeof(*pdev), GFP_KERNEL);
-> @@ -159,15 +175,18 @@ struct drm_i915_private *mock_gem_device(void)
->   
->   	pci_set_drvdata(pdev, i915);
->   
-> +	/* Device parameters start as a copy of module parameters. */
-> +	i915_params_copy(&i915->params, &i915_modparams);
-> +
-> +	/* Set up device info and initial runtime info. */
-> +	intel_device_info_driver_create(i915, pdev->device, &mock_info);
-> +
->   	dev_pm_domain_set(&pdev->dev, &pm_domain);
->   	pm_runtime_enable(&pdev->dev);
->   	pm_runtime_dont_use_autosuspend(&pdev->dev);
->   	if (pm_runtime_enabled(&pdev->dev))
->   		WARN_ON(pm_runtime_get_sync(&pdev->dev));
->   
-> -
-> -	i915_params_copy(&i915->params, &i915_modparams);
-> -
->   	intel_runtime_pm_init_early(&i915->runtime_pm);
->   	/* wakeref tracking has significant overhead */
->   	i915->runtime_pm.no_wakeref_tracking = true;
-> @@ -175,21 +194,6 @@ struct drm_i915_private *mock_gem_device(void)
->   	/* Using the global GTT may ask questions about KMS users, so prepare */
->   	drm_mode_config_init(&i915->drm);
->   
-> -	RUNTIME_INFO(i915)->graphics.ip.ver = -1;
-> -
-> -	RUNTIME_INFO(i915)->page_sizes =
-> -		I915_GTT_PAGE_SIZE_4K |
-> -		I915_GTT_PAGE_SIZE_64K |
-> -		I915_GTT_PAGE_SIZE_2M;
-> -
-> -	RUNTIME_INFO(i915)->memory_regions = REGION_SMEM;
-> -
-> -	/* simply use legacy cache level for mock device */
-> -	i915_info = (struct intel_device_info *)INTEL_INFO(i915);
-> -	i915_info->max_pat_index = 3;
-> -	for (i = 0; i < I915_MAX_CACHE_LEVEL; i++)
-> -		i915_info->cachelevel_to_pat[i] = i;
-> -
->   	intel_memory_regions_hw_probe(i915);
->   
->   	spin_lock_init(&i915->gpu_error.lock);
-> @@ -223,7 +227,6 @@ struct drm_i915_private *mock_gem_device(void)
->   	mock_init_ggtt(to_gt(i915));
->   	to_gt(i915)->vm = i915_vm_get(&to_gt(i915)->ggtt->vm);
->   
-> -	RUNTIME_INFO(i915)->platform_engine_mask = BIT(0);
->   	to_gt(i915)->info.engine_mask = BIT(0);
->   
->   	to_gt(i915)->engine[RCS0] = mock_engine(i915, "mock", RCS0);
+>  drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 9f40da20e88d..03675620e3ea 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -713,9 +713,18 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_p=
+rivate *i915, u32 bpp, u32 p
+> =20
+>  		/*
+>  		 * According to BSpec, 27 is the max DSC output bpp,
+> -		 * 8 is the min DSC output bpp
+> +		 * 8 is the min DSC output bpp.
+> +		 * While we can still clamp higher bpp values to 27, saving bandwidth,
+> +		 * if it is required to oompress up to bpp < 8, means we can't do
+> +		 * that and probably means we can't fit the required mode, even with
+> +		 * DSC enabled.
+>  		 */
+> -		bits_per_pixel =3D clamp_t(u32, bits_per_pixel, 8, 27);
+> +		if (bits_per_pixel < 8) {
+> +			drm_dbg_kms(&i915->drm, "Unsupported BPP %u, min 8\n",
+> +				    bits_per_pixel);
+> +			return 0;
+> +		}
+> +		bits_per_pixel =3D min_t(u32, bits_per_pixel, 27);
+>  	} else {
+>  		/* Find the nearest match in the array of known BPPs from VESA */
+>  		for (i =3D 0; i < ARRAY_SIZE(valid_dsc_bpp) - 1; i++) {
 
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+
+--
+Cheers,
+Luca.
