@@ -2,56 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A52F4749AA2
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 13:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4649749D32
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 15:18:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2159210E4E9;
-	Thu,  6 Jul 2023 11:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9519810E3FA;
+	Thu,  6 Jul 2023 13:18:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCD8F10E4E4;
- Thu,  6 Jul 2023 11:31:17 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 59A0B21EAB;
- Thu,  6 Jul 2023 11:31:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1688643076; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+Received: from out-51.mta0.migadu.com (out-51.mta0.migadu.com
+ [IPv6:2001:41d0:1004:224b::33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 645FA10E44E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Jun 2023 11:08:39 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1688122970;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding;
- bh=1mm03RUE1dzDQGfclJZ8k25krGorDfnWO9NAoIuigJg=;
- b=JJ7UDKP9YHCl5PrI/4/bRuhG+faWjZLJgkPC6IsP5ZpW0wV/8HFySOuCeFAf9xxOYC58pv
- FBw7sfs6GjBBr9l+t4r1iCP9VPjcdg90ec7Tsbm5rDalTVPCO2ZdcEGyOrJY20uhxGLxZc
- Dy8cBDZI8mkQw8qTDg8JMKB+ROMi1hw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1688643076;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=1mm03RUE1dzDQGfclJZ8k25krGorDfnWO9NAoIuigJg=;
- b=6lqiIRt8sPuq6aaCjvWS+l7ud1LUN1wvaEMH6U9afq8D8F3jSKBbEhqLGs9WpQ2Si2de40
- KWZ8LDPeo08vmJDw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 15C3C138EE;
- Thu,  6 Jul 2023 11:31:16 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id mXw0BASmpmQ2GQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 06 Jul 2023 11:31:16 +0000
-Date: Thu, 6 Jul 2023 13:31:14 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20230706112203.GA30555@linux-uq9g>
+ bh=cVG0vYo3/T6AYLTc+lVhTKp0CFi2Q+EH9QFPQ8sIsCY=;
+ b=QJBgFt91Udo2cXx8LVpCoBtf7Y4/HJOpcgBM5f7wsHRC7s8fn0Gq0+gjEx8Kdqa8vLzzux
+ ImcisPtx/765642G+b1B9DPM0cwQmRH7G6DfBumi4NU28u+y6k1b891sHZhyldmWbhiRGW
+ 1E3abKbe5vxdsoxrSChe7QJ6GbCbOoo=
+From: Sui Jingfeng <sui.jingfeng@linux.dev>
+To: Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maxime Ripard <mripard@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Date: Fri, 30 Jun 2023 19:02:39 +0800
+Message-Id: <20230630110243.141671-1-sui.jingfeng@linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Thu, 06 Jul 2023 13:18:28 +0000
+Subject: [Intel-gfx] [PATCH v1 0/4] PCI/VGA: Improve the default VGA device
+ selection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,51 +49,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
+ kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+From: Sui Jingfeng <suijingfeng@loongson.cn>
 
-here's the weekly PR for drm-misc-next-fixes.
+Currently, the default VGA device selection is not perfect. Potential
+problems are:
 
-Best regards
-Thomas
+1) This function is a no-op on non-x86 architectures.
+2) It does not take the PCI Bar may get relocated into consideration.
+3) It is not effective for the PCI device without a dedicated VRAM Bar.
+4) It is device-agnostic, thus it has to waste the effort to iterate all
+   of the PCI Bar to find the VRAM aperture.
+5) It has invented lots of methods to determine which one is the default
+   boot device on a multiple video card coexistence system. But this is
+   still a policy because it doesn't give the user a choice to override.
 
-drm-misc-next-fixes-2023-07-06:
-Short summary of fixes pull:
+With the observation that device drivers or video aperture helpers may
+have better knowledge about which PCI bar contains the firmware FB,
 
- * panel: Fix mode on Starry-ili9882t
-The following changes since commit 861c249cd782cb9f2d5a881bbb32e8da7f0c1192:
+This patch tries to solve the above problems by introducing a function
+callback to the vga_client_register() function interface. DRM device
+drivers for the PCI device need to register the is_boot_device() function
+callback during the driver loading time. Once the driver binds the device
+successfully, VRAARB will call back to the driver. This gives the device
+drivers a chance to provide accurate boot device identification. Which in
+turn unlock the abitration service to non-x86 architectures. A device
+driver can also pass a NULL pointer to the keep the original behavior.
 
-  arch/sparc: Add module license and description for fbdev helpers (2023-06-29 13:30:02 +0200)
+Sui Jingfeng (4):
+  video/aperture: Add a helper to detect if an aperture contains
+    firmware FB
+  PCI/VGA: Improve the default VGA device selection
+  drm/amdgpu: Implement the is_boot_device callback function
+  drm/radeon: Implement the is_boot_device callback function
 
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2023-07-06
-
-for you to fetch changes up to 59bba51ec2a50e3dc5c3ee80f0a23207346303ff:
-
-  drm/panel: Fine tune Starry-ili9882t panel HFP and HBP (2023-06-29 17:35:34 -0700)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
- * panel: Fix mode on Starry-ili9882t
-
-----------------------------------------------------------------
-Cong Yang (1):
-      drm/panel: Fine tune Starry-ili9882t panel HFP and HBP
-
- drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 12 ++++++++-
+ drivers/gpu/drm/drm_aperture.c             | 16 ++++++++++++
+ drivers/gpu/drm/i915/display/intel_vga.c   |  3 +--
+ drivers/gpu/drm/nouveau/nouveau_vga.c      |  2 +-
+ drivers/gpu/drm/radeon/radeon_device.c     | 12 ++++++++-
+ drivers/pci/vgaarb.c                       | 21 +++++++++++++++-
+ drivers/vfio/pci/vfio_pci_core.c           |  2 +-
+ drivers/video/aperture.c                   | 29 ++++++++++++++++++++++
+ include/drm/drm_aperture.h                 |  2 ++
+ include/linux/aperture.h                   |  7 ++++++
+ include/linux/vgaarb.h                     |  8 +++---
+ 11 files changed, 104 insertions(+), 10 deletions(-)
 
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+2.25.1
+
