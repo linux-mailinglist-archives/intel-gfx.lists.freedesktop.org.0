@@ -1,48 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8013B743F8C
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jun 2023 18:18:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AEF0743FB0
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jun 2023 18:29:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBBE210E4B3;
-	Fri, 30 Jun 2023 16:18:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 229FE10E4B1;
+	Fri, 30 Jun 2023 16:29:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E905610E4B1
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Jun 2023 16:18:06 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4484A10E0BE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Jun 2023 16:29:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688141887; x=1719677887;
- h=date:from:to:cc:subject:message-id;
- bh=J+Ku4afbFjmBFlcA3WWUcfgXUYeWWBiUO32gjQlxYOM=;
- b=lYClbE5gCI8FVdXoWGw/5OnifpgWYJotndMx2YeNiyxp0la4jMxcq1QN
- KT8N7cGlx6prozKRtljtJ9KNXGF4xOXL8juJsupRLF9Fzhsx5Q37KND9J
- eKB4/PRGRitpLvui+pGSnTys5u24vBIM1FniKJpmbvWLWP+Rn4Y5SYwBL
- vYPA9P+c+8JrtCnXDE4NiRPXuDRuWfqhdtVYxg/3yps85sfOhqQqnug0k
- TnRBjsw5dwsSdEX9kdngGXS7vtF5cXuo6AdzohfB/pzDuZGF83B5OHHuO
- MX2xowNZbnpVZJHsiOE7CiyjcmsniLRpqYQQY7fzZeJ/zYMu1PbOo5uIf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10757"; a="428475956"
-X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; d="scan'208";a="428475956"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2023 09:17:37 -0700
+ t=1688142540; x=1719678540;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=dDKnVOXSdAvPi4Xc1M9imJa6uejwN3fXBP+ESJaNDWk=;
+ b=PNC+p3r0H9yHdJf77/rmGwSTydgwOsF+6vJk/0FfoTCedVq0o8wFClYY
+ hSZ9sMcQJQSFDKJcCoI+UFclvQjbTpdAUD8DgDL/h/e30d7K5+cLX2AXh
+ pKiyBsjv39CIF5d6QNf4cgzB2/Xj9V8yUQgrlKLIdsnbSmJl5GF6RHIbZ
+ +V1fjC714R+PMlW+GI0SItr7a4EMoXG+tleTPX7Ng78Og58tx9xEQm8oS
+ fWk5RjbvilsKUqJlfBHd20F8BQmNToc1Jxrs7p6RErT0mIDiBj2t+NY1z
+ 1b+BSiJteoFO3wEfSivFTk8mxrx2m+UsU5qPQ2QKbpGpNES/k4jtI6a04 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10757"; a="342018895"
+X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; d="scan'208";a="342018895"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2023 09:28:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10757"; a="783134062"
-X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; d="scan'208";a="783134062"
-Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
- by fmsmga008.fm.intel.com with ESMTP; 30 Jun 2023 09:17:35 -0700
-Received: from kbuild by 783282924a45 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qFGoQ-000F8b-0V;
- Fri, 30 Jun 2023 16:17:34 +0000
-Date: Sat, 01 Jul 2023 00:16:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Message-ID: <202307010031.I9Mu8qR9-lkp@intel.com>
-User-Agent: s-nail v14.9.24
-Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
- 6352a698ca5bf26a9199202666b16cf741f579f6
+X-IronPort-AV: E=McAfee;i="6600,9927,10757"; a="787768449"
+X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; d="scan'208";a="787768449"
+Received: from lpascal-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.252.49.62])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2023 09:28:57 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230630155846.29931-6-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230630155846.29931-1-ville.syrjala@linux.intel.com>
+ <20230630155846.29931-6-ville.syrjala@linux.intel.com>
+Date: Fri, 30 Jun 2023 19:28:54 +0300
+Message-ID: <874jmo3oe1.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v3 5/6] drm/i915/bios: Extract
+ intel_bios_encoder_port()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,220 +62,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-parisc@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-usb@vger.kernel.org,
- Linux Memory Management List <linux-mm@kvack.org>,
- linux-kselftest@vger.kernel.org, linux-btrfs@vger.kernel.org,
- kunit-dev@googlegroups.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 6352a698ca5bf26a9199202666b16cf741f579f6  Add linux-next specific files for 20230630
+On Fri, 30 Jun 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> We'll have a few places where we need to do the full (incl. ICL+ DSI)
+> DVO port->port conversion, so extract the code for that into a helper.
+>
+> Suggested-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Error/Warning reports:
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-https://lore.kernel.org/oe-kbuild-all/202306122223.HHER4zOo-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202306260401.qZlYQpV2-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202306291857.nyJjYwqk-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202306301709.lvrxzyCj-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202306301756.x8dgyYnL-lkp@intel.com
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 18 ++++++++++++++----
+>  1 file changed, 14 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index ae83788177ce..c96bbbe4448e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -2374,6 +2374,19 @@ dsi_dvo_port_to_port(struct drm_i915_private *i915=
+, u8 dvo_port)
+>  	}
+>  }
+>=20=20
+> +static enum port intel_bios_encoder_port(const struct intel_bios_encoder=
+_data *devdata)
+> +{
+> +	struct drm_i915_private *i915 =3D devdata->i915;
+> +	const struct child_device_config *child =3D &devdata->child;
+> +	enum port port;
+> +
+> +	port =3D dvo_port_to_port(i915, child->dvo_port);
+> +	if (port =3D=3D PORT_NONE && DISPLAY_VER(i915) >=3D 11)
+> +		port =3D dsi_dvo_port_to_port(i915, child->dvo_port);
+> +
+> +	return port;
+> +}
+> +
+>  static int parse_bdb_230_dp_max_link_rate(const int vbt_max_link_rate)
+>  {
+>  	switch (vbt_max_link_rate) {
+> @@ -2613,12 +2626,9 @@ static void print_ddi_port(const struct intel_bios=
+_encoder_data *devdata,
+>  static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
+>  {
+>  	struct drm_i915_private *i915 =3D devdata->i915;
+> -	const struct child_device_config *child =3D &devdata->child;
+>  	enum port port;
+>=20=20
+> -	port =3D dvo_port_to_port(i915, child->dvo_port);
+> -	if (port =3D=3D PORT_NONE && DISPLAY_VER(i915) >=3D 11)
+> -		port =3D dsi_dvo_port_to_port(i915, child->dvo_port);
+> +	port =3D intel_bios_encoder_port(devdata);
+>  	if (port =3D=3D PORT_NONE)
+>  		return;
 
-Error/Warning: (recently discovered and may have been fixed)
-
-arch/parisc/kernel/pdt.c:66:6: warning: no previous prototype for 'arch_report_meminfo' [-Wmissing-prototypes]
-drivers/bluetooth/btmtk.c:386:32: error: no member named 'dump' in 'struct hci_dev'
-drivers/bluetooth/btmtk.c:386:44: error: 'struct hci_dev' has no member named 'dump'
-drivers/char/mem.c:164:25: error: implicit declaration of function 'unxlate_dev_mem_ptr'; did you mean 'xlate_dev_mem_ptr'? [-Werror=implicit-function-declaration]
-drivers/gpu/drm/i915/soc/intel_gmch.c:41:13: error: variable 'mchbar_addr' set but not used [-Werror=unused-but-set-variable]
-drivers/mfd/max77541.c:176:18: warning: cast to smaller integer type 'enum max7754x_ids' from 'const void *' [-Wvoid-pointer-to-enum-cast]
-lib/kunit/executor_test.c:138:4: warning: cast from 'void (*)(const void *)' to 'kunit_action_t *' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-strict]
-lib/kunit/test.c:775:38: warning: cast from 'void (*)(const void *)' to 'kunit_action_t *' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-strict]
-
-Unverified Error/Warning (likely false positive, please contact us if interested):
-
-drivers/usb/cdns3/cdns3-starfive.c:23: warning: expecting prototype for cdns3(). Prototype was for USB_STRAP_HOST() instead
-fs/btrfs/volumes.c:6407 btrfs_map_block() error: we previously assumed 'mirror_num_ret' could be null (see line 6244)
-{standard input}: Error: local label `"2" (instance number 9 of a fb label)' is not defined
-{standard input}:1097: Error: pcrel too far
-
-Error/Warning ids grouped by kconfigs:
-
-gcc_recent_errors
-|-- i386-buildonly-randconfig-r005-20230629
-|   `-- drivers-gpu-drm-i915-soc-intel_gmch.c:error:variable-mchbar_addr-set-but-not-used
-|-- i386-randconfig-i006-20230629
-|   `-- drivers-bluetooth-btmtk.c:error:struct-hci_dev-has-no-member-named-dump
-|-- parisc-allyesconfig
-|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
-|-- parisc-defconfig
-|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
-|-- parisc64-defconfig
-|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
-|-- riscv-allmodconfig
-|   `-- drivers-usb-cdns3-cdns3-starfive.c:warning:expecting-prototype-for-cdns3().-Prototype-was-for-USB_STRAP_HOST()-instead
-|-- riscv-allyesconfig
-|   `-- drivers-usb-cdns3-cdns3-starfive.c:warning:expecting-prototype-for-cdns3().-Prototype-was-for-USB_STRAP_HOST()-instead
-|-- sh-allmodconfig
-|   |-- drivers-char-mem.c:error:implicit-declaration-of-function-unxlate_dev_mem_ptr
-|   |-- standard-input:Error:local-label-(instance-number-of-a-fb-label)-is-not-defined
-|   `-- standard-input:Error:pcrel-too-far
-|-- sparc64-randconfig-r004-20230630
-|   `-- drivers-bluetooth-btmtk.c:error:struct-hci_dev-has-no-member-named-dump
-`-- x86_64-randconfig-m001-20230629
-    `-- fs-btrfs-volumes.c-btrfs_map_block()-error:we-previously-assumed-mirror_num_ret-could-be-null-(see-line-)
-clang_recent_errors
-|-- arm64-randconfig-r015-20230630
-|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|-- hexagon-randconfig-r005-20230630
-|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|-- hexagon-randconfig-r041-20230630
-|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|-- i386-randconfig-i016-20230629
-|   `-- drivers-bluetooth-btmtk.c:error:no-member-named-dump-in-struct-hci_dev
-|-- mips-randconfig-r032-20230629
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|-- riscv-randconfig-r042-20230630
-|   `-- drivers-mfd-max77541.c:warning:cast-to-smaller-integer-type-enum-max7754x_ids-from-const-void
-|-- s390-randconfig-r044-20230630
-|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-`-- x86_64-randconfig-r023-20230630
-    `-- drivers-bluetooth-btmtk.c:error:no-member-named-dump-in-struct-hci_dev
-
-elapsed time: 737m
-
-configs tested: 123
-configs skipped: 10
-
-tested configs:
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-alpha                randconfig-r006-20230630   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                  randconfig-r004-20230630   gcc  
-arc                  randconfig-r025-20230630   gcc  
-arc                  randconfig-r043-20230630   gcc  
-arm                              allmodconfig   gcc  
-arm                              allyesconfig   gcc  
-arm                         bcm2835_defconfig   clang
-arm                                 defconfig   gcc  
-arm                            dove_defconfig   clang
-arm                            hisi_defconfig   gcc  
-arm                         lpc18xx_defconfig   gcc  
-arm                       netwinder_defconfig   clang
-arm                  randconfig-r012-20230630   gcc  
-arm                  randconfig-r046-20230630   gcc  
-arm                           sama5_defconfig   gcc  
-arm                         socfpga_defconfig   clang
-arm64                            allyesconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                randconfig-r001-20230630   gcc  
-arm64                randconfig-r014-20230630   clang
-arm64                randconfig-r015-20230630   clang
-csky                                defconfig   gcc  
-hexagon              randconfig-r005-20230630   clang
-hexagon              randconfig-r041-20230630   clang
-hexagon              randconfig-r045-20230630   clang
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-r004-20230629   gcc  
-i386         buildonly-randconfig-r005-20230629   gcc  
-i386         buildonly-randconfig-r006-20230629   gcc  
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                 randconfig-i001-20230629   gcc  
-i386                 randconfig-i002-20230629   gcc  
-i386                 randconfig-i003-20230629   gcc  
-i386                 randconfig-i004-20230629   gcc  
-i386                 randconfig-i005-20230629   gcc  
-i386                 randconfig-i006-20230629   gcc  
-i386                 randconfig-i011-20230629   clang
-i386                 randconfig-i012-20230629   clang
-i386                 randconfig-i013-20230629   clang
-i386                 randconfig-i014-20230629   clang
-i386                 randconfig-i015-20230629   clang
-i386                 randconfig-i016-20230629   clang
-i386                 randconfig-r021-20230630   clang
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-m68k                             allmodconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                          atari_defconfig   gcc  
-m68k                                defconfig   gcc  
-mips                             allmodconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                      maltaaprp_defconfig   clang
-mips                 randconfig-r002-20230630   clang
-mips                 randconfig-r013-20230630   gcc  
-mips                 randconfig-r032-20230629   clang
-mips                          rb532_defconfig   gcc  
-nios2                               defconfig   gcc  
-nios2                randconfig-r005-20230630   gcc  
-nios2                randconfig-r024-20230630   gcc  
-nios2                randconfig-r026-20230630   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                 mpc837x_rdb_defconfig   gcc  
-powerpc              randconfig-r003-20230630   gcc  
-powerpc              randconfig-r022-20230630   clang
-powerpc              randconfig-r034-20230629   gcc  
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   gcc  
-riscv                               defconfig   gcc  
-riscv             nommu_k210_sdcard_defconfig   gcc  
-riscv                randconfig-r042-20230630   clang
-riscv                          rv32_defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-s390                 randconfig-r001-20230630   gcc  
-s390                 randconfig-r044-20230630   clang
-s390                       zfcpdump_defconfig   gcc  
-sh                               allmodconfig   gcc  
-sh                          r7780mp_defconfig   gcc  
-sparc                            allyesconfig   gcc  
-sparc                               defconfig   gcc  
-sparc                randconfig-r016-20230630   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   clang
-um                                  defconfig   gcc  
-um                             i386_defconfig   gcc  
-um                   randconfig-r004-20230630   clang
-um                           x86_64_defconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64       buildonly-randconfig-r001-20230629   gcc  
-x86_64       buildonly-randconfig-r002-20230629   gcc  
-x86_64       buildonly-randconfig-r003-20230629   gcc  
-x86_64                              defconfig   gcc  
-x86_64                                  kexec   gcc  
-x86_64               randconfig-r011-20230630   clang
-x86_64               randconfig-r023-20230630   clang
-x86_64               randconfig-r036-20230629   gcc  
-x86_64               randconfig-x001-20230629   clang
-x86_64               randconfig-x002-20230629   clang
-x86_64               randconfig-x003-20230629   clang
-x86_64               randconfig-x004-20230629   clang
-x86_64               randconfig-x005-20230629   clang
-x86_64               randconfig-x006-20230629   clang
-x86_64               randconfig-x011-20230629   gcc  
-x86_64               randconfig-x012-20230629   gcc  
-x86_64               randconfig-x013-20230629   gcc  
-x86_64               randconfig-x014-20230629   gcc  
-x86_64               randconfig-x015-20230629   gcc  
-x86_64               randconfig-x016-20230629   gcc  
-x86_64                          rhel-8.3-rust   clang
-x86_64                               rhel-8.3   gcc  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--=20
+Jani Nikula, Intel Open Source Graphics Center
