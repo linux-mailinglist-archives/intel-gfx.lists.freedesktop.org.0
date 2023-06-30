@@ -2,52 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E0FD743F56
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jun 2023 18:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8013B743F8C
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jun 2023 18:18:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20C0410E4A6;
-	Fri, 30 Jun 2023 16:01:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBBE210E4B3;
+	Fri, 30 Jun 2023 16:18:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30D8810E4A6
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Jun 2023 16:01:09 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E905610E4B1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Jun 2023 16:18:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688140869; x=1719676869;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RPzRGCn3W5Dj4JdpK8g6NSN0O87pPEWwaZZBGL2il2c=;
- b=Eo+vT3XVv07E11jydZ9Iyq25khddgjwGp+sZh/D4kk20xbMiveeBv+dK
- GX5772pcvTgDdKckY81PiZI/xGpZ6oqG3AaOwsMJXwV/+bCZPxRFfxKgf
- v/KCO1Q4cdt5MOkh4oH09sUT43rjOAT4V/lcqiYi6PvVcj41+7HY7JivQ
- OjhVn21KtVvfNTwvDrZyIwRR2Y06SePH2TXRBueA9Iu8HdkfhxAbmTOi8
- bxrgCyIlSn9TSHGvGJ6tGUxZGPOMvqKndc9s5oxV0/p+sfZ0MUiZA7cgy
- Bx9NBOgVYaak+giQ/QfkI8Sw+2oWs7MgxGE33x9NkWYb+/IEhB2JRawBO g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10757"; a="365912622"
-X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; d="scan'208";a="365912622"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2023 08:59:10 -0700
+ t=1688141887; x=1719677887;
+ h=date:from:to:cc:subject:message-id;
+ bh=J+Ku4afbFjmBFlcA3WWUcfgXUYeWWBiUO32gjQlxYOM=;
+ b=lYClbE5gCI8FVdXoWGw/5OnifpgWYJotndMx2YeNiyxp0la4jMxcq1QN
+ KT8N7cGlx6prozKRtljtJ9KNXGF4xOXL8juJsupRLF9Fzhsx5Q37KND9J
+ eKB4/PRGRitpLvui+pGSnTys5u24vBIM1FniKJpmbvWLWP+Rn4Y5SYwBL
+ vYPA9P+c+8JrtCnXDE4NiRPXuDRuWfqhdtVYxg/3yps85sfOhqQqnug0k
+ TnRBjsw5dwsSdEX9kdngGXS7vtF5cXuo6AdzohfB/pzDuZGF83B5OHHuO
+ MX2xowNZbnpVZJHsiOE7CiyjcmsniLRpqYQQY7fzZeJ/zYMu1PbOo5uIf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10757"; a="428475956"
+X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; d="scan'208";a="428475956"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2023 09:17:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10757"; a="695059500"
-X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; d="scan'208";a="695059500"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga006.jf.intel.com with SMTP; 30 Jun 2023 08:59:07 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 30 Jun 2023 18:59:06 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 30 Jun 2023 18:58:46 +0300
-Message-Id: <20230630155846.29931-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <20230630155846.29931-1-ville.syrjala@linux.intel.com>
-References: <20230630155846.29931-1-ville.syrjala@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 6/6] drm/i915: Try to initialize DDI/ICL+ DSI
- ports for every VBT child device
+X-IronPort-AV: E=McAfee;i="6600,9927,10757"; a="783134062"
+X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; d="scan'208";a="783134062"
+Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
+ by fmsmga008.fm.intel.com with ESMTP; 30 Jun 2023 09:17:35 -0700
+Received: from kbuild by 783282924a45 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qFGoQ-000F8b-0V;
+ Fri, 30 Jun 2023 16:17:34 +0000
+Date: Sat, 01 Jul 2023 00:16:42 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Message-ID: <202307010031.I9Mu8qR9-lkp@intel.com>
+User-Agent: s-nail v14.9.24
+Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
+ 6352a698ca5bf26a9199202666b16cf741f579f6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,394 +55,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: linux-parisc@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-usb@vger.kernel.org,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ linux-kselftest@vger.kernel.org, linux-btrfs@vger.kernel.org,
+ kunit-dev@googlegroups.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: 6352a698ca5bf26a9199202666b16cf741f579f6  Add linux-next specific files for 20230630
 
-Try to deal with duplicate child devices for the same DDI port
-by attempting to initialize them in VBT defined order The first
-on to succeed for a specific DDI port will be the one we use.
+Error/Warning reports:
 
-We'll also get rid of i915->display.vbt.ports[] here as any conflicts
-will now be handled at encoder registration time rather than during
-VBT parsing. Note that intel_bios_encoder_data_lookup() still remaims
-for pre-DDI DP/HDMI ports as those don't (at least yet) use VBT
-driven initialization.
+https://lore.kernel.org/oe-kbuild-all/202306122223.HHER4zOo-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306260401.qZlYQpV2-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306291857.nyJjYwqk-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306301709.lvrxzyCj-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202306301756.x8dgyYnL-lkp@intel.com
 
-TODO: DSI dual link handling is sketchy at best
+Error/Warning: (recently discovered and may have been fixed)
 
-v2: Leave intel_bios_encoder_port() to the encoder callback (Jani)
+arch/parisc/kernel/pdt.c:66:6: warning: no previous prototype for 'arch_report_meminfo' [-Wmissing-prototypes]
+drivers/bluetooth/btmtk.c:386:32: error: no member named 'dump' in 'struct hci_dev'
+drivers/bluetooth/btmtk.c:386:44: error: 'struct hci_dev' has no member named 'dump'
+drivers/char/mem.c:164:25: error: implicit declaration of function 'unxlate_dev_mem_ptr'; did you mean 'xlate_dev_mem_ptr'? [-Werror=implicit-function-declaration]
+drivers/gpu/drm/i915/soc/intel_gmch.c:41:13: error: variable 'mchbar_addr' set but not used [-Werror=unused-but-set-variable]
+drivers/mfd/max77541.c:176:18: warning: cast to smaller integer type 'enum max7754x_ids' from 'const void *' [-Wvoid-pointer-to-enum-cast]
+lib/kunit/executor_test.c:138:4: warning: cast from 'void (*)(const void *)' to 'kunit_action_t *' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-strict]
+lib/kunit/test.c:775:38: warning: cast from 'void (*)(const void *)' to 'kunit_action_t *' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-strict]
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c        |  9 ++-
- drivers/gpu/drm/i915/display/icl_dsi.h        |  4 +-
- drivers/gpu/drm/i915/display/intel_bios.c     | 47 ++++++++-------
- drivers/gpu/drm/i915/display/intel_bios.h     |  6 ++
- drivers/gpu/drm/i915/display/intel_ddi.c      | 57 +++++++++++++++----
- drivers/gpu/drm/i915/display/intel_ddi.h      |  4 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 11 +---
- .../gpu/drm/i915/display/intel_display_core.h |  2 -
- 8 files changed, 93 insertions(+), 47 deletions(-)
+Unverified Error/Warning (likely false positive, please contact us if interested):
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 59a2a289d9be..f7ebc146f96d 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1933,7 +1933,8 @@ static void icl_dsi_add_properties(struct intel_connector *connector)
- 						       fixed_mode->vdisplay);
- }
- 
--void icl_dsi_init(struct drm_i915_private *dev_priv)
-+void icl_dsi_init(struct drm_i915_private *dev_priv,
-+		  const struct intel_bios_encoder_data *devdata)
- {
- 	struct intel_dsi *intel_dsi;
- 	struct intel_encoder *encoder;
-@@ -1941,7 +1942,8 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
- 	struct drm_connector *connector;
- 	enum port port;
- 
--	if (!intel_bios_is_dsi_present(dev_priv, &port))
-+	port = intel_bios_encoder_port(devdata);
-+	if (port == PORT_NONE)
- 		return;
- 
- 	intel_dsi = kzalloc(sizeof(*intel_dsi), GFP_KERNEL);
-@@ -1958,6 +1960,8 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
- 	intel_dsi->attached_connector = intel_connector;
- 	connector = &intel_connector->base;
- 
-+	encoder->devdata = devdata;
-+
- 	/* register DSI encoder with DRM subsystem */
- 	drm_encoder_init(&dev_priv->drm, &encoder->base, &gen11_dsi_encoder_funcs,
- 			 DRM_MODE_ENCODER_DSI, "DSI %c", port_name(port));
-@@ -1995,7 +1999,6 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
- 
- 	intel_dsi->panel_power_off_time = ktime_get_boottime();
- 
--	encoder->devdata = intel_bios_encoder_data_lookup(dev_priv, port);
- 	intel_bios_init_panel_late(dev_priv, &intel_connector->panel, encoder->devdata, NULL);
- 
- 	mutex_lock(&dev_priv->drm.mode_config.mutex);
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.h b/drivers/gpu/drm/i915/display/icl_dsi.h
-index b4861b56b5b2..43fa7d72eeb1 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.h
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.h
-@@ -7,9 +7,11 @@
- #define __ICL_DSI_H__
- 
- struct drm_i915_private;
-+struct intel_bios_encoder_data;
- struct intel_crtc_state;
- 
--void icl_dsi_init(struct drm_i915_private *i915);
-+void icl_dsi_init(struct drm_i915_private *dev_priv,
-+		  const struct intel_bios_encoder_data *devdata);
- void icl_dsi_frame_update(struct intel_crtc_state *crtc_state);
- 
- #endif /* __ICL_DSI_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index c96bbbe4448e..858c959f7bab 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2374,7 +2374,7 @@ dsi_dvo_port_to_port(struct drm_i915_private *i915, u8 dvo_port)
- 	}
- }
- 
--static enum port intel_bios_encoder_port(const struct intel_bios_encoder_data *devdata)
-+enum port intel_bios_encoder_port(const struct intel_bios_encoder_data *devdata)
- {
- 	struct drm_i915_private *i915 = devdata->i915;
- 	const struct child_device_config *child = &devdata->child;
-@@ -2497,7 +2497,7 @@ intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata)
- 		devdata->child.device_type & DEVICE_TYPE_INTERNAL_CONNECTOR;
- }
- 
--static bool
-+bool
- intel_bios_encoder_supports_dsi(const struct intel_bios_encoder_data *devdata)
- {
- 	return devdata->child.device_type & DEVICE_TYPE_MIPI_OUTPUT;
-@@ -2556,13 +2556,17 @@ static bool is_port_valid(struct drm_i915_private *i915, enum port port)
- 	return true;
- }
- 
--static void print_ddi_port(const struct intel_bios_encoder_data *devdata,
--			   enum port port)
-+static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
- {
- 	struct drm_i915_private *i915 = devdata->i915;
- 	const struct child_device_config *child = &devdata->child;
- 	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb, supports_tbt;
- 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
-+	enum port port;
-+
-+	port = intel_bios_encoder_port(devdata);
-+	if (port == PORT_NONE)
-+		return;
- 
- 	is_dvi = intel_bios_encoder_supports_dvi(devdata);
- 	is_dp = intel_bios_encoder_supports_dp(devdata);
-@@ -2639,16 +2643,7 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
- 		return;
- 	}
- 
--	if (i915->display.vbt.ports[port]) {
--		drm_dbg_kms(&i915->drm,
--			    "More than one child device for port %c in VBT, using the first.\n",
--			    port_name(port));
--		return;
--	}
--
- 	sanitize_device_type(devdata, port);
--
--	i915->display.vbt.ports[port] = devdata;
- }
- 
- static bool has_ddi_port_info(struct drm_i915_private *i915)
-@@ -2659,7 +2654,6 @@ static bool has_ddi_port_info(struct drm_i915_private *i915)
- static void parse_ddi_ports(struct drm_i915_private *i915)
- {
- 	struct intel_bios_encoder_data *devdata;
--	enum port port;
- 
- 	if (!has_ddi_port_info(i915))
- 		return;
-@@ -2667,10 +2661,8 @@ static void parse_ddi_ports(struct drm_i915_private *i915)
- 	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node)
- 		parse_ddi_port(devdata);
- 
--	for_each_port(port) {
--		if (i915->display.vbt.ports[port])
--			print_ddi_port(i915->display.vbt.ports[port], port);
--	}
-+	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node)
-+		print_ddi_port(devdata);
- }
- 
- static void
-@@ -3595,5 +3587,22 @@ bool intel_bios_encoder_hpd_invert(const struct intel_bios_encoder_data *devdata
- const struct intel_bios_encoder_data *
- intel_bios_encoder_data_lookup(struct drm_i915_private *i915, enum port port)
- {
--	return i915->display.vbt.ports[port];
-+	struct intel_bios_encoder_data *devdata;
-+
-+	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node) {
-+		if (intel_bios_encoder_port(devdata) == port)
-+			return devdata;
-+	}
-+
-+	return NULL;
-+}
-+
-+void intel_bios_for_each_encoder(struct drm_i915_private *i915,
-+				 void (*func)(struct drm_i915_private *i915,
-+					      const struct intel_bios_encoder_data *devdata))
-+{
-+	struct intel_bios_encoder_data *devdata;
-+
-+	list_for_each_entry(devdata, &i915->display.vbt.display_devices, node)
-+		func(i915, devdata);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 45fae97d9719..9680e3e92bb5 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -263,10 +263,12 @@ bool intel_bios_encoder_supports_dp(const struct intel_bios_encoder_data *devdat
- bool intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata);
-+bool intel_bios_encoder_supports_dsi(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_dp_dual_mode(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_is_lspcon(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_lane_reversal(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_hpd_invert(const struct intel_bios_encoder_data *devdata);
-+enum port intel_bios_encoder_port(const struct intel_bios_encoder_data *devdata);
- enum aux_ch intel_bios_dp_aux_ch(const struct intel_bios_encoder_data *devdata);
- int intel_bios_dp_boost_level(const struct intel_bios_encoder_data *devdata);
- int intel_bios_dp_max_lane_count(const struct intel_bios_encoder_data *devdata);
-@@ -276,4 +278,8 @@ int intel_bios_hdmi_ddc_pin(const struct intel_bios_encoder_data *devdata);
- int intel_bios_hdmi_level_shift(const struct intel_bios_encoder_data *devdata);
- int intel_bios_hdmi_max_tmds_clock(const struct intel_bios_encoder_data *devdata);
- 
-+void intel_bios_for_each_encoder(struct drm_i915_private *i915,
-+				 void (*func)(struct drm_i915_private *i915,
-+					      const struct intel_bios_encoder_data *devdata));
-+
- #endif /* _INTEL_BIOS_H_ */
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 9e4e6482aa26..3cd2191fa794 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -32,6 +32,7 @@
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
-+#include "icl_dsi.h"
- #include "intel_audio.h"
- #include "intel_audio_regs.h"
- #include "intel_backlight.h"
-@@ -4684,13 +4685,38 @@ static bool need_aux_ch(struct intel_encoder *encoder, bool init_dp)
- 	return init_dp || intel_phy_is_tc(i915, phy);
- }
- 
--void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
-+static bool assert_has_icl_dsi(struct drm_i915_private *i915)
-+{
-+	return !drm_WARN(&i915->drm, !IS_ALDERLAKE_P(i915) &&
-+			 !IS_TIGERLAKE(i915) && DISPLAY_VER(i915) != 11,
-+			 "Platform does not support DSI\n");
-+}
-+
-+static bool port_in_use(struct drm_i915_private *i915, enum port port)
-+{
-+	struct intel_encoder *encoder;
-+
-+	for_each_intel_encoder(&i915->drm, encoder) {
-+		/* FIXME what about second port for dual link DSI? */
-+		if (encoder->port == port)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
-+void intel_ddi_init(struct drm_i915_private *dev_priv,
-+		    const struct intel_bios_encoder_data *devdata)
- {
- 	struct intel_digital_port *dig_port;
- 	struct intel_encoder *encoder;
--	const struct intel_bios_encoder_data *devdata;
- 	bool init_hdmi, init_dp;
--	enum phy phy = intel_port_to_phy(dev_priv, port);
-+	enum port port;
-+	enum phy phy;
-+
-+	port = intel_bios_encoder_port(devdata);
-+	if (port == PORT_NONE)
-+		return;
- 
- 	if (!port_strap_detected(dev_priv, port)) {
- 		drm_dbg_kms(&dev_priv->drm,
-@@ -4701,6 +4727,23 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 	if (!assert_port_valid(dev_priv, port))
- 		return;
- 
-+	if (port_in_use(dev_priv, port)) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Port %c already claimed\n", port_name(port));
-+		return;
-+	}
-+
-+	if (intel_bios_encoder_supports_dsi(devdata)) {
-+		/* BXT/GLK handled elsewhere, for now at least */
-+		if (!assert_has_icl_dsi(dev_priv))
-+			return;
-+
-+		icl_dsi_init(dev_priv, devdata);
-+		return;
-+	}
-+
-+	phy = intel_port_to_phy(dev_priv, port);
-+
- 	/*
- 	 * On platforms with HTI (aka HDPORT), if it's enabled at boot it may
- 	 * have taken over some of the PHYs and made them unavailable to the
-@@ -4713,14 +4756,6 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 		return;
- 	}
- 
--	devdata = intel_bios_encoder_data_lookup(dev_priv, port);
--	if (!devdata) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "VBT says port %c is not present\n",
--			    port_name(port));
--		return;
--	}
--
- 	init_hdmi = intel_bios_encoder_supports_dvi(devdata) ||
- 		intel_bios_encoder_supports_hdmi(devdata);
- 	init_dp = intel_bios_encoder_supports_dp(devdata);
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
-index 2bc034042a93..4999c0ee229b 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.h
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-@@ -11,6 +11,7 @@
- struct drm_connector_state;
- struct drm_i915_private;
- struct intel_atomic_state;
-+struct intel_bios_encoder_data;
- struct intel_connector;
- struct intel_crtc;
- struct intel_crtc_state;
-@@ -50,7 +51,8 @@ void hsw_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
- 				const struct intel_crtc_state *crtc_state);
- void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
- 			     enum port port);
--void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port);
-+void intel_ddi_init(struct drm_i915_private *dev_priv,
-+		    const struct intel_bios_encoder_data *devdata);
- bool intel_ddi_get_hw_state(struct intel_encoder *encoder, enum pipe *pipe);
- void intel_ddi_enable_transcoder_func(struct intel_encoder *encoder,
- 				      const struct intel_crtc_state *crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index eed01957bdb9..780e0fd770a9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -53,7 +53,6 @@
- #include "i915_utils.h"
- #include "i9xx_plane.h"
- #include "i9xx_wm.h"
--#include "icl_dsi.h"
- #include "intel_atomic.h"
- #include "intel_atomic_plane.h"
- #include "intel_audio.h"
-@@ -7413,18 +7412,10 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 		return;
- 
- 	if (HAS_DDI(dev_priv)) {
--		enum port port;
--
- 		if (intel_ddi_crt_present(dev_priv))
- 			intel_crt_init(dev_priv);
- 
--		for_each_port_masked(port, DISPLAY_RUNTIME_INFO(dev_priv)->port_mask)
--			intel_ddi_init(dev_priv, port);
--
--		/* FIXME do something about DSI */
--		if (IS_ALDERLAKE_P(dev_priv) || IS_TIGERLAKE(dev_priv) ||
--		    DISPLAY_VER(dev_priv) == 11)
--			icl_dsi_init(dev_priv);
-+		intel_bios_for_each_encoder(dev_priv, intel_ddi_init);
- 
- 		if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
- 			vlv_dsi_init(dev_priv);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index c37d2c4bbf76..53e5c33e08c3 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -34,7 +34,6 @@ struct i915_audio_component;
- struct i915_hdcp_arbiter;
- struct intel_atomic_state;
- struct intel_audio_funcs;
--struct intel_bios_encoder_data;
- struct intel_cdclk_funcs;
- struct intel_cdclk_vals;
- struct intel_color_funcs;
-@@ -219,7 +218,6 @@ struct intel_vbt_data {
- 	struct list_head display_devices;
- 	struct list_head bdb_blocks;
- 
--	struct intel_bios_encoder_data *ports[I915_MAX_PORTS]; /* Non-NULL if port present. */
- 	struct sdvo_device_mapping {
- 		u8 initialized;
- 		u8 dvo_port;
+drivers/usb/cdns3/cdns3-starfive.c:23: warning: expecting prototype for cdns3(). Prototype was for USB_STRAP_HOST() instead
+fs/btrfs/volumes.c:6407 btrfs_map_block() error: we previously assumed 'mirror_num_ret' could be null (see line 6244)
+{standard input}: Error: local label `"2" (instance number 9 of a fb label)' is not defined
+{standard input}:1097: Error: pcrel too far
+
+Error/Warning ids grouped by kconfigs:
+
+gcc_recent_errors
+|-- i386-buildonly-randconfig-r005-20230629
+|   `-- drivers-gpu-drm-i915-soc-intel_gmch.c:error:variable-mchbar_addr-set-but-not-used
+|-- i386-randconfig-i006-20230629
+|   `-- drivers-bluetooth-btmtk.c:error:struct-hci_dev-has-no-member-named-dump
+|-- parisc-allyesconfig
+|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
+|-- parisc-defconfig
+|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
+|-- parisc64-defconfig
+|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
+|-- riscv-allmodconfig
+|   `-- drivers-usb-cdns3-cdns3-starfive.c:warning:expecting-prototype-for-cdns3().-Prototype-was-for-USB_STRAP_HOST()-instead
+|-- riscv-allyesconfig
+|   `-- drivers-usb-cdns3-cdns3-starfive.c:warning:expecting-prototype-for-cdns3().-Prototype-was-for-USB_STRAP_HOST()-instead
+|-- sh-allmodconfig
+|   |-- drivers-char-mem.c:error:implicit-declaration-of-function-unxlate_dev_mem_ptr
+|   |-- standard-input:Error:local-label-(instance-number-of-a-fb-label)-is-not-defined
+|   `-- standard-input:Error:pcrel-too-far
+|-- sparc64-randconfig-r004-20230630
+|   `-- drivers-bluetooth-btmtk.c:error:struct-hci_dev-has-no-member-named-dump
+`-- x86_64-randconfig-m001-20230629
+    `-- fs-btrfs-volumes.c-btrfs_map_block()-error:we-previously-assumed-mirror_num_ret-could-be-null-(see-line-)
+clang_recent_errors
+|-- arm64-randconfig-r015-20230630
+|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|-- hexagon-randconfig-r005-20230630
+|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|-- hexagon-randconfig-r041-20230630
+|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|-- i386-randconfig-i016-20230629
+|   `-- drivers-bluetooth-btmtk.c:error:no-member-named-dump-in-struct-hci_dev
+|-- mips-randconfig-r032-20230629
+|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|-- riscv-randconfig-r042-20230630
+|   `-- drivers-mfd-max77541.c:warning:cast-to-smaller-integer-type-enum-max7754x_ids-from-const-void
+|-- s390-randconfig-r044-20230630
+|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
+`-- x86_64-randconfig-r023-20230630
+    `-- drivers-bluetooth-btmtk.c:error:no-member-named-dump-in-struct-hci_dev
+
+elapsed time: 737m
+
+configs tested: 123
+configs skipped: 10
+
+tested configs:
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+alpha                randconfig-r006-20230630   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                  randconfig-r004-20230630   gcc  
+arc                  randconfig-r025-20230630   gcc  
+arc                  randconfig-r043-20230630   gcc  
+arm                              allmodconfig   gcc  
+arm                              allyesconfig   gcc  
+arm                         bcm2835_defconfig   clang
+arm                                 defconfig   gcc  
+arm                            dove_defconfig   clang
+arm                            hisi_defconfig   gcc  
+arm                         lpc18xx_defconfig   gcc  
+arm                       netwinder_defconfig   clang
+arm                  randconfig-r012-20230630   gcc  
+arm                  randconfig-r046-20230630   gcc  
+arm                           sama5_defconfig   gcc  
+arm                         socfpga_defconfig   clang
+arm64                            allyesconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                randconfig-r001-20230630   gcc  
+arm64                randconfig-r014-20230630   clang
+arm64                randconfig-r015-20230630   clang
+csky                                defconfig   gcc  
+hexagon              randconfig-r005-20230630   clang
+hexagon              randconfig-r041-20230630   clang
+hexagon              randconfig-r045-20230630   clang
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-r004-20230629   gcc  
+i386         buildonly-randconfig-r005-20230629   gcc  
+i386         buildonly-randconfig-r006-20230629   gcc  
+i386                              debian-10.3   gcc  
+i386                                defconfig   gcc  
+i386                 randconfig-i001-20230629   gcc  
+i386                 randconfig-i002-20230629   gcc  
+i386                 randconfig-i003-20230629   gcc  
+i386                 randconfig-i004-20230629   gcc  
+i386                 randconfig-i005-20230629   gcc  
+i386                 randconfig-i006-20230629   gcc  
+i386                 randconfig-i011-20230629   clang
+i386                 randconfig-i012-20230629   clang
+i386                 randconfig-i013-20230629   clang
+i386                 randconfig-i014-20230629   clang
+i386                 randconfig-i015-20230629   clang
+i386                 randconfig-i016-20230629   clang
+i386                 randconfig-r021-20230630   clang
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+m68k                             allmodconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                          atari_defconfig   gcc  
+m68k                                defconfig   gcc  
+mips                             allmodconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                      maltaaprp_defconfig   clang
+mips                 randconfig-r002-20230630   clang
+mips                 randconfig-r013-20230630   gcc  
+mips                 randconfig-r032-20230629   clang
+mips                          rb532_defconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                randconfig-r005-20230630   gcc  
+nios2                randconfig-r024-20230630   gcc  
+nios2                randconfig-r026-20230630   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                 mpc837x_rdb_defconfig   gcc  
+powerpc              randconfig-r003-20230630   gcc  
+powerpc              randconfig-r022-20230630   clang
+powerpc              randconfig-r034-20230629   gcc  
+riscv                            allmodconfig   gcc  
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   gcc  
+riscv                               defconfig   gcc  
+riscv             nommu_k210_sdcard_defconfig   gcc  
+riscv                randconfig-r042-20230630   clang
+riscv                          rv32_defconfig   gcc  
+s390                             allmodconfig   gcc  
+s390                             allyesconfig   gcc  
+s390                                defconfig   gcc  
+s390                 randconfig-r001-20230630   gcc  
+s390                 randconfig-r044-20230630   clang
+s390                       zfcpdump_defconfig   gcc  
+sh                               allmodconfig   gcc  
+sh                          r7780mp_defconfig   gcc  
+sparc                            allyesconfig   gcc  
+sparc                               defconfig   gcc  
+sparc                randconfig-r016-20230630   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   clang
+um                                  defconfig   gcc  
+um                             i386_defconfig   gcc  
+um                   randconfig-r004-20230630   clang
+um                           x86_64_defconfig   gcc  
+x86_64                           allyesconfig   gcc  
+x86_64       buildonly-randconfig-r001-20230629   gcc  
+x86_64       buildonly-randconfig-r002-20230629   gcc  
+x86_64       buildonly-randconfig-r003-20230629   gcc  
+x86_64                              defconfig   gcc  
+x86_64                                  kexec   gcc  
+x86_64               randconfig-r011-20230630   clang
+x86_64               randconfig-r023-20230630   clang
+x86_64               randconfig-r036-20230629   gcc  
+x86_64               randconfig-x001-20230629   clang
+x86_64               randconfig-x002-20230629   clang
+x86_64               randconfig-x003-20230629   clang
+x86_64               randconfig-x004-20230629   clang
+x86_64               randconfig-x005-20230629   clang
+x86_64               randconfig-x006-20230629   clang
+x86_64               randconfig-x011-20230629   gcc  
+x86_64               randconfig-x012-20230629   gcc  
+x86_64               randconfig-x013-20230629   gcc  
+x86_64               randconfig-x014-20230629   gcc  
+x86_64               randconfig-x015-20230629   gcc  
+x86_64               randconfig-x016-20230629   gcc  
+x86_64                          rhel-8.3-rust   clang
+x86_64                               rhel-8.3   gcc  
+
 -- 
-2.39.3
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
