@@ -1,57 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D089E743A15
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jun 2023 12:58:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0B93743B01
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jun 2023 13:40:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C67110E444;
-	Fri, 30 Jun 2023 10:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F26D110E454;
+	Fri, 30 Jun 2023 11:40:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id F348F10E43A;
- Fri, 30 Jun 2023 10:58:01 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Axz8c4tZ5koEQEAA--.6869S3;
- Fri, 30 Jun 2023 18:58:00 +0800 (CST)
-Received: from openarena.loongson.cn (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8DxJ801tZ5k5GETAA--.63992S4; 
- Fri, 30 Jun 2023 18:57:58 +0800 (CST)
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-To: Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maxime Ripard <mripard@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Date: Fri, 30 Jun 2023 18:57:55 +0800
-Message-Id: <20230630105757.141582-3-suijingfeng@loongson.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230630105757.141582-1-suijingfeng@loongson.cn>
-References: <20230630105757.141582-1-suijingfeng@loongson.cn>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AD0010E454
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Jun 2023 11:40:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1688125220; x=1719661220;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=XCtdBLGfXv6pGbMSUmzAWcY+BVSPnHb0Z9TXsz6Kr1Q=;
+ b=O/N2nIFIod8Ot4xvWmJb/+KJPEAXPwC8urAuCf4K1dSsQXTtqfVHe4S7
+ vcvupg6GqkG1kcCGL4EQs8zIblZdxtlb8Tt4V/FW/Uu8Z98Ne5eaCR8Kw
+ yxI7YXUefqVy5GRbug+8qlgJQ8+BBi1DQOeALrSabVkEpLgXOXaDlAX++
+ PnFL9DC4wv+N78HfCcSpfwjaPFMJINji+qu9QyfmAR6ImDe2QNkJ52scj
+ le/pcWKQUMgrGbggBEx00cYMFq69g0oT3HTAL9NE42KaY/Uppsdwmt4lX
+ v7ILaoWnSu7ZG0SL2O7X/FcY/MqeJbIZN7WOzn86RSF5T97dKFhJTFAMl Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="342713777"
+X-IronPort-AV: E=Sophos;i="6.01,170,1684825200"; d="scan'208";a="342713777"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2023 04:40:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="891731695"
+X-IronPort-AV: E=Sophos;i="6.01,170,1684825200"; d="scan'208";a="891731695"
+Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
+ by orsmga005.jf.intel.com with ESMTP; 30 Jun 2023 04:40:16 -0700
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 30 Jun 2023 17:10:10 +0530
+Message-Id: <20230630114010.508930-1-dnyaneshwar.bhadane@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230616114200.3228284-12-dnyaneshwar.bhadane@intel.com>
+References: <20230616114200.3228284-12-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxJ801tZ5k5GETAA--.63992S4
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3CryrXF4DKr13CrWrJw4DJrc_yoWDZr1fpF
- 4rGF98AryxuF4I9w47Za48AFyYv3y2vayrGrW7Aw1Yga45ArWFqF90yFy5tryxJFZrCF13
- tr9rKFW7uF1jvFcCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUBSb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
- wI0_Cr1j6rxdM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
- AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
- tVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7V
- AKI48JMxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
- 6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
- xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWrXVW8Jr1lIxkGc2Ij64vIr41lIxAIcVC0
- I7IYx2IY67AKxVW5JVW7JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42
- xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF
- 7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUaJ3kDUUUU
-Subject: [Intel-gfx] [PATCH v1 2/4] PCI/VGA: Improve the default VGA device
- selection
+Subject: [Intel-gfx] [v2] drm/i915/mtl: s/MTL/METEORLAKE for
+ platform/subplatform defines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,259 +57,446 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Cornelia Huck <cohuck@redhat.com>,
- Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Likun Gao <Likun.Gao@amd.com>,
- Yi Liu <yi.l.liu@intel.com>, kvm@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Jason Gunthorpe <jgg@ziepe.ca>,
- Ben Skeggs <bskeggs@redhat.com>, linux-pci@vger.kernel.org,
- Kevin Tian <kevin.tian@intel.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Bokun Zhang <Bokun.Zhang@amd.com>, intel-gfx@lists.freedesktop.org,
- Abhishek Sahu <abhsahu@nvidia.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Yishai Hadas <yishaih@nvidia.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Christian Konig <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, the default VGA device selection is not perfect. Potential
-problems are:
+Follow consistent naming convention. Replace MTL with
+METEORLAKE. Added defines that are replacing IS_MTL_GRAPHICS_STEP with
+IS_METEORLAKE_P_GRAPHICS_STEP and IS_METEORLAKE_M_GRAPHICS_STEP.
 
-1) This function is a no-op on non-x86 architectures.
-2) It does not take the PCI Bar may get relocated into consideration.
-3) It is not effective for the PCI device without a dedicated VRAM Bar.
-4) It is device-agnostic, thus it has to waste the effort to iterate all
-   of the PCI Bar to find the VRAM aperture.
-5) It has invented lots of methods to determine which one is the default
-   boot device on a multiple video card coexistence system. But this is
-   still a policy because it doesn't give the user a choice to override.
+v2:
+- Replace IS_MLT_GRAPHICS_STEP with IS_METEROLAKE_(P/M)_GRAPHICS_STEP (Tvrtko).
+- Changed subject prefix mtl with MTL (Anusha)
 
-With the observation that device drivers or video aperture helpers may
-have better knowledge about which PCI bar contains the firmware FB,
-
-This patch tries to solve the above problems by introducing a function
-callback to the vga_client_register() function interface. DRM device
-drivers for the PCI device need to register the is_boot_device() function
-callback during the driver loading time. Once the driver binds the device
-successfully, VRAARB will call back to the driver. This gives the device
-drivers a chance to provide accurate boot device identification. Which in
-turn unlock the abitration service to non-x86 architectures. A device
-driver can also pass a NULL pointer to the keep the original behavior.
-
-This patch is to introduce the mechanism only, while the implementation
-is left to the authors of various device driver. Also honor the comment:
-"Clients have two callback mechanisms they can use"
-
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian Konig <christian.koenig@amd.com>
-Cc: Pan Xinhui <Xinhui.Pan@amd.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: Alex Williamson <alex.williamson@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-Cc: Mario Limonciello <mario.limonciello@amd.com>
-Cc: Lijo Lazar <lijo.lazar@amd.com>
-Cc: YiPeng Chai <YiPeng.Chai@amd.com>
-Cc: Bokun Zhang <Bokun.Zhang@amd.com>
-Cc: Likun Gao <Likun.Gao@amd.com>
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>
-CC: Kevin Tian <kevin.tian@intel.com>
-Cc: Cornelia Huck <cohuck@redhat.com>
-Cc: Yishai Hadas <yishaih@nvidia.com>
-Cc: Abhishek Sahu <abhsahu@nvidia.com>
-Cc: Yi Liu <yi.l.liu@intel.com>
-Reviewed-by: Lyude Paul <lyude@redhat.com> # nouveau
-Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
- drivers/gpu/drm/i915/display/intel_vga.c   |  3 +--
- drivers/gpu/drm/nouveau/nouveau_vga.c      |  2 +-
- drivers/gpu/drm/radeon/radeon_device.c     |  2 +-
- drivers/pci/vgaarb.c                       | 21 ++++++++++++++++++++-
- drivers/vfio/pci/vfio_pci_core.c           |  2 +-
- include/linux/vgaarb.h                     |  8 +++++---
- 7 files changed, 30 insertions(+), 10 deletions(-)
+Cc: Anusha Srivatsa <Anusha.Srivatsa@intel.com>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index e25f085ee886..c5bdf6eff29e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -4082,7 +4082,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	/* this will fail for cards that aren't VGA class devices, just
- 	 * ignore it */
- 	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
--		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode);
-+		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode, NULL);
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 10 ++---
+ .../drm/i915/display/skl_universal_plane.c    |  4 +-
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |  8 ++--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |  4 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |  2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 44 +++++++++----------
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  4 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  4 +-
+ drivers/gpu/drm/i915/i915_drv.h               | 15 +++++--
+ drivers/gpu/drm/i915/i915_perf.c              |  4 +-
+ 15 files changed, 60 insertions(+), 51 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 7f8b2d7713c7..6358a8b26172 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1093,7 +1093,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
  
- 	px = amdgpu_device_supports_px(ddev);
+ 	/* Wa_14016291713 */
+ 	if ((IS_DISPLAY_VER(i915, 12, 13) ||
+-	     IS_MTL_DISPLAY_STEP(i915, STEP_A0, STEP_C0)) &&
++	     IS_METEORLAKE_DISPLAY_STEP(i915, STEP_A0, STEP_C0)) &&
+ 	    crtc_state->has_psr) {
+ 		plane_state->no_fbc_reason = "PSR1 enabled (Wa_14016291713)";
+ 		return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index f7608d363634..8c3158b188ef 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -92,7 +92,7 @@ int intel_pmdemand_init(struct drm_i915_private *i915)
+ 				     &pmdemand_state->base,
+ 				     &intel_pmdemand_funcs);
  
-diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-index 286a0bdd28c6..98d7d4dffe9f 100644
---- a/drivers/gpu/drm/i915/display/intel_vga.c
-+++ b/drivers/gpu/drm/i915/display/intel_vga.c
-@@ -115,7 +115,6 @@ intel_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
+-	if (IS_MTL_DISPLAY_STEP(i915, STEP_A0, STEP_C0))
++	if (IS_METEORLAKE_DISPLAY_STEP(i915, STEP_A0, STEP_C0))
+ 		/* Wa_14016740474 */
+ 		intel_de_rmw(i915, XELPD_CHICKEN_DCPR_3, 0, DMD_RSP_TIMEOUT_DISABLE);
  
- int intel_vga_register(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 62151abe4748..ecd4e36119b2 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1247,7 +1247,7 @@ static void wm_optimization_wa(struct intel_dp *intel_dp,
+ 	bool set_wa_bit = false;
+ 
+ 	/* Wa_14015648006 */
+-	if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
++	if (IS_METEORLAKE_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
+ 	    IS_DISPLAY_VER(dev_priv, 11, 13))
+ 		set_wa_bit |= crtc_state->wm_level_disabled;
+ 
+@@ -1320,7 +1320,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 		 * All supported adlp panels have 1-based X granularity, this may
+ 		 * cause issues if non-supported panels are used.
+ 		 */
+-		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
++		if (IS_METEORLAKE_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+ 			intel_de_rmw(dev_priv, MTL_CHICKEN_TRANS(cpu_transcoder), 0,
+ 				     ADLP_1_BASED_X_GRANULARITY);
+ 		else if (IS_ALDERLAKE_P(dev_priv))
+@@ -1328,7 +1328,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 				     ADLP_1_BASED_X_GRANULARITY);
+ 
+ 		/* Wa_16012604467:adlp,mtl[a0,b0] */
+-		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
++		if (IS_METEORLAKE_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+ 			intel_de_rmw(dev_priv,
+ 				     MTL_CLKGATE_DIS_TRANS(cpu_transcoder), 0,
+ 				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS);
+@@ -1489,7 +1489,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 
+ 	if (intel_dp->psr.psr2_enabled) {
+ 		/* Wa_16012604467:adlp,mtl[a0,b0] */
+-		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
++		if (IS_METEORLAKE_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+ 			intel_de_rmw(dev_priv,
+ 				     MTL_CLKGATE_DIS_TRANS(cpu_transcoder),
+ 				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS, 0);
+@@ -1963,7 +1963,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 		goto skip_sel_fetch_set_loop;
+ 
+ 	/* Wa_14014971492 */
+-	if ((IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
++	if ((IS_METEORLAKE_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
+ 	     IS_ALDERLAKE_P(dev_priv) || IS_TIGERLAKE(dev_priv)) &&
+ 	    crtc_state->splitter.enable)
+ 		pipe_clip.y1 = 0;
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 636a88827a8f..cf1bcc6bff08 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2169,8 +2169,8 @@ static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
+ 				 enum pipe pipe, enum plane_id plane_id)
  {
--
- 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	int ret;
+ 	/* Wa_14017240301 */
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+ 		return false;
  
-@@ -127,7 +126,7 @@ int intel_vga_register(struct drm_i915_private *i915)
- 	 * then we do not take part in VGA arbitration and the
- 	 * vga_client_register() fails with -ENODEV.
+ 	/* Wa_22011186057 */
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index 3173e811463d..26656d4be61e 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -180,8 +180,8 @@ u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv
+ static int mtl_dummy_pipe_control(struct i915_request *rq)
+ {
+ 	/* Wa_14016712196 */
+-	if (IS_MTL_GRAPHICS_STEP(rq->engine->i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(rq->engine->i915, P, STEP_A0, STEP_B0)) {
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(rq->engine->i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(rq->engine->i915, STEP_A0, STEP_B0)) {
+ 		u32 *cs;
+ 
+ 		/* dummy PIPE_CONTROL + depth flush */
+@@ -765,8 +765,8 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ 		     PIPE_CONTROL_FLUSH_ENABLE);
+ 
+ 	/* Wa_14016712196 */
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+ 		/* dummy PIPE_CONTROL + depth flush */
+ 		cs = gen12_emit_pipe_control(cs, 0,
+ 					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 0aff5bb13c53..df4883764ad4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1616,7 +1616,7 @@ static int __intel_engine_stop_cs(struct intel_engine_cs *engine,
+ 	 * Wa_22011802037: Prior to doing a reset, ensure CS is
+ 	 * stopped, set ring stop bit and prefetch disable bit to halt CS
  	 */
--	ret = vga_client_register(pdev, intel_vga_set_decode);
-+	ret = vga_client_register(pdev, intel_vga_set_decode, NULL);
- 	if (ret && ret != -ENODEV)
- 		return ret;
+-	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(engine->i915, STEP_A0, STEP_B0) ||
+ 	    (GRAPHICS_VER(engine->i915) >= 11 &&
+ 	    GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70)))
+ 		intel_uncore_write_fw(uncore, RING_MODE_GEN7(engine->mmio_base),
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 2ebd937f3b4c..802b31ad982e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -3001,7 +3001,7 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
+ 	 * Wa_22011802037: In addition to stopping the cs, we need
+ 	 * to wait for any pending mi force wakeups
+ 	 */
+-	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(engine->i915, STEP_A0, STEP_B0) ||
+ 	    (GRAPHICS_VER(engine->i915) >= 11 &&
+ 	    GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70)))
+ 		intel_engine_wait_for_pending_mi_fw(engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+index 0b414eae1683..e30b56be0cb8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+@@ -166,8 +166,8 @@ void intel_gt_mcr_init(struct intel_gt *gt)
+ 		gt->steering_table[OADDRM] = xelpmp_oaddrm_steering_table;
+ 	} else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70)) {
+ 		/* Wa_14016747170 */
+-		if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-		    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++		if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
++		    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+ 			fuse = REG_FIELD_GET(MTL_GT_L3_EXC_MASK,
+ 					     intel_uncore_read(gt->uncore,
+ 							       MTL_GT_ACTIVITY_FACTOR));
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index a4ec20aaafe2..80608090fb1e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1370,8 +1370,8 @@ gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
+ 					      cs, GEN12_GFX_CCS_AUX_NV);
  
-diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
-index f8bf0ec26844..162b4f4676c7 100644
---- a/drivers/gpu/drm/nouveau/nouveau_vga.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
-@@ -92,7 +92,7 @@ nouveau_vga_init(struct nouveau_drm *drm)
- 		return;
- 	pdev = to_pci_dev(dev->dev);
+ 	/* Wa_16014892111 */
+-	if (IS_MTL_GRAPHICS_STEP(ce->engine->i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(ce->engine->i915, P, STEP_A0, STEP_B0) ||
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(ce->engine->i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(ce->engine->i915, STEP_A0, STEP_B0) ||
+ 	    IS_DG2(ce->engine->i915))
+ 		cs = dg2_emit_draw_watermark_setting(cs);
  
--	vga_client_register(pdev, nouveau_vga_set_decode);
-+	vga_client_register(pdev, nouveau_vga_set_decode, NULL);
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+index 58bb1c55294c..cc8b09b8a7fa 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@ -526,7 +526,7 @@ static bool rc6_supported(struct intel_rc6 *rc6)
+ 		return false;
+ 	}
  
- 	/* don't register Thunderbolt eGPU with vga_switcheroo */
- 	if (pci_is_thunderbolt_attached(pdev))
-diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-index afbb3a80c0c6..71f2ff39d6a1 100644
---- a/drivers/gpu/drm/radeon/radeon_device.c
-+++ b/drivers/gpu/drm/radeon/radeon_device.c
-@@ -1425,7 +1425,7 @@ int radeon_device_init(struct radeon_device *rdev,
- 	/* if we have > 1 VGA cards, then disable the radeon VGA resources */
- 	/* this will fail for cards that aren't VGA class devices, just
- 	 * ignore it */
--	vga_client_register(rdev->pdev, radeon_vga_set_decode);
-+	vga_client_register(rdev->pdev, radeon_vga_set_decode, NULL);
+-	if (IS_MTL_MEDIA_STEP(gt->i915, STEP_A0, STEP_B0) &&
++	if (IS_METEORLAKE_MEDIA_STEP(gt->i915, STEP_A0, STEP_B0) &&
+ 	    gt->type == GT_MEDIA) {
+ 		drm_notice(&i915->drm,
+ 			   "Media RC6 disabled on A step\n");
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index bb948ffc95ca..f840376f107f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -819,8 +819,8 @@ static void mtl_ctx_gt_tuning_init(struct intel_engine_cs *engine,
  
- 	if (rdev->flags & RADEON_IS_PX)
- 		runtime = true;
-diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
-index 17bd1268c36a..99d6f1f9b789 100644
---- a/drivers/pci/vgaarb.c
-+++ b/drivers/pci/vgaarb.c
-@@ -53,6 +53,7 @@ struct vga_device {
- 	bool bridge_has_one_vga;
- 	bool is_firmware_default;	/* device selected by firmware */
- 	unsigned int (*set_decode)(struct pci_dev *pdev, bool decode);
-+	bool (*is_boot_device)(struct pci_dev *pdev);
- };
+ 	dg2_ctx_gt_tuning_init(engine, wal);
  
- static LIST_HEAD(vga_list);
-@@ -969,6 +970,10 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
-  * @set_decode callback: If a client can disable its GPU VGA resource, it
-  * will get a callback from this to set the encode/decode state.
-  *
-+ * @is_boot_device: callback to the device driver, query if a client is the
-+ * default boot device, as the device driver typically has better knowledge
-+ * if specific device is the boot device. But this callback is optional.
-+ *
-  * Rationale: we cannot disable VGA decode resources unconditionally, some
-  * single GPU laptops seem to require ACPI or BIOS access to the VGA registers
-  * to control things like backlights etc. Hopefully newer multi-GPU laptops do
-@@ -984,7 +989,8 @@ EXPORT_SYMBOL(vga_set_legacy_decoding);
-  * Returns: 0 on success, -1 on failure
-  */
- int vga_client_register(struct pci_dev *pdev,
--		unsigned int (*set_decode)(struct pci_dev *pdev, bool decode))
-+		unsigned int (*set_decode)(struct pci_dev *pdev, bool decode),
-+		bool (*is_boot_device)(struct pci_dev *pdev))
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_B0, STEP_FOREVER) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_B0, STEP_FOREVER))
+ 		wa_add(wal, DRAW_WATERMARK, VERT_WM_VAL, 0x3FF, 0, false);
+ }
+ 
+@@ -831,8 +831,8 @@ static void mtl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 
+ 	mtl_ctx_gt_tuning_init(engine, wal);
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0)) {
+ 		/* Wa_14014947963 */
+ 		wa_masked_field_set(wal, VF_PREEMPTION,
+ 				    PREEMPTION_VERTEX_COUNT, 0x4000);
+@@ -1716,8 +1716,8 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	/* Wa_22016670082 */
+ 	wa_write_or(wal, GEN12_SQCNT1, GEN12_STRICT_RAR_ENABLE);
+ 
+-	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0)) {
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(gt->i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(gt->i915, STEP_A0, STEP_B0)) {
+ 		/* Wa_14014830051 */
+ 		wa_mcr_write_clr(wal, SARB_CHICKEN1, COMP_CKN_IN);
+ 
+@@ -2413,15 +2413,15 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
  {
- 	int ret = -ENODEV;
- 	struct vga_device *vgadev;
-@@ -996,6 +1002,7 @@ int vga_client_register(struct pci_dev *pdev,
- 		goto bail;
+ 	struct drm_i915_private *i915 = engine->i915;
  
- 	vgadev->set_decode = set_decode;
-+	vgadev->is_boot_device = is_boot_device;
- 	ret = 0;
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0)) {
+ 		/* Wa_22014600077 */
+ 		wa_mcr_masked_en(wal, GEN10_CACHE_MODE_SS,
+ 				 ENABLE_EU_COUNT_FOR_TDL_FLUSH);
+ 	}
  
- bail:
-@@ -1521,6 +1528,18 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
- 		notify = vga_arbiter_add_pci_device(pdev);
- 	else if (action == BUS_NOTIFY_DEL_DEVICE)
- 		notify = vga_arbiter_del_pci_device(pdev);
-+	else if (action == BUS_NOTIFY_BOUND_DRIVER) {
-+		struct vga_device *vgadev = vgadev_find(pdev);
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
+ 	    IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+ 	    IS_DG2_G11(i915) || IS_DG2_G12(i915)) {
+ 		/* Wa_1509727124 */
+@@ -2431,7 +2431,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 
+ 	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+ 	    IS_DG2_G11(i915) || IS_DG2_G12(i915) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0)) {
++	    IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0)) {
+ 		/* Wa_22012856258 */
+ 		wa_mcr_masked_en(wal, GEN8_ROW_CHICKEN2,
+ 				 GEN12_DISABLE_READ_SUPPRESSION);
+@@ -3016,13 +3016,13 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 				 GEN11_INDIRECT_STATE_BASE_ADDR_OVERRIDE);
+ 	}
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_B0, STEP_FOREVER) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_B0, STEP_FOREVER))
+ 		/* Wa_14017856879 */
+ 		wa_mcr_masked_en(wal, GEN9_ROW_CHICKEN3, MTL_DISABLE_FIX_FOR_EOT_FLUSH);
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+ 		/*
+ 		 * Wa_14017066071
+ 		 * Wa_14017654203
+@@ -3030,13 +3030,13 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 		wa_mcr_masked_en(wal, GEN10_SAMPLER_MODE,
+ 				 MTL_DISABLE_SAMPLER_SC_OOO);
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++	if (IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+ 		/* Wa_22015279794 */
+ 		wa_mcr_masked_en(wal, GEN10_CACHE_MODE_SS,
+ 				 DISABLE_PREFETCH_INTO_IC);
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
+ 	    IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+ 	    IS_DG2_G11(i915) || IS_DG2_G12(i915)) {
+ 		/* Wa_22013037850 */
+@@ -3044,16 +3044,16 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 				DISABLE_128B_EVICTION_COMMAND_UDW);
+ 	}
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
+ 	    IS_PONTEVECCHIO(i915) ||
+ 	    IS_DG2(i915)) {
+ 		/* Wa_22014226127 */
+ 		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0, DISABLE_D8_D16_COASLESCE);
+ 	}
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
++	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
+ 	    IS_DG2(i915)) {
+ 		/* Wa_18017747507 */
+ 		wa_masked_en(wal, VFG_PREEMPTION_CHICKEN, POLYGON_TRIFAN_LINELOOP_DISABLE);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 2eb891b270ae..c8e2a110b833 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -277,7 +277,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+ 		flags |= GUC_WA_GAM_CREDITS;
+ 
+ 	/* Wa_14014475959 */
+-	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(gt->i915, STEP_A0, STEP_B0) ||
+ 	    IS_DG2(gt->i915))
+ 		flags |= GUC_WA_HOLD_CCS_SWITCHOUT;
+ 
+@@ -292,7 +292,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+ 		flags |= GUC_WA_DUAL_QUEUE;
+ 
+ 	/* Wa_22011802037: graphics version 11/12 */
+-	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(gt->i915, STEP_A0, STEP_B0) ||
+ 	    (GRAPHICS_VER(gt->i915) >= 11 &&
+ 	    GRAPHICS_VER_FULL(gt->i915) < IP_VER(12, 70)))
+ 		flags |= GUC_WA_PRE_PARSER;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index a0e3ef1c65d2..6f0e07c4488e 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -1658,7 +1658,7 @@ static void guc_engine_reset_prepare(struct intel_engine_cs *engine)
+ 	 * Wa_22011802037: In addition to stopping the cs, we need
+ 	 * to wait for any pending mi force wakeups
+ 	 */
+-	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
++	if (IS_METEORLAKE_M_GRAPHICS_STEP(engine->i915, STEP_A0, STEP_B0) ||
+ 	    (GRAPHICS_VER(engine->i915) >= 11 &&
+ 	     GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70))) {
+ 		intel_engine_stop_cs(engine);
+@@ -4267,7 +4267,7 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
+ 
+ 	/* Wa_14014475959:dg2 */
+ 	if (engine->class == COMPUTE_CLASS)
+-		if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
++		if (IS_METEORLAKE_M_GRAPHICS_STEP(engine->i915, STEP_A0, STEP_B0) ||
+ 		    IS_DG2(engine->i915))
+ 			engine->flags |= I915_ENGINE_USES_WA_HOLD_CCS_SWITCHOUT;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index deb5b9064621..8b4cc3f4df1f 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -688,15 +688,24 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define IS_XEHPSDV_GRAPHICS_STEP(__i915, since, until) \
+ 	(IS_XEHPSDV(__i915) && IS_GRAPHICS_STEP(__i915, since, until))
+ 
+-#define IS_MTL_GRAPHICS_STEP(__i915, variant, since, until) \
++#define IS_METEORLAKE_GRAPHICS_STEP(__i915, variant, since, until) \
+ 	(IS_SUBPLATFORM(__i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_##variant) && \
+ 	 IS_GRAPHICS_STEP(__i915, since, until))
+ 
+-#define IS_MTL_DISPLAY_STEP(__i915, since, until) \
++#define IS_METEORLAKE_P_GRAPHICS_STEP(__i915, since, until) \
++	(IS_METEORLAKE_P(__i915) && \
++	 IS_GRAPHICS_STEP(__i915, since, until))
 +
-+		if (vgadev && vgadev->is_boot_device) {
-+			bool boot_dev = vgadev->is_boot_device(pdev);
++#define IS_METEORLAKE_M_GRAPHICS_STEP(__i915, since, until) \
++	(IS_METEORLAKE_M(__i915) && \
++	 IS_GRAPHICS_STEP(__i915, since, until))
 +
-+			if (boot_dev) {
-+				vgaarb_info(dev, "Overriding as boot device\n");
-+				vga_set_default_device(pdev);
-+			}
-+		}
-+	}
++
++#define IS_METEORLAKE_DISPLAY_STEP(__i915, since, until) \
+ 	(IS_METEORLAKE(__i915) && \
+ 	 IS_DISPLAY_STEP(__i915, since, until))
  
- 	vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
+-#define IS_MTL_MEDIA_STEP(__i915, since, until) \
++#define IS_METEORLAKE_MEDIA_STEP(__i915, since, until) \
+ 	(IS_METEORLAKE(__i915) && \
+ 	 IS_MEDIA_STEP(__i915, since, until))
  
-diff --git a/drivers/vfio/pci/vfio_pci_core.c b/drivers/vfio/pci/vfio_pci_core.c
-index a5ab416cf476..2a8873a330ba 100644
---- a/drivers/vfio/pci/vfio_pci_core.c
-+++ b/drivers/vfio/pci/vfio_pci_core.c
-@@ -2067,7 +2067,7 @@ static int vfio_pci_vga_init(struct vfio_pci_core_device *vdev)
- 	if (ret)
- 		return ret;
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 0a111b281578..e943ffbaecbc 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -4214,7 +4214,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
+ 	 * C6 disable in BIOS. Fail if Media C6 is enabled on steppings where OAM
+ 	 * does not work as expected.
+ 	 */
+-	if (IS_MTL_MEDIA_STEP(props->engine->i915, STEP_A0, STEP_C0) &&
++	if (IS_METEORLAKE_MEDIA_STEP(props->engine->i915, STEP_A0, STEP_C0) &&
+ 	    props->engine->oa_group->type == TYPE_OAM &&
+ 	    intel_check_bios_c6_setup(&props->engine->gt->rc6)) {
+ 		drm_dbg(&perf->i915->drm,
+@@ -5322,7 +5322,7 @@ int i915_perf_ioctl_version(struct drm_i915_private *i915)
+ 	 * C6 disable in BIOS. If Media C6 is enabled in BIOS, return version 6
+ 	 * to indicate that OA media is not supported.
+ 	 */
+-	if (IS_MTL_MEDIA_STEP(i915, STEP_A0, STEP_C0)) {
++	if (IS_METEORLAKE_MEDIA_STEP(i915, STEP_A0, STEP_C0)) {
+ 		struct intel_gt *gt;
+ 		int i;
  
--	ret = vga_client_register(pdev, vfio_pci_set_decode);
-+	ret = vga_client_register(pdev, vfio_pci_set_decode, NULL);
- 	if (ret)
- 		return ret;
- 	vga_set_legacy_decoding(pdev, vfio_pci_set_decode(pdev, false));
-diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
-index 97129a1bbb7d..dfde5a6ba55a 100644
---- a/include/linux/vgaarb.h
-+++ b/include/linux/vgaarb.h
-@@ -33,7 +33,8 @@ struct pci_dev *vga_default_device(void);
- void vga_set_default_device(struct pci_dev *pdev);
- int vga_remove_vgacon(struct pci_dev *pdev);
- int vga_client_register(struct pci_dev *pdev,
--		unsigned int (*set_decode)(struct pci_dev *pdev, bool state));
-+		unsigned int (*set_decode)(struct pci_dev *pdev, bool state),
-+		bool (*is_boot_device)(struct pci_dev *pdev));
- #else /* CONFIG_VGA_ARB */
- static inline void vga_set_legacy_decoding(struct pci_dev *pdev,
- 		unsigned int decodes)
-@@ -59,7 +60,8 @@ static inline int vga_remove_vgacon(struct pci_dev *pdev)
- 	return 0;
- }
- static inline int vga_client_register(struct pci_dev *pdev,
--		unsigned int (*set_decode)(struct pci_dev *pdev, bool state))
-+		unsigned int (*set_decode)(struct pci_dev *pdev, bool state),
-+		bool (*is_boot_device)(struct pci_dev *pdev))
- {
- 	return 0;
- }
-@@ -97,7 +99,7 @@ static inline int vga_get_uninterruptible(struct pci_dev *pdev,
- 
- static inline void vga_client_unregister(struct pci_dev *pdev)
- {
--	vga_client_register(pdev, NULL);
-+	vga_client_register(pdev, NULL, NULL);
- }
- 
- #endif /* LINUX_VGA_H */
 -- 
-2.25.1
+2.34.1
 
