@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EDD6743C3F
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jun 2023 14:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D6E3743C4F
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jun 2023 15:02:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E8F410E47D;
-	Fri, 30 Jun 2023 12:51:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 852E210E46D;
+	Fri, 30 Jun 2023 13:02:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8DA810E477;
- Fri, 30 Jun 2023 12:51:29 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06D8810E166
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Jun 2023 13:02:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688129489; x=1719665489;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fZSFfD7+nKWeBxUy74X/4IMFttvp+3avgDGha1KRnME=;
- b=FT6t0KpTrjPlwo5fp5LBk0cuzKzeSmnxYnfl1QZ6gwihM92MMNHmHR3m
- CkqSCvNC8Y3aCKvX1mUmB/Eja+L3pObdu4qjA7s2tbu5vidL7GkMbBG0R
- Fy5BAnEU/42uJ2vY22Bbveu/yHMDrzmEsuOnFmnFyRQlWmSrCstKOZbtX
- aRqd+E0B43UB62+++BGvrOa/GyYHG5Qt52l7oGDe+VZeLIW+tkUIHV384
- JUqv6Pa9K9KTuzGKSnmrnhAsWwDVGnneVrFXn3m6ySww7S4ut5axMNaRn
- pJ38tFWHWOOsUHvZe16bO0IXEpRJVaJOObylqgBx9FuGaxAJKad9bSdvG w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="361232271"
-X-IronPort-AV: E=Sophos;i="6.01,170,1684825200"; d="scan'208";a="361232271"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2023 05:51:29 -0700
+ t=1688130136; x=1719666136;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1SLYOap5WhOh41APlDuLsmiIE0styTCK9dMc/49/2qc=;
+ b=GvkswVr0xw6wYfKleRh6YMhWWCg8lFlsFkEfWPZvLwktkPt10hZd78Cp
+ qYPMI9fJxBluItpVqdUfpLW4rhSh4UYwAKywnzpv9ZCgNkPKvvRnwR8mN
+ 1s8Ah4HgHriy33zk7gumS71v32eP3ECR7AkRqhf56HQBSA3f7e1RYDBB+
+ tOWZrNRTVAafTFKrVIMBj7OZ/bybZqaHngJROshUs5OcNDxML63z2+AUJ
+ VpglG+GVmq4Tn4AGlIl0Pj9HHI0oteTyI/jjRIO9qLGuwvKEqVlvsSxmq
+ gks/YDyNZeO8Den1AmklzZ8mruN8ea8hS0BLFGURjoj7c+nLvO3sxn7ef g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="341970859"
+X-IronPort-AV: E=Sophos;i="6.01,170,1684825200"; d="scan'208";a="341970859"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2023 06:01:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="1048219148"
-X-IronPort-AV: E=Sophos;i="6.01,170,1684825200"; d="scan'208";a="1048219148"
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="752987986"
+X-IronPort-AV: E=Sophos;i="6.01,170,1684825200"; d="scan'208";a="752987986"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2023 05:51:27 -0700
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2023 06:01:40 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 30 Jun 2023 18:16:51 +0530
-Message-Id: <20230630124652.4140932-20-ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 30 Jun 2023 18:27:46 +0530
+Message-Id: <20230630125748.4141993-1-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230630124652.4140932-1-ankit.k.nautiyal@intel.com>
-References: <20230630124652.4140932-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 19/19] drm/i915: Query compressed bpp properly
- using correct DPCD and DP Spec info
+Subject: [Intel-gfx] [PATCH 0/2] Handle BPC for HDMI2.1 PCON without DSC1.2
+ sink and other fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,158 +59,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+This series fixes issues faced when an HDMI2.1 sink that does not
+support DSC is connected via HDMI2.1PCON. It also includes other minor
+HDMI2.1 PCON fixes/refactoring.
 
-Currently we seem to be using wrong DPCD register for reading
-compressed bpps, reading min/max input bpc instead of compressed bpp.
-Fix that, so that we now apply min/max compressed bpp limitations we
-get from DP Spec Table 2-157 DP v2.0 and/or correspondent DPCD
-register DP_DSC_MAX_BITS_PER_PIXEL_LOW/HIGH.
+Patch 1-3 Have minor fixes to consider output_format while computing
+dsc_bpp and have consistent naming for pipe_bpp, link_bpp and
+compressed_bpp.
 
-This might also allow us to get rid of an ugly compressed bpp
-recalculation, which we had to add to make some MST hubs usable.
+Patch 4-6 Calculate the max BPC that can be sufficient with either
+RGB or YCbcr420 format for the maximum FRL rate supported.
 
-v2: - Fix operator precedence
-v3: - Added debug info about compressed bpps
-v4: - Don't try to intersect Sink input bpp and compressed bpps.
-v5: - Decrease step while looking for suitable compressed bpp to
-      accommodate.
-v6: - Use helper for getting min and max compressed_bpp (Ankit)
+Rev2: Split the refactoring of DFP RG->YCBCR conversion into smaller
+patches, as suggested by Jani N.
+Also dropped the unnecessary helper for DSC1.2 support for HDMI2.1 DFP.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     | 12 +++---
- drivers/gpu/drm/i915/display/intel_dp.h     |  4 ++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 43 ++++++++-------------
- 3 files changed, 26 insertions(+), 33 deletions(-)
+Rev3: As suggested by Ville, added new member sink_format to store the
+final format that the sink will be using, which might be different
+than the output format, and thus might need color/format conversion
+performed by the PCON.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 119a1eff8e6c..9f157ff6cce4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1753,7 +1753,7 @@ u16 intel_dp_dsc_max_sink_compressed_bppx16(struct intel_dp *intel_dp,
- 	return 0;
- }
- 
--static int dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
-+int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
- {
- 	/* From Mandatory bit rate range Support Table 2-157 (DP v2.0) */
- 	switch (pipe_config->output_format) {
-@@ -1770,9 +1770,9 @@ static int dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
- 	return 0;
- }
- 
--static int dsc_sink_max_compressed_bpp(struct intel_dp *intel_dp,
--				       struct intel_crtc_state *pipe_config,
--				       int bpc)
-+int intel_dp_dsc_sink_max_compressed_bpp(struct intel_dp *intel_dp,
-+					 struct intel_crtc_state *pipe_config,
-+					 int bpc)
- {
- 	return intel_dp_dsc_max_sink_compressed_bppx16(intel_dp,
- 						       pipe_config, bpc) >> 4;
-@@ -1885,11 +1885,11 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
- 	int dsc_joiner_max_bpp;
- 
- 	dsc_src_min_bpp = dsc_src_min_compressed_bpp();
--	dsc_sink_min_bpp = dsc_sink_min_compressed_bpp(pipe_config);
-+	dsc_sink_min_bpp = intel_dp_dsc_sink_min_compressed_bpp(pipe_config);
- 	dsc_min_bpp = max(dsc_src_min_bpp, dsc_sink_min_bpp);
- 
- 	dsc_src_max_bpp = dsc_src_max_compressed_bpp(intel_dp);
--	dsc_sink_max_bpp = dsc_sink_max_compressed_bpp(intel_dp, pipe_config, pipe_bpp / 3);
-+	dsc_sink_max_bpp = intel_dp_dsc_sink_max_compressed_bpp(intel_dp, pipe_config, pipe_bpp / 3);
- 	dsc_max_bpp = dsc_sink_max_bpp ? min(dsc_sink_max_bpp, dsc_src_max_bpp) : dsc_src_max_bpp;
- 
- 	dsc_joiner_max_bpp = get_max_compressed_bpp_with_joiner(i915, adjusted_mode->clock,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 788a577ebe16..f29e48028f39 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -114,6 +114,10 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
- 					enum intel_output_format output_format,
- 					u32 pipe_bpp,
- 					u32 timeslots);
-+int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config);
-+int intel_dp_dsc_sink_max_compressed_bpp(struct intel_dp *intel_dp,
-+					 struct intel_crtc_state *pipe_config,
-+					 int bpc);
- u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
- 				int mode_clock, int mode_hdisplay,
- 				bool bigjoiner);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 3eb085fbc7c8..0df930d605ed 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -101,6 +101,9 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
- 							      crtc_state->lane_count);
- 	}
- 
-+	drm_dbg_kms(&i915->drm, "Looking for slots in range min bpp %d max bpp %d\n",
-+		    min_bpp, max_bpp);
-+
- 	for (bpp = max_bpp; bpp >= min_bpp; bpp -= step) {
- 		drm_dbg_kms(&i915->drm, "Trying bpp %d\n", bpp);
- 
-@@ -194,8 +197,7 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
- 	u8 dsc_bpc[3] = {0};
- 	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
- 	u8 dsc_max_bpc;
--	bool need_timeslot_recalc = false;
--	u32 last_compressed_bpp;
-+	int min_compressed_bpp, max_compressed_bpp;
- 
- 	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
- 	if (DISPLAY_VER(i915) >= 12)
-@@ -231,34 +233,21 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
- 	if (max_bpp > sink_max_bpp)
- 		max_bpp = sink_max_bpp;
- 
--	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_bpp,
--						     min_bpp, limits,
--						     conn_state, 2 * 3, true);
--
--	if (slots < 0)
--		return slots;
--
--	last_compressed_bpp = crtc_state->dsc.compressed_bpp;
-+	max_compressed_bpp = intel_dp_dsc_sink_max_compressed_bpp(intel_dp, crtc_state, max_bpp / 3);
-+	min_compressed_bpp = intel_dp_dsc_sink_min_compressed_bpp(crtc_state);
-+	drm_dbg_kms(&i915->drm, "DSC Sink supported compressed min bpp %d compressed max bpp %d\n",
-+		    min_compressed_bpp, max_compressed_bpp);
- 
--	crtc_state->dsc.compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915,
--									last_compressed_bpp,
--									crtc_state->pipe_bpp);
-+	/* Align compressed bpps according to our own constraints */
-+	max_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915, max_compressed_bpp, crtc_state->pipe_bpp);
-+	min_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915, min_compressed_bpp, crtc_state->pipe_bpp);
- 
--	if (crtc_state->dsc.compressed_bpp != last_compressed_bpp)
--		need_timeslot_recalc = true;
-+	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_compressed_bpp,
-+						     min_compressed_bpp, limits,
-+						     conn_state, 1, true);
- 
--	/*
--	 * Apparently some MST hubs dislike if vcpi slots are not matching precisely
--	 * the actual compressed bpp we use.
--	 */
--	if (need_timeslot_recalc) {
--		slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state,
--							     crtc_state->dsc.compressed_bpp,
--							     crtc_state->dsc.compressed_bpp,
--							     limits, conn_state, 2 * 3, true);
--		if (slots < 0)
--			return slots;
--	}
-+	if (slots < 0)
-+		return slots;
- 
- 	intel_link_compute_m_n(crtc_state->dsc.compressed_bpp,
- 			       crtc_state->lane_count,
+Rev4: Fix typo in switch case as, reported by kernel test bot.
+
+Rev5: Corrected order of setting sink_format and output_format. (Ville)
+Avoided the flag ycbcr420_output and used the sink_format to facilitate
+4:2:2 support at a later stage. (Ville)
+
+Rev6: Added missing changes for sdvo. (Ville)
+Added check for scaler and DSC constraints with YCbCr420.
+
+Rev7: Split change to add scaler constraint in separate patch, and rebased.
+
+Rev8: Rebased. Fixed check for mode rate with dsc in modevalid.
+Fixed scaler constraint as per display version.
+
+Rev9: Rebased.
+
+Rev10: Addressed review comments from Ville.
+Dropped patch to check for mode rate with dsc during modevalid, as the
+compressed bpp is already selected with bandwidth considerations.
+
+Rev11: Fixed the policy to use output format as RGB first if possible,
+followed by YCbCr444, atlast YCbCr420. Also removed the scaler-constraints
+with YCbCr420, as these are handled in scaler code. (Ville)
+
+Rev12: Added a patch for configuring PCON to convert output_format to
+YCBCR444. Added patch to have consistent naming for link bpp and
+compressed bpp. 
+
+Rev13: Few patches of original series are merged. Rebased the patches
+and addressed few comments from Ville on last series.
+
+Rev14: Use new wrapper for checking frl/tmds downstream constraints
+while getting max bpc also.
+
+Ankit Nautiyal (2):
+  drm/i915/dp: Fix FRL BW check for HDMI2.1 DFP
+  drm/i915/dp: Add a wrapper to check frl/tmds downstream constraints
+
+ drivers/gpu/drm/i915/display/intel_dp.c | 86 ++++++++++++++++---------
+ 1 file changed, 56 insertions(+), 30 deletions(-)
+
 -- 
 2.40.1
 
