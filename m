@@ -2,49 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121047459E6
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jul 2023 12:14:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4045A745A4F
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jul 2023 12:31:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB3F810E20C;
-	Mon,  3 Jul 2023 10:14:26 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C981710E20C
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Jul 2023 10:14:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70F7F10E032;
+	Mon,  3 Jul 2023 10:31:43 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9868810E032;
+ Mon,  3 Jul 2023 10:31:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688379263; x=1719915263;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lLPPgXxFdifInDiVhGudWUKNYtjj0QZGqWlmQwFB0Nw=;
- b=PMybb+zrGkHOBkodbiSDktiqEfOFJc3CzwUoE+V1BoRBjiwlZaUaWnLQ
- 8vaVpFjMNoGD/NmZUF0jS6dy9E/gCYL9+xVbq1RnWLjZnIN2tgytnlDRi
- 7oEIHxGlV7KwLNw70zyCoD5XBzRgXB8bGFC9ha06tEdbCEEqlBkyhRqQp
- 7/eykChRnmm6yfmqlCe+9vqLC5DFbW0n7gT46zjL+WBXxqpgIorbJ4Yak
- SmfHO4Kb5ToKLfaQqPOJzruHY2bjvpL3QRid9dnvWEtW/pd0FPDvowEzU
- YLnjcHB60Fe1i7ASYFfRAQH7e9FbVNkOIsGQZyTpJ9K/0mgHUfrjHY7nV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10759"; a="393586723"
-X-IronPort-AV: E=Sophos;i="6.01,177,1684825200"; d="scan'208";a="393586723"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2023 03:14:23 -0700
+ t=1688380301; x=1719916301;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=9kc+0P2dPWJ3DInEyVlgsbUljYqwYUoCHNxjTRfjv/M=;
+ b=nufnE7oAyekdN04+meIfA5qYAo8qisuKZIx+4GGpHcW7Nitmu5fsBdjY
+ P5H9hzh0qovVxdRqqGODrKMB5G9fdkiaU7ILl9SODu/OSoP3hB8zrVQ3m
+ OrLNQTMxclvTCy3KvJdsczrnvvDV9EvjuUoSLE/qsIO3MOlAHMDZmAZcV
+ /5uN3jExRLtlosvE314uTJeZ7wH/HFnby7aYtMDsFIpVWE858OS6Bj6zJ
+ An50jVQsysS3qUNBKI0tBMx4kEqNuMg1iCuZcsu0AxhQTjKUhcIdVqkx5
+ OinHyMcEqhhxYjNlKzzxat3AyIxdTrQdELEtvICxAiwPdaW7VK/MDqXWe g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10759"; a="449222206"
+X-IronPort-AV: E=Sophos;i="6.01,177,1684825200"; d="scan'208";a="449222206"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2023 03:31:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10759"; a="721716081"
-X-IronPort-AV: E=Sophos;i="6.01,177,1684825200"; d="scan'208";a="721716081"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga007.fm.intel.com with ESMTP; 03 Jul 2023 03:14:21 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Jul 2023 15:42:44 +0530
-Message-Id: <20230703101244.2489790-4-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230703101244.2489790-1-suraj.kandpal@intel.com>
-References: <20230703101244.2489790-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10759"; a="788482408"
+X-IronPort-AV: E=Sophos;i="6.01,177,1684825200"; d="scan'208";a="788482408"
+Received: from dryan13-mobl.ger.corp.intel.com (HELO [10.213.232.206])
+ ([10.213.232.206])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2023 03:31:25 -0700
+Message-ID: <2313fd37-1e6f-519b-c383-45e871dc5e7f@linux.intel.com>
+Date: Mon, 3 Jul 2023 11:31:23 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>,
+ igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
+References: <20230523105139.626772-1-tvrtko.ursulin@linux.intel.com>
+ <c0058e4f-faf4-fefd-408d-1837375f65af@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <c0058e4f-faf4-fefd-408d-1837375f65af@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 3/3] drm/i915/dsc: Add rc_range_parameter
- calculation for YCBCR420
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] tests/i915_pm_rps: Exercise
+ sysfs thresholds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,189 +65,317 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some rc_range_parameter calculations were missed for YCBCR420,
-add them to calculate_rc_param()
 
---v2
--take into account the new formula to get bpp_i
+On 30/06/2023 20:16, Belgaumkar, Vinay wrote:
+> 
+> On 5/23/2023 3:51 AM, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Exercise a bunch of up and down rps thresholds to verify hardware
+>> is happy with them all.
+>>
+>> To limit the overall runtime relies on probability and number of runs
+>> to approach complete coverage.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> ---
+>>   tests/i915/i915_pm_rps.c | 232 +++++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 232 insertions(+)
+>>
+>> diff --git a/tests/i915/i915_pm_rps.c b/tests/i915/i915_pm_rps.c
+>> index 050d68a16559..acff59207311 100644
+>> --- a/tests/i915/i915_pm_rps.c
+>> +++ b/tests/i915/i915_pm_rps.c
+>> @@ -39,8 +39,10 @@
+>>   #include "i915/gem.h"
+>>   #include "i915/gem_create.h"
+>>   #include "igt.h"
+>> +#include "igt_aux.h"
+>>   #include "igt_dummyload.h"
+>>   #include "igt_perf.h"
+>> +#include "igt_rand.h"
+>>   #include "igt_sysfs.h"
+>>   /**
+>>    * TEST: i915 pm rps
+>> @@ -914,6 +916,200 @@ static void pm_rps_exit_handler(int sig)
+>>       close(drm_fd);
+>>   }
+>> +static igt_spin_t *__spin_poll(int fd, uint64_t ahnd, const 
+>> intel_ctx_t *ctx,
+>> +                   const struct intel_execution_engine2 *e)
+>> +{
+>> +    struct igt_spin_factory opts = {
+>> +        .ahnd = ahnd,
+>> +        .ctx = ctx,
+>> +        .engine = e->flags,
+>> +    };
+>> +
+>> +    if (gem_class_can_store_dword(fd, e->class))
+>> +        opts.flags |= IGT_SPIN_POLL_RUN;
+>> +
+>> +    return __igt_spin_factory(fd, &opts);
+>> +}
+>> +
+>> +static unsigned long __spin_wait(int fd, igt_spin_t *spin)
+>> +{
+>> +    struct timespec start = { };
+>> +
+>> +    igt_nsec_elapsed(&start);
+>> +
+>> +    if (igt_spin_has_poll(spin)) {
+>> +        unsigned long timeout = 0;
+>> +
+>> +        while (!igt_spin_has_started(spin)) {
+>> +            unsigned long t = igt_nsec_elapsed(&start);
+>> +
+>> +            igt_assert(gem_bo_busy(fd, spin->handle));
+>> +            if ((t - timeout) > 250e6) {
+>> +                timeout = t;
+>> +                igt_warn("Spinner not running after %.2fms\n",
+>> +                     (double)t / 1e6);
+>> +                igt_assert(t < 2e9);
+>> +            }
+>> +        }
+>> +    } else {
+>> +        igt_debug("__spin_wait - usleep mode\n");
+>> +        usleep(500e3); /* Better than nothing! */
+>> +    }
+>> +
+>> +    igt_assert(gem_bo_busy(fd, spin->handle));
+>> +    return igt_nsec_elapsed(&start);
+>> +}
+>> +
+>> +static igt_spin_t *__spin_sync(int fd, uint64_t ahnd, const 
+>> intel_ctx_t *ctx,
+>> +                   const struct intel_execution_engine2 *e)
+>> +{
+>> +    igt_spin_t *spin = __spin_poll(fd, ahnd, ctx, e);
+>> +
+>> +    __spin_wait(fd, spin);
+>> +
+>> +    return spin;
+>> +}
+> All the above spin functions have been duplicated across 2-3 tests, time 
+> to create a lib for them?
 
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vdsc.c | 142 ++++++++++++++++------
- 1 file changed, 104 insertions(+), 38 deletions(-)
+Three is the magic number so yes, a reasonable ask - done locally. 
+Holding off the re-send though until the 2nd point below is discussed.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 7d0edb440ca6..5c6151f716d5 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -52,23 +52,34 @@ static bool is_pipe_dsc(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
- 	return true;
- }
- 
-+static void
-+intel_vdsc_set_min_max_qp(struct drm_dsc_config *vdsc_cfg, int buf,
-+			  int bpp)
-+{
-+	int bpc = vdsc_cfg->bits_per_component;
-+
-+	/* Read range_minqp and range_max_qp from qp tables */
-+	vdsc_cfg->rc_range_params[buf].range_min_qp =
-+		intel_lookup_range_min_qp(bpc, buf, bpp, vdsc_cfg->native_420);
-+	vdsc_cfg->rc_range_params[buf].range_max_qp =
-+		intel_lookup_range_max_qp(bpc, buf, bpp, vdsc_cfg->native_420);
-+}
-+
-+/* Calculate RC Params using the below two methods:
-+ * 1. DSCParameterValuesVESA V1-2 spreadsheet
-+ * 2. VESA DSC 1.2a DSC Tools Application Note
-+ * Above two methods use a common formula to derive values for any combination of DSC
-+ * variables. The formula approach may yield slight differences in the derived PPS
-+ * parameters from the original parameter sets. These differences are not consequential
-+ * to the coding performance because all parameter sets have been shown to produce
-+ * visually lossless quality (provides the same PPS values as
-+ * DSCParameterValuesVESA V1-2 spreadsheet)
-+ */
- static void
- calculate_rc_params(struct drm_dsc_config *vdsc_cfg)
- {
- 	int bpc = vdsc_cfg->bits_per_component;
- 	int bpp = vdsc_cfg->bits_per_pixel >> 4;
--	static const s8 ofs_und6[] = {
--		0, -2, -2, -4, -6, -6, -8, -8, -8, -10, -10, -12, -12, -12, -12
--	};
--	static const s8 ofs_und8[] = {
--		2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12
--	};
--	static const s8 ofs_und12[] = {
--		2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12
--	};
--	static const s8 ofs_und15[] = {
--		10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -10, -12, -12, -12
--	};
- 	int qp_bpc_modifier = (bpc - 8) * 2;
- 	u32 res, buf_i, bpp_i;
- 
-@@ -118,33 +129,88 @@ calculate_rc_params(struct drm_dsc_config *vdsc_cfg)
- 	vdsc_cfg->rc_quant_incr_limit0 = 11 + qp_bpc_modifier;
- 	vdsc_cfg->rc_quant_incr_limit1 = 11 + qp_bpc_modifier;
- 
--	bpp_i  = (2 * (bpp - 6));
--	for (buf_i = 0; buf_i < DSC_NUM_BUF_RANGES; buf_i++) {
--		u8 range_bpg_offset;
--
--		/* Read range_minqp and range_max_qp from qp tables */
--		vdsc_cfg->rc_range_params[buf_i].range_min_qp =
--			intel_lookup_range_min_qp(bpc, buf_i, bpp_i, vdsc_cfg->native_420);
--		vdsc_cfg->rc_range_params[buf_i].range_max_qp =
--			intel_lookup_range_max_qp(bpc, buf_i, bpp_i, vdsc_cfg->native_420);
--
--		/* Calculate range_bpg_offset */
--		if (bpp <= 6) {
--			range_bpg_offset = ofs_und6[buf_i];
--		} else if (bpp <= 8) {
--			res = DIV_ROUND_UP(((bpp - 6) * (ofs_und8[buf_i] - ofs_und6[buf_i])), 2);
--			range_bpg_offset = ofs_und6[buf_i] + res;
--		} else if (bpp <= 12) {
--			range_bpg_offset = ofs_und8[buf_i];
--		} else if (bpp <= 15) {
--			res = DIV_ROUND_UP(((bpp - 12) * (ofs_und15[buf_i] - ofs_und12[buf_i])), 3);
--			range_bpg_offset = ofs_und12[buf_i] + res;
--		} else {
--			range_bpg_offset = ofs_und15[buf_i];
-+	if (vdsc_cfg->native_420) {
-+		static const s8 ofs_und4[] = {
-+			2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -12, -12, -12, -12
-+		};
-+		static const s8 ofs_und5[] = {
-+			2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12
-+		};
-+		static const s8 ofs_und6[] = {
-+			2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12
-+		};
-+		static const s8 ofs_und8[] = {
-+			10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -10, -12, -12, -12
-+		};
-+
-+		bpp_i  = bpp - 8;
-+		for (buf_i = 0; buf_i < DSC_NUM_BUF_RANGES; buf_i++) {
-+			u8 range_bpg_offset;
-+
-+			intel_vdsc_set_min_max_qp(vdsc_cfg, buf_i, bpp_i);
-+
-+			/* Calculate range_bpg_offset */
-+			if (bpp <= 8) {
-+				range_bpg_offset = ofs_und4[buf_i];
-+			} else if (bpp <= 10) {
-+				res = DIV_ROUND_UP(((bpp - 8) *
-+						    (ofs_und5[buf_i] - ofs_und4[buf_i])), 2);
-+				range_bpg_offset = ofs_und4[buf_i] + res;
-+			} else if (bpp <= 12) {
-+				res = DIV_ROUND_UP(((bpp - 10) *
-+						    (ofs_und6[buf_i] - ofs_und5[buf_i])), 2);
-+				range_bpg_offset = ofs_und5[buf_i] + res;
-+			} else if (bpp <= 16) {
-+				res = DIV_ROUND_UP(((bpp - 12) *
-+						    (ofs_und8[buf_i] - ofs_und6[buf_i])), 3);
-+				range_bpg_offset = ofs_und6[buf_i] + res;
-+			} else {
-+				range_bpg_offset = ofs_und8[buf_i];
-+			}
-+
-+			vdsc_cfg->rc_range_params[buf_i].range_bpg_offset =
-+				range_bpg_offset & DSC_RANGE_BPG_OFFSET_MASK;
-+		}
-+	} else {
-+		static const s8 ofs_und6[] = {
-+			0, -2, -2, -4, -6, -6, -8, -8, -8, -10, -10, -12, -12, -12, -12
-+		};
-+		static const s8 ofs_und8[] = {
-+			2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12
-+		};
-+		static const s8 ofs_und12[] = {
-+			2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12
-+		};
-+		static const s8 ofs_und15[] = {
-+			10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -10, -12, -12, -12
-+		};
-+
-+		bpp_i  = (2 * (bpp - 6));
-+		for (buf_i = 0; buf_i < DSC_NUM_BUF_RANGES; buf_i++) {
-+			u8 range_bpg_offset;
-+
-+			intel_vdsc_set_min_max_qp(vdsc_cfg, buf_i, bpp_i);
-+
-+			/* Calculate range_bpg_offset */
-+			if (bpp <= 6) {
-+				range_bpg_offset = ofs_und6[buf_i];
-+			} else if (bpp <= 8) {
-+				res = DIV_ROUND_UP(((bpp - 6) *
-+						    (ofs_und8[buf_i] - ofs_und6[buf_i])), 2);
-+				range_bpg_offset = ofs_und6[buf_i] + res;
-+			} else if (bpp <= 12) {
-+				range_bpg_offset = ofs_und8[buf_i];
-+			} else if (bpp <= 15) {
-+				res = DIV_ROUND_UP(((bpp - 12) *
-+						    (ofs_und15[buf_i] - ofs_und12[buf_i])), 3);
-+				range_bpg_offset = ofs_und12[buf_i] + res;
-+			} else {
-+				range_bpg_offset = ofs_und15[buf_i];
-+			}
-+
-+			vdsc_cfg->rc_range_params[buf_i].range_bpg_offset =
-+				range_bpg_offset & DSC_RANGE_BPG_OFFSET_MASK;
- 		}
--
--		vdsc_cfg->rc_range_params[buf_i].range_bpg_offset =
--			range_bpg_offset & DSC_RANGE_BPG_OFFSET_MASK;
- 	}
- }
- 
--- 
-2.25.1
+>> +
+>> +static struct i915_engine_class_instance
+>> +find_dword_engine(int i915, const unsigned int gt)
+>> +{
+>> +    struct i915_engine_class_instance *engines, ci = { -1, -1 };
+>> +    unsigned int i, count;
+>> +
+>> +    engines = gem_list_engines(i915, 1u << gt, ~0u, &count);
+>> +    igt_assert(engines);
+>> +
+>> +    for (i = 0; i < count; i++) {
+>> +        if (!gem_class_can_store_dword(i915, engines[i].engine_class))
+>> +            continue;
+>> +
+>> +        ci = engines[i];
+>> +        break;
+>> +    }
+>> +
+>> +    free(engines);
+>> +
+>> +    return ci;
+>> +}
+>> +
+>> +static igt_spin_t *spin_sync_gt(int i915, uint64_t ahnd, unsigned int 
+>> gt,
+>> +                const intel_ctx_t **ctx)
+>> +{
+>> +    struct i915_engine_class_instance ci = { -1, -1 };
+>> +    struct intel_execution_engine2 e = { };
+>> +
+>> +    ci = find_dword_engine(i915, gt);
+>> +
+>> +    igt_require(ci.engine_class != (uint16_t)I915_ENGINE_CLASS_INVALID);
+>> +
+>> +    if (gem_has_contexts(i915)) {
+>> +        e.class = ci.engine_class;
+>> +        e.instance = ci.engine_instance;
+>> +        e.flags = 0;
+>> +        *ctx = intel_ctx_create_for_engine(i915, e.class, e.instance);
+>> +    } else {
+>> +        igt_require(gt == 0); /* Impossible anyway. */
+>> +        e.class = gem_execbuf_flags_to_engine_class(I915_EXEC_DEFAULT);
+>> +        e.instance = 0;
+>> +        e.flags = I915_EXEC_DEFAULT;
+>> +        *ctx = intel_ctx_0(i915);
+>> +    }
+>> +
+>> +    igt_debug("Using engine %u:%u\n", e.class, e.instance);
+>> +
+>> +    return __spin_sync(i915, ahnd, *ctx, &e);
+>> +}
+>> +
+>> +#define TEST_IDLE 0x1
+>> +#define TEST_PARK 0x2
+>> +static void test_thresholds(int i915, unsigned int gt, unsigned int 
+>> flags)
+>> +{
+>> +    uint64_t ahnd = get_reloc_ahnd(i915, 0);
+>> +    const unsigned int points = 10;
+>> +    unsigned int def_up, def_down;
+>> +    igt_spin_t *spin = NULL;
+>> +    const intel_ctx_t *ctx;
+>> +    unsigned int *ta, *tb;
+>> +    unsigned int i;
+>> +    int sysfs;
+>> +
+>> +    sysfs = igt_sysfs_gt_open(i915, gt);
+>> +    igt_require(sysfs >= 0);
+>> +
+>> +    /* Feature test */
+>> +    def_up = igt_sysfs_get_u32(sysfs, "rps_up_threshold_pct");
+>> +    def_down = igt_sysfs_get_u32(sysfs, "rps_down_threshold_pct");
+>> +    igt_require(def_up && def_down);
+>> +
+>> +    /* Check invalid percentages are rejected */
+>> +    igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_up_threshold_pct", 
+>> 101), false);
+>> +    igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_down_threshold_pct", 
+>> 101), false);
+>> +
+>> +    /*
+>> +     * Invent some random up-down thresholds, but always include 0 
+>> and 100
+>> +     * just to have some wild edge cases.
+>> +     */
+>> +    ta = calloc(points, sizeof(unsigned int));
+>> +    tb = calloc(points, sizeof(unsigned int));
+>> +    igt_require(ta && tb);
+>> +
+>> +    ta[0] = tb[0] = 0;
+>> +    ta[1] = tb[1] = 100;
+>> +    hars_petruska_f54_1_random_seed(time(NULL));
+>> +    for (i = 2; i < points; i++) {
+>> +        ta[i] = hars_petruska_f54_1_random_unsafe_max(100);
+>> +        tb[i] = hars_petruska_f54_1_random_unsafe_max(100);
+>> +    }
+>> +    igt_permute_array(ta, points, igt_exchange_int);
+>> +    igt_permute_array(tb, points, igt_exchange_int);
+>> +
+>> +    /* Exercise the thresholds with a GPU load to trigger park/unpark 
+>> etc */
+>> +    for (i = 0; i < points; i++) {
+>> +        igt_info("Testing thresholds up %u%% and down %u%%...\n", 
+>> ta[i], tb[i]);
+>> +        igt_assert_eq(igt_sysfs_set_u32(sysfs, 
+>> "rps_up_threshold_pct", ta[i]), true);
+>> +        igt_assert_eq(igt_sysfs_set_u32(sysfs, 
+>> "rps_down_threshold_pct", tb[i]), true);
+> 
+> Do we care if threshold_down > threshold_up?
 
+We should avoid creating a policy unless there is no other choice. I 
+don't know - can we categorically say it never make sense to have down 
+greater than up? For any GPU, number of discrete frequencies, workload, 
+use case? You are more at home in this area.
+
+Regards,
+
+Tvrtko
+
+> 
+> Thanks,
+> 
+> Vinay.
+> 
+>> +
+>> +        if (flags & TEST_IDLE) {
+>> +            gem_quiescent_gpu(i915);
+>> +        } else if (spin) {
+>> +            intel_ctx_destroy(i915, ctx);
+>> +            igt_spin_free(i915, spin);
+>> +            spin = NULL;
+>> +            if (flags & TEST_PARK) {
+>> +                gem_quiescent_gpu(i915);
+>> +                usleep(500000);
+>> +            }
+>> +        }
+>> +        spin = spin_sync_gt(i915, ahnd, gt, &ctx);
+>> +        usleep(1000000);
+>> +        if (flags & TEST_IDLE) {
+>> +            intel_ctx_destroy(i915, ctx);
+>> +            igt_spin_free(i915, spin);
+>> +            if (flags & TEST_PARK) {
+>> +                gem_quiescent_gpu(i915);
+>> +                usleep(500000);
+>> +            }
+>> +            spin = NULL;
+>> +        }
+>> +    }
+>> +
+>> +    if (spin) {
+>> +        intel_ctx_destroy(i915, ctx);
+>> +        igt_spin_free(i915, spin);
+>> +    }
+>> +
+>> +    gem_quiescent_gpu(i915);
+>> +
+>> +    /* Restore defaults */
+>> +    igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_up_threshold_pct", 
+>> def_up), true);
+>> +    igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_down_threshold_pct", 
+>> def_down), true);
+>> +
+>> +    free(ta);
+>> +    free(tb);
+>> +    close(sysfs);
+>> +    put_ahnd(ahnd);
+>> +}
+>> +
+>>   igt_main
+>>   {
+>>       igt_fixture {
+>> @@ -993,4 +1189,40 @@ igt_main
+>>           waitboost(drm_fd, true);
+>>           igt_disallow_hang(drm_fd, hang);
+>>       }
+>> +
+>> +    igt_subtest_with_dynamic("thresholds-idle") {
+>> +        int tmp, gt;
+>> +
+>> +        i915_for_each_gt(drm_fd, tmp, gt) {
+>> +            igt_dynamic_f("gt%u", gt)
+>> +                test_thresholds(drm_fd, gt, TEST_IDLE);
+>> +        }
+>> +    }
+>> +
+>> +    igt_subtest_with_dynamic("thresholds") {
+>> +        int tmp, gt;
+>> +
+>> +        i915_for_each_gt(drm_fd, tmp, gt) {
+>> +            igt_dynamic_f("gt%u", gt)
+>> +                test_thresholds(drm_fd, gt, 0);
+>> +        }
+>> +    }
+>> +
+>> +    igt_subtest_with_dynamic("thresholds-park") {
+>> +        int tmp, gt;
+>> +
+>> +        i915_for_each_gt(drm_fd, tmp, gt) {
+>> +            igt_dynamic_f("gt%u", gt)
+>> +                test_thresholds(drm_fd, gt, TEST_PARK);
+>> +        }
+>> +    }
+>> +
+>> +    igt_subtest_with_dynamic("thresholds-idle-park") {
+>> +        int tmp, gt;
+>> +
+>> +        i915_for_each_gt(drm_fd, tmp, gt) {
+>> +            igt_dynamic_f("gt%u", gt)
+>> +                test_thresholds(drm_fd, gt, TEST_IDLE | TEST_PARK);
+>> +        }
+>> +    }
+>>   }
