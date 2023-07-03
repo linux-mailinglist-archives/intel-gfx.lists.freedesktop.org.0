@@ -1,55 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20CDA745FE3
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jul 2023 17:30:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E815746083
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jul 2023 18:13:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C13D10E230;
-	Mon,  3 Jul 2023 15:30:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED1ED10E0FB;
+	Mon,  3 Jul 2023 16:13:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3CE510E220
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Jul 2023 15:30:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688398207; x=1719934207;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=uyGwRS+nY7W/8//fBcX/32H/jEj3LS6U/pum37IbKPw=;
- b=ijkeHTvYNVn20SsYcMm4aZw3QCOCVCaR1YL9QZRaQ5OUoGYH/o1/E1c+
- HOUYy7c0Xcx3/HDUfbQBoMGOvImZHyr975PUKO3sYNZIR5FkyLMD27doT
- 5ZFrx1LeUz0WJGkad40nYf52wMW3W9eGepUolCpIG8cgW7ZUHVq3moKgU
- UGtx8ade520nV7NYr6AUMdID1czj0dfU5IlGUTx/lW47O5EFvaHY8rkil
- NtxbkXmvqOUhIWEN3K+WcBNsAkRpNONZY6d2dlSOTAuaZsIZQ0qyiNjLw
- kvRpIuaTtAukqkt5eP2KMwUMCwtumzNGQYx4yS6hBxWlV6M/p3wWXcVi4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="366394169"
-X-IronPort-AV: E=Sophos;i="6.01,178,1684825200"; d="scan'208";a="366394169"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2023 08:30:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="892574979"
-X-IronPort-AV: E=Sophos;i="6.01,178,1684825200"; d="scan'208";a="892574979"
-Received: from dryan13-mobl.ger.corp.intel.com (HELO [10.213.232.206])
- ([10.213.232.206])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2023 08:30:03 -0700
-Message-ID: <5af9b5cb-2342-8de3-07f2-86f2be6201eb@linux.intel.com>
-Date: Mon, 3 Jul 2023 16:30:01 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Paul Gortmaker <paul.gortmaker@windriver.com>
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F1C810E0FB
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Jul 2023 16:13:08 +0000 (UTC)
+Date: Mon, 3 Jul 2023 18:12:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1688400779;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=GTWs3yvxjJuG+efxP6o79ftGKgxb9vr275lqvsa3TWA=;
+ b=KaQESnQ4Cwfb81EODs55mATgUy6PIpLAkrcBPyuGQ6yiCmC6fNm/NAt2PqGVvjkIK9nTjY
+ qygwFQyWWf8uyTKfzSkKUq7AheAVrDV6WfhrekZNUdtOYuL/3FsDuLlq0DiqoBpdLgdQkQ
+ HtvGlXQoK2h2EgZ2tfs37rHtPXiI2YxioqNxFfny92dS0URWRM911r2obmR9nmimP9LvET
+ UfPV01bqXdmYZsYUtF34euSQtlCt6QfHRkNKEVLmj6fKGzsxEURQBV9yxk+WeMe1Fe+sDy
+ plnw1DTxEyVgIBs3/R/N6+d1Mi/1/LNM0Hu9CYVrvkGRqI4G1K1gDUKeC/xlnQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1688400779;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=GTWs3yvxjJuG+efxP6o79ftGKgxb9vr275lqvsa3TWA=;
+ b=DKYY8TLwd3V5UFLCLimMntz51WJW5g5yzX8h9rF313F8NThVrH1BGXFqaKKO8CRwzxLPaZ
+ CmZUVcBLJNHWyGBg==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20230703161256.21Qmrm9d@linutronix.de>
 References: <20230630130949.coN0sVU4@linutronix.de>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230630130949.coN0sVU4@linutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ <5af9b5cb-2342-8de3-07f2-86f2be6201eb@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <5af9b5cb-2342-8de3-07f2-86f2be6201eb@linux.intel.com>
 Subject: Re: [Intel-gfx] [RFC] tentative fix for drm/i915/gt regression on
  preempt-rt
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -65,63 +60,71 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: linux-rt-users@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Paul Gortmaker <paul.gortmaker@windriver.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
+On 2023-07-03 16:30:01 [+0100], Tvrtko Ursulin wrote:
+> Hi,
 Hi,
 
-On 30/06/2023 14:09, Sebastian Andrzej Siewior wrote:
-> On 2023-06-22 20:57:50 [-0400], Paul Gortmaker wrote:
-> [ longer report about what is broken.]
-> 
-> Commit ade8a0f598443 ("drm/i915: Make all GPU resets atomic") introduces
-> a preempt_disable() section around the invocation of the reset callback.
-> I can't find an explanation why this is needed. There was a comment
-> saying
-> | * We want to perform per-engine reset from atomic context (e.g.
-> | * softirq), which imposes the constraint that we cannot sleep.
-> 
-> but it does not state the problem with being preempted while waiting for
-> the reset. The commit itself does not explain why an atomic reset is
-> needed, it just states that it is a requirement now. On !RT we could
-> pull packets from a NICs and forward them other NICs for 2ms.
-> 
-> I've been looking over the reset callbacks and gen8_reset_engines() +
-> gen6_reset_engines() acquire a spinlock_t. Since this becomes a sleeping
-> lock on PREEMPT_RT it must not be acquired with disabled preemption.
-> i915_do_reset() acquires no lock but then has two udelay()s of 50us
-> each. Not good latency wise in a preempt-off section.
-> 
-> Could someone please explain why atomic is needed during reset, what
-> problems are introduced by a possible preemption?
+>=20
+> Atomic requirement from that commit text is likely referring to removing =
+the
+> old big sleeping mutex we had in the reset path. So it looks plausible th=
+at
+> preempt_disable() section is not strictly needed and perhaps motivation
+> simply was, given those 20-50us polls on hw registers involved, to make t=
+hem
+> happen as fast as possible and so minimize visual glitching during resets.
+>=20
+> Although that reasoning would only apply on some hw generations, where the
+> irqsave spinlock is not held across the whole sequence anyway.
+>=20
+> And I suspect those same platforms would be the annoying ones, if one sim=
+ply
+> wanted to try without the preempt_disable section, given our wait_for_ato=
+mic
+> macro will complain loudly if not used from an atomic context.
 
-Atomic requirement from that commit text is likely referring to removing 
-the old big sleeping mutex we had in the reset path. So it looks 
-plausible that preempt_disable() section is not strictly needed and 
-perhaps motivation simply was, given those 20-50us polls on hw registers 
-involved, to make them happen as fast as possible and so minimize visual 
-glitching during resets.
+It does not complain on RT, I did patch it out.
+   https://git.kernel.org/pub/scm/linux/kernel/git/rt/linux-rt-devel.git/tr=
+ee/patches/0005-drm-i915-Don-t-check-for-atomic-context-on-PREEMPT_R.patch?=
+h=3Dlinux-6.4.y-rt-patches
 
-Although that reasoning would only apply on some hw generations, where 
-the irqsave spinlock is not held across the whole sequence anyway.
+Interesting, the link there refers to an older posting but this patch is
+not included. For the other I didn't receive feedback at which point I
+stopped pushing and put it on the list for later=E2=80=A6
 
-And I suspect those same platforms would be the annoying ones, if one 
-simply wanted to try without the preempt_disable section, given our 
-wait_for_atomic macro will complain loudly if not used from an atomic 
-context.
+> But I think we do have a macro for short register waits which works with
+> preempting enabled. I will try and cook up a patch and submit to our CI
+> during the week, then see what happens.
+>
+> Or even moving the preempt_disable down so it just encompasses the regist=
+er
+> write + wait. That would then be under the spinlock which is presumable o=
+kay
+> on RT? (Yes I know it wouldn't' solve one half of your "complaint" but le=
+ts
+> just entertain the idea for now.)
 
-But I think we do have a macro for short register waits which works with 
-preempting enabled. I will try and cook up a patch and submit to our CI 
-during the week, then see what happens.
+You can't
+	preempt_disable();
+	spin_lock();
 
-Or even moving the preempt_disable down so it just encompasses the 
-register write + wait. That would then be under the spinlock which is 
-presumable okay on RT? (Yes I know it wouldn't' solve one half of your 
-"complaint" but lets just entertain the idea for now.)
+You could
+	spin_lock();
+	preempt_disable();
 
-Regards,
+But if there is no need then there is no need ;)
+What I worry a bit the udelays=E2=80=A6
 
-Tvrtko
+Thanks!
+
+> Regards,
+>=20
+> Tvrtko
+
+Sebastian
