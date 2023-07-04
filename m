@@ -1,55 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E888746C19
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jul 2023 10:37:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 324FA746C37
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jul 2023 10:42:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F2F310E112;
-	Tue,  4 Jul 2023 08:37:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE1F210E2BE;
+	Tue,  4 Jul 2023 08:42:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87AFD10E09C;
- Tue,  4 Jul 2023 08:37:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688459830; x=1719995830;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=e8gLwcZzeO72npmU6MumfcPKN+ua5xNlilXyaSjNRac=;
- b=RQ+I29riZZ54dBB9JJe8UiByKGI20RT5ao3y3WGeEU1b+J/SLbl/MMVD
- YFP/ZZL4i8agmfix0oHSLQ3hHB8KmMYlDPyCZjtFIiJPKoJrZclNHF55z
- 9cS9LX0/yJ+dBF5kT1SVx1L2HFDVQHh2ugMPovm8xfSEjojYes2WCQpSR
- GYZTIy7FlP9VwBPcFrcrFI4KlgUr9rl/OnJkgIbyIJ53Zj8wYPi0UGZhY
- yvRWw59zpXTkqvhPLqWLAEYKjueMc84gtiv6dm+WI9DKoj1GjBp/PGOYu
- jgBxUAzN8k5d3gtd5OVF6P/HPGIingbV6kOTQQaEek/POH77TqtJkKp80 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="343406509"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="343406509"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2023 01:37:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="669014207"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="669014207"
-Received: from jbouhlil-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.48.173])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2023 01:37:06 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Uros Bizjak <ubizjak@gmail.com>
-In-Reply-To: <CAFULd4YDHqUud94Q1mbKyKqGHh==Gv7+FpNhgm5s1p=0ZwcAXg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230703150859.6176-1-ubizjak@gmail.com>
- <87o7ks16gh.fsf@intel.com>
- <CAFULd4YDHqUud94Q1mbKyKqGHh==Gv7+FpNhgm5s1p=0ZwcAXg@mail.gmail.com>
-Date: Tue, 04 Jul 2023 11:37:04 +0300
-Message-ID: <87lefw139r.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 47FEA10E2BD;
+ Tue,  4 Jul 2023 08:42:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 400B2A0078;
+ Tue,  4 Jul 2023 08:42:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Use local64_try_cmpxchg in
- i915_pmu_event_read
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lee Shawn C" <shawn.c.lee@intel.com>
+Date: Tue, 04 Jul 2023 08:42:43 -0000
+Message-ID: <168846016322.28592.12134108767629520679@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230704080727.2665-1-shawn.c.lee@intel.com>
+In-Reply-To: <20230704080727.2665-1-shawn.c.lee@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Refine_mmio_debug_flow_to_avoid_bad_unlock_balance_?=
+ =?utf-8?q?detected=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,57 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 04 Jul 2023, Uros Bizjak <ubizjak@gmail.com> wrote:
-> On Tue, Jul 4, 2023 at 9:28=E2=80=AFAM Jani Nikula <jani.nikula@linux.int=
-el.com> wrote:
->> You could save everyone a lot of time by actually documenting what these
->> functions do. Assume you don't know what local64_try_cmpxchg() does, and
->> see how many calls you have to go through to figure it out.
->
-> These functions are documented in Documentation/atomic_t.txt (under
-> "RMW ops:" section), and the difference is explained in a separate
-> section "CMPXCHG vs TRY_CMPXCGS" in the same file.
+== Series Details ==
 
-Thanks, but *sigh*.
+Series: drm/i915: Refine mmio debug flow to avoid bad unlock balance detected.
+URL   : https://patchwork.freedesktop.org/series/120160/
+State : warning
 
-No kernel-doc above the functions, not even a regular comment
-referencing atomic_t.txt.
+== Summary ==
 
-$ git grep local.*_try -- Documentation
-[nothing]
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-./include/linux/spinlock.h:405:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
+-./include/linux/spinlock.h:405:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
+-./include/linux/spinlock.h:405:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
+-./include/linux/spinlock.h:405:9: warning: too many warnings
 
 
-BR,
-Jani.
-
-
---=20
-
-"But the plans were on display..."
-
-"On display? I eventually had to go down to the cellar to find them."
-
-"That's the display department."
-
-"With a flashlight."
-
-"Ah, well, the lights had probably gone."
-
-"So had the stairs."
-
-"But look, you found the notice, didn't you?"
-
-"Yes," said Arthur, "yes I did. It was on display in the bottom of a
-locked filing cabinet stuck in a disused lavatory with a sign on the
-door saying 'Beware of the Leopard'."
-
-- Douglas Adams, The Hitchhiker's Guide to the Galaxy=20
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
