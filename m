@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A720C746D47
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jul 2023 11:25:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B8E3746DF5
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jul 2023 11:48:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B7A010E2D2;
-	Tue,  4 Jul 2023 09:25:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C147810E2C3;
+	Tue,  4 Jul 2023 09:48:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBA2510E2C2
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jul 2023 09:25:42 +0000 (UTC)
-Date: Tue, 4 Jul 2023 11:25:32 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1688462736;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=qPnlV1qPV+FX8QsFJRDWzuCP7fOxJePUcEoo+JgtoPs=;
- b=lp21xsRQj2oKCzfdJmcUc1FSy0uY8z3gLG3hShsOf0roe3BWiQj/kve1KTUWYkIrpYCcYK
- QwOQ89UXgt50/CmoD6I8JHKvE2nbhohfT5PniziHjyf2HhpZb12YDkIOApgfIMiODJYutR
- 20dJ2ps8Rt8658KiH/XcjtQGDyJeg1SIMN3hgCaBUWc07HChNPXOwunr+9jUVqsYCzN/sj
- d9cmKy6iS6DL5z3zRv07L34FnFS5n0Vzk1qOTIZBrvlNguBZkMsY/3LQOY6LdrumnhZT6O
- 9AUsSZh5n3a91hknIVbLJB8ARleXzGmjU+up3QXv4uAvSkJzJRfsEGWQKyPxYA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1688462736;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=qPnlV1qPV+FX8QsFJRDWzuCP7fOxJePUcEoo+JgtoPs=;
- b=aMWtnbWJe0xZRfzZFBVo+Yz/KKBAFcoweeZhIKJWwU+3Hj+G7uK8qfv6gktPaluvIOvK90
- ZXKoVqzOg9RFcUBQ==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20230704092532.k-Fi14oC@linutronix.de>
-References: <20230630130949.coN0sVU4@linutronix.de>
- <5af9b5cb-2342-8de3-07f2-86f2be6201eb@linux.intel.com>
- <20230703161256.21Qmrm9d@linutronix.de>
- <bf4658a8-cf10-92c1-5e48-d674ad0e5c46@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F23410E2C3
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jul 2023 09:48:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1688464134; x=1720000134;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GnQa6Prt1DmDT3ieejIThLDq10Z7VEsdhhAs3girPBQ=;
+ b=UPnUronkXfLR5aSxX5Am8fK5iQwS0JeU1naeqxnBqPpd9nn+LKfJuMCg
+ mxy6rUY5XggXtTRyJcYq4RFNsMzElI09k7xHfDZeEOZhlrQNoq86X2nR5
+ vansYl2JJ8sZHRovtYarhgL1jhs9scyJ01gNtYiuF2PXzcyD3K8Sqh1Yu
+ 7b/8SYsKt3lWBxRZ3mrWs4DcGor0suo2XlawZK7zLsLgn+elnLnmDfX3w
+ kOQsJH3BImeoI8kM0KT7CoDYG2CgJpVB/knTU2ct6KVZO90ZxKUtB+8vz
+ auIWLpOlaQuHFS8P2N8qU4AcDqxDu+cT+o0BxAkjv3Ac/a2e5SVlzZ1fx A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="393829717"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="393829717"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2023 02:48:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="788804386"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="788804386"
+Received: from jbouhlil-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.48.173])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2023 02:48:52 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  4 Jul 2023 12:48:46 +0300
+Message-Id: <cover.1688463863.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <bf4658a8-cf10-92c1-5e48-d674ad0e5c46@linux.intel.com>
-Subject: Re: [Intel-gfx] [RFC] tentative fix for drm/i915/gt regression on
- preempt-rt
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/3] drm/i915/uncore: unclaimed reg debug race
+ fix and optimization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,36 +58,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rt-users@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Paul Gortmaker <paul.gortmaker@windriver.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2023-07-04 09:02:07 [+0100], Tvrtko Ursulin wrote:
+Fix a race in unclaimed reg debug. This does increase the code size for
+CONFIG_DRM_I915_DEBUG_MMIO=y.
 
-> Lets make it a two patch series and then see. First patch to see if we can
-> really get away without the top level preempt_disable, and then second patch
-> to see if we can get away with preemptible short sleeps too.
-oki.
+However, also add an optimization to reduce code size for
+CONFIG_DRM_I915_DEBUG_MMIO=n.
 
-> I guess on RT the top priority is consistent scheduling latency and not so
-> much potential UI latency in some edge cases? Saying that because if waiting
-I would says, yes. If you do RT and you provide some kind of GUI then
-you prefer to meet your deadlines for your RT load over some UI latency.
+Do we care about the bloat for the debug config?
 
-> on the hw reset is made preemptible, _in theory_ it can prolong the reset
-> completion (as observed by i915), and so result in more UI glitching than it
-> normally would. Could be a theoretical point only because it requires both
-> CPU over-subscribe and GPU hangs. It could also easily be that the reset
-> path is only one path, and not so interesting one even, which can cause this
-> on RT.
+Before/after for both CONFIG_DRM_I915_DEBUG_MMIO=y and =n.
 
-I see.
 
-> Regards,
-> 
-> Tvrtko
+$ scripts/bloat-o-meter intel_uncore.before.with-debug.o intel_uncore.after.with-debug.o
+add/remove: 0/2 grow/shrink: 10/0 up/down: 927/-149 (778)
+Function                                     old     new   delta
+fwtable_read16                               721     821    +100
+fwtable_read32                               719     817     +98
+fwtable_read8                                722     818     +96
+fwtable_read64                               722     817     +95
+gen6_write16                                 679     772     +93
+gen6_write8                                  678     769     +91
+gen6_write32                                 677     768     +91
+fwtable_write16                              742     831     +89
+fwtable_write8                               741     828     +87
+fwtable_write32                              740     827     +87
+__pfx___unclaimed_reg_debug                   16       -     -16
+__unclaimed_reg_debug                        133       -    -133
+Total: Before=33797, After=34575, chg +2.30%
 
-Sebastian
+$ scripts/bloat-o-meter intel_uncore.before.without-debug.o intel_uncore.after.without-debug.o
+add/remove: 0/2 grow/shrink: 0/10 up/down: 0/-2557 (-2557)
+Function                                     old     new   delta
+__pfx___unclaimed_reg_debug                   16       -     -16
+__unclaimed_reg_debug                        133       -    -133
+gen6_write8                                  678     446    -232
+gen6_write32                                 677     445    -232
+gen6_write16                                 679     447    -232
+fwtable_read64                               722     482    -240
+fwtable_read32                               719     479    -240
+fwtable_read16                               721     481    -240
+fwtable_read8                                722     480    -242
+fwtable_write8                               741     491    -250
+fwtable_write32                              740     490    -250
+fwtable_write16                              742     492    -250
+Total: Before=33797, After=31240, chg -7.57%
+
+Cc: Lee Shawn C <shawn.c.lee@intel.com>
+
+Jani Nikula (3):
+  drm/i915/uncore: split unclaimed_reg_debug() to header and footer
+  drm/i915/uncore: fix race around i915->params.mmio_debug
+  drm/i915/uncore: optimize CONFIG_DRM_I915_DEBUG_MMIO=n more
+
+ drivers/gpu/drm/i915/intel_uncore.c | 47 ++++++++++++++++++-----------
+ 1 file changed, 29 insertions(+), 18 deletions(-)
+
+-- 
+2.39.2
+
