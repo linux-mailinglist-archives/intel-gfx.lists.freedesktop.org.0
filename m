@@ -1,51 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06807746EB3
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jul 2023 12:31:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9986B746F64
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jul 2023 13:07:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80F0510E2CA;
-	Tue,  4 Jul 2023 10:31:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0399A10E0E8;
+	Tue,  4 Jul 2023 11:07:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3A6D10E2CA
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jul 2023 10:31:13 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FEA110E0E8;
+ Tue,  4 Jul 2023 11:07:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688466673; x=1720002673;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=IfqZQ+mOP0V1nFC1a2Y5N9/iBsU69W/b/UQAYdZ3NoU=;
- b=XAIpa+ot9ApsYbS0YhPulhDRrv0t89fO3QMr16Srjw95ZljjD2nK/FNQ
- mzopJ+D3CCnivNGv1m7oB0/PjBkvBPDywA4Ym5AcAQt/lARfGeDN0McxN
- 4hFiAcAYdEaukrQbA5a5uGZ1lMAK9OtAEt7R7r9sroQr+K6q5Rvr2/C2Z
- oosf4pLX66VTS1Acp5jjAKAEFYFS7Krq5PRVXbzX+I/fP4sUBVp82e3zx
- BVRqSxR7GFkoQqGG5uu2QKKFySQHuarPtUuuBy1hG8Hc/f+00pOW9DPN9
- EBfOMFzCYx+ZC9rT4UhsVB5Bnl0kTi2tzoMmw1IYFy/FwSdxCBdzvpkOP A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="342680268"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="342680268"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2023 03:31:13 -0700
+ t=1688468850; x=1720004850;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2PrQdeNByVQH6XsxqHIVdlXGsS4egbyPYtxY+3GzdlY=;
+ b=ZKt+F+qeUb0WnaxaqSrWUampFAOFqfm/P1KoRpcIP9iCseZK2pN7UvXg
+ sw+MKDZWBd2vNTcKYkf/skJRR2KarELkVrEThfaHEGzIpNdKCROVmlps7
+ ive3Bu0RmaeSKcsxm3bHZ8ve5iQueDqxL6kdMZgOfjmbP13sbdDbr5Sl/
+ 1rXBd34AGj3qdB8DfXIdlaHR6MTHfR/NKiBufu2ofOVmhdWewGTj0n6dp
+ eWtUY2zYUuS/I3A78k/UMzZObuYjGfxOfIBKeh/j9LIVGp4mcYVsY6Hu2
+ Q99BU6pr78RkHYycJratDVdjnCPd/iFYxC8WikBmE2Lqz4Ly8BFespoCI Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="393842791"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="393842791"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2023 04:07:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="718870687"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="718870687"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by orsmga002.jf.intel.com with ESMTP; 04 Jul 2023 03:31:11 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="696126441"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="696126441"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.213.5.5])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2023 04:07:05 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  4 Jul 2023 13:31:07 +0300
-Message-Id: <20230704103107.11237-3-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20230704103107.11237-1-stanislav.lisovskiy@intel.com>
-References: <20230704103107.11237-1-stanislav.lisovskiy@intel.com>
+Date: Tue,  4 Jul 2023 13:06:03 +0200
+Message-ID: <20230704110602.16467-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Don't rely that 2 VDSC engines
- are always enough for pixel rate
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix premature release of request's
+ reusable memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,60 +57,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are currently having FIFO underruns happening for kms_dsc test case,
-problem is that, we check if curreny cdclk is >= pixel rate only if
-there is a single VDSC engine enabled(i.e dsc_split=false) however if
-we happen to have 2 VDSC engines enabled, we just kinda rely that this
-would be automatically enough.
-However pixel rate can be even >= than VDSC clock(cdclk) * 2, so in that
-case even with 2 VDSC engines enabled, we still need to tweak it up.
-So lets compare pixel rate with cdclk * slice count(VDSC engine count) and
-check if it still requires bumping up.
-Previously we had to bump up CDCLK many times for similar reasons.
+Infinite waits for completion of GPU activity have been observed in CI,
+mostly inside __i915_active_wait(), triggered by igt@gem_barrier_race or
+igt@perf@stress-open-close.  Root cause analysis, based of ftrace dumps
+generated with a lot of extra trace_printk() calls added to the code,
+revealed loops of request dependencies being accidentally built,
+preventing the reqests from being processed, each waiting for completion
+of another one activity.
 
-v2: - Use new intel_dsc_get_num_vdsc_instances to determine number of VDSC
-      engines, instead of slice count(Ankit Nautiyal)
+When we substitute a new request for a last active one tracked on a
+timeline, we set up a dependency of our new request to wait on completion
+of current activity of that previous one.  However, not all processing
+paths take care of keeping the old request still in memory until we use
+its attributes for setting up that await dependency.  As a result, we can
+happen to use attributes of a new request that already reuses the memory
+previously allocated to the old one, already released, then, set up an
+await dependency on wrong request.  Combined with perf specific kernel
+context remote requests added to user context timelines, unresolvable
+loops of dependencies can be built, leading do infinite waits.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+We obtain a pointer to the previous request to wait on while we substitute
+it with a pointer to our new request in an active tracker.  In some
+processing paths we protect that old request with RCU from being freed
+before we use it, but in others, e.g. __i915_request_commit() ->
+__i915_request_add_to_timeline() -> __i915_request_ensure_ordering(), we
+don't.  Moreover, memory of released i915 requests is mostly not freed but
+reused, and our RCU protection doesn't prevent that memory from being
+reused.
+
+Protect memory of released i915 requests from being reused before RCU
+grace period expires.  Moreover, always protect previous active i915
+requests from being released while still accessing their memory.
+
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8211
+Fixes: b1e3177bd1d8 ("drm/i915: Coordinate i915_active with its own mutex")
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v5.5+
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_request.c | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 4207863b7b2a..f04cebd01724 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -37,6 +37,7 @@
- #include "intel_pci_config.h"
- #include "intel_pcode.h"
- #include "intel_psr.h"
-+#include "intel_vdsc.h"
- #include "vlv_sideband.h"
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 894068bb37b6f..7f14b6309db82 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -110,13 +110,11 @@ struct kmem_cache *i915_request_slab_cache(void)
+ 	return slab_requests;
+ }
  
- /**
-@@ -2607,9 +2608,17 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
- 	 * When we decide to use only one VDSC engine, since
- 	 * each VDSC operates with 1 ppc throughput, pixel clock
- 	 * cannot be higher than the VDSC clock (cdclk)
-+	 * If there 2 VDSC engines, then pixel clock can't be higher than
-+	 * VDSC clock(cdclk) * 2. However even that can still be not enough.
-+	 * Slice count reflects amount of VDSC engines,
-+	 * so lets use that to determine, if need still need to tweak CDCLK higher.
- 	 */
--	if (crtc_state->dsc.compression_enable && !crtc_state->dsc.dsc_split)
--		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
-+	if (crtc_state->dsc.compression_enable) {
-+		u8 num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);
+-static void i915_fence_release(struct dma_fence *fence)
++static void i915_fence_release_rcu_cb(struct rcu_head *rcu)
+ {
++	struct dma_fence *fence = container_of(rcu, typeof(*fence), rcu);
+ 	struct i915_request *rq = to_request(fence);
+ 
+-	GEM_BUG_ON(rq->guc_prio != GUC_PRIO_INIT &&
+-		   rq->guc_prio != GUC_PRIO_FINI);
+-
+ 	i915_request_free_capture_list(fetch_and_zero(&rq->capture_list));
+ 	if (rq->batch_res) {
+ 		i915_vma_resource_put(rq->batch_res);
+@@ -174,6 +172,16 @@ static void i915_fence_release(struct dma_fence *fence)
+ 	kmem_cache_free(slab_requests, rq);
+ }
+ 
++static void i915_fence_release(struct dma_fence *fence)
++{
++	struct i915_request *rq = to_request(fence);
 +
-+		min_cdclk = max_t(int, min_cdclk,
-+			          crtc_state->pixel_rate / num_vdsc_instances);
-+	}
++	GEM_BUG_ON(rq->guc_prio != GUC_PRIO_INIT &&
++		   rq->guc_prio != GUC_PRIO_FINI);
++
++	call_rcu(&fence->rcu, i915_fence_release_rcu_cb);
++}
++
+ const struct dma_fence_ops i915_fence_ops = {
+ 	.get_driver_name = i915_fence_get_driver_name,
+ 	.get_timeline_name = i915_fence_get_timeline_name,
+@@ -1673,6 +1681,7 @@ __i915_request_ensure_ordering(struct i915_request *rq,
  
- 	/*
- 	 * HACK. Currently for TGL/DG2 platforms we calculate
+ 	GEM_BUG_ON(is_parallel_rq(rq));
+ 
++	rcu_read_lock();
+ 	prev = to_request(__i915_active_fence_set(&timeline->last_request,
+ 						  &rq->fence));
+ 
+@@ -1706,6 +1715,7 @@ __i915_request_ensure_ordering(struct i915_request *rq,
+ 							 &rq->dep,
+ 							 0);
+ 	}
++	rcu_read_unlock();
+ 
+ 	return prev;
+ }
 -- 
-2.37.3
+2.41.0
 
