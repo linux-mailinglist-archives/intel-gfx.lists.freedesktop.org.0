@@ -1,50 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C18748EC0
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 22:21:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F527748EC1
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 22:21:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D70DA10E3BF;
-	Wed,  5 Jul 2023 20:21:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6BC210E3C0;
+	Wed,  5 Jul 2023 20:21:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A70D110E3BF
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 20:21:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AADED10E3C2
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 20:21:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688588486; x=1720124486;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tVtneILFreTJWUYhECD0Q/sbQi1FueBhm9OSAwpyUIE=;
- b=eoP+aPCzH/BrlIYUbAynCkQV+YGW7Gf89sKQdDHOo1kYGXa2GMvaioFU
- sougvpXnyu4FZx3rrRX7mRsI79WWn5Wuq7ghj97j95mWbVsSIIN+g6Kis
- RVTkn40g6JNAkLu2V+bzrUxz/rclpI5dahBCg7N3Uf4xTPjMBbHRNpGxq
- Kh5ygIOenYNJRZtazM9SBFFnM0DTgD+hn6t2Q/+Lp3wbqFGGGwW1NA9RF
- j48jANUy7Xgd0TESlYtZi/VZG/idYBJaBYlghhpjwrvXjC6xkrBoRVgXV
- blNM2zQQnEBfbRgD84EHRqYcBms+YBNg6fuPjRC/XxtDdbo5szp6sBd9l A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="353268989"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="353268989"
+ t=1688588488; x=1720124488;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=zDJUhKeJs+iIqXM+hRF6y6VVzhnCmQq/vf89igt+VDQ=;
+ b=csVEtcr0j/ctNgiODm6fUtfvF6OSvFLh9FB6/LPhFpuP6LU62CuuGebY
+ P9Y6Zkon9r6C+kbigpMx2p0RVZ4fK1VTtyXMufsD/05Bu4l+tJ0A6VIKn
+ iqTOL21w1x3oTR3qdQsY1PyB353wtOzSapCJjK5cktvB4FEKz1cCm6wBj
+ M7m4Jbrvt2LkXU2l2cGibxusM7Ir3DZnkR0k6pYVHF28GpjTXlfuyL94J
+ ZcikL5PCMcm7bxmowkhDTiMf6qfsgd3Eq1ovmIMkbp4CtyHbG0NfI89Gp
+ IhWDtariIn5nyFuzrWFwjO80ri9BOGybWP+KBFJwtPIfxIVXTlbaMIMPS w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="353269008"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="353269008"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2023 13:21:25 -0700
+ 05 Jul 2023 13:21:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="754491058"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="754491058"
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="754491072"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="754491072"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga001.jf.intel.com with SMTP; 05 Jul 2023 13:21:23 -0700
+ by orsmga001.jf.intel.com with SMTP; 05 Jul 2023 13:21:26 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 05 Jul 2023 23:21:22 +0300
+ Wed, 05 Jul 2023 23:21:25 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Jul 2023 23:21:09 +0300
-Message-Id: <20230705202122.17915-1-ville.syrjala@linux.intel.com>
+Date: Wed,  5 Jul 2023 23:21:10 +0300
+Message-Id: <20230705202122.17915-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.3
+In-Reply-To: <20230705202122.17915-1-ville.syrjala@linux.intel.com>
+References: <20230705202122.17915-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 00/13] drm/i915/sdvo: DDC rework and fixes
+Subject: [Intel-gfx] [PATCH 01/13] drm/i915/sdvo: Issue SetTargetOutput
+ prior ot GetAttachedDisplays
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,34 +65,34 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I have plans to switch the whole driver over to using
-drm_connector_init_with_ddc(), and thus populate the
-sysfs "ddc" consistently. The biggest hurdle is the 
-SDVO DDC handling, so start by cleaning that up.
+I have at least one SDVO device (some Lenovo DVI-I ADD2 card,
+based on Conexant CX25904) where GetAttachedDisplays returns
+success but fails to report any attached displays unless wet
+precede the command with a SetTargetOutput. Make it so.
 
-I also found some other issues with the SDVO code so
-some additional fixes are also included.
+I wasn't able to spot anything in the SDVO spec stating that
+this should be necessary, but real world wins over spec.
 
-Ville Syrjälä (13):
-  drm/i915/sdvo: Issue SetTargetOutput prior ot GetAttachedDisplays
-  drm/i915/sdvo: Protect macro args
-  drm/i915/sdvo: s/sdvo_inputs_mask/sdvo_num_inputs/
-  drm/i915: Don't warn about zero N/P in *_calc_dpll_params()
-  drm/i915: Fully populate crtc_state->dpll
-  drm/i915/sdvo: Pick the TV dotclock from adjusted_mode
-  drm/i915/sdvo: Fail gracefully if the TV dotclock is out of range
-  drm/i915/sdvo: Nuke attached_output tracking
-  drm/i915/sdvo: Initialize the encoder ealier
-  drm/i915/sdvo: Nuke the duplicate sdvo->port
-  drm/i915/sdvo: Get rid of the per-connector i2c symlink
-  drm/i915/sdvo: Rework DDC bus handling
-  drm/i915/sdvo: Print out the i2c pin and slave address
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
- drivers/gpu/drm/i915/display/intel_dpll.c     |  54 ++-
- drivers/gpu/drm/i915/display/intel_sdvo.c     | 357 +++++++++---------
- .../gpu/drm/i915/display/intel_sdvo_regs.h    |   2 +-
- 3 files changed, 219 insertions(+), 194 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 8298a86d1334..9ac4c0b6055b 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -2135,6 +2135,10 @@ intel_sdvo_detect(struct drm_connector *connector, bool force)
+ 	if (!INTEL_DISPLAY_ENABLED(i915))
+ 		return connector_status_disconnected;
+ 
++	if (!intel_sdvo_set_target_output(intel_sdvo,
++					  intel_sdvo_connector->output_flag))
++		return connector_status_unknown;
++
+ 	if (!intel_sdvo_get_value(intel_sdvo,
+ 				  SDVO_CMD_GET_ATTACHED_DISPLAYS,
+ 				  &response, 2))
 -- 
 2.39.3
 
