@@ -2,51 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A69637488EC
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 18:10:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C47A74891E
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 18:22:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2816910E3A0;
-	Wed,  5 Jul 2023 16:10:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 812CD10E185;
+	Wed,  5 Jul 2023 16:22:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8506B10E3A0
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 16:10:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688573409; x=1720109409;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=17iV8A8X8laorcn6zUAOr3vhwYE3X6yDbHV/9kGQE+0=;
- b=BMw7vI/nuMKkzLDJb/IDkOHqviO12ox+Z/pp3CffbiKzxaVbXxSwrV12
- KzxvoPGGoMv3nB6Q0bGqYD4vhYkn38kcPi9SHdYH/oYnS8EAlL12u9F1U
- U92nwCnG4mK5BFrNxUcXjLieY25ouuo+ZtmMHvJh122sIMZnAtOMSlzN0
- 3EA5WwFxpQh6Z/CP6a3KwQiFkLJqddOX4KvhfRSAeGZJUXR21Ev/4UZzg
- jLyxX96esnvQAo6eBI60Ar077XLNEgeT0YGCrhanks0I/H5oxofzdj84G
- hQcVhdXHcSolrY9T0u5fKLhfQ8Bi3/i2RuYB5YX1MjRNBdg86XrHgeQZ9 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="429417783"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="429417783"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2023 09:09:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="754408838"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="754408838"
-Received: from lab-ah.igk.intel.com (HELO lab-ah.corp.intel.com)
- ([10.102.138.202])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2023 09:08:59 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Jul 2023 18:08:48 +0200
-Message-Id: <20230705160848.988464-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CF2110E185
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 16:22:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de;
+ s=s31663417; t=1688574164; x=1689178964; i=deller@gmx.de;
+ bh=Hlber4Z7Cd3qr0L2Uhoc2fvca7T/yNNA9ie9vqfcvcg=;
+ h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=HHpiJod8lIUM1nYnFzSr85XxN/f+IBdaxNXE7JfrN1JmwyQ6bV7eRAGjwk7Hn0jwrXbv69f
+ /91fGDVcBJPk3s6A7fvG1ByfgCaSF0t8DoWbosXUtDs5X0U8e/45rqFiAyKj/o1ntTPVYMDIb
+ j2Ri0CT0wHlesq5KtOAMgaoz++ki35qI6WLe8/32L6QLFBUapiBj+HOt1/aQTULW67kd/7Gir
+ zwpRLRPoco7Ll6YyNMfYA9Hewaz2efHwpXslPkU8HWWvlb7wv2mSAhmG4kaq5zMpmaRdSwkfa
+ SijXWpiuLiCfXMJWQ0sHt6dWzzZlqmTj9cjk8gsQmidsGBe21f0A==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.20.60] ([94.134.149.108]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MK3Rm-1qaOoU0OWk-00LSx0; Wed, 05
+ Jul 2023 18:22:44 +0200
+Message-ID: <17b4e65f-a140-8e4d-505b-f2f6f7d1a8c5@gmx.de>
+Date: Wed, 5 Jul 2023 18:22:42 +0200
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: update request engine before
- removing virtual GuC engine
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+To: kernel test robot <lkp@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>
+References: <202307060015.uSSLonkv-lkp@intel.com>
+Content-Language: en-US
+From: Helge Deller <deller@gmx.de>
+In-Reply-To: <202307060015.uSSLonkv-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:JWzwb8Bva/UEgbtilJvt13AQt9pzz5xRYErsh3WY62+4pR/JSr7
+ E/ZCgIGCfWrdxsdAhFANBDjvFgoalIGY6w7xXDDvVbo6bukUPeo3H0kPOGuGfEuEPW+hpci
+ 5yURWZq12WjOMTG4sxOTFyDeY6nqEQEW+JLLHm6PvKGEeuQtUcX+IqGGbdSuMFfQaX3tZ/X
+ GoEZ2H3cKEEDXrgvGuj3g==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:S8CTIvuZ93Q=;Yy5kGFHKOIF64l/dJf6L9tVy8J1
+ F9W0Dixe2+IK8eY7U+fy5r+gr5Z7DsLdmqZD9wUVe80JXUrFIjGe8+cpSdO5uqMn1jdSKQqT1
+ duQOsmIvSS9J1BF5x7eK7c7f7YzTXH7R9Ca9x0l5U3h0/cl9qz3iIJM6u5IqSb68CUweB8D5t
+ xQspgNRbIzAH3pm7gSyTMTVlw75mE358cIp+jQ5FFt4Og4NiejEzNxSww8Q3ONC3mAAvycbZU
+ YVpyFtVW2bkh0FFPgKbVS64+ARCtNJ5ro3XzK4YnevLWgNcvpHQe8219vzx5nlWq0XyogFDEo
+ 9vPQF5UaGWPfv7Wsj226k2bTtCKlKtpSboIoyjizpulceSkWD9JCipY4RgPs+e+wJozuFqypQ
+ Wz5uFxNK4TQ5l5zDSbpG6oEQlJtFwVPRjSyM3Z+/mTedJGd2820lI7IfMaRCMpcP6ubx2Uv2Y
+ qtiYcTr6tQKiJz5NkE1AqJ03oTm5LcjvOt2IdiFrN1rEnrq++kG0t+ysXUfZHrHRMTFVZm1Sa
+ qCJ0dRaRO9JccFTBTK1Gd3PFFyMSRRW4RS1hdu1QKieuqkRKqTlY/FOAQ2d4jROlTl0GlbbKi
+ o2ps10rlSfUJJOtUVxCEfmJIE+SnsBgMxr0YbFGJKYds9ABZHri17Mr8eSAyAH61a2cb1D+HV
+ YcZwSIeQVsnycKrL3o7nA+Lte5BshDpdg91Q5SiA3geQQA4rL5DVKiJ8zjbk1+6QWHr6YNNiS
+ PQDFUy9enCi0YnwOVWO0kwztKDESTsmi9yLXT5PsgvmNykmAj0DKuRRxJ54XAk9XLzIeLEjq4
+ cXKbOveLChOhfQsyMw2xVG1SW4221+M4AwacU90YTahWCAz+NPQKTf8JjLDnuadxFmaVXL2ga
+ xM7TtHxhRd+SNNqUGhS1sEPgxbLC1iGmAPn79H9YZmKUBx+a65O2nsAs19qrUoCNRy9wViDu0
+ FilYK2I9u34XYp7IBPL+4eEQKPU=
+Subject: Re: [Intel-gfx] [linux-next:master] BUILD REGRESSION
+ e1f6a8eaf1c271a0158114a03e3605f4fba059ad
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,51 +72,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: linux-serial@vger.kernel.org, linux-parisc@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ linux-kselftest@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-trace-kernel@vger.kernel.org, kunit-dev@googlegroups.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-GuC virtual engines can be removed before request removal. On the other
-side driver expects rq->engine to be a valid pointer for a whole life of
-request. Setting rq->engine to an always valid engine should solve
-the issue.
+On 7/5/23 18:07, kernel test robot wrote:
+> tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-=
+next.git master
+> branch HEAD: e1f6a8eaf1c271a0158114a03e3605f4fba059ad  Add linux-next sp=
+ecific files for 20230705
+>
+> Error/Warning reports:
+>
+> https://lore.kernel.org/oe-kbuild-all/202306122223.HHER4zOo-lkp@intel.co=
+m
+> https://lore.kernel.org/oe-kbuild-all/202306260401.qZlYQpV2-lkp@intel.co=
+m
+> https://lore.kernel.org/oe-kbuild-all/202306291857.nyJjYwqk-lkp@intel.co=
+m
+> https://lore.kernel.org/oe-kbuild-all/202306301756.x8dgyYnL-lkp@intel.co=
+m
+>
+> Error/Warning: (recently discovered and may have been fixed)
+>
+> arch/parisc/kernel/pdt.c:67:6: warning: no previous prototype for 'arch_=
+report_meminfo' [-Wmissing-prototypes]
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7926
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+The arch/parisc/* warnings have been fixed a few days ago in for-next, and
+the patches will most likely be merged upstream today...
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index a0e3ef1c65d246..2c877ea5eda6f0 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -3461,6 +3461,8 @@ static void guc_prio_fini(struct i915_request *rq, struct intel_context *ce)
- static void remove_from_context(struct i915_request *rq)
- {
- 	struct intel_context *ce = request_to_scheduling_context(rq);
-+	struct intel_engine_cs *engine;
-+	intel_engine_mask_t tmp;
- 
- 	GEM_BUG_ON(intel_context_is_child(ce));
- 
-@@ -3478,6 +3480,15 @@ static void remove_from_context(struct i915_request *rq)
- 
- 	atomic_dec(&ce->guc_id.ref);
- 	i915_request_notify_execute_cb_imm(rq);
-+
-+	/*
-+	 * GuC virtual engine can disappear after this call, so let's assign
-+	 * something valid, as driver expects this to be always valid pointer.
-+	 */
-+	for_each_engine_masked(engine, rq->engine->gt, rq->execution_mask, tmp) {
-+		rq->engine = engine;
-+		break;
-+	}
- }
- 
- static const struct intel_context_ops guc_context_ops = {
--- 
-2.34.1
-
+Helge
