@@ -1,34 +1,145 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3209B747A43
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 01:00:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06304747A9E
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 02:09:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01FF610E092;
-	Tue,  4 Jul 2023 23:00:30 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0878410E092;
- Tue,  4 Jul 2023 23:00:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EB871AADE4;
- Tue,  4 Jul 2023 23:00:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9041B10E08A;
+	Wed,  5 Jul 2023 00:09:17 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA3CF10E08A;
+ Wed,  5 Jul 2023 00:09:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1688515756; x=1720051756;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:mime-version;
+ bh=iud/xcINVABxJ7lWJ+nqySkqmBXzNDH4omul5VQ2qX0=;
+ b=ZYmYD9Sb4aBuiySvJut91S0pQwc+zW9i7vNBf9OIsF2ACLk9OsI4Emm6
+ y9zY4Q/wVXgZVFfRtWgHWeEa6O5eCxxBoxsqBv47FQRYHBu28DpZEm1U5
+ JA/vKLw7Vl46sGKw6us6NcKbHgDt4X5+EjJDQU9DuxFOp9Ew/NA+SMELn
+ RgaAWag2+CfckLVZgs99dJRndoTEjurZg0x2NUhTEmFDvxmBvmUeEU4Sy
+ bIJILomddryFrrERzXB1z1iLE96kiNWDm2v04tGc24ZRDTl4lCSHQDR13
+ k3zk6qViSzcPx7kvssVj79bwFGFYPPpayLzTQ9REeJ70qelqKBLOsAmi/ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10761"; a="342803352"
+X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; 
+ d="scan'208,217";a="342803352"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2023 17:09:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10761"; a="788981126"
+X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; 
+ d="scan'208,217";a="788981126"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga004.fm.intel.com with ESMTP; 04 Jul 2023 17:09:15 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 4 Jul 2023 17:09:14 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Tue, 4 Jul 2023 17:09:14 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.45) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Tue, 4 Jul 2023 17:09:14 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z+GD2/uc8zwYZi57a/zL1BAdHh/j1cf5br9o3teqpuwGUj3Tek993BEFRIfD0zHx6FtVDMyjp33b6E9OozNeSXV6H5oxJctTifvQ8uDmIvdYcYkGisrF4Dwaq+6hdTbB7AhE1q0/0ubMj1TVqoXmyLdeVIOdVyVxgnCzWOI5F7U1yV2We3aPKtEkmnusrLOYyeEn13rmzMbrXOpBypgDZMqQNZGAtkwmD3uzv7Sm05W4Kbl7kkSLK0+tYTkatgVFTgpWjjyrJ9NlxGlhd6Vfa1fmhZzCZc6oIqilapYFCqC7sthExGSq27PJWZhcShv6OGK65EAZHa8lRQ0L8NCMOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yDsgML7hWgPYN98ANNlpQHFmUmRvpOb5E8Y5bqRjWDc=;
+ b=ARZydtvHJ18hA8V+PcMC9oSDVQ28jofvz/hvJAtkzMaF13WquCL7sxchLXnDX08BPtL02qBunc9suS2gXiR4yT7ADY5L3Hml2t8Y0DE3nLb1vquDaaTvPqMWJI3iWEv+dEOap0mY9AzgJbBdpUEMT6KggiUjKJiDanRQgPYhbn6FDFvJVcYCQf2AZK6cYBV+lbAuMoF0FtqnGAktJpLJHqZfYg2RGqM48MlrmxkAke6ng0glCuWU/aFEczb7fGkJ0rzcSklaDfBzzPycMaVN2oA58UAibugfeU6o2HM45emA4jnlxeQzka6hiV+Uy7woiZs21l+iPihHvwriGCNSfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BYAPR11MB2567.namprd11.prod.outlook.com (2603:10b6:a02:c5::32)
+ by SN7PR11MB6678.namprd11.prod.outlook.com (2603:10b6:806:26a::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.24; Wed, 5 Jul
+ 2023 00:09:11 +0000
+Received: from BYAPR11MB2567.namprd11.prod.outlook.com
+ ([fe80::28b4:ae85:a4f0:3f46]) by BYAPR11MB2567.namprd11.prod.outlook.com
+ ([fe80::28b4:ae85:a4f0:3f46%4]) with mapi id 15.20.6544.024; Wed, 5 Jul 2023
+ 00:09:10 +0000
+From: "Yang, Fei" <fei.yang@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Thread-Topic: [PATCH v2] drm/i915: Refactor PAT/cache handling
+Thread-Index: AQHZqpQvF7ewKzrr+kCyWWOnY6DVxa+i6j3igAUKSACAAUhM6w==
+Date: Wed, 5 Jul 2023 00:09:10 +0000
+Message-ID: <BYAPR11MB2567F99FD5CFB3E709B2B3879A2EA@BYAPR11MB2567.namprd11.prod.outlook.com>
+References: <20230629141509.3194090-1-tvrtko.ursulin@linux.intel.com>
+ <BYAPR11MB256721AE29EBF133E60D7CD19A2AA@BYAPR11MB2567.namprd11.prod.outlook.com>
+ <6fcb91a4-5e93-4964-e4b1-45bf965b0011@linux.intel.com>
+In-Reply-To: <6fcb91a4-5e93-4964-e4b1-45bf965b0011@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BYAPR11MB2567:EE_|SN7PR11MB6678:EE_
+x-ms-office365-filtering-correlation-id: 7fbaf4ee-0be2-4bdf-b9ae-08db7cec0ebb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: c1Yz/mMzZUPhJSIesnxytNKywuxWZVvLTWsEQunmh6V7L4VXlDIVccKHZX6tZmbRTTzOMagRZfF4ONr6gk1NeDVAhXsCGn8y3qNVc1UswTUKc2RC1ynUFFY1YlUQLVeH7nCWJLz0LSBeGfayLWm/MVxRv7q/2BWcTUkOBLO8QIfLIwElKmJR3QBi71oorF4HbGf+20W5z3MvYgakdM3bZLk2j92pN06MgXHce3Mgc4hM/YNm6qT66MMVIaIdWX2i5sh9cWLafah8Xy7DoXoORmtwdtfCcreE3HJ4gVUkrPCsDUyVxmYONOQXGtKEDHmXXH8lotq9QFa0de6NMWpZoTEfl2uwPjDNigHzH1ejwPrTjWSL5195tallHHrqW7J+DeYRiYvvwgfxtDAVdnvRX300LdyGQ/sL+zsi/bvbsuU6j+dJ4HLpePQcyg4+K7d8axrxkQwVAB3d6xhkdBhb/C7rborp0zcPa6cIpnzkKgLy0QuOfjFfoTvuXY3MxAH/9zBuFJcl5eSE42zT5cUNM1BPACOl66YXKXySYu0GaSO9HCwgKT6Ah7rVbhPJWi4ir8bszgsddQAZL38Nkr5xGi9u1CMLOQkSCmb8ipNrce9P0lX8F7bQ0LpVA+wbi0n4
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2567.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(346002)(376002)(136003)(366004)(39860400002)(451199021)(9686003)(26005)(8936002)(186003)(33656002)(30864003)(86362001)(71200400001)(8676002)(2906002)(110136005)(7696005)(19627405001)(5660300002)(52536014)(41300700001)(478600001)(38100700002)(122000001)(38070700005)(66556008)(6506007)(64756008)(55016003)(66476007)(66946007)(91956017)(66446008)(82960400001)(76116006)(4326008)(83380400001)(316002)(559001)(579004);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?CFtSJqqulTiKVUoVFmJDFenaBDj1WULSOgyN55fUAhoLGIZb10wl0Xkcd5?=
+ =?iso-8859-1?Q?jb/I4y1Qo55hlAaesKY9Bu/xgBlZfo8tcOtV6H1vAvbNHXRzN5YfI7u/7U?=
+ =?iso-8859-1?Q?TZIr22AhJhDsAlG+Cp/DwuEB2+ahsECU93O50mijFFn842T2airNVs3j85?=
+ =?iso-8859-1?Q?6ycjAHgJ6ehwgkGo3nj4x4gt2c04MZ7vlc+dlj0Wm+d1wiTyAiGmuIQx+g?=
+ =?iso-8859-1?Q?MmBC9c1KsQwEFdPOpYF/2XW7Kwd2lO2nw6pIzPzf4vBpHeQE61wjh+MAUr?=
+ =?iso-8859-1?Q?gr+F24Ud60eAq0lpwIBDybcnxq76QfLV5wTs/Bz1W60NoUKJU0KckCKkuw?=
+ =?iso-8859-1?Q?csmb+DjEnP1fH4kTOqD3/hq9CcsVtLBDXuIMV+/j+T0sB2xl364HGogLOp?=
+ =?iso-8859-1?Q?WQw8bHdbLO9uCWdBmIy27xLaKz24dqdC6/Hp6zodwcwR0POeSco93117/v?=
+ =?iso-8859-1?Q?wtOWrG9FPFGYNNOJpaDkhR80HdZf7EMsHl/neJwbEMaJkQXnizNffuSHTW?=
+ =?iso-8859-1?Q?kuiTvfJFSL1FRjre0/H767WS018DPxXyuDvCtdpvcc+sHRIQFop1z5cC4Y?=
+ =?iso-8859-1?Q?QWplMkETQTR9bpmsl0vR0kXtAPHTP0FhrCmUoYJAm5Qpfmkp21Zm5A8iXc?=
+ =?iso-8859-1?Q?802yDRAhXiOZ0EPqncUnPhBewlBlo9Qpl4caMX8kqj7+K2ytVaejhWi09j?=
+ =?iso-8859-1?Q?+/Yyp4Io6zfzHYTCNSn9o/0aGRwKyfQMVttDYglKLBWWmQjCY+nmVehiKf?=
+ =?iso-8859-1?Q?E0GTatpWrgFn5tSVeJr7coe1FozV575ujaifnQ3dffzTPcRP9zYLsHifjH?=
+ =?iso-8859-1?Q?vgSsHAY8U+eU4YkAQKSpWXrIgaDFmYBBs8BNpVn/Zwij5yDucZxh8E5jJS?=
+ =?iso-8859-1?Q?DOLW9LFUYdxRWVdApF6BcBvx0kNHu9JWRI78o4IaExQ31TZyv8pa8QmNdi?=
+ =?iso-8859-1?Q?+TqSHGfpjTvoi9DbH+jIaSeHwdgPZpT5YdSfUHu1CdMXZogZMQsH4gFe6T?=
+ =?iso-8859-1?Q?nuxStoYNjUjMxCrWV1cfdaIo9OKMx61lek6GVF6QhRnrN1xYSHP/agsGrp?=
+ =?iso-8859-1?Q?sA5B66NKPJSaQeVQQRN6DMtDp9tGcze8n5m1MPq/BatG2sYfYhlpl9CCyL?=
+ =?iso-8859-1?Q?l1K2azwdjswh0sHMl27S+z+Ql/dX9wSRbFvCiU0umLfgjh8+1hkkK+v8po?=
+ =?iso-8859-1?Q?xpmFnXlyAL1jJ8K/wxPVgsjMW4qAv35lgIWCPTl/Pgr7UCTNZIzJ9JuhW6?=
+ =?iso-8859-1?Q?b4NzKD6Avyf0idAkokq67BsjuPqdvHaXaWN/EzLUBTgRPpbMMOcebuXgVv?=
+ =?iso-8859-1?Q?eLeSf3DoT9jUq293HPSEoJTCJOUhwVHKuWS5BvjdNBEZrK6UvhrDKX2qCa?=
+ =?iso-8859-1?Q?TXk09XHSF05ZGZ5GRk04ZZZtjkjynFjlvGNW5eALyOde+i/UnyXOqpsTjU?=
+ =?iso-8859-1?Q?pPwGuz4wGnNrkKkIJS7hqtz3sAE7MvCnHKHClS6oQ/mm6ry0VRydxCvjej?=
+ =?iso-8859-1?Q?XLZwYSl0m8NF+H38m+VTGXH2J+IpRcOlEPjPlMOAjBZfpnX3MCl+35Y3NG?=
+ =?iso-8859-1?Q?4Ds/hpI6ENCAnSlxVgnFmHFWUyBlODfvx1/+lKFwR7CZKOeNUwEpxahjj/?=
+ =?iso-8859-1?Q?2t15xSxFCcpsw=3D?=
 Content-Type: multipart/alternative;
- boundary="===============8793261832165122270=="
+ boundary="_000_BYAPR11MB2567F99FD5CFB3E709B2B3879A2EABYAPR11MB2567namp_"
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 04 Jul 2023 23:00:27 -0000
-Message-ID: <168851162792.28592.3135220977023787422@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230627105849.274263-1-jani.nikula@intel.com>
-In-Reply-To: <20230627105849.274263-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/dram=3A_replace_=5F=5Fraw=5Funcore=5Fread32=28=29_with_in?=
- =?utf-8?b?dGVsX3VuY29yZV9yZWFkX2Z3KCkgKHJldjIp?=
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2567.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7fbaf4ee-0be2-4bdf-b9ae-08db7cec0ebb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jul 2023 00:09:10.4139 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: O2P6o6urHeafFM44ApiL4uzEzNEQcFMocNuGGGzCWyn+Jq9ghvssecqmVEvEJ5UeuIvoRIm1HWO9s2cQdl8R+Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6678
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Refactor PAT/cache handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,1014 +152,1507 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8793261832165122270==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/dram: replace __raw_uncore_read32() with intel_uncore_read_fw() (rev2)
-URL   : https://patchwork.freedesktop.org/series/119913/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13345_full -> Patchwork_119913v2_full
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_119913v2_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_119913v2_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (8 -> 8)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_119913v2_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_sequence@queue-busy@hdmi-a-2-pipe-b:
-    - shard-glk:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-glk7/igt@kms_sequence@queue-busy@hdmi-a-2-pipe-b.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-glk9/igt@kms_sequence@queue-busy@hdmi-a-2-pipe-b.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_13345_full and Patchwork_119913v2_full:
-
-### New IGT tests (1) ###
-
-  * igt@kms_plane_scaling@planes-upscale-20x20@pipe-c-dp-2:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.0] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_119913v2_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@drm_fdinfo@most-busy-idle-check-all@rcs0:
-    - shard-rkl:          [PASS][3] -> [FAIL][4] ([i915#7742])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-7/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-4/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
-
-  * igt@gem_barrier_race@remote-request@rcs0:
-    - shard-dg2:          [PASS][5] -> [ABORT][6] ([i915#7461] / [i915#8211] / [i915#8234])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-12/igt@gem_barrier_race@remote-request@rcs0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-1/igt@gem_barrier_race@remote-request@rcs0.html
-
-  * igt@gem_ccs@suspend-resume:
-    - shard-tglu:         NOTRUN -> [SKIP][7] ([i915#3555] / [i915#5325])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@gem_ccs@suspend-resume.html
-
-  * igt@gem_eio@hibernate:
-    - shard-dg2:          [PASS][8] -> [ABORT][9] ([i915#7975] / [i915#8213])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-11/igt@gem_eio@hibernate.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-1/igt@gem_eio@hibernate.html
-
-  * igt@gem_exec_fair@basic-deadline:
-    - shard-apl:          NOTRUN -> [FAIL][10] ([i915#2846])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-apl1/igt@gem_exec_fair@basic-deadline.html
-
-  * igt@gem_exec_fair@basic-none@rcs0:
-    - shard-tglu:         NOTRUN -> [FAIL][11] ([i915#2842]) +4 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@gem_exec_fair@basic-none@rcs0.html
-
-  * igt@gem_exec_fair@basic-pace@rcs0:
-    - shard-rkl:          [PASS][12] -> [FAIL][13] ([i915#2842]) +3 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-2/igt@gem_exec_fair@basic-pace@rcs0.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-6/igt@gem_exec_fair@basic-pace@rcs0.html
-
-  * igt@gem_exec_params@secure-non-master:
-    - shard-dg2:          NOTRUN -> [SKIP][14] ([fdo#112283])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@gem_exec_params@secure-non-master.html
-
-  * igt@gem_exec_suspend@basic-s4-devices@lmem0:
-    - shard-dg2:          NOTRUN -> [ABORT][15] ([i915#7975] / [i915#8213] / [i915#8682])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@gem_exec_suspend@basic-s4-devices@lmem0.html
-
-  * igt@gem_lmem_evict@dontneed-evict-race:
-    - shard-tglu:         NOTRUN -> [SKIP][16] ([i915#4613] / [i915#7582])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@gem_lmem_evict@dontneed-evict-race.html
-
-  * igt@gem_lmem_swapping@smem-oom@lmem0:
-    - shard-dg2:          [PASS][17] -> [TIMEOUT][18] ([i915#5493])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-1/igt@gem_lmem_swapping@smem-oom@lmem0.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-5/igt@gem_lmem_swapping@smem-oom@lmem0.html
-
-  * igt@gem_mmap_gtt@fault-concurrent-y:
-    - shard-snb:          [PASS][19] -> [ABORT][20] ([i915#5161])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-snb4/igt@gem_mmap_gtt@fault-concurrent-y.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-snb6/igt@gem_mmap_gtt@fault-concurrent-y.html
-
-  * igt@gem_pread@snoop:
-    - shard-dg2:          NOTRUN -> [SKIP][21] ([i915#3282])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@gem_pread@snoop.html
-
-  * igt@gem_pxp@verify-pxp-stale-buf-optout-execution:
-    - shard-tglu:         NOTRUN -> [SKIP][22] ([i915#4270])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@gem_pxp@verify-pxp-stale-buf-optout-execution.html
-
-  * igt@gen9_exec_parse@allowed-single:
-    - shard-glk:          [PASS][23] -> [ABORT][24] ([i915#5566])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-glk6/igt@gen9_exec_parse@allowed-single.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-glk8/igt@gen9_exec_parse@allowed-single.html
-
-  * igt@i915_pm_backlight@bad-brightness:
-    - shard-tglu:         NOTRUN -> [SKIP][25] ([i915#7561])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@i915_pm_backlight@bad-brightness.html
-
-  * igt@i915_pm_dc@dc6-dpms:
-    - shard-tglu:         [PASS][26] -> [FAIL][27] ([i915#3989] / [i915#454])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-tglu-9/igt@i915_pm_dc@dc6-dpms.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-7/igt@i915_pm_dc@dc6-dpms.html
-
-  * igt@i915_pm_rpm@dpms-mode-unset-non-lpsp:
-    - shard-rkl:          [PASS][28] -> [SKIP][29] ([i915#1397]) +1 similar issue
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-6/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-7/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html
-
-  * igt@kms_atomic@plane-primary-overlay-mutable-zpos:
-    - shard-tglu:         NOTRUN -> [SKIP][30] ([i915#404])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_atomic@plane-primary-overlay-mutable-zpos.html
-
-  * igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180:
-    - shard-tglu:         NOTRUN -> [SKIP][31] ([fdo#111615] / [i915#5286])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180.html
-
-  * igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-async-flip:
-    - shard-dg2:          NOTRUN -> [SKIP][32] ([i915#5190])
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-async-flip.html
-
-  * igt@kms_big_joiner@basic:
-    - shard-tglu:         NOTRUN -> [SKIP][33] ([i915#2705])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_big_joiner@basic.html
-
-  * igt@kms_ccs@pipe-a-random-ccs-data-4_tiled_mtl_rc_ccs_cc:
-    - shard-tglu:         NOTRUN -> [SKIP][34] ([i915#5354] / [i915#6095]) +3 similar issues
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_ccs@pipe-a-random-ccs-data-4_tiled_mtl_rc_ccs_cc.html
-
-  * igt@kms_ccs@pipe-b-crc-primary-basic-y_tiled_gen12_mc_ccs:
-    - shard-dg2:          NOTRUN -> [SKIP][35] ([i915#3689] / [i915#3886] / [i915#5354])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_ccs@pipe-b-crc-primary-basic-y_tiled_gen12_mc_ccs.html
-
-  * igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_rc_ccs:
-    - shard-dg2:          NOTRUN -> [SKIP][36] ([i915#3689] / [i915#5354])
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_rc_ccs.html
-
-  * igt@kms_ccs@pipe-d-random-ccs-data-y_tiled_gen12_mc_ccs:
-    - shard-tglu:         NOTRUN -> [SKIP][37] ([i915#3689] / [i915#5354] / [i915#6095]) +4 similar issues
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_ccs@pipe-d-random-ccs-data-y_tiled_gen12_mc_ccs.html
-
-  * igt@kms_content_protection@legacy:
-    - shard-tglu:         NOTRUN -> [SKIP][38] ([i915#3555] / [i915#6944] / [i915#7116] / [i915#7118])
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_content_protection@legacy.html
-
-  * igt@kms_content_protection@lic:
-    - shard-dg2:          NOTRUN -> [SKIP][39] ([i915#7118])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-1/igt@kms_content_protection@lic.html
-
-  * igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size:
-    - shard-apl:          NOTRUN -> [SKIP][40] ([fdo#109271]) +11 similar issues
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-apl1/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size.html
-
-  * igt@kms_cursor_legacy@cursorb-vs-flipb-legacy:
-    - shard-dg2:          NOTRUN -> [SKIP][41] ([fdo#109274] / [i915#5354])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_cursor_legacy@cursorb-vs-flipb-legacy.html
-
-  * igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-1:
-    - shard-rkl:          NOTRUN -> [SKIP][42] ([i915#3804])
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-7/igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-1.html
-
-  * igt@kms_fbcon_fbt@fbc-suspend:
-    - shard-dg2:          [PASS][43] -> [FAIL][44] ([fdo#103375] / [i915#6121]) +1 similar issue
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-1/igt@kms_fbcon_fbt@fbc-suspend.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-5/igt@kms_fbcon_fbt@fbc-suspend.html
-
-  * igt@kms_frontbuffer_tracking@fbc-indfb-scaledprimary:
-    - shard-dg2:          [PASS][45] -> [FAIL][46] ([i915#6880])
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-6/igt@kms_frontbuffer_tracking@fbc-indfb-scaledprimary.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-7/igt@kms_frontbuffer_tracking@fbc-indfb-scaledprimary.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-shrfb-draw-mmap-gtt:
-    - shard-dg2:          NOTRUN -> [SKIP][47] ([i915#8708]) +1 similar issue
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-shrfb-draw-mmap-gtt.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-wc:
-    - shard-tglu:         NOTRUN -> [SKIP][48] ([fdo#110189]) +6 similar issues
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-wc.html
-
-  * igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt:
-    - shard-dg2:          NOTRUN -> [SKIP][49] ([i915#5354])
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html
-
-  * igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-pwrite:
-    - shard-tglu:         NOTRUN -> [SKIP][50] ([fdo#109280]) +9 similar issues
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-pwrite.html
-
-  * igt@kms_hdr@static-toggle-suspend:
-    - shard-dg2:          NOTRUN -> [SKIP][51] ([i915#3555]) +1 similar issue
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-1/igt@kms_hdr@static-toggle-suspend.html
-
-  * igt@kms_plane_scaling@intel-max-src-size:
-    - shard-dg2:          NOTRUN -> [SKIP][52] ([i915#3555] / [i915#6953])
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-8/igt@kms_plane_scaling@intel-max-src-size.html
-
-  * igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2:
-    - shard-rkl:          NOTRUN -> [FAIL][53] ([i915#8292])
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-4/igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2.html
-
-  * igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-2:
-    - shard-rkl:          NOTRUN -> [SKIP][54] ([i915#5176]) +5 similar issues
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-2/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-2.html
-
-  * igt@kms_plane_scaling@plane-downscale-with-pixel-format-factor-0-25@pipe-a-dp-4:
-    - shard-dg2:          NOTRUN -> [SKIP][55] ([i915#5176]) +3 similar issues
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-11/igt@kms_plane_scaling@plane-downscale-with-pixel-format-factor-0-25@pipe-a-dp-4.html
-
-  * igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-d-hdmi-a-1:
-    - shard-tglu:         NOTRUN -> [SKIP][56] ([i915#5176]) +3 similar issues
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-d-hdmi-a-1.html
-
-  * igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-c-dp-4:
-    - shard-dg2:          NOTRUN -> [SKIP][57] ([i915#5235]) +11 similar issues
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-11/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-c-dp-4.html
-
-  * igt@kms_plane_scaling@planes-downscale-factor-0-75-unity-scaling@pipe-b-vga-1:
-    - shard-snb:          NOTRUN -> [SKIP][58] ([fdo#109271]) +19 similar issues
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-snb4/igt@kms_plane_scaling@planes-downscale-factor-0-75-unity-scaling@pipe-b-vga-1.html
-
-  * igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-b-hdmi-a-2:
-    - shard-rkl:          NOTRUN -> [SKIP][59] ([i915#5235]) +7 similar issues
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-2/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-b-hdmi-a-2.html
-
-  * igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area:
-    - shard-tglu:         NOTRUN -> [SKIP][60] ([fdo#111068] / [i915#658])
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area.html
-
-  * igt@kms_scaling_modes@scaling-mode-full-aspect:
-    - shard-tglu:         NOTRUN -> [SKIP][61] ([i915#3555]) +1 similar issue
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_scaling_modes@scaling-mode-full-aspect.html
-
-  * igt@kms_vblank@pipe-a-ts-continuation-suspend:
-    - shard-apl:          [PASS][62] -> [ABORT][63] ([i915#180])
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-apl4/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-apl1/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-
-  * igt@perf@stress-open-close@0-rcs0:
-    - shard-glk:          [PASS][64] -> [ABORT][65] ([i915#5213] / [i915#7941])
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-glk9/igt@perf@stress-open-close@0-rcs0.html
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-glk2/igt@perf@stress-open-close@0-rcs0.html
-
-  * igt@perf_pmu@rc6-all-gts:
-    - shard-dg2:          NOTRUN -> [SKIP][66] ([i915#8516])
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@perf_pmu@rc6-all-gts.html
-
-  * igt@v3d/v3d_submit_cl@bad-pad:
-    - shard-tglu:         NOTRUN -> [SKIP][67] ([fdo#109315] / [i915#2575]) +2 similar issues
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@v3d/v3d_submit_cl@bad-pad.html
-
-  * igt@vc4/vc4_perfmon@destroy-invalid-perfmon:
-    - shard-tglu:         NOTRUN -> [SKIP][68] ([i915#2575])
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@vc4/vc4_perfmon@destroy-invalid-perfmon.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_create@hog-create@smem0:
-    - shard-dg2:          [FAIL][69] ([i915#5892] / [i915#8758]) -> [PASS][70]
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-3/igt@gem_create@hog-create@smem0.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-3/igt@gem_create@hog-create@smem0.html
-
-  * igt@gem_ctx_exec@basic-nohangcheck:
-    - shard-rkl:          [FAIL][71] ([i915#6268]) -> [PASS][72]
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-2/igt@gem_ctx_exec@basic-nohangcheck.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-6/igt@gem_ctx_exec@basic-nohangcheck.html
-
-  * igt@gem_eio@hibernate:
-    - shard-tglu:         [ABORT][73] ([i915#7975] / [i915#8213] / [i915#8398]) -> [PASS][74]
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-tglu-10/igt@gem_eio@hibernate.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@gem_eio@hibernate.html
-
-  * igt@gem_eio@kms:
-    - shard-dg2:          [FAIL][75] ([i915#5784]) -> [PASS][76]
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-12/igt@gem_eio@kms.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-8/igt@gem_eio@kms.html
-
-  * igt@gem_eio@reset-stress:
-    - {shard-dg1}:        [FAIL][77] ([i915#5784]) -> [PASS][78]
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg1-14/igt@gem_eio@reset-stress.html
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg1-13/igt@gem_eio@reset-stress.html
-
-  * igt@gem_exec_fair@basic-throttle@rcs0:
-    - shard-rkl:          [FAIL][79] ([i915#2842]) -> [PASS][80] +1 similar issue
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-7/igt@gem_exec_fair@basic-throttle@rcs0.html
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-2/igt@gem_exec_fair@basic-throttle@rcs0.html
-
-  * igt@gem_exec_suspend@basic-s4-devices@lmem0:
-    - {shard-dg1}:        [ABORT][81] ([i915#7975] / [i915#8213]) -> [PASS][82]
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg1-14/igt@gem_exec_suspend@basic-s4-devices@lmem0.html
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg1-15/igt@gem_exec_suspend@basic-s4-devices@lmem0.html
-
-  * igt@gem_ppgtt@blt-vs-render-ctx0:
-    - shard-snb:          [INCOMPLETE][83] ([i915#8295]) -> [PASS][84]
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-snb1/igt@gem_ppgtt@blt-vs-render-ctx0.html
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-snb4/igt@gem_ppgtt@blt-vs-render-ctx0.html
-
-  * igt@gem_workarounds@suspend-resume-fd:
-    - shard-dg2:          [FAIL][85] ([fdo#103375] / [i915#6121]) -> [PASS][86]
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-5/igt@gem_workarounds@suspend-resume-fd.html
-   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-11/igt@gem_workarounds@suspend-resume-fd.html
-
-  * igt@gen9_exec_parse@allowed-single:
-    - shard-apl:          [ABORT][87] ([i915#5566]) -> [PASS][88]
-   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-apl6/igt@gen9_exec_parse@allowed-single.html
-   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-apl1/igt@gen9_exec_parse@allowed-single.html
-
-  * igt@i915_pm_rpm@dpms-mode-unset-lpsp:
-    - shard-rkl:          [SKIP][89] ([i915#1397]) -> [PASS][90] +3 similar issues
-   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-2/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html
-   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-7/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html
-
-  * igt@i915_pm_rpm@modeset-lpsp-stress-no-wait:
-    - shard-dg2:          [SKIP][91] ([i915#1397]) -> [PASS][92]
-   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-5/igt@i915_pm_rpm@modeset-lpsp-stress-no-wait.html
-   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@i915_pm_rpm@modeset-lpsp-stress-no-wait.html
-
-  
-#### Warnings ####
-
-  * igt@kms_content_protection@mei_interface:
-    - shard-dg2:          [SKIP][93] ([i915#7118]) -> [SKIP][94] ([i915#7118] / [i915#7162])
-   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-5/igt@kms_content_protection@mei_interface.html
-   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_content_protection@mei_interface.html
-
-  * igt@kms_content_protection@type1:
-    - shard-dg2:          [SKIP][95] ([i915#3555] / [i915#7118] / [i915#7162]) -> [SKIP][96] ([i915#3555] / [i915#7118])
-   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-11/igt@kms_content_protection@type1.html
-   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-8/igt@kms_content_protection@type1.html
-
-  * igt@kms_fbcon_fbt@psr:
-    - shard-rkl:          [SKIP][97] ([fdo#110189] / [i915#3955]) -> [SKIP][98] ([i915#3955])
-   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-2/igt@kms_fbcon_fbt@psr.html
-   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-6/igt@kms_fbcon_fbt@psr.html
-
-  * igt@kms_fbcon_fbt@psr-suspend:
-    - shard-rkl:          [SKIP][99] ([i915#3955]) -> [SKIP][100] ([fdo#110189] / [i915#3955])
-   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-6/igt@kms_fbcon_fbt@psr-suspend.html
-   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-1/igt@kms_fbcon_fbt@psr-suspend.html
-
-  * igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem:
-    - shard-dg2:          [INCOMPLETE][101] ([i915#5493]) -> [CRASH][102] ([i915#7331])
-   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-8/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html
-   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-3/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
-  [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
-  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
-  [fdo#111825]: https://bugs.freedesktop.org/show_bug.cgi?id=111825
-  [fdo#112283]: https://bugs.freedesktop.org/show_bug.cgi?id=112283
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1257]: https://gitlab.freedesktop.org/drm/intel/issues/1257
-  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#2527]: https://gitlab.freedesktop.org/drm/intel/issues/2527
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2587]: https://gitlab.freedesktop.org/drm/intel/issues/2587
-  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
-  [i915#2705]: https://gitlab.freedesktop.org/drm/intel/issues/2705
-  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
-  [i915#2846]: https://gitlab.freedesktop.org/drm/intel/issues/2846
-  [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3299]: https://gitlab.freedesktop.org/drm/intel/issues/3299
-  [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
-  [i915#3539]: https://gitlab.freedesktop.org/drm/intel/issues/3539
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3591]: https://gitlab.freedesktop.org/drm/intel/issues/3591
-  [i915#3638]: https://gitlab.freedesktop.org/drm/intel/issues/3638
-  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
-  [i915#3804]: https://gitlab.freedesktop.org/drm/intel/issues/3804
-  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
-  [i915#3955]: https://gitlab.freedesktop.org/drm/intel/issues/3955
-  [i915#3989]: https://gitlab.freedesktop.org/drm/intel/issues/3989
-  [i915#404]: https://gitlab.freedesktop.org/drm/intel/issues/404
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
-  [i915#4391]: https://gitlab.freedesktop.org/drm/intel/issues/4391
-  [i915#4423]: https://gitlab.freedesktop.org/drm/intel/issues/4423
-  [i915#4538]: https://gitlab.freedesktop.org/drm/intel/issues/4538
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#4852]: https://gitlab.freedesktop.org/drm/intel/issues/4852
-  [i915#5161]: https://gitlab.freedesktop.org/drm/intel/issues/5161
-  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5213]: https://gitlab.freedesktop.org/drm/intel/issues/5213
-  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
-  [i915#5286]: https://gitlab.freedesktop.org/drm/intel/issues/5286
-  [i915#5325]: https://gitlab.freedesktop.org/drm/intel/issues/5325
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#5493]: https://gitlab.freedesktop.org/drm/intel/issues/5493
-  [i915#5566]: https://gitlab.freedesktop.org/drm/intel/issues/5566
-  [i915#5784]: https://gitlab.freedesktop.org/drm/intel/issues/5784
-  [i915#5892]: https://gitlab.freedesktop.org/drm/intel/issues/5892
-  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
-  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
-  [i915#6268]: https://gitlab.freedesktop.org/drm/intel/issues/6268
-  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
-  [i915#6880]: https://gitlab.freedesktop.org/drm/intel/issues/6880
-  [i915#6944]: https://gitlab.freedesktop.org/drm/intel/issues/6944
-  [i915#6953]: https://gitlab.freedesktop.org/drm/intel/issues/6953
-  [i915#7116]: https://gitlab.freedesktop.org/drm/intel/issues/7116
-  [i915#7118]: https://gitlab.freedesktop.org/drm/intel/issues/7118
-  [i915#7162]: https://gitlab.freedesktop.org/drm/intel/issues/7162
-  [i915#7331]: https://gitlab.freedesktop.org/drm/intel/issues/7331
-  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#7582]: https://gitlab.freedesktop.org/drm/intel/issues/7582
-  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
-  [i915#7742]: https://gitlab.freedesktop.org/drm/intel/issues/7742
-  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
-  [i915#7941]: https://gitlab.freedesktop.org/drm/intel/issues/7941
-  [i915#7975]: https://gitlab.freedesktop.org/drm/intel/issues/7975
-  [i915#8211]: https://gitlab.freedesktop.org/drm/intel/issues/8211
-  [i915#8213]: https://gitlab.freedesktop.org/drm/intel/issues/8213
-  [i915#8234]: https://gitlab.freedesktop.org/drm/intel/issues/8234
-  [i915#8292]: https://gitlab.freedesktop.org/drm/intel/issues/8292
-  [i915#8295]: https://gitlab.freedesktop.org/drm/intel/issues/8295
-  [i915#8398]: https://gitlab.freedesktop.org/drm/intel/issues/8398
-  [i915#8414]: https://gitlab.freedesktop.org/drm/intel/issues/8414
-  [i915#8516]: https://gitlab.freedesktop.org/drm/intel/issues/8516
-  [i915#8555]: https://gitlab.freedesktop.org/drm/intel/issues/8555
-  [i915#8661]: https://gitlab.freedesktop.org/drm/intel/issues/8661
-  [i915#8682]: https://gitlab.freedesktop.org/drm/intel/issues/8682
-  [i915#8708]: https://gitlab.freedesktop.org/drm/intel/issues/8708
-  [i915#8758]: https://gitlab.freedesktop.org/drm/intel/issues/8758
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13345 -> Patchwork_119913v2
-
-  CI-20190529: 20190529
-  CI_DRM_13345: 52c775d5fac7e50737584ba6cf643c1166d95855 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7369: 22009ac9c26ceec8450dd312f5c93fc01d986348 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_119913v2: 52c775d5fac7e50737584ba6cf643c1166d95855 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/index.html
-
---===============8793261832165122270==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
+--_000_BYAPR11MB2567F99FD5CFB3E709B2B3879A2EABYAPR11MB2567namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> Informal commit message for now.
+>>>
+>>> I got a bit impatient and curious to see if the idea we discussed would
+>>> work so sketched something out. I think it is what I was describing bac=
+k
+>>> then..
+>>>
+>>> So high level idea is to teach the driver what caching modes are hidden
+>>> behind PAT indices. Given you already had that in static tables, if we
+>>> just turn the tables a bit around and add a driver abstraction of cachi=
+ng
+>>> modes this is what happens:
+>>>
+>>>  * We can lose the ugly runtime i915_gem_get_pat_index.
+>>>
+>>>  * We can have a smarter i915_gem_object_has_cache_level, which now can
+>>>    use the above mentioned table to understand the caching modes and so
+>>>    does not have to pessimistically return true for _any_ input when us=
+er
+>>>    has set the PAT index. This may improve things even for MTL.
+>>>
+>>>  * We can simplify the debugfs printout to be platform agnostic.
+>>>
+>>>  * We are perhaps opening the door to un-regress the dodgy addition
+>>>    made to i915_gem_object_can_bypass_llc? See QQQ/FIXME in the patch.
+>>>
+>>> I hope I did not forget anything, but anyway, please have a read and se=
+e
+>>> what you think. I think it has potential.
+>>>
+>>> Proper commit message can come later.
+>>>
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> Cc: Fei Yang <fei.yang@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/i915/Makefile                 |   1 +
+>>>  drivers/gpu/drm/i915/display/intel_dpt.c      |   2 +-
+>>>  drivers/gpu/drm/i915/display/intel_fb_pin.c   |   2 +-
+>>>  .../drm/i915/display/intel_plane_initial.c    |   4 +-
+>>>  drivers/gpu/drm/i915/gem/i915_gem_domain.c    |  66 +++++-----
+>>>  drivers/gpu/drm/i915/gem/i915_gem_domain.h    |   7 +-
+>>>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  13 +-
+>>>  drivers/gpu/drm/i915/gem/i915_gem_internal.c  |   6 +-
+>>>  drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  10 +-
+>>>  drivers/gpu/drm/i915/gem/i915_gem_object.c    | 116 +++++++++--------
+>>>  drivers/gpu/drm/i915/gem/i915_gem_object.h    |   9 +-
+>>>  .../gpu/drm/i915/gem/i915_gem_object_types.h  | 117 +++---------------
+>>>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  10 +-
+>>>  drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  13 +-
+>>>  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  43 ++++---
+>>>  drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |   2 +-
+>>>  .../drm/i915/gem/selftests/huge_gem_object.c  |   6 +-
+>>>  .../gpu/drm/i915/gem/selftests/huge_pages.c   |   8 +-
+>>>  drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |   4 +-
+>>>  drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  19 +--
+>>>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
+>>>  drivers/gpu/drm/i915/gt/intel_ggtt.c          |  33 ++---
+>>>  drivers/gpu/drm/i915/gt/intel_ggtt_gmch.c     |   4 +-
+>>>  drivers/gpu/drm/i915/gt/intel_gtt.c           |   2 +-
+>>>  drivers/gpu/drm/i915/gt/intel_gtt.h           |   3 +-
+>>>  drivers/gpu/drm/i915/gt/intel_migrate.c       |  11 +-
+>>>  drivers/gpu/drm/i915/gt/intel_ppgtt.c         |   6 +-
+>>>  .../gpu/drm/i915/gt/intel_ring_submission.c   |   2 +-
+>>>  drivers/gpu/drm/i915/gt/intel_timeline.c      |   2 +-
+>>>  drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   2 +-
+>>>  drivers/gpu/drm/i915/gt/selftest_migrate.c    |   9 +-
+>>>  drivers/gpu/drm/i915/gt/selftest_reset.c      |  14 +--
+>>>  drivers/gpu/drm/i915/gt/selftest_timeline.c   |   1 +
+>>>  drivers/gpu/drm/i915/gt/selftest_tlb.c        |   5 +-
+>>>  .../gpu/drm/i915/gt/selftest_workarounds.c    |   2 +-
+>>>  drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   2 +-
+>>>  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |   8 +-
+>>>  drivers/gpu/drm/i915/i915_cache.c             |  72 +++++++++++
+>>>  drivers/gpu/drm/i915/i915_cache.h             |  49 ++++++++
+>>>  drivers/gpu/drm/i915/i915_debugfs.c           |  65 +++-------
+>>>  drivers/gpu/drm/i915/i915_driver.c            |   5 +
+>>>  drivers/gpu/drm/i915/i915_drv.h               |   3 +
+>>>  drivers/gpu/drm/i915/i915_gem.c               |  21 +---
+>>>  drivers/gpu/drm/i915/i915_gpu_error.c         |   7 +-
+>>>  drivers/gpu/drm/i915/i915_pci.c               |  83 +++++++------
+>>>  drivers/gpu/drm/i915/i915_perf.c              |   2 +-
+>>>  drivers/gpu/drm/i915/intel_device_info.h      |   6 +-
+>>>  drivers/gpu/drm/i915/selftests/i915_gem.c     |   5 +-
+>>>  .../gpu/drm/i915/selftests/i915_gem_evict.c   |   8 +-
+>>>  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  13 +-
+>>>  drivers/gpu/drm/i915/selftests/igt_spinner.c  |   2 +-
+>>>  .../drm/i915/selftests/intel_memory_region.c  |   4 +-
+>>>  .../gpu/drm/i915/selftests/mock_gem_device.c  |  12 +-
+>>>  drivers/gpu/drm/i915/selftests/mock_region.c  |   2 +-
+>>>  54 files changed, 440 insertions(+), 485 deletions(-)
+>>>  create mode 100644 drivers/gpu/drm/i915/i915_cache.c
+>>>  create mode 100644 drivers/gpu/drm/i915/i915_cache.h
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makef=
+ile
+>>> index 2be9dd960540..2c3da8f0c78e 100644
+>>> --- a/drivers/gpu/drm/i915/Makefile
+>>> +++ b/drivers/gpu/drm/i915/Makefile
+>>> @@ -30,6 +30,7 @@ subdir-ccflags-y +=3D -I$(srctree)/$(src)
+>>>  # core driver code
+>>>  i915-y +=3D i915_driver.o \
+>>>            i915_drm_client.o \
+>>> +         i915_cache.o \
+>>>            i915_config.o \
+>>>            i915_getparam.o \
+>>>            i915_ioctl.o \
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm=
+/i915/display/intel_dpt.c
+>>> index 7c5fddb203ba..5baf0d27a288 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+>>> @@ -268,7 +268,7 @@ intel_dpt_create(struct intel_framebuffer *fb)
+>>>
+>>>          ret =3D i915_gem_object_lock_interruptible(dpt_obj, NULL);
+>>>          if (!ret) {
+>>> -               ret =3D i915_gem_object_set_cache_level(dpt_obj, I915_C=
+ACHE_NONE);
+>>> +               ret =3D i915_gem_object_set_cache(dpt_obj, I915_CACHE(U=
+C));
+>>>                  i915_gem_object_unlock(dpt_obj);
+>>>          }
+>>>          if (ret) {
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/=
+drm/i915/display/intel_fb_pin.c
+>>> index fffd568070d4..dcf54b354a74 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+>>> @@ -66,7 +66,7 @@ intel_pin_fb_obj_dpt(struct drm_framebuffer *fb,
+>>>                                  continue;
+>>>                  }
+>>>
+>>> -               ret =3D i915_gem_object_set_cache_level(obj, I915_CACHE=
+_NONE);
+>>> +               ret =3D i915_gem_object_set_cache(obj, I915_CACHE(UC));
+>>>                  if (ret)
+>>>                          continue;
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drive=
+rs/gpu/drm/i915/display/intel_plane_initial.c
+>>> index 736072a8b2b0..9988f6562392 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+>>> @@ -121,8 +121,8 @@ initial_plane_vma(struct drm_i915_private *i915,
+>>>           * cache_level during fbdev initialization. The
+>>>           * unbind there would get stuck waiting for rcu.
+>>>           */
+>>> -       i915_gem_object_set_cache_coherency(obj, HAS_WT(i915) ?
+>>> -                                           I915_CACHE_WT : I915_CACHE_=
+NONE);
+>>> +       i915_gem_object_set_cache_coherency(obj, HAS_WT(i915) ? I915_CA=
+CHE(WT) :
+>>> +                                                               I915_CA=
+CHE(UC));
+>>>
+>>>          switch (plane_config->tiling) {
+>>>          case I915_TILING_NONE:
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/d=
+rm/i915/gem/i915_gem_domain.c
+>>> index dfaaa8b66ac3..f899da2c622a 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+>>> @@ -8,6 +8,7 @@
+>>>  #include "display/intel_frontbuffer.h"
+>>>  #include "gt/intel_gt.h"
+>>>
+>>> +#include "i915_cache.h"
+>>>  #include "i915_drv.h"
+>>>  #include "i915_gem_clflush.h"
+>>>  #include "i915_gem_domain.h"
+>>> @@ -27,15 +28,8 @@ static bool gpu_write_needs_clflush(struct drm_i915_=
+gem_object *obj)
+>>>          if (IS_DGFX(i915))
+>>>                  return false;
+>>>
+>>> -       /*
+>>> -        * For objects created by userspace through GEM_CREATE with pat=
+_index
+>>> -        * set by set_pat extension, i915_gem_object_has_cache_level() =
+will
+>>> -        * always return true, because the coherency of such object is =
+managed
+>>> -        * by userspace. Othereise the call here would fall back to che=
+cking
+>>> -        * whether the object is un-cached or write-through.
+>>> -        */
+>>> -       return !(i915_gem_object_has_cache_level(obj, I915_CACHE_NONE) =
+||
+>>> -                i915_gem_object_has_cache_level(obj, I915_CACHE_WT));
+>>> +       return i915_gem_object_has_cache_mode(obj, I915_CACHE_MODE_UC) =
+!=3D 1 &&
+>>> +              i915_gem_object_has_cache_mode(obj, I915_CACHE_MODE_WT) =
+!=3D 1;
+>>
+>> This logic was changed for objects with pat index set by user here. It
+>> used to return false
+>> regardless the cache mode. But now it returns true if its cache mode is
+>> neither UC nor WT.
+>
+> Yes, that was half of the motivation of the refactory. Before the PAT ind=
+ex series code was like this:
+>
+>        return !(obj->cache_level =3D=3D I915_CACHE_NONE ||
+>                 obj->cache_level =3D=3D I915_CACHE_WT);
+>
+> So kernel knew it needs to flush only if caching mode is neither UC or WT=
+. With the PAT index series you changed it to:
+>
+>        return !(i915_gem_object_has_cache_level(obj, I915_CACHE_NONE) ||
+>                 i915_gem_object_has_cache_level(obj, I915_CACHE_WT));
+>
+> And as i915_gem_object_has_cache_level was changed to always return true =
+if PAT was set by user, that made the check meaningless for such objects.
+
+But the point is that the KMD should not flush the cache for objects with
+PAT set by user because UMD is handling the cache conherency. That is the
+design. Well doing so wouldn't cause functional issue, but it's unecessary
+and might have performance impact.
+
+> With my refactoring it becomes meaningful again and restores to the origi=
+nal behaviour. That's the intent at least.
+>
+>>>  bool i915_gem_cpu_write_needs_clflush(struct drm_i915_gem_object *obj)
+>>> @@ -255,9 +249,9 @@ i915_gem_object_set_to_gtt_domain(struct drm_i915_g=
+em_object *obj, bool write)
+>>>  }
+>>>
+>>>  /**
+>>> - * i915_gem_object_set_cache_level - Changes the cache-level of an obj=
+ect across all VMA.
+>>> + * i915_gem_object_set_cache - Changes the cache-level of an object ac=
+ross all VMA.
+>>>   * @obj: object to act on
+>>> - * @cache_level: new cache level to set for the object
+>>> + * @cache: new caching mode to set for the object
+>>>   *
+>>>   * After this function returns, the object will be in the new cache-le=
+vel
+>>>   * across all GTT and the contents of the backing storage will be cohe=
+rent,
+>>> @@ -269,19 +263,28 @@ i915_gem_object_set_to_gtt_domain(struct drm_i915=
+_gem_object *obj, bool write)
+>>>   * cache coherency) and all non-MOCS GPU access will also be uncached =
+so
+>>>   * that all direct access to the scanout remains coherent.
+>>>   */
+>>> -int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
+>>> -                                   enum i915_cache_level cache_level)
+>>> +int i915_gem_object_set_cache(struct drm_i915_gem_object *obj,
+>>> +                             i915_cache_t cache)
+>>>  {
+>>> +       struct drm_i915_private *i915 =3D to_i915(obj->base.dev);
+>>>          int ret;
+>>>
+>>> -       /*
+>>> -        * For objects created by userspace through GEM_CREATE with pat=
+_index
+>>> -        * set by set_pat extension, simply return 0 here without touch=
+ing
+>>> -        * the cache setting, because such objects should have an immut=
+able
+>>> -        * cache setting by desgin and always managed by userspace.
+>>> -        */
+>>> -       if (i915_gem_object_has_cache_level(obj, cache_level))
+>>> +       ret =3D i915_cache_find_pat(i915, cache);
+>>> +       if (ret < 0) {
+>>> +               struct drm_printer p =3D
+>>> +                       drm_err_printer("Attempting to use unknown cach=
+ing mode ");
+>>> +
+>>> +               i915_cache_print(&p, cache);
+>>> +               drm_puts(&p, "!\n");
+>>> +
+>>> +               return -EINVAL;
+>>> +       } else if (ret =3D=3D obj->pat_index) {
+>>>                  return 0;
+>>
+>> We will have to do this conversion and checking again later in this
+>> function when calling i915_gem_object_set_cache_coherency().
+>
+> Yes the double lookup part is a bit naff. It is not super required
+> apart for validating internal callers (could be a debug build only
+> feature perhaps) and to see if PAT index has changed and so whether
+> it needs to call i915_gem_object_wait before proceeding to
+> i915_gem_object_set_cache_coherency...
+>
+>> My thought was to simply remove the use of cache_level/cache and replace
+>> it with pat_idex. Conversion from cache modes to pat index should be don=
+e
+>> before calling any function used to consume cache_level/cache.
+>
+> ... I could probably call the setter which takes PAT index instead of
+> i915_gem_object_set_cache_coherency few lines below. That would skip the
+> double lookup and make you happy(-ier)?
+
+Do you see any problem just letting these functions take pat_index as the
+second argument? These functions are currently called with a constant
+cache_level/mode, if we have INTEL_INFO(i915)->pat_uc/wt/wb set properly,
+using pat index makes no difference, right?
+
+>>
+>>> +       } else if (obj->pat_set_by_user) {
+>>
+>> Shouldn't this if-statement be placed at the beginning of this function?
+>> the original
+>> i915_gem_object_has_cache_level() would return true if
+>> (obj->pat_set_by_user), so the
+>> function returns right away.
+>>
+>>> +               drm_notice_once(&i915->drm,
+>>> +                               "Attempting to change caching mode on a=
+n object with fixed PAT!\n");
+>>> +               return -EINVAL;
+>>> +       }
+>>>
+>>>          ret =3D i915_gem_object_wait(obj,
+>>>                                     I915_WAIT_INTERRUPTIBLE |
+>>> @@ -291,7 +294,7 @@ int i915_gem_object_set_cache_level(struct drm_i915=
+_gem_object *obj,
+>>>                  return ret;
+>>>
+>>>          /* Always invalidate stale cachelines */
+>>> -       i915_gem_object_set_cache_coherency(obj, cache_level);
+>>> +       i915_gem_object_set_cache_coherency(obj, cache);
+>>>          obj->cache_dirty =3D true;
+>>>
+>>>          /* The cache-level will be applied when each vma is rebound. *=
+/
+>>> @@ -326,10 +329,9 @@ int i915_gem_get_caching_ioctl(struct drm_device *=
+dev, void *data,
+>>>                  goto out;
+>>>          }
+>>>
+>>> -       if (i915_gem_object_has_cache_level(obj, I915_CACHE_LLC) ||
+>>> -           i915_gem_object_has_cache_level(obj, I915_CACHE_L3_LLC))
+>>> +       if (i915_gem_object_has_cache_mode(obj, I915_CACHE_MODE_WB))
+>>
+>> This looks wrong, at least for MTL. Prior to MTL the GPU automatically s=
+noop
+>> CPU cache, but from MTL onward you have to specify if WB or WB + 1-WAY
+>> COH is needed. And for KMD, cacheable mode means WB + 1-WAY COH for MTL =
+to keep the
+>> behavior consistent.
+>>
+>> This used to be taken care of by i915_gem_get_pat_index() call. With
+>> that being replaced by i915_cache_find_pat(), you would need to do somet=
+hing there.
+>> But, without cachelevel_to_pat[], you might end up hard coding something
+>> directly in the function, and that is platform dependent. hmm..., I don'=
+t really
+>> like this idea.
+>>
+>> That's why I commented in v1 that we should use INTEL_INFO(i915)->pat_uc=
+/wb/wt
+>> instead of enum i915_cache_level or i915_cache_t.
+>
+> I think I get it. I hope so.. So if I made the tables like this:
+>
+> #define LEGACY_CACHE_MODES \
+>        .cache_modes =3D { \
+>                [0] =3D I915_CACHE(UC), \
+>                [1] =3D _I915_CACHE(WB, COH1W), \
+>                [2] =3D _I915_CACHE(WB, COH1W | L3), \ // 2way??
+>                [3] =3D I915_CACHE(WT), \
+>         }
+>
+> #define GEN12_CACHE_MODES \
+>        .cache_modes =3D { \
+>                [0] =3D _I915_CACHE(WB, COH1W), \
+>                [1] =3D I915_CACHE(WC), \
+>                [2] =3D I915_CACHE(WT), \
+>                [3] =3D I915_CACHE(UC), \
+>         }
+>
+> #define MTL_CACHE_MODES \
+>        .cache_modes =3D { \
+>                [0] =3D _I915_CACHE(WB, COH1W), \
+>                [1] =3D I915_CACHE(WT), \
+>                [2] =3D I915_CACHE(UC), \
+>                [3] =3D _I915_CACHE(WB, COH1W), \
+>                [4] =3D _I915_CACHE(WB, COH2W), \
+>
+> And made i915->pat_wc look up _I915_CACHE(WB, COH1W) would that work?
+> Hmm and also all "has cache level" call sites would need to look not just
+> for WB but WB+COH1W.
+>
+> Would it work? Too ugly?
+
+I don't think this would work. The cache_modes needs to be aligned with BSp=
+ec,
+otherwise checkings for INTEL_INFO(i915)->cache_modes[obj->pat_index] might
+become invalid. Also, COH1W/2W were not even there for platforms prior to M=
+TL.
+
+I still think setting INTEL_INFO(i915)->pat_uc/wt/wb is the best solution.
+With that we can also eliminate the use of I915_CACHE({UC|WT|WB}).
+
+>>
+>>>                  args->caching =3D I915_CACHING_CACHED;
+>>> -       else if (i915_gem_object_has_cache_level(obj, I915_CACHE_WT))
+>>> +       else if (i915_gem_object_has_cache_mode(obj, I915_CACHE_MODE_WT=
+))
+>>>                  args->caching =3D I915_CACHING_DISPLAY;
+>>>          else
+>>>                  args->caching =3D I915_CACHING_NONE;
+>>> @@ -344,7 +346,7 @@ int i915_gem_set_caching_ioctl(struct drm_device *d=
+ev, void *data,
+>>>          struct drm_i915_private *i915 =3D to_i915(dev);
+>>>          struct drm_i915_gem_caching *args =3D data;
+>>>          struct drm_i915_gem_object *obj;
+>>> -       enum i915_cache_level level;
+>>> +       i915_cache_t cache;
+>>>          int ret =3D 0;
+>>>
+>>>          if (IS_DGFX(i915))
+>>> @@ -355,7 +357,7 @@ int i915_gem_set_caching_ioctl(struct drm_device *d=
+ev, void *data,
+>>>
+>>>          switch (args->caching) {
+>>>          case I915_CACHING_NONE:
+>>> -               level =3D I915_CACHE_NONE;
+>>> +               cache =3D I915_CACHE(UC);
+>>
+>> For code like this, my thought was
+>>
+>> -               level =3D I915_CACHE_NONE;
+>> +               pat_index =3D INTEL_INFO(i915)->pat_uc;
+>>
+>> And later the set_cache call should take pat_index as argument instead
+>> of cache mode.
+>>
+>>>                  break;
+>>>          case I915_CACHING_CACHED:
+>>>                  /*
+>>> @@ -367,10 +369,10 @@ int i915_gem_set_caching_ioctl(struct drm_device =
+*dev, void *data,
+>>>                  if (!HAS_LLC(i915) && !HAS_SNOOP(i915))
+>>>                          return -ENODEV;
+>>>
+>>> -               level =3D I915_CACHE_LLC;
+>>> +               cache =3D I915_CACHE(WB);
+>>
+>> -               level =3D I915_CACHE_LLC;
+>> +               pat_index =3D INTEL_INFO(i915)->pat_wb;
+>>
+>> This should take care of the WB + 1-WAY COH issue for MTL mentioned abov=
+e,
+>> assuming the i915_cache_init() set pat_wb properly, and the
+>> i915_gem_object_set_cache() consumes pat_index instead of cache mode.
+>
+> That works too yes.
+>
+>>
+>>>                  break;
+>>>          case I915_CACHING_DISPLAY:
+>>> -               level =3D HAS_WT(i915) ? I915_CACHE_WT : I915_CACHE_NON=
+E;
+>>> +               cache =3D HAS_WT(i915) ? I915_CACHE(WT) : I915_CACHE(UC=
+);
+>>>                  break;
+>>>          default:
+>>>                  return -EINVAL;
+>>> @@ -409,7 +411,7 @@ int i915_gem_set_caching_ioctl(struct drm_device *d=
+ev, void *data,
+>>>          if (ret)
+>>>                  goto out;
+>>>
+>>> -       ret =3D i915_gem_object_set_cache_level(obj, level);
+>>> +       ret =3D i915_gem_object_set_cache(obj, cache);
+>>>          i915_gem_object_unlock(obj);
+>>>
+>>>  out:
+>>> @@ -448,9 +450,9 @@ i915_gem_object_pin_to_display_plane(struct drm_i91=
+5_gem_object *obj,
+>>>           * of uncaching, which would allow us to flush all the LLC-cac=
+hed data
+>>>           * with that bit in the PTE to main memory with just one PIPE_=
+CONTROL.
+>>>           */
+>>> -       ret =3D i915_gem_object_set_cache_level(obj,
+>>> -                                             HAS_WT(i915) ?
+>>> -                                             I915_CACHE_WT : I915_CACH=
+E_NONE);
+>>> +       ret =3D i915_gem_object_set_cache(obj,
+>>> +                                       HAS_WT(i915) ?
+>>> +                                       I915_CACHE(WT) : I915_CACHE(UC)=
+);
+>>>          if (ret)
+>>>                  return ERR_PTR(ret);
+>>>
+
+[...]
+
+>>>
+>>>  bool i915_gem_object_can_bypass_llc(struct drm_i915_gem_object *obj)
+>>> @@ -215,6 +222,7 @@ bool i915_gem_object_can_bypass_llc(struct drm_i915=
+_gem_object *obj)
+>>>          /*
+>>>           * Always flush cache for UMD objects at creation time.
+>>>           */
+>>> +       /* QQQ/FIXME why? avoidable performance penalty? */
+
+This is needed because UMD's assume zero-initialized BO's are really zero'e=
+d out
+before getting the handles to the BO's (See VLK-46522). Otherwise UMD's cou=
+ld read
+stale data, thus cause security issues.
+
+>>>          if (obj->pat_set_by_user)
+>>>                  return true;
+>>>
+
+[...]
+
+>>> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm=
+/i915/intel_device_info.h
+>>> index dbfe6443457b..f48a21895a85 100644
+>>> --- a/drivers/gpu/drm/i915/intel_device_info.h
+>>> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+>>> @@ -27,6 +27,8 @@
+>>>
+>>>  #include <uapi/drm/i915_drm.h>
+>>>
+>>> +#include "i915_cache.h"
+>>> +
+>>>  #include "intel_step.h"
+>>>
+>>>  #include "gt/intel_engine_types.h"
+>>> @@ -243,8 +245,8 @@ struct intel_device_info {
+>>>           */
+>>>          const struct intel_runtime_info __runtime;
+>>>
+>>> -       u32 cachelevel_to_pat[I915_MAX_CACHE_LEVEL];
+>>> -       u32 max_pat_index;
+>>> +       i915_cache_t cache_modes[9];
+>>
+>> I was commenting on the array size here. It's probably better to make it=
+ 16
+>> because there are 4 PAT index bits defined in the PTE. Indices above
+>> max_pat_index
+>> are not used, but theoretically new mode could be added. Well, it's up
+>> to you,
+>> not likely to happen anyway.
+>
+> Ah okay. I am not too concerned. Compiler will let us know if it happens.
+>
+> Unrelated to this comment - what about i915_gem_object_can_bypass_llc?
+> Could we do better (less pessimistic) with something like my approach and
+> so maybe penalize MTL less?
+
+The problem is that, for the BO's managed by UMD's, the KMD doesn't know
+whether they are going to be mapped as cacheable or uncacheable on the CPU
+side. The PAT index controls GPU access only. That's why we make sure all
+BO's with PAT set by UMD (which means UMD will take control and managing th=
+e
+coherency) are clflush'ed.
+
+-Fei
+
+> Regards,
+>
+> Tvrtko
+
+
+--_000_BYAPR11MB2567F99FD5CFB3E709B2B3879A2EABYAPR11MB2567namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
 </head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dram: replace __raw_uncore_read32() with intel_uncore_read_fw() (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119913/">https://patchwork.freedesktop.org/series/119913/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13345_full -&gt; Patchwork_119913v2_full</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_119913v2_full absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_119913v2_full, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (8 -&gt; 8)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_119913v2_full:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_sequence@queue-busy@hdmi-a-2-pipe-b:<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-glk7/igt@kms_sequence@queue-busy@hdmi-a-2-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-glk9/igt@kms_sequence@queue-busy@hdmi-a-2-pipe-b.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_13345_full and Patchwork_119913v2_full:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@kms_plane_scaling@planes-upscale-20x20@pipe-c-dp-2:<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_119913v2_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@drm_fdinfo@most-busy-idle-check-all@rcs0:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-7/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-4/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7742">i915#7742</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_barrier_race@remote-request@rcs0:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-12/igt@gem_barrier_race@remote-request@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-1/igt@gem_barrier_race@remote-request@rcs0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8211">i915#8211</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8234">i915#8234</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ccs@suspend-resume:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@gem_ccs@suspend-resume.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5325">i915#5325</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@hibernate:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-11/igt@gem_eio@hibernate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-1/igt@gem_eio@hibernate.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7975">i915#7975</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8213">i915#8213</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-deadline:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-apl1/igt@gem_exec_fair@basic-deadline.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2846">i915#2846</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none@rcs0:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@gem_exec_fair@basic-none@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace@rcs0:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-2/igt@gem_exec_fair@basic-pace@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-6/igt@gem_exec_fair@basic-pace@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_params@secure-non-master:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@gem_exec_params@secure-non-master.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=112283">fdo#112283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s4-devices@lmem0:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@gem_exec_suspend@basic-s4-devices@lmem0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7975">i915#7975</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8213">i915#8213</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8682">i915#8682</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_evict@dontneed-evict-race:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@gem_lmem_evict@dontneed-evict-race.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7582">i915#7582</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@smem-oom@lmem0:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-1/igt@gem_lmem_swapping@smem-oom@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-5/igt@gem_lmem_swapping@smem-oom@lmem0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5493">i915#5493</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@fault-concurrent-y:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-snb4/igt@gem_mmap_gtt@fault-concurrent-y.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-snb6/igt@gem_mmap_gtt@fault-concurrent-y.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5161">i915#5161</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_pread@snoop:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@gem_pread@snoop.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_pxp@verify-pxp-stale-buf-optout-execution:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@gem_pxp@verify-pxp-stale-buf-optout-execution.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4270">i915#4270</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gen9_exec_parse@allowed-single:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-glk6/igt@gen9_exec_parse@allowed-single.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-glk8/igt@gen9_exec_parse@allowed-single.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5566">i915#5566</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@bad-brightness:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@i915_pm_backlight@bad-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_dc@dc6-dpms:</p>
-<ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-tglu-9/igt@i915_pm_dc@dc6-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-7/igt@i915_pm_dc@dc6-dpms.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3989">i915#3989</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/454">i915#454</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@dpms-mode-unset-non-lpsp:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-6/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-7/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_atomic@plane-primary-overlay-mutable-zpos:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_atomic@plane-primary-overlay-mutable-zpos.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/404">i915#404</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111615">fdo#111615</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5286">i915#5286</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-async-flip:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-async-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_joiner@basic:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_big_joiner@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2705">i915#2705</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@pipe-a-random-ccs-data-4_tiled_mtl_rc_ccs_cc:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_ccs@pipe-a-random-ccs-data-4_tiled_mtl_rc_ccs_cc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6095">i915#6095</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@pipe-b-crc-primary-basic-y_tiled_gen12_mc_ccs:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_ccs@pipe-b-crc-primary-basic-y_tiled_gen12_mc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3689">i915#3689</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3886">i915#3886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_rc_ccs:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_ccs@pipe-b-crc-primary-rotation-180-y_tiled_gen12_rc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3689">i915#3689</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@pipe-d-random-ccs-data-y_tiled_gen12_mc_ccs:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_ccs@pipe-d-random-ccs-data-y_tiled_gen12_mc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3689">i915#3689</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6095">i915#6095</a>) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@legacy:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_content_protection@legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6944">i915#6944</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7116">i915#7116</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@lic:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-1/igt@kms_content_protection@lic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-apl1/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +11 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@cursorb-vs-flipb-legacy:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_cursor_legacy@cursorb-vs-flipb-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-1:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-7/igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3804">i915#3804</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_fbcon_fbt@fbc-suspend:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-1/igt@kms_fbcon_fbt@fbc-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-5/igt@kms_fbcon_fbt@fbc-suspend.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-indfb-scaledprimary:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-6/igt@kms_frontbuffer_tracking@fbc-indfb-scaledprimary.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-7/igt@kms_frontbuffer_tracking@fbc-indfb-scaledprimary.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6880">i915#6880</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-shrfb-draw-mmap-gtt:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-shrfb-draw-mmap-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8708">i915#8708</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-wc:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-wc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) +6 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-plflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-pwrite:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-pwrite.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109280">fdo#109280</a>) +9 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@static-toggle-suspend:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-1/igt@kms_hdr@static-toggle-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@intel-max-src-size:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-8/igt@kms_plane_scaling@intel-max-src-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6953">i915#6953</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-4/igt@kms_plane_scaling@intel-max-src-size@pipe-a-hdmi-a-2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8292">i915#8292</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-2:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-2/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-b-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-downscale-with-pixel-format-factor-0-25@pipe-a-dp-4:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-11/igt@kms_plane_scaling@plane-downscale-with-pixel-format-factor-0-25@pipe-a-dp-4.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-d-hdmi-a-1:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_plane_scaling@plane-scaler-with-rotation-unity-scaling@pipe-d-hdmi-a-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-c-dp-4:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-11/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-20x20@pipe-c-dp-4.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a>) +11 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-75-unity-scaling@pipe-b-vga-1:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-snb4/igt@kms_plane_scaling@planes-downscale-factor-0-75-unity-scaling@pipe-b-vga-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +19 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-b-hdmi-a-2:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-2/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-b-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111068">fdo#111068</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/658">i915#658</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_scaling_modes@scaling-mode-full-aspect:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@kms_scaling_modes@scaling-mode-full-aspect.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vblank@pipe-a-ts-continuation-suspend:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-apl4/igt@kms_vblank@pipe-a-ts-continuation-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-apl1/igt@kms_vblank@pipe-a-ts-continuation-suspend.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@perf@stress-open-close@0-rcs0:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-glk9/igt@perf@stress-open-close@0-rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-glk2/igt@perf@stress-open-close@0-rcs0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5213">i915#5213</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7941">i915#7941</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@perf_pmu@rc6-all-gts:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@perf_pmu@rc6-all-gts.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8516">i915#8516</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@v3d/v3d_submit_cl@bad-pad:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@v3d/v3d_submit_cl@bad-pad.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@vc4/vc4_perfmon@destroy-invalid-perfmon:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@vc4/vc4_perfmon@destroy-invalid-perfmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_create@hog-create@smem0:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-3/igt@gem_create@hog-create@smem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5892">i915#5892</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8758">i915#8758</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-3/igt@gem_create@hog-create@smem0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_exec@basic-nohangcheck:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-2/igt@gem_ctx_exec@basic-nohangcheck.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6268">i915#6268</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-6/igt@gem_ctx_exec@basic-nohangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@hibernate:</p>
-<ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-tglu-10/igt@gem_eio@hibernate.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7975">i915#7975</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8213">i915#8213</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8398">i915#8398</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-tglu-9/igt@gem_eio@hibernate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@kms:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-12/igt@gem_eio@kms.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5784">i915#5784</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-8/igt@gem_eio@kms.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@reset-stress:</p>
-<ul>
-<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg1-14/igt@gem_eio@reset-stress.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5784">i915#5784</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg1-13/igt@gem_eio@reset-stress.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-throttle@rcs0:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-7/igt@gem_exec_fair@basic-throttle@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-2/igt@gem_exec_fair@basic-throttle@rcs0.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s4-devices@lmem0:</p>
-<ul>
-<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg1-14/igt@gem_exec_suspend@basic-s4-devices@lmem0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7975">i915#7975</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8213">i915#8213</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg1-15/igt@gem_exec_suspend@basic-s4-devices@lmem0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ppgtt@blt-vs-render-ctx0:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-snb1/igt@gem_ppgtt@blt-vs-render-ctx0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8295">i915#8295</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-snb4/igt@gem_ppgtt@blt-vs-render-ctx0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_workarounds@suspend-resume-fd:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-5/igt@gem_workarounds@suspend-resume-fd.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-11/igt@gem_workarounds@suspend-resume-fd.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gen9_exec_parse@allowed-single:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-apl6/igt@gen9_exec_parse@allowed-single.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5566">i915#5566</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-apl1/igt@gen9_exec_parse@allowed-single.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@dpms-mode-unset-lpsp:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-2/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-7/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html">PASS</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@modeset-lpsp-stress-no-wait:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-5/igt@i915_pm_rpm@modeset-lpsp-stress-no-wait.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@i915_pm_rpm@modeset-lpsp-stress-no-wait.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_content_protection@mei_interface:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-5/igt@kms_content_protection@mei_interface.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-12/igt@kms_content_protection@mei_interface.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7162">i915#7162</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@type1:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-11/igt@kms_content_protection@type1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7162">i915#7162</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-8/igt@kms_content_protection@type1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_fbcon_fbt@psr:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-2/igt@kms_fbcon_fbt@psr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-6/igt@kms_fbcon_fbt@psr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_fbcon_fbt@psr-suspend:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-rkl-6/igt@kms_fbcon_fbt@psr-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-rkl-1/igt@kms_fbcon_fbt@psr-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13345/shard-dg2-8/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5493">i915#5493</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_119913v2/shard-dg2-3/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7331">i915#7331</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13345 -&gt; Patchwork_119913v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13345: 52c775d5fac7e50737584ba6cf643c1166d95855 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7369: 22009ac9c26ceec8450dd312f5c93fc01d986348 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_119913v2: 52c775d5fac7e50737584ba6cf643c1166d95855 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof ContentPasted0">
+<div class=3D"ContentPasted0">&gt;&gt;&gt; From: Tvrtko Ursulin &lt;tvrtko.=
+ursulin@intel.com&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; Informal commit message for now.=
+</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; I got a bit impatient and curiou=
+s to see if the idea we discussed would</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; work so sketched something out. =
+I think it is what I was describing back</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; then..</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; So high level idea is to teach t=
+he driver what caching modes are hidden</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; behind PAT indices. Given you al=
+ready had that in static tables, if we</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; just turn the tables a bit aroun=
+d and add a driver abstraction of caching</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; modes this is what happens:</div=
+>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;* We can lose the ugly run=
+time i915_gem_get_pat_index.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;* We can have a smarter i9=
+15_gem_object_has_cache_level, which now can</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp;use the above menti=
+oned table to understand the caching modes and so</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp;does not have to pe=
+ssimistically return true for _any_ input when user</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp;has set the PAT ind=
+ex. This may improve things even for MTL.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;* We can simplify the debu=
+gfs printout to be platform agnostic.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;* We are perhaps opening t=
+he door to un-regress the dodgy addition</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp;made to i915_gem_ob=
+ject_can_bypass_llc? See QQQ/FIXME in the patch.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; I hope I did not forget anything=
+, but anyway, please have a read and see</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; what you think. I think it has p=
+otential.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; Proper commit message can come l=
+ater.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; Signed-off-by: Tvrtko Ursulin &l=
+t;tvrtko.ursulin@intel.com&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; Cc: Fei Yang &lt;fei.yang@intel.=
+com&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; ---</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/Makef=
+ile &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; 1 +</d=
+iv>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/displ=
+ay/intel_dpt.c &nbsp; &nbsp; &nbsp;| &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/displ=
+ay/intel_fb_pin.c &nbsp; | &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;.../drm/i915/display/intel=
+_plane_initial.c &nbsp; &nbsp;| &nbsp; 4 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gem/i=
+915_gem_domain.c &nbsp; &nbsp;| &nbsp;66 +++++-----</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gem/i=
+915_gem_domain.h &nbsp; &nbsp;| &nbsp; 7 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;.../gpu/drm/i915/gem/i915_=
+gem_execbuffer.c &nbsp; &nbsp;| &nbsp;13 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gem/i=
+915_gem_internal.c &nbsp;| &nbsp; 6 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gem/i=
+915_gem_mman.c &nbsp; &nbsp; &nbsp;| &nbsp;10 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gem/i=
+915_gem_object.c &nbsp; &nbsp;| 116 +++++++++--------</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gem/i=
+915_gem_object.h &nbsp; &nbsp;| &nbsp; 9 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;.../gpu/drm/i915/gem/i915_=
+gem_object_types.h &nbsp;| 117 +++---------------</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gem/i=
+915_gem_shmem.c &nbsp; &nbsp; | &nbsp;10 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gem/i=
+915_gem_stolen.c &nbsp; &nbsp;| &nbsp;13 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gem/i=
+915_gem_ttm_move.c &nbsp;| &nbsp;43 ++++---</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gem/i=
+915_gem_userptr.c &nbsp; | &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;.../drm/i915/gem/selftests=
+/huge_gem_object.c &nbsp;| &nbsp; 6 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;.../gpu/drm/i915/gem/selft=
+ests/huge_pages.c &nbsp; | &nbsp; 8 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/ge=
+n6_ppgtt.c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp; 4 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/ge=
+n8_ppgtt.c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp;19 +--</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/in=
+tel_engine_cs.c &nbsp; &nbsp; | &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/in=
+tel_ggtt.c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp;33 ++---</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/in=
+tel_ggtt_gmch.c &nbsp; &nbsp; | &nbsp; 4 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/in=
+tel_gtt.c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/in=
+tel_gtt.h &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; 3 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/in=
+tel_migrate.c &nbsp; &nbsp; &nbsp; | &nbsp;11 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/in=
+tel_ppgtt.c &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; 6 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;.../gpu/drm/i915/gt/intel_=
+ring_submission.c &nbsp; | &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/in=
+tel_timeline.c &nbsp; &nbsp; &nbsp;| &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/se=
+lftest_hangcheck.c &nbsp;| &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/se=
+lftest_migrate.c &nbsp; &nbsp;| &nbsp; 9 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/se=
+lftest_reset.c &nbsp; &nbsp; &nbsp;| &nbsp;14 +--</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/se=
+lftest_timeline.c &nbsp; | &nbsp; 1 +</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/se=
+lftest_tlb.c &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp; 5 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;.../gpu/drm/i915/gt/selfte=
+st_workarounds.c &nbsp; &nbsp;| &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/uc=
+/intel_guc.c &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/gt/uc=
+/intel_uc_fw.c &nbsp; &nbsp; &nbsp;| &nbsp; 8 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/i915_=
+cache.c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp;72 +++++++++++</d=
+iv>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/i915_=
+cache.h &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp;49 ++++++++</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/i915_=
+debugfs.c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp;65 +++-------</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/i915_=
+driver.c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp; 5 +</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/i915_=
+drv.h &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; 3 +</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/i915_=
+gem.c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp;21 +---</div=
+>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/i915_=
+gpu_error.c &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; 7 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/i915_=
+pci.c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp;83 +++++++--=
+----</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/i915_=
+perf.c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/intel=
+_device_info.h &nbsp; &nbsp; &nbsp;| &nbsp; 6 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/selft=
+ests/i915_gem.c &nbsp; &nbsp; | &nbsp; 5 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;.../gpu/drm/i915/selftests=
+/i915_gem_evict.c &nbsp; | &nbsp; 8 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/selft=
+ests/i915_gem_gtt.c | &nbsp;13 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/selft=
+ests/igt_spinner.c &nbsp;| &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;.../drm/i915/selftests/int=
+el_memory_region.c &nbsp;| &nbsp; 4 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;.../gpu/drm/i915/selftests=
+/mock_gem_device.c &nbsp;| &nbsp;12 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;drivers/gpu/drm/i915/selft=
+ests/mock_region.c &nbsp;| &nbsp; 2 +-</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;54 files changed, 440 inse=
+rtions(+), 485 deletions(-)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;create mode 100644 drivers=
+/gpu/drm/i915/i915_cache.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;create mode 100644 drivers=
+/gpu/drm/i915/i915_cache.h</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; diff --git a/drivers/gpu/drm/i91=
+5/Makefile b/drivers/gpu/drm/i915/Makefile</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; index 2be9dd960540..2c3da8f0c78e=
+ 100644</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; --- a/drivers/gpu/drm/i915/Makef=
+ile</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +++ b/drivers/gpu/drm/i915/Makef=
+ile</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -30,6 +30,7 @@ subdir-ccflags=
+-y +=3D -I$(srctree)/$(src)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;# core driver code</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;i915-y +=3D i915_driver.o =
+\</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp;i915_drm_client.o \</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; i9=
+15_cache.o \</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp;i915_config.o \</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp;i915_getparam.o \</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp;i915_ioctl.o \</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; diff --git a/drivers/gpu/drm/i91=
+5/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; index 7c5fddb203ba..5baf0d27a288=
+ 100644</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; --- a/drivers/gpu/drm/i915/displ=
+ay/intel_dpt.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +++ b/drivers/gpu/drm/i915/displ=
+ay/intel_dpt.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -268,7 +268,7 @@ intel_dpt_cr=
+eate(struct intel_framebuffer *fb)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;ret =3D i915_gem_object_lock_interruptible(dpt_obj, NULL);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;if (!ret) {</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; ret =3D i915_gem_object_set_cache_level(dpt_obj, I915_CA=
+CHE_NONE);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; ret =3D i915_gem_object_set_cache(dpt_obj, I915_CACHE(UC=
+));</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;i915_gem_object_unlock(dpt_obj);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;}</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;if (ret) {</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; diff --git a/drivers/gpu/drm/i91=
+5/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c</div=
+>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; index fffd568070d4..dcf54b354a74=
+ 100644</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; --- a/drivers/gpu/drm/i915/displ=
+ay/intel_fb_pin.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +++ b/drivers/gpu/drm/i915/displ=
+ay/intel_fb_pin.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -66,7 +66,7 @@ intel_pin_fb_o=
+bj_dpt(struct drm_framebuffer *fb,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp;continue;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;}</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; ret =3D i915_gem_object_set_cache_level(obj, I915_CACHE_=
+NONE);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; ret =3D i915_gem_object_set_cache(obj, I915_CACHE(UC));<=
+/div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;if (ret)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;continue;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; diff --git a/drivers/gpu/drm/i91=
+5/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_=
+initial.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; index 736072a8b2b0..9988f6562392=
+ 100644</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; --- a/drivers/gpu/drm/i915/displ=
+ay/intel_plane_initial.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +++ b/drivers/gpu/drm/i915/displ=
+ay/intel_plane_initial.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -121,8 +121,8 @@ initial_plan=
+e_vma(struct drm_i915_private *i915,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; * cache_level during fbdev initialization. The</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; * unbind there would get stuck waiting for rcu.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; */</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; i915_gem_=
+object_set_cache_coherency(obj, HAS_WT(i915) ?</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I915_CACHE_WT : I915_CACHE_NONE);=
+</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; i915_gem_=
+object_set_cache_coherency(obj, HAS_WT(i915) ? I915_CACHE(WT) :</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I915_CACHE(UC));</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;switch (plane_config-&gt;tiling) {</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;case I915_TILING_NONE:</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; diff --git a/drivers/gpu/drm/i91=
+5/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; index dfaaa8b66ac3..f899da2c622a=
+ 100644</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; --- a/drivers/gpu/drm/i915/gem/i=
+915_gem_domain.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +++ b/drivers/gpu/drm/i915/gem/i=
+915_gem_domain.c</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -8,6 +8,7 @@</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;#include &quot;display/int=
+el_frontbuffer.h&quot;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;#include &quot;gt/intel_gt=
+.h&quot;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +#include &quot;i915_cache.h&quo=
+t;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;#include &quot;i915_drv.h&=
+quot;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;#include &quot;i915_gem_cl=
+flush.h&quot;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;#include &quot;i915_gem_do=
+main.h&quot;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -27,15 +28,8 @@ static bool g=
+pu_write_needs_clflush(struct drm_i915_gem_object *obj)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;if (IS_DGFX(i915))</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;return false;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; /*</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp;* F=
+or objects created by userspace through GEM_CREATE with pat_index</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp;* s=
+et by set_pat extension, i915_gem_object_has_cache_level() will</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp;* a=
+lways return true, because the coherency of such object is managed</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp;* b=
+y userspace. Othereise the call here would fall back to checking</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp;* w=
+hether the object is un-cached or write-through.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp;*/<=
+/div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; return !(=
+i915_gem_object_has_cache_level(obj, I915_CACHE_NONE) ||</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp;i915_gem_object_has_cache_level(obj, I915_CACHE_WT=
+));</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; return i9=
+15_gem_object_has_cache_mode(obj, I915_CACHE_MODE_UC) !=3D 1 &amp;&amp;</di=
+v>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp;i915_gem_object_has_cache_mode(obj, I915_CACHE_MODE_WT) !=
+=3D 1;</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; This logic was changed for objects w=
+ith pat index set by user here. It</div>
+<div class=3D"ContentPasted0">&gt;&gt; used to return false</div>
+<div class=3D"ContentPasted0">&gt;&gt; regardless the cache mode. But now i=
+t returns true if its cache mode is</div>
+<div class=3D"ContentPasted0">&gt;&gt; neither UC nor WT.</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; Yes, that was half of the motivation of =
+the refactory. Before the PAT index series code was like this:</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp;return !(obj-=
+&gt;cache_level =3D=3D I915_CACHE_NONE ||</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; obj-&gt;cache_level =3D=3D I915_CACHE_WT);</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; So kernel knew it needs to flush only if=
+ caching mode is neither UC or WT. With the PAT index series you changed it=
+ to:</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp;return !(i915=
+_gem_object_has_cache_level(obj, I915_CACHE_NONE) ||</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; i915_gem_object_has_cache_level(obj, I915_CACHE_WT));</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; And as i915_gem_object_has_cache_level w=
+as changed to always return true if PAT was set by user, that made the chec=
+k meaningless for such objects.</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">But the point is that the KMD should not flus=
+h the cache for objects with</div>
+<div class=3D"ContentPasted0">PAT set by user because UMD is handling the c=
+ache conherency. That is the</div>
+<div class=3D"ContentPasted0">design. Well doing so wouldn't cause function=
+al issue, but it's unecessary</div>
+<div class=3D"ContentPasted0">and might have performance impact.</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">&gt; With my refactoring it becomes meaningfu=
+l again and restores to the original behaviour. That's the intent at least.=
+</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;bool i915_gem_cpu_write_ne=
+eds_clflush(struct drm_i915_gem_object *obj)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -255,9 +249,9 @@ i915_gem_obj=
+ect_set_to_gtt_domain(struct drm_i915_gem_object *obj, bool write)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;}</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;/**</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - * i915_gem_object_set_cache_le=
+vel - Changes the cache-level of an object across all VMA.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + * i915_gem_object_set_cache - =
+Changes the cache-level of an object across all VMA.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; * @obj: object to act on<=
+/div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - * @cache_level: new cache leve=
+l to set for the object</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + * @cache: new caching mode to =
+set for the object</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; *</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; * After this function ret=
+urns, the object will be in the new cache-level</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; * across all GTT and the =
+contents of the backing storage will be coherent,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -269,19 +263,28 @@ i915_gem_o=
+bject_set_to_gtt_domain(struct drm_i915_gem_object *obj, bool write)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; * cache coherency) and al=
+l non-MOCS GPU access will also be uncached so</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; * that all direct access =
+to the scanout remains coherent.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; */</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; -int i915_gem_object_set_cache_l=
+evel(struct drm_i915_gem_object *obj,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; enum i915_cache_level cache_level)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +int i915_gem_object_set_cache(s=
+truct drm_i915_gem_object *obj,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; i915_ca=
+che_t cache)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;{</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; struct dr=
+m_i915_private *i915 =3D to_i915(obj-&gt;base.dev);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;int ret;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; /*</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp;* F=
+or objects created by userspace through GEM_CREATE with pat_index</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp;* s=
+et by set_pat extension, simply return 0 here without touching</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp;* t=
+he cache setting, because such objects should have an immutable</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp;* c=
+ache setting by desgin and always managed by userspace.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp;*/<=
+/div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; if (i915_=
+gem_object_has_cache_level(obj, cache_level))</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; ret =3D i=
+915_cache_find_pat(i915, cache);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; if (ret &=
+lt; 0) {</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; struct drm_printer p =3D</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; drm_err_printer(&quot;Attemp=
+ting to use unknown caching mode &quot;);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; i915_cache_print(&amp;p, cache);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; drm_puts(&amp;p, &quot;!\n&quot;);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; return -EINVAL;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; } else if=
+ (ret =3D=3D obj-&gt;pat_index) {</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;return 0;</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; We will have to do this conversion a=
+nd checking again later in this</div>
+<div class=3D"ContentPasted0">&gt;&gt; function when calling i915_gem_objec=
+t_set_cache_coherency().</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; Yes the double lookup part is a bit naff=
+. It is not super required</div>
+<div class=3D"ContentPasted0">&gt; apart for validating internal callers (c=
+ould be a debug build only</div>
+<div class=3D"ContentPasted0">&gt; feature perhaps) and to see if PAT index=
+ has changed and so whether</div>
+<div class=3D"ContentPasted0">&gt; it needs to call i915_gem_object_wait be=
+fore proceeding to</div>
+<div class=3D"ContentPasted0">&gt; i915_gem_object_set_cache_coherency...</=
+div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; My thought was to simply remove the =
+use of cache_level/cache and replace</div>
+<div class=3D"ContentPasted0">&gt;&gt; it with pat_idex. Conversion from ca=
+che modes to pat index should be done</div>
+<div class=3D"ContentPasted0">&gt;&gt; before calling any function used to =
+consume cache_level/cache.</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; ... I could probably call the setter whi=
+ch takes PAT index instead of</div>
+<div class=3D"ContentPasted0">&gt; i915_gem_object_set_cache_coherency few =
+lines below. That would skip the</div>
+<div class=3D"ContentPasted0">&gt; double lookup and make you happy(-ier)?<=
+/div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">Do you see any problem just letting these fun=
+ctions take pat_index as the</div>
+<div class=3D"ContentPasted0">second argument? These functions are currentl=
+y called with a constant</div>
+<div class=3D"ContentPasted0">cache_level/mode, if we have INTEL_INFO(i915)=
+-&gt;pat_uc/wt/wb set properly,</div>
+<div class=3D"ContentPasted0">using pat index makes no difference, right?</=
+div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; } else if=
+ (obj-&gt;pat_set_by_user) {</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; Shouldn't this if-statement be place=
+d at the beginning of this function?</div>
+<div class=3D"ContentPasted0">&gt;&gt; the original</div>
+<div class=3D"ContentPasted0">&gt;&gt; i915_gem_object_has_cache_level() wo=
+uld return true if</div>
+<div class=3D"ContentPasted0">&gt;&gt; (obj-&gt;pat_set_by_user), so the</d=
+iv>
+<div class=3D"ContentPasted0">&gt;&gt; function returns right away.</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; drm_notice_once(&amp;i915-&gt;drm,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&quot;Attempting to change caching mode on an object with fixed PAT!\n&quot=
+;);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; return -EINVAL;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; }</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;ret =3D i915_gem_object_wait(obj,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; I915_WAIT_INTERRUPTIBLE |</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -291,7 +294,7 @@ int i915_gem=
+_object_set_cache_level(struct drm_i915_gem_object *obj,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;return ret;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;/* Always invalidate stale cachelines */</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; i915_gem_=
+object_set_cache_coherency(obj, cache_level);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; i915_gem_=
+object_set_cache_coherency(obj, cache);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;obj-&gt;cache_dirty =3D true;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;/* The cache-level will be applied when each vma is rebound. */</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -326,10 +329,9 @@ int i915_ge=
+m_get_caching_ioctl(struct drm_device *dev, void *data,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;goto out;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;}</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; if (i915_=
+gem_object_has_cache_level(obj, I915_CACHE_LLC) ||</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; i915_gem_object_has_cache_level(obj, I915_CACHE_L3_LLC))</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; if (i915_=
+gem_object_has_cache_mode(obj, I915_CACHE_MODE_WB))</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; This looks wrong, at least for MTL. =
+Prior to MTL the GPU automatically snoop</div>
+<div class=3D"ContentPasted0">&gt;&gt; CPU cache, but from MTL onward you h=
+ave to specify if WB or WB + 1-WAY</div>
+<div class=3D"ContentPasted0">&gt;&gt; COH is needed. And for KMD, cacheabl=
+e mode means WB + 1-WAY COH for MTL to keep the</div>
+<div class=3D"ContentPasted0">&gt;&gt; behavior consistent.</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; This used to be taken care of by i91=
+5_gem_get_pat_index() call. With</div>
+<div class=3D"ContentPasted0">&gt;&gt; that being replaced by i915_cache_fi=
+nd_pat(), you would need to do something there.</div>
+<div class=3D"ContentPasted0">&gt;&gt; But, without cachelevel_to_pat[], yo=
+u might end up hard coding something</div>
+<div class=3D"ContentPasted0">&gt;&gt; directly in the function, and that i=
+s platform dependent. hmm..., I don't really</div>
+<div class=3D"ContentPasted0">&gt;&gt; like this idea.</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; That's why I commented in v1 that we=
+ should use INTEL_INFO(i915)-&gt;pat_uc/wb/wt</div>
+<div class=3D"ContentPasted0">&gt;&gt; instead of enum i915_cache_level or =
+i915_cache_t.</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; I think I get it. I hope so.. So if I ma=
+de the tables like this:</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; #define LEGACY_CACHE_MODES \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp;.cache_modes =
+=3D { \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[0] =3D I915_CACHE(UC), \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[1] =3D _I915_CACHE(WB, COH1W), \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[2] =3D _I915_CACHE(WB, COH1W | L3), \ // 2way??</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[3] =3D I915_CACHE(WT), \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div class=3D"ContentPasted0">&gt; </div>
+<div class=3D"ContentPasted0">&gt; #define GEN12_CACHE_MODES \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp;.cache_modes =
+=3D { \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[0] =3D _I915_CACHE(WB, COH1W), \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[1] =3D I915_CACHE(WC), \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[2] =3D I915_CACHE(WT), \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[3] =3D I915_CACHE(UC), \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; }</div>
+<div class=3D"ContentPasted0">&gt; </div>
+<div class=3D"ContentPasted0">&gt; #define MTL_CACHE_MODES \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp;.cache_modes =
+=3D { \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[0] =3D _I915_CACHE(WB, COH1W), \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[1] =3D I915_CACHE(WT), \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[2] =3D I915_CACHE(UC), \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[3] =3D _I915_CACHE(WB, COH1W), \</div>
+<div class=3D"ContentPasted0">&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp;[4] =3D _I915_CACHE(WB, COH2W), \</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; And made i915-&gt;pat_wc look up _I915_C=
+ACHE(WB, COH1W) would that work?</div>
+<div class=3D"ContentPasted0">&gt; Hmm and also all &quot;has cache level&q=
+uot; call sites would need to look not just</div>
+<div class=3D"ContentPasted0">&gt; for WB but WB+COH1W.</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; Would it work? Too ugly?</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">I don't think this would work. The cache_mode=
+s needs to be aligned with BSpec,</div>
+<div class=3D"ContentPasted0">otherwise checkings for INTEL_INFO(i915)-&gt;=
+cache_modes[obj-&gt;pat_index] might</div>
+<div class=3D"ContentPasted0">become invalid. Also, COH1W/2W were not even =
+there for platforms prior to MTL.</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">I still think setting INTEL_INFO(i915)-&gt;pa=
+t_uc/wt/wb is the best solution.</div>
+<div class=3D"ContentPasted0">With that we can also eliminate the use of I9=
+15_CACHE({UC|WT|WB}).</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;args-&gt;caching =3D I915_CACHING_CACHED;</di=
+v>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; else if (=
+i915_gem_object_has_cache_level(obj, I915_CACHE_WT))</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; else if (=
+i915_gem_object_has_cache_mode(obj, I915_CACHE_MODE_WT))</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;args-&gt;caching =3D I915_CACHING_DISPLAY;</d=
+iv>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;else</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;args-&gt;caching =3D I915_CACHING_NONE;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -344,7 +346,7 @@ int i915_gem=
+_set_caching_ioctl(struct drm_device *dev, void *data,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;struct drm_i915_private *i915 =3D to_i915(dev);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;struct drm_i915_gem_caching *args =3D data;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;struct drm_i915_gem_object *obj;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; enum i915=
+_cache_level level;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; i915_cach=
+e_t cache;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;int ret =3D 0;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;if (IS_DGFX(i915))</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -355,7 +357,7 @@ int i915_gem=
+_set_caching_ioctl(struct drm_device *dev, void *data,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;switch (args-&gt;caching) {</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;case I915_CACHING_NONE:</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; level =3D I915_CACHE_NONE;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; cache =3D I915_CACHE(UC);</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; For code like this, my thought was</=
+div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; level =3D I915_CACHE_NONE;</div>
+<div class=3D"ContentPasted0">&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; pat_index =3D INTEL_INFO(i915)-&gt;pat_uc;</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; And later the set_cache call should =
+take pat_index as argument instead</div>
+<div class=3D"ContentPasted0">&gt;&gt; of cache mode.</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;break;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;case I915_CACHING_CACHED:</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;/*</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -367,10 +369,10 @@ int i915_g=
+em_set_caching_ioctl(struct drm_device *dev, void *data,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;if (!HAS_LLC(i915) &amp;&amp; !HAS_SNOOP(i915=
+))</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return -ENODEV;</=
+div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; level =3D I915_CACHE_LLC;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; cache =3D I915_CACHE(WB);</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; level =3D I915_CACHE_LLC;</div>
+<div class=3D"ContentPasted0">&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; pat_index =3D INTEL_INFO(i915)-&gt;pat_wb;</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; This should take care of the WB + 1-=
+WAY COH issue for MTL mentioned above,</div>
+<div class=3D"ContentPasted0">&gt;&gt; assuming the i915_cache_init() set p=
+at_wb properly, and the</div>
+<div class=3D"ContentPasted0">&gt;&gt; i915_gem_object_set_cache() consumes=
+ pat_index instead of cache mode.</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; That works too yes.</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;break;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;case I915_CACHING_DISPLAY:</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; level =3D HAS_WT(i915) ? I915_CACHE_WT : I915_CACHE_NONE=
+;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; cache =3D HAS_WT(i915) ? I915_CACHE(WT) : I915_CACHE(UC)=
+;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;break;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;default:</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;return -EINVAL;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -409,7 +411,7 @@ int i915_gem=
+_set_caching_ioctl(struct drm_device *dev, void *data,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;if (ret)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;goto out;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; ret =3D i=
+915_gem_object_set_cache_level(obj, level);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; ret =3D i=
+915_gem_object_set_cache(obj, cache);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;i915_gem_object_unlock(obj);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;out:</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -448,9 +450,9 @@ i915_gem_obj=
+ect_pin_to_display_plane(struct drm_i915_gem_object *obj,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; * of uncaching, which would allow us to flush all the LLC-cached data</d=
+iv>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; * with that bit in the PTE to main memory with just one PIPE_CONTROL.</d=
+iv>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; */</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; ret =3D i=
+915_gem_object_set_cache_level(obj,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; HAS_WT(i915) ?</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I915_CACHE_WT : I915_CACHE=
+_NONE);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; ret =3D i=
+915_gem_object_set_cache(obj,</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; HAS_WT(i915) ?</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; I915_CACHE(WT) : I915_CACHE(UC));</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;if (ret)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;return ERR_PTR(ret);</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">[...]</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;bool i915_gem_object_can_b=
+ypass_llc(struct drm_i915_gem_object *obj)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -215,6 +222,7 @@ bool i915_ge=
+m_object_can_bypass_llc(struct drm_i915_gem_object *obj)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;/*</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; * Always flush cache for UMD objects at creation time.</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; */</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; /* QQQ/FI=
+XME why? avoidable performance penalty? */</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">This is needed because UMD's assume zero-init=
+ialized BO's are really zero'ed out</div>
+<div class=3D"ContentPasted0">before getting the handles to the BO's (See V=
+LK-46522). Otherwise UMD's could read</div>
+<div class=3D"ContentPasted0">stale data, thus cause security issues.</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;if (obj-&gt;pat_set_by_user)</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;return true;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">[...]</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; diff --git a/drivers/gpu/drm/i91=
+5/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; index dbfe6443457b..f48a21895a85=
+ 100644</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; --- a/drivers/gpu/drm/i915/intel=
+_device_info.h</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +++ b/drivers/gpu/drm/i915/intel=
+_device_info.h</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -27,6 +27,8 @@</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;#include &lt;uapi/drm/i915=
+_drm.h&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +#include &quot;i915_cache.h&quo=
+t;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; +</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;#include &quot;intel_step.=
+h&quot;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp;#include &quot;gt/intel_en=
+gine_types.h&quot;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; @@ -243,8 +245,8 @@ struct intel=
+_device_info {</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; */</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;const struct intel_runtime_info __runtime;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; u32 cache=
+level_to_pat[I915_MAX_CACHE_LEVEL];</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; u32 max_p=
+at_index;</div>
+<div class=3D"ContentPasted0">&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; i915_cach=
+e_t cache_modes[9];</div>
+<div class=3D"ContentPasted0">&gt;&gt;</div>
+<div class=3D"ContentPasted0">&gt;&gt; I was commenting on the array size h=
+ere. It's probably better to make it 16</div>
+<div class=3D"ContentPasted0">&gt;&gt; because there are 4 PAT index bits d=
+efined in the PTE. Indices above</div>
+<div class=3D"ContentPasted0">&gt;&gt; max_pat_index</div>
+<div class=3D"ContentPasted0">&gt;&gt; are not used, but theoretically new =
+mode could be added. Well, it's up</div>
+<div class=3D"ContentPasted0">&gt;&gt; to you,</div>
+<div class=3D"ContentPasted0">&gt;&gt; not likely to happen anyway.</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; Ah okay. I am not too concerned. Compile=
+r will let us know if it happens.</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; Unrelated to this comment - what about i=
+915_gem_object_can_bypass_llc?</div>
+<div class=3D"ContentPasted0">&gt; Could we do better (less pessimistic) wi=
+th something like my approach and</div>
+<div class=3D"ContentPasted0">&gt; so maybe penalize MTL less?</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">The problem is that, for the BO's managed by =
+UMD's, the KMD doesn't know</div>
+<div class=3D"ContentPasted0">whether they are going to be mapped as cachea=
+ble or uncacheable on the CPU</div>
+<div class=3D"ContentPasted0">side. The PAT index controls GPU access only.=
+ That's why we make sure all</div>
+<div class=3D"ContentPasted0">BO's with PAT set by UMD (which means UMD wil=
+l take control and managing the</div>
+<div class=3D"ContentPasted0">coherency) are clflush'ed.</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div>-Fei</div>
+<div class=3D"ContentPasted0"><br>
+</div>
+<div class=3D"ContentPasted0">&gt; Regards,</div>
+<div class=3D"ContentPasted0">&gt;</div>
+<div class=3D"ContentPasted0">&gt; Tvrtko</div>
+<br>
+</div>
 </body>
 </html>
 
---===============8793261832165122270==--
+--_000_BYAPR11MB2567F99FD5CFB3E709B2B3879A2EABYAPR11MB2567namp_--
