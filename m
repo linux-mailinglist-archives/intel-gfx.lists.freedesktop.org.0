@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596B1748EC5
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 22:21:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7DE8748EC6
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 22:21:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6CC210E3C4;
-	Wed,  5 Jul 2023 20:21:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21B5810E3C6;
+	Wed,  5 Jul 2023 20:21:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22A5710E3C4
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 20:21:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 027E210E3C6
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 20:21:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688588501; x=1720124501;
+ t=1688588504; x=1720124504;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Su8LIlWn3JNuvfJ05PTBAoU3HUAGGKJhe9JgJve6sTc=;
- b=N4eNFgbl3z+1wUd9VeSoSDsJ3MwNt2oaEJYJdXOUqX2pO0Z5S+trHLz9
- oL8WFHAPWPbEuw18cNNLvXtiuhqkvFooXY0XHHGpEEo3NubWtdlK1phyr
- vVLjeRi0LgknmG2e50R/ArtPV4jspZ8Q8rRluN7Xp0KIfYyaSD7bTyL1j
- aaHp11kkn/Zcg3rjKKa7xWuLq7c/KgXF6smbomvhV6hkA0ZxPDN5vgjGA
- 9ahu7GlSpvoLa4CIL1Ihfm5uESfOH0R0nHzZBFsrLYYGq/q61k+PLvX/4
- +RMzmz/McooGbzsf8TTHC5Gw6gwjmFYNMLFjcKF/87+k8BIlju2t5bwpr Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="353269048"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="353269048"
+ bh=U5bMgYToyxy1UdVm/TnO+pxIp51IPq/vg7eG2Pfjg0w=;
+ b=VRqSzctLNeHcMm0OM3Mnvuk+j1zFEkKq3S8VMG7bahePSmU1rwhHRjDN
+ AC084e3qInTF1OizRhq5C20peF4zpFv9DGFhvbrIMprAvZPK09E1WGTDf
+ oCaVSvPdIjcn03Z++fgr78uMdCID2Jnx9qXIZEjLEmlUXMveOi09Bgt37
+ aWvGgcoPf4DU67X3HYayIsUlNoKETGWRDxGfT0wewuLVNju/UvlGCFeOP
+ wVGCWBOg1MlChKCjkCIfDF03pRU1JvZw6wM0lR6lJGtRYR7jJ8sM8Y5GT
+ ax9Akp6AlVNUgh2D735WTLW25PlAC+KbAguSuxDiKVAiRX7brK+cpmJKu w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="353269052"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="353269052"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2023 13:21:40 -0700
+ 05 Jul 2023 13:21:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="754491108"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="754491108"
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="754491116"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="754491116"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga001.jf.intel.com with SMTP; 05 Jul 2023 13:21:39 -0700
+ by orsmga001.jf.intel.com with SMTP; 05 Jul 2023 13:21:42 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 05 Jul 2023 23:21:38 +0300
+ Wed, 05 Jul 2023 23:21:41 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Jul 2023 23:21:14 +0300
-Message-Id: <20230705202122.17915-6-ville.syrjala@linux.intel.com>
+Date: Wed,  5 Jul 2023 23:21:15 +0300
+Message-Id: <20230705202122.17915-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.3
 In-Reply-To: <20230705202122.17915-1-ville.syrjala@linux.intel.com>
 References: <20230705202122.17915-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 05/13] drm/i915: Fully populate crtc_state->dpll
+Subject: [Intel-gfx] [PATCH 06/13] drm/i915/sdvo: Pick the TV dotclock from
+ adjusted_mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,91 +65,30 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Call *_calc_dpll_params() even in cases where the encoder has
-computed the DPLL params for us.
+port_clock is what the encoder/dpll code is supposed to calculate,
+it is not the input clock. Use the dotclock as the target we're
+trying to achieve instead.
 
-The SDVO TV output code doesn't populate crtc_state->dpll.dot
-leading to the dotclock getting calculated as zero, and that
-leads to all kinds of real problems. The g4x DP code also
-doesn't populate the derived dividers nor .vco, which could
-also create some confusion.
+TODO: the SDVO TV clocking is a mess atm and needs further work
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll.c | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 71bfeea4cef2..2255ad651486 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -1182,6 +1182,8 @@ static int ilk_crtc_compute_clock(struct intel_atomic_state *state,
- 				refclk, NULL, &crtc_state->dpll))
- 		return -EINVAL;
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 76eed11e9fed..75a8e5583358 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -1272,7 +1272,7 @@ intel_sdvo_get_preferred_input_mode(struct intel_sdvo *intel_sdvo,
+ static void i9xx_adjust_sdvo_tv_clock(struct intel_crtc_state *pipe_config)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(pipe_config->uapi.crtc->dev);
+-	unsigned dotclock = pipe_config->port_clock;
++	unsigned int dotclock = pipe_config->hw.adjusted_mode.crtc_clock;
+ 	struct dpll *clock = &pipe_config->dpll;
  
-+	i9xx_calc_dpll_params(refclk, &crtc_state->dpll);
-+
- 	ilk_compute_dpll(crtc_state, &crtc_state->dpll,
- 			 &crtc_state->dpll);
- 
-@@ -1256,6 +1258,8 @@ static int chv_crtc_compute_clock(struct intel_atomic_state *state,
- 				refclk, NULL, &crtc_state->dpll))
- 		return -EINVAL;
- 
-+	chv_calc_dpll_params(refclk, &crtc_state->dpll);
-+
- 	chv_compute_dpll(crtc_state);
- 
- 	/* FIXME this is a mess */
-@@ -1278,9 +1282,10 @@ static int vlv_crtc_compute_clock(struct intel_atomic_state *state,
- 
- 	if (!crtc_state->clock_set &&
- 	    !vlv_find_best_dpll(limit, crtc_state, crtc_state->port_clock,
--				refclk, NULL, &crtc_state->dpll)) {
-+				refclk, NULL, &crtc_state->dpll))
- 		return -EINVAL;
--	}
-+
-+	vlv_calc_dpll_params(refclk, &crtc_state->dpll);
- 
- 	vlv_compute_dpll(crtc_state);
- 
-@@ -1330,6 +1335,8 @@ static int g4x_crtc_compute_clock(struct intel_atomic_state *state,
- 				refclk, NULL, &crtc_state->dpll))
- 		return -EINVAL;
- 
-+	i9xx_calc_dpll_params(refclk, &crtc_state->dpll);
-+
- 	i9xx_compute_dpll(crtc_state, &crtc_state->dpll,
- 			  &crtc_state->dpll);
- 
-@@ -1368,6 +1375,8 @@ static int pnv_crtc_compute_clock(struct intel_atomic_state *state,
- 				refclk, NULL, &crtc_state->dpll))
- 		return -EINVAL;
- 
-+	pnv_calc_dpll_params(refclk, &crtc_state->dpll);
-+
- 	i9xx_compute_dpll(crtc_state, &crtc_state->dpll,
- 			  &crtc_state->dpll);
- 
-@@ -1404,6 +1413,8 @@ static int i9xx_crtc_compute_clock(struct intel_atomic_state *state,
- 				 refclk, NULL, &crtc_state->dpll))
- 		return -EINVAL;
- 
-+	i9xx_calc_dpll_params(refclk, &crtc_state->dpll);
-+
- 	i9xx_compute_dpll(crtc_state, &crtc_state->dpll,
- 			  &crtc_state->dpll);
- 
-@@ -1444,6 +1455,8 @@ static int i8xx_crtc_compute_clock(struct intel_atomic_state *state,
- 				 refclk, NULL, &crtc_state->dpll))
- 		return -EINVAL;
- 
-+	i9xx_calc_dpll_params(refclk, &crtc_state->dpll);
-+
- 	i8xx_compute_dpll(crtc_state, &crtc_state->dpll,
- 			  &crtc_state->dpll);
- 
+ 	/*
 -- 
 2.39.3
 
