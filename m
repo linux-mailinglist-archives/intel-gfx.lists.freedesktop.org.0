@@ -2,47 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A13F7488E1
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 18:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A69637488EC
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 18:10:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0844310E3A0;
-	Wed,  5 Jul 2023 16:08:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2816910E3A0;
+	Wed,  5 Jul 2023 16:10:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 723F710E3A0
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 16:08:46 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8506B10E3A0
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 16:10:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688573326; x=1720109326;
- h=date:from:to:cc:subject:message-id;
- bh=xKhVmKHnF1tZ/nQOsvw0DFwNyW4SSJnj5G7sLZBwAY8=;
- b=Caot2TkJWlacmPA1rC/KRRT3YQJThLqEEeyw0vvrH7ZdSNV0m0JhQdkd
- VaxrPIjS7OOWX0FsWSBaiKYytQpKPXlvbYHIaf4t7Q8/6helgT4n1gzmJ
- W7tIWjw2aUevKmi7Uq2AkwZrDdhUFTftIRvsu8VCAmgGEJrt8M3GeuFlO
- 29rMYjb1CKK959qdr4UoD8GP/uOwmRgDPTz87Qg8F7jD9eRikfMFMqW8a
- jI56hNL6TS1UuH6KLRtMNqGjwNLRW+jljoF2LlpU9MfNUMpzbhgXvEfEE
- KtQTWxkeY3Pl7hoEzb7xiRK4I+zJVVSGaKdDY8IN9Mle8B6Ay4bAUtG+3 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="449747162"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="449747162"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2023 09:08:04 -0700
+ t=1688573409; x=1720109409;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=17iV8A8X8laorcn6zUAOr3vhwYE3X6yDbHV/9kGQE+0=;
+ b=BMw7vI/nuMKkzLDJb/IDkOHqviO12ox+Z/pp3CffbiKzxaVbXxSwrV12
+ KzxvoPGGoMv3nB6Q0bGqYD4vhYkn38kcPi9SHdYH/oYnS8EAlL12u9F1U
+ U92nwCnG4mK5BFrNxUcXjLieY25ouuo+ZtmMHvJh122sIMZnAtOMSlzN0
+ 3EA5WwFxpQh6Z/CP6a3KwQiFkLJqddOX4KvhfRSAeGZJUXR21Ev/4UZzg
+ jLyxX96esnvQAo6eBI60Ar077XLNEgeT0YGCrhanks0I/H5oxofzdj84G
+ hQcVhdXHcSolrY9T0u5fKLhfQ8Bi3/i2RuYB5YX1MjRNBdg86XrHgeQZ9 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="429417783"
+X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="429417783"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2023 09:09:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="832600455"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="832600455"
-Received: from lkp-server01.sh.intel.com (HELO c544d7fc5005) ([10.239.97.150])
- by fmsmga002.fm.intel.com with ESMTP; 05 Jul 2023 09:08:01 -0700
-Received: from kbuild by c544d7fc5005 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qH52u-0000iI-1h;
- Wed, 05 Jul 2023 16:08:00 +0000
-Date: Thu, 06 Jul 2023 00:07:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Message-ID: <202307060015.uSSLonkv-lkp@intel.com>
-User-Agent: s-nail v14.9.24
-Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
- e1f6a8eaf1c271a0158114a03e3605f4fba059ad
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="754408838"
+X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="754408838"
+Received: from lab-ah.igk.intel.com (HELO lab-ah.corp.intel.com)
+ ([10.102.138.202])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2023 09:08:59 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  5 Jul 2023 18:08:48 +0200
+Message-Id: <20230705160848.988464-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: update request engine before
+ removing virtual GuC engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,248 +59,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-serial@vger.kernel.org, linux-parisc@vger.kernel.org,
- linux-bluetooth@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Linux Memory Management List <linux-mm@kvack.org>,
- linux-kselftest@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-trace-kernel@vger.kernel.org, kunit-dev@googlegroups.com
+Cc: Chris Wilson <chris.p.wilson@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: e1f6a8eaf1c271a0158114a03e3605f4fba059ad  Add linux-next specific files for 20230705
+GuC virtual engines can be removed before request removal. On the other
+side driver expects rq->engine to be a valid pointer for a whole life of
+request. Setting rq->engine to an always valid engine should solve
+the issue.
 
-Error/Warning reports:
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7926
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-https://lore.kernel.org/oe-kbuild-all/202306122223.HHER4zOo-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202306260401.qZlYQpV2-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202306291857.nyJjYwqk-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202306301756.x8dgyYnL-lkp@intel.com
-
-Error/Warning: (recently discovered and may have been fixed)
-
-arch/parisc/kernel/pdt.c:67:6: warning: no previous prototype for 'arch_report_meminfo' [-Wmissing-prototypes]
-arch/riscv/kernel/crash_core.c:12:57: warning: format specifies type 'unsigned long' but the argument has type 'int' [-Wformat]
-arch/riscv/kernel/crash_core.c:14:57: error: use of undeclared identifier 'VMEMMAP_START'
-arch/riscv/kernel/crash_core.c:15:55: error: use of undeclared identifier 'VMEMMAP_END'; did you mean 'MEMREMAP_ENC'?
-arch/riscv/kernel/crash_core.c:8:20: error: use of undeclared identifier 'VA_BITS'
-drivers/bluetooth/btmtk.c:386:44: error: 'struct hci_dev' has no member named 'dump'
-drivers/char/mem.c:164:25: error: implicit declaration of function 'unxlate_dev_mem_ptr'; did you mean 'xlate_dev_mem_ptr'? [-Werror=implicit-function-declaration]
-drivers/gpu/drm/i915/soc/intel_gmch.c:41:13: error: variable 'mchbar_addr' set but not used [-Werror=unused-but-set-variable]
-drivers/mfd/max77541.c:176:18: warning: cast to smaller integer type 'enum max7754x_ids' from 'const void *' [-Wvoid-pointer-to-enum-cast]
-lib/kunit/executor_test.c:138:4: warning: cast from 'void (*)(const void *)' to 'kunit_action_t *' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-strict]
-lib/kunit/test.c:775:38: warning: cast from 'void (*)(const void *)' to 'kunit_action_t *' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-strict]
-
-Unverified Error/Warning (likely false positive, please contact us if interested):
-
-drivers/tty/serial/fsl_lpuart.c:1314 lpuart_timer_func() error: uninitialized symbol 'flags'.
-kernel/trace/trace_functions_graph.c:1012 print_graph_return() warn: bitwise AND condition is false here
-kernel/trace/trace_functions_graph.c:726 print_graph_entry_leaf() warn: bitwise AND condition is false here
-{standard input}: Error: local label `"2" (instance number 9 of a fb label)' is not defined
-
-Error/Warning ids grouped by kconfigs:
-
-gcc_recent_errors
-|-- arc-randconfig-r026-20230705
-|   `-- drivers-bluetooth-btmtk.c:error:struct-hci_dev-has-no-member-named-dump
-|-- csky-randconfig-m041-20230705
-|   `-- drivers-tty-serial-fsl_lpuart.c-lpuart_timer_func()-error:uninitialized-symbol-flags-.
-|-- i386-buildonly-randconfig-r004-20230705
-|   `-- drivers-gpu-drm-i915-soc-intel_gmch.c:error:variable-mchbar_addr-set-but-not-used
-|-- i386-randconfig-m021-20230705
-|   |-- kernel-trace-trace_functions_graph.c-print_graph_entry_leaf()-warn:bitwise-AND-condition-is-false-here
-|   `-- kernel-trace-trace_functions_graph.c-print_graph_return()-warn:bitwise-AND-condition-is-false-here
-|-- loongarch-randconfig-r091-20230703
-|   `-- drivers-bluetooth-btmtk.c:error:struct-hci_dev-has-no-member-named-dump
-|-- microblaze-randconfig-r001-20230705
-|   `-- drivers-bluetooth-btmtk.c:error:struct-hci_dev-has-no-member-named-dump
-|-- parisc-randconfig-r081-20230703
-|   `-- arch-parisc-kernel-pdt.c:warning:no-previous-prototype-for-arch_report_meminfo
-|-- sh-allmodconfig
-|   |-- drivers-char-mem.c:error:implicit-declaration-of-function-unxlate_dev_mem_ptr
-|   `-- standard-input:Error:local-label-(instance-number-of-a-fb-label)-is-not-defined
-`-- sh-randconfig-r004-20230705
-    |-- drivers-bluetooth-btmtk.c:error:struct-hci_dev-has-no-member-named-dump
-    `-- drivers-char-mem.c:error:implicit-declaration-of-function-unxlate_dev_mem_ptr
-clang_recent_errors
-|-- arm64-randconfig-r023-20230705
-|   |-- drivers-mfd-max77541.c:warning:cast-to-smaller-integer-type-enum-max7754x_ids-from-const-void
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|-- arm64-randconfig-r024-20230705
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|-- powerpc-randconfig-r011-20230705
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|-- powerpc-randconfig-r025-20230705
-|   `-- clang:error:unsupported-option-fsanitize-thread-for-target-powerpc-unknown-linux-gnu
-|-- riscv-randconfig-r042-20230705
-|   |-- arch-riscv-kernel-crash_core.c:error:use-of-undeclared-identifier-VA_BITS
-|   |-- arch-riscv-kernel-crash_core.c:error:use-of-undeclared-identifier-VMEMMAP_END
-|   |-- arch-riscv-kernel-crash_core.c:error:use-of-undeclared-identifier-VMEMMAP_START
-|   |-- arch-riscv-kernel-crash_core.c:warning:format-specifies-type-unsigned-long-but-the-argument-has-type-int
-|   |-- lib-kunit-executor_test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|-- s390-randconfig-r014-20230705
-|   `-- lib-kunit-test.c:warning:cast-from-void-(-)(const-void-)-to-kunit_action_t-(aka-void-(-)(void-)-)-converts-to-incompatible-function-type
-|-- s390-randconfig-r021-20230705
-|   `-- drivers-mfd-max77541.c:warning:cast-to-smaller-integer-type-enum-max7754x_ids-from-const-void
-|-- x86_64-randconfig-r024-20230705
-|   `-- drivers-mfd-max77541.c:warning:cast-to-smaller-integer-type-enum-max7754x_ids-from-const-void
-|-- x86_64-randconfig-x002-20230705
-|   `-- drivers-mfd-max77541.c:warning:cast-to-smaller-integer-type-enum-max7754x_ids-from-const-void
-|-- x86_64-randconfig-x003-20230705
-|   `-- drivers-mfd-max77541.c:warning:cast-to-smaller-integer-type-enum-max7754x_ids-from-const-void
-`-- x86_64-randconfig-x005-20230705
-    `-- drivers-mfd-max77541.c:warning:cast-to-smaller-integer-type-enum-max7754x_ids-from-const-void
-
-elapsed time: 734m
-
-configs tested: 142
-configs skipped: 7
-
-tested configs:
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-alpha                randconfig-r003-20230705   gcc  
-alpha                randconfig-r036-20230705   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                     nsimosci_hs_defconfig   gcc  
-arc                  randconfig-r011-20230705   gcc  
-arc                  randconfig-r026-20230705   gcc  
-arc                  randconfig-r043-20230705   gcc  
-arm                              allmodconfig   gcc  
-arm                              allyesconfig   gcc  
-arm                         assabet_defconfig   gcc  
-arm                                 defconfig   gcc  
-arm                            dove_defconfig   clang
-arm                          gemini_defconfig   gcc  
-arm                          pxa910_defconfig   gcc  
-arm                  randconfig-r046-20230705   gcc  
-arm                          sp7021_defconfig   clang
-arm                         wpcm450_defconfig   gcc  
-arm64                            alldefconfig   gcc  
-arm64                            allyesconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                randconfig-r023-20230705   clang
-arm64                randconfig-r024-20230705   clang
-arm64                randconfig-r035-20230705   gcc  
-csky                                defconfig   gcc  
-hexagon              randconfig-r041-20230705   clang
-hexagon              randconfig-r045-20230705   clang
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-r004-20230705   gcc  
-i386         buildonly-randconfig-r005-20230705   gcc  
-i386         buildonly-randconfig-r006-20230705   gcc  
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                 randconfig-i001-20230705   gcc  
-i386                 randconfig-i002-20230705   gcc  
-i386                 randconfig-i003-20230705   gcc  
-i386                 randconfig-i004-20230705   gcc  
-i386                 randconfig-i005-20230705   gcc  
-i386                 randconfig-i006-20230705   gcc  
-i386                 randconfig-i011-20230705   clang
-i386                 randconfig-i012-20230705   clang
-i386                 randconfig-i013-20230705   clang
-i386                 randconfig-i014-20230705   clang
-i386                 randconfig-i015-20230705   clang
-i386                 randconfig-i016-20230705   clang
-i386                 randconfig-r015-20230705   clang
-i386                 randconfig-r031-20230705   gcc  
-i386                 randconfig-r032-20230705   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch            randconfig-r006-20230705   gcc  
-loongarch            randconfig-r012-20230705   gcc  
-loongarch            randconfig-r014-20230705   gcc  
-m68k                             allmodconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-m68k                            q40_defconfig   gcc  
-m68k                 randconfig-r033-20230705   gcc  
-m68k                          sun3x_defconfig   gcc  
-microblaze           randconfig-r001-20230705   gcc  
-mips                             allmodconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                  cavium_octeon_defconfig   clang
-mips                           jazz_defconfig   gcc  
-mips                 randconfig-r005-20230705   clang
-nios2                               defconfig   gcc  
-nios2                randconfig-r021-20230705   gcc  
-openrisc             randconfig-r022-20230705   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                      mgcoge_defconfig   gcc  
-powerpc                 mpc832x_rdb_defconfig   clang
-powerpc                  mpc866_ads_defconfig   clang
-powerpc                    mvme5100_defconfig   clang
-powerpc                      pasemi_defconfig   gcc  
-powerpc              randconfig-r011-20230705   clang
-powerpc              randconfig-r025-20230705   clang
-powerpc                     taishan_defconfig   gcc  
-powerpc                        warp_defconfig   gcc  
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   gcc  
-riscv                               defconfig   gcc  
-riscv             nommu_k210_sdcard_defconfig   gcc  
-riscv                randconfig-r042-20230705   clang
-riscv                          rv32_defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-s390                 randconfig-r014-20230705   clang
-s390                 randconfig-r021-20230705   clang
-s390                 randconfig-r044-20230705   clang
-sh                               allmodconfig   gcc  
-sh                         microdev_defconfig   gcc  
-sh                   randconfig-r004-20230705   gcc  
-sh                           se7343_defconfig   gcc  
-sh                           se7750_defconfig   gcc  
-sh                           sh2007_defconfig   gcc  
-sh                  sh7785lcr_32bit_defconfig   gcc  
-sh                          urquell_defconfig   gcc  
-sparc                            allyesconfig   gcc  
-sparc                               defconfig   gcc  
-sparc                randconfig-r016-20230705   gcc  
-sparc64              randconfig-r012-20230705   gcc  
-sparc64              randconfig-r015-20230705   gcc  
-sparc64              randconfig-r026-20230705   gcc  
-sparc64              randconfig-r034-20230705   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   clang
-um                                  defconfig   gcc  
-um                             i386_defconfig   gcc  
-um                   randconfig-r016-20230705   gcc  
-um                           x86_64_defconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64       buildonly-randconfig-r001-20230705   gcc  
-x86_64       buildonly-randconfig-r002-20230705   gcc  
-x86_64       buildonly-randconfig-r003-20230705   gcc  
-x86_64                              defconfig   gcc  
-x86_64                                  kexec   gcc  
-x86_64               randconfig-r024-20230705   clang
-x86_64               randconfig-x001-20230705   clang
-x86_64               randconfig-x002-20230705   clang
-x86_64               randconfig-x003-20230705   clang
-x86_64               randconfig-x004-20230705   clang
-x86_64               randconfig-x005-20230705   clang
-x86_64               randconfig-x006-20230705   clang
-x86_64               randconfig-x011-20230705   gcc  
-x86_64               randconfig-x012-20230705   gcc  
-x86_64               randconfig-x013-20230705   gcc  
-x86_64               randconfig-x014-20230705   gcc  
-x86_64               randconfig-x015-20230705   gcc  
-x86_64               randconfig-x016-20230705   gcc  
-x86_64                          rhel-8.3-rust   clang
-x86_64                               rhel-8.3   gcc  
-xtensa               randconfig-r013-20230705   gcc  
-
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index a0e3ef1c65d246..2c877ea5eda6f0 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -3461,6 +3461,8 @@ static void guc_prio_fini(struct i915_request *rq, struct intel_context *ce)
+ static void remove_from_context(struct i915_request *rq)
+ {
+ 	struct intel_context *ce = request_to_scheduling_context(rq);
++	struct intel_engine_cs *engine;
++	intel_engine_mask_t tmp;
+ 
+ 	GEM_BUG_ON(intel_context_is_child(ce));
+ 
+@@ -3478,6 +3480,15 @@ static void remove_from_context(struct i915_request *rq)
+ 
+ 	atomic_dec(&ce->guc_id.ref);
+ 	i915_request_notify_execute_cb_imm(rq);
++
++	/*
++	 * GuC virtual engine can disappear after this call, so let's assign
++	 * something valid, as driver expects this to be always valid pointer.
++	 */
++	for_each_engine_masked(engine, rq->engine->gt, rq->execution_mask, tmp) {
++		rq->engine = engine;
++		break;
++	}
+ }
+ 
+ static const struct intel_context_ops guc_context_ops = {
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
