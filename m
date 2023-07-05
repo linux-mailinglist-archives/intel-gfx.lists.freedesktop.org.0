@@ -2,50 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5C1F7483C9
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 14:08:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C83887484DF
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 15:25:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D27D510E270;
-	Wed,  5 Jul 2023 12:08:36 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB9E10E15D;
- Wed,  5 Jul 2023 12:08:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688558914; x=1720094914;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=xvecff9AxxIOHLAhqVlDZwFBL13hh7YbPk3rgaWL1s8=;
- b=G852LbyuM6+XqpEw9kXpS3fnsup6NJQANXcyxVO5FZz7ZWo+kEh3Qlt7
- h54CyXnpVNj2iyC9htebsVfnFE7DXMOUUq5uDK4ihC8Jf/wHIczRbUesJ
- 6Gndi7iBIAfJV4mQVGtvUUukXVeIUx6HTRx/HKZ5FdOBRLRc1U2tZ+jo+
- H/aCVLgy8fciScaRvWogtFHYinTKg29oM7/hKqA2A32LmfpJLC9bMshTn
- OaPOCtX3s3WFhKRxhnEzFRCRRav6b/K/oaigw80xHZwtZTqA4pLsHLagG
- J3Gm9Y6Nhg+xiGRV+Hf6IX3+cuPws09gBND3ALlkzdpzY517ZdgUn5eKw w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10761"; a="449690512"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="449690512"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2023 05:08:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10761"; a="832509248"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="832509248"
-Received: from unisar-mobl.ger.corp.intel.com (HELO localhost) ([10.252.49.23])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2023 05:08:31 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20230705095518.3690951-1-tvrtko.ursulin@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230705095518.3690951-1-tvrtko.ursulin@linux.intel.com>
-Date: Wed, 05 Jul 2023 15:08:29 +0300
-Message-ID: <87r0pmzhky.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F86410E17C;
+	Wed,  5 Jul 2023 13:25:24 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E7CEC10E17C;
+ Wed,  5 Jul 2023 13:25:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E104FAADDC;
+ Wed,  5 Jul 2023 13:25:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove some dead "code"
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 05 Jul 2023 13:25:22 -0000
+Message-ID: <168856352289.24205.9851856622503739023@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230705093025.3689748-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20230705093025.3689748-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Do_not_disable_preemption_for_resets?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,38 +40,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 05 Jul 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> Commit 2caffbf11762 ("drm/i915: Revoke mmaps and prevent access to fence
-> registers across reset") removed the temporary implementation of a reset
-> under stop machine but forgot to remove this one commented out define.
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Series Details ==
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Series: drm/i915: Do not disable preemption for resets
+URL   : https://patchwork.freedesktop.org/series/120218/
+State : warning
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_reset.c | 3 ---
->  1 file changed, 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index 6916eba3bd33..cdbc08dad7ae 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -35,9 +35,6 @@
->  
->  #define RESET_MAX_RETRIES 3
->  
-> -/* XXX How to handle concurrent GGTT updates using tiling registers? */
-> -#define RESET_UNDER_STOP_MACHINE 0
-> -
->  static void client_mark_guilty(struct i915_gem_context *ctx, bool banned)
->  {
->  	struct drm_i915_file_private *file_priv = ctx->file_priv;
+== Summary ==
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Error: dim checkpatch failed
+3097d4402754 drm/i915: Do not disable preemption for resets
+-:14: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit eb8d0f5af4ec ("drm/i915: Remove GPU reset dependence on struct_mutex")'
+#14: 
+eb8d0f5af4ec ("drm/i915: Remove GPU reset dependence on struct_mutex"),
+
+-:15: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2caffbf11762 ("drm/i915: Revoke mmaps and prevent access to fence registers across reset")'
+#15: 
+but that never materialized and was soon removed in 2caffbf11762
+
+total: 2 errors, 0 warnings, 0 checks, 48 lines checked
+
+
