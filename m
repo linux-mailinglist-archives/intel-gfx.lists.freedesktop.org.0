@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449B5748EC4
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 22:21:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 596B1748EC5
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jul 2023 22:21:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9723510E3C3;
-	Wed,  5 Jul 2023 20:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6CC210E3C4;
+	Wed,  5 Jul 2023 20:21:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3051A10E3C4
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 20:21:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22A5710E3C4
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 20:21:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688588498; x=1720124498;
+ t=1688588501; x=1720124501;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=AWDzjIFYIlSR19jnSUKqzsu2Ef762x0/EHnFj+8TnKU=;
- b=JHmlnFAD7CD50lD1J1ffb45H66MjL8HSAcLHJa1lzEykAyq0ShsQYRpf
- pRMV08sOgig22RLoXijiI7/a8dbeuy4ZRhH0bNsP2OPyA48NU4C9TOMCi
- XZXmFJ4FE/1OyKl4s1dA2SLIvXq+Vodud7L/cmfEYHb/e4RYsu7NfyfFR
- x/GYAi00Eh2LcV4QA6IXD1zfWmkrr/+mkFo/A732Ka8W0iHFyqiVh+pmv
- +kqj1F3/G4vLYtSvfeRP/l3+tPO536r7Qqs36jfMgwVnaSnD+vkpY97tZ
- xObraSJ3zvJVXCDyW+X2MrBOxwYZFix/z1nKHzLr8Hyrvjo/Ht8wMMd6H g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="353269043"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="353269043"
+ bh=Su8LIlWn3JNuvfJ05PTBAoU3HUAGGKJhe9JgJve6sTc=;
+ b=N4eNFgbl3z+1wUd9VeSoSDsJ3MwNt2oaEJYJdXOUqX2pO0Z5S+trHLz9
+ oL8WFHAPWPbEuw18cNNLvXtiuhqkvFooXY0XHHGpEEo3NubWtdlK1phyr
+ vVLjeRi0LgknmG2e50R/ArtPV4jspZ8Q8rRluN7Xp0KIfYyaSD7bTyL1j
+ aaHp11kkn/Zcg3rjKKa7xWuLq7c/KgXF6smbomvhV6hkA0ZxPDN5vgjGA
+ 9ahu7GlSpvoLa4CIL1Ihfm5uESfOH0R0nHzZBFsrLYYGq/q61k+PLvX/4
+ +RMzmz/McooGbzsf8TTHC5Gw6gwjmFYNMLFjcKF/87+k8BIlju2t5bwpr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="353269048"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="353269048"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2023 13:21:38 -0700
+ 05 Jul 2023 13:21:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="754491100"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="754491100"
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="754491108"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="754491108"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by orsmga001.jf.intel.com with SMTP; 05 Jul 2023 13:21:36 -0700
+ by orsmga001.jf.intel.com with SMTP; 05 Jul 2023 13:21:39 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 05 Jul 2023 23:21:35 +0300
+ Wed, 05 Jul 2023 23:21:38 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Jul 2023 23:21:13 +0300
-Message-Id: <20230705202122.17915-5-ville.syrjala@linux.intel.com>
+Date: Wed,  5 Jul 2023 23:21:14 +0300
+Message-Id: <20230705202122.17915-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.39.3
 In-Reply-To: <20230705202122.17915-1-ville.syrjala@linux.intel.com>
 References: <20230705202122.17915-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 04/13] drm/i915: Don't warn about zero N/P in
- *_calc_dpll_params()
+Subject: [Intel-gfx] [PATCH 05/13] drm/i915: Fully populate crtc_state->dpll
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,91 +64,91 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Allow *_calc_dpll_params() to be called even if the N/P dividers
-are zero without warning. We'll want to call these to make sure the
-derived values are fully computed, but not all users (VLV DSI in
-particular) don't even enable the DPLL and thus the dividers will
-be left at zero.
+Call *_calc_dpll_params() even in cases where the encoder has
+computed the DPLL params for us.
 
-It could also be possible that the BIOS has misprogrammed the DPLL
-(IIRC happened with some SNB machines with 4k+ displays) and thus
-we'll currently generate a lot of dmesg spew. Better be silent and
-just let the normal state checker/etc. deal with any driver bugs.
+The SDVO TV output code doesn't populate crtc_state->dpll.dot
+leading to the dotclock getting calculated as zero, and that
+leads to all kinds of real problems. The g4x DP code also
+doesn't populate the derived dividers nor .vco, which could
+also create some confusion.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll.c | 37 ++++++++++++-----------
- 1 file changed, 20 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 999badfe2906..71bfeea4cef2 100644
+index 71bfeea4cef2..2255ad651486 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -314,10 +314,11 @@ int pnv_calc_dpll_params(int refclk, struct dpll *clock)
- {
- 	clock->m = clock->m2 + 2;
- 	clock->p = clock->p1 * clock->p2;
--	if (WARN_ON(clock->n == 0 || clock->p == 0))
--		return 0;
--	clock->vco = DIV_ROUND_CLOSEST(refclk * clock->m, clock->n);
--	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
-+
-+	clock->vco = clock->n == 0 ? 0 :
-+		DIV_ROUND_CLOSEST(refclk * clock->m, clock->n);
-+	clock->dot = clock->p == 0 ? 0 :
-+		DIV_ROUND_CLOSEST(clock->vco, clock->p);
+@@ -1182,6 +1182,8 @@ static int ilk_crtc_compute_clock(struct intel_atomic_state *state,
+ 				refclk, NULL, &crtc_state->dpll))
+ 		return -EINVAL;
  
- 	return clock->dot;
- }
-@@ -331,10 +332,11 @@ int i9xx_calc_dpll_params(int refclk, struct dpll *clock)
- {
- 	clock->m = i9xx_dpll_compute_m(clock);
- 	clock->p = clock->p1 * clock->p2;
--	if (WARN_ON(clock->n + 2 == 0 || clock->p == 0))
--		return 0;
--	clock->vco = DIV_ROUND_CLOSEST(refclk * clock->m, clock->n + 2);
--	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
++	i9xx_calc_dpll_params(refclk, &crtc_state->dpll);
 +
-+	clock->vco = clock->n + 2 == 0 ? 0 :
-+		DIV_ROUND_CLOSEST(refclk * clock->m, clock->n + 2);
-+	clock->dot = clock->p == 0 ? 0 :
-+		DIV_ROUND_CLOSEST(clock->vco, clock->p);
+ 	ilk_compute_dpll(crtc_state, &crtc_state->dpll,
+ 			 &crtc_state->dpll);
  
- 	return clock->dot;
- }
-@@ -343,10 +345,11 @@ int vlv_calc_dpll_params(int refclk, struct dpll *clock)
- {
- 	clock->m = clock->m1 * clock->m2;
- 	clock->p = clock->p1 * clock->p2 * 5;
--	if (WARN_ON(clock->n == 0 || clock->p == 0))
--		return 0;
--	clock->vco = DIV_ROUND_CLOSEST(refclk * clock->m, clock->n);
--	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
+@@ -1256,6 +1258,8 @@ static int chv_crtc_compute_clock(struct intel_atomic_state *state,
+ 				refclk, NULL, &crtc_state->dpll))
+ 		return -EINVAL;
+ 
++	chv_calc_dpll_params(refclk, &crtc_state->dpll);
 +
-+	clock->vco = clock->n == 0 ? 0 :
-+		DIV_ROUND_CLOSEST(refclk * clock->m, clock->n);
-+	clock->dot = clock->p == 0 ? 0 :
-+		DIV_ROUND_CLOSEST(clock->vco, clock->p);
+ 	chv_compute_dpll(crtc_state);
  
- 	return clock->dot;
- }
-@@ -355,11 +358,11 @@ int chv_calc_dpll_params(int refclk, struct dpll *clock)
- {
- 	clock->m = clock->m1 * clock->m2;
- 	clock->p = clock->p1 * clock->p2 * 5;
--	if (WARN_ON(clock->n == 0 || clock->p == 0))
--		return 0;
--	clock->vco = DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, clock->m),
--					   clock->n << 22);
--	clock->dot = DIV_ROUND_CLOSEST(clock->vco, clock->p);
+ 	/* FIXME this is a mess */
+@@ -1278,9 +1282,10 @@ static int vlv_crtc_compute_clock(struct intel_atomic_state *state,
+ 
+ 	if (!crtc_state->clock_set &&
+ 	    !vlv_find_best_dpll(limit, crtc_state, crtc_state->port_clock,
+-				refclk, NULL, &crtc_state->dpll)) {
++				refclk, NULL, &crtc_state->dpll))
+ 		return -EINVAL;
+-	}
 +
-+	clock->vco = clock->n == 0 ? 0 :
-+		DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, clock->m), clock->n << 22);
-+	clock->dot = clock->p == 0 ? 0 :
-+		DIV_ROUND_CLOSEST(clock->vco, clock->p);
++	vlv_calc_dpll_params(refclk, &crtc_state->dpll);
  
- 	return clock->dot;
- }
+ 	vlv_compute_dpll(crtc_state);
+ 
+@@ -1330,6 +1335,8 @@ static int g4x_crtc_compute_clock(struct intel_atomic_state *state,
+ 				refclk, NULL, &crtc_state->dpll))
+ 		return -EINVAL;
+ 
++	i9xx_calc_dpll_params(refclk, &crtc_state->dpll);
++
+ 	i9xx_compute_dpll(crtc_state, &crtc_state->dpll,
+ 			  &crtc_state->dpll);
+ 
+@@ -1368,6 +1375,8 @@ static int pnv_crtc_compute_clock(struct intel_atomic_state *state,
+ 				refclk, NULL, &crtc_state->dpll))
+ 		return -EINVAL;
+ 
++	pnv_calc_dpll_params(refclk, &crtc_state->dpll);
++
+ 	i9xx_compute_dpll(crtc_state, &crtc_state->dpll,
+ 			  &crtc_state->dpll);
+ 
+@@ -1404,6 +1413,8 @@ static int i9xx_crtc_compute_clock(struct intel_atomic_state *state,
+ 				 refclk, NULL, &crtc_state->dpll))
+ 		return -EINVAL;
+ 
++	i9xx_calc_dpll_params(refclk, &crtc_state->dpll);
++
+ 	i9xx_compute_dpll(crtc_state, &crtc_state->dpll,
+ 			  &crtc_state->dpll);
+ 
+@@ -1444,6 +1455,8 @@ static int i8xx_crtc_compute_clock(struct intel_atomic_state *state,
+ 				 refclk, NULL, &crtc_state->dpll))
+ 		return -EINVAL;
+ 
++	i9xx_calc_dpll_params(refclk, &crtc_state->dpll);
++
+ 	i8xx_compute_dpll(crtc_state, &crtc_state->dpll,
+ 			  &crtc_state->dpll);
+ 
 -- 
 2.39.3
 
