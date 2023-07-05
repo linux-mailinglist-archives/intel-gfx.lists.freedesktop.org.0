@@ -2,65 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 218CE749D31
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 15:18:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5B7B749D3F
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 15:18:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C87C10E090;
-	Thu,  6 Jul 2023 13:18:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06BF710E404;
+	Thu,  6 Jul 2023 13:18:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
- [IPv6:2a00:1450:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81CD110E2BE;
- Tue,  4 Jul 2023 09:25:29 +0000 (UTC)
-Received: by mail-lj1-x233.google.com with SMTP id
- 38308e7fff4ca-2b6a0d91e80so86739331fa.3; 
- Tue, 04 Jul 2023 02:25:29 -0700 (PDT)
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com
+ [IPv6:2607:f8b0:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C501010E150
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 03:27:38 +0000 (UTC)
+Received: by mail-pf1-x42d.google.com with SMTP id
+ d2e1a72fcca58-66d6a9851f3so1321870b3a.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Jul 2023 20:27:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1688462726; x=1691054726;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=w3WG4cGF8CRsbmj1ToTEuLfuzUDIEOrIrelQmjq4q3k=;
- b=o9zy4rdoGn3NN1323n5JeCPR2P82Vf7Xrb/k/pDWdQHvrcIZ5KNk8E5Rc9AOWvUohR
- 8JC5CIa5pDomtb1dfZMDcahgFK74EO8eDQO9LSJYgjPzn4Ic41LS4QQHFX6p621xcc3u
- XO4jHaVK/oWekFPVOXt8KXkFrL5uwNVhzPe0OW6mFqCpgsPLCDGha7mZqCOpezE+7azY
- JK43WUYppygu4AR6pSjwNQ4n71biZrLvyDxyiBacmVPLZW4xC0G71z1vFrh8dIliQYVo
- 8F/dIQJ/5ufMEC1w88uKtvPWoHp5fDYBZKYi1NiHQpep1YJRz5d/czwVmMlpXQets9oL
- KN+w==
+ d=bytedance.com; s=google; t=1688527657; x=1691119657;
+ h=content-transfer-encoding:in-reply-to:references:cc:to:from
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=NOwOUvz1NPkWlBxAp0GPGGO2Nrixl73uZn6xROfOEj8=;
+ b=ifLsYO8F2I4MBHVlF2Or5hf7tTNep81Mx+BsSk/nCvCzxaPTLrQYJUCegbZ71CLvqI
+ jnwmhHljMYjJqvknT1p7Cvh4o3Zetn0nbYVkcxdIejyVlEmEoOc51mjv2rm9Oe7hCkmi
+ BhkEzv2gsaM2VKlzfD2ZXlb5JXn4cFBH6rlbCG9Gisi0SSs52NHZD0JL0DYBTusr279z
+ ECt8JJbhMcUgBeDhNudIJn3gOdFaKif3GEH22u6ET+bb2NCPdK1crIBUZU+UjNX2cqQu
+ Xo1u3OB8WsD6YcqowSF12wIwDOJl+hjeHnPzPy5ZJwY8SE6f5Rm09aAg64VyQm7gLUPN
+ jgMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1688462726; x=1691054726;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=w3WG4cGF8CRsbmj1ToTEuLfuzUDIEOrIrelQmjq4q3k=;
- b=ak8pQyLVoqOxOZki/yRnVePiU4quEx9cVof5hrPpog+onAiXXr85bAnHK5Q+PpkIHd
- v7y8txhPmL6RUBI1IlrppA1U+yiThPo0PuwO8IcwOYnx4procm40axOruN3H4TPx2sNH
- jv7gGoKb6In9WCkwMYTPmCwVAeqjVBfCiaB8iOe5wvsa44Q5ZJ9gD+9g8C+NUVhUmJC0
- KTZF5XU7CbuxGE11m2hYctLtlgEe4GEZ1tb2gkdko+nhMfszIdWp0Ei7O0vIgWLXRIWl
- j40pnNtx2fnRPuVrKDoBjKZTPb7isAp6bT9ywXDNjWda0bs31xIUqcwPDckHMouveSfT
- 8zQw==
-X-Gm-Message-State: ABy/qLaUut81cocUMKlwO/k5jP+6WDIvT5ng4tYpWp6nTDr3CVI5raZZ
- C608qVmvVXYXT2vLk6J4BnnZm/QSoLdHn5VeuZI=
-X-Google-Smtp-Source: APBJJlHbSJ2Cml2qn4cb/1edSGf064IsnqMZE4INWgBRJ+bUKVKGU+1ukWl3wQA36b7Pv4rNzHUvKd3ZOMoslroDlxM=
-X-Received: by 2002:a2e:3218:0:b0:2b6:f1d5:619 with SMTP id
- y24-20020a2e3218000000b002b6f1d50619mr1554642ljy.14.1688462726472; Tue, 04
- Jul 2023 02:25:26 -0700 (PDT)
+ d=1e100.net; s=20221208; t=1688527657; x=1691119657;
+ h=content-transfer-encoding:in-reply-to:references:cc:to:from
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=NOwOUvz1NPkWlBxAp0GPGGO2Nrixl73uZn6xROfOEj8=;
+ b=BGYlChvahgdMeSSqw98fSn9qZDPSv9/xhzuZYVY8Hso0DFSyz3iRefYc7H3UXIu4DA
+ 2Cg9nfSrCmLohF1wFyQTIVi3mLEcT86bu5Ty3AsFQPmk4BuA3X6Su4ajscNi4DzOj6C+
+ OgpS5K1wOYWFCbTblD6KB0UzRFbhIukiS53nIbeE8pLJmF4j7Bnnaq7GVcAh8M6Xm15E
+ 6BnjFf9TanyklJjr52xPlHHYPTXso4BTtjMUms43OZ4O/gaUN3SG4RdmeIYF5t7IaFu5
+ 0EDyLsV63Sj1WlCFHMZelGTTKEwnKuEoJgluoi5DogKJggOrrp6GnxpX0Gaimx3OA1Wd
+ FX+A==
+X-Gm-Message-State: ABy/qLasOfmR4eBukVRYHyS19NbfyGTfd4dCc+xI8fSSwbh6ke5vqjXS
+ caCHx3pT74lS37wDypCGByEz5g==
+X-Google-Smtp-Source: APBJJlHJ/xdp2D4mprG7cOjZwHFFckWD0OnUdfulMpel6EsGVgn6d2uqpP3j7nke+gBKkBfRchiLhg==
+X-Received: by 2002:a05:6a00:1f90:b0:675:8627:a291 with SMTP id
+ bg16-20020a056a001f9000b006758627a291mr16245087pfb.3.1688527657628; 
+ Tue, 04 Jul 2023 20:27:37 -0700 (PDT)
+Received: from [10.70.252.135] ([203.208.167.147])
+ by smtp.gmail.com with ESMTPSA id
+ fe10-20020a056a002f0a00b0064fde7ae1ffsm13136627pfb.38.2023.07.04.20.27.30
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 04 Jul 2023 20:27:37 -0700 (PDT)
+Message-ID: <733af312-fb2d-3ec4-54c8-f154447c2051@bytedance.com>
+Date: Wed, 5 Jul 2023 11:27:28 +0800
 MIME-Version: 1.0
-References: <20230703150859.6176-1-ubizjak@gmail.com>
- <87o7ks16gh.fsf@intel.com>
- <CAFULd4YDHqUud94Q1mbKyKqGHh==Gv7+FpNhgm5s1p=0ZwcAXg@mail.gmail.com>
- <87lefw139r.fsf@intel.com>
-In-Reply-To: <87lefw139r.fsf@intel.com>
-From: Uros Bizjak <ubizjak@gmail.com>
-Date: Tue, 4 Jul 2023 11:25:15 +0200
-Message-ID: <CAFULd4azR=ft9kEYN19WjxORcJNT_-v7q3sVs904Bf_td-VgEg@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.12.0
+Content-Language: en-US
+From: Qi Zheng <zhengqi.arch@bytedance.com>
+To: paulmck@kernel.org, Dave Chinner <david@fromorbit.com>
+References: <20230622085335.77010-1-zhengqi.arch@bytedance.com>
+ <20230622085335.77010-25-zhengqi.arch@bytedance.com>
+ <cf0d9b12-6491-bf23-b464-9d01e5781203@suse.cz>
+ <ZJU708VIyJ/3StAX@dread.disaster.area>
+ <cc894c77-717a-4e9f-b649-48bab40e7c60@paulmck-laptop>
+ <3efa68e0-b04f-5c11-4fe2-2db0784064fc@bytedance.com>
+In-Reply-To: <3efa68e0-b04f-5c11-4fe2-2db0784064fc@bytedance.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 06 Jul 2023 13:18:28 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Use local64_try_cmpxchg in
- i915_pmu_event_read
+Subject: Re: [Intel-gfx] [PATCH 24/29] mm: vmscan: make global slab shrink
+ lockless
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,38 +83,231 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
+Cc: linux-bcache@vger.kernel.org, linux-xfs@vger.kernel.org, brauner@kernel.org,
+ tytso@mit.edu, djwong@kernel.org, intel-gfx@lists.freedesktop.org,
+ roman.gushchin@linux.dev, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linux-raid@vger.kernel.org, linux-mm@kvack.org, dm-devel@redhat.com,
+ linux-btrfs@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
+ linux-ext4@vger.kernel.org, linux-nfs@vger.kernel.org,
+ Vlastimil Babka <vbabka@suse.cz>, tkhai@ya.ru
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 4, 2023 at 10:37=E2=80=AFAM Jani Nikula <jani.nikula@linux.inte=
-l.com> wrote:
->
-> On Tue, 04 Jul 2023, Uros Bizjak <ubizjak@gmail.com> wrote:
-> > On Tue, Jul 4, 2023 at 9:28=E2=80=AFAM Jani Nikula <jani.nikula@linux.i=
-ntel.com> wrote:
-> >> You could save everyone a lot of time by actually documenting what the=
-se
-> >> functions do. Assume you don't know what local64_try_cmpxchg() does, a=
-nd
-> >> see how many calls you have to go through to figure it out.
-> >
-> > These functions are documented in Documentation/atomic_t.txt (under
-> > "RMW ops:" section), and the difference is explained in a separate
-> > section "CMPXCHG vs TRY_CMPXCGS" in the same file.
->
-> Thanks, but *sigh*.
->
-> No kernel-doc above the functions, not even a regular comment
-> referencing atomic_t.txt.
->
-> $ git grep local.*_try -- Documentation
-> [nothing]
 
-Unfortunately, this was always the state w.r.t. local.* atomic
-functions. There is an effort to improve the documentation of atomics,
-perhaps it will be also extended to local variants.
 
-Uros.
+On 2023/7/4 11:45, Qi Zheng wrote:
+> 
+> 
+> On 2023/7/4 00:39, Paul E. McKenney wrote:
+>> On Fri, Jun 23, 2023 at 04:29:39PM +1000, Dave Chinner wrote:
+>>> On Thu, Jun 22, 2023 at 05:12:02PM +0200, Vlastimil Babka wrote:
+>>>> On 6/22/23 10:53, Qi Zheng wrote:
+>>>>> @@ -1067,33 +1068,27 @@ static unsigned long shrink_slab(gfp_t 
+>>>>> gfp_mask, int nid,
+>>>>>       if (!mem_cgroup_disabled() && !mem_cgroup_is_root(memcg))
+>>>>>           return shrink_slab_memcg(gfp_mask, nid, memcg, priority);
+>>>>> -    if (!down_read_trylock(&shrinker_rwsem))
+>>>>> -        goto out;
+>>>>> -
+>>>>> -    list_for_each_entry(shrinker, &shrinker_list, list) {
+>>>>> +    rcu_read_lock();
+>>>>> +    list_for_each_entry_rcu(shrinker, &shrinker_list, list) {
+>>>>>           struct shrink_control sc = {
+>>>>>               .gfp_mask = gfp_mask,
+>>>>>               .nid = nid,
+>>>>>               .memcg = memcg,
+>>>>>           };
+>>>>> +        if (!shrinker_try_get(shrinker))
+>>>>> +            continue;
+>>>>> +        rcu_read_unlock();
+>>>>
+>>>> I don't think you can do this unlock?
+>>
+>> Sorry to be slow to respond here, this one fell through the cracks.
+>> And thank you to Qi for reminding me!
+>>
+>> If you do this unlock, you had jolly well better nail down the current
+>> element (the one referenced by shrinker), for example, by acquiring an
+>> explicit reference count on the object.  And presumably this is exactly
+>> what shrinker_try_get() is doing.  And a look at your 24/29 confirms 
+>> this,
+>> at least assuming that shrinker->refcount is set to zero before the call
+>> to synchronize_rcu() in free_module() *and* that synchronize_rcu() 
+>> doesn't
+>> start until *after* shrinker_put() calls complete().  Plus, as always,
+>> the object must be removed from the list before the synchronize_rcu()
+>> starts.  (On these parts of the puzzle, I defer to those more familiar
+>> with this code path.  And I strongly suggest carefully commenting this
+>> type of action-at-a-distance design pattern.)
+> 
+> Yeah, I think I've done it like above. A more detailed timing diagram is
+> below.
+> 
+>>
+>> Why is this important?  Because otherwise that object might be freed
+>> before you get to the call to rcu_read_lock() at the end of this loop.
+>> And if that happens, list_for_each_entry_rcu() will be walking the
+>> freelist, which is quite bad for the health and well-being of your 
+>> kernel.
+>>
+>> There are a few other ways to make this sort of thing work:
+>>
+>> 1.    Defer the shrinker_put() to the beginning of the loop.
+>>     You would need a flag initially set to zero, and then set to
+>>     one just before (or just after) the rcu_read_lock() above.
+>>     You would also need another shrinker_old pointer to track the
+>>     old pointer.  Then at the top of the loop, if the flag is set,
+>>     invoke shrinker_put() on shrinker_old.    This ensures that the
+>>     previous shrinker structure stays around long enough to allow
+>>     the loop to find the next shrinker structure in the list.
+>>
+>>     This approach is attractive when the removal code path
+>>     can invoke shrinker_put() after the grace period ends.
+>>
+>> 2.    Make shrinker_put() invoke call_rcu() when ->refcount reaches
+>>     zero, and have the callback function free the object.  This of
+>>     course requires adding an rcu_head structure to the shrinker
+>>     structure, which might or might not be a reasonable course of
+>>     action.  If adding that rcu_head is reasonable, this simplifies
+>>     the logic quite a bit.
+>>
+>> 3.    For the shrinker-structure-removal code path, remove the shrinker
+>>     structure, then remove the initial count from ->refcount,
+>>     and then keep doing grace periods until ->refcount is zero,
+>>     then do one more.  Of course, if the result of removing the
+>>     initial count was zero, then only a single additional grace
+>>     period is required.
+>>
+>>     This would need to be carefully commented, as it is a bit
+>>     unconventional.
+> 
+> Thanks for such a detailed addition!
+> 
+>>
+>> There are probably many other ways, but just to give an idea of a few
+>> other ways to do this.
+>>
+>>>>> +
+>>>>>           ret = do_shrink_slab(&sc, shrinker, priority);
+>>>>>           if (ret == SHRINK_EMPTY)
+>>>>>               ret = 0;
+>>>>>           freed += ret;
+>>>>> -        /*
+>>>>> -         * Bail out if someone want to register a new shrinker to
+>>>>> -         * prevent the registration from being stalled for long 
+>>>>> periods
+>>>>> -         * by parallel ongoing shrinking.
+>>>>> -         */
+>>>>> -        if (rwsem_is_contended(&shrinker_rwsem)) {
+>>>>> -            freed = freed ? : 1;
+>>>>> -            break;
+>>>>> -        }
+>>>>> -    }
+>>>>> -    up_read(&shrinker_rwsem);
+>>>>> -out:
+>>>>> +        rcu_read_lock();
+>>>>
+>>>> That new rcu_read_lock() won't help AFAIK, the whole
+>>>> list_for_each_entry_rcu() needs to be under the single 
+>>>> rcu_read_lock() to be
+>>>> safe.
+>>>
+>>> Yeah, that's the pattern we've been taught and the one we can look
+>>> at and immediately say "this is safe".
+>>>
+>>> This is a different pattern, as has been explained bi Qi, and I
+>>> think it *might* be safe.
+>>>
+>>> *However.*
+>>>
+>>> Right now I don't have time to go through a novel RCU list iteration
+>>> pattern it one step at to determine the correctness of the
+>>> algorithm. I'm mostly worried about list manipulations that can
+>>> occur outside rcu_read_lock() section bleeding into the RCU
+>>> critical section because rcu_read_lock() by itself is not a memory
+>>> barrier.
+>>>
+>>> Maybe Paul has seen this pattern often enough he could simply tell
+>>> us what conditions it is safe in. But for me to work that out from
+>>> first principles? I just don't have the time to do that right now.
+>>
+>> If the code does just the right sequence of things on the removal path
+>> (remove, decrement reference, wait for reference to go to zero, wait for
+>> grace period, free), then it would work.  If this is what is happening,
+>> I would argue for more comments.  ;-)
+> 
+> The order of the removal path is slightly different from this:
+> 
+>      shrink_slab                 unregister_shrinker
+>      ===========                 ===================
+> 
+>     shrinker_try_get()
+>     rcu_read_unlock()
+>                                  1. decrement initial reference
+>                  shrinker_put()
+>                  2. wait for reference to go to zero
+>                  wait_for_completion()
+>     rcu_read_lock()
+> 
+>     shrinker_put()
+>                  3. remove the shrinker from list
+>                  list_del_rcu()
+>                                  4. wait for grace period
+>                  kfree_rcu()/synchronize_rcu()
+> 
+> 
+>     list_for_each_entry()
+> 
+>     shrinker_try_get()
+>     rcu_read_unlock()
+>                  5. free the shrinker
+> 
+> So the order is: decrement reference, wait for reference to go to zero,
+> remove, wait for grace period, free.
+> 
+> I think this can work. And we can only do the *step 3* after we hold the
+> RCU read lock again, right? Please let me know if I missed something.
+
+Oh, you are right, It would be better to move step 3 to step 1. We
+should first remove the shrinker from the shrinker_list to prevent
+other traversers from finding it again, otherwise the following
+situations may occur theoretically:
+
+CPU 0                 CPU 1
+
+shrinker_try_get()
+
+                       shrinker_try_get()
+
+shrinker_put()
+shrinker_try_get()
+                       shrinker_put()
+
+Thanks,
+Qi
+
+> 
+> Thanks,
+> Qi
+> 
+>>
+>>                             Thanx, Paul
+>>
+>>>> IIUC this is why Dave in [4] suggests unifying shrink_slab() with
+>>>> shrink_slab_memcg(), as the latter doesn't iterate the list but uses 
+>>>> IDR.
+>>>
+>>> Yes, I suggested the IDR route because radix tree lookups under RCU
+>>> with reference counted objects are a known safe pattern that we can
+>>> easily confirm is correct or not.  Hence I suggested the unification
+>>> + IDR route because it makes the life of reviewers so, so much
+>>> easier...
+>>>
+>>> Cheers,
+>>>
+>>> Dave.
+>>> -- 
+>>> Dave Chinner
+>>> david@fromorbit.com
