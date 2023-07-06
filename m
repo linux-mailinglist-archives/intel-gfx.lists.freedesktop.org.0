@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6B17749778
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 10:29:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ADC3749783
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 10:30:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52D2710E47B;
-	Thu,  6 Jul 2023 08:29:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4C8A10E47A;
+	Thu,  6 Jul 2023 08:30:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2402A10E47B
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jul 2023 08:29:19 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D743A10E47A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jul 2023 08:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688632159; x=1720168159;
+ t=1688632221; x=1720168221;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=La/X7OW8xOacERT1enpzyL05ZCnaPIG3eWNAyDWoHc0=;
- b=bFCD3XuFwPLfMip/KvWIOtivN2/1CNe4xdoU7enrbEcE+X/fjmi7PkGj
- Fha0PUnQs5lkrwHOY0dYgrJfZ92AQy61sOaT0vbZSamcLwt+vd2EqJNIn
- XPBmGOVLu/Rr6NRRPhEqQzr+T7BUlejvx9i9WRCN3UFhBOdCAlVYBZewo
- RezOUKhhduIZEiB4bKXuJOBxVR4o84COgx8tFtsglZWQs5Pdhv5ryRVIH
- ZPHo5KLuqzgqAlUACjb2Vz8xRTMhtRXVYfIDpxtd1s4N3nMwnKwG+HyBy
- HM1/mKgfH/xLy6LpdZ1M70LF10krW5gZUBvCPT7OokeUFfoqw5bTwDI/j Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="361014098"
-X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="361014098"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2023 01:29:17 -0700
+ bh=6KjjZatDCBpkhEFbJmyKQFEhZMSfNI5k41MFYY/YD3w=;
+ b=gdVoHgq/X5bh0WSgRTAvs885aZMZKkpnUKDou/lSzOpbjRh/XrbFSjgb
+ ZSmwSWsoOhvVsvh8Bd4T8EbWYOD1zx+IDaQJ3vREA0QIv1EPfOozAOmZg
+ 6MKkOsUg8YQlEkB5t2G7PkodfR1aQJlWvbkR2awNr1jYrX5lKTVYgkhHk
+ o7M+Fro7fPvVzj5iCTSSV9W4NerrDJwPJbiAThQZp1M8tGNaBkzm/m4pr
+ BTYclOtjHQQXkk5z7po2w1iDou5DYh/na2yqjEj5WgEd6Jvyjeu12Ri/W
+ 6LoCo+XDOtoyaqi2GWDjpWKwZOXBewcp/CHoKQotLjQY9Q76mxgpk5mCl A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="343873833"
+X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="343873833"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2023 01:30:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="719510772"
-X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="719510772"
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="722725106"
+X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="722725106"
 Received: from jmvuilla-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.41.105])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2023 01:29:15 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2023 01:30:18 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230705202122.17915-11-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230705202122.17915-12-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230705202122.17915-1-ville.syrjala@linux.intel.com>
- <20230705202122.17915-11-ville.syrjala@linux.intel.com>
-Date: Thu, 06 Jul 2023 11:29:13 +0300
-Message-ID: <87y1jtxx2e.fsf@intel.com>
+ <20230705202122.17915-12-ville.syrjala@linux.intel.com>
+Date: Thu, 06 Jul 2023 11:30:16 +0300
+Message-ID: <87v8exxx0n.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 10/13] drm/i915/sdvo: Nuke the duplicate
- sdvo->port
+Subject: Re: [Intel-gfx] [PATCH 11/13] drm/i915/sdvo: Get rid of the
+ per-connector i2c symlink
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,116 +68,71 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, 05 Jul 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> We already have encoder->port so get rid of the duplicate
-> sdvo->port.
+> We should switch over to the standard "ddc" per-connector
+> symlink instead of rolling our own thing. The i2c specific
+> symlink is also in the way of reworking the SDVO DDC handling
+> (which is a mess atm) so get rid of it.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_sdvo.c | 19 ++++++++-----------
->  1 file changed, 8 insertions(+), 11 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_sdvo.c | 29 ++---------------------
+>  1 file changed, 2 insertions(+), 27 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/=
 i915/display/intel_sdvo.c
-> index e6c558416a6b..383f8b1547a1 100644
+> index 383f8b1547a1..5c25417d256a 100644
 > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
 > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -108,8 +108,6 @@ struct intel_sdvo {
->  	 */
->  	u16 hotplug_active;
->=20=20
-> -	enum port port;
-> -
->  	/* DDC bus used by this SDVO encoder */
->  	u8 ddc_bus;
->=20=20
-> @@ -226,7 +224,7 @@ static void intel_sdvo_write_sdvox(struct intel_sdvo =
-*intel_sdvo, u32 val)
->  		return;
->  	}
->=20=20
-> -	if (intel_sdvo->port =3D=3D PORT_B)
-> +	if (intel_sdvo->base.port =3D=3D PORT_B)
->  		cval =3D intel_de_read(dev_priv, GEN3_SDVOC);
->  	else
->  		bval =3D intel_de_read(dev_priv, GEN3_SDVOB);
-> @@ -403,7 +401,7 @@ static const char *sdvo_cmd_name(u8 cmd)
->  	return NULL;
+> @@ -2468,31 +2468,6 @@ intel_sdvo_connector_atomic_set_property(struct dr=
+m_connector *connector,
+>  	return 0;
 >  }
 >=20=20
-> -#define SDVO_NAME(svdo) ((svdo)->port =3D=3D PORT_B ? "SDVOB" : "SDVOC")
-> +#define SDVO_NAME(svdo) ((svdo)->base.port =3D=3D PORT_B ? "SDVOB" : "SD=
-VOC")
->=20=20
->  static void intel_sdvo_debug_write(struct intel_sdvo *intel_sdvo, u8 cmd,
->  				   const void *args, int args_len)
-> @@ -1604,7 +1602,7 @@ static void intel_sdvo_pre_enable(struct intel_atom=
-ic_state *state,
->  			sdvox |=3D SDVO_BORDER_ENABLE;
->  	} else {
->  		sdvox =3D intel_de_read(dev_priv, intel_sdvo->sdvo_reg);
-> -		if (intel_sdvo->port =3D=3D PORT_B)
-> +		if (intel_sdvo->base.port =3D=3D PORT_B)
->  			sdvox &=3D SDVOB_PRESERVE_MASK;
->  		else
->  			sdvox &=3D SDVOC_PRESERVE_MASK;
-> @@ -2618,7 +2616,7 @@ intel_sdvo_select_ddc_bus(struct intel_sdvo *sdvo)
->  	struct drm_i915_private *dev_priv =3D to_i915(sdvo->base.base.dev);
->  	struct sdvo_device_mapping *mapping;
->=20=20
-> -	if (sdvo->port =3D=3D PORT_B)
-> +	if (sdvo->base.port =3D=3D PORT_B)
->  		mapping =3D &dev_priv->display.vbt.sdvo_mappings[0];
->  	else
->  		mapping =3D &dev_priv->display.vbt.sdvo_mappings[1];
-> @@ -2636,7 +2634,7 @@ intel_sdvo_select_i2c_bus(struct intel_sdvo *sdvo)
->  	struct sdvo_device_mapping *mapping;
->  	u8 pin;
->=20=20
-> -	if (sdvo->port =3D=3D PORT_B)
-> +	if (sdvo->base.port =3D=3D PORT_B)
->  		mapping =3D &dev_priv->display.vbt.sdvo_mappings[0];
->  	else
->  		mapping =3D &dev_priv->display.vbt.sdvo_mappings[1];
-> @@ -2676,7 +2674,7 @@ intel_sdvo_get_slave_addr(struct intel_sdvo *sdvo)
->  	struct drm_i915_private *dev_priv =3D to_i915(sdvo->base.base.dev);
->  	struct sdvo_device_mapping *my_mapping, *other_mapping;
->=20=20
-> -	if (sdvo->port =3D=3D PORT_B) {
-> +	if (sdvo->base.port =3D=3D PORT_B) {
->  		my_mapping =3D &dev_priv->display.vbt.sdvo_mappings[0];
->  		other_mapping =3D &dev_priv->display.vbt.sdvo_mappings[1];
->  	} else {
-> @@ -2703,7 +2701,7 @@ intel_sdvo_get_slave_addr(struct intel_sdvo *sdvo)
->  	 * No SDVO device info is found for another DVO port,
->  	 * so use mapping assumption we had before BIOS parsing.
->  	 */
-> -	if (sdvo->port =3D=3D PORT_B)
-> +	if (sdvo->base.port =3D=3D PORT_B)
->  		return 0x70;
->  	else
->  		return 0x72;
-> @@ -3367,7 +3365,6 @@ bool intel_sdvo_init(struct drm_i915_private *dev_p=
-riv,
->  			 "SDVO %c", port_name(port));
->=20=20
->  	intel_sdvo->sdvo_reg =3D sdvo_reg;
-> -	intel_sdvo->port =3D port;
->  	intel_sdvo->slave_addr =3D intel_sdvo_get_slave_addr(intel_sdvo) >> 1;
->  	intel_sdvo_select_i2c_bus(intel_sdvo);
->  	if (!intel_sdvo_init_ddc_proxy(intel_sdvo))
-> @@ -3417,7 +3414,7 @@ bool intel_sdvo_init(struct drm_i915_private *dev_p=
-riv,
->  	 * hotplug lines.
->  	 */
->  	if (intel_sdvo->hotplug_active) {
-> -		if (intel_sdvo->port =3D=3D PORT_B)
-> +		if (intel_sdvo->base.port =3D=3D PORT_B)
->  			intel_encoder->hpd_pin =3D HPD_SDVO_B;
->  		else
->  			intel_encoder->hpd_pin =3D HPD_SDVO_C;
+> -static int
+> -intel_sdvo_connector_register(struct drm_connector *connector)
+> -{
+> -	struct intel_sdvo *sdvo =3D intel_attached_sdvo(to_intel_connector(conn=
+ector));
+> -	int ret;
+> -
+> -	ret =3D intel_connector_register(connector);
+> -	if (ret)
+> -		return ret;
+> -
+> -	return sysfs_create_link(&connector->kdev->kobj,
+> -				 &sdvo->ddc.dev.kobj,
+> -				 sdvo->ddc.dev.kobj.name);
+> -}
+> -
+> -static void
+> -intel_sdvo_connector_unregister(struct drm_connector *connector)
+> -{
+> -	struct intel_sdvo *sdvo =3D intel_attached_sdvo(to_intel_connector(conn=
+ector));
+> -
+> -	sysfs_remove_link(&connector->kdev->kobj,
+> -			  sdvo->ddc.dev.kobj.name);
+> -	intel_connector_unregister(connector);
+> -}
+> -
+>  static struct drm_connector_state *
+>  intel_sdvo_connector_duplicate_state(struct drm_connector *connector)
+>  {
+> @@ -2511,8 +2486,8 @@ static const struct drm_connector_funcs intel_sdvo_=
+connector_funcs =3D {
+>  	.fill_modes =3D drm_helper_probe_single_connector_modes,
+>  	.atomic_get_property =3D intel_sdvo_connector_atomic_get_property,
+>  	.atomic_set_property =3D intel_sdvo_connector_atomic_set_property,
+> -	.late_register =3D intel_sdvo_connector_register,
+> -	.early_unregister =3D intel_sdvo_connector_unregister,
+> +	.late_register =3D intel_connector_register,
+> +	.early_unregister =3D intel_connector_unregister,
+>  	.destroy =3D intel_connector_destroy,
+>  	.atomic_destroy_state =3D drm_atomic_helper_connector_destroy_state,
+>  	.atomic_duplicate_state =3D intel_sdvo_connector_duplicate_state,
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
