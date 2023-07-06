@@ -1,76 +1,171 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B7B749D3F
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 15:18:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E524E749D44
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 15:18:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06BF710E404;
-	Thu,  6 Jul 2023 13:18:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9915E10E412;
+	Thu,  6 Jul 2023 13:18:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com
- [IPv6:2607:f8b0:4864:20::42d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C501010E150
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 03:27:38 +0000 (UTC)
-Received: by mail-pf1-x42d.google.com with SMTP id
- d2e1a72fcca58-66d6a9851f3so1321870b3a.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 Jul 2023 20:27:38 -0700 (PDT)
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
+ [205.220.177.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E3CB10E086;
+ Thu,  6 Jul 2023 01:36:47 +0000 (UTC)
+Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 36605GLR021479; Thu, 6 Jul 2023 01:36:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=to : cc : subject :
+ from : message-id : references : date : in-reply-to : content-type :
+ mime-version; s=corp-2023-03-30;
+ bh=ECk6RBdE1tZAtA82Ulx/bgaLkPQLBbE+JmlmMx51VYo=;
+ b=yzFqTSG3k1BvzUw8tkiZSX9Xcvxwptbe/C6e60wZDVCOi9ZPLUNTl2mJkkDbwmf4XkCd
+ tborVs1LhyQ8mI5/NCM4SZAfz3ReGTSU1xIIuVs0I0+6ehOlp0XiI9OXPKoepQpLTUuy
+ ktVvTriqLBu1f7gfVyU5C9gQRdZreIGU5uW45SNZWmDsxY60uSs3yfyjYbCA14oUYtEt
+ 01y34ptrglB6/C9LibG29644JVUhFxaJnpE6tpV630g7yxd70CUy2aXZoRtINqSWQJP0
+ DuicesSyz9vAhfCqv98Es8bTAux6dfFQRpLwBHRbw97G3vLD4173MeSAentlvX44kbx9 Wg== 
+Received: from phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com
+ (phxpaimrmta03.appoci.oracle.com [138.1.37.129])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3rnf138d13-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 06 Jul 2023 01:36:02 +0000
+Received: from pps.filterd
+ (phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+ by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (8.17.1.19/8.17.1.19)
+ with ESMTP id 365NSuDK024885; Thu, 6 Jul 2023 01:36:01 GMT
+Received: from nam10-bn7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10lp2105.outbound.protection.outlook.com [104.47.70.105])
+ by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id
+ 3rjak6tqhn-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 06 Jul 2023 01:36:01 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XQbax9RZnI2PcDkgnQWmlYd7ttT5w8t/PvR1DvUv/Jc1SU7EyHTcn2q4HJZnSyW1x/4QiC1OuktvNNHOd+TZEM2oWsF2ws5boQLbdD7Tm0vcdB3K6ESu6qBmSW5ArqE9XS1lHTwH0l15SJAkm/1oeZc8M2AbToDTnjJ1OK+CvyWnGcjs7p4H63xh7Xr//jF4j5gGeUwWgh5mdBIXHGpBTmLaQ8Gyu/YylBnTQDwD93l6tv0Ga+fQznD5NeW+omzhvaGdtU1CTdddsrElGZ9REn5gumkLgiO8PVLkAM8Ku7naKu5xS+wruMa6dn+FczXZqJXxgewHs4hJiISmOJf4MQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ECk6RBdE1tZAtA82Ulx/bgaLkPQLBbE+JmlmMx51VYo=;
+ b=YUVpsHIAZGSMW3JjOk79IhT9XyLKLvkXFEUPYi78ha06wdSkxYaZJeJD2uiGhWa2kGFVjqCPpgIHjiNKjkfEEibrs0AFiuttiCuZTETpZLgjDmtZd3HT2rzueqhsF9FN6cbw/I0qnBbieJxiiKHtQkcxu+VYU6XQl1DREtn54rapoKvRtl3qy04BLATSh8G7fbLqabdXjKUhYKw1FKvRR/x3v8pOw2XfZnZxCxWuEnxCeAGYQqOQ0n7JNMbz97UEpgU1Uaf1+5FDEIx15fD75FjPDcgUg1O20fHkBbpyppbPiN1YEwZbDsJXXUPFPch3bYFTnbtMkjiaTAd7dOdogA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bytedance.com; s=google; t=1688527657; x=1691119657;
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=NOwOUvz1NPkWlBxAp0GPGGO2Nrixl73uZn6xROfOEj8=;
- b=ifLsYO8F2I4MBHVlF2Or5hf7tTNep81Mx+BsSk/nCvCzxaPTLrQYJUCegbZ71CLvqI
- jnwmhHljMYjJqvknT1p7Cvh4o3Zetn0nbYVkcxdIejyVlEmEoOc51mjv2rm9Oe7hCkmi
- BhkEzv2gsaM2VKlzfD2ZXlb5JXn4cFBH6rlbCG9Gisi0SSs52NHZD0JL0DYBTusr279z
- ECt8JJbhMcUgBeDhNudIJn3gOdFaKif3GEH22u6ET+bb2NCPdK1crIBUZU+UjNX2cqQu
- Xo1u3OB8WsD6YcqowSF12wIwDOJl+hjeHnPzPy5ZJwY8SE6f5Rm09aAg64VyQm7gLUPN
- jgMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1688527657; x=1691119657;
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=NOwOUvz1NPkWlBxAp0GPGGO2Nrixl73uZn6xROfOEj8=;
- b=BGYlChvahgdMeSSqw98fSn9qZDPSv9/xhzuZYVY8Hso0DFSyz3iRefYc7H3UXIu4DA
- 2Cg9nfSrCmLohF1wFyQTIVi3mLEcT86bu5Ty3AsFQPmk4BuA3X6Su4ajscNi4DzOj6C+
- OgpS5K1wOYWFCbTblD6KB0UzRFbhIukiS53nIbeE8pLJmF4j7Bnnaq7GVcAh8M6Xm15E
- 6BnjFf9TanyklJjr52xPlHHYPTXso4BTtjMUms43OZ4O/gaUN3SG4RdmeIYF5t7IaFu5
- 0EDyLsV63Sj1WlCFHMZelGTTKEwnKuEoJgluoi5DogKJggOrrp6GnxpX0Gaimx3OA1Wd
- FX+A==
-X-Gm-Message-State: ABy/qLasOfmR4eBukVRYHyS19NbfyGTfd4dCc+xI8fSSwbh6ke5vqjXS
- caCHx3pT74lS37wDypCGByEz5g==
-X-Google-Smtp-Source: APBJJlHJ/xdp2D4mprG7cOjZwHFFckWD0OnUdfulMpel6EsGVgn6d2uqpP3j7nke+gBKkBfRchiLhg==
-X-Received: by 2002:a05:6a00:1f90:b0:675:8627:a291 with SMTP id
- bg16-20020a056a001f9000b006758627a291mr16245087pfb.3.1688527657628; 
- Tue, 04 Jul 2023 20:27:37 -0700 (PDT)
-Received: from [10.70.252.135] ([203.208.167.147])
- by smtp.gmail.com with ESMTPSA id
- fe10-20020a056a002f0a00b0064fde7ae1ffsm13136627pfb.38.2023.07.04.20.27.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 04 Jul 2023 20:27:37 -0700 (PDT)
-Message-ID: <733af312-fb2d-3ec4-54c8-f154447c2051@bytedance.com>
-Date: Wed, 5 Jul 2023 11:27:28 +0800
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ECk6RBdE1tZAtA82Ulx/bgaLkPQLBbE+JmlmMx51VYo=;
+ b=KSuCsMGmwg5231B/GvHluPZ7atm4QepEuT8uJcqiPGjl3i4r500WS63HfnUtvDUXh/UXg13X9DwWRbTwLuVul+R/QEVZyXoaEGj2OgnEqBMzrTN81uHbRT6jswCn6UCpiqT2Ee58D4p0qwIwjDtgMGHcBtStigiRkk59Ojl/AO8=
+Received: from CO1PR10MB4754.namprd10.prod.outlook.com (2603:10b6:303:91::24)
+ by BN0PR10MB5254.namprd10.prod.outlook.com (2603:10b6:408:117::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.17; Thu, 6 Jul
+ 2023 01:35:58 +0000
+Received: from CO1PR10MB4754.namprd10.prod.outlook.com
+ ([fe80::9f29:328c:1592:d5bb]) by CO1PR10MB4754.namprd10.prod.outlook.com
+ ([fe80::9f29:328c:1592:d5bb%7]) with mapi id 15.20.6544.024; Thu, 6 Jul 2023
+ 01:35:57 +0000
+To: Julia Lawall <Julia.Lawall@inria.fr>
+From: "Martin K. Petersen" <martin.petersen@oracle.com>
+Organization: Oracle Corporation
+Message-ID: <yq1pm55lt3y.fsf@ca-mkp.ca.oracle.com>
+References: <20230627144339.144478-1-Julia.Lawall@inria.fr>
+Date: Wed, 05 Jul 2023 21:35:55 -0400
+In-Reply-To: <20230627144339.144478-1-Julia.Lawall@inria.fr> (Julia Lawall's
+ message of "Tue, 27 Jun 2023 16:43:15 +0200")
+Content-Type: text/plain
+X-ClientProxiedBy: SA0PR12CA0004.namprd12.prod.outlook.com
+ (2603:10b6:806:6f::9) To CO1PR10MB4754.namprd10.prod.outlook.com
+ (2603:10b6:303:91::24)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.12.0
-Content-Language: en-US
-From: Qi Zheng <zhengqi.arch@bytedance.com>
-To: paulmck@kernel.org, Dave Chinner <david@fromorbit.com>
-References: <20230622085335.77010-1-zhengqi.arch@bytedance.com>
- <20230622085335.77010-25-zhengqi.arch@bytedance.com>
- <cf0d9b12-6491-bf23-b464-9d01e5781203@suse.cz>
- <ZJU708VIyJ/3StAX@dread.disaster.area>
- <cc894c77-717a-4e9f-b649-48bab40e7c60@paulmck-laptop>
- <3efa68e0-b04f-5c11-4fe2-2db0784064fc@bytedance.com>
-In-Reply-To: <3efa68e0-b04f-5c11-4fe2-2db0784064fc@bytedance.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR10MB4754:EE_|BN0PR10MB5254:EE_
+X-MS-Office365-Filtering-Correlation-Id: 80bd8360-6f2f-4f07-bdb3-08db7dc158f2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: aXgzwYBWKBECwY25Ix26qaJznGDbEV1pbi+zF6JHCoR4tzCR2uwIxluJ9EM88bfvzLko4PH9fHWVp71ViS+9HtqKN4fnuIHBL+053NdcREM/fWxtqdKVTgYfbjG8Cgn2AhtWR83BfrBgDBy9k7C/uRXwa7lCGI24uIn+l+y3E24K7x254c/jC6a9UtlKGGqPvmVU3YLFzFxcwkqxmrcP9WZGdkmPwHbHfHrLUkteRTGgKnY+nCZ+s/vN1mArIKdQ+zuUvmU3chmcr3JYAc2Yqxhtmg6t9ZHcBcVvgarwJO7kFjVp11mL0ToJhDAOSBN34roYsmCKxVlGZ7BDC9qf6iZsy04T8SOlrXERoeJS22wgxC+pa7oUyndTj2uDjcOfN8YJVk9wiSgb/FMW8/e3RxTjA9jxdLcBNxzJKcI+ZbM9VkYobgVv4LlZUQ+ha61IAxqQevjo+fqx4dU+lHt1AsTfhhbRd0sNxIj1UYR/JqwP0Hsk6R/RIVHNKFJ9ObsFzvtrm9XJjMHS+Qbm3fjbwIEDC4BCJCweEHDqMKfyh+tuxadpGc3i2mlyrvJ5COEA
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO1PR10MB4754.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(366004)(346002)(39860400002)(136003)(396003)(451199021)(66476007)(66556008)(6916009)(4326008)(66946007)(186003)(86362001)(38100700002)(6506007)(26005)(478600001)(6512007)(54906003)(4744005)(41300700001)(8936002)(8676002)(7406005)(7416002)(2906002)(5660300002)(36916002)(6486002)(316002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oZnd1vC+ZeSjMXdCx87EfRMyfwojEc/Frm0T5UjAVAeGh3aMFwJZwHtcZYCa?=
+ =?us-ascii?Q?5girqPHQNfoTvj+0scFQZwophCzQ29Vdsf1nyW9SmOxDojXLXNqV5cyiwkDG?=
+ =?us-ascii?Q?u0ZeCvqRizVf0YmePuS4B4XKPRXZeWtdBJgERhesq84h5MmbVMVJzglbthFd?=
+ =?us-ascii?Q?bnr/NulJ6XSj3aE858oqQ1ZgjMnpi4EswZTnTy4FuH4asu4vDTRD7ecFnS7U?=
+ =?us-ascii?Q?/iVVD69XgZYO32khyhPpVg7t5rEQbmKhMwpAwEf7uy6Md6fHTk2nUBxrYDVL?=
+ =?us-ascii?Q?z3RE/jCrrERGegYqMdeS+NUnQdHVq00Q4Qz//Yh3avlokJ+bHA13Xrfv3Taz?=
+ =?us-ascii?Q?Y0XGCe5PDmvPzFngLaVikR9MCbDbdu/otqWYWs7SsPq2eEpa/TLEOOUpJHNF?=
+ =?us-ascii?Q?/fm3z4/wipteA2ZPKUTq7LSb+SdrQxLsFdWD3f9CzLDKZbWiYLB3pBl8UBer?=
+ =?us-ascii?Q?cD0MGDGas7sRwDph6c7M963dHI114loaLB1S8qfrGlNz7drSencAOBwPV/bG?=
+ =?us-ascii?Q?hwWX8/4SMht4TTWkEeMZ7K4HTblN+XA6g0Ob4DIHMUSVD1tuVjs4uV4sAhLQ?=
+ =?us-ascii?Q?KefngYRZlXIHQ98wJOZLgeqh2YE2A9FdANa7S5ThTmSNNh36i6DpVTWNx4Z0?=
+ =?us-ascii?Q?yBzuTLEGwluhP1GKIXdVvOngjBMf27+bjTlAsJu5QqsoxWu3OXpNcKmQ0eR4?=
+ =?us-ascii?Q?p1e5jR78m+7FwpIm5t56IBnY71UMj8OlcH9PjJahIiF0ln7RUQ3+8KF8pIuX?=
+ =?us-ascii?Q?01auqN5+6CyC/uBWntqvT0oxr/+uPgQ3I4HnOZBu+8ZYUACa1PJ+qrpyBaR1?=
+ =?us-ascii?Q?AtJPUxq8iAvvx575iPQpvxOc1bh6hkADYQWigA0pIkpVh6vfTjwkV29pC6UW?=
+ =?us-ascii?Q?NFJq5tIw/UF/2Mf5V/pmmCEKsJ+dJecwzfKzPbrJaHI//cP7bp3f7WlEHuVI?=
+ =?us-ascii?Q?SOpHBjHKvMb4BRPt/D/PvaShaFqXOcfY+ZVv9FB9QFAqdtlcPpjuB2czHXgU?=
+ =?us-ascii?Q?4menLEzYQsNw/axT6f2gnilPKfh4BiAGCuQ66Uvatz0M5MgSuA/CtzFIAmQJ?=
+ =?us-ascii?Q?FqEO0J9NgzixAh4zHM63V0ovofeW41L2NnomwNKsOK9oxWFMRRsioOv19d52?=
+ =?us-ascii?Q?96QfpRTMrdcHRc55+/pMwl0USPrMcOFH9PpwX5xFmXSCBoEISzcX+sygb/mB?=
+ =?us-ascii?Q?R9gMq4NyWCxJiYOUiiEYDxrefAsdtoThDurMu9IZFy4E6/n0NK0iscydE4WZ?=
+ =?us-ascii?Q?RK1qD8b31FXIjqlX0bLP438f9D6RR8rKS6taVYoJPXPe7EIOOfYE8UhNyVpD?=
+ =?us-ascii?Q?rAEoirTk5+B2r3WCD5ljks3RDuzLdLiDOh9gATgGDOLtO840Bstb6LE3BXDc?=
+ =?us-ascii?Q?+6DpYKyhk3xqSa6yyUE9cn0fVyE42IsiOOT3BIw/vp/5XYmVXdIxq17vkuTV?=
+ =?us-ascii?Q?WihMR3SE79WDmg8Aem37dJy+qnQPq3NvBKMzrSlqa+NT5wV8r4JgtYtPCBfy?=
+ =?us-ascii?Q?Sik12ACwKJmHRbKp+5lQ4wvv59FMPO3E0Qom2+UleSA7sPgeY05Bz/8tSNE2?=
+ =?us-ascii?Q?J731y06zhKIaGkcqT5It5FR7tNfmSxm1/UyvvpgdQdwueYYmpUwK+E8glJpn?=
+ =?us-ascii?Q?xg=3D=3D?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: =?us-ascii?Q?LgKkHi00kqRPLGHs3CCY+gNJJssq2gGm9nnjkbhWEA25FOZreU3WRZwKsCH6?=
+ =?us-ascii?Q?MzMxdnU3lUcZ+48PfahkR/hAFgY1WKlGMwIOLH9+Guyf8+8n8H4IWl835Hoi?=
+ =?us-ascii?Q?hywIRZp8P/gNZX3jeHBst0l7zrQ/Nqg6D5+1pv8TIidYuOYDHz9F+bglQ0uD?=
+ =?us-ascii?Q?6EIDJtfso9PBdTW6TgG6KxuUg6K7NuMEXqxr1abkvLb6Vnj6UkUp3WN/JAip?=
+ =?us-ascii?Q?DH4pHsOyyyVmapTLD91F7Izk0PWQI8YYm7qicRhSdo2BLGkYsR/AHUOWZ9r7?=
+ =?us-ascii?Q?jr6edtHA4Jkq3yxh7R6QmK1A5AaYosmDZNKY373wzb7hntWECXQufC0vSmF6?=
+ =?us-ascii?Q?WrQpE5IMkQ573cSJxoqUdTBwfJg0+o9fgvdtu4qQvWD8BAU0wL69/WMg0G+Q?=
+ =?us-ascii?Q?IgGe90KGejmPA627NllcBQJYK067QViXu6akhpuSCF2mopMi+kPe20hzOkNC?=
+ =?us-ascii?Q?EZR/yhTyOYqeLlVhsJ4hz5Vo5OB9vYqNkcCROtakAkAxJKp2pLQOpm4kDJHY?=
+ =?us-ascii?Q?lO3ZG+7rmYbrJOWVE43wu+Gc9NLahPbZ/aJzBPurpla9YvZeZZRMQ9o2huQz?=
+ =?us-ascii?Q?O68t+TtGVDFhVxZFVLOxeoy1RxoALc+koXh2pG4gfFmlhqJtlldiYM4EMNiS?=
+ =?us-ascii?Q?mK6wuXmDX1QTuqpyeJv+qEt7luU8HgaMmFMnxq9qbIcelyhnabJxmOFqg+Gu?=
+ =?us-ascii?Q?AAVOlWMugLJvhA2C8w+vR71PVtd9n+ts9vsCb0L8lHgCMefGoS/DPSF5pT1/?=
+ =?us-ascii?Q?jpC42YAYb3gFgW3yK9NlFfrAQar0IZc/eVdO00J6M40MrmUZlGq1jNao368H?=
+ =?us-ascii?Q?wSnY6hpbsh1DiMVZIMezDuX7aXM8r+OXOoZpM+NQEliYnlbX6yw3IgG6qJ9C?=
+ =?us-ascii?Q?2cW+aGhlnGQHcj6lBJukReWifB8ntl/ZANV8sDB3iljtO9ulcNfEU1GPChOs?=
+ =?us-ascii?Q?JsIPU9hPIJyhjpY8GDaJonEhZceGKBNIzQog+gMdPLLnHup3wQmrFqs8tGRv?=
+ =?us-ascii?Q?gy1yqBzHJ7TcDjoF+CdZ/wWnSxTIBvqsZoa3ifZhjfmP2ozgtKudXNiHMbXI?=
+ =?us-ascii?Q?WB+KFD7Uv9kLW9NBPiErOA2iuKMPgQuAa3DPf3PuaBmQSUzY99fs/0B/RGIe?=
+ =?us-ascii?Q?HCVViB19o2NtGhfJA/uDj4OlzievuASc+rI9XypGNpzSL2V+MdnXPSSW7YCF?=
+ =?us-ascii?Q?g8QE4BAsXcsmR/E0fvW+0TchRoX/aYG+i3s2BBC0rxgYM5ThsLsmd1NvgJ6u?=
+ =?us-ascii?Q?d2si66re7OTOynmKM8OeX/Ki2dfjqpYRtZKOoMcM8pOhLVQvcPFwBMn0TDM4?=
+ =?us-ascii?Q?4wFBmMPg2gE11bKrTCB6WZbR2Sc1VC+zZP+5VY6wGom7IUwSfABTguALJA/I?=
+ =?us-ascii?Q?qQKegHo7UMhaPSoTmtWDBv2DgKZQpSPP+79X5+7u1xea8uZMGTk4sBGooThc?=
+ =?us-ascii?Q?bcx4UcXOcaPwUkZLr9hMeW1FackgQLSmwMJTgJaoCOgToQXiBl5ghA=3D=3D?=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80bd8360-6f2f-4f07-bdb3-08db7dc158f2
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR10MB4754.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2023 01:35:57.8748 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eAhclqw7W/GWz8jwtzmOYOJlGA61zQkb/N+8gSuF1yF8N+VWkMqA0mH/RuvAR1OPH92lDBO5L4wE/ANS+D+HmMBBOcW3Lzeyt7JF6w4vCtI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB5254
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-05_11,2023-07-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
+ mlxlogscore=682 phishscore=0
+ malwarescore=0 spamscore=0 bulkscore=0 suspectscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
+ definitions=main-2307060012
+X-Proofpoint-GUID: su_bl4C-U7ciyxbD_1fxKbYxq45udROG
+X-Proofpoint-ORIG-GUID: su_bl4C-U7ciyxbD_1fxKbYxq45udROG
 X-Mailman-Approved-At: Thu, 06 Jul 2023 13:18:28 +0000
-Subject: Re: [Intel-gfx] [PATCH 24/29] mm: vmscan: make global slab shrink
- lockless
+Subject: Re: [Intel-gfx] [PATCH v2 00/24] use vmalloc_array and vcalloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,231 +178,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-bcache@vger.kernel.org, linux-xfs@vger.kernel.org, brauner@kernel.org,
- tytso@mit.edu, djwong@kernel.org, intel-gfx@lists.freedesktop.org,
- roman.gushchin@linux.dev, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linux-raid@vger.kernel.org, linux-mm@kvack.org, dm-devel@redhat.com,
- linux-btrfs@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
- linux-ext4@vger.kernel.org, linux-nfs@vger.kernel.org,
- Vlastimil Babka <vbabka@suse.cz>, tkhai@ya.ru
+Cc: linux-hyperv@vger.kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
+ kernel-janitors@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org, John Stultz <jstultz@google.com>,
+ "H. Peter Anvin" <hpa@zytor.com>, linux-sgx@vger.kernel.org,
+ Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ kasan-dev@googlegroups.com, iommu@lists.linux.dev, kuba@kernel.org,
+ Laura Abbott <labbott@redhat.com>, linux-media@vger.kernel.org,
+ keescook@chromium.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ Krishna Reddy <vdumpa@nvidia.com>, Shailend Chand <shailend@google.com>,
+ christophe.jaillet@wanadoo.fr, linux-tegra@vger.kernel.org,
+ intel-gvt-dev@lists.freedesktop.org, Dmitry Vyukov <dvyukov@google.com>,
+ Andrey Konovalov <andreyknvl@gmail.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Liam Mark <lmark@codeaurora.org>,
+ mhi@lists.linux.dev, Robin Murphy <robin.murphy@arm.com>,
+ linux-btrfs@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+Julia,
 
-On 2023/7/4 11:45, Qi Zheng wrote:
-> 
-> 
-> On 2023/7/4 00:39, Paul E. McKenney wrote:
->> On Fri, Jun 23, 2023 at 04:29:39PM +1000, Dave Chinner wrote:
->>> On Thu, Jun 22, 2023 at 05:12:02PM +0200, Vlastimil Babka wrote:
->>>> On 6/22/23 10:53, Qi Zheng wrote:
->>>>> @@ -1067,33 +1068,27 @@ static unsigned long shrink_slab(gfp_t 
->>>>> gfp_mask, int nid,
->>>>>       if (!mem_cgroup_disabled() && !mem_cgroup_is_root(memcg))
->>>>>           return shrink_slab_memcg(gfp_mask, nid, memcg, priority);
->>>>> -    if (!down_read_trylock(&shrinker_rwsem))
->>>>> -        goto out;
->>>>> -
->>>>> -    list_for_each_entry(shrinker, &shrinker_list, list) {
->>>>> +    rcu_read_lock();
->>>>> +    list_for_each_entry_rcu(shrinker, &shrinker_list, list) {
->>>>>           struct shrink_control sc = {
->>>>>               .gfp_mask = gfp_mask,
->>>>>               .nid = nid,
->>>>>               .memcg = memcg,
->>>>>           };
->>>>> +        if (!shrinker_try_get(shrinker))
->>>>> +            continue;
->>>>> +        rcu_read_unlock();
->>>>
->>>> I don't think you can do this unlock?
->>
->> Sorry to be slow to respond here, this one fell through the cracks.
->> And thank you to Qi for reminding me!
->>
->> If you do this unlock, you had jolly well better nail down the current
->> element (the one referenced by shrinker), for example, by acquiring an
->> explicit reference count on the object.  And presumably this is exactly
->> what shrinker_try_get() is doing.  And a look at your 24/29 confirms 
->> this,
->> at least assuming that shrinker->refcount is set to zero before the call
->> to synchronize_rcu() in free_module() *and* that synchronize_rcu() 
->> doesn't
->> start until *after* shrinker_put() calls complete().  Plus, as always,
->> the object must be removed from the list before the synchronize_rcu()
->> starts.  (On these parts of the puzzle, I defer to those more familiar
->> with this code path.  And I strongly suggest carefully commenting this
->> type of action-at-a-distance design pattern.)
-> 
-> Yeah, I think I've done it like above. A more detailed timing diagram is
-> below.
-> 
->>
->> Why is this important?  Because otherwise that object might be freed
->> before you get to the call to rcu_read_lock() at the end of this loop.
->> And if that happens, list_for_each_entry_rcu() will be walking the
->> freelist, which is quite bad for the health and well-being of your 
->> kernel.
->>
->> There are a few other ways to make this sort of thing work:
->>
->> 1.    Defer the shrinker_put() to the beginning of the loop.
->>     You would need a flag initially set to zero, and then set to
->>     one just before (or just after) the rcu_read_lock() above.
->>     You would also need another shrinker_old pointer to track the
->>     old pointer.  Then at the top of the loop, if the flag is set,
->>     invoke shrinker_put() on shrinker_old.    This ensures that the
->>     previous shrinker structure stays around long enough to allow
->>     the loop to find the next shrinker structure in the list.
->>
->>     This approach is attractive when the removal code path
->>     can invoke shrinker_put() after the grace period ends.
->>
->> 2.    Make shrinker_put() invoke call_rcu() when ->refcount reaches
->>     zero, and have the callback function free the object.  This of
->>     course requires adding an rcu_head structure to the shrinker
->>     structure, which might or might not be a reasonable course of
->>     action.  If adding that rcu_head is reasonable, this simplifies
->>     the logic quite a bit.
->>
->> 3.    For the shrinker-structure-removal code path, remove the shrinker
->>     structure, then remove the initial count from ->refcount,
->>     and then keep doing grace periods until ->refcount is zero,
->>     then do one more.  Of course, if the result of removing the
->>     initial count was zero, then only a single additional grace
->>     period is required.
->>
->>     This would need to be carefully commented, as it is a bit
->>     unconventional.
-> 
-> Thanks for such a detailed addition!
-> 
->>
->> There are probably many other ways, but just to give an idea of a few
->> other ways to do this.
->>
->>>>> +
->>>>>           ret = do_shrink_slab(&sc, shrinker, priority);
->>>>>           if (ret == SHRINK_EMPTY)
->>>>>               ret = 0;
->>>>>           freed += ret;
->>>>> -        /*
->>>>> -         * Bail out if someone want to register a new shrinker to
->>>>> -         * prevent the registration from being stalled for long 
->>>>> periods
->>>>> -         * by parallel ongoing shrinking.
->>>>> -         */
->>>>> -        if (rwsem_is_contended(&shrinker_rwsem)) {
->>>>> -            freed = freed ? : 1;
->>>>> -            break;
->>>>> -        }
->>>>> -    }
->>>>> -    up_read(&shrinker_rwsem);
->>>>> -out:
->>>>> +        rcu_read_lock();
->>>>
->>>> That new rcu_read_lock() won't help AFAIK, the whole
->>>> list_for_each_entry_rcu() needs to be under the single 
->>>> rcu_read_lock() to be
->>>> safe.
->>>
->>> Yeah, that's the pattern we've been taught and the one we can look
->>> at and immediately say "this is safe".
->>>
->>> This is a different pattern, as has been explained bi Qi, and I
->>> think it *might* be safe.
->>>
->>> *However.*
->>>
->>> Right now I don't have time to go through a novel RCU list iteration
->>> pattern it one step at to determine the correctness of the
->>> algorithm. I'm mostly worried about list manipulations that can
->>> occur outside rcu_read_lock() section bleeding into the RCU
->>> critical section because rcu_read_lock() by itself is not a memory
->>> barrier.
->>>
->>> Maybe Paul has seen this pattern often enough he could simply tell
->>> us what conditions it is safe in. But for me to work that out from
->>> first principles? I just don't have the time to do that right now.
->>
->> If the code does just the right sequence of things on the removal path
->> (remove, decrement reference, wait for reference to go to zero, wait for
->> grace period, free), then it would work.  If this is what is happening,
->> I would argue for more comments.  ;-)
-> 
-> The order of the removal path is slightly different from this:
-> 
->      shrink_slab                 unregister_shrinker
->      ===========                 ===================
-> 
->     shrinker_try_get()
->     rcu_read_unlock()
->                                  1. decrement initial reference
->                  shrinker_put()
->                  2. wait for reference to go to zero
->                  wait_for_completion()
->     rcu_read_lock()
-> 
->     shrinker_put()
->                  3. remove the shrinker from list
->                  list_del_rcu()
->                                  4. wait for grace period
->                  kfree_rcu()/synchronize_rcu()
-> 
-> 
->     list_for_each_entry()
-> 
->     shrinker_try_get()
->     rcu_read_unlock()
->                  5. free the shrinker
-> 
-> So the order is: decrement reference, wait for reference to go to zero,
-> remove, wait for grace period, free.
-> 
-> I think this can work. And we can only do the *step 3* after we hold the
-> RCU read lock again, right? Please let me know if I missed something.
+> The functions vmalloc_array and vcalloc were introduced in
+>
+> commit a8749a35c399 ("mm: vmalloc: introduce array allocation functions")
+>
+> but are not used much yet.  This series introduces uses of
+> these functions, to protect against multiplication overflows.
 
-Oh, you are right, It would be better to move step 3 to step 1. We
-should first remove the shrinker from the shrinker_list to prevent
-other traversers from finding it again, otherwise the following
-situations may occur theoretically:
+Applied #7 and #24 to 6.5/scsi-staging, thanks!
 
-CPU 0                 CPU 1
-
-shrinker_try_get()
-
-                       shrinker_try_get()
-
-shrinker_put()
-shrinker_try_get()
-                       shrinker_put()
-
-Thanks,
-Qi
-
-> 
-> Thanks,
-> Qi
-> 
->>
->>                             Thanx, Paul
->>
->>>> IIUC this is why Dave in [4] suggests unifying shrink_slab() with
->>>> shrink_slab_memcg(), as the latter doesn't iterate the list but uses 
->>>> IDR.
->>>
->>> Yes, I suggested the IDR route because radix tree lookups under RCU
->>> with reference counted objects are a known safe pattern that we can
->>> easily confirm is correct or not.  Hence I suggested the unification
->>> + IDR route because it makes the life of reviewers so, so much
->>> easier...
->>>
->>> Cheers,
->>>
->>> Dave.
->>> -- 
->>> Dave Chinner
->>> david@fromorbit.com
+-- 
+Martin K. Petersen	Oracle Linux Engineering
