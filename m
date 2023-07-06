@@ -1,50 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FD3974976F
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 10:25:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E206749774
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 10:28:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7799910E473;
-	Thu,  6 Jul 2023 08:25:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB7E610E478;
+	Thu,  6 Jul 2023 08:28:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55D8D10E473;
- Thu,  6 Jul 2023 08:24:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F5A810E478
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jul 2023 08:28:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688631899; x=1720167899;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=OsGmHaR/5g8kc4cXhdJcJfObUwVgdzNtkM/QGVAF1MY=;
- b=LDxcNOTfe1tt7jIXER774zw7dMzoj9z5RgxDIhZ5dS1lGVShAvHHFaBx
- mPC3S3rS63Cog2qo1R2yVruDlwsa1s7p0tqbZhS6S7apxauY0fjewETZJ
- dDVxy1CeUlnCYQKDKFezgj9juoQbi91dCIdOzB2GyTkSvr/V288HHAHjq
- ANlR7s6ylq7qIH9JVbAvkOSZZWSZdeAPY+S9wijqAaxpouiiSTONQ4cxB
- JwfjxRKpFZXU71YSHU/hYAzHP6qIegCWxfJK18sZn/N2nkgSvWwZ9UZc1
- K3/Ykn99jJHpR4Nf6nqQqCyuYyhEfqZ7Lfj4cYV0d53kJC/6A0jCaWzUV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="429583973"
-X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="429583973"
+ t=1688632093; x=1720168093;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=6Pi2FYCdEtiz1UQIC2J/jx4NeUx+4vv6F2gaf3OHasE=;
+ b=TgcHOlHHmVgmQzgJ9/QACBs74TiR/WXi6bp2hQyDcgv9PalmC0fbRQPM
+ 9Pjt+vIUFiL8n56ZVaMCe6U/2U50uP9AhCRJGvWyc3OcMDOpvcwvoOpno
+ l7ICGx13VXsI7pmr5B6vPDuNAy+XGLsYTJQQi3VwGq5XtAiSHM3RR0Fhv
+ V2TZ6130kIRwI2KY2wv7HZVCJxBo4jos7/1I/Swou9Lkk/LLuW8PocNYH
+ j5yCCpGUgJSHMuJ2Yhf4Q2DLz8jhZQuTwmBqLZVpG/iA8H1aoAwPnRW0b
+ Dm0+AyDi55IWlConvl3+tI0IHQvS+8jZi83DITGbqyFRduXuHcX7YpUo4 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="429584564"
+X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="429584564"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2023 01:24:58 -0700
+ 06 Jul 2023 01:28:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="864019242"
-X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="864019242"
-Received: from dnatta1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.201.247])
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="864020618"
+X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="864020618"
+Received: from jmvuilla-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.41.105])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2023 01:24:55 -0700
-Date: Thu, 6 Jul 2023 09:24:52 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <ZKZ6VIeInBYrBuph@tursulin-desk>
+ 06 Jul 2023 01:28:11 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230705202122.17915-10-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230705202122.17915-1-ville.syrjala@linux.intel.com>
+ <20230705202122.17915-10-ville.syrjala@linux.intel.com>
+Date: Thu, 06 Jul 2023 11:28:09 +0300
+Message-ID: <871qhlzbom.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 09/13] drm/i915/sdvo: Initialize the encoder
+ ealier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,91 +62,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+On Wed, 05 Jul 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Call drm_encoder_init() earlier so that we don't have to keep passing
+> the i915/dev_priv around separately.
 
-A weekly collection of fixes for the drm-next/6.5 merge window.
+*earlier in the subject.
 
-Mostly small display fixups, one for GuC/SLPC and one header file tidy.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_sdvo.c | 35 +++++++++++------------
+>  1 file changed, 17 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/=
+i915/display/intel_sdvo.c
+> index 29762716a067..e6c558416a6b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> @@ -2613,9 +2613,9 @@ intel_sdvo_guess_ddc_bus(struct intel_sdvo *sdvo)
+>   * outputs, then LVDS outputs.
+>   */
+>  static void
+> -intel_sdvo_select_ddc_bus(struct drm_i915_private *dev_priv,
+> -			  struct intel_sdvo *sdvo)
+> +intel_sdvo_select_ddc_bus(struct intel_sdvo *sdvo)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(sdvo->base.base.dev);
+>  	struct sdvo_device_mapping *mapping;
+>=20=20
+>  	if (sdvo->port =3D=3D PORT_B)
+> @@ -2630,9 +2630,9 @@ intel_sdvo_select_ddc_bus(struct drm_i915_private *=
+dev_priv,
+>  }
+>=20=20
+>  static void
+> -intel_sdvo_select_i2c_bus(struct drm_i915_private *dev_priv,
+> -			  struct intel_sdvo *sdvo)
+> +intel_sdvo_select_i2c_bus(struct intel_sdvo *sdvo)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(sdvo->base.base.dev);
+>  	struct sdvo_device_mapping *mapping;
+>  	u8 pin;
+>=20=20
+> @@ -2671,9 +2671,9 @@ intel_sdvo_is_hdmi_connector(struct intel_sdvo *int=
+el_sdvo)
+>  }
+>=20=20
+>  static u8
+> -intel_sdvo_get_slave_addr(struct drm_i915_private *dev_priv,
+> -			  struct intel_sdvo *sdvo)
+> +intel_sdvo_get_slave_addr(struct intel_sdvo *sdvo)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(sdvo->base.base.dev);
+>  	struct sdvo_device_mapping *my_mapping, *other_mapping;
+>=20=20
+>  	if (sdvo->port =3D=3D PORT_B) {
+> @@ -2994,7 +2994,6 @@ intel_sdvo_output_setup(struct intel_sdvo *intel_sd=
+vo)
+>  		SDVO_OUTPUT_LVDS0,
+>  		SDVO_OUTPUT_LVDS1,
+>  	};
+> -	struct drm_i915_private *i915 =3D to_i915(intel_sdvo->base.base.dev);
+>  	u16 flags;
+>  	int i;
+>=20=20
+> @@ -3008,7 +3007,7 @@ intel_sdvo_output_setup(struct intel_sdvo *intel_sd=
+vo)
+>=20=20
+>  	intel_sdvo->controlled_output =3D flags;
+>=20=20
+> -	intel_sdvo_select_ddc_bus(i915, intel_sdvo);
+> +	intel_sdvo_select_ddc_bus(intel_sdvo);
+>=20=20
+>  	for (i =3D 0; i < ARRAY_SIZE(probe_order); i++) {
+>  		u16 type =3D flags & probe_order[i];
+> @@ -3309,9 +3308,9 @@ static const struct i2c_lock_operations proxy_lock_=
+ops =3D {
+>  };
+>=20=20
+>  static bool
+> -intel_sdvo_init_ddc_proxy(struct intel_sdvo *sdvo,
+> -			  struct drm_i915_private *dev_priv)
+> +intel_sdvo_init_ddc_proxy(struct intel_sdvo *sdvo)
+>  {
+> +	struct drm_i915_private *dev_priv =3D to_i915(sdvo->base.base.dev);
+>  	struct pci_dev *pdev =3D to_pci_dev(dev_priv->drm.dev);
+>=20=20
+>  	sdvo->ddc.owner =3D THIS_MODULE;
+> @@ -3357,23 +3356,23 @@ bool intel_sdvo_init(struct drm_i915_private *dev=
+_priv,
+>  	if (!intel_sdvo)
+>  		return false;
+>=20=20
+> -	intel_sdvo->sdvo_reg =3D sdvo_reg;
+> -	intel_sdvo->port =3D port;
+> -	intel_sdvo->slave_addr =3D
+> -		intel_sdvo_get_slave_addr(dev_priv, intel_sdvo) >> 1;
+> -	intel_sdvo_select_i2c_bus(dev_priv, intel_sdvo);
+> -	if (!intel_sdvo_init_ddc_proxy(intel_sdvo, dev_priv))
+> -		goto err_i2c_bus;
+> -
+>  	/* encoder type will be decided later */
+>  	intel_encoder =3D &intel_sdvo->base;
+>  	intel_encoder->type =3D INTEL_OUTPUT_SDVO;
+>  	intel_encoder->power_domain =3D POWER_DOMAIN_PORT_OTHER;
+>  	intel_encoder->port =3D port;
+> +
+>  	drm_encoder_init(&dev_priv->drm, &intel_encoder->base,
+>  			 &intel_sdvo_enc_funcs, 0,
+>  			 "SDVO %c", port_name(port));
+>=20=20
+> +	intel_sdvo->sdvo_reg =3D sdvo_reg;
+> +	intel_sdvo->port =3D port;
+> +	intel_sdvo->slave_addr =3D intel_sdvo_get_slave_addr(intel_sdvo) >> 1;
+> +	intel_sdvo_select_i2c_bus(intel_sdvo);
+> +	if (!intel_sdvo_init_ddc_proxy(intel_sdvo))
+> +		goto err_i2c_bus;
 
-I see last week did not get pulled so this week contains those ones plus
-two more fixups - one code tidy actually and one fixup.
+drm_encoder_cleanup() in the error path?
 
-Regards,
+Other than that,
 
-Tvrtko
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-drm-intel-next-fixes-2023-06-29:
-- Allow DC states along with PW2 only for PWB functionality [adlp+] (Imre Deak)
-- Fix SSC selection for MPLLA [mtl] (Radhakrishna Sripada)
-- Use hw.adjusted mode when calculating io/fast wake times [psr] (Jouni Högander)
-- Apply min softlimit correctly [guc/slpc] (Vinay Belgaumkar)
-- Assign correct hdcp content type [hdcp] (Suraj Kandpal)
-- Add missing forward declarations/includes to display power headers (Imre Deak)
 
-drm-intel-next-fixes-2023-07-06:
-- Fix BDW PSR AUX CH data register offsets [psr] (Ville Syrjälä)
-- Use mock device info for creating mock device (Jani Nikula)
-The following changes since commit 274d4b96b12f78cef4f72a97a4967032233f6cae:
+> +
+>  	/* Read the regs to test if we can talk to the device */
+>  	for (i =3D 0; i < 0x40; i++) {
+>  		u8 byte;
 
-  drm/i915: Fix a NULL vs IS_ERR() bug (2023-06-20 08:54:47 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-2023-07-06
-
-for you to fetch changes up to f6cf3883df471abbcf1553127681dc244c8ff8dd:
-
-  drm/i915: use mock device info for creating mock device (2023-07-04 10:40:29 +0100)
-
-----------------------------------------------------------------
-drm-intel-next-fixes-2023-06-29:
-- Allow DC states along with PW2 only for PWB functionality [adlp+] (Imre Deak)
-- Fix SSC selection for MPLLA [mtl] (Radhakrishna Sripada)
-- Use hw.adjusted mode when calculating io/fast wake times [psr] (Jouni Högander)
-- Apply min softlimit correctly [guc/slpc] (Vinay Belgaumkar)
-- Assign correct hdcp content type [hdcp] (Suraj Kandpal)
-- Add missing forward declarations/includes to display power headers (Imre Deak)
-
-drm-intel-next-fixes-2023-07-06:
-- Fix BDW PSR AUX CH data register offsets [psr] (Ville Syrjälä)
-- Use mock device info for creating mock device (Jani Nikula)
-
-----------------------------------------------------------------
-Imre Deak (2):
-      drm/i915/adlp+: Allow DC states along with PW2 only for PWB functionality
-      drm/i915: Add missing forward declarations/includes to display power headers
-
-Jani Nikula (1):
-      drm/i915: use mock device info for creating mock device
-
-Jouni Högander (1):
-      drm/i915/psr: Use hw.adjusted mode when calculating io/fast wake times
-
-Radhakrishna Sripada (1):
-      drm/i915/mtl: Fix SSC selection for MPLLA
-
-Suraj Kandpal (1):
-      drm/i915/hdcp: Assign correct hdcp content type
-
-Ville Syrjälä (1):
-      drm/i915/psr: Fix BDW PSR AUX CH data register offsets
-
-Vinay Belgaumkar (1):
-      drm/i915/guc/slpc: Apply min softlimit correctly
-
- drivers/gpu/drm/i915/display/intel_cx0_phy.c       |  3 +-
- drivers/gpu/drm/i915/display/intel_display_power.h |  4 ++
- .../gpu/drm/i915/display/intel_display_power_map.c | 16 ++++----
- .../drm/i915/display/intel_display_power_well.h    |  2 +
- drivers/gpu/drm/i915/display/intel_hdcp.c          |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c           |  4 +-
- drivers/gpu/drm/i915/display/intel_psr_regs.h      |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c        |  2 +-
- drivers/gpu/drm/i915/selftests/mock_gem_device.c   | 45 ++++++++++++----------
- 9 files changed, 45 insertions(+), 35 deletions(-)
+--=20
+Jani Nikula, Intel Open Source Graphics Center
