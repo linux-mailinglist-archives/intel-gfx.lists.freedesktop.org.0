@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B0BA74A3B0
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 20:24:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4C5C74A3E5
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 20:49:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BBDF10E4A0;
-	Thu,  6 Jul 2023 18:24:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A172610E4AF;
+	Thu,  6 Jul 2023 18:49:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 860D310E4AB;
- Thu,  6 Jul 2023 18:24:54 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7B89610E0CA;
+ Thu,  6 Jul 2023 18:48:59 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 81C63A73C7;
- Thu,  6 Jul 2023 18:24:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 755E4A0078;
+ Thu,  6 Jul 2023 18:48:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Qi Zheng" <zhengqi.arch@bytedance.com>
-Date: Thu, 06 Jul 2023 18:24:54 -0000
-Message-ID: <168866789452.18978.6326792078842769489@emeril.freedesktop.org>
+To: "Uros Bizjak" <ubizjak@gmail.com>
+Date: Thu, 06 Jul 2023 18:48:59 -0000
+Message-ID: <168866933945.18978.7524984862074210899@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230622085335.77010-1-zhengqi.arch@bytedance.com>
-In-Reply-To: <20230622085335.77010-1-zhengqi.arch@bytedance.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciB1?=
- =?utf-8?q?se_refcount+RCU_method_to_implement_lockless_slab_shrink_=28rev?=
- =?utf-8?q?2=29?=
+References: <20230703150859.6176-1-ubizjak@gmail.com>
+In-Reply-To: <20230703150859.6176-1-ubizjak@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/pmu=3A_Use_local64=5Ftry=5Fcmpxchg_in_i915=5Fpmu?=
+ =?utf-8?q?=5Fevent=5Fread?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,56 +48,18 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: use refcount+RCU method to implement lockless slab shrink (rev2)
-URL   : https://patchwork.freedesktop.org/series/119926/
-State : failure
+Series: drm/i915/pmu: Use local64_try_cmpxchg in i915_pmu_event_read
+URL   : https://patchwork.freedesktop.org/series/120296/
+State : warning
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/119926/revisions/2/mbox/ not applied
-Applying: mm: shrinker: add shrinker::private_data field
-Applying: mm: vmscan: introduce some helpers for dynamically allocating shrinker
-Applying: drm/i915: dynamically allocate the i915_gem_mm shrinker
-Applying: drm/msm: dynamically allocate the drm-msm_gem shrinker
-Applying: drm/panfrost: dynamically allocate the drm-panfrost shrinker
-Applying: dm: dynamically allocate the dm-bufio shrinker
-Applying: dm zoned: dynamically allocate the dm-zoned-meta shrinker
-Applying: md/raid5: dynamically allocate the md-raid5 shrinker
-Applying: bcache: dynamically allocate the md-bcache shrinker
-Applying: vmw_balloon: dynamically allocate the vmw-balloon shrinker
-Applying: virtio_balloon: dynamically allocate the virtio-balloon shrinker
-Applying: mbcache: dynamically allocate the mbcache shrinker
-Applying: ext4: dynamically allocate the ext4-es shrinker
-Applying: jbd2, ext4: dynamically allocate the jbd2-journal shrinker
-Applying: NFSD: dynamically allocate the nfsd-client shrinker
-Applying: NFSD: dynamically allocate the nfsd-reply shrinker
-Applying: xfs: dynamically allocate the xfs-buf shrinker
-Applying: xfs: dynamically allocate the xfs-inodegc shrinker
-Applying: xfs: dynamically allocate the xfs-qm shrinker
-Applying: zsmalloc: dynamically allocate the mm-zspool shrinker
-Using index info to reconstruct a base tree...
-M	mm/zsmalloc.c
-Falling back to patching base and 3-way merge...
-Auto-merging mm/zsmalloc.c
-Applying: fs: super: dynamically allocate the s_shrink
-Using index info to reconstruct a base tree...
-M	fs/btrfs/super.c
-M	fs/super.c
-M	include/linux/fs.h
-Falling back to patching base and 3-way merge...
-Auto-merging include/linux/fs.h
-Auto-merging fs/super.c
-Auto-merging fs/btrfs/super.c
-Applying: drm/ttm: introduce pool_shrink_rwsem
-Applying: mm: shrinker: add refcount and completion_wait fields
-Applying: mm: vmscan: make global slab shrink lockless
-error: patch fragment without header at line 15: @@ -4725,15 +4725,7 @@ void __init mnt_init(void)
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0024 mm: vmscan: make global slab shrink lockless
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Error: dim checkpatch failed
+f8d5cc6a6ba8 drm/i915/pmu: Use local64_try_cmpxchg in i915_pmu_event_read
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#7: 
+in i915_pmu_event_read.  x86 CMPXCHG instruction returns success in ZF flag,
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
 
 
