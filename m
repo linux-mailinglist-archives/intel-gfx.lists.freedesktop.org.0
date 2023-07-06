@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55716749768
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 10:22:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF3B749769
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jul 2023 10:22:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98C2B10E46D;
-	Thu,  6 Jul 2023 08:22:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 517FC10E46E;
+	Thu,  6 Jul 2023 08:22:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86C8910E46D
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jul 2023 08:22:11 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4176710E46E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jul 2023 08:22:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688631731; x=1720167731;
+ t=1688631775; x=1720167775;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=aYmUxj8fM3NwRdDwv5zjHsrVUcFczdMgBkOH6VqSAcs=;
- b=BAmYqxqZnSx/an7ROgzkY7wmR/oMwmTqru4bhDgtcExBVjOiED0NDV1M
- WMLx2UQf6XDsMjig/cX8TznFL5+M4czNaj0Pcu3dMQYh8aQikJaRUmBD0
- kvzdNnJCgA4jMc9wSTyJ6x6D2QljewrDeH6dXsRfJFVQeORFVzK16LJ4s
- TR7Q2xBPor++TJUm0PLpCeTuFObjpL2sC+jgAcs6nAdqav+Co8wtO52bj
- ZEfXI4/lD99M1fajRRm6pGnFIOEaCuW41ltxusqhCqVLJ6p/BsOrLRekH
- uLPt5hx9f3q5nhtSXPX342l8fBGPvnuPvZeme3lLo/jOHXMfvjQQm3Qzt g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="348326761"
-X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="348326761"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2023 01:22:09 -0700
+ bh=uHWLJyt81NgzpqhRqJcS5X3f0a7jZVYEFBck41Cd+VM=;
+ b=bQ7GRq5VEO9TvCwaLaVYPTGdO0ze4gnOdBNkgopMYh9PagBzmexeXVTC
+ o0AIyOdyugUXda+fmVGJjqlmkrpLajbe0HS46mzEOXNTJCja5w4Eh97TP
+ d/ryaV5HawUDoWunvaZlxPxBqBVgZ6pthTp/xqOWMer89lr2jKhlfjTXV
+ E8VlGb84dCEmlE/4hEQ5TORFixgCGFvvVMB4NFh4m4wTkSPe014aUnyJz
+ esGJKxNZajooNeqjyYlW0j2bnHrvTvS1iQmqScIXUDuHR4LDKLn5TtNvA
+ aJUppLUsYd6KhMm7NpILVTvmFVDEniyaNFI+bJouoLxcRDGWrYiDCKI77 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="363566292"
+X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="363566292"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2023 01:22:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="966127066"
-X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="966127066"
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="669672774"
+X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="669672774"
 Received: from jmvuilla-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.41.105])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2023 01:22:07 -0700
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2023 01:22:51 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230705202122.17915-7-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230705202122.17915-8-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230705202122.17915-1-ville.syrjala@linux.intel.com>
- <20230705202122.17915-7-ville.syrjala@linux.intel.com>
-Date: Thu, 06 Jul 2023 11:22:05 +0300
-Message-ID: <87a5w9zbyq.fsf@intel.com>
+ <20230705202122.17915-8-ville.syrjala@linux.intel.com>
+Date: Thu, 06 Jul 2023 11:22:49 +0300
+Message-ID: <877crdzbxi.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 06/13] drm/i915/sdvo: Pick the TV dotclock
- from adjusted_mode
+Subject: Re: [Intel-gfx] [PATCH 07/13] drm/i915/sdvo: Fail gracefully if the
+ TV dotclock is out of range
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,37 +68,72 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, 05 Jul 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> port_clock is what the encoder/dpll code is supposed to calculate,
-> it is not the input clock. Use the dotclock as the target we're
-> trying to achieve instead.
->
-> TODO: the SDVO TV clocking is a mess atm and needs further work
+> Instead of warning and continuing with bogus state when the
+> requested dotclock isn't acceptable just print some debug
+> spew and fail gracefully.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_sdvo.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_sdvo.c | 18 +++++++++++++-----
+>  1 file changed, 13 insertions(+), 5 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/=
 i915/display/intel_sdvo.c
-> index 76eed11e9fed..75a8e5583358 100644
+> index 75a8e5583358..fcf3a95393d9 100644
 > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
 > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -1272,7 +1272,7 @@ intel_sdvo_get_preferred_input_mode(struct intel_sd=
+> @@ -1269,7 +1269,7 @@ intel_sdvo_get_preferred_input_mode(struct intel_sd=
 vo *intel_sdvo,
->  static void i9xx_adjust_sdvo_tv_clock(struct intel_crtc_state *pipe_conf=
+>  	return true;
+>  }
+>=20=20
+> -static void i9xx_adjust_sdvo_tv_clock(struct intel_crtc_state *pipe_conf=
 ig)
+> +static int i9xx_adjust_sdvo_tv_clock(struct intel_crtc_state *pipe_confi=
+g)
 >  {
 >  	struct drm_i915_private *dev_priv =3D to_i915(pipe_config->uapi.crtc->d=
 ev);
-> -	unsigned dotclock =3D pipe_config->port_clock;
-> +	unsigned int dotclock =3D pipe_config->hw.adjusted_mode.crtc_clock;
->  	struct dpll *clock =3D &pipe_config->dpll;
+>  	unsigned int dotclock =3D pipe_config->hw.adjusted_mode.crtc_clock;
+> @@ -1292,11 +1292,14 @@ static void i9xx_adjust_sdvo_tv_clock(struct inte=
+l_crtc_state *pipe_config)
+>  		clock->m1 =3D 12;
+>  		clock->m2 =3D 8;
+>  	} else {
+> -		drm_WARN(&dev_priv->drm, 1,
+> -			 "SDVO TV clock out of range: %i\n", dotclock);
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "SDVO TV clock out of range: %i\n", dotclock);
+> +		return -EINVAL;
+>  	}
 >=20=20
->  	/*
+>  	pipe_config->clock_set =3D true;
+> +
+> +	return 0;
+>  }
+>=20=20
+>  static bool intel_has_hdmi_sink(struct intel_sdvo_connector *intel_sdvo_=
+connector,
+> @@ -1414,8 +1417,13 @@ static int intel_sdvo_compute_config(struct intel_=
+encoder *encoder,
+>  					       conn_state);
+>=20=20
+>  	/* Clock computation needs to happen after pixel multiplier. */
+> -	if (IS_TV(intel_sdvo_connector))
+> -		i9xx_adjust_sdvo_tv_clock(pipe_config);
+> +	if (IS_TV(intel_sdvo_connector)) {
+> +		int ret;
+> +
+> +		ret =3D i9xx_adjust_sdvo_tv_clock(pipe_config);
+> +		if (ret)
+> +			return ret;
+> +	}
+>=20=20
+>  	if (conn_state->picture_aspect_ratio)
+>  		adjusted_mode->picture_aspect_ratio =3D
 
 --=20
 Jani Nikula, Intel Open Source Graphics Center
