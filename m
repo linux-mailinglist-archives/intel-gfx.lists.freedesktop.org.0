@@ -2,54 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47F4B74AE25
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jul 2023 11:54:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A01D74B13C
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jul 2023 14:46:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90DD210E02F;
-	Fri,  7 Jul 2023 09:54:01 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66C7710E547
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jul 2023 09:53:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E96210E57C;
+	Fri,  7 Jul 2023 12:46:53 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED53010E57C;
+ Fri,  7 Jul 2023 12:46:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688723638; x=1720259638;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=EgW36PkeUHF4dP9vHGJDSrz4DH7aKHWZb066uPnjI7s=;
- b=e2nsptehOZPFGn/6vkyaNH5qjJ51HT7593OF6azwArtUM0QLNWZiXu3w
- QQb//5JHqIQl9eF1zteCLIFbZ9z15NRszsxsklWJ9wqKQRCZL5EzSUryh
- a09rpkaIqUf/oW11Q5Y5fDA4zjzmkdVjtZix1Jp0zMrIT6hH4WIm3r4kx
- 9ZGCxx/yGjHaE+Dw5mqMeaAbTC2sxN5i/d+VjPYSTxjEvGXofMP4Y3+qI
- aVb0fsJ/kIPl5krX2rNZrVtMNHi3WKWXSx/qRXGeEBmEA63smrej/AiPO
- rodgcOL8zS0v/LVqTIJFBr0esKGNp6YMzL44wqmXrjf0e7bOeIZiveyP7 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10763"; a="361322101"
-X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="361322101"
+ t=1688734012; x=1720270012;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TCz6GCVxOFpSFnj+T0/SlnRiILlxjhb/UDVkMVt/Syc=;
+ b=CY6KywKfK4V1ScsnwXkWM9B4KTp23pR1locEO4jhaM0PSTj3vkf2fYld
+ IuD6BMzKhABGrLiA2GJSQZN8lSbAHF9JIt5yhAH5z6hmtjISl27xp69XO
+ GkSwTxT/tjGcCZ6RuQzX1bDFTmFJSrBSj1xyns84o+wboBaLnYFRH8RcL
+ HrUskVK3Bcv9+SL+3ODQWwfuIRp8dXfGpqPlwnKjFCIuWrXyMVAYFCkRz
+ YAVT1/CODV5f7L3KF15ShIHSmnx2FX6cWCuGDnapxE/KMoxOyqe0MLLLr
+ QMoEDW4lqE7qEb4spsx/WXXbnn8cJFyhw/sX3KZozaVWphVzl0Uwkisjr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="450236088"
+X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="450236088"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2023 02:53:51 -0700
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2023 05:46:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10763"; a="755121422"
-X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="755121422"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
+X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="755174910"
+X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="755174910"
+Received: from gjmurphy-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.202.50])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2023 02:53:49 -0700
-Date: Fri, 7 Jul 2023 12:53:42 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZKfgpqNr2fb8TW5u@intel.com>
-References: <20230525101036.21564-1-stanislav.lisovskiy@intel.com>
- <ZKWNI2NEboNZAd+K@ideak-desk> <ZKZ6NaLVTk0RYwhm@intel.com>
- <ZKZ/ng6qj5cTrqaf@ideak-desk> <ZKaYMXeALQnEvYie@intel.com>
- <ZKcBtYnyHAvSP5xM@intel.com>
+ 07 Jul 2023 05:46:49 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri,  7 Jul 2023 13:46:44 +0100
+Message-Id: <20230707124644.3965281-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZKcBtYnyHAvSP5xM@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix the disabling sequence for
- Bigjoiner
+Subject: [Intel-gfx] [PATCH] drm/i915: Remove dead code from gen8_pte_encode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,84 +57,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 06, 2023 at 09:02:29PM +0300, Ville Syrjälä wrote:
-> On Thu, Jul 06, 2023 at 01:32:17PM +0300, Lisovskiy, Stanislav wrote:
-> > On Thu, Jul 06, 2023 at 11:47:26AM +0300, Imre Deak wrote:
-> > > On Thu, Jul 06, 2023 at 11:24:21AM +0300, Lisovskiy, Stanislav wrote:
-> > > > On Wed, Jul 05, 2023 at 06:32:51PM +0300, Imre Deak wrote:
-> > > > > On Thu, May 25, 2023 at 01:10:36PM +0300, Stanislav Lisovskiy wrote:
-> > > > > > According to BSpec 49190, when enabling crtcs, we first setup
-> > > > > > slave and then master crtc, however for disabling it should go
-> > > > > > vice versa, i.e first master, then slave, however current code
-> > > > > > does disabling in a same way as enabling. Fix this, by skipping
-> > > > > > non-master crtcs, instead of non-slaves.
-> > > > > > 
-> > > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
-> > > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > > > 
-> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > index 0490c6412ab5..68958ba0ef49 100644
-> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > @@ -6662,7 +6662,7 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
-> > > > > >  		 */
-> > > > > >  		if (!is_trans_port_sync_slave(old_crtc_state) &&
-> > > > > >  		    !intel_dp_mst_is_slave_trans(old_crtc_state) &&
-> > > > > > -		    !intel_crtc_is_bigjoiner_slave(old_crtc_state))
-> > > > > > +		    !intel_crtc_is_bigjoiner_master(old_crtc_state))
-> > > > > 
-> > > > > I don't see what does this fix. The sequence is correct at the moment
-> > > > > and this change would break it, leaving the encoder PLL enabled
-> > > > > incorrectly when the encoder->post_pll_disable() hook is called. Hence
-> > > > > it's NAK from side.
-> > > > 
-> > > > Well, as I pointed out the BSpec 49190 instructs us to disable master
-> > > > first, then slave. Current code skips all non-slaves in first cycle,
-> > > > i.e it disables first slaves and then masters. Which is _wrong_.
-> > > 
-> > > This is correct at the moment, followed in the encoder's disable hook
-> > > which is only assigned to the master CRTC.
-> > 
-> > Yep, I see now why it was implemented this way.
-> > We basically handle everything in a single hook, taking care of the correct
-> > sequence. As I understood otherwise we are going to have problems with the pll
-> > subsystem, i.e we can't disable pll for master before the slaves(basically means
-> > our pll subsystem contradicts what the crtc/pipe/encoder sequence requires).
-> > 
-> > I still think this is bery counterintuitive implementation, i.e when there is a single
-> > hook for master taking care of everything, while slaves are just noop. 
-> > This makes the whole thing very prone for screwing things up.
-> > Ideally we should still have fully functional hooks for all slaves. 
-> > If the pll stuff requires special treatment, that probably should be dealt somehow
-> > separately(don't have any solution for that yet), but definitely we shouldn't live
-> > further like that. Things might get even more complicated in future.
-> 
-> IMO what we should aim for is to call the high level crtc hooks only for
-> the master crtc (ie. essentially the transcoder), and then iterate through
-> the pipes inside the hooks at the approptiate points. To do that
-> cleanly we want to split the code along the pipe-transcoder boundary
-> as much as possible.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Problem is that we are still iterating slave crtcs in other places, just
-as regular pipes, which can create some additional mess.
-If we choose this approach then, it would be nice not to even try treating
-slave crtcs like regular pipe in places like skl_modeset_disables/enables.
-We should probably just skip them if we detect that they are bigjoiner slaves.
-So we go through only regular or joiner master pipes there.
-And all the joiner enable/disable logic would be then done in correspondent master
-crtc enable/disable hook.
-Otherwise we are at risk of messing things up. Also we will then have to use all
-those weird checks, all over the place.
+Commit 9275277d5324 ("drm/i915: use pat_index instead of cache_level")
+added a dedicated gen12_pte_encode but forgot to remove the Gen12 specific
+bit from gen8_pte_encode.
 
-Stan
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Fixes: 9275277d5324 ("drm/i915: use pat_index instead of cache_level")
+Cc: Fei Yang <fei.yang@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+index f948d33e5ec5..c8568e5d1147 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+@@ -37,9 +37,6 @@ static u64 gen8_pte_encode(dma_addr_t addr,
+ 	if (unlikely(flags & PTE_READ_ONLY))
+ 		pte &= ~GEN8_PAGE_RW;
+ 
+-	if (flags & PTE_LM)
+-		pte |= GEN12_PPGTT_PTE_LM;
+-
+ 	/*
+ 	 * For pre-gen12 platforms pat_index is the same as enum
+ 	 * i915_cache_level, so the switch-case here is still valid.
+-- 
+2.39.2
+
