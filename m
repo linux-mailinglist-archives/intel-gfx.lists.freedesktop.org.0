@@ -1,57 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1651574ABD2
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jul 2023 09:23:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF9974AC78
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jul 2023 10:05:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0497C10E516;
-	Fri,  7 Jul 2023 07:23:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E585D10E528;
+	Fri,  7 Jul 2023 08:05:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4E0610E516;
- Fri,  7 Jul 2023 07:23:18 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 9977D1FE7B;
- Fri,  7 Jul 2023 07:23:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1688714595; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=vCCnhZV0wEJpff3h3x/Ypcli1t4YjDj3+AqnyUyyuv8=;
- b=ENq70gwRS5IiT1DppbmNNakHKnwY7451FwTwVFsxVwbmQWglrzyiLwUf+7FWmKoHgPDtX5
- ss8oOIp+WbAlKR2OT/7kwSyxFo8zqHQ6gu9sQLktxlLDr/G+RXBaxsC4GRBVGBQlbbS7ry
- NUC/Yo93Fgu8iACfMw3XH6VYME9lZZA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1688714595;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=vCCnhZV0wEJpff3h3x/Ypcli1t4YjDj3+AqnyUyyuv8=;
- b=NLtwsXhUWyJa1MAmykOTHpBONJjpyA1fL93Mf/l8/OIMsJwVnJMfJSQU6zCbA2C2dXJShX
- SSLBy6Z8yLiCyXBA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 5CB6C139E0;
- Fri,  7 Jul 2023 07:23:15 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 09SUFWO9p2RNGwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Fri, 07 Jul 2023 07:23:15 +0000
-Date: Fri, 7 Jul 2023 09:23:13 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20230707072313.GA7529@linux-uq9g>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85F8F10E528
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jul 2023 08:05:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1688717115; x=1720253115;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=dvNhghXwCWDha2WOoCBnydrAHAWSUSRZ7DkSa+6iCGE=;
+ b=EBwbP5H7YlMNgfpSK8Dr2yWK1OS/Orljaj5TYMIa+O9cKmrM9JS+bbYP
+ b4DwbbyEngbq80I7a2ebhKycbFCDuSva+o17ayuQ6r8uslfoG8MHdpPR/
+ lb59+VQonjWFP6CnvcEDmReWkM/h0quMaKLXU8rJkn1f2qOSZQp0ogIw0
+ 3xhAiUj7YZBiWunlIL6TWFxY7aS9fZbXVkbvXo0hGRu2JWWXFjSwDhoC3
+ oNpL5mpmcc6c9E2QVHB6N+nb6ez9UIB61sSBEHctYhd9sG9a+RoatCBNq
+ idPAsRTsXzUAGO7/htSF8lO5RYvnauBM/+4eUba8oXWB1505N9+WXATRZ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10763"; a="429896965"
+X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="429896965"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2023 01:05:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10763"; a="844019652"
+X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="844019652"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.219.107])
+ ([10.251.219.107])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2023 01:05:13 -0700
+Message-ID: <7de6f1eb-b5b1-69fd-4b6f-2b9d58e6bcf0@linux.intel.com>
+Date: Fri, 7 Jul 2023 10:05:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230705160848.988464-1-andrzej.hajda@intel.com>
+ <20230706151611.1024576-1-andrzej.hajda@intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20230706151611.1024576-1-andrzej.hajda@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: update request engine
+ before removing virtual GuC engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,147 +63,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris.p.wilson@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
 
-I just noticed that there hasn't been a fixes PR for drm-misc for
-some time. So here's the overdue update.
-
-Best regards
-Thomas
-
-drm-misc-fixes-2023-07-07:
-Short summary of fixes pull:
-
- * bridge:
-   * dw_hdmi: Connector fixes
-
- * ti-sn65dsi86: Fix possible use-after-free
-   * dma_buf:
-
- * Fix signalling time
-   * Return errno pointers
-
- * ipu: IRQ fixes
-
- * nouveau: Fix usage of drm_dp_remove_payload()
-
- * panel:
-   * simple: Fix connector type for Innolux At043tn24; Fix display
-             mode for Powertip PH800480T013
-
- * scheduler:
-   * Wait for dependencies
-   * Fencing fixes
-
- * ttm:
-   * Fix bulk move
-   * Fix resource leaks
-The following changes since commit 54d217406afe250d7a768783baaa79a035f21d38:
-
-  drm: use mgr->dev in drm_dbg_kms in drm_dp_add_payload_part2 (2023-06-20 16:00:09 -0400)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-07-07
-
-for you to fetch changes up to 00ae1491f970acc454be0df63f50942d94825860:
-
-  dma-buf: fix an error pointer vs NULL bug (2023-07-06 19:50:23 +0530)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
- * bridge:
-   * dw_hdmi: Connector fixes
-
- * ti-sn65dsi86: Fix possible use-after-free
-   * dma_buf:
-
- * Fix signalling time
-   * Return errno pointers
-
- * ipu: IRQ fixes
-
- * nouveau: Fix usage of drm_dp_remove_payload()
-
- * panel:
-   * simple: Fix connector type for Innolux At043tn24; Fix display
-             mode for Powertip PH800480T013
-
- * scheduler:
-   * Wait for dependencies
-   * Fencing fixes
-
- * ttm:
-   * Fix bulk move
-   * Fix resource leaks
-
-----------------------------------------------------------------
-Adrián Larumbe (1):
-      drm: bridge: dw_hdmi: fix connector access for scdc
-
-Boris Brezillon (2):
-      drm/sched: Make sure we wait for all dependencies in kill_jobs_cb()
-      drm/sched: Call drm_sched_fence_set_parent() from drm_sched_fence_scheduled()
-
-Christian König (2):
-      drm/ttm: fix warning that we shouldn't mix && and ||
-      dma-buf: keep the signaling time of merged fences v3
-
-Dan Carpenter (1):
-      dma-buf: fix an error pointer vs NULL bug
-
-Douglas Anderson (1):
-      drm/bridge: ti-sn65dsi86: Fix auxiliary bus lifetime
-
-Fabio Estevam (1):
-      drm/panel: simple: Add connector_type for innolux_at043tn24
-
-Karol Wachowski (2):
-      accel/ivpu: Fix VPU register access in irq disable
-      accel/ivpu: Clear specific interrupt status bits on C0
-
-Lyude Paul (1):
-      drm/nouveau/kms/nv50-: Fix drm_dp_remove_payload() invocation
-
-Marek Vasut (1):
-      drm/panel: simple: Add Powertip PH800480T013 drm_display_mode flags
-
-Thomas Hellström (2):
-      drm/ttm: Don't leak a resource on eviction error
-      drm/ttm: Don't leak a resource on swapout move error
-
-Yunxiang Li (1):
-      drm/ttm: fix bulk_move corruption when adding a entry
-
- drivers/accel/ivpu/ivpu_drv.h             |  1 +
- drivers/accel/ivpu/ivpu_hw_mtl.c          | 20 +++++++++------
- drivers/dma-buf/dma-fence-unwrap.c        | 26 +++++++++++++++++---
- drivers/dma-buf/dma-fence.c               |  7 +++---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c |  9 ++++---
- drivers/gpu/drm/bridge/ti-sn65dsi86.c     | 35 ++++++++++++++++----------
- drivers/gpu/drm/drm_syncobj.c             |  6 ++---
- drivers/gpu/drm/nouveau/dispnv50/disp.c   |  8 ++++--
- drivers/gpu/drm/panel/panel-simple.c      |  2 ++
- drivers/gpu/drm/scheduler/sched_entity.c  | 41 +++++++++++++++++++++++++------
- drivers/gpu/drm/scheduler/sched_fence.c   | 40 +++++++++++++++++++-----------
- drivers/gpu/drm/scheduler/sched_main.c    |  3 +--
- drivers/gpu/drm/ttm/ttm_bo.c              | 23 ++++++++---------
- drivers/gpu/drm/ttm/ttm_resource.c        |  5 +++-
- include/drm/gpu_scheduler.h               |  5 ++--
- include/linux/dma-fence.h                 |  2 +-
- 16 files changed, 156 insertions(+), 77 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+On 7/6/2023 5:16 PM, Andrzej Hajda wrote:
+> GuC virtual engines can be removed before request removal. On the other
+> side driver expects rq->engine to be a valid pointer for a whole life of
+> request. Setting rq->engine to an always valid engine should solve
+> the issue.
+>
+> The patch fixes bug detected by KASAN with following signature:
+> i915 0000:00:02.0: [drm:i915_drop_caches_set [i915]] Dropping caches: 0x0000005c [0x0000005c]
+> BUG: KASAN: slab-use-after-free in i915_fence_release+0x2a2/0x2f0 [i915]
+> Read of size 4 at addr ffff88813ffda6e8 by task kworker/u32:10/157
+> ...
+> Allocated by task 1184:
+> ...
+> guc_create_virtual+0x4d/0x1160 [i915]
+> i915_gem_create_context+0x11ee/0x18c0 [i915]
+> ...
+> Freed by task 151:
+> ...
+> intel_guc_deregister_done_process_msg+0x324/0x6d0 [i915]
+> ...
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7926
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index a0e3ef1c65d246..2c877ea5eda6f0 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -3461,6 +3461,8 @@ static void guc_prio_fini(struct i915_request *rq, struct intel_context *ce)
+>   static void remove_from_context(struct i915_request *rq)
+>   {
+>   	struct intel_context *ce = request_to_scheduling_context(rq);
+> +	struct intel_engine_cs *engine;
+> +	intel_engine_mask_t tmp;
+>   
+>   	GEM_BUG_ON(intel_context_is_child(ce));
+>   
+> @@ -3478,6 +3480,15 @@ static void remove_from_context(struct i915_request *rq)
+>   
+>   	atomic_dec(&ce->guc_id.ref);
+>   	i915_request_notify_execute_cb_imm(rq);
+> +
+> +	/*
+> +	 * GuC virtual engine can disappear after this call, so let's assign
+> +	 * something valid, as driver expects this to be always valid pointer.
+> +	 */
+> +	for_each_engine_masked(engine, rq->engine->gt, rq->execution_mask, tmp) {
+> +		rq->engine = engine;
+> +		break;
+> +	}
+>   }
+>   
+>   static const struct intel_context_ops guc_context_ops = {
