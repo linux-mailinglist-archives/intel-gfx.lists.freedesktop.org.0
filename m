@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A01D74B13C
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jul 2023 14:46:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3030974B154
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jul 2023 14:55:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E96210E57C;
-	Fri,  7 Jul 2023 12:46:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD3B710E586;
+	Fri,  7 Jul 2023 12:55:12 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED53010E57C;
- Fri,  7 Jul 2023 12:46:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAEB610E08C;
+ Fri,  7 Jul 2023 12:55:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688734012; x=1720270012;
+ t=1688734510; x=1720270510;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=TCz6GCVxOFpSFnj+T0/SlnRiILlxjhb/UDVkMVt/Syc=;
- b=CY6KywKfK4V1ScsnwXkWM9B4KTp23pR1locEO4jhaM0PSTj3vkf2fYld
- IuD6BMzKhABGrLiA2GJSQZN8lSbAHF9JIt5yhAH5z6hmtjISl27xp69XO
- GkSwTxT/tjGcCZ6RuQzX1bDFTmFJSrBSj1xyns84o+wboBaLnYFRH8RcL
- HrUskVK3Bcv9+SL+3ODQWwfuIRp8dXfGpqPlwnKjFCIuWrXyMVAYFCkRz
- YAVT1/CODV5f7L3KF15ShIHSmnx2FX6cWCuGDnapxE/KMoxOyqe0MLLLr
- QMoEDW4lqE7qEb4spsx/WXXbnn8cJFyhw/sX3KZozaVWphVzl0Uwkisjr Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="450236088"
-X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="450236088"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ bh=NcVKWbQrWWZ7ACP241GvLvVuhTC9NIuhdymQc/vUvWs=;
+ b=GUt4twIsYwvjsOaijNidTQqZNvw14aPzVUxRBYUb2A58VDCH1MfRb3sF
+ YBXKWVamjR9ArB0ltuFthydzOG7uQfdix2rUZO0cQ1JoMcT2jw2BwdoJe
+ +duk/yLXUPAB23JYoJO2EXJNsUSzuBvBVjbItqpBaqIr3I3fovqA76hZ/
+ KdjGQjrxIHPdRH8KLfsdK5w9RWpumlG5DMRvqwHOoU0upqitfjEkWrU/0
+ H0p883rpJFQLrkNL73G0bVKTo9mUvN543Bwc2bwAgS8W8rlzfj5GWWH94
+ +MJlXJTjWVPpYV+hRQifFI93ZxxnrCMAzr7/Ct2Xwvpcb/qoyIzgpRTGI A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="450237605"
+X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="450237605"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2023 05:46:52 -0700
+ 07 Jul 2023 05:55:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="755174910"
-X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="755174910"
+X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="1050533706"
+X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="1050533706"
 Received: from gjmurphy-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.202.50])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2023 05:46:49 -0700
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2023 05:55:07 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Fri,  7 Jul 2023 13:46:44 +0100
-Message-Id: <20230707124644.3965281-1-tvrtko.ursulin@linux.intel.com>
+Date: Fri,  7 Jul 2023 13:55:03 +0100
+Message-Id: <20230707125503.3965817-1-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Remove dead code from gen8_pte_encode
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix one wrong caching mode enum usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,39 +57,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Commit 9275277d5324 ("drm/i915: use pat_index instead of cache_level")
-added a dedicated gen12_pte_encode but forgot to remove the Gen12 specific
-bit from gen8_pte_encode.
+Commit a4d86249c773 ("drm/i915/gt: Provide a utility to create a scratch
+buffer") mistakenly passed in uapi I915_CACHING_CACHED as argument to
+i915_gem_object_set_cache_coherency(), which actually takes internal
+enum i915_cache_level.
+
+No functional issue since the value matches I915_CACHE_LLC (1 == 1), which
+is the intended caching mode, but lets clean it up nevertheless.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Fixes: 9275277d5324 ("drm/i915: use pat_index instead of cache_level")
-Cc: Fei Yang <fei.yang@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Fixes: a4d86249c773 ("drm/i915/gt: Provide a utility to create a scratch buffer")
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gtt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index f948d33e5ec5..c8568e5d1147 100644
---- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -37,9 +37,6 @@ static u64 gen8_pte_encode(dma_addr_t addr,
- 	if (unlikely(flags & PTE_READ_ONLY))
- 		pte &= ~GEN8_PAGE_RW;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 126269a0d728..065099362a98 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -676,7 +676,7 @@ __vm_create_scratch_for_read(struct i915_address_space *vm, unsigned long size)
+ 	if (IS_ERR(obj))
+ 		return ERR_CAST(obj);
  
--	if (flags & PTE_LM)
--		pte |= GEN12_PPGTT_PTE_LM;
--
- 	/*
- 	 * For pre-gen12 platforms pat_index is the same as enum
- 	 * i915_cache_level, so the switch-case here is still valid.
+-	i915_gem_object_set_cache_coherency(obj, I915_CACHING_CACHED);
++	i915_gem_object_set_cache_coherency(obj, I915_CACHE_LLC);
+ 
+ 	vma = i915_vma_instance(obj, vm, NULL);
+ 	if (IS_ERR(vma)) {
 -- 
 2.39.2
 
