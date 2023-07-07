@@ -1,56 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EF9974AC78
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jul 2023 10:05:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47F4B74AE25
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jul 2023 11:54:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E585D10E528;
-	Fri,  7 Jul 2023 08:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90DD210E02F;
+	Fri,  7 Jul 2023 09:54:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85F8F10E528
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jul 2023 08:05:15 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66C7710E547
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jul 2023 09:53:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688717115; x=1720253115;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=dvNhghXwCWDha2WOoCBnydrAHAWSUSRZ7DkSa+6iCGE=;
- b=EBwbP5H7YlMNgfpSK8Dr2yWK1OS/Orljaj5TYMIa+O9cKmrM9JS+bbYP
- b4DwbbyEngbq80I7a2ebhKycbFCDuSva+o17ayuQ6r8uslfoG8MHdpPR/
- lb59+VQonjWFP6CnvcEDmReWkM/h0quMaKLXU8rJkn1f2qOSZQp0ogIw0
- 3xhAiUj7YZBiWunlIL6TWFxY7aS9fZbXVkbvXo0hGRu2JWWXFjSwDhoC3
- oNpL5mpmcc6c9E2QVHB6N+nb6ez9UIB61sSBEHctYhd9sG9a+RoatCBNq
- idPAsRTsXzUAGO7/htSF8lO5RYvnauBM/+4eUba8oXWB1505N9+WXATRZ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10763"; a="429896965"
-X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="429896965"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2023 01:05:14 -0700
+ t=1688723638; x=1720259638;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=EgW36PkeUHF4dP9vHGJDSrz4DH7aKHWZb066uPnjI7s=;
+ b=e2nsptehOZPFGn/6vkyaNH5qjJ51HT7593OF6azwArtUM0QLNWZiXu3w
+ QQb//5JHqIQl9eF1zteCLIFbZ9z15NRszsxsklWJ9wqKQRCZL5EzSUryh
+ a09rpkaIqUf/oW11Q5Y5fDA4zjzmkdVjtZix1Jp0zMrIT6hH4WIm3r4kx
+ 9ZGCxx/yGjHaE+Dw5mqMeaAbTC2sxN5i/d+VjPYSTxjEvGXofMP4Y3+qI
+ aVb0fsJ/kIPl5krX2rNZrVtMNHi3WKWXSx/qRXGeEBmEA63smrej/AiPO
+ rodgcOL8zS0v/LVqTIJFBr0esKGNp6YMzL44wqmXrjf0e7bOeIZiveyP7 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10763"; a="361322101"
+X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="361322101"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2023 02:53:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10763"; a="844019652"
-X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="844019652"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.219.107])
- ([10.251.219.107])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2023 01:05:13 -0700
-Message-ID: <7de6f1eb-b5b1-69fd-4b6f-2b9d58e6bcf0@linux.intel.com>
-Date: Fri, 7 Jul 2023 10:05:10 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10763"; a="755121422"
+X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="755121422"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2023 02:53:49 -0700
+Date: Fri, 7 Jul 2023 12:53:42 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <ZKfgpqNr2fb8TW5u@intel.com>
+References: <20230525101036.21564-1-stanislav.lisovskiy@intel.com>
+ <ZKWNI2NEboNZAd+K@ideak-desk> <ZKZ6NaLVTk0RYwhm@intel.com>
+ <ZKZ/ng6qj5cTrqaf@ideak-desk> <ZKaYMXeALQnEvYie@intel.com>
+ <ZKcBtYnyHAvSP5xM@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230705160848.988464-1-andrzej.hajda@intel.com>
- <20230706151611.1024576-1-andrzej.hajda@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230706151611.1024576-1-andrzej.hajda@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: update request engine
- before removing virtual GuC engine
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZKcBtYnyHAvSP5xM@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix the disabling sequence for
+ Bigjoiner
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,65 +62,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Jul 06, 2023 at 09:02:29PM +0300, Ville Syrjälä wrote:
+> On Thu, Jul 06, 2023 at 01:32:17PM +0300, Lisovskiy, Stanislav wrote:
+> > On Thu, Jul 06, 2023 at 11:47:26AM +0300, Imre Deak wrote:
+> > > On Thu, Jul 06, 2023 at 11:24:21AM +0300, Lisovskiy, Stanislav wrote:
+> > > > On Wed, Jul 05, 2023 at 06:32:51PM +0300, Imre Deak wrote:
+> > > > > On Thu, May 25, 2023 at 01:10:36PM +0300, Stanislav Lisovskiy wrote:
+> > > > > > According to BSpec 49190, when enabling crtcs, we first setup
+> > > > > > slave and then master crtc, however for disabling it should go
+> > > > > > vice versa, i.e first master, then slave, however current code
+> > > > > > does disabling in a same way as enabling. Fix this, by skipping
+> > > > > > non-master crtcs, instead of non-slaves.
+> > > > > > 
+> > > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+> > > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > > > 
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > index 0490c6412ab5..68958ba0ef49 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > @@ -6662,7 +6662,7 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
+> > > > > >  		 */
+> > > > > >  		if (!is_trans_port_sync_slave(old_crtc_state) &&
+> > > > > >  		    !intel_dp_mst_is_slave_trans(old_crtc_state) &&
+> > > > > > -		    !intel_crtc_is_bigjoiner_slave(old_crtc_state))
+> > > > > > +		    !intel_crtc_is_bigjoiner_master(old_crtc_state))
+> > > > > 
+> > > > > I don't see what does this fix. The sequence is correct at the moment
+> > > > > and this change would break it, leaving the encoder PLL enabled
+> > > > > incorrectly when the encoder->post_pll_disable() hook is called. Hence
+> > > > > it's NAK from side.
+> > > > 
+> > > > Well, as I pointed out the BSpec 49190 instructs us to disable master
+> > > > first, then slave. Current code skips all non-slaves in first cycle,
+> > > > i.e it disables first slaves and then masters. Which is _wrong_.
+> > > 
+> > > This is correct at the moment, followed in the encoder's disable hook
+> > > which is only assigned to the master CRTC.
+> > 
+> > Yep, I see now why it was implemented this way.
+> > We basically handle everything in a single hook, taking care of the correct
+> > sequence. As I understood otherwise we are going to have problems with the pll
+> > subsystem, i.e we can't disable pll for master before the slaves(basically means
+> > our pll subsystem contradicts what the crtc/pipe/encoder sequence requires).
+> > 
+> > I still think this is bery counterintuitive implementation, i.e when there is a single
+> > hook for master taking care of everything, while slaves are just noop. 
+> > This makes the whole thing very prone for screwing things up.
+> > Ideally we should still have fully functional hooks for all slaves. 
+> > If the pll stuff requires special treatment, that probably should be dealt somehow
+> > separately(don't have any solution for that yet), but definitely we shouldn't live
+> > further like that. Things might get even more complicated in future.
+> 
+> IMO what we should aim for is to call the high level crtc hooks only for
+> the master crtc (ie. essentially the transcoder), and then iterate through
+> the pipes inside the hooks at the approptiate points. To do that
+> cleanly we want to split the code along the pipe-transcoder boundary
+> as much as possible.
 
-On 7/6/2023 5:16 PM, Andrzej Hajda wrote:
-> GuC virtual engines can be removed before request removal. On the other
-> side driver expects rq->engine to be a valid pointer for a whole life of
-> request. Setting rq->engine to an always valid engine should solve
-> the issue.
->
-> The patch fixes bug detected by KASAN with following signature:
-> i915 0000:00:02.0: [drm:i915_drop_caches_set [i915]] Dropping caches: 0x0000005c [0x0000005c]
-> BUG: KASAN: slab-use-after-free in i915_fence_release+0x2a2/0x2f0 [i915]
-> Read of size 4 at addr ffff88813ffda6e8 by task kworker/u32:10/157
-> ...
-> Allocated by task 1184:
-> ...
-> guc_create_virtual+0x4d/0x1160 [i915]
-> i915_gem_create_context+0x11ee/0x18c0 [i915]
-> ...
-> Freed by task 151:
-> ...
-> intel_guc_deregister_done_process_msg+0x324/0x6d0 [i915]
-> ...
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7926
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Acked-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 +++++++++++
->   1 file changed, 11 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index a0e3ef1c65d246..2c877ea5eda6f0 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -3461,6 +3461,8 @@ static void guc_prio_fini(struct i915_request *rq, struct intel_context *ce)
->   static void remove_from_context(struct i915_request *rq)
->   {
->   	struct intel_context *ce = request_to_scheduling_context(rq);
-> +	struct intel_engine_cs *engine;
-> +	intel_engine_mask_t tmp;
->   
->   	GEM_BUG_ON(intel_context_is_child(ce));
->   
-> @@ -3478,6 +3480,15 @@ static void remove_from_context(struct i915_request *rq)
->   
->   	atomic_dec(&ce->guc_id.ref);
->   	i915_request_notify_execute_cb_imm(rq);
-> +
-> +	/*
-> +	 * GuC virtual engine can disappear after this call, so let's assign
-> +	 * something valid, as driver expects this to be always valid pointer.
-> +	 */
-> +	for_each_engine_masked(engine, rq->engine->gt, rq->execution_mask, tmp) {
-> +		rq->engine = engine;
-> +		break;
-> +	}
->   }
->   
->   static const struct intel_context_ops guc_context_ops = {
+Problem is that we are still iterating slave crtcs in other places, just
+as regular pipes, which can create some additional mess.
+If we choose this approach then, it would be nice not to even try treating
+slave crtcs like regular pipe in places like skl_modeset_disables/enables.
+We should probably just skip them if we detect that they are bigjoiner slaves.
+So we go through only regular or joiner master pipes there.
+And all the joiner enable/disable logic would be then done in correspondent master
+crtc enable/disable hook.
+Otherwise we are at risk of messing things up. Also we will then have to use all
+those weird checks, all over the place.
+
+Stan
+
+> 
+> -- 
+> Ville Syrjälä
+> Intel
