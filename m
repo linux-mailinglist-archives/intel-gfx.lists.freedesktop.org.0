@@ -2,146 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B430A74A817
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jul 2023 02:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA92274A847
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jul 2023 02:59:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3978110E4E2;
-	Fri,  7 Jul 2023 00:25:47 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCFB010E4E2;
- Fri,  7 Jul 2023 00:25:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688689544; x=1720225544;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:mime-version;
- bh=oXmJUv01luvD3gCbywJx3lVFNCrCTD4yb+jBdJxNCU8=;
- b=hqIAYIqeRqSJz0NAkwEGGBv4uokAbCZ+c90z4wT+XJOmaOxpPNoQ9Smz
- jnkQeyPn2Q6ASv9KUmF0TzRJnOFEumllmPCZhvPhapX4fGgU6XONzbsxd
- ij9AhKLJUynqx6QZcXh8MBhfDlTX9B/u5hYlWJ2Nz8aC0jWJSnWX//1MA
- i2FmjO7f0sxy7MwNQSY9ZdWvu6BrhyRCJa1WLtjNQcuza3V7OM4QIkboZ
- kiIgf018Iziby79vOAOccCizmlbU8siZRz1iMCvuC+a5Yqz4b7D0RSZFX
- lOAj/nPXav8vsYugBxGaFzRoTzMCxwbG+6esNTTT+VU4gyrWE9BdE/zy5 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10763"; a="353603021"
-X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; 
- d="scan'208,217";a="353603021"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2023 17:25:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10763"; a="669963449"
-X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; 
- d="scan'208,217";a="669963449"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga003.jf.intel.com with ESMTP; 06 Jul 2023 17:25:43 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 6 Jul 2023 17:25:41 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 6 Jul 2023 17:25:41 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 6 Jul 2023 17:25:41 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k3vY9RAnH+mv7J3ufYqKn8TtYR+AIHQvPao4hcd5dpadAafl5xm9C42IdfhMy4gTR3HKXeKtLvESLhOIomrtiF7m8rqUiOpUjHGLzUNuUDKujTHQkqv5h5CU6eYapKK8HASLtvY+wnmEtXeeu9jhqiMwtHeBrF+bS8397O2aFUF/byAil/pmP2EgRoxIqlLvMv7xW6KtWwR4tjEugJbKV//QvotLEAhEF9ipWv77OBaf5xUAX7VlxoG4KgduMzHXgPSGSs364fAvZVQAi/DHAkyqFFe3WD1aUqCNmY3J0r3+ko5PfSphPmB+0FtQTSUX2gcAwVu/1UWHF0BbS3/RUw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DZSletrnB3mAmlp2xujqfQJMqR7yZP/6kIKZTJx0mV4=;
- b=XoF3qClmRI5Uao73rednMFy1ANfKR2ddo8J8QOOs7SAf3GgwlVY1tREB8HLkaZ04WrWqlAdlhVG4IINwPe5RqoL3RvmOHT+GnyxTbbjmXoIUB5iNvoDy8ecAxZqpASP1bevMnFjkas7knUwRpvzj+xTBzoXaX73k7v0gxsAFS9eJaKCDAi6TuNbnDqdyeOHaA52Na30u5AkvuedZvpiBwrt4TORY/siSK4HmNWXCLrjJAYtmSnkf30AaPzlwmOBtPi9ZNgjWbKuVDXSw3EkSuebiGAPfIX65jvAqsrHgWvLsOne3yHQsHupeNGD60vwge+6096LVkCpyvTlPbBmXQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BYAPR11MB2567.namprd11.prod.outlook.com (2603:10b6:a02:c5::32)
- by CH3PR11MB8702.namprd11.prod.outlook.com (2603:10b6:610:1cb::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.24; Fri, 7 Jul
- 2023 00:25:39 +0000
-Received: from BYAPR11MB2567.namprd11.prod.outlook.com
- ([fe80::28b4:ae85:a4f0:3f46]) by BYAPR11MB2567.namprd11.prod.outlook.com
- ([fe80::28b4:ae85:a4f0:3f46%4]) with mapi id 15.20.6565.016; Fri, 7 Jul 2023
- 00:25:39 +0000
-From: "Yang, Fei" <fei.yang@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Thread-Topic: [PATCH v2] drm/i915: Refactor PAT/cache handling
-Thread-Index: AQHZqpQvF7ewKzrr+kCyWWOnY6DVxa+i6j3igAUKSACAAUhM64ADsEEAgACQRXY=
-Date: Fri, 7 Jul 2023 00:25:39 +0000
-Message-ID: <BYAPR11MB2567C6E41E13F733CF5F1BA29A2DA@BYAPR11MB2567.namprd11.prod.outlook.com>
-References: <20230629141509.3194090-1-tvrtko.ursulin@linux.intel.com>
- <BYAPR11MB256721AE29EBF133E60D7CD19A2AA@BYAPR11MB2567.namprd11.prod.outlook.com>
- <6fcb91a4-5e93-4964-e4b1-45bf965b0011@linux.intel.com>
- <BYAPR11MB2567F99FD5CFB3E709B2B3879A2EA@BYAPR11MB2567.namprd11.prod.outlook.com>
- <b5182784-acdc-0c4e-5c57-998ef93a7a17@linux.intel.com>
-In-Reply-To: <b5182784-acdc-0c4e-5c57-998ef93a7a17@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR11MB2567:EE_|CH3PR11MB8702:EE_
-x-ms-office365-filtering-correlation-id: 7f1da065-705b-4dd7-350f-08db7e80b0d3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: VtYQSmkl7kuePQPgXgVoAMgckvdfSt/1DbZiUnawsOY678voaOnDGJx3F1dmW6LcWcGyKH1J7Mq270ZxrEhRnVank+o2YJGLQYGHMgQ3LvDFWE48zmfZEAZD/w3wLt8CbSQDfb0ioRfdC/dktFRfiVA8FBIXbgiirQmS83FoHBAfaWRMsBd2cFry9yIUQ049zMLChSjtNhokugI2iAHfrG5hU6vna37Ko2vwyHqadcUz6xErlAaeW7gULbgR1JaBJiORi115LbE6ENTaZF69nTaxSiycthK2DCNaq/u9WQyDL7DbyHzmOrXAebgBgvOS92tLU0SLi5SvhclQunfQP8R2X10mlA+Hx3cVfJrn9ksC7kTa4gaq5Typ0DPCMJTnQDN+3IJ/BBYyWV0RDM1EW96lpiE4Rhz9928Yc9OXo4Vpk7ZmuuyisI8AwJ/AXX7DQMLQ/Q4aTjbeofvSi9S1uytsxWlVzh3ALzUBim3OAYYXTjv+NkiusqMIrTKXHL5s5xQKDt3fBJmMcF7DxUcbYX3PnZpVgBk54kicR6LXCn6q0KIgZIqAVM/PoIj6dKFvJ+snFDpuNuxA+2GcFmp4NDU1faxHHFIRu32u4rEc8pRQP8HZKieoJbvc43tz6gex
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2567.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(39860400002)(136003)(376002)(396003)(366004)(451199021)(8936002)(478600001)(5660300002)(52536014)(8676002)(66556008)(66476007)(19627405001)(76116006)(66946007)(316002)(4326008)(64756008)(41300700001)(66446008)(2906002)(91956017)(110136005)(7696005)(71200400001)(26005)(9686003)(186003)(30864003)(82960400001)(122000001)(83380400001)(6506007)(33656002)(38100700002)(86362001)(38070700005)(55016003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?bGjSwK3ZRNYZ6A4JojdOA3We8OoP6XbSghLxFTwxqzKgVEd7p4OPWLs113?=
- =?iso-8859-1?Q?88+0w93vao7vP8NRKFWKr9qDlgFSR/yE86jKzs5qlIOu/xY29Ser+2K6ey?=
- =?iso-8859-1?Q?HLWzAjR8xLz3gWLLcauBwUcuUhws54fQM5QV3UTL0jSc/F2D6K/3WKR+1A?=
- =?iso-8859-1?Q?r/zKp4QASHgl0CHgP0QlzsABhOZeV4BrOX2+7rFLVFksWuY68ucTlNIzWm?=
- =?iso-8859-1?Q?niNG3BIaytUmjva6Ronh+lfPAtVHU/vTRu5kLFqdWcdOex0IMreJ/h+ln9?=
- =?iso-8859-1?Q?MLOrssOm/pFZU1ayvH//bbtXJSpJxkyCwLNkzNlwzSwbv4beLlFj8GWJ+a?=
- =?iso-8859-1?Q?GnxJvQawQbJXO5PBldJ9lc2kjmBTi4oEoYeGPgH7gR6TenwdX5ie62LTuV?=
- =?iso-8859-1?Q?bR/abDqxCukcHFoFUhpsexVvOiXyVJK3nxHx0nRshGCccVFtAb/C4IeakY?=
- =?iso-8859-1?Q?qYCzzSl0+ZrJwiDbCLwILLhwVEnDzh3e7mgoUOUOKHRKAXoiiYOPiIoLuR?=
- =?iso-8859-1?Q?hFiEujjfCQurtPgzwOqm0p5L2WjPqn9mGQZR7LYuES35bUXuXpwk/TcxBJ?=
- =?iso-8859-1?Q?TgcoOS7VsTHg327Mdvqjl/Vhmrgft4tXg6ANi69VoDOVnf1VHCKlrf/Y3e?=
- =?iso-8859-1?Q?xPgeTcKgq6UJRo9GlNVry7kNi0JaQrtTLmb3xJTWJ0tzy0q/B0iCgLoNZA?=
- =?iso-8859-1?Q?3Q37A1kLU1sqlvq2UFRRXmxlPgtiUfYgNX8bQd/CRA1xVfBQEmH2bqSC/A?=
- =?iso-8859-1?Q?5QcdquDiZlWTmQKCPiaiLfhqLY9/7VlVATvLSIrPFRkmi9a8i/WqGEPDHx?=
- =?iso-8859-1?Q?TVII4eDZGLitMk+6Bjd1cI/gvUHuo/2IEuy0jes5pprojiSWV/JzrsdkUH?=
- =?iso-8859-1?Q?wTMmALjwehw3RitztqQ7FxMMbmcLVfqMSxLEwS6q1rDftYxemy1t5x2Yhh?=
- =?iso-8859-1?Q?fQUDV1u0X+i2lPRSQzOPM9ooiUQsFOoidV1dGY5Vm7YtHApF4ZyjYQs1EI?=
- =?iso-8859-1?Q?25jZTmO1EkCiveSN+iEp3SGQcSlrHwrjgEGZN+qu/637NDJspoYFB8rl6a?=
- =?iso-8859-1?Q?CthlvuBT+EFGLGejuZqdm5aqA02pO6pmbUPRvJKARU5CxEdma6yWpk4j6g?=
- =?iso-8859-1?Q?Xb55TiFVCQ9O5dS2D0DB3jIu2mqqujogx9LvRWAqUoP4XwtryRa6jkz/9B?=
- =?iso-8859-1?Q?GpZCgEzH4xFAwwwwNZG1NDeVVsMNgW9P8X2ny5WinBRgpfYa8saKzD3k1X?=
- =?iso-8859-1?Q?7Oe0Is4cSqyMmXIe+TNM0otFYMTn/wlMIarU3ZwJtptEI4P9RslSHQOkw2?=
- =?iso-8859-1?Q?7fzCP+wpCq21ipK/83SyNVz0S9l2IoF7HFdhPMwBDZkSUxUAVxlIgF2Ev/?=
- =?iso-8859-1?Q?msSfIAtNq2IfNKgMyZ1eRGZo3uaB7rMTDagGFD/KZv/2RbwLatHLaf/cy2?=
- =?iso-8859-1?Q?QUoHgN1HRYnxxNXeAU/B/wB2Cnme1Y1r0UYhyfSymAb0f+2RuZAmDxYpY/?=
- =?iso-8859-1?Q?D/mh06hM7HqHUCu6wgwFj4ReyZb6GD/xfpA50qZTXe5byvRnso93wUvUqk?=
- =?iso-8859-1?Q?k9RWMC7eZXKnqc+KSQKd/3Tp2o9imyyL9M8Y+7w9bxZVwLA7kcNxKKjJAc?=
- =?iso-8859-1?Q?YRXJwDnrfPbsLRAc0ptK9hcgm3z3cyM+J5?=
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31C5C10E4E2;
+	Fri,  7 Jul 2023 00:59:31 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DDF1310E4DB;
+ Fri,  7 Jul 2023 00:59:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CBC24AADD7;
+ Fri,  7 Jul 2023 00:59:29 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="_000_BYAPR11MB2567C6E41E13F733CF5F1BA29A2DABYAPR11MB2567namp_"
+ boundary="===============8876616462857546513=="
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2567.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f1da065-705b-4dd7-350f-08db7e80b0d3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2023 00:25:39.0468 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: StlJ2oBXu/osGmvhHrR1oQsM1b6uNvEWwoyOlIXsZwfwdDK5CdZnw40HSbF4Rso2TdLpYAUF5OyhM62KGiBY4w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8702
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Refactor PAT/cache handling
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uros Bizjak" <ubizjak@gmail.com>
+Date: Fri, 07 Jul 2023 00:59:29 -0000
+Message-ID: <168869156979.14757.1927991311234956538@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230703150859.6176-1-ubizjak@gmail.com>
+In-Reply-To: <20230703150859.6176-1-ubizjak@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/pmu=3A_Use_local64=5Ftry=5Fcmpxchg_in_i915=5Fpmu=5Fevent?=
+ =?utf-8?q?=5Fread?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,974 +41,1280 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_BYAPR11MB2567C6E41E13F733CF5F1BA29A2DABYAPR11MB2567namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--===============8876616462857546513==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
->>>>> @@ -27,15 +28,8 @@ static bool gpu_write_needs_clflush(struct  drm_i9=
-15_gem_object *obj)
->>>>>          if (IS_DGFX(i915))
->>>>>              return false;
->>>>> -       /*
->>>>> -        * For objects created by userspace through GEM_CREATE with p=
-at_index
->>>>> -        * set by set_pat extension, i915_gem_object_has_cache_level(=
-) will
->>>>> -        * always return true, because the coherency of such object i=
-s managed
->>>>> -        * by userspace. Othereise the call here would fall back to c=
-hecking
->>>>> -        * whether the object is un-cached or write-through.
->>>>> -        */
->>>>> -       return !(i915_gem_object_has_cache_level(obj, I915_CACHE_NONE=
-) ||
->>>>> -                i915_gem_object_has_cache_level(obj, I915_CACHE_WT))=
-;
->>>>> +       return i915_gem_object_has_cache_mode(obj, I915_CACHE_MODE_UC=
-) !=3D 1 &&
->>>>> +              i915_gem_object_has_cache_mode(obj, I915_CACHE_MODE_WT=
-) !=3D 1;
->>>>
->>>> This logic was changed for objects with pat index set by user here. It
->>>> used to return false regardless the cache mode. But now it returns tru=
-e
->>>> if its cache mode is neither UC nor WT.
->>>
->>> Yes, that was half of the motivation of the refactory. Before the PAT
->>> index series code was like this:
->>>
->>>        return !(obj->cache_level =3D=3D I915_CACHE_NONE ||
->>>                 obj->cache_level =3D=3D I915_CACHE_WT);
->>> So kernel knew it needs to flush only if caching mode is neither UC or =
-WT.
->>> With the PAT index series you changed it to:
->>>
->>>        return !(i915_gem_object_has_cache_level(obj, I915_CACHE_NONE) |=
-|
->>>                 i915_gem_object_has_cache_level(obj, I915_CACHE_WT));
->>> And as i915_gem_object_has_cache_level was changed to always return tru=
-e
->>> if PAT was set by user, that made the check meaningless for such object=
-s.
->>
->> But the point is that the KMD should not flush the cache for objects
->> with PAT set by user because UMD is handling the cache conherency.
->> That is the design. Well doing so wouldn't cause functional issue, but
->> it's unecessary and might have performance impact.
->
-> Not all i915_gem_object_has_cache_level() are even about flushing the cac=
-he
-> and if the kernel doesn't know what is behind a PAT index
-> (i915_gem_object_has_cache_level lies by always returning true) are we 10=
-0%
-> sure everything is functionally correct?
->
-> flush_write_domain() for instance uses it to determine whether to set
-> obj->cache_dirty after GPU activity. How does the UMD manage that?
->
-> Then use_cpu_reloc(). Another pointless/misleading question.
->
-> Finally vm_fault_gtt() rejects access based on it.
->
-> Perhaps the question is moot since the set pat extension is restricted to
-> MTL so some other conditions used in the above checks, like HAS_LLC and s=
-uch,
-> make for no practical difference. Even if so, what if the extension was a=
-llowed
-> on other platforms as it was the plan until it was discovered there is no
-> userspace code for other platforms. Would the plan work on all platforms?=
- And
-> even if it would I think the implementation is very non-obvious.
->
+== Series Details ==
 
-Understand your point, perhaps we should let i915_gem_object_has_cache_mode=
-()
-do what it supposed to do, and add a separate check for obj->pat_set_by_use=
-r
-in functions like gpu_write_needs_clflush(), use_cpu_reloc(), etc. Anyway,
-the design is to let UMD handle coherency for objects with pat set by user.
+Series: drm/i915/pmu: Use local64_try_cmpxchg in i915_pmu_event_read
+URL   : https://patchwork.freedesktop.org/series/120296/
+State : failure
 
->>> With my refactoring it becomes meaningful again and restores to the
->>> original behaviour. That's the intent at least.
->>>
->>>>>  bool i915_gem_cpu_write_needs_clflush(struct drm_i915_gem_object *ob=
-j)
->>>>> @@ -255,9 +249,9 @@ i915_gem_object_set_to_gtt_domain(struct drm_i915=
-_gem_object *obj, bool write)
->>>>>  }
->>>>>
->>>>>  /**
->>>>> - * i915_gem_object_set_cache_level - Changes the cache-level of an o=
-bject across all VMA.
->>>>> + * i915_gem_object_set_cache - Changes the cache-level of an object =
-across all VMA.
+== Summary ==
 
-[...]
+CI Bug Log - changes from CI_DRM_13351_full -> Patchwork_120296v1_full
+====================================================
 
->>>>> -       if (i915_gem_object_has_cache_level(obj, cache_level))
->>>>> +       ret =3D i915_cache_find_pat(i915, cache);
->>>>> +       if (ret < 0) {
->>>>> +           struct drm_printer p =3D
->>>>> +                drm_err_printer("Attempting to use unknown caching m=
-ode ");
->>>>> +
->>>>> +           i915_cache_print(&p, cache);
->>>>> +           drm_puts(&p, "!\n");
->>>>> +
->>>>> +           return -EINVAL;
->>>>> +       } else if (ret =3D=3D obj->pat_index) {
->>>>>             return 0;
->>>> We will have to do this conversion and checking again later in this
->>>> function when calling i915_gem_object_set_cache_coherency().
->>>
->>> Yes the double lookup part is a bit naff. It is not super required
->>> apart for validating internal callers (could be a debug build only
->>> feature perhaps) and to see if PAT index has changed and so whether
->>> it needs to call i915_gem_object_wait before proceeding to
->>> i915_gem_object_set_cache_coherency...
->>>
->>>> My thought was to simply remove the use of cache_level/cache and repla=
-ce
->>>> it with pat_idex. Conversion from cache modes to pat index should be d=
-one
->>>> before calling any function used to consume cache_level/cache.
->>>
->>> ... I could probably call the setter which takes PAT index instead of
->>> i915_gem_object_set_cache_coherency few lines below. That would skip th=
-e
->>> double lookup and make you happy(-ier)?
->>
->> Do you see any problem just letting these functions take pat_index as
->> the second argument? These functions are currently called with a
->> constant cache_level/mode, if we have INTEL_INFO(i915)->pat_uc/wt/wb
->> set properly, using pat index makes no difference, right?
->
-> Which ones?
+Summary
+-------
 
-i915_gem_object_set_cache_level() and i915_gem_object_set_cache_coherency()
-are both being called with cache_level as of now. That is not necessary if
-platform specific INTEL_INFO(i915)->pat_uc/wt/wb are there. we can simply
+  **FAILURE**
 
-s/I915_CACHE_NONE/INTEL_INFO(i915)->pat_uc
-s/I915_CACHE_WT/INTEL_INFO(i915)->pat_wt
-s/I915_CACHE_LLC/INTEL_INFO(i915)->pat_wb
+  Serious unknown changes coming with Patchwork_120296v1_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_120296v1_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-[...]
+  
 
->>>>> if (i915_gem_object_has_cache_mode(obj, I915_CACHE_MODE_WB))
->>>> This looks wrong, at least for MTL. Prior to MTL the GPU automatically
->>>> snoop CPU cache, but from MTL onward you have to specify if WB or
->>>> WB + 1-WAY COH is needed. And for KMD, cacheable mode means WB +
->>>> 1-WAY COH for MTL to keep the behavior consistent.
->>>>
->>>> This used to be taken care of by i915_gem_get_pat_index() call.
->>>> With that being replaced by i915_cache_find_pat(), you would need
->>>> to do something there.
->>>> But, without cachelevel_to_pat[], you might end up hard coding
->>>> something directly in the function, and that is platform
->>>> dependent. hmm..., I don't really like this idea.
->>>>
->>>> That's why I commented in v1 that we should use
->>>> INTEL_INFO(i915)->pat_uc/wb/wt instead of enum i915_cache_level or
->>>> i915_cache_t.
->>>
->>> I think I get it. I hope so.. So if I made the tables like this:
->>>
->>> #define LEGACY_CACHE_MODES \
->>>        .cache_modes =3D { \
->>>                [0] =3D I915_CACHE(UC), \
->>>                [1] =3D _I915_CACHE(WB, COH1W), \
->>>                [2] =3D _I915_CACHE(WB, COH1W | L3), \ // 2way??
->>>                [3] =3D I915_CACHE(WT), \
->>>         }
->>> #define GEN12_CACHE_MODES \
->>>        .cache_modes =3D { \
->>>                [0] =3D _I915_CACHE(WB, COH1W), \
->>>                [1] =3D I915_CACHE(WC), \
->>>                [2] =3D I915_CACHE(WT), \
->>>                [3] =3D I915_CACHE(UC), \
->>>         }
->>> #define MTL_CACHE_MODES \
->>>        .cache_modes =3D { \
->>>                [0] =3D _I915_CACHE(WB, COH1W), \
->
->This was a brain fart, should have just been WB.
->
->>>                [1] =3D I915_CACHE(WT), \
->>>                [2] =3D I915_CACHE(UC), \
->>>                [3] =3D _I915_CACHE(WB, COH1W), \
->>>                [4] =3D _I915_CACHE(WB, COH2W), \
->>> And made i915->pat_wc look up _I915_CACHE(WB, COH1W) would that work?
->>> Hmm and also all "has cache level" call sites would need to look
->>> not just for WB but WB+COH1W.
->>>
->>> Would it work? Too ugly?
->>
->> I don't think this would work. The cache_modes needs to be aligned
->> with BSpec, otherwise checkings for
->> INTEL_INFO(i915)->cache_modes[obj->pat_index] might become invalid.
->> Also, COH1W/2W were not even there for platforms prior to MTL.
->
-> Not sure what would become invalid?
+Participating hosts (9 -> 9)
+------------------------------
 
-What if we want to check for a particular pat_index whether it means
-cached or uncached, whether it's 1-way coherent or not? if the cache_modes[=
-]
-misaligned with bspec, then we would fail such check.
+  No changes in participating hosts
 
-> COH1W/2W are perhaps names associated
-> with MTL - but is Gen12 PAT 0 identical in behaviour to PAT 3 or PAT 4 on
-> MTL? If yes then we can introduce an i915 specific name for that coherenc=
-y
-> mode and apply it to both platforms.
->
->> I still think setting INTEL_INFO(i915)->pat_uc/wt/wb is the best solutio=
-n.
->> With that we can also eliminate the use of I915_CACHE({UC|WT|WB}).
->
-> How for the call sites which are asking about caching mode characteristic=
-s?
-> We can't ask if something has PAT index X from the source code since that=
- is
-> platform dependent.
+Possible new issues
+-------------------
 
-We can compare pat index directly for exact match. Even for the case we jus=
-t
-want to distinguish cached or uncached, we can check the bit field of
-INTEL_INFO(i915)->cache_modes[obj->pat_index].
+  Here are the unknown changes that may have been introduced in Patchwork_120296v1_full:
 
->>>>> +357,7 @@ int i915_gem_set_caching_ioctl(struct drm_device *dev, void=
- *data,
->>>>>          switch (args->caching) {
->>>>>          case I915_CACHING_NONE:
->>>>> -               level =3D I915_CACHE_NONE;
->>>>> +               cache =3D I915_CACHE(UC);
->>>>
->>>> For code like this, my thought was
->>>> -               level =3D I915_CACHE_NONE;
->>>> +               pat_index =3D INTEL_INFO(i915)->pat_uc;
->>>> And later the set_cache call should take pat_index as argument instead
->>>> of cache mode.
->>>>
->>>>>                  break;
->>>>>          case I915_CACHING_CACHED:
->>>>>                  /*
->>>>> @@ -367,10 +369,10 @@ int i915_gem_set_caching_ioctl(struct drm_devic=
-e *dev, void *data,
->>>>>                 if (!HAS_LLC(i915) && !HAS_SNOOP(i915))
->>>>>                     return -ENODEV;
->>>>> -               level =3D I915_CACHE_LLC;
->>>>> +               cache =3D I915_CACHE(WB);
->>>>
->>>> -               level =3D I915_CACHE_LLC;
->>>> +               pat_index =3D INTEL_INFO(i915)->pat_wb;
->>>> This should take care of the WB + 1-WAY COH issue for MTL mentioned ab=
-ove,
->>>> assuming the i915_cache_init() set pat_wb properly, and the
->>>> i915_gem_object_set_cache() consumes pat_index instead of cache mode.
->>>
->>> That works too yes.
->>>
->>>>
->>>>>                  break;
->>>>>          case I915_CACHING_DISPLAY:
->>>>> -               level =3D HAS_WT(i915) ? I915_CACHE_WT : I915_CACHE_N=
-ONE;
->>>>> +               cache =3D HAS_WT(i915) ? I915_CACHE(WT) : I915_CACHE(=
-UC);
->>>>>                 break;
->>>>>          default:
->>>>>                 return -EINVAL;
->>
->> [...]
->>
->>>>>
->>>>> bool i915_gem_object_can_bypass_llc(struct drm_i915_gem_object *obj)
->>>>> @@ -215,6 +222,7 @@ bool i915_gem_object_can_bypass_llc(struct drm_i9=
-15_gem_object *obj)
->>>>>          /*
->>>>>           * Always flush cache for UMD objects at creation time.
->>>>>           */
->>>>> +       /* QQQ/FIXME why? avoidable performance penalty? */
->>
->> This is needed because UMD's assume zero-initialized BO's are really
->> zero'ed out before getting the handles to the BO's (See VLK-46522).
->> Otherwise UMD's could read stale data, thus cause security issues.
->
-> Hah this comes exactly to my point from above. So it looks my propsal
-> would exactly solve this. Because i915 would know the caching mode and
-> know to flush if not coherent. And it would be better than flushing for
-> every obj->pat_set_by_user because that approach pessimistically flushes
-> even when it is not needed.
+### IGT changes ###
 
-hmm..., This is only called at BO creation time. We do need to clflush all
-objects with pat_set_by_user, otherwise the user would get access to stale
-data.
+#### Possible regressions ####
 
--Fei
+  * igt@perf_pmu@busy-idle-no-semaphores@rcs0:
+    - shard-rkl:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-1/igt@perf_pmu@busy-idle-no-semaphores@rcs0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@perf_pmu@busy-idle-no-semaphores@rcs0.html
 
-> Regards,
->
-> Tvrtko
->
->>
->>>>>          if (obj->pat_set_by_user)
->>>>>              return true;
->>>>>
->>
->> [...]
->>
->>>>> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/d=
-rm/i915/intel_device_info.h
->>>>> index dbfe6443457b..f48a21895a85 100644
->>>>> --- a/drivers/gpu/drm/i915/intel_device_info.h
->>>>> +++ b/drivers/gpu/drm/i915/intel_device_info.h
->>>>> @@ -27,6 +27,8 @@
->>>>>
->>>>>  #include <uapi/drm/i915_drm.h>
->>>>>
->>>>> +#include "i915_cache.h"
->>>>> +
->>>>>  #include "intel_step.h"
->>>>>
->>>>>  #include "gt/intel_engine_types.h"
->>>>> @@ -243,8 +245,8 @@ struct intel_device_info {  >>>           */
->>>>>          const struct intel_runtime_info __runtime;
->>>>> -        u32 cachelevel_to_pat[I915_MAX_CACHE_LEVEL];
->>>>> -        u32 max_pat_index;
->>>>> +        i915_cache_t cache_modes[9];
->>>> I was commenting on the array size here. It's probably better to make
->>>> it 16 because there are 4 PAT index bits defined in the PTE. Indices
->>>> above max_pat_index are not used, but theoretically new mode could be
->>>> added. Well, it's up to you, not likely to happen anyway.
->>>
->>> Ah okay. I am not too concerned. Compiler will let us know if it happen=
-s.
->>>
->>> Unrelated to this comment - what about i915_gem_object_can_bypass_llc?
->>> Could we do better (less pessimistic) with something like my approach a=
-nd
->>> so maybe penalize MTL less?
->>
->> The problem is that, for the BO's managed by UMD's, the KMD doesn't
->> know whether they are going to be mapped as cacheable or uncacheable
->> on the CPU side. The PAT index controls GPU access only. That's why we
->> make sure all BO's with PAT set by UMD (which means UMD will take
->> control and managing the
->> coherency) are clflush'ed.
->>
->> -Fei
->>
->>> Regards,
->>>
->>> Tvrtko
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_flip@flip-vs-suspend-interruptible@d-hdmi-a4:
+    - {shard-dg1}:        NOTRUN -> [ABORT][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-14/igt@kms_flip@flip-vs-suspend-interruptible@d-hdmi-a4.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_120296v1_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@drm_fdinfo@most-busy-idle-check-all@rcs0:
+    - shard-rkl:          [PASS][4] -> [FAIL][5] ([i915#7742])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-6/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-1/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html
+
+  * igt@drm_fdinfo@virtual-busy-idle-all:
+    - shard-dg2:          NOTRUN -> [SKIP][6] ([i915#8414])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@drm_fdinfo@virtual-busy-idle-all.html
+
+  * igt@gem_ctx_isolation@preservation-s3@bcs0:
+    - shard-dg2:          [PASS][7] -> [FAIL][8] ([fdo#103375] / [i915#6121]) +3 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-3/igt@gem_ctx_isolation@preservation-s3@bcs0.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-5/igt@gem_ctx_isolation@preservation-s3@bcs0.html
+
+  * igt@gem_exec_balancer@full-pulse:
+    - shard-dg2:          [PASS][9] -> [FAIL][10] ([i915#6032])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-5/igt@gem_exec_balancer@full-pulse.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-11/igt@gem_exec_balancer@full-pulse.html
+
+  * igt@gem_exec_fair@basic-none-rrul:
+    - shard-dg2:          NOTRUN -> [SKIP][11] ([i915#3539] / [i915#4852])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_exec_fair@basic-none-rrul.html
+
+  * igt@gem_exec_fair@basic-none@vcs0:
+    - shard-rkl:          [PASS][12] -> [FAIL][13] ([i915#2842])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-2/igt@gem_exec_fair@basic-none@vcs0.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@gem_exec_fair@basic-none@vcs0.html
+
+  * igt@gem_exec_fair@basic-pace-solo@rcs0:
+    - shard-glk:          [PASS][14] -> [FAIL][15] ([i915#2842])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-glk4/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk9/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+
+  * igt@gem_exec_reloc@basic-wc:
+    - shard-dg2:          NOTRUN -> [SKIP][16] ([i915#3281]) +3 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_exec_reloc@basic-wc.html
+
+  * igt@gem_exec_schedule@deep@vecs0:
+    - shard-mtlp:         [PASS][17] -> [FAIL][18] ([i915#8606])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-3/igt@gem_exec_schedule@deep@vecs0.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-8/igt@gem_exec_schedule@deep@vecs0.html
+
+  * igt@gem_exec_schedule@preempt-queue:
+    - shard-dg2:          NOTRUN -> [SKIP][19] ([i915#4537] / [i915#4812])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_exec_schedule@preempt-queue.html
+
+  * igt@gem_exec_suspend@basic-s4-devices@lmem0:
+    - shard-dg2:          [PASS][20] -> [ABORT][21] ([i915#7975] / [i915#8213] / [i915#8682])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-11/igt@gem_exec_suspend@basic-s4-devices@lmem0.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-12/igt@gem_exec_suspend@basic-s4-devices@lmem0.html
+
+  * igt@gem_fence_thrash@bo-write-verify-y:
+    - shard-dg2:          NOTRUN -> [SKIP][22] ([i915#4860])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_fence_thrash@bo-write-verify-y.html
+
+  * igt@gem_lmem_swapping@parallel-random-verify-ccs:
+    - shard-glk:          NOTRUN -> [SKIP][23] ([fdo#109271] / [i915#4613])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk7/igt@gem_lmem_swapping@parallel-random-verify-ccs.html
+
+  * igt@gem_mmap_wc@pf-nonblock:
+    - shard-dg2:          NOTRUN -> [SKIP][24] ([i915#4083])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_mmap_wc@pf-nonblock.html
+
+  * igt@gem_tiled_pread_basic:
+    - shard-dg2:          NOTRUN -> [SKIP][25] ([i915#4079])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_tiled_pread_basic.html
+
+  * igt@gem_tiled_wb:
+    - shard-dg2:          NOTRUN -> [SKIP][26] ([i915#4077]) +4 similar issues
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_tiled_wb.html
+
+  * igt@gem_userptr_blits@forbidden-operations:
+    - shard-dg2:          NOTRUN -> [SKIP][27] ([i915#3282]) +1 similar issue
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_userptr_blits@forbidden-operations.html
+
+  * igt@gen9_exec_parse@batch-invalid-length:
+    - shard-dg2:          NOTRUN -> [SKIP][28] ([i915#2856])
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gen9_exec_parse@batch-invalid-length.html
+
+  * igt@gen9_exec_parse@unaligned-jump:
+    - shard-mtlp:         NOTRUN -> [SKIP][29] ([i915#2856])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-5/igt@gen9_exec_parse@unaligned-jump.html
+
+  * igt@i915_pm_rpm@dpms-mode-unset-lpsp:
+    - shard-rkl:          [PASS][30] -> [SKIP][31] ([i915#1397])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-7/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-2/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html
+
+  * igt@i915_pm_rpm@dpms-mode-unset-non-lpsp:
+    - shard-dg2:          [PASS][32] -> [SKIP][33] ([i915#1397])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-2/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-12/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html
+
+  * igt@i915_pm_sseu@full-enable:
+    - shard-dg2:          NOTRUN -> [SKIP][34] ([i915#4387])
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@i915_pm_sseu@full-enable.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - shard-rkl:          [PASS][35] -> [FAIL][36] ([fdo#103375])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-4/igt@i915_suspend@basic-s3-without-i915.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-6/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_async_flips@async-flip-with-page-flip-events@pipe-b-hdmi-a-1-y-rc_ccs:
+    - shard-rkl:          NOTRUN -> [SKIP][37] ([i915#8502]) +3 similar issues
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@kms_async_flips@async-flip-with-page-flip-events@pipe-b-hdmi-a-1-y-rc_ccs.html
+
+  * igt@kms_async_flips@crc@pipe-b-dp-2:
+    - shard-dg2:          NOTRUN -> [FAIL][38] ([i915#8247]) +3 similar issues
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-12/igt@kms_async_flips@crc@pipe-b-dp-2.html
+
+  * igt@kms_async_flips@crc@pipe-b-hdmi-a-1:
+    - shard-snb:          NOTRUN -> [FAIL][39] ([i915#8247]) +1 similar issue
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-snb1/igt@kms_async_flips@crc@pipe-b-hdmi-a-1.html
+
+  * igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip:
+    - shard-glk:          NOTRUN -> [SKIP][40] ([fdo#109271]) +62 similar issues
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk8/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html
+
+  * igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip:
+    - shard-mtlp:         [PASS][41] -> [FAIL][42] ([i915#5138])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-6/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-3/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip.html
+
+  * igt@kms_big_fb@y-tiled-8bpp-rotate-0:
+    - shard-dg2:          NOTRUN -> [SKIP][43] ([i915#5190]) +1 similar issue
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_big_fb@y-tiled-8bpp-rotate-0.html
+
+  * igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-180-async-flip:
+    - shard-dg2:          NOTRUN -> [SKIP][44] ([i915#4538] / [i915#5190])
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-180-async-flip.html
+
+  * igt@kms_ccs@pipe-a-bad-rotation-90-y_tiled_gen12_rc_ccs_cc:
+    - shard-glk:          NOTRUN -> [SKIP][45] ([fdo#109271] / [i915#3886]) +1 similar issue
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk7/igt@kms_ccs@pipe-a-bad-rotation-90-y_tiled_gen12_rc_ccs_cc.html
+
+  * igt@kms_ccs@pipe-a-crc-primary-rotation-180-4_tiled_dg2_rc_ccs_cc:
+    - shard-mtlp:         NOTRUN -> [SKIP][46] ([i915#6095])
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-5/igt@kms_ccs@pipe-a-crc-primary-rotation-180-4_tiled_dg2_rc_ccs_cc.html
+
+  * igt@kms_ccs@pipe-a-random-ccs-data-y_tiled_ccs:
+    - shard-dg2:          NOTRUN -> [SKIP][47] ([i915#3689] / [i915#5354]) +4 similar issues
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_ccs@pipe-a-random-ccs-data-y_tiled_ccs.html
+
+  * igt@kms_ccs@pipe-c-crc-primary-basic-y_tiled_gen12_mc_ccs:
+    - shard-dg2:          NOTRUN -> [SKIP][48] ([i915#3689] / [i915#3886] / [i915#5354]) +2 similar issues
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_ccs@pipe-c-crc-primary-basic-y_tiled_gen12_mc_ccs.html
+
+  * igt@kms_ccs@pipe-d-ccs-on-another-bo-4_tiled_mtl_rc_ccs:
+    - shard-dg2:          NOTRUN -> [SKIP][49] ([i915#5354]) +12 similar issues
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_ccs@pipe-d-ccs-on-another-bo-4_tiled_mtl_rc_ccs.html
+
+  * igt@kms_cdclk@plane-scaling@pipe-c-dp-2:
+    - shard-dg2:          NOTRUN -> [SKIP][50] ([i915#4087]) +3 similar issues
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-12/igt@kms_cdclk@plane-scaling@pipe-c-dp-2.html
+
+  * igt@kms_chamelium_color@ctm-0-75:
+    - shard-dg2:          NOTRUN -> [SKIP][51] ([fdo#111827])
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_chamelium_color@ctm-0-75.html
+
+  * igt@kms_chamelium_hpd@vga-hpd-without-ddc:
+    - shard-dg2:          NOTRUN -> [SKIP][52] ([i915#7828]) +1 similar issue
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_chamelium_hpd@vga-hpd-without-ddc.html
+
+  * igt@kms_content_protection@atomic@pipe-a-dp-4:
+    - shard-dg2:          NOTRUN -> [TIMEOUT][53] ([i915#7173]) +1 similar issue
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-11/igt@kms_content_protection@atomic@pipe-a-dp-4.html
+
+  * igt@kms_content_protection@dp-mst-type-0:
+    - shard-mtlp:         NOTRUN -> [SKIP][54] ([i915#3299])
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-3/igt@kms_content_protection@dp-mst-type-0.html
+
+  * igt@kms_content_protection@lic:
+    - shard-dg2:          NOTRUN -> [SKIP][55] ([i915#7118])
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-6/igt@kms_content_protection@lic.html
+
+  * igt@kms_cursor_crc@cursor-rapid-movement-512x170:
+    - shard-dg2:          NOTRUN -> [SKIP][56] ([i915#3359])
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_cursor_crc@cursor-rapid-movement-512x170.html
+
+  * igt@kms_cursor_legacy@cursor-vs-flip-toggle:
+    - shard-mtlp:         [PASS][57] -> [FAIL][58] ([i915#8248])
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-5/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-6/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html
+
+  * igt@kms_cursor_legacy@cursorb-vs-flipa-varying-size:
+    - shard-dg2:          NOTRUN -> [SKIP][59] ([fdo#109274] / [i915#5354]) +1 similar issue
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_cursor_legacy@cursorb-vs-flipa-varying-size.html
+
+  * igt@kms_fbcon_fbt@fbc-suspend:
+    - shard-dg2:          [PASS][60] -> [FAIL][61] ([i915#4767])
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-11/igt@kms_fbcon_fbt@fbc-suspend.html
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-8/igt@kms_fbcon_fbt@fbc-suspend.html
+
+  * igt@kms_flip@2x-busy-flip:
+    - shard-dg2:          NOTRUN -> [SKIP][62] ([fdo#109274])
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_flip@2x-busy-flip.html
+
+  * igt@kms_flip@2x-flip-vs-dpms:
+    - shard-mtlp:         NOTRUN -> [SKIP][63] ([i915#3637])
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-7/igt@kms_flip@2x-flip-vs-dpms.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc:
+    - shard-dg2:          NOTRUN -> [SKIP][64] ([i915#8708]) +5 similar issues
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-spr-indfb-draw-render:
+    - shard-mtlp:         NOTRUN -> [SKIP][65] ([i915#1825]) +1 similar issue
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-7/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-spr-indfb-draw-render.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-cpu:
+    - shard-dg2:          NOTRUN -> [SKIP][66] ([i915#3458]) +2 similar issues
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-cpu.html
+
+  * igt@kms_hdr@bpc-switch:
+    - shard-rkl:          NOTRUN -> [SKIP][67] ([i915#3555])
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-2/igt@kms_hdr@bpc-switch.html
+
+  * igt@kms_hdr@static-toggle-suspend:
+    - shard-dg2:          NOTRUN -> [SKIP][68] ([i915#3555]) +2 similar issues
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-1/igt@kms_hdr@static-toggle-suspend.html
+
+  * igt@kms_plane_alpha_blend@alpha-basic@pipe-a-hdmi-a-1:
+    - shard-glk:          NOTRUN -> [FAIL][69] ([i915#7862]) +1 similar issue
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk7/igt@kms_plane_alpha_blend@alpha-basic@pipe-a-hdmi-a-1.html
+
+  * igt@kms_plane_scaling@intel-max-src-size:
+    - shard-dg2:          NOTRUN -> [SKIP][70] ([i915#6953])
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-1/igt@kms_plane_scaling@intel-max-src-size.html
+
+  * igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-a-hdmi-a-2:
+    - shard-rkl:          NOTRUN -> [SKIP][71] ([i915#5176]) +5 similar issues
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-6/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-a-hdmi-a-2.html
+
+  * igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-d-dp-4:
+    - shard-dg2:          NOTRUN -> [SKIP][72] ([i915#5176]) +7 similar issues
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-11/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-d-dp-4.html
+
+  * igt@kms_plane_scaling@plane-upscale-with-modifiers-20x20@pipe-b-hdmi-a-1:
+    - shard-snb:          NOTRUN -> [SKIP][73] ([fdo#109271]) +10 similar issues
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-snb1/igt@kms_plane_scaling@plane-upscale-with-modifiers-20x20@pipe-b-hdmi-a-1.html
+
+  * igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-b-hdmi-a-1:
+    - shard-rkl:          NOTRUN -> [SKIP][74] ([i915#5235]) +1 similar issue
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-b-hdmi-a-1.html
+
+  * igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-c-dp-4:
+    - shard-dg2:          NOTRUN -> [SKIP][75] ([i915#5235]) +15 similar issues
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-11/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-c-dp-4.html
+
+  * igt@kms_prime@basic-crc-hybrid:
+    - shard-dg2:          NOTRUN -> [SKIP][76] ([i915#6524] / [i915#6805])
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_prime@basic-crc-hybrid.html
+
+  * igt@kms_psr@suspend:
+    - shard-dg2:          NOTRUN -> [SKIP][77] ([i915#1072]) +1 similar issue
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_psr@suspend.html
+
+  * igt@kms_rmfb@close-fd@pipe-a-edp-1:
+    - shard-mtlp:         [PASS][78] -> [DMESG-WARN][79] ([i915#1982])
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-7/igt@kms_rmfb@close-fd@pipe-a-edp-1.html
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-5/igt@kms_rmfb@close-fd@pipe-a-edp-1.html
+
+  * igt@kms_sysfs_edid_timing:
+    - shard-dg2:          [PASS][80] -> [FAIL][81] ([IGT#2])
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-11/igt@kms_sysfs_edid_timing.html
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-6/igt@kms_sysfs_edid_timing.html
+
+  * igt@perf@per-context-mode-unprivileged:
+    - shard-dg2:          NOTRUN -> [SKIP][82] ([fdo#109289])
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@perf@per-context-mode-unprivileged.html
+
+  * igt@prime_vgem@coherency-blt:
+    - shard-mtlp:         NOTRUN -> [FAIL][83] ([i915#8445])
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-7/igt@prime_vgem@coherency-blt.html
+
+  * igt@prime_vgem@fence-read-hang:
+    - shard-dg2:          NOTRUN -> [SKIP][84] ([i915#3708])
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@prime_vgem@fence-read-hang.html
+
+  * igt@v3d/v3d_submit_csd@multiple-job-submission:
+    - shard-dg2:          NOTRUN -> [SKIP][85] ([i915#2575]) +2 similar issues
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@v3d/v3d_submit_csd@multiple-job-submission.html
+
+  * igt@vc4/vc4_purgeable_bo@free-purged-bo:
+    - shard-dg2:          NOTRUN -> [SKIP][86] ([i915#7711]) +1 similar issue
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@vc4/vc4_purgeable_bo@free-purged-bo.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ctx_exec@basic-nohangcheck:
+    - shard-tglu:         [FAIL][87] ([i915#6268]) -> [PASS][88]
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-tglu-2/igt@gem_ctx_exec@basic-nohangcheck.html
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-tglu-8/igt@gem_ctx_exec@basic-nohangcheck.html
+
+  * igt@gem_eio@reset-stress:
+    - {shard-dg1}:        [FAIL][89] ([i915#5784]) -> [PASS][90]
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg1-13/igt@gem_eio@reset-stress.html
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-18/igt@gem_eio@reset-stress.html
+
+  * igt@gem_exec_fair@basic-deadline:
+    - shard-glk:          [FAIL][91] ([i915#2846]) -> [PASS][92]
+   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-glk2/igt@gem_exec_fair@basic-deadline.html
+   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk1/igt@gem_exec_fair@basic-deadline.html
+
+  * igt@gem_exec_fair@basic-pace@rcs0:
+    - shard-glk:          [FAIL][93] ([i915#2842]) -> [PASS][94]
+   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-glk6/igt@gem_exec_fair@basic-pace@rcs0.html
+   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk4/igt@gem_exec_fair@basic-pace@rcs0.html
+
+  * igt@gem_exec_whisper@basic-contexts-all:
+    - shard-mtlp:         [FAIL][95] ([i915#6363]) -> [PASS][96] +2 similar issues
+   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-6/igt@gem_exec_whisper@basic-contexts-all.html
+   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-7/igt@gem_exec_whisper@basic-contexts-all.html
+
+  * igt@gem_lmem_swapping@smem-oom@lmem0:
+    - shard-dg2:          [TIMEOUT][97] ([i915#5493]) -> [PASS][98]
+   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-8/igt@gem_lmem_swapping@smem-oom@lmem0.html
+   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-3/igt@gem_lmem_swapping@smem-oom@lmem0.html
+    - {shard-dg1}:        [TIMEOUT][99] ([i915#5493]) -> [PASS][100]
+   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg1-12/igt@gem_lmem_swapping@smem-oom@lmem0.html
+   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-19/igt@gem_lmem_swapping@smem-oom@lmem0.html
+
+  * igt@gen9_exec_parse@allowed-all:
+    - shard-glk:          [ABORT][101] ([i915#5566]) -> [PASS][102] +1 similar issue
+   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-glk7/igt@gen9_exec_parse@allowed-all.html
+   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk8/igt@gen9_exec_parse@allowed-all.html
+
+  * igt@i915_pm_dc@dc6-dpms:
+    - shard-tglu:         [FAIL][103] ([i915#3989] / [i915#454]) -> [PASS][104]
+   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-tglu-6/igt@i915_pm_dc@dc6-dpms.html
+   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-tglu-4/igt@i915_pm_dc@dc6-dpms.html
+
+  * igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-hdmi-a:
+    - shard-rkl:          [SKIP][105] ([i915#1937]) -> [PASS][106]
+   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-2/igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-hdmi-a.html
+   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-hdmi-a.html
+    - {shard-dg1}:        [SKIP][107] ([i915#1937]) -> [PASS][108]
+   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg1-15/igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-hdmi-a.html
+   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-19/igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-hdmi-a.html
+
+  * igt@i915_pm_rc6_residency@rc6-idle@vecs0:
+    - {shard-dg1}:        [FAIL][109] ([i915#3591]) -> [PASS][110]
+   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg1-17/igt@i915_pm_rc6_residency@rc6-idle@vecs0.html
+   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-16/igt@i915_pm_rc6_residency@rc6-idle@vecs0.html
+
+  * igt@i915_pm_rpm@dpms-non-lpsp:
+    - shard-rkl:          [SKIP][111] ([i915#1397]) -> [PASS][112] +2 similar issues
+   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-7/igt@i915_pm_rpm@dpms-non-lpsp.html
+   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-6/igt@i915_pm_rpm@dpms-non-lpsp.html
+
+  * igt@i915_pm_rpm@modeset-lpsp-stress:
+    - shard-dg2:          [SKIP][113] ([i915#1397]) -> [PASS][114]
+   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-6/igt@i915_pm_rpm@modeset-lpsp-stress.html
+   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-12/igt@i915_pm_rpm@modeset-lpsp-stress.html
+
+  * igt@i915_pm_rpm@modeset-non-lpsp:
+    - {shard-dg1}:        [SKIP][115] ([i915#1397]) -> [PASS][116] +1 similar issue
+   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg1-19/igt@i915_pm_rpm@modeset-non-lpsp.html
+   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-16/igt@i915_pm_rpm@modeset-non-lpsp.html
+
+  * igt@i915_selftest@live@gt_mocs:
+    - shard-mtlp:         [DMESG-FAIL][117] ([i915#7059]) -> [PASS][118]
+   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-7/igt@i915_selftest@live@gt_mocs.html
+   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-4/igt@i915_selftest@live@gt_mocs.html
+
+  * igt@i915_suspend@forcewake:
+    - shard-dg2:          [FAIL][119] ([fdo#103375] / [i915#6121]) -> [PASS][120]
+   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-5/igt@i915_suspend@forcewake.html
+   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@i915_suspend@forcewake.html
+
+  * igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip:
+    - shard-mtlp:         [FAIL][121] ([i915#3743]) -> [PASS][122]
+   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-8/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html
+   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-3/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html
+
+  * igt@kms_plane_scaling@plane-scaler-with-pixel-format-unity-scaling@pipe-b-edp-1:
+    - shard-mtlp:         [DMESG-WARN][123] ([i915#1982]) -> [PASS][124]
+   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-5/igt@kms_plane_scaling@plane-scaler-with-pixel-format-unity-scaling@pipe-b-edp-1.html
+   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-2/igt@kms_plane_scaling@plane-scaler-with-pixel-format-unity-scaling@pipe-b-edp-1.html
+
+  * igt@perf@non-zero-reason@0-rcs0:
+    - shard-dg2:          [FAIL][125] ([i915#7484]) -> [PASS][126]
+   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-2/igt@perf@non-zero-reason@0-rcs0.html
+   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@perf@non-zero-reason@0-rcs0.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rc6_residency@rc6-idle@bcs0:
+    - shard-tglu:         [WARN][127] ([i915#2681]) -> [FAIL][128] ([i915#2681] / [i915#3591])
+   [127]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-tglu-5/igt@i915_pm_rc6_residency@rc6-idle@bcs0.html
+   [128]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-tglu-9/igt@i915_pm_rc6_residency@rc6-idle@bcs0.html
+
+  * igt@kms_content_protection@content_type_change:
+    - shard-dg2:          [SKIP][129] ([i915#7118]) -> [SKIP][130] ([i915#7118] / [i915#7162])
+   [129]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-5/igt@kms_content_protection@content_type_change.html
+   [130]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-11/igt@kms_content_protection@content_type_change.html
+
+  * igt@kms_content_protection@type1:
+    - shard-dg2:          [SKIP][131] ([i915#7118] / [i915#7162]) -> [SKIP][132] ([i915#7118])
+   [131]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-11/igt@kms_content_protection@type1.html
+   [132]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-8/igt@kms_content_protection@type1.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
+    - shard-mtlp:         [FAIL][133] ([i915#2346]) -> [DMESG-FAIL][134] ([i915#1982] / [i915#2017] / [i915#5954])
+   [133]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+   [134]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+
+  * igt@kms_fbcon_fbt@psr-suspend:
+    - shard-rkl:          [SKIP][135] ([i915#3955]) -> [SKIP][136] ([fdo#110189] / [i915#3955])
+   [135]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-6/igt@kms_fbcon_fbt@psr-suspend.html
+   [136]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-1/igt@kms_fbcon_fbt@psr-suspend.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - shard-rkl:          [SKIP][137] ([fdo#109285]) -> [SKIP][138] ([fdo#109285] / [i915#4098])
+   [137]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-6/igt@kms_force_connector_basic@force-load-detect.html
+   [138]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-1/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_multipipe_modeset@basic-max-pipe-crc-check:
+    - shard-rkl:          [SKIP][139] ([i915#4070] / [i915#4816]) -> [SKIP][140] ([i915#4816])
+   [139]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-2/igt@kms_multipipe_modeset@basic-max-pipe-crc-check.html
+   [140]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@kms_multipipe_modeset@basic-max-pipe-crc-check.html
+
+  * igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem:
+    - shard-dg2:          [INCOMPLETE][141] ([i915#5493]) -> [CRASH][142] ([i915#7331])
+   [141]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-11/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html
+   [142]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-8/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#2]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/2
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
+  [fdo#109300]: https://bugs.freedesktop.org/show_bug.cgi?id=109300
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
+  [i915#1825]: https://gitlab.freedesktop.org/drm/intel/issues/1825
+  [i915#1937]: https://gitlab.freedesktop.org/drm/intel/issues/1937
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2681]: https://gitlab.freedesktop.org/drm/intel/issues/2681
+  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
+  [i915#2846]: https://gitlab.freedesktop.org/drm/intel/issues/2846
+  [i915#2856]: https://gitlab.freedesktop.org/drm/intel/issues/2856
+  [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3299]: https://gitlab.freedesktop.org/drm/intel/issues/3299
+  [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
+  [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
+  [i915#3539]: https://gitlab.freedesktop.org/drm/intel/issues/3539
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3591]: https://gitlab.freedesktop.org/drm/intel/issues/3591
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3743]: https://gitlab.freedesktop.org/drm/intel/issues/3743
+  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
+  [i915#3955]: https://gitlab.freedesktop.org/drm/intel/issues/3955
+  [i915#3989]: https://gitlab.freedesktop.org/drm/intel/issues/3989
+  [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4087]: https://gitlab.freedesktop.org/drm/intel/issues/4087
+  [i915#4098]: https://gitlab.freedesktop.org/drm/intel/issues/4098
+  [i915#4387]: https://gitlab.freedesktop.org/drm/intel/issues/4387
+  [i915#4537]: https://gitlab.freedesktop.org/drm/intel/issues/4537
+  [i915#4538]: https://gitlab.freedesktop.org/drm/intel/issues/4538
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4767]: https://gitlab.freedesktop.org/drm/intel/issues/4767
+  [i915#4812]: https://gitlab.freedesktop.org/drm/intel/issues/4812
+  [i915#4816]: https://gitlab.freedesktop.org/drm/intel/issues/4816
+  [i915#4852]: https://gitlab.freedesktop.org/drm/intel/issues/4852
+  [i915#4860]: https://gitlab.freedesktop.org/drm/intel/issues/4860
+  [i915#5138]: https://gitlab.freedesktop.org/drm/intel/issues/5138
+  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5493]: https://gitlab.freedesktop.org/drm/intel/issues/5493
+  [i915#5566]: https://gitlab.freedesktop.org/drm/intel/issues/5566
+  [i915#5784]: https://gitlab.freedesktop.org/drm/intel/issues/5784
+  [i915#5954]: https://gitlab.freedesktop.org/drm/intel/issues/5954
+  [i915#6032]: https://gitlab.freedesktop.org/drm/intel/issues/6032
+  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
+  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
+  [i915#6268]: https://gitlab.freedesktop.org/drm/intel/issues/6268
+  [i915#6363]: https://gitlab.freedesktop.org/drm/intel/issues/6363
+  [i915#6524]: https://gitlab.freedesktop.org/drm/intel/issues/6524
+  [i915#6805]: https://gitlab.freedesktop.org/drm/intel/issues/6805
+  [i915#6953]: https://gitlab.freedesktop.org/drm/intel/issues/6953
+  [i915#7059]: https://gitlab.freedesktop.org/drm/intel/issues/7059
+  [i915#7116]: https://gitlab.freedesktop.org/drm/intel/issues/7116
+  [i915#7118]: https://gitlab.freedesktop.org/drm/intel/issues/7118
+  [i915#7162]: https://gitlab.freedesktop.org/drm/intel/issues/7162
+  [i915#7173]: https://gitlab.freedesktop.org/drm/intel/issues/7173
+  [i915#7331]: https://gitlab.freedesktop.org/drm/intel/issues/7331
+  [i915#7484]: https://gitlab.freedesktop.org/drm/intel/issues/7484
+  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
+  [i915#7742]: https://gitlab.freedesktop.org/drm/intel/issues/7742
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7862]: https://gitlab.freedesktop.org/drm/intel/issues/7862
+  [i915#7975]: https://gitlab.freedesktop.org/drm/intel/issues/7975
+  [i915#8213]: https://gitlab.freedesktop.org/drm/intel/issues/8213
+  [i915#8247]: https://gitlab.freedesktop.org/drm/intel/issues/8247
+  [i915#8248]: https://gitlab.freedesktop.org/drm/intel/issues/8248
+  [i915#8292]: https://gitlab.freedesktop.org/drm/intel/issues/8292
+  [i915#8414]: https://gitlab.freedesktop.org/drm/intel/issues/8414
+  [i915#8445]: https://gitlab.freedesktop.org/drm/intel/issues/8445
+  [i915#8502]: https://gitlab.freedesktop.org/drm/intel/issues/8502
+  [i915#8606]: https://gitlab.freedesktop.org/drm/intel/issues/8606
+  [i915#8682]: https://gitlab.freedesktop.org/drm/intel/issues/8682
+  [i915#8708]: https://gitlab.freedesktop.org/drm/intel/issues/8708
+  [i915#8709]: https://gitlab.freedesktop.org/drm/intel/issues/8709
 
 
---_000_BYAPR11MB2567C6E41E13F733CF5F1BA29A2DABYAPR11MB2567namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Build changes
+-------------
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
+  * Linux: CI_DRM_13351 -> Patchwork_120296v1
+
+  CI-20190529: 20190529
+  CI_DRM_13351: c5262da740fe00ef30394118a108dcf0723a0318 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7376: 38af51c0ce6d9573793f53fc32782b77061bf169 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_120296v1: c5262da740fe00ef30394118a108dcf0723a0318 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/index.html
+
+--===============8876616462857546513==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
 </head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof ContentPasted0">
-&gt;&gt;&gt;&gt;&gt; @@ -27,15 +28,8 @@ static bool gpu_write_needs_clflush=
-(struct &nbsp;drm_i915_gem_object *obj)
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;if (IS_DGFX(i915))</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp;return false;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; /=
-*</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp;* For objects created by userspace through GEM_CREATE with pat_index</=
-div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp;* set by set_pat extension, i915_gem_object_has_cache_level() will</di=
-v>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp;* always return true, because the coherency of such object is managed<=
-/div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp;* by userspace. Othereise the call here would fall back to checking</d=
-iv>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp;* whether the object is un-cached or write-through.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp;*/</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; r=
-eturn !(i915_gem_object_has_cache_level(obj, I915_CACHE_NONE) ||</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp;i915_gem_object_has_cache_level(obj, I915_=
-CACHE_WT));</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; r=
-eturn i915_gem_object_has_cache_mode(obj, I915_CACHE_MODE_UC) !=3D 1 &amp;&=
-amp;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp;i915_gem_object_has_cache_mode(obj, I915_CACHE_MO=
-DE_WT) !=3D 1;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; This logic was changed for o=
-bjects with pat index set by user here. It</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; used to return false regardl=
-ess the cache mode. But now it returns true</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; if its cache mode is neither=
- UC nor WT.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Yes, that was half of the motiva=
-tion of the refactory. Before the PAT</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; index series code was like this:=
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp;retur=
-n !(obj-&gt;cache_level =3D=3D I915_CACHE_NONE ||</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; obj-&gt;cache_level =3D=3D I915_CACHE_WT);</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; So kernel knew it needs to flush=
- only if caching mode is neither UC or WT.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; With the PAT index series you ch=
-anged it to:</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp;retur=
-n !(i915_gem_object_has_cache_level(obj, I915_CACHE_NONE) ||</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; i915_gem_object_has_cache_level(obj, I915_CACHE_WT)=
-);</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; And as i915_gem_object_has_cache=
-_level was changed to always return true</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; if PAT was set by user, that mad=
-e the check meaningless for such objects.</div>
-<div class=3D"ContentPasted0">&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt; But the point is that the KMD should=
- not flush the cache for objects
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; with PAT set by user because UMD is =
-handling the cache conherency.
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; That is the design. Well doing so wo=
-uldn't cause functional issue, but
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; it's unecessary and might have perfo=
-rmance impact.</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; Not all i915_gem_object_has_cache_level(=
-) are even about flushing the cache</div>
-<div class=3D"ContentPasted0">&gt; and if the kernel doesn't know what is b=
-ehind a PAT index</div>
-<div class=3D"ContentPasted0">&gt; (i915_gem_object_has_cache_level lies by=
- always returning true) are we 100%</div>
-<div class=3D"ContentPasted0">&gt; sure everything is functionally correct?=
-</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; flush_write_domain() for instance uses i=
-t to determine whether to set
-</div>
-<div class=3D"ContentPasted0">&gt; obj-&gt;cache_dirty after GPU activity. =
-How does the UMD manage that?</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; Then use_cpu_reloc(). Another pointless/=
-misleading question.</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; Finally vm_fault_gtt() rejects access ba=
-sed on it.</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; Perhaps the question is moot since the s=
-et pat extension is restricted to</div>
-<div class=3D"ContentPasted0">&gt; MTL so some other conditions used in the=
- above checks, like HAS_LLC and such,</div>
-<div class=3D"ContentPasted0">&gt; make for no practical difference. Even i=
-f so, what if the extension was allowed</div>
-<div class=3D"ContentPasted0">&gt; on other platforms as it was the plan un=
-til it was discovered there is no</div>
-<div class=3D"ContentPasted0">&gt; userspace code for other platforms. Woul=
-d the plan work on all platforms? And</div>
-<div class=3D"ContentPasted0">&gt; even if it would I think the implementat=
-ion is very non-obvious.</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">Understand your point, perhaps we should let =
-i915_gem_object_has_cache_mode()</div>
-<div class=3D"ContentPasted0">do what it supposed to do, and add a separate=
- check for obj-&gt;pat_set_by_user</div>
-<div class=3D"ContentPasted0">in functions like gpu_write_needs_clflush(), =
-use_cpu_reloc(), etc. Anyway,</div>
-<div class=3D"ContentPasted0">the design is to let UMD handle coherency for=
- objects with pat set by user.</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; With my refactoring it becomes m=
-eaningful again and restores to the
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; original behaviour. That's the i=
-ntent at least.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp;bool i915_gem_cpu_=
-write_needs_clflush(struct drm_i915_gem_object *obj)</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; @@ -255,9 +249,9 @@ i915=
-_gem_object_set_to_gtt_domain(struct drm_i915_gem_object *obj, bool write)<=
-/div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp;}</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp;/**</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - * i915_gem_object_set_=
-cache_level - Changes the cache-level of an object across all VMA.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + * i915_gem_object_set_=
-cache - Changes the cache-level of an object across all VMA.</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">[...]</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; i=
-f (i915_gem_object_has_cache_level(obj, cache_level)) &nbsp;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; r=
-et =3D i915_cache_find_pat(i915, cache);</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; i=
-f (ret &lt; 0) {</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; struct drm_printer p =3D</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp;drm_err_printer(&quot;Attempting to use un=
-known caching mode &quot;);</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; i915_cache_print(&amp;p, cache);</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; drm_puts(&amp;p, &quot;!\n&quot;);</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; +</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; return -EINVAL;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; }=
- else if (ret =3D=3D obj-&gt;pat_index) {</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; return 0;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; We will have to do this conv=
-ersion and checking again later in this</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; function when calling i915_g=
-em_object_set_cache_coherency().</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Yes the double lookup part is a =
-bit naff. It is not super required &nbsp;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; apart for validating internal ca=
-llers (could be a debug build only</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; feature perhaps) and to see if P=
-AT index has changed and so whether &nbsp;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; it needs to call i915_gem_object=
-_wait before proceeding to</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; i915_gem_object_set_cache_cohere=
-ncy...</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; My thought was to simply rem=
-ove the use of cache_level/cache and replace</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; it with pat_idex. Conversion=
- from cache modes to pat index should be done</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; before calling any function =
-used to consume cache_level/cache.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; ... I could probably call the se=
-tter which takes PAT index instead of</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; i915_gem_object_set_cache_cohere=
-ncy few lines below. That would skip the</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; double lookup and make you happy=
-(-ier)?</div>
-<div class=3D"ContentPasted0">&gt;&gt; </div>
-<div class=3D"ContentPasted0">&gt;&gt; Do you see any problem just letting =
-these functions take pat_index as
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; the second argument? These functions=
- are currently called with a
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; constant cache_level/mode, if we hav=
-e INTEL_INFO(i915)-&gt;pat_uc/wt/wb
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; set properly, using pat index makes =
-no difference, right?</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; Which ones?</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">i915_gem_object_set_cache_level() and i915_ge=
-m_object_set_cache_coherency()</div>
-<div class=3D"ContentPasted0">are both being called with cache_level as of =
-now. That is not necessary if</div>
-<div class=3D"ContentPasted0">platform specific INTEL_INFO(i915)-&gt;pat_uc=
-/wt/wb are there. we can simply</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">s/I915_CACHE_NONE/INTEL_INFO(i915)-&gt;pat_uc=
-</div>
-<div class=3D"ContentPasted0">s/I915_CACHE_WT/INTEL_INFO(i915)-&gt;pat_wt</=
-div>
-<div class=3D"ContentPasted0">s/I915_CACHE_LLC/INTEL_INFO(i915)-&gt;pat_wb<=
-/div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">[...]</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; if (i915_gem_object_has_=
-cache_mode(obj, I915_CACHE_MODE_WB))</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; This looks wrong, at least f=
-or MTL. Prior to MTL the GPU automatically
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; snoop CPU cache, but from MT=
-L onward you have to specify if WB or
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; WB + 1-WAY COH is needed. An=
-d for KMD, cacheable mode means WB +
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; 1-WAY COH for MTL to keep th=
-e behavior consistent.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; This used to be taken care o=
-f by i915_gem_get_pat_index() call.
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; With that being replaced by =
-i915_cache_find_pat(), you would need
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; to do something there.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; But, without cachelevel_to_p=
-at[], you might end up hard coding
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; something directly in the fu=
-nction, and that is platform
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; dependent. hmm..., I don't r=
-eally like this idea.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; That's why I commented in v1=
- that we should use </div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; INTEL_INFO(i915)-&gt;pat_uc/=
-wb/wt instead of enum i915_cache_level or
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; i915_cache_t.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; I think I get it. I hope so.. So=
- if I made the tables like this:</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; #define LEGACY_CACHE_MODES \</di=
-v>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp;.cach=
-e_modes =3D { \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[0] =3D I915_CACHE(UC), \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[1] =3D _I915_CACHE(WB, COH1W), \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[2] =3D _I915_CACHE(WB, COH1W | L3), \ // 2way??</di=
-v>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[3] =3D I915_CACHE(WT), \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; }</d=
-iv>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; #define GEN12_CACHE_MODES \</div=
->
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp;.cach=
-e_modes =3D { \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[0] =3D _I915_CACHE(WB, COH1W), \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[1] =3D I915_CACHE(WC), \ &nbsp;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[2] =3D I915_CACHE(WT), \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[3] =3D I915_CACHE(UC), \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; }</d=
-iv>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; #define MTL_CACHE_MODES \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp;.cach=
-e_modes =3D { \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[0] =3D _I915_CACHE(WB, COH1W), \</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt;This was a brain fart, should have just b=
-een WB.</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[1] =3D I915_CACHE(WT), \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[2] =3D I915_CACHE(UC), \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[3] =3D _I915_CACHE(WB, COH1W), \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;[4] =3D _I915_CACHE(WB, COH2W), \</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; And made i915-&gt;pat_wc look up=
- _I915_CACHE(WB, COH1W) would that work?</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Hmm and also all &quot;has cache=
- level&quot; call sites would need to look
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; not just for WB but WB+COH1W.</d=
-iv>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Would it work? Too ugly?</div>
-<div class=3D"ContentPasted0">&gt;&gt; </div>
-<div class=3D"ContentPasted0">&gt;&gt; I don't think this would work. The c=
-ache_modes needs to be aligned
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; with BSpec, otherwise checkings for =
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; INTEL_INFO(i915)-&gt;cache_modes[obj=
--&gt;pat_index] might become invalid.
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; Also, COH1W/2W were not even there f=
-or platforms prior to MTL.</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; Not sure what would become invalid?</div=
->
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">What if we want to check for a particular pat=
-_index whether it means</div>
-<div class=3D"ContentPasted0">cached or uncached, whether it's 1-way cohere=
-nt or not? if the cache_modes[]</div>
-<div class=3D"ContentPasted0">misaligned with bspec, then we would fail suc=
-h check.
-</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">&gt; COH1W/2W are perhaps names associated</d=
-iv>
-<div class=3D"ContentPasted0">&gt; with MTL - but is Gen12 PAT 0 identical =
-in behaviour to PAT 3 or PAT 4 on</div>
-<div class=3D"ContentPasted0">&gt; MTL? If yes then we can introduce an i91=
-5 specific name for that coherency</div>
-<div class=3D"ContentPasted0">&gt; mode and apply it to both platforms.</di=
-v>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt; I still think setting INTEL_INFO(i91=
-5)-&gt;pat_uc/wt/wb is the best solution.</div>
-<div class=3D"ContentPasted0">&gt;&gt; With that we can also eliminate the =
-use of I915_CACHE({UC|WT|WB}).</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; How for the call sites which are asking =
-about caching mode characteristics?</div>
-<div class=3D"ContentPasted0">&gt; We can't ask if something has PAT index =
-X from the source code since that is</div>
-<div class=3D"ContentPasted0">&gt; platform dependent.</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">We can compare pat index directly for exact m=
-atch. Even for the case we just</div>
-<div class=3D"ContentPasted0">want to distinguish cached or uncached, we ca=
-n check the bit field of</div>
-<div class=3D"ContentPasted0">INTEL_INFO(i915)-&gt;cache_modes[obj-&gt;pat_=
-index].</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; +357,7 @@ int i915_gem_s=
-et_caching_ioctl(struct drm_device *dev, void *data,</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;switch (args-&gt;caching) {</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;case I915_CACHING_NONE:</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; level =3D I915_CACHE_NONE;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; cache =3D I915_CACHE(UC);</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; For code like this, my thoug=
-ht was </div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; level =3D I915_CACHE_NONE;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; pat_index =3D INTEL_INFO(i915)-&gt;pat_uc;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; And later the set_cache call=
- should take pat_index as argument instead</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; of cache mode.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;break;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;case I915_CACHING_CACHED:</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;/*</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; @@ -367,10 +369,10 @@ in=
-t i915_gem_set_caching_ioctl(struct drm_device *dev, void *data,</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; if (!HAS_LLC(i915) &amp;&amp; !HAS_SNOOP(i9=
-15))</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return -ENODEV; &nbsp;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; level =3D I915_CACHE_LLC;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; cache =3D I915_CACHE(WB);</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; level =3D I915_CACHE_LLC;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; pat_index =3D INTEL_INFO(i915)-&gt;pat_wb;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; This should take care of the=
- WB + 1-WAY COH issue for MTL mentioned above,</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; assuming the i915_cache_init=
-() set pat_wb properly, and the</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; i915_gem_object_set_cache() =
-consumes pat_index instead of cache mode.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; That works too yes.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;break;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;case I915_CACHING_DISPLAY:</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; level =3D HAS_WT(i915) ? I915_CACHE_WT : I915_CA=
-CHE_NONE;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; cache =3D HAS_WT(i915) ? I915_CACHE(WT) : I915_C=
-ACHE(UC);</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; break;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;default:</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; return -EINVAL;</div>
-<div class=3D"ContentPasted0">&gt;&gt; </div>
-<div class=3D"ContentPasted0">&gt;&gt; [...]</div>
-<div class=3D"ContentPasted0">&gt;&gt; </div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; bool i915_gem_object_can=
-_bypass_llc(struct drm_i915_gem_object *obj)</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; @@ -215,6 +222,7 @@ bool=
- i915_gem_object_can_bypass_llc(struct drm_i915_gem_object *obj)</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;/*</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; * Always flush cache for UMD objects at creation time.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; */</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; /=
-* QQQ/FIXME why? avoidable performance penalty? */</div>
-<div class=3D"ContentPasted0">&gt;&gt; </div>
-<div class=3D"ContentPasted0">&gt;&gt; This is needed because UMD's assume =
-zero-initialized BO's are really
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; zero'ed out before getting the handl=
-es to the BO's (See VLK-46522).
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; Otherwise UMD's could read stale dat=
-a, thus cause security issues.</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; Hah this comes exactly to my point from =
-above. So it looks my propsal</div>
-<div class=3D"ContentPasted0">&gt; would exactly solve this. Because i915 w=
-ould know the caching mode and</div>
-<div class=3D"ContentPasted0">&gt; know to flush if not coherent. And it wo=
-uld be better than flushing for</div>
-<div class=3D"ContentPasted0">&gt; every obj-&gt;pat_set_by_user because th=
-at approach pessimistically flushes</div>
-<div class=3D"ContentPasted0">&gt; even when it is not needed.</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div class=3D"ContentPasted0">hmm..., This is only called at BO creation ti=
-me. We do need to clflush all</div>
-<div class=3D"ContentPasted0">objects with pat_set_by_user, otherwise the u=
-ser would get access to stale</div>
-<div class=3D"ContentPasted0">data.</div>
-<div><br class=3D"ContentPasted0">
-</div>
-<div>-Fei</div>
-<div><br>
-</div>
-<div class=3D"ContentPasted0">&gt; Regards,</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt; Tvrtko</div>
-<div class=3D"ContentPasted0">&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt; </div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;if (obj-&gt;pat_set_by_user)</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp;return true;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt; </div>
-<div class=3D"ContentPasted0">&gt;&gt; [...]</div>
-<div class=3D"ContentPasted0">&gt;&gt; </div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; diff --git a/drivers/gpu=
-/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h</d=
-iv>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; index dbfe6443457b..f48a=
-21895a85 100644</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; --- a/drivers/gpu/drm/i9=
-15/intel_device_info.h</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; +++ b/drivers/gpu/drm/i9=
-15/intel_device_info.h</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; @@ -27,6 +27,8 @@</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp;#include &lt;uapi/=
-drm/i915_drm.h&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; +#include &quot;i915_cac=
-he.h&quot;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; +</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp;#include &quot;int=
-el_step.h&quot;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp;#include &quot;gt/=
-intel_engine_types.h&quot;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; @@ -243,8 +245,8 @@ stru=
-ct intel_device_info { &nbsp;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; */ &nbsp;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;const struct intel_runtime_info __runtime;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp;u32 cachelevel_to_pat[I915_MAX_CACHE_LEVEL];</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; - &nbsp; &nbsp; &nbsp; &=
-nbsp;u32 max_pat_index;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt;&gt; + &nbsp; &nbsp; &nbsp; &=
-nbsp;i915_cache_t cache_modes[9];</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; I was commenting on the arra=
-y size here. It's probably better to make</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; it 16 because there are 4 PA=
-T index bits defined in the PTE. Indices</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; above max_pat_index are not =
-used, but theoretically new mode could be</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;&gt; added. Well, it's up to you,=
- not likely to happen anyway.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Ah okay. I am not too concerned.=
- Compiler will let us know if it happens.</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Unrelated to this comment - what=
- about i915_gem_object_can_bypass_llc?</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Could we do better (less pessimi=
-stic) with something like my approach and</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; so maybe penalize MTL less?</div=
->
-<div class=3D"ContentPasted0">&gt;&gt; </div>
-<div class=3D"ContentPasted0">&gt;&gt; The problem is that, for the BO's ma=
-naged by UMD's, the KMD doesn't
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; know whether they are going to be ma=
-pped as cacheable or uncacheable
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; on the CPU side. The PAT index contr=
-ols GPU access only. That's why we
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; make sure all BO's with PAT set by U=
-MD (which means UMD will take
-</div>
-<div class=3D"ContentPasted0">&gt;&gt; control and managing the</div>
-<div class=3D"ContentPasted0">&gt;&gt; coherency) are clflush'ed.</div>
-<div class=3D"ContentPasted0">&gt;&gt; </div>
-<div class=3D"ContentPasted0">&gt;&gt; -Fei</div>
-<div class=3D"ContentPasted0">&gt;&gt; </div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Regards,</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt;</div>
-<div class=3D"ContentPasted0">&gt;&gt;&gt; Tvrtko</div>
-<br>
-</div>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pmu: Use local64_try_cmpxchg in i915_pmu_event_read</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/120296/">https://patchwork.freedesktop.org/series/120296/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13351_full -&gt; Patchwork_120296v1_full</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_120296v1_full absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_120296v1_full, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_120296v1_full:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@perf_pmu@busy-idle-no-semaphores@rcs0:<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-1/igt@perf_pmu@busy-idle-no-semaphores@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@perf_pmu@busy-idle-no-semaphores@rcs0.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@kms_flip@flip-vs-suspend-interruptible@d-hdmi-a4:<ul>
+<li>{shard-dg1}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-14/igt@kms_flip@flip-vs-suspend-interruptible@d-hdmi-a4.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_120296v1_full that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@drm_fdinfo@most-busy-idle-check-all@rcs0:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-6/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-1/igt@drm_fdinfo@most-busy-idle-check-all@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7742">i915#7742</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@drm_fdinfo@virtual-busy-idle-all:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@drm_fdinfo@virtual-busy-idle-all.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8414">i915#8414</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_isolation@preservation-s3@bcs0:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-3/igt@gem_ctx_isolation@preservation-s3@bcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-5/igt@gem_ctx_isolation@preservation-s3@bcs0.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_balancer@full-pulse:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-5/igt@gem_exec_balancer@full-pulse.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-11/igt@gem_exec_balancer@full-pulse.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6032">i915#6032</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none-rrul:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_exec_fair@basic-none-rrul.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3539">i915#3539</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4852">i915#4852</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none@vcs0:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-2/igt@gem_exec_fair@basic-none@vcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@gem_exec_fair@basic-none@vcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-glk4/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk9/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-wc:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_exec_reloc@basic-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3281">i915#3281</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_schedule@deep@vecs0:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-3/igt@gem_exec_schedule@deep@vecs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-8/igt@gem_exec_schedule@deep@vecs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8606">i915#8606</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_schedule@preempt-queue:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_exec_schedule@preempt-queue.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4537">i915#4537</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4812">i915#4812</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s4-devices@lmem0:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-11/igt@gem_exec_suspend@basic-s4-devices@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-12/igt@gem_exec_suspend@basic-s4-devices@lmem0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7975">i915#7975</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8213">i915#8213</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8682">i915#8682</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_fence_thrash@bo-write-verify-y:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_fence_thrash@bo-write-verify-y.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4860">i915#4860</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-verify-ccs:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk7/igt@gem_lmem_swapping@parallel-random-verify-ccs.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_wc@pf-nonblock:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_mmap_wc@pf-nonblock.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_wb:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_tiled_wb.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_userptr_blits@forbidden-operations:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gem_userptr_blits@forbidden-operations.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@batch-invalid-length:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@gen9_exec_parse@batch-invalid-length.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2856">i915#2856</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@unaligned-jump:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-5/igt@gen9_exec_parse@unaligned-jump.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2856">i915#2856</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@dpms-mode-unset-lpsp:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-7/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-2/igt@i915_pm_rpm@dpms-mode-unset-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@dpms-mode-unset-non-lpsp:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-2/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-12/igt@i915_pm_rpm@dpms-mode-unset-non-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_sseu@full-enable:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@i915_pm_sseu@full-enable.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4387">i915#4387</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-4/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-6/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_async_flips@async-flip-with-page-flip-events@pipe-b-hdmi-a-1-y-rc_ccs:</p>
+<ul>
+<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@kms_async_flips@async-flip-with-page-flip-events@pipe-b-hdmi-a-1-y-rc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8502">i915#8502</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_async_flips@crc@pipe-b-dp-2:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-12/igt@kms_async_flips@crc@pipe-b-dp-2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8247">i915#8247</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_async_flips@crc@pipe-b-hdmi-a-1:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-snb1/igt@kms_async_flips@crc@pipe-b-hdmi-a-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8247">i915#8247</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk8/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +62 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-6/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-3/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5138">i915#5138</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@y-tiled-8bpp-rotate-0:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_big_fb@y-tiled-8bpp-rotate-0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-180-async-flip:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-180-async-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4538">i915#4538</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-a-bad-rotation-90-y_tiled_gen12_rc_ccs_cc:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk7/igt@kms_ccs@pipe-a-bad-rotation-90-y_tiled_gen12_rc_ccs_cc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3886">i915#3886</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-a-crc-primary-rotation-180-4_tiled_dg2_rc_ccs_cc:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-5/igt@kms_ccs@pipe-a-crc-primary-rotation-180-4_tiled_dg2_rc_ccs_cc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6095">i915#6095</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-a-random-ccs-data-y_tiled_ccs:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_ccs@pipe-a-random-ccs-data-y_tiled_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3689">i915#3689</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-c-crc-primary-basic-y_tiled_gen12_mc_ccs:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_ccs@pipe-c-crc-primary-basic-y_tiled_gen12_mc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3689">i915#3689</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3886">i915#3886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-d-ccs-on-another-bo-4_tiled_mtl_rc_ccs:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_ccs@pipe-d-ccs-on-another-bo-4_tiled_mtl_rc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +12 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cdclk@plane-scaling@pipe-c-dp-2:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-12/igt@kms_cdclk@plane-scaling@pipe-c-dp-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4087">i915#4087</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_color@ctm-0-75:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_chamelium_color@ctm-0-75.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@vga-hpd-without-ddc:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_chamelium_hpd@vga-hpd-without-ddc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@atomic@pipe-a-dp-4:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-11/igt@kms_content_protection@atomic@pipe-a-dp-4.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7173">i915#7173</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@dp-mst-type-0:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-3/igt@kms_content_protection@dp-mst-type-0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3299">i915#3299</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@lic:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-6/igt@kms_content_protection@lic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@cursor-rapid-movement-512x170:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_cursor_crc@cursor-rapid-movement-512x170.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3359">i915#3359</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@cursor-vs-flip-toggle:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-5/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-6/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8248">i915#8248</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@cursorb-vs-flipa-varying-size:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_cursor_legacy@cursorb-vs-flipa-varying-size.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_fbcon_fbt@fbc-suspend:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-11/igt@kms_fbcon_fbt@fbc-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-8/igt@kms_fbcon_fbt@fbc-suspend.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4767">i915#4767</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-busy-flip:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_flip@2x-busy-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-flip-vs-dpms:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-7/igt@kms_flip@2x-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3637">i915#3637</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8708">i915#8708</a>) +5 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-spr-indfb-draw-render:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-7/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-spr-indfb-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1825">i915#1825</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-cpu:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_frontbuffer_tracking@fbcpsr-rgb565-draw-mmap-cpu.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3458">i915#3458</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@bpc-switch:</p>
+<ul>
+<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-2/igt@kms_hdr@bpc-switch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@static-toggle-suspend:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-1/igt@kms_hdr@static-toggle-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@alpha-basic@pipe-a-hdmi-a-1:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk7/igt@kms_plane_alpha_blend@alpha-basic@pipe-a-hdmi-a-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7862">i915#7862</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@intel-max-src-size:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-1/igt@kms_plane_scaling@intel-max-src-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6953">i915#6953</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-a-hdmi-a-2:</p>
+<ul>
+<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-6/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-a-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>) +5 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-d-dp-4:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-11/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-d-dp-4.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@plane-upscale-with-modifiers-20x20@pipe-b-hdmi-a-1:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-snb1/igt@kms_plane_scaling@plane-upscale-with-modifiers-20x20@pipe-b-hdmi-a-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +10 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-b-hdmi-a-1:</p>
+<ul>
+<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-b-hdmi-a-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-c-dp-4:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-11/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-c-dp-4.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a>) +15 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_prime@basic-crc-hybrid:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_prime@basic-crc-hybrid.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6524">i915#6524</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6805">i915#6805</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@suspend:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@kms_psr@suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_rmfb@close-fd@pipe-a-edp-1:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-7/igt@kms_rmfb@close-fd@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-5/igt@kms_rmfb@close-fd@pipe-a-edp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_sysfs_edid_timing:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-11/igt@kms_sysfs_edid_timing.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-6/igt@kms_sysfs_edid_timing.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/2">IGT#2</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@perf@per-context-mode-unprivileged:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@perf@per-context-mode-unprivileged.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109289">fdo#109289</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@coherency-blt:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-7/igt@prime_vgem@coherency-blt.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8445">i915#8445</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@fence-read-hang:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@prime_vgem@fence-read-hang.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@v3d/v3d_submit_csd@multiple-job-submission:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@v3d/v3d_submit_csd@multiple-job-submission.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@vc4/vc4_purgeable_bo@free-purged-bo:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@vc4/vc4_purgeable_bo@free-purged-bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7711">i915#7711</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_ctx_exec@basic-nohangcheck:</p>
+<ul>
+<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-tglu-2/igt@gem_ctx_exec@basic-nohangcheck.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6268">i915#6268</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-tglu-8/igt@gem_ctx_exec@basic-nohangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_eio@reset-stress:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg1-13/igt@gem_eio@reset-stress.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5784">i915#5784</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-18/igt@gem_eio@reset-stress.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-deadline:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-glk2/igt@gem_exec_fair@basic-deadline.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2846">i915#2846</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk1/igt@gem_exec_fair@basic-deadline.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace@rcs0:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-glk6/igt@gem_exec_fair@basic-pace@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk4/igt@gem_exec_fair@basic-pace@rcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_whisper@basic-contexts-all:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-6/igt@gem_exec_whisper@basic-contexts-all.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6363">i915#6363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-7/igt@gem_exec_whisper@basic-contexts-all.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@smem-oom@lmem0:</p>
+<ul>
+<li>
+<p>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-8/igt@gem_lmem_swapping@smem-oom@lmem0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5493">i915#5493</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-3/igt@gem_lmem_swapping@smem-oom@lmem0.html">PASS</a></p>
+</li>
+<li>
+<p>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg1-12/igt@gem_lmem_swapping@smem-oom@lmem0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5493">i915#5493</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-19/igt@gem_lmem_swapping@smem-oom@lmem0.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@allowed-all:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-glk7/igt@gen9_exec_parse@allowed-all.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5566">i915#5566</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-glk8/igt@gen9_exec_parse@allowed-all.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_dc@dc6-dpms:</p>
+<ul>
+<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-tglu-6/igt@i915_pm_dc@dc6-dpms.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3989">i915#3989</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/454">i915#454</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-tglu-4/igt@i915_pm_dc@dc6-dpms.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-hdmi-a:</p>
+<ul>
+<li>
+<p>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-2/igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-hdmi-a.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1937">i915#1937</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-hdmi-a.html">PASS</a></p>
+</li>
+<li>
+<p>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg1-15/igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-hdmi-a.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1937">i915#1937</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-19/igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-hdmi-a.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rc6_residency@rc6-idle@vecs0:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg1-17/igt@i915_pm_rc6_residency@rc6-idle@vecs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3591">i915#3591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-16/igt@i915_pm_rc6_residency@rc6-idle@vecs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@dpms-non-lpsp:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-7/igt@i915_pm_rpm@dpms-non-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-6/igt@i915_pm_rpm@dpms-non-lpsp.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@modeset-lpsp-stress:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-6/igt@i915_pm_rpm@modeset-lpsp-stress.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-12/igt@i915_pm_rpm@modeset-lpsp-stress.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@modeset-non-lpsp:</p>
+<ul>
+<li>{shard-dg1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg1-19/igt@i915_pm_rpm@modeset-non-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg1-16/igt@i915_pm_rpm@modeset-non-lpsp.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_mocs:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-7/igt@i915_selftest@live@gt_mocs.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7059">i915#7059</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-4/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@forcewake:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-5/igt@i915_suspend@forcewake.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@i915_suspend@forcewake.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-8/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3743">i915#3743</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-3/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@plane-scaler-with-pixel-format-unity-scaling@pipe-b-edp-1:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-5/igt@kms_plane_scaling@plane-scaler-with-pixel-format-unity-scaling@pipe-b-edp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-2/igt@kms_plane_scaling@plane-scaler-with-pixel-format-unity-scaling@pipe-b-edp-1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@perf@non-zero-reason@0-rcs0:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-2/igt@perf@non-zero-reason@0-rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7484">i915#7484</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-2/igt@perf@non-zero-reason@0-rcs0.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rc6_residency@rc6-idle@bcs0:</p>
+<ul>
+<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-tglu-5/igt@i915_pm_rc6_residency@rc6-idle@bcs0.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2681">i915#2681</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-tglu-9/igt@i915_pm_rc6_residency@rc6-idle@bcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2681">i915#2681</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3591">i915#3591</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@content_type_change:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-5/igt@kms_content_protection@content_type_change.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-11/igt@kms_content_protection@content_type_change.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7162">i915#7162</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@type1:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-11/igt@kms_content_protection@type1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7162">i915#7162</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-8/igt@kms_content_protection@type1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-mtlp-6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-mtlp-7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5954">i915#5954</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_fbcon_fbt@psr-suspend:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-6/igt@kms_fbcon_fbt@psr-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-1/igt@kms_fbcon_fbt@psr-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4098">i915#4098</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_multipipe_modeset@basic-max-pipe-crc-check:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-rkl-2/igt@kms_multipipe_modeset@basic-max-pipe-crc-check.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4070">i915#4070</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4816">i915#4816</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-rkl-7/igt@kms_multipipe_modeset@basic-max-pipe-crc-check.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4816">i915#4816</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13351/shard-dg2-11/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5493">i915#5493</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120296v1/shard-dg2-8/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7331">i915#7331</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13351 -&gt; Patchwork_120296v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13351: c5262da740fe00ef30394118a108dcf0723a0318 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7376: 38af51c0ce6d9573793f53fc32782b77061bf169 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_120296v1: c5262da740fe00ef30394118a108dcf0723a0318 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
 </body>
 </html>
 
---_000_BYAPR11MB2567C6E41E13F733CF5F1BA29A2DABYAPR11MB2567namp_--
+--===============8876616462857546513==--
