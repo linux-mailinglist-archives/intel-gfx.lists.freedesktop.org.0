@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653B174C0EB
-	for <lists+intel-gfx@lfdr.de>; Sun,  9 Jul 2023 06:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4928074C0EC
+	for <lists+intel-gfx@lfdr.de>; Sun,  9 Jul 2023 06:23:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82E2010E188;
-	Sun,  9 Jul 2023 04:23:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9206710E19D;
+	Sun,  9 Jul 2023 04:23:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 861BC10E188;
- Sun,  9 Jul 2023 04:23:04 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D985A10E188;
+ Sun,  9 Jul 2023 04:23:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 69880AA01E;
- Sun,  9 Jul 2023 04:23:04 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D66F9AA01E;
+ Sun,  9 Jul 2023 04:23:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
-Date: Sun, 09 Jul 2023 04:23:04 -0000
-Message-ID: <168887658439.32577.7233229463003135485@emeril.freedesktop.org>
+Date: Sun, 09 Jul 2023 04:23:06 -0000
+Message-ID: <168887658687.32578.8134859004030756384@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230709034211.4045004-1-dmitry.baryshkov@linaro.org>
 In-Reply-To: <20230709034211.4045004-1-dmitry.baryshkov@linaro.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/bridge=5Fconnector=3A_implement_OOB_HPD_handling?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/bridge=5Fconnector=3A_implement_OOB_HPD_handling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,14 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-9a3a8cd8e4e8 drm: Add HPD state to drm_connector_oob_hotplug_event()
--:127: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#127: FILE: drivers/usb/typec/altmodes/displayport.c:602:
-+		drm_connector_oob_hotplug_event(dp->connector_fwnode, connector_status_disconnected);
-
-total: 0 errors, 1 warnings, 0 checks, 105 lines checked
-c9633da72305 drm/bridge_connector: stop filtering events in drm_bridge_connector_hpd_cb()
-1dd2fe85b239 drm/bridge_connector: implement oob_hotplug_event
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
