@@ -1,51 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075B474CE9C
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jul 2023 09:38:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 120E474CF87
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jul 2023 10:11:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 693F010E1FA;
-	Mon, 10 Jul 2023 07:38:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7386F10E0FC;
+	Mon, 10 Jul 2023 08:11:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB4B710E1FA
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jul 2023 07:38:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688974714; x=1720510714;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iFLJx5NiOQIeVEKzF4rAwx4P6EJ9+qVukE35Bt4hZAc=;
- b=X8YLm2IMA6WG4r63Dld3QPSbTFwHcbpge163VEot6mZuMsy6m1u1mL87
- vwRWL70fs4OsNS6vPN/XkgUYNrE0ALgVWtJfcMbiXPZ/T/j++2rRqK33u
- gyilXQ+3HvaYythuxLd8JSmJIXmC9d7tS5FXzm4jvpowl57U54R6D8yHr
- 19bIltpd22zBgs3FUIGWMXE+ef7hz7hWsifMnnjsfetCuF5TUOrIBqGTx
- yjyP5deMILhrz56wlshHlaKbXzTtfYDMeV5VfLcp1NF8moV9hZIcOp1jl
- GsvzVQuehZkzh+ILbeTZY31SJmvtoKfY/B9UPOuR1EnIi/hpbkzSjeyDA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="354137350"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="354137350"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 00:38:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="755899096"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="755899096"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
- jkrzyszt-mobl2.intranet) ([10.213.7.37])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 00:38:29 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: x86@kernel.org
-Date: Mon, 10 Jul 2023 09:36:14 +0200
-Message-ID: <20230710073613.8006-2-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
+X-Greylist: delayed 320 seconds by postgrey-1.36 at gabe;
+ Mon, 10 Jul 2023 08:11:06 UTC
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5C2110E21B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jul 2023 08:11:06 +0000 (UTC)
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id C62571EC0622;
+ Mon, 10 Jul 2023 10:05:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1688976339;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+ bh=PKMVLHHTljB+aZKz/kMixqd9D2fBGzHr1sfuZuXFjGU=;
+ b=RQOnRcDtgWAzCrw+tEPE5SZ6bjYrrfiU12DMy6fqc4mcNDHmjt9xql5e+J6XW48Jhd57BY
+ sAodBYyu8J8Wnb40vnAJS23WkX5f1snH7txMC+S90wt1f7y7qhKTLvfNg/yoo1X3hGA1hL
+ llh8wqk9I/gNuC59xa8WnIpe+J46dT4=
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id TxrFKHtT6B2t; Mon, 10 Jul 2023 08:05:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1688976336; bh=PKMVLHHTljB+aZKz/kMixqd9D2fBGzHr1sfuZuXFjGU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Lt/bvoGC2ELpTZkcrWi4sDb181XGuUdlZ2qkNkFVZF9HFmMq5a/I0dI8yz5cRAkdc
+ lsHk/VC/a1g4+dpLE5eokpA54BwHZeNo5m6GT3wPTZBsItz/FtRliL3LH96kimTy1g
+ sBoK/AlYB+a/9i5x03co3axmNCrMiOwXl8WaaXnpNPKNbReo0VwHzL1RFPtpkLxMJU
+ x4SnBq1oDCbdRnavmTaD0K62fB6ia2dtWEs8uMn3BNmwLUZsAnXU+GeCLUUX8yv9gZ
+ Y0rB8ZjO8n2bwVmb4DOAHb7TLZThjVW4prGfqrkNgOi9qUZRNH+mrlYU2LFqU57XkC
+ NlvR/4gH3g61ctE+r/sMnTy2CL1UFgxz/dU+ZL6bJ/jg0PkLj04+jyPdoaDlo1v+jj
+ 6fTu1G5oBU0p3fVvG59vrLvZNfwN8kCHUsiF10IAZYvW8V2BWkVutxG+19nNtOacNg
+ uXwS4OyyUNrrMSG8wWz6ASr5mtjyKdDC1cF+YJhi6XKMUmsKFdWKPbKm1W8RQJ+xka
+ uOFOF/oMuUIX+Shf6OgFaC1lRt8f9wCsMO5+o8HNwaTci1dp8KPga0TKx6HSRywzvo
+ GCvKNJM0+yh8suIgRHaFShGDJrveibT2QePA0WAdqx7H22ds7X194oadfufz06LVEW
+ CdXxDmBROZ/JzHxfSMo7kyn4=
+Received: from zn.tnic (pd9530d32.dip0.t-ipconnect.de [217.83.13.50])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id D5E4E40E00F4;
+ Mon, 10 Jul 2023 08:05:24 +0000 (UTC)
+Date: Mon, 10 Jul 2023 10:05:19 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Dave Hansen <dave.hansen@linux.intel.com>
+Message-ID: <20230710080519.GAZKu7v2N/eK/jYXPL@fat_crate.local>
+References: <20230710073613.8006-2-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 RESEND] x86/mm: Fix PAT bit missing from page
- protection modify mask
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230710073613.8006-2-janusz.krzysztofik@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 RESEND] x86/mm: Fix PAT bit missing from
+ page protection modify mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,118 +78,32 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Juergen Gross <jgross@suse.com>, intel-gfx@lists.freedesktop.org,
- Dave Hansen <dave.hansen@linux.intel.com>,
- =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
- <marmarek@invisiblethingslab.com>, linux-kernel@vger.kernel.org,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ x86@kernel.org,
+ Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>,
+ linux-kernel@vger.kernel.org, Ingo Molnar <mingo@redhat.com>,
  Thomas Gleixner <tglx@linutronix.de>, "Edgecombe,
  Rick P" <rick.p.edgecombe@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Visible glitches have been observed when running graphics applications on
-Linux under Xen hypervisor.  Those observations have been confirmed with
-failures from kms_pwrite_crc Intel GPU test that verifies data coherency
-of DRM frame buffer objects using hardware CRC checksums calculated by
-display controllers, exposed to userspace via debugfs.  Affected
-processing paths have then been identified with new IGT test variants that
-mmap the objects using different methods and caching modes [1].
+On Mon, Jul 10, 2023 at 09:36:14AM +0200, Janusz Krzysztofik wrote:
+> Assume that adding _PAGE_PAT to _PAGE_CHG_MASK doesn't break pte_modify()
+> and its users, and go for it.  Also, add _PAGE_PAT_LARGE to
 
-When running as a Xen PV guest, Linux uses Xen provided PAT configuration
-which is different from its native one.  In particular, Xen specific PTE
-encoding of write-combining caching, likely used by graphics applications,
-differs from the Linux default one found among statically defined minimal
-set of supported modes.  Since Xen defines PTE encoding of the WC mode as
-_PAGE_PAT, it no longer belongs to the minimal set, depends on correct
-handling of _PAGE_PAT bit, and can be mismatched with write-back caching.
+That's my only worry.
 
-When a user calls mmap() for a DRM buffer object, DRM device specific
-.mmap file operation, called from mmap_region(), takes care of setting PTE
-encoding bits in a vm_page_prot field of an associated virtual memory area
-structure.  Unfortunately, _PAGE_PAT bit is not preserved when the vma's
-.vm_flags are then applied to .vm_page_prot via vm_set_page_prot().  Bits
-to be preserved are determined with _PAGE_CHG_MASK symbol that doesn't
-cover _PAGE_PAT.  As a consequence, WB caching is requested instead of WC
-when running under Xen (also, WP is silently changed to WT, and UC
-downgraded to UC_MINUS).  When running on bare metal, WC is not affected,
-but WP and WT extra modes are unintentionally replaced with WC and UC,
-respectively.
+I'd suggest we queue this but not send it to Linus now. Instead, let it
+cook in linux-next for the whole 6.5 release cycle so that it can get at
+least *some* testing.
 
-WP and WT modes, encoded with _PAGE_PAT bit set, were introduced by commit
-281d4078bec3 ("x86: Make page cache mode a real type").  Care was taken
-to extend _PAGE_CACHE_MASK symbol with that additional bit, but that
-symbol has never been used for identification of bits preserved when
-applying page protection flags.  Support for all cache modes under Xen,
-including the problematic WC mode, was then introduced by commit
-47591df50512 ("xen: Support Xen pv-domains using PAT").
+Because if we send it now and something else obscure breaks in a weird
+way in his tree, then we'll have to scramble to fix that too and it'll
+be one helluva mess.
 
-The issue needs to be fixed by including _PAGE_PAT bit into a bitmask used
-by pgprot_modify() for selecting bits to be preserved.  We can do that
-either internally to pgprot_modify() (as initially proposed), or by making
-_PAGE_PAT a part of _PAGE_CHG_MASK.  If we go for the latter then, since
-_PAGE_PAT is the same as _PAGE_PSE, we need to note that _HPAGE_CHG_MASK
--- a huge pmds' counterpart of _PAGE_CHG_MASK, introduced by commit
-c489f1257b8c ("thp: add pmd_modify"), defined as (_PAGE_CHG_MASK |
-_PAGE_PSE) -- will no longer differ from _PAGE_CHG_MASK.  If such
-modification of _PAGE_CHG_MASK was irrelevant to its users then one might
-wonder why that new _HPAGE_CHG_MASK symbol was introduced instead of
-reusing the existing one with that otherwise irrelevant bit (_PAGE_PSE in
-that case) added.
+Dave?
 
-Assume that adding _PAGE_PAT to _PAGE_CHG_MASK doesn't break pte_modify()
-and its users, and go for it.  Also, add _PAGE_PAT_LARGE to
-_HPAGE_CHG_MASK for symmetry.  For better clarity, split out common bits
-from both symbols to another one and use it together with specific bits
-when defining the masks.
-
-v3: Separate out common bits of _PAGE_CHG_MASK and _HPAGE_CHG_MASK into
-    _COMMON_PAGE_CHG_MASK (Rick),
-  - fix hard to parse wording of 'what' part of commit description (on
-    Dave's request).
-v2: Keep pgprot_modify() untouched, make _PAGE_PAT part of _PAGE_CHG_MASK
-    instead (Borislav),
-  - also add _PAGE_PAT_LARGE to _HPAGE_CHG_MASK (Juergen).
-
-[1] https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/0f0754413f14
-
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7648
-Fixes: 281d4078bec3 ("x86: Make page cache mode a real type")
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Tested-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Reviewed-by: Juergen Gross <jgross@suse.com>
-Cc: Borislav Petkov <bp@alien8.de>
-Cc: Dave Hansen <dave.hansen@intel.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: Ingo Molnar <mingo@redhat.com>
-Cc: "Edgecombe, Rick P" <rick.p.edgecombe@intel.com>
-Cc: stable@vger.kernel.org # v3.19+
----
- arch/x86/include/asm/pgtable_types.h | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
-
-diff --git a/arch/x86/include/asm/pgtable_types.h b/arch/x86/include/asm/pgtable_types.h
-index 447d4bee25c48..97533e6b1c61b 100644
---- a/arch/x86/include/asm/pgtable_types.h
-+++ b/arch/x86/include/asm/pgtable_types.h
-@@ -125,11 +125,12 @@
-  * instance, and is *not* included in this mask since
-  * pte_modify() does modify it.
-  */
--#define _PAGE_CHG_MASK	(PTE_PFN_MASK | _PAGE_PCD | _PAGE_PWT |		\
--			 _PAGE_SPECIAL | _PAGE_ACCESSED | _PAGE_DIRTY |	\
--			 _PAGE_SOFT_DIRTY | _PAGE_DEVMAP | _PAGE_ENC |  \
--			 _PAGE_UFFD_WP)
--#define _HPAGE_CHG_MASK (_PAGE_CHG_MASK | _PAGE_PSE)
-+#define _COMMON_PAGE_CHG_MASK	(PTE_PFN_MASK | _PAGE_PCD | _PAGE_PWT |	       \
-+				 _PAGE_SPECIAL | _PAGE_ACCESSED | _PAGE_DIRTY |\
-+				 _PAGE_SOFT_DIRTY | _PAGE_DEVMAP | _PAGE_ENC | \
-+				 _PAGE_UFFD_WP)
-+#define _PAGE_CHG_MASK	(_COMMON_PAGE_CHG_MASK | _PAGE_PAT)
-+#define _HPAGE_CHG_MASK (_COMMON_PAGE_CHG_MASK | _PAGE_PSE | _PAGE_PAT_LARGE)
- 
- /*
-  * The cache modes defined here are used to translate between pure SW usage
 -- 
-2.41.0
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
