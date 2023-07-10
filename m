@@ -1,55 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52A6374D153
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jul 2023 11:25:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 280D174D1B1
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jul 2023 11:35:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABA1F10E10D;
-	Mon, 10 Jul 2023 09:25:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7A2E10E249;
+	Mon, 10 Jul 2023 09:35:17 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D018410E10D;
- Mon, 10 Jul 2023 09:25:25 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B745D10E249;
+ Mon, 10 Jul 2023 09:35:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688981125; x=1720517125;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=PGOTy3epTYPFyVb1CAx49FFIjQC9zgRGP5LLSUNF85Q=;
- b=A/X4qNLW4aAG5F0SqdukgE5t1SFLpJDCc+XybkhY4x4BYNOMSHeM82Ax
- GWfQpWaX5E83Nm6+00xJqQGOeWQzIA1OguPC1yRC+6fTmVNi+/Gh3z2yf
- UNzrpI4JI1Ri+pM9IGWy2iXQWreoayImUoDqnPh568MFYjpchL/Ct8Vos
- P4mY+WMuaLF+g4wkinURpGwY/F5vtHAbjD/20MM0pNpzFiFL2Ug5TTaRC
- vqB1hleM3AyWPnXFjrtuulnjmWsJK2wiWUEBJ5DI1M46SHIRpxEO7GVl6
- na5dZvfcF19b3+Fz0h/+2XezTQRXUzswkpMTLe+pSFQzRYhPT27cxCJP5 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="427989963"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="427989963"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 02:25:23 -0700
+ t=1688981715; x=1720517715;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=YEuH82zzpV+flTJqGbAU8wkezQB09WAJsmlQQd8u4jY=;
+ b=oGZ4SJQ/h3vID+wEjQ2qTXcHPhtdvHPbd24WtoYIWTYENUrZRljNXXTe
+ mSUK+Q3eD1PC4SNaoThu9iz5kutP139ch5LAvlwtplD84dbLv6OwiLS5C
+ nViECFmxDymlU0NY7tMV0iW9FDbyibQGQ/IpL1n0K9AJGxNx7Yy5c2a79
+ +hM8Y3gCTtdJlgjnNAnZgQHweX1bIkH+XI8dugQy3KaIHwHexGy9JuCSN
+ 2BVi1zftCbIRV7SvOrfQ214bqaungzIunm06NdyQbTdS8KLjBIXdm0tJN
+ 2ykbzRt5pTmsTQAlf1rU9EtQrs6YHFLjaOiApL8lHMsRBNur46K3OoOrk g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="364336157"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="364336157"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2023 02:35:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="786085438"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="786085438"
-Received: from ccgoode-mobl.ger.corp.intel.com (HELO [10.213.236.139])
- ([10.213.236.139])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 02:25:21 -0700
-Message-ID: <d4da0656-9eb5-f6e5-9c30-83b7c1419586@linux.intel.com>
-Date: Mon, 10 Jul 2023 10:25:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="723946717"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="723946717"
+Received: from jmeberts-mobl2.amr.corp.intel.com (HELO intel.com)
+ ([10.252.42.190])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2023 02:35:11 -0700
+Date: Mon, 10 Jul 2023 11:35:03 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <ZKvQx7QAsTH2B244@ashyti-mobl2.lan>
 References: <20230707124644.3965281-1-tvrtko.ursulin@linux.intel.com>
- <ZKgeGwl0nj9QAptv@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <ZKgeGwl0nj9QAptv@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230707124644.3965281-1-tvrtko.ursulin@linux.intel.com>
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove dead code from
  gen8_pte_encode
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -64,54 +59,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
- dri-devel@lists.freedesktop.org
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Tvrtko,
 
-
-On 07/07/2023 15:17, Rodrigo Vivi wrote:
-> On Fri, Jul 07, 2023 at 01:46:44PM +0100, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Commit 9275277d5324 ("drm/i915: use pat_index instead of cache_level")
->> added a dedicated gen12_pte_encode but forgot to remove the Gen12 specific
->> bit from gen8_pte_encode.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Fixes: 9275277d5324 ("drm/i915: use pat_index instead of cache_level")
->> Cc: Fei Yang <fei.yang@intel.com>
->> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Commit 9275277d5324 ("drm/i915: use pat_index instead of cache_level")
+> added a dedicated gen12_pte_encode but forgot to remove the Gen12 specific
+> bit from gen8_pte_encode.
 > 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Fixes: 9275277d5324 ("drm/i915: use pat_index instead of cache_level")
+> Cc: Fei Yang <fei.yang@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
 
-Pushed, thanks for the reviews!
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
-Regards,
-
-Tvrtko
-
-> 
->> ---
->>   drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 3 ---
->>   1 file changed, 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->> index f948d33e5ec5..c8568e5d1147 100644
->> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->> @@ -37,9 +37,6 @@ static u64 gen8_pte_encode(dma_addr_t addr,
->>   	if (unlikely(flags & PTE_READ_ONLY))
->>   		pte &= ~GEN8_PAGE_RW;
->>   
->> -	if (flags & PTE_LM)
->> -		pte |= GEN12_PPGTT_PTE_LM;
->> -
->>   	/*
->>   	 * For pre-gen12 platforms pat_index is the same as enum
->>   	 * i915_cache_level, so the switch-case here is still valid.
->> -- 
->> 2.39.2
->>
+Andi
