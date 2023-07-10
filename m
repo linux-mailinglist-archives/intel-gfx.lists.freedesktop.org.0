@@ -1,53 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF2BC74D0B0
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jul 2023 10:57:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44C9374D0E1
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jul 2023 11:01:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A73710E170;
-	Mon, 10 Jul 2023 08:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9BC110E240;
+	Mon, 10 Jul 2023 09:01:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26CC810E170
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jul 2023 08:56:59 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7363410E23F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jul 2023 09:00:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688979419; x=1720515419;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=mmrpZu9JJzRIDVSH7M3ZMjg8o15XExIonZZ695exOes=;
- b=l9u5CVkixW6O1Y8SNm+oWSaE5gSVUSP4F9FeVVCsJ5/VEoUgfrgGA9is
- CWxXKvqM4zhW9JiTjknpKt0JcfwSKeyLYQM1qXMAICd/SpDFaom3hEAP0
- IwAvLXBFN9WUCdqvgtiqXhrImiwIGNZH9WEWjLHyo40/gbQUsHAdjE3VP
- ZRjHzvmePBRFHQ2qyucCcx65guGIOdbH+7tWcA1Q4NI0sdcNEKhnACXMB
- XlBpu/qdDFrYNQjho5I59i+Cbxgt4mgO3UrQrVlkK/v7pMP87cxrCGZzb
- uUU5ClwrRD8wV7DAdF+uShCjyn+UHWCLInSxOlMEelIToP7TBCkQYLpWO w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="349091899"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="349091899"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 01:56:55 -0700
+ t=1688979658; x=1720515658;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=IlYvCRoYdRBQ/1KGKbXZH0wv4/da6e2Hk09jQtW4Nfk=;
+ b=E58O1MlXbQlEr14ESh0hB7X4IjGMHFk59Vv3gmlmsPqiBuEwZdoaVlcm
+ jQxIUoKHkhzE2C4T0KIHtIqlUWSkXCu52qHnpGKib/JV9KSaqX5ZypThq
+ p4yReVJks9zq3PNhCRSpwUzs84WynErGAcTQOVmLeFGf5vMH3c2zi07GM
+ EpBONgmW7F2Ix3RLKtoTg5kNCjrrQRmykLoyvEFYyqLobmDvzkmwQVRuF
+ EJmQUc2aaR9em2kkrT1XPYN0CKpWcE9X7gi2g6q2AwL3yS+zL8bSxHwLv
+ gjoQH/TvWMJZKQDnoGeksS36byXYvs1ENqN9/NNxC4P5G6laowIDEMu82 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="427984666"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="427984666"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2023 02:00:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="723930738"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="723930738"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 01:56:53 -0700
-Date: Mon, 10 Jul 2023 11:56:45 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <ZKvHzUYyPxmLO3p7@intel.com>
-References: <20230704131758.14024-1-stanislav.lisovskiy@intel.com>
- <20230704131758.14024-3-stanislav.lisovskiy@intel.com>
- <4b91b2d0-22b4-9437-3b28-a778b34500bd@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="810740477"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="810740477"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.43.200])
+ ([10.252.43.200])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2023 02:00:56 -0700
+Message-ID: <4032e558-00f7-4c9b-6d4a-7b8958361237@linux.intel.com>
+Date: Mon, 10 Jul 2023 11:00:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4b91b2d0-22b4-9437-3b28-a778b34500bd@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Don't rely that 2 VDSC
- engines are always enough for pixel rate
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Content-Language: en-US
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230630170140.17319-1-nirmoy.das@intel.com>
+ <20230630170140.17319-2-nirmoy.das@intel.com>
+ <a1a668fb-52a4-9d3a-03cc-443f2ff077aa@linux.intel.com>
+ <837c9971-79fc-015c-e611-a161cb8d4b96@linux.intel.com>
+ <73912e3b-69af-b95c-7b0b-8518d003a3d2@linux.intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <73912e3b-69af-b95c-7b0b-8518d003a3d2@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display: Do not use stolen on
+ MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,96 +67,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 10, 2023 at 11:37:56AM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 7/4/2023 6:47 PM, Stanislav Lisovskiy wrote:
-> > We are currently having FIFO underruns happening for kms_dsc test case,
-> > problem is that, we check if curreny cdclk is >= pixel rate only if
-> > there is a single VDSC engine enabled(i.e dsc_split=false) however if
-> > we happen to have 2 VDSC engines enabled, we just kinda rely that this
-> > would be automatically enough.
-> > However pixel rate can be even >= than VDSC clock(cdclk) * 2, so in that
-> > case even with 2 VDSC engines enabled, we still need to tweak it up.
-> > So lets compare pixel rate with cdclk * slice count(VDSC engine count) and
-> 
-> Since we are not using slice count, we can just mention VDSC engine count.
+Hi Tvrkto,
 
-Agree, thanks for spotting.
+On 7/6/2023 3:43 PM, Tvrtko Ursulin wrote:
+>
+> On 06/07/2023 14:35, Nirmoy Das wrote:
+>>
+>> On 7/6/2023 3:32 PM, Tvrtko Ursulin wrote:
+>>>
+>>> On 30/06/2023 18:01, Nirmoy Das wrote:
+>>>> Use smem on MTL due to a HW bug in MTL that prevents
+>>>> reading from stolen memory using LMEM BAR.
+>>>
+>>> Does anything remain in stolen or could the memory region just not 
+>>> be created?
+>>
+>>
+>> GSC requires DSM which can't use smem for another bug.
+>
+> Okay, thanks.
+>
+> As a related comment, these if-if-if object creation ladders were 
+> always a bit ugly and some years ago I was suggesting we create a 
+> helper with some "intent/usage" flags. Which could then dtrt ie. 
+> create the right object for that intent/usage and platform. I *think* 
+> I possibly even had a RFC... need to try and find it.
 
-> 
-> 
-> > check if it still requires bumping up.
-> > Previously we had to bump up CDCLK many times for similar reasons.
-> > 
-> > v2: - Use new intel_dsc_get_num_vdsc_instances to determine number of VDSC
-> >        engines, instead of slice count(Ankit Nautiyal)
-> > v3: - s/u8/int/ (Jani Nikula)
-> > 
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/display/intel_cdclk.c | 13 +++++++++++--
-> >   1 file changed, 11 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > index 4207863b7b2a..bfa1c5d589ba 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > @@ -37,6 +37,7 @@
-> >   #include "intel_pci_config.h"
-> >   #include "intel_pcode.h"
-> >   #include "intel_psr.h"
-> > +#include "intel_vdsc.h"
-> >   #include "vlv_sideband.h"
-> >   /**
-> > @@ -2607,9 +2608,17 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
-> >   	 * When we decide to use only one VDSC engine, since
-> >   	 * each VDSC operates with 1 ppc throughput, pixel clock
-> >   	 * cannot be higher than the VDSC clock (cdclk)
-> > +	 * If there 2 VDSC engines, then pixel clock can't be higher than
-> > +	 * VDSC clock(cdclk) * 2. However even that can still be not enough.
-> > +	 * Slice count reflects amount of VDSC engines,
-> As mentioned above, we can remove slice_count, as we are using VDSC engine
-> count.
-> > +	 * so lets use that to determine, if need still need to tweak CDCLK higher.
-> 
-> 
-> >   	 */
-> > -	if (crtc_state->dsc.compression_enable && !crtc_state->dsc.dsc_split)
-> > -		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
-> > +	if (crtc_state->dsc.compression_enable) {
-> > +		int num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);
-> > +
-> > +		min_cdclk = max_t(int, min_cdclk,
-> > +			          crtc_state->pixel_rate / num_vdsc_instances);
-> 
-> I was wondering if we should use DIV_ROUND_UP(crtc_state->pixel_rate /
-> num_vdsc_instances), since min_cdclk should be more than this value.
-> 
-> Though practically Pixel rate in Khz / num of vdsc instances, wont need to
-> roundup, so perhaps we might not require this. I leave it up to you.
 
-Yep was thinking about that too. Practically DIV_ROUND_UP(pixel_rate, num_vdsc_instances)
-means pixel_rate + (2 - 1) / 2 here, so we might get + 1 Khz here. Considering that
-values in cdclk_table differ by 1000's of kHz, when we are looking for value which is >=
-this is quite unlikely to be a problem.
-For this to be a problem we need to have CDCLK to be lets say 345601, then once we divide by
-2, we get 172800, which is 345600, if multiplied by 2. 
+Did you find it :) Would be nice to have a better way to detect and 
+apply memory region as per platfrom/usecase.
 
-However we still might want to add that, just to be on safe side.
 
-Stan
+Regards,
 
-> 
-> 
-> With the above changes in documentation, this is:
-> 
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> 
-> 
-> > +	}
-> >   	/*
-> >   	 * HACK. Currently for TGL/DG2 platforms we calculate
+Nirmoy
+
+>
+> Regards,
+>
+> Tvrtko
+>
+>>
+>> Regards,
+>>
+>> Nirmoy
+>>
+>>
+>>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>>
+>>>> Cc: Oak Zeng <oak.zeng@intel.com>
+>>>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+>>>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+>>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/display/intel_fbdev.c   | 2 ++
+>>>>   drivers/gpu/drm/i915/display/intel_overlay.c | 7 ++++---
+>>>>   2 files changed, 6 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_fbdev.c
+>>>> index 1cc0ddc6a310..10e38d60f9ef 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+>>>> @@ -182,6 +182,8 @@ static int intelfb_alloc(struct drm_fb_helper 
+>>>> *helper,
+>>>>           obj = i915_gem_object_create_lmem(dev_priv, size,
+>>>>                             I915_BO_ALLOC_CONTIGUOUS |
+>>>>                             I915_BO_ALLOC_USER);
+>>>> +    } else if (IS_METEORLAKE(dev_priv)) { /* Wa_22018444074 */
+>>>> +        obj = i915_gem_object_create_shmem(dev_priv, size);
+>>>>       } else {
+>>>>           /*
+>>>>            * If the FB is too big, just don't use it since fbdev is 
+>>>> not very
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_overlay.c
+>>>> index d6fe2bbabe55..05ae446c8a56 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+>>>> @@ -1348,12 +1348,13 @@ int intel_overlay_attrs_ioctl(struct 
+>>>> drm_device *dev, void *data,
+>>>>   static int get_registers(struct intel_overlay *overlay, bool 
+>>>> use_phys)
+>>>>   {
+>>>>       struct drm_i915_private *i915 = overlay->i915;
+>>>> -    struct drm_i915_gem_object *obj;
+>>>> +    struct drm_i915_gem_object *obj = NULL;
+>>>>       struct i915_vma *vma;
+>>>>       int err;
+>>>>   -    obj = i915_gem_object_create_stolen(i915, PAGE_SIZE);
+>>>> -    if (IS_ERR(obj))
+>>>> +    if (!IS_METEORLAKE(i915)) /* Wa_22018444074 */
+>>>> +        obj = i915_gem_object_create_stolen(i915, PAGE_SIZE);
+>>>> +    if (IS_ERR_OR_NULL(obj))
+>>>>           obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
+>>>>       if (IS_ERR(obj))
+>>>>           return PTR_ERR(obj);
