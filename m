@@ -1,70 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 120E474CF87
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jul 2023 10:11:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF2BC74D0B0
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jul 2023 10:57:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7386F10E0FC;
-	Mon, 10 Jul 2023 08:11:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A73710E170;
+	Mon, 10 Jul 2023 08:57:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 320 seconds by postgrey-1.36 at gabe;
- Mon, 10 Jul 2023 08:11:06 UTC
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5C2110E21B
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jul 2023 08:11:06 +0000 (UTC)
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id C62571EC0622;
- Mon, 10 Jul 2023 10:05:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
- t=1688976339;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
- bh=PKMVLHHTljB+aZKz/kMixqd9D2fBGzHr1sfuZuXFjGU=;
- b=RQOnRcDtgWAzCrw+tEPE5SZ6bjYrrfiU12DMy6fqc4mcNDHmjt9xql5e+J6XW48Jhd57BY
- sAodBYyu8J8Wnb40vnAJS23WkX5f1snH7txMC+S90wt1f7y7qhKTLvfNg/yoo1X3hGA1hL
- llh8wqk9I/gNuC59xa8WnIpe+J46dT4=
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
- header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
- by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id TxrFKHtT6B2t; Mon, 10 Jul 2023 08:05:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
- t=1688976336; bh=PKMVLHHTljB+aZKz/kMixqd9D2fBGzHr1sfuZuXFjGU=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Lt/bvoGC2ELpTZkcrWi4sDb181XGuUdlZ2qkNkFVZF9HFmMq5a/I0dI8yz5cRAkdc
- lsHk/VC/a1g4+dpLE5eokpA54BwHZeNo5m6GT3wPTZBsItz/FtRliL3LH96kimTy1g
- sBoK/AlYB+a/9i5x03co3axmNCrMiOwXl8WaaXnpNPKNbReo0VwHzL1RFPtpkLxMJU
- x4SnBq1oDCbdRnavmTaD0K62fB6ia2dtWEs8uMn3BNmwLUZsAnXU+GeCLUUX8yv9gZ
- Y0rB8ZjO8n2bwVmb4DOAHb7TLZThjVW4prGfqrkNgOi9qUZRNH+mrlYU2LFqU57XkC
- NlvR/4gH3g61ctE+r/sMnTy2CL1UFgxz/dU+ZL6bJ/jg0PkLj04+jyPdoaDlo1v+jj
- 6fTu1G5oBU0p3fVvG59vrLvZNfwN8kCHUsiF10IAZYvW8V2BWkVutxG+19nNtOacNg
- uXwS4OyyUNrrMSG8wWz6ASr5mtjyKdDC1cF+YJhi6XKMUmsKFdWKPbKm1W8RQJ+xka
- uOFOF/oMuUIX+Shf6OgFaC1lRt8f9wCsMO5+o8HNwaTci1dp8KPga0TKx6HSRywzvo
- GCvKNJM0+yh8suIgRHaFShGDJrveibT2QePA0WAdqx7H22ds7X194oadfufz06LVEW
- CdXxDmBROZ/JzHxfSMo7kyn4=
-Received: from zn.tnic (pd9530d32.dip0.t-ipconnect.de [217.83.13.50])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
- SHA256) (No client certificate requested)
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id D5E4E40E00F4;
- Mon, 10 Jul 2023 08:05:24 +0000 (UTC)
-Date: Mon, 10 Jul 2023 10:05:19 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Dave Hansen <dave.hansen@linux.intel.com>
-Message-ID: <20230710080519.GAZKu7v2N/eK/jYXPL@fat_crate.local>
-References: <20230710073613.8006-2-janusz.krzysztofik@linux.intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26CC810E170
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jul 2023 08:56:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1688979419; x=1720515419;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=mmrpZu9JJzRIDVSH7M3ZMjg8o15XExIonZZ695exOes=;
+ b=l9u5CVkixW6O1Y8SNm+oWSaE5gSVUSP4F9FeVVCsJ5/VEoUgfrgGA9is
+ CWxXKvqM4zhW9JiTjknpKt0JcfwSKeyLYQM1qXMAICd/SpDFaom3hEAP0
+ IwAvLXBFN9WUCdqvgtiqXhrImiwIGNZH9WEWjLHyo40/gbQUsHAdjE3VP
+ ZRjHzvmePBRFHQ2qyucCcx65guGIOdbH+7tWcA1Q4NI0sdcNEKhnACXMB
+ XlBpu/qdDFrYNQjho5I59i+Cbxgt4mgO3UrQrVlkK/v7pMP87cxrCGZzb
+ uUU5ClwrRD8wV7DAdF+uShCjyn+UHWCLInSxOlMEelIToP7TBCkQYLpWO w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="349091899"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="349091899"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2023 01:56:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="723930738"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="723930738"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2023 01:56:53 -0700
+Date: Mon, 10 Jul 2023 11:56:45 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <ZKvHzUYyPxmLO3p7@intel.com>
+References: <20230704131758.14024-1-stanislav.lisovskiy@intel.com>
+ <20230704131758.14024-3-stanislav.lisovskiy@intel.com>
+ <4b91b2d0-22b4-9437-3b28-a778b34500bd@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230710073613.8006-2-janusz.krzysztofik@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 RESEND] x86/mm: Fix PAT bit missing from
- page protection modify mask
+In-Reply-To: <4b91b2d0-22b4-9437-3b28-a778b34500bd@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Don't rely that 2 VDSC
+ engines are always enough for pixel rate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,33 +60,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juergen Gross <jgross@suse.com>, intel-gfx@lists.freedesktop.org,
- x86@kernel.org,
- Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>,
- linux-kernel@vger.kernel.org, Ingo Molnar <mingo@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>, "Edgecombe,
- Rick P" <rick.p.edgecombe@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 10, 2023 at 09:36:14AM +0200, Janusz Krzysztofik wrote:
-> Assume that adding _PAGE_PAT to _PAGE_CHG_MASK doesn't break pte_modify()
-> and its users, and go for it.  Also, add _PAGE_PAT_LARGE to
+On Mon, Jul 10, 2023 at 11:37:56AM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 7/4/2023 6:47 PM, Stanislav Lisovskiy wrote:
+> > We are currently having FIFO underruns happening for kms_dsc test case,
+> > problem is that, we check if curreny cdclk is >= pixel rate only if
+> > there is a single VDSC engine enabled(i.e dsc_split=false) however if
+> > we happen to have 2 VDSC engines enabled, we just kinda rely that this
+> > would be automatically enough.
+> > However pixel rate can be even >= than VDSC clock(cdclk) * 2, so in that
+> > case even with 2 VDSC engines enabled, we still need to tweak it up.
+> > So lets compare pixel rate with cdclk * slice count(VDSC engine count) and
+> 
+> Since we are not using slice count, we can just mention VDSC engine count.
 
-That's my only worry.
+Agree, thanks for spotting.
 
-I'd suggest we queue this but not send it to Linus now. Instead, let it
-cook in linux-next for the whole 6.5 release cycle so that it can get at
-least *some* testing.
+> 
+> 
+> > check if it still requires bumping up.
+> > Previously we had to bump up CDCLK many times for similar reasons.
+> > 
+> > v2: - Use new intel_dsc_get_num_vdsc_instances to determine number of VDSC
+> >        engines, instead of slice count(Ankit Nautiyal)
+> > v3: - s/u8/int/ (Jani Nikula)
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/display/intel_cdclk.c | 13 +++++++++++--
+> >   1 file changed, 11 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > index 4207863b7b2a..bfa1c5d589ba 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > @@ -37,6 +37,7 @@
+> >   #include "intel_pci_config.h"
+> >   #include "intel_pcode.h"
+> >   #include "intel_psr.h"
+> > +#include "intel_vdsc.h"
+> >   #include "vlv_sideband.h"
+> >   /**
+> > @@ -2607,9 +2608,17 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+> >   	 * When we decide to use only one VDSC engine, since
+> >   	 * each VDSC operates with 1 ppc throughput, pixel clock
+> >   	 * cannot be higher than the VDSC clock (cdclk)
+> > +	 * If there 2 VDSC engines, then pixel clock can't be higher than
+> > +	 * VDSC clock(cdclk) * 2. However even that can still be not enough.
+> > +	 * Slice count reflects amount of VDSC engines,
+> As mentioned above, we can remove slice_count, as we are using VDSC engine
+> count.
+> > +	 * so lets use that to determine, if need still need to tweak CDCLK higher.
+> 
+> 
+> >   	 */
+> > -	if (crtc_state->dsc.compression_enable && !crtc_state->dsc.dsc_split)
+> > -		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
+> > +	if (crtc_state->dsc.compression_enable) {
+> > +		int num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);
+> > +
+> > +		min_cdclk = max_t(int, min_cdclk,
+> > +			          crtc_state->pixel_rate / num_vdsc_instances);
+> 
+> I was wondering if we should use DIV_ROUND_UP(crtc_state->pixel_rate /
+> num_vdsc_instances), since min_cdclk should be more than this value.
+> 
+> Though practically Pixel rate in Khz / num of vdsc instances, wont need to
+> roundup, so perhaps we might not require this. I leave it up to you.
 
-Because if we send it now and something else obscure breaks in a weird
-way in his tree, then we'll have to scramble to fix that too and it'll
-be one helluva mess.
+Yep was thinking about that too. Practically DIV_ROUND_UP(pixel_rate, num_vdsc_instances)
+means pixel_rate + (2 - 1) / 2 here, so we might get + 1 Khz here. Considering that
+values in cdclk_table differ by 1000's of kHz, when we are looking for value which is >=
+this is quite unlikely to be a problem.
+For this to be a problem we need to have CDCLK to be lets say 345601, then once we divide by
+2, we get 172800, which is 345600, if multiplied by 2. 
 
-Dave?
+However we still might want to add that, just to be on safe side.
 
--- 
-Regards/Gruss,
-    Boris.
+Stan
 
-https://people.kernel.org/tglx/notes-about-netiquette
+> 
+> 
+> With the above changes in documentation, this is:
+> 
+> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> 
+> 
+> > +	}
+> >   	/*
+> >   	 * HACK. Currently for TGL/DG2 platforms we calculate
