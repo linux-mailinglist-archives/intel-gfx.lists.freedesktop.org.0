@@ -1,53 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B50A74EB57
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 12:00:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A7D74EBAA
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 12:24:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FE1410E356;
-	Tue, 11 Jul 2023 10:00:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 298AA10E35D;
+	Tue, 11 Jul 2023 10:24:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3ABE10E356
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jul 2023 10:00:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689069616; x=1720605616;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=wNQnuwRBSIKJXtAvdn6Rsb6dZtC/mUDRlxlOYans+2w=;
- b=k1S1DwU85AaEtk89iT8DaSPnLi2TV3mu9BiW+BrubIb6SvIc5YXQNumX
- Bf2jcJGbNKZV4GSvSuyUtaOkOQuuJg9qZmmaI04jCbdW4t7phpMbTFQW5
- f+d9gGlZiOlIAEyMkVGZHklcWz0AQMnoXzAjkRv4E7pXyw27Rl1H1c7Q7
- UZgUrbDQTWDzmuPq8jsNLfbV8/B/cnswgo//Z/OvFTSSZuVhS0Bu8tKT8
- dwMDZME0moB44+YKuf2pidpoIJwnDhYqB7v1Y8YfcRAlij+0e9LZbBouN
- Iyc7vFCRj5kSf7kqvKN57m9tf8C3Wr50gjHI/vge3arkvjAf8i7dnqm1X A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="344176684"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="344176684"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 03:00:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="698373606"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="698373606"
-Received: from sneaga-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.52.179])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 03:00:13 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <ZR-8c31L0kVNylnQHTP_MlcPiINr0Zd22HZA8DlKV8BuhUqanJ5YiWsUqavQr3AXN2mD20QWOQfrQc_tE4Dju8B-KDGEVh5Dc-9aLqpJbv4=@emersion.fr>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230623094229.120264-1-contact@emersion.fr>
- <ZR-8c31L0kVNylnQHTP_MlcPiINr0Zd22HZA8DlKV8BuhUqanJ5YiWsUqavQr3AXN2mD20QWOQfrQc_tE4Dju8B-KDGEVh5Dc-9aLqpJbv4=@emersion.fr>
-Date: Tue, 11 Jul 2023 13:00:10 +0300
-Message-ID: <874jmaix91.fsf@intel.com>
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
+ [IPv6:2a00:1450:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4305210E2F1;
+ Tue, 11 Jul 2023 03:29:56 +0000 (UTC)
+Received: by mail-wm1-x32b.google.com with SMTP id
+ 5b1f17b1804b1-3fbc5d5746cso59652515e9.2; 
+ Mon, 10 Jul 2023 20:29:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1689046191; x=1691638191;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=NIA1evLsFIG/d/BciMyieA3NRV49yLIoqEJJuDBlYaE=;
+ b=rxdmtG3igEMBUtvy4AOmssEH0wfRxsb6ymp/QwRMujz+LOJ7sQhoyon0BKo5iYPM3C
+ vvzg9/1A3HwLvvaXUsO488/UOVvvzTunW5vpXmI/qUReYS6UgHUkEsCeV5SKsSn+OeE3
+ To366J795JPA8ZrqOsYdOA01LYJD1w95dSr0k+1zuA2eLFNRvMsmFVGObddnqfUBHqXs
+ 7bY/K8fefBz2KsIpGItrgkW4pKITj5QMOyTWR1t6OBB5PVHVxzHeH+l7rfMVQN6y7+5x
+ JvoHWXHqerCTBw3Znr4NafxxwSx0kZGdgz+7oAy1Fq1o+Za4ZQome/sYiWN9AOzemKZl
+ 4fPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1689046191; x=1691638191;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=NIA1evLsFIG/d/BciMyieA3NRV49yLIoqEJJuDBlYaE=;
+ b=QxLnkBu8R9wE8FzBC0hJDHp+fuzwbYh+lthZWkmrSExvoU35W5fG8wIoxhLr554R3C
+ Tn7IbjnYFz7UH24RJ5r/T7nNK2bHDGHi9an1+W4UrBt7HTI1g9FaGDSOTggUrm5cFHED
+ AWU4/xXIRfMj0EJPj5dGB8ssal5T87wrB7Br45UN9sa6lGyxR0kMzBsyJRWRYsbecRii
+ XMRY3EgjEJB1tTVY+EwNluY+ZHVhDP5HjOmN5eb7J2PZ6ivUl3hDcLkxU+sWFc+B+aB9
+ Oi63M2INrUarETckmAyVLfUFcn0iNtuJSO1pZ8eVr6FoEy1KfKy7Gj5gQvNzyvffLWgE
+ V8eg==
+X-Gm-Message-State: ABy/qLZvGwfjFwjuGyHusxN72+6UdtSuPdyGgx6vNQpFljUmfP1nOC9L
+ 9PWIo38Y3/OQbXcFKIatlUY=
+X-Google-Smtp-Source: APBJJlEtcLQ35KkQPdh0ZyVQNhO4j35UEGhwGDSQsnZ0b+jETRrDX8NdbpbeIj/gDk8UD38PgbGDEA==
+X-Received: by 2002:a05:600c:378c:b0:3f9:b748:ff3f with SMTP id
+ o12-20020a05600c378c00b003f9b748ff3fmr14479766wmr.1.1689046191141; 
+ Mon, 10 Jul 2023 20:29:51 -0700 (PDT)
+Received: from localhost.localdomain ([2a05:f480:1000:b09:5400:4ff:fe6f:7099])
+ by smtp.gmail.com with ESMTPSA id
+ u18-20020a05600c211200b003fbbe41fd78sm1290715wml.10.2023.07.10.20.29.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 10 Jul 2023 20:29:50 -0700 (PDT)
+From: zhangshida <starzhangzsd@gmail.com>
+X-Google-Original-From: zhangshida <zhangshida@kylinos.cn>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@gmail.com,
+ daniel@ffwll.ch, ville.syrjala@linux.intel.com
+Date: Tue, 11 Jul 2023 11:29:40 +0800
+Message-Id: <20230711032940.901797-1-zhangshida@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2] i915/display/hotplug: use
- drm_kms_helper_connector_hotplug_event()
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 11 Jul 2023 10:24:43 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915/gmch: fix not used warning in
+ intel_alloc_mchbar_resource
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,18 +76,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: k2ci <kernel-bot@kylinos.cn>, intel-gfx@lists.freedesktop.org,
+ starzhangzsd@gmail.com, zhangshida@kylinos.cn, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 10 Jul 2023, Simon Ser <contact@emersion.fr> wrote:
-> Any news about this patch?
+From: Shida Zhang <zhangshida@kylinos.cn>
 
-Pushed to drm-intel-next, thanks for the patch & reminder.
+Quiet down this gcc warning generated by
+gcc (Debian 10.2.1-6) 10.2.1 20210110:
 
-BR,
-Jani.
+../drivers/gpu/drm/i915/soc/intel_gmch.c: In function ‘intel_alloc_mchbar_resource’:
+../drivers/gpu/drm/i915/soc/intel_gmch.c:41:6: error: variable ‘mchbar_addr’ set but not used [-Werror=unused-but-set-variable]
+   41 |  u64 mchbar_addr;
+      |      ^~~~~~~~~~~
 
+Reported-by: k2ci <kernel-bot@kylinos.cn>
+Signed-off-by: Shida Zhang <zhangshida@kylinos.cn>
+---
+ drivers/gpu/drm/i915/soc/intel_gmch.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.c b/drivers/gpu/drm/i915/soc/intel_gmch.c
+index 6d0204942f7a..f7db6cb3f828 100644
+--- a/drivers/gpu/drm/i915/soc/intel_gmch.c
++++ b/drivers/gpu/drm/i915/soc/intel_gmch.c
+@@ -38,16 +38,18 @@ intel_alloc_mchbar_resource(struct drm_i915_private *i915)
+ {
+ 	int reg = GRAPHICS_VER(i915) >= 4 ? MCHBAR_I965 : MCHBAR_I915;
+ 	u32 temp_lo, temp_hi = 0;
++#ifdef CONFIG_PNP
+ 	u64 mchbar_addr;
++#endif
+ 	int ret;
+ 
+ 	if (GRAPHICS_VER(i915) >= 4)
+ 		pci_read_config_dword(i915->gmch.pdev, reg + 4, &temp_hi);
+ 	pci_read_config_dword(i915->gmch.pdev, reg, &temp_lo);
+-	mchbar_addr = ((u64)temp_hi << 32) | temp_lo;
+ 
+ 	/* If ACPI doesn't have it, assume we need to allocate it ourselves */
+ #ifdef CONFIG_PNP
++	mchbar_addr = ((u64)temp_hi << 32) | temp_lo;
+ 	if (mchbar_addr &&
+ 	    pnp_range_reserved(mchbar_addr, mchbar_addr + MCHBAR_SIZE))
+ 		return 0;
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.27.0
+
