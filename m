@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC65474F378
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 17:31:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB85974F379
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 17:31:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3173810E3C2;
-	Tue, 11 Jul 2023 15:31:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F094310E3BF;
+	Tue, 11 Jul 2023 15:31:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BE01110E3D5;
- Tue, 11 Jul 2023 15:31:25 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1A8D210E3C1;
+ Tue, 11 Jul 2023 15:31:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B4007AADED;
- Tue, 11 Jul 2023 15:31:25 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 16C8EAADED;
+ Tue, 11 Jul 2023 15:31:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 11 Jul 2023 15:31:25 -0000
-Message-ID: <168908948573.18665.229100221148398726@emeril.freedesktop.org>
+Date: Tue, 11 Jul 2023 15:31:28 -0000
+Message-ID: <168908948808.18664.15711771219652680026@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230711110214.25093-1-jani.nikula@intel.com>
 In-Reply-To: <20230711110214.25093-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Revert_=22drm/i915=3A_use_localized_=5F=5Fdiag=5Fignore=5Fa?=
- =?utf-8?q?ll=28=29_instead_of_per_file=22?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Revert_=22drm/i915=3A_use_localized_=5F=5Fdiag=5Fignore=5Fall?=
+ =?utf-8?q?=28=29_instead_of_per_file=22?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,25 +54,47 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-1b351f5b2ed0 Revert "drm/i915: use localized __diag_ignore_all() instead of per file"
--:21: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#21: 
-Reported-by: John Garry <john.g.garry@oracle.com>
-References: https://lore.kernel.org/r/ad2601c0-84bb-c574-3702-a83ff8faf98c@oracle.com
-
--:22: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#22: 
-References: https://lore.kernel.org/r/ad2601c0-84bb-c574-3702-a83ff8faf98c@oracle.com
-
--:22: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' or 'Closes:' instead
-#22: 
-References: https://lore.kernel.org/r/ad2601c0-84bb-c574-3702-a83ff8faf98c@oracle.com
-
--:23: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' or 'Closes:' instead
-#23: 
-References: https://lore.kernel.org/r/87wmzezns4.fsf@intel.com
-
-total: 0 errors, 4 warnings, 0 checks, 62 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-drivers/gpu/drm/i915/display/intel_display_device.c:503:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/display/intel_display_device.c:505:9:   also defined here
+-drivers/gpu/drm/i915/display/intel_display_device.c:625:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/display/intel_display_device.c:630:10:   also defined here
+-drivers/gpu/drm/i915/display/intel_display_device.c:638:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/display/intel_display_device.c:640:10:   also defined here
+-drivers/gpu/drm/i915/display/intel_display_device.c:714:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/display/intel_display_device.c:718:10:   also defined here
+-drivers/gpu/drm/i915/display/intel_fbdev.c:141:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/display/intel_fbdev.c:142:10:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:151:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:153:10:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:182:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:184:10:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:188:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:190:10:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:194:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:197:10:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:214:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:217:10:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:221:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:225:10:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:229:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:231:10:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:236:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:239:10:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:405:9:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:405:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:410:9:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:410:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:415:9:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:415:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:433:9:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:433:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:438:9:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:438:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:443:9:   also defined here
+-drivers/gpu/drm/i915/i915_pci.c:443:9: warning: Initializer entry defined twice
+-drivers/gpu/drm/i915/i915_pci.c:451:9: warning: too many warnings
 
 
