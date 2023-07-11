@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 031A374EB9D
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 12:18:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5700974EBBB
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 12:31:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A78810E35D;
-	Tue, 11 Jul 2023 10:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E72C10E35D;
+	Tue, 11 Jul 2023 10:31:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECA2810E35D
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jul 2023 10:18:35 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C0E010E35D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jul 2023 10:31:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689070715; x=1720606715;
+ t=1689071489; x=1720607489;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=NeGV+wSCNbQn4yMObY3Pa6d240fXFNQirNxKwJ1yW90=;
- b=FJLrMOC9zpEt+IXyPeUWarOSsEGj/OQdwNSCh+2bGXocjtxIvp22kl1C
- aaE+ftzB1xtL9/N1I9meY+mSkkIFoLHewPPeYQxBselktZqq+ZSLlPT8B
- BQatsRMSeg65KvwYUI8Jtq19RNTQ7ylfgqGNvaaBAogUhZES4S1TBHZKw
- u6D/1omYYLqIgeipOXNh3o0BfpGl6K1yzKZFUwM/Rvq+Pa53sSm58ZPQo
- QK2dKWgkIOkwEctN3+E2CcnPblJEU6a7cmg39uONHsyx1GRgRG+5NlaKn
- z0tP+XHVQGOcK084FONn32cvDYO/a/l4ODlxyyhQrzrn5fDwJUoTJev7O w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="344900815"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="344900815"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 03:18:35 -0700
+ bh=zZ+AVxDhAF0jvf14a8aNPwjDcY4odYESoYn+hoFc99s=;
+ b=UyPtLr6NX2E9PZ28sNc4gSeRxM/P5ha3jfx+7V+XPmAuqC6WiBVqBdSv
+ Wtzp4O7wCoIyQi2RA65p9Q1K2IM7qsHTP3BdQDC24KvSeBimhF9Ml1XOo
+ fTqW8xvTLsGIMKqhWL6HOzQCQKnNeo32S92wpUzwupUIlTpqv1kQNINnV
+ kt/mu+HvxEKQuZuTJSlSRuzmtNcdU0zkxrilmFSR7sSNwM/FqnSLzAIxJ
+ RodYzQHfwlqZzaf+cVK2VlAwEs1ZCb8RBKwg0XkcPnALbntooFMiEv/t/
+ KQohH5K5zANvWQmWh+7o45u+UfUOjgSK0J8uHoW6aP7kln3SyU+UO8hX8 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="364618949"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="364618949"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 03:31:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="845218161"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="845218161"
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="724399185"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="724399185"
 Received: from sbodin-mobl3.ger.corp.intel.com (HELO intel.com)
  ([10.252.53.13])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 03:18:32 -0700
-Date: Tue, 11 Jul 2023 12:18:23 +0200
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 03:31:25 -0700
+Date: Tue, 11 Jul 2023 12:31:16 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <ZK0sbz+h0r/PwYn2@ashyti-mobl2.lan>
-References: <20230705160848.988464-1-andrzej.hajda@intel.com>
- <20230706151611.1024576-1-andrzej.hajda@intel.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>
+Message-ID: <ZK0vdPlGUbHKa6jo@ashyti-mobl2.lan>
+References: <20230704080727.2665-1-shawn.c.lee@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230706151611.1024576-1-andrzej.hajda@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: update request engine
- before removing virtual GuC engine
+In-Reply-To: <20230704080727.2665-1-shawn.c.lee@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Refine mmio debug flow to avoid
+ bad unlock balance detected.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,77 +59,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andrzej,
+Hi Lee,
 
-On Thu, Jul 06, 2023 at 05:16:11PM +0200, Andrzej Hajda wrote:
-> GuC virtual engines can be removed before request removal. On the other
-> side driver expects rq->engine to be a valid pointer for a whole life of
-> request. Setting rq->engine to an always valid engine should solve
-> the issue.
+I'm really sorry for the late reply, I had some holidays in
+between.
+
+On Tue, Jul 04, 2023 at 04:07:27PM +0800, Lee Shawn C wrote:
+> Perform reboot stresss test on a kernel build with lockdebug flag enabled.
+> Bad unlock balanace detected would happened sometimes. Below is the
+> problematic scenario. If params.mmio_debug value was changed at step #4.
+> And it would trigger this issue. Modify code flow that decide to
+> enable/disable mmio debug before unclaimed_reg_debug() can avoid
+> this symptom.
 > 
-> The patch fixes bug detected by KASAN with following signature:
-> i915 0000:00:02.0: [drm:i915_drop_caches_set [i915]] Dropping caches: 0x0000005c [0x0000005c]
-> BUG: KASAN: slab-use-after-free in i915_fence_release+0x2a2/0x2f0 [i915]
-> Read of size 4 at addr ffff88813ffda6e8 by task kworker/u32:10/157
-> ...
-> Allocated by task 1184:
-> ...
-> guc_create_virtual+0x4d/0x1160 [i915]
-> i915_gem_create_context+0x11ee/0x18c0 [i915]
-> ...
-> Freed by task 151:
-> ...
-> intel_guc_deregister_done_process_msg+0x324/0x6d0 [i915]
-> ...
-
-so the only difference between v1 and v2 is this part of the log?
-
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7926
-> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>     1. GEN6_READ_HEADER is called with params.mmio_debug = 0
+>     2. unclaimed_reg_debug(before = true) is called
+>     3. unclaimed_reg_debug return without taking a lock
+>        because params.mmio_debug == 0
+>     4. other thread modifies params.mmio_debug to 1
+>     5. GEN6_READ_FOOTER is called with params.mmio_debug != 0
+>     6. unclaimed_reg_debug tries to assert non-taken lock (first WARN)
+>     7. unclaimed_reg_debug tries to release non-taken lock (second WARN)
+> 
+> Closes:https://gitlab.freedesktop.org/drm/intel/-/issues/8749
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+>  drivers/gpu/drm/i915/intel_uncore.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index a0e3ef1c65d246..2c877ea5eda6f0 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -3461,6 +3461,8 @@ static void guc_prio_fini(struct i915_request *rq, struct intel_context *ce)
->  static void remove_from_context(struct i915_request *rq)
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 796ebfe6c550..9d665978cc43 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -1931,9 +1931,6 @@ unclaimed_reg_debug(struct intel_uncore *uncore,
+>  		    const bool read,
+>  		    const bool before)
 >  {
->  	struct intel_context *ce = request_to_scheduling_context(rq);
-> +	struct intel_engine_cs *engine;
-> +	intel_engine_mask_t tmp;
->  
->  	GEM_BUG_ON(intel_context_is_child(ce));
->  
-> @@ -3478,6 +3480,15 @@ static void remove_from_context(struct i915_request *rq)
->  
->  	atomic_dec(&ce->guc_id.ref);
->  	i915_request_notify_execute_cb_imm(rq);
-> +
-> +	/*
-> +	 * GuC virtual engine can disappear after this call, so let's assign
-> +	 * something valid, as driver expects this to be always valid pointer.
-> +	 */
-> +	for_each_engine_masked(engine, rq->engine->gt, rq->execution_mask, tmp) {
-> +		rq->engine = engine;
+> -	if (likely(!uncore->i915->params.mmio_debug) || !uncore->debug)
+> -		return;
+> -
 
-yes... here the context might lose the virtual engine... I wonder
-whether this is the rigth solution, though. Maybe we should set
-rq->engine = NULL; and check for NULL? Don't know.
+this is a very good catch! I'm fine with the change from my side:
 
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+
+But I'd like to hear from someone else, as well, Matt, Daniele?
+
+Thank you,
 Andi
-
-> +		break;
-> +	}
->  }
->  
->  static const struct intel_context_ops guc_context_ops = {
-> -- 
-> 2.34.1
