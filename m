@@ -2,53 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 723D174F40A
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 17:48:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E418D74F42F
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 17:59:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 602D910E3D5;
-	Tue, 11 Jul 2023 15:48:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6312D10E3D4;
+	Tue, 11 Jul 2023 15:59:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2D2010E3D1;
- Tue, 11 Jul 2023 15:48:27 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A300310E3D6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jul 2023 15:59:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689090507; x=1720626507;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Y1NM5mG63RFEF6WWsksZ5ljhShXdMgVlpD0NDO/+JgE=;
- b=MaEjhb8dn3dsB4Qd5xEyWWaBGr+jau2IsjoaaSkJlwoXyl+V9R5VBL3r
- UMKw4PjiccVcFgPQ3PLbIiAsegKWxhD9ekOua2f1RndtOVUFJiiykVtMy
- 1A8LzTFwFvUloV24kUmxZQ8UfC7b33l0Jvq0PPZXXDuaIDFyyqvMuv9yA
- T0kibukFdS9C8MSSAzF1YV7DWvLEa0w1o1N/X8HlaQutOAIBtQK1vwjfO
- 0m4dh+p/bttrQhFfXSnzAWPoe1zxDKd/RqUzNlJpJ7+G69tiWqotd89YY
- zjqWl25df6t6nfN7REPw3dyQ0klhdzhhSrUJA8ff5KgRT86FOa/7BvT8b w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="430743232"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="430743232"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 08:48:26 -0700
+ t=1689091193; x=1720627193;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=G/LfvLkQOBxItabWIlxaMGdbi0LzDAPFqeXOY8kqs9k=;
+ b=DxdScNaB00LP5XZgUKEmPsmJyAP4mwD5iB/setRjwgxYq7aqtKKjHVOp
+ jqFxwQ+8eHvTfGYAhInooBAph62/3wDWuz6nb5Sq/58LQDEVVaboHAdCk
+ y6CQ20jN1FtjyzKeal2c8Qg3MP2MeaNWXI0CP7d8anUfuwXULmadQPt+b
+ o8ssgOHrvzoyXICCBcKVYJOHUxLC0t6LaDVVC/OxDewX/rpPLdgzzWWAD
+ FM4ZLFg3UjPHimh+n/DfQDmp5kEUBocKK4pRfRClgqwmmf5++l9guoWYz
+ Ro9N7/lob8lVN8OSabRGddGtRYUoux/Dw3lw/VzoHqchtrx9w/ZOCJqd3 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="344257176"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="344257176"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 08:59:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="724487197"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="724487197"
-Received: from sneaga-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.52.179])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 08:48:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <7277d6c3-911a-7a36-6e2a-f89beb5b7bf3@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230706092850.3417782-1-jani.nikula@intel.com>
- <7277d6c3-911a-7a36-6e2a-f89beb5b7bf3@linux.intel.com>
-Date: Tue, 11 Jul 2023 18:48:21 +0300
-Message-ID: <87r0peh2ka.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="895229108"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="895229108"
+Received: from rayhaanf-mobl.ger.corp.intel.com (HELO [10.213.205.242])
+ ([10.213.205.242])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 08:59:51 -0700
+Message-ID: <a443b2f7-8a9b-1b8e-c6ef-61dce338ef87@linux.intel.com>
+Date: Tue, 11 Jul 2023 16:59:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [drm-rerere] nightly.conf: drop sound tree from
- drm-tip altogether
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Nirmoy Das <nirmoy.das@linux.intel.com>, Nirmoy Das
+ <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230630170140.17319-1-nirmoy.das@intel.com>
+ <20230630170140.17319-2-nirmoy.das@intel.com>
+ <a1a668fb-52a4-9d3a-03cc-443f2ff077aa@linux.intel.com>
+ <837c9971-79fc-015c-e611-a161cb8d4b96@linux.intel.com>
+ <73912e3b-69af-b95c-7b0b-8518d003a3d2@linux.intel.com>
+ <4032e558-00f7-4c9b-6d4a-7b8958361237@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <4032e558-00f7-4c9b-6d4a-7b8958361237@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display: Do not use stolen on
+ MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,71 +69,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, airlied@gmail.com, daniel@ffwll.ch
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 11 Jul 2023, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
-> Hey,
->
-> Den 2023-07-06 kl. 11:28, skrev Jani Nikula:
->> We used to have the sound branches be part of drm-tip to help
->> development of DP and HDMI audio. However, we always used to run into
->> problems with the sound branches merging Linus' master at non-tagged
->> random commits, wreaking havoc especially during the merge windows. We
->> only ever want to have tagged stuff merged back from Linus' tree to
->> drm-tip.
->>
->> We introduced a mechanism in dim to hold back branches at certain
->> commits, just to hold back sound branches when problems arise. We moved
->> it along, but in the end nobody has updated this in literally years, and
->> sound branches have been held back at v5.13.
->>
->> The merge window is currently open, and AFAICT the sound/for-linus
->> branch again contains commits from the merge window.
->>
->> Let's just forget about the sound tree, as nobody has really missed it
->> since v5.13, and focus on the drm branches.
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Thanks for the acks everyone, both here and on IRC, pushed to
-drm-rerere.
-
-BR,
-Jani.
-
-
->> ---
->>   nightly.conf | 7 -------
->>   1 file changed, 7 deletions(-)
+On 10/07/2023 10:00, Nirmoy Das wrote:
+> Hi Tvrkto,
+> 
+> On 7/6/2023 3:43 PM, Tvrtko Ursulin wrote:
 >>
->> diff --git a/nightly.conf b/nightly.conf
->> index 73aec820e98f..c1e22800e276 100644
->> --- a/nightly.conf
->> +++ b/nightly.conf
->> @@ -46,11 +46,6 @@ git://anongit.freedesktop.org/drm/drm
->>   https://anongit.freedesktop.org/git/drm/drm
->>   https://anongit.freedesktop.org/git/drm/drm.git
->>   "
->> -drm_tip_repos[sound-upstream]="
->> -git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound.git
->> -https://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound.git
->> -https://kernel.googlesource.com/pub/scm/linux/kernel/git/tiwai/sound.git
->> -"
->>   drm_tip_repos[linux-upstream]="
->>   git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
->>   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
->> @@ -79,8 +74,6 @@ drm_tip_config=(
->>   	"drm-intel		drm-intel-next"
->>   	"drm-intel		drm-intel-gt-next"
->>   
->> -	"sound-upstream		for-linus	v5.13"
->> -	"sound-upstream		for-next	v5.13"
->>   	"drm-intel		topic/core-for-CI"
->>   	"drm-misc		topic/i915-ttm"
->>   	"drm		topic/nouveau-misc"
+>> On 06/07/2023 14:35, Nirmoy Das wrote:
+>>>
+>>> On 7/6/2023 3:32 PM, Tvrtko Ursulin wrote:
+>>>>
+>>>> On 30/06/2023 18:01, Nirmoy Das wrote:
+>>>>> Use smem on MTL due to a HW bug in MTL that prevents
+>>>>> reading from stolen memory using LMEM BAR.
+>>>>
+>>>> Does anything remain in stolen or could the memory region just not 
+>>>> be created?
+>>>
+>>>
+>>> GSC requires DSM which can't use smem for another bug.
+>>
+>> Okay, thanks.
+>>
+>> As a related comment, these if-if-if object creation ladders were 
+>> always a bit ugly and some years ago I was suggesting we create a 
+>> helper with some "intent/usage" flags. Which could then dtrt ie. 
+>> create the right object for that intent/usage and platform. I *think* 
+>> I possibly even had a RFC... need to try and find it.
+> 
+> 
+> Did you find it :) Would be nice to have a better way to detect and 
+> apply memory region as per platfrom/usecase.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Nope. Basically the idea boiled down to figuring out if it is possible 
+to express the "requirements" via intent flags. Like do we need CPU 
+access, is it mostly GPU, can it be volatile etc. And then combine the 
+intent with the platform to figure out what kind of object to create. 
+But it was many years ago and I am not sure if the idea would still 
+apply so easily, without looking at the all call sites. Could easily end 
+up complicated so I cannot dare to say it is worth spending time looking 
+at this.
+
+Regards,
+
+Tvrtko
+
+> 
+> 
+> Regards,
+> 
+> Nirmoy
+> 
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>
+>>> Regards,
+>>>
+>>> Nirmoy
+>>>
+>>>
+>>>>
+>>>> Regards,
+>>>>
+>>>> Tvrtko
+>>>>
+>>>>> Cc: Oak Zeng <oak.zeng@intel.com>
+>>>>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>>>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+>>>>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+>>>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>>>>> ---
+>>>>>   drivers/gpu/drm/i915/display/intel_fbdev.c   | 2 ++
+>>>>>   drivers/gpu/drm/i915/display/intel_overlay.c | 7 ++++---
+>>>>>   2 files changed, 6 insertions(+), 3 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c 
+>>>>> b/drivers/gpu/drm/i915/display/intel_fbdev.c
+>>>>> index 1cc0ddc6a310..10e38d60f9ef 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+>>>>> @@ -182,6 +182,8 @@ static int intelfb_alloc(struct drm_fb_helper 
+>>>>> *helper,
+>>>>>           obj = i915_gem_object_create_lmem(dev_priv, size,
+>>>>>                             I915_BO_ALLOC_CONTIGUOUS |
+>>>>>                             I915_BO_ALLOC_USER);
+>>>>> +    } else if (IS_METEORLAKE(dev_priv)) { /* Wa_22018444074 */
+>>>>> +        obj = i915_gem_object_create_shmem(dev_priv, size);
+>>>>>       } else {
+>>>>>           /*
+>>>>>            * If the FB is too big, just don't use it since fbdev is 
+>>>>> not very
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c 
+>>>>> b/drivers/gpu/drm/i915/display/intel_overlay.c
+>>>>> index d6fe2bbabe55..05ae446c8a56 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+>>>>> @@ -1348,12 +1348,13 @@ int intel_overlay_attrs_ioctl(struct 
+>>>>> drm_device *dev, void *data,
+>>>>>   static int get_registers(struct intel_overlay *overlay, bool 
+>>>>> use_phys)
+>>>>>   {
+>>>>>       struct drm_i915_private *i915 = overlay->i915;
+>>>>> -    struct drm_i915_gem_object *obj;
+>>>>> +    struct drm_i915_gem_object *obj = NULL;
+>>>>>       struct i915_vma *vma;
+>>>>>       int err;
+>>>>>   -    obj = i915_gem_object_create_stolen(i915, PAGE_SIZE);
+>>>>> -    if (IS_ERR(obj))
+>>>>> +    if (!IS_METEORLAKE(i915)) /* Wa_22018444074 */
+>>>>> +        obj = i915_gem_object_create_stolen(i915, PAGE_SIZE);
+>>>>> +    if (IS_ERR_OR_NULL(obj))
+>>>>>           obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
+>>>>>       if (IS_ERR(obj))
+>>>>>           return PTR_ERR(obj);
