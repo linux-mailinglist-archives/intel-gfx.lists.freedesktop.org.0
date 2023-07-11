@@ -2,61 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E418D74F42F
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 17:59:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FEAD74F446
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 18:03:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6312D10E3D4;
-	Tue, 11 Jul 2023 15:59:55 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A300310E3D6
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jul 2023 15:59:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8289E10E3DA;
+	Tue, 11 Jul 2023 16:03:29 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87EBE10E3CE;
+ Tue, 11 Jul 2023 16:03:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689091193; x=1720627193;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=G/LfvLkQOBxItabWIlxaMGdbi0LzDAPFqeXOY8kqs9k=;
- b=DxdScNaB00LP5XZgUKEmPsmJyAP4mwD5iB/setRjwgxYq7aqtKKjHVOp
- jqFxwQ+8eHvTfGYAhInooBAph62/3wDWuz6nb5Sq/58LQDEVVaboHAdCk
- y6CQ20jN1FtjyzKeal2c8Qg3MP2MeaNWXI0CP7d8anUfuwXULmadQPt+b
- o8ssgOHrvzoyXICCBcKVYJOHUxLC0t6LaDVVC/OxDewX/rpPLdgzzWWAD
- FM4ZLFg3UjPHimh+n/DfQDmp5kEUBocKK4pRfRClgqwmmf5++l9guoWYz
- Ro9N7/lob8lVN8OSabRGddGtRYUoux/Dw3lw/VzoHqchtrx9w/ZOCJqd3 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="344257176"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="344257176"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 08:59:52 -0700
+ t=1689091404; x=1720627404;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NZA7D6GIMYo7/JEQn8Gj1FfyuPVPPIaV/rVMObOBq7s=;
+ b=eUpGaXSMki5dEYv9HuzBfTx2jgkbB9J8ugmdnk0fCCfF28gQFD+J79Q4
+ xST8CMDmYHL6J7WKIkavn/o/ShacZlUWnj+yiKomAe+f00G3jXozrMSOG
+ Ige1KOeVk3JX5hKGuAs+X9CeCQxWO8YbA7uweLfa+vbIo7OhSyUe/ZoiH
+ StduiJnnCz36s2WuDlWB4pDH0EYbVnhYofuDmgTCTecBaHdHv+drBh/Ws
+ VWrYWv2wnhgbAHkOkTX/l84qALXdmiVLIVhtSzKdS6V3XowAADBO5YMjO
+ 1uH1fpmeY7ea9n6r17DFmf5Jm46p7GWjw3YJyKEVpbXpUCcluVxmUWd/w g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="363520057"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="363520057"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 09:02:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="895229108"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="895229108"
-Received: from rayhaanf-mobl.ger.corp.intel.com (HELO [10.213.205.242])
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="750820255"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="750820255"
+Received: from rayhaanf-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.205.242])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 08:59:51 -0700
-Message-ID: <a443b2f7-8a9b-1b8e-c6ef-61dce338ef87@linux.intel.com>
-Date: Tue, 11 Jul 2023 16:59:49 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@linux.intel.com>, Nirmoy Das
- <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230630170140.17319-1-nirmoy.das@intel.com>
- <20230630170140.17319-2-nirmoy.das@intel.com>
- <a1a668fb-52a4-9d3a-03cc-443f2ff077aa@linux.intel.com>
- <837c9971-79fc-015c-e611-a161cb8d4b96@linux.intel.com>
- <73912e3b-69af-b95c-7b0b-8518d003a3d2@linux.intel.com>
- <4032e558-00f7-4c9b-6d4a-7b8958361237@linux.intel.com>
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 09:02:23 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <4032e558-00f7-4c9b-6d4a-7b8958361237@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: igt-dev@lists.freedesktop.org,
+	Intel-gfx@lists.freedesktop.org
+Date: Tue, 11 Jul 2023 17:02:13 +0100
+Message-Id: <20230711160214.463134-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display: Do not use stolen on
- MTL
+Subject: [Intel-gfx] [PATCH i-g-t 1/2] lib/igt_dummyload: Extract sync
+ spinner API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,124 +58,537 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-On 10/07/2023 10:00, Nirmoy Das wrote:
-> Hi Tvrkto,
-> 
-> On 7/6/2023 3:43 PM, Tvrtko Ursulin wrote:
->>
->> On 06/07/2023 14:35, Nirmoy Das wrote:
->>>
->>> On 7/6/2023 3:32 PM, Tvrtko Ursulin wrote:
->>>>
->>>> On 30/06/2023 18:01, Nirmoy Das wrote:
->>>>> Use smem on MTL due to a HW bug in MTL that prevents
->>>>> reading from stolen memory using LMEM BAR.
->>>>
->>>> Does anything remain in stolen or could the memory region just not 
->>>> be created?
->>>
->>>
->>> GSC requires DSM which can't use smem for another bug.
->>
->> Okay, thanks.
->>
->> As a related comment, these if-if-if object creation ladders were 
->> always a bit ugly and some years ago I was suggesting we create a 
->> helper with some "intent/usage" flags. Which could then dtrt ie. 
->> create the right object for that intent/usage and platform. I *think* 
->> I possibly even had a RFC... need to try and find it.
-> 
-> 
-> Did you find it :) Would be nice to have a better way to detect and 
-> apply memory region as per platfrom/usecase.
+Sync spinner API is identical and compatible with regular spinners just
+that it tries to make sure spinner is actually running on the hardware
+before returning from the constructor.
 
-Nope. Basically the idea boiled down to figuring out if it is possible 
-to express the "requirements" via intent flags. Like do we need CPU 
-access, is it mostly GPU, can it be volatile etc. And then combine the 
-intent with the platform to figure out what kind of object to create. 
-But it was many years ago and I am not sure if the idea would still 
-apply so easily, without looking at the all call sites. Could easily end 
-up complicated so I cannot dare to say it is worth spending time looking 
-at this.
+A few tests already use it, one more will, so lets promote it into
+common library.
 
-Regards,
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ lib/igt_dummyload.c     | 105 ++++++++++++++++++++++++++++++++++++++++
+ lib/igt_dummyload.h     |  11 +++++
+ tests/i915/drm_fdinfo.c |  81 ++++---------------------------
+ tests/i915/gem_eio.c    |  15 ++----
+ tests/i915/perf_pmu.c   |  84 +++++---------------------------
+ 5 files changed, 140 insertions(+), 156 deletions(-)
 
-Tvrtko
+diff --git a/lib/igt_dummyload.c b/lib/igt_dummyload.c
+index 9f941cef73e6..d3cee91540b6 100644
+--- a/lib/igt_dummyload.c
++++ b/lib/igt_dummyload.c
+@@ -33,6 +33,7 @@
+ #include "drmtest.h"
+ #include "i915/gem_create.h"
+ #include "i915/gem_engine_topology.h"
++#include "i915/gem.h"
+ #include "i915/gem_mman.h"
+ #include "i915/gem_submission.h"
+ #include "igt_aux.h"
+@@ -715,6 +716,110 @@ void igt_unshare_spins(void)
+ 	IGT_INIT_LIST_HEAD(&spin_list);
+ }
+ 
++/**
++ * __igt_sync_spin_poll:
++ * @i915: open i915 drm file descriptor
++ * @ahnd: allocator handle
++ * @ctx: intel_ctx_t context
++ * @e: engine to execute on
++ *
++ * Starts a recursive batch on an engine.
++ *
++ * Returns a #igt_spin_t which can be used with both standard and igt_sync_spin
++ * API family. Callers should consult @gem_class_can_store_dword to whether
++ * the target platform+engine can reliably support the igt_sync_spin API.
++ */
++igt_spin_t *
++__igt_sync_spin_poll(int i915, uint64_t ahnd, const intel_ctx_t *ctx,
++		     const struct intel_execution_engine2 *e)
++{
++	struct igt_spin_factory opts = {
++		.ahnd = ahnd,
++		.ctx = ctx,
++		.engine = e ? e->flags : 0,
++	};
++
++	if (!e || gem_class_can_store_dword(i915, e->class))
++		opts.flags |= IGT_SPIN_POLL_RUN;
++
++	return __igt_spin_factory(i915, &opts);
++}
++
++/**
++ * __igt_sync_spin_wait:
++ * @i915: open i915 drm file descriptor
++ * @spin: previously create sync spinner
++ *
++ * Waits for a spinner to be running on the hardware.
++ *
++ * Callers should consult @gem_class_can_store_dword to whether the target
++ * platform+engine can reliably support the igt_sync_spin API.
++ */
++unsigned long __igt_sync_spin_wait(int i915, igt_spin_t *spin)
++{
++	struct timespec start = { };
++
++	igt_nsec_elapsed(&start);
++
++	if (igt_spin_has_poll(spin)) {
++		unsigned long timeout = 0;
++
++		while (!igt_spin_has_started(spin)) {
++			unsigned long t = igt_nsec_elapsed(&start);
++
++			igt_assert(gem_bo_busy(i915, spin->handle));
++			if ((t - timeout) > 250e6) {
++				timeout = t;
++				igt_warn("Spinner not running after %.2fms\n",
++					 (double)t / 1e6);
++				igt_assert(t < 2e9);
++			}
++		}
++	} else {
++		igt_debug("__spin_wait - usleep mode\n");
++		usleep(500e3); /* Better than nothing! */
++	}
++
++	igt_assert(gem_bo_busy(i915, spin->handle));
++	return igt_nsec_elapsed(&start);
++}
++
++igt_spin_t *
++__igt_sync_spin(int i915, uint64_t ahnd, const intel_ctx_t *ctx,
++		const struct intel_execution_engine2 *e)
++{
++	igt_spin_t *spin = __igt_sync_spin_poll(i915, ahnd, ctx, e);
++
++	__igt_sync_spin_wait(i915, spin);
++
++	return spin;
++}
++
++/**
++ * igt_sync_spin:
++ * @i915: open i915 drm file descriptor
++ * @ahnd: allocator handle
++ * @ctx: intel_ctx_t context
++ * @e: engine to execute on
++ *
++ * Starts a recursive batch on an engine.
++ *
++ * Returns a #igt_spin_t and tries to guarantee it to be running at the time of
++ * the return. Otherwise it does a best effort only. Callers should check for
++ * @gem_class_can_store_dword if they want to be sure guarantee can be given.
++ *
++ * Both standard and igt_sync_spin API family can be used on the returned
++ * spinner object.
++ */
++igt_spin_t *
++igt_sync_spin(int i915, uint64_t ahnd, const intel_ctx_t *ctx,
++	      const struct intel_execution_engine2 *e)
++{
++	igt_require_gem(i915);
++
++	return __igt_sync_spin(i915, ahnd, ctx, e);
++}
++
+ static uint32_t plug_vgem_handle(struct igt_cork *cork, int fd)
+ {
+ 	struct vgem_bo bo;
+diff --git a/lib/igt_dummyload.h b/lib/igt_dummyload.h
+index 6eb3f2e696bb..b771011af74f 100644
+--- a/lib/igt_dummyload.h
++++ b/lib/igt_dummyload.h
+@@ -143,6 +143,17 @@ void igt_terminate_spins(void);
+ void igt_unshare_spins(void);
+ void igt_free_spins(int i915);
+ 
++struct intel_execution_engine2;
++
++igt_spin_t *__igt_sync_spin_poll(int i915, uint64_t ahnd,
++				 const intel_ctx_t *ctx,
++				 const struct intel_execution_engine2 *e);
++unsigned long __igt_sync_spin_wait(int i915, igt_spin_t *spin);
++igt_spin_t *__igt_sync_spin(int i915, uint64_t ahnd, const intel_ctx_t *ctx,
++			    const struct intel_execution_engine2 *e);
++igt_spin_t *igt_sync_spin(int i915, uint64_t ahnd, const intel_ctx_t *ctx,
++			  const struct intel_execution_engine2 *e);
++
+ enum igt_cork_type {
+ 	CORK_SYNC_FD = 1,
+ 	CORK_VGEM_HANDLE
+diff --git a/tests/i915/drm_fdinfo.c b/tests/i915/drm_fdinfo.c
+index c0e0ba1905f1..5cafa0e469e2 100644
+--- a/tests/i915/drm_fdinfo.c
++++ b/tests/i915/drm_fdinfo.c
+@@ -138,68 +138,6 @@ static unsigned int measured_usleep(unsigned int usec)
+ #define FLAG_HANG (8)
+ #define TEST_ISOLATION (16)
+ 
+-static igt_spin_t *__spin_poll(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+-			       const struct intel_execution_engine2 *e)
+-{
+-	struct igt_spin_factory opts = {
+-		.ahnd = ahnd,
+-		.ctx = ctx,
+-		.engine = e ? e->flags : 0,
+-	};
+-
+-	if (!e || gem_class_can_store_dword(fd, e->class))
+-		opts.flags |= IGT_SPIN_POLL_RUN;
+-
+-	return __igt_spin_factory(fd, &opts);
+-}
+-
+-static unsigned long __spin_wait(int fd, igt_spin_t *spin)
+-{
+-	struct timespec start = { };
+-
+-	igt_nsec_elapsed(&start);
+-
+-	if (igt_spin_has_poll(spin)) {
+-		unsigned long timeout = 0;
+-
+-		while (!igt_spin_has_started(spin)) {
+-			unsigned long t = igt_nsec_elapsed(&start);
+-
+-			igt_assert(gem_bo_busy(fd, spin->handle));
+-			if ((t - timeout) > 250e6) {
+-				timeout = t;
+-				igt_warn("Spinner not running after %.2fms\n",
+-					 (double)t / 1e6);
+-				igt_assert(t < 2e9);
+-			}
+-		}
+-	} else {
+-		igt_debug("__spin_wait - usleep mode\n");
+-		usleep(500e3); /* Better than nothing! */
+-	}
+-
+-	igt_assert(gem_bo_busy(fd, spin->handle));
+-	return igt_nsec_elapsed(&start);
+-}
+-
+-static igt_spin_t *__spin_sync(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+-			       const struct intel_execution_engine2 *e)
+-{
+-	igt_spin_t *spin = __spin_poll(fd, ahnd, ctx, e);
+-
+-	__spin_wait(fd, spin);
+-
+-	return spin;
+-}
+-
+-static igt_spin_t *spin_sync(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+-			     const struct intel_execution_engine2 *e)
+-{
+-	igt_require_gem(fd);
+-
+-	return __spin_sync(fd, ahnd, ctx, e);
+-}
+-
+ static void end_spin(int fd, igt_spin_t *spin, unsigned int flags)
+ {
+ 	if (!spin)
+@@ -264,7 +202,7 @@ single(int gem_fd, const intel_ctx_t *ctx,
+ 	ahnd = get_reloc_ahnd(spin_fd, ctx->id);
+ 
+ 	if (flags & TEST_BUSY)
+-		spin = spin_sync(spin_fd, ahnd, ctx, e);
++		spin = igt_sync_spin(spin_fd, ahnd, ctx, e);
+ 	else
+ 		spin = NULL;
+ 
+@@ -349,7 +287,7 @@ busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+ 
+ 	memset(tval, 0, sizeof(tval));
+ 
+-	spin = spin_sync(gem_fd, ahnd, ctx, e);
++	spin = igt_sync_spin(gem_fd, ahnd, ctx, e);
+ 
+ 	read_busy_all(gem_fd, tval[0]);
+ 	slept = measured_usleep(batch_duration_ns / 1000);
+@@ -418,14 +356,14 @@ most_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+ 			__submit_spin(gem_fd, spin, e_, 64);
+ 			busy_class[e_->class]++;
+ 		} else {
+-			spin = __spin_poll(gem_fd, ahnd, ctx, e_);
++			spin = __igt_sync_spin_poll(gem_fd, ahnd, ctx, e_);
+ 			busy_class[e_->class]++;
+ 		}
+ 	}
+ 	igt_require(spin); /* at least one busy engine */
+ 
+ 	/* Small delay to allow engines to start. */
+-	usleep(__spin_wait(gem_fd, spin) * num_engines / 1e3);
++	usleep(__igt_sync_spin_wait(gem_fd, spin) * num_engines / 1e3);
+ 
+ 	read_busy_all(gem_fd, tval[0]);
+ 	slept = measured_usleep(batch_duration_ns / 1000);
+@@ -475,12 +413,12 @@ all_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+ 		if (spin)
+ 			__submit_spin(gem_fd, spin, e, 64);
+ 		else
+-			spin = __spin_poll(gem_fd, ahnd, ctx, e);
++			spin = __igt_sync_spin_poll(gem_fd, ahnd, ctx, e);
+ 		busy_class[e->class]++;
+ 	}
+ 
+ 	/* Small delay to allow engines to start. */
+-	usleep(__spin_wait(gem_fd, spin) * num_engines / 1e3);
++	usleep(__igt_sync_spin_wait(gem_fd, spin) * num_engines / 1e3);
+ 
+ 	read_busy_all(gem_fd, tval[0]);
+ 	slept = measured_usleep(batch_duration_ns / 1000);
+@@ -624,7 +562,7 @@ virtual(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
+ 			ahnd = get_reloc_ahnd(i915, ctx->id);
+ 
+ 			if (flags & TEST_BUSY)
+-				spin = spin_sync(i915, ahnd, ctx, NULL);
++				spin = igt_sync_spin(i915, ahnd, ctx, NULL);
+ 			else
+ 				spin = NULL;
+ 
+@@ -732,11 +670,12 @@ virtual_all(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
+ 			if (spin)
+ 				__virt_submit_spin(i915, spin, ctx[i], 64);
+ 			else
+-				spin = __spin_poll(i915, ahnd, ctx[i], NULL);
++				spin = __igt_sync_spin_poll(i915, ahnd, ctx[i],
++							    NULL);
+ 		}
+ 
+ 		/* Small delay to allow engines to start. */
+-		usleep(__spin_wait(i915, spin) * count / 1e3);
++		usleep(__igt_sync_spin_wait(i915, spin) * count / 1e3);
+ 
+ 		val = read_busy(i915, class);
+ 		slept = measured_usleep(batch_duration_ns / 1000);
+diff --git a/tests/i915/gem_eio.c b/tests/i915/gem_eio.c
+index d889d67dcebd..6d4b8f7df909 100644
+--- a/tests/i915/gem_eio.c
++++ b/tests/i915/gem_eio.c
+@@ -47,6 +47,7 @@
+ #include "i915/gem_ring.h"
+ #include "igt.h"
+ #include "igt_device.h"
++#include "igt_dummyload.h"
+ #include "igt_fb.h"
+ #include "igt_kms.h"
+ #include "igt_stats.h"
+@@ -429,22 +430,12 @@ static igt_spin_t *__spin_poll(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+ 	return __igt_spin_factory(fd, &opts);
+ }
+ 
+-static void __spin_wait(int fd, igt_spin_t *spin)
+-{
+-	if (igt_spin_has_poll(spin)) {
+-		igt_spin_busywait_until_started(spin);
+-	} else {
+-		igt_debug("__spin_wait - usleep mode\n");
+-		usleep(500e3); /* Better than nothing! */
+-	}
+-}
+-
+ static igt_spin_t *spin_sync(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+ 			     unsigned long flags)
+ {
+ 	igt_spin_t *spin = __spin_poll(fd, ahnd, ctx, flags);
+ 
+-	__spin_wait(fd, spin);
++	__igt_sync_spin_wait(fd, spin);
+ 
+ 	return spin;
+ }
+@@ -963,7 +954,7 @@ static void test_inflight_external(int fd)
+ 	fence = execbuf.rsvd2 >> 32;
+ 	igt_assert(fence != -1);
+ 
+-	__spin_wait(fd, hang);
++	__igt_sync_spin_wait(fd, hang);
+ 	manual_hang(fd);
+ 
+ 	gem_sync(fd, hang->handle); /* wedged, with an unready batch */
+diff --git a/tests/i915/perf_pmu.c b/tests/i915/perf_pmu.c
+index 0806a8e545b5..a888027ad9af 100644
+--- a/tests/i915/perf_pmu.c
++++ b/tests/i915/perf_pmu.c
+@@ -377,68 +377,6 @@ static unsigned int measured_usleep(unsigned int usec)
+ #define TEST_OTHER (128)
+ #define TEST_ALL   (256)
+ 
+-static igt_spin_t *__spin_poll(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+-			       const struct intel_execution_engine2 *e)
+-{
+-	struct igt_spin_factory opts = {
+-		.ahnd = ahnd,
+-		.ctx = ctx,
+-		.engine = e->flags,
+-	};
+-
+-	if (gem_class_can_store_dword(fd, e->class))
+-		opts.flags |= IGT_SPIN_POLL_RUN;
+-
+-	return __igt_spin_factory(fd, &opts);
+-}
+-
+-static unsigned long __spin_wait(int fd, igt_spin_t *spin)
+-{
+-	struct timespec start = { };
+-
+-	igt_nsec_elapsed(&start);
+-
+-	if (igt_spin_has_poll(spin)) {
+-		unsigned long timeout = 0;
+-
+-		while (!igt_spin_has_started(spin)) {
+-			unsigned long t = igt_nsec_elapsed(&start);
+-
+-			igt_assert(gem_bo_busy(fd, spin->handle));
+-			if ((t - timeout) > 250e6) {
+-				timeout = t;
+-				igt_warn("Spinner not running after %.2fms\n",
+-					 (double)t / 1e6);
+-				igt_assert(t < 2e9);
+-			}
+-		}
+-	} else {
+-		igt_debug("__spin_wait - usleep mode\n");
+-		usleep(500e3); /* Better than nothing! */
+-	}
+-
+-	igt_assert(gem_bo_busy(fd, spin->handle));
+-	return igt_nsec_elapsed(&start);
+-}
+-
+-static igt_spin_t *__spin_sync(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+-			       const struct intel_execution_engine2 *e)
+-{
+-	igt_spin_t *spin = __spin_poll(fd, ahnd, ctx, e);
+-
+-	__spin_wait(fd, spin);
+-
+-	return spin;
+-}
+-
+-static igt_spin_t *spin_sync(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+-			     const struct intel_execution_engine2 *e)
+-{
+-	igt_require_gem(fd);
+-
+-	return __spin_sync(fd, ahnd, ctx, e);
+-}
+-
+ static void end_spin(int fd, igt_spin_t *spin, unsigned int flags)
+ {
+ 	if (!spin)
+@@ -484,7 +422,7 @@ single(int gem_fd, const intel_ctx_t *ctx,
+ 	fd = open_pmu(gem_fd, I915_PMU_ENGINE_BUSY(e->class, e->instance));
+ 
+ 	if (flags & TEST_BUSY)
+-		spin = spin_sync(gem_fd, ahnd, ctx, e);
++		spin = igt_sync_spin(gem_fd, ahnd, ctx, e);
+ 	else
+ 		spin = NULL;
+ 
+@@ -536,7 +474,7 @@ busy_start(int gem_fd, const intel_ctx_t *ctx,
+ 	 */
+ 	sleep(2);
+ 
+-	spin = __spin_sync(gem_fd, ahnd, ctx, e);
++	spin = __igt_sync_spin(gem_fd, ahnd, ctx, e);
+ 
+ 	fd = open_pmu(gem_fd, I915_PMU_ENGINE_BUSY(e->class, e->instance));
+ 
+@@ -583,7 +521,7 @@ busy_double_start(int gem_fd, const intel_ctx_t *ctx,
+ 	 * re-submission in execlists mode. Make sure busyness is correctly
+ 	 * reported with the engine busy, and after the engine went idle.
+ 	 */
+-	spin[0] = __spin_sync(gem_fd, ahnd, ctx, e);
++	spin[0] = __igt_sync_spin(gem_fd, ahnd, ctx, e);
+ 	usleep(500e3);
+ 	spin[1] = __igt_spin_new(gem_fd,
+ 				 .ahnd = ahndN,
+@@ -675,7 +613,7 @@ busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+ 
+ 	igt_assert_eq(i, num_engines);
+ 
+-	spin = spin_sync(gem_fd, ahnd, ctx, e);
++	spin = igt_sync_spin(gem_fd, ahnd, ctx, e);
+ 	pmu_read_multi(fd[0], num_engines, tval[0]);
+ 	slept = measured_usleep(batch_duration_ns / 1000);
+ 	if (flags & TEST_TRAILING_IDLE)
+@@ -737,7 +675,7 @@ most_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+ 		else if (spin)
+ 			__submit_spin(gem_fd, spin, e_, 64);
+ 		else
+-			spin = __spin_poll(gem_fd, ahnd, ctx, e_);
++			spin = __igt_sync_spin_poll(gem_fd, ahnd, ctx, e_);
+ 
+ 		val[i++] = I915_PMU_ENGINE_BUSY(e_->class, e_->instance);
+ 	}
+@@ -749,7 +687,7 @@ most_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+ 		fd[i] = open_group(gem_fd, val[i], fd[0]);
+ 
+ 	/* Small delay to allow engines to start. */
+-	usleep(__spin_wait(gem_fd, spin) * num_engines / 1e3);
++	usleep(__igt_sync_spin_wait(gem_fd, spin) * num_engines / 1e3);
+ 
+ 	pmu_read_multi(fd[0], num_engines, tval[0]);
+ 	slept = measured_usleep(batch_duration_ns / 1000);
+@@ -796,7 +734,7 @@ all_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+ 		if (spin)
+ 			__submit_spin(gem_fd, spin, e, 64);
+ 		else
+-			spin = __spin_poll(gem_fd, ahnd, ctx, e);
++			spin = __igt_sync_spin_poll(gem_fd, ahnd, ctx, e);
+ 
+ 		val[i++] = I915_PMU_ENGINE_BUSY(e->class, e->instance);
+ 	}
+@@ -807,7 +745,7 @@ all_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+ 		fd[i] = open_group(gem_fd, val[i], fd[0]);
+ 
+ 	/* Small delay to allow engines to start. */
+-	usleep(__spin_wait(gem_fd, spin) * num_engines / 1e3);
++	usleep(__igt_sync_spin_wait(gem_fd, spin) * num_engines / 1e3);
+ 
+ 	pmu_read_multi(fd[0], num_engines, tval[0]);
+ 	slept = measured_usleep(batch_duration_ns / 1000);
+@@ -848,7 +786,7 @@ no_sema(int gem_fd, const intel_ctx_t *ctx,
+ 			   fd[0]);
+ 
+ 	if (flags & TEST_BUSY)
+-		spin = spin_sync(gem_fd, ahnd, ctx, e);
++		spin = igt_sync_spin(gem_fd, ahnd, ctx, e);
+ 	else
+ 		spin = NULL;
+ 
+@@ -1406,7 +1344,7 @@ multi_client(int gem_fd, const intel_ctx_t *ctx,
+ 	 */
+ 	fd[1] = open_pmu(gem_fd, config);
+ 
+-	spin = spin_sync(gem_fd, ahnd, ctx, e);
++	spin = igt_sync_spin(gem_fd, ahnd, ctx, e);
+ 
+ 	val[0] = val[1] = __pmu_read_single(fd[0], &ts[0]);
+ 	slept[1] = measured_usleep(batch_duration_ns / 1000);
+@@ -1776,7 +1714,7 @@ static igt_spin_t *spin_sync_gt(int i915, uint64_t ahnd, unsigned int gt,
+ 
+ 	igt_debug("Using engine %u:%u\n", e.class, e.instance);
+ 
+-	return spin_sync(i915, ahnd, *ctx, &e);
++	return igt_sync_spin(i915, ahnd, *ctx, &e);
+ }
+ 
+ static void
+-- 
+2.39.2
 
-> 
-> 
-> Regards,
-> 
-> Nirmoy
-> 
->>
->> Regards,
->>
->> Tvrtko
->>
->>>
->>> Regards,
->>>
->>> Nirmoy
->>>
->>>
->>>>
->>>> Regards,
->>>>
->>>> Tvrtko
->>>>
->>>>> Cc: Oak Zeng <oak.zeng@intel.com>
->>>>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->>>>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->>>>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->>>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->>>>> ---
->>>>>   drivers/gpu/drm/i915/display/intel_fbdev.c   | 2 ++
->>>>>   drivers/gpu/drm/i915/display/intel_overlay.c | 7 ++++---
->>>>>   2 files changed, 6 insertions(+), 3 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c 
->>>>> b/drivers/gpu/drm/i915/display/intel_fbdev.c
->>>>> index 1cc0ddc6a310..10e38d60f9ef 100644
->>>>> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
->>>>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
->>>>> @@ -182,6 +182,8 @@ static int intelfb_alloc(struct drm_fb_helper 
->>>>> *helper,
->>>>>           obj = i915_gem_object_create_lmem(dev_priv, size,
->>>>>                             I915_BO_ALLOC_CONTIGUOUS |
->>>>>                             I915_BO_ALLOC_USER);
->>>>> +    } else if (IS_METEORLAKE(dev_priv)) { /* Wa_22018444074 */
->>>>> +        obj = i915_gem_object_create_shmem(dev_priv, size);
->>>>>       } else {
->>>>>           /*
->>>>>            * If the FB is too big, just don't use it since fbdev is 
->>>>> not very
->>>>> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c 
->>>>> b/drivers/gpu/drm/i915/display/intel_overlay.c
->>>>> index d6fe2bbabe55..05ae446c8a56 100644
->>>>> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
->>>>> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
->>>>> @@ -1348,12 +1348,13 @@ int intel_overlay_attrs_ioctl(struct 
->>>>> drm_device *dev, void *data,
->>>>>   static int get_registers(struct intel_overlay *overlay, bool 
->>>>> use_phys)
->>>>>   {
->>>>>       struct drm_i915_private *i915 = overlay->i915;
->>>>> -    struct drm_i915_gem_object *obj;
->>>>> +    struct drm_i915_gem_object *obj = NULL;
->>>>>       struct i915_vma *vma;
->>>>>       int err;
->>>>>   -    obj = i915_gem_object_create_stolen(i915, PAGE_SIZE);
->>>>> -    if (IS_ERR(obj))
->>>>> +    if (!IS_METEORLAKE(i915)) /* Wa_22018444074 */
->>>>> +        obj = i915_gem_object_create_stolen(i915, PAGE_SIZE);
->>>>> +    if (IS_ERR_OR_NULL(obj))
->>>>>           obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
->>>>>       if (IS_ERR(obj))
->>>>>           return PTR_ERR(obj);
