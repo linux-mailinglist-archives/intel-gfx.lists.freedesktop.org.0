@@ -1,54 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4839274EC39
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 13:05:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C68B174EC3C
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jul 2023 13:06:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7373910E36C;
-	Tue, 11 Jul 2023 11:05:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07CD310E36E;
+	Tue, 11 Jul 2023 11:06:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B114C10E365;
- Tue, 11 Jul 2023 11:05:42 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C05F10E36E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jul 2023 11:06:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689073542; x=1720609542;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=u4G29Csk0GISlcJVq1vZJ1qdOszOnxbulO/hys6vaGw=;
- b=PGh00Yfx53GBcM3s0kM5pbBlja767cYMyB3VMt4X5yk8LQqjtwitlptU
- B1KPx3t5sRUmAix+26e3f1ZnK9sH11h0bpRhCnxmnZRfnJ4CnTz6FGSj2
- cuzVXvzlNMNACNQQK9KdUa8MOmmcN8XRZWIg81q9NEeOoMmNNpfTCqz+i
- 5gI7KhWWyWFWyumM8K75FTTsvqQHHMewDu8feqQYy25U06dmDJN4ARk5e
- UhxLSD2RLu2u63oz3eHbn3i3fcffd512prDeGSJjjqyiHsnQu8Z9cCurj
- sswu0BrpAL6VJYbB5I/HBM1cTqgtBFulQx0QmW6fwxFvHWYY3M6S7qAhk w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="362052376"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="362052376"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 04:05:22 -0700
+ t=1689073581; x=1720609581;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=P4qBqir9MPMzI8S/sVgTpCob0zP9Vu9qoNMVyuj2ukY=;
+ b=FRrcw+xcaiVHuN2EfIRtp/YF/nE3l0U6YOJ0VHz/TVD8Oe5kTJGNgX4w
+ N4o/MWqX0Moonu850IGQpwZCvV3ubLdjSL6O6/q7UnCcXRKBm46LjicAO
+ PX7bLhe68a3iShKcLmC1X+S7L1CzPVeOb0auaqWjB8MGDb24lqVIf34WK
+ E04O6TF5aIArjkK11AlNPblQOcKpS+GVGQ439sQKHouygFs5Ho72wrtA4
+ o/Cn0Mj85SHgfkxKc3hAxxzLF3oJ2CQBZw/MswlQ+EZcQxdPY3nX8a06E
+ yREJ4sKR1PjQ6IJsR/3SiANsWqoflljZHMZiOp+D1r+T/YJ5cYPbZf6QX g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="344908204"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="344908204"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 04:06:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="811152524"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="811152524"
-Received: from sneaga-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.52.179])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 04:05:11 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: John Garry <john.g.garry@oracle.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com
-In-Reply-To: <4bec2735-d501-5359-2ac1-ed0d1fca1cd1@oracle.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <ad2601c0-84bb-c574-3702-a83ff8faf98c@oracle.com>
- <878rbmixbn.fsf@intel.com>
- <4bec2735-d501-5359-2ac1-ed0d1fca1cd1@oracle.com>
-Date: Tue, 11 Jul 2023 14:05:09 +0300
-Message-ID: <87ttuahfoa.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="834642671"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="834642671"
+Received: from sbodin-mobl3.ger.corp.intel.com (HELO intel.com)
+ ([10.252.53.13])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 04:06:11 -0700
+Date: Tue, 11 Jul 2023 13:06:03 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <ZK03m76B7LFaDszp@ashyti-mobl2.lan>
+References: <20230704080727.2665-1-shawn.c.lee@intel.com>
+ <ZK0vdPlGUbHKa6jo@ashyti-mobl2.lan> <87y1jmhgtd.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] i915 build issue
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87y1jmhgtd.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Refine mmio debug flow to avoid
+ bad unlock balance detected.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,34 +60,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 11 Jul 2023, John Garry <john.g.garry@oracle.com> wrote:
-> On 11/07/2023 10:58, Jani Nikula wrote:
->>> I didn't notice anything on dri-devel mailing list about this.
->> I presume you're using CONFIG_WERROR=y or W=e.
->
-> I'm just using whatever vanilla x86_64_defconfig gives.
->
->> 
->> See [1] and [2]. I'm undecided how we should treat this.
+Hi Jani,
 
-Seeing that the x86 defconfigs enable CONFIG_WERROR=y, we're probably
-going to have to roll this back.
+> >> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> >> index 796ebfe6c550..9d665978cc43 100644
+> >> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> >> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> >> @@ -1931,9 +1931,6 @@ unclaimed_reg_debug(struct intel_uncore *uncore,
+> >>  		    const bool read,
+> >>  		    const bool before)
+> >>  {
+> >> -	if (likely(!uncore->i915->params.mmio_debug) || !uncore->debug)
+> >> -		return;
+> >> -
+> >
+> > this is a very good catch! I'm fine with the change from my side:
+> >
+> > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> 
+> Nope, there's a bug in the patch.
+> 
+> https://lore.kernel.org/r/87ilb00zot.fsf@intel.com
 
-https://patchwork.freedesktop.org/patch/msgid/20230711110214.25093-1-jani.nikula@intel.com
+OK, I missed your reply.
 
-BR,
-Jani.
+Thanks, Jani!
 
-
->
-> Ok.
->
-> Thanks,
-> John
->
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Andi
