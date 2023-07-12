@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A4BD7521BC
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 14:48:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAD797521CB
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 14:49:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B147310E698;
-	Thu, 13 Jul 2023 12:48:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0966A10E6B4;
+	Thu, 13 Jul 2023 12:48:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
  [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDD8A10E0EE
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jul 2023 10:56:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9941C10E4DA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jul 2023 11:04:45 +0000 (UTC)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
  by metis.ext.pengutronix.de with esmtps
  (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
  (envelope-from <ukl@pengutronix.de>)
- id 1qJXUZ-0005DQ-Ft; Wed, 12 Jul 2023 12:54:43 +0200
+ id 1qJXcX-0006Kb-FX; Wed, 12 Jul 2023 13:02:57 +0200
 Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
  by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
  (envelope-from <ukl@pengutronix.de>)
- id 1qJXUP-00Drm1-Ta; Wed, 12 Jul 2023 12:54:33 +0200
+ id 1qJXcU-00Drn9-6o; Wed, 12 Jul 2023 13:02:54 +0200
 Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
  (envelope-from <ukl@pengutronix.de>)
- id 1qJXUP-004Hjx-1W; Wed, 12 Jul 2023 12:54:33 +0200
-Date: Wed, 12 Jul 2023 12:54:32 +0200
+ id 1qJXcT-004ID3-Dy; Wed, 12 Jul 2023 13:02:53 +0200
+Date: Wed, 12 Jul 2023 13:02:53 +0200
 From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20230712105432.urgwb4zzwgsyfbwq@pengutronix.de>
+To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Message-ID: <20230712110253.paoyrmcbvlhpfxbf@pengutronix.de>
 References: <20230712094702.1770121-1-u.kleine-koenig@pengutronix.de>
- <abf26a82-4f17-51f2-5753-785f8516a81a@suse.de>
+ <94eb6e4d-9384-152f-351b-ebb217411da9@amd.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="snmthjfbxwt65cnd"
+ protocol="application/pgp-signature"; boundary="3iwy3q65ffdde3du"
 Content-Disposition: inline
-In-Reply-To: <abf26a82-4f17-51f2-5753-785f8516a81a@suse.de>
+In-Reply-To: <94eb6e4d-9384-152f-351b-ebb217411da9@amd.com>
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
 X-SA-Exim-Mail-From: ukl@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
@@ -92,14 +92,15 @@ Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
  virtualization@lists.linux-foundation.org,
  Yongqin Liu <yongqin.liu@linaro.org>,
  Mario Limonciello <mario.limonciello@amd.com>,
- David Lechner <david@lechnology.com>,
+ David Lechner <david@lechnology.com>, Julia Lawall <Julia.Lawall@inria.fr>,
  "Jiri Slaby \(SUSE\)" <jirislaby@kernel.org>,
  David Francis <David.Francis@amd.com>, Aaron Liu <aaron.liu@amd.com>,
  Vinod Polimera <quic_vpolimer@quicinc.com>, linux-rockchip@lists.infradead.org,
  Fangzhi Zuo <jerry.zuo@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
  VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
  Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>,
- linux-mips@vger.kernel.org, Gurchetan Singh <gurchetansingh@chromium.org>,
+ linux-mips@vger.kernel.org, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
  Maxime Ripard <mripard@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>,
@@ -124,7 +125,7 @@ Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
  Xinwei Kong <kong.kongxinwei@hisilicon.com>,
  Jernej Skrabec <jernej.skrabec@gmail.com>,
  Deepak Rawat <drawat.floss@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Joel Stanley <joel@jms.id.au>, Orson Zhai <orsonzhai@gmail.com>,
+ Joel Stanley <joel@jms.id.au>, Philipp Zabel <p.zabel@pengutronix.de>,
  Harry Wentland <harry.wentland@amd.com>,
  Sumit Semwal <sumit.semwal@linaro.org>, Alan Liu <haoping.liu@amd.com>,
  Philip Yang <Philip.Yang@amd.com>, intel-gfx@lists.freedesktop.org,
@@ -139,7 +140,6 @@ Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
  Konrad Dybcio <konrad.dybcio@linaro.org>,
  Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
  Tian Tao <tiantao6@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
  linux-stm32@st-md-mailman.stormreply.com, Emma Anholt <emma@anholt.net>,
  Chun-Kuang Hu <chunkuang.hu@kernel.org>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>, Roman Li <roman.li@amd.com>,
@@ -153,7 +153,7 @@ Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
  Russell King <linux@armlinux.org.uk>, Leo Li <sunpeng.li@amd.com>,
  Jiasheng Jiang <jiasheng@iscas.ac.cn>,
  Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-tegra@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, linux-tegra@vger.kernel.org,
  Marek =?utf-8?B?T2zFocOhaw==?= <marek.olsak@amd.com>,
  =?utf-8?Q?Joaqu=C3=ADn_Ignacio_Aramend=C3=ADa?= <samsagax@gmail.com>,
  Melissa Wen <mwen@igalia.com>, Hans de Goede <hdegoede@redhat.com>,
@@ -162,7 +162,7 @@ Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
  Matthias Brugger <matthias.bgg@gmail.com>,
  David Tadokoro <davidbtadokoro@usp.br>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, amd-gfx@lists.freedesktop.org,
+ Orson Zhai <orsonzhai@gmail.com>, amd-gfx@lists.freedesktop.org,
  Jyri Sarha <jyri.sarha@iki.fi>, Yannick Fertre <yannick.fertre@foss.st.com>,
  Nicolas Ferre <nicolas.ferre@microchip.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -174,14 +174,12 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---snmthjfbxwt65cnd
+--3iwy3q65ffdde3du
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hello Thomas,
-
-On Wed, Jul 12, 2023 at 12:19:37PM +0200, Thomas Zimmermann wrote:
+On Wed, Jul 12, 2023 at 12:46:33PM +0200, Christian K=F6nig wrote:
 > Am 12.07.23 um 11:46 schrieb Uwe Kleine-K=F6nig:
 > > Hello,
 > >=20
@@ -190,41 +188,86 @@ On Wed, Jul 12, 2023 at 12:19:37PM +0200, Thomas Zimmermann wrote:
 > > because with that name I usually expect a struct device pointer.
 > >=20
 > > I think there is a big benefit when these are all renamed to "drm_dev".
->=20
-> If you rename drm_crtc.dev, you should also address *all* other data
-> structures.
-
-Yes. Changing drm_crtc::dev was some effort, so I thought to send that
-one out before doing the same to
-
-	drm_dp_mst_topology_mgr
-	drm_atomic_state
-	drm_master
-	drm_bridge
-	drm_client_dev
-	drm_connector
-	drm_debugfs_entry
-	drm_encoder
-	drm_fb_helper
-	drm_minor
-	drm_framebuffer
-	drm_gem_object
-	drm_plane
-	drm_property
-	drm_property_blob
-	drm_vblank_crtc
-
-when in the end the intention isn't welcome.
-
 > > I have no strong preference here though, so "drmdev" or "drm" are fine
 > > for me, too. Let the bikesheding begin!
+> >=20
+> > Some statistics:
+> >=20
+> > $ git grep -ohE 'struct drm_device *\* *[^ (),;]*' v6.5-rc1 | sort | un=
+iq -c | sort -n
+> >        1 struct drm_device *adev_to_drm
+> >        1 struct drm_device *drm_
+> >        1 struct drm_device          *drm_dev
+> >        1 struct drm_device        *drm_dev
+> >        1 struct drm_device *pdev
+> >        1 struct drm_device *rdev
+> >        1 struct drm_device *vdev
+> >        2 struct drm_device *dcss_drv_dev_to_drm
+> >        2 struct drm_device **ddev
+> >        2 struct drm_device *drm_dev_alloc
+> >        2 struct drm_device *mock
+> >        2 struct drm_device *p_ddev
+> >        5 struct drm_device *device
+> >        9 struct drm_device * dev
+> >       25 struct drm_device *d
+> >       95 struct drm_device *
+> >      216 struct drm_device *ddev
+> >      234 struct drm_device *drm_dev
+> >      611 struct drm_device *drm
+> >     4190 struct drm_device *dev
+> >=20
+> > This series starts with renaming struct drm_crtc::dev to drm_dev. If
+> > it's not only me and others like the result of this effort it should be
+> > followed up by adapting the other structs and the individual usages in
+> > the different drivers.
+> >=20
+> > To make this series a bit easier handleable, I first added an alias for
+> > drm_crtc::dev, then converted the drivers one after another and the last
+> > patch drops the "dev" name. This has the advantage of being easier to
+> > review, and if I should have missed an instance only the last patch must
+> > be dropped/reverted. Also this series might conflict with other patches,
+> > in this case the remaining patches can still go in (apart from the last
+> > one of course). Maybe it also makes sense to delay applying the last
+> > patch by one development cycle?
 >=20
-> We've discussed this to death. IIRC 'drm' would be the prefered choice.
+> When you automatically generate the patch (with cocci for example) I usua=
+lly
+> prefer a single patch instead.
 
-"drm" at least has the advantage to be the 2nd most common name. With
-Paul Kocialkowski prefering "drm_dev" there is no clear favourite yet.
-Maybe all the other people with strong opinions are dead if this was
-"discussed to death" before? :-)
+Maybe I'm too stupid, but only parts of this patch were created by
+coccinelle. I failed to convert code like
+
+-       spin_lock_irq(&crtc->dev->event_lock);
++       spin_lock_irq(&crtc->drm_dev->event_lock);
+
+Added Julia to Cc, maybe she has a hint?!
+
+(Up to now it's only=20
+
+@@
+struct drm_crtc *crtc;
+@@
+-crtc->dev
++crtc->drm_dev
+
+)
+
+> Background is that this makes merge conflicts easier to handle and detect.
+
+Really? Each file (apart from include/drm/drm_crtc.h) is only touched
+once. So unless I'm missing something you don't get less or easier
+conflicts by doing it all in a single patch. But you gain the freedom to
+drop a patch for one driver without having to drop the rest with it. So
+I still like the split version better, but I'm open to a more verbose
+reasoning from your side.
+
+> When you have multiple patches and a merge conflict because of some added
+> lines using the old field the build breaks only on the last patch which
+> removes the old field.
+
+Then you can revert/drop the last patch without having to respin the
+whole single patch and thus caring for still more conflicts that arise
+until the new version is sent.
 
 Best regards
 Uwe
@@ -233,19 +276,19 @@ Uwe
 Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
 Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
---snmthjfbxwt65cnd
+--3iwy3q65ffdde3du
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSuhmcACgkQj4D7WH0S
-/k6NWgf9G1hRA99SMHoFQ5uekFovv/T9dA7iGwATGfa0pA+aMgH5SZMa9Xo09rLQ
-52Kp+NCWHQPmebyjTq3+9ZFw2zfKPjA+5Ud9RKDb06qDXdZv8jJQzOpWJ4xY9gKJ
-+6UChGpG+5T3+1qDhh5PhwAPA0/bOUEAB4Tu+Loy5hnXtgRFCNZahebc5WGRSx+i
-2p8d7IjESE+uwE+SEmfQRShUtMk3npEoGtMzVEXFSPWEBNMLymHTbyhIyECaOO4P
-mneizN+uZGRji9kX9TcJzqFQlMl9hccUcxawJZ2xi6KWy7sbRaHYm+lpjXwCy3Gq
-zmcEaEvrnGjEdXFUWuczv2aDrAikxA==
-=/ac8
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSuiFwACgkQj4D7WH0S
+/k6WQAf+LFgI9NExXKHizIxlAKcu5G8zO7fFx06qBcxLI5KrCwTfZWRX4JdMKpMo
+5K/qeFXK6pOtoDJOth+E/cclh0HGZybUMKHNB2GJ5tQhGAf6erqEzGtJybTMfOWT
+BAMc9FTGfs+HZ5lbSIhDHSNslCbQZEWuEJczrXoi2Cvj7pmoSjyVoCLeeI+4o3Yc
+SwV3JLE35b4uCAXvLtLMIQGji+tHmW00SBwsa1+biZv+ois13g+seTg5JLw6b9PG
+EnXcqpqEam0LIDyZCqB65ATzcuYLrBQls79+l8OuEG1R8dCWA6To5Jw9XipxWh53
+vPHVg4DCzs8uC2Zxgb1PNd/lhcHymQ==
+=FqFI
 -----END PGP SIGNATURE-----
 
---snmthjfbxwt65cnd--
+--3iwy3q65ffdde3du--
