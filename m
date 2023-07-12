@@ -2,45 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD797521CB
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 14:49:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D7E37521BF
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 14:48:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0966A10E6B4;
-	Thu, 13 Jul 2023 12:48:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E13E10E69D;
+	Thu, 13 Jul 2023 12:48:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9941C10E4DA
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jul 2023 11:04:45 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1qJXcX-0006Kb-FX; Wed, 12 Jul 2023 13:02:57 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1qJXcU-00Drn9-6o; Wed, 12 Jul 2023 13:02:54 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>)
- id 1qJXcT-004ID3-Dy; Wed, 12 Jul 2023 13:02:53 +0200
-Date: Wed, 12 Jul 2023 13:02:53 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Message-ID: <20230712110253.paoyrmcbvlhpfxbf@pengutronix.de>
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E047C10E4D0;
+ Wed, 12 Jul 2023 11:08:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inria.fr; s=dc;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=ZJpBQTRvYf3xLQYim5PgpqIBO472OK4qQBRBn5wK5Lo=;
+ b=LiXL1vdteb3LQ9kRIyiqac+rKgCW2hgh2hum23eyRXq5g9LP+B8eU6Dp
+ yAXUq+WJAba1z7ssx8t9t2gLhg3oemVZYeyt9D+AD8e0OAjokLOSxIaFX
+ 9WTYl28HsAaDebnlB3oyseEPBOV0bXJ9JOXjVMF/PU7HUlTO1JHrhIytd 4=;
+Authentication-Results: mail3-relais-sop.national.inria.fr;
+ dkim=none (message not signed) header.i=none;
+ spf=SoftFail smtp.mailfrom=julia.lawall@inria.fr;
+ dmarc=fail (p=none dis=none) d=inria.fr
+X-IronPort-AV: E=Sophos;i="6.01,199,1684792800"; d="scan'208";a="61228938"
+Received: from hstsheraton06.h.subnet.rcn.com (HELO hadrien) ([207.180.135.5])
+ by mail3-relais-sop.national.inria.fr with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jul 2023 13:07:34 +0200
+Date: Wed, 12 Jul 2023 07:07:32 -0400 (EDT)
+From: Julia Lawall <julia.lawall@inria.fr>
+To: =?ISO-8859-15?Q?Uwe_Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20230712110253.paoyrmcbvlhpfxbf@pengutronix.de>
+Message-ID: <acd7913-3c42-7354-434-a826b6c8718@inria.fr>
 References: <20230712094702.1770121-1-u.kleine-koenig@pengutronix.de>
  <94eb6e4d-9384-152f-351b-ebb217411da9@amd.com>
+ <20230712110253.paoyrmcbvlhpfxbf@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="3iwy3q65ffdde3du"
-Content-Disposition: inline
-In-Reply-To: <94eb6e4d-9384-152f-351b-ebb217411da9@amd.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="8323329-1690266391-1689160075=:3129"
 X-Mailman-Approved-At: Thu, 13 Jul 2023 12:48:29 +0000
 Subject: Re: [Intel-gfx] [PATCH RFC v1 00/52] drm/crtc: Rename struct
  drm_crtc::dev to drm_dev
@@ -56,7 +53,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+Cc: =?ISO-8859-15?Q?Heiko_St=FCbner?= <heiko@sntech.de>,
  Geert Uytterhoeven <geert+renesas@glider.be>,
  Xinliang Liu <xinliang.liu@linaro.org>,
  Linus Walleij <linus.walleij@linaro.org>,
@@ -74,16 +71,16 @@ Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
  Danilo Krummrich <dakr@redhat.com>, NXP Linux Team <linux-imx@nxp.com>,
  spice-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev,
  Tim Huang <Tim.Huang@amd.com>,
- =?utf-8?B?QW5kcsOp?= Almeida <andrealmeid@igalia.com>,
+ =?ISO-8859-15?Q?Andr=E9_Almeida?= <andrealmeid@igalia.com>,
  Yifan Zhang <yifan1.zhang@amd.com>, Jani Nikula <jani.nikula@intel.com>,
  Sascha Hauer <s.hauer@pengutronix.de>,
  Lucas De Marchi <lucas.demarchi@intel.com>, Inki Dae <inki.dae@samsung.com>,
  Hersen Wu <hersenxs.wu@amd.com>, Jessica Zhang <quic_jesszhan@quicinc.com>,
  Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- =?utf-8?Q?=C5=81ukasz?= Bartosik <lb@semihalf.com>,
+ =?ISO-8859-2?Q?=A3ukasz_Bartosik?= <lb@semihalf.com>,
  Andrew Jeffery <andrew@aj.id.au>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
+ =?ISO-8859-15?Q?Noralf_Tr=F8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
  Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
  Claudiu Beznea <claudiu.beznea@microchip.com>, Zack Rusin <zackr@vmware.com>,
  Gerd Hoffmann <kraxel@redhat.com>,
@@ -117,7 +114,7 @@ Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
  Haneen Mohammed <hamohammed.sa@gmail.com>, Dan Carpenter <error27@gmail.com>,
  Karol Herbst <kherbst@redhat.com>, linux-hyperv@vger.kernel.org,
  Stefan Agner <stefan@agner.ch>, Melissa Wen <melissa.srw@gmail.com>,
- =?utf-8?B?TWHDrXJh?= Canal <mairacanal@riseup.net>,
+ =?ISO-8859-15?Q?Ma=EDra_Canal?= <mairacanal@riseup.net>,
  Luca Coelho <luciano.coelho@intel.com>,
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  Andrzej Hajda <andrzej.hajda@intel.com>, Likun Gao <Likun.Gao@amd.com>,
@@ -140,6 +137,7 @@ Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
  Konrad Dybcio <konrad.dybcio@linaro.org>,
  Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
  Tian Tao <tiantao6@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>,
  linux-stm32@st-md-mailman.stormreply.com, Emma Anholt <emma@anholt.net>,
  Chun-Kuang Hu <chunkuang.hu@kernel.org>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>, Roman Li <roman.li@amd.com>,
@@ -154,8 +152,8 @@ Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
  Jiasheng Jiang <jiasheng@iscas.ac.cn>,
  Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
  Thomas Zimmermann <tzimmermann@suse.de>, linux-tegra@vger.kernel.org,
- Marek =?utf-8?B?T2zFocOhaw==?= <marek.olsak@amd.com>,
- =?utf-8?Q?Joaqu=C3=ADn_Ignacio_Aramend=C3=ADa?= <samsagax@gmail.com>,
+ =?ISO-8859-15?Q?Marek_Ol=A8=E1k?= <marek.olsak@amd.com>,
+ =?ISO-8859-15?Q?Joaqu=EDn_Ignacio_Aramend=EDa?= <samsagax@gmail.com>,
  Melissa Wen <mwen@igalia.com>, Hans de Goede <hdegoede@redhat.com>,
  linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
  Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
@@ -173,122 +171,121 @@ Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
---3iwy3q65ffdde3du
+--8323329-1690266391-1689160075=:3129
 Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8BIT
 
-On Wed, Jul 12, 2023 at 12:46:33PM +0200, Christian K=F6nig wrote:
-> Am 12.07.23 um 11:46 schrieb Uwe Kleine-K=F6nig:
-> > Hello,
-> >=20
-> > while I debugged an issue in the imx-lcdc driver I was constantly
-> > irritated about struct drm_device pointer variables being named "dev"
-> > because with that name I usually expect a struct device pointer.
-> >=20
-> > I think there is a big benefit when these are all renamed to "drm_dev".
-> > I have no strong preference here though, so "drmdev" or "drm" are fine
-> > for me, too. Let the bikesheding begin!
-> >=20
-> > Some statistics:
-> >=20
-> > $ git grep -ohE 'struct drm_device *\* *[^ (),;]*' v6.5-rc1 | sort | un=
-iq -c | sort -n
-> >        1 struct drm_device *adev_to_drm
-> >        1 struct drm_device *drm_
-> >        1 struct drm_device          *drm_dev
-> >        1 struct drm_device        *drm_dev
-> >        1 struct drm_device *pdev
-> >        1 struct drm_device *rdev
-> >        1 struct drm_device *vdev
-> >        2 struct drm_device *dcss_drv_dev_to_drm
-> >        2 struct drm_device **ddev
-> >        2 struct drm_device *drm_dev_alloc
-> >        2 struct drm_device *mock
-> >        2 struct drm_device *p_ddev
-> >        5 struct drm_device *device
-> >        9 struct drm_device * dev
-> >       25 struct drm_device *d
-> >       95 struct drm_device *
-> >      216 struct drm_device *ddev
-> >      234 struct drm_device *drm_dev
-> >      611 struct drm_device *drm
-> >     4190 struct drm_device *dev
-> >=20
-> > This series starts with renaming struct drm_crtc::dev to drm_dev. If
-> > it's not only me and others like the result of this effort it should be
-> > followed up by adapting the other structs and the individual usages in
-> > the different drivers.
-> >=20
-> > To make this series a bit easier handleable, I first added an alias for
-> > drm_crtc::dev, then converted the drivers one after another and the last
-> > patch drops the "dev" name. This has the advantage of being easier to
-> > review, and if I should have missed an instance only the last patch must
-> > be dropped/reverted. Also this series might conflict with other patches,
-> > in this case the remaining patches can still go in (apart from the last
-> > one of course). Maybe it also makes sense to delay applying the last
-> > patch by one development cycle?
->=20
-> When you automatically generate the patch (with cocci for example) I usua=
-lly
-> prefer a single patch instead.
 
-Maybe I'm too stupid, but only parts of this patch were created by
-coccinelle. I failed to convert code like
 
--       spin_lock_irq(&crtc->dev->event_lock);
-+       spin_lock_irq(&crtc->drm_dev->event_lock);
+On Wed, 12 Jul 2023, Uwe Kleine-König wrote:
 
-Added Julia to Cc, maybe she has a hint?!
+> On Wed, Jul 12, 2023 at 12:46:33PM +0200, Christian König wrote:
+> > Am 12.07.23 um 11:46 schrieb Uwe Kleine-König:
+> > > Hello,
+> > >
+> > > while I debugged an issue in the imx-lcdc driver I was constantly
+> > > irritated about struct drm_device pointer variables being named "dev"
+> > > because with that name I usually expect a struct device pointer.
+> > >
+> > > I think there is a big benefit when these are all renamed to "drm_dev".
+> > > I have no strong preference here though, so "drmdev" or "drm" are fine
+> > > for me, too. Let the bikesheding begin!
+> > >
+> > > Some statistics:
+> > >
+> > > $ git grep -ohE 'struct drm_device *\* *[^ (),;]*' v6.5-rc1 | sort | uniq -c | sort -n
+> > >        1 struct drm_device *adev_to_drm
+> > >        1 struct drm_device *drm_
+> > >        1 struct drm_device          *drm_dev
+> > >        1 struct drm_device        *drm_dev
+> > >        1 struct drm_device *pdev
+> > >        1 struct drm_device *rdev
+> > >        1 struct drm_device *vdev
+> > >        2 struct drm_device *dcss_drv_dev_to_drm
+> > >        2 struct drm_device **ddev
+> > >        2 struct drm_device *drm_dev_alloc
+> > >        2 struct drm_device *mock
+> > >        2 struct drm_device *p_ddev
+> > >        5 struct drm_device *device
+> > >        9 struct drm_device * dev
+> > >       25 struct drm_device *d
+> > >       95 struct drm_device *
+> > >      216 struct drm_device *ddev
+> > >      234 struct drm_device *drm_dev
+> > >      611 struct drm_device *drm
+> > >     4190 struct drm_device *dev
+> > >
+> > > This series starts with renaming struct drm_crtc::dev to drm_dev. If
+> > > it's not only me and others like the result of this effort it should be
+> > > followed up by adapting the other structs and the individual usages in
+> > > the different drivers.
+> > >
+> > > To make this series a bit easier handleable, I first added an alias for
+> > > drm_crtc::dev, then converted the drivers one after another and the last
+> > > patch drops the "dev" name. This has the advantage of being easier to
+> > > review, and if I should have missed an instance only the last patch must
+> > > be dropped/reverted. Also this series might conflict with other patches,
+> > > in this case the remaining patches can still go in (apart from the last
+> > > one of course). Maybe it also makes sense to delay applying the last
+> > > patch by one development cycle?
+> >
+> > When you automatically generate the patch (with cocci for example) I usually
+> > prefer a single patch instead.
+>
+> Maybe I'm too stupid, but only parts of this patch were created by
+> coccinelle. I failed to convert code like
+>
+> -       spin_lock_irq(&crtc->dev->event_lock);
+> +       spin_lock_irq(&crtc->drm_dev->event_lock);
+>
+> Added Julia to Cc, maybe she has a hint?!
 
-(Up to now it's only=20
+A priori, I see no reason why the rule below should not apply to the above
+code.  Is there a parsing problem in the containing function?  You can run
 
-@@
-struct drm_crtc *crtc;
-@@
--crtc->dev
-+crtc->drm_dev
+spatch --parse-c file.c
 
-)
+If there is a paring problem, please let me know and i will try to fix it
+so the while thing can be done automatically.
 
-> Background is that this makes merge conflicts easier to handle and detect.
+julia
 
-Really? Each file (apart from include/drm/drm_crtc.h) is only touched
-once. So unless I'm missing something you don't get less or easier
-conflicts by doing it all in a single patch. But you gain the freedom to
-drop a patch for one driver without having to drop the rest with it. So
-I still like the split version better, but I'm open to a more verbose
-reasoning from your side.
-
-> When you have multiple patches and a merge conflict because of some added
-> lines using the old field the build breaks only on the last patch which
-> removes the old field.
-
-Then you can revert/drop the last patch without having to respin the
-whole single patch and thus caring for still more conflicts that arise
-until the new version is sent.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---3iwy3q65ffdde3du
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSuiFwACgkQj4D7WH0S
-/k6WQAf+LFgI9NExXKHizIxlAKcu5G8zO7fFx06qBcxLI5KrCwTfZWRX4JdMKpMo
-5K/qeFXK6pOtoDJOth+E/cclh0HGZybUMKHNB2GJ5tQhGAf6erqEzGtJybTMfOWT
-BAMc9FTGfs+HZ5lbSIhDHSNslCbQZEWuEJczrXoi2Cvj7pmoSjyVoCLeeI+4o3Yc
-SwV3JLE35b4uCAXvLtLMIQGji+tHmW00SBwsa1+biZv+ois13g+seTg5JLw6b9PG
-EnXcqpqEam0LIDyZCqB65ATzcuYLrBQls79+l8OuEG1R8dCWA6To5Jw9XipxWh53
-vPHVg4DCzs8uC2Zxgb1PNd/lhcHymQ==
-=FqFI
------END PGP SIGNATURE-----
-
---3iwy3q65ffdde3du--
+>
+> (Up to now it's only
+>
+> @@
+> struct drm_crtc *crtc;
+> @@
+> -crtc->dev
+> +crtc->drm_dev
+>
+> )
+>
+> > Background is that this makes merge conflicts easier to handle and detect.
+>
+> Really? Each file (apart from include/drm/drm_crtc.h) is only touched
+> once. So unless I'm missing something you don't get less or easier
+> conflicts by doing it all in a single patch. But you gain the freedom to
+> drop a patch for one driver without having to drop the rest with it. So
+> I still like the split version better, but I'm open to a more verbose
+> reasoning from your side.
+>
+> > When you have multiple patches and a merge conflict because of some added
+> > lines using the old field the build breaks only on the last patch which
+> > removes the old field.
+>
+> Then you can revert/drop the last patch without having to respin the
+> whole single patch and thus caring for still more conflicts that arise
+> until the new version is sent.
+>
+> Best regards
+> Uwe
+>
+> --
+> Pengutronix e.K.                           | Uwe Kleine-König            |
+> Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+>
+--8323329-1690266391-1689160075=:3129--
