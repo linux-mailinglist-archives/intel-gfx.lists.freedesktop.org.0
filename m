@@ -2,65 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6282750E85
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jul 2023 18:27:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 917FA750F39
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jul 2023 19:05:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 354A610E594;
-	Wed, 12 Jul 2023 16:27:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76B7B10E599;
+	Wed, 12 Jul 2023 17:05:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2309910E594
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jul 2023 16:27:45 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B57910E595;
+ Wed, 12 Jul 2023 17:05:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689179266; x=1720715266;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=GjdlBah29oHvsPeR+72lLbL/xe/ZJhU4kZRWD/AGaeo=;
- b=H/1Qk6MzVhilYNfNT/Nhiy+KMab68lUWxoJg1HK4irTPeyJYKH/8NuBT
- u11PBk8FTCSvJqO3ZOBj/3qFLOYBIL13oeh9dcedX7NlVlYWeHydFh3Tj
- rtRyXdMD7Je4MB0CwXb1QF2In6Wg4gHsmSNP7Ir4rdjh3+qPlL+XcX/Fh
- BbyOgevpR6dfq34yFFKl87w8xnOZp+fJTBAPuHb6271K0KKYuc7WWQIi/
- Ue59Q2XPeSSTWt75ifn37AdkjEMPWDUihpMv8lhx5/DkdAY8/HeDXy/am
- /vMnN/BUh8+ipubshOX5rqA2s42Bn1+idj2NROb4xyb6xG0ggPFIBCWAV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="431072410"
-X-IronPort-AV: E=Sophos;i="6.01,200,1684825200"; d="scan'208";a="431072410"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2023 09:27:44 -0700
+ t=1689181505; x=1720717505;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=eV0DIttmhehjmF3pSu9Nr/HScdODUH32rUt5Sa625ps=;
+ b=DBiVJsez5Rxx1iX5PlBVQdj87fmskJiJAcqclDfsBMib20Yrxtawg2RY
+ G79mGFxlerx3VPtBung94t7/P9wbFxpwvdi7xgRDQhPw/3rFuVTTv0xl5
+ +DMgLxq2ebSuiNvgJ8Qv3oBO58o2G0GG8Vz5Vf4r4zh5TPOrrAOP1VTuC
+ Nl19Uz2sK6mE+ThfxDh/g3TGSbrpsbm4eZErJL1686LHw2k5oS7Y1UAoy
+ ApSNatB+E8SU+9tk5z3fYufsMTtbjEbwtgfAvchffhbrfUulzPmXF8W6U
+ UXbyv4xNwyLVVBETMWXjyvwv74nxpX0btnH/FwoP6yeLG/cQ++CGRd0xI A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="363813945"
+X-IronPort-AV: E=Sophos;i="6.01,200,1684825200"; d="scan'208";a="363813945"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2023 10:03:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="791688056"
-X-IronPort-AV: E=Sophos;i="6.01,200,1684825200"; d="scan'208";a="791688056"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.16.24])
- ([10.213.16.24])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2023 09:27:41 -0700
-Message-ID: <7db1b2b3-d496-1c70-a4bf-8ce08136fb10@intel.com>
-Date: Wed, 12 Jul 2023 18:27:36 +0200
-MIME-Version: 1.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="698930145"
+X-IronPort-AV: E=Sophos;i="6.01,200,1684825200"; d="scan'208";a="698930145"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga006.jf.intel.com with ESMTP; 12 Jul 2023 10:03:31 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Wed, 12 Jul 2023 10:03:30 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Wed, 12 Jul 2023 10:03:30 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.108)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Wed, 12 Jul 2023 10:03:30 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NS8rWRInWTCrxLGhQVxhGJYbkdCZYDLqs63NCCmjjj2L5jiL1qQgsJhI4GfOTTqwHXGd2gGFEUaZNSlE8GdKm7XXZOKVpdeylmrj8ojIRm3kIWqzZuFVLs5r2DEi1vbWzW4jGT8MjE9aMAmZz/hrCO36gk1iqzikFnWZkhqykKArPVQ1B2DICY+4ZiYRmb7bO+z8Cn6698CUlE5FCGSZ0qZXTw04IYvd7eCg6MBI89N5J4jvVmAl5aGFlsC9EWVOtRyCebeGaaE0HHxp1axExwsQo9vtQL/pHtMs3PAlCAB3KlM14QM6BcHXcglSPRP9jLRW9uS82elwmJO82/E7tg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3rvsOHATM3zV5EIfEVexwO8hRP/WwtOLe+qy/rdNy+8=;
+ b=ocE9RRHiFgC35v0wAs2YUoVSbONrhWFtyE7zSr9SgtStljnHDLRSoMQXrDlFtd2rFdKYE67W2ncy+k1gO5ffkPt+aGKuKgn88+SXp7WxX6YdNg6rgN6n+hbe6Zh6WkfRHx7JRoQ6grgY9Zhcjrq5EB6aJVVqG703z8dZWZ6SCtUVDZzlK16enO7Mf2HGWhpuIXpQ+Y5mMOLyURsggHjKX1aCrbJc2YJdpH6IDEvyKcZw2f2iy6iTeq2kJK5IXssC3jAsCVd6nppEPrm4m5baMif/zu9fESVr2yuQ73mCoHLDamKUbpfjdRiAJJJqkBK+8XzepqlZPRQhHUQ6cNhmJQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
+ by BN9PR11MB5529.namprd11.prod.outlook.com (2603:10b6:408:102::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.20; Wed, 12 Jul
+ 2023 17:03:28 +0000
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::d2fe:fc74:e24b:26da]) by PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::d2fe:fc74:e24b:26da%5]) with mapi id 15.20.6588.022; Wed, 12 Jul 2023
+ 17:03:28 +0000
+Message-ID: <069965c2-75da-3462-3559-4c2bf00c044a@intel.com>
+Date: Wed, 12 Jul 2023 10:03:26 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
+ Thunderbird/102.12.0
 Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-References: <20230705160848.988464-1-andrzej.hajda@intel.com>
- <20230706151611.1024576-1-andrzej.hajda@intel.com>
- <ZK0sbz+h0r/PwYn2@ashyti-mobl2.lan>
- <a9e34d7a-b22d-779c-67cb-88c69dc7ca6b@intel.com>
- <ZK0+NXmKnEzeUtTI@ashyti-mobl2.lan>
- <118e74c0-c1ce-fc6e-39f4-5518ace5d71e@intel.com>
- <6f981dd3-715a-6b7e-6c5d-d51610cddc88@linux.intel.com>
- <daeb0906-1b39-ebda-618f-dbce88f751bc@intel.com>
- <c1ebfb0f-f0d4-1204-750a-b169d4ddab54@linux.intel.com>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <c1ebfb0f-f0d4-1204-750a-b169d4ddab54@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Andrzej Hajda <andrzej.hajda@intel.com>, <intel-gfx@lists.freedesktop.org>
+References: <20230711203150.4140313-1-daniele.ceraolospurio@intel.com>
+ <39c15fad-92fa-4414-11f5-b7a8e60ac5d2@intel.com>
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <39c15fad-92fa-4414-11f5-b7a8e60ac5d2@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: update request engine
- before removing virtual GuC engine
+X-ClientProxiedBy: BY5PR20CA0032.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::45) To PH7PR11MB7605.namprd11.prod.outlook.com
+ (2603:10b6:510:277::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|BN9PR11MB5529:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4094dbc7-4d2d-4ba9-c9cd-08db82f9e987
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vkAzJoEjUmv478daKQ1A57Afy5tFlFy/aTaU+Xa3ADltubZwEHOHxqaK1s+tK9JNQ7B94fYyLDTdb4g+cPqJU48NpFQt8Vc4Mn36s50jui08VGiMYiTSLI+H6GbpG7UeYsTZ99YgDbkaGskwt9yYwBvcD/ToMKHIMUWFJbrR/rKCu8CS7xRgvrywBV2YfHozDGY9CvR8jIwmpAzJMWramaYi7b9+SwViy2qhttozDGxdO12IpWWQsK0c8t3sQaZFrIsnoOPw44mg+mjbFGgDpIg6WYsR9pVR3dhEX9IrO0KBy1AShlyxarTKr+iyNGvflK8OMSExeqIQp3dG6ngkTCyyoUNJJt3Ubb2/EWRbRuRPiiw0roO+1WuzatoeheG2/ed8aAi59mTnLysFhUqVc1vYgAXD9HtSSk39KskwNPZA0+TVmfnf2hhbpMzwY3VgiFoEDSXwgYoFyY4TWa48SKfi2ttnjvSgmq69RqUhOjrR/daq5ke1BBa+m4oz2r9cwLo19sI3Qhhl5zmUJHApE4jbxkSWjHSrYhWyotD9mN5b8RirOH7w6R43mhUQoANM+In7Td3qaiC06cCuJPeAdtnVBewRJXMcROwYaGXCbst/n5mBYzLPBVun9sKdMrOlKJ9uh7ychYG9xct3F7zjsA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(136003)(396003)(376002)(346002)(39860400002)(366004)(451199021)(6486002)(2906002)(478600001)(82960400001)(36756003)(41300700001)(8936002)(8676002)(5660300002)(38100700002)(316002)(66556008)(66946007)(66476007)(450100002)(4326008)(31696002)(83380400001)(31686004)(53546011)(86362001)(2616005)(186003)(26005)(6506007)(6512007)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?LzdseXdFV0dNSW5HZ3oxUG91cTBWdWdxSytocjF3VVBEbWF5cFo2bXJHNHJZ?=
+ =?utf-8?B?ejM2TTJzdC9JTFJwb1pCM3o2alF2NzJaMjk5Um1FY3NpMHZUcFB6SjlsdHdi?=
+ =?utf-8?B?YXZQQkhPTHhPaEcyYjRtRlJ2LzNQb0dJVmpEU00zd1BWRUhIMEVZVW14YzBa?=
+ =?utf-8?B?d0xtcng5L3BEeXZyMzVjKy91cTVsQ05Vc2lLM3lyZ3ZCYmtjVVhmVVF1VDFn?=
+ =?utf-8?B?ZFVQS1ZSZmtmdloyYjVOVGJJRmpMSFptUnA3UWxra3h2T21Ic3Jub2tmWVN0?=
+ =?utf-8?B?Ukk0TnpxVkJDb3UvcXNYUUJBOU9GMXJjbnhHdWM5ZXd0L015anplbjdERElm?=
+ =?utf-8?B?WVVyWUxtUmkwOEY4dmg4RHlmcnlTZ04ybUVLaVJwdytEVUtXRnhEV09KSmVS?=
+ =?utf-8?B?TEVGRFc4d1JJRElUMWE1d0ZBM0tzcFVjTWdTQXArQ3JKMm9CUWJaUU1TdC91?=
+ =?utf-8?B?ZHd3eTNBRmFIYURaSVZpSjR5U3p0K3RKbGZIZmhnRVR2VkZmNWVtdCsvSlZq?=
+ =?utf-8?B?dThpaXltSWM3NmV4WkkxdUpZMm5icHNSL0cwWmdDY0pyUzV0a1oxUFpyVnh4?=
+ =?utf-8?B?YzNLUk5kemV0clN4TmJ4VDJScVJzcG5SZlBXdjZxYzBjeEZMZ3FwWWVhNWZ4?=
+ =?utf-8?B?b0tsV0tKdmRDaTlvK3ZQWEhwQ2xnU3dlbXdiSWVtZ0ZzWjFzSFordHBoUHFN?=
+ =?utf-8?B?RHdGenNHY1h1QUtoYUVQZC9ZZ01kRHZ4c0ZHQmxtQlUraUhmdllreEhoVU1B?=
+ =?utf-8?B?bCtsQTdBZHo1c1hkVFIrcWxzWHNpWThXYUh3dXdzOGhEQVRZSm1xZ09NYjNF?=
+ =?utf-8?B?WmZlMWswNWFJd2xDYzNySUpoNUt1TEhOUDRqb1JwS0JOZTZQUWVTRHdubTBM?=
+ =?utf-8?B?eDM2alZYaUtXdFJYQURSNittMEhSTmhSQlllSDBtT2JwVVUzN1RGdlNydjlw?=
+ =?utf-8?B?aU8zaEloaFZGN2FocDhRblJ0UVNRWHRBaVpHRkdOKzA2aVlkdmhSN0VYK2c5?=
+ =?utf-8?B?ZlVJUmFrYjZybWVpNEVUWmpreERnUVdYc2FhQm4xZk1NRDFnMW52WEFIRnY2?=
+ =?utf-8?B?ZCt5ZzhMSFY3dTFsS3hVZTBsaHprMENZOVdGbytoS0dBd0NEaTJFR3lISGZ1?=
+ =?utf-8?B?VHhhc0RVNXVpVG03d3FQck9jNHRjcG9UK3h1bTFQZTBEdndGYy9hRVhQQlBX?=
+ =?utf-8?B?cXhXK0pFRlJMR0JqRkxvdlk5NDIxV1puNWdMMFRtbEVkQ0VOVmhFV1F1K1NV?=
+ =?utf-8?B?WHRnSjQwYWY1SXN0WW1HVlJmOXAxVnpHb3J5R0I3NFgyMGN1bU4xdEV4RU01?=
+ =?utf-8?B?OXlpNDFOSHU4a0lTSWQxS01kRVdBWlVrR0sramRlUGVsRHZoUHdONS9GVWsz?=
+ =?utf-8?B?MFErbjF2WWFBODZoSGlFK2p0Q3ZHWnNUWTBKWm5NNVh0TG51NE03eTdnSVdM?=
+ =?utf-8?B?ek41V0ZycDh3eUQySzZxS25oWk9DbWttSWx4N29pcmorMXYyZ1RHS3RhQTI1?=
+ =?utf-8?B?Qmp5Zk43WTJJbHA5QnVOM0UvcGFVRVJkN0d5emowMHNEdklWcUw0Y1NyMC83?=
+ =?utf-8?B?N0FDN096M1FaN211V2s5ZEI1eWZXQThZMG05OVR2dzdZaTF1Q3lnc1ZndXRR?=
+ =?utf-8?B?UlBLdTdxcTBkeVpiRVNwUUFDQmJZKy9pMHUweXRoc2lXaWNnREd5TmlvNWhu?=
+ =?utf-8?B?SVQ3em1xSDdtUFJYWHdGZmorYU56NmttQmJsM08ycVdSMlZ0MUpqaTJJRGNJ?=
+ =?utf-8?B?Ymd1SmlwOUpSemp4VXJmYW1XeDNmTEJWYlFDbjhYUmE1MjdiSTdRek1maTlZ?=
+ =?utf-8?B?UEpuRldnNFBNZEtqaUpnQlZVMHYvTkNENmY1NUFwWGlEVFZHZWtFbkd2VFg1?=
+ =?utf-8?B?b2FoQlhPbERDZFpWeEJpWG1JZW9rWDFGdFRkQzF0WnRnNXRBZGg0am01N3Vm?=
+ =?utf-8?B?UW1UMmVLUk1IZGtocWdpNDlOZ0RJOUpuTFBFdHBFMkpVY1M5VTBBbHJSYzhH?=
+ =?utf-8?B?Q3hiT2RLRXk1S3RrZ1NBbHRySzNHak1EakFvb3llb1VzM0kyWlM3WU1La0lz?=
+ =?utf-8?B?ZXZJYnFpQ1IwcEVBUHkvUkYvVWo3QXdYc0YycGx1Zzh6dW9HdmRkeHBtZnMv?=
+ =?utf-8?B?UjRuTkp4QXVQbUl1RDJrZlg2VmJMamkwdVREbzV1dXNrbE54M2FXcVEyMktY?=
+ =?utf-8?Q?e6qPMpmuvHTy40qzTCCV6w8=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4094dbc7-4d2d-4ba9-c9cd-08db82f9e987
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2023 17:03:28.0864 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ppEHGe4U2OHdyasFAhVMA3SuaIeBerT8v/N+QqpkcKD26XzfZbsCvNLpfVydFgiJdno0EqmT89J1NYtmHu7pF4j4I+uJ1pN2aV314cAWDN8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5529
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: check HuC and GuC version
+ compatibility on MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,138 +156,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12.07.2023 14:35, Tvrtko Ursulin wrote:
-> 
-> On 12/07/2023 13:18, Andrzej Hajda wrote:
->> On 11.07.2023 17:27, Tvrtko Ursulin wrote:
->>>
->>> On 11/07/2023 14:58, Andrzej Hajda wrote:
->>>> On 11.07.2023 13:34, Andi Shyti wrote:
->>>>> Hi Andrzej,
->>>>>
->>>>>>           drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 
->>>>>> +++++++++++
->>>>>>           1 file changed, 11 insertions(+)
->>>>>>
->>>>>>          diff --git 
->>>>>> a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>          index a0e3ef1c65d246..2c877ea5eda6f0 100644
->>>>>>          --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>          +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>          @@ -3461,6 +3461,8 @@ static void guc_prio_fini(struct 
->>>>>> i915_request *rq, struct intel_context *ce)
->>>>>>           static void remove_from_context(struct i915_request *rq)
->>>>>>           {
->>>>>>                  struct intel_context *ce = 
->>>>>> request_to_scheduling_context(rq);
->>>>>>          +       struct intel_engine_cs *engine;
->>>>>>          +       intel_engine_mask_t tmp;
->>>>>>
->>>>>>                  GEM_BUG_ON(intel_context_is_child(ce));
->>>>>>
->>>>>>          @@ -3478,6 +3480,15 @@ static void 
->>>>>> remove_from_context(struct i915_request *rq)
->>>>>>
->>>>>>                  atomic_dec(&ce->guc_id.ref);
->>>>>>                  i915_request_notify_execute_cb_imm(rq);
->>>>>>          +
->>>>>>          +       /*
->>>>>>          +        * GuC virtual engine can disappear after this 
->>>>>> call, so let's assign
->>>>>>          +        * something valid, as driver expects this to be 
->>>>>> always valid pointer.
->>>>>>          +        */
->>>>>>          +       for_each_engine_masked(engine, rq->engine->gt, 
->>>>>> rq->execution_mask, tmp) {
->>>>>>          +               rq->engine = engine;
->>>>>>
->>>>>>      yes... here the context might lose the virtual engine... I 
->>>>>> wonder
->>>>>>      whether this is the rigth solution, though. Maybe we should set
->>>>>>      rq->engine = NULL; and check for NULL? Don't know.
->>>>>>
->>>>>>
->>>>>> Setting NULL causes occasional null page de-reference in
->>>>>>
->>>>>> i915_request_wait_timeout:
->>>>>>
->>>>>> mutex_release(&rq->engine->gt->reset.mutex.dep_map, _THIS_IP_)
->>>>>>
->>>>>> rq->engine after removing rq from context is (IMHO) used as a set 
->>>>>> of aliases
->>>>>> for gt and i915 (despite rq itself contains the alias to i915).
->>>>> without investigating further, but maybe that code is not even
->>>>> supposed to be executed, at this point, if the request's assigned
->>>>> virtual engine is removed.
->>>>
->>>> Real tests show it is executed and the function 
->>>> i915_request_wait_timeout is quite generic
->>>> I guess it is quite typical use-case, the only question is about 
->>>> timings - what happens earlier -
->>>> finalization of i915_request_wait_timeout or context removal.
->>>>
->>>> The other point rq->engine is accessed after context removal is 
->>>> i915_fence_release -
->>>> there is long comment there regarding virtual context and reuse 
->>>> retired rq.
->>>> Anyway calling there "intel_engine_is_virtual(rq->engine)" is risky 
->>>> without this patch and KASAN complains clearly about it:
->>>> http://gfx-ci.igk.intel.com/tree/drm-tip/kasan.html?testfilter=gem_exec_balancer
->>>
->>> Looks like a bug introduced in bcb9aa45d5a0 ("Revert "drm/i915: Hold 
->>> reference to intel_context over life of i915_request""), which was a 
->>> partial revert of 1e98d8c52ed5 ("drm/i915: Hold reference to 
->>> intel_context over life of i915_request").
->>>
->>> Ie. if 1e98d8c52ed5 recognised the problem with disappearing 
->>> rq->engine, then I am confused how bcb9aa45d5a0 left the rq->engine 
->>> dereference in there after removing the extra reference.
->>>
->>> Could it be that the intel_engine_is_virtual check simply needs to be 
->>> removed from i915_fence_release, restoring things to how they were 
->>> before 1e98d8c52ed5? Could you try it out?
+
+
+On 7/12/2023 3:03 AM, Andrzej Hajda wrote:
+> On 11.07.2023 22:31, Daniele Ceraolo Spurio wrote:
+>> Due to a change in the auth flow on MTL, GuC 70.7.0 and newer will only
+>> be able to authenticate HuC 8.5.1 and newer. The plan is to update the 2
+>> binaries sinchronously in linux-firmware so that the fw repo always has
+>> a matching pair that works; still, it's better to check in the kernel so
+>> we can print an error message and abort HuC loading if the binaries are
+>> out of sync instead of failing the authentication.
 >>
+>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 42 ++++++++++++++++++++++++
+>>   1 file changed, 42 insertions(+)
 >>
->> I have already tried something similar [1] and KASAN bugs disappeared, 
->> or more precisely gem_exec_balance tests passed. But I have been 
->> warned by Nirmoy guc virtual engines can be created for only one real 
->> engine (ie. is_power_of_2(rq->execution_mask) is true but rq->engine 
->> points to virtual engine).
->>
->> [1]: https://patchwork.freedesktop.org/series/118879/
-> 
-> Ugh.. Try involving media umd folks to see if they need a single engine 
-> virtual engine? Or we could always just not create it in the driver, I 
-> mean just use the physical one.
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c 
+>> b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>> index 08e16017584b..f0cc5bb47fa0 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+>> @@ -803,11 +803,53 @@ static int try_firmware_load(struct intel_uc_fw 
+>> *uc_fw, const struct firmware **
+>>       return 0;
+>>   }
+>>   +static int check_mtl_huc_guc_compatibility(struct intel_gt *gt,
+>> +                       struct intel_uc_fw_file *huc_selected)
+>> +{
+>> +    struct intel_uc_fw_file *guc_selected = 
+>> &gt->uc.guc.fw.file_selected;
+>> +    struct intel_uc_fw_ver *huc_ver = &huc_selected->ver;
+>> +    struct intel_uc_fw_ver *guc_ver = &guc_selected->ver;
+>> +    bool new_huc;
+>> +    bool new_guc;
+>> +
+>> +    /* we can only do this check after having fetched both GuC and 
+>> HuC */
+>> +    GEM_BUG_ON(!huc_selected->path || !guc_selected->path);
+>> +
+>> +    /*
+>> +     * Due to changes in the authentication flow for MTL, HuC 8.5.1 
+>> or newer
+>> +     * requires GuC 70.7.0 or newer. Older HuC binaries will instead 
+>> require
+>> +     * GuC < 70.7.0.
+>> +     */
+>> +    new_huc = huc_ver->major > 8 ||
+>> +          (huc_ver->major == 8 && huc_ver->minor > 5) ||
+>> +          (huc_ver->major == 8 && huc_ver->minor == 5 && 
+>> huc_ver->patch >= 1);
+>> +
+>> +    new_guc = guc_ver->major > 70 ||
+>> +          (guc_ver->major == 70 && guc_ver->minor >= 7);
+>
+> Wouldn't be more readable to define sth like UC_VER_FULL(v)
+> then use UC_VER_FULL(huc_ver) >= IP_VER_FULL(8, 5, 1).
+> I am not sure if it is worth for two checks.
 
+We've been trying to avoid those kind of macros because the version 
+would need to be a u64 under the hood (each version number is a u16) and 
+therefore type casting would be required to make all the shifting work, 
+which makes the macro nasty to look at and as you said IMO not worth it 
+for just 2 checks. Note that the GuC is the exception because it 
+guarantees its version fits in a u32, so there is some macro use in the 
+GuC-specific code.
 
-In case there is single physical engine intel_engine_create_virtual 
-falls back to intel_context_create (no virtual engine), but in case of 
-parallel contexts there is special KMD flag FORCE_VIRTUAL which enforces 
-virtual engine even for single physical engine. So it seems to be KMD 
-concept.
+>
+>
+>> +
+>> +    if (new_huc != new_guc) {
+>> +        UNEXPECTED(gt, "HuC %u.%u.%u is incompatible with GuC 
+>> %u.%u.%u\n",
+>> +               huc_ver->major, huc_ver->minor, huc_ver->patch,
+>> +               guc_ver->major, guc_ver->minor, guc_ver->patch);
+>> +        gt_info(gt, "MTL GuC 70.7.0+ and HuC 8.5.1+ don't work with 
+>> older releases\n");
+>> +        return -ENOEXEC;
+>> +    }
+>> +
+>> +    return 0;
+>> +}
+>> +
+>>   int intel_uc_check_file_version(struct intel_uc_fw *uc_fw, bool 
+>> *old_ver)
+>>   {
+>>       struct intel_gt *gt = __uc_fw_to_gt(uc_fw);
+>>       struct intel_uc_fw_file *wanted = &uc_fw->file_wanted;
+>>       struct intel_uc_fw_file *selected = &uc_fw->file_selected;
+>> +    int ret;
+>> +
+>> +    if (IS_METEORLAKE(gt->i915) && uc_fw->type == 
+>> INTEL_UC_FW_TYPE_HUC) {
+>
+> Moving this check inside check function would make it more generic, up 
+> to you.
 
-Anyway is it worth investigating how to make 
-"is_power_of_2(rq->execution_mask)" indication of dangling engine 
-pointer? It will not help in 1st case:
-mutex_release(&rq->engine->gt->reset.mutex.dep_map, _THIS_IP_)
+This will hopefully never apply to any other platform. This is a light 
+breach of the HuC compatibility contract, so I really don't want to have 
+a generic function to handle it. I want it to be clear from a higher 
+level that this is an exception for a specific platform. Maybe worth 
+adding a comment? Would something like the following make things clearer?
 
+/*
+  * MTL has some compatibility issues with early GuC/HuC binaries
+  * not working with newer ones. This is specific to MTL and we
+  * don't expect it to extend to other platforms.
+  */
 
-Regards
-Andrzej
+Daniele
 
-
-> 
-> Regards,
-> 
-> Tvrtko
-> 
-> 
-> 
+>
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>
+> Regards
+> Andrzej
+>
+>
+>> +        ret = check_mtl_huc_guc_compatibility(gt, selected);
+>> +        if (ret)
+>> +            return ret;
+>> +    }
+>>         if (!wanted->ver.major || !selected->ver.major)
+>>           return 0;
+>
 
