@@ -2,51 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FFCC751F12
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 12:38:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06095751F91
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 13:09:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C95310E6A9;
-	Thu, 13 Jul 2023 10:38:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D267F10E0DB;
+	Thu, 13 Jul 2023 11:09:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A7A610E67A;
- Thu, 13 Jul 2023 10:38:24 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C41F310E0DB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jul 2023 11:09:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689244704; x=1720780704;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FcjoDEWwnVeuXUGgAC0tOnfbEoJMCLWciJ1Nglcj43c=;
- b=YpazkcOUDLfhxUA+8N0Me3zqzauuHqc3uJokn4d1pcKUh8AoDgJ7KBrz
- b8tURJz3d8GQe5QfAMUfqYj4l7oP2JSWwWXiY0LL3+PVdx1ojqOITkprs
- zbYSXHGljMlzO/kgLDgqEo5vemOHhY6fBmq3UO7CeZkXpZAgtynBvPhJM
- ZkUAYklNTvQCTuZr9gGodDxN9oxTzPtjQelNoeiJq+Gw547dhtmrIIsfx
- V8PE1mUNHxA+nsKsjDmc9nYQn7KicUllUXEawseza8bhvyke6GBA7C4hy
- YXPHIVQxphHGR9dDGMNLSOJ3SfetxDTE4kFjDfmKkwAwz05BJNMlLY64Q A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="428897718"
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="428897718"
+ t=1689246561; x=1720782561;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=yTrHMtisetX20VO7JGvrId3WzqooA0OPo2SMaAOQsYA=;
+ b=fv5h3og1OD5gAziGtk0MYgxhZmj21z7VpvHI5L91sc/OLEn/GvMRSyj1
+ AUCz3ifb4Bp/gxYVgoEFNmrfK4Dam2hU2T/RfP/PhBeH9X6Q4LCBbY4+N
+ jON3CJqPewhy7LVOWfKLYEMgMrcLEuf+hnrF5lkkkujwd7/Big1QjyPOX
+ TCYLE4U0Ai1/owzcUAu8ffQpKCbv6wJaM2MUeFVFHU4pIHmQWz3+RP14J
+ 1SZRMo3ZgO5m8O1UOwshNiW8YbwwlYcJxK1cBSzAlkoe8kmrfTCsh4d3q
+ lBEqnDZnvp6O/6q9y1n7K1eUceMU2ggI88pAsSWw5Jpd+BHppEIY54lss g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="345469938"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="345469938"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 03:38:23 -0700
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2023 04:09:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="895965473"
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="895965473"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="895969680"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="895969680"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.8.2])
+ ([10.213.8.2])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 03:38:21 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 13 Jul 2023 16:03:46 +0530
-Message-Id: <20230713103346.1163315-20-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230713103346.1163315-1-ankit.k.nautiyal@intel.com>
-References: <20230713103346.1163315-1-ankit.k.nautiyal@intel.com>
+ 13 Jul 2023 04:09:18 -0700
+Message-ID: <16fbe1d1-a9ee-6d80-9155-94643d760470@intel.com>
+Date: Thu, 13 Jul 2023 13:09:15 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.13.0
+Content-Language: en-US
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ John Harrison <john.c.harrison@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+References: <20230705160848.988464-1-andrzej.hajda@intel.com>
+ <20230706151611.1024576-1-andrzej.hajda@intel.com>
+ <ZK0sbz+h0r/PwYn2@ashyti-mobl2.lan>
+ <a9e34d7a-b22d-779c-67cb-88c69dc7ca6b@intel.com>
+ <ZK0+NXmKnEzeUtTI@ashyti-mobl2.lan>
+ <118e74c0-c1ce-fc6e-39f4-5518ace5d71e@intel.com>
+ <6f981dd3-715a-6b7e-6c5d-d51610cddc88@linux.intel.com>
+ <daeb0906-1b39-ebda-618f-dbce88f751bc@intel.com>
+ <c1ebfb0f-f0d4-1204-750a-b169d4ddab54@linux.intel.com>
+ <7db1b2b3-d496-1c70-a4bf-8ce08136fb10@intel.com>
+ <b1e2ccdb-e79b-d584-031c-5d71e2f524f5@intel.com>
+ <81e65fb5-813c-da53-dd12-909f18739ef2@linux.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <81e65fb5-813c-da53-dd12-909f18739ef2@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 19/19] drm/i915: Query compressed bpp properly
- using correct DPCD and DP Spec info
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: update request engine
+ before removing virtual GuC engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,168 +77,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Hi,
 
-Currently we seem to be using wrong DPCD register for reading
-compressed bpps, reading min/max input bpc instead of compressed bpp.
-Fix that, so that we now apply min/max compressed bpp limitations we
-get from DP Spec Table 2-157 DP v2.0 and/or correspondent DPCD
-register DP_DSC_MAX_BITS_PER_PIXEL_LOW/HIGH.
+On 13.07.2023 09:39, Tvrtko Ursulin wrote:
+>
+> On 12/07/2023 19:54, John Harrison wrote:
+>> On 7/12/2023 09:27, Andrzej Hajda wrote:
+>>> On 12.07.2023 14:35, Tvrtko Ursulin wrote:
+>>>> On 12/07/2023 13:18, Andrzej Hajda wrote:
+>>>>> On 11.07.2023 17:27, Tvrtko Ursulin wrote:
+>>>>>> On 11/07/2023 14:58, Andrzej Hajda wrote:
+>>>>>>> On 11.07.2023 13:34, Andi Shyti wrote:
+>>>>>>>> Hi Andrzej,
+>>>>>>>>
+>>>>>>>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 
+>>>>>>>>> +++++++++++
+>>>>>>>>>           1 file changed, 11 insertions(+)
+>>>>>>>>>
+>>>>>>>>>          diff --git 
+>>>>>>>>> a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>>>          index a0e3ef1c65d246..2c877ea5eda6f0 100644
+>>>>>>>>>          --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>>>          +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>>>          @@ -3461,6 +3461,8 @@ static void 
+>>>>>>>>> guc_prio_fini(struct i915_request *rq, struct intel_context *ce)
+>>>>>>>>>           static void remove_from_context(struct i915_request 
+>>>>>>>>> *rq)
+>>>>>>>>>           {
+>>>>>>>>>                  struct intel_context *ce = 
+>>>>>>>>> request_to_scheduling_context(rq);
+>>>>>>>>>          +       struct intel_engine_cs *engine;
+>>>>>>>>>          +       intel_engine_mask_t tmp;
+>>>>>>>>>
+>>>>>>>>> GEM_BUG_ON(intel_context_is_child(ce));
+>>>>>>>>>
+>>>>>>>>>          @@ -3478,6 +3480,15 @@ static void 
+>>>>>>>>> remove_from_context(struct i915_request *rq)
+>>>>>>>>>
+>>>>>>>>> atomic_dec(&ce->guc_id.ref);
+>>>>>>>>> i915_request_notify_execute_cb_imm(rq);
+>>>>>>>>>          +
+>>>>>>>>>          +       /*
+>>>>>>>>>          +        * GuC virtual engine can disappear after 
+>>>>>>>>> this call, so let's assign
+>>>>>>>>>          +        * something valid, as driver expects this to 
+>>>>>>>>> be always valid pointer.
+>>>>>>>>>          +        */
+>>>>>>>>>          +       for_each_engine_masked(engine, 
+>>>>>>>>> rq->engine->gt, rq->execution_mask, tmp) {
+>>>>>>>>>          +               rq->engine = engine;
+>>>>>>>>>
+>>>>>>>>>      yes... here the context might lose the virtual engine... 
+>>>>>>>>> I wonder
+>>>>>>>>>      whether this is the rigth solution, though. Maybe we 
+>>>>>>>>> should set
+>>>>>>>>>      rq->engine = NULL; and check for NULL? Don't know.
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> Setting NULL causes occasional null page de-reference in
+>>>>>>>>>
+>>>>>>>>> i915_request_wait_timeout:
+>>>>>>>>>
+>>>>>>>>> mutex_release(&rq->engine->gt->reset.mutex.dep_map, _THIS_IP_)
+>>>>>>>>>
+>>>>>>>>> rq->engine after removing rq from context is (IMHO) used as a 
+>>>>>>>>> set of aliases
+>>>>>>>>> for gt and i915 (despite rq itself contains the alias to i915).
+>>>>>>>> without investigating further, but maybe that code is not even
+>>>>>>>> supposed to be executed, at this point, if the request's assigned
+>>>>>>>> virtual engine is removed.
+>>>>>>>
+>>>>>>> Real tests show it is executed and the function 
+>>>>>>> i915_request_wait_timeout is quite generic
+>>>>>>> I guess it is quite typical use-case, the only question is about 
+>>>>>>> timings - what happens earlier -
+>>>>>>> finalization of i915_request_wait_timeout or context removal.
+>>>>>>>
+>>>>>>> The other point rq->engine is accessed after context removal is 
+>>>>>>> i915_fence_release -
+>>>>>>> there is long comment there regarding virtual context and reuse 
+>>>>>>> retired rq.
+>>>>>>> Anyway calling there "intel_engine_is_virtual(rq->engine)" is 
+>>>>>>> risky without this patch and KASAN complains clearly about it:
+>>>>>>> http://gfx-ci.igk.intel.com/tree/drm-tip/kasan.html?testfilter=gem_exec_balancer 
+>>>>>>>
+>>>>>>
+>>>>>> Looks like a bug introduced in bcb9aa45d5a0 ("Revert "drm/i915: 
+>>>>>> Hold reference to intel_context over life of i915_request""), 
+>>>>>> which was a partial revert of 1e98d8c52ed5 ("drm/i915: Hold 
+>>>>>> reference to intel_context over life of i915_request").
+>>>>>>
+>>>>>> Ie. if 1e98d8c52ed5 recognised the problem with disappearing 
+>>>>>> rq->engine, then I am confused how bcb9aa45d5a0 left the 
+>>>>>> rq->engine dereference in there after removing the extra reference.
+>>>>>>
+>>>>>> Could it be that the intel_engine_is_virtual check simply needs 
+>>>>>> to be removed from i915_fence_release, restoring things to how 
+>>>>>> they were before 1e98d8c52ed5? Could you try it out?
+>>>>>
+>>>>>
+>>>>> I have already tried something similar [1] and KASAN bugs 
+>>>>> disappeared, or more precisely gem_exec_balance tests passed. But 
+>>>>> I have been warned by Nirmoy guc virtual engines can be created 
+>>>>> for only one real engine (ie. is_power_of_2(rq->execution_mask) is 
+>>>>> true but rq->engine points to virtual engine).
+>>>>>
+>>>>> [1]: https://patchwork.freedesktop.org/series/118879/
+>>>>
+>>>> Ugh.. Try involving media umd folks to see if they need a single 
+>>>> engine virtual engine? Or we could always just not create it in the 
+>>>> driver, I mean just use the physical one.
+>>>
+>>>
+>>> In case there is single physical engine intel_engine_create_virtual 
+>>> falls back to intel_context_create (no virtual engine), but in case 
+>>> of parallel contexts there is special KMD flag FORCE_VIRTUAL which 
+>>> enforces virtual engine even for single physical engine. So it seems 
+>>> to be KMD concept.
+>>>
+>>> Anyway is it worth investigating how to make 
+>>> "is_power_of_2(rq->execution_mask)" indication of dangling engine 
+>>> pointer? It will not help in 1st case:
+>>> mutex_release(&rq->engine->gt->reset.mutex.dep_map, _THIS_IP_)
+>>>
+>>>
+>> There seems to be a fundamental problem here. Object 1 (rq) is 
+>> holding a pointer to a reference counted and transient object 2 
+>> (engine) but without taking a reference count for itself. That is a 
+>> Bad Thing(tm).
 
-This might also allow us to get rid of an ugly compressed bpp
-recalculation, which we had to add to make some MST hubs usable.
+Engine is not ref counted (at least directly), hardware engines seems to 
+be even persistent across whole life of i915.
+I guess before introduction of virtual engines the assumption about 
+validity of rq->engine was correct and developers used it to access 
+rq->engine->gt, rq->engine->i915, etc
+So the problems described here are probably leftovers of this change.
+After virtual engines were introduced 
+"is_power_of_2(rq->execution_mask)" was used to detect rq->engine is 
+virtual.
+And after adding parallel engines it does not seem to be valid check 
+anymore.
 
-v2: - Fix operator precedence
-v3: - Added debug info about compressed bpps
-v4: - Don't try to intersect Sink input bpp and compressed bpps.
-v5: - Decrease step while looking for suitable compressed bpp to
-      accommodate.
-v6: - Use helper for getting min and max compressed_bpp (Ankit)
-v7: - Fix checkpatch warning (Ankit)
+>> I'm not following the description in the revert patch as to why rq 
+>> can't ref count the context/engine. Is there actually a recursive 
+>> counting problem? Or is it just a lifetime issue caused by requests 
+>> hanging around indefinitely because they are locked by a user process?
+>>
+>> Either way, jumping through convoluted hoops to ensure the code does 
+>> not attempt to dereference a dangling pointer seems like the wrong 
+>> fix. Removing the engine pointer when the request is completed and no 
+>> longer dependent upon an engine (but before the engine can possibly 
+>> be destroyed) seems like a much better solution. And then making the 
+>> request handling code check for and cope with a null engine pointer. 
+>> It sounds like the only problem there is the above mutex, but there 
+>> is an alternate route to that? Although why a completed request would 
+>> need access to a GT reset mutex seems confusing. If the request is 
+>> done, then what connection does it still have to the GT?
+>
+> Agreed in principle but the question is how invasive would it be to 
+> change the rules.
+>
+> With the latest info that the issue is really just the GuC _parallel_ 
+> engine setup, and looking at the code, I wonder if we couldn't just 
+> flag the rq->flags with "kernel context request". The code in 
+> i915_fence_release claims the rq pool is only relevant for those so it 
+> sounds it would be safe to skip everything else based on that new flag.
+>
+> For the mutex_release path, presumable the bad deref is only _after_ 
+> the wait, right? (Only once the request has been retired.)
+>
+> In which case caching the gt pointer at the start of 
+> i915_request_wait_timeout would be sufficient.
+>
+> That should be a few lines fixup overall and then the idea of allowing 
+> rq->engine to be reset to NULL can be explored more leisurely.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     | 14 +++---
- drivers/gpu/drm/i915/display/intel_dp.h     |  4 ++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 47 +++++++++------------
- 3 files changed, 32 insertions(+), 33 deletions(-)
+I guess:
+- setting engine to NULL in remove_from_context,
+- caching gt pointer,
+- checking for null pointer in i915_fence_release
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 25a6c162332f..ce8b28ca1cfa 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1762,7 +1762,7 @@ u16 intel_dp_dsc_max_sink_compressed_bppx16(struct intel_dp *intel_dp,
- 	return 0;
- }
- 
--static int dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
-+int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
- {
- 	/* From Mandatory bit rate range Support Table 2-157 (DP v2.0) */
- 	switch (pipe_config->output_format) {
-@@ -1779,9 +1779,9 @@ static int dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
- 	return 0;
- }
- 
--static int dsc_sink_max_compressed_bpp(struct intel_dp *intel_dp,
--				       struct intel_crtc_state *pipe_config,
--				       int bpc)
-+int intel_dp_dsc_sink_max_compressed_bpp(struct intel_dp *intel_dp,
-+					 struct intel_crtc_state *pipe_config,
-+					 int bpc)
- {
- 	return intel_dp_dsc_max_sink_compressed_bppx16(intel_dp,
- 						       pipe_config, bpc) >> 4;
-@@ -1894,11 +1894,13 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
- 	int dsc_joiner_max_bpp;
- 
- 	dsc_src_min_bpp = dsc_src_min_compressed_bpp();
--	dsc_sink_min_bpp = dsc_sink_min_compressed_bpp(pipe_config);
-+	dsc_sink_min_bpp = intel_dp_dsc_sink_min_compressed_bpp(pipe_config);
- 	dsc_min_bpp = max(dsc_src_min_bpp, dsc_sink_min_bpp);
- 
- 	dsc_src_max_bpp = dsc_src_max_compressed_bpp(intel_dp);
--	dsc_sink_max_bpp = dsc_sink_max_compressed_bpp(intel_dp, pipe_config, pipe_bpp / 3);
-+	dsc_sink_max_bpp = intel_dp_dsc_sink_max_compressed_bpp(intel_dp,
-+								pipe_config,
-+								pipe_bpp / 3);
- 	dsc_max_bpp = dsc_sink_max_bpp ? min(dsc_sink_max_bpp, dsc_src_max_bpp) : dsc_src_max_bpp;
- 
- 	dsc_joiner_max_bpp = get_max_compressed_bpp_with_joiner(i915, adjusted_mode->clock,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 788a577ebe16..f29e48028f39 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -114,6 +114,10 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
- 					enum intel_output_format output_format,
- 					u32 pipe_bpp,
- 					u32 timeslots);
-+int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config);
-+int intel_dp_dsc_sink_max_compressed_bpp(struct intel_dp *intel_dp,
-+					 struct intel_crtc_state *pipe_config,
-+					 int bpc);
- u8 intel_dp_dsc_get_slice_count(struct intel_dp *intel_dp,
- 				int mode_clock, int mode_hdisplay,
- 				bool bigjoiner);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 3eb085fbc7c8..06a456517383 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -101,6 +101,9 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
- 							      crtc_state->lane_count);
- 	}
- 
-+	drm_dbg_kms(&i915->drm, "Looking for slots in range min bpp %d max bpp %d\n",
-+		    min_bpp, max_bpp);
-+
- 	for (bpp = max_bpp; bpp >= min_bpp; bpp -= step) {
- 		drm_dbg_kms(&i915->drm, "Trying bpp %d\n", bpp);
- 
-@@ -194,8 +197,7 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
- 	u8 dsc_bpc[3] = {0};
- 	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
- 	u8 dsc_max_bpc;
--	bool need_timeslot_recalc = false;
--	u32 last_compressed_bpp;
-+	int min_compressed_bpp, max_compressed_bpp;
- 
- 	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
- 	if (DISPLAY_VER(i915) >= 12)
-@@ -231,34 +233,25 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
- 	if (max_bpp > sink_max_bpp)
- 		max_bpp = sink_max_bpp;
- 
--	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_bpp,
--						     min_bpp, limits,
--						     conn_state, 2 * 3, true);
--
--	if (slots < 0)
--		return slots;
--
--	last_compressed_bpp = crtc_state->dsc.compressed_bpp;
-+	max_compressed_bpp = intel_dp_dsc_sink_max_compressed_bpp(intel_dp,
-+								  crtc_state,
-+								  max_bpp / 3);
-+	min_compressed_bpp = intel_dp_dsc_sink_min_compressed_bpp(crtc_state);
-+	drm_dbg_kms(&i915->drm, "DSC Sink supported compressed min bpp %d compressed max bpp %d\n",
-+		    min_compressed_bpp, max_compressed_bpp);
- 
--	crtc_state->dsc.compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915,
--									last_compressed_bpp,
--									crtc_state->pipe_bpp);
-+	/* Align compressed bpps according to our own constraints */
-+	max_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915, max_compressed_bpp,
-+							    crtc_state->pipe_bpp);
-+	min_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915, min_compressed_bpp,
-+							    crtc_state->pipe_bpp);
- 
--	if (crtc_state->dsc.compressed_bpp != last_compressed_bpp)
--		need_timeslot_recalc = true;
-+	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_compressed_bpp,
-+						     min_compressed_bpp, limits,
-+						     conn_state, 1, true);
- 
--	/*
--	 * Apparently some MST hubs dislike if vcpi slots are not matching precisely
--	 * the actual compressed bpp we use.
--	 */
--	if (need_timeslot_recalc) {
--		slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state,
--							     crtc_state->dsc.compressed_bpp,
--							     crtc_state->dsc.compressed_bpp,
--							     limits, conn_state, 2 * 3, true);
--		if (slots < 0)
--			return slots;
--	}
-+	if (slots < 0)
-+		return slots;
- 
- 	intel_link_compute_m_n(crtc_state->dsc.compressed_bpp,
- 			       crtc_state->lane_count,
--- 
-2.40.1
+should be enough to solve current issue. However I am not sure if there 
+are no more dragons hidden in other execution paths. I will try inspect 
+the code.
+Btw there is rq->i915 but code only uses "rq->engine->i915" which way 
+shall we go? remove former or latter?
+
+Regards
+Andrzej
+
+>
+> Regards,
+>
+> Tvrtko
 
