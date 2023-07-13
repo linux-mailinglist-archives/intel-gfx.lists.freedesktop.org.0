@@ -2,55 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8C6F752568
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 16:45:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 763CC752594
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 16:52:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F08DF10E6F1;
-	Thu, 13 Jul 2023 14:45:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0924710E6F3;
+	Thu, 13 Jul 2023 14:52:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 785D210E6F0
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jul 2023 14:45:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689259523; x=1720795523;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=qnqBWydPCWojvspIjb07ocfmXx3Rv2iy4VFaN5iBKWE=;
- b=IgIu0i4N9hHdnpNLBrxxtTSC7Z0MyjKG88WdZZsTJ8CPd5myWO2XD1oA
- /2xk1zttSp80d6cwCUVgsofnRT1NII2XLW6PFNVt3C8EmFNmfLuWeEojK
- mbBfDtSmS2EtVXwMwN7HfGuKyGJicDXjT1cpFqZXqJgYGNOHx1AJVYUeO
- nPcBpJND3EHDYAlGHmE+vTyVL5+DxYmv+79DgJIgXhWZcWbBGf+/KJ1fu
- LjfR+TM5GhH8JLiJ+OhKjsOyxhbTCo6DMvFkBFc30uVPSDXbfumdLCAIe
- 6NqTiJu+6ieVB8p5WOpHxkUFaQXFuBewAXtoAyiZLDbVAEIaj6hN9fNZx Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="362672788"
-X-IronPort-AV: E=Sophos;i="6.01,203,1684825200"; d="scan'208";a="362672788"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 07:45:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="751666638"
-X-IronPort-AV: E=Sophos;i="6.01,203,1684825200"; d="scan'208";a="751666638"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.53.19])
- ([10.252.53.19])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 07:45:21 -0700
-Message-ID: <6d3e7ee4-4ba9-d3ee-0409-780b75c05a0b@linux.intel.com>
-Date: Thu, 13 Jul 2023 16:45:19 +0200
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFAED10E6F3;
+ Thu, 13 Jul 2023 14:52:52 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 26627615BE;
+ Thu, 13 Jul 2023 14:52:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA899C433C7;
+ Thu, 13 Jul 2023 14:52:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1689259971;
+ bh=R4Hkl4iroQ+C4d3AaFA6aa52uzI7aPnAyTDDN/lwc78=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=RS/6gRgqvF3ybwn8Ovqq43iLhI7Yv15SZZP2U5CNn6IhgXHQH9mo4nByA/g4W736R
+ AkMi1WqcMsHhNrtO7dGPqCwKIYlgvLK+7FW5vJj2elL3FTubJgM81//BHDuM8QqyRP
+ Csacjb3yQ3aRtIn7A1i9sInqtS8VRY/O0QwqwwSlh+wJ04gvPtGAbDZaSnmdfd209l
+ vt3KpAe4HIE13hYrO1C7jusvVYug5pHUh1tQDDmm+XtqhW6CbXRqbqDYOCl1W9QxOQ
+ VXNT8IMNIH9hLd1wzLndR4KoVQB79H/FYLq25P8lOlildm0R+bpsuSo9TwClPA0kLV
+ csu2vX1i0ECSg==
+Date: Thu, 13 Jul 2023 16:52:34 +0200
+From: Christian Brauner <brauner@kernel.org>
+To: Sean Christopherson <seanjc@google.com>
+Message-ID: <20230713-mahnen-drosseln-fa717117e827@brauner>
+References: <20230713-vfs-eventfd-signal-v1-0-7fda6c5d212b@kernel.org>
+ <20230713-vfs-eventfd-signal-v1-2-7fda6c5d212b@kernel.org>
+ <ZLAK+FA3qgbHW0YK@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20230711220648.17108-1-nirmoy.das@intel.com>
- <20230711220648.17108-2-nirmoy.das@intel.com>
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230711220648.17108-2-nirmoy.das@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/display: Do not use stolen
- on MTL
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ZLAK+FA3qgbHW0YK@google.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] eventfd: simplify eventfd_signal_mask()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,75 +54,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: linux-aio@kvack.org, linux-usb@vger.kernel.org,
+ Matthew Rosato <mjrosato@linux.ibm.com>, Paul Durrant <paul@xen.org>,
+ Tom Rix <trix@redhat.com>, Jason Wang <jasowang@redhat.com>,
+ dri-devel@lists.freedesktop.org, Michal Hocko <mhocko@kernel.org>,
+ linux-mm@kvack.org, Kirti Wankhede <kwankhede@nvidia.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, Jens Axboe <axboe@kernel.dk>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, David Airlie <airlied@gmail.com>,
+ Xuan Zhuo <xuanzhuo@linux.alibaba.com>, Shakeel Butt <shakeelb@google.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Leon Romanovsky <leon@kernel.org>,
+ Harald Freudenberger <freude@linux.ibm.com>, Fei Li <fei1.li@intel.com>,
+ x86@kernel.org, Roman Gushchin <roman.gushchin@linux.dev>,
+ Halil Pasic <pasic@linux.ibm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Ingo Molnar <mingo@redhat.com>, intel-gfx@lists.freedesktop.org,
+ Christian Borntraeger <borntraeger@linux.ibm.com>, linux-fpga@vger.kernel.org,
+ Wu Hao <hao.wu@intel.com>, Jason Herne <jjherne@linux.ibm.com>,
+ Eric Farman <farman@linux.ibm.com>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Andrew Donnellan <ajd@linux.ibm.com>, Arnd Bergmann <arnd@arndb.de>,
+ linux-s390@vger.kernel.org, Heiko Carstens <hca@linux.ibm.com>,
+ linuxppc-dev@lists.ozlabs.org, Frederic Barrat <fbarrat@linux.ibm.com>,
+ Moritz Fischer <mdf@kernel.org>, kvm@vger.kernel.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, cgroups@vger.kernel.org,
+ Thomas Gleixner <tglx@linutronix.de>,
+ virtualization@lists.linux-foundation.org, intel-gvt-dev@lists.freedesktop.org,
+ io-uring@vger.kernel.org, netdev@vger.kernel.org,
+ Tony Krowiak <akrowiak@linux.ibm.com>, Pavel Begunkov <asml.silence@gmail.com>,
+ Eric Auger <eric.auger@redhat.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Oded Gabbay <ogabbay@kernel.org>, Muchun Song <muchun.song@linux.dev>,
+ Peter Oberparleiter <oberpar@linux.ibm.com>, linux-kernel@vger.kernel.org,
+ linux-rdma@vger.kernel.org, Benjamin LaHaise <bcrl@kvack.org>,
+ "Michael S. Tsirkin" <mst@redhat.com>, Sven Schnelle <svens@linux.ibm.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Johannes Weiner <hannes@cmpxchg.org>,
+ linux-fsdevel@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
+ Vitaly Kuznetsov <vkuznets@redhat.com>, David Woodhouse <dwmw2@infradead.org>,
+ Xu Yilun <yilun.xu@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Jul 13, 2023 at 07:33:05AM -0700, Sean Christopherson wrote:
+> On Thu, Jul 13, 2023, Christian Brauner wrote:
+> > diff --git a/fs/eventfd.c b/fs/eventfd.c
+> > index dc9e01053235..077be5da72bd 100644
+> > --- a/fs/eventfd.c
+> > +++ b/fs/eventfd.c
+> > @@ -43,9 +43,10 @@ struct eventfd_ctx {
+> >  	int id;
+> >  };
+> >  
+> > -__u64 eventfd_signal_mask(struct eventfd_ctx *ctx, __u64 n, __poll_t mask)
+> > +bool eventfd_signal_mask(struct eventfd_ctx *ctx, __poll_t mask)
+> >  {
+> >  	unsigned long flags;
+> > +	__u64 n = 1;
+> >  
+> >  	/*
+> >  	 * Deadlock or stack overflow issues can happen if we recurse here
+> > @@ -68,7 +69,7 @@ __u64 eventfd_signal_mask(struct eventfd_ctx *ctx, __u64 n, __poll_t mask)
+> >  	current->in_eventfd = 0;
+> >  	spin_unlock_irqrestore(&ctx->wqh.lock, flags);
+> >  
+> > -	return n;
+> > +	return n == 1;
+> >  }
+> 
+> ...
+> 
+> > @@ -58,13 +58,12 @@ static inline struct eventfd_ctx *eventfd_ctx_fdget(int fd)
+> >  	return ERR_PTR(-ENOSYS);
+> >  }
+> >  
+> > -static inline int eventfd_signal(struct eventfd_ctx *ctx)
+> > +static inline bool eventfd_signal(struct eventfd_ctx *ctx)
+> >  {
+> >  	return -ENOSYS;
+> >  }
+> >  
+> > -static inline int eventfd_signal_mask(struct eventfd_ctx *ctx, __u64 n,
+> > -				      unsigned mask)
+> > +static inline bool eventfd_signal_mask(struct eventfd_ctx *ctx, unsigned mask)
+> >  {
+> >  	return -ENOSYS;
+> 
+> This will morph to "true" for what should be an error case.  One option would be
 
-On 7/12/2023 12:06 AM, Nirmoy Das wrote:
-> Use smem on MTL due to a HW bug in MTL that prevents
-> reading from stolen memory using LMEM BAR.
->
-> v2: improve stolen skip detection(Andrzej)
->
-> Cc: Oak Zeng <oak.zeng@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> Reviewed-by: Oak Zeng <oak.zeng@intel.com>
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_fbdev.c   | 5 ++++-
->   drivers/gpu/drm/i915/display/intel_overlay.c | 5 +++--
->   2 files changed, 7 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> index 1cc0ddc6a310..e019bbcd474e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -187,8 +187,11 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
->   		 * If the FB is too big, just don't use it since fbdev is not very
->   		 * important and we should probably use that space with FBC or other
->   		 * features.
-> +		 *
-> +		 * Also skip stolen on MTL as Wa_22018444074 mitigation.
->   		 */
-> -		if (size * 2 < dev_priv->dsm.usable_size)
-> +		if (size * 2 < dev_priv->dsm.usable_size ||
-> +		    !(IS_METEORLAKE(dev_priv)))
+Ewww, that means it did return -ENOSYS before any of this.
 
-Just realized  this is wrong, stolen will be picked on non-mtl even if 
-the stolen usable size is < 2*size which is not expected.
+> to have eventfd_signal_mask() return 0/-errno instead of the count, but looking
+> at all the callers, nothing ever actually consumes the result.
+> 
+> KVMGT morphs failure into -EFAULT
+> 
+> 	if (vgpu->msi_trigger && eventfd_signal(vgpu->msi_trigger, 1) != 1)
+> 		return -EFAULT;
+> 
+> but the only caller of that user ignores the return value.
+> 
+> 	if (vgpu_vreg(vgpu, i915_mmio_reg_offset(GEN8_MASTER_IRQ))
+> 			& ~GEN8_MASTER_IRQ_CONTROL)
+> 		inject_virtual_interrupt(vgpu);
+> 
+> The sample driver in samples/vfio-mdev/mtty.c uses a similar pattern: prints an
+> error but otherwise ignores the result.
+> 
+> So why not return nothing?  That will simplify eventfd_signal_mask() a wee bit
+> more, and eliminate that bizarre return value confusion for the ugly stubs, e.g.
 
-I will keep this as v1
+Yeah, it used to return an int in the non-eventfd and a __u64 in the
+eventfd case.
 
+> 
+> void eventfd_signal_mask(struct eventfd_ctx *ctx, unsigned mask)
+> {
+> 	unsigned long flags;
+> 
+> 	/*
+> 	 * Deadlock or stack overflow issues can happen if we recurse here
+> 	 * through waitqueue wakeup handlers. If the caller users potentially
+> 	 * nested waitqueues with custom wakeup handlers, then it should
+> 	 * check eventfd_signal_allowed() before calling this function. If
+> 	 * it returns false, the eventfd_signal() call should be deferred to a
+> 	 * safe context.
+> 	 */
+> 	if (WARN_ON_ONCE(current->in_eventfd))
+> 		return;
+> 
+> 	spin_lock_irqsave(&ctx->wqh.lock, flags);
+> 	current->in_eventfd = 1;
+> 	if (ctx->count < ULLONG_MAX)
+> 		ctx->count++;
+> 	if (waitqueue_active(&ctx->wqh))
+> 		wake_up_locked_poll(&ctx->wqh, EPOLLIN | mask);
+> 	current->in_eventfd = 0;
+> 	spin_unlock_irqrestore(&ctx->wqh.lock, flags);
+> }
+> 
+> You could even go further and unify the real and stub versions of eventfd_signal().
 
-Regards,
+The reason I didn't make eventfd_signal_mask() return void was that it
+was called from eventfd_signal() which did, I didn't realize the caller
+didn't actually consume the return value.
 
-Nirmoy
+If we can let both return void it gets simpler.
 
->   			obj = i915_gem_object_create_stolen(dev_priv, size);
->   		if (IS_ERR(obj))
->   			obj = i915_gem_object_create_shmem(dev_priv, size);
-> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-> index d6fe2bbabe55..09c1aa1427ad 100644
-> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
-> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-> @@ -1348,11 +1348,12 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
->   static int get_registers(struct intel_overlay *overlay, bool use_phys)
->   {
->   	struct drm_i915_private *i915 = overlay->i915;
-> -	struct drm_i915_gem_object *obj;
-> +	struct drm_i915_gem_object *obj = ERR_PTR(-ENODEV);
->   	struct i915_vma *vma;
->   	int err;
->   
-> -	obj = i915_gem_object_create_stolen(i915, PAGE_SIZE);
-> +	if (!IS_METEORLAKE(i915)) /* Wa_22018444074 */
-> +		obj = i915_gem_object_create_stolen(i915, PAGE_SIZE);
->   	if (IS_ERR(obj))
->   		obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
->   	if (IS_ERR(obj))
+Thanks for that.
