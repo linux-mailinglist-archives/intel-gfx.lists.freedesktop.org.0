@@ -1,71 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFCCC75212D
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 14:22:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A54A75213A
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 14:25:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D496110E681;
-	Thu, 13 Jul 2023 12:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 666DC10E681;
+	Thu, 13 Jul 2023 12:25:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39A2910E681
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jul 2023 12:22:31 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E17D810E681
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jul 2023 12:24:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689250951; x=1720786951;
+ t=1689251098; x=1720787098;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=KB1VCDDH8hMmE2PIC1kkHD4OBJq1RmHB0zIG6tKeapw=;
- b=TwKyyL/COXp1r0XF41nV0K3Y/ilYVogUsXMUoLt2dCXqzqHapfj0tBBf
- M2nQ3qPp8rxv6l0gXSSw+DY91C6mCUGmIZuYY7bMEe2PsepHd7MBwtBBC
- C0HpWSI72Xa1tULk4sG+5vkYyvhhXiaUunizd3ZsDCbe6lEBphSvGg2MM
- HcRrpABKMQV0c2qFnPLuU0XYuvriwSLA7tC63fHlfuP4vatUXZgb+sPvN
- NCQzdNRNTrTb1peNaj6fBmXacHx8+WzfocC0A7UGkn2c4bxmDvHRUsUxQ
- trz1XHWPTalvzY5Y+rd5NRVGJBYJ+MOVSm8B6gJqfJZFEjrRW8Ct7MO4n w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="364035289"
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="364035289"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 05:22:28 -0700
+ bh=O745PXuaa7YZPmbm3BOPrtG5X/mlSMeJbX9tSXwtSWs=;
+ b=DyL5eKes9YNoR1yIyrPqK/9lL+PMS0Tm0GOeATUpsd4+d/jZGEekaGyq
+ 3e7/r63oIFplj3KQphU6hDF+mfHgfKh8QDs8xbN8LRZ9soO4BC5P0u86d
+ +gvEHIUjWal/Z/MrfXXFaFegfWc4XxaVvao1H/7jmzItL+elIUvn7SiV4
+ PhuKvlwps3v5dYWr5Ak0hJJq4hz01TkF9ePa0WLH8lO4l73CHRHnNr9ph
+ mQA3ghFYEcrH3b3IBWcF17KkEul3XXiWPIrbz9sYn2Q+vu0YRJhyvK4Or
+ wEvVdmEc6w2gSqSmfFSzU50lI4oz9iuAFuaZmIHB91Msk/I6uanTeD1YM Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="355084348"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="355084348"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2023 05:24:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="846043421"
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="846043421"
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="721899130"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="721899130"
 Received: from apaulaux-mobl.ger.corp.intel.com (HELO [10.213.206.56])
  ([10.213.206.56])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 05:22:26 -0700
-Message-ID: <a228d871-d9e1-f586-bff6-a259c0c868d9@linux.intel.com>
-Date: Thu, 13 Jul 2023 13:22:23 +0100
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2023 05:24:55 -0700
+Message-ID: <6e6ba3ec-5051-400c-b05d-98ced1ffb8f7@linux.intel.com>
+Date: Thu, 13 Jul 2023 13:24:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
 Content-Language: en-US
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
- John Harrison <john.c.harrison@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-References: <20230705160848.988464-1-andrzej.hajda@intel.com>
- <20230706151611.1024576-1-andrzej.hajda@intel.com>
- <ZK0sbz+h0r/PwYn2@ashyti-mobl2.lan>
- <a9e34d7a-b22d-779c-67cb-88c69dc7ca6b@intel.com>
- <ZK0+NXmKnEzeUtTI@ashyti-mobl2.lan>
- <118e74c0-c1ce-fc6e-39f4-5518ace5d71e@intel.com>
- <6f981dd3-715a-6b7e-6c5d-d51610cddc88@linux.intel.com>
- <daeb0906-1b39-ebda-618f-dbce88f751bc@intel.com>
- <c1ebfb0f-f0d4-1204-750a-b169d4ddab54@linux.intel.com>
- <7db1b2b3-d496-1c70-a4bf-8ce08136fb10@intel.com>
- <b1e2ccdb-e79b-d584-031c-5d71e2f524f5@intel.com>
- <81e65fb5-813c-da53-dd12-909f18739ef2@linux.intel.com>
- <f63523f8-5230-1d30-92ad-9fedcfb0867a@linux.intel.com>
- <e1c17fa7-6511-7d5c-175b-a40f49eb891f@intel.com>
+To: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Ursulin, Tvrtko" <tvrtko.ursulin@intel.com>
+References: <20230616114200.3228284-12-dnyaneshwar.bhadane@intel.com>
+ <20230710105815.2056018-1-dnyaneshwar.bhadane@intel.com>
+ <IA1PR11MB62660C3B6D48EA16DF2E7AFFE230A@IA1PR11MB6266.namprd11.prod.outlook.com>
+ <de17473e-09fa-9346-daf4-96bf12fa580c@linux.intel.com>
+ <871qhcgng8.fsf@intel.com>
+ <14a0d370-150b-f311-2a66-b8400163dd61@linux.intel.com>
+ <IA1PR11MB6266A7A8009AC987E421EBBCE237A@IA1PR11MB6266.namprd11.prod.outlook.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <e1c17fa7-6511-7d5c-175b-a40f49eb891f@intel.com>
+In-Reply-To: <IA1PR11MB6266A7A8009AC987E421EBBCE237A@IA1PR11MB6266.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: update request engine
- before removing virtual GuC engine
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [v3] drm/i915/mtl: s/MTL/METEORLAKE for
+ platform/subplatform defines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,216 +72,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 13/07/2023 12:59, Andrzej Hajda wrote:
-> On 13.07.2023 10:56, Tvrtko Ursulin wrote:
+On 13/07/2023 13:12, Bhadane, Dnyaneshwar wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Sent: Thursday, July 13, 2023 5:26 PM
+>> To: Jani Nikula <jani.nikula@linux.intel.com>; Bhadane, Dnyaneshwar
+>> <dnyaneshwar.bhadane@intel.com>; intel-gfx@lists.freedesktop.org;
+>> Ursulin, Tvrtko <tvrtko.ursulin@intel.com>
+>> Subject: Re: [Intel-gfx] [v3] drm/i915/mtl: s/MTL/METEORLAKE for
+>> platform/subplatform defines
 >>
->> On 13/07/2023 08:39, Tvrtko Ursulin wrote:
->>>
->>> On 12/07/2023 19:54, John Harrison wrote:
->>>> On 7/12/2023 09:27, Andrzej Hajda wrote:
->>>>> On 12.07.2023 14:35, Tvrtko Ursulin wrote:
->>>>>> On 12/07/2023 13:18, Andrzej Hajda wrote:
->>>>>>> On 11.07.2023 17:27, Tvrtko Ursulin wrote:
->>>>>>>> On 11/07/2023 14:58, Andrzej Hajda wrote:
->>>>>>>>> On 11.07.2023 13:34, Andi Shyti wrote:
->>>>>>>>>> Hi Andrzej,
->>>>>>>>>>
->>>>>>>>>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 
->>>>>>>>>>> +++++++++++
->>>>>>>>>>>           1 file changed, 11 insertions(+)
->>>>>>>>>>>
->>>>>>>>>>>          diff --git 
->>>>>>>>>>> a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->>>>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>>>>>>          index a0e3ef1c65d246..2c877ea5eda6f0 100644
->>>>>>>>>>>          --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>>>>>>          +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>>>>>>>>>>          @@ -3461,6 +3461,8 @@ static void 
->>>>>>>>>>> guc_prio_fini(struct i915_request *rq, struct intel_context *ce)
->>>>>>>>>>>           static void remove_from_context(struct i915_request 
->>>>>>>>>>> *rq)
->>>>>>>>>>>           {
->>>>>>>>>>>                  struct intel_context *ce = 
->>>>>>>>>>> request_to_scheduling_context(rq);
->>>>>>>>>>>          +       struct intel_engine_cs *engine;
->>>>>>>>>>>          +       intel_engine_mask_t tmp;
->>>>>>>>>>>
->>>>>>>>>>> GEM_BUG_ON(intel_context_is_child(ce));
->>>>>>>>>>>
->>>>>>>>>>>          @@ -3478,6 +3480,15 @@ static void 
->>>>>>>>>>> remove_from_context(struct i915_request *rq)
->>>>>>>>>>>
->>>>>>>>>>>                  atomic_dec(&ce->guc_id.ref);
->>>>>>>>>>> i915_request_notify_execute_cb_imm(rq);
->>>>>>>>>>>          +
->>>>>>>>>>>          +       /*
->>>>>>>>>>>          +        * GuC virtual engine can disappear after 
->>>>>>>>>>> this call, so let's assign
->>>>>>>>>>>          +        * something valid, as driver expects this 
->>>>>>>>>>> to be always valid pointer.
->>>>>>>>>>>          +        */
->>>>>>>>>>>          +       for_each_engine_masked(engine, 
->>>>>>>>>>> rq->engine->gt, rq->execution_mask, tmp) {
->>>>>>>>>>>          +               rq->engine = engine;
->>>>>>>>>>>
->>>>>>>>>>>      yes... here the context might lose the virtual engine... 
->>>>>>>>>>> I wonder
->>>>>>>>>>>      whether this is the rigth solution, though. Maybe we 
->>>>>>>>>>> should set
->>>>>>>>>>>      rq->engine = NULL; and check for NULL? Don't know.
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>> Setting NULL causes occasional null page de-reference in
->>>>>>>>>>>
->>>>>>>>>>> i915_request_wait_timeout:
->>>>>>>>>>>
->>>>>>>>>>> mutex_release(&rq->engine->gt->reset.mutex.dep_map, _THIS_IP_)
->>>>>>>>>>>
->>>>>>>>>>> rq->engine after removing rq from context is (IMHO) used as a 
->>>>>>>>>>> set of aliases
->>>>>>>>>>> for gt and i915 (despite rq itself contains the alias to i915).
->>>>>>>>>> without investigating further, but maybe that code is not even
->>>>>>>>>> supposed to be executed, at this point, if the request's assigned
->>>>>>>>>> virtual engine is removed.
->>>>>>>>>
->>>>>>>>> Real tests show it is executed and the function 
->>>>>>>>> i915_request_wait_timeout is quite generic
->>>>>>>>> I guess it is quite typical use-case, the only question is 
->>>>>>>>> about timings - what happens earlier -
->>>>>>>>> finalization of i915_request_wait_timeout or context removal.
->>>>>>>>>
->>>>>>>>> The other point rq->engine is accessed after context removal is 
->>>>>>>>> i915_fence_release -
->>>>>>>>> there is long comment there regarding virtual context and reuse 
->>>>>>>>> retired rq.
->>>>>>>>> Anyway calling there "intel_engine_is_virtual(rq->engine)" is 
->>>>>>>>> risky without this patch and KASAN complains clearly about it:
->>>>>>>>> http://gfx-ci.igk.intel.com/tree/drm-tip/kasan.html?testfilter=gem_exec_balancer
->>>>>>>>
->>>>>>>> Looks like a bug introduced in bcb9aa45d5a0 ("Revert "drm/i915: 
->>>>>>>> Hold reference to intel_context over life of i915_request""), 
->>>>>>>> which was a partial revert of 1e98d8c52ed5 ("drm/i915: Hold 
->>>>>>>> reference to intel_context over life of i915_request").
->>>>>>>>
->>>>>>>> Ie. if 1e98d8c52ed5 recognised the problem with disappearing 
->>>>>>>> rq->engine, then I am confused how bcb9aa45d5a0 left the 
->>>>>>>> rq->engine dereference in there after removing the extra reference.
->>>>>>>>
->>>>>>>> Could it be that the intel_engine_is_virtual check simply needs 
->>>>>>>> to be removed from i915_fence_release, restoring things to how 
->>>>>>>> they were before 1e98d8c52ed5? Could you try it out?
->>>>>>>
->>>>>>>
->>>>>>> I have already tried something similar [1] and KASAN bugs 
->>>>>>> disappeared, or more precisely gem_exec_balance tests passed. But 
->>>>>>> I have been warned by Nirmoy guc virtual engines can be created 
->>>>>>> for only one real engine (ie. is_power_of_2(rq->execution_mask) 
->>>>>>> is true but rq->engine points to virtual engine).
->>>>>>>
->>>>>>> [1]: https://patchwork.freedesktop.org/series/118879/
+>>
+>> On 13/07/2023 10:39, Jani Nikula wrote:
+>>> On Thu, 13 Jul 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>>>> On 10/07/2023 14:44, Bhadane, Dnyaneshwar wrote:
+>>>>>> -----Original Message-----
+>>>>>> From: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>
+>>>>>> Sent: Monday, July 10, 2023 4:28 PM
+>>>>>> To: intel-gfx@lists.freedesktop.org
+>>>>>> Cc: Ursulin, Tvrtko <tvrtko.ursulin@intel.com>;
+>>>>>> jani.nikula@linux.intel.com; Srivatsa, Anusha
+>>>>>> <anusha.srivatsa@intel.com>; Bhadane, Dnyaneshwar
+>>>>>> <dnyaneshwar.bhadane@intel.com>
+>>>>>> Subject: [v3] drm/i915/mtl: s/MTL/METEORLAKE for
+>>>>>> platform/subplatform defines
 >>>>>>
->>>>>> Ugh.. Try involving media umd folks to see if they need a single 
->>>>>> engine virtual engine? Or we could always just not create it in 
->>>>>> the driver, I mean just use the physical one.
->>>>>
->>>>>
->>>>> In case there is single physical engine intel_engine_create_virtual 
->>>>> falls back to intel_context_create (no virtual engine), but in case 
->>>>> of parallel contexts there is special KMD flag FORCE_VIRTUAL which 
->>>>> enforces virtual engine even for single physical engine. So it 
->>>>> seems to be KMD concept.
->>>>>
->>>>> Anyway is it worth investigating how to make 
->>>>> "is_power_of_2(rq->execution_mask)" indication of dangling engine 
->>>>> pointer? It will not help in 1st case:
->>>>> mutex_release(&rq->engine->gt->reset.mutex.dep_map, _THIS_IP_)
->>>>>
->>>>>
->>>> There seems to be a fundamental problem here. Object 1 (rq) is 
->>>> holding a pointer to a reference counted and transient object 2 
->>>> (engine) but without taking a reference count for itself. That is a 
->>>> Bad Thing(tm). I'm not following the description in the revert patch 
->>>> as to why rq can't ref count the context/engine. Is there actually a 
->>>> recursive counting problem? Or is it just a lifetime issue caused by 
->>>> requests hanging around indefinitely because they are locked by a 
->>>> user process?
+>>>>>> Follow consistent naming convention. Replace MTL with METEORLAKE.
+>>>>>> Added defines that are replacing IS_MTL_GRAPHICS_STEP with
+>>>>>> IS_METEORLAKE_P_GRAPHICS_STEP and
+>> IS_METEORLAKE_M_GRAPHICS_STEP.
+>>>>>> Also replaced IS_METEORLAKE_MEDIA_STEP instead of
+>> IS_MTL_MEDIA_STEP
+>>>>>> and IS_METEORLAKE_DISPLAY_STEP instead of IS_MTL_DISPLAY_STEP.
+>>>>>>
+>>>>> Hi Tvrtko,
+>>>>> Could you please give the feedback on this ? or suggestion regarding the
+>> approach.
 >>>>
->>>> Either way, jumping through convoluted hoops to ensure the code does 
->>>> not attempt to dereference a dangling pointer seems like the wrong 
->>>> fix. Removing the engine pointer when the request is completed and 
->>>> no longer dependent upon an engine (but before the engine can 
->>>> possibly be destroyed) seems like a much better solution. And then 
->>>> making the request handling code check for and cope with a null 
->>>> engine pointer. It sounds like the only problem there is the above 
->>>> mutex, but there is an alternate route to that? Although why a 
->>>> completed request would need access to a GT reset mutex seems 
->>>> confusing. If the request is done, then what connection does it 
->>>> still have to the GT?
+>>>> It's a step in the right direction I just wish we could do all
+>>>> churning in one go.
+>>>>
+>>>> Have you captured IS_CFL and IS_CML in the series? ICL? HSW? Any
+>>>> other I am missing?
+>>>>
+>>>> What have we concluded on Jani's suggestion to split it all to
+>>>> IS_<platform> && IS_<subsys>?
 >>>
->>> Agreed in principle but the question is how invasive would it be to 
->>> change the rules.
+>>> IS_<platform> && IS_<step> is what I was after.
+>>
+>> Yeah I mistyped. I liked that to so would get my ack.
+>>
+>>>> If you have a) captured all IS_<tla> and b) Jani acks the series too,
+>>>> I guess go ahead.
+>>>>
+>>>> Hm.. what have we concluded to do with IS_JASPERLAKE_EHL?
 >>>
->>> With the latest info that the issue is really just the GuC _parallel_ 
->>> engine setup, and looking at the code, I wonder if we couldn't just 
->>> flag the rq->flags with "kernel context request". The code in 
->>> i915_fence_release claims the rq pool is only relevant for those so 
->>> it sounds it would be safe to skip everything else based on that new 
->>> flag.
+>>> For sure it can't be *that*. It's JSL *or* EHL. Not subplatform.
+>>
+>> IS_ELKHARTLAKE would indeed work and platform/subplatform can be
+>> hidden implementation detail.
+>>
+>>>> P.S.
+>>>> I still think these suck though:
+>>>>
+>>>> 	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
+>>>> 	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
 >>>
->>> For the mutex_release path, presumable the bad deref is only _after_ 
->>> the wait, right? (Only once the request has been retired.)
+>>> I still find it appealing to a) go towards shorter acronyms instead of
+>>> long names, and b) to separate platform and stepping checks because
+>>> they're orthogonal. They're only bundled together for historical
+>>> reasons, and to keep the conditions shorter.
 >>>
->>> In which case caching the gt pointer at the start of 
->>> i915_request_wait_timeout would be sufficient.
+>>> The above could be:
+>>>
+>>> 	if (IS_MTL(i915) && IS_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
 >>
->> Or not, think here I confused rq reference with (lack of) rq->engine 
->> reference. If I have then there is plenty of rq->engine dereferences 
->> in just the i915_request_wait_timeout call stack. So neither caching 
->> the gt or NULL rq->engine don't think would fly.
->>
->> Going back to this patch, this comment:
->>
->> +    /*
->> +     * GuC virtual engine can disappear after this call, so let's assign
->> +     * something valid, as driver expects this to be always valid 
->> pointer.
->> +     */
->>
->> Is it that only GuC virtual engine can disappear after this call, or 
->> any virtual engine really? If the former why only with GuC?
+>> I'd be super pleased with that.
 > 
+> Could we use the above suggestion for MTL variants for P/M? also replacing MTL with METEORLAKE.
 > 
-> intel_engine_create_virtual creates virtual context ONLY if there are 
-> multiple siblings or FORCE_VIRTUAL flag is used. The function is called 
-> with this flag only from guc_create_parallel.
-> So for non-guc virtual engines rq->execution_mask can be tested to 
-> detect if engine is/was virtual. Until some day somebody will start 
-> using the flag :)
-> Anyway apparently timings and/or better context protection prevents 
-> KASAN bugs appear for non-guc machines[1], ie in i915_fence_release 
-> context/engine is still valid.
+> Using the format:  IS_FULL_PLATFORM_NAME && IS_GRAPHICS_STEP(i915, STEP_A0, STEP_B0).
 > 
-> [1]: http://gfx-ci.igk.intel.com/tree/drm-tip/kasan.html?testfilter=balance
+> It will change to :
+> 	For M:	IS_METEORLAKE_M(i915) && IS_GRAPHICS_STEP(i915, STEP_A0, STEP_B0)
+> 	For P:	IS_METEORLAKE_P(i915) && IS_GRAPHICS_STEP(i915, STEP_A0, STEP_B0)
 
-Right, point of my question was that we need to be sure is the comment 
-accurate. Perhaps the issue is not just with the GuC virtual engines and 
-request wait path could hit it with execlists too (2+ wide virtual engines).
-
-If the final intel_context_put happens via i915_request_retire -> 
-intel_context_unpin -> intel_context_put -> virtual_context_destroy -> 
-rcu_virtual_context_destroy -> kfree(ve) then rq->engine also becomes 
-invalid as observed from the request wait running in parallel.
-
-Don't think RCU is enough to make this safe, but the fact GuC side uses 
-a straight worker might be making it easier to hit there.
-
-Please double check my thinking here.
+You could, but you'd only get a meh from me. :) Why you'd insist to keep 
+the two checks? Are we expecting IS_METEROLAKE_<X> at some point?
 
 Regards,
 
