@@ -2,43 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5D707514DE
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 01:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39FAB7514EF
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 02:04:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A65E10E5F9;
-	Wed, 12 Jul 2023 23:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B3FD10E609;
+	Thu, 13 Jul 2023 00:04:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (mail.ozlabs.org
- [IPv6:2404:9400:2221:ea00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD89A10E5F9;
- Wed, 12 Jul 2023 23:59:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1689206341;
- bh=WvD/wcqsrNHh3y8u93t1s7rTT9s8JP0V1FCKN/Chx3Q=;
- h=Date:From:To:Cc:Subject:From;
- b=FS50z64r3y1HGxodjKuX67NyYcwTSMw1NrtaL6+W0w3a2Rs23rXzdO/burwF18/e6
- NP2Bp0756pPqxM2ewbfU1sxzr+CU0mzso9NoKwL49pLHeIwel1G3+GOgFFtxRq2vRp
- bX2a5xO23EaATOj9ZX2oeqpo8YIKBziQCoBfawgPSWAvPqL8pd9lBoK5PGwaqmtKps
- IuNnYPNTfyZfIEe6zGAT59GYEvclpDGXMNZTvGnDj1g9VunjIWLUkXjYxEIllD6muW
- /l5zHqn7hjRGlImC1W4xRSaIe+Dc9QFo7xF2w3jXdHp9CmEde+1Kr2NBiK5fkHAjRz
- 6u/BYX7epoxIw==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4R1ZTJ3nF1z4wZn;
- Thu, 13 Jul 2023 09:58:59 +1000 (AEST)
-Date: Thu, 13 Jul 2023 09:58:58 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20230713095858.093fd5a4@canb.auug.org.au>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7312210E5FC;
+ Thu, 13 Jul 2023 00:04:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6EE4AAADD5;
+ Thu, 13 Jul 2023 00:04:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/pGl.vQJOhlpe_n_JyuAO4gC";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
- Linus' tree
+Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Atwood" <matthew.s.atwood@intel.com>
+Date: Thu, 13 Jul 2023 00:04:12 -0000
+Message-ID: <168920665244.14984.16867451180675032721@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230712233415.49012-1-matthew.s.atwood@intel.com>
+In-Reply-To: <20230712233415.49012-1-matthew.s.atwood@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Introduce_Wa=5F14011274333?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,58 +40,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/pGl.vQJOhlpe_n_JyuAO4gC
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi all,
+Series: drm/i915: Introduce Wa_14011274333
+URL   : https://patchwork.freedesktop.org/series/120644/
+State : failure
 
-Today's linux-next merge of the drm-misc tree got a conflict in:
+== Summary ==
 
-  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/gt/intel_rc6.o
+drivers/gpu/drm/i915/gt/intel_rc6.c:110:6: error: no previous prototype for ‘rc6_wa_bb_ctx_wa_fini’ [-Werror=missing-prototypes]
+  110 | void rc6_wa_bb_ctx_wa_fini(struct intel_rc6 *rc6)
+      |      ^~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+make[6]: *** [scripts/Makefile.build:243: drivers/gpu/drm/i915/gt/intel_rc6.o] Error 1
+make[5]: *** [scripts/Makefile.build:477: drivers/gpu/drm/i915] Error 2
+make[4]: *** [scripts/Makefile.build:477: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:477: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:477: drivers] Error 2
+make[1]: *** [/home/kbuild/kernel/Makefile:2020: .] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+Build failed, no error log produced
 
-between commit:
 
-  570b295248b0 ("drm/amdgpu: fix number of fence calculations")
-
-from Linus' tree and commit:
-
-  ca6c1e210aa7 ("drm/amdgpu: use the new drm_exec object for CS v3")
-
-from the drm-misc tree.
-
-I fixed it up (the latter removed the lines modified by the former, so
-I just did that) and can carry the fix as necessary. This is now fixed
-as far as linux-next is concerned, but any non trivial conflicts should
-be mentioned to your upstream maintainer when your tree is submitted for
-merging.  You may also want to consider cooperating with the maintainer
-of the conflicting tree to minimise any particularly complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/pGl.vQJOhlpe_n_JyuAO4gC
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmSvPkIACgkQAVBC80lX
-0Gwe3wf/XZDmnSV6Jbj11uan8s5RJPcTMZg3GNjWxJFHMRMEISqTZ2Pd64P+7NBA
-SfXptsdpB8ug1o62KorxjVwhDE6wqFVMw9o7+OpGW/eZNnZrzdnGh9Vwdjaz6E1/
-+tqTclTz+1x3ffgE+3zMuOyrpj7KrDvdzbi6CkWAwy2w6JaNdEHDwxPRToVrG3o1
-hB5LyQkFLXFCuEG83PI48xfz6E4vY1ZgO15nZimftJ0FSv9Cv/1+6w1WipotAgwj
-yitvfzKPl5lMqJpIQgysBDjw01PFdZsc78OzSjcsTmh6hFy787tgTDoYe5T8PsS4
-Po8z5PFYcSjk39BTcYJKqiEBa1pMKA==
-=Hwy+
------END PGP SIGNATURE-----
-
---Sig_/pGl.vQJOhlpe_n_JyuAO4gC--
