@@ -1,48 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A007519EC
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 09:28:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 999B3751A0F
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 09:39:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E96AF10E60F;
-	Thu, 13 Jul 2023 07:28:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4F0110E60F;
+	Thu, 13 Jul 2023 07:39:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31EF710E60D;
- Thu, 13 Jul 2023 07:28:16 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C294410E60F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jul 2023 07:39:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689233296; x=1720769296;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=9NYx/YyOAo3XxlPiXm5jdCZsFrSJVXJKbqcBKmFsCQQ=;
- b=W2Ll2WTXLfyjgXgKSQYglhTZQFKCqcxHSJoM4KfMz50s5Oug3KtYGzmm
- DNA486CaR0nVWDV9xapzVsAU88wIcMPaL9hVoEUs6JARCQu1xrH4BBFKu
- Mk8hBbQeaWAAC290otMLZy2DLZBC9WZTWHQ8Y8s2pE+c0+RBXO5awuZqi
- MvQrcTGgAXrq3yaDGOy7JM9b/S6zZ+UedWECNm6a/+GrVjw0riihjKcYF
- PHkwclnR9VgiM6a3J/Rq0xEFkzVyeoeBMUaY3DCOyWZF6o6IRX5IArXVZ
- +UttX3hhaOyd5p8nFb9UxyT/lxzZFc5aRENsBqUyHpTxTlG8gHaC/rxej A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="395914972"
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="395914972"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 00:27:00 -0700
+ t=1689233947; x=1720769947;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=SMUBzEROOHY7D2Zoay9/+FNKii+ifvY881mpGzed/eA=;
+ b=ZI5Bfy0AJ/hbngWzBQuHNs7badFsDXAcFrMGAzUbFJIRsu/O1XwIryDf
+ 0Ej3y6P1Um1mNXZrR1+sGcJbdEy98dvS5mysNODS27q3pVOpnNooZdycX
+ 2Trnpnivk5ZBjODaRYwZ6oIwS302Zzb+Nx0XDne95gef7lsMWZ5Me6gKL
+ VCz+twiDf+sEvanthsFMHAjNXoxn4qBI4u4M9EFP9a5PStbgmWbMrzHOK
+ moEqSpnRrZKysRVcIRlcVMpQx1ln9usK4K4rXGL40YcxmfQ2tG/tV7oQX
+ F6kIO20f9qAkLS4ZdjJyzZarGBHJGmDgNi2MIgv4O9TOtftyhUDpPXKvq Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="355031617"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="355031617"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2023 00:39:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="835468324"
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="835468324"
-Received: from apaulaux-mobl.ger.corp.intel.com (HELO localhost)
+X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="699163671"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="699163671"
+Received: from apaulaux-mobl.ger.corp.intel.com (HELO [10.213.206.56])
  ([10.213.206.56])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 00:26:51 -0700
-Date: Thu, 13 Jul 2023 08:26:49 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <ZK+nHLCltaxoxVw/@tursulin-desk>
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2023 00:39:04 -0700
+Message-ID: <81e65fb5-813c-da53-dd12-909f18739ef2@linux.intel.com>
+Date: Thu, 13 Jul 2023 08:39:02 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+References: <20230705160848.988464-1-andrzej.hajda@intel.com>
+ <20230706151611.1024576-1-andrzej.hajda@intel.com>
+ <ZK0sbz+h0r/PwYn2@ashyti-mobl2.lan>
+ <a9e34d7a-b22d-779c-67cb-88c69dc7ca6b@intel.com>
+ <ZK0+NXmKnEzeUtTI@ashyti-mobl2.lan>
+ <118e74c0-c1ce-fc6e-39f4-5518ace5d71e@intel.com>
+ <6f981dd3-715a-6b7e-6c5d-d51610cddc88@linux.intel.com>
+ <daeb0906-1b39-ebda-618f-dbce88f751bc@intel.com>
+ <c1ebfb0f-f0d4-1204-750a-b169d4ddab54@linux.intel.com>
+ <7db1b2b3-d496-1c70-a4bf-8ce08136fb10@intel.com>
+ <b1e2ccdb-e79b-d584-031c-5d71e2f524f5@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <b1e2ccdb-e79b-d584-031c-5d71e2f524f5@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: update request engine
+ before removing virtual GuC engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,57 +75,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
 
-Just a few small fixes for the 6.5 RC this week - one functional fixup for
-reading of perf/OA buffers and some code cleanups elsewhere.
+On 12/07/2023 19:54, John Harrison wrote:
+> On 7/12/2023 09:27, Andrzej Hajda wrote:
+>> On 12.07.2023 14:35, Tvrtko Ursulin wrote:
+>>> On 12/07/2023 13:18, Andrzej Hajda wrote:
+>>>> On 11.07.2023 17:27, Tvrtko Ursulin wrote:
+>>>>> On 11/07/2023 14:58, Andrzej Hajda wrote:
+>>>>>> On 11.07.2023 13:34, Andi Shyti wrote:
+>>>>>>> Hi Andrzej,
+>>>>>>>
+>>>>>>>> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 +++++++++++
+>>>>>>>>           1 file changed, 11 insertions(+)
+>>>>>>>>
+>>>>>>>>          diff --git 
+>>>>>>>> a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
+>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>>          index a0e3ef1c65d246..2c877ea5eda6f0 100644
+>>>>>>>>          --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>>          +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>>>>>          @@ -3461,6 +3461,8 @@ static void guc_prio_fini(struct 
+>>>>>>>> i915_request *rq, struct intel_context *ce)
+>>>>>>>>           static void remove_from_context(struct i915_request *rq)
+>>>>>>>>           {
+>>>>>>>>                  struct intel_context *ce = 
+>>>>>>>> request_to_scheduling_context(rq);
+>>>>>>>>          +       struct intel_engine_cs *engine;
+>>>>>>>>          +       intel_engine_mask_t tmp;
+>>>>>>>>
+>>>>>>>> GEM_BUG_ON(intel_context_is_child(ce));
+>>>>>>>>
+>>>>>>>>          @@ -3478,6 +3480,15 @@ static void 
+>>>>>>>> remove_from_context(struct i915_request *rq)
+>>>>>>>>
+>>>>>>>>                  atomic_dec(&ce->guc_id.ref);
+>>>>>>>> i915_request_notify_execute_cb_imm(rq);
+>>>>>>>>          +
+>>>>>>>>          +       /*
+>>>>>>>>          +        * GuC virtual engine can disappear after this 
+>>>>>>>> call, so let's assign
+>>>>>>>>          +        * something valid, as driver expects this to 
+>>>>>>>> be always valid pointer.
+>>>>>>>>          +        */
+>>>>>>>>          +       for_each_engine_masked(engine, rq->engine->gt, 
+>>>>>>>> rq->execution_mask, tmp) {
+>>>>>>>>          +               rq->engine = engine;
+>>>>>>>>
+>>>>>>>>      yes... here the context might lose the virtual engine... I 
+>>>>>>>> wonder
+>>>>>>>>      whether this is the rigth solution, though. Maybe we should 
+>>>>>>>> set
+>>>>>>>>      rq->engine = NULL; and check for NULL? Don't know.
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> Setting NULL causes occasional null page de-reference in
+>>>>>>>>
+>>>>>>>> i915_request_wait_timeout:
+>>>>>>>>
+>>>>>>>> mutex_release(&rq->engine->gt->reset.mutex.dep_map, _THIS_IP_)
+>>>>>>>>
+>>>>>>>> rq->engine after removing rq from context is (IMHO) used as a 
+>>>>>>>> set of aliases
+>>>>>>>> for gt and i915 (despite rq itself contains the alias to i915).
+>>>>>>> without investigating further, but maybe that code is not even
+>>>>>>> supposed to be executed, at this point, if the request's assigned
+>>>>>>> virtual engine is removed.
+>>>>>>
+>>>>>> Real tests show it is executed and the function 
+>>>>>> i915_request_wait_timeout is quite generic
+>>>>>> I guess it is quite typical use-case, the only question is about 
+>>>>>> timings - what happens earlier -
+>>>>>> finalization of i915_request_wait_timeout or context removal.
+>>>>>>
+>>>>>> The other point rq->engine is accessed after context removal is 
+>>>>>> i915_fence_release -
+>>>>>> there is long comment there regarding virtual context and reuse 
+>>>>>> retired rq.
+>>>>>> Anyway calling there "intel_engine_is_virtual(rq->engine)" is 
+>>>>>> risky without this patch and KASAN complains clearly about it:
+>>>>>> http://gfx-ci.igk.intel.com/tree/drm-tip/kasan.html?testfilter=gem_exec_balancer
+>>>>>
+>>>>> Looks like a bug introduced in bcb9aa45d5a0 ("Revert "drm/i915: 
+>>>>> Hold reference to intel_context over life of i915_request""), which 
+>>>>> was a partial revert of 1e98d8c52ed5 ("drm/i915: Hold reference to 
+>>>>> intel_context over life of i915_request").
+>>>>>
+>>>>> Ie. if 1e98d8c52ed5 recognised the problem with disappearing 
+>>>>> rq->engine, then I am confused how bcb9aa45d5a0 left the rq->engine 
+>>>>> dereference in there after removing the extra reference.
+>>>>>
+>>>>> Could it be that the intel_engine_is_virtual check simply needs to 
+>>>>> be removed from i915_fence_release, restoring things to how they 
+>>>>> were before 1e98d8c52ed5? Could you try it out?
+>>>>
+>>>>
+>>>> I have already tried something similar [1] and KASAN bugs 
+>>>> disappeared, or more precisely gem_exec_balance tests passed. But I 
+>>>> have been warned by Nirmoy guc virtual engines can be created for 
+>>>> only one real engine (ie. is_power_of_2(rq->execution_mask) is true 
+>>>> but rq->engine points to virtual engine).
+>>>>
+>>>> [1]: https://patchwork.freedesktop.org/series/118879/
+>>>
+>>> Ugh.. Try involving media umd folks to see if they need a single 
+>>> engine virtual engine? Or we could always just not create it in the 
+>>> driver, I mean just use the physical one.
+>>
+>>
+>> In case there is single physical engine intel_engine_create_virtual 
+>> falls back to intel_context_create (no virtual engine), but in case of 
+>> parallel contexts there is special KMD flag FORCE_VIRTUAL which 
+>> enforces virtual engine even for single physical engine. So it seems 
+>> to be KMD concept.
+>>
+>> Anyway is it worth investigating how to make 
+>> "is_power_of_2(rq->execution_mask)" indication of dangling engine 
+>> pointer? It will not help in 1st case:
+>> mutex_release(&rq->engine->gt->reset.mutex.dep_map, _THIS_IP_)
+>>
+>>
+> There seems to be a fundamental problem here. Object 1 (rq) is holding a 
+> pointer to a reference counted and transient object 2 (engine) but 
+> without taking a reference count for itself. That is a Bad Thing(tm). 
+> I'm not following the description in the revert patch as to why rq can't 
+> ref count the context/engine. Is there actually a recursive counting 
+> problem? Or is it just a lifetime issue caused by requests hanging 
+> around indefinitely because they are locked by a user process?
+> 
+> Either way, jumping through convoluted hoops to ensure the code does not 
+> attempt to dereference a dangling pointer seems like the wrong fix. 
+> Removing the engine pointer when the request is completed and no longer 
+> dependent upon an engine (but before the engine can possibly be 
+> destroyed) seems like a much better solution. And then making the 
+> request handling code check for and cope with a null engine pointer. It 
+> sounds like the only problem there is the above mutex, but there is an 
+> alternate route to that? Although why a completed request would need 
+> access to a GT reset mutex seems confusing. If the request is done, then 
+> what connection does it still have to the GT?
+
+Agreed in principle but the question is how invasive would it be to 
+change the rules.
+
+With the latest info that the issue is really just the GuC _parallel_ 
+engine setup, and looking at the code, I wonder if we couldn't just flag 
+the rq->flags with "kernel context request". The code in 
+i915_fence_release claims the rq pool is only relevant for those so it 
+sounds it would be safe to skip everything else based on that new flag.
+
+For the mutex_release path, presumable the bad deref is only _after_ the 
+wait, right? (Only once the request has been retired.)
+
+In which case caching the gt pointer at the start of 
+i915_request_wait_timeout would be sufficient.
+
+That should be a few lines fixup overall and then the idea of allowing 
+rq->engine to be reset to NULL can be explored more leisurely.
 
 Regards,
 
 Tvrtko
-
-drm-intel-fixes-2023-07-13:
-- Don't preserve dpll_hw_state for slave crtc in Bigjoiner (Stanislav Lisovskiy)
-- Consider OA buffer boundary when zeroing out reports [perf] (Umesh Nerlige Ramappa)
-- Remove dead code from gen8_pte_encode (Tvrtko Ursulin)
-- Fix one wrong caching mode enum usage (Tvrtko Ursulin)
-The following changes since commit 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5:
-
-  Linux 6.5-rc1 (2023-07-09 13:53:13 -0700)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-07-13
-
-for you to fetch changes up to 113899c2669dff148b2a5bea4780123811aecc13:
-
-  drm/i915: Fix one wrong caching mode enum usage (2023-07-11 09:21:32 +0100)
-
-----------------------------------------------------------------
-- Don't preserve dpll_hw_state for slave crtc in Bigjoiner (Stanislav Lisovskiy)
-- Consider OA buffer boundary when zeroing out reports [perf] (Umesh Nerlige Ramappa)
-- Remove dead code from gen8_pte_encode (Tvrtko Ursulin)
-- Fix one wrong caching mode enum usage (Tvrtko Ursulin)
-
-----------------------------------------------------------------
-Stanislav Lisovskiy (1):
-      drm/i915: Don't preserve dpll_hw_state for slave crtc in Bigjoiner
-
-Tvrtko Ursulin (2):
-      drm/i915: Remove dead code from gen8_pte_encode
-      drm/i915: Fix one wrong caching mode enum usage
-
-Umesh Nerlige Ramappa (1):
-      drm/i915/perf: Consider OA buffer boundary when zeroing out reports
-
- drivers/gpu/drm/i915/display/intel_display.c |  1 -
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c         |  3 ---
- drivers/gpu/drm/i915/gt/intel_gtt.c          |  2 +-
- drivers/gpu/drm/i915/i915_perf.c             | 11 ++++++++++-
- 4 files changed, 11 insertions(+), 6 deletions(-)
