@@ -2,49 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60CE27518CD
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 08:31:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4A007519EC
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 09:28:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B785610E191;
-	Thu, 13 Jul 2023 06:31:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E96AF10E60F;
+	Thu, 13 Jul 2023 07:28:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DFE110E5A0
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jul 2023 06:31:12 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31EF710E60D;
+ Thu, 13 Jul 2023 07:28:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689229872; x=1720765872;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ekshvkrcL/eHvKwMQh+tISaq5nudK8LILs/NczX6dbM=;
- b=lriqOgAgmQJy8mCEO/+vYixSLqZ72AgGYmvuvf6rF7Y2TcxJg7kfCNgZ
- +e1IDeoo3R2NK21o6XIafecunDwxp3k9ROj8eN4lQOf/w3cpi/kZeSW3R
- q9dXB90gBbHTCOKYqS8Q42G/NlXD2KHrBqo1jzKFfGu5r3QDXP36ytvya
- DIx1giIV+SH276jjRBxNLW67fx0XeMvv3wLYuFxZv7LEg9UKBRS2dtBdp
- iaxPYelY3lZf0k+L0ZfPuhKZzU/7rpPYmxxBFRFMYaPnnD+TKwgMuhyM7
- Fz++jdZRvDLU22L/qGVJ5SThD4h4zbmRNjlA4gE6JT/PQKtMrn8722C/3 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="365133779"
-X-IronPort-AV: E=Sophos;i="6.01,201,1684825200"; d="scan'208";a="365133779"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2023 23:31:11 -0700
+ t=1689233296; x=1720769296;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=9NYx/YyOAo3XxlPiXm5jdCZsFrSJVXJKbqcBKmFsCQQ=;
+ b=W2Ll2WTXLfyjgXgKSQYglhTZQFKCqcxHSJoM4KfMz50s5Oug3KtYGzmm
+ DNA486CaR0nVWDV9xapzVsAU88wIcMPaL9hVoEUs6JARCQu1xrH4BBFKu
+ Mk8hBbQeaWAAC290otMLZy2DLZBC9WZTWHQ8Y8s2pE+c0+RBXO5awuZqi
+ MvQrcTGgAXrq3yaDGOy7JM9b/S6zZ+UedWECNm6a/+GrVjw0riihjKcYF
+ PHkwclnR9VgiM6a3J/Rq0xEFkzVyeoeBMUaY3DCOyWZF6o6IRX5IArXVZ
+ +UttX3hhaOyd5p8nFb9UxyT/lxzZFc5aRENsBqUyHpTxTlG8gHaC/rxej A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="395914972"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="395914972"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2023 00:27:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="699135448"
-X-IronPort-AV: E=Sophos;i="6.01,201,1684825200"; d="scan'208";a="699135448"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga006.jf.intel.com with ESMTP; 12 Jul 2023 23:31:09 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 Jul 2023 11:59:24 +0530
-Message-Id: <20230713062924.2894736-7-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230713062924.2894736-1-suraj.kandpal@intel.com>
-References: <20230713062924.2894736-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10769"; a="835468324"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="835468324"
+Received: from apaulaux-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.213.206.56])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2023 00:26:51 -0700
+Date: Thu, 13 Jul 2023 08:26:49 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <ZK+nHLCltaxoxVw/@tursulin-desk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 6/6] drm/i915/display: Compare the readout
- dsc pps params
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,65 +55,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With the dsc config being readout and filled in crtc_state add
-macros and use them to compare current and previous PPS param in
-DSC.
+Hi Dave, Daniel,
 
---v2
--Remove version check [Jani]
--Remove dupe macro for dsc pipe compare and use the existing ones
-[Jani]
+Just a few small fixes for the 6.5 RC this week - one functional fixup for
+reading of perf/OA buffers and some code cleanups elsewhere.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 31 ++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+Regards,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 43cba98f7753..9c407ceb082e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5376,6 +5376,37 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_I(master_transcoder);
- 	PIPE_CONF_CHECK_X(bigjoiner_pipes);
- 
-+	PIPE_CONF_CHECK_BOOL(dsc.config.block_pred_enable);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.convert_rgb);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.simple_422);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.native_422);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.native_420);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.vbr_enable);
-+	PIPE_CONF_CHECK_I(dsc.config.line_buf_depth);
-+	PIPE_CONF_CHECK_I(dsc.config.bits_per_component);
-+	PIPE_CONF_CHECK_I(dsc.config.pic_width);
-+	PIPE_CONF_CHECK_I(dsc.config.pic_height);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_width);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_height);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_dec_delay);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_xmit_delay);
-+	PIPE_CONF_CHECK_I(dsc.config.scale_decrement_interval);
-+	PIPE_CONF_CHECK_I(dsc.config.scale_increment_interval);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_scale_value);
-+	PIPE_CONF_CHECK_I(dsc.config.first_line_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.flatness_min_qp);
-+	PIPE_CONF_CHECK_I(dsc.config.flatness_max_qp);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.nfl_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.final_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.rc_model_size);
-+	PIPE_CONF_CHECK_I(dsc.config.rc_quant_incr_limit0);
-+	PIPE_CONF_CHECK_I(dsc.config.rc_quant_incr_limit1);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_chunk_size);
-+	PIPE_CONF_CHECK_I(dsc.config.second_line_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.nsl_bpg_offset);
-+
- 	PIPE_CONF_CHECK_I(dsc.compression_enable);
- 	PIPE_CONF_CHECK_I(dsc.dsc_split);
- 	PIPE_CONF_CHECK_I(dsc.compressed_bpp);
--- 
-2.25.1
+Tvrtko
 
+drm-intel-fixes-2023-07-13:
+- Don't preserve dpll_hw_state for slave crtc in Bigjoiner (Stanislav Lisovskiy)
+- Consider OA buffer boundary when zeroing out reports [perf] (Umesh Nerlige Ramappa)
+- Remove dead code from gen8_pte_encode (Tvrtko Ursulin)
+- Fix one wrong caching mode enum usage (Tvrtko Ursulin)
+The following changes since commit 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5:
+
+  Linux 6.5-rc1 (2023-07-09 13:53:13 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-07-13
+
+for you to fetch changes up to 113899c2669dff148b2a5bea4780123811aecc13:
+
+  drm/i915: Fix one wrong caching mode enum usage (2023-07-11 09:21:32 +0100)
+
+----------------------------------------------------------------
+- Don't preserve dpll_hw_state for slave crtc in Bigjoiner (Stanislav Lisovskiy)
+- Consider OA buffer boundary when zeroing out reports [perf] (Umesh Nerlige Ramappa)
+- Remove dead code from gen8_pte_encode (Tvrtko Ursulin)
+- Fix one wrong caching mode enum usage (Tvrtko Ursulin)
+
+----------------------------------------------------------------
+Stanislav Lisovskiy (1):
+      drm/i915: Don't preserve dpll_hw_state for slave crtc in Bigjoiner
+
+Tvrtko Ursulin (2):
+      drm/i915: Remove dead code from gen8_pte_encode
+      drm/i915: Fix one wrong caching mode enum usage
+
+Umesh Nerlige Ramappa (1):
+      drm/i915/perf: Consider OA buffer boundary when zeroing out reports
+
+ drivers/gpu/drm/i915/display/intel_display.c |  1 -
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c         |  3 ---
+ drivers/gpu/drm/i915/gt/intel_gtt.c          |  2 +-
+ drivers/gpu/drm/i915/i915_perf.c             | 11 ++++++++++-
+ 4 files changed, 11 insertions(+), 6 deletions(-)
