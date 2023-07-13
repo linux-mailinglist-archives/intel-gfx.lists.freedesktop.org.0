@@ -2,48 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3041752ACD
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 21:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 015EE752B12
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 21:38:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17E2210E779;
-	Thu, 13 Jul 2023 19:13:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E53710E0A8;
+	Thu, 13 Jul 2023 19:38:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 774D210E777;
- Thu, 13 Jul 2023 19:13:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=SlWSwhHe+t/+5CD+8qzJLYQdlCsQhw+Uh2KGkPXB6kM=; b=vg3XLPJFrNw3vBwRCjiW5YxOq2
- J7z60gNJOjveg32CLIuJ85nynYH5q14lwRsCJUluPBYOWCNDwUUPmAzN1bbzgN4io1hrdAbNn+bet
- LvHAEgJAI3o+TolSH/sGJ6361Hl5rgpW0e7WaGYCAX2Jmm6BKgnZf+Xvchn5LU/nzwqptkUtfZPrg
- RIUS2TMNeUwzQXngfHeIGUDygAngNJiGYqLfhn/ym9A0WNBTTT/Qqyl22ZXC/vOOrpOxsQ0i3H5Ne
- RShtljbjCUdcWFxd8DVqFRYbU1479QbYMDVCzwsl/nd+vfJEiyINMToaackbPhBPrWaqhPUhfEKOJ
- iAesR+Yw==;
-Received: from [2601:1c2:980:9ec0::2764]
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1qK1l4-004DOL-2N; Thu, 13 Jul 2023 19:13:46 +0000
-Message-ID: <76995421-a529-ac25-c306-2e4ac2844602@infradead.org>
-Date: Thu, 13 Jul 2023 12:13:45 -0700
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 11B3510E0A8;
+ Thu, 13 Jul 2023 19:38:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 095E3AADE1;
+ Thu, 13 Jul 2023 19:38:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Content-Language: en-US
-To: Jim Cromie <jim.cromie@gmail.com>, jbaron@akamai.com,
- daniel.vetter@ffwll.ch, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20230713163626.31338-1-jim.cromie@gmail.com>
- <20230713163626.31338-22-jim.cromie@gmail.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20230713163626.31338-22-jim.cromie@gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v4 21/21] dyndbg-doc: add classmap info to
- howto
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Thu, 13 Jul 2023 19:38:23 -0000
+Message-ID: <168927710300.14985.5325919169035073988@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230713152718.645488-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20230713152718.645488-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BRFC=2C1/2=5D_drm/i915=3A_Refactor_P?=
+ =?utf-8?q?AT/object_cache_handling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,107 +41,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, gregkh@linuxfoundation.org, seanpaul@chromium.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: series starting with [RFC,1/2] drm/i915: Refactor PAT/object cache handling
+URL   : https://patchwork.freedesktop.org/series/120686/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+49bef4e97877 drm/i915: Refactor PAT/object cache handling
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:734: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#734: FILE: drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c:63:
++i915_ttm_cache_pat(struct drm_i915_private *i915, struct ttm_resource *res,
+ 		     struct ttm_tt *ttm)
+
+-:1347: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#1347: 
+new file mode 100644
+
+-:1352: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#1352: FILE: drivers/gpu/drm/i915/i915_cache.c:1:
++/*
+
+-:1353: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
+#1353: FILE: drivers/gpu/drm/i915/i915_cache.c:2:
++ * SPDX-License-Identifier: MIT
+
+-:1406: WARNING:STATIC_CONST_CHAR_ARRAY: static const char * array should probably be static const char * const
+#1406: FILE: drivers/gpu/drm/i915/i915_cache.c:55:
++	static const char *mode_str[] = {
+
+-:1412: WARNING:STATIC_CONST_CHAR_ARRAY: static const char * array should probably be static const char * const
+#1412: FILE: drivers/gpu/drm/i915/i915_cache.c:61:
++	static const char *flag_str[] = {
+
+-:1462: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#1462: FILE: drivers/gpu/drm/i915/i915_cache.h:17:
++#define I915_CACHE(mode) \
++	(i915_cache_t)(I915_CACHE_MODE_##mode)
+
+-:1467: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#1467: FILE: drivers/gpu/drm/i915/i915_cache.h:22:
++#define _I915_CACHE(mode, flag) \
++	(i915_cache_t)((I915_CACHE_MODE_##mode) | __I915_CACHE_FLAG(flag))
+
+-:1470: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#1470: FILE: drivers/gpu/drm/i915/i915_cache.h:25:
++#define __I915_CACHE(mode, flags) \
++	(i915_cache_t)((I915_CACHE_MODE_##mode) | ((flags) << 8))
+
+-:1473: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#1473: FILE: drivers/gpu/drm/i915/i915_cache.h:28:
++#define I915_CACHE_MODE(cache) \
++	(enum i915_cache_mode)(((i915_cache_t)(cache)) & 0xff)
+
+-:1475: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#1475: FILE: drivers/gpu/drm/i915/i915_cache.h:30:
++#define I915_CACHE_FLAGS(cache) \
++	(unsigned int)((((i915_cache_t)(cache) & 0xff00)) >> 8)
+
+-:2081: WARNING:LINE_CONTINUATIONS: Avoid unnecessary line continuations
+#2081: FILE: drivers/gpu/drm/i915/selftests/mock_gem_device.c:134:
++		[2] = __I915_CACHE(WB, BIT(I915_CACHE_FLAG_COH1W) | BIT(I915_CACHE_FLAG_L3)), \
+
+total: 5 errors, 6 warnings, 1 checks, 1729 lines checked
+df03c572f382 drm/i915: Remove PAT hack from i915_gem_object_can_bypass_llc
+-:14: WARNING:REPEATED_WORD: Possible repeated word: 'is'
+#14: 
+index can (bypass the LLC), question is is there a such PAT index on a
+
+total: 0 errors, 1 warnings, 0 checks, 12 lines checked
 
 
-On 7/13/23 09:36, Jim Cromie wrote:
-> Add some basic info on classmap usage and api
-> 
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> ---
->  .../admin-guide/dynamic-debug-howto.rst       | 64 ++++++++++++++++++-
->  1 file changed, 63 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
-> index 8dc668cc1216..878750ce8c1d 100644
-> --- a/Documentation/admin-guide/dynamic-debug-howto.rst
-> +++ b/Documentation/admin-guide/dynamic-debug-howto.rst
-
-> @@ -374,3 +373,66 @@ just a shortcut for ``print_hex_dump(KERN_DEBUG)``.
->  For ``print_hex_dump_debug()``/``print_hex_dump_bytes()``, format string is
->  its ``prefix_str`` argument, if it is constant string; or ``hexdump``
->  in case ``prefix_str`` is built dynamically.
-> +
-> +Dynamic Debug classmaps
-> +=======================
-> +
-> +Dyndbg generally selects *prdbg* callsites using structural info:
-> +module, file, function, line.  Using classmaps, user modules can
-> +organize/select pr_debug()s as they like.
-> +
-> +- classes coordinates/spans multiple modules
-> +- complements the mod,file,func attrs
-> +- keeps pr_debug's 0-off-cost JUMP_LABEL goodness
-> +- isolates from other class'd and un-class'd pr_debugs() 
-> +  (one doesnt mix 2 clients bank accounts)
-
-          doesn't
-
-> +
-> +  # IOW this doesn't change DRM.debug settings
-> +  #> echo -p > /proc/dynamic_debug/control
-> +
-> +  # change the classes by naming them explicitly (no wildcard here)
-> +  #> echo class DRM_UT_CORE +p > /proc/dynamic_debug/control
-> +
-> +To support DRM.debug (/sys/module/drm/parameters/debug), dyndbg
-> +provides DYNDBG_CLASSMAP_PARAM*.  It maps the categories/classes:
-> +DRM_UT_CORE.. to bits 0..N, allowing to set all classes at once.
-> +
-> +Dynamic Debug Classmap API
-> +==========================
-> +
-> +DYNDBG_CLASSMAP_DEFINE - modules create CLASSMAPs, naming the classes
-> +and type, and mapping the class-names to consecutive _class_ids.  By
-> +doing so, they tell dyndbg that they are using those class_ids, and
-> +authorize dyndbg to manipulate the callsites by their class-names.
-> +
-> +Its expected that client modules will follow the DRM.debug model:
-> +1. define their debug-classes using an enum type, where the enum
-> +symbol and its integer value define both the classnames and class-ids.
-> +2. use or macro-wrap __pr_debug_cls(ENUM_VAL, "hello world\n")
-> +   
-> +There are 2 types of classmaps:
-> +
-> + DD_CLASS_TYPE_DISJOINT_BITS: classes are independent, ala DRM.debug
-
-                                                          a la
-or just                                                   like
-
-> + DD_CLASS_TYPE_LEVEL_NUM: classes are relative (Verbose3 > Verbose2)
-> +
-> +Both these classmap-types use the class-names/ENUM_VALs to validate
-> +commands into >control.
-> +
-> +DYNDBG_CLASSMAP_PARAM - refs a DEFINEd classmap, exposing the set of
-
-Is this:                   refers to a
-?
-
-> +defined classes to manipulation as a group.  This interface enforces
-> +the relatedness of classes of DD_CLASS_TYPE_LEVEL_NUM typed classmaps;
-> +all classes are independent in the >control parser itself.
-> +
-> +DYNDBG_CLASSMAP_USE - drm drivers use the CLASSMAP that drm DEFINEs.
-> +This shares the classmap defn, and authorizes coordinated changes
-
-                            definition,
-
-> +amongst the CLASSMAP DEFINEr and multiple USErs.
-> +
-> +Modules or module-groups (drm & drivers) can define multiple
-> +classmaps, as long as they share the limited 0..62 per-module-group
-> +_class_id range, without overlap.
-> +
-> +``#define DEBUG`` will enable all pr_debugs in scope, including any
-> +class'd ones (__pr_debug_cls(id,fmt..)).  This won't be reflected in
-> +the PARAM readback value, but the pr_debug callsites can be toggled
-> +into agreement with the param.
-> +
-
-thanks.
--- 
-~Randy
