@@ -2,51 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32FAC75219F
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 14:47:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF7DF7521F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jul 2023 14:55:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70BA510E129;
-	Thu, 13 Jul 2023 12:47:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA36910E1AC;
+	Thu, 13 Jul 2023 12:55:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 934D210E129
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jul 2023 12:47:38 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C07E310E1AC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jul 2023 12:55:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689252458; x=1720788458;
+ t=1689252925; x=1720788925;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=tFGYAy2/a1FB4/0cJLUDQ/63wMPR9fwdsQUsRwpdGf4=;
- b=job589SQMlmKNlB2ZCC+Qdhtn8KOT1LzUYqEG3nURR+Rs/ROJWKN3hho
- 2N7puk6C2AgKWYNVjZ6CI2c4WfR+sX4XxJpaavPQzXgQGV1wq9spWjqw9
- bnxqjWYpZfwIdd+ZfcAgPi3RcNFqbIs/uivuiGiRvx1u6fQplH0P9Nqk+
- /cHc3a1mGpU2u8fDEhG0hzfWKHED6FrhXeYL02p6I20CxC0gLubQ/mgP4
- FJtMDU7e4eqocINqSTF3lbn91bNZTPVSFZbZ8ItU/Bn0sPLdrgSkpla1x
- 7noT0iYekubCPDr8jfuBlKUOhneL5BHgoKdLcg496Cb4WSzoWE7u5bAws Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="368708433"
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="368708433"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 05:47:38 -0700
+ bh=H/mUOfYmhCyWQqIhSWuCgI3FJljg7faoaAqfF6OxpdA=;
+ b=GeTzz2mBSLzquXCdzXjjuuIeZip3aSZsxdt7OJCz4sMVvWiyYBCcUoDj
+ OvWnWxvPKaIqRK24Zj6Zfq+LIqHQBgmax7/G7ScaiR4dEGAsUahZowN/3
+ 37D+gcQ1Af7WrBHQ6jZ6BkCoXEsQvvRRGFdxYdqtqDIzg2xfUctJywgzN
+ ryeT8bA4k7b2umYvxlRPtOgYxxqiUpKtLHjz1Q5OwGBwa4SBtSJHBer8K
+ Ld9nWpRGotuRF33YCyZQqUZnUbAzIRVBywPaZ8FMp6cK6MFBOPqPSxhbm
+ I44wwtjYkZUjXw1/+bbBLBBOULfSwnYu7gMbbSMgj+qg1uhqg5hl2ash0 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="350028991"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="350028991"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2023 05:55:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="792016672"
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="792016672"
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="1052603225"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="1052603225"
 Received: from atadj-mobl1.amr.corp.intel.com (HELO localhost) ([10.252.50.30])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 05:47:36 -0700
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2023 05:55:21 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230713062924.2894736-4-suraj.kandpal@intel.com>
+To: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@linux.intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "Ursulin, Tvrtko"
+ <tvrtko.ursulin@intel.com>
+In-Reply-To: <IA1PR11MB6266AE5FAB835A97C8C0349DE237A@IA1PR11MB6266.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230713062924.2894736-1-suraj.kandpal@intel.com>
- <20230713062924.2894736-4-suraj.kandpal@intel.com>
-Date: Thu, 13 Jul 2023 15:47:33 +0300
-Message-ID: <87h6q8f062.fsf@intel.com>
+References: <20230616114200.3228284-12-dnyaneshwar.bhadane@intel.com>
+ <20230710105815.2056018-1-dnyaneshwar.bhadane@intel.com>
+ <IA1PR11MB62660C3B6D48EA16DF2E7AFFE230A@IA1PR11MB6266.namprd11.prod.outlook.com>
+ <de17473e-09fa-9346-daf4-96bf12fa580c@linux.intel.com>
+ <871qhcgng8.fsf@intel.com>
+ <14a0d370-150b-f311-2a66-b8400163dd61@linux.intel.com>
+ <IA1PR11MB6266A7A8009AC987E421EBBCE237A@IA1PR11MB6266.namprd11.prod.outlook.com>
+ <6e6ba3ec-5051-400c-b05d-98ced1ffb8f7@linux.intel.com>
+ <IA1PR11MB6266AE5FAB835A97C8C0349DE237A@IA1PR11MB6266.namprd11.prod.outlook.com>
+Date: Thu, 13 Jul 2023 15:55:19 +0300
+Message-ID: <87edlcezt4.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v2 3/6] drm/i915/vdsc: Add function to read
- any PPS register
+Subject: Re: [Intel-gfx] [v3] drm/i915/mtl: s/MTL/METEORLAKE for
+ platform/subplatform defines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,342 +72,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Jul 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Add function to read any PPS register based on the
-> intel_dsc_pps enum provided. Add a function which will call the
-> new pps read function and place it in crtc state. Only PPS0 and
-> PPS1 are readout the rest of the registers will be read in upcoming
-> patches.
+On Thu, 13 Jul 2023, "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com> wrote:
+>> -----Original Message-----
+>> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Sent: Thursday, July 13, 2023 5:55 PM
+>> To: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>; Jani Nikula
+>> <jani.nikula@linux.intel.com>; intel-gfx@lists.freedesktop.org; Ursulin,
+>> Tvrtko <tvrtko.ursulin@intel.com>
+>> Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; Shankar, Uma
+>> <uma.shankar@intel.com>
+>> Subject: Re: [Intel-gfx] [v3] drm/i915/mtl: s/MTL/METEORLAKE for
+>> platform/subplatform defines
+>> 
+>> 
+>> On 13/07/2023 13:12, Bhadane, Dnyaneshwar wrote:
+>> >
+>> >
+>> >> -----Original Message-----
+>> >> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> >> Sent: Thursday, July 13, 2023 5:26 PM
+>> >> To: Jani Nikula <jani.nikula@linux.intel.com>; Bhadane, Dnyaneshwar
+>> >> <dnyaneshwar.bhadane@intel.com>; intel-gfx@lists.freedesktop.org;
+>> >> Ursulin, Tvrtko <tvrtko.ursulin@intel.com>
+>> >> Subject: Re: [Intel-gfx] [v3] drm/i915/mtl: s/MTL/METEORLAKE for
+>> >> platform/subplatform defines
+>> >>
+>> >>
+>> >> On 13/07/2023 10:39, Jani Nikula wrote:
+>> >>> On Thu, 13 Jul 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> wrote:
+>> >>>> On 10/07/2023 14:44, Bhadane, Dnyaneshwar wrote:
+>> >>>>>> -----Original Message-----
+>> >>>>>> From: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>
+>> >>>>>> Sent: Monday, July 10, 2023 4:28 PM
+>> >>>>>> To: intel-gfx@lists.freedesktop.org
+>> >>>>>> Cc: Ursulin, Tvrtko <tvrtko.ursulin@intel.com>;
+>> >>>>>> jani.nikula@linux.intel.com; Srivatsa, Anusha
+>> >>>>>> <anusha.srivatsa@intel.com>; Bhadane, Dnyaneshwar
+>> >>>>>> <dnyaneshwar.bhadane@intel.com>
+>> >>>>>> Subject: [v3] drm/i915/mtl: s/MTL/METEORLAKE for
+>> >>>>>> platform/subplatform defines
+>> >>>>>>
+>> >>>>>> Follow consistent naming convention. Replace MTL with
+>> METEORLAKE.
+>> >>>>>> Added defines that are replacing IS_MTL_GRAPHICS_STEP with
+>> >>>>>> IS_METEORLAKE_P_GRAPHICS_STEP and
+>> >> IS_METEORLAKE_M_GRAPHICS_STEP.
+>> >>>>>> Also replaced IS_METEORLAKE_MEDIA_STEP instead of
+>> >> IS_MTL_MEDIA_STEP
+>> >>>>>> and IS_METEORLAKE_DISPLAY_STEP instead of
+>> IS_MTL_DISPLAY_STEP.
+>> >>>>>>
+>> >>>>> Hi Tvrtko,
+>> >>>>> Could you please give the feedback on this ? or suggestion
+>> >>>>> regarding the
+>> >> approach.
+>> >>>>
+>> >>>> It's a step in the right direction I just wish we could do all
+>> >>>> churning in one go.
+>> >>>>
+>> >>>> Have you captured IS_CFL and IS_CML in the series? ICL? HSW? Any
+>> >>>> other I am missing?
+>> >>>>
+>> >>>> What have we concluded on Jani's suggestion to split it all to
+>> >>>> IS_<platform> && IS_<subsys>?
+>> >>>
+>> >>> IS_<platform> && IS_<step> is what I was after.
+>> >>
+>> >> Yeah I mistyped. I liked that to so would get my ack.
+>> >>
+>> >>>> If you have a) captured all IS_<tla> and b) Jani acks the series
+>> >>>> too, I guess go ahead.
+>> >>>>
+>> >>>> Hm.. what have we concluded to do with IS_JASPERLAKE_EHL?
+>> >>>
+>> >>> For sure it can't be *that*. It's JSL *or* EHL. Not subplatform.
+>> >>
+>> >> IS_ELKHARTLAKE would indeed work and platform/subplatform can be
+>> >> hidden implementation detail.
+>> >>
+>> >>>> P.S.
+>> >>>> I still think these suck though:
+>> >>>>
+>> >>>> 	if (IS_METEORLAKE_M_GRAPHICS_STEP(i915, STEP_A0, STEP_B0) ||
+>> >>>> 	    IS_METEORLAKE_P_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+>> >>>
+>> >>> I still find it appealing to a) go towards shorter acronyms instead
+>> >>> of long names, and b) to separate platform and stepping checks
+>> >>> because they're orthogonal. They're only bundled together for
+>> >>> historical reasons, and to keep the conditions shorter.
+>> >>>
+>> >>> The above could be:
+>> >>>
+>> >>> 	if (IS_MTL(i915) && IS_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
+>> >>
+>> >> I'd be super pleased with that.
+>> >
+>> > Could we use the above suggestion for MTL variants for P/M? also
+>> replacing MTL with METEORLAKE.
+>> >
+>> > Using the format:  IS_FULL_PLATFORM_NAME &&
+>> IS_GRAPHICS_STEP(i915, STEP_A0, STEP_B0).
+>> >
+>> > It will change to :
+>> > 	For M:	IS_METEORLAKE_M(i915) && IS_GRAPHICS_STEP(i915,
+>> STEP_A0, STEP_B0)
+>> > 	For P:	IS_METEORLAKE_P(i915) && IS_GRAPHICS_STEP(i915,
+>> STEP_A0, STEP_B0)
+>> 
+>> You could, but you'd only get a meh from me. :) Why you'd insist to keep the
+>> two checks? Are we expecting IS_METEROLAKE_<X> at some point?
 >
-> --v2
-> -Changes in read function as PPS enum is removed
-> -Initialize pps_val as 0 in pps_read func itself [Jani]
-> -Create a function that gets the required register and call that
-> in the common read function [Jani]
-> -Move the drm_WARN_ON one abstraction layer above [Jani]
+> For example FILE PATH:  drivers/gpu/drm/i915/gt/intel_workarounds.c
 >
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vdsc.c | 276 +++++++++++++++++++---
->  1 file changed, 242 insertions(+), 34 deletions(-)
+> Multiple occurrences of IS_MTL_GRAPHICS_STEP(i915, M/P, STEP_B0, STEP_FOREVER)
+> Where P and M are passed explicitly. That why we can not check IS_METEORLAKE()
+> as single check.
+> IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+> 	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index d48b8306bfc3..48273a3618c5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -303,6 +303,196 @@ int intel_dsc_get_num_vdsc_instances(const struct intel_crtc_state *crtc_state)
->  	return num_vdsc_instances;
->  }
->  
-> +static void intel_dsc_get_pps_reg(struct intel_crtc_state *crtc_state, int pps,
-> +				  int dsc_eng_no, i915_reg_t *dsc_reg)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	enum pipe pipe = crtc->pipe;
-> +	bool pipe_dsc;
-> +
-> +	pipe_dsc = is_pipe_dsc(crtc, cpu_transcoder);
-> +
-> +	switch (pps) {
-> +	case 0:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_0;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_0;
-> +		}
-> +		break;
-> +	case 1:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_1(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_1;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_1;
-> +		}
-> +		break;
-> +	case 2:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_2(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_2(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_2;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_2;
-> +		}
-> +		break;
-> +	case 3:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_3(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_3(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_3;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_3;
-> +		}
-> +		break;
-> +	case 4:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_4(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_4(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_4;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_4;
-> +		}
-> +		break;
-> +	case 5:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_5(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_5(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_5;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_5;
-> +		}
-> +		break;
-> +	case 6:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_6(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_6(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_6;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_6;
-> +		}
-> +		break;
-> +	case 7:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_7(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_7(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_7;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_7;
-> +		}
-> +		break;
-> +	case 8:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_8(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_8(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_8;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_8;
-> +		}
-> +		break;
-> +	case 9:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_9(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_9(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_9;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_9;
-> +		}
-> +		break;
-> +	case 10:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_10(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_10(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_10;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_10;
-> +		}
-> +		break;
-> +	case 16:
-> +		if (pipe_dsc) {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = ICL_DSC1_PICTURE_PARAMETER_SET_16(pipe);
-> +			else
-> +				*dsc_reg = ICL_DSC0_PICTURE_PARAMETER_SET_16(pipe);
-> +		} else {
-> +			if (dsc_eng_no == 2)
-> +				*dsc_reg = DSCA_PICTURE_PARAMETER_SET_16;
-> +			else
-> +				*dsc_reg = DSCC_PICTURE_PARAMETER_SET_16;
-> +		}
-> +		break;
-> +	/*
-> +	 * Since PPS_17 and PPS_18 were introduced from MTL dsc check
-> +	 * need not be done
-> +	 */
-> +	case 17:
-> +		if (dsc_eng_no == 2)
-> +			*dsc_reg = MTL_DSC1_PICTURE_PARAMETER_SET_17(pipe);
-> +		else
-> +			*dsc_reg = MTL_DSC0_PICTURE_PARAMETER_SET_17(pipe);
-> +		break;
-> +	case 18:
-> +		if (dsc_eng_no == 2)
-> +			*dsc_reg = MTL_DSC1_PICTURE_PARAMETER_SET_18(pipe);
-> +		else
-> +			*dsc_reg = MTL_DSC0_PICTURE_PARAMETER_SET_18(pipe);
-> +		break;
-> +	default:
-> +		drm_err(&i915->drm, "PPS register does not exist\n");
-> +		break;
-> +	}
-> +}
-> +
->  static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> @@ -930,16 +1120,64 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
->  	}
->  }
->  
-> +static bool intel_dsc_read_pps_reg(struct intel_crtc_state *crtc_state,
-> +				   int pps, u32 *pps_val)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	int num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);
-> +	i915_reg_t dsc_reg;
-> +	u32 pps_temp;
-> +
-> +	*pps_val = 0;
-> +
-> +	intel_dsc_get_pps_reg(crtc_state, pps, 0, &dsc_reg);
-> +	*pps_val = intel_de_read(i915, dsc_reg);
-> +	if (num_vdsc_instances > 1) {
+> The IS_GRAPHICS_STEP is generic macro and used by other platforms also. 
+> On changing the IS_GRAPHICS_STEP  only  for MTL variants is lead to affect the other 
+> platform. The IS_METEORLAKE_P(i915) or IS_METEORLAKE_M(i915) solves the problem. 
+> to differentiate the MTL platform variant.
 
-Btw going from (crtc_state->dsc.dsc_split) to if (num_vdsc_instances >
-1) should also be a separate change, instead of baked into this one.
+I've been trying to say all along that we've abstracted the stepping
+checks, and we no longer need macros that capture *both* the platform
+and the step ranges. They're orthogonal.
+
+If the stepping ranges to check are the same, you don't need to separate
+between MTL subplatforms. They'll both match MTL. They'll both match the
+stepping ranges, and you can use the generic stepping check.
+
+You'll need to do if
+	((IS_MTL_M() && IS_GRAPHICS_STEP(a,b)) ||
+	  IS_MTL_P() && IS_GRAPHICS_STEP(c,d))
+
+if a != c && b != d.
+
 
 BR,
 Jani.
 
 
 
-> +		intel_dsc_get_pps_reg(crtc_state, pps, 2, &dsc_reg);
-> +		pps_temp = intel_de_read(i915, dsc_reg);
-> +		if (*pps_val != pps_temp)
-> +			return true;
-> +	}
-> +	return false;
-> +}
-> +
-> +static void intel_dsc_read_and_verify_pps_reg(struct intel_crtc_state *crtc_state,
-> +					      int pps, u32 *pps_val)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	bool is_dsc_diff;
-> +
-> +	is_dsc_diff = intel_dsc_read_pps_reg(crtc_state, pps, pps_val);
-> +	drm_WARN_ON(&i915->drm, is_dsc_diff);
-> +}
-> +
-> +static void intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
-> +	u32 pps_temp1, pps_temp2;
-> +
-> +	/* Readout PPS_0 and PPS_1 registers */
-> +	intel_dsc_read_and_verify_pps_reg(crtc_state, 0, &pps_temp1);
-> +	intel_dsc_read_and_verify_pps_reg(crtc_state, 1, &pps_temp2);
-> +
-> +	vdsc_cfg->bits_per_pixel = pps_temp2;
-> +
-> +	if (pps_temp1 & DSC_NATIVE_420_ENABLE)
-> +		vdsc_cfg->bits_per_pixel >>= 1;
-> +
-> +	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
-> +}
-> +
->  void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> -	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> -	enum pipe pipe = crtc->pipe;
->  	enum intel_display_power_domain power_domain;
->  	intel_wakeref_t wakeref;
-> -	u32 dss_ctl1, dss_ctl2, pps0 = 0, pps1 = 0, pps_temp0 = 0, pps_temp1 = 1;
-> +	u32 dss_ctl1, dss_ctl2;
->  
->  	if (!intel_dsc_source_support(crtc_state))
->  		return;
-> @@ -960,37 +1198,7 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
->  	crtc_state->dsc.dsc_split = (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE) &&
->  		(dss_ctl1 & JOINER_ENABLE);
->  
-> -	/* FIXME: add more state readout as needed */
-> -
-> -	/* PPS0 & PPS1 */
-> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
-> -		pps1 = intel_de_read(dev_priv, DSCA_PICTURE_PARAMETER_SET_1);
-> -		if (crtc_state->dsc.dsc_split) {
-> -			pps_temp1 = intel_de_read(dev_priv, DSCC_PICTURE_PARAMETER_SET_1);
-> -			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
-> -		}
-> -
-> -	} else {
-> -		pps0 = intel_de_read(dev_priv,
-> -				     ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe));
-> -		pps1 = intel_de_read(dev_priv,
-> -				     ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
-> -		if (crtc_state->dsc.dsc_split) {
-> -			pps_temp0 = intel_de_read(dev_priv,
-> -						  ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe));
-> -			pps_temp1 = intel_de_read(dev_priv,
-> -						  ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
-> -			drm_WARN_ON(&dev_priv->drm, pps0 != pps_temp0);
-> -			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
-> -		}
-> -	}
-> -
-> -	vdsc_cfg->bits_per_pixel = pps1;
-> -
-> -	if (pps0 & DSC_NATIVE_420_ENABLE)
-> -		vdsc_cfg->bits_per_pixel >>= 1;
-> -
-> -	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
-> +	intel_dsc_get_pps_config(crtc_state);
->  out:
->  	intel_display_power_put(dev_priv, power_domain, wakeref);
->  }
+
+>
+> Regards, 
+> Dnyaneshwar.
+>> 
+>> Regards,
+>> 
+>> Tvrtko
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
