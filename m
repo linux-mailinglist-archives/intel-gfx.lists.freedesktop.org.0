@@ -1,55 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3BC47542B1
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jul 2023 20:42:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0058575440B
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jul 2023 22:58:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BBFE10E2DF;
-	Fri, 14 Jul 2023 18:42:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B3F810E056;
+	Fri, 14 Jul 2023 20:58:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46FC510E2DF;
- Fri, 14 Jul 2023 18:42:29 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84A5010E056
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jul 2023 20:58:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689360149; x=1720896149;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=hYKo7su7u2gAY/CVwklV+f6j8aLNS2V8V8EYn5Idbuw=;
- b=Q/BCl6pAVFrNo/ioKQ8lcn2zXnUiXr8wsTkA3itKcVt/c8YvutyYA8/c
- FoHrkppRVXmSPLOTXuL8X88qW2OlrlRfxIyrbecnVII1WZSBHh0b3VyIy
- doMR/Ef0rW74aVWgWPdrfMFYPT0TQadi73ou16kV6QLzdGJ4UkFU2bMlL
- /J+gjljuf3LYtAGekmX89yD6l5SnH1XUtQ3fzGPFCuySR5fCt2WroYYWf
- TpdgkFhLhHCl4+CKJx0x00wDwq9Ok7cP/K1xJzJ5v5MdhUpKbtZMgp4u1
- QtQPtJDJFHnzQ+EXRpQ+nU9IT/pTFm9Th7kPSUOS9fVD1qnxhUuJnA1Rv Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10771"; a="363012986"
-X-IronPort-AV: E=Sophos;i="6.01,206,1684825200"; d="scan'208";a="363012986"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2023 11:42:28 -0700
+ t=1689368325; x=1720904325;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iEVxFZ3vHiyFvXZeyBGlK8q2az7PCAoDh7WEu62H2i8=;
+ b=OM2OrNyTcandXcXbLUxn60Igfz+RSXDMWLFCNjCHlTfEQDxRnH5o76Pt
+ IvI83Xpg/3pfNyjlSROSj38N4Ywafwq8JrHh0vitEg600n4KXOC8w855H
+ wE/p0xBGyBdW3p/dclVTGa1lBC759NgnCDTM1NuWq/hNlYrs8b85x2viV
+ 6y+uArmrXpR+4wiHPlDw6rquPHuiD5AAWLWighOZ/zd4mfYjy6U+W0Luh
+ ZpBN3SgBeB3WW7uvl+7VOkwPMdi+/QqOCqoDPA/fL/oMIqnrmLaWc4RF6
+ XhcTXpyAOxVdYjcw0yLY4RRsKzyF1geDFGWg4snvOSs7V36Xp5FyT/3D7 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10771"; a="429338910"
+X-IronPort-AV: E=Sophos;i="6.01,206,1684825200"; d="scan'208";a="429338910"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2023 13:58:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10771"; a="812551454"
-X-IronPort-AV: E=Sophos;i="6.01,206,1684825200"; d="scan'208";a="812551454"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by FMSMGA003.fm.intel.com with SMTP; 14 Jul 2023 11:42:25 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 14 Jul 2023 21:42:24 +0300
-Date: Fri, 14 Jul 2023 21:42:24 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <ZLGXEMdvBAVaNICJ@intel.com>
-References: <20230713194745.1751-1-ville.syrjala@linux.intel.com>
- <defcbed9-7cfc-9499-9e08-02a06390cc8f@amd.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10771"; a="757694807"
+X-IronPort-AV: E=Sophos;i="6.01,206,1684825200"; d="scan'208";a="757694807"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2023 13:58:44 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 14 Jul 2023 13:58:34 -0700
+Message-ID: <20230714205834.55929-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <defcbed9-7cfc-9499-9e08-02a06390cc8f@amd.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] dma-buf/dma-resv: Stop leaking on
- krealloc() failure
+Subject: [Intel-gfx] [CI] PR for GuC 70.8.0 for DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,84 +55,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org,
- Sumit Semwal <sumit.semwal@linaro.org>, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 14, 2023 at 08:56:15AM +0200, Christian König wrote:
-> Am 13.07.23 um 21:47 schrieb Ville Syrjala:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Currently dma_resv_get_fences() will leak the previously
-> > allocated array if the fence iteration got restarted and
-> > the krealloc_array() fails.
-> >
-> > Free the old array by hand, and make sure we still clear
-> > the returned *fences so the caller won't end up accessing
-> > freed memory. Some (but not all) of the callers of
-> > dma_resv_get_fences() seem to still trawl through the
-> > array even when dma_resv_get_fences() failed. And let's
-> > zero out *num_fences as well for good measure.
-> >
-> > Cc: Sumit Semwal <sumit.semwal@linaro.org>
-> > Cc: Christian König <christian.koenig@amd.com>
-> > Cc: linux-media@vger.kernel.org
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: linaro-mm-sig@lists.linaro.org
-> > Fixes: d3c80698c9f5 ("dma-buf: use new iterator in dma_resv_get_fences v3")
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Good catch, Reviewed-by: Christian König <christian.koenig@amd.com>
-> 
-> Should I add a CC: stable and push to drm-misc-fixes?
+The following changes since commit d3f66064cf43bd7338a79174bd0ff60c4ecbdf6d:
 
-Sure, if you don't mind. Thanks.
+  Partially revert "amdgpu: DMCUB updates for DCN 3.1.4 and 3.1.5" (2023-07-07 15:24:32 -0400)
 
-> 
-> Thanks,
-> Christian.
-> 
-> > ---
-> >   drivers/dma-buf/dma-resv.c | 13 +++++++++----
-> >   1 file changed, 9 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/dma-buf/dma-resv.c b/drivers/dma-buf/dma-resv.c
-> > index b6f71eb00866..38b4110378de 100644
-> > --- a/drivers/dma-buf/dma-resv.c
-> > +++ b/drivers/dma-buf/dma-resv.c
-> > @@ -571,6 +571,7 @@ int dma_resv_get_fences(struct dma_resv *obj, enum dma_resv_usage usage,
-> >   	dma_resv_for_each_fence_unlocked(&cursor, fence) {
-> >   
-> >   		if (dma_resv_iter_is_restarted(&cursor)) {
-> > +			struct dma_fence **new_fences;
-> >   			unsigned int count;
-> >   
-> >   			while (*num_fences)
-> > @@ -579,13 +580,17 @@ int dma_resv_get_fences(struct dma_resv *obj, enum dma_resv_usage usage,
-> >   			count = cursor.num_fences + 1;
-> >   
-> >   			/* Eventually re-allocate the array */
-> > -			*fences = krealloc_array(*fences, count,
-> > -						 sizeof(void *),
-> > -						 GFP_KERNEL);
-> > -			if (count && !*fences) {
-> > +			new_fences = krealloc_array(*fences, count,
-> > +						    sizeof(void *),
-> > +						    GFP_KERNEL);
-> > +			if (count && !new_fences) {
-> > +				kfree(*fences);
-> > +				*fences = NULL;
-> > +				*num_fences = 0;
-> >   				dma_resv_iter_end(&cursor);
-> >   				return -ENOMEM;
-> >   			}
-> > +			*fences = new_fences;
-> >   		}
-> >   
-> >   		(*fences)[(*num_fences)++] = dma_fence_get(fence);
+are available in the Git repository at:
 
--- 
-Ville Syrjälä
-Intel
+  git://anongit.freedesktop.org/drm/drm-firmware dg2_guc_7.8
+
+for you to fetch changes up to 1e7fa2cfef80974642bfbaefc11e59e54244164a:
+
+  i915: update DG2 GuC to v70.8.0 (2023-07-14 13:55:31 -0700)
+
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (1):
+      i915: update DG2 GuC to v70.8.0
+
+ WHENCE              |   2 +-
+ i915/dg2_guc_70.bin | Bin 369600 -> 385856 bytes
+ 2 files changed, 1 insertion(+), 1 deletion(-)
