@@ -1,140 +1,73 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C605D754947
-	for <lists+intel-gfx@lfdr.de>; Sat, 15 Jul 2023 16:20:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A8B7754E7C
+	for <lists+intel-gfx@lfdr.de>; Sun, 16 Jul 2023 13:45:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A0DA10E0EF;
-	Sat, 15 Jul 2023 14:19:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D101E10E088;
+	Sun, 16 Jul 2023 11:45:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A827910E0EF;
- Sat, 15 Jul 2023 14:19:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689430796; x=1720966796;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Jw8usk4qnbAX2a+MK1cz+JTOrpNvbytL6ZWy2zaIvxw=;
- b=PFzqfZLPhxICCyiJm8fjf3gmuyUNWphv5c5NTEWP6XSCnnbIPiJg7rIb
- vC/+M6vAhWhMi/Fc4wDWoi2NkAthWfYHwL7E/e/sX2/2LdA/W2+jJ3Iz6
- jZie6gv9enRbPs/QusSQw3LA7DtE15gbVTTuPF8bUhYyCnGHMP6xzQVAm
- gq2C1oNMDcsThdSe+n6WNcO9GUFf+HOINhC/5F1fn0IFA0eMeitMHEzZ2
- S/f2jcytU4AUIueCFy7DCcqKtVKvKb434Lx7z5pCWsyN6sbrMDRmtpUm6
- j+GUc5MeyYUSdst41yEFRgtWLxCmwmYgrjXW+yEgTaZOQD9xyRgcmSPAa Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10772"; a="365704379"
-X-IronPort-AV: E=Sophos;i="6.01,208,1684825200"; d="scan'208";a="365704379"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2023 07:19:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10772"; a="716636884"
-X-IronPort-AV: E=Sophos;i="6.01,208,1684825200"; d="scan'208";a="716636884"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga007.jf.intel.com with ESMTP; 15 Jul 2023 07:19:53 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Sat, 15 Jul 2023 07:19:53 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Sat, 15 Jul 2023 07:19:53 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.102)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Sat, 15 Jul 2023 07:19:53 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=duVjNlS+qBHVvBYEdRNwnZF2C35zXgpxQU+rlhhY5AAuIu0c4oD1aNfRSwpNCYoh4EiIhXdHyxgx+iYrPFmnoxR4hzElE9nPcLzOG1xTHgVb+vQ6YbUEY8LyH26O6CoaaYgNzYJ6+HmDLYtdBSXazIJ2RvnR3gOWEegbK476bcMnGaV7iRFo3EKsHIU8FhEIH6WHfVzT93OoHfGshjrg2Jm1G1ElISYhLOSsswK290BQJc09Hpqsg7stpARHZCn4p6dDhrQ8Et3XiLPta3sImbH/l75TcGlIN5c+jz+JMsIqsNNZnNGJTmw0AZbuPSOBSLi92KlwOHDfcRZgZSq58g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y2CPQGbuvfIleImJ7xP3E4M+JqoHiV/okhKasPrVvWA=;
- b=dRMRozz8ubXP6XWVlqp/ZhQzQIg4th6mZWL7dJtqpQV9e9Ggmn/Tfxo1FmGpe/MJRlJziCJKk1Q+zDplQIHcIe3zeBb5c4st+a+CV2rYnXtGNzk2X9NBkyM9qWQDa985BYSUGkILft+z7C289yuyHXazCQ2kikfMAQyMUEIWOFvmOvQbDaVMS8m8XeOPFVH5vIYkwdpYtaNR9A7xHCFW/YEJeknemrpFfdlomDTdbSUdvqBi1FhmOt7HiHLBg6I/JeeYvmrwnMP5f4yCtickhWjtJ0c43tK1MSedSE8RTOZ6p/RE7XFerm78YKRM8oBXfn2UO0PNj0fL++3zCAmqqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by SJ2PR11MB7645.namprd11.prod.outlook.com (2603:10b6:a03:4c6::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.31; Sat, 15 Jul
- 2023 14:19:51 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::806a:6364:af2:1aea]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::806a:6364:af2:1aea%7]) with mapi id 15.20.6588.028; Sat, 15 Jul 2023
- 14:19:50 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Thread-Topic: [PATCH v14 22/26] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
-Thread-Index: AQHZs6PJ5wkagZbV3kqhRW+Tv/kBJ6+5W3MAgADiPuCAAJTogIAAFL0Q
-Date: Sat, 15 Jul 2023 14:19:50 +0000
-Message-ID: <DS0PR11MB7529B5B6D3E2919A89651339C335A@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230711025928.6438-1-yi.l.liu@intel.com>
- <20230711025928.6438-23-yi.l.liu@intel.com> <ZLFewHxO8DSelEml@nvidia.com>
- <DS0PR11MB75297BF68F3FAD4B9EEA483AC335A@DS0PR11MB7529.namprd11.prod.outlook.com>
- <ZLKZc/wnMbrp9ZYE@nvidia.com>
-In-Reply-To: <ZLKZc/wnMbrp9ZYE@nvidia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|SJ2PR11MB7645:EE_
-x-ms-office365-filtering-correlation-id: c8736cd6-fa3c-4b3f-5eaa-08db853e8d03
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 1aqgeYNG/+spHX9BebYcii/Q7YZlP3yxAuDhqvtpiQ/kpE3+gQhAW49TsbS6kp9d6BjQ/4ns5FRxr6ODh4K7HreTsEvvECZ6sRN7BZ4Pv0XX4WRlijPjcbB97WaEHHOAynnNItKwvX9a8LQ9X5BzUyxKm8mQBzKyaoVJ0hvDQRJU3LmUrC0DOU2hMeSs9cTMKiW0Z9mNhgxqqKoi3MmeMHxJGJw+SCKrr50f0Froa1aGEoiDZBOBaNHMLahL0ay6j9e52feJ/yj5wwshnyyE4pyWkVQY2f3wobbrFkKo+ua8NDYBQYS8GUaQ4CRM3sfsWMFhIvYBFNssAqtCmPjJmsaKqkS1QEY37rjWapadJo3uRfbEdfH8m7Cz52KTNeCcrqX6OmDa+y+X+u+L8ylSiMrWWUPWGZxia/g8+w1MlyBGW7SOgHzXkJm1X323EzDotwyawWfbm/hwbGSBIJgTsxzsRuvTi5EUTlHF/BpJYaVL3isw7rbLjHmiCqTMy3K3Y5fysMpfy2FOLqti50h16dp75kS/bS8XDsWqSUQkEjZXAzywsa1RcuS003B7ciB9ZMYH3+dGRu1YZ85mo6HoHHfGaSCU2TYvdlHM4aJetY/RYebuQsDYhhhrdLF4xVVxBGyktl7HUFVg7jHqTURbTw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(376002)(136003)(366004)(39850400004)(396003)(451199021)(38070700005)(76116006)(66476007)(66946007)(66446008)(41300700001)(66556008)(55016003)(4744005)(122000001)(82960400001)(2906002)(38100700002)(478600001)(6916009)(54906003)(4326008)(64756008)(316002)(5660300002)(33656002)(7696005)(86362001)(71200400001)(186003)(52536014)(26005)(9686003)(6506007)(7416002)(8936002)(8676002)(21314003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?VObC7dghuvsbX9eDjlEaNf1+piLlwLVLnnm3XFpQNmcExvZ1BSsQa1rw63OL?=
- =?us-ascii?Q?4Ikhg+kDlx04sA/SDtD3cMb5vG6JzJ+rYKu7UntxsLwdT6Nu+hT3kQjPhZBD?=
- =?us-ascii?Q?wB+y1yyQjrSz42htXhwRoK0SYp+TZC7noyKyHPb1TUoZMWgwoET3MRdjNL6i?=
- =?us-ascii?Q?l+3qI5QEjN/9DEaHTdpWHMHVdy+KmRYBuak5hgLzRGy42LZDWdEcNh5SqU1x?=
- =?us-ascii?Q?nvsCsECOD4xb0hnONhW8AxF+wQaDd3jiR+erY0NQ6byNdkw/GppFpcymcW0L?=
- =?us-ascii?Q?2Xe1JYUyZbPJ/xNxxYshHdb7X7EWgtNiT9shdSPWhqB91GWycBFdjKyvu0Fl?=
- =?us-ascii?Q?IKrnGMFBr2VS63V/2ps//rhaLEK1w+V6j+0jVODuwJaEAcOGhv+g5mckVsCS?=
- =?us-ascii?Q?LEVfokaCjBt5tSWdMzMtXr5w3sxs499cAKjrvK7Nq77Xu0z3rHeANltYHkMU?=
- =?us-ascii?Q?V61DHsC6ovF6wKgeYCpW8e/lw5FwqRVrpRuju6BmhnNVHwjPJS0FrVgTJoSx?=
- =?us-ascii?Q?CPMCP5ErtGdeD6PydrA1DGE9Pz872GJbNNG5ImavVfVv0yjkJ7jvEwA5iLui?=
- =?us-ascii?Q?lc4BTYtxlaETsaPWwRq8CrBsHXQ92cLJgWQgu352QQIXUIQYx7BwxIilNYho?=
- =?us-ascii?Q?NpEL3AK6Vx9Ccc1xeF780dR6COcVSIMjys1PJB9Y3VCaGm6peu0q7v0XI2WL?=
- =?us-ascii?Q?QtZYbzwLpEUPGo86sV1bpbrC8SepA5QGFDFwo0kj9jCLQFfwTQV/eLIyU+3e?=
- =?us-ascii?Q?5fH+cenISoZmQBfOJfYoiSCenMBRtXbAwdEZOyhuorrXWx3TNVWmdjbGYL4O?=
- =?us-ascii?Q?d0QRjD483D6y3PQFPKE2pKVgAxXZpmZnInUv3QCZYodnHbr4pPPPBu6DQxI/?=
- =?us-ascii?Q?TguVCm5z8T0JH06a3I6Vz/XbWEWi0zxV9ChJD/ZN5BNgcV3q2Xm4zfKkNUNa?=
- =?us-ascii?Q?5ShPTCLrkPoSW3MTYoqz85gsbdlHu5K0o2oAzsorK0aKHcxWBlqYmcpZd3LV?=
- =?us-ascii?Q?QCv6GWIp/wHVcav7mp0ymfb4gZAzY//3X+SpliiUvW6JL1RKWvkoIovfbPC6?=
- =?us-ascii?Q?dd0aMEhZiNiNfqUXrgYCr2oI7oogXLdLqKMQuP0JzFktyqVSdoeFnpx7KobM?=
- =?us-ascii?Q?WwwHbiFfNuZkGWMJgEUQ0v9B7hbbQWa7iIBXPPFPELQGZuPG0+Rg1b5jjfYr?=
- =?us-ascii?Q?saotoS4RFuBjulePnfXdNRtEAuQtfjH8Rso7G+ygs9/qehUVgXlZ1BpRRZSu?=
- =?us-ascii?Q?UksdHbpZcrkBSK7DsvwweQ09SqfxFJmpL7ugUsL+gUej6vwMkY8cwfq0Ew+S?=
- =?us-ascii?Q?tcMdYaJmUFLiBStkKV1euGST8wUmuVJUYxi2OpLRfUlcC/gPCd7u0M9hvNKQ?=
- =?us-ascii?Q?7ehb0+wzmf/hGHFbLlZIY6yCVledHKlr7BtXLszhOlwkmPsIhvqrCB5xrjxu?=
- =?us-ascii?Q?QHxVhZ9KIP6k7ooHbxGWkXTJ68Ny1A2aHfgF3COwTja7d7gFMrwoa+Qoh6TB?=
- =?us-ascii?Q?bcMUTJFfP2jjjFObQEEskdn0QYIFR7JTnpm2Dh3OePO79copbmgZfqARXjw+?=
- =?us-ascii?Q?09FomVxUndNLYKOAoKLWrVZTYdXOkxapkRl+WFVz?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com
+ [IPv6:2607:f8b0:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C11C10E088;
+ Sun, 16 Jul 2023 11:44:59 +0000 (UTC)
+Received: by mail-pf1-x429.google.com with SMTP id
+ d2e1a72fcca58-676f16e0bc4so2298533b3a.0; 
+ Sun, 16 Jul 2023 04:44:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1689507898; x=1692099898;
+ h=content-transfer-encoding:subject:from:cc:to:content-language
+ :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=UW0Gb0fhe8KUAoH9z0fOHvs5nZuEEb7L+CPOMHFXQWA=;
+ b=irD1uJ3MFytLmjvRmq8Yl9WjAlyqjv1PYh9U2Jga5+2zclCqDvzEU4EV7397PzfnJd
+ AwQggkMPsYHhRdhK/uhDy6Y7Cloweegu34afTCFBtS1fWsTnZBTnSFuU/qDAaf6xERBm
+ Pc0joGj8Pj9guWnSGFCB7QUM1TsN5iy6himHOcsGIm2IZ2kMOd4GLVrw7WhXYzC6MaPB
+ 16Vqyv5R3Y2aUq9PiCg1tynvKpgCGbbEzyYBUCE/glqQkejAQB/Jau845OjWbLbYxQc+
+ TmRHm8ZJNN+YqQntBpdPsDf541E8suumaahIZ6xC2hS5sttdRzKsbzPRGsoYOoU7qs95
+ S77w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1689507898; x=1692099898;
+ h=content-transfer-encoding:subject:from:cc:to:content-language
+ :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=UW0Gb0fhe8KUAoH9z0fOHvs5nZuEEb7L+CPOMHFXQWA=;
+ b=bB2jKVBiv53sCE6L+B1bUJbIx5PDNN601KAo07mjSUj7PHLAc2H0rgx148nV1ybvdy
+ n1D0lLtqWHfDSr6AO9FX9Q9wqrfIvwpfg5oQDrAV+1YAC1LXaQbShgu2Lu615WtAa/MY
+ 4+nmXiyG4Z6ISI9Td7/Fj9hEb8ELl87heRrJKAmNtDqEEgIzUAFGE+p009Lftv6uiNZ7
+ xgW5WA/bvMchnGxDUgmhKLejlLO+b3hnki5uDwfQwqAtVn6MH0vfHFlCBFfyagZkAhrY
+ /bWG8OEC1i1vz7ppu2sGL3jYwAL2iXWl8vMUPf0fLpSvSjsm0Fsf9cYMC6tEEUorTwi4
+ I51g==
+X-Gm-Message-State: ABy/qLZ1eDFaHWH+RrD4NXwncm4EXu45honrWCHjk42fNiOObiV2ydWy
+ TPFzT78ltju6T/YTeetq/ro=
+X-Google-Smtp-Source: APBJJlENaURlprzIJM/AWxrCdrM0RnZHU+VlpQ7Ay5WfVSfljEoACMDN/5bW6NiEKcB2hFoQgwU8Sw==
+X-Received: by 2002:a05:6a00:23c2:b0:680:fa5f:4ed6 with SMTP id
+ g2-20020a056a0023c200b00680fa5f4ed6mr11156582pfc.27.1689507898117; 
+ Sun, 16 Jul 2023 04:44:58 -0700 (PDT)
+Received: from [192.168.0.104] ([103.131.18.64])
+ by smtp.gmail.com with ESMTPSA id
+ 2-20020aa79242000000b0067777e960d9sm9988284pfp.155.2023.07.16.04.44.53
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 16 Jul 2023 04:44:57 -0700 (PDT)
+Message-ID: <12caddea-9432-6285-f46b-2ba0ae426c38@gmail.com>
+Date: Sun, 16 Jul 2023 18:44:43 +0700
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c8736cd6-fa3c-4b3f-5eaa-08db853e8d03
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2023 14:19:50.3019 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Qzryt2YeOjZstzpkeHII0oaXvB1ARw1Agici35qEOHnDHZ12rTevlMYtbvLIM52sbITpnWtpXWLJ8terzs3tWg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7645
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v14 22/26] vfio: Add VFIO_DEVICE_BIND_IOMMUFD
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maik Broemme <mbroemme@libmpq.org>, Johannes <johannesnitschke@yahoo.com>
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] =?utf-8?q?Fwd=3A_Framebuffer-Display_issue=2E_=28Int?=
+ =?utf-8?b?ZWzCriBJcmlzwq4gWGUp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,58 +80,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "Duan, 
- Zhenzhong" <zhenzhong.duan@intel.com>, "peterx@redhat.com" <peterx@redhat.com>,
- "Xu, Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Tian,
- Kevin" <kevin.tian@intel.com>, "Zhao, Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "clegoate@redhat.com" <clegoate@redhat.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: Linux Framebuffer <linux-fbdev@vger.kernel.org>,
+ Linux Regressions <regressions@lists.linux.dev>,
+ Linux Intel GPU <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Stable <stable@vger.kernel.org>,
+ Linux DRI Development <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Jason Gunthorpe <jgg@nvidia.com>
-> Sent: Saturday, July 15, 2023 9:05 PM
->=20
-> On Sat, Jul 15, 2023 at 04:16:52AM +0000, Liu, Yi L wrote:
-> > > From: Jason Gunthorpe <jgg@nvidia.com>
-> > > Sent: Friday, July 14, 2023 10:42 PM
-> > >
-> > > On Mon, Jul 10, 2023 at 07:59:24PM -0700, Yi Liu wrote:
-> > >
-> > > > +static inline long vfio_df_ioctl_bind_iommufd(struct vfio_device_f=
-ile *df,
-> > > > +					      struct vfio_device_bind_iommufd __user
-> > > *arg)
-> > > > +{
-> > > > +	return -EOPNOTSUPP;
-> > > > +}
-> > >
-> > > This should be -ENOTTY
-> >
-> > Okay. Since there are quite a few stub functions in the drivers/vfio/vf=
-io.h.
-> > Let me check the rule. All the stub functions should return -ENOTTY in
-> > the !IS_ENABLED(CONFIG_XXX) case, if the function returns int., is
-> > it?
->=20
-> No, just ioctl returns ENOTTY, so really just this function.
+Hi,
 
-Ok. I see.
+I notice a regression report on Bugzilla [1]. Quoting from it:
 
-Regards,
-Yi Liu
+> Hello I have been having problems for some time now with displaying any linux distribution with the new kernal. The only thing that can fix it are older kernals.
+> 
+> I can't describe it very well, so I'm attaching some pictures, but it's like whenever anything happens on the screen, it pushes the upper left half up from the bottom. But it only goes to a certain extent, after that it just shakes around and jumps back a bit. Also, for example, the firefox icon is not where it is displayed, but where it should be (I tried it with touch).
+> 
+> I think it has something to do with the framebuffer, because an usb stick with just the arch iso show the same issue in the tty.
+> 
+> The hardware is a Huawei Matebook E 2022.
+> Cpu: Intel® Core™ i5-1130G7
+> Graphics: Intel® Iris® Xe
+> 
+> Example under Manjaro that worked was with the 
+> linux-lqx-6.1.0.lqx2-1-x86_64.pkg.tar.zst kernal
+> 22-Dec-2022 14:44           154507169
+> from https://repo.blacksky3.com/x86_64/linux-lqx/old/
+> 
+> Kernals above that Version dosent work, Example with 6.1.1-lqx1-linux-lqx:
+> `
+> $inxi -F
+> System:
+> Host: Johannes Kernel: 6.1.1-lqx1-linux-lqx arch: x86_64 bits: 64
+> Desktop: GNOME v: 43.5 Distro: Manjaro Linux
+> Machine:
+> Type: Detachable System: HUAWEI product: DRC-WXX v: M1010
+> serial:
+> Mobo: HUAWEI model: DRC-WXX-PCB v: M1010 serial:
+> UEFI: HUAWEI v: 1.30 date: 06/29/2022
+> Battery:
+> ID-1: BAT1 charge: 27.8 Wh (66.0%) condition: 42.1/42.1 Wh (100.0%)
+> volts: 11.9 min: 11.5
+> CPU:
+> Info: quad core model: 11th Gen Intel Core i5-1130G7 bits: 64 type: MT MCP
+> cache: L2: 5 MiB
+> Speed (MHz): avg: 1395 min/max: 400/1801 cores: 1: 897 2: 1046 3: 962
+> 4: 1801 5: 1801 6: 1801 7: 1801 8: 1052
+> Graphics:
+> Device-1: Intel Tiger Lake-UP4 GT2 [Iris Xe Graphics] driver: i915 v: kernel
+> Display: wayland server: X.org v: 1.21.1.8 with: Xwayland v: 23.1.1
+> compositor: gnome-shell driver: gpu: i915 resolution: 2560x1600~60Hz
+> API: OpenGL v: 4.6 Mesa 23.0.3 renderer: Mesa Intel Xe Graphics (TGL GT2)
+> Audio:
+> Device-1: Intel driver: N/A
+> Device-2: Intel Tiger Lake-LP Smart Sound Audio
+> driver: sof-audio-pci-intel-tgl
+> API: ALSA v: k6.1.1-lqx1-linux-lqx status: kernel-api
+> Server-1: PulseAudio v: 16.1 status: active
+> Network:
+> Device-1: Intel Wi-Fi 6 AX201 driver: iwlwifi
+> IF: wlp0s20f3 state: up mac: f4:b3:01:b7:c6:6d
+> Bluetooth:
+> Device-1: Intel AX201 Bluetooth driver: btusb type: USB
+> Report: rfkill ID: hci0 state: up address: see --recommends
+> Drives:
+> Local Storage: total: 476.94 GiB used: 9.65 GiB (2.0%)
+> ID-1: /dev/nvme0n1 model: PCIe-8 SSD 512GB size: 476.94 GiB
+> Partition:
+> ID-1: / size: 468.09 GiB used: 9.65 GiB (2.1%) fs: ext4 dev: /dev/nvme0n1p2
+> ID-2: /boot/efi size: 299.4 MiB used: 288 KiB (0.1%) fs: vfat
+> dev: /dev/nvme0n1p1
+> Swap:
+> Alert: No swap data was found.
+> Sensors:
+> System Temperatures: cpu: 35.0 C mobo: N/A
+> Fan Speeds (RPM): N/A
+> Info:
+> Processes: 241 Uptime: 0m Memory: available: 15.42 GiB used: 1.18 GiB (7.6%)
+> Shell: Zsh inxi: 3.3.27
+> 
+> `
+> 
+> Distros I testet:
+> Ubuntu 20.04.2 results in Blackscreen/poweroff
+> Fedora 38 (Bug as I mentiond)
+> Manjaro (Bug as I mentiond)
+> It all works fine when you start from grub2 in Rescue mode.
+> 
+> That all is very new to me, so I am sorry if I did something wrong. 
+> I mean, I reported that bug first at the wrong place.. Anyway
+> 
+> Best regreds Johannes
+
+See Bugzilla for the full thread and attached pictures that demonstrate
+this regression.
+
+Anyway, I'm adding it to regzbot:
+
+#regzbot introduced: v6.1..v6.4 https://bugzilla.kernel.org/show_bug.cgi?id=217666
+#regzbot title: screen shakes on Intel® Iris® Xe
+
+(also Cc'ing stable list because it also occurs on v6.1.y, but not in
+v6.1 mainline).
+
+Thanks.
+
+-- 
+An old man doll... just what I always wanted! - Clara
