@@ -1,39 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D617564F3
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jul 2023 15:28:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C0475657D
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jul 2023 15:52:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCD4A10E245;
-	Mon, 17 Jul 2023 13:28:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6806A10E258;
+	Mon, 17 Jul 2023 13:52:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 301 seconds by postgrey-1.36 at gabe;
- Mon, 17 Jul 2023 13:28:26 UTC
-Received: from michel.telenet-ops.be (michel.telenet-ops.be
- [IPv6:2a02:1800:110:4::f00:18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A081810E245
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Jul 2023 13:28:26 +0000 (UTC)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:5803:2d6d:5bbc:e252])
- by michel.telenet-ops.be with bizsmtp
- id NDPN2A0070ucMBo06DPNMk; Mon, 17 Jul 2023 15:23:22 +0200
-Received: from rox.of.borg ([192.168.97.57])
- by ramsan.of.borg with esmtp (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1qLOC1-001fvY-6i;
- Mon, 17 Jul 2023 15:23:22 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1qLOCA-007QtZ-2r;
- Mon, 17 Jul 2023 15:23:22 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org
-Date: Mon, 17 Jul 2023 15:23:20 +0200
-Message-Id: <8b0542c12a2427f34a792c41ac2d2a2922874bfa.1689600102.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B08FB10E257;
+ Mon, 17 Jul 2023 13:52:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 954C0AADD2;
+ Mon, 17 Jul 2023 13:52:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0006714529237648759=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm: Spelling s/sempahore/semaphore/
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Mon, 17 Jul 2023 13:52:32 -0000
+Message-ID: <168960195257.24538.12818411719995883107@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230714123456.19153-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20230714123456.19153-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Start_using_plane_scale_factor_for_relative_data_rate_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,78 +41,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix misspellings of "semaphore".
+--===============0006714529237648759==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
----
-v2:
-  - Add Reviewed-by.
----
- drivers/gpu/drm/i915/i915_request.c | 2 +-
- drivers/gpu/drm/radeon/cik.c        | 2 +-
- drivers/gpu/drm/radeon/r600.c       | 2 +-
- include/drm/task_barrier.h          | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 894068bb37b6f1b6..32323bb801a139b7 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1220,7 +1220,7 @@ emit_semaphore_wait(struct i915_request *to,
- 	/*
- 	 * If this or its dependents are waiting on an external fence
- 	 * that may fail catastrophically, then we want to avoid using
--	 * sempahores as they bypass the fence signaling metadata, and we
-+	 * semaphores as they bypass the fence signaling metadata, and we
- 	 * lose the fence->error propagation.
- 	 */
- 	if (from->sched.flags & I915_SCHED_HAS_EXTERNAL_CHAIN)
-diff --git a/drivers/gpu/drm/radeon/cik.c b/drivers/gpu/drm/radeon/cik.c
-index 5819737c21c678d3..5d6b81a6578ef2ba 100644
---- a/drivers/gpu/drm/radeon/cik.c
-+++ b/drivers/gpu/drm/radeon/cik.c
-@@ -3603,7 +3603,7 @@ void cik_fence_compute_ring_emit(struct radeon_device *rdev,
-  * @rdev: radeon_device pointer
-  * @ring: radeon ring buffer object
-  * @semaphore: radeon semaphore object
-- * @emit_wait: Is this a sempahore wait?
-+ * @emit_wait: Is this a semaphore wait?
-  *
-  * Emits a semaphore signal/wait packet to the CP ring and prevents the PFP
-  * from running ahead of semaphore waits.
-diff --git a/drivers/gpu/drm/radeon/r600.c b/drivers/gpu/drm/radeon/r600.c
-index 382795a8b3c064ba..a17b95eec65fb810 100644
---- a/drivers/gpu/drm/radeon/r600.c
-+++ b/drivers/gpu/drm/radeon/r600.c
-@@ -2918,7 +2918,7 @@ void r600_fence_ring_emit(struct radeon_device *rdev,
-  * @rdev: radeon_device pointer
-  * @ring: radeon ring buffer object
-  * @semaphore: radeon semaphore object
-- * @emit_wait: Is this a sempahore wait?
-+ * @emit_wait: Is this a semaphore wait?
-  *
-  * Emits a semaphore signal/wait packet to the CP ring and prevents the PFP
-  * from running ahead of semaphore waits.
-diff --git a/include/drm/task_barrier.h b/include/drm/task_barrier.h
-index 087e3f649c52f02d..217c1cf21c1ab7d5 100644
---- a/include/drm/task_barrier.h
-+++ b/include/drm/task_barrier.h
-@@ -25,7 +25,7 @@
- 
- /*
-  * Reusable 2 PHASE task barrier (randevouz point) implementation for N tasks.
-- * Based on the Little book of sempahores - https://greenteapress.com/wp/semaphores/
-+ * Based on the Little book of semaphores - https://greenteapress.com/wp/semaphores/
-  */
- 
- 
--- 
-2.34.1
+Series: drm/i915: Start using plane scale factor for relative data rate (rev2)
+URL   : https://patchwork.freedesktop.org/series/120767/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_13390 -> Patchwork_120767v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/index.html
+
+Participating hosts (41 -> 22)
+------------------------------
+
+  Missing    (19): fi-snb-2520m fi-blb-e6850 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 fi-hsw-4770 fi-elk-e7500 bat-jsl-3 bat-rplp-1 fi-bsw-nick bat-dg1-7 fi-skl-guc fi-glk-j4005 bat-mtlp-8 bat-adlp-11 fi-kbl-guc fi-kbl-8809g bat-dg2-13 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_120767v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@requests:
+    - bat-rpls-2:         [PASS][1] -> [ABORT][2] ([i915#4983] / [i915#7913])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13390/bat-rpls-2/igt@i915_selftest@live@requests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-rpls-2/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-rpls-1:         [PASS][3] -> [ABORT][4] ([i915#4983] / [i915#7461] / [i915#8347] / [i915#8384])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13390/bat-rpls-1/igt@i915_selftest@live@reset.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-rpls-1/igt@i915_selftest@live@reset.html
+
+  * igt@kms_chamelium_hpd@common-hpd-after-suspend:
+    - bat-jsl-1:          NOTRUN -> [SKIP][5] ([i915#7828])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-jsl-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         NOTRUN -> [SKIP][6] ([i915#1845] / [i915#5354]) +3 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-rkl-11600:       [FAIL][7] ([i915#7940]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13390/fi-rkl-11600/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/fi-rkl-11600/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_mocs:
+    - bat-mtlp-6:         [DMESG-FAIL][9] ([i915#7059]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13390/bat-mtlp-6/igt@i915_selftest@live@gt_mocs.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-mtlp-6/igt@i915_selftest@live@gt_mocs.html
+
+  * igt@i915_selftest@live@migrate:
+    - bat-jsl-1:          [INCOMPLETE][11] ([i915#8504]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13390/bat-jsl-1/igt@i915_selftest@live@migrate.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-jsl-1/igt@i915_selftest@live@migrate.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#486]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/486
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#4983]: https://gitlab.freedesktop.org/drm/intel/issues/4983
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#7059]: https://gitlab.freedesktop.org/drm/intel/issues/7059
+  [i915#7461]: https://gitlab.freedesktop.org/drm/intel/issues/7461
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#7940]: https://gitlab.freedesktop.org/drm/intel/issues/7940
+  [i915#8347]: https://gitlab.freedesktop.org/drm/intel/issues/8347
+  [i915#8384]: https://gitlab.freedesktop.org/drm/intel/issues/8384
+  [i915#8504]: https://gitlab.freedesktop.org/drm/intel/issues/8504
+  [i915#8879]: https://gitlab.freedesktop.org/drm/intel/issues/8879
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13390 -> Patchwork_120767v2
+
+  CI-20190529: 20190529
+  CI_DRM_13390: 3d28151face410f5cafffdb42710041f889dc733 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7388: 7388
+  Patchwork_120767v2: 3d28151face410f5cafffdb42710041f889dc733 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+e6a06eb0dd1f drm/i915: Start using plane scale factor for relative data rate
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/index.html
+
+--===============0006714529237648759==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Start using plane scale factor for relative data rate (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/120767/">https://patchwork.freedesktop.org/series/120767/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13390 -&gt; Patchwork_120767v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/index.html</p>
+<h2>Participating hosts (41 -&gt; 22)</h2>
+<p>Missing    (19): fi-snb-2520m fi-blb-e6850 fi-skl-6600u fi-bsw-n3050 bat-dg2-8 bat-adlm-1 fi-hsw-4770 fi-elk-e7500 bat-jsl-3 bat-rplp-1 fi-bsw-nick bat-dg1-7 fi-skl-guc fi-glk-j4005 bat-mtlp-8 bat-adlp-11 fi-kbl-guc fi-kbl-8809g bat-dg2-13 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_120767v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13390/bat-rpls-2/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-rpls-2/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13390/bat-rpls-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-rpls-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4983">i915#4983</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7461">i915#7461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8347">i915#8347</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8384">i915#8384</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@common-hpd-after-suspend:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-jsl-1/igt@kms_chamelium_hpd@common-hpd-after-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13390/fi-rkl-11600/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7940">i915#7940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/fi-rkl-11600/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_mocs:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13390/bat-mtlp-6/igt@i915_selftest@live@gt_mocs.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7059">i915#7059</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-mtlp-6/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13390/bat-jsl-1/igt@i915_selftest@live@migrate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8504">i915#8504</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_120767v2/bat-jsl-1/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13390 -&gt; Patchwork_120767v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13390: 3d28151face410f5cafffdb42710041f889dc733 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7388: 7388<br />
+  Patchwork_120767v2: 3d28151face410f5cafffdb42710041f889dc733 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>e6a06eb0dd1f drm/i915: Start using plane scale factor for relative data rate</p>
+
+</body>
+</html>
+
+--===============0006714529237648759==--
