@@ -2,33 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27540756C39
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jul 2023 20:36:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E1D756C55
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jul 2023 20:43:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B23510E2A6;
-	Mon, 17 Jul 2023 18:36:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C99110E2AB;
+	Mon, 17 Jul 2023 18:43:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2DD8A10E2A6;
- Mon, 17 Jul 2023 18:36:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2A64EACC20;
- Mon, 17 Jul 2023 18:36:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE46A10E2AA;
+ Mon, 17 Jul 2023 18:43:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1689619401; x=1721155401;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1i2CFmAIvoBEWk1zsvZcJUqbxN3iucP3cqsDKVuD8kA=;
+ b=dQLSVKUwPTys4Jk7VjooG35n4JV719wxMIxM+AwLKiX9peglzvYVei+f
+ RnmUC08bQr93OqMFO2ceKoYZtl26GBnZ/K0iyughTLoxcYsC7jkGVzsNR
+ P07pI5db3Tc8hkHLN4QXPRSt1XsT2AbwVxRcm/fJ18KRu5PuFSimqzdKa
+ LH/dTog2bu3IjB5fhkYAts3nzQK22X1hvuvASTRHrsXzghcQXG9UWIWRI
+ +zGAwoXepOk7xrIobFjdIgdmVZ2gi1TGTpsyHDJoxO5tA6DDmj+zCAsyf
+ wm5fWzk2TNtiwszGHzpW7JZ2BwDwFNi+3OXvJW4mzuAGDDXS6hWAGtDqU A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="396840248"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="396840248"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2023 11:43:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="723305098"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="723305098"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
+ by orsmga002.jf.intel.com with ESMTP; 17 Jul 2023 11:43:20 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	igt-dev@lists.freedesktop.org
+Date: Mon, 17 Jul 2023 11:42:13 -0700
+Message-Id: <20230717184213.624518-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Mon, 17 Jul 2023 18:36:55 -0000
-Message-ID: <168961901517.24536.2320694100109783868@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230717164013.826614-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20230717164013.826614-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5BCI=2C1/4=5D_drm/i915=3A_Move_setting_of?=
- =?utf-8?q?_rps_thresholds_to_init?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 i-g-t] i915_pm_freq_api: Add some debug to
+ tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +56,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Some subtests seem to be failing in CI, use igt_assert_(lt/eq) which
+print the values being compared and some additional debug as well.
 
-Series: series starting with [CI,1/4] drm/i915: Move setting of rps thresholds to init
-URL   : https://patchwork.freedesktop.org/series/120857/
-State : warning
+v2: Print GT as well (Ashutosh)
 
-== Summary ==
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ tests/i915/i915_pm_freq_api.c | 18 ++++++++----------
+ 1 file changed, 8 insertions(+), 10 deletions(-)
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
+diff --git a/tests/i915/i915_pm_freq_api.c b/tests/i915/i915_pm_freq_api.c
+index 522abee35..a7bbd4896 100644
+--- a/tests/i915/i915_pm_freq_api.c
++++ b/tests/i915/i915_pm_freq_api.c
+@@ -55,6 +55,7 @@ static void test_freq_basic_api(int dirfd, int gt)
+ 	rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
+ 	rp0 = get_freq(dirfd, RPS_RP0_FREQ_MHZ);
+ 	rpe = get_freq(dirfd, RPS_RP1_FREQ_MHZ);
++	igt_debug("GT: %d, RPn: %d, RPe: %d, RP0: %d", gt, rpn, rpe, rp0);
+ 
+ 	/*
+ 	 * Negative bound tests
+@@ -90,21 +91,18 @@ static void test_reset(int i915, int dirfd, int gt, int count)
+ 	int fd;
+ 
+ 	for (int i = 0; i < count; i++) {
+-		igt_assert_f(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0,
+-			     "Failed after %d good cycles\n", i);
+-		igt_assert_f(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rpn) > 0,
+-			     "Failed after %d good cycles\n", i);
++		igt_debug("Running cycle: %d", i);
++		igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0);
++		igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rpn) > 0);
+ 		usleep(ACT_FREQ_LATENCY_US);
+-		igt_assert_f(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn,
+-			     "Failed after %d good cycles\n", i);
++		igt_assert_eq(get_freq(dirfd, RPS_CUR_FREQ_MHZ), rpn);
+ 
+ 		/* Manually trigger a GT reset */
+ 		fd = igt_debugfs_gt_open(i915, gt, "reset", O_WRONLY);
+ 		igt_require(fd >= 0);
+ 		igt_ignore_warn(write(fd, "1\n", 2));
+ 
+-		igt_assert_f(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn,
+-			     "Failed after %d good cycles\n", i);
++		igt_assert_eq(get_freq(dirfd, RPS_CUR_FREQ_MHZ), rpn);
+ 	}
+ 	close(fd);
+ }
+@@ -116,13 +114,13 @@ static void test_suspend(int i915, int dirfd, int gt)
+ 	igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0);
+ 	igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rpn) > 0);
+ 	usleep(ACT_FREQ_LATENCY_US);
+-	igt_assert(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn);
++	igt_assert_eq(get_freq(dirfd, RPS_CUR_FREQ_MHZ), rpn);
+ 
+ 	/* Manually trigger a suspend */
+ 	igt_system_suspend_autoresume(SUSPEND_STATE_S3,
+ 				      SUSPEND_TEST_NONE);
+ 
+-	igt_assert(get_freq(dirfd, RPS_CUR_FREQ_MHZ) == rpn);
++	igt_assert_eq(get_freq(dirfd, RPS_CUR_FREQ_MHZ), rpn);
+ }
+ 
+ int i915 = -1;
+-- 
+2.38.1
 
