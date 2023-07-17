@@ -1,143 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3662755DEB
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jul 2023 10:09:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68076755E8B
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jul 2023 10:34:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D4EA10E201;
-	Mon, 17 Jul 2023 08:09:08 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E37B610E1FE;
- Mon, 17 Jul 2023 08:09:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42D5B10E209;
+	Mon, 17 Jul 2023 08:34:44 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44B8610E209;
+ Mon, 17 Jul 2023 08:34:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689581346; x=1721117346;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=LD1LSBJ0DveCVuTZJgCcoadxnVwyP7pk3PLVhWAHrZQ=;
- b=iKyZi+YLkDI/tQKg4+LihHFAcwRx17OUyQZRMdOr/bwtEJn/WypmbqED
- oq/nVw85AJInMGHsD7n3G1jVfwW0OggNWA7g+GOCk0t07IbbtKvMR0KYN
- JjvB2kzUggyD5fJ1AZJOYwCMLs4RMpPODFzZWdhXQXspWjNHaelC0dRz0
- c5cscAu4MvdjdexG3bGjGTBM4XZ3v6pLYqtnlFb5MF67MdCIio2M3pc0i
- nLnQP/CM9PAgoIQHaczCqA+hpqpfo8mi5eNUfBeK5ThuBzbreTn7eDk8Z
- bsXAn54iiji3ulZPOCeYWkdBT+kSCn6u+qEz2JtXSbJZD2ROvFPCHL5E8 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="345464435"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="345464435"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 01:09:03 -0700
+ t=1689582882; x=1721118882;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=oW6abZ+Z622RZBZ6yi68wqzhQweOSJdxU02KoEaRc+Q=;
+ b=VkH7+p1GIaZ2GMEKNx5MNXsj+zwCN6qGebTx0deLsiL+Csff33Lo5h+n
+ dcPC8VDPERNTQzVQN3UWVq9rZG2bwvc1Bql0om+LY4WPQ/X6WJjpMVmDo
+ EC2CB5kmcLjHUv/4D0ChoZvDKpaA3VjxWKpWka+DYdLCwKuMTnrg349Wh
+ GBL5VhlxwYfoYW5LGcpvjs3nba1wYf+sKBChohRGmDkTW6V3RDGHixu5d
+ GXawbm43rPvJyNT0X/WteK3dk+5dYLm80tYKAejr6TWsnIHkfiSMUNjtI
+ WybspMCHdbMcKuTF2wwHm0iqeiE/oKkWYSAS6yDw+2SxjzOBuWEl+iLwO w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="369428971"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="369428971"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2023 01:34:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="1053810035"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="1053810035"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga005.fm.intel.com with ESMTP; 17 Jul 2023 01:09:02 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 17 Jul 2023 01:09:02 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Mon, 17 Jul 2023 01:09:02 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Mon, 17 Jul 2023 01:09:02 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dcjW7GBVjWmFrtrd4+7WBHYE/6GQ0kYCkxmlb+VrbTHMGn9QwqzWWKMAychUV+Hkcq6LgHPJj2jkU/orU8VLVfNkaP5Pe0+EYQWxnHLq6ILRdrKqxmPTeXJr09vE9ulmEyIq7L4i/fxHDZcUfoQkJ+fiF6kES1mQPyaiZfmzHt92eK9AlSSnq/DKjNeObNqeA0DY0JK+UDeYZWzg8mdHgt0G4q3xDdezgVRmE2GVjXECJbRQzhaKLuCv6ueQTezgzJ32AoI0kLKE5pA3Q7+Pn6BYObm6HHpbcjV59iIGOurAsAElVUwLvmydv/jF3hJ+r8/WAvfAxoAJl5ki1tFFug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CigVVbxhBzUz7+qUYZE0HNzcrQO7Oqf7xiDnaI8qNSo=;
- b=HbDjln4uOWpvqcKhRU6ibm+P9fHOPy1WtUDjGCVjjFhW4v2aVXoIDUcVRLsstY8I5oTdwKbbzPvW5HDoCaH70pt+yqunDo8DCI3XIRid3J7xQh8KfxHDYbZResb/Jrh9oLCMfSzMAesmZZYmVokiAvYBQQOM/m8VrMfa4OZ3P9XplMlCKlqweG5Ekr1RZnor0Z8+LUqf+ktOZzPnvOlRZQjabwrn8WoY0ZNz0VskTfjHvNYtT51abELOecak1fzVx+sZgVbetsgLcacKOBMak9SsuohnDlvcm2s2/p+o67UDXU3WV++YrkxdilltjAsDqAiiFSMDYmK0GuWBDPviiQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com (2603:10b6:8:141::20)
- by MW3PR11MB4587.namprd11.prod.outlook.com (2603:10b6:303:58::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.25; Mon, 17 Jul
- 2023 08:09:00 +0000
-Received: from DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::806a:6364:af2:1aea]) by DS0PR11MB7529.namprd11.prod.outlook.com
- ([fe80::806a:6364:af2:1aea%7]) with mapi id 15.20.6588.031; Mon, 17 Jul 2023
- 08:08:59 +0000
-From: "Liu, Yi L" <yi.l.liu@intel.com>
-To: "Liu, Yi L" <yi.l.liu@intel.com>, "alex.williamson@redhat.com"
- <alex.williamson@redhat.com>, "jgg@nvidia.com" <jgg@nvidia.com>, "Tian,
- Kevin" <kevin.tian@intel.com>
-Thread-Topic: [PATCH v13 21/22] vfio: Compile vfio_group infrastructure
- optionally
-Thread-Index: AQHZoDagsdh+fCMUvkyHLuzt/JVGpq+9qlBwgAAgfRA=
-Date: Mon, 17 Jul 2023 08:08:59 +0000
-Message-ID: <DS0PR11MB7529F01B82FB659B96D15E38C33BA@DS0PR11MB7529.namprd11.prod.outlook.com>
-References: <20230616093946.68711-1-yi.l.liu@intel.com>
- <20230616093946.68711-22-yi.l.liu@intel.com>
- <DS0PR11MB7529C571419F1DB629AB7E92C33BA@DS0PR11MB7529.namprd11.prod.outlook.com>
-In-Reply-To: <DS0PR11MB7529C571419F1DB629AB7E92C33BA@DS0PR11MB7529.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7529:EE_|MW3PR11MB4587:EE_
-x-ms-office365-filtering-correlation-id: 2706a599-1a8f-4355-9b32-08db869d132b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 5o/4gJTcs0wWFZxY4arFzXGSokHUJirVxuedv+YbYCKWQFEoNVJnFBGJtnjbXfQ17O9nmq/zpZ8jATS9MDQjM5qkBapI2ecLR2mG+LtsriDrk/io2Rpf+6xyJ1dH4TE2WcD//jgGnD7RJkPheFDx7rlaUGX783ZfFyuObcD0hncgBYo1LcHfShSGVB0K56AcDJk+EUwfhS4jZwL/l1yHIhxtcrCDKVkaW0GcKcjBnhacudTFCa+hXLzT1kbhHDWNZr3nyESUl17caTkH8uTeRW7J4MDIEAC+oF0WjorcBQIRfo9KQ7Qn/y6RHwKVYmSTdyBrC1Pd0/cxxklpD+iY4s5/8JKHfhzWunNAswiuRWWb1pDJk6T/6/6lcK6No1/uikJj6drtV7B1b0RQ4uvG6GZ31rXBr4iE1usFAtLmzOFEUyTuYdQk2aXzmj3fcUCwiVNsMJJoWyRte+0gTX2zJyKSHWpq1fajpaaXhGagQOgDt5f8bhwL3xNDAtrQker5+RKJI0aK9oeWcPOr2X9Nf3YjG3YrIh338Hxf4WINKJ4Tu8y2WYj/sUDHGHZMxMRcBnV9/Je6V2OMFi4l/Xp1FeQEK1FHoN9O/dfUL0V53OVk4a2ZjZVUzeYA14hWXOWX
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7529.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(39860400002)(366004)(376002)(396003)(136003)(451199021)(66556008)(110136005)(54906003)(76116006)(7696005)(71200400001)(478600001)(4326008)(2940100002)(66946007)(7416002)(30864003)(26005)(6636002)(5660300002)(64756008)(41300700001)(52536014)(8676002)(186003)(316002)(66446008)(82960400001)(9686003)(122000001)(6506007)(66476007)(8936002)(38100700002)(86362001)(33656002)(38070700005)(2906002)(55016003)(83380400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?s/Dt5ojLxHfVm3qm/ps3SB4eZppa9CLshrbn7TFZaDPaI7h5fcf9S1Hl2nNk?=
- =?us-ascii?Q?6xR1gocqBKn9eEP5LFXeHx2u/Ircyvv5uqrqEr1q7ysUz8zpRzO8Oi+YkTdf?=
- =?us-ascii?Q?62eDMrm101f0dYfzuENfje/k3hmg9eb1jcQwOqzlG1y4QmCV26z5c39ezAl/?=
- =?us-ascii?Q?C1iYepNThxPKThIKEZF/6PrWy96c3f7vtFyXc5toMaUBXyiUkztH5nBh4OqH?=
- =?us-ascii?Q?f4rDS/NAL5ULP25xR8Id+LxvpAqZ6o4wggAiXC/8cVQS69o/bCLvQ+t1BbvX?=
- =?us-ascii?Q?6M3jdS7UGUKahGUKnsa40kGeaDaVCX8apFXtgkIoMHGPbJ67ZjSAIW1F88V1?=
- =?us-ascii?Q?QPydUalhNmxGk2yYe/3IzDG+p0Gr/VZ8Oh2YM+YfchVYOs2KLJ34W/xmRAdV?=
- =?us-ascii?Q?gnVysqlod0SGM/R1UzIEul2okVv9+47KazQo1oSfdOImn0dR80vbRURoeXAX?=
- =?us-ascii?Q?t4HPADR/75KjZAabldNB44pgix/7ZW4A36CCxQnnjWv5brgqnE8bUQp7A8h5?=
- =?us-ascii?Q?NLPbieFU0zgogTp3ty72m7nLQ5o7eo5dvzHStl4ijsP3KFC2uCmsoKsEhHnk?=
- =?us-ascii?Q?kT0C96fhKvd6aFpNujtfk3GxSst1e/w3/c/2+IQYwLusO16ztBTfXLBumTs+?=
- =?us-ascii?Q?td6pG8//WADeHGklFz2FXryS21qz6KbncNTEav7HPkn/1cca3WPIuKZJDrLo?=
- =?us-ascii?Q?o2NxTQzp8oChmXDYFE9xTrXY6acewPAfEbTOArIKateP5hys5dKeT2DT2Ypn?=
- =?us-ascii?Q?rZ4wmWj4+wmRfsKNfQCHndzFnFq+tPAmntHxBQlJdmz1/B9vqSW7oqRIEejS?=
- =?us-ascii?Q?XvPIsMRP1Y18lVfX2wlVwyXmRrhbavjM77RI32x1uppl+uFhm10q2mMk47lD?=
- =?us-ascii?Q?LI26iRv6RmfukDL/UIM96g/g1qqArS4kx2iumgd/HBeU9OBm5DLuxqFOpc3e?=
- =?us-ascii?Q?A3dzd41FR4ZW9+4qfnyISOarYakU0cH30Gwf3XO/OeSJvUSPIZMNTmvBnYZ5?=
- =?us-ascii?Q?dgoOmD2BpUIc60kAt1jR27p27k5Tx6BiBJZtk4sBvmauzIQPQH5XcNXZUix2?=
- =?us-ascii?Q?go3sA0jXZ2DL8IkBnbx7nG2Y8DSXdK2iPJg7Ufv2mC6/EW/J717arSeZrPbb?=
- =?us-ascii?Q?4DF5WWeuQxEDkTkFdgkUtzmRNFoYUIm6FfM69lu0K28xLUQMzksKDovGyDl3?=
- =?us-ascii?Q?FDA/PpLRzZeqVkePlAMmpUTWVp9HA6RThGGsA6ds60TqgFgOMBv9f/73sHBh?=
- =?us-ascii?Q?n8ZjhjpIawIQ/37BqbpqUD0F0p71AKxE6MFBNQbvF0Q51GIRr2XmsynNjUMf?=
- =?us-ascii?Q?SEuU2Pgu7z8MFIKItTw7NXS0s/fpnQ8OLY8ZN5A/cqr7PKXG/rrzCDkqEB0C?=
- =?us-ascii?Q?n126Flk+iN9GMHZ0TbtPnpRgShm5LSrPvS7WgUEj/0oaTu0zRNJ5H1NfiGv3?=
- =?us-ascii?Q?Vw4LkhxWmWoU2GAdsc89ayE6jCoio6acTYPBwfMCSnhrsyJdviB4cPxQEf9H?=
- =?us-ascii?Q?xmMai8/P09Uilv2e3OW373fpDv0Ed3FTD+qMRXmSZofe/5VxuhwvkDuessGO?=
- =?us-ascii?Q?YZslGRg8DV3Qcm5ITnFqJjyySwCIub4ac+33faTt?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="752817321"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="752817321"
+Received: from rgwhiteh-mobl1.ger.corp.intel.com (HELO [10.213.205.103])
+ ([10.213.205.103])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2023 01:34:39 -0700
+Message-ID: <b5f66bab-6b17-7d0f-343d-17d11a590f4f@linux.intel.com>
+Date: Mon, 17 Jul 2023 09:34:36 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7529.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2706a599-1a8f-4355-9b32-08db869d132b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jul 2023 08:08:59.2364 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ISQC85o4MrNOLiA4hCZqAO9RpYNmoBDwnXv1Gwsjr12tGUpAMcAByTFoNrAOW66cifAWTqWDwV6fxzZVaB/Q8g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4587
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v13 21/22] vfio: Compile vfio_group
- infrastructure optionally
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20230711160214.463134-1-tvrtko.ursulin@linux.intel.com>
+ <ZLGEPqoQWsBvTv52@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ZLGEPqoQWsBvTv52@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 1/2] lib/igt_dummyload:
+ Extract sync spinner API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,390 +64,561 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mjrosato@linux.ibm.com" <mjrosato@linux.ibm.com>,
- "jasowang@redhat.com" <jasowang@redhat.com>, "Hao,
- Xudong" <xudong.hao@intel.com>, "peterx@redhat.com" <peterx@redhat.com>, "Xu,
- Terrence" <terrence.xu@intel.com>,
- "chao.p.peng@linux.intel.com" <chao.p.peng@linux.intel.com>,
- "linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "lulu@redhat.com" <lulu@redhat.com>, "Duan, 
- Zhenzhong" <zhenzhong.duan@intel.com>, "joro@8bytes.org" <joro@8bytes.org>,
- "nicolinc@nvidia.com" <nicolinc@nvidia.com>, "Zhao,
- Yan Y" <yan.y.zhao@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "eric.auger@redhat.com" <eric.auger@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "yi.y.sun@linux.intel.com" <yi.y.sun@linux.intel.com>,
- "clegoate@redhat.com" <clegoate@redhat.com>,
- "cohuck@redhat.com" <cohuck@redhat.com>,
- "shameerali.kolothum.thodi@huawei.com" <shameerali.kolothum.thodi@huawei.com>,
- "suravee.suthikulpanit@amd.com" <suravee.suthikulpanit@amd.com>, "Jiang,
- Yanting" <yanting.jiang@intel.com>,
- "robin.murphy@arm.com" <robin.murphy@arm.com>
+Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Liu, Yi L <yi.l.liu@intel.com>
-> Sent: Monday, July 17, 2023 2:36 PM
->=20
-> > From: Liu, Yi L <yi.l.liu@intel.com>
-> > Sent: Friday, June 16, 2023 5:40 PM
-> >
-> > vfio_group is not needed for vfio device cdev, so with vfio device cdev
-> > introduced, the vfio_group infrastructures can be compiled out if only
-> > cdev is needed.
-> >
-> > Tested-by: Nicolin Chen <nicolinc@nvidia.com>
-> > Tested-by: Matthew Rosato <mjrosato@linux.ibm.com>
-> > Tested-by: Yanting Jiang <yanting.jiang@intel.com>
-> > Tested-by: Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>
-> > Tested-by: Terrence Xu <terrence.xu@intel.com>
-> > Signed-off-by: Yi Liu <yi.l.liu@intel.com>
-> > ---
-> >  drivers/iommu/iommufd/Kconfig |  4 +-
-> >  drivers/vfio/Kconfig          | 15 ++++++
-> >  drivers/vfio/Makefile         |  2 +-
-> >  drivers/vfio/vfio.h           | 89 ++++++++++++++++++++++++++++++++---
-> >  include/linux/vfio.h          | 25 ++++++++--
-> >  5 files changed, 123 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/drivers/iommu/iommufd/Kconfig b/drivers/iommu/iommufd/Kcon=
-fig
-> > index ada693ea51a7..99d4b075df49 100644
-> > --- a/drivers/iommu/iommufd/Kconfig
-> > +++ b/drivers/iommu/iommufd/Kconfig
-> > @@ -14,8 +14,8 @@ config IOMMUFD
-> >  if IOMMUFD
-> >  config IOMMUFD_VFIO_CONTAINER
-> >  	bool "IOMMUFD provides the VFIO container /dev/vfio/vfio"
-> > -	depends on VFIO && !VFIO_CONTAINER
-> > -	default VFIO && !VFIO_CONTAINER
-> > +	depends on VFIO_GROUP && !VFIO_CONTAINER
-> > +	default VFIO_GROUP && !VFIO_CONTAINER
->=20
-> Hi Alex, Jason,
->=20
-> I found a minor nit on the kconfig. The below configuration is valid.
-> But user cannot use vfio directly as there is no /dev/vfio/vfio. Although
-> user can open /dev/iommu instead. This is not good.
->=20
-> CONFIG_IOMMUFD=3Dy
-> CONFIG_VFIO_DEVICE_CDEv=3Dn
-> CONFIG_VFIO_GROUP=3Dy
-> CONFIG_VFIO_CONTAINER=3Dn
-> CONFIG_IOMMUFD_VFIO_CONTAINER=3Dn
->=20
-> So need to have the below change. I'll incorporate this change in
-> this series after your ack.
->=20
-> diff --git a/drivers/iommu/iommufd/Kconfig b/drivers/iommu/iommufd/Kconfi=
-g
-> index 99d4b075df49..d675c96c2bbb 100644
-> --- a/drivers/iommu/iommufd/Kconfig
-> +++ b/drivers/iommu/iommufd/Kconfig
-> @@ -14,8 +14,8 @@ config IOMMUFD
->  if IOMMUFD
->  config IOMMUFD_VFIO_CONTAINER
->  	bool "IOMMUFD provides the VFIO container /dev/vfio/vfio"
-> -	depends on VFIO_GROUP && !VFIO_CONTAINER
-> -	default VFIO_GROUP && !VFIO_CONTAINER
-> +	depends on VFIO_GROUP
-> +	default n
->  	help
->  	  IOMMUFD will provide /dev/vfio/vfio instead of VFIO. This relies on
->  	  IOMMUFD providing compatibility emulation to give the same ioctls.
-> diff --git a/drivers/vfio/Kconfig b/drivers/vfio/Kconfig
-> index 6bda6dbb4878..ee3bbad6beb8 100644
-> --- a/drivers/vfio/Kconfig
-> +++ b/drivers/vfio/Kconfig
-> @@ -6,7 +6,7 @@ menuconfig VFIO
->  	select INTERVAL_TREE
->  	select VFIO_GROUP if SPAPR_TCE_IOMMU || IOMMUFD=3Dn
->  	select VFIO_DEVICE_CDEV if !VFIO_GROUP
-> -	select VFIO_CONTAINER if IOMMUFD=3Dn
-> +	select VFIO_CONTAINER if IOMMUFD_VFIO_CONTAINER=3Dn
->  	help
->  	  VFIO provides a framework for secure userspace device drivers.
->  	  See Documentation/driver-api/vfio.rst for more details.
->=20
 
-Just realized that it is possible to config both VFIO_CONTAINER and
-IOMMUFD_VFIO_CONTAINER to "y". Then there will be a conflict when
-registering /dev/vfio/vfio. Any suggestion?
+On 14/07/2023 18:22, Rodrigo Vivi wrote:
+> On Tue, Jul 11, 2023 at 05:02:13PM +0100, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Sync spinner API is identical and compatible with regular spinners just
+>> that it tries to make sure spinner is actually running on the hardware
+>> before returning from the constructor.
+>>
+>> A few tests already use it, one more will, so lets promote it into
+>> common library.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>> ---
+>>   lib/igt_dummyload.c     | 105 ++++++++++++++++++++++++++++++++++++++++
+>>   lib/igt_dummyload.h     |  11 +++++
+>>   tests/i915/drm_fdinfo.c |  81 ++++---------------------------
+>>   tests/i915/gem_eio.c    |  15 ++----
+>>   tests/i915/perf_pmu.c   |  84 +++++---------------------------
+>>   5 files changed, 140 insertions(+), 156 deletions(-)
+>>
+>> diff --git a/lib/igt_dummyload.c b/lib/igt_dummyload.c
+>> index 9f941cef73e6..d3cee91540b6 100644
+>> --- a/lib/igt_dummyload.c
+>> +++ b/lib/igt_dummyload.c
+> 
+> why here?
+> 
+>> @@ -33,6 +33,7 @@
+>>   #include "drmtest.h"
+>>   #include "i915/gem_create.h"
+>>   #include "i915/gem_engine_topology.h"
+>> +#include "i915/gem.h"
+>>   #include "i915/gem_mman.h"
+>>   #include "i915/gem_submission.h"
+>>   #include "igt_aux.h"
+>> @@ -715,6 +716,110 @@ void igt_unshare_spins(void)
+>>   	IGT_INIT_LIST_HEAD(&spin_list);
+>>   }
+>>   
+>> +/**
+>> + * __igt_sync_spin_poll:
+>> + * @i915: open i915 drm file descriptor
+> 
+> anyway to make this not i915 centric?
+> or maybe move it to or start a lib that is i915 only?
+> 
+> I know that we have many more lib things that are still i915 centric,
+> but at some point we need to start organizing it...
+
+Is igt_dummyload i915/xe agnostic already? I missed that. It would be a 
+big ask for me to get on top of two uapis and do that.. ugh. :(
+
+So on the "why here?" part. Assuming taking the i915 route.. where would 
+you suggest to put it?
 
 Regards,
-Yi Liu
 
-> >  	help
-> >  	  IOMMUFD will provide /dev/vfio/vfio instead of VFIO. This relies on
-> >  	  IOMMUFD providing compatibility emulation to give the same ioctls.
-> > diff --git a/drivers/vfio/Kconfig b/drivers/vfio/Kconfig
-> > index 1cab8e4729de..35ab8ab87688 100644
-> > --- a/drivers/vfio/Kconfig
-> > +++ b/drivers/vfio/Kconfig
-> > @@ -4,6 +4,8 @@ menuconfig VFIO
-> >  	select IOMMU_API
-> >  	depends on IOMMUFD || !IOMMUFD
-> >  	select INTERVAL_TREE
-> > +	select VFIO_GROUP if SPAPR_TCE_IOMMU || IOMMUFD=3Dn
-> > +	select VFIO_DEVICE_CDEV if !VFIO_GROUP
-> >  	select VFIO_CONTAINER if IOMMUFD=3Dn
->=20
-> This should be " select VFIO_CONTAINER if IOMMUFD_VFIO_CONTAINER=3Dn"
->=20
-> Regards,
-> Yi Liu
->=20
-> >  	help
-> >  	  VFIO provides a framework for secure userspace device drivers.
-> > @@ -15,6 +17,7 @@ if VFIO
-> >  config VFIO_DEVICE_CDEV
-> >  	bool "Support for the VFIO cdev /dev/vfio/devices/vfioX"
-> >  	depends on IOMMUFD
-> > +	default !VFIO_GROUP
-> >  	help
-> >  	  The VFIO device cdev is another way for userspace to get device
-> >  	  access. Userspace gets device fd by opening device cdev under
-> > @@ -24,9 +27,20 @@ config VFIO_DEVICE_CDEV
-> >
-> >  	  If you don't know what to do here, say N.
-> >
-> > +config VFIO_GROUP
-> > +	bool "Support for the VFIO group /dev/vfio/$group_id"
-> > +	default y
-> > +	help
-> > +	   VFIO group support provides the traditional model for accessing
-> > +	   devices through VFIO and is used by the majority of userspace
-> > +	   applications and drivers making use of VFIO.
-> > +
-> > +	   If you don't know what to do here, say Y.
-> > +
-> >  config VFIO_CONTAINER
-> >  	bool "Support for the VFIO container /dev/vfio/vfio"
-> >  	select VFIO_IOMMU_TYPE1 if MMU && (X86 || S390 || ARM || ARM64)
-> > +	depends on VFIO_GROUP
-> >  	default y
-> >  	help
-> >  	  The VFIO container is the classic interface to VFIO for establishin=
-g
-> > @@ -48,6 +62,7 @@ endif
-> >
-> >  config VFIO_NOIOMMU
-> >  	bool "VFIO No-IOMMU support"
-> > +	depends on VFIO_GROUP
-> >  	help
-> >  	  VFIO is built on the ability to isolate devices using the IOMMU.
-> >  	  Only with an IOMMU can userspace access to DMA capable devices be
-> > diff --git a/drivers/vfio/Makefile b/drivers/vfio/Makefile
-> > index 245394aeb94b..57c3515af606 100644
-> > --- a/drivers/vfio/Makefile
-> > +++ b/drivers/vfio/Makefile
-> > @@ -2,9 +2,9 @@
-> >  obj-$(CONFIG_VFIO) +=3D vfio.o
-> >
-> >  vfio-y +=3D vfio_main.o \
-> > -	  group.o \
-> >  	  iova_bitmap.o
-> >  vfio-$(CONFIG_VFIO_DEVICE_CDEV) +=3D device_cdev.o
-> > +vfio-$(CONFIG_VFIO_GROUP) +=3D group.o
-> >  vfio-$(CONFIG_IOMMUFD) +=3D iommufd.o
-> >  vfio-$(CONFIG_VFIO_CONTAINER) +=3D container.o
-> >  vfio-$(CONFIG_VFIO_VIRQFD) +=3D virqfd.o
-> > diff --git a/drivers/vfio/vfio.h b/drivers/vfio/vfio.h
-> > index e7a3fe093362..b27a3915e6c9 100644
-> > --- a/drivers/vfio/vfio.h
-> > +++ b/drivers/vfio/vfio.h
-> > @@ -36,6 +36,12 @@ vfio_allocate_device_file(struct vfio_device *device=
-);
-> >
-> >  extern const struct file_operations vfio_device_fops;
-> >
-> > +#ifdef CONFIG_VFIO_NOIOMMU
-> > +extern bool vfio_noiommu __read_mostly;
-> > +#else
-> > +enum { vfio_noiommu =3D false };
-> > +#endif
-> > +
-> >  enum vfio_group_type {
-> >  	/*
-> >  	 * Physical device with IOMMU backing.
-> > @@ -60,6 +66,7 @@ enum vfio_group_type {
-> >  	VFIO_NO_IOMMU,
-> >  };
-> >
-> > +#if IS_ENABLED(CONFIG_VFIO_GROUP)
-> >  struct vfio_group {
-> >  	struct device 			dev;
-> >  	struct cdev			cdev;
-> > @@ -111,6 +118,82 @@ static inline bool vfio_device_is_noiommu(struct v=
-fio_device
-> > *vdev)
-> >  	return IS_ENABLED(CONFIG_VFIO_NOIOMMU) &&
-> >  	       vdev->group->type =3D=3D VFIO_NO_IOMMU;
-> >  }
-> > +#else
-> > +struct vfio_group;
-> > +
-> > +static inline int vfio_device_block_group(struct vfio_device *device)
-> > +{
-> > +	return 0;
-> > +}
-> > +
-> > +static inline void vfio_device_unblock_group(struct vfio_device *devic=
-e)
-> > +{
-> > +}
-> > +
-> > +static inline int vfio_device_set_group(struct vfio_device *device,
-> > +					enum vfio_group_type type)
-> > +{
-> > +	return 0;
-> > +}
-> > +
-> > +static inline void vfio_device_remove_group(struct vfio_device *device=
-)
-> > +{
-> > +}
-> > +
-> > +static inline void vfio_device_group_register(struct vfio_device *devi=
-ce)
-> > +{
-> > +}
-> > +
-> > +static inline void vfio_device_group_unregister(struct vfio_device *de=
-vice)
-> > +{
-> > +}
-> > +
-> > +static inline int vfio_device_group_use_iommu(struct vfio_device *devi=
-ce)
-> > +{
-> > +	return -EOPNOTSUPP;
-> > +}
-> > +
-> > +static inline void vfio_device_group_unuse_iommu(struct vfio_device *d=
-evice)
-> > +{
-> > +}
-> > +
-> > +static inline void vfio_df_group_close(struct vfio_device_file *df)
-> > +{
-> > +}
-> > +
-> > +static inline struct vfio_group *vfio_group_from_file(struct file *fil=
-e)
-> > +{
-> > +	return NULL;
-> > +}
-> > +
-> > +static inline bool vfio_group_enforced_coherent(struct vfio_group *gro=
-up)
-> > +{
-> > +	return true;
-> > +}
-> > +
-> > +static inline void vfio_group_set_kvm(struct vfio_group *group, struct=
- kvm *kvm)
-> > +{
-> > +}
-> > +
-> > +static inline bool vfio_device_has_container(struct vfio_device *devic=
-e)
-> > +{
-> > +	return false;
-> > +}
-> > +
-> > +static inline int __init vfio_group_init(void)
-> > +{
-> > +	return 0;
-> > +}
-> > +
-> > +static inline void vfio_group_cleanup(void)
-> > +{
-> > +}
-> > +
-> > +static inline bool vfio_device_is_noiommu(struct vfio_device *vdev)
-> > +{
-> > +	return false;
-> > +}
-> > +#endif /* CONFIG_VFIO_GROUP */
-> >
-> >  #if IS_ENABLED(CONFIG_VFIO_CONTAINER)
-> >  /**
-> > @@ -362,12 +445,6 @@ static inline void vfio_virqfd_exit(void)
-> >  }
-> >  #endif
-> >
-> > -#ifdef CONFIG_VFIO_NOIOMMU
-> > -extern bool vfio_noiommu __read_mostly;
-> > -#else
-> > -enum { vfio_noiommu =3D false };
-> > -#endif
-> > -
-> >  #ifdef CONFIG_HAVE_KVM
-> >  void _vfio_device_get_kvm_safe(struct vfio_device *device, struct kvm =
-*kvm);
-> >  void vfio_device_put_kvm(struct vfio_device *device);
-> > diff --git a/include/linux/vfio.h b/include/linux/vfio.h
-> > index d6228c839c44..5a1dee983f17 100644
-> > --- a/include/linux/vfio.h
-> > +++ b/include/linux/vfio.h
-> > @@ -43,7 +43,11 @@ struct vfio_device {
-> >  	 */
-> >  	const struct vfio_migration_ops *mig_ops;
-> >  	const struct vfio_log_ops *log_ops;
-> > +#if IS_ENABLED(CONFIG_VFIO_GROUP)
-> >  	struct vfio_group *group;
-> > +	struct list_head group_next;
-> > +	struct list_head iommu_entry;
-> > +#endif
-> >  	struct vfio_device_set *dev_set;
-> >  	struct list_head dev_set_list;
-> >  	unsigned int migration_flags;
-> > @@ -58,8 +62,6 @@ struct vfio_device {
-> >  	refcount_t refcount;	/* user count on registered device*/
-> >  	unsigned int open_count;
-> >  	struct completion comp;
-> > -	struct list_head group_next;
-> > -	struct list_head iommu_entry;
-> >  	struct iommufd_access *iommufd_access;
-> >  	void (*put_kvm)(struct kvm *kvm);
-> >  #if IS_ENABLED(CONFIG_IOMMUFD)
-> > @@ -284,12 +286,29 @@ int vfio_mig_get_next_state(struct vfio_device *d=
-evice,
-> >  /*
-> >   * External user API
-> >   */
-> > +#if IS_ENABLED(CONFIG_VFIO_GROUP)
-> >  struct iommu_group *vfio_file_iommu_group(struct file *file);
-> >  bool vfio_file_is_group(struct file *file);
-> > +bool vfio_file_has_dev(struct file *file, struct vfio_device *device);
-> > +#else
-> > +static inline struct iommu_group *vfio_file_iommu_group(struct file *f=
-ile)
-> > +{
-> > +	return NULL;
-> > +}
-> > +
-> > +static inline bool vfio_file_is_group(struct file *file)
-> > +{
-> > +	return false;
-> > +}
-> > +
-> > +static inline bool vfio_file_has_dev(struct file *file, struct vfio_de=
-vice *device)
-> > +{
-> > +	return false;
-> > +}
-> > +#endif
-> >  bool vfio_file_is_valid(struct file *file);
-> >  bool vfio_file_enforced_coherent(struct file *file);
-> >  void vfio_file_set_kvm(struct file *file, struct kvm *kvm);
-> > -bool vfio_file_has_dev(struct file *file, struct vfio_device *device);
-> >
-> >  #define VFIO_PIN_PAGES_MAX_ENTRIES	(PAGE_SIZE/sizeof(unsigned long))
-> >
-> > --
-> > 2.34.1
+Tvrtko
 
+>> + * @ahnd: allocator handle
+>> + * @ctx: intel_ctx_t context
+>> + * @e: engine to execute on
+>> + *
+>> + * Starts a recursive batch on an engine.
+>> + *
+>> + * Returns a #igt_spin_t which can be used with both standard and igt_sync_spin
+>> + * API family. Callers should consult @gem_class_can_store_dword to whether
+>> + * the target platform+engine can reliably support the igt_sync_spin API.
+>> + */
+>> +igt_spin_t *
+>> +__igt_sync_spin_poll(int i915, uint64_t ahnd, const intel_ctx_t *ctx,
+>> +		     const struct intel_execution_engine2 *e)
+>> +{
+>> +	struct igt_spin_factory opts = {
+>> +		.ahnd = ahnd,
+>> +		.ctx = ctx,
+>> +		.engine = e ? e->flags : 0,
+>> +	};
+>> +
+>> +	if (!e || gem_class_can_store_dword(i915, e->class))
+>> +		opts.flags |= IGT_SPIN_POLL_RUN;
+>> +
+>> +	return __igt_spin_factory(i915, &opts);
+>> +}
+>> +
+>> +/**
+>> + * __igt_sync_spin_wait:
+>> + * @i915: open i915 drm file descriptor
+>> + * @spin: previously create sync spinner
+>> + *
+>> + * Waits for a spinner to be running on the hardware.
+>> + *
+>> + * Callers should consult @gem_class_can_store_dword to whether the target
+>> + * platform+engine can reliably support the igt_sync_spin API.
+>> + */
+>> +unsigned long __igt_sync_spin_wait(int i915, igt_spin_t *spin)
+>> +{
+>> +	struct timespec start = { };
+>> +
+>> +	igt_nsec_elapsed(&start);
+>> +
+>> +	if (igt_spin_has_poll(spin)) {
+>> +		unsigned long timeout = 0;
+>> +
+>> +		while (!igt_spin_has_started(spin)) {
+>> +			unsigned long t = igt_nsec_elapsed(&start);
+>> +
+>> +			igt_assert(gem_bo_busy(i915, spin->handle));
+>> +			if ((t - timeout) > 250e6) {
+>> +				timeout = t;
+>> +				igt_warn("Spinner not running after %.2fms\n",
+>> +					 (double)t / 1e6);
+>> +				igt_assert(t < 2e9);
+>> +			}
+>> +		}
+>> +	} else {
+>> +		igt_debug("__spin_wait - usleep mode\n");
+>> +		usleep(500e3); /* Better than nothing! */
+>> +	}
+>> +
+>> +	igt_assert(gem_bo_busy(i915, spin->handle));
+>> +	return igt_nsec_elapsed(&start);
+>> +}
+>> +
+>> +igt_spin_t *
+>> +__igt_sync_spin(int i915, uint64_t ahnd, const intel_ctx_t *ctx,
+>> +		const struct intel_execution_engine2 *e)
+>> +{
+>> +	igt_spin_t *spin = __igt_sync_spin_poll(i915, ahnd, ctx, e);
+>> +
+>> +	__igt_sync_spin_wait(i915, spin);
+>> +
+>> +	return spin;
+>> +}
+>> +
+>> +/**
+>> + * igt_sync_spin:
+>> + * @i915: open i915 drm file descriptor
+>> + * @ahnd: allocator handle
+>> + * @ctx: intel_ctx_t context
+>> + * @e: engine to execute on
+>> + *
+>> + * Starts a recursive batch on an engine.
+>> + *
+>> + * Returns a #igt_spin_t and tries to guarantee it to be running at the time of
+>> + * the return. Otherwise it does a best effort only. Callers should check for
+>> + * @gem_class_can_store_dword if they want to be sure guarantee can be given.
+>> + *
+>> + * Both standard and igt_sync_spin API family can be used on the returned
+>> + * spinner object.
+>> + */
+>> +igt_spin_t *
+>> +igt_sync_spin(int i915, uint64_t ahnd, const intel_ctx_t *ctx,
+>> +	      const struct intel_execution_engine2 *e)
+>> +{
+>> +	igt_require_gem(i915);
+>> +
+>> +	return __igt_sync_spin(i915, ahnd, ctx, e);
+>> +}
+>> +
+>>   static uint32_t plug_vgem_handle(struct igt_cork *cork, int fd)
+>>   {
+>>   	struct vgem_bo bo;
+>> diff --git a/lib/igt_dummyload.h b/lib/igt_dummyload.h
+>> index 6eb3f2e696bb..b771011af74f 100644
+>> --- a/lib/igt_dummyload.h
+>> +++ b/lib/igt_dummyload.h
+>> @@ -143,6 +143,17 @@ void igt_terminate_spins(void);
+>>   void igt_unshare_spins(void);
+>>   void igt_free_spins(int i915);
+>>   
+>> +struct intel_execution_engine2;
+>> +
+>> +igt_spin_t *__igt_sync_spin_poll(int i915, uint64_t ahnd,
+>> +				 const intel_ctx_t *ctx,
+>> +				 const struct intel_execution_engine2 *e);
+>> +unsigned long __igt_sync_spin_wait(int i915, igt_spin_t *spin);
+>> +igt_spin_t *__igt_sync_spin(int i915, uint64_t ahnd, const intel_ctx_t *ctx,
+>> +			    const struct intel_execution_engine2 *e);
+>> +igt_spin_t *igt_sync_spin(int i915, uint64_t ahnd, const intel_ctx_t *ctx,
+>> +			  const struct intel_execution_engine2 *e);
+>> +
+>>   enum igt_cork_type {
+>>   	CORK_SYNC_FD = 1,
+>>   	CORK_VGEM_HANDLE
+>> diff --git a/tests/i915/drm_fdinfo.c b/tests/i915/drm_fdinfo.c
+>> index c0e0ba1905f1..5cafa0e469e2 100644
+>> --- a/tests/i915/drm_fdinfo.c
+>> +++ b/tests/i915/drm_fdinfo.c
+>> @@ -138,68 +138,6 @@ static unsigned int measured_usleep(unsigned int usec)
+>>   #define FLAG_HANG (8)
+>>   #define TEST_ISOLATION (16)
+>>   
+>> -static igt_spin_t *__spin_poll(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+>> -			       const struct intel_execution_engine2 *e)
+>> -{
+>> -	struct igt_spin_factory opts = {
+>> -		.ahnd = ahnd,
+>> -		.ctx = ctx,
+>> -		.engine = e ? e->flags : 0,
+>> -	};
+>> -
+>> -	if (!e || gem_class_can_store_dword(fd, e->class))
+>> -		opts.flags |= IGT_SPIN_POLL_RUN;
+>> -
+>> -	return __igt_spin_factory(fd, &opts);
+>> -}
+>> -
+>> -static unsigned long __spin_wait(int fd, igt_spin_t *spin)
+>> -{
+>> -	struct timespec start = { };
+>> -
+>> -	igt_nsec_elapsed(&start);
+>> -
+>> -	if (igt_spin_has_poll(spin)) {
+>> -		unsigned long timeout = 0;
+>> -
+>> -		while (!igt_spin_has_started(spin)) {
+>> -			unsigned long t = igt_nsec_elapsed(&start);
+>> -
+>> -			igt_assert(gem_bo_busy(fd, spin->handle));
+>> -			if ((t - timeout) > 250e6) {
+>> -				timeout = t;
+>> -				igt_warn("Spinner not running after %.2fms\n",
+>> -					 (double)t / 1e6);
+>> -				igt_assert(t < 2e9);
+>> -			}
+>> -		}
+>> -	} else {
+>> -		igt_debug("__spin_wait - usleep mode\n");
+>> -		usleep(500e3); /* Better than nothing! */
+>> -	}
+>> -
+>> -	igt_assert(gem_bo_busy(fd, spin->handle));
+>> -	return igt_nsec_elapsed(&start);
+>> -}
+>> -
+>> -static igt_spin_t *__spin_sync(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+>> -			       const struct intel_execution_engine2 *e)
+>> -{
+>> -	igt_spin_t *spin = __spin_poll(fd, ahnd, ctx, e);
+>> -
+>> -	__spin_wait(fd, spin);
+>> -
+>> -	return spin;
+>> -}
+>> -
+>> -static igt_spin_t *spin_sync(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+>> -			     const struct intel_execution_engine2 *e)
+>> -{
+>> -	igt_require_gem(fd);
+>> -
+>> -	return __spin_sync(fd, ahnd, ctx, e);
+>> -}
+>> -
+>>   static void end_spin(int fd, igt_spin_t *spin, unsigned int flags)
+>>   {
+>>   	if (!spin)
+>> @@ -264,7 +202,7 @@ single(int gem_fd, const intel_ctx_t *ctx,
+>>   	ahnd = get_reloc_ahnd(spin_fd, ctx->id);
+>>   
+>>   	if (flags & TEST_BUSY)
+>> -		spin = spin_sync(spin_fd, ahnd, ctx, e);
+>> +		spin = igt_sync_spin(spin_fd, ahnd, ctx, e);
+>>   	else
+>>   		spin = NULL;
+>>   
+>> @@ -349,7 +287,7 @@ busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+>>   
+>>   	memset(tval, 0, sizeof(tval));
+>>   
+>> -	spin = spin_sync(gem_fd, ahnd, ctx, e);
+>> +	spin = igt_sync_spin(gem_fd, ahnd, ctx, e);
+>>   
+>>   	read_busy_all(gem_fd, tval[0]);
+>>   	slept = measured_usleep(batch_duration_ns / 1000);
+>> @@ -418,14 +356,14 @@ most_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+>>   			__submit_spin(gem_fd, spin, e_, 64);
+>>   			busy_class[e_->class]++;
+>>   		} else {
+>> -			spin = __spin_poll(gem_fd, ahnd, ctx, e_);
+>> +			spin = __igt_sync_spin_poll(gem_fd, ahnd, ctx, e_);
+>>   			busy_class[e_->class]++;
+>>   		}
+>>   	}
+>>   	igt_require(spin); /* at least one busy engine */
+>>   
+>>   	/* Small delay to allow engines to start. */
+>> -	usleep(__spin_wait(gem_fd, spin) * num_engines / 1e3);
+>> +	usleep(__igt_sync_spin_wait(gem_fd, spin) * num_engines / 1e3);
+>>   
+>>   	read_busy_all(gem_fd, tval[0]);
+>>   	slept = measured_usleep(batch_duration_ns / 1000);
+>> @@ -475,12 +413,12 @@ all_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+>>   		if (spin)
+>>   			__submit_spin(gem_fd, spin, e, 64);
+>>   		else
+>> -			spin = __spin_poll(gem_fd, ahnd, ctx, e);
+>> +			spin = __igt_sync_spin_poll(gem_fd, ahnd, ctx, e);
+>>   		busy_class[e->class]++;
+>>   	}
+>>   
+>>   	/* Small delay to allow engines to start. */
+>> -	usleep(__spin_wait(gem_fd, spin) * num_engines / 1e3);
+>> +	usleep(__igt_sync_spin_wait(gem_fd, spin) * num_engines / 1e3);
+>>   
+>>   	read_busy_all(gem_fd, tval[0]);
+>>   	slept = measured_usleep(batch_duration_ns / 1000);
+>> @@ -624,7 +562,7 @@ virtual(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
+>>   			ahnd = get_reloc_ahnd(i915, ctx->id);
+>>   
+>>   			if (flags & TEST_BUSY)
+>> -				spin = spin_sync(i915, ahnd, ctx, NULL);
+>> +				spin = igt_sync_spin(i915, ahnd, ctx, NULL);
+>>   			else
+>>   				spin = NULL;
+>>   
+>> @@ -732,11 +670,12 @@ virtual_all(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
+>>   			if (spin)
+>>   				__virt_submit_spin(i915, spin, ctx[i], 64);
+>>   			else
+>> -				spin = __spin_poll(i915, ahnd, ctx[i], NULL);
+>> +				spin = __igt_sync_spin_poll(i915, ahnd, ctx[i],
+>> +							    NULL);
+>>   		}
+>>   
+>>   		/* Small delay to allow engines to start. */
+>> -		usleep(__spin_wait(i915, spin) * count / 1e3);
+>> +		usleep(__igt_sync_spin_wait(i915, spin) * count / 1e3);
+>>   
+>>   		val = read_busy(i915, class);
+>>   		slept = measured_usleep(batch_duration_ns / 1000);
+>> diff --git a/tests/i915/gem_eio.c b/tests/i915/gem_eio.c
+>> index d889d67dcebd..6d4b8f7df909 100644
+>> --- a/tests/i915/gem_eio.c
+>> +++ b/tests/i915/gem_eio.c
+>> @@ -47,6 +47,7 @@
+>>   #include "i915/gem_ring.h"
+>>   #include "igt.h"
+>>   #include "igt_device.h"
+>> +#include "igt_dummyload.h"
+>>   #include "igt_fb.h"
+>>   #include "igt_kms.h"
+>>   #include "igt_stats.h"
+>> @@ -429,22 +430,12 @@ static igt_spin_t *__spin_poll(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+>>   	return __igt_spin_factory(fd, &opts);
+>>   }
+>>   
+>> -static void __spin_wait(int fd, igt_spin_t *spin)
+>> -{
+>> -	if (igt_spin_has_poll(spin)) {
+>> -		igt_spin_busywait_until_started(spin);
+>> -	} else {
+>> -		igt_debug("__spin_wait - usleep mode\n");
+>> -		usleep(500e3); /* Better than nothing! */
+>> -	}
+>> -}
+>> -
+>>   static igt_spin_t *spin_sync(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+>>   			     unsigned long flags)
+>>   {
+>>   	igt_spin_t *spin = __spin_poll(fd, ahnd, ctx, flags);
+>>   
+>> -	__spin_wait(fd, spin);
+>> +	__igt_sync_spin_wait(fd, spin);
+>>   
+>>   	return spin;
+>>   }
+>> @@ -963,7 +954,7 @@ static void test_inflight_external(int fd)
+>>   	fence = execbuf.rsvd2 >> 32;
+>>   	igt_assert(fence != -1);
+>>   
+>> -	__spin_wait(fd, hang);
+>> +	__igt_sync_spin_wait(fd, hang);
+>>   	manual_hang(fd);
+>>   
+>>   	gem_sync(fd, hang->handle); /* wedged, with an unready batch */
+>> diff --git a/tests/i915/perf_pmu.c b/tests/i915/perf_pmu.c
+>> index 0806a8e545b5..a888027ad9af 100644
+>> --- a/tests/i915/perf_pmu.c
+>> +++ b/tests/i915/perf_pmu.c
+>> @@ -377,68 +377,6 @@ static unsigned int measured_usleep(unsigned int usec)
+>>   #define TEST_OTHER (128)
+>>   #define TEST_ALL   (256)
+>>   
+>> -static igt_spin_t *__spin_poll(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+>> -			       const struct intel_execution_engine2 *e)
+>> -{
+>> -	struct igt_spin_factory opts = {
+>> -		.ahnd = ahnd,
+>> -		.ctx = ctx,
+>> -		.engine = e->flags,
+>> -	};
+>> -
+>> -	if (gem_class_can_store_dword(fd, e->class))
+>> -		opts.flags |= IGT_SPIN_POLL_RUN;
+>> -
+>> -	return __igt_spin_factory(fd, &opts);
+>> -}
+>> -
+>> -static unsigned long __spin_wait(int fd, igt_spin_t *spin)
+>> -{
+>> -	struct timespec start = { };
+>> -
+>> -	igt_nsec_elapsed(&start);
+>> -
+>> -	if (igt_spin_has_poll(spin)) {
+>> -		unsigned long timeout = 0;
+>> -
+>> -		while (!igt_spin_has_started(spin)) {
+>> -			unsigned long t = igt_nsec_elapsed(&start);
+>> -
+>> -			igt_assert(gem_bo_busy(fd, spin->handle));
+>> -			if ((t - timeout) > 250e6) {
+>> -				timeout = t;
+>> -				igt_warn("Spinner not running after %.2fms\n",
+>> -					 (double)t / 1e6);
+>> -				igt_assert(t < 2e9);
+>> -			}
+>> -		}
+>> -	} else {
+>> -		igt_debug("__spin_wait - usleep mode\n");
+>> -		usleep(500e3); /* Better than nothing! */
+>> -	}
+>> -
+>> -	igt_assert(gem_bo_busy(fd, spin->handle));
+>> -	return igt_nsec_elapsed(&start);
+>> -}
+>> -
+>> -static igt_spin_t *__spin_sync(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+>> -			       const struct intel_execution_engine2 *e)
+>> -{
+>> -	igt_spin_t *spin = __spin_poll(fd, ahnd, ctx, e);
+>> -
+>> -	__spin_wait(fd, spin);
+>> -
+>> -	return spin;
+>> -}
+>> -
+>> -static igt_spin_t *spin_sync(int fd, uint64_t ahnd, const intel_ctx_t *ctx,
+>> -			     const struct intel_execution_engine2 *e)
+>> -{
+>> -	igt_require_gem(fd);
+>> -
+>> -	return __spin_sync(fd, ahnd, ctx, e);
+>> -}
+>> -
+>>   static void end_spin(int fd, igt_spin_t *spin, unsigned int flags)
+>>   {
+>>   	if (!spin)
+>> @@ -484,7 +422,7 @@ single(int gem_fd, const intel_ctx_t *ctx,
+>>   	fd = open_pmu(gem_fd, I915_PMU_ENGINE_BUSY(e->class, e->instance));
+>>   
+>>   	if (flags & TEST_BUSY)
+>> -		spin = spin_sync(gem_fd, ahnd, ctx, e);
+>> +		spin = igt_sync_spin(gem_fd, ahnd, ctx, e);
+>>   	else
+>>   		spin = NULL;
+>>   
+>> @@ -536,7 +474,7 @@ busy_start(int gem_fd, const intel_ctx_t *ctx,
+>>   	 */
+>>   	sleep(2);
+>>   
+>> -	spin = __spin_sync(gem_fd, ahnd, ctx, e);
+>> +	spin = __igt_sync_spin(gem_fd, ahnd, ctx, e);
+>>   
+>>   	fd = open_pmu(gem_fd, I915_PMU_ENGINE_BUSY(e->class, e->instance));
+>>   
+>> @@ -583,7 +521,7 @@ busy_double_start(int gem_fd, const intel_ctx_t *ctx,
+>>   	 * re-submission in execlists mode. Make sure busyness is correctly
+>>   	 * reported with the engine busy, and after the engine went idle.
+>>   	 */
+>> -	spin[0] = __spin_sync(gem_fd, ahnd, ctx, e);
+>> +	spin[0] = __igt_sync_spin(gem_fd, ahnd, ctx, e);
+>>   	usleep(500e3);
+>>   	spin[1] = __igt_spin_new(gem_fd,
+>>   				 .ahnd = ahndN,
+>> @@ -675,7 +613,7 @@ busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+>>   
+>>   	igt_assert_eq(i, num_engines);
+>>   
+>> -	spin = spin_sync(gem_fd, ahnd, ctx, e);
+>> +	spin = igt_sync_spin(gem_fd, ahnd, ctx, e);
+>>   	pmu_read_multi(fd[0], num_engines, tval[0]);
+>>   	slept = measured_usleep(batch_duration_ns / 1000);
+>>   	if (flags & TEST_TRAILING_IDLE)
+>> @@ -737,7 +675,7 @@ most_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+>>   		else if (spin)
+>>   			__submit_spin(gem_fd, spin, e_, 64);
+>>   		else
+>> -			spin = __spin_poll(gem_fd, ahnd, ctx, e_);
+>> +			spin = __igt_sync_spin_poll(gem_fd, ahnd, ctx, e_);
+>>   
+>>   		val[i++] = I915_PMU_ENGINE_BUSY(e_->class, e_->instance);
+>>   	}
+>> @@ -749,7 +687,7 @@ most_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+>>   		fd[i] = open_group(gem_fd, val[i], fd[0]);
+>>   
+>>   	/* Small delay to allow engines to start. */
+>> -	usleep(__spin_wait(gem_fd, spin) * num_engines / 1e3);
+>> +	usleep(__igt_sync_spin_wait(gem_fd, spin) * num_engines / 1e3);
+>>   
+>>   	pmu_read_multi(fd[0], num_engines, tval[0]);
+>>   	slept = measured_usleep(batch_duration_ns / 1000);
+>> @@ -796,7 +734,7 @@ all_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+>>   		if (spin)
+>>   			__submit_spin(gem_fd, spin, e, 64);
+>>   		else
+>> -			spin = __spin_poll(gem_fd, ahnd, ctx, e);
+>> +			spin = __igt_sync_spin_poll(gem_fd, ahnd, ctx, e);
+>>   
+>>   		val[i++] = I915_PMU_ENGINE_BUSY(e->class, e->instance);
+>>   	}
+>> @@ -807,7 +745,7 @@ all_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
+>>   		fd[i] = open_group(gem_fd, val[i], fd[0]);
+>>   
+>>   	/* Small delay to allow engines to start. */
+>> -	usleep(__spin_wait(gem_fd, spin) * num_engines / 1e3);
+>> +	usleep(__igt_sync_spin_wait(gem_fd, spin) * num_engines / 1e3);
+>>   
+>>   	pmu_read_multi(fd[0], num_engines, tval[0]);
+>>   	slept = measured_usleep(batch_duration_ns / 1000);
+>> @@ -848,7 +786,7 @@ no_sema(int gem_fd, const intel_ctx_t *ctx,
+>>   			   fd[0]);
+>>   
+>>   	if (flags & TEST_BUSY)
+>> -		spin = spin_sync(gem_fd, ahnd, ctx, e);
+>> +		spin = igt_sync_spin(gem_fd, ahnd, ctx, e);
+>>   	else
+>>   		spin = NULL;
+>>   
+>> @@ -1406,7 +1344,7 @@ multi_client(int gem_fd, const intel_ctx_t *ctx,
+>>   	 */
+>>   	fd[1] = open_pmu(gem_fd, config);
+>>   
+>> -	spin = spin_sync(gem_fd, ahnd, ctx, e);
+>> +	spin = igt_sync_spin(gem_fd, ahnd, ctx, e);
+>>   
+>>   	val[0] = val[1] = __pmu_read_single(fd[0], &ts[0]);
+>>   	slept[1] = measured_usleep(batch_duration_ns / 1000);
+>> @@ -1776,7 +1714,7 @@ static igt_spin_t *spin_sync_gt(int i915, uint64_t ahnd, unsigned int gt,
+>>   
+>>   	igt_debug("Using engine %u:%u\n", e.class, e.instance);
+>>   
+>> -	return spin_sync(i915, ahnd, *ctx, &e);
+>> +	return igt_sync_spin(i915, ahnd, *ctx, &e);
+>>   }
+>>   
+>>   static void
+>> -- 
+>> 2.39.2
+>>
