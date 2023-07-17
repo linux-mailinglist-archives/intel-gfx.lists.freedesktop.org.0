@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F4D7569E3
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jul 2023 19:12:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9161756A92
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jul 2023 19:31:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1352910E288;
-	Mon, 17 Jul 2023 17:12:30 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB32010E296;
- Mon, 17 Jul 2023 17:12:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ADBA10E288;
+	Mon, 17 Jul 2023 17:31:32 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B4A210E288;
+ Mon, 17 Jul 2023 17:31:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689613947; x=1721149947;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8wR3AYDxl5sMEg42nQoDPIKhPVWODMRqYEp6eIVOrbA=;
- b=FHSl2AlBDJDm72dzxpkA+KfqCLVomnbtV2PuMEbTHkov4FjXFye+MRGE
- BDLYGEAePLQXPD/guDci4PdYYwHhrMdUyqBe7vup0wBbhmKZD9HwWLFyn
- qf4VRN6NLOpReS40pVl90B5r9dCVaScBdTtmU4IjF789FjS3fWHgef3ff
- 7XPfFx/w+ZKvF3yhHf+q9Gq3urAX7ncVRJoP8drK5YjVCVoEJFv8rwpNL
- Nh0oSfYPdzOfPA9ErEJnucBzdMb+GwYMbslnmSoCSnnPJ4UbZvFd4WpOR
- hpgVvu3yN+B51k4AKA+QIgGgGR0HHYWj68lCpuefMqVoyA8e5hC96cnol Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="364860106"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="364860106"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 10:12:26 -0700
+ t=1689615091; x=1721151091;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=R4KIr5olazxTaWqwH/NtEITHJw/cTrDOjWDDTZ6KD48=;
+ b=mTIsemSecvvyNytwOi2jXSxoO88Xsdw15pyP+8XZybF+ntjWfT1lNDB/
+ P/qvk4CuP199obwoc3ZbfhHZNUq57mrcbJGVWjIlPofx7k7nJ29jGfeAC
+ wf1lR1IRCKILN9z6pSuguYvpD6fYzK3eb8Afex+oNZ8zRDNn7CYsW6YAT
+ OGELpZ5JOPdohXApTGLf4GBtD5z9718LQz+uc+RyImwsWfkzKI8/l2ZYC
+ ZTEe9MAsNiSgJA0+nrxG4FcA/SJJBtbJeUrxsGR+mUSIlXNlGYOa31FtW
+ tLBPynE5fLNm7f0lVACByLkm+tKn3T6MOG6SIznCIhtndoAVMTqufdLEg Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="350855451"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="350855451"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2023 10:31:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="758503270"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="758503270"
-Received: from rgwhiteh-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.205.103])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 10:12:23 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org,
-	Intel-gfx@lists.freedesktop.org
-Date: Mon, 17 Jul 2023 18:12:19 +0100
-Message-Id: <20230717171219.832728-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230717165318.831766-1-tvrtko.ursulin@linux.intel.com>
-References: <20230717165318.831766-1-tvrtko.ursulin@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="813427490"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="813427490"
+Received: from jplazoni-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.252.55.169])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2023 10:31:12 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+Date: Mon, 17 Jul 2023 19:30:53 +0200
+Message-Id: <20230717173059.422892-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t v2] tests/i915_pm_rps: Fix test after
- silent conflict
+Subject: [Intel-gfx] [PATCH v4 0/6] Update AUX invalidation sequence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,98 +60,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Hi,
 
-A silent conflict sneaked in as I was merging
-d86ca7e17b58 ("tests/i915_pm_rps: Exercise sysfs thresholds") in a way
-that igt_sysfs_set_u32 has became a function returning void.
+as there are new hardware directives, we need a little adaptation
+for the AUX invalidation sequence.
 
-Assert is now built-in so drop it from the test.
+In this version we support all the engines affected by this
+change.
 
-v2:
- * Fix invalid value test.
- * Assert new values after write while at it.
+The stable backport has some challenges because the original
+patch that this series fixes has had more changes in between.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Fixes: d86ca7e17b58 ("tests/i915_pm_rps: Exercise sysfs thresholds")
-Reference: 54dc25efaf10 ("lib/igt_sysfs: add asserting helpers for read/write operations")
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lukasz Laguna <lukasz.laguna@intel.com>
-Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
----
- tests/i915/i915_pm_rps.c | 34 ++++++++++++++++++++++++++++------
- 1 file changed, 28 insertions(+), 6 deletions(-)
+Thanks a lot Nirmoy for your review and for the fruitful discussions!
 
-diff --git a/tests/i915/i915_pm_rps.c b/tests/i915/i915_pm_rps.c
-index 68bb99d62c19..15c74cc703c2 100644
---- a/tests/i915/i915_pm_rps.c
-+++ b/tests/i915/i915_pm_rps.c
-@@ -988,6 +988,28 @@ static igt_spin_t *spin_sync_gt(int i915, uint64_t ahnd, unsigned int gt,
- 	return __igt_sync_spin(i915, ahnd, *ctx, &e);
- }
- 
-+static void sysfs_fail_set_u32(int dir, const char *attr, uint32_t set)
-+{
-+	u32 old, new;
-+	bool ret;
-+
-+	old = igt_sysfs_get_u32(dir, attr);
-+	ret = __igt_sysfs_set_u32(dir, attr, set);
-+	igt_assert_eq(ret, false);
-+	new = igt_sysfs_get_u32(dir, attr);
-+	igt_assert_eq(old, new);
-+}
-+
-+static void sysfs_set_u32(int dir, const char *attr, uint32_t set)
-+{
-+	u32 new;
-+
-+	igt_sysfs_set_u32(dir, attr, set);
-+
-+	new = igt_sysfs_get_u32(dir, attr);
-+	igt_assert_eq(set, new);
-+}
-+
- #define TEST_IDLE 0x1
- #define TEST_PARK 0x2
- static void test_thresholds(int i915, unsigned int gt, unsigned int flags)
-@@ -1010,8 +1032,8 @@ static void test_thresholds(int i915, unsigned int gt, unsigned int flags)
- 	igt_require(def_up && def_down);
- 
- 	/* Check invalid percentages are rejected */
--	igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_up_threshold_pct", 101), false);
--	igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_down_threshold_pct", 101), false);
-+	sysfs_fail_set_u32(sysfs, "rps_up_threshold_pct", 101);
-+	sysfs_fail_set_u32(sysfs, "rps_down_threshold_pct", 101);
- 
- 	/*
- 	 * Invent some random up-down thresholds, but always include 0 and 100
-@@ -1034,8 +1056,8 @@ static void test_thresholds(int i915, unsigned int gt, unsigned int flags)
- 	/* Exercise the thresholds with a GPU load to trigger park/unpark etc */
- 	for (i = 0; i < points; i++) {
- 		igt_info("Testing thresholds up %u%% and down %u%%...\n", ta[i], tb[i]);
--		igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_up_threshold_pct", ta[i]), true);
--		igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_down_threshold_pct", tb[i]), true);
-+		sysfs_set_u32(sysfs, "rps_up_threshold_pct", ta[i]);
-+		sysfs_set_u32(sysfs, "rps_down_threshold_pct", tb[i]);
- 
- 		if (flags & TEST_IDLE) {
- 			gem_quiescent_gpu(i915);
-@@ -1069,8 +1091,8 @@ static void test_thresholds(int i915, unsigned int gt, unsigned int flags)
- 	gem_quiescent_gpu(i915);
- 
- 	/* Restore defaults */
--	igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_up_threshold_pct", def_up), true);
--	igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_down_threshold_pct", def_down), true);
-+	sysfs_set_u32(sysfs, "rps_up_threshold_pct", def_up);
-+	sysfs_set_u32(sysfs, "rps_down_threshold_pct", def_down);
- 
- 	free(ta);
- 	free(tb);
+Thanks,
+Andi
+
+Changelog:
+=========
+v3 -> v4
+ - A trivial patch 3 is added to rename the flags with
+   bit_group_{0,1} to align with the datasheet naming.
+ - Patch 4 fixes a confusion I made where the CCS flag was
+   applied to the wrong bit group.
+
+v2 -> v3
+ - added r-b from Nirmoy in patch 1 and 4.
+ - added patch 3 which enables the ccs_flush in the control pipe
+   for mtl+ compute and render engines.
+ - added redundant checks in patch 2 for enabling the EMIT_FLUSH
+   flag.
+
+v1 -> v2
+ - add a clean up preliminary patch for the existing registers
+ - add support for more engines
+ - add the Fixes tag
+
+Andi Shyti (4):
+  drm/i915/gt: Cleanup aux invalidation registers
+  drm/i915/gt: Rename flags with bit_group_X according to the datasheet
+  drm/i915/gt: Enable the CCS_FLUSH bit in the pipe control
+  drm/i915/gt: Support aux invalidation on all engines
+
+Jonathan Cavitt (2):
+  drm/i915/gt: Ensure memory quiesced before invalidation
+  drm/i915/gt: Poll aux invalidation register bit on invalidation
+
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c     | 127 +++++++++++++------
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.h     |   3 +-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |   1 +
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h |   2 +
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h      |  14 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c          |  17 +--
+ 6 files changed, 98 insertions(+), 66 deletions(-)
+
 -- 
-2.39.2
+2.40.1
 
