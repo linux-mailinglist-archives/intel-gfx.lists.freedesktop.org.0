@@ -2,57 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41382755E9A
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jul 2023 10:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92CB8755F2D
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jul 2023 11:26:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34F9410E20E;
-	Mon, 17 Jul 2023 08:37:24 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D280E10E20D;
- Mon, 17 Jul 2023 08:37:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C41B010E0A2;
+	Mon, 17 Jul 2023 09:26:07 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B67E10E0A2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Jul 2023 09:26:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689583042; x=1721119042;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=0Xy+I9zlE3/vJyAYFjEQb5CP00+ZE5eC/ESK4WzmXQI=;
- b=XOgmWfzpYUOatnwp9gqbv1wD1xBDUYHmG74aPfF/uxwFKpsWSEnUErjC
- f9rvK+pPtroVAtdK6MM8peyl7gf99sp6MkZCwHnWQZNGdHdyFH/GHhg0R
- bYzNEM3fgyBAPki7Uvu6mntDTaJCZu2uHgtkilc7SgKG6xD1m7Nw/TQvc
- fvQJ+I6ldwnx+h5+YOW24UL0H25hytOY/iv++Q2rklSpv34560bd0hIOr
- RK9lThak/JHSSUqWK7MzlFsLDYVK+o+2DdHbAhHmohdMlfAZXpnGcj469
- 7s8n7MgxBbyKKx83PUk2VM+TK2cKoI+bY6ruqrFZ4Y/iIHqXaIrzJumE2 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="429636514"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="429636514"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 01:37:21 -0700
+ t=1689585965; x=1721121965;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=FRGCjFoXYqIzF2Lul6bkL+V+9ni504zFTW9rsHMsCEQ=;
+ b=mbzT49lNIdH+EjrSgYuatdFVWoKpVh0mxkjK4UcE6EOgZIGihAiQceWb
+ kmrWhXXu4DokA8syjl2ea8Ch62uFp+H/Nzgdg6IpcarGkl0O2QofVug2h
+ oXpEKCx80crDf+T2g1Y/IAj0xJbfaYk+bbGm/5r9AKpvE/UKcRtLtPsLj
+ SnzRQ//fl5gZPQ02qgIGz2sRBqGMdbAfMK9Ad4n8BGvEJ0XNJdwSVpTsO
+ kFZ1fcfL3mfX5yVX92FMRPnGdDc3iFQG/vzNJPeYyOCXtejwzPojfdYfl
+ MLS8UkaTbL0tbtiNOaMoqhSSgv4sxxhK2zansZnlP9NqU1+s2i+7uBmdo g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="363350004"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="363350004"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2023 02:26:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="897136178"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="897136178"
-Received: from rgwhiteh-mobl1.ger.corp.intel.com (HELO [10.213.205.103])
- ([10.213.205.103])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 01:37:20 -0700
-Message-ID: <a8ca2e08-6aab-b219-0fac-026e90c7fcd3@linux.intel.com>
-Date: Mon, 17 Jul 2023 09:37:18 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="813249222"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="813249222"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by FMSMGA003.fm.intel.com with ESMTP; 17 Jul 2023 02:26:02 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 17 Jul 2023 14:54:25 +0530
+Message-Id: <20230717092425.2971227-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230714061339.2897609-1-suraj.kandpal@intel.com>
+References: <20230714061339.2897609-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20230711160214.463134-1-tvrtko.ursulin@linux.intel.com>
- <20230711160214.463134-2-tvrtko.ursulin@linux.intel.com>
- <ZLGFRuUFZ17ztrEz@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <ZLGFRuUFZ17ztrEz@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 2/2] tests/i915_pm_rps:
- Exercise sysfs thresholds
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/hotplug: Reduce SHPD_FILTER to 250us
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,278 +56,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On TGP, the RTC (always running) was reduced from 3MHz to 32KHz.
+As a result of this change, when HPD active going low pulse or HPD IRQ
+is presented and the refclk (19.2MHz) is not toggling already toggling,
+there is a 60 to 90us synchronization delay which effectively reduces
+the duration of the IRQ pulse to less than the programmed 500us filter
+value and the hot plug interrupt is NOT registered.
+Solution was to Reduce SHPD_FILTER to 250us for ADL and above.
+This solution was derived when the below patch was floated.
+[1]https://patchwork.freedesktop.org/patch/532187
+and after some internal discussion Ville's suggestion made sense.
 
-On 14/07/2023 18:26, Rodrigo Vivi wrote:
-> On Tue, Jul 11, 2023 at 05:02:14PM +0100, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Exercise a bunch of up and down rps thresholds to verify hardware
->> is happy with them all.
->>
->> To limit the overall runtime relies on probability and number of runs
->> to approach complete coverage.
->>
->> v2:
->>   * Common sync spinner code now in library.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> ---
->>   tests/i915/i915_pm_rps.c | 194 +++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 194 insertions(+)
->>
->> diff --git a/tests/i915/i915_pm_rps.c b/tests/i915/i915_pm_rps.c
->> index 7044fcd81c56..8c370b35c85b 100644
->> --- a/tests/i915/i915_pm_rps.c
->> +++ b/tests/i915/i915_pm_rps.c
->> @@ -39,8 +39,10 @@
->>   #include "i915/gem.h"
->>   #include "i915/gem_create.h"
->>   #include "igt.h"
->> +#include "igt_aux.h"
->>   #include "igt_dummyload.h"
->>   #include "igt_perf.h"
->> +#include "igt_rand.h"
->>   #include "igt_sysfs.h"
->>   /**
->>    * TEST: i915 pm rps
->> @@ -81,6 +83,22 @@
->>    * SUBTEST: waitboost
->>    * Feature: pm_rps
->>    * Run type: FULL
->> + *
->> + * SUBTEST: thresholds
->> + * Feature: pm_rps
->> + * Run type: FULL
->> + *
->> + * SUBTEST: thresholds-idle
->> + * Feature: pm_rps
->> + * Run type: FULL
->> + *
->> + * SUBTEST: thresholds-idle-park
->> + * Feature: pm_rps
->> + * Run type: FULL
->> + *
->> + * SUBTEST: thresholds-park
->> + * Feature: pm_rps
->> + * Run type: FULL
->>    */
->>   
->>   IGT_TEST_DESCRIPTION("Render P-States tests - verify GPU frequency changes");
->> @@ -920,6 +938,146 @@ static void pm_rps_exit_handler(int sig)
->>   	drm_close_driver(drm_fd);
->>   }
->>   
->> +static struct i915_engine_class_instance
->> +find_dword_engine(int i915, const unsigned int gt)
->> +{
->> +	struct i915_engine_class_instance *engines, ci = { -1, -1 };
->> +	unsigned int i, count;
->> +
->> +	engines = gem_list_engines(i915, 1u << gt, ~0u, &count);
->> +	igt_assert(engines);
->> +
->> +	for (i = 0; i < count; i++) {
->> +		if (!gem_class_can_store_dword(i915, engines[i].engine_class))
->> +			continue;
->> +
->> +		ci = engines[i];
->> +		break;
->> +	}
->> +
->> +	free(engines);
->> +
->> +	return ci;
->> +}
->> +
->> +static igt_spin_t *spin_sync_gt(int i915, uint64_t ahnd, unsigned int gt,
->> +				const intel_ctx_t **ctx)
->> +{
->> +	struct i915_engine_class_instance ci = { -1, -1 };
->> +	struct intel_execution_engine2 e = { };
->> +
->> +	ci = find_dword_engine(i915, gt);
->> +
->> +	igt_require(ci.engine_class != (uint16_t)I915_ENGINE_CLASS_INVALID);
->> +
->> +	if (gem_has_contexts(i915)) {
->> +		e.class = ci.engine_class;
->> +		e.instance = ci.engine_instance;
->> +		e.flags = 0;
->> +		*ctx = intel_ctx_create_for_engine(i915, e.class, e.instance);
->> +	} else {
->> +		igt_require(gt == 0); /* Impossible anyway. */
-> 
-> I'm confused by the comment here... if it is impossible why we have code below?!
-> but why impossible?
+Bspec: 68970
 
-Only the gt != 0 part would be impossible in this !gem_has_context 
-branch, otherwise the branch runs on old platforms (which are always 
-single tile). Perhaps a case of too many asserts adding confusion?
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hotplug_irq.c | 4 +++-
+ drivers/gpu/drm/i915/i915_reg.h                  | 1 +
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-> 
-> anyway, the tests below are great for the sysfs that you are adding. Thanks
-> 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+index f95fa793fabb..95a7ea94f417 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+@@ -842,6 +842,8 @@ static void icp_hpd_irq_setup(struct drm_i915_private *dev_priv)
+ 
+ 	if (INTEL_PCH_TYPE(dev_priv) <= PCH_TGP)
+ 		intel_uncore_write(&dev_priv->uncore, SHPD_FILTER_CNT, SHPD_FILTER_CNT_500_ADJ);
++	else
++		intel_uncore_write(&dev_priv->uncore, SHPD_FILTER_CNT, SHPD_FILTER_CNT_250);
+ 
+ 	ibx_display_interrupt_update(dev_priv, hotplug_irqs, enabled_irqs);
+ 
+@@ -1049,7 +1051,7 @@ static void mtp_hpd_irq_setup(struct drm_i915_private *i915)
+ 	enabled_irqs = intel_hpd_enabled_irqs(i915, i915->display.hotplug.pch_hpd);
+ 	hotplug_irqs = intel_hpd_hotplug_irqs(i915, i915->display.hotplug.pch_hpd);
+ 
+-	intel_de_write(i915, SHPD_FILTER_CNT, SHPD_FILTER_CNT_500_ADJ);
++	intel_de_write(i915, SHPD_FILTER_CNT, SHPD_FILTER_CNT_250);
+ 
+ 	mtp_hpd_invert(i915);
+ 	ibx_display_interrupt_update(i915, hotplug_irqs, enabled_irqs);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index dcf64e32cd54..aefad14ab27a 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -4939,6 +4939,7 @@
+ 
+ #define SHPD_FILTER_CNT				_MMIO(0xc4038)
+ #define   SHPD_FILTER_CNT_500_ADJ		0x001D9
++#define   SHPD_FILTER_CNT_250			0x000F8
+ 
+ #define _PCH_DPLL_A              0xc6014
+ #define _PCH_DPLL_B              0xc6018
+-- 
+2.25.1
 
-Thanks!
-
-Regards,
-
-Tvrtko
-
-> 
->> +		e.class = gem_execbuf_flags_to_engine_class(I915_EXEC_DEFAULT);
->> +		e.instance = 0;
->> +		e.flags = I915_EXEC_DEFAULT;
->> +		*ctx = intel_ctx_0(i915);
->> +	}
->> +
->> +	igt_debug("Using engine %u:%u\n", e.class, e.instance);
->> +
->> +	return __igt_sync_spin(i915, ahnd, *ctx, &e);
->> +}
->> +
->> +#define TEST_IDLE 0x1
->> +#define TEST_PARK 0x2
->> +static void test_thresholds(int i915, unsigned int gt, unsigned int flags)
->> +{
->> +	uint64_t ahnd = get_reloc_ahnd(i915, 0);
->> +	const unsigned int points = 10;
->> +	unsigned int def_up, def_down;
->> +	igt_spin_t *spin = NULL;
->> +	const intel_ctx_t *ctx;
->> +	unsigned int *ta, *tb;
->> +	unsigned int i;
->> +	int sysfs;
->> +
->> +	sysfs = igt_sysfs_gt_open(i915, gt);
->> +	igt_require(sysfs >= 0);
->> +
->> +	/* Feature test */
->> +	def_up = igt_sysfs_get_u32(sysfs, "rps_up_threshold_pct");
->> +	def_down = igt_sysfs_get_u32(sysfs, "rps_down_threshold_pct");
->> +	igt_require(def_up && def_down);
->> +
->> +	/* Check invalid percentages are rejected */
->> +	igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_up_threshold_pct", 101), false);
->> +	igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_down_threshold_pct", 101), false);
->> +
->> +	/*
->> +	 * Invent some random up-down thresholds, but always include 0 and 100
->> +	 * just to have some wild edge cases.
->> +	 */
->> +	ta = calloc(points, sizeof(unsigned int));
->> +	tb = calloc(points, sizeof(unsigned int));
->> +	igt_require(ta && tb);
->> +
->> +	ta[0] = tb[0] = 0;
->> +	ta[1] = tb[1] = 100;
->> +	hars_petruska_f54_1_random_seed(time(NULL));
->> +	for (i = 2; i < points; i++) {
->> +		ta[i] = hars_petruska_f54_1_random_unsafe_max(100);
->> +		tb[i] = hars_petruska_f54_1_random_unsafe_max(100);
->> +	}
->> +	igt_permute_array(ta, points, igt_exchange_int);
->> +	igt_permute_array(tb, points, igt_exchange_int);
->> +
->> +	/* Exercise the thresholds with a GPU load to trigger park/unpark etc */
->> +	for (i = 0; i < points; i++) {
->> +		igt_info("Testing thresholds up %u%% and down %u%%...\n", ta[i], tb[i]);
->> +		igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_up_threshold_pct", ta[i]), true);
->> +		igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_down_threshold_pct", tb[i]), true);
->> +
->> +		if (flags & TEST_IDLE) {
->> +			gem_quiescent_gpu(i915);
->> +		} else if (spin) {
->> +			intel_ctx_destroy(i915, ctx);
->> +			igt_spin_free(i915, spin);
->> +			spin = NULL;
->> +			if (flags & TEST_PARK) {
->> +				gem_quiescent_gpu(i915);
->> +				usleep(500000);
->> +			}
->> +		}
->> +		spin = spin_sync_gt(i915, ahnd, gt, &ctx);
->> +		usleep(1000000);
->> +		if (flags & TEST_IDLE) {
->> +			intel_ctx_destroy(i915, ctx);
->> +			igt_spin_free(i915, spin);
->> +			if (flags & TEST_PARK) {
->> +				gem_quiescent_gpu(i915);
->> +				usleep(500000);
->> +			}
->> +			spin = NULL;
->> +		}
->> +	}
->> +
->> +	if (spin) {
->> +		intel_ctx_destroy(i915, ctx);
->> +		igt_spin_free(i915, spin);
->> +	}
->> +
->> +	gem_quiescent_gpu(i915);
->> +
->> +	/* Restore defaults */
->> +	igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_up_threshold_pct", def_up), true);
->> +	igt_assert_eq(igt_sysfs_set_u32(sysfs, "rps_down_threshold_pct", def_down), true);
->> +
->> +	free(ta);
->> +	free(tb);
->> +	close(sysfs);
->> +	put_ahnd(ahnd);
->> +}
->> +
->>   igt_main
->>   {
->>   	igt_fixture {
->> @@ -1000,6 +1158,42 @@ igt_main
->>   		igt_disallow_hang(drm_fd, hang);
->>   	}
->>   
->> +	igt_subtest_with_dynamic("thresholds-idle") {
->> +		int tmp, gt;
->> +
->> +		i915_for_each_gt(drm_fd, tmp, gt) {
->> +			igt_dynamic_f("gt%u", gt)
->> +				test_thresholds(drm_fd, gt, TEST_IDLE);
->> +		}
->> +	}
->> +
->> +	igt_subtest_with_dynamic("thresholds") {
->> +		int tmp, gt;
->> +
->> +		i915_for_each_gt(drm_fd, tmp, gt) {
->> +			igt_dynamic_f("gt%u", gt)
->> +				test_thresholds(drm_fd, gt, 0);
->> +		}
->> +	}
->> +
->> +	igt_subtest_with_dynamic("thresholds-park") {
->> +		int tmp, gt;
->> +
->> +		i915_for_each_gt(drm_fd, tmp, gt) {
->> +			igt_dynamic_f("gt%u", gt)
->> +				test_thresholds(drm_fd, gt, TEST_PARK);
->> +		}
->> +	}
->> +
->> +	igt_subtest_with_dynamic("thresholds-idle-park") {
->> +		int tmp, gt;
->> +
->> +		i915_for_each_gt(drm_fd, tmp, gt) {
->> +			igt_dynamic_f("gt%u", gt)
->> +				test_thresholds(drm_fd, gt, TEST_IDLE | TEST_PARK);
->> +		}
->> +	}
->> +
->>   	igt_fixture
->>   		drm_close_driver(drm_fd);
->>   }
->> -- 
->> 2.39.2
->>
