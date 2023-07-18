@@ -1,57 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24FF87570E3
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jul 2023 02:28:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39771757105
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jul 2023 02:40:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F230910E2C0;
-	Tue, 18 Jul 2023 00:28:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CF8210E2C0;
+	Tue, 18 Jul 2023 00:40:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1AE810E2BB;
- Tue, 18 Jul 2023 00:28:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689640118; x=1721176118;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=gLggTVJAkctyJjeZE88PhBO2TEV7EcdnHGLiNiQfr3Y=;
- b=juk6bN4Uw/W6jo1/VcmmNAsw0obAwhLFLIGsTd3SPqkYykekO52k8fHM
- hdfu6O+e6zZIxW2ekn2UgEb04eDy6XO74BhLB7QRccVgv//zsQ54Puior
- Dx4pF/iKcnuRd/Gd4Biexa7Kh97wGpHDCS2t7hqVFLhO/CUEi9dd7bT0S
- xDuCtk1FKoFfA1ugg7ZCg0eOgbTVmhxtc6OhyV+nIK086a+6WjsTSdHi9
- FLev8n5uP+tlbUjv6RUXfwJ16t8pet8P0+LUPgcEpjaM3m5s0ngfdQho7
- ZjBQYyiT9YWnPXZYavQIbnPP+l6viwQ8IDqfCs2qV8ymtYqr3R0P0FwM3 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="368713924"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="368713924"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 17:28:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="970041076"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="970041076"
-Received: from ygaydayc-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.249.35.242])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 17:28:35 -0700
-Date: Tue, 18 Jul 2023 02:28:26 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <ZLXcnTS1oN3Rh1pU@ashyti-mobl2.lan>
-References: <20230717173059.422892-1-andi.shyti@linux.intel.com>
- <20230717173059.422892-3-andi.shyti@linux.intel.com>
- <20230717175425.GB138014@mdroper-desk1.amr.corp.intel.com>
- <20230717203103.GG138014@mdroper-desk1.amr.corp.intel.com>
- <ZLW4GXM17rdep1Ex@ashyti-mobl2.lan>
- <20230717220018.GH138014@mdroper-desk1.amr.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4DD9410E2BD;
+ Tue, 18 Jul 2023 00:40:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 47B9FA7DFF;
+ Tue, 18 Jul 2023 00:40:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230717220018.GH138014@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 2/6] drm/i915/gt: Ensure memory quiesced
- before invalidation
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Tue, 18 Jul 2023 00:40:24 -0000
+Message-ID: <168964082426.22206.12931226088963771782@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230717234905.117114-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20230717234905.117114-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/huc=3A_check_HuC_and_GuC_version_compatibility_on_?=
+ =?utf-8?q?MTL_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,39 +41,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- DRI Devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Nirmoy Das <nirmoy.das@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+== Series Details ==
 
-> > > > > +	/*
-> > > > > +	 * Aux invalidations on Aux CCS platforms require
-> > > > > +	 * memory traffic is quiesced prior.
-> > > > > +	 */
-> > > > > +	if ((mode & EMIT_INVALIDATE) && !HAS_FLAT_CCS(engine->i915))
-> > > > 
-> > > > It's a pre-existing mistake in drm-tip at the moment, but we shouldn't
-> > > > assume !flatccs always implies auxccs.  PVC has neither, and there may
-> > > > be other similar platforms in the future.  We should probably add a
-> > > > helper function for AuxCCS, similar to what we added to the Xe driver
-> > > > recently:
-> > > > 
-> > > > https://patchwork.freedesktop.org/patch/539304/?series=118334&rev=1
-> > 
-> > Currently that is done in patch 6...
-> 
-> Are you sure?  Patch #6 consolidates things a bit, but is still incorrectly
-> assuming flatccs = !auxccs:
-> 
->        if (HAS_FLAT_CCS(engine->i915))                                                                                                            
->                return _MMIO(0);                                                                                                                   
+Series: drm/i915/huc: check HuC and GuC version compatibility on MTL (rev2)
+URL   : https://patchwork.freedesktop.org/series/120572/
+State : warning
 
-But isn't it the same the patch you linked is doing?
+== Summary ==
 
-	return !xe->info.has_flat_ccs;
+Error: dim checkpatch failed
+0c599db79392 drm/i915/huc: check HuC and GuC version compatibility on MTL
+-:38: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#38: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c:815:
++	GEM_BUG_ON(!huc_selected->path || !guc_selected->path);
 
-And
+total: 0 errors, 1 warnings, 0 checks, 57 lines checked
+
+
