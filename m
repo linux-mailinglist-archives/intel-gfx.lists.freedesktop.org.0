@@ -1,64 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31596757B81
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jul 2023 14:10:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB890757DD1
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jul 2023 15:39:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFAEA10E31E;
-	Tue, 18 Jul 2023 12:10:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3385C10E348;
+	Tue, 18 Jul 2023 13:39:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30A3F10E333;
- Tue, 18 Jul 2023 12:10:53 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DCA410E348;
+ Tue, 18 Jul 2023 13:38:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689682253; x=1721218253;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=g861e9x38BavCkoCdJAt5TnAFAkblB6XYSxbGTOkjLc=;
- b=CkmZRk4IFqG1SXUbKBltwWjxYwb5kpsV6vPqLTqI8gRHhBgQxjtbm8To
- sZXSV1Pbi/0w0e17wAhQ71fEpMEFyNtoiPKZl7kDoPG8BHQ06pLlSsCOv
- theU8XVzGHeR2fBm8IRa1q9VCg4OvrpbP3rCn2xc0p+L6gpdcgPRzyy81
- Uzqyfdsf24fXArnRuLaqyCZURLrzjuWEsR6Oyd/u1L1c5VKYAzV9aGzc3
- IbrGtGKF6IK30B0VakaGW7ocmQ8fljF2/mgjEuNqHjvLBHlXI5Ojgrv7C
- oNhupTLLJCLkVo5HzchDTDAxwEQYToOiRhb0cV6eQ/WWtCj66JXb6ohf1 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="366230096"
-X-IronPort-AV: E=Sophos;i="6.01,214,1684825200"; d="scan'208";a="366230096"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2023 05:10:52 -0700
+ t=1689687538; x=1721223538;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TvRIuUsm+Dq4O2iEWvkwmFeH/r/C2Nj7r4HJcGPT7sk=;
+ b=AHCQmKTTjC3RHVpL4I5VzY3NGuKbhVTsF5MvUuLkY5+l46El1ahxcDRb
+ Se76SeanwAubktoVq8OaCCCrkpsojQTTrZ1dsBDMVfMJ6hqOJ32lCDfTA
+ 8zXAq4y7ke7QM86iHfNCjZ8KVqwK97odDCbEgI2R/9yy7krwRcdjFnx6V
+ 4iu4WsQiZiUZ3S0KLgPG/z3Gy7VH5qILM/XQygLYzoBQtHc49YgW9nKfR
+ FL1CjyhocL9sfeaz4mr45KYJKhBHjbMwJZ+4tKltOYdzpxatNFD6hCvHm
+ 7mS0tBc8WJAFulxGo63r8r9jNOzfZNQesrNjB7/7YTcL4iV8554xBlb80 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10775"; a="345800121"
+X-IronPort-AV: E=Sophos;i="6.01,214,1684825200"; d="scan'208";a="345800121"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2023 06:38:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="793605769"
-X-IronPort-AV: E=Sophos;i="6.01,214,1684825200"; d="scan'208";a="793605769"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.19.167])
- ([10.213.19.167])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2023 05:10:48 -0700
-Message-ID: <e1dafe04-0375-08a0-dca0-707d68ea5bd5@intel.com>
-Date: Tue, 18 Jul 2023 14:10:45 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10775"; a="897587503"
+X-IronPort-AV: E=Sophos;i="6.01,214,1684825200"; d="scan'208";a="897587503"
+Received: from ygaydayc-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.249.35.242])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2023 06:38:53 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, Andrzej Hajda <andrzej.hajda@intel.com>
+Date: Tue, 18 Jul 2023 15:38:27 +0200
+Message-Id: <20230718133836.574781-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
-Content-Language: en-US
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-References: <7a036b88671312ee9adc01c74ef5b3376f690b76.1689619758.git.christophe.jaillet@wanadoo.fr>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <7a036b88671312ee9adc01c74ef5b3376f690b76.1689619758.git.christophe.jaillet@wanadoo.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix an error handling path in
- igt_write_huge()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5 0/9] Update AUX invalidation sequence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,55 +60,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ DRI Devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 17.07.2023 20:49, Christophe JAILLET wrote:
-> All error handling paths go to 'out', except this one. Be consistent and
-> also branch to 'out' here.
-> 
-> Fixes: c10a652e239e ("drm/i915/selftests: Rework context handling in hugepages selftests")
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Hi,
 
+as there are new hardware directives, we need a little adaptation
+for the AUX invalidation sequence.
 
-For me seems correct.
+In this version we support all the engines affected by this
+change.
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+The stable backport has some challenges because the original
+patch that this series fixes has had more changes in between.
 
-Regards
-Andrzej
+This patch is slowly exploding with code refactorings and
+features added and fixed.
 
+Thanks a lot Nirmoy, Andrzej and Matt for your review and for the
+fruitful discussions!
 
-> ---
-> /!\ Speculative /!\
-> 
->     This patch is based on analysis of the surrounding code and should be
->     reviewed with care !
-> 
->     If the patch is wrong, maybe a comment in the code could explain why.
-> 
-> /!\ Speculative /!\
-> ---
->   drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 6 ++++--
->   1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> index df6c9a84252c..6b9f6cf50bf6 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> @@ -1246,8 +1246,10 @@ static int igt_write_huge(struct drm_i915_private *i915,
->   	 * times in succession a possibility by enlarging the permutation array.
->   	 */
->   	order = i915_random_order(count * count, &prng);
-> -	if (!order)
-> -		return -ENOMEM;
-> +	if (!order) {
-> +		err = -ENOMEM;
-> +		goto out;
-> +	}
->   
->   	max_page_size = rounddown_pow_of_two(obj->mm.page_sizes.sg);
->   	max = div_u64(max - size, max_page_size);
+Thanks,
+Andi
+
+Changelog:
+=========
+v4 -> v5
+ - The AUX CCS is added as a device property instead of checking
+   against FLAT CCS. This adds the new HAS_AUX_CCS check
+   (Patch 2, new).
+ - little and trivial refactoring here and there.
+ - extended the flags{0,1}/bit_group_{0,1} renaming to other
+   functions.
+ - Created an intel_emit_pipe_control_cs() wrapper for submitting
+   the pipe control.
+ - Quiesce memory for all the engines, not just RCS (Patch 6,
+   new).
+ - The PIPE_CONTROL_CCS_FLUSH is added to all the engines.
+ - Remove redundant EMIT_FLUSH_CCS mode flag.
+ - Remove unnecessary NOOPs from the command streamer for
+   invalidating the CCS table.
+ - Use INVALID_MMIO_REG and gen12_get_aux_inv_reg() instad of
+   __MMIO(0) and reg.reg.
+ - Remove useless wrapper and just use gen12_get_aux_inv_reg().
+
+v3 -> v4
+ - A trivial patch 3 is added to rename the flags with
+   bit_group_{0,1} to align with the datasheet naming.
+ - Patch 4 fixes a confusion I made where the CCS flag was
+   applied to the wrong bit group.
+
+v2 -> v3
+ - added r-b from Nirmoy in patch 1 and 4.
+ - added patch 3 which enables the ccs_flush in the control pipe
+   for mtl+ compute and render engines.
+ - added redundant checks in patch 2 for enabling the EMIT_FLUSH
+   flag.
+
+v1 -> v2
+ - add a clean up preliminary patch for the existing registers
+ - add support for more engines
+ - add the Fixes tag
+
+Andi Shyti (6):
+  drm/i915/gt: Cleanup aux invalidation registers
+  drm/i915: Add the has_aux_ccs device property
+  drm/i915/gt: Rename flags with bit_group_X according to the datasheet
+  drm/i915/gt: Refactor intel_emit_pipe_control_cs() in a single
+    function
+  drm/i915/gt: Ensure memory quiesced before invalidation for all
+    engines
+  drm/i915/gt: Support aux invalidation on all engines
+
+Jonathan Cavitt (2):
+  drm/i915/gt: Ensure memory quiesced before invalidation
+  drm/i915/gt: Poll aux invalidation register bit on invalidation
+
+Robert Foss (1):
+  drm-tip: 2023y-07m-17d-16h-04m-53s UTC integration manifest
+
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c     | 216 +++++++++++++------
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.h     |  21 +-
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h |   2 +
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h      |  16 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c          |  17 +-
+ drivers/gpu/drm/i915/i915_drv.h              |   1 +
+ drivers/gpu/drm/i915/i915_pci.c              |   5 +-
+ drivers/gpu/drm/i915/intel_device_info.h     |   1 +
+ integration-manifest                         |  24 +++
+ 9 files changed, 204 insertions(+), 99 deletions(-)
+ create mode 100644 integration-manifest
+
+-- 
+2.40.1
 
