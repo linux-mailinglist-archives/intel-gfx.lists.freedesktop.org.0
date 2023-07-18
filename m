@@ -1,33 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A4A1757A70
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jul 2023 13:28:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A99757A77
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jul 2023 13:28:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B405A10E0CB;
-	Tue, 18 Jul 2023 11:28:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02BF510E313;
+	Tue, 18 Jul 2023 11:28:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 52C6110E0CB;
- Tue, 18 Jul 2023 11:28:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4B1D7AADE8;
- Tue, 18 Jul 2023 11:28:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09AC010E325;
+ Tue, 18 Jul 2023 11:28:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1689679730; x=1721215730;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=eG9i8FoJlSyTJM2sgpvziVRwaPmDaVtbaL3UEyeheKw=;
+ b=HLHGSo4IzWWhKBlmILxnn7kjRXwIF0VaH44Fm/6YbpNpaSj20fXWPEtq
+ i8HSg5uZIeexfCAlB0u70Mb+pjw8dGeu68UWPQjcfDvspc7ZR4mg+3Okw
+ a7R8vpUBi6LAwvL2BSfO9gTLZDTPYFf3HUFZ9xQFgIsbE3xRe7bZF5biO
+ ijhniZdgCnSVN9EZhugI1MXVd6cEqX+BVkguZK8vQK47D9jp46fsPs++g
+ NEAf2P0N9qr4+UqHPKHXBZIIv5netA2ev5bCAn5RvvmCOCthWAOnxGH+c
+ ZoIvb/p59r8vIl0E/xt7HmtTTbglHi0T1ZkIXlX0ilw5VnSfDfBkCP47C w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="368821005"
+X-IronPort-AV: E=Sophos;i="6.01,214,1684825200"; d="scan'208";a="368821005"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2023 04:28:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="813719404"
+X-IronPort-AV: E=Sophos;i="6.01,214,1684825200"; d="scan'208";a="813719404"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.19.167])
+ ([10.213.19.167])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2023 04:28:42 -0700
+Message-ID: <3c7dfc18-539f-2b0c-0c77-48b89ef96560@intel.com>
+Date: Tue, 18 Jul 2023 13:28:38 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jason Gunthorpe" <jgg@nvidia.com>
-Date: Tue, 18 Jul 2023 11:28:08 -0000
-Message-ID: <168967968827.22203.1919922643504152737@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230718105542.4138-1-yi.l.liu@intel.com>
-In-Reply-To: <20230718105542.4138-1-yi.l.liu@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Enhance_vfio_PCI_hot_reset_for_vfio_cdev_device_=28rev10=29?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.13.0
+Content-Language: en-US
+To: Su Hui <suhui@nfschina.com>, Dan Carpenter <dan.carpenter@linaro.org>
+References: <8e3e945b-9cae-71e9-fc68-dc1c64e5ea86@nfschina.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <8e3e945b-9cae-71e9-fc68-dc1c64e5ea86@nfschina.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tv: avoid possible division by zero
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,39 +63,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, llvm@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, trix@redhat.com,
+ intel-gfx@lists.freedesktop.org, ndesaulniers@google.com,
+ linux-kernel@vger.kernel.org, nathan@kernel.org, mripard@kernel.org,
+ daniel@ffwll.ch, rodrigo.vivi@intel.com, airlied@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: Enhance vfio PCI hot reset for vfio cdev device (rev10)
-URL   : https://patchwork.freedesktop.org/series/116991/
-State : warning
 
-== Summary ==
+On 18.07.2023 12:10, Su Hui wrote:
+> On 2023/7/18 13:39, Dan Carpenter wrote:
+>> On Mon, Jul 17, 2023 at 04:52:51PM +0200, Andrzej Hajda wrote:
+>>>
+>>> On 17.07.2023 08:22, Su Hui wrote:
+>>>> Clang warning: drivers/gpu/drm/i915/display/intel_tv.c:
+>>>> line 991, column 22 Division by zero.
+>>>> Assuming tv_mode->oversample=1 and (!tv_mode->progressive)=1,
+>>>> then division by zero will happen.
+>>>>
+>>>> Fixes: 1bba5543e4fe ("drm/i915: Fix TV encoder clock computation")
+>>>> Signed-off-by: Su Hui <suhui@nfschina.com>
+>>>> ---
+>>>>    drivers/gpu/drm/i915/display/intel_tv.c | 3 ++-
+>>>>    1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_tv.c
+>>>> index 36b479b46b60..82b54af51f23 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_tv.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
+>>>> @@ -988,7 +988,8 @@ intel_tv_mode_to_mode(struct drm_display_mode 
+>>>> *mode,
+>>>>                  const struct tv_mode *tv_mode,
+>>>>                  int clock)
+>>>>    {
+>>>> -    mode->clock = clock / (tv_mode->oversample >> 
+>>>> !tv_mode->progressive);
+>>>> +    mode->clock = clock / (tv_mode->oversample != 1 ?
+>>>> +            tv_mode->oversample >> !tv_mode->progressive : 1);
+>>> Seems too smart to me, why not just:
+>>> mode->clock = clock / tv_mode->oversample;
+>>> if (!tv_mode->progressive)
+>>>      mode->clock <<= 1;
+>> This is nice.
+>
+> mode->clock = clock / tv_mode->oversample << !tv_mode->progressive;
+>
+> But I think this one is much better,  it has less code and run faster.
+> Should I resend v3 to add some explanation or follow Dan's advice?
 
-Error: dim checkpatch failed
-7a4aaa443b7a vfio/pci: Update comment around group_fd get in vfio_pci_ioctl_pci_hot_reset()
-65975a376988 vfio/pci: Move the existing hot reset logic to be a helper
--:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#6: 
-This prepares to add another method for hot reset. The major hot reset logic
+Speed gain here is irrelevant here, and disputable.
 
-total: 0 errors, 1 warnings, 0 checks, 99 lines checked
-3b0915db2889 iommufd: Reserve all negative IDs in the iommufd xarray
-46920e53d4d4 iommufd: Add iommufd_ctx_has_group()
-ef78cfe7dd6c iommufd: Add helper to retrieve iommufd_ctx and devid
-f8e653236125 vfio: Mark cdev usage in vfio_device
--:8: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#8: 
-cdev path yet, so the vfio_device_cdev_opened() helper always returns false.
+One thing which could be problematic is that we could loose the least 
+significant bit in mode->clock,
+in case non-progressive, but I am not sure if it really matters, as 
+mode->clock is not precise value anyway.
+Alternatively we could 1st shift, then divide, but in this case overflow 
+can occur, at least in theory - I suspect there are no such big clocks 
+(in kHz).
 
-total: 0 errors, 1 warnings, 0 checks, 11 lines checked
-16f20b24151e vfio: Add helper to search vfio_device in a dev_set
-f6cfba828e30 vfio/pci: Extend VFIO_DEVICE_GET_PCI_HOT_RESET_INFO for vfio device cdev
-88350a705281 vfio/pci: Copy hot-reset device info to userspace in the devices loop
-392ee2f33799 vfio/pci: Allow passing zero-length fd array in VFIO_DEVICE_PCI_HOT_RESET
+Finally I would agree with Dan, readability is better with conditional.
 
+Regards
+Andrzej
+
+>
+> Su Hui
+>
+>> regards,
+>> dan carpenter
 
