@@ -1,34 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75BC475977C
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 15:56:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D01759855
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 16:29:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B16A510E4A0;
-	Wed, 19 Jul 2023 13:56:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C4B510E4B9;
+	Wed, 19 Jul 2023 14:29:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 451A510E4AC;
- Wed, 19 Jul 2023 13:56:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 43351AADFC;
- Wed, 19 Jul 2023 13:56:54 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail.nfschina.com (unknown [42.101.60.195])
+ by gabe.freedesktop.org (Postfix) with SMTP id BAEA810E2C2;
+ Tue, 18 Jul 2023 01:13:16 +0000 (UTC)
+Received: from [172.30.11.106] (unknown [180.167.10.98])
+ by mail.nfschina.com (Maildata Gateway V2.8.8) with ESMTPSA id B112C6085E131; 
+ Tue, 18 Jul 2023 09:13:11 +0800 (CST)
+Message-ID: <8a94e6dc-f664-84fa-32f7-7f45f22a410a@nfschina.com>
+Date: Tue, 18 Jul 2023 09:13:11 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Wed, 19 Jul 2023 13:56:54 -0000
-Message-ID: <168977501427.20708.5033384297654458095@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230718172934.69049-1-imre.deak@intel.com>
-In-Reply-To: <20230718172934.69049-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv2=2C1/3=5D_drm/i915=3A_Avoid_endless_H?=
- =?utf-8?q?PD_poll_detect_loop_via_runtime_suspend/resume_=28rev2=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Content-Language: en-US
+To: Andrzej Hajda <andrzej.hajda@intel.com>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tvrtko.ursulin@linux.intel.com, airlied@gmail.com, daniel@ffwll.ch,
+ nathan@kernel.org, ndesaulniers@google.com, trix@redhat.com
+X-MD-Sfrom: suhui@nfschina.com
+X-MD-SrcIP: 180.167.10.98
+From: Su Hui <suhui@nfschina.com>
+In-Reply-To: <0cae35ea-7635-383d-cae5-2051abbc6d64@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 19 Jul 2023 14:29:30 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tv: avoid possible division by zero
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +45,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, mripard@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2023/7/17 22:52, Andrzej Hajda wrote:
+>
+>
+> On 17.07.2023 08:22, Su Hui wrote:
+>> Clang warning: drivers/gpu/drm/i915/display/intel_tv.c:
+>> line 991, column 22 Division by zero.
+>> Assuming tv_mode->oversample=1 and (!tv_mode->progressive)=1,
+>> then division by zero will happen.
+>>
+>> Fixes: 1bba5543e4fe ("drm/i915: Fix TV encoder clock computation")
+>> Signed-off-by: Su Hui <suhui@nfschina.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_tv.c | 3 ++-
+>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c 
+>> b/drivers/gpu/drm/i915/display/intel_tv.c
+>> index 36b479b46b60..82b54af51f23 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_tv.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
+>> @@ -988,7 +988,8 @@ intel_tv_mode_to_mode(struct drm_display_mode *mode,
+>>                 const struct tv_mode *tv_mode,
+>>                 int clock)
+>>   {
+>> -    mode->clock = clock / (tv_mode->oversample >> 
+>> !tv_mode->progressive);
+>> +    mode->clock = clock / (tv_mode->oversample != 1 ?
+>> +            tv_mode->oversample >> !tv_mode->progressive : 1);
+>
+> Seems too smart to me, why not just:
+> mode->clock = clock / tv_mode->oversample;
+> if (!tv_mode->progressive)
+>     mode->clock <<= 1;
+> Or trying being smart:
+> mode->clock = clock / tv_mode->oversample << !tv_mode->progressive;
 
-Series: series starting with [v2,1/3] drm/i915: Avoid endless HPD poll detect loop via runtime suspend/resume (rev2)
-URL   : https://patchwork.freedesktop.org/series/120931/
-State : warning
+Hi,
 
-== Summary ==
+Yes, this is more readable and clear.
+Thanks four your advice. I will send v2 soon.
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Su Hui
 
-
+>
+> Btw in both cases there is assumption tv_mode->oversample != 0, I 
+> guess it is true.
+>
+> Regards
+> Andrzej
+>
+>>         /*
+>>        * tv_mode horizontal timings:
+>
