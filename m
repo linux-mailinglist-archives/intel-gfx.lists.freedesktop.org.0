@@ -2,55 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E547593EB
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 13:08:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A7E759434
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 13:33:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEF7610E478;
-	Wed, 19 Jul 2023 11:08:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68C6810E09E;
+	Wed, 19 Jul 2023 11:33:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 848A010E473;
- Wed, 19 Jul 2023 11:08:36 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 231BB10E09E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jul 2023 11:33:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689764916; x=1721300916;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Qb3cI9c2JkP2sMQg3zPnCwTRW6PVlWA58UHoAKCM5NM=;
- b=Ui00X1sP1PNZsK7JmB6yOKnu3FC0wZp8cjnXhSHFp5bdNi6BvMhHV9CE
- isxRoc6UXpK7YdKqhpgw5xeUYPK2d/iHjaA5WFPI6YchW5Sy5y63fm4qM
- XZIR226H6DUNW7Wr1IWFsH/tiiIoR9nmI8Py9u7HIC3HJigdjZj3Z6x1Q
- vKgpGuxX+6cyWRk9G77poolUzlRsGMUX6mQFvMyMrQpDqiZi4OexVtP0B
- yoy+D6jcfPVE0wDSrwUseBXkNYJFf/zn1CjORmBYCgl8371SbeQoMZk8j
- XbUhcjd0QgMCbZo+1mu+7KrMnggcWXOHjJ4dT/1BHMlFgZD5JSvEmVt1B w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10775"; a="369991991"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="369991991"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 04:08:36 -0700
+ t=1689766387; x=1721302387;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=Ib0k+RgQmaRDmOXCkicqnHhX/e5PSR4FQk/u/2J2+5Y=;
+ b=g/n3NwX1pROHdCWUs0Er9ExW3HmyJv/wAxFg/ehj5AhPyjlgMuEQO5Hx
+ yINM605TSLM3jjrwTFQGk2l+ly+dOatFnXn+ybJ+glOc9TLkYJPoHmpfH
+ BBh6KJsWYWQKCA3h3nbXzh6nH4jaUPHH5ed6ItpWTvDJI11W2LaY9SLEr
+ AR59qP+3X6plLuoha2xiK+x+OZU4OqOcTuH1RANB5+xC9wR2ABGxfoHWC
+ NTUNRMaFA5cjJX9OrZMen93UE72r6s4310YJ8zTyQMd3g1sMhsNULJ3jM
+ 5tGu6pQYijixsRRg5vDZ7SAbn08Guc6TPlOSNIjLKUOAFlMEd9fbtXUph w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10775"; a="432621223"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="432621223"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2023 04:32:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10775"; a="701254239"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="701254239"
-Received: from schoorlx-mobl3.ger.corp.intel.com (HELO intel.com)
- ([10.251.222.155])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 04:08:33 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, Andrzej Hajda <andrzej.hajda@intel.com>
-Date: Wed, 19 Jul 2023 13:07:29 +0200
-Message-Id: <20230719110729.618733-10-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230719110729.618733-1-andi.shyti@linux.intel.com>
-References: <20230719110729.618733-1-andi.shyti@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10775"; a="759145498"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="759145498"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2023 04:32:58 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 19 Jul 2023 14:33:06 +0300
+Message-Id: <20230719113306.89243-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230718172934.69049-1-imre.deak@intel.com>
+References: <20230718172934.69049-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 9/9] drm/i915/gt: Support aux invalidation on
- all engines
+Subject: [Intel-gfx] [PATCH v2 1/3] drm/i915: Avoid endless HPD poll detect
+ loop via runtime suspend/resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,194 +58,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- DRI Devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Perform some refactoring with the purpose of keeping in one
-single place all the operations around the aux table
-invalidation.
+The issue fixed in
 
-With this refactoring add more engines where the invalidation
-should be performed.
+commit a8ddac7c9f06 ("drm/i915: Avoid HPD poll detect triggering a new detect cycle")
 
-Fixes: 972282c4cf24 ("drm/i915/gen12: Add aux table invalidate for all engines")
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: <stable@vger.kernel.org> # v5.8+
+on VLV, CHV is still present on platforms where the display hotplug
+detection functionality is available whenever the device is in D0 state
+(hence these platforms switch to HPD polling only when the device is
+runtime suspended).
+
+The above commit avoids an endless i915_hpd_poll_init_work() ->
+connector detect loop by making sure that by the end of
+i915_hpd_poll_init_work() all display power references acquired by the
+connector detect functions which can trigger a new cycle (display core
+power domain) are dropped. However on platforms where HPD polling is
+enabled/disabled only from the runtime suspend/resume handlers, this is
+not ensured: for instance eDP VDD, TypeC port PHYs and the runtime
+autosuspend delay may still keep the device runtime resumed (via a power
+reference acquired during connector detection and hence result in an
+endless loop like the above).
+
+Solve the problem described in the above commit on all platforms, by
+making sure that a i915_hpd_poll_init_work() -> connector detect
+sequence can't take any power reference in the first place which would
+trigger a new cycle, instead of relying on these power references to be
+dropped by the end of the sequence.
+
+With the default runtime autosuspend delay (10 sec) this issue didn't
+happen in practice, since the device remained runtime resumed for the
+whole duration of the above sequence. CI/IGT tests however set the
+autospend delay to 0, which makes the problem visible, see References:
+below.
+
+Tested on GLK, CHV.
+
+v2: Don't warn about a requeued work, to account for disabling
+    polling directly during driver loading, reset and system resume.
+
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/7940#note_1997403
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 58 +++++++++++++++---------
- drivers/gpu/drm/i915/gt/gen8_engine_cs.h |  3 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c      | 17 +------
- 3 files changed, 41 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crt.c     |  6 ------
+ drivers/gpu/drm/i915/display/intel_dp.c      |  6 ------
+ drivers/gpu/drm/i915/display/intel_hdmi.c    |  6 ------
+ drivers/gpu/drm/i915/display/intel_hotplug.c | 22 +++++++++++++++++++-
+ 4 files changed, 21 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-index bedd1586c978f..4fab07de1ab4a 100644
---- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-@@ -165,9 +165,36 @@ static u32 preparser_disable(bool state)
- 	return MI_ARB_CHECK | 1 << 8 | state;
+diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+index 8090747586877..f66340b4caf0f 100644
+--- a/drivers/gpu/drm/i915/display/intel_crt.c
++++ b/drivers/gpu/drm/i915/display/intel_crt.c
+@@ -907,12 +907,6 @@ intel_crt_detect(struct drm_connector *connector,
+ out:
+ 	intel_display_power_put(dev_priv, intel_encoder->power_domain, wakeref);
+ 
+-	/*
+-	 * Make sure the refs for power wells enabled during detect are
+-	 * dropped to avoid a new detect cycle triggered by HPD polling.
+-	 */
+-	intel_display_power_flush_work(dev_priv);
+-
+ 	return status;
  }
  
--u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv_reg)
-+static i915_reg_t gen12_get_aux_inv_reg(struct intel_engine_cs *engine)
- {
--	u32 gsi_offset = gt->uncore->gsi_offset;
-+	if (!HAS_AUX_CCS(engine->i915))
-+		return INVALID_MMIO_REG;
-+
-+	switch (engine->id) {
-+	case RCS0:
-+		return GEN12_CCS_AUX_INV;
-+	case BCS0:
-+		return GEN12_BCS0_AUX_INV;
-+	case VCS0:
-+		return GEN12_VD0_AUX_INV;
-+	case VCS2:
-+		return GEN12_VD2_AUX_INV;
-+	case VECS0:
-+		return GEN12_VE0_AUX_INV;
-+	case CCS0:
-+		return GEN12_CCS0_AUX_INV;
-+	default:
-+		return INVALID_MMIO_REG;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 03675620e3ead..fd9859d98bd43 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4957,12 +4957,6 @@ intel_dp_detect(struct drm_connector *connector,
+ 	if (status != connector_status_connected && !intel_dp->is_mst)
+ 		intel_dp_unset_edid(intel_dp);
+ 
+-	/*
+-	 * Make sure the refs for power wells enabled during detect are
+-	 * dropped to avoid a new detect cycle triggered by HPD polling.
+-	 */
+-	intel_display_power_flush_work(dev_priv);
+-
+ 	if (!intel_dp_is_edp(intel_dp))
+ 		drm_dp_set_subconnector_property(connector,
+ 						 status,
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 8d1c8abfcffa1..14e133d192ab7 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2522,12 +2522,6 @@ intel_hdmi_detect(struct drm_connector *connector, bool force)
+ 	if (status != connector_status_connected)
+ 		cec_notifier_phys_addr_invalidate(intel_hdmi->cec_notifier);
+ 
+-	/*
+-	 * Make sure the refs for power wells enabled during detect are
+-	 * dropped to avoid a new detect cycle triggered by HPD polling.
+-	 */
+-	intel_display_power_flush_work(dev_priv);
+-
+ 	return status;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+index 0ff5ed46ae1e7..dd7eb9fc78610 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+@@ -25,6 +25,7 @@
+ 
+ #include "i915_drv.h"
+ #include "i915_irq.h"
++#include "intel_display_power.h"
+ #include "intel_display_types.h"
+ #include "intel_hotplug.h"
+ #include "intel_hotplug_irq.h"
+@@ -638,11 +639,25 @@ static void i915_hpd_poll_init_work(struct work_struct *work)
+ 			     display.hotplug.poll_init_work);
+ 	struct drm_connector_list_iter conn_iter;
+ 	struct intel_connector *connector;
++	intel_wakeref_t wakeref;
+ 	bool enabled;
+ 
+ 	mutex_lock(&dev_priv->drm.mode_config.mutex);
+ 
+ 	enabled = READ_ONCE(dev_priv->display.hotplug.poll_enabled);
++	/*
++	 * Prevent taking a power reference from this sequence of
++	 * i915_hpd_poll_init_work() -> drm_helper_hpd_irq_event() ->
++	 * connector detect which would requeue i915_hpd_poll_init_work()
++	 * and so risk an endless loop of this same sequence.
++	 */
++	if (!enabled) {
++		wakeref = intel_display_power_get(dev_priv,
++						  POWER_DOMAIN_DISPLAY_CORE);
++		drm_WARN_ON(&dev_priv->drm,
++			    READ_ONCE(dev_priv->display.hotplug.poll_enabled));
++		cancel_work(&dev_priv->display.hotplug.poll_init_work);
 +	}
-+}
-+
-+u32 *gen12_emit_aux_table_inv(struct intel_engine_cs *engine, u32 *cs)
-+{
-+	i915_reg_t inv_reg = gen12_get_aux_inv_reg(engine);
-+	u32 gsi_offset = engine->gt->uncore->gsi_offset;
-+
-+	if (i915_mmio_reg_valid(inv_reg))
-+		return cs;
  
- 	*cs++ = MI_LOAD_REGISTER_IMM(1) | MI_LRI_MMIO_REMAP_EN;
- 	*cs++ = i915_mmio_reg_offset(inv_reg) + gsi_offset;
-@@ -201,6 +228,11 @@ static u32 *intel_emit_pipe_control_cs(struct i915_request *rq, u32 bit_group_0,
- 	return cs;
- }
- 
-+static bool gen12_engine_has_aux_inv(struct intel_engine_cs *engine)
-+{
-+	return i915_mmio_reg_valid(gen12_get_aux_inv_reg(engine));
-+}
-+
- static int mtl_dummy_pipe_control(struct i915_request *rq)
- {
- 	/* Wa_14016712196 */
-@@ -307,11 +339,7 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
- 
- 		cs = gen8_emit_pipe_control(cs, flags, LRC_PPHWSP_SCRATCH_ADDR);
- 
--		if (!HAS_FLAT_CCS(rq->engine->i915)) {
--			/* hsdes: 1809175790 */
--			cs = gen12_emit_aux_table_inv(rq->engine->gt, cs,
--						      GEN12_CCS_AUX_INV);
--		}
-+		cs = gen12_emit_aux_table_inv(engine, cs);
- 
- 		*cs++ = preparser_disable(false);
- 		intel_ring_advance(rq, cs);
-@@ -322,7 +350,6 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
- 
- int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
- {
--	intel_engine_mask_t aux_inv = 0;
- 	u32 cmd_flush = 0;
- 	u32 cmd = 4;
- 	u32 *cs;
-@@ -330,15 +357,11 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
- 	if (mode & EMIT_INVALIDATE)
- 		cmd += 2;
- 
--	if (HAS_AUX_CCS(rq->engine->i915))
--		aux_inv = rq->engine->mask &
--			  ~GENMASK(_BCS(I915_MAX_BCS - 1), BCS0);
--
- 	/*
- 	 * On Aux CCS platforms the invalidation of the Aux
- 	 * table requires quiescing memory traffic beforehand
+ 	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
+ 	for_each_intel_connector_iter(connector, &conn_iter) {
+@@ -669,8 +684,13 @@ static void i915_hpd_poll_init_work(struct work_struct *work)
+ 	 * We might have missed any hotplugs that happened while we were
+ 	 * in the middle of disabling polling
  	 */
--	if (aux_inv) {
-+	if (gen12_engine_has_aux_inv(rq->engine)) {
- 		u32 bit_group_0 = 0;
- 		u32 bit_group_1 = 0;
- 
-@@ -417,14 +440,7 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
- 	*cs++ = 0; /* upper addr */
- 	*cs++ = 0; /* value */
- 
--	if (aux_inv) { /* hsdes: 1809175790 */
--		if (rq->engine->class == VIDEO_DECODE_CLASS)
--			cs = gen12_emit_aux_table_inv(rq->engine->gt,
--						      cs, GEN12_VD0_AUX_INV);
--		else
--			cs = gen12_emit_aux_table_inv(rq->engine->gt,
--						      cs, GEN12_VE0_AUX_INV);
--	}
-+	cs = gen12_emit_aux_table_inv(rq->engine, cs);
- 
- 	if (mode & EMIT_INVALIDATE)
- 		*cs++ = preparser_disable(false);
-diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.h b/drivers/gpu/drm/i915/gt/gen8_engine_cs.h
-index a44eda096557c..867ba697aceb8 100644
---- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.h
-+++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.h
-@@ -13,6 +13,7 @@
- #include "intel_gt_regs.h"
- #include "intel_gpu_commands.h"
- 
-+struct intel_engine_cs;
- struct intel_gt;
- struct i915_request;
- 
-@@ -46,7 +47,7 @@ u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs);
- u32 *gen11_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs);
- u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs);
- 
--u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv_reg);
-+u32 *gen12_emit_aux_table_inv(struct intel_engine_cs *engine, u32 *cs);
- 
- static inline u32 *
- __gen8_emit_pipe_control(u32 *batch, u32 bit_group_0,
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 235f3fab60a98..119deb9f938c7 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1371,10 +1371,7 @@ gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
- 	    IS_DG2_G11(ce->engine->i915))
- 		cs = gen8_emit_pipe_control(cs, PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE, 0);
- 
--	/* hsdes: 1809175790 */
--	if (!HAS_FLAT_CCS(ce->engine->i915))
--		cs = gen12_emit_aux_table_inv(ce->engine->gt,
--					      cs, GEN12_CCS_AUX_INV);
-+	cs = gen12_emit_aux_table_inv(ce->engine, cs);
- 
- 	/* Wa_16014892111 */
- 	if (IS_MTL_GRAPHICS_STEP(ce->engine->i915, M, STEP_A0, STEP_B0) ||
-@@ -1399,17 +1396,7 @@ gen12_emit_indirect_ctx_xcs(const struct intel_context *ce, u32 *cs)
- 						    PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE,
- 						    0);
- 
--	/* hsdes: 1809175790 */
--	if (!HAS_FLAT_CCS(ce->engine->i915)) {
--		if (ce->engine->class == VIDEO_DECODE_CLASS)
--			cs = gen12_emit_aux_table_inv(ce->engine->gt,
--						      cs, GEN12_VD0_AUX_INV);
--		else if (ce->engine->class == VIDEO_ENHANCEMENT_CLASS)
--			cs = gen12_emit_aux_table_inv(ce->engine->gt,
--						      cs, GEN12_VE0_AUX_INV);
--	}
--
--	return cs;
-+	return gen12_emit_aux_table_inv(ce->engine, cs);
+-	if (!enabled)
++	if (!enabled) {
+ 		drm_helper_hpd_irq_event(&dev_priv->drm);
++
++		intel_display_power_put(dev_priv,
++					POWER_DOMAIN_DISPLAY_CORE,
++					wakeref);
++	}
  }
  
- static void
+ /**
 -- 
-2.40.1
+2.37.2
 
