@@ -1,57 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44FB075A077
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 23:18:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD0A275A0AA
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 23:38:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D503610E51B;
-	Wed, 19 Jul 2023 21:18:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19CAE10E51E;
+	Wed, 19 Jul 2023 21:38:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8F4FE10E518;
- Wed, 19 Jul 2023 21:18:43 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8BxXesyU7hkO28HAA--.13690S3;
- Thu, 20 Jul 2023 05:18:42 +0800 (CST)
-Received: from [10.20.42.43] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8CxvM4yU7hk5xU1AA--.15484S3; 
- Thu, 20 Jul 2023 05:18:42 +0800 (CST)
-Message-ID: <184a570c-cd11-fc08-be63-3ff795dfc6d8@loongson.cn>
-Date: Thu, 20 Jul 2023 05:18:41 +0800
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E934010E51E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jul 2023 21:38:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1689802704; x=1721338704;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QRbFeSYooXtFzGeo48Ory5U6zU72VuxZH9XcH8hyRcQ=;
+ b=HBnYhdPcudMnZIxoJKHY+vjRUTEVqWdgWPqeVQR7XrGSwRnombI9xnMi
+ uG71uR8vyAf4ce4+9skmTz96oeZL1liktFjG58yrOv/AGQ8Pq+zlRNL9F
+ P+NG61HXv1Co4vGsxlYPEq/fIXubhsI7hVfNKwIfYAz43HUlS2/mXQBgp
+ UlFwDAojjsFzGEBwba5WncSxrpj5ylVWLJLpHhQn3E6d8CPHPDid63fPG
+ N+YgBYZP0pfg0Ta7zMQj4tadBG2ZW/I6+5jaEpMHjcNJek3mgEM6vyMXA
+ +adp5PWzhBGIyJ6+1+xxlBiW+6nichxW5F7U5OD+CXFW175tI/Fd1OVMl g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="432764015"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="432764015"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2023 14:38:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="837843481"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="837843481"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2023 14:38:24 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 19 Jul 2023 14:38:15 -0700
+Message-ID: <20230719213815.179115-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: Bjorn Helgaas <helgaas@kernel.org>, Sui Jingfeng <sui.jingfeng@linux.dev>
-References: <20230719204343.GA513226@bhelgaas>
-From: suijingfeng <suijingfeng@loongson.cn>
-In-Reply-To: <20230719204343.GA513226@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID: AQAAf8CxvM4yU7hk5xU1AA--.15484S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj9xXoWruFyDAFyrXFWxXFy8uFyrZrc_yoWDKFc_Ww
- 43A3s29348JFZ2krn7Jr4rCrZYkayjkryjvas3tFs7Wry7tF4DXF1fCw1rWa45uryFyF15
- C398tF4Fkw13uosvyTuYvTs0mTUanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvT
- s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
- cSsGvfJTRUUUbfxYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
- vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
- w2x7M28EF7xvwVC0I7IYx2IY67AKxVWUJVWUCwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
- WUJVW8JwA2z4x0Y4vEx4A2jsIE14v26r4j6F4UM28EF7xvwVC2z280aVCY1x0267AKxVW8
- JVW8Jr1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2
- x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17
- McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7
- I2V7IY0VAS07AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8
- JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14
- v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY
- 67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2
- IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_
- Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jFa0PUUUUU=
-Subject: Re: [Intel-gfx] [PATCH v3 1/9] video/aperture: Add a helper to
- detect if an aperture contains firmware FB
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [CI] PR for MTL and DG2 FW updates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,37 +55,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Javier Martinez Canillas <javierm@redhat.com>,
- amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Bjorn Helgaas <bhelgaas@google.com>, David Airlie <airlied@gmail.com>,
- Helge Deller <deller@gmx.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+This is a unified version of the 3 separate PRs that I've sent in the
+last week. If there are no CI issues, this version will be sent to
+linux-firmware instead of the other 3.
 
+The following changes since commit d3f66064cf43bd7338a79174bd0ff60c4ecbdf6d:
 
-On 2023/7/20 04:43, Bjorn Helgaas wrote:
-> On Wed, Jul 12, 2023 at 12:43:02AM +0800, Sui Jingfeng wrote:
->> From: Sui Jingfeng <suijingfeng@loongson.cn>
->>
->> This patch adds the aperture_contain_firmware_fb() function to do the
->> determination. Unfortunately, due to the fact that the apertures list
->> will be freed dynamically, the location and size information of the
->> firmware FB will be lost after dedicated drivers call
->> aperture_remove_conflicting_devices(),
->> aperture_remove_conflicting_pci_devices() or
->> aperture_remove_all_conflicting_devices() functions
->> We solve this problem by introducing two static variables that record the
->> firmware framebuffer's start addrness and end addrness. It assumes that the
->> system has only one active firmware framebuffer driver at a time. We don't
->> use the global structure screen_info here, because PCI resources may get
->> reallocated (the VRAM BAR could be moved) during the kernel boot stage.
-> s/addrness/address/ (twice)
+  Partially revert "amdgpu: DMCUB updates for DCN 3.1.4 and 3.1.5" (2023-07-07 15:24:32 -0400)
 
+are available in the Git repository at:
 
-Will be fixed at the next version, thanks.
+  git://anongit.freedesktop.org/drm/drm-firmware mtl_fws_and_dg2_guc_70.8
 
+for you to fetch changes up to 4e0915c88db08d0f601f3f797b0e63e7ddec0486:
 
+  i915: update DG2 GuC to v70.8.0 (2023-07-19 11:05:35 -0700)
+
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (3):
+      i915: update to GuC 70.8.0 and HuC 8.5.1 for MTL
+      i915: add GSC 102.0.0.1625 for MTL
+      i915: update DG2 GuC to v70.8.0
+
+ WHENCE               |   9 ++++++---
+ i915/dg2_guc_70.bin  | Bin 369600 -> 385856 bytes
+ i915/mtl_gsc_1.bin   | Bin 0 -> 1142784 bytes
+ i915/mtl_guc_70.bin  | Bin 303936 -> 308032 bytes
+ i915/mtl_huc_gsc.bin | Bin 565248 -> 569344 bytes
+ 5 files changed, 6 insertions(+), 3 deletions(-)
+ create mode 100755 i915/mtl_gsc_1.bin
