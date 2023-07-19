@@ -2,51 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 659C17596C9
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 15:29:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4289B759718
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 15:36:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0820C10E4A8;
-	Wed, 19 Jul 2023 13:29:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E2A710E4AB;
+	Wed, 19 Jul 2023 13:36:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C17710E19D
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jul 2023 13:29:00 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 250B810E4A8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jul 2023 13:36:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689773340; x=1721309340;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=86nMjPpGw3Wm6alXSVJ6yNZjGVUvmegiSqKJdx1I72A=;
- b=iQnakHgLk0QjSrNZMipg8T6nPw1/aHTl6mv1B517ZF+MoH1pmGpgctHw
- LdNaWjJc8j5PvMlbi0RGaA1lDwfMQfIc2jO5F1T4oEjuI7eDdrBFBEy0k
- iWJxfl/5lZ2iec+tss0Los+ZvJ/c1AqXDYONWmWLVEZvTS2hRxEdB/oQh
- jOMPRlEfFoAss5AaINT9a08h0dZS2lVkuW8qCMtTPVYSVS//TLE+mYtxz
- UeYruiErVSAICGTb5sUzV7hSXdStp6vRVYBhyzarhWezRYoCv7CE8V07S
- 8yP1pVgl6BO0kyKg+kwilD41l1o64adE04RHSc5s6jitL56UIgPmEOJlx A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="363922013"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="363922013"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 06:28:37 -0700
+ t=1689773795; x=1721309795;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=rUU9phFbxLWQ/gOLm9lL3J2I5tH0TfnugKbxxOJCw6o=;
+ b=kmn2aCBxxp+/Ns3lOhEJaxgIM42iJJ8Gb8QKN7DtyPHKrMlwMAcE85k6
+ jkRU+xoPdRwOBtBVNliFu5lfxt6A/4S3BAheiSbp4oEK2drTaleY3EiWI
+ uCfsmhpCkrlAKuAWtSOcW3CtaYT33CoT862BVbwi+wJE2cvj4Z8sfGyF6
+ cSwRP1k1Y5EdYKWrXz5guworK3aanmSfNlBQ4z465WioCTefCG1Dh7QCg
+ 159/J2TLRvY5MaWUzEw8kmNMcvEGplbJRdEcjhWYsgIm41/hrGmhW7ASa
+ jjbOSJD4iNTl66GxUt53HIA+Hcb/gRn07H4d+gERZvRJheImogFm8z9hm g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="365344880"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="365344880"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2023 06:36:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="717978544"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="717978544"
-Received: from tscherue-mobl1.ger.corp.intel.com (HELO
- hazy.ger.corp.intel.com) ([10.252.56.186])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 06:28:37 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Jul 2023 16:28:22 +0300
-Message-Id: <20230719132822.305612-5-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230719132822.305612-1-luciano.coelho@intel.com>
-References: <20230719132822.305612-1-luciano.coelho@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="759191422"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="759191422"
+Received: from bcascian-mobl1.ger.corp.intel.com (HELO [10.213.192.119])
+ ([10.213.192.119])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2023 06:36:20 -0700
+Message-ID: <37f64727-9bbd-c967-193c-97266dfc1331@linux.intel.com>
+Date: Wed, 19 Jul 2023 14:36:18 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230718225118.2562132-1-radhakrishna.sripada@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230718225118.2562132-1-radhakrishna.sripada@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/tc: remove "fia" from
- intel_tc_port_fia_max_lane_count()
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/dpt: Use shmem for dpt objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,75 +63,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Chris Wilson <chris.p.wilson@intel.com>, stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It is irrelevant for the caller that the max lane count is being
-derived from a FIA register, so having "fia" in the function name is
-irrelevant.  Rename the function accordingly.
 
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_tc.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_tc.h | 2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
+On 18/07/2023 23:51, Radhakrishna Sripada wrote:
+> Dpt objects that are created from internal get evicted when there is
+> memory pressure and do not get restored when pinned during scanout. The
+> pinned page table entries look corrupted and programming the display
+> engine with the incorrect pte's result in DE throwing pipe faults.
+> 
+> Create DPT objects from shmem and mark the object as dirty when pinning so
+> that the object is restored when shrinker evicts an unpinned buffer object.
+> 
+> v2: Unconditionally mark the dpt objects dirty during pinning(Chris).
+> 
+> Fixes: 0dc987b699ce ("drm/i915/display: Add smem fallback allocation for dpt")
+> Cc: <stable@vger.kernel.org> # v6.0+
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Suggested-by: Chris Wilson <chris.p.wilson@intel.com>
+> Signed-off-by: Fei Yang <fei.yang@intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_dpt.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
+> index 7c5fddb203ba..fbfd8f959f17 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+> @@ -166,6 +166,8 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
+>   		i915_vma_get(vma);
+>   	}
+>   
+> +	dpt->obj->mm.dirty = true;
+> +
+>   	atomic_dec(&i915->gpu_error.pending_fb_pin);
+>   	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+>   
+> @@ -261,7 +263,7 @@ intel_dpt_create(struct intel_framebuffer *fb)
+>   		dpt_obj = i915_gem_object_create_stolen(i915, size);
+>   	if (IS_ERR(dpt_obj) && !HAS_LMEM(i915)) {
+>   		drm_dbg_kms(&i915->drm, "Allocating dpt from smem\n");
+> -		dpt_obj = i915_gem_object_create_internal(i915, size);
+> +		dpt_obj = i915_gem_object_create_shmem(i915, size);
+>   	}
+>   	if (IS_ERR(dpt_obj))
+>   		return ERR_CAST(dpt_obj);
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 03675620e3ea..b974af839acb 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -306,13 +306,13 @@ static int intel_dp_max_common_lane_count(struct intel_dp *intel_dp)
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	int source_max = intel_dp_max_source_lane_count(dig_port);
- 	int sink_max = intel_dp->max_sink_lane_count;
--	int fia_max = intel_tc_port_fia_max_lane_count(dig_port);
-+	int port_max = intel_tc_port_max_lane_count(dig_port);
- 	int lttpr_max = drm_dp_lttpr_max_lane_count(intel_dp->lttpr_common_caps);
- 
- 	if (lttpr_max)
- 		sink_max = min(sink_max, lttpr_max);
- 
--	return min3(source_max, sink_max, fia_max);
-+	return min3(source_max, sink_max, port_max);
- }
- 
- int intel_dp_max_lane_count(struct intel_dp *intel_dp)
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 11b6139eaf4f..61de3dfb89bd 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -347,7 +347,7 @@ static int intel_tc_port_get_max_lane_count(struct intel_digital_port *dig_port)
- 	}
- }
- 
--int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port)
-+int intel_tc_port_max_lane_count(struct intel_digital_port *dig_port)
- {
- 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
- 
-@@ -595,7 +595,7 @@ static bool tc_phy_verify_legacy_or_dp_alt_mode(struct intel_tc_port *tc,
- 	struct intel_digital_port *dig_port = tc->dig_port;
- 	int max_lanes;
- 
--	max_lanes = intel_tc_port_fia_max_lane_count(dig_port);
-+	max_lanes = intel_tc_port_max_lane_count(dig_port);
- 	if (tc->mode == TC_PORT_LEGACY) {
- 		drm_WARN_ON(&i915->drm, max_lanes != 4);
- 		return true;
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
-index ffc0e2a74e43..80a61e52850e 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.h
-+++ b/drivers/gpu/drm/i915/display/intel_tc.h
-@@ -20,7 +20,7 @@ bool intel_tc_port_connected(struct intel_encoder *encoder);
- bool intel_tc_port_connected_locked(struct intel_encoder *encoder);
- 
- u32 intel_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port);
--int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port);
-+int intel_tc_port_max_lane_count(struct intel_digital_port *dig_port);
- void intel_tc_port_set_fia_lane_count(struct intel_digital_port *dig_port,
- 				      int required_lanes);
- 
--- 
-2.39.2
+Okay I think I get it after some more looking at the DPT code paths. 
+Problem seems pretty clear - page tables are stored in dpt_obj and so 
+are lost when backing store is discarded.
 
+Changing to shmem object indeed looks the easiest option.
+
+Some related thoughts:
+
+1)
+I wonder if intel_dpt_suspend/resume remain needed after this patch. 
+Could you investigate please? On a glance their job was to restore the 
+PTEs which would be lost from internal objects backing storage. With 
+shmem objects that content should be preserved.
+
+2)
+I wonder if i915_vma_flush_writes should be used (as a companion of 
+i915_vma_pin_iomap) from DPT dpt_bind_vma, dpt_insert_entries, etc. But 
+then I am also not sure if it does the right thing for the 
+i915_gem_object_pin_map path of i915_vma_pin_iomap. Perhaps it should 
+call __i915_gem_object_flush_map itself for that mapping flavour and not 
+do the ggtt flushing in that case.
+
+In summary I think the fix is safe and correct but at least point 1) I 
+think needs looking into. It can be a follow up work too.
+
+Regards,
+
+Tvrtko
