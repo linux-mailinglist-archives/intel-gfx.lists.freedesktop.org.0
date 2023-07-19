@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EDDD7598DB
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 16:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E503275991B
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 17:06:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3F8B10E0AB;
-	Wed, 19 Jul 2023 14:53:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 324D210E4C4;
+	Wed, 19 Jul 2023 15:06:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0709910E4C2
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jul 2023 14:53:32 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FCBE10E4C4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jul 2023 15:06:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689778413; x=1721314413;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iUYoW7wl0iv7Bv3JHk30a8XeeptPyrYltDAlNCmcf0c=;
- b=k6v3rOrdFgRtzVos+rBZfbKObhE916WHs/3EBim0a8HuweQO7YVT/dlu
- 8mutzZzIj9dqKfzMl8CbMIwQwqOlDbR6phNXjmSouulpo6BaRWDMRbUT1
- Gix2dIkfQ92E2k6vaVVinQKEWm/KW7SOleohDiObhu64+alSWHWRWuNTd
- cGtU5QC7TFg4tyFBdHfb7zOE0lVIMAXucvuCMafxCe6yKZyUnLStfrd7j
- 6xkbvNRogqXC82rJJ022gnVhS668GESyXsFPJ77fp0YUWUA0KoGylSCO7
- ftdQrvVqE6oQfW69BPNvOPBAAHZPa7Ne3EVO3hi7faHJZqaj0abXROKiy g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="363947565"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="363947565"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 07:53:31 -0700
+ t=1689779190; x=1721315190;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=8d47ZfpGxaJMsaUP6UwfL+ZvW9BEb9zK0wGzTXZ4JHY=;
+ b=XfqLrWc5B5WZDnN5HI4UgG0ynELxfIkTGktBAct0BF/3WEMqHPjJZ0tC
+ vYNBMczUSdnMvztENwJwdaVPeFonKouk7pUU5si192HRCF22/j1fXi+7S
+ 8+fhETrETswbliKstLjXDA1zF+OUp3RxwRpYI067hwucwAm8cNxrnRbaZ
+ EAp4Y313Z3GrJd2Wj9rp7umZ6w+Qs20itPqU1LE51egRsMhadJY6jBtqL
+ GigNdv4Yp18ZAJWJkATCZdv/thNSlm1PKfLrh/QzFpyaqpeiu2NOTYPty
+ MCh43oudYcY+2K8IAR23KpfOuNVGrZmXL8mwV09KXkfV5//tE8pTmDWuO Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="370049646"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="370049646"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2023 08:06:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="897942614"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="897942614"
-Received: from lab-ah.igk.intel.com (HELO lab-ah.corp.intel.com)
- ([10.102.138.202])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 07:53:29 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Jul 2023 16:53:17 +0200
-Message-Id: <20230719145317.1485514-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="718006206"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="718006206"
+Received: from lkp-server02.sh.intel.com (HELO 36946fcf73d7) ([10.239.97.151])
+ by orsmga007.jf.intel.com with ESMTP; 19 Jul 2023 08:06:28 -0700
+Received: from kbuild by 36946fcf73d7 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qM8l1-00052d-28;
+ Wed, 19 Jul 2023 15:06:27 +0000
+Date: Wed, 19 Jul 2023 23:05:33 +0800
+From: kernel test robot <lkp@intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <202307192225.QnmiapXD-lkp@intel.com>
+References: <20230719132822.305612-4-luciano.coelho@intel.com>
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] Revert "Revert "drm/i915: Hold reference to
- intel_context over life of i915_request""
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230719132822.305612-4-luciano.coelho@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/tc: move legacy code out of
+ the main _max_lane_count() func
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,136 +60,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ramalingam C <ramalingam.c@intel.com>,
- Chris Wilson <chris.p.wilson@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit bcb9aa45d5a0e11ef91245330c53cde214d15e8d.
+Hi Luca,
 
-The problem with this patch is that it makes rq->engine dangling pointer
-after context removal. At least two places were located where it ends
-with errors:
-- i915_fence_release: intel_engine_is_virtual(rq->engine),
-- i915_request_wait_timeout: mutex_(acquire|release)(&rq->engine->gt...)
-It is possible there are more such places.
-Taking context reference prevents this behaviour.
+kernel test robot noticed the following build errors:
 
-Commit message suggested the patch prevented reference loop in VM_BIND,
-but since VM_BIND was dropped the revert hopefuly should be safe.
+[auto build test ERROR on drm-tip/drm-tip]
 
-The patch fixes bug detected by KASAN with following signature:
-i915 0000:00:02.0: [drm:i915_drop_caches_set [i915]] Dropping caches: 0x0000005c [0x0000005c]
-BUG: KASAN: slab-use-after-free in i915_fence_release+0x2a2/0x2f0 [i915]
-Read of size 4 at addr ffff88813ffda6e8 by task kworker/u32:10/157
-...
-Allocated by task 1184:
-...
-guc_create_virtual+0x4d/0x1160 [i915]
-i915_gem_create_context+0x11ee/0x18c0 [i915]
-...
-Freed by task 151:
-...
-intel_guc_deregister_done_process_msg+0x324/0x6d0 [i915]
-...
+url:    https://github.com/intel-lab-lkp/linux/commits/Luca-Coelho/drm-i915-tc-rename-mtl_tc_port_get_pin_assignment_mask/20230719-213204
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230719132822.305612-4-luciano.coelho%40intel.com
+patch subject: [Intel-gfx] [PATCH 3/4] drm/i915/tc: move legacy code out of the main _max_lane_count() func
+config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20230719/202307192225.QnmiapXD-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20230719/202307192225.QnmiapXD-lkp@intel.com/reproduce)
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/7926
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
-Hi Niranjana, Matt,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307192225.QnmiapXD-lkp@intel.com/
 
-Could you look at this revert, to verify if situation described in
-reverted patch will not happen now, without VM_BIND.
+All errors (new ones prefixed by >>):
 
-Regards
-Andrzej
----
- drivers/gpu/drm/i915/i915_request.c | 52 +++++++++++------------------
- 1 file changed, 20 insertions(+), 32 deletions(-)
+   drivers/gpu/drm/i915/display/intel_tc.c: In function 'intel_tc_port_fia_max_lane_count':
+>> drivers/gpu/drm/i915/display/intel_tc.c:354:21: error: 'struct intel_digital_port' has no member named 'tc_mode'
+     354 |         if (dig_port->tc_mode != TC_PORT_DP_ALT)
+         |                     ^~
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 894068bb37b6f1..c5fe199b046d01 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -134,42 +134,17 @@ static void i915_fence_release(struct dma_fence *fence)
- 	i915_sw_fence_fini(&rq->semaphore);
- 
- 	/*
--	 * Keep one request on each engine for reserved use under mempressure
-+	 * Keep one request on each engine for reserved use under mempressure,
- 	 * do not use with virtual engines as this really is only needed for
- 	 * kernel contexts.
--	 *
--	 * We do not hold a reference to the engine here and so have to be
--	 * very careful in what rq->engine we poke. The virtual engine is
--	 * referenced via the rq->context and we released that ref during
--	 * i915_request_retire(), ergo we must not dereference a virtual
--	 * engine here. Not that we would want to, as the only consumer of
--	 * the reserved engine->request_pool is the power management parking,
--	 * which must-not-fail, and that is only run on the physical engines.
--	 *
--	 * Since the request must have been executed to be have completed,
--	 * we know that it will have been processed by the HW and will
--	 * not be unsubmitted again, so rq->engine and rq->execution_mask
--	 * at this point is stable. rq->execution_mask will be a single
--	 * bit if the last and _only_ engine it could execution on was a
--	 * physical engine, if it's multiple bits then it started on and
--	 * could still be on a virtual engine. Thus if the mask is not a
--	 * power-of-two we assume that rq->engine may still be a virtual
--	 * engine and so a dangling invalid pointer that we cannot dereference
--	 *
--	 * For example, consider the flow of a bonded request through a virtual
--	 * engine. The request is created with a wide engine mask (all engines
--	 * that we might execute on). On processing the bond, the request mask
--	 * is reduced to one or more engines. If the request is subsequently
--	 * bound to a single engine, it will then be constrained to only
--	 * execute on that engine and never returned to the virtual engine
--	 * after timeslicing away, see __unwind_incomplete_requests(). Thus we
--	 * know that if the rq->execution_mask is a single bit, rq->engine
--	 * can be a physical engine with the exact corresponding mask.
- 	 */
- 	if (!intel_engine_is_virtual(rq->engine) &&
--	    is_power_of_2(rq->execution_mask) &&
--	    !cmpxchg(&rq->engine->request_pool, NULL, rq))
-+	    !cmpxchg(&rq->engine->request_pool, NULL, rq)) {
-+		intel_context_put(rq->context);
- 		return;
-+	}
-+
-+	intel_context_put(rq->context);
- 
- 	kmem_cache_free(slab_requests, rq);
- }
-@@ -946,7 +921,19 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
- 		}
- 	}
- 
--	rq->context = ce;
-+	/*
-+	 * Hold a reference to the intel_context over life of an i915_request.
-+	 * Without this an i915_request can exist after the context has been
-+	 * destroyed (e.g. request retired, context closed, but user space holds
-+	 * a reference to the request from an out fence). In the case of GuC
-+	 * submission + virtual engine, the engine that the request references
-+	 * is also destroyed which can trigger bad pointer dref in fence ops
-+	 * (e.g. i915_fence_get_driver_name). We could likely change these
-+	 * functions to avoid touching the engine but let's just be safe and
-+	 * hold the intel_context reference. In execlist mode the request always
-+	 * eventually points to a physical engine so this isn't an issue.
-+	 */
-+	rq->context = intel_context_get(ce);
- 	rq->engine = ce->engine;
- 	rq->ring = ce->ring;
- 	rq->execution_mask = ce->engine->mask;
-@@ -1022,6 +1009,7 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
- 	GEM_BUG_ON(!list_empty(&rq->sched.waiters_list));
- 
- err_free:
-+	intel_context_put(ce);
- 	kmem_cache_free(slab_requests, rq);
- err_unreserve:
- 	intel_context_unpin(ce);
+
+vim +354 drivers/gpu/drm/i915/display/intel_tc.c
+
+   349	
+   350	int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port)
+   351	{
+   352		struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+   353	
+ > 354		if (dig_port->tc_mode != TC_PORT_DP_ALT)
+   355			return 4;
+   356	
+   357		if (DISPLAY_VER(i915) >= 14)
+   358			return mtl_tc_port_get_max_lane_count(dig_port);
+   359	
+   360		return intel_tc_port_get_max_lane_count(dig_port);
+   361	}
+   362	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
