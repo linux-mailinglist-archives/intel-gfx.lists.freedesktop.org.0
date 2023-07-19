@@ -1,51 +1,142 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46825759928
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 17:08:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFC22759983
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 17:23:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D08710E4C4;
-	Wed, 19 Jul 2023 15:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 169CD10E4CB;
+	Wed, 19 Jul 2023 15:23:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D116D10E4C4
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jul 2023 15:08:23 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5654610E4CC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jul 2023 15:23:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689779303; x=1721315303;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RoNhIVOxi+lTtJQjM04NggQl4ArvPdTufDZyma7hnmc=;
- b=URkLoHy5XyXEIKnpr9k3PfKFPGDTdY1Xkex6hLaJWWMwL0pJ96H0fq5J
- W2UWOgtrj6Vxh/bCD+6eK3OXRRF7vos8EZFg6plBdhEi4zaayoynmbgZs
- uuZUIM3tKpgg26EHeNaNjRKNvFEzH074i4gFO+UvD+scFpb929Er8JEC/
- WaCMIPNQ7aqZpMalD28tH42l5ldNolIMOm9ysPcy1oWFRX9K1MF5NicRl
- ihF7IPNDRz8Pid/5g2DkVrF9POBfhLPxOjCM9yFlBds6W3nlDgW85P4rc
- +8Zshduiq88iZLtiH9/d5Kw6LQ0S3kK5LfKihMVB06qjysVroS5QVj8mb A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="366534681"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="366534681"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 08:07:52 -0700
+ t=1689780180; x=1721316180;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=JbYvDrsrf3gXmPrpA/4FqlKztRilKuFMpQ1uNa14Wcg=;
+ b=HzuK2JsIkG1D3rbMIKGqZ2HFoL9nIdSuTZmjp3MsnQQobvZO77Zhhhtm
+ 819SRYXvVxhZEyuOPr1ZzTDBS6wGzhWf6D1i8v4kIKRZvss8dnHh22OEh
+ aJppaki87sDdtBch3rSMogIyoPEhk78yxwr3ijYAowEROm+tVACnNV6oB
+ jYwue4/OOZRPgsrDqbn2tdsOtklU5GY5auPxWWfrhLN0PQL7VN10/y++T
+ 2TSvw1oHo+R7K2nH35/PpHRe5MdtOCS6chKYQNnrggEbv3PpsWo+ZMcuw
+ 2kLvfHY3QnZtiM09DDTMS9EHgQ2EOK02Q0j1TeomO+8Ug2FOmxFK+i7zz Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="351361028"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="351361028"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2023 08:22:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="727332740"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="727332740"
-Received: from lab-ah.igk.intel.com (HELO lab-ah.corp.intel.com)
- ([10.102.138.202])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 08:07:50 -0700
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Jul 2023 17:07:39 +0200
-Message-Id: <20230719150739.1505220-1-andrzej.hajda@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="674340079"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="674340079"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga003.jf.intel.com with ESMTP; 19 Jul 2023 08:22:59 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Wed, 19 Jul 2023 08:22:58 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Wed, 19 Jul 2023 08:22:58 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Wed, 19 Jul 2023 08:22:58 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Wed, 19 Jul 2023 08:22:58 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=n8MFs4IWjirIhAKaFiGpake9sAil4XIU7K+cga64NWO6fuoSAh8m9WaN9TMT2WiFnz6q6juJRawaD4yff/hVfgcnS1mBmPHHAp3v2VrmAJhPhwhGxAlT0ssfEEApwKbh9t5UTu8xjN6yhKbvs7X/wonplK2Gr1qPl3M6xlDF42Mi+EbTMfNNLA117SNgTxhvO04wgQ3qco1tkDgwWnLKSCYl/6scra9qZ887H+FmteytoDZtHCDx37rOMMeS04IuDY1hBmpwXaZpE71SyRphqg1sPCslVIIOiH73xEM0OS/VuPq4bpWyKXI7K60nRsOVTt7egxSzzVhXA4iknUb1jQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xYnETp8rMq7DtIDdSIsbcRtDqjVz88Q89ZcVfv3T+Ck=;
+ b=T2TEa68Amyd1/3pwTAPCMZ5B+P66CM6gekT1TlFMoKFq9JAurVVXT9vORpGglfG4By9lh2n939TaSMh+MDuHzV48SRBePqT4RvtVsm8dQCZiQrFu6zGK/bS4Xh0Bw6Gx6PSE4YiBp5mwJ4yavnjmnt6R/vzbi9JTDEFRwIzHyjL6P/p7bBr7QROnNQgJrdlQxZnysilGjNJX57g/zb/W6QCftj20bZJm7ZfbwQub82MenKM/UUk+nwX0fv3lcL5RbHUq8b7G6LsiefP8prRxfvv+h4z6To9BoY4CzMQnXF+eQ0qmHLnZI1XTSZlUxxepXMlO0W7EZzB/qR4J/TW11A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ SA0PR11MB4574.namprd11.prod.outlook.com (2603:10b6:806:71::11) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6609.24; Wed, 19 Jul 2023 15:22:50 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::de6b:b5a9:e542:b41]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::de6b:b5a9:e542:b41%5]) with mapi id 15.20.6609.024; Wed, 19 Jul 2023
+ 15:22:50 +0000
+Date: Wed, 19 Jul 2023 08:22:48 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20230719152248.GN138014@mdroper-desk1.amr.corp.intel.com>
+References: <20230718222753.1075713-10-matthew.d.roper@intel.com>
+ <20230718222753.1075713-18-matthew.d.roper@intel.com>
+ <6648632e-0b4c-75ff-1b83-cd45b051cbb2@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <6648632e-0b4c-75ff-1b83-cd45b051cbb2@linux.intel.com>
+X-ClientProxiedBy: BYAPR07CA0076.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::17) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: use direct alias for i915 in requests
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SA0PR11MB4574:EE_
+X-MS-Office365-Filtering-Correlation-Id: a92b167d-42f9-4cad-d095-08db886c03d9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: aa9situFpFTw0f3Ynp7C6M8UXDsQp6Dcpg0cQ7ciJgu/HRDBiaFPdsjlrnUfGH92TSROmcIR6vNtR2JYWT9qHwWCNY7z4VwQpdiPY4f0skYJw5X/zC/nqPm4CmiZ0sy+LrRI64KCHhmjsCxrxE2g8VGcmBZ1swQQtHa2R5oAciLzibw00kUnrcNUBsrmC6gJd8W6cOb6GFoABRvYEdSx3ywvFZU7EduW3qQmbqQosfKpmma6mxNHh6PKz9mlCYN+8u3xNB6pRollkWL4ebxik29tDRKokJveqmY+X1BZsJ3dVOmEzIiT0Jkb4NeXjTkC0POn7/NJ9aZsrGTol7SBdkCXRpKvADnLv0tzaX/cJiK9e9UjiEitztj+WoYSauPQcesXMnScGw4SEDbYZMmENoKtP98WWYIgctwyctMSBNRp1R8yMSuST6iqwL/J7ngfav7G4vaiGKlbFoQxZU0zeyCl/pNRJLwcFmPeevGRSvbgi04F5OUyGnI/wBuOadp5C4e+5LzVs1/RIEO5TuxnID3RW0So9nJawj1XiMMvY6MK9Ftt0nz0Rj3iNDR+fmDa
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(39860400002)(346002)(136003)(366004)(376002)(451199021)(86362001)(478600001)(83380400001)(1076003)(38100700002)(186003)(41300700001)(26005)(33656002)(6916009)(316002)(53546011)(8936002)(8676002)(2906002)(4326008)(6512007)(66556008)(66946007)(6486002)(66476007)(6506007)(82960400001)(5660300002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5LYKhGH88uciLxAj/JO2OHA0okNIa4CCG9bAYjHw+0Nq7frRjw9Z6aWomyKz?=
+ =?us-ascii?Q?tJW9dRZGusGu7d1z8aOcmkUer3cqFkqsqqRpQy/ZsRy02B/qym9wha8Y4Q0A?=
+ =?us-ascii?Q?7y0/7e3lylC9xpU1bXfCzuhN648NTj2oWPiQ90RPHYf+C6hoz4jqXRe4eHvw?=
+ =?us-ascii?Q?/9dV0UzfwVsKoIBiF1NPdsWD7WtvRSx9rjUlBgAS+6Xn9kmS1esamqOmuoxy?=
+ =?us-ascii?Q?COyqg0UlLuBnr29B5/HFQJEGq2uK9S+Q5zLB2gwiLcCEC/uUFTGp7J4Eh5/8?=
+ =?us-ascii?Q?L1xp8Giw+FlQocDGWhZ0VMMX4SMB00TcVfXSYWe55zfTA364bmX39gyC3FbD?=
+ =?us-ascii?Q?Hsm20oV5M6ra/dqlo6wsYnV0sChGH1o2h8daexZA/xfByCaWGmv0ogFWUxcY?=
+ =?us-ascii?Q?Jj30o225lr4hj4Gk280+Kubw0JcPAKJfXzRk8jejrbF6LXueryuUWClsyqbF?=
+ =?us-ascii?Q?qBKFwSCWZejOtHroDxT5FM9sMaRnAVtI8wI3ixmk8uwUscP11G+Yc63+hfGk?=
+ =?us-ascii?Q?JCh1tyvLvqBoZBKGCbh571+eiVtJlKJtidvz/X3v6QXYdgPCvn0RzC+TB3sY?=
+ =?us-ascii?Q?dzypvCgdoHQ4SR0A3/NdJPoP5Pa38O/VcGAmdVjpQ+hCYNdvRX6/K9tTqvOw?=
+ =?us-ascii?Q?Sx31jRV9aCDYp4eUTdDZbAyiTCVHg5QoaCYHuIj/ehwdSBR+dUU1zkbw38IJ?=
+ =?us-ascii?Q?JdCbs+qigwyzxIpu2SJD+OMYVBj/9vLcyu8KqhIc7I+R3+kz32vplT6VdRoI?=
+ =?us-ascii?Q?jnrbbnHhLeiSnkeKlfdW9lZrHHeU/ETXzkHMNVk6RoEY3o301gUTwEWYLUAH?=
+ =?us-ascii?Q?k+wF/CmYotESizV2h8ZcDZpFKsSPlRyyj1ewQmBVrrAE0SmW9DJPBb4s5/fu?=
+ =?us-ascii?Q?kqD0Cc8iYspEJN6vOoJZzDZw75uLg3k2HdpkFM+wWuk37dTbBHTk03ybKmok?=
+ =?us-ascii?Q?Q6ahqMIGHOP1kSBb3NYg9Z9fZZOnKrqEG7By6v1kBFzaRU4D15LdfpXg96lN?=
+ =?us-ascii?Q?HmOSzwY9zaKjo64Z1uCffrnJ36bTXnOLBvSVPs8y+DlF3tBUhUN4NAjR7PwN?=
+ =?us-ascii?Q?Zo3cLjoNA5Bkg5av4J2YVmCD0nD1ZhCLVNMvA82mrMMMxGJbtvHaHRVRVLxz?=
+ =?us-ascii?Q?0wf6zhegQJMvebU6I/gXrHackHfqVYkxyYeZbsQf1ni894e2bscn2Jf9ic84?=
+ =?us-ascii?Q?nyjMlBzEu6J0Sj4LbW8IO1rB0+MBLjmVlJlL0YGOW2YOp0JomwosYpJWDYuu?=
+ =?us-ascii?Q?/cnazvqImXLqs1j3kqS3jI/Vx31VWhOtnMOJVYiEa3F3qdoZ0uygkSJDeIG3?=
+ =?us-ascii?Q?nJVtv4wekT0enRjY3G/JsRpzHzxzSZ/BCEiaJSL6mCVlwfrlDaEAtOaiKUjK?=
+ =?us-ascii?Q?A5qWNerlO6ON32yQsFEkI6hM76ETXKzKpVfTiemSHB+ggbqzVcxcEMkwjSFE?=
+ =?us-ascii?Q?1uk8Vw41prm9XmJE2Y9lma4KCVOD+dpjHOyjrZZbmnwFoIDxJAf3e2YKhfuj?=
+ =?us-ascii?Q?Eg7TFdL5IV1bXQavccxcP9RO696lEg0FYt3N8lLs2QL/RpJWm0TgPQivmShT?=
+ =?us-ascii?Q?T5GtfZV8KycJFbAVEwpqTlnX4NHyLKbIchoIVWc5N5aG/VQ+3A62hqZnv1py?=
+ =?us-ascii?Q?Xw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a92b167d-42f9-4cad-d095-08db886c03d9
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2023 15:22:50.7462 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wcRAfdvVk2ycSxcoxaK8LSlcZRQtOTqpdcfXSBREHNmpJF1WiHypxkgJbrf8aLilLVrO1mtBejAbFXRIeobQXVd95rzoxvw6JGi3F1DdDIQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4574
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 8/8] drm/i915: Replace several IS_METEORLAKE
+ with proper IP version checks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,440 +149,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915_request contains direct alias to i915, there is no point to go via
-rq->engine->i915.
+On Wed, Jul 19, 2023 at 08:57:15AM +0100, Tvrtko Ursulin wrote:
+> 
+> On 18/07/2023 23:28, Matt Roper wrote:
+> > Many of the IS_METEORLAKE conditions throughout the driver are supposed
+> > to be checks for Xe_LPG and/or Xe_LPM+ IP, not for the MTL platform
+> > specifically.  Update those checks to ensure that the code will still
+> > operate properly if/when these IP versions show up on future platforms.
+> > 
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gem/i915_gem_create.c | 4 ++--
+> >   drivers/gpu/drm/i915/gem/i915_gem_pages.c  | 4 ++--
+> >   drivers/gpu/drm/i915/gt/intel_engine_pm.c  | 2 +-
+> >   drivers/gpu/drm/i915/gt/intel_lrc.c        | 4 ++--
+> >   drivers/gpu/drm/i915/gt/intel_mocs.c       | 2 +-
+> >   drivers/gpu/drm/i915/gt/intel_reset.c      | 2 +-
+> >   drivers/gpu/drm/i915/gt/intel_rps.c        | 2 +-
+> >   drivers/gpu/drm/i915/gt/uc/intel_guc.c     | 4 ++--
+> >   drivers/gpu/drm/i915/i915_debugfs.c        | 2 +-
+> >   drivers/gpu/drm/i915/i915_perf.c           | 8 +++++---
+> >   10 files changed, 18 insertions(+), 16 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> > index d24c0ce8805c..19156ba4b9ef 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> > @@ -405,8 +405,8 @@ static int ext_set_pat(struct i915_user_extension __user *base, void *data)
+> >   	BUILD_BUG_ON(sizeof(struct drm_i915_gem_create_ext_set_pat) !=
+> >   		     offsetofend(struct drm_i915_gem_create_ext_set_pat, rsvd));
+> > -	/* Limiting the extension only to Meteor Lake */
+> > -	if (!IS_METEORLAKE(i915))
+> > +	/* Limiting the extension only to Xe_LPG and beyond */
+> > +	if (GRAPHICS_VER_FULL(i915) < IP_VER(12, 70))
+> >   		return -ENODEV;
+> >   	if (copy_from_user(&ext, base, sizeof(ext)))
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> > index 89fc8ea6bcfc..4b003925cc3e 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> > @@ -470,9 +470,9 @@ enum i915_map_type i915_coherent_map_type(struct drm_i915_private *i915,
+> >   					  bool always_coherent)
+> >   {
+> >   	/*
+> > -	 * Wa_22016122933: always return I915_MAP_WC for MTL
+> > +	 * Wa_22016122933: always return I915_MAP_WC for Xe_LPM+
+> >   	 */
+> > -	if (i915_gem_object_is_lmem(obj) || IS_METEORLAKE(i915))
+> > +	if (i915_gem_object_is_lmem(obj) || MEDIA_VER_FULL(i915) == IP_VER(13, 0))
+> 
+> The helper is global for the driver/device but this makes the response based
+> on just one part of the driver which reads dodgy. There is another one in
+> __lrc_alloc_state.
+> 
+> For instance, do these workarounds need to be applied to an object used from
+> the render tile? Yes it also was before these change, but now it is not
+> obvious to me if and how the ipver of the media tile affects the other tile.
 
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c |  4 ++--
- drivers/gpu/drm/i915/gt/gen2_engine_cs.c       |  2 +-
- drivers/gpu/drm/i915/gt/gen8_engine_cs.c       | 18 +++++++++---------
- .../drm/i915/gt/intel_execlists_submission.c   |  2 +-
- drivers/gpu/drm/i915/gt/intel_migrate.c        | 10 +++++-----
- .../gpu/drm/i915/gt/intel_ring_submission.c    |  2 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c    |  4 ++--
- drivers/gpu/drm/i915/gt/selftest_engine_cs.c   |  2 +-
- drivers/gpu/drm/i915/gt/selftest_mocs.c        |  2 +-
- drivers/gpu/drm/i915/gt/selftest_rc6.c         |  2 +-
- drivers/gpu/drm/i915/gt/selftest_timeline.c    |  4 ++--
- drivers/gpu/drm/i915/gvt/scheduler.c           |  2 +-
- drivers/gpu/drm/i915/i915_perf.c               |  2 +-
- drivers/gpu/drm/i915/i915_request.c            |  2 +-
- drivers/gpu/drm/i915/i915_trace.h              | 10 +++++-----
- drivers/gpu/drm/i915/selftests/i915_perf.c     |  2 +-
- drivers/gpu/drm/i915/selftests/igt_spinner.c   | 14 +++++++-------
- 17 files changed, 42 insertions(+), 42 deletions(-)
+The current driver implementation is a bit overkill and goes beyond
+what's actually requested by the workaround.  There are only coherency
+issues between the CPU and media, so if an object is only used on the
+primary GT (which would be the case for a lot of stuff like GuC0 CTBs
+and such), the workaround is not necessary.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index d3208a32561442..5a687a3686bd53 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2229,8 +2229,8 @@ static int i915_reset_gen7_sol_offsets(struct i915_request *rq)
- 	u32 *cs;
- 	int i;
- 
--	if (GRAPHICS_VER(rq->engine->i915) != 7 || rq->engine->id != RCS0) {
--		drm_dbg(&rq->engine->i915->drm, "sol reset is gen7/rcs only\n");
-+	if (GRAPHICS_VER(rq->i915) != 7 || rq->engine->id != RCS0) {
-+		drm_dbg(&rq->i915->drm, "sol reset is gen7/rcs only\n");
- 		return -EINVAL;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gt/gen2_engine_cs.c b/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
-index 1c82caf525c346..8fe0499308ffe5 100644
---- a/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
-@@ -76,7 +76,7 @@ int gen4_emit_flush_rcs(struct i915_request *rq, u32 mode)
- 	cmd = MI_FLUSH;
- 	if (mode & EMIT_INVALIDATE) {
- 		cmd |= MI_EXE_FLUSH;
--		if (IS_G4X(rq->engine->i915) || GRAPHICS_VER(rq->engine->i915) == 5)
-+		if (IS_G4X(rq->i915) || GRAPHICS_VER(rq->i915) == 5)
- 			cmd |= MI_INVALIDATE_ISP;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-index 23857cc08eca1f..3ba20ea030e8d1 100644
---- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-@@ -39,11 +39,11 @@ int gen8_emit_flush_rcs(struct i915_request *rq, u32 mode)
- 		 * On GEN9: before VF_CACHE_INVALIDATE we need to emit a NULL
- 		 * pipe control.
- 		 */
--		if (GRAPHICS_VER(rq->engine->i915) == 9)
-+		if (GRAPHICS_VER(rq->i915) == 9)
- 			vf_flush_wa = true;
- 
- 		/* WaForGAMHang:kbl */
--		if (IS_KBL_GRAPHICS_STEP(rq->engine->i915, 0, STEP_C0))
-+		if (IS_KBL_GRAPHICS_STEP(rq->i915, 0, STEP_C0))
- 			dc_flush_wa = true;
- 	}
- 
-@@ -180,8 +180,8 @@ u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv
- static int mtl_dummy_pipe_control(struct i915_request *rq)
- {
- 	/* Wa_14016712196 */
--	if (IS_MTL_GRAPHICS_STEP(rq->engine->i915, M, STEP_A0, STEP_B0) ||
--	    IS_MTL_GRAPHICS_STEP(rq->engine->i915, P, STEP_A0, STEP_B0)) {
-+	if (IS_MTL_GRAPHICS_STEP(rq->i915, M, STEP_A0, STEP_B0) ||
-+	    IS_MTL_GRAPHICS_STEP(rq->i915, P, STEP_A0, STEP_B0)) {
- 		u32 *cs;
- 
- 		/* dummy PIPE_CONTROL + depth flush */
-@@ -267,7 +267,7 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
- 		else if (engine->class == COMPUTE_CLASS)
- 			flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
- 
--		if (!HAS_FLAT_CCS(rq->engine->i915))
-+		if (!HAS_FLAT_CCS(rq->i915))
- 			count = 8 + 4;
- 		else
- 			count = 8;
-@@ -285,7 +285,7 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
- 
- 		cs = gen8_emit_pipe_control(cs, flags, LRC_PPHWSP_SCRATCH_ADDR);
- 
--		if (!HAS_FLAT_CCS(rq->engine->i915)) {
-+		if (!HAS_FLAT_CCS(rq->i915)) {
- 			/* hsdes: 1809175790 */
- 			cs = gen12_emit_aux_table_inv(rq->engine->gt,
- 						      cs, GEN12_GFX_CCS_AUX_NV);
-@@ -307,7 +307,7 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
- 	if (mode & EMIT_INVALIDATE) {
- 		cmd += 2;
- 
--		if (!HAS_FLAT_CCS(rq->engine->i915) &&
-+		if (!HAS_FLAT_CCS(rq->i915) &&
- 		    (rq->engine->class == VIDEO_DECODE_CLASS ||
- 		     rq->engine->class == VIDEO_ENHANCEMENT_CLASS)) {
- 			aux_inv = rq->engine->mask &
-@@ -754,7 +754,7 @@ u32 *gen12_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
- 
- u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
- {
--	struct drm_i915_private *i915 = rq->engine->i915;
-+	struct drm_i915_private *i915 = rq->i915;
- 	u32 flags = (PIPE_CONTROL_CS_STALL |
- 		     PIPE_CONTROL_TLB_INVALIDATE |
- 		     PIPE_CONTROL_TILE_CACHE_FLUSH |
-@@ -775,7 +775,7 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
- 		/* Wa_1409600907 */
- 		flags |= PIPE_CONTROL_DEPTH_STALL;
- 
--	if (!HAS_3D_PIPELINE(rq->engine->i915))
-+	if (!HAS_3D_PIPELINE(rq->i915))
- 		flags &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
- 	else if (rq->engine->class == COMPUTE_CLASS)
- 		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index d85b5a6d981f99..8a641bcf777cb4 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -2718,7 +2718,7 @@ static int emit_pdps(struct i915_request *rq)
- 	int err, i;
- 	u32 *cs;
- 
--	GEM_BUG_ON(intel_vgpu_active(rq->engine->i915));
-+	GEM_BUG_ON(intel_vgpu_active(rq->i915));
- 
- 	/*
- 	 * Beware ye of the dragons, this sequence is magic!
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index 6023288b0e2dd5..576e5ef0289ba5 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -366,7 +366,7 @@ static int emit_pte(struct i915_request *rq,
- 		    u64 offset,
- 		    int length)
- {
--	bool has_64K_pages = HAS_64K_PAGES(rq->engine->i915);
-+	bool has_64K_pages = HAS_64K_PAGES(rq->i915);
- 	const u64 encode = rq->context->vm->pte_encode(0, pat_index,
- 						       is_lmem ? PTE_LM : 0);
- 	struct intel_ring *ring = rq->ring;
-@@ -375,7 +375,7 @@ static int emit_pte(struct i915_request *rq,
- 	u32 page_size;
- 	u32 *hdr, *cs;
- 
--	GEM_BUG_ON(GRAPHICS_VER(rq->engine->i915) < 8);
-+	GEM_BUG_ON(GRAPHICS_VER(rq->i915) < 8);
- 
- 	page_size = I915_GTT_PAGE_SIZE;
- 	dword_length = 0x400;
-@@ -531,7 +531,7 @@ static int emit_copy_ccs(struct i915_request *rq,
- 			 u32 dst_offset, u8 dst_access,
- 			 u32 src_offset, u8 src_access, int size)
- {
--	struct drm_i915_private *i915 = rq->engine->i915;
-+	struct drm_i915_private *i915 = rq->i915;
- 	int mocs = rq->engine->gt->mocs.uc_index << 1;
- 	u32 num_ccs_blks;
- 	u32 *cs;
-@@ -581,7 +581,7 @@ static int emit_copy_ccs(struct i915_request *rq,
- static int emit_copy(struct i915_request *rq,
- 		     u32 dst_offset, u32 src_offset, int size)
- {
--	const int ver = GRAPHICS_VER(rq->engine->i915);
-+	const int ver = GRAPHICS_VER(rq->i915);
- 	u32 instance = rq->engine->instance;
- 	u32 *cs;
- 
-@@ -917,7 +917,7 @@ intel_context_migrate_copy(struct intel_context *ce,
- static int emit_clear(struct i915_request *rq, u32 offset, int size,
- 		      u32 value, bool is_lmem)
- {
--	struct drm_i915_private *i915 = rq->engine->i915;
-+	struct drm_i915_private *i915 = rq->i915;
- 	int mocs = rq->engine->gt->mocs.uc_index << 1;
- 	const int ver = GRAPHICS_VER(i915);
- 	int ring_sz;
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 3fd795c3263fd2..92085ffd23de0e 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -805,7 +805,7 @@ static int mi_set_context(struct i915_request *rq,
- static int remap_l3_slice(struct i915_request *rq, int slice)
- {
- #define L3LOG_DW (GEN7_L3LOG_SIZE / sizeof(u32))
--	u32 *cs, *remap_info = rq->engine->i915->l3_parity.remap_info[slice];
-+	u32 *cs, *remap_info = rq->i915->l3_parity.remap_info[slice];
- 	int i;
- 
- 	if (!remap_info)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index b177c588698b08..589d009032fcd3 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -3249,7 +3249,7 @@ wa_list_srm(struct i915_request *rq,
- 	    const struct i915_wa_list *wal,
- 	    struct i915_vma *vma)
- {
--	struct drm_i915_private *i915 = rq->engine->i915;
-+	struct drm_i915_private *i915 = rq->i915;
- 	unsigned int i, count = 0;
- 	const struct i915_wa *wa;
- 	u32 srm, *cs;
-@@ -3348,7 +3348,7 @@ static int engine_wa_list_verify(struct intel_context *ce,
- 
- 	err = 0;
- 	for (i = 0, wa = wal->list; i < wal->count; i++, wa++) {
--		if (mcr_range(rq->engine->i915, i915_mmio_reg_offset(wa->reg)))
-+		if (mcr_range(rq->i915, i915_mmio_reg_offset(wa->reg)))
- 			continue;
- 
- 		if (!wa_verify(wal->gt, wa, results[i], wal->name, from))
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_cs.c b/drivers/gpu/drm/i915/gt/selftest_engine_cs.c
-index 78cdfc6f315f2a..86cecf7a110540 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_cs.c
-@@ -62,7 +62,7 @@ static int write_timestamp(struct i915_request *rq, int slot)
- 		return PTR_ERR(cs);
- 
- 	cmd = MI_STORE_REGISTER_MEM | MI_USE_GGTT;
--	if (GRAPHICS_VER(rq->engine->i915) >= 8)
-+	if (GRAPHICS_VER(rq->i915) >= 8)
- 		cmd++;
- 	*cs++ = cmd;
- 	*cs++ = i915_mmio_reg_offset(timestamp_reg(rq->engine));
-diff --git a/drivers/gpu/drm/i915/gt/selftest_mocs.c b/drivers/gpu/drm/i915/gt/selftest_mocs.c
-index a8446ab825012f..d73e438fb85fab 100644
---- a/drivers/gpu/drm/i915/gt/selftest_mocs.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_mocs.c
-@@ -137,7 +137,7 @@ static int read_mocs_table(struct i915_request *rq,
- 	if (!table)
- 		return 0;
- 
--	if (HAS_GLOBAL_MOCS_REGISTERS(rq->engine->i915))
-+	if (HAS_GLOBAL_MOCS_REGISTERS(rq->i915))
- 		addr = global_mocs_offset() + gt->uncore->gsi_offset;
- 	else
- 		addr = mocs_offset(rq->engine);
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-index 2ceeadecc639cc..a7189c2d660cc5 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-@@ -140,7 +140,7 @@ static const u32 *__live_rc6_ctx(struct intel_context *ce)
- 	}
- 
- 	cmd = MI_STORE_REGISTER_MEM | MI_USE_GGTT;
--	if (GRAPHICS_VER(rq->engine->i915) >= 8)
-+	if (GRAPHICS_VER(rq->i915) >= 8)
- 		cmd++;
- 
- 	*cs++ = cmd;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-index 39c3ec12df1abb..fa36cf920bdee9 100644
---- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-@@ -459,12 +459,12 @@ static int emit_ggtt_store_dw(struct i915_request *rq, u32 addr, u32 value)
- 	if (IS_ERR(cs))
- 		return PTR_ERR(cs);
- 
--	if (GRAPHICS_VER(rq->engine->i915) >= 8) {
-+	if (GRAPHICS_VER(rq->i915) >= 8) {
- 		*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
- 		*cs++ = addr;
- 		*cs++ = 0;
- 		*cs++ = value;
--	} else if (GRAPHICS_VER(rq->engine->i915) >= 4) {
-+	} else if (GRAPHICS_VER(rq->i915) >= 4) {
- 		*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
- 		*cs++ = 0;
- 		*cs++ = addr;
-diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
-index f4055804aad1fe..a5c8005ec484c3 100644
---- a/drivers/gpu/drm/i915/gvt/scheduler.c
-+++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-@@ -974,7 +974,7 @@ static void update_guest_context(struct intel_vgpu_workload *workload)
- 	context_page_num = rq->engine->context_size;
- 	context_page_num = context_page_num >> PAGE_SHIFT;
- 
--	if (IS_BROADWELL(rq->engine->i915) && rq->engine->id == RCS0)
-+	if (IS_BROADWELL(rq->i915) && rq->engine->id == RCS0)
- 		context_page_num = 19;
- 
- 	context_base = (void *) ctx->lrc_reg_state -
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 49c6f1ff11284f..04bc1f4a111504 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -1319,7 +1319,7 @@ __store_reg_to_mem(struct i915_request *rq, i915_reg_t reg, u32 ggtt_offset)
- 	u32 *cs, cmd;
- 
- 	cmd = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
--	if (GRAPHICS_VER(rq->engine->i915) >= 8)
-+	if (GRAPHICS_VER(rq->i915) >= 8)
- 		cmd++;
- 
- 	cs = intel_ring_begin(rq, 4);
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index c5fe199b046d01..9d83f064456cd9 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1341,7 +1341,7 @@ __i915_request_await_external(struct i915_request *rq, struct dma_fence *fence)
- {
- 	mark_external(rq);
- 	return i915_sw_fence_await_dma_fence(&rq->submit, fence,
--					     i915_fence_context_timeout(rq->engine->i915,
-+					     i915_fence_context_timeout(rq->i915,
- 									fence->context),
- 					     I915_FENCE_GFP);
- }
-diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-index f6f9228a135185..ce1cbee1b39dd0 100644
---- a/drivers/gpu/drm/i915/i915_trace.h
-+++ b/drivers/gpu/drm/i915/i915_trace.h
-@@ -277,7 +277,7 @@ TRACE_EVENT(i915_request_queue,
- 			     ),
- 
- 	    TP_fast_assign(
--			   __entry->dev = rq->engine->i915->drm.primary->index;
-+			   __entry->dev = rq->i915->drm.primary->index;
- 			   __entry->class = rq->engine->uabi_class;
- 			   __entry->instance = rq->engine->uabi_instance;
- 			   __entry->ctx = rq->fence.context;
-@@ -304,7 +304,7 @@ DECLARE_EVENT_CLASS(i915_request,
- 			     ),
- 
- 	    TP_fast_assign(
--			   __entry->dev = rq->engine->i915->drm.primary->index;
-+			   __entry->dev = rq->i915->drm.primary->index;
- 			   __entry->class = rq->engine->uabi_class;
- 			   __entry->instance = rq->engine->uabi_instance;
- 			   __entry->ctx = rq->fence.context;
-@@ -353,7 +353,7 @@ TRACE_EVENT(i915_request_in,
- 			    ),
- 
- 	    TP_fast_assign(
--			   __entry->dev = rq->engine->i915->drm.primary->index;
-+			   __entry->dev = rq->i915->drm.primary->index;
- 			   __entry->class = rq->engine->uabi_class;
- 			   __entry->instance = rq->engine->uabi_instance;
- 			   __entry->ctx = rq->fence.context;
-@@ -382,7 +382,7 @@ TRACE_EVENT(i915_request_out,
- 			    ),
- 
- 	    TP_fast_assign(
--			   __entry->dev = rq->engine->i915->drm.primary->index;
-+			   __entry->dev = rq->i915->drm.primary->index;
- 			   __entry->class = rq->engine->uabi_class;
- 			   __entry->instance = rq->engine->uabi_instance;
- 			   __entry->ctx = rq->fence.context;
-@@ -623,7 +623,7 @@ TRACE_EVENT(i915_request_wait_begin,
- 	     * less desirable.
- 	     */
- 	    TP_fast_assign(
--			   __entry->dev = rq->engine->i915->drm.primary->index;
-+			   __entry->dev = rq->i915->drm.primary->index;
- 			   __entry->class = rq->engine->uabi_class;
- 			   __entry->instance = rq->engine->uabi_instance;
- 			   __entry->ctx = rq->fence.context;
-diff --git a/drivers/gpu/drm/i915/selftests/i915_perf.c b/drivers/gpu/drm/i915/selftests/i915_perf.c
-index d4608b220123ce..403134a7acec30 100644
---- a/drivers/gpu/drm/i915/selftests/i915_perf.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_perf.c
-@@ -168,7 +168,7 @@ static int write_timestamp(struct i915_request *rq, int slot)
- 		return PTR_ERR(cs);
- 
- 	len = 5;
--	if (GRAPHICS_VER(rq->engine->i915) >= 8)
-+	if (GRAPHICS_VER(rq->i915) >= 8)
- 		len++;
- 
- 	*cs++ = GFX_OP_PIPE_CONTROL(len);
-diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.c b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-index 618d9386d55494..3c5e0952f1b81b 100644
---- a/drivers/gpu/drm/i915/selftests/igt_spinner.c
-+++ b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-@@ -159,15 +159,15 @@ igt_spinner_create_request(struct igt_spinner *spin,
- 
- 	batch = spin->batch;
- 
--	if (GRAPHICS_VER(rq->engine->i915) >= 8) {
-+	if (GRAPHICS_VER(rq->i915) >= 8) {
- 		*batch++ = MI_STORE_DWORD_IMM_GEN4;
- 		*batch++ = lower_32_bits(hws_address(hws, rq));
- 		*batch++ = upper_32_bits(hws_address(hws, rq));
--	} else if (GRAPHICS_VER(rq->engine->i915) >= 6) {
-+	} else if (GRAPHICS_VER(rq->i915) >= 6) {
- 		*batch++ = MI_STORE_DWORD_IMM_GEN4;
- 		*batch++ = 0;
- 		*batch++ = hws_address(hws, rq);
--	} else if (GRAPHICS_VER(rq->engine->i915) >= 4) {
-+	} else if (GRAPHICS_VER(rq->i915) >= 4) {
- 		*batch++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
- 		*batch++ = 0;
- 		*batch++ = hws_address(hws, rq);
-@@ -179,11 +179,11 @@ igt_spinner_create_request(struct igt_spinner *spin,
- 
- 	*batch++ = arbitration_command;
- 
--	if (GRAPHICS_VER(rq->engine->i915) >= 8)
-+	if (GRAPHICS_VER(rq->i915) >= 8)
- 		*batch++ = MI_BATCH_BUFFER_START | BIT(8) | 1;
--	else if (IS_HASWELL(rq->engine->i915))
-+	else if (IS_HASWELL(rq->i915))
- 		*batch++ = MI_BATCH_BUFFER_START | MI_BATCH_PPGTT_HSW;
--	else if (GRAPHICS_VER(rq->engine->i915) >= 6)
-+	else if (GRAPHICS_VER(rq->i915) >= 6)
- 		*batch++ = MI_BATCH_BUFFER_START;
- 	else
- 		*batch++ = MI_BATCH_BUFFER_START | MI_BATCH_GTT;
-@@ -201,7 +201,7 @@ igt_spinner_create_request(struct igt_spinner *spin,
- 	}
- 
- 	flags = 0;
--	if (GRAPHICS_VER(rq->engine->i915) <= 5)
-+	if (GRAPHICS_VER(rq->i915) <= 5)
- 		flags |= I915_DISPATCH_SECURE;
- 	err = engine->emit_bb_start(rq, i915_vma_offset(vma), PAGE_SIZE, flags);
- 
+The workaround database marks this one as relevant to Xe_LPM+ and _not_
+relevant to Xe_LPG.  Also, the hardware team's description even
+explicitly notes that this is only necessary for media and that the
+primary GT is not impacted.
+
+I pointed this out recently in one of the internal reviews for some of
+this code, so I think there may be some optimizations to the
+implementation of this workaround coming soon.
+
+
+Matt
+
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> >   		return I915_MAP_WC;
+> >   	if (HAS_LLC(i915) || always_coherent)
+> >   		return I915_MAP_WB;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> > index 21af0ec52223..24060278e7a2 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> > @@ -21,7 +21,7 @@ static void intel_gsc_idle_msg_enable(struct intel_engine_cs *engine)
+> >   {
+> >   	struct drm_i915_private *i915 = engine->i915;
+> > -	if (IS_METEORLAKE(i915) && engine->id == GSC0) {
+> > +	if (MEDIA_VER(i915) >= 13 && engine->id == GSC0) {
+> >   		intel_uncore_write(engine->gt->uncore,
+> >   				   RC_PSMI_CTRL_GSCCS,
+> >   				   _MASKED_BIT_DISABLE(IDLE_MSG_DISABLE));
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > index 4fefa67d285f..a125c3284bab 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > @@ -1095,10 +1095,10 @@ __lrc_alloc_state(struct intel_context *ce, struct intel_engine_cs *engine)
+> >   	if (IS_ERR(obj)) {
+> >   		obj = i915_gem_object_create_shmem(engine->i915, context_size);
+> >   		/*
+> > -		 * Wa_22016122933: For MTL the shared memory needs to be mapped
+> > +		 * Wa_22016122933: For Xe_LPM+ the shared memory needs to be mapped
+> >   		 * as WC on CPU side and UC (PAT index 2) on GPU side
+> >   		 */
+> > -		if (IS_METEORLAKE(engine->i915))
+> > +		if (MEDIA_VER_FULL(engine->i915) == IP_VER(13, 0))
+> >   			i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
+> >   	}
+> >   	if (IS_ERR(obj))
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> > index 2c014407225c..830ad2c10761 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> > @@ -507,7 +507,7 @@ static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
+> >   	memset(table, 0, sizeof(struct drm_i915_mocs_table));
+> >   	table->unused_entries_index = I915_MOCS_PTE;
+> > -	if (IS_METEORLAKE(i915)) {
+> > +	if (GT_GRAPHICS_RANGE(&i915->gt0, IP_VER(12, 70), IP_VER(12, 71))) {
+> >   		table->size = ARRAY_SIZE(mtl_mocs_table);
+> >   		table->table = mtl_mocs_table;
+> >   		table->n_entries = MTL_NUM_MOCS_ENTRIES;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> > index 403f0d9caadf..0714584dd83d 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> > @@ -705,7 +705,7 @@ static int __reset_guc(struct intel_gt *gt)
+> >   static bool needs_wa_14015076503(struct intel_gt *gt, intel_engine_mask_t engine_mask)
+> >   {
+> > -	if (!IS_METEORLAKE(gt->i915) || !HAS_ENGINE(gt, GSC0))
+> > +	if (MEDIA_VER_FULL(gt->i915) != IP_VER(13, 0) || !HAS_ENGINE(gt, GSC0))
+> >   		return false;
+> >   	if (!__HAS_ENGINE(engine_mask, GSC0))
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> > index e92e626d4994..89775328440e 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> > @@ -1160,7 +1160,7 @@ void gen6_rps_get_freq_caps(struct intel_rps *rps, struct intel_rps_freq_caps *c
+> >   {
+> >   	struct drm_i915_private *i915 = rps_to_i915(rps);
+> > -	if (IS_METEORLAKE(i915))
+> > +	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
+> >   		return mtl_get_freq_caps(rps, caps);
+> >   	else
+> >   		return __gen6_rps_get_freq_caps(rps, caps);
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> > index 300b968e6de8..310d12dc7077 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> > @@ -743,10 +743,10 @@ struct i915_vma *intel_guc_allocate_vma(struct intel_guc *guc, u32 size)
+> >   		return ERR_CAST(obj);
+> >   	/*
+> > -	 * Wa_22016122933: For MTL the shared memory needs to be mapped
+> > +	 * Wa_22016122933: For Xe_LPM+ the shared memory needs to be mapped
+> >   	 * as WC on CPU side and UC (PAT index 2) on GPU side
+> >   	 */
+> > -	if (IS_METEORLAKE(gt->i915))
+> > +	if (MEDIA_VER_FULL(gt->i915) == IP_VER(13, 0))
+> >   		i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
+> >   	vma = i915_vma_instance(obj, &gt->ggtt->vm, NULL);
+> > diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+> > index 4de44cf1026d..0a0217271b76 100644
+> > --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> > @@ -144,7 +144,7 @@ static const char *i915_cache_level_str(struct drm_i915_gem_object *obj)
+> >   {
+> >   	struct drm_i915_private *i915 = obj_to_i915(obj);
+> > -	if (IS_METEORLAKE(i915)) {
+> > +	if (GT_GRAPHICS_RANGE(to_gt(i915), IP_VER(12, 70), IP_VER(12, 71))) {
+> >   		switch (obj->pat_index) {
+> >   		case 0: return " WB";
+> >   		case 1: return " WT";
+> > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> > index ff95f2cdf2b0..cc9592d4de23 100644
+> > --- a/drivers/gpu/drm/i915/i915_perf.c
+> > +++ b/drivers/gpu/drm/i915/i915_perf.c
+> > @@ -3227,11 +3227,13 @@ get_sseu_config(struct intel_sseu *out_sseu,
+> >    */
+> >   u32 i915_perf_oa_timestamp_frequency(struct drm_i915_private *i915)
+> >   {
+> > +	struct intel_gt *gt = to_gt(i915);
+> > +
+> >   	/*
+> >   	 * Wa_18013179988:dg2
+> > -	 * Wa_14015846243:mtl
+> > +	 * Wa_14015846243:xelpg
+> >   	 */
+> > -	if (IS_DG2(i915) || IS_METEORLAKE(i915)) {
+> > +	if (IS_DG2(i915) || GT_GRAPHICS_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71))) {
+> >   		intel_wakeref_t wakeref;
+> >   		u32 reg, shift;
+> > @@ -4539,7 +4541,7 @@ static bool xehp_is_valid_b_counter_addr(struct i915_perf *perf, u32 addr)
+> >   static bool gen12_is_valid_mux_addr(struct i915_perf *perf, u32 addr)
+> >   {
+> > -	if (IS_METEORLAKE(perf->i915))
+> > +	if (GRAPHICS_VER_FULL(perf->i915) >= IP_VER(12, 70))
+> >   		return reg_in_range_table(addr, mtl_oa_mux_regs);
+> >   	else
+> >   		return reg_in_range_table(addr, gen12_oa_mux_regs);
+
 -- 
-2.34.1
-
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
