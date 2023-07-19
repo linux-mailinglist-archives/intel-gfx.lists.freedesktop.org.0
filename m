@@ -2,47 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD0A275A0AA
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jul 2023 23:38:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A13ED75A146
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 00:04:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19CAE10E51E;
-	Wed, 19 Jul 2023 21:38:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C71AD10E520;
+	Wed, 19 Jul 2023 22:04:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E934010E51E
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jul 2023 21:38:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689802704; x=1721338704;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QRbFeSYooXtFzGeo48Ory5U6zU72VuxZH9XcH8hyRcQ=;
- b=HBnYhdPcudMnZIxoJKHY+vjRUTEVqWdgWPqeVQR7XrGSwRnombI9xnMi
- uG71uR8vyAf4ce4+9skmTz96oeZL1liktFjG58yrOv/AGQ8Pq+zlRNL9F
- P+NG61HXv1Co4vGsxlYPEq/fIXubhsI7hVfNKwIfYAz43HUlS2/mXQBgp
- UlFwDAojjsFzGEBwba5WncSxrpj5ylVWLJLpHhQn3E6d8CPHPDid63fPG
- N+YgBYZP0pfg0Ta7zMQj4tadBG2ZW/I6+5jaEpMHjcNJek3mgEM6vyMXA
- +adp5PWzhBGIyJ6+1+xxlBiW+6nichxW5F7U5OD+CXFW175tI/Fd1OVMl g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="432764015"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="432764015"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 14:38:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="837843481"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="837843481"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 14:38:24 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Jul 2023 14:38:15 -0700
-Message-ID: <20230719213815.179115-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.41.0
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F2F7410E056;
+ Wed, 19 Jul 2023 22:04:23 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8AxFvHmXbhkA3MHAA--.19093S3;
+ Thu, 20 Jul 2023 06:04:22 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8Cx7yPlXbhkPxo1AA--.40661S3; 
+ Thu, 20 Jul 2023 06:04:22 +0800 (CST)
+Message-ID: <d490f455-5228-b85a-656a-dce11586dee5@loongson.cn>
+Date: Thu, 20 Jul 2023 06:04:21 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI] PR for MTL and DG2 FW updates
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Bjorn Helgaas <helgaas@kernel.org>, Sui Jingfeng <sui.jingfeng@linux.dev>
+References: <20230719204314.GA512532@bhelgaas>
+From: suijingfeng <suijingfeng@loongson.cn>
+In-Reply-To: <20230719204314.GA512532@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID: AQAAf8Cx7yPlXbhkPxo1AA--.40661S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxAr47uw17Jryxtw1rAr1xtFc_yoWrZw4xpa
+ n5AFZ3Aa1DGr4rG3W2v3W2vF1Fvws7GFyUKF98Zw1ru3sIkwn7Kr18ArZ0v3s7ArZ7Ja1S
+ vF43tw15uan8ZFXCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUvIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+ 6r4j6r4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc
+ 02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAF
+ wI0_Cr0_Gr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1c
+ AE67vIY487MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8C
+ rVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8Zw
+ CIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x02
+ 67AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Cr
+ 0_Gr1UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07Ui
+ mi_UUUUU=
+Subject: Re: [Intel-gfx] [PATCH v3 3/9] PCI/VGA: Switch to
+ aperture_contain_firmware_fb_nonreloc()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,35 +64,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org, linux-pci@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a unified version of the 3 separate PRs that I've sent in the
-last week. If there are no CI issues, this version will be sent to
-linux-firmware instead of the other 3.
+Hi,
 
-The following changes since commit d3f66064cf43bd7338a79174bd0ff60c4ecbdf6d:
+On 2023/7/20 04:43, Bjorn Helgaas wrote:
+> [+cc linux-pci; I don't apply or ack PCI patches unless they appear there]
+>
+> On Wed, Jul 12, 2023 at 12:43:04AM +0800, Sui Jingfeng wrote:
+>> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>>
+>> The observation behind this is that we should avoid accessing the global
+>> screen_info directly. Call the aperture_contain_firmware_fb_nonreloc()
+>> function to implement the detection of whether an aperture contains the
+>> firmware FB.
+> Because it's better to access the global screen_info from
+> aperture_contain_firmware_fb_nonreloc()?  The reasoning here is not
+> super clear to me.
 
-  Partially revert "amdgpu: DMCUB updates for DCN 3.1.4 and 3.1.5" (2023-07-07 15:24:32 -0400)
+Yes, honestly the benefits of this patch is not obvious.
 
-are available in the Git repository at:
+But I do have some (may not practical) ideas in my mind when I create 
+this patch.
 
-  git://anongit.freedesktop.org/drm/drm-firmware mtl_fws_and_dg2_guc_70.8
+See my explanation at the end.
 
-for you to fetch changes up to 4e0915c88db08d0f601f3f797b0e63e7ddec0486:
 
-  i915: update DG2 GuC to v70.8.0 (2023-07-19 11:05:35 -0700)
+>> This patch helps to decouple the determination from the implementation.
+>> Or, in other words, we intend to make the determination opaque to the
+>> caller. The determination may choose to be arch-dependent or
+>> arch-independent. But vgaarb, as a consumer of the determination,
+>> shouldn't care how the does determination is implemented.
+> "how the determination ..."  (drop the "does")
+Ok, will be fixed at the next version.
+>
+> Are you saying that aperture_contain_firmware_fb_nonreloc() might be
+> arch-dependent?  Are there multiple callers?  Or does this just move
+> code from one place to a more appropriate place?
 
-----------------------------------------------------------------
-Daniele Ceraolo Spurio (3):
-      i915: update to GuC 70.8.0 and HuC 8.5.1 for MTL
-      i915: add GSC 102.0.0.1625 for MTL
-      i915: update DG2 GuC to v70.8.0
+1) To form a unify approach, and drop the screen_info.h header.
 
- WHENCE               |   9 ++++++---
- i915/dg2_guc_70.bin  | Bin 369600 -> 385856 bytes
- i915/mtl_gsc_1.bin   | Bin 0 -> 1142784 bytes
- i915/mtl_guc_70.bin  | Bin 303936 -> 308032 bytes
- i915/mtl_huc_gsc.bin | Bin 565248 -> 569344 bytes
- 5 files changed, 6 insertions(+), 3 deletions(-)
- create mode 100755 i915/mtl_gsc_1.bin
+There are similar cleanup patch at patchwork.
+
+
+screen_info.h is definitely arch-dependent, while vgaarb is just 
+device-dependent.
+
+I think, they do have subtle difference.
+
+
+2) Convert the *device driven* to the "driver driven".
+
+Move it from vgaarb.c to video/apperture allow code sharing.
+
+While this function are not going to be shared in vgaarb.
+
+Previous it is the device make the decision,
+
+after applied this patch it allow driver make the decision.
+
+They do have subtle difference.
+
+Emm, I will try to give some examples at the next version.
+
+
+3) I was imagine to drag platform display controllers in (get platform 
+devices involved in the arbitration).
+
+As Alex seem hint to implement something platform-independent.
+
+The aperture_contain_firmware_fb_nonreloc() actually is possible be shared.
+
+The aperture of platform device will be not moved.
+
+So it seems that platform device driver could call this function to do 
+something else.
+
+
+>> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
+>> ---
+>>   drivers/pci/vgaarb.c | 19 ++++---------------
+>>   1 file changed, 4 insertions(+), 15 deletions(-)
+>>
+>> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+>> index bf96e085751d..953daf731b2c 100644
+>> --- a/drivers/pci/vgaarb.c
+>> +++ b/drivers/pci/vgaarb.c
+>> @@ -14,6 +14,7 @@
+>>   #define vgaarb_info(dev, fmt, arg...)	dev_info(dev, "vgaarb: " fmt, ##arg)
+>>   #define vgaarb_err(dev, fmt, arg...)	dev_err(dev, "vgaarb: " fmt, ##arg)
+>>   
+>> +#include <linux/aperture.h>
+>>   #include <linux/module.h>
+>>   #include <linux/kernel.h>
+>>   #include <linux/pci.h>
+>> @@ -26,7 +27,6 @@
+>>   #include <linux/poll.h>
+>>   #include <linux/miscdevice.h>
+>>   #include <linux/slab.h>
+>> -#include <linux/screen_info.h>
+>>   #include <linux/vt.h>
+>>   #include <linux/console.h>
+>>   #include <linux/acpi.h>
+>> @@ -558,20 +558,11 @@ void vga_put(struct pci_dev *pdev, unsigned int rsrc)
+>>   }
+>>   EXPORT_SYMBOL(vga_put);
+>>   
+>> +/* Select the device owning the boot framebuffer if there is one */
+>>   static bool vga_is_firmware_default(struct pci_dev *pdev)
+>>   {
+>>   #if defined(CONFIG_X86) || defined(CONFIG_IA64)
+>> -	u64 base = screen_info.lfb_base;
+>> -	u64 size = screen_info.lfb_size;
+>>   	struct resource *r;
+>> -	u64 limit;
+>> -
+>> -	/* Select the device owning the boot framebuffer if there is one */
+>> -
+>> -	if (screen_info.capabilities & VIDEO_CAPABILITY_64BIT_BASE)
+>> -		base |= (u64)screen_info.ext_lfb_base << 32;
+>> -
+>> -	limit = base + size;
+>>   
+>>   	/* Does firmware framebuffer belong to us? */
+>>   	pci_dev_for_each_resource(pdev, r) {
+>> @@ -581,10 +572,8 @@ static bool vga_is_firmware_default(struct pci_dev *pdev)
+>>   		if (!r->start || !r->end)
+>>   			continue;
+>>   
+>> -		if (base < r->start || limit >= r->end)
+>> -			continue;
+>> -
+>> -		return true;
+>> +		if (aperture_contain_firmware_fb_nonreloc(r->start, r->end))
+>> +			return true;
+>>   	}
+>>   #endif
+>>   	return false;
+>> -- 
+>> 2.25.1
+>>
+
