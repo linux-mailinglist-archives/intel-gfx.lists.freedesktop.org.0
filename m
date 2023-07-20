@@ -1,59 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C690875AA74
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 11:16:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39D9075AA77
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 11:17:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 271B810E587;
-	Thu, 20 Jul 2023 09:16:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86FD810E072;
+	Thu, 20 Jul 2023 09:17:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B287110E587
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 09:16:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689844615; x=1721380615;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=mmeLamPM31NW+qzOU0sAArK2NpXVTLIB3CgRiTCwHhM=;
- b=D+0pzuvd3offwLBAXV0lz/mcPb64lIFLuoY5BPTH51vIxRmGF6YJI911
- afk33uEbm04D4lhVQngDMSRPtAUHF+7SkvBNefLzQBA77kELvpE2SlE8J
- deeF+4G8QtU0kTyUf1bTJoO7Vc7qz4VF3Ycq+BYQwZrJsRSRjHqqY77Hx
- B+fpxP8kF5gbSAxIOcNJKAcLdwpZHoZBjJlW0cyRLD9V+w+Xg9dWdfmZ7
- 5iFVGPWg0joPqPDlqTXi7l0+8egRkJY8WL0YSITw1xUsZT70e30xW5/pp
- Txg+A00YIQt2oeJzqGJZLpaO7n/ZfWwlDPwhI+43Mdod4z1NO8VtYLo7p A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="432879712"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="432879712"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 02:16:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="970982393"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="970982393"
-Received: from ctuohy-mobl1.ger.corp.intel.com (HELO [10.213.193.21])
- ([10.213.193.21])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 02:16:53 -0700
-Message-ID: <46e2c9cc-bc9d-69cb-c40d-53a4012cf80c@linux.intel.com>
-Date: Thu, 20 Jul 2023 10:16:51 +0100
+Received: from out-5.mta0.migadu.com (out-5.mta0.migadu.com
+ [IPv6:2001:41d0:1004:224b::5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CFC610E58D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 09:17:47 +0000 (UTC)
+Message-ID: <5c91b8dd-5342-0eb2-aef4-dbb865d6dfda@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1689844665;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=twWOXbWYEQiWDLte803PU4TQyX4ZqCM5632vlvyl10U=;
+ b=DB4eeuEjhTPCPJI9o1K6etLTAH2GlZQ2jKXZfEFtglosq8nta+hFXp6Q19BwC13rtbePUk
+ 4Xqaig9i/B8Qj2QmJCTE40PIJtYSpL9nzXN3Fq/R/yxGavRbtAQmKtatqPuKqCmNMKb0uF
+ SIeyywuFj8e2ghKEwpEuU+vXBHjeWk8=
+Date: Thu, 20 Jul 2023 17:17:31 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
 Content-Language: en-US
-To: "Yang, Fei" <fei.yang@intel.com>,
- "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20230718225118.2562132-1-radhakrishna.sripada@intel.com>
- <37f64727-9bbd-c967-193c-97266dfc1331@linux.intel.com>
- <SN6PR11MB2574001C852621E0AFF4CF7F9A39A@SN6PR11MB2574.namprd11.prod.outlook.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <SN6PR11MB2574001C852621E0AFF4CF7F9A39A@SN6PR11MB2574.namprd11.prod.outlook.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+References: <20230719193241.GA510805@bhelgaas>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Sui Jingfeng <sui.jingfeng@linux.dev>
+In-Reply-To: <20230719193241.GA510805@bhelgaas>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/dpt: Use shmem for dpt objects
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
+Subject: Re: [Intel-gfx] [PATCH v3 0/9] PCI/VGA: Improve the default VGA
+ device selection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,107 +50,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Wilson, Chris P" <chris.p.wilson@intel.com>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
+Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
+ kvm@vger.kernel.org, linux-pci@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
-On 19/07/2023 21:53, Yang, Fei wrote:
->> On 18/07/2023 23:51, Radhakrishna Sripada wrote:
->>> Dpt objects that are created from internal get evicted when there is
->>> memory pressure and do not get restored when pinned during scanout.
->>> The pinned page table entries look corrupted and programming the
->>> display engine with the incorrect pte's result in DE throwing pipe faults.
->>>
->>> Create DPT objects from shmem and mark the object as dirty when
->>> pinning so that the object is restored when shrinker evicts an unpinned buffer object.
->>>
->>> v2: Unconditionally mark the dpt objects dirty during pinning(Chris).
->>>
->>> Fixes: 0dc987b699ce ("drm/i915/display: Add smem fallback allocation
->>> for dpt")
->>> Cc: <stable@vger.kernel.org> # v6.0+
->>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->>> Suggested-by: Chris Wilson <chris.p.wilson@intel.com>
->>> Signed-off-by: Fei Yang <fei.yang@intel.com>
->>> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/display/intel_dpt.c | 4 +++-
->>>    1 file changed, 3 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c
->>> b/drivers/gpu/drm/i915/display/intel_dpt.c
->>> index 7c5fddb203ba..fbfd8f959f17 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
->>> @@ -166,6 +166,8 @@ struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
->>>               i915_vma_get(vma);
->>>       }
->>>
->>> +    dpt->obj->mm.dirty = true;
->>> +
->>>       atomic_dec(&i915->gpu_error.pending_fb_pin);
->>>       intel_runtime_pm_put(&i915->runtime_pm, wakeref);
->>>
->>> @@ -261,7 +263,7 @@ intel_dpt_create(struct intel_framebuffer *fb)
->>>               dpt_obj = i915_gem_object_create_stolen(i915, size);
->>>       if (IS_ERR(dpt_obj) && !HAS_LMEM(i915)) {
->>>               drm_dbg_kms(&i915->drm, "Allocating dpt from smem\n");
->>> -            dpt_obj = i915_gem_object_create_internal(i915, size);
->>> +            dpt_obj = i915_gem_object_create_shmem(i915, size);
->>>       }
->>>       if (IS_ERR(dpt_obj))
->>>               return ERR_CAST(dpt_obj);
->>
->> Okay I think I get it after some more looking at the DPT code paths.
->> Problem seems pretty clear - page tables are stored in dpt_obj and so
->> are lost when backing store is discarded.
->>
->> Changing to shmem object indeed looks the easiest option.
->>
->> Some related thoughts:
->>
->> 1)
->> I wonder if intel_dpt_suspend/resume remain needed after this patch.
->> Could you investigate please? On a glance their job was to restore the
->> PTEs which would be lost from internal objects backing storage. With
->> shmem objects that content should be preserved.
-> 
-> intel_dpt_suspend is "suspending" the whole VM where, not only the dpt
-> objects are mapped into, but also the framebuffer objects. I don't have
-> much knowledge on how the framebuffer objects are managed, but the suspend
-> resume path still look necessary to me, unless the content of these
-> framebuffer objects are also preserved.
+On 2023/7/20 03:32, Bjorn Helgaas wrote:
+>>    drm/amdgpu: Implement the is_primary_gpu callback of
+>>      vga_client_register()
+>>    drm/radeon: Add an implement for the is_primary_gpu function callback
+>>    drm/i915: Add an implement for the is_primary_gpu hook
+>>    drm/ast: Register as a vga client to vgaarb by calling
+>>      vga_client_register()
+>>    drm/loongson: Add an implement for the is_primary_gpu function
+>>      callback
+> There's unnecessary variation in the subject lines (and the commit
+> logs) of these patches.  If they all do the same thing but in
+> different drivers, it's useful if the patches all*look*  the same.
+>
+> You might be able to write these subjects as
+> "Implement .is_primary_gpu() callback" for brevity.
 
-I don't think it has anything to do with fb content, but you are correct 
-it is still needed. Because 9755f055f512 ("drm/i915: Restore memory 
-mapping for DPT FBs across system suspend/resume") reminds me backing 
-store for DPT PTEs can be either lmem, stolen or internal (now shmem). 
-Even though with this patch internal is out of the picture, stolen 
-remains and so the issue of losing the page table content remains. 
-Perhaps resume could be optimised to only restore PTEs when VM page 
-tables are backed by stolen which may win some suspend/resume speed on 
-some platforms.
 
-Regards,
+This is a very good suggestion, I will adopt this.
 
-Tvrtko
+Thanks, really.
 
-> 
->> 2)
->> I wonder if i915_vma_flush_writes should be used (as a companion of
->> i915_vma_pin_iomap) from DPT dpt_bind_vma, dpt_insert_entries, etc. But
->> then I am also not sure if it does the right thing for the
->> i915_gem_object_pin_map path of i915_vma_pin_iomap. Perhaps it should
->> call __i915_gem_object_flush_map itself for that mapping flavour and
->> not do the ggtt flushing in that case.
->>
->> In summary I think the fix is safe and correct but at least point 1) I
->> think needs looking into. It can be a follow up work too.
->>
->> Regards,
->>
->> Tvrtko
->>
