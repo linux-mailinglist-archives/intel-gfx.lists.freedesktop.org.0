@@ -2,58 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C34BA75A984
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 10:43:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 667F175AA63
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 11:14:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C60910E0C5;
-	Thu, 20 Jul 2023 08:43:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8D6110E585;
+	Thu, 20 Jul 2023 09:14:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 940F610E0C5;
- Thu, 20 Jul 2023 08:43:11 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7470010E585
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 09:14:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689842591; x=1721378591;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=di9h+46ohxqoEGRZiCGzN9lOQ5UWLl/5Mvmelef0gBg=;
- b=O/SvxBb00TKPFu1nljjRDo8QsrtRjTy13T5SVzb0qXgPd2ZFUDrOSJWF
- xjT9lq4oJM88jRTe0+c7MW1RDkCoQGmk/oLmjNFcbV+GteLMtIsVWWCIP
- TV/d+uDCKG2tKn6IaRaz7gKBPuqfNXobtu5tH2jQ7Zls6m+x3NZxXFx8K
- idAP8EmJyOIcUabtQJmhM75s6PoMIbOCX/+iQIi/bk0+Kszi7YCp7PqCI
- PyJnDbvkga0SDvzHwQDNGMFzQ782/7iXzbfXg/jrqSyd35wAH/z6xtwrv
- fUPAG3et0kZprTDyeLzI84ztjGwpT4UOd5YeYNIfME/xvB7FaJnrYBdAd w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="365558097"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="365558097"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 01:43:10 -0700
+ t=1689844466; x=1721380466;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7ka/tckbdqosWMSmeFnhGgQZcbsxqB06CAMkC9Cwp0U=;
+ b=j/CwyxJtqbfRunTMe0YKGiJBfGrfYm5w+bnyJ2wUFN3KlxqYim8Jtft0
+ 6vY7+HCbUs5RTwie9u6Srh1R9XBA+er4I+ECDMjz/dc9vw3u+LAQIMYv/
+ WfTVd5oEQWVQoKgMfUdVYTJg0Q+AqU8coEptuUFxUe9rHdLMNFUnQ2qxu
+ ONN8b+gjBYBixHgNnK8H8hGixkN82/ddbQNXhvNOae4WM3VXw2kpZrdoQ
+ NRvExyXmQw/tB7DGqE795hCVNngfFFBhlusiwgwvWXK9zGS1u42HB+lLC
+ U7NsrpCz3FOQDhDYwyN8nWT/bEgz/r+nl8JJM6CyfLvatZF5MZl7m+fsH Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="364140593"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="364140593"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 02:14:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="718317662"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="718317662"
-Received: from ctuohy-mobl1.ger.corp.intel.com (HELO [10.213.193.21])
- ([10.213.193.21])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 01:43:07 -0700
-Message-ID: <1a2aeca6-12f7-6316-c6e2-8474fd17255e@linux.intel.com>
-Date: Thu, 20 Jul 2023 09:43:05 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="970981903"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="970981903"
+Received: from ssauty-mobl1.ger.corp.intel.com (HELO hazy.ger.corp.intel.com)
+ ([10.252.56.229])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 02:14:24 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 20 Jul 2023 12:14:07 +0300
+Message-Id: <20230720091411.347654-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Nathan Chancellor <nathan@kernel.org>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, emma@anholt.net,
- mwen@igalia.com
-References: <20230718-nsecs_to_jiffies_timeout-constant-logical-operand-v1-0-36ed8fc8faea@kernel.org>
- <20230718-nsecs_to_jiffies_timeout-constant-logical-operand-v1-2-36ed8fc8faea@kernel.org>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230718-nsecs_to_jiffies_timeout-constant-logical-operand-v1-2-36ed8fc8faea@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Avoid
- -Wconstant-logical-operand in nsecs_to_jiffies_timeout()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/4] drm/i915/tc: some clean-ups in max lane
+ count handling code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,70 +57,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: trix@redhat.com, intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- ndesaulniers@google.com, patches@lists.linux.dev,
- dri-devel@lists.freedesktop.org, justinstitt@google.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
-On 18/07/2023 22:44, Nathan Chancellor wrote:
-> A proposed update to clang's -Wconstant-logical-operand to warn when the
-> left hand side is a constant shows the following instance in
-> nsecs_to_jiffies_timeout() when NSEC_PER_SEC is not a multiple of HZ,
-> such as CONFIG_HZ=300:
-> 
->    drivers/gpu/drm/i915/gem/i915_gem_wait.c:189:24: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
->      189 |         if (NSEC_PER_SEC % HZ &&
->          |             ~~~~~~~~~~~~~~~~~ ^
->    drivers/gpu/drm/i915/gem/i915_gem_wait.c:189:24: note: use '&' for a bitwise operation
->      189 |         if (NSEC_PER_SEC % HZ &&
->          |                               ^~
->          |                               &
->    drivers/gpu/drm/i915/gem/i915_gem_wait.c:189:24: note: remove constant to silence this warning
->    1 warning generated.
-> 
-> Turn this into an explicit comparison against zero to make the
-> expression a boolean to make it clear this should be a logical check,
-> not a bitwise one.
+Here are four patches with some clean-ups in the code that handles the
+max lane count of Type-C connections.
 
-So -Wconstant-logical-operand only triggers when it is a constant but 
-not zero constant? Why does that make sense is not a kludge to avoid too 
-much noise?
+This is done mostly in preparation for a new way to read the pin
+assignments and lane count in future devices.
 
-Personally, it all feels a bit over the top as a warning,  since code in 
-both cases should optimise away. And we may end up papering over it if 
-it becomes a default.
+In v2:
+   * Fix some rebasing damage.
 
-Then again this patch IMO does make the code more readable, so I am 
-happy to take this one via our tree. Or either give ack to bring it in 
-via drm-misc-next:
+Please review.
 
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cheers,
+Luca.
 
-Let me know which route works best.
 
-Regards,
+Luca Coelho (4):
+  drm/i915/tc: rename mtl_tc_port_get_pin_assignment_mask()
+  drm/i915/tc: make intel_tc_port_get_lane_mask() static
+  drm/i915/tc: move legacy code out of the main _max_lane_count() func
+  drm/i915/tc: remove "fia" from intel_tc_port_fia_max_lane_count()
 
-Tvrtko
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c      |  4 +--
+ drivers/gpu/drm/i915/display/intel_tc.c      | 38 +++++++++++---------
+ drivers/gpu/drm/i915/display/intel_tc.h      |  3 +-
+ 4 files changed, 26 insertions(+), 21 deletions(-)
 
-> Link: https://reviews.llvm.org/D142609
-> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_wait.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> index 4a33ad2d122b..d4b918fb11ce 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
-> @@ -186,7 +186,7 @@ i915_gem_object_wait(struct drm_i915_gem_object *obj,
->   static inline unsigned long nsecs_to_jiffies_timeout(const u64 n)
->   {
->   	/* nsecs_to_jiffies64() does not guard against overflow */
-> -	if (NSEC_PER_SEC % HZ &&
-> +	if ((NSEC_PER_SEC % HZ) != 0 &&
->   	    div_u64(n, NSEC_PER_SEC) >= MAX_JIFFY_OFFSET / HZ)
->   		return MAX_JIFFY_OFFSET;
->   
-> 
+-- 
+2.39.2
+
