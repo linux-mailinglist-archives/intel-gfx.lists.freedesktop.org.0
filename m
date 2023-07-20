@@ -1,64 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 264C375B58E
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 19:22:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81EA575B59D
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 19:29:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0126810E5F0;
-	Thu, 20 Jul 2023 17:22:19 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com
- [IPv6:2607:f8b0:4864:20::b2b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CC4710E5ED
- for <Intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 17:22:16 +0000 (UTC)
-Received: by mail-yb1-xb2b.google.com with SMTP id
- 3f1490d57ef6-cb19b1b9a36so938970276.0
- for <Intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 10:22:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20221208; t=1689873735; x=1690478535;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=L4W19Rq7Ca9BnGs3UJklJGGdyG9VNKHd12EY1ouH9jY=;
- b=fW12T36hBmhsTl3F+2AJcD3Kq/F1zNHeq6TigDxt8MEDb4RMlIz/ihvConANiWo1WN
- jcYZELZh+KSww4orrU5JBKEyPLhgz+iycwX6a/ILAdVXujEz3sHhhJwy+vg0ar//PX1H
- aS9LEK7WzM/EvRYKtEmoiex50+Hp5YMX+a7Hd/YIjNgI1KRwMUZIbE52WmTrUiTTPacj
- DJ/CbHMIcKrbWqQ5TA1jqnsr2FHM6i3dBWsP2vjM9Nc9F35H2vG3nhtonJRTI2IA8MAO
- JQLWyb+dbc38fH5ARQQ/PLgf43+xQGWWCuxi7QnHoMFIlqYMFM7Tx+SOIgrPQrQ68p6s
- I74w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1689873735; x=1690478535;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=L4W19Rq7Ca9BnGs3UJklJGGdyG9VNKHd12EY1ouH9jY=;
- b=fjDWzbLsXnwxFXdE49SpeyxH04RTEH2nWSLlWR8nQxGdeC0uJIJH9o5x6wRoyBbrXx
- 6DSJCZpLgyfrAKTY6jlDDA/dzsYJhRSzvEMxKL1TjhmHCOh59j8CAA53h0V+Mfkj1G17
- j3EfqH7rCpFbfHbeizttnX27zH8qevJ+EAuxNMXmrBCRwugtOVToNcWiOrVQVWUA3V+V
- gz2VuxhchfeUAUZoRWOWeuS4xV9amKkPg7pIdak5A3OaKLYK0UYxXLXnMe1joGxs7h6f
- yiVtzE5i0mwlsaDHCjeGSS5EoC9hIChqZhOl44I+l2CGUVzMbE9mYpGp9QiZYou4EZMW
- 7GnQ==
-X-Gm-Message-State: ABy/qLYJprcWq69z6DC4vS2UI33YPkFw89IOjaJR36B8sXxBNSumYRWQ
- G9ef7ZmqoNmjN9okpXMUpcpZqWDH86uA8XdqNhE5Bg==
-X-Google-Smtp-Source: APBJJlF8ReEOr4wxfNmDgZ4tUYVmHo1/SF/9DmeFOOoNhJUfz/WniPudZca8GWvgm/c2I8sJYu7ncnc4RgavkJT5LnM=
-X-Received: by 2002:a5b:d0e:0:b0:cea:eac3:362f with SMTP id
- y14-20020a5b0d0e000000b00ceaeac3362fmr5165945ybp.65.1689873735463; Thu, 20
- Jul 2023 10:22:15 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0608210E5F0;
+	Thu, 20 Jul 2023 17:29:40 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5F2B810E5F2;
+ Thu, 20 Jul 2023 17:29:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 58BE8AADE0;
+ Thu, 20 Jul 2023 17:29:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20230712114605.519432-1-tvrtko.ursulin@linux.intel.com>
- <CABdmKX1PUF+X897ZMOr0RNiYdoiL_2NkcSt+Eh55BfW-05LopQ@mail.gmail.com>
- <95de5c1e-f03b-8fb7-b5ef-59ac7ca82f31@linux.intel.com>
-In-Reply-To: <95de5c1e-f03b-8fb7-b5ef-59ac7ca82f31@linux.intel.com>
-From: "T.J. Mercier" <tjmercier@google.com>
-Date: Thu, 20 Jul 2023 10:22:03 -0700
-Message-ID: <CABdmKX0M2z0H74D7Pj1qt5HZgG1LhBKU4YDqgTUaOk8UvXb28A@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [RFC v5 00/17] DRM cgroup controller with
- scheduling control and memory stats
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Thu, 20 Jul 2023 17:29:38 -0000
+Message-ID: <168987417832.20751.18085827293165953919@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230720125418.236140-1-imre.deak@intel.com>
+In-Reply-To: <20230720125418.236140-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Fix_connector_HPD_polling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,143 +40,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
- Dave Airlie <airlied@redhat.com>,
- =?UTF-8?Q?St=C3=A9phane_Marchesin?= <marcheu@chromium.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Tejun Heo <tj@kernel.org>, cgroups@vger.kernel.org,
- Eero Tamminen <eero.t.tamminen@intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 20, 2023 at 3:55=E2=80=AFAM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
->
-> Hi,
->
-> On 19/07/2023 21:31, T.J. Mercier wrote:
-> > On Wed, Jul 12, 2023 at 4:47=E2=80=AFAM Tvrtko Ursulin
-> > <tvrtko.ursulin@linux.intel.com> wrote:
-> >>
-> >>    drm.memory.stat
-> >>          A nested file containing cumulative memory statistics for the=
- whole
-> >>          sub-hierarchy, broken down into separate GPUs and separate me=
-mory
-> >>          regions supported by the latter.
-> >>
-> >>          For example::
-> >>
-> >>            $ cat drm.memory.stat
-> >>            card0 region=3Dsystem total=3D12898304 shared=3D0 active=3D=
-0 resident=3D12111872 purgeable=3D167936
-> >>            card0 region=3Dstolen-system total=3D0 shared=3D0 active=3D=
-0 resident=3D0 purgeable=3D0
-> >>
-> >>          Card designation corresponds to the DRM device names and mult=
-iple line
-> >>          entries can be present per card.
-> >>
-> >>          Memory region names should be expected to be driver specific =
-with the
-> >>          exception of 'system' which is standardised and applicable fo=
-r GPUs
-> >>          which can operate on system memory buffers.
-> >>
-> >>          Sub-keys 'resident' and 'purgeable' are optional.
-> >>
-> >>          Per category region usage is reported in bytes.
-> >>
-> >>   * Feedback from people interested in drm.active_us and drm.memory.st=
-at is
-> >>     required to understand the use cases and their usefulness (of the =
-fields).
-> >>
-> >>     Memory stats are something which was easy to add to my series, sin=
-ce I was
-> >>     already working on the fdinfo memory stats patches, but the questi=
-on is how
-> >>     useful it is.
-> >>
-> > Hi Tvrtko,
-> >
-> > I think this style of driver-defined categories for reporting of
-> > memory could potentially allow us to eliminate the GPU memory tracking
-> > tracepoint used on Android (gpu_mem_total). This would involve reading
-> > drm.memory.stat at the root cgroup (I see it's currently disabled on
->
-> I can put it available under root too, don't think there is any
-> technical reason to not have it. In fact, now that I look at it again,
-> memory.stat is present on root so that would align with my general
-> guideline to keep the two as similar as possible.
->
-> > the root), which means traversing the whole cgroup tree under the
-> > cgroup lock to generate the values on-demand. This would be done
-> > rarely, but I still wonder what the cost of that would turn out to be.
->
-> Yeah that's ugly. I could eliminate cgroup_lock by being a bit smarter.
-> Just didn't think it worth it for the RFC.
->
-> Basically to account memory stats for any sub-tree I need the equivalent
-> one struct drm_memory_stats per DRM device present in the hierarchy. So
-> I could pre-allocate a few and restart if run out of spares, or
-> something. They are really small so pre-allocating a good number, based
-> on past state or something, should would good enough. Or even total
-> number of DRM devices in a system as a pessimistic and safe option for
-> most reasonable deployments.
->
-> > The drm_memory_stats categories in the output don't seem like a big
-> > value-add for this use-case, but no real objection to them being
->
-> You mean the fact there are different categories is not a value add for
-> your use case because you would only use one?
->
-Exactly, I guess that'd be just "private" (or pick another one) for
-the driver-defined "regions" where
-shared/private/resident/purgeable/active aren't really applicable.
-That doesn't seem like a big problem to me since you already need an
-understanding of what a driver-defined region means. It's just adding
-a requirement to understand what fields are used, and a driver can
-document that in the same place as the region itself. That does mean
-performing arithmetic on values from different drivers might not make
-sense. But this is just my perspective from trying to fit the
-gpu_mem_total tracepoint here. I think we could probably change the
-way drivers that use it report memory to fit closer into the
-drm_memory_stats categories.
+== Series Details ==
 
-> The idea was to align 1:1 with DRM memory stats fdinfo and somewhat
-> emulate how memory.stat also offers a breakdown.
->
-> > there. I know it's called the DRM cgroup controller, but it'd be nice
-> > if there were a way to make the mem tracking part work for any driver
-> > that wishes to participate as many of our devices don't use a DRM
-> > driver. But making that work doesn't look like it would fit very
->
-> Ah that would be a challenge indeed to which I don't have any answers
-> right now.
->
-> Hm if you have a DRM device somewhere in the chain memory stats would
-> still show up. Like if you had a dma-buf producer which is not a DRM
-> driver, but then that buffer was imported by a DRM driver, it would show
-> up in a cgroup. Or vice-versa. But if there aren't any in the whole
-> chain then it would not.
->
-Creating a dummy DRM driver underneath an existing driver as an
-adaptation layer also came to mind, but yeah... probably not. :)
+Series: drm/i915: Fix connector HPD polling
+URL   : https://patchwork.freedesktop.org/series/121050/
+State : warning
 
-By the way I still want to try to add tracking for dma-bufs backed by
-system memory to memcg, but I'm trying to get memcg v2 up and running
-for us first. I don't think that should conflict with the tracking
-here.
+== Summary ==
 
-> > cleanly into this controller, so I'll just shut up now.
->
-> Not all all, good feedback!
->
-> Regards,
->
-> Tvrtko
+Error: dim checkpatch failed
+c3343063ec23 drm/i915: Avoid endless HPD poll detect loop via runtime suspend/resume
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#9: 
+commit a8ddac7c9f06 ("drm/i915: Avoid HPD poll detect triggering a new detect cycle")
+
+-:44: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' or 'Closes:' instead
+#44: 
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/7940#note_1997403
+
+total: 0 errors, 2 warnings, 0 checks, 82 lines checked
+87c4cc16c75e drm: Add an HPD poll helper to reschedule the poll work
+3573005acea3 drm/i915: Fix HPD polling, reenabling the output poll work as needed
+32d8d0db4836 drm/i915: Don't change the status of forced connectors during hotplug detect
+6aadfef5ec03 drm/i915: Don't change the status of forced connectors during HPD poll detect
+
+
