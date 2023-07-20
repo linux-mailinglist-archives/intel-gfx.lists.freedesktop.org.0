@@ -1,50 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16E7075A8C0
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 10:09:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1FA75A907
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 10:22:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F13710E57C;
-	Thu, 20 Jul 2023 08:09:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8A0510E15F;
+	Thu, 20 Jul 2023 08:22:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A7EC10E583
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 08:09:31 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9481C10E15F;
+ Thu, 20 Jul 2023 08:22:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689840571; x=1721376571;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ekshvkrcL/eHvKwMQh+tISaq5nudK8LILs/NczX6dbM=;
- b=dYV9g88eOT4U11CyasCFzQdPOIaiX+5u67CsahzMDCngEDOCO4zhLuwm
- JU7HM13r7vSZIgM1VXnTvcj0lgKAB2RegG6cOAMdBChUPE+o1B28qn/s7
- 5BbQcCehau8n9hBN8CbpP6kJxhU6VXBErQzgHE36gqDjp1I0YgYjQgz0m
- RpTNfsU0gJSwghlZATFvQ5mVtQMf9yydifWFKgcI59Ug0KKz53WE5mth8
- hiwVLvlOvNJfDU4vqysgpCv0TSkx43S9vtUlNxHCEJQcy1SJMPVsjC9g5
- JXfFcF6298lLhEzY77vQXICRIlj1l5StRuGtekkVgCrhKCLS8J/uPgFTL w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="366700222"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="366700222"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 01:09:30 -0700
+ t=1689841353; x=1721377353;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=7UzzN+U/lMPTyEWQ8kTAVRXl3ApP9uzHZfl3Ijoj16M=;
+ b=UgSpB2Dz7BoidSHFE7OT4lrohUYM4Fa4CbSJZhjHxPrf5/dYSUX9C7DB
+ p0uGnRx390cWOOIj4kCWmVLqC2B9NKKZmVZIaT6x3uIOLbldz5hRemTlV
+ KLqrkuoPikf5kWzF9LzyrOJbf8DkDuH1AzCpKNHEKYBxsyjzLCLII23yB
+ 0ZxhAQQcj6OJWggwP0U+ACiU2qVuXFr6S2MLWm0cb2eVW2O7QoPmZ+L5P
+ jpSDgpkT5Lhj4sXW0Q6xfwEoYOtv+lWioA0yqPeFwIjc1dYJIw4Ax47pH
+ SVc5yzSW05yoEVw2EotWN+oI1ZFudfNzf01S/0HQ531cY4uG4wGV8jAGp g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="430438959"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="430438959"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 01:22:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="724305723"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="724305723"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga002.jf.intel.com with ESMTP; 20 Jul 2023 01:09:29 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Jul 2023 13:37:15 +0530
-Message-Id: <20230720080715.3063267-8-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230720080715.3063267-1-suraj.kandpal@intel.com>
-References: <20230720080715.3063267-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="753988264"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="753988264"
+Received: from ctuohy-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.213.193.21])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 01:22:28 -0700
+Date: Thu, 20 Jul 2023 09:22:26 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <ZLjuwhLhwab5B7RY@tursulin-desk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 7/7] drm/i915/display: Compare the readout
- dsc pps params
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,65 +55,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With the dsc config being readout and filled in crtc_state add
-macros and use them to compare current and previous PPS param in
-DSC.
+Hi Dave, Daniel,
 
---v2
--Remove version check [Jani]
--Remove dupe macro for dsc pipe compare and use the existing ones
-[Jani]
+Only two fixes for the 6.5 rc window this week - one perf/OA use after
+free on Xe_HP platforms and one defconfig build fix for GCC versions older
+than 8.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 31 ++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+Regards,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 43cba98f7753..9c407ceb082e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5376,6 +5376,37 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_I(master_transcoder);
- 	PIPE_CONF_CHECK_X(bigjoiner_pipes);
- 
-+	PIPE_CONF_CHECK_BOOL(dsc.config.block_pred_enable);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.convert_rgb);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.simple_422);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.native_422);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.native_420);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.vbr_enable);
-+	PIPE_CONF_CHECK_I(dsc.config.line_buf_depth);
-+	PIPE_CONF_CHECK_I(dsc.config.bits_per_component);
-+	PIPE_CONF_CHECK_I(dsc.config.pic_width);
-+	PIPE_CONF_CHECK_I(dsc.config.pic_height);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_width);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_height);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_dec_delay);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_xmit_delay);
-+	PIPE_CONF_CHECK_I(dsc.config.scale_decrement_interval);
-+	PIPE_CONF_CHECK_I(dsc.config.scale_increment_interval);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_scale_value);
-+	PIPE_CONF_CHECK_I(dsc.config.first_line_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.flatness_min_qp);
-+	PIPE_CONF_CHECK_I(dsc.config.flatness_max_qp);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.nfl_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.final_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.rc_model_size);
-+	PIPE_CONF_CHECK_I(dsc.config.rc_quant_incr_limit0);
-+	PIPE_CONF_CHECK_I(dsc.config.rc_quant_incr_limit1);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_chunk_size);
-+	PIPE_CONF_CHECK_I(dsc.config.second_line_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.nsl_bpg_offset);
-+
- 	PIPE_CONF_CHECK_I(dsc.compression_enable);
- 	PIPE_CONF_CHECK_I(dsc.dsc_split);
- 	PIPE_CONF_CHECK_I(dsc.compressed_bpp);
--- 
-2.25.1
+Tvrtko
 
+drm-intel-fixes-2023-07-20:
+- Add sentinel to xehp_oa_b_counters [perf] (Andrzej Hajda)
+- Revert "drm/i915: use localized __diag_ignore_all() instead of per file" (Jani Nikula)
+The following changes since commit fdf0eaf11452d72945af31804e2a1048ee1b574c:
+
+  Linux 6.5-rc2 (2023-07-16 15:10:37 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-07-20
+
+for you to fetch changes up to 2c27770a7bc88ef7f6614d11d96d8e62017d0b78:
+
+  Revert "drm/i915: use localized __diag_ignore_all() instead of per file" (2023-07-17 13:39:04 +0100)
+
+----------------------------------------------------------------
+- Add sentinel to xehp_oa_b_counters [perf] (Andrzej Hajda)
+- Revert "drm/i915: use localized __diag_ignore_all() instead of per file" (Jani Nikula)
+
+----------------------------------------------------------------
+Andrzej Hajda (1):
+      drm/i915/perf: add sentinel to xehp_oa_b_counters
+
+Jani Nikula (1):
+      Revert "drm/i915: use localized __diag_ignore_all() instead of per file"
+
+ drivers/gpu/drm/i915/Makefile                       | 5 +++++
+ drivers/gpu/drm/i915/display/intel_display_device.c | 5 -----
+ drivers/gpu/drm/i915/display/intel_fbdev.c          | 5 -----
+ drivers/gpu/drm/i915/i915_pci.c                     | 5 -----
+ drivers/gpu/drm/i915/i915_perf.c                    | 1 +
+ 5 files changed, 6 insertions(+), 15 deletions(-)
