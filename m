@@ -1,50 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9FE75AAF5
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 11:36:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEB7975AAF7
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 11:36:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B816B10E594;
-	Thu, 20 Jul 2023 09:36:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85EFF10E58F;
+	Thu, 20 Jul 2023 09:36:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C291A10E58E;
- Thu, 20 Jul 2023 09:36:08 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 339FA10E58F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 09:36:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689845768; x=1721381768;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0YIvzxpg7CZNRjFmj0JMFz8Y7aTN/Z+XE5OE1jfeG+g=;
- b=lXj4WcDKT/6oaMTmHmzoM+xSL73T4xWbCNmI2yYQL/XZF52NWFWrrAwL
- LnMmu2q1ZV72nafF+HqJPzLR/bEmcsBHs6D72Y/UlKP2hvGzkx3M3n8iT
- 929SMsZdJfeUBpILvPslQwC3RHItUzJVC6Lc8CNqYtOeLtqEFvCQFv1Zl
- mtzOkeBcS/vS8OBXu+fTFSaqma5tli8038Sy9MyPm1U7hXl9HWwryDeWI
- t+xBTDMY9ZKGOBeC7b/GzfZcEyXWFu4Y7POfQjZPTF5TQkM6omeHut0Rf
- wgPqv0dMudt2dS5mZ20X32xHYBDzIDaZLLtwdnxsVEIjrX/d6mRMwbeXQ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="365570585"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="365570585"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 02:36:08 -0700
+ t=1689845794; x=1721381794;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=nE8aqDeTck5YudZpFoicJ5XoEE8YXnLaCEjegUVD2wo=;
+ b=c5Ldnuwa/C9Il5ipJajE2FKKOszFiFIq8+Bluz8gExTP8L7NmhYQvWmh
+ 6Tc3+fNbyzUTA/T50YM8c1CFz7kVnTSymJbBc6pASRCdV79KFlLwXlqy8
+ g94O6PUuy7zXp3TuVY3080XQMXGXnMNzV0+Ghoets6SA2i42DASZ9pIjx
+ v3Bf7ojawuLSHHwwqql/3r0aq1EuRLgQYMFyWV0qdc19B4RdDBeR0huT3
+ U0t9CBupAzBbDZ/NlwesMqghRhFDczXRGjF+JxUBCiDv9ecqzCcLects8
+ 5yKKG1W1lrygZ9yx71icK2jfiIgBXtdBcfwoo7ZpaxctzvQ4I+3/zHs7V A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="432883777"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="432883777"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 02:36:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="838038248"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="838038248"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO jkrzyszt-mobl2.lan)
- ([10.213.11.218])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 02:36:04 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Jul 2023 11:35:44 +0200
-Message-ID: <20230720093543.832147-2-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="970987390"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="970987390"
+Received: from ctuohy-mobl1.ger.corp.intel.com (HELO [10.213.193.21])
+ ([10.213.193.21])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 02:36:33 -0700
+Message-ID: <4e0a72f0-9cea-b9d3-da6a-26e2093417c3@linux.intel.com>
+Date: Thu, 20 Jul 2023 10:36:31 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] drm/i915: Fix premature release of request's
- reusable memory
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Matt Roper <matthew.d.roper@intel.com>
+References: <20230718222753.1075713-10-matthew.d.roper@intel.com>
+ <20230718222753.1075713-13-matthew.d.roper@intel.com>
+ <76ec5ac1-f297-0634-0ec8-11899151deec@linux.intel.com>
+ <20230719152809.GO138014@mdroper-desk1.amr.corp.intel.com>
+ <20230719225424.GS138014@mdroper-desk1.amr.corp.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230719225424.GS138014@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 3/8] drm/i915: Eliminate IS_MTL_GRAPHICS_STEP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,271 +66,382 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>, Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Infinite waits for completion of GPU activity have been observed in CI,
-mostly inside __i915_active_wait(), triggered by igt@gem_barrier_race or
-igt@perf@stress-open-close.  Root cause analysis, based of ftrace dumps
-generated with a lot of extra trace_printk() calls added to the code,
-revealed loops of request dependencies being accidentally built,
-preventing the requests from being processed, each waiting for completion
-of another one's activity.
 
-After we substitute a new request for a last active one tracked on a
-timeline, we set up a dependency of our new request to wait on completion
-of current activity of that previous one.  While doing that, we must take
-care of keeping the old request still in memory until we use its
-attributes for setting up that await dependency, or we can happen to set
-up the await dependency on an unrelated request that already reuses the
-memory previously allocated to the old one, already released.  Combined
-with perf adding consecutive kernel context remote requests to different
-user context timelines, unresolvable loops of await dependencies can be
-built, leading do infinite waits.
+On 19/07/2023 23:54, Matt Roper wrote:
+> On Wed, Jul 19, 2023 at 08:28:12AM -0700, Matt Roper wrote:
+>> On Wed, Jul 19, 2023 at 09:01:58AM +0100, Tvrtko Ursulin wrote:
+>>>
+>>> On 18/07/2023 23:27, Matt Roper wrote:
+>>>> Several workarounds are guarded by IS_MTL_GRAPHICS_STEP.  However none
+>>>> of these workarounds are actually tied to MTL as a platform; they only
+>>>> relate to the Xe_LPG graphics IP, regardless of what platform it appears
+>>>> in.  At the moment MTL is the only platform that uses Xe_LPG with IP
+>>>> versions 12.70 and 12.71, but we can't count on this being true in the
+>>>> future.  Switch these to use a new IS_GFX_IPVER_STEP() macro instead
+>>>> that is purely based on IP version.  IS_GFX_IPVER_STEP() is also
+>>>> GT-based rather than device-based, which will help prevent mistakes
+>>>> where we accidentally try to apply Xe_LPG graphics workarounds to the
+>>>> Xe_LPM+ media GT.
+>>>>
+>>>> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>>>> ---
+>>>>    .../drm/i915/display/skl_universal_plane.c    |  4 +-
+>>>>    drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |  9 ++--
+>>>>    drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |  4 +-
+>>>>    drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 +-
+>>>>    drivers/gpu/drm/i915/gt/intel_reset.c         |  2 +-
+>>>>    drivers/gpu/drm/i915/gt/intel_workarounds.c   | 52 ++++++++++---------
+>>>>    drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  2 +-
+>>>>    .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  2 +-
+>>>>    drivers/gpu/drm/i915/i915_drv.h               |  8 +--
+>>>>    9 files changed, 46 insertions(+), 41 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>>>> index 6b01a0b68b97..c13e64faaaad 100644
+>>>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>>>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>>>> @@ -2169,8 +2169,8 @@ static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
+>>>>    				 enum pipe pipe, enum plane_id plane_id)
+>>>>    {
+>>>>    	/* Wa_14017240301 */
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>>> +	if (IS_GFX_IPVER_STEP(to_gt(i915), IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(to_gt(i915), IP_VER(12, 71), STEP_A0, STEP_B0))
+>>>
+>>> Do we really need/want a combined/long macro like this and not split it out
+>>> to something like a more readable IS_GFX_IPVER && IS_<...>_STEP?
+> 
+> On this part, wouldn't that make it less readable?  Right now these
+> conditions are an ||'d list of cases for which the workaround should
+> apply (relating to various entries in the workaround database).  If we
+> split the version, stepping, and GT checks out into separate macros
+> we'll get more complex conditions that are a mix of && and ||.  We can
+> try that, but my gut feeling is that it's going to be more error-prone
+> since we'll have to be really careful to always get the parenentheses in
+> the right places.  Also many people (myself included) are already having
+> some trouble adjusting to the new idea of GT (primary vs media) being an
+> important factor that needs to be considered in the workaround
+> condition; one of the goals with these new macros was to make sure that
+> got included in the macro so that it couldn't be omitted by accident.
 
-We obtain a pointer to the previous request to wait upon when we
-substitute it with a pointer to our new request in an active tracker,
-e.g. in intel_timeline.last_request.  In some processing paths we protect
-that old request from being freed before we use it by getting a reference
-to it under RCU protection, but in others, e.g.  __i915_request_commit()
--> __i915_request_add_to_timeline() -> __i915_request_ensure_ordering(),
-we don't.  But anyway, since the requests' memory is SLAB_FAILSAFE_BY_RCU,
-that RCU protection is not sufficient against reuse of memory.
+Oh well I don't know.. maybe. It's just that I find that as amount of 
+all uppercase blocks grows over a certain limit things become quite an 
+eyesore and hard to read. One line of:
 
-We could protect i915_request's memory from being prematurely reused by
-calling its release function via call_rcu() and using rcu_read_lock()
-consequently, as proposed in v1.  However, that approach leads to
-significant (up to 10 times) increase of SLAB utilization by i915_request
-SLAB cache.  Another potential approach is to take a reference to the
-previous active fence.
+if (IS_GFX_IPVER_STEP(i915, IP_VER(12,70), STEP_A0, STEP_B0))
 
-When updating an active fence tracker, we first lock the new fence,
-substitute a pointer of the current active fence with the new one, then we
-lock the substituted fence.  With this approach, there is a time window
-after the substitution and before the lock when the request can be
-concurrently released by an interrupt handler and its memory reused, then
-we may happen to lock and return a new, unrelated request.
+Is already borderline. A few of those on the same line is just hard to 
+parse. But your argument also has merit so again, don't know.
 
-Always get a reference to the current active fence first, before
-replacing it with a new one.  Having it protected from premature release
-and reuse, lock it and then replace with the new one but only if not
-yet signalled via a potential concurrent interrupt nor replaced with
-another one by a potential concurrent thread, otherwise retry, starting
-from getting a reference to the new current one.  Adjust users to not
-get a reference to the previous active fence themselves and always put the
-reference got by __i915_active_fence_set() when no longer needed.
+What I was suggesting is to maybe have:
 
-v3: Fix lockdep splat reports and other issues caused by incorrect use of
-    try_cmpxchg() (use (cmpxchg() != prev) instead)
-v2: Protect request's memory by getting a reference to it in favor of
-    delegating its release to call_rcu() (Chris)
+IS_GFX_IPVER_STEP(i915, IP_VER(12,70), IP_STEP(A0, B0))
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8211
-Fixes: df9f85d8582e ("drm/i915: Serialise i915_active_fence_set() with itself")
-Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.6+
----
- drivers/gpu/drm/i915/i915_active.c  | 99 ++++++++++++++++++++---------
- drivers/gpu/drm/i915/i915_request.c | 11 ++++
- 2 files changed, 81 insertions(+), 29 deletions(-)
+Marginally shorter.
 
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index 8ef93889061a6..5ec293011d990 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -449,8 +449,11 @@ int i915_active_add_request(struct i915_active *ref, struct i915_request *rq)
- 		}
- 	} while (unlikely(is_barrier(active)));
- 
--	if (!__i915_active_fence_set(active, fence))
-+	fence = __i915_active_fence_set(active, fence);
-+	if (!fence)
- 		__i915_active_acquire(ref);
-+	else
-+		dma_fence_put(fence);
- 
- out:
- 	i915_active_release(ref);
-@@ -469,13 +472,9 @@ __i915_active_set_fence(struct i915_active *ref,
- 		return NULL;
- 	}
- 
--	rcu_read_lock();
- 	prev = __i915_active_fence_set(active, fence);
--	if (prev)
--		prev = dma_fence_get_rcu(prev);
--	else
-+	if (!prev)
- 		__i915_active_acquire(ref);
--	rcu_read_unlock();
- 
- 	return prev;
- }
-@@ -1019,10 +1018,11 @@ void i915_request_add_active_barriers(struct i915_request *rq)
-  *
-  * Records the new @fence as the last active fence along its timeline in
-  * this active tracker, moving the tracking callbacks from the previous
-- * fence onto this one. Returns the previous fence (if not already completed),
-- * which the caller must ensure is executed before the new fence. To ensure
-- * that the order of fences within the timeline of the i915_active_fence is
-- * understood, it should be locked by the caller.
-+ * fence onto this one. Gets and returns a reference to the previous fence
-+ * (if not already completed), which the caller must put after making sure
-+ * that it is executed before the new fence. To ensure that the order of
-+ * fences within the timeline of the i915_active_fence is understood, it
-+ * should be locked by the caller.
-  */
- struct dma_fence *
- __i915_active_fence_set(struct i915_active_fence *active,
-@@ -1031,7 +1031,23 @@ __i915_active_fence_set(struct i915_active_fence *active,
- 	struct dma_fence *prev;
- 	unsigned long flags;
- 
--	if (fence == rcu_access_pointer(active->fence))
-+	/*
-+	 * In case of fences embedded in i915_requests, their memory is
-+	 * SLAB_FAILSAFE_BY_RCU, then it can be reused right after release
-+	 * by new requests.  Then, there is a risk of passing back a pointer
-+	 * to a new, completely unrelated fence that reuses the same memory
-+	 * while tracked under a different active tracker.  Combined with i915
-+	 * perf open/close operations that build await dependencies between
-+	 * engine kernel context requests and user requests from different
-+	 * timelines, this can lead to dependency loops and infinite waits.
-+	 *
-+	 * As a countermeasure, we try to get a reference to the active->fence
-+	 * first, so if we succeed and pass it back to our user then it is not
-+	 * released and potentially reused by an unrelated request before the
-+	 * user has a chance to set up an await dependency on it.
-+	 */
-+	prev = i915_active_fence_get(active);
-+	if (fence == prev)
- 		return fence;
- 
- 	GEM_BUG_ON(test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags));
-@@ -1040,27 +1056,56 @@ __i915_active_fence_set(struct i915_active_fence *active,
- 	 * Consider that we have two threads arriving (A and B), with
- 	 * C already resident as the active->fence.
- 	 *
--	 * A does the xchg first, and so it sees C or NULL depending
--	 * on the timing of the interrupt handler. If it is NULL, the
--	 * previous fence must have been signaled and we know that
--	 * we are first on the timeline. If it is still present,
--	 * we acquire the lock on that fence and serialise with the interrupt
--	 * handler, in the process removing it from any future interrupt
--	 * callback. A will then wait on C before executing (if present).
--	 *
--	 * As B is second, it sees A as the previous fence and so waits for
--	 * it to complete its transition and takes over the occupancy for
--	 * itself -- remembering that it needs to wait on A before executing.
-+	 * Both A and B have got a reference to C or NULL, depending on the
-+	 * timing of the interrupt handler.  Let's assume that if A has got C
-+	 * then it has locked C first (before B).
- 	 *
- 	 * Note the strong ordering of the timeline also provides consistent
- 	 * nesting rules for the fence->lock; the inner lock is always the
- 	 * older lock.
- 	 */
- 	spin_lock_irqsave(fence->lock, flags);
--	prev = xchg(__active_fence_slot(active), fence);
--	if (prev) {
--		GEM_BUG_ON(prev == fence);
-+	if (prev)
- 		spin_lock_nested(prev->lock, SINGLE_DEPTH_NESTING);
-+
-+	/*
-+	 * A does the cmpxchg first, and so it sees C or NULL, as before, or
-+	 * something else, depending on the timing of other threads and/or
-+	 * interrupt handler.  If not the same as before then A unlocks C if
-+	 * applicable and retries, starting from an attempt to get a new
-+	 * active->fence.  Meanwhile, B follows the same path as A.
-+	 * Once A succeeds with cmpxch, B fails again, retires, gets A from
-+	 * active->fence, locks it as soon as A completes, and possibly
-+	 * succeeds with cmpxchg.
-+	 */
-+	while (cmpxchg(__active_fence_slot(active), prev, fence) != prev) {
-+		if (prev) {
-+			spin_unlock(prev->lock);
-+			dma_fence_put(prev);
-+		}
-+		spin_unlock_irqrestore(fence->lock, flags);
-+
-+		prev = i915_active_fence_get(active);
-+		GEM_BUG_ON(prev == fence);
-+
-+		spin_lock_irqsave(fence->lock, flags);
-+		if (prev)
-+			spin_lock_nested(prev->lock, SINGLE_DEPTH_NESTING);
-+	}
-+
-+	/*
-+	 * If prev is NULL then the previous fence must have been signaled
-+	 * and we know that we are first on the timeline.  If it is still
-+	 * present then, having the lock on that fence already acquired, we
-+	 * serialise with the interrupt handler, in the process of removing it
-+	 * from any future interrupt callback.  A will then wait on C before
-+	 * executing (if present).
-+	 *
-+	 * As B is second, it sees A as the previous fence and so waits for
-+	 * it to complete its transition and takes over the occupancy for
-+	 * itself -- remembering that it needs to wait on A before executing.
-+	 */
-+	if (prev) {
- 		__list_del_entry(&active->cb.node);
- 		spin_unlock(prev->lock); /* serialise with prev->cb_list */
- 	}
-@@ -1077,11 +1122,7 @@ int i915_active_fence_set(struct i915_active_fence *active,
- 	int err = 0;
- 
- 	/* Must maintain timeline ordering wrt previous active requests */
--	rcu_read_lock();
- 	fence = __i915_active_fence_set(active, &rq->fence);
--	if (fence) /* but the previous fence may not belong to that timeline! */
--		fence = dma_fence_get_rcu(fence);
--	rcu_read_unlock();
- 	if (fence) {
- 		err = i915_request_await_dma_fence(rq, fence);
- 		dma_fence_put(fence);
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 894068bb37b6f..833b73edefdbb 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1661,6 +1661,11 @@ __i915_request_ensure_parallel_ordering(struct i915_request *rq,
- 
- 	request_to_parent(rq)->parallel.last_rq = i915_request_get(rq);
- 
-+	/*
-+	 * Users have to put a reference potentially got by
-+	 * __i915_active_fence_set() to the returned request
-+	 * when no longer needed
-+	 */
- 	return to_request(__i915_active_fence_set(&timeline->last_request,
- 						  &rq->fence));
- }
-@@ -1707,6 +1712,10 @@ __i915_request_ensure_ordering(struct i915_request *rq,
- 							 0);
- 	}
- 
-+	/*
-+	 * Users have to put the reference to prev potentially got
-+	 * by __i915_active_fence_set() when no longer needed
-+	 */
- 	return prev;
- }
- 
-@@ -1760,6 +1769,8 @@ __i915_request_add_to_timeline(struct i915_request *rq)
- 		prev = __i915_request_ensure_ordering(rq, timeline);
- 	else
- 		prev = __i915_request_ensure_parallel_ordering(rq, timeline);
-+	if (prev)
-+		i915_request_put(prev);
- 
- 	/*
- 	 * Make sure that no request gazumped us - if it was allocated after
--- 
-2.41.0
+Maybe find a shorted name for IS_GFX_IPVER_STEP?
 
+IS_GFX_IP(i915, IP_VER(12,70), IP_STEP(A0, B0))
+
+?
+
+Too bad we can't have that macro take the stepping argument as optional. 
+Or maybe it is possible, I don't know C macro magic that well.
+
+Also, if we added GT based macros we could get away with encoding the GT 
+type in the macro name. Asking the GT/tile directrly about their IP_VER. 
+Not sure how widely applicable tha would be so just a thought.
+
+IS_IP(gt, IP_VER(12, 70))
+
+GT_VER_FULL(gt) == IP_VER(13, 0)
+
+Unless that falls apart with that GT is not a tile story.
+
+Regards,
+
+Tvrtko
+
+> 
+> 
+> Matt
+> 
+>>>
+>>> Adding Jani since we were discussing this direction over the past few weeks.
+>>>
+>>> Hm.. macro trickery for stepping ranges to make it more compact? Like making
+>>> the STEP_ prefix be prepended by the macro. Don't know..
+>>
+>> One other thing that we could consider if some of these things are
+>> getting too long is eliminating IP_VER() and using the "versionx100"
+>> scheme that Xe and Mesa use.  On one hand that makes me a bit nervous
+>> since GMD_ID's release number is 8 bits and could go past 100 on future
+>> platforms, which would break the scheme (and we're already up to .71 on
+>> MTL).  But on the other hand it does make the code simpler and shorter
+>> and we can always wait and see if we ever actually get a platform with
+>> version X.100 or something before we really worry about what to do
+>> there.
+>>
+>> The other point in favor of switching to versionx100 is that we wouldn't
+>> have an inconsistent mix of both IP_VER() and verx100 in the Xe driver
+>> where the display code comes from i915 but the non-display code is
+>> separate.
+>>
+>>
+>> Matt
+>>
+>>>
+>>> Regards,
+>>>
+>>> Tvrtko
+>>>
+>>>>    		return false;
+>>>>    	/* Wa_22011186057 */
+>>>> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+>>>> index 23857cc08eca..c1af91d908e5 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+>>>> @@ -180,8 +180,8 @@ u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv
+>>>>    static int mtl_dummy_pipe_control(struct i915_request *rq)
+>>>>    {
+>>>>    	/* Wa_14016712196 */
+>>>> -	if (IS_MTL_GRAPHICS_STEP(rq->engine->i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(rq->engine->i915, P, STEP_A0, STEP_B0)) {
+>>>> +	if (IS_GFX_IPVER_STEP(rq->engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(rq->engine->gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+>>>>    		u32 *cs;
+>>>>    		/* dummy PIPE_CONTROL + depth flush */
+>>>> @@ -755,6 +755,7 @@ u32 *gen12_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
+>>>>    u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+>>>>    {
+>>>>    	struct drm_i915_private *i915 = rq->engine->i915;
+>>>> +	struct intel_gt *gt = rq->engine->gt;
+>>>>    	u32 flags = (PIPE_CONTROL_CS_STALL |
+>>>>    		     PIPE_CONTROL_TLB_INVALIDATE |
+>>>>    		     PIPE_CONTROL_TILE_CACHE_FLUSH |
+>>>> @@ -765,8 +766,8 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+>>>>    		     PIPE_CONTROL_FLUSH_ENABLE);
+>>>>    	/* Wa_14016712196 */
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+>>>>    		/* dummy PIPE_CONTROL + depth flush */
+>>>>    		cs = gen12_emit_pipe_control(cs, 0,
+>>>>    					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
+>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+>>>> index 0b414eae1683..41140eb86051 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+>>>> @@ -166,8 +166,8 @@ void intel_gt_mcr_init(struct intel_gt *gt)
+>>>>    		gt->steering_table[OADDRM] = xelpmp_oaddrm_steering_table;
+>>>>    	} else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70)) {
+>>>>    		/* Wa_14016747170 */
+>>>> -		if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>>> -		    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>>> +		if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +		    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+>>>>    			fuse = REG_FIELD_GET(MTL_GT_L3_EXC_MASK,
+>>>>    					     intel_uncore_read(gt->uncore,
+>>>>    							       MTL_GT_ACTIVITY_FACTOR));
+>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>>> index 1b710102390b..4fefa67d285f 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>>> @@ -1377,8 +1377,8 @@ gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
+>>>>    					      cs, GEN12_GFX_CCS_AUX_NV);
+>>>>    	/* Wa_16014892111 */
+>>>> -	if (IS_MTL_GRAPHICS_STEP(ce->engine->i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(ce->engine->i915, P, STEP_A0, STEP_B0) ||
+>>>> +	if (IS_GFX_IPVER_STEP(ce->engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(ce->engine->gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+>>>>    	    IS_DG2(ce->engine->i915))
+>>>>    		cs = dg2_emit_draw_watermark_setting(cs);
+>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+>>>> index 1ff7b42521c9..403f0d9caadf 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+>>>> @@ -1641,7 +1641,7 @@ bool intel_engine_reset_needs_wa_22011802037(struct intel_gt *gt)
+>>>>    	if (GRAPHICS_VER(gt->i915) < 11)
+>>>>    		return false;
+>>>> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0))
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0))
+>>>>    		return true;
+>>>>    	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
+>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>>> index 2a5bf50962ad..785453b2e95e 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>>> @@ -808,24 +808,24 @@ static void dg2_ctx_workarounds_init(struct intel_engine_cs *engine,
+>>>>    static void xelpg_ctx_gt_tuning_init(struct intel_engine_cs *engine,
+>>>>    				     struct i915_wa_list *wal)
+>>>>    {
+>>>> -	struct drm_i915_private *i915 = engine->i915;
+>>>> +	struct intel_gt *gt = engine->gt;
+>>>>    	dg2_ctx_gt_tuning_init(engine, wal);
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_B0, STEP_FOREVER) ||
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_B0, STEP_FOREVER))
+>>>>    		wa_add(wal, DRAW_WATERMARK, VERT_WM_VAL, 0x3FF, 0, false);
+>>>>    }
+>>>>    static void xelpg_ctx_workarounds_init(struct intel_engine_cs *engine,
+>>>>    				       struct i915_wa_list *wal)
+>>>>    {
+>>>> -	struct drm_i915_private *i915 = engine->i915;
+>>>> +	struct intel_gt *gt = engine->gt;
+>>>>    	xelpg_ctx_gt_tuning_init(engine, wal);
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+>>>>    		/* Wa_14014947963 */
+>>>>    		wa_masked_field_set(wal, VF_PREEMPTION,
+>>>>    				    PREEMPTION_VERTEX_COUNT, 0x4000);
+>>>> @@ -1746,8 +1746,8 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+>>>>    	/* Wa_22016670082 */
+>>>>    	wa_write_or(wal, GEN12_SQCNT1, GEN12_STRICT_RAR_ENABLE);
+>>>> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0)) {
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+>>>>    		/* Wa_14014830051 */
+>>>>    		wa_mcr_write_clr(wal, SARB_CHICKEN1, COMP_CKN_IN);
+>>>> @@ -2424,16 +2424,17 @@ static void
+>>>>    rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>>>>    {
+>>>>    	struct drm_i915_private *i915 = engine->i915;
+>>>> +	struct intel_gt *gt = engine->gt;
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+>>>>    		/* Wa_22014600077 */
+>>>>    		wa_mcr_masked_en(wal, GEN10_CACHE_MODE_SS,
+>>>>    				 ENABLE_EU_COUNT_FOR_TDL_FLUSH);
+>>>>    	}
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+>>>>    	    IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+>>>>    	    IS_DG2_G11(i915) || IS_DG2_G12(i915)) {
+>>>>    		/* Wa_1509727124 */
+>>>> @@ -2443,7 +2444,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>>>>    	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+>>>>    	    IS_DG2_G11(i915) || IS_DG2_G12(i915) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0)) {
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0)) {
+>>>>    		/* Wa_22012856258 */
+>>>>    		wa_mcr_masked_en(wal, GEN8_ROW_CHICKEN2,
+>>>>    				 GEN12_DISABLE_READ_SUPPRESSION);
+>>>> @@ -3008,8 +3009,9 @@ static void
+>>>>    general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>>>>    {
+>>>>    	struct drm_i915_private *i915 = engine->i915;
+>>>> +	struct intel_gt *gt = engine->gt;
+>>>> -	add_render_compute_tuning_settings(engine->gt, wal);
+>>>> +	add_render_compute_tuning_settings(gt, wal);
+>>>>    	if (GRAPHICS_VER(i915) >= 11) {
+>>>>    		/* This is not a Wa (although referred to as
+>>>> @@ -3030,13 +3032,13 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+>>>>    				 GEN11_INDIRECT_STATE_BASE_ADDR_OVERRIDE);
+>>>>    	}
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_B0, STEP_FOREVER) ||
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_B0, STEP_FOREVER))
+>>>>    		/* Wa_14017856879 */
+>>>>    		wa_mcr_masked_en(wal, GEN9_ROW_CHICKEN3, MTL_DISABLE_FIX_FOR_EOT_FLUSH);
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+>>>>    		/*
+>>>>    		 * Wa_14017066071
+>>>>    		 * Wa_14017654203
+>>>> @@ -3044,13 +3046,13 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+>>>>    		wa_mcr_masked_en(wal, GEN10_SAMPLER_MODE,
+>>>>    				 MTL_DISABLE_SAMPLER_SC_OOO);
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+>>>>    		/* Wa_22015279794 */
+>>>>    		wa_mcr_masked_en(wal, GEN10_CACHE_MODE_SS,
+>>>>    				 DISABLE_PREFETCH_INTO_IC);
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+>>>>    	    IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+>>>>    	    IS_DG2_G11(i915) || IS_DG2_G12(i915)) {
+>>>>    		/* Wa_22013037850 */
+>>>> @@ -3058,16 +3060,16 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+>>>>    				DISABLE_128B_EVICTION_COMMAND_UDW);
+>>>>    	}
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+>>>>    	    IS_PONTEVECCHIO(i915) ||
+>>>>    	    IS_DG2(i915)) {
+>>>>    		/* Wa_22014226127 */
+>>>>    		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0, DISABLE_D8_D16_COASLESCE);
+>>>>    	}
+>>>> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+>>>> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>> +	    IS_GFX_IPVER_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+>>>>    	    IS_DG2(i915)) {
+>>>>    		/* Wa_18017747507 */
+>>>>    		wa_masked_en(wal, VFG_PREEMPTION_CHICKEN, POLYGON_TRIFAN_LINELOOP_DISABLE);
+>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>>> index 1e532981f74e..300b968e6de8 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>>> @@ -277,7 +277,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+>>>>    		flags |= GUC_WA_GAM_CREDITS;
+>>>>    	/* Wa_14014475959 */
+>>>> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+>>>> +	if (IS_GFX_IPVER_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>>    	    IS_DG2(gt->i915))
+>>>>    		flags |= GUC_WA_HOLD_CCS_SWITCHOUT;
+>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>> index 1bd5d8f7c40b..3b159069dbc4 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>> @@ -4265,7 +4265,7 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
+>>>>    	/* Wa_14014475959:dg2 */
+>>>>    	if (engine->class == COMPUTE_CLASS)
+>>>> -		if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+>>>> +		if (IS_GFX_IPVER_STEP(engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>>>>    		    IS_DG2(engine->i915))
+>>>>    			engine->flags |= I915_ENGINE_USES_WA_HOLD_CCS_SWITCHOUT;
+>>>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>>>> index f38c93d82c56..d03710c923c8 100644
+>>>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>>>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>>>> @@ -692,9 +692,11 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>>>>    #define IS_XEHPSDV_GRAPHICS_STEP(__i915, since, until) \
+>>>>    	(IS_XEHPSDV(__i915) && IS_GRAPHICS_STEP(__i915, since, until))
+>>>> -#define IS_MTL_GRAPHICS_STEP(__i915, variant, since, until) \
+>>>> -	(IS_SUBPLATFORM(__i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_##variant) && \
+>>>> -	 IS_GRAPHICS_STEP(__i915, since, until))
+>>>> +#define IS_GFX_IPVER_STEP(__gt, ipver, since, until) \
+>>>> +	(BUILD_BUG_ON_ZERO(ipver < IP_VER(2, 0)) + \
+>>>> +	 (__gt->type != GT_MEDIA && \
+>>>> +	  GRAPHICS_VER_FULL(__gt->i915) == ipver && \
+>>>> +	  IS_GRAPHICS_STEP(__gt->i915, since, until)))
+>>>>    #define IS_MTL_DISPLAY_STEP(__i915, since, until) \
+>>>>    	(IS_METEORLAKE(__i915) && \
+>>
+>> -- 
+>> Matt Roper
+>> Graphics Software Engineer
+>> Linux GPU Platform Enablement
+>> Intel Corporation
+> 
