@@ -1,51 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AF6075A891
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 10:03:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB78B75A8AF
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 10:09:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 202E610E577;
-	Thu, 20 Jul 2023 08:03:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B02510E574;
+	Thu, 20 Jul 2023 08:09:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1589F10E577
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 08:03:04 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA8310E574
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 08:09:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689840184; x=1721376184;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=A8xFxRHDcd3pXcwtVyy3QX2NzwCVoVteu4Cz1+U4XB8=;
- b=XfRIqXtEGQE51hYHWn0oios77WAPUgSEB1mlXsPOSJxoBMOdXXPKXe8W
- asx+cAVU3nfWy/RzWK+d9pNxRK/3NPNRFqKaZVOT2CJp2NK+aBQCU2i60
- eeiMb3IuPV6xv7STNV5QCT7VhdAlvxrQ8LC0v8+Eg8zIeTQi1Jjk1Wlmn
- jsdwoQhqMPEsjOCFKIEerP54HcY6TAHHET9yJpf4aRHPNJXycK6TXOrSP
- vc0HHTYdEXA5IJp1RVcBMa6K6kPEDWdiwyMoeh38WKzIQ8GJ/V88WFn1t
- 3X/nKHZrpnE9PzmmJ6g3IG5OfihWqasBQorup8iDbt/TQPJydImGczUjG w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="430434805"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="430434805"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 01:02:25 -0700
+ t=1689840546; x=1721376546;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uzX/j8VnKfYAfHk+iCPlCRymK9nvGvmS5wQQn9sfw+k=;
+ b=T1KFHMiaYcHGZuJsMlXB7apBM2W4kcfgTJ6tNDik0JrlTJvWywfERZN1
+ YWHuVeR9uBt6ptPEVIKE1dbLMnctv/CoAwVdsW0gWogG9cwzk0Je53C1R
+ RAadZJnm3hQFp+3p63y1MOoYM+2EKw9fmEokz4KaY2K9VB5pKa8hdo0Gv
+ Ufcy4oZ/+vnB4DN8hcNWyfTzBPKLuKf/K3EbYzEvb9LyFPO8J+zN9THtU
+ Kf2usOFm3OY3L041cXR5NKKjUbPPecILypuCZtEMeJEr9/vr6YFtyq473
+ +Vnf0w6vliwpom0uQgbxJZ5iGWEo5c/JXpk5nAmbn6Gm0RJsJH2lP46X7 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="366700135"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="366700135"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 01:08:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="789697018"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="789697018"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 01:02:24 -0700
-Date: Thu, 20 Jul 2023 11:02:16 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="724305452"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="724305452"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by orsmga002.jf.intel.com with ESMTP; 20 Jul 2023 01:08:57 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Message-ID: <ZLjqCK7Elh661Da0@intel.com>
-References: <20230719104833.25366-1-stanislav.lisovskiy@intel.com>
+Date: Thu, 20 Jul 2023 13:37:08 +0530
+Message-Id: <20230720080715.3063267-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230719104833.25366-1-stanislav.lisovskiy@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Start using plane scale factor
- for relative data rate
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v4 0/7] Add DSC PPS readout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,51 +54,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nemesa.garg@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 19, 2023 at 01:48:33PM +0300, Stanislav Lisovskiy wrote:
-> BSpec clearly instructs us to use plane scale factor when calculating
-> relative data rate to be used when allocating DDB blocks for each plane.
-> For some reason we use scale factor for data_rate calculation, which is
-> used for BW calculations, however we are not using it for DDB calculations.
-> So lets fix it as described in BSpec 68907.
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_atomic_plane.c | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index 7d9578ebae556..60a492e186ab8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -212,6 +212,7 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
->  	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
->  	const struct drm_framebuffer *fb = plane_state->hw.fb;
->  	int width, height;
-> +	unsigned int rel_data_rate;
->  
->  	if (plane->id == PLANE_CURSOR)
->  		return 0;
-> @@ -241,7 +242,11 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
->  		height /= 2;
->  	}
->  
-> -	return width * height * fb->format->cpp[color_plane];
-> +	rel_data_rate = width * height * fb->format->cpp[color_plane];
-> +
-> +	return intel_adjusted_rate(&plane_state->uapi.src,
-> +				   &plane_state->uapi.dst,
-> +				   rel_data_rate);
->  }
->  
->  int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
-> -- 
-> 2.37.3
-> 
+Up until now we only verified one or two of the dsc pps
+params like bits_per_component and bits_per_pixel this
+patch series aim to readout almost all PPS param and get
+them compared.
+Along with that some work on making a common function to
+read and write PPS param regiters is also done.
 
-IGT failures are irrelevant here(test is aborted due to some timeout issue).
+--v2
+-Remove duplicated code and create function that fetches register
+and reuse that. [Jani]
+-move WARN_ON one abstraction layer up. [Jani]
+-Split patch so that refactor and a new functionality is not added
+in the same patch. [Jani]
+-Add a new refactor patch so that bit shifting can be done in a
+clean way. [Jani]
 
+--v3
+-Fix the typo in patch 2 [Jani]
+-Get both dsc_reg regardless of dsc_eng_no. [Jani]
+-Remove usage of num_vdsc_instances. [Ankit]
+-Add macro to further optimize intel_dsc_get_pps_reg
+
+--v4
+-Manipulate register addresses rather than creating a macro to
+manipulate variable name based on pps [Ankit]
+
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+Suraj Kandpal (7):
+  drm/i915/vdsc: Refactor dsc register field macro
+  drm/i915/vdsc: Add a check for dsc split cases
+  drm/i915/vdsc: Add function to read any PPS register
+  drm/i915/vdsc: Add function to write in PPS register
+  drm/i915/vdsc: Remove unused dsc registers
+  drm/i915/vdsc: Fill the intel_dsc_get_pps_config function
+  drm/i915/display: Compare the readout dsc pps params
+
+ drivers/gpu/drm/i915/display/intel_display.c  |  31 ++
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 448 ++++++++----------
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    | 366 +++++---------
+ 3 files changed, 322 insertions(+), 523 deletions(-)
+
+-- 
+2.25.1
 
