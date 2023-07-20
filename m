@@ -1,137 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B7A775B931
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 23:04:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1273775B935
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 23:05:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F9A010E1B1;
-	Thu, 20 Jul 2023 21:04:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5804A10E1B1;
+	Thu, 20 Jul 2023 21:05:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E87510E1B0
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 21:04:41 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FE2E10E1AB;
+ Thu, 20 Jul 2023 21:05:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689887081; x=1721423081;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=VmBFqFqb3GpAN6uTipXqQYCeL6RvPBf1tihOIgBjIZ8=;
- b=FJ8qFBbZ3c4YQJoSbD7AZpm1BYMr6Q8s5jk5N6BT18aJJZuii5XwDlHR
- 3MyF+kIcEa8WS+x5/erz30CZ4k4YSN6Pl1c3f6Tg3K2zZ96YZuWRNIron
- WCNL0V5kadoINwDIAvLjIldDYopEDigNiqFMADIY8SVvqPQAqIpWyvUDa
- hE9+pQxtAe+u/M6DBtutTuVZetr8CELvPrx1J3JesrId0JzTjpvBDJVct
- fJsMz+bPmk7TNBmj0yhdJaqDGuEhgIj6QqvdBtLdI7WdNb3fS/H73DlKD
- oWcOHgSaVAJrp4TRSCmGP35DY3v24PTevJgZYaPiVoGOgcAIYFRrA7V91 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="347166430"
-X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="347166430"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 14:04:40 -0700
+ t=1689887129; x=1721423129;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=rVGOweff0SdbXVVz6V0ekmd+WI5q8R+cE+Ca6CPaPNY=;
+ b=gm37LlnHYgbASMCVd138Nxp5zfLjn2P69gOSrtSCXkqGCwLGLky9h2yu
+ rHx8uUya0gtam7M0AVsXjZUCpM1fc46gE+twKqoGhs5AuyV6rbIzevbDy
+ 2s45fdifkW0nuC30QexQbLuzR++PzrZEaVh3VAWbAJTfld2WeNuvVzjg4
+ 74aUy67poJkgknXe7i2Mg/VmE/DGSmh/gOWfU/KpllP5Qy887GLUAlXiF
+ 8KuJ6lyJwGVsRWXgwLIU6gVTEp0uJKkiFH5/mYMvkQU5uVzTX2W04uK4n
+ JF9zIVQ6ATLCPGECWpzDR6NTEADUYt+bheZioFlsBBEAmeE3+cMqwHk4e w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="366898971"
+X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="366898971"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 14:05:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="754177397"
-X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="754177397"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga008.jf.intel.com with ESMTP; 20 Jul 2023 14:04:40 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 20 Jul 2023 14:04:39 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 20 Jul 2023 14:04:39 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.102)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 20 Jul 2023 14:04:38 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iyDZjJ0rWpXiAuEZr/fP8gzPxTfbzCTjDWRU/ZqBlHkZJZKLrI+0MWaENjJYZn5PUDwZBAoQWYbMD7G1S+n/PLjzrucuCmJOHGjVhxvtMUJ58ijcgoilgF+47V3p3s+WSoDaHGsT6d0ttXIE/LHTGIHwvRSA/TS4LmbJ/gOQmUWopHFoGtb0VgxSmzxjmS3ySDWWZVA1krD/aCjIaDkd2TCYGJ5Wcs0ATaqVHCtZ8+3GBHqnhfPTv3kIdjp4x6Ft2AC7O1oBEDqSJUZ4KMjmssP09WwwQb+8it2t1Yqx+tXt8SvhRpjrBM1/G+lIsQgVbbUKg/4Rj3f3wJwRQ1pOfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=l72OOg/p9mWTK41pPRlrY1cLibREztTh3jhJeu86ZpY=;
- b=foK3iS8m07yU6a6CBko4nUHaae41bXIBj6xOwN3jcQjeVkYRLxYK3O8henBnkKPjEJpTDHZybdEEsSm3WYrp0VPobkQp4ofM+LrymtyJjsZ33o9I6JRmojaTbinvI8ujkzlJ6WCoOrcGnV9bevBIb5lVbsF2617Vui3gNIQq/ZBLN86ilIxt8GQREFI5cap01CPtYc2Pl2KQ1SINwUetLoTVCtoKKh4a4l/S7i9X9cH1ytcE/0Thubw1Srqf/9PvPvBsf9z8Mt4yGeuZjqV/8gESRB4kglCDuWgzDehFvomLn0FJmgr5yreX1XfimO03L2mqsAKEaeGkBbQom4Q1lw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by CY8PR11MB6892.namprd11.prod.outlook.com (2603:10b6:930:5b::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.25; Thu, 20 Jul
- 2023 21:04:09 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294%5]) with mapi id 15.20.6609.024; Thu, 20 Jul 2023
- 21:04:09 +0000
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-Date: Thu, 20 Jul 2023 17:03:53 -0400
-Message-ID: <20230720210353.214385-4-rodrigo.vivi@intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230720210353.214385-1-rodrigo.vivi@intel.com>
-References: <20230720210353.214385-1-rodrigo.vivi@intel.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0202.namprd03.prod.outlook.com
- (2603:10b6:a03:2ef::27) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="727849597"
+X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="727849597"
+Received: from sdene1-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.32.238])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 14:05:25 -0700
+Date: Thu, 20 Jul 2023 23:05:22 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Message-ID: <ZLmhkrGRUv5VdCfv@ashyti-mobl2.lan>
+References: <20230720164454.757075-1-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CY8PR11MB6892:EE_
-X-MS-Office365-Filtering-Correlation-Id: e9ede7b3-9dbd-4776-b6ff-08db8964dc8b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xl6t5khNKDxjev1PWHIVLDi30XDx4jYzFAcuyKSizyYV/bU0TGOX7Tn2SY8ESHZP8Uja6q1ARdwv2zas3m1B+dK123IxtByItlCewN5TRDv0b9W7uBKzD6+L8ke5YWjM3z270wxgVXmrGmgG8kCc1P9w8bP6CgoOX6P5rBt7Htcrh9wAN5ew8KVe8Ztpa5Ed7jDAgoEPf28FcUnDok8BCY/Aoq/N2GWTf6ONJhSuY4aHhrdQf53Mn2mGbWfNP4L4cKo6B64acyR4VrQCIYdhczNDBZv+xv/FYGu/9Dus/oALrEtaRmKAYkujYUnPMMKr+mp/RSJdSabungvQlaK6OjwTdL5eWHLKKFLduRUh6gyzu9MRV4/u9EulB3hUBg6mW3A9Xc2YN8utpoudF2QLzMy8sMCDe75yphAtOuCUmATlBy/RkUfzn2AFYPS+4JZujrKjMw5c3T37wyOOT5RngMEMOHPnP6MFOS7dZcOwaAyJDFH1F0pRtMBVxL2e1qOWvd8XmLPHMGrhxVKg/H9ycvrxgSagKsDSENILG4AdomD9Jtz8PgdD5zwUmljME9khpLbsJITNe+3V7PD3iEyeFvyU56ln/zzcHiWtIkK6fWQcSr5i8fA0sHSIbSSkmlW7uQPBQVz1Hoq169w8/oP4hQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(366004)(39860400002)(396003)(376002)(136003)(451199021)(38100700002)(2616005)(1076003)(26005)(186003)(107886003)(6506007)(8936002)(83380400001)(66946007)(66476007)(316002)(6916009)(4326008)(66556008)(8676002)(5660300002)(41300700001)(6512007)(6486002)(6666004)(4744005)(478600001)(54906003)(2906002)(82960400001)(36756003)(86362001)(44832011)(42413004)(32563001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?62d8RlbMVGEWZaZ74N4iVdfBiNaCbZiI4s3oRfJ5ZP+8TKxWl8xGQLuMbTqb?=
- =?us-ascii?Q?ZYodAmTZRlRL/tk5kNHh4r07snmg7gapK8+xyJPkspSdG9rve3zwpcraO30L?=
- =?us-ascii?Q?8PGJHBtQ8xbmT0ChLVrfax+dAUekFhgMgv7iQ9PdxB5XdBQ5x2l91VFpuTKy?=
- =?us-ascii?Q?q1mqOlbA5YrAwLaL67CE+fMam+mVaUlKWRhHztFKJi59hGbtQkiswMPLhdhF?=
- =?us-ascii?Q?2RciTL2al1R36OBjyiyES+7w9fZpg7LBv+CEDzbFCOPaPRd9D79HqrnQT5gK?=
- =?us-ascii?Q?d7aQ7UCZZBvaqKls4dUV8x6eML8jy0yDCszwyXPv3iam91BbW/Vf9JMakd2s?=
- =?us-ascii?Q?4o2YcDBI/QY685GPHvIltT2xyyPuJK2cT/CxtwVXI+5prMqj3seISuMP/S5A?=
- =?us-ascii?Q?4P5jhy+UUrU3OatoI7JUQaYSt+03trTS+vwFyh4SWeq3b8H+rNVxsNKfFwNR?=
- =?us-ascii?Q?e1xvq7OVrfadWvYU8RkoOC/qNaLgWiH7JmRnOplIjNzqXijwxzz7xloLDwOu?=
- =?us-ascii?Q?ORMddUdjeyJzt/uW03lYLWq2b//H5I1UwZo0BFvsgY26hnRtFiAGZ8qMMPaG?=
- =?us-ascii?Q?mx5sYotCL3Whd9rB7Pcno/3VAq7Z+iC3dSTerpGCTic0vzZlY1/YyiSkvfn6?=
- =?us-ascii?Q?UvYvmXIBipBqt0pMj04AWLa30vlUPek2N8E1h8nAuVTHrBgCijiMdkpM7tma?=
- =?us-ascii?Q?I11sqxCS/N/e/QXI8JYMQMdjOrW/7d182IN1dL7J9FzzSwAQEyP8TTpF/Viv?=
- =?us-ascii?Q?flZNQ03ef1ZNJxHUfKYcJUoYjXjo3g1uQdwtv77l3GRW1vImazyEnptV99aI?=
- =?us-ascii?Q?mWSvLrnwVjka/g6LiG1qxAL+Bi27c/kWdRa5+ICbJeF/Ralr25vgPE0pvk+v?=
- =?us-ascii?Q?cg9ShQPtSLLUTSeTTYlqOiKdsN6+E0tdLR/EbaCYPuZiTETRbknPdD2cfTBO?=
- =?us-ascii?Q?UUexhGpusdhqYbJxkpgmC4xmj+218UYGsLRG/MZiSkdshA0giextBpATQOeQ?=
- =?us-ascii?Q?0O2uIhVhxFufvmQIK/8dWEKG9T94ghrjcWD55dCzo1xLKYPjOSOyDpc+Sw26?=
- =?us-ascii?Q?S0YMbjImCI9c6Icrjk7Yfw6vCMpka0eLRYZy0HRKljJWdJ0Ee5axjPeYnhrw?=
- =?us-ascii?Q?OCGP9I0sL1j+zUp3Q8M0JVYxGZL0hvOIfpQdsZmwVp8xdbcA2tUAGVwyGcsY?=
- =?us-ascii?Q?BGRJ1c7UoZP7ToN4Y4HI2qBpL31atfP8K+ExFURKarMn3t5LzV6LHhc3mI5X?=
- =?us-ascii?Q?AdrqVrkv7Q4LioVyryvcaynBl64S5aQscAafpSUW20DSOLTuHpd0eF84balO?=
- =?us-ascii?Q?T5ddTokrJ6KWRRtiF53uGgl4Oke3lVCZJYjlQME5ML/5fR/ZRhM3yJ5uw6Qc?=
- =?us-ascii?Q?ax3Wh2gKQgwvSmoGJYTqAv5icHSvm3KOraVfecvnokZ8B4O85VKk+7Gu9mlA?=
- =?us-ascii?Q?KEUUo/SId/DXyu7RcUUClpQCewZniGKWgcSGWH+h88FBeQ1yonKxkRdZss74?=
- =?us-ascii?Q?j3G0PU1tSO74RqjYQReXvKkaolSaxV5HmCwITb0uTp/q5qyFnh9R5GM11QDf?=
- =?us-ascii?Q?WCbc38Lk1rCS5D5MwDoJ/y6iZJKiEPElt4VRlGJ/w5Osbq9W/Yg1XmGNWhfe?=
- =?us-ascii?Q?jw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9ede7b3-9dbd-4776-b6ff-08db8964dc8b
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2023 21:04:09.4127 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9tVtY8SB9sWwRVTsVjznfIR6EoZSCBieOFk0XuSNzVfnPLqU/oArhnHwIt+YlBWZixHZ/6WRmkgFFzjc5e2IqQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6892
-X-OriginatorOrg: intel.com
-Subject: [Intel-gfx] [PATCH 4/4] drm/xe: Only init runtime PM after all
- d3cold config is in place.
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230720164454.757075-1-andi.shyti@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 0/9] Update AUX invalidation sequence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,37 +58,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ dri-evel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, linux-stable <stable@vger.kernel.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We cannot allow runtime pm suspend after we configured the
-d3cold capable and threshold.
+Ops... sorry... I am realizing that I sent again V6... please
+ignore this series!
 
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_pm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Andi
 
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 73bcb76c2d42..366ee446af38 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -152,10 +152,12 @@ void xe_pm_init(struct xe_device *xe)
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 
- 	drmm_mutex_init(&xe->drm, &xe->d3cold.lock);
--	xe_pm_runtime_init(xe);
-+
- 	xe->d3cold.capable = xe_pm_pci_d3cold_capable(pdev);
- 	xe_device_sysfs_init(xe);
- 	xe_pm_set_vram_threshold(xe, DEFAULT_VRAM_THRESHOLD);
-+
-+	xe_pm_runtime_init(xe);
- }
- 
- void xe_pm_runtime_fini(struct xe_device *xe)
--- 
-2.41.0
-
+On Thu, Jul 20, 2023 at 06:44:45PM +0200, Andi Shyti wrote:
+> Hi,
+> 
+> as there are new hardware directives, we need a little adaptation
+> for the AUX invalidation sequence.
+> 
+> In this version we support all the engines affected by this
+> change.
+> 
+> The stable backport has some challenges because the original
+> patch that this series fixes has had more changes in between.
+> 
+> This patch is slowly exploding with code refactorings and
+> features added and fixed.
+> 
+> Thanks a lot Nirmoy, Andrzej and Matt for your review and for the
+> fruitful discussions!
+> 
+> Thanks,
+> Andi
+> 
+> Changelog:
+> =========
+> v5 -> v6
+>  - Fixed ccs flush in the engines VE and BCS. They are sent as a
+>    separate command instead of added in the pipe control.
+>  - Separated the CCS flusing in the pipe control patch with the
+>    quiescing of the memory. They were meant to be on separate
+>    patch already in the previous verision, but apparently I
+>    squashed them by mistake.
+> 
+> v4 -> v5
+>  - The AUX CCS is added as a device property instead of checking
+>    against FLAT CCS. This adds the new HAS_AUX_CCS check
+>    (Patch 2, new).
+>  - little and trivial refactoring here and there.
+>  - extended the flags{0,1}/bit_group_{0,1} renaming to other
+>    functions.
+>  - Created an intel_emit_pipe_control_cs() wrapper for submitting
+>    the pipe control.
+>  - Quiesce memory for all the engines, not just RCS (Patch 6,
+>    new).
+>  - The PIPE_CONTROL_CCS_FLUSH is added to all the engines.
+>  - Remove redundant EMIT_FLUSH_CCS mode flag.
+>  - Remove unnecessary NOOPs from the command streamer for
+>    invalidating the CCS table.
+>  - Use INVALID_MMIO_REG and gen12_get_aux_inv_reg() instad of
+>    __MMIO(0) and reg.reg.
+>  - Remove useless wrapper and just use gen12_get_aux_inv_reg().
+> 
+> v3 -> v4
+>  - A trivial patch 3 is added to rename the flags with
+>    bit_group_{0,1} to align with the datasheet naming.
+>  - Patch 4 fixes a confusion I made where the CCS flag was
+>    applied to the wrong bit group.
+> 
+> v2 -> v3
+>  - added r-b from Nirmoy in patch 1 and 4.
+>  - added patch 3 which enables the ccs_flush in the control pipe
+>    for mtl+ compute and render engines.
+>  - added redundant checks in patch 2 for enabling the EMIT_FLUSH
+>    flag.
+> 
+> v1 -> v2
+>  - add a clean up preliminary patch for the existing registers
+>  - add support for more engines
+>  - add the Fixes tag
+> 
+> Andi Shyti (7):
+>   drm/i915/gt: Cleanup aux invalidation registers
+>   drm/i915: Add the has_aux_ccs device property
+>   drm/i915/gt: Rename flags with bit_group_X according to the datasheet
+>   drm/i915/gt: Refactor intel_emit_pipe_control_cs() in a single
+>     function
+>   drm/i915/gt: Ensure memory quiesced before invalidation for all
+>     engines
+>   drm/i915/gt: Enable the CCS_FLUSH bit in the pipe control
+>   drm/i915/gt: Support aux invalidation on all engines
+> 
+> Jonathan Cavitt (2):
+>   drm/i915/gt: Ensure memory quiesced before invalidation
+>   drm/i915/gt: Poll aux invalidation register bit on invalidation
+> 
+>  drivers/gpu/drm/i915/gt/gen8_engine_cs.c     | 222 +++++++++++++------
+>  drivers/gpu/drm/i915/gt/gen8_engine_cs.h     |  21 +-
+>  drivers/gpu/drm/i915/gt/intel_gpu_commands.h |   2 +
+>  drivers/gpu/drm/i915/gt/intel_gt_regs.h      |  16 +-
+>  drivers/gpu/drm/i915/gt/intel_lrc.c          |  17 +-
+>  drivers/gpu/drm/i915/i915_drv.h              |   1 +
+>  drivers/gpu/drm/i915/i915_pci.c              |   5 +-
+>  drivers/gpu/drm/i915/intel_device_info.h     |   1 +
+>  8 files changed, 186 insertions(+), 99 deletions(-)
+> 
+> -- 
+> 2.40.1
