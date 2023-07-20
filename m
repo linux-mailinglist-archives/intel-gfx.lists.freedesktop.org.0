@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29BF175B50D
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 18:54:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9A575B50E
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 18:54:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1A4110E5E2;
-	Thu, 20 Jul 2023 16:54:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACB2110E5E7;
+	Thu, 20 Jul 2023 16:54:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 660B110E5E2;
- Thu, 20 Jul 2023 16:54:36 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D23C310E5E2;
+ Thu, 20 Jul 2023 16:54:38 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6441AAADEC;
- Thu, 20 Jul 2023 16:54:36 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D1371AADEC;
+ Thu, 20 Jul 2023 16:54:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Andrzej Hajda" <andrzej.hajda@intel.com>
-Date: Thu, 20 Jul 2023 16:54:36 -0000
-Message-ID: <168987207640.20753.927215874647158854@emeril.freedesktop.org>
+Date: Thu, 20 Jul 2023 16:54:38 -0000
+Message-ID: <168987207885.20752.1017465803920330716@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230719150739.1505220-1-andrzej.hajda@intel.com>
 In-Reply-To: <20230719150739.1505220-1-andrzej.hajda@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_use_direct_alias_for_i915_in_requests_=28rev2?=
- =?utf-8?q?=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_use_direct_alias_for_i915_in_requests_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,16 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-b6ff0087160e drm/i915: use direct alias for i915 in requests
--:138: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#138: FILE: drivers/gpu/drm/i915/gt/intel_execlists_submission.c:2721:
-+	GEM_BUG_ON(intel_vgpu_active(rq->i915));
-
--:160: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#160: FILE: drivers/gpu/drm/i915/gt/intel_migrate.c:378:
-+	GEM_BUG_ON(GRAPHICS_VER(rq->i915) < 8);
-
-total: 0 errors, 2 warnings, 0 checks, 310 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
