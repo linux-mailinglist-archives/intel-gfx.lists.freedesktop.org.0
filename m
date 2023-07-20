@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F2EF75AA90
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 11:24:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11EAB75AABD
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 11:29:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68A2B10E0BC;
-	Thu, 20 Jul 2023 09:24:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 791C010E58B;
+	Thu, 20 Jul 2023 09:29:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 460F310E0A3;
- Thu, 20 Jul 2023 09:24:10 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4D2410E58B;
+ Thu, 20 Jul 2023 09:29:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689845049; x=1721381049;
+ t=1689845349; x=1721381349;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=N3D6G6sriGY+FmslOWAmVIp3XfpnvVnBLCZ5di+d1gM=;
- b=gC6t3x4ivZIjsnhomfYBvEpK+RrLshtOHVT9WTRN90zvqZNmPN7fP2wC
- SJUcXvC0btEMNw+yrpGvzfJ0oamhcLHY/pUWT0Kngk5ziWHnXeMDrAyZG
- tdQ30BBnsPUiGtHQJaj75xlcNByU6on4nuNFvfQg89IqfB2W4cON4QN6r
- nFt8V5o/+gDoTWYwbsSa4tf4lR6TtiYuueo0CL15v3O/rCrx92XHiVrU3
- yb2hPc6rSP8WhH/6QTDq68DuBlyFZOYkKkfU+6HBlsESEzZBXy/DiyWLA
- GeaTB3xCMct3ig1Tlv+1u+K6BcW0zADskx3aKUnQZyoPhmKIWIgKCpkGP A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="356646643"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="356646643"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 02:24:08 -0700
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=LwyYG3kq73k6xlbMi77IIXREUaRBdAaGhm1/R2UVDMM=;
+ b=cXZff/b8OQXxlCvWv73q+Dk9o1lAJOGSzXZw/imM9hw3zv8n5HKP3dK/
+ eBFn2ayr22pvqq2YOruhweQG3SQTn/JlXsrktxw904Krt4so7A3m/6NE7
+ 7I+0WwIM+vc8ipgNcLM7s2/9DgwYeDnCMfng0i29Z9B1TmdXv+R7KTEUk
+ cHZxENBpM6oUcdP9QoVoYMNY7mvT8HK8v4pDVzkmjW0Hs4GFVChw9/i+5
+ oAg8zu6dnmUBDQ6tYgARYddnZXNmy5FRYA+Py0dPErjrSbmDuscJh2coV
+ yrmSSPQkdECEr9IJgcJQv5KiVO9EVE5RlKDhfSji3ueWZuGKqhy4+ofPR Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="370251306"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="370251306"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 02:29:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="867776054"
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="701561877"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="701561877"
 Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 02:24:08 -0700
-Date: Thu, 20 Jul 2023 12:24:04 +0300
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 02:29:07 -0700
+Date: Thu, 20 Jul 2023 12:29:04 +0300
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <ZLj9NArcFWXo3G5J@intel.com>
+Message-ID: <ZLj+YEpuQMDcogN4@intel.com>
 References: <20230713103346.1163315-1-ankit.k.nautiyal@intel.com>
- <20230713103346.1163315-8-ankit.k.nautiyal@intel.com>
+ <20230713103346.1163315-6-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230713103346.1163315-8-ankit.k.nautiyal@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 07/19] drm/i915/intel_cdclk: Add vdsc with
- bigjoiner constraints on min_cdlck
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230713103346.1163315-6-ankit.k.nautiyal@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 05/19] drm/i915/dp: Update Bigjoiner
+ interface bits for computing compressed bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,118 +64,45 @@ Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 13, 2023 at 04:03:34PM +0530, Ankit Nautiyal wrote:
-> As per Bsepc:49259, Bigjoiner BW check puts restriction on the
-> compressed bpp for a given CDCLK, pixelclock in cases where
-> Bigjoiner + DSC are used.
+On Thu, Jul 13, 2023 at 04:03:32PM +0530, Ankit Nautiyal wrote:
+> In Bigjoiner check for DSC, bigjoiner interface bits for DP for
+> DISPLAY > 13 is 36 (Bspec: 49259).
 > 
-> Currently compressed bpp is computed first, and it is ensured that
-> the bpp will work at least with the max CDCLK freq.
+> v2: Corrected Display ver to 13.
 > 
-> Since the CDCLK is computed later, lets account for Bigjoiner BW
-> check while calculating Min CDCLK.
+> v3: Follow convention for conditional statement. (Ville)
 > 
-> v2: Use pixel clock in the bw calculations. (Ville)
+> v4: Fix check for display ver. (Ville)
 > 
 > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 61 +++++++++++++++++-----
->  1 file changed, 47 insertions(+), 14 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 701909966545..788dba576294 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2533,6 +2533,51 @@ static int intel_planes_min_cdclk(const struct intel_crtc_state *crtc_state)
->  	return min_cdclk;
->  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 19768ac658ba..c1fd448d80e1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -802,8 +802,9 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
+>  	bits_per_pixel = min(bits_per_pixel, max_bpp_small_joiner_ram);
 >  
-> +static int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	int num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);
-> +	int min_cdclk = 0;
-> +
-> +	/*
-> +	 * When we decide to use only one VDSC engine, since
-> +	 * each VDSC operates with 1 ppc throughput, pixel clock
-> +	 * cannot be higher than the VDSC clock (cdclk)
-> +	 * If there 2 VDSC engines, then pixel clock can't be higher than
-> +	 * VDSC clock(cdclk) * 2 and so on.
-> +	 */
-> +	min_cdclk = max_t(int, min_cdclk,
-> +			  DIV_ROUND_UP(crtc_state->pixel_rate, num_vdsc_instances));
-> +
-> +	if (crtc_state->bigjoiner_pipes) {
-> +		int pixel_clock = crtc_state->hw.adjusted_mode.clock;
-> +
-> +		/*
-> +		 * According to Bigjoiner bw check:
-> +		 * compressed_bpp <= PPC * CDCLK * Big joiner Interface bits / Pixel clock
-> +		 *
-> +		 * We have already computed compressed_bpp, so now compute the min CDCLK that
-> +		 * is required to support this compressed_bpp.
-> +		 *
-> +		 * => CDCLK >= compressed_bpp * Pixel clock / (PPC * Bigjoiner Interface bits)
-> +		 *
-> +		 * Since PPC = 2 with bigjoiner
-> +		 * => CDCLK >= compressed_bpp * Pixel clock  / 2 * Bigjoiner Interface bits
-> +		 *
-> +		 * #TODO Bspec mentions to account for FEC overhead while using pixel clock.
-> +		 * Check if we need to use FEC overhead in the above calculations.
+>  	if (bigjoiner) {
+> +		int bigjoiner_interface_bits = DISPLAY_VER(i915) >= 14 ? 36 : 24;
+>  		u32 max_bpp_bigjoiner =
+> -			i915->display.cdclk.max_cdclk_freq * 48 /
+> +			i915->display.cdclk.max_cdclk_freq * 2 * bigjoiner_interface_bits /
 
-There is already some function used in intel_dp.c:
+Probably "num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);" again,
+instead of "2"? 
 
-intel_dp_mode_to_fec_clock(mode_clock) => Should you may be just use that one, to account FEC
-overhead?
-
-> +		 */
-> +		int bigjoiner_interface_bits = DISPLAY_VER(i915) > 13 ? 36 : 24;
-> +		int min_cdclk_bj = (crtc_state->dsc.compressed_bpp * pixel_clock) /
-> +				   (2 * bigjoiner_interface_bits);
-
-I would use "num_vdsc_instances" instead of 2, since we even get those explicitly.
-
-> +
-> +		min_cdclk = max(min_cdclk, min_cdclk_bj);
-> +	}
-> +
-> +	return min_cdclk;
-> +}
-> +
->  int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv =
-> @@ -2604,20 +2649,8 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
->  	/* Account for additional needs from the planes */
->  	min_cdclk = max(intel_planes_min_cdclk(crtc_state), min_cdclk);
->  
-> -	/*
-> -	 * When we decide to use only one VDSC engine, since
-> -	 * each VDSC operates with 1 ppc throughput, pixel clock
-> -	 * cannot be higher than the VDSC clock (cdclk)
-> -	 * If there 2 VDSC engines, then pixel clock can't be higher than
-> -	 * VDSC clock(cdclk) * 2 and so on.
-> -	 */
-> -	if (crtc_state->dsc.compression_enable) {
-> -		int num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);
-> -
-> -		min_cdclk = max_t(int, min_cdclk,
-> -				  DIV_ROUND_UP(crtc_state->pixel_rate,
-> -					       num_vdsc_instances));
-> -	}
-> +	if (crtc_state->dsc.compression_enable)
-> +		min_cdclk = max(min_cdclk, intel_vdsc_min_cdclk(crtc_state));
-
-
-With notes above taken care of:
+With that clarified, 
 
 Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
+>  			intel_dp_mode_to_fec_clock(mode_clock);
 >  
->  	/*
->  	 * HACK. Currently for TGL/DG2 platforms we calculate
+>  		bits_per_pixel = min(bits_per_pixel, max_bpp_bigjoiner);
 > -- 
 > 2.40.1
 > 
