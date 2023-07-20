@@ -1,51 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03E9C75AB3B
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 11:46:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B830575AB76
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jul 2023 11:52:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56F7A10E590;
-	Thu, 20 Jul 2023 09:46:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81CAE10E597;
+	Thu, 20 Jul 2023 09:51:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81E6F10E590
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 09:46:13 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44AB910E597
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 09:51:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689846373; x=1721382373;
+ t=1689846716; x=1721382716;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=qiSElw1iyjFE8VYKfi0AuJouT1txRLTGOj4XnveVeVk=;
- b=QZyicCislB/jbjckYJhNKC/diOwQk2bNFjrsoFPfKAUVzwiGEnhjp/yt
- E0kPYSyPRcXjH7SiXfshk4lV4KLnpfBaFA/X/yFhVeOn7MsxuIf2CMuel
- HJaCOzhFSUw4fVfHe/N+tFWMMCdjDQXaf3gAPhI+SqMuCTjWcJLfKKs4y
- pSvknw3PV+9LzIPPJthuxUHQxL7XcUxqUXHL4UPGgBZ7SyORwTSGLka9z
- OjM5YzfPeajE4fuvwGcjlHVtgs9lpyEYG5QvS+WBjhSK0iT34FgVJnFSX
- 4dYy+UxqmKaopHJvsNVvDD4vw1L67Bc6p0GehqPjdLew/nOND3UcsLAAr w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="365572293"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="365572293"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 02:46:12 -0700
+ bh=yE6nFKzEcbtDmVoJ6e3zovjG1cm9x2rlCyyRHz1WsrU=;
+ b=n3tALRqYscBSiP0MKLV3Nhhnc9u6EZjATJB5lwlGdIU+iN9q2HJCmlIg
+ MblGi8+GTa+VmR+djQJPNM0RRyWEpiMRcEsBcFB5fY+KGYNTd0PLdhdBT
+ E6UFw1w2XWo9uEdJhrWtS22fUYOEtuRLkqo/eguQO3QKo81PcXfu4RDqR
+ Sx/yWJ/PmzpKFQfWsWKWQb6e6ilLjbZRcPE/Yxas6+F5KqaS7ovHyAXp1
+ kjDoSlX7EcUqYMxwTt+92KGwsJjg5njy4xCb9rZEPinourrqWeohCU3Xr
+ vtQfty3Gf1ejX35h/rAPjbJEiy/YwJ6RA/z4jRbuseQxpHklDVK5XwSPK A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="397562442"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="397562442"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 02:51:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="838039856"
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="838039856"
-Received: from ctuohy-mobl1.ger.corp.intel.com (HELO [10.213.193.21])
- ([10.213.193.21])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 02:46:11 -0700
-Message-ID: <ae48594e-7ac1-9f0c-513d-ce95213bc5b7@linux.intel.com>
-Date: Thu, 20 Jul 2023 10:46:08 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="898223506"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; d="scan'208";a="898223506"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.47.94])
+ ([10.252.47.94])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 02:51:53 -0700
+Message-ID: <7cf774d1-626a-f440-543f-7d9daea287d5@linux.intel.com>
+Date: Thu, 20 Jul 2023 11:51:51 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
 Content-Language: en-US
 To: Andrzej Hajda <andrzej.hajda@intel.com>, intel-gfx@lists.freedesktop.org
 References: <20230719150739.1505220-1-andrzej.hajda@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
 In-Reply-To: <20230719150739.1505220-1-andrzej.hajda@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
@@ -68,11 +67,12 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 19/07/2023 16:07, Andrzej Hajda wrote:
+On 7/19/2023 5:07 PM, Andrzej Hajda wrote:
 > i915_request contains direct alias to i915, there is no point to go via
 > rq->engine->i915.
-> 
+>
 > Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
 > ---
 >   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c |  4 ++--
 >   drivers/gpu/drm/i915/gt/gen2_engine_cs.c       |  2 +-
@@ -92,7 +92,7 @@ On 19/07/2023 16:07, Andrzej Hajda wrote:
 >   drivers/gpu/drm/i915/selftests/i915_perf.c     |  2 +-
 >   drivers/gpu/drm/i915/selftests/igt_spinner.c   | 14 +++++++-------
 >   17 files changed, 42 insertions(+), 42 deletions(-)
-> 
+>
 > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 > index d3208a32561442..5a687a3686bd53 100644
 > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
@@ -498,15 +498,3 @@ On 19/07/2023 16:07, Andrzej Hajda wrote:
 >   		flags |= I915_DISPATCH_SECURE;
 >   	err = engine->emit_bb_start(rq, i915_vma_offset(vma), PAGE_SIZE, flags);
 >   
-
-Nice cleanup, thank you!
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Apparently was possible ever since 7307e91bfcd0 ("drm/i915: Do not 
-access rq->engine without a reference") which is funnily related to the 
-other story we are discussing last few days.
-
-Regards,
-
-Tvrtko
