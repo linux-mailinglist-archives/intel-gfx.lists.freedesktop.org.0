@@ -1,49 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E43F75D10B
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jul 2023 20:05:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46A8175D107
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Jul 2023 20:04:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63BE610E6E3;
-	Fri, 21 Jul 2023 18:05:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF9E210E6DF;
+	Fri, 21 Jul 2023 18:04:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9A8B10E6E1;
- Fri, 21 Jul 2023 18:05:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689962715; x=1721498715;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2ZqF3U1eErgTFPFgJWh/6ybWGKI3dikgMvv1F5KCPHM=;
- b=d5dzjeQkG+4acGTwaM+Xr5d/nWUQ7iJic/IdGrDteFEz6KORIZ2cWcEl
- lfVlWZW5VGNUJZw/NkxlLeBprCFkFJN3WgOjZBT31/V/nR5omG13zG5ZH
- peJtcWC2k8ZrhvOWzuZxuBHRRgf6QCDz+lK+AOFsqK6PUZjmBRDQwhPA0
- mOSijLJ1jWsoNAUjz6Ki9eiyUJOYVJMlu78SyBLcfy64rsIlyGaYyxBWS
- iiU3YcnH9+uMxznWEh+T/ZDNYZ1mlH0JKPMgDMnH7mwTXtFfoplHHaIfo
- dkMeOiG1OnuRLss8AipDo0v3wO7FCEkxD0gCq4QgzUZZRxfqiIS6Zr0Cd g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="430875075"
-X-IronPort-AV: E=Sophos;i="6.01,222,1684825200"; d="scan'208";a="430875075"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2023 11:05:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="838650970"
-X-IronPort-AV: E=Sophos;i="6.01,222,1684825200"; d="scan'208";a="838650970"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by fmsmga002.fm.intel.com with ESMTP; 21 Jul 2023 11:05:14 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 21 Jul 2023 11:03:49 -0700
-Message-Id: <20230721180349.1737284-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3C23810E6DF;
+ Fri, 21 Jul 2023 18:04:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3858DA00E6;
+ Fri, 21 Jul 2023 18:04:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/guc/slpc: Restore efficient freq
- earlier
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Date: Fri, 21 Jul 2023 18:04:46 -0000
+Message-ID: <168996268622.22547.8722724298638699490@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230721161514.818895-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20230721161514.818895-1-andi.shyti@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Update_AUX_invalidation_sequence_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,55 +40,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This should be done before the soft min/max frequencies are restored.
-When we disable the "Ignore efficient frequency" flag, GuC does not
-actually bring the requested freq down to RPn.
+== Series Details ==
 
-Specifically, this scenario-
+Series: Update AUX invalidation sequence (rev9)
+URL   : https://patchwork.freedesktop.org/series/119798/
+State : warning
 
-- ignore efficient freq set to true
-- reduce min to RPn (from efficient)
-- suspend
-- resume (includes GuC load, restore soft min/max, restore efficient freq)
-- validate min freq has been resored to RPn
+== Summary ==
 
-This will fail if we didn't first restore(disable, in this case) efficient
-freq flag before setting the soft min frequency.
+Error: dim checkpatch failed
+ab141e3c4e99 drm/i915/gt: Cleanup aux invalidation registers
+4a7a6c513e10 drm/i915: Add the gen12_needs_ccs_aux_inv helper
+db67d0fd13ac drm/i915/gt: Ensure memory quiesced before invalidation
+a84de84490f6 drm/i915/gt: Rename flags with bit_group_X according to the datasheet
+4aedc9da08c8 drm/i915/gt: Enable the CCS_FLUSH bit in the pipe control
+-:42: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#42: FILE: drivers/gpu/drm/i915/gt/intel_gpu_commands.h:302:
++#define   PIPE_CONTROL_CCS_FLUSH			(1<<13) /* MTL+ */
+                                 			  ^
 
-Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8736
-Fixes: 55f9720dbf23 ("drm/i915/guc/slpc: Provide sysfs for efficient freq")
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+total: 0 errors, 0 warnings, 1 checks, 20 lines checked
+e4bb89cf0d46 drm/i915/gt: Refactor intel_emit_pipe_control_cs() in a single function
+7aa349b212e8 drm/i915/gt: Ensure memory quiesced before invalidation for all engines
+-:7: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id 'af9e423a8aae', maybe rebased or not pulled?
+#7: 
+Commit af9e423a8aae ("drm/i915/gt: Ensure memory quiesced before
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-index ee9f83af7cf6..f16dff7c3185 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-@@ -743,6 +743,9 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
- 
- 	intel_guc_pm_intrmsk_enable(slpc_to_gt(slpc));
- 
-+	/* Set cached value of ignore efficient freq */
-+	intel_guc_slpc_set_ignore_eff_freq(slpc, slpc->ignore_eff_freq);
-+
- 	slpc_get_rp_values(slpc);
- 
- 	/* Handle the case where min=max=RPmax */
-@@ -765,9 +768,6 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
- 	/* Set cached media freq ratio mode */
- 	intel_guc_slpc_set_media_ratio_mode(slpc, slpc->media_ratio_mode);
- 
--	/* Set cached value of ignore efficient freq */
--	intel_guc_slpc_set_ignore_eff_freq(slpc, slpc->ignore_eff_freq);
--
- 	return 0;
- }
- 
--- 
-2.38.1
+total: 0 errors, 1 warnings, 0 checks, 51 lines checked
+9b21fb43f426 drm/i915/gt: Poll aux invalidation register bit on invalidation
+2c1f9af59e89 drm/i915/gt: Support aux invalidation on all engines
+
 
