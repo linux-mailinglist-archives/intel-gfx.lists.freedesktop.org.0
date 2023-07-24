@@ -2,48 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24F4275EC9D
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 09:36:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 073C675ECC6
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 09:53:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C36610E194;
-	Mon, 24 Jul 2023 07:36:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AABC10E1B5;
+	Mon, 24 Jul 2023 07:52:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C799110E194
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 07:36:51 +0000 (UTC)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>) id 1qNq7e-0008An-2V
- for intel-gfx@lists.freedesktop.org; Mon, 24 Jul 2023 09:36:50 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
- by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>) id 1qNq7d-001hiR-Dx
- for intel-gfx@lists.freedesktop.org; Mon, 24 Jul 2023 09:36:49 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
- (envelope-from <ukl@pengutronix.de>) id 1qNq7c-007Lkh-J4
- for intel-gfx@lists.freedesktop.org; Mon, 24 Jul 2023 09:36:48 +0200
-Date: Mon, 24 Jul 2023 09:36:48 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20230724073648.hjmu2ztfuau7zvdp@pengutronix.de>
-References: <20230721212133.271118-1-u.kleine-koenig@pengutronix.de>
- <168999615592.17723.14317445519700559147@emeril.freedesktop.org>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9814410E1C1;
+ Mon, 24 Jul 2023 07:52:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1690185171; x=1721721171;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=18HrS3rmE0LhoroiohHtBYV8bIE2JHOhM3MwP5aRQ30=;
+ b=VdfjLFJ59i6tjuBxd/Rzg27Fm45bJ0Q4TxitUImDtTE+UaVoCOli0qS3
+ ty6szC0aMdagWdDZ+WQbagnZd6mOzM0EDIWIhzJt6QvnlGYViHHkGxmYa
+ nAqiLOBGrKLLJtRwpb+tn5VBnQGV3SW0Jn/mvktlt+OmrN2HNJeTR8fqA
+ w9pBxHHohGUeYjNfLQpMD2ABzh+8TxOY+xiHwBLSyf7y30VVowB57GmiT
+ wGkimyONLOJWJ+22sggUSG3ZCbS0SNgJQKtfKU/4WfpmDLXiCjaInRlQt
+ YQXR+h8sJpx1X6PZDGSlnGcz+yeWIjPTCRoVtWp9gVYdAWFFHVz1Nqknt Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10780"; a="352273394"
+X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="352273394"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2023 00:52:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10780"; a="790878313"
+X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="790878313"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.14.115])
+ ([10.213.14.115])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2023 00:52:46 -0700
+Message-ID: <5db69384-06bc-6ec5-ced7-d5c5245a03c5@intel.com>
+Date: Mon, 24 Jul 2023 09:52:41 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="z2m5phgqnybldes2"
-Content-Disposition: inline
-In-Reply-To: <168999615592.17723.14317445519700559147@emeril.freedesktop.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Simplify_expression_=26to=5Fi915=28dev=29-=3Edrm?=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.13.0
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+References: <20230721161514.818895-1-andi.shyti@linux.intel.com>
+ <20230721161514.818895-3-andi.shyti@linux.intel.com>
+Content-Language: en-US
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230721161514.818895-3-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v8 2/9] drm/i915: Add the
+ gen12_needs_ccs_aux_inv helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,47 +70,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linux-stable <stable@vger.kernel.org>,
+ dri-evel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---z2m5phgqnybldes2
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On 21.07.2023 18:15, Andi Shyti wrote:
+> We always assumed that a device might either have AUX or FLAT
+> CCS, but this is an approximation that is not always true, e.g.
+> PVC represents an exception.
+>
+> Set the basis for future finer selection by implementing a
+> boolean gen12_needs_ccs_aux_inv() function that tells whether aux
+> invalidation is needed or not.
+>
+> Currently PVC is the only exception to the above mentioned rule.
+>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.8+
 
-On Sat, Jul 22, 2023 at 03:22:35AM -0000, Patchwork wrote:
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_121164v1_full, please notify your bug team to a=
-llow them
->   to document this new failure mode, which will reduce false positives in=
- CI.
 
-I don't think my patch results in regressions. But I fail to understand
-the indications reported by patchwork, so I might miss something.
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-Best regards
-Uwe
+Regards
+Andrzej
+> ---
+>   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 18 +++++++++++++++---
+>   1 file changed, 15 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> index 563efee055602..460c9225a50fc 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> @@ -165,6 +165,18 @@ static u32 preparser_disable(bool state)
+>   	return MI_ARB_CHECK | 1 << 8 | state;
+>   }
+>   
+> +static bool gen12_needs_ccs_aux_inv(struct intel_engine_cs *engine)
+> +{
+> +	if (IS_PONTEVECCHIO(engine->i915))
+> +		return false;
+> +
+> +	/*
+> +	 * so far platforms supported by i915 having
+> +	 * flat ccs do not require AUX invalidation
+> +	 */
+> +	return !HAS_FLAT_CCS(engine->i915);
+> +}
+> +
+>   u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv_reg)
+>   {
+>   	u32 gsi_offset = gt->uncore->gsi_offset;
+> @@ -267,7 +279,7 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+>   		else if (engine->class == COMPUTE_CLASS)
+>   			flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
+>   
+> -		if (!HAS_FLAT_CCS(rq->engine->i915))
+> +		if (gen12_needs_ccs_aux_inv(rq->engine))
+>   			count = 8 + 4;
+>   		else
+>   			count = 8;
+> @@ -285,7 +297,7 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+>   
+>   		cs = gen8_emit_pipe_control(cs, flags, LRC_PPHWSP_SCRATCH_ADDR);
+>   
+> -		if (!HAS_FLAT_CCS(rq->engine->i915)) {
+> +		if (gen12_needs_ccs_aux_inv(rq->engine)) {
+>   			/* hsdes: 1809175790 */
+>   			cs = gen12_emit_aux_table_inv(rq->engine->gt, cs,
+>   						      GEN12_CCS_AUX_INV);
+> @@ -307,7 +319,7 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
+>   	if (mode & EMIT_INVALIDATE) {
+>   		cmd += 2;
+>   
+> -		if (!HAS_FLAT_CCS(rq->engine->i915) &&
+> +		if (gen12_needs_ccs_aux_inv(rq->engine) &&
+>   		    (rq->engine->class == VIDEO_DECODE_CLASS ||
+>   		     rq->engine->class == VIDEO_ENHANCEMENT_CLASS)) {
+>   			aux_inv = rq->engine->mask &
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---z2m5phgqnybldes2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmS+Kg8ACgkQj4D7WH0S
-/k6MTggAtoSWlMOkdZR6GHSyyv4OLuEUBGHwgSxfwhxASKcadLlq9Xmt/9Is5ZGA
-ngnq5rvQb3ELCBw4A13feYAvmUYwwP6wFfpoPZe6pY8sNGqXGZtvoAxrHFzofIoX
-W5VGblDG5J5Vq27wudKwM6j+0FWO8cvhFbxarX89zvwh+HUQxspBgculv5Wqe59d
-PoquuBOXw/uQkMXshhaXU12Nai7Wl8PXo0icS7y+RZvVRQrLH5VzsFDt7wuZ9CCU
-tDucnZE6PnXVlGnMspWXhpL1L5LMruQKCGq1EK16UK85gEcVxKhL7UDI6gTnm/XC
-c8BagH/P17CzHQw7x6793p0hVvfX2g==
-=AcXo
------END PGP SIGNATURE-----
-
---z2m5phgqnybldes2--
