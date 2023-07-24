@@ -1,55 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2600D75FC60
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 18:42:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F35C75FC6A
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 18:44:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F139B10E0D1;
-	Mon, 24 Jul 2023 16:42:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 167F910E339;
+	Mon, 24 Jul 2023 16:44:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B7E610E0D1
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 16:42:18 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1BDB10E339;
+ Mon, 24 Jul 2023 16:44:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690216938; x=1721752938;
+ t=1690217054; x=1721753054;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=F7Oj3em2skxp3ExIsLOrKyD0hE985uk7ft4E8TPKcgo=;
- b=dB1WMnQFXV8Ghp8pIXBEni9IzmJh06BGdAhtuSaT//N+rPq6n4hNy+Rq
- ruVuUBPdTRx0SjP5C7AxksnrNO0+bfsFpLmfV1hhD+8JYcExJh200HbDF
- pYS4XmPamZTV28mNkFKQFbd0qENUnYqHLVYzCCZUZPdUAnRMhGfMRN/J0
- 71uxBqdDAfxEY6LjMGlREelk6g2IEG2kPA3XR87cGa6OTAoGGjcFBv+WY
- Vq8EWKotYMIBfXXZuy2sUwj7P+qZz37pce6fwfypY5WAUR+bAEGwVdTbn
- s/zASEXp6onv9K/bIwDWigqApjOpohY8sG/RYfRgw/K1sfbbbmd5x1gpw g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="364953996"
-X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="364953996"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2023 09:42:12 -0700
+ mime-version:in-reply-to;
+ bh=lMaCEtlky6+G2Qml4d+2fh4hc1YJEldCNV0Yg/t8zMo=;
+ b=MUF9/S8xziIrwYRyjOhgwsBoRPTDzG1pX+onfQlfJi+xWmOEjmx9cK5m
+ UNP4JzrozE5LZSndxSnLkpwseVr5rDSrhtsqvpvsq93BPk2tOH6PcMwkR
+ SI6yKOU4oY8VAH3ACL5l5d4/sroot2UocpWZkZjh4XQ5AjV30ShzNJ8IC
+ TZsAJyhtuSR+aoWitfjSOMveuLMAhsjA/ByLnoTbWbrZI5KL+XOigGixD
+ WheTQnf+XKzZxBxl6sw39mGtZwMmwC87ir19s3v5Ni2UR8bf6lRav2aPJ
+ KIwQZ/2rbCHJorN2dBWhG2xwAs+WU/zyiEoXzLUK/B1AroVIM5p0eo0ww g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="370160609"
+X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="370160609"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2023 09:44:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="760866806"
-X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="760866806"
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="791028212"
+X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="791028212"
 Received: from gionescu-mobl2.ger.corp.intel.com (HELO intel.com)
  ([10.252.34.175])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2023 09:42:11 -0700
-Date: Mon, 24 Jul 2023 18:42:08 +0200
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2023 09:44:10 -0700
+Date: Mon, 24 Jul 2023 18:44:07 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <ZL6p4LgaPXHJl41m@ashyti-mobl2.lan>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Message-ID: <ZL6qV615GmktUhMG@ashyti-mobl2.lan>
 References: <7a036b88671312ee9adc01c74ef5b3376f690b76.1689619758.git.christophe.jaillet@wanadoo.fr>
- <168965198917.22205.16629208718496437915@emeril.freedesktop.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <168965198917.22205.16629208718496437915@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_an_error_handling_path_in_igt=5Fwrite=5Fhuge=28=29?=
+In-Reply-To: <7a036b88671312ee9adc01c74ef5b3376f690b76.1689619758.git.christophe.jaillet@wanadoo.fr>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix an error handling path in
+ igt_write_huge()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,25 +59,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: dri-devel@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Christophe,
 
-> Possible new issues
+> All error handling paths go to 'out', except this one. Be consistent and
+> also branch to 'out' here.
 > 
-> Here are the unknown changes that may have been introduced in
-> Patchwork_120867v1_full:
-> 
-> IGT changes
-> 
-> Possible regressions
-> 
->   • igt@gem_mmap_wc@write-gtt-read-wc:
->       □ shard-snb: PASS -> ABORT
+> Fixes: c10a652e239e ("drm/i915/selftests: Rework context handling in hugepages selftests")
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 
+Pushed to drm-intel-gt-next.
 
-This failure looks unrelated.
-
+Thanks,
 Andi
