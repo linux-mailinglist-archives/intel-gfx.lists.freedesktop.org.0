@@ -1,47 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5377975EE3C
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 10:48:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E193375EEB7
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 11:08:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A12610E079;
-	Mon, 24 Jul 2023 08:48:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35B6610E295;
+	Mon, 24 Jul 2023 09:08:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D870110E079;
- Mon, 24 Jul 2023 08:48:03 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C777310E294;
+ Mon, 24 Jul 2023 09:08:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690188484; x=1721724484;
+ t=1690189680; x=1721725680;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to;
- bh=z6WKrPOqccks9UznrP+SieFzma314ZrErRubJ8aZa4M=;
- b=eiiLMoygtMOD6xkuZTNT6EdxWCEUoinHM3hnTog674PZJBfVCZ6Tvz5O
- x14Irxjt4sew6n2kclLDVgjmWMv1VscM1P5A7WKPEP+14QxIxJDN4sJ/w
- Kp1/724BX4MOhdp9L+EF6xrNC+xtDkgh/JtiaJu8lVtD8WA71a0NSoVe4
- EiKrLWUOCul7raPxLHZlqzCnkuxA7/QerYzToFlcPve3H3sqPf0A1pyY+
- QFXnddQQwhvZop0HDpbozUn3q4YQ/nnRwFhLqKM7JoCJ88m8zk62Vz/WI
- /Dc1wKdtd56olYE37QApWHBt6//7n0KnaLj+GOPC7MQ+xhGuzFbreT+fS Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10780"; a="370987325"
+ bh=I58K0v9UqhRQ1cf0m06D7w6DlOunW6JSlGn5MyOsU2w=;
+ b=VfxRGl8BPoi9Tg06GbFjcmBJhQa5x3OfDcfhWhwC/UOdo03d63NTmdWZ
+ MEqmBHzaqXrWBstNX0X9VdBSMyEP9379l4RyHsO9482iO7MG+FvTTrrEu
+ 0HMQzBjlo6z3lDl35TEAoT6/JX+SsUywHjixtnAkLtJkbDix1q4eZpV4r
+ 05kTxyGifDNj+VcP5KOrsUvioYTWkdBn1HnBTI8UD855dxWfVHm2L6Sbd
+ 4lPL2vGDIv2LCUaE/OyT8khEYBUUjoz3FiL8TF9myykuU3n0vUCd6JHd5
+ Mrd9pBZpujnAml7f/zhCcQW30NexlW/FC5kBsziK+hM5QeFfgBGE+1F3S w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10780"; a="431185441"
 X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; 
- d="scan'208,217";a="370987325"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2023 01:48:02 -0700
+ d="scan'208,217";a="431185441"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2023 02:07:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10780"; a="972186313"
+X-IronPort-AV: E=McAfee;i="6600,9927,10780"; a="839377225"
 X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; 
- d="scan'208,217";a="972186313"
+ d="scan'208,217";a="839377225"
 Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.58.138])
  ([10.252.58.138])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2023 01:47:59 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2023 02:07:56 -0700
 Content-Type: multipart/alternative;
- boundary="------------0TcQzCjP5LPb49uCYPIo1bTL"
-Message-ID: <258e5c3a-a668-1178-00b1-ae197a35c79e@linux.intel.com>
-Date: Mon, 24 Jul 2023 10:47:56 +0200
+ boundary="------------Oh5agQrCsvbftU3HoNcxmD09"
+Message-ID: <dc09292f-e2e8-c800-b39e-99f5364a8a76@linux.intel.com>
+Date: Mon, 24 Jul 2023 11:07:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
@@ -53,11 +53,11 @@ To: Andi Shyti <andi.shyti@linux.intel.com>,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>,
  Nirmoy Das <nirmoy.das@intel.com>, Andrzej Hajda <andrzej.hajda@intel.com>
 References: <20230721161514.818895-1-andi.shyti@linux.intel.com>
- <20230721161514.818895-6-andi.shyti@linux.intel.com>
+ <20230721161514.818895-7-andi.shyti@linux.intel.com>
 From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230721161514.818895-6-andi.shyti@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v8 5/9] drm/i915/gt: Enable the CCS_FLUSH
- bit in the pipe control
+In-Reply-To: <20230721161514.818895-7-andi.shyti@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v8 6/9] drm/i915/gt: Refactor
+ intel_emit_pipe_control_cs() in a single function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,128 +77,246 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 This is a multi-part message in MIME format.
---------------0TcQzCjP5LPb49uCYPIo1bTL
+--------------Oh5agQrCsvbftU3HoNcxmD09
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+Hi  Andi,
 
 On 7/21/2023 6:15 PM, Andi Shyti wrote:
-> Enable the CCS_FLUSH bit 13 in the control pipe for render and
-> compute engines in platforms starting from Meteor Lake (BSPEC
-> 43904 and 47112).
+> Just a trivial refactoring for reducing the number of code
+> duplicate. This will come at handy in the next commits.
 >
-> Fixes: 972282c4cf24 ("drm/i915/gen12: Add aux table invalidate for all engines")
+> Meantime, propagate the error to the above layers if we fail to
+> emit the pipe control.
+>
 > Signed-off-by: Andi Shyti<andi.shyti@linux.intel.com>
-> Cc: Jonathan Cavitt<jonathan.cavitt@intel.com>
-> Cc: Nirmoy Das<nirmoy.das@intel.com>
 > Cc:<stable@vger.kernel.org>  # v5.8+
-
-|Reviewed-by: Nirmoy Das <nirmoy.das@intel.com> |
-
 > ---
->   drivers/gpu/drm/i915/gt/gen8_engine_cs.c     | 7 +++++++
->   drivers/gpu/drm/i915/gt/intel_gpu_commands.h | 1 +
->   2 files changed, 8 insertions(+)
+>   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 47 +++++++++++++-----------
+>   1 file changed, 26 insertions(+), 21 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> index 5d2175e918dd2..139a7e69f5c4d 100644
+> index 139a7e69f5c4d..5e19b45a5cabe 100644
 > --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
 > +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> @@ -230,6 +230,13 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+> @@ -7,6 +7,7 @@
+>   #include "i915_drv.h"
+>   #include "intel_engine_regs.h"
+>   #include "intel_gpu_commands.h"
+> +#include "intel_gt_print.h"
+>   #include "intel_lrc.h"
+>   #include "intel_ring.h"
 >   
->   		bit_group_0 |= PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
+> @@ -189,23 +190,30 @@ u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv
+>   	return cs;
+>   }
 >   
-> +		/*
-> +		 * When required, in MTL and beyond platforms we
-> +		 * need to set the CCS_FLUSH bit in the pipe control
-> +		 */
-> +		if (GRAPHICS_VER_FULL(rq->i915) >= IP_VER(12, 70))
-> +			bit_group_0 |= PIPE_CONTROL_CCS_FLUSH;
+> +static int gen12_emit_pipe_control_cs(struct i915_request *rq, u32 bit_group_0,
+> +				      u32 bit_group_1, u32 offset)
+> +{
+> +	u32 *cs;
 > +
->   		bit_group_1 |= PIPE_CONTROL_TILE_CACHE_FLUSH;
->   		bit_group_1 |= PIPE_CONTROL_FLUSH_L3;
->   		bit_group_1 |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> index 5d143e2a8db03..5df7cce23197c 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> @@ -299,6 +299,7 @@
->   #define   PIPE_CONTROL_QW_WRITE				(1<<14)
->   #define   PIPE_CONTROL_POST_SYNC_OP_MASK                (3<<14)
->   #define   PIPE_CONTROL_DEPTH_STALL			(1<<13)
-> +#define   PIPE_CONTROL_CCS_FLUSH			(1<<13) /* MTL+ */
->   #define   PIPE_CONTROL_WRITE_FLUSH			(1<<12)
->   #define   PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH	(1<<12) /* gen6+ */
->   #define   PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE	(1<<11) /* MBZ on ILK */
---------------0TcQzCjP5LPb49uCYPIo1bTL
+> +	cs = intel_ring_begin(rq, 6);
+> +	if (IS_ERR(cs))
+> +		return PTR_ERR(cs);
+> +
+> +	cs = gen12_emit_pipe_control(cs, bit_group_0, bit_group_1,
+> +				     LRC_PPHWSP_SCRATCH_ADDR);
+> +	intel_ring_advance(rq, cs);
+> +
+> +	return 0;
+> +}
+> +
+>   static int mtl_dummy_pipe_control(struct i915_request *rq)
+>   {
+>   	/* Wa_14016712196 */
+>   	if (IS_MTL_GRAPHICS_STEP(rq->engine->i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(rq->engine->i915, P, STEP_A0, STEP_B0)) {
+> -		u32 *cs;
+> -
+> -		/* dummy PIPE_CONTROL + depth flush */
+> -		cs = intel_ring_begin(rq, 6);
+> -		if (IS_ERR(cs))
+> -			return PTR_ERR(cs);
+> -		cs = gen12_emit_pipe_control(cs,
+> -					     0,
+> -					     PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+> -					     LRC_PPHWSP_SCRATCH_ADDR);
+> -		intel_ring_advance(rq, cs);
+> -	}
+> +	    IS_MTL_GRAPHICS_STEP(rq->engine->i915, P, STEP_A0, STEP_B0))
+> +		return gen12_emit_pipe_control_cs(rq, 0,
+> +					PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+> +					LRC_PPHWSP_SCRATCH_ADDR);
+
+Don't think this will get backported to 5.8+. I think mtl introduced 
+after that.
+
+If that is not an issue for rest of the series and then
+
+|Reviewed-by: Nirmoy Das <nirmoy.das@intel.com> Regards, Nirmoy |
+
+
+>   
+>   	return 0;
+>   }
+> @@ -222,7 +230,6 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+>   		u32 bit_group_0 = 0;
+>   		u32 bit_group_1 = 0;
+>   		int err;
+> -		u32 *cs;
+>   
+>   		err = mtl_dummy_pipe_control(rq);
+>   		if (err)
+> @@ -256,13 +263,11 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+>   		else if (engine->class == COMPUTE_CLASS)
+>   			bit_group_1 &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
+>   
+> -		cs = intel_ring_begin(rq, 6);
+> -		if (IS_ERR(cs))
+> -			return PTR_ERR(cs);
+> -
+> -		cs = gen12_emit_pipe_control(cs, bit_group_0, bit_group_1,
+> -					     LRC_PPHWSP_SCRATCH_ADDR);
+> -		intel_ring_advance(rq, cs);
+> +		err = gen12_emit_pipe_control_cs(rq, bit_group_0, bit_group_1,
+> +						 LRC_PPHWSP_SCRATCH_ADDR);
+> +		if (err)
+> +			gt_warn(engine->gt,
+> +				"Failed to emit flush pipe control\n");
+>   	}
+>   
+>   	if (mode & EMIT_INVALIDATE) {
+--------------Oh5agQrCsvbftU3HoNcxmD09
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body>
-    <p><br>
+    <p>Hi  Andi,<br>
     </p>
     <div class="moz-cite-prefix">On 7/21/2023 6:15 PM, Andi Shyti wrote:<br>
     </div>
     <blockquote type="cite"
-      cite="mid:20230721161514.818895-6-andi.shyti@linux.intel.com">
-      <pre class="moz-quote-pre" wrap="">Enable the CCS_FLUSH bit 13 in the control pipe for render and
-compute engines in platforms starting from Meteor Lake (BSPEC
-43904 and 47112).
+      cite="mid:20230721161514.818895-7-andi.shyti@linux.intel.com">
+      <pre class="moz-quote-pre" wrap="">Just a trivial refactoring for reducing the number of code
+duplicate. This will come at handy in the next commits.
 
-Fixes: 972282c4cf24 ("drm/i915/gen12: Add aux table invalidate for all engines")
+Meantime, propagate the error to the above layers if we fail to
+emit the pipe control.
+
 Signed-off-by: Andi Shyti <a class="moz-txt-link-rfc2396E" href="mailto:andi.shyti@linux.intel.com">&lt;andi.shyti@linux.intel.com&gt;</a>
-Cc: Jonathan Cavitt <a class="moz-txt-link-rfc2396E" href="mailto:jonathan.cavitt@intel.com">&lt;jonathan.cavitt@intel.com&gt;</a>
-Cc: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a>
-Cc: <a class="moz-txt-link-rfc2396E" href="mailto:stable@vger.kernel.org">&lt;stable@vger.kernel.org&gt;</a> # v5.8+</pre>
-    </blockquote>
-    <br>
-    <pre class="moz-quote-pre" wrap=""><code style="padding: 0px; tab-size: 8;" class="hljs diff language-diff"><span class="hljs-addition">Reviewed-by: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a>
-</span></code></pre>
-    <blockquote type="cite"
-      cite="mid:20230721161514.818895-6-andi.shyti@linux.intel.com">
-      <pre class="moz-quote-pre" wrap="">
+Cc: <a class="moz-txt-link-rfc2396E" href="mailto:stable@vger.kernel.org">&lt;stable@vger.kernel.org&gt;</a> # v5.8+
 ---
- drivers/gpu/drm/i915/gt/gen8_engine_cs.c     | 7 +++++++
- drivers/gpu/drm/i915/gt/intel_gpu_commands.h | 1 +
- 2 files changed, 8 insertions(+)
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 47 +++++++++++++-----------
+ 1 file changed, 26 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-index 5d2175e918dd2..139a7e69f5c4d 100644
+index 139a7e69f5c4d..5e19b45a5cabe 100644
 --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
 +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-@@ -230,6 +230,13 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+@@ -7,6 +7,7 @@
+ #include "i915_drv.h"
+ #include "intel_engine_regs.h"
+ #include "intel_gpu_commands.h"
++#include "intel_gt_print.h"
+ #include "intel_lrc.h"
+ #include "intel_ring.h"
  
- 		bit_group_0 |= PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
+@@ -189,23 +190,30 @@ u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv
+ 	return cs;
+ }
  
-+		/*
-+		 * When required, in MTL and beyond platforms we
-+		 * need to set the CCS_FLUSH bit in the pipe control
-+		 */
-+		if (GRAPHICS_VER_FULL(rq-&gt;i915) &gt;= IP_VER(12, 70))
-+			bit_group_0 |= PIPE_CONTROL_CCS_FLUSH;
++static int gen12_emit_pipe_control_cs(struct i915_request *rq, u32 bit_group_0,
++				      u32 bit_group_1, u32 offset)
++{
++	u32 *cs;
 +
- 		bit_group_1 |= PIPE_CONTROL_TILE_CACHE_FLUSH;
- 		bit_group_1 |= PIPE_CONTROL_FLUSH_L3;
- 		bit_group_1 |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-index 5d143e2a8db03..5df7cce23197c 100644
---- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-@@ -299,6 +299,7 @@
- #define   PIPE_CONTROL_QW_WRITE				(1&lt;&lt;14)
- #define   PIPE_CONTROL_POST_SYNC_OP_MASK                (3&lt;&lt;14)
- #define   PIPE_CONTROL_DEPTH_STALL			(1&lt;&lt;13)
-+#define   PIPE_CONTROL_CCS_FLUSH			(1&lt;&lt;13) /* MTL+ */
- #define   PIPE_CONTROL_WRITE_FLUSH			(1&lt;&lt;12)
- #define   PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH	(1&lt;&lt;12) /* gen6+ */
- #define   PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE	(1&lt;&lt;11) /* MBZ on ILK */
++	cs = intel_ring_begin(rq, 6);
++	if (IS_ERR(cs))
++		return PTR_ERR(cs);
++
++	cs = gen12_emit_pipe_control(cs, bit_group_0, bit_group_1,
++				     LRC_PPHWSP_SCRATCH_ADDR);
++	intel_ring_advance(rq, cs);
++
++	return 0;
++}
++
+ static int mtl_dummy_pipe_control(struct i915_request *rq)
+ {
+ 	/* Wa_14016712196 */
+ 	if (IS_MTL_GRAPHICS_STEP(rq-&gt;engine-&gt;i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(rq-&gt;engine-&gt;i915, P, STEP_A0, STEP_B0)) {
+-		u32 *cs;
+-
+-		/* dummy PIPE_CONTROL + depth flush */
+-		cs = intel_ring_begin(rq, 6);
+-		if (IS_ERR(cs))
+-			return PTR_ERR(cs);
+-		cs = gen12_emit_pipe_control(cs,
+-					     0,
+-					     PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+-					     LRC_PPHWSP_SCRATCH_ADDR);
+-		intel_ring_advance(rq, cs);
+-	}
++	    IS_MTL_GRAPHICS_STEP(rq-&gt;engine-&gt;i915, P, STEP_A0, STEP_B0))
++		return gen12_emit_pipe_control_cs(rq, 0,
++					PIPE_CONTROL_DEPTH_CACHE_FLUSH,
++					LRC_PPHWSP_SCRATCH_ADDR);</pre>
+    </blockquote>
+    <p>Don't think this will get backported to 5.8+. I think mtl
+      introduced after that.</p>
+    <p>If that is not an issue for rest of the series and then <br>
+    </p>
+    <pre class="moz-quote-pre" wrap=""><code style="padding: 0px; tab-size: 8;" class="hljs diff language-diff">Reviewed-by: Nirmoy Das <a class="moz-txt-link-rfc2396E" href="mailto:nirmoy.das@intel.com">&lt;nirmoy.das@intel.com&gt;</a>
+
+Regards,
+Nirmoy
+</code></pre>
+    <p></p>
+    <p><br>
+    </p>
+    <blockquote type="cite"
+      cite="mid:20230721161514.818895-7-andi.shyti@linux.intel.com">
+      <pre class="moz-quote-pre" wrap="">
+ 
+ 	return 0;
+ }
+@@ -222,7 +230,6 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+ 		u32 bit_group_0 = 0;
+ 		u32 bit_group_1 = 0;
+ 		int err;
+-		u32 *cs;
+ 
+ 		err = mtl_dummy_pipe_control(rq);
+ 		if (err)
+@@ -256,13 +263,11 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+ 		else if (engine-&gt;class == COMPUTE_CLASS)
+ 			bit_group_1 &amp;= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
+ 
+-		cs = intel_ring_begin(rq, 6);
+-		if (IS_ERR(cs))
+-			return PTR_ERR(cs);
+-
+-		cs = gen12_emit_pipe_control(cs, bit_group_0, bit_group_1,
+-					     LRC_PPHWSP_SCRATCH_ADDR);
+-		intel_ring_advance(rq, cs);
++		err = gen12_emit_pipe_control_cs(rq, bit_group_0, bit_group_1,
++						 LRC_PPHWSP_SCRATCH_ADDR);
++		if (err)
++			gt_warn(engine-&gt;gt,
++				"Failed to emit flush pipe control\n");
+ 	}
+ 
+ 	if (mode &amp; EMIT_INVALIDATE) {
 </pre>
     </blockquote>
   </body>
 </html>
 
---------------0TcQzCjP5LPb49uCYPIo1bTL--
+--------------Oh5agQrCsvbftU3HoNcxmD09--
