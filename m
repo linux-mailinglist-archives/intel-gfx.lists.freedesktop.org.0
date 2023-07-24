@@ -1,149 +1,142 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 339F87601FF
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 00:05:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 136B976033B
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 01:38:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99EDB10E38B;
-	Mon, 24 Jul 2023 22:05:48 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A5CF10E373;
- Mon, 24 Jul 2023 22:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AB8D10E131;
+	Mon, 24 Jul 2023 23:38:46 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89A5110E077;
+ Mon, 24 Jul 2023 23:38:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690236347; x=1721772347;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=/UfBaksC60hLY+rIn+e1GDQS4VvF5x5UzdFEswpmLA0=;
- b=eJ+DSbr0JGX3jX2aAh2C9OT3U9adjWnNoNsgjoRhvCu+ArbiMmEKZ5fN
- /H0hUA3y6sV1ASADWLbR9NNEWltC9l8i/p1RLHZHIDg3EaLMYXtrHwLw5
- jU07sFPYANqglpvmrsVQ73pRsiCtiXkkWbR+KBCrOxMGkwKMl4n+I1eXk
- PbR+bX2VkiXnesDa51kx6zVG1Ygdy+KzWyXZF7VrauQDXg4MTrQIUGH5+
- AJonRWSbc6f/6FUSb2dH9iut3BPLUe7gNKzjut2Io2o2cGhJ6QmXArukW
- UWKnowLR51kNOeO/Ckan8KLoVYY6HDXgoXZfIDCoxIHLxhkedcsMRYH+r g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="366450454"
-X-IronPort-AV: E=Sophos;i="6.01,229,1684825200"; d="scan'208";a="366450454"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2023 15:05:46 -0700
+ t=1690241923; x=1721777923;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=CKTPV8UmnUNfN5fn0y/yoUxII6RzP/gLe3FQNLHDSXo=;
+ b=Eu3UKMFrd4PLqWlZyR6PoEjZdKK3PI2qHJ8dwdvN7OFU+84QR8UcWyxK
+ dr1lqdCbnF6tEZL5htPofIKYXY+qYEuMoWg+2RC9mhrFo+anoorIsvgmC
+ 8VTfrfx598ctCgopiRiskTZPO8J76mgqqXgRLkiacUvOcbC/63cDa45DO
+ BjavpUbVBeAOmayhp5TjrNH6/V65Zb2nGSggS8CxGAzg5MC8aeDYV1F4H
+ RnmVHJvndsnX/DmuaJcxDEoktnLyKV+W24EutdA/UFDst4uN85w6okJhV
+ qR19/OlfvvgH0JUpsEvWWaT7OMKkbLlZ2Eh7aiZIzA+vJ6wNyr+Ww1G5Y Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="398488621"
+X-IronPort-AV: E=Sophos;i="6.01,229,1684825200"; d="scan'208";a="398488621"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2023 16:38:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="760975767"
-X-IronPort-AV: E=Sophos;i="6.01,229,1684825200"; d="scan'208";a="760975767"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga001.jf.intel.com with ESMTP; 24 Jul 2023 15:05:46 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="816023321"
+X-IronPort-AV: E=Sophos;i="6.01,229,1684825200"; d="scan'208";a="816023321"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by FMSMGA003.fm.intel.com with ESMTP; 24 Jul 2023 16:38:42 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 24 Jul 2023 15:05:46 -0700
+ 15.1.2507.27; Mon, 24 Jul 2023 16:38:42 -0700
 Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Mon, 24 Jul 2023 15:05:46 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.44) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Mon, 24 Jul 2023 16:38:42 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Mon, 24 Jul 2023 15:05:45 -0700
+ 15.1.2507.27; Mon, 24 Jul 2023 16:38:42 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e4FY9or+of1LPVEkfQ9bSleoCugRAIWVUNWlwJihnXfVNxtPxy8XBkBRIvLxo4GUIA26mpkLKledKNKQerllH6sEROiN9rJHTjsbDTf6FG2nTkUotEh95mohLRhEOT3O9+3Ep4/y8tPSg8/j7487k5JNDX619QpcM3g3CZCiJbExWzBAY7Hln+ACHqiMNEInQCT+6iPvchGV7rDydR1Q5NpJFIvd3hdONJAA0fHJjJqlcriIT8UsfqUh7yqXWmMT5vr7xqbxzd4HXaUj6tZsr1HOCb3JbtTbvivxu/kcBWCevHtkJgxoQ9uy0co6CJ5yKcaXGLBUBq8SqNz/SFeNMg==
+ b=jeUHZtC0yrFjc0jGZe95tzLlrUHi0GOJc7ztR+GAlfQ87xi6k6GJ7V6o9pk24NyD8nW2IyEudoqk1yBx2V1I8jFq82/ribQvcMzVaRYy+am/3bEPH1dP8aDkE0aKDaCRS0U2P4ULyWWCwDwIbCgzNiDpLgLdVdZkMNLmIeszSEtB+h+/2W15nq6/gdoBF30iEV9C/PKlDFlzIm9sU9iCjmkm9wPGPhCFucCQZ0QDcszHYVW58xcompit4McN6VT4EThQYt5ZDb793ZWT6VMMHPmEWhwtCGIlagLk31xVrv0b/M4GehvlT8QgXbC9vAe0BrDW3c73L4UCZl+wM5gdUw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SFEGOMvVauNIvrBBlkMLSqpCzoowFBz7jD23AAFwFtM=;
- b=QievlVfg/02Fm1esoB662Hb7ZU8hLThFXZvGZpr6MoXO4iIg2XBkUdbUoNubxq3TXIE7VBTKPH0dY1SbMZfrql8cS5TP7hUsI2CYJbf28akGbiNvlKhA0Ltmkvqe3LvZZkti7KNrogdTvljX6/USzIVatE9cqtoM4KwtYWmouLu4uDmv78qSe1oMVRLgTfmL6SM6RbEja2AggOJGZ5+ejl1KQxQ3cUScQ9ONUIYN8/ZihJHkcwkYz7qa+vsCXIPsyY4xvIQQRFykdraHUF74M06K9lv4jWTi7Tf8Q0jqix2GY1HllHUG8BDa30B0qAYFbJbI3TkHC6WJiUf4uSI1eg==
+ bh=Mc9lZYZt5AK0SkkD+osKzw1cR1g/EitxwNJZpMvClkA=;
+ b=fZ0XSiGotXDIwV/BrphkNgJgbKcaQNVrfHWvfm5QSlojE9xnKGQbr+qYa/TT86IdgefSybOuEsjSyttPs0iqdOO5BpHu0qdOlaYUqk0BHkAIf9NCfH/5MW3Pc1vI3YiRSIbsF0rk1MqZF44qw4DHho8qk6cFPOYdG2K1Ds6s+IqKoMiQQIedSzweIHeBk2GXWwmOdAPLhy5A/NCyVkOHHqtxg00aR4laY/n9CoRGyU7UZ5yIEneP2Ef2+bs60H8DgCBarDU9lRwiYJH4JPK5pV5eED/H5RWQMCMlor58Z0XXmFvY9ZT+3+wZ4oZgYZC7fsKUDfdCLorv+7F/vlcEZQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
+Received: from DM4PR11MB5971.namprd11.prod.outlook.com (2603:10b6:8:5e::7) by
+ MN0PR11MB6159.namprd11.prod.outlook.com (2603:10b6:208:3c9::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.31; Mon, 24 Jul
+ 2023 23:38:39 +0000
+Received: from DM4PR11MB5971.namprd11.prod.outlook.com
+ ([fe80::8934:bc24:bf8a:2316]) by DM4PR11MB5971.namprd11.prod.outlook.com
+ ([fe80::8934:bc24:bf8a:2316%3]) with mapi id 15.20.6609.032; Mon, 24 Jul 2023
+ 23:38:39 +0000
+From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915: Avoid GGTT flushing on non-GGTT paths of
+ i915_vma_pin_iomap
+Thread-Index: AQHZvi5TT0l57VUd3EWmUkkassOdfq/JkgaA
+Date: Mon, 24 Jul 2023 23:38:38 +0000
+Message-ID: <DM4PR11MB5971B9E535C39E2C7F7314BC8702A@DM4PR11MB5971.namprd11.prod.outlook.com>
+References: <20230724125633.1490543-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20230724125633.1490543-1-tvrtko.ursulin@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by SA3PR11MB7977.namprd11.prod.outlook.com (2603:10b6:806:2f3::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.32; Mon, 24 Jul
- 2023 22:05:43 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::e290:81f2:3cc4:439a]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::e290:81f2:3cc4:439a%6]) with mapi id 15.20.6609.032; Mon, 24 Jul 2023
- 22:05:43 +0000
-Message-ID: <a44bdb61-7e37-9c01-1b52-ab9cb2190bfa@intel.com>
-Date: Mon, 24 Jul 2023 15:05:41 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
-Content-Language: en-GB
-To: Zhanjun Dong <zhanjun.dong@intel.com>, <intel-gfx@lists.freedesktop.org>, 
- <dri-devel@lists.freedesktop.org>
-References: <20230615211542.963700-1-zhanjun.dong@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20230615211542.963700-1-zhanjun.dong@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR04CA0131.namprd04.prod.outlook.com
- (2603:10b6:303:84::16) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|SA3PR11MB7977:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ea8966a-5ddc-49e6-6516-08db8c92200d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cGNcvUF/diJ2wlE+idQ41S/Jw3lBf09Fp9/OJX4vKw32gHOUgkw80wux3uyaBfZDAFlsIkRv62vDyz9oAcx+GWolQEQZ709h73RLcS7j2T4fBYxsRF1atnJpzOy8ONMu8TmkGt/hgAeNnnx7Lbrc65X4UwFrfVWR6615qAwEOHfeZl3ggC6GyFbyyPyeDyJJolvSHz3yn5ym2jWbLsE+IhjKDvjcMqbrTQCRI6qrzBNGGazhDpjr4zvOoqqe/v6Hv6QILo6J4ZUsCD30qjkf8geFHC4npTM9Fa5cS3EfF2ezUOkKg13Cg+IBocZ1drVVJXxxx5rkD+QpWw9LQ1bS+wcAqLzA3BRjJeI2ZD5d0/lELnBhUTyN+FXiTkiwQ/3OiHBRsMs7K3WCb79Bk6GPWXDHjrBrCFvoUF+NQqITmmF1G1rOgM5H0wYgAdc/vtWiqqgTbrrC+vIzPzX65OMVzplOgiyZg08abOgp64xlYwLgsQcDRuUiGKMQtslqWJHHUttM9FGShTJSaMc368LHyKhdFM23xwbgN4QY3uu7u/6ejql36bjP9xXQcHPBmU12sFQEMiHC+bxoK2H6TTxAuf4QSxNWdAbDh9Ts0hj+qwHzP1cdSJYn4hBtfIHcqllfFC0b1/Y/BS2GDF6lqOjqQg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(39860400002)(376002)(366004)(396003)(136003)(451199021)(6506007)(26005)(186003)(36756003)(5660300002)(31696002)(8936002)(8676002)(2906002)(53546011)(38100700002)(82960400001)(86362001)(6486002)(66476007)(450100002)(66556008)(6512007)(66946007)(83380400001)(31686004)(478600001)(41300700001)(2616005)(316002)(45980500001)(43740500002);
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB5971:EE_|MN0PR11MB6159:EE_
+x-ms-office365-filtering-correlation-id: 2ff19260-cb08-42f6-5e20-08db8c9f1b53
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Ejx1Cz/KJdPMYqZhUpf/TrN8U0IBZZN8yPhIQQBW1AvCK3HxemdSGtj7k3py7AROpYQrdBUAYwUrJCWdOWAwna2CJs3FDdBTeR/7+E6lkayAd9ydE9okemZ1UCfoBT2qS7a40vseupaLPdCHRTw2YJKMf+LLdd1sCPAJjmSz8lZpuxjY7igWrkyUibI0sdLKUC7Oxynq6ao+pDVAWFjVq2qZiOO+m6KP4FcGbmEgmhJyYMLG8AKG5skk2FzqqLBRiObeTza/GlN2Up37dzASZLACBix05uJJCO93LWoK4X/ZU4zpK59sNKC/2wMpl7yj114S05wWOsmpF9xJv+tsuVvOH9Bu2lZL61Qd5BCnTi+NsBylX6IQBZsswjENLgBTtrLDUgDpGgHGXepX1BRTY2DyjC+XQPiPc+hgMa17FAKMp3JQTAlSUHRZ3V7vifrWrZUg2b0aQL+IELAngiuNOitSTkS0NUwpBYMSdz/pvMQ/eg3mHLPx090xz+AabKUS0PlEeYXuRNpHNRBfqDmaIQ0Q3OF4Wlrz3dS4rXt5GlbX+ggHgJMG8owAoyJKYLqyYAWPz/jy8jkRQaeH/2rNGtgcptZutnhH8awcsVt7vOKogdotpPjIMBwakwNzMH2t
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5971.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(366004)(376002)(346002)(396003)(39860400002)(136003)(451199021)(38100700002)(55016003)(122000001)(53546011)(83380400001)(66556008)(6506007)(8676002)(8936002)(52536014)(5660300002)(478600001)(54906003)(316002)(66476007)(66446008)(64756008)(4326008)(76116006)(110136005)(66946007)(41300700001)(186003)(26005)(71200400001)(9686003)(7696005)(2906002)(33656002)(38070700005)(86362001)(82960400001);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dUc1NGU4WTVlcjhKWXNYVGs3UUFzdWZnMGJ5Q3JsbkJjNFpRbG15RGRLTFRu?=
- =?utf-8?B?QVIrQ2VwR0gvVjBDb1dnT21BNGozWEtzWWUvTkQzdE15UU9BUHFRaWRobTNE?=
- =?utf-8?B?eXVxMG00QUZMS01tNSs0VEMvSm5zQU9iZGJZUGRPYmM1V1lKcjhoNlgvVEs5?=
- =?utf-8?B?NHVjc2d1M0tmMWgxS2trQmMrK3QxODkydzlyYTliRG9sd3BLbmlRMjQrR2ZG?=
- =?utf-8?B?REwzZS9aY29Nbm14TUIwaGhKZUNXVHF4SzMwNVVmbG9qR2loSFRjcXd6L1pu?=
- =?utf-8?B?SGRmZzFOMWtodXk4YTlQK3lQZG5rY3JTNEdiWHdHV2psekV0aGl2bFUvS0lB?=
- =?utf-8?B?YXdTWTVMVmUrYjRFSmtWWkk4aEI3c2ZDYXFiU1BrU2VnZXNEdys5dXRSOGpU?=
- =?utf-8?B?UzhaT2pFdi9EWFI2ZWpQdmpYVzREaEpCb01pMVRRd3A5aEVoVjBLenJMMVh2?=
- =?utf-8?B?dno3VllJbGNLelVxRitxREVwQUoxd3BraERveDlVK29KeEh1OEhEQ2hmVkRo?=
- =?utf-8?B?UXBwV0hvR3JqbnduR1dWMXNoSmxReDR1RGcyN01qcnhvZ3ZMTTFQajRIVTE0?=
- =?utf-8?B?K0JOajBkaHU2cER0elByaXBxVTUrWS82ZlpoRW5HYkVmUVEwOHZ4NkwwLzg4?=
- =?utf-8?B?MWo3aVZFT2NtN0V0b2p0VUJiNnZRNTB2WXJiTThaTVJSa1lLcDFOdkcrT250?=
- =?utf-8?B?czd5YlFxMmlhTllORHJGRzFWM09rTkZUcWprMWFKQ1VKUDdHNDJFMFQrTGVL?=
- =?utf-8?B?R2M0Z0E5U1g1eTR5NmtqbXNKVUNMeUtzZVBLbVFPUDRmK0c3NExmVmpqM1hF?=
- =?utf-8?B?U3lRUHlrcGRxOHoybzNGN0lYMXdhTXBUVjhsdVZwbGFCblpLMEJMcE5HTGty?=
- =?utf-8?B?WnFPRlpxNUVvYXVYZUJ0Z1B4eWhpMEx5SjFiRGJRdnVnTXRTUWtjVXg0U0Fa?=
- =?utf-8?B?S2pmakhmQkt4VEZTeUwzS1lzYi9OZmZKVDFZMlJ4Q3ZqZTQ2MURUT2NvYzVa?=
- =?utf-8?B?eEZtTnlqeW5nN3VlbVg5czhXUTBLTllWWnlyS2pIZzg4OGp4MGdQSkUvdElB?=
- =?utf-8?B?NStSZ0c5UVZFVm9Dak5lTTRORFhjNnJRWmk4OGM2bm05YzhSNThnRjg5Q0Rr?=
- =?utf-8?B?U2FWNFVIZ1hrMlpMQ0VVTnFpM04wMnIvQVUxdk8xTFJLcC9JanRUWUZyNU1W?=
- =?utf-8?B?ZHRGbzBuRTI0YXN1YnhPQXd2ZURIYkxoUy9NSTZ5UEszeVM4REdpMGdHbDRn?=
- =?utf-8?B?MlZTQ1FzbGhmN1NWVUk3T0NGN1g0MVRWUVFvOTlwU1hDWmpnTHBpMVFHTUFV?=
- =?utf-8?B?YktoRGF4K2p3Smh2dmhuSkNNaVlpbVA1VXVHdTBKTCt0ellCS2pXdWtTU2dZ?=
- =?utf-8?B?RDBUTVUyeHNCMHpDUGtuZmYweTUyM3hrYWllcVF3TUZ0bVNnMWNFeVpDcFdL?=
- =?utf-8?B?UlZZZmlucGlMREl1OTN2SkJhMXEzRnJZeVhvMmdudDdZQVpzM3lwZEVtZWNx?=
- =?utf-8?B?NlZONlVNM016L0JCeU1WQmoza2F5anhDMVVZU3lRR3RnMGdETWFSdVEzbi9P?=
- =?utf-8?B?eU1xaU5rL3RYVGY2NCt3ZHgwYWxKajlDQWZ2Q05LTVRhUWRERVNhQlB6dkNl?=
- =?utf-8?B?WGM5dDNsMHZJeStiL3BCZ2dJNkhtUG9vSTl3WGs0bytUcUYwczR0bkt1TllI?=
- =?utf-8?B?MXpjRElnWllqaDdiWU9tNWt3Wmt6cDcwd29EUjFrZmFnYmZ5SjlCRTJtSWVn?=
- =?utf-8?B?ckY4QzVPd1I2clAvcXJVdVRuNlB1RGNmbExQQ3JSOWlQa0ROZzlIM2drVVE5?=
- =?utf-8?B?L1NIQ0ttK1JQZ3NON3VPWDM5cXV6TXIydzk4b1JsTGEyWWVnZllUWkx2SVhW?=
- =?utf-8?B?b2V3SEN6MkltK3BMSTkvVm96OWJWZUowUlJHTnI2dzEzQWJPSEZXR2FmYVht?=
- =?utf-8?B?ZFU0MXl0ekhYUTJ5Y2VPQjhnRFRKWWRBOWJpN09KOWtkdlJxSlpnOHlFbHl6?=
- =?utf-8?B?ZFN3cFY2UUtoR0dpN09nSTZnMXlocFF5b01VRllYcHo0S2IvLzVGb1VrNVR3?=
- =?utf-8?B?Sm9iZTFDWk9qSC9pbXZyMmJNbnd4MGpueDVIdWlwbGw1MVVYNkdsckxrazdX?=
- =?utf-8?B?WFVpWlFUYnllSWJKZVhuM2dhdmNPdHZORHBxTmtmTFBUYTVsSW9HakZ5U2xs?=
- =?utf-8?B?eEE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ea8966a-5ddc-49e6-6516-08db8c92200d
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?4qsgV5jZz7XbHX9m7uTreHEN8dQd4rbG3AJkfTP7gmp0eJA/uk79ZjX6q/RG?=
+ =?us-ascii?Q?2oVZGu4eXRBOvfbt8s8NHAa8dggzPZ3elh2ZMj01XJ0DMVVnw0GL9qCs5euW?=
+ =?us-ascii?Q?h5S01OJIN+2nlIyzYtHAvcC54BpiNkum922A8Lyl8tol2kx76ejt57l49Te1?=
+ =?us-ascii?Q?5p4REzLyuqFuJyf36wlqGqIs9qFDWywoadO2O6AncOKG2I0g/g384HgywvBb?=
+ =?us-ascii?Q?UF+xKf4A/x4osBptt+mZy74ZfEF50/DvYExXKgc+xeiVI2nwf7p7DFF55qn8?=
+ =?us-ascii?Q?V6Z3grqPPWyryud50YDoww61vSQAIqk6ZC3608QmHKhYA1WFgFTT04OJ4eVr?=
+ =?us-ascii?Q?AKmaP7gHBiQib/2OSKfvQY3x9d6W1b2VtCRyWETXB/gevhMf6kwuK7YW+fXJ?=
+ =?us-ascii?Q?jyROVH1v7WX3xskX3/zN5ok4mbislh2qlCARMbrdWTywzHDXpNba4gyZFAa9?=
+ =?us-ascii?Q?VxmqamtpEMPOq0hZcAru5FU/Aq12qIWK/8esArBwBnspK3NMHRZaDbKWS97p?=
+ =?us-ascii?Q?NiWieJu5g4ZylWPXjQ7EpkNASNxOEW0mH2SSEKFsWhmIaKy+ZlL4zyqrG8/G?=
+ =?us-ascii?Q?GHcT0CvXmMPVLCUKxxehwNJqAKb1qOF7zfGPu7CaN3ZN/U4kdAZbZkMnuC9a?=
+ =?us-ascii?Q?6dQFzqgrREiGQwSUlhxu2BmMbPbHpA4Y2pWl8x8+e+CdOeGxE2ogbkzO6bbk?=
+ =?us-ascii?Q?WnHpYozl+IBdJlhQo+UfAjA9s6aWVnogpediEa0CXbDojsY25RazlVI4nr/x?=
+ =?us-ascii?Q?rhl4lLE2wDPeScOFG46Sztfwuc05tzuX+cYfEzjA0rrdOMHOsYpcdijbKC0C?=
+ =?us-ascii?Q?O7NID0OxBZODW2ucwQ3LyWa1pPlPPN9VI1Z41/JoBOdWCFN//gpXuZWe8of1?=
+ =?us-ascii?Q?891kNMvGnX74d/erfZ2ekVXghTE3I/+l/lqi+gymZB7nj3Slh1kE4531qzcA?=
+ =?us-ascii?Q?P72PRFbvygTO9TM3DjmVLmIbVapiSR+p0Ia54SX2PnH2Hw1F28C5/qfOsFMp?=
+ =?us-ascii?Q?L7V1SPVBrG9Wt2ReLhzX0wPYDWnWzRWaKfZWGKx/XvdvZ21FEfJA9mJqyYQ3?=
+ =?us-ascii?Q?UGCCjazPLF11XJXEIBSwkBhGhQd8ICFtRlHDMLosRQirV4wz7uDJGkK7pNPE?=
+ =?us-ascii?Q?rLyGUwG7V1cvzlrS9HLgfLL/scjWftisAJ9wwvQgayYmz+RlibX9Xd2Hwt8P?=
+ =?us-ascii?Q?PLputOWVLueYbPWR2mbjGkUeMSKZM60ohLyshBClBmNoyfkNoExyOY/nWzEA?=
+ =?us-ascii?Q?0QhEOAlwJoy/7zTyhtMY3wSEvsULwj+sh9L1Iy7OB8DulYICrzQ/bcHPE73Z?=
+ =?us-ascii?Q?k7kf5lprP/Co1/NyjDlsLTRZ4BqeHVaRzEvKtBzA9s8/QfSgdcMRBqJ3vJy+?=
+ =?us-ascii?Q?DGfUTblgqiVHA6Da3WBKdO0kDobIgTs9Tn9iZ1HUOViKMmqlXhQBxx7USTwB?=
+ =?us-ascii?Q?xx+RJfIh0ddtoJWvAUoGMpMfXEPRs/+0hqoKic2XokTPE6zKV4xXO3wddBhN?=
+ =?us-ascii?Q?0yRXejeWDHhopQKC7HJ+QTlhTep9kuEiOuiu7JvU7l9EbT9zJ7vCgNspJmpL?=
+ =?us-ascii?Q?hdRHB+SLCF4IyHd1u8nchmbmfGaS9DFsmnia+lZZZd8OU7MV8JJKnA9VtNHR?=
+ =?us-ascii?Q?Cg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2023 22:05:43.5466 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9ZbbpZAVGgR270dk6Jx/QmaHneCBzE7v23FNQm/mH4+gw7ZESxxsO0fdcuSsFYffG52SVeFd+H4Uk+FwC3AWzrw8Ki2YgEbIMkku1H35lto=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7977
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5971.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ff19260-cb08-42f6-5e20-08db8c9f1b53
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2023 23:38:38.8750 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JiQ9fCIq0o8yeOf0H4GgkHOtfyz+yCostYP7nlI6ZjEQ3oUl+D4mpNAAdT8FyTh4USy10epf7+MDhkjDCfoIgtRGGFE03dYnMn6KdfsVMw4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6159
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Avoid circular locking
- dependency when flush delayed work on gt reset
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Avoid GGTT flushing on non-GGTT
+ paths of i915_vma_pin_iomap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,236 +149,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 6/15/2023 14:15, Zhanjun Dong wrote:
-> This attempts to avoid circular locking dependency between flush delayed work and intel_gt_reset.
-> Switched from cancel_delayed_work_sync to cancel_delayed_work, the non-sync version for reset path, it is safe as the worker has the trylock code to handle the lock; Meanwhile keep the sync version for park/fini to ensure the worker is not still running during suspend or shutdown.
->
-> WARNING: possible circular locking dependency detected
-> 6.4.0-rc1-drmtip_1340-g31e3463b0edb+ #1 Not tainted
-> ------------------------------------------------------
-> kms_pipe_crc_ba/6415 is trying to acquire lock:
-> ffff88813e6cc640 ((work_completion)(&(&guc->timestamp.work)->work)){+.+.}-{0:0}, at: __flush_work+0x42/0x530
->
-> but task is already holding lock:
-> ffff88813e6cce90 (&gt->reset.mutex){+.+.}-{3:3}, at: intel_gt_reset+0x19e/0x470 [i915]
->
-> which lock already depends on the new lock.
->
-> the existing dependency chain (in reverse order) is:
->
-> -> #3 (&gt->reset.mutex){+.+.}-{3:3}:
->          lock_acquire+0xd8/0x2d0
->          i915_gem_shrinker_taints_mutex+0x31/0x50 [i915]
->          intel_gt_init_reset+0x65/0x80 [i915]
->          intel_gt_common_init_early+0xe1/0x170 [i915]
->          intel_root_gt_init_early+0x48/0x60 [i915]
->          i915_driver_probe+0x671/0xcb0 [i915]
->          i915_pci_probe+0xdc/0x210 [i915]
->          pci_device_probe+0x95/0x120
->          really_probe+0x164/0x3c0
->          __driver_probe_device+0x73/0x160
->          driver_probe_device+0x19/0xa0
->          __driver_attach+0xb6/0x180
->          bus_for_each_dev+0x77/0xd0
->          bus_add_driver+0x114/0x210
->          driver_register+0x5b/0x110
->          __pfx_vgem_open+0x3/0x10 [vgem]
->          do_one_initcall+0x57/0x270
->          do_init_module+0x5f/0x220
->          load_module+0x1ca4/0x1f00
->          __do_sys_finit_module+0xb4/0x130
->          do_syscall_64+0x3c/0x90
->          entry_SYSCALL_64_after_hwframe+0x72/0xdc
->
-> -> #2 (fs_reclaim){+.+.}-{0:0}:
->          lock_acquire+0xd8/0x2d0
->          fs_reclaim_acquire+0xac/0xe0
->          kmem_cache_alloc+0x32/0x260
->          i915_vma_instance+0xb2/0xc60 [i915]
->          i915_gem_object_ggtt_pin_ww+0x175/0x370 [i915]
->          vm_fault_gtt+0x22d/0xf60 [i915]
->          __do_fault+0x2f/0x1d0
->          do_pte_missing+0x4a/0xd20
->          __handle_mm_fault+0x5b0/0x790
->          handle_mm_fault+0xa2/0x230
->          do_user_addr_fault+0x3ea/0xa10
->          exc_page_fault+0x68/0x1a0
->          asm_exc_page_fault+0x26/0x30
->
-> -> #1 (&gt->reset.backoff_srcu){++++}-{0:0}:
->          lock_acquire+0xd8/0x2d0
->          _intel_gt_reset_lock+0x57/0x330 [i915]
->          guc_timestamp_ping+0x35/0x130 [i915]
->          process_one_work+0x250/0x510
->          worker_thread+0x4f/0x3a0
->          kthread+0xff/0x130
->          ret_from_fork+0x29/0x50
->
-> -> #0 ((work_completion)(&(&guc->timestamp.work)->work)){+.+.}-{0:0}:
->          check_prev_add+0x90/0xc60
->          __lock_acquire+0x1998/0x2590
->          lock_acquire+0xd8/0x2d0
->          __flush_work+0x74/0x530
->          __cancel_work_timer+0x14f/0x1f0
->          intel_guc_submission_reset_prepare+0x81/0x4b0 [i915]
->          intel_uc_reset_prepare+0x9c/0x120 [i915]
->          reset_prepare+0x21/0x60 [i915]
->          intel_gt_reset+0x1dd/0x470 [i915]
->          intel_gt_reset_global+0xfb/0x170 [i915]
->          intel_gt_handle_error+0x368/0x420 [i915]
->          intel_gt_debugfs_reset_store+0x5c/0xc0 [i915]
->          i915_wedged_set+0x29/0x40 [i915]
->          simple_attr_write_xsigned.constprop.0+0xb4/0x110
->          full_proxy_write+0x52/0x80
->          vfs_write+0xc5/0x4f0
->          ksys_write+0x64/0xe0
->          do_syscall_64+0x3c/0x90
->          entry_SYSCALL_64_after_hwframe+0x72/0xdc
->
-> other info that might help us debug this:
->   Chain exists of:
->    (work_completion)(&(&guc->timestamp.work)->work) --> fs_reclaim --> &gt->reset.mutex
->    Possible unsafe locking scenario:
->          CPU0                    CPU1
->          ----                    ----
->     lock(&gt->reset.mutex);
->                                  lock(fs_reclaim);
->                                  lock(&gt->reset.mutex);
->     lock((work_completion)(&(&guc->timestamp.work)->work));
->
->   *** DEADLOCK ***
->   3 locks held by kms_pipe_crc_ba/6415:
->    #0: ffff888101541430 (sb_writers#15){.+.+}-{0:0}, at: ksys_write+0x64/0xe0
->    #1: ffff888136c7eab8 (&attr->mutex){+.+.}-{3:3}, at: simple_attr_write_xsigned.constprop.0+0x47/0x110
->    #2: ffff88813e6cce90 (&gt->reset.mutex){+.+.}-{3:3}, at: intel_gt_reset+0x19e/0x470 [i915]
->
-> v2: Add sync flag to guc_cancel_busyness_worker to ensure reset path calls asynchronous cancel.
-> v3: Add sync flag to intel_guc_submission_disable to ensure reset path calls asynchronous cancel.
->
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Hi Tvrtko,
+
+The changes makes sense and based on the description looks good.
+I am bit skeptical about the exec buffer failure reported by ci hence,
+withholding the r-b for now. If you believe the CI failure is unrelated
+please feel free to add my r-b.
+
+On a side note on platforms with non-coherent ggtt do we really
+need to use the barriers twice under intel_gt_flush_ggtt_writes?
+
+--Radhakrishna(RK) Sripada=20
+
+> -----Original Message-----
+> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Sent: Monday, July 24, 2023 5:57 AM
+> To: Intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+> Cc: Ursulin, Tvrtko <tvrtko.ursulin@intel.com>; Sripada, Radhakrishna
+> <radhakrishna.sripada@intel.com>; stable@vger.kernel.org
+> Subject: [PATCH] drm/i915: Avoid GGTT flushing on non-GGTT paths of
+> i915_vma_pin_iomap
+>=20
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>=20
+> Commit 4bc91dbde0da ("drm/i915/lmem: Bypass aperture when lmem is
+> available")
+> added a code path which does not map via GGTT, but was still setting the
+> ggtt write bit, and so triggering the GGTT flushing.
+>=20
+> Fix it by not setting that bit unless the GGTT mapping path was used, and
+> replace the flush with wmb() in i915_vma_flush_writes().
+>=20
+> This also works for the i915_gem_object_pin_map path added in
+> d976521a995a ("drm/i915: extend i915_vma_pin_iomap()").
+>=20
+> It is hard to say if the fix has any observable effect, given that the
+> write-combine buffer gets flushed from intel_gt_flush_ggtt_writes too, bu=
+t
+> apart from code clarity, skipping the needless GGTT flushing could be
+> beneficial on platforms with non-coherent GGTT. (See the code flow in
+> intel_gt_flush_ggtt_writes().)
+>=20
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Fixes: 4bc91dbde0da ("drm/i915/lmem: Bypass aperture when lmem is
+> available")
+> References: d976521a995a ("drm/i915: extend i915_vma_pin_iomap()")
+> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.14+
 > ---
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c   | 17 ++++++++++-------
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.h   |  2 +-
->   drivers/gpu/drm/i915/gt/uc/intel_uc.c           |  4 ++--
->   3 files changed, 13 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index a0e3ef1c65d2..ef4300246ce1 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1357,9 +1357,12 @@ static void guc_enable_busyness_worker(struct intel_guc *guc)
->   	mod_delayed_work(system_highpri_wq, &guc->timestamp.work, guc->timestamp.ping_delay);
->   }
->   
-> -static void guc_cancel_busyness_worker(struct intel_guc *guc)
-> +static void guc_cancel_busyness_worker(struct intel_guc *guc, bool sync)
->   {
-> -	cancel_delayed_work_sync(&guc->timestamp.work);
-> +	if (sync)
-> +		cancel_delayed_work_sync(&guc->timestamp.work);
+>  drivers/gpu/drm/i915/i915_vma.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c
+> b/drivers/gpu/drm/i915/i915_vma.c
+> index ffb425ba591c..f2b626cd2755 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -602,7 +602,9 @@ void __iomem *i915_vma_pin_iomap(struct i915_vma
+> *vma)
+>  	if (err)
+>  		goto err_unpin;
+>=20
+> -	i915_vma_set_ggtt_write(vma);
+> +	if (!i915_gem_object_is_lmem(vma->obj) &&
+> +	    i915_vma_is_map_and_fenceable(vma))
+> +		i915_vma_set_ggtt_write(vma);
+>=20
+>  	/* NB Access through the GTT requires the device to be awake. */
+>  	return page_mask_bits(ptr);
+> @@ -617,6 +619,8 @@ void i915_vma_flush_writes(struct i915_vma *vma)
+>  {
+>  	if (i915_vma_unset_ggtt_write(vma))
+>  		intel_gt_flush_ggtt_writes(vma->vm->gt);
 > +	else
-> +		cancel_delayed_work(&guc->timestamp.work);
->   }
->   
->   static void __reset_guc_busyness_stats(struct intel_guc *guc)
-> @@ -1370,7 +1373,7 @@ static void __reset_guc_busyness_stats(struct intel_guc *guc)
->   	unsigned long flags;
->   	ktime_t unused;
->   
-> -	guc_cancel_busyness_worker(guc);
-> +	guc_cancel_busyness_worker(guc, false);
->   
->   	spin_lock_irqsave(&guc->timestamp.lock, flags);
->   
-> @@ -1485,7 +1488,7 @@ static int guc_init_engine_stats(struct intel_guc *guc)
->   
->   static void guc_fini_engine_stats(struct intel_guc *guc)
->   {
-> -	guc_cancel_busyness_worker(guc);
-> +	guc_cancel_busyness_worker(guc, true);
->   }
->   
->   void intel_guc_busyness_park(struct intel_gt *gt)
-> @@ -1500,7 +1503,7 @@ void intel_guc_busyness_park(struct intel_gt *gt)
->   	 * and causes an unclaimed register access warning. Cancel the worker
->   	 * synchronously here.
->   	 */
-> -	guc_cancel_busyness_worker(guc);
-> +	guc_cancel_busyness_worker(guc, true);
->   
->   	/*
->   	 * Before parking, we should sample engine busyness stats if we need to.
-> @@ -4501,9 +4504,9 @@ int intel_guc_submission_enable(struct intel_guc *guc)
->   }
->   
->   /* Note: By the time we're here, GuC may have already been reset */
-> -void intel_guc_submission_disable(struct intel_guc *guc)
-> +void intel_guc_submission_disable(struct intel_guc *guc, bool sync)
->   {
-> -	guc_cancel_busyness_worker(guc);
-> +	guc_cancel_busyness_worker(guc, sync);
->   
->   	/* Semaphore interrupt disable and route to host */
->   	guc_route_semaphores(guc, false);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-> index c57b29cdb1a6..a77de0d6ed58 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-> @@ -16,7 +16,7 @@ struct intel_engine_cs;
->   void intel_guc_submission_init_early(struct intel_guc *guc);
->   int intel_guc_submission_init(struct intel_guc *guc);
->   int intel_guc_submission_enable(struct intel_guc *guc);
-> -void intel_guc_submission_disable(struct intel_guc *guc);
-> +void intel_guc_submission_disable(struct intel_guc *guc, bool sync);
->   void intel_guc_submission_fini(struct intel_guc *guc);
->   int intel_guc_preempt_work_create(struct intel_guc *guc);
->   void intel_guc_preempt_work_destroy(struct intel_guc *guc);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> index 18250fb64bd8..edf13f89830e 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -566,7 +566,7 @@ static int __uc_init_hw(struct intel_uc *uc)
->   	 * We've failed to load the firmware :(
->   	 */
->   err_submission:
-> -	intel_guc_submission_disable(guc);
-> +	intel_guc_submission_disable(guc, true);
->   err_log_capture:
->   	__uc_capture_load_err_log(uc);
->   err_rps:
-> @@ -597,7 +597,7 @@ static void __uc_fini_hw(struct intel_uc *uc)
->   		return;
->   
->   	if (intel_uc_uses_guc_submission(uc))
-> -		intel_guc_submission_disable(guc);
-> +		intel_guc_submission_disable(guc, false);
-This one is potentially a problem.
-
-AFAICT, '__uc_fini_hw' is actually becomes 'intel_uc_fini_hw' (through 
-the magick of UC macro-ised function declarations!). And that is only 
-called from the bail out error path of GT init and the driver remove 
-path. Both of those should be synchronous waits to ensure that the 
-worker is guaranteed gone before unloading the driver. However, the GT 
-init path is presumably called as part of a full GT reset. And in 
-theory, it could fail (e.g. because the hardware is toast and hence the 
-reset in the first place). And in that case, it needs to be the async 
-cancel.
-
-One option would be to pass a 'in reset' flag all the way through the GT 
-init path, but that sounds really intrusive and messy. The simpler 
-alternative would be to make this always synchronous and just accept 
-that the circular locking warning may occur in exceedingly rare cases. 
-Again, the circular lock detection is bogus because we have the early 
-exit in the case of a locked mutex. So it is not an actual problem. In 
-which case, living with the warning in the super rare case of a failed 
-GT reset seems acceptable to me.
-
-John.
-
->   
->   	__uc_sanitize(uc);
->   }
+> +		wmb(); /* Just flush the write-combine buffer. */
+>  }
+>=20
+>  void i915_vma_unpin_iomap(struct i915_vma *vma)
+> --
+> 2.39.2
 
