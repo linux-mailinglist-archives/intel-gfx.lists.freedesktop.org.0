@@ -2,33 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 443E575F69B
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 14:44:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25BC275F6BD
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 14:47:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB7AE10E2EC;
-	Mon, 24 Jul 2023 12:44:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92D6510E2E4;
+	Mon, 24 Jul 2023 12:47:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8FC6F10E2E4;
- Mon, 24 Jul 2023 12:44:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7402BA00E6;
- Mon, 24 Jul 2023 12:44:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DB19410E2EC;
+ Mon, 24 Jul 2023 12:47:50 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8BxIvD1cr5k_jUJAA--.22245S3;
+ Mon, 24 Jul 2023 20:47:49 +0800 (CST)
+Received: from [10.20.42.43] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8CxLCP0cr5kczY5AA--.5514S3; 
+ Mon, 24 Jul 2023 20:47:48 +0800 (CST)
+Message-ID: <4cb6fd14-4661-4285-ac5f-c8f6ea1f4208@loongson.cn>
+Date: Mon, 24 Jul 2023 20:47:48 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
-Date: Mon, 24 Jul 2023 12:44:21 -0000
-Message-ID: <169020266147.30101.17735720948863507748@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230724082511.3225-1-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20230724082511.3225-1-andriy.shevchenko@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv3=2C1/1=5D_drm/i915=3A_Move_abs=5Fdiff?=
- =?utf-8?b?KCkgdG8gbWF0aC5o?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Bjorn Helgaas <helgaas@kernel.org>, Sui Jingfeng <sui.jingfeng@linux.dev>
+References: <20230719193241.GA510805@bhelgaas>
+From: suijingfeng <suijingfeng@loongson.cn>
+In-Reply-To: <20230719193241.GA510805@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxLCP0cr5kczY5AA--.5514S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7Cw4UGrWxCFWrXF1ftFyUXFc_yoW8Xr4Upr
+ 1rXF4UKry8Jr18Jr1DJr1UJryDJF47J34UJr1UGF1UJr1UJryjq348Xr1jgr47Jr4kXr4U
+ Xr4UJF1UZF1jywbCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUvab4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+ xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
+ 1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv
+ 67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
+ AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
+ F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
+ ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
+ xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
+ 4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWIevJa73UjIFyTuYvjxU
+ cyxRUUUUU
+Subject: Re: [Intel-gfx] [PATCH v3 0/9] PCI/VGA: Improve the default VGA
+ device selection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +64,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org, linux-pci@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi,
 
-Series: series starting with [v3,1/1] drm/i915: Move abs_diff() to math.h
-URL   : https://patchwork.freedesktop.org/series/121218/
-State : warning
 
-== Summary ==
+On 2023/7/20 03:32, Bjorn Helgaas wrote:
+> "drm/loongson: Add an implement for ..." also solves a problem, but it
+> lacks a commit log, so I don't know what the problem is.
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
 
+I have already telling you one yeas ago.
+
+I want remove the pci_fixup_vgadev() function in arch/loongarch/pci/pci.c
+
+I was the original author of this workaround at our downstream kernel.
+
+While the time is not mature until this patch set be merged.
+
+I don't want mention this, as you asked this question.
+
+So, I think I have to explain.
+
+
+-static void pci_fixup_vgadev(struct pci_dev *pdev)
+-{
+-       struct pci_dev *devp = NULL;
+-
+-       while ((devp = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, devp))) {
+-               if (devp->vendor != PCI_VENDOR_ID_LOONGSON) {
+-                       vga_set_default_device(devp);
+-                       dev_info(&pdev->dev,
+-                               "Overriding boot device as %X:%X\n",
+-                               devp->vendor, devp->device);
+-               }
+-       }
+-}
+-DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_LOONGSON, 
+PCI_DEVICE_ID_LOONGSON_DC1, pci_fixup_vgadev);
+-DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_LOONGSON, 
+PCI_DEVICE_ID_LOONGSON_DC2, pci_fixup_vgadev);
 
