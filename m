@@ -2,62 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C7F475EBBB
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 08:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24F4275EC9D
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 09:36:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C924B10E040;
-	Mon, 24 Jul 2023 06:38:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C36610E194;
+	Mon, 24 Jul 2023 07:36:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
- [209.85.221.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98A6F10E040;
- Mon, 24 Jul 2023 06:38:55 +0000 (UTC)
-Received: by mail-wr1-f46.google.com with SMTP id
- ffacd0b85a97d-31757edd9edso586937f8f.2; 
- Sun, 23 Jul 2023 23:38:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690180734; x=1690785534;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=nBFPtNUr5zfQpCgu0uRJ8hgMdYMycg/Xxc747XVGWkA=;
- b=OLZpPCpkL/lUrqmLwvcick8CzzbEKYULC8vrgu+dHVKrFaBOGyUbyxs7yY5Q13DkOC
- gdJi8Eo9/JJFyQkRyjS8fK5JSk/zMXDHD8gfagyg79oqroCaq7YtOaF8JSL6AAJf0F+Q
- U0utAaxuXAEtO0qLOmqxLF1lyYIfshkvlkciZSU7r5ZBEnPW8kI2UBHepkN83PQP/iGM
- DZQP/07TJIp0yrN2wCwV9KU5q6Pu9N5COWmEQZpE4PRplR7uXlT4ojou7ZAtI4z9v3Ft
- 9OHGwL7dvg+EVtWY1guEseZeDr1+GZFGbALmJR/p9G5cbaS8k0k0G++7QLcVqS6PI3Rh
- sOeg==
-X-Gm-Message-State: ABy/qLbsG2/zxiFTrCuI/cVWqj7J7YL7yZLKmnXXX/UOm+0IozTLspzN
- 5TdPnd/SVNgACA8vA4I0Q5c=
-X-Google-Smtp-Source: APBJJlGSUmRKzqjC/Uqd0tfK/mlDP8ww9QDg5376q0LqdGrJd79508IrFYaOBR6hTASFTeZL5KjIpw==
-X-Received: by 2002:adf:f8ca:0:b0:314:1d7b:5b86 with SMTP id
- f10-20020adff8ca000000b003141d7b5b86mr5433796wrq.21.1690180733790; 
- Sun, 23 Jul 2023 23:38:53 -0700 (PDT)
-Received: from ?IPV6:2a0b:e7c0:0:107::aaaa:59? ([2a0b:e7c0:0:107::aaaa:59])
- by smtp.gmail.com with ESMTPSA id
- a15-20020adfeecf000000b00311d8c2561bsm11722892wrp.60.2023.07.23.23.38.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 23 Jul 2023 23:38:53 -0700 (PDT)
-Message-ID: <c1f2f55e-bd1b-957e-c4d9-6a326f7e19fd@kernel.org>
-Date: Mon, 24 Jul 2023 08:38:51 +0200
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
+ [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C799110E194
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 07:36:51 +0000 (UTC)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <ukl@pengutronix.de>) id 1qNq7e-0008An-2V
+ for intel-gfx@lists.freedesktop.org; Mon, 24 Jul 2023 09:36:50 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+ by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+ (envelope-from <ukl@pengutronix.de>) id 1qNq7d-001hiR-Dx
+ for intel-gfx@lists.freedesktop.org; Mon, 24 Jul 2023 09:36:49 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+ (envelope-from <ukl@pengutronix.de>) id 1qNq7c-007Lkh-J4
+ for intel-gfx@lists.freedesktop.org; Mon, 24 Jul 2023 09:36:48 +0200
+Date: Mon, 24 Jul 2023 09:36:48 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <20230724073648.hjmu2ztfuau7zvdp@pengutronix.de>
+References: <20230721212133.271118-1-u.kleine-koenig@pengutronix.de>
+ <168999615592.17723.14317445519700559147@emeril.freedesktop.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Imre Deak <imre.deak@intel.com>,
- =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Alexey Dobriyan <adobriyan@gmail.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
-References: <20230721135318.17603-1-andriy.shevchenko@linux.intel.com>
-Content-Language: en-US
-From: Jiri Slaby <jirislaby@kernel.org>
-In-Reply-To: <20230721135318.17603-1-andriy.shevchenko@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v2 1/1] drm/i915: Move abs_diff() to math.h
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="z2m5phgqnybldes2"
+Content-Disposition: inline
+In-Reply-To: <168999615592.17723.14317445519700559147@emeril.freedesktop.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Simplify_expression_=26to=5Fi915=28dev=29-=3Edrm?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,24 +56,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
- Nikita Shubin <nikita.shubin@maquefel.me>, Stephen Boyd <sboyd@kernel.org>,
- Helge Deller <deller@gmx.de>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 21. 07. 23, 15:53, Andy Shevchenko wrote:
-> abs_diff() belongs to math.h. Move it there.
-> This will allow others to use it.
-> 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Reviewed-by: Jiri Slaby <jirislaby@kernel.org> # tty/serial
+--z2m5phgqnybldes2
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
--- 
-js
-suse labs
+Hello,
 
+On Sat, Jul 22, 2023 at 03:22:35AM -0000, Patchwork wrote:
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_121164v1_full, please notify your bug team to a=
+llow them
+>   to document this new failure mode, which will reduce false positives in=
+ CI.
+
+I don't think my patch results in regressions. But I fail to understand
+the indications reported by patchwork, so I might miss something.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--z2m5phgqnybldes2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmS+Kg8ACgkQj4D7WH0S
+/k6MTggAtoSWlMOkdZR6GHSyyv4OLuEUBGHwgSxfwhxASKcadLlq9Xmt/9Is5ZGA
+ngnq5rvQb3ELCBw4A13feYAvmUYwwP6wFfpoPZe6pY8sNGqXGZtvoAxrHFzofIoX
+W5VGblDG5J5Vq27wudKwM6j+0FWO8cvhFbxarX89zvwh+HUQxspBgculv5Wqe59d
+PoquuBOXw/uQkMXshhaXU12Nai7Wl8PXo0icS7y+RZvVRQrLH5VzsFDt7wuZ9CCU
+tDucnZE6PnXVlGnMspWXhpL1L5LMruQKCGq1EK16UK85gEcVxKhL7UDI6gTnm/XC
+c8BagH/P17CzHQw7x6793p0hVvfX2g==
+=AcXo
+-----END PGP SIGNATURE-----
+
+--z2m5phgqnybldes2--
