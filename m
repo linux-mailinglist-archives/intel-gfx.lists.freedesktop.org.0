@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21F9E75F586
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 13:57:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBE5A75F5E8
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 14:16:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA87D10E2D9;
-	Mon, 24 Jul 2023 11:56:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F30B10E2E4;
+	Mon, 24 Jul 2023 12:16:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id A19E210E2D9;
- Mon, 24 Jul 2023 11:56:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2960610E2DB;
+ Mon, 24 Jul 2023 12:16:24 +0000 (UTC)
 Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8BxIvAGZ75k4jEJAA--.22213S3;
- Mon, 24 Jul 2023 19:56:54 +0800 (CST)
+ by gateway (Coremail) with SMTP id _____8Cxc_CXa75kLjQJAA--.23048S3;
+ Mon, 24 Jul 2023 20:16:23 +0800 (CST)
 Received: from [10.20.42.43] (unknown [10.20.42.43])
  by localhost.localdomain (Coremail) with SMTP id
- AQAAf8Cx7yPzZr5koiM5AA--.49373S3; 
- Mon, 24 Jul 2023 19:56:54 +0800 (CST)
-Message-ID: <49618cce-8c3f-7f25-20b1-eecfc3c70cd0@loongson.cn>
-Date: Mon, 24 Jul 2023 19:56:35 +0800
+ AQAAf8AxTSOSa75k+yg5AA--.5452S3; 
+ Mon, 24 Jul 2023 20:16:19 +0800 (CST)
+Message-ID: <5fbc1ec7-fb61-7e4d-960c-81cc11b706f5@loongson.cn>
+Date: Mon, 24 Jul 2023 20:16:18 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
+Content-Language: en-US
 To: Bjorn Helgaas <helgaas@kernel.org>, Sui Jingfeng <sui.jingfeng@linux.dev>
 References: <20230719193233.GA511659@bhelgaas>
-Content-Language: en-US
 From: suijingfeng <suijingfeng@loongson.cn>
 In-Reply-To: <20230719193233.GA511659@bhelgaas>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-CM-TRANSID: AQAAf8Cx7yPzZr5koiM5AA--.49373S3
+X-CM-TRANSID: AQAAf8AxTSOSa75k+yg5AA--.5452S3
 X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj9xXoW7Jw43KrW8JrWxXw17Wr13KFX_yoWfKrX_CF
- sYvrZrCa15ur1xJFyUtw4fZF1SgrWaqrZ8JFW8Wa9aq34YgasxJrZYgry0qF1SgFWkJr4D
- W3WUAa13u3s0gosvyTuYvTs0mTUanT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvT
- s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
- cSsGvfJTRUUUbqAYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
- vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
- w2x7M28EF7xvwVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
- W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
- 6r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
- xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
- 6r1DMcIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
- 1lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxG
- rwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14
- v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Wrv_Gr1UMIIY
- rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JFI_Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14
- v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8
- JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU3jjgUU
- UUU
+X-Coremail-Antispam: 1Uk129KBj93XoW7uFWkGrykCF4rXw4rGr1xZwc_yoW8GFyxpa
+ 4a9Fy3KFZaqr4UJr9Fk348XF45Wa17Xas5Aw13Gryjkrs8X34qg34xK3yYk34kZFn3Wr1Y
+ vFWaka48ZFWqyacCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUPSb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+ xVW8Jr0_Cr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+ AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
+ AVWUtwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI4
+ 8JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vI
+ r41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_GFv_Wrylx2IqxVAqx4xG67
+ AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26rWY6r4UJwCI
+ c40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267
+ AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_
+ Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IUnsZ23
+ UUUUU==
 Subject: Re: [Intel-gfx] [PATCH v3 4/9] PCI/VGA: Improve the default VGA
  device selection
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -87,34 +87,45 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi,
 
-
-I was too hurry reply to you. I'm may miss the point for part of your 
-reviews, Sorry.
-
-
 On 2023/7/20 03:32, Bjorn Helgaas wrote:
-> CONFIG_DRM_AST is a tristate.  We're talking about identifying the
-> boot-time console device.
-
-Yes, my patch will only works *after* the module gets loaded successfully.
-
-But generally, vgaarb will select a default boot device before my patch taking into effect.
-
-I means that vgaarb will select a default boot device by calling vga_arbiter_add_pci_device() function.
-
-
-In practice, I still not notice any obvious problems.
-
-I'm lack the knowledge about the boot-time console,
-
-what is the potential problems with such a condition?
+>> 2) It does not take the PCI Bar may get relocated into consideration.
+>> 3) It is not effective for the PCI device without a dedicated VRAM Bar.
+>> 4) It is device-agnostic, thus it has to waste the effort to iterate all
+>>     of the PCI Bar to find the VRAM aperture.
+>> 5) It has invented lots of methods to determine which one is the default
+>>     boot device, but this is still a policy because it doesn't give the
+>>     user a choice to override.
+> I don't think we need a list of*potential*  problems.  We need an
+> example of the specific problem this will solve, i.e., what currently
+> does not work?
 
 
->   So if CONFIG_DRM_AST=m, I guess we don't
-> get the benefit of the new callback unless the module gets loaded?
+This version do allow the arbitration service works on non-x86 arch,
 
-Yes, my approach will not works until the device driver kernel module 
-gets loaded successfully.
+which also allow me remove a arch-specific workaround.
 
-So what's the problem with such a situation, do you see something weird ?
+I will give more detail at the next version.
+
+
+But I want to provide one more drawback of vgaarb here:
+
+
+(6) It does not works for non VGA-compatible PCI(e) display controllers.
+
+
+Because, currently, vgaarb deal with PCI VGA compatible devices only.
+
+See another my patch set [1] for more elaborate discussion.
+
+It also ignore PCI_CLASS_NOT_DEFINED_VGA as Maciej puts it[2].
+
+While my approach do not required the display controller to be 
+VGA-compatible to enjoy the arbitration service.
+
+What do you think then?
+
+
+[1] https://patchwork.freedesktop.org/patch/546690/?series=120548&rev=1
+
+[2] https://lkml.org/lkml/2023/6/18/315
 
