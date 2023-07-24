@@ -1,34 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8324D75F9B2
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 16:22:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2266175F9FA
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jul 2023 16:35:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 047C510E322;
-	Mon, 24 Jul 2023 14:22:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BCAE10E324;
+	Mon, 24 Jul 2023 14:35:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 37BCD10E322;
- Mon, 24 Jul 2023 14:22:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2F3B1AADF2;
- Mon, 24 Jul 2023 14:22:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 022CA10E324;
+ Mon, 24 Jul 2023 14:35:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1690209345; x=1721745345;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ZkxaMWwZVIw+LW0WgBwy1SdhMTK4GEQ3AEQu3X0icZY=;
+ b=jBcKgTUXQ0f4Ixc913js0C4+vhVbN4aJHJS/hKNw8fT8a2GFTBgT9S51
+ nKXwlA/fzI9MQiqmzMT9Ckvccsy8FSih0oYH4gvynCxGUo/r8MUONo2Cv
+ AaQ3g+Z2iv2znQNCPcDSVrXzTKenthPRtMi38F/AVcc4tp00Nv+WP0XXO
+ LylsWk3enw3DkB4P/vsVV5pQ7QMaQ22x+Rk/yEmifwWfcgiXiTA2ZPPZE
+ 4PxMld2GVyfpmMcPvnP1jgYHETcqZFpNTsm+m5aW6D4qwB8hKhV1TCqbR
+ KOacCdQA4ecjK6NFJYgnNXXi+4K30Lu1H27odz1p4jn6tKd+tSFWlmYSg A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="347060115"
+X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="347060115"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2023 07:35:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="702913913"
+X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="702913913"
+Received: from avmoskal-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.57.166])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2023 07:35:14 -0700
+Date: Mon, 24 Jul 2023 16:35:11 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <ZL6MH3Hi8+Ore+w0@ashyti-mobl2.lan>
+References: <20230721161514.818895-1-andi.shyti@linux.intel.com>
+ <20230721161514.818895-10-andi.shyti@linux.intel.com>
+ <5f846260-8416-fb19-bd46-ced39153a92a@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Mon, 24 Jul 2023 14:22:26 -0000
-Message-ID: <169020854615.30100.16046553919555549451@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230724125633.1490543-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20230724125633.1490543-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Avoid_GGTT_flushing_on_non-GGTT_paths_of_i915?=
- =?utf-8?q?=5Fvma=5Fpin=5Fiomap?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5f846260-8416-fb19-bd46-ced39153a92a@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v8 9/9] drm/i915/gt: Support aux
+ invalidation on all engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,29 +61,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ linux-stable <stable@vger.kernel.org>, Chris Wilson <chris@chris-wilson.co.uk>,
+ dri-evel <dri-devel@lists.freedesktop.org>,
+ Matt Roper <matthew.d.roper@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Andrzej,
 
-Series: drm/i915: Avoid GGTT flushing on non-GGTT paths of i915_vma_pin_iomap
-URL   : https://patchwork.freedesktop.org/series/121236/
-State : warning
+On Mon, Jul 24, 2023 at 11:42:16AM +0200, Andrzej Hajda wrote:
+> On 21.07.2023 18:15, Andi Shyti wrote:
+> > Perform some refactoring with the purpose of keeping in one
+> > single place all the operations around the aux table
+> > invalidation.
+> > 
+> > With this refactoring add more engines where the invalidation
+> > should be performed.
+> > 
+> > Fixes: 972282c4cf24 ("drm/i915/gen12: Add aux table invalidate for all engines")
+> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > Cc: <stable@vger.kernel.org> # v5.8+
+> > ---
+> >   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 53 ++++++++++++++----------
+> >   drivers/gpu/drm/i915/gt/gen8_engine_cs.h |  3 +-
+> >   drivers/gpu/drm/i915/gt/intel_lrc.c      | 17 +-------
+> >   3 files changed, 36 insertions(+), 37 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> > index 6daf7d99700e0..d33462387d1c6 100644
+> > --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> > +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> > @@ -178,9 +178,36 @@ static bool gen12_needs_ccs_aux_inv(struct intel_engine_cs *engine)
+> >   	return !HAS_FLAT_CCS(engine->i915);
+> >   }
+> > -u32 *gen12_emit_aux_table_inv(struct intel_gt *gt, u32 *cs, const i915_reg_t inv_reg)
+> > +static i915_reg_t gen12_get_aux_inv_reg(struct intel_engine_cs *engine)
+> > +{
+> > +	if (!gen12_needs_ccs_aux_inv(engine))
+> > +		return INVALID_MMIO_REG;
+> > +
+> > +	switch (engine->id) {
+> > +	case RCS0:
+> > +		return GEN12_CCS_AUX_INV;
+> > +	case BCS0:
+> > +		return GEN12_BCS0_AUX_INV;
+> 
+> Shouldn't be MTL only?
+> With that explained/fixed:
 
-== Summary ==
+this is actually difficult to be called by the wrong engine, so
+that the MTL check is a bit pedantic... I can still add it
+though.
 
-Error: dim checkpatch failed
-a0f6a851fb14 drm/i915: Avoid GGTT flushing on non-GGTT paths of i915_vma_pin_iomap
--:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#7: 
-Commit 4bc91dbde0da ("drm/i915/lmem: Bypass aperture when lmem is available")
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
--:15: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit d976521a995a ("drm/i915: extend i915_vma_pin_iomap()")'
-#15: 
-d976521a995a ("drm/i915: extend i915_vma_pin_iomap()").
-
-total: 1 errors, 1 warnings, 0 checks, 18 lines checked
-
-
+Thanks,
+Andi
