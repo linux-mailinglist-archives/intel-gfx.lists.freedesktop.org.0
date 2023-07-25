@@ -1,55 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21A3F761059
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 12:13:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 237087610F3
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 12:33:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D39610E0B1;
-	Tue, 25 Jul 2023 10:13:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C6BF10E0AE;
+	Tue, 25 Jul 2023 10:33:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EA4489CCE;
- Tue, 25 Jul 2023 10:13:37 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC3D310E08A;
+ Tue, 25 Jul 2023 10:33:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690280017; x=1721816017;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=j3aIRDBLDVRrwehitzRcP+rCqG3ppF9PZXiSu93TDQk=;
- b=cIh6nqqiWtmGlvvv6zej3GiPA0O4X+8yEO2qAckxa4th4ozLuZWXAvI9
- vkxx0b/PYMt8/tcOQCVTzEiHDxfkOr3VziB6HTx2ei5+Tt5ifAVbtfgM9
- K9MV4NoIBswY027dP68DjeaJ6LriN5asUPQe1+3U8UOYjKHISqIfM8dqz
- /RHnu9BKpcKJbHxGfF94LSuzGD69tOgmOvhPtO0r68S+yaXRp2CKJ1/eJ
- ndQv7h3DybkIqUP0HXMHKUGwTwtTHdhjdQt57f9ojtJd4fkQnSiOBoIyU
- C6JyPG0WfjloLyfZNwaf1A5Q4iA0WbT/Pst00N/lLkBmoeUa5ubOkuZUA g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="352577358"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="352577358"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 03:13:36 -0700
+ t=1690281222; x=1721817222;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fTVtUvuQMYK/PU0kxUt95Ct/UNJ9M9QN1tE6JCwmdPA=;
+ b=EYKJO7PosWDCc3Btgqgji3zdlJPnFIAWwrW6XtVbqAlGrdcqagmGhfxU
+ oWuFEY7K4ddZ3MHpTH1pmrYi+rmPSWVJTzle6Zw6yRlX6DvC6prPgY59W
+ e1OjJIPJe5eUBJtSjL2qiYNFiJP3KV72eanT5rI1p0LAZeoEYyH+aUq6t
+ clj4upCg4waaGPIKHi2tRVybOtQwsM40Uwp6y2xPKrpeu18ZQM2fhvcT9
+ HPvb6fcGrtcnYVWp7XCqngSTmu+m02kKj0ogdLXmsOMCv+mXMTM7JUdfX
+ FafmvZC92/8x3gVt5E3APTILLvJDH4rcPJcutVbL8+zmR7tKVHSNiFrl3 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="365143195"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="365143195"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 03:33:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="791320196"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="791320196"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 03:13:34 -0700
-Date: Tue, 25 Jul 2023 13:13:31 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <ZL+gS640uxlrzhSP@intel.com>
-References: <20230713103346.1163315-1-ankit.k.nautiyal@intel.com>
- <20230713103346.1163315-6-ankit.k.nautiyal@intel.com>
- <ZLj+YEpuQMDcogN4@intel.com>
- <65cb4383-ff7d-f7b4-29b8-4d81fbe076c7@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="849965883"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="849965883"
+Received: from kshutemo-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.249.37.237])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 03:33:40 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Date: Tue, 25 Jul 2023 12:33:30 +0200
+Message-Id: <20230725103330.1041394-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <65cb4383-ff7d-f7b4-29b8-4d81fbe076c7@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 05/19] drm/i915/dp: Update Bigjoiner
- interface bits for computing compressed bpp
+Subject: [Intel-gfx] [PATCH] drm/i915: Replace i915->gt0 with to_gt(i915)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,81 +56,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 24, 2023 at 05:49:11PM +0530, Nautiyal, Ankit K wrote:
-> Hi Stan,
-> 
-> Thanks for the reviews ans suggestions. Please my response inline:
-> 
-> 
-> On 7/20/2023 2:59 PM, Lisovskiy, Stanislav wrote:
-> > On Thu, Jul 13, 2023 at 04:03:32PM +0530, Ankit Nautiyal wrote:
-> > > In Bigjoiner check for DSC, bigjoiner interface bits for DP for
-> > > DISPLAY > 13 is 36 (Bspec: 49259).
-> > > 
-> > > v2: Corrected Display ver to 13.
-> > > 
-> > > v3: Follow convention for conditional statement. (Ville)
-> > > 
-> > > v4: Fix check for display ver. (Ville)
-> > > 
-> > > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > > Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > ---
-> > >   drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
-> > >   1 file changed, 2 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > index 19768ac658ba..c1fd448d80e1 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > @@ -802,8 +802,9 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
-> > >   	bits_per_pixel = min(bits_per_pixel, max_bpp_small_joiner_ram);
-> > >   	if (bigjoiner) {
-> > > +		int bigjoiner_interface_bits = DISPLAY_VER(i915) >= 14 ? 36 : 24;
-> > >   		u32 max_bpp_bigjoiner =
-> > > -			i915->display.cdclk.max_cdclk_freq * 48 /
-> > > +			i915->display.cdclk.max_cdclk_freq * 2 * bigjoiner_interface_bits /
-> > Probably "num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);" again,
-> > instead of "2"?
-> 
-> Currently intel_dsc_get_num_vdsc_instances will give total number of
-> vdsc_engines including joined pipes.
-> 
-> So with bigjoiner the function will return 4.
-> 
-> This was good to calculate Pipe BW check: (Pixel clock < PPC * CDCLK
-> frequency * Number of pipes joined
-> 
-> as we get PPC * number of pipes joined from
-> intel_dsc_get_num_vdsc_instances)
-> 
-> Or to calculate DSC_PIC_WIDTH PPS parameter.
-> 
-> But here we perhaps need intel_dsc_get_vdsc_engines_per_pipe that will just
-> return 2 if dsc_split 1 otherwise.
-> 
-> Thanks & Regards,
-> 
-> Ankit
+Quite surprised to see that around i915 there are still i915->gt0
+references. Replace them with the to_gt() helper.
 
-Yes, I agree, unfortunately not applicable here.
-May be yeah we need some function like that and then refactor
-also the intel_dsc_get_num_vdsc_instances to use that one..
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c       | 2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c               | 2 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c      | 2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp.c             | 8 ++++----
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 +-
+ 5 files changed, 8 insertions(+), 8 deletions(-)
 
-Stan
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+index 3b094d36a0b04..5b0a5cf9a98a8 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+@@ -892,7 +892,7 @@ i915_gem_stolen_lmem_setup(struct drm_i915_private *i915, u16 type,
+ 	} else {
+ 		resource_size_t lmem_range;
+ 
+-		lmem_range = intel_gt_mcr_read_any(&i915->gt0, XEHP_TILE0_ADDR_RANGE) & 0xFFFF;
++		lmem_range = intel_gt_mcr_read_any(to_gt(i915), XEHP_TILE0_ADDR_RANGE) & 0xFFFF;
+ 		lmem_size = lmem_range >> XEHP_TILE_LMEM_RANGE_SHIFT;
+ 		lmem_size *= SZ_1G;
+ 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 9f64d61dd5fcd..02886c1eb0f17 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -887,7 +887,7 @@ static int intel_gt_tile_setup(struct intel_gt *gt, phys_addr_t phys_addr)
+ int intel_gt_probe_all(struct drm_i915_private *i915)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+-	struct intel_gt *gt = &i915->gt0;
++	struct intel_gt *gt = to_gt(i915);
+ 	const struct intel_gt_definition *gtdef;
+ 	phys_addr_t phys_addr;
+ 	unsigned int mmio_bar;
+diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+index 2a3217e2890fc..f8512aee58a83 100644
+--- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
++++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+@@ -220,7 +220,7 @@ static struct intel_memory_region *setup_lmem(struct intel_gt *gt)
+ 		resource_size_t lmem_range;
+ 		u64 tile_stolen, flat_ccs_base;
+ 
+-		lmem_range = intel_gt_mcr_read_any(&i915->gt0, XEHP_TILE0_ADDR_RANGE) & 0xFFFF;
++		lmem_range = intel_gt_mcr_read_any(to_gt(i915), XEHP_TILE0_ADDR_RANGE) & 0xFFFF;
+ 		lmem_size = lmem_range >> XEHP_TILE_LMEM_RANGE_SHIFT;
+ 		lmem_size *= SZ_1G;
+ 
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+index bb2e15329f346..38ec754d0ec8e 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+@@ -162,8 +162,8 @@ static struct intel_gt *find_gt_for_required_teelink(struct drm_i915_private *i9
+ 	 * for HuC authentication. For now, its limited to DG2.
+ 	 */
+ 	if (IS_ENABLED(CONFIG_INTEL_MEI_PXP) && IS_ENABLED(CONFIG_INTEL_MEI_GSC) &&
+-	    intel_huc_is_loaded_by_gsc(&i915->gt0.uc.huc) && intel_uc_uses_huc(&i915->gt0.uc))
+-		return &i915->gt0;
++	    intel_huc_is_loaded_by_gsc(&to_gt(i915)->uc.huc) && intel_uc_uses_huc(&to_gt(i915)->uc))
++		return to_gt(i915);
+ 
+ 	return NULL;
+ }
+@@ -188,8 +188,8 @@ static struct intel_gt *find_gt_for_required_protected_content(struct drm_i915_p
+ 	 * Else we rely on mei-pxp module but only on legacy platforms
+ 	 * prior to having separate media GTs and has a valid VDBOX.
+ 	 */
+-	if (IS_ENABLED(CONFIG_INTEL_MEI_PXP) && !i915->media_gt && VDBOX_MASK(&i915->gt0))
+-		return &i915->gt0;
++	if (IS_ENABLED(CONFIG_INTEL_MEI_PXP) && !i915->media_gt && VDBOX_MASK(to_gt(i915)))
++		return to_gt(i915);
+ 
+ 	return NULL;
+ }
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index 12aa7fbb07481..da0b269606c51 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -114,7 +114,7 @@ static struct dev_pm_domain pm_domain = {
+ 
+ static void mock_gt_probe(struct drm_i915_private *i915)
+ {
+-	i915->gt[0] = &i915->gt0;
++	i915->gt[0] = to_gt(i915);
+ 	i915->gt[0]->name = "Mock GT";
+ }
+ 
+-- 
+2.40.1
 
-> 
-> > 
-> > With that clarified,
-> > 
-> > Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > 
-> > >   			intel_dp_mode_to_fec_clock(mode_clock);
-> > >   		bits_per_pixel = min(bits_per_pixel, max_bpp_bigjoiner);
-> > > -- 
-> > > 2.40.1
-> > > 
