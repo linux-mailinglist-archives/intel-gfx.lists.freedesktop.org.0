@@ -2,54 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F34887618F0
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 14:54:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7848761958
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 15:08:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA5FC10E137;
-	Tue, 25 Jul 2023 12:54:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4B3D10E3C7;
+	Tue, 25 Jul 2023 13:07:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4122310E137
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 12:54:19 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C944910E139;
+ Tue, 25 Jul 2023 13:07:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690289659; x=1721825659;
+ t=1690290475; x=1721826475;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=mz320zfDuWG0ltar3Ww3JoQCzXNVq6JbDe/TpMbtsEs=;
- b=np1qcBy3Y0OPYxaf00E1MbTdqUMa0AtnwE14viujP9BV5fLoIran7PDM
- D5tHk2S3NrrfqBN5OGgwlCzDElLs6yKPeU5epkqrxLCJwiYukMSAxBgzN
- VvlGgX1nLpLtvXqEGlvidmm7JR1THaMygbgz+Sutep8TbzL8vhT25sjvh
- 9IKP/MyQ/cjC7bJ1JsJH3j9crYWroV7MsS8ytLlm6QeBvSxtJvcsux4P+
- 6UmvJ5qVcCP4m4mfBRiSfyimRrMrHFjJw5Sct8jUn+6ZqgN3eZAySpvxc
- ohL+PdxHuzJuDrB9pRS4NJQ3AmC2IbpNqiPygTDRK0W64Qrt0zwG11EKT g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="367736454"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="367736454"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 05:54:18 -0700
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=nXoPnir6ZLUVtzSW+ufaogqAI+6mPetA31I3T0am5Y0=;
+ b=FK3kAn3kZLSwMAdSbTaads3LPTSrD5N2KjB2Vk9uAu9nRK7M/u1ka+vh
+ KvcbAU80DN6wbeHDH7vPT07c7ivbNxRk95h32qETG/JzmwofNGQVlAHqd
+ S/+SNT2D7+Tjwh2ZyGpTwMASTpHv1+gkhqF5hfQZcYthe2e1BhLaicz6V
+ XF1MYkRg9e7dPUpXZSjtKxJHydZpcCSgF3e4qW9TRJpiDZwrm92Bn3ORo
+ TsjSWHXwdiHInZSgo8NIVOWiEOuKyrQAY/bJb3qvKRRJRuYiL71RQ7yGO
+ LidWD33bc026UxLaejNyHhBmSPO7VIStgIM7mChTb8j1eSk6LyKPRlKU5 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="371324079"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="371324079"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 06:06:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="761198850"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="761198850"
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="972676292"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="972676292"
 Received: from kshutemo-mobl.ger.corp.intel.com (HELO intel.com)
  ([10.249.37.237])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 05:54:17 -0700
-Date: Tue, 25 Jul 2023 14:54:14 +0200
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 06:06:54 -0700
+Date: Tue, 25 Jul 2023 15:06:51 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Uwe =?iso-8859-15?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-Message-ID: <ZL/F9lcZJlHB7Dpy@ashyti-mobl2.lan>
+Message-ID: <ZL/I6zGfNvM/D9t6@ashyti-mobl2.lan>
 References: <20230721212133.271118-1-u.kleine-koenig@pengutronix.de>
- <168999615592.17723.14317445519700559147@emeril.freedesktop.org>
- <20230724073648.hjmu2ztfuau7zvdp@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
-In-Reply-To: <20230724073648.hjmu2ztfuau7zvdp@pengutronix.de>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Simplify_expression_=26to=5Fi915=28dev=29-=3Edrm?=
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230721212133.271118-1-u.kleine-koenig@pengutronix.de>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Simplify expression
+ &to_i915(dev)->drm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,23 +60,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ kernel@pengutronix.de, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Uwe,
 
-> >   If you think the reported changes have nothing to do with the changes
-> >   introduced in Patchwork_121164v1_full, please notify your bug team to allow them
-> >   to document this new failure mode, which will reduce false positives in CI.
+On Fri, Jul 21, 2023 at 11:21:33PM +0200, Uwe Kleine-König wrote:
+> to_i915 is defined as
 > 
-> I don't think my patch results in regressions. But I fail to understand
-> the indications reported by patchwork, so I might miss something.
+> 	container_of(dev, struct drm_i915_private, drm);
+> 
+> So for a struct drm_device *dev, to_i915(dev)->drm is just dev. Simplify
+> accordingly.
+> 
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 
-I think the failure is unrelated, you can ignore it.
+that's correct! Thanks for the cleanup.
 
-For future patches in i915 (or drm in general), you can retrigger
-the tests from patchwork yourself when the results don't look
-convincing.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
 Andi
