@@ -1,34 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C44761A63
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 15:47:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8BDA761AAD
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 15:54:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CAFB10E3D6;
-	Tue, 25 Jul 2023 13:47:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC29210E3D9;
+	Tue, 25 Jul 2023 13:53:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 02E0710E3D0;
- Tue, 25 Jul 2023 13:47:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ED83FAADED;
- Tue, 25 Jul 2023 13:47:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E509F10E3D7;
+ Tue, 25 Jul 2023 13:53:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1690293238; x=1721829238;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=u7X4okrLmQ5gO8SvBkdYjLFmdR0qQe+0q5bDkgBSLwA=;
+ b=HU+4B8XVA2Ak1ghVYGcWslhIPwd4XjFQFKngAckMP2oFdfD/bA9vp4nH
+ mPX2stoYqIKN6nVfkJE1nkXvyVZvM3TsOW4F6Toe9nHjEZpVDaJE/ugwe
+ mnkseIWC7p+DrgTgXz9dT0y+TqbDlnktHXmHrVNWBdoYVnfuFFrSpcTl5
+ NTK7RJuT+Xe0j0zkMUBBZeuHbeZ96E17cEwog60v5ilzFmM6i7jya8YS5
+ EVNIW+nuQCkKyIsASWnB7+ndmQd91SHTaxtzWy5lUIA57EL/qc0UuyBBd
+ /vLEmD8XmJ79BQujIdrY/zPNXo9XU6rKHva8ce3ZhatOALZ1esXftitlD Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="431530887"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="431530887"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 06:53:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="796155364"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="796155364"
+Received: from kshutemo-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.249.37.237])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 06:53:54 -0700
+Date: Tue, 25 Jul 2023 15:53:51 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Uwe =?iso-8859-15?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+Message-ID: <ZL/T70yYbwvSDVWB@ashyti-mobl2.lan>
+References: <20230721212133.271118-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Tue, 25 Jul 2023 13:47:22 -0000
-Message-ID: <169029284296.27664.5721256229067058147@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230724125633.1490543-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20230724125633.1490543-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Avoid_GGTT_flushing_on_non-GGTT_paths_of_i915?=
- =?utf-8?b?X3ZtYV9waW5faW9tYXAgKHJldjIp?=
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230721212133.271118-1-u.kleine-koenig@pengutronix.de>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Simplify expression
+ &to_i915(dev)->drm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,29 +60,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ kernel@pengutronix.de, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Uwe,
 
-Series: drm/i915: Avoid GGTT flushing on non-GGTT paths of i915_vma_pin_iomap (rev2)
-URL   : https://patchwork.freedesktop.org/series/121236/
-State : warning
+On Fri, Jul 21, 2023 at 11:21:33PM +0200, Uwe Kleine-König wrote:
+> to_i915 is defined as
+> 
+> 	container_of(dev, struct drm_i915_private, drm);
+> 
+> So for a struct drm_device *dev, to_i915(dev)->drm is just dev. Simplify
+> accordingly.
+> 
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 
-== Summary ==
+pushed to drm-intel-next.
 
-Error: dim checkpatch failed
-7f0658687535 drm/i915: Avoid GGTT flushing on non-GGTT paths of i915_vma_pin_iomap
--:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#7: 
-Commit 4bc91dbde0da ("drm/i915/lmem: Bypass aperture when lmem is available")
-
--:15: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit d976521a995a ("drm/i915: extend i915_vma_pin_iomap()")'
-#15: 
-d976521a995a ("drm/i915: extend i915_vma_pin_iomap()").
-
-total: 1 errors, 1 warnings, 0 checks, 18 lines checked
-
-
+Thanks,
+Andi
