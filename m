@@ -2,49 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12486760D09
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 10:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA09760E77
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 11:21:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FAF110E3C3;
-	Tue, 25 Jul 2023 08:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A51710E3C4;
+	Tue, 25 Jul 2023 09:21:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B060F10E3C2
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 08:31:25 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78F7910E3C4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 09:21:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690273885; x=1721809885;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pGdXij6pELHkVAJc2tATfAvpwq3ku7goESf4ZMUWssA=;
- b=gMjHtTMAlxP75SG2RY2ZZlmT6mXKFtcElWUSYQRFjUCQJNBucvhR01Zq
- wohl2LlYGPVwADql8C29cQ0K7eQN+dzguweAkr07AH+FCng5R6nLvf2VP
- 7BKSJvuJ+Lm/ls1M8X5qR08iha4ufATIzV0Cah/lnI22TstNoyKqeuUmf
- Fb7TE+sKN1VNjKnvQQc6M1P77V1o7wjw8v0n1xW6d5N8XinkKhNW8dGpx
- l9nDVjVdBKrkAUWbhScjfIbY6QvbA6uRtLGRVKNDYq7tjEcyKgvznt+PV
- QEzmy2UnwRZu4itNP2U/S0pR+ssIzJP3HaZ0dIdYcCBmSMWiy61u3onH5 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="371262339"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="371262339"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 01:31:08 -0700
+ t=1690276898; x=1721812898;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=f4X1gS0cLZyh6pDOQ+A+71I2XlL7ApnGgiTikXgbqSs=;
+ b=AroukkReA69rHhNVfyZks2FMdKxagxs69S9xM/B1jZHlcmyKTuAS9VsS
+ Od8mPMIScvwO1V+4moqa1UQdAroZq7Zzyl7oboGg9AguxvnH9R11Au3IL
+ nughPauq47oU+0maNyIwdLin5dZakdE8qnY+wbVFtmOdCOCmroivWd+wy
+ PdcCd124Il2Qh0FlOyOxgVcq83LCSHvhkGFMJVYQW6Vl/wN8PP24pDBCp
+ QBOgHcmyI6/dJTtI4n7dLO6SMCe5K30Vhh8UdRfvKc6WCAD1YuMzEEnqh
+ /4oHPIWd1anbCMVG8yny5BgshCtC+4H7XVPCVabF6DsUNx1t85bhoUX3w g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="433916594"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="433916594"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 02:21:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="899849469"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="899849469"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orsmga005.jf.intel.com with ESMTP; 25 Jul 2023 01:31:06 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Jul 2023 14:00:02 +0530
-Message-Id: <20230725083002.3779717-3-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230725083002.3779717-1-chaitanya.kumar.borah@intel.com>
-References: <20230725083002.3779717-1-chaitanya.kumar.borah@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="726039650"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="726039650"
+Received: from kshutemo-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.249.37.237])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 02:21:36 -0700
+Date: Tue, 25 Jul 2023 11:21:34 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <ZL+UHpaX+7Gz2SO9@ashyti-mobl2.lan>
+References: <20230725001312.1907319-11-matthew.d.roper@intel.com>
+ <20230725001312.1907319-12-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/color: Downscale degamma lut
- values read from hardware
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230725001312.1907319-12-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 1/9] drm/i915: Consolidate condition for
+ Wa_22011802037
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,41 +60,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For MTL and beyond, convert back the 24 bit lut values
-read from HW to 16 bit values to maintain parity with
-userspace values. This way we avoid pipe config mismatch
-for pre-csc lut values.
+Hi Matt,
 
-v2: Add helper function to downscale values (Jani)
+> +/*
+> + * Wa_22011802037 requires that we (or the GuC) ensure that no command
+> + * streamers are executing MI_FORCE_WAKE while an engine reset is initiated.
+> + */
+> +bool intel_engine_reset_needs_wa_22011802037(struct intel_gt *gt)
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
----
- drivers/gpu/drm/i915/display/intel_color.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+I've seen this format in a recent Jonathan's patch and I see it
+becoming a pattern in the future. Should we already agree on the
+naming? Would intel_needs_wa_22011802037() be sufficient? Or a
+prefix as intel_wa_* for all the similar functions?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 32182cdff928..d78e2715d419 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -3457,6 +3457,14 @@ static struct drm_property_blob *glk_read_degamma_lut(struct intel_crtc *crtc)
- 	for (i = 0; i < lut_size; i++) {
- 		u32 val = intel_de_read_fw(dev_priv, PRE_CSC_GAMC_DATA(pipe));
- 
-+		/*
-+		 * For MTL and beyond, convert back the 24 bit lut values
-+		 * read from HW to 16 bit values to maintain parity with
-+		 * userspace values
-+		 */
-+		if (DISPLAY_VER(dev_priv) >= 14)
-+			val = change_lut_val_precision(val, 16, 24);
-+
- 		lut[i].red = val;
- 		lut[i].green = val;
- 		lut[i].blue = val;
--- 
-2.25.1
+Andi
 
+> +{
+> +	if (GRAPHICS_VER(gt->i915) < 11)
+> +		return false;
+> +
+> +	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0))
+> +		return true;
+> +
+> +	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
+> +		return false;
+> +
+> +	return true;
+> +}
