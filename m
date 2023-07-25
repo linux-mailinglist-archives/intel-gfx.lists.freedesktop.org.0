@@ -2,50 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E8557618D5
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 14:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F34887618F0
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 14:54:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 448AD10E110;
-	Tue, 25 Jul 2023 12:51:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA5FC10E137;
+	Tue, 25 Jul 2023 12:54:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 133D810E110;
- Tue, 25 Jul 2023 12:51:28 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4122310E137
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 12:54:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690289488; x=1721825488;
+ t=1690289659; x=1721825659;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=eC9JYYny7fzTWzMint7Bf1073AJMuH1Fj6VitKBlCJs=;
- b=QOD6+StajrLJsOzZ3DPaewJqEVlsqZM/3l64ZxDlyg3hprHQCVJjQVcY
- KTQ1DlfbK1GiWbSWaNetPDRomVYgDlzP4lwATqQCzhy97+fqKD3oL4Q+v
- ok0KqjNb0U4HvGoq8Cd38j4c7fa5Xq5VbZ0kwvWd4nlO1bF5h5JdKTnYm
- CdZ04QX2ME3eoTcZYNhZb9kqN+VniGd8Cos1EZ5DwR/LGY9lIbjpyMMMS
- WfwL3ETFcQA/uBHTwOZ43YoP0O8B4kDBsUmdIGcc+mv7Nz5lJyYnbN+1G
- MIE7XpNcxyKhhL+FlNnz89aMVKuIGlBkLRhObF8M+4z2d9k/msl6Kb4Sy w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="431512469"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="431512469"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 05:51:27 -0700
+ bh=mz320zfDuWG0ltar3Ww3JoQCzXNVq6JbDe/TpMbtsEs=;
+ b=np1qcBy3Y0OPYxaf00E1MbTdqUMa0AtnwE14viujP9BV5fLoIran7PDM
+ D5tHk2S3NrrfqBN5OGgwlCzDElLs6yKPeU5epkqrxLCJwiYukMSAxBgzN
+ VvlGgX1nLpLtvXqEGlvidmm7JR1THaMygbgz+Sutep8TbzL8vhT25sjvh
+ 9IKP/MyQ/cjC7bJ1JsJH3j9crYWroV7MsS8ytLlm6QeBvSxtJvcsux4P+
+ 6UmvJ5qVcCP4m4mfBRiSfyimRrMrHFjJw5Sct8jUn+6ZqgN3eZAySpvxc
+ ohL+PdxHuzJuDrB9pRS4NJQ3AmC2IbpNqiPygTDRK0W64Qrt0zwG11EKT g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="367736454"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="367736454"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 05:54:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="720056033"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="720056033"
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="761198850"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="761198850"
 Received: from kshutemo-mobl.ger.corp.intel.com (HELO intel.com)
  ([10.249.37.237])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 05:51:21 -0700
-Date: Tue, 25 Jul 2023 14:51:18 +0200
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 05:54:17 -0700
+Date: Tue, 25 Jul 2023 14:54:14 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Message-ID: <ZL/FRsllUVUhruAZ@ashyti-mobl2.lan>
-References: <20230724082511.3225-1-andriy.shevchenko@linux.intel.com>
+To: Uwe =?iso-8859-15?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+Message-ID: <ZL/F9lcZJlHB7Dpy@ashyti-mobl2.lan>
+References: <20230721212133.271118-1-u.kleine-koenig@pengutronix.de>
+ <168999615592.17723.14317445519700559147@emeril.freedesktop.org>
+ <20230724073648.hjmu2ztfuau7zvdp@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230724082511.3225-1-andriy.shevchenko@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 1/1] drm/i915: Move abs_diff() to math.h
+In-Reply-To: <20230724073648.hjmu2ztfuau7zvdp@pengutronix.de>
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Simplify_expression_=26to=5Fi915=28dev=29-=3Edrm?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,31 +62,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, linux-fbdev@vger.kernel.org,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Nikita Shubin <nikita.shubin@maquefel.me>, Jani Nikula <jani.nikula@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Stephen Boyd <sboyd@kernel.org>,
- Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>,
- linux-serial@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Ilpo =?iso-8859-15?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Jiri Slaby <jirislaby@kernel.org>,
- Alexey Dobriyan <adobriyan@gmail.com>, Helge Deller <deller@gmx.de>,
- Andi Shyti <andi.shyti@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andy,
+Hi Uwe,
 
-On Mon, Jul 24, 2023 at 11:25:11AM +0300, Andy Shevchenko wrote:
-> abs_diff() belongs to math.h. Move it there.
-> This will allow others to use it.
+> >   If you think the reported changes have nothing to do with the changes
+> >   introduced in Patchwork_121164v1_full, please notify your bug team to allow them
+> >   to document this new failure mode, which will reduce false positives in CI.
 > 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Reviewed-by: Jiri Slaby <jirislaby@kernel.org> # tty/serial
+> I don't think my patch results in regressions. But I fail to understand
+> the indications reported by patchwork, so I might miss something.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+I think the failure is unrelated, you can ignore it.
 
-Thanks,
+For future patches in i915 (or drm in general), you can retrigger
+the tests from patchwork yourself when the results don't look
+convincing.
+
 Andi
