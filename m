@@ -2,56 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9A2A761E62
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 18:23:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C28F0761E9E
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 18:36:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 046C010E162;
-	Tue, 25 Jul 2023 16:23:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B611310E15D;
+	Tue, 25 Jul 2023 16:36:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FEF510E162
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jul 2023 16:23:34 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D7FE10E15D;
+ Tue, 25 Jul 2023 16:36:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690302214; x=1721838214;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Lff5d2h1kF2041xBQCkLOk/9WtLA8aBYh0eoYkbQ3bc=;
- b=DBiBaMkv+t/HAcSIg+jgjkTRqtxNmrlnFeMFgRjdZw6cBe77dHq2o1xe
- jH0jTlY1eW7XMgGPm3Un258Bbc5/6GJaPNCX/5uUwMi/COA2vhyQ2rCun
- oQAnyeipC6dWw5W+R9gxPfSC+Gg45rYGj5XR63EG5U2N0z4JjNO9c8Trn
- Rz+IrViRsKu3+qdowDRluvjd2WnmdXxk724Mr6vA5LNLtPA2vz2OpyMhs
- vUpp0NQK5zHdbuH/sUKdDINdmsH2wwV5UFWE+sMrkVPcljLOcNRnmamnH
- L3sKYwANWTV+cDGKN/Zg5ErPNLaUZXbEKq/70D8fSaGn2SCESdOk3Ubqy w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="434033165"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="434033165"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 09:23:11 -0700
+ t=1690303008; x=1721839008;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=HQcvA1zVeAzWy7RaVrJIa5yOfiJeZ+edCXEWZE6SZ9I=;
+ b=mzOyZMPm7u1yfXEr41SRmVHWakLxxhf5LmaWwPXDFs/JLRwNCWDuX7hC
+ 1kV0iiyvxt77oHLWsQUFhUXjreiBeLqOYLuOu4YO3FenU+fvRbVzH/pk7
+ gvMMpemIm/juuAeqm2X6IKHkqVEwyMp2l+DPDEvTmv6jSeaYo3HgutxVd
+ Nhhoy/PV7nShdbmP67I5rEseKQWF96bctgcFxeJDdlMSyyDtkBDuIb7JS
+ ArPb6K6UR7TjucuzDBHI4Z/ctrY09QmFujIXmnUFzv/ZKi6ZhQU/cbj/r
+ aVWXeEj2q7A1yg/mYqJkGIN4yPoj1onuEL1Fr5MwN/fP+A5cGpUCU6My1 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="371392613"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="371392613"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 09:36:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="796207724"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="796207724"
-Received: from grdarcy-mobl1.ger.corp.intel.com (HELO [10.213.228.4])
- ([10.213.228.4])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 09:23:09 -0700
-Message-ID: <daaf4abb-4da0-d676-cfbb-ec50b558ed17@linux.intel.com>
-Date: Tue, 25 Jul 2023 17:23:07 +0100
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="869536497"
+Received: from kshutemo-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.249.37.237])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 09:36:47 -0700
+Date: Tue, 25 Jul 2023 18:36:43 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <ZL/6Gz4wfepIU8PC@ashyti-mobl2.lan>
+References: <20230725103330.1041394-1-andi.shyti@linux.intel.com>
+ <8b0015c1-54d8-a4ff-f5b0-cd7243131039@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20230725160145.1486613-1-jonathan.cavitt@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230725160145.1486613-1-jonathan.cavitt@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH dii-client 1/2] drm/i915: Make
- i915_coherent_map_type GT-centric
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8b0015c1-54d8-a4ff-f5b0-cd7243131039@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Replace i915->gt0 with to_gt(i915)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,508 +58,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, nirmoy.das@intel.com, andi.shyti@intel.com,
- chris.p.wilson@linux.intel.com
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
-On 25/07/2023 17:01, Jonathan Cavitt wrote:
-> Refactor i915_coherent_map_type to be GT-centric rather than
-> device-centric.  Each GT may require different coherency
-> handling due to hardware workarounds.
+On Tue, Jul 25, 2023 at 03:41:31PM +0200, Andrzej Hajda wrote:
+> On 25.07.2023 12:33, Andi Shyti wrote:
+> > Quite surprised to see that around i915 there are still i915->gt0
+> > references. Replace them with the to_gt() helper.
+> > 
+> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gem/i915_gem_stolen.c       | 2 +-
+> >   drivers/gpu/drm/i915/gt/intel_gt.c               | 2 +-
+> >   drivers/gpu/drm/i915/gt/intel_region_lmem.c      | 2 +-
+> >   drivers/gpu/drm/i915/pxp/intel_pxp.c             | 8 ++++----
+> >   drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 +-
+> >   5 files changed, 8 insertions(+), 8 deletions(-)
 > 
-> Since the function now takes a GT instead of the i915, the function is
-> renamed and moved to the gt folder.
+> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-What about the issue of fake gt passed to shmem_create_from_object I raised?
+Thanks for your review! Pushed in drm-intel-gt-next.
 
-Regards,
-
-Tvrtko
-
-P.S. See if you can drop the dii-client part from the subject line going 
-forward.
-
-> 
-> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_hdcp_gsc.c   |  3 ++-
->   drivers/gpu/drm/i915/gem/i915_gem_object.h      |  4 ----
->   drivers/gpu/drm/i915/gem/i915_gem_pages.c       | 15 ---------------
->   .../drm/i915/gem/selftests/i915_gem_migrate.c   | 12 ++++++------
->   drivers/gpu/drm/i915/gt/intel_engine_pm.c       |  2 +-
->   drivers/gpu/drm/i915/gt/intel_gt.c              | 17 ++++++++++++++++-
->   drivers/gpu/drm/i915/gt/intel_gt.h              |  3 +++
->   drivers/gpu/drm/i915/gt/intel_gtt.c             |  4 ++--
->   drivers/gpu/drm/i915/gt/intel_lrc.c             |  2 +-
->   drivers/gpu/drm/i915/gt/intel_ring.c            |  3 ++-
->   drivers/gpu/drm/i915/gt/selftest_context.c      |  2 +-
->   drivers/gpu/drm/i915/gt/selftest_hangcheck.c    |  4 ++--
->   drivers/gpu/drm/i915/gt/selftest_lrc.c          |  2 +-
->   drivers/gpu/drm/i915/gt/shmem_utils.c           |  7 ++++---
->   drivers/gpu/drm/i915/gt/shmem_utils.h           |  4 +++-
->   drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c       |  3 +--
->   drivers/gpu/drm/i915/gt/uc/intel_guc.c          |  2 +-
->   drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c       |  3 +--
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c        |  3 ++-
->   drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c      |  2 +-
->   drivers/gpu/drm/i915/pxp/intel_pxp_tee.c        |  3 ++-
->   drivers/gpu/drm/i915/selftests/igt_spinner.c    |  2 +-
->   22 files changed, 53 insertions(+), 49 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> index ad0405375881..d753db3eef15 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> @@ -6,6 +6,7 @@
->   #include <drm/i915_hdcp_interface.h>
->   
->   #include "gem/i915_gem_region.h"
-> +#include "gt/intel_gt.h"
->   #include "gt/uc/intel_gsc_uc_heci_cmd_submit.h"
->   #include "i915_drv.h"
->   #include "i915_utils.h"
-> @@ -632,7 +633,7 @@ static int intel_hdcp_gsc_initialize_message(struct drm_i915_private *i915,
->   		return PTR_ERR(obj);
->   	}
->   
-> -	cmd_in = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(i915, obj, true));
-> +	cmd_in = i915_gem_object_pin_map_unlocked(obj, intel_gt_coherent_map_type(gt, obj, true));
->   	if (IS_ERR(cmd_in)) {
->   		drm_err(&i915->drm, "Failed to map gsc message page!\n");
->   		err = PTR_ERR(cmd_in);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> index 884a17275b3a..0c695b4c129f 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> @@ -716,10 +716,6 @@ void *__must_check i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
->   void *__must_check i915_gem_object_pin_map_unlocked(struct drm_i915_gem_object *obj,
->   						    enum i915_map_type type);
->   
-> -enum i915_map_type i915_coherent_map_type(struct drm_i915_private *i915,
-> -					  struct drm_i915_gem_object *obj,
-> -					  bool always_coherent);
-> -
->   void __i915_gem_object_flush_map(struct drm_i915_gem_object *obj,
->   				 unsigned long offset,
->   				 unsigned long size);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> index 89fc8ea6bcfc..6d262d269c71 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> @@ -465,21 +465,6 @@ void *i915_gem_object_pin_map_unlocked(struct drm_i915_gem_object *obj,
->   	return ret;
->   }
->   
-> -enum i915_map_type i915_coherent_map_type(struct drm_i915_private *i915,
-> -					  struct drm_i915_gem_object *obj,
-> -					  bool always_coherent)
-> -{
-> -	/*
-> -	 * Wa_22016122933: always return I915_MAP_WC for MTL
-> -	 */
-> -	if (i915_gem_object_is_lmem(obj) || IS_METEORLAKE(i915))
-> -		return I915_MAP_WC;
-> -	if (HAS_LLC(i915) || always_coherent)
-> -		return I915_MAP_WB;
-> -	else
-> -		return I915_MAP_WC;
-> -}
-> -
->   void __i915_gem_object_flush_map(struct drm_i915_gem_object *obj,
->   				 unsigned long offset,
->   				 unsigned long size)
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
-> index a93a90b15907..d8f4a10d71de 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
-> @@ -13,12 +13,12 @@
->   #include "selftests/igt_spinner.h"
->   
->   static int igt_fill_check_buffer(struct drm_i915_gem_object *obj,
-> +				 struct intel_gt *gt,
->   				 bool fill)
->   {
-> -	struct drm_i915_private *i915 = to_i915(obj->base.dev);
->   	unsigned int i, count = obj->base.size / sizeof(u32);
->   	enum i915_map_type map_type =
-> -		i915_coherent_map_type(i915, obj, false);
-> +		intel_gt_coherent_map_type(gt, obj, false);
->   	u32 *cur;
->   	int err = 0;
->   
-> @@ -66,7 +66,7 @@ static int igt_create_migrate(struct intel_gt *gt, enum intel_region_id src,
->   		if (err)
->   			continue;
->   
-> -		err = igt_fill_check_buffer(obj, true);
-> +		err = igt_fill_check_buffer(obj, gt, true);
->   		if (err)
->   			continue;
->   
-> @@ -86,7 +86,7 @@ static int igt_create_migrate(struct intel_gt *gt, enum intel_region_id src,
->   		if (err)
->   			continue;
->   
-> -		err = igt_fill_check_buffer(obj, false);
-> +		err = igt_fill_check_buffer(obj, gt, false);
->   	}
->   	i915_gem_object_put(obj);
->   
-> @@ -233,7 +233,7 @@ static int __igt_lmem_pages_migrate(struct intel_gt *gt,
->   			continue;
->   
->   		if (!vma) {
-> -			err = igt_fill_check_buffer(obj, true);
-> +			err = igt_fill_check_buffer(obj, gt, true);
->   			if (err)
->   				continue;
->   		}
-> @@ -276,7 +276,7 @@ static int __igt_lmem_pages_migrate(struct intel_gt *gt,
->   		if (err)
->   			goto out_unlock;
->   	} else {
-> -		err = igt_fill_check_buffer(obj, false);
-> +		err = igt_fill_check_buffer(obj, gt, false);
->   	}
->   
->   out_unlock:
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> index 21af0ec52223..b538b5c04948 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> @@ -39,7 +39,7 @@ static void dbg_poison_ce(struct intel_context *ce)
->   
->   	if (ce->state) {
->   		struct drm_i915_gem_object *obj = ce->state->obj;
-> -		int type = i915_coherent_map_type(ce->engine->i915, obj, true);
-> +		int type = intel_gt_coherent_map_type(ce->engine->gt, obj, true);
->   		void *map;
->   
->   		if (!i915_gem_object_trylock(obj, NULL))
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 9f64d61dd5fc..6faf1dae965f 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -591,7 +591,7 @@ static int __engines_record_defaults(struct intel_gt *gt)
->   			continue;
->   
->   		/* Keep a copy of the state's backing pages; free the obj */
-> -		state = shmem_create_from_object(rq->context->state->obj);
-> +		state = shmem_create_from_object(rq->context->state->obj, gt);
->   		if (IS_ERR(state)) {
->   			err = PTR_ERR(state);
->   			goto out;
-> @@ -1134,6 +1134,21 @@ void intel_gt_invalidate_tlb(struct intel_gt *gt, u32 seqno)
->   	}
->   }
->   
-> +enum i915_map_type intel_gt_coherent_map_type(struct intel_gt *gt,
-> +					      struct drm_i915_gem_object *obj,
-> +					      bool always_coherent)
-> +{
-> +	/*
-> +	 * Wa_22016122933: always return I915_MAP_WC for MTL
-> +	 */
-> +	if (i915_gem_object_is_lmem(obj) || IS_METEORLAKE(gt->i915))
-> +		return I915_MAP_WC;
-> +	if (HAS_LLC(gt->i915) || always_coherent)
-> +		return I915_MAP_WB;
-> +	else
-> +		return I915_MAP_WC;
-> +}
-> +
->   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
->   #include "selftest_tlb.c"
->   #endif
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-> index d2f4fbde5f9f..adb442aaa522 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-> @@ -119,4 +119,7 @@ static inline u32 intel_gt_next_invalidate_tlb_full(const struct intel_gt *gt)
->   
->   void intel_gt_invalidate_tlb(struct intel_gt *gt, u32 seqno);
->   
-> +enum i915_map_type intel_gt_coherent_map_type(struct intel_gt *gt,
-> +					      struct drm_i915_gem_object *obj,
-> +					      bool always_coherent);
->   #endif /* __INTEL_GT_H__ */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> index 731d9f2bbc56..13944a14ea2d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> @@ -89,7 +89,7 @@ int map_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
->   	enum i915_map_type type;
->   	void *vaddr;
->   
-> -	type = i915_coherent_map_type(vm->i915, obj, true);
-> +	type = intel_gt_coherent_map_type(vm->gt, obj, true);
->   	vaddr = i915_gem_object_pin_map_unlocked(obj, type);
->   	if (IS_ERR(vaddr))
->   		return PTR_ERR(vaddr);
-> @@ -103,7 +103,7 @@ int map_pt_dma_locked(struct i915_address_space *vm, struct drm_i915_gem_object
->   	enum i915_map_type type;
->   	void *vaddr;
->   
-> -	type = i915_coherent_map_type(vm->i915, obj, true);
-> +	type = intel_gt_coherent_map_type(vm->gt, obj, true);
->   	vaddr = i915_gem_object_pin_map(obj, type);
->   	if (IS_ERR(vaddr))
->   		return PTR_ERR(vaddr);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 1b710102390b..e5a83d4932c8 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1191,7 +1191,7 @@ lrc_pre_pin(struct intel_context *ce,
->   	GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
->   
->   	*vaddr = i915_gem_object_pin_map(ce->state->obj,
-> -					 i915_coherent_map_type(ce->engine->i915,
-> +					 intel_gt_coherent_map_type(ce->engine->gt,
->   								ce->state->obj,
->   								false) |
->   					 I915_MAP_OVERRIDE);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-> index fb99143be98e..59da4b7bd262 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ring.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-> @@ -13,6 +13,7 @@
->   #include "intel_engine_regs.h"
->   #include "intel_gpu_commands.h"
->   #include "intel_ring.h"
-> +#include "intel_gt.h"
->   #include "intel_timeline.h"
->   
->   unsigned int intel_ring_update_space(struct intel_ring *ring)
-> @@ -56,7 +57,7 @@ int intel_ring_pin(struct intel_ring *ring, struct i915_gem_ww_ctx *ww)
->   	if (i915_vma_is_map_and_fenceable(vma) && !HAS_LLC(vma->vm->i915)) {
->   		addr = (void __force *)i915_vma_pin_iomap(vma);
->   	} else {
-> -		int type = i915_coherent_map_type(vma->vm->i915, vma->obj, false);
-> +		int type = intel_gt_coherent_map_type(vma->vm->gt, vma->obj, false);
->   
->   		addr = i915_gem_object_pin_map(vma->obj, type);
->   	}
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
-> index 76fbae358072..afce036bcaa8 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_context.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_context.c
-> @@ -88,7 +88,7 @@ static int __live_context_size(struct intel_engine_cs *engine)
->   		goto err;
->   
->   	vaddr = i915_gem_object_pin_map_unlocked(ce->state->obj,
-> -						 i915_coherent_map_type(engine->i915,
-> +						 intel_gt_coherent_map_type(engine->gt,
->   									ce->state->obj, false));
->   	if (IS_ERR(vaddr)) {
->   		err = PTR_ERR(vaddr);
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> index 8b0d84f2aad2..0dd4d00ee894 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> @@ -73,7 +73,7 @@ static int hang_init(struct hang *h, struct intel_gt *gt)
->   	h->seqno = memset(vaddr, 0xff, PAGE_SIZE);
->   
->   	vaddr = i915_gem_object_pin_map_unlocked(h->obj,
-> -						 i915_coherent_map_type(gt->i915, h->obj, false));
-> +						 intel_gt_coherent_map_type(gt, h->obj, false));
->   	if (IS_ERR(vaddr)) {
->   		err = PTR_ERR(vaddr);
->   		goto err_unpin_hws;
-> @@ -119,7 +119,7 @@ hang_create_request(struct hang *h, struct intel_engine_cs *engine)
->   		return ERR_CAST(obj);
->   	}
->   
-> -	vaddr = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(gt->i915, obj, false));
-> +	vaddr = i915_gem_object_pin_map_unlocked(obj, intel_gt_coherent_map_type(gt, obj, false));
->   	if (IS_ERR(vaddr)) {
->   		i915_gem_object_put(obj);
->   		i915_vm_put(vm);
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> index a78a3d2c2e16..bc883de02295 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> @@ -1292,7 +1292,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
->   	}
->   
->   	lrc = i915_gem_object_pin_map_unlocked(ce->state->obj,
-> -					       i915_coherent_map_type(engine->i915,
-> +					       intel_gt_coherent_map_type(engine->gt,
->   								      ce->state->obj,
->   								      false));
->   	if (IS_ERR(lrc)) {
-> diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c b/drivers/gpu/drm/i915/gt/shmem_utils.c
-> index 449c9ed44382..ffd48839a825 100644
-> --- a/drivers/gpu/drm/i915/gt/shmem_utils.c
-> +++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
-> @@ -11,6 +11,7 @@
->   #include "i915_drv.h"
->   #include "gem/i915_gem_object.h"
->   #include "gem/i915_gem_lmem.h"
-> +#include "gt/intel_gt.h"
->   #include "shmem_utils.h"
->   
->   struct file *shmem_create_from_data(const char *name, void *data, size_t len)
-> @@ -31,9 +32,9 @@ struct file *shmem_create_from_data(const char *name, void *data, size_t len)
->   	return file;
->   }
->   
-> -struct file *shmem_create_from_object(struct drm_i915_gem_object *obj)
-> +struct file *shmem_create_from_object(struct drm_i915_gem_object *obj,
-> +				      struct intel_gt *gt)
->   {
-> -	struct drm_i915_private *i915 = to_i915(obj->base.dev);
->   	enum i915_map_type map_type;
->   	struct file *file;
->   	void *ptr;
-> @@ -44,7 +45,7 @@ struct file *shmem_create_from_object(struct drm_i915_gem_object *obj)
->   		return file;
->   	}
->   
-> -	map_type = i915_coherent_map_type(i915, obj, true);
-> +	map_type = intel_gt_coherent_map_type(gt, obj, true);
->   	ptr = i915_gem_object_pin_map_unlocked(obj, map_type);
->   	if (IS_ERR(ptr))
->   		return ERR_CAST(ptr);
-> diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.h b/drivers/gpu/drm/i915/gt/shmem_utils.h
-> index b2b04d88c6e5..743a56307216 100644
-> --- a/drivers/gpu/drm/i915/gt/shmem_utils.h
-> +++ b/drivers/gpu/drm/i915/gt/shmem_utils.h
-> @@ -11,9 +11,11 @@
->   struct iosys_map;
->   struct drm_i915_gem_object;
->   struct file;
-> +struct intel_gt;
->   
->   struct file *shmem_create_from_data(const char *name, void *data, size_t len);
-> -struct file *shmem_create_from_object(struct drm_i915_gem_object *obj);
-> +struct file *shmem_create_from_object(struct drm_i915_gem_object *obj,
-> +				      struct intel_gt *gt);
->   
->   void *shmem_pin_map(struct file *file);
->   void shmem_unpin_map(struct file *file, void *ptr);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-> index ab1a456f833d..6efb86c93bfc 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-> @@ -268,7 +268,6 @@ static int gsc_fw_load(struct intel_gsc_uc *gsc)
->   static int gsc_fw_load_prepare(struct intel_gsc_uc *gsc)
->   {
->   	struct intel_gt *gt = gsc_uc_to_gt(gsc);
-> -	struct drm_i915_private *i915 = gt->i915;
->   	void *src;
->   
->   	if (!gsc->local)
-> @@ -278,7 +277,7 @@ static int gsc_fw_load_prepare(struct intel_gsc_uc *gsc)
->   		return -ENOSPC;
->   
->   	src = i915_gem_object_pin_map_unlocked(gsc->fw.obj,
-> -					       i915_coherent_map_type(i915, gsc->fw.obj, true));
-> +					       intel_gt_coherent_map_type(gt, gsc->fw.obj, true));
->   	if (IS_ERR(src))
->   		return PTR_ERR(src);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> index 2eb891b270ae..c0fa9d232205 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> @@ -792,7 +792,7 @@ int intel_guc_allocate_and_map_vma(struct intel_guc *guc, u32 size,
->   		return PTR_ERR(vma);
->   
->   	vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
-> -						 i915_coherent_map_type(guc_to_gt(guc)->i915,
-> +						 intel_gt_coherent_map_type(guc_to_gt(guc),
->   									vma->obj, true));
->   	if (IS_ERR(vaddr)) {
->   		i915_vma_unpin_and_release(&vma, 0);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
-> index 48f506a26e6d..b648238cc675 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
-> @@ -27,7 +27,6 @@ struct mtl_huc_auth_msg_out {
->   int intel_huc_fw_auth_via_gsccs(struct intel_huc *huc)
->   {
->   	struct intel_gt *gt = huc_to_gt(huc);
-> -	struct drm_i915_private *i915 = gt->i915;
->   	struct drm_i915_gem_object *obj;
->   	struct mtl_huc_auth_msg_in *msg_in;
->   	struct mtl_huc_auth_msg_out *msg_out;
-> @@ -43,7 +42,7 @@ int intel_huc_fw_auth_via_gsccs(struct intel_huc *huc)
->   	pkt_offset = i915_ggtt_offset(huc->heci_pkt);
->   
->   	pkt_vaddr = i915_gem_object_pin_map_unlocked(obj,
-> -						     i915_coherent_map_type(i915, obj, true));
-> +						     intel_gt_coherent_map_type(gt, obj, true));
->   	if (IS_ERR(pkt_vaddr))
->   		return PTR_ERR(pkt_vaddr);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index 7aadad5639c3..fc0d05d2df59 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -11,6 +11,7 @@
->   #include <drm/drm_print.h>
->   
->   #include "gem/i915_gem_lmem.h"
-> +#include "gt/intel_gt.h"
->   #include "gt/intel_gt_print.h"
->   #include "intel_gsc_binary_headers.h"
->   #include "intel_gsc_fw.h"
-> @@ -1213,7 +1214,7 @@ static int uc_fw_rsa_data_create(struct intel_uc_fw *uc_fw)
->   		return PTR_ERR(vma);
->   
->   	vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
-> -						 i915_coherent_map_type(gt->i915, vma->obj, true));
-> +						 intel_gt_coherent_map_type(gt, vma->obj, true));
->   	if (IS_ERR(vaddr)) {
->   		i915_vma_unpin_and_release(&vma, 0);
->   		err = PTR_ERR(vaddr);
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
-> index c7df47364013..c27fc5870608 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c
-> @@ -336,7 +336,7 @@ gsccs_create_buffer(struct intel_gt *gt,
->   	}
->   
->   	/* return a virtual pointer */
-> -	*map = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(i915, obj, true));
-> +	*map = i915_gem_object_pin_map_unlocked(obj, intel_gt_coherent_map_type(gt, obj, true));
->   	if (IS_ERR(*map)) {
->   		drm_err(&i915->drm, "Failed to map gsccs backend %s.\n", bufname);
->   		err = PTR_ERR(*map);
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index 1ce07d7e8769..8e0b5d48ddf6 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -11,6 +11,7 @@
->   #include "gem/i915_gem_lmem.h"
->   
->   #include "i915_drv.h"
-> +#include "gt/intel_gt.h"
->   
->   #include "intel_pxp.h"
->   #include "intel_pxp_cmd_interface_42.h"
-> @@ -245,7 +246,7 @@ static int alloc_streaming_command(struct intel_pxp *pxp)
->   	}
->   
->   	/* map the lmem into the virtual memory pointer */
-> -	cmd = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(i915, obj, true));
-> +	cmd = i915_gem_object_pin_map_unlocked(obj, intel_gt_coherent_map_type(pxp->ctrl_gt, obj, true));
->   	if (IS_ERR(cmd)) {
->   		drm_err(&i915->drm, "Failed to map gsc message page!\n");
->   		err = PTR_ERR(cmd);
-> diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.c b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-> index 3c5e0952f1b8..0f064930ef11 100644
-> --- a/drivers/gpu/drm/i915/selftests/igt_spinner.c
-> +++ b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-> @@ -97,7 +97,7 @@ int igt_spinner_pin(struct igt_spinner *spin,
->   	if (!spin->batch) {
->   		unsigned int mode;
->   
-> -		mode = i915_coherent_map_type(spin->gt->i915, spin->obj, false);
-> +		mode = intel_gt_coherent_map_type(spin->gt, spin->obj, false);
->   		vaddr = igt_spinner_pin_obj(ce, ww, spin->obj, mode, &spin->batch_vma);
->   		if (IS_ERR(vaddr))
->   			return PTR_ERR(vaddr);
+Andi
