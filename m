@@ -1,51 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28F0761E9E
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 18:36:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3704761FD5
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jul 2023 19:10:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B611310E15D;
-	Tue, 25 Jul 2023 16:36:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC38010E3E6;
+	Tue, 25 Jul 2023 17:10:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D7FE10E15D;
- Tue, 25 Jul 2023 16:36:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690303008; x=1721839008;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=HQcvA1zVeAzWy7RaVrJIa5yOfiJeZ+edCXEWZE6SZ9I=;
- b=mzOyZMPm7u1yfXEr41SRmVHWakLxxhf5LmaWwPXDFs/JLRwNCWDuX7hC
- 1kV0iiyvxt77oHLWsQUFhUXjreiBeLqOYLuOu4YO3FenU+fvRbVzH/pk7
- gvMMpemIm/juuAeqm2X6IKHkqVEwyMp2l+DPDEvTmv6jSeaYo3HgutxVd
- Nhhoy/PV7nShdbmP67I5rEseKQWF96bctgcFxeJDdlMSyyDtkBDuIb7JS
- ArPb6K6UR7TjucuzDBHI4Z/ctrY09QmFujIXmnUFzv/ZKi6ZhQU/cbj/r
- aVWXeEj2q7A1yg/mYqJkGIN4yPoj1onuEL1Fr5MwN/fP+A5cGpUCU6My1 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="371392613"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="371392613"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 09:36:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="869536497"
-Received: from kshutemo-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.249.37.237])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 09:36:47 -0700
-Date: Tue, 25 Jul 2023 18:36:43 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>
-Message-ID: <ZL/6Gz4wfepIU8PC@ashyti-mobl2.lan>
-References: <20230725103330.1041394-1-andi.shyti@linux.intel.com>
- <8b0015c1-54d8-a4ff-f5b0-cd7243131039@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2684C10E168;
+ Tue, 25 Jul 2023 17:10:38 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 6C3016181A;
+ Tue, 25 Jul 2023 17:10:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F1D9C433C7;
+ Tue, 25 Jul 2023 17:10:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1690305036;
+ bh=gFDIOFJUg+DOfAXFPWC3hL0j9ovfHQMSJqI2XgTzQpk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=S+N5g77nllkgBlBRqV1c+fDVHcxuV+oE53LaqoIBIfWcSWr5PXsJzP4RjNKR6/+Ng
+ 9FJ1gf0hM+UBWpUwZ10DoAq9tTEbGL4EjAiIncisE+kGvL17r/cq6Nm0PfGrD1+12Z
+ amKEpM3IfKLNJU6L8nqeg/RcmcoSdVfbfPdrv9zs=
+Date: Tue, 25 Jul 2023 19:10:33 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Message-ID: <2023072525-gimmick-debatable-0b87@gregkh>
+References: <20230724082511.3225-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8b0015c1-54d8-a4ff-f5b0-cd7243131039@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Replace i915->gt0 with to_gt(i915)
+In-Reply-To: <20230724082511.3225-1-andriy.shevchenko@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 1/1] drm/i915: Move abs_diff() to math.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,29 +50,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, Andi Shyti <andi.shyti@kernel.org>,
+ Nikita Shubin <nikita.shubin@maquefel.me>, Jiri Slaby <jirislaby@kernel.org>,
+ Helge Deller <deller@gmx.de>, linux-serial@vger.kernel.org,
+ Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Alexey Dobriyan <adobriyan@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
+ Philipp Zabel <p.zabel@pengutronix.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-On Tue, Jul 25, 2023 at 03:41:31PM +0200, Andrzej Hajda wrote:
-> On 25.07.2023 12:33, Andi Shyti wrote:
-> > Quite surprised to see that around i915 there are still i915->gt0
-> > references. Replace them with the to_gt() helper.
-> > 
-> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gem/i915_gem_stolen.c       | 2 +-
-> >   drivers/gpu/drm/i915/gt/intel_gt.c               | 2 +-
-> >   drivers/gpu/drm/i915/gt/intel_region_lmem.c      | 2 +-
-> >   drivers/gpu/drm/i915/pxp/intel_pxp.c             | 8 ++++----
-> >   drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 +-
-> >   5 files changed, 8 insertions(+), 8 deletions(-)
+On Mon, Jul 24, 2023 at 11:25:11AM +0300, Andy Shevchenko wrote:
+> abs_diff() belongs to math.h. Move it there.
+> This will allow others to use it.
 > 
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Reviewed-by: Jiri Slaby <jirislaby@kernel.org> # tty/serial
 
-Thanks for your review! Pushed in drm-intel-gt-next.
-
-Andi
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
