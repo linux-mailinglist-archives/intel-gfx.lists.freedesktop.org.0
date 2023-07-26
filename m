@@ -1,49 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD3E764023
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jul 2023 22:07:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B1D3764024
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jul 2023 22:07:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71ADC10E4C3;
-	Wed, 26 Jul 2023 20:07:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EA1A10E4C9;
+	Wed, 26 Jul 2023 20:07:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50E0110E4C3
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jul 2023 20:07:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A8ED10E4C7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jul 2023 20:07:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690402031; x=1721938031;
+ t=1690402033; x=1721938033;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TmN1abUvmLYQxc/7pgbtcSt84i8K1/QU5GG6ECpCcsc=;
- b=kfdpFu6POmW563BOu+O65C9xir/yCFOJd3etcxAogGjaYeJM7UQyNhOk
- v4gol8oDi8vfVA+rBNo/MgXTDuy1n7K5Aqk4AwAszjedN5OLb523Gv/mP
- 2ZpHckWyF3+UtKB4vuP2cgn4v+LQwCbvrMjphNGxIgbRypToeCslQpZ65
- l5UAn46uEjtqNMyn8BKqnrANyyRaAjrTTlASoPps7dvWYUs6Qu99zLTlr
- o/chsNKXcpaA7gxWavjDr5k5dcF09Czh77AZ3nFUeeAvbfUczR65re8pU
- a/kuw4xNW0RXz2kDosGSLI7v3GYWaZ6vktip4lSS70JjQ+tyHTykFadAV Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="399057750"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="399057750"
+ bh=aI878OUronYdu23zLc/glL8c4iUaoq7XR75onLoaCD8=;
+ b=FB0c9TQoeaLLjOEo77ev9UGIIaFNUmZQB2BvR5P0hiWlDam0Ghidg5Eo
+ RsytMF9hXPtYfaEyDDC7BPK3PhlfNMTfcMx5OmedBx8ACeYkYX7Brhxpe
+ L2RqebjgzqJaWJ5zeSxHQg5pakWOrlm+px5UNAoMTsqnjNDtPNRRpkIbo
+ 2pTSjwJiCuc1R6FpejYhVz0KvCKSDs8F8ccCCT2QcBvmUPC+KGFbKiOL7
+ 5n+QvY3EHph7i6+pyVzI/t5Pp0mEHdAlFA6TXi80u/eFuGh3sX7hAr3LT
+ /JoT+puLCEAE6XwpKx1Om0b12fFBec8gBYRu88oRNCXJaJ30iFMY7HfFN A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="399057763"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="399057763"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2023 13:07:11 -0700
+ 26 Jul 2023 13:07:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="720614522"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="720614522"
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="720614525"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="720614525"
 Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
- by orsmga007.jf.intel.com with ESMTP; 26 Jul 2023 13:07:08 -0700
+ by orsmga007.jf.intel.com with ESMTP; 26 Jul 2023 13:07:11 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Jul 2023 01:36:46 +0530
-Message-Id: <20230726200657.2773903-4-dnyaneshwar.bhadane@intel.com>
+Date: Thu, 27 Jul 2023 01:36:47 +0530
+Message-Id: <20230726200657.2773903-5-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230726200657.2773903-1-dnyaneshwar.bhadane@intel.com>
 References: <20230726200657.2773903-1-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 03/14] drm/i915/skl: s/SKL/SKYLAKE for
+Subject: [Intel-gfx] [PATCH v4 04/14] drm/i915/kbl: s/KBL/KABYLAKE for
  platform/subplatform defines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,104 +62,150 @@ Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow consistent naming convention. Replace SKL with
-SKYLAKE and Replace IS_SKL_GRAPHICS_STEP with
-IS_SKYLAKE() && IS_GRAPHICS_STEP().
+Follow consistent naming convention. Replace KBL with
+KABYLAKE.Replace IS_KBL_GRAPHICS_STEP with
+IS_KABYLAKE () && IS_GRAPHICS_STEP().
 
 v2:
-- Change subject skl instead of SKL(Anusha)
+- s/KBL/kbl in the subject prefix(Anusha)
 
 v3:
-- Unrolled wrapper IS_SKL_GRAPHICS_STEP.
+- Unrolled wrapper IS_KBL_GRAPHICS_STEP.
 - Replace with IS_PLATFORM && DISPLAY_STEP(tvrtko/jani)
 
 v4:
-- Removed the unused macro.
+- Removed unused macro.
 
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Anusha Srivatsa <Anusha.Srivatsa@intel.com>
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-
 ---
  drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c |  4 ++--
- drivers/gpu/drm/i915/gt/intel_workarounds.c        |  2 +-
- drivers/gpu/drm/i915/i915_drv.h                    | 13 ++++++-------
- 3 files changed, 9 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c           |  2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        |  6 +++---
+ drivers/gpu/drm/i915/i915_drv.h                    | 12 ++++--------
+ drivers/gpu/drm/i915/intel_clock_gating.c          |  4 ++--
+ 5 files changed, 12 insertions(+), 16 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 5b2665a9d86d..e85eab21b09d 100644
+index e85eab21b09d..39eab9ea02dd 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1746,9 +1746,9 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+@@ -1740,9 +1740,9 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+ 			encoder->get_buf_trans = icl_get_mg_buf_trans;
+ 	} else if (IS_GEMINILAKE(i915) || IS_BROXTON(i915)) {
+ 		encoder->get_buf_trans = bxt_get_buf_trans;
+-	} else if (IS_CML_ULX(i915) || IS_CFL_ULX(i915) || IS_KBL_ULX(i915)) {
++	} else if (IS_CML_ULX(i915) || IS_CFL_ULX(i915) || IS_KABYLAKE_ULX(i915)) {
+ 		encoder->get_buf_trans = kbl_y_get_buf_trans;
+-	} else if (IS_CML_ULT(i915) || IS_CFL_ULT(i915) || IS_KBL_ULT(i915)) {
++	} else if (IS_CML_ULT(i915) || IS_CFL_ULT(i915) || IS_KABYLAKE_ULT(i915)) {
  		encoder->get_buf_trans = kbl_u_get_buf_trans;
  	} else if (IS_COMETLAKE(i915) || IS_COFFEELAKE(i915) || IS_KABYLAKE(i915)) {
  		encoder->get_buf_trans = kbl_get_buf_trans;
--	} else if (IS_SKL_ULX(i915)) {
-+	} else if (IS_SKYLAKE_ULX(i915)) {
- 		encoder->get_buf_trans = skl_y_get_buf_trans;
--	} else if (IS_SKL_ULT(i915)) {
-+	} else if (IS_SKYLAKE_ULT(i915)) {
- 		encoder->get_buf_trans = skl_u_get_buf_trans;
- 	} else if (IS_SKYLAKE(i915)) {
- 		encoder->get_buf_trans = skl_get_buf_trans;
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index 8a3cbb01bcbe..a4ff55aa5e55 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -43,7 +43,7 @@ int gen8_emit_flush_rcs(struct i915_request *rq, u32 mode)
+ 			vf_flush_wa = true;
+ 
+ 		/* WaForGAMHang:kbl */
+-		if (IS_KBL_GRAPHICS_STEP(rq->i915, 0, STEP_C0))
++		if (IS_KABYLAKE(rq->i915) && IS_GRAPHICS_STEP(rq->i915, 0, STEP_C0))
+ 			dc_flush_wa = true;
+ 	}
+ 
 diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 9634ab8d738b..b0b7d448364a 100644
+index b0b7d448364a..a8ba843029bf 100644
 --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1192,7 +1192,7 @@ skl_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
- 		    GEN8_EU_GAUNIT_CLOCK_GATE_DISABLE);
+@@ -600,7 +600,7 @@ static void kbl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 	gen9_ctx_workarounds_init(engine, wal);
  
- 	/* WaInPlaceDecompressionHang:skl */
--	if (IS_SKL_GRAPHICS_STEP(gt->i915, STEP_A0, STEP_H0))
-+	if (IS_SKYLAKE(gt->i915) && IS_GRAPHICS_STEP(gt->i915, STEP_A0, STEP_H0))
+ 	/* WaToEnableHwFixForPushConstHWBug:kbl */
+-	if (IS_KBL_GRAPHICS_STEP(i915, STEP_C0, STEP_FOREVER))
++	if (IS_KABYLAKE(i915) && IS_GRAPHICS_STEP(i915, STEP_C0, STEP_FOREVER))
+ 		wa_masked_en(wal, COMMON_SLICE_CHICKEN2,
+ 			     GEN8_SBE_DISABLE_REPLAY_BUF_OPTIMIZATION);
+ 
+@@ -1204,7 +1204,7 @@ kbl_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	gen9_gt_workarounds_init(gt, wal);
+ 
+ 	/* WaDisableDynamicCreditSharing:kbl */
+-	if (IS_KBL_GRAPHICS_STEP(gt->i915, 0, STEP_C0))
++	if (IS_KABYLAKE(gt->i915) && IS_GRAPHICS_STEP(gt->i915, 0, STEP_C0))
  		wa_write_or(wal,
- 			    GEN9_GAMT_ECO_REG_RW_IA,
- 			    GAMT_ECO_ENABLE_IN_PLACE_DECOMPRESS);
+ 			    GAMT_CHKN_BIT_REG,
+ 			    GAMT_CHKN_DISABLE_DYNAMIC_CREDIT_SHARING);
+@@ -2945,7 +2945,7 @@ xcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 	struct drm_i915_private *i915 = engine->i915;
+ 
+ 	/* WaKBLVECSSemaphoreWaitPoll:kbl */
+-	if (IS_KBL_GRAPHICS_STEP(i915, STEP_A0, STEP_F0)) {
++	if (IS_KABYLAKE(i915) && IS_GRAPHICS_STEP(i915, STEP_A0, STEP_F0)) {
+ 		wa_write(wal,
+ 			 RING_SEMA_WAIT_POLL(engine->mmio_base),
+ 			 1);
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 6607f233461a..d7f7ca135000 100644
+index d7f7ca135000..ba075bb183db 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -609,19 +609,19 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- /* ULX machines are also considered ULT. */
- #define IS_HASWELL_ULX(i915) \
- 	IS_SUBPLATFORM(i915, INTEL_HASWELL, INTEL_SUBPLATFORM_ULX)
--#define IS_SKL_ULT(i915) \
-+#define IS_SKYLAKE_ULT(i915) \
+@@ -613,9 +613,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
  	IS_SUBPLATFORM(i915, INTEL_SKYLAKE, INTEL_SUBPLATFORM_ULT)
--#define IS_SKL_ULX(i915) \
-+#define IS_SKYLAKE_ULX(i915) \
+ #define IS_SKYLAKE_ULX(i915) \
  	IS_SUBPLATFORM(i915, INTEL_SKYLAKE, INTEL_SUBPLATFORM_ULX)
- #define IS_KBL_ULT(i915) \
+-#define IS_KBL_ULT(i915) \
++#define IS_KABYLAKE_ULT(i915) \
  	IS_SUBPLATFORM(i915, INTEL_KABYLAKE, INTEL_SUBPLATFORM_ULT)
- #define IS_KBL_ULX(i915) \
+-#define IS_KBL_ULX(i915) \
++#define IS_KABYLAKE_ULX(i915) \
  	IS_SUBPLATFORM(i915, INTEL_KABYLAKE, INTEL_SUBPLATFORM_ULX)
--#define IS_SKL_GT2(i915)	(IS_SKYLAKE(i915) && \
-+#define IS_SKYLAKE_GT2(i915)	(IS_SKYLAKE(i915) && \
+ #define IS_SKYLAKE_GT2(i915)	(IS_SKYLAKE(i915) && \
  				 INTEL_INFO(i915)->gt == 2)
--#define IS_SKL_GT3(i915)	(IS_SKYLAKE(i915) && \
-+#define IS_SKYLAKE_GT3(i915)	(IS_SKYLAKE(i915) && \
+@@ -623,9 +623,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
  				 INTEL_INFO(i915)->gt == 3)
--#define IS_SKL_GT4(i915)	(IS_SKYLAKE(i915) && \
-+#define IS_SKYLAKE_GT4(i915)	(IS_SKYLAKE(i915) && \
+ #define IS_SKYLAKE_GT4(i915)	(IS_SKYLAKE(i915) && \
  				 INTEL_INFO(i915)->gt == 4)
- #define IS_KBL_GT2(i915)	(IS_KABYLAKE(i915) && \
+-#define IS_KBL_GT2(i915)	(IS_KABYLAKE(i915) && \
++#define IS_KABYLAKE_GT2(i915)	(IS_KABYLAKE(i915) && \
  				 INTEL_INFO(i915)->gt == 2)
-@@ -649,7 +649,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_TGL_UY(i915) \
+-#define IS_KBL_GT3(i915)	(IS_KABYLAKE(i915) && \
++#define IS_KABYLAKE_GT3(i915)	(IS_KABYLAKE(i915) && \
+ 				 INTEL_INFO(i915)->gt == 3)
+ #define IS_CFL_ULT(i915) \
+ 	IS_SUBPLATFORM(i915, INTEL_COFFEELAKE, INTEL_SUBPLATFORM_ULT)
+@@ -650,10 +650,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
  	IS_SUBPLATFORM(i915, INTEL_TIGERLAKE, INTEL_SUBPLATFORM_UY)
  
--#define IS_SKL_GRAPHICS_STEP(p, since, until) (IS_SKYLAKE(p) && IS_GRAPHICS_STEP(p, since, until))
  
- #define IS_KBL_GRAPHICS_STEP(i915, since, until) \
- 	(IS_KABYLAKE(i915) && IS_GRAPHICS_STEP(i915, since, until))
-@@ -800,7 +799,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+-#define IS_KBL_GRAPHICS_STEP(i915, since, until) \
+-	(IS_KABYLAKE(i915) && IS_GRAPHICS_STEP(i915, since, until))
+-#define IS_KBL_DISPLAY_STEP(i915, since, until) \
+-	(IS_KABYLAKE(i915) && IS_DISPLAY_STEP(i915, since, until))
  
- /* WaRsDisableCoarsePowerGating:skl,cnl */
- #define NEEDS_WaRsDisableCoarsePowerGating(i915)			\
--	(IS_SKL_GT3(i915) || IS_SKL_GT4(i915))
-+	(IS_SKYLAKE_GT3(i915) || IS_SKYLAKE_GT4(i915))
+ #define IS_JSL_EHL_GRAPHICS_STEP(p, since, until) \
+ 	(IS_JSL_EHL(p) && IS_GRAPHICS_STEP(p, since, until))
+diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+index d9600cd1ab06..81a4d32734e9 100644
+--- a/drivers/gpu/drm/i915/intel_clock_gating.c
++++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+@@ -456,12 +456,12 @@ static void kbl_init_clock_gating(struct drm_i915_private *i915)
+ 	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
  
- /* With the 945 and later, Y tiling got adjusted so that it was 32 128-byte
-  * rows, which changed the alignment requirements and fence programming.
+ 	/* WaDisableSDEUnitClockGating:kbl */
+-	if (IS_KBL_GRAPHICS_STEP(i915, 0, STEP_C0))
++	if (IS_KABYLAKE(i915) && IS_GRAPHICS_STEP(i915, 0, STEP_C0))
+ 		intel_uncore_rmw(&i915->uncore, GEN8_UCGCTL6,
+ 				 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
+ 
+ 	/* WaDisableGamClockGating:kbl */
+-	if (IS_KBL_GRAPHICS_STEP(i915, 0, STEP_C0))
++	if (IS_KABYLAKE(i915) && IS_GRAPHICS_STEP(i915, 0, STEP_C0))
+ 		intel_uncore_rmw(&i915->uncore, GEN6_UCGCTL1,
+ 				 0, GEN6_GAMUNIT_CLOCK_GATE_DISABLE);
+ 
 -- 
 2.34.1
 
