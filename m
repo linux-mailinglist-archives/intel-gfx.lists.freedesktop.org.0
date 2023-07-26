@@ -1,110 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 876697637C6
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jul 2023 15:39:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1AC4763910
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jul 2023 16:27:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6BE810E1AF;
-	Wed, 26 Jul 2023 13:39:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5319810E480;
+	Wed, 26 Jul 2023 14:27:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34CDF10E14B;
- Wed, 26 Jul 2023 13:39:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eeY7+QT0odlXRIULyc+3tKqrWjDQFKaR9LtdRsAe0X9ITiYfcQHAm0ds2VrpbSwxBu6FnhPiST1ZA80mk0v2zAHgz1j+xpwUiycqNTeZRg3THmHfqapssZcwAPQUKu8OeJU5DF4XwaxvlJtumW1wVDMbSaSD8RjBAwK6NzryiKGDGc9Ctqd3FtzVgEhAoCICXV+CuPruGpg1XG5HqODSgh1LqII0fLq7Gwy6WjNRCHqAKDOljAjFAWNX3p//VCXo/PRbzXGa+p8mDZpGP/GWLdHGBZheCX3Kiwhy7fOUxRPLxH689OZMrjg0vJLp4CU6tn4IXAzILd520MtRk9g+NA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2eISYb6xR6OFuMkY96Is2/ZYPEfjhST3DydRw81EG1U=;
- b=XchXuAKI51rGi+a33mn7qLTPHGPG5EuFKOWrGYR7lo58H9o3V8AShz+ZwSTtYdKjIn3G49J+PxM1BFW4U+05zbyBnsQLXXNtTwfAtkvpQsF8jjF/hIN9ohHcuMYa16I9j/5K65NuRolcGb/mmbePGrJ+EHg1Ei8ovnNib3zXz0yH4qxjTseARpyL4/KnevD4QrKDF0hCuId65n6stabgZnODrQRt9cC1m+aRHuXJqx2wWvqulCf3pdj9hEUHPyTKo+ClfdfZczui+AsfzwnTN5611EF6/f7BnUM1UBaYkGMkKHlL5cQwKe9iDp1kLoyZrjOnilkdK+vZuTJSBZsq5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2eISYb6xR6OFuMkY96Is2/ZYPEfjhST3DydRw81EG1U=;
- b=du5uY22g/g1igVUdVKScLwmoGnCwACJjtQxNUGlEEZ81ccKC7ltFWLQkpVM74NmLCODvHdzeJzf/wPgFYVTLyqYycY1HFNhHG2/6H05aUtRGdLkBgJ1JPVwP2MQEKV1HjqyrKXU1UHV47TPKaHYIzFdtDlVL3I/hEwMF9D8zqd8ZpDIDrGnva+GAW2OZzn1hHxMU0Mh8r5csUu6Vp8niagpYbUTA+emEMor/ppXj9/48MW79NHK5n/sx6oiEELn4IfVRL8Re3DrKhAksnB1ZPBYxEFMkMbe4Qso5y1HB1UFNorEklCjeT/lX1UBwRbjk/EtQRdEWPnh6ZvDg/Aowuw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by PH7PR12MB6610.namprd12.prod.outlook.com (2603:10b6:510:212::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Wed, 26 Jul
- 2023 13:39:07 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::5111:16e8:5afe:1da1]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::5111:16e8:5afe:1da1%6]) with mapi id 15.20.6631.026; Wed, 26 Jul 2023
- 13:39:07 +0000
-Date: Wed, 26 Jul 2023 10:39:05 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Alex Williamson <alex.williamson@redhat.com>
-Message-ID: <ZMEh+doLuZAYdXpz@nvidia.com>
-References: <20230718135551.6592-1-yi.l.liu@intel.com>
- <ZLbEigQvwSZFiCqv@nvidia.com>
- <20230724130922.5bf567ef.alex.williamson@redhat.com>
- <20230725120009.2ff17e77.alex.williamson@redhat.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230725120009.2ff17e77.alex.williamson@redhat.com>
-X-ClientProxiedBy: BL1P223CA0021.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:208:2c4::26) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BE7110E480
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jul 2023 14:27:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1690381627; x=1721917627;
+ h=message-id:date:mime-version:subject:to:references:from:
+ cc:in-reply-to:content-transfer-encoding;
+ bh=bLBtUIeK0RGwczz3a0b8/FiTRWJjXqJh2udPPxQmLHc=;
+ b=OaJ3hNexpye8n14cbS2oteKOwfWel2iZzDGvBtmuzzQY9uC1TyeiZVsy
+ xMmjvwaiWFVCg+h8JoyArgGVkZtydAIF6PpKLbIuHFuCeOCJkrO39rQ9h
+ CTh7tmhaV3TWXwtS7fP5vMby6PtR/3FFzVSDJVExHopr+P1Fl3dg+/yzl
+ CBfV1Rxu5XyUjGA/3f0/rsqeiQGJp3aFO2doRQsEvo6G5uK2otp/iRqNA
+ m/Fv1QXcZwPLsI//YEFOt9pc/K9ngRFsAAH44EcBnLju5VOGIo1v0bVoe
+ N3Y9SoOmX3pY93dl9K9W7u91dIq46rNf/6sI4cN05+Yj+1f8QLLPZ47qM A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="366910122"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="366910122"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2023 07:27:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="850482131"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="850482131"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.38.43])
+ ([10.249.38.43])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2023 07:27:05 -0700
+Message-ID: <76a67e7f-5e71-ce35-d80a-44bf824a7929@linux.intel.com>
+Date: Wed, 26 Jul 2023 16:27:03 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|PH7PR12MB6610:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0c420627-4d91-4208-ae95-08db8dddaf5c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: f/rs9gP0rfr/rvLfu7h80SHGYfcxVFGz6KE3SGIgXRVqYwPtv5H4EL5QrhAJRsjNBj0bcOnBxVqp6lOxyPUHL/5jbNdym+FBEv65QLOcpyzl3tebF/Vc+vTM5V5rdOTzM1TNXAbqIg2J/g0Xj2a8KEgOni38piwdKj+mdxcyjJb8QvzupSWJtW9C4cxDRF/nsD4A0ujTDEKUDwgtmHX7lyEmXYpkgdgZkQNb8CYyxAkz2lQMAWFYfn/GRlF79PY19pZ6FL6qtdkri4xQoI7j9BvFoIfcLV+z+6WOr76XrYNNp4J9OY4TuuJaFzELwzy7+bkw9O4akGv1Xlvlj89yLGY0JFPp7LNZgK9rmYXcyqbiRuQA659ghY7gNItPN0npQXcTguVNqMz0YAcdhAb1m1Mrj8zw1lloPGzZdY53gh2V7VPIxaoncmWFEkxvtCGyz+NCzF+/k7BaCNmTttR3Ht3qyYnciiEO5qy2UQXeSNL75twL9p0VquH5UXfVDSwyU/BJwj/YJF5Ql6DYJOYc6v3J3pvlbbumYJfdhNe0xBNieqf3O4JIoLeAkGZpfGoL8aw8VeAX4HaGxGq8VF6bDOPxz1mRqcSTCTbSxGtiJpaT8JJRgfnG9qjcN9dlbtRnis3v4w6lIQnKCVMFHkSxqw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(346002)(366004)(376002)(396003)(39860400002)(451199021)(6486002)(2906002)(36756003)(478600001)(316002)(8936002)(8676002)(5660300002)(41300700001)(7416002)(38100700002)(66946007)(4326008)(6916009)(66476007)(66556008)(26005)(86362001)(6506007)(83380400001)(2616005)(186003)(6512007)(966005)(67856001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?krweCpXkwESeXuyY9F1crxefYLWNDBBdGFwm4emXI0wNlLe1kPA+pFk19mUd?=
- =?us-ascii?Q?tcI8DNXgx8XjHcA1JhShy6HckE4tMOt6sj7/qoVe8Mfb/lZm0083ZedS+Qgc?=
- =?us-ascii?Q?bi11VKaruAjoobcEPvB4e/Mt+27vp8G66tlLcTqc8a78HfY4uw0SbYts+qV7?=
- =?us-ascii?Q?S7+Aa7pHQTRul81mFbNuw/aFHYe1Db2P39Ch4My3tgvDvNKVO7qEc8IwNiYO?=
- =?us-ascii?Q?l8RjDH09+vqWoxmv6VfXEXdvVC11LFUnWV5QHH6m816O3zqlmHo3pNlQdNAW?=
- =?us-ascii?Q?Iza9E01EOILgI3TKaqzUcrIourTASbJ30qLuhkYMRPy7r3Spk0gDf6KCUHte?=
- =?us-ascii?Q?PgqfT/7dO1wtH0IwlbUtvvOisdPNpSj+UI9vOwXbPVNSTnjG++uJUrpOiqxA?=
- =?us-ascii?Q?OqDAeMdkmO4F2l5WU2k6sYNdv7hbuIhk0qWLuU8Sv/fqXwG0eLTuJgaJTEgV?=
- =?us-ascii?Q?OkaR3bGdqBKRLDGgPniYAQ51y3dUPkGLAkOJczBxTJDJwypajEumYMru83NH?=
- =?us-ascii?Q?hVuoNWXkQQb92j31wCEN5h1acvnIkicFm7F8X50EyOHr+tGuRlPHlVwdutpw?=
- =?us-ascii?Q?GwuTBrBOwUJ115VS7Kuwxd6owXLk2OgZ3bg02101lN6MnamnTkWeyKb3efb+?=
- =?us-ascii?Q?z13H/NEC/W68XpbvxQPRCFRIDI51f6JsZSXaXpPWDuiUzjaxRQ0gooAvzDI0?=
- =?us-ascii?Q?D2GsEw0uiWt3lqqZcKy333Y4Q0YcA+BEY+Z26C/uw2e0PXMoi/alENQqecjZ?=
- =?us-ascii?Q?GbaniVGwl8cjBzyr9VyTh0UdkbFOsFXrUESQ3ZtQ58OraXJn0BHQwH33TeKm?=
- =?us-ascii?Q?NQZDy6yzjidgLv7+TA6NumZ9kZrw1uXoQtVGGYLET99vVdX7xBK9YJNp+Ema?=
- =?us-ascii?Q?Oz8EDNv/lIsVLgHrd69XjoRYdNZXQntYvj2RuVvoFt0fSZrycqHp1i8iQqU4?=
- =?us-ascii?Q?mlPfgcY9XtRrTKFBS6U+wxGi0v0riTuXTtSjnUIcWDQgFRfL8ZdKHVAQvpno?=
- =?us-ascii?Q?THRd4P/zQdD4AbAzBhtiqR+RBS4nTTjtjul2wEfnAV5Dpu6yOeM4s6UVOqbf?=
- =?us-ascii?Q?5pq4rZR1nuU7Upumsjztaht5iwyvFXX2pY/h8T8SzNSFYpMI4vT42E8tShbq?=
- =?us-ascii?Q?cFTOq0o1dlRJRH2uFzzaak7KVWAtgQUgSUGNFHxDZMP3xVPdX2Q4Hntbn2QL?=
- =?us-ascii?Q?7Srexmn4xgfDMe0xqFCG2l16HbKlLjCFO0ONVGT45LqFG/mmVJUY+9KK/E4v?=
- =?us-ascii?Q?/6Y9x+ZZYJHJn9TYRxopKM6Wh3lL8Yu1uRSljeKKASdtgLHmyKkGQDt09cCc?=
- =?us-ascii?Q?uH52Px/T+Uw/uMN/lcT1gehG5zuNlmWtlliYvbVSDhhHaUWZYuRu+uIZQw+X?=
- =?us-ascii?Q?lN4/5QRhVFskRBe6Ac9lKKApA0G1M6xshwahRTq6V2FiPjv1oRaJN4Zv/36T?=
- =?us-ascii?Q?8Y6v3fBNcqC5bf+qIwlQimwwDcONWpIPuA4LeZPvvPG1xIf32E0NzYLRAoMP?=
- =?us-ascii?Q?SenraNgiTxzzgN4XyvSmauQwlh9/Ns2dKl/LuwBCduUr6Tagv9EuziKDQL1r?=
- =?us-ascii?Q?pQ1Cyek/1HglPuIjJ8GyRYBybWrZyx3xfk0PnMuX?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c420627-4d91-4208-ae95-08db8dddaf5c
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2023 13:39:07.4496 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LBitSuLj1RLpyoOOUd61QYuotfCvf/u+RsNstLPvpTX76QuE9OYOfxvTQCuJiP3q
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6610
-Subject: Re: [Intel-gfx] [PATCH v15 00/26] Add vfio_device cdev for iommufd
- support
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: =?UTF-8?Q?Jouni_H=c3=b6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230529062723.1928520-1-jouni.hogander@intel.com>
+ <20230529062723.1928520-3-jouni.hogander@intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20230529062723.1928520-3-jouni.hogander@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Add getter/setter for
+ i915_gem_object->frontbuffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,74 +64,245 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mjrosato@linux.ibm.com, jasowang@redhat.com, xudong.hao@intel.com,
- zhenzhong.duan@intel.com, peterx@redhat.com, terrence.xu@intel.com,
- chao.p.peng@linux.intel.com, linux-s390@vger.kernel.org,
- Yi Liu <yi.l.liu@intel.com>, kvm@vger.kernel.org, lulu@redhat.com,
- yanting.jiang@intel.com, joro@8bytes.org, nicolinc@nvidia.com,
- kevin.tian@intel.com, yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
- eric.auger@redhat.com, intel-gvt-dev@lists.freedesktop.org,
- yi.y.sun@linux.intel.com, clegoate@redhat.com, cohuck@redhat.com,
- shameerali.kolothum.thodi@huawei.com, suravee.suthikulpanit@amd.com,
- robin.murphy@arm.com
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 25, 2023 at 12:00:09PM -0600, Alex Williamson wrote:
-> On Mon, 24 Jul 2023 13:09:22 -0600
-> Alex Williamson <alex.williamson@redhat.com> wrote:
-> 
-> > On Tue, 18 Jul 2023 13:57:46 -0300
-> > Jason Gunthorpe <jgg@nvidia.com> wrote:
-> > 
-> > > On Tue, Jul 18, 2023 at 06:55:25AM -0700, Yi Liu wrote:  
-> > > > Existing VFIO provides group-centric user APIs for userspace. Userspace
-> > > > opens the /dev/vfio/$group_id first before getting device fd and hence
-> > > > getting access to device. This is not the desired model for iommufd. Per
-> > > > the conclusion of community discussion[1], iommufd provides device-centric
-> > > > kAPIs and requires its consumer (like VFIO) to be device-centric user
-> > > > APIs. Such user APIs are used to associate device with iommufd and also
-> > > > the I/O address spaces managed by the iommufd.
-> > > > 
-> > > > This series first introduces a per device file structure to be prepared
-> > > > for further enhancement and refactors the kvm-vfio code to be prepared
-> > > > for accepting device file from userspace. After this, adds a mechanism for
-> > > > blocking device access before iommufd bind. Then refactors the vfio to be
-> > > > able to handle cdev paths (e.g. iommufd binding, no-iommufd, [de]attach ioas).
-> > > > This refactor includes making the device_open exclusive between the group
-> > > > and the cdev path, only allow single device open in cdev path; vfio-iommufd
-> > > > code is also refactored to support cdev. e.g. split the vfio_iommufd_bind()
-> > > > into two steps. Eventually, adds the cdev support for vfio device and the
-> > > > new ioctls, then makes group infrastructure optional as it is not needed
-> > > > when vfio device cdev is compiled.
-> > > > 
-> > > > This series is based on some preparation works done to vfio emulated devices[2]
-> > > > and vfio pci hot reset enhancements[3]. Per discussion[4], this series does not
-> > > > support cdev for physical devices that do not have IOMMU. Such devices only
-> > > > have group-centric user APIs.
-> > > > 
-> > > > This series is a prerequisite for iommu nesting for vfio device[5] [6].
-> > > > 
-> > > > The complete code can be found in below branch, simple tests done to the
-> > > > legacy group path and the cdev path. QEMU changes are in upstreaming[7]
-> > > > and the complete code can be found at[8]
-> > > > 
-> > > > https://github.com/yiliu1765/iommufd/tree/vfio_device_cdev_v15
-> > > > (config CONFIG_IOMMUFD=y CONFIG_VFIO_DEVICE_CDEV=y)    
-> > > 
-> > > Alex, if you are still good with this lets make this into a shared
-> > > branch, do you want to do it or would you like a PR from me?  
-> > 
-> > Sorry, was out much of last week.  Yes, my intent would be to put this
-> > both in a shared branch and my next branch for v6.6.  Given this is
-> > mostly vfio, it seems like it'd make sense for me to provide that
-> > branch but I may not get to it until tomorrow.  Thanks,
-> 
-> Both series are applied to my next branch for v6.6 and I've also
-> published them to the v6.6/vfio/cdev branch[1].  Thanks for all the
-> work and collaboration on this effort!
+Hi Jouni,
 
-Great, I pulled it and merged the next series
+On 5/29/2023 8:27 AM, Jouni Högander wrote:
+> Add getter/setter for i915_gem_object->frontbuffer and use it instead of
+> directly touching i915_gem_object->frontbuffer frontbuffer pointer.
+>
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> ---
+>   .../gpu/drm/i915/display/intel_frontbuffer.c  | 18 ++---
+>   .../gpu/drm/i915/display/intel_frontbuffer.h  | 27 -------
+>   drivers/gpu/drm/i915/gem/i915_gem_object.c    | 70 ++++++++++++++++++-
+>   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  6 ++
+>   drivers/gpu/drm/i915/i915_vma.c               |  2 +-
+>   5 files changed, 81 insertions(+), 42 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> index 3ce0436a0c7d..41ac65c98720 100644
+> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> @@ -237,7 +237,7 @@ static void frontbuffer_release(struct kref *ref)
+>   	}
+>   	spin_unlock(&obj->vma.lock);
+>   
+> -	RCU_INIT_POINTER(obj->frontbuffer, NULL);
+> +	i915_gem_object_set_frontbuffer(obj, NULL);
+>   	spin_unlock(&intel_bo_to_i915(obj)->display.fb_tracking.lock);
+>   
+>   	i915_active_fini(&front->write);
+> @@ -250,9 +250,9 @@ struct intel_frontbuffer *
+>   intel_frontbuffer_get(struct drm_i915_gem_object *obj)
+>   {
+>   	struct drm_i915_private *i915 = intel_bo_to_i915(obj);
+> -	struct intel_frontbuffer *front;
+> +	struct intel_frontbuffer *front, *front_ret;
+>   
+> -	front = __intel_frontbuffer_get(obj);
+> +	front = i915_gem_object_get_frontbuffer(obj);
+>   	if (front)
+>   		return front;
+>   
+> @@ -269,16 +269,10 @@ intel_frontbuffer_get(struct drm_i915_gem_object *obj)
+>   			 I915_ACTIVE_RETIRE_SLEEPS);
+>   
+>   	spin_lock(&i915->display.fb_tracking.lock);
+> -	if (rcu_access_pointer(obj->frontbuffer)) {
+> -		kfree(front);
+> -		front = rcu_dereference_protected(obj->frontbuffer, true);
+> -		kref_get(&front->ref);
+> -	} else {
+> -		i915_gem_object_get(obj);
+> -		rcu_assign_pointer(obj->frontbuffer, front);
+> -	}
+> +	front_ret = i915_gem_object_set_frontbuffer(obj, front);
+>   	spin_unlock(&i915->display.fb_tracking.lock);
+> -
+> +	if (front_ret != front)
+> +		kfree(front);
+>   	return front;
 
-Thanks,
-Jason
+
+Should be "return front_ret" here or better s/front_ret/cur/
+
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+> index 3c474ed937fb..eeccc847331d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+> @@ -75,33 +75,6 @@ void intel_frontbuffer_flip(struct drm_i915_private *i915,
+>   
+>   void intel_frontbuffer_put(struct intel_frontbuffer *front);
+>   
+> -static inline struct intel_frontbuffer *
+> -__intel_frontbuffer_get(const struct drm_i915_gem_object *obj)
+> -{
+> -	struct intel_frontbuffer *front;
+> -
+> -	if (likely(!rcu_access_pointer(obj->frontbuffer)))
+> -		return NULL;
+> -
+> -	rcu_read_lock();
+> -	do {
+> -		front = rcu_dereference(obj->frontbuffer);
+> -		if (!front)
+> -			break;
+> -
+> -		if (unlikely(!kref_get_unless_zero(&front->ref)))
+> -			continue;
+> -
+> -		if (likely(front == rcu_access_pointer(obj->frontbuffer)))
+> -			break;
+> -
+> -		intel_frontbuffer_put(front);
+> -	} while (1);
+> -	rcu_read_unlock();
+> -
+> -	return front;
+> -}
+> -
+>   struct intel_frontbuffer *
+>   intel_frontbuffer_get(struct drm_i915_gem_object *obj);
+>   
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> index 46a19b099ec8..6945e903e106 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -463,7 +463,7 @@ void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
+>   {
+>   	struct intel_frontbuffer *front;
+>   
+> -	front = __intel_frontbuffer_get(obj);
+> +	front = i915_gem_object_get_frontbuffer(obj);
+>   	if (front) {
+>   		intel_frontbuffer_flush(front, origin);
+>   		intel_frontbuffer_put(front);
+> @@ -475,7 +475,7 @@ void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
+>   {
+>   	struct intel_frontbuffer *front;
+>   
+> -	front = __intel_frontbuffer_get(obj);
+> +	front = i915_gem_object_get_frontbuffer(obj);
+>   	if (front) {
+>   		intel_frontbuffer_invalidate(front, origin);
+>   		intel_frontbuffer_put(front);
+> @@ -952,6 +952,72 @@ bool i915_gem_object_has_unknown_state(struct drm_i915_gem_object *obj)
+>   	return obj->mm.unknown_state;
+>   }
+>   
+> +/**
+> + * i915_gem_object_get_frontbuffer - Get the object's frontbuffer
+> + * @obj: The object whose frontbuffer to get.
+> + *
+> + * Get pointer to object's frontbuffer if such exists. Please note that RCU
+> + * mechanism is used to handle e.g. ongoing removal of frontbuffer pointer.
+> + *
+> + * Return: pointer to object's frontbuffer is such exists or NULL
+> + */
+> +struct intel_frontbuffer *
+> +i915_gem_object_get_frontbuffer(const struct drm_i915_gem_object *obj)
+> +{
+> +	struct intel_frontbuffer *front;
+> +
+> +	if (likely(!rcu_access_pointer(obj->frontbuffer)))
+> +		return NULL;
+> +
+> +	rcu_read_lock();
+> +	do {
+> +		front = rcu_dereference(obj->frontbuffer);
+> +		if (!front)
+> +			break;
+> +
+> +		if (unlikely(!kref_get_unless_zero(&front->ref)))
+> +			continue;
+> +
+> +		if (likely(front == rcu_access_pointer(obj->frontbuffer)))
+> +			break;
+> +
+> +		intel_frontbuffer_put(front);
+> +	} while (1);
+> +	rcu_read_unlock();
+> +
+> +	return front;
+> +}
+> +
+> +/**
+> + * i915_gem_object_set_frontbuffer - Set the object's frontbuffer
+> + * @obj: The object whose frontbuffer to set.
+> + * @front: The frontbuffer to set
+> + *
+> + * Set object's frontbuffer pointer. If frontbuffer is already set for the
+> + * object keep it and return it's pointer to the caller. Please note that RCU
+> + * mechanism is used to handle e.g. ongoing removal of frontbuffer pointer.
+> + *
+> + * Return: pointer to frontbuffer which was set.
+> + */
+> +struct intel_frontbuffer *
+> +i915_gem_object_set_frontbuffer(struct drm_i915_gem_object *obj,
+> +				struct intel_frontbuffer *front)
+> +{
+> +	struct intel_frontbuffer *front_ret = front;
+> +
+> +	if (!front) {
+> +		RCU_INIT_POINTER(obj->frontbuffer, NULL);
+> +	} else if (rcu_access_pointer(obj->frontbuffer)) {
+> +		front_ret = rcu_dereference_protected(obj->frontbuffer, true);
+
+Could you please add a comment here stating that this function is 
+protected by i915->display.fb_tracking.lock or consider moving the lock 
+handling to this function?
+
+Otherwise this is bit confusing.
+
+
+Regards,
+
+Nirmo
+
+
+> +		kref_get(&front_ret->ref);
+> +	} else {
+> +		drm_gem_object_get(&intel_bo_to_drm_bo(obj));
+> +		rcu_assign_pointer(obj->frontbuffer, front);
+> +	}
+> +
+> +	return front_ret;
+> +}
+> +
+>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>   #include "selftests/huge_gem_object.c"
+>   #include "selftests/huge_pages.c"
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> index 884a17275b3a..69c5fa91152a 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -891,4 +891,10 @@ static inline int i915_gem_object_userptr_validate(struct drm_i915_gem_object *o
+>   
+>   #endif
+>   
+> +struct intel_frontbuffer *
+> +i915_gem_object_get_frontbuffer(const struct drm_i915_gem_object *obj);
+> +struct intel_frontbuffer *
+> +i915_gem_object_set_frontbuffer(struct drm_i915_gem_object *obj,
+> +				struct intel_frontbuffer *front);
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index ffb425ba591c..c66ff2157f6a 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -1908,7 +1908,7 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
+>   	if (flags & EXEC_OBJECT_WRITE) {
+>   		struct intel_frontbuffer *front;
+>   
+> -		front = __intel_frontbuffer_get(obj);
+> +		front = i915_gem_object_get_frontbuffer(obj);
+>   		if (unlikely(front)) {
+>   			if (intel_frontbuffer_invalidate(front, ORIGIN_CS))
+>   				i915_active_add_request(&front->write, rq);
