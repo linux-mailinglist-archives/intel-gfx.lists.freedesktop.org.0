@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17CE976402C
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jul 2023 22:08:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C61764029
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jul 2023 22:07:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8162810E4D2;
-	Wed, 26 Jul 2023 20:07:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 345EE10E4C6;
+	Wed, 26 Jul 2023 20:07:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C233C10E4D3
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jul 2023 20:07:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E615910E4D2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jul 2023 20:07:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690402066; x=1721938066;
+ t=1690402068; x=1721938068;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=axR9xt+5Ke6y2rhLikkZIuKRuQuTm4+NxF4tGKHHXJw=;
- b=UD+Fuk2/LG7lw431l0DlBkfKTMnLIsmVSKN9fnA6oFqFz7W+zYVo5Y51
- Q+1+bP7OI44XIfZBjwQKuSc+gr/cOIM0WMnVIigzWcDamckGXKDEUcP1c
- LVCDoGXb1DccojeBTGybWgMrR1nofO7F5aQrJCHILu05mrE35pzq6Zchi
- jCuEqZXjKc2Eepzk/PwHpAb1lazKddIDz1GcKqrugngsL/XbDDxUwszx/
- aWAeicWX5qQ2Ce666AhSqR6SIi59/+I/d4AmO7ziZZUqe8c+sIJE4mL7z
- mlFx0KRkPMBY+gY/DW3Kyk0lyQSOvigjI4NtrliT60F1+J6YwTAKDs0pV Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="399057824"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="399057824"
+ bh=eEp50eT7a5R1H55nfYmaqtwoK9jKK36/lYdSU/AGhTw=;
+ b=TjebFRVsAL0uHXhlnxqkr5Cw2bYNOzH2rZTVa5pey6FsLQN+2i7A91ju
+ oesCNRvrC0F24s8e7tSxkXChVzD7d+PijcFBTFsRdJcCdAWWqXh1a3crb
+ OvZsuOS5BYp8JvZm6Dwsg+DcpNWZF+zoYFlF6Sq+DUtNb7yMEB/a4ddRI
+ hGWYFsHw5wofX79HudhcX1y+DRtwLuIzy4E18l0Ybt9iDFybJzvrYFJ/y
+ Dmp+KZ7rTNM0tSKNIOKHh3nZMVySQO9aGy+A0qRG0UKSXKrQzb50J8VE7
+ R9pK23ZOqDgnLV/r/3VDQEo1ZleeaiqiisRETBVPuryoAfpid4czYp+rg A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="399057837"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="399057837"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2023 13:07:26 -0700
+ 26 Jul 2023 13:07:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="720614546"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="720614546"
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="720614549"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="720614549"
 Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
- by orsmga007.jf.intel.com with ESMTP; 26 Jul 2023 13:07:24 -0700
+ by orsmga007.jf.intel.com with ESMTP; 26 Jul 2023 13:07:26 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Jul 2023 01:36:52 +0530
-Message-Id: <20230726200657.2773903-10-dnyaneshwar.bhadane@intel.com>
+Date: Thu, 27 Jul 2023 01:36:53 +0530
+Message-Id: <20230726200657.2773903-11-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230726200657.2773903-1-dnyaneshwar.bhadane@intel.com>
 References: <20230726200657.2773903-1-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 09/14] drm/i915/tgl: s/TGL/TIGERLAKE for
- platform/subplatform defines
+Subject: [Intel-gfx] [PATCH v3 10/14] drm/i915/adlp: s/ADLP/ALDERLAKE_P for
+ display and graphics step
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,91 +62,136 @@ Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow consistent naming convention. Replace TGL with
-TIGERLAKE.Replace IS_TGL_DISPLAY_STEP with
-IS_TIGERLAKE() && IS_DISPLAY_STEP().
+Driver refers to the platform Alderlake P as ADLP in places
+and ALDERLAKE_P in some. Making the consistent change
+to avoid confusion of the right naming convention for
+the platform.
 
 v2:
-- s/TGL/tgl in the subject prefix(Anusha)
+- Unrolled wrapper IS_ADLP_GRAPHICS_STEP and Replace
+- Added IS_ALDERLAKE_P() && IS_GRAPHICS_STEP() (Jani/Tvrtko).
 
 v3:
-- Unrolled wrapper IS_TGL_DISPLAY_STEP and Replace 
-- Replace IS_PLATFORM && DISPLAY_STEP (Jani/Tvrtko).
-
-v4:
-- Removed unused macros
+- Removed unused macros of display steps.
 
 Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 2 +-
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 2 +-
- drivers/gpu/drm/i915/i915_drv.h                    | 5 +----
- drivers/gpu/drm/i915/intel_step.c                  | 2 +-
- 4 files changed, 4 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c         | 2 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c      | 2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c           | 8 ++++----
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 4 ++--
+ drivers/gpu/drm/i915/i915_drv.h                    | 7 -------
+ 5 files changed, 8 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 35e6e3a5ddf1..de809e2d9cac 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1410,7 +1410,7 @@ tgl_get_combo_buf_trans_dp(struct intel_encoder *encoder,
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index eab0f0dd057e..57113fb01fb2 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -3567,7 +3567,7 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+ 		dev_priv->display.cdclk.table = dg2_cdclk_table;
+ 	} else if (IS_ALDERLAKE_P(dev_priv)) {
+ 		/* Wa_22011320316:adl-p[a0] */
+-		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
++		if (IS_ALDERLAKE_P(dev_priv) && IS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
+ 			dev_priv->display.cdclk.table = adlp_a_step_cdclk_table;
+ 			dev_priv->display.funcs.cdclk = &tgl_cdclk_funcs;
+ 		} else if (IS_ADLP_RPLU(dev_priv)) {
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 4c4108d404f6..664bce4c679b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -3785,7 +3785,7 @@ static void adlp_cmtg_clock_gating_wa(struct drm_i915_private *i915, struct inte
+ {
+ 	u32 val;
  
- 	if (crtc_state->port_clock > 270000) {
--		if (IS_TGL_UY(dev_priv)) {
-+		if (IS_TIGERLAKE_UY(dev_priv)) {
- 			return intel_get_buf_trans(&tgl_uy_combo_phy_trans_dp_hbr2,
- 						   n_entries);
- 		} else {
+-	if (!IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0) ||
++	if (!(IS_ALDERLAKE_P(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_B0)) ||
+ 	    pll->info->id != DPLL_ID_ICL_DPLL0)
+ 		return;
+ 	/*
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 94ec41b9d5ae..97d5eef10130 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -748,7 +748,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 	}
+ 
+ 	/* Wa_22012278275:adl-p */
+-	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_E0)) {
++	if (IS_ALDERLAKE_P(dev_priv) && IS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_E0)) {
+ 		static const u8 map[] = {
+ 			2, /* 5 lines */
+ 			1, /* 6 lines */
+@@ -918,7 +918,7 @@ tgl_dc3co_exitline_compute_config(struct intel_dp *intel_dp,
+ 		return;
+ 
+ 	/* Wa_16011303918:adl-p */
+-	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
++	if (IS_ALDERLAKE_P(dev_priv) && IS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+ 		return;
+ 
+ 	/*
+@@ -1086,7 +1086,7 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 		return false;
+ 	}
+ 
+-	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
++	if (IS_ALDERLAKE_P(dev_priv) && IS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
+ 		drm_dbg_kms(&dev_priv->drm, "PSR2 not completely functional in this stepping\n");
+ 		return false;
+ 	}
+@@ -1144,7 +1144,7 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 
+ 	/* Wa_16011303918:adl-p */
+ 	if (crtc_state->vrr.enable &&
+-	    IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
++	    IS_ALDERLAKE_P(dev_priv) && IS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "PSR2 not enabled, not compatible with HW stepping + VRR\n");
+ 		return false;
 diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 6b01a0b68b97..4ed1244c1a17 100644
+index 4ed1244c1a17..ffc15d278a39 100644
 --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
 +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2196,7 +2196,7 @@ static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
- 
- 	/* Wa_14010477008 */
- 	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
--	    IS_TGL_DISPLAY_STEP(i915, STEP_A0, STEP_D0))
-+		(IS_TIGERLAKE(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_D0)))
+@@ -2174,7 +2174,7 @@ static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
  		return false;
  
  	/* Wa_22011186057 */
+-	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
++	if (IS_ALDERLAKE_P(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
+ 		return false;
+ 
+ 	if (DISPLAY_VER(i915) >= 11)
+@@ -2200,7 +2200,7 @@ static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
+ 		return false;
+ 
+ 	/* Wa_22011186057 */
+-	if (IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
++	if (IS_ALDERLAKE_P(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_B0))
+ 		return false;
+ 
+ 	/* Wa_14013215631 */
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 704c0991e7d3..44f3a368607e 100644
+index 44f3a368607e..c24be1875769 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -646,15 +646,12 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_ICL_WITH_PORT_F(i915) \
- 	IS_SUBPLATFORM(i915, INTEL_ICELAKE, INTEL_SUBPLATFORM_PORTF)
+@@ -662,13 +662,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 	(IS_ALDERLAKE_S(__i915) && \
+ 	 IS_GRAPHICS_STEP(__i915, since, until))
  
--#define IS_TGL_UY(i915) \
-+#define IS_TIGERLAKE_UY(i915) \
- 	IS_SUBPLATFORM(i915, INTEL_TIGERLAKE, INTEL_SUBPLATFORM_UY)
- 
- 
- 
- 
--#define IS_TGL_DISPLAY_STEP(__i915, since, until) \
--	(IS_TIGERLAKE(__i915) && \
+-#define IS_ADLP_DISPLAY_STEP(__i915, since, until) \
+-	(IS_ALDERLAKE_P(__i915) && \
 -	 IS_DISPLAY_STEP(__i915, since, until))
+-
+-#define IS_ADLP_GRAPHICS_STEP(__i915, since, until) \
+-	(IS_ALDERLAKE_P(__i915) && \
+-	 IS_GRAPHICS_STEP(__i915, since, until))
  
- 
- #define IS_ADLS_DISPLAY_STEP(__i915, since, until) \
-diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
-index 5e4816417b99..4ca22d0c945b 100644
---- a/drivers/gpu/drm/i915/intel_step.c
-+++ b/drivers/gpu/drm/i915/intel_step.c
-@@ -213,7 +213,7 @@ void intel_step_init(struct drm_i915_private *i915)
- 	} else if (IS_ROCKETLAKE(i915)) {
- 		revids = rkl_revids;
- 		size = ARRAY_SIZE(rkl_revids);
--	} else if (IS_TGL_UY(i915)) {
-+	} else if (IS_TIGERLAKE_UY(i915)) {
- 		revids = tgl_uy_revids;
- 		size = ARRAY_SIZE(tgl_uy_revids);
- 	} else if (IS_TIGERLAKE(i915)) {
+ #define IS_XEHPSDV_GRAPHICS_STEP(__i915, since, until) \
+ 	(IS_XEHPSDV(__i915) && IS_GRAPHICS_STEP(__i915, since, until))
 -- 
 2.34.1
 
