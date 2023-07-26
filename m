@@ -1,49 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C0F764026
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jul 2023 22:07:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EB9576402E
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jul 2023 22:08:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C154410E4CE;
-	Wed, 26 Jul 2023 20:07:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E883810E4B9;
+	Wed, 26 Jul 2023 20:08:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0692A10E4D0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F3F010E4B9
  for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jul 2023 20:07:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690402063; x=1721938063;
+ t=1690402065; x=1721938065;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Fg8Oz3ITCIL8vi4apGEbzjeWKFONOZemTwtIZGiYVrM=;
- b=JFSo7YqxPfUKQL84i0CcQmp1lUOOXhO7NeaH0SiVkU3xuwuY55QxV0vG
- N5utlC6J5R89awMmY/F35Xbn+7OiDPM+wsWkcw+LpwpcWk+6PFb5Z/YjA
- i8gVYIolK1qzaQWFY6fvauDnt9OAQh+5dK8n1AtuVIAeWNsPQH8KDjjRN
- 85PSTNJSnjjafUbupeCTayq0Ca81SWNsegA+kd/a9ebr+zR3dqodpnWDn
- we4hWJ6jlesSverdCrOV7N6lUtWExBYWQjIUaNaqrXO2gA8D8MH4nUxai
- /ce/b7U7d4HgZ06QWj9yjfXuS5CwhaWsagYxlQVx2U9ZkYt/9d7DLyxyG g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="399057784"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="399057784"
+ bh=ZyBZoRJa2NkwFheXYBOwFjCpq2RC5S3QpQhCXALCCNI=;
+ b=gA+ht/9v7N8C6zlgmNvqT1q+KO2l3sG22MsmceN1e9x4fxYteY7EfmQg
+ WIOCcjpzgTKiypGwFiJFQvMQe9v6a/5483K7Ep2npZ+DIjJQ1/ywcy/mr
+ A8POYt4oBQH+aPiS2OB7VzeZBL7GYBWJ0bdA8ID86s0Gu4yXv5JueR5HU
+ zvfb1PYgtQ4i18iRDTrq4jTVkLR6M+66NJxgraA2OEFStwANcp6DBkdWR
+ 27XXtc7k/uPfBnPdUnEMJ0RwsyME7VbQRoxHHKmiyoHFI5FvCenM94aM8
+ vF1GvBvTuSfhj83K2GEFphv5otX+bUm0rsjOFnfpJ5xYjhK1QPJmv4bKe A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="399057799"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="399057799"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2023 13:07:18 -0700
+ 26 Jul 2023 13:07:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="720614535"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="720614535"
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="720614538"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="720614538"
 Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
- by orsmga007.jf.intel.com with ESMTP; 26 Jul 2023 13:07:16 -0700
+ by orsmga007.jf.intel.com with ESMTP; 26 Jul 2023 13:07:18 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Jul 2023 01:36:49 +0530
-Message-Id: <20230726200657.2773903-7-dnyaneshwar.bhadane@intel.com>
+Date: Thu, 27 Jul 2023 01:36:50 +0530
+Message-Id: <20230726200657.2773903-8-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230726200657.2773903-1-dnyaneshwar.bhadane@intel.com>
 References: <20230726200657.2773903-1-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 06/14] drm/i915/cml: s/CML/COMETLAKE for
+Subject: [Intel-gfx] [PATCH v3 07/14] drm/i915/rkl: s/RKL/ROCKETLAKE for
  platform/subplatform defines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,50 +62,52 @@ Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow consistent naming convention. Replace CML with
-COMETLAKE.
+Follow consistent naming convention. Replace RKL with
+ROCKETLAKE.Replace IS_RKL_GRAPHICS_STEP with
+IS_ROCKETLAKE && IS_DISPLAY_STEP.
 
+v2:
+- s/RKL/rkl in the subject prefix(Anusha)
+
+v3:
+- Unrolled wrapper IS_RKL_DISPLAY_STEP.
+- Replace IS_PLATFORM && IS_DISPLAY_STEP (Jani/Tvrtko)
+
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 4 ++--
- drivers/gpu/drm/i915/i915_drv.h                    | 6 +++---
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+ drivers/gpu/drm/i915/i915_drv.h                    | 2 --
+ 2 files changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index cd85b9fed129..35e6e3a5ddf1 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1740,9 +1740,9 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
- 			encoder->get_buf_trans = icl_get_mg_buf_trans;
- 	} else if (IS_GEMINILAKE(i915) || IS_BROXTON(i915)) {
- 		encoder->get_buf_trans = bxt_get_buf_trans;
--	} else if (IS_CML_ULX(i915) || IS_COFFEELAKE_ULX(i915) || IS_KABYLAKE_ULX(i915)) {
-+	} else if (IS_COMETLAKE_ULX(i915) || IS_COFFEELAKE_ULX(i915) || IS_KABYLAKE_ULX(i915)) {
- 		encoder->get_buf_trans = kbl_y_get_buf_trans;
--	} else if (IS_CML_ULT(i915) || IS_COFFEELAKE_ULT(i915) || IS_KABYLAKE_ULT(i915)) {
-+	} else if (IS_COMETLAKE_ULT(i915) || IS_COFFEELAKE_ULT(i915) || IS_KABYLAKE_ULT(i915)) {
- 		encoder->get_buf_trans = kbl_u_get_buf_trans;
- 	} else if (IS_COMETLAKE(i915) || IS_COFFEELAKE(i915) || IS_KABYLAKE(i915)) {
- 		encoder->get_buf_trans = kbl_get_buf_trans;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 38225e5d311e..9e01054c2430 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1609,7 +1609,7 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
+ 		return;
+ 
+ 	if (IS_ALDERLAKE_S(dev_priv) ||
+-	    IS_RKL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
++	    (IS_ROCKETLAKE(dev_priv) && IS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)))
+ 		/* Wa_1409767108 */
+ 		table = wa_1409767108_buddy_page_masks;
+ 	else
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 04107696e966..e6f77498d46c 100644
+index e6f77498d46c..f46846574420 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -636,11 +636,11 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_COFFEELAKE_GT3(i915)	(IS_COFFEELAKE(i915) && \
- 				 INTEL_INFO(i915)->gt == 3)
+@@ -660,8 +660,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 	(IS_TIGERLAKE(__i915) && \
+ 	 IS_DISPLAY_STEP(__i915, since, until))
  
--#define IS_CML_ULT(i915) \
-+#define IS_COMETLAKE_ULT(i915) \
- 	IS_SUBPLATFORM(i915, INTEL_COMETLAKE, INTEL_SUBPLATFORM_ULT)
--#define IS_CML_ULX(i915) \
-+#define IS_COMETLAKE_ULX(i915) \
- 	IS_SUBPLATFORM(i915, INTEL_COMETLAKE, INTEL_SUBPLATFORM_ULX)
--#define IS_CML_GT2(i915)	(IS_COMETLAKE(i915) && \
-+#define IS_COMETLAKE_GT2(i915)	(IS_COMETLAKE(i915) && \
- 				 INTEL_INFO(i915)->gt == 2)
+-#define IS_RKL_DISPLAY_STEP(p, since, until) \
+-	(IS_ROCKETLAKE(p) && IS_DISPLAY_STEP(p, since, until))
  
- #define IS_ICL_WITH_PORT_F(i915) \
+ #define IS_ADLS_DISPLAY_STEP(__i915, since, until) \
+ 	(IS_ALDERLAKE_S(__i915) && \
 -- 
 2.34.1
 
