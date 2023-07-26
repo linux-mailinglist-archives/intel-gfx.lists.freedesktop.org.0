@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D1F9763C03
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jul 2023 18:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F89A763C9B
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jul 2023 18:37:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E435610E4A0;
-	Wed, 26 Jul 2023 16:10:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D83E610E49D;
+	Wed, 26 Jul 2023 16:37:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E40BA10E4A0;
- Wed, 26 Jul 2023 16:10:11 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B20F210E49B;
+ Wed, 26 Jul 2023 16:37:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B0794AADD6;
- Wed, 26 Jul 2023 16:10:11 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id AA46DA47E9;
+ Wed, 26 Jul 2023 16:37:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alistair Popple" <apopple@nvidia.com>
-Date: Wed, 26 Jul 2023 16:10:11 -0000
-Message-ID: <169038781171.23469.1876193619740108366@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Date: Wed, 26 Jul 2023 16:37:00 -0000
+Message-ID: <169038942067.23472.18408967416529906498@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <cover.1eca029b8603ef4eebe5b41eae51facfc5920c41.1690292440.git-series.apopple@nvidia.com>
-In-Reply-To: <cover.1eca029b8603ef4eebe5b41eae51facfc5920c41.1690292440.git-series.apopple@nvidia.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBJ?=
- =?utf-8?q?nvalidate_secondary_IOMMU_TLB_on_permission_upgrade?=
+References: <20230726155356.1652979-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20230726155356.1652979-1-jonathan.cavitt@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/gt=3A_Simplify_shme?=
+ =?utf-8?q?m=5Fcreate=5Ffrom=5Fobject_map=5Ftype_selection?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,27 +48,40 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Invalidate secondary IOMMU TLB on permission upgrade
-URL   : https://patchwork.freedesktop.org/series/121355/
-State : failure
+Series: series starting with [1/3] drm/i915/gt: Simplify shmem_create_from_object map_type selection
+URL   : https://patchwork.freedesktop.org/series/121373/
+State : warning
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/121355/revisions/1/mbox/ not applied
-Applying: arm64/smmu: Use TLBI ASID when invalidating entire range
-Applying: mmu_notifiers: Fixup comment in mmu_interval_read_begin()
-Applying: mmu_notifiers: Call invalidate_range() when invalidating TLBs
-error: short object ID b466172 is ambiguous
-hint: The candidates are:
-hint:   b46617207c93 blob
-hint:   b466172eec25 blob
-error: sha1 information is lacking or useless (include/asm-generic/tlb.h).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0003 mmu_notifiers: Call invalidate_range() when invalidating TLBs
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Error: dim checkpatch failed
+dd84f9f99c63 drm/i915/gt: Simplify shmem_create_from_object map_type selection
+bf170c1d59f6 drm/i915: Make i915_coherent_map_type GT-centric
+-:216: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#216: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:1195:
++					 intel_gt_coherent_map_type(ce->engine->gt,
+ 								ce->state->obj,
+
+-:250: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#250: FILE: drivers/gpu/drm/i915/gt/selftest_context.c:92:
++						 intel_gt_coherent_map_type(engine->gt,
+ 									ce->state->obj, false));
+
+-:285: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#285: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:1296:
++					       intel_gt_coherent_map_type(engine->gt,
+ 								      ce->state->obj,
+
+-:319: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#319: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc.c:796:
++						 intel_gt_coherent_map_type(guc_to_gt(guc),
+ 									vma->obj, true));
+
+-:402: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#402: FILE: drivers/gpu/drm/i915/pxp/intel_pxp_tee.c:249:
++	cmd = i915_gem_object_pin_map_unlocked(obj, intel_gt_coherent_map_type(pxp->ctrl_gt, obj, true));
+
+total: 0 errors, 1 warnings, 4 checks, 290 lines checked
+8f99ef785777 drm/i915/gt: Apply workaround 22016122933 correctly
 
 
