@@ -2,33 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEA1A765546
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 15:43:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74095765583
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 16:02:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F14B910E581;
-	Thu, 27 Jul 2023 13:43:04 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F39810E581;
- Thu, 27 Jul 2023 13:43:03 +0000 (UTC)
-Message-ID: <05178cf3-df1c-80a7-12ad-816fafbc2df7@linux.intel.com>
-Date: Thu, 27 Jul 2023 15:42:58 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E8F510E584;
+	Thu, 27 Jul 2023 14:02:02 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFA9910E584;
+ Thu, 27 Jul 2023 14:02:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:Subject:From
+ :References:Cc:To:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=QX1DDbxtMHuXEHnDb3PgOVQ6vlS0/4xc4UqVjWUbjmo=; b=GnbO5RQPlbPLUaAuvsA9HsDUsC
+ mRfaetpSt3/eLZ34Kp3HOSuhBwNp42cTIfBeaJWsIeFdgjL4+Bd2j9sIf0PMqYVXaJIdjdcvuNGIT
+ S9NDLls3U/ifL7ZVl8nRQdJk6KBgn5GrSHpWQxyHJJYkD0nyNYDwdrGTxFLIA7LwP9RB+a2zLjddH
+ ybufO7StERiAH4IMvZ/A+Xk/YOqpiYR+wpFo5L53koEB+jh2F5iECSTaauEVV2kyA/DR7/T/ShGDl
+ jtw/pgD+wT4w06+QOZfldWLgRfQ1wjIROx/LdnwBiXqhXzht3Fxq3DN5TH36s6bVgr7bGa0GnOqMT
+ pBPCXjJg==;
+Received: from [187.36.235.191] (helo=[192.168.1.212])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1qP1Yc-004feF-GX; Thu, 27 Jul 2023 16:01:34 +0200
+Message-ID: <daaf05b5-3b18-c365-62e8-e7848c403ab7@igalia.com>
+Date: Thu, 27 Jul 2023 11:01:27 -0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
+ Thunderbird/102.12.0
 Content-Language: en-US
-To: Tejun Heo <tj@kernel.org>
-References: <20230712114605.519432-1-tvrtko.ursulin@linux.intel.com>
- <20230712114605.519432-17-tvrtko.ursulin@linux.intel.com>
- <ZLsFBHqCQdPHoZVw@slm.duckdns.org>
- <ea64d7bf-c01b-f4ad-a36b-f77e2c2ea931@linux.intel.com>
- <ZMF3rLioJK9QJ0yj@slm.duckdns.org>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <ZMF3rLioJK9QJ0yj@slm.duckdns.org>
+To: Nathan Chancellor <nathan@kernel.org>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tvrtko.ursulin@linux.intel.com, emma@anholt.net, mwen@igalia.com
+References: <20230718-nsecs_to_jiffies_timeout-constant-logical-operand-v1-0-36ed8fc8faea@kernel.org>
+ <20230718-nsecs_to_jiffies_timeout-constant-logical-operand-v1-1-36ed8fc8faea@kernel.org>
+From: Maira Canal <mcanal@igalia.com>
+In-Reply-To: <20230718-nsecs_to_jiffies_timeout-constant-logical-operand-v1-1-36ed8fc8faea@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 16/17] cgroup/drm: Expose memory stats
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/v3d: Avoid
+ -Wconstant-logical-operand in nsecs_to_jiffies_timeout()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,85 +58,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
- Dave Airlie <airlied@redhat.com>,
- =?UTF-8?Q?St=c3=a9phane_Marchesin?= <marcheu@chromium.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- cgroups@vger.kernel.org, Eero Tamminen <eero.t.tamminen@intel.com>,
- "T . J . Mercier" <tjmercier@google.com>
+Cc: trix@redhat.com, intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
+ ndesaulniers@google.com, patches@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, justinstitt@google.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+Hi Nathan,
 
-On 2023-07-26 21:44, Tejun Heo wrote:
-> Hello,
+On 7/18/23 18:44, Nathan Chancellor wrote:
+> A proposed update to clang's -Wconstant-logical-operand to warn when the
+> left hand side is a constant shows the following instance in
+> nsecs_to_jiffies_timeout() when NSEC_PER_SEC is not a multiple of HZ,
+> such as CONFIG_HZ=300:
 > 
-> On Wed, Jul 26, 2023 at 12:14:24PM +0200, Maarten Lankhorst wrote:
->>> So, yeah, if you want to add memory controls, we better think through how
->>> the fd ownership migration should work.
->>
->> I've taken a look at the series, since I have been working on cgroup memory
->> eviction.
->>
->> The scheduling stuff will work for i915, since it has a purely software
->> execlist scheduler, but I don't think it will work for GuC (firmware)
->> scheduling or other drivers that use the generic drm scheduler.
->>
->> For something like this,  you would probably want it to work inside the drm
->> scheduler first. Presumably, this can be done by setting a weight on each
->> runqueue, and perhaps adding a callback to update one for a running queue.
->> Calculating the weights hierarchically might be fun..
+>    In file included from drivers/gpu/drm/v3d/v3d_debugfs.c:12:
+>    drivers/gpu/drm/v3d/v3d_drv.h:343:24: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
+>      343 |         if (NSEC_PER_SEC % HZ &&
+>          |             ~~~~~~~~~~~~~~~~~ ^
+>    drivers/gpu/drm/v3d/v3d_drv.h:343:24: note: use '&' for a bitwise operation
+>      343 |         if (NSEC_PER_SEC % HZ &&
+>          |                               ^~
+>          |                               &
+>    drivers/gpu/drm/v3d/v3d_drv.h:343:24: note: remove constant to silence this warning
+>    1 warning generated.
 > 
-> I don't have any idea on this front. The basic idea of making high level
-> distribution decisions in core code and letting individual drivers enforce
-> that in a way which fits them the best makes sense to me but I don't know
-> enough to have an opinion here.
+> Turn this into an explicit comparison against zero to make the
+> expression a boolean to make it clear this should be a logical check,
+> not a bitwise one.
 > 
->> I have taken a look at how the rest of cgroup controllers change ownership
->> when moved to a different cgroup, and the answer was: not at all. If we
-> 
-> For persistent resources, that's the general rule. Whoever instantiates a
-> resource gets to own it until the resource gets freed. There is an exception
-> with the pid controller and there are discussions around whether we want
-> some sort of migration behavior with memcg but yes by and large instantiator
-> being the owner is the general model cgroup follows.
-> 
->> attempt to create the scheduler controls only on the first time the fd is
->> used, you could probably get rid of all the tracking.
->> This can be done very easily with the drm scheduler.
->>
->> WRT memory, I think the consensus is to track system memory like normal
->> memory. Stolen memory doesn't need to be tracked. It's kernel only memory,
->> used for internal bookkeeping  only.
->>
->> The only time userspace can directly manipulate stolen memory, is by mapping
->> the pinned initial framebuffer to its own address space. The only allocation
->> it can do is when a framebuffer is displayed, and framebuffer compression
->> creates some stolen memory. Userspace is not
->> aware of this though, and has no way to manipulate those contents.
-> 
-> So, my dumb understanding:
-> 
-> * Ownership of an fd can be established on the first ioctl call and doesn't
->    need to be migrated afterwards. There are no persistent resources to
->    migration on the first call.
-> 
-> * Memory then can be tracked in a similar way to memcg. Memory gets charged
->    to the initial instantiator and doesn't need to be moved around
->    afterwards. There may be some discrepancies around stolen memory but the
->    magnitude of inaccuracy introduced that way is limited and bound and can
->    be safely ignored.
-> 
-> Is that correct?
+> Link: https://reviews.llvm.org/D142609
+> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
 
-Hey,
+Reviewed-by: Maíra Canal <mcanal@igalia.com>
 
-Yeah mostly, I think we can stop tracking stolen memory. I stopped doing 
-that for Xe, there is literally nothing to control for userspace in there.
+Thanks for all the hard work with clang! Let me know if you need someone
+to push it to drm-misc-next.
 
-Cheers,
-Maarten
+Best Regards,
+- Maíra
+
+> ---
+>   drivers/gpu/drm/v3d/v3d_drv.h | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/v3d_drv.h
+> index b74b1351bfc8..7f664a4b2a75 100644
+> --- a/drivers/gpu/drm/v3d/v3d_drv.h
+> +++ b/drivers/gpu/drm/v3d/v3d_drv.h
+> @@ -340,7 +340,7 @@ struct v3d_submit_ext {
+>   static inline unsigned long nsecs_to_jiffies_timeout(const u64 n)
+>   {
+>   	/* nsecs_to_jiffies64() does not guard against overflow */
+> -	if (NSEC_PER_SEC % HZ &&
+> +	if ((NSEC_PER_SEC % HZ) != 0 &&
+>   	    div_u64(n, NSEC_PER_SEC) >= MAX_JIFFY_OFFSET / HZ)
+>   		return MAX_JIFFY_OFFSET;
+>   
+> 
