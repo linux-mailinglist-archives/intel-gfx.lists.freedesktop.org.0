@@ -2,47 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F39F3764F9E
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 11:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 770107650B0
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 12:14:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C647E10E550;
-	Thu, 27 Jul 2023 09:26:17 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E38F888D9;
- Thu, 27 Jul 2023 09:26:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B98FA10E569;
+	Thu, 27 Jul 2023 10:14:17 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (unknown [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF31910E56B;
+ Thu, 27 Jul 2023 10:14:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690449976; x=1721985976;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=k5hcbcwCAX9A11KkAOvokIiSFuxmCocRnqR5GyIOyKw=;
- b=SnjuncJ38Sukcyrnl04KrZ/wGd5+NtDCV3+gN7h0MRDGX9qy6QPRiVmn
- bgTFFDkBTEZx+2+qvuHAIvFRY9vSQPwSG9/1R2jjNiHC9wt7mWLXfz6nE
- BUqiAOaR8s6pXXDfphJTOVzcEH/c2RGtCRWPHi4+35v9KfJR0EmTRkdpx
- POVLeFCzUkW8Rhfjztz58KQ5abOrfhx5pHUU7y4EJ60piYHqBhFq/aW43
- ZmDmlQtZYF+Uic6YFwCBOAUTinQLzV2BwjrPclHi8kg5CGnRpVsWhsZpI
- Cep+X4DA+mVrtVWzkMVAk+mLdYLfEWcv6xEXIej/hZolHNCz5s8+N0kpu g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="358259510"
-X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="358259510"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2023 02:26:15 -0700
+ t=1690452856; x=1721988856;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AGFJ00ueGcF2HEASeiAAWuV3H+IC5argqRlZ30Dcdv0=;
+ b=G+1CYcvU15ytw4OAwQBbzWqnZT3Nn071LUARRYR4XJ9f1EAKvJLEYlJJ
+ 215ppS2FMEreHoc9yRwV1Nv+FX6axNMF9gZ4gtVaviW5g8iirBLPv7aIw
+ N2GHnCCco9TOAFs4J8GlF7ZZarLBayd0aeVGPH6NfpAhpdTTfrqMObZuz
+ XSVEyXRy2aKg8R2jtLKeDExDJHrN3cq4OyEcc1CuiBeB8LAgg9mENQF50
+ vgGiccz+geFhvZU6LrFAwMPqnCZ5hZVuvjs7UndlBe1BnViHEVuNkxAh7
+ tqpu2bfa9CCbK4lNShKnTjiYwAhaUpwxqrycTK+s4umc8qZPJ17mBL3LN A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="399205316"
+X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="399205316"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 03:13:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="792299924"
-X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="792299924"
-Received: from jlenehan-mobl1.ger.corp.intel.com (HELO localhost)
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="973481220"
+X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="973481220"
+Received: from jlenehan-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.228.208])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2023 02:26:12 -0700
-Date: Thu, 27 Jul 2023 10:26:10 +0100
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 03:13:56 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <ZMI4Mtom7pDhLB7M@tursulin-desk>
+To: Intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Thu, 27 Jul 2023 11:13:47 +0100
+Message-Id: <20230727101352.1899466-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v6 0/5] fdinfo memory stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,48 +58,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Only two small fixes for the 6.5 RC this week - one display for display
-(DPT) corruption under memory pressure, and one for selftests theoretical
-edge case.
+A short series to enable fdinfo memory stats for i915.
 
-Regards,
+I added tracking of most classes of objects (user objects, page tables, context
+state, ring buffers) which contribute to client's memory footprint and am
+accouting their memory use along the similar lines as in Rob's msm code, just
+that with i915 specific code we can show a memory region breakdown and so
+support discrete and multi-tile GPUs properly. And also reflect that our objects
+can have multiple allowed backing stores.
 
-Tvrtko
+The existing helper Rob added is then used to dump the per memory region stats
+to fdinfo.
 
-drm-intel-fixes-2023-07-27:
-- Use shmem for dpt objects [dpt] (Radhakrishna Sripada)
-- Fix an error handling path in igt_write_huge() (Christophe JAILLET)
-The following changes since commit 6eaae198076080886b9e7d57f4ae06fa782f90ef:
+The basic objects-per-client infrastructure can later be extended to cover all
+objects and so avoid needing to walk the IDR under the client's file table lock,
+which would further avoid distburbing the running clients by parallel fdinfo
+readers.
 
-  Linux 6.5-rc3 (2023-07-23 15:24:10 -0700)
+Example fdinfo format:
 
-are available in the Git repository at:
+# cat /proc/1383/fdinfo/8
+pos:    0
+flags:  02100002
+mnt_id: 21
+ino:    397
+drm-driver:     i915
+drm-client-id:  18
+drm-pdev:       0000:00:02.0
+drm-total-system:       125 MiB
+drm-shared-system:      16 MiB
+drm-active-system:      110 MiB
+drm-resident-system:    125 MiB
+drm-purgeable-system:   2 MiB
+drm-total-stolen-system:        0
+drm-shared-stolen-system:       0
+drm-active-stolen-system:       0
+drm-resident-stolen-system:     0
+drm-purgeable-stolen-system:    0
+drm-engine-render:      25662044495 ns
+drm-engine-copy:        0 ns
+drm-engine-video:       0 ns
+drm-engine-video-enhance:       0 ns
 
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2023-07-27
+Example gputop output:
 
-for you to fetch changes up to e354f67733115b4453268f61e6e072e9b1ea7a2f:
+DRM minor 0
+ PID     SMEM  SMEMRSS   render     copy     video    NAME
+1233     124M     124M |████████||        ||        ||        | neverball
+1130      59M      59M |█▌      ||        ||        ||        | Xorg
+1207      12M      12M |        ||        ||        ||        | xfwm4
 
-  drm/i915: Fix an error handling path in igt_write_huge() (2023-07-25 08:38:12 +0100)
+Or with Wayland:
 
-----------------------------------------------------------------
-- Use shmem for dpt objects [dpt] (Radhakrishna Sripada)
-- Fix an error handling path in igt_write_huge() (Christophe JAILLET)
+DRM minor 0
+ PID      MEM      RSS    render        copy         video    video-enhance NAME
+2093     191M     191M |▊          ||           ||           ||           | gnome-shell
+DRM minor 128
+ PID      MEM      RSS    render        copy         video    video-enhance NAME
+2551      71M      71M |██▉        ||           ||           ||           | neverball
+2553      50M      50M |           ||           ||           ||           | Xwayland
 
-----------------------------------------------------------------
-Christophe JAILLET (1):
-      drm/i915: Fix an error handling path in igt_write_huge()
+v2:
+ * Now actually per client.
 
-Radhakrishna Sripada (1):
-      drm/i915/dpt: Use shmem for dpt objects
+v3:
+ * Track imported dma-buf objects.
 
- drivers/gpu/drm/i915/display/intel_dpt.c        | 4 +++-
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c | 6 ++++--
- 2 files changed, 7 insertions(+), 3 deletions(-)
+v4:
+ * Rely on DRM GEM handles for tracking user objects.
+ * Fix internal object accounting (no placements).
+
+v5:
+ * Fixed brain fart of overwriting the loop cursor.
+ * Fixed object destruction racing with fdinfo reads.
+ * Take reference to GEM context while using it.
+
+v6:
+ * Rebase, cover letter update.
+
+Tvrtko Ursulin (5):
+  drm/i915: Add ability for tracking buffer objects per client
+  drm/i915: Record which client owns a VM
+  drm/i915: Track page table backing store usage
+  drm/i915: Account ring buffer and context state storage
+  drm/i915: Implement fdinfo memory stats printing
+
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  11 +-
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   3 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |  13 +-
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  12 ++
+ .../gpu/drm/i915/gem/selftests/mock_context.c |   4 +-
+ drivers/gpu/drm/i915/gt/intel_context.c       |  14 ++
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |   6 +
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |   1 +
+ drivers/gpu/drm/i915/i915_drm_client.c        | 131 ++++++++++++++++++
+ drivers/gpu/drm/i915/i915_drm_client.h        |  41 ++++++
+ 10 files changed, 228 insertions(+), 8 deletions(-)
+
+-- 
+2.39.2
+
