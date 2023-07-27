@@ -1,52 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B099765685
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 16:55:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0707765730
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 17:17:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A52A10E5A5;
-	Thu, 27 Jul 2023 14:55:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2647310E5AE;
+	Thu, 27 Jul 2023 15:17:51 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0576210E5B0;
- Thu, 27 Jul 2023 14:55:30 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B27D910E5AE;
+ Thu, 27 Jul 2023 15:17:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690469730; x=1722005730;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kD9quBf/SA2K77HBhUxBu97J9TXzK/yTvjKXlcj8wXM=;
- b=Mva6uJHaZPNIJoDb9CF0JPv3AWW3vm407H2iOLXPN88oaJUlLgKly8cg
- mtjCO0jt6HIu6q/HFdqlr2wUzjNCxEbBH8ZzgAa6p7ohA4/bpzfwutZXF
- vGL/FYA1WEa1sj+PGzI6TcZlK6bTLk2oxvN2hML5MplX36IsTwtrDUB9f
- 6wlo2coKPVxp2GxdCLszHjhlkCL+EGRELpOsIdE0YCGTooxFoPV1u3EvA
- axe/fMe13JFVau0JiNKcYkkDH0aI78I8rt1qeLLDMdl5o0fGb3/DQjDAo
- s218fHKXWQEdNZsBVZv/jr5/+bvSCRSrDlJFtu2aR6vkHSVdpLfaA7EiU Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="399268450"
-X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="399268450"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2023 07:55:29 -0700
+ t=1690471069; x=1722007069;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=pNhpMe1NYWSZFS6/NdLPoSr6uKRh0MZsCamC7ut+DsI=;
+ b=N/I+eK0afaevkH3j77RINEjJZPbYSi3xmRBG5178Cez2pLiXSH64c3Po
+ TVpmKlKazyYOPTB53L4gnkD1rtMBUzDy273Kv4r6k/dk6XlyghL+5bPn7
+ F1tUhgtDUaOBapNKbLpJI2VOMpmpMV9G7Ws0G832LjQuvaZBwaeSVVgiv
+ s2vLErzWi+Yt4yrvJPKttnupKeImpIIIokbAc/LDAQFCL7rH2uZRw0Wxr
+ u/VKGvEupluncp+TGEkZIONyCKEdIbv3Ey5daN46M0WpzfkYF6gh1WCxj
+ eNu2DSI+UAWY9zykwg63hqszOAP3i7OsbXQNQA/Ll5eIjUnIbSz81omsC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="432150113"
+X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="432150113"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 08:17:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="870433761"
-Received: from jlenehan-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="720903392"
+X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="720903392"
+Received: from jlenehan-mobl1.ger.corp.intel.com (HELO [10.213.228.208])
  ([10.213.228.208])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2023 07:55:30 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 27 Jul 2023 15:55:04 +0100
-Message-Id: <20230727145504.1919316-9-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230727145504.1919316-1-tvrtko.ursulin@linux.intel.com>
-References: <20230727145504.1919316-1-tvrtko.ursulin@linux.intel.com>
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 08:17:27 -0700
+Message-ID: <ec6d0e7f-f561-24fd-ec6e-e880258f96d7@linux.intel.com>
+Date: Thu, 27 Jul 2023 16:17:25 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 8/8] drm/i915: Refine the caching check in
- i915_gem_object_can_bypass_llc
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Rob Clark
+ <robdclark@chromium.org>, Chris Healy <cphealy@gmail.com>
+References: <20230727092025.1895728-1-tvrtko.ursulin@linux.intel.com>
+ <20230727092025.1895728-3-tvrtko.ursulin@linux.intel.com>
+ <20230727141059.lu76jilirgvcjb5f@kamilkon-desk1>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230727141059.lu76jilirgvcjb5f@kamilkon-desk1>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH i-g-t 2/3] lib/igt_drm_clients: Store memory
+ info in the client
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,64 +68,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Now that i915 understands the caching modes behind PAT indices, we can
-refine the check in i915_gem_object_can_bypass_llc() to stop assuming any
-user PAT can bypass the shared cache (if there is any).
+Hi,
 
-Instead we can use the absence of I915_BO_CACHE_COHERENT_FOR_WRITE as the
-criteria, which is set for all caching modes where writes from the CPU
-side (in this case buffer clears before handing buffers over to userspace)
-are fully coherent with respect to reads from the GPU.
+On 27/07/2023 15:10, Kamil Konieczny wrote:
+> Hi Tvrtko,
+> 
+> On 2023-07-27 at 10:20:24 +0100, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Define the storage structure and copy over memory data as parsed by the
+>> fdinfo helpers.
+>>
+>> v2:
+>>   * Fix empty region map entry skip condition. (Kamil, Chris)
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: Rob Clark <robdclark@chromium.org>
+>> Cc: Chris Healy <cphealy@gmail.com>
+>> Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+>> ---
+>>   lib/igt_drm_clients.c | 32 ++++++++++++++++++++++++++++++++
+>>   lib/igt_drm_clients.h | 11 +++++++++++
+>>   2 files changed, 43 insertions(+)
+>>
+>> diff --git a/lib/igt_drm_clients.c b/lib/igt_drm_clients.c
+>> index fdea42752a81..47ad137d5f1f 100644
+>> --- a/lib/igt_drm_clients.c
+>> +++ b/lib/igt_drm_clients.c
+>> @@ -103,6 +103,8 @@ igt_drm_client_update(struct igt_drm_client *c, unsigned int pid, char *name,
+>>   			c->clients->max_name_len = len;
+>>   	}
+>>   
+>> +	/* Engines */
+>> +
+>>   	c->last_runtime = 0;
+>>   	c->total_runtime = 0;
+>>   
+>> @@ -118,6 +120,13 @@ igt_drm_client_update(struct igt_drm_client *c, unsigned int pid, char *name,
+>>   		c->last[i] = info->busy[i];
+>>   	}
+>>   
+>> +	/* Memory regions */
+>> +	for (i = 0; i <= c->regions->max_region_id; i++) {
+>> +		assert(i < ARRAY_SIZE(info->region_mem));
+>> +
+>> +		c->memory[i] = info->region_mem[i];
+>> +	}
+>> +
+>>   	c->samples++;
+>>   	c->status = IGT_DRM_CLIENT_ALIVE;
+>>   }
+>> @@ -154,6 +163,8 @@ igt_drm_client_add(struct igt_drm_clients *clients,
+>>   	c->id = info->id;
+>>   	c->drm_minor = drm_minor;
+>>   	c->clients = clients;
+>> +
+>> +	/* Engines */
+>>   	c->engines = malloc(sizeof(*c->engines));
+>>   	assert(c->engines);
+>>   	memset(c->engines, 0, sizeof(*c->engines));
+>> @@ -178,6 +189,27 @@ igt_drm_client_add(struct igt_drm_clients *clients,
+>>   	c->last = calloc(c->engines->max_engine_id + 1, sizeof(c->last));
+>>   	assert(c->val && c->last);
+>>   
+>> +	/* Memory regions */
+>> +	c->regions = malloc(sizeof(*c->regions));
+>> +	assert(c->regions);
+>> +	memset(c->regions, 0, sizeof(*c->regions));
+>> +	c->regions->names = calloc(info->last_region_index + 1,
+>> +				   sizeof(*c->regions->names));
+>> +	assert(c->regions->names);
+>> +
+>> +	for (i = 0; i <= info->last_region_index; i++) {
+>> +		/* Region map is allowed to be sparse. */
+>> +		if (!info->region_names[i][0])
+>> +			continue;
+>> +
+>> +		c->regions->names[i] = strdup(info->region_names[i]);
+> --------------------------------- ^
+> Should this be c->regions->num_regions?
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Fei Yang <fei.yang@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_object.c | 18 +++++++++++-------
- 1 file changed, 11 insertions(+), 7 deletions(-)
+No, it was supposed to carry over the same memory region index from the 
+region map provided to igt_parse_drm_fdinfo.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index ec1f0be43d0d..8c4b54bd3911 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -221,12 +221,6 @@ bool i915_gem_object_can_bypass_llc(struct drm_i915_gem_object *obj)
- 	if (!(obj->flags & I915_BO_ALLOC_USER))
- 		return false;
- 
--	/*
--	 * Always flush cache for UMD objects at creation time.
--	 */
--	if (obj->pat_set_by_user)
--		return true;
--
- 	/*
- 	 * EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
- 	 * possible for userspace to bypass the GTT caching bits set by the
-@@ -239,7 +233,17 @@ bool i915_gem_object_can_bypass_llc(struct drm_i915_gem_object *obj)
- 	 * it, but since i915 takes the stance of always zeroing memory before
- 	 * handing it to userspace, we need to prevent this.
- 	 */
--	return IS_JSL_EHL(i915);
-+	if (IS_JSL_EHL(i915))
-+		return true;
-+
-+	/*
-+	 * Any caching mode where writes via CPU cache are not coherent with
-+	 * the GPU needs explicit flushing to ensure GPU can not see stale data.
-+	 */
-+	if (!(obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_WRITE))
-+		return true;
-+
-+	return false;
- }
- 
- static void i915_gem_close_object(struct drm_gem_object *gem, struct drm_file *file)
--- 
-2.39.2
+I copy pasted that concept from engine names (class names for i915) but, 
+given it is unused, maybe I should drop it.
 
+Gputop does not need it, at least not yet, and I haven't thought much if 
+it will be useful for intel_gpu_top. Point is, it allows passing in 
+fixed region id to name mapping, which can simplify things and guarantee 
+order of memory regions in the arrays. (Otherwise the order would depend 
+on the order of keys in the fdinfo text.)
+
+Regards,
+
+Tvrtko
+
+> 
+> Regards,
+> Kamil
+> 
+>> +		assert(c->regions->names[i]);
+>> +		c->regions->num_regions++;
+>> +		c->regions->max_region_id = i;
+>> +	}
+>> +	c->memory = calloc(c->regions->max_region_id + 1, sizeof(*c->memory));
+>> +	assert(c->memory);
+>> +
+>>   	igt_drm_client_update(c, pid, name, info);
+>>   }
+>>   
+>> diff --git a/lib/igt_drm_clients.h b/lib/igt_drm_clients.h
+>> index ed795c193986..07bd236d43bf 100644
+>> --- a/lib/igt_drm_clients.h
+>> +++ b/lib/igt_drm_clients.h
+>> @@ -8,6 +8,8 @@
+>>   
+>>   #include <stdint.h>
+>>   
+>> +#include "lib/igt_drm_fdinfo.h"
+>> +
+>>   /**
+>>    * SECTION:igt_drm_clients
+>>    * @short_description: Parsing driver exposed fdinfo to track DRM clients
+>> @@ -39,12 +41,20 @@ struct igt_drm_client_engines {
+>>   	char **names; /* Array of engine names, either auto-detected or from the passed in engine map. */
+>>   };
+>>   
+>> +struct igt_drm_client_regions {
+>> +	unsigned int num_regions; /* Number of discovered memory_regions. */
+>> +	unsigned int max_region_id; /* Largest memory region index discovered.
+>> +				       (Can differ from num_regions - 1 when using the region map facility.) */
+>> +	char **names; /* Array of region names, either auto-detected or from the passed in region map. */
+>> +};
+>> +
+>>   struct igt_drm_clients;
+>>   
+>>   struct igt_drm_client {
+>>   	struct igt_drm_clients *clients; /* Owning list. */
+>>   
+>>   	enum igt_drm_client_status status;
+>> +	struct igt_drm_client_regions *regions; /* Memory regions present in this client, to map with memory usage. */
+>>   	struct igt_drm_client_engines *engines; /* Engines used by this client, to map with busynees data. */
+>>   	unsigned int id; /* DRM client id from fdinfo. */
+>>   	unsigned int drm_minor; /* DRM minor of this client. */
+>> @@ -57,6 +67,7 @@ struct igt_drm_client {
+>>   	unsigned long last_runtime; /* Aggregate busyness on all engines since previous scan. */
+>>   	unsigned long *val; /* Array of engine busyness data, relative to previous scan. */
+>>   	uint64_t *last; /* Array of engine busyness data as parsed from fdinfo. */
+>> +	struct drm_client_meminfo *memory; /* Array of region memory utilisation as parsed from fdinfo. */
+>>   };
+>>   
+>>   struct igt_drm_clients {
+>> -- 
+>> 2.39.2
+>>
