@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E9B97645A4
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 07:35:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DF2E7645A5
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 07:35:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E7D010E0D6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62FA710E0DC;
 	Thu, 27 Jul 2023 05:35:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA84110E0DC
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jul 2023 05:35:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1251A10E0D6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jul 2023 05:35:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690436145; x=1721972145;
+ t=1690436146; x=1721972146;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=B2pizgxUB3tgHhP8MPP2Ke++Kh9SFrI8NFJneIFSu0Y=;
- b=a9UqmMKxDklQ1fb3MsaI7uJkaU9bYViYSZgc7h/5rTJsjxaOH18o4gI3
- X87X0wQAQ4p4tsdZaAvlvOxVdXKUPbzyUUV1U6pdz2y5bfDuWoyPewFrY
- AhIOQTPQKBlMJW0qiRj2vHt+/pE3lWefdC7LyiH6ymJXeh/Xiwnz+Atun
- 6VXARhfjhfF5sEuAK28ACwLKXD/CTvLBb6ieqk5dbLApHLkuF565KEjmY
- cZYJ+bDBUGV97kT8kWa54WehHGeJW9T0dvrgROfVr059WK/BKa/zmDe49
- Yg7N+kcEDQRvq5P6QzVp3dFiAauAXJqlCzYqqBdFKw463w2v1Pgxf7NmP A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="368227199"
-X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="368227199"
+ bh=s8YsLJg5dDLHw28kMnal3GDUP6BkhS5B2OJXZ1LDav0=;
+ b=RxAiHXhMRxY+/xQ0gVD6W4KGdcvbn2vHJjJt/uDSk14eR4RkbxajILuc
+ tr+8fhfaS4l9QIAXHARiOL0foGVfJBzc2bH2xy/cnV2M6A6WoCz94raqA
+ uAc9GMwuxFveBT91s+DEe2x1tz7ohoMy5Dko0o9K9521HaLiYF92aIwZd
+ WtmlAw7Cze6wCakH8ybEWjsYVp/SM9Vv2Fz9Jb6qbNoWbepVSYgTYE0DW
+ cvyMTQSjvlReZsuHKMNa44AH2Gsg4wy95epLEFxzsAdKvd3OYiXLaXf4m
+ qj7fTESrXsM7DFJUNsjel1idkD6dxKbILBMwmjfy4KIM3IBMbw6WHHko+ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="368227207"
+X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="368227207"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Jul 2023 22:35:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="676978327"
-X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="676978327"
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="676978335"
+X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="676978335"
 Received: from vgrigo2x-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.ger.corp.intel.com) ([10.252.35.8])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2023 22:35:41 -0700
+ 26 Jul 2023 22:35:44 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Jul 2023 08:35:15 +0300
-Message-Id: <20230727053518.709345-2-jouni.hogander@intel.com>
+Date: Thu, 27 Jul 2023 08:35:16 +0300
+Message-Id: <20230727053518.709345-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230727053518.709345-1-jouni.hogander@intel.com>
 References: <20230727053518.709345-1-jouni.hogander@intel.com>
@@ -47,7 +47,7 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/4] drm/i915/fbc: Clear frontbuffer busy
+Subject: [Intel-gfx] [PATCH v2 2/4] drm/i915/psr: Clear frontbuffer busy
  bits on flip
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,30 +68,28 @@ We are planning to move flush performed from work queue. This
 means it is possible to have invalidate -> flip -> flush sequence.
 Handle this by clearing possible busy bits on flip.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 7f8b2d7713c7..3c0a143264d2 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1299,11 +1299,9 @@ static void __intel_fbc_post_update(struct intel_fbc *fbc)
- 	lockdep_assert_held(&fbc->lock);
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 04ab034a8d57..3a18334665fa 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2230,6 +2230,12 @@ static void _intel_psr_post_plane_update(const struct intel_atomic_state *state,
+ 		if (crtc_state->crc_enabled && psr->enabled)
+ 			psr_force_hw_tracking_exit(intel_dp);
  
- 	fbc->flip_pending = false;
-+	fbc->busy_bits = 0;
- 
--	if (!fbc->busy_bits)
--		intel_fbc_activate(fbc);
--	else
--		intel_fbc_deactivate(fbc, "frontbuffer write");
-+	intel_fbc_activate(fbc);
++		/*
++		 * Clear possible busy bits in case we have
++		 * invalidate -> flip -> flush sequence.
++		 */
++		intel_dp->psr.busy_frontbuffer_bits = 0;
++
+ 		mutex_unlock(&psr->lock);
+ 	}
  }
- 
- void intel_fbc_post_update(struct intel_atomic_state *state,
 -- 
 2.34.1
 
