@@ -1,76 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B32F57654A0
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 15:10:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 257F7765367
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 14:16:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE63A10E587;
-	Thu, 27 Jul 2023 13:10:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82A4710E0E6;
+	Thu, 27 Jul 2023 12:16:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com
- [66.111.4.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A43AC10E46A;
- Thu, 27 Jul 2023 02:55:44 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailout.nyi.internal (Postfix) with ESMTP id 514CF5C014E;
- Wed, 26 Jul 2023 22:55:41 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute2.internal (MEProxy); Wed, 26 Jul 2023 22:55:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=davidreaver.com;
- h=cc:cc:content-transfer-encoding:content-type:date:date:from
- :from:in-reply-to:message-id:mime-version:reply-to:sender
- :subject:subject:to:to; s=fm3; t=1690426541; x=1690512941; bh=zx
- o1R13hZud6WyDtBUOyEV6yDE5nCsrCzF/BEThNRQ0=; b=uj91V9VmExkytqGQYV
- AZQnfS9fFzM8T3gLhrZm7k1UQt53qlJ+CcZiddess5B7DJj6IiDchezM1HxcUspl
- ahOuniTVqqvlanamXpUlnlQIKHp6Nne+Y2VwOY50+VDP3DXZFNvOs/IT+ydtRkRV
- rG2R8Wx+j1VacSj0Gqg3M0SUXsiNWeizwfuzvg3eNNIp6VacLgFsfkplixenkcCc
- 6xTA3+VR/5gBEvtg32hsuCTqZBh7oIq8+A7PQ/qYoCC6DX+pBKLq/F0p+U4UO0vA
- zeaUELCZL7dutlerJ0sgAXhPYItW3VU0e863IPXvP3m9VbLH9E37P8R6cOgdLhGG
- zL1w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:message-id:mime-version:reply-to:sender:subject
- :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
- :x-sasl-enc; s=fm3; t=1690426541; x=1690512941; bh=zxo1R13hZud6W
- yDtBUOyEV6yDE5nCsrCzF/BEThNRQ0=; b=MWPSUQY1KN+1N+NQOy+G/FznZNHit
- Q7CpFBRwh+HwXdIKQPLWgf2TygnLC6R6WxUD1nr9Hvtez15Th/wloaED8ImiBeyI
- +jWb6uP1ZtuTwEWW1kx8m3nIy7f3kN2gka4eHAF4QnlS20yCtcjMUr7pX6kaHauu
- NeOF1FnEJrka5zzqnzmR/XwGskl59D/+eFCooZRxcMmzaZ+L2knR6qNw6QkwwoCN
- 6qKB5Foeur24f4pv7ylS1qtQv+O8i8hkjdldJoMlxh67fSMwEXDljkX2rSgKwENJ
- dmNvAU0FXR6dqR+ZHIV6W+fzneJIQP9Zx7ot3CRDdeZEToEzITnpMZhTg==
-X-ME-Sender: <xms:rdzBZHs_EhrGpV9W7echt94Fkx7jCiMhDCjYuYTFqiN6JrXYA1HSEw>
- <xme:rdzBZIelJ_ZoC4XiO0CD67WyCaW1_Zy09XoB9B-Pk-x4Xz3bdRhKGZBoib8-79Dy2
- aedxmctAr3nGl30LTE>
-X-ME-Received: <xmr:rdzBZKwcbQ9FqsT8k9Q3rPon87r7RIX1cJKZ8JIY0WDqXWnE2M4-h3oynF2LJ2QV36FRCBo7ZNz6cSUdv1w2k2sVzRM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrieefgdeifecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeffrghvihguucft
- vggrvhgvrhcuoehmvgesuggrvhhiughrvggrvhgvrhdrtghomheqnecuggftrfgrthhtvg
- hrnhepheetveetgfdvffehfeffieeugeejhfevieejveeivdeuiefgvdduueffhfefveeh
- necuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtne
- curfgrrhgrmhepmhgrihhlfhhrohhmpehmvgesuggrvhhiughrvggrvhgvrhdrtghomh
-X-ME-Proxy: <xmx:rdzBZGMpq3R22NUo5a_aA4H_L6biOGbLsIjT25btfeMbYGYXbbCd0g>
- <xmx:rdzBZH9Vl7FyzqsXycNKjdRWcLvpDb9TW3TGzVNBXoZJVgQszhIEog>
- <xmx:rdzBZGUdOggLbApT_ChbgbdAg_Y7uvpSDJWvGwEbBCdC1Ma7CQe6hg>
- <xmx:rdzBZOZoufMZBSE7r-indcukFOgI17rNUHMskBUn8kNqYEfC0U1-Gg>
-Feedback-ID: i67e946c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 26 Jul 2023 22:55:39 -0400 (EDT)
-From: David Reaver <me@davidreaver.com>
-To: Jonathan Corbet <corbet@lwn.net>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 26 Jul 2023 19:54:00 -0700
-Message-ID: <20230727025400.372965-1-me@davidreaver.com>
-X-Mailer: git-send-email 2.41.0
+Received: from mgamail.intel.com (unknown [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA7910E0E6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jul 2023 12:16:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1690460207; x=1721996207;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=PhoEo+uEkOon7m0DGXJ/XjLMnhELjisw29BCRxcVaZk=;
+ b=VMzGH7mG8GyznVfIbWWoPoMgxWNngY8BHx1d1E2iMJNwQFp9xdP+jY8v
+ RlBv3+ghbQQls8bll/JCozN9p4OOgGK0nRJU60KkYQStBtrsRhJbn5LLO
+ Bvy6mQctkGyIHGT83RmZnwHnDM4HnT91GGjC0PG1G/ovY3qJGpij6UmKz
+ wK0xkUO+BRoZm+fO3fRcu5RjXohtnmMFZRrjF7TCfaYHc3FQxfgNcbpR1
+ Xu4Ur24gEJCX7X3lRinAhkzuvs+Dk1i3TCAjDr4YpbULyKldpIGwZ6dsJ
+ egJ4lFPfMh88DIpnDexkOHMbkAYKquky3j4b5q7zVOV/SqMENR8gSdiqg Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="399228582"
+X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="399228582"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 05:16:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="850812636"
+X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="850812636"
+Received: from sguija-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.252.35.185])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 05:16:43 -0700
+Date: Thu, 27 Jul 2023 14:16:40 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Message-ID: <ZMJgKO9DbXg4cob4@ashyti-mobl2.lan>
+References: <20230726155356.1652979-1-jonathan.cavitt@intel.com>
+ <20230726155356.1652979-2-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 27 Jul 2023 13:10:27 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/huc: fix intel_huc.c doc bulleted list
- format error
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230726155356.1652979-2-jonathan.cavitt@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Make i915_coherent_map_type
+ GT-centric
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,46 +60,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>, linux-doc@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, David Reaver <me@davidreaver.com>
+Cc: chris.p.wilson@linux.intel.com, intel-gfx@lists.freedesktop.org,
+ matthew.d.roper@intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix the following make htmldocs errors/warnings:
+Hi Jonathan,
 
-./drivers/gpu/drm/i915/gt/uc/intel_huc.c:29: ERROR: Unexpected indentation.
-./drivers/gpu/drm/i915/gt/uc/intel_huc.c:30: WARNING: Block quote ends without a blank line; unexpected unindent.
-./drivers/gpu/drm/i915/gt/uc/intel_huc.c:35: WARNING: Bullet list ends without a blank line; unexpected unindent.
+On Wed, Jul 26, 2023 at 08:53:55AM -0700, Jonathan Cavitt wrote:
+> Refactor i915_coherent_map_type to be GT-centric rather than
+> device-centric.  Each GT may require different coherency
+> handling due to hardware workarounds.
+> 
+> Since the function now takes a GT instead of the i915, the function is
+> renamed and moved to the gt folder.
 
-This output is a bit misleading. The real issue here is we need a blank
-line before and after the bulleted list.
+[...]
 
-Link: https://www.kernel.org/doc/html/latest/gpu/i915.html#huc
-Link: https://lore.kernel.org/dri-devel/20230530152958.1384061-1-daniele.ceraolospurio@intel.com/
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+> @@ -465,21 +465,6 @@ void *i915_gem_object_pin_map_unlocked(struct drm_i915_gem_object *obj,
+>  	return ret;
+>  }
+>  
+> -enum i915_map_type i915_coherent_map_type(struct drm_i915_private *i915,
+> -					  struct drm_i915_gem_object *obj,
+> -					  bool always_coherent)
+> -{
+> -	/*
+> -	 * Wa_22016122933: always return I915_MAP_WC for MTL
+> -	 */
+> -	if (i915_gem_object_is_lmem(obj) || IS_METEORLAKE(i915))
+> -		return I915_MAP_WC;
+> -	if (HAS_LLC(i915) || always_coherent)
+> -		return I915_MAP_WB;
+> -	else
+> -		return I915_MAP_WC;
+> -}
+> -
 
-Signed-off-by: David Reaver <me@davidreaver.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_huc.c | 2 ++
- 1 file changed, 2 insertions(+)
+[...]
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-index ddd146265beb..fa70defcb5b2 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-@@ -26,6 +26,7 @@
-  * The kernel driver is only responsible for loading the HuC firmware and
-  * triggering its security authentication. This is done differently depending
-  * on the platform:
-+ *
-  * - older platforms (from Gen9 to most Gen12s): the load is performed via DMA
-  *   and the authentication via GuC
-  * - DG2: load and authentication are both performed via GSC.
-@@ -33,6 +34,7 @@
-  *   not-DG2 older platforms), while the authentication is done in 2-steps,
-  *   a first auth for clear-media workloads via GuC and a second one for all
-  *   workloads via GSC.
-+ *
-  * On platforms where the GuC does the authentication, to correctly do so the
-  * HuC binary must be loaded before the GuC one.
-  * Loading the HuC is optional; however, not using the HuC might negatively
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -1134,6 +1134,21 @@ void intel_gt_invalidate_tlb(struct intel_gt *gt, u32 seqno)
+>  	}
+>  }
+>  
+> +enum i915_map_type intel_gt_coherent_map_type(struct intel_gt *gt,
+> +					      struct drm_i915_gem_object *obj,
+> +					      bool always_coherent)
+> +{
+> +	/*
+> +	 * Wa_22016122933: always return I915_MAP_WC for MTL
+> +	 */
+> +	if (i915_gem_object_is_lmem(obj) || IS_METEORLAKE(gt->i915))
+> +		return I915_MAP_WC;
+> +	if (HAS_LLC(gt->i915) || always_coherent)
+> +		return I915_MAP_WB;
+> +	else
+> +		return I915_MAP_WC;
+> +}
+> +
+
+yep! That's how it should be! Thanks for moving it.
+
+I'm just thinking whether intel_gt.c is the right place to put
+it... I'm anyway OK with it.
+
+
+> --- a/drivers/gpu/drm/i915/gt/intel_ring.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+> @@ -13,6 +13,7 @@
+>  #include "intel_engine_regs.h"
+>  #include "intel_gpu_commands.h"
+>  #include "intel_ring.h"
+> +#include "intel_gt.h"
+
+mmhhh... pity... this required this extra include because it
+needs the prototype of intel_gt_coherent_map_type();
+
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>  
+
+Andi
