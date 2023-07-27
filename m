@@ -2,58 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 359ED764EBA
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 11:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2996764F5B
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 11:20:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE80D10E549;
-	Thu, 27 Jul 2023 09:09:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67CD410E54E;
+	Thu, 27 Jul 2023 09:20:35 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1300810E549;
- Thu, 27 Jul 2023 09:09:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3F1A10E54E;
+ Thu, 27 Jul 2023 09:20:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690448987; x=1721984987;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=He0dOw7dptLZUnXzRrOdfUniby+Cv/kQGKSAsDw59MU=;
- b=bqhWU8xO340eRsMfbFMqcx9WUimAQx6tolDJNFmFCxGruewtyhfzDRPL
- BPJJ1H13XRKJCNRwpyXAcd8RSMCTyezC0U8WDTO6qgjRxOoIncrHGx5wD
- /dmLvO52in01g5oN7hH3hh24g+Emy1ZrJuOe39p7WICGPsVKmLIANZPHJ
- TXFTGChp8KUOcNDMXjVYJedrX8ExIP1xSYpp9GII3UkzZumBTcq8/0UC9
- 83+2rbLFPruRbe38gjm8KQZIrDyxieFikXwZc7IqbrAF0RCbhJq+gD8sa
- cl2+WlUkOE1lQnRrsr7uGlitjsIj3Tcv144n4Q/7Mg3HFHNJGihSEQfKO w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="434533015"
-X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="434533015"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2023 02:09:46 -0700
+ t=1690449633; x=1721985633;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5XnFczToNT8eNb43kCkCoxMeXWg/ZNZ4cJP/t0zOx8A=;
+ b=eBfPBbr9lm42ikXfxOMlKkL6Im3Vz8mjyQDcarysIx3UpRcdqgqExtGL
+ 4W6MS4qnkC/1cThcWYNvUBk6ODtUTHA/UF4+P/Zm3L3re+P7z/pvWFCR1
+ //PazxrCbd3H01B6ydkCQZHNkKj+vVikSSbf0FYQ3+FcFKUEVW4+1ZeKl
+ FCZSeq2Sl/Z5EUxoAOsxm7I1aziLsjG4cDf025VgNaU4QjNDuj9HQm5vk
+ SBc6nVaRK04qyuQxzJYttrgAMpQM7aJx4N9NAUgi7042WdWq67Ovq879G
+ CKWcJKYEazvh5dv0LcjGnZx63ZPT/mBFS/mTxUkaoI/PzTLqitnjVlmvO g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="432057519"
+X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="432057519"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 02:20:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="762101427"
-X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="762101427"
-Received: from jlenehan-mobl1.ger.corp.intel.com (HELO [10.213.228.208])
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="704111854"
+X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; d="scan'208";a="704111854"
+Received: from jlenehan-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.228.208])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2023 02:09:45 -0700
-Message-ID: <e830c186-4379-0d37-622d-93a2325dad9b@linux.intel.com>
-Date: Thu, 27 Jul 2023 10:09:43 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org, Intel-gfx@lists.freedesktop.org,
- Rob Clark <robdclark@chromium.org>
-References: <20230705163105.3804677-1-tvrtko.ursulin@linux.intel.com>
- <20230705163105.3804677-4-tvrtko.ursulin@linux.intel.com>
- <20230726173205.qzfle72ipv35bkae@kamilkon-desk1>
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 02:20:30 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <20230726173205.qzfle72ipv35bkae@kamilkon-desk1>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: igt-dev@lists.freedesktop.org,
+	Intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Jul 2023 10:20:22 +0100
+Message-Id: <20230727092025.1895728-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH i-g-t 3/3] gputop: Add memory information
+Subject: [Intel-gfx] [PATCH i-g-t 0/3] gputop memory usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,116 +58,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rob Clark <robdclark@chromium.org>, Chris Healy <cphealy@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-On 26/07/2023 18:32, Kamil Konieczny wrote:
-> Hi Tvrtko,
-> 
-> On 2023-07-05 at 17:31:05 +0100, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Show total and resident memory usage for clients which support it.
->>
->> For simplicity all memory regions are summed up and shown under a single
->> heading.
->>
->> Co-developed-by: Rob Clark <robdclark@chromium.org>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> ---
->>   tools/gputop.c | 34 +++++++++++++++++++++++++++++++++-
->>   1 file changed, 33 insertions(+), 1 deletion(-)
->>
->> diff --git a/tools/gputop.c b/tools/gputop.c
->> index 681f0a6bb748..b5b360cbb063 100644
->> --- a/tools/gputop.c
->> +++ b/tools/gputop.c
->> @@ -28,6 +28,7 @@
->>   
->>   #include "igt_drm_clients.h"
->>   #include "igt_drm_fdinfo.h"
->> +#include "drmtest.h"
->>   
->>   static const char *bars[] = { " ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█" };
->>   
->> @@ -80,7 +81,11 @@ print_client_header(struct igt_drm_client *c, int lines, int con_w, int con_h,
->>   		return lines;
->>   
->>   	putchar('\n');
->> -	len = printf("%*s ", c->clients->max_pid_len, "PID");
->> +	if (c->regions->num_regions)
->> +		len = printf("%*s      MEM      RSS ",
->> +			     c->clients->max_pid_len, "PID");
->> +	else
->> +		len = printf("%*s ", c->clients->max_pid_len, "PID");
->>   
->>   	if (c->engines->num_engines) {
->>   		unsigned int i;
->> @@ -121,12 +126,28 @@ newheader(const struct igt_drm_client *c, const struct igt_drm_client *pc)
->>   	return !pc || c->drm_minor != pc->drm_minor;
->>   }
->>   
->> +static int
->> +print_size(uint64_t sz)
->> +{
->> +	char units[] = {'B', 'K', 'M', 'G'};
->> +	unsigned u;
-> ------- ^
-> Better:
-> 	unsigned int u;
-> 
-> With that add my r-b tag,
+Same general approach as with engine utilisation, adding parsing of the relevant
+fdinfo fields and plumbing to client discovery helpers to finally present some
+of the available data in gputop:
 
-Okay, thanks, re-send will be coming shortly, just some final smoke 
-tests to do.
+DRM minor 0
+ PID      MEM      RSS  render    copy     video   NAME
+8098     124M     124M |███████||       ||       ||       | neverball
+ 888      76M      75M |▊      ||       ||       ||       | Xorg
+ 966      12M      12M |       ||       ||       ||       | xfwm4
 
-Regards,
+Or with Wayland:
 
-Tvrtko
+DRM minor 0
+ PID      MEM      RSS    render        copy         video    video-enhance NAME
+2093     191M     191M |▊          ||           ||           ||           | gnome-shell
+DRM minor 128
+ PID      MEM      RSS    render        copy         video    video-enhance NAME
+2551      71M      71M |██▉        ||           ||           ||           | neverball
+2553      50M      50M |           ||           ||           ||           | Xwayland
 
-> 
-> Regards,
-> Kamil
-> 
->> +
->> +	for (u = 0; u < ARRAY_SIZE(units) - 1; u++) {
->> +		if (sz < 1024)
->> +			break;
->> +		sz /= 1024;
->> +	}
->> +
->> +	return printf("%7"PRIu64"%c ", sz, units[u]);
->> +}
->> +
->>   static int
->>   print_client(struct igt_drm_client *c, struct igt_drm_client **prevc,
->>   	     double t, int lines, int con_w, int con_h,
->>   	     unsigned int period_us, int *engine_w)
->>   {
->>   	unsigned int i;
->> +	uint64_t sz;
->>   	int len;
->>   
->>   	/* Filter out idle clients. */
->> @@ -143,6 +164,17 @@ print_client(struct igt_drm_client *c, struct igt_drm_client **prevc,
->>   	*prevc = c;
->>   
->>   	len = printf("%*s ", c->clients->max_pid_len, c->pid_str);
->> +
->> +	if (c->regions->num_regions) {
->> +		for (sz = 0, i = 0; i < c->regions->max_region_id; i++)
->> +			sz += c->memory[i].total;
->> +		len += print_size(sz);
->> +
->> +		for (sz = 0, i = 0; i < c->regions->max_region_id; i++)
->> +			sz += c->memory[i].resident;
->> +		len += print_size(sz);
->> +	}
->> +
->>   	lines++;
->>   
->>   	for (i = 0; c->samples > 1 && i <= c->engines->max_engine_id; i++) {
->> -- 
->> 2.39.2
->>
+There is probably scope to consolidate some of the igt_drm_fdinfo code and to
+improve on the presentation but this is a start.
+
+For now, out of the available memory categories, only total and resident are
+displayed, and also all discovered memory regions are summed up and shown under
+a single heading.
+
+v2:
+ * One style tweak, two missing s-o-b, one build failure.
+
+Cc: Rob Clark <robdclark@chromium.org>
+Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+Cc: Chris Healy <cphealy@gmail.com>
+
+Tvrtko Ursulin (3):
+  lib/igt_drm_fdinfo: Parse memory usage
+  lib/igt_drm_clients: Store memory info in the client
+  gputop: Add memory information
+
+ lib/igt_drm_clients.c   |  35 +++++++++-
+ lib/igt_drm_clients.h   |  11 ++++
+ lib/igt_drm_fdinfo.c    | 143 ++++++++++++++++++++++++++++++++++++++--
+ lib/igt_drm_fdinfo.h    |  24 ++++++-
+ tests/i915/drm_fdinfo.c |   8 +--
+ tools/gputop.c          |  34 +++++++++-
+ tools/intel_gpu_top.c   |   2 +-
+ 7 files changed, 242 insertions(+), 15 deletions(-)
+
+-- 
+2.39.2
+
