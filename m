@@ -1,50 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4983A76584C
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 18:08:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98A3B765909
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jul 2023 18:43:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9896E10E5BA;
-	Thu, 27 Jul 2023 16:08:42 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 823B810E5BA;
- Thu, 27 Jul 2023 16:08:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=EQJuMAJSGL6ttEyLaOeJWDVPtC4nPLTazz3w/7T8YEs=; b=iZehVCeZ/aZdcCVwzxFikSCFG2
- BcyLCLf+Laa1fVdpy4XV/VOvaoENHb9CChj/q9Nbi+q/QYgolctVy9YrQTzdMK6sojLZrCxtnne+M
- kLLiOnVxckYo2U4KrTm/b57/++cHeaWWWEvO2zHkZRbMtEszjsJWb/a/JAUXA6IbIwH+351cbnkbg
- L/5f3uTSd09dZaI8/GUGcXz075KfcLYaeFbHxxfcyVZZlF65Qkaw3jPOwr/TucEFgd1zvUSbt+EFL
- tTPUvxSiFtTqJBvmZziCuogNelVApPFCxDFbOJe8m25U13n4nPRj4Tu3FRF0/TE87Z7x6r1CrYNDF
- SQkGv7tQ==;
-Received: from [187.36.235.191] (helo=[192.168.1.212])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1qP3XI-004ilg-WB; Thu, 27 Jul 2023 18:08:21 +0200
-Message-ID: <2b3d9647-b1db-cbb6-2421-b12ec3482eae@igalia.com>
-Date: Thu, 27 Jul 2023 13:08:13 -0300
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F5E610E5C3;
+	Thu, 27 Jul 2023 16:43:42 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (unknown [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA6BF10E5C3;
+ Thu, 27 Jul 2023 16:43:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1690476221; x=1722012221;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=EPPEG5IjRpK3UjK14v1TE0oHNl+auGdkynzlUa5wKQI=;
+ b=KCLBJPEDMythTfgwAbVvrBqE7BYTpkiJ5kaVTI/RQoDiZLc4jp/u0wgx
+ mT7OcAC+oFwR6LdNnMAgWAUOiGKyF/ii+MWpaUfn9YQsbUGJ0TWEuiSgO
+ uFBhCSIh21V45t8BW/0F6W41cjmR5/Kn8jBUIz9LuxMiFJ/dZQzAairvj
+ 2H9SkhTM/XvBbJAcD/U5XwMn47ISa/o15CvKG+nqO9+jylpIF++Jg4BTX
+ e2Q2JxQwATPbqAmyYM5kzUY+/iYRDWaKlYrtFNRMBSzzHVpYDKg3bVoCx
+ gMu5hPhFK89sHshI6OfLOsA+1W6S4nXvel+wPFgMaKGhPoSvkUg8oAlOV w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="371996233"
+X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="371996233"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 09:43:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="730416549"
+X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="730416549"
+Received: from jlenehan-mobl1.ger.corp.intel.com (HELO [10.213.228.208])
+ ([10.213.228.208])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 09:43:36 -0700
+Message-ID: <6ed5478c-8a67-5ad8-3e6d-51c300702cf3@linux.intel.com>
+Date: Thu, 27 Jul 2023 17:43:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
+ Thunderbird/102.11.0
 Content-Language: en-US
-To: Nathan Chancellor <nathan@kernel.org>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- tvrtko.ursulin@linux.intel.com, emma@anholt.net, mwen@igalia.com
-References: <20230718-nsecs_to_jiffies_timeout-constant-logical-operand-v1-0-36ed8fc8faea@kernel.org>
-From: Maira Canal <mcanal@igalia.com>
-In-Reply-To: <20230718-nsecs_to_jiffies_timeout-constant-logical-operand-v1-0-36ed8fc8faea@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Tejun Heo <tj@kernel.org>
+References: <20230712114605.519432-1-tvrtko.ursulin@linux.intel.com>
+ <20230712114605.519432-17-tvrtko.ursulin@linux.intel.com>
+ <ZLsFBHqCQdPHoZVw@slm.duckdns.org>
+ <ea64d7bf-c01b-f4ad-a36b-f77e2c2ea931@linux.intel.com>
+ <ZMF3rLioJK9QJ0yj@slm.duckdns.org>
+ <05178cf3-df1c-80a7-12ad-816fafbc2df7@linux.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <05178cf3-df1c-80a7-12ad-816fafbc2df7@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 0/2] Avoid -Wconstant-logical-operand in
- nsecs_to_jiffies_timeout()
+Subject: Re: [Intel-gfx] [PATCH 16/17] cgroup/drm: Expose memory stats
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,68 +68,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: trix@redhat.com, intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
- ndesaulniers@google.com, patches@lists.linux.dev,
- dri-devel@lists.freedesktop.org, justinstitt@google.com
+Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
+ Dave Airlie <airlied@redhat.com>,
+ =?UTF-8?Q?St=c3=a9phane_Marchesin?= <marcheu@chromium.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ cgroups@vger.kernel.org, Eero Tamminen <eero.t.tamminen@intel.com>,
+ "T . J . Mercier" <tjmercier@google.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 7/18/23 18:44, Nathan Chancellor wrote:
-> Hi all,
-> 
-> A proposed update to clang's -Wconstant-logical-operand [1] to warn when
-> the left hand side is a constant as well now triggers with the modulo
-> expression in nsecs_to_jiffies_timeout() when NSEC_PER_SEC is not a
-> multiple of HZ, such as CONFIG_HZ=300:
-> 
->    drivers/gpu/drm/i915/gem/i915_gem_wait.c:189:24: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
->      189 |         if (NSEC_PER_SEC % HZ &&
->          |             ~~~~~~~~~~~~~~~~~ ^
->    drivers/gpu/drm/i915/gem/i915_gem_wait.c:189:24: note: use '&' for a bitwise operation
->      189 |         if (NSEC_PER_SEC % HZ &&
->          |                               ^~
->          |                               &
->    drivers/gpu/drm/i915/gem/i915_gem_wait.c:189:24: note: remove constant to silence this warning
->    1 warning generated.
-> 
->    In file included from drivers/gpu/drm/v3d/v3d_debugfs.c:12:
->    drivers/gpu/drm/v3d/v3d_drv.h:343:24: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
->      343 |         if (NSEC_PER_SEC % HZ &&
->          |             ~~~~~~~~~~~~~~~~~ ^
->    drivers/gpu/drm/v3d/v3d_drv.h:343:24: note: use '&' for a bitwise operation
->      343 |         if (NSEC_PER_SEC % HZ &&
->          |                               ^~
->          |                               &
->    drivers/gpu/drm/v3d/v3d_drv.h:343:24: note: remove constant to silence this warning
->    1 warning generated.
-> 
-> These patches add an explicit comparison to zero to make the
-> expression a boolean, which clears up the warning.
-> 
-> The patches have no real dependency on each other but I felt like they
-> made send together since it is the same code.
-> 
-> If these could go into mainline sooner rather than later to avoid
-> breaking builds that can hit this with CONFIG_WERROR, that would be
-> nice, but I won't insist since I don't think our own CI has builds that
-> has those conditions, but others might.
-> 
-> ---
-> Nathan Chancellor (2):
->        drm/v3d: Avoid -Wconstant-logical-operand in nsecs_to_jiffies_timeout()
->        drm/i915: Avoid -Wconstant-logical-operand in nsecs_to_jiffies_timeout()
 
-Applied both patches to drm-misc/drm-misc-next!
+On 27/07/2023 14:42, Maarten Lankhorst wrote:
+> On 2023-07-26 21:44, Tejun Heo wrote:
+>> Hello,
+>>
+>> On Wed, Jul 26, 2023 at 12:14:24PM +0200, Maarten Lankhorst wrote:
+>>>> So, yeah, if you want to add memory controls, we better think 
+>>>> through how
+>>>> the fd ownership migration should work.
+>>>
+>>> I've taken a look at the series, since I have been working on cgroup 
+>>> memory
+>>> eviction.
+>>>
+>>> The scheduling stuff will work for i915, since it has a purely software
+>>> execlist scheduler, but I don't think it will work for GuC (firmware)
+>>> scheduling or other drivers that use the generic drm scheduler.
+>>>
+>>> For something like this,  you would probably want it to work inside 
+>>> the drm
+>>> scheduler first. Presumably, this can be done by setting a weight on 
+>>> each
+>>> runqueue, and perhaps adding a callback to update one for a running 
+>>> queue.
+>>> Calculating the weights hierarchically might be fun..
+>>
+>> I don't have any idea on this front. The basic idea of making high level
+>> distribution decisions in core code and letting individual drivers 
+>> enforce
+>> that in a way which fits them the best makes sense to me but I don't know
+>> enough to have an opinion here.
+>>
+>>> I have taken a look at how the rest of cgroup controllers change 
+>>> ownership
+>>> when moved to a different cgroup, and the answer was: not at all. If we
+>>
+>> For persistent resources, that's the general rule. Whoever instantiates a
+>> resource gets to own it until the resource gets freed. There is an 
+>> exception
+>> with the pid controller and there are discussions around whether we want
+>> some sort of migration behavior with memcg but yes by and large 
+>> instantiator
+>> being the owner is the general model cgroup follows.
+>>
+>>> attempt to create the scheduler controls only on the first time the 
+>>> fd is
+>>> used, you could probably get rid of all the tracking.
+>>> This can be done very easily with the drm scheduler.
+>>>
+>>> WRT memory, I think the consensus is to track system memory like normal
+>>> memory. Stolen memory doesn't need to be tracked. It's kernel only 
+>>> memory,
+>>> used for internal bookkeeping  only.
+>>>
+>>> The only time userspace can directly manipulate stolen memory, is by 
+>>> mapping
+>>> the pinned initial framebuffer to its own address space. The only 
+>>> allocation
+>>> it can do is when a framebuffer is displayed, and framebuffer 
+>>> compression
+>>> creates some stolen memory. Userspace is not
+>>> aware of this though, and has no way to manipulate those contents.
+>>
+>> So, my dumb understanding:
+>>
+>> * Ownership of an fd can be established on the first ioctl call and 
+>> doesn't
+>>    need to be migrated afterwards. There are no persistent resources to
+>>    migration on the first call.
 
-Best Regards,
-- Maíra
+Yes, keyword is "can". Trouble is migration may or may not happen.
 
+One may choose "Plasma X.org" session type in your login manager and all 
+DRM fds would be under Xorg if not migrated. Or one may choose "Plasma 
+Wayland" and migration wouldn't matter. But former is I think has a huge 
+deployed base so that not supporting implicit migration would be a 
+significant asterisk next to the controller.
+
+>> * Memory then can be tracked in a similar way to memcg. Memory gets 
+>> charged
+>>    to the initial instantiator and doesn't need to be moved around
+>>    afterwards. There may be some discrepancies around stolen memory 
+>> but the
+>>    magnitude of inaccuracy introduced that way is limited and bound 
+>> and can
+>>    be safely ignored.
+>>
+>> Is that correct?
 > 
->   drivers/gpu/drm/i915/gem/i915_gem_wait.c | 2 +-
->   drivers/gpu/drm/v3d/v3d_drv.h            | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
-> ---
-> base-commit: fdf0eaf11452d72945af31804e2a1048ee1b574c
-> change-id: 20230718-nsecs_to_jiffies_timeout-constant-logical-operand-4a944690f3e9
+> Hey,
 > 
-> Best regards,
+> Yeah mostly, I think we can stop tracking stolen memory. I stopped doing 
+> that for Xe, there is literally nothing to control for userspace in there.
+
+Right, but for reporting stolen is a red-herring. In this RFC I simply 
+report on all memory regions known by the driver. As I said in the other 
+reply, imagine the keys are 'system' and 'vram0'. Point was just to 
+illustrate multiplicity of regions.
+
+Regards,
+
+Tvrtko
