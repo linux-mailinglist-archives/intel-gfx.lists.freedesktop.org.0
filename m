@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C399766E98
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jul 2023 15:40:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EC82766E9A
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jul 2023 15:40:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4547110E11B;
-	Fri, 28 Jul 2023 13:40:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1C8210E6EB;
+	Fri, 28 Jul 2023 13:40:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 844B110E11B;
- Fri, 28 Jul 2023 13:40:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1342610E6EB;
+ Fri, 28 Jul 2023 13:40:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 67955AADE8;
- Fri, 28 Jul 2023 13:40:45 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0F830AADFB;
+ Fri, 28 Jul 2023 13:40:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Animesh Manna" <animesh.manna@intel.com>
-Date: Fri, 28 Jul 2023 13:40:45 -0000
-Message-ID: <169055164539.19730.208832575831726590@emeril.freedesktop.org>
+Date: Fri, 28 Jul 2023 13:40:48 -0000
+Message-ID: <169055164806.19731.7636181616542658140@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230728124609.2911830-1-animesh.manna@intel.com>
 In-Reply-To: <20230728124609.2911830-1-animesh.manna@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Panel_replay_phase1_implementation_=28rev5=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Panel_replay_phase1_implementation_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,28 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-445e87b0b6b4 drm/panelreplay: dpcd register definition for panelreplay
-81963673fe7c drm/i915/panelreplay: Added HAS_PANEL_REPLAY() macro
-d9b9bdca76bf drm/i915/psr: Move psr specific dpcd init into own function
--:55: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'intel_dp->psr_dpcd[0] == DP_PSR2_WITH_Y_COORD_IS_SUPPORTED'
-#55: FILE: drivers/gpu/drm/i915/display/intel_psr.c:499:
-+	if (DISPLAY_VER(i915) >= 9 &&
- 	    (intel_dp->psr_dpcd[0] == DP_PSR2_WITH_Y_COORD_IS_SUPPORTED)) {
-
-total: 0 errors, 0 warnings, 1 checks, 70 lines checked
-d7981359cc4e drm/i915/panelreplay: Initializaton and compute config for panel replay
--:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#17: 
-- Set source_panel_replay_support flag under HAS_PNEL_REPLAY() check. [Jouni]
-
--:58: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'intel_dp' - possible side-effects?
-#58: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1989:
-+#define CAN_PANEL_REPLAY(intel_dp) ((intel_dp)->psr.sink_panel_replay_support && \
-+			  (intel_dp)->psr.source_panel_replay_support)
-
-total: 0 errors, 1 warnings, 1 checks, 240 lines checked
-53b797e67556 drm/i915/panelreplay: Enable panel replay dpcd initialization for DP
-7c40fcb0136b drm/i915/panelreplay: enable/disable panel replay
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
