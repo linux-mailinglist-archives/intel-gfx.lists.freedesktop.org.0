@@ -2,61 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5004766F1E
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jul 2023 16:15:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DF44766F5A
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jul 2023 16:22:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D01CF10E6F6;
-	Fri, 28 Jul 2023 14:15:42 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D38A010E6F2;
- Fri, 28 Jul 2023 14:15:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690553739; x=1722089739;
- h=message-id:date:mime-version:subject:from:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=AZ/ocz0hEyx4b7zjwB+nv50Nb+TCW7LuxkGS/3Orf7M=;
- b=MMohJhwRXLC5sVZtoRZsxTLJc5rdelLxmOOy6SOJyzDlIyD0hSdwxYB8
- bvLziTmxNWkWra1cyo/3T1Zl2YQBEnS9GQVf3IRqfKf9UF+lCR9m7dIY0
- qVAw2n2nQ+YgISJY7W9mY8g3ikXbrOEGUbxQUuQRHde4sMuInjKyFaUGF
- KteOn7qdUQO2+uOO3kV4Jo1Cn3g1JnBZoY8j0jGh/YUwjDG7K9J2h4SwT
- AfTCPtxmTbdjtI0WunbaDVbcxVXohz8qvGw9Oth4W/8zWBW2BbmxaRdyJ
- +OvRbXcNTcJC2t/hNE4e5tTDsGSSNp8ejkfwS2T9sMQbK/G5nDzN9vQFK A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="454959096"
-X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="454959096"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2023 07:15:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="974085643"
-X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="974085643"
-Received: from atoomey-mobl.amr.corp.intel.com (HELO [10.213.197.30])
- ([10.213.197.30])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2023 07:15:31 -0700
-Message-ID: <0d51725f-d4d3-ae75-1d14-e9816cb8d33c@linux.intel.com>
-Date: Fri, 28 Jul 2023 15:15:29 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8160C10E6FD;
+	Fri, 28 Jul 2023 14:22:40 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-41103.protonmail.ch (mail-41103.protonmail.ch
+ [185.70.41.103])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9015F10E6FD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jul 2023 14:22:38 +0000 (UTC)
+Date: Fri, 28 Jul 2023 14:22:20 +0000
+Authentication-Results: mail-41103.protonmail.ch;
+ dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
+ header.b="Jy7+jRZ+"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail2; t=1690554152; x=1690813352;
+ bh=qUTyVGmY+SUpg3/1PHbpdRRzD/ZAMSvRleoyIi8Jdus=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector;
+ b=Jy7+jRZ+kBFwVXICl01cgJ2HPRNBr8O9uTX2knZ+VspFsWH62GRPqefxbMJcQs4Wq
+ YEzXZ8Gi30qX/hFqn3lMyt7LIosgfuefoRUMF1RmfJMGL83E4JyVxXOgTF4UoqMVJe
+ 5ThuUBDvZHIHqoi3Et+FWWjSizGr9WQ3u8sbbhWph2c9MNquS32xySuWAbttDS8JjJ
+ 07LCgwla0VsDSOpt7iYab7F1GLY0xtdsATmgGXiLsrzPxmrISXAlHNHZbAuBkk0Em7
+ 3vuKneYBaIlhrVCfHl/7zMIYpCJPun3+zrDYPsv/HQiLTaWL1Mh/s5j08QJufnDb5F
+ W5zzuNdH3sMEw==
+To: =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+From: Simon Ser <contact@emersion.fr>
+Message-ID: <TAdBP5BOy3cy7VnUb4t7ZkDOMK6wI_gPCjXanItN3TOsA1TbSk_6yrlcPTqvk3AZjamo96yHlEhjpfNUPFF6tA_9K8iRoie3h_z5Jf6zNtc=@emersion.fr>
+In-Reply-To: <69801f61-37b0-3e46-cbef-31ff80ae9a34@amd.com>
+References: <20230724211428.3831636-1-michal.winiarski@intel.com>
+ <20230724211428.3831636-4-michal.winiarski@intel.com>
+ <83s0YPWEdYE6C2a8pa6UAa3EaWZ2zG-q7IL9M-y6W1ucF9V54VnZtigKj3BGKUA2FZpIrs0VVxmpHO2RAhs_FdOnss9vNLQNSHySY8uH7YA=@emersion.fr>
+ <69801f61-37b0-3e46-cbef-31ff80ae9a34@amd.com>
+Feedback-ID: 1358184:user:proton
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Tejun Heo <tj@kernel.org>
-References: <20230712114605.519432-1-tvrtko.ursulin@linux.intel.com>
- <20230712114605.519432-17-tvrtko.ursulin@linux.intel.com>
- <ZLsFBHqCQdPHoZVw@slm.duckdns.org>
- <ea64d7bf-c01b-f4ad-a36b-f77e2c2ea931@linux.intel.com>
- <89d7181c-6830-ca6e-0c39-caa49d14d474@linux.intel.com>
- <fb734626-6041-1e68-38d7-221837284cf1@linux.intel.com>
- <5d65d387-2718-06c3-ee5d-8a7da6e3ddfd@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <5d65d387-2718-06c3-ee5d-8a7da6e3ddfd@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 16/17] cgroup/drm: Expose memory stats
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v6 3/4] drm: Expand max DRM device number to
+ full MINORBITS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,96 +55,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Kenny.Ho@amd.com,
- Dave Airlie <airlied@redhat.com>,
- =?UTF-8?Q?St=c3=a9phane_Marchesin?= <marcheu@chromium.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- cgroups@vger.kernel.org, Eero Tamminen <eero.t.tamminen@intel.com>,
- "T . J . Mercier" <tjmercier@google.com>
+Cc: Matthew Wilcox <willy@infradead.org>,
+ =?utf-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Pekka Paalanen <pekka.paalanen@collabora.com>,
+ James Zhu <James.Zhu@amd.com>, Oded Gabbay <ogabbay@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thursday, July 27th, 2023 at 14:01, Christian K=C3=B6nig <christian.koen=
+ig@amd.com> wrote:
 
-One additional thought on one sub-topic:
+> > We do need patches to stop trying to infer the node type from the minor
+> > in libdrm, though. Emil has suggested using sysfs, which we already do
+> > in a few places in libdrm.
+>=20
+> That sounds like a really good idea to me as well.
+>=20
+> But what do we do with DRM_MAX_MINOR? Change it or keep it and say apps
+> should use drmGetDevices2() like Emil suggested?
 
-On 27/07/2023 18:08, Tvrtko Ursulin wrote:
+DRM_MAX_MINOR has been bumped to 64 now.
 
-[snip]
+With the new minor allocation scheme, DRM_MAX_MINOR is meaningless
+because there is no "max minor per type" concept anymore: the minor no
+longer contains the type.
 
->>>> For something like this,  you would probably want it to work inside 
->>>> the drm scheduler first. Presumably, this can be done by setting a 
->>>> weight on each runqueue, and perhaps adding a callback to update one 
->>>> for a running queue. Calculating the weights hierarchically might be 
->>>> fun..
->>>
->>> It is not needed to work in drm scheduler first. In fact drm 
->>> scheduler based drivers can plug into what I have since it already 
->>> has the notion of scheduling priorities.
->>>
->>> They would only need to implement a hook which allow the cgroup 
->>> controller to query client GPU utilisation and another to received 
->>> the over budget signal.
->>>
->>> Amdgpu and msm AFAIK could be easy candidates because they both 
->>> support per client utilisation and priorities.
->>>
->>> Looks like I need to put all this info back into the cover letter.
->>>
->>> Also, hierarchic weights and time budgets are all already there. What 
->>> could be done later is make this all smarter and respect the time 
->>> budget with more precision. That would however, in many cases 
->>> including Intel, require co-operation with the firmware. In any case 
->>> it is only work in the implementation, while the cgroup control 
->>> interface remains the same.
->>>
->>>> I have taken a look at how the rest of cgroup controllers change 
->>>> ownership when moved to a different cgroup, and the answer was: not 
->>>> at all. If we attempt to create the scheduler controls only on the 
->>>> first time the fd is used, you could probably get rid of all the 
->>>> tracking.
->>>
->>> Can you send a CPU file descriptor from process A to process B and 
->>> have CPU usage belonging to process B show up in process' A cgroup, 
->>> or vice-versa? Nope, I am not making any sense, am I? My point being 
->>> it is not like-to-like, model is different.
->>>
->>> No ownership transfer would mean in wide deployments all GPU 
->>> utilisation would be assigned to Xorg and so there is no point to any 
->>> of this. No way to throttle a cgroup with un-important GPU clients 
->>> for instance.
->> If you just grab the current process' cgroup when a drm_sched_entity 
->> is created, you don't have everything charged to X.org. No need for 
->> complicated ownership tracking in drm_file. The same equivalent should 
->> be done in i915 as well when a context is created as it's not using 
->> the drm scheduler.
-> 
-> Okay so essentially nuking the concept of DRM clients belongs to one 
-> cgroup and instead tracking at the context level. That is an interesting 
-> idea. I suspect implementation could require somewhat generalizing the 
-> concept of an "execution context", or at least expressing it via the DRM 
-> cgroup controller.
-> 
-> I can give this a spin, or at least some more detailed thought, once we 
-> close on a few more details regarding charging in general.
-
-I didn't get much time to brainstorm this just yet, only one downside 
-randomly came to mind later - with this approach for i915 we wouldn't 
-correctly attribute any GPU activity done in the receiving process 
-against our default contexts. Those would still be accounted to the 
-sending process.
-
-How much problem in practice that would be remains to be investigated, 
-including if it applies to other drivers too. If there is a good amount 
-of deployed userspace which use the default context, then it would be a 
-bit messy.
-
-Regards,
-
-Tvrtko
-
-*) For non DRM and non i915 people, default context is a GPU submission 
-context implicitly created during the device node open. It always 
-remains valid, including in the receiving process if SCM_RIGHTS is used.
+So I'd suggest leaving it as-is (so that old apps still continue to
+work on systems with < 64 devices like they do today) and mark it as
+deprecated.
