@@ -1,139 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D7537670B1
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jul 2023 17:36:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74F18767116
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jul 2023 17:53:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D113010E720;
-	Fri, 28 Jul 2023 15:36:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 242DF10E032;
+	Fri, 28 Jul 2023 15:53:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 849D010E71E;
- Fri, 28 Jul 2023 15:36:38 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4706810E032
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jul 2023 15:52:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690558598; x=1722094598;
+ t=1690559579; x=1722095579;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=rB98HxIQxjEj5xHf2VoW/ZxxZpplp8n1gtqtWz/ZoAY=;
- b=fo1SLyKA2C0UegqltUUZ8qVL5rqCiJtxAwJZBfoREFBM4G/rH98n5Gj4
- 1TILTfqm6kkJ6rqYiTkM9gtRjmR7gmokO0UVmfrIVt2V20UEH2Zc1yXjl
- kDJDdcv35KSTDyGnVRHJQ+wDgj2XnJczXZs2isc6EvMwF4cs9h1ANPVUF
- mv1mC392/8VvGLoAUy0iCfOPZ3j9+xq/0sK94zbda/lJvWplnCdhvQCPQ
- R8e3wm1HPeIetjiKBbVOjXq5RCOayGqf6YQXh+bEFSt4ScJzQj6db1rAX
- +pD0lls6dxrnQXzFCB8kKKMysBZEvMAIMRL03FZOTB0HT1Xgit9961Kuo w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="353529855"
-X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="353529855"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2023 08:36:37 -0700
+ mime-version:in-reply-to;
+ bh=xVo8tOXrAvebYog5HgRDT2/de9+JnRzcN/dfTLrM580=;
+ b=NT5egJYaY4O5spIjQqCRuCA3cj4YNsDBOyE9qT1vcTa8EIo6uXy7HaJM
+ HkSgiucmaxYpwy06HIIB5KSDLc+exqbNs/fQYip/uTinhrfT3tllSK36b
+ kCfN4e310TbyHXPl/HnFBZwBEIdzKXjfV0zXRyTRwOh695ghOJa02iVAA
+ DvVQo1qcsQ1G8K4fBquxSCW2me5QCeAvigrUz5eKd1BiYlbb0Rjz/CTpA
+ jtnHBUAJwN+1D0hUWsFZhRkupMpxLy3BtNrrzqwEclxcyFGPnUdBgxCyA
+ yvMw1xqgEv35+DJhgSd20eBz/vx15kiXD959V+wvKi3W9hCagNcvkUsC5 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="434908173"
+X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="434908173"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2023 08:52:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="792978237"
-X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="792978237"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP; 28 Jul 2023 08:36:37 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Fri, 28 Jul 2023 08:36:37 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Fri, 28 Jul 2023 08:36:36 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Fri, 28 Jul 2023 08:36:36 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Fri, 28 Jul 2023 08:36:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kDU+H6DzbvloNGIcVAdAMCj2Cbi5sRIMeAmtXc6Wr4iIW/h3A8YPEJxmlJUaN59oM/9c/f5VIny8HypJVYQlAbU6EeLYWfoY2iljA7+zLNqKKQngJhwxUzWmiJfgQ6KyDwQTXcpbvo11fYZbeyfXqR5svf+WmNpsh0CHLMZ+A1rtWAl2E6W/9U5Jz0WRWtHjhwxpG18JqDymtod/GGr0V8mmUuVNiL0MXwkpGDnGOA1CApJIF0sSBZnTS7aoagHjWWepXI+hd0Hk4/8eAWZtC0YbvJ8WFniZUx1mdPcLTa0lbcii0UJn66aZ8ZRU5bCg12ys84zkBFP6I0UsvRL7RA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EQAOmQzZqM2IVdMf69jTOyIWU7/Y3WP20kVddBx5NLo=;
- b=FClENI4P+ZYjBMG3xK/9At/Q42T6UFI7UzAioIDCTY1x5347yLDs3UVaZjhzB1me2N8O1xP0LUar1847RQC9QX/5ISYgaQ4MeOWWYLIFXF0ESM4McMhvPd2iXwM8jm4Y3uPv6zNXakGlqit44v3ikEssO2tHlcxXVwP7PVRxq1U0LBI1KxpuKNf5c4DxL9UH7u9vwAsEOQQIqU3uZu9qZBbBLAmzSD3X/17ie3VWLMF7ZXDip1aI9wSAU+Qtc/NXkgHCws44cCtireUm/pLETobCLVEFVMuCG23noxZXRe43KQDHk5zvuchXJZN/vfzhgyXi83XfXaksGTRDXj4htg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by MN6PR11MB8217.namprd11.prod.outlook.com (2603:10b6:208:47d::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Fri, 28 Jul
- 2023 15:36:35 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294%5]) with mapi id 15.20.6631.026; Fri, 28 Jul 2023
- 15:36:35 +0000
-Date: Fri, 28 Jul 2023 11:36:30 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Message-ID: <ZMPgfvUneE1RjROi@intel.com>
-References: <20230726010044.3280402-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230726010044.3280402-1-vinay.belgaumkar@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0124.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::9) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="762645827"
+X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="762645827"
+Received: from lkp-server02.sh.intel.com (HELO 953e8cd98f7d) ([10.239.97.151])
+ by orsmga001.jf.intel.com with ESMTP; 28 Jul 2023 08:52:54 -0700
+Received: from kbuild by 953e8cd98f7d with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qPPlU-0003Kr-2F;
+ Fri, 28 Jul 2023 15:52:34 +0000
+Date: Fri, 28 Jul 2023 23:51:20 +0800
+From: kernel test robot <lkp@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>,
+	intel-gfx@lists.freedesktop.org
+Message-ID: <202307282318.EVEl6EsL-lkp@intel.com>
+References: <20230728124609.2911830-5-animesh.manna@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MN6PR11MB8217:EE_
-X-MS-Office365-Filtering-Correlation-Id: f862ae4a-feec-47ca-ca5f-08db8f806cc7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 30Y6OxjkKFuxbPF+9ifahTafOPWh/Bd9C/5u6II0+1kxiLR15yR4kKLUQAwwt+vtRzXYAuR3VT1Gxfdvc3FNx6+ZmUC3cGt4UF2CoV6e5kpwDiB6Jikhtcv7GgcxC4DsB1GJW4EA6Hkh65kwdI4whfTILWAyCBilNHkb9LdBUbvABN6dLlSnOCaC0plkeGasZZCmsGmP7LSieBhXJaH84N02CjLr8IM1MOj6BAU0YdoO6l6C/FH9c5YAwS9EU2QVzbIl/ZwzLF+U6zXGpoBJDgxTYfbhJjRzibJdwGqYOb+qpSs8oVEcKN362uKLCKaWRdAn4TSZn8sV9+5XdmdPj9N0NcyxW5Jksb9I9lQGoLz1UqEmBcF/QkTFw70j1HOzi/bndVkZUbfkzQ5QXTHa21D3mS4EZoAmujuBpVQWCo0FoBGjM07LkpD2sBNKnD7xSXtgsvn2itMeuy8LagaUJiLPTqkL9MuNnx/2oE05LSRCJPhWk2qyh1gALGuVylJ29SyFlWFbVdPyuI0g0V66KbwWA6fXbKW0u4sjCxLtrYM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(39860400002)(396003)(346002)(136003)(366004)(451199021)(37006003)(82960400001)(6506007)(26005)(186003)(6486002)(6666004)(478600001)(66476007)(6636002)(4326008)(450100002)(2616005)(966005)(83380400001)(6512007)(38100700002)(66946007)(66556008)(5660300002)(44832011)(41300700001)(316002)(2906002)(8936002)(6862004)(8676002)(86362001)(36756003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Gkdozt6+Yc0yD6TXtNmRK/O1OIyCGWqEQsCmTZ9/twbHoIxeSC0tfLTHgtxp?=
- =?us-ascii?Q?cqvAlO80fW6dr8RG/0bVvJexyQbJD6A0B/a7j4IXhsejQhggfSOVlN4pge6g?=
- =?us-ascii?Q?DkvoFlKkUF3f1IyqJDKPH0F2UKR0Q/krI/RooKQBdCJ5rgXrbQZObPvzSgJt?=
- =?us-ascii?Q?aEtstrrAZHq21KKigMANTsbVIC3IckTSbQT6yBXJJKWxU1eJ7MuJ8VNd0CcD?=
- =?us-ascii?Q?An5yGw5FYLIzkMhnZPpHnFjDK4odK+fiFnmMOEQI7958X6BzWyEC0Pv+GjWD?=
- =?us-ascii?Q?+JlmmW1l0nu9Ew1aLEyltSFf4FYNBxkoUMuC+1k9ch66h7P4728Vb8m37U3e?=
- =?us-ascii?Q?xQPUOeo/4sAHUubY/4sYt5Nwth+OxEqYW4Rf0PqCxD5P8+zDh6m7bOSiRuH+?=
- =?us-ascii?Q?X6L+h3uFCQLl1jc8yLpTJvD8JGOeH0eCunO6sjgGcS8KFlCnnr3WqqVLQCcv?=
- =?us-ascii?Q?Z5j3243vu8PiCmw+OY8lSE0xTawo26HumVQ30Y80G0Eslit5ZhkxgmhADGuv?=
- =?us-ascii?Q?/97ARMP9+RB0T7hN5bNfpEmrsMzTyiIDySh5kqDL/5oZ3BaXT6NMO/eefav+?=
- =?us-ascii?Q?75EREQopXXrAX3ukSG181UdpOVNapAaA9GNSmbsiMiUaoEgtZ7hj24c8soE/?=
- =?us-ascii?Q?oReB7CJveylfM8RiJMhseK7PriESkmysg0l+LG1t5dqof0ycjgyA98WUEzFf?=
- =?us-ascii?Q?QO4mN7ITvCFzsrxCV3ClLwyFriHG9DuG6JMD5ufLpGxv+XgHzEXC7k26dTsu?=
- =?us-ascii?Q?nKuLbgMcEVzi9y2+MJL5Vg37vkVYKB0fNXM/fCce7Zl5GS9BiqmFB7i8gJHJ?=
- =?us-ascii?Q?XQ1OgTwKyERmy5LWloijNMVhoLtEnkv8heQQn7FI1iBkBMDnXlm3eXuxCat1?=
- =?us-ascii?Q?1/fYs+/hB+Uwp3C/xDdHiT4oqKbtaMWAJgtodvIGlRb1ALmwNX4KL0MiwbjP?=
- =?us-ascii?Q?NheY4HGvvsgAVrOTSyeea0XwAtV4RXpW71mfl5lZbA2w5TP56yTNTvHAinXg?=
- =?us-ascii?Q?ysV5Zn7Sx53GvT6FenKraoD7IjU80BmJjb+DPOF07B5V5p+qRAhGJ9xgYc8H?=
- =?us-ascii?Q?+gDa4/8ddpXU/hfNrxf8Q0vh5BlgDpQnB1aTlVdq83BZAdVldxpLV5sw9dRu?=
- =?us-ascii?Q?FvAWFRMfKIYKG9qQ+qIH538xH8rbBupAwmkucf30Y16/NXz92unK7UaBoOk9?=
- =?us-ascii?Q?VLC0Zlr/Dioto+fxxqp8sqO526j+LmjHA0g01QbQ8H4t6d5/uH8t2Fz6EP8l?=
- =?us-ascii?Q?uSu11VnGj/Bt6LTq0WvGpzbRb0toORFAjzNt3oUxtIxpypNwJny7CBEo+3Ja?=
- =?us-ascii?Q?FJIC4EiPQxUgY1tPW5CMczF1l8v3aq0tCnDcAbUXLFmcRXumwg9fvq7D/iOG?=
- =?us-ascii?Q?ewjNbXqODi1PcORYFrarU9MGQQa7SIcWadZpRzXaVI1uojTA49ylyXAIqO1V?=
- =?us-ascii?Q?r/j8MFoHSuqJk1sbYtx2xmnwEiH4lradODbtq0MxfSFcOrXY9hMG/qSV+WVh?=
- =?us-ascii?Q?zW9p4AxE/qNflXvZ6PafWZ3E6pD2bJknqwE8q131JQSOEjnYTL/TKxZ5lt5/?=
- =?us-ascii?Q?y0sXlCWkYVVJ/DbCGUGrerPKpTgE8N6ZEPuO6oDV?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f862ae4a-feec-47ca-ca5f-08db8f806cc7
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2023 15:36:35.0429 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kEYGtmLcrYpiRs01X/QQDIBfjt7SBygqGRBjrGmSROcaXhJ9eXhmLJQ1RUke0hMkj6V+1xHTICPjMPdJFJVEpA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR11MB8217
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/guc/slpc: Restore efficient
- freq earlier
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230728124609.2911830-5-animesh.manna@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 4/6] drm/i915/panelreplay: Initializaton
+ and compute config for panel replay
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,100 +61,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 25, 2023 at 06:00:44PM -0700, Vinay Belgaumkar wrote:
-> This should be done before the soft min/max frequencies are restored.
-> When we disable the "Ignore efficient frequency" flag, GuC does not
-> actually bring the requested freq down to RPn.
-> 
-> Specifically, this scenario-
-> 
-> - ignore efficient freq set to true
-> - reduce min to RPn (from efficient)
-> - suspend
-> - resume (includes GuC load, restore soft min/max, restore efficient freq)
-> - validate min freq has been resored to RPn
-> 
-> This will fail if we didn't first restore(disable, in this case) efficient
-> freq flag before setting the soft min frequency.
-> 
-> v2: Bring the min freq down to RPn when we disable efficient freq (Rodrigo)
-> Also made the change to set the min softlimit to RPn at init. Otherwise, we
-> were storing RPe there.
+Hi Animesh,
 
-Thanks
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+kernel test robot noticed the following build warnings:
 
-> 
-> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8736
-> Fixes: 55f9720dbf23 ("drm/i915/guc/slpc: Provide sysfs for efficient freq")
-> Fixes: 95ccf312a1e4 ("drm/i915/guc/slpc: Allow SLPC to use efficient frequency")
-> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c | 22 +++++++++++++--------
->  1 file changed, 14 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> index ee9f83af7cf6..477df260ae3a 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> @@ -470,12 +470,19 @@ int intel_guc_slpc_set_ignore_eff_freq(struct intel_guc_slpc *slpc, bool val)
->  	ret = slpc_set_param(slpc,
->  			     SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
->  			     val);
-> -	if (ret)
-> +	if (ret) {
->  		guc_probe_error(slpc_to_guc(slpc), "Failed to set efficient freq(%d): %pe\n",
->  				val, ERR_PTR(ret));
-> -	else
-> +	} else {
->  		slpc->ignore_eff_freq = val;
->  
-> +		/* Set min to RPn when we disable efficient freq */
-> +		if (val)
-> +			ret = slpc_set_param(slpc,
-> +					     SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
-> +					     slpc->min_freq);
-> +	}
-> +
->  	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
->  	mutex_unlock(&slpc->lock);
->  	return ret;
-> @@ -602,9 +609,8 @@ static int slpc_set_softlimits(struct intel_guc_slpc *slpc)
->  		return ret;
->  
->  	if (!slpc->min_freq_softlimit) {
-> -		ret = intel_guc_slpc_get_min_freq(slpc, &slpc->min_freq_softlimit);
-> -		if (unlikely(ret))
-> -			return ret;
-> +		/* Min softlimit is initialized to RPn */
-> +		slpc->min_freq_softlimit = slpc->min_freq;
->  		slpc_to_gt(slpc)->defaults.min_freq = slpc->min_freq_softlimit;
->  	} else {
->  		return intel_guc_slpc_set_min_freq(slpc,
-> @@ -755,6 +761,9 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
->  		return ret;
->  	}
->  
-> +	/* Set cached value of ignore efficient freq */
-> +	intel_guc_slpc_set_ignore_eff_freq(slpc, slpc->ignore_eff_freq);
-> +
->  	/* Revert SLPC min/max to softlimits if necessary */
->  	ret = slpc_set_softlimits(slpc);
->  	if (unlikely(ret)) {
-> @@ -765,9 +774,6 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
->  	/* Set cached media freq ratio mode */
->  	intel_guc_slpc_set_media_ratio_mode(slpc, slpc->media_ratio_mode);
->  
-> -	/* Set cached value of ignore efficient freq */
-> -	intel_guc_slpc_set_ignore_eff_freq(slpc, slpc->ignore_eff_freq);
-> -
->  	return 0;
->  }
->  
-> -- 
-> 2.38.1
-> 
+[auto build test WARNING on drm-tip/drm-tip]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Animesh-Manna/drm-panelreplay-dpcd-register-definition-for-panelreplay/20230728-205902
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230728124609.2911830-5-animesh.manna%40intel.com
+patch subject: [Intel-gfx] [PATCH v3 4/6] drm/i915/panelreplay: Initializaton and compute config for panel replay
+config: x86_64-randconfig-x001-20230728 (https://download.01.org/0day-ci/archive/20230728/202307282318.EVEl6EsL-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce: (https://download.01.org/0day-ci/archive/20230728/202307282318.EVEl6EsL-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307282318.EVEl6EsL-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/display/intel_dp.c:3386:27: warning: overlapping comparisons always evaluate to true [-Wtautological-overlap-compare]
+           if (vsc->revision != 0x5 || vsc->revision != 0x7)
+               ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
+
+
+vim +3386 drivers/gpu/drm/i915/display/intel_dp.c
+
+  3361	
+  3362	static ssize_t intel_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
+  3363					     struct dp_sdp *sdp, size_t size)
+  3364	{
+  3365		size_t length = sizeof(struct dp_sdp);
+  3366	
+  3367		if (size < length)
+  3368			return -ENOSPC;
+  3369	
+  3370		memset(sdp, 0, size);
+  3371	
+  3372		/*
+  3373		 * Prepare VSC Header for SU as per DP 1.4a spec, Table 2-119
+  3374		 * VSC SDP Header Bytes
+  3375		 */
+  3376		sdp->sdp_header.HB0 = 0; /* Secondary-Data Packet ID = 0 */
+  3377		sdp->sdp_header.HB1 = vsc->sdp_type; /* Secondary-data Packet Type */
+  3378		sdp->sdp_header.HB2 = vsc->revision; /* Revision Number */
+  3379		sdp->sdp_header.HB3 = vsc->length; /* Number of Valid Data Bytes */
+  3380	
+  3381		/*
+  3382		 * Other than revision 0x5 which supports Pixel Encoding/Colorimetry
+  3383		 * Format as per DP 1.4a spec, revision 0x7 also supports Pixel
+  3384		 * Encoding/Colorimetry Format as per DP 2.0 spec.
+  3385		 */
+> 3386		if (vsc->revision != 0x5 || vsc->revision != 0x7)
+  3387			goto out;
+  3388	
+  3389		/* VSC SDP Payload for DB16 through DB18 */
+  3390		/* Pixel Encoding and Colorimetry Formats  */
+  3391		sdp->db[16] = (vsc->pixelformat & 0xf) << 4; /* DB16[7:4] */
+  3392		sdp->db[16] |= vsc->colorimetry & 0xf; /* DB16[3:0] */
+  3393	
+  3394		switch (vsc->bpc) {
+  3395		case 6:
+  3396			/* 6bpc: 0x0 */
+  3397			break;
+  3398		case 8:
+  3399			sdp->db[17] = 0x1; /* DB17[3:0] */
+  3400			break;
+  3401		case 10:
+  3402			sdp->db[17] = 0x2;
+  3403			break;
+  3404		case 12:
+  3405			sdp->db[17] = 0x3;
+  3406			break;
+  3407		case 16:
+  3408			sdp->db[17] = 0x4;
+  3409			break;
+  3410		default:
+  3411			MISSING_CASE(vsc->bpc);
+  3412			break;
+  3413		}
+  3414		/* Dynamic Range and Component Bit Depth */
+  3415		if (vsc->dynamic_range == DP_DYNAMIC_RANGE_CTA)
+  3416			sdp->db[17] |= 0x80;  /* DB17[7] */
+  3417	
+  3418		/* Content Type */
+  3419		sdp->db[18] = vsc->content_type & 0x7;
+  3420	
+  3421	out:
+  3422		return length;
+  3423	}
+  3424	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
