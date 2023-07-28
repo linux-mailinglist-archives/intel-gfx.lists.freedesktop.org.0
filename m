@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97AFE766DAB
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jul 2023 14:56:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 207B3766DAC
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jul 2023 14:56:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9FA610E20D;
-	Fri, 28 Jul 2023 12:56:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85AFF10E20A;
+	Fri, 28 Jul 2023 12:56:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (unknown [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11FE010E203
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jul 2023 12:56:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5BDD10E20A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Jul 2023 12:56:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690548982; x=1722084982;
+ t=1690548984; x=1722084984;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=z5FYXb26zisytD8XHdVF42nRd7YZjoz76b8QVxRbrKs=;
- b=Lh0yJjY1gz9btxOAmM6PbCBgWXelkBV/toG/0lvbJOkAphsM/hjYjk4u
- fOp1Cl8TB1U5oIlGjGgjrjI6OnDdupL9QEfaArhZT+ivLfOzn0UZTv8ve
- Ag4a9KqFKR2hvhil2v4IOc181IbT9vEP3yZfjsuT5ctlQuW12kWYOH9jc
- wp6GqlNJpk+oUwV8sjf1NDDwDPjRb6b2iRXRbNsPiaz1chQnIQAArkP2O
- Jll0D3cAr15lx9uZlcccPCEbagnzrHjj3SOC2gnA31PqUs6VQ0EGMmZ9D
- +Jq5TQqIQS/txs1TJpNNrDRkvvJlkOHahlnhAtd9On0s9G/NKKMiSQAZa w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="358612276"
-X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="358612276"
+ bh=+N+kw0+wXk3DuWLPMRSkPIO9uEJkCJMkRcX+jmv8/WE=;
+ b=NNDD906SyQE7hRoObkI1PZrTgVaCIe5KUzeNL7RdbKBjyMie7lm6xed7
+ n/m3+ecYUA4x2n3T7jaFxGJXYs5jyOqfabICNu4Oe6kMVxUuK5YA1/aTU
+ Qcllgd77APvS2SZ3ZKg08C+5/pmTHnbmzUTxozZ0Vb/4h1BwUu7nDG2WX
+ AvWJV1Wfdwykrhkqz2NH0tAS7sIllDlj6igtcMsfb5InURm9juVrs/puf
+ DeMWnzLKP2pUn+ilt9Pua38j1g3P0tfdy9adf/uHw6ixqjTT6WD+Mq9HL
+ n3X/0XuiJwutYbT53AqacJlz74f5BO1lTbbCFHTFQ0v66lK2aYVUWRauk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="358612279"
+X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="358612279"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2023 05:56:21 -0700
+ 28 Jul 2023 05:56:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="727473063"
-X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="727473063"
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="727473086"
+X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="727473086"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orsmga002.jf.intel.com with ESMTP; 28 Jul 2023 05:56:20 -0700
+ by orsmga002.jf.intel.com with ESMTP; 28 Jul 2023 05:56:23 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 28 Jul 2023 18:16:04 +0530
-Message-Id: <20230728124609.2911830-2-animesh.manna@intel.com>
+Date: Fri, 28 Jul 2023 18:16:05 +0530
+Message-Id: <20230728124609.2911830-3-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20230728124609.2911830-1-animesh.manna@intel.com>
 References: <20230728124609.2911830-1-animesh.manna@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 1/6] drm/panelreplay: dpcd register
- definition for panelreplay
+Subject: [Intel-gfx] [PATCH v3 2/6] drm/i915/panelreplay: Added
+ HAS_PANEL_REPLAY() macro
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +61,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DPCD register definition added to check and enable panel replay
-capability of the sink.
+Platforms having Display 13 and above will support panel
+replay feature of DP 2.0 monitor. Added a HAS_PANEL_REPLAY()
+macro to check for panel replay capability.
+
+v1: Initial version.
+v2: DISPLAY_VER() removed as HAS_DP20() is having platform check. [Jouni]
 
 Cc: Jouni Högander <jouni.hogander@intel.com>
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- include/drm/display/drm_dp.h | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index 02f2ac4dd2df..c48696266d23 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -543,6 +543,10 @@
- /* DFP Capability Extension */
- #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT	0x0a3	/* 2.0 */
- 
-+#define DP_PANEL_REPLAY_CAP                 0x0b0
-+# define DP_PANEL_REPLAY_SUPPORT            (1 << 0)
-+# define DP_PR_SELECTIVE_UPDATE_SUPPORT     (1 << 1)
-+
- /* Link Configuration */
- #define	DP_LINK_BW_SET		            0x100
- # define DP_LINK_RATE_TABLE		    0x00    /* eDP 1.4 */
-@@ -716,6 +720,13 @@
- #define DP_BRANCH_DEVICE_CTRL		    0x1a1
- # define DP_BRANCH_DEVICE_IRQ_HPD	    (1 << 0)
- 
-+#define PANEL_REPLAY_CONFIG                 0x1b0
-+# define DP_PANEL_REPLAY_ENABLE             (1 << 0)
-+# define DP_PR_UNRECOVERABLE_ERROR          (1 << 3)
-+# define DP_PR_RFB_STORAGE_ERROR            (1 << 4)
-+# define DP_PR_ACTIVE_FRAME_CRC_ERROR       (1 << 5)
-+# define DP_PR_SELECTIVE_UPDATE_ENABLE      (1 << 6)
-+
- #define DP_PAYLOAD_ALLOCATE_SET		    0x1c0
- #define DP_PAYLOAD_ALLOCATE_START_TIME_SLOT 0x1c1
- #define DP_PAYLOAD_ALLOCATE_TIME_SLOT_COUNT 0x1c2
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 3324bd453ca7..53bc8f972a26 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -60,6 +60,7 @@ struct drm_printer;
+ #define HAS_MSO(i915)			(DISPLAY_VER(i915) >= 12)
+ #define HAS_OVERLAY(i915)		(DISPLAY_INFO(i915)->has_overlay)
+ #define HAS_PSR(i915)			(DISPLAY_INFO(i915)->has_psr)
++#define HAS_PANEL_REPLAY(dev_priv)	(HAS_DP20(dev_priv))
+ #define HAS_PSR_HW_TRACKING(i915)	(DISPLAY_INFO(i915)->has_psr_hw_tracking)
+ #define HAS_PSR2_SEL_FETCH(i915)	(DISPLAY_VER(i915) >= 12)
+ #define HAS_SAGV(i915)			(DISPLAY_VER(i915) >= 9 && !IS_LP(i915))
 -- 
 2.29.0
 
