@@ -1,68 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE3A27688B1
-	for <lists+intel-gfx@lfdr.de>; Sun, 30 Jul 2023 23:58:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C84D768916
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jul 2023 00:23:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1626010E163;
-	Sun, 30 Jul 2023 21:58:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 672CB10E13F;
+	Sun, 30 Jul 2023 22:22:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com
- [IPv6:2607:f8b0:4864:20::d30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1298510E156;
- Sun, 30 Jul 2023 21:58:25 +0000 (UTC)
-Received: by mail-io1-xd30.google.com with SMTP id
- ca18e2360f4ac-790a590237aso27571139f.3; 
- Sun, 30 Jul 2023 14:58:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1690754304; x=1691359104;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=zbdMUo5HBcvY3eA/Wfik+1Hzr5RoZnPa0wj8fbM2oVc=;
- b=agVaMhk3pEDzjsQ5PJyT8TavFw+ZA1YIJ4H/s3iaFPJoI8A+JU9zgKcNSrJCgxUl/r
- gYWsjp9fZNe4vt7RemD5oACo4VCjF07da+eVPFlVJIkfktYDXcy5Oq+0ekv9WXTj7pcm
- hmEnSEYYhhmntvlDW4g70h2LR2HkvQn5FqAST7z6k08AS8fAEwVkjuN8tRLiIF0a5ZIV
- zqZnaBhzbuwwTxWL4loRMEodWBeftbndPQeDTMmB1/vwK4WwDkrY7l5AJVSHTEYTFO29
- s5w0iqu/j3yx3l/WX3aD+U1AhW9tHhIrbBDMXu+ZSBw+XLzelPALaICnC91VG1juNtbi
- c5/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690754304; x=1691359104;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=zbdMUo5HBcvY3eA/Wfik+1Hzr5RoZnPa0wj8fbM2oVc=;
- b=eul4y24WC/BOoZcBOL5LdVrLRg9Y2ADh+3GcKsukRL8YlhyKNhijG7WhyMqQPKyhI0
- n0pBdBySwxmt5sJ5BSoVQJ8DGSkObxIUCzOayhcMqKtaAPCxOkhv8VmZJVBVKyNvWg0N
- ekOphuFcYbZiL0zSI8cdeXc5jXkEEfn7rGhAogDMs+JeF3u4y2ytVQpPQin/K6+fmIEo
- fVQQvlCAbJKJ5xv/es185iXK1Q9FmNzpLr9ueiowX4AL1iKkaCMCtgAdDbQQJ5orPkjO
- ipT6C3XGlQ5/fG4YchSDtjgIy7WWlaPbe58tlicrrA++FKhlitLfuU7HBSt0r3RciC1t
- XkLw==
-X-Gm-Message-State: ABy/qLaGxDdmPhiPPZbezGo8V6KGQD+Not2SX9eUpbJcKHb4Au3zGrFQ
- FcRKm/XWC4r1nLVGI5jqOQ8=
-X-Google-Smtp-Source: APBJJlHWzXyQhdHLBN6Z9svWK4MZ1KGWPcL9B/eTSCudiAIzkRE+6jckTWaAdZVRO5La86sBKnRHQw==
-X-Received: by 2002:a05:6e02:1aad:b0:346:50ce:d602 with SMTP id
- l13-20020a056e021aad00b0034650ced602mr8965298ilv.1.1690754304330; 
- Sun, 30 Jul 2023 14:58:24 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- e18-20020a92de52000000b003424b3d6d37sm2747520ilr.24.2023.07.30.14.58.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 30 Jul 2023 14:58:23 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: daniel@ffwll.ch, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Date: Sun, 30 Jul 2023 15:57:54 -0600
-Message-ID: <20230730215758.54010-6-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230730215758.54010-1-jim.cromie@gmail.com>
-References: <20230730215758.54010-1-jim.cromie@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5C25310E13F;
+ Sun, 30 Jul 2023 22:22:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 54449AADE8;
+ Sun, 30 Jul 2023 22:22:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5/5] drm_dbg: add trailing newlines
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jim Cromie" <jim.cromie@gmail.com>
+Date: Sun, 30 Jul 2023 22:22:57 -0000
+Message-ID: <169075577730.18712.6631223593663686907@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230730215758.54010-1-jim.cromie@gmail.com>
+In-Reply-To: <20230730215758.54010-1-jim.cromie@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=5Fdbg=3A_add_trailing_newlines_where_missing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,31 +40,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, David Airlie <airlied@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/drm_connector.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index 48df7a5ea503..39eab45649c8 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -2868,7 +2868,9 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
- 						     dev->mode_config.max_width,
- 						     dev->mode_config.max_height);
- 		else
--			drm_dbg_kms(dev, "User-space requested a forced probe on [CONNECTOR:%d:%s] but is not the DRM master, demoting to read-only probe",
-+			drm_dbg_kms(dev,
-+				    "User-space requested a forced probe on [CONNECTOR:%d:%s] "
-+				    "but is not the DRM master, demoting to read-only probe\n",
- 				    connector->base.id, connector->name);
- 	}
- 
--- 
-2.41.0
+Series: drm_dbg: add trailing newlines where missing
+URL   : https://patchwork.freedesktop.org/series/121583/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+427281c550a9 drm_dbg: add trailing newlines to remaining callsites
+9905350fcd30 drm_dbg: add trailing newlines
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+4f47cba277f4 drm_dbg: add trailing newlines
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:27: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#27: FILE: drivers/gpu/drm/msm/msm_fb.c:180:
++	drm_dbg_state(dev, "create framebuffer: mode_cmd=%p (%dx%d@%4.4s)\n",
+ 			mode_cmd, mode_cmd->width, mode_cmd->height,
+
+total: 0 errors, 1 warnings, 1 checks, 24 lines checked
+bddf6f2257f9 drm_dbg: add trailing newlines
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+ce01e016e48e drm_dbg: add trailing newlines
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
+
 
