@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3913776978B
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jul 2023 15:27:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2243D76978D
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jul 2023 15:27:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFF2810E295;
-	Mon, 31 Jul 2023 13:27:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6DF510E2A8;
+	Mon, 31 Jul 2023 13:27:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 346 seconds by postgrey-1.36 at gabe;
- Sun, 30 Jul 2023 11:07:23 UTC
-Received: from out-87.mta0.migadu.com (out-87.mta0.migadu.com
- [IPv6:2001:41d0:1004:224b::57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E64E010E072
- for <intel-gfx@lists.freedesktop.org>; Sun, 30 Jul 2023 11:07:23 +0000 (UTC)
-Message-ID: <a2a2180c-62ac-452f-0737-26f01f228c79@linux.dev>
+X-Greylist: delayed 508 seconds by postgrey-1.36 at gabe;
+ Sun, 30 Jul 2023 14:05:46 UTC
+Received: from out-108.mta1.migadu.com (out-108.mta1.migadu.com
+ [IPv6:2001:41d0:203:375::6c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05BD310E09C
+ for <intel-gfx@lists.freedesktop.org>; Sun, 30 Jul 2023 14:05:46 +0000 (UTC)
+Message-ID: <40a3ab47-da3e-0d08-b3fa-b4663f3e727d@linux.dev>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1690714895;
+ t=1690725435;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=YDqItS6TsBITc0ogQeiO9zs2cfijso9HiN6zsa9jo50=;
- b=XpXFu6WxU3V13MvRIEnz/7Ji7DORifqqz168/epr0ILzyigpBFV+A4z4oGIVSkBtUeOFgh
- diNqH0zw0JE5/uCXG3B6N+tvcHXMpKZsZ6s0eKFzsZ+X7f+mOxmtYIXl0uv700u7SMTX1R
- uLBVb66nh3KObdbTdSfDQ/9rS/J3C2k=
-Date: Sun, 30 Jul 2023 19:01:26 +0800
+ bh=PGVwrSKPSqOKImBWbZoAx1qzxZDIg0U6/MyAhWrgbuQ=;
+ b=iwoYw6Haq+kOYGPuPZKv5wW+uOf7UmUbzIK+dEi5BcvQ8JE87XsTTo3/OaLFjVQBD/o/ir
+ fRSrCMrpEvqE0XtHAMIKkjF5ulAwlVSYlFZPhPk/oZ9ZcnH4KqxFkMf4MzqaUwsOND4ZDJ
+ 4e/ew8GqIOajhMOJNNAbOKquCrq4by4=
+Date: Sun, 30 Jul 2023 21:57:06 +0800
 MIME-Version: 1.0
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>, linux-mm@kvack.org,
- Andrew Morton <akpm@linux-foundation.org>
+To: Matthew Wilcox <willy@infradead.org>
 References: <20230621164557.3510324-1-willy@infradead.org>
  <20230621164557.3510324-4-willy@infradead.org>
+ <a2a2180c-62ac-452f-0737-26f01f228c79@linux.dev>
+ <ZMZHH5Xc507OZA1O@casper.infradead.org>
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 From: Zhu Yanjun <yanjun.zhu@linux.dev>
-In-Reply-To: <20230621164557.3510324-4-willy@infradead.org>
+In-Reply-To: <ZMZHH5Xc507OZA1O@casper.infradead.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
@@ -55,71 +56,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: linux-nfs@vger.kernel.org, netdev@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-fsdevel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
  linux-afs@lists.infradead.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-在 2023/6/22 0:45, Matthew Wilcox (Oracle) 写道:
-> This wrapper for sg_set_page() lets drivers add folios to a scatterlist
-> more easily.  We could, perhaps, do better by using a different page
-> in the folio if offset is larger than UINT_MAX, but let's hope we get
-> a better data structure than this before we need to care about such
-> large folios.
-> 
-> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
-> ---
->   include/linux/scatterlist.h | 24 ++++++++++++++++++++++++
->   1 file changed, 24 insertions(+)
-> 
-> diff --git a/include/linux/scatterlist.h b/include/linux/scatterlist.h
-> index ec46d8e8e49d..77df3d7b18a6 100644
-> --- a/include/linux/scatterlist.h
-> +++ b/include/linux/scatterlist.h
-> @@ -141,6 +141,30 @@ static inline void sg_set_page(struct scatterlist *sg, struct page *page,
->   	sg->length = len;
->   }
->   
-> +/**
-> + * sg_set_folio - Set sg entry to point at given folio
-> + * @sg:		 SG entry
-> + * @folio:	 The folio
-> + * @len:	 Length of data
-> + * @offset:	 Offset into folio
-> + *
-> + * Description:
-> + *   Use this function to set an sg entry pointing at a folio, never assign
-> + *   the folio directly. We encode sg table information in the lower bits
-> + *   of the folio pointer. See sg_page() for looking up the page belonging
-> + *   to an sg entry.
-> + *
-> + **/
-> +static inline void sg_set_folio(struct scatterlist *sg, struct folio *folio,
-> +			       size_t len, size_t offset)
-> +{
-> +	WARN_ON_ONCE(len > UINT_MAX);
-> +	WARN_ON_ONCE(offset > UINT_MAX);
-> +	sg_assign_page(sg, &folio->page);
-> +	sg->offset = offset;
-> +	sg->length = len;
-> +}
-> +
 
-https://elixir.bootlin.com/linux/latest/source/lib/scatterlist.c#L451
+在 2023/7/30 19:18, Matthew Wilcox 写道:
+> On Sun, Jul 30, 2023 at 07:01:26PM +0800, Zhu Yanjun wrote:
+>> Does the following function have folio version?
+>>
+>> "
+>> int sg_alloc_append_table_from_pages(struct sg_append_table *sgt_append,
+>> 		struct page **pages, unsigned int n_pages, unsigned int offset,
+>> 		unsigned long size, unsigned int max_segment,
+>> 		unsigned int left_pages, gfp_t gfp_mask)
+>> "
+> No -- I haven't needed to convert anything that uses
+> sg_alloc_append_table_from_pages() yet.  It doesn't look like it should
+> be _too_ hard to add a folio version.
 
-Does the following function have folio version?
+In many places, this function is used. So this function needs the folio 
+version.
 
-"
-int sg_alloc_append_table_from_pages(struct sg_append_table *sgt_append,
-		struct page **pages, unsigned int n_pages, unsigned int offset,
-		unsigned long size, unsigned int max_segment,
-		unsigned int left_pages, gfp_t gfp_mask)
-"
+Another problem, after folio is used, I want to know the performance 
+after folio is implemented.
+
+How to make tests to get the performance?
 
 Thanks a lot.
-Zhu Yanjun
 
->   static inline struct page *sg_page(struct scatterlist *sg)
->   {
->   #ifdef CONFIG_DEBUG_SG
+Zhu Yanjun
 
