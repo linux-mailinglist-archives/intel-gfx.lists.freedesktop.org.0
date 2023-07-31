@@ -1,55 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF0B47693D6
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jul 2023 12:58:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1F87769423
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jul 2023 13:04:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5264710E260;
-	Mon, 31 Jul 2023 10:58:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0F3A10E260;
+	Mon, 31 Jul 2023 11:04:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED4210E25A
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Jul 2023 10:58:25 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4381A10E260
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 Jul 2023 11:04:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690801105; x=1722337105;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Jiv/GGSFqc0TZV7HfB87Y/Bw8zYTWmir/csP9LHIo3I=;
- b=jEwD3eBpMq8KzX71svk8NqhwEgTIjtVtNkkKo5V70x1ugUC/TOwFf6Ph
- AgQqYZoH9sVkqlhqv+N4e9P3DVYmzohFm8NW4PcIJuvgFdLekMoSxrCe1
- pw4qvoX85W1EfMjkaNlaIIO4U3FA6KqA8gWjWi+ZHxuMswkUzEt07c8bc
- W4Co0Wo754narLerlkd553lg5l//8pkT+ZZMftBATb7eg4ngO2+w/5spB
- iQthaeQDvx4ji6o9uBvS0IROQuqup1xhAXHFrMumG2G76z81o9nS3dPYv
- cYfZ6/H9JzZ2o/iND5OUqIkoVgTxhhfUGxGfn320Fxom+RN7JXmqZnYhO g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10787"; a="455358501"
-X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="455358501"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2023 03:58:24 -0700
+ t=1690801457; x=1722337457;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=eyeK7l1oVbyKSvvy6nHweLgzoj89icxeESTQrhgYCis=;
+ b=c09NRrhvxS+fE5S1LfK67kEWfLmnaF58JFlXd0C9ZttJsUdrmu3O0wOG
+ rgtS+6O9P0+QwEr4Gi3fGWjLmmFpf5CtcvtWLb0zCHfoiQ6E0+kVbfFrt
+ SE1ojUnSBRJkZ0Zbdx0oHPZv0UmbswK/iqcT1LowKvyVxl37OH1LA/cAD
+ UQ6efYAjWEN4D9CN145MAO3HUYXDQIxQ1U89OxInSvBSLcjOXx3QXA/5k
+ k6jPdMIbAzVWq/JHgyCjQXTw5YEf5/AOV1e+MMeHpFUS1H8IKFuPUCakJ
+ /c+OFnCfdKsHISCG1RCJaQjpfPWrCWb2L6/shLTV2G5+wvb/G5txqYx5O w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10787"; a="399935253"
+X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="399935253"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2023 04:04:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10787"; a="678291108"
-X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="678291108"
+X-IronPort-AV: E=McAfee;i="6600,9927,10787"; a="722027091"
+X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="722027091"
 Received: from naikshri-mobl7.ger.corp.intel.com (HELO localhost)
  ([10.252.36.230])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2023 03:58:23 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2023 04:04:15 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Patchwork <patchwork@emeril.freedesktop.org>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>
-In-Reply-To: <169040520537.23470.13602420006462177964@emeril.freedesktop.org>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230725212716.3060259-3-gustavo.sousa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230726200657.2773903-1-dnyaneshwar.bhadane@intel.com>
- <169040520537.23470.13602420006462177964@emeril.freedesktop.org>
-Date: Mon, 31 Jul 2023 13:58:20 +0300
-Message-ID: <87a5vcxs8j.fsf@intel.com>
+References: <20230725212716.3060259-1-gustavo.sousa@intel.com>
+ <20230725212716.3060259-3-gustavo.sousa@intel.com>
+Date: Mon, 31 Jul 2023 14:04:12 +0300
+Message-ID: <877cqgxryr.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Replace_acronym_with_full_platform_name_in_defines=2E?=
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Simplify
+ intel_cx0_program_phy_lane() with loop
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,93 +59,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 26 Jul 2023, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
+On Tue, 25 Jul 2023, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> It is possible to generalize the "disable" value for the transmitters to
+> be a bit mask based on the port width and the port reversal boolean,
+> with a small exception for DP-alt mode with "x1" port width.
 >
-> Series: Replace acronym with full platform name in defines.
-> URL   : https://patchwork.freedesktop.org/series/121387/
-> State : warning
+> Simplify the code by using such a mask and a for-loop instead of using
+> switch-case statements.
 >
-> == Summary ==
+> BSpec: 64539
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 79 +++++---------------
+>  1 file changed, 20 insertions(+), 59 deletions(-)
 >
-> Error: dim checkpatch failed
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index b903ceb0b56a..f10ebdfd696a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -2604,7 +2604,8 @@ static void intel_cx0_program_phy_lane(struct drm_i915_private *i915,
+>  				       struct intel_encoder *encoder, int lane_count,
+>  				       bool lane_reversal)
+>  {
+> -	u8 l0t1, l0t2, l1t1, l1t2;
+> +	int i;
+> +	u8 disables;
+>  	bool dp_alt_mode = intel_tc_port_in_dp_alt_mode(enc_to_dig_port(encoder));
+>  	enum port port = encoder->port;
+>  
+> @@ -2614,66 +2615,26 @@ static void intel_cx0_program_phy_lane(struct drm_i915_private *i915,
+>  			      C10_VDR_CTRL_MSGBUS_ACCESS,
+>  			      MB_WRITE_COMMITTED);
+>  
+> -	/* TODO: DP-alt MFD case where only one PHY lane should be programmed. */
+> -	l0t1 = intel_cx0_read(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(1, 2));
+> -	l0t2 = intel_cx0_read(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(2, 2));
+> -	l1t1 = intel_cx0_read(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(1, 2));
+> -	l1t2 = intel_cx0_read(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(2, 2));
+> -
+> -	l0t1 |= CONTROL2_DISABLE_SINGLE_TX;
+> -	l0t2 |= CONTROL2_DISABLE_SINGLE_TX;
+> -	l1t1 |= CONTROL2_DISABLE_SINGLE_TX;
+> -	l1t2 |= CONTROL2_DISABLE_SINGLE_TX;
+> -
+> -	if (lane_reversal) {
+> -		switch (lane_count) {
+> -		case 4:
+> -			l0t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
+> -			fallthrough;
+> -		case 3:
+> -			l0t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
+> -			fallthrough;
+> -		case 2:
+> -			l1t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
+> -			fallthrough;
+> -		case 1:
+> -			l1t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
+> -			break;
+> -		default:
+> -			MISSING_CASE(lane_count);
+> -		}
+> -	} else {
+> -		switch (lane_count) {
+> -		case 4:
+> -			l1t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
+> -			fallthrough;
+> -		case 3:
+> -			l1t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
+> -			fallthrough;
+> -		case 2:
+> -			l0t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
+> -			l0t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
+> -			break;
+> -		case 1:
+> -			if (dp_alt_mode)
+> -				l0t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
+> -			else
+> -				l0t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
+> -			break;
+> -		default:
+> -			MISSING_CASE(lane_count);
+> -		}
+> +	if (lane_reversal)
+> +		disables = REG_GENMASK8(3, 0) >> lane_count;
+> +	else
+> +		disables = REG_GENMASK8(3, 0) << lane_count;
+> +
+> +	if (dp_alt_mode && lane_count == 1) {
+> +		disables &= ~REG_GENMASK8(1, 0);
+> +		disables |= REG_FIELD_PREP8(REG_GENMASK8(1, 0), 0x1);
+>  	}
+>  
+> -	/* disable MLs */
+> -	intel_cx0_write(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(1, 2),
+> -			l0t1, MB_WRITE_COMMITTED);
+> -	intel_cx0_write(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(2, 2),
+> -			l0t2, MB_WRITE_COMMITTED);
+> -	intel_cx0_write(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(1, 2),
+> -			l1t1, MB_WRITE_COMMITTED);
+> -	intel_cx0_write(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(2, 2),
+> -			l1t2, MB_WRITE_COMMITTED);
+> +	/* TODO: DP-alt MFD case where only one PHY lane should be programmed. */
+> +	for (i = 0; i < 4; i++) {
+> +		int tx = i % 2 + 1;
+> +		u8 lane_mask = i / 2 == 0 ? INTEL_CX0_LANE0 : INTEL_CX0_LANE1;
 
-All the parenthesis alignments warnings are valid.
+I'm just catching up on mails and quickly eyeballing stuff, but
+
+	i / 2 == 0
+
+looks suspect.
 
 BR,
 Jani.
 
-> b0b6ca2cb60d drm/i915/jsl: s/JSL/JASPERLAKE for platform/subplatform defines
-> -:38: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #38: FILE: drivers/gpu/drm/i915/display/icl_dsi.c:448:
-> +		if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv) ||
-> +			(DISPLAY_VER(dev_priv) >= 12)) {
->
-> -:101: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #101: FILE: drivers/gpu/drm/i915/display/intel_combo_phy.c:337:
-> +		if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-> +			phy == PHY_A) {
->
-> -:115: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #115: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:3587:
-> +	else if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-> +			crtc_state->port_clock > 594000)
->
-> -:156: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #156: FILE: drivers/gpu/drm/i915/display/intel_display.c:1805:
-> +	else if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-> +			port == PORT_D)
->
-> -:183: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #183: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:195:
-> +	else if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-> +			(pll->info->id == DPLL_ID_EHL_DPLL4))
->
-> -:214: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #214: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:3573:
-> +		if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-> +			id == DPLL_ID_EHL_DPLL4) {
->
-> -:224: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #224: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:3630:
-> +		if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-> +			id == DPLL_ID_EHL_DPLL4) {
->
-> -:235: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #235: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:3814:
-> +	if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-> +		pll->info->id == DPLL_ID_EHL_DPLL4) {
->
-> -:246: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #246: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:3922:
-> +	if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-> +		pll->info->id == DPLL_ID_EHL_DPLL4)
->
-> -:265: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #265: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:4343:
-> +	if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-> +		pll->on &&
->
-> -:279: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #279: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:2898:
-> +	else if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-> +			HAS_PCH_TGP(dev_priv))
->
-> -:385: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #385: FILE: drivers/gpu/drm/i915/soc/intel_pch.c:119:
-> +		drm_WARN_ON(&dev_priv->drm, !(IS_JASPERLAKE(dev_priv) ||
-> +				IS_ELKHARTLAKE(dev_priv)));
->
-> -:395: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-> #395: FILE: drivers/gpu/drm/i915/soc/intel_pch.c:132:
-> +		drm_WARN_ON(&dev_priv->drm, !(IS_JASPERLAKE(dev_priv) ||
-> +				IS_ELKHARTLAKE(dev_priv)));
->
-> total: 0 errors, 0 warnings, 13 checks, 287 lines checked
+> +
+> +		intel_cx0_rmw(i915, port, lane_mask, PHY_CX0_TX_CONTROL(tx, 2),
+> +			      CONTROL2_DISABLE_SINGLE_TX,
+> +			      disables & BIT(i) ? CONTROL2_DISABLE_SINGLE_TX : 0,
+> +			      MB_WRITE_COMMITTED);
+> +	}
+>  
+>  	if (intel_is_c10phy(i915, intel_port_to_phy(i915, port)))
+>  		intel_cx0_rmw(i915, port, INTEL_CX0_BOTH_LANES,
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
