@@ -1,145 +1,154 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97EF4769B5E
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jul 2023 17:53:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD2D5769BC4
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 Jul 2023 18:04:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06E9D10E2B4;
-	Mon, 31 Jul 2023 15:53:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 122BF10E2B9;
+	Mon, 31 Jul 2023 16:04:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 834D910E2B4
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 Jul 2023 15:53:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1B3010E2B9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 Jul 2023 16:03:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690818823; x=1722354823;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=9JYksbD8vlFG0yySQaIgfiWM1pZnnnHzkQBmfwD1/0Y=;
- b=VlEa5TuHGoKhKSlJqUOj8JYuq5uRpHhSVB3/rMWj9+yu7UZ/MIOWueFA
- UHOdtvKEIpl861hsp9d5OvyknXpGUmdN55xF2f9cBS3W42+QjMZVswWKQ
- pKYL9oSwa5r+X6qWvChfH5rjXDQRupA/1IjgLy9JDR/p+E6IDXIQBHopA
- GPa1onNhIpgG8EAaxN9xEapLaXKme35zcxrP6fNa82NGsQAq4+ltRpVCO
- eGzOlnsflts5MKu8N+EJOeYVYL7tJ7nVIXqihuB8VkKICdOaYJOwSHXg/
- QM/a0kl1fv02St6CdffpcI+bMxJ0cubBnweghW3yyU77P8RT8eSrBc3AS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="367954985"
-X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="367954985"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ t=1690819437; x=1722355437;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:to:date:message-id:mime-version;
+ bh=1m2mxvOg3vjH0jBQ4OW9+z9tG+Nj9T7xPohdSwKMRQQ=;
+ b=nDSDle1LJ3cAFtJoYaaRYundlKYSSvPa0vutyjK7GBDHoqRbjzAM5JvP
+ /XxtwJCjzzFrbz+EOfcNxQOvV1nG8quyjMvOPX7GUg8amJEjyV1nKttxI
+ C+15GPSaDNsEm1GAauhs8c0IAEXrRGk1IlApbYiAd+KpenbzzlF1IW5rF
+ ij/jWufz2+jWQRwQQ69BhHYnkU1bh86PpB15RRcYzrlaSokh2WBBnPvdo
+ QaP5UGrXgm1TqutSSiZ1Zle6z2fHZY3OYcp6CRt1VeAxlAtn3Hc0VNfET
+ GaRceSe8R4osN5PkY8w4jvTT2FJewSojah1xCZwQMQLIBWpFBMDAznZbC A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="367958533"
+X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="367958533"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2023 08:53:42 -0700
+ 31 Jul 2023 09:03:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="731635190"
-X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="731635190"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga007.fm.intel.com with ESMTP; 31 Jul 2023 08:53:42 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="1059032743"
+X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="1059032743"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga005.fm.intel.com with ESMTP; 31 Jul 2023 09:03:20 -0700
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 31 Jul 2023 08:53:42 -0700
+ 15.1.2507.27; Mon, 31 Jul 2023 09:03:20 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 31 Jul 2023 08:53:41 -0700
+ 15.1.2507.27; Mon, 31 Jul 2023 09:03:20 -0700
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Mon, 31 Jul 2023 08:53:41 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ 15.1.2507.27 via Frontend Transport; Mon, 31 Jul 2023 09:03:20 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
  by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Mon, 31 Jul 2023 08:53:41 -0700
+ 15.1.2507.27; Mon, 31 Jul 2023 09:03:19 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JgbHaBzvkXAHV8RTA6JZch0pIa+DSsVu2IkasX1x1KUWke87vIVfhPovWJ6WIhS1KQHgDryYbqNSrx1/L8nlz9+0axjeg6vAqgYIlPScwTaH5BMvjEcnjTF0DoMZ87PGWkoSFOUbkiLR0NY7HmawJP135q4Zx82EdDpelBclFYo62LR3QXhfkpKprlzmm9BJYXK9dk1/QKBR5fU0DKYCY/z7+JJeVPNaHMgP7i5batnjfzndz+D6oaqa5YFb2qXXN1RkzTEu+MzjtAueHwwmpcUEXYelfsx5eMPYflh+6WgbmLrWIqJr0w+LcvSl0muRvDoP+9696KzTj5/1I1EKEg==
+ b=Wzx7XxQWTHCfYbK3y9Nj/paSeCta27aqYNdMJpwHQAtaGHtQoSXEW0NuD1zI5ekgiYsX5M6PftXlPPL+71JCm1eIlr8hQhzZeHlXRe9XyteqFEb/1RKZDC/MWUVGPhmPDEBKPjw/5sDsaZ1BVnpINdIUgyVEjnjIsUtuIGCg8yeYv07gr2cZUOcUeg5tIhiLVb1NgRk06kkkQ04Ds2Z50I+YAfHbqdBUbNXByN2o9p7D7QVhyz/w+O5oa40Uy6lIv/hjBE+Sl2ECp27xW18JDFkkGIi52NTxswEJ1bqCkO5JBxDyEEU17m9d7jzO+IVmkrxOc1o08FHC2mAwgnW99Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8wZAPyYZe3JyBm52YKSYU4JlWg90hNCh23CLYYd56Zo=;
- b=B/lm5aetGuDq5elTvn8Gt9IIU4gBKcHMbDM6sjXvce0S4hkj4SUdpzbXgNB3a8FnFbOr1DmwvqKKMOHDKB4sx+xhytmOMZF6GYL7jOGPOyY4IgI3mLkNpi548HwtuJlcQdBadSPkTSFSlT2DoKkKwFtI5rkehCMm4kZUNuQd9LOzlIVJkaIkmRulWm8dn899L5S89HuzAZMjJeUHgoKvayRHg67JqWRfuu/SuQilUay2ge8tG4xaCXb0oluhHfknl2OKihDlpZmDUFRTz2Bt6rp6BDCdf2a3G39Zc9da1hVm77tpQ4+ObzwtynXzZ6CM2t6QMuU/pOBd4E+JoC4Mww==
+ bh=QDniFn43eKrm0mpRDe9jScZaI7pSRpnpqu1EpjfQK+Y=;
+ b=UmTeAt0VZKoNJLtrQzVBuJf+rHEfxCE1x/WEIAakOLoZaqXC6GfYo4bbDGLrxIgWAHsbC06JqnoOTOJuzKyoytGL1f2T2kewESeShNcqBLRtW8oBaKw/Zqh9NdZx6Re6RmmqU81kuSrWfB5lkYuNagukiVpFmjF6irRj5Mbbs9jLXafrONsUOBbssqusu1blFT7mOeZDLH5JJGL1++pyVbBZsQefDJxxFJSFkDhT19AUJSKye07L38Fv0NgtQzk4tcByYuaxNZjotA4aFmJwuPmnslM8s/z6u2NplDoANFvZPb6qwQFPpAllsDYyo4WLIG+1kOJG/CqZWgX2iR83sg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SJ2PR11MB7715.namprd11.prod.outlook.com (2603:10b6:a03:4f4::20)
- by SA1PR11MB8256.namprd11.prod.outlook.com (2603:10b6:806:253::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Mon, 31 Jul
- 2023 15:53:39 +0000
-Received: from SJ2PR11MB7715.namprd11.prod.outlook.com
- ([fe80::ec0a:6c6e:1cd3:d622]) by SJ2PR11MB7715.namprd11.prod.outlook.com
- ([fe80::ec0a:6c6e:1cd3:d622%7]) with mapi id 15.20.6631.026; Mon, 31 Jul 2023
- 15:53:39 +0000
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v3 14/14] drm/i915/adls: s/ADLS_RPLS/RAPTORLAKE_S in
- platform and subplatform defines
-Thread-Index: AQHZv/zk7RPMDhsWI0eYeAchRgvf6a/UDhIw
-Date: Mon, 31 Jul 2023 15:53:39 +0000
-Message-ID: <SJ2PR11MB77151378689D72DD37A36CBDF805A@SJ2PR11MB7715.namprd11.prod.outlook.com>
-References: <20230726200657.2773903-1-dnyaneshwar.bhadane@intel.com>
- <20230726200657.2773903-15-dnyaneshwar.bhadane@intel.com>
-In-Reply-To: <20230726200657.2773903-15-dnyaneshwar.bhadane@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ2PR11MB7715:EE_|SA1PR11MB8256:EE_
-x-ms-office365-filtering-correlation-id: bfdd735d-1b1e-451d-a543-08db91de4eb3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ZRxK4APXuY8QKP2TrRevk7ZbqoLE8S2pqfVfCMyr6AwvhXzbEY9knOix82ab7kqOKvSxU1/xRvre7aQ6eVakLzrk6iF8Zkn2wHDBjroQglatTywnkCXPGGMFvSChM9tGAMA6lwbcnroBKZZBdrHkOa3+rq1nZOSpdS32/pOs9i9ms7UiTeSyZLQkKp/EeY7CmSRDkVgUrJHmGMQhkd0bfM4+juaRBAe7AWvM1TyLs8XhCvs5TYyEdd3aFd/yu5uVE+fPSSPPpgTUUwqw97hMob/tcMPvV9iLUmDsmV9i9uq9+tql19IMiTnwl6FweWjbZnyhcAJLmX3bqq75x4OYsJY492MJIrbs/7aeOJSC7/70VuHh5zYJ20R85SIc6C6xZu1mE6toZPFhbe6fOJV//x09dZLkzQ8iKQQ7+2dhHI+1ry1+CovausGsjH00CXIN6tbaSAOHDrl2a0XL9ACXz6L4Bb3kgW5Rs14KmBDY0wii2RPGV6+iuHrVD3I7kv36vMmBR9YBtiUArvKjGnau1fFdYQzKJQI448VK2xQrhosTj/2+L2EHC1gBsy+avzGm00l+3ImbdVUrgKy23AD3G7JYTj0+c2Ibbfy7t+i4lpDRlnZpcqfLXY7FvoaNNleb
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ2PR11MB7715.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(366004)(39860400002)(346002)(136003)(396003)(451199021)(316002)(6506007)(41300700001)(8936002)(66476007)(33656002)(26005)(8676002)(53546011)(55016003)(54906003)(110136005)(122000001)(82960400001)(4326008)(66446008)(478600001)(64756008)(66556008)(76116006)(9686003)(66946007)(71200400001)(38100700002)(7696005)(2906002)(83380400001)(38070700005)(86362001)(186003)(5660300002)(52536014);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ihtmo/dE7VzABb1BTNmmOf5pALR62yiFow9YMLiEmqdyTWg+6QQmFywRKIJV?=
- =?us-ascii?Q?9zUJooq9ldNWGHG2QULebdoViYbKsNCOzuQM5GOaJm676aa5yNxq5EcJ/Pzm?=
- =?us-ascii?Q?0KD3BJWDAkAq/ZZpPUNo1qa5TueozEj8bPSVUPy0E28nkevS0U2WzH0Mz7rk?=
- =?us-ascii?Q?e1jXgaB/J6XGL4u90J9rMpxRPP2s71Fz23BBe7/AsredCIkm14jxsC76R/rZ?=
- =?us-ascii?Q?9+vBMLbZ0pbax9jfc8YYv4KdanD+wJc2wolZjaDgb7OIqdhy9Dh+HmLoli1q?=
- =?us-ascii?Q?iEeHnQgUmpL4uVuhWMITcTgipTwW0cEGYlBW7E7eaFQqW0vua5mx5ZTSSyis?=
- =?us-ascii?Q?MNLlS17sVsX2BEK6ZuJN1GzBW5x18Il7FLV+uCUKRdKSOoMQGFHWqX+JYO1I?=
- =?us-ascii?Q?lr6RTEoPhoawFuNXz4rDCPLGiNajgUstWixF9ZujbnzGEMyNayjGG/zoGwOD?=
- =?us-ascii?Q?G8f2B+osUnTdhE7EKg14DpGcLEeK7taEhpjdNhmtwfuLGatcr7gnwvnHFANK?=
- =?us-ascii?Q?BDP+t2twoXuPGmIseUBIckaIFET4Rl0LMgVHCbron8rQs4TTa0qORiPSxVCI?=
- =?us-ascii?Q?+u9rhW5QUi7g4TDPDIoQLkiOw+Gmkdoma1wiqnu4eHo/gRrfnnPozszDkbNE?=
- =?us-ascii?Q?pPoD5vn9NLDRzX0F8JPux+zpWAg67lCI/XvUc1OqsEYfDKShyQclDURNtyad?=
- =?us-ascii?Q?sjEM92kQNaA2q0cEld+mU5Y+CpO0eSD6nTDjCu/x/5qfbdGKvNSkm5XZqfXb?=
- =?us-ascii?Q?5eUvMOrk+GGJIXt1VZB+/VQB1WQyUEKhNlJyq09jwLSIMYxQRUmqQ8FHiITe?=
- =?us-ascii?Q?QQbn5ie4oKV4+2TS6fq+DbQ38sz4E/jDr9AVzh22EBFTlzMLNJcru2S3GpYI?=
- =?us-ascii?Q?BD/7bB7rG9CrtgOJOkKw7Jpm4NwOxZ5R8o4eUJB3pj8nm76eeIUyA776Kinr?=
- =?us-ascii?Q?3Y3rC6jQmmBlQcJs0DVFDlwP5ySa60lQY5D2dExhJ6eguJOFCWVzllxmR4IN?=
- =?us-ascii?Q?nygxxIErY6vVaHBQt7Wl7/2rk+KHvZWlydjeFJg5jMZJgTWWFMrB26kfXWUs?=
- =?us-ascii?Q?tSXuCSXBHWyLAQr2NHNRPLuu118O+5x+VZJUFzOBYHfQ+QOMaBo0MW6PBA0s?=
- =?us-ascii?Q?ecSH/Cg6FIt/Jv1EoYfKP8iOBkRtnCMl44I9sbgesecsM1v1NAUWhz/mVJ72?=
- =?us-ascii?Q?w9SAfCzVbrs2CujyOW1fhCPHxtgEU2gbyY6AJrQA8gUM2QwUemf7oL4cNUOW?=
- =?us-ascii?Q?06szmv+oodptMhp26iAI9hhXSrHv4qbhEnDbsuwrKasffzQ9nx2QK1B9eVxP?=
- =?us-ascii?Q?/KMC/G7Xa/qvCak808OeGDBdSsrYYNKcNv4u788zKjgqEVziDW7Skeofxe7B?=
- =?us-ascii?Q?QcUFTnz8lljopfctvSmOaspZreJDIFQVoxJAxB3miRbJOGOU+jOvImqlLFck?=
- =?us-ascii?Q?xVQ6KQgf1s7irvaBtKKUzXlP9vvXvfskxW3XpVf/+crM7hwaMT1f2PyH+o50?=
- =?us-ascii?Q?2wgA1CHE8RYcgEiiqKgRqe5C16O0VX3yizGPQsiq6iM0Wi/QEdqW+R2/rgvn?=
- =?us-ascii?Q?yLBbasOG8fY0pE5ySr0M1ZVQUg7adI415UsOcyzi?=
-Content-Type: text/plain; charset="us-ascii"
+Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
+ by MW4PR11MB8289.namprd11.prod.outlook.com (2603:10b6:303:1e8::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.42; Mon, 31 Jul
+ 2023 16:03:16 +0000
+Received: from BN8PR11MB3556.namprd11.prod.outlook.com
+ ([fe80::e76d:33ce:73f1:573d]) by BN8PR11MB3556.namprd11.prod.outlook.com
+ ([fe80::e76d:33ce:73f1:573d%7]) with mapi id 15.20.6631.039; Mon, 31 Jul 2023
+ 16:03:16 +0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <87y1iww1st.fsf@intel.com>
+References: <20230725212716.3060259-1-gustavo.sousa@intel.com>
+ <20230725212716.3060259-3-gustavo.sousa@intel.com> <877cqgxryr.fsf@intel.com>
+ <169080830770.140656.12479044792983753457@gjsousa-mobl2>
+ <87y1iww1st.fsf@intel.com>
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+Date: Mon, 31 Jul 2023 13:03:04 -0300
+Message-ID: <169081938456.140656.10068964348479283264@gjsousa-mobl2>
+User-Agent: alot/0.10
+X-ClientProxiedBy: MW4P220CA0015.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:303:115::20) To BN8PR11MB3556.namprd11.prod.outlook.com
+ (2603:10b6:408:8d::31)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|MW4PR11MB8289:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3cddff12-ba49-433d-9140-08db91dfa65a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zonthAR+KZcOQ33JO9VE6t2QbHrgrtZJqWvcOB6Nh55fNLipJ7AKijvPwEj7L5yc+G1jncgDUiFuexdoKGxan+SRN7cTqWSJSmxTVpKyazN9JCKZNuqCaLZ8iTMRgglVTkkDno5JCKAlV1KfvRWKgB+90GHWrozUrIiRkaQdtpb9sxgnvh5ShSfRbKmTTrXxKuYLJQJSlciDDf/cpocVqLIr4nzSXvRsP6B00af2NBjJ+KGmspJK1dFNz2n2tbmDD0gp4se5q01EZZw8XrjzfeqJIagSKGwsDyewSxtDz8Uha54njOxNYSvSgnn3u3fiRJfJ853bD46ls/vugWY/0HOS/Xf6FVq7lfBorEkXrmxy2K0mqb2xJBk1hPdT7Kwc+A/Oo1ya9ykWRhEJ1ft4Uw+Lcr/xDJs+kqxhASLK5Wr2tZGik6GgEuBqeM18Jq6vYo0Laz9BwHtQDtcTMC6QvauVCPCxe625MZ45uFkevblyyIeeL4/Q4mvNZKJ97jId6MOhxm539VOMLdQyiSMA0py5OcQhswnbZY+Sp0vhTfqAENmeIaAY/7hu6nu94h72
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(396003)(39860400002)(366004)(136003)(376002)(346002)(451199021)(478600001)(33716001)(38100700002)(82960400001)(86362001)(6512007)(9686003)(6486002)(6666004)(186003)(26005)(8676002)(8936002)(6506007)(44832011)(5660300002)(2906002)(66476007)(66946007)(66556008)(41300700001)(316002)(83380400001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1BMNm9kS2I0elNUMnVoVkZOcndUbVNsTHZhN3hadlJkZFRqZWloM3AyYjM0?=
+ =?utf-8?B?UXYwaFcxMEZpNDR1aHlrNUhhL0I4NDV4c1JIQ096Zkg3RTMwSFoyK1BJSVc0?=
+ =?utf-8?B?aE9VR3BndjVMQmRPdXE1ZDRNVUpoWDUxNjloTWV0KzVQUGhEYzYzSlJZMmxD?=
+ =?utf-8?B?UnpLOWNFZGdJQjVYOElBYVBLWHVObDZ6Q1hNc0NteUZEQmY1K1o1MVZieDlP?=
+ =?utf-8?B?REN0cG5RZTQzaytPZ2Q3a3Y3azVtbVlWQUoyQWxvNkQ0Y09peUdud25JOWRC?=
+ =?utf-8?B?SXNTeVhGUkd3M0p6RFBJa1h1RHNSRFlsc2ZGcVJPV2NUZVUyTTc5M0JjbDNT?=
+ =?utf-8?B?WE5RM0RIemEyMHJodzVxV1hZdC9mU0Y3dWlCeEhacVAxS0ZENXFHdGlManBL?=
+ =?utf-8?B?K2crRU5KMU5lWUNua1ByQUtIcE5YSzRGRDZrREhFeXQwMWNnaGVIVlVMbXdP?=
+ =?utf-8?B?RGlMMmJMc0NkQWUrMytJZkhidmRBM2RmVm51ekdrWkgwSmJvWlc2dzd1Z0o5?=
+ =?utf-8?B?TDZQVkc1cWZXbWptNVlIUzZJWGtDdnVaT3IrLzNPOVp3ZHoyMmtMcUVEZmlI?=
+ =?utf-8?B?NUpYaEZseUZaTFA4dTFYSW9YNzF2bXV0bjNZUnAza29ZdlFYVjRXdGNocWJj?=
+ =?utf-8?B?K1BTRHhDZUNCdUQ1MVhCMXphRjRHWnRINkI4WlU4bUdsSU1IVTJNWW9INFZC?=
+ =?utf-8?B?TGNKMUV4K3NrS2xtdmRkMGd6TDV5SUNlWm5rck9jRnFjcDJZaHpXcE5NaWJP?=
+ =?utf-8?B?am0xcDU5TGUzVWRHTWkvZEdpSTVVa1BzTXBUaG01V0xXQmh2Y1NlYUhkb1A4?=
+ =?utf-8?B?Rkt6YUIzcm1CT3JYeXg2VXlGTkM1NGdCVW13NmdnL2RWUVhkM1g5bWgvenpv?=
+ =?utf-8?B?YVA5bmlXdTNjMlU1ZTJmMHhXYUh5VGlEU1EySXFvNUFLNUpSTU43UEo4emlW?=
+ =?utf-8?B?MEplQnNBMFFadWdLVnl1ajVoYnk0WWNlVGJLUkhFcHY5dW1GWWV0SGpjOEM1?=
+ =?utf-8?B?eEhqSWlzTmlPUGhGSis0ck8wZTJyeE9EN2piWTFteDJBbDFiQVNnWkpJR1BK?=
+ =?utf-8?B?MXE3MkI5WnYzK0Q1VWdKOC9xRzdGRHoyQWRTM1JBZ0dCelpqNWt5Tkw3dk9q?=
+ =?utf-8?B?U0hiTytyd0twODQ3TCsxd1BSUEE5Nzh4YWFnNnVKTkp5NDZBbFV6Q1BTSURN?=
+ =?utf-8?B?SU03aUh4S1IvRlEvdkxZQlFWS2h6eFBOdVE5YlpvbjN5V0NuM3V1RGQzelA2?=
+ =?utf-8?B?eEQ4OXAxbWdPQ2FGRURJcDZwRERTY21PNG9mdWFpWk9MZ2JEOEN1aTJNbEVV?=
+ =?utf-8?B?VWl3dUtzSnhuUG1WbmVsNFQyek54eWhWck5Ydk9KR3lSOWdnVGxINm1KQlB4?=
+ =?utf-8?B?ckdzemMvMHhCYi9QM3V2M2RXek1wTXp3ME0rcTBSQ2FmdDJJSFY2UVk4NXc0?=
+ =?utf-8?B?TitRalhLNXczbFhxOVNodnlrMHFmM1VZaFpqSGFXSE9XaHZVbCtROHFGdU9T?=
+ =?utf-8?B?R2wvMElBQlpoMUd5WjlQc3A2RFB4UVBLbG94SmpVQUZzLzRoMEJPTzNCMUtJ?=
+ =?utf-8?B?dFRFaTFOd0RRcXpGc2dneExoTzVSTEc5TG5WRXZSV2NPWENJak5VcU5WSWk5?=
+ =?utf-8?B?ejBFYXVMU1I1MG9ndzF3dGlxSWFvSjh6U1Y3OHlsQzAxcnBWUFI0MFJEVjJy?=
+ =?utf-8?B?TWE2djcxWWNMQnJpRXU0bnpyV2x6N09Tb2dsZTRkM1FwNmJLK2lqbmVRRGZN?=
+ =?utf-8?B?dnZTank2VHdzOWt0TEpQNUIxanlZdnBkd2pUR2JnSXhiN2dxbktjNXkxT1cw?=
+ =?utf-8?B?Vk9OalZVcHJONXJJNG9sbmlBMW5lR3dSS2gxOHZqWFY2cFdvbjlCY0FES012?=
+ =?utf-8?B?OEJYZ291cGxNM2ptZS9kQWpEbTg3by9jSVJaUHZ2K056RHhRN1R2ZEdPekw4?=
+ =?utf-8?B?OG5jQktMNTBVVWJYUndVQTY0bGtQaS9zTFN2L00zQk52VFl2RjBSL2F4M2xF?=
+ =?utf-8?B?c1Flam5kVTFvTDJyVlBHdmowYmJOQm83cXp6dHRBUFAwMEcyc1BmWG52a1pX?=
+ =?utf-8?B?YUFlNnp4bHVBekV4MEprdS9jeUxmM1Q3dDQ1aHRzZkV0ajMreWVCaHRqTXRn?=
+ =?utf-8?B?eGZ3VC9NdXlPa1FuVnhTaDY0ZEwwWlNpMzh5bWxxTXBqS3ZqeHVzNDQ2dWNw?=
+ =?utf-8?B?Wmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3cddff12-ba49-433d-9140-08db91dfa65a
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR11MB7715.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bfdd735d-1b1e-451d-a543-08db91de4eb3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2023 15:53:39.1854 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7bn0jTMoUWFxzHcr5PtE+8R8o0YrdDO90xtwoN41pm3yl3R1OlBlzvrxyzOtjDNQdKSmmUQaNFvzuyFUXID4e1Ox0J50ZgXX7Y1kR8bco14=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8256
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2023 16:03:16.2067 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ixCNt1oNrrknH1einmW1aNkLsHQ6gNHMQl0P5ZHDMc4UQg7Vw08ubzCe6bFJtvrDHzXTD0j/P0AqKwhk5NByeA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB8289
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 14/14] drm/i915/adls:
- s/ADLS_RPLS/RAPTORLAKE_S in platform and subplatform defines
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Simplify
+ intel_cx0_program_phy_lane() with loop
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,125 +161,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Quoting Jani Nikula (2023-07-31 12:14:42-03:00)
+>On Mon, 31 Jul 2023, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+>> Quoting Jani Nikula (2023-07-31 08:04:12-03:00)
+>>>On Tue, 25 Jul 2023, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+>>>> It is possible to generalize the "disable" value for the transmitters =
+to
+>>>> be a bit mask based on the port width and the port reversal boolean,
+>>>> with a small exception for DP-alt mode with "x1" port width.
+>>>>
+>>>> Simplify the code by using such a mask and a for-loop instead of using
+>>>> switch-case statements.
+>>>>
+>>>> BSpec: 64539
+>>>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>>>> ---
+>>>>  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 79 +++++--------------=
+-
+>>>>  1 file changed, 20 insertions(+), 59 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gp=
+u/drm/i915/display/intel_cx0_phy.c
+>>>> index b903ceb0b56a..f10ebdfd696a 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>>>> @@ -2604,7 +2604,8 @@ static void intel_cx0_program_phy_lane(struct dr=
+m_i915_private *i915,
+>>>>                                         struct intel_encoder *encoder,=
+ int lane_count,
+>>>>                                         bool lane_reversal)
+>>>>  {
+>>>> -        u8 l0t1, l0t2, l1t1, l1t2;
+>>>> +        int i;
+>>>> +        u8 disables;
+>>>>          bool dp_alt_mode =3D intel_tc_port_in_dp_alt_mode(enc_to_dig_=
+port(encoder));
+>>>>          enum port port =3D encoder->port;
+>>>> =20
+>>>> @@ -2614,66 +2615,26 @@ static void intel_cx0_program_phy_lane(struct =
+drm_i915_private *i915,
+>>>>                                C10_VDR_CTRL_MSGBUS_ACCESS,
+>>>>                                MB_WRITE_COMMITTED);
+>>>> =20
+>>>> -        /* TODO: DP-alt MFD case where only one PHY lane should be pr=
+ogrammed. */
+>>>> -        l0t1 =3D intel_cx0_read(i915, port, INTEL_CX0_LANE0, PHY_CX0_=
+TX_CONTROL(1, 2));
+>>>> -        l0t2 =3D intel_cx0_read(i915, port, INTEL_CX0_LANE0, PHY_CX0_=
+TX_CONTROL(2, 2));
+>>>> -        l1t1 =3D intel_cx0_read(i915, port, INTEL_CX0_LANE1, PHY_CX0_=
+TX_CONTROL(1, 2));
+>>>> -        l1t2 =3D intel_cx0_read(i915, port, INTEL_CX0_LANE1, PHY_CX0_=
+TX_CONTROL(2, 2));
+>>>> -
+>>>> -        l0t1 |=3D CONTROL2_DISABLE_SINGLE_TX;
+>>>> -        l0t2 |=3D CONTROL2_DISABLE_SINGLE_TX;
+>>>> -        l1t1 |=3D CONTROL2_DISABLE_SINGLE_TX;
+>>>> -        l1t2 |=3D CONTROL2_DISABLE_SINGLE_TX;
+>>>> -
+>>>> -        if (lane_reversal) {
+>>>> -                switch (lane_count) {
+>>>> -                case 4:
+>>>> -                        l0t1 &=3D ~CONTROL2_DISABLE_SINGLE_TX;
+>>>> -                        fallthrough;
+>>>> -                case 3:
+>>>> -                        l0t2 &=3D ~CONTROL2_DISABLE_SINGLE_TX;
+>>>> -                        fallthrough;
+>>>> -                case 2:
+>>>> -                        l1t1 &=3D ~CONTROL2_DISABLE_SINGLE_TX;
+>>>> -                        fallthrough;
+>>>> -                case 1:
+>>>> -                        l1t2 &=3D ~CONTROL2_DISABLE_SINGLE_TX;
+>>>> -                        break;
+>>>> -                default:
+>>>> -                        MISSING_CASE(lane_count);
+>>>> -                }
+>>>> -        } else {
+>>>> -                switch (lane_count) {
+>>>> -                case 4:
+>>>> -                        l1t2 &=3D ~CONTROL2_DISABLE_SINGLE_TX;
+>>>> -                        fallthrough;
+>>>> -                case 3:
+>>>> -                        l1t1 &=3D ~CONTROL2_DISABLE_SINGLE_TX;
+>>>> -                        fallthrough;
+>>>> -                case 2:
+>>>> -                        l0t2 &=3D ~CONTROL2_DISABLE_SINGLE_TX;
+>>>> -                        l0t1 &=3D ~CONTROL2_DISABLE_SINGLE_TX;
+>>>> -                        break;
+>>>> -                case 1:
+>>>> -                        if (dp_alt_mode)
+>>>> -                                l0t2 &=3D ~CONTROL2_DISABLE_SINGLE_TX=
+;
+>>>> -                        else
+>>>> -                                l0t1 &=3D ~CONTROL2_DISABLE_SINGLE_TX=
+;
+>>>> -                        break;
+>>>> -                default:
+>>>> -                        MISSING_CASE(lane_count);
+>>>> -                }
+>>>> +        if (lane_reversal)
+>>>> +                disables =3D REG_GENMASK8(3, 0) >> lane_count;
+>>>> +        else
+>>>> +                disables =3D REG_GENMASK8(3, 0) << lane_count;
+>>>> +
+>>>> +        if (dp_alt_mode && lane_count =3D=3D 1) {
+>>>> +                disables &=3D ~REG_GENMASK8(1, 0);
+>>>> +                disables |=3D REG_FIELD_PREP8(REG_GENMASK8(1, 0), 0x1=
+);
+>>>>          }
+>>>> =20
+>>>> -        /* disable MLs */
+>>>> -        intel_cx0_write(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTR=
+OL(1, 2),
+>>>> -                        l0t1, MB_WRITE_COMMITTED);
+>>>> -        intel_cx0_write(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTR=
+OL(2, 2),
+>>>> -                        l0t2, MB_WRITE_COMMITTED);
+>>>> -        intel_cx0_write(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTR=
+OL(1, 2),
+>>>> -                        l1t1, MB_WRITE_COMMITTED);
+>>>> -        intel_cx0_write(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTR=
+OL(2, 2),
+>>>> -                        l1t2, MB_WRITE_COMMITTED);
+>>>> +        /* TODO: DP-alt MFD case where only one PHY lane should be pr=
+ogrammed. */
+>>>> +        for (i =3D 0; i < 4; i++) {
+>>>> +                int tx =3D i % 2 + 1;
+>>>> +                u8 lane_mask =3D i / 2 =3D=3D 0 ? INTEL_CX0_LANE0 : I=
+NTEL_CX0_LANE1;
+>>>
+>>>I'm just catching up on mails and quickly eyeballing stuff, but
+>>>
+>>>        i / 2 =3D=3D 0
+>>>
+>>>looks suspect.
+>>
+>> i / 2 =3D=3D 0 should give us the correct selection of lane_mask: the fi=
+rst two
+>> iterations are for the first PHY lane and the last two are for the last =
+PHY
+>> lane.
+>
+>I think the most obvious way to express that is i < 2.
 
+Indeed. Thanks!
 
-> -----Original Message-----
-> From: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>
-> Sent: Wednesday, July 26, 2023 1:07 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Ursulin, Tvrtko <tvrtko.ursulin@intel.com>; jani.nikula@linux.intel.c=
-om;
-> Srivatsa, Anusha <anusha.srivatsa@intel.com>; Atwood, Matthew S
-> <matthew.s.atwood@intel.com>; Roper, Matthew D
-> <matthew.d.roper@intel.com>; Bhadane, Dnyaneshwar
-> <dnyaneshwar.bhadane@intel.com>; Srivatsa, Anusha
-> <anusha.srivatsa@intel.com>
-> Subject: [PATCH v3 14/14] drm/i915/adls: s/ADLS_RPLS/RAPTORLAKE_S in
-> platform and subplatform defines
->=20
-> Driver refers to the platform Alderlake S as ADLS_RPLS in places and
-> RAPTORLAKE_S in some.
->=20
-> v2:
-> - Unrolled wrapper IS_ADLS_GRAPHICS_STEP
->=20
-> v3:
-> - Replace IS_RAPTORLAKE_S instead of IS_ADLS_RPLS. (Tvrtko/Lucas).
-> - Remove unused macro IS_ADLS_GRAPHICS/DISPLAY_STEP
-> - Change the subject
->=20
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+--
+Gustavo Sousa
 
-Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display_device.c | 2 +-
->  drivers/gpu/drm/i915/gt/uc/intel_uc.c               | 2 +-
->  drivers/gpu/drm/i915/i915_drv.h                     | 9 +--------
->  drivers/gpu/drm/i915/intel_step.c                   | 2 +-
->  4 files changed, 4 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c
-> b/drivers/gpu/drm/i915/display/intel_display_device.c
-> index 8286e79522d1..dcb272327281 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> @@ -858,7 +858,7 @@ void intel_display_device_info_runtime_init(struct
-> drm_i915_private *i915)
->  	BUILD_BUG_ON(BITS_PER_TYPE(display_runtime->port_mask) <
-> I915_MAX_PORTS);
->=20
->  	/* Wa_14011765242: adl-s A0,A1 */
-> -	if (IS_ADLS_DISPLAY_STEP(i915, STEP_A0, STEP_A2))
-> +	if (IS_ALDERLAKE_S(i915) && IS_DISPLAY_STEP(i915, STEP_A0,
-> STEP_A2))
->  		for_each_pipe(i915, pipe)
->  			display_runtime->num_scalers[pipe] =3D 0;
->  	else if (DISPLAY_VER(i915) >=3D 11) {
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> index 18250fb64bd8..98b103375b7a 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -43,7 +43,7 @@ static void uc_expand_default_options(struct intel_uc *=
-uc)
->  	}
->=20
->  	/* Intermediate platforms are HuC authentication only */
-> -	if (IS_ALDERLAKE_S(i915) && !IS_ADLS_RPLS(i915)) {
-> +	if (IS_ALDERLAKE_S(i915) && !IS_RAPTORLAKE_S(i915)) {
->  		i915->params.enable_guc =3D ENABLE_GUC_LOAD_HUC;
->  		return;
->  	}
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 853687d9e3f8..9ddba8a8ab1a 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -584,7 +584,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  	IS_SUBPLATFORM(i915, INTEL_DG2, INTEL_SUBPLATFORM_G11)
-> #define IS_DG2_G12(i915) \
->  	IS_SUBPLATFORM(i915, INTEL_DG2, INTEL_SUBPLATFORM_G12) -
-> #define IS_ADLS_RPLS(i915) \
-> +#define IS_RAPTORLAKE_S(i915) \
->  	IS_SUBPLATFORM(i915, INTEL_ALDERLAKE_S,
-> INTEL_SUBPLATFORM_RPL)  #define IS_ALDERLAKE_P_N(i915) \
->  	IS_SUBPLATFORM(i915, INTEL_ALDERLAKE_P,
-> INTEL_SUBPLATFORM_N) @@ -654,13 +654,6 @@ IS_SUBPLATFORM(const
-> struct drm_i915_private *i915,
->=20
->=20
->=20
-> -#define IS_ADLS_DISPLAY_STEP(__i915, since, until) \
-> -	(IS_ALDERLAKE_S(__i915) && \
-> -	 IS_DISPLAY_STEP(__i915, since, until))
-> -
-> -#define IS_ADLS_GRAPHICS_STEP(__i915, since, until) \
-> -	(IS_ALDERLAKE_S(__i915) && \
-> -	 IS_GRAPHICS_STEP(__i915, since, until))
->=20
->=20
->  #define IS_XEHPSDV_GRAPHICS_STEP(__i915, since, until) \ diff --git
-> a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
-> index 5553de469fa0..c02a6f156a00 100644
-> --- a/drivers/gpu/drm/i915/intel_step.c
-> +++ b/drivers/gpu/drm/i915/intel_step.c
-> @@ -201,7 +201,7 @@ void intel_step_init(struct drm_i915_private *i915)
->  	} else if (IS_ALDERLAKE_P(i915)) {
->  		revids =3D adlp_revids;
->  		size =3D ARRAY_SIZE(adlp_revids);
-> -	} else if (IS_ADLS_RPLS(i915)) {
-> +	} else if (IS_RAPTORLAKE_S(i915)) {
->  		revids =3D adls_rpls_revids;
->  		size =3D ARRAY_SIZE(adls_rpls_revids);
->  	} else if (IS_ALDERLAKE_S(i915)) {
-> --
-> 2.34.1
-
+>
+>BR,
+>Jani.
+>
+>>
+>> --
+>> Gustavo Sousa
+>>
+>>>
+>>>BR,
+>>>Jani.
+>>>
+>>>> +
+>>>> +                intel_cx0_rmw(i915, port, lane_mask, PHY_CX0_TX_CONTR=
+OL(tx, 2),
+>>>> +                              CONTROL2_DISABLE_SINGLE_TX,
+>>>> +                              disables & BIT(i) ? CONTROL2_DISABLE_SI=
+NGLE_TX : 0,
+>>>> +                              MB_WRITE_COMMITTED);
+>>>> +        }
+>>>> =20
+>>>>          if (intel_is_c10phy(i915, intel_port_to_phy(i915, port)))
+>>>>                  intel_cx0_rmw(i915, port, INTEL_CX0_BOTH_LANES,
+>>>
+>>>--=20
+>>>Jani Nikula, Intel Open Source Graphics Center
+>
+>--=20
+>Jani Nikula, Intel Open Source Graphics Center
