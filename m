@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C7D76B732
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Aug 2023 16:20:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 901F176B782
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Aug 2023 16:32:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A74B10E409;
-	Tue,  1 Aug 2023 14:20:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA40810E354;
+	Tue,  1 Aug 2023 14:32:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 939C610E406;
- Tue,  1 Aug 2023 14:20:30 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C494A10E354
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Aug 2023 14:32:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690899631; x=1722435631;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=W0X1eI2zfIuWryDzr1HjoWRd2SGVBENRVhmFmH7l9Zs=;
- b=IaL5IrUaV5h76Sr3kmKcgtrqnGbP3/NH8Hc0JUKSIyvlA9rBoTg7/dt5
- KWUTpli8WRZNr/36/r7Y4gnZbKmY4FoDUDA8Bf8qNGhP/tGYHP71vIX7J
- Odo6KIfe56+7aM1rRkk3ISGLPfLoN5wG2WKXf+os11boZZE75i5zT2U1s
- +UEbJalZ17hc8HhoL7KXo9rZwFFI+qRDcuAM8ZYQY3k3M5+Ye8aoTs5nz
- +X/J8xS6k4ldE0Jponw7oN8IS5O9Jrz2Mzz/ypXxY8UrPi5rvkZPxud/a
- kj3UCHjLC7mtVlqnE7sg3udTxPWqQkdnBa1zzWuPha5xohcNOfRDO5jdG g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="372023426"
-X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="372023426"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 07:20:30 -0700
+ t=1690900338; x=1722436338;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=WwV046P0CxmG9CPMyMDtQ7oBdkdACiJku8MVNkOE9Bk=;
+ b=FGhAm/753SI6C4L+3e3gVCiHB5oYEDneAcLLev4ziEmTGDm3f4IP4R+A
+ QuXJIBsXABMcoqc+Ic84GoLBZOKGGlzHOr+GUipklW/ubY5ZdzNXCrP5z
+ 6Zr3nSWRzcVIXY5/FL6FuwQcJyBWFMRV+Yctn8np+fOeGMmm7cOPbQDs0
+ xVXu3TWl0WNbH9Yb6OWgY35HpgPUpsDj499BxOPFe0xIEZIrderFgfOME
+ KJjg3ARCFjvcytiGpMh8tqdUrD9wG1ysFq07TuRrhuADCkXb8LjK44iSR
+ v2vB0M4dcZVkOy/YGoI842xXNdCRPiGQXUrAJBNqmbZLOGvmyscwEGvmF Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="455687687"
+X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="455687687"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2023 07:32:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="678687270"
-X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="678687270"
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="705842537"
+X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="705842537"
 Received: from jhajducz-mobl.ger.corp.intel.com (HELO intel.com)
  ([10.252.37.77])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 07:20:28 -0700
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2023 07:32:03 -0700
+Date: Tue, 1 Aug 2023 16:32:00 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Chris Wilson <chris.p.wilson@linux.intel.com>,
- Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-Date: Tue,  1 Aug 2023 16:19:55 +0200
-Message-Id: <20230801141955.383305-5-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230801141955.383305-1-andi.shyti@linux.intel.com>
-References: <20230801141955.383305-1-andi.shyti@linux.intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Message-ID: <ZMkXYAASwtYZ6gYt@ashyti-mobl2.lan>
+References: <20230726155356.1652979-1-jonathan.cavitt@intel.com>
+ <20230726155356.1652979-2-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Remove unnecessary include
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230726155356.1652979-2-jonathan.cavitt@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Make i915_coherent_map_type
+ GT-centric
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,36 +60,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: chris.p.wilson@linux.intel.com, intel-gfx@lists.freedesktop.org,
+ matthew.d.roper@intel.com, nirmoy.das@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The inclusion of intel_gt_defines.h was initially added to
-i915_drv.h to provide the definition of I915_MAX_GT, where it was
-originally defined.
+Hi Jonathan,
 
-However, since I915_MAX_GT is now included in
-i915_gem_object_types.h, it sis no longer required in i915_drv.h.
+Apparently checkpatch is complaining...
 
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h | 1 -
- 1 file changed, 1 deletion(-)
+[...]
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 1584b01e1bd6c..a1a2fe31f4340 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -44,7 +44,6 @@
- #include "gem/i915_gem_stolen.h"
- 
- #include "gt/intel_engine.h"
--#include "gt/intel_gt_defines.h"
- #include "gt/intel_gt_types.h"
- #include "gt/intel_region_lmem.h"
- #include "gt/intel_workarounds.h"
--- 
-2.40.1
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 119deb9f938c..1897cb5aa2a2 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1191,7 +1191,7 @@ lrc_pre_pin(struct intel_context *ce,
+>  	GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
+>  
+>  	*vaddr = i915_gem_object_pin_map(ce->state->obj,
+> -					 i915_coherent_map_type(ce->engine->i915,
+> +					 intel_gt_coherent_map_type(ce->engine->gt,
+>  								ce->state->obj,
+>  								false) |
 
+... here:
+
+CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+
+>  					 I915_MAP_OVERRIDE);
+
+[...]
+
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
+> index 76fbae358072..afce036bcaa8 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_context.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_context.c
+> @@ -88,7 +88,7 @@ static int __live_context_size(struct intel_engine_cs *engine)
+>  		goto err;
+>  
+>  	vaddr = i915_gem_object_pin_map_unlocked(ce->state->obj,
+> -						 i915_coherent_map_type(engine->i915,
+> +						 intel_gt_coherent_map_type(engine->gt,
+>  									ce->state->obj, false));
+
+
+... here:
+
+CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+
+
+>  	if (IS_ERR(vaddr)) {
+>  		err = PTR_ERR(vaddr);
+
+[...]
+
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index a78a3d2c2e16..bc883de02295 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -1292,7 +1292,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
+>  	}
+>  
+>  	lrc = i915_gem_object_pin_map_unlocked(ce->state->obj,
+> -					       i915_coherent_map_type(engine->i915,
+> +					       intel_gt_coherent_map_type(engine->gt,
+>  								      ce->state->obj,
+>  								      false));
+
+... here:
+
+CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+
+>  	if (IS_ERR(lrc)) {
+
+[...]
+
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> index 2eb891b270ae..c0fa9d232205 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> @@ -792,7 +792,7 @@ int intel_guc_allocate_and_map_vma(struct intel_guc *guc, u32 size,
+>  		return PTR_ERR(vma);
+>  
+>  	vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
+> -						 i915_coherent_map_type(guc_to_gt(guc)->i915,
+> +						 intel_gt_coherent_map_type(guc_to_gt(guc),
+>  									vma->obj, true));
+
+... here:
+
+CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+
+>  	if (IS_ERR(vaddr)) {
+>  		i915_vma_unpin_and_release(&vma, 0);
+
+[...]
+
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> index 1ce07d7e8769..8e0b5d48ddf6 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> @@ -11,6 +11,7 @@
+>  #include "gem/i915_gem_lmem.h"
+>  
+>  #include "i915_drv.h"
+> +#include "gt/intel_gt.h"
+>  
+>  #include "intel_pxp.h"
+>  #include "intel_pxp_cmd_interface_42.h"
+> @@ -245,7 +246,7 @@ static int alloc_streaming_command(struct intel_pxp *pxp)
+>  	}
+>  
+>  	/* map the lmem into the virtual memory pointer */
+> -	cmd = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(i915, obj, true));
+> +	cmd = i915_gem_object_pin_map_unlocked(obj, intel_gt_coherent_map_type(pxp->ctrl_gt, obj, true));
+
+... and here:
+
+WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+
+Can you please fix those, run again checkpatch.pl and resend?
+
+Thanks,
+Andi
+
+>  	if (IS_ERR(cmd)) {
+>  		drm_err(&i915->drm, "Failed to map gsc message page!\n");
+>  		err = PTR_ERR(cmd);
