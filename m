@@ -1,53 +1,150 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1A1D76B049
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Aug 2023 12:04:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9936B76B2F1
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Aug 2023 13:19:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7037610E388;
-	Tue,  1 Aug 2023 10:04:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8336A10E3DA;
+	Tue,  1 Aug 2023 11:19:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E36C10E388
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Aug 2023 10:04:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC3C410E3BC;
+ Tue,  1 Aug 2023 11:18:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690884255; x=1722420255;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XyUIEEYD86/qb6S2As+drTFm+iTDUGZhpmf6oEFjRz4=;
- b=EE0yVKVwWtLtyOxG7RDxSNq49Jr0UQnVkp3fiDVt+FQQzBwlH7O4FwYb
- 4A+kwpVmh7ycc9CzkG3lsssS0saVCO5newBFUhC4gLacK9ik33/rTALHi
- PuARm7nZ7ih2vnoKs0XbAy/C9UDrMUiSVPe0iXUhkaGiZgTD+xlDTgcWL
- +0aYRCVzAzVHLfBMSEAQWuA2uv+xnD5zpCnt5NeIh4fZFM0KxvakW4aPB
- yjGX4fdSJRSgbcfKUfFYAPLiImaOvzOrA5nchcNZJVMIT1NU+DwtGOHVQ
- NACh8TPzw/zBtTZSPHgjSZcsPlYVvunGnF+mf7GLKbAK/HTo4mZZl981U Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="433096196"
-X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="433096196"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 03:04:14 -0700
+ t=1690888738; x=1722424738;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=rGSYKW5XJtHKfozE4PVOikgYf77WKQVKdvFCnBVgY+k=;
+ b=d1CcnUvdPmLczdLxseJkRa0N/N/GKQ3m3XQKblcCtmDwsTeiwev25QuO
+ kzz6ukGRpacM72LD5veTV6LRuhl47UPKt9p0dS7HWOWOoWBYYBeAkxChI
+ 2T7a8s8EFc48yzQGmw5Nd8ukYozZe7D76x/uZTIUQgwGKE2pZPxn7hseJ
+ cWk9XnCcJaMGbxFrxCZjefh0ntSzKwY8qhUG4B8mOybLBwo0uTJEBZBVL
+ obq3/bdCGb/yLZr+ENQHsP3xZVpamYqsqb3xI0dD7xcbYSgFKKMRCG6/B
+ R5qQNcv6jpVv8VcGbAkrGQJAXh5aRuTEDfIcdAKsX4fnBWkqkLeSDfls9 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="435594033"
+X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="435594033"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2023 04:18:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="728637153"
-X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="728637153"
-Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
- by orsmga002.jf.intel.com with ESMTP; 01 Aug 2023 03:04:12 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  1 Aug 2023 15:34:08 +0530
-Message-Id: <20230726200657.2773903-9-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230726200657.2773903-9-dnyaneshwar.bhadane@intel.com>
-References: <20230726200657.2773903-9-dnyaneshwar.bhadane@intel.com>
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="1059364701"
+X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="1059364701"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga005.fm.intel.com with ESMTP; 01 Aug 2023 04:18:54 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 1 Aug 2023 04:18:52 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Tue, 1 Aug 2023 04:18:52 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Tue, 1 Aug 2023 04:18:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oXKHuZ7bMcBAkEXyUSxZ7ES7GTtvVTapoNsiMM85K1LOqKlhgRQnqyn4TvJyi05mm1T2ihCF1gNT2RGqnwrtZoqd9tW35skJW7DQAh8MV89DThhPM/vlXe+obA5T2gKB6nZkI8vk6BGYOXtXopzlKJrP+pJ4dxzZI4ZyuLS0ToNzN5aLq7ZpJMQP68Q8JBRSgitat2/Jfvz+yItGF9VRV6RwB08n/xKroKp3CTkTMUvr1qaiGOHVHehI87G3WYYaZjXzrkxEugZylIl5JQIYZTQkVfcWafTtq0PaMYB2l+2mVtjH5OXQIA4HVE/Hgj6i7WXBpzpat8HECxfeJnDpyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CCK6eHVSbtfngog4Ksr9YvP+pl74qvz8ne7QKpdTPUo=;
+ b=hINO+/vXSAtGLBzZWktW2TlLtc4Odg/FgyJa6MUjqGaalp0284y6V6Rku/2XUhYWhwP3YCSserepvUvGH07/SG1LomxWBI3ft+1CaqTY/wH2n7Ex4n5BCtOKobRVJXVrdyeXsBI2egVREbq8oCgIOeNHPRSp8eDxNKTat5HeKpIHO+W/5e0aY6mAPaD8lYCRBQvPnCT4C2SYxsMU2liN4BiyBnjGReWaqVuswvsrxfs6TBvGKNjH7W/CjazoBmTIMajNxkwyo8bbsrxq5zO9wLmvIsPq0XDNZmjBUbuDKkvtUbel+Xwyys0pqogRkUaKqJwhYLIG5CWW3iGS6/zp/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5549.namprd11.prod.outlook.com (2603:10b6:5:388::7) by
+ DS0PR11MB6495.namprd11.prod.outlook.com (2603:10b6:8:c1::22) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6631.44; Tue, 1 Aug 2023 11:18:50 +0000
+Received: from DM4PR11MB5549.namprd11.prod.outlook.com
+ ([fe80::fa3f:a88:b8dd:5c8e]) by DM4PR11MB5549.namprd11.prod.outlook.com
+ ([fe80::fa3f:a88:b8dd:5c8e%2]) with mapi id 15.20.6631.043; Tue, 1 Aug 2023
+ 11:18:49 +0000
+Message-ID: <b88e5ced-f7f4-5fc7-b7bb-df0201697444@intel.com>
+Date: Tue, 1 Aug 2023 14:18:43 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Sean Christopherson <seanjc@google.com>, Paolo Bonzini
+ <pbonzini@redhat.com>, Zhenyu Wang <zhenyuw@linux.intel.com>
+References: <20230729013535.1070024-1-seanjc@google.com>
+ <20230729013535.1070024-5-seanjc@google.com>
+From: "Wang, Zhi A" <zhi.a.wang@intel.com>
+In-Reply-To: <20230729013535.1070024-5-seanjc@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR0P281CA0226.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:b2::19) To DM4PR11MB5549.namprd11.prod.outlook.com
+ (2603:10b6:5:388::7)
 MIME-Version: 1.0
-X-Patchwork-Id: 549460
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [Patch v5,
- 08/14] drm/i915/jsl: s/JSL/JASPERLAKE for platform/subplatform
- defines
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5549:EE_|DS0PR11MB6495:EE_
+X-MS-Office365-Filtering-Correlation-Id: 15d2ca82-3334-47af-3eef-08db92811488
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: MXcbIOEnrys2LElPwA4HqHu8qLdhBkqNKBOy43T4eFMYuiaheYoH2JcGyFw5bjDJDWJIeZh6W9DodygGQGGkEdR0LE+vgS1kj4tnBLvCwCaP3umO0B9zG4KKQTM5daDUCnFcCl5Erbwxo7eijuxvGtqABm0u3XPmEyzSlIQKEKyGu/5x9zOQpjNe+8z+FJNgtQRZtnBzhET5ZTW5wn/bgbcOdkZJAjPsQVXc/HCDABPC4PsyrwbvZmYb6oSOLyLDc/DU8UUeyJ704L7QcO2eKExZRk3TRKW0f45NKzmlmutc68VCDanywdahJEwNhY2/1GtOrkF2zqyxpzIOkjcSTCHZFaf5q0vOyr8Boe2JmhscKVJdqRl7x/os3AN1JibeOOcEfX7Muy0DcBrL3rV2Jzw+q0nA4Hn0kDZGVkSKhmEV1XgjUQ3n+q8AsGP6Q7MyLMdv3Om7Qcm/XwEqDYPUZz/YgTT1nK1DK6p+VIXcVrKSpstQuZxf+tPG0LNH07DeEzsRQXqBLdUUr1omh2XQpK2hu6IcRRMcSHQPwrr79nEc4X9zEZv7tu44TQLil4dhiZEkv0+xKXNe2T/2b7uPizpAsWxtsSBk0jlVXWzHi/Ow0P54V/IFuAR815L9vaD/iUvbq2sAkZopGcc75Pqciw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5549.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(136003)(346002)(39860400002)(366004)(396003)(451199021)(478600001)(38100700002)(82960400001)(36756003)(31696002)(86362001)(6512007)(6486002)(6666004)(53546011)(186003)(2616005)(26005)(6506007)(8676002)(8936002)(5660300002)(4326008)(31686004)(66556008)(66476007)(66946007)(2906002)(54906003)(41300700001)(110136005)(316002)(83380400001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T2tjc2NacDlZWk1PNVhLYk9QVlo4c3ljNmoxWDRNSjNORnZJMEZndVpheXIw?=
+ =?utf-8?B?akYwUU85MnYyaXVtVm5WSHBuQ1Bua2NTeEMrc0pkNHZJSlVEcHZKczFkbWtB?=
+ =?utf-8?B?NjRPNXhsakQ5RGRLSEdzMTdRZENGOHRMeFNZZlRwWmJodStuRUhXV3U5U3Nv?=
+ =?utf-8?B?MVdXMWRJcERmT1J3T2RydWdYc3hmYXFkcEZqZjVjbzVWNFNBcXVzcy9zd2JN?=
+ =?utf-8?B?THg4UHhsU2pidHVEMm51YkhoS2dQbHl3NU5LanltM3AyMmJQNWt0V2pjU2Ns?=
+ =?utf-8?B?ODZsUk1VazVMWkplU0FHWG1pWEFCbmIvME95bGJ0K0dwdVh6a0U2anpZdy84?=
+ =?utf-8?B?L05aYllEczJEZkRNM2V2djZtRVphZHpUeStGeFhRamV0TWp3cng0L1pLQlBr?=
+ =?utf-8?B?T2VidHJaNFlObGhXOWVlZVUrTDk4dHB4Vm1KTS9QZy9ramFHdDlpcGpGMklB?=
+ =?utf-8?B?NWQ1QnorcHkvNzVmYnNqaHZEdG5ZMFp1N3FKczR3V3k0cFlVSXFNWTNVSjBp?=
+ =?utf-8?B?WlhoYzV1LzEza09mWXFtR2lsK0YzNDR6aU1xeHY3U29pSUJuVW92Z1lvdmd4?=
+ =?utf-8?B?UTl5SjJ6YWlnWmZOeFBmRnpFSlNzK0pKN1d4b1F1RStMUFlIVndmMlpBb0g5?=
+ =?utf-8?B?Ukx1azdSWkEyVXZmdGxYc0tFa3ZkMWdpY1BrNklxN0FNVVBnbU1rL09SajFj?=
+ =?utf-8?B?d2ZwYXZQSGoxUEY3MmEyNWtuQm1aUytKbGVCdVdkWi8zd0tSMFoyL1RqZ0N4?=
+ =?utf-8?B?U1ZaQU9EUWtQNWM1ZFdRZENoQWhGbnJ2YjJYK2tpeUVhdTY2M2FhSmMrSk1F?=
+ =?utf-8?B?N0tZL29RNEJKQjI2aC9Od09Ock5henhUaWdJakFWaWNmR0s2bUxjRXJ3aC93?=
+ =?utf-8?B?S2ZIVXA3R3lYcFJ0dDZ3QW11UVV6cjQ2a2Zsd29FQXEyY01oWU9qVXc1Skxy?=
+ =?utf-8?B?RHcxV240b203OS9XalFySDFmNER2Z2hSS04wMFgzTTFONEY5bWhyRGhQYnhK?=
+ =?utf-8?B?TlBwZ0pLd1BBUjNmU2ZzM3FCZGMyOFQwYVRHSjBQVTdaRVpqRGNoZHJsTnpz?=
+ =?utf-8?B?YlJpQkpYbTFQWlZLWkttSlVIemdhdWt3VGlzVFQwZFA5Ky9pY1E2dGt6eEtk?=
+ =?utf-8?B?T1NRNmN5cE1jNjc2ZUhRTUZCSENzSWRLcTcxYkRCU0Q2K3dTSWk3V0szRGZi?=
+ =?utf-8?B?NDBJdkNyd1ZaZmZVTURlWVIzRDAzVnZtMWJ4V1B2bk5FeDhiUWpSZjFVd0wy?=
+ =?utf-8?B?cFdXRE15Z1FCMVdENU1SckJZa1dISXYxN0lybUx0YkY3Rk1oSFhmb2Y2YnZn?=
+ =?utf-8?B?NVQ1cTBYRHgrc2t4bURpZUM0anUraVZ2NWREczhhb0lPTlozMjcvZVgxVHVD?=
+ =?utf-8?B?aDZpMDlFbW9MVGIrcmthYklKSm9XeU9GMTRaRW9jZkQrZUxkQmY2cWR5dzhS?=
+ =?utf-8?B?dUNjQ0dicGhlNUp5YnI1TEdMdnBHcC9QNm1ydHM2NGZPNUR2VEJjUHh0dVVC?=
+ =?utf-8?B?eHFXYmg1b0NGdHhyaTEzME1FRS9tVmNwaDZaNXlpNktFMG9sMWt6RHBSWjFi?=
+ =?utf-8?B?N2tWVXU0ZTVSUG80V1dPbmQ4OUIramtjSDJhMEhkZ1RsQkMySFNUYk9qVU0y?=
+ =?utf-8?B?cGp0ZWRDbkVCNklBNjRtVmtSSDFvY1RiK1lMRzJTaU1CZXFPMk85ZVFHdjNw?=
+ =?utf-8?B?aEtWaWZKOGw4ZzBiRDcxSVE0UmRUNlBqZFFzUksvZDJaR2NhVCtjNGEvMHAx?=
+ =?utf-8?B?UmMrVVZMd3ljK1BER3kwdGFOTFBBZDRLZ3o2bFlRN0FUYnlVTkNoZzBxVXVG?=
+ =?utf-8?B?YlExVjdNeTNWZmdJZHpkS3dZUmJIc0lYY3JyUDE5NUV0dmt6UXAwVm4yYk1i?=
+ =?utf-8?B?VmlzdlVsTGFidElHNnZRWi83U1IrY2R3d1FieWJGTHpYb2VuQnZSeXY4cU9q?=
+ =?utf-8?B?SHVRY0hQV25ERjhVU3dZWndVajJ6aHFIQUh4WXdLOVJMc2JGVUh3dXBjaXNL?=
+ =?utf-8?B?cGpyTjRhQW53NFRtbU53Vk50S3dFczdsZ1BBTy9aK2k3Wnd6TlZSdFVSVCtn?=
+ =?utf-8?B?aDdBYlI5ckNjbDhRdVd2dU1EL0NLNlhvYVRCRTdBNnVtalB1RUxaZTh1Zks1?=
+ =?utf-8?Q?5vDaYY5MfLk1nnyWNFNFYxTmo?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15d2ca82-3334-47af-3eef-08db92811488
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5549.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2023 11:18:49.8725 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yzHvTatribODZbUYaz4qNDzgDeKzSvyqt9TqEoDMS0dbqAZ92oowzFd6PbyAyOycPXkmRDx+jbsccYCPEYEXpQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6495
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v4 04/29] drm/i915/gvt: Don't try to unpin
+ an empty page range
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,428 +157,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Cc: Yan Zhao <yan.y.zhao@intel.com>, kvm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Yongwei Ma <yongwei.ma@intel.com>, Ben Gardon <bgardon@google.com>,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow consistent naming convention. Replace JSL with
-JASPERLAKE. Unroll IS_JSL_EHL() define  with IS_JASPERLAKE() ||
-IS_ELKHARTLAKE() condition. Change in the display step define for
-Jasperlake.
+On 7/29/2023 4:35 AM, Sean Christopherson wrote:
+> From: Yan Zhao <yan.y.zhao@intel.com>
+> 
+> Attempt to unpin pages in the error path of gvt_pin_guest_page() if and
+> only if at least one page was successfully pinned.  Unpinning doesn't
+> cause functional problems, but vfio_device_container_unpin_pages()
+> rightfully warns about being asked to unpin zero pages.
+> 
+> Signed-off-by: Yan Zhao <yan.y.zhao@intel.com>
+> [sean: write changelog]
+> Signed-off-by: Sean Christopherson <seanjc@google.com>
+> ---
+>   drivers/gpu/drm/i915/gvt/kvmgt.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> index 429f0f993a13..0366a699baf5 100644
+> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
+> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> @@ -172,7 +172,8 @@ static int gvt_pin_guest_page(struct intel_vgpu *vgpu, unsigned long gfn,
+>   	*page = base_page;
+>   	return 0;
+>   err:
+> -	gvt_unpin_guest_page(vgpu, gfn, npage * PAGE_SIZE);
+> +	if (npage)
+> +		gvt_unpin_guest_page(vgpu, gfn, npage * PAGE_SIZE);
+>   	return ret;
+>   }
+>
+Reviewed-by: Zhi Wang <zhi.a.wang@intel.com>
 
-v2:
-- Change subject prefix jsl instead of JSL(Anusha)
 
-v3:
-- Remove the use of define IS_JSL_EHL.
-- Replace with IS_JASPERLAKE() || IS_ELKHARTLAKE()
-- Unrolled wrapper IS_JSL_ELK_DISPLAY_STEP 
-
-v4:
-- Removed unused macro
-
-v5:
-- Resolve checkpatch/whitespace.(Jani) 
-
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c        |  5 ++--
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  4 +--
- .../gpu/drm/i915/display/intel_combo_phy.c    |  7 +++--
- drivers/gpu/drm/i915/display/intel_ddi.c      |  7 +++--
- drivers/gpu/drm/i915/display/intel_display.c  |  5 ++--
- drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 29 +++++++++++--------
- drivers/gpu/drm/i915/display/intel_hdmi.c     |  3 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.c    |  2 +-
- drivers/gpu/drm/i915/gt/intel_sseu.c          |  2 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c   |  3 +-
- drivers/gpu/drm/i915/i915_drv.h               |  8 ++---
- drivers/gpu/drm/i915/intel_step.c             |  2 +-
- drivers/gpu/drm/i915/soc/intel_pch.c          |  8 +++--
- 15 files changed, 49 insertions(+), 40 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index f7ebc146f96d..fd048b14717d 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -444,7 +444,8 @@ static void gen11_dsi_config_phy_lanes_sequence(struct intel_encoder *encoder)
- 		intel_de_write(dev_priv, ICL_PORT_TX_DW2_GRP(phy), tmp);
- 
- 		/* For EHL, TGL, set latency optimization for PCS_DW1 lanes */
--		if (IS_JSL_EHL(dev_priv) || (DISPLAY_VER(dev_priv) >= 12)) {
-+		if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv) ||
-+		    (DISPLAY_VER(dev_priv) >= 12)) {
- 			intel_de_rmw(dev_priv, ICL_PORT_PCS_DW1_AUX(phy),
- 				     LATENCY_OPTIM_MASK, LATENCY_OPTIM_VAL(0));
- 
-@@ -553,7 +554,7 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
- 		}
- 	}
- 
--	if (IS_JSL_EHL(dev_priv)) {
-+	if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
- 		for_each_dsi_phy(phy, intel_dsi->phys)
- 			intel_de_rmw(dev_priv, ICL_DPHY_CHKN(phy),
- 				     0, ICL_DPHY_CHKN_AFE_OVER_PPI_STRAP);
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index f683802ce931..eab0f0dd057e 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -3155,7 +3155,7 @@ static int intel_compute_max_dotclk(struct drm_i915_private *dev_priv)
-  */
- void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
- {
--	if (IS_JSL_EHL(dev_priv)) {
-+	if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
- 		if (dev_priv->display.cdclk.hw.ref == 24000)
- 			dev_priv->display.cdclk.max_cdclk_freq = 552000;
- 		else
-@@ -3583,7 +3583,7 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
- 	} else if (DISPLAY_VER(dev_priv) >= 12) {
- 		dev_priv->display.funcs.cdclk = &tgl_cdclk_funcs;
- 		dev_priv->display.cdclk.table = icl_cdclk_table;
--	} else if (IS_JSL_EHL(dev_priv)) {
-+	} else if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
- 		dev_priv->display.funcs.cdclk = &ehl_cdclk_funcs;
- 		dev_priv->display.cdclk.table = icl_cdclk_table;
- 	} else if (DISPLAY_VER(dev_priv) >= 11) {
-diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-index 922a6d87b553..6e143833c819 100644
---- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-@@ -141,7 +141,7 @@ static bool has_phy_misc(struct drm_i915_private *i915, enum phy phy)
- 
- 	if (IS_ALDERLAKE_S(i915))
- 		return phy == PHY_A;
--	else if (IS_JSL_EHL(i915) ||
-+	else if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) ||
- 		 IS_ROCKETLAKE(i915) ||
- 		 IS_DG1(i915))
- 		return phy < PHY_C;
-@@ -242,7 +242,7 @@ static bool icl_combo_phy_verify_state(struct drm_i915_private *dev_priv,
- 		ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW8(phy),
- 				     IREFGEN, IREFGEN);
- 
--		if (IS_JSL_EHL(dev_priv)) {
-+		if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
- 			if (ehl_vbt_ddi_d_present(dev_priv))
- 				expected_val = ICL_PHY_MISC_MUX_DDID;
- 
-@@ -333,7 +333,8 @@ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
- 		 * "internal" child devices.
- 		 */
- 		val = intel_de_read(dev_priv, ICL_PHY_MISC(phy));
--		if (IS_JSL_EHL(dev_priv) && phy == PHY_A) {
-+		if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-+		    phy == PHY_A) {
- 			val &= ~ICL_PHY_MISC_MUX_DDID;
- 
- 			if (ehl_vbt_ddi_d_present(dev_priv))
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 3cd2191fa794..22a1aba827ff 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3583,7 +3583,8 @@ void intel_ddi_compute_min_voltage_level(struct drm_i915_private *dev_priv,
- {
- 	if (DISPLAY_VER(dev_priv) >= 12 && crtc_state->port_clock > 594000)
- 		crtc_state->min_voltage_level = 2;
--	else if (IS_JSL_EHL(dev_priv) && crtc_state->port_clock > 594000)
-+	else if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-+		 crtc_state->port_clock > 594000)
- 		crtc_state->min_voltage_level = 3;
- 	else if (DISPLAY_VER(dev_priv) >= 11 && crtc_state->port_clock > 594000)
- 		crtc_state->min_voltage_level = 1;
-@@ -4878,7 +4879,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv,
- 		encoder->disable_clock = dg1_ddi_disable_clock;
- 		encoder->is_clock_enabled = dg1_ddi_is_clock_enabled;
- 		encoder->get_config = dg1_ddi_get_config;
--	} else if (IS_JSL_EHL(dev_priv)) {
-+	} else if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
- 		if (intel_ddi_is_tc(dev_priv, port)) {
- 			encoder->enable_clock = jsl_ddi_tc_enable_clock;
- 			encoder->disable_clock = jsl_ddi_tc_disable_clock;
-@@ -4949,7 +4950,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv,
- 		encoder->hpd_pin = rkl_hpd_pin(dev_priv, port);
- 	else if (DISPLAY_VER(dev_priv) >= 12)
- 		encoder->hpd_pin = tgl_hpd_pin(dev_priv, port);
--	else if (IS_JSL_EHL(dev_priv))
-+	else if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv))
- 		encoder->hpd_pin = ehl_hpd_pin(dev_priv, port);
- 	else if (DISPLAY_VER(dev_priv) == 11)
- 		encoder->hpd_pin = icl_hpd_pin(dev_priv, port);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e401bcb234c2..6e2f000377ba 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1749,7 +1749,7 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
- 		return phy <= PHY_E;
- 	else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
- 		return phy <= PHY_D;
--	else if (IS_JSL_EHL(dev_priv))
-+	else if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv))
- 		return phy <= PHY_C;
- 	else if (IS_ALDERLAKE_P(dev_priv) || IS_DISPLAY_VER(dev_priv, 11, 12))
- 		return phy <= PHY_B;
-@@ -1801,7 +1801,8 @@ enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
- 		return PHY_B + port - PORT_TC1;
- 	else if ((IS_DG1(i915) || IS_ROCKETLAKE(i915)) && port >= PORT_TC1)
- 		return PHY_C + port - PORT_TC1;
--	else if (IS_JSL_EHL(i915) && port == PORT_D)
-+	else if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-+		 port == PORT_D)
- 		return PHY_A;
- 
- 	return PHY_A + port - PORT_A;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f5407569300a..12bd2f322e62 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -500,7 +500,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
- 		else if (IS_ALDERLAKE_P(dev_priv) || IS_ALDERLAKE_S(dev_priv) ||
- 			 IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
- 			max_rate = 810000;
--		else if (IS_JSL_EHL(dev_priv))
-+		else if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv))
- 			max_rate = ehl_max_source_rate(intel_dp);
- 		else
- 			max_rate = icl_max_source_rate(intel_dp);
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 66afdb91fcdf..4c4108d404f6 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -191,7 +191,8 @@ intel_combo_pll_enable_reg(struct drm_i915_private *i915,
- {
- 	if (IS_DG1(i915))
- 		return DG1_DPLL_ENABLE(pll->info->id);
--	else if (IS_JSL_EHL(i915) && (pll->info->id == DPLL_ID_EHL_DPLL4))
-+	else if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-+		 (pll->info->id == DPLL_ID_EHL_DPLL4))
- 		return MG_PLL_ENABLE(0);
- 
- 	return ICL_DPLL_ENABLE(pll->info->id);
-@@ -2460,8 +2461,8 @@ static void icl_wrpll_params_populate(struct skl_wrpll_params *params,
- static bool
- ehl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
- {
--	return ((IS_PLATFORM(i915, INTEL_ELKHARTLAKE) &&
--		 IS_JSL_EHL_DISPLAY_STEP(i915, STEP_B0, STEP_FOREVER)) ||
-+	return (((IS_ELKHARTLAKE(i915) || IS_JASPERLAKE(i915)) &&
-+		 IS_DISPLAY_STEP(i915, STEP_B0, STEP_FOREVER)) ||
- 		 IS_TIGERLAKE(i915) || IS_ALDERLAKE_S(i915) || IS_ALDERLAKE_P(i915)) &&
- 		 i915->display.dpll.ref_clks.nssc == 38400;
- }
-@@ -3226,7 +3227,8 @@ static int icl_get_combo_phy_dpll(struct intel_atomic_state *state,
- 			BIT(DPLL_ID_EHL_DPLL4) |
- 			BIT(DPLL_ID_ICL_DPLL1) |
- 			BIT(DPLL_ID_ICL_DPLL0);
--	} else if (IS_JSL_EHL(dev_priv) && port != PORT_A) {
-+	} else if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-+				port != PORT_A) {
- 		dpll_mask =
- 			BIT(DPLL_ID_EHL_DPLL4) |
- 			BIT(DPLL_ID_ICL_DPLL1) |
-@@ -3567,7 +3569,8 @@ static bool icl_pll_get_hw_state(struct drm_i915_private *dev_priv,
- 			hw_state->div0 &= TGL_DPLL0_DIV0_AFC_STARTUP_MASK;
- 		}
- 	} else {
--		if (IS_JSL_EHL(dev_priv) && id == DPLL_ID_EHL_DPLL4) {
-+		if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-+		    id == DPLL_ID_EHL_DPLL4) {
- 			hw_state->cfgcr0 = intel_de_read(dev_priv,
- 							 ICL_DPLL_CFGCR0(4));
- 			hw_state->cfgcr1 = intel_de_read(dev_priv,
-@@ -3623,7 +3626,8 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
- 		cfgcr1_reg = TGL_DPLL_CFGCR1(id);
- 		div0_reg = TGL_DPLL0_DIV0(id);
- 	} else {
--		if (IS_JSL_EHL(dev_priv) && id == DPLL_ID_EHL_DPLL4) {
-+		if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-+		    id == DPLL_ID_EHL_DPLL4) {
- 			cfgcr0_reg = ICL_DPLL_CFGCR0(4);
- 			cfgcr1_reg = ICL_DPLL_CFGCR1(4);
- 		} else {
-@@ -3806,8 +3810,8 @@ static void combo_pll_enable(struct drm_i915_private *dev_priv,
- {
- 	i915_reg_t enable_reg = intel_combo_pll_enable_reg(dev_priv, pll);
- 
--	if (IS_JSL_EHL(dev_priv) &&
--	    pll->info->id == DPLL_ID_EHL_DPLL4) {
-+	if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-+	    pll->info->id == DPLL_ID_EHL_DPLL4) {
- 
- 		/*
- 		 * We need to disable DC states when this DPLL is enabled.
-@@ -3914,8 +3918,8 @@ static void combo_pll_disable(struct drm_i915_private *dev_priv,
- 
- 	icl_pll_disable(dev_priv, pll, enable_reg);
- 
--	if (IS_JSL_EHL(dev_priv) &&
--	    pll->info->id == DPLL_ID_EHL_DPLL4)
-+	if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-+	    pll->info->id == DPLL_ID_EHL_DPLL4)
- 		intel_display_power_put(dev_priv, POWER_DOMAIN_DC_OFF,
- 					pll->wakeref);
- }
-@@ -4150,7 +4154,7 @@ void intel_shared_dpll_init(struct drm_i915_private *dev_priv)
- 		dpll_mgr = &rkl_pll_mgr;
- 	else if (DISPLAY_VER(dev_priv) >= 12)
- 		dpll_mgr = &tgl_pll_mgr;
--	else if (IS_JSL_EHL(dev_priv))
-+	else if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv))
- 		dpll_mgr = &ehl_pll_mgr;
- 	else if (DISPLAY_VER(dev_priv) >= 11)
- 		dpll_mgr = &icl_pll_mgr;
-@@ -4335,7 +4339,8 @@ static void readout_dpll_hw_state(struct drm_i915_private *i915,
- 
- 	pll->on = intel_dpll_get_hw_state(i915, pll, &pll->state.hw_state);
- 
--	if (IS_JSL_EHL(i915) && pll->on &&
-+	if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-+	    pll->on &&
- 	    pll->info->id == DPLL_ID_EHL_DPLL4) {
- 		pll->wakeref = intel_display_power_get(i915,
- 						       POWER_DOMAIN_DC_OFF);
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 8d1c8abfcffa..19e89f383000 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2894,7 +2894,8 @@ static u8 intel_hdmi_default_ddc_pin(struct intel_encoder *encoder)
- 		ddc_pin = rkl_port_to_ddc_pin(dev_priv, port);
- 	else if (DISPLAY_VER(dev_priv) == 9 && HAS_PCH_TGP(dev_priv))
- 		ddc_pin = gen9bc_tgp_port_to_ddc_pin(dev_priv, port);
--	else if (IS_JSL_EHL(dev_priv) && HAS_PCH_TGP(dev_priv))
-+	else if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-+		 HAS_PCH_TGP(dev_priv))
- 		ddc_pin = mcc_port_to_ddc_pin(dev_priv, port);
- 	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
- 		ddc_pin = icl_port_to_ddc_pin(dev_priv, port);
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 04ab034a8d57..94ec41b9d5ae 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1074,7 +1074,7 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 		return false;
- 
- 	/* JSL and EHL only supports eDP 1.3 */
--	if (IS_JSL_EHL(dev_priv)) {
-+	if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
- 		drm_dbg_kms(&dev_priv->drm, "PSR2 not supported by phy\n");
- 		return false;
- 	}
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 97ac6fb37958..d690f329ee12 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -226,7 +226,7 @@ bool i915_gem_object_can_bypass_llc(struct drm_i915_gem_object *obj)
- 	 * it, but since i915 takes the stance of always zeroing memory before
- 	 * handing it to userspace, we need to prevent this.
- 	 */
--	return IS_JSL_EHL(i915);
-+	return (IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915));
- }
- 
- static void i915_gem_close_object(struct drm_gem_object *gem, struct drm_file *file)
-diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
-index 1141f875f5bd..f602895f6d0d 100644
---- a/drivers/gpu/drm/i915/gt/intel_sseu.c
-+++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
-@@ -302,7 +302,7 @@ static void gen11_sseu_info_init(struct intel_gt *gt)
- 	u8 eu_en;
- 	u8 s_en;
- 
--	if (IS_JSL_EHL(gt->i915))
-+	if (IS_JASPERLAKE(gt->i915) || IS_ELKHARTLAKE(gt->i915))
- 		intel_sseu_set_info(sseu, 1, 4, 8);
- 	else
- 		intel_sseu_set_info(sseu, 1, 8, 8);
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index a8ba843029bf..3ae0dbd39eaa 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1460,7 +1460,8 @@ icl_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
- 
- 	/* Wa_1607087056:icl,ehl,jsl */
- 	if (IS_ICELAKE(i915) ||
--	    IS_JSL_EHL_GRAPHICS_STEP(i915, STEP_A0, STEP_B0))
-+		((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-+		IS_GRAPHICS_STEP(i915, STEP_A0, STEP_B0)))
- 		wa_write_or(wal,
- 			    GEN11_SLICE_UNIT_LEVEL_CLKGATE,
- 			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index f46846574420..704c0991e7d3 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -562,8 +562,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_COFFEELAKE(i915)	IS_PLATFORM(i915, INTEL_COFFEELAKE)
- #define IS_COMETLAKE(i915)	IS_PLATFORM(i915, INTEL_COMETLAKE)
- #define IS_ICELAKE(i915)	IS_PLATFORM(i915, INTEL_ICELAKE)
--#define IS_JSL_EHL(i915)	(IS_PLATFORM(i915, INTEL_JASPERLAKE) || \
--				IS_PLATFORM(i915, INTEL_ELKHARTLAKE))
-+#define IS_JASPERLAKE(i915)	IS_PLATFORM(i915, INTEL_JASPERLAKE)
-+#define IS_ELKHARTLAKE(i915)	IS_PLATFORM(i915, INTEL_ELKHARTLAKE)
- #define IS_TIGERLAKE(i915)	IS_PLATFORM(i915, INTEL_TIGERLAKE)
- #define IS_ROCKETLAKE(i915)	IS_PLATFORM(i915, INTEL_ROCKETLAKE)
- #define IS_DG1(i915)        IS_PLATFORM(i915, INTEL_DG1)
-@@ -651,10 +651,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- 
- 
- 
--#define IS_JSL_EHL_GRAPHICS_STEP(p, since, until) \
--	(IS_JSL_EHL(p) && IS_GRAPHICS_STEP(p, since, until))
--#define IS_JSL_EHL_DISPLAY_STEP(p, since, until) \
--	(IS_JSL_EHL(p) && IS_DISPLAY_STEP(p, since, until))
- 
- #define IS_TGL_DISPLAY_STEP(__i915, since, until) \
- 	(IS_TIGERLAKE(__i915) && \
-diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
-index 8a9ff6227e53..5e4816417b99 100644
---- a/drivers/gpu/drm/i915/intel_step.c
-+++ b/drivers/gpu/drm/i915/intel_step.c
-@@ -219,7 +219,7 @@ void intel_step_init(struct drm_i915_private *i915)
- 	} else if (IS_TIGERLAKE(i915)) {
- 		revids = tgl_revids;
- 		size = ARRAY_SIZE(tgl_revids);
--	} else if (IS_JSL_EHL(i915)) {
-+	} else if (IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) {
- 		revids = jsl_ehl_revids;
- 		size = ARRAY_SIZE(jsl_ehl_revids);
- 	} else if (IS_ICELAKE(i915)) {
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
-index 382a4a8015b4..bc344adbad5e 100644
---- a/drivers/gpu/drm/i915/soc/intel_pch.c
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.c
-@@ -115,7 +115,8 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
- 		return PCH_ICP;
- 	case INTEL_PCH_MCC_DEVICE_ID_TYPE:
- 		drm_dbg_kms(&dev_priv->drm, "Found Mule Creek Canyon PCH\n");
--		drm_WARN_ON(&dev_priv->drm, !IS_JSL_EHL(dev_priv));
-+		drm_WARN_ON(&dev_priv->drm, !(IS_JASPERLAKE(dev_priv) ||
-+					      IS_ELKHARTLAKE(dev_priv)));
- 		/* MCC is TGP compatible */
- 		return PCH_TGP;
- 	case INTEL_PCH_TGP_DEVICE_ID_TYPE:
-@@ -127,7 +128,8 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
- 		return PCH_TGP;
- 	case INTEL_PCH_JSP_DEVICE_ID_TYPE:
- 		drm_dbg_kms(&dev_priv->drm, "Found Jasper Lake PCH\n");
--		drm_WARN_ON(&dev_priv->drm, !IS_JSL_EHL(dev_priv));
-+		drm_WARN_ON(&dev_priv->drm, !(IS_JASPERLAKE(dev_priv) ||
-+					      IS_ELKHARTLAKE(dev_priv)));
- 		/* JSP is ICP compatible */
- 		return PCH_ICP;
- 	case INTEL_PCH_ADP_DEVICE_ID_TYPE:
-@@ -177,7 +179,7 @@ intel_virt_detect_pch(const struct drm_i915_private *dev_priv,
- 		id = INTEL_PCH_ADP_DEVICE_ID_TYPE;
- 	else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
- 		id = INTEL_PCH_TGP_DEVICE_ID_TYPE;
--	else if (IS_JSL_EHL(dev_priv))
-+	else if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv))
- 		id = INTEL_PCH_MCC_DEVICE_ID_TYPE;
- 	else if (IS_ICELAKE(dev_priv))
- 		id = INTEL_PCH_ICP_DEVICE_ID_TYPE;
