@@ -2,52 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 901F176B782
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Aug 2023 16:32:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 105DD76B7D1
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Aug 2023 16:40:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA40810E354;
-	Tue,  1 Aug 2023 14:32:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0992F10E409;
+	Tue,  1 Aug 2023 14:40:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C494A10E354
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Aug 2023 14:32:18 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7B9110E405;
+ Tue,  1 Aug 2023 14:40:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690900338; x=1722436338;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=WwV046P0CxmG9CPMyMDtQ7oBdkdACiJku8MVNkOE9Bk=;
- b=FGhAm/753SI6C4L+3e3gVCiHB5oYEDneAcLLev4ziEmTGDm3f4IP4R+A
- QuXJIBsXABMcoqc+Ic84GoLBZOKGGlzHOr+GUipklW/ubY5ZdzNXCrP5z
- 6Zr3nSWRzcVIXY5/FL6FuwQcJyBWFMRV+Yctn8np+fOeGMmm7cOPbQDs0
- xVXu3TWl0WNbH9Yb6OWgY35HpgPUpsDj499BxOPFe0xIEZIrderFgfOME
- KJjg3ARCFjvcytiGpMh8tqdUrD9wG1ysFq07TuRrhuADCkXb8LjK44iSR
- v2vB0M4dcZVkOy/YGoI842xXNdCRPiGQXUrAJBNqmbZLOGvmyscwEGvmF Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="455687687"
-X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="455687687"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 07:32:06 -0700
+ t=1690900832; x=1722436832;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=WKNfzQqsc7FCZxNn5pfKjv4pKvpeP9UUq6yggZzoP+c=;
+ b=Pk0W4oXNvpTk15MR2ZsgN+H6manTx4sQlHB9ie+/d6iIcrT7w3lO5cW+
+ 8sSimLKpytOhrQjFcqT7VSpQn6/midUihNnjp8rvcAS63wQX0lqyoMaMO
+ D7pXOSGUYczKLzEISibbLcn6+F7qupJFlN6rC/paUHh8zUDZmrWBYNpFz
+ 9qBuGOISf9emV7KOhCPPHc5etYn4/PR+G050SCM5hbMpGeO91EL/aP7aa
+ Tr7tfK7TF2OO5VQz2pO8hfEd0by3xHvJ45/WH3l6N3F7rBwzbQstxbhYe
+ z/DD/Bn6gLw61j0/hhQKgFbW2C6MaKmkUAFLQ1I+Pk4KRg0y1QIkVadnY A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="433155071"
+X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="433155071"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2023 07:40:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="705842537"
-X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="705842537"
-Received: from jhajducz-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.37.77])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 07:32:03 -0700
-Date: Tue, 1 Aug 2023 16:32:00 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Message-ID: <ZMkXYAASwtYZ6gYt@ashyti-mobl2.lan>
-References: <20230726155356.1652979-1-jonathan.cavitt@intel.com>
- <20230726155356.1652979-2-jonathan.cavitt@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="758365025"
+X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="758365025"
+Received: from linux.intel.com ([10.54.29.200])
+ by orsmga008.jf.intel.com with ESMTP; 01 Aug 2023 07:40:32 -0700
+Received: from linux.intel.com (maurocar-mobl2.ger.corp.intel.com
+ [10.252.0.188])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id 10209580DA2;
+ Tue,  1 Aug 2023 07:40:32 -0700 (PDT)
+Received: from localhost ([127.0.0.1])
+ by linux.intel.com with esmtp (Exim 4.96)
+ (envelope-from <mauro.chehab@linux.intel.com>) id 1qQqY1-003MEx-2c;
+ Tue, 01 Aug 2023 16:40:29 +0200
+Message-ID: <e34b48cf-3bde-f60e-ac61-d5bbd7afb87d@linux.intel.com>
+Date: Tue, 1 Aug 2023 16:40:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230726155356.1652979-2-jonathan.cavitt@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Make i915_coherent_map_type
- GT-centric
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>
+References: <20230801141955.383305-1-andi.shyti@linux.intel.com>
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+In-Reply-To: <20230801141955.383305-1-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 0/4] Invalidate TLB cache for all GT's
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,131 +70,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris.p.wilson@linux.intel.com, intel-gfx@lists.freedesktop.org,
- matthew.d.roper@intel.com, nirmoy.das@intel.com
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jonathan,
 
-Apparently checkpatch is complaining...
+On 8/1/23 16:19, Andi Shyti wrote:
+> Hi,
+>
+> This series revisits a once-trendy topic: TLB invalidation
+> support for multi-gt.  It's a theme that's been passed around and
+> reshaped by several of us.
+>
+> I've filtered out most of the original changes from this series,
+> initially sent by Mauro [1]. His ideas were inspired by some
+> changes from Chris, who in turn was inspired by a change from
+> me[2], all of which stemmed from offline talks by Chris (it's
+> like a game of inspiration tag!).
+>
+> What I've done is simply rebase and refactor the patches,
+> focusing solely on the changes needed for multi-gt TLB
+> invalidation in MMIO memory. The result is a leaner, more
+> targeted proposal.
 
-[...]
+Series look good to me. Feel free to add my R-B to the patches I didn't 
+sign already.
 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 119deb9f938c..1897cb5aa2a2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1191,7 +1191,7 @@ lrc_pre_pin(struct intel_context *ce,
->  	GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
->  
->  	*vaddr = i915_gem_object_pin_map(ce->state->obj,
-> -					 i915_coherent_map_type(ce->engine->i915,
-> +					 intel_gt_coherent_map_type(ce->engine->gt,
->  								ce->state->obj,
->  								false) |
-
-... here:
-
-CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-
->  					 I915_MAP_OVERRIDE);
-
-[...]
-
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
-> index 76fbae358072..afce036bcaa8 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_context.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_context.c
-> @@ -88,7 +88,7 @@ static int __live_context_size(struct intel_engine_cs *engine)
->  		goto err;
->  
->  	vaddr = i915_gem_object_pin_map_unlocked(ce->state->obj,
-> -						 i915_coherent_map_type(engine->i915,
-> +						 intel_gt_coherent_map_type(engine->gt,
->  									ce->state->obj, false));
+Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 
 
-... here:
-
-CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-
-
->  	if (IS_ERR(vaddr)) {
->  		err = PTR_ERR(vaddr);
-
-[...]
-
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> index a78a3d2c2e16..bc883de02295 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> @@ -1292,7 +1292,7 @@ static int compare_isolation(struct intel_engine_cs *engine,
->  	}
->  
->  	lrc = i915_gem_object_pin_map_unlocked(ce->state->obj,
-> -					       i915_coherent_map_type(engine->i915,
-> +					       intel_gt_coherent_map_type(engine->gt,
->  								      ce->state->obj,
->  								      false));
-
-... here:
-
-CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-
->  	if (IS_ERR(lrc)) {
-
-[...]
-
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> index 2eb891b270ae..c0fa9d232205 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> @@ -792,7 +792,7 @@ int intel_guc_allocate_and_map_vma(struct intel_guc *guc, u32 size,
->  		return PTR_ERR(vma);
->  
->  	vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
-> -						 i915_coherent_map_type(guc_to_gt(guc)->i915,
-> +						 intel_gt_coherent_map_type(guc_to_gt(guc),
->  									vma->obj, true));
-
-... here:
-
-CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-
->  	if (IS_ERR(vaddr)) {
->  		i915_vma_unpin_and_release(&vma, 0);
-
-[...]
-
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index 1ce07d7e8769..8e0b5d48ddf6 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -11,6 +11,7 @@
->  #include "gem/i915_gem_lmem.h"
->  
->  #include "i915_drv.h"
-> +#include "gt/intel_gt.h"
->  
->  #include "intel_pxp.h"
->  #include "intel_pxp_cmd_interface_42.h"
-> @@ -245,7 +246,7 @@ static int alloc_streaming_command(struct intel_pxp *pxp)
->  	}
->  
->  	/* map the lmem into the virtual memory pointer */
-> -	cmd = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(i915, obj, true));
-> +	cmd = i915_gem_object_pin_map_unlocked(obj, intel_gt_coherent_map_type(pxp->ctrl_gt, obj, true));
-
-... and here:
-
-WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-
-Can you please fix those, run again checkpatch.pl and resend?
-
-Thanks,
-Andi
-
->  	if (IS_ERR(cmd)) {
->  		drm_err(&i915->drm, "Failed to map gsc message page!\n");
->  		err = PTR_ERR(cmd);
+>
+> Other patches from the original series might follow.
+>
+> Thanks,
+> Andi
+>
+> [1] https://patchwork.freedesktop.org/series/106293/
+> [2] https://patchwork.freedesktop.org/series/103831/
+>
+> Andi Shyti (2):
+>    i915/drm/gt: Move the gt defines in the gt directory
+>    drm/i915: Remove unnecessary include
+>
+> Chris Wilson (2):
+>    drm/i915/gt: Move TLB invalidation to its own file
+>    drm/i915: Invalidate the TLBs on each GT
+>
+>   drivers/gpu/drm/i915/Makefile                 |   1 +
+>   .../gpu/drm/i915/gem/i915_gem_object_types.h  |   4 +-
+>   drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  15 +-
+>   drivers/gpu/drm/i915/gt/intel_gt.c            | 140 +--------------
+>   drivers/gpu/drm/i915/gt/intel_gt.h            |  12 --
+>   drivers/gpu/drm/i915/gt/intel_gt_defines.h    |  11 ++
+>   drivers/gpu/drm/i915/gt/intel_ppgtt.c         |   4 +-
+>   drivers/gpu/drm/i915/gt/intel_tlb.c           | 159 ++++++++++++++++++
+>   drivers/gpu/drm/i915/gt/intel_tlb.h           |  29 ++++
+>   drivers/gpu/drm/i915/gt/selftest_tlb.c        |   3 +-
+>   drivers/gpu/drm/i915/i915_drv.h               |   1 -
+>   drivers/gpu/drm/i915/i915_vma.c               |  15 +-
+>   12 files changed, 231 insertions(+), 163 deletions(-)
+>   create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_defines.h
+>   create mode 100644 drivers/gpu/drm/i915/gt/intel_tlb.c
+>   create mode 100644 drivers/gpu/drm/i915/gt/intel_tlb.h
+>
