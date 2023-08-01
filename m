@@ -2,56 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A5D76AA2A
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Aug 2023 09:43:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F97576AA5A
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Aug 2023 09:57:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98D1510E315;
-	Tue,  1 Aug 2023 07:43:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6BCC10E317;
+	Tue,  1 Aug 2023 07:57:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 933C710E315
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Aug 2023 07:43:02 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47DC710E317
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Aug 2023 07:57:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690875782; x=1722411782;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=uDG3ZuV1HyKyhfDV+IQaIufqvSKs130x6Tvwlo8Ojps=;
- b=kdx2lKIF0db3svsFgDYUdJuzKYJpRlmCxUyE3sckyNaIzafAFkEnaHJZ
- xoI+EulzQVxnESCFKRf5Vn9KZsIoj7KLHLA/tafWa+enkJesTqWdGVUvz
- IhNrrXnb91j3rMimQY/g4KpBXvxUFSQLlihmuEIoIybO1fv502gkIDrIU
- cb6C0pSpRHNsgf3iaeVA69u5HJgTuuju91b6I+eK/2bIMucyt8MdIJHL8
- mbt+Agp4b+hILKP3rR986ZYdeNS2LZI18MuswqevJp89K2Sx7uI8HSFfq
- mO5cazGm7unIWTITaNOERVioGKhPQr1GAf14Ei8NEbcjOPSz0i/PMBD1t A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="359272050"
-X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="359272050"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 00:43:01 -0700
+ t=1690876663; x=1722412663;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=bOsNrT6jiyTaFAKA4UK925IdsH5uxBpVDlUsjcBPEd4=;
+ b=c0W7gpGcqXGJnpQ/sdzSKQMi9AMusqsSGFkz0/fMjw4k6Ngn9TpDrOPX
+ IPb0yk3bo419TFpYc92helaaGC69EyKLlH01ZFF4xaSiJNO/5L0SUjq/X
+ c6Ni6SLc+Pykb1e1p/crD0nGkcvTtXEL0AetzwUQJHZDO5I/dflq2lZ+5
+ GdViSeufNXo6MB/8pNaYsYY5wzOEE8UzS5r+/RpglGSaTRsZYRN+YDUuF
+ ccPYiwEarpTWF2PaTCDcHKz3suFDjBLi/7Qnu6pXiKCcoTTLru0DCBx+O
+ qHyKGFc8Z1Tce6NqVQ7kQjSGibY8ZptbHV8LfuRgpDFNySD1jZxhmUQ7I A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="369221873"
+X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="369221873"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2023 00:57:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="852340810"
-X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="852340810"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.39.50])
- ([10.249.39.50])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 00:42:59 -0700
-Message-ID: <f0283070-0504-7bb8-96d1-b50b4d0fa279@linux.intel.com>
-Date: Tue, 1 Aug 2023 09:42:58 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="798574550"
+X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="798574550"
+Received: from igorban-mobl1.ccr.corp.intel.com (HELO localhost)
+ ([10.252.36.188])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2023 00:57:41 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230725001312.1907319-15-matthew.d.roper@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230725001312.1907319-11-matthew.d.roper@intel.com>
+ <20230725001312.1907319-15-matthew.d.roper@intel.com>
+Date: Tue, 01 Aug 2023 10:57:39 +0300
+Message-ID: <87tttjw5xo.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: =?UTF-8?Q?Jouni_H=c3=b6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20230614051731.745821-1-jouni.hogander@intel.com>
- <20230614051731.745821-4-jouni.hogander@intel.com>
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230614051731.745821-4-jouni.hogander@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915/fbc: Moved fence related
- code away from intel_fbc
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 4/9] drm/i915: Eliminate
+ IS_MTL_GRAPHICS_STEP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,98 +60,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 6/14/2023 7:17 AM, Jouni Högander wrote:
-> As a preparation for Xe move HW fence details away from intel_fbc code.
-> Add new functions to check support for legacy fencing and fence id and use
-> these in fbc code. Xe doesn't support legacy fencing.
->
-> v2: Fix intel_gt_support_legacy_fencing macro
->
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_fbc.c | 12 ++++++------
->   drivers/gpu/drm/i915/gt/intel_gt_types.h |  2 ++
->   drivers/gpu/drm/i915/i915_vma.h          |  5 +++++
->   3 files changed, 13 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index da8166eedf93..25382022cd27 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -47,6 +47,7 @@
->   #include "i915_reg.h"
->   #include "i915_utils.h"
->   #include "i915_vgpu.h"
-> +#include "i915_vma.h"
->   #include "intel_cdclk.h"
->   #include "intel_de.h"
->   #include "intel_display_trace.h"
-> @@ -607,7 +608,7 @@ static void ivb_fbc_activate(struct intel_fbc *fbc)
->   	else if (DISPLAY_VER(i915) == 9)
->   		skl_fbc_program_cfb_stride(fbc);
->   
-> -	if (to_gt(i915)->ggtt->num_fences)
-> +	if (intel_gt_support_legacy_fencing(to_gt(i915)))
->   		snb_fbc_program_fence(fbc);
->   
->   	intel_de_write(i915, ILK_DPFC_CONTROL(fbc->id),
-> @@ -991,11 +992,10 @@ static void intel_fbc_update_state(struct intel_atomic_state *state,
->   	fbc_state->fence_y_offset = intel_plane_fence_y_offset(plane_state);
->   
->   	drm_WARN_ON(&i915->drm, plane_state->flags & PLANE_HAS_FENCE &&
-> -		    !plane_state->ggtt_vma->fence);
-> +		    !intel_gt_support_legacy_fencing(to_gt(i915)));
->   
-> -	if (plane_state->flags & PLANE_HAS_FENCE &&
-> -	    plane_state->ggtt_vma->fence)
-> -		fbc_state->fence_id = plane_state->ggtt_vma->fence->id;
-> +	if (plane_state->flags & PLANE_HAS_FENCE)
-> +		fbc_state->fence_id =  i915_vma_fence_id(plane_state->ggtt_vma);
->   	else
->   		fbc_state->fence_id = -1;
->   
-> @@ -1022,7 +1022,7 @@ static bool intel_fbc_is_fence_ok(const struct intel_plane_state *plane_state)
->   	 */
->   	return DISPLAY_VER(i915) >= 9 ||
->   		(plane_state->flags & PLANE_HAS_FENCE &&
-> -		 plane_state->ggtt_vma->fence);
-> +		 i915_vma_fence_id(plane_state->ggtt_vma) != -1);
->   }
->   
->   static bool intel_fbc_is_cfb_ok(const struct intel_plane_state *plane_state)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index f08c2556aa25..121a53f908d1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -306,4 +306,6 @@ enum intel_gt_scratch_field {
->   	INTEL_GT_SCRATCH_FIELD_COHERENTL3_WA = 256,
->   };
->   
-> +#define intel_gt_support_legacy_fencing(gt) (gt->ggtt->num_fences > 0)
-
-With the checkpath warning fixed here, this is
-
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-
+On Mon, 24 Jul 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
+> +/*
+> + * Check whether a GT contains the specific IP version and a stepping within
+> + * the specified range [from, until).  The lower stepping bound is inclusive,
+> + * the upper bound is exclusive (corresponding to the first hardware stepping
+> + * at when the workaround is no longer needed).  E.g.,
+> + *
+> + *    IS_GT_IP_STEP(GFX, IP_VER(12, 70), A0, B0)
+> + *    IS_GT_IP_STEP(MEDIA, IP_VER(13, 00), B1, D0)
+> + *    IS_GT_IP_STEP(GFX, IP_VER(12, 71), B1, FOREVER)
+> + *
+> + * "FOREVER" can be passed as the upper stepping bound for workarounds that
+> + * have no upper bound on steppings of the specified IP version.
+> + *
+> + * Note that media version checks with this macro will only work on platforms
+> + * with standalone media design (i.e., media version 13 and higher).
+> + */
+> +#define IS_GT_IP_STEP(type, gt, ipver, since, until) \
+> +	(BUILD_BUG_ON_ZERO(ipver < IP_VER(2, 0)) + \
+> +	 (__IS_##type##_GT(gt) && \
+> +	  __GT_VER_FULL(gt) == ipver && \
+> +	  __GT_STEP(gt) >= STEP_##since && \
+> +	  __GT_STEP(gt) <= STEP_##until))
 > +
->   #endif /* __INTEL_GT_TYPES_H__ */
-> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-> index 9a9729205d5b..6fdf6205c290 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.h
-> +++ b/drivers/gpu/drm/i915/i915_vma.h
-> @@ -418,6 +418,11 @@ i915_vma_unpin_fence(struct i915_vma *vma)
->   		__i915_vma_unpin_fence(vma);
->   }
->   
-> +static inline int i915_vma_fence_id(const struct i915_vma *vma)
-> +{
-> +	return vma->fence ? vma->fence->id : -1;
-> +}
-> +
->   void i915_vma_parked(struct intel_gt *gt);
->   
->   static inline bool i915_vma_is_scanout(const struct i915_vma *vma)
+
+I really dislike the type, since and until arguments here, passing in
+something that becomes part of the name of another macro. That's
+something we do in some of our macro spaghetti internally, but not as
+part of an interface that gets called all over the place.
+
+For function-like macros, I'd generally like to make them such that they
+could be converted to regular (static inline) functions without changing
+the call sites.
+
+BR,
+Jani.
+
+
+>  #define MEDIA_VER(i915)			(RUNTIME_INFO(i915)->media.ip.ver)
+>  #define MEDIA_VER_FULL(i915)		IP_VER(RUNTIME_INFO(i915)->media.ip.ver, \
+>  					       RUNTIME_INFO(i915)->media.ip.rel)
+> @@ -710,10 +736,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  #define IS_XEHPSDV_GRAPHICS_STEP(__i915, since, until) \
+>  	(IS_XEHPSDV(__i915) && IS_GRAPHICS_STEP(__i915, since, until))
+>  
+> -#define IS_MTL_GRAPHICS_STEP(__i915, variant, since, until) \
+> -	(IS_SUBPLATFORM(__i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_##variant) && \
+> -	 IS_GRAPHICS_STEP(__i915, since, until))
+> -
+>  #define IS_MTL_DISPLAY_STEP(__i915, since, until) \
+>  	(IS_METEORLAKE(__i915) && \
+>  	 IS_DISPLAY_STEP(__i915, since, until))
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
