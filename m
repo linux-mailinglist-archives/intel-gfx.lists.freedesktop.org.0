@@ -1,67 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A82276D08E
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Aug 2023 16:49:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5D276D098
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Aug 2023 16:50:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9CE810E533;
-	Wed,  2 Aug 2023 14:49:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D985910E547;
+	Wed,  2 Aug 2023 14:50:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com
- [IPv6:2a00:1450:4864:20::12e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7095210E1FF
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Aug 2023 14:49:35 +0000 (UTC)
-Received: by mail-lf1-x12e.google.com with SMTP id
- 2adb3069b0e04-4fe4762173bso3079077e87.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 02 Aug 2023 07:49:35 -0700 (PDT)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B090710E545
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Aug 2023 14:50:10 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id
+ 4fb4d7f45d1cf-52227884855so10554585a12.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 02 Aug 2023 07:50:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1690987771; x=1691592571;
+ d=chromium.org; s=google; t=1690987808; x=1691592608;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=aKHkYl6IMr8QnTnvT30Nci/brg8p0pHZBfK3BKGZxuI=;
- b=Pq+bTdD5N+DD8rAc1KC2k90a8XMV7LkhjQxc3v2pKh8PnyU7kWBUdsFCQYpNZVV6EC
- hzVPKhAtO4Dpsdb/K/SlkDd+P9SNEHV3MuzO6agsVMjk+NVzIYXSPtfWY+zU55J+LMFw
- U4vErh2k/QNPBEBRDrUuqt7etJP9KBld9i0PU=
+ bh=lCYYmzNqtzxNv8UbxN3uv60kE4E3C48+cD2+0APdVk8=;
+ b=bfwUet4qi7yyF7aKFOmhonqH5OcPqZZdq/h8mIfyRqAlamxsMsBJLoJX72eyQyg8kZ
+ rgqPuYe4+k77PaeBmcB+78yVr0g0gs6KfZ2378hHcDiu0S+vbibTZzmrojhRi5ur+uaT
+ cZeIwEtlFiDH4a7ak6yKOdnGaii8cT5vATQBI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1690987771; x=1691592571;
+ d=1e100.net; s=20221208; t=1690987808; x=1691592608;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=aKHkYl6IMr8QnTnvT30Nci/brg8p0pHZBfK3BKGZxuI=;
- b=RMVHW+zxxaNHg64kotkkZ4pZezjnKPKYPMSsraoq8O3zgYY0pc5SM6BipmuwR47xtN
- L/vnwQSWV7FhmzYmTLq6Bzga6rLxRYXTrNN0GhagF0BvLfA8ndWtEZmI8saWIdmPhkF9
- o0aWEOCYWMEx/OKbGs1vmun5CCwUgm+cEQ1cs/PFnDi3aspdIH96tIxdQfCPoHNwyCpn
- MNGBnsvA/yNGapv7jZH2eDcC7LViGZ8v/7dnOiSLur5iTFeYIzcW1EHoksEGv3H+lnZh
- FaTxzvIGcEHbPnoe32sMZlZrel5WgJLQBOpztS0m4U3q+G69FuWOheeqM8jYsdUqnYX7
- HVSA==
-X-Gm-Message-State: ABy/qLZ4ZYJLGrjEyuwKz1ai1sbNknEK/dv/oX1rd7SRD4/B1rLPj824
- Cm2NQrc+Ieb8iHbbsyMnmYcvGJv9kVE1X5k1U4PQTGoS
-X-Google-Smtp-Source: APBJJlHSqWorjX9y3i28QTwOHtLu3LayhpwUYbnCq/R4eGMqQBKq4c+zcf4XwJjNWFU+wrAh80N2dQ==
-X-Received: by 2002:a05:6512:3c84:b0:4fd:d6ff:c244 with SMTP id
- h4-20020a0565123c8400b004fdd6ffc244mr6224563lfv.62.1690987771228; 
- Wed, 02 Aug 2023 07:49:31 -0700 (PDT)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com.
- [209.85.208.52]) by smtp.gmail.com with ESMTPSA id
- n13-20020a05640206cd00b005223fb6d511sm8694092edy.28.2023.08.02.07.49.30
+ bh=lCYYmzNqtzxNv8UbxN3uv60kE4E3C48+cD2+0APdVk8=;
+ b=CEioGwfhzTFnqwT2c7w+knf+HNyqd0DxQF/QWJuR40SWv+5hIBmqNgf8dv2ipykzu4
+ 1i9Gi04ucQ17dSdKAlZ6tQ70ZHduSVrWJRsGRzBTxFBQveID8a7nLU89k7q8SV4mYCEg
+ yqrBbRAa2bQ3jplRdXPGEWMveiHe991bXUa0F9dtCkEdJkY50JedS/jHxaapvITZXuLl
+ VG+Eov2zJvXhITm9/6HX6PpT5+XQeeY6qdcv3Hin3WTbXRoCQvsWL5FNWbEqzmOvDfqr
+ bVxxxjAjNVkjLAOxi8EMw2Y8fJMpKvrbkkdwY/Ug1hvenCCarNHvGZ7MmkhcWILrMVCM
+ abhg==
+X-Gm-Message-State: ABy/qLajHrY3AKn95A2jW26s0ZlEEjg8XO4WTFCoOkNhJMYoc+eP07cu
+ TVkkCraGE0S87YdsRPsWTUR9H2TQ4WayTE+bbUnDxlXH
+X-Google-Smtp-Source: APBJJlGsWu2vTeMnOGLe9+JzWUYVd56rKvQzztPwgd9F3SyPzH47Fb/O03Q7vRfNnwEeWFAWTrx2rw==
+X-Received: by 2002:a05:6402:b07:b0:522:200f:cc50 with SMTP id
+ bm7-20020a0564020b0700b00522200fcc50mr5721514edb.19.1690987808581; 
+ Wed, 02 Aug 2023 07:50:08 -0700 (PDT)
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com.
+ [209.85.208.43]) by smtp.gmail.com with ESMTPSA id
+ r13-20020aa7d58d000000b005227b065a78sm8778558edq.70.2023.08.02.07.50.08
  for <intel-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Aug 2023 07:49:31 -0700 (PDT)
-Received: by mail-ed1-f52.google.com with SMTP id
- 4fb4d7f45d1cf-5223910acf2so14236a12.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 02 Aug 2023 07:49:30 -0700 (PDT)
-X-Received: by 2002:a50:9f84:0:b0:521:f642:7183 with SMTP id
- c4-20020a509f84000000b00521f6427183mr415975edf.1.1690987770404; Wed, 02 Aug
- 2023 07:49:30 -0700 (PDT)
+ Wed, 02 Aug 2023 07:50:08 -0700 (PDT)
+Received: by mail-ed1-f43.google.com with SMTP id
+ 4fb4d7f45d1cf-5229e0603edso11023a12.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 02 Aug 2023 07:50:08 -0700 (PDT)
+X-Received: by 2002:a50:d70e:0:b0:522:203b:c348 with SMTP id
+ t14-20020a50d70e000000b00522203bc348mr412547edi.5.1690987807863; Wed, 02 Aug
+ 2023 07:50:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230802141724.0edce253@canb.auug.org.au>
-In-Reply-To: <20230802141724.0edce253@canb.auug.org.au>
+References: <20230802142136.0f67b762@canb.auug.org.au>
+In-Reply-To: <20230802142136.0f67b762@canb.auug.org.au>
 From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 2 Aug 2023 07:49:18 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V4RmorrEu9oGrW+ovBXn+nC_APVhH-M+mHHXYoYLYRPQ@mail.gmail.com>
-Message-ID: <CAD=FV=V4RmorrEu9oGrW+ovBXn+nC_APVhH-M+mHHXYoYLYRPQ@mail.gmail.com>
+Date: Wed, 2 Aug 2023 07:49:55 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XEbpuMb4FvDkVkkX+Btig4eFnNrp5LWs+rQJ9Sy3wg4w@mail.gmail.com>
+Message-ID: <CAD=FV=XEbpuMb4FvDkVkkX+Btig4eFnNrp5LWs+rQJ9Sy3wg4w@mail.gmail.com>
 To: Stephen Rothwell <sfr@canb.auug.org.au>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -89,7 +89,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi,
 
-On Tue, Aug 1, 2023 at 9:17=E2=80=AFPM Stephen Rothwell <sfr@canb.auug.org.=
+On Tue, Aug 1, 2023 at 9:21=E2=80=AFPM Stephen Rothwell <sfr@canb.auug.org.=
 au> wrote:
 >
 > Hi all,
@@ -97,17 +97,18 @@ au> wrote:
 > After merging the drm-misc tree, today's linux-next build (htmldocs)
 > produced this warning:
 >
-> Documentation/gpu/todo.rst:469: ERROR: Unexpected indentation.
+> include/drm/drm_panel.h:270: warning: Function parameter or member 'follo=
+wer_lock' not described in 'drm_panel'
 >
 > Introduced by commit
 >
->   d2aacaf07395 ("drm/panel: Check for already prepared/enabled in drm_pan=
-el")
+>   de0874165b83 ("drm/panel: Add a way for other devices to follow panel s=
+tate")
 
 Thanks for the report. I've posted:
 
-https://lore.kernel.org/all/20230802074727.2.Iaeb7b0f7951aee6b8c090364bbc87=
-b1ae198a857@changeid/
+https://lore.kernel.org/all/20230802074727.1.I4036706ad5e7f45e80d41b7771642=
+58e52079cd8@changeid/
 
 To fix this one.
 
