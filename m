@@ -1,149 +1,149 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4626E76C47D
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Aug 2023 07:03:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 996FC76C4EA
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Aug 2023 07:35:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C368C10E493;
-	Wed,  2 Aug 2023 05:03:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34B2F10E493;
+	Wed,  2 Aug 2023 05:35:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1591510E493
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Aug 2023 05:03:03 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1603F10E495
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Aug 2023 05:35:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690952583; x=1722488583;
+ t=1690954539; x=1722490539;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=QqncDUScAQcfRd+WiJRVbJGOK/lOMprLWMf3BPRw85Y=;
- b=FfNu0W6MIG+N14Az1UHTD/O5jR8zbeAI407cE+fA4QzuRaZUpFgxEPJb
- /CbuRzrwH/JjTyylWqp8oTlYssAn+sLo5RIoKbVQ/PiuKVMXl/2cltsiJ
- 2551hORFLw/fHSCfwjBxz2AcxKamEakzlfgi5tT+5fPgBX7tRbYjB2CcA
- 26nhrp53QXdK1r/EGsSzGEMBiYA97QgjyolJXNEjM15GPWglWx66qSuXu
- 475JuuIFzel8kLgL96KCegvtC23WfRCYwA8WNXbwmiVtVXnzeFuRAuWpA
- npk1N93K/NjzT60jxTNx9R1gdGEQfwTqeVbhzTIaqrmShLMyktU6iDulP w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="435805938"
-X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; d="scan'208";a="435805938"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 22:03:02 -0700
+ bh=Y2PKEyilYjX4d4dqMaONlC6Ota2Zq7VmbvydA1Lz5VU=;
+ b=IzsJUMraNKUkw3xDRiF8rYCqhE1gMeUKvrLHJ4qZ5vfRKvvPvR265ESt
+ U5k/QMYcNFiypKoY07RURJCtViZUyj9ZUQyp8pXmtRtDW28eYPUDdzf0j
+ hPMV4inYtbVhCgDW+jtHZCm6eLbvG0+nx05u5+iMHTJUe/yUaSVcsohAG
+ Z0NO57romKxvMRDqHnZiyw7jR06P4f6Kw/9yK2nERk1A7eUFAQlevSmmx
+ Z17vFvosrDLJYzGa7G8GMWTLLEzXEUcweS4Rp3fZ6rucFdPWIVoe/0hUo
+ t+/BW4tUrI9NnqXGiW/OGi+VBHIaVMvsLK46ex6o4jSnrBLjNycmhdzxc w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="433325281"
+X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; d="scan'208";a="433325281"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2023 22:35:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="1059683908"
-X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; d="scan'208";a="1059683908"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga005.fm.intel.com with ESMTP; 01 Aug 2023 22:03:02 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="819053190"
+X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; d="scan'208";a="819053190"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by FMSMGA003.fm.intel.com with ESMTP; 01 Aug 2023 22:35:38 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 1 Aug 2023 22:03:01 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.27; Tue, 1 Aug 2023 22:35:37 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 1 Aug 2023 22:03:01 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.176)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Tue, 1 Aug 2023 22:35:37 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.170)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 1 Aug 2023 22:02:59 -0700
+ 15.1.2507.27; Tue, 1 Aug 2023 22:35:37 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cRVJF63GVDB9KatIPiwylAIEIpNOW80vM4dmGfBGuo2a4/4XQGBVTI9rsOeSanHyNgB07e2WjrM69u2YXMqMmhr95oVDKRWYMqNhr6fBzzwzie3bSLTVkR6Ptm6sRN/G1T3OKNxJwmpG+pkr/7ClQJ4dHUtH2kabwHcRSkSOgj5oe54dMRVHTjYJXWXTEEhgLvUj3MTPsVcfeECEe9bhdHupECe7R3W3THaprQDQbqknVoQnalu5dQ1xlJp9zHSvlZSod1iivoc/aAA8IJRpx5tNCIflSzHFWq3y9qCH5QF4WFdpBkc8Yq/NDWhYa2MiMkRLCoiEXccuI4ZfCwbMKg==
+ b=LZEVkjod/8d/0gp3N4Yb+34FTS12KQkdUvdUwwOApvRFPEi1ElT1rQZv8jx4fwbf2swsCo4/2BJIw+/e4bEP8w5kX+Tr3vkfr+PBKl+ZD4T4uq77+wsOwm+jc3yrxTZKOcX4ErGV4gyHgNtgyfnBjrOQKdZ8knzkRMzvL37agtfDBcjyWZ8FY6SjF53qzVPiPjlPoVYKToRHHnYpeXbzTv38YldopObOdkXJ6j/eEy9lxKM1ivWh8GncTbSQoHKA2pRxJX+LWW58mA8eONRk2H2qLh/koPiJkN2oPz1/EDig75fCTOeDqpPUcUksaxws1n+ULrVQWCxKqLsi8LtF6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dXLcCAXMuPp7Ms74vlZmZCJKBR3YxJ47tRsCDGwuyyg=;
- b=VaJ31CK2jfzIhZQitAnfky+VbmFgRY2RIKf0knUIfILQVy7hva1EI8tOLxWGwOGf3BqHJHSAbpVGyHG6Kl3GNBkeIGYMysLaM/KA935syfh+LGgQS7iU/ZFz2AEteESTdTi/rjjqh2X9reuuwYjIGZqwr5RjVNgTaKFTkes70q3v5wli+ynozAvsVQrSUxqj8ut511iy2T6qAxQC/JbHEigKZht7tZMjOk0qAfLTqhMLsyPojqaMgp0quPeval2rCvaj0C5VxUVwfcF86TLd1rSH2o8dN69oSzC+/yfBiuJX5exh7qKxJx7ooytRtJRXH0D4bqnwMVK7gtAf3D7/yg==
+ bh=JHl3qbHQKDdoD8suxddXpOSM9zrDePJGWfuoS6ht0TA=;
+ b=ZqulYE6sABWVucTQf5DD2gD7vauFAePwHe7ORVz4vphnE2D6ag2aDovfmGSMSa7QnmLA8QO/eKhCiDKnXI4YOe+ZuooTVRTdeFAU/VJri6ASNaF8znRrUM+184yTlB37n1m8u576WTktF4a7cWkJy8ciFpVvR9jKfqhPYyR/nC9IhAdF1iMWAUY0UPEJcQS/UNJwrKVrbYAB4KDQHMls5qcnke0nLh27q1rV5Tb3b8r+5g/JDLzBLn8dOebpGa9Vuq6LDKaElE0bdzGyk8Dw7qLsTVNhdtHr94UgmuvjhBwyFrq8UWRitn4Q8aeaY+ZeBCxbgGlDp1SvgT2vj5gv4g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by PH7PR11MB7964.namprd11.prod.outlook.com (2603:10b6:510:247::9) with
+ by PH7PR11MB8009.namprd11.prod.outlook.com (2603:10b6:510:248::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.45; Wed, 2 Aug
- 2023 05:02:57 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.42; Wed, 2 Aug
+ 2023 05:35:30 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::1e8d:5942:e23b:c08d]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::1e8d:5942:e23b:c08d%6]) with mapi id 15.20.6631.045; Wed, 2 Aug 2023
- 05:02:57 +0000
-Message-ID: <f9b6f2eb-df9d-1721-ec52-ea7eb7b33163@intel.com>
-Date: Wed, 2 Aug 2023 10:32:44 +0530
+ 05:35:30 +0000
+Message-ID: <6d89454b-0c02-1739-e303-498f2c8a8afb@intel.com>
+Date: Wed, 2 Aug 2023 11:05:20 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
+Content-Language: en-US
 To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-gfx@lists.freedesktop.org>
 References: <20230720080715.3063267-1-suraj.kandpal@intel.com>
- <20230720080715.3063267-3-suraj.kandpal@intel.com>
-Content-Language: en-US
+ <20230720080715.3063267-4-suraj.kandpal@intel.com>
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20230720080715.3063267-3-suraj.kandpal@intel.com>
+In-Reply-To: <20230720080715.3063267-4-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0190.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:e8::15) To DM4PR11MB5341.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0183.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:e8::9) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH7PR11MB7964:EE_
-X-MS-Office365-Filtering-Correlation-Id: f4a4ad73-43b9-4a72-d022-08db9315bc38
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH7PR11MB8009:EE_
+X-MS-Office365-Filtering-Correlation-Id: 252e72fe-eb67-42e6-9474-08db931a48a4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4++Zd833B5GkNX8cQKXoAml2FT5NCRllAQoyG3i5zff7oONJWaYtEcd/NONcDBaM8UwnhDMl252iCynY9QJdRL8BWskmytiOwM2oWMHCKuQadOBosZ+Wz1OYwqTdVWHDxzYrFeZA5yakq3wQ6Qv8EeQfTT26Whu/9EK1P9SjpH8zQQAp3eoQtAmNgHWCJqBn82LZB9oaoRIZpdNDhJbibZmfUUAHdbthXZsYULiHFUsauyFskjbdtBX2fumqPP61j59pnwLBTuAHBUowPzwUX+SNfuZdF2E4hlv/djlwcB/ffm5GfUL7fhApRyWg2KTzEHlyGHkBBUVP7JDC1KnjPnmnKcECghaqigfG/0zPxle3Oh0+YgUplNXJD9GGHNrAGLohM8u/l3Ga2AqcdoDBIy8uwe4S9UyaAfXOvcTR5V9B5gKtdjOCDZN8Iz9blV56653MlWa8xMnDEofCY1zW4N04yL1Q7VuavimGxETmCfjhj1J4zjgWuf86QJlU8g0rdVe+SWjc3pKhORK9xIZcb5rDQNKb5IswSS2BalsmIetB16xxeFUZ7Mkgtr5FCU9hAsHAjpXvwvN40H1R81BwUGosuxMZzdQLPSjILKY5iOnR3yZLamGeXZuws8dQwoFead1c+eqW3iii1KbZbAjBXQ==
+X-Microsoft-Antispam-Message-Info: zN2834ySlRlLHxJIfy3dqI/6Ckj+IVZ09OfjoyINaXTyq0I9bBZbXTaB5wCDAI9y+sRjyovM4KXWEbxqJMwMoJc6up9mL5QagDh1gimVlYl/tMt62uUI5TPLnbKMDKi2gTh/bE5NLchaPE6i/sV4qMoBeFbkM1gUMdaADU2TftyFfs8GNX0eeubI74UKSw9WwiuUj7/ryJiCiZ1Vvr7UY8FtzaY80WPZweIefZPJsX7uvBbg5EXVHJfkPC7de3tIAli6xv9erphyOlMtjsBXCiA2X9iz79WYw0Pe6ClaHMdSp2B24I7j6Pnqw5a3AZKwxwfbvoE3NQ/XHSLCL0ZE/LBovjgAEA8K1wjPmE2Jqy+SjMuqty2zmumIwPu+s5Q2vI2i1HOhAtT13bDO/XJjZ8XBCw0qO/ceMfaazpvOh/gkOCvL0vCLIq8Tohd8sGXG2Z0GOGsgT/TFG4LYBvQMwZ+oVhZfgNmWWJEj7L3Xuptxf+QUDbNZjhAapcUsH5OR5o8CFs/+zTc0cpfSveIjqhbxrIk/1sZspnVu9YfBezbJGrj+DUfL8ZnsFbi74vAi/qosTkGQTbpjyJJONxg3mfy99oPQVPp4rznv052gd5Bvj+eGVnFVc9oXhUfpzUoki39Vu52N+jHgFsLhwOxbBw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(376002)(366004)(136003)(396003)(346002)(451199021)(2616005)(186003)(6512007)(316002)(86362001)(478600001)(38100700002)(66946007)(66556008)(66476007)(6666004)(6486002)(4326008)(31696002)(82960400001)(55236004)(6506007)(53546011)(36756003)(41300700001)(26005)(8676002)(5660300002)(8936002)(2906002)(83380400001)(31686004)(43740500002)(45980500001);
+ SFS:(13230028)(396003)(376002)(39860400002)(366004)(346002)(136003)(451199021)(38100700002)(66476007)(31696002)(86362001)(316002)(8676002)(8936002)(31686004)(5660300002)(4326008)(41300700001)(66946007)(66556008)(82960400001)(478600001)(2906002)(6666004)(36756003)(6512007)(6486002)(6506007)(26005)(83380400001)(186003)(53546011)(55236004)(2616005)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NWw4QnVSSlo0UFlGTXZJMEt3L1lpRW5MQTU0aDZkR0lLVmUwOXZIdjRUbEZh?=
- =?utf-8?B?eHhHQ24wYzFSSUJ1ZlFpQ0NkUjVER2lsNndEUnhWekE4QWs3dWdOR1ZtVkVu?=
- =?utf-8?B?elVVdWx2Mm5vRkJtcE1jdjRxUUlmR3YwaU9EUlhIbWFwL2c2dXhad0dsU0pa?=
- =?utf-8?B?a05MY1o2bkFOZzJPQW02a0V4Q0R5QTBNR3N1N2QwSkp2YkFXNTNhdWJoTGRJ?=
- =?utf-8?B?THVQcVN6dy9FQzdTcW1VYXZrZzJKUDM1ZHFGVzBCNDR2czdhTGppQTZVaEJl?=
- =?utf-8?B?NnZJYUltVHltSE5rbGtYdlBKOFZzdzJrMXFiL0JWMzdXaDJRSFRya0tKNVgy?=
- =?utf-8?B?cXZqZi8ydVMzWGRSbmorY29HZW1QZWhWRlR0TlFDdlJtcWxRVjVUc0hRS210?=
- =?utf-8?B?Y1JKWUpCdm9qbHJrUSsvVURwT3BoSjlnc29FNVJMdTZ1RzViOHNPY3QwcmZz?=
- =?utf-8?B?N2hDMkNGeTJVb1BpSHpYbHhEUlU1WFIxbmk1TkdhTWYxbXAwTU50L1hQNnNR?=
- =?utf-8?B?OURUcFRGU1NKTUdRQzJIRnliMllPNVlYcDU4cVUrZjhVNlhyRVo3V0xhZkIr?=
- =?utf-8?B?bmJzeHVoQS9rMTdLL0VEdC94MjUwY3JRVWl6MmFhR2pzL1RFTTJXM1ZOb3cz?=
- =?utf-8?B?VFRuWTFMb2NLMHdiRUIranoxUlI1ZmtKQjFGK1BKRmhEZlNLL2xuNmVFdkFM?=
- =?utf-8?B?TVk1aTQwZFV0Q1JhR3JGbVNlYXpteldkVEtjWEFhUEhKZ2t3NExXdktiTHN6?=
- =?utf-8?B?NXR4bjVMWUxDc3NHRXhIdFd5OTR2SThSNmZmdHVqanBJVEtVTVZMaVRLZUhq?=
- =?utf-8?B?aURYTGQ1WEpmM2d3SjN5ellVSFdVNXQvaUZxN291Y2g2Mm5TdkVHT0JPbith?=
- =?utf-8?B?N1NOZ1pPMG1ETExxNHBrZmtmUWxqTGFJbytwZGFYc01aUllZMXp2UGJIRkVt?=
- =?utf-8?B?bWtWekFYd2ZueDFxbzhtTURPNWdyR1U2cjRqV2tVbks3dUx0UUJXQzR2MHJD?=
- =?utf-8?B?VVZJN3FUS2RtZStrRHk5TXlBNUhMd29HUU44OEdOOURZUklKZVQzZkM4c0NV?=
- =?utf-8?B?Z0hDM3Y3TS9sUVp5b014VjBNN25tWEFPeDlwYlhoN2xCSnNSRXVvTEtkb1Ay?=
- =?utf-8?B?aUh5aGtvMG03ZVFaaTQrNW9BaXlSWlhSbEQvNkJTZGhSQXhNVi9sa1lCbjFH?=
- =?utf-8?B?M1hXc2hoYWNnNkoydHBhSnBmZnNSVktmazJKVjlTRnpKOVhSSWVFaVVYUDVJ?=
- =?utf-8?B?RlY2VEF3L2xXajhYenRJMndxZW1ienl5YWVCYVRJbVZIbW1mamVTWkxkUFFo?=
- =?utf-8?B?VHpvN085eXZyeFQzMGdaWXphd3FmTUltc0VTeGQ2NStBdHlpRi9ucnYwRUtT?=
- =?utf-8?B?ZTIrNkxKcUVrbjduK2JXQ1ExN3cvZjRzd3VZeE1EalE4MzZJT2l1U2JhVGRU?=
- =?utf-8?B?RndUQ2ViZTczT0xiL1BSMVJ0SlQ0RittN3BXU0ZvdjYvQ3ZTZmNpMkgyT28z?=
- =?utf-8?B?WjMwVW0xdWFDN2YrNTlJbHVTUDVRbGFGckVYVmZVK0NpTHFBQ1llWnpsdGtI?=
- =?utf-8?B?MjcrNUU4OU1kck9KbC80MXlFWTJkb0JtOXVRT3hrYWxaNnkrc3pVTjRVc3JC?=
- =?utf-8?B?M2RId2MzQ3pJM2EvQ0ozREtjRTE5TENvbDhsRTBFY3R3YnZzQXdXWGxrdXli?=
- =?utf-8?B?bzJHYkI0UjhWNzg3M1RQKzVFdXhiVVRkeVUwVlZRdUNZRGhhdXFVMXFvMVpS?=
- =?utf-8?B?SjVkU1JoeGNaUWErM24zdGRMcUx1amUydWU3cEpFZ0VXM0ErZXdtaU1lTFpS?=
- =?utf-8?B?dGMvbGZZK3RXblpiU01aVGRCemZ0SHdCRTBiSXRtMjJ3UkJPUUZzbXAvUjFC?=
- =?utf-8?B?c2ZNYkZteTRyMU4zd1Jvb3d2ODJ1R2V1Nm5hUkZoR0IvOEkrbTNkY0djL1Ur?=
- =?utf-8?B?cWJXY0NFckNYdDc0aE1tYWxyMHNJWG5OdERWQ3RDZG5VYVpIdFBoSisraVVC?=
- =?utf-8?B?eE1JT3R2aHhUTkFiZURJVVh0RkxPMVVMSVpjeGJ5OXVHcDZqZkFTZXN0RW1D?=
- =?utf-8?B?RmlMNlFOUUp2NjRucENuc1dLMmFobzBNYkREYS9iWUtpUjI1dnJxWGlPRlJp?=
- =?utf-8?B?MStsSnM0cWJ6VmpZZFd2Tkd1U2lPRE9nOWRoMERFUXlzS2pJSm91SDFGSUIz?=
- =?utf-8?B?eWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f4a4ad73-43b9-4a72-d022-08db9315bc38
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TVZINjdieXNERkh5a2libDBVNDEvZHQ1K1JUbUlXLzJBV2VYY3FwYXZJL0VD?=
+ =?utf-8?B?R2p3ODhpZmlpSDB4NGpzRmljcFV2MmJGazR2cVBsOHowaTNDeDc0cktBZlpp?=
+ =?utf-8?B?NktLQWd4bUtOZjBZVzNkQlFTV3hDY0RpNXU1VzdwNGlBRTIwL0NVeVNuTldO?=
+ =?utf-8?B?ZTF2WFhhLzNvcU9nVTBvMEFLMm40ZzlFM2RsWUtLSUZHMFE0dkRSTEMwdjJn?=
+ =?utf-8?B?cUY5ODZqK1d2QmUzTXk4NGNaR2FNcUwvQjlWU3Q3V2dxQS96NlJpUVZDVTcy?=
+ =?utf-8?B?MUU5aEhET0Y3UGtEUk01S2IraWVZb2g5b1VJajdpVXRqRGRHeDN3Q05USE1J?=
+ =?utf-8?B?c2ExYjF5WG11YlJqSVhKTzlqOGhJWEZ4enhKQ3VrNEE1TGNpaWR1c1BqaFNs?=
+ =?utf-8?B?MDNGaDF1NGpzQ1I1NHJhRjNLL3BucHVUL0dkUjlGQVZkdjZTT2c3dXRxNWYw?=
+ =?utf-8?B?UjRVTDFEK21RNmZLclVOcldKTzBGVlZGZkxmdFZ5eWwxMFZiK0l5ZEZGYStW?=
+ =?utf-8?B?SXY3YVBGeUloT2F5M1RuVHNoVnZhUjZyNnltN29rTTBRWldBSGZXRnJ0YWY3?=
+ =?utf-8?B?TGZ1bzl0NmJ1ZnNtdnpvQnZudkNSQmgzQlY0dlJjYXhWSG9KdVVqQ0tWdStD?=
+ =?utf-8?B?WFgxaVFkMlpzSzNUUGxoeWFvZ3FabDM0M2w1d1BIMzN3eXJhYkR6NFF4V0h5?=
+ =?utf-8?B?YldIVm1UcW5pRjY0UzBudk55R1daS2I2Qml0WjlQWlV0OVNyRzU0VnNud0pP?=
+ =?utf-8?B?YXRWbTB2L3ZTUWJsNGVjOWZRRFZEWXpKQTdqaXg0dUhuRkNJQVhFUUc5NGJh?=
+ =?utf-8?B?cVNWbjdvK29BRGZ2ZXViYTJjcGxOYWFrV2hTT25WakRjUEswVUdFbThoZFBM?=
+ =?utf-8?B?YVBYblpqcHRUTXM1eVBxRUFUeEphaWtiWjJXWExya1hCd3l0NCtXek9Ta1NJ?=
+ =?utf-8?B?b3RDN3RUVitIQlgyWFdKcDRkUDEzcW1RbHRhUFJtN0RqTUFUUXBUajNzeGhm?=
+ =?utf-8?B?Q0dCYzNYZUIxQ2VwUm44bVNDeGx4Wk8rR1Q4Mk55d3h6L0RqRVc4UVNDTnln?=
+ =?utf-8?B?TkMxYVd0UHB5bUtOaTFpMndBVktVV2ZRbXdvbldZTnVodHVRNmpCZVBQVWw2?=
+ =?utf-8?B?NW1CM29YUWo3Z2xhZWlkL1IzUVppSmcwR3gxNmh5SUQvOWlybEFZWFF6Ni9m?=
+ =?utf-8?B?VFBpSlN1ZXJCY3ROVm9MeEJUbEFvZ1hLa3crRzg5WVBNendKckdjRXdVNTV2?=
+ =?utf-8?B?YzFQSVMvK1k5RWc4SnJRbXpjQlVuQi9IaWpGYmd1dTk3bU8ycWM5NHpUM1pt?=
+ =?utf-8?B?TFVNWlQzSGlUcFVmSEZIamRlZENGOUxNTTBMVXNBRjBKRndySzBxRDFhellY?=
+ =?utf-8?B?cWg1MEx5c2xubU1ZOXBLTjJlSkVhK0sxUXRmMVppdUUyS0huMzgzWTRadkpn?=
+ =?utf-8?B?K1RoSHVwcHhPeE56R1ZkeUhCamZuOVF4TlpWWnVKQ3ZXTTlEb0JGRzIwNnht?=
+ =?utf-8?B?RDZpVkpJV1J2VzJyeXR4TW5nQmJ1cjBMcThyZE5IaXBXT1B1RloxTXFPR2pD?=
+ =?utf-8?B?aDQ2RkYzNVIrSFRSMk1nT1BRVkh1TVlKUGhZa1lnUDcyT2tPejRHdHE2bGdR?=
+ =?utf-8?B?K3cwaWc2THp0ckpadmFaQXVqeXZQVjZzc0xBVDRTUjRxa1l1K0I4UjV3amhG?=
+ =?utf-8?B?Wm5UNVphTkh3eU1xbC9IaXJhQVQ4VjRZRytVdUxyb3hSOFR5UDhDVXlXTkI4?=
+ =?utf-8?B?Z0F2cmRyYWtBK1NJMU1VTCtCenh4YmFMN1NJbG00NzBkd0ZLQ0REbjZGOGZx?=
+ =?utf-8?B?WFVodlRoeCtTcy9IN0d3RFNhVFdhVGpxTnd0NjNDZUlaNnd5M2c3Ulpic0Vh?=
+ =?utf-8?B?TVpvak4yVk9UcGMraU5iNm9UTW9yQWd4WktpMUNxcml6ekZ2aE1oU0NrRnRl?=
+ =?utf-8?B?Sm5KQjUxV0phVkgvYnA2SUVwbEQyYnFCb3ZlSzBEeTI3ZzllWUhEcWltSVc4?=
+ =?utf-8?B?TStsYWxHVis2YnRtaVp6eHNqODRndnlqSWFKNmtHQ1pUK1hpRHZzYkg4cTF2?=
+ =?utf-8?B?b3dHeGg5RDN4eUxacVArVGF1SC9YMXYvY3dDYnVUMEpUaXNPTlA0TFFMTEMw?=
+ =?utf-8?B?RXJmY2pEdXhFaUpUMk9xWWZTblVsSVY0SzY2dmE0ZXpOcCtpeWFBVFBXcHJF?=
+ =?utf-8?B?YWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 252e72fe-eb67-42e6-9474-08db931a48a4
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2023 05:02:56.9067 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2023 05:35:30.1314 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eP+/OWGmk3iFAXzmnxbSQWZj4flE0XZuaal7ulKyaQ9hz8Bfxnsm3R2kDUp4v0XW5LQWTmck/8Z0nvBZmDUQWoJNFNIRKGs8RgWF4w0gxV4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7964
+X-MS-Exchange-CrossTenant-UserPrincipalName: HFD6an1/erGnWx9oddob+n5YrfMM269SGTy6lvlpdHEPgzt6Y21IICLJdY/vpYb7X3l7bUodNBfrmBUf7r+omINT8fQgC5aFry/oEwOw16w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8009
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 2/7] drm/i915/vdsc: Add a check for dsc
- split cases
+Subject: Re: [Intel-gfx] [PATCH v4 3/7] drm/i915/vdsc: Add function to read
+ any PPS register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,63 +159,237 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Suraj,
+
+I agree with overall approach, but I suggest that we use num of vdsc 
+engines per pipe to avoid changes in future.
+
+This would perhaps need a small patch first to get num of vdsc engines 
+per pipe though, more details inline for the case:
 
 On 7/20/2023 1:37 PM, Suraj Kandpal wrote:
-> In intel_vdsc_get_config we only read the primary dsc engine register
-> and not take into account if the other dsc engine is in use and if
-> both registers have the same value or not this patche fixes that by
-> adding a check.
+> Add function to read any PPS register based on the
+> intel_dsc_pps enum provided. Add a function which will call the
+> new pps read function and place it in crtc state. Only PPS0 and
+> PPS1 are readout the rest of the registers will be read in upcoming
+> patches.
+>
+> --v2
+> -Changes in read function as PPS enum is removed
+> -Initialize pps_val as 0 in pps_read func itself [Jani]
+> -Create a function that gets the required register and call that
+> in the common read function [Jani]
+> -Move the drm_WARN_ON one abstraction layer above [Jani]
 >
 > --v3
-> -Remove superfluos new line [Jani]
-> -Fix register naming [Jani]
+> -Send both reg values regardless of dsc engine no [Jani]
+> -Don't use num_vdsc_instances stick to dsc_split field [Ankit]
+>
+> --v4
+> -Manipulate the reg values instead of creating MACRO to change
+> name of pps [Ankit]
 >
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_vdsc.c | 14 +++++++++++++-
->   1 file changed, 13 insertions(+), 1 deletion(-)
+>   drivers/gpu/drm/i915/display/intel_vdsc.c     | 103 ++++++++++++------
+>   .../gpu/drm/i915/display/intel_vdsc_regs.h    |  12 ++
+>   2 files changed, 82 insertions(+), 33 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index 530f3c08a172..9196329d998d 100644
+> index 9196329d998d..58eb19f8d35b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
 > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -939,7 +939,7 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
->   	enum pipe pipe = crtc->pipe;
+> @@ -303,6 +303,25 @@ int intel_dsc_get_num_vdsc_instances(const struct intel_crtc_state *crtc_state)
+>   	return num_vdsc_instances;
+>   }
+>   
+> +static void intel_dsc_get_pps_reg(struct intel_crtc_state *crtc_state, int pps,
+> +				  i915_reg_t *dsc_reg0, i915_reg_t *dsc_reg1)
+
+It would be good if we can send *dsc_reg, num_vdsc in the function.
+
+IMHO lets calculate the num of vdsc engines in dsc_get_config and pass 
+it from there to the other functions :intel_dsc_read_and_verify_pps_reg 
+and all.
+
+
+> +{
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> +	enum pipe pipe = crtc->pipe;
+> +	bool pipe_dsc;
+> +
+> +	pipe_dsc = is_pipe_dsc(crtc, cpu_transcoder);
+> +
+> +	if (pipe_dsc) {
+> +		*dsc_reg0 = ICL_DSC0_PPS_REG(pipe, pps);
+> +		*dsc_reg1 = ICL_DSC1_PPS_REG(pipe, pps);
+> +	} else {
+> +		*dsc_reg0 = DSCA_PPS_REG(pps);
+> +		*dsc_reg1 = DSCC_PPS_REG(pps);
+> +	}
+> +}
+> +
+>   static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>   {
+>   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> @@ -930,16 +949,63 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
+>   	}
+>   }
+>   
+> +static bool intel_dsc_read_pps_reg(struct intel_crtc_state *crtc_state,
+> +				   int pps, u32 *pps_val)
+> +{
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	bool dsc_split = crtc_state->dsc.dsc_split;
+> +	i915_reg_t dsc_reg0, dsc_reg1;
+> +	u32 pps_temp;
+> +
+> +	*pps_val = 0;
+> +
+> +	intel_dsc_get_pps_reg(crtc_state, pps, &dsc_reg0, &dsc_reg1);
+> +	*pps_val = intel_de_read(i915, dsc_reg0);
+> +	if (dsc_split) {
+> +		pps_temp = intel_de_read(i915, dsc_reg1);
+> +		if (*pps_val != pps_temp)
+> +			return false;
+> +	}
+
+
+With the num of vdsc engines available we can have a loop something like:
+
+intel_dsc_get_pps_reg(crtc_state, pps, &dsc_reg, num);
+
+for (i=0; i < num; i++) {
+     pps_val[i] = intel_de_read(i915, dsc_reg[i]);
+     if (i > 0)
+         if (pps_val[i] != pps_val[i-1])
+             return false;
+}
+
+return true;
+
+> +	return true;
+> +}
+> +
+> +static void intel_dsc_read_and_verify_pps_reg(struct intel_crtc_state *crtc_state,
+> +					      int pps, u32 *pps_val)
+> +{
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	bool is_dsc_eq;
+> +
+> +	is_dsc_eq = intel_dsc_read_pps_reg(crtc_state, pps, pps_val);
+> +	drm_WARN_ON(&i915->drm, !is_dsc_eq);
+> +}
+> +
+> +static void intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+> +	u32 pps_temp1, pps_temp2;
+> +
+> +	/* Readout PPS_0 and PPS_1 registers */
+> +	intel_dsc_read_and_verify_pps_reg(crtc_state, 0, &pps_temp1);
+> +	intel_dsc_read_and_verify_pps_reg(crtc_state, 1, &pps_temp2);
+> +
+> +	vdsc_cfg->bits_per_pixel = pps_temp2;
+> +
+> +	if (pps_temp1 & DSC_NATIVE_420_ENABLE)
+> +		vdsc_cfg->bits_per_pixel >>= 1;
+> +
+> +	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
+> +}
+> +
+>   void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
+>   {
+>   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> -	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+>   	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> -	enum pipe pipe = crtc->pipe;
 >   	enum intel_display_power_domain power_domain;
 >   	intel_wakeref_t wakeref;
-> -	u32 dss_ctl1, dss_ctl2, pps0 = 0, pps1 = 0;
-> +	u32 dss_ctl1, dss_ctl2, pps0 = 0, pps1 = 0, pps_temp0 = 0, pps_temp1 = 1;
-
-I think pps_temp0/1 can be declared where they are used.
-
-With that fixed, this is:
-
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-
+> -	u32 dss_ctl1, dss_ctl2, pps0 = 0, pps1 = 0, pps_temp0 = 0, pps_temp1 = 1;
+> +	u32 dss_ctl1, dss_ctl2;
 >   
 >   	if (!intel_dsc_source_support(crtc_state))
 >   		return;
-> @@ -965,11 +965,23 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
->   	/* PPS0 & PPS1 */
->   	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
->   		pps1 = intel_de_read(dev_priv, DSCA_PICTURE_PARAMETER_SET_1);
-> +		if (crtc_state->dsc.dsc_split) {
-> +			pps_temp1 = intel_de_read(dev_priv, DSCC_PICTURE_PARAMETER_SET_1);
-> +			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
-> +		}
->   	} else {
->   		pps0 = intel_de_read(dev_priv,
->   				     ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe));
->   		pps1 = intel_de_read(dev_priv,
->   				     ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
-> +		if (crtc_state->dsc.dsc_split) {
-> +			pps_temp0 = intel_de_read(dev_priv,
-> +						  ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe));
-> +			pps_temp1 = intel_de_read(dev_priv,
-> +						  ICL_DSC1_PICTURE_PARAMETER_SET_1(pipe));
-> +			drm_WARN_ON(&dev_priv->drm, pps0 != pps_temp0);
-> +			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
-> +		}
->   	}
+> @@ -960,36 +1026,7 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
+>   	crtc_state->dsc.dsc_split = (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE) &&
+>   		(dss_ctl1 & JOINER_ENABLE);
 >   
->   	vdsc_cfg->bits_per_pixel = pps1;
+> -	/* FIXME: add more state readout as needed */
+
+
+We are still reading 2 PPS only so lets retain this line in the patch.
+
+
+Regards,
+
+Ankit
+
+
+> -
+> -	/* PPS0 & PPS1 */
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		pps1 = intel_de_read(dev_priv, DSCA_PICTURE_PARAMETER_SET_1);
+> -		if (crtc_state->dsc.dsc_split) {
+> -			pps_temp1 = intel_de_read(dev_priv, DSCC_PICTURE_PARAMETER_SET_1);
+> -			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
+> -		}
+> -	} else {
+> -		pps0 = intel_de_read(dev_priv,
+> -				     ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe));
+> -		pps1 = intel_de_read(dev_priv,
+> -				     ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
+> -		if (crtc_state->dsc.dsc_split) {
+> -			pps_temp0 = intel_de_read(dev_priv,
+> -						  ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe));
+> -			pps_temp1 = intel_de_read(dev_priv,
+> -						  ICL_DSC1_PICTURE_PARAMETER_SET_1(pipe));
+> -			drm_WARN_ON(&dev_priv->drm, pps0 != pps_temp0);
+> -			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
+> -		}
+> -	}
+> -
+> -	vdsc_cfg->bits_per_pixel = pps1;
+> -
+> -	if (pps0 & DSC_NATIVE_420_ENABLE)
+> -		vdsc_cfg->bits_per_pixel >>= 1;
+> -
+> -	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
+> +	intel_dsc_get_pps_config(crtc_state);
+>   out:
+>   	intel_display_power_put(dev_priv, power_domain, wakeref);
+>   }
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+> index 785ede31116e..862dc708c5fc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+> @@ -78,6 +78,10 @@
+>   /* Icelake Display Stream Compression Registers */
+>   #define DSCA_PICTURE_PARAMETER_SET_0		_MMIO(0x6B200)
+>   #define DSCC_PICTURE_PARAMETER_SET_0		_MMIO(0x6BA00)
+> +#define DSCA_PPS_0				0x6B200
+> +#define DSCC_PPS_0				0x6BA00
+> +#define DSCA_PPS_REG(pps)			_MMIO(DSCA_PPS_0 + (pps) * 4)
+> +#define DSCC_PPS_REG(pps)			_MMIO(DSCC_PPS_0 + (pps) * 4)
+>   #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB	0x78270
+>   #define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB	0x78370
+>   #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC	0x78470
+> @@ -88,6 +92,14 @@
+>   #define ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
+>   							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB, \
+>   							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC)
+> +#define ICL_DSC0_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
+> +							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB, \
+> +							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC)
+> +#define ICL_DSC1_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
+> +							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB, \
+> +							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC)
+> +#define  ICL_DSC0_PPS_REG(pipe, pps)		_MMIO(ICL_DSC0_PPS_0(pipe) + ((pps) * 4))
+> +#define  ICL_DSC1_PPS_REG(pipe, pps)		_MMIO(ICL_DSC1_PPS_0(pipe) + ((pps) * 4))
+>   #define  DSC_NATIVE_422_ENABLE		BIT(23)
+>   #define  DSC_NATIVE_420_ENABLE		BIT(22)
+>   #define  DSC_ALT_ICH_SEL		(1 << 20)
