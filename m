@@ -1,50 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0919276EDF8
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 17:22:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC01076EDFE
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 17:24:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 948DD10E614;
-	Thu,  3 Aug 2023 15:22:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46BAC10E614;
+	Thu,  3 Aug 2023 15:24:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-41104.protonmail.ch (mail-41104.protonmail.ch
- [185.70.41.104])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9DD110E614
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 15:22:26 +0000 (UTC)
-Date: Thu, 03 Aug 2023 15:22:05 +0000
-Authentication-Results: mail-41104.protonmail.ch;
- dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
- header.b="n0lAB4Sl"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail2; t=1691076139; x=1691335339;
- bh=k5I++nvJ7Xqg3Fp+Q+60Yxv68PVfC3iWMrivxLIDp90=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector;
- b=n0lAB4Sl1hGuc7fNVTs22fy2VshY42XLwZbz2alwhPOc8N46hQt40qVPZVcT/V/hS
- S4PC4ARMfSbJdpomhr8ohgPUk5a17ax6lWt1Uk5b7iYsZ280gdNYw/xx2kfd9sMiEC
- ITQuwAoysOAVumyAbEJZ2OFov3Z2nwNtRYbm8CY1RVoEdw05lXSLvTlxsjtzafBuhq
- FYJV6hByuV6MXBKMiPEl+oAYW/BGQLYBODnGiBD2yYbKljFaCwg++9U2/z7N1o8878
- mWXa4xMgoe0Qtj0eU6R6p8mKggYnoOMIiGdVu/TVv8BTpBOjCqJ57srI3k5/iRtJ05
- 7rnaacE2kZ8uA==
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-From: Simon Ser <contact@emersion.fr>
-Message-ID: <b6oOVz2YMIG4hJDWhq9lTh6R2HYcrpRwHENhplig9KSQMD8dIjTgC5KdH1Ij3URgV2HESp67Ax7QUsByGjMLouvbs-5q7PiPRdLkgJz6Fwk=@emersion.fr>
-In-Reply-To: <DE2B4523-D16C-4AFC-8352-212B23548DD5@linaro.org>
-References: <20230729004913.215872-1-dmitry.baryshkov@linaro.org>
- <20230729004913.215872-4-dmitry.baryshkov@linaro.org>
- <20230802185547.GC32500@pendragon.ideasonboard.com>
- <a32ce695-038f-0ef8-3584-5bd1ba528131@linaro.org>
- <20230802191351.GA1407@pendragon.ideasonboard.com>
- <DE2B4523-D16C-4AFC-8352-212B23548DD5@linaro.org>
-Feedback-ID: 1358184:user:proton
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C88A10E625
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 15:24:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1691076277; x=1722612277;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=U6+/2AUq5sf/goWyZvoinLaDEj3EbVGhdNawLSW7Kmg=;
+ b=BkGpabP6485R/rwgG+f1V/si8NRApC+EXjDBG2F9MzgM9PZ2NK/bf4sQ
+ TZbaW7Ub3gEewghkYGREfK8i9ofATzP1+V7fRSpORZwQCg6XJ840KhvS6
+ 0aOb1mqxmvzMeOA169ZhlL/lfzbHHbAhObrr0SpqcuaP7lLUeI1SE0PjA
+ fAqs3QybY4vnzuCOEILUUqUe8BE4+H0X2I/6Q0AAj8oU2OdCP8rOgN+bE
+ yfmWBTZSS817Gf0lOvxOCHzO1u0D2vufvfmEXvJ/NAArZ2rt4hbm1VfXG
+ RkjXeC4mFsKDNSFNhMjheEuyK3yLodkLCRZ5/m9OqBpaMid5D4HStnYxG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="354836393"
+X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="354836393"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 08:24:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="903426446"
+X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="903426446"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 08:24:08 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230803143530.27601-1-juhapekka.heikkila@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230803143530.27601-1-juhapekka.heikkila@gmail.com>
+Date: Thu, 03 Aug 2023 18:24:05 +0300
+Message-ID: <873510up2i.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/uapi: document the USB subconnector
- type
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/sdvo: ignore returned broken edid
+ on intel_sdvo_tmds_sink_detect
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,57 +59,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Janne Grunau <j@jannau.net>,
- Robert Foss <rfoss@kernel.org>, David Airlie <airlied@gmail.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Andy Gross <agross@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Jonas Karlman <jonas@kwiboo.se>,
- Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, amd-gfx@lists.freedesktop.org,
- Bjorn Andersson <andersson@kernel.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wednesday, August 2nd, 2023 at 21:23, Dmitry Baryshkov <dmitry.baryshkov=
-@linaro.org> wrote:
+On Thu, 03 Aug 2023, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> wrote:
+> If drm_edid_raw returned NULL on error don't try accessing anything behind
+> that NULL
+>
+> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 
-> >> >> +=09{ DRM_MODE_SUBCONNECTOR_USB,=09     "USB"       }, /* DP */
-> >> >
-> >> > Should this be DRM_MODE_SUBCONNECTOR_USB_C and "USB-C", in case we g=
-et
-> >> > another USB type later ?
-> >>
-> >> Hmm, which id should I use for micro-USB then? (consider anx7808,
-> >> SlimPort). I thought about using DRM_MODE_SUBCONNECTOR_USB for both of
-> >> them. But maybe I should add another subtype for SlimPort.
-> >
-> >I suppose it depends on whether userspace needs a way to differentiate
-> >those. Do you have a good visibility on the userspace use cases ?
->=20
-> No. I'm not even sure, which userspace handles subtypes properly.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-wlroots uses it for human-readable output descriptions, e.g.
+> ---
+>  drivers/gpu/drm/i915/display/intel_sdvo.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> index 8298a86d1334..065e619f934f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> @@ -2097,7 +2097,7 @@ intel_sdvo_tmds_sink_detect(struct drm_connector *connector)
+>  		const struct edid *edid = drm_edid_raw(drm_edid);
+>  
+>  		/* DDC bus is shared, match EDID to connector type */
+> -		if (edid->input & DRM_EDID_INPUT_DIGITAL)
+> +		if (edid && edid->input & DRM_EDID_INPUT_DIGITAL)
+>  			status = connector_status_connected;
+>  		else
+>  			status = connector_status_disconnected;
 
-    > wayland-info
-    interface: 'wl_output',                                  version:  4, n=
-ame: 49
-    =09name: DP-3
-    =09description: Samsung Electric Company SyncMaster HS3P505873 (DP-3 vi=
-a DVI-D)
-
-The "via DVI-D" bit comes from subconnector.
-
-The description is displayed to the user when picking an output to screen
-capture, among other things. It is helpful to users because they can better
-understand why their output connected via DVI shows up as "DP".
-
-The KMS docs describe "subconnector" to be defined as "downstream port" for=
- DP.
-Can USB-C (or USB) be seen as a DP downstream port?
+-- 
+Jani Nikula, Intel Open Source Graphics Center
