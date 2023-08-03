@@ -1,54 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7751E76E45F
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 11:30:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 586CA76E4E8
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 11:49:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E09C10E0C8;
-	Thu,  3 Aug 2023 09:30:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D0A10E1EC;
+	Thu,  3 Aug 2023 09:49:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 568F110E0DA
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 09:30:43 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C9FC10E0F5
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 09:49:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691055043; x=1722591043;
+ t=1691056143; x=1722592143;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=BT4CIGa+VXqSBBp4mkOZMefmGky/1xGE0ZpBtkAtB0w=;
- b=W0SUd9Gc99BI3eXdeH/jjv7l4JrhWeZb2+2ZsWBwwC7Vet6D4A4K9eTR
- ABKIx6uoYD0oytWSt5uMZbjibo6hZf3tHGXDx/qbDn4vsy5qG5YxV5KF8
- kdgVRjorWhrYUNJrdA+1JZXfsC3CVJh+kMKAPhV4qCgGuMZqq2c6tLl1H
- Lk6TmgV9G3hNCl1MU8UMeJ5OT0iiS0WjNFMW8nFyTAevguNKtO9Me0oVC
- jXgiYqWTraASDM/stROaGLjIGDZ4Eyd9AQrH9TgJAawgDr85I5MeaM8n8
- /ZFhclLpJRR0CbAmX9Zqy6t4glATla50q4XbtdeoHr4ZqM92g1OV5ei9w g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="359864486"
-X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="359864486"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2023 02:30:18 -0700
+ bh=DLStnBmLeNixZoWVaOC3V/JqnJFCzEjCSx9yi6N6KgQ=;
+ b=lhLTsOo9P+xM/YWYcsA/lXxRvZlBzfF7VP2SOI5Wew35PkAhmjL0Wv7c
+ 0knUmwW1Jinh0LG2K8Ce3cvWs/Xj/Ttp1lU0dcZWtGuFc057zFqkZ//8u
+ G4ysu5tW/ax02EUckt/ee6vhWjGQKbT9BG2JINLH+KFLrqvtkpmyfjvmE
+ UvE/J9kUImU1elGjz8f4uJid+N6JRhWZ0UP/YRGTDTENC3NwVhL3RSm/D
+ kzJJtz/bn2qJXQbqXOEUWMrSFBeShScpSYfOHaJIEqAn/OOTxTHbEa0nm
+ 24LK+DdYFmVe2CRHCEIOWO1B9oA42iocWc/aDIyIHZtsml9K6RlZJOoBl Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="436137464"
+X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="436137464"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 02:49:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="819577734"
-X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="819577734"
-Received: from lkp-server01.sh.intel.com (HELO d1ccc7e87e8f) ([10.239.97.150])
- by FMSMGA003.fm.intel.com with ESMTP; 03 Aug 2023 02:30:17 -0700
-Received: from kbuild by d1ccc7e87e8f with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qRUeu-0001zp-1b;
- Thu, 03 Aug 2023 09:30:16 +0000
-Date: Thu, 3 Aug 2023 17:30:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Message-ID: <202308031703.dGZHhl6S-lkp@intel.com>
-References: <20230803070346.3776690-4-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="723160433"
+X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="723160433"
+Received: from unknown (HELO intel.com) ([10.249.39.40])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 02:49:01 -0700
+Date: Thu, 3 Aug 2023 11:48:58 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>
+Message-ID: <ZMt4CrStaSqJbULt@ashyti-mobl2.lan>
+References: <20230728075450.1877745-1-andrzej.hajda@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230803070346.3776690-4-suraj.kandpal@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 3/8] drm/i915/vdsc: Add func to get no.
- of vdsc instances per pipe
+In-Reply-To: <20230728075450.1877745-1-andrzej.hajda@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Hold reference to intel_context
+ over life of i915_request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,45 +58,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: oe-kbuild-all@lists.linux.dev
+Cc: intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Suraj,
+Hi Andrzej,
 
-kernel test robot noticed the following build warnings:
+On Fri, Jul 28, 2023 at 09:54:50AM +0200, Andrzej Hajda wrote:
+> References to i915_requests may be trapped by userspace inside a
+> sync_file or dmabuf (dma-resv) and held indefinitely across different
+> proceses. To counter-act the memory leaks, we try to not to keep
 
-[auto build test WARNING on drm-tip/drm-tip]
+nit: lose one of the "to"'s :)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-vdsc-Refactor-dsc-register-field-macro/20230803-151602
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230803070346.3776690-4-suraj.kandpal%40intel.com
-patch subject: [Intel-gfx] [PATCH v5 3/8] drm/i915/vdsc: Add func to get no. of vdsc instances per pipe
-config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20230803/202308031703.dGZHhl6S-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20230803/202308031703.dGZHhl6S-lkp@intel.com/reproduce)
+> references from the request past their completion.
+> On the other side on fence release we need to know if rq->engine
+> is valid and points to hw engine (true for non-virtual requests).
+> To make it possible extra bit has been added to rq->execution_mask,
+> for marking virtual engines.
+> 
+> Fixes: bcb9aa45d5a0 ("Revert "drm/i915: Hold reference to intel_context over life of i915_request"")
+> Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202308031703.dGZHhl6S-lkp@intel.com/
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/display/intel_vdsc.c:353:5: warning: no previous prototype for 'intel_dsc_get_no_vdsc_inst_per_pipe' [-Wmissing-prototypes]
-     353 | int intel_dsc_get_no_vdsc_inst_per_pipe(const struct intel_crtc_state *crtc_state)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/intel_dsc_get_no_vdsc_inst_per_pipe +353 drivers/gpu/drm/i915/display/intel_vdsc.c
-
-   352	
- > 353	int intel_dsc_get_no_vdsc_inst_per_pipe(const struct intel_crtc_state *crtc_state)
-   354	{
-   355		return crtc_state->dsc.dsc_split ? 2 : 1;
-   356	}
-   357	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks,
+Andi
