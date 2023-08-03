@@ -2,42 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A6B576F08D
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 19:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09E0C76F08E
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 19:25:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 037F510E644;
-	Thu,  3 Aug 2023 17:24:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67A2E10E11D;
+	Thu,  3 Aug 2023 17:25:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9979910E63A;
- Thu,  3 Aug 2023 17:24:49 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 83BA961E43;
- Thu,  3 Aug 2023 17:24:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2680EC433C8;
- Thu,  3 Aug 2023 17:24:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
- s=korg; t=1691083487;
- bh=oIo8w6drezvDhvrXgj4j0LpRAgS/qxGC1oMH8Yk1tvw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=eMUBImiK3nx9CnEb8dGmTePWdUsS7g5uZigscN46OZefvAG3cHSY2c1TSsAcLKC40
- zPxEuHVQWiL5/mNhVTLbA8ihaNKKMYztp8m3nTQYBzC0NmOSQDQIdWjQg3Y7lhAX8W
- XkhnUZWaEsgnvMagICmJ859HiRc9GHDBYBWe6kXc=
-Date: Thu, 3 Aug 2023 10:24:46 -0700
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Message-Id: <20230803102446.8edf94acc77e81ab2e09cee3@linux-foundation.org>
-In-Reply-To: <20230803131918.53727-1-andriy.shevchenko@linux.intel.com>
-References: <20230803131918.53727-1-andriy.shevchenko@linux.intel.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 18D4510E11D;
+ Thu,  3 Aug 2023 17:25:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 11C19A00E6;
+ Thu,  3 Aug 2023 17:25:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v4 1/1] drm/i915: Move abs_diff() to math.h
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
+Date: Thu, 03 Aug 2023 17:25:21 -0000
+Message-ID: <169108352106.5268.4961353763147112251@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230803131918.53727-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20230803131918.53727-1-andriy.shevchenko@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv4=2C1/1=5D_drm/i915=3A_Move_abs=5F?=
+ =?utf-8?q?diff=28=29_to_math=2Eh?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,45 +41,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-serial@vger.kernel.org, Jani Nikula <jani.nikula@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- intel-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@gmail.com>, Jiri Slaby <jirislaby@kernel.org>,
- Alexey Dobriyan <adobriyan@gmail.com>, Helge Deller <deller@gmx.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu,  3 Aug 2023 16:19:18 +0300 Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+== Series Details ==
 
-> abs_diff() belongs to math.h. Move it there.
-> This will allow others to use it.
-> 
-> ...
->
-> --- a/include/linux/math.h
-> +++ b/include/linux/math.h
-> @@ -155,6 +155,13 @@ __STRUCT_FRACT(u32)
->  	__builtin_types_compatible_p(typeof(x), unsigned type),		\
->  	({ signed type __x = (x); __x < 0 ? -__x : __x; }), other)
->  
-> +#define abs_diff(a, b) ({			\
-> +	typeof(a) __a = (a);			\
-> +	typeof(b) __b = (b);			\
-> +	(void)(&__a == &__b);			\
-> +	__a > __b ? (__a - __b) : (__b - __a);	\
-> +})
+Series: series starting with [v4,1/1] drm/i915: Move abs_diff() to math.h
+URL   : https://patchwork.freedesktop.org/series/121959/
+State : warning
 
-Can we document it please?
+== Summary ==
 
-Also, the open-coded type comparison could be replaced with __typecheck()?
-
-And why the heck isn't __typecheck() in typecheck.h, to be included by
-minmax.h.
-
-etcetera.  Sigh.  I'll grab it, but please at least send along some
-kerneldoc?
+Error: dim checkpatch failed
+/home/kbuild2/linux/maintainer-tools/dim: line 50: /home/kbuild2/.dimrc: No such file or directory
 
 
