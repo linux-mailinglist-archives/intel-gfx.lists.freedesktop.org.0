@@ -1,56 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CE9776EA3A
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 15:28:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCA0676EA7A
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 15:33:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C4E710E608;
-	Thu,  3 Aug 2023 13:28:55 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4238010E1C3;
- Thu,  3 Aug 2023 13:28:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8326C10E608;
+	Thu,  3 Aug 2023 13:33:04 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mgamail.intel.com (unknown [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69F6210E1AE;
+ Thu,  3 Aug 2023 13:33:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691069333; x=1722605333;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=W1vGWvXnwAY/f51FTl0188tECkxF+EFRNzlkxGetUxc=;
- b=Mg+RCcC36fO1Cz6nE7dQr+nyqloSBjHHOy9U2cKmPWwfgwvs78AYtCMN
- uW6UF3Yd8v/BBHFw4TLodPeqVRck3HwKwVGZFZboaq+F0TWQg52rDM2Eu
- VkQWOEn8GVyi3TquVpZr3eDJTkeuRC9H+ox1qSeIvsszn3e23UVvqi2r4
- SgcKZB8iTDQh6IzOklgoiAH7CRcY1ELSxuZSwOzbwoe0anrPIUTNIblod
- 3W4rG5kuM4VGwhMluw/k4LwFyXq5+EcL7JBff7jBbW44OikyRQlYGiN0i
- acCPN9oOJC0AsPz8WfQB5RWEXcy+j3KyfOSVlafx7m3MTJzpC+V6BnlIY g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="373499607"
-X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="373499607"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2023 06:19:29 -0700
+ t=1691069582; x=1722605582;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=qOrih1jiYxlbUokyDmYtkY4b+TEofzrba+mxe36q6kU=;
+ b=M5/G7uxr/ohf5XBl+HMVl4FKTSMpJdx+ebuji1EJJ4odqMHCYWO2bCf2
+ xsrIlqALu+l/Gp/QFLUgTaLKpYHDU4+1J85BFTFonT762nqbG3v/v6uOF
+ r99dp5bgfPmdD7oREeAS2Y4a17EoZD0rtuh7lqpMQBbnCwXDQN3utz75W
+ 4N2s52SVUI7rmV9DE2dZ42XG7Iy0fo5wftqa5s7MIVvbWikEiRLFBoou/
+ Q9yaA1Eup1ZFTlAJkphvaAWjfTHz4xjspFokDFEf91zPrTKbN/gfOScdF
+ 2ooEfZwcXz/ZQdQ0XnWlI4jIz/NuJOV+wjc0rRVyPlJwbFLAgkvwJESU+ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="368773485"
+X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="368773485"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 06:28:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="794985503"
-X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="794985503"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmsmga008.fm.intel.com with ESMTP; 03 Aug 2023 06:19:10 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
- id DC3932AB; Thu,  3 Aug 2023 16:19:21 +0300 (EEST)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, Imre Deak <imre.deak@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andi Shyti <andi.shyti@linux.intel.com>, Jiri Slaby <jirislaby@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Alexey Dobriyan <adobriyan@gmail.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
-Date: Thu,  3 Aug 2023 16:19:18 +0300
-Message-Id: <20230803131918.53727-1-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="819653818"
+X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="819653818"
+Received: from cavram-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.251.210.12])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 06:28:32 -0700
+Date: Thu, 3 Aug 2023 15:28:29 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: John.C.Harrison@intel.com
+Message-ID: <ZMurfYjREPl5NIGB@ashyti-mobl2.lan>
+References: <20230802184940.911753-1-John.C.Harrison@Intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 1/1] drm/i915: Move abs_diff() to math.h
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230802184940.911753-1-John.C.Harrison@Intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Fix potential null pointer
+ deref in GuC 'steal id' test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,171 +59,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Helge Deller <deller@gmx.de>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>, David Airlie <airlied@gmail.com>
+Cc: Intel-GFX@lists.freedesktop.org, DRI-Devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-abs_diff() belongs to math.h. Move it there.
-This will allow others to use it.
+Hi John,
 
-Reviewed-by: Jiri Slaby <jirislaby@kernel.org> # tty/serial
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de> # gpu/ipu-v3
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
-v4:
-- Cc'ed to Andrew (as Jani told he is okay to route it via other tree)
-- added tags
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  1 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  7 -------
- drivers/gpu/ipu-v3/ipu-image-convert.c        | 15 +++++++--------
- drivers/tty/serial/omap-serial.c              |  7 +------
- drivers/video/fbdev/core/svgalib.c            |  7 +------
- include/linux/math.h                          |  7 +++++++
- 6 files changed, 17 insertions(+), 27 deletions(-)
+On Wed, Aug 02, 2023 at 11:49:40AM -0700, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+> 
+> It was noticed that if the very first 'stealing' request failed to
+> create for some reason then the 'steal all ids' loop would immediately
+> exit with 'last' still being NULL. The test would attempt to continue
+> but using a null pointer. Fix that by aborting the test if it fails to
+> create any requests at all.
+> 
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/selftest_guc.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+> index 1fd760539f77b..bfb72143566f6 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+> @@ -204,9 +204,9 @@ static int intel_guc_steal_guc_ids(void *arg)
+>  		if (IS_ERR(rq)) {
+>  			ret = PTR_ERR(rq);
+>  			rq = NULL;
+> -			if (ret != -EAGAIN) {
+> -				guc_err(guc, "Failed to create request %d: %pe\n",
+> -					context_index, ERR_PTR(ret));
+> +			if ((ret != -EAGAIN) || !last) {
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 6b2d8a1e2aa9..290e856fe9e9 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -21,6 +21,7 @@
-  * DEALINGS IN THE SOFTWARE.
-  */
- 
-+#include <linux/math.h>
- #include <linux/string_helpers.h>
- 
- #include "i915_reg.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index ba62eb5d7c51..04e6810954b2 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -29,13 +29,6 @@
- 
- #include "intel_wakeref.h"
- 
--/*FIXME: Move this to a more appropriate place. */
--#define abs_diff(a, b) ({			\
--	typeof(a) __a = (a);			\
--	typeof(b) __b = (b);			\
--	(void) (&__a == &__b);			\
--	__a > __b ? (__a - __b) : (__b - __a); })
--
- enum tc_port;
- struct drm_i915_private;
- struct intel_atomic_state;
-diff --git a/drivers/gpu/ipu-v3/ipu-image-convert.c b/drivers/gpu/ipu-v3/ipu-image-convert.c
-index af1612044eef..841316582ea9 100644
---- a/drivers/gpu/ipu-v3/ipu-image-convert.c
-+++ b/drivers/gpu/ipu-v3/ipu-image-convert.c
-@@ -7,7 +7,10 @@
- 
- #include <linux/interrupt.h>
- #include <linux/dma-mapping.h>
-+#include <linux/math.h>
-+
- #include <video/imx-ipu-image-convert.h>
-+
- #include "ipu-prv.h"
- 
- /*
-@@ -543,7 +546,7 @@ static void find_best_seam(struct ipu_image_convert_ctx *ctx,
- 		unsigned int in_pos;
- 		unsigned int in_pos_aligned;
- 		unsigned int in_pos_rounded;
--		unsigned int abs_diff;
-+		unsigned int diff;
- 
- 		/*
- 		 * Tiles in the right row / bottom column may not be allowed to
-@@ -575,15 +578,11 @@ static void find_best_seam(struct ipu_image_convert_ctx *ctx,
- 		    (in_edge - in_pos_rounded) % in_burst)
- 			continue;
- 
--		if (in_pos < in_pos_aligned)
--			abs_diff = in_pos_aligned - in_pos;
--		else
--			abs_diff = in_pos - in_pos_aligned;
--
--		if (abs_diff < min_diff) {
-+		diff = abs_diff(in_pos, in_pos_aligned);
-+		if (diff < min_diff) {
- 			in_seam = in_pos_rounded;
- 			out_seam = out_pos;
--			min_diff = abs_diff;
-+			min_diff = diff;
- 		}
- 	}
- 
-diff --git a/drivers/tty/serial/omap-serial.c b/drivers/tty/serial/omap-serial.c
-index 3dc14dcb01ca..0ead88c5a19a 100644
---- a/drivers/tty/serial/omap-serial.c
-+++ b/drivers/tty/serial/omap-serial.c
-@@ -222,16 +222,11 @@ static inline int calculate_baud_abs_diff(struct uart_port *port,
- 				unsigned int baud, unsigned int mode)
- {
- 	unsigned int n = port->uartclk / (mode * baud);
--	int abs_diff;
- 
- 	if (n == 0)
- 		n = 1;
- 
--	abs_diff = baud - (port->uartclk / (mode * n));
--	if (abs_diff < 0)
--		abs_diff = -abs_diff;
--
--	return abs_diff;
-+	return abs_diff(baud, port->uartclk / (mode * n));
- }
- 
- /*
-diff --git a/drivers/video/fbdev/core/svgalib.c b/drivers/video/fbdev/core/svgalib.c
-index 9e01322fabe3..2cba158888ea 100644
---- a/drivers/video/fbdev/core/svgalib.c
-+++ b/drivers/video/fbdev/core/svgalib.c
-@@ -14,6 +14,7 @@
- #include <linux/kernel.h>
- #include <linux/string.h>
- #include <linux/fb.h>
-+#include <linux/math.h>
- #include <linux/svga.h>
- #include <asm/types.h>
- #include <asm/io.h>
-@@ -372,12 +373,6 @@ EXPORT_SYMBOL(svga_get_caps);
-  *  F_VCO = (F_BASE * M) / N
-  *  F_OUT = F_VCO / (2^R)
-  */
--
--static inline u32 abs_diff(u32 a, u32 b)
--{
--	return (a > b) ? (a - b) : (b - a);
--}
--
- int svga_compute_pll(const struct svga_pll *pll, u32 f_wanted, u16 *m, u16 *n, u16 *r, int node)
- {
- 	u16 am, an, ar;
-diff --git a/include/linux/math.h b/include/linux/math.h
-index 2d388650c556..336e3e3678e7 100644
---- a/include/linux/math.h
-+++ b/include/linux/math.h
-@@ -155,6 +155,13 @@ __STRUCT_FRACT(u32)
- 	__builtin_types_compatible_p(typeof(x), unsigned type),		\
- 	({ signed type __x = (x); __x < 0 ? -__x : __x; }), other)
- 
-+#define abs_diff(a, b) ({			\
-+	typeof(a) __a = (a);			\
-+	typeof(b) __b = (b);			\
-+	(void)(&__a == &__b);			\
-+	__a > __b ? (__a - __b) : (__b - __a);	\
-+})
-+
- /**
-  * reciprocal_scale - "scale" a value into range [0, ep_ro)
-  * @val: value
--- 
-2.40.0.1.gaa8946217a0b
+isn't last alway NULL here?
 
+Andi
+
+> +				guc_err(guc, "Failed to create %srequest %d: %pe\n",
+> +					last ? "" : "first ", context_index, ERR_PTR(ret));
+>  				goto err_spin_rq;
+>  			}
+>  		} else {
+> -- 
+> 2.39.1
