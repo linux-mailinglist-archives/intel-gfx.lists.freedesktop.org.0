@@ -1,59 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B27BF76E398
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 10:50:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F19F376E39E
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 10:52:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EB9210E5D9;
-	Thu,  3 Aug 2023 08:50:07 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D0E010E5D9;
- Thu,  3 Aug 2023 08:50:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BA4F10E5D9;
+	Thu,  3 Aug 2023 08:52:01 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (unknown [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ECC910E5D9
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 08:51:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691052604; x=1722588604;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=syY0BtLD97OIprqfM/dn9Th4zV4J0yr71K+w/x8xDQs=;
- b=EfKdgrq6N2qayPcfrifHssvqjclNp7QSZbEnWDtt7WfnAboVrB4A3O9M
- DSfIGp6EqjSHw7/Nb15hxv6fhG1uguK8iyUwpV3xrx7qCbERmY+tFYmVS
- m15FURU76tTfqMhpNUFEMQdddXvCmsw4z4+hh0+vkrrTRvQdZoRhgdawj
- SdCquUSz76GWmXrrNbuM6+2UfJ6OYmqV3EsmkAc1fsdJwPEjuBpGiuNGC
- 4M1FVWebbw7cjJSyeNVyOZ0lDQLdUQo2o2OhUWLJ7NI2L2nbdILUXeIzw
- zPjJnyTLpgsp3KmRtK0jj7JFrwFIFX/O+KIVjA6ORvFklThMO1fY3nweD w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="436124211"
-X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="436124211"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2023 01:50:03 -0700
+ t=1691052719; x=1722588719;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=Q9PdKvRjkVP6FfMLBaFSkE1bYCR7JF/4fk25UuEwWEQ=;
+ b=ffOARzIhAU7+R2TDAOWr0tuplxdx2ShlSx4iV++NQxNDb+Vcf6LHXgPP
+ gJgwsTCy+NOZD++MZHP4X1hxIfra9B5koeByrecupG5Yl4PiZAdCuZ5w/
+ Wyns1u+TRUp3uAPNQn0XxuDnMDLUXBG6R+jzEGxQ589UTfC5PhhWhUxQe
+ H2gFEjCISLpjL8sowYg1H9rvOzvbD4wMFseH4S83E532OneSYKBaTRz9x
+ M82TXpWsRqcEcORywi0SZorLnoaVy5PDZ2fDvzRS2aGjuNbnny0WNu66j
+ qYlqt/2sLs8c6HPGaQodQBs8ujdWqUzwoGV9nfXUqX1EvSa3F3NYrCKt4 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="367271085"
+X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="367271085"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 01:51:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="764512671"
-X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="764512671"
-Received: from rrybakov-mobl1.ger.corp.intel.com (HELO [10.213.197.207])
- ([10.213.197.207])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2023 01:49:58 -0700
-Message-ID: <b5904977-9693-34bc-55bf-28387b69e06a@linux.intel.com>
-Date: Thu, 3 Aug 2023 09:49:56 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="853173689"
+X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="853173689"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.37.55])
+ ([10.252.37.55])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 01:51:57 -0700
+Message-ID: <8f7f9ebc-afc4-a754-89db-cbac5b83f648@linux.intel.com>
+Date: Thu, 3 Aug 2023 10:51:54 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20230614051731.745821-1-jouni.hogander@intel.com>
+ <20230614051731.745821-2-jouni.hogander@intel.com>
+ <b948b6a1-03c3-364c-fd55-b50b4e10d63d@linux.intel.com>
+ <d1497a4ae53350ed914b07459d83564e12adab49.camel@intel.com>
+ <c625914a-90f9-3953-981b-1621a899f8b0@linux.intel.com>
+ <729e798f2a1693de9c5ca42954e23846061baf46.camel@intel.com>
 Content-Language: en-US
-To: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>,
- Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230727101352.1899466-1-tvrtko.ursulin@linux.intel.com>
- <20230727101352.1899466-6-tvrtko.ursulin@linux.intel.com>
- <fffae148-a609-4f1d-eae4-dbe253f43650@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <fffae148-a609-4f1d-eae4-dbe253f43650@intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <729e798f2a1693de9c5ca42954e23846061baf46.camel@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: Implement fdinfo memory stats
- printing
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/i915: Move stolen memory
+ handling into i915_gem_stolen
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,183 +71,365 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Jouni,
 
-On 03/08/2023 06:15, Iddamsetty, Aravind wrote:
-> On 27-07-2023 15:43, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On 8/2/2023 9:52 AM, Hogander, Jouni wrote:
+> On Wed, 2023-08-02 at 09:51 +0200, Nirmoy Das wrote:
+>> On 8/1/2023 10:33 AM, Hogander, Jouni wrote:
+>>> On Tue, 2023-08-01 at 10:02 +0200, Nirmoy Das wrote:
+>>>> Hi Jouni,
+>>>>
+>>>> On 6/14/2023 7:17 AM, Jouni Högander wrote:
+>>>>> We are preparing for Xe. Xe stolen memory handling differs from
+>>>>> i915 so we
+>>>>> want to move stolen memory handling details into
+>>>>> i915_gem_stolen.
+>>>>>
+>>>>> Also add a common type for fbc compressed fb and use it from
+>>>>> fbc
+>>>>> code
+>>>>> instead of underlying type directly. This way we can have
+>>>>> common
+>>>>> type
+>>>>> i915_stolen_fb for both i915 and Xe.
+>>>>>
+>>>>> v2: Fix couple of checkpatch warnings
+>>>>>
+>>>>> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+>>>>> Signed-off-by: Maarten Lankhorst
+>>>>> <maarten.lankhorst@linux.intel.com>
+>>>>> ---
+>>>>>     drivers/gpu/drm/i915/display/intel_fbc.c   | 46 +++++++++++-
+>>>>> -----
+>>>>> -----
+>>>>>     drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 36
+>>>>> +++++++++++++++++
+>>>>>     drivers/gpu/drm/i915/gem/i915_gem_stolen.h | 13 ++++++
+>>>>>     3 files changed, 73 insertions(+), 22 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c
+>>>>> b/drivers/gpu/drm/i915/display/intel_fbc.c
+>>>>> index 7f8b2d7713c7..a18e84efe911 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+>>>>> @@ -94,8 +94,7 @@ struct intel_fbc {
+>>>>>           struct mutex lock;
+>>>>>           unsigned int busy_bits;
+>>>>>     
+>>>>> -       struct drm_mm_node compressed_fb;
+>>>>> -       struct drm_mm_node compressed_llb;
+>>>>> +       struct i915_stolen_fb compressed_fb, compressed_llb;
+>>>>>     
+>>>>>           enum intel_fbc_id id;
+>>>>>     
+>>>>> @@ -332,15 +331,16 @@ static void i8xx_fbc_program_cfb(struct
+>>>>> intel_fbc *fbc)
+>>>>>     {
+>>>>>           struct drm_i915_private *i915 = fbc->i915;
+>>>>>     
+>>>>> -       GEM_BUG_ON(range_overflows_end_t(u64, i915-
+>>>>>> dsm.stolen.start,
+>>>>> -                                        fbc-
+>>>>>> compressed_fb.start,
+>>>>> U32_MAX));
+>>>>> -       GEM_BUG_ON(range_overflows_end_t(u64, i915-
+>>>>>> dsm.stolen.start,
+>>>>> -                                        fbc-
+>>>>>> compressed_llb.start,
+>>>>> U32_MAX));
+>>>>> -
+>>>>> +       GEM_BUG_ON(range_overflows_end_t(u64,
+>>>>> i915_gem_stolen_area_address(i915),
+>>>>> +
+>>>>> i915_gem_stolen_node_offset(&fbc->compressed_fb),
+>>>>> +                                        U32_MAX));
+>>>>> +       GEM_BUG_ON(range_overflows_end_t(u64,
+>>>>> i915_gem_stolen_area_address(i915),
+>>>>> +
+>>>>> i915_gem_stolen_node_offset(&fbc->compressed_llb),
+>>>>> +                                        U32_MAX));
+>>>>>           intel_de_write(i915, FBC_CFB_BASE,
+>>>>> -                      i915->dsm.stolen.start + fbc-
+>>>>>> compressed_fb.start);
+>>>>> +                      i915_gem_stolen_node_address(i915, &fbc-
+>>>>>> compressed_fb));
+>>>>>           intel_de_write(i915, FBC_LL_BASE,
+>>>>> -                      i915->dsm.stolen.start + fbc-
+>>>>>> compressed_llb.start);
+>>>>> +                      i915_gem_stolen_node_address(i915, &fbc-
+>>>>>> compressed_llb));
+>>>>>     }
+>>>>>     
+>>>>>     static const struct intel_fbc_funcs i8xx_fbc_funcs = {
+>>>>> @@ -447,7 +447,8 @@ static void g4x_fbc_program_cfb(struct
+>>>>> intel_fbc *fbc)
+>>>>>     {
+>>>>>           struct drm_i915_private *i915 = fbc->i915;
+>>>>>     
+>>>>> -       intel_de_write(i915, DPFC_CB_BASE, fbc-
+>>>>>> compressed_fb.start);
+>>>>> +       intel_de_write(i915, DPFC_CB_BASE,
+>>>>> +                      i915_gem_stolen_node_offset(&fbc-
+>>>>>> compressed_fb));
+>>>>>     }
+>>>>>     
+>>>>>     static const struct intel_fbc_funcs g4x_fbc_funcs = {
+>>>>> @@ -498,7 +499,8 @@ static void ilk_fbc_program_cfb(struct
+>>>>> intel_fbc *fbc)
+>>>>>     {
+>>>>>           struct drm_i915_private *i915 = fbc->i915;
+>>>>>     
+>>>>> -       intel_de_write(i915, ILK_DPFC_CB_BASE(fbc->id), fbc-
+>>>>>> compressed_fb.start);
+>>>>> +       intel_de_write(i915, ILK_DPFC_CB_BASE(fbc->id),
+>>>>> +                      i915_gem_stolen_node_offset(&fbc-
+>>>>>> compressed_fb));
+>>>>>     }
+>>>>>     
+>>>>>     static const struct intel_fbc_funcs ilk_fbc_funcs = {
+>>>>> @@ -713,7 +715,7 @@ static u64 intel_fbc_stolen_end(struct
+>>>>> drm_i915_private *i915)
+>>>>>            * underruns, even if that range is not reserved by
+>>>>> the
+>>>>> BIOS. */
+>>>>>           if (IS_BROADWELL(i915) ||
+>>>>>               (DISPLAY_VER(i915) == 9 && !IS_BROXTON(i915)))
+>>>>> -               end = resource_size(&i915->dsm.stolen) - 8 *
+>>>>> 1024 *
+>>>>> 1024;
+>>>>> +               end = i915_gem_stolen_area_size(i915) - 8 *
+>>>>> 1024 *
+>>>>> 1024;
+>>>>>           else
+>>>>>                   end = U64_MAX;
+>>>>>     
+>>>>> @@ -770,9 +772,9 @@ static int intel_fbc_alloc_cfb(struct
+>>>>> intel_fbc
+>>>>> *fbc,
+>>>>>           int ret;
+>>>>>     
+>>>>>           drm_WARN_ON(&i915->drm,
+>>>>> -                   drm_mm_node_allocated(&fbc-
+>>>>>> compressed_fb));
+>>>>> +                   i915_gem_stolen_node_allocated(&fbc-
+>>>>>> compressed_fb));
+>>>>>           drm_WARN_ON(&i915->drm,
+>>>>> -                   drm_mm_node_allocated(&fbc-
+>>>>>> compressed_llb));
+>>>>> +                   i915_gem_stolen_node_allocated(&fbc-
+>>>>>> compressed_llb));
+>>>>>     
+>>>>>           if (DISPLAY_VER(i915) < 5 && !IS_G4X(i915)) {
+>>>>>                   ret = i915_gem_stolen_insert_node(i915, &fbc-
+>>>>>> compressed_llb,
+>>>>> @@ -792,15 +794,14 @@ static int intel_fbc_alloc_cfb(struct
+>>>>> intel_fbc *fbc,
+>>>>>     
+>>>>>           drm_dbg_kms(&i915->drm,
+>>>>>                       "reserved %llu bytes of contiguous stolen
+>>>>> space
+>>>>> for FBC, limit: %d\n",
+>>>>> -                   fbc->compressed_fb.size, fbc->limit);
+>>>>> -
+>>>>> +                   i915_gem_stolen_node_size(&fbc-
+>>>>>> compressed_fb),
+>>>>> fbc->limit);
+>>>>>           return 0;
+>>>>>     
+>>>>>     err_llb:
+>>>>> -       if (drm_mm_node_allocated(&fbc->compressed_llb))
+>>>>> +       if (i915_gem_stolen_node_allocated(&fbc-
+>>>>>> compressed_llb))
+>>>>>                   i915_gem_stolen_remove_node(i915, &fbc-
+>>>>>> compressed_llb);
+>>>>>     err:
+>>>>> -       if (drm_mm_initialized(&i915->mm.stolen))
+>>>>> +       if (i915_gem_stolen_initialized(i915))
+>>>>>                   drm_info_once(&i915->drm, "not enough stolen
+>>>>> space
+>>>>> for compressed buffer (need %d more bytes), disabling. Hint:
+>>>>> you
+>>>>> may be able to increase stolen memory size in the BIOS to avoid
+>>>>> this.\n", size);
+>>>>>           return -ENOSPC;
+>>>>>     }
+>>>>> @@ -825,9 +826,9 @@ static void __intel_fbc_cleanup_cfb(struct
+>>>>> intel_fbc *fbc)
+>>>>>           if (WARN_ON(intel_fbc_hw_is_active(fbc)))
+>>>>>                   return;
+>>>>>     
+>>>>> -       if (drm_mm_node_allocated(&fbc->compressed_llb))
+>>>>> +       if (i915_gem_stolen_node_allocated(&fbc-
+>>>>>> compressed_llb))
+>>>>>                   i915_gem_stolen_remove_node(i915, &fbc-
+>>>>>> compressed_llb);
+>>>>> -       if (drm_mm_node_allocated(&fbc->compressed_fb))
+>>>>> +       if (i915_gem_stolen_node_allocated(&fbc-
+>>>>>> compressed_fb))
+>>>>>                   i915_gem_stolen_remove_node(i915, &fbc-
+>>>>>> compressed_fb);
+>>>>>     }
+>>>>>     
+>>>>> @@ -1030,7 +1031,8 @@ static bool intel_fbc_is_cfb_ok(const
+>>>>> struct
+>>>>> intel_plane_state *plane_state)
+>>>>>           struct intel_fbc *fbc = plane->fbc;
+>>>>>     
+>>>>>           return intel_fbc_min_limit(plane_state) <= fbc->limit
+>>>>> &&
+>>>>> -               intel_fbc_cfb_size(plane_state) <= fbc-
+>>>>>> compressed_fb.size * fbc->limit;
+>>>>> +               intel_fbc_cfb_size(plane_state) <= fbc->limit *
+>>>>> +                       i915_gem_stolen_node_size(&fbc-
+>>>>>> compressed_fb);
+>>>>>     }
+>>>>>     
+>>>>>     static bool intel_fbc_is_ok(const struct intel_plane_state
+>>>>> *plane_state)
+>>>>> @@ -1707,7 +1709,7 @@ void intel_fbc_init(struct
+>>>>> drm_i915_private
+>>>>> *i915)
+>>>>>     {
+>>>>>           enum intel_fbc_id fbc_id;
+>>>>>     
+>>>>> -       if (!drm_mm_initialized(&i915->mm.stolen))
+>>>>> +       if (!i915_gem_stolen_initialized(i915))
+>>>>>                   DISPLAY_RUNTIME_INFO(i915)->fbc_mask = 0;
+>>>>>     
+>>>>>           if (need_fbc_vtd_wa(i915))
+>>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+>>>>> b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+>>>>> index 3b094d36a0b0..78bac1e611dd 100644
+>>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+>>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+>>>>> @@ -974,3 +974,39 @@ bool i915_gem_object_is_stolen(const
+>>>>> struct
+>>>>> drm_i915_gem_object *obj)
+>>>>>     {
+>>>>>           return obj->ops == &i915_gem_object_stolen_ops;
+>>>>>     }
+>>>>> +
+>>>>> +bool i915_gem_stolen_initialized(const struct drm_i915_private
+>>>>> *i915)
+>>>>> +{
+>>>>> +       return drm_mm_initialized(&i915->mm.stolen);
+>>>>> +}
+>>>>> +
+>>>>> +u64 i915_gem_stolen_area_address(const struct drm_i915_private
+>>>>> *i915)
+>>>>> +{
+>>>>> +       return i915->dsm.stolen.start;
+>>>>> +}
+>>>>> +
+>>>>> +u64 i915_gem_stolen_area_size(const struct drm_i915_private
+>>>>> *i915)
+>>>>> +{
+>>>>> +       return resource_size(&i915->dsm.stolen);
+>>>>> +}
+>>>>> +
+>>>>> +u64 i915_gem_stolen_node_address(const struct drm_i915_private
+>>>>> *i915,
+>>>>> +                                const struct drm_mm_node
+>>>>> *node)
+>>>>> +{
+>>>>> +       return i915->dsm.stolen.start +
+>>>>> i915_gem_stolen_node_offset(node);
+>>>>> +}
+>>>>> +
+>>>>> +bool i915_gem_stolen_node_allocated(const struct drm_mm_node
+>>>>> *node)
+>>>>> +{
+>>>>> +       return drm_mm_node_allocated(node);
+>>>>> +}
+>>>>> +
+>>>>> +u64 i915_gem_stolen_node_offset(const struct drm_mm_node
+>>>>> *node)
+>>>>> +{
+>>>>> +       return node->start;
+>>>>> +}
+>>>>> +
+>>>>> +u64 i915_gem_stolen_node_size(const struct drm_mm_node *node)
+>>>>> +{
+>>>>> +       return node->size;
+>>>> Above 3 functions are core drm functions/struct and not related
+>>>> to
+>>>> stolen so I don't think
+>>>>
+>>>> they deserve special functions in stolen code.
+>>> Xe and i915 have differing implementations for stolen memory. We
+>>> want
+>>> to remove these details from FBC code. The thing here is that in
+>>> i915
+>>> case stolen memory node == drm mm node. In Xe case it is not and
+>>> interfaces for these queries will have own implementation for Xe.
+>>> See:
+>>>
+>>> https://patchwork.freedesktop.org/patch/540793/?series=118560&rev=3
 >>
->> Use the newly added drm_print_memory_stats helper to show memory
->> utilisation of our objects in drm/driver specific fdinfo output.
->>
->> To collect the stats we walk the per memory regions object lists
->> and accumulate object size into the respective drm_memory_stats
->> categories.
->>
->> Objects with multiple possible placements are reported in multiple
->> regions for total and shared sizes, while other categories are
->> counted only for the currently active region.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
->> Cc: Rob Clark <robdclark@gmail.com>> ---
->>   drivers/gpu/drm/i915/i915_drm_client.c | 85 ++++++++++++++++++++++++++
->>   1 file changed, 85 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
->> index a61356012df8..9e7a6075ee25 100644
->> --- a/drivers/gpu/drm/i915/i915_drm_client.c
->> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
->> @@ -45,6 +45,89 @@ void __i915_drm_client_free(struct kref *kref)
->>   }
->>   
->>   #ifdef CONFIG_PROC_FS
->> +static void
->> +obj_meminfo(struct drm_i915_gem_object *obj,
->> +	    struct drm_memory_stats stats[INTEL_REGION_UNKNOWN])
->> +{
->> +	struct intel_memory_region *mr;
->> +	u64 sz = obj->base.size;
->> +	enum intel_region_id id;
->> +	unsigned int i;
->> +
->> +	/* Attribute size and shared to all possible memory regions. */
->> +	for (i = 0; i < obj->mm.n_placements; i++) {
->> +		mr = obj->mm.placements[i];
->> +		id = mr->id;
->> +
->> +		if (obj->base.handle_count > 1)
->> +			stats[id].shared += sz;
->> +		else
->> +			stats[id].private += sz;
->> +	}
->> +
->> +	/* Attribute other categories to only the current region. */
->> +	mr = obj->mm.region;
->> +	if (mr)
->> +		id = mr->id;
->> +	else
->> +		id = INTEL_REGION_SMEM;
->> +
->> +	if (!obj->mm.n_placements) {
-> 
-> I guess we do not expect to have n_placements set to public objects, is
-> that right?
+>> Is the motivation to keep display code same for both XE and i915
+>> without
+>> adding lots #if ?
+> Yes, this is our target currently.
 
-I think they are the only ones which can have placements. It is via 
-I915_GEM_CREATE_EXT_MEMORY_REGIONS userspace is able to create them.
+Got it, in that case
 
-My main conundrum in this patch is a few lines above, the loop which 
-adds shared and private.
-
-Question is, if an object can be either smem or lmem, how do we want to 
-report it? This patch adds the size for all possible regions and 
-resident and active only to the currently active. But perhaps that is 
-wrong. Maybe I should change it is only against the active region and 
-multiple regions are just ignored. Then if object is migrated do access 
-patterns or memory pressure, the total size would migrate too.
-
-I think I was trying to achieve something here (have more visibility on 
-what kind of backing store clients are allocating) which maybe does not 
-work to well with the current categories.
-
-Namely if userspace allocates say one 1MiB object with placement in 
-either smem or lmem, and it is currently resident in lmem, I wanted it 
-to show as:
-
-  total-smem: 1 MiB
-  resident-smem: 0
-  total-lmem: 1 MiB
-  resident-lmem: 1 MiB
-
-To constantly show how in theory client could be using memory from 
-either region. Maybe that is misleading and should instead be:
-
-  total-smem: 0
-  resident-smem: 0
-  total-lmem: 1 MiB
-  resident-lmem: 1 MiB
-
-?
-
-And then if/when the same object gets migrated to smem it changes to 
-(lets assume it is also not resident any more but got swapped out):
-
-  total-smem: 1 MiB
-  resident-smem: 0
-  total-lmem: 0
-  resident-lmem: 0
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
 Regards,
 
-Tvrtko
+Nirmoy
 
->> +		if (obj->base.handle_count > 1)
->> +			stats[id].shared += sz;
->> +		else
->> +			stats[id].private += sz;
->> +	}
->> +
->> +	if (i915_gem_object_has_pages(obj)) {
->> +		stats[id].resident += sz;
->> +
->> +		if (!dma_resv_test_signaled(obj->base.resv,
->> +					    dma_resv_usage_rw(true)))
->> +			stats[id].active += sz;
->> +		else if (i915_gem_object_is_shrinkable(obj) &&
->> +			 obj->mm.madv == I915_MADV_DONTNEED)
->> +			stats[id].purgeable += sz;
->> +	}
->> +}
->> +
->> +static void show_meminfo(struct drm_printer *p, struct drm_file *file)
->> +{
->> +	struct drm_memory_stats stats[INTEL_REGION_UNKNOWN] = {};
->> +	struct drm_i915_file_private *fpriv = file->driver_priv;
->> +	struct i915_drm_client *client = fpriv->client;
->> +	struct drm_i915_private *i915 = fpriv->i915;
->> +	struct drm_i915_gem_object *obj;
->> +	struct intel_memory_region *mr;
->> +	struct list_head *pos;
->> +	unsigned int id;
->> +
->> +	/* Public objects. */
->> +	spin_lock(&file->table_lock);
->> +	idr_for_each_entry(&file->object_idr, obj, id)
->> +		obj_meminfo(obj, stats);
->> +	spin_unlock(&file->table_lock);
->> +
->> +	/* Internal objects. */
->> +	rcu_read_lock();
->> +	list_for_each_rcu(pos, &client->objects_list) {
->> +		obj = i915_gem_object_get_rcu(list_entry(pos, typeof(*obj),
->> +							 client_link));
->> +		if (!obj)
->> +			continue;
->> +		obj_meminfo(obj, stats);
->> +		i915_gem_object_put(obj);
->> +	}
->> +	rcu_read_unlock();
->> +
->> +	for_each_memory_region(mr, i915, id)
->> +		drm_print_memory_stats(p,
->> +				       &stats[id],
->> +				       DRM_GEM_OBJECT_RESIDENT |
->> +				       DRM_GEM_OBJECT_PURGEABLE,
->> +				       mr->name);
->> +}
->> +
->>   static const char * const uabi_class_names[] = {
->>   	[I915_ENGINE_CLASS_RENDER] = "render",
->>   	[I915_ENGINE_CLASS_COPY] = "copy",
->> @@ -106,6 +189,8 @@ void i915_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file)
->>   	 * ******************************************************************
->>   	 */
->>   
->> +	show_meminfo(p, file);
->> +
->>   	if (GRAPHICS_VER(i915) < 8)
->>   		return;
+>
 >>
-> 
-> 
-> 
+>> Regards,
+>>
+>> Nirmoy
+>>
+>>> BR,
+>>>
+>>> Jouni Högander
+>>>> Regards,
+>>>>
+>>>> Nirmoy
+>>>>
+>>>>> +}
+>>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
+>>>>> b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
+>>>>> index d5005a39d130..258381d1c054 100644
+>>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
+>>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
+>>>>> @@ -12,6 +12,8 @@ struct drm_i915_private;
+>>>>>     struct drm_mm_node;
+>>>>>     struct drm_i915_gem_object;
+>>>>>     
+>>>>> +#define i915_stolen_fb drm_mm_node
+>>>>> +
+>>>>>     int i915_gem_stolen_insert_node(struct drm_i915_private
+>>>>> *dev_priv,
+>>>>>                                   struct drm_mm_node *node, u64
+>>>>> size,
+>>>>>                                   unsigned alignment);
+>>>>> @@ -36,4 +38,15 @@ bool i915_gem_object_is_stolen(const struct
+>>>>> drm_i915_gem_object *obj);
+>>>>>     
+>>>>>     #define I915_GEM_STOLEN_BIAS SZ_128K
+>>>>>     
+>>>>> +bool i915_gem_stolen_initialized(const struct drm_i915_private
+>>>>> *i915);
+>>>>> +u64 i915_gem_stolen_area_address(const struct drm_i915_private
+>>>>> *i915);
+>>>>> +u64 i915_gem_stolen_area_size(const struct drm_i915_private
+>>>>> *i915);
+>>>>> +
+>>>>> +u64 i915_gem_stolen_node_address(const struct drm_i915_private
+>>>>> *i915,
+>>>>> +                                const struct drm_mm_node
+>>>>> *node);
+>>>>> +
+>>>>> +bool i915_gem_stolen_node_allocated(const struct drm_mm_node
+>>>>> *node);
+>>>>> +u64 i915_gem_stolen_node_offset(const struct drm_mm_node
+>>>>> *node);
+>>>>> +u64 i915_gem_stolen_node_size(const struct drm_mm_node *node);
+>>>>> +
+>>>>>     #endif /* __I915_GEM_STOLEN_H__ */
