@@ -1,34 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54C1976ECFD
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 16:45:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44E7176ED71
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 17:02:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6D0D10E610;
-	Thu,  3 Aug 2023 14:44:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE0E10E611;
+	Thu,  3 Aug 2023 15:01:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1BA8210E60C;
- Thu,  3 Aug 2023 14:44:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 14AECA0BA8;
- Thu,  3 Aug 2023 14:44:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0974309433829789076=="
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE1EB10E610;
+ Thu,  3 Aug 2023 15:01:52 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 577211F45A;
+ Thu,  3 Aug 2023 15:01:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1691074911; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=DP5EA9gEACt3qscyBI+vlE+f8c89cAvwY/BkUu+I+8M=;
+ b=fxJWNUKNZS8NvnN717ujm9sOt+VOI4nIUDKXJ9+Vo8HTF1zW+OmOZQmXzlTz+ucQSVpnOQ
+ IUKa3unJlotnZEcrSfB6ZvBtqTeVLCErNUPPhqfT/lP12Pudp2MU1rhRF9cAX/aMYdJ3dt
+ ySn6+r+SjSrbOXhUGCF5PchuWe+nA+k=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1691074911;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=DP5EA9gEACt3qscyBI+vlE+f8c89cAvwY/BkUu+I+8M=;
+ b=84TPK8PdyR+nWxlN4dC5MOcIcdORIJjRTuhUrLE7tFAkr5DwYA0JinyXosgdOlmRqtpofs
+ GaRVk/zi+ggPo3AA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 1C0ED134B0;
+ Thu,  3 Aug 2023 15:01:51 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id UoMMBl/By2TRIgAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 03 Aug 2023 15:01:51 +0000
+Date: Thu, 3 Aug 2023 17:01:49 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20230803150149.GA16884@linux-uq9g>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tseng, William" <william.tseng@intel.com>
-Date: Thu, 03 Aug 2023 14:44:57 -0000
-Message-ID: <169107389707.5269.6318324522347330256@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230802101541.10045-1-william.tseng@intel.com>
-In-Reply-To: <20230802101541.10045-1-william.tseng@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/xelpd=3A_Calculate_first=5Fline=5Fbpg=5Foffset_for_DSC_1?=
- =?utf-8?b?LjEgKHJldjMp?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,386 +64,580 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0974309433829789076==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave and Daniel,
 
-== Series Details ==
+this is the pull request for drm-misc-next for this week. There are
+plenty of small fixes and cleanups, but nothing stands out.
 
-Series: drm/i915/xelpd: Calculate first_line_bpg_offset for DSC 1.1 (rev3)
-URL   : https://patchwork.freedesktop.org/series/121882/
-State : success
+Best regards
+Thomas
 
-== Summary ==
+drm-misc-next-2023-08-03:
+drm-misc-next for v6.6:
 
-CI Bug Log - changes from CI_DRM_13469 -> Patchwork_121882v3
-====================================================
+UAPI Changes:
 
-Summary
--------
+ * virtio:
+   * Support sync objects
 
-  **SUCCESS**
+Cross-subsystem Changes:
 
-  No regressions found.
+ * dt-bindings:
+   * Move several panel bindings to the correct files
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/index.html
+ * fbcon:
+   * Cleanups
 
-Participating hosts (43 -> 42)
-------------------------------
+ * fbdev:
+   * Use _IOMEM_, _SYSMEM_, _DMAMEM_ infixes for initializer macros
+     and Kconfig tokens, update drivers accordingly
+   * ps3fb: Build fix
 
-  Missing    (1): fi-snb-2520m 
+ * hid/i2c:
+   * Allow panels and touchscreens to power sequence together
 
-Known issues
-------------
+ * host1x:
+   * Fixes
 
-  Here are the changes found in Patchwork_121882v3 that come from known issues:
+ * video:
+   * Fix Kconfig dependencies for boot-up logo
 
-### IGT changes ###
+Core Changes:
 
-#### Issues hit ####
+ * Documentation updates and fixes
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-tgl-1115g4:      [PASS][1] -> [FAIL][2] ([i915#7940]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-tgl-1115g4/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-tgl-1115g4/igt@i915_pm_rpm@basic-pci-d3-state.html
-    - bat-adlp-9:         [PASS][3] -> [FAIL][4] ([i915#7940])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-adlp-9/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-adlp-9/igt@i915_pm_rpm@basic-pci-d3-state.html
+ * Fixes
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-rkl-11600:       [PASS][5] -> [FAIL][6] ([i915#7940])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-rkl-11600/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-rkl-11600/igt@i915_pm_rpm@module-reload.html
+ * MIPI-DBI:
+   * Allow using same the D/C GPIO for multiple displays plus
+     driver updates
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][7] -> [ABORT][8] ([i915#7911] / [i915#7913])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+ * Tests:
+   * Convert to kunit actions
+   * Fix NULL-deref in drm_exec tests
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-cfl-guc:         [PASS][9] -> [DMESG-FAIL][10] ([i915#5334])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html
+Driver Changes:
 
-  * igt@i915_selftest@live@requests:
-    - bat-mtlp-6:         [PASS][11] -> [DMESG-FAIL][12] ([i915#8497])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-mtlp-6/igt@i915_selftest@live@requests.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-mtlp-6/igt@i915_selftest@live@requests.html
+ * armada:
+   * Fixes
 
-  * igt@i915_selftest@live@slpc:
-    - bat-rpls-2:         NOTRUN -> [DMESG-WARN][13] ([i915#6367])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-rpls-2/igt@i915_selftest@live@slpc.html
+ * ast:
+   * Represent BMV as virtual connector
+   * Report DP connection status
 
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][14] ([i915#1845] / [i915#5354]) +3 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+ * bridge:
+   * dw-hdmi: Support CEC suspend/resume
+   * Support debugfs for chains
+   * Fixes
 
-  * igt@kms_psr@primary_mmap_gtt:
-    - bat-rplp-1:         NOTRUN -> [ABORT][15] ([i915#8434] / [i915#8442] / [i915#8668])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html
+ * i915:
+   * Fixes
 
-  
-#### Possible fixes ####
+ * imx:
+   * Convert to dev_error_probe()
+   * Cleanups
 
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-cfl-8109u:       [FAIL][16] ([i915#7940]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-cfl-8109u/igt@i915_pm_rpm@basic-rte.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-cfl-8109u/igt@i915_pm_rpm@basic-rte.html
-    - fi-kbl-7567u:       [FAIL][18] ([i915#7940]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-kbl-7567u/igt@i915_pm_rpm@basic-rte.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-kbl-7567u/igt@i915_pm_rpm@basic-rte.html
+ * ipu-v3:
+   * Convert to devm_platform_ioremap_resource() in several places
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      [DMESG-FAIL][20] ([i915#5334] / [i915#7872]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+ * nouveau:
+   * Workaround DPCD issues
 
-  * igt@i915_selftest@live@gt_mocs:
-    - bat-mtlp-8:         [DMESG-FAIL][22] ([i915#7059]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-mtlp-8/igt@i915_selftest@live@gt_mocs.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-mtlp-8/igt@i915_selftest@live@gt_mocs.html
+ * panel:
+   * Convert to of_device_get_match_data()
+   * Fix Kconfig dependencies
+   * simple: Set bpc value to fix warning; Set connector type for AUO T215HVN01;
+     Support Innolux G156HCE-L01 plus DT bindings
+   * ili9881: Support TDO TL050HDV35 LCD panel plus DT bindings
+   * startek: Support KD070FHFID015 MIPI-DSI panel plus DT bindings
+   * sitronix-st7789v: Support Inanbo T28CP45TN89 plus DT bindings;
+     Support EDT ET028013DMA plus DT bindings; Various cleanups
+   * edp: Add timings for N140HCA-EAC
+   * Allow panels and touchscreens to power sequence together
+   * Documentation fixes
 
-  * igt@i915_selftest@live@mman:
-    - bat-rpls-2:         [TIMEOUT][24] ([i915#6794] / [i915#7392]) -> [PASS][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-rpls-2/igt@i915_selftest@live@mman.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-rpls-2/igt@i915_selftest@live@mman.html
+ * qaic:
+   * Cleanups
 
-  * igt@i915_selftest@live@requests:
-    - bat-mtlp-8:         [DMESG-FAIL][26] ([i915#8497]) -> [PASS][27]
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-mtlp-8/igt@i915_selftest@live@requests.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-mtlp-8/igt@i915_selftest@live@requests.html
+ * repaper:
+   * Fixes
 
-  * igt@i915_selftest@live@slpc:
-    - bat-mtlp-8:         [DMESG-WARN][28] ([i915#6367]) -> [PASS][29]
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-mtlp-8/igt@i915_selftest@live@slpc.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-mtlp-8/igt@i915_selftest@live@slpc.html
+ * ssd130x
+   * Fix shadow-plane allocation
+   * Cleanups
 
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - bat-rpls-2:         [WARN][30] ([i915#8747]) -> [PASS][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
+ * tegra:
+   * Convert to devm_platform_ioremap_resource() in several places
+   * Support bridge/connector
+   * Enable PM
+   * Fixes
 
-  * igt@kms_chamelium_frames@dp-crc-fast:
-    - {bat-dg2-13}:       [DMESG-WARN][32] ([Intel XE#485]) -> [PASS][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
+ * udl:
+   * Cleanups
 
-  
-#### Warnings ####
+ * v3d:
+   * Fixes
 
-  * igt@i915_module_load@load:
-    - bat-adlp-11:        [DMESG-WARN][34] ([i915#4423]) -> [ABORT][35] ([i915#4423])
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-adlp-11/igt@i915_module_load@load.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-adlp-11/igt@i915_module_load@load.html
+ * vc4:
+   * Convert tests to kunit actions
 
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-cfl-8700k:       [FAIL][36] ([i915#7691]) -> [FAIL][37] ([i915#7940])
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-cfl-8700k/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-cfl-8700k/igt@i915_pm_rpm@basic-pci-d3-state.html
+ * virtio:
+   * Support sync objects
 
-  * igt@kms_psr@sprite_plane_onoff:
-    - bat-rplp-1:         [ABORT][38] ([i915#8442] / [i915#8668] / [i915#8712]) -> [SKIP][39] ([i915#1072])
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-rplp-1/igt@kms_psr@sprite_plane_onoff.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-rplp-1/igt@kms_psr@sprite_plane_onoff.html
+ * vkms:
+   * Support gamma LUT
+   * Fixes
+The following changes since commit 7c5aa9485871f61d19ad2cecbf4904ea05a39ec4:
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+  dma-buf: Fix the typo in DMA-BUF statistics doc (2023-07-27 09:43:33 +0200)
 
-  [Intel XE#485]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/485
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#4423]: https://gitlab.freedesktop.org/drm/intel/issues/4423
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6367]: https://gitlab.freedesktop.org/drm/intel/issues/6367
-  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
-  [i915#7059]: https://gitlab.freedesktop.org/drm/intel/issues/7059
-  [i915#7392]: https://gitlab.freedesktop.org/drm/intel/issues/7392
-  [i915#7691]: https://gitlab.freedesktop.org/drm/intel/issues/7691
-  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
-  [i915#7911]: https://gitlab.freedesktop.org/drm/intel/issues/7911
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7940]: https://gitlab.freedesktop.org/drm/intel/issues/7940
-  [i915#8434]: https://gitlab.freedesktop.org/drm/intel/issues/8434
-  [i915#8442]: https://gitlab.freedesktop.org/drm/intel/issues/8442
-  [i915#8497]: https://gitlab.freedesktop.org/drm/intel/issues/8497
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#8712]: https://gitlab.freedesktop.org/drm/intel/issues/8712
-  [i915#8747]: https://gitlab.freedesktop.org/drm/intel/issues/8747
+are available in the Git repository at:
 
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2023-08-03
 
-Build changes
--------------
+for you to fetch changes up to a0769f25a3a621e8bbfb5e2a26e8ae462c761e33:
 
-  * Linux: CI_DRM_13469 -> Patchwork_121882v3
+  HID: i2c-hid: add more DRM dependencies (2023-08-03 07:36:41 -0700)
 
-  CI-20190529: 20190529
-  CI_DRM_13469: c9688b127361ba2cf524e4a3bf19b598654b4308 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7412: 7412
-  Patchwork_121882v3: c9688b127361ba2cf524e4a3bf19b598654b4308 @ git://anongit.freedesktop.org/gfx-ci/linux
+----------------------------------------------------------------
+drm-misc-next for v6.6:
 
+UAPI Changes:
 
-### Linux commits
+ * virtio:
+   * Support sync objects
 
-7387a634595c drm/i915/xelpd: Calculate first_line_bpg_offset for DSC 1.1
+Cross-subsystem Changes:
 
-== Logs ==
+ * dt-bindings:
+   * Move several panel bindings to the correct files
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/index.html
+ * fbcon:
+   * Cleanups
 
---===============0974309433829789076==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+ * fbdev:
+   * Use _IOMEM_, _SYSMEM_, _DMAMEM_ infixes for initializer macros
+     and Kconfig tokens, update drivers accordingly
+   * ps3fb: Build fix
 
+ * hid/i2c:
+   * Allow panels and touchscreens to power sequence together
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+ * host1x:
+   * Fixes
 
+ * video:
+   * Fix Kconfig dependencies for boot-up logo
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/xelpd: Calculate first_line_bpg_offset for DSC 1.1 (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121882/">https://patchwork.freedesktop.org/series/121882/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+Core Changes:
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/index.html</a></td></tr>
+ * Documentation updates and fixes
 
-</table>
+ * Fixes
 
+ * MIPI-DBI:
+   * Allow using same the D/C GPIO for multiple displays plus
+     driver updates
 
-    <h1>CI Bug Log - changes from CI_DRM_13469 -&gt; Patchwork_121882v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/index.html</p>
-<h2>Participating hosts (43 -&gt; 42)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_121882v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>
-<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-tgl-1115g4/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-tgl-1115g4/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7940">i915#7940</a>) +1 similar issue</p>
-</li>
-<li>
-<p>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-adlp-9/igt@i915_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-adlp-9/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7940">i915#7940</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-rkl-11600/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-rkl-11600/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7940">i915#7940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7911">i915#7911</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-cfl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-mtlp-6/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-mtlp-6/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8497">i915#8497</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-rpls-2/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8434">i915#8434</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-cfl-8109u/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7940">i915#7940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-cfl-8109u/igt@i915_pm_rpm@basic-rte.html">PASS</a></p>
-</li>
-<li>
-<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-kbl-7567u/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7940">i915#7940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-kbl-7567u/igt@i915_pm_rpm@basic-rte.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-mtlp-8/igt@i915_selftest@live@gt_mocs.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7059">i915#7059</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-mtlp-8/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-rpls-2/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7392">i915#7392</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-rpls-2/igt@i915_selftest@live@mman.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-mtlp-8/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8497">i915#8497</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@slpc:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-mtlp-8/igt@i915_selftest@live@slpc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6367">i915#6367</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-mtlp-8/igt@i915_selftest@live@slpc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8747">i915#8747</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_frames@dp-crc-fast:</p>
-<ul>
-<li>{bat-dg2-13}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/485">Intel XE#485</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-adlp-11/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4423">i915#4423</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-adlp-11/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4423">i915#4423</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/fi-cfl-8700k/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7691">i915#7691</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/fi-cfl-8700k/igt@i915_pm_rpm@basic-pci-d3-state.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7940">i915#7940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13469/bat-rplp-1/igt@kms_psr@sprite_plane_onoff.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8712">i915#8712</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_121882v3/bat-rplp-1/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13469 -&gt; Patchwork_121882v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13469: c9688b127361ba2cf524e4a3bf19b598654b4308 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7412: 7412<br />
-  Patchwork_121882v3: c9688b127361ba2cf524e4a3bf19b598654b4308 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>7387a634595c drm/i915/xelpd: Calculate first_line_bpg_offset for DSC 1.1</p>
+ * Tests:
+   * Convert to kunit actions
+   * Fix NULL-deref in drm_exec tests
 
-</body>
-</html>
+Driver Changes:
 
---===============0974309433829789076==--
+ * armada:
+   * Fixes
+
+ * ast:
+   * Represent BMV as virtual connector
+   * Report DP connection status
+
+ * bridge:
+   * dw-hdmi: Support CEC suspend/resume
+   * Support debugfs for chains
+   * Fixes
+
+ * i915:
+   * Fixes
+
+ * imx:
+   * Convert to dev_error_probe()
+   * Cleanups
+
+ * ipu-v3:
+   * Convert to devm_platform_ioremap_resource() in several places
+
+ * nouveau:
+   * Workaround DPCD issues
+
+ * panel:
+   * Convert to of_device_get_match_data()
+   * Fix Kconfig dependencies
+   * simple: Set bpc value to fix warning; Set connector type for AUO T215HVN01;
+     Support Innolux G156HCE-L01 plus DT bindings
+   * ili9881: Support TDO TL050HDV35 LCD panel plus DT bindings
+   * startek: Support KD070FHFID015 MIPI-DSI panel plus DT bindings
+   * sitronix-st7789v: Support Inanbo T28CP45TN89 plus DT bindings;
+     Support EDT ET028013DMA plus DT bindings; Various cleanups
+   * edp: Add timings for N140HCA-EAC
+   * Allow panels and touchscreens to power sequence together
+   * Documentation fixes
+
+ * qaic:
+   * Cleanups
+
+ * repaper:
+   * Fixes
+
+ * ssd130x
+   * Fix shadow-plane allocation
+   * Cleanups
+
+ * tegra:
+   * Convert to devm_platform_ioremap_resource() in several places
+   * Support bridge/connector
+   * Enable PM
+   * Fixes
+
+ * udl:
+   * Cleanups
+
+ * v3d:
+   * Fixes
+
+ * vc4:
+   * Convert tests to kunit actions
+
+ * virtio:
+   * Support sync objects
+
+ * vkms:
+   * Support gamma LUT
+   * Fixes
+
+----------------------------------------------------------------
+Alexander Stein (2):
+      drm/imx/dcss: Use dev_err_probe
+      dt-bindings: display: bridge: tc358867: Add interrupt property
+
+Alexandre Mergnat (1):
+      dt-bindings: display: panel: add startek kd070fhfid015 support
+
+Arnd Bergmann (2):
+      drm/panel: r66451: select CONFIG_DRM_DISPLAY_DP_HELPER
+      HID: i2c-hid: add more DRM dependencies
+
+Arthur Grillo (2):
+      drm/vkms: Add support to 1D gamma LUT
+      drm/tests: Alloc drm_device on drm_exec tests
+
+Colin Ian King (1):
+      accel/qaic: remove redundant pointer pexec
+
+Dmitry Baryshkov (1):
+      drm: panel: simple: specify bpc for powertip_ph800480t013_idf02
+
+Dmitry Osipenko (1):
+      drm/virtio: Support sync objects
+
+Douglas Anderson (12):
+      dt-bindings: HID: i2c-hid: Add "panel" property to i2c-hid backed touchscreens
+      drm/panel: Check for already prepared/enabled in drm_panel
+      drm/panel: Add a way for other devices to follow panel state
+      of: property: fw_devlink: Add a devlink for panel followers
+      HID: i2c-hid: Switch to SYSTEM_SLEEP_PM_OPS()
+      HID: i2c-hid: Rearrange probe() to power things up later
+      HID: i2c-hid: Make suspend and resume into helper functions
+      HID: i2c-hid: Suspend i2c-hid devices in remove
+      HID: i2c-hid: Support being a panel follower
+      HID: i2c-hid: Do panel follower work on the system_wq
+      drm/panel: Fix kernel-doc typo for `follower_lock`
+      drm/panel: Fix todo indentation for panel prepared/enabled cleanup
+
+GUO Zihua (1):
+      fbcon: Make fbcon_registered_fb and fbcon_num_registered_fb static
+
+Geert Uytterhoeven (15):
+      drm/atomic-helper: Update reference to drm_crtc_force_disable_all()
+      drm/gem-fb-helper: Consistenly use drm_dbg_kms()
+      Revert "fbcon: Use kzalloc() in fbcon_prepare_logo()"
+      video: logo: LOGO should depend on FB_CORE i.s.o. FB
+      drm/panel: simple: Simplify matching using of_device_get_match_data()
+      drm/bridge_connector: Handle drm_connector_init_with_ddc() failures
+      drm/udl: Convert to drm_crtc_helper_atomic_check()
+      drm: Spelling s/sempahore/semaphore/
+      drm: Spelling s/randevouz/rendez-vous/
+      drm/armada: Fix off-by-one error in armada_overlay_get_property()
+      drm/repaper: Reduce temporary buffer size in repaper_fb_dirty()
+      drm/todo: Add atomic modesetting references
+      drm/todo: Convert list of fbconv links to footnotes
+      drm: Remove references to removed transitional helpers
+      drm: Fix references to drm_plane_helper_check_state()
+
+Guillaume La Roque (1):
+      drm/panel: Support for startek-kd070fhfid015 MIPI-DSI panel
+
+Javier Martinez Canillas (1):
+      drm/ssd130x: Use shadow-buffer helpers when managing plane's state
+
+Jiapeng Chong (1):
+      drm/ssd130x: clean up some inconsistent indenting
+
+Jocelyn Falempe (2):
+      drm/ast: Add BMC virtual connector
+      drm/ast: report connection status on Display Port.
+
+Lyude Paul (1):
+      drm/nouveau/nvkm/dp: Add workaround to fix DP 1.3+ DPCD issues
+
+Marek Vasut (3):
+      drm/panel: simple: Add missing connector type and pixel format for AUO T215HVN01
+      dt-bindings: display: simple: Add Innolux G156HCE-L01 panel
+      drm/panel-simple: Add Innolux G156HCE-L01 panel entry
+
+Matus Gajdos (2):
+      dt-bindings: ili9881c: Add TDO TL050HDV35 LCD panel
+      drm/panel: ilitek-ili9881c: Add TDO TL050HDV35 LCD panel
+
+Maxim Schwalm (1):
+      drm/tegra: output: hdmi: Support bridge/connector
+
+Maxime Ripard (11):
+      drm/tests: helpers: Switch to kunit actions
+      drm/tests: client-modeset: Remove call to drm_kunit_helper_free_device()
+      drm/tests: modes: Remove call to drm_kunit_helper_free_device()
+      drm/tests: probe-helper: Remove call to drm_kunit_helper_free_device()
+      drm/tests: helpers: Create a helper to allocate a locking ctx
+      drm/tests: helpers: Create a helper to allocate an atomic state
+      drm/vc4: tests: pv-muxing: Remove call to drm_kunit_helper_free_device()
+      drm/vc4: tests: mock: Use a kunit action to unregister DRM device
+      drm/vc4: tests: pv-muxing: Switch to managed locking init
+      drm/vc4: tests: Switch to atomic state allocation helper
+      drm/vc4: tests: pv-muxing: Document test scenario
+
+Maíra Canal (1):
+      drm/vkms: Fix race-condition between the hrtimer and the atomic commit
+
+Mikko Perttunen (3):
+      drm/tegra: Add error check for NVDEC firmware memory allocation
+      gpu: host1x: Return error when context device not attached to IOMMU
+      drm/tegra: Enable runtime PM during probe
+
+Miquel Raynal (6):
+      dt-bindings: display: st7789v: Add the edt,et028013dma panel compatible
+      dt-bindings: display: st7789v: bound the number of Rx data lines
+      drm/panel: sitronix-st7789v: Use 9 bits per spi word by default
+      drm/panel: sitronix-st7789v: Clarify a definition
+      drm/panel: sitronix-st7789v: Add EDT ET028013DMA panel support
+      drm/panel: sitronix-st7789v: Check display ID
+
+Nathan Chancellor (2):
+      drm/v3d: Avoid -Wconstant-logical-operand in nsecs_to_jiffies_timeout()
+      drm/i915: Avoid -Wconstant-logical-operand in nsecs_to_jiffies_timeout()
+
+Nikita Travkin (1):
+      drm/panel-edp: Add enable timings for N140HCA-EAC panel
+
+Otto Pflüger (2):
+      drm/mipi-dbi: Lock SPI bus before setting D/C GPIO
+      drm/tiny: panel-mipi-dbi: Allow sharing the D/C GPIO
+
+Philipp Zabel (1):
+      drm/imx/ipuv3: ipuv3-plane: reuse local variable height in atomic_update
+
+Sandor Yu (1):
+      drm: bridge: dw_hdmi: Add cec suspend/resume functions
+
+Sebastian Reichel (13):
+      dt-bindings: vendor-prefixes: add Inanbo
+      dt-bindings: display: st7789v: add Inanbo T28CP45TN89
+      drm/panel: sitronix-st7789v: add SPI ID table
+      drm/panel: sitronix-st7789v: remove unused constants
+      drm/panel: sitronix-st7789v: make reset GPIO optional
+      drm/panel: sitronix-st7789v: simplify st7789v_spi_write
+      drm/panel: sitronix-st7789v: improve error handling
+      drm/panel: sitronix-st7789v: avoid hardcoding mode info
+      drm/panel: sitronix-st7789v: avoid hardcoding panel size
+      drm/panel: sitronix-st7789v: add media bus format
+      drm/panel: sitronix-st7789v: avoid hardcoding invert mode
+      drm/panel: sitronix-st7789v: avoid hardcoding polarity info
+      drm/panel: sitronix-st7789v: add Inanbo T28CP45TN89 support
+
+Simon Ser (4):
+      drm/doc: use proper cross-references for sections
+      drm/doc: add warning about connector_type_id stability
+      drm/doc: document drm_event and its types
+      drm/doc: document that PRIME import/export is always supported
+
+Sui Jingfeng (1):
+      drm/drm_plane.h: fix grammar of the comment
+
+Thierry Reding (3):
+      dt-bindings: display: panel: Move HannStar HSD101PWW2 to LVDS
+      dt-bindings: display: panel: Move Chunghwa CLAA070WP03XG to LVDS
+      dt-bindings: display: panel: Document Hydis HV070WX2-1E0
+
+Thomas Zimmermann (5):
+      fbdev: Use _IOMEM_ infix for I/O-memory helpers
+      fbdev: Use _SYSMEM_ infix for system-memory helpers
+      fbdev: Use _DMAMEM_ infix for DMA-memory helpers
+      fbdev: Align deferred I/O with naming of helpers
+      fbdev/ps3fb: Build without kernel device
+
+Tomi Valkeinen (1):
+      drm/bridge: Add debugfs print for bridge chains
+
+Yang Li (1):
+      drm/tegra: dpaux: Use devm_platform_ioremap_resource()
+
+Yangtao Li (5):
+      drm/tegra: dpaux: Fix incorrect return value of platform_get_irq
+      drm/tegra: hdmi: Convert to devm_platform_ioremap_resource()
+      drm/tegra: sor: Convert to devm_platform_ioremap_resource()
+      gpu: ipu-v3: pre: Convert to devm_platform_ioremap_resource()
+      gpu: ipu-v3: prg: Convert to devm_platform_ioremap_resource()
+
+Zhu Wang (1):
+      drm/bridge: fix -Wunused-const-variable= warning
+
+ .../bindings/display/bridge/toshiba,tc358767.yaml  |   3 +
+ .../bindings/display/panel/ilitek,ili9881c.yaml    |   1 +
+ .../bindings/display/panel/panel-lvds.yaml         |   6 +
+ .../bindings/display/panel/panel-simple.yaml       |   6 +-
+ .../bindings/display/panel/sitronix,st7789v.yaml   |  10 +-
+ .../display/panel/startek,kd070fhfid015.yaml       |  69 ++++
+ .../devicetree/bindings/input/elan,ekth6915.yaml   |   5 +
+ .../devicetree/bindings/input/goodix,gt7375p.yaml  |   5 +
+ .../devicetree/bindings/input/hid-over-i2c.yaml    |   2 +
+ .../bindings/input/touchscreen/touchscreen.yaml    |   7 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ Documentation/gpu/drm-mm.rst                       |   2 +
+ Documentation/gpu/todo.rst                         |  47 ++-
+ drivers/accel/qaic/qaic_data.c                     |   4 +-
+ drivers/gpu/drm/Kconfig                            |   4 +-
+ drivers/gpu/drm/armada/Kconfig                     |   2 +-
+ drivers/gpu/drm/armada/armada_fbdev.c              |   2 +-
+ drivers/gpu/drm/armada/armada_overlay.c            |   6 +-
+ drivers/gpu/drm/ast/ast_dp.c                       |  11 +
+ drivers/gpu/drm/ast/ast_dp501.c                    |  37 +-
+ drivers/gpu/drm/ast/ast_drv.h                      |   6 +
+ drivers/gpu/drm/ast/ast_mode.c                     |  87 ++++-
+ drivers/gpu/drm/bridge/analogix/analogix-anx6345.c |   2 +-
+ drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c |   4 +-
+ .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.c    |   2 +-
+ drivers/gpu/drm/bridge/chrontel-ch7033.c           |   2 +-
+ drivers/gpu/drm/bridge/sil-sii8620.c               |   2 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c      |  37 ++
+ drivers/gpu/drm/bridge/ti-tfp410.c                 |   2 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |   2 +-
+ drivers/gpu/drm/drm_bridge.c                       |  46 +++
+ drivers/gpu/drm/drm_bridge_connector.c             |  11 +-
+ drivers/gpu/drm/drm_debugfs.c                      |   2 +
+ drivers/gpu/drm/drm_fbdev_dma.c                    |   4 +-
+ drivers/gpu/drm/drm_fbdev_generic.c                |   6 +-
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c       |   4 +-
+ drivers/gpu/drm/drm_mipi_dbi.c                     |  17 +-
+ drivers/gpu/drm/drm_panel.c                        | 218 ++++++++++-
+ drivers/gpu/drm/drm_plane_helper.c                 |  12 +-
+ drivers/gpu/drm/exynos/Kconfig                     |   2 +-
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c          |   4 +-
+ drivers/gpu/drm/gma500/Kconfig                     |   2 +-
+ drivers/gpu/drm/gma500/fbdev.c                     |   4 +-
+ drivers/gpu/drm/i915/Kconfig                       |   2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c         |   6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_wait.c           |   2 +-
+ drivers/gpu/drm/i915/i915_request.c                |   2 +-
+ drivers/gpu/drm/imx/dcss/dcss-drv.c                |   1 +
+ drivers/gpu/drm/imx/ipuv3/ipuv3-plane.c            |  11 +-
+ drivers/gpu/drm/msm/Kconfig                        |   2 +-
+ drivers/gpu/drm/msm/msm_fbdev.c                    |   6 +-
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c      |  48 ++-
+ drivers/gpu/drm/omapdrm/Kconfig                    |   2 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c               |   4 +-
+ drivers/gpu/drm/panel/Kconfig                      |  13 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-edp.c                  |   1 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9881c.c      | 194 ++++++++++
+ drivers/gpu/drm/panel/panel-simple.c               |  54 ++-
+ drivers/gpu/drm/panel/panel-sitronix-st7789v.c     | 262 +++++++++++--
+ .../gpu/drm/panel/panel-startek-kd070fhfid015.c    | 406 +++++++++++++++++++++
+ drivers/gpu/drm/radeon/Kconfig                     |   2 +-
+ drivers/gpu/drm/radeon/cik.c                       |   2 +-
+ drivers/gpu/drm/radeon/r600.c                      |   2 +-
+ drivers/gpu/drm/radeon/radeon_fbdev.c              |   2 +-
+ drivers/gpu/drm/renesas/rcar-du/rcar_du_plane.c    |   3 +-
+ drivers/gpu/drm/solomon/ssd130x.c                  |  16 +-
+ drivers/gpu/drm/tegra/Kconfig                      |   2 +-
+ drivers/gpu/drm/tegra/dpaux.c                      |   6 +-
+ drivers/gpu/drm/tegra/fbdev.c                      |   4 +-
+ drivers/gpu/drm/tegra/gr2d.c                       |  16 +-
+ drivers/gpu/drm/tegra/gr3d.c                       |  16 +-
+ drivers/gpu/drm/tegra/hdmi.c                       |  48 ++-
+ drivers/gpu/drm/tegra/nvdec.c                      |  19 +-
+ drivers/gpu/drm/tegra/sor.c                        |   4 +-
+ drivers/gpu/drm/tegra/vic.c                        |  17 +-
+ drivers/gpu/drm/tests/drm_client_modeset_test.c    |   8 -
+ drivers/gpu/drm/tests/drm_exec_test.c              |  44 ++-
+ drivers/gpu/drm/tests/drm_kunit_helpers.c          | 141 ++++++-
+ drivers/gpu/drm/tests/drm_modes_test.c             |   8 -
+ drivers/gpu/drm/tests/drm_probe_helper_test.c      |   8 -
+ drivers/gpu/drm/tidss/tidss_plane.c                |   3 +-
+ drivers/gpu/drm/tiny/ili9225.c                     |   7 +-
+ drivers/gpu/drm/tiny/ili9486.c                     |   4 +
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c              |   3 +-
+ drivers/gpu/drm/tiny/repaper.c                     |   2 +-
+ drivers/gpu/drm/udl/udl_modeset.c                  |  13 +-
+ drivers/gpu/drm/v3d/v3d_drv.h                      |   2 +-
+ drivers/gpu/drm/vc4/tests/vc4_mock.c               |  12 +
+ drivers/gpu/drm/vc4/tests/vc4_test_pv_muxing.c     | 115 +++---
+ drivers/gpu/drm/virtio/virtgpu_drv.c               |   3 +-
+ drivers/gpu/drm/virtio/virtgpu_submit.c            | 224 ++++++++++++
+ drivers/gpu/drm/vkms/vkms_composer.c               |  95 ++++-
+ drivers/gpu/drm/vkms/vkms_crtc.c                   |  12 +-
+ drivers/gpu/drm/vkms/vkms_drv.c                    |  20 +-
+ drivers/gpu/drm/vkms/vkms_drv.h                    |  13 +-
+ drivers/gpu/host1x/context.c                       |   8 +
+ drivers/gpu/ipu-v3/ipu-pre.c                       |   4 +-
+ drivers/gpu/ipu-v3/ipu-prg.c                       |   5 +-
+ drivers/hid/i2c-hid/Kconfig                        |   6 +
+ drivers/hid/i2c-hid/i2c-hid-core.c                 | 349 +++++++++++++-----
+ drivers/of/property.c                              |   2 +
+ drivers/video/Kconfig                              |   2 +-
+ drivers/video/fbdev/Kconfig                        |  10 +-
+ drivers/video/fbdev/broadsheetfb.c                 |   6 +-
+ drivers/video/fbdev/core/Kconfig                   |  10 +-
+ drivers/video/fbdev/core/fbcon.c                   |   6 +-
+ drivers/video/fbdev/hecubafb.c                     |   6 +-
+ drivers/video/fbdev/metronomefb.c                  |   6 +-
+ drivers/video/fbdev/ps3fb.c                        |   4 +-
+ drivers/video/fbdev/ssd1307fb.c                    |   6 +-
+ drivers/video/fbdev/xen-fbfront.c                  |   6 +-
+ drivers/video/logo/Kconfig                         |   2 +-
+ include/drm/drm_bridge.h                           |   3 +
+ include/drm/drm_crtc.h                             |   5 -
+ include/drm/drm_kunit_helpers.h                    |   7 +
+ include/drm/drm_modeset_helper_vtables.h           |  48 ++-
+ include/drm/drm_panel.h                            |  96 +++++
+ include/drm/drm_plane.h                            |   2 +-
+ include/drm/task_barrier.h                         |   4 +-
+ include/linux/fb.h                                 |  26 +-
+ include/uapi/drm/drm.h                             |  61 +++-
+ include/uapi/drm/drm_mode.h                        |   3 +
+ include/uapi/drm/virtgpu_drm.h                     |  16 +-
+ 124 files changed, 2782 insertions(+), 549 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-startek-kd070fhfid015.c
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
