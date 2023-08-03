@@ -1,33 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD55176F422
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 22:45:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8F1A76F42D
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 22:47:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B3A310E215;
-	Thu,  3 Aug 2023 20:44:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43B8510E215;
+	Thu,  3 Aug 2023 20:47:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D911F10E113;
- Thu,  3 Aug 2023 20:44:54 +0000 (UTC)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi
- [213.243.189.158])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 625A58C1;
- Thu,  3 Aug 2023 22:43:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1691095428;
- bh=LWzMEFgrC/PlVsgJUx4AkW/o073y3IloiFtC+MVjNYo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=htZTfD0VD+z3VFAZGYDuiQdDo5xVWEbeOBhNwfGKc9LSk3PLbSVgkCtCkjM/j9BxB
- 8E5WnhtCUzr1uXSi06u7uVCt7vB6c1QPpGZ7D0gtqlhSJXze9SobkS2nZtv1Qcnef/
- l1oHArjkLnBuI+DbSS/WNT7hvS4yOlhpzZ/ukXSM=
-Date: Thu, 3 Aug 2023 23:44:59 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Simon Ser <contact@emersion.fr>
-Message-ID: <20230803204459.GD27752@pendragon.ideasonboard.com>
+X-Greylist: delayed 19499 seconds by postgrey-1.36 at gabe;
+ Thu, 03 Aug 2023 20:47:21 UTC
+Received: from mail-4323.proton.ch (mail-4323.proton.ch [185.70.43.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99BF810E215;
+ Thu,  3 Aug 2023 20:47:21 +0000 (UTC)
+Date: Thu, 03 Aug 2023 20:46:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail2; t=1691095638; x=1691354838;
+ bh=fDIIkd6MbiuxDhWddMCvr1sTep0tBPtwcVzo2Vbd5+0=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector;
+ b=Lhk+WfXL0POi8w3MDDk+N+KGTUQcqdjQrn8XFERNWJUn8+EqTEyoNj+1qgvqiHmOr
+ Q5Tl3f+NphgZlfvdUEs3rlX2K+t5yLNDKpw2m2yb8XcIDywXmMU5JlIjo/EOVjVwk3
+ /8Pw89zebfKZPWJnGBWTPj8n6ehMLjGzBa5TfKCuxbCB5UFIKXLMhODfAMIzrHGNlx
+ f5CLF4nA+oe7Opl9vFCt3TO4NhbpoyMvy6h/TygIuDupNwmdq4N43n9iwtQKfokHhL
+ k3qeU1FwqxumT6Wu3s3k8cG8zwusNH+qviuuE/+Yi3Osu7HI0ZspzIoUcdXH0JUhdC
+ /R6eiiIgSZyHQ==
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+From: Simon Ser <contact@emersion.fr>
+Message-ID: <TR8IBdXbd0C4U8Z4zf9ZLEH66QMutWs0QAAkPnMlKiOvgEZCk6AfEIPcIfRC555XWs8eSzeCCCW9R-3NwxZg6hDhPvPseAgAULAdUQ6epDA=@emersion.fr>
+In-Reply-To: <20230803204459.GD27752@pendragon.ideasonboard.com>
 References: <20230729004913.215872-1-dmitry.baryshkov@linaro.org>
  <20230729004913.215872-4-dmitry.baryshkov@linaro.org>
  <20230802185547.GC32500@pendragon.ideasonboard.com>
@@ -36,11 +39,11 @@ References: <20230729004913.215872-1-dmitry.baryshkov@linaro.org>
  <DE2B4523-D16C-4AFC-8352-212B23548DD5@linaro.org>
  <b6oOVz2YMIG4hJDWhq9lTh6R2HYcrpRwHENhplig9KSQMD8dIjTgC5KdH1Ij3URgV2HESp67Ax7QUsByGjMLouvbs-5q7PiPRdLkgJz6Fwk=@emersion.fr>
  <ADjuOeqA6575DKutMPaR9mW9rLhm-wjLc4ruoUkNwImf-GB90FdwDB7v7y6LFdzVG3BC4R52A0RUtStK4_smmGYTUs3UPDOX4T4Zl2YHkxE=@emersion.fr>
+ <20230803204459.GD27752@pendragon.ideasonboard.com>
+Feedback-ID: 1358184:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ADjuOeqA6575DKutMPaR9mW9rLhm-wjLc4ruoUkNwImf-GB90FdwDB7v7y6LFdzVG3BC4R52A0RUtStK4_smmGYTUs3UPDOX4T4Zl2YHkxE=@emersion.fr>
+Content-Transfer-Encoding: quoted-printable
 Subject: Re: [Intel-gfx] [PATCH 3/4] drm/uapi: document the USB subconnector
  type
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -69,36 +72,30 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  Bjorn Andersson <andersson@kernel.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
  linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
  Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+ =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 03, 2023 at 03:31:16PM +0000, Simon Ser wrote:
-> On Thursday, August 3rd, 2023 at 17:22, Simon Ser <contact@emersion.fr> wrote:
-> 
-> > The KMS docs describe "subconnector" to be defined as "downstream port" for DP.
-> > Can USB-C (or USB) be seen as a DP downstream port?
-> 
-> To expand on this a bit: I'm wondering if we're mixing apples and
-> oranges here. The current values of "subconnector" typically describe
-> the lower-level protocol tunneled inside DP. For instance, VGA can be
-> tunneled inside the DP cable when using DP → VGA adapter.
+On Thursday, August 3rd, 2023 at 22:44, Laurent Pinchart <laurent.pinchart@=
+ideasonboard.com> wrote:
 
-Doesn't this contradict the example use case you gave in your previous
-e-mail, with wlroots stating "DP-3 via DVI-D" ? I understand that as DP
-carried over a DVI-D physical connector, did I get it wrong ?
+> On Thu, Aug 03, 2023 at 03:31:16PM +0000, Simon Ser wrote:
+>=20
+> > On Thursday, August 3rd, 2023 at 17:22, Simon Ser contact@emersion.fr w=
+rote:
+> >=20
+> > > The KMS docs describe "subconnector" to be defined as "downstream por=
+t" for DP.
+> > > Can USB-C (or USB) be seen as a DP downstream port?
+> >=20
+> > To expand on this a bit: I'm wondering if we're mixing apples and
+> > oranges here. The current values of "subconnector" typically describe
+> > the lower-level protocol tunneled inside DP. For instance, VGA can be
+> > tunneled inside the DP cable when using DP =E2=86=92 VGA adapter.
+>=20
+> Doesn't this contradict the example use case you gave in your previous
+> e-mail, with wlroots stating "DP-3 via DVI-D" ? I understand that as DP
+> carried over a DVI-D physical connector, did I get it wrong ?
 
-> However, in the USB-C case, DP itself is tunneled inside USB-C. And you
-> might use a USB-C → DP adapter. So it's not really *sub*connector, it's
-> more of a *super*connector, right?
-> 
-> I think [1] is somewhat related, since it also allows user-space to
-> discover whether a connector uses USB-C. But relying on sysfs to figure
-> this out isn't super optimal perhaps.
-> 
-> [1]: https://lore.kernel.org/dri-devel/20221108185004.2263578-1-wonchung@google.com/
-
--- 
-Regards,
-
-Laurent Pinchart
+No, this is DVI carried over DP. DP cannot be carried over VGA/DVI/HDMI,
+but VGA/DVI/HDMI can be carried over DP.
