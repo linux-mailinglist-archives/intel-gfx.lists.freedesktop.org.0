@@ -2,58 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B4E76E90B
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 15:03:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E42976E955
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 15:05:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 321E210E1C3;
-	Thu,  3 Aug 2023 13:03:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9687210E607;
+	Thu,  3 Aug 2023 13:05:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com
- [IPv6:2607:f8b0:4864:20::c34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E63D10E1C3
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 13:03:20 +0000 (UTC)
-Received: by mail-oo1-xc34.google.com with SMTP id
- 006d021491bc7-56d26137095so148378eaf.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 03 Aug 2023 06:03:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1691067799; x=1691672599;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=toPLYIcaU82JuJpQNvv/UHY7gBXCoIPJ+xqNYuYG3ts=;
- b=KAtCjN6ZOi+Y0YNNJ8moXGZaPizHZrv3QFA8FsOwg1p6Zq2NM0tphrRSAq6Qd+TWBW
- K4A1BeZmELmAS81xlvfUim80CEzPOAMrFWmOox0aql65uFm49sTzqjH9AxTxG8OVskL9
- GAxd/VWlLtTf6gwcTyH4G7ZzcPq6ev748gQbk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1691067799; x=1691672599;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=toPLYIcaU82JuJpQNvv/UHY7gBXCoIPJ+xqNYuYG3ts=;
- b=CbhlJ/MxjuuNxlhxeigzG+C2yaWRrBfdeqJOCruYHND0+EUPTka7JM1IYy+wvxBYBF
- 4ORttrWo4b35CY9dobpA832FmNy60MIzrT28gW2mBkJrUaHpiBTVyVopuFcaSrQ+fogD
- hcBZAH0EYD+gHWkhPdVO8evMImVpJ2i0KiLDbOMxJVYJ9mVbmDkzaeQhPab1wzOdjIsW
- Vop5l58oUlxdh69XjO+2/k7273x+90tm3Fp3FKfOpAsc4vwsqdI1qKRWXgu+mHZ2lDlZ
- f6GgmGn5b7PfJd1/FQa1HNQ3IC6RWF7Qx+eEfK+1TArWaw4p6PaIICJoFtwZqYSXiBvo
- jKPg==
-X-Gm-Message-State: ABy/qLbwlK3T93Y9dBKU/hmZMy652zmYBEXpgJhUiQr4ATZ22Y2YPCrd
- pghVIFtl6Mdw7bV9JdXcQzrxgcOk6REUazu6U2SDpg==
-X-Google-Smtp-Source: APBJJlF/Rg/hR2qWgwICmnJq5sWhGRyrBDotd4xKhhqjrIKZAdRpteIaBq+m8h5VqChYtx/xWzMLhrOr8t9K0KHHn3w=
-X-Received: by 2002:a05:6870:1495:b0:1b4:6b8a:a0fd with SMTP id
- k21-20020a056870149500b001b46b8aa0fdmr15301118oab.3.1691067799514; Thu, 03
- Aug 2023 06:03:19 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8531210E607
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 13:05:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1691067923; x=1722603923;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LTmAon/djFG3HAfM6UVtfpnbv7YHHMCoPDftYTRNuCc=;
+ b=RsAs0ztyvnRGb4Qo3R6mZn5hOthw7vBkXLd6E3OxtqMUwHToQrY+RcSs
+ AR7ELzPdvplmXWNEml9aNNHyOZGbNytKKYhYA4AL/GtzF8s8bryiKxkm0
+ aYwcezua2SCVO2woa5iAmSV30nOiXs99GsH/m8s7opPK7gXi4/FBpPfMl
+ 6VQk3FrsRNAarX0iWAVYt+BhWSw3bhHPXLImxCjxklaRg/x9JlepjV1ze
+ CajiKuz58+qqFFfWLoBZV0ijhvoKv66pJJQFfVuqbmXYYZZP0mvRiCjPi
+ kWLX+/KriOx9/13V/v4DpHLa41rc7tYgUueTA7efDEmQRoujypnSkHsG2 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="359906473"
+X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="359906473"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 06:05:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="843585774"
+X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="843585774"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmsmga002.fm.intel.com with ESMTP; 03 Aug 2023 06:05:21 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  3 Aug 2023 18:33:30 +0530
+Message-Id: <20230803130337.3784597-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230727201323.62637-1-zhanjun.dong@intel.com>
-In-Reply-To: <20230727201323.62637-1-zhanjun.dong@intel.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Thu, 3 Aug 2023 15:03:07 +0200
-Message-ID: <CAKMK7uH+NjZYRrkT-E-m2DiRvGagugC6F8XjizS_9=6mL4=5mA@mail.gmail.com>
-To: Zhanjun Dong <zhanjun.dong@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: Avoid circular locking
- dependency when flush delayed work on gt reset
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v6 0/8] Add DSC PPS readout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,254 +54,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 27 Jul 2023 at 22:13, Zhanjun Dong <zhanjun.dong@intel.com> wrote:
->
-> This attempts to avoid circular locking dependency between flush delayed =
-work and intel_gt_reset.
-> Switched from cancel_delayed_work_sync to cancel_delayed_work, the non-sy=
-nc version for reset path, it is safe as the worker has the trylock code to=
- handle the lock; Meanwhile keep the sync version for park/fini to ensure t=
-he worker is not still running during suspend or shutdown.
->
-> WARNING: possible circular locking dependency detected
-> 6.4.0-rc1-drmtip_1340-g31e3463b0edb+ #1 Not tainted
-> ------------------------------------------------------
-> kms_pipe_crc_ba/6415 is trying to acquire lock:
-> ffff88813e6cc640 ((work_completion)(&(&guc->timestamp.work)->work)){+.+.}=
--{0:0}, at: __flush_work+0x42/0x530
->
-> but task is already holding lock:
-> ffff88813e6cce90 (&gt->reset.mutex){+.+.}-{3:3}, at: intel_gt_reset+0x19e=
-/0x470 [i915]
->
-> which lock already depends on the new lock.
->
-> the existing dependency chain (in reverse order) is:
->
-> -> #3 (&gt->reset.mutex){+.+.}-{3:3}:
->         lock_acquire+0xd8/0x2d0
->         i915_gem_shrinker_taints_mutex+0x31/0x50 [i915]
->         intel_gt_init_reset+0x65/0x80 [i915]
->         intel_gt_common_init_early+0xe1/0x170 [i915]
->         intel_root_gt_init_early+0x48/0x60 [i915]
->         i915_driver_probe+0x671/0xcb0 [i915]
->         i915_pci_probe+0xdc/0x210 [i915]
->         pci_device_probe+0x95/0x120
->         really_probe+0x164/0x3c0
->         __driver_probe_device+0x73/0x160
->         driver_probe_device+0x19/0xa0
->         __driver_attach+0xb6/0x180
->         bus_for_each_dev+0x77/0xd0
->         bus_add_driver+0x114/0x210
->         driver_register+0x5b/0x110
->         __pfx_vgem_open+0x3/0x10 [vgem]
->         do_one_initcall+0x57/0x270
->         do_init_module+0x5f/0x220
->         load_module+0x1ca4/0x1f00
->         __do_sys_finit_module+0xb4/0x130
->         do_syscall_64+0x3c/0x90
->         entry_SYSCALL_64_after_hwframe+0x72/0xdc
->
-> -> #2 (fs_reclaim){+.+.}-{0:0}:
->         lock_acquire+0xd8/0x2d0
->         fs_reclaim_acquire+0xac/0xe0
->         kmem_cache_alloc+0x32/0x260
->         i915_vma_instance+0xb2/0xc60 [i915]
->         i915_gem_object_ggtt_pin_ww+0x175/0x370 [i915]
->         vm_fault_gtt+0x22d/0xf60 [i915]
->         __do_fault+0x2f/0x1d0
->         do_pte_missing+0x4a/0xd20
->         __handle_mm_fault+0x5b0/0x790
->         handle_mm_fault+0xa2/0x230
->         do_user_addr_fault+0x3ea/0xa10
->         exc_page_fault+0x68/0x1a0
->         asm_exc_page_fault+0x26/0x30
->
-> -> #1 (&gt->reset.backoff_srcu){++++}-{0:0}:
->         lock_acquire+0xd8/0x2d0
->         _intel_gt_reset_lock+0x57/0x330 [i915]
->         guc_timestamp_ping+0x35/0x130 [i915]
->         process_one_work+0x250/0x510
->         worker_thread+0x4f/0x3a0
->         kthread+0xff/0x130
->         ret_from_fork+0x29/0x50
->
-> -> #0 ((work_completion)(&(&guc->timestamp.work)->work)){+.+.}-{0:0}:
->         check_prev_add+0x90/0xc60
->         __lock_acquire+0x1998/0x2590
->         lock_acquire+0xd8/0x2d0
->         __flush_work+0x74/0x530
->         __cancel_work_timer+0x14f/0x1f0
->         intel_guc_submission_reset_prepare+0x81/0x4b0 [i915]
->         intel_uc_reset_prepare+0x9c/0x120 [i915]
->         reset_prepare+0x21/0x60 [i915]
->         intel_gt_reset+0x1dd/0x470 [i915]
->         intel_gt_reset_global+0xfb/0x170 [i915]
->         intel_gt_handle_error+0x368/0x420 [i915]
->         intel_gt_debugfs_reset_store+0x5c/0xc0 [i915]
->         i915_wedged_set+0x29/0x40 [i915]
->         simple_attr_write_xsigned.constprop.0+0xb4/0x110
->         full_proxy_write+0x52/0x80
->         vfs_write+0xc5/0x4f0
->         ksys_write+0x64/0xe0
->         do_syscall_64+0x3c/0x90
->         entry_SYSCALL_64_after_hwframe+0x72/0xdc
->
-> other info that might help us debug this:
->  Chain exists of:
->   (work_completion)(&(&guc->timestamp.work)->work) --> fs_reclaim --> &gt=
-->reset.mutex
->   Possible unsafe locking scenario:
->         CPU0                    CPU1
->         ----                    ----
->    lock(&gt->reset.mutex);
->                                 lock(fs_reclaim);
->                                 lock(&gt->reset.mutex);
->    lock((work_completion)(&(&guc->timestamp.work)->work));
->
->  *** DEADLOCK ***
->  3 locks held by kms_pipe_crc_ba/6415:
->   #0: ffff888101541430 (sb_writers#15){.+.+}-{0:0}, at: ksys_write+0x64/0=
-xe0
->   #1: ffff888136c7eab8 (&attr->mutex){+.+.}-{3:3}, at: simple_attr_write_=
-xsigned.constprop.0+0x47/0x110
->   #2: ffff88813e6cce90 (&gt->reset.mutex){+.+.}-{3:3}, at: intel_gt_reset=
-+0x19e/0x470 [i915]
->
-> v2: Add sync flag to guc_cancel_busyness_worker to ensure reset path call=
-s asynchronous cancel.
-> v3: Add sync flag to intel_guc_submission_disable to ensure reset path ca=
-lls asynchronous cancel.
-> v4: Set to always sync from __uc_fini_hw path.
->
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> ---
->  .../gpu/drm/i915/gt/uc/intel_guc_submission.c   | 17 ++++++++++-------
->  .../gpu/drm/i915/gt/uc/intel_guc_submission.h   |  2 +-
->  drivers/gpu/drm/i915/gt/uc/intel_uc.c           |  4 ++--
->  3 files changed, 13 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/=
-gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index a0e3ef1c65d2..ef4300246ce1 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1357,9 +1357,12 @@ static void guc_enable_busyness_worker(struct inte=
-l_guc *guc)
->         mod_delayed_work(system_highpri_wq, &guc->timestamp.work, guc->ti=
-mestamp.ping_delay);
->  }
->
-> -static void guc_cancel_busyness_worker(struct intel_guc *guc)
-> +static void guc_cancel_busyness_worker(struct intel_guc *guc, bool sync)
->  {
-> -       cancel_delayed_work_sync(&guc->timestamp.work);
-> +       if (sync)
-> +               cancel_delayed_work_sync(&guc->timestamp.work);
-> +       else
-> +               cancel_delayed_work(&guc->timestamp.work);
->  }
->
->  static void __reset_guc_busyness_stats(struct intel_guc *guc)
-> @@ -1370,7 +1373,7 @@ static void __reset_guc_busyness_stats(struct intel=
-_guc *guc)
->         unsigned long flags;
->         ktime_t unused;
->
-> -       guc_cancel_busyness_worker(guc);
-> +       guc_cancel_busyness_worker(guc, false);
+Up until now we only verified one or two of the dsc pps
+params like bits_per_component and bits_per_pixel this
+patch series aim to readout almost all PPS param and get
+them compared.
+Along with that some work on making a common function to
+read and write PPS param regiters is also done.
 
-This needs an absolutely giantic explainer of why this is correct, and
-why it's needed. I suspect this one of these "shut up lockdep, break
-the code" kind of patches.
--Daniel
+--v2
+-Remove duplicated code and create function that fetches register
+and reuse that. [Jani]
+-move WARN_ON one abstraction layer up. [Jani]
+-Split patch so that refactor and a new functionality is not added
+in the same patch. [Jani]
+-Add a new refactor patch so that bit shifting can be done in a
+clean way. [Jani]
 
->
->         spin_lock_irqsave(&guc->timestamp.lock, flags);
->
-> @@ -1485,7 +1488,7 @@ static int guc_init_engine_stats(struct intel_guc *=
-guc)
->
->  static void guc_fini_engine_stats(struct intel_guc *guc)
->  {
-> -       guc_cancel_busyness_worker(guc);
-> +       guc_cancel_busyness_worker(guc, true);
->  }
->
->  void intel_guc_busyness_park(struct intel_gt *gt)
-> @@ -1500,7 +1503,7 @@ void intel_guc_busyness_park(struct intel_gt *gt)
->          * and causes an unclaimed register access warning. Cancel the wo=
-rker
->          * synchronously here.
->          */
-> -       guc_cancel_busyness_worker(guc);
-> +       guc_cancel_busyness_worker(guc, true);
->
->         /*
->          * Before parking, we should sample engine busyness stats if we n=
-eed to.
-> @@ -4501,9 +4504,9 @@ int intel_guc_submission_enable(struct intel_guc *g=
-uc)
->  }
->
->  /* Note: By the time we're here, GuC may have already been reset */
-> -void intel_guc_submission_disable(struct intel_guc *guc)
-> +void intel_guc_submission_disable(struct intel_guc *guc, bool sync)
->  {
-> -       guc_cancel_busyness_worker(guc);
-> +       guc_cancel_busyness_worker(guc, sync);
->
->         /* Semaphore interrupt disable and route to host */
->         guc_route_semaphores(guc, false);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/=
-gpu/drm/i915/gt/uc/intel_guc_submission.h
-> index c57b29cdb1a6..a77de0d6ed58 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-> @@ -16,7 +16,7 @@ struct intel_engine_cs;
->  void intel_guc_submission_init_early(struct intel_guc *guc);
->  int intel_guc_submission_init(struct intel_guc *guc);
->  int intel_guc_submission_enable(struct intel_guc *guc);
-> -void intel_guc_submission_disable(struct intel_guc *guc);
-> +void intel_guc_submission_disable(struct intel_guc *guc, bool sync);
->  void intel_guc_submission_fini(struct intel_guc *guc);
->  int intel_guc_preempt_work_create(struct intel_guc *guc);
->  void intel_guc_preempt_work_destroy(struct intel_guc *guc);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915=
-/gt/uc/intel_uc.c
-> index 18250fb64bd8..5b76f0d4d2a6 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -566,7 +566,7 @@ static int __uc_init_hw(struct intel_uc *uc)
->          * We've failed to load the firmware :(
->          */
->  err_submission:
-> -       intel_guc_submission_disable(guc);
-> +       intel_guc_submission_disable(guc, true);
->  err_log_capture:
->         __uc_capture_load_err_log(uc);
->  err_rps:
-> @@ -597,7 +597,7 @@ static void __uc_fini_hw(struct intel_uc *uc)
->                 return;
->
->         if (intel_uc_uses_guc_submission(uc))
-> -               intel_guc_submission_disable(guc);
-> +               intel_guc_submission_disable(guc, true);
->
->         __uc_sanitize(uc);
->  }
-> --
-> 2.34.1
->
+--v3
+-Fix the typo in patch 2 [Jani]
+-Get both dsc_reg regardless of dsc_eng_no. [Jani]
+-Remove usage of num_vdsc_instances. [Ankit]
+-Add macro to further optimize intel_dsc_get_pps_reg
 
+--v4
+-Manipulate register addresses rather than creating a macro to
+manipulate variable name based on pps [Ankit]
 
---=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+--v5
+-Use an array to fill the dsc registers instead of individual register
+[Ankit]
+-Get only dsc register that are required.
+
+-v6
+-make intel_get_no_vdsc_inst_per_pipe func static
+
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+Suraj Kandpal (8):
+  drm/i915/vdsc: Refactor dsc register field macro
+  drm/i915/vdsc: Add a check for dsc split cases
+  drm/i915/vdsc: Add func to get no. of vdsc instances per pipe
+  drm/i915/vdsc: Add function to read any PPS register
+  drm/i915/vdsc: Add function to write in PPS register
+  drm/i915/vdsc: Remove unused dsc registers
+  drm/i915/vdsc: Fill the intel_dsc_get_pps_config function
+  drm/i915/display: Compare the readout dsc pps params
+
+ drivers/gpu/drm/i915/display/intel_display.c  |  31 ++
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 524 +++++++++---------
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    | 366 ++++--------
+ 3 files changed, 392 insertions(+), 529 deletions(-)
+
+-- 
+2.25.1
+
