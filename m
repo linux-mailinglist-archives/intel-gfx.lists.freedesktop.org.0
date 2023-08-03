@@ -1,51 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C01376E022
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 08:23:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AEB976E0C8
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 09:05:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52AA010E599;
-	Thu,  3 Aug 2023 06:23:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E56C10E59C;
+	Thu,  3 Aug 2023 07:05:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8DC710E599
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 06:23:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3FC410E06C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 07:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691043814; x=1722579814;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zNjJMJqVdDd3lAtWigTSHexEdFJvybXhfCA+vTmmxTw=;
- b=fn+rkoPNHtKzqDfMK86WGFU3yqwmvAHZs5B14QIAEL+Pd19O9xYdW6QK
- sQkh58HT7x4NZYmx2N9UcgwiFATeCVhwXodB0mUprtZVuQjQlhQv9iPQi
- 0L43gp7+MYymmIlPasiy/D9th4KQ6RyM8AZZXM3mdBI32OWoDrMWUUk3u
- MX7XhgIGY68QXXunZPinZHy+2TLu5dGbyT79oyHzkID6xikJ75X695SsS
- x4ObP8XViWo7byYKSKAIuzTzjV5jcmS4gUxotpkfA/HcTA5VPYmfGhRSk
- YU8VKOL7E1ONEcWYb9Ozp3cY/GruhxZB+ehmwwmQRZmSDnpqp1F3dFhXT g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="373414915"
-X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="373414915"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2023 23:23:16 -0700
+ t=1691046347; x=1722582347;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zTXXm2Fm72S7u4MtaFBCTKyOQKj95lgk4Ti+z0TvBwA=;
+ b=nGc+w7WQWXhgn9qiAqFGMGQKbOx+f0EPGSqnc2h+A0jGwhvifvQf1PoM
+ TyXiQ5PlzhwqYx1QzRHcR+LCBJgP/6qXv6405lHCA8AlGw817OxhdfPgB
+ T3nPltCDfI2HXEzRoFFNoxm/hOih5VQeX9q3lwXpBZGRS5IJoTyN20cHX
+ RIvPGaGfjMMTHRimYfFw9nPpnoM+cl2QLqs09DaIDIShmDSuxgmpT8JIJ
+ 2yqIEAntL+5Z5MATjhtjf/uQzds330lLk7nUY+8tu2Xni1+zAp9w6AHeK
+ BIEAGJ0jA+xgwuyeujhvu05b0CJfz7FdI8ASl11hGW9SqfMBUteMnNLFk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="354702780"
+X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="354702780"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 00:05:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="819501773"
-X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="819501773"
-Received: from tsengwil-desk2.itwn.intel.com (HELO gar) ([10.5.231.141])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2023 23:23:14 -0700
-From: William Tseng <william.tseng@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10790"; a="794882046"
+X-IronPort-AV: E=Sophos;i="6.01,251,1684825200"; d="scan'208";a="794882046"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmsmga008.fm.intel.com with ESMTP; 03 Aug 2023 00:05:25 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  3 Aug 2023 14:23:08 +0800
-Message-Id: <20230803062308.172824-1-william.tseng@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230802101541.10045-1-william.tseng@intel.com>
-References: <20230802101541.10045-1-william.tseng@intel.com>
+Date: Thu,  3 Aug 2023 12:33:38 +0530
+Message-Id: <20230803070346.3776690-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/xelpd: Calculate
- first_line_bpg_offset for DSC 1.1
+Subject: [Intel-gfx] [PATCH v5 0/8] Add DSC PPS readout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,56 +54,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Juha-Pekka Heikkil <juha-pekka.heikkila@intel.com>,
- William Tseng <william.tseng@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This change is required for DSC 1.1 because the current calculation
-is for DSC 1.2 and may get a calculated value which is not
-recommended by DSC 1.1, for example, the calculated value at 8bpp
-becomes 15, not the value of 12 recommened by DSC 1.1.
+Up until now we only verified one or two of the dsc pps
+params like bits_per_component and bits_per_pixel this
+patch series aim to readout almost all PPS param and get
+them compared.
+Along with that some work on making a common function to
+read and write PPS param regiters is also done.
 
-v2:
-- change the if-condition from minor version 2 to 1.
-- add comment about first_line_bpg_offset for DSC 1.1.
+--v2
+-Remove duplicated code and create function that fetches register
+and reuse that. [Jani]
+-move WARN_ON one abstraction layer up. [Jani]
+-Split patch so that refactor and a new functionality is not added
+in the same patch. [Jani]
+-Add a new refactor patch so that bit shifting can be done in a
+clean way. [Jani]
 
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Juha-Pekka Heikkil <juha-pekka.heikkila@intel.com>
-Signed-off-by: William Tseng <william.tseng@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vdsc.c | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
+--v3
+-Fix the typo in patch 2 [Jani]
+-Get both dsc_reg regardless of dsc_eng_no. [Jani]
+-Remove usage of num_vdsc_instances. [Ankit]
+-Add macro to further optimize intel_dsc_get_pps_reg
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index bd9116d2cd76..beeb1c594559 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -72,11 +72,19 @@ calculate_rc_params(struct drm_dsc_config *vdsc_cfg)
- 	int qp_bpc_modifier = (bpc - 8) * 2;
- 	u32 res, buf_i, bpp_i;
- 
--	if (vdsc_cfg->slice_height >= 8)
--		vdsc_cfg->first_line_bpg_offset =
--			12 + DIV_ROUND_UP((9 * min(34, vdsc_cfg->slice_height - 8)), 100);
--	else
--		vdsc_cfg->first_line_bpg_offset = 2 * (vdsc_cfg->slice_height - 1);
-+	if (vdsc_cfg->dsc_version_minor == 1) {
-+		/* The recommended and required Values from Table E-2 for DSC1.1 */
-+		if (bpp == 8)
-+			rc->first_line_bpg_offset = 12;
-+		else
-+			rc->first_line_bpg_offset = 15;
-+	} else {
-+		if (vdsc_cfg->slice_height >= 8)
-+			vdsc_cfg->first_line_bpg_offset =
-+				12 + DIV_ROUND_UP((9 * min(34, vdsc_cfg->slice_height - 8)), 100);
-+		else
-+			vdsc_cfg->first_line_bpg_offset = 2 * (vdsc_cfg->slice_height - 1);
-+	}
- 
- 	/* Our hw supports only 444 modes as of today */
- 	if (bpp >= 12)
+--v4
+-Manipulate register addresses rather than creating a macro to
+manipulate variable name based on pps [Ankit]
+
+--v5
+-Use an array to fill the dsc registers instead of individual register
+[Ankit]
+-Get only dsc register that are required.
+
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+Suraj Kandpal (8):
+  drm/i915/vdsc: Refactor dsc register field macro
+  drm/i915/vdsc: Add a check for dsc split cases
+  drm/i915/vdsc: Add func to get no. of vdsc instances per pipe
+  drm/i915/vdsc: Add function to read any PPS register
+  drm/i915/vdsc: Add function to write in PPS register
+  drm/i915/vdsc: Remove unused dsc registers
+  drm/i915/vdsc: Fill the intel_dsc_get_pps_config function
+  drm/i915/display: Compare the readout dsc pps params
+
+ drivers/gpu/drm/i915/display/intel_display.c  |  31 ++
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 524 +++++++++---------
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    | 366 ++++--------
+ 3 files changed, 392 insertions(+), 529 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
