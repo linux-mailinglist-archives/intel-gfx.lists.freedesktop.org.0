@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B791476F0FA
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 19:57:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F8676F0FB
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 19:57:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2C1E10E11D;
-	Thu,  3 Aug 2023 17:57:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE5610E1B7;
+	Thu,  3 Aug 2023 17:57:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4C71E10E11D;
- Thu,  3 Aug 2023 17:57:02 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A09E910E1B7;
+ Thu,  3 Aug 2023 17:57:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4479FAADF2;
- Thu,  3 Aug 2023 17:57:02 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9D7DCAADFD;
+ Thu,  3 Aug 2023 17:57:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Date: Thu, 03 Aug 2023 17:57:02 -0000
-Message-ID: <169108542224.5270.4079676202383478521@emeril.freedesktop.org>
+Date: Thu, 03 Aug 2023 17:57:04 -0000
+Message-ID: <169108542464.5269.15232064611345727684@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230803143530.27601-1-juhapekka.heikkila@gmail.com>
 In-Reply-To: <20230803143530.27601-1-juhapekka.heikkila@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/sdvo=3A_ignore_returned_broken_edid_on_intel=5Fsdv?=
- =?utf-8?q?o=5Ftmds=5Fsink=5Fdetect?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/sdvo=3A_ignore_returned_broken_edid_on_intel=5Fsdvo=5F?=
+ =?utf-8?q?tmds=5Fsink=5Fdetect?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,7 +54,7 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-/home/kbuild/linux/maintainer-tools/dim: line 50: /home/kbuild/.dimrc: No such file or directory
+Error: dim sparse failed
+/home/kbuild2/linux/maintainer-tools/dim: line 50: /home/kbuild2/.dimrc: No such file or directory
 
 
