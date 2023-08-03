@@ -2,49 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AF6176E95D
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 15:05:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CE9776EA3A
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Aug 2023 15:28:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC18D10E60C;
-	Thu,  3 Aug 2023 13:05:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C4E710E608;
+	Thu,  3 Aug 2023 13:28:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DA6C10E095
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Aug 2023 13:05:36 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4238010E1C3;
+ Thu,  3 Aug 2023 13:28:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691067936; x=1722603936;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ekshvkrcL/eHvKwMQh+tISaq5nudK8LILs/NczX6dbM=;
- b=DUdha+/JKHABa2pgDxEcVfSHqSYSOtidDMaxAe7yvrdxrYrPcZyRqq+w
- mHE8ICpHBPZ32jw9X/EC1wyel1Snb9TMMnu68QCzkaUN+6kMGEe2hQ9Xm
- KhHbLc3xPMR0NNM0Kdu0Un5snwlQDBQBh1/DLr5dYJCfy2IAYARUfkaZo
- kOk4O2+8Z781iPsm7NLOuFaV0+h9FowxWYRzbZ/er6fLoMbPzFv/aPAAN
- i66R3gV0YO3bX8tYp1fuGF+qy/0MwWQv/9CSHRliDxAyL7IrH34kCsefJ
- m0bP3cuBmpgcYJlP3PEwWx7h/HbeQEzhp5AOnOHv2vkAe4LNoeWd1pCIi w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="359906505"
-X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="359906505"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2023 06:05:36 -0700
+ t=1691069333; x=1722605333;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=W1vGWvXnwAY/f51FTl0188tECkxF+EFRNzlkxGetUxc=;
+ b=Mg+RCcC36fO1Cz6nE7dQr+nyqloSBjHHOy9U2cKmPWwfgwvs78AYtCMN
+ uW6UF3Yd8v/BBHFw4TLodPeqVRck3HwKwVGZFZboaq+F0TWQg52rDM2Eu
+ VkQWOEn8GVyi3TquVpZr3eDJTkeuRC9H+ox1qSeIvsszn3e23UVvqi2r4
+ SgcKZB8iTDQh6IzOklgoiAH7CRcY1ELSxuZSwOzbwoe0anrPIUTNIblod
+ 3W4rG5kuM4VGwhMluw/k4LwFyXq5+EcL7JBff7jBbW44OikyRQlYGiN0i
+ acCPN9oOJC0AsPz8WfQB5RWEXcy+j3KyfOSVlafx7m3MTJzpC+V6BnlIY g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="373499607"
+X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="373499607"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 06:19:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="843585844"
-X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="843585844"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga002.fm.intel.com with ESMTP; 03 Aug 2023 06:05:34 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  3 Aug 2023 18:33:38 +0530
-Message-Id: <20230803130337.3784597-9-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230803130337.3784597-1-suraj.kandpal@intel.com>
-References: <20230803130337.3784597-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="794985503"
+X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="794985503"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmsmga008.fm.intel.com with ESMTP; 03 Aug 2023 06:19:10 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1003)
+ id DC3932AB; Thu,  3 Aug 2023 16:19:21 +0300 (EEST)
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, Imre Deak <imre.deak@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Jiri Slaby <jirislaby@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Alexey Dobriyan <adobriyan@gmail.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
+Date: Thu,  3 Aug 2023 16:19:18 +0300
+Message-Id: <20230803131918.53727-1-andriy.shevchenko@linux.intel.com>
+X-Mailer: git-send-email 2.40.0.1.gaa8946217a0b
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v6 8/8] drm/i915/display: Compare the readout
- dsc pps params
+Subject: [Intel-gfx] [PATCH v4 1/1] drm/i915: Move abs_diff() to math.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,65 +63,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Helge Deller <deller@gmx.de>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>, David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With the dsc config being readout and filled in crtc_state add
-macros and use them to compare current and previous PPS param in
-DSC.
+abs_diff() belongs to math.h. Move it there.
+This will allow others to use it.
 
---v2
--Remove version check [Jani]
--Remove dupe macro for dsc pipe compare and use the existing ones
-[Jani]
-
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Jiri Slaby <jirislaby@kernel.org> # tty/serial
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de> # gpu/ipu-v3
+Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 31 ++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+v4:
+- Cc'ed to Andrew (as Jani told he is okay to route it via other tree)
+- added tags
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  1 +
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  7 -------
+ drivers/gpu/ipu-v3/ipu-image-convert.c        | 15 +++++++--------
+ drivers/tty/serial/omap-serial.c              |  7 +------
+ drivers/video/fbdev/core/svgalib.c            |  7 +------
+ include/linux/math.h                          |  7 +++++++
+ 6 files changed, 17 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 43cba98f7753..9c407ceb082e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5376,6 +5376,37 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_I(master_transcoder);
- 	PIPE_CONF_CHECK_X(bigjoiner_pipes);
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 6b2d8a1e2aa9..290e856fe9e9 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -21,6 +21,7 @@
+  * DEALINGS IN THE SOFTWARE.
+  */
  
-+	PIPE_CONF_CHECK_BOOL(dsc.config.block_pred_enable);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.convert_rgb);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.simple_422);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.native_422);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.native_420);
-+	PIPE_CONF_CHECK_BOOL(dsc.config.vbr_enable);
-+	PIPE_CONF_CHECK_I(dsc.config.line_buf_depth);
-+	PIPE_CONF_CHECK_I(dsc.config.bits_per_component);
-+	PIPE_CONF_CHECK_I(dsc.config.pic_width);
-+	PIPE_CONF_CHECK_I(dsc.config.pic_height);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_width);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_height);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_dec_delay);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_xmit_delay);
-+	PIPE_CONF_CHECK_I(dsc.config.scale_decrement_interval);
-+	PIPE_CONF_CHECK_I(dsc.config.scale_increment_interval);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_scale_value);
-+	PIPE_CONF_CHECK_I(dsc.config.first_line_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.flatness_min_qp);
-+	PIPE_CONF_CHECK_I(dsc.config.flatness_max_qp);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.nfl_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.initial_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.final_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.rc_model_size);
-+	PIPE_CONF_CHECK_I(dsc.config.rc_quant_incr_limit0);
-+	PIPE_CONF_CHECK_I(dsc.config.rc_quant_incr_limit1);
-+	PIPE_CONF_CHECK_I(dsc.config.slice_chunk_size);
-+	PIPE_CONF_CHECK_I(dsc.config.second_line_bpg_offset);
-+	PIPE_CONF_CHECK_I(dsc.config.nsl_bpg_offset);
++#include <linux/math.h>
+ #include <linux/string_helpers.h>
+ 
+ #include "i915_reg.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+index ba62eb5d7c51..04e6810954b2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+@@ -29,13 +29,6 @@
+ 
+ #include "intel_wakeref.h"
+ 
+-/*FIXME: Move this to a more appropriate place. */
+-#define abs_diff(a, b) ({			\
+-	typeof(a) __a = (a);			\
+-	typeof(b) __b = (b);			\
+-	(void) (&__a == &__b);			\
+-	__a > __b ? (__a - __b) : (__b - __a); })
+-
+ enum tc_port;
+ struct drm_i915_private;
+ struct intel_atomic_state;
+diff --git a/drivers/gpu/ipu-v3/ipu-image-convert.c b/drivers/gpu/ipu-v3/ipu-image-convert.c
+index af1612044eef..841316582ea9 100644
+--- a/drivers/gpu/ipu-v3/ipu-image-convert.c
++++ b/drivers/gpu/ipu-v3/ipu-image-convert.c
+@@ -7,7 +7,10 @@
+ 
+ #include <linux/interrupt.h>
+ #include <linux/dma-mapping.h>
++#include <linux/math.h>
 +
- 	PIPE_CONF_CHECK_I(dsc.compression_enable);
- 	PIPE_CONF_CHECK_I(dsc.dsc_split);
- 	PIPE_CONF_CHECK_I(dsc.compressed_bpp);
+ #include <video/imx-ipu-image-convert.h>
++
+ #include "ipu-prv.h"
+ 
+ /*
+@@ -543,7 +546,7 @@ static void find_best_seam(struct ipu_image_convert_ctx *ctx,
+ 		unsigned int in_pos;
+ 		unsigned int in_pos_aligned;
+ 		unsigned int in_pos_rounded;
+-		unsigned int abs_diff;
++		unsigned int diff;
+ 
+ 		/*
+ 		 * Tiles in the right row / bottom column may not be allowed to
+@@ -575,15 +578,11 @@ static void find_best_seam(struct ipu_image_convert_ctx *ctx,
+ 		    (in_edge - in_pos_rounded) % in_burst)
+ 			continue;
+ 
+-		if (in_pos < in_pos_aligned)
+-			abs_diff = in_pos_aligned - in_pos;
+-		else
+-			abs_diff = in_pos - in_pos_aligned;
+-
+-		if (abs_diff < min_diff) {
++		diff = abs_diff(in_pos, in_pos_aligned);
++		if (diff < min_diff) {
+ 			in_seam = in_pos_rounded;
+ 			out_seam = out_pos;
+-			min_diff = abs_diff;
++			min_diff = diff;
+ 		}
+ 	}
+ 
+diff --git a/drivers/tty/serial/omap-serial.c b/drivers/tty/serial/omap-serial.c
+index 3dc14dcb01ca..0ead88c5a19a 100644
+--- a/drivers/tty/serial/omap-serial.c
++++ b/drivers/tty/serial/omap-serial.c
+@@ -222,16 +222,11 @@ static inline int calculate_baud_abs_diff(struct uart_port *port,
+ 				unsigned int baud, unsigned int mode)
+ {
+ 	unsigned int n = port->uartclk / (mode * baud);
+-	int abs_diff;
+ 
+ 	if (n == 0)
+ 		n = 1;
+ 
+-	abs_diff = baud - (port->uartclk / (mode * n));
+-	if (abs_diff < 0)
+-		abs_diff = -abs_diff;
+-
+-	return abs_diff;
++	return abs_diff(baud, port->uartclk / (mode * n));
+ }
+ 
+ /*
+diff --git a/drivers/video/fbdev/core/svgalib.c b/drivers/video/fbdev/core/svgalib.c
+index 9e01322fabe3..2cba158888ea 100644
+--- a/drivers/video/fbdev/core/svgalib.c
++++ b/drivers/video/fbdev/core/svgalib.c
+@@ -14,6 +14,7 @@
+ #include <linux/kernel.h>
+ #include <linux/string.h>
+ #include <linux/fb.h>
++#include <linux/math.h>
+ #include <linux/svga.h>
+ #include <asm/types.h>
+ #include <asm/io.h>
+@@ -372,12 +373,6 @@ EXPORT_SYMBOL(svga_get_caps);
+  *  F_VCO = (F_BASE * M) / N
+  *  F_OUT = F_VCO / (2^R)
+  */
+-
+-static inline u32 abs_diff(u32 a, u32 b)
+-{
+-	return (a > b) ? (a - b) : (b - a);
+-}
+-
+ int svga_compute_pll(const struct svga_pll *pll, u32 f_wanted, u16 *m, u16 *n, u16 *r, int node)
+ {
+ 	u16 am, an, ar;
+diff --git a/include/linux/math.h b/include/linux/math.h
+index 2d388650c556..336e3e3678e7 100644
+--- a/include/linux/math.h
++++ b/include/linux/math.h
+@@ -155,6 +155,13 @@ __STRUCT_FRACT(u32)
+ 	__builtin_types_compatible_p(typeof(x), unsigned type),		\
+ 	({ signed type __x = (x); __x < 0 ? -__x : __x; }), other)
+ 
++#define abs_diff(a, b) ({			\
++	typeof(a) __a = (a);			\
++	typeof(b) __b = (b);			\
++	(void)(&__a == &__b);			\
++	__a > __b ? (__a - __b) : (__b - __a);	\
++})
++
+ /**
+  * reciprocal_scale - "scale" a value into range [0, ep_ro)
+  * @val: value
 -- 
-2.25.1
+2.40.0.1.gaa8946217a0b
 
