@@ -1,48 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 915D476FC3C
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Aug 2023 10:45:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A856576FC41
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Aug 2023 10:46:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA33D10E6BF;
-	Fri,  4 Aug 2023 08:45:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCDA710E143;
+	Fri,  4 Aug 2023 08:46:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A82010E6C2;
- Fri,  4 Aug 2023 08:45:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D93210E143
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Aug 2023 08:46:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691138718; x=1722674718;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=QUYHrQ5cywXRdPaODCJidIlLaIXsoSlbQGR+ALoABP4=;
- b=WUBy3gwVMX8oKzOpSyv36BSqz/K4pTWWUS7joqlemnQ4QO/1TrKb+6AV
- sIiPwY49C7CZ0+0jemHvtCZ4wHSC5td5OeZLX+vDJ2TBlLV9CkklSayvW
- OU4IY4hy3JImBvXYByOtZwW0XI0clex95mPkzKuvZG655YsRXJzeSk5u+
- 1lb0EUxDKvzUU/OG27Yd9yWWPG50jrvbZ4TxWIvsCW+AJGJ3nsMkQdjMp
- IeTzaMSnWWH63ki83dQy4vUHinVgLdddTb8NMT1ta6v8INp4240Y/1uur
- q/pjKI0vzEfJH3iYBBYu+c0H7onM1ZzGtvHG9GNLhJFyBQcy46IYd3jDU w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="373754253"
-X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="373754253"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2023 01:45:10 -0700
+ t=1691138768; x=1722674768;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jpvEcMDGdogWA4mQKBV3mH5p2EC6bIHcOB2ExsCR3f4=;
+ b=GNVTzUg0CGVQoIWMDzDKHdD3frbXpNi05OAXG7On9Oar1QEIbDM+x+vn
+ Ejk8b5L1IMj3VqtHXnNgckc1aKTGfmDODoaEIQOZI5P0LWNA5bcyzQUkJ
+ mrvjWqMT50DNepTnusgfKjaOKS7lbh+2b1O0ICbm98f8y0bC6juXkixVk
+ FLfT4UMIAUkTxNbYm7XqfUcxo2XfsabKR8FLoJ5Vp40x/hBuRP6M717rC
+ 9ye+jMCEM31q8uTBLJbuUmZtJ7Nh7zNp3tYiidGm0G0LIVmFZGMrLb+Hs
+ qiuMkfuKvWpIzjHTejaYC6yAQUNG6JR16UbMAtg804fyYLkC9oV1nwYp4 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="367565081"
+X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="367565081"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2023 01:46:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="759508588"
-X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="759508588"
-Received: from reshmapa-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.0.153])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2023 01:45:07 -0700
-Date: Fri, 4 Aug 2023 11:45:04 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <ZMy6kDd9npweR4uy@jlahtine-mobl.ger.corp.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="795317263"
+X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="795317263"
+Received: from popovax-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.62.174])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2023 01:46:06 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  4 Aug 2023 11:45:59 +0300
+Message-Id: <20230804084600.1005818-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-gt-next
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: fix display probe for IVB Q and
+ IVB D GT2 server
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,286 +58,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Matt Roper <matthew.d.roper@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Daniel,
+The current display probe is unable to differentiate between IVB Q and
+IVB D GT2 server, as they both have the same device id, but different
+subvendor and subdevice. This leads to the latter being misidentified as
+the former, and should just end up not having a display. However, the no
+display case returns a NULL as the display device info, and promptly
+oopses.
 
-Here goes the first drm-intel-gt-next PR for v6.6.
+As the IVB Q case is rare, and we're anyway moving towards GMD ID,
+handle the identification requiring subvendor and subdevice as a special
+case first, instead of unnecessarily growing the intel_display_ids[]
+array with subvendor and subdevice.
 
-We have a fix for infinite GPU wait race condition found by CI,
-then improved tweakability of RPS algo and fixes to GuC SLPC for
-tuning the frequency behavior of the system.
+[    5.425298] BUG: kernel NULL pointer dereference, address: 0000000000000000
+[    5.426059] #PF: supervisor read access in kernel mode
+[    5.426810] #PF: error_code(0x0000) - not-present page
+[    5.427570] PGD 0 P4D 0
+[    5.428285] Oops: 0000 [#1] PREEMPT SMP PTI
+[    5.429035] CPU: 0 PID: 137 Comm: (udev-worker) Not tainted 6.4.0-1-amd64 #1  Debian 6.4.4-1
+[    5.429759] Hardware name: HP HP Z220 SFF Workstation/HP Z220 SFF Workstation, BIOS 4.19-218-gb184e6e0a1 02/02/2023
+[    5.430485] RIP: 0010:intel_device_info_driver_create+0xf1/0x120 [i915]
+[    5.431338] Code: 48 8b 97 80 1b 00 00 89 8f c0 1b 00 00 48 89 b7 b0 1b 00 00 48 89 97 b8 1b 00 00 0f b7 fd e8 76 e8 14 00 48 89 83 50 1b 00 00 <48> 8b 08 48 89 8b c4 1b 00 00 48 8b 48 08 48 89 8b cc 1b 00 00 8b
+[    5.432920] RSP: 0018:ffffb8254044fb98 EFLAGS: 00010206
+[    5.433707] RAX: 0000000000000000 RBX: ffff923076e80000 RCX: 0000000000000000
+[    5.434494] RDX: 0000000000000260 RSI: 0000000100001000 RDI: 000000000000016a
+[    5.435277] RBP: 000000000000016a R08: ffffb8254044fb00 R09: 0000000000000000
+[    5.436055] R10: ffff922d02761de8 R11: 00657361656c6572 R12: ffffffffc0e5d140
+[    5.436867] R13: ffff922d00b720d0 R14: 0000000076e80000 R15: ffff923078c0cae8
+[    5.437646] FS:  00007febd19a18c0(0000) GS:ffff92307c000000(0000) knlGS:0000000000000000
+[    5.438434] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    5.439218] CR2: 0000000000000000 CR3: 000000010256e002 CR4: 00000000001706f0
+[    5.440009] Call Trace:
+[    5.440824]  <TASK>
+[    5.441611]  ? __die+0x23/0x70
+[    5.442394]  ? page_fault_oops+0x17d/0x4c0
+[    5.443173]  ? exc_page_fault+0x7f/0x180
+[    5.443949]  ? asm_exc_page_fault+0x26/0x30
+[    5.444756]  ? intel_device_info_driver_create+0xf1/0x120 [i915]
+[    5.445652]  ? intel_device_info_driver_create+0xea/0x120 [i915]
+[    5.446545]  i915_driver_probe+0x7f/0xb60 [i915]
+[    5.447431]  ? drm_privacy_screen_get+0x15c/0x1a0 [drm]
+[    5.448240]  local_pci_probe+0x45/0xa0
+[    5.449013]  pci_device_probe+0xc7/0x240
+[    5.449748]  really_probe+0x19e/0x3e0
+[    5.450464]  ? __pfx___driver_attach+0x10/0x10
+[    5.451172]  __driver_probe_device+0x78/0x160
+[    5.451870]  driver_probe_device+0x1f/0x90
+[    5.452601]  __driver_attach+0xd2/0x1c0
+[    5.453293]  bus_for_each_dev+0x88/0xd0
+[    5.453989]  bus_add_driver+0x116/0x220
+[    5.454672]  driver_register+0x59/0x100
+[    5.455336]  i915_init+0x25/0xc0 [i915]
+[    5.456104]  ? __pfx_i915_init+0x10/0x10 [i915]
+[    5.456882]  do_one_initcall+0x5d/0x240
+[    5.457511]  do_init_module+0x60/0x250
+[    5.458126]  __do_sys_finit_module+0xac/0x120
+[    5.458721]  do_syscall_64+0x60/0xc0
+[    5.459314]  ? syscall_exit_to_user_mode+0x1b/0x40
+[    5.459897]  ? do_syscall_64+0x6c/0xc0
+[    5.460510]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
+[    5.461082] RIP: 0033:0x7febd20b0eb9
+[    5.461648] Code: 08 89 e8 5b 5d c3 66 2e 0f 1f 84 00 00 00 00 00 90 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 2f 1f 0d 00 f7 d8 64 89 01 48
+[    5.462905] RSP: 002b:00007fffabb1ba78 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[    5.463554] RAX: ffffffffffffffda RBX: 0000561e6304f410 RCX: 00007febd20b0eb9
+[    5.464201] RDX: 0000000000000000 RSI: 00007febd2244f0d RDI: 0000000000000015
+[    5.464869] RBP: 00007febd2244f0d R08: 0000000000000000 R09: 000000000000000a
+[    5.465512] R10: 0000000000000015 R11: 0000000000000246 R12: 0000000000020000
+[    5.466124] R13: 0000000000000000 R14: 0000561e63032b60 R15: 000000000000000a
+[    5.466700]  </TASK>
+[    5.467271] Modules linked in: i915(+) drm_buddy video crc32_pclmul sr_mod hid_generic wmi crc32c_intel i2c_algo_bit sd_mod cdrom drm_display_helper cec usbhid rc_core ghash_clmulni_intel hid sha512_ssse3 ttm sha512_generic xhci_pci ehci_pci xhci_hcd ehci_hcd nvme ahci drm_kms_helper nvme_core libahci t10_pi libata psmouse aesni_intel scsi_mod crypto_simd i2c_i801 scsi_common crc64_rocksoft_generic cryptd i2c_smbus drm lpc_ich crc64_rocksoft crc_t10dif e1000e usbcore crct10dif_generic usb_common crct10dif_pclmul crc64 crct10dif_common button
+[    5.469750] CR2: 0000000000000000
+[    5.470364] ---[ end trace 0000000000000000 ]---
+[    5.470971] RIP: 0010:intel_device_info_driver_create+0xf1/0x120 [i915]
+[    5.471699] Code: 48 8b 97 80 1b 00 00 89 8f c0 1b 00 00 48 89 b7 b0 1b 00 00 48 89 97 b8 1b 00 00 0f b7 fd e8 76 e8 14 00 48 89 83 50 1b 00 00 <48> 8b 08 48 89 8b c4 1b 00 00 48 8b 48 08 48 89 8b cc 1b 00 00 8b
+[    5.473034] RSP: 0018:ffffb8254044fb98 EFLAGS: 00010206
+[    5.473698] RAX: 0000000000000000 RBX: ffff923076e80000 RCX: 0000000000000000
+[    5.474371] RDX: 0000000000000260 RSI: 0000000100001000 RDI: 000000000000016a
+[    5.475045] RBP: 000000000000016a R08: ffffb8254044fb00 R09: 0000000000000000
+[    5.475725] R10: ffff922d02761de8 R11: 00657361656c6572 R12: ffffffffc0e5d140
+[    5.476405] R13: ffff922d00b720d0 R14: 0000000076e80000 R15: ffff923078c0cae8
+[    5.477124] FS:  00007febd19a18c0(0000) GS:ffff92307c000000(0000) knlGS:0000000000000000
+[    5.477811] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    5.478499] CR2: 0000000000000000 CR3: 000000010256e002 CR4: 00000000001706f0
 
-OA report zeroing fix, Aux CCS invalidation fix on Gen12 and
-addition of missing W/A for TGL, RKL, DG1, DG2 and ADL.
+Fixes: 69d439818fe5 ("drm/i915/display: Make display responsible for probing its own IP")
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8991
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ .../drm/i915/display/intel_display_device.c   | 24 ++++++++++++++++---
+ 1 file changed, 21 insertions(+), 3 deletions(-)
 
-Then some Meteorlake enabling patches and the usual amount of debugging
-and code structure improvements, static checker fixes and fixes for
-potential UAF and error handling paths.
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 8286e79522d1..3d6a262e037f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -724,10 +724,24 @@ static const struct intel_display_device_info xe_lpdp_display = {
+ 		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4),
+ };
+ 
++/*
++ * Separate detection for no display cases to keep the display id array simple.
++ *
++ * IVB Q requires subvendor and subdevice matching to differentiate from IVB D
++ * GT2 server.
++ */
++static bool has_no_display(struct pci_dev *pdev)
++{
++	static const struct pci_device_id ids[] = {
++		INTEL_IVB_Q_IDS(0),
++		{}
++	};
++
++	return pci_match_id(ids, pdev);
++}
++
+ #undef INTEL_VGA_DEVICE
+-#undef INTEL_QUANTA_VGA_DEVICE
+ #define INTEL_VGA_DEVICE(id, info) { id, info }
+-#define INTEL_QUANTA_VGA_DEVICE(info) { 0x16a, info }
+ 
+ static const struct {
+ 	u32 devid;
+@@ -752,7 +766,6 @@ static const struct {
+ 	INTEL_IRONLAKE_M_IDS(&ilk_m_display),
+ 	INTEL_SNB_D_IDS(&snb_display),
+ 	INTEL_SNB_M_IDS(&snb_display),
+-	INTEL_IVB_Q_IDS(NULL),		/* must be first IVB in list */
+ 	INTEL_IVB_M_IDS(&ivb_display),
+ 	INTEL_IVB_D_IDS(&ivb_display),
+ 	INTEL_HSW_IDS(&hsw_display),
+@@ -837,6 +850,11 @@ intel_display_device_probe(struct drm_i915_private *i915, bool has_gmdid,
+ 	if (has_gmdid)
+ 		return probe_gmdid_display(i915, gmdid_ver, gmdid_rel, gmdid_step);
+ 
++	if (has_no_display(pdev)) {
++		drm_dbg_kms(&i915->drm, "Device doesn't have display\n");
++		return &no_display;
++	}
++
+ 	for (i = 0; i < ARRAY_SIZE(intel_display_ids); i++) {
+ 		if (intel_display_ids[i].devid == pdev->device)
+ 			return intel_display_ids[i].info;
+-- 
+2.39.2
 
-Regards, Joonas
-
-PS. Hoping to backmerge drm-next early next week to bring in some
-drm-intel-gt-next dependencies before the final PR.
-
-drm-intel-gt-next-2023-08-04:
-
-Driver Changes:
-
-- Avoid infinite GPU waits by avoiding premature release of request's
-  reusable memory (Chris, Janusz)
-- Expose RPS thresholds in sysfs (Tvrtko)
-- Apply GuC SLPC min frequency softlimit correctly (Vinay)
-- Restore SLPC efficient freq earlier (Vinay)
-- Consider OA buffer boundary when zeroing out reports (Umesh)
-- Extend Wa_14015795083 to TGL, RKL, DG1 and ADL (Matt R)
-- Fix context workarounds with non-masked regs on MTL/DG2 (Lucas)
-- Enable the CCS_FLUSH bit in the pipe control and in the CS for MTL+ (Andi)
-- Update MTL workarounds 14018778641, 22016122933 (Tejas, Zhanjun)
-- Ensure memory quiesced before AUX CCS invalidation (Jonathan)
-
-- Add a gsc_info debugfs (Daniele)
-- Invalidate the TLBs on each GT on multi-GT device (Chris)
-- Fix a VMA UAF for multi-gt platform (Nirmoy)
-- Do not use stolen on MTL due to HW bug (Nirmoy)
-- Check HuC and GuC version compatibility on MTL (Daniele)
-- Dump perf_limit_reasons for slow GuC init debug (Vinay)
-- Replace kmap() with kmap_local_page() (Sumitra, Ira)
-- Add sentinel to xehp_oa_b_counters for KASAN (Andrzej)
-- Add the gen12_needs_ccs_aux_inv helper (Andi)
-- Fixes and updates for GSC memory allocation (Daniele)
-- Fix one wrong caching mode enum usage (Tvrtko)
-- Fixes for GSC wakeref (Alan)
-
-- Static checker fixes (Harshit, Arnd, Dan, Cristophe, David, Andi)
-- Rename flags with bit_group_X according to the datasheet (Andi)
-- Use direct alias for i915 in requests (Andrzej)
-- Replace i915->gt0 with to_gt(i915) (Andi)
-- Use the i915_vma_flush_writes helper (Tvrtko)
-- Selftest improvements (Alan)
-- Remove dead code (Tvrtko)
-
-The following changes since commit 24335848e543dc95c9e2ffa0108d879ffefd0442:
-
-  drm/i915/gsc: Fix error code in intel_gsc_uc_heci_cmd_submit_nonpriv() (2023-06-08 02:11:04 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2023-08-04
-
-for you to fetch changes up to 28e671114fb0f28f334fac8d0a6b9c395c7b0498:
-
-  drm/i915/guc/slpc: Restore efficient freq earlier (2023-08-02 11:08:02 -0700)
-
-----------------------------------------------------------------
-Driver Changes:
-
-- Avoid infinite GPU waits by avoidin premature release of request's
-  reusable memory (Chris, Janusz)
-- Expose RPS thresholds in sysfs (Tvrtko)
-- Apply GuC SLPC min frequency softlimit correctly (Vinay)
-- Restore SLPC efficient freq earlier (Vinay)
-- Consider OA buffer boundary when zeroing out reports (Umesh)
-- Extend Wa_14015795083 to TGL, RKL, DG1 and ADL (Matt R)
-- Fix context workarounds with non-masked regs on MTL/DG2 (Lucas)
-- Enable the CCS_FLUSH bit in the pipe control and in the CS for MTL+ (Andi)
-- Update MTL workarounds 14018778641, 22016122933 (Tejas, Zhanjun)
-- Ensure memory quiesced before AUX CCS invalidation (Jonathan)
-
-- Add a gsc_info debugfs (Daniele)
-- Invalidate the TLBs on each GT on multi-GT device (Chris)
-- Fix a VMA UAF for multi-gt platform (Nirmoy)
-- Do not use stolen on MTL due to HW bug (Nirmoy)
-- Check HuC and GuC version compatibility on MTL (Daniele)
-- Dump perf_limit_reasons for slow GuC init debug (Vinay)
-- Replace kmap() with kmap_local_page() (Sumitra, Ira)
-- Add sentinel to xehp_oa_b_counters for KASAN (Andrzej)
-- Add the gen12_needs_ccs_aux_inv helper (Andi)
-- Fixes and updates for GSC memory allocation (Daniele)
-- Fix one wrong caching mode enum usage (Tvrtko)
-- Fixes for GSC wakeref (Alan)
-
-- Static checker fixes (Harshit, Arnd, Dan, Cristophe, David, Andi)
-- Rename flags with bit_group_X according to the datasheet (Andi)
-- Use direct alias for i915 in requests (Andrzej)
-- Replace i915->gt0 with to_gt(i915) (Andi)
-- Use the i915_vma_flush_writes helper (Tvrtko)
-- Selftest improvements (Alan)
-- Remove dead code (Tvrtko)
-
-----------------------------------------------------------------
-Alan Previn (3):
-      drm/i915/gsc: take a wakeref for the proxy-init-completion check
-      drm/i915/gsc: Fix intel_gsc_uc_fw_proxy_init_done with directed wakerefs
-      drm/i915/selftest/gsc: Ensure GSC Proxy init completes before selftests
-
-Andi Shyti (8):
-      drm/i915: Replace i915->gt0 with to_gt(i915)
-      drm/i915/gt: Cleanup aux invalidation registers
-      drm/i915: Add the gen12_needs_ccs_aux_inv helper
-      drm/i915/gt: Rename flags with bit_group_X according to the datasheet
-      drm/i915/gt: Enable the CCS_FLUSH bit in the pipe control and in the CS
-      drm/i915/gt: Support aux invalidation on all engines
-      i915/drm/gt: Move the gt defines in the gt directory
-      drm/i915: Remove unnecessary include
-
-Andrzej Hajda (2):
-      drm/i915/perf: add sentinel to xehp_oa_b_counters
-      drm/i915: use direct alias for i915 in requests
-
-Arnd Bergmann (1):
-      drm/i915: make i915_drm_client_fdinfo() reference conditional again
-
-Chris Wilson (2):
-      drm/i915/gt: Move TLB invalidation to its own file
-      drm/i915: Invalidate the TLBs on each GT
-
-Christophe JAILLET (1):
-      drm/i915: Fix an error handling path in igt_write_huge()
-
-Dan Carpenter (1):
-      drm/i915: Fix a NULL vs IS_ERR() bug
-
-Daniele Ceraolo Spurio (5):
-      drm/i915/gsc: fixes and updates for GSC memory allocation
-      drm/i915/mtl/gsc: extract release and security versions from the gsc binary
-      drm/i915/mtl/gsc: query the GSC FW for its compatibility version
-      drm/i915/mtl/gsc: Add a gsc_info debugfs
-      drm/i915/huc: check HuC and GuC version compatibility on MTL
-
-David Reaver (1):
-      drm/i915/huc: fix intel_huc.c doc bulleted list format error
-
-Harshit Mogalapalli (1):
-      drm/i915/huc: Fix missing error code in intel_huc_init()
-
-Janusz Krzysztofik (1):
-      drm/i915: Fix premature release of request's reusable memory
-
-Jonathan Cavitt (2):
-      drm/i915/gt: Ensure memory quiesced before invalidation
-      drm/i915/gt: Poll aux invalidation register bit on invalidation
-
-Lucas De Marchi (7):
-      drm/i915/gt: Move wal_get_fw_for_rmw()
-      drm/i915/gt: Clear all bits from GEN12_FF_MODE2
-      drm/i915/gt: Fix context workarounds with non-masked regs
-      drm/i915/gt: Drop read from GEN8_L3CNTLREG in ICL workaround
-      drm/i915/gt: Enable read back on XEHP_FF_MODE2
-      drm/i915/gt: Remove bogus comment on IVB_FBC_RT_BASE_UPPER
-      drm/i915/gt: Also check set bits in clr_set()
-
-Matt Roper (1):
-      drm/i915: Extend Wa_14015795083 platforms
-
-Nirmoy Das (2):
-      drm/i915: Fix a VMA UAF for multi-gt platform
-      drm/i915/gt: Do not use stolen on MTL
-
-Sumitra Sharma (1):
-      drm/i915: Replace kmap() with kmap_local_page()
-
-Tejas Upadhyay (1):
-      drm/i915/mtl: Update workaround 14018778641
-
-Tvrtko Ursulin (8):
-      drm/i915: Remove some dead "code"
-      drm/i915: Remove dead code from gen8_pte_encode
-      drm/i915: Fix one wrong caching mode enum usage
-      drm/i915: Move setting of rps thresholds to init
-      drm/i915: Record default rps threshold values
-      drm/i915: Add helpers for managing rps thresholds
-      drm/i915: Expose RPS thresholds in sysfs
-      drm/i915: Use the i915_vma_flush_writes helper
-
-Umesh Nerlige Ramappa (1):
-      drm/i915/perf: Consider OA buffer boundary when zeroing out reports
-
-Vinay Belgaumkar (3):
-      drm/i915/guc/slpc: Apply min softlimit correctly
-      drm/i915/guc: Dump perf_limit_reasons for debug
-      drm/i915/guc/slpc: Restore efficient freq earlier
-
-Zhanjun Dong (1):
-      drm/i915/mtl: Update cache coherency setting for context structure
-
- drivers/gpu/drm/i915/Makefile                      |   4 +-
- drivers/gpu/drm/i915/gem/i915_gem_domain.c         |   6 +-
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |  25 +-
- drivers/gpu/drm/i915/gem/i915_gem_mman.c           |   4 +-
- drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |   4 +-
- drivers/gpu/drm/i915/gem/i915_gem_pages.c          |  15 +-
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c         |   2 +-
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c    |   6 +-
- drivers/gpu/drm/i915/gt/gen2_engine_cs.c           |   2 +-
- drivers/gpu/drm/i915/gt/gen8_engine_cs.c           | 152 +++++----
- drivers/gpu/drm/i915/gt/gen8_engine_cs.h           |  21 +-
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |   3 -
- drivers/gpu/drm/i915/gt/intel_engine_cs.c          |   1 +
- .../gpu/drm/i915/gt/intel_execlists_submission.c   |   2 +-
- drivers/gpu/drm/i915/gt/intel_gpu_commands.h       |   2 +
- drivers/gpu/drm/i915/gt/intel_gt.c                 | 144 +--------
- drivers/gpu/drm/i915/gt/intel_gt.h                 |  12 -
- drivers/gpu/drm/i915/gt/intel_gt_defines.h         |  11 +
- drivers/gpu/drm/i915/gt/intel_gt_regs.h            |  16 +-
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c        | 108 +++++++
- drivers/gpu/drm/i915/gt/intel_gt_types.h           |   3 +
- drivers/gpu/drm/i915/gt/intel_gtt.c                |   2 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c                |  26 +-
- drivers/gpu/drm/i915/gt/intel_migrate.c            |  10 +-
- drivers/gpu/drm/i915/gt/intel_ppgtt.c              |   4 +-
- drivers/gpu/drm/i915/gt/intel_region_lmem.c        |   2 +-
- drivers/gpu/drm/i915/gt/intel_reset.c              |   3 -
- drivers/gpu/drm/i915/gt/intel_ring_submission.c    |   2 +-
- drivers/gpu/drm/i915/gt/intel_rps.c                |  83 ++++-
- drivers/gpu/drm/i915/gt/intel_rps.h                |   4 +
- drivers/gpu/drm/i915/gt/intel_tlb.c                | 159 ++++++++++
- drivers/gpu/drm/i915/gt/intel_tlb.h                |  29 ++
- drivers/gpu/drm/i915/gt/intel_workarounds.c        | 148 ++++-----
- drivers/gpu/drm/i915/gt/selftest_engine_cs.c       |   2 +-
- drivers/gpu/drm/i915/gt/selftest_mocs.c            |   2 +-
- drivers/gpu/drm/i915/gt/selftest_rc6.c             |   2 +-
- drivers/gpu/drm/i915/gt/selftest_timeline.c        |   4 +-
- drivers/gpu/drm/i915/gt/selftest_tlb.c             |   3 +-
- .../gpu/drm/i915/gt/uc/intel_gsc_binary_headers.h  |  75 ++++-
- drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c          | 340 ++++++++++++++++++---
- drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h          |   5 +-
- drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.c          | 139 ++++++++-
- drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h          |  21 ++
- drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.c  |  39 +++
- drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.h  |  14 +
- .../drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h  |   1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          |   8 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c        |  24 +-
- drivers/gpu/drm/i915/gt/uc/intel_huc.c             |   9 +-
- drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c          |  13 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c      |   2 +
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c           | 126 ++++++--
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h           |   4 +
- drivers/gpu/drm/i915/gvt/scheduler.c               |   2 +-
- drivers/gpu/drm/i915/i915_active.c                 |  99 ++++--
- drivers/gpu/drm/i915/i915_driver.c                 |   2 +-
- drivers/gpu/drm/i915/i915_drm_client.h             |   2 -
- drivers/gpu/drm/i915/i915_drv.h                    |   1 -
- drivers/gpu/drm/i915/i915_gpu_error.c              |   4 +-
- drivers/gpu/drm/i915/i915_perf.c                   |  14 +-
- drivers/gpu/drm/i915/i915_reg.h                    |  26 +-
- drivers/gpu/drm/i915/i915_request.c                |  13 +-
- drivers/gpu/drm/i915/i915_trace.h                  |  10 +-
- drivers/gpu/drm/i915/i915_vma.c                    |  15 +-
- drivers/gpu/drm/i915/pxp/intel_pxp.c               |   8 +-
- drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c         |   2 +-
- drivers/gpu/drm/i915/selftests/i915_perf.c         |   2 +-
- drivers/gpu/drm/i915/selftests/i915_selftest.c     |  31 ++
- drivers/gpu/drm/i915/selftests/igt_spinner.c       |  14 +-
- drivers/gpu/drm/i915/selftests/mock_gem_device.c   |   2 +-
- 70 files changed, 1553 insertions(+), 542 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_defines.h
- create mode 100644 drivers/gpu/drm/i915/gt/intel_tlb.c
- create mode 100644 drivers/gpu/drm/i915/gt/intel_tlb.h
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.c
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_debugfs.h
