@@ -2,46 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F1A876F8BF
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Aug 2023 06:06:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8F6076F8C8
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Aug 2023 06:07:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D65C010E236;
-	Fri,  4 Aug 2023 04:06:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A27F010E237;
+	Fri,  4 Aug 2023 04:07:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E985710E236;
- Fri,  4 Aug 2023 04:05:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C348E10E236;
+ Fri,  4 Aug 2023 04:07:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691121911; x=1722657911;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VOVOcupBLREotYSG73lgI3PFl+i5iHLs3Akr9zjWLSw=;
- b=kyoHXQNvpOsV9bTvfBa3AdeockG8jLvn8iROtF4NbgafoRrighYG1jI/
- hRathtWlJefuDHh7oesqYmaWQLD7peKD1NVUVc/Q6aH9ztbh87umfBx+W
- FBRgNHwOtuZGXFNV9eJAWSMjnQ0JblHRoZ78SzQv0RkKclJxOIQes1EoH
- zOVk1cWwG8ZSY3ClDOEnzgT97b0tI2xKqkrUTUR54h2e2BCXDeGq6NKI+
- 9vWDS9/Bi/TsF8bik3dmrQqCmWVg6yoXI9yArxm49NsxmQlhm2TPKqlIw
- CuW9Dxa+40LRBQFDoZV2Ah6U+gcEAdNDa/YyZ2let0knLtfK6JG/1Nigb Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="436384287"
-X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="436384287"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2023 21:05:09 -0700
+ t=1691122042; x=1722658042;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Nct1OPaQWyF0NLQQ6u7Wq7eG9CS3igaS6y0hh8xq7cc=;
+ b=P+mTRk0pXznlqitB1u0k4IgWqFzHW6Q69Y7LD1EgJiZ8s32Wnp8jexBh
+ Q6npLYLmmP8Zcu0bFVOGXi0sO06FlbQ9qliXd2+TXhQ0CA0Jr4qf1QaRC
+ EgHc8X+NyeUeWym7wWggt60pVhftfk+EEQA3d1x1JezGZM60vivSeIlu/
+ CId8NjVOlGe+KCrhctoIsk5z8z5NikS9P+c7dIjCrcxzn7Gms3NCjzjPE
+ fQrBvR3KjCSkL3CO0XxZ7JzWT7pCCc2z60e9Y6DVv4zTKaNiQOxWePeQS
+ Oaxvh5VVxvvBYG6abP4ob7hwKQRoVC30JXaN74Poyk6wZTevn0Kxx3mIb w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="368962274"
+X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="368962274"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2023 21:07:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="903719896"
-X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="903719896"
-Received: from debian-skl.sh.intel.com ([10.239.160.45])
- by orsmga005.jf.intel.com with ESMTP; 03 Aug 2023 21:05:08 -0700
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  4 Aug 2023 12:05:44 +0800
-Message-Id: <20230804040544.1972958-1-zhenyuw@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="679758521"
+X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="679758521"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orsmga003.jf.intel.com with ESMTP; 03 Aug 2023 21:07:16 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1qRm5q-008pgS-0y; Fri, 04 Aug 2023 07:07:14 +0300
+Date: Fri, 4 Aug 2023 07:07:14 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Message-ID: <ZMx5cp1u5noAH0Zg@smile.fi.intel.com>
+References: <20230803131918.53727-1-andriy.shevchenko@linux.intel.com>
+ <20230803102446.8edf94acc77e81ab2e09cee3@linux-foundation.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Replace dead 01.org link
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230803102446.8edf94acc77e81ab2e09cee3@linux-foundation.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v4 1/1] drm/i915: Move abs_diff() to math.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,58 +61,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gvt-dev@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-serial@vger.kernel.org, Jani Nikula <jani.nikula@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ intel-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@gmail.com>, Jiri Slaby <jirislaby@kernel.org>,
+ Alexey Dobriyan <adobriyan@gmail.com>, Helge Deller <deller@gmx.de>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-01.org is dead so replace old gvt link with current wiki page.
+On Thu, Aug 03, 2023 at 10:24:46AM -0700, Andrew Morton wrote:
+> On Thu,  3 Aug 2023 16:19:18 +0300 Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 
-Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
----
- MAINTAINERS                      | 2 +-
- drivers/gpu/drm/i915/Kconfig     | 2 +-
- drivers/gpu/drm/i915/intel_gvt.c | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d516295978a4..805d33a107aa 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10436,7 +10436,7 @@ M:	Zhi Wang <zhi.a.wang@intel.com>
- L:	intel-gvt-dev@lists.freedesktop.org
- L:	intel-gfx@lists.freedesktop.org
- S:	Supported
--W:	https://01.org/igvt-g
-+W:	https://github.com/intel/gvt-linux/wiki
- T:	git https://github.com/intel/gvt-linux.git
- F:	drivers/gpu/drm/i915/gvt/
- 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 01b5a8272a27..854255966d3d 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -140,7 +140,7 @@ config DRM_I915_GVT_KVMGT
- 
- 	  Note that this driver only supports newer device from Broadwell on.
- 	  For further information and setup guide, you can visit:
--	  http://01.org/igvt-g.
-+	  https://github.com/intel/gvt-linux/wiki.
- 
- 	  If in doubt, say "N".
- 
-diff --git a/drivers/gpu/drm/i915/intel_gvt.c b/drivers/gpu/drm/i915/intel_gvt.c
-index e98b6d69a91a..9b6d87c8b583 100644
---- a/drivers/gpu/drm/i915/intel_gvt.c
-+++ b/drivers/gpu/drm/i915/intel_gvt.c
-@@ -41,7 +41,7 @@
-  * To virtualize GPU resources GVT-g driver depends on hypervisor technology
-  * e.g KVM/VFIO/mdev, Xen, etc. to provide resource access trapping capability
-  * and be virtualized within GVT-g device module. More architectural design
-- * doc is available on https://01.org/group/2230/documentation-list.
-+ * doc is available on https://github.com/intel/gvt-linux/wiki.
-  */
- 
- static LIST_HEAD(intel_gvt_devices);
+> > +#define abs_diff(a, b) ({			\
+> > +	typeof(a) __a = (a);			\
+> > +	typeof(b) __b = (b);			\
+> > +	(void)(&__a == &__b);			\
+> > +	__a > __b ? (__a - __b) : (__b - __a);	\
+> > +})
+> 
+> Can we document it please?
+> 
+> Also, the open-coded type comparison could be replaced with __typecheck()?
+> 
+> And why the heck isn't __typecheck() in typecheck.h, to be included by
+> minmax.h.
+> 
+> etcetera.  Sigh.  I'll grab it, but please at least send along some
+> kerneldoc?
+
+Sure and thank you!
+
 -- 
-2.40.1
+With Best Regards,
+Andy Shevchenko
+
 
