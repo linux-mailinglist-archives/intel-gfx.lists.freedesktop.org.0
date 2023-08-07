@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D658C7723BB
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Aug 2023 14:21:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EDE37723CB
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Aug 2023 14:23:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 054C710E28B;
-	Mon,  7 Aug 2023 12:20:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAF1710E289;
+	Mon,  7 Aug 2023 12:23:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6748F10E2BF
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Aug 2023 12:20:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB7B510E289;
+ Mon,  7 Aug 2023 12:23:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691410851; x=1722946851;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zrvgz2tt1suPO774LHfy3uZW6Lgkv4Ep3HX3A6i7lTc=;
- b=EptS80A2sb/Xt09mMflGljeJoyARTIZMrLwozfGP6liFXp1CvnT8TAHi
- jL4P/vgx5Jyt9O5f5XT266OmB7KgjWcPX11hEXj1L/b+RmV0Lrv7bKt9q
- 5JmdFSb76/1cXjQsHsvQ6w/+BjoLX1L6bcqdqnHm7H1kBLx1wlJgZGwQa
- 39isRPiRwUbmg5RqhUPy8wrN4rjJ88kTmtXBYigQpAm66yONFcc1JCjAp
- ML/jMVaElvXxCfsdDE6tCILEZx7HnEk+tCtX9u7s+XHuVjHRydVsnEQVA
- MaFuzYHcT/nSnBCFc5TY6vppJLRoY94Q8HsL5MW1CBAH8EUmnOhBnaT5f Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10794"; a="374205406"
-X-IronPort-AV: E=Sophos;i="6.01,261,1684825200"; d="scan'208";a="374205406"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2023 05:20:26 -0700
+ t=1691411025; x=1722947025;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=oQgxCec7h18kQsGbcHCGrgI36SRVGwBolGfNhQCC0Q0=;
+ b=YTgWPnzbh4KaxChZ+mNvRH72Zd9jm1oX9JSuIbzDqvFJfsiDrtDqK/zf
+ 28oKMr2exRkj/iFzGJevW1+JLaxgEERsaQECRI05xGhIgYJozTOXMAIAZ
+ 6zcRba4to09LliJGZCw6KCJW25lNLeX/OnZwBYwD5AzkYjNDo0ifhzsyh
+ mYRhGEzS60h6b+h6pkyLgI/IWUL/wqR+D9WzZiql8blzu0pTE8OQjcm7X
+ CDuh3Ipl4+luBj/5xvLoTESkcuoXF8i1waDbW6xdcbXpsZwUNTC4sfEx+
+ 8OM6/dZ8Cm2NlVriPiyjkkak+7JpzK/xuF3UAMEVCjGsWNaKuPRM/ls35 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10794"; a="350121737"
+X-IronPort-AV: E=Sophos;i="6.01,262,1684825200"; d="scan'208";a="350121737"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2023 05:23:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10794"; a="680786603"
-X-IronPort-AV: E=Sophos;i="6.01,261,1684825200"; d="scan'208";a="680786603"
-Received: from tleistix-mobl3.ger.corp.intel.com (HELO intel.com)
- ([10.252.48.195])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2023 05:20:25 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Date: Mon,  7 Aug 2023 14:19:57 +0200
-Message-Id: <20230807121957.598420-4-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230807121957.598420-1-andi.shyti@linux.intel.com>
-References: <20230807121957.598420-1-andi.shyti@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10794"; a="730932763"
+X-IronPort-AV: E=Sophos;i="6.01,262,1684825200"; d="scan'208";a="730932763"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2023 05:23:41 -0700
+Date: Mon, 7 Aug 2023 15:23:38 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Message-ID: <ZNDiShHbpyqKI+nX@intel.com>
+References: <20230728041150.2524032-1-ankit.k.nautiyal@intel.com>
+ <20230728041150.2524032-16-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 3/3] drm/i915/gt: Apply workaround 22016122933
- correctly
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230728041150.2524032-16-ankit.k.nautiyal@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 15/20] drm/i915/dp: Add DSC BPC/BPP
+ constraints while selecting pipe bpp with DSC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,146 +59,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+On Fri, Jul 28, 2023 at 09:41:45AM +0530, Ankit Nautiyal wrote:
+> Currently we check if the pipe_bpp selected is >= the
+> min DSC bpc/bpp requirement. We do not check if it is <= the max DSC
+> bpc/bpp requirement.
+> 
+> Add checks for max DSC BPC/BPP constraints while computing the
+> pipe_bpp when DSC is in use.
+> 
+> v2: Fix the commit message.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-WA_22016122933 was recently applied to all MeteorLake engines, which is
-simultaneously too broad (should only apply to Media engines) and too
-specific (should apply to all platforms that use the same media engine
-as MeteorLake).  Correct this in cases where coherency settings are
-modified.
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-There were also two additional places where the workaround was applied
-unconditionally.  The change was confirmed as necessary for all
-platforms, so the workaround label was removed.
-
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Acked-by: Fei Yang <fei.yang@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230801153242.2445478-4-jonathan.cavitt@intel.com
----
- drivers/gpu/drm/i915/gt/intel_gt.c        | 5 +++--
- drivers/gpu/drm/i915/gt/intel_gt.h        | 6 ++++++
- drivers/gpu/drm/i915/gt/intel_lrc.c       | 7 ++++---
- drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c | 4 ----
- drivers/gpu/drm/i915/gt/uc/intel_guc.c    | 7 ++++---
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 4 ----
- 6 files changed, 17 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 91829f1f07064..d234122f80242 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -1009,9 +1009,10 @@ enum i915_map_type intel_gt_coherent_map_type(struct intel_gt *gt,
- 					      bool always_coherent)
- {
- 	/*
--	 * Wa_22016122933: always return I915_MAP_WC for MTL
-+	 * Wa_22016122933: always return I915_MAP_WC for Media
-+	 * version 13.0 when the object is on the Media GT
- 	 */
--	if (i915_gem_object_is_lmem(obj) || IS_METEORLAKE(gt->i915))
-+	if (i915_gem_object_is_lmem(obj) || intel_gt_needs_wa_22016122933(gt))
- 		return I915_MAP_WC;
- 	if (HAS_LLC(gt->i915) || always_coherent)
- 		return I915_MAP_WB;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-index 2fea789d6aa13..6c34547b58b59 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-@@ -6,6 +6,7 @@
- #ifndef __INTEL_GT__
- #define __INTEL_GT__
- 
-+#include "i915_drv.h"
- #include "intel_engine_types.h"
- #include "intel_gt_types.h"
- #include "intel_reset.h"
-@@ -24,6 +25,11 @@ static inline bool gt_is_root(struct intel_gt *gt)
- 	return !gt->info.id;
- }
- 
-+static inline bool intel_gt_needs_wa_22016122933(struct intel_gt *gt)
-+{
-+	return MEDIA_VER_FULL(gt->i915) == IP_VER(13, 0) && gt->type == GT_MEDIA;
-+}
-+
- static inline struct intel_gt *uc_to_gt(struct intel_uc *uc)
- {
- 	return container_of(uc, struct intel_gt, uc);
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 339b02762bf91..957d0aeb0c022 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1095,10 +1095,11 @@ __lrc_alloc_state(struct intel_context *ce, struct intel_engine_cs *engine)
- 	if (IS_ERR(obj)) {
- 		obj = i915_gem_object_create_shmem(engine->i915, context_size);
- 		/*
--		 * Wa_22016122933: For MTL the shared memory needs to be mapped
--		 * as WC on CPU side and UC (PAT index 2) on GPU side
-+		 * Wa_22016122933: For Media version 13.0, all Media GT shared
-+		 * memory needs to be mapped as WC on CPU side and UC (PAT
-+		 * index 2) on GPU side.
- 		 */
--		if (IS_METEORLAKE(engine->i915))
-+		if (intel_gt_needs_wa_22016122933(engine->gt))
- 			i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
- 	}
- 	if (IS_ERR(obj))
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-index f5381c1eb7794..e2e42b3e0d5d8 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-@@ -298,10 +298,6 @@ static int gsc_fw_load_prepare(struct intel_gsc_uc *gsc)
- 	memcpy_toio(gsc->local_vaddr, src, gsc->fw.size);
- 	memset_io(gsc->local_vaddr + gsc->fw.size, 0, gsc->local->size - gsc->fw.size);
- 
--	/*
--	 * Wa_22016122933: Making sure the data in dst is
--	 * visible to GSC right away
--	 */
- 	intel_guc_write_barrier(&gt->uc.guc);
- 
- 	i915_gem_object_unpin_map(gsc->fw.obj);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 6c072f100c9b6..569b5fe94c416 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -745,10 +745,11 @@ struct i915_vma *intel_guc_allocate_vma(struct intel_guc *guc, u32 size)
- 		return ERR_CAST(obj);
- 
- 	/*
--	 * Wa_22016122933: For MTL the shared memory needs to be mapped
--	 * as WC on CPU side and UC (PAT index 2) on GPU side
-+	 * Wa_22016122933: For Media version 13.0, all Media GT shared
-+	 * memory needs to be mapped as WC on CPU side and UC (PAT
-+	 * index 2) on GPU side.
- 	 */
--	if (IS_METEORLAKE(gt->i915))
-+	if (intel_gt_needs_wa_22016122933(gt))
- 		i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
- 
- 	vma = i915_vma_instance(obj, &gt->ggtt->vm, NULL);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index f28a3a83742dc..97eadd08181d6 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -960,10 +960,6 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
- 	/* now update descriptor */
- 	WRITE_ONCE(desc->head, head);
- 
--	/*
--	 * Wa_22016122933: Making sure the head update is
--	 * visible to GuC right away
--	 */
- 	intel_guc_write_barrier(ct_to_guc(ct));
- 
- 	return available - len;
--- 
-2.40.1
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 34 +++++++++++++++++--------
+>  1 file changed, 24 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index c87c3836966c..b296db026fd8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1694,13 +1694,27 @@ u8 intel_dp_dsc_min_src_input_bpc(struct drm_i915_private *i915)
+>  }
+>  
+>  static
+> -bool is_dsc_pipe_bpp_sufficient(struct drm_i915_private *i915, int pipe_bpp)
+> +bool is_dsc_pipe_bpp_sufficient(struct drm_i915_private *i915,
+> +				struct drm_connector_state *conn_state,
+> +				struct link_config_limits *limits,
+> +				int pipe_bpp)
+>  {
+> -	return pipe_bpp >= intel_dp_dsc_min_src_input_bpc(i915) * 3;
+> +	u8 dsc_max_bpc, dsc_min_bpc, dsc_max_pipe_bpp, dsc_min_pipe_bpp;
+> +
+> +	dsc_max_bpc = min(intel_dp_dsc_max_src_input_bpc(i915), conn_state->max_requested_bpc);
+> +	dsc_min_bpc = intel_dp_dsc_min_src_input_bpc(i915);
+> +
+> +	dsc_max_pipe_bpp = min(dsc_max_bpc * 3, limits->max_bpp);
+> +	dsc_min_pipe_bpp = max(dsc_min_bpc * 3, limits->min_bpp);
+> +
+> +	return pipe_bpp >= dsc_min_pipe_bpp &&
+> +	       pipe_bpp <= dsc_max_pipe_bpp;
+>  }
+>  
+>  static
+> -int intel_dp_force_dsc_pipe_bpp(struct intel_dp *intel_dp)
+> +int intel_dp_force_dsc_pipe_bpp(struct intel_dp *intel_dp,
+> +				struct drm_connector_state *conn_state,
+> +				struct link_config_limits *limits)
+>  {
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	int forced_bpp;
+> @@ -1710,7 +1724,7 @@ int intel_dp_force_dsc_pipe_bpp(struct intel_dp *intel_dp)
+>  
+>  	forced_bpp = intel_dp->force_dsc_bpc * 3;
+>  
+> -	if (is_dsc_pipe_bpp_sufficient(i915, forced_bpp)) {
+> +	if (is_dsc_pipe_bpp_sufficient(i915, conn_state, limits, forced_bpp)) {
+>  		drm_dbg_kms(&i915->drm, "Input DSC BPC forced to %d\n", intel_dp->force_dsc_bpc);
+>  		return forced_bpp;
+>  	}
+> @@ -1732,16 +1746,16 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+>  	u16 output_bpp, dsc_max_compressed_bpp = 0;
+>  	int forced_bpp, pipe_bpp;
+>  
+> -	forced_bpp = intel_dp_force_dsc_pipe_bpp(intel_dp);
+> +	forced_bpp = intel_dp_force_dsc_pipe_bpp(intel_dp, conn_state, limits);
+>  
+>  	if (forced_bpp) {
+>  		pipe_bpp = forced_bpp;
+>  	} else {
+>  		pipe_bpp = intel_dp_dsc_compute_max_bpp(intel_dp, conn_state->max_requested_bpc);
+>  
+> -		if (!is_dsc_pipe_bpp_sufficient(i915, pipe_bpp)) {
+> +		if (!is_dsc_pipe_bpp_sufficient(i915, conn_state, limits, pipe_bpp)) {
+>  			drm_dbg_kms(&i915->drm,
+> -				    "Computed BPC less than min supported by source for DSC\n");
+> +				    "Computed BPC is not in DSC BPC limits\n");
+>  			return -EINVAL;
+>  		}
+>  	}
+> @@ -1783,7 +1797,7 @@ static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	int pipe_bpp, forced_bpp;
+>  
+> -	forced_bpp = intel_dp_force_dsc_pipe_bpp(intel_dp);
+> +	forced_bpp = intel_dp_force_dsc_pipe_bpp(intel_dp, conn_state, limits);
+>  
+>  	if (forced_bpp) {
+>  		pipe_bpp = forced_bpp;
+> @@ -1791,9 +1805,9 @@ static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+>  		/* For eDP use max bpp that can be supported with DSC. */
+>  		pipe_bpp = intel_dp_dsc_compute_max_bpp(intel_dp,
+>  							conn_state->max_requested_bpc);
+> -		if (!is_dsc_pipe_bpp_sufficient(i915, pipe_bpp)) {
+> +		if (!is_dsc_pipe_bpp_sufficient(i915, conn_state, limits, pipe_bpp)) {
+>  			drm_dbg_kms(&i915->drm,
+> -				    "Computed BPC less than min supported by source for DSC\n");
+> +				    "Computed BPC is not in DSC BPC limits\n");
+>  			return -EINVAL;
+>  		}
+>  	}
+> -- 
+> 2.40.1
+> 
