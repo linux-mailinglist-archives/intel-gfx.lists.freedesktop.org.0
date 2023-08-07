@@ -1,72 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC21277261B
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Aug 2023 15:39:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D773D772368
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Aug 2023 14:07:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBA0210E0C7;
-	Mon,  7 Aug 2023 13:39:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F13EE10E052;
+	Mon,  7 Aug 2023 12:07:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com
- [IPv6:2607:f8b0:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCC2C10E28E;
- Mon,  7 Aug 2023 12:02:05 +0000 (UTC)
-Received: by mail-pl1-x636.google.com with SMTP id
- d9443c01a7336-1bb893e6365so27632815ad.2; 
- Mon, 07 Aug 2023 05:02:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1691409725; x=1692014525;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=GUzrPfmRrMPt+i4UE/lAe9+fC5lOiUGAw2K7J8tfV2c=;
- b=d2GE3aQo5mQfZvlEF7f4oSva4EKJvypvIGy6IuBTAsIUE3RDscNyHs6Em+I3dvnLEN
- Obr3UC2AiaTlHrSkEsJ/2/LFeYfvI1DiNMw5FenkPOHuDossPPZc8ZfeJGsIy+R9emgH
- S+zPKCf80hsaVWKsNUpdmTN80mS2TgCrpRIY5tVhvkJPAPvo5KeS0X2Jwyldn9yI+g6Q
- Z55xF5Wu+GHCqh6GAMq9ECVbnwQqBc3oeadTkaDvDDfs5YsfG/1knWcS8z7eeL+BWZrT
- egWAAOtE1/vlGanMsyRR3IJqlk1YK1GLJmry94YPMykoZPpGbxmbd5/l8MnQYh04wIDr
- yzPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1691409725; x=1692014525;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=GUzrPfmRrMPt+i4UE/lAe9+fC5lOiUGAw2K7J8tfV2c=;
- b=FBKm6RUK2CVB+SdUFwdgrDxV7jMDLZt0FgCj5PYNSIhuxNspBFyY6IJZV7eDhjHBQe
- zjPCoFb/VfBEJzHFzJBQD31zBtTzv3JkX1J6N+yYNRbEsKZsEmqtqQeLk8l2uY+LPuMq
- rUd4x0cDqtJFQgliHGAhL/+1J4OtVUDFL/hSTZrk/sr+s/B1gRWTMSSm4xIwIWi70pl/
- QCw9D0mewSu0JuMVWEKeOUwvipI41I1/h/ioyTP7swHKhHQI2F6Kned1rG9/Jdm81Qxu
- wnAdpiWxJ49PYjyLswnD5yUl7a8ay4nyaH7t8W5XDv2wppDmn5moLPbGDz6nQKbsPY4M
- q5DQ==
-X-Gm-Message-State: AOJu0YxNrwkv2vI41LnEFe04xVEIhGUh/DtbYIzEyLbhiQ4KQYwGSCXc
- g9zCEJUYCCt1uNezJA8+9nqnvDBo0GuGgY3y
-X-Google-Smtp-Source: AGHT+IHWYNulalQMDqlB0MHADRqG5ScHqlrzXhiB9uHTqVA4K3003dWe9L2ntXhX6qq+PcVohtu+WA==
-X-Received: by 2002:a17:902:c101:b0:1b5:edd:e3c7 with SMTP id
- 1-20020a170902c10100b001b50edde3c7mr7864273pli.16.1691409724767; 
- Mon, 07 Aug 2023 05:02:04 -0700 (PDT)
-Received: from [192.168.255.10] ([103.7.29.32])
- by smtp.gmail.com with ESMTPSA id
- jc15-20020a17090325cf00b001b7ffca7dbcsm6752298plb.148.2023.08.07.05.02.02
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 07 Aug 2023 05:02:04 -0700 (PDT)
-Message-ID: <5581418b-2e1c-6011-f0a4-580df7e00b44@gmail.com>
-Date: Mon, 7 Aug 2023 20:01:55 +0800
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 909C310E081;
+ Mon,  7 Aug 2023 12:07:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1691410022; x=1722946022;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=RcMEhXQ/HmbNkuAed7SJg2Y2J9QAR+kr0mptxAhr7l0=;
+ b=V1ModR702igIuCOBofg2eTmz4n/9em1oO4xdYEChQ+bEEmraIniY1PzM
+ uAtpnZBSP6rTPwpMRnWHQQFzH0P2MfQgKKCMMkD51RW3Rhyima+2oDLXw
+ uqmFwLHeDfspBbBR+n/6P8e4XXDw561ek0z7Tq4a6/yodbimemi33sBxT
+ zie0LRPilCwZrwPQAwuvsxzxBqiZ1WWUJtdmt6QVsjSIB0TTbHkbl0rQT
+ JFPK7oc1Kd+oAK3B/R6PZsB18O66AnxX5LxEzo+OuuKZRhh/wjy/hsK4O
+ 18JUU/yA/pjlvMPNqCxQku7b7OeCDD/LZvRCE+7iY5zYQURZ4b8aVGLg2 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10794"; a="436857030"
+X-IronPort-AV: E=Sophos;i="6.01,261,1684825200"; d="scan'208";a="436857030"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2023 05:07:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10794"; a="707847351"
+X-IronPort-AV: E=Sophos;i="6.01,261,1684825200"; d="scan'208";a="707847351"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2023 05:06:59 -0700
+Date: Mon, 7 Aug 2023 15:06:51 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Message-ID: <ZNDeW8cOBPPFTrIn@intel.com>
+References: <20230728041150.2524032-1-ankit.k.nautiyal@intel.com>
+ <20230728041150.2524032-14-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.14.0
-To: Sean Christopherson <seanjc@google.com>
-References: <20221223005739.1295925-1-seanjc@google.com>
- <20221223005739.1295925-20-seanjc@google.com>
-Content-Language: en-US
-From: Like Xu <like.xu.linux@gmail.com>
-In-Reply-To: <20221223005739.1295925-20-seanjc@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 07 Aug 2023 13:39:52 +0000
-Subject: Re: [Intel-gfx] [PATCH 19/27] KVM: x86/mmu: Use page-track
- notifiers iff there are external users
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230728041150.2524032-14-ankit.k.nautiyal@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 13/20] drm/i915/dp: Rename helper to get DSC
+ max pipe_bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,23 +59,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Yan Zhao <yan.y.zhao@intel.com>, kvm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ben Gardon <bgardon@google.com>, Paolo Bonzini <pbonzini@redhat.com>,
- intel-gvt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 23/12/2022 8:57 am, Sean Christopherson wrote:
-> +static inline void kvm_page_track_write(struct kvm_vcpu *vcpu, gpa_t gpa,
-> +					const u8 *new, int bytes)
-> +{
-> +	__kvm_page_track_write(vcpu, gpa, new, bytes);
-> +
-> +	kvm_mmu_track_write(vcpu, gpa, new, bytes);
-> +}
+On Fri, Jul 28, 2023 at 09:41:43AM +0530, Ankit Nautiyal wrote:
+> The helper intel_dp_dsc_compute_bpp gives the maximum
+> pipe bpp that is allowed with DSC.
+> 
+> Rename the this to reflect that it returns max pipe bpp supported
+> with DSC.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-The kvm_mmu_track_write() is only used for x86, where the incoming parameter
-"u8 *new" has not been required since 0e0fee5c539b ("kvm: mmu: Fix race in
-emulated page table writes"), please help confirm if it's still needed ? Thanks.
-A minor clean up is proposed.
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c     | 8 ++++----
+>  drivers/gpu/drm/i915/display/intel_dp.h     | 2 +-
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 2 +-
+>  3 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index c1eb0d1e229e..6228cfc44055 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1183,7 +1183,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+>  		 * TBD pass the connector BPC,
+>  		 * for now U8_MAX so that max BPC on that platform would be picked
+>  		 */
+> -		pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, U8_MAX);
+> +		pipe_bpp = intel_dp_dsc_compute_max_bpp(intel_dp, U8_MAX);
+>  
+>  		/*
+>  		 * Output bpp is stored in 6.4 format so right shift by 4 to get the
+> @@ -1543,7 +1543,7 @@ u8 intel_dp_dsc_max_src_input_bpc(struct drm_i915_private *i915)
+>  	return 0;
+>  }
+>  
+> -int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 max_req_bpc)
+> +int intel_dp_dsc_compute_max_bpp(struct intel_dp *intel_dp, u8 max_req_bpc)
+>  {
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	int i, num_bpc;
+> @@ -1734,8 +1734,8 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  				 "Cannot force DSC BPC:%d, due to DSC BPC limits\n",
+>  				 intel_dp->force_dsc_bpc);
+>  
+> -			pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp,
+> -							    conn_state->max_requested_bpc);
+> +			pipe_bpp = intel_dp_dsc_compute_max_bpp(intel_dp,
+> +								conn_state->max_requested_bpc);
+>  
+>  			if (!is_dsc_pipe_bpp_sufficient(dev_priv, pipe_bpp)) {
+>  				drm_dbg_kms(&dev_priv->drm,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+> index 6fd423463f5c..788a577ebe16 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -106,7 +106,7 @@ void intel_read_dp_sdp(struct intel_encoder *encoder,
+>  		       struct intel_crtc_state *crtc_state,
+>  		       unsigned int type);
+>  bool intel_digital_port_connected(struct intel_encoder *encoder);
+> -int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 dsc_max_bpc);
+> +int intel_dp_dsc_compute_max_bpp(struct intel_dp *intel_dp, u8 dsc_max_bpc);
+>  u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
+>  					u32 link_clock, u32 lane_count,
+>  					u32 mode_clock, u32 mode_hdisplay,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 4895d6242915..3eb085fbc7c8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -971,7 +971,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+>  		 * TBD pass the connector BPC,
+>  		 * for now U8_MAX so that max BPC on that platform would be picked
+>  		 */
+> -		int pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, U8_MAX);
+> +		int pipe_bpp = intel_dp_dsc_compute_max_bpp(intel_dp, U8_MAX);
+>  
+>  		if (drm_dp_sink_supports_fec(intel_dp->fec_capable)) {
+>  			dsc_max_compressed_bpp =
+> -- 
+> 2.40.1
+> 
