@@ -1,67 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F4A577261D
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Aug 2023 15:39:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC21277261B
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Aug 2023 15:39:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 234C910E0D4;
-	Mon,  7 Aug 2023 13:39:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBA0210E0C7;
+	Mon,  7 Aug 2023 13:39:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com
- [IPv6:2607:f8b0:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55C7910E22C;
- Thu,  3 Aug 2023 23:50:20 +0000 (UTC)
-Received: by mail-pf1-x42f.google.com with SMTP id
- d2e1a72fcca58-686c06b806cso1092643b3a.2; 
- Thu, 03 Aug 2023 16:50:20 -0700 (PDT)
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com
+ [IPv6:2607:f8b0:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCC2C10E28E;
+ Mon,  7 Aug 2023 12:02:05 +0000 (UTC)
+Received: by mail-pl1-x636.google.com with SMTP id
+ d9443c01a7336-1bb893e6365so27632815ad.2; 
+ Mon, 07 Aug 2023 05:02:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1691106620; x=1691711420;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=OP8pAkGmqcoifyAHKkznCuAfpusO15WSf6dYYfXbnWE=;
- b=PgXXxzGzaAwUtIpzTTXbsZnBtS76iQFwC1R3DmeSTZdbZJKnoq6FG+qIJfa0ga1hl5
- TWCOeqIovBS4gZMFFwmjAb5gYwdZSBDwkKzMqBDZI6rZpTSnZjZhbM2sws+XtC3BQu16
- F3bEEb6TMl7dhdkyDVhVaBfbLf6FSsiDjbQd/gg4iQFuNf736eah9lWpOuFQ+Ftd1c6u
- rSRZI7+FyciRYDmW3pLArfl9uM9HecVmp5Qk84Vf0FnlTBDAL7G5t5EmeVy87oRkcDiW
- +4XQwEh9SShZN/bTn2OqthQfTWpjgWmkfz8CkoxAZG0yOqla4DJ66IppVflWDBg9kyyN
- UUEw==
+ d=gmail.com; s=20221208; t=1691409725; x=1692014525;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=GUzrPfmRrMPt+i4UE/lAe9+fC5lOiUGAw2K7J8tfV2c=;
+ b=d2GE3aQo5mQfZvlEF7f4oSva4EKJvypvIGy6IuBTAsIUE3RDscNyHs6Em+I3dvnLEN
+ Obr3UC2AiaTlHrSkEsJ/2/LFeYfvI1DiNMw5FenkPOHuDossPPZc8ZfeJGsIy+R9emgH
+ S+zPKCf80hsaVWKsNUpdmTN80mS2TgCrpRIY5tVhvkJPAPvo5KeS0X2Jwyldn9yI+g6Q
+ Z55xF5Wu+GHCqh6GAMq9ECVbnwQqBc3oeadTkaDvDDfs5YsfG/1knWcS8z7eeL+BWZrT
+ egWAAOtE1/vlGanMsyRR3IJqlk1YK1GLJmry94YPMykoZPpGbxmbd5/l8MnQYh04wIDr
+ yzPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1691106620; x=1691711420;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=OP8pAkGmqcoifyAHKkznCuAfpusO15WSf6dYYfXbnWE=;
- b=EGyRSdEjXVgcOPr0yTubneXF5MD65q3g4LpWupD/dtbMcrkHq6uWjZy7ht0S/26a8b
- bQmLJFo+GuW5kte6NVuLRhJ8rMRk5J1E73KMWUFjpgHgvb2WK3umuw3iEHspikVxvgVK
- B4ZiF2QMk9Wl71F8UAjSfQ9ONPga98WU8gpl82jQfgr2cTCSywLl1r5TF9+kyps+PORw
- kksQtr9EgZJpaCtbUrHFAgXZtOpdRgfFel3iUpBp6uvTNxMw7FsLYGFEaDIJchKiIVHV
- uKwDGmsNVJ8DHrt+Wygranov93WO3n1yHWTXkMRNCuUjbysD8eAqgw3LPvpjI5I9v1iE
- tYew==
-X-Gm-Message-State: AOJu0YziOPoy/muCcH2dICMLpHiROjoqOfAPpM4bA15V85X556usW/bF
- cq6JSTyzAvKLU4Qfk1ugL0k=
-X-Google-Smtp-Source: AGHT+IEkK9m5UC0fjBbStPVpvGbMqyYkE8OIDUNZCnvuaRzMxzZJ52sAUlgCOO0Uch9UiRf+Mik+qw==
-X-Received: by 2002:a05:6a00:14d5:b0:680:252d:da3e with SMTP id
- w21-20020a056a0014d500b00680252dda3emr208073pfu.5.1691106619663; 
- Thu, 03 Aug 2023 16:50:19 -0700 (PDT)
-Received: from localhost ([192.55.55.51]) by smtp.gmail.com with ESMTPSA id
- c23-20020a62e817000000b0068783a2dfdasm367609pfi.104.2023.08.03.16.50.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Aug 2023 16:50:19 -0700 (PDT)
-Date: Thu, 3 Aug 2023 16:50:17 -0700
-From: Isaku Yamahata <isaku.yamahata@gmail.com>
-To: Sean Christopherson <seanjc@google.com>
-Message-ID: <20230803235017.GA2257301@ls.amr.corp.intel.com>
-References: <20230729013535.1070024-1-seanjc@google.com>
- <20230729013535.1070024-13-seanjc@google.com>
+ d=1e100.net; s=20221208; t=1691409725; x=1692014525;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=GUzrPfmRrMPt+i4UE/lAe9+fC5lOiUGAw2K7J8tfV2c=;
+ b=FBKm6RUK2CVB+SdUFwdgrDxV7jMDLZt0FgCj5PYNSIhuxNspBFyY6IJZV7eDhjHBQe
+ zjPCoFb/VfBEJzHFzJBQD31zBtTzv3JkX1J6N+yYNRbEsKZsEmqtqQeLk8l2uY+LPuMq
+ rUd4x0cDqtJFQgliHGAhL/+1J4OtVUDFL/hSTZrk/sr+s/B1gRWTMSSm4xIwIWi70pl/
+ QCw9D0mewSu0JuMVWEKeOUwvipI41I1/h/ioyTP7swHKhHQI2F6Kned1rG9/Jdm81Qxu
+ wnAdpiWxJ49PYjyLswnD5yUl7a8ay4nyaH7t8W5XDv2wppDmn5moLPbGDz6nQKbsPY4M
+ q5DQ==
+X-Gm-Message-State: AOJu0YxNrwkv2vI41LnEFe04xVEIhGUh/DtbYIzEyLbhiQ4KQYwGSCXc
+ g9zCEJUYCCt1uNezJA8+9nqnvDBo0GuGgY3y
+X-Google-Smtp-Source: AGHT+IHWYNulalQMDqlB0MHADRqG5ScHqlrzXhiB9uHTqVA4K3003dWe9L2ntXhX6qq+PcVohtu+WA==
+X-Received: by 2002:a17:902:c101:b0:1b5:edd:e3c7 with SMTP id
+ 1-20020a170902c10100b001b50edde3c7mr7864273pli.16.1691409724767; 
+ Mon, 07 Aug 2023 05:02:04 -0700 (PDT)
+Received: from [192.168.255.10] ([103.7.29.32])
+ by smtp.gmail.com with ESMTPSA id
+ jc15-20020a17090325cf00b001b7ffca7dbcsm6752298plb.148.2023.08.07.05.02.02
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 07 Aug 2023 05:02:04 -0700 (PDT)
+Message-ID: <5581418b-2e1c-6011-f0a4-580df7e00b44@gmail.com>
+Date: Mon, 7 Aug 2023 20:01:55 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230729013535.1070024-13-seanjc@google.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.14.0
+To: Sean Christopherson <seanjc@google.com>
+References: <20221223005739.1295925-1-seanjc@google.com>
+ <20221223005739.1295925-20-seanjc@google.com>
+Content-Language: en-US
+From: Like Xu <like.xu.linux@gmail.com>
+In-Reply-To: <20221223005739.1295925-20-seanjc@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 07 Aug 2023 13:39:52 +0000
-Subject: Re: [Intel-gfx] [PATCH v4 12/29] KVM: x86/mmu: Move
- kvm_arch_flush_shadow_{all, memslot}() to mmu.c
+Subject: Re: [Intel-gfx] [PATCH 19/27] KVM: x86/mmu: Use page-track
+ notifiers iff there are external users
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,108 +81,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Yan Zhao <yan.y.zhao@intel.com>, kvm@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Yongwei Ma <yongwei.ma@intel.com>, isaku.yamahata@gmail.com,
  Ben Gardon <bgardon@google.com>, Paolo Bonzini <pbonzini@redhat.com>,
  intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 28, 2023 at 06:35:18PM -0700,
-Sean Christopherson <seanjc@google.com> wrote:
-
-> Move x86's implementation of kvm_arch_flush_shadow_{all,memslot}() into
-> mmu.c, and make kvm_mmu_zap_all() static as it was globally visible only
-> for kvm_arch_flush_shadow_all().  This will allow refactoring
-> kvm_arch_flush_shadow_memslot() to call kvm_mmu_zap_all() directly without
-> having to expose kvm_mmu_zap_all_fast() outside of mmu.c.  Keeping
-> everything in mmu.c will also likely simplify supporting TDX, which
-> intends to do zap only relevant SPTEs on memslot updates.
-
-Yes, it helps TDX code cleaner to move mmu related function under mmu.c.
-Reviewed-by: Isaku Yamahata <isaku.yamahata@intel.com>
-
-Thanks,
-
-> 
-> No functional change intended.
-> 
-> Suggested-by: Yan Zhao <yan.y.zhao@intel.com>
-> Tested-by: Yongwei Ma <yongwei.ma@intel.com>
-> Signed-off-by: Sean Christopherson <seanjc@google.com>
-> ---
->  arch/x86/include/asm/kvm_host.h |  1 -
->  arch/x86/kvm/mmu/mmu.c          | 13 ++++++++++++-
->  arch/x86/kvm/x86.c              | 11 -----------
->  3 files changed, 12 insertions(+), 13 deletions(-)
-> 
-> diff --git a/arch/x86/include/asm/kvm_host.h b/arch/x86/include/asm/kvm_host.h
-> index 28bd38303d70..856ec22aceb6 100644
-> --- a/arch/x86/include/asm/kvm_host.h
-> +++ b/arch/x86/include/asm/kvm_host.h
-> @@ -1832,7 +1832,6 @@ void kvm_mmu_zap_collapsible_sptes(struct kvm *kvm,
->  				   const struct kvm_memory_slot *memslot);
->  void kvm_mmu_slot_leaf_clear_dirty(struct kvm *kvm,
->  				   const struct kvm_memory_slot *memslot);
-> -void kvm_mmu_zap_all(struct kvm *kvm);
->  void kvm_mmu_invalidate_mmio_sptes(struct kvm *kvm, u64 gen);
->  void kvm_mmu_change_mmu_pages(struct kvm *kvm, unsigned long kvm_nr_mmu_pages);
->  
-> diff --git a/arch/x86/kvm/mmu/mmu.c b/arch/x86/kvm/mmu/mmu.c
-> index ec169f5c7dce..c6dee659d592 100644
-> --- a/arch/x86/kvm/mmu/mmu.c
-> +++ b/arch/x86/kvm/mmu/mmu.c
-> @@ -6732,7 +6732,7 @@ void kvm_mmu_slot_leaf_clear_dirty(struct kvm *kvm,
->  	 */
->  }
->  
-> -void kvm_mmu_zap_all(struct kvm *kvm)
-> +static void kvm_mmu_zap_all(struct kvm *kvm)
->  {
->  	struct kvm_mmu_page *sp, *node;
->  	LIST_HEAD(invalid_list);
-> @@ -6757,6 +6757,17 @@ void kvm_mmu_zap_all(struct kvm *kvm)
->  	write_unlock(&kvm->mmu_lock);
->  }
->  
-> +void kvm_arch_flush_shadow_all(struct kvm *kvm)
+On 23/12/2022 8:57 am, Sean Christopherson wrote:
+> +static inline void kvm_page_track_write(struct kvm_vcpu *vcpu, gpa_t gpa,
+> +					const u8 *new, int bytes)
 > +{
-> +	kvm_mmu_zap_all(kvm);
-> +}
+> +	__kvm_page_track_write(vcpu, gpa, new, bytes);
 > +
-> +void kvm_arch_flush_shadow_memslot(struct kvm *kvm,
-> +				   struct kvm_memory_slot *slot)
-> +{
-> +	kvm_page_track_flush_slot(kvm, slot);
+> +	kvm_mmu_track_write(vcpu, gpa, new, bytes);
 > +}
-> +
->  void kvm_mmu_invalidate_mmio_sptes(struct kvm *kvm, u64 gen)
->  {
->  	WARN_ON(gen & KVM_MEMSLOT_GEN_UPDATE_IN_PROGRESS);
-> diff --git a/arch/x86/kvm/x86.c b/arch/x86/kvm/x86.c
-> index a6b9bea62fb8..059571d5abed 100644
-> --- a/arch/x86/kvm/x86.c
-> +++ b/arch/x86/kvm/x86.c
-> @@ -12776,17 +12776,6 @@ void kvm_arch_commit_memory_region(struct kvm *kvm,
->  		kvm_arch_free_memslot(kvm, old);
->  }
->  
-> -void kvm_arch_flush_shadow_all(struct kvm *kvm)
-> -{
-> -	kvm_mmu_zap_all(kvm);
-> -}
-> -
-> -void kvm_arch_flush_shadow_memslot(struct kvm *kvm,
-> -				   struct kvm_memory_slot *slot)
-> -{
-> -	kvm_page_track_flush_slot(kvm, slot);
-> -}
-> -
->  static inline bool kvm_guest_apic_has_interrupt(struct kvm_vcpu *vcpu)
->  {
->  	return (is_guest_mode(vcpu) &&
-> -- 
-> 2.41.0.487.g6d72f3e995-goog
-> 
 
--- 
-Isaku Yamahata <isaku.yamahata@gmail.com>
+The kvm_mmu_track_write() is only used for x86, where the incoming parameter
+"u8 *new" has not been required since 0e0fee5c539b ("kvm: mmu: Fix race in
+emulated page table writes"), please help confirm if it's still needed ? Thanks.
+A minor clean up is proposed.
