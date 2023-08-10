@@ -2,56 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 935F1777A38
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 16:12:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61AB2777BB8
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 17:09:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6296C10E19A;
-	Thu, 10 Aug 2023 14:12:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CB8D10E552;
+	Thu, 10 Aug 2023 15:09:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDB0B10E194;
- Thu, 10 Aug 2023 14:12:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691676765; x=1723212765;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=bdIIOTKh7IfFQ6pXhNlODCj7FRjKYScx0QSb05B/Zzw=;
- b=naxYDxm6LubqtWl28vughBNBF3Uc3fokwgJPbPJSlHV9T+enGkHDgkUj
- Y7Hzx+Gs2fJ5HjqpTeCVR9KiC2kgOejYBqhj8gbjQUZaGru18JnZw8ICO
- FPf+bgnXGTwajU38vkFeJwTHj4waO2uHP/+MhsjkokrUAdeWddVFSuImR
- ex/9ycYIZ8GxYSoTDs6WsxesDpevjnUImAKVOhqs38zRJdDJygm+6Wtvl
- FOqWEbIBpK+vkdO40BZoSi/Ux5dasG5TXgDTyjMNei7CueBDF2YVGAmKl
- ACT0MhP4eUssFzuV6utgZELwMacuptZtjhyHGuQqsJVGDsj6ZTHk8c1tk A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="356373936"
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="356373936"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2023 07:12:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="846410883"
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="846410883"
-Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2023 07:12:34 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Wang Jinchao <wangjinchao@xfusion.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-In-Reply-To: <ZNTsl/mlElF/spog@fedora>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <ZNTsl/mlElF/spog@fedora>
-Date: Thu, 10 Aug 2023 17:12:31 +0300
-Message-ID: <87sf8rq94g.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D3F5C10E19E;
+ Thu, 10 Aug 2023 15:09:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CC7E2A00E6;
+ Thu, 10 Aug 2023 15:09:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gmch: fix build error var set but
- not used
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Date: Thu, 10 Aug 2023 15:09:33 -0000
+Message-ID: <169168017380.4959.6776120135837554333@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230810074758.154968-1-suraj.kandpal@intel.com>
+In-Reply-To: <20230810074758.154968-1-suraj.kandpal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_HDCP_MST_aux_issue_fix?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,59 +40,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stone.xulei@xfusion.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 10 Aug 2023, Wang Jinchao <wangjinchao@xfusion.com> wrote:
-> When CONFIG_PNP is not defined, i915 will fail to compile with error bell=
-ow:
-> 	drivers/gpu/drm/i915/soc/intel_gmch.c:43:13: error: variable =E2=80=98mc=
-hbar_addr=E2=80=99 set but not used
-> Fix it by surrounding variable declaration and assignment with ifdef
->
-> Signed-off-by: Wang Jinchao <wangjinchao@xfusion.com>
+== Series Details ==
 
-Thanks for the patch, but this was fixed a couple of months ago by
-commit b02a9a0c6cb3 ("drm/i915/gmch: avoid unused variable warning").
+Series: HDCP MST aux issue fix
+URL   : https://patchwork.freedesktop.org/series/122267/
+State : warning
 
-Please check the development trees or linux-next before sending fixes.
+== Summary ==
 
-Thanks,
-Jani.
+Error: dim checkpatch failed
+/home/kbuild/linux/maintainer-tools/dim: line 50: /home/kbuild/.dimrc: No such file or directory
 
 
-> ---
->  drivers/gpu/drm/i915/soc/intel_gmch.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.c b/drivers/gpu/drm/i915=
-/soc/intel_gmch.c
-> index 6d0204942f7a..d2c442b0b4eb 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_gmch.c
-> +++ b/drivers/gpu/drm/i915/soc/intel_gmch.c
-> @@ -38,16 +38,17 @@ intel_alloc_mchbar_resource(struct drm_i915_private *=
-i915)
->  {
->  	int reg =3D GRAPHICS_VER(i915) >=3D 4 ? MCHBAR_I965 : MCHBAR_I915;
->  	u32 temp_lo, temp_hi =3D 0;
-> -	u64 mchbar_addr;
->  	int ret;
-> -
-> +#ifdef CONFIG_PNP
-> +	u64 mchbar_addr;
-> +#endif
->  	if (GRAPHICS_VER(i915) >=3D 4)
->  		pci_read_config_dword(i915->gmch.pdev, reg + 4, &temp_hi);
->  	pci_read_config_dword(i915->gmch.pdev, reg, &temp_lo);
-> -	mchbar_addr =3D ((u64)temp_hi << 32) | temp_lo;
->=20=20
->  	/* If ACPI doesn't have it, assume we need to allocate it ourselves */
->  #ifdef CONFIG_PNP
-> +	mchbar_addr =3D ((u64)temp_hi << 32) | temp_lo;
->  	if (mchbar_addr &&
->  	    pnp_range_reserved(mchbar_addr, mchbar_addr + MCHBAR_SIZE))
->  		return 0;
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
