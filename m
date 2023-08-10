@@ -1,47 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B088E777281
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 10:13:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1AB47772A3
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 10:17:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 536BE10E4F0;
-	Thu, 10 Aug 2023 08:13:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2677010E4F3;
+	Thu, 10 Aug 2023 08:17:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF8310E4EC;
- Thu, 10 Aug 2023 08:13:31 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id A9D00652F9;
- Thu, 10 Aug 2023 08:13:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83019C433D9;
- Thu, 10 Aug 2023 08:13:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1691655210;
- bh=gXVZ68cdpgp0Oc06O+iDMDHFl7uPsJSDhRHvYoDqwWY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=bSQJ3MDGIPvJ0HMdmJojPNOITtyTnIaObs3s8neo3b0T4ZqDx67kFFQVnWaIlvSq0
- XbT2KMjZ4kRCPECjY9wzhAZIaEpnY8sOrR6YoMMkBhomarPH2yUscPuKDgMwVXygvL
- 931+QUJn8LtveKV+Uc+R4qqJYghlHkz7D5jRSTwBFNp5MlKKPGF92rAFNid/YCWjt5
- wdoO/S0kBgRa9gvVkt8X79r5m0kQBttlpf/RvPowbcQWJMqkxTWaUIF7ln+O7O75gx
- +/Z3QFtPJJd7fJuxGaoYpZUxAebuqPOXjPYpPpP2zE6JtAnsUtzsJNw2q7VYEwiMAs
- Rw5p2OsG22CmA==
-Date: Thu, 10 Aug 2023 10:13:26 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-Message-ID: <ibwl2bpz5bs72co4ivkvjcc35lv5mqyuvj2hbr3p54hliujklm@uje662ldqfdw>
-References: <20230808180245.7474-1-n.zhandarovich@fintech.ru>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06D6610E4F7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Aug 2023 08:17:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1691655451; x=1723191451;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7I5EWFpYYGcw1bQ8qpQRr2wJ8sKiu2OwHkPETFgQZXU=;
+ b=Sb/blKhUgWh/KMJ/pxjniSHiasoPMpNvYgaAdrevdKOCaod8GX3EEjiz
+ EG5D187KAZOES8wzB9RAz1m6zHkyL4Y6bCNZCbaS8tANTfRwu1UoUSEJ9
+ w2t7BopHOt2UXvdeDg6n/p+ntvmOEDZag9KxD3QGcjAQsUOKyTYxhVhn7
+ xZdOeVHzKHbuAifP3YaVn096g6dVp+7orV2J7pqGeDa0/Xzt1CLIqNqK9
+ v4MjicdpZd8p7+ZT8mKsuy3BpayQ0FadpanBFvzJscXDMfpwxUEOVHJuC
+ 5incNGFamsAQ7hCb2DespdLi+Bi/0gS5CvOIqhYU7Hvx1L8H3ksW88aha g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="374110868"
+X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="374110868"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2023 01:17:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="682012135"
+X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="682012135"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.65])
+ by orsmga003.jf.intel.com with ESMTP; 10 Aug 2023 01:17:28 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Aug 2023 11:17:27 +0300
+Message-Id: <20230810081727.12756-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="syn7hsjtm3zubtz2"
-Content-Disposition: inline
-In-Reply-To: <20230808180245.7474-1-n.zhandarovich@fintech.ru>
-Subject: Re: [Intel-gfx] [PATCH] video/hdmi: convert *_infoframe_init()
- functions to void
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Implement vblank synchronized MBUS
+ join changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,66 +56,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, lvc-project@linuxtesting.org,
- Emma Anholt <emma@anholt.net>, dri-devel@lists.freedesktop.org,
- Mikko Perttunen <mperttunen@nvidia.com>, linux-tegra@vger.kernel.org,
- David Airlie <airlied@gmail.com>, Helge Deller <deller@gmx.de>,
- amd-gfx@lists.freedesktop.org, Jonathan Hunter <jonathanh@nvidia.com>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, Matthias Brugger <matthias.bgg@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, linux-arm-kernel@lists.infradead.org, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Currently we can't change MBUS join status without doing a modeset,
+because we are lacking mechanism to synchronize those with vblank.
+However then this means that we can't do a fastset, if there is a need
+to change MBUS join state. Fix that by implementing such change.
+We already call correspondent check and update at pre_plane dbuf update,
+so the only thing left is to have a non-modeset version of that.
+If active pipes stay the same then fastset is possible and only MBUS
+join state/ddb allocation updates would be committed.
 
---syn7hsjtm3zubtz2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v2: Implement additional changes according to BSpec.
+    Vblank wait is needed after MBus/Dbuf programming in case if
+    no modeset is done and we are switching from single to multiple
+    displays, i.e mbus join state switches from "joined" to  "non-joined"
+    state. Otherwise vblank wait is not needed according to spec.
 
-Hi,
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_watermark.c | 36 ++++++++++++++++----
+ 1 file changed, 29 insertions(+), 7 deletions(-)
 
-On Tue, Aug 08, 2023 at 11:02:45AM -0700, Nikita Zhandarovich wrote:
-> Four hdmi_*_infoframe_init() functions that initialize different
-> types of hdmi infoframes only return the default 0 value, contrary to
-> their descriptions. Yet these functions are still unnecessarily checked
-> against possible errors in case of failure.
->=20
-> Remove redundant error checks in calls to following functions:
-> - hdmi_spd_infoframe_init
-> - hdmi_audio_infoframe_init
-> - hdmi_vendor_infoframe_init
-> - hdmi_drm_infoframe_init
-> Also, convert these functions to 'void' and fix their descriptions.
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 063929a42a42f..4fbc74e800217 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2614,13 +2614,6 @@ skl_compute_ddb(struct intel_atomic_state *state)
+ 		if (ret)
+ 			return ret;
+ 
+-		if (old_dbuf_state->joined_mbus != new_dbuf_state->joined_mbus) {
+-			/* TODO: Implement vblank synchronized MBUS joining changes */
+-			ret = intel_modeset_all_pipes(state, "MBUS joining change");
+-			if (ret)
+-				return ret;
+-		}
+-
+ 		drm_dbg_kms(&i915->drm,
+ 			    "Enabled dbuf slices 0x%x -> 0x%x (total dbuf slices 0x%x), mbus joined? %s->%s\n",
+ 			    old_dbuf_state->enabled_slices,
+@@ -3528,6 +3521,35 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
+ 	gen9_dbuf_slices_update(i915,
+ 				old_dbuf_state->enabled_slices |
+ 				new_dbuf_state->enabled_slices);
++
++	/*
++	 * If we are not doing a modeset, that means we must synchronize
++	 * our MBUS configuration changes with vblank.
++	 * According to MBus programming section of BSpec, we must wait for vblank
++	 * on active crtc, which was single display, when switching from single
++	 * display(mbus joined) to additional multiple displays(mbus not joined)
++	 * after Mbus/Dbuf slice programming is done.
++	 */
++	if (!state->modeset && !new_dbuf_state->joined_mbus && old_dbuf_state->joined_mbus) {
++		struct intel_crtc *crtc;
++		struct intel_crtc_state *new_crtc_state, *old_crtc_state;
++		int i;
++
++		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
++			/*
++			 * Need to wait for vblank only if crtc was active prior to that change,
++			 * i.e this is a scenario when we switch from single display to multiple
++			 * displays, without doing a full modeset and it still stays on, according
++			 * to BSpec only in that case we need to wait for vblank on that previously
++			 * single display. Otherwise no wait is needed. Rest of the cases, are not
++			 * possible without a modeset anyway.
++			 */
++			if (!new_crtc_state->hw.active || !old_crtc_state->hw.active)
++				continue;
++
++			intel_crtc_wait_for_next_vblank(crtc);
++		}
++	}
+ }
+ 
+ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
+-- 
+2.37.3
 
-I'm not sure what value it actually adds. None of them return any
-errors, but very well might if we started to be a bit serious about it.
-
-Since the error handling is already there, then I'd rather leave it
-there.
-
-> Fixes: 2c676f378edb ("[media] hdmi: added unpack and logging functions fo=
-r InfoFrames")
-
-I'm confused about that part. What does it fix exactly?
-
-Maxime
-
---syn7hsjtm3zubtz2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZNScJgAKCRDj7w1vZxhR
-xSWxAPkBKpcYa8fvgV9S3h2fxehetHD5UXS8LuBJb/F6EtKr5QEA1tv3DgElGqJD
-Vd+9ES535Sb39MjXfvkcbNMyPRxsjQU=
-=6V+A
------END PGP SIGNATURE-----
-
---syn7hsjtm3zubtz2--
