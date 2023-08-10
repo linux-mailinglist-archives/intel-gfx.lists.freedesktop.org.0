@@ -1,49 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58029778301
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 23:58:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7468C778302
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 23:58:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3594210E60F;
-	Thu, 10 Aug 2023 21:58:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0A7410E612;
+	Thu, 10 Aug 2023 21:58:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDDEB10E503
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Aug 2023 21:58:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2406410E4B9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Aug 2023 21:58:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691704689; x=1723240689;
+ t=1691704690; x=1723240690;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dpSvuix1vG54UJCNK2ixlcdtp1B92WtYUINtj0mt+Ww=;
- b=MCusjKJAOJBLetCvA30VNFiD11LV7S50rqq5TZs7pgsO7VGDrGRePNjE
- h+U3pty0JCAJ9wFbpf+oE8aQaV5TplwWPjWl9fIiY8jTtbsm7w2Jk6WeJ
- Bqj5+vVb6pggHcthKh6Dg70DhXQOi8VxBeECUWiZY2lpYiQGKncIFVyQS
- WNjwSRkgufjk1nNILXGjER2fmGJa5dptxRSi+EE3QNKo/AwhGgFWa7skh
- hdiZ5bbpO7ehUycBNvWaCsMp/w7yI+258xSL5EdeiQ4rsGxyTVOf2cKAB
- 3j5F0DrZvWU/owXrofkS91d/cGYqHJKhcaPz3nNU82E3F5XQUDeAWCRIM g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="369004794"
-X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="369004794"
+ bh=rYIQHXr92P+buQCQLJXbo97hN3CoVqCsKTCyE3+dz7k=;
+ b=GDrylBGfkJ5805965MW3wteShW7YlOtERffzyI6+a22o0xRDnuo8Qn64
+ KsOa4Hz7XpIHrRif5NmWmMK/+iZnn+E6IOISmgmbGV1WBB6ltcoiKh63C
+ 7ENli+NeQF8AgY8+ZGV/qJ0sEgcuL7IoWA2BNDk+bGaMSkyEKsfTLFb5H
+ sd8VHPFlaNPaS172hVY/iuHLyy+G7sIaz7keW2Jtqdz+HDmnh6yAHtlgd
+ 23fLfVREIXImdIakQAuMSY8w8vnf6FKCniyj10Y3fkMb8FyRKp+L3xokT
+ Xrshh8gOVWSPX3tnjUntEiiOSYn5Cw2tDKVmk5eoUKS2NO4YmC+gQTwfW A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="369004797"
+X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="369004797"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Aug 2023 14:58:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="875905568"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="875905571"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Aug 2023 14:58:12 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Aug 2023 14:57:57 -0700
-Message-ID: <20230810215750.3609161-17-matthew.d.roper@intel.com>
+Date: Thu, 10 Aug 2023 14:57:58 -0700
+Message-ID: <20230810215750.3609161-18-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230810215750.3609161-11-matthew.d.roper@intel.com>
 References: <20230810215750.3609161-11-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 6/9] drm/i915: Eliminate IS_MTL_DISPLAY_STEP
+Subject: [Intel-gfx] [PATCH v3 7/9] drm/i915/mtl: Eliminate subplatforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,163 +60,115 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Stepping-specific display behavior shouldn't be tied to MTL as a
-platform, but rather specifically to the Xe_LPD+ IP.  Future non-MTL
-platforms may re-use this IP and will need to follow the exact same
-logic and apply the same workarounds.  IS_MTL_DISPLAY_STEP() is dropped
-in favor of a new macro IS_DISPLAY_IP_STEP() that only checks the
-display IP version.
-
-v2:
- - Rename macro to IS_DISPLAY_IP_STEP for consistency with the
-   corresponding GT macro and handle steppings the same way.
-v3:
- - Drop the automatic "STEP_" pasting.
+Now that we properly match the Xe_LPG IP versions associated with
+various workarounds, there's no longer any need to define separate MTL
+subplatform in the driver.  Nothing in the code is conditional on MTL-M
+or MTL-P base platforms.  Furthermore, I'm not sure the "M" and "P"
+designations are even an accurate representation of which specific
+platforms would have which IP versions; those were mostly just
+placeholders from a long time ago.  The reality is that the IP version
+present on a platform gets read from a fuse register at driver init; we
+shouldn't be trying to guess which IP is present based on PCI ID
+anymore.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Nemesa Garg <nemesa.garg@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_device.h | 17 +++++++++++++++++
- drivers/gpu/drm/i915/display/intel_fbc.c        |  3 ++-
- drivers/gpu/drm/i915/display/intel_pmdemand.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c        | 10 +++++-----
- drivers/gpu/drm/i915/i915_drv.h                 |  6 ++----
- 5 files changed, 27 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/i915_drv.h          |  4 ----
+ drivers/gpu/drm/i915/intel_device_info.c | 14 --------------
+ drivers/gpu/drm/i915/intel_device_info.h |  4 ----
+ include/drm/i915_pciids.h                | 11 +++--------
+ 4 files changed, 3 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 215e682bd8b7..8c45b9409496 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -71,6 +71,23 @@ struct drm_printer;
- #define OVERLAY_NEEDS_PHYSICAL(i915)	(DISPLAY_INFO(i915)->overlay_needs_physical)
- #define SUPPORTS_TV(i915)		(DISPLAY_INFO(i915)->supports_tv)
- 
-+/*
-+ * Check if a device has a specific IP version as well as a stepping within
-+ * the specified range [begin, fixed).  The lower bound is inclusive, the upper
-+ * bound is exclusive (corresponding to the first hardware stepping when the
-+ * workaround is no longer needed).  E.g.,
-+ *
-+ *    IS_DISPLAY_IP_STEP(GFX, IP_VER(14, 0), STEP_A0, STEP_B2)
-+ *    IS_DISPLAY_IP_STEP(GFX, IP_VER(14, 0), STEP_C0, STEP_FOREVER)
-+ *
-+ * "STEP_FOREVER" can be passed as the upper stepping bound for workarounds that
-+ * have no upper bound on steppings of the specified IP version.
-+ */
-+#define IS_DISPLAY_IP_STEP(__i915, ipver, begin, fixed) \
-+	(BUILD_BUG_ON_ZERO((ipver) < IP_VER(2, 0)) + \
-+	 DISPLAY_VER_FULL(__i915) == (ipver) && \
-+	 IS_DISPLAY_STEP((__i915), (begin), (fixed)))
-+
- struct intel_display_runtime_info {
- 	struct {
- 		u16 ver;
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 25382022cd27..1c6d467cec26 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -50,6 +50,7 @@
- #include "i915_vma.h"
- #include "intel_cdclk.h"
- #include "intel_de.h"
-+#include "intel_display_device.h"
- #include "intel_display_trace.h"
- #include "intel_display_types.h"
- #include "intel_fbc.h"
-@@ -1100,7 +1101,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 
- 	/* Wa_14016291713 */
- 	if ((IS_DISPLAY_VER(i915, 12, 13) ||
--	     IS_MTL_DISPLAY_STEP(i915, STEP_A0, STEP_C0)) &&
-+	     IS_DISPLAY_IP_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_C0)) &&
- 	    crtc_state->has_psr) {
- 		plane_state->no_fbc_reason = "PSR1 enabled (Wa_14016291713)";
- 		return 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index f7608d363634..744e332fa2af 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -92,7 +92,7 @@ int intel_pmdemand_init(struct drm_i915_private *i915)
- 				     &pmdemand_state->base,
- 				     &intel_pmdemand_funcs);
- 
--	if (IS_MTL_DISPLAY_STEP(i915, STEP_A0, STEP_C0))
-+	if (IS_DISPLAY_IP_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_C0))
- 		/* Wa_14016740474 */
- 		intel_de_rmw(i915, XELPD_CHICKEN_DCPR_3, 0, DMD_RSP_TIMEOUT_DISABLE);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 97d5eef10130..72887c29fb51 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1360,7 +1360,7 @@ static void wm_optimization_wa(struct intel_dp *intel_dp,
- 	bool set_wa_bit = false;
- 
- 	/* Wa_14015648006 */
--	if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
-+	if (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
- 	    IS_DISPLAY_VER(dev_priv, 11, 13))
- 		set_wa_bit |= crtc_state->wm_level_disabled;
- 
-@@ -1447,7 +1447,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 		 * All supported adlp panels have 1-based X granularity, this may
- 		 * cause issues if non-supported panels are used.
- 		 */
--		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
-+		if (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0))
- 			intel_de_rmw(dev_priv, MTL_CHICKEN_TRANS(cpu_transcoder), 0,
- 				     ADLP_1_BASED_X_GRANULARITY);
- 		else if (IS_ALDERLAKE_P(dev_priv))
-@@ -1455,7 +1455,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 				     ADLP_1_BASED_X_GRANULARITY);
- 
- 		/* Wa_16012604467:adlp,mtl[a0,b0] */
--		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
-+		if (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0))
- 			intel_de_rmw(dev_priv,
- 				     MTL_CLKGATE_DIS_TRANS(cpu_transcoder), 0,
- 				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS);
-@@ -1613,7 +1613,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 
- 	if (intel_dp->psr.psr2_enabled) {
- 		/* Wa_16012604467:adlp,mtl[a0,b0] */
--		if (IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
-+		if (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0))
- 			intel_de_rmw(dev_priv,
- 				     MTL_CLKGATE_DIS_TRANS(cpu_transcoder),
- 				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS, 0);
-@@ -2087,7 +2087,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 		goto skip_sel_fetch_set_loop;
- 
- 	/* Wa_14014971492 */
--	if ((IS_MTL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0) ||
-+	if ((IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
- 	     IS_ALDERLAKE_P(dev_priv) || IS_TIGERLAKE(dev_priv)) &&
- 	    crtc_state->splitter.enable)
- 		pipe_clip.y1 = 0;
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 42a86483c694..b11810308e8a 100644
+index b11810308e8a..6d91b3f78b5b 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -437,6 +437,8 @@ static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
- 	(MEDIA_VER(i915) >= (from) && MEDIA_VER(i915) <= (until))
+@@ -575,10 +575,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define IS_PONTEVECCHIO(i915) IS_PLATFORM(i915, INTEL_PONTEVECCHIO)
+ #define IS_METEORLAKE(i915) IS_PLATFORM(i915, INTEL_METEORLAKE)
  
- #define DISPLAY_VER(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver)
-+#define DISPLAY_VER_FULL(i915)	IP_VER(DISPLAY_RUNTIME_INFO(i915)->ip.ver, \
-+				       DISPLAY_RUNTIME_INFO(i915)->ip.rel)
- #define IS_DISPLAY_VER(i915, from, until) \
- 	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
+-#define IS_METEORLAKE_M(i915) \
+-	IS_SUBPLATFORM(i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_M)
+-#define IS_METEORLAKE_P(i915) \
+-	IS_SUBPLATFORM(i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_P)
+ #define IS_DG2_G10(i915) \
+ 	IS_SUBPLATFORM(i915, INTEL_DG2, INTEL_SUBPLATFORM_G10)
+ #define IS_DG2_G11(i915) \
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index ea0ec6174ce5..9dfa680a4c62 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -206,14 +206,6 @@ static const u16 subplatform_g12_ids[] = {
+ 	INTEL_DG2_G12_IDS(0),
+ };
  
-@@ -658,10 +660,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_XEHPSDV_GRAPHICS_STEP(__i915, since, until) \
- 	(IS_XEHPSDV(__i915) && IS_GRAPHICS_STEP(__i915, since, until))
- 
--#define IS_MTL_DISPLAY_STEP(__i915, since, until) \
--	(IS_METEORLAKE(__i915) && \
--	 IS_DISPLAY_STEP(__i915, since, until))
+-static const u16 subplatform_m_ids[] = {
+-	INTEL_MTL_M_IDS(0),
+-};
 -
- /*
-  * DG2 hardware steppings are a bit unusual.  The hardware design was forked to
-  * create three variants (G10, G11, and G12) which each have distinct
+-static const u16 subplatform_p_ids[] = {
+-	INTEL_MTL_P_IDS(0),
+-};
+-
+ static bool find_devid(u16 id, const u16 *p, unsigned int num)
+ {
+ 	for (; num; num--, p++) {
+@@ -275,12 +267,6 @@ static void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+ 	} else if (find_devid(devid, subplatform_g12_ids,
+ 			      ARRAY_SIZE(subplatform_g12_ids))) {
+ 		mask = BIT(INTEL_SUBPLATFORM_G12);
+-	} else if (find_devid(devid, subplatform_m_ids,
+-			      ARRAY_SIZE(subplatform_m_ids))) {
+-		mask = BIT(INTEL_SUBPLATFORM_M);
+-	} else if (find_devid(devid, subplatform_p_ids,
+-			      ARRAY_SIZE(subplatform_p_ids))) {
+-		mask = BIT(INTEL_SUBPLATFORM_P);
+ 	}
+ 
+ 	GEM_BUG_ON(mask & ~INTEL_SUBPLATFORM_MASK);
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index dbfe6443457b..2ca54417d19b 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -129,10 +129,6 @@ enum intel_platform {
+ #define INTEL_SUBPLATFORM_N    1
+ #define INTEL_SUBPLATFORM_RPLU  2
+ 
+-/* MTL */
+-#define INTEL_SUBPLATFORM_M	0
+-#define INTEL_SUBPLATFORM_P	1
+-
+ enum intel_ppgtt_type {
+ 	INTEL_PPGTT_NONE = I915_GEM_PPGTT_NONE,
+ 	INTEL_PPGTT_ALIASING = I915_GEM_PPGTT_ALIASING,
+diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+index e1e10dfbb661..38dae757d1a8 100644
+--- a/include/drm/i915_pciids.h
++++ b/include/drm/i915_pciids.h
+@@ -738,18 +738,13 @@
+ #define INTEL_ATS_M_IDS(info) \
+ 	INTEL_ATS_M150_IDS(info), \
+ 	INTEL_ATS_M75_IDS(info)
++
+ /* MTL */
+-#define INTEL_MTL_M_IDS(info) \
++#define INTEL_MTL_IDS(info) \
+ 	INTEL_VGA_DEVICE(0x7D40, info), \
+-	INTEL_VGA_DEVICE(0x7D60, info)
+-
+-#define INTEL_MTL_P_IDS(info) \
+ 	INTEL_VGA_DEVICE(0x7D45, info), \
+ 	INTEL_VGA_DEVICE(0x7D55, info), \
++	INTEL_VGA_DEVICE(0x7D60, info), \
+ 	INTEL_VGA_DEVICE(0x7DD5, info)
+ 
+-#define INTEL_MTL_IDS(info) \
+-	INTEL_MTL_M_IDS(info), \
+-	INTEL_MTL_P_IDS(info)
+-
+ #endif /* _I915_PCIIDS_H */
 -- 
 2.41.0
 
