@@ -2,48 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF68377715D
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 09:28:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F227771F4
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 09:56:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 410AA10E4D2;
-	Thu, 10 Aug 2023 07:28:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34D4D10E15F;
+	Thu, 10 Aug 2023 07:56:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 377BA10E4D2
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Aug 2023 07:28:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E76710E4EF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Aug 2023 07:56:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691652514; x=1723188514;
+ t=1691654170; x=1723190170;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=Tehv4HCYt3ne/8DjUVgk+zoUqjyab7GpkNKDcfa7C7c=;
- b=QEJNtcv0LLWruQbAtpwQ3crrGddbommLfGKTbm5thATYPYoRTFOqTNUL
- gvmWjf/u9KupHFQ9QcOlvDLlHNE7XsHzNq3pqrsWHRGzIY4GUWYP5n0Yq
- A5CPCbu4ewrODDWNaOEqVmkvgHYmEEpiaseSBjLEELkUJPQ3+ajeS2MlK
- Gr0nuuA3Y94MvPA3fryPYEzCMpneSnWcMA+LC+ASoV2aGwLYmawo/PJo6
- srbFj44NYbxBxOS1Nf3tXyWFpTdVP4v7vuYhBzBzW6AaXnVd4cmAGQisd
- hDvXzm2wAcu1KXjx3nR0K418BLSU911N/unk3KnCIPjbxoamLX5E0hoA6 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="457678542"
-X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="457678542"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2023 00:28:20 -0700
+ bh=XZPPJHLsJxql/TJYhunbMR/Cpnhq0921kNbDre8lRi8=;
+ b=BrOIdod6OVnhV4GFsBjr45JTqm6qgX+D7Zx2qMh2+nerxioCk+1oUNe3
+ ijDbrGACD+dknZE4FrGCSFCj3QEkHZE27JNR+KOSwjaZcSdT33ZzUxLpv
+ kWez2uFGrQQ36hm6QfID0WShKoVwL3r/d8m+NRUV6f2gg01rXOSsC9pWQ
+ VKva0u5ONlgGJzWGvBYnCRXecREfVoR83NcHhayJrHnKhknb552mvB939
+ Zv8az0CYExqPQfYziIZ6mopLRN45GQSuO2QdUwOmORfKHL9uZNgVshCyI
+ O1H8Vhz/ZoRnATbrVMHhVy1NbN8G/LwpwAfEuGVezco30Oz308o2W6LDV g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="351628916"
+X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="351628916"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2023 00:49:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="797505636"
-X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="797505636"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by fmsmga008.fm.intel.com with ESMTP; 10 Aug 2023 00:28:19 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="735307918"
+X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="735307918"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmsmga007.fm.intel.com with ESMTP; 10 Aug 2023 00:49:50 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Aug 2023 10:28:18 +0300
-Message-Id: <20230810072818.6998-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
+Date: Thu, 10 Aug 2023 13:17:55 +0530
+Message-Id: <20230810074758.154968-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Implement vblank synchronized MBUS
- join changes
+Subject: [Intel-gfx] [PATCH 0/4] HDCP MST aux issue fix
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,67 +54,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: uma.shakar@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we can't change MBUS join status without doing a modeset,
-because we are lacking mechanism to synchronize those with vblank.
-However then this means that we can't do a fastset, if there is a need
-to change MBUS join state. Fix that by implementing such change.
-We already call correspondent check and update at pre_plane dbuf update,
-so the only thing left is to have a non-modeset version of that.
-If active pipes stay the same then fastset is possible and only MBUS
-join state/ddb allocation updates would be committed.
+Up until now all dp hdcp specific function derived the aux
+from dig_port which gave the aux of the primary port but with
+DPMST when a MST hub comes into picture the monitor becomes remote
+and what we need is a corresponding aux which is also remote.
+These set of patches aim to fix up just that.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 25 ++++++++++++++------
- 1 file changed, 18 insertions(+), 7 deletions(-)
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 063929a42a42f..19840e6d7318c 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2614,13 +2614,6 @@ skl_compute_ddb(struct intel_atomic_state *state)
- 		if (ret)
- 			return ret;
- 
--		if (old_dbuf_state->joined_mbus != new_dbuf_state->joined_mbus) {
--			/* TODO: Implement vblank synchronized MBUS joining changes */
--			ret = intel_modeset_all_pipes(state, "MBUS joining change");
--			if (ret)
--				return ret;
--		}
--
- 		drm_dbg_kms(&i915->drm,
- 			    "Enabled dbuf slices 0x%x -> 0x%x (total dbuf slices 0x%x), mbus joined? %s->%s\n",
- 			    old_dbuf_state->enabled_slices,
-@@ -3524,6 +3517,24 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
- 
- 	WARN_ON(!new_dbuf_state->base.changed);
- 
-+	/*
-+	 * If we are not doing a modeset, that means we must synchronize
-+	 * our MBUS configuration changes with vblank for all active crtcs.
-+	 */
-+	if (!state->modeset) {
-+		struct intel_crtc *crtc;
-+		struct intel_crtc_state *new_crtc_state;
-+		int i;
-+
-+		for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+
-+			if (!new_crtc_state->hw.active)
-+				continue;
-+
-+			intel_crtc_wait_for_next_vblank(crtc);
-+		}
-+	}
-+
- 	update_mbus_pre_enable(state);
- 	gen9_dbuf_slices_update(i915,
- 				old_dbuf_state->enabled_slices |
+Suraj Kandpal (4):
+  drm/i915/hdcp: Use intel_connector argument in intel_hdcp_shim
+  drm/i915/hdcp: Propagate aux info in DP HDCP functions
+  drm/i915/hdcp: Send the correct aux for DPMST HDCP scenario
+  drm/i915/hdcp: Adjust timeout for read in DPMST Scenario
+
+ .../drm/i915/display/intel_display_types.h    |  6 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 61 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 30 ++++-----
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  6 +-
+ 4 files changed, 58 insertions(+), 45 deletions(-)
+
 -- 
-2.37.3
+2.25.1
 
