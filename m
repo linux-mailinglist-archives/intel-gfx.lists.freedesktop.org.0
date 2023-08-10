@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97F877782FB
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 23:58:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A96D778300
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 23:58:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A09F10E503;
-	Thu, 10 Aug 2023 21:58:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3BE710E5B4;
+	Thu, 10 Aug 2023 21:58:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C65510E4B9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6715D10E503
  for <intel-gfx@lists.freedesktop.org>; Thu, 10 Aug 2023 21:58:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1691704689; x=1723240689;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=32AiiQxT9jkt22AwZr43gpjREHWJweJdVhLeAIBFy14=;
- b=Y9a/r9DHaduGKkhbXdB8qx0THWpEmyxv7txx9GxXOO+inED3zjB2Enuo
- 2n5I6t8NsymQUG7pMIGWBV4RbPEiSmWakOPfaXrpjZkCwwss3WYNjzhI8
- sC1VkZsR2u1vtnh/LuEq3qX5SSMBiNK6YFNzxpVWjibX/1aI/BFLi5/wb
- XDVbCj4jSIsiV9Maa3zzyfugPQPoRGU6hhuGKRB9MS61G/6VNBlZ5LfLj
- t6T37mbfVoYc83DJ2hi/fXgtrxAmdDzXkoXMAZcP9IETfnesXmuMQH536
- eUoCTkJAJm/zTkAgpld/xKBMA1xKzVokAbSUKe+taOriGtfxQr6VhRYy2 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="369004789"
-X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="369004789"
+ bh=S4CUectUMAkQJyXZR1kX6g2PT1HJkLU7d2xWaClEjXU=;
+ b=TS1h6ckH8EZODHasFixZ0vGN3pVPfeunkn3nU9WQfKsFW/CeKk84X2iv
+ si779Y9RyF95LJByE5R0309pvCwBuQ6+Tr0P7EoMmNiiYiJgS1B3woZfz
+ /3hC/eVIQtVaWIVJww4JHNmMrS17Exa0vnEk48LiRCUWnD/QKUr6Oftr9
+ ir1b+XtuJ/NzQPKJbxYFjXHosZZqDDa0340I1ReuE5YabPulm9yC/pc6D
+ vFYjWbn0M5qykKVnhdkAurugh0/9pgsZ8ZlB9okX1UVxhG30elxOkkXFV
+ dZsOR+TqQuW1pv9O4bHx6jbIwx/gIWSa3/B4tUi1+/7Q+kaMd1NpGqew6 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="369004790"
+X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="369004790"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2023 14:58:08 -0700
+ 10 Aug 2023 14:58:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="875905553"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="875905555"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Aug 2023 14:58:12 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Aug 2023 14:57:52 -0700
-Message-ID: <20230810215750.3609161-12-matthew.d.roper@intel.com>
+Date: Thu, 10 Aug 2023 14:57:53 -0700
+Message-ID: <20230810215750.3609161-13-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230810215750.3609161-11-matthew.d.roper@intel.com>
 References: <20230810215750.3609161-11-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 1/9] drm/i915: Consolidate condition for
- Wa_22011802037
+Subject: [Intel-gfx] [PATCH v3 2/9] drm/i915/xelpmp: Don't assume
+ workarounds extend to future platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,121 +61,32 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The workaround bounds for Wa_22011802037 are somewhat complex and are
-replicated in several places throughout the code.  Pull the condition
-out to a helper function to prevent mistakes if this condition needs to
-change again in the future.
+The currently implemented Xe_LPM+ workarounds are specific to media
+version 13.00.  When new IP versions show up in the future, they'll need
+their own workaround lists.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c      |  4 +---
- .../drm/i915/gt/intel_execlists_submission.c   |  4 +---
- drivers/gpu/drm/i915/gt/intel_reset.c          | 18 ++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_reset.h          |  2 ++
- drivers/gpu/drm/i915/gt/uc/intel_guc.c         |  4 +---
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c  |  4 +---
- 6 files changed, 24 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index ee15486fed0d..dfb69fc977a0 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1617,9 +1617,7 @@ static int __intel_engine_stop_cs(struct intel_engine_cs *engine,
- 	 * Wa_22011802037: Prior to doing a reset, ensure CS is
- 	 * stopped, set ring stop bit and prefetch disable bit to halt CS
- 	 */
--	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
--	    (GRAPHICS_VER(engine->i915) >= 11 &&
--	    GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70)))
-+	if (intel_engine_reset_needs_wa_22011802037(engine->gt))
- 		intel_uncore_write_fw(uncore, RING_MODE_GEN7(engine->mmio_base),
- 				      _MASKED_BIT_ENABLE(GEN12_GFX_PREFETCH_DISABLE));
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 3ae0dbd39eaa..3108ad1d6207 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1818,10 +1818,10 @@ gt_init_workarounds(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	gt_tuning_settings(gt, wal);
  
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 8a641bcf777c..4d05321dc5b5 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -3001,9 +3001,7 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
- 	 * Wa_22011802037: In addition to stopping the cs, we need
- 	 * to wait for any pending mi force wakeups
- 	 */
--	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
--	    (GRAPHICS_VER(engine->i915) >= 11 &&
--	    GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70)))
-+	if (intel_engine_reset_needs_wa_22011802037(engine->gt))
- 		intel_engine_wait_for_pending_mi_fw(engine);
+ 	if (gt->type == GT_MEDIA) {
+-		if (MEDIA_VER(i915) >= 13)
++		if (MEDIA_VER_FULL(i915) == IP_VER(13, 0))
+ 			xelpmp_gt_workarounds_init(gt, wal);
+ 		else
+-			MISSING_CASE(MEDIA_VER(i915));
++			MISSING_CASE(MEDIA_VER_FULL(i915));
  
- 	engine->execlists.reset_ccid = active_ccid(engine);
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index cc6bd21a3e51..1ff7b42521c9 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -1632,6 +1632,24 @@ void __intel_fini_wedge(struct intel_wedge_me *w)
- 	w->gt = NULL;
- }
- 
-+/*
-+ * Wa_22011802037 requires that we (or the GuC) ensure that no command
-+ * streamers are executing MI_FORCE_WAKE while an engine reset is initiated.
-+ */
-+bool intel_engine_reset_needs_wa_22011802037(struct intel_gt *gt)
-+{
-+	if (GRAPHICS_VER(gt->i915) < 11)
-+		return false;
-+
-+	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0))
-+		return true;
-+
-+	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
-+		return false;
-+
-+	return true;
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- #include "selftest_reset.c"
- #include "selftest_hangcheck.c"
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.h b/drivers/gpu/drm/i915/gt/intel_reset.h
-index 25c975b6e8fc..f615b30b81c5 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.h
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.h
-@@ -78,4 +78,6 @@ void __intel_fini_wedge(struct intel_wedge_me *w);
- bool intel_has_gpu_reset(const struct intel_gt *gt);
- bool intel_has_reset_engine(const struct intel_gt *gt);
- 
-+bool intel_engine_reset_needs_wa_22011802037(struct intel_gt *gt);
-+
- #endif /* I915_RESET_H */
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 569b5fe94c41..22649831d3bd 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -292,9 +292,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
- 		flags |= GUC_WA_DUAL_QUEUE;
- 
- 	/* Wa_22011802037: graphics version 11/12 */
--	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
--	    (GRAPHICS_VER(gt->i915) >= 11 &&
--	    GRAPHICS_VER_FULL(gt->i915) < IP_VER(12, 70)))
-+	if (intel_engine_reset_needs_wa_22011802037(gt))
- 		flags |= GUC_WA_PRE_PARSER;
- 
- 	/* Wa_16011777198:dg2 */
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index a0e3ef1c65d2..1bd5d8f7c40b 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1658,9 +1658,7 @@ static void guc_engine_reset_prepare(struct intel_engine_cs *engine)
- 	 * Wa_22011802037: In addition to stopping the cs, we need
- 	 * to wait for any pending mi force wakeups
- 	 */
--	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
--	    (GRAPHICS_VER(engine->i915) >= 11 &&
--	     GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70))) {
-+	if (intel_engine_reset_needs_wa_22011802037(engine->gt)) {
- 		intel_engine_stop_cs(engine);
- 		intel_engine_wait_for_pending_mi_fw(engine);
+ 		return;
  	}
 -- 
 2.41.0
