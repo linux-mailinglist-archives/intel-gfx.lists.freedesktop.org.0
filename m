@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF62C777EBD
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 19:04:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F6DA777EBF
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Aug 2023 19:04:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2EC010E5C0;
-	Thu, 10 Aug 2023 17:04:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1ECC10E5C5;
+	Thu, 10 Aug 2023 17:04:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB26F10E5C0
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Aug 2023 17:04:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83D9B10E5C0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Aug 2023 17:04:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691687077; x=1723223077;
+ t=1691687078; x=1723223078;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DoyQbsiJjrLOaS4lX9OeEHXXk8ShA++5m+m+b/AN+FI=;
- b=Eg6KzNvLYzoL1/fjGQ2znCIwVSZtZ/P2n68PQFAeeQEpVczg0QaYm/lp
- YqWWK//3rMwdA23porLnMeRiN9QgIwcSWbvMUalgTgeKfxeWa5J8f+3YY
- 4ZynfW4oCsU0XISjp8ht0LpVt2wfyI+IX8vrcQYbbfVk/s1+3wgTW4viD
- FzXHiNtjbtXMQdiVwf/VPsG76KPAb+l+Zq82N/CSOlUidvym/jzG/wDyK
- NSwSmoyyoWMq3JFilt1s9Z7oUvqmiGs5Ywxu46Z+Te34ft2DHgp+nD9OY
- VExqqK8ivX49K8r1vh5njhb0nByWtaf54GGQx3oITkpgF13zh0LS86EG+ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="435358649"
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="435358649"
+ bh=jOeR7Mvmpp94NWSiX0JTF919tiaRHdRa8qvmVMDuM0g=;
+ b=jgAZVAlCxOrrl1LbEJzUg7r1sM0vyt7YpNLxWttdGXrm7JAM1wqHd9n7
+ S1v57BzApLG/zHMUTPooeg1tYg6+yatnWOOMhrSYpBUPZTjVlapyRMNBh
+ mz3wGKTCX3ukv9ppVU9/PI5rz5f6fYtqdFU1amujOdJMRZxGCV68xlm8F
+ cbkxOal9OD3C3yPWNq6QGhOGkMlMhAoPBvQdeM6g3/WRRENCex/QC+VzM
+ d8nnFTf8t6H3sizpKkaO+9BQfF45QYXw9DdcH1qSUEnFakFnV+mVsHU5e
+ 8DECwyf873tUv4faEbSxnXI3qBwhupwB1ii6C8w27mvAUQVsns2N9/jZx g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="435358662"
+X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="435358662"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2023 10:03:59 -0700
+ 10 Aug 2023 10:04:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="735489051"
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="735489051"
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="735489082"
+X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="735489082"
 Received: from xudongf-mobl.amr.corp.intel.com (HELO vgovind2-mobl3.intel.com)
  ([10.252.50.242])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2023 10:03:58 -0700
+ 10 Aug 2023 10:04:00 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Aug 2023 20:03:40 +0300
-Message-Id: <20230810170341.268503-2-vinod.govindapillai@intel.com>
+Date: Thu, 10 Aug 2023 20:03:41 +0300
+Message-Id: <20230810170341.268503-3-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230810170341.268503-1-vinod.govindapillai@intel.com>
 References: <20230810170341.268503-1-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/display: streamline the dp audio
- config steps
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/display: configure SDP split for
+ DP MST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,155 +64,56 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Combine dp audio config steps in to single a place from where
-intel_audio_compute_config is checked and SDP split decision
-is done.
-
-v2: combine different audio compute calls into one (Jani Nikula)
+Extend the SDP split configuration for the DP-MST
 
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_audio.c |  6 ++---
- drivers/gpu/drm/i915/display/intel_audio.h |  3 +--
- drivers/gpu/drm/i915/display/intel_ddi.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_dp.c    | 27 +++++++++++-----------
- drivers/gpu/drm/i915/display/intel_dp.h    |  4 ++++
- 5 files changed, 22 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index 3d9c9b4f27f8..19605264a35c 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -759,10 +759,10 @@ static void ibx_audio_codec_enable(struct intel_encoder *encoder,
- 	mutex_unlock(&i915->display.audio.mutex);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index e3f176a093d2..e718ef22dee6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -312,6 +312,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 	struct intel_dp *intel_dp = &intel_mst->primary->dp;
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&pipe_config->hw.adjusted_mode;
++	bool dp_mst_has_audio = intel_dp_mst_has_audio(conn_state);
+ 	struct link_config_limits limits;
+ 	int ret;
  
--void intel_audio_sdp_split_update(struct intel_encoder *encoder,
--				  const struct intel_crtc_state *crtc_state)
-+void intel_audio_sdp_split_update(const struct intel_crtc_state *crtc_state)
- {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	enum transcoder trans = crtc_state->cpu_transcoder;
- 
- 	if (HAS_DP20(i915))
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.h b/drivers/gpu/drm/i915/display/intel_audio.h
-index 07d034a981e9..9327954b801e 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.h
-+++ b/drivers/gpu/drm/i915/display/intel_audio.h
-@@ -29,7 +29,6 @@ void intel_audio_cdclk_change_pre(struct drm_i915_private *dev_priv);
- void intel_audio_cdclk_change_post(struct drm_i915_private *dev_priv);
- void intel_audio_init(struct drm_i915_private *dev_priv);
- void intel_audio_deinit(struct drm_i915_private *dev_priv);
--void intel_audio_sdp_split_update(struct intel_encoder *encoder,
--				  const struct intel_crtc_state *crtc_state);
-+void intel_audio_sdp_split_update(const struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_AUDIO_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 84bbf854337a..b7f4281b8658 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3248,7 +3248,7 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
- 		intel_ddi_enable_transcoder_func(encoder, crtc_state);
- 
- 	/* Enable/Disable DP2.0 SDP split config before transcoder */
--	intel_audio_sdp_split_update(encoder, crtc_state);
-+	intel_audio_sdp_split_update(crtc_state);
- 
- 	intel_enable_transcoder(crtc_state);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 12bd2f322e62..44ff30b77897 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2232,17 +2232,20 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- 	return ret;
- }
- 
--static void
--intel_dp_audio_compute_config(struct intel_encoder *encoder,
--			      struct intel_crtc_state *pipe_config,
--			      struct drm_connector_state *conn_state)
-+void intel_dp_audio_compute_config(struct intel_encoder *encoder,
-+				   struct intel_crtc_state *pipe_config,
-+				   struct drm_connector_state *conn_state,
-+				   bool has_audio)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct drm_connector *connector = conn_state->connector;
- 
--	pipe_config->sdp_split_enable =
--		intel_dp_has_audio(encoder, conn_state) &&
--		intel_dp_is_uhbr(pipe_config);
-+	pipe_config->has_audio =
-+		has_audio &&
-+		intel_audio_compute_config(encoder, pipe_config, conn_state);
-+
-+	pipe_config->sdp_split_enable = pipe_config->has_audio &&
-+					intel_dp_is_uhbr(pipe_config);
- 
- 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDP split enable: %s\n",
- 		    connector->base.id, connector->name,
-@@ -2259,15 +2262,12 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	const struct drm_display_mode *fixed_mode;
- 	struct intel_connector *connector = intel_dp->attached_connector;
-+	bool dp_has_audio = intel_dp_has_audio(encoder, conn_state);
- 	int ret = 0, output_bpp;
- 
- 	if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
- 		pipe_config->has_pch_encoder = true;
+@@ -322,10 +323,6 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+ 	pipe_config->has_pch_encoder = false;
  
 -	pipe_config->has_audio =
--		intel_dp_has_audio(encoder, conn_state) &&
+-		intel_dp_mst_has_audio(conn_state) &&
 -		intel_audio_compute_config(encoder, pipe_config, conn_state);
 -
- 	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
- 	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
- 		ret = intel_panel_compute_config(connector, adjusted_mode);
-@@ -2313,7 +2313,6 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	else
- 		output_bpp = intel_dp_output_bpp(pipe_config->output_format,
- 						 pipe_config->pipe_bpp);
--
- 	if (intel_dp->mso_link_count) {
- 		int n = intel_dp->mso_link_count;
- 		int overlap = intel_dp->mso_pixel_overlap;
-@@ -2334,8 +2333,6 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		adjusted_mode->crtc_clock /= n;
- 	}
- 
--	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
--
- 	intel_link_compute_m_n(output_bpp,
- 			       pipe_config->lane_count,
- 			       adjusted_mode->crtc_clock,
-@@ -2350,6 +2347,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	if (!HAS_DDI(dev_priv))
- 		g4x_dp_set_clock(encoder, pipe_config);
+ 	/*
+ 	 * for MST we always configure max link bw - the spec doesn't
+ 	 * seem to suggest we should do otherwise.
+@@ -388,6 +385,9 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 		pipe_config->lane_lat_optim_mask =
+ 			bxt_ddi_phy_calc_lane_lat_optim_mask(pipe_config->lane_count);
  
 +	intel_dp_audio_compute_config(encoder, pipe_config, conn_state,
-+				      dp_has_audio);
- 	intel_vrr_compute_config(pipe_config, conn_state);
- 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
- 	intel_dp_drrs_compute_config(connector, pipe_config, output_bpp);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 22099de3ca45..d1f583a3b549 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -65,6 +65,10 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 				struct link_config_limits *limits,
- 				int timeslots,
- 				bool recompute_pipe_bpp);
-+void intel_dp_audio_compute_config(struct intel_encoder *encoder,
-+				   struct intel_crtc_state *pipe_config,
-+				   struct drm_connector_state *conn_state,
-+				   bool has_audio);
- bool intel_dp_has_hdmi_sink(struct intel_dp *intel_dp);
- bool intel_dp_is_edp(struct intel_dp *intel_dp);
- bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state);
++				      dp_mst_has_audio);
++
+ 	intel_ddi_compute_min_voltage_level(dev_priv, pipe_config);
+ 
+ 	return 0;
+@@ -792,6 +792,9 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+ 		intel_de_rmw(dev_priv, CHICKEN_TRANS(trans), 0,
+ 			     FECSTALL_DIS_DPTSTREAM_DPTTG);
+ 
++	/* Enable/Disable DP2.0 SDP split config before transcoder */
++	intel_audio_sdp_split_update(pipe_config);
++
+ 	intel_enable_transcoder(pipe_config);
+ 
+ 	intel_crtc_vblank_on(pipe_config);
 -- 
 2.34.1
 
