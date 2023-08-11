@@ -2,146 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F41778767
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Aug 2023 08:26:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D89DC7787E3
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Aug 2023 09:14:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CEC510E65B;
-	Fri, 11 Aug 2023 06:26:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F391010E66C;
+	Fri, 11 Aug 2023 07:14:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6673C10E65B;
- Fri, 11 Aug 2023 06:25:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691735149; x=1723271149;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=CB0gchsMXIHddvY9zybaIK/X9HKvE93kcRWx1VdA7Z8=;
- b=OIN5FhiMGm/dcZe+7+Qxe9f4J7xT+1AabKUBi/slXl5CxyQx8qShJ9BY
- 2cF6jCgjW7M1uYkic1QPRKoNVn4GXMPFrAJpKXAfcXOou0KGlVf+ZAlQZ
- Ypp+7byIxsAMTAjeruo2oS1ID7OcNqquczSooUcHZYlH0lJBwi70B7iSB
- FdbWmrJ5H79jqXfZP+7RdSxpNPW3gLKAO5az6dF+9tQZb7Wr8/baLUPCy
- wZSnK/c5IcZG5l5L5W/e7BFA34DZmCbZ8mAxldyLJ+GtcPLYf0AtzjAFC
- XXIVD6HMA8Y+QAbVYM9tSVCQOleccuIVZC9PJTr0hevikf0QDOs71Njr+ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="375318564"
-X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="375318564"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2023 23:25:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="876044009"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga001.fm.intel.com with ESMTP; 10 Aug 2023 23:24:58 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 10 Aug 2023 23:24:54 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 10 Aug 2023 23:24:54 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 10 Aug 2023 23:24:54 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 10 Aug 2023 23:24:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gNuvHUydXohRKEJceMI+eLT/MfwrfdswNTgHq+pbdQwjlS7USFa+AaPMKJd9gSztzXhI65XF9yZ9KQvE+8bl0qSWzF30YTbgd7kUC1i3zija4XZQkgCFo3Q+0qZaqhwLlEeSMMWKll3AYhS0I5Az2QS8wTcvrdYRKq45mCMtjrj1pKKVZ1ROqeSxf7I+kuJRjR1V1WwyyFvgLqpaoaOByTKFMm5aTWhePjhrAT1D9pEWzbM97Tgt9VE56orK8WeWjJAMDuVWit78pjQyTJwDd8Pi7eDSszLVC2SiIxaE+F93+ZKK64klR6HTYDOHINOXkahtAXyRLEva6EOfgw3Bfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+7B+fzMKQnPnxa7e7lKVnHEvaYI4aP/IJFTg1AgzVVE=;
- b=Yxxwgl8pZ4JwhzTUpdRAcZ/aFguiTMiPhi60gGt8fcaNYO/y24+WprxgXia0ptYiI88CIl269wgRFwQA1UZGtwN9RhWUSyGrdb0eqf5LzbS5v/ieWg/JQ5eHqhBEApaOkm8/7K7BjQTCPIUmGP1DMepZrFWOoDLtgZ+108CQEJ4XEF7jqUTC7Y/zr/72/85LBN7FpV30wN5C4tN7T5Z664fOWbybUWN6p9t5Ng5mEeLWC5CBUrm1WUGH63N9bF8xwT/AXe+XTuBKktTLy+BPGbIXw15oVRnxU/ZUip5YHTEcnEZY3+9hvN1oMydFw7PdNX7jxW5uAj96phNCJJuqCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com (2603:10b6:8:71::6) by
- DM4PR11MB7373.namprd11.prod.outlook.com (2603:10b6:8:103::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6652.30; Fri, 11 Aug 2023 06:24:51 +0000
-Received: from DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::1b1a:af8e:7514:6f63]) by DS7PR11MB5966.namprd11.prod.outlook.com
- ([fe80::1b1a:af8e:7514:6f63%2]) with mapi id 15.20.6652.029; Fri, 11 Aug 2023
- 06:24:51 +0000
-Date: Fri, 11 Aug 2023 13:57:54 +0800
-From: Yan Zhao <yan.y.zhao@intel.com>
-To: Sean Christopherson <seanjc@google.com>
-Message-ID: <ZNXN4p7RqEICdB6f@yzhao56-desk.sh.intel.com>
-References: <20221223005739.1295925-1-seanjc@google.com>
- <20221223005739.1295925-20-seanjc@google.com>
- <5581418b-2e1c-6011-f0a4-580df7e00b44@gmail.com>
- <ZNEni2XZuwiPgqaC@google.com>
- <ZNLlseYag5DniUg3@yzhao56-desk.sh.intel.com>
- <ZNOjyf2OHQZYfMEJ@google.com>
- <ZNQfX4JHTJu1Qtl0@yzhao56-desk.sh.intel.com>
- <ZNRTO0hY8GJBrnOg@yzhao56-desk.sh.intel.com>
- <ZNUFGljM5oet11xN@google.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZNUFGljM5oet11xN@google.com>
-X-ClientProxiedBy: SG2PR02CA0126.apcprd02.prod.outlook.com
- (2603:1096:4:188::11) To DS7PR11MB5966.namprd11.prod.outlook.com
- (2603:10b6:8:71::6)
+X-Greylist: delayed 1768 seconds by postgrey-1.36 at gabe;
+ Fri, 11 Aug 2023 07:14:55 UTC
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [80.237.130.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE0F210E66C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Aug 2023 07:14:55 +0000 (UTC)
+Received: from 46.183.103.8.relaix.net ([46.183.103.8] helo=[172.18.99.178]);
+ authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1qULtd-0001jS-CA; Fri, 11 Aug 2023 08:45:17 +0200
+Message-ID: <f32b4636-969c-3b9e-6802-5991f511739e@leemhuis.info>
+Date: Fri, 11 Aug 2023 08:45:12 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5966:EE_|DM4PR11MB7373:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4a718bc5-410f-408e-b897-08db9a33ab9f
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: M8BUieYYJsNzi9wvCBjKWP3FT2Yk8y6alo/0owAsFfAFgfz7to24XP93MKZGBkwtpYiVSe3IsgmDiT0EYsQ1IzjEIbq3Qh5axxgqWnfSUdVdDp/irFQ9oermg7l5O8fNfDbmn8ViKk7UU+l2wB8z44WPqp40FnHn9+5edQC2+yGqV/VfxgB5QcijiNo9oYxwYk7n+I7SiK9y8Csl0/DWMfqV6CkpJ3B6ZHvxgK/u1GDpkawQINvfbtkX/tju2gIVNk4FWsQOlOiwBCaGMGHjD2/L7c8thKT8M55hoVr0LUpAKI0gHNliIFQfoQEyBgnbR++FdJeL3BgZOgxuJZ0hI3c4bjScvQzILhE3IKAM349tr+U6s+e6ZI+V6VjpvXujN9S+N5FEEk2FcVSpZbgarQ4kzYtjhmo0YIvlyrDRWKG48nVX6Bpzcltr1UVonFN1kMWcKy1qKJKDBBmF2epNjT99AJMUmLwy2Aqv7IeIHq+7j2QFOlxLBsvsRHQrDRvbbrcRo8T97okEt0rz3yY/cK16rD9WzrCr8E03LtxcIl3yXg3bpGNSy9FiCJmxF7407i9phnGcBXaSH2R4fxwBvcclNk3zxr9zItHD+OYQHvXmPtO1UNMtJImOT5RuV7Wn3xGBLPE6ze3OIqT4f2u/wg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB5966.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(136003)(346002)(376002)(366004)(396003)(39860400002)(1800799006)(186006)(451199021)(66946007)(6916009)(6506007)(26005)(66476007)(478600001)(54906003)(66556008)(83380400001)(41300700001)(316002)(3450700001)(6486002)(6512007)(4326008)(2906002)(86362001)(8936002)(82960400001)(8676002)(38100700002)(5660300002)(26730200005)(19860200003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MSCOk8KBG6ruBnpWeVlVmyGBVknJywMNb0vNTrABRO/yDBX661njgH8dd4Hw?=
- =?us-ascii?Q?bVEJ3c1evoVKMi4RveDYQJ7DzOAp2OvWwGCJrjcP7d/fnQ7gC+VfmSg5yrA0?=
- =?us-ascii?Q?DNvwnA/98pbPzO0KZwYK6h3m6a72DF/KC9dxwFtQHuAXw9GwoXSnquzgmtOi?=
- =?us-ascii?Q?6tcLit1OOv+dZKQ6Wb++qbDTP1mva9ga5/A43WogcCXG4PGEWRBfC2vbwNLb?=
- =?us-ascii?Q?+swGtDUV86x2lgbi2nIol4+3jWoMAoyhyrHxx2xRb1l1ibpTq2Qa8qz043cR?=
- =?us-ascii?Q?MERutcKwZ/rO1I0swo4sH1cAxcigaXNal6hwbZiEdIxoqo5yKPs7LlCajlhm?=
- =?us-ascii?Q?V1nWZvHKIaMEWJBZqE1HzsX0+Ajic15b3R9nPrbCw5eDa+q9DBUA1KwKR7gb?=
- =?us-ascii?Q?oZJUiRZP1a0+zsGfJ7CeuGn/Ue+f4NABtzKEqC8QTv4CKPj2kfocRc65YNll?=
- =?us-ascii?Q?57Ce5qb6xa2kG2o8GgJ8Llc8WH4XNTVMPw8F2YplDeQq8rKQZKgGJWQsaALH?=
- =?us-ascii?Q?CicCGU5o1R49XhHQ4pohpAuAqZZVZrg77oXyzcdWBp4eM+K8le4QUA1HCY1z?=
- =?us-ascii?Q?FkzfI5jkvXhjqw0tBp6lq9KGlqqp4Vhco55GLMpnR7N0D1WUXlvGGwIzaxRJ?=
- =?us-ascii?Q?1QZAa1LLzmSdb96WQ04nMVAVhipuxxWdhoWSiDxINnzPLAh4QPFSy2hrU86Y?=
- =?us-ascii?Q?uxDGLoRdSTc6l0Fi4dHw8UmybqLDKqeTt5wbNctbknbOau0i4YxTRRis/5H0?=
- =?us-ascii?Q?LQajAHalD5P38GbXyAwOlHf1ovdtUwqvXFjBT8i0gYCmXsGQ/K84H+T2RLsk?=
- =?us-ascii?Q?fcWz9v0iDtlB7aq2nIEtuwpJBez8fNZ0L7Jh+7RnfI/V3YsBvQsAlBrMwCRr?=
- =?us-ascii?Q?/upC1I81eN6/5wROZQMPtkjDhsr7eUnA2OYkQAzhq0lyNW2LMy0POZWogcnt?=
- =?us-ascii?Q?Lx5ZBJbOOmA0+cEBa+E2wOhXNLF85kO3Geu5nYQC971DlRmZHLNLxgxrk63H?=
- =?us-ascii?Q?EFEVi8WygHxVcbquSRIV/aI320vt+QSk5E97J6DB8FsXjVIgeW5yl6j73dEj?=
- =?us-ascii?Q?EqjZQf64Zt4bW73ulFSchuHNjzp5/D1P3xU0ElKv/05hePmE9ZdImZU5lOOF?=
- =?us-ascii?Q?tTkxTjYSlxfvWl6ogswzFLAooXuYo8Rj1R1DPAyJVic3hGdXcVpV7k6TbqDJ?=
- =?us-ascii?Q?2bjAD07MEYVkFHHVbc9GRKZT+1sToxeP8i4Ck9D1MAEcAkqvG9rL33GB9SQn?=
- =?us-ascii?Q?oxUzPvZARL+pXw8mmpSZgX6GQ5eGLjzCECjd6IQtDV2mz8pH97NlVwMDiXUa?=
- =?us-ascii?Q?tlrxQi0EeoIDEvpXDlwMRlCwVbfHslSPfNh0jaXnTC1lTirNfONw+HnQuttg?=
- =?us-ascii?Q?ptQbv7Mqpt10uNArobhImFES5vz1H+udAq7rGgZU1j3J6iyV1iIPzW/3qVUD?=
- =?us-ascii?Q?29nklu5egVNQKMG7Gi9WNZMO3PtgCdfQG3oMzjrpJIJk6bjQ6cYdBMV8mPO+?=
- =?us-ascii?Q?hNKoXFzBfv6ZWy2t5m8y6j5NiyjtWuQz6lBggSVVpEyZiJoigmgFhXsNthQ4?=
- =?us-ascii?Q?NcV1iwcl2jZV3zDqNaXDVpt3/p21xsVnzjzQLcxD?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a718bc5-410f-408e-b897-08db9a33ab9f
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5966.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2023 06:24:51.8177 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xG5ZFwS7Vs+h40qUQmN5qlY93iYcRqiF7amolykr0nYiUMWD9SJXxNo9RZ3OsW06U0Eohaozw3xA3YYxxADuOg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7373
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 19/27] KVM: x86/mmu: Use page-track
- notifiers iff there are external users
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US, de-DE
+To: Mikhail Rudenko <mike.rudenko@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>
+References: <87v8dmr6ty.fsf@gmail.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+In-Reply-To: <87v8dmr6ty.fsf@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1691738096;
+ 4a3b0052; 
+X-HE-SMSGID: 1qULtd-0001jS-CA
+Subject: Re: [Intel-gfx] [REGRESSION] HDMI connector detection broken in 6.3
+ on Intel(R) Celeron(R) N3060 integrated graphics
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,43 +53,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Yan Zhao <yan.y.zhao@intel.com>
-Cc: Like Xu <like.xu.linux@gmail.com>, kvm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ben Gardon <bgardon@google.com>, Paolo
- Bonzini <pbonzini@redhat.com>, intel-gvt-dev@lists.freedesktop.org
+Cc: regressions@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 10, 2023 at 08:41:14AM -0700, Sean Christopherson wrote:
-> On Thu, Aug 10, 2023, Yan Zhao wrote:
-> > On Thu, Aug 10, 2023 at 07:21:03AM +0800, Yan Zhao wrote:
-> > > > Reading the value after acquiring mmu_lock ensures that both vCPUs will see whatever
-> > > > value "loses" the race, i.e. whatever written value is processed second ('Y' in the
-> > > > above sequence).
-> > > I suspect that vCPU0 may still generate a wrong SPTE if vCPU1 wrote 4
-> > > bytes while vCPU0 wrote 8 bytes, though the chances are very low.
-> > > 
-> > This could happen in below sequence:
-> > vCPU0 updates a PTE to AABBCCDD;
-> > vCPU1 updates a PTE to EEFFGGHH in two writes.
-> > (each character stands for a byte)
-> > 
-> > vCPU0                  vCPU1   
-> > write AABBCCDD
-> >                        write GGHH
-> >                        detect 4 bytes write and hold on sync
-> > sync SPTE w/ AABBGGHH
-> >                        write EEFF
-> >                        sync SPTE w/ EEFFGGHH
-> > 
-> > 
-> > Do you think it worth below serialization work?
+[CCing the i915 maintainers and the dri maintainers]
+
+Hi, Thorsten here, the Linux kernel's regression tracker.
+
+On 10.08.23 21:33, Mikhail Rudenko wrote:
+> The following is a copy an issue I posted to drm/i915 gitlab [1] two
+> months ago. I repost it to the mailing lists in hope that it will help
+> the right people pay attention to it.
+
+Thx for your report. Wonder why Dmitry (who authored a4e771729a51) or
+Thomas (who committed it) it didn't look into this, but maybe the i915
+devs didn't forward the report to them.
+
+Let's see if these mails help. Just wondering: does reverting
+a4e771729a51 from 6.5-rc5 or drm-tip help as well?
+
+BTW, there was an earlier report about a problem with a4e771729a51 that
+afaics was never addressed, but it might be unrelated.
+
+https://lore.kernel.org/all/20230328023129.3596968-1-zhouzongmin@kylinos.cn/
+
+Ciao, Thorsten
+
+> After kernel upgrade from 6.2.13 to 6.3 HDMI connector detection is
+> broken for me. Issue is 100% reproducible:
 > 
-> No, because I don't see any KVM bugs with the above sequence.  If the guest doesn't
-> ensure *all* writes from vCPU0 and vCPU1 are fully serialized, then it is completely
-> legal for hardware (KVM in this case) to consume AABBGGHH as a PTE.  The only thing
-> the guest shouldn't see is EEFFCCDD, but I don't see how that can happen.
-Ok, though still feel it's a little odd when a 1st cmpxch instruction on a GPA is still
-under emulation, a 2nd or 3rd... cmpxch instruction to the same GPA may have returned
-and they all succeeded :)
+> 1. Start system as usual with HDMI connected.
+> 2. Disconnect HDMI
+> 3. Connect HDMI back
+> 4. Get "no signal" on display, connector status in sysfs is disconnected
+> 
+> Curiously, running xrandr over ssh like
+> 
+>     ssh qnap251.local env DISPLAY=:0 xrandr
+> 
+> makes display come back. drm-tip tip is affected as well (last test
+> 2023-08-02).
+> 
+> Bisecting points at a4e771729a51 ("drm/probe_helper: sort out poll_running vs poll_enabled").
+> Reverting that commit on top of 6.3 fixes the issue for me.
+> 
+> System information:
+> * System architecture: x86_64
+> * Kernel version: 6.3.arch1
+> * Linux distribution: Arch Linux
+> * Machine: QNAP TS-251A, CPU: Intel(R) Celeron(R) CPU N3060 @ 1.60GHz
+> * Display connector: single HDMI display
+> * dmesg with debug information (captured on drm-tip, following above 4 steps): [2]
+> * xrandr output:
+> 
+>     Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 16384 x 16384
+>     DP-1 disconnected (normal left inverted right x axis y axis)
+>     HDMI-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 708mm x 398mm
+>        1920x1080     60.00*+  50.00    59.94    30.00    25.00    24.00    29.97    23.98
+>        1920x1080i    60.00    50.00    59.94
+>        1360x768      59.80
+>        1280x768      60.35
+>        1280x720      60.00    50.00    59.94
+>        1024x768      75.03    70.07    60.00
+>        832x624       74.55
+>        800x600       75.00    60.32
+>        720x576       50.00
+>        720x480       60.00    59.94
+>        640x480       75.00    60.00    59.94
+>        720x400       70.08
+>     DP-2 disconnected (normal left inverted right x axis y axis)
+>     HDMI-2 disconnected (normal left inverted right x axis y axis)```
+> 
+> I'm willing to provide additional information and/or test fixes.
+> 
+> [1] https://gitlab.freedesktop.org/drm/intel/-/issues/8451
+> [2] https://gitlab.freedesktop.org/drm/intel/uploads/fda7aff0b13ef20962856c2c7be51544/dmesg.txt
+> 
+> #regzbot introduced: a4e771729a51
+> 
+> --
+> Best regards,
+> Mikhail Rudenko
