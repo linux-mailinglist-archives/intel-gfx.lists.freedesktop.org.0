@@ -1,57 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D54B7787CE
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Aug 2023 09:04:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80ADF77883A
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Aug 2023 09:32:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEF0410E666;
-	Fri, 11 Aug 2023 07:04:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0376710E67C;
+	Fri, 11 Aug 2023 07:32:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC99610E666;
- Fri, 11 Aug 2023 07:04:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C1B010E67F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Aug 2023 07:32:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691737445; x=1723273445;
+ t=1691739141; x=1723275141;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=4Xr6cIZyo61wgyWwJ7i4qiC/z2WsGhfm+zwlnh5+rFU=;
- b=FZ32MGqJdzKLX52u78fkXFK1iA2+BrE1j6piw7tWYlRXpvJRPMGWXyO5
- VkZixl+B83M9a0mi7/ZSt/z0cvqHmP8CXGvA4NUNZl+YTWKteYRoYrzRZ
- HQ1dMS362tAgRsyhp5u/P6X5BTrM7LiHYiy+6aJQzzFedMhcrNfthM5vy
- 8Sus8N7r98EWNRwJqH7B9CVAMpV0PgiswcjL0SOHN6/9tENRhvnvj4neq
- xYyb73b5C9iz8F54f5QA0VPV+t8lG1eCdDvSMaxzVe0qme7l9YPj+xb4E
- wzxlRRISUGg0nWjAQ3sIToUEhLT7/clBWfSj3xW4Jd16cButKvkox8UX/ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="374382978"
-X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="374382978"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2023 00:04:04 -0700
+ message-id:mime-version:content-transfer-encoding;
+ bh=gmIYrvq4e1SU/sb4F4CgOENzWJHg6IuVCgbW7AaeJsQ=;
+ b=mZEHaZFDXsbYET99ZhAXl62s1AcM2XYfaMs20SRHc0GD/2P4+mPpz4Gr
+ VoB88+N29oPmDNc0VTakAorblrhWLlbenfvVYPoapkqNyenykzrtrJNhJ
+ VV0DNqkbrQBqdrmhye90bkBMA12JhHX6XyMapeq9R5lGyuev6OkT4fCE7
+ NviVJ+hzfhAq7n5CmBvTQ9nsL4STveJjWZ8yz8LDpmKzTXrudmUmFxHAF
+ JKtGtHYrj51vIdCSs8OeToYzS1Io13xSKiwx9k93/AxnXWyaxEGIcKn5G
+ xrxPqv8stnz0ALFePqxCmt1zgCRPoNB82J+Z53vNt2GLANTghLfvMKnJv A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="361756553"
+X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="361756553"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2023 00:32:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="767569891"
-X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="767569891"
-Received: from vboyerx-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.49.153])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2023 00:03:59 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="846705920"
+X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="846705920"
+Received: from unknown (HELO localhost) ([10.252.49.153])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2023 00:32:18 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thorsten Leemhuis <regressions@leemhuis.info>, Mikhail Rudenko
- <mike.rudenko@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>, Neil
- Armstrong <neil.armstrong@linaro.org>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>
-In-Reply-To: <f32b4636-969c-3b9e-6802-5991f511739e@leemhuis.info>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230810215750.3609161-15-matthew.d.roper@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <87v8dmr6ty.fsf@gmail.com>
- <f32b4636-969c-3b9e-6802-5991f511739e@leemhuis.info>
-Date: Fri, 11 Aug 2023 10:03:55 +0300
-Message-ID: <87o7jeqcv8.fsf@intel.com>
+References: <20230810215750.3609161-11-matthew.d.roper@intel.com>
+ <20230810215750.3609161-15-matthew.d.roper@intel.com>
+Date: Fri, 11 Aug 2023 10:32:14 +0300
+Message-ID: <87leeiqbk1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [REGRESSION] HDMI connector detection broken in 6.3
- on Intel(R) Celeron(R) N3060 integrated graphics
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v3 4/9] drm/i915: Eliminate
+ IS_MTL_GRAPHICS_STEP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,100 +60,445 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: regressions@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@gmail.com>
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 11 Aug 2023, Thorsten Leemhuis <regressions@leemhuis.info> wrote:
-> [CCing the i915 maintainers and the dri maintainers]
+On Thu, 10 Aug 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
+> Several workarounds are guarded by IS_MTL_GRAPHICS_STEP.  However none
+> of these workarounds are actually tied to MTL as a platform; they only
+> relate to the Xe_LPG graphics IP, regardless of what platform it appears
+> in.  At the moment MTL is the only platform that uses Xe_LPG with IP
+> versions 12.70 and 12.71, but we can't count on this being true in the
+> future.  Switch these to use a new IS_GFX_GT_IP_STEP() macro instead
+> that is purely based on IP version.  IS_GFX_GT_IP_STEP() is also
+> GT-based rather than device-based, which will help prevent mistakes
+> where we accidentally try to apply Xe_LPG graphics workarounds to the
+> Xe_LPM+ media GT and vice-versa.
 >
-> Hi, Thorsten here, the Linux kernel's regression tracker.
+> v2:
+>  - Switch to a more generic and shorter IS_GT_IP_STEP macro that can be
+>    used for both graphics and media IP (and any other kind of GTs that
+>    show up in the future).
+> v3:
+>  - Switch back to long-form IS_GFX_GT_IP_STEP macro.  (Jani)
+>  - Move macro to intel_gt.h.  (Andi)
 >
-> On 10.08.23 21:33, Mikhail Rudenko wrote:
->> The following is a copy an issue I posted to drm/i915 gitlab [1] two
->> months ago. I repost it to the mailing lists in hope that it will help
->> the right people pay attention to it.
+> Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  .../drm/i915/display/skl_universal_plane.c    |  5 +-
+>  drivers/gpu/drm/i915/gt/gen8_engine_cs.c      | 11 ++--
+>  drivers/gpu/drm/i915/gt/intel_gt.h            | 20 +++++++
+>  drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |  7 ++-
+>  drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 +-
+>  drivers/gpu/drm/i915/gt/intel_reset.c         |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c   | 52 ++++++++++---------
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  2 +-
+>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  2 +-
+>  drivers/gpu/drm/i915/i915_drv.h               |  4 --
+>  10 files changed, 64 insertions(+), 45 deletions(-)
 >
-> Thx for your report. Wonder why Dmitry (who authored a4e771729a51) or
-> Thomas (who committed it) it didn't look into this, but maybe the i915
-> devs didn't forward the report to them.
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
+/gpu/drm/i915/display/skl_universal_plane.c
+> index ffc15d278a39..d557ecd4e1eb 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -20,6 +20,7 @@
+>  #include "skl_scaler.h"
+>  #include "skl_universal_plane.h"
+>  #include "skl_watermark.h"
+> +#include "gt/intel_gt.h"
+>  #include "pxp/intel_pxp.h"
+>=20=20
+>  static const u32 skl_plane_formats[] =3D {
+> @@ -2169,8 +2170,8 @@ static bool skl_plane_has_rc_ccs(struct drm_i915_pr=
+ivate *i915,
+>  				 enum pipe pipe, enum plane_id plane_id)
+>  {
+>  	/* Wa_14017240301 */
+> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+> +	if (IS_GFX_GT_IP_STEP(to_gt(i915), IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> +	    IS_GFX_GT_IP_STEP(to_gt(i915), IP_VER(12, 71), STEP_A0, STEP_B0))
+>  		return false;
+>=20=20
+>  	/* Wa_22011186057 */
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i=
+915/gt/gen8_engine_cs.c
+> index a4ff55aa5e55..6187b25b67ab 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> @@ -4,9 +4,9 @@
+>   */
+>=20=20
+>  #include "gen8_engine_cs.h"
+> -#include "i915_drv.h"
+>  #include "intel_engine_regs.h"
+>  #include "intel_gpu_commands.h"
+> +#include "intel_gt.h"
+>  #include "intel_lrc.h"
+>  #include "intel_ring.h"
+>=20=20
+> @@ -226,8 +226,8 @@ u32 *gen12_emit_aux_table_inv(struct intel_engine_cs =
+*engine, u32 *cs)
+>  static int mtl_dummy_pipe_control(struct i915_request *rq)
+>  {
+>  	/* Wa_14016712196 */
+> -	if (IS_MTL_GRAPHICS_STEP(rq->i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(rq->i915, P, STEP_A0, STEP_B0)) {
+> +	if (IS_GFX_GT_IP_STEP(rq->engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0)=
+ ||
+> +	    IS_GFX_GT_IP_STEP(rq->engine->gt, IP_VER(12, 71), STEP_A0, STEP_B0)=
+) {
+>  		u32 *cs;
+>=20=20
+>  		/* dummy PIPE_CONTROL + depth flush */
+> @@ -799,6 +799,7 @@ u32 *gen12_emit_fini_breadcrumb_xcs(struct i915_reque=
+st *rq, u32 *cs)
+>  u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+>  {
+>  	struct drm_i915_private *i915 =3D rq->i915;
+> +	struct intel_gt *gt =3D rq->engine->gt;
+>  	u32 flags =3D (PIPE_CONTROL_CS_STALL |
+>  		     PIPE_CONTROL_TLB_INVALIDATE |
+>  		     PIPE_CONTROL_TILE_CACHE_FLUSH |
+> @@ -809,8 +810,8 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_reque=
+st *rq, u32 *cs)
+>  		     PIPE_CONTROL_FLUSH_ENABLE);
+>=20=20
+>  	/* Wa_14016712196 */
+> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+>  		/* dummy PIPE_CONTROL + depth flush */
+>  		cs =3D gen12_emit_pipe_control(cs, 0,
+>  					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt=
+/intel_gt.h
+> index 7649a46a36cc..de1bb04c864a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+> @@ -25,6 +25,26 @@ struct drm_printer;
+>  	GRAPHICS_VER_FULL((gt)->i915) >=3D (from) && \
+>  	GRAPHICS_VER_FULL((gt)->i915) <=3D (until)))
+>=20=20
+> +/*
+> + * Check that the GT is a graphics GT with a specific IP version and has
+> + * a stepping in the range [begin, fixed).  The lower stepping bound is
+> + * inclusive, the upper bound is exclusive (corresponding to the first h=
+ardware
+> + * stepping at which the workaround is no longer needed).  E.g.,
+> + *
+> + *    IS_GFX_GT_IP_STEP(GFX, IP_VER(12, 70), STEP_A0, STEP_B0)
+> + *    IS_GFX_GT_IP_STEP(GFX, IP_VER(12, 71), STEP_B1, STEP_FOREVER)
+> + *
+> + * "STEP_FOREVER" can be passed as the upper stepping bound for workarou=
+nds
+> + * that have no "fixed" version for the specified IP version.
+> + */
+> +#define IS_GFX_GT_IP_STEP(gt, ipver, begin, fixed) ( \
+> +	BUILD_BUG_ON_ZERO((ipver) < IP_VER(2, 0)) + \
+> +	BUILD_BUG_ON_ZERO((fixed) <=3D (begin)) + \
 
-It was [1], but never followed up on, and fell between the cracks. :(
+Why is =3D=3D not okay?
+
+> +	((gt)->type !=3D GT_MEDIA && \
+> +	 GRAPHICS_VER_FULL((gt)->i915) =3D=3D (ipver) && \
+> +	 INTEL_GRAPHICS_STEP((gt)->i915) >=3D (begin) && \
+> +	 INTEL_GRAPHICS_STEP((gt)->i915) < (fixed)))
+> +
+
+I'd keep using begin-end or from-until instead of begin-fixed. This
+check should really agnostic about issues that get fixed.
+
+We have macros for checking step ranges, e.g. IS_GRAPHICS_STEP(i915,
+since, util). They should be used instead of duplicating the
+condition. And in the previous patch you added IS_GFX_GT_IP_RANGE()
+which is also pretty much duplicated here?
+
+But the stepping check is really orthogonal from the other conditions. I
+was hoping to replace the IS_MTL_GRAPHICS_STEP() and friends macros with
+IS_METEORLAKE() && IS_GRAPHICS_STEP() combos, because there's nothing
+that requires us to keep adding new macros for these.
+
+Of course, with the IP check there's no need to add new platform
+specific macros... but is there a need to combine all these together?
 
 
 BR,
 Jani.
 
-[1] https://lore.kernel.org/r/ZGIraoocR1gLCWjZ@intel.com
 
-> Let's see if these mails help. Just wondering: does reverting
-> a4e771729a51 from 6.5-rc5 or drm-tip help as well?
->
-> BTW, there was an earlier report about a problem with a4e771729a51 that
-> afaics was never addressed, but it might be unrelated.
->
-> https://lore.kernel.org/all/20230328023129.3596968-1-zhouzongmin@kylinos.cn/
->
-> Ciao, Thorsten
->
->> After kernel upgrade from 6.2.13 to 6.3 HDMI connector detection is
->> broken for me. Issue is 100% reproducible:
->> 
->> 1. Start system as usual with HDMI connected.
->> 2. Disconnect HDMI
->> 3. Connect HDMI back
->> 4. Get "no signal" on display, connector status in sysfs is disconnected
->> 
->> Curiously, running xrandr over ssh like
->> 
->>     ssh qnap251.local env DISPLAY=:0 xrandr
->> 
->> makes display come back. drm-tip tip is affected as well (last test
->> 2023-08-02).
->> 
->> Bisecting points at a4e771729a51 ("drm/probe_helper: sort out poll_running vs poll_enabled").
->> Reverting that commit on top of 6.3 fixes the issue for me.
->> 
->> System information:
->> * System architecture: x86_64
->> * Kernel version: 6.3.arch1
->> * Linux distribution: Arch Linux
->> * Machine: QNAP TS-251A, CPU: Intel(R) Celeron(R) CPU N3060 @ 1.60GHz
->> * Display connector: single HDMI display
->> * dmesg with debug information (captured on drm-tip, following above 4 steps): [2]
->> * xrandr output:
->> 
->>     Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 16384 x 16384
->>     DP-1 disconnected (normal left inverted right x axis y axis)
->>     HDMI-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 708mm x 398mm
->>        1920x1080     60.00*+  50.00    59.94    30.00    25.00    24.00    29.97    23.98
->>        1920x1080i    60.00    50.00    59.94
->>        1360x768      59.80
->>        1280x768      60.35
->>        1280x720      60.00    50.00    59.94
->>        1024x768      75.03    70.07    60.00
->>        832x624       74.55
->>        800x600       75.00    60.32
->>        720x576       50.00
->>        720x480       60.00    59.94
->>        640x480       75.00    60.00    59.94
->>        720x400       70.08
->>     DP-2 disconnected (normal left inverted right x axis y axis)
->>     HDMI-2 disconnected (normal left inverted right x axis y axis)```
->> 
->> I'm willing to provide additional information and/or test fixes.
->> 
->> [1] https://gitlab.freedesktop.org/drm/intel/-/issues/8451
->> [2] https://gitlab.freedesktop.org/drm/intel/uploads/fda7aff0b13ef20962856c2c7be51544/dmesg.txt
->> 
->> #regzbot introduced: a4e771729a51
->> 
->> --
->> Best regards,
->> Mikhail Rudenko
 
--- 
+>  #define GT_TRACE(gt, fmt, ...) do {					\
+>  	const struct intel_gt *gt__ __maybe_unused =3D (gt);		\
+>  	GEM_TRACE("%s " fmt, dev_name(gt__->i915->drm.dev),		\
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i91=
+5/gt/intel_gt_mcr.c
+> index 0b414eae1683..11d181b1cc7a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+> @@ -3,8 +3,7 @@
+>   * Copyright =C2=A9 2022 Intel Corporation
+>   */
+>=20=20
+> -#include "i915_drv.h"
+> -
+> +#include "intel_gt.h"
+>  #include "intel_gt_mcr.h"
+>  #include "intel_gt_print.h"
+>  #include "intel_gt_regs.h"
+> @@ -166,8 +165,8 @@ void intel_gt_mcr_init(struct intel_gt *gt)
+>  		gt->steering_table[OADDRM] =3D xelpmp_oaddrm_steering_table;
+>  	} else if (GRAPHICS_VER_FULL(i915) >=3D IP_VER(12, 70)) {
+>  		/* Wa_14016747170 */
+> -		if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> -		    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+> +		if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> +		    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+>  			fuse =3D REG_FIELD_GET(MTL_GT_L3_EXC_MASK,
+>  					     intel_uncore_read(gt->uncore,
+>  							       MTL_GT_ACTIVITY_FACTOR));
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/g=
+t/intel_lrc.c
+> index 957d0aeb0c02..1f0768652446 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1375,8 +1375,8 @@ gen12_emit_indirect_ctx_rcs(const struct intel_cont=
+ext *ce, u32 *cs)
+>  	cs =3D gen12_emit_aux_table_inv(ce->engine, cs);
+>=20=20
+>  	/* Wa_16014892111 */
+> -	if (IS_MTL_GRAPHICS_STEP(ce->engine->i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(ce->engine->i915, P, STEP_A0, STEP_B0) ||
+> +	if (IS_GFX_GT_IP_STEP(ce->engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0)=
+ ||
+> +	    IS_GFX_GT_IP_STEP(ce->engine->gt, IP_VER(12, 71), STEP_A0, STEP_B0)=
+ ||
+>  	    IS_DG2(ce->engine->i915))
+>  		cs =3D dg2_emit_draw_watermark_setting(cs);
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915=
+/gt/intel_reset.c
+> index 1ff7b42521c9..fd6c22aeb670 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> @@ -1641,7 +1641,7 @@ bool intel_engine_reset_needs_wa_22011802037(struct=
+ intel_gt *gt)
+>  	if (GRAPHICS_VER(gt->i915) < 11)
+>  		return false;
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0))
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0))
+>  		return true;
+>=20=20
+>  	if (GRAPHICS_VER_FULL(gt->i915) >=3D IP_VER(12, 70))
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
+m/i915/gt/intel_workarounds.c
+> index 80d67e487b55..e2562b0e540d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -808,24 +808,24 @@ static void dg2_ctx_workarounds_init(struct intel_e=
+ngine_cs *engine,
+>  static void xelpg_ctx_gt_tuning_init(struct intel_engine_cs *engine,
+>  				     struct i915_wa_list *wal)
+>  {
+> -	struct drm_i915_private *i915 =3D engine->i915;
+> +	struct intel_gt *gt =3D engine->gt;
+>=20=20
+>  	dg2_ctx_gt_tuning_init(engine, wal);
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_B0, STEP_FOREVER) ||
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_B0, STEP_FOREVER))
+>  		wa_add(wal, DRAW_WATERMARK, VERT_WM_VAL, 0x3FF, 0, false);
+>  }
+>=20=20
+>  static void xelpg_ctx_workarounds_init(struct intel_engine_cs *engine,
+>  				       struct i915_wa_list *wal)
+>  {
+> -	struct drm_i915_private *i915 =3D engine->i915;
+> +	struct intel_gt *gt =3D engine->gt;
+>=20=20
+>  	xelpg_ctx_gt_tuning_init(engine, wal);
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+>  		/* Wa_14014947963 */
+>  		wa_masked_field_set(wal, VF_PREEMPTION,
+>  				    PREEMPTION_VERTEX_COUNT, 0x4000);
+> @@ -1747,8 +1747,8 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, stru=
+ct i915_wa_list *wal)
+>  	/* Wa_22016670082 */
+>  	wa_write_or(wal, GEN12_SQCNT1, GEN12_STRICT_RAR_ENABLE);
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0)) {
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+>  		/* Wa_14014830051 */
+>  		wa_mcr_write_clr(wal, SARB_CHICKEN1, COMP_CKN_IN);
+>=20=20
+> @@ -2425,16 +2425,17 @@ static void
+>  rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *=
+wal)
+>  {
+>  	struct drm_i915_private *i915 =3D engine->i915;
+> +	struct intel_gt *gt =3D engine->gt;
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+>  		/* Wa_22014600077 */
+>  		wa_mcr_masked_en(wal, GEN10_CACHE_MODE_SS,
+>  				 ENABLE_EU_COUNT_FOR_TDL_FLUSH);
+>  	}
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+>  	    IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+>  	    IS_DG2_G11(i915) || IS_DG2_G12(i915)) {
+>  		/* Wa_1509727124 */
+> @@ -2444,7 +2445,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, =
+struct i915_wa_list *wal)
+>=20=20
+>  	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+>  	    IS_DG2_G11(i915) || IS_DG2_G12(i915) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0)) {
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0)) {
+>  		/* Wa_22012856258 */
+>  		wa_mcr_masked_en(wal, GEN8_ROW_CHICKEN2,
+>  				 GEN12_DISABLE_READ_SUPPRESSION);
+> @@ -3009,8 +3010,9 @@ static void
+>  general_render_compute_wa_init(struct intel_engine_cs *engine, struct i9=
+15_wa_list *wal)
+>  {
+>  	struct drm_i915_private *i915 =3D engine->i915;
+> +	struct intel_gt *gt =3D engine->gt;
+>=20=20
+> -	add_render_compute_tuning_settings(engine->gt, wal);
+> +	add_render_compute_tuning_settings(gt, wal);
+>=20=20
+>  	if (GRAPHICS_VER(i915) >=3D 11) {
+>  		/* This is not a Wa (although referred to as
+> @@ -3031,13 +3033,13 @@ general_render_compute_wa_init(struct intel_engin=
+e_cs *engine, struct i915_wa_li
+>  				 GEN11_INDIRECT_STATE_BASE_ADDR_OVERRIDE);
+>  	}
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_B0, STEP_FOREVER) ||
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_B0, STEP_FOREVER))
+>  		/* Wa_14017856879 */
+>  		wa_mcr_masked_en(wal, GEN9_ROW_CHICKEN3, MTL_DISABLE_FIX_FOR_EOT_FLUSH=
+);
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+>  		/*
+>  		 * Wa_14017066071
+>  		 * Wa_14017654203
+> @@ -3045,13 +3047,13 @@ general_render_compute_wa_init(struct intel_engin=
+e_cs *engine, struct i915_wa_li
+>  		wa_mcr_masked_en(wal, GEN10_SAMPLER_MODE,
+>  				 MTL_DISABLE_SAMPLER_SC_OOO);
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+>  		/* Wa_22015279794 */
+>  		wa_mcr_masked_en(wal, GEN10_CACHE_MODE_SS,
+>  				 DISABLE_PREFETCH_INTO_IC);
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+>  	    IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+>  	    IS_DG2_G11(i915) || IS_DG2_G12(i915)) {
+>  		/* Wa_22013037850 */
+> @@ -3059,16 +3061,16 @@ general_render_compute_wa_init(struct intel_engin=
+e_cs *engine, struct i915_wa_li
+>  				DISABLE_128B_EVICTION_COMMAND_UDW);
+>  	}
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+>  	    IS_PONTEVECCHIO(i915) ||
+>  	    IS_DG2(i915)) {
+>  		/* Wa_22014226127 */
+>  		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0, DISABLE_D8_D16_COASLESCE);
+>  	}
+>=20=20
+> -	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+> -	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> +	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+>  	    IS_DG2(i915)) {
+>  		/* Wa_18017747507 */
+>  		wa_masked_en(wal, VFG_PREEMPTION_CHICKEN, POLYGON_TRIFAN_LINELOOP_DISA=
+BLE);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i91=
+5/gt/uc/intel_guc.c
+> index 22649831d3bd..6687cdf0272b 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> @@ -277,7 +277,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+>  		flags |=3D GUC_WA_GAM_CREDITS;
+>=20=20
+>  	/* Wa_14014475959 */
+> -	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+> +	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>  	    IS_DG2(gt->i915))
+>  		flags |=3D GUC_WA_HOLD_CCS_SWITCHOUT;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/=
+gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 1bd5d8f7c40b..b2150a962f69 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -4265,7 +4265,7 @@ static void guc_default_vfuncs(struct intel_engine_=
+cs *engine)
+>=20=20
+>  	/* Wa_14014475959:dg2 */
+>  	if (engine->class =3D=3D COMPUTE_CLASS)
+> -		if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+> +		if (IS_GFX_GT_IP_STEP(engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+>  		    IS_DG2(engine->i915))
+>  			engine->flags |=3D I915_ENGINE_USES_WA_HOLD_CCS_SWITCHOUT;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index 7a8ce7239bc9..e0e0493d6c1f 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -658,10 +658,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  #define IS_XEHPSDV_GRAPHICS_STEP(__i915, since, until) \
+>  	(IS_XEHPSDV(__i915) && IS_GRAPHICS_STEP(__i915, since, until))
+>=20=20
+> -#define IS_MTL_GRAPHICS_STEP(__i915, variant, since, until) \
+> -	(IS_SUBPLATFORM(__i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_##variant) =
+&& \
+> -	 IS_GRAPHICS_STEP(__i915, since, until))
+> -
+>  #define IS_MTL_DISPLAY_STEP(__i915, since, until) \
+>  	(IS_METEORLAKE(__i915) && \
+>  	 IS_DISPLAY_STEP(__i915, since, until))
+
+--=20
 Jani Nikula, Intel Open Source Graphics Center
