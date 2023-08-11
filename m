@@ -1,53 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E188778996
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Aug 2023 11:19:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B60BC778C69
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Aug 2023 12:50:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AF0110E08F;
-	Fri, 11 Aug 2023 09:18:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB7A110E68C;
+	Fri, 11 Aug 2023 10:50:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE0E510E08F
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Aug 2023 09:18:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 783BA10E68C;
+ Fri, 11 Aug 2023 10:50:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691745537; x=1723281537;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=d/Ed9izjYiyoLNIKbiwFaRrTelfBq1OuZkzRkNPy+uE=;
- b=QyN3XPXvTxHQZdpWZBpLWl8YHoEiqAVNwn9kt7KRBO2wLfjI4Ry/hPj1
- 6fkXhkKG5RCjuZ2mLxfcL4/5zhFOsGfzZQNKw3z9toHyRz5CclK/YICKH
- 9nxttu9o6LTEbhyP/fNtg3g8+cQp7x95A0NXn8mD8uz3U5BwXrr8REAVe
- cucyYLjMJy1LHDHtL6UmOz33T0crK+7+DRDU21uEMh8qrAGhMz0nOwGV7
- P2Z/GOHjXdLFTAOL6S3ZOWVGtveuWCXoaZ6CGe6orE2xthQQNYlT/1iVW
- CdjUmQfO3XYZm3GKilVtaoLmra+MEHSr4zDRHY+3+n6Z4MkrpVM2Sqmv1 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="374406102"
-X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="374406102"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2023 02:18:48 -0700
+ t=1691751003; x=1723287003;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=ifufF78M3M2uW5F9/tsLVe2GOAT8xsQ0mEqWVDoeA6U=;
+ b=SxqAqBhXhhtV6LWg7lWX1RBeebzDrsdhG2aBrEJa25u8dtrZ0E86BW80
+ VTKLtB0oFoNZkME0gHbIxeZvbBe4aTlEhFxo4WDixKohFtWQXLGmQ4N9d
+ Xn/FZJxWCsa1ScOhDvL3if1jlKnyLU//DNwkm7dQIAP4R/xbl42virySd
+ X8Xjlm8j2tJHQ5iFsl7HOiVf4qQjHv9ZN9Gxh5W6V6mtCUshFo/1UaLuF
+ LfB5tmT/el6WoE3ByTCPY16EfzuGQZA6ViMnntx/kLjGowLVjemjopQzJ
+ dMgC30a0byhL6yaoJiDHy8GgmLfQn7kZgDUARIFpTbFWptpAXRaPYJg9e Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="351970589"
+X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="351970589"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2023 03:50:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="726196727"
-X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="726196727"
-Received: from unknown (HELO localhost) ([10.252.49.153])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2023 02:18:47 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <ZLjqCK7Elh661Da0@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230719104833.25366-1-stanislav.lisovskiy@intel.com>
- <ZLjqCK7Elh661Da0@intel.com>
-Date: Fri, 11 Aug 2023 12:18:42 +0300
-Message-ID: <87fs4qq6ml.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="906400616"
+X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="906400616"
+Received: from msawye3x-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.2.193])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2023 03:48:14 -0700
+Date: Fri, 11 Aug 2023 13:47:57 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <ZNYR3bKFquGc7u9w@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Start using plane scale factor
- for relative data rate
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,59 +55,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 20 Jul 2023, "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com> wrote:
-> On Wed, Jul 19, 2023 at 01:48:33PM +0300, Stanislav Lisovskiy wrote:
->> BSpec clearly instructs us to use plane scale factor when calculating
->> relative data rate to be used when allocating DDB blocks for each plane.
->> For some reason we use scale factor for data_rate calculation, which is
->> used for BW calculations, however we are not using it for DDB calculations.
->> So lets fix it as described in BSpec 68907.
->> 
->> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_atomic_plane.c | 7 ++++++-
->>  1 file changed, 6 insertions(+), 1 deletion(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> index 7d9578ebae556..60a492e186ab8 100644
->> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> @@ -212,6 +212,7 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
->>  	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
->>  	const struct drm_framebuffer *fb = plane_state->hw.fb;
->>  	int width, height;
->> +	unsigned int rel_data_rate;
->>  
->>  	if (plane->id == PLANE_CURSOR)
->>  		return 0;
->> @@ -241,7 +242,11 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
->>  		height /= 2;
->>  	}
->>  
->> -	return width * height * fb->format->cpp[color_plane];
->> +	rel_data_rate = width * height * fb->format->cpp[color_plane];
->> +
->> +	return intel_adjusted_rate(&plane_state->uapi.src,
->> +				   &plane_state->uapi.dst,
->> +				   rel_data_rate);
->>  }
->>  
->>  int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
->> -- 
->> 2.37.3
->> 
->
-> IGT failures are irrelevant here(test is aborted due to some timeout issue).
+Hi Dave & Daniel,
 
-Going through old mails... I think errors like that still warrant a
-retest before merging, because it can mask real issues that now won't
-get tested.
+Here's the final drm-intel-gt-next PR for v6.6. Not too many patches
+as the previous PR was later than usual.
 
-BR,
-Jani.
+Just one more workaround fix for MTL, some object coherency
+refactoring and selftest fix.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Note that there is a backmerge of drm-next[1], too.
+
+Regards, Joonas
+
+[1] As prep for https://patchwork.freedesktop.org/series/121735/ but the
+series started failing CI after rebasing and continues to be investigated
+so not landing here yet.
+
+***
+
+drm-intel-gt-next-2023-08-11:
+
+Cross-subsystem Changes:
+
+- Backmerge of drm-next
+
+Driver Changes:
+
+- Apply workaround 22016122933 correctly (Jonathan, Matt R)
+
+- Simplify shmem_create_from_object map_type selection (Jonathan,
+  Tvrtko)
+- Make i915_coherent_map_type GT-centric (Jonathan, Matt R)
+
+- Selftest improvements (John)
+
+The following changes since commit d9aa1da9a8cfb0387eb5703c15bd1f54421460ac:
+
+  Merge tag 'drm-intel-gt-next-2023-08-04' of git://anongit.freedesktop.org/drm/drm-intel into drm-next (2023-08-07 13:49:25 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-gt-next-2023-08-11
+
+for you to fetch changes up to 788568fad4015406fa84fc86cefbef7c470c7c1f:
+
+  drm/i915/guc: Fix potential null pointer deref in GuC 'steal id' test (2023-08-10 16:02:01 -0700)
+
+----------------------------------------------------------------
+Cross-subsystem Changes:
+
+- Backmerge of drm-next
+
+Driver Changes:
+
+- Apply workaround 22016122933 correctly (Jonathan, Matt R)
+
+- Simplify shmem_create_from_object map_type selection (Jonathan,
+  Tvrtko)
+- Make i915_coherent_map_type GT-centric (Jonathan, Matt R)
+
+- Selftest improvements (John)
+
+----------------------------------------------------------------
+John Harrison (1):
+      drm/i915/guc: Fix potential null pointer deref in GuC 'steal id' test
+
+Jonathan Cavitt (3):
+      drm/i915/gt: Simplify shmem_create_from_object map_type selection
+      drm/i915: Make i915_coherent_map_type GT-centric
+      drm/i915/gt: Apply workaround 22016122933 correctly
+
+Joonas Lahtinen (1):
+      Merge drm/drm-next into drm-intel-gt-next
+
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c         |  3 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h            |  4 ----
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c             | 15 ---------------
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c | 12 ++++++------
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c             |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c                    | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt.h                    | 10 ++++++++++
+ drivers/gpu/drm/i915/gt/intel_gtt.c                   |  4 ++--
+ drivers/gpu/drm/i915/gt/intel_lrc.c                   | 13 +++++++------
+ drivers/gpu/drm/i915/gt/intel_ring.c                  |  3 ++-
+ drivers/gpu/drm/i915/gt/selftest_context.c            |  5 +++--
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c          |  4 ++--
+ drivers/gpu/drm/i915/gt/selftest_lrc.c                |  6 +++---
+ drivers/gpu/drm/i915/gt/shmem_utils.c                 |  3 +--
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c             |  7 +------
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c                | 11 ++++++-----
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c             |  4 ----
+ drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c             |  3 +--
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c              |  3 ++-
+ drivers/gpu/drm/i915/gt/uc/selftest_guc.c             |  6 +++---
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c            |  3 ++-
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c              |  5 ++++-
+ drivers/gpu/drm/i915/selftests/igt_spinner.c          |  2 +-
+ 23 files changed, 75 insertions(+), 69 deletions(-)
