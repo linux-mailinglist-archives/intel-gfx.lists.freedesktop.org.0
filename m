@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E13377B97C
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Aug 2023 15:13:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6926677B97D
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Aug 2023 15:13:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA3910E1F3;
-	Mon, 14 Aug 2023 13:13:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5944A10E1EB;
+	Mon, 14 Aug 2023 13:13:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B843710E1F3
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Aug 2023 13:13:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB79310E1EB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Aug 2023 13:13:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692018829; x=1723554829;
+ t=1692018832; x=1723554832;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3Yp2hlq2ZXuC+IUKK9ilRLw4VF5vxAFnAmwgLzpSa1k=;
- b=F6mFzNVe3OlFFzhjQRvjgapdO1wap5BNQPkrg6+rH/dNQuuwA1d7QLV+
- usjXnlDYe6d44TCbyCG7D3Cyk4QJkuaUYy8IHBGP7My3mkBlnIOXYIz+u
- 1Jp5ibFi+HNAH0+MmelVweW0olR89SLfGF/phi7lIcXvlGL9wutpA2PSI
- 8QlqXmMFShIUWgIy31zB0nIBf2XK97TOOOwm25juRJDmPvBc4iRWhNcdx
- qf40FUjtgEhM5mGJzD+YVNgNNx7A7GENkVmWfI1s2Ns5000cXR+shY0Gy
- T98frSb54ZNBuyW3PX08Eh89DTiHtEyGqQYqKyhL7H6iVLcjQS2qFLDzz A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="374805419"
-X-IronPort-AV: E=Sophos;i="6.01,172,1684825200"; d="scan'208";a="374805419"
+ bh=DfDR7D+pgSaim5L0o339tGbYopa7MyAaJdfIFLxS23I=;
+ b=cloyJTZVi1jV1ouGiveue4kLtS8pd0ORmgkPy4ANSu58YG7V6JkDL7rU
+ DKAJGnY6nyLcYTcROzR3+JSQbacdQRf74xHjuOE5z3k2JmTJnBZyo1BxA
+ R5R3LSLOytVk/1DQmUwlslDzPnH7SCQZLmJbKS7Z+nMm5EWzRnvBB8b3z
+ v5dr943fym8nG7HPt+Kk0wfJAYPsMpxetZDO3QytnaX8AB+04kGNhODOH
+ 2dMGTKtlfS3069y0P6feo8FVWqrl0fNPhK8GOTZ4kK/UIQ88XOL83ubun
+ V+UhSGrc6wY4AmvB3ytvya4AeY+IOthFUZWymry+VN6N5FdFVKhZ9hbe+ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="374805433"
+X-IronPort-AV: E=Sophos;i="6.01,172,1684825200"; d="scan'208";a="374805433"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2023 06:13:49 -0700
+ 14 Aug 2023 06:13:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="907234137"
-X-IronPort-AV: E=Sophos;i="6.01,172,1684825200"; d="scan'208";a="907234137"
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="907234151"
+X-IronPort-AV: E=Sophos;i="6.01,172,1684825200"; d="scan'208";a="907234151"
 Received: from svikra2x-mobl.gar.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.209.145.4])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2023 06:13:48 -0700
+ 14 Aug 2023 06:13:49 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Aug 2023 10:13:28 -0300
-Message-ID: <20230814131331.69516-2-gustavo.sousa@intel.com>
+Date: Mon, 14 Aug 2023 10:13:29 -0300
+Message-ID: <20230814131331.69516-3-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230814131331.69516-1-gustavo.sousa@intel.com>
 References: <20230814131331.69516-1-gustavo.sousa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/4] drm/i915/cx0: Add
- intel_cx0_get_owned_lane_mask()
+Subject: [Intel-gfx] [PATCH v2 2/4] drm/i915: Simplify
+ intel_cx0_program_phy_lane() with loop
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,90 +63,123 @@ Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are more parts of C10/C20 programming that need to take owned
-lanes into account. Define the function intel_cx0_get_owned_lane_mask()
-and use it. There will be new users of that function in upcoming
-changes.
+It is possible to generalize the "disable" value for the transmitters to
+be a bit mask based on the port width and the port reversal boolean,
+with a small exception for DP-alt mode with "x1" port width.
+
+Simplify the code by using such a mask and a for-loop instead of using
+switch-case statements.
+
+v2:
+  - Use (i < 2) instead of (i / 2 == 0) for PHY lane mask selection.
+    (Jani)
 
 BSpec: 64539
-Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 44 ++++++++++++--------
- 1 file changed, 27 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 79 +++++---------------
+ 1 file changed, 20 insertions(+), 59 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 1b00ef2c6185..b903ceb0b56a 100644
+index b903ceb0b56a..2b112ed78943 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -46,6 +46,22 @@ static int lane_mask_to_lane(u8 lane_mask)
- 	return ilog2(lane_mask);
- }
- 
-+static u8 intel_cx0_get_owned_lane_mask(struct drm_i915_private *i915,
-+					struct intel_encoder *encoder)
-+{
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+
-+	if (!intel_tc_port_in_dp_alt_mode(dig_port))
-+		return INTEL_CX0_BOTH_LANES;
-+
-+	/*
-+	 * In DP-alt with pin assignment D, only PHY lane 0 is owned
-+	 * by display and lane 1 is owned by USB.
-+	 */
-+	return intel_tc_port_fia_max_lane_count(dig_port) > 2
-+		? INTEL_CX0_BOTH_LANES : INTEL_CX0_LANE0;
-+}
-+
- static void
- assert_dc_off(struct drm_i915_private *i915)
+@@ -2604,7 +2604,8 @@ static void intel_cx0_program_phy_lane(struct drm_i915_private *i915,
+ 				       struct intel_encoder *encoder, int lane_count,
+ 				       bool lane_reversal)
  {
-@@ -2534,17 +2550,15 @@ static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915,
- {
+-	u8 l0t1, l0t2, l1t1, l1t2;
++	int i;
++	u8 disables;
+ 	bool dp_alt_mode = intel_tc_port_in_dp_alt_mode(enc_to_dig_port(encoder));
  	enum port port = encoder->port;
- 	enum phy phy = intel_port_to_phy(i915, port);
--	bool both_lanes =  intel_tc_port_fia_max_lane_count(enc_to_dig_port(encoder)) > 2;
--	u8 lane_mask = lane_reversal ? INTEL_CX0_LANE1 :
--				  INTEL_CX0_LANE0;
--	u32 lane_pipe_reset = both_lanes ?
--			      XELPDP_LANE_PIPE_RESET(0) |
--			      XELPDP_LANE_PIPE_RESET(1) :
--			      XELPDP_LANE_PIPE_RESET(0);
--	u32 lane_phy_current_status = both_lanes ?
--				      XELPDP_LANE_PHY_CURRENT_STATUS(0) |
--				      XELPDP_LANE_PHY_CURRENT_STATUS(1) :
--				      XELPDP_LANE_PHY_CURRENT_STATUS(0);
-+	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(i915, encoder);
-+	u8 lane_mask = lane_reversal ? INTEL_CX0_LANE1 : INTEL_CX0_LANE0;
-+	u32 lane_pipe_reset = owned_lane_mask == INTEL_CX0_BOTH_LANES
-+				? XELPDP_LANE_PIPE_RESET(0) | XELPDP_LANE_PIPE_RESET(1)
-+				: XELPDP_LANE_PIPE_RESET(0);
-+	u32 lane_phy_current_status = owned_lane_mask == INTEL_CX0_BOTH_LANES
-+					? (XELPDP_LANE_PHY_CURRENT_STATUS(0) |
-+					   XELPDP_LANE_PHY_CURRENT_STATUS(1))
-+					: XELPDP_LANE_PHY_CURRENT_STATUS(0);
  
- 	if (__intel_de_wait_for_register(i915, XELPDP_PORT_BUF_CTL1(port),
- 					 XELPDP_PORT_BUF_SOC_PHY_READY,
-@@ -2564,15 +2578,11 @@ static void intel_cx0_phy_lane_reset(struct drm_i915_private *i915,
- 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+@@ -2614,66 +2615,26 @@ static void intel_cx0_program_phy_lane(struct drm_i915_private *i915,
+ 			      C10_VDR_CTRL_MSGBUS_ACCESS,
+ 			      MB_WRITE_COMMITTED);
  
- 	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(port),
--		     intel_cx0_get_pclk_refclk_request(both_lanes ?
--						       INTEL_CX0_BOTH_LANES :
--						       INTEL_CX0_LANE0),
-+		     intel_cx0_get_pclk_refclk_request(owned_lane_mask),
- 		     intel_cx0_get_pclk_refclk_request(lane_mask));
+-	/* TODO: DP-alt MFD case where only one PHY lane should be programmed. */
+-	l0t1 = intel_cx0_read(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(1, 2));
+-	l0t2 = intel_cx0_read(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(2, 2));
+-	l1t1 = intel_cx0_read(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(1, 2));
+-	l1t2 = intel_cx0_read(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(2, 2));
+-
+-	l0t1 |= CONTROL2_DISABLE_SINGLE_TX;
+-	l0t2 |= CONTROL2_DISABLE_SINGLE_TX;
+-	l1t1 |= CONTROL2_DISABLE_SINGLE_TX;
+-	l1t2 |= CONTROL2_DISABLE_SINGLE_TX;
+-
+-	if (lane_reversal) {
+-		switch (lane_count) {
+-		case 4:
+-			l0t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
+-			fallthrough;
+-		case 3:
+-			l0t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
+-			fallthrough;
+-		case 2:
+-			l1t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
+-			fallthrough;
+-		case 1:
+-			l1t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
+-			break;
+-		default:
+-			MISSING_CASE(lane_count);
+-		}
+-	} else {
+-		switch (lane_count) {
+-		case 4:
+-			l1t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
+-			fallthrough;
+-		case 3:
+-			l1t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
+-			fallthrough;
+-		case 2:
+-			l0t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
+-			l0t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
+-			break;
+-		case 1:
+-			if (dp_alt_mode)
+-				l0t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
+-			else
+-				l0t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
+-			break;
+-		default:
+-			MISSING_CASE(lane_count);
+-		}
++	if (lane_reversal)
++		disables = REG_GENMASK8(3, 0) >> lane_count;
++	else
++		disables = REG_GENMASK8(3, 0) << lane_count;
++
++	if (dp_alt_mode && lane_count == 1) {
++		disables &= ~REG_GENMASK8(1, 0);
++		disables |= REG_FIELD_PREP8(REG_GENMASK8(1, 0), 0x1);
+ 	}
  
- 	if (__intel_de_wait_for_register(i915, XELPDP_PORT_CLOCK_CTL(port),
--					 intel_cx0_get_pclk_refclk_ack(both_lanes ?
--								       INTEL_CX0_BOTH_LANES :
--								       INTEL_CX0_LANE0),
-+					 intel_cx0_get_pclk_refclk_ack(owned_lane_mask),
- 					 intel_cx0_get_pclk_refclk_ack(lane_mask),
- 					 XELPDP_REFCLK_ENABLE_TIMEOUT_US, 0, NULL))
- 		drm_warn(&i915->drm, "PHY %c failed to request refclk after %dus.\n",
+-	/* disable MLs */
+-	intel_cx0_write(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(1, 2),
+-			l0t1, MB_WRITE_COMMITTED);
+-	intel_cx0_write(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(2, 2),
+-			l0t2, MB_WRITE_COMMITTED);
+-	intel_cx0_write(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(1, 2),
+-			l1t1, MB_WRITE_COMMITTED);
+-	intel_cx0_write(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(2, 2),
+-			l1t2, MB_WRITE_COMMITTED);
++	/* TODO: DP-alt MFD case where only one PHY lane should be programmed. */
++	for (i = 0; i < 4; i++) {
++		int tx = i % 2 + 1;
++		u8 lane_mask = i < 2 ? INTEL_CX0_LANE0 : INTEL_CX0_LANE1;
++
++		intel_cx0_rmw(i915, port, lane_mask, PHY_CX0_TX_CONTROL(tx, 2),
++			      CONTROL2_DISABLE_SINGLE_TX,
++			      disables & BIT(i) ? CONTROL2_DISABLE_SINGLE_TX : 0,
++			      MB_WRITE_COMMITTED);
++	}
+ 
+ 	if (intel_is_c10phy(i915, intel_port_to_phy(i915, port)))
+ 		intel_cx0_rmw(i915, port, INTEL_CX0_BOTH_LANES,
 -- 
 2.41.0
 
