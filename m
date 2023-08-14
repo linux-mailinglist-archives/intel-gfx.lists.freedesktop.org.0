@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ECB577C13E
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Aug 2023 22:06:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B2D177C144
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Aug 2023 22:06:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF98110E0D0;
-	Mon, 14 Aug 2023 20:06:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 719F110E227;
+	Mon, 14 Aug 2023 20:06:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3D6F10E0DE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC7E510E0D0
  for <intel-gfx@lists.freedesktop.org>; Mon, 14 Aug 2023 20:06:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1692043601; x=1723579601;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yiM7lmLw4CbY/zk8o/AGMdpYEH6oTgXsF0d8VBLoz1o=;
- b=Uya38CQrXsaNNoxBNWCvwKlqGbCq0Jq9cZZx9jjHgCtfuXXorfqJp6TL
- h4xsva0Ei0G6rB1w8VLrONz7j5Agw6HBCXyqc70j1hE6J744JgNQH+H72
- 2e12drir8vLi7ChPH3ByaJxlTcUfLilSyn2A7WhNpox1OFR7nQTrTYK2N
- UIDeVrhlS0Q6tLR/aIze5Pt9M+gHyFH60T4RbZIbquWPKMM0aQIYEW9+R
- lRyLN6/UXV4UEw1BZlNeLTUIuYtzGhQ0Uszabil5T9f6e76fyp9VVgkEg
- 33fVhYbKGzJNn3WrZ3b7WwW580sz9zo2vanE7hBwGMOtO4rh5uGrsPy5O w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="369602869"
-X-IronPort-AV: E=Sophos;i="6.01,173,1684825200"; d="scan'208";a="369602869"
+ bh=ZLrmTfw9tuUdG7C0nYdOj2wxw95cjm8NgAZCT+BnnK0=;
+ b=oLEeZVBaMiBDDSmvjWBPD9070Oc25BJWXuqZ/vZOY2cECXExVLwAlo6t
+ yVUsYZ4VGaVQcmgg9Si69DzhpE3HI1xnHeTtn+XfnjXvFBVTliLyug1VR
+ illKrmdE5loVY2l0ATs8t5ShCN0LKIyL6Z256c4rGNgkfxfYunyB8Injl
+ dNsp8eS8OHwCvVPMudTmOcDfwnRYHVwhXy2hqEKofpU9ZqJoLcTEGcadE
+ A6ToDHm7xhJXasgjsa1V4BhGpxPukEYAi4yosKjw6ItNebIAJhJfadr9V
+ 5YmvWN5VYqvis5t723Jb09GXmXHUm+Q35dUaJKN/fdRr61PPo/UYllPXl w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="369602871"
+X-IronPort-AV: E=Sophos;i="6.01,173,1684825200"; d="scan'208";a="369602871"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2023 13:06:40 -0700
+ 14 Aug 2023 13:06:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="683420486"
-X-IronPort-AV: E=Sophos;i="6.01,173,1684825200"; d="scan'208";a="683420486"
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="683420489"
+X-IronPort-AV: E=Sophos;i="6.01,173,1684825200"; d="scan'208";a="683420489"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Aug 2023 13:06:40 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Aug 2023 13:06:36 -0700
-Message-ID: <20230814200632.56105-14-matthew.d.roper@intel.com>
+Date: Mon, 14 Aug 2023 13:06:37 -0700
+Message-ID: <20230814200632.56105-15-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230814200632.56105-11-matthew.d.roper@intel.com>
 References: <20230814200632.56105-11-matthew.d.roper@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 3/9] drm/i915/xelpg: Call Xe_LPG workaround
- functions based on IP version
+Subject: [Intel-gfx] [PATCH v4 4/9] drm/i915: Eliminate IS_MTL_GRAPHICS_STEP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,174 +62,382 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Although some of our Xe_LPG workarounds were already being applied based
-on IP version correctly, others were matching on MTL as a base platform,
-which is incorrect.  Although MTL is the only platform right now that
-uses Xe_LPG IP, this may not always be the case.  If a future platform
-re-uses this graphics IP, the same workarounds should be applied, even
-if it isn't a "MTL" platform.
-
-We were also incorrectly applying Xe_LPG workarounds/tuning to the
-Xe_LPM+ media IP in one or two places; we should make sure that we don't
-try to apply graphics workarounds to the media GT and vice versa where
-they don't belong.  A new helper macro IS_GT_IP_RANGE() is added to help
-ensure this is handled properly -- it checks that the GT matches the IP
-type being tested as well as the IP version falling in the proper range.
-
-Note that many of the stepping-based workarounds are still incorrectly
-checking for a MTL base platform; that will be remedied in a later
-patch.
+Several workarounds are guarded by IS_MTL_GRAPHICS_STEP.  However none
+of these workarounds are actually tied to MTL as a platform; they only
+relate to the Xe_LPG graphics IP, regardless of what platform it appears
+in.  At the moment MTL is the only platform that uses Xe_LPG with IP
+versions 12.70 and 12.71, but we can't count on this being true in the
+future.  Switch these to use a new IS_GFX_GT_IP_STEP() macro instead
+that is purely based on IP version.  IS_GFX_GT_IP_STEP() is also
+GT-based rather than device-based, which will help prevent mistakes
+where we accidentally try to apply Xe_LPG graphics workarounds to the
+Xe_LPM+ media GT and vice-versa.
 
 v2:
- - Rework macro into a slightly more generic IS_GT_IP_RANGE() that can
-   be used for either GFX or MEDIA checks.
-
+ - Switch to a more generic and shorter IS_GT_IP_STEP macro that can be
+   used for both graphics and media IP (and any other kind of GTs that
+   show up in the future).
 v3:
- - Switch back to separate macros for gfx and media.  (Jani)
+ - Switch back to long-form IS_GFX_GT_IP_STEP macro.  (Jani)
  - Move macro to intel_gt.h.  (Andi)
+v4:
+ - Build IS_GFX_GT_IP_STEP on top of IS_GFX_GT_IP_RANGE and
+   IS_GRAPHICS_STEP building blocks and name the parameters from/until
+   rather than begin/fixed.  (Jani)
+ - Fix usage examples in comment.
 
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.h          | 11 ++++++
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 38 +++++++++++----------
- 2 files changed, 31 insertions(+), 18 deletions(-)
+ .../drm/i915/display/skl_universal_plane.c    |  5 +-
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      | 11 ++--
+ drivers/gpu/drm/i915/gt/intel_gt.h            | 17 ++++++
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |  7 ++-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         |  2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 52 ++++++++++---------
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  2 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  4 --
+ 10 files changed, 61 insertions(+), 45 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index ffc15d278a39..d557ecd4e1eb 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -20,6 +20,7 @@
+ #include "skl_scaler.h"
+ #include "skl_universal_plane.h"
+ #include "skl_watermark.h"
++#include "gt/intel_gt.h"
+ #include "pxp/intel_pxp.h"
+ 
+ static const u32 skl_plane_formats[] = {
+@@ -2169,8 +2170,8 @@ static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
+ 				 enum pipe pipe, enum plane_id plane_id)
+ {
+ 	/* Wa_14017240301 */
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++	if (IS_GFX_GT_IP_STEP(to_gt(i915), IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(to_gt(i915), IP_VER(12, 71), STEP_A0, STEP_B0))
+ 		return false;
+ 
+ 	/* Wa_22011186057 */
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index a4ff55aa5e55..6187b25b67ab 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -4,9 +4,9 @@
+  */
+ 
+ #include "gen8_engine_cs.h"
+-#include "i915_drv.h"
+ #include "intel_engine_regs.h"
+ #include "intel_gpu_commands.h"
++#include "intel_gt.h"
+ #include "intel_lrc.h"
+ #include "intel_ring.h"
+ 
+@@ -226,8 +226,8 @@ u32 *gen12_emit_aux_table_inv(struct intel_engine_cs *engine, u32 *cs)
+ static int mtl_dummy_pipe_control(struct i915_request *rq)
+ {
+ 	/* Wa_14016712196 */
+-	if (IS_MTL_GRAPHICS_STEP(rq->i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(rq->i915, P, STEP_A0, STEP_B0)) {
++	if (IS_GFX_GT_IP_STEP(rq->engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(rq->engine->gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+ 		u32 *cs;
+ 
+ 		/* dummy PIPE_CONTROL + depth flush */
+@@ -799,6 +799,7 @@ u32 *gen12_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
+ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ {
+ 	struct drm_i915_private *i915 = rq->i915;
++	struct intel_gt *gt = rq->engine->gt;
+ 	u32 flags = (PIPE_CONTROL_CS_STALL |
+ 		     PIPE_CONTROL_TLB_INVALIDATE |
+ 		     PIPE_CONTROL_TILE_CACHE_FLUSH |
+@@ -809,8 +810,8 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ 		     PIPE_CONTROL_FLUSH_ENABLE);
+ 
+ 	/* Wa_14016712196 */
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+ 		/* dummy PIPE_CONTROL + depth flush */
+ 		cs = gen12_emit_pipe_control(cs, 0,
+ 					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
 diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-index 6c34547b58b5..15c25980411d 100644
+index 15c25980411d..636fd651b8b2 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gt.h
 +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-@@ -14,6 +14,17 @@
- struct drm_i915_private;
- struct drm_printer;
+@@ -25,6 +25,23 @@ struct drm_printer;
+ 	 GRAPHICS_VER_FULL((gt)->i915) >= (from) && \
+ 	 GRAPHICS_VER_FULL((gt)->i915) <= (until)))
  
 +/*
-+ * Check that the GT is a graphics GT and has an IP version within the
-+ * specified range (inclusive).
++ * Check that the GT is a graphics GT with a specific IP version and has
++ * a stepping in the range [begin, fixed).  The lower stepping bound is
++ * inclusive, the upper bound is exclusive (corresponding to the first hardware
++ * stepping at which the workaround is no longer needed).  E.g.,
++ *
++ *    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0)
++ *    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_B1, STEP_FOREVER)
++ *
++ * "STEP_FOREVER" can be passed as the upper stepping bound for workarounds
++ * that have no "fixed" version for the specified IP version.
 + */
-+#define IS_GFX_GT_IP_RANGE(gt, from, until) ( \
-+	BUILD_BUG_ON_ZERO((from) < IP_VER(2, 0)) + \
-+	BUILD_BUG_ON_ZERO((until) < (from)) + \
-+	((gt)->type != GT_MEDIA && \
-+	 GRAPHICS_VER_FULL((gt)->i915) >= (from) && \
-+	 GRAPHICS_VER_FULL((gt)->i915) <= (until)))
++#define IS_GFX_GT_IP_STEP(gt, ipver, from, until) ( \
++	BUILD_BUG_ON_ZERO((until) <= (from)) + \
++	(IS_GFX_GT_IP_RANGE((gt), (ipver), (ipver)) && \
++	 IS_GRAPHICS_STEP((gt)->i915, (from), (until))))
 +
  #define GT_TRACE(gt, fmt, ...) do {					\
  	const struct intel_gt *gt__ __maybe_unused = (gt);		\
  	GEM_TRACE("%s " fmt, dev_name(gt__->i915->drm.dev),		\
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+index 0b414eae1683..11d181b1cc7a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+@@ -3,8 +3,7 @@
+  * Copyright © 2022 Intel Corporation
+  */
+ 
+-#include "i915_drv.h"
+-
++#include "intel_gt.h"
+ #include "intel_gt_mcr.h"
+ #include "intel_gt_print.h"
+ #include "intel_gt_regs.h"
+@@ -166,8 +165,8 @@ void intel_gt_mcr_init(struct intel_gt *gt)
+ 		gt->steering_table[OADDRM] = xelpmp_oaddrm_steering_table;
+ 	} else if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70)) {
+ 		/* Wa_14016747170 */
+-		if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-		    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++		if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++		    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+ 			fuse = REG_FIELD_GET(MTL_GT_L3_EXC_MASK,
+ 					     intel_uncore_read(gt->uncore,
+ 							       MTL_GT_ACTIVITY_FACTOR));
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 957d0aeb0c02..1f0768652446 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1375,8 +1375,8 @@ gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
+ 	cs = gen12_emit_aux_table_inv(ce->engine, cs);
+ 
+ 	/* Wa_16014892111 */
+-	if (IS_MTL_GRAPHICS_STEP(ce->engine->i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(ce->engine->i915, P, STEP_A0, STEP_B0) ||
++	if (IS_GFX_GT_IP_STEP(ce->engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(ce->engine->gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+ 	    IS_DG2(ce->engine->i915))
+ 		cs = dg2_emit_draw_watermark_setting(cs);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 1ff7b42521c9..fd6c22aeb670 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -1641,7 +1641,7 @@ bool intel_engine_reset_needs_wa_22011802037(struct intel_gt *gt)
+ 	if (GRAPHICS_VER(gt->i915) < 11)
+ 		return false;
+ 
+-	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0))
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0))
+ 		return true;
+ 
+ 	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
 diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 3108ad1d6207..80d67e487b55 100644
+index 80d67e487b55..e2562b0e540d 100644
 --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -805,8 +805,8 @@ static void dg2_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	wa_masked_en(wal, CACHE_MODE_1, MSAA_OPTIMIZATION_REDUC_DISABLE);
- }
- 
--static void mtl_ctx_gt_tuning_init(struct intel_engine_cs *engine,
--				   struct i915_wa_list *wal)
-+static void xelpg_ctx_gt_tuning_init(struct intel_engine_cs *engine,
-+				     struct i915_wa_list *wal)
+@@ -808,24 +808,24 @@ static void dg2_ctx_workarounds_init(struct intel_engine_cs *engine,
+ static void xelpg_ctx_gt_tuning_init(struct intel_engine_cs *engine,
+ 				     struct i915_wa_list *wal)
  {
- 	struct drm_i915_private *i915 = engine->i915;
+-	struct drm_i915_private *i915 = engine->i915;
++	struct intel_gt *gt = engine->gt;
  
-@@ -817,12 +817,12 @@ static void mtl_ctx_gt_tuning_init(struct intel_engine_cs *engine,
+ 	dg2_ctx_gt_tuning_init(engine, wal);
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_B0, STEP_FOREVER) ||
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_B0, STEP_FOREVER))
  		wa_add(wal, DRAW_WATERMARK, VERT_WM_VAL, 0x3FF, 0, false);
  }
  
--static void mtl_ctx_workarounds_init(struct intel_engine_cs *engine,
--				     struct i915_wa_list *wal)
-+static void xelpg_ctx_workarounds_init(struct intel_engine_cs *engine,
-+				       struct i915_wa_list *wal)
+ static void xelpg_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 				       struct i915_wa_list *wal)
+ {
+-	struct drm_i915_private *i915 = engine->i915;
++	struct intel_gt *gt = engine->gt;
+ 
+ 	xelpg_ctx_gt_tuning_init(engine, wal);
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+ 		/* Wa_14014947963 */
+ 		wa_masked_field_set(wal, VF_PREEMPTION,
+ 				    PREEMPTION_VERTEX_COUNT, 0x4000);
+@@ -1747,8 +1747,8 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	/* Wa_22016670082 */
+ 	wa_write_or(wal, GEN12_SQCNT1, GEN12_STRICT_RAR_ENABLE);
+ 
+-	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(gt->i915, P, STEP_A0, STEP_B0)) {
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+ 		/* Wa_14014830051 */
+ 		wa_mcr_write_clr(wal, SARB_CHICKEN1, COMP_CKN_IN);
+ 
+@@ -2425,16 +2425,17 @@ static void
+ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
  {
  	struct drm_i915_private *i915 = engine->i915;
++	struct intel_gt *gt = engine->gt;
  
--	mtl_ctx_gt_tuning_init(engine, wal);
-+	xelpg_ctx_gt_tuning_init(engine, wal);
- 
- 	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
- 	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
-@@ -931,8 +931,8 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
- 	if (engine->class != RENDER_CLASS)
- 		goto done;
- 
--	if (IS_METEORLAKE(i915))
--		mtl_ctx_workarounds_init(engine, wal);
-+	if (IS_GFX_GT_IP_RANGE(engine->gt, IP_VER(12, 70), IP_VER(12, 71)))
-+		xelpg_ctx_workarounds_init(engine, wal);
- 	else if (IS_PONTEVECCHIO(i915))
- 		; /* noop; none at this time */
- 	else if (IS_DG2(i915))
-@@ -1791,10 +1791,8 @@ xelpmp_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
-  */
- static void gt_tuning_settings(struct intel_gt *gt, struct i915_wa_list *wal)
- {
--	if (IS_METEORLAKE(gt->i915)) {
--		if (gt->type != GT_MEDIA)
--			wa_mcr_write_or(wal, XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS);
--
-+	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71))) {
-+		wa_mcr_write_or(wal, XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS);
- 		wa_mcr_write_or(wal, XEHP_SQCM, EN_32B_ACCESS);
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0)) {
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+ 		/* Wa_22014600077 */
+ 		wa_mcr_masked_en(wal, GEN10_CACHE_MODE_SS,
+ 				 ENABLE_EU_COUNT_FOR_TDL_FLUSH);
  	}
  
-@@ -1826,7 +1824,7 @@ gt_init_workarounds(struct intel_gt *gt, struct i915_wa_list *wal)
- 		return;
- 	}
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+ 	    IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+ 	    IS_DG2_G11(i915) || IS_DG2_G12(i915)) {
+ 		/* Wa_1509727124 */
+@@ -2444,7 +2445,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
  
--	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 70))
-+	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71)))
- 		xelpg_gt_workarounds_init(gt, wal);
- 	else if (IS_PONTEVECCHIO(i915))
- 		pvc_gt_workarounds_init(gt, wal);
-@@ -2294,7 +2292,7 @@ static void pvc_whitelist_build(struct intel_engine_cs *engine)
- 	blacklist_trtt(engine);
- }
- 
--static void mtl_whitelist_build(struct intel_engine_cs *engine)
-+static void xelpg_whitelist_build(struct intel_engine_cs *engine)
- {
- 	struct i915_wa_list *w = &engine->whitelist;
- 
-@@ -2316,8 +2314,10 @@ void intel_engine_init_whitelist(struct intel_engine_cs *engine)
- 
- 	wa_init_start(w, engine->gt, "whitelist", engine->name);
- 
--	if (IS_METEORLAKE(i915))
--		mtl_whitelist_build(engine);
-+	if (engine->gt->type == GT_MEDIA)
-+		; /* none yet */
-+	else if (IS_GFX_GT_IP_RANGE(engine->gt, IP_VER(12, 70), IP_VER(12, 71)))
-+		xelpg_whitelist_build(engine);
- 	else if (IS_PONTEVECCHIO(i915))
- 		pvc_whitelist_build(engine);
- 	else if (IS_DG2(i915))
-@@ -2975,10 +2975,12 @@ ccs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
-  * function invoked by __intel_engine_init_ctx_wa().
-  */
- static void
--add_render_compute_tuning_settings(struct drm_i915_private *i915,
-+add_render_compute_tuning_settings(struct intel_gt *gt,
- 				   struct i915_wa_list *wal)
- {
--	if (IS_METEORLAKE(i915) || IS_DG2(i915))
-+	struct drm_i915_private *i915 = gt->i915;
-+
-+	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71)) || IS_DG2(i915))
- 		wa_mcr_write_clr_set(wal, RT_CTRL, STACKID_CTRL, STACKID_CTRL_512);
- 
- 	/*
-@@ -3008,7 +3010,7 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+ 	    IS_DG2_G11(i915) || IS_DG2_G12(i915) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0)) {
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0)) {
+ 		/* Wa_22012856258 */
+ 		wa_mcr_masked_en(wal, GEN8_ROW_CHICKEN2,
+ 				 GEN12_DISABLE_READ_SUPPRESSION);
+@@ -3009,8 +3010,9 @@ static void
+ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
  {
  	struct drm_i915_private *i915 = engine->i915;
++	struct intel_gt *gt = engine->gt;
  
--	add_render_compute_tuning_settings(i915, wal);
-+	add_render_compute_tuning_settings(engine->gt, wal);
+-	add_render_compute_tuning_settings(engine->gt, wal);
++	add_render_compute_tuning_settings(gt, wal);
  
  	if (GRAPHICS_VER(i915) >= 11) {
  		/* This is not a Wa (although referred to as
+@@ -3031,13 +3033,13 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 				 GEN11_INDIRECT_STATE_BASE_ADDR_OVERRIDE);
+ 	}
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_B0, STEP_FOREVER) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_B0, STEP_FOREVER))
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_B0, STEP_FOREVER) ||
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_B0, STEP_FOREVER))
+ 		/* Wa_14017856879 */
+ 		wa_mcr_masked_en(wal, GEN9_ROW_CHICKEN3, MTL_DISABLE_FIX_FOR_EOT_FLUSH);
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+ 		/*
+ 		 * Wa_14017066071
+ 		 * Wa_14017654203
+@@ -3045,13 +3047,13 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 		wa_mcr_masked_en(wal, GEN10_SAMPLER_MODE,
+ 				 MTL_DISABLE_SAMPLER_SC_OOO);
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0))
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+ 		/* Wa_22015279794 */
+ 		wa_mcr_masked_en(wal, GEN10_CACHE_MODE_SS,
+ 				 DISABLE_PREFETCH_INTO_IC);
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+ 	    IS_DG2_GRAPHICS_STEP(i915, G10, STEP_B0, STEP_FOREVER) ||
+ 	    IS_DG2_G11(i915) || IS_DG2_G12(i915)) {
+ 		/* Wa_22013037850 */
+@@ -3059,16 +3061,16 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 				DISABLE_128B_EVICTION_COMMAND_UDW);
+ 	}
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+ 	    IS_PONTEVECCHIO(i915) ||
+ 	    IS_DG2(i915)) {
+ 		/* Wa_22014226127 */
+ 		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0, DISABLE_D8_D16_COASLESCE);
+ 	}
+ 
+-	if (IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_B0) ||
+-	    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_B0) ||
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
++	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+ 	    IS_DG2(i915)) {
+ 		/* Wa_18017747507 */
+ 		wa_masked_en(wal, VFG_PREEMPTION_CHICKEN, POLYGON_TRIFAN_LINELOOP_DISABLE);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 22649831d3bd..6687cdf0272b 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -277,7 +277,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+ 		flags |= GUC_WA_GAM_CREDITS;
+ 
+ 	/* Wa_14014475959 */
+-	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
++	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+ 	    IS_DG2(gt->i915))
+ 		flags |= GUC_WA_HOLD_CCS_SWITCHOUT;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 1bd5d8f7c40b..b2150a962f69 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -4265,7 +4265,7 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
+ 
+ 	/* Wa_14014475959:dg2 */
+ 	if (engine->class == COMPUTE_CLASS)
+-		if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
++		if (IS_GFX_GT_IP_STEP(engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+ 		    IS_DG2(engine->i915))
+ 			engine->flags |= I915_ENGINE_USES_WA_HOLD_CCS_SWITCHOUT;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 7a8ce7239bc9..e0e0493d6c1f 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -658,10 +658,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define IS_XEHPSDV_GRAPHICS_STEP(__i915, since, until) \
+ 	(IS_XEHPSDV(__i915) && IS_GRAPHICS_STEP(__i915, since, until))
+ 
+-#define IS_MTL_GRAPHICS_STEP(__i915, variant, since, until) \
+-	(IS_SUBPLATFORM(__i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_##variant) && \
+-	 IS_GRAPHICS_STEP(__i915, since, until))
+-
+ #define IS_MTL_DISPLAY_STEP(__i915, since, until) \
+ 	(IS_METEORLAKE(__i915) && \
+ 	 IS_DISPLAY_STEP(__i915, since, until))
 -- 
 2.41.0
 
