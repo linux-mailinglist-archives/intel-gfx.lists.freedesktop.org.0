@@ -2,56 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D57477B260
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Aug 2023 09:26:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C29C77B29B
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Aug 2023 09:35:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F60210E126;
-	Mon, 14 Aug 2023 07:26:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1970710E136;
+	Mon, 14 Aug 2023 07:35:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 999A210E077;
- Mon, 14 Aug 2023 07:26:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691998010; x=1723534010;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=5mB685TMqnywZWJpaoTuMK9CKZJvbZb4EVjI2N4hKMg=;
- b=JzEyz48HAoSqV3VvzT7wQw3RFMZZy5uGLC2vQCDJrowkmbxIPHsfSrZ+
- p5clZ/wmKp3HYYAqHhtsK2Q7Mg7Zss81WVfT6Tb22ParLTSW6utflXEtI
- f24Xb/jeUEjLQVdjb+Xph8qys7ljpB/PLuX4OHj1g54ezcaJuGsdQTLR/
- u28bWO7BHvpg7XGRuZoq1YEkmswJblIQ5E6r0rAHfbyqhAhR7+7JK3yqg
- PN92IYENI1aZDbUTUcGghSLEbwGFr7wBa040FS80G5BMioBqunmZE3z0b
- jojyBgH10HW2RKtS43EirJUfKy/ss/eEPCSWeqWgqmLtnvsM/qiN2OVcM w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10801"; a="356945410"
-X-IronPort-AV: E=Sophos;i="6.01,172,1684825200"; d="scan'208";a="356945410"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2023 00:26:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10801"; a="856986999"
-X-IronPort-AV: E=Sophos;i="6.01,172,1684825200"; d="scan'208";a="856986999"
-Received: from pameiner-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.252.51.125])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2023 00:26:47 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Wang Jinchao <wangjinchao@xfusion.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-In-Reply-To: <ZNdOoHvIg7HXh7Gg@fedora>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <ZNdOoHvIg7HXh7Gg@fedora>
-Date: Mon, 14 Aug 2023 10:26:45 +0300
-Message-ID: <87o7jaythm.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 95A0410E136;
+ Mon, 14 Aug 2023 07:35:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8CF2BAADEC;
+ Mon, 14 Aug 2023 07:35:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix Kconfig error for
- CONFIG_DRM_I915
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Date: Mon, 14 Aug 2023 07:35:55 -0000
+Message-ID: <169199855557.19473.12077744352616130022@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230814065006.47160-1-dev@lankhorst.se>
+In-Reply-To: <20230814065006.47160-1-dev@lankhorst.se>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915=3A_Swap_ggtt=5Fvma_?=
+ =?utf-8?q?during_legacy_cursor_update?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,63 +41,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stone.xulei@xfusion.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 12 Aug 2023, Wang Jinchao <wangjinchao@xfusion.com> wrote:
-> When CONFIG_DRM_I915 is set to 'y' and CONFIG_BACKLIGHT_CLASS_DEVICE
-> is set to 'm', we encountered an ld.lld error during the build process:
->
-> 	ld.lld: error: undefined symbol: backlight_device_get_by_name
-> 	>>> referenced by intel_backlight.c:955
-> 	>>>               vmlinux.o:(intel_backlight_device_register)
->
-> 	ld.lld: error: undefined symbol: backlight_device_register
-> 	>>> referenced by intel_backlight.c:971
-> 	>>>               vmlinux.o:(intel_backlight_device_register)
->
-> 	ld.lld: error: undefined symbol: backlight_device_unregister
-> 	>>> referenced by intel_backlight.c:999
-> 	>>>               vmlinux.o:(intel_backlight_device_unregister)
->
-> This issue occurred because intel_backlight_device_register and
-> intel_backlight_device_unregister were enclosed within
-> However, according to Kconfig, CONFIG_DRM_I915 will select
-> BACKLIGHT_CLASS_DEVICE only if ACPI is enabled.
-> This led to an error, which can be resolved by removing the
-> conditional statements related to ACPI.
+== Series Details ==
 
-The real fix is to use
+Series: series starting with [1/2] drm/i915: Swap ggtt_vma during legacy cursor update
+URL   : https://patchwork.freedesktop.org/series/122401/
+State : warning
 
-	depends on BACKLIGHT_CLASS_DEVICE || BACKLIGHT_CLASS_DEVICE=n
+== Summary ==
 
-but in order to do that, you need to change a lot of places to depend
-on, not select BACKLIGHT_CLASS_DEVICE, because otherwise you end up with
-other dependency issues.
+Error: dim checkpatch failed
+/home/kbuild2/linux/maintainer-tools/dim: line 50: /home/kbuild2/.dimrc: No such file or directory
 
-BR,
-Jani.
 
->
-> Signed-off-by: Wang Jinchao <wangjinchao@xfusion.com>
-> ---
->  drivers/gpu/drm/i915/Kconfig | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-> index 01b5a8272a27..5003de921bf7 100644
-> --- a/drivers/gpu/drm/i915/Kconfig
-> +++ b/drivers/gpu/drm/i915/Kconfig
-> @@ -24,7 +24,7 @@ config DRM_I915
->  	select IRQ_WORK
->  	# i915 depends on ACPI_VIDEO when ACPI is enabled
->  	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
-> -	select BACKLIGHT_CLASS_DEVICE if ACPI
-> +	select BACKLIGHT_CLASS_DEVICE
->  	select INPUT if ACPI
->  	select X86_PLATFORM_DEVICES if ACPI
->  	select ACPI_WMI if ACPI
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
