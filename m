@@ -1,48 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5589377C13F
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Aug 2023 22:06:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD15977C143
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Aug 2023 22:06:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFD9010E0DE;
-	Mon, 14 Aug 2023 20:06:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AAB310E10B;
+	Mon, 14 Aug 2023 20:06:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E5D510E0D0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A63410E0DE
  for <intel-gfx@lists.freedesktop.org>; Mon, 14 Aug 2023 20:06:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1692043601; x=1723579601;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=g/0WX+ao6dldC5J5CgUIaaD6Ct9N4tbf2BwnrJU9wmk=;
- b=eHeGLwmlMDKqQ+d92Jn1eHegcVuItb+Gl8FFlDmyr1tojPA3en+GFc5p
- xOB9Prm20Cd730iZ2gdDDfluF2h/YTo//RwLfB5OMNpjqhclI7JttomlE
- t1x4aZsewR3TuauvAlZT3pX4NC+tr5YP5aY9w/+dVm6oZeKTIInEQPLtk
- VvQ0RvgWCl7C66uWCEXAqLbPebWv6dSVsC34m/FORsImIA4ZwjWFC+Pyj
- /+DdRHS1sqRsPOeirBjNHyTzpq/rEpXzd4zaKBHSvXbhl5QGOU3uuCii4
- E5blP/QdOR4p6dEJ9bgYwLXJ47hQYM+K+T5EiCal/3rrE6R7mi+9RM4Oz w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="369602860"
-X-IronPort-AV: E=Sophos;i="6.01,173,1684825200"; d="scan'208";a="369602860"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=32AiiQxT9jkt22AwZr43gpjREHWJweJdVhLeAIBFy14=;
+ b=GbNsQFS9/+LWMOjNn8Ki+QXpbvJx2JGXvMS/hOPqanmHtM0MmlpHC1+l
+ TClalHfq6IrxfurpYhcLTPyWHTqd6lY93Dn9kTlSbS1rFgwHdY3CUmJyS
+ lfLJmL2PtRtDJshJcQLPIeh5aRKO7UxeeqlBxp9TI3JBcB1L60MjKJYMV
+ JK/PxRe2ObUHXD4RpcK7Ncpni1wRJVdDs/s/lJcXLZxhTXU4Xr8qHR5OV
+ ibTWETFcHZs9mKR5cbr6ZGhUdaCPHPd5UYhCpy0u+i6yWCb7Muqo+2oYr
+ c3Ku23sHpscMPlljxjryx+j/06LXrhchccEK8QeTs87V+6HzzCzG5b55O Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="369602865"
+X-IronPort-AV: E=Sophos;i="6.01,173,1684825200"; d="scan'208";a="369602865"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Aug 2023 13:06:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="683420476"
-X-IronPort-AV: E=Sophos;i="6.01,173,1684825200"; d="scan'208";a="683420476"
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="683420480"
+X-IronPort-AV: E=Sophos;i="6.01,173,1684825200"; d="scan'208";a="683420480"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Aug 2023 13:06:40 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Aug 2023 13:06:33 -0700
-Message-ID: <20230814200632.56105-11-matthew.d.roper@intel.com>
+Date: Mon, 14 Aug 2023 13:06:34 -0700
+Message-ID: <20230814200632.56105-12-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230814200632.56105-11-matthew.d.roper@intel.com>
+References: <20230814200632.56105-11-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 0/9] Reduce MTL-specific platform checks
+Subject: [Intel-gfx] [PATCH v4 1/9] drm/i915: Consolidate condition for
+ Wa_22011802037
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,92 +62,122 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Starting with MTL, the hardware moved to a disaggregated IP design where
-graphics, media, and display are supposed to be treated independently of
-the base platform that they're incorporated into.  For driver logic that
-is conditional on these IPs, the code should be checking the IP versions
-(as read from the GMD_ID registers) rather than trying to match on a
-specific platform (e.g., MTL).  It's possible that these IPs could show
-up again, without changes, on future non-MTL platforms, or that the
-current MTL platform could be extended to include new IP versions in
-future SKUs or refreshes; making sure our driver's conditions are
-handled appropriately future-proofs for both of these cases.
+The workaround bounds for Wa_22011802037 are somewhat complex and are
+replicated in several places throughout the code.  Pull the condition
+out to a helper function to prevent mistakes if this condition needs to
+change again in the future.
 
-Going forward, conditions like IS_METEORLAKE should be very rare in the
-driver; in most places our logic will be conditional upon the IP rather
-than the base platform.
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c      |  4 +---
+ .../drm/i915/gt/intel_execlists_submission.c   |  4 +---
+ drivers/gpu/drm/i915/gt/intel_reset.c          | 18 ++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_reset.h          |  2 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c         |  4 +---
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c  |  4 +---
+ 6 files changed, 24 insertions(+), 12 deletions(-)
 
-v2:
- - Rework macros slightly; new IP range and stepping range macros can be
-   used with both GFX or MEDIA rather than needing separate macros for
-   each IP.  (Tvrtko, Gustavo)
- - Fix a > that should have been a >=.  (Gustavo)
- - Split non-inheritance of media workarounds by future platforms into
-   its own patch.  (Gustavo)
- - Extra documentation comments
-
-v3:
- - Switch back to separate long-form gfx and media macros with no macro
-   pasting.  (Jani)
- - Move GT-specific macros from intel_drv.h to intel_gt.h.  (Andi)
- - Replace two more IS_METEORLAKE() conditions with IP version checks.
-
-v4:
- - Build IS_*_IP_STEP macros on top of existing range check and stepping
-   check building blocks.  (Jani)
- - Fix parameters in comment examples.
-
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-
-Matt Roper (9):
-  drm/i915: Consolidate condition for Wa_22011802037
-  drm/i915/xelpmp: Don't assume workarounds extend to future platforms
-  drm/i915/xelpg: Call Xe_LPG workaround functions based on IP version
-  drm/i915: Eliminate IS_MTL_GRAPHICS_STEP
-  drm/i915: Eliminate IS_MTL_MEDIA_STEP
-  drm/i915: Eliminate IS_MTL_DISPLAY_STEP
-  drm/i915/mtl: Eliminate subplatforms
-  drm/i915/display: Eliminate IS_METEORLAKE checks
-  drm/i915: Replace several IS_METEORLAKE with proper IP version checks
-
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  4 +-
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  2 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
- .../drm/i915/display/intel_display_device.h   | 22 +++++
- drivers/gpu/drm/i915/display/intel_dmc.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_fbc.c      |  3 +-
- drivers/gpu/drm/i915/display/intel_pmdemand.c |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c      | 10 +-
- .../drm/i915/display/skl_universal_plane.c    |  5 +-
- drivers/gpu/drm/i915/gem/i915_gem_create.c    |  4 +-
- drivers/gpu/drm/i915/gt/gen8_engine_cs.c      | 11 ++-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  4 +-
- drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 +-
- .../drm/i915/gt/intel_execlists_submission.c  |  4 +-
- drivers/gpu/drm/i915/gt/intel_gt.h            | 58 ++++++++++++
- drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |  7 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 +-
- drivers/gpu/drm/i915/gt/intel_mocs.c          |  2 +-
- drivers/gpu/drm/i915/gt/intel_rc6.c           |  5 +-
- drivers/gpu/drm/i915/gt/intel_reset.c         | 20 +++-
- drivers/gpu/drm/i915/gt/intel_reset.h         |  2 +
- drivers/gpu/drm/i915/gt/intel_rps.c           |  2 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c   | 92 ++++++++++---------
- drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  6 +-
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  3 +-
- drivers/gpu/drm/i915/i915_debugfs.c           |  2 +-
- drivers/gpu/drm/i915/i915_drv.h               | 18 +---
- drivers/gpu/drm/i915/i915_perf.c              | 23 ++---
- drivers/gpu/drm/i915/intel_device_info.c      | 14 ---
- drivers/gpu/drm/i915/intel_device_info.h      |  4 -
- include/drm/i915_pciids.h                     | 11 +--
- 32 files changed, 206 insertions(+), 150 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index ee15486fed0d..dfb69fc977a0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1617,9 +1617,7 @@ static int __intel_engine_stop_cs(struct intel_engine_cs *engine,
+ 	 * Wa_22011802037: Prior to doing a reset, ensure CS is
+ 	 * stopped, set ring stop bit and prefetch disable bit to halt CS
+ 	 */
+-	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+-	    (GRAPHICS_VER(engine->i915) >= 11 &&
+-	    GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70)))
++	if (intel_engine_reset_needs_wa_22011802037(engine->gt))
+ 		intel_uncore_write_fw(uncore, RING_MODE_GEN7(engine->mmio_base),
+ 				      _MASKED_BIT_ENABLE(GEN12_GFX_PREFETCH_DISABLE));
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 8a641bcf777c..4d05321dc5b5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -3001,9 +3001,7 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
+ 	 * Wa_22011802037: In addition to stopping the cs, we need
+ 	 * to wait for any pending mi force wakeups
+ 	 */
+-	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+-	    (GRAPHICS_VER(engine->i915) >= 11 &&
+-	    GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70)))
++	if (intel_engine_reset_needs_wa_22011802037(engine->gt))
+ 		intel_engine_wait_for_pending_mi_fw(engine);
+ 
+ 	engine->execlists.reset_ccid = active_ccid(engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index cc6bd21a3e51..1ff7b42521c9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -1632,6 +1632,24 @@ void __intel_fini_wedge(struct intel_wedge_me *w)
+ 	w->gt = NULL;
+ }
+ 
++/*
++ * Wa_22011802037 requires that we (or the GuC) ensure that no command
++ * streamers are executing MI_FORCE_WAKE while an engine reset is initiated.
++ */
++bool intel_engine_reset_needs_wa_22011802037(struct intel_gt *gt)
++{
++	if (GRAPHICS_VER(gt->i915) < 11)
++		return false;
++
++	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0))
++		return true;
++
++	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 70))
++		return false;
++
++	return true;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+ #include "selftest_reset.c"
+ #include "selftest_hangcheck.c"
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.h b/drivers/gpu/drm/i915/gt/intel_reset.h
+index 25c975b6e8fc..f615b30b81c5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.h
++++ b/drivers/gpu/drm/i915/gt/intel_reset.h
+@@ -78,4 +78,6 @@ void __intel_fini_wedge(struct intel_wedge_me *w);
+ bool intel_has_gpu_reset(const struct intel_gt *gt);
+ bool intel_has_reset_engine(const struct intel_gt *gt);
+ 
++bool intel_engine_reset_needs_wa_22011802037(struct intel_gt *gt);
++
+ #endif /* I915_RESET_H */
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 569b5fe94c41..22649831d3bd 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -292,9 +292,7 @@ static u32 guc_ctl_wa_flags(struct intel_guc *guc)
+ 		flags |= GUC_WA_DUAL_QUEUE;
+ 
+ 	/* Wa_22011802037: graphics version 11/12 */
+-	if (IS_MTL_GRAPHICS_STEP(gt->i915, M, STEP_A0, STEP_B0) ||
+-	    (GRAPHICS_VER(gt->i915) >= 11 &&
+-	    GRAPHICS_VER_FULL(gt->i915) < IP_VER(12, 70)))
++	if (intel_engine_reset_needs_wa_22011802037(gt))
+ 		flags |= GUC_WA_PRE_PARSER;
+ 
+ 	/* Wa_16011777198:dg2 */
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index a0e3ef1c65d2..1bd5d8f7c40b 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -1658,9 +1658,7 @@ static void guc_engine_reset_prepare(struct intel_engine_cs *engine)
+ 	 * Wa_22011802037: In addition to stopping the cs, we need
+ 	 * to wait for any pending mi force wakeups
+ 	 */
+-	if (IS_MTL_GRAPHICS_STEP(engine->i915, M, STEP_A0, STEP_B0) ||
+-	    (GRAPHICS_VER(engine->i915) >= 11 &&
+-	     GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70))) {
++	if (intel_engine_reset_needs_wa_22011802037(engine->gt)) {
+ 		intel_engine_stop_cs(engine);
+ 		intel_engine_wait_for_pending_mi_fw(engine);
+ 	}
 -- 
 2.41.0
 
