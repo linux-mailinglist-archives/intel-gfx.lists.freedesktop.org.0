@@ -2,48 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB5B977D3F2
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Aug 2023 22:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC65277D413
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Aug 2023 22:29:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 831BB10E28D;
-	Tue, 15 Aug 2023 20:14:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FE4910E290;
+	Tue, 15 Aug 2023 20:29:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1F5210E28D
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Aug 2023 20:14:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D276210E290;
+ Tue, 15 Aug 2023 20:29:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692130444; x=1723666444;
- h=from:to:subject:date:message-id:mime-version:
+ t=1692131359; x=1723667359;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=nyoB3hKPItg/bLlcPPXUGTLWPEkdt05UhzrZME4sls8=;
- b=jtuK+9xgr/H/+lbzAahUhGCrNJmZLSJcZ93oyS2CxwHhrsO0MgEbJlBj
- 2MvT4L2ZgYlblDeVXpUrmUyS/4sxrSp19BEzHRC20kjS26w3O0mnFMeI/
- Gl9TCj91Z6B9WK1im6jcZCMZY7V5QKUPAEmsz5kZrsK3uEW0u5FKk4fZI
- 6BCCfBy3Nf+larjC6yFu+RghOAHT5n0/q8g4PFrin9SRUPd8AtO0jYjnj
- 44GKz72sA1YfEsQ3DwaW9j8yMIJ/9QxjhONtshwJJQERYzb7HPlxqz0pB
- iXuw8skuf9btEZavrU2n7jcRlLI/q+MPby5kT1VjALhuLnC7/TXqo1j5G w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="352691708"
-X-IronPort-AV: E=Sophos;i="6.01,175,1684825200"; d="scan'208";a="352691708"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2023 13:13:54 -0700
+ bh=elToGikdUAbmzzTio9pAKIr+8vOqiubRGX4QXka362Q=;
+ b=llcZEjerW7EKmNAbG5PaP610QDcxW+QEvxELoV+KhdmFP6Q9YNYR4T9H
+ qw38ISLrznxaSnaOLVlYK4qP8YzLgYbROCsQri4Mjnt4zCgZejrfqf/UT
+ S/lCbBEXPVvSpqn+GU3h7ASmKsfT7OjRxpkgs00M7JTY1qbuSIoYjymK3
+ eXr3sABCUXkSm1r4U/y23MCjJqgxNhD995uZ+pxRvMkrJvcH+RkSDwpxQ
+ nlatKnx/Aky1rekP62frhze4A+WfGWRgqaY4c229sZhL72rNon3+EgiYr
+ GWSuTxFUm7vsjuue3mY4NPm/zKQMArHaQ6o6SJT1KILY20Ynlrjnv8JnP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="372366874"
+X-IronPort-AV: E=Sophos;i="6.01,175,1684825200"; d="scan'208";a="372366874"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2023 13:29:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="877478384"
-Received: from ipadilla-mobl.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
- ([10.213.174.234])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2023 13:13:56 -0700
-From: Gustavo Sousa <gustavo.sousa@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="907746491"
+X-IronPort-AV: E=Sophos;i="6.01,175,1684825200"; d="scan'208";a="907746491"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by orsmga005.jf.intel.com with ESMTP; 15 Aug 2023 13:29:18 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Aug 2023 17:13:44 -0300
-Message-ID: <20230815201344.298573-1-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.41.0
+Date: Tue, 15 Aug 2023 13:29:13 -0700
+Message-Id: <20230815202916.1211768-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Remove unused
- POWER_DOMAIN_MASK
+Subject: [Intel-gfx] [PATCH v3 0/3] drm/i915/pxp/mtl: Update gsc-heci cmd
+ submission to align with fw/hw spec
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,30 +55,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-That macro became unused with commit 323286c81245 ("drm/i915: Move the
-power domain->well mappings to intel_display_power_map.c").
+For MTL, update the GSC-HECI packet size and the max firmware
+response timeout to match internal fw specs. Enforce setting
+run-alone bit in LRC for protected contexts.
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power.c | 2 --
- 1 file changed, 2 deletions(-)
+Changes from prio revs:
+   v2: - Patch #3: fix sparse warning reported by kernel test robot.
+   v1: - N/A (Re-test)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 9e01054c2430..71d70bd9fd82 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -338,8 +338,6 @@ void intel_display_power_set_target_dc_state(struct drm_i915_private *dev_priv,
- 	mutex_unlock(&power_domains->lock);
- }
- 
--#define POWER_DOMAIN_MASK (GENMASK_ULL(POWER_DOMAIN_NUM - 1, 0))
--
- static void __async_put_domains_mask(struct i915_power_domains *power_domains,
- 				     struct intel_power_domain_mask *mask)
- {
+Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+
+Alan Previn (3):
+  drm/i915/pxp/mtl: Update pxp-firmware response timeout
+  drm/i915/pxp/mtl: Update pxp-firmware packet size
+  drm/i915/gt/pxp: User PXP contexts requires runalone bit in lrc
+
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 25 +++++++++++++++++++
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c |  3 +++
+ .../drm/i915/pxp/intel_pxp_cmd_interface_43.h |  2 +-
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h    |  6 ++---
+ 4 files changed, 32 insertions(+), 4 deletions(-)
+
+
+base-commit: 85f20fb339f05ec4221bb295c13e46061c5c566f
 -- 
-2.41.0
+2.39.0
 
