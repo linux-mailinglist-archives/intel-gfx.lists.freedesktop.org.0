@@ -2,27 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66DBB77E290
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Aug 2023 15:29:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9130277E28F
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Aug 2023 15:29:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7880710E372;
-	Wed, 16 Aug 2023 13:29:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED72F10E36B;
+	Wed, 16 Aug 2023 13:29:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wxsgout04.xfusion.com (wxsgout04.xfusion.com [36.139.87.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B18D10E1F7;
- Mon, 14 Aug 2023 13:08:09 +0000 (UTC)
+Received: from wxsgout04.xfusion.com (wxsgout03.xfusion.com [36.139.52.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20E9E10E13F;
+ Tue, 15 Aug 2023 01:27:11 +0000 (UTC)
 Received: from wuxshcsitd00600.xfusion.com (unknown [10.32.133.213])
- by wxsgout04.xfusion.com (SkyGuard) with ESMTPS id 4RPZR81TQgz9xkK7;
- Mon, 14 Aug 2023 21:06:28 +0800 (CST)
+ by wxsgout04.xfusion.com (SkyGuard) with ESMTPS id 4RPtrF4Brwz9xgXd;
+ Tue, 15 Aug 2023 09:25:49 +0800 (CST)
 Received: from localhost (10.82.147.3) by wuxshcsitd00600.xfusion.com
  (10.32.133.213) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Mon, 14 Aug
- 2023 21:07:45 +0800
-Date: Mon, 14 Aug 2023 21:07:45 +0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Tue, 15 Aug
+ 2023 09:27:06 +0800
+Date: Tue, 15 Aug 2023 09:27:05 +0800
 From: Wang Jinchao <wangjinchao@xfusion.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <ZNonIZgw1bI83BE9@fedora>
+Message-ID: <ZNrUaawrwPmPcQn9@fedora>
 References: <ZNdOoHvIg7HXh7Gg@fedora> <87o7jaythm.fsf@intel.com>
  <ZNoY9bnpLlUwY8ai@fedora> <87h6p1ddoz.fsf@intel.com>
 MIME-Version: 1.0
@@ -30,7 +30,7 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 In-Reply-To: <87h6p1ddoz.fsf@intel.com>
 X-Originating-IP: [10.82.147.3]
-X-ClientProxiedBy: wuxshcsitd00601.xfusion.com (10.32.135.241) To
+X-ClientProxiedBy: wuxshcsitd00602.xfusion.com (10.32.132.250) To
  wuxshcsitd00600.xfusion.com (10.32.133.213)
 X-Mailman-Approved-At: Wed, 16 Aug 2023 13:29:17 +0000
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix Kconfig error for
@@ -91,41 +91,21 @@ On Mon, Aug 14, 2023 at 03:13:32PM +0300, Jani Nikula wrote:
 > Generally when you have a mixture of depends on and select on a kconfig
 > symbol, you'll eventually end up with dependency problems.
 > 
-Using A to represent DRM_I915 and B to represent BACKLIGHT_CLASS_DEVICE, 
-as both A and B are tristate options, all the possibilities include:
-
-1. A=n, B=n
-2. A=m, B=n
-3. A=y, B=n
-4. A=n, B=m
-5. A=m, B=m
-6. A=y, B=m
-7. A=n, B=y
-8. A=m, B=y
-9. A=y, B=y
-Among them, only the 6th case (A=y, B=m) would lead to a compilation failure.
-
-Based on your suggestion, I tested the following configuration:
-
-    config A
-        tristate "A Option"
-        depends on B || B=n
-    
-    config B
-        tristate "B Option"
-
-I tested it using menuconfig, and found that the 6th combination (A=y, B=m) 
-cannot be manually selected.
-
-Specifically, if B=m, A can only be selected as either n or m.
-If A=y and B is set to m, A automatically changes to m as well.
-
-I believe there is no issue with the solution you provided.
-Is there something that I might have overlooked?
-
 > BR,
 > Jani.
 > 
+Now that I understand what you said, I will make an effort to correct it.
+
+      GEN     Makefile
+    drivers/gpu/drm/i915/Kconfig:2:error: recursive dependency detected!
+    drivers/gpu/drm/i915/Kconfig:2: symbol DRM_I915 depends on BACKLIGHT_CLASS_DEVICE
+    drivers/video/backlight/Kconfig:136:    symbol BACKLIGHT_CLASS_DEVICE is selected by DRM_FSL_DCU
+    drivers/gpu/drm/fsl-dcu/Kconfig:2:      symbol DRM_FSL_DCU depends on COMMON_CLK
+    drivers/clk/Kconfig:21: symbol COMMON_CLK is selected by X86_INTEL_QUARK
+    arch/x86/Kconfig:627:   symbol X86_INTEL_QUARK depends on X86_PLATFORM_DEVICES
+    drivers/platform/x86/Kconfig:6: symbol X86_PLATFORM_DEVICES is selected by DRM_I915
+    For a resolution refer to Documentation/kbuild/kconfig-language.rst
+    subsection "Kconfig recursive dependency limitations"
 > 
 > >> on, not select BACKLIGHT_CLASS_DEVICE, because otherwise you end up with
 > > got it.
