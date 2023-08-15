@@ -1,61 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC2177CA84
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Aug 2023 11:34:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77B8777CB15
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Aug 2023 12:19:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24F4110E244;
-	Tue, 15 Aug 2023 09:34:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0923A10E165;
+	Tue, 15 Aug 2023 10:19:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
- [IPv6:2607:f8b0:4864:20::b33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4501A10E244
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Aug 2023 09:34:25 +0000 (UTC)
-Received: by mail-yb1-xb33.google.com with SMTP id
- 3f1490d57ef6-d6d52f4f977so1346685276.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Aug 2023 02:34:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1692092064; x=1692696864;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=+aqCbCTG3SX610WFzHfhqf3xPqj9uNEUpVVBMJW8z0I=;
- b=XZGntxvNC+CEc2MXkWduVwxQi/ZuEzk3rFernd2f4QjilSsrdJmUghl+FHjvuNQzC8
- ivqd7dhBa9J/B/4/jrx3sxY2Du+fT/+GuhwAgRbKXs8SkKr67v8yeviWAxaertP00iW1
- 4DvodqdlEQ1BPwQUYnIYiaz4zpvDov0HyFQVmUIzmd+t62iP5DbMEsj8HmFjAGEtQ2S/
- 0X75oWuQx0UijmbqrDZbquibpVg+6BQ6iVmSEMU68CPeKd9yj3fJQ6hoDVZUJ1roOhdb
- yup0nHP2wifPqQ+nuSoKVHxW8EpkzO+G3FqG+T5EJHX+WPfHnpGaoMySAzDEkGSOLx82
- M1EQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692092064; x=1692696864;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=+aqCbCTG3SX610WFzHfhqf3xPqj9uNEUpVVBMJW8z0I=;
- b=l6VoXQpoh3M3QHd9con6pts5C58SHni30/VWL/fb7FKagLCMr/OJ3WP0/fybbdNcIQ
- 5G8H8wJidhsnmXmoDkPGGpTd4KF17oYnkFDQsOiFSA1yG0eR9Xtj67+y+sntB9KMtaqf
- XgfpMMRaaqSLPHnjVXlWD9ZwiKGwCudx+/9FA6YgHAIOqJKQ8FHCnTZcYHbiJka6+6qA
- TY9fqGGc6Bp3NjinxHDMFh9PJZfTCoI+itQFXYHBjXBu/yUeUyu6kBi3jVLz0C9HkUiq
- lElYKD+ieKcVGU/B2+wMd55mcRxYgkPRF9xslE4biRz/KzmInn1ljxV4JpaPJodVYDZs
- hRzw==
-X-Gm-Message-State: AOJu0YxcI4/cKY9OK5IBBkN3usGVB3L/neuqRLG5tDVrRGq+ugt8lt1w
- sbzTMJuFnUn3xwJ42QHLnLjU9F/ZL584K+1I/TJtvw==
-X-Google-Smtp-Source: AGHT+IEfXX/MlO8c55xxd4nYTkR0pVOGbMSAvB3eqL1ZoAPyv0aSzyNCevnKIi/joAb+59pUky5etVEa0uWfeiJJaYs=
-X-Received: by 2002:a5b:951:0:b0:d4c:82ff:7bde with SMTP id
- x17-20020a5b0951000000b00d4c82ff7bdemr11623030ybq.63.1692092064397; Tue, 15
- Aug 2023 02:34:24 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C1D610E15D;
+ Tue, 15 Aug 2023 10:19:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692094754; x=1723630754;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZwudxVOEqX7y3DSNyKC+Qf9C63chH+gEjZJLdd1Mve8=;
+ b=g5aqB4gL5zMN4LS0YRVg8Yp3L9dLBiRxO1SJv2T9M6Dzwe0QlqU9k2Dw
+ +kwUjIEhyZn2JORVYpyGgpCQ+5fzpyJJw1KbUTILZFceFHJAWK1spamCk
+ 5BACIUgjLG+Gz66uAA539oxLOMzJE5ELitlbkQa0uKmcIDkufr83mlath
+ scMRmP9afJ0dzbqv4KRV+eYpQjF8Tzumpv6S7NRBWWCO1aaAxIrBiDNCX
+ KVVbdgrmG7IO71sf23pp+exrHtZKICNlcD5n/mBgK+xiNP+3B61SziBw9
+ nnzy9ftQKpe+SJUyolWzzRVMiQne3uPKYi8OE0rYFoxF78z1jcx8BAKhl A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="351835824"
+X-IronPort-AV: E=Sophos;i="6.01,174,1684825200"; d="scan'208";a="351835824"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2023 03:19:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="683611422"
+X-IronPort-AV: E=Sophos;i="6.01,174,1684825200"; d="scan'208";a="683611422"
+Received: from cristina-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.75])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2023 03:19:11 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Tue, 15 Aug 2023 13:19:07 +0300
+Message-Id: <20230815101907.2900768-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230720125418.236140-1-imre.deak@intel.com>
- <20230720125418.236140-3-imre.deak@intel.com>
-In-Reply-To: <20230720125418.236140-3-imre.deak@intel.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 15 Aug 2023 12:34:13 +0300
-Message-ID: <CAA8EJposiCUaC5xixiYU_awKy=B8tW9ptn3fSpesSVephAg99g@mail.gmail.com>
-To: Imre Deak <imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v2 2/5] drm: Add an HPD poll helper to
- reschedule the poll work
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] Revert "drm/edid: Fix csync detailed mode
+ parsing"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,32 +59,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ stable@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 20 Jul 2023 at 15:54, Imre Deak <imre.deak@intel.com> wrote:
->
-> Add a helper to reschedule drm_mode_config::output_poll_work after
-> polling has been enabled for a connector (and needing a reschedule,
-> since previously polling was disabled for all connectors and hence
-> output_poll_work was not running).
->
-> This is needed by the next patch fixing HPD polling on i915.
->
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+This reverts commit ca62297b2085b5b3168bd891ca24862242c635a1.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Commit ca62297b2085 ("drm/edid: Fix csync detailed mode parsing") fixed
+EDID detailed mode sync parsing. Unfortunately, there are quite a few
+displays out there that have bogus (zero) sync field that are broken by
+the change. Zero means analog composite sync, which is not right for
+digital displays, and the modes get rejected. Regardless, it used to
+work, and it needs to continue to work. Revert the change.
 
-> ---
->  drivers/gpu/drm/drm_probe_helper.c | 68 ++++++++++++++++++++----------
->  include/drm/drm_probe_helper.h     |  1 +
->  2 files changed, 47 insertions(+), 22 deletions(-)
+Rejecting modes with analog composite sync was the part that fixed the
+gitlab issue 8146 [1]. We'll need to get back to the drawing board with
+that.
 
-I support merging these patches through drm-intel rather than drm-misc.
+[1] https://gitlab.freedesktop.org/drm/intel/-/issues/8146
 
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8789
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8930
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9044
+Fixes: ca62297b2085 ("drm/edid: Fix csync detailed mode parsing")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.4+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/drm_edid.c | 29 ++++++++---------------------
+ include/drm/drm_edid.h     | 12 +++---------
+ 2 files changed, 11 insertions(+), 30 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index f95152fac427..340da8257b51 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -3457,6 +3457,10 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
+ 			    connector->base.id, connector->name);
+ 		return NULL;
+ 	}
++	if (!(pt->misc & DRM_EDID_PT_SEPARATE_SYNC)) {
++		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Composite sync not supported\n",
++			    connector->base.id, connector->name);
++	}
+ 
+ 	/* it is incorrect if hsync/vsync width is zero */
+ 	if (!hsync_pulse_width || !vsync_pulse_width) {
+@@ -3503,27 +3507,10 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
+ 	if (info->quirks & EDID_QUIRK_DETAILED_SYNC_PP) {
+ 		mode->flags |= DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC;
+ 	} else {
+-		switch (pt->misc & DRM_EDID_PT_SYNC_MASK) {
+-		case DRM_EDID_PT_ANALOG_CSYNC:
+-		case DRM_EDID_PT_BIPOLAR_ANALOG_CSYNC:
+-			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Analog composite sync!\n",
+-				    connector->base.id, connector->name);
+-			mode->flags |= DRM_MODE_FLAG_CSYNC | DRM_MODE_FLAG_NCSYNC;
+-			break;
+-		case DRM_EDID_PT_DIGITAL_CSYNC:
+-			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Digital composite sync!\n",
+-				    connector->base.id, connector->name);
+-			mode->flags |= DRM_MODE_FLAG_CSYNC;
+-			mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
+-				DRM_MODE_FLAG_PCSYNC : DRM_MODE_FLAG_NCSYNC;
+-			break;
+-		case DRM_EDID_PT_DIGITAL_SEPARATE_SYNC:
+-			mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
+-				DRM_MODE_FLAG_PHSYNC : DRM_MODE_FLAG_NHSYNC;
+-			mode->flags |= (pt->misc & DRM_EDID_PT_VSYNC_POSITIVE) ?
+-				DRM_MODE_FLAG_PVSYNC : DRM_MODE_FLAG_NVSYNC;
+-			break;
+-		}
++		mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
++			DRM_MODE_FLAG_PHSYNC : DRM_MODE_FLAG_NHSYNC;
++		mode->flags |= (pt->misc & DRM_EDID_PT_VSYNC_POSITIVE) ?
++			DRM_MODE_FLAG_PVSYNC : DRM_MODE_FLAG_NVSYNC;
+ 	}
+ 
+ set_size:
+diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+index 169755d3de19..48e93f909ef6 100644
+--- a/include/drm/drm_edid.h
++++ b/include/drm/drm_edid.h
+@@ -61,15 +61,9 @@ struct std_timing {
+ 	u8 vfreq_aspect;
+ } __attribute__((packed));
+ 
+-#define DRM_EDID_PT_SYNC_MASK              (3 << 3)
+-# define DRM_EDID_PT_ANALOG_CSYNC          (0 << 3)
+-# define DRM_EDID_PT_BIPOLAR_ANALOG_CSYNC  (1 << 3)
+-# define DRM_EDID_PT_DIGITAL_CSYNC         (2 << 3)
+-#  define DRM_EDID_PT_CSYNC_ON_RGB         (1 << 1) /* analog csync only */
+-#  define DRM_EDID_PT_CSYNC_SERRATE        (1 << 2)
+-# define DRM_EDID_PT_DIGITAL_SEPARATE_SYNC (3 << 3)
+-#  define DRM_EDID_PT_HSYNC_POSITIVE       (1 << 1) /* also digital csync */
+-#  define DRM_EDID_PT_VSYNC_POSITIVE       (1 << 2)
++#define DRM_EDID_PT_HSYNC_POSITIVE (1 << 1)
++#define DRM_EDID_PT_VSYNC_POSITIVE (1 << 2)
++#define DRM_EDID_PT_SEPARATE_SYNC  (3 << 3)
+ #define DRM_EDID_PT_STEREO         (1 << 5)
+ #define DRM_EDID_PT_INTERLACED     (1 << 7)
+ 
 -- 
-With best wishes
-Dmitry
+2.39.2
+
