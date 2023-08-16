@@ -2,39 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9130277E28F
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Aug 2023 15:29:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4488477E13B
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Aug 2023 14:15:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED72F10E36B;
-	Wed, 16 Aug 2023 13:29:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7998010E033;
+	Wed, 16 Aug 2023 12:15:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wxsgout04.xfusion.com (wxsgout03.xfusion.com [36.139.52.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20E9E10E13F;
- Tue, 15 Aug 2023 01:27:11 +0000 (UTC)
-Received: from wuxshcsitd00600.xfusion.com (unknown [10.32.133.213])
- by wxsgout04.xfusion.com (SkyGuard) with ESMTPS id 4RPtrF4Brwz9xgXd;
- Tue, 15 Aug 2023 09:25:49 +0800 (CST)
-Received: from localhost (10.82.147.3) by wuxshcsitd00600.xfusion.com
- (10.32.133.213) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Tue, 15 Aug
- 2023 09:27:06 +0800
-Date: Tue, 15 Aug 2023 09:27:05 +0800
-From: Wang Jinchao <wangjinchao@xfusion.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <ZNrUaawrwPmPcQn9@fedora>
-References: <ZNdOoHvIg7HXh7Gg@fedora> <87o7jaythm.fsf@intel.com>
- <ZNoY9bnpLlUwY8ai@fedora> <87h6p1ddoz.fsf@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E085710E033
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Aug 2023 12:15:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692188121; x=1723724121;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=E3XL57ut43GBbQ4vSb414XOAcKdxbZxIl3tmNxqlVTg=;
+ b=maef4E3CjRdrk/NNRnuIG9J/TSxFc1nW8xM2LPN8Jx6ie3243CsW/SXA
+ FxRhq3GGZlCxGvo8bl8rUS2b6vo8gwYWCNzdbSvoTf744niI8xWZOrfU1
+ m4D9rNU+U0HR85D4kMhjwdyXZmMYGNlvjGokyZZL+hXOSXsiFl3UxYEVc
+ WVPZ7H0D+9OSalvd4OeQkERIT5G05cg0IIBUyfG6cmQkgyIX+sdesE7mn
+ YKsIjOyd5Zmnd8vveS2T6QAm+uIq7LKVOiOYc4BBihpxgLkbida5plHww
+ +Fn/7PTAZ4tHXSKK4RaEeIQgwMh3qtf6OAJ5abrefQ4FqQMCdHdfxK5Nj A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="369985794"
+X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; d="scan'208";a="369985794"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2023 05:15:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="763608614"
+X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; d="scan'208";a="763608614"
+Received: from golubevv-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.134])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2023 05:15:19 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <SN7PR11MB6750962FDFE9E533FAFCF0CEE315A@SN7PR11MB6750.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230807142754.3891787-1-suraj.kandpal@intel.com>
+ <877cpwayob.fsf@intel.com>
+ <SN7PR11MB6750D24920061E5DDD3F2171E315A@SN7PR11MB6750.namprd11.prod.outlook.com>
+ <87o7j79uqd.fsf@intel.com> <87fs4j9t3e.fsf@intel.com>
+ <SN7PR11MB6750A2CE4750AB0760EEA4C4E315A@SN7PR11MB6750.namprd11.prod.outlook.com>
+ <SN7PR11MB6750962FDFE9E533FAFCF0CEE315A@SN7PR11MB6750.namprd11.prod.outlook.com>
+Date: Wed, 16 Aug 2023 15:15:15 +0300
+Message-ID: <875y5f9oa4.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <87h6p1ddoz.fsf@intel.com>
-X-Originating-IP: [10.82.147.3]
-X-ClientProxiedBy: wuxshcsitd00602.xfusion.com (10.32.132.250) To
- wuxshcsitd00600.xfusion.com (10.32.133.213)
-X-Mailman-Approved-At: Wed, 16 Aug 2023 13:29:17 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix Kconfig error for
- CONFIG_DRM_I915
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: Explicit
+ first_line_bpg_offset assignment for DSI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,95 +65,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- stone.xulei@xfusion.com
+Cc: "Heikkila, Juha-pekka" <juha-pekka.heikkila@intel.com>, "Tseng,
+ William" <william.tseng@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 14, 2023 at 03:13:32PM +0300, Jani Nikula wrote:
-> On Mon, 14 Aug 2023, Wang Jinchao <wangjinchao@xfusion.com> wrote:
-> > On Mon, Aug 14, 2023 at 10:26:45AM +0300, Jani Nikula wrote:
-> >> On Sat, 12 Aug 2023, Wang Jinchao <wangjinchao@xfusion.com> wrote:
-> >> > When CONFIG_DRM_I915 is set to 'y' and CONFIG_BACKLIGHT_CLASS_DEVICE
-> >> > is set to 'm', we encountered an ld.lld error during the build process:
-> >> >
-> >> > 	ld.lld: error: undefined symbol: backlight_device_get_by_name
-> >> > 	>>> referenced by intel_backlight.c:955
-> >> > 	>>>               vmlinux.o:(intel_backlight_device_register)
-> >> >
-> >> > 	ld.lld: error: undefined symbol: backlight_device_register
-> >> > 	>>> referenced by intel_backlight.c:971
-> >> > 	>>>               vmlinux.o:(intel_backlight_device_register)
-> >> >
-> >> > 	ld.lld: error: undefined symbol: backlight_device_unregister
-> >> > 	>>> referenced by intel_backlight.c:999
-> >> > 	>>>               vmlinux.o:(intel_backlight_device_unregister)
-> >> >
-> >> > This issue occurred because intel_backlight_device_register and
-> >> > intel_backlight_device_unregister were enclosed within
-> >> > However, according to Kconfig, CONFIG_DRM_I915 will select
-> >> > BACKLIGHT_CLASS_DEVICE only if ACPI is enabled.
-> >> > This led to an error, which can be resolved by removing the
-> >> > conditional statements related to ACPI.
-> >> 
-> >> The real fix is to use
-> >> 
-> >> 	depends on BACKLIGHT_CLASS_DEVICE || BACKLIGHT_CLASS_DEVICE=n
-> > it works.
-> >> 
-> >> but in order to do that, you need to change a lot of places to depend
-> > Why, what are the other places?
-> 
-> Generally when you have a mixture of depends on and select on a kconfig
-> symbol, you'll eventually end up with dependency problems.
-> 
-> BR,
-> Jani.
-> 
-Now that I understand what you said, I will make an effort to correct it.
+On Wed, 16 Aug 2023, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+> Also a small thing I needed to add is we found this patch series
+> https://patchwork.freedesktop.org/patch/549863/?series=121487&rev=2
+>
+> where panel sets the slice height to 40 if a value around 30 is given
+> it should work not sure how relevant this is here but just an FYI
 
-      GEN     Makefile
-    drivers/gpu/drm/i915/Kconfig:2:error: recursive dependency detected!
-    drivers/gpu/drm/i915/Kconfig:2: symbol DRM_I915 depends on BACKLIGHT_CLASS_DEVICE
-    drivers/video/backlight/Kconfig:136:    symbol BACKLIGHT_CLASS_DEVICE is selected by DRM_FSL_DCU
-    drivers/gpu/drm/fsl-dcu/Kconfig:2:      symbol DRM_FSL_DCU depends on COMMON_CLK
-    drivers/clk/Kconfig:21: symbol COMMON_CLK is selected by X86_INTEL_QUARK
-    arch/x86/Kconfig:627:   symbol X86_INTEL_QUARK depends on X86_PLATFORM_DEVICES
-    drivers/platform/x86/Kconfig:6: symbol X86_PLATFORM_DEVICES is selected by DRM_I915
-    For a resolution refer to Documentation/kbuild/kconfig-language.rst
-    subsection "Kconfig recursive dependency limitations"
-> 
-> >> on, not select BACKLIGHT_CLASS_DEVICE, because otherwise you end up with
-> > got it.
-> >> other dependency issues.
-> >> 
-> >> BR,
-> >> Jani.
-> >> 
-> >> >
-> >> > Signed-off-by: Wang Jinchao <wangjinchao@xfusion.com>
-> >> > ---
-> >> >  drivers/gpu/drm/i915/Kconfig | 2 +-
-> >> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-> >> > index 01b5a8272a27..5003de921bf7 100644
-> >> > --- a/drivers/gpu/drm/i915/Kconfig
-> >> > +++ b/drivers/gpu/drm/i915/Kconfig
-> >> > @@ -24,7 +24,7 @@ config DRM_I915
-> >> >  	select IRQ_WORK
-> >> >  	# i915 depends on ACPI_VIDEO when ACPI is enabled
-> >> >  	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
-> >> > -	select BACKLIGHT_CLASS_DEVICE if ACPI
-> >> > +	select BACKLIGHT_CLASS_DEVICE
-> >> >  	select INPUT if ACPI
-> >> >  	select X86_PLATFORM_DEVICES if ACPI
-> >> >  	select ACPI_WMI if ACPI
-> >> 
-> >> -- 
-> >> Jani Nikula, Intel Open Source Graphics Center
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Parse error. :p
+
+BR,
+Jani.
+
+>
+> Regards,
+> Suraj Kandpal
+>> >
+>> > On Wed, 16 Aug 2023, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>> > > On Wed, 16 Aug 2023, "Kandpal, Suraj" <suraj.kandpal@intel.com>
+>> wrote:
+>> > >>> On Mon, 07 Aug 2023, Suraj Kandpal <suraj.kandpal@intel.com>
+>> wrote:
+>> > >>> > Assign explicit value of 12 at 8bpp as per Table E2 of DSC 1.1
+>> > >>> > for DSI panels even though we already use calculations from
+>> > >>> > CModel for first_line_bpg_offset.
+>> > >>> > The reason being some DSI monitors may have not have added the
+>> > >>> > change in errata for the calculation of first_line_bpg_offset.
+>> > >
+>> > > We should be using DRM_DSC_1_1_PRE_SCR parameters for this, right?
+>> > Why
+>> 
+>> Sorry I seemed to have missed this comment in my previous reply but from
+>> how the code is written if display_ver >= 13 we call on calculate_rc_params
+>> which uses formulas to calculate the params and we don't rely on the dsc
+>> tables in drm_dsc_helpers so the DRM_DSC_1_1_PRE_SCR scenario does not
+>> come in picture.
+>> 
+>> > > does the array have post-SCR values for first_line_bpg_offset?
+>> >
+>> > I'm asking for logs on the gitlab issue, and trying to get at the root
+>> > of this, because so many times in the past adding a specific fix like
+>> > this for a specific panel (albeit using generic conditions), it has
+>> > caused more troule for other panels in the future. What if other panels
+>> don't work with 12?
+>> >
+>> 
+>> That is true which is why I too was unsure on the fix.
+>> 
+>> Maybe Tseng can provide the logs them on the gitlab issue.
+>> 
+>> Regards,
+>> Suraj Kandpal
+>> 
+>> > BR,
+>> > Jani.
+>> >
+>> >
+>> > >
+>> > >
+>> > >>> >
+>> > >>> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> > >>> > ---
+>> > >>> >  drivers/gpu/drm/i915/display/icl_dsi.c | 5 +++++
+>> > >>> >  1 file changed, 5 insertions(+)
+>> > >>> >
+>> > >>> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
+>> > >>> > b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> > >>> > index f7ebc146f96d..2376d5000d78 100644
+>> > >>> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+>> > >>> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> > >>> > @@ -1585,6 +1585,11 @@ static int
+>> > >>> > gen11_dsi_dsc_compute_config(struct
+>> > >>> intel_encoder *encoder,
+>> > >>> >  	if (ret)
+>> > >>> >  		return ret;
+>> > >>> >
+>> > >>> > +	/* From Table E-2 in DSC 1.1*/
+>> > >>> > +	if (vdsc_cfg->dsc_version_minor == 1 &&
+>> > >>> > +	    vdsc_cfg->bits_per_pixel == 128)
+>> > >>>
+>> > >> Hi Jani,
+>> > >> Thanks for the review
+>> > >>
+>> > >>> So, vdsc_cfg->bits_per_pixel has 4 fractional bits, and that's 8
+>> > >>> bpp compressed?
+>> > >>>
+>> > >>> Better describe it that way, instead of as 128.
+>> > >>>
+>> > >>
+>> > >> Yes would be better to right shift (vdsc_cfg->bits_per_pixel)  by 4
+>> > >> then compare with 8 to avoid confusion.
+>> > >>
+>> > >>> But... looking around, in intel_vdsc.c we set:
+>> > >>>
+>> > >>> 	pps_val |= DSC_BPP(vdsc_cfg->bits_per_pixel);
+>> > >>>
+>> > >>> and we have:
+>> > >>>
+>> > >>> 	#define DSC_BPP(bpp)	((bpp) << 4)
+>> > >>>
+>> > >>> however, when reading it back in intel_dsc_get_config(), it's just
+>> > >>> directly:
+>> > >>>
+>> > >>> 	vdsc_cfg->bits_per_pixel = pps1;
+>> > >>>
+>> > >>> Are we always sending x16 bpp in PPS?
+>> > >>
+>> > >> Yes we are always sending bpp x16 considering the fractional bits
+>> > >> also in intel_vdsc_regs.h We have
+>> > >> #define  DSC_BPP(bpp)                           ((bpp) << 0)
+>> > >
+>> > > This is the part that confused me.
+>> > >
+>> > > BR,
+>> > > Jani.
+>> > >
+>> > >> Which in hindsight can be renamed as it has the same name as the
+>> > >> one in drm_dsc_helper.c But then again the DSC_BPP macro there is
+>> > >> more
+>> > local to that file.
+>> > >>
+>> > >> Moreover vdsc_cfg->bits_per_pixel is being set in
+>> > >> intel_dsc_compute_params(among other places but is still being set
+>> > >> x16
+>> > the value).
+>> > >>
+>> > >> vdsc_cfg->bits_per_pixel = compressed_bpp << 4;
+>> > >>
+>> > >> Regards,
+>> > >> Suraj Kandpal
+>> > >>>
+>> > >>>
+>> > >>> BR,
+>> > >>> Jani.
+>> > >>>
+>> > >>>
+>> > >>>
+>> > >>> > +		vdsc_cfg->first_line_bpg_offset = 12;
+>> > >>> > +
+>> > >>> >  	/* DSI specific sanity checks on the common code */
+>> > >>> >  	drm_WARN_ON(&dev_priv->drm, vdsc_cfg->vbr_enable);
+>> > >>> >  	drm_WARN_ON(&dev_priv->drm, vdsc_cfg->simple_422);
+>> > >>>
+>> > >>> --
+>> > >>> Jani Nikula, Intel Open Source Graphics Center
+>> >
+>> > --
+>> > Jani Nikula, Intel Open Source Graphics Center
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
