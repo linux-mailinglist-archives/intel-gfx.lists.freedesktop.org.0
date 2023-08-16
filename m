@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E89977DDC2
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Aug 2023 11:50:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A4C577DDF3
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Aug 2023 11:56:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 754D710E31A;
-	Wed, 16 Aug 2023 09:50:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC1DC10E317;
+	Wed, 16 Aug 2023 09:56:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 266C710E31A
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Aug 2023 09:50:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBFD310E317
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Aug 2023 09:56:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692179420; x=1723715420;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ut5FgfxJe3MP5Syh46sOH49fzyIEKMkqr/NcoUdBTag=;
- b=axvF6gJDvR7xFgK+XDWyKvAG1vhGHhWAd81zexHZSG/LzvuAuRDcG+X+
- QUnZnCHqR3tYPgi1uzC4pMoi8do/dTyYDTIW0JXDvLuq6Zk5X9hjtvCgh
- 8vEVwvba3zPp8aFDwDFD/UpTc1jd+Hogjens4stdAQC/clHGHO+5gVSPr
- 5x1lvqKgkuHO5+iZQ2E7hH+dcNlrzJ4RXbLw7kAMgHPQ8lsfQt44+ikOL
- d7/xLMrWAxhVS8Pfs5Cmtfn3OoF8zCrQE0o4gz1v/GYrgH8tJ3zkIDcWK
- Rkkz6GEYCJFJ6rjl4pfsPK2za3e+iceNxj2qFvH4HvI0o1hyQyCJ4zjQj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="357464227"
-X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; d="scan'208";a="357464227"
+ t=1692179760; x=1723715760;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=6UVNPYfB/BOBQaIT30pN9a/+R60jN5tgyeedn/KzJgw=;
+ b=kbvWBHybJMpGJao9AF6vXGCPSZdWgdmGYUBjTVjigW6EB374UEzBffRQ
+ C+nOuNeiHrWFbf8+tN4+5IBLZ7ycPdegtiHn4uMhDHB07IzV8WwIeWUWr
+ wD1/RIA0dSajVxPhXfvkjZDtx6E79iBwTyRs5s90N0zPErrPHFWnwA8LN
+ AUAiv3NZ2oDI15SNH8qp3OYVu1gIcLdLL1fe3kgz4dI4CJeEs7kav1RFd
+ bDzBSi3E57Z+QwnqAh1j+tPWTy8OTl2uo2rFRmIJC1OjqeT+dGWcqF2OP
+ yAgKevEgY2VFB+JNxcUbGCublNb1DWtQEi1oPS+cBLbdFPQGbJF8HU1po A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="357465439"
+X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; d="scan'208";a="357465439"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2023 02:50:19 -0700
+ 16 Aug 2023 02:56:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="737234522"
-X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; d="scan'208";a="737234522"
-Received: from mpietras-mobl1.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.252.43.172])
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="737236873"
+X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; d="scan'208";a="737236873"
+Received: from golubevv-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.134])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2023 02:50:18 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Aug 2023 12:49:56 +0300
-Message-Id: <20230816094956.487498-5-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230816094956.487498-1-vinod.govindapillai@intel.com>
-References: <20230816094956.487498-1-vinod.govindapillai@intel.com>
-MIME-Version: 1.0
+ 16 Aug 2023 02:55:58 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <SN7PR11MB6750D24920061E5DDD3F2171E315A@SN7PR11MB6750.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 4/4] drm/i915/display: configure SDP split
- for DP-MST
+References: <20230807142754.3891787-1-suraj.kandpal@intel.com>
+ <877cpwayob.fsf@intel.com>
+ <SN7PR11MB6750D24920061E5DDD3F2171E315A@SN7PR11MB6750.namprd11.prod.outlook.com>
+Date: Wed, 16 Aug 2023 12:55:54 +0300
+Message-ID: <87o7j79uqd.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: Explicit
+ first_line_bpg_offset assignment for DSI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,90 +62,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: "Heikkila, Juha-pekka" <juha-pekka.heikkila@intel.com>, "Tseng,
+ William" <william.tseng@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Extend the SDP split audio config for DP-MST
+On Wed, 16 Aug 2023, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> On Mon, 07 Aug 2023, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+>> > Assign explicit value of 12 at 8bpp as per Table E2 of DSC 1.1 for DSI
+>> > panels even though we already use calculations from CModel for
+>> > first_line_bpg_offset.
+>> > The reason being some DSI monitors may have not have added the change
+>> > in errata for the calculation of first_line_bpg_offset.
 
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     |  2 +-
- drivers/gpu/drm/i915/display/intel_dp.h     |  3 +++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 19 ++-----------------
- 3 files changed, 6 insertions(+), 18 deletions(-)
+We should be using DRM_DSC_1_1_PRE_SCR parameters for this, right? Why
+does the array have post-SCR values for first_line_bpg_offset?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 0ee9b9e05c26..c1364b164df7 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2234,7 +2234,7 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- 	return ret;
- }
- 
--static void
-+void
- intel_dp_audio_compute_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *pipe_config,
- 			      struct drm_connector_state *conn_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 22099de3ca45..62aacc89c45d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -65,6 +65,9 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 				struct link_config_limits *limits,
- 				int timeslots,
- 				bool recompute_pipe_bpp);
-+void intel_dp_audio_compute_config(struct intel_encoder *encoder,
-+				   struct intel_crtc_state *pipe_config,
-+				   struct drm_connector_state *conn_state);
- bool intel_dp_has_hdmi_sink(struct intel_dp *intel_dp);
- bool intel_dp_is_edp(struct intel_dp *intel_dp);
- bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index e3f176a093d2..8fc7802d796b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -290,19 +290,6 @@ static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
- 	return 0;
- }
- 
--static bool intel_dp_mst_has_audio(const struct drm_connector_state *conn_state)
--{
--	const struct intel_digital_connector_state *intel_conn_state =
--		to_intel_digital_connector_state(conn_state);
--	struct intel_connector *connector =
--		to_intel_connector(conn_state->connector);
--
--	if (intel_conn_state->force_audio == HDMI_AUDIO_AUTO)
--		return connector->base.display_info.has_audio;
--	else
--		return intel_conn_state->force_audio == HDMI_AUDIO_ON;
--}
--
- static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
- 				       struct intel_crtc_state *pipe_config,
- 				       struct drm_connector_state *conn_state)
-@@ -322,10 +309,6 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
- 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
- 	pipe_config->has_pch_encoder = false;
- 
--	pipe_config->has_audio =
--		intel_dp_mst_has_audio(conn_state) &&
--		intel_audio_compute_config(encoder, pipe_config, conn_state);
--
- 	/*
- 	 * for MST we always configure max link bw - the spec doesn't
- 	 * seem to suggest we should do otherwise.
-@@ -388,6 +371,8 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
- 		pipe_config->lane_lat_optim_mask =
- 			bxt_ddi_phy_calc_lane_lat_optim_mask(pipe_config->lane_count);
- 
-+	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
-+
- 	intel_ddi_compute_min_voltage_level(dev_priv, pipe_config);
- 
- 	return 0;
+
+>> >
+>> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/icl_dsi.c | 5 +++++
+>> >  1 file changed, 5 insertions(+)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
+>> > b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> > index f7ebc146f96d..2376d5000d78 100644
+>> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+>> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> > @@ -1585,6 +1585,11 @@ static int gen11_dsi_dsc_compute_config(struct
+>> intel_encoder *encoder,
+>> >  	if (ret)
+>> >  		return ret;
+>> >
+>> > +	/* From Table E-2 in DSC 1.1*/
+>> > +	if (vdsc_cfg->dsc_version_minor == 1 &&
+>> > +	    vdsc_cfg->bits_per_pixel == 128)
+>> 
+> Hi Jani,
+> Thanks for the review
+>
+>> So, vdsc_cfg->bits_per_pixel has 4 fractional bits, and that's 8 bpp
+>> compressed?
+>> 
+>> Better describe it that way, instead of as 128.
+>> 
+>
+> Yes would be better to right shift (vdsc_cfg->bits_per_pixel)  by 4 then compare with 8
+> to avoid confusion.
+>
+>> But... looking around, in intel_vdsc.c we set:
+>> 
+>> 	pps_val |= DSC_BPP(vdsc_cfg->bits_per_pixel);
+>> 
+>> and we have:
+>> 
+>> 	#define DSC_BPP(bpp)	((bpp) << 4)
+>> 
+>> however, when reading it back in intel_dsc_get_config(), it's just
+>> directly:
+>> 
+>> 	vdsc_cfg->bits_per_pixel = pps1;
+>> 
+>> Are we always sending x16 bpp in PPS?
+>
+> Yes we are always sending bpp x16 considering the fractional bits also in intel_vdsc_regs.h
+> We have 
+> #define  DSC_BPP(bpp)                           ((bpp) << 0)
+
+This is the part that confused me.
+
+BR,
+Jani.
+
+> Which in hindsight can be renamed as it has the same name as the one in drm_dsc_helper.c
+> But then again the DSC_BPP macro there is more local to that file.
+>
+> Moreover vdsc_cfg->bits_per_pixel is being set in intel_dsc_compute_params(among other places
+> but is still being set x16 the value).
+>
+> vdsc_cfg->bits_per_pixel = compressed_bpp << 4;
+>
+> Regards,
+> Suraj Kandpal
+>> 
+>> 
+>> BR,
+>> Jani.
+>> 
+>> 
+>> 
+>> > +		vdsc_cfg->first_line_bpg_offset = 12;
+>> > +
+>> >  	/* DSI specific sanity checks on the common code */
+>> >  	drm_WARN_ON(&dev_priv->drm, vdsc_cfg->vbr_enable);
+>> >  	drm_WARN_ON(&dev_priv->drm, vdsc_cfg->simple_422);
+>> 
+>> --
+>> Jani Nikula, Intel Open Source Graphics Center
+
 -- 
-2.34.1
-
+Jani Nikula, Intel Open Source Graphics Center
