@@ -2,49 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBAFB77FD4A
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Aug 2023 19:53:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A8BC77FE8C
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Aug 2023 21:33:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54F3810E53B;
-	Thu, 17 Aug 2023 17:53:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2467910E0B5;
+	Thu, 17 Aug 2023 19:33:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4616E10E53B
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Aug 2023 17:53:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692294807; x=1723830807;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nla7x+i2yEuNuUTBclE48tGbhFENfyfZZWYTBxSzUS8=;
- b=lqDsDVX9Khv4CU1Q2Mesuqqt9TfWEltAo51HpSrsSna6npF+kRj3DqFv
- 0YU9N2u9xyKKh6IklwXejIORFGbMJeNqfohwhTyCSWZZk7MzJm22t0DLM
- bBGv33M2gDDpCAPmAYUpyLC0ecT/HDXti/STayFfr9jTHAClzIWtiE5nZ
- a2r1vBrvEC0HmtE9B+FU9kti9I/Bmbpt3O2M+MmNg52K2y8Po+VcLT6ar
- frnOJKyo8ylB4X+xm0fZ9iJescWPgAKhQC+Nw7cXhgCNtLemnahq9x5Lp
- XYS2hRyaaATfaxILkCzJ4BADGX+m6koPwB0lyI13UD/+FkmBEoL3vyfp1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="403867481"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="403867481"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2023 10:53:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="1065372314"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="1065372314"
-Received: from cszukala-mobl1.amr.corp.intel.com (HELO
- gjsousa-mobl2.intel.com) ([10.212.20.127])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2023 10:53:25 -0700
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 17 Aug 2023 14:53:12 -0300
-Message-ID: <20230817175312.295559-1-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.41.0
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
+ [IPv6:2a00:1450:4864:20::134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17F0810E514
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Aug 2023 19:33:38 +0000 (UTC)
+Received: by mail-lf1-x134.google.com with SMTP id
+ 2adb3069b0e04-4fe0d5f719dso108867e87.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Aug 2023 12:33:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1692300816; x=1692905616;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=PTeIB9pYid3fqigxOWDYDIY+mY1GdyvBJZisg+HzkYA=;
+ b=fbU/9t3RDvtxuksYoldZXzqJDboq8G8kNUyAl3ZwtPtbJWICLy6BJ+DuaIUMT7npJN
+ Gjx7Y9oAQNiKfZF9BCKesyPWepm0nwn8mYIiv7BYKTrKwFQWFQ43ruoadZpw4phnGhSZ
+ bSY1KyR16CE2ftaOs5+J+PHffdf6F/rx9bNFuGOSYwbWdIzquGljtoeGckrhQn8pSEcf
+ PP69YFAXpke+YGIy1mp4d2ZZqXgcqMFnTQ8PQx50TS1gkqZRXoFUbTn8Q03RpWYjqkmw
+ KeK6BcX/+HjjSKPKYa70Oi01T9fQuJ8vW3c3XY1joLKo4xxM4k1rCNECfhfcTm9f9m3I
+ k11A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692300816; x=1692905616;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=PTeIB9pYid3fqigxOWDYDIY+mY1GdyvBJZisg+HzkYA=;
+ b=OpCUFXZGJzCBwI5D4RKct2WCriC2KjrWCLxOls1bI/phuoJpT7uMEdJXfAnJ6lMn4D
+ UXGPY97J4kTr1oJjkdXRGPuadLONKarMheHV4slmLEox/VoN/XfxiledAMAiQOteLpuQ
+ vhTX9Xz9kRE8xGGk93hMlpFgbHXttTXiBIy3/MXDCrCMZ1IUDLzynarqJXTOyAfgGGeR
+ OLhytlvJGDQS+KXEBGAl2n0o2oPvIPl/Zbs7pCrmo668YowHIpqGr2w7agjkWhnznUhB
+ XZV7Dto4liS2WkeAQ/b0mKiX6OobhycbeYGfyKH6LtmCveWMOVq8xYXQvyHxF+MP6miQ
+ F6EQ==
+X-Gm-Message-State: AOJu0YwIHrXD09WLkTJUt5FU7duZHxh/d+9wjFvGlWhVSoigdov6ORs/
+ 5QgNI280uaJQancX/YlBS2Sv5g==
+X-Google-Smtp-Source: AGHT+IEUSC1pYvaO/o6myhvtL0cu5cdObE4VqE+nWLXGFFDln+T9PAqaBXRKiRW6sApggcbGUe+tDQ==
+X-Received: by 2002:ac2:4ec3:0:b0:4fc:6e21:ff50 with SMTP id
+ p3-20020ac24ec3000000b004fc6e21ff50mr160888lfr.55.1692300816221; 
+ Thu, 17 Aug 2023 12:33:36 -0700 (PDT)
+Received: from [10.10.15.130] ([192.130.178.91])
+ by smtp.gmail.com with ESMTPSA id
+ d16-20020a056402001000b0052565298bedsm138330edu.34.2023.08.17.12.33.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 17 Aug 2023 12:33:35 -0700 (PDT)
+Message-ID: <d9f9c272-ce9b-4599-bb11-1c026087ead3@linaro.org>
+Date: Thu, 17 Aug 2023 22:33:33 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+To: Simon Ser <contact@emersion.fr>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20230729004913.215872-1-dmitry.baryshkov@linaro.org>
+ <20230729004913.215872-4-dmitry.baryshkov@linaro.org>
+ <20230802185547.GC32500@pendragon.ideasonboard.com>
+ <a32ce695-038f-0ef8-3584-5bd1ba528131@linaro.org>
+ <20230802191351.GA1407@pendragon.ideasonboard.com>
+ <DE2B4523-D16C-4AFC-8352-212B23548DD5@linaro.org>
+ <b6oOVz2YMIG4hJDWhq9lTh6R2HYcrpRwHENhplig9KSQMD8dIjTgC5KdH1Ij3URgV2HESp67Ax7QUsByGjMLouvbs-5q7PiPRdLkgJz6Fwk=@emersion.fr>
+ <ADjuOeqA6575DKutMPaR9mW9rLhm-wjLc4ruoUkNwImf-GB90FdwDB7v7y6LFdzVG3BC4R52A0RUtStK4_smmGYTUs3UPDOX4T4Zl2YHkxE=@emersion.fr>
+ <20230803204459.GD27752@pendragon.ideasonboard.com>
+ <TR8IBdXbd0C4U8Z4zf9ZLEH66QMutWs0QAAkPnMlKiOvgEZCk6AfEIPcIfRC555XWs8eSzeCCCW9R-3NwxZg6hDhPvPseAgAULAdUQ6epDA=@emersion.fr>
+Content-Language: en-GB
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <TR8IBdXbd0C4U8Z4zf9ZLEH66QMutWs0QAAkPnMlKiOvgEZCk6AfEIPcIfRC555XWs8eSzeCCCW9R-3NwxZg6hDhPvPseAgAULAdUQ6epDA=@emersion.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Remove unused
- POWER_DOMAIN_MODESET
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/uapi: document the USB subconnector
+ type
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,120 +86,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Janne Grunau <j@jannau.net>,
+ Robert Foss <rfoss@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Andy Gross <agross@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>, Leo Li <sunpeng.li@amd.com>,
+ intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Bjorn Andersson <andersson@kernel.org>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-That power domain became unused after commit 41b4c7fe72b6 ("drm/i915:
-Disable DC states for all commits").
+Simon, Laurent,
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power.c     | 2 --
- drivers/gpu/drm/i915/display/intel_display_power.h     | 1 -
- drivers/gpu/drm/i915/display/intel_display_power_map.c | 9 ---------
- 3 files changed, 12 deletions(-)
+On 03/08/2023 23:46, Simon Ser wrote:
+> On Thursday, August 3rd, 2023 at 22:44, Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
+> 
+>> On Thu, Aug 03, 2023 at 03:31:16PM +0000, Simon Ser wrote:
+>>
+>>> On Thursday, August 3rd, 2023 at 17:22, Simon Ser contact@emersion.fr wrote:
+>>>
+>>>> The KMS docs describe "subconnector" to be defined as "downstream port" for DP.
+>>>> Can USB-C (or USB) be seen as a DP downstream port?
+>>>
+>>> To expand on this a bit: I'm wondering if we're mixing apples and
+>>> oranges here. The current values of "subconnector" typically describe
+>>> the lower-level protocol tunneled inside DP. For instance, VGA can be
+>>> tunneled inside the DP cable when using DP → VGA adapter.
+>>
+>> Doesn't this contradict the example use case you gave in your previous
+>> e-mail, with wlroots stating "DP-3 via DVI-D" ? I understand that as DP
+>> carried over a DVI-D physical connector, did I get it wrong ?
+> 
+> No, this is DVI carried over DP. DP cannot be carried over VGA/DVI/HDMI,
+> but VGA/DVI/HDMI can be carried over DP.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 71d70bd9fd82..68cf5e6b0b46 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -186,8 +186,6 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
- 		return "GMBUS";
- 	case POWER_DOMAIN_INIT:
- 		return "INIT";
--	case POWER_DOMAIN_MODESET:
--		return "MODESET";
- 	case POWER_DOMAIN_GT_IRQ:
- 		return "GT_IRQ";
- 	case POWER_DOMAIN_DC_OFF:
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index d3b5d04b7b07..d6c2a5846bdc 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -108,7 +108,6 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_AUX_TBT6,
- 
- 	POWER_DOMAIN_GMBUS,
--	POWER_DOMAIN_MODESET,
- 	POWER_DOMAIN_GT_IRQ,
- 	POWER_DOMAIN_DC_OFF,
- 	POWER_DOMAIN_TC_COLD_OFF,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index 5ad04cd42c15..0f1b93d139ca 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -332,7 +332,6 @@ I915_DECL_PW_DOMAINS(skl_pwdoms_pw_2,
- I915_DECL_PW_DOMAINS(skl_pwdoms_dc_off,
- 	SKL_PW_2_POWER_DOMAINS,
- 	POWER_DOMAIN_AUX_A,
--	POWER_DOMAIN_MODESET,
- 	POWER_DOMAIN_GT_IRQ,
- 	POWER_DOMAIN_DC_OFF,
- 	POWER_DOMAIN_INIT);
-@@ -437,7 +436,6 @@ I915_DECL_PW_DOMAINS(bxt_pwdoms_dc_off,
- 	BXT_PW_2_POWER_DOMAINS,
- 	POWER_DOMAIN_AUX_A,
- 	POWER_DOMAIN_GMBUS,
--	POWER_DOMAIN_MODESET,
- 	POWER_DOMAIN_GT_IRQ,
- 	POWER_DOMAIN_DC_OFF,
- 	POWER_DOMAIN_INIT);
-@@ -519,7 +517,6 @@ I915_DECL_PW_DOMAINS(glk_pwdoms_dc_off,
- 	GLK_PW_2_POWER_DOMAINS,
- 	POWER_DOMAIN_AUX_A,
- 	POWER_DOMAIN_GMBUS,
--	POWER_DOMAIN_MODESET,
- 	POWER_DOMAIN_GT_IRQ,
- 	POWER_DOMAIN_DC_OFF,
- 	POWER_DOMAIN_INIT);
-@@ -685,7 +682,6 @@ I915_DECL_PW_DOMAINS(icl_pwdoms_pw_2,
- I915_DECL_PW_DOMAINS(icl_pwdoms_dc_off,
- 	ICL_PW_2_POWER_DOMAINS,
- 	POWER_DOMAIN_AUX_A,
--	POWER_DOMAIN_MODESET,
- 	POWER_DOMAIN_DC_OFF,
- 	POWER_DOMAIN_INIT);
- 
-@@ -861,7 +857,6 @@ I915_DECL_PW_DOMAINS(tgl_pwdoms_dc_off,
- 	POWER_DOMAIN_AUX_A,
- 	POWER_DOMAIN_AUX_B,
- 	POWER_DOMAIN_AUX_C,
--	POWER_DOMAIN_MODESET,
- 	POWER_DOMAIN_DC_OFF,
- 	POWER_DOMAIN_INIT);
- 
-@@ -1058,7 +1053,6 @@ I915_DECL_PW_DOMAINS(rkl_pwdoms_dc_off,
- 	RKL_PW_3_POWER_DOMAINS,
- 	POWER_DOMAIN_AUX_A,
- 	POWER_DOMAIN_AUX_B,
--	POWER_DOMAIN_MODESET,
- 	POWER_DOMAIN_DC_OFF,
- 	POWER_DOMAIN_INIT);
- 
-@@ -1141,7 +1135,6 @@ I915_DECL_PW_DOMAINS(dg1_pwdoms_dc_off,
- 	POWER_DOMAIN_AUDIO_MMIO,
- 	POWER_DOMAIN_AUX_A,
- 	POWER_DOMAIN_AUX_B,
--	POWER_DOMAIN_MODESET,
- 	POWER_DOMAIN_DC_OFF,
- 	POWER_DOMAIN_INIT);
- 
-@@ -1311,7 +1304,6 @@ I915_DECL_PW_DOMAINS(xelpd_pwdoms_dc_off,
- 	POWER_DOMAIN_AUDIO_MMIO,
- 	POWER_DOMAIN_AUX_A,
- 	POWER_DOMAIN_AUX_B,
--	POWER_DOMAIN_MODESET,
- 	POWER_DOMAIN_DC_OFF,
- 	POWER_DOMAIN_INIT);
- 
-@@ -1426,7 +1418,6 @@ I915_DECL_PW_DOMAINS(xehpd_pwdoms_dc_off,
- 	POWER_DOMAIN_AUDIO_MMIO,
- 	POWER_DOMAIN_AUX_A,
- 	POWER_DOMAIN_AUX_B,
--	POWER_DOMAIN_MODESET,
- 	POWER_DOMAIN_DC_OFF,
- 	POWER_DOMAIN_INIT);
- 
+Please excuse me for the long delay, I was on vacation.
+
+Several notes on the subconnector topic.
+
+For TV and DVI-I we are really identifying a connector (or a part of the 
+connector pins) present on the device.
+
+So, we can have e.g. following combinations (type / subtype):
+
+DVI-I / DVI-D (digital part of DVI connector)
+DVI-I / DVI-A (analog part of DVI connector)
+
+TV / S-Video (full S-Video connector)
+TV / Composite (either a separate Composite connector, or shared with 
+S-Video)
+etc.
+
+For DP unfortunately we have mixed everything together.
+The physical connector present on the device can be DP / miniDP or USB-C 
+(or micro-USB for SlimPort).
+
+The physical protocol can be DP or DVI / HDMI (but only for dual-mode DP 
+ports). Over USB-C link the DP can be transferred using DP or USB signal 
+levels.
+
+And last, but not least, we have the dongle / display connector type, 
+which can be VGA (for active DP -> VGA converters), HDMI, DVI, DP, etc.
+
+If we were designing this from the scratch, I'd say that we should 
+encode physical connector type to DRM connector type and the dongle type 
+to subconnector. However AMD and Intel drivers have already reused 
+DisplayPort connector type for USB-C connections. Subconnector type 
+represents (if known) the type of downstream / dongle port. I'm not 
+going to judge whether this was correct or not. We have to live with 
+this and behave in a similar way.
+
+We have been looking for a way to document that the corresponding DP 
+port is represented by the USB connector on the device.
+
+Consequently, I believe the best way to document it, would be to use 
+DisplayPort / USB, when there is no dongle connected, switching to 
+DisplayPort / HDMI, DisplayPort / VGA, DisplayPort / DisplayPort, etc. 
+when the actual dongle / display is connected and then switching back to 
+the DisplayPort / USB when it gets disconnected.
+
+If this sounds good to all parties, I'll post v2, adding this 
+explanation to the cover letter.
+
 -- 
-2.41.0
+With best wishes
+Dmitry
 
