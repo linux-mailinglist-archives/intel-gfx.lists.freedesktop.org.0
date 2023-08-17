@@ -2,54 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D5877F744
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Aug 2023 15:04:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 573F077F749
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Aug 2023 15:06:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E83010E46D;
-	Thu, 17 Aug 2023 13:04:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3ACD10E478;
+	Thu, 17 Aug 2023 13:06:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1921910E46D
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Aug 2023 13:04:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 631D710E47C;
+ Thu, 17 Aug 2023 13:06:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692277450; x=1723813450;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=P73/vllHgOTnv8HyE37YJH8ZDef+XPkPtuLpYFu7bOg=;
- b=GE3KOl3uS//yBqjGb7vsZJoW45O9W4dKEzattkI8y15ExireLXxE5KlZ
- 00j94msj10ZfWapF9zP/MFMAKlqd0v0DXmhUrFgKY2J4rA15woF/nhfPm
- 0EmOd5B/E5UAtmRocffaAOv1hqGwizZ+3j9AtHo7puqDdn2DdLN8t6WP1
- ksRn8BMYM1PtSCkmRQZ8PaVK0wbeXI7NCLeap73rkoZ7R0BGBv8FPtlWE
- QTT0snh6hTg1PtdLIP0kJyMElY7uX+X4gtlKYA26z9dCQMVwC5uPNBcIa
- oOqj6wHw2XBLyAEX4DZu8GluhQwOYTAqStHac9Wl5p2grLpP9ZvckWxON A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="403784879"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="403784879"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2023 06:04:09 -0700
+ t=1692277583; x=1723813583;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=wE7qeL3PmBJFRmq8LxVnfupjLQQE+KvKqnjTG7gUkqw=;
+ b=UcmX4+BsbZGsxB9HofroWxyi+x3IjKwvBtIkQ23RlaItMdPxJ5/oJIsN
+ 4DEgLk53JyRzGM5lMXKs0b1NgknDGtUTw6+6Bg145nZC4YX7ktj2tjZ86
+ 7Duhr2FVlOsVkl6jwKF38ZgpPy/H9E1sEDzRdVqIVdaAvATY0KkTWSJWW
+ Z83RfWGxj48cyVR/kmGL1SDvv7S+Mb0BiU6HaOSp8DdGVDmskmgfzzS46
+ wySwBbjKGfRrmH1sRnTfugo/jBjG2SdTgyg6JaTr0+2kpzRA487JHFhE/
+ oVMw8o9OUtX5ZZJNUEj7EDRFt4exMLwsq4kzGh4/9YMRpyxbVfqORtdiU w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="436707635"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="436707635"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2023 06:06:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="800037704"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="800037704"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.68])
- by fmsmga008.fm.intel.com with SMTP; 17 Aug 2023 06:04:06 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 17 Aug 2023 16:04:05 +0300
-Date: Thu, 17 Aug 2023 16:04:05 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Message-ID: <ZN4axVL9z7OtycRg@intel.com>
-References: <20230817125007.2681331-1-mitulkumar.ajitkumar.golani@intel.com>
- <20230817125007.2681331-3-mitulkumar.ajitkumar.golani@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="981150375"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="981150375"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2023 06:06:00 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dirk Lehmann <develop@dj-l.de>, stable@vger.kernel.org
+In-Reply-To: <E1qWbpR-0007ey-0B@djlnb.local>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230815101907.2900768-1-jani.nikula@intel.com>
+ <E1qWbpR-0007ey-0B@djlnb.local>
+Date: Thu, 17 Aug 2023 16:05:56 +0300
+Message-ID: <87o7j595u3.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230817125007.2681331-3-mitulkumar.ajitkumar.golani@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/display: Configure and
- initialize HDMI audio capabilities
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/edid: Fix "Analog composite
+ sync!" for current eDP display panels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,132 +59,200 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, jyri.sarha@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, Dirk Lehmann <develop@dj-l.de>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 17, 2023 at 06:20:06PM +0530, Mitul Golani wrote:
-> Initialize the source audio capabilities in crtc_state
-> property by setting them to their maximum supported values,
-> including max_channel and max_frequency. This allows for the
-> calculation of audio source capabilities with respect to
-> the available mode bandwidth. These capabilities encompass
-> parameters such as supported frequency and channel configurations.
-> 
-> --v1:
-> - Refactor max_channel and max_rate to this commit as it is being
-> initialised here
-> - Remove call for intel_audio_compute_eld to avoid any regression while
-> merge. instead call it in different commit when it is defined.
-> - Use int instead of unsigned int for max_channel and max_frequecy
-> - Update commit message and header
-> 
-> --v2:
-> - Use signed instead of unsigned variables.
-> - Avoid using magic numbers and give them proper name.
-> 
-> --v3:
-> - Move defines to intel_audio.c.
-> - use consistent naming convention for rate and channel.
-> - declare num_of_channel and aud_rate separately.
-> - Declare index value outside of for loop.
-> - Move Bandwidth calculation to intel_Audio.c as it is common for both
-> DP and HDMI. Also use static.
-> 
-> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+On Thu, 17 Aug 2023, Dirk Lehmann <develop@dj-l.de> wrote:
+> VESA Enhanced EDID Standard does not clearly describe how display
+> panel vendors should setup the Sync Signal Defintions (bit 4 & 3) in
+> the Detailed Timing Definition (relative offset 17, absolute offset
+> 47h[+18]) for Digital Video Signal Interfaces (bit 7 at offset 14h).
+>
+> In practice many eDP panels which using a Digital Video Signal
+> Interfaces (bit 7 at offset 14h == 1) are leaving the Sync Signal
+> Defintions at offset 47h[+18] blank 0x00, which would mean concerned
+> with the VESA Standard [1] that they are using "Analog Composite
+> Sync".
+>
+> Fix: Just detect Analog Sync Signal if an Analog Video Signal
+>      Interface (bit 7 at offset 14h == 0) is in use.  Just detect
+>      Digital Sync Signal if an Digital Video Signal Interface is in
+>      use.
+>
+> Reference: [1] VESA Enhanced EDID Standard, Release A, Rev.2, Page 35
+
+Please don't reply with patches in-reply-to other people's patches.
+
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8789
+
+This is now fixed by the revert that I just pushed.
+
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8146
+
+I don't think this patch fixes that one; see below.
+
+> Signed-off-by: Dirk Lehmann <develop@dj-l.de>
 > ---
->  drivers/gpu/drm/i915/display/intel_audio.c    | 38 +++++++++++++++++++
->  .../drm/i915/display/intel_display_types.h    |  6 +++
->  2 files changed, 44 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-> index e20ffc8e9654..79377e33a59b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -64,6 +64,9 @@
->   * struct &i915_audio_component_audio_ops @audio_ops is called from i915 driver.
->   */
+>  drivers/gpu/drm/drm_edid.c | 74 ++++++++++++++++++++++++++++++++------
+>  include/drm/drm_edid.h     | 12 +++++--
+>  2 files changed, 73 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 1f470968ed14..6afdc34e55ce 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -3437,6 +3437,7 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
+>  	const struct drm_display_info *info = &connector->display_info;
+>  	struct drm_device *dev = connector->dev;
+>  	struct drm_display_mode *mode;
+> +	const struct edid *edid = drm_edid->edid;
+>  	const struct detailed_pixel_timing *pt = &timing->data.pixel_data;
+>  	unsigned hactive = (pt->hactive_hblank_hi & 0xf0) << 4 | pt->hactive_lo;
+>  	unsigned vactive = (pt->vactive_vblank_hi & 0xf0) << 4 | pt->vactive_lo;
+> @@ -3456,10 +3457,6 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
+>  			    connector->base.id, connector->name);
+>  		return NULL;
+>  	}
+> -	if (!(pt->misc & DRM_EDID_PT_SEPARATE_SYNC)) {
+> -		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Composite sync not supported\n",
+> -			    connector->base.id, connector->name);
+> -	}
 >  
-> +#define AUDIO_SAMPLE_CONTAINER_SIZE	32
-> +#define MAX_CHANNEL_COUNT		8
-> +
->  struct intel_audio_funcs {
->  	void (*audio_codec_enable)(struct intel_encoder *encoder,
->  				   const struct intel_crtc_state *crtc_state,
-> @@ -770,6 +773,39 @@ void intel_audio_sdp_split_update(struct intel_encoder *encoder,
->  			     crtc_state->sdp_split_enable ? AUD_ENABLE_SDP_SPLIT : 0);
->  }
+>  	/* it is incorrect if hsync/vsync width is zero */
+>  	if (!hsync_pulse_width || !vsync_pulse_width) {
+> @@ -3505,11 +3502,68 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
 >  
-> +static int calc_audio_bw(int channel_count, int rate)
-> +{
-> +	int bandwidth = channel_count * rate * AUDIO_SAMPLE_CONTAINER_SIZE;
-> +	return bandwidth;
-> +}
-> +
-> +static void calc_audio_config_params(struct intel_crtc_state *pipe_config)
-> +{
-> +	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
-> +	int channel_count;
-> +	int index, rate[] = { 192000, 176000, 96000, 88000, 48000, 44100, 32000 };
-> +	int audio_req_bandwidth, available_blank_bandwidth, vblank, hblank;
-> +
-> +	hblank = adjusted_mode->htotal - adjusted_mode->hdisplay;
-> +	vblank = adjusted_mode->vtotal - adjusted_mode->vdisplay;
-> +	available_blank_bandwidth = hblank * vblank *
-> +				    drm_mode_vrefresh(adjusted_mode) * pipe_config->pipe_bpp;
-> +	for (channel_count = MAX_CHANNEL_COUNT; channel_count > 0; channel_count--) {
-> +		for (index = 0; index < ARRAY_SIZE(rate); index++) {
-> +			audio_req_bandwidth = calc_audio_bw(channel_count,
-> +							    rate[index]);
-> +			if (audio_req_bandwidth < available_blank_bandwidth) {
-> +				pipe_config->audio.max_rate = rate[index];
-> +				pipe_config->audio.max_channel_count = channel_count;
-> +				return;
-> +			}
+>  	if (info->quirks & EDID_QUIRK_DETAILED_SYNC_PP) {
+>  		mode->flags |= DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC;
+> +	} else if (edid->input & DRM_EDID_INPUT_DIGITAL) {
+> +		/* !info->quirks && edid->input == DIGITAL  */
+> +		switch (pt->misc & DRM_EDID_PT_SYNC_MASK) {
+> +		/* VESA Enhanced EDID Standard, Release A, Rev.2, Page 35
+> +		 *
+> +		 * CASE DRM_EDID_PT_ANALOG_CSYNC:
+> +		 *
+> +		 * (pt->misc & DRM_EDID_PT_SYNC_MASK == 0x00) means
+> +		 * "Analog Composite Sync" as described in VESA
+> +		 * Standard.  But many digital display panels without
+> +		 * composite sync are also using 0x00 here.
+> +		 *
+> +		 * Therefore use DEFAULT: as we are currently on an
+> +		 * digital video signal interface.
+> +		 */
+> +		case DRM_EDID_PT_DIGITAL_CSYNC:
+> +			drm_dbg_kms(dev,
+> +				"[CONNECTOR:%d:%s] Digital composite sync!\n",
+> +				connector->base.id, connector->name);
+> +			mode->flags |= DRM_MODE_FLAG_CSYNC;
+> +			mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
+> +				DRM_MODE_FLAG_PCSYNC : DRM_MODE_FLAG_NCSYNC;
+> +			break;
+> +		case DRM_EDID_PT_DIGITAL_SEPARATE_SYNC:
+> +			drm_dbg_kms(dev,
+> +				"[CONNECTOR:%d:%s] Digital seperate sync!\n",
+> +				connector->base.id, connector->name);
+> +			goto digital_default;
+> +			break; /* Missing BREAK throws a compiler warning  */
+
+fallthrough; will do the trick.
+
+> +		default:
+> +digital_default:
+> +			mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
+> +				DRM_MODE_FLAG_PHSYNC : DRM_MODE_FLAG_NHSYNC;
+> +			mode->flags |= (pt->misc & DRM_EDID_PT_VSYNC_POSITIVE) ?
+> +				DRM_MODE_FLAG_PVSYNC : DRM_MODE_FLAG_NVSYNC;
+
+The failing mode in bug [1] has 0x0a for flags, so it ends up here, and
+for that display this patch is a no-op.
+
+As I explained in [2], all the problematic cases have invalid data, but
+the ones fixed by the revert need to ignore the analog sync *flags* and
+accept the mode, and the display in [1] needs to have the whole *mode*
+rejected.
+
+[1] https://gitlab.freedesktop.org/drm/intel/-/issues/8146
+[2] https://gitlab.freedesktop.org/drm/intel/-/issues/8789#note_2047902
+
+> +			break;
 > +		}
-> +	}
-> +
-> +	pipe_config->audio.max_rate = 0;
-> +	pipe_config->audio.max_channel_count = 0;
-> +}
-> +
->  bool intel_audio_compute_config(struct intel_encoder *encoder,
->  				struct intel_crtc_state *crtc_state,
->  				struct drm_connector_state *conn_state)
-> @@ -791,6 +827,8 @@ bool intel_audio_compute_config(struct intel_encoder *encoder,
->  
->  	crtc_state->eld[6] = drm_av_sync_delay(connector, adjusted_mode) / 2;
->  
-> +	calc_audio_config_params(crtc_state);
-> +
->  	return true;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index ebd147180a6e..8815837a95a6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1131,6 +1131,12 @@ struct intel_crtc_state {
->  
->  	struct {
->  		bool has_audio;
-> +
-> +		/* Audio rate in Hz */
-> +		int max_rate;
-> +
-> +		/* Number of audio channels */
-> +		int max_channel_count;
+>  	} else {
+> -		mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
+> -			DRM_MODE_FLAG_PHSYNC : DRM_MODE_FLAG_NHSYNC;
+> -		mode->flags |= (pt->misc & DRM_EDID_PT_VSYNC_POSITIVE) ?
+> -			DRM_MODE_FLAG_PVSYNC : DRM_MODE_FLAG_NVSYNC;
+> +		/* !info->quirks && edid->input == ANALOG  */
+> +		switch (pt->misc & DRM_EDID_PT_SYNC_MASK) {
+> +		/* VESA Enhanced EDID Standard, Release A, Rev.2, Page 35
+> +		 *
+> +		 * CASE DRM_EDID_PT_ANALOG_CSYNC:
+> +		 *
+> +		 * (pt->misc & DRM_EDID_PT_SYNC_MASK == 0x00) for
+> +		 * "Analog Composite Sync" is possible here, as we are
+> +		 * currently on an analog video signal interface.
+> +		 */
+> +		case DRM_EDID_PT_ANALOG_CSYNC:
+> +		case DRM_EDID_PT_BIPOLAR_ANALOG_CSYNC:
+> +			drm_dbg_kms(dev,
+> +				"[CONNECTOR:%d:%s] Analog composite sync!\n",
+> +				connector->base.id, connector->name);
+> +			mode->flags |= DRM_MODE_FLAG_CSYNC | DRM_MODE_FLAG_NCSYNC;
+> +			break;
+> +		default:
+> +			mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
+> +				DRM_MODE_FLAG_PHSYNC : DRM_MODE_FLAG_NHSYNC;
+> +			mode->flags |= (pt->misc & DRM_EDID_PT_VSYNC_POSITIVE) ?
+> +				DRM_MODE_FLAG_PVSYNC : DRM_MODE_FLAG_NVSYNC;
+> +			break;
+> +		}
 
-From what I can see you only calculate these when computing the ELD,
-and immediately use them there and nowhere else. So I see no reason
-to bloat the crtc_state with this.
+Another angle is that for analog displays, EDID offset 0x14 has info
+about the supported sync modes. If we're separating digital/analog sync
+handling, we should probably filter the analog sync with the info from
+0x14.
 
->  	} audio;
+BR,
+Jani.
+
+
+>  	}
 >  
->  	/*
-> -- 
-> 2.25.1
+>  set_size:
+> @@ -3522,8 +3576,8 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
+>  	}
+>  
+>  	if (info->quirks & EDID_QUIRK_DETAILED_USE_MAXIMUM_SIZE) {
+> -		mode->width_mm = drm_edid->edid->width_cm * 10;
+> -		mode->height_mm = drm_edid->edid->height_cm * 10;
+> +		mode->width_mm = edid->width_cm * 10;
+> +		mode->height_mm = edid->height_cm * 10;
+>  	}
+>  
+>  	mode->type = DRM_MODE_TYPE_DRIVER;
+> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> index 48e93f909ef6..169755d3de19 100644
+> --- a/include/drm/drm_edid.h
+> +++ b/include/drm/drm_edid.h
+> @@ -61,9 +61,15 @@ struct std_timing {
+>  	u8 vfreq_aspect;
+>  } __attribute__((packed));
+>  
+> -#define DRM_EDID_PT_HSYNC_POSITIVE (1 << 1)
+> -#define DRM_EDID_PT_VSYNC_POSITIVE (1 << 2)
+> -#define DRM_EDID_PT_SEPARATE_SYNC  (3 << 3)
+> +#define DRM_EDID_PT_SYNC_MASK              (3 << 3)
+> +# define DRM_EDID_PT_ANALOG_CSYNC          (0 << 3)
+> +# define DRM_EDID_PT_BIPOLAR_ANALOG_CSYNC  (1 << 3)
+> +# define DRM_EDID_PT_DIGITAL_CSYNC         (2 << 3)
+> +#  define DRM_EDID_PT_CSYNC_ON_RGB         (1 << 1) /* analog csync only */
+> +#  define DRM_EDID_PT_CSYNC_SERRATE        (1 << 2)
+> +# define DRM_EDID_PT_DIGITAL_SEPARATE_SYNC (3 << 3)
+> +#  define DRM_EDID_PT_HSYNC_POSITIVE       (1 << 1) /* also digital csync */
+> +#  define DRM_EDID_PT_VSYNC_POSITIVE       (1 << 2)
+>  #define DRM_EDID_PT_STEREO         (1 << 5)
+>  #define DRM_EDID_PT_INTERLACED     (1 << 7)
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel Open Source Graphics Center
