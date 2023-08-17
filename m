@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D1677FBC9
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Aug 2023 18:16:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4040C77FBC2
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Aug 2023 18:16:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E476F10E51D;
-	Thu, 17 Aug 2023 16:16:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBD7D10E511;
+	Thu, 17 Aug 2023 16:16:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77D8610E511
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Aug 2023 16:16:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42BFF10E511
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Aug 2023 16:16:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692288965; x=1723824965;
+ t=1692288966; x=1723824966;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ROEx426tyJD8F9YXR2GdJG6RsEobEw5AMU8qhDjYuH4=;
- b=OmE+SlOwWa1B8/S/55TS0DbW6Ruvc9JUuFj5lC9WfBou51BTNMXF+SA2
- zIfcxFc9e/XKP6oTTPOboh3peNMRqacObMqWblTzMz4omp51x8VYJua/9
- JoBkttsTIlLl8MpFtOZctIUsI3yi8znW5lBqU17qPY8APDLCmPWXxdQxt
- gkL5tlHx8GEh9T0XNEkSPGj2tsPTZ1qDRpilq+siiRTsOQAYh7R9ucB6D
- rDqczSzHOQRLVpdr/4rGT/ZlDFZL4A6XfUhwf0NzfYHH/WTqYEsA4m1zt
- deGXhVn8yAxfj3ojjbaGZtsjjWldwV0MCEXbdtao7MYzY88R0DjPJNhdJ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="357826601"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="357826601"
+ bh=rYM9c5G2Yu0TLd3F8UxZ+RQ6Yg90T5cRcHaWNQnD9Eg=;
+ b=OnUhH9JzrLSOZwum632A1FpJfh4dzbehgStsPLYSWPHjuSgZsHqFJL69
+ bhFTrUnewhXKFyJrLZyL+LMSVmSbDRgG56v5i6mc93TWrlhC3L16r3hOQ
+ X45LAGw8b47/om6mHvhqN7dXIdde/183u4mbOY7Z0HSHGBGiyXuYEmAon
+ GfHVyfgbZJrMq8QKBqVmlLeVkGvn1FtFiy0Qwr5aeux5ebOnW0ypcSwx6
+ JxU+vJSuz4pJzRNfISqh52Lt2DQm2R2KWcY/n8ovM5Qgz2thmkYACkEga
+ VkbKFec1hrxGTE6qHduipqiTuu0jhe7NC7fa+q1YBdUs6eSOKc+EMDCvC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="357826605"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="357826605"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2023 09:14:48 -0700
+ 17 Aug 2023 09:14:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="711601351"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="711601351"
+X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="711601353"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="711601353"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2023 09:14:47 -0700
+ 17 Aug 2023 09:14:48 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 17 Aug 2023 19:14:44 +0300
-Message-Id: <20230817161456.3857111-6-imre.deak@intel.com>
+Date: Thu, 17 Aug 2023 19:14:45 +0300
+Message-Id: <20230817161456.3857111-7-imre.deak@intel.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230817161456.3857111-1-imre.deak@intel.com>
 References: <20230817161456.3857111-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 05/17] drm/i915/dp: Limit the output link bpp in
- DSC mode
+Subject: [Intel-gfx] [PATCH 06/17] drm/i915: Add helper to modeset a set of
+ pipes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,64 +61,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Limit the output link bpp in DSC mode to the link_config_limits
-link.min_bpp .. max_bpp range the same way it's done in non-DSC mode.
-Atm, this doesn't make a difference, the link bpp range being
-0 .. max pipe bpp, but a follow-up patch will need a way to reduce max
-link bpp below its current value.
+Add intel_modeset_pipes_in_mask() to modeset a provided set of pipes,
+used in a follow-up patch.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     | 12 +++++++++++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c |  3 +++
- 2 files changed, 14 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++---
+ drivers/gpu/drm/i915/display/intel_display.h |  2 ++
+ 2 files changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index c4016fd0dc980..b5d38765dde54 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1703,9 +1703,16 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 	pipe_config->lane_count = limits->max_lane_count;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 763ab569d8f32..c35e5d7e45a3b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5420,8 +5420,8 @@ intel_verify_planes(struct intel_atomic_state *state)
+ 			     plane_state->uapi.visible);
+ }
  
- 	if (intel_dp_is_edp(intel_dp)) {
-+		u16 dsc_max_output_bpp;
-+
-+		dsc_max_output_bpp =
-+			min_t(u16, drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd),
-+			      limits->link.max_bpp);
-+
- 		pipe_config->dsc.compressed_bpp =
--			min_t(u16, drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4,
-+			min_t(u16, dsc_max_output_bpp >> 4,
- 			      pipe_config->pipe_bpp);
-+
- 		pipe_config->dsc.slice_count =
- 			drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd,
- 							true);
-@@ -1761,6 +1768,9 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 		 * calculation procedure is bit different for MST case.
- 		 */
- 		if (compute_pipe_bpp) {
-+			dsc_max_output_bpp = min_t(u16, dsc_max_output_bpp,
-+						   limits->link.max_bpp);
-+
- 			pipe_config->dsc.compressed_bpp = min_t(u16,
- 								dsc_max_output_bpp >> 4,
- 								pipe_config->pipe_bpp);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 48c247ddef53a..0dcb9a203dfe7 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -230,6 +230,9 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
- 	if (max_bpp > sink_max_bpp)
- 		max_bpp = sink_max_bpp;
+-int intel_modeset_all_pipes(struct intel_atomic_state *state,
+-			    const char *reason)
++int intel_modeset_pipes_in_mask(struct intel_atomic_state *state,
++				const char *reason, u8 mask)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_crtc *crtc;
+@@ -5430,7 +5430,7 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
+ 	 * Add all pipes to the state, and force
+ 	 * a modeset on all the active ones.
+ 	 */
+-	for_each_intel_crtc(&dev_priv->drm, crtc) {
++	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc, mask) {
+ 		struct intel_crtc_state *crtc_state;
+ 		int ret;
  
-+	min_bpp = max(min_bpp, (limits->link.min_bpp + 0xf) >> 4);
-+	max_bpp = min(max_bpp, limits->link.max_bpp >> 4);
+@@ -5469,6 +5469,12 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
+ 	return 0;
+ }
+ 
++int intel_modeset_all_pipes(struct intel_atomic_state *state,
++			    const char *reason)
++{
++	return intel_modeset_pipes_in_mask(state, reason, -1);
++}
 +
- 	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_bpp,
- 						     min_bpp, limits,
- 						     conn_state, 2 * 3, true);
+ /*
+  * This implements the workaround described in the "notes" section of the mode
+  * set sequence documentation. When going from no pipes or single pipe to
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 49ac8473b988b..ffbabfc9e1e10 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -515,6 +515,8 @@ void intel_update_watermarks(struct drm_i915_private *i915);
+ /* modesetting */
+ int intel_modeset_all_pipes(struct intel_atomic_state *state,
+ 			    const char *reason);
++int intel_modeset_pipes_in_mask(struct intel_atomic_state *state,
++				const char *reason, u8 pipe_mask);
+ void intel_modeset_get_crtc_power_domains(struct intel_crtc_state *crtc_state,
+ 					  struct intel_power_domain_mask *old_domains);
+ void intel_modeset_put_crtc_power_domains(struct intel_crtc *crtc,
 -- 
 2.37.2
 
