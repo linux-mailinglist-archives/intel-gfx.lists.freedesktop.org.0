@@ -2,51 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A7CE77F3DB
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Aug 2023 11:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6122077F55C
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Aug 2023 13:35:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D929210E41D;
-	Thu, 17 Aug 2023 09:49:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A05B610E45D;
+	Thu, 17 Aug 2023 11:35:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83BEB10E05B;
- Thu, 17 Aug 2023 09:49:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C518C10E45A;
+ Thu, 17 Aug 2023 11:35:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692265765; x=1723801765;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=JBcHbgWZbRL2zfRL6/JAFi1jjbjVoKn9Zhv1rkwT4oE=;
- b=k2cUZGg4lYnzddpk2DFYOKzo7Ig464itYFieMyspSBx7Ysk9ba8kGgD6
- Gwuj9lt3AaHzs8Y7CwGTIgjJFSLLU6an4BUhQcLk8ZMr7iFznkLQrOnqS
- njFbiIrEhMEM7V9Okza7uOqdejZsTsf1wBJZWf5ADaRR38hz9CGIV5sjs
- rYU/pX8kGXAd9Z/qgETT0H0weqMwGjD2U6ZhJDOpDE/o/lmS9E5HtLZ1L
- oEC7UNw2IF82Py83MN3xkoEl9uhMUd3ibwWeQd3dHHbNKptFcnxZrMuFi
- +jtdvW35EG/kECpBV1v6d9zq43MQlYsbItEaue7U0bgdHkOQ4NUh/v8tK w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="376502113"
-X-IronPort-AV: E=Sophos;i="6.01,179,1684825200"; d="scan'208";a="376502113"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2023 02:49:24 -0700
+ t=1692272139; x=1723808139;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=U/IB5AY7stuYmqXqKtnDK70cJDZnilSRWZem4li6CXI=;
+ b=j59gnG9qKKd+5J3JBgOOeA6xQ2A33ObsNRPlIuLCwo9+TaVvjvToalTi
+ NVzep8M3OrY/WqVpImXDhg2VZSKCEVjFu9Odx1kHLON+20x0uSMOzzU4I
+ yRcKbElQRefNn6ALt6zERn+3lOz/iwl6NygRZrYIpVvD1CXo7KDyQkiZe
+ s09nQnBRb3qAJCIxCIqp6w18vZt53u5GiCXIexkWXAGblW5jB+Jb0bLLL
+ G6ju58P6FQtk59+d5ZxnkTnO5Wo2tXDwdmCHXgUZv21r5YDA9GEIy9Vxx
+ 01RkvtU1BCGZXXmM4ctkzHHgoaqkiB1lEhIJ3LMQIP1HclLo9phB6DNH6 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="459141101"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="459141101"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2023 04:35:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="684375451"
-X-IronPort-AV: E=Sophos;i="6.01,179,1684825200"; d="scan'208";a="684375451"
-Received: from yuguen-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.43.197])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2023 02:49:22 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20230810130319.3708392-1-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230810130319.3708392-1-ankit.k.nautiyal@intel.com>
-Date: Thu, 17 Aug 2023 12:49:20 +0300
-Message-ID: <87wmxu80db.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="728104374"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="728104374"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.68])
+ by orsmga007.jf.intel.com with SMTP; 17 Aug 2023 04:35:34 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 17 Aug 2023 14:35:33 +0300
+Date: Thu, 17 Aug 2023 14:35:33 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <ZN4GBQCtIi6v0D28@intel.com>
+References: <20230815101907.2900768-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 00/20] DSC misc fixes
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230815101907.2900768-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] Revert "drm/edid: Fix csync detailed mode
+ parsing"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,95 +61,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 10 Aug 2023, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> This series is an attempt to address multiple issues with DSC,
-> scattered in separate existing series.
+On Tue, Aug 15, 2023 at 01:19:07PM +0300, Jani Nikula wrote:
+> This reverts commit ca62297b2085b5b3168bd891ca24862242c635a1.
+> 
+> Commit ca62297b2085 ("drm/edid: Fix csync detailed mode parsing") fixed
+> EDID detailed mode sync parsing. Unfortunately, there are quite a few
+> displays out there that have bogus (zero) sync field that are broken by
+> the change. Zero means analog composite sync, which is not right for
+> digital displays, and the modes get rejected. Regardless, it used to
+> work, and it needs to continue to work. Revert the change.
 
-I think it's a good idea to have one person manage the series, and
-combine it all together, because it touches the same areas.
+Bah. I guess one option would be to quirk the bogus EDIDs, or maybe just
+ignore bogus sync flags for the eDP preferred mode. But maybe needs a
+bit more thinking, so
 
-However, once you have smaller batches of patches that are all reviewed,
-send them out as smaller series, and get them merged. Re-sending and
-rebasing ready patches as part of a 19-patch series where some patches
-aren't ready has become counter-productive.
+Acked-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Getting patches upstream is like working on a machine that has a certain
-peak throughput. Send patches one by one, and it's inefficient. Send too
-many at once, and it bogs down. Personally, I think 5-10 non-trivial
-patches at a time is about right, get them reviewed and merged, rebase
-the rest locally, and again send the next 5-10.
-
-Or you can initially send a longer series, but once the first 5-10 have
-been reviewed, send them separately.
-
-
-BR,
-Jani.
-
-
->
-> Patches 1-4 are DSC fixes from series to Handle BPC for HDMI2.1 PCON
-> https://patchwork.freedesktop.org/series/107550/
->
-> Patches 5-6 are from series DSC fixes for Bigjoiner:
-> https://patchwork.freedesktop.org/series/115773/
->
-> Patches 7-17 are based on series to add DSC fractional BPP support:
-> https://patchwork.freedesktop.org/series/111391/
->
-> Patch 20 is to fix compressed bpc for MST DSC, from Stan's series :
-> https://patchwork.freedesktop.org/series/116179/
->
-> Rev2: Addressed review comments from Stan, Ville.
->
-> Rev3: Split larger patches. Separate out common helpers.
->
-> Rev4: Rebased, fixed checkpatch warnings.
->
-> Rev5: Addressed review comments from Stan.
-> Added a patch to check if forced dsc format can be used before forcing.
->
-> Rev6: Addressed review comments from Stan.
->
-> Rev7: Reordered and rebased.
->
-> Ankit Nautiyal (19):
->   drm/i915/dp: Consider output_format while computing dsc bpp
->   drm/i915/dp: Move compressed bpp check with 420 format inside the
->     helper
->   drm/i915/dp_mst: Use output_format to get the final link bpp
->   drm/i915/dp: Use consistent name for link bpp and compressed bpp
->   drm/i915/dp: Update Bigjoiner interface bits for computing compressed
->     bpp
->   drm/i915/intel_cdclk: Add vdsc with bigjoiner constraints on min_cdlck
->   drm/i915/dp: Remove extra logs for printing DSC info
->   drm/display/dp: Fix the DP DSC Receiver cap size
->   drm/i915/dp: Avoid forcing DSC BPC for MST case
->   drm/i915/dp: Add functions to get min/max src input bpc with DSC
->   drm/i915/dp: Check min bpc DSC limits for dsc_force_bpc also
->   drm/i915/dp: Avoid left shift of DSC output bpp by 4
->   drm/i915/dp: Rename helper to get DSC max pipe_bpp
->   drm/i915/dp: Separate out functions for edp/DP for computing DSC bpp
->   drm/i915/dp: Add DSC BPC/BPP constraints while selecting pipe bpp with
->     DSC
->   drm/i915/dp: Separate out function to get compressed bpp with joiner
->   drm/i915/dp: Get optimal link config to have best compressed bpp
->   drm/i915/dp: Check src/sink compressed bpp limit for edp
->   drm/i915/dp: Check if force_dsc_output_format is possible
->
-> Stanislav Lisovskiy (1):
->   drm/i915: Query compressed bpp properly using correct DPCD and DP Spec
->     info
->
->  drivers/gpu/drm/i915/display/intel_cdclk.c  |  59 +-
->  drivers/gpu/drm/i915/display/intel_dp.c     | 655 ++++++++++++++++----
->  drivers/gpu/drm/i915/display/intel_dp.h     |  20 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c |  80 +--
->  include/drm/display/drm_dp.h                |   2 +-
->  5 files changed, 625 insertions(+), 191 deletions(-)
+> 
+> Rejecting modes with analog composite sync was the part that fixed the
+> gitlab issue 8146 [1]. We'll need to get back to the drawing board with
+> that.
+> 
+> [1] https://gitlab.freedesktop.org/drm/intel/-/issues/8146
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8789
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8930
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9044
+> Fixes: ca62297b2085 ("drm/edid: Fix csync detailed mode parsing")
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v6.4+
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/drm_edid.c | 29 ++++++++---------------------
+>  include/drm/drm_edid.h     | 12 +++---------
+>  2 files changed, 11 insertions(+), 30 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index f95152fac427..340da8257b51 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -3457,6 +3457,10 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
+>  			    connector->base.id, connector->name);
+>  		return NULL;
+>  	}
+> +	if (!(pt->misc & DRM_EDID_PT_SEPARATE_SYNC)) {
+> +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Composite sync not supported\n",
+> +			    connector->base.id, connector->name);
+> +	}
+>  
+>  	/* it is incorrect if hsync/vsync width is zero */
+>  	if (!hsync_pulse_width || !vsync_pulse_width) {
+> @@ -3503,27 +3507,10 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
+>  	if (info->quirks & EDID_QUIRK_DETAILED_SYNC_PP) {
+>  		mode->flags |= DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC;
+>  	} else {
+> -		switch (pt->misc & DRM_EDID_PT_SYNC_MASK) {
+> -		case DRM_EDID_PT_ANALOG_CSYNC:
+> -		case DRM_EDID_PT_BIPOLAR_ANALOG_CSYNC:
+> -			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Analog composite sync!\n",
+> -				    connector->base.id, connector->name);
+> -			mode->flags |= DRM_MODE_FLAG_CSYNC | DRM_MODE_FLAG_NCSYNC;
+> -			break;
+> -		case DRM_EDID_PT_DIGITAL_CSYNC:
+> -			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Digital composite sync!\n",
+> -				    connector->base.id, connector->name);
+> -			mode->flags |= DRM_MODE_FLAG_CSYNC;
+> -			mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
+> -				DRM_MODE_FLAG_PCSYNC : DRM_MODE_FLAG_NCSYNC;
+> -			break;
+> -		case DRM_EDID_PT_DIGITAL_SEPARATE_SYNC:
+> -			mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
+> -				DRM_MODE_FLAG_PHSYNC : DRM_MODE_FLAG_NHSYNC;
+> -			mode->flags |= (pt->misc & DRM_EDID_PT_VSYNC_POSITIVE) ?
+> -				DRM_MODE_FLAG_PVSYNC : DRM_MODE_FLAG_NVSYNC;
+> -			break;
+> -		}
+> +		mode->flags |= (pt->misc & DRM_EDID_PT_HSYNC_POSITIVE) ?
+> +			DRM_MODE_FLAG_PHSYNC : DRM_MODE_FLAG_NHSYNC;
+> +		mode->flags |= (pt->misc & DRM_EDID_PT_VSYNC_POSITIVE) ?
+> +			DRM_MODE_FLAG_PVSYNC : DRM_MODE_FLAG_NVSYNC;
+>  	}
+>  
+>  set_size:
+> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> index 169755d3de19..48e93f909ef6 100644
+> --- a/include/drm/drm_edid.h
+> +++ b/include/drm/drm_edid.h
+> @@ -61,15 +61,9 @@ struct std_timing {
+>  	u8 vfreq_aspect;
+>  } __attribute__((packed));
+>  
+> -#define DRM_EDID_PT_SYNC_MASK              (3 << 3)
+> -# define DRM_EDID_PT_ANALOG_CSYNC          (0 << 3)
+> -# define DRM_EDID_PT_BIPOLAR_ANALOG_CSYNC  (1 << 3)
+> -# define DRM_EDID_PT_DIGITAL_CSYNC         (2 << 3)
+> -#  define DRM_EDID_PT_CSYNC_ON_RGB         (1 << 1) /* analog csync only */
+> -#  define DRM_EDID_PT_CSYNC_SERRATE        (1 << 2)
+> -# define DRM_EDID_PT_DIGITAL_SEPARATE_SYNC (3 << 3)
+> -#  define DRM_EDID_PT_HSYNC_POSITIVE       (1 << 1) /* also digital csync */
+> -#  define DRM_EDID_PT_VSYNC_POSITIVE       (1 << 2)
+> +#define DRM_EDID_PT_HSYNC_POSITIVE (1 << 1)
+> +#define DRM_EDID_PT_VSYNC_POSITIVE (1 << 2)
+> +#define DRM_EDID_PT_SEPARATE_SYNC  (3 << 3)
+>  #define DRM_EDID_PT_STEREO         (1 << 5)
+>  #define DRM_EDID_PT_INTERLACED     (1 << 7)
+>  
+> -- 
+> 2.39.2
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Ville Syrjälä
+Intel
