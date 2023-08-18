@@ -2,78 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3AF780A2E
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 12:31:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DA9E780AAE
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 13:03:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8232610E4D7;
-	Fri, 18 Aug 2023 10:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F24C510E4F4;
+	Fri, 18 Aug 2023 11:03:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
- [IPv6:2a00:1450:4864:20::135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45EE810E4C4
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 10:30:59 +0000 (UTC)
-Received: by mail-lf1-x135.google.com with SMTP id
- 2adb3069b0e04-4fe11652b64so1045540e87.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 03:30:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1692354657; x=1692959457;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=4LtmyRH3uquQa35qZEBrjYfCQfjxVyQMuxjwadVuCUE=;
- b=qq8HjUXVe1+6MOle1ON6Z8zxId8JviF3JUrcPfSleTCrvzSKdvjDMkBU6TIlonV19S
- BwQVl9Umc9Q6ci6cV+sLDKyj8qe5p2YcFyHxCxgnld7ac9NdQHCDvU5TQ/oPdpggzL0U
- NdDFes6sCMmTowWrGl+LzeZuuCq+sNOF/uO3XEuyXbBbZJuzaJK7Do4KF5tuSrK69fnK
- C/Vgm95LlW89hmRWdKEkmQm/IHDaUbZHJiFU0Ia4SoFq4SuFheTGOnN9CJpkqeIg4cLR
- /ddfNHU57zNFhzMtIRAo1ZzYC33PxrDJfilk472vCGfM84hrUqX8GopXk9lsxvAtFukw
- 11Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692354657; x=1692959457;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=4LtmyRH3uquQa35qZEBrjYfCQfjxVyQMuxjwadVuCUE=;
- b=gpQbR/oRjfXXE1DFUuOaDm2iuI2VUbgrs3wnua0eL9wsTby5hdF56qlvq6etRybqpJ
- KN9zQJErxYgW6kCTiM39fll8iAGH2FRDHYu3nj5Upi2j9Bno3SYH9ldWtzcdeB3ORtEu
- 5O8uiMg0iMiTB56ZCCiymwZKAqiAesasT2E/Hk/tb+U3ACrehEzDUYybEiRyrzEU881y
- IDRYG/EQv8RnrXu4cyJSca7SL3gmI0UcSA2aKUJi/HOSEuMzF7pop7ROD9t5bac21Tl0
- Pmlh3zSBr6ElWq+7JqOWDn7HhjOoT7pGLwSMyuK6OaIxMcpp969NYHXD+PSE+TaRodBm
- cYhA==
-X-Gm-Message-State: AOJu0YyGzqKZcLhDvXp9RtjCaRhsUFPyb5aiEC/yxnyP4K2qGumyNbhk
- ww9Krz7SK62HMccBHMMWx8BcRQ==
-X-Google-Smtp-Source: AGHT+IHzaCo2eTE/te1HsoVUFdeT0UZnxqjK11M2NmGV8gd/927nvst3bj0UfF8wjINrubj+z1+1WQ==
-X-Received: by 2002:a19:ca1d:0:b0:4f8:586a:8af6 with SMTP id
- a29-20020a19ca1d000000b004f8586a8af6mr1224933lfg.4.1692354657346; 
- Fri, 18 Aug 2023 03:30:57 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5?
- (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
- by smtp.gmail.com with ESMTPSA id
- 16-20020ac24830000000b004ff1b5c8df3sm275637lft.211.2023.08.18.03.30.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 18 Aug 2023 03:30:56 -0700 (PDT)
-Message-ID: <6097eb1d-6b00-4a0f-a91f-5b19f2b422eb@linaro.org>
-Date: Fri, 18 Aug 2023 13:30:56 +0300
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7D5D10E4EE;
+ Fri, 18 Aug 2023 11:03:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692356609; x=1723892609;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=7L87dGvj9Lwe8KR6+W1GL9dDCAiM+RuOpadmu1aakwc=;
+ b=ekLQiib2C5x1mAFOQ3+LaJK5zWpcF/1BSVH1CfP7TvnT1t5w7TKTADZ0
+ sq0ulRBsaYo7MmsmWETfr3qTPdW6h1SBXGWW2iWKLMCTn0PVmDEceUo4L
+ AckE250fLUcQ+m7RXoQkQ4qM/gSFBzVYjTL4IyRfyd2StaO1BGy9O7DlO
+ MbBYzvgDsr3vU7C0Rw9vKVvwUPtbPEZx0X5+08ZaoFO+KUHn4SIn0HEZc
+ shCz3VktwI+G89eSHl/J+y1qBW7YBwglxj1rGZHdq0W0Ue6y0s1zHa6ZS
+ 765y6xc5FsIdr1kRziNuVTls2AttZ7bCMKBTbEV6Z5K6CFIhzPp14EOFm A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="459429842"
+X-IronPort-AV: E=Sophos;i="6.01,182,1684825200"; d="scan'208";a="459429842"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2023 04:03:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="711967132"
+X-IronPort-AV: E=Sophos;i="6.01,182,1684825200"; d="scan'208";a="711967132"
+Received: from rladysz-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.175])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2023 04:03:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+In-Reply-To: <87a5xskbny.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230511175446.282041-1-krzysztof.kozlowski@linaro.org>
+ <87a5xskbny.fsf@intel.com>
+Date: Fri, 18 Aug 2023 14:03:19 +0300
+Message-ID: <87a5uo8vew.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-GB
-To: Simon Ser <contact@emersion.fr>
-References: <20230729004913.215872-1-dmitry.baryshkov@linaro.org>
- <a32ce695-038f-0ef8-3584-5bd1ba528131@linaro.org>
- <20230802191351.GA1407@pendragon.ideasonboard.com>
- <DE2B4523-D16C-4AFC-8352-212B23548DD5@linaro.org>
- <b6oOVz2YMIG4hJDWhq9lTh6R2HYcrpRwHENhplig9KSQMD8dIjTgC5KdH1Ij3URgV2HESp67Ax7QUsByGjMLouvbs-5q7PiPRdLkgJz6Fwk=@emersion.fr>
- <ADjuOeqA6575DKutMPaR9mW9rLhm-wjLc4ruoUkNwImf-GB90FdwDB7v7y6LFdzVG3BC4R52A0RUtStK4_smmGYTUs3UPDOX4T4Zl2YHkxE=@emersion.fr>
- <20230803204459.GD27752@pendragon.ideasonboard.com>
- <TR8IBdXbd0C4U8Z4zf9ZLEH66QMutWs0QAAkPnMlKiOvgEZCk6AfEIPcIfRC555XWs8eSzeCCCW9R-3NwxZg6hDhPvPseAgAULAdUQ6epDA=@emersion.fr>
- <d9f9c272-ce9b-4599-bb11-1c026087ead3@linaro.org>
- <gIjbz8oq8AuY8E5_XGKnJNjIyQK9SDxp2-3Ep-Dr3D9T_-iUIt-q-oFgarZor4jtdI3682ZtuvQnaQBhTrc5OR6G2sqvDxbmxGZmcRrBAio=@emersion.fr>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <gIjbz8oq8AuY8E5_XGKnJNjIyQK9SDxp2-3Ep-Dr3D9T_-iUIt-q-oFgarZor4jtdI3682ZtuvQnaQBhTrc5OR6G2sqvDxbmxGZmcRrBAio=@emersion.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/uapi: document the USB subconnector
- type
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [RESEND PATCH] drm/i915: constify pointers to
+ hwmon_channel_info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,51 +65,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, Janne Grunau <j@jannau.net>,
- Robert Foss <rfoss@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Andy Gross <agross@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Bjorn Andersson <andersson@kernel.org>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 18/08/2023 09:24, Simon Ser wrote:
-> On Thursday, August 17th, 2023 at 21:33, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> 
->> We have been looking for a way to document that the corresponding DP
->> port is represented by the USB connector on the device.
+On Thu, 25 May 2023, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Thu, 11 May 2023, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>> Statically allocated array of pointers to hwmon_channel_info can be made
+>> const for safety.
+>
+> Btw if you want to further make things const, the compound literals
+> defined by HWMON_CHANNEL_INFO() still end up mutable, even if they're
+> only referenced inline using a const pointer. If possible, would be nice
+> to add const there too.
+
+Krzysztof, can I persuade you to follow up on this one? ;)
+
+With HWMON_CHANNEL_INFO defined like this:
+
+#define HWMON_CHANNEL_INFO(stype, ...)	\
+	(&(struct hwmon_channel_info) {	\
+		.type = hwmon_##stype,	\
+		.config = (u32 []) {	\
+			__VA_ARGS__, 0	\
+		}			\
+	})
+
+and initializers like this all over the kernel:
+
+static const struct hwmon_channel_info * const hwm_info[] = {
+	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT),
+	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
+	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
+	HWMON_CHANNEL_INFO(curr, HWMON_C_CRIT),
+	NULL
+};
+
+You'll actually end up with *mutable non-const* struct
+hwmon_channel_info's being allocated in .data sections, and having the
+const pointers in the arrays point at the mutable stuff. Check with
+readelf or objdump.
+
+To put all of it in .rodata, you'd need to make the compound literals
+const too:
+
+ #define HWMON_CHANNEL_INFO(stype, ...)	\
+-	(&(struct hwmon_channel_info) {	\
++	(&(const struct hwmon_channel_info) {	\
+ 		.type = hwmon_##stype,	\
+
+But I'm not up for going throw all of the use sites to see if they can
+all be const.
+
+
+BR,
+Jani.
+
+
+
+>
+> BR,
+> Jani.
+>
 >>
->> Consequently, I believe the best way to document it, would be to use
->> DisplayPort / USB, when there is no dongle connected, switching to
->> DisplayPort / HDMI, DisplayPort / VGA, DisplayPort / DisplayPort, etc.
->> when the actual dongle / display is connected and then switching back to
->> the DisplayPort / USB when it gets disconnected.
+>> Acked-by: Jani Nikula <jani.nikula@intel.com>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  drivers/gpu/drm/i915/i915_hwmon.c | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
 >>
->> If this sounds good to all parties, I'll post v2, adding this
->> explanation to the cover letter.
-> 
-> But how can user-space discover that the port is USB-C when it's
-> connected? That information is lost at this point.
-
-Yes, unfortunately.
-
-> (In addition, this clashes with the existing semantics of the
-> subconnector prop as discussed before: USB-C is not sub-, it's super-.)
-
-Ok. How do we proceed then? Is it fine to add another property for DP 
-case? Do you have any particular property name in mind? I will follow 
-with addition of this property then.
+>> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+>> index 8e7dccc8d3a0..e99e8c97ef01 100644
+>> --- a/drivers/gpu/drm/i915/i915_hwmon.c
+>> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+>> @@ -267,7 +267,7 @@ static const struct attribute_group *hwm_groups[] = {
+>>  	NULL
+>>  };
+>>  
+>> -static const struct hwmon_channel_info *hwm_info[] = {
+>> +static const struct hwmon_channel_info * const hwm_info[] = {
+>>  	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT),
+>>  	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
+>>  	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
+>> @@ -275,7 +275,7 @@ static const struct hwmon_channel_info *hwm_info[] = {
+>>  	NULL
+>>  };
+>>  
+>> -static const struct hwmon_channel_info *hwm_gt_info[] = {
+>> +static const struct hwmon_channel_info * const hwm_gt_info[] = {
+>>  	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
+>>  	NULL
+>>  };
 
 -- 
-With best wishes
-Dmitry
-
+Jani Nikula, Intel Open Source Graphics Center
