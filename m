@@ -2,62 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1551781331
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 21:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FF6A78139E
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 21:43:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD1CD10E0E3;
-	Fri, 18 Aug 2023 19:05:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90C1710E0ED;
+	Fri, 18 Aug 2023 19:42:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com
- [IPv6:2607:f8b0:4864:20::52f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 852A110E0DA
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 19:05:08 +0000 (UTC)
-Received: by mail-pg1-x52f.google.com with SMTP id
- 41be03b00d2f7-53fbf2c42bfso964438a12.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 12:05:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1692385507; x=1692990307;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=eYuBX+Zu9n60TNSoN//pAl2ik4vEH+glLh9ChEd8dGY=;
- b=B8wGJ9pvMOpjWNDKowtC/k8YOGebBXoeZdxn2CxE/4GiZJXCYGYl9PPoO8bi7wh63S
- 1bo3wRL7ur8tpjuSi57qYw+eF0shSJ123pNy/AhRRHHrkBowB/l/t3ZbtbWIuhoI/YKu
- hv0qjJxnHIv21vCwctpkwEpMwWKzfbExGTB1U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692385507; x=1692990307;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=eYuBX+Zu9n60TNSoN//pAl2ik4vEH+glLh9ChEd8dGY=;
- b=X+ePV0O0crhGjaqHREva3zl6MVC545/UZRnAVKUPv5ztIl4K1D9YWpHkvgNwVZdhfG
- 51LyJacCX1H5ohPRzX+Dp1VHqcChSDAVJQfZJWYvM4Ii6zdPlfI7r5WqvTj+rLMjLt39
- Wbd/SYxocKQWvYPKEmSlDf3eJ2yFwPhPU/dbzYomRCtY3+sXKxmVYIm4NH1488bVWLPA
- 3g/p+UzRtyhVWUZ9MgWK6giETJ/nG8pHjJcf7WLV+5/QxONOYa6M6nkrJKIN8+xfVfZH
- gdFmcQBB4wOfyJvNp5oP2cjS+P64QWEKjoHT4TECeYSq4Zm6G0n7q6ZyKdMFueSN5QY5
- xHzw==
-X-Gm-Message-State: AOJu0YyfYazSdjKNv2acUuJc6+KAzYoFYkRed7Iodw7ThgMELFKInCrF
- J5r4X6x56ZisT8kDyJWOuKBh2h14NRRz+cwEu/4=
-X-Google-Smtp-Source: AGHT+IGNSeUqgw6haaBAVnqqD8VG/j2Y3Vge9rTNrFLSmXuBH9KpJxJZ3EHrJlHda9kk5X0P71EoEA==
-X-Received: by 2002:a17:90a:6941:b0:25b:c454:a366 with SMTP id
- j1-20020a17090a694100b0025bc454a366mr88214pjm.5.1692385507375; 
- Fri, 18 Aug 2023 12:05:07 -0700 (PDT)
-Received: from navaremanasi.c.googlers.com.com
- (199.72.83.34.bc.googleusercontent.com. [34.83.72.199])
- by smtp.gmail.com with ESMTPSA id
- jk8-20020a170903330800b001b672af624esm2101512plb.164.2023.08.18.12.05.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Aug 2023 12:05:06 -0700 (PDT)
-From: Manasi Navare <navaremanasi@chromium.org>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Aug 2023 19:05:01 +0000
-Message-ID: <20230818190501.241062-1-navaremanasi@chromium.org>
-X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BE4A10E0ED
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 19:42:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692387778; x=1723923778;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3SZ6JR9GxEqBwRaY6OYndq5T5qXRFJb7xYSXSaFBlH8=;
+ b=C0fInuIfJ42y68aUAICRWuvrlzOIpP95Vf83QSUZd6hGW3ogvrM0xDl1
+ fInXLEnHtEeK5wrx9adRwWCQD4Ujlwoy7Tfq+ZWm374/KiYJFTP7RSvNd
+ 8XB0V7MJ65ztCL7UCesEtvgCW6sebsRw3/YUaTN8I6beAvoGrstB1hXy4
+ +oLhsRNziCZgVyql8PEwKIbq+usYVI1XoJYEcK3EG8O3iLMVm1S8s2pjF
+ QY9PwmSLz1y4Dr5eFH3o9IosdSLrFa/DK3BO/gKcWr1h7F90iqWb12SWO
+ D2CR76kX0HHYGxrPWwlft4to2kBVpYHqn23KD1XjZtqaiktJ6EMGj5VAi w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="375959536"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="375959536"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2023 12:42:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="728714037"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="728714037"
+Received: from esavax-mobl.ger.corp.intel.com (HELO intel.com) ([10.249.41.4])
+ by orsmga007-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2023 12:42:56 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date: Fri, 18 Aug 2023 21:42:46 +0200
+Message-Id: <20230818194249.1014022-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4] drm/i915/display: Dual refresh rate fastset
- fixes with VRR fastset
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Create a blitter context for GGTT
+ updates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,80 +56,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Drew Davenport <ddavenport@chromium.org>, Sean Paul <seanpaul@chromium.org>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Dual refresh rate (DRR) fastset seamlessly lets refresh rate
-throttle without needing a full modeset.
-However with the recent VRR fastset patches that got merged this
-logic was broken. This is broken because now with VRR fastset
-VRR parameters are calculated by default at the nominal refresh rate say 120Hz.
-Now when DRR throttle happens to switch refresh rate to 60Hz, crtc clock
-changes and this throws a mismatch in VRR parameters and fastset logic
-for DRR gets thrown off and full modeset is indicated.
+From: Nirmoy Das <nirmoy.das@intel.com>
 
-This patch fixes this by ignoring the pipe mismatch for VRR parameters
-in the case of DRR and when VRR is not enabled. With this fix, DRR
-will still throttle seamlessly as long as VRR is not enabled.
+Create a separate blitter context if a platform requires
+GGTT updates using MI_UPDATE_GTT blitter command.
 
-This will still need a full modeset for both DRR and VRR operating together
-during the refresh rate throttle and then enabling VRR since now VRR
-parameters need to be recomputed with new crtc clock and written to HW.
+Subsequent patch will introduce methods to update
+GGTT using this blitter context and MI_UPDATE_GTT blitter
+command.
 
-This DRR + VRR fastset in conjunction needs more work in the driver and
-will be fixed in later patches.
-
-v3:
-Compute new VRR params whenever there is fastset and its non DRRS.
-This will ensure it computes while switching to a fixed RR (Mitul)
-
-v2:
-Check for pipe config mismatch in crtc clock whenever VRR is enabled
-
-Fixes: 1af1d18825d3 ("drm/i915/vrr: Allow VRR to be toggled during fastsets")
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9154
-Cc: Drew Davenport <ddavenport@chromium.org>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Sean Paul <seanpaul@chromium.org>
-Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Signed-off-by: Manasi Navare <navaremanasi@chromium.org>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine.h       |  4 ++
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 44 +++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  3 ++
+ drivers/gpu/drm/i915/gt/intel_gtt.c          |  4 ++
+ drivers/gpu/drm/i915/gt/intel_gtt.h          |  2 +
+ 5 files changed, 56 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 763ab569d8f3..2cf3b22adaf7 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5352,7 +5352,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	if (IS_G4X(dev_priv) || DISPLAY_VER(dev_priv) >= 5)
- 		PIPE_CONF_CHECK_I(pipe_bpp);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index b58c30ac8ef02..ee36db2fdaa7c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -170,6 +170,8 @@ intel_write_status_page(struct intel_engine_cs *engine, int reg, u32 value)
+ #define I915_GEM_HWS_SEQNO		0x40
+ #define I915_GEM_HWS_SEQNO_ADDR		(I915_GEM_HWS_SEQNO * sizeof(u32))
+ #define I915_GEM_HWS_MIGRATE		(0x42 * sizeof(u32))
++#define I915_GEM_HWS_GGTT_BLIT		0x46
++#define I915_GEM_HWS_GGTT_BLIT_ADDR	(I915_GEM_HWS_GGTT_BLIT * sizeof(u32))
+ #define I915_GEM_HWS_PXP		0x60
+ #define I915_GEM_HWS_PXP_ADDR		(I915_GEM_HWS_PXP * sizeof(u32))
+ #define I915_GEM_HWS_GSC		0x62
+@@ -356,4 +358,6 @@ u64 intel_clamp_preempt_timeout_ms(struct intel_engine_cs *engine, u64 value);
+ u64 intel_clamp_stop_timeout_ms(struct intel_engine_cs *engine, u64 value);
+ u64 intel_clamp_timeslice_duration_ms(struct intel_engine_cs *engine, u64 value);
  
--	if (!fastset || !pipe_config->seamless_m_n) {
-+	if (!fastset || !pipe_config->seamless_m_n || pipe_config->vrr.enable) {
- 		PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_clock);
- 		PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_clock);
- 	}
-@@ -5387,11 +5387,13 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
++void intel_engine_blitter_context_set_ready(struct intel_gt *gt, bool ready);
++bool intel_engine_blitter_context_ready(struct intel_gt *gt);
+ #endif /* _INTEL_RINGBUFFER_H_ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index ee15486fed0da..9871ee5ab754b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -27,6 +27,7 @@
+ #include "intel_gt_mcr.h"
+ #include "intel_gt_pm.h"
+ #include "intel_gt_requests.h"
++#include "intel_gtt.h"
+ #include "intel_lrc.h"
+ #include "intel_lrc_reg.h"
+ #include "intel_reset.h"
+@@ -1419,6 +1420,34 @@ void intel_engine_destroy_pinned_context(struct intel_context *ce)
+ 	intel_context_put(ce);
+ }
  
- 	if (!fastset)
- 		PIPE_CONF_CHECK_BOOL(vrr.enable);
--	PIPE_CONF_CHECK_I(vrr.vmin);
--	PIPE_CONF_CHECK_I(vrr.vmax);
--	PIPE_CONF_CHECK_I(vrr.flipline);
--	PIPE_CONF_CHECK_I(vrr.pipeline_full);
--	PIPE_CONF_CHECK_I(vrr.guardband);
-+	if ((fastset && !pipe_config->seamless_m_n) || pipe_config->vrr.enable) {
-+		PIPE_CONF_CHECK_I(vrr.vmin);
-+		PIPE_CONF_CHECK_I(vrr.vmax);
-+		PIPE_CONF_CHECK_I(vrr.flipline);
-+		PIPE_CONF_CHECK_I(vrr.pipeline_full);
-+		PIPE_CONF_CHECK_I(vrr.guardband);
++void intel_engine_blitter_context_set_ready(struct intel_gt *gt, bool ready)
++{
++	struct intel_engine_cs *engine = gt->engine[BCS0];
++
++	if (engine && engine->blitter_context)
++		atomic_set(&engine->blitter_context_ready, ready ? 1 : 0);
++}
++
++bool intel_engine_blitter_context_ready(struct intel_gt *gt)
++{
++	struct intel_engine_cs *engine = gt->engine[BCS0];
++
++	if (engine)
++		return atomic_read(&engine->blitter_context_ready) == 1;
++
++	return false;
++}
++
++static struct intel_context *
++create_ggtt_blitter_context(struct intel_engine_cs *engine)
++{
++	static struct lock_class_key kernel;
++
++	/* MI_UPDATE_GTT can insert upto 512 PTE entries so get a bigger ring */
++	return intel_engine_create_pinned_context(engine, engine->gt->vm, SZ_512K,
++						  I915_GEM_HWS_GGTT_BLIT_ADDR,
++						  &kernel, "ggtt_blitter_context");
++}
+ static struct intel_context *
+ create_kernel_context(struct intel_engine_cs *engine)
+ {
+@@ -1442,7 +1471,7 @@ create_kernel_context(struct intel_engine_cs *engine)
+  */
+ static int engine_init_common(struct intel_engine_cs *engine)
+ {
+-	struct intel_context *ce;
++	struct intel_context *ce, *bce = NULL;
+ 	int ret;
+ 
+ 	engine->set_default_submission(engine);
+@@ -1458,6 +1487,15 @@ static int engine_init_common(struct intel_engine_cs *engine)
+ 	ce = create_kernel_context(engine);
+ 	if (IS_ERR(ce))
+ 		return PTR_ERR(ce);
++	/*
++	 * Create a separate pinned context for GGTT update using blitter
++	 * if a platform require such service.
++	 */
++	if (i915_ggtt_require_blitter(engine->i915) && engine->id == BCS0) {
++		bce = create_ggtt_blitter_context(engine);
++		if (IS_ERR(bce))
++			return PTR_ERR(bce);
 +	}
  
- #undef PIPE_CONF_CHECK_X
- #undef PIPE_CONF_CHECK_I
+ 	ret = measure_breadcrumb_dw(ce);
+ 	if (ret < 0)
+@@ -1465,6 +1503,7 @@ static int engine_init_common(struct intel_engine_cs *engine)
+ 
+ 	engine->emit_fini_breadcrumb_dw = ret;
+ 	engine->kernel_context = ce;
++	engine->blitter_context = bce;
+ 
+ 	return 0;
+ 
+@@ -1537,6 +1576,9 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
+ 
+ 	if (engine->kernel_context)
+ 		intel_engine_destroy_pinned_context(engine->kernel_context);
++	if (engine->blitter_context)
++		intel_engine_destroy_pinned_context(engine->blitter_context);
++
+ 
+ 	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
+ 	cleanup_status_page(engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index e99a6fa03d453..62095c0d8783d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -415,6 +415,9 @@ struct intel_engine_cs {
+ 	struct llist_head barrier_tasks;
+ 
+ 	struct intel_context *kernel_context; /* pinned */
++	struct intel_context *blitter_context; /* pinned, only for BCS0 */
++	/* mark the blitter engine's availability status */
++	atomic_t blitter_context_ready;
+ 
+ 	/**
+ 	 * pinned_contexts_list: List of pinned contexts. This list is only
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 13944a14ea2d1..9c77c97670fea 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -21,6 +21,10 @@
+ #include "intel_gt_regs.h"
+ #include "intel_gtt.h"
+ 
++bool i915_ggtt_require_blitter(struct drm_i915_private *i915)
++{
++	return IS_METEORLAKE(i915);
++}
+ 
+ static bool intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
+ {
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+index 4d6296cdbcfdd..9710eb031fb2c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+@@ -688,4 +688,6 @@ static inline struct sgt_dma {
+ 	return (struct sgt_dma){ sg, addr, addr + sg_dma_len(sg) };
+ }
+ 
++bool i915_ggtt_require_blitter(struct drm_i915_private *i915);
++
+ #endif
 -- 
-2.42.0.rc1.204.g551eb34607-goog
+2.40.1
 
