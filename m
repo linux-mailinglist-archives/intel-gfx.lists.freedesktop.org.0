@@ -1,66 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1ED78112B
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 19:03:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6903478112C
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 19:03:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BCEA10E0E1;
-	Fri, 18 Aug 2023 17:03:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCB0310E550;
+	Fri, 18 Aug 2023 17:03:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com
- [IPv6:2607:f8b0:4864:20::f33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80A4110E0D4
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 17:03:00 +0000 (UTC)
-Received: by mail-qv1-xf33.google.com with SMTP id
- 6a1803df08f44-649463dc0b8so5960696d6.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 10:03:00 -0700 (PDT)
+Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com
+ [IPv6:2607:f8b0:4864:20::f2d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 092B110E0DA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 17:03:06 +0000 (UTC)
+Received: by mail-qv1-xf2d.google.com with SMTP id
+ 6a1803df08f44-6493389c56fso6199766d6.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 10:03:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1692378179; x=1692982979;
+ d=chromium.org; s=google; t=1692378185; x=1692982985;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=IWIpuvBgqpQhw0RlQbILyIb43Jtf4lwmYq0/cqIwMOU=;
- b=MMEScymv4J4CEMzPByn2aa8eE9JuYtAWM1NZkxG6icpW/9HDxHfF3GNzXc6zu1U7zn
- AaRK5GUrlLnzmJOR5yeaiQ91ulQnodf0Qf7dLoTwECoI5G4Swz3pqR0jjfUYWFKa3uBj
- 3UbvaacnPGQqpvxTelonOChI7NLe6riZCRqYg=
+ bh=Pwm6qC3rFWwLT5tqCtYk21W/7NJaeJPBzz2LnoB74+k=;
+ b=moPCHHA/jPu7nm/tnzJ122npk5VEyU6mX/Cnsc20e3Jc88UehtXhW40fFDNWXOGfsw
+ 7ILLtj3U7oYElkI4Ibm2cDBVxzTnG1cVoQcCzSoEGcVqTFBiFU83NAwRlyUrnv3q3/Zq
+ tgnE9VWxQMQMwNbuPYGvlnYiIoMcF2f0bEkgo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692378179; x=1692982979;
+ d=1e100.net; s=20221208; t=1692378185; x=1692982985;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=IWIpuvBgqpQhw0RlQbILyIb43Jtf4lwmYq0/cqIwMOU=;
- b=dCOhdl22JmmHuTEo6my1weRNtPdq6oUqD/ZuGZ/fCG0sh+XGMVGNCQrVaUCS6EwWW8
- mRVWHvzAXdW7cwu3Y3PaNWRNthrI0Bw0CbLOBxKW5fUao/UWfHF1/MdnapfnErB8oPl4
- lli9xSaKrjt9Gz+2OGt1+X4x8lSpRJSEtMQ82Iwn5laf70jA8eFNtOhkXIUgHqFzp5Gh
- OCYGy+k2+rBzqOT8yHCi7tfihQfPOK4jBT6QJx/t/nJh9pGSEqMgN/kU+yuFOZXfsxzs
- B/P1ru9I2RK72YLAgr2QYXLJxdUZGTGtwPbd94li+BHZxboyE/qqZxghJq7wiYldIupP
- 4hjw==
-X-Gm-Message-State: AOJu0Yxeud7XSvgrsaCnactSjEtL3KppyA08/Xo7jMdXHambiN+BRqE6
- MiXoN/tBlsp/4EI09QDrnQ7LfexUwKkXBW1raQo=
-X-Google-Smtp-Source: AGHT+IHqFCw2tGNS4zezgytXWdjkNd/9sf+P55U50l8H6xegIX5/k9ygZwpoJgblnxJ+CiKHNr1C7g==
-X-Received: by 2002:a0c:ab8b:0:b0:647:14eb:f98d with SMTP id
- j11-20020a0cab8b000000b0064714ebf98dmr3639435qvb.51.1692378179234; 
- Fri, 18 Aug 2023 10:02:59 -0700 (PDT)
+ bh=Pwm6qC3rFWwLT5tqCtYk21W/7NJaeJPBzz2LnoB74+k=;
+ b=hc4GTVrZapOjydv9XtY3ILtJ0NjD/75EArapstelz6HOk7TJkVk2r1NADdA0OtgkDg
+ PKsbRQ39Vks807KH3FkMj+DCDc1VnmyF75azYca4w00FDJz/r8oZR23FL+V3oJ/FJKP1
+ W3vK6ReUaYF56oYZpCTLfZaqw9S0LkWELJNHpewb6QWsCnSnGET7x/LG9T1KZTjzvix8
+ 2pcDO661eo8+jgw+d5CZAl/BcWvUGRqVdf5B64OxI2qpYcrnv9X/inB6Qo0ovSifsIts
+ TIhdpGpA3+GYohDCD+obY1EUA1V7l87ZymakzVmqNKYfiWH/15Ks65+qEf3wmb4HP16W
+ F0ZA==
+X-Gm-Message-State: AOJu0Yzd34gQucfb1OSFcpwLoWRX2eTc1igebMrnBvCTfw7KfE4k+lPM
+ c4zOSkVDRBfw8fAmlyO5czjVLXfygv66kclhtgA=
+X-Google-Smtp-Source: AGHT+IHZMl81okXnA8gwntvbXsQZZwZpWgHsJ1ZjMw6KPJp7X3AND4i6Ffwqk1OcqkfhxV5BOMyifw==
+X-Received: by 2002:a0c:9d45:0:b0:64b:33ae:efa7 with SMTP id
+ n5-20020a0c9d45000000b0064b33aeefa7mr2791895qvf.10.1692378185645; 
+ Fri, 18 Aug 2023 10:03:05 -0700 (PDT)
 Received: from gildekel.nyc.corp.google.com
  ([2620:0:1003:314:281:cb2f:c9c3:f2f8])
  by smtp.gmail.com with ESMTPSA id
- cx12-20020a05620a51cc00b00767cfb1e859sm649278qkb.47.2023.08.18.10.02.58
+ cx12-20020a05620a51cc00b00767cfb1e859sm649278qkb.47.2023.08.18.10.03.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Aug 2023 10:02:58 -0700 (PDT)
+ Fri, 18 Aug 2023 10:03:05 -0700 (PDT)
 From: Gil Dekel <gildekel@chromium.org>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Fri, 18 Aug 2023 12:59:18 -0400
-Message-ID: <20230818170156.2194015-2-gildekel@chromium.org>
+Date: Fri, 18 Aug 2023 12:59:19 -0400
+Message-ID: <20230818170156.2194015-3-gildekel@chromium.org>
 X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
 In-Reply-To: <20230818170156.2194015-1-gildekel@chromium.org>
 References: <20230818170156.2194015-1-gildekel@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915/dp_link_training: Add a final
- failing state to link training fallback
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915/dp_link_training: Add a final
+ failing state to link training fallback for MST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,69 +77,149 @@ Cc: Sean Paul <seanpaul@chromium.org>, Gil Dekel <gildekel@chromium.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of silently giving up when all link-training fallback values are
-exhausted, this patch modifies the fallback's failure branch to reduces
-both max_link_lane_count and max_link_rate to zero (0) and continues to
-emit uevents until userspace stops attempting to modeset.
+Currently, MST link training has no fallback whatsoever. This means that
+if an MST base connector fails to link-train once, the training
+completely fails, which makes this case significantly more common than a
+complete SST link training failure.
 
-By doing so, we ensure the failing connector, which is in
-link-status=Bad, has all its modes pruned (due to effectively having a
-bandwidth of 0Gbps).
+Until MST fallback is fully implemented, this patch adds a final failure
+case to MST link training (similar to SST). In particular, this patch
+zeros out both max_link_rate and max_link_lane_count. In addition, it
+stops reseting MST params so the zeroing of the bit rate fields stick.
+This ensures that the MST base connector's modes will be completely
+pruned, since it is effectively left with 0Gbps bandwidth.
 
-It is then the userspace's responsibility to ignore connectors with no
-modes, even if they are marked as connected.
+Once again, it is the userspace's responsibility to ignore connectors
+with no modes, even if they are marked as connected.
 
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Cc: Manasi Navare <navaremanasi@chromium.org>
 Cc: Sean Paul <seanpaul@chromium.org>
 Signed-off-by: Gil Dekel <gildekel@chromium.org>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c       | 29 ++++++++++---------
+ drivers/gpu/drm/i915/display/intel_dp.h       |  4 +--
+ .../drm/i915/display/intel_dp_link_training.c |  8 ++---
+ 3 files changed, 22 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 964bf0551bdc..1e4dae8aad90 100644
+index 1e4dae8aad90..aee3845edd2d 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -276,8 +276,12 @@ static int intel_dp_common_len_rate_limit(const struct intel_dp *intel_dp,
+@@ -630,26 +630,31 @@ static bool intel_dp_can_link_train_fallback_for_edp(struct intel_dp *intel_dp,
+ 	return true;
+ }
 
- static int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
+-int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+-					    int link_rate, u8 lane_count)
++void intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
++					     int link_rate, u8 lane_count)
  {
-+	/* This occurs when max link rate drops to 0 via link training fallback*/
-+	if (index < 0)
-+		return 0;
-+
- 	if (drm_WARN_ON(&dp_to_i915(intel_dp)->drm,
--			index < 0 || index >= intel_dp->num_common_rates))
-+			index >= intel_dp->num_common_rates))
- 		return 162000;
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 	int index;
 
- 	return intel_dp->common_rates[index];
-@@ -318,6 +322,9 @@ static int intel_dp_max_common_lane_count(struct intel_dp *intel_dp)
- int intel_dp_max_lane_count(struct intel_dp *intel_dp)
- {
- 	switch (intel_dp->max_link_lane_count) {
-+	/* This occurs when max link lane count drops to 0 via link training fallback*/
-+	case 0:
-+		return 0;
- 	case 1:
- 	case 2:
- 	case 4:
-@@ -672,7 +679,14 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
- 		intel_dp->max_link_lane_count = lane_count >> 1;
- 	} else {
+ 	/*
+ 	 * TODO: Enable fallback on MST links once MST link compute can handle
+-	 * the fallback params.
++	 * the fallback params. For now, similar to the SST case, ensure all of
++	 * the base connector's modes are pruned in the next connector probe by
++	 * effectively reducing its bandwidth to 0 so userspace can ignore it
++	 * within the next modeset attempt.
+ 	 */
+ 	if (intel_dp->is_mst) {
  		drm_err(&i915->drm, "Link Training Unsuccessful\n");
 -		return -1;
-+		/*
-+		 * Ensure all of the connector's modes are pruned in the next
-+		 * probe by effectively reducing its bandwidth to 0 so userspace
-+		 * can ignore it within the next modeset attempt.
-+		 */
 +		intel_dp->max_link_rate = 0;
 +		intel_dp->max_link_lane_count = 0;
-+		return 0;
++		return;
  	}
 
- 	return 0;
+ 	if (intel_dp_is_edp(intel_dp) && !intel_dp->use_max_params) {
+ 		drm_dbg_kms(&i915->drm,
+ 			    "Retrying Link training for eDP with max parameters\n");
+ 		intel_dp->use_max_params = true;
+-		return 0;
++		return;
+ 	}
+
+ 	index = intel_dp_rate_index(intel_dp->common_rates,
+@@ -662,7 +667,7 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+ 							      lane_count)) {
+ 			drm_dbg_kms(&i915->drm,
+ 				    "Retrying Link training for eDP with same parameters\n");
+-			return 0;
++			return;
+ 		}
+ 		intel_dp->max_link_rate = intel_dp_common_rate(intel_dp, index - 1);
+ 		intel_dp->max_link_lane_count = lane_count;
+@@ -673,7 +678,7 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+ 							      lane_count >> 1)) {
+ 			drm_dbg_kms(&i915->drm,
+ 				    "Retrying Link training for eDP with same parameters\n");
+-			return 0;
++			return;
+ 		}
+ 		intel_dp->max_link_rate = intel_dp_max_common_rate(intel_dp);
+ 		intel_dp->max_link_lane_count = lane_count >> 1;
+@@ -686,10 +691,7 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+ 		 */
+ 		intel_dp->max_link_rate = 0;
+ 		intel_dp->max_link_lane_count = 0;
+-		return 0;
+ 	}
+-
+-	return 0;
+ }
+
+ u32 intel_dp_mode_to_fec_clock(u32 mode_clock)
+@@ -4920,10 +4922,11 @@ intel_dp_detect(struct drm_connector *connector,
+ 	intel_dp_configure_mst(intel_dp);
+
+ 	/*
+-	 * TODO: Reset link params when switching to MST mode, until MST
+-	 * supports link training fallback params.
++	 * Note: Even though MST link training fallback is not yet implemented,
++	 * do not reset. This is because the base connector needs to have all
++	 * its modes pruned when link training for the MST port fails.
+ 	 */
+-	if (intel_dp->reset_link_params || intel_dp->is_mst) {
++	if (intel_dp->reset_link_params) {
+ 		intel_dp_reset_max_link_params(intel_dp);
+ 		intel_dp->reset_link_params = false;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 22099de3ca45..c26cc2e6f289 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -40,8 +40,8 @@ bool intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 			     struct intel_connector *intel_connector);
+ void intel_dp_set_link_params(struct intel_dp *intel_dp,
+ 			      int link_rate, int lane_count);
+-int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+-					    int link_rate, u8 lane_count);
++void intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
++					     int link_rate, u8 lane_count);
+ int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
+ 			      struct drm_modeset_acquire_ctx *ctx,
+ 			      u8 *pipe_mask);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 4485ef4f8ec6..31d0d7854003 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -1075,10 +1075,10 @@ static void intel_dp_schedule_fallback_link_training(struct intel_dp *intel_dp,
+ 		lt_dbg(intel_dp, DP_PHY_DPRX,
+ 		       "Link Training failed with HOBL active, not enabling it from now on\n");
+ 		intel_dp->hobl_failed = true;
+-	} else if (intel_dp_get_link_train_fallback_values(intel_dp,
+-							   crtc_state->port_clock,
+-							   crtc_state->lane_count)) {
+-		return;
++	} else {
++		intel_dp_get_link_train_fallback_values(intel_dp,
++							crtc_state->port_clock,
++							crtc_state->lane_count);
+ 	}
+
+ 	/* Schedule a Hotplug Uevent to userspace to start modeset */
 --
 Gil Dekel, Software Engineer, Google / ChromeOS Display and Graphics
