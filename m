@@ -1,63 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E0D9781127
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 19:02:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D1ED78112B
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 19:03:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 140E610E0BF;
-	Fri, 18 Aug 2023 17:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BCEA10E0E1;
+	Fri, 18 Aug 2023 17:03:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com
- [IPv6:2607:f8b0:4864:20::729])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 367B510E0AC
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 17:02:45 +0000 (UTC)
-Received: by mail-qk1-x729.google.com with SMTP id
- af79cd13be357-76d93cf8e13so24231785a.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 10:02:45 -0700 (PDT)
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com
+ [IPv6:2607:f8b0:4864:20::f33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80A4110E0D4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 17:03:00 +0000 (UTC)
+Received: by mail-qv1-xf33.google.com with SMTP id
+ 6a1803df08f44-649463dc0b8so5960696d6.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 10:03:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1692378164; x=1692982964;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=opgpBgYvUD8B1ypcLxMu9vIqh1eVJGol/Ebk1QqrvAU=;
- b=oYn8f9YCVsvCIEnWVcdqjPll0w6LY/GSEzFBMvlyVj19+T6SNe6F+AD3uXjhOqDUpE
- cSVI7PGI0hnFU+EXfNTaCUviqBW9snzKUPpqpecHtQjFKS0qDdK7PHlBee/3ZnrYckrt
- /QezGMJKyRnfuM27q1qDd1aivQwbbEIsdbwI0=
+ d=chromium.org; s=google; t=1692378179; x=1692982979;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=IWIpuvBgqpQhw0RlQbILyIb43Jtf4lwmYq0/cqIwMOU=;
+ b=MMEScymv4J4CEMzPByn2aa8eE9JuYtAWM1NZkxG6icpW/9HDxHfF3GNzXc6zu1U7zn
+ AaRK5GUrlLnzmJOR5yeaiQ91ulQnodf0Qf7dLoTwECoI5G4Swz3pqR0jjfUYWFKa3uBj
+ 3UbvaacnPGQqpvxTelonOChI7NLe6riZCRqYg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692378164; x=1692982964;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=opgpBgYvUD8B1ypcLxMu9vIqh1eVJGol/Ebk1QqrvAU=;
- b=aUwIUOHhc38hUik0Qls//FSBbJSoGqjA4msit+J6vFda2OKx4P5uIMfVpanSipd3zf
- GmqG+FvShfU0l1Y2bTopKiG+s21n8zu0Y4xduGsJSnN4if520x3s0+QvOw3uKWo4bATp
- 8JIwDmNm2KETbqWvfyEvx+qP2yQ6YLxqk+stgw6+1CueI+F5HfQPxFN1f1wfj3XWfiGY
- tAHPHxrskRO/csgxUZrK+4AbLUj/R/IJMoJEwlcHb4bzhp+CbbB3YshW0kcIVPApdX4S
- nylbK350YaRjUHlr76y3/A/5ltJpKxnXSGrzatneR5P9fQ4DCY26euaD4/FIAqBUFsVM
- m4eQ==
-X-Gm-Message-State: AOJu0YzVhN6sg9uZOnJCFqgVpBXFXFIq6NSWl8kuch4IM+BlkYcblMqv
- uuhD7GsZ802QMzG7TEGsMyU2uxAHF36bj4k5clA=
-X-Google-Smtp-Source: AGHT+IGc2rVZoz562LFGuxeYFKUQzTOZ/qG5GjIDZCO87u7cytHjPd4/bK58Wkgw/SBI8gEKDKiF1g==
-X-Received: by 2002:a05:620a:1999:b0:76c:d5e0:f93c with SMTP id
- bm25-20020a05620a199900b0076cd5e0f93cmr4210035qkb.56.1692378163802; 
- Fri, 18 Aug 2023 10:02:43 -0700 (PDT)
+ d=1e100.net; s=20221208; t=1692378179; x=1692982979;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=IWIpuvBgqpQhw0RlQbILyIb43Jtf4lwmYq0/cqIwMOU=;
+ b=dCOhdl22JmmHuTEo6my1weRNtPdq6oUqD/ZuGZ/fCG0sh+XGMVGNCQrVaUCS6EwWW8
+ mRVWHvzAXdW7cwu3Y3PaNWRNthrI0Bw0CbLOBxKW5fUao/UWfHF1/MdnapfnErB8oPl4
+ lli9xSaKrjt9Gz+2OGt1+X4x8lSpRJSEtMQ82Iwn5laf70jA8eFNtOhkXIUgHqFzp5Gh
+ OCYGy+k2+rBzqOT8yHCi7tfihQfPOK4jBT6QJx/t/nJh9pGSEqMgN/kU+yuFOZXfsxzs
+ B/P1ru9I2RK72YLAgr2QYXLJxdUZGTGtwPbd94li+BHZxboyE/qqZxghJq7wiYldIupP
+ 4hjw==
+X-Gm-Message-State: AOJu0Yxeud7XSvgrsaCnactSjEtL3KppyA08/Xo7jMdXHambiN+BRqE6
+ MiXoN/tBlsp/4EI09QDrnQ7LfexUwKkXBW1raQo=
+X-Google-Smtp-Source: AGHT+IHqFCw2tGNS4zezgytXWdjkNd/9sf+P55U50l8H6xegIX5/k9ygZwpoJgblnxJ+CiKHNr1C7g==
+X-Received: by 2002:a0c:ab8b:0:b0:647:14eb:f98d with SMTP id
+ j11-20020a0cab8b000000b0064714ebf98dmr3639435qvb.51.1692378179234; 
+ Fri, 18 Aug 2023 10:02:59 -0700 (PDT)
 Received: from gildekel.nyc.corp.google.com
  ([2620:0:1003:314:281:cb2f:c9c3:f2f8])
  by smtp.gmail.com with ESMTPSA id
- cx12-20020a05620a51cc00b00767cfb1e859sm649278qkb.47.2023.08.18.10.02.42
+ cx12-20020a05620a51cc00b00767cfb1e859sm649278qkb.47.2023.08.18.10.02.58
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Aug 2023 10:02:43 -0700 (PDT)
+ Fri, 18 Aug 2023 10:02:58 -0700 (PDT)
 From: Gil Dekel <gildekel@chromium.org>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Fri, 18 Aug 2023 12:59:17 -0400
-Message-ID: <20230818170156.2194015-1-gildekel@chromium.org>
+Date: Fri, 18 Aug 2023 12:59:18 -0400
+Message-ID: <20230818170156.2194015-2-gildekel@chromium.org>
 X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
+In-Reply-To: <20230818170156.2194015-1-gildekel@chromium.org>
+References: <20230818170156.2194015-1-gildekel@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/3] Define a final failure state when link
- training fails
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/dp_link_training: Add a final
+ failing state to link training fallback
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,84 +77,69 @@ Cc: Sean Paul <seanpaul@chromium.org>, Gil Dekel <gildekel@chromium.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, when link training fails after all fallback values have been
-exhausted, the i915 driver seizes to send uevents to userspace. This leave
-userspace thinking that the last passing atomic commit was successful, and that
-all connectors (displays) are connected and operational, when in fact, the last
-link failed to train and the displays remain dark. This manifests as "zombie"
-displays in userspace, in which users observe the displays appear in their
-display settings page, but they are dark and unresponsive.
+Instead of silently giving up when all link-training fallback values are
+exhausted, this patch modifies the fallback's failure branch to reduces
+both max_link_lane_count and max_link_rate to zero (0) and continues to
+emit uevents until userspace stops attempting to modeset.
 
-Since, at the time of writing, MST link training fallback is not implemented,
-failing MST link training is a significantly more common case then a complete
-SST link training failure. And with users using MST hubs than ever to connect
-multiple displays via their USB-C ports we observe this case often.
+By doing so, we ensure the failing connector, which is in
+link-status=Bad, has all its modes pruned (due to effectively having a
+bandwidth of 0Gbps).
 
-This patchset series suggest a solution, in which a final failure state is
-defined. In this final state, the connector's bit rate capabilities, namely
-max_link_rate and max_link_lane_count, are set to 0. This effectively set the
-connector's bandwidth to 0Gbps, thus causing all its modes to be pruned in the
-following connector probing.
-
-Next, with this state defined, we emit a link-status=Bad uevent. The next time
-userspace probes the connector, it should recognize that the connector has no
-modes and ignore it since it is in a bad state.
-
-I am aware that always sending a uevent and never stopping may result in some
-userspaces having their expectations broken and enter an infinite loop of
-modesets and link-training attempts. However, per DRM link-status spec:
-```
- * link-status:
- *      Connector link-status property to indicate the status of link. The
- *      default value of link-status is "GOOD". If something fails during or
- *      after modeset, the kernel driver may set this to "BAD" and issue a
- *      hotplug uevent. Drivers should update this value using
- *      drm_connector_set_link_status_property().
- *
- *      When user-space receives the hotplug uevent and detects a "BAD"
- *      link-status, the sink doesn't receive pixels anymore (e.g. the screen
- *      becomes completely black). The list of available modes may have
- *      changed. User-space is expected to pick a new mode if the current one
- *      has disappeared and perform a new modeset with link-status set to
- *      "GOOD" to re-enable the connector.
-```
-(form drivers/gpu/drm/drm_connector.c - DOC: standard connector properties)
-
-it seems reasonable to assume that the suggested state is an extension of the
-spec's guidelines, in which the next new mode userspace picks for a connector
-with no modes is - none, thus breaking the cycle of failed link-training
-attempts.
-
-I suspect that, maybe, zeroing out the bit rate capabilities is not the right
-way to go, and perhaps marking the connector as disconnected instead may be a
-better solution. However, if marking a connector disconnected is the way to go,
-We will have to iterate over all MST ports in the MST case and mark the spawned
-connectors as disconnected as well.
-
-As a final note I should add that this approach was tested with ChromeOS as
-userspace, and we observed that the zombie displays stop showing up once the
-connectors are pruned of all their modes and are ignored by userspace.
-
-For your consideration and guidance.
-Thanks,
-
-Gil Dekel (3):
-  drm/i915/dp_link_training: Add a final failing state to link training
-    fallback
-  drm/i915/dp_link_training: Add a final failing state to link training
-    fallback for MST
-  drm/i915/dp_link_training: Emit a link-status=Bad uevent with trigger
-    property
+It is then the userspace's responsibility to ignore connectors with no
+modes, even if they are marked as connected.
 
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Cc: Manasi Navare <navaremanasi@chromium.org>
 Cc: Sean Paul <seanpaul@chromium.org>
 Signed-off-by: Gil Dekel <gildekel@chromium.org>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c       | 50 +++++++++++++------
- drivers/gpu/drm/i915/display/intel_dp.h       |  4 +-
- .../drm/i915/display/intel_dp_link_training.c |  8 +--
- 3 files changed, 41 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 964bf0551bdc..1e4dae8aad90 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -276,8 +276,12 @@ static int intel_dp_common_len_rate_limit(const struct intel_dp *intel_dp,
+
+ static int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
+ {
++	/* This occurs when max link rate drops to 0 via link training fallback*/
++	if (index < 0)
++		return 0;
++
+ 	if (drm_WARN_ON(&dp_to_i915(intel_dp)->drm,
+-			index < 0 || index >= intel_dp->num_common_rates))
++			index >= intel_dp->num_common_rates))
+ 		return 162000;
+
+ 	return intel_dp->common_rates[index];
+@@ -318,6 +322,9 @@ static int intel_dp_max_common_lane_count(struct intel_dp *intel_dp)
+ int intel_dp_max_lane_count(struct intel_dp *intel_dp)
+ {
+ 	switch (intel_dp->max_link_lane_count) {
++	/* This occurs when max link lane count drops to 0 via link training fallback*/
++	case 0:
++		return 0;
+ 	case 1:
+ 	case 2:
+ 	case 4:
+@@ -672,7 +679,14 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+ 		intel_dp->max_link_lane_count = lane_count >> 1;
+ 	} else {
+ 		drm_err(&i915->drm, "Link Training Unsuccessful\n");
+-		return -1;
++		/*
++		 * Ensure all of the connector's modes are pruned in the next
++		 * probe by effectively reducing its bandwidth to 0 so userspace
++		 * can ignore it within the next modeset attempt.
++		 */
++		intel_dp->max_link_rate = 0;
++		intel_dp->max_link_lane_count = 0;
++		return 0;
+ 	}
+
+ 	return 0;
 --
 Gil Dekel, Software Engineer, Google / ChromeOS Display and Graphics
