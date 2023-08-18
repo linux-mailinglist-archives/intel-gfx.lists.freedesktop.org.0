@@ -2,50 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 760B1781099
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 18:41:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E0D9781127
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 19:02:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C17310E0CF;
-	Fri, 18 Aug 2023 16:41:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 140E610E0BF;
+	Fri, 18 Aug 2023 17:02:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7323910E0BF
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 16:41:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692376910; x=1723912910;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EUhH1rYBou5l1L1uw1FrI4aLuOu3tE1sa5d51D/TfYU=;
- b=g/m06K9S97JLd8iqInlelz7EmAaw9IiZSRUIy/EdAd1IiPuRq74GlFLf
- nTGEpfdr/3LmsQiGbWQ23yBoQzkVZ75ebhEVyv0EyjvGmuQBlaUW/KZhu
- dQojcYI9ca9qMBa/Nfx0k4sNmJw+naZd0v3g5rf7xeuJIzE4/PIRdCetA
- qLJPu0ItHGCABAm4Sccn/83TaEY6O/p3/A+fb3odr4WbfdKkwdtj8tcSH
- Klh3KSOkPTVxmIAOoB/KezgKxvBYFwoNgUfCDTKdSURTFMpKKbi1OjP+4
- NG3uJMfxtSUeq3/vcKkyqlfbCyAvTGec97SYFVLbMmUzU3ZdZO91b8P0w Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="370600418"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="370600418"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2023 09:41:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="728653642"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="728653642"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.65])
- by orsmga007.jf.intel.com with ESMTP; 18 Aug 2023 09:41:48 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Aug 2023 19:41:42 +0300
-Message-Id: <20230818164142.27045-3-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20230818164142.27045-1-stanislav.lisovskiy@intel.com>
-References: <20230818164142.27045-1-stanislav.lisovskiy@intel.com>
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com
+ [IPv6:2607:f8b0:4864:20::729])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 367B510E0AC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 17:02:45 +0000 (UTC)
+Received: by mail-qk1-x729.google.com with SMTP id
+ af79cd13be357-76d93cf8e13so24231785a.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 10:02:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1692378164; x=1692982964;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=opgpBgYvUD8B1ypcLxMu9vIqh1eVJGol/Ebk1QqrvAU=;
+ b=oYn8f9YCVsvCIEnWVcdqjPll0w6LY/GSEzFBMvlyVj19+T6SNe6F+AD3uXjhOqDUpE
+ cSVI7PGI0hnFU+EXfNTaCUviqBW9snzKUPpqpecHtQjFKS0qDdK7PHlBee/3ZnrYckrt
+ /QezGMJKyRnfuM27q1qDd1aivQwbbEIsdbwI0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692378164; x=1692982964;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=opgpBgYvUD8B1ypcLxMu9vIqh1eVJGol/Ebk1QqrvAU=;
+ b=aUwIUOHhc38hUik0Qls//FSBbJSoGqjA4msit+J6vFda2OKx4P5uIMfVpanSipd3zf
+ GmqG+FvShfU0l1Y2bTopKiG+s21n8zu0Y4xduGsJSnN4if520x3s0+QvOw3uKWo4bATp
+ 8JIwDmNm2KETbqWvfyEvx+qP2yQ6YLxqk+stgw6+1CueI+F5HfQPxFN1f1wfj3XWfiGY
+ tAHPHxrskRO/csgxUZrK+4AbLUj/R/IJMoJEwlcHb4bzhp+CbbB3YshW0kcIVPApdX4S
+ nylbK350YaRjUHlr76y3/A/5ltJpKxnXSGrzatneR5P9fQ4DCY26euaD4/FIAqBUFsVM
+ m4eQ==
+X-Gm-Message-State: AOJu0YzVhN6sg9uZOnJCFqgVpBXFXFIq6NSWl8kuch4IM+BlkYcblMqv
+ uuhD7GsZ802QMzG7TEGsMyU2uxAHF36bj4k5clA=
+X-Google-Smtp-Source: AGHT+IGc2rVZoz562LFGuxeYFKUQzTOZ/qG5GjIDZCO87u7cytHjPd4/bK58Wkgw/SBI8gEKDKiF1g==
+X-Received: by 2002:a05:620a:1999:b0:76c:d5e0:f93c with SMTP id
+ bm25-20020a05620a199900b0076cd5e0f93cmr4210035qkb.56.1692378163802; 
+ Fri, 18 Aug 2023 10:02:43 -0700 (PDT)
+Received: from gildekel.nyc.corp.google.com
+ ([2620:0:1003:314:281:cb2f:c9c3:f2f8])
+ by smtp.gmail.com with ESMTPSA id
+ cx12-20020a05620a51cc00b00767cfb1e859sm649278qkb.47.2023.08.18.10.02.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 18 Aug 2023 10:02:43 -0700 (PDT)
+From: Gil Dekel <gildekel@chromium.org>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 18 Aug 2023 12:59:17 -0400
+Message-ID: <20230818170156.2194015-1-gildekel@chromium.org>
+X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Implement vblank synchronized
- MBUS join changes
+Subject: [Intel-gfx] [PATCH 0/3] Define a final failure state when link
+ training fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,112 +70,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: Sean Paul <seanpaul@chromium.org>, Gil Dekel <gildekel@chromium.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we can't change MBUS join status without doing a modeset,
-because we are lacking mechanism to synchronize those with vblank.
-However then this means that we can't do a fastset, if there is a need
-to change MBUS join state. Fix that by implementing such change.
-We already call correspondent check and update at pre_plane dbuf update,
-so the only thing left is to have a non-modeset version of that.
-If active pipes stay the same then fastset is possible and only MBUS
-join state/ddb allocation updates would be committed.
+Currently, when link training fails after all fallback values have been
+exhausted, the i915 driver seizes to send uevents to userspace. This leave
+userspace thinking that the last passing atomic commit was successful, and that
+all connectors (displays) are connected and operational, when in fact, the last
+link failed to train and the displays remain dark. This manifests as "zombie"
+displays in userspace, in which users observe the displays appear in their
+display settings page, but they are dark and unresponsive.
 
-v2: Implement additional changes according to BSpec.
-    Vblank wait is needed after MBus/Dbuf programming in case if
-    no modeset is done and we are switching from single to multiple
-    displays, i.e mbus join state switches from "joined" to  "non-joined"
-    state. Otherwise vblank wait is not needed according to spec.
+Since, at the time of writing, MST link training fallback is not implemented,
+failing MST link training is a significantly more common case then a complete
+SST link training failure. And with users using MST hubs than ever to connect
+multiple displays via their USB-C ports we observe this case often.
 
-v3: Split mbus and dbox programming into to pre/post plane update parts,
-    how it should be done according to BSpec.
+This patchset series suggest a solution, in which a final failure state is
+defined. In this final state, the connector's bit rate capabilities, namely
+max_link_rate and max_link_lane_count, are set to 0. This effectively set the
+connector's bandwidth to 0Gbps, thus causing all its modes to be pruned in the
+following connector probing.
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Next, with this state defined, we emit a link-status=Bad uevent. The next time
+userspace probes the connector, it should recognize that the connector has no
+modes and ignore it since it is in a bad state.
+
+I am aware that always sending a uevent and never stopping may result in some
+userspaces having their expectations broken and enter an infinite loop of
+modesets and link-training attempts. However, per DRM link-status spec:
+```
+ * link-status:
+ *      Connector link-status property to indicate the status of link. The
+ *      default value of link-status is "GOOD". If something fails during or
+ *      after modeset, the kernel driver may set this to "BAD" and issue a
+ *      hotplug uevent. Drivers should update this value using
+ *      drm_connector_set_link_status_property().
+ *
+ *      When user-space receives the hotplug uevent and detects a "BAD"
+ *      link-status, the sink doesn't receive pixels anymore (e.g. the screen
+ *      becomes completely black). The list of available modes may have
+ *      changed. User-space is expected to pick a new mode if the current one
+ *      has disappeared and perform a new modeset with link-status set to
+ *      "GOOD" to re-enable the connector.
+```
+(form drivers/gpu/drm/drm_connector.c - DOC: standard connector properties)
+
+it seems reasonable to assume that the suggested state is an extension of the
+spec's guidelines, in which the next new mode userspace picks for a connector
+with no modes is - none, thus breaking the cycle of failed link-training
+attempts.
+
+I suspect that, maybe, zeroing out the bit rate capabilities is not the right
+way to go, and perhaps marking the connector as disconnected instead may be a
+better solution. However, if marking a connector disconnected is the way to go,
+We will have to iterate over all MST ports in the MST case and mark the spawned
+connectors as disconnected as well.
+
+As a final note I should add that this approach was tested with ChromeOS as
+userspace, and we observed that the zombie displays stop showing up once the
+connectors are pruned of all their modes and are ignored by userspace.
+
+For your consideration and guidance.
+Thanks,
+
+Gil Dekel (3):
+  drm/i915/dp_link_training: Add a final failing state to link training
+    fallback
+  drm/i915/dp_link_training: Add a final failing state to link training
+    fallback for MST
+  drm/i915/dp_link_training: Emit a link-status=Bad uevent with trigger
+    property
+
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Manasi Navare <navaremanasi@chromium.org>
+Cc: Sean Paul <seanpaul@chromium.org>
+Signed-off-by: Gil Dekel <gildekel@chromium.org>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  2 --
- drivers/gpu/drm/i915/display/skl_watermark.c | 36 +++++++++++++++-----
- 2 files changed, 27 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c       | 50 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_dp.h       |  4 +-
+ .../drm/i915/display/intel_dp_link_training.c |  8 +--
+ 3 files changed, 41 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8c81206ce90d7..249ba955cce2a 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7041,9 +7041,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	}
- 
- 	intel_encoders_update_prepare(state);
--
- 	intel_dbuf_pre_plane_update(state);
--	intel_mbus_dbox_update(state);
- 
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		if (new_crtc_state->do_async_flip)
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index af99f2abd8446..b5c5fa9ecf43c 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2614,13 +2614,6 @@ skl_compute_ddb(struct intel_atomic_state *state)
- 		if (ret)
- 			return ret;
- 
--		if (old_dbuf_state->joined_mbus != new_dbuf_state->joined_mbus) {
--			/* TODO: Implement vblank synchronized MBUS joining changes */
--			ret = intel_modeset_all_pipes(state, "MBUS joining change");
--			if (ret)
--				return ret;
--		}
--
- 		drm_dbg_kms(&i915->drm,
- 			    "Enabled dbuf slices 0x%x -> 0x%x (total dbuf slices 0x%x), mbus joined? %s->%s\n",
- 			    old_dbuf_state->enabled_slices,
-@@ -3524,8 +3517,15 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
- 
- 	WARN_ON(!new_dbuf_state->base.changed);
- 
--	if (hweight8(new_dbuf_state->active_pipes) <= hweight8(old_dbuf_state->active_pipes))
-+	/*
-+	 * Switching from multiple to single display scenario.
-+	 * Also we put here "<=" instead of "<" for suboptimal cases, when
-+	 * we switch from single => single display, enabling mbus join.
-+	 */
-+	if (hweight8(new_dbuf_state->active_pipes) <= hweight8(old_dbuf_state->active_pipes)) {
- 		intel_dbuf_mbus_update(state);
-+		intel_mbus_dbox_update(state);
-+	}
- 
- 	gen9_dbuf_slices_update(i915,
- 				old_dbuf_state->enabled_slices |
-@@ -3547,8 +3547,26 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
- 
- 	WARN_ON(!new_dbuf_state->base.changed);
- 
--	if (hweight8(new_dbuf_state->active_pipes) > hweight8(old_dbuf_state->active_pipes))
-+	/*
-+	 * Switching from single to multiple display scenario
-+	 */
-+	if (hweight8(new_dbuf_state->active_pipes) > hweight8(old_dbuf_state->active_pipes)) {
-+		struct intel_crtc *crtc;
-+		struct intel_crtc_state *old_crtc_state;
-+		int i;
- 		intel_dbuf_mbus_update(state);
-+		intel_mbus_dbox_update(state);
-+
-+		for_each_old_intel_crtc_in_state(state, crtc, old_crtc_state, i) {
-+			/*
-+			 * According to BSpec we should wait vblank on previously single display
-+			 */
-+			if (!old_crtc_state->hw.active)
-+				continue;
-+
-+			intel_crtc_wait_for_next_vblank(crtc);
-+		}
-+	}
- 
- 	gen9_dbuf_slices_update(i915,
- 				new_dbuf_state->enabled_slices);
--- 
-2.37.3
-
+--
+Gil Dekel, Software Engineer, Google / ChromeOS Display and Graphics
