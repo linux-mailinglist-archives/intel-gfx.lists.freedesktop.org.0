@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB8197813A0
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 21:43:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA1AF7813A1
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Aug 2023 21:43:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E430F10E0FB;
-	Fri, 18 Aug 2023 19:43:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD01B10E55E;
+	Fri, 18 Aug 2023 19:43:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 288DE10E559
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 19:43:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A62810E559
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 19:43:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692387783; x=1723923783;
+ t=1692387786; x=1723923786;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uV5sVz2wlgMu70iXhlRvjHRytwU+esU4nb0sCFANcfQ=;
- b=H4GJvB2pfPt7Gvy5e9OGnRjNKc8bRXOmfwSyMs/Lpt+8zwAQ9fPTC4a8
- KE57sX7KlfKgl6EhZW117DUE4i9xZ96i3YI4PhhiWeNTfW6dnnEnvLUfs
- GKI94KhjWVnNVFmqNub2vxMn7ZFCssi+BP9fjS1FuEtpf3nt2/wNWF4/H
- LsZkNtRlNELJ6Vj2qzcqekyroMUyDhUb9ln2QA+asew7WLsFHcUglyvSP
- zBIuUkBA+qhzSfwY5DQFIhVLdbdgpHW/dJgNRPVSmv8HEIVGdjbXImiaY
- /iK7C+mTHkz3WXV0FsQzYAp3Ul/IRS5y/vu4uaR1x5jEwD4pwEym0b436 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="459549703"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="459549703"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2023 12:43:01 -0700
+ bh=c6EfoJ4RnxquPWtWbn2sBtkI0NwYwCP52kkjdU9xt8M=;
+ b=OorqpVP/nUEmAvum4T8LCqOemMBl7MiKPVjgwma+O+DjDUy7+VUcMjOi
+ /daXILO1jj+5JSpBb1E08BO8qC6Uw/ebKVofzNcFzezMpuH5Mo0SgrkoL
+ EUO/KGCaa7i977MaHW/S5RB2IEYjXKDA3J+GEVzeAvonZOxq2C4nqZauW
+ vgmXg6iyDbXOdIDSM/o9fJh8BEVJuIU7SsO9noz2BX11ID7lLL7Me8vzJ
+ aVvy9yT5geaGjXUqvASgAoAgMDOze/ggx/UpB9kQM8B75uu2j46SAzQiC
+ F/QJcXfK2wSqGiEjoMXprgCUWU1ErO3Qs5ZpzFKJ7ewqoA8SbsWIMS92d A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="375959574"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="375959574"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2023 12:43:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="738212232"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="738212232"
+X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="728714064"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="728714064"
 Received: from esavax-mobl.ger.corp.intel.com (HELO intel.com) ([10.249.41.4])
- by fmsmga007-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2023 12:43:00 -0700
+ by orsmga007-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2023 12:43:04 -0700
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Date: Fri, 18 Aug 2023 21:42:47 +0200
-Message-Id: <20230818194249.1014022-2-andi.shyti@linux.intel.com>
+Date: Fri, 18 Aug 2023 21:42:48 +0200
+Message-Id: <20230818194249.1014022-3-andi.shyti@linux.intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230818194249.1014022-1-andi.shyti@linux.intel.com>
 References: <20230818194249.1014022-1-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI] drm/i915/gt: Refactor hangcheck selftest to use
- igt_spinner
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Implement GGTT update method with
+ blitter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,870 +62,257 @@ Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+From: Nirmoy Das <nirmoy.das@intel.com>
 
-The hangcheck live selftest contains duplicate declarations of some
-functions that already exist in igt_spinner.c, such as the creation and
-deconstruction of a spinning batch buffer (spinner) that hangs an engine.
-It's undesireable to have such code duplicated, as the requirements for
-the spinner may change with hardware updates, necessitating both
-execution paths be updated.  To avoid this, have the hangcheck live
-selftest use the declaration from igt_spinner.  This eliminates the need
-for the declarations in the selftest itself, as well as the associated
-local helper structures, so we can erase those.
+Implement GGTT update method with blitter command, MI_UPDATE_GTT
+and install those handlers if a platform requires that.
 
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
-Hi,
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 189 +++++++++++++++++++++++++++
+ 1 file changed, 189 insertions(+)
 
-I'm resending this patch in order to be sure that CI doesn't complain.
-
-Andi
-
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 457 ++++++-------------
- drivers/gpu/drm/i915/selftests/igt_spinner.c |  15 +-
- drivers/gpu/drm/i915/selftests/igt_spinner.h |   9 +
- 3 files changed, 155 insertions(+), 326 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-index 0dd4d00ee894e..36376a4ade8e4 100644
---- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-@@ -29,281 +29,40 @@
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index dd0ed941441aa..715f24de2cfa6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -15,12 +15,16 @@
+ #include "display/intel_display.h"
+ #include "gem/i915_gem_lmem.h"
  
- #define IGT_IDLE_TIMEOUT 50 /* ms; time to wait after flushing between tests */
- 
--struct hang {
--	struct intel_gt *gt;
--	struct drm_i915_gem_object *hws;
--	struct drm_i915_gem_object *obj;
--	struct i915_gem_context *ctx;
--	u32 *seqno;
--	u32 *batch;
--};
--
--static int hang_init(struct hang *h, struct intel_gt *gt)
--{
--	void *vaddr;
--	int err;
--
--	memset(h, 0, sizeof(*h));
--	h->gt = gt;
--
--	h->ctx = kernel_context(gt->i915, NULL);
--	if (IS_ERR(h->ctx))
--		return PTR_ERR(h->ctx);
--
--	GEM_BUG_ON(i915_gem_context_is_bannable(h->ctx));
--
--	h->hws = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
--	if (IS_ERR(h->hws)) {
--		err = PTR_ERR(h->hws);
--		goto err_ctx;
--	}
--
--	h->obj = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
--	if (IS_ERR(h->obj)) {
--		err = PTR_ERR(h->obj);
--		goto err_hws;
--	}
--
--	i915_gem_object_set_cache_coherency(h->hws, I915_CACHE_LLC);
--	vaddr = i915_gem_object_pin_map_unlocked(h->hws, I915_MAP_WB);
--	if (IS_ERR(vaddr)) {
--		err = PTR_ERR(vaddr);
--		goto err_obj;
--	}
--	h->seqno = memset(vaddr, 0xff, PAGE_SIZE);
--
--	vaddr = i915_gem_object_pin_map_unlocked(h->obj,
--						 intel_gt_coherent_map_type(gt, h->obj, false));
--	if (IS_ERR(vaddr)) {
--		err = PTR_ERR(vaddr);
--		goto err_unpin_hws;
--	}
--	h->batch = vaddr;
--
--	return 0;
--
--err_unpin_hws:
--	i915_gem_object_unpin_map(h->hws);
--err_obj:
--	i915_gem_object_put(h->obj);
--err_hws:
--	i915_gem_object_put(h->hws);
--err_ctx:
--	kernel_context_close(h->ctx);
--	return err;
--}
--
--static u64 hws_address(const struct i915_vma *hws,
--		       const struct i915_request *rq)
--{
--	return i915_vma_offset(hws) +
--	       offset_in_page(sizeof(u32) * rq->fence.context);
--}
--
--static struct i915_request *
--hang_create_request(struct hang *h, struct intel_engine_cs *engine)
--{
--	struct intel_gt *gt = h->gt;
--	struct i915_address_space *vm = i915_gem_context_get_eb_vm(h->ctx);
--	struct drm_i915_gem_object *obj;
--	struct i915_request *rq = NULL;
--	struct i915_vma *hws, *vma;
--	unsigned int flags;
--	void *vaddr;
--	u32 *batch;
--	int err;
--
--	obj = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
--	if (IS_ERR(obj)) {
--		i915_vm_put(vm);
--		return ERR_CAST(obj);
--	}
--
--	vaddr = i915_gem_object_pin_map_unlocked(obj, intel_gt_coherent_map_type(gt, obj, false));
--	if (IS_ERR(vaddr)) {
--		i915_gem_object_put(obj);
--		i915_vm_put(vm);
--		return ERR_CAST(vaddr);
--	}
--
--	i915_gem_object_unpin_map(h->obj);
--	i915_gem_object_put(h->obj);
--
--	h->obj = obj;
--	h->batch = vaddr;
--
--	vma = i915_vma_instance(h->obj, vm, NULL);
--	if (IS_ERR(vma)) {
--		i915_vm_put(vm);
--		return ERR_CAST(vma);
--	}
--
--	hws = i915_vma_instance(h->hws, vm, NULL);
--	if (IS_ERR(hws)) {
--		i915_vm_put(vm);
--		return ERR_CAST(hws);
--	}
--
--	err = i915_vma_pin(vma, 0, 0, PIN_USER);
--	if (err) {
--		i915_vm_put(vm);
--		return ERR_PTR(err);
--	}
--
--	err = i915_vma_pin(hws, 0, 0, PIN_USER);
--	if (err)
--		goto unpin_vma;
--
--	rq = igt_request_alloc(h->ctx, engine);
--	if (IS_ERR(rq)) {
--		err = PTR_ERR(rq);
--		goto unpin_hws;
--	}
--
--	err = igt_vma_move_to_active_unlocked(vma, rq, 0);
--	if (err)
--		goto cancel_rq;
--
--	err = igt_vma_move_to_active_unlocked(hws, rq, 0);
--	if (err)
--		goto cancel_rq;
--
--	batch = h->batch;
--	if (GRAPHICS_VER(gt->i915) >= 8) {
--		*batch++ = MI_STORE_DWORD_IMM_GEN4;
--		*batch++ = lower_32_bits(hws_address(hws, rq));
--		*batch++ = upper_32_bits(hws_address(hws, rq));
--		*batch++ = rq->fence.seqno;
--		*batch++ = MI_NOOP;
--
--		memset(batch, 0, 1024);
--		batch += 1024 / sizeof(*batch);
--
--		*batch++ = MI_NOOP;
--		*batch++ = MI_BATCH_BUFFER_START | 1 << 8 | 1;
--		*batch++ = lower_32_bits(i915_vma_offset(vma));
--		*batch++ = upper_32_bits(i915_vma_offset(vma));
--	} else if (GRAPHICS_VER(gt->i915) >= 6) {
--		*batch++ = MI_STORE_DWORD_IMM_GEN4;
--		*batch++ = 0;
--		*batch++ = lower_32_bits(hws_address(hws, rq));
--		*batch++ = rq->fence.seqno;
--		*batch++ = MI_NOOP;
--
--		memset(batch, 0, 1024);
--		batch += 1024 / sizeof(*batch);
--
--		*batch++ = MI_NOOP;
--		*batch++ = MI_BATCH_BUFFER_START | 1 << 8;
--		*batch++ = lower_32_bits(i915_vma_offset(vma));
--	} else if (GRAPHICS_VER(gt->i915) >= 4) {
--		*batch++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
--		*batch++ = 0;
--		*batch++ = lower_32_bits(hws_address(hws, rq));
--		*batch++ = rq->fence.seqno;
--		*batch++ = MI_NOOP;
--
--		memset(batch, 0, 1024);
--		batch += 1024 / sizeof(*batch);
--
--		*batch++ = MI_NOOP;
--		*batch++ = MI_BATCH_BUFFER_START | 2 << 6;
--		*batch++ = lower_32_bits(i915_vma_offset(vma));
--	} else {
--		*batch++ = MI_STORE_DWORD_IMM | MI_MEM_VIRTUAL;
--		*batch++ = lower_32_bits(hws_address(hws, rq));
--		*batch++ = rq->fence.seqno;
--		*batch++ = MI_NOOP;
--
--		memset(batch, 0, 1024);
--		batch += 1024 / sizeof(*batch);
--
--		*batch++ = MI_NOOP;
--		*batch++ = MI_BATCH_BUFFER_START | 2 << 6;
--		*batch++ = lower_32_bits(i915_vma_offset(vma));
--	}
--	*batch++ = MI_BATCH_BUFFER_END; /* not reached */
--	intel_gt_chipset_flush(engine->gt);
--
--	if (rq->engine->emit_init_breadcrumb) {
--		err = rq->engine->emit_init_breadcrumb(rq);
--		if (err)
--			goto cancel_rq;
--	}
--
--	flags = 0;
--	if (GRAPHICS_VER(gt->i915) <= 5)
--		flags |= I915_DISPATCH_SECURE;
--
--	err = rq->engine->emit_bb_start(rq, i915_vma_offset(vma), PAGE_SIZE, flags);
--
--cancel_rq:
--	if (err) {
--		i915_request_set_error_once(rq, err);
--		i915_request_add(rq);
--	}
--unpin_hws:
--	i915_vma_unpin(hws);
--unpin_vma:
--	i915_vma_unpin(vma);
--	i915_vm_put(vm);
--	return err ? ERR_PTR(err) : rq;
--}
--
--static u32 hws_seqno(const struct hang *h, const struct i915_request *rq)
--{
--	return READ_ONCE(h->seqno[rq->fence.context % (PAGE_SIZE/sizeof(u32))]);
--}
--
--static void hang_fini(struct hang *h)
--{
--	*h->batch = MI_BATCH_BUFFER_END;
--	intel_gt_chipset_flush(h->gt);
--
--	i915_gem_object_unpin_map(h->obj);
--	i915_gem_object_put(h->obj);
--
--	i915_gem_object_unpin_map(h->hws);
--	i915_gem_object_put(h->hws);
--
--	kernel_context_close(h->ctx);
--
--	igt_flush_test(h->gt->i915);
--}
--
--static bool wait_until_running(struct hang *h, struct i915_request *rq)
--{
--	return !(wait_for_us(i915_seqno_passed(hws_seqno(h, rq),
--					       rq->fence.seqno),
--			     10) &&
--		 wait_for(i915_seqno_passed(hws_seqno(h, rq),
--					    rq->fence.seqno),
--			  1000));
--}
--
- static int igt_hang_sanitycheck(void *arg)
- {
- 	struct intel_gt *gt = arg;
- 	struct i915_request *rq;
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
--	struct hang h;
-+	struct igt_spinner spin;
- 	int err;
- 
- 	/* Basic check that we can execute our hanging batch */
- 
--	err = hang_init(&h, gt);
-+	err = igt_spinner_init(&spin, gt);
- 	if (err)
- 		return err;
- 
- 	for_each_engine(engine, gt, id) {
- 		struct intel_wedge_me w;
-+		struct intel_context *ce;
- 		long timeout;
- 
- 		if (!intel_engine_can_store_dword(engine))
- 			continue;
- 
--		rq = hang_create_request(&h, engine);
-+		ce = intel_context_create(engine);
-+		if (IS_ERR(ce)) {
-+			err = PTR_ERR(ce);
-+			pr_err("Failed to create context for %s, err=%d\n",
-+			       engine->name, err);
-+			goto fini;
-+		}
-+
-+		rq = igt_spinner_create_request(&spin, ce, MI_NOOP);
-+		intel_context_put(ce);
-+
- 		if (IS_ERR(rq)) {
- 			err = PTR_ERR(rq);
- 			pr_err("Failed to create request for %s, err=%d\n",
-@@ -312,10 +71,7 @@ static int igt_hang_sanitycheck(void *arg)
- 		}
- 
- 		i915_request_get(rq);
--
--		*h.batch = MI_BATCH_BUFFER_END;
--		intel_gt_chipset_flush(engine->gt);
--
-+		igt_spinner_end(&spin);
- 		i915_request_add(rq);
- 
- 		timeout = 0;
-@@ -336,7 +92,7 @@ static int igt_hang_sanitycheck(void *arg)
- 	}
- 
- fini:
--	hang_fini(&h);
-+	igt_spinner_fini(&spin);
- 	return err;
++#include "intel_context.h"
+ #include "intel_ggtt_gmch.h"
++#include "intel_gpu_commands.h"
+ #include "intel_gt.h"
+ #include "intel_gt_regs.h"
+ #include "intel_pci_config.h"
++#include "intel_ring.h"
+ #include "i915_drv.h"
+ #include "i915_pci.h"
++#include "i915_request.h"
+ #include "i915_scatterlist.h"
+ #include "i915_utils.h"
+ #include "i915_vgpu.h"
+@@ -252,6 +256,95 @@ u64 gen8_ggtt_pte_encode(dma_addr_t addr,
+ 	return pte;
  }
  
-@@ -686,7 +442,7 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
- 	struct i915_gpu_error *global = &gt->i915->gpu_error;
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
--	struct hang h;
-+	struct igt_spinner spin;
- 	int err = 0;
- 
- 	/* Check that we can issue an engine reset on an idle engine (no-op) */
-@@ -695,7 +451,7 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
- 		return 0;
- 
- 	if (active) {
--		err = hang_init(&h, gt);
-+		err = igt_spinner_init(&spin, gt);
- 		if (err)
- 			return err;
- 	}
-@@ -739,7 +495,17 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
- 			}
- 
- 			if (active) {
--				rq = hang_create_request(&h, engine);
-+				struct intel_context *ce = intel_context_create(engine);
-+				if (IS_ERR(ce)) {
-+					err = PTR_ERR(ce);
-+					pr_err("[%s] Create context failed: %d!\n",
-+					       engine->name, err);
-+					goto restore;
-+				}
-+
-+				rq = igt_spinner_create_request(&spin, ce, MI_NOOP);
-+				intel_context_put(ce);
-+
- 				if (IS_ERR(rq)) {
- 					err = PTR_ERR(rq);
- 					pr_err("[%s] Create hang request failed: %d!\n",
-@@ -750,11 +516,11 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
- 				i915_request_get(rq);
- 				i915_request_add(rq);
- 
--				if (!wait_until_running(&h, rq)) {
-+				if (!igt_wait_for_spinner(&spin, rq)) {
- 					struct drm_printer p = drm_info_printer(gt->i915->drm.dev);
- 
- 					pr_err("%s: Failed to start request %llx, at %x\n",
--					       __func__, rq->fence.seqno, hws_seqno(&h, rq));
-+					       __func__, rq->fence.seqno, hws_seqno(&spin, rq));
- 					intel_engine_dump(engine, &p,
- 							  "%s\n", engine->name);
- 
-@@ -835,7 +601,7 @@ static int __igt_reset_engine(struct intel_gt *gt, bool active)
- 	}
- 
- 	if (active)
--		hang_fini(&h);
-+		igt_spinner_fini(&spin);
- 
- 	return err;
- }
-@@ -967,7 +733,7 @@ static int __igt_reset_engines(struct intel_gt *gt,
- 	struct intel_engine_cs *engine, *other;
- 	struct active_engine *threads;
- 	enum intel_engine_id id, tmp;
--	struct hang h;
-+	struct igt_spinner spin;
- 	int err = 0;
- 
- 	/* Check that issuing a reset on one engine does not interfere
-@@ -978,12 +744,9 @@ static int __igt_reset_engines(struct intel_gt *gt,
- 		return 0;
- 
- 	if (flags & TEST_ACTIVE) {
--		err = hang_init(&h, gt);
-+		err = igt_spinner_init(&spin, gt);
- 		if (err)
- 			return err;
--
--		if (flags & TEST_PRIORITY)
--			h.ctx->sched.priority = 1024;
- 	}
- 
- 	threads = kmalloc_array(I915_NUM_ENGINES, sizeof(*threads), GFP_KERNEL);
-@@ -1057,7 +820,20 @@ static int __igt_reset_engines(struct intel_gt *gt,
- 			}
- 
- 			if (flags & TEST_ACTIVE) {
--				rq = hang_create_request(&h, engine);
-+				struct intel_context *ce = intel_context_create(engine);
-+				if (IS_ERR(ce)) {
-+					err = PTR_ERR(ce);
-+					pr_err("[%s] Create context failed: %d!\n",
-+					       engine->name, err);
-+					goto restore;
-+				}
-+
-+				if (flags && TEST_PRIORITY)
-+					ce->gem_context->sched.priority = 1024;
-+
-+				rq = igt_spinner_create_request(&spin, ce, MI_NOOP);
-+				intel_context_put(ce);
-+
- 				if (IS_ERR(rq)) {
- 					err = PTR_ERR(rq);
- 					pr_err("[%s] Create hang request failed: %d!\n",
-@@ -1068,11 +844,11 @@ static int __igt_reset_engines(struct intel_gt *gt,
- 				i915_request_get(rq);
- 				i915_request_add(rq);
- 
--				if (!wait_until_running(&h, rq)) {
-+				if (!igt_wait_for_spinner(&spin, rq)) {
- 					struct drm_printer p = drm_info_printer(gt->i915->drm.dev);
- 
- 					pr_err("%s: Failed to start request %llx, at %x\n",
--					       __func__, rq->fence.seqno, hws_seqno(&h, rq));
-+					       __func__, rq->fence.seqno, hws_seqno(&spin, rq));
- 					intel_engine_dump(engine, &p,
- 							  "%s\n", engine->name);
- 
-@@ -1240,7 +1016,7 @@ static int __igt_reset_engines(struct intel_gt *gt,
- 		err = -EIO;
- 
- 	if (flags & TEST_ACTIVE)
--		hang_fini(&h);
-+		igt_spinner_fini(&spin);
- 
- 	return err;
- }
-@@ -1299,7 +1075,8 @@ static int igt_reset_wait(void *arg)
- 	struct intel_engine_cs *engine;
- 	struct i915_request *rq;
- 	unsigned int reset_count;
--	struct hang h;
-+	struct igt_spinner spin;
-+	struct intel_context *ce;
- 	long timeout;
- 	int err;
- 
-@@ -1312,13 +1089,22 @@ static int igt_reset_wait(void *arg)
- 
- 	igt_global_reset_lock(gt);
- 
--	err = hang_init(&h, gt);
-+	err = igt_spinner_init(&spin, gt);
- 	if (err) {
--		pr_err("[%s] Hang init failed: %d!\n", engine->name, err);
-+		pr_err("[%s] Spinner init failed: %d!\n", engine->name, err);
- 		goto unlock;
- 	}
- 
--	rq = hang_create_request(&h, engine);
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce)) {
-+		err = PTR_ERR(ce);
-+		pr_err("[%s] Create context failed: %d!\n", engine->name, err);
-+		goto fini;
-+	}
-+
-+	rq = igt_spinner_create_request(&spin, ce, MI_NOOP);
-+	intel_context_put(ce);
-+
- 	if (IS_ERR(rq)) {
- 		err = PTR_ERR(rq);
- 		pr_err("[%s] Create hang request failed: %d!\n", engine->name, err);
-@@ -1328,11 +1114,11 @@ static int igt_reset_wait(void *arg)
- 	i915_request_get(rq);
- 	i915_request_add(rq);
- 
--	if (!wait_until_running(&h, rq)) {
-+	if (!igt_wait_for_spinner(&spin, rq)) {
- 		struct drm_printer p = drm_info_printer(gt->i915->drm.dev);
- 
- 		pr_err("%s: Failed to start request %llx, at %x\n",
--		       __func__, rq->fence.seqno, hws_seqno(&h, rq));
-+		       __func__, rq->fence.seqno, hws_seqno(&spin, rq));
- 		intel_engine_dump(rq->engine, &p, "%s\n", rq->engine->name);
- 
- 		intel_gt_set_wedged(gt);
-@@ -1360,7 +1146,7 @@ static int igt_reset_wait(void *arg)
- out_rq:
- 	i915_request_put(rq);
- fini:
--	hang_fini(&h);
-+	igt_spinner_fini(&spin);
- unlock:
- 	igt_global_reset_unlock(gt);
- 
-@@ -1433,7 +1219,8 @@ static int __igt_reset_evict_vma(struct intel_gt *gt,
- 	struct task_struct *tsk = NULL;
- 	struct i915_request *rq;
- 	struct evict_vma arg;
--	struct hang h;
-+	struct igt_spinner spin;
-+	struct intel_context *ce;
- 	unsigned int pin_flags;
- 	int err;
- 
-@@ -1447,9 +1234,9 @@ static int __igt_reset_evict_vma(struct intel_gt *gt,
- 
- 	/* Check that we can recover an unbind stuck on a hanging request */
- 
--	err = hang_init(&h, gt);
-+	err = igt_spinner_init(&spin, gt);
- 	if (err) {
--		pr_err("[%s] Hang init failed: %d!\n", engine->name, err);
-+		pr_err("[%s] Spinner init failed: %d!\n", engine->name, err);
- 		return err;
- 	}
- 
-@@ -1475,7 +1262,16 @@ static int __igt_reset_evict_vma(struct intel_gt *gt,
- 		goto out_obj;
- 	}
- 
--	rq = hang_create_request(&h, engine);
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce)) {
-+		err = PTR_ERR(ce);
-+		pr_err("[%s] Create context failed: %d!\n", engine->name, err);
-+		goto out_obj;
-+	}
-+
-+	rq = igt_spinner_create_request(&spin, ce, MI_NOOP);
-+	intel_context_put(ce);
-+
- 	if (IS_ERR(rq)) {
- 		err = PTR_ERR(rq);
- 		pr_err("[%s] Create hang request failed: %d!\n", engine->name, err);
-@@ -1517,11 +1313,11 @@ static int __igt_reset_evict_vma(struct intel_gt *gt,
- 	if (err)
- 		goto out_rq;
- 
--	if (!wait_until_running(&h, rq)) {
-+	if (!igt_wait_for_spinner(&spin, rq)) {
- 		struct drm_printer p = drm_info_printer(gt->i915->drm.dev);
- 
- 		pr_err("%s: Failed to start request %llx, at %x\n",
--		       __func__, rq->fence.seqno, hws_seqno(&h, rq));
-+		       __func__, rq->fence.seqno, hws_seqno(&spin, rq));
- 		intel_engine_dump(rq->engine, &p, "%s\n", rq->engine->name);
- 
- 		intel_gt_set_wedged(gt);
-@@ -1571,7 +1367,7 @@ static int __igt_reset_evict_vma(struct intel_gt *gt,
- out_obj:
- 	i915_gem_object_put(obj);
- fini:
--	hang_fini(&h);
-+	igt_spinner_fini(&spin);
- 	if (intel_gt_is_wedged(gt))
- 		return -EIO;
- 
-@@ -1638,20 +1434,21 @@ static int igt_reset_queue(void *arg)
- 	struct i915_gpu_error *global = &gt->i915->gpu_error;
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
--	struct hang h;
-+	struct igt_spinner spin;
- 	int err;
- 
- 	/* Check that we replay pending requests following a hang */
- 
- 	igt_global_reset_lock(gt);
- 
--	err = hang_init(&h, gt);
-+	err = igt_spinner_init(&spin, gt);
- 	if (err)
- 		goto unlock;
- 
- 	for_each_engine(engine, gt, id) {
- 		struct intel_selftest_saved_policy saved;
- 		struct i915_request *prev;
-+		struct intel_context *ce;
- 		IGT_TIMEOUT(end_time);
- 		unsigned int count;
- 		bool using_guc = intel_engine_uses_guc(engine);
-@@ -1668,7 +1465,16 @@ static int igt_reset_queue(void *arg)
- 			}
- 		}
- 
--		prev = hang_create_request(&h, engine);
-+		ce = intel_context_create(engine);
-+		if (IS_ERR(ce)) {
-+			err = PTR_ERR(ce);
-+			pr_err("[%s] Create 'prev' context failed: %d!\n", engine->name, err);
-+			goto restore;
-+		}
-+
-+		prev = igt_spinner_create_request(&spin, ce, MI_NOOP);
-+		intel_context_put(ce);
-+
- 		if (IS_ERR(prev)) {
- 			err = PTR_ERR(prev);
- 			pr_err("[%s] Create 'prev' hang request failed: %d!\n", engine->name, err);
-@@ -1682,8 +1488,17 @@ static int igt_reset_queue(void *arg)
- 		do {
- 			struct i915_request *rq;
- 			unsigned int reset_count;
-+			
-+			ce = intel_context_create(engine);
-+			if (IS_ERR(ce)) {
-+				err = PTR_ERR(ce);
-+				pr_err("[%s] Create context failed: %d!\n", engine->name, err);
-+				goto restore;
-+			}
-+
-+			rq = igt_spinner_create_request(&spin, ce, MI_NOOP);
-+			intel_context_put(ce);
- 
--			rq = hang_create_request(&h, engine);
- 			if (IS_ERR(rq)) {
- 				err = PTR_ERR(rq);
- 				pr_err("[%s] Create hang request failed: %d!\n", engine->name, err);
-@@ -1715,12 +1530,12 @@ static int igt_reset_queue(void *arg)
- 				goto restore;
- 			}
- 
--			if (!wait_until_running(&h, prev)) {
-+			if (!igt_wait_for_spinner(&spin, prev)) {
- 				struct drm_printer p = drm_info_printer(gt->i915->drm.dev);
- 
- 				pr_err("%s(%s): Failed to start request %llx, at %x\n",
- 				       __func__, engine->name,
--				       prev->fence.seqno, hws_seqno(&h, prev));
-+				       prev->fence.seqno, hws_seqno(&spin, prev));
- 				intel_engine_dump(engine, &p,
- 						  "%s\n", engine->name);
- 
-@@ -1768,9 +1583,7 @@ static int igt_reset_queue(void *arg)
- 		pr_info("%s: Completed %d queued resets\n",
- 			engine->name, count);
- 
--		*h.batch = MI_BATCH_BUFFER_END;
--		intel_gt_chipset_flush(engine->gt);
--
-+		igt_spinner_end(&spin);
- 		i915_request_put(prev);
- 
- restore:
-@@ -1794,7 +1607,7 @@ static int igt_reset_queue(void *arg)
- 	}
- 
- fini:
--	hang_fini(&h);
-+	igt_spinner_fini(&spin);
- unlock:
- 	igt_global_reset_unlock(gt);
- 
-@@ -1809,7 +1622,8 @@ static int igt_handle_error(void *arg)
- 	struct intel_gt *gt = arg;
- 	struct i915_gpu_error *global = &gt->i915->gpu_error;
- 	struct intel_engine_cs *engine;
--	struct hang h;
-+	struct igt_spinner spin;
-+	struct intel_context *ce;
- 	struct i915_request *rq;
- 	struct i915_gpu_coredump *error;
- 	int err;
-@@ -1824,13 +1638,22 @@ static int igt_handle_error(void *arg)
- 	if (!engine || !intel_engine_can_store_dword(engine))
- 		return 0;
- 
--	err = hang_init(&h, gt);
-+	err = igt_spinner_init(&spin, gt);
- 	if (err) {
--		pr_err("[%s] Hang init failed: %d!\n", engine->name, err);
-+		pr_err("[%s] Spinner init failed: %d!\n", engine->name, err);
- 		return err;
- 	}
- 
--	rq = hang_create_request(&h, engine);
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce)) {
-+		err = PTR_ERR(ce);
-+		pr_err("[%s] Create context failed: %d!\n", engine->name, err);
-+		goto err_fini;
-+	}
-+
-+	rq = igt_spinner_create_request(&spin, ce, MI_NOOP);
-+	intel_context_put(ce);
-+
- 	if (IS_ERR(rq)) {
- 		err = PTR_ERR(rq);
- 		pr_err("[%s] Create hang request failed: %d!\n", engine->name, err);
-@@ -1840,11 +1663,11 @@ static int igt_handle_error(void *arg)
- 	i915_request_get(rq);
- 	i915_request_add(rq);
- 
--	if (!wait_until_running(&h, rq)) {
-+	if (!igt_wait_for_spinner(&spin, rq)) {
- 		struct drm_printer p = drm_info_printer(gt->i915->drm.dev);
- 
- 		pr_err("%s: Failed to start request %llx, at %x\n",
--		       __func__, rq->fence.seqno, hws_seqno(&h, rq));
-+		       __func__, rq->fence.seqno, hws_seqno(&spin, rq));
- 		intel_engine_dump(rq->engine, &p, "%s\n", rq->engine->name);
- 
- 		intel_gt_set_wedged(gt);
-@@ -1869,7 +1692,7 @@ static int igt_handle_error(void *arg)
- err_request:
- 	i915_request_put(rq);
- err_fini:
--	hang_fini(&h);
-+	igt_spinner_fini(&spin);
- 	return err;
- }
- 
-@@ -1910,20 +1733,30 @@ static int igt_atomic_reset_engine(struct intel_engine_cs *engine,
- 				   const struct igt_atomic_section *p)
- {
- 	struct i915_request *rq;
--	struct hang h;
-+	struct igt_spinner spin;
-+	struct intel_context *ce;
- 	int err;
- 
- 	err = __igt_atomic_reset_engine(engine, p, "idle");
- 	if (err)
- 		return err;
- 
--	err = hang_init(&h, engine->gt);
-+	err = igt_spinner_init(&spin, engine->gt);
- 	if (err) {
- 		pr_err("[%s] Hang init failed: %d!\n", engine->name, err);
- 		return err;
- 	}
- 
--	rq = hang_create_request(&h, engine);
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce)) {
-+		err = PTR_ERR(ce);
-+		pr_err("[%s] Create context failed: %d!\n", engine->name, err);
-+		goto out;
-+	}
-+
-+	rq = igt_spinner_create_request(&spin, ce, MI_NOOP);
-+	intel_context_put(ce);
-+
- 	if (IS_ERR(rq)) {
- 		err = PTR_ERR(rq);
- 		pr_err("[%s] Create hang request failed: %d!\n", engine->name, err);
-@@ -1933,12 +1766,12 @@ static int igt_atomic_reset_engine(struct intel_engine_cs *engine,
- 	i915_request_get(rq);
- 	i915_request_add(rq);
- 
--	if (wait_until_running(&h, rq)) {
-+	if (igt_wait_for_spinner(&spin, rq)) {
- 		err = __igt_atomic_reset_engine(engine, p, "active");
- 	} else {
- 		pr_err("%s(%s): Failed to start request %llx, at %x\n",
- 		       __func__, engine->name,
--		       rq->fence.seqno, hws_seqno(&h, rq));
-+		       rq->fence.seqno, hws_seqno(&spin, rq));
- 		intel_gt_set_wedged(engine->gt);
- 		err = -EIO;
- 	}
-@@ -1954,7 +1787,7 @@ static int igt_atomic_reset_engine(struct intel_engine_cs *engine,
- 
- 	i915_request_put(rq);
- out:
--	hang_fini(&h);
-+	igt_spinner_fini(&spin);
- 	return err;
- }
- 
-diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.c b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-index 8c3e1f20e5a15..fc4f33076ec7b 100644
---- a/drivers/gpu/drm/i915/selftests/igt_spinner.c
-+++ b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-@@ -108,15 +108,10 @@ int igt_spinner_pin(struct igt_spinner *spin,
- 	return 0;
- }
- 
--static unsigned int seqno_offset(u64 fence)
--{
--	return offset_in_page(sizeof(u32) * fence);
--}
--
- static u64 hws_address(const struct i915_vma *hws,
- 		       const struct i915_request *rq)
- {
--	return i915_vma_offset(hws) + seqno_offset(rq->fence.context);
-+	return i915_vma_offset(hws) + offset_in_page(sizeof(u32) * rq->fence.context);
- }
- 
- struct i915_request *
-@@ -216,14 +211,6 @@ igt_spinner_create_request(struct igt_spinner *spin,
- 	return err ? ERR_PTR(err) : rq;
- }
- 
--static u32
--hws_seqno(const struct igt_spinner *spin, const struct i915_request *rq)
--{
--	u32 *seqno = spin->seqno + seqno_offset(rq->fence.context);
--
--	return READ_ONCE(*seqno);
--}
--
- void igt_spinner_end(struct igt_spinner *spin)
- {
- 	if (!spin->batch)
-diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.h b/drivers/gpu/drm/i915/selftests/igt_spinner.h
-index fbe5b1625b05e..faff1008999a5 100644
---- a/drivers/gpu/drm/i915/selftests/igt_spinner.h
-+++ b/drivers/gpu/drm/i915/selftests/igt_spinner.h
-@@ -40,4 +40,13 @@ void igt_spinner_end(struct igt_spinner *spin);
- 
- bool igt_wait_for_spinner(struct igt_spinner *spin, struct i915_request *rq);
- 
-+static inline u32
-+hws_seqno(const struct igt_spinner *spin, const struct i915_request *rq)
++static bool should_update_ggtt_with_blit(struct i915_ggtt *ggtt)
 +{
-+	u32 *seqno = spin->seqno + offset_in_page(sizeof(u32) * rq->fence.context);
++	struct intel_gt *gt = ggtt->vm.gt;
 +
-+	return READ_ONCE(*seqno);
++	return intel_engine_blitter_context_ready(gt);
 +}
 +
++static bool gen8_ggtt_blit_fixed_pte(struct i915_ggtt *ggtt, u32 offset,
++				     u32 num_entries, const gen8_pte_t pte)
++{
++	struct intel_gt *gt = ggtt->vm.gt;
++	struct i915_sched_attr attr = {};
++	struct i915_request *rq;
++	struct intel_context *ce;
++	bool wakeref;
++	u32 *cs;
 +
- #endif
++	if (!num_entries)
++		return true;
++	/*
++	 * If the GT is not awake already at this stage then fallback
++	 * to pci based GGTT update otherwise __intel_wakeref_get_first()
++	 * would conflict with fs_reclaim trying to allocate memory while
++	 * doing rpm_resume().
++	 */
++	wakeref = intel_gt_pm_get_if_awake(gt);
++	if (!wakeref)
++		return false;
++
++	ce = gt->engine[BCS0]->blitter_context;
++	if (!ce) {
++		drm_dbg(&ggtt->vm.i915->drm, "Failed to get blitter context\n");
++		goto err_print;
++	}
++
++	while (num_entries) {
++		/* MI_UPDATE_GTT can update 512 entries in a single command */
++		u32 n_ptes = min_t(u32, 512, num_entries);
++
++		mutex_lock(&ce->timeline->mutex);
++		intel_context_enter(ce);
++		rq = __i915_request_create(ce, GFP_NOWAIT | GFP_ATOMIC);
++		intel_context_exit(ce);
++		if (IS_ERR(rq)) {
++			drm_dbg(&ggtt->vm.i915->drm,
++				"Failed to get blitter request\n");
++			goto err_unlock;
++		}
++
++		cs = intel_ring_begin(rq, 2 * n_ptes + 2);
++		if (IS_ERR(cs)) {
++			drm_dbg(&ggtt->vm.i915->drm,
++				"Failed to begin ring for GGTT blitter\n");
++			goto err_rq;
++		}
++
++		*cs++ = MI_UPDATE_GTT | (2 * n_ptes);
++		*cs++ = offset << 12;
++		memset64((u64 *)cs, pte, n_ptes);
++		cs += n_ptes * 2;
++		intel_ring_advance(rq, cs);
++
++		i915_request_get(rq);
++		__i915_request_commit(rq);
++		__i915_request_queue(rq, &attr);
++
++		mutex_unlock(&ce->timeline->mutex);
++		/* This will break if the request is complete or after engine reset */
++		i915_request_wait(rq, 0, MAX_SCHEDULE_TIMEOUT);
++		i915_request_put(rq);
++
++		num_entries -= n_ptes;
++	}
++
++	ggtt->invalidate(ggtt);
++	intel_gt_pm_put_async(gt);
++	return true;
++
++err_rq:
++	i915_request_put(rq);
++err_unlock:
++	mutex_unlock(&ce->timeline->mutex);
++err_print:
++	drm_warn_once(&ggtt->vm.i915->drm,
++		      "GGTT update failed with blitter\n");
++	intel_gt_pm_put(gt);
++	return false;
++}
++
+ static void gen8_set_pte(void __iomem *addr, gen8_pte_t pte)
+ {
+ 	writeq(pte, addr);
+@@ -272,6 +365,22 @@ static void gen8_ggtt_insert_page(struct i915_address_space *vm,
+ 	ggtt->invalidate(ggtt);
+ }
+ 
++static void gen8_ggtt_insert_page_blit(struct i915_address_space *vm,
++				       dma_addr_t addr, u64 offset,
++				       unsigned int pat_index, u32 flags)
++{
++	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
++	gen8_pte_t pte;
++
++	pte = ggtt->vm.pte_encode(addr, pat_index, flags);
++	if (should_update_ggtt_with_blit(i915_vm_to_ggtt(vm)) &&
++	    gen8_ggtt_blit_fixed_pte(ggtt, offset, 1, pte))
++		return;
++
++	gen8_ggtt_insert_page(vm, addr, offset, pat_index, flags);
++	ggtt->invalidate(ggtt);
++}
++
+ static void gen8_ggtt_insert_entries(struct i915_address_space *vm,
+ 				     struct i915_vma_resource *vma_res,
+ 				     unsigned int pat_index,
+@@ -311,6 +420,52 @@ static void gen8_ggtt_insert_entries(struct i915_address_space *vm,
+ 	ggtt->invalidate(ggtt);
+ }
+ 
++static void __gen8_ggtt_insert_entries_blit(struct i915_address_space *vm,
++					    struct i915_vma_resource *vma_res,
++					    unsigned int pat_index, u32 flags)
++{
++	gen8_pte_t pte_encode;
++	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
++	struct sgt_iter iter;
++	dma_addr_t addr;
++	u64 start, end;
++
++	pte_encode = ggtt->vm.pte_encode(0, pat_index, flags);
++	start = (vma_res->start - vma_res->guard) / I915_GTT_PAGE_SIZE;
++	end = start + vma_res->guard / I915_GTT_PAGE_SIZE;
++	if (!gen8_ggtt_blit_fixed_pte(ggtt, start, end - start, vm->scratch[0]->encode))
++		goto err;
++	start = end;
++
++	end += (vma_res->node_size + vma_res->guard) / I915_GTT_PAGE_SIZE;
++	/* TODO: MI_UPDATE_GTT can update 511 entries in a single command. */
++	for_each_sgt_daddr(addr, iter, vma_res->bi.pages) {
++		if (!gen8_ggtt_blit_fixed_pte(ggtt, start++, 1, pte_encode | addr))
++			goto err;
++	}
++
++	if (!gen8_ggtt_blit_fixed_pte(ggtt, start, end - start, vm->scratch[0]->encode))
++		goto err;
++
++	return;
++
++err:
++	drm_dbg(&ggtt->vm.i915->drm, "falling back to gen8_ggtt_insert_entries\n");
++	gen8_ggtt_insert_entries(vm, vma_res, pat_index, flags);
++}
++
++static void gen8_ggtt_insert_entries_blit(struct i915_address_space *vm,
++					  struct i915_vma_resource *vma_res,
++					  unsigned int pat_index, u32 flags)
++{
++	if (!should_update_ggtt_with_blit(i915_vm_to_ggtt(vm))) {
++		gen8_ggtt_insert_entries(vm, vma_res, pat_index, flags);
++		return;
++	}
++
++	__gen8_ggtt_insert_entries_blit(vm, vma_res, pat_index, flags);
++}
++
+ static void gen8_ggtt_clear_range(struct i915_address_space *vm,
+ 				  u64 start, u64 length)
+ {
+@@ -332,6 +487,34 @@ static void gen8_ggtt_clear_range(struct i915_address_space *vm,
+ 		gen8_set_pte(&gtt_base[i], scratch_pte);
+ }
+ 
++static void gen8_ggtt_scratch_range_blit(struct i915_address_space *vm,
++					 u64 start, u64 length)
++{
++	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
++	unsigned int first_entry = start / I915_GTT_PAGE_SIZE;
++	unsigned int num_entries = length / I915_GTT_PAGE_SIZE;
++	const gen8_pte_t scratch_pte = vm->scratch[0]->encode;
++	gen8_pte_t __iomem *gtt_base =
++		(gen8_pte_t __iomem *)ggtt->gsm + first_entry;
++	const int max_entries = ggtt_total_entries(ggtt) - first_entry;
++	int i;
++
++	if (WARN(num_entries > max_entries,
++		 "First entry = %d; Num entries = %d (max=%d)\n",
++		 first_entry, num_entries, max_entries))
++		num_entries = max_entries;
++
++	if (should_update_ggtt_with_blit(ggtt) &&
++	    gen8_ggtt_blit_fixed_pte(ggtt, first_entry,
++				     num_entries, scratch_pte))
++		return;
++
++	for (i = 0; i < num_entries; i++)
++		gen8_set_pte(&gtt_base[i], scratch_pte);
++
++	ggtt->invalidate(ggtt);
++}
++
+ static void gen6_ggtt_insert_page(struct i915_address_space *vm,
+ 				  dma_addr_t addr,
+ 				  u64 offset,
+@@ -997,6 +1180,12 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+ 			I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND;
+ 	}
+ 
++	if (i915_ggtt_require_blitter(i915)) {
++		ggtt->vm.scratch_range = gen8_ggtt_scratch_range_blit;
++		ggtt->vm.insert_page = gen8_ggtt_insert_page_blit;
++		ggtt->vm.insert_entries = gen8_ggtt_insert_entries_blit;
++	}
++
+ 	if (intel_uc_wants_guc(&ggtt->vm.gt->uc))
+ 		ggtt->invalidate = guc_ggtt_invalidate;
+ 	else
 -- 
 2.40.1
 
