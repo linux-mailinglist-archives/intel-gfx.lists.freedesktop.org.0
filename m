@@ -1,47 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59BF4782886
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 14:05:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AB19782883
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 14:05:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3A6910E169;
-	Mon, 21 Aug 2023 12:05:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47D0710E238;
+	Mon, 21 Aug 2023 12:05:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out-49.mta0.migadu.com (out-49.mta0.migadu.com
- [IPv6:2001:41d0:1004:224b::31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C12310E46E
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Aug 2023 07:05:31 +0000 (UTC)
-Message-ID: <a1ad6a41-edd0-1201-c537-68693d5b70e6@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1692342329;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=jv+O91aJKOY8Oa1uiqnwHLxjtat+AR7MEL0TnmE0b24=;
- b=t2VAUZ/03p433tyvzSI/43v6e2AbSGWAj8MxYeOybMl7YnRaVl2x7cj/71xMqWMRKgtL5v
- gDTi48YCNm6X+Zx7LdxDdJqLYzdh7lfvVT1qlpkHtDEsYVQFpWK4DfMUfninCzwp/lvXbw
- 99BmTYaes3N1P4mgadXNBtLHpTk2S6Q=
-Date: Fri, 18 Aug 2023 15:05:14 +0800
+Received: from wxsgout04.xfusion.com (wxsgout04.xfusion.com [36.139.87.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F7A010E0BE;
+ Sun, 20 Aug 2023 12:36:54 +0000 (UTC)
+Received: from wuxshcsitd00600.xfusion.com (unknown [10.32.133.213])
+ by wxsgout04.xfusion.com (SkyGuard) with ESMTPS id 4RTFSV37CMz9v7dp;
+ Sun, 20 Aug 2023 20:35:22 +0800 (CST)
+Received: from localhost (10.82.147.3) by wuxshcsitd00600.xfusion.com
+ (10.32.133.213) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Sun, 20 Aug
+ 2023 20:36:46 +0800
+Date: Sun, 20 Aug 2023 20:36:45 +0800
+From: Wang Jinchao <wangjinchao@xfusion.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>
+Message-ID: <ZOII3e9nsnmRjTN+@fedora>
 MIME-Version: 1.0
-To: Matthew Wilcox <willy@infradead.org>
-References: <20230621164557.3510324-1-willy@infradead.org>
- <20230621164557.3510324-4-willy@infradead.org>
- <a2a2180c-62ac-452f-0737-26f01f228c79@linux.dev>
- <ZMZHH5Xc507OZA1O@casper.infradead.org>
- <40a3ab47-da3e-0d08-b3fa-b4663f3e727d@linux.dev>
- <ZMbZVjMaIeI1DSj9@casper.infradead.org>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Zhu Yanjun <yanjun.zhu@linux.dev>
-In-Reply-To: <ZMbZVjMaIeI1DSj9@casper.infradead.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+X-Originating-IP: [10.82.147.3]
+X-ClientProxiedBy: wuxshcsitd00601.xfusion.com (10.32.135.241) To
+ wuxshcsitd00600.xfusion.com (10.32.133.213)
 X-Mailman-Approved-At: Mon, 21 Aug 2023 12:05:38 +0000
-Subject: Re: [Intel-gfx] [PATCH 03/13] scatterlist: Add sg_set_folio()
+Subject: [Intel-gfx] [PATCH v3] drm/i915: Fix Kconfig error for
+ CONFIG_DRM_I915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,114 +49,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-nfs@vger.kernel.org, netdev@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- linux-afs@lists.infradead.org
+Reply-To: ZNdOoHvIg7HXh7Gg@fedora
+Cc: stone.xulei@xfusion.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+When CONFIG_DRM_I915 is set to 'y' and CONFIG_BACKLIGHT_CLASS_DEVICE
+is set to 'm', we encountered an ld.lld error during the build process:
 
-在 2023/7/31 5:42, Matthew Wilcox 写道:
-> On Sun, Jul 30, 2023 at 09:57:06PM +0800, Zhu Yanjun wrote:
->> 在 2023/7/30 19:18, Matthew Wilcox 写道:
->>> On Sun, Jul 30, 2023 at 07:01:26PM +0800, Zhu Yanjun wrote:
->>>> Does the following function have folio version?
->>>>
->>>> "
->>>> int sg_alloc_append_table_from_pages(struct sg_append_table *sgt_append,
->>>> 		struct page **pages, unsigned int n_pages, unsigned int offset,
->>>> 		unsigned long size, unsigned int max_segment,
->>>> 		unsigned int left_pages, gfp_t gfp_mask)
->>>> "
->>> No -- I haven't needed to convert anything that uses
->>> sg_alloc_append_table_from_pages() yet.  It doesn't look like it should
->>> be _too_ hard to add a folio version.
->> In many places, this function is used. So this function needs the folio
->> version.
-> It's not used in very many places.  But the first one that I see it used
-> (drivers/infiniband/core/umem.c), you can't do a straightforward folio
-> conversion:
->
->                  pinned = pin_user_pages_fast(cur_base,
->                                            min_t(unsigned long, npages,
->                                                  PAGE_SIZE /
->                                                  sizeof(struct page *)),
->                                            gup_flags, page_list);
-> ...
->                  ret = sg_alloc_append_table_from_pages(
->                          &umem->sgt_append, page_list, pinned, 0,
->                          pinned << PAGE_SHIFT, ib_dma_max_seg_size(device),
->                          npages, GFP_KERNEL);
->
-> That can't be converted to folios.  The GUP might start in the middle of
-> the folio, and we have no way to communicate that.
->
-> This particular usage really needs the phyr work that Jason is doing so
-> we can efficiently communicate physically contiguous ranges from GUP
-> to sg.
+	ld.lld: error: undefined symbol: backlight_device_get_by_name
+	>>> referenced by intel_backlight.c:955
+	>>>               vmlinux.o:(intel_backlight_device_register)
 
-Hi, Matthew
+	ld.lld: error: undefined symbol: backlight_device_register
+	>>> referenced by intel_backlight.c:971
+	>>>               vmlinux.o:(intel_backlight_device_register)
 
-Thanks. To the following function, it seems that no folio function 
-replace vmalloc_to_page.
+	ld.lld: error: undefined symbol: backlight_device_unregister
+	>>> referenced by intel_backlight.c:999
+	>>>               vmlinux.o:(intel_backlight_device_unregister)
 
-vmalloc_to_page calls virt_to_page to get page. Finally the followings 
-will be called.
+This issue occurred because intel_backlight_device_register and
+intel_backlight_device_unregister were enclosed within
+\#if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE) and #endif directives.
+However, according to Kconfig, CONFIG_DRM_I915 will select
+BACKLIGHT_CLASS_DEVICE only if ACPI is enabled.
+This led to an error when ACPI is not enabled.
+Change IS_ENABLED to IS_REACHABLE and use IS_REACHABLE to encompass
+the implementation of intel_connector_register() to solve this issue.
 
-"
-(mem_map + ((pfn) - ARCH_PFN_OFFSET))
+Signed-off-by: Wang Jinchao <wangjinchao@xfusion.com>
+---
+ drivers/gpu/drm/i915/display/intel_backlight.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_backlight.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-"
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index 2e8f17c04522..d812cdc74a84 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -795,7 +795,7 @@ void intel_backlight_enable(const struct intel_crtc_state *crtc_state,
+ 	mutex_unlock(&i915->display.backlight.lock);
+ }
+ 
+-#if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE)
++#if IS_REACHABLE(CONFIG_BACKLIGHT_CLASS_DEVICE)
+ static u32 intel_panel_get_backlight(struct intel_connector *connector)
+ {
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.h b/drivers/gpu/drm/i915/display/intel_backlight.h
+index 339643f63897..207fe1c613d8 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.h
++++ b/drivers/gpu/drm/i915/display/intel_backlight.h
+@@ -36,7 +36,7 @@ u32 intel_backlight_invert_pwm_level(struct intel_connector *connector, u32 leve
+ u32 intel_backlight_level_to_pwm(struct intel_connector *connector, u32 level);
+ u32 intel_backlight_level_from_pwm(struct intel_connector *connector, u32 val);
+ 
+-#if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE)
++#if IS_REACHABLE(CONFIG_BACKLIGHT_CLASS_DEVICE)
+ int intel_backlight_device_register(struct intel_connector *connector);
+ void intel_backlight_device_unregister(struct intel_connector *connector);
+ #else /* CONFIG_BACKLIGHT_CLASS_DEVICE */
+-- 
+2.40.0
 
-And I do not find the related folio functions with vmalloc_to_page.
-
-And no folio function replaces dma_map_page.
-
-dma_map_page will call dma_map_page_attrs.
-
-Or these 2 function should not be replaced with folio functions?
-
-int irdma_map_vm_page_list(struct irdma_hw *hw, void *va, dma_addr_t 
-*pg_dma,
-
-                            u32 pg_cnt)
-{
-         struct page *vm_page;
-         int i;
-         u8 *addr;
-
-         addr = (u8 *)(uintptr_t)va;
-         for (i = 0; i < pg_cnt; i++) {
-                 vm_page = vmalloc_to_page(addr);
-                 if (!vm_page)
-                         goto err;
-
-                 pg_dma[i] = dma_map_page(hw->device, vm_page, 0, PAGE_SIZE,
-                                          DMA_BIDIRECTIONAL);
-                 if (dma_mapping_error(hw->device, pg_dma[i]))
-                         goto err;
-
-                 addr += PAGE_SIZE;
-         }
-
-         return 0;
-
-err:
-         irdma_unmap_vm_page_list(hw, pg_dma, i);
-         return -ENOMEM;
-
-}
-
-Thanks,
-
-Zhu Yanjun
-
-
->> Another problem, after folio is used, I want to know the performance after
->> folio is implemented.
->>
->> How to make tests to get the performance?
-> You know what you're working on ... I wouldn't know how best to test
-> your code.
