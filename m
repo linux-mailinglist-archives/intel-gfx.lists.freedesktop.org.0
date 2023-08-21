@@ -1,54 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1786B784040
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 14:02:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E998E784205
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 15:27:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C340510E333;
-	Tue, 22 Aug 2023 12:02:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 060E310E35A;
+	Tue, 22 Aug 2023 13:27:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CACA810E32D;
- Tue, 22 Aug 2023 12:02:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692705738; x=1724241738;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hp+NZXqHkpxwllrzrSaGmzU2Ind1Fopscc+Rym/pSdE=;
- b=cxlvcfOw2qXq28Ig96Uhl2I596mIekryjmXylUQjik3wCJDrW1zzUG1f
- EJrDdQyl9l8LWdxq4P983Ldey0agce+xIzN13XiPFm1qV46UVTdVKKtO4
- w1I2Sgid9IFn5uzczXhyI0yctdy9BWguc2rFBCbdPVqMXAyt9oIZhSxvE
- eZySDwa6/m5AY/aIx/FF33jMVmkyMCAw1ilr4W6ykW0zZFQHyLQE7LTnA
- i0x8blE2hKrjh3C6vq+3f51Nwv+TbRheTlnP3eFAe/uu8hnJIlb5qAbrD
- +EJ6zD/MNxWTIyi3oT8xIs13BZjozAS9u0DDK80YYUcTHBoUPmHYs7QhF w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="354198250"
-X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="354198250"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2023 05:02:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="910070686"
-X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="910070686"
-Received: from kainaats-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.42.230])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2023 05:02:14 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	amd-gfx@lists.freedesktop.org
-Date: Tue, 22 Aug 2023 15:01:40 +0300
-Message-Id: <e65f30aa1bd581308f916fd005999ebe66618fad.1692705543.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1692705543.git.jani.nikula@intel.com>
-References: <cover.1692705543.git.jani.nikula@intel.com>
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
+ [IPv6:2607:f8b0:4864:20::233])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC09C10E283;
+ Mon, 21 Aug 2023 15:04:18 +0000 (UTC)
+Received: by mail-oi1-x233.google.com with SMTP id
+ 5614622812f47-3a7d4030621so2045941b6e.3; 
+ Mon, 21 Aug 2023 08:04:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1692630258; x=1693235058;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=4nsDNl9d4lshcExFhxOmfvT78+yT9J12bXqiEl8z3Wk=;
+ b=Nsqjc+xPmg9p6wrzEXmKeYc+RXEIVfrxs6JTs/wnImB8BHukr5xyEHkwYJFuXv7hFW
+ XzRcJumjO7r3YPqNwzsVd9JeY63M2FZixYGmD04Dzz/WvUSF8bQI23Ob9tsS+cEH/Kyb
+ 5zXlnkTKokCbvjME5SwTPRdZCiCYXKoEojY56VfZncFa4MOqkcqnFUbSWAZW29XddIy/
+ KMJjSIC698zTe8H8TqeFsyvM1Ou9Wg76bq/twCq/6k7uAFxO+lLizVj+p9nPO6K2JOHQ
+ J0xaH+sqNFv2s2FTCgdYL7QroY1qGz8gzakmhotueEOQdsqrEzBhHfIu3ph74Y9Seipp
+ RT1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692630258; x=1693235058;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=4nsDNl9d4lshcExFhxOmfvT78+yT9J12bXqiEl8z3Wk=;
+ b=Ci5/8gF+dDNF1FPP7s18Wwbc2OGlP+245nfUVtKh5IxlH2zFqqmMeXgaUIjAmcsryt
+ QzuXRtVWSF4vNxahitG4dMjxgDr0Wc/BUA+qNobkZa4EUCWO0B7Bk+kCj3vSp0rpQry3
+ yRdL5gKAuzvMpAdG791gGWOgmWjL4rg48qO/Q68u8jz0QKguhJClDsBDvt3jk2DbHEhj
+ AqvmxlWStvCFkNxpGO9j3s6+bkusHschYU8t+mg3S4tWALB8BU14JTkfUNjbLy8aUT2T
+ ikq8Lhmz4qLnUxEHnCGN6alyfzcqP4AF8Ypg+TjQhFymx4Fkz3R5yG9tL6WQ7yVYFhqn
+ xquw==
+X-Gm-Message-State: AOJu0YwShsWHFKA29x5CncmlxhTc0vj7g+Un/AcdZ6CMLBEPjufXJbIQ
+ ptFYDoHfbeVmh+Jdd4jrJAI=
+X-Google-Smtp-Source: AGHT+IEAyShw7iDgkxpkmRqpOp+aVd74/ixWDlZbrKwshzv0+M8osDNdld8yOX26K6C1jLh/G0bLNw==
+X-Received: by 2002:a05:6808:219d:b0:3a7:543d:9102 with SMTP id
+ be29-20020a056808219d00b003a7543d9102mr8171406oib.39.1692630257879; 
+ Mon, 21 Aug 2023 08:04:17 -0700 (PDT)
+Received: from debian.lan ([168.227.196.240]) by smtp.gmail.com with ESMTPSA id
+ bg12-20020a056808178c00b003a7a34a4ed8sm3650000oib.33.2023.08.21.08.04.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 21 Aug 2023 08:04:17 -0700 (PDT)
+From: "Ricardo B. Marliere" <rbmarliere@gmail.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@gmail.com,
+ daniel@ffwll.ch, daniele.ceraolospurio@intel.com,
+ John.C.Harrison@Intel.com, alan.previn.teres.alexis@intel.com,
+ harshit.m.mogalapalli@oracle.com, michal.wajdeczko@intel.com,
+ gregkh@linuxfoundation.org
+Date: Mon, 21 Aug 2023 15:02:42 +0000
+Message-Id: <20230821150241.40047-1-rbmarliere@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] Revert "drm/amd/display: implement force
- function in amdgpu_dm_connector_funcs"
+X-Mailman-Approved-At: Tue, 22 Aug 2023 13:27:12 +0000
+Subject: [Intel-gfx] [PATCH] gpu: drm: i915: fix documentation style
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,92 +75,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, David Airlie <airlied@gmail.com>,
- intel-gfx@lists.freedesktop.org, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Alex Hung <alex.hung@amd.com>,
- Daniel Wheeler <daniel.wheeler@amd.com>, Hersen Wu <hersenxs.wu@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Wenchieh Chien <wenchieh.chien@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>
+Cc: "Ricardo B. Marliere" <rbmarliere@gmail.com>, skhan@linuxfoundation.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 0ba4a784a14592abed41873e339eab78ceb6e230.
+This patch fixes the following sphinx warnings in the htmldocs make target:
 
-drm_edid_override_connector_update() is *not* supposed to be used by
-drivers directly.
+Documentation/gpu/i915:546: ./drivers/gpu/drm/i915/gt/uc/intel_huc.c:29: ERROR: Unexpected indentation.
+Documentation/gpu/i915:546: ./drivers/gpu/drm/i915/gt/uc/intel_huc.c:30: WARNING: Block quote ends without a blank line; unexpected unindent.
+Documentation/gpu/i915:546: ./drivers/gpu/drm/i915/gt/uc/intel_huc.c:35: WARNING: Bullet list ends without a blank line; unexpected unindent.
 
-From the documentation:
-
-  Only to be used from drm_helper_probe_single_connector_modes() as a
-  fallback for when DDC probe failed during drm_get_edid() and caused
-  the override/firmware EDID to be skipped.
-
-It's impossible to unify firmare and override EDID handling and property
-updates if drivers mess with this directly.
-
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Alex Hung <alex.hung@amd.com>
-Cc: Chao-kai Wang <Stylon.Wang@amd.com>
-Cc: Daniel Wheeler <daniel.wheeler@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Hersen Wu <hersenxs.wu@amd.com>
-Cc: Leo Li <sunpeng.li@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Cc: Wenchieh Chien <wenchieh.chien@amd.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Ricardo B. Marliere <rbmarliere@gmail.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 28 +------------------
- 1 file changed, 1 insertion(+), 27 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index adfe2fcb915c..25151085508f 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6317,31 +6317,6 @@ amdgpu_dm_connector_late_register(struct drm_connector *connector)
- 	return 0;
- }
- 
--void amdgpu_dm_connector_funcs_force(struct drm_connector *connector)
--{
--	struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
--	struct dc_link *dc_link = aconnector->dc_link;
--	struct dc_sink *dc_em_sink = aconnector->dc_em_sink;
--	struct edid *edid;
--
--	if (!connector->edid_override)
--		return;
--
--	drm_edid_override_connector_update(&aconnector->base);
--	edid = aconnector->base.edid_blob_ptr->data;
--	aconnector->edid = edid;
--
--	/* Update emulated (virtual) sink's EDID */
--	if (dc_em_sink && dc_link) {
--		memset(&dc_em_sink->edid_caps, 0, sizeof(struct dc_edid_caps));
--		memmove(dc_em_sink->dc_edid.raw_edid, edid, (edid->extensions + 1) * EDID_LENGTH);
--		dm_helpers_parse_edid_caps(
--			dc_link,
--			&dc_em_sink->dc_edid,
--			&dc_em_sink->edid_caps);
--	}
--}
--
- static const struct drm_connector_funcs amdgpu_dm_connector_funcs = {
- 	.reset = amdgpu_dm_connector_funcs_reset,
- 	.detect = amdgpu_dm_connector_detect,
-@@ -6352,8 +6327,7 @@ static const struct drm_connector_funcs amdgpu_dm_connector_funcs = {
- 	.atomic_set_property = amdgpu_dm_connector_atomic_set_property,
- 	.atomic_get_property = amdgpu_dm_connector_atomic_get_property,
- 	.late_register = amdgpu_dm_connector_late_register,
--	.early_unregister = amdgpu_dm_connector_unregister,
--	.force = amdgpu_dm_connector_funcs_force
-+	.early_unregister = amdgpu_dm_connector_unregister
- };
- 
- static int get_modes(struct drm_connector *connector)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+index ddd146265beb..fa70defcb5b2 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+@@ -26,6 +26,7 @@
+  * The kernel driver is only responsible for loading the HuC firmware and
+  * triggering its security authentication. This is done differently depending
+  * on the platform:
++ *
+  * - older platforms (from Gen9 to most Gen12s): the load is performed via DMA
+  *   and the authentication via GuC
+  * - DG2: load and authentication are both performed via GSC.
+@@ -33,6 +34,7 @@
+  *   not-DG2 older platforms), while the authentication is done in 2-steps,
+  *   a first auth for clear-media workloads via GuC and a second one for all
+  *   workloads via GSC.
++ *
+  * On platforms where the GuC does the authentication, to correctly do so the
+  * HuC binary must be loaded before the GuC one.
+  * Loading the HuC is optional; however, not using the HuC might negatively
 -- 
-2.39.2
+2.40.1
 
