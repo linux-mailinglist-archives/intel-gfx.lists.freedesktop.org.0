@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 120CC78263A
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 11:27:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 447B1782661
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 11:37:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96E1410E073;
-	Mon, 21 Aug 2023 09:27:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A43A810E21D;
+	Mon, 21 Aug 2023 09:37:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E5AA10E073;
- Mon, 21 Aug 2023 09:27:33 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 93AD062DC8;
- Mon, 21 Aug 2023 09:27:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6766FC433C7;
- Mon, 21 Aug 2023 09:27:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1692610051;
- bh=NW4Ycp3M+pHTjemza+su3ZhshTvZ9JFW/Vsro3BLEpM=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ZBTKJR0KBWIG4VuMcSVzQjw+2J53sX+IJt7Rq5hwg7pdrBU3PkmdQocsBZxi8jTqY
- aNBrdHTkq+SxVsWSM66H84S9RA4QHMm2dzgbe5BGjvzepijWQmqyDJ+hqzykISNru+
- VhIQyiWAKACU/4SWR7nlSJgWhVZjMdYLGzspKbNP3Niik9X01iHC8Cv+ANjbk0/Y8l
- M976tPJivUsAGX7V4dLvysawBRqqJ53F4gyv8lQ39Z38MhmgAuAA3IPB03aBiCjtWK
- Z6n9IgLMyQkNDHal279iJmTQLxPgy4KT7VG5lnqSQpSk349HnqVBZ6+x4aiRV7jyHp
- bzHp8p3FxyN+w==
-Date: Mon, 21 Aug 2023 11:27:29 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <2xlfp5bz77tyoffqvr7orvmo45wcb7uz6nbpl7jbv6zhnqvlx3@2hxa4ltb3s3y>
-References: <87v8dmr6ty.fsf@gmail.com>
- <f32b4636-969c-3b9e-6802-5991f511739e@leemhuis.info>
- <87il9l2ymf.fsf@gmail.com>
- <3df95e6d-8237-1c43-e220-a9bdb5d6e044@leemhuis.info>
- <ZNo7oXeH0JK+4GPG@ideak-desk.fi.intel.com>
- <87edk4d8qp.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7A64E10E073;
+ Mon, 21 Aug 2023 09:37:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EF124AADEC;
+ Mon, 21 Aug 2023 09:37:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6038284449823061213=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="5ueyegkogb3zpaqt"
-Content-Disposition: inline
-In-Reply-To: <87edk4d8qp.fsf@intel.com>
-Subject: Re: [Intel-gfx] [REGRESSION] HDMI connector detection broken in 6.3
- on Intel(R) Celeron(R) N3060 integrated graphics
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Date: Mon, 21 Aug 2023 09:37:18 -0000
+Message-ID: <169261063894.22807.18139583455315560442@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230818111950.128992-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20230818111950.128992-1-vinod.govindapillai@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU0RQ?=
+ =?utf-8?q?_split_for_DP-MST_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,86 +40,254 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Linux regressions mailing list <regressions@lists.linux.dev>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- intel-gfx@lists.freedesktop.org, Mikhail Rudenko <mike.rudenko@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============6038284449823061213==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---5ueyegkogb3zpaqt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-On Tue, Aug 15, 2023 at 11:12:46AM +0300, Jani Nikula wrote:
-> On Mon, 14 Aug 2023, Imre Deak <imre.deak@intel.com> wrote:
-> > On Sun, Aug 13, 2023 at 03:41:30PM +0200, Linux regression tracking (Th=
-orsten Leemhuis) wrote:
-> > Hi,
-> >
-> >> On 11.08.23 20:10, Mikhail Rudenko wrote:
-> >> > On 2023-08-11 at 08:45 +02, Thorsten Leemhuis <regressions@leemhuis.=
-info> wrote:
-> >> >> On 10.08.23 21:33, Mikhail Rudenko wrote:
-> >> >>> The following is a copy an issue I posted to drm/i915 gitlab [1] t=
-wo
-> >> >>> months ago. I repost it to the mailing lists in hope that it will =
-help
-> >> >>> the right people pay attention to it.
-> >> >>
-> >> >> Thx for your report. Wonder why Dmitry (who authored a4e771729a51) =
-or
-> >> >> Thomas (who committed it) it didn't look into this, but maybe the i=
-915
-> >> >> devs didn't forward the report to them.
-> >>=20
-> >> For the record: they did, and Jani mentioned already. Sorry, should ha=
-ve
-> >> phrased this differently.
-> >>=20
-> >> >> Let's see if these mails help. Just wondering: does reverting
-> >> >> a4e771729a51 from 6.5-rc5 or drm-tip help as well?
-> >> >=20
-> >> > I've redone my tests with 6.5-rc5, and here are the results:
-> >> > (1) 6.5-rc5 -> still affected
-> >> > (2) 6.5-rc5 + revert a4e771729a51 -> not affected
-> >> > (3) 6.5-rc5 + two patches [1][2] suggested on i915 gitlab by @ideak =
--> not affected (!)
-> >> >=20
-> >> > Should we somehow tell regzbot about (3)?
-> >>=20
-> >> That's good to know, thx. But the more important things are:
-> >>=20
-> >> * When will those be merged? They are not yet in next yet afaics, so it
-> >> might take some time to mainline them, especially at this point of the
-> >> devel cycle. Imre, could you try to prod the right people so that these
-> >> are ideally upstreamed rather sooner than later, as they fix a regress=
-ion?
-> >
-> > I think the patches ([1] and [2]) could be merged via the drm-intel-next
-> > (drm-intel-fixes) tree Cc'ing also stable. Jani, is this ok?
->=20
-> It's fine by me, but need drm-misc maintainer ack to merge [1] via
-> drm-intel.
+Series: SDP split for DP-MST (rev2)
+URL   : https://patchwork.freedesktop.org/series/122460/
+State : success
 
-That's fine for me
+== Summary ==
 
-Maxime
+CI Bug Log - changes from CI_DRM_13536 -> Patchwork_122460v2
+====================================================
 
---5ueyegkogb3zpaqt
-Content-Type: application/pgp-signature; name="signature.asc"
+Summary
+-------
 
------BEGIN PGP SIGNATURE-----
+  **SUCCESS**
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZOMuAAAKCRDj7w1vZxhR
-xcY1AQDOKN6ASHLZWMlRtYX09Ur6wy9cO7kZRFg47cHR2T7F0AEAstd/HKTbxG6t
-B+77nQxr4KI6tALgEwk6/twhOWMDcgw=
-=dD+q
------END PGP SIGNATURE-----
+  No regressions found.
 
---5ueyegkogb3zpaqt--
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/index.html
+
+Participating hosts (38 -> 39)
+------------------------------
+
+  Additional (2): fi-kbl-soraka fi-pnv-d510 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_122460v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - bat-dg2-9:          [PASS][1] -> [INCOMPLETE][2] ([i915#8011])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13536/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#4613]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][5] ([i915#5334] / [i915#7872])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][6] ([i915#1886] / [i915#7913])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_addfb_basic@size-max:
+    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][7] ([i915#9160])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@kms_addfb_basic@size-max.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271]) +8 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - bat-rplp-1:         NOTRUN -> [ABORT][9] ([i915#8442] / [i915#8469] / [i915#8668])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][10] ([fdo#109271]) +30 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+
+  
+#### Warnings ####
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - bat-rplp-1:         [ABORT][11] ([i915#8442] / [i915#8668] / [i915#8712]) -> [SKIP][12] ([i915#1072])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13536/bat-rplp-1/igt@kms_psr@sprite_plane_onoff.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/bat-rplp-1/igt@kms_psr@sprite_plane_onoff.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#8011]: https://gitlab.freedesktop.org/drm/intel/issues/8011
+  [i915#8442]: https://gitlab.freedesktop.org/drm/intel/issues/8442
+  [i915#8469]: https://gitlab.freedesktop.org/drm/intel/issues/8469
+  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+  [i915#8712]: https://gitlab.freedesktop.org/drm/intel/issues/8712
+  [i915#9160]: https://gitlab.freedesktop.org/drm/intel/issues/9160
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13536 -> Patchwork_122460v2
+
+  CI-20190529: 20190529
+  CI_DRM_13536: 7a825a06c6ee60a6586ddf8b4adb03ea5262bda7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7444: 7444
+  Patchwork_122460v2: 7a825a06c6ee60a6586ddf8b4adb03ea5262bda7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+24d34e8b4971 drm/i915/display: configure SDP split for DP-MST
+488b37d3fb4d drm/i915/display: update intel_dp_has_audio to support MST
+950aca0ada01 drm/i915/display: combine DP audio compute config steps
+c2736b7b178d drm/i915/display: remove redundant parameter from sdp split update
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/index.html
+
+--===============6038284449823061213==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>SDP split for DP-MST (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/122460/">https://patchwork.freedesktop.org/series/122460/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13536 -&gt; Patchwork_122460v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/index.html</p>
+<h2>Participating hosts (38 -&gt; 39)</h2>
+<p>Additional (2): fi-kbl-soraka fi-pnv-d510 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_122460v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13536/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8011">i915#8011</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@size-max:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@kms_addfb_basic@size-max.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9160">i915#9160</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-kbl-soraka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8469">i915#8469</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +30 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_psr@sprite_plane_onoff:<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13536/bat-rplp-1/igt@kms_psr@sprite_plane_onoff.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8712">i915#8712</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122460v2/bat-rplp-1/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13536 -&gt; Patchwork_122460v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13536: 7a825a06c6ee60a6586ddf8b4adb03ea5262bda7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7444: 7444<br />
+  Patchwork_122460v2: 7a825a06c6ee60a6586ddf8b4adb03ea5262bda7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>24d34e8b4971 drm/i915/display: configure SDP split for DP-MST<br />
+488b37d3fb4d drm/i915/display: update intel_dp_has_audio to support MST<br />
+950aca0ada01 drm/i915/display: combine DP audio compute config steps<br />
+c2736b7b178d drm/i915/display: remove redundant parameter from sdp split update</p>
+
+</body>
+</html>
+
+--===============6038284449823061213==--
