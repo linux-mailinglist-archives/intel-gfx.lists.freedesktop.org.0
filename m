@@ -1,68 +1,71 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E998E784205
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4832E784204
 	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 15:27:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 060E310E35A;
-	Tue, 22 Aug 2023 13:27:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C201710E352;
+	Tue, 22 Aug 2023 13:27:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
- [IPv6:2607:f8b0:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC09C10E283;
- Mon, 21 Aug 2023 15:04:18 +0000 (UTC)
-Received: by mail-oi1-x233.google.com with SMTP id
- 5614622812f47-3a7d4030621so2045941b6e.3; 
- Mon, 21 Aug 2023 08:04:18 -0700 (PDT)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
+ [IPv6:2a00:1450:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3ABD210E175;
+ Mon, 21 Aug 2023 19:27:31 +0000 (UTC)
+Received: by mail-ej1-x636.google.com with SMTP id
+ a640c23a62f3a-991c786369cso494615366b.1; 
+ Mon, 21 Aug 2023 12:27:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1692630258; x=1693235058;
+ d=gmail.com; s=20221208; t=1692646049; x=1693250849;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=4nsDNl9d4lshcExFhxOmfvT78+yT9J12bXqiEl8z3Wk=;
- b=Nsqjc+xPmg9p6wrzEXmKeYc+RXEIVfrxs6JTs/wnImB8BHukr5xyEHkwYJFuXv7hFW
- XzRcJumjO7r3YPqNwzsVd9JeY63M2FZixYGmD04Dzz/WvUSF8bQI23Ob9tsS+cEH/Kyb
- 5zXlnkTKokCbvjME5SwTPRdZCiCYXKoEojY56VfZncFa4MOqkcqnFUbSWAZW29XddIy/
- KMJjSIC698zTe8H8TqeFsyvM1Ou9Wg76bq/twCq/6k7uAFxO+lLizVj+p9nPO6K2JOHQ
- J0xaH+sqNFv2s2FTCgdYL7QroY1qGz8gzakmhotueEOQdsqrEzBhHfIu3ph74Y9Seipp
- RT1g==
+ bh=3Y3MozoZGtBbDDuuXCdo2NbhyEnfa2l4nz+CxEl5tKU=;
+ b=LiU0lF4mhSeShjnAD+Fe+tJIr+fJCaOBkT1pkyCyKvaa1CR5whsESZgTheC87/kX1y
+ y/tfEtnh02qZCslfGD+1bi2Kgb1nm3xxBhmJo1RN3Pf04sD7IgQ06ukLUATFEZm2UFtf
+ 3d1wuzW6A1Nn9lhSDHxa8W6Vge21/hq2Yug6kbbt55eTcma6CD1yRuInCEpPTthZo69m
+ lRntszLDecYDBUWpfscoeDMrbie1fhZD0NEKpCY4R2xhzR1EkB6PLpb62o+X75xI76RT
+ J7Zui6ItOmd2SQHYJ/5uaAf0HDHs56xnpRdChGkcAM/weIIADeZKOS+illhrerZ0SU/2
+ Ytrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692630258; x=1693235058;
+ d=1e100.net; s=20221208; t=1692646049; x=1693250849;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=4nsDNl9d4lshcExFhxOmfvT78+yT9J12bXqiEl8z3Wk=;
- b=Ci5/8gF+dDNF1FPP7s18Wwbc2OGlP+245nfUVtKh5IxlH2zFqqmMeXgaUIjAmcsryt
- QzuXRtVWSF4vNxahitG4dMjxgDr0Wc/BUA+qNobkZa4EUCWO0B7Bk+kCj3vSp0rpQry3
- yRdL5gKAuzvMpAdG791gGWOgmWjL4rg48qO/Q68u8jz0QKguhJClDsBDvt3jk2DbHEhj
- AqvmxlWStvCFkNxpGO9j3s6+bkusHschYU8t+mg3S4tWALB8BU14JTkfUNjbLy8aUT2T
- ikq8Lhmz4qLnUxEHnCGN6alyfzcqP4AF8Ypg+TjQhFymx4Fkz3R5yG9tL6WQ7yVYFhqn
- xquw==
-X-Gm-Message-State: AOJu0YwShsWHFKA29x5CncmlxhTc0vj7g+Un/AcdZ6CMLBEPjufXJbIQ
- ptFYDoHfbeVmh+Jdd4jrJAI=
-X-Google-Smtp-Source: AGHT+IEAyShw7iDgkxpkmRqpOp+aVd74/ixWDlZbrKwshzv0+M8osDNdld8yOX26K6C1jLh/G0bLNw==
-X-Received: by 2002:a05:6808:219d:b0:3a7:543d:9102 with SMTP id
- be29-20020a056808219d00b003a7543d9102mr8171406oib.39.1692630257879; 
- Mon, 21 Aug 2023 08:04:17 -0700 (PDT)
-Received: from debian.lan ([168.227.196.240]) by smtp.gmail.com with ESMTPSA id
- bg12-20020a056808178c00b003a7a34a4ed8sm3650000oib.33.2023.08.21.08.04.13
+ bh=3Y3MozoZGtBbDDuuXCdo2NbhyEnfa2l4nz+CxEl5tKU=;
+ b=NPoULUZIOCOuxvj9bz9XI2VdNscqvDZEx8OhZYf4AtKq97Xtl335fXFG5JXP6gN13l
+ 1d49boj+/+JBZdxs9BYMAaudFWBuvB1HHkHWPzWMn1gmhBHfl/ZupSNstoPkPNpPYF2N
+ lkbmwKnr++uIeaV4hKM0NzHoGP8wf/Lfxv/3pbhClNNSDXmRy9BZyAaaoeICrx37g6Oi
+ /8I1shW2/jHm3eTGO2ZK6X22DQj4lyIflKup0O1+mqwsB2yzU51OYtGYYUfuWlfpYXL8
+ 2qo6SqCenXwqoqA2AmwpG+LDD4qbxelhA00olyfqNG31Rf1pm0EY65Ywv2Vj5ZOvi+a+
+ CQJA==
+X-Gm-Message-State: AOJu0YyWlK+UWsyPt9p+B+t9WIR4ODpohWjgMqadsZyEQnnoEVC/KfLQ
+ LJZySU1ahL/p22yGPPOZhKk=
+X-Google-Smtp-Source: AGHT+IHE2rVNNbzoz4XXpvUQ0H4g3J7n/mk+iOWWcRGkUeoprZP7ne5rfjceTvp4nKIkM75OozQLhg==
+X-Received: by 2002:a17:907:7818:b0:9a1:6d6d:f259 with SMTP id
+ la24-20020a170907781800b009a16d6df259mr5527742ejc.53.1692646049307; 
+ Mon, 21 Aug 2023 12:27:29 -0700 (PDT)
+Received: from localhost.localdomain
+ ([2a02:8109:8c00:3664:d1d3:c208:e70b:4429])
+ by smtp.gmail.com with ESMTPSA id
+ d8-20020a1709067f0800b00992c92af6easm6930814ejr.161.2023.08.21.12.27.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 21 Aug 2023 08:04:17 -0700 (PDT)
-From: "Ricardo B. Marliere" <rbmarliere@gmail.com>
+ Mon, 21 Aug 2023 12:27:28 -0700 (PDT)
+From: Nikita B <n2h9z4@gmail.com>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, tvrtko.ursulin@linux.intel.com, airlied@gmail.com,
  daniel@ffwll.ch, daniele.ceraolospurio@intel.com,
  John.C.Harrison@Intel.com, alan.previn.teres.alexis@intel.com,
- harshit.m.mogalapalli@oracle.com, michal.wajdeczko@intel.com,
- gregkh@linuxfoundation.org
-Date: Mon, 21 Aug 2023 15:02:42 +0000
-Message-Id: <20230821150241.40047-1-rbmarliere@gmail.com>
-X-Mailer: git-send-email 2.40.1
+ gregkh@linuxfoundation.org, harshit.m.mogalapalli@oracle.com,
+ michal.wajdeczko@intel.com, skhan@linuxfoundation.org
+Date: Mon, 21 Aug 2023 21:27:18 +0200
+Message-Id: <20230821192718.504357-1-n2h9z4@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 22 Aug 2023 13:27:12 +0000
-Subject: [Intel-gfx] [PATCH] gpu: drm: i915: fix documentation style
+Subject: [Intel-gfx] [PATCH v1] drivers: gpu: drm: i915: intel_huc: fix
+ formatting warnings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,19 +78,17 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Ricardo B. Marliere" <rbmarliere@gmail.com>, skhan@linuxfoundation.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: Nikita B <n2h9z4@gmail.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch fixes the following sphinx warnings in the htmldocs make target:
+Fix formatting warnings when run "make htmldocs":
+./drivers/gpu/drm/i915/gt/uc/intel_huc.c:29: WARNING: Unexpected indentation.
+./drivers/gpu/drm/i915/gt/uc/intel_huc.c:30: WARNING: Block quote ends without a blank line; unexpected unindent.
+./drivers/gpu/drm/i915/gt/uc/intel_huc.c:35: WARNING: Bullet list ends without a blank line; unexpected unindent.
 
-Documentation/gpu/i915:546: ./drivers/gpu/drm/i915/gt/uc/intel_huc.c:29: ERROR: Unexpected indentation.
-Documentation/gpu/i915:546: ./drivers/gpu/drm/i915/gt/uc/intel_huc.c:30: WARNING: Block quote ends without a blank line; unexpected unindent.
-Documentation/gpu/i915:546: ./drivers/gpu/drm/i915/gt/uc/intel_huc.c:35: WARNING: Bullet list ends without a blank line; unexpected unindent.
-
-Signed-off-by: Ricardo B. Marliere <rbmarliere@gmail.com>
+Signed-off-by: Nikita B <n2h9z4@gmail.com>
 ---
  drivers/gpu/drm/i915/gt/uc/intel_huc.c | 2 ++
  1 file changed, 2 insertions(+)
@@ -113,5 +114,5 @@ index ddd146265beb..fa70defcb5b2 100644
   * HuC binary must be loaded before the GuC one.
   * Loading the HuC is optional; however, not using the HuC might negatively
 -- 
-2.40.1
+2.34.1
 
