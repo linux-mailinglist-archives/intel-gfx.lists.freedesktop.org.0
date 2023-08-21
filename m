@@ -1,34 +1,120 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F2A3782775
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 12:58:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B007827C1
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 13:17:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E88F10E09A;
-	Mon, 21 Aug 2023 10:58:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 946C210E235;
+	Mon, 21 Aug 2023 11:17:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6034A10E09A;
- Mon, 21 Aug 2023 10:58:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 59D24A73C7;
- Mon, 21 Aug 2023 10:58:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1330473048206727159=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Date: Mon, 21 Aug 2023 10:58:39 -0000
-Message-ID: <169261551933.22808.5495318067177109961@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2042.outbound.protection.outlook.com [40.107.223.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BFEF10E22D;
+ Mon, 21 Aug 2023 11:17:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=an2dndKzHFEZxvoFS3lGt0ll3KFfBeR4xgqfhh2mQvpKtZsnwrjiiSvoj1Wbmr0t7G52ydcD+4Sgxy/R+5Eq0e+J1OjbGQ1xgbKQISA65hlC2krlcZIXSF08NekpwUorTjdY1lPDJhl+vGtHqZvDjb7drzAKVwe3ppx8xQ2Dh6dnDkS9XLteGrRWOmdF1mafGktvUxtPqH3jxN3SxRpimEsa1H6DJNHssvBMcJ8sZIFCUymp9d6mzSKGeNvP1IuiIg+7MPnyniqW9qJ+3kXm/XX/i/j5OIv90juQIEp65Cl+1vuUktJftDDXwMIcQKv6ECbbTUlIx6Hvz4EkvrbZ8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8+3528EquRY0xMyASVdrudbQ9NyRqrtJ/iPoxsv8V9c=;
+ b=gdBuiU1a/Kfq/lJGyqhfvRYTBNia1g8ihtJlFhB2N5giYs69LCGtaFPIIlXgNhj5uq5bK6tbcx9b2ahC6eSw9S/3HD9lqZtuuzl7mLq4qxDkH/LkXsZVGSJH2ngMXQkGX9szW6tf1VkhZoWgafe9DKBbzTnNhTfC8qzEQGlPDFZm7HNczxgLLRPu5W2hX/SLseV9awl0amWTi5c8Lfo5WwCFz38Q3B7iFKRNf3hvfiCjARpB0K8hfQkU1vTCXaQYImKmo1XN/VMfPgiKJAHUv/De6nnz2uaqarEwBLMdbp/KJCRJhvN+W05HG9CnAaOMri6aPfwaZh3C4AHnGsWwdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8+3528EquRY0xMyASVdrudbQ9NyRqrtJ/iPoxsv8V9c=;
+ b=LvKlLu8FiGiaqqVbenv9XBi9VShQd5/tTsLou9xpqFSRbp/Q42d4zSCAYDSwyHGcnVQV8yiqCFUxBjNMzwW5OIj2iXhbAXl4kmQxgys83rHLoDiUsXpmNYicSDgHqAS8jLytEBq9C0z+OvMME5PrYMgv8uwPZ9qno8M1ENn9YWI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by PH7PR12MB8013.namprd12.prod.outlook.com (2603:10b6:510:27c::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Mon, 21 Aug
+ 2023 11:17:00 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::3d:c14:667a:1c81]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::3d:c14:667a:1c81%4]) with mapi id 15.20.6699.022; Mon, 21 Aug 2023
+ 11:17:00 +0000
+Message-ID: <a1f422c6-728d-afae-29e1-6f091e16df7f@amd.com>
+Date: Mon, 21 Aug 2023 13:16:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
 References: <20230821101444.119601-1-Arunpravin.PaneerSelvam@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 In-Reply-To: <20230821101444.119601-1-Arunpravin.PaneerSelvam@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/buddy=3A_Fix_contiguous_memory_?=
- =?utf-8?q?allocation_issues?=
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR0P281CA0209.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ad::6) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|PH7PR12MB8013:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9380f806-2191-4017-d144-08dba2382372
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HUsfO3T+xFG4VaNDSrDJWTXgM/6ohUD40mNfQgvXCAZ+Xfzjl3++5/iqECGuvQKwBd78U/80H+rU/yEdrkR7qiHNeTgeU6vFc0d2Acy/ngtvP2e9dOAKSEE1J8o1DM89cMG4a+cljbPvU1JozpZdyvH/QYvbva1vF6KBsD0ZOhLa+xMV7G/Z6gcJJy+RbKAlYQ5RjDFsON8vEEzrwfO0z1P8quzRvrfBKRke1P+NFcGL/v2a/10Th+4c2UbVE1jkAYKO6cU8zLTDfAnBo3e8/z4y7JWQo6+Ygsa4YXaKQXKagMUc1QJArwBhO4WRVRmVNgNZ+SsOyUiiUpey4N5IhdJjIRQW2zn8XS5AoQ65jKfd21OMBybvrfclYYblOY3aLnFkulSClzVrdGUHgbwRS3zZbtSHaxYRnU28gLAYuJ9Ns3r3vKA3GdNvyS/Dv5ASmRsavz3X0dN1yxkggOB2oEabMdM4Fw86sDFSXVjBpsw4DmqgngJXAgXwuF3IGR5Z+DF/bAzFfywTmIbNzHCjWqlyDuoQXQL3vSpW4jN9L1f5uLypnqNQy9Rv53n+V/BGsFnNf+SslbpQnjGa4qUnV6V/lBAnowByNQMN6N69GMQFzlUCIFlXGJOnPku97OzHGlAtAHtXGM60rR2eYlzybw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(346002)(376002)(396003)(136003)(39860400002)(451199024)(1800799009)(186009)(83380400001)(2906002)(30864003)(38100700002)(6506007)(6486002)(5660300002)(26005)(86362001)(31686004)(31696002)(8676002)(8936002)(2616005)(4326008)(316002)(6512007)(66946007)(66556008)(66476007)(478600001)(6666004)(41300700001)(36756003)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?akxrelFTcGgra0VHYy9mYUs4NUJGMmdYNGVscktyWUxRWHlGNHZOSGRFK0VK?=
+ =?utf-8?B?bGVMUDNtUkZYSVZZL3FpdzJMNGRSY0tIVDVWelBMUTM4WGdZM1F3eDBzdkNU?=
+ =?utf-8?B?V0tJRTJiblM0N3NDcjRQWFpYVUxaVUdWMm9CR1phaTRqQnlFR1ZZU0pMY0ht?=
+ =?utf-8?B?WGZJZ01WZ21qMi82a2xZMzhHUXJ2d3RKZVhLNEZiVWhtZlBIYzArbmkyRFJP?=
+ =?utf-8?B?TDdFanZFZ29vUTRXd1BXUGRhZS9OaytKZy9MTzZJT09MYnp2dzVCd3N4MGF1?=
+ =?utf-8?B?Z2VXMWRoMzZNNjNKZmJEQ3RMMjB6VjFIdUwrR05YYnVyZlVRWTdpdUlTV3Mz?=
+ =?utf-8?B?a1QwVWk5ZFQ0OFg5U280V0g2bVhQLzZvTmxOWHV1RmdhVUs5ek5TQ21zbHdj?=
+ =?utf-8?B?WkdpWW9Wd1pxanNyRVV2R3JGYWV3NDNGUnFUYW1xMjdUOFhheWNScmtpTjls?=
+ =?utf-8?B?eThkblhVWXdoVFRSWkxGY2tGbzR3MGlvK1BhWnJ6VFpJeVBpTk45cEhldWoz?=
+ =?utf-8?B?SlNaWEN2WGY4Y0YrZGd1YUtPaWc0N0tzQkROeVNRNXBydmhzV1NwRGlsejdI?=
+ =?utf-8?B?MkhxMWgvN0hNRUQvQ0l1YUJYUS9nSjg0dFIvSWRFbG15TW9GQ3lXbzlXdVQ0?=
+ =?utf-8?B?cFoyaExseDkxY3RxQm5VdGVJcUxOOHVTa1J2aFZPWjJ3MVI5NVkwaStYTHRJ?=
+ =?utf-8?B?eVN4TXd4dG9GdzM2bklqMmExQmRxNEtsR1pvc2Rhd1RVL2M4TzZxVFh5d245?=
+ =?utf-8?B?eGNFU0ZkN204bHN1ckVQTmlzY1ZQSW9FUVBxZXRwTG90ZlFWdUFnZkI1TVpn?=
+ =?utf-8?B?YnltWWtSVnVhbFpGczVWMkcxL0hvclA3S2JuNElVbmJpOFdqazh6a3pmL0F3?=
+ =?utf-8?B?UjljZXY4Rkx0NEZYSk02ekt1Ri96RTFaUkJOTzVsTTFEWkNaV1dMQk0rajlu?=
+ =?utf-8?B?YVZJUHZqMmFHK21JdVhLRUx2d20vVkVuRmVabjhaamFPZzdSTU90WnU5QUgr?=
+ =?utf-8?B?cXFnMmhZTXB0NE9lcjN0dU8wazB3R1pqM0R4NTc1cmYwOVNrUlNrZjNFNkFu?=
+ =?utf-8?B?dHpRMWpka0lrTk1ZRUp1NmQ0cWlxUGMrQ3dSWnVhb2ZZZjBaL2t3MVV6VGti?=
+ =?utf-8?B?YWFHZVFBaVZMOGoxcTM3ZHo0Uk8rejlSdmlpRWUrWkVUY1JVeVorK3hhTmZq?=
+ =?utf-8?B?eVJJa2F5UXY1ajZraHkyVHRhRFM5ZHlHZStybExqa0RLcU51dzQ2eHFXTXhv?=
+ =?utf-8?B?ZGdQSHE2cUxrZHZ4b3k5QndCV1gyaGNQUDRJTGk4ZmNGaDdudXN6SDVFNXFa?=
+ =?utf-8?B?QnJ4MElmeGl4N2VLOFlqSW1Lczl2RStBZEgrUHhucWpQYUg5eEozbkpzWUp2?=
+ =?utf-8?B?YjlIT3h2d3hmdkwvOFo2TGNmaG5lYzNuSU5WdnlUVEpsdnZ6RFhGQ09xY0Z6?=
+ =?utf-8?B?R0pNQXRUc2ljd05iYzRVbzdRd3RJeHN0NnZjSitYREZENHdpUjJIc1V1a0V4?=
+ =?utf-8?B?NGUxUXRQRzJTVSs5R3JydGp4YUZHZktjSEFBY25TOTJvRFRkSGkzRFI0VlB6?=
+ =?utf-8?B?MDUrcWlDTzdleWY2ZVhCTllQRHZlVldtYndvcnNLaUxYVHRaWFoxZEczbi9B?=
+ =?utf-8?B?bGFnSUp2TUdnL29KRGxEYjczRUlVblZ0eFByL2p4T2dkTDV6czNiQncrd0tR?=
+ =?utf-8?B?ZVd3bkxYajErazJlQkNoQUZtc3E1M2NUalkwcDRtRUFKRzJVWm9ZT2dpQzhU?=
+ =?utf-8?B?d0dIZ0xybm4zQzM5cUh5bjFybElmQzJiTTNHSUJZa1JhaXBxbWdkempEc05T?=
+ =?utf-8?B?dTEwYS9YVFR5SDYzYnd2anJ0c2kzdUdkVnh2NUJ1ZWpKZndSMmZleHM1WVMw?=
+ =?utf-8?B?V0hxTm9RQ3RyM3U5STNWQ2lUOFRBU0dOalo1MmFVOFg3WW1PTmYzTkhvakNI?=
+ =?utf-8?B?K3NVZ2RQekZsZlgxR1pNMEZXUEx1bEFUZitUZTFhYm5SWTc1Zkd4VmthSHNu?=
+ =?utf-8?B?eWlrY2RnR0N0bGc4OG9Ld2NEZlo2QTkxUEJ1OUVUV1FPcGR0YnE1aWtFdEJx?=
+ =?utf-8?B?VXFVQzJiR3l1dzdMSFlBYXg4dUt1c2F6UmV2cVc0R2xqdUY3TEtKNGRhV2dL?=
+ =?utf-8?Q?UhOrxOoaaT4sJmSAydvHGa0AX?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9380f806-2191-4017-d144-08dba2382372
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 11:17:00.0899 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: A+XNgE55XT9qOqTNV8dTzQkPZZxAxWvwrJeVsuYkfs+WbXm3WJo9LMj90J0Od4/Z
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8013
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/buddy: Fix contiguous memory
+ allocation issues
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,312 +127,380 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ matthew.auld@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1330473048206727159==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Am 21.08.23 um 12:14 schrieb Arunpravin Paneer Selvam:
+> The way now contiguous requests are implemented such that
+> the size rounded up to power of 2 and the corresponding order
+> block picked from the freelist.
+>
+> In addition to the older method, the new method will rounddown
+> the size to power of 2 and the corresponding order block picked
+> from the freelist. And for the remaining size we traverse the
+> tree and try to allocate either from the freelist block's buddy
+> or from the peer block. If the remaining size from peer/buddy
+> block is not free, we pick the next freelist block and repeat
+> the same method.
 
-== Series Details ==
+I think it's worth mentioning that Xinhui tried something similar a few 
+month ago, but that didn't looked like it would work. For this here I'm 
+more confident.
 
-Series: series starting with [1/3] drm/buddy: Fix contiguous memory allocation issues
-URL   : https://patchwork.freedesktop.org/series/122693/
-State : success
+Of hand the implementation looks clean to me, but Matthew or others 
+which have more background in how the implementation works need to take 
+a look as well.
 
-== Summary ==
+Thanks,
+Christian.
 
-CI Bug Log - changes from CI_DRM_13538 -> Patchwork_122693v1
-====================================================
+>
+> Moved contiguous/alignment size computation part and trim
+> function to the drm buddy manager.
+>
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> ---
+>   drivers/gpu/drm/drm_buddy.c | 253 ++++++++++++++++++++++++++++++++++--
+>   include/drm/drm_buddy.h     |   6 +-
+>   2 files changed, 248 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+> index 7098f125b54a..220f60c08a03 100644
+> --- a/drivers/gpu/drm/drm_buddy.c
+> +++ b/drivers/gpu/drm/drm_buddy.c
+> @@ -569,6 +569,197 @@ static int __drm_buddy_alloc_range(struct drm_buddy *mm,
+>   	return __alloc_range(mm, &dfs, start, size, blocks);
+>   }
+>   
+> +static int __alloc_contiguous_block_from_buddy(struct drm_buddy *mm,
+> +					       u64 size,
+> +					       u64 min_block_size,
+> +					       struct drm_buddy_block *block,
+> +					       struct list_head *blocks)
+> +{
+> +	struct drm_buddy_block *buddy, *parent = NULL;
+> +	u64 start, offset = 0;
+> +	LIST_HEAD(dfs);
+> +	int err;
+> +
+> +	if (!block)
+> +		return -EINVAL;
+> +
+> +	buddy = __get_buddy(block);
+> +	if (!buddy)
+> +		return -ENOSPC;
+> +
+> +	if (drm_buddy_block_is_allocated(buddy))
+> +		return -ENOSPC;
+> +
+> +	parent = block->parent;
+> +	if (!parent)
+> +		return -ENOSPC;
+> +
+> +	if (block->parent->right == block) {
+> +		u64 remaining;
+> +
+> +		/* Compute the leftover size for allocation */
+> +		remaining = max((size - drm_buddy_block_size(mm, buddy)),
+> +				min_block_size);
+> +		if (!IS_ALIGNED(remaining, min_block_size))
+> +			remaining = round_up(remaining, min_block_size);
+> +
+> +		/* Check if remaining size is greater than buddy block size */
+> +		if (drm_buddy_block_size(mm, buddy) < remaining)
+> +			return -ENOSPC;
+> +
+> +		offset = drm_buddy_block_size(mm, buddy) - remaining;
+> +	}
+> +
+> +	list_add(&parent->tmp_link, &dfs);
+> +	start = drm_buddy_block_offset(parent) + offset;
+> +
+> +	err = __alloc_range(mm, &dfs, start, size, blocks);
+> +	if (err)
+> +		return -ENOSPC;
+> +
+> +	return 0;
+> +}
+> +
+> +static int __alloc_contiguous_block_from_peer(struct drm_buddy *mm,
+> +					      u64 size,
+> +					      u64 min_block_size,
+> +					      struct drm_buddy_block *block,
+> +					      struct list_head *blocks)
+> +{
+> +	struct drm_buddy_block *first, *peer, *tmp;
+> +	struct drm_buddy_block *parent = NULL;
+> +	u64 start, offset = 0;
+> +	unsigned int order;
+> +	LIST_HEAD(dfs);
+> +	int err;
+> +
+> +	if (!block)
+> +		return -EINVAL;
+> +
+> +	order = drm_buddy_block_order(block);
+> +	/* Add freelist block to dfs list */
+> +	list_add(&block->tmp_link, &dfs);
+> +
+> +	tmp = block;
+> +	parent = block->parent;
+> +	while (parent) {
+> +		if (block->parent->left == block) {
+> +			if (parent->left != tmp) {
+> +				peer = parent->left;
+> +				break;
+> +			}
+> +		} else {
+> +			if (parent->right != tmp) {
+> +				peer = parent->right;
+> +				break;
+> +			}
+> +		}
+> +
+> +		tmp = parent;
+> +		parent = tmp->parent;
+> +	}
+> +
+> +	if (!parent)
+> +		return -ENOSPC;
+> +
+> +	do {
+> +		if (drm_buddy_block_is_allocated(peer))
+> +			return -ENOSPC;
+> +		/* Exit loop if peer block order is equal to block order */
+> +		if (drm_buddy_block_order(peer) == order)
+> +			break;
+> +
+> +		if (drm_buddy_block_is_split(peer)) {
+> +			/* Traverse down to the block order level */
+> +			if (block->parent->left == block)
+> +				peer = peer->right;
+> +			else
+> +				peer = peer->left;
+> +		} else {
+> +			break;
+> +		}
+> +	} while (1);
+> +
+> +	if (block->parent->left == block) {
+> +		u64 remaining;
+> +
+> +		/* Compute the leftover size for allocation */
+> +		remaining = max((size - drm_buddy_block_size(mm, block)),
+> +				min_block_size);
+> +		if (!IS_ALIGNED(remaining, min_block_size))
+> +			remaining = round_up(remaining, min_block_size);
+> +
+> +		/* Check if remaining size is greater than peer block size */
+> +		if (drm_buddy_block_size(mm, peer) < remaining)
+> +			return -ENOSPC;
+> +
+> +		offset = drm_buddy_block_size(mm, peer) - remaining;
+> +		/* Add left peer block to dfs list */
+> +		list_add(&peer->tmp_link, &dfs);
+> +	} else {
+> +		/* Add right peer block to dfs list */
+> +		list_add_tail(&peer->tmp_link, &dfs);
+> +	}
+> +
+> +	first = list_first_entry_or_null(&dfs,
+> +					 struct drm_buddy_block,
+> +					 tmp_link);
+> +	if (!first)
+> +		return -EINVAL;
+> +
+> +	start = drm_buddy_block_offset(first) + offset;
+> +	err = __alloc_range(mm, &dfs, start, size, blocks);
+> +	if (err)
+> +		return -ENOSPC;
+> +
+> +	return 0;
+> +}
+> +
+> +static int __drm_buddy_alloc_contiguous_blocks(struct drm_buddy *mm,
+> +					       u64 size,
+> +					       u64 min_block_size,
+> +					       struct list_head *blocks)
+> +{
+> +	struct drm_buddy_block *block;
+> +	struct list_head *list;
+> +	unsigned long pages;
+> +	unsigned int order;
+> +	u64 modify_size;
+> +	int err;
+> +
+> +	modify_size = rounddown_pow_of_two(size);
+> +	pages = modify_size >> ilog2(mm->chunk_size);
+> +	order = fls(pages) - 1;
+> +	if (order == 0)
+> +		return -ENOSPC;
+> +
+> +	list = &mm->free_list[order];
+> +	if (list_empty(list))
+> +		return -ENOSPC;
+> +
+> +	list_for_each_entry_reverse(block, list, link) {
+> +		/* Allocate contiguous blocks from the buddy */
+> +		err = __alloc_contiguous_block_from_buddy(mm,
+> +							  size,
+> +							  min_block_size,
+> +							  block,
+> +							  blocks);
+> +		if (!err)
+> +			return 0;
+> +
+> +		/* Allocate contiguous blocks from tree traversal method */
+> +		err = __alloc_contiguous_block_from_peer(mm,
+> +							 size,
+> +							 min_block_size,
+> +							 block,
+> +							 blocks);
+> +		if (!err)
+> +			return 0;
+> +	}
+> +
+> +	return -ENOSPC;
+> +}
+> +
+>   /**
+>    * drm_buddy_block_trim - free unused pages
+>    *
+> @@ -645,7 +836,7 @@ EXPORT_SYMBOL(drm_buddy_block_trim);
+>    * @start: start of the allowed range for this block
+>    * @end: end of the allowed range for this block
+>    * @size: size of the allocation
+> - * @min_page_size: alignment of the allocation
+> + * @min_block_size: alignment of the allocation
+>    * @blocks: output list head to add allocated blocks
+>    * @flags: DRM_BUDDY_*_ALLOCATION flags
+>    *
+> @@ -660,23 +851,24 @@ EXPORT_SYMBOL(drm_buddy_block_trim);
+>    */
+>   int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>   			   u64 start, u64 end, u64 size,
+> -			   u64 min_page_size,
+> +			   u64 min_block_size,
+>   			   struct list_head *blocks,
+>   			   unsigned long flags)
+>   {
+>   	struct drm_buddy_block *block = NULL;
+> +	u64 original_size, original_min_size;
+>   	unsigned int min_order, order;
+> -	unsigned long pages;
+>   	LIST_HEAD(allocated);
+> +	unsigned long pages;
+>   	int err;
+>   
+>   	if (size < mm->chunk_size)
+>   		return -EINVAL;
+>   
+> -	if (min_page_size < mm->chunk_size)
+> +	if (min_block_size < mm->chunk_size)
+>   		return -EINVAL;
+>   
+> -	if (!is_power_of_2(min_page_size))
+> +	if (!is_power_of_2(min_block_size))
+>   		return -EINVAL;
+>   
+>   	if (!IS_ALIGNED(start | end | size, mm->chunk_size))
+> @@ -692,12 +884,21 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>   	if (start + size == end)
+>   		return __drm_buddy_alloc_range(mm, start, size, blocks);
+>   
+> -	if (!IS_ALIGNED(size, min_page_size))
+> -		return -EINVAL;
+> +	original_size = size;
+> +	original_min_size = min_block_size;
+> +
+> +	/* Roundup the size to power of 2 */
+> +	if (flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION) {
+> +		size = roundup_pow_of_two(size);
+> +		min_block_size = size;
+> +	/* Align size value to min_block_size */
+> +	} else if (!IS_ALIGNED(size, min_block_size)) {
+> +		size = round_up(size, min_block_size);
+> +	}
+>   
+>   	pages = size >> ilog2(mm->chunk_size);
+>   	order = fls(pages) - 1;
+> -	min_order = ilog2(min_page_size) - ilog2(mm->chunk_size);
+> +	min_order = ilog2(min_block_size) - ilog2(mm->chunk_size);
+>   
+>   	do {
+>   		order = min(order, (unsigned int)fls(pages) - 1);
+> @@ -716,6 +917,17 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>   				break;
+>   
+>   			if (order-- == min_order) {
+> +				if (flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION &&
+> +				    !(flags & DRM_BUDDY_RANGE_ALLOCATION))
+> +					/*
+> +					 * Try contiguous block allocation through
+> +					 * tree traversal method
+> +					 */
+> +					return __drm_buddy_alloc_contiguous_blocks(mm,
+> +										   original_size,
+> +										   original_min_size,
+> +										   blocks);
+> +
+>   				err = -ENOSPC;
+>   				goto err_free;
+>   			}
+> @@ -732,6 +944,31 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>   			break;
+>   	} while (1);
+>   
+> +	/* Trim the allocated block to the required size */
+> +	if (original_size != size) {
+> +		struct list_head *trim_list;
+> +		LIST_HEAD(temp);
+> +		u64 trim_size;
+> +
+> +		trim_list = &allocated;
+> +		trim_size = original_size;
+> +
+> +		if (!list_is_singular(&allocated)) {
+> +			block = list_last_entry(&allocated, typeof(*block), link);
+> +			list_move(&block->link, &temp);
+> +			trim_list = &temp;
+> +			trim_size = drm_buddy_block_size(mm, block) -
+> +				(size - original_size);
+> +		}
+> +
+> +		drm_buddy_block_trim(mm,
+> +				     trim_size,
+> +				     trim_list);
+> +
+> +		if (!list_empty(&temp))
+> +			list_splice_tail(trim_list, &allocated);
+> +	}
+> +
+>   	list_splice_tail(&allocated, blocks);
+>   	return 0;
+>   
+> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+> index 572077ff8ae7..a5b39fc01003 100644
+> --- a/include/drm/drm_buddy.h
+> +++ b/include/drm/drm_buddy.h
+> @@ -22,8 +22,9 @@
+>   	start__ >= max__ || size__ > max__ - start__; \
+>   })
+>   
+> -#define DRM_BUDDY_RANGE_ALLOCATION (1 << 0)
+> -#define DRM_BUDDY_TOPDOWN_ALLOCATION (1 << 1)
+> +#define DRM_BUDDY_RANGE_ALLOCATION		BIT(0)
+> +#define DRM_BUDDY_TOPDOWN_ALLOCATION		BIT(1)
+> +#define DRM_BUDDY_CONTIGUOUS_ALLOCATION		BIT(2)
+>   
+>   struct drm_buddy_block {
+>   #define DRM_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
+> @@ -155,5 +156,4 @@ void drm_buddy_print(struct drm_buddy *mm, struct drm_printer *p);
+>   void drm_buddy_block_print(struct drm_buddy *mm,
+>   			   struct drm_buddy_block *block,
+>   			   struct drm_printer *p);
+> -
+>   #endif
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/index.html
-
-Participating hosts (38 -> 38)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_122693v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_auth@basic-auth:
-    - bat-adlp-11:        NOTRUN -> [ABORT][1] ([i915#8011])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-adlp-11/igt@core_auth@basic-auth.html
-
-  * igt@gem_busy@busy@all-engines:
-    - bat-mtlp-8:         [PASS][2] -> [DMESG-FAIL][3] ([i915#9121])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-mtlp-8/igt@gem_busy@busy@all-engines.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-mtlp-8/igt@gem_busy@busy@all-engines.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#4613]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [PASS][6] -> [DMESG-FAIL][7] ([i915#5334])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][8] ([i915#1886] / [i915#7913])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-mtlp-8:         [PASS][9] -> [ABORT][10] ([i915#7982])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-mtlp-8/igt@i915_selftest@live@requests.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-mtlp-8/igt@i915_selftest@live@requests.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-rpls-1:         NOTRUN -> [ABORT][11] ([i915#6687] / [i915#7978] / [i915#8668])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][12] ([fdo#109271]) +8 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/fi-kbl-soraka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-rpls-1:         [ABORT][13] ([i915#7677]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-rpls-1/igt@i915_selftest@live@hangcheck.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-rpls-1/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@mman:
-    - bat-rpls-2:         [TIMEOUT][15] ([i915#6794] / [i915#7392]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-rpls-2/igt@i915_selftest@live@mman.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-rpls-2/igt@i915_selftest@live@mman.html
-
-  * igt@i915_suspend@basic-s2idle-without-i915:
-    - bat-rpls-2:         [WARN][17] ([i915#8747]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@load:
-    - bat-adlp-11:        [ABORT][19] ([i915#4423]) -> [DMESG-WARN][20] ([i915#4423])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-adlp-11/igt@i915_module_load@load.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-adlp-11/igt@i915_module_load@load.html
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-rplp-1:         [SKIP][21] ([i915#1072]) -> [ABORT][22] ([i915#8442] / [i915#8668] / [i915#8860])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-rplp-1/igt@kms_psr@primary_page_flip.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-rplp-1/igt@kms_psr@primary_page_flip.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4423]: https://gitlab.freedesktop.org/drm/intel/issues/4423
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6687]: https://gitlab.freedesktop.org/drm/intel/issues/6687
-  [i915#6794]: https://gitlab.freedesktop.org/drm/intel/issues/6794
-  [i915#7392]: https://gitlab.freedesktop.org/drm/intel/issues/7392
-  [i915#7677]: https://gitlab.freedesktop.org/drm/intel/issues/7677
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
-  [i915#8011]: https://gitlab.freedesktop.org/drm/intel/issues/8011
-  [i915#8442]: https://gitlab.freedesktop.org/drm/intel/issues/8442
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#8747]: https://gitlab.freedesktop.org/drm/intel/issues/8747
-  [i915#8860]: https://gitlab.freedesktop.org/drm/intel/issues/8860
-  [i915#9121]: https://gitlab.freedesktop.org/drm/intel/issues/9121
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13538 -> Patchwork_122693v1
-
-  CI-20190529: 20190529
-  CI_DRM_13538: 19f1cd24387fc8bbb63a2c1a74080e73a8f53f5f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7445: 7445
-  Patchwork_122693v1: 19f1cd24387fc8bbb63a2c1a74080e73a8f53f5f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-cee03d7522e6 drm/i915: Remove the contiguous computation and trim
-fa58883f4e6e drm/amdgpu: Remove the contiguous computation and trim
-bdf5b55f2587 drm/buddy: Fix contiguous memory allocation issues
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/index.html
-
---===============1330473048206727159==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/buddy: Fix contiguous memory allocation issues</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/122693/">https://patchwork.freedesktop.org/series/122693/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13538 -&gt; Patchwork_122693v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 38)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_122693v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_auth@basic-auth:</p>
-<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-adlp-11/igt@core_auth@basic-auth.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8011">i915#8011</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_busy@busy@all-engines:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-mtlp-8/igt@gem_busy@busy@all-engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-mtlp-8/igt@gem_busy@busy@all-engines.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9121">i915#9121</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-mtlp-8/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-mtlp-8/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-rpls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-rpls-1/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6687">i915#6687</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/fi-kbl-soraka/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-rpls-1/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7677">i915#7677</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-rpls-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-rpls-2/igt@i915_selftest@live@mman.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6794">i915#6794</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7392">i915#7392</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-rpls-2/igt@i915_selftest@live@mman.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s2idle-without-i915:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8747">i915#8747</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-rpls-2/igt@i915_suspend@basic-s2idle-without-i915.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-adlp-11/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4423">i915#4423</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-adlp-11/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4423">i915#4423</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13538/bat-rplp-1/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122693v1/bat-rplp-1/igt@kms_psr@primary_page_flip.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8860">i915#8860</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13538 -&gt; Patchwork_122693v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13538: 19f1cd24387fc8bbb63a2c1a74080e73a8f53f5f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7445: 7445<br />
-  Patchwork_122693v1: 19f1cd24387fc8bbb63a2c1a74080e73a8f53f5f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>cee03d7522e6 drm/i915: Remove the contiguous computation and trim<br />
-fa58883f4e6e drm/amdgpu: Remove the contiguous computation and trim<br />
-bdf5b55f2587 drm/buddy: Fix contiguous memory allocation issues</p>
-
-</body>
-</html>
-
---===============1330473048206727159==--
