@@ -1,57 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A4D3782F9F
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 19:46:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54C0B782FE8
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 20:06:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CF7410E296;
-	Mon, 21 Aug 2023 17:46:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26EF410E111;
+	Mon, 21 Aug 2023 18:06:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7262810E265;
- Mon, 21 Aug 2023 17:46:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8311910E111
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Aug 2023 18:06:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692639972; x=1724175972;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=vn8EEKlH8sncfWztyhPqD/idQFrOO4QPxQvNWIs8FFo=;
- b=hFljYuS1hkWAcfSejEY3KQMSyo/HzR1Z8dSlDKf8FnTRakM17RbVXneL
- iexaXqVuDf4gFmOdlEU1FqmKrtAjHpqooOAQ05FB6JQ72XIk+6aveO1G1
- 8s2Urf5/MyoXjhPCHRoFnkP56BJFlDQxATv1IXIgA078c4dl4QeLTMX/3
- qIxS6MRqj7jslqG5LQEoPLYeVONO7kJemeSrsKx/LCHFnabiuVgDwi1jK
- Q/J0aDO+8Zvx4+WyD8Sz8DB17dsET7MtL5i/ZOLye6Aklr3GfpY4G2FpZ
- OMgY6ZFix9wkxI3otNzvrv9aBHsjKPcXicMDwkTZWs5suXhEtMk65FZA+ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="376400115"
-X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="376400115"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 10:46:11 -0700
+ t=1692641190; x=1724177190;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xP8gqY/NMzLxKHr1P6nbUaUBRu1ccLXVac7Dv8Du1n0=;
+ b=DNi3K/c84dQQPDsF3CwDqfCWyj1tx9tfSul/R3HxBRBi3qhqZAGeLy2O
+ 1hdOv+ARxEIW4y64cKqBwA9jKG6acJiWMRiDL12xWrhNWXcwvcaba75Sk
+ dUuAdf1Bw1BF3AFxGh0VTuKt86GgrNvn+9PpXp6ScvjT+6uAvIkpxobrg
+ WNm+XB7OWcDaPzqQKC4uVM0rVJRuy9HFAGvAYh1oqIXLFtyejo71CIUJz
+ b5TvKJHduUq8U9W7NknlNRvmrwYdUHxwaJ7g3zjY0gVWyW9viPPIX75Sm
+ 1n/AztE4L2qpyeACxHmaiO8EKls8aJXr5pA7Dai4vVBMTUJj5giG6QQfv Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="353236443"
+X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="353236443"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2023 11:06:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="850268836"
-X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="850268836"
-Received: from gpcorr-mobl.ger.corp.intel.com (HELO [10.252.20.153])
- ([10.252.20.153])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 10:46:09 -0700
-Message-ID: <bfe1e810-e3b9-775c-8b25-ceb0324f5b6b@intel.com>
-Date: Mon, 21 Aug 2023 18:46:06 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="738995537"
+X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="738995537"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2023 11:06:24 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 21 Aug 2023 11:06:20 -0700
+Message-ID: <20230821180619.650007-11-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
-Content-Language: en-GB
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-References: <20230821101444.119601-1-Arunpravin.PaneerSelvam@amd.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20230821101444.119601-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/buddy: Fix contiguous memory
- allocation issues
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5 0/9] Reduce MTL-specific platform checks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,421 +55,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Starting with MTL, the hardware moved to a disaggregated IP design where
+graphics, media, and display are supposed to be treated independently of
+the base platform that they're incorporated into.  For driver logic that
+is conditional on these IPs, the code should be checking the IP versions
+(as read from the GMD_ID registers) rather than trying to match on a
+specific platform (e.g., MTL).  It's possible that these IPs could show
+up again, without changes, on future non-MTL platforms, or that the
+current MTL platform could be extended to include new IP versions in
+future SKUs or refreshes; making sure our driver's conditions are
+handled appropriately future-proofs for both of these cases.
 
-On 21/08/2023 11:14, Arunpravin Paneer Selvam wrote:
-> The way now contiguous requests are implemented such that
-> the size rounded up to power of 2 and the corresponding order
-> block picked from the freelist.
-> 
-> In addition to the older method, the new method will rounddown
-> the size to power of 2 and the corresponding order block picked
-> from the freelist. And for the remaining size we traverse the
-> tree and try to allocate either from the freelist block's buddy
-> or from the peer block. If the remaining size from peer/buddy
-> block is not free, we pick the next freelist block and repeat
-> the same method.
-> 
-> Moved contiguous/alignment size computation part and trim
-> function to the drm buddy manager.
+Going forward, conditions like IS_METEORLAKE should be very rare in the
+driver; in most places our logic will be conditional upon the IP rather
+than the base platform.
 
-I think we should also mention somewhere what issue this is trying to 
-solve. IIUC the roundup_power_of_two() might in some cases trigger 
--ENOSPC even though there might be enough free space, and so to help 
-with that we introduce a try harder mechanism.
+v2:
+ - Rework macros slightly; new IP range and stepping range macros can be
+   used with both GFX or MEDIA rather than needing separate macros for
+   each IP.  (Tvrtko, Gustavo)
+ - Fix a > that should have been a >=.  (Gustavo)
+ - Split non-inheritance of media workarounds by future platforms into
+   its own patch.  (Gustavo)
+ - Extra documentation comments
 
-> 
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> ---
->   drivers/gpu/drm/drm_buddy.c | 253 ++++++++++++++++++++++++++++++++++--
->   include/drm/drm_buddy.h     |   6 +-
->   2 files changed, 248 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-> index 7098f125b54a..220f60c08a03 100644
-> --- a/drivers/gpu/drm/drm_buddy.c
-> +++ b/drivers/gpu/drm/drm_buddy.c
-> @@ -569,6 +569,197 @@ static int __drm_buddy_alloc_range(struct drm_buddy *mm,
->   	return __alloc_range(mm, &dfs, start, size, blocks);
->   }
->   
-> +static int __alloc_contiguous_block_from_buddy(struct drm_buddy *mm,
-> +					       u64 size,
-> +					       u64 min_block_size,
-> +					       struct drm_buddy_block *block,
-> +					       struct list_head *blocks)
-> +{
-> +	struct drm_buddy_block *buddy, *parent = NULL;
-> +	u64 start, offset = 0;
-> +	LIST_HEAD(dfs);
-> +	int err;
-> +
-> +	if (!block)
-> +		return -EINVAL;
-> +
-> +	buddy = __get_buddy(block);
-> +	if (!buddy)
-> +		return -ENOSPC;
-> +
-> +	if (drm_buddy_block_is_allocated(buddy))
-> +		return -ENOSPC;
-> +
-> +	parent = block->parent;
-> +	if (!parent)
-> +		return -ENOSPC;
-> +
-> +	if (block->parent->right == block) {
-> +		u64 remaining;
-> +
-> +		/* Compute the leftover size for allocation */
-> +		remaining = max((size - drm_buddy_block_size(mm, buddy)),
-> +				min_block_size);
-> +		if (!IS_ALIGNED(remaining, min_block_size))
-> +			remaining = round_up(remaining, min_block_size);
-> +
-> +		/* Check if remaining size is greater than buddy block size */
-> +		if (drm_buddy_block_size(mm, buddy) < remaining)
-> +			return -ENOSPC;
-> +
-> +		offset = drm_buddy_block_size(mm, buddy) - remaining;
-> +	}
-> +
-> +	list_add(&parent->tmp_link, &dfs);
-> +	start = drm_buddy_block_offset(parent) + offset;
-> +
-> +	err = __alloc_range(mm, &dfs, start, size, blocks);
-> +	if (err)
-> +		return -ENOSPC;
-> +
-> +	return 0;
-> +}
-> +
-> +static int __alloc_contiguous_block_from_peer(struct drm_buddy *mm,
-> +					      u64 size,
-> +					      u64 min_block_size,
-> +					      struct drm_buddy_block *block,
-> +					      struct list_head *blocks)
-> +{
-> +	struct drm_buddy_block *first, *peer, *tmp;
-> +	struct drm_buddy_block *parent = NULL;
-> +	u64 start, offset = 0;
-> +	unsigned int order;
-> +	LIST_HEAD(dfs);
-> +	int err;
-> +
-> +	if (!block)
-> +		return -EINVAL;
-> +
-> +	order = drm_buddy_block_order(block);
-> +	/* Add freelist block to dfs list */
-> +	list_add(&block->tmp_link, &dfs);
-> +
-> +	tmp = block;
-> +	parent = block->parent;
-> +	while (parent) {
-> +		if (block->parent->left == block) {
-> +			if (parent->left != tmp) {
-> +				peer = parent->left;
-> +				break;
-> +			}
-> +		} else {
-> +			if (parent->right != tmp) {
-> +				peer = parent->right;
-> +				break;
-> +			}
-> +		}
-> +
-> +		tmp = parent;
-> +		parent = tmp->parent;
-> +	}
-> +
-> +	if (!parent)
-> +		return -ENOSPC;
-> +
-> +	do {
-> +		if (drm_buddy_block_is_allocated(peer))
-> +			return -ENOSPC;
-> +		/* Exit loop if peer block order is equal to block order */
-> +		if (drm_buddy_block_order(peer) == order)
-> +			break;
-> +
-> +		if (drm_buddy_block_is_split(peer)) {
-> +			/* Traverse down to the block order level */
-> +			if (block->parent->left == block)
-> +				peer = peer->right;
-> +			else
-> +				peer = peer->left;
-> +		} else {
-> +			break;
-> +		}
-> +	} while (1);
-> +
-> +	if (block->parent->left == block) {
-> +		u64 remaining;
-> +
-> +		/* Compute the leftover size for allocation */
-> +		remaining = max((size - drm_buddy_block_size(mm, block)),
-> +				min_block_size);
-> +		if (!IS_ALIGNED(remaining, min_block_size))
-> +			remaining = round_up(remaining, min_block_size);
-> +
-> +		/* Check if remaining size is greater than peer block size */
-> +		if (drm_buddy_block_size(mm, peer) < remaining)
-> +			return -ENOSPC;
-> +
-> +		offset = drm_buddy_block_size(mm, peer) - remaining;
-> +		/* Add left peer block to dfs list */
-> +		list_add(&peer->tmp_link, &dfs);
-> +	} else {
-> +		/* Add right peer block to dfs list */
-> +		list_add_tail(&peer->tmp_link, &dfs);
-> +	}
-> +
-> +	first = list_first_entry_or_null(&dfs,
-> +					 struct drm_buddy_block,
-> +					 tmp_link);
-> +	if (!first)
-> +		return -EINVAL;
-> +
-> +	start = drm_buddy_block_offset(first) + offset;
-> +	err = __alloc_range(mm, &dfs, start, size, blocks);
-> +	if (err)
-> +		return -ENOSPC;
-> +
-> +	return 0;
-> +}
-> +
-> +static int __drm_buddy_alloc_contiguous_blocks(struct drm_buddy *mm,
-> +					       u64 size,
-> +					       u64 min_block_size,
-> +					       struct list_head *blocks)
-> +{
-> +	struct drm_buddy_block *block;
-> +	struct list_head *list;
-> +	unsigned long pages;
-> +	unsigned int order;
-> +	u64 modify_size;
-> +	int err;
-> +
-> +	modify_size = rounddown_pow_of_two(size);
-> +	pages = modify_size >> ilog2(mm->chunk_size);
-> +	order = fls(pages) - 1;
-> +	if (order == 0)
-> +		return -ENOSPC;
-> +
-> +	list = &mm->free_list[order];
-> +	if (list_empty(list))
-> +		return -ENOSPC;
-> +
-> +	list_for_each_entry_reverse(block, list, link) {
-> +		/* Allocate contiguous blocks from the buddy */
-> +		err = __alloc_contiguous_block_from_buddy(mm,
-> +							  size,
-> +							  min_block_size,
-> +							  block,
-> +							  blocks);
-> +		if (!err)
-> +			return 0;
-> +
-> +		/* Allocate contiguous blocks from tree traversal method */
-> +		err = __alloc_contiguous_block_from_peer(mm,
-> +							 size,
-> +							 min_block_size,
-> +							 block,
-> +							 blocks);
-> +		if (!err)
-> +			return 0;
-> +	}
-> +
-> +	return -ENOSPC;
-> +}
+v3:
+ - Switch back to separate long-form gfx and media macros with no macro
+   pasting.  (Jani)
+ - Move GT-specific macros from intel_drv.h to intel_gt.h.  (Andi)
+ - Replace two more IS_METEORLAKE() conditions with IP version checks.
 
-Wondering if this would be a lot simpler if we can tweak alloc_range() 
-to support allocating as much as it can up to some size? If it runs out 
-of space it still returns an error but doesn't actually free what it has 
-successfully allocated. It then also tells us how much it allocated. We 
-can then allocate the rhs first and then from whatever is left we can 
-figure out the precise offset we need for the lhs? I think that looks 
-sort of similar to what the above does, but here we can for the most 
-part just re-use alloc_range()? So maybe something like:
+v4:
+ - Build IS_*_IP_STEP macros on top of existing range check and stepping
+   check building blocks.  (Jani)
+ - Fix parameters in comment examples.
 
-__alloc_range(..., u64 *total_allocated_on_err)
-{
-     ....
-     err_free:
-         if (err == -ENOSPC && total_allocated_on_err)
-             *total_allocated_on_err = total_allocated;
-         else
-             drm_buddy_free_list(mm, &allocated);
-         return err;
-}
+v5:
+ - Rebase on top of latest drm-tip changes.
+ - Add NULL check to IS_MEDIA_GT_IP_RANGE() so that it can be used
+   safely on i915->media_gt, even on platforms where that pointer may be
+   NULL.  (Gustavo)
+ - Leave the GuC/HuC compatibility check as MTL-specific since that
+   seems to truly be a platform rather than IP limitation.  (Gustavo)
+ - Tweak some macro comment documentation.  (Gustavo)
 
-alloc_contig_try_harder()
-{
-      ....
-      list_for_each_entry_reverse(b, list, link) {
-          .....
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
 
-          rhs_offset = block_offset(b);
-          err =  __drm_buddy_alloc_range(mm, rhs_offset,
-                                         size, &filled,
-                                         blocks);
-          if (!err || err != -ENOSPC)
-              break;
+Matt Roper (9):
+  drm/i915: Consolidate condition for Wa_22011802037
+  drm/i915/xelpmp: Don't assume workarounds extend to future platforms
+  drm/i915/xelpg: Call Xe_LPG workaround functions based on IP version
+  drm/i915: Eliminate IS_MTL_GRAPHICS_STEP
+  drm/i915: Eliminate IS_MTL_MEDIA_STEP
+  drm/i915: Eliminate IS_MTL_DISPLAY_STEP
+  drm/i915/mtl: Eliminate subplatforms
+  drm/i915/display: Eliminate IS_METEORLAKE checks
+  drm/i915: Replace several IS_METEORLAKE with proper IP version checks
 
-          lhs_size = size - filled;
-          lhs_offset = block_offset(b) - lhs_size;
-          err =  __drm_buddy_alloc_range(mm, lhs_offset,
-                                         lhs_size, NULL,
-                                         blocks_lhs);
-          list_splice(blocks_lhs, blocks);
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
+ .../drm/i915/display/intel_display_device.h   | 25 ++++++
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  3 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 10 +--
+ .../drm/i915/display/skl_universal_plane.c    |  5 +-
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |  4 +-
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      | 11 +--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  4 +-
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |  4 +-
+ drivers/gpu/drm/i915/gt/intel_gt.h            | 63 +++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.c        |  7 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 +-
+ drivers/gpu/drm/i915/gt/intel_mocs.c          |  2 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |  5 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         | 20 ++++-
+ drivers/gpu/drm/i915/gt/intel_reset.h         |  2 +
+ drivers/gpu/drm/i915/gt/intel_rps.c           |  2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 88 ++++++++++---------
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  6 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           |  2 +-
+ drivers/gpu/drm/i915/i915_drv.h               | 18 +---
+ drivers/gpu/drm/i915/i915_perf.c              | 26 ++----
+ drivers/gpu/drm/i915/intel_device_info.c      | 14 ---
+ drivers/gpu/drm/i915/intel_device_info.h      |  4 -
+ include/drm/i915_pciids.h                     | 11 +--
+ 31 files changed, 210 insertions(+), 150 deletions(-)
 
-          ....
-      }
-}
+-- 
+2.41.0
 
-?
-
-> +
->   /**
->    * drm_buddy_block_trim - free unused pages
->    *
-> @@ -645,7 +836,7 @@ EXPORT_SYMBOL(drm_buddy_block_trim);
->    * @start: start of the allowed range for this block
->    * @end: end of the allowed range for this block
->    * @size: size of the allocation
-> - * @min_page_size: alignment of the allocation
-> + * @min_block_size: alignment of the allocation
->    * @blocks: output list head to add allocated blocks
->    * @flags: DRM_BUDDY_*_ALLOCATION flags
->    *
-> @@ -660,23 +851,24 @@ EXPORT_SYMBOL(drm_buddy_block_trim);
->    */
->   int drm_buddy_alloc_blocks(struct drm_buddy *mm,
->   			   u64 start, u64 end, u64 size,
-> -			   u64 min_page_size,
-> +			   u64 min_block_size,
->   			   struct list_head *blocks,
->   			   unsigned long flags)
->   {
->   	struct drm_buddy_block *block = NULL;
-> +	u64 original_size, original_min_size;
->   	unsigned int min_order, order;
-> -	unsigned long pages;
->   	LIST_HEAD(allocated);
-> +	unsigned long pages;
->   	int err;
->   
->   	if (size < mm->chunk_size)
->   		return -EINVAL;
->   
-> -	if (min_page_size < mm->chunk_size)
-> +	if (min_block_size < mm->chunk_size)
->   		return -EINVAL;
->   
-> -	if (!is_power_of_2(min_page_size))
-> +	if (!is_power_of_2(min_block_size))
->   		return -EINVAL;
->   
->   	if (!IS_ALIGNED(start | end | size, mm->chunk_size))
-> @@ -692,12 +884,21 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
->   	if (start + size == end)
->   		return __drm_buddy_alloc_range(mm, start, size, blocks);
->   
-> -	if (!IS_ALIGNED(size, min_page_size))
-> -		return -EINVAL;
-> +	original_size = size;
-> +	original_min_size = min_block_size;
-> +
-> +	/* Roundup the size to power of 2 */
-> +	if (flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION) {
-> +		size = roundup_pow_of_two(size);
-> +		min_block_size = size;
-> +	/* Align size value to min_block_size */
-> +	} else if (!IS_ALIGNED(size, min_block_size)) {
-> +		size = round_up(size, min_block_size);
-> +	}
->   
->   	pages = size >> ilog2(mm->chunk_size);
->   	order = fls(pages) - 1;
-> -	min_order = ilog2(min_page_size) - ilog2(mm->chunk_size);
-> +	min_order = ilog2(min_block_size) - ilog2(mm->chunk_size);
->   
->   	do {
->   		order = min(order, (unsigned int)fls(pages) - 1);
-> @@ -716,6 +917,17 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
->   				break;
->   
->   			if (order-- == min_order) {
-> +				if (flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION &&
-> +				    !(flags & DRM_BUDDY_RANGE_ALLOCATION))
-> +					/*
-> +					 * Try contiguous block allocation through
-> +					 * tree traversal method
-> +					 */
-> +					return __drm_buddy_alloc_contiguous_blocks(mm,
-> +										   original_size,
-> +										   original_min_size,
-> +										   blocks);
-> +
->   				err = -ENOSPC;
->   				goto err_free;
->   			}
-> @@ -732,6 +944,31 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
->   			break;
->   	} while (1);
->   
-> +	/* Trim the allocated block to the required size */
-> +	if (original_size != size) {
-> +		struct list_head *trim_list;
-> +		LIST_HEAD(temp);
-> +		u64 trim_size;
-> +
-> +		trim_list = &allocated;
-> +		trim_size = original_size;
-> +
-> +		if (!list_is_singular(&allocated)) {
-> +			block = list_last_entry(&allocated, typeof(*block), link);
-> +			list_move(&block->link, &temp);
-> +			trim_list = &temp;
-> +			trim_size = drm_buddy_block_size(mm, block) -
-> +				(size - original_size);
-> +		}
-> +
-> +		drm_buddy_block_trim(mm,
-> +				     trim_size,
-> +				     trim_list);
-> +
-> +		if (!list_empty(&temp))
-> +			list_splice_tail(trim_list, &allocated);
-> +	}
-> +
->   	list_splice_tail(&allocated, blocks);
->   	return 0;
->   
-> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
-> index 572077ff8ae7..a5b39fc01003 100644
-> --- a/include/drm/drm_buddy.h
-> +++ b/include/drm/drm_buddy.h
-> @@ -22,8 +22,9 @@
->   	start__ >= max__ || size__ > max__ - start__; \
->   })
->   
-> -#define DRM_BUDDY_RANGE_ALLOCATION (1 << 0)
-> -#define DRM_BUDDY_TOPDOWN_ALLOCATION (1 << 1)
-> +#define DRM_BUDDY_RANGE_ALLOCATION		BIT(0)
-> +#define DRM_BUDDY_TOPDOWN_ALLOCATION		BIT(1)
-> +#define DRM_BUDDY_CONTIGUOUS_ALLOCATION		BIT(2)
->   
->   struct drm_buddy_block {
->   #define DRM_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
-> @@ -155,5 +156,4 @@ void drm_buddy_print(struct drm_buddy *mm, struct drm_printer *p);
->   void drm_buddy_block_print(struct drm_buddy *mm,
->   			   struct drm_buddy_block *block,
->   			   struct drm_printer *p);
-> -
->   #endif
