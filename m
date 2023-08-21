@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AD9878350A
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 23:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0361278350B
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 23:58:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 964D110E03F;
-	Mon, 21 Aug 2023 21:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF0BD10E100;
+	Mon, 21 Aug 2023 21:58:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AFB8410E03F;
- Mon, 21 Aug 2023 21:58:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 15C4910E03F;
+ Mon, 21 Aug 2023 21:58:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A867BAA917;
- Mon, 21 Aug 2023 21:58:01 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 12CA1AA917;
+ Mon, 21 Aug 2023 21:58:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
-Date: Mon, 21 Aug 2023 21:58:01 -0000
-Message-ID: <169265508166.22806.15075452731065571079@emeril.freedesktop.org>
+Date: Mon, 21 Aug 2023 21:58:04 -0000
+Message-ID: <169265508407.22809.1964586789070275574@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230821160004.2821445-1-mitulkumar.ajitkumar.golani@intel.com>
 In-Reply-To: <20230821160004.2821445-1-mitulkumar.ajitkumar.golani@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Get_optimal_audio_frequency_and_channels_=28rev10=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Get_optimal_audio_frequency_and_channels_=28rev10=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,7 +53,7 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
+Error: dim sparse failed
 /home/kbuild2/linux/maintainer-tools/dim: line 50: /home/kbuild2/.dimrc: No such file or directory
 
 
