@@ -2,56 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDF2E782439
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 09:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 120CC78263A
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 11:27:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0727C10E1F9;
-	Mon, 21 Aug 2023 07:13:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96E1410E073;
+	Mon, 21 Aug 2023 09:27:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2226D10E1F7;
- Mon, 21 Aug 2023 07:13:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692602012; x=1724138012;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=av4oCu9sjI/1tXAcnOs+Fnjxj3bZRnRW6Vu6VY0dHhA=;
- b=cu9WaeHEpPI9o50AtqKQzwjBVyxYUbrDxbU2Hk7phpoLfV/o7WnzdCMw
- vposX+lBt9lyLZEQmg8Alg/A2cg3KhHRH8N9HYz9Yl43aJY7SfFTV5qCF
- /3O73q4Hd5j6jnO7TAJKmqm9KqSO8dp4zc859zym6iOngBz5AW/FtgmUE
- A5dbDWilycjLMNAL6WLEgrevjXUY3RMeXs94GAuaP0TqfLZ0CXr7h7Zwj
- uRbgvBEZUfnOwGMt9z7jnRdsIS4sIkXhyfGIZc1j65onOabnMNTaDnuo5
- aWEUAMmqi+7TfjHkNAYHXwMhblQ0Dbnsypc1KlS2diXJMU1SjZnBovULA A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10808"; a="437437552"
-X-IronPort-AV: E=Sophos;i="6.01,189,1684825200"; d="scan'208";a="437437552"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 00:13:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10808"; a="738801231"
-X-IronPort-AV: E=Sophos;i="6.01,189,1684825200"; d="scan'208";a="738801231"
-Received: from hpabst-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.54.190])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 00:13:17 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: ZNdOoHvIg7HXh7Gg@fedora, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-In-Reply-To: <ZOII3e9nsnmRjTN+@fedora>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <ZOII3e9nsnmRjTN+@fedora>
-Date: Mon, 21 Aug 2023 10:13:15 +0300
-Message-ID: <87wmxo7tro.fsf@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E5AA10E073;
+ Mon, 21 Aug 2023 09:27:33 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 93AD062DC8;
+ Mon, 21 Aug 2023 09:27:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6766FC433C7;
+ Mon, 21 Aug 2023 09:27:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1692610051;
+ bh=NW4Ycp3M+pHTjemza+su3ZhshTvZ9JFW/Vsro3BLEpM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=ZBTKJR0KBWIG4VuMcSVzQjw+2J53sX+IJt7Rq5hwg7pdrBU3PkmdQocsBZxi8jTqY
+ aNBrdHTkq+SxVsWSM66H84S9RA4QHMm2dzgbe5BGjvzepijWQmqyDJ+hqzykISNru+
+ VhIQyiWAKACU/4SWR7nlSJgWhVZjMdYLGzspKbNP3Niik9X01iHC8Cv+ANjbk0/Y8l
+ M976tPJivUsAGX7V4dLvysawBRqqJ53F4gyv8lQ39Z38MhmgAuAA3IPB03aBiCjtWK
+ Z6n9IgLMyQkNDHal279iJmTQLxPgy4KT7VG5lnqSQpSk349HnqVBZ6+x4aiRV7jyHp
+ bzHp8p3FxyN+w==
+Date: Mon, 21 Aug 2023 11:27:29 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <2xlfp5bz77tyoffqvr7orvmo45wcb7uz6nbpl7jbv6zhnqvlx3@2hxa4ltb3s3y>
+References: <87v8dmr6ty.fsf@gmail.com>
+ <f32b4636-969c-3b9e-6802-5991f511739e@leemhuis.info>
+ <87il9l2ymf.fsf@gmail.com>
+ <3df95e6d-8237-1c43-e220-a9bdb5d6e044@leemhuis.info>
+ <ZNo7oXeH0JK+4GPG@ideak-desk.fi.intel.com>
+ <87edk4d8qp.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Fix Kconfig error for
- CONFIG_DRM_I915
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="5ueyegkogb3zpaqt"
+Content-Disposition: inline
+In-Reply-To: <87edk4d8qp.fsf@intel.com>
+Subject: Re: [Intel-gfx] [REGRESSION] HDMI connector detection broken in 6.3
+ on Intel(R) Celeron(R) N3060 integrated graphics
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,81 +60,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stone.xulei@xfusion.com
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Linux regressions mailing list <regressions@lists.linux.dev>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ intel-gfx@lists.freedesktop.org, Mikhail Rudenko <mike.rudenko@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 20 Aug 2023, Wang Jinchao <wangjinchao@xfusion.com> wrote:
-> When CONFIG_DRM_I915 is set to 'y' and CONFIG_BACKLIGHT_CLASS_DEVICE
-> is set to 'm', we encountered an ld.lld error during the build process:
->
-> 	ld.lld: error: undefined symbol: backlight_device_get_by_name
-> 	>>> referenced by intel_backlight.c:955
-> 	>>>               vmlinux.o:(intel_backlight_device_register)
->
-> 	ld.lld: error: undefined symbol: backlight_device_register
-> 	>>> referenced by intel_backlight.c:971
-> 	>>>               vmlinux.o:(intel_backlight_device_register)
->
-> 	ld.lld: error: undefined symbol: backlight_device_unregister
-> 	>>> referenced by intel_backlight.c:999
-> 	>>>               vmlinux.o:(intel_backlight_device_unregister)
->
-> This issue occurred because intel_backlight_device_register and
-> intel_backlight_device_unregister were enclosed within
-> \#if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE) and #endif directives.
-> However, according to Kconfig, CONFIG_DRM_I915 will select
-> BACKLIGHT_CLASS_DEVICE only if ACPI is enabled.
-> This led to an error when ACPI is not enabled.
-> Change IS_ENABLED to IS_REACHABLE and use IS_REACHABLE to encompass
-> the implementation of intel_connector_register() to solve this issue.
 
-I told you in [1] what the real fix is.
+--5ueyegkogb3zpaqt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The IS_REACHABLE() solution has been suggested a number of times, but I
-think it's creating an unexpected and silent failure configuration. I
-think IS_REACHABLE() is the wrong thing to do in most cases.
+On Tue, Aug 15, 2023 at 11:12:46AM +0300, Jani Nikula wrote:
+> On Mon, 14 Aug 2023, Imre Deak <imre.deak@intel.com> wrote:
+> > On Sun, Aug 13, 2023 at 03:41:30PM +0200, Linux regression tracking (Th=
+orsten Leemhuis) wrote:
+> > Hi,
+> >
+> >> On 11.08.23 20:10, Mikhail Rudenko wrote:
+> >> > On 2023-08-11 at 08:45 +02, Thorsten Leemhuis <regressions@leemhuis.=
+info> wrote:
+> >> >> On 10.08.23 21:33, Mikhail Rudenko wrote:
+> >> >>> The following is a copy an issue I posted to drm/i915 gitlab [1] t=
+wo
+> >> >>> months ago. I repost it to the mailing lists in hope that it will =
+help
+> >> >>> the right people pay attention to it.
+> >> >>
+> >> >> Thx for your report. Wonder why Dmitry (who authored a4e771729a51) =
+or
+> >> >> Thomas (who committed it) it didn't look into this, but maybe the i=
+915
+> >> >> devs didn't forward the report to them.
+> >>=20
+> >> For the record: they did, and Jani mentioned already. Sorry, should ha=
+ve
+> >> phrased this differently.
+> >>=20
+> >> >> Let's see if these mails help. Just wondering: does reverting
+> >> >> a4e771729a51 from 6.5-rc5 or drm-tip help as well?
+> >> >=20
+> >> > I've redone my tests with 6.5-rc5, and here are the results:
+> >> > (1) 6.5-rc5 -> still affected
+> >> > (2) 6.5-rc5 + revert a4e771729a51 -> not affected
+> >> > (3) 6.5-rc5 + two patches [1][2] suggested on i915 gitlab by @ideak =
+-> not affected (!)
+> >> >=20
+> >> > Should we somehow tell regzbot about (3)?
+> >>=20
+> >> That's good to know, thx. But the more important things are:
+> >>=20
+> >> * When will those be merged? They are not yet in next yet afaics, so it
+> >> might take some time to mainline them, especially at this point of the
+> >> devel cycle. Imre, could you try to prod the right people so that these
+> >> are ideally upstreamed rather sooner than later, as they fix a regress=
+ion?
+> >
+> > I think the patches ([1] and [2]) could be merged via the drm-intel-next
+> > (drm-intel-fixes) tree Cc'ing also stable. Jani, is this ok?
+>=20
+> It's fine by me, but need drm-misc maintainer ack to merge [1] via
+> drm-intel.
 
-BR,
-Jani.
+That's fine for me
 
+Maxime
 
-[1] https://lore.kernel.org/r/87o7jaythm.fsf@intel.com
+--5ueyegkogb3zpaqt
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
->
-> Signed-off-by: Wang Jinchao <wangjinchao@xfusion.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_backlight.c | 2 +-
->  drivers/gpu/drm/i915/display/intel_backlight.h | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-> index 2e8f17c04522..d812cdc74a84 100644
-> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-> @@ -795,7 +795,7 @@ void intel_backlight_enable(const struct intel_crtc_state *crtc_state,
->  	mutex_unlock(&i915->display.backlight.lock);
->  }
->  
-> -#if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE)
-> +#if IS_REACHABLE(CONFIG_BACKLIGHT_CLASS_DEVICE)
->  static u32 intel_panel_get_backlight(struct intel_connector *connector)
->  {
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.h b/drivers/gpu/drm/i915/display/intel_backlight.h
-> index 339643f63897..207fe1c613d8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_backlight.h
-> +++ b/drivers/gpu/drm/i915/display/intel_backlight.h
-> @@ -36,7 +36,7 @@ u32 intel_backlight_invert_pwm_level(struct intel_connector *connector, u32 leve
->  u32 intel_backlight_level_to_pwm(struct intel_connector *connector, u32 level);
->  u32 intel_backlight_level_from_pwm(struct intel_connector *connector, u32 val);
->  
-> -#if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE)
-> +#if IS_REACHABLE(CONFIG_BACKLIGHT_CLASS_DEVICE)
->  int intel_backlight_device_register(struct intel_connector *connector);
->  void intel_backlight_device_unregister(struct intel_connector *connector);
->  #else /* CONFIG_BACKLIGHT_CLASS_DEVICE */
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZOMuAAAKCRDj7w1vZxhR
+xcY1AQDOKN6ASHLZWMlRtYX09Ur6wy9cO7kZRFg47cHR2T7F0AEAstd/HKTbxG6t
+B+77nQxr4KI6tALgEwk6/twhOWMDcgw=
+=dD+q
+-----END PGP SIGNATURE-----
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+--5ueyegkogb3zpaqt--
