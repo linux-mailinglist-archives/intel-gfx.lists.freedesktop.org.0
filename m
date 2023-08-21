@@ -1,48 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC72F7834BF
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 23:16:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EC3C7834D3
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Aug 2023 23:22:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E176610E2B3;
-	Mon, 21 Aug 2023 21:16:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD8910E2B7;
+	Mon, 21 Aug 2023 21:22:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D475910E2B3
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Aug 2023 21:16:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692652585; x=1724188585;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4iLwxg5lTQXmK4R+O1ip9pOJ++zE/rBhMDAMdRe8oTI=;
- b=QVGgqaiJ0VP2X8DJvZVdCNtig8S+tf+mB9r3pK3QsZ5HrZ5kCqdu6d71
- AjRfHI3v7FwTmzoX9tB2vk6t3qXCnhRrRLspx+qFufdxicTlHnoqGDFms
- Rf1hUH1qkE/QZkT/qvyTHoxWvYkLlbPWWVxOocl5Pc4GoDfVvZETpecaO
- atLYVJwPo6WmBk/1NzlDGfmhdA5/TsyRKiQFeUh/0bKVTaJvWMpkW3Nlc
- lSGuz3vuQjmxssj30h3fi5Kxn0qWO71C8uiFx8s5uQIQeuexUewvsmNnz
- 9qlJNzOkpqh5RHEywud1cFPaatNs1PycckLUv84+zPMujNPzP1hNIEdv/ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="440075107"
-X-IronPort-AV: E=Sophos;i="6.01,191,1684825200"; d="scan'208";a="440075107"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 14:16:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="850332369"
-X-IronPort-AV: E=Sophos;i="6.01,191,1684825200"; d="scan'208";a="850332369"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 14:16:24 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 21 Aug 2023 14:16:18 -0700
-Message-ID: <20230821211618.1648088-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.41.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DBE7210E2B3;
+ Mon, 21 Aug 2023 21:22:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D4BCBAADD8;
+ Mon, 21 Aug 2023 21:22:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI] PR for GSC FW release 102.0.0.1655 for MTL
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andrzej Hajda" <andrzej.hajda@intel.com>
+Date: Mon, 21 Aug 2023 21:22:52 -0000
+Message-ID: <169265297283.22806.7072985725726739790@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230821153035.3903006-1-andrzej.hajda@intel.com>
+In-Reply-To: <20230821153035.3903006-1-andrzej.hajda@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_mark_requests_for_GuC_virtual_engines_to_avoid_?=
+ =?utf-8?q?use-after-free?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,26 +41,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following changes since commit 0e048b061bde79ad735c7b7b5161ee1bd3400150:
+== Series Details ==
 
-  Merge branch 'for-upstream' of https://github.com/CirrusLogic/linux-firmware (2023-08-14 13:03:41 -0400)
+Series: drm/i915: mark requests for GuC virtual engines to avoid use-after-free
+URL   : https://patchwork.freedesktop.org/series/122709/
+State : warning
 
-are available in the Git repository at:
+== Summary ==
 
-  git://anongit.freedesktop.org/drm/drm-firmware mtl_gsc_1655
+Error: dim checkpatch failed
+/home/kbuild/linux/maintainer-tools/dim: line 50: /home/kbuild/.dimrc: No such file or directory
 
-for you to fetch changes up to 81caac98eda16944446fa057191ee969c377154a:
 
-  i915: add GSC 102.0.0.1655 for MTL (2023-08-21 14:13:11 -0700)
-
-----------------------------------------------------------------
-Daniele Ceraolo Spurio (1):
-      i915: add GSC 102.0.0.1655 for MTL
-
- WHENCE             |   3 +++
- i915/mtl_gsc_1.bin | Bin 0 -> 1142784 bytes
- 2 files changed, 3 insertions(+)
- create mode 100755 i915/mtl_gsc_1.bin
