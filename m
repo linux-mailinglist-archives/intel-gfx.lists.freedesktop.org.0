@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC4F778407D
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 14:14:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEA9878407F
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 14:14:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 423A610E344;
-	Tue, 22 Aug 2023 12:14:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 312FD10E347;
+	Tue, 22 Aug 2023 12:14:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B02510E343
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 12:13:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D769B10E345
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 12:14:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692706438; x=1724242438;
+ t=1692706440; x=1724242440;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ysgK0WlUVQPNo2yVPChfdy505RUbV33bAH70LS5RBPA=;
- b=UuBtDSPXJVI5yRdu6hEPJd8BaFmxtZ85LOlyexB+VNflo+6tUC1xeQN9
- XXPrZi8HvuKjfcrRLhqBk+2lszrJ558P/qhpTg/QcMtf0BxmVytovjBqy
- 4MvmeSlyZV0WQn0KyvA4u9Z7yIqAQ/4peB28WfRBUAJKhZR81v14haHDM
- lQjTAy44odmtOofs0rrVJjVJZoIID2ep3JGb7aVQleGYdrKcnWmBXzoQl
- oFgDMeECjwtz9Upy82fCnHMZA5OvBXoN+zXr88bQdvT0X6qrWVxmFHjlN
- s5ZgxVIhPuDcD3KXKzKfPUODHSUOZfFv9ZaIgdJrbFrOC/yhB/dCohmR0 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="440230327"
-X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="440230327"
+ bh=syrO/Wh7lS8ztrDMGI35D3bc1qrrZJInCtN1+brGDh4=;
+ b=eMPEivWQJXeglnGL2xnK4uMl8BUWy9tx7x3pKeAsfgQo0mut1N7oB/lv
+ 6uBoI7orRgeRVibRlyxbfRj7PcuzGHCggAnC683uzUjqr6RTdKSqIl3L7
+ 5hQBP5ZgMwtXncDjBkpxhv587Qj0Y1I7QtC0q9iX6KtZcz+kW0ur0vrad
+ F8BDs1vYCmGDKwF46RLk3b19oGJfpQi7fyoaeXQ7ka/ZSPKGxQuv66adu
+ VZLp4YF7l6IVJ1zwp5h+N9V2C+JD3Cu/pwXP5JJLzZw5Z3QBvAHAdwYRs
+ AaJeW7QcAAneQ+3rekhEmdTJGoD6piIQXZyJt2qVpZLvtlNeFND18ZDe8 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="440230331"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="440230331"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2023 05:13:58 -0700
+ 22 Aug 2023 05:14:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="771335296"
-X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="771335296"
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="771335306"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="771335306"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2023 05:13:56 -0700
+ 22 Aug 2023 05:13:58 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 22 Aug 2023 17:40:31 +0530
-Message-Id: <20230822121033.597447-8-ankit.k.nautiyal@intel.com>
+Date: Tue, 22 Aug 2023 17:40:32 +0530
+Message-Id: <20230822121033.597447-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230822121033.597447-1-ankit.k.nautiyal@intel.com>
 References: <20230822121033.597447-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 7/9] drm/i915/dp: Iterate over output bpp with
- fractional step size
+Subject: [Intel-gfx] [PATCH 8/9] drm/i915/dsc: Add debugfs entry to validate
+ DSC fractional bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,107 +62,142 @@ Cc: manasi.d.navare@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch adds support to iterate over compressed output bpp as per the
-fractional step, supported by DP sink.
+From: Swati Sharma <swati2.sharma@intel.com>
 
-v2:
--Avoid ending up with compressed bpp, same as pipe bpp. (Stan)
+DSC_Sink_BPP_Precision entry is added to i915_dsc_fec_support_show
+to depict sink's precision.
+Also, new debugfs entry is created to enforce fractional bpp.
+If Force_DSC_Fractional_BPP_en is set then while iterating over
+output bpp with fractional step size we will continue if output_bpp is
+computed as integer. With this approach, we will be able to validate
+DSC with fractional bpp.
 
+Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 36 ++++++++++++++++---------
- 1 file changed, 23 insertions(+), 13 deletions(-)
+ .../drm/i915/display/intel_display_debugfs.c  | 82 +++++++++++++++++++
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ 2 files changed, 83 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 436889c601b1..011bcfe2ecc5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1715,15 +1715,15 @@ static bool intel_dp_dsc_supports_format(struct intel_dp *intel_dp,
- 	return drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd, sink_dsc_format);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 63c1fb9e479f..19975f613316 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -1240,6 +1240,8 @@ static int i915_dsc_fec_support_show(struct seq_file *m, void *data)
+ 								      DP_DSC_YCbCr420_Native)),
+ 			   str_yes_no(drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd,
+ 								      DP_DSC_YCbCr444)));
++		seq_printf(m, "DSC_Sink_BPP_Precision: %d\n",
++			   drm_dp_dsc_sink_bpp_incr(intel_dp->dsc_dpcd));
+ 		seq_printf(m, "Force_DSC_Enable: %s\n",
+ 			   str_yes_no(intel_dp->force_dsc_en));
+ 		if (!intel_dp_is_edp(intel_dp))
+@@ -1432,6 +1434,83 @@ static const struct file_operations i915_dsc_output_format_fops = {
+ 	.write = i915_dsc_output_format_write
+ };
  
--static bool is_bw_sufficient_for_dsc_config(u16 compressed_bpp, u32 link_clock,
-+static bool is_bw_sufficient_for_dsc_config(u16 compressed_bppx16, u32 link_clock,
- 					    u32 lane_count, u32 mode_clock,
- 					    enum intel_output_format output_format,
- 					    int timeslots)
- {
- 	u32 available_bw, required_bw;
- 
--	available_bw = (link_clock * lane_count * timeslots)  / 8;
--	required_bw = compressed_bpp * (intel_dp_mode_to_fec_clock(mode_clock));
-+	available_bw = (link_clock * lane_count * timeslots * 16)  / 8;
-+	required_bw = compressed_bppx16 * (intel_dp_mode_to_fec_clock(mode_clock));
- 
- 	return available_bw > required_bw;
- }
-@@ -1731,7 +1731,7 @@ static bool is_bw_sufficient_for_dsc_config(u16 compressed_bpp, u32 link_clock,
- static int dsc_compute_link_config(struct intel_dp *intel_dp,
- 				   struct intel_crtc_state *pipe_config,
- 				   struct link_config_limits *limits,
--				   u16 compressed_bpp,
-+				   u16 compressed_bppx16,
- 				   int timeslots)
- {
- 	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
-@@ -1746,7 +1746,8 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
- 		for (lane_count = limits->min_lane_count;
- 		     lane_count <= limits->max_lane_count;
- 		     lane_count <<= 1) {
--			if (!is_bw_sufficient_for_dsc_config(compressed_bpp, link_rate, lane_count,
++static int i915_dsc_fractional_bpp_show(struct seq_file *m, void *data)
++{
++	struct drm_connector *connector = m->private;
++	struct drm_device *dev = connector->dev;
++	struct drm_crtc *crtc;
++	struct intel_dp *intel_dp;
++	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
++	int ret;
 +
-+			if (!is_bw_sufficient_for_dsc_config(compressed_bppx16, link_rate, lane_count,
- 							     adjusted_mode->clock,
- 							     pipe_config->output_format,
- 							     timeslots))
-@@ -1860,7 +1861,7 @@ icl_dsc_compute_link_config(struct intel_dp *intel_dp,
- 		ret = dsc_compute_link_config(intel_dp,
- 					      pipe_config,
- 					      limits,
--					      valid_dsc_bpp[i],
-+					      valid_dsc_bpp[i] << 4,
- 					      timeslots);
- 		if (ret == 0) {
- 			pipe_config->dsc.compressed_bpp = valid_dsc_bpp[i];
-@@ -1886,22 +1887,31 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
- 			      int pipe_bpp,
- 			      int timeslots)
- {
--	u16 compressed_bpp;
-+	u8 bppx16_incr = drm_dp_dsc_sink_bpp_incr(intel_dp->dsc_dpcd);
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	u16 compressed_bppx16;
-+	u8 bppx16_step;
- 	int ret;
- 
-+	if (DISPLAY_VER(i915) < 14 || bppx16_incr <= 1)
-+		bppx16_step = 16;
-+	else
-+		bppx16_step = 16 / bppx16_incr;
++	if (!encoder)
++		return -ENODEV;
 +
- 	/* Compressed BPP should be less than the Input DSC bpp */
--	dsc_max_bpp = min(dsc_max_bpp, pipe_bpp - 1);
-+	dsc_max_bpp = min(dsc_max_bpp << 4, (pipe_bpp << 4) - bppx16_step);
-+	dsc_min_bpp = dsc_min_bpp << 4;
++	ret = drm_modeset_lock_single_interruptible(&dev->mode_config.connection_mutex);
++	if (ret)
++		return ret;
++
++	crtc = connector->state->crtc;
++	if (connector->status != connector_status_connected || !crtc) {
++		ret = -ENODEV;
++		goto out;
++	}
++
++	intel_dp = intel_attached_dp(to_intel_connector(connector));
++	seq_printf(m, "Force_DSC_Fractional_BPP_Enable: %s\n",
++		   str_yes_no(intel_dp->force_dsc_fractional_bpp_en));
++
++out:	drm_modeset_unlock(&dev->mode_config.connection_mutex);
++
++	return ret;
++}
++
++static ssize_t i915_dsc_fractional_bpp_write(struct file *file,
++					     const char __user *ubuf,
++					     size_t len, loff_t *offp)
++{
++	struct drm_connector *connector =
++		((struct seq_file *)file->private_data)->private;
++	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	bool dsc_fractional_bpp_enable = false;
++	int ret;
++
++	if (len == 0)
++		return 0;
++
++	drm_dbg(&i915->drm,
++		"Copied %zu bytes from user to force fractional bpp for DSC\n", len);
++
++	ret = kstrtobool_from_user(ubuf, len, &dsc_fractional_bpp_enable);
++	if (ret < 0)
++		return ret;
++
++	drm_dbg(&i915->drm, "Got %s for DSC Fractional BPP Enable\n",
++		(dsc_fractional_bpp_enable) ? "true" : "false");
++	intel_dp->force_dsc_fractional_bpp_en = dsc_fractional_bpp_enable;
++
++	*offp += len;
++
++	return len;
++}
++
++static int i915_dsc_fractional_bpp_open(struct inode *inode,
++					struct file *file)
++{
++	return single_open(file, i915_dsc_fractional_bpp_show, inode->i_private);
++}
++
++static const struct file_operations i915_dsc_fractional_bpp_fops = {
++	.owner = THIS_MODULE,
++	.open = i915_dsc_fractional_bpp_open,
++	.read = seq_read,
++	.llseek = seq_lseek,
++	.release = single_release,
++	.write = i915_dsc_fractional_bpp_write
++};
++
+ /*
+  * Returns the Current CRTC's bpc.
+  * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
+@@ -1509,6 +1588,9 @@ void intel_connector_debugfs_add(struct intel_connector *intel_connector)
  
--	for (compressed_bpp = dsc_max_bpp;
--	     compressed_bpp >= dsc_min_bpp;
--	     compressed_bpp--) {
-+	for (compressed_bppx16 = dsc_max_bpp;
-+	     compressed_bppx16 >= dsc_min_bpp;
-+	     compressed_bppx16 -= bppx16_step) {
- 		ret = dsc_compute_link_config(intel_dp,
- 					      pipe_config,
- 					      limits,
--					      compressed_bpp,
-+					      compressed_bppx16,
- 					      timeslots);
- 		if (ret == 0) {
--			pipe_config->dsc.compressed_bpp = compressed_bpp << 4;
-+			pipe_config->dsc.compressed_bpp = compressed_bppx16;
- 			return 0;
- 		}
+ 		debugfs_create_file("i915_dsc_output_format", 0644, root,
+ 				    connector, &i915_dsc_output_format_fops);
++
++		debugfs_create_file("i915_dsc_fractional_bpp", 0644, root,
++				    connector, &i915_dsc_fractional_bpp_fops);
  	}
+ 
+ 	if (connector->connector_type == DRM_MODE_CONNECTOR_DSI ||
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index f749dc4e70df..5f21ee5bda21 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1796,6 +1796,7 @@ struct intel_dp {
+ 	/* Display stream compression testing */
+ 	bool force_dsc_en;
+ 	int force_dsc_output_format;
++	bool force_dsc_fractional_bpp_en;
+ 	int force_dsc_bpc;
+ 
+ 	bool hobl_failed;
 -- 
 2.40.1
 
