@@ -1,34 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75A39784222
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 15:35:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 487A8784238
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 15:39:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF25A10E062;
-	Tue, 22 Aug 2023 13:35:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCC5310E352;
+	Tue, 22 Aug 2023 13:39:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6AAC010E062;
- Tue, 22 Aug 2023 13:35:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 542E8A47DF;
- Tue, 22 Aug 2023 13:35:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0759007921919221416=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD69C10E1D5;
+ Tue, 22 Aug 2023 13:39:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692711542; x=1724247542;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=CU1zHVSnu4ilx1GrsW1Za+0v5qYL7vM+kz50WBnV8yw=;
+ b=U8Vf9j0tCkXgQDPmoeTE+MtevDl+K5CrxB083a32/IXgRYEo6OJjgONw
+ 0IC/v4PVjr9lATa01xmr75/xQJ/q6u1uoE3nKbjdheNVsiHTMopVcPsZN
+ We2gnMqRB2uyb7QhBXtVDWfkJKTpmt8mQMWOIV2BJaQqer+KgAqS7iKcf
+ P6uX3d6DLokffQnG222bj98EGiteR30wYEMssCHp1uSIZRcuGlajfuO7O
+ VT6Lzbl3qkrBgEDa5zGF1wkQ5KPmmz3wsBdK9O1tQALS0vhvO6Gq6Amuq
+ Eq/pBFRrgfZlkYENjNtEOQOmvfDyGZwlBQsfZTWEp+ccITFA7dqwuTi5A A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="371303892"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="371303892"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2023 06:39:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="765743523"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="765743523"
+Received: from kainaats-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.42.230])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2023 06:38:59 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20230818044436.177806-1-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230818044436.177806-1-ankit.k.nautiyal@intel.com>
+Date: Tue, 22 Aug 2023 16:38:56 +0300
+Message-ID: <87y1i35h8v.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 22 Aug 2023 13:35:02 -0000
-Message-ID: <169271130231.20551.2130474690886140093@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1692705543.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1692705543.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/amd/display=3A_stop_using_drm=5Fedid=5Foverride=5Fconnector=5F?=
- =?utf-8?q?update=28=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/display/dp: Fix the DP DSC Receiver cap
+ size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,172 +59,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0759007921919221416==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 18 Aug 2023, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> DP DSC Receiver Capabilities are exposed via DPCD 60h-6Fh.
+> Fix the DSC RECEIVER CAP SIZE accordingly.
+>
+> Fixes: ffddc4363c28 ("drm/dp: Add DP DSC DPCD receiver capability size define and missing SHIFT")
+> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.0+
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-== Series Details ==
+Thanks for the patch and review, pushed to drm-misc-fixes.
 
-Series: drm/amd/display: stop using drm_edid_override_connector_update()
-URL   : https://patchwork.freedesktop.org/series/122739/
-State : failure
+BR,
+Jani.
 
-== Summary ==
+> ---
+>  include/drm/display/drm_dp.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+> index 02f2ac4dd2df..e69cece404b3 100644
+> --- a/include/drm/display/drm_dp.h
+> +++ b/include/drm/display/drm_dp.h
+> @@ -1537,7 +1537,7 @@ enum drm_dp_phy {
+>  
+>  #define DP_BRANCH_OUI_HEADER_SIZE	0xc
+>  #define DP_RECEIVER_CAP_SIZE		0xf
+> -#define DP_DSC_RECEIVER_CAP_SIZE        0xf
+> +#define DP_DSC_RECEIVER_CAP_SIZE        0x10 /* DSC Capabilities 0x60 through 0x6F */
+>  #define EDP_PSR_RECEIVER_CAP_SIZE	2
+>  #define EDP_DISPLAY_CTL_CAP_SIZE	3
+>  #define DP_LTTPR_COMMON_CAP_SIZE	8
 
-CI Bug Log - changes from CI_DRM_13543 -> Patchwork_122739v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_122739v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_122739v1, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122739v1/index.html
-
-Participating hosts (41 -> 13)
-------------------------------
-
-  ERROR: It appears as if the changes made in Patchwork_122739v1 prevented too many machines from booting.
-
-  Missing    (28): fi-kbl-soraka fi-rkl-11600 bat-adls-5 bat-dg1-5 fi-apl-guc fi-snb-2520m fi-pnv-d510 bat-rpls-1 fi-bsw-n3050 bat-adlm-1 bat-dg2-9 fi-ilk-650 fi-hsw-4770 bat-adln-1 fi-ivb-3770 bat-jsl-3 bat-rplp-1 bat-kbl-2 bat-adlp-9 fi-skl-guc fi-glk-j4005 bat-mtlp-8 bat-jsl-1 bat-mtlp-6 fi-kbl-guc fi-cfl-8109u fi-kbl-8809g bat-dg2-14 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_122739v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-rpls-2:         [PASS][1] -> [ABORT][2] ([i915#7978] / [i915#8668])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13543/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122739v1/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@migrate:
-    - bat-atsm-1:         [DMESG-FAIL][3] ([i915#7699] / [i915#7913]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13543/bat-atsm-1/igt@i915_selftest@live@migrate.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122739v1/bat-atsm-1/igt@i915_selftest@live@migrate.html
-
-  
-  [i915#7699]: https://gitlab.freedesktop.org/drm/intel/issues/7699
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13543 -> Patchwork_122739v1
-
-  CI-20190529: 20190529
-  CI_DRM_13543: f450aa57b6725458339a934f474d5a0e5cb2dce0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7448: 84aa6d50648d9349fb4f1520f37e5374908c9f4d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_122739v1: f450aa57b6725458339a934f474d5a0e5cb2dce0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-c5ebb77a1a8a Revert "drm/amd/display: implement force function in amdgpu_dm_connector_funcs"
-35f6a108d8c0 Revert "drm/amd/display: mark amdgpu_dm_connector_funcs_force static"
-fe7e98185e75 Revert "drm/amd/display: assign edid_blob_ptr with edid from debugfs"
-a6ad35907d63 Revert "drm/amd/display: drop unused count variable in create_eml_sink()"
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122739v1/index.html
-
---===============0759007921919221416==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/amd/display: stop using drm_edid_override_connector_update()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/122739/">https://patchwork.freedesktop.org/series/122739/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122739v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122739v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13543 -&gt; Patchwork_122739v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_122739v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_122739v1, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122739v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 13)</h2>
-<p>ERROR: It appears as if the changes made in Patchwork_122739v1 prevented too many machines from booting.</p>
-<p>Missing    (28): fi-kbl-soraka fi-rkl-11600 bat-adls-5 bat-dg1-5 fi-apl-guc fi-snb-2520m fi-pnv-d510 bat-rpls-1 fi-bsw-n3050 bat-adlm-1 bat-dg2-9 fi-ilk-650 fi-hsw-4770 bat-adln-1 fi-ivb-3770 bat-jsl-3 bat-rplp-1 bat-kbl-2 bat-adlp-9 fi-skl-guc fi-glk-j4005 bat-mtlp-8 bat-jsl-1 bat-mtlp-6 fi-kbl-guc fi-cfl-8109u fi-kbl-8809g bat-dg2-14 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_122739v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_suspend@basic-s3-without-i915:<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13543/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122739v1/bat-rpls-2/igt@i915_suspend@basic-s3-without-i915.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@migrate:<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13543/bat-atsm-1/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7699">i915#7699</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122739v1/bat-atsm-1/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13543 -&gt; Patchwork_122739v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13543: f450aa57b6725458339a934f474d5a0e5cb2dce0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7448: 84aa6d50648d9349fb4f1520f37e5374908c9f4d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_122739v1: f450aa57b6725458339a934f474d5a0e5cb2dce0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>c5ebb77a1a8a Revert "drm/amd/display: implement force function in amdgpu_dm_connector_funcs"<br />
-35f6a108d8c0 Revert "drm/amd/display: mark amdgpu_dm_connector_funcs_force static"<br />
-fe7e98185e75 Revert "drm/amd/display: assign edid_blob_ptr with edid from debugfs"<br />
-a6ad35907d63 Revert "drm/amd/display: drop unused count variable in create_eml_sink()"</p>
-
-</body>
-</html>
-
---===============0759007921919221416==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
