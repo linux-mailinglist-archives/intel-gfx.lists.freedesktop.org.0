@@ -1,50 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E96A7839AC
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 08:04:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0EAE7839AD
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 08:04:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9201810E2DA;
-	Tue, 22 Aug 2023 06:04:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9654710E2DE;
+	Tue, 22 Aug 2023 06:04:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF09910E2D6
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 06:04:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B897D10E2DA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 06:04:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692684259; x=1724220259;
+ t=1692684261; x=1724220261;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PhAALNdpcGxKxSw8Jk1CGZDSIMaT/yP4ekSzOHeERpI=;
- b=heMoUVuVo+SWAVc3tqDx5KJy1eVBrQz6Pn8k6CePmPxLrfZwRGCDWNVF
- dD8YT2mu2xIUNIKeX1DD4cUsqpQEy6P6wNTEAjhuKAHgRXtwtZkWfNaZv
- HmMQND3TX3E4m48TjlYe/yiXQSNdWTzgcvVORiVAWoFW4oSgqIfTG8W0C
- T1/5HhGjzG/OWg6YLRCLnfDdh3VYsNvhGzyw1dACkmGEB1u59jkJAKzQn
- pz2wqMdQAVgd4VAXJ/YUU4VxZjI20Y/OS3NKpbx73JwUboTcynKYsJ7jM
- TeVo4FETpTL9nXuCOQ70hOqzVvoULtUEdBEFi4PaC6TUiSLWpXdmJUxmB A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="354119313"
-X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; d="scan'208";a="354119313"
+ bh=qZ4CPixKNxkPWsbLRXAHY2/PfJP8lHFCyEM7Z5+GODI=;
+ b=SKzdgDsZIqTxCnIqauby8EPTnXJT6jMroqETJNwogMntlVijqwPj+1yT
+ mXo0UYyhycEbAL8/C9Tgr8wk2KnCLNryoG+IUAM63fTMKTrFvfGfNL3EQ
+ ZVeCZO/2AtziStHg1bPgdUSjq7GW3pxKFikm5anuogkdyayaKrNMvTz0D
+ XlOFVqvLzoto2DHl8/W86CdfjerW1lOBLK7pXHOOxNLvM/zgWhh6lRydP
+ 66/5ePwM5+4mp/ukN+/1QYhS0EB3se2RLk5wGmU+bicDOems+d/pmL4Mo
+ QvisxSyiPaiOWe2Bd6K8GxA0ZGt5i2508CMcsUvRSpIQrMsQx1ytHRaMp Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="354119327"
+X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; d="scan'208";a="354119327"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 23:04:19 -0700
+ 21 Aug 2023 23:04:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="806163029"
-X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; d="scan'208";a="806163029"
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="806163043"
+X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; d="scan'208";a="806163043"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmsmga004.fm.intel.com with ESMTP; 21 Aug 2023 23:04:17 -0700
+ by fmsmga004.fm.intel.com with ESMTP; 21 Aug 2023 23:04:20 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 22 Aug 2023 11:32:34 +0530
-Message-Id: <20230822060240.413101-2-suraj.kandpal@intel.com>
+Date: Tue, 22 Aug 2023 11:32:35 +0530
+Message-Id: <20230822060240.413101-3-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230822060240.413101-1-suraj.kandpal@intel.com>
 References: <20230822060240.413101-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v9 1/8] drm/i915/vdsc: Refactor dsc register
- field macro
+Subject: [Intel-gfx] [PATCH v9 2/8] drm/i915/vdsc: Add a check for dsc split
+ cases
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,204 +60,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch refactors dsc register related macros that prepares
-the values to be written in the register. The current bit shifting
-looks bad and going forward will not serve our purpose to readout
-dsc register field values the change was suggested by Jani Nikula.
+In intel_vdsc_get_config we only read the primary dsc engine register
+and not take into account if the other dsc engine is in use and if
+both registers have the same value or not this patche fixes that by
+adding a check.
 
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
+--v3
+-Remove superfluos new line [Jani]
+-Fix register naming [Jani]
+
+--v5
+-pps_temp0/pps_temp1 can be assigned where they are used [Ankit]
+
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- .../gpu/drm/i915/display/intel_vdsc_regs.h    | 98 +++++++++++++------
- 1 file changed, 70 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-index b71f00b5c761..785ede31116e 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -57,7 +57,8 @@
- #define MTL_DSC1_PICTURE_PARAMETER_SET_17(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _MTL_DSC1_PICTURE_PARAMETER_SET_17_PB, \
- 							   _MTL_DSC1_PICTURE_PARAMETER_SET_17_PC)
--#define DSC_SL_BPG_OFFSET(offset)		((offset) << 27)
-+#define DSC_SL_BPG_OFFSET_MASK			REG_GENMASK(31, 27)
-+#define DSC_SL_BPG_OFFSET(offset)		REG_FIELD_PREP(DSC_SL_BPG_OFFSET_MASK, offset)
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index e4c395b4dc46..94af579b63d3 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -1002,7 +1002,7 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
+ 	enum pipe pipe = crtc->pipe;
+ 	enum intel_display_power_domain power_domain;
+ 	intel_wakeref_t wakeref;
+-	u32 dss_ctl1, dss_ctl2, pps0 = 0, pps1 = 0;
++	u32 dss_ctl1, dss_ctl2, pps0 = 0, pps1 = 0, pps_temp0, pps_temp1;
  
- #define _MTL_DSC0_PICTURE_PARAMETER_SET_18_PB	0x782B8
- #define _MTL_DSC1_PICTURE_PARAMETER_SET_18_PB	0x783B8
-@@ -69,8 +70,10 @@
- #define MTL_DSC1_PICTURE_PARAMETER_SET_18(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _MTL_DSC1_PICTURE_PARAMETER_SET_18_PB, \
- 							   _MTL_DSC1_PICTURE_PARAMETER_SET_18_PC)
--#define DSC_NSL_BPG_OFFSET(offset)		((offset) << 16)
--#define DSC_SL_OFFSET_ADJ(offset)		((offset) << 0)
-+#define DSC_NSL_BPG_OFFSET_MASK			REG_GENMASK(31, 16)
-+#define DSC_SL_OFFSET_ADJ_MASK			REG_GENMASK(15, 0)
-+#define DSC_NSL_BPG_OFFSET(offset)		REG_FIELD_PREP(DSC_NSL_BPG_OFFSET_MASK, offset)
-+#define DSC_SL_OFFSET_ADJ(offset)		REG_FIELD_PREP(DSC_SL_OFFSET_ADJ_MASK, offset)
+ 	if (!intel_dsc_source_support(crtc_state))
+ 		return;
+@@ -1028,11 +1028,23 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
+ 	/* PPS0 & PPS1 */
+ 	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+ 		pps1 = intel_de_read(dev_priv, DSCA_PICTURE_PARAMETER_SET_1);
++		if (crtc_state->dsc.dsc_split) {
++			pps_temp1 = intel_de_read(dev_priv, DSCC_PICTURE_PARAMETER_SET_1);
++			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
++		}
+ 	} else {
+ 		pps0 = intel_de_read(dev_priv,
+ 				     ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe));
+ 		pps1 = intel_de_read(dev_priv,
+ 				     ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
++		if (crtc_state->dsc.dsc_split) {
++			pps_temp0 = intel_de_read(dev_priv,
++						  ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe));
++			pps_temp1 = intel_de_read(dev_priv,
++						  ICL_DSC1_PICTURE_PARAMETER_SET_1(pipe));
++			drm_WARN_ON(&dev_priv->drm, pps0 != pps_temp0);
++			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
++		}
+ 	}
  
- /* Icelake Display Stream Compression Registers */
- #define DSCA_PICTURE_PARAMETER_SET_0		_MMIO(0x6B200)
-@@ -123,8 +126,10 @@
- #define ICL_DSC1_PICTURE_PARAMETER_SET_2(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 					    _ICL_DSC1_PICTURE_PARAMETER_SET_2_PB, \
- 					    _ICL_DSC1_PICTURE_PARAMETER_SET_2_PC)
--#define  DSC_PIC_WIDTH(pic_width)	((pic_width) << 16)
--#define  DSC_PIC_HEIGHT(pic_height)	((pic_height) << 0)
-+#define  DSC_PIC_WIDTH_MASK		REG_GENMASK(31, 16)
-+#define  DSC_PIC_HEIGHT_MASK		REG_GENMASK(15, 0)
-+#define  DSC_PIC_WIDTH(pic_width)	REG_FIELD_PREP(DSC_PIC_WIDTH_MASK, pic_width)
-+#define  DSC_PIC_HEIGHT(pic_height)	REG_FIELD_PREP(DSC_PIC_HEIGHT_MASK, pic_height)
- 
- #define DSCA_PICTURE_PARAMETER_SET_3		_MMIO(0x6B20C)
- #define DSCC_PICTURE_PARAMETER_SET_3		_MMIO(0x6BA0C)
-@@ -138,8 +143,10 @@
- #define ICL_DSC1_PICTURE_PARAMETER_SET_3(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_3_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_3_PC)
--#define  DSC_SLICE_WIDTH(slice_width)   ((slice_width) << 16)
--#define  DSC_SLICE_HEIGHT(slice_height) ((slice_height) << 0)
-+#define  DSC_SLICE_WIDTH_MASK			REG_GENMASK(31, 16)
-+#define  DSC_SLICE_HEIGHT_MASK			REG_GENMASK(15, 0)
-+#define  DSC_SLICE_WIDTH(slice_width)		REG_FIELD_PREP(DSC_SLICE_WIDTH_MASK, slice_width)
-+#define  DSC_SLICE_HEIGHT(slice_height)		REG_FIELD_PREP(DSC_SLICE_HEIGHT_MASK, slice_height)
- 
- #define DSCA_PICTURE_PARAMETER_SET_4		_MMIO(0x6B210)
- #define DSCC_PICTURE_PARAMETER_SET_4		_MMIO(0x6BA10)
-@@ -153,8 +160,12 @@
- #define ICL_DSC1_PICTURE_PARAMETER_SET_4(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_4_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_4_PC)
--#define  DSC_INITIAL_DEC_DELAY(dec_delay)       ((dec_delay) << 16)
--#define  DSC_INITIAL_XMIT_DELAY(xmit_delay)     ((xmit_delay) << 0)
-+#define  DSC_INITIAL_DEC_DELAY_MASK		REG_GENMASK(31, 16)
-+#define  DSC_INITIAL_XMIT_DELAY_MASK		REG_GENMASK(9, 0)
-+#define  DSC_INITIAL_DEC_DELAY(dec_delay)       REG_FIELD_PREP(DSC_INITIAL_DEC_DELAY_MASK, \
-+							       dec_delay)
-+#define  DSC_INITIAL_XMIT_DELAY(xmit_delay)     REG_FIELD_PREP(DSC_INITIAL_XMIT_DELAY_MASK, \
-+							       xmit_delay)
- 
- #define DSCA_PICTURE_PARAMETER_SET_5		_MMIO(0x6B214)
- #define DSCC_PICTURE_PARAMETER_SET_5		_MMIO(0x6BA14)
-@@ -168,8 +179,10 @@
- #define ICL_DSC1_PICTURE_PARAMETER_SET_5(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_5_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_5_PC)
--#define  DSC_SCALE_DEC_INT(scale_dec)	((scale_dec) << 16)
--#define  DSC_SCALE_INC_INT(scale_inc)		((scale_inc) << 0)
-+#define  DSC_SCALE_DEC_INT_MASK			REG_GENMASK(27, 16)
-+#define  DSC_SCALE_INC_INT_MASK			REG_GENMASK(15, 0)
-+#define  DSC_SCALE_DEC_INT(scale_dec)		REG_FIELD_PREP(DSC_SCALE_DEC_INT_MASK, scale_dec)
-+#define  DSC_SCALE_INC_INT(scale_inc)		REG_FIELD_PREP(DSC_SCALE_INC_INT_MASK, scale_inc)
- 
- #define DSCA_PICTURE_PARAMETER_SET_6		_MMIO(0x6B218)
- #define DSCC_PICTURE_PARAMETER_SET_6		_MMIO(0x6BA18)
-@@ -183,10 +196,16 @@
- #define ICL_DSC1_PICTURE_PARAMETER_SET_6(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_6_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_6_PC)
--#define  DSC_FLATNESS_MAX_QP(max_qp)		((max_qp) << 24)
--#define  DSC_FLATNESS_MIN_QP(min_qp)		((min_qp) << 16)
--#define  DSC_FIRST_LINE_BPG_OFFSET(offset)	((offset) << 8)
--#define  DSC_INITIAL_SCALE_VALUE(value)		((value) << 0)
-+#define  DSC_FLATNESS_MAX_QP_MASK		REG_GENMASK(28, 24)
-+#define  DSC_FLATNESS_MIN_QP_MASK		REG_GENMASK(20, 16)
-+#define  DSC_FIRST_LINE_BPG_OFFSET_MASK		REG_GENMASK(12, 8)
-+#define  DSC_INITIAL_SCALE_VALUE_MASK		REG_GENMASK(5, 0)
-+#define  DSC_FLATNESS_MAX_QP(max_qp)		REG_FIELD_PREP(DSC_FLATNESS_MAX_QP_MASK, max_qp)
-+#define  DSC_FLATNESS_MIN_QP(min_qp)		REG_FIELD_PREP(DSC_FLATNESS_MIN_QP_MASK, min_qp)
-+#define  DSC_FIRST_LINE_BPG_OFFSET(offset)	REG_FIELD_PREP(DSC_FIRST_LINE_BPG_OFFSET_MASK, \
-+							       offset)
-+#define  DSC_INITIAL_SCALE_VALUE(value)		REG_FIELD_PREP(DSC_INITIAL_SCALE_VALUE_MASK, \
-+							       value)
- 
- #define DSCA_PICTURE_PARAMETER_SET_7		_MMIO(0x6B21C)
- #define DSCC_PICTURE_PARAMETER_SET_7		_MMIO(0x6BA1C)
-@@ -200,8 +219,11 @@
- #define ICL_DSC1_PICTURE_PARAMETER_SET_7(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							    _ICL_DSC1_PICTURE_PARAMETER_SET_7_PB, \
- 							    _ICL_DSC1_PICTURE_PARAMETER_SET_7_PC)
--#define  DSC_NFL_BPG_OFFSET(bpg_offset)		((bpg_offset) << 16)
--#define  DSC_SLICE_BPG_OFFSET(bpg_offset)	((bpg_offset) << 0)
-+#define  DSC_NFL_BPG_OFFSET_MASK		REG_GENMASK(31, 16)
-+#define  DSC_SLICE_BPG_OFFSET_MASK		REG_GENMASK(15, 0)
-+#define  DSC_NFL_BPG_OFFSET(bpg_offset)		REG_FIELD_PREP(DSC_NFL_BPG_OFFSET_MASK, bpg_offset)
-+#define  DSC_SLICE_BPG_OFFSET(bpg_offset)	REG_FIELD_PREP(DSC_SLICE_BPG_OFFSET_MASK, \
-+							       bpg_offset)
- 
- #define DSCA_PICTURE_PARAMETER_SET_8		_MMIO(0x6B220)
- #define DSCC_PICTURE_PARAMETER_SET_8		_MMIO(0x6BA20)
-@@ -215,8 +237,12 @@
- #define ICL_DSC1_PICTURE_PARAMETER_SET_8(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_8_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_8_PC)
--#define  DSC_INITIAL_OFFSET(initial_offset)		((initial_offset) << 16)
--#define  DSC_FINAL_OFFSET(final_offset)			((final_offset) << 0)
-+#define  DSC_INITIAL_OFFSET_MASK		REG_GENMASK(31, 16)
-+#define  DSC_FINAL_OFFSET_MASK			REG_GENMASK(15, 0)
-+#define  DSC_INITIAL_OFFSET(initial_offset)	REG_FIELD_PREP(DSC_INITIAL_OFFSET_MASK, \
-+							       initial_offset)
-+#define  DSC_FINAL_OFFSET(final_offset)		REG_FIELD_PREP(DSC_FINAL_OFFSET_MASK, \
-+							       final_offset)
- 
- #define DSCA_PICTURE_PARAMETER_SET_9		_MMIO(0x6B224)
- #define DSCC_PICTURE_PARAMETER_SET_9		_MMIO(0x6BA24)
-@@ -230,8 +256,12 @@
- #define ICL_DSC1_PICTURE_PARAMETER_SET_9(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_9_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_9_PC)
--#define  DSC_RC_EDGE_FACTOR(rc_edge_fact)	((rc_edge_fact) << 16)
--#define  DSC_RC_MODEL_SIZE(rc_model_size)	((rc_model_size) << 0)
-+#define  DSC_RC_EDGE_FACTOR_MASK		REG_GENMASK(19, 16)
-+#define  DSC_RC_MODEL_SIZE_MASK			REG_GENMASK(15, 0)
-+#define  DSC_RC_EDGE_FACTOR(rc_edge_fact)	REG_FIELD_PREP(DSC_RC_EDGE_FACTOR_MASK, \
-+							       rc_edge_fact)
-+#define  DSC_RC_MODEL_SIZE(rc_model_size)	REG_FIELD_PREP(DSC_RC_MODEL_SIZE_MASK, \
-+							       rc_model_size)
- 
- #define DSCA_PICTURE_PARAMETER_SET_10		_MMIO(0x6B228)
- #define DSCC_PICTURE_PARAMETER_SET_10		_MMIO(0x6BA28)
-@@ -245,10 +275,16 @@
- #define ICL_DSC1_PICTURE_PARAMETER_SET_10(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_10_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_10_PC)
--#define  DSC_RC_TARGET_OFF_LOW(rc_tgt_off_low)		((rc_tgt_off_low) << 20)
--#define  DSC_RC_TARGET_OFF_HIGH(rc_tgt_off_high)	((rc_tgt_off_high) << 16)
--#define  DSC_RC_QUANT_INC_LIMIT1(lim)			((lim) << 8)
--#define  DSC_RC_QUANT_INC_LIMIT0(lim)			((lim) << 0)
-+#define  DSC_RC_TGT_OFF_LOW_MASK			REG_GENMASK(23, 20)
-+#define  DSC_RC_TGT_OFF_HIGH_MASK			REG_GENMASK(19, 16)
-+#define  DSC_RC_QUANT_INC_LIMIT1_MASK			REG_GENMASK(12, 8)
-+#define  DSC_RC_QUANT_INC_LIMIT0_MASK			REG_GENMASK(4, 0)
-+#define  DSC_RC_TARGET_OFF_LOW(rc_tgt_off_low)		REG_FIELD_PREP(DSC_RC_TGT_OFF_LOW_MASK, \
-+								       rc_tgt_off_low)
-+#define  DSC_RC_TARGET_OFF_HIGH(rc_tgt_off_high)	REG_FIELD_PREP(DSC_RC_TGT_OFF_HIGH_MASK, \
-+								       rc_tgt_off_high)
-+#define  DSC_RC_QUANT_INC_LIMIT1(lim)		REG_FIELD_PREP(DSC_RC_QUANT_INC_LIMIT1_MASK, lim)
-+#define  DSC_RC_QUANT_INC_LIMIT0(lim)		REG_FIELD_PREP(DSC_RC_QUANT_INC_LIMIT0_MASK, lim)
- 
- #define DSCA_PICTURE_PARAMETER_SET_11		_MMIO(0x6B22C)
- #define DSCC_PICTURE_PARAMETER_SET_11		_MMIO(0x6BA2C)
-@@ -327,9 +363,15 @@
- #define ICL_DSC1_PICTURE_PARAMETER_SET_16(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_16_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_16_PC)
--#define  DSC_SLICE_ROW_PER_FRAME(slice_row_per_frame)	((slice_row_per_frame) << 20)
--#define  DSC_SLICE_PER_LINE(slice_per_line)		((slice_per_line) << 16)
--#define  DSC_SLICE_CHUNK_SIZE(slice_chunk_size)		((slice_chunk_size) << 0)
-+#define  DSC_SLICE_ROW_PR_FRME_MASK			REG_GENMASK(31, 20)
-+#define  DSC_SLICE_PER_LINE_MASK			REG_GENMASK(18, 16)
-+#define  DSC_SLICE_CHUNK_SIZE_MASK			REG_GENMASK(15, 0)
-+#define  DSC_SLICE_ROW_PER_FRAME(slice_row_per_frame)	REG_FIELD_PREP(DSC_SLICE_ROW_PR_FRME_MASK, \
-+								       slice_row_per_frame)
-+#define  DSC_SLICE_PER_LINE(slice_per_line)		REG_FIELD_PREP(DSC_SLICE_PER_LINE_MASK, \
-+								       slice_per_line)
-+#define  DSC_SLICE_CHUNK_SIZE(slice_chunk_size)		REG_FIELD_PREP(DSC_SLICE_CHUNK_SIZE_MASK, \
-+								       slice_chunk_size)
- 
- /* Icelake Rate Control Buffer Threshold Registers */
- #define DSCA_RC_BUF_THRESH_0			_MMIO(0x6B230)
+ 	vdsc_cfg->bits_per_pixel = pps1;
 -- 
 2.25.1
 
