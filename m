@@ -2,151 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B24783874
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 05:24:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18DDA78388D
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 05:30:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8032610E2D3;
-	Tue, 22 Aug 2023 03:24:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA11010E2D3;
+	Tue, 22 Aug 2023 03:30:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06E4F10E2D3
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 03:24:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E782E10E2D3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 03:30:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692674673; x=1724210673;
+ t=1692675032; x=1724211032;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=P/xhUE4G0+FI3MQG7lKt8R+SPOpIK2TXWIm4ExWC4ek=;
- b=ED9ZXEmLtmTunAF4mbBRrbD+rzRXMsa3xoCcSklo5SZl9rPc4zQxoZaq
- 1bkOQm1UiI/lgiO46sg67WD5QHMG/Xut/oLxzw5JQtNahEj4PE6GzmCMh
- 9s1UPpglVSPzQ8Fvu0jpbPvOjPuT5UFPgMfGpVfrn1oM29QuHj+A0x/s+
- dWW0s1s1Y4WPU9SNws9X/JfQkasG3coxl079gMiwOGtIGJgJqCOysQOtc
- pS31pcmymq+eEBeDiOCkip5KinpIElPXSBrfUkEaErP94V8gx433w/EyU
- CR/npOgh3LtbSpLntbZ7oG3vvjqC0/r7rcLlJ7e3xV9m/vvRsUR4kHbVs A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="354093822"
-X-IronPort-AV: E=Sophos;i="6.01,191,1684825200"; d="scan'208";a="354093822"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 20:24:33 -0700
+ bh=4qhuveJJuDZAczk1983x74gIAgN/tJgusvmRJQaeupo=;
+ b=YBWa2cQfzZkld/IiU8pWw0QNSh/OgcKck1HVN4tXJKEBI2IAo2YO6fNK
+ cbalz7ameOq7XgrZDq4H83v82tNZtFrfrvepXP3130SCNfxauaAuOu+cL
+ HKFwI82+9fkNlZJ3y7s2J7MFLWtgZHu7lkUJszsfsQmL5yetRkbGnlkH9
+ w4GPWuQNmERcud/uvisD/RJ5NxjSZ9OPlYxeBfps4bplc+/Y2cqzZmTcp
+ nrg4hlzmHho1eLYe5xrCEd/aaeQPUQaYX69imkUXX8jxvNwluqcJ9oSau
+ Fv+qleSFT2FDbUyssDsWvhS3wfpLtIHaJO/xZyU9Ult6ogKGxNL43RMUP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="373737511"
+X-IronPort-AV: E=Sophos;i="6.01,191,1684825200"; d="scan'208";a="373737511"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2023 20:30:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="879771760"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga001.fm.intel.com with ESMTP; 21 Aug 2023 20:24:37 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="739148215"
+X-IronPort-AV: E=Sophos;i="6.01,191,1684825200"; d="scan'208";a="739148215"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga007.fm.intel.com with ESMTP; 21 Aug 2023 20:30:32 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 21 Aug 2023 20:24:32 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.27; Mon, 21 Aug 2023 20:30:31 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 21 Aug 2023 20:24:32 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Mon, 21 Aug 2023 20:24:32 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.109)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Mon, 21 Aug 2023 20:30:25 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Mon, 21 Aug 2023 20:24:31 -0700
+ 15.1.2507.27; Mon, 21 Aug 2023 20:30:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TvewQ3595BiyoK+VQUJRBqxD2lOIHXgZVlhgrFJ9rTX6BsIfnChGl2gpXj5p3ta9oLN6pqphOi5GWgbO6BZlwTmJgT2xBbNwTeAo3YK0TGoGkJAD/x6Hkn8Y1ocfWbipbVckdBXBYQxR+CgvqidnKkQ82qitjRasQoChmes2W2S1PD/SL5YYlOE0ZA3VcQvAoO2pk2f+7PFzJGoQBIg7ZzkFvuP5HC0VwxaNPuAHggaDg9MtAa/C1yL0opI8XV/7N7ynAn7T7ZqQH/10mupNqF7dnxRBfcnGlQNW3ntrfPdjrX68md6ETzkPAMLybjx9ajLtyg1lkaJlDzstKHOk9g==
+ b=kvZ2y3I94zT27+dAO4DIIXhJBLcpCUK25HSUW5yzLZ7FZ3Zmyjo3PibcjKcRh+phvsYRpb137ournKDVyWBXYOqVWnYBcNathqUZkuEA5qdET6rmyQgudLY63FpWDZZg7oSi/+1U/wFOSJV1J82FD+HVPEwF19/WZ5/b6/JEYFJaXN6yrIm/7yFrrWFlVpr+514bUMYZROCUv348QBaox9EbEaMsU68kFn+A1+dJCq8hjC+eOYaVoatDg7nK/f+u+X7n+yM9uLxPVHzxYxZGwlVPe9LLYImMwEBvttXEhWIX+lP5ISXops9AAkgOBHLDwhFv7JKY1dFJCk+psVNm4w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y0kPhzttnTlnsLTxfJigcrcpMfF5Oy5jGDlo8iD/T70=;
- b=Tct0KVrh9wYz0I3UwWXLS26aFeB8ZdWGiu8w7I0qt3u6Ia7RTpo1tmKt/iGPFxV6kQHlGjdctfSycVxdcsBnU9FLaokISy7IAKbfMEUvG2mhJDuSXkm0dYyEAb1CLonsjj7s223h1zK9zlz2zMwJ4fkZzHXdd/tGuV0ELfGkmi4MyvsWNfcY7sOEVn7AFk2VZHzGl3jsSfSpWe0NPWyhs/WNLYzv/U36uOKAP2R4McuGdbQUb8XRcswgPf3AAVkZ6wnBbpEwLVmggru4d8pR5ElOQ2kkLeNk4jO7dwY82JxUV82xi+zMpk3YECKmpNLyTeGyIH1ahSb9Eb3mEd1KkQ==
+ bh=GG/mxOZJ9dMcVbdljZLgBFNZ3Ej5tKIOBn5OOszfKOI=;
+ b=nqUoIEFHURBTDYjupnu4q/rkQ0Z929zd9PWoHoctWuVQqC+3iE29SKJcflWlySKDWx5gds9Dg79g7w+mhRYkYOoD/V3z0O857WckfZklvBD6ScrNksJNiLVfSLSUvDE3PjP8soZgynNfzjTBWi5ZUwe+zPrzaMDdVdD5Nb4L7a/EeFUFMRnb42i601a1MwMNeXmfZk9R8qHz06+TXCGlgs97eY8tR6aS1E0LmKQGgIW/1Ik2KtK9t7vp2899fLdTVEHMLef/yuYExVK+GNUl35quqmWvT7hphhZaSg2RsmirYD9KsunlWdKJFmA6j4LAPI+ah3dT3MXLjeg16R6okg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by CO1PR11MB4788.namprd11.prod.outlook.com (2603:10b6:303:97::11) with
+ by MN2PR11MB4581.namprd11.prod.outlook.com (2603:10b6:208:26c::22) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Tue, 22 Aug
- 2023 03:24:29 +0000
+ 2023 03:30:22 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::1e8d:5942:e23b:c08d]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::1e8d:5942:e23b:c08d%6]) with mapi id 15.20.6699.022; Tue, 22 Aug 2023
- 03:24:29 +0000
-Message-ID: <ee0fee17-a464-0a94-f0ce-4bf3309aa665@intel.com>
-Date: Tue, 22 Aug 2023 08:54:18 +0530
+ 03:30:22 +0000
+Message-ID: <c3b1245f-56c9-6b99-9c69-3fbf99f53985@intel.com>
+Date: Tue, 22 Aug 2023 09:00:11 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
 Content-Language: en-US
 To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-gfx@lists.freedesktop.org>
 References: <20230817083524.296571-1-suraj.kandpal@intel.com>
- <20230817083524.296571-5-suraj.kandpal@intel.com>
+ <20230817083524.296571-6-suraj.kandpal@intel.com>
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20230817083524.296571-5-suraj.kandpal@intel.com>
+In-Reply-To: <20230817083524.296571-6-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0218.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:ea::10) To DM4PR11MB5341.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN2PR01CA0217.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:ea::15) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CO1PR11MB4788:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7cc6ac54-e8fd-400d-323c-08dba2bf4b2d
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|MN2PR11MB4581:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e1926da-9346-4d77-7740-08dba2c01e15
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 49Y9l/m48SDj31jjjKCDK4Vi6jhAXADk38349b25lavjHH5i3DAK5eQlDG2Oyq5JBd4aPAJ9olRnDqKzUTKJMtr8YQ9Tagf/N4wO/p7VPQt+uFI9Hr4ra6ai0cL1W3HjrVckL9UsRwZyw3JyBsrhml55MrxFJUtE0IIX+DqJ6u4U3HEWTRGoaO+lCXVDm14nJUEbwNtSke7FqEwS02eMOJgq8myTBuVjNo1T34UWXx6aBEm4PhyTDAVhxWA2n05a8PNorK3cd+ZJs7DGpUE8v3nbygrT87VYoa3w9eoFmcIz+uVUSGotB80bx0DS63nDWWCbJEtmUPlXAxiXUxzDw2AaArpbFbTT8mPUHoJAGTcxuQpWBiahZIiic4063r4HfhCnsUaUcap4ZFwWSO289h5As1YfEz5lUy4hpq/WzGouafRFhWM4pfG1cwDGui9JqlHgw3eDbVfSki8Hxw0ZwSkDmDV6g9Wgb8ItkM8Bjv70o8+wm00MaApEzuSCTgBZVW7Sq5twCz0Yi9zclQP/iZZ/sPM2injyhjZSULDHJbxY27JLGq9aMtwETYC9/CLRDgC6pvCVs4y5uizuP1FPOH9sOi8GH2lr27PAK3a2T3sXX1Ha8IB1eYvs+mgsZpZ8rMxwUDNgfrvBXpCywNdBDA==
+X-Microsoft-Antispam-Message-Info: yjWiBQOop/xJbUpeiVOn3ZYg9R9V7UyEc1psKF98WT3ttj7MeAzYZlgIRqKrCipmmzm9SGiQHaZeDow/NrQjg/jFUDmNVa+G8DRIj/A3owFrI0XtdOY+6/jfllZo5zGixhUYgh5cw9c9/ABYFY64+NTprFKb8s3Z17ANyFp+z3HHj1JcXLBdWlocapjK8AY/era9DPwOKXOBxRZ3TINTFiC+92/o1jtWIOSu72RhYAyhUC+vnxOOtYJhYfUM1sTgCBscU5YO6muY4SBX2UyGFF269LwoQHo+YlfOCfORU1SuOBKkr1Y+GwmvHK5C8FyMUp/91f3xMQoCPNgLnCy33Y/fRawaSdYXQSo2rnCSwpTbssCf58yDFBC4fSaxiD9jO2XsfG8WyufHDnCVKhyNnYLmVnxAfrUCoRGHkQOKnTVt7BtBvLMcjePDrzGlxZ8AVsbc+uzyuruzZ4oHLL+GBxkfKzpEMvRx1lxztMpaMg6tcWAIWq6vGSS0Ub19s7/fNyVOM4RvwyIM0jK2s6OGjWlEZ29dXHldYc8uRYyAUOYryrwyJO8tLwZS8XQjwLOtZO9sgQneOMIqqIkM5UeljYCjNJqGNXyWbQCAqwX56EMQ2LNrkiDz11leWX4U82Lx0rLQKrlxhN7NNNp8cV4xWQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(136003)(39860400002)(376002)(346002)(366004)(1800799009)(186009)(451199024)(66476007)(66556008)(316002)(66946007)(6512007)(82960400001)(8676002)(8936002)(2616005)(4326008)(41300700001)(36756003)(478600001)(6666004)(38100700002)(53546011)(6506007)(6486002)(83380400001)(2906002)(86362001)(31686004)(31696002)(5660300002)(26005)(45980500001)(43740500002);
+ SFS:(13230031)(396003)(136003)(39860400002)(376002)(346002)(366004)(1800799009)(186009)(451199024)(66476007)(66556008)(316002)(66946007)(6512007)(82960400001)(8676002)(8936002)(2616005)(4326008)(41300700001)(36756003)(478600001)(6666004)(38100700002)(53546011)(6506007)(6486002)(83380400001)(30864003)(2906002)(86362001)(31686004)(31696002)(5660300002)(26005)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WmdPcUZGOWdUT05XMmhxRklXc2swcXhmY3VtTjNYeUt4NTkzTkZDNHFxVSt6?=
- =?utf-8?B?U01kaFd5S05YN3Y2SWQ0aXhkeUF4bHlMTjgzMXF4cXBPK2JleWhiMTZidVJv?=
- =?utf-8?B?WHJOVFN1UDg3ak9GNUdkc29vMzIxNFlaVjRnVmw1c0RiaXhkYlYrVVE1TkNv?=
- =?utf-8?B?RnNTOEVlQ3lGL2NmWVpnVitEZFdnRFhyT254ejliSGlBQXdvNzRuRjNhZkNU?=
- =?utf-8?B?RDZFdEpCTSsyN1BMYWRDREdyVC9HcVdnR2xKNGwwdWQ1dTUydkttd1ZyUlA0?=
- =?utf-8?B?RCtwTkdLTm85ZEFZVXkzNzBQOWYwK3JUSmttL0FibXd2Yy9GNEJzemYzZ0FS?=
- =?utf-8?B?TVJtblFuekxZSk5rMlR3NDZGQ3NpblNRcFl5SE9tZWg3TmZjTXA1R2loNXkx?=
- =?utf-8?B?VUs2NlRYdW1GYW54czVPSmxNeHA0dVlPdzhhR05rcnExV3Q1cmRpcXpnMmZM?=
- =?utf-8?B?OTR1UEFoR0FMSVpNUzZNaVZZbGpBem1BMXgralhWMWJSWkF5QlVsbmZqV1Fo?=
- =?utf-8?B?ZWMyWTZGWHlSL0d6ZXltVDFGSUNscHVMUU1NUjgzazd2YWV4RzVpZFJkZlFL?=
- =?utf-8?B?M3JFY0EydlhMWTM1Skd4aHpVVmE0dm84R2x1SXF3QlpTL3NHRkk3VHhnMW9o?=
- =?utf-8?B?WnN5emVUUUhadVBWd2R4bU0wd0N3dmoySHJ5d3FVR3VFNStaelJHZmF2Y04y?=
- =?utf-8?B?c21zMTVUZDlCNHU1bDBjMERsc1RGdWJ6aEJrVlk3UFdwcmRxMDN4R0tEWlA4?=
- =?utf-8?B?SXhXZkxTWEJkakxSNWczSXVUeDl0LytyeDRjRFlIcytxYXg4MEVBNFgyaCtq?=
- =?utf-8?B?VFp3U0RodDRaQkFLbWdKeE5KYXY5VFg4VDZ4ZmtDS3FrQzFiNjZ6cDVlZFdi?=
- =?utf-8?B?S2kydndlUHR0UTRlRU16NFE0YVdWTEhIdVlkaUczYzAwS2IvekNRVjc2c2tQ?=
- =?utf-8?B?Vnl3YWdVOEFzOE9WeXR0RUhOVk1UVEhmK2s3UUNDK0JTcW5NR2gxZmcvc0ha?=
- =?utf-8?B?K0RVUFJ5T1dHRy9YN0hXZzY0NGNhWG1CUzJGeERBVDFGVVpKN2V0Qlh0YWhs?=
- =?utf-8?B?TC9IRUpmYTM0cXJlYkhuWGFYU2RGYUNTVkdkbFdFOTVsaG95ZmVPdTMrUWll?=
- =?utf-8?B?SzhQWk9xbGpESEF5WGtmTW50M3hJOVRZdGh2WjI1eDJZS3RFOHhPbmRMNXNx?=
- =?utf-8?B?bG8wWnpPTm10MEMraHdMbjJ3NWNQTHcyc3pORWdkUTQwZmpESy9tMThhbmRh?=
- =?utf-8?B?a3dROXEyMCtlY3NFY2JSekNVTE1zK09ISm5iVzZFOGxJdjZ6cEUrWGwxaGVx?=
- =?utf-8?B?dmFmUjQ5d1dXWnUzaTJlZFlUdUpkQUo4Mi9RM2dNZ1ZiSklyMFYwYng1aWNo?=
- =?utf-8?B?VDBPRnhKV21WVE1rQzl1UXZjY3hQZ0I0R2VyVWgxVThxVjJ6VXRpTjFCOVFU?=
- =?utf-8?B?ZnJNTXhZZTdaN2FJRUdvS2tSS3lTRXlPa3VVNFQyQnVaQ3RzZDZVTUlIdFpj?=
- =?utf-8?B?c01ueGFYcTU4TW1jdXpWOFVXOW4vclEwQmo3WCtrSXlsQ3MzZllwM0dBeVlk?=
- =?utf-8?B?V1AyZ0tlN1hleXBUajQ4WmhPRzg5RUNVMlprcDBteGZHc3JYSERIY1NLNHky?=
- =?utf-8?B?WlFueVZyU3BNbk4wV21LamM0OVNWbXFmN3lmU1d0TzVaSWQ1azVPZlloUXdG?=
- =?utf-8?B?SXFvR3hBL0FjZy9ST1JEMjFNemU3Sy9GWmJUMmc3UkVDZ0dNbUw2WHhET0hq?=
- =?utf-8?B?NmlYMjRidGpGbnpnN3NseUJkdVY4UThpL3d3Z1YxOUFQVlRka1pVWU1jSW9V?=
- =?utf-8?B?U2FKeHhSRFZXRkN0cERnZkJ2VGIzZFRzWXFJVjVaVWJJb1BUdnZ4Y2FFZmRN?=
- =?utf-8?B?T2I0WnF1LzdWYXEwWFJWTnl0emtOeUVKUHByeTVxMFZYNDhpejVGVzFxcEJp?=
- =?utf-8?B?N0xqQVo2L0Z5TEZKS255emduUHZmQ0NLb2NaUWV6QjBFU3l2YXNKMmxIRXdB?=
- =?utf-8?B?OXJvSmt6c3F2bVVWS0FNNTNURjVUTTcwamVabTZ4SzJHQ21RRWc2eXhkbWFs?=
- =?utf-8?B?WkxRTWtVdjFJTm5xZktWTTJaYmdwQjBFYXJPMStUYThqUVhXbHFQRkErV0xW?=
- =?utf-8?B?bkx2KzVHVzNFNVB6dVJtV24rdmRidmNKWGE2Sm9yanIzNDBGaUc5ODhFUkdD?=
- =?utf-8?B?UVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7cc6ac54-e8fd-400d-323c-08dba2bf4b2d
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dnZhakhsSERsMjRNM24wMTJnOXI3ekRVdWlZNVpCWHNjMjBZUlBpVTlUM1Rq?=
+ =?utf-8?B?S3VSVjU0N2p2VzhCYXFGdGhLK1NIdHFMWmVRS0hVMDlENlVyVnFFQXBNNCtu?=
+ =?utf-8?B?dHBpMEYvdkxYelROVU1UWXIvYTRKZnBEdnQrMk82dU9uR2QzRUFkOWNvWEpJ?=
+ =?utf-8?B?R2d2Z1JzaytwMWxpRGt0UkFQVkZRSFo4NGhrbG9acE1HSXhUd1IvSnUvRXR5?=
+ =?utf-8?B?NDlhbjNZVkE4TnNIUUloekF2TXczbzJvaDg4Z0EwYXFsZGlnRW1aN3M2L2VS?=
+ =?utf-8?B?ZFZaY01mREI1Z3ZMS0hRVFRnbis2eERHZlZoSVhCQk9ITUVZNFNyc0ZCUzJI?=
+ =?utf-8?B?cDc2Q3NXc2cyWnVQTnp5YlFJbFRFVExrRmlUeWxXK3dvUWc3ckhtR1dBSDhj?=
+ =?utf-8?B?ajE3aXhLaUp3eWdaalpQYzBaMDhZWi9FUXJRTStqMGovS3dDTFVSZGh6YzMy?=
+ =?utf-8?B?WGdtejFnd29WZmRFM0RGN1BMQzRsYkpma09sR3VoOEsyWHZObFJFbUtPazc3?=
+ =?utf-8?B?RmROR1J4Z1JNMW1xRVNVSk1zd0xQemRvdGhwN0JSTHgrUVVVVmtQVmdHdEdL?=
+ =?utf-8?B?aVNuQ2hqNzVvRkdTL2FMTEFVbWVYOGZ3SEZGV0NJdFdqNzRwdG5pK25kcWRG?=
+ =?utf-8?B?NlhjZkJ2MW5rVXNlZjJzZ0EyRkVDelZUWUROMlpPVE9EaFY0a1g3OUdvMDB0?=
+ =?utf-8?B?d2VwSDlnRWVqUmRYSTJvcW1neDljQklmQ2xRN2tVaGlNS2t4aVBTQzBCaU44?=
+ =?utf-8?B?Z3d5TDlqYUtTd0ZLSEVBSE5nT3RTUXd6YUZYdnFrZnpwVTJJUlFQUW12NmIv?=
+ =?utf-8?B?VUQrSzJFSVZEKzBscEV3WFpaVUw4Rm9BbXhXSW5QVUh6eDZOR0E5N0NLN0Y3?=
+ =?utf-8?B?MVFJUmVOMzFjM0Rub3VzU00xZEVkVGF5ZHFtY0hsT2FCd29aOWFaeVVtc2du?=
+ =?utf-8?B?cEFoRmRiU1N1S1hoV0RIYmluKzhGT3hwWGVFN1pzQjcvVjllR051SFF5NDlk?=
+ =?utf-8?B?cXgwbkdVeHBmeE94bGRGTUdqL2o4cjkvQmlEaTNUZWV3cktZdmI4dzZPMjBZ?=
+ =?utf-8?B?YXIxMkduOE9VYXJraVRxeWY1R3JTSEFRVUZ1NXFaWWl2K1lTa1MvbWlNbXJ2?=
+ =?utf-8?B?U0FLUGFVRloxalNiL0hUU1lmZHZ5N2xWTWJlME0vVDJ5T3V3cm5NYm9qL2tB?=
+ =?utf-8?B?cksyTWgvYkJTdWFIZzdZaWdsZXV4ZzlkYW5Zd1lUS05ueWJRaks5blRLZVRZ?=
+ =?utf-8?B?M01YeXM2WVZyZHV6NWdsdFAzSlNvQXk5MkU2SU0rRndPM0hjaFQ4amVvVlBQ?=
+ =?utf-8?B?c2p6U0wxMHVuZUhVVnBydUxYV1Y0b05FTGRmTkR4amwraEV3KzliYnkxWVZR?=
+ =?utf-8?B?dUltZERJSlVuekFrbGx1aEZURDgzaWFUay9mME5HVFA1SkRGVFc5TWRrM0RX?=
+ =?utf-8?B?SmVoR1RtOFlOQTEzbkFzL2g1UTFaVkVVZExUWW9mYTFTYmhnRUllMEQzMjd1?=
+ =?utf-8?B?K1lEOHpJSTd2OElEZk9kNTF5cGlHQWxtR0ZUN3BOa0lCdEJTR2xMQXlPVmZu?=
+ =?utf-8?B?REhqMGEvS01sOTE1M1B0VkY5R2dCaVFZY0FaT2lxejFocFBUK3ZDMllNRkFI?=
+ =?utf-8?B?V21LRUEwbU5ZaDlLTlZmVjRqWmVVTFRKWVlzTmZhZFd4T3pxNENxNm5OaHFU?=
+ =?utf-8?B?Qmt0VDJIVS9XZE1OcWI3K1l0cktvOFh5L0doaDhvalIyVktxbmR0bFA2TENL?=
+ =?utf-8?B?ZVlpSitlOG1SZ1F2aWVQNVJpbzZOTUFlOHpVdTdrYTZ1NmdFZTVzM1FWa1Qx?=
+ =?utf-8?B?TGxIRVNHWm1tNCszT2RBSUMzMEo0UHUxZU9qOU93cWJFczhWNzYxVDNyWHZU?=
+ =?utf-8?B?WUZCS3NoTWZVVkhlRUMyVnNIRlhRZVJmSTMxcDllVUl4N05iVVBUbi9XRTF1?=
+ =?utf-8?B?eStJbDJwOEI5ekkxKzd3UkpENHBZUUlmSVZxRGxrS2RSck4rdTZBQ01JcUhE?=
+ =?utf-8?B?RFROSXU4dExtYlNvS1JGY0JPYTdDb1c5WEU5Q1lKYXY1K1NQN1cxUG5zeWw2?=
+ =?utf-8?B?S1QzbUszZUlnU0NlSmRzVFlOMU1BREVzaS9DbXR1SjB0clNTeFhSbTlGNkpT?=
+ =?utf-8?B?NVROTFRPcG43T2VFbU5kaHcxZDdRRDV5T25uK1UvM0gzUG5yeHc5SmpzOGla?=
+ =?utf-8?B?YVE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e1926da-9346-4d77-7740-08dba2c01e15
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 03:24:29.0614 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 03:30:22.8586 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wJi4wg5JRMSS/Elew+c0qeghTGUdT+8cyoXkvjbGHOgowCOtCYXkURTT65s065pXp5jFtdVKjwfaEuvkAmesEKknJ4P8ceoYFsbcv7N7n38=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4788
+X-MS-Exchange-CrossTenant-UserPrincipalName: xpUA1nyzcSpvu1MI3nJgg8Tlg1rGDfEXUO4rga/mOsvHbNSB+KOn9gPmwHFBK0DjEs19PESMPbZtv1FAnTew90Wl4aNuAPeRgwb/vfGiQBY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4581
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v8 4/8] drm/i915/vdsc: Add function to read
- any PPS register
+Subject: Re: [Intel-gfx] [PATCH v8 5/8] drm/i915/vdsc: Add function to write
+ in PPS register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,253 +161,410 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 8/17/2023 2:05 PM, Suraj Kandpal wrote:
-> Add function to read any PPS register based on the
-> intel_dsc_pps enum provided. Add a function which will call the
-> new pps read function and place it in crtc state. Only PPS0 and
-> PPS1 are readout the rest of the registers will be read in upcoming
-> patches.
+> Now that we have a function that reads any PPS register based
+> on intel_dsc_pps enum provided lets create a function that can
+> write on any PPS.
 >
 > --v2
-> -Changes in read function as PPS enum is removed
-> -Initialize pps_val as 0 in pps_read func itself [Jani]
-> -Create a function that gets the required register and call that
-> in the common read function [Jani]
-> -Move the drm_WARN_ON one abstraction layer above [Jani]
+> -Changes need as PPS enum was dropped
+> -Remove duplicated code in intel_dsc_write_pps_reg [Jani]
 >
 > --v3
-> -Send both reg values regardless of dsc engine no [Jani]
-> -Don't use num_vdsc_instances stick to dsc_split field [Ankit]
->
-> --v4
-> -Manipulate the reg values instead of creating MACRO to change
-> name of pps [Ankit]
+> -Use dsc_split instead of num_vdsc_instances [Ankit]
 >
 > --v5
-> -Read dsc reg values using array rather than individual variables
+> -Changes to implement the new dsc_reg array variable passing
 > [Ankit]
-> -Loop the verification of all dsc engine reads to future proof it
-> [Ankit]
-> -Keep the fix me comment in this patch and remove it in later one
-> where we add other readouts [Ankit]
-> -Add switch statement that fills in the required registers based on
-> no of vdsc engines per pipe.
 >
 > --v7
-> -Pass no of vdsc instances from read_reg function [Ankit]
-> -Fix issue where arrays do not get freed on return for read_and_verify
-> func [Ankit]
+> -Pass no of vdsc instances to get_pps_reg [Ankit]
 >
 > --v8
-> -Simplify reading and verifying of register and remove dynamically
-> allocated arrays [Jani]
-> -Remove no_ from no_vdsc_per_pipe and wherever else it applies [Ankit]
+> -No need for dsc_reg dynamic allocation [Jani]
+> -Change function to void as no return needs to be sent back
 >
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_vdsc.c     | 118 ++++++++++++------
->   .../gpu/drm/i915/display/intel_vdsc_regs.h    |  12 ++
->   2 files changed, 94 insertions(+), 36 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_vdsc.c | 272 +++-------------------
+>   1 file changed, 30 insertions(+), 242 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index fbe8ce9fe1ab..27ae70b5849f 100644
+> index 27ae70b5849f..e6c2d3ae60aa 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
 > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -371,6 +371,28 @@ int intel_dsc_get_num_vdsc_instances(const struct intel_crtc_state *crtc_state)
->   	return num_vdsc_instances;
+> @@ -393,6 +393,22 @@ static void intel_dsc_get_pps_reg(const struct intel_crtc_state *crtc_state, int
+>   	}
 >   }
 >   
-> +static void intel_dsc_get_pps_reg(const struct intel_crtc_state *crtc_state, int pps,
-> +				  i915_reg_t *dsc_reg, int vdsc_per_pipe)
-
-We are sending dsc_reg_size here.
-
-So just fill the dsc_reg with the offsets, irrespective of the no. of 
-vdsc per pipe.
-
-later we are reading or writing only those which are required based on 
-vdsc per pipe.
-
-This function will always fills the array with offsets as per dsc_reg size.
-
-In read function, while calling this function, the argument sent is 
-dsc_reg which is correct.
-
-In write function in the next patch, the argument sent is vdsc_per_pipe, 
-instead of dsc_reg.
-
-
-Regards,
-
-Ankit
-
-
+> +static void intel_dsc_write_pps_reg(const struct intel_crtc_state *crtc_state,
+> +				    int pps, u32 pps_val)
 > +{
 > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	enum pipe pipe = crtc->pipe;
-> +	bool pipe_dsc;
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	i915_reg_t dsc_reg[2];
+> +	int i, vdsc_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
 > +
-> +	pipe_dsc = is_pipe_dsc(crtc, cpu_transcoder);
+> +	drm_WARN_ON_ONCE(&i915->drm, ARRAY_SIZE(dsc_reg) < vdsc_per_pipe);
 > +
-> +	switch (vdsc_per_pipe) {
-> +	case 2:
-> +		dsc_reg[1] = pipe_dsc ? ICL_DSC1_PPS_REG(pipe, pps) : DSCC_PPS_REG(pps);
-> +		fallthrough;
-> +	case 1:
-> +		dsc_reg[0] = pipe_dsc ? ICL_DSC0_PPS_REG(pipe, pps) : DSCA_PPS_REG(pps);
-> +		break;
-> +	default:
-> +		MISSING_CASE(vdsc_per_pipe);
-> +	}
+> +	intel_dsc_get_pps_reg(crtc_state, pps, dsc_reg, vdsc_per_pipe);
+
+Send ARRAY_SIZE(dsc_reg) here instead of vdsc_per_pipe, as mentioned in 
+the previous patch.
+
+With that fixed, this is:
+
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+
+
+
+> +
+> +	for (i = 0; i < min_t(int, ARRAY_SIZE(dsc_reg), vdsc_per_pipe); i++)
+> +		intel_de_write(i915, dsc_reg[i], pps_val);
 > +}
 > +
 >   static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
 >   {
 >   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> @@ -1000,17 +1022,72 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
->   	}
->   }
->   
-> +static bool intel_dsc_read_pps_reg(struct intel_crtc_state *crtc_state,
-> +				   int pps, u32 *pps_val)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	const int vdsc_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
-> +	i915_reg_t dsc_reg[2];
-> +	int i;
-> +
-> +	*pps_val = 0;
-> +	drm_WARN_ON_ONCE(&i915->drm, ARRAY_SIZE(dsc_reg) < vdsc_per_pipe);
-> +
-> +	intel_dsc_get_pps_reg(crtc_state, pps, dsc_reg, ARRAY_SIZE(dsc_reg));
-> +
-> +	for (i = 0; i < min_t(int, ARRAY_SIZE(dsc_reg), vdsc_per_pipe); i++) {
-> +		u32 pps_temp;
-> +
-> +		pps_temp = intel_de_read(i915, dsc_reg[i]);
-> +
-> +		if (i == 0)
-> +			*pps_val = intel_de_read(i915, dsc_reg[i]);
-> +		else if (pps_temp != *pps_val)
-> +			return false;
-> +	}
-> +
-> +	return true;
-> +}
-> +
-> +static void intel_dsc_read_and_verify_pps_reg(struct intel_crtc_state *crtc_state,
-> +					      int pps, u32 *pps_val)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	int ret;
-> +
-> +	ret = intel_dsc_read_pps_reg(crtc_state, pps, pps_val);
-> +	drm_WARN_ON(&i915->drm, !ret);
-> +}
-> +
-> +static void intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
-> +	u32 pps_temp1, pps_temp2;
-> +
-> +	/* FIXME: add more state readout as needed */
-> +
-> +	/* Readout PPS_0 and PPS_1 registers */
-> +	intel_dsc_read_and_verify_pps_reg(crtc_state, 0, &pps_temp1);
-> +	intel_dsc_read_and_verify_pps_reg(crtc_state, 1, &pps_temp2);
-> +
-> +	vdsc_cfg->bits_per_pixel = pps_temp2;
-> +
-> +	if (pps_temp1 & DSC_NATIVE_420_ENABLE)
-> +		vdsc_cfg->bits_per_pixel >>= 1;
-> +
-> +	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
-> +}
-> +
->   void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
->   {
->   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> -	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
->   	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> -	enum pipe pipe = crtc->pipe;
->   	enum intel_display_power_domain power_domain;
->   	intel_wakeref_t wakeref;
-> -	u32 dss_ctl1, dss_ctl2, pps0 = 0, pps1 = 0, pps_temp0, pps_temp1;
-> -	int vdsc_instances_per_pipe;
-> +	u32 dss_ctl1, dss_ctl2;
->   
->   	if (!intel_dsc_source_support(crtc_state))
->   		return;
-> @@ -1031,38 +1108,7 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
->   	crtc_state->dsc.dsc_split = (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE) &&
->   		(dss_ctl1 & JOINER_ENABLE);
->   
-> -	/* FIXME: add more state readout as needed */
-> -
-> -	vdsc_instances_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
-> -
-> -	/* PPS0 & PPS1 */
+> @@ -428,149 +444,41 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>   	if (vdsc_cfg->vbr_enable)
+>   		pps_val |= DSC_VBR_ENABLE;
+>   	drm_dbg_kms(&dev_priv->drm, "PPS0 = 0x%08x\n", pps_val);
 > -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
-> -		pps1 = intel_de_read(dev_priv, DSCA_PICTURE_PARAMETER_SET_1);
-> -		if (vdsc_instances_per_pipe > 1) {
-> -			pps_temp1 = intel_de_read(dev_priv, DSCC_PICTURE_PARAMETER_SET_1);
-> -			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
-> -		}
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_0,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_0,
+> -				       pps_val);
 > -	} else {
-> -		pps0 = intel_de_read(dev_priv,
-> -				     ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe));
-> -		pps1 = intel_de_read(dev_priv,
-> -				     ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
-> -		if (vdsc_instances_per_pipe > 1) {
-> -			pps_temp0 = intel_de_read(dev_priv,
-> -						  ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe));
-> -			pps_temp1 = intel_de_read(dev_priv,
-> -						  ICL_DSC1_PICTURE_PARAMETER_SET_1(pipe));
-> -			drm_WARN_ON(&dev_priv->drm, pps0 != pps_temp0);
-> -			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
-> -		}
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe),
+> -				       pps_val);
 > -	}
-> -
-> -	vdsc_cfg->bits_per_pixel = pps1;
-> -
-> -	if (pps0 & DSC_NATIVE_420_ENABLE)
-> -		vdsc_cfg->bits_per_pixel >>= 1;
-> -
-> -	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
-> +	intel_dsc_get_pps_config(crtc_state);
->   out:
->   	intel_display_power_put(dev_priv, power_domain, wakeref);
->   }
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> index 785ede31116e..862dc708c5fc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> @@ -78,6 +78,10 @@
->   /* Icelake Display Stream Compression Registers */
->   #define DSCA_PICTURE_PARAMETER_SET_0		_MMIO(0x6B200)
->   #define DSCC_PICTURE_PARAMETER_SET_0		_MMIO(0x6BA00)
-> +#define DSCA_PPS_0				0x6B200
-> +#define DSCC_PPS_0				0x6BA00
-> +#define DSCA_PPS_REG(pps)			_MMIO(DSCA_PPS_0 + (pps) * 4)
-> +#define DSCC_PPS_REG(pps)			_MMIO(DSCC_PPS_0 + (pps) * 4)
->   #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB	0x78270
->   #define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB	0x78370
->   #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC	0x78470
-> @@ -88,6 +92,14 @@
->   #define ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
->   							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB, \
->   							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC)
-> +#define ICL_DSC0_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
-> +							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB, \
-> +							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC)
-> +#define ICL_DSC1_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
-> +							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB, \
-> +							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC)
-> +#define  ICL_DSC0_PPS_REG(pipe, pps)		_MMIO(ICL_DSC0_PPS_0(pipe) + ((pps) * 4))
-> +#define  ICL_DSC1_PPS_REG(pipe, pps)		_MMIO(ICL_DSC1_PPS_0(pipe) + ((pps) * 4))
->   #define  DSC_NATIVE_422_ENABLE		BIT(23)
->   #define  DSC_NATIVE_420_ENABLE		BIT(22)
->   #define  DSC_ALT_ICH_SEL		(1 << 20)
+> +	intel_dsc_write_pps_reg(crtc_state, 0, pps_val);
+>   
+>   	/* Populate PICTURE_PARAMETER_SET_1 registers */
+>   	pps_val = 0;
+>   	pps_val |= DSC_BPP(vdsc_cfg->bits_per_pixel);
+>   	drm_dbg_kms(&dev_priv->drm, "PPS1 = 0x%08x\n", pps_val);
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_1,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_1,
+> -				       pps_val);
+> -	} else {
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_1(pipe),
+> -				       pps_val);
+> -	}
+> +	intel_dsc_write_pps_reg(crtc_state, 1, pps_val);
+>   
+>   	/* Populate PICTURE_PARAMETER_SET_2 registers */
+>   	pps_val = 0;
+>   	pps_val |= DSC_PIC_HEIGHT(vdsc_cfg->pic_height) |
+>   		DSC_PIC_WIDTH(vdsc_cfg->pic_width / num_vdsc_instances);
+>   	drm_dbg_kms(&dev_priv->drm, "PPS2 = 0x%08x\n", pps_val);
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_2,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_2,
+> -				       pps_val);
+> -	} else {
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_2(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_2(pipe),
+> -				       pps_val);
+> -	}
+> +	intel_dsc_write_pps_reg(crtc_state, 2, pps_val);
+>   
+>   	/* Populate PICTURE_PARAMETER_SET_3 registers */
+>   	pps_val = 0;
+>   	pps_val |= DSC_SLICE_HEIGHT(vdsc_cfg->slice_height) |
+>   		DSC_SLICE_WIDTH(vdsc_cfg->slice_width);
+>   	drm_dbg_kms(&dev_priv->drm, "PPS3 = 0x%08x\n", pps_val);
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_3,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_3,
+> -				       pps_val);
+> -	} else {
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_3(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_3(pipe),
+> -				       pps_val);
+> -	}
+> +	intel_dsc_write_pps_reg(crtc_state, 3, pps_val);
+>   
+>   	/* Populate PICTURE_PARAMETER_SET_4 registers */
+>   	pps_val = 0;
+>   	pps_val |= DSC_INITIAL_XMIT_DELAY(vdsc_cfg->initial_xmit_delay) |
+>   		DSC_INITIAL_DEC_DELAY(vdsc_cfg->initial_dec_delay);
+>   	drm_dbg_kms(&dev_priv->drm, "PPS4 = 0x%08x\n", pps_val);
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_4,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_4,
+> -				       pps_val);
+> -	} else {
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_4(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_4(pipe),
+> -				       pps_val);
+> -	}
+> +	intel_dsc_write_pps_reg(crtc_state, 4, pps_val);
+>   
+>   	/* Populate PICTURE_PARAMETER_SET_5 registers */
+>   	pps_val = 0;
+>   	pps_val |= DSC_SCALE_INC_INT(vdsc_cfg->scale_increment_interval) |
+>   		DSC_SCALE_DEC_INT(vdsc_cfg->scale_decrement_interval);
+>   	drm_dbg_kms(&dev_priv->drm, "PPS5 = 0x%08x\n", pps_val);
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_5,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_5,
+> -				       pps_val);
+> -	} else {
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_5(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_5(pipe),
+> -				       pps_val);
+> -	}
+> +	intel_dsc_write_pps_reg(crtc_state, 5, pps_val);
+>   
+>   	/* Populate PICTURE_PARAMETER_SET_6 registers */
+>   	pps_val = 0;
+> @@ -579,100 +487,28 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>   		DSC_FLATNESS_MIN_QP(vdsc_cfg->flatness_min_qp) |
+>   		DSC_FLATNESS_MAX_QP(vdsc_cfg->flatness_max_qp);
+>   	drm_dbg_kms(&dev_priv->drm, "PPS6 = 0x%08x\n", pps_val);
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_6,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_6,
+> -				       pps_val);
+> -	} else {
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_6(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_6(pipe),
+> -				       pps_val);
+> -	}
+> +	intel_dsc_write_pps_reg(crtc_state, 6, pps_val);
+>   
+>   	/* Populate PICTURE_PARAMETER_SET_7 registers */
+>   	pps_val = 0;
+>   	pps_val |= DSC_SLICE_BPG_OFFSET(vdsc_cfg->slice_bpg_offset) |
+>   		DSC_NFL_BPG_OFFSET(vdsc_cfg->nfl_bpg_offset);
+>   	drm_dbg_kms(&dev_priv->drm, "PPS7 = 0x%08x\n", pps_val);
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_7,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_7,
+> -				       pps_val);
+> -	} else {
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_7(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_7(pipe),
+> -				       pps_val);
+> -	}
+> +	intel_dsc_write_pps_reg(crtc_state, 7, pps_val);
+>   
+>   	/* Populate PICTURE_PARAMETER_SET_8 registers */
+>   	pps_val = 0;
+>   	pps_val |= DSC_FINAL_OFFSET(vdsc_cfg->final_offset) |
+>   		DSC_INITIAL_OFFSET(vdsc_cfg->initial_offset);
+>   	drm_dbg_kms(&dev_priv->drm, "PPS8 = 0x%08x\n", pps_val);
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_8,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_8,
+> -				       pps_val);
+> -	} else {
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_8(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_8(pipe),
+> -				       pps_val);
+> -	}
+> +	intel_dsc_write_pps_reg(crtc_state, 8, pps_val);
+>   
+>   	/* Populate PICTURE_PARAMETER_SET_9 registers */
+>   	pps_val = 0;
+>   	pps_val |= DSC_RC_MODEL_SIZE(vdsc_cfg->rc_model_size) |
+>   		DSC_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
+>   	drm_dbg_kms(&dev_priv->drm, "PPS9 = 0x%08x\n", pps_val);
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_9,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_9,
+> -				       pps_val);
+> -	} else {
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_9(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_9(pipe),
+> -				       pps_val);
+> -	}
+> +	intel_dsc_write_pps_reg(crtc_state, 9, pps_val);
+>   
+>   	/* Populate PICTURE_PARAMETER_SET_10 registers */
+>   	pps_val = 0;
+> @@ -681,25 +517,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>   		DSC_RC_TARGET_OFF_HIGH(DSC_RC_TGT_OFFSET_HI_CONST) |
+>   		DSC_RC_TARGET_OFF_LOW(DSC_RC_TGT_OFFSET_LO_CONST);
+>   	drm_dbg_kms(&dev_priv->drm, "PPS10 = 0x%08x\n", pps_val);
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_10,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       DSCC_PICTURE_PARAMETER_SET_10, pps_val);
+> -	} else {
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_10(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_10(pipe),
+> -				       pps_val);
+> -	}
+> +	intel_dsc_write_pps_reg(crtc_state, 10, pps_val);
+>   
+>   	/* Populate Picture parameter set 16 */
+>   	pps_val = 0;
+> @@ -709,51 +527,21 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+>   		DSC_SLICE_ROW_PER_FRAME(vdsc_cfg->pic_height /
+>   					vdsc_cfg->slice_height);
+>   	drm_dbg_kms(&dev_priv->drm, "PPS16 = 0x%08x\n", pps_val);
+> -	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
+> -		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_16,
+> -			       pps_val);
+> -		/*
+> -		 * If 2 VDSC instances are needed, configure PPS for second
+> -		 * VDSC
+> -		 */
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       DSCC_PICTURE_PARAMETER_SET_16, pps_val);
+> -	} else {
+> -		intel_de_write(dev_priv,
+> -			       ICL_DSC0_PICTURE_PARAMETER_SET_16(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       ICL_DSC1_PICTURE_PARAMETER_SET_16(pipe),
+> -				       pps_val);
+> -	}
+> +	intel_dsc_write_pps_reg(crtc_state, 16, pps_val);
+>   
+>   	if (DISPLAY_VER(dev_priv) >= 14) {
+>   		/* Populate PICTURE_PARAMETER_SET_17 registers */
+>   		pps_val = 0;
+>   		pps_val |= DSC_SL_BPG_OFFSET(vdsc_cfg->second_line_bpg_offset);
+>   		drm_dbg_kms(&dev_priv->drm, "PPS17 = 0x%08x\n", pps_val);
+> -		intel_de_write(dev_priv,
+> -			       MTL_DSC0_PICTURE_PARAMETER_SET_17(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       MTL_DSC1_PICTURE_PARAMETER_SET_17(pipe),
+> -				       pps_val);
+> +		intel_dsc_write_pps_reg(crtc_state, 17, pps_val);
+>   
+>   		/* Populate PICTURE_PARAMETER_SET_18 registers */
+>   		pps_val = 0;
+>   		pps_val |= DSC_NSL_BPG_OFFSET(vdsc_cfg->nsl_bpg_offset) |
+>   			   DSC_SL_OFFSET_ADJ(vdsc_cfg->second_line_offset_adj);
+>   		drm_dbg_kms(&dev_priv->drm, "PPS18 = 0x%08x\n", pps_val);
+> -		intel_de_write(dev_priv,
+> -			       MTL_DSC0_PICTURE_PARAMETER_SET_18(pipe),
+> -			       pps_val);
+> -		if (vdsc_instances_per_pipe > 1)
+> -			intel_de_write(dev_priv,
+> -				       MTL_DSC1_PICTURE_PARAMETER_SET_18(pipe),
+> -				       pps_val);
+> +		intel_dsc_write_pps_reg(crtc_state, 18, pps_val);
+>   	}
+>   
+>   	/* Populate the RC_BUF_THRESH registers */
