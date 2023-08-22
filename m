@@ -2,65 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81521784424
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 16:28:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6C77844BE
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 16:53:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5C0210E377;
-	Tue, 22 Aug 2023 14:28:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C38E310E377;
+	Tue, 22 Aug 2023 14:53:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
- [IPv6:2a00:1450:4864:20::630])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE80E10E381
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 14:28:51 +0000 (UTC)
-Received: by mail-ej1-x630.google.com with SMTP id
- a640c23a62f3a-9a1b952e2e1so18647166b.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 07:28:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1692714530; x=1693319330;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=x1z3oj15aWVBfA1AbgwNk3JNTKQtrQ1wLjBwqO7l50k=;
- b=iWIvBDyvyaYh0WH9CS3AxO3LBKjLUTKjK/CuwnyMCdcgxo50ue6QG2Umui7oAKbXst
- 5Pb59KgG3E1hQcU7SWoh7EQTY4jXHVlntQU3/Mnvu6HzuzoI3c5z+ICqOuxTlnYBWd+s
- eL5NwTYK45a0uVx04sQ6pvo+uClK81Ir3tdI0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692714530; x=1693319330;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=x1z3oj15aWVBfA1AbgwNk3JNTKQtrQ1wLjBwqO7l50k=;
- b=i1Bb7zQWmijCJsXScz+TWG9vhZPeisZ4Zu97tcQxtHVKYEMDVyXXjzhKy0BIi+BYbD
- IYPzdUCk7qkKqSplNlC6V+nvcluMzoYx6YEaf5tNMWu1PyMaBOlZSVaxCmSOzF1hK5Kl
- PlOzmvhJcK1Yt5Z/WpD46jRpWhycHa5coTzoaeeqaxo2/HSZPxRo0t5uJcjakZ3Z2Hnu
- r1q+IolY6ZXQDQprbB1T4FN4LerSAe8xYFlO/7ESEY3DCPFazYa3MdiISGHJNjeqzvio
- F2RAiDR8yISX96MvfXp02dW3zXEBtTz/95gKAt3dNC0HytSYWiV/+IoFNr4NXdr5aeLU
- Vm4A==
-X-Gm-Message-State: AOJu0YwwhafCN1mr/Fx6ZXPZNqVo9J0F2GXV0CK8kiIDEIDBrW+BBI56
- kS4fMQbeQKu9ASGBkIprAtAxKQ==
-X-Google-Smtp-Source: AGHT+IHCX0NsokHSCnMwwATqRGa9GSMwVHb7gwwK45CLkQrFK+GM3NJs0CfPvMOt2fTBtjHAvKkqcA==
-X-Received: by 2002:a17:906:10cc:b0:9a1:c4ce:65b8 with SMTP id
- v12-20020a17090610cc00b009a1c4ce65b8mr577913ejv.4.1692714530381; 
- Tue, 22 Aug 2023 07:28:50 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- f26-20020a170906391a00b0099d798a6bb5sm8249289eje.67.2023.08.22.07.28.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Aug 2023 07:28:49 -0700 (PDT)
-Date: Tue, 22 Aug 2023 16:28:47 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: "Dong, Zhanjun" <zhanjun.dong@intel.com>
-Message-ID: <ZOTGH4yg0/wvvws1@phenom.ffwll.local>
-References: <20230811182011.546026-1-zhanjun.dong@intel.com>
- <ZOS9NURIoBK1lyi8@phenom.ffwll.local>
- <SN6PR11MB26223C5DDEE01B6CF285532C8F1FA@SN6PR11MB2622.namprd11.prod.outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66F0810E377
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 14:53:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692716010; x=1724252010;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=6R5q5GgTPKPu8UlxgUUpR2ZDFXyzf66St6FXtuWwxWM=;
+ b=Gzgq9nSVY+/c58P2lKmZTS6WY10QFZZW33/nDfhHqFGmQg/QKa5Cakci
+ y/FyhiRrotczvq/gnMAjQUVZhZYCePCZhCdRfG5p1KvC6iqitiJ5Rwcog
+ YE5lkU+1dyfNgECaikV+RsIB8Ll7enXWKwBtDfzctaP8NW6yQeYl+MWi4
+ 4Du4DgiqsT2b/4fSc2pNt3lUel8T7JBmgvY6gi7WokjMElvJnrZQuHsb3
+ nK6UNlO1CUuaPS2GVKNBTUAn7WoztbCV4dA2t8IcckmYW2Xe6qAPLEt3D
+ ynvoQFn9crc9D4TVngreGpdf7Tp4bXAiP687rGi3wLt4UcRE97sg1EmNY w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="353468508"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="353468508"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2023 07:53:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="739331268"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="739331268"
+Received: from kainaats-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.42.230])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2023 07:53:28 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <87ttsr5h4r.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230818111950.128992-1-vinod.govindapillai@intel.com>
+ <20230818111950.128992-3-vinod.govindapillai@intel.com>
+ <87ttsr5h4r.fsf@intel.com>
+Date: Tue, 22 Aug 2023 17:53:26 +0300
+Message-ID: <87msyj5dsp.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SN6PR11MB26223C5DDEE01B6CF285532C8F1FA@SN6PR11MB2622.namprd11.prod.outlook.com>
-X-Operating-System: Linux phenom 6.3.0-2-amd64 
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: Avoid circular locking
- dependency when flush delayed work on gt reset
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH v4 2/4] drm/i915/display: combine DP audio
+ compute config steps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,102 +61,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 22, 2023 at 02:14:28PM +0000, Dong, Zhanjun wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Daniel Vetter <daniel@ffwll.ch>
-> > Sent: August 22, 2023 9:51 AM
-> > To: Dong, Zhanjun <zhanjun.dong@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Harrison,
-> > John C <john.c.harrison@intel.com>; Andi Shyti <andi.shyti@linux.intel.com>;
-> > Daniel Vetter <daniel@ffwll.ch>
-> > Subject: Re: [PATCH v5] drm/i915: Avoid circular locking dependency when
-> > flush delayed work on gt reset
-> > 
-> > On Fri, Aug 11, 2023 at 11:20:11AM -0700, Zhanjun Dong wrote:
-> > > This attempts to avoid circular locking dependency between flush delayed
-> > > work and intel_gt_reset.
-> > > When intel_gt_reset was called, task will hold a lock.
-> > > To cacel delayed work here, the _sync version will also acquire a lock,
-> > > which might trigger the possible cirular locking dependency warning.
-> > > When intel_gt_reset called, reset_in_progress flag will be set, add code
-> > > to check the flag, call async verion if reset is in progress.
-> > >
-> > > Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-> > > Cc: John Harrison <John.C.Harrison@Intel.com>
-> > > Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> > > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > > ---
-> > >  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 ++++++++++-
-> > >  1 file changed, 10 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > index a0e3ef1c65d2..600388c849f7 100644
-> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > @@ -1359,7 +1359,16 @@ static void guc_enable_busyness_worker(struct
-> > intel_guc *guc)
-> > >
-> > >  static void guc_cancel_busyness_worker(struct intel_guc *guc)
-> > >  {
-> > > -	cancel_delayed_work_sync(&guc->timestamp.work);
-> > > +	/*
-> > > +	 * When intel_gt_reset was called, task will hold a lock.
-> > > +	 * To cacel delayed work here, the _sync version will also acquire a lock,
-> > which might
-> > > +	 * trigger the possible cirular locking dependency warning.
-> > 
-> > This is not even close to a locking bugfix. Consider this a formal nack,
-> > because the issue here is not even close to "needs more comments to
-> > explain what's going on".
-> > -Daniel
-> 
-> The purpose of the comment here it is to explain locking issue condition
-> > 
-> > > +	 * Check the reset_in_progress flag, call async verion if reset is in
-> > progress.
-> 
-> 
-> The comment here explains check with the flag to avoid locking condition.
-> The reset process is not considered to be complete in short time, other than that, do we missed anything?
+On Tue, 22 Aug 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Fri, 18 Aug 2023, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
+>> Combine all DP audio configs into a single function
+>>
+>> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Either the _sync is not needed at all, in case you need to explain why.
-Which this patch doesn't. And if the _sync isn't needed, then it's
-probably not needed in all/most cases?
+And pushed the first two to drm-intel-next.
 
-Or the _sync is needed, and in that case you just replace a potential
-deadlock scenario with a potential race condition.
+BR,
+Jani.
 
-In neither case should this patch here be merged.
--Daniel
-
-> 
-> > > +	 */
-> > > +	if (guc_to_gt(guc)->uc.reset_in_progress)
-> > > +		cancel_delayed_work(&guc->timestamp.work);
-> > > +	else
-> > > +		cancel_delayed_work_sync(&guc->timestamp.work);
-> > >  }
-> > >
-> > >  static void __reset_guc_busyness_stats(struct intel_guc *guc)
-> > > --
-> > > 2.34.1
-> > >
-> > 
-> > --
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++------
+>>  1 file changed, 5 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 964bf0551bdc..67c06bbc1760 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -2240,9 +2240,12 @@ intel_dp_audio_compute_config(struct intel_encoder *encoder,
+>>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>>  	struct drm_connector *connector = conn_state->connector;
+>>  
+>> -	pipe_config->sdp_split_enable =
+>> +	pipe_config->has_audio =
+>>  		intel_dp_has_audio(encoder, conn_state) &&
+>> -		intel_dp_is_uhbr(pipe_config);
+>> +		intel_audio_compute_config(encoder, pipe_config, conn_state);
+>> +
+>> +	pipe_config->sdp_split_enable = pipe_config->has_audio &&
+>> +					intel_dp_is_uhbr(pipe_config);
+>>  
+>>  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDP split enable: %s\n",
+>>  		    connector->base.id, connector->name,
+>> @@ -2264,10 +2267,6 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+>>  	if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
+>>  		pipe_config->has_pch_encoder = true;
+>>  
+>> -	pipe_config->has_audio =
+>> -		intel_dp_has_audio(encoder, conn_state) &&
+>> -		intel_audio_compute_config(encoder, pipe_config, conn_state);
+>> -
+>>  	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
+>>  	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+>>  		ret = intel_panel_compute_config(connector, adjusted_mode);
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Jani Nikula, Intel Open Source Graphics Center
