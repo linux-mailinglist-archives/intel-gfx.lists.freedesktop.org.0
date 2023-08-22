@@ -2,54 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B34FD78440B
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 16:26:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81521784424
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 16:28:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5553010E380;
-	Tue, 22 Aug 2023 14:26:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5C0210E377;
+	Tue, 22 Aug 2023 14:28:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB5E710E377;
- Tue, 22 Aug 2023 14:25:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692714359; x=1724250359;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=gzqA706BmAin26L3JvEGwST0FrG1WJPqD5YSwc9f6wQ=;
- b=CjsBM6xVz+YcOLbK+KhTlTeU618xUn1QeaJLFO05q3hcnCfsT+JXJNVA
- SdgzrKAm3uaeqFRJPbY9aTKNEQQzYjGa79KKso2g1DmZzZGitO9W7iKnH
- Atqqw3MS3L6VC0WL2TDe1enyFhs/xSyHqdzMSId6gXk31hD2MP8HhKg5O
- NZYcE/NGRelePp1T1Oysn+8yRXjB5H+9eZQpV1obmp1iSHZCL7zSNLkOn
- 7fUgScxJWnPvEWQdxaDNnd/JBtrkVJfb49+MnZ1tLz89dSwUEWCpLYtnL
- QBDGtEnV58AeJRxKBNPwwT9aGrWgGgDewcZrE5fvCrcL5NWWHsK4cL0AY Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="358881355"
-X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="358881355"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2023 07:25:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="879973348"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by fmsmga001-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2023 07:26:01 -0700
-Date: Tue, 22 Aug 2023 16:25:23 +0200
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20230822142523.ke65dicvqadodafw@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Petri Latvala <adrinael@adrinael.net>
-References: <20230822075857.37363-2-janusz.krzysztofik@linux.intel.com>
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
+ [IPv6:2a00:1450:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE80E10E381
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 14:28:51 +0000 (UTC)
+Received: by mail-ej1-x630.google.com with SMTP id
+ a640c23a62f3a-9a1b952e2e1so18647166b.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 07:28:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1692714530; x=1693319330;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=x1z3oj15aWVBfA1AbgwNk3JNTKQtrQ1wLjBwqO7l50k=;
+ b=iWIvBDyvyaYh0WH9CS3AxO3LBKjLUTKjK/CuwnyMCdcgxo50ue6QG2Umui7oAKbXst
+ 5Pb59KgG3E1hQcU7SWoh7EQTY4jXHVlntQU3/Mnvu6HzuzoI3c5z+ICqOuxTlnYBWd+s
+ eL5NwTYK45a0uVx04sQ6pvo+uClK81Ir3tdI0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692714530; x=1693319330;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=x1z3oj15aWVBfA1AbgwNk3JNTKQtrQ1wLjBwqO7l50k=;
+ b=i1Bb7zQWmijCJsXScz+TWG9vhZPeisZ4Zu97tcQxtHVKYEMDVyXXjzhKy0BIi+BYbD
+ IYPzdUCk7qkKqSplNlC6V+nvcluMzoYx6YEaf5tNMWu1PyMaBOlZSVaxCmSOzF1hK5Kl
+ PlOzmvhJcK1Yt5Z/WpD46jRpWhycHa5coTzoaeeqaxo2/HSZPxRo0t5uJcjakZ3Z2Hnu
+ r1q+IolY6ZXQDQprbB1T4FN4LerSAe8xYFlO/7ESEY3DCPFazYa3MdiISGHJNjeqzvio
+ F2RAiDR8yISX96MvfXp02dW3zXEBtTz/95gKAt3dNC0HytSYWiV/+IoFNr4NXdr5aeLU
+ Vm4A==
+X-Gm-Message-State: AOJu0YwwhafCN1mr/Fx6ZXPZNqVo9J0F2GXV0CK8kiIDEIDBrW+BBI56
+ kS4fMQbeQKu9ASGBkIprAtAxKQ==
+X-Google-Smtp-Source: AGHT+IHCX0NsokHSCnMwwATqRGa9GSMwVHb7gwwK45CLkQrFK+GM3NJs0CfPvMOt2fTBtjHAvKkqcA==
+X-Received: by 2002:a17:906:10cc:b0:9a1:c4ce:65b8 with SMTP id
+ v12-20020a17090610cc00b009a1c4ce65b8mr577913ejv.4.1692714530381; 
+ Tue, 22 Aug 2023 07:28:50 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ f26-20020a170906391a00b0099d798a6bb5sm8249289eje.67.2023.08.22.07.28.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Aug 2023 07:28:49 -0700 (PDT)
+Date: Tue, 22 Aug 2023 16:28:47 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: "Dong, Zhanjun" <zhanjun.dong@intel.com>
+Message-ID: <ZOTGH4yg0/wvvws1@phenom.ffwll.local>
+References: <20230811182011.546026-1-zhanjun.dong@intel.com>
+ <ZOS9NURIoBK1lyi8@phenom.ffwll.local>
+ <SN6PR11MB26223C5DDEE01B6CF285532C8F1FA@SN6PR11MB2622.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230822075857.37363-2-janusz.krzysztofik@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/core_hotunplug: Wait for device
- nodes to re-appear
+In-Reply-To: <SN6PR11MB26223C5DDEE01B6CF285532C8F1FA@SN6PR11MB2622.namprd11.prod.outlook.com>
+X-Operating-System: Linux phenom 6.3.0-2-amd64 
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: Avoid circular locking
+ dependency when flush delayed work on gt reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,77 +73,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Petri Latvala <adrinael@adrinael.net>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
+On Tue, Aug 22, 2023 at 02:14:28PM +0000, Dong, Zhanjun wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Daniel Vetter <daniel@ffwll.ch>
+> > Sent: August 22, 2023 9:51 AM
+> > To: Dong, Zhanjun <zhanjun.dong@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Harrison,
+> > John C <john.c.harrison@intel.com>; Andi Shyti <andi.shyti@linux.intel.com>;
+> > Daniel Vetter <daniel@ffwll.ch>
+> > Subject: Re: [PATCH v5] drm/i915: Avoid circular locking dependency when
+> > flush delayed work on gt reset
+> > 
+> > On Fri, Aug 11, 2023 at 11:20:11AM -0700, Zhanjun Dong wrote:
+> > > This attempts to avoid circular locking dependency between flush delayed
+> > > work and intel_gt_reset.
+> > > When intel_gt_reset was called, task will hold a lock.
+> > > To cacel delayed work here, the _sync version will also acquire a lock,
+> > > which might trigger the possible cirular locking dependency warning.
+> > > When intel_gt_reset called, reset_in_progress flag will be set, add code
+> > > to check the flag, call async verion if reset is in progress.
+> > >
+> > > Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+> > > Cc: John Harrison <John.C.Harrison@Intel.com>
+> > > Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> > > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > > ---
+> > >  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 ++++++++++-
+> > >  1 file changed, 10 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > index a0e3ef1c65d2..600388c849f7 100644
+> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > @@ -1359,7 +1359,16 @@ static void guc_enable_busyness_worker(struct
+> > intel_guc *guc)
+> > >
+> > >  static void guc_cancel_busyness_worker(struct intel_guc *guc)
+> > >  {
+> > > -	cancel_delayed_work_sync(&guc->timestamp.work);
+> > > +	/*
+> > > +	 * When intel_gt_reset was called, task will hold a lock.
+> > > +	 * To cacel delayed work here, the _sync version will also acquire a lock,
+> > which might
+> > > +	 * trigger the possible cirular locking dependency warning.
+> > 
+> > This is not even close to a locking bugfix. Consider this a formal nack,
+> > because the issue here is not even close to "needs more comments to
+> > explain what's going on".
+> > -Daniel
+> 
+> The purpose of the comment here it is to explain locking issue condition
+> > 
+> > > +	 * Check the reset_in_progress flag, call async verion if reset is in
+> > progress.
+> 
+> 
+> The comment here explains check with the flag to avoid locking condition.
+> The reset process is not considered to be complete in short time, other than that, do we missed anything?
 
-On 2023-08-22 at 09:58:58 +0200, Janusz Krzysztofik wrote:
-> Sometimes our health check is not able to find a device node (cardX or
-> renderY) after driver rebind or device rediscover.  Since device nodes are
-> recreated in detmpvfs asynchronously, give it a bit of time to do its job
-> before we try to reopen the device for health check.
-> 
-> (core_hotunplug:3612) DEBUG: Test requirement passed: priv->fd.drm == -1
-> (core_hotunplug:3612) DEBUG: reopening DRM device for health check
-> (core_hotunplug:3612) drmtest-DEBUG: Looking for devices to open using filter 0: sys:/sys/devices/pci0000:4a/0000:4a:02.0/0000:4b:00.0/0000:4c:01.0/0000:4d:00.0
-> (core_hotunplug:3612) drmtest-DEBUG: Filter matched /dev/dri/card1 | /dev/dri/renderD128
-> (core_hotunplug:3612) drmtest-DEBUG: Opened previously opened device: /dev/dri/card1
-> (core_hotunplug:3612) DEBUG: running device sysfs healthcheck
-> (core_hotunplug:3612) DEBUG: closing health checked device instance
-> (core_hotunplug:3612) DEBUG: reopening render device for health check
-> (core_hotunplug:3612) drmtest-DEBUG: Looking for devices to open using filter 0: sys:/sys/devices/pci0000:4a/0000:4a:02.0/0000:4b:00.0/0000:4c:01.0/0000:4d:00.0
-> (core_hotunplug:3612) drmtest-DEBUG: Filter matched /dev/dri/card1 | /dev/dri/renderD128
-> (core_hotunplug:3612) drmtest-INFO: Opened device: /dev/dri/renderD128
-> (core_hotunplug:3612) DEBUG: running device sysfs healthcheck
-> (core_hotunplug:3612) DEBUG: closing health checked device instance
-> (core_hotunplug:3612) DEBUG: Test requirement passed: healthcheck(priv, false)
-> (core_hotunplug:3612) DEBUG: Test requirement passed: priv->fd.drm_hc == -1
-> (core_hotunplug:3612) igt_kmod-DEBUG: Module snd_hda_intel unloaded immediately
-> (core_hotunplug:3612) INFO: Unloaded audio driver snd_hda_intel
-> (core_hotunplug:3612) DEBUG: unbinding the driver from the device
-> (core_hotunplug:3612) DEBUG: rebinding the driver to the device
-> (core_hotunplug:3612) INFO: Realoading snd_hda_intel
-> (core_hotunplug:3612) DEBUG: reopening DRM device for health check
-> (core_hotunplug:3612) drmtest-DEBUG: Looking for devices to open using filter 0: sys:/sys/devices/pci0000:4a/0000:4a:02.0/0000:4b:00.0/0000:4c:01.0/0000:4d:00.0
-> (core_hotunplug:3612) drmtest-DEBUG: Filter matched /dev/dri/card1 |
-> (core_hotunplug:3612) drmtest-DEBUG: Opened previously opened device: /dev/dri/card1
-> (core_hotunplug:3612) DEBUG: running device sysfs healthcheck
-> (core_hotunplug:3612) DEBUG: closing health checked device instance
-> (core_hotunplug:3612) DEBUG: reopening render device for health check
-> (core_hotunplug:3612) drmtest-DEBUG: Looking for devices to open using filter 0: sys:/sys/devices/pci0000:4a/0000:4a:02.0/0000:4b:00.0/0000:4c:01.0/0000:4d:00.0
-> (core_hotunplug:3612) drmtest-DEBUG: Filter matched /dev/dri/card1 |
-> (core_hotunplug:3612) CRITICAL: Test assertion failure function local_drm_open_driver, file ../../../usr/src/igt-gpu-tools/tests/core_hotunplug.c:130:
-> (core_hotunplug:3612) CRITICAL: Failed assertion: fd_drm >= 0
-> (core_hotunplug:3612) CRITICAL: file descriptor fd_drm failed
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8830
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/500
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: Petri Latvala <adrinael@adrinael.net>
+Either the _sync is not needed at all, in case you need to explain why.
+Which this patch doesn't. And if the _sync isn't needed, then it's
+probably not needed in all/most cases?
 
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+Or the _sync is needed, and in that case you just replace a potential
+deadlock scenario with a potential race condition.
 
-> ---
->  tests/core_hotunplug.c | 3 +++
->  1 file changed, 3 insertions(+)
+In neither case should this patch here be merged.
+-Daniel
+
 > 
-> diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
-> index 30d9a6a576..b254447c71 100644
-> --- a/tests/core_hotunplug.c
-> +++ b/tests/core_hotunplug.c
-> @@ -501,6 +501,9 @@ static void node_healthcheck(struct hotunplug *priv, unsigned flags)
->  
->  static bool healthcheck(struct hotunplug *priv, bool recover)
->  {
-> +	/* give udev some time to recreate device nodes before we continue */
-> +	sleep(1);
-> +
->  	/* device name may have changed, rebuild IGT device list */
->  	igt_devices_scan(true);
->  
-> -- 
-> 2.41.0
-> 
+> > > +	 */
+> > > +	if (guc_to_gt(guc)->uc.reset_in_progress)
+> > > +		cancel_delayed_work(&guc->timestamp.work);
+> > > +	else
+> > > +		cancel_delayed_work_sync(&guc->timestamp.work);
+> > >  }
+> > >
+> > >  static void __reset_guc_busyness_stats(struct intel_guc *guc)
+> > > --
+> > > 2.34.1
+> > >
+> > 
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
