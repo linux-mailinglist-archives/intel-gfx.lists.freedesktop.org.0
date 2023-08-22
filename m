@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487A8784238
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 15:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50CC1784244
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Aug 2023 15:41:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCC5310E352;
-	Tue, 22 Aug 2023 13:39:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86E8110E36A;
+	Tue, 22 Aug 2023 13:41:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD69C10E1D5;
- Tue, 22 Aug 2023 13:39:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFD7710E36C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Aug 2023 13:41:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692711542; x=1724247542;
+ t=1692711688; x=1724247688;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=CU1zHVSnu4ilx1GrsW1Za+0v5qYL7vM+kz50WBnV8yw=;
- b=U8Vf9j0tCkXgQDPmoeTE+MtevDl+K5CrxB083a32/IXgRYEo6OJjgONw
- 0IC/v4PVjr9lATa01xmr75/xQJ/q6u1uoE3nKbjdheNVsiHTMopVcPsZN
- We2gnMqRB2uyb7QhBXtVDWfkJKTpmt8mQMWOIV2BJaQqer+KgAqS7iKcf
- P6uX3d6DLokffQnG222bj98EGiteR30wYEMssCHp1uSIZRcuGlajfuO7O
- VT6Lzbl3qkrBgEDa5zGF1wkQ5KPmmz3wsBdK9O1tQALS0vhvO6Gq6Amuq
- Eq/pBFRrgfZlkYENjNtEOQOmvfDyGZwlBQsfZTWEp+ccITFA7dqwuTi5A A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="371303892"
-X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="371303892"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2023 06:39:01 -0700
+ mime-version; bh=9hOGytp8dAa3GeO0dTRrgif96TBs1rqvAHgS2I1ut84=;
+ b=IKcVV5fl8Ia+9Os6cA5ScU4iAcOqGUX4nzeN6BlzRjFIAh2+DSo4j7jd
+ JE4lIfLp9xozvrjDhiMolQAXz6UjEwQ+59S6BPGk2lpHqDlvv+0EWqfXX
+ k9zQBi4/X/GaDGFVpXTooS5+L2N1jghDv33j0R6ceD7VlMLlSO8balZi5
+ 3d1xfu1+84qn2rmjfKratG2+uHNFGo1u8yFT4GXUHvDBx29xSYfRwXOXv
+ 0jkaIaknwi7Frwf8XfoRwBTz9+6U3LrD5gitmlQS7Qz3tMqGgCuM7d/k2
+ CzjeofhHWgMI36bBnPlYci0fGhNF8FZNveWbiIpQW8UT7xgCClW0DT8Kw A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="358866788"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="358866788"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2023 06:41:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="765743523"
-X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="765743523"
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="686049864"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="686049864"
 Received: from kainaats-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.42.230])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2023 06:38:59 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20230818044436.177806-1-ankit.k.nautiyal@intel.com>
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2023 06:41:26 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230818111950.128992-3-vinod.govindapillai@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230818044436.177806-1-ankit.k.nautiyal@intel.com>
-Date: Tue, 22 Aug 2023 16:38:56 +0300
-Message-ID: <87y1i35h8v.fsf@intel.com>
+References: <20230818111950.128992-1-vinod.govindapillai@intel.com>
+ <20230818111950.128992-3-vinod.govindapillai@intel.com>
+Date: Tue, 22 Aug 2023 16:41:24 +0300
+Message-ID: <87ttsr5h4r.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/display/dp: Fix the DP DSC Receiver cap
- size
+Subject: Re: [Intel-gfx] [PATCH v4 2/4] drm/i915/display: combine DP audio
+ compute config steps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,40 +63,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 18 Aug 2023, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> DP DSC Receiver Capabilities are exposed via DPCD 60h-6Fh.
-> Fix the DSC RECEIVER CAP SIZE accordingly.
+On Fri, 18 Aug 2023, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
+> Combine all DP audio configs into a single function
 >
-> Fixes: ffddc4363c28 ("drm/dp: Add DP DSC DPCD receiver capability size define and missing SHIFT")
-> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Cc: <stable@vger.kernel.org> # v5.0+
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 
-Thanks for the patch and review, pushed to drm-misc-fixes.
-
-BR,
-Jani.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  include/drm/display/drm_dp.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++------
+>  1 file changed, 5 insertions(+), 6 deletions(-)
 >
-> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-> index 02f2ac4dd2df..e69cece404b3 100644
-> --- a/include/drm/display/drm_dp.h
-> +++ b/include/drm/display/drm_dp.h
-> @@ -1537,7 +1537,7 @@ enum drm_dp_phy {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 964bf0551bdc..67c06bbc1760 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2240,9 +2240,12 @@ intel_dp_audio_compute_config(struct intel_encoder *encoder,
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  	struct drm_connector *connector = conn_state->connector;
 >  
->  #define DP_BRANCH_OUI_HEADER_SIZE	0xc
->  #define DP_RECEIVER_CAP_SIZE		0xf
-> -#define DP_DSC_RECEIVER_CAP_SIZE        0xf
-> +#define DP_DSC_RECEIVER_CAP_SIZE        0x10 /* DSC Capabilities 0x60 through 0x6F */
->  #define EDP_PSR_RECEIVER_CAP_SIZE	2
->  #define EDP_DISPLAY_CTL_CAP_SIZE	3
->  #define DP_LTTPR_COMMON_CAP_SIZE	8
+> -	pipe_config->sdp_split_enable =
+> +	pipe_config->has_audio =
+>  		intel_dp_has_audio(encoder, conn_state) &&
+> -		intel_dp_is_uhbr(pipe_config);
+> +		intel_audio_compute_config(encoder, pipe_config, conn_state);
+> +
+> +	pipe_config->sdp_split_enable = pipe_config->has_audio &&
+> +					intel_dp_is_uhbr(pipe_config);
+>  
+>  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDP split enable: %s\n",
+>  		    connector->base.id, connector->name,
+> @@ -2264,10 +2267,6 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+>  	if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
+>  		pipe_config->has_pch_encoder = true;
+>  
+> -	pipe_config->has_audio =
+> -		intel_dp_has_audio(encoder, conn_state) &&
+> -		intel_audio_compute_config(encoder, pipe_config, conn_state);
+> -
+>  	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
+>  	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+>  		ret = intel_panel_compute_config(connector, adjusted_mode);
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
