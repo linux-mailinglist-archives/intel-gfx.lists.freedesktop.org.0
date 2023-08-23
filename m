@@ -2,53 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7296785D35
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Aug 2023 18:26:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C56F785E19
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Aug 2023 19:09:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF32F10E475;
-	Wed, 23 Aug 2023 16:26:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4275C10E479;
+	Wed, 23 Aug 2023 17:09:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A24A810E475;
- Wed, 23 Aug 2023 16:26:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C9E210E0A9;
+ Wed, 23 Aug 2023 17:09:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692808013; x=1724344013;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=p+QCSo7Rvow0+W1Uj7taMmY+Cl5pg16z6fZ0NSSfq38=;
- b=Fa9YjF24EnZ1ZBXVftzHoYN4UKof22h9zWyu90Chf+pv0k3dRFR3GOvG
- T5PMWWviMJlBMXBK9PSOk6f4UBsjQY1FpzNRkDtWzVAlToQnqe7VhUNVc
- B/CUVl4XPIcGUauXmmKST07081BudsM9Ah2+jYZaGiplaEI5gxNsBoRvW
- dkOLrscaKoc83apYvOC3nqIgMpQX0lxsSVCVsdWQzVdvrKCasthXyH0ms
- 3KcF62jOoqaSV1gqw9WJo7aPhtbYTKU/+TBwXbnQbPwnEvhk4ZDIGF0nL
- QBI1Fp3VLkhBD+lMfddnIgAU6xa5nFDdN+Oq/jbSHYdTIOrMrJl/6Nls+ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="460573151"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="460573151"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 09:26:52 -0700
+ t=1692810555; x=1724346555;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=N0EzR9GLPT9lJP4lLfzJcLXpCUjYQJqMpQOWrO3ijzs=;
+ b=k4iN8wAR5PEC8hqfPm917PEcaKF4LxgbKUrLj4WqHa/9cSYCmM7lJtW4
+ vu4X8nJ7rxrGOMmsmvRIH4robbMTYzHUG0GWAeu9JWIZUk0VMLz+OhL+k
+ JDWbMSHbd1WYAsWvc0kTSi3pM3skxDqdv/GuXZAiZA5ELt47/LwRDYffy
+ bbFtxytt9sTCKk9vE1ArO3rQl8gCbkl7lZndPFFk6O5mKevpoXl0Nvbej
+ nZhxpK5nRhzzJ6HLk9oY6ARl9D6RQGrmxERYKcGex6ld6tk8iiSKYK5SA
+ 3hbDrFRohC4K+7YektmWdDFxdFtrvTKfeAEwNKSa8cJ8H+C+ZBGPDIbnr g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147457"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147457"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2023 10:09:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="766203103"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="766203103"
-Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
- by orsmga008.jf.intel.com with ESMTP; 23 Aug 2023 09:26:50 -0700
-Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qYqgz-0001Lb-2A;
- Wed, 23 Aug 2023 16:26:49 +0000
-Date: Thu, 24 Aug 2023 00:26:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Message-ID: <202308240007.1edS9XsL-lkp@intel.com>
-References: <20230823115425.715644-2-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204754"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204754"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2023 10:09:13 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Wed, 23 Aug 2023 10:06:58 -0700
+Message-Id: <20230823170740.1180212-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230823115425.715644-2-ankit.k.nautiyal@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/display/dp: Default 8 bpc support
- when DSC is supported
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 00/42] Enable Lunar Lake display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,93 +57,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ankit,
+Cross posting this to the i915 and xe mailing lists. The basic platform
+enabling for Lunar Lake is already applied in xe[1]. This patch series
+adds the display support, that will be driven by i915.
 
-kernel test robot noticed the following build warnings:
+A few notes from the series:
 
-[auto build test WARNING on drm-tip/drm-tip]
-[also build test WARNING on linus/master v6.5-rc7 next-20230823]
-[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+	1. This is based on drm-xe-next branch since this is where it
+	   can be tested. It should be good enough for reviewing and
+	   getting early feedback, but not for applying. drm-xe-next
+	   will soon be on a more recent drm-tip, that will make it
+	   easier to get some of the patches landing. All the patches
+	   prefixed with drm/i915 are expected to eventually be applied
+	   through the drm-intel branch.
+	2. The first 6 commits can be ignored: they are things already
+	   applied in drm-intel. With the IP/platform separation, there
+	   was a lot of prep work besides those patches, that already
+	   landed there so we minimize the patches for new platforms.
+	3. Patches 7 through 10 can also be ignored: they are not
+	   applied yet, but being reviewed in other patch series by its
+	   author[2].
+	4. Patch 11 allows xe to build when the patches the follow are
+	   applied. Depending on the timeline how things end up landing,
+	   this patch may need to be squashed in the "Initial Xe display
+	   support"
+	5. Last patch finally enable the display support in xe once all
+	   the patches on the i915 side are applied.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ankit-Nautiyal/drm-display-dp-Default-8-bpc-support-when-DSC-is-supported/20230823-195946
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230823115425.715644-2-ankit.k.nautiyal%40intel.com
-patch subject: [PATCH 1/2] drm/display/dp: Default 8 bpc support when DSC is supported
-config: i386-randconfig-r036-20230823 (https://download.01.org/0day-ci/archive/20230824/202308240007.1edS9XsL-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce: (https://download.01.org/0day-ci/archive/20230824/202308240007.1edS9XsL-lkp@intel.com/reproduce)
+I also ask for the original authors of the patches to double check their
+own patches as there were some adjustements needed in order to rebase,
+cleanup and fix some of the patches.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202308240007.1edS9XsL-lkp@intel.com/
+Lastly as things get reviewed I may want to split up this series in
+smaller pieces and do some re-ordering to expedite the i915
+[1] https://patchwork.freedesktop.org/series/122353/
+[2] https://patchwork.freedesktop.org/series/120980/
 
-All warnings (new ones prefixed by >>):
+Balasubramani Vivekanandan (3):
+  drm/xe/lnl: Add IS_LUNARLAKE
+  drm/i915/lnl: Add display definitions
+  drm/xe/lnl: Enable the display support
 
->> drivers/gpu/drm/display/drm_dp_helper.c:2451:6: warning: logical not is only applied to the left hand side of this bitwise operator [-Wlogical-not-parentheses]
-           if (!dsc_dpcd[DP_DSC_SUPPORT] & DP_DSC_DECOMPRESSION_IS_SUPPORTED)
-               ^                         ~
-   drivers/gpu/drm/display/drm_dp_helper.c:2451:6: note: add parentheses after the '!' to evaluate the bitwise operator first
-           if (!dsc_dpcd[DP_DSC_SUPPORT] & DP_DSC_DECOMPRESSION_IS_SUPPORTED)
-               ^
-                (                                                           )
-   drivers/gpu/drm/display/drm_dp_helper.c:2451:6: note: add parentheses around left hand side expression to silence this warning
-           if (!dsc_dpcd[DP_DSC_SUPPORT] & DP_DSC_DECOMPRESSION_IS_SUPPORTED)
-               ^
-               (                        )
-   1 warning generated.
+Clint Taylor (3):
+  drm/i915/xe2lpd: D2D Enable preserve bits in DDI_BUF_CTL
+  drm/i915/xe2lpd: Register DE_RRMR has been removed
+  drm/i915/display: Remove FBC capability from fused off pipes
 
+Gustavo Sousa (9):
+  drm/i915/display: Remove unused POWER_DOMAIN_MASK
+  drm/i915/cx0: Add intel_cx0_get_owned_lane_mask()
+  drm/i915: Simplify intel_cx0_program_phy_lane() with loop
+  drm/i915/cx0: Enable/disable TX only for owned PHY lanes
+  drm/i915/cx0: Program vswing only for owned lanes
+  drm/i915/lnl: Add fake PCH
+  drm/i915/xe2lpd: Add support for DP aux channels
+  drm/i915/xe2lpd: Handle port AUX interrupts
+  drm/i915/xe2lpd: Add support for HPD
 
-vim +2451 drivers/gpu/drm/display/drm_dp_helper.c
+Juha-Pekka Heikkilä (1):
+  drm/i915/xe2lpd: enable odd size and panning for planar yuv on xe2lpd
 
-  2428	
-  2429	/**
-  2430	 * drm_dp_dsc_sink_supported_input_bpcs() - Get all the input bits per component
-  2431	 * values supported by the DSC sink.
-  2432	 * @dsc_dpcd: DSC capabilities from DPCD
-  2433	 * @dsc_bpc: An array to be filled by this helper with supported
-  2434	 *           input bpcs.
-  2435	 *
-  2436	 * Read the DSC DPCD from the sink device to parse the supported bits per
-  2437	 * component values. This is used to populate the DSC parameters
-  2438	 * in the &struct drm_dsc_config by the driver.
-  2439	 * Driver creates an infoframe using these parameters to populate
-  2440	 * &struct drm_dsc_pps_infoframe. These are sent to the sink using DSC
-  2441	 * infoframe using the helper function drm_dsc_pps_infoframe_pack()
-  2442	 *
-  2443	 * Returns:
-  2444	 * Number of input BPC values parsed from the DPCD
-  2445	 */
-  2446	int drm_dp_dsc_sink_supported_input_bpcs(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
-  2447						 u8 dsc_bpc[3])
-  2448	{
-  2449		int num_bpc = 0;
-  2450	
-> 2451		if (!dsc_dpcd[DP_DSC_SUPPORT] & DP_DSC_DECOMPRESSION_IS_SUPPORTED)
-  2452			return 0;
-  2453	
-  2454		u8 color_depth = dsc_dpcd[DP_DSC_DEC_COLOR_DEPTH_CAP - DP_DSC_SUPPORT];
-  2455	
-  2456		if (color_depth & DP_DSC_12_BPC)
-  2457			dsc_bpc[num_bpc++] = 12;
-  2458		if (color_depth & DP_DSC_10_BPC)
-  2459			dsc_bpc[num_bpc++] = 10;
-  2460	
-  2461		/* A DP DSC Sink devices shall support 8 bpc. */
-  2462		dsc_bpc[num_bpc++] = 8;
-  2463	
-  2464		return num_bpc;
-  2465	}
-  2466	EXPORT_SYMBOL(drm_dp_dsc_sink_supported_input_bpcs);
-  2467	
+Luca Coelho (5):
+  drm/i915/tc: rename mtl_tc_port_get_pin_assignment_mask()
+  drm/i915/tc: make intel_tc_port_get_lane_mask() static
+  drm/i915/tc: move legacy code out of the main _max_lane_count() func
+  drm/i915/tc: remove "fia" from intel_tc_port_fia_max_lane_count()
+  drm/i915/xe2lpd: Read pin assignment from IOM
+
+Lucas De Marchi (5):
+  drm/i915: Re-order if/else ladder in intel_detect_pch()
+  drm/i915/xe2lpd: Move D2D enable/disable
+  drm/i915/xe2lpd: Move registers to PICA
+  drm/i915/xe2lpd: Extend Wa_15010685871
+  drm/i915/lnl: Add gmbus/ddc support
+
+Matt Roper (3):
+  drm/i915/xe2lpd: Don't try to program PLANE_AUX_DIST
+  drm/i915/xe2lpd: Add DC state support
+  drm/i915/xe2lpd: FBC is now supported on all pipes
+
+Ravi Kumar Vodapalli (4):
+  drm/i915/xe2lpd: Add display power well
+  drm/i915/lnl: Add support for CDCLK initialization sequence
+  drm/i915/lnl: Add pll table for LNL platform
+  drm/i915/lnl: Add support to check c10 phy link rate
+
+Stanislav Lisovskiy (9):
+  drm/i915: Start using plane scale factor for relative data rate
+  drm/i915/xe2lpd: Treat cursor plane as regular plane for DDB
+    allocation
+  drm/i915/lnl: Introduce MDCLK
+  drm/i915/lnl: Add CDCLK table
+  drm/i915/lnl: Start using CDCLK through PLL
+  drm/i915/lnl: Introduce MDCLK_CDCLK ratio to DBuf
+  drm/i915/xe2lpd: Write DBuf after CDCLK change in post plane
+  drm/i915/lnl: Serialize global state if mdclk/cdclk ratio changes.
+  drm/i915/xe2lpd: Update mbus on post plane updates
+
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  21 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |   2 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 187 ++++-
+ drivers/gpu/drm/i915/display/intel_cdclk.h    |   2 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 660 ++++++++++++++----
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  71 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  96 ++-
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +-
+ .../drm/i915/display/intel_display_device.c   |  18 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |   4 +-
+ .../drm/i915/display/intel_display_power.c    |   6 +-
+ .../i915/display/intel_display_power_map.c    |  55 +-
+ .../i915/display/intel_display_power_well.c   |  63 +-
+ .../i915/display/intel_display_power_well.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   6 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |  43 +-
+ .../gpu/drm/i915/display/intel_dp_aux_regs.h  |  27 +
+ drivers/gpu/drm/i915/display/intel_fbc.h      |   2 +
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |   5 +-
+ .../gpu/drm/i915/display/intel_hotplug_irq.c  |  22 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       |  66 +-
+ drivers/gpu/drm/i915/display/intel_tc.h       |   3 +-
+ .../drm/i915/display/skl_universal_plane.c    |   2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  58 +-
+ drivers/gpu/drm/i915/display/skl_watermark.h  |   1 +
+ .../gpu/drm/i915/display/skl_watermark_regs.h |   2 +
+ drivers/gpu/drm/i915/i915_drv.h               |   1 +
+ drivers/gpu/drm/i915/i915_gpu_error.c         |   2 +-
+ drivers/gpu/drm/i915/i915_reg.h               |  11 +
+ drivers/gpu/drm/i915/soc/intel_pch.c          |  12 +-
+ drivers/gpu/drm/i915/soc/intel_pch.h          |   2 +
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   1 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   1 +
+ 33 files changed, 1211 insertions(+), 247 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.40.1
+
