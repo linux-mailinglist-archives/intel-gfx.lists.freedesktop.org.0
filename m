@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 855E2785E1D
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Aug 2023 19:09:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE04785E18
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Aug 2023 19:09:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3736310E488;
-	Wed, 23 Aug 2023 17:09:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD11110E47C;
+	Wed, 23 Aug 2023 17:09:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6275710E424;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9382B10E0A9;
  Wed, 23 Aug 2023 17:09:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1692810555; x=1724346555;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sQvshacgWLZYQh3bIVBJHujYi9ED1Vfk+HGL42hyZSA=;
- b=eY9jpd5eK39EoLOCHAOL2FPWGh7V6kI7i7LJKRusntSQgywjFHk22i8p
- Ry6EgYtilCPXL0mMjspOtXkm7J7z072rAeFe1Z4JOfUGltlrEqzjru7IB
- 8TL35guK4mcm1juvMaHqkZFUktFDnm8BxlyubQ0EXS18LF3P/OBPYPLh4
- sEgt5nEouUGobgt45pNZbbFIN8L4aPowEGSNJYN6tl898sZPL5uVa+xtm
- qXQC8akAqByWI2zvkvGpXECjUaQPDtlEH85ipphL5ZyakKo9cjwJMD+LB
- 6ovF0p+nTluH55WSQQkK5iqFGtpDVqXhDNQZNpsBJRP9KlfJ8/tz3/Y9F A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147458"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147458"
+ bh=TjUd1KUY0Sz4P9yqYYMjV1NRI4o92mVDYefoiOhV8/A=;
+ b=UaianIRvHtk2D4MkkCzIoettBjWCcKYnSbmvFnCGdVpg1l63jgnySNdZ
+ IMRTp4DFSRLL3Wh70NbJgyan1qaekW1F6Xf8noRCySexPNE3LOM1l36Nn
+ 1OcqM2dDsU3m6i3dyTw8GXHTun/u5pJwx5PfpxWOG9XDwbQFU+YdwERVl
+ B8Uzj+HT6KNOgipx3fGNfXtzOX+VDDu8jU4E2qoZ5VUIpgpfI54fAwc/+
+ mYqVnVWbsy93Ip3Vb1LCyxdxMtINBK70oGd5vWURkVnIgRL80lKpCWEIf
+ arWUjCrTMZ283yjB5oYef/AvYn0u9lApJ+kGaSyz6vExkc6se5lwHmIm2 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147461"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147461"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Aug 2023 10:09:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204756"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204756"
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204762"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204762"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Aug 2023 10:09:13 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 10:06:59 -0700
-Message-Id: <20230823170740.1180212-2-lucas.demarchi@intel.com>
+Date: Wed, 23 Aug 2023 10:07:00 -0700
+Message-Id: <20230823170740.1180212-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 01/42] drm/i915: Start using plane scale factor
- for relative data rate
+Subject: [Intel-gfx] [PATCH 02/42] drm/i915/display: Remove unused
+ POWER_DOMAIN_MASK
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,51 +59,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Garg@freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+From: Gustavo Sousa <gustavo.sousa@intel.com>
 
-BSpec clearly instructs us to use plane scale factor when calculating
-relative data rate to be used when allocating DDB blocks for each plane.
-For some reason we use scale factor for data_rate calculation, which is
-used for BW calculations, however we are not using it for DDB calculations.
-So lets fix it as described in BSpec 68907.
+That macro became unused with commit 323286c81245 ("drm/i915: Move the
+power domain->well mappings to intel_display_power_map.c").
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Reviewed-by: Garg, Nemesa <nemesa.garg@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230719104833.25366-1-stanislav.lisovskiy@intel.com
-(cherry picked from commit a86c75dcdd0374444514c1e40411177ff7afe9bd)
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230815201344.298573-1-gustavo.sousa@intel.com
+(cherry picked from commit c0eeae21425ed8994f3ba5362c2f2faf5ed6d774)
 ---
- drivers/gpu/drm/i915/display/intel_atomic_plane.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index edee71664332..cb60165bc415 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -217,6 +217,7 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
- 	int width, height;
-+	unsigned int rel_data_rate;
- 
- 	if (plane->id == PLANE_CURSOR)
- 		return 0;
-@@ -246,7 +247,11 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
- 		height /= 2;
- 	}
- 
--	return width * height * fb->format->cpp[color_plane];
-+	rel_data_rate = width * height * fb->format->cpp[color_plane];
-+
-+	return intel_adjusted_rate(&plane_state->uapi.src,
-+				   &plane_state->uapi.dst,
-+				   rel_data_rate);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 41afb3d611b7..7e2059abae9a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -340,8 +340,6 @@ void intel_display_power_set_target_dc_state(struct drm_i915_private *dev_priv,
+ 	mutex_unlock(&power_domains->lock);
  }
  
- int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
+-#define POWER_DOMAIN_MASK (GENMASK_ULL(POWER_DOMAIN_NUM - 1, 0))
+-
+ static void __async_put_domains_mask(struct i915_power_domains *power_domains,
+ 				     struct intel_power_domain_mask *mask)
+ {
 -- 
 2.40.1
 
