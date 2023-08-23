@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89DBD785E2C
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Aug 2023 19:09:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 010BE785E26
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Aug 2023 19:09:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DB1410E49E;
-	Wed, 23 Aug 2023 17:09:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECDAA10E48F;
+	Wed, 23 Aug 2023 17:09:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC25D10E47B;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C793810E424;
  Wed, 23 Aug 2023 17:09:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692810557; x=1724346557;
+ t=1692810558; x=1724346558;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hM+v4npjlgGN1vDM7jqFqun0BdQpElLZIwaf7Mi+nBA=;
- b=cw3pDYI6hjKO5NhXZJwfSNDflgYffe49KH+klKE1oQ1FrKOjL+rEzCbC
- qGFS+tecMs0IBOuHrWPPMEE+NN7yY8zsUfbhtUAVNs7O+MJQfuBoYD1pC
- lIx615EbShQMjeODvyadsMt1o5nGGselKhN9VlCI8Z9758b6x0OfSSTLk
- AajGyjcHEjg5kBIhVjXWmhJ91LPAVhS9DGplbORVbliA97bjVwvx5u2Vr
- NBVnRSQVQ9b8WkloxoaKMy2W2/35ff/5Q2pj+gGLC4bmcUzCECFzk2Eac
- Crb0hJUAwI2JybFmKgPZZcY8iI+jwGQ9MbvgK9dFzDa+WZUlxGzAU0DT2 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147477"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147477"
+ bh=TwX9iLULU4ss9hOmwJ0tcc+doxMn1Tm4Cb0GqoSsrDc=;
+ b=NXW0J4JP2Wy9i70b8nt0x0+PS6HirOE55EUlEpo50uo3YArLp9HgLL48
+ yjeLvXhqFTOofs7RavaDMXUZBUvBNbXgvEpiItEDz+sJQXtOH4isSskAE
+ poN8TPHvPyDRIEug2I0o1+uxJLzGNNTmPTn83uYGYd2K6gp2B6Ibxc/t5
+ 8NRdjS7vi2oOgPKccCYnELQ+hzabRw1AWeoay/cUcLRDc1nedwUu3GkRj
+ HcqvemMVWByxZmtO6agb9facE36kJ3KdihYRh38wOiyJr2BScOTgNo/KO
+ stx8TxrhtQIbn55AGKfiMra/aIsY4IJqwraYKYivYWnFiiPadbhhFBRUx g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147480"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147480"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Aug 2023 10:09:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204804"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204804"
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204807"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204807"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Aug 2023 10:09:17 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 10:07:12 -0700
-Message-Id: <20230823170740.1180212-15-lucas.demarchi@intel.com>
+Date: Wed, 23 Aug 2023 10:07:13 -0700
+Message-Id: <20230823170740.1180212-16-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 14/42] drm/i915/lnl: Add fake PCH
+Subject: [Intel-gfx] [PATCH 15/42] drm/i915/xe2lpd: Treat cursor plane as
+ regular plane for DDB allocation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,54 +63,92 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Gustavo Sousa <gustavo.sousa@intel.com>
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-LNL has south display on the same SoC. As such, define a new fake PCH
-entry for it.
+We now start calculating relative plane data rate for sursor plane as
+well, as instructed by BSpec and also treat cursor plane same way as
+other planes, when doing allocation, i.e not using fixed allocation for
+cursor anymore.
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/soc/intel_pch.c | 5 ++++-
- drivers/gpu/drm/i915/soc/intel_pch.h | 2 ++
- 2 files changed, 6 insertions(+), 1 deletion(-)
+ .../gpu/drm/i915/display/intel_atomic_plane.c    |  6 +++---
+ drivers/gpu/drm/i915/display/skl_watermark.c     | 16 +++++++++-------
+ 2 files changed, 12 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
-index cf795ecdcc26..5b9a01d26cab 100644
---- a/drivers/gpu/drm/i915/soc/intel_pch.c
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.c
-@@ -220,7 +220,10 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
- 	 * South display engine on the same PCI device: just assign the fake
- 	 * PCH.
- 	 */
--	if (IS_DG2(dev_priv)) {
-+	if (IS_LUNARLAKE(dev_priv)) {
-+		dev_priv->pch_type = PCH_LNL;
-+		return;
-+	} else if (IS_DG2(dev_priv)) {
- 		dev_priv->pch_type = PCH_DG2;
- 		return;
- 	} else if (IS_DG1(dev_priv)) {
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.h b/drivers/gpu/drm/i915/soc/intel_pch.h
-index 32aff5a70d04..1b03ea60a7a8 100644
---- a/drivers/gpu/drm/i915/soc/intel_pch.h
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.h
-@@ -30,6 +30,7 @@ enum intel_pch {
- 	/* Fake PCHs, functionality handled on the same PCI dev */
- 	PCH_DG1 = 1024,
- 	PCH_DG2,
-+	PCH_LNL,
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index cb60165bc415..fb13f0bb8c52 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -219,9 +219,6 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
+ 	int width, height;
+ 	unsigned int rel_data_rate;
  
- #define INTEL_PCH_DEVICE_ID_MASK		0xff80
-@@ -66,6 +67,7 @@ enum intel_pch {
+-	if (plane->id == PLANE_CURSOR)
+-		return 0;
+-
+ 	if (!plane_state->uapi.visible)
+ 		return 0;
  
- #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
- #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
-+#define HAS_PCH_LNL(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_LNL)
- #define HAS_PCH_MTP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MTP)
- #define HAS_PCH_DG2(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG2)
- #define HAS_PCH_ADP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
+@@ -249,6 +246,9 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
+ 
+ 	rel_data_rate = width * height * fb->format->cpp[color_plane];
+ 
++	if (plane->id == PLANE_CURSOR)
++		return rel_data_rate;
++
+ 	return intel_adjusted_rate(&plane_state->uapi.src,
+ 				   &plane_state->uapi.dst,
+ 				   rel_data_rate);
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 063929a42a42..64a122d3c9c0 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -1367,7 +1367,7 @@ skl_total_relative_data_rate(const struct intel_crtc_state *crtc_state)
+ 	u64 data_rate = 0;
+ 
+ 	for_each_plane_id_on_crtc(crtc, plane_id) {
+-		if (plane_id == PLANE_CURSOR)
++		if (plane_id == PLANE_CURSOR && DISPLAY_VER(i915) < 20)
+ 			continue;
+ 
+ 		data_rate += crtc_state->rel_data_rate[plane_id];
+@@ -1514,10 +1514,12 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+ 		return 0;
+ 
+ 	/* Allocate fixed number of blocks for cursor. */
+-	cursor_size = skl_cursor_allocation(crtc_state, num_active);
+-	iter.size -= cursor_size;
+-	skl_ddb_entry_init(&crtc_state->wm.skl.plane_ddb[PLANE_CURSOR],
+-			   alloc->end - cursor_size, alloc->end);
++	if (DISPLAY_VER(i915) < 20) {
++		cursor_size = skl_cursor_allocation(crtc_state, num_active);
++		iter.size -= cursor_size;
++		skl_ddb_entry_init(&crtc_state->wm.skl.plane_ddb[PLANE_CURSOR],
++				   alloc->end - cursor_size, alloc->end);
++	}
+ 
+ 	iter.data_rate = skl_total_relative_data_rate(crtc_state);
+ 
+@@ -1531,7 +1533,7 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+ 			const struct skl_plane_wm *wm =
+ 				&crtc_state->wm.skl.optimal.planes[plane_id];
+ 
+-			if (plane_id == PLANE_CURSOR) {
++			if (plane_id == PLANE_CURSOR && DISPLAY_VER(i915) < 20) {
+ 				const struct skl_ddb_entry *ddb =
+ 					&crtc_state->wm.skl.plane_ddb[plane_id];
+ 
+@@ -1579,7 +1581,7 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
+ 		const struct skl_plane_wm *wm =
+ 			&crtc_state->wm.skl.optimal.planes[plane_id];
+ 
+-		if (plane_id == PLANE_CURSOR)
++		if (plane_id == PLANE_CURSOR && DISPLAY_VER(i915) < 20)
+ 			continue;
+ 
+ 		if (DISPLAY_VER(i915) < 11 &&
 -- 
 2.40.1
 
