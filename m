@@ -1,50 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A20EA78522C
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Aug 2023 10:01:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB1F8785236
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Aug 2023 10:03:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 194A910E3DE;
-	Wed, 23 Aug 2023 08:01:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68D5B10E3E0;
+	Wed, 23 Aug 2023 08:03:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B13C10E3DE
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Aug 2023 08:01:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A74210E3E0;
+ Wed, 23 Aug 2023 08:03:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692777676; x=1724313676;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5xCp7k3IibFlLgqpJNtwLEnmBWifI+tjqub27W/tLsA=;
- b=ZzVg0Rdt8gvSQDjlBQykZny6HgELAUBGcBTICeJSN8y6ejkWf/S/1TbP
- cqjrK//h3wlJMpkDo2/Jf/4y4hgVhRjClKEj98jNB1ZgSm9fk7MEoZGxb
- imh3JBjUTvggflWLRYycHGEGYOwsY8qKOQeFt08fVmK+qq4ianHEflRfH
- ZiHr36JZtUGl9kMe0eOIiKFEtmOGZ0NxhPXj00ADH1SfrMK69mK/AXa2/
- lZeMbAJNPqTs4eXO5msMGuSklSmi2QTwvELjz/T2CfUo8YyyYGOjZNRXw
- 1Wl6ClmFhjGNG3mNSjro/qGRAxk9+v6EX+eZ+khZA3Xt8qb5OjtEHFDMS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="405098566"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="405098566"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 01:01:15 -0700
+ t=1692777827; x=1724313827;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=J5pwxIqhxccelyL5wgOSHZKK5EXQ9zy48An0bu5ksWs=;
+ b=JLnz1B78X3pQb17+offc+HyznKYJ9T3RAqRu1qLsbFqOl2E3lF3u4hGd
+ 2B8zV1ocrpLGWsahAq9wuhy4M0/aud4JJERcG++VIRUEHnWZYjrQuECKI
+ T7cIcwuYyH+CZFSwe8r3RoXKT4PMhtxGdeeKwrhzJxLY3JU731f2fEfPM
+ NjlZbXUPNRtmLCxbjZ7LJ9azueXiQmdiY8/7M91wlDqnp6eY92FDDSgGP
+ 376L3yg0PMkhFLEYmWaFKh0mwfeuCDpWxQJtatYMaORLOTjpSgVy9sKmY
+ 7MYms5XqQ0LaJHPezo+0D/Rzsy5/94WIktIH4vmLuFjFiSeTTOe/ue8oD Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="364274559"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="364274559"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2023 01:03:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="686350987"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="686350987"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga003.jf.intel.com with ESMTP; 23 Aug 2023 01:01:12 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 13:29:29 +0530
-Message-Id: <20230823075928.474206-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230822060240.413101-5-suraj.kandpal@intel.com>
-References: <20230822060240.413101-5-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="730118020"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="730118020"
+Received: from vrohpcvpnmu01.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.114])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2023 01:03:34 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+In-Reply-To: <788721f6-afff-e0b2-db7c-32ab2dd075a9@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1692705543.git.jani.nikula@intel.com>
+ <788721f6-afff-e0b2-db7c-32ab2dd075a9@amd.com>
+Date: Wed, 23 Aug 2023 11:03:32 +0300
+Message-ID: <87il965gob.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v10 4/8] drm/i915/vdsc: Add function to read any
- PPS register
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 0/4] drm/amd/display: stop using
+ drm_edid_override_connector_update()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,238 +61,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>,
+ intel-gfx@lists.freedesktop.org, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Daniel Wheeler <daniel.wheeler@amd.com>, Hersen Wu <hersenxs.wu@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Wenchieh Chien <wenchieh.chien@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add function to read any PPS register based on the
-intel_dsc_pps enum provided. Add a function which will call the
-new pps read function and place it in crtc state. Only PPS0 and
-PPS1 are readout the rest of the registers will be read in upcoming
-patches.
+On Tue, 22 Aug 2023, Alex Hung <alex.hung@amd.com> wrote:
+> On 2023-08-22 06:01, Jani Nikula wrote:
+>> Over the past years I've been trying to unify the override and firmware
+>> EDID handling as well as EDID property updates. It won't work if drivers
+>> do their own random things.
+> Let's check how to replace these references by appropriate ones or fork 
+> the function as reverting these patches causes regressions.
 
---v2
--Changes in read function as PPS enum is removed
--Initialize pps_val as 0 in pps_read func itself [Jani]
--Create a function that gets the required register and call that
-in the common read function [Jani]
--Move the drm_WARN_ON one abstraction layer above [Jani]
+I think the fundamental problem you have is conflating connector forcing
+with EDID override. They're orthogonal. The .force callback has no
+business basing the decisions on connector->edid_override. Force is
+force, override is override.
 
---v3
--Send both reg values regardless of dsc engine no [Jani]
--Don't use num_vdsc_instances stick to dsc_split field [Ankit]
+The driver isn't even supposed to know or care if the EDID originates
+from the firmware loader or override EDID debugfs. drm_get_edid() will
+handle that for you transparently. It'll return the EDID, and you
+shouldn't look at connector->edid_blob_ptr either. Using that will make
+future work in drm_edid.c harder.
 
---v4
--Manipulate the reg values instead of creating MACRO to change
-name of pps [Ankit]
+You can't fix that with minor tweaks. I think you'll be better off
+starting from scratch.
 
---v5
--Read dsc reg values using array rather than individual variables
-[Ankit]
--Loop the verification of all dsc engine reads to future proof it
-[Ankit]
--Keep the fix me comment in this patch and remove it in later one
-where we add other readouts [Ankit]
--Add switch statement that fills in the required registers based on
-no of vdsc engines per pipe.
+Also, connector->edid_override is debugfs. You actually can change the
+behaviour. If your userspace, whatever it is, has been written to assume
+connector forcing if EDID override is set, you *do* have to fix that,
+and set both.
 
---v7
--Pass no of vdsc instances from read_reg function [Ankit]
--Fix issue where arrays do not get freed on return for read_and_verify
-func [Ankit]
+BR,
+Jani.
 
---v8
--Simplify reading and verifying of register and remove dynamically
-allocated arrays [Jani]
--Remove no_ from no_vdsc_per_pipe and wherever else it applies [Ankit]
 
---v9
--change variable name to dsc_reg_size rather than vdsc_per_pipe [Ankit]
+>
+> Cheers,
+> Alex
+>
+>> 
+>> BR,
+>> Jani.
+>> 
+>> 
+>> Cc: Alex Deucher <alexander.deucher@amd.com>
+>> Cc: Alex Hung <alex.hung@amd.com>
+>> Cc: Chao-kai Wang <Stylon.Wang@amd.com>
+>> Cc: Daniel Wheeler <daniel.wheeler@amd.com>
+>> Cc: Harry Wentland <harry.wentland@amd.com>
+>> Cc: Hersen Wu <hersenxs.wu@amd.com>
+>> Cc: Leo Li <sunpeng.li@amd.com>
+>> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+>> Cc: Wenchieh Chien <wenchieh.chien@amd.com>
+>> Cc: David Airlie <airlied@gmail.com>
+>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>> 
+>> Jani Nikula (4):
+>>    Revert "drm/amd/display: drop unused count variable in
+>>      create_eml_sink()"
+>>    Revert "drm/amd/display: assign edid_blob_ptr with edid from debugfs"
+>>    Revert "drm/amd/display: mark amdgpu_dm_connector_funcs_force static"
+>>    Revert "drm/amd/display: implement force function in
+>>      amdgpu_dm_connector_funcs"
+>> 
+>>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 44 +++----------------
+>>   1 file changed, 5 insertions(+), 39 deletions(-)
+>> 
 
---v10
--remove switch case as we never enter case1 [Ankit]
-
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vdsc.c     | 113 ++++++++++++------
- .../gpu/drm/i915/display/intel_vdsc_regs.h    |  12 ++
- 2 files changed, 89 insertions(+), 36 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index fbe8ce9fe1ab..e604a5616aed 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -371,6 +371,23 @@ int intel_dsc_get_num_vdsc_instances(const struct intel_crtc_state *crtc_state)
- 	return num_vdsc_instances;
- }
- 
-+static void intel_dsc_get_pps_reg(const struct intel_crtc_state *crtc_state, int pps,
-+				  i915_reg_t *dsc_reg, int dsc_reg_size)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	enum pipe pipe = crtc->pipe;
-+	bool pipe_dsc;
-+
-+	pipe_dsc = is_pipe_dsc(crtc, cpu_transcoder);
-+
-+	if (drm_WARN_ON(crtc->base.dev, dsc_reg_size != 2))
-+		return;
-+
-+	dsc_reg[1] = pipe_dsc ? ICL_DSC1_PPS_REG(pipe, pps) : DSCC_PPS_REG(pps);
-+	dsc_reg[0] = pipe_dsc ? ICL_DSC0_PPS_REG(pipe, pps) : DSCA_PPS_REG(pps);
-+}
-+
- static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -1000,17 +1017,72 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
- 	}
- }
- 
-+static bool intel_dsc_read_pps_reg(struct intel_crtc_state *crtc_state,
-+				   int pps, u32 *pps_val)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	const int vdsc_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
-+	i915_reg_t dsc_reg[2];
-+	int i;
-+
-+	*pps_val = 0;
-+	drm_WARN_ON_ONCE(&i915->drm, ARRAY_SIZE(dsc_reg) < vdsc_per_pipe);
-+
-+	intel_dsc_get_pps_reg(crtc_state, pps, dsc_reg, ARRAY_SIZE(dsc_reg));
-+
-+	for (i = 0; i < min_t(int, ARRAY_SIZE(dsc_reg), vdsc_per_pipe); i++) {
-+		u32 pps_temp;
-+
-+		pps_temp = intel_de_read(i915, dsc_reg[i]);
-+
-+		if (i == 0)
-+			*pps_val = intel_de_read(i915, dsc_reg[i]);
-+		else if (pps_temp != *pps_val)
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
-+static void intel_dsc_read_and_verify_pps_reg(struct intel_crtc_state *crtc_state,
-+					      int pps, u32 *pps_val)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	int ret;
-+
-+	ret = intel_dsc_read_pps_reg(crtc_state, pps, pps_val);
-+	drm_WARN_ON(&i915->drm, !ret);
-+}
-+
-+static void intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
-+	u32 pps_temp1, pps_temp2;
-+
-+	/* FIXME: add more state readout as needed */
-+
-+	/* Readout PPS_0 and PPS_1 registers */
-+	intel_dsc_read_and_verify_pps_reg(crtc_state, 0, &pps_temp1);
-+	intel_dsc_read_and_verify_pps_reg(crtc_state, 1, &pps_temp2);
-+
-+	vdsc_cfg->bits_per_pixel = pps_temp2;
-+
-+	if (pps_temp1 & DSC_NATIVE_420_ENABLE)
-+		vdsc_cfg->bits_per_pixel >>= 1;
-+
-+	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
-+}
-+
- void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
--	enum pipe pipe = crtc->pipe;
- 	enum intel_display_power_domain power_domain;
- 	intel_wakeref_t wakeref;
--	u32 dss_ctl1, dss_ctl2, pps0 = 0, pps1 = 0, pps_temp0, pps_temp1;
--	int vdsc_instances_per_pipe;
-+	u32 dss_ctl1, dss_ctl2;
- 
- 	if (!intel_dsc_source_support(crtc_state))
- 		return;
-@@ -1031,38 +1103,7 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
- 	crtc_state->dsc.dsc_split = (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE) &&
- 		(dss_ctl1 & JOINER_ENABLE);
- 
--	/* FIXME: add more state readout as needed */
--
--	vdsc_instances_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
--
--	/* PPS0 & PPS1 */
--	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
--		pps1 = intel_de_read(dev_priv, DSCA_PICTURE_PARAMETER_SET_1);
--		if (vdsc_instances_per_pipe > 1) {
--			pps_temp1 = intel_de_read(dev_priv, DSCC_PICTURE_PARAMETER_SET_1);
--			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
--		}
--	} else {
--		pps0 = intel_de_read(dev_priv,
--				     ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe));
--		pps1 = intel_de_read(dev_priv,
--				     ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
--		if (vdsc_instances_per_pipe > 1) {
--			pps_temp0 = intel_de_read(dev_priv,
--						  ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe));
--			pps_temp1 = intel_de_read(dev_priv,
--						  ICL_DSC1_PICTURE_PARAMETER_SET_1(pipe));
--			drm_WARN_ON(&dev_priv->drm, pps0 != pps_temp0);
--			drm_WARN_ON(&dev_priv->drm, pps1 != pps_temp1);
--		}
--	}
--
--	vdsc_cfg->bits_per_pixel = pps1;
--
--	if (pps0 & DSC_NATIVE_420_ENABLE)
--		vdsc_cfg->bits_per_pixel >>= 1;
--
--	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
-+	intel_dsc_get_pps_config(crtc_state);
- out:
- 	intel_display_power_put(dev_priv, power_domain, wakeref);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-index 785ede31116e..862dc708c5fc 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -78,6 +78,10 @@
- /* Icelake Display Stream Compression Registers */
- #define DSCA_PICTURE_PARAMETER_SET_0		_MMIO(0x6B200)
- #define DSCC_PICTURE_PARAMETER_SET_0		_MMIO(0x6BA00)
-+#define DSCA_PPS_0				0x6B200
-+#define DSCC_PPS_0				0x6BA00
-+#define DSCA_PPS_REG(pps)			_MMIO(DSCA_PPS_0 + (pps) * 4)
-+#define DSCC_PPS_REG(pps)			_MMIO(DSCC_PPS_0 + (pps) * 4)
- #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB	0x78270
- #define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB	0x78370
- #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC	0x78470
-@@ -88,6 +92,14 @@
- #define ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC)
-+#define ICL_DSC0_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB, \
-+							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC)
-+#define ICL_DSC1_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB, \
-+							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC)
-+#define  ICL_DSC0_PPS_REG(pipe, pps)		_MMIO(ICL_DSC0_PPS_0(pipe) + ((pps) * 4))
-+#define  ICL_DSC1_PPS_REG(pipe, pps)		_MMIO(ICL_DSC1_PPS_0(pipe) + ((pps) * 4))
- #define  DSC_NATIVE_422_ENABLE		BIT(23)
- #define  DSC_NATIVE_420_ENABLE		BIT(22)
- #define  DSC_ALT_ICH_SEL		(1 << 20)
 -- 
-2.25.1
-
+Jani Nikula, Intel Open Source Graphics Center
