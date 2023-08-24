@@ -1,86 +1,85 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E84BA787506
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 18:16:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2BCA787515
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 18:18:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49A7710E59D;
-	Thu, 24 Aug 2023 16:16:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2622D10E598;
+	Thu, 24 Aug 2023 16:18:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2582110E592;
- Thu, 24 Aug 2023 16:16:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36EDB10E598
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 16:18:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692893780; x=1724429780;
+ t=1692893921; x=1724429921;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=kpKhceGrcYL9oDHDDR5kQ+a3YNfdvq74fWxggaroENE=;
- b=lQBzAVtAfqjDREsSN6feuCiaouSBC+UtZrpHyKky4vCjtO17PgzSvZky
- EUYGN6smbGa2dj372vnRxIeyyRtkivSzd/RK9OQmM/MdnRd5sa5hXY7pq
- tYWipmpQMkVPdDsVlS+yyeHxY/I7xP6kMZpgJrgVBkXgl4mCME3Vz1E+v
- 0lp+n8qjvuo9DTOyadOOTSZQfo6Kc8AGcVs2rE/OuHxNr6wArCDNAQEkd
- OZMykMdBHG5llCMuSlZdKQwkt8RAAUIzLWn/Jr5qCyHP5LLu5AWvh5kJE
- woORB7yR/JEJ+tL4ZzdUC9KjXNP/qgzG7P0rxBX0k5hMX4GhdA7oMfB7/ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="364679159"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="364679159"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ bh=aQuIiwxAU1J5Ua6sMw7MBjs55ZLcKfqn86IHYsasq9Y=;
+ b=kMPN+29gsyP//JcPBK1C0j9FcFoFHxhxYBR3i6ETCrrj7ifh0QUZWz6R
+ bh92UOi9wbRPNTmdK3bMdurzK5fNGD7B6P/1RefEBswsJQs38jwY8xn7s
+ 8uWFKzP+SyJ+Fdq7kyH9Deay9QvVA/4MN2hVTTMgvTMXo6er1CSRDQdZY
+ ph4kgv3fWjBy7MHqw0xKFpGAPkhREz2f/QH9gWZZAy3lLf/8YpoJx1xJL
+ 6QAD80yC0ZUWV7vBNYXBRpADGDOW7qZ93mDNt5XOcYLyG/GL3DKckCdNQ
+ YX/yIPygK4rUHTktxKnfPh24NypZQVFYDOJh6LqxktXNQriJBoLXqXLin w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="364680537"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="364680537"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 09:15:28 -0700
+ 24 Aug 2023 09:18:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="740258681"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="740258681"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga007.fm.intel.com with ESMTP; 24 Aug 2023 09:15:27 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="686971363"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="686971363"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga003.jf.intel.com with ESMTP; 24 Aug 2023 09:18:18 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 24 Aug 2023 09:15:26 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.27; Thu, 24 Aug 2023 09:18:18 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 24 Aug 2023 09:15:26 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.27; Thu, 24 Aug 2023 09:18:17 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 24 Aug 2023 09:15:26 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Thu, 24 Aug 2023 09:18:17 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 24 Aug 2023 09:15:25 -0700
+ 15.1.2507.27; Thu, 24 Aug 2023 09:18:17 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gH2RLfz8W4EG4pFGp0S/9P6n/83//8+NZdkD4RpM/t7fg5WMTWotQNv0on3CBCGrJARppeaW0HNPq5Zbd8T4d9DaWiVRYvjeh15kj23fBUjb2o3TYSGy4M5P1P6PB/6ono+5T5x3Joj4EuEEmSJLWG4WBBq6uAwE0O0TaY4cbgPbgthv+CKIezfCJ4uUW24zBy9FMGjOfKGTrT23NhoDKbju7XjxQkwWikYkMWGGup4oYkojaQCwzzf1PYlkqb3cj5If4CpfBxH1hJyVUJE1xS0M15B4Eos8He+0I2jDQi+oeil81/bhC/2M1bZYsrBAG/NetFRFHHji7dAlYuGzpA==
+ b=aUDGngy9BoYQUMPGl0pp2ghJZs7t5IGxrjV09x4QKnES/fZicHx2DIsm5ZV67QsDSDofB5dMSLD5OeVg1zaIFK2DVwNfCKpjUCeP+Y3MCY8TQQV+FHWie3A86+QPN17enuX6J495k8AoEywjb2+p9FcqP/SPcXpci95H+/ObUa/QzaVhmbh6ybklVmCH1miFas5XDAxdBZHUIx+QRHLoG+7lRXpApdR/+OA6gx5AiCq3I7fzUAvleIdGfBzNDyUsm5FIAaC1JCSlhhomVCc5LufMNkJpQQ/5SaTvNGSygk1WXEVUPvmW2TCvYlw3NpsGqvnnddKmgfPkUpcziYtsyQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aC0xfo11xZU432TosVovZQePrQ2kOheBwsPztsYZIqQ=;
- b=BKaPYejaV0EMgwLSQ6Q6cWfzhoqK0CozOT+iG0iwzSVaulfb7YmpctrG3IWI0nbOSwoVNWHfdZBoYRtusiDQ/62Cu26UG9OGyONQFUCVcHaL5iTWNeX14s0Yb41CtRgo01tP6NGNlXZXNKJzF7NX/fp+5pi1dRytwZUda+ioekTwfKM5e8KFzM2jRp5UiQcM3exT6l6xG/v/zG/XoIW56mI0uOGtXZ68iyJzfv1eeX7IYrr1KphKZAU6ulHINMEeNferHJ6We3/ttrbMB6bkXllz9vt091y6kWLobrzpxuJWpr8exou1xPzJw9V71YdWc8zoLpr6NfC9ohqha81q+Q==
+ bh=/6Mq3thHSyuRc/AMLaiB98FJSfXd4C5LoG4atKSqpc4=;
+ b=CdmZXcUhrA4jkx3XS5AkuZSGjD8L4w5Sn36u/WUT8p2uhXa9sq6DHsi7V8H604iU+K0EfzHKxA32bmH5aBj88QIi//yy4CdEfbf9jjAXjNct8ew/Tk+H0qacGOhLVINYmK+iLKbfeIzPQwhs5KA2LVwLM2ux6zkNvp7EbZ0T1Rn04/Zj9KfBX/mZs8OcVJdxzxPmoxnALdYjcJF3O9k4qzATrf/CgzUH/SGs2qdnQ2FrdeGs2z1xHZNVFEsFBAT/EyspHUN4qCZwNfWDMtHYL/rm2TjBaSHhtJxNQJdJp5lzNDez4fkAn4rhvfDLaf+yICSk61r4qu8aGfnrYCi4tw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by IA1PR11MB6442.namprd11.prod.outlook.com (2603:10b6:208:3a9::16)
- with Microsoft SMTP Server (version=TLS1_2,
+ by CO6PR11MB5667.namprd11.prod.outlook.com (2603:10b6:5:35b::15) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Thu, 24 Aug
- 2023 16:15:24 +0000
+ 2023 16:18:13 +0000
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::88b:6fa5:dca0:2419]) by SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::88b:6fa5:dca0:2419%7]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
- 16:15:24 +0000
+ 16:18:13 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [Intel-xe] [Intel-gfx] [PATCH 09/42] drm/i915/tc: move legacy
- code out of the main _max_lane_count() func
-Thread-Index: AQHZ1eS8E4j6O5q98kO4JFEg9UR6YK/47spAgACfHQCAABJTwA==
-Date: Thu, 24 Aug 2023 16:15:23 +0000
-Message-ID: <SN7PR11MB67507EC4E3E5D3CEB399531DE31DA@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
- <20230823170740.1180212-10-lucas.demarchi@intel.com>
- <SN7PR11MB6750DB914E983DFCB1449811E31DA@SN7PR11MB6750.namprd11.prod.outlook.com>
- <uglddndjdywwvqb6suwkeqc64jjkxyp54nj5gsw7hcice36lqy@i33djkz7ivmo>
-In-Reply-To: <uglddndjdywwvqb6suwkeqc64jjkxyp54nj5gsw7hcice36lqy@i33djkz7ivmo>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 2/9] drm/i915/display: Store compressed bpp
+ in U6.4 format
+Thread-Index: AQHZ1PIk5SCBJyWLJkuj6sWEXkwhZ6/5Io3w
+Date: Thu, 24 Aug 2023 16:18:13 +0000
+Message-ID: <SN7PR11MB6750FBA29BCBB2248C0D86D0E31DA@SN7PR11MB6750.namprd11.prod.outlook.com>
+References: <20230822121033.597447-1-ankit.k.nautiyal@intel.com>
+ <20230822121033.597447-3-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20230822121033.597447-3-ankit.k.nautiyal@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -88,59 +87,59 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|IA1PR11MB6442:EE_
-x-ms-office365-filtering-correlation-id: 90c9d148-4d3b-447b-44b9-08dba4bd5248
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|CO6PR11MB5667:EE_
+x-ms-office365-filtering-correlation-id: f9d63dae-3205-48fe-da6a-08dba4bdb741
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dWxJdifEKNvSb/roxqsw1TV7fxWGka3Nms8uR4n1/HuVDiOBXD2VnPwZJ9b5gbU79WE4CPy3Uo1znJBPvfqbosjHpEN/oH+CstNq9r880lFNFQlxb9js9s4p9MuQIWT5uZjniHTpn0FZMI8QN2a4d9eI2VD9JCj/5W5Q+omILh0WrZW7sOqb3jRAEpxvozdfeoQVP8nFciMgFbiV0pkyyWwSLSCtJKISrNEesUgg91xmT/ubuFPscQjASNxGEoR2a3U3yw8pU7mN5SYz5s+FZEEylIkqRhoW48YFdCTvZztrDF56xqXWsYevqk4/Eznx4YGtmhm7ry7sQN9IpxuQnHvcMMLFScXjaR4FBJ/SNUa8IT55Az23qek0UxCbsPBWQXTT52KuuUjS8l3Fuwu1atiDoZB0srFNd/1CW7DMqJmdqpRTUHatkEeqCeZfBe0C/HPMjDpITMXLsazF6D6HpaIPHqvFpvJaUmOMTSmOSRDrzpN15jrTqY6OvAaeV5zc1Ng8lcoppGYxvmzMzYuJMzg42XO4KZYv84j188Z4EaPb2hWtg+xYHK+n/apJ2UlJuuP7A1DpkOZ0bao/MvSuoMvVdVvgA5xDOqrg6O2GosZPG4UjXAfzINAY8pdpaT1+DPQDZxmIYEQ86LYQVzKgIw==
+x-microsoft-antispam-message-info: gTQx0SbE6VWDjuuA9vHIwo9mFZoStZFDq6hRQBq+0yBwywmPkTvVUHFNmjlC1R30jOnWqt+NT+m0GDZosqKzb93og2DxeVv8+OtXEhvWbbhu8O8St4QX+yQm/hJceBoStNiAlu9N8ku4wnl6TUNmMxNcbq5hzA0TXW7GHHDgqfxo7mBaU7uNF7dVUbSHISmKOFLw5iU7QIcCv7Tuq1yxBJ7juG3QjlngBgcl+qSYQZWWBDmws+ayOjKEJ3ijALAR8xk+ZPLvq1KuBxIiWEi2PCR6PJdhR48p75OU99wTgUOV4bR1RATdW5qbTSih4pPwBXq0yjgwMd4Cku9Ml3ROdY1myzkRDeErpf1fLJLY7IO7RfMGU66z2DoL6NyItswO729CODQl1xM8AP55LXvr4Hr8pWTnvtcS5GR8+/eaCXrcTDDK+iIoV51MSloPVZzTT1HzNXelzAfctXTv1iSAwnrWf0Ee2DGMfKmXxfQfT/zEGPE7o+r8mSN8uSRC+zDdpIcQk9m4yoHQkhKPIP3TGLHmSHYbfyDmYPlpdLBSGgedOk5klttJAMPrarHIZNYcnLbqy1EzND8cdwEjoKNeUKXZR12arVTvmUhW3WxXPY3WtOoWF6UjWiFBunNwrJ4w
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(346002)(376002)(366004)(39860400002)(136003)(1800799009)(186009)(451199024)(52536014)(8936002)(4326008)(6862004)(8676002)(450100002)(83380400001)(5660300002)(107886003)(26005)(55016003)(33656002)(71200400001)(38070700005)(38100700002)(82960400001)(122000001)(66946007)(76116006)(66556008)(66476007)(64756008)(66446008)(54906003)(6636002)(316002)(478600001)(966005)(41300700001)(9686003)(2906002)(7696005)(86362001)(6506007);
+ SFS:(13230031)(366004)(39860400002)(376002)(136003)(396003)(346002)(186009)(1800799009)(451199024)(66446008)(66476007)(64756008)(66946007)(76116006)(66556008)(316002)(82960400001)(122000001)(478600001)(110136005)(26005)(55016003)(38070700005)(38100700002)(33656002)(71200400001)(41300700001)(6506007)(7696005)(86362001)(2906002)(9686003)(4326008)(8676002)(8936002)(83380400001)(52536014)(107886003)(5660300002);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?n8wEvvkpaKklzNQ0c2ihpXIs94xwILLcqCVXvvL69GuT03qOL19/R3AlBrzD?=
- =?us-ascii?Q?FkrrmKn9ETjqxz2xBMrmw423SRs0M1eLFcOptn8FWGBrpQupreccnM+Z5gFp?=
- =?us-ascii?Q?UAyEvudI4m9XQp8PHMEO9ej0/QB2Og7+BJVsqiJL2e/R452GFgDchE+QGuFK?=
- =?us-ascii?Q?2JbRBoLbKS1r/tnsWAFng5iYvf6otU4ymw/oAAo9qz+nvrcGWd3B4xaQjLbi?=
- =?us-ascii?Q?acQuJ5ickTTv/OaplBkbA0ZFHsgy+SuIXf3rtCEMQhveX7uRxbfLnu8qLOWC?=
- =?us-ascii?Q?MHzkKsuE2RJ5DYhF0/m8aSkys1wDkQMNjn5uq9Fh5KjhgufStiQ7mBNOgweC?=
- =?us-ascii?Q?0gwg+LXRkYvaf8VBCORbnr06o+f3MTIOWk/PoWHHiCcKj4A919fnm2Ll7nsz?=
- =?us-ascii?Q?KE+Y5xNAnzQBufwHCQ1wUbHAw1zbHSJQsE4Xx3zUQI9iQyKxNaR5HpsYke7F?=
- =?us-ascii?Q?p0ZRAL9FaL6dYZu+Mtt14MYwRP0R5seQc2RgwBy5iT2XzDF06COnLVDL0eJw?=
- =?us-ascii?Q?6XIQzFY+CmS+A7KUqNBMkdVdYnkt/EVg3q4ABN2aRCSzj0OpZCvk7+8oJfCH?=
- =?us-ascii?Q?fKi9ifG3mNJbbt/SStdEYexw0q5dR3cm+s09tXloOKWNSIwBWmXQ9HEm+uZe?=
- =?us-ascii?Q?CC3fz3WnwgzKb5U3nbFKPuj/oVvWFdJHivPN3h2KNnfubc/67a7p/ZprXzhP?=
- =?us-ascii?Q?PDk+/TvX3OOjmYrWE1viLQtdv4BfyyPoFExd0bzoMAkxYfDLIvf5e5HOTDbK?=
- =?us-ascii?Q?/dw2JxSaUGzo9fxfK4CuNwVrChIBrkDEPgiGWf54NBlEKbetE08NveZoZMG6?=
- =?us-ascii?Q?9i377UON7SkYfSo9nOcB7FckKjV0E42WxsMpUujqJQqYOqc5wlAl5dJ4O/hU?=
- =?us-ascii?Q?JdlWIfV3CZCcSqimWVc/EAUOFXpAvZc/TMYgYssJqQB/phiXaBg/yC8vUvgc?=
- =?us-ascii?Q?i7GgYAvRJP36Mu7bWDvUECz+Q47UCbUVuScNNaZlaw84KbA2c1pPrtV2OilE?=
- =?us-ascii?Q?YMcSIzHgE8yoz63gdU0mEO8iNdsbWCPb1a1Ld9FVQMWMz4SvhL2d8rlVkith?=
- =?us-ascii?Q?vqI3u78uUm/2T+x5diBMIL2m/m4gFJI1c7C7+VLhcLNfVRO7uVop6kR+R6W4?=
- =?us-ascii?Q?LUGppYObb5mrI7fqFQNgxYw4Zx2HA8C0/w2tU49QaMKjovf4Tf0lNF3jr572?=
- =?us-ascii?Q?qO2LXp+gW23LLUz02nWLeMSktMwEB4/Dzo9HEQCVC+OBE3y5M4k4L4VoIQSK?=
- =?us-ascii?Q?+ZTNDQdnaFmwMzYjyzjWSTpZqyFLryLqskWt3z5HCE+YTLjeD5rdqQVsHFpB?=
- =?us-ascii?Q?sSuuQRyPKUQkuyYrw2ahsDJkvnza7WsrLTxqQU27yRXRJ4DLyM6Jkc2kXvtQ?=
- =?us-ascii?Q?xjoRgoEmhYMehFu0E5BGhDIIjdG+J0oN8TBwdXhE1Fr1ZzVZxnjRuUW2/Ygj?=
- =?us-ascii?Q?ycP5hkFM5AvDmDWF+4sQlLlCu0f2/l17rDncV+EPvSGPPg9yp1dZNvSOAgFZ?=
- =?us-ascii?Q?ozrqGtzF9+4RUnx6HATgURwx5+CSAdk3fRPuAJj/ClMx1asD1hPwrYk1dz/O?=
- =?us-ascii?Q?1EQhQwIA75f9af/2qAlxMdfMF29Nr/OY6LAG0LJ2?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GCvaTFwr2gceZSiVUf1aJBk46abTPzB3K1eM9ebUiYJMX81feo4EPZOFUB7d?=
+ =?us-ascii?Q?w0oueQkdsuNkuS1jaLTjOXahqSk+wqa/3C7CkPlbiS9VneyQSTTujePO9xns?=
+ =?us-ascii?Q?9gUIEx+wqYgBcMegdDCl/kidTRO/2hFTqizantag6YaIQidodxUjG1ZkEagk?=
+ =?us-ascii?Q?1f2saG9KmUYtH1g2F6wN3XR0CHEAIpw9Sax/ChXFDmXUOrRrGYuxW2tQrL1d?=
+ =?us-ascii?Q?6sf99jKSbXW/PggUu4mXWdtfqaQx8piCcgWbjpTX0OmBW0ukDAewDAHZ5PFx?=
+ =?us-ascii?Q?ORj9xgITL4dA17GhZ/BBtvth5G32y+JClWQMU2Ty3pY6CfmlnJ3Rl1znrZq5?=
+ =?us-ascii?Q?VT5QL43HIidjpI8YXvmjg4/ax6/yqVoLSOBrCnGwHC8duhpI1iLmm0ynJtqj?=
+ =?us-ascii?Q?hCmpfR20FYYU3FtSPjANFjHKA/phOZL3UEjQPFHWreaVe+Mu62XtER9HdafN?=
+ =?us-ascii?Q?KfE8xOX+no4w+KryamdmWoSsCLNXgQ7BVZo2KeocvQdpeHF/tyUiW34C61Kw?=
+ =?us-ascii?Q?k/JFeRiHq7ZA002KObyiujT35n+QC61QQZA4q0zuAn2u4CAS/QlFEGi6UPeK?=
+ =?us-ascii?Q?x0QYk0/dimgYOq/rXlpqIm5oXnIonYcs4QISRFVGvwBPsSSOXw6xg8oNCIcC?=
+ =?us-ascii?Q?Oo9GtCHIqz/fxVMco/lpvB6SMfEYrLZ1naoIhB4o0o4Lk8QCw3MQZUrAhkyr?=
+ =?us-ascii?Q?MHJpGwCOsdIRTDBjCpseTUrQ9EDOWNnZ8ioTxydVMoqGPItUD4tndwKZwULL?=
+ =?us-ascii?Q?b0IFbF2C3wxtX2cASr1cZNHqKzvgf1ivi69qAaxkhrYrYaq/R/gTXAC8hNI+?=
+ =?us-ascii?Q?rUze13SnHyb1KSlxsyAAYz991jVWH2dUjthAnbkRPdE3yxt1DryT8XViXxn1?=
+ =?us-ascii?Q?VRQAVVMjEttgJYU9XXWw4DqF0ibp3znBNNcGXBEdRZRztex1JIfFegQHmVPl?=
+ =?us-ascii?Q?GxnPICrcFsP1r1p4IBECt1chMDDXSTQ1fYy4KB4YZ4rJog03N6grY3OexK2o?=
+ =?us-ascii?Q?IeeC7A5sG5ZbBjgN0KGkskOTNF/QY6/ouHXyNeIae2sDASQdOFH7v3ve7M3I?=
+ =?us-ascii?Q?pRvNxYO8ED5AgaGw5gI1TpioT59N7Gm73KwQfcbYOFkJKjlheT26kVAJelYN?=
+ =?us-ascii?Q?19jQ3ghBU3AuCAxCvqza9HwQYWzAgfQV6rzdAmKyhPjjj1fV1rfnVHfN4Z59?=
+ =?us-ascii?Q?nPG3g1Mrmf/n76D0tYOCHIUtsDbl6QoxxZ7TAc4hewar6HAdJAPROERr7VcT?=
+ =?us-ascii?Q?xCSXN7zWCUtQZyxkynfk3kJX5Qth5uvpezUAbj5bwqAa8o0B4rRpTpgA/dQN?=
+ =?us-ascii?Q?EFrohGlTsX3c5fQ6oDCuk+wI657IRgg2pY+jZ+wKYDw1sn3RHKwVOjFgPHWX?=
+ =?us-ascii?Q?+KMz28G2/tjrzIREwaWTjHppzR5NwvD1FdaI1MIFTbLT02LybbYTqVpdVu2i?=
+ =?us-ascii?Q?g/rJSemm7wrhUF9458BpyTl+T8dq3HfHESBZIevHzu94PTYcPn2TkIz7KY7e?=
+ =?us-ascii?Q?Lai+1DSeo08dQJEnF8QcbtlqYtWj/cWx0Bxh1OVLvMHm+D2E/dMvlw7DuMo3?=
+ =?us-ascii?Q?M7oGPFzd0u0ZyR02GEXRuoZ9tGBMYAX4aGYFMVcS?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90c9d148-4d3b-447b-44b9-08dba4bd5248
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2023 16:15:23.9294 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9d63dae-3205-48fe-da6a-08dba4bdb741
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2023 16:18:13.3152 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Kxz6ttxrnz029KKqS/uXPTIWatylas/Vhg6SB7JdD3/gEY3qxFUCBO3XE680BEm39aknuRyMi/6PdFr3hw3ZSw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6442
+X-MS-Exchange-CrossTenant-userprincipalname: etq8BIRGE8jiJEv2UfPmYccoQ3VjKXz5/bZE2ND4e9Eqs1EieAFN1096GC9zCcdcZ7qGKq8iliC/729Cxe/Ysg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5667
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 09/42] drm/i915/tc: move legacy
- code out of the main _max_lane_count() func
+Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915/display: Store compressed bpp
+ in U6.4 format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,129 +152,280 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Coelho, Luciano" <luciano.coelho@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "manasi.d.navare@intel.com" <manasi.d.navare@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> >> Subject: [Intel-gfx] [PATCH 09/42] drm/i915/tc: move legacy code out
-> >> of the main _max_lane_count() func
-> >>
-> >> From: Luca Coelho <luciano.coelho@intel.com>
-> >>
-> >> This makes the code a bit more symmetric and readable, especially
-> >> when we start adding more display version-specific alternatives.
-> >>
-> >> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> >> Link: https://lore.kernel.org/r/20230721111121.369227-4-
-> >> luciano.coelho@intel.com
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_tc.c | 32
-> >> +++++++++++++++----------
-> >>  1 file changed, 19 insertions(+), 13 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c
-> >> b/drivers/gpu/drm/i915/display/intel_tc.c
-> >> index de848b329f4b..43b8eeba26f8 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> >> @@ -311,23 +311,12 @@ static int
-> >> mtl_tc_port_get_max_lane_count(struct
-> >> intel_digital_port *dig_port)
-> >>  	}
-> >>  }
-> >>
-> >> -int intel_tc_port_fia_max_lane_count(struct intel_digital_port
-> >> *dig_port)
-> >> +static int intel_tc_port_get_max_lane_count(struct
-> >> +intel_digital_port
-> >> +*dig_port)
-> >>  {
-> >>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> >> -	struct intel_tc_port *tc =3D to_tc_port(dig_port);
-> >> -	enum phy phy =3D intel_port_to_phy(i915, dig_port->base.port);
-> >>  	intel_wakeref_t wakeref;
-> >> -	u32 lane_mask;
-> >> -
-> >> -	if (!intel_phy_is_tc(i915, phy) || tc->mode !=3D TC_PORT_DP_ALT)
-> >> -		return 4;
-> >> +	u32 lane_mask =3D 0;
-> >>
-> >> -	assert_tc_cold_blocked(tc);
-> >> -
-> >> -	if (DISPLAY_VER(i915) >=3D 14)
-> >> -		return mtl_tc_port_get_max_lane_count(dig_port);
-> >> -
-> >> -	lane_mask =3D 0;
-> >>  	with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE,
-> >> wakeref)
-> >>  		lane_mask =3D intel_tc_port_get_lane_mask(dig_port);
-> >>
-> >> @@ -348,6 +337,23 @@ int intel_tc_port_fia_max_lane_count(struct
-> >> intel_digital_port *dig_port)
-> >>  	}
-> >>  }
-> >
-> >Rather than having two functions:
-> >mtl_tc_port_get_max_lane_count()
-> >& intel_tc_port_get_max_lane_count() that both call:
-> >with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE, wakeref)
-> >                lane_mask =3D intel_tc_port_get_lane_mask(dig_port);
-> >to get the lane mask the us directly pass the lane_mask to the above
-> >two functions and make the call for getting the lane_mask common i.e
-> >lets call it in intel_tc_port_fia_max_lane_count().
+> Subject: [Intel-gfx] [PATCH 2/9] drm/i915/display: Store compressed bpp i=
+n
+> U6.4 format
 >=20
-> Maybe, but I will let this to be decided between you and Luca. Pasting fr=
-om
-> the cover letter:
+> DSC parameter bits_per_pixel is stored in U6.4 format.
+> The 4 bits represent the fractional part of the bpp.
+> Currently we use compressed_bpp member of dsc structure to store only the
+> integral part of the bits_per_pixel.
+> To store the full bits_per_pixel along with the fractional part, compress=
+ed_bpp
+> is changed to store bpp in U6.4 formats. Intergral part is retrieved by s=
+imply
+> right shifting the member compressed_bpp by 4.
 >=20
->          3. Patches 7 through 10 can also be ignored: they are not
->             applied yet, but being reviewed in other patch series by its
->             author[2].
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c        | 10 ++++-----
+>  drivers/gpu/drm/i915/display/intel_audio.c    |  2 +-
+>  drivers/gpu/drm/i915/display/intel_bios.c     |  2 +-
+>  .../drm/i915/display/intel_display_types.h    | 16 +++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 21 +++++++++++--------
+>  drivers/gpu/drm/i915/display/intel_vdsc.c     |  4 ++--
+>  6 files changed, 36 insertions(+), 19 deletions(-)
 >=20
->          [2] https://patchwork.freedesktop.org/series/120980/
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
+> b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index ad6488e9c2b2..81b8e97e9435 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -330,7 +330,7 @@ static int afe_clk(struct intel_encoder *encoder,
+>  	int bpp;
 >=20
-> The only reason I added them here is that since this series will take som=
-e time
-> to be applied, I figured it would be better not to create unnecessary con=
-flicts. I
-> expect these patches to merge soon so I will just drop them in the next
-> revision of this series.
+>  	if (crtc_state->dsc.compression_enable)
+> -		bpp =3D crtc_state->dsc.compressed_bpp;
+> +		bpp =3D dsc_integral_compressed_bpp(crtc_state-
+> >dsc.compressed_bpp);
+>  	else
+>  		bpp =3D mipi_dsi_pixel_format_to_bpp(intel_dsi->pixel_format);
 >=20
-> thanks
-> Lucas De Marchi
+> @@ -860,7 +860,7 @@ gen11_dsi_set_transcoder_timings(struct
+> intel_encoder *encoder,
+>  	 * compressed and non-compressed bpp.
+>  	 */
+>  	if (crtc_state->dsc.compression_enable) {
+> -		mul =3D crtc_state->dsc.compressed_bpp;
+> +		mul =3D dsc_integral_compressed_bpp(crtc_state-
+> >dsc.compressed_bpp);
+>  		div =3D mipi_dsi_pixel_format_to_bpp(intel_dsi->pixel_format);
+>  	}
 >=20
+> @@ -884,7 +884,7 @@ gen11_dsi_set_transcoder_timings(struct
+> intel_encoder *encoder,
+>  		int bpp, line_time_us, byte_clk_period_ns;
+>=20
+>  		if (crtc_state->dsc.compression_enable)
+> -			bpp =3D crtc_state->dsc.compressed_bpp;
+> +			bpp =3D dsc_integral_compressed_bpp(crtc_state-
+> >dsc.compressed_bpp);
+>  		else
+>  			bpp =3D mipi_dsi_pixel_format_to_bpp(intel_dsi-
+> >pixel_format);
+>=20
+> @@ -1451,8 +1451,8 @@ static void gen11_dsi_get_timings(struct
+> intel_encoder *encoder,
+>  	struct drm_display_mode *adjusted_mode =3D
+>  					&pipe_config->hw.adjusted_mode;
+>=20
+> -	if (pipe_config->dsc.compressed_bpp) {
+> -		int div =3D pipe_config->dsc.compressed_bpp;
+> +	if (dsc_integral_compressed_bpp(pipe_config-
+> >dsc.compressed_bpp)) {
 
-Ohk got it.
+Doesn't make sense to have this function to be called here this just
+checks if we have compressed_bpp available or not extracting the
+integral part should not be necessary
 
-Regards,
-Suraj Kandpal
-> >
-> >Regards,
-> >Suraj Kandpal
-> >>
-> >> +int intel_tc_port_fia_max_lane_count(struct intel_digital_port
-> >> +*dig_port) {
-> >> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> >> +	struct intel_tc_port *tc =3D to_tc_port(dig_port);
-> >> +	enum phy phy =3D intel_port_to_phy(i915, dig_port->base.port);
-> >> +
-> >> +	if (!intel_phy_is_tc(i915, phy) || tc->mode !=3D TC_PORT_DP_ALT)
-> >> +		return 4;
-> >> +
-> >> +	assert_tc_cold_blocked(tc);
-> >> +
-> >> +	if (DISPLAY_VER(i915) >=3D 14)
-> >> +		return mtl_tc_port_get_max_lane_count(dig_port);
-> >> +
-> >> +	return intel_tc_port_get_max_lane_count(dig_port);
-> >> +}
-> >> +
-> >>  void intel_tc_port_set_fia_lane_count(struct intel_digital_port *dig_=
-port,
-> >>  				      int required_lanes)
-> >>  {
-> >> --
-> >> 2.40.1
-> >
+> +		int div =3D
+> +dsc_integral_compressed_bpp(pipe_config->dsc.compressed_bpp);
+>  		int mul =3D mipi_dsi_pixel_format_to_bpp(intel_dsi-
+> >pixel_format);
+>=20
+>  		adjusted_mode->crtc_htotal =3D
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c
+> b/drivers/gpu/drm/i915/display/intel_audio.c
+> index 3d9c9b4f27f8..93969b63cdd8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -528,7 +528,7 @@ static unsigned int calc_hblank_early_prog(struct
+> intel_encoder *encoder,
+>  	h_active =3D crtc_state->hw.adjusted_mode.crtc_hdisplay;
+>  	h_total =3D crtc_state->hw.adjusted_mode.crtc_htotal;
+>  	pixel_clk =3D crtc_state->hw.adjusted_mode.crtc_clock;
+> -	vdsc_bpp =3D crtc_state->dsc.compressed_bpp;
+> +	vdsc_bpp =3D
+> +dsc_integral_compressed_bpp(crtc_state->dsc.compressed_bpp);
+>  	cdclk =3D i915->display.cdclk.hw.cdclk;
+>  	/* fec=3D 0.972261, using rounding multiplier of 1000000 */
+>  	fec_coeff =3D 972261;
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
+> b/drivers/gpu/drm/i915/display/intel_bios.c
+> index 858c959f7bab..fe1e376c4ba7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -3385,7 +3385,7 @@ static void fill_dsc(struct intel_crtc_state
+> *crtc_state,
+>  	crtc_state->pipe_bpp =3D bpc * 3;
+>=20
+>  	crtc_state->dsc.compressed_bpp =3D min(crtc_state->pipe_bpp,
+> -					     VBT_DSC_MAX_BPP(dsc-
+> >max_bpp));
+> +					     VBT_DSC_MAX_BPP(dsc-
+> >max_bpp)) << 4;
+>=20
+>  	/*
+>  	 * FIXME: This is ugly, and slice count should take DSC engine diff --g=
+it
+> a/drivers/gpu/drm/i915/display/intel_display_types.h
+> b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 731f2ec04d5c..f749dc4e70df 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1353,7 +1353,7 @@ struct intel_crtc_state {
+>  	struct {
+>  		bool compression_enable;
+>  		bool dsc_split;
+> -		u16 compressed_bpp;
+> +		u16 compressed_bpp; /* U6.4 format (first 4 bits for
+> fractional part)
+> +*/
+>  		u8 slice_count;
+>  		struct drm_dsc_config config;
+>  	} dsc;
+> @@ -2108,4 +2108,18 @@ to_intel_frontbuffer(struct drm_framebuffer *fb)
+>  	return fb ? to_intel_framebuffer(fb)->frontbuffer : NULL;  }
+>=20
+> +/* Returns integral part of the compressed bpp given in U6.4 format */
+> +static inline int
+> +dsc_integral_compressed_bpp(u16 compressed_bpp) {
+> +	return compressed_bpp >> 4;
+> +}
+
+Maybe we can have two macro/functions that can be used to shift the fractio=
+nal part for bpp
+dsc_bpp_x_to_x16 and dsc_bpp_x16_to_x this can be used at a lot of places t=
+o avoid confusions everywhere
+when and why we are shifting  by 4.
+We can keep the dsc_fractional_compressed_bpp.
+
+> +
+> +/* Returns fractional part of the compressed bpp given in U6.4 format
+> +*/ static inline int
+> +dsc_fractional_compressed_bpp(u16 compressed_bpp) {
+> +	return ((compressed_bpp & 0xF) * 10000 / 16); }
+> +
+
+Maybe dsc_get_fractional_bpp () ?
+
+>  #endif /*  __INTEL_DISPLAY_TYPES_H__ */ diff --git
+> a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 5b48bfe09d0e..32d0bee11f53 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1901,7 +1901,7 @@ xelpd_dsc_compute_link_config(struct intel_dp
+> *intel_dp,
+>  					      compressed_bpp,
+>  					      timeslots);
+>  		if (ret =3D=3D 0) {
+> -			pipe_config->dsc.compressed_bpp =3D
+> compressed_bpp;
+> +			pipe_config->dsc.compressed_bpp =3D
+> compressed_bpp << 4;
+>  			return 0;
+>  		}
+>  	}
+> @@ -2171,17 +2171,19 @@ int intel_dp_dsc_compute_config(struct
+> intel_dp *intel_dp,
+>  	if (ret < 0) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "Cannot compute valid DSC parameters for Input
+> Bpp =3D %d "
+> -			    "Compressed BPP =3D %d\n",
+> +			    "Compressed BPP =3D %d.%d\n",
+>  			    pipe_config->pipe_bpp,
+> -			    pipe_config->dsc.compressed_bpp);
+> +			    dsc_integral_compressed_bpp(pipe_config-
+> >dsc.compressed_bpp),
+> +			    dsc_fractional_compressed_bpp(pipe_config-
+> >dsc.compressed_bpp));
+>  		return ret;
+>  	}
+>=20
+>  	pipe_config->dsc.compression_enable =3D true;
+>  	drm_dbg_kms(&dev_priv->drm, "DP DSC computed with Input Bpp =3D
+> %d "
+> -		    "Compressed Bpp =3D %d Slice Count =3D %d\n",
+> +		    "Compressed Bpp =3D %d.%d Slice Count =3D %d\n",
+>  		    pipe_config->pipe_bpp,
+> -		    pipe_config->dsc.compressed_bpp,
+> +		    dsc_integral_compressed_bpp(pipe_config-
+> >dsc.compressed_bpp),
+> +		    dsc_fractional_compressed_bpp(pipe_config-
+> >dsc.compressed_bpp),
+>  		    pipe_config->dsc.slice_count);
+>=20
+>  	return 0;
+> @@ -2260,15 +2262,16 @@ intel_dp_compute_link_config(struct
+> intel_encoder *encoder,
+>=20
+>  	if (pipe_config->dsc.compression_enable) {
+>  		drm_dbg_kms(&i915->drm,
+> -			    "DP lane count %d clock %d Input bpp %d
+> Compressed bpp %d\n",
+> +			    "DP lane count %d clock %d Input bpp %d
+> Compressed bpp %d.%d\n",
+>  			    pipe_config->lane_count, pipe_config->port_clock,
+>  			    pipe_config->pipe_bpp,
+> -			    pipe_config->dsc.compressed_bpp);
+> +			    dsc_integral_compressed_bpp(pipe_config-
+> >dsc.compressed_bpp),
+> +			    dsc_fractional_compressed_bpp(pipe_config-
+> >dsc.compressed_bpp));
+>=20
+>  		drm_dbg_kms(&i915->drm,
+>  			    "DP link rate required %i available %i\n",
+>  			    intel_dp_link_required(adjusted_mode->crtc_clock,
+> -						   pipe_config-
+> >dsc.compressed_bpp),
+> +
+> dsc_integral_compressed_bpp(pipe_config->dsc.compressed_bpp)),
+>  			    intel_dp_max_data_rate(pipe_config->port_clock,
+>  						   pipe_config->lane_count));
+>  	} else {
+> @@ -2700,7 +2703,7 @@ intel_dp_compute_config(struct intel_encoder
+> *encoder,
+>  		intel_dp_limited_color_range(pipe_config, conn_state);
+>=20
+>  	if (pipe_config->dsc.compression_enable)
+> -		link_bpp =3D pipe_config->dsc.compressed_bpp;
+> +		link_bpp =3D
+> +dsc_integral_compressed_bpp(pipe_config->dsc.compressed_bpp);
+>  	else
+>  		link_bpp =3D intel_dp_output_bpp(pipe_config-
+> >output_format,
+>  					       pipe_config->pipe_bpp);
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index e4c395b4dc46..2dc6ea82c024 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -248,7 +248,7 @@ int intel_dsc_compute_params(struct intel_crtc_state
+> *pipe_config)
+>  	struct intel_crtc *crtc =3D to_intel_crtc(pipe_config->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	struct drm_dsc_config *vdsc_cfg =3D &pipe_config->dsc.config;
+> -	u16 compressed_bpp =3D pipe_config->dsc.compressed_bpp;
+> +	u16 compressed_bpp =3D
+> +dsc_integral_compressed_bpp(pipe_config->dsc.compressed_bpp);
+>  	int err;
+>  	int ret;
+>=20
+> @@ -1040,7 +1040,7 @@ void intel_dsc_get_config(struct intel_crtc_state
+> *crtc_state)
+>  	if (pps0 & DSC_NATIVE_420_ENABLE)
+>  		vdsc_cfg->bits_per_pixel >>=3D 1;
+>=20
+> -	crtc_state->dsc.compressed_bpp =3D vdsc_cfg->bits_per_pixel >> 4;
+> +	crtc_state->dsc.compressed_bpp =3D vdsc_cfg->bits_per_pixel;
+>  out:
+>  	intel_display_power_put(dev_priv, power_domain, wakeref);  }
+> --
+> 2.40.1
+
