@@ -2,33 +2,143 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE310786C8D
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 12:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 110EC786C8E
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 12:07:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F247410E4B9;
-	Thu, 24 Aug 2023 10:07:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B2D610E513;
+	Thu, 24 Aug 2023 10:07:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3D63E10E4B9;
- Thu, 24 Aug 2023 10:07:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 33D15AADDD;
- Thu, 24 Aug 2023 10:07:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD51D10E513
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 10:07:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692871663; x=1724407663;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:mime-version;
+ bh=OCcyfnaCgLR6HFZGnY6nw5O4bxor9kWHSfH8dNXtmhg=;
+ b=nIEToK9g0J6WIj+Xiu3idxEApJkkfC2G0tGuX9qwKBtWfxVMZzDZ6W8X
+ f3j2hXPpLkDpg6P68opeuHm6snZPAcpZKg9jkhFburFwH2bqKY2jeLGlf
+ mn6SwZu1qEdhAl9eb8temaWVBC69ZncAhG9/mZI45oZPJMI5zEH9lUwSd
+ cEFtpqJyKMa/76awi9vjNnqEgzlHPL7sgy2pg6Yw3aNjD2M12Yvm01rxQ
+ /dsmoSkuI4XV9D2wgPaXcYSqgZVe5+vhfBAHzORG3/+b7Esr7kfGsMHx2
+ QwizeBn/bJgruSLdCzT6EjBBp8R1zqng/9dmRD+DnYZHZC2KrRB/pc+xq g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="364574028"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
+ d="scan'208,217";a="364574028"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2023 03:07:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="860649824"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
+ d="scan'208,217";a="860649824"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga004.jf.intel.com with ESMTP; 24 Aug 2023 03:07:43 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 24 Aug 2023 03:07:42 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Thu, 24 Aug 2023 03:07:42 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.173)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Thu, 24 Aug 2023 03:07:42 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TQKTlptGMvWhneAZ0mo28Zy6LfVH1/7HwZcinkm9Mw1jatHkK3UVJWhtfZAIhpOLR/XGG/NTK4lCTmbq7qM2dyhsJhwB5+QXRY0fnMTBXmV5dTS17h689hnTp/XUFMWk9yEz86BVWdKk0dRffpbOdovLFMA/ABTKWM6T5d1ls/yn4PLzwsKwseLn/bJ5kCECDdtJjkil9acCtrMlHgGbAfxJpHG7MmjCX1LDQFY6Hu0eiR+Hwe3D5WlePFsW/Al8EZyourOwQzBX3QFcYcgEGGaqNKNkbV80P1yvYD4gotS+2oKvX5iWQ4QzPJ281Gg/0WlZu7bCqN2GtSXba+/NHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ne2NbgpwK9PQ2q/enM6I5Lj4SeldFPKHioi+KpeDej8=;
+ b=KETKcJPgWnYh1AWZiWx49HAVDRTgz8XMkEPg0WwwTrkxsEZAGbDt0RZkY9ZIgZ55D5OwGf8vql51KPObhAmA89t5s8OjOQOn4X9bWDZ5/P2PyI5o28iwImSaqZ/4NWyQoWf1vP0rnjgpuQmpGELzRvCl65mLdCPyGihroNX1EgvyfYAZNCRj9fe5i7/7RRjxCqZUXcqeqEgXYtoOPBkvFHqc7BqpkHw3CPNDuY6LFlTphzTYUm7RfDlF1uv2BQnkiFvW1zVM3UhHG9jZiThEsvGg9W54i+yRPTHTsvzJUGlidu4mZsJLO2kcdE2TxVXV11fCarysWsl228ABYcyNTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
+ CH3PR11MB7868.namprd11.prod.outlook.com (2603:10b6:610:12e::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6699.27; Thu, 24 Aug 2023 10:07:40 +0000
+Received: from DM6PR11MB3177.namprd11.prod.outlook.com
+ ([fe80::4c8b:f829:4256:c9e3]) by DM6PR11MB3177.namprd11.prod.outlook.com
+ ([fe80::4c8b:f829:4256:c9e3%3]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
+ 10:07:40 +0000
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v2 2/4] drm/i915/hdcp: Propagate aux info in DP HDCP
+ functions
+Thread-Index: AQHZ1Yc8r3kNiciZGEKNKADRN1oyma/5OmZE
+Date: Thu, 24 Aug 2023 10:07:39 +0000
+Message-ID: <DM6PR11MB31773E1037468FC86BAE60A0BA1DA@DM6PR11MB3177.namprd11.prod.outlook.com>
+References: <20230823055821.460045-1-suraj.kandpal@intel.com>
+ <20230823055821.460045-3-suraj.kandpal@intel.com>
+In-Reply-To: <20230823055821.460045-3-suraj.kandpal@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM6PR11MB3177:EE_|CH3PR11MB7868:EE_
+x-ms-office365-filtering-correlation-id: f0a5e326-81dc-4c34-7f58-08dba489f318
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: yakql8jZeIpznwJm2mw7mmfQS4fZcGef3bztMbxBLDwc3lnzegAumtyNSMm9CRAELaqOn+ehaMKQV7G9+458XQPX9swH/H+HUrAZeLO/GntcWUbjLcEoA0EYoAHMeO1nltqHV/A/Eul3xwMh7WoFeqSFbvqVYNG4Zn8wWg+eWrXMmeYvWzpF0wK1f7qd7mt73Ko9lCZllQMe1wv5/kadziMS+FnMx+s0cN42no+UtLQ+FPl71fJ8xV4c7hNIXltedPWeTj0LhkU3XCRkE76gUTuXykVnXJphDM8sdcDeerg5ObuPyHu4sRLNYJqfbUIdSa14+E17D67gNo4czc4gfJ/F6bfhUEpU/iQRbaJytwEBFnX3Y0/r9GX/Vzt2NKnH4FxvkrdPbCWDvsiSlsjIPpHQ1F6Zx/q9dKq5vQ201LJ/AY+Z/c82Obev9ANFtjBctMIs09T1eiguQ4tbMhTkVS3Bng30zmfFcgs6UgHE8x9h/eCjDGm/BYr9Ggyk3N1Fjssi/s3v9bo9EtgmIsnEFwHMWYa+lD21VGqWxVhJraMIvz7sZmcN7HfWPcotreSPMDGxzPjxvKX6xzwgraS3yEMn7ZMCftzk95ldZDAhn0Q40Nl1WgtwK7i4JeNfslse
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(346002)(366004)(136003)(396003)(376002)(186009)(1800799009)(451199024)(66476007)(66446008)(54906003)(64756008)(66946007)(76116006)(66556008)(316002)(82960400001)(122000001)(478600001)(19627405001)(110136005)(91956017)(26005)(55016003)(38100700002)(38070700005)(33656002)(71200400001)(41300700001)(53546011)(55236004)(6506007)(7696005)(86362001)(2906002)(9686003)(4326008)(8936002)(8676002)(83380400001)(52536014)(107886003)(5660300002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?iOaj8w0EhMpoaqNaZVZe7wCbOWEiiGAiTARja+scFO6bAk8VfDvUybLET/BT?=
+ =?us-ascii?Q?8hTbxyzi4ss7EXH96ss2lh96s+xpJWlDvnw1mXcyPVbfM3L2r8pSsrXatL/y?=
+ =?us-ascii?Q?nkpvt04idfOLkjfDoY/2w1zm8Dh7LD0TT5Ua+THZrQkCRGsOUws6YDYJr7IY?=
+ =?us-ascii?Q?TYqi2aUETzzfjtUcrxT4e9sPZZIP8Rv5RWRLMG27T+gGfTchqUL6BZxB/5bM?=
+ =?us-ascii?Q?ry+L3hZUPm5igc6w+bUyqfrGBbK52mhgnVJCb9hKq+A9ECkz01wjWotEz2rt?=
+ =?us-ascii?Q?UjN2jIAWgtoXwfLg/xDlKxF+0slX5b59N066HJZBHVKcGqGr3kUBRZXNVs8E?=
+ =?us-ascii?Q?TxMLpBrMLiIkoaVejVV6DfknhoNKbM5Zy+C5wwl1KJKQ3ESoudpW4lxlkJnJ?=
+ =?us-ascii?Q?1/C1FIWtImSuiRUH+SF8xi+m6r3IlFqEAQN8A3ulmIitvrqOeF03+c//QGgC?=
+ =?us-ascii?Q?vOSd+7NS7JeNZErVKMSf3cn839GnrEgv/N6K62S7tQGwfLrmNo5niWH2V2CQ?=
+ =?us-ascii?Q?k/rEQZaQff5JDG+Y77I6rzHk0VsmL/vqHqJD2AL1D2f661WaZT2V55GQmybg?=
+ =?us-ascii?Q?4FLE4/VzWJKAnlclv2ZuRSiw1IEJMedaf34GFkQjmRXEHGfvvFV69hlusFk/?=
+ =?us-ascii?Q?FxlMPjAQCOsOrhfCtOefqzdmaKkx4jzJ1f2rwR/93qGQlEUcTMw1YiQ8d5as?=
+ =?us-ascii?Q?UEZboW7VgayV+dpzxxNSxcrsP+9Jzy44m8ApgPjh458nZwKc3SfJs18pJAOm?=
+ =?us-ascii?Q?z/KcR4UtE3hbOPCzPPGLKAhnyARuvP1ghOi8X79xc1IHSM6P0Zy0OIMq7qiM?=
+ =?us-ascii?Q?rINOpF2xMkzvyuCsgeyIysWSMaEE2yt4wVOi2VoLv5l+DMiG/styn7cmSbSG?=
+ =?us-ascii?Q?C5eO4yCUudXPSONqXqxjyo9+5eGUi3ZIrtagLtIdx/lV+zOav1hi/aJE5J2G?=
+ =?us-ascii?Q?CWu9gkvMz8BwKYmGkLeUdSN3+XThVFUDJuGgaA81YsMmM5MuMLIMAElpusn2?=
+ =?us-ascii?Q?cC32yR7LZh9r90ChmblFXIrDbyz5jhajhe5ZPFwee0z+abvcDa0BxSGPWkhk?=
+ =?us-ascii?Q?CbCutqduNpD/wDyvSLx5pH1RodUmjPSJtapumcyR81rwG8h06wIO97jBWLIO?=
+ =?us-ascii?Q?fVPpPz1b68XEkyxiLUOk8cf2IFlhVIOuRcwnzMzGWAm22ToN/Bioom6Ap6aS?=
+ =?us-ascii?Q?aKumBBQtAz0vZlakBAjnUj/u+a5v0PyWtFe4DK42ektT+OZXOdSV7CW4bGVF?=
+ =?us-ascii?Q?zSgTHPoLsmi3d5El3N3ADI7s2bUHby/qwAf2WjFlVKfQo6t1+5f8CGLn+H2p?=
+ =?us-ascii?Q?ASFM7ang8spyIgnZJEhYYzyxR4zcwQDgctjIzg8/ykoAfAa3+qaSyysHNepY?=
+ =?us-ascii?Q?v0VwZCS/D59juTll47WvFn+ZWKHyuaNVblx/LxuHG16oh/CUFGMHGaLfaafO?=
+ =?us-ascii?Q?OmcBcj4nnZAoOH/6FL0VW5NbRN2HOVTjPM3CQxQ3E4QIHWr2lVQ18HDA2kVr?=
+ =?us-ascii?Q?Bc0JUEkk9V3u7lmD8chG0cgjHb7A5QAg2EQqX1zNQxDKJiEQLLS2jFh0VSaI?=
+ =?us-ascii?Q?mEi8OusTQ9kFAVkry3NrShgLYbpJqOo6wCsLGlT3?=
 Content-Type: multipart/alternative;
- boundary="===============4882072188383357232=="
+ boundary="_000_DM6PR11MB31773E1037468FC86BAE60A0BA1DADM6PR11MB3177namp_"
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Thu, 24 Aug 2023 10:07:20 -0000
-Message-ID: <169287164018.13341.12287305548147657115@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230824080517.693621-1-imre.deak@intel.com>
-In-Reply-To: <20230824080517.693621-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Improve_BW_management_on_shared_display_links_=28rev2?=
- =?utf-8?q?=29?=
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0a5e326-81dc-4c34-7f58-08dba489f318
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2023 10:07:39.8588 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tC/MtPxW8/k2znDjb9Ngy69wA/EAK0W1yCnbTZQZnE4fdYHAHCeINHuVTJAQDyt0WcBfwFvkOD+HiS0a6OqzKA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7868
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/i915/hdcp: Propagate aux info in
+ DP HDCP functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,284 +151,519 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "uma.shakar@intel.com" <uma.shakar@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4882072188383357232==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--_000_DM6PR11MB31773E1037468FC86BAE60A0BA1DADM6PR11MB3177namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 
-Series: drm/i915: Improve BW management on shared display links (rev2)
-URL   : https://patchwork.freedesktop.org/series/122589/
-State : success
+Thanks and Regards,
+Arun R Murthy
+-------------------
+________________________________
+From: Kandpal, Suraj <suraj.kandpal@intel.com>
+Sent: Wednesday, August 23, 2023 11:28 AM
+To: intel-gfx@lists.freedesktop.org <intel-gfx@lists.freedesktop.org>
+Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; uma.shakar@intel.com <u=
+ma.shakar@intel.com>; Murthy, Arun R <arun.r.murthy@intel.com>; Kandpal, Su=
+raj <suraj.kandpal@intel.com>
+Subject: [PATCH v2 2/4] drm/i915/hdcp: Propagate aux info in DP HDCP functi=
+ons
 
-== Summary ==
+We were propagating dig_port info to dp hdcp2 specific functions.
+Let us clean that up and send intel_connector in the following
+functions: intel_dp_hdcp2_wait_for_msg, get_receiver_id_list_rx_info,
+intel_dp_hdcp2_read_rx_status.
+This optimises mst scenarios where aux ends up being remote and not
+stored in dig_port and dig_port can always be derived from
+intel_connector if needed.
 
-CI Bug Log - changes from CI_DRM_13559 -> Patchwork_122589v2
-====================================================
+--v2
+-Fix Typo [Arun]
+-Dont pass drm_dp core structures [Arun]
+-Fix commit message styling [Arun]
 
-Summary
--------
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 39 +++++++++++---------
+ 1 file changed, 22 insertions(+), 17 deletions(-)
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm=
+/i915/display/intel_dp_hdcp.c
+index 6cd42363837a..59ef77476cb9 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -331,10 +331,11 @@ static const struct hdcp2_dp_msg_data hdcp2_dp_msg_da=
+ta[] =3D {
+ };
 
-  No regressions found.
+ static int
+-intel_dp_hdcp2_read_rx_status(struct intel_digital_port *dig_port,
++intel_dp_hdcp2_read_rx_status(struct intel_connector *connector,
+                               u8 *rx_status)
+ {
+-       struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
++       struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
++       struct intel_digital_port *dig_port =3D intel_attached_dig_port(con=
+nector);
+         ssize_t ret;
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/index.html
+         ret =3D drm_dp_dpcd_read(&dig_port->dp.aux,
+@@ -350,14 +351,14 @@ intel_dp_hdcp2_read_rx_status(struct intel_digital_po=
+rt *dig_port,
+ }
 
-Participating hosts (39 -> 39)
-------------------------------
+ static
+-int hdcp2_detect_msg_availability(struct intel_digital_port *dig_port,
++int hdcp2_detect_msg_availability(struct intel_connector *connector,
+                                   u8 msg_id, bool *msg_ready)
+ {
+         u8 rx_status;
+         int ret;
 
-  Additional (1): fi-tgl-1115g4 
-  Missing    (1): fi-snb-2520m 
+         *msg_ready =3D false;
+-       ret =3D intel_dp_hdcp2_read_rx_status(dig_port, &rx_status);
++       ret =3D intel_dp_hdcp2_read_rx_status(connector, &rx_status);
+         if (ret < 0)
+                 return ret;
 
-Known issues
-------------
+@@ -383,12 +384,11 @@ int hdcp2_detect_msg_availability(struct intel_digita=
+l_port *dig_port,
+ }
 
-  Here are the changes found in Patchwork_122589v2 that come from known issues:
+ static ssize_t
+-intel_dp_hdcp2_wait_for_msg(struct intel_digital_port *dig_port,
++intel_dp_hdcp2_wait_for_msg(struct intel_connector *connector,
+                             const struct hdcp2_dp_msg_data *hdcp2_msg_data=
+)
+ {
+-       struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+-       struct intel_dp *dp =3D &dig_port->dp;
+-       struct intel_hdcp *hdcp =3D &dp->attached_connector->hdcp;
++       struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
++       struct intel_hdcp *hdcp =3D &connector->hdcp;
+         u8 msg_id =3D hdcp2_msg_data->msg_id;
+         int ret, timeout;
+         bool msg_ready =3D false;
+@@ -411,8 +411,8 @@ intel_dp_hdcp2_wait_for_msg(struct intel_digital_port *=
+dig_port,
+                  * the timeout at wait for CP_IRQ.
+                  */
+                 intel_dp_hdcp_wait_for_cp_irq(hdcp, timeout);
+-               ret =3D hdcp2_detect_msg_availability(dig_port,
+-                                                   msg_id, &msg_ready);
++               ret =3D hdcp2_detect_msg_availability(connector, msg_id,
++                                                   &msg_ready);
+                 if (!msg_ready)
+                         ret =3D -ETIMEDOUT;
+         }
+@@ -445,6 +445,7 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
+nnector,
+         u8 *byte =3D buf;
+         ssize_t ret, bytes_to_write, len;
+         const struct hdcp2_dp_msg_data *hdcp2_msg_data;
++       struct drm_dp_aux *aux;
 
-### IGT changes ###
+         hdcp2_msg_data =3D get_hdcp2_dp_msg_data(*byte);
+         if (!hdcp2_msg_data)
+@@ -452,6 +453,8 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
+nnector,
 
-#### Issues hit ####
+         offset =3D hdcp2_msg_data->offset;
 
-  * igt@debugfs_test@basic-hwmon:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][1] ([i915#7456])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@debugfs_test@basic-hwmon.html
++       aux =3D &dig_port->dp.aux;
++
+         /* No msg_id in DP HDCP2.2 msgs */
+         bytes_to_write =3D size - 1;
+         byte++;
+@@ -460,7 +463,7 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
+nnector,
+                 len =3D bytes_to_write > DP_AUX_MAX_PAYLOAD_BYTES ?
+                                 DP_AUX_MAX_PAYLOAD_BYTES : bytes_to_write;
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][2] ([i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
+-               ret =3D drm_dp_dpcd_write(&dig_port->dp.aux,
++               ret =3D drm_dp_dpcd_write(aux,
+                                         offset, (void *)byte, len);
+                 if (ret < 0)
+                         return ret;
+@@ -474,8 +477,10 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *c=
+onnector,
+ }
 
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([i915#4613]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@gem_lmem_swapping@parallel-random-engines.html
+ static
+-ssize_t get_receiver_id_list_rx_info(struct intel_digital_port *dig_port, =
+u32 *dev_cnt, u8 *byte)
++ssize_t get_receiver_id_list_rx_info(struct intel_connector *connector,
++                                    u32 *dev_cnt, u8 *byte)
+ {
++       struct intel_digital_port *dig_port =3D intel_attached_dig_port(con=
+nector);
+         ssize_t ret;
+         u8 *rx_info =3D byte;
 
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][4] ([i915#3546] / [i915#7561])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
+@@ -500,8 +505,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
+nector,
+ {
+         struct intel_digital_port *dig_port =3D intel_attached_dig_port(co=
+nnector);
+         struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev)=
+;
+-       struct intel_dp *dp =3D &dig_port->dp;
+-       struct intel_hdcp *hdcp =3D &dp->attached_connector->hdcp;
++       struct intel_hdcp *hdcp =3D &connector->hdcp;
+         unsigned int offset;
+         u8 *byte =3D buf;
+         ssize_t ret, bytes_to_recv, len;
+@@ -515,7 +519,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
+nector,
+                 return -EINVAL;
+         offset =3D hdcp2_msg_data->offset;
 
-  * igt@i915_suspend@basic-s3-without-i915:
-    - fi-tgl-1115g4:      NOTRUN -> [INCOMPLETE][5] ([i915#7443] / [i915#8102])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html
+-       ret =3D intel_dp_hdcp2_wait_for_msg(dig_port, hdcp2_msg_data);
++       ret =3D intel_dp_hdcp2_wait_for_msg(connector, hdcp2_msg_data);
+         if (ret < 0)
+                 return ret;
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([i915#4103]) +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+@@ -525,7 +529,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
+nector,
+         byte++;
 
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][7] ([fdo#109285])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
+         if (msg_id =3D=3D HDCP_2_2_REP_SEND_RECVID_LIST) {
+-               ret =3D get_receiver_id_list_rx_info(dig_port, &dev_cnt, by=
+te);
++               ret =3D get_receiver_id_list_rx_info(connector, &dev_cnt, b=
+yte);
+                 if (ret < 0)
+                         return ret;
 
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
-    - bat-rplp-1:         [PASS][8] -> [ABORT][9] ([i915#8442] / [i915#8668])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13559/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
+@@ -609,7 +613,8 @@ int intel_dp_hdcp2_check_link(struct intel_digital_port=
+ *dig_port,
+         u8 rx_status;
+         int ret;
 
-  * igt@kms_psr@cursor_plane_move:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([fdo#110189]) +3 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@kms_psr@cursor_plane_move.html
+-       ret =3D intel_dp_hdcp2_read_rx_status(dig_port, &rx_status);
++       ret =3D intel_dp_hdcp2_read_rx_status(connector,
++                                           &rx_status);
+         if (ret)
+                 return ret;
 
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][11] ([i915#3555])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#7443]: https://gitlab.freedesktop.org/drm/intel/issues/7443
-  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#8102]: https://gitlab.freedesktop.org/drm/intel/issues/8102
-  [i915#8442]: https://gitlab.freedesktop.org/drm/intel/issues/8442
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13559 -> Patchwork_122589v2
-
-  CI-20190529: 20190529
-  CI_DRM_13559: 2e6e7e62e019d89689eb44307fcc07f2c59e9b01 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7451: 5d48d1fb231f449fe2f80cda14ea7a1ecfda59fa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_122589v2: 2e6e7e62e019d89689eb44307fcc07f2c59e9b01 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-e3478c50e968 drm/i915/dp_mst: Check BW limitations only after all streams are computed
-700a29615b43 drm/i915/dp_mst: Improve BW sharing between MST streams
-84e2b6789606 drm/i915/dp_mst: Allow DSC only for sink ports of the first branch device
-208883f49eca drm/i915/dp_mst: Add missing DSC compression disabling
-1429dea9970a drm/i915/dp_mst: Enable DSC decompression if any stream needs this
-720aea68d0b8 drm/i915/dp: Make sure the DSC PPS SDP is disabled whenever DSC is disabled
-b811e10ece42 drm/i915/dp_mst: Program the DSC PPS SDP for each stream
-8cfd941097a8 drm/i915/dp_mst: Add atomic state for all streams on pre-tgl platforms
-e2abf4c73d92 drm/i915/dp_mst: Fix PBN calculation with FEC overhead
-ace2416aad2d drm/dp_mst: Swap the order of checking root vs. non-root port BW limitations
-9bafd9e9afe2 drm/dp_mst: Factor out a helper to check the atomic state of a topology manager
-440743b441a5 drm/dp_mst: Add helper to determine if an MST port is downstream of another port
-f72a472cce7f drm/dp_mst: Add a way to calculate PBN values with FEC overhead
-624222638024 drm/dp_mst: Fix fractional bpp scaling in drm_dp_calc_pbn_mode()
-97aecb8ea0f3 drm/i915/fdi: Improve FDI BW sharing between pipe B and C
-176ff291481f drm/i915: Factor out a helper to check/compute all the CRTC states
-4e02241b9a81 drm/i915: Add helper to modeset a set of pipes
-bcfeef839b83 drm/i915/dp: Limit the output link bpp in DSC mode
-6b6ff443f6e5 drm/i915/dp: Update the link bpp limits for DSC mode
-0e4fa365aa01 drm/i915/dp: Skip computing a non-DSC link config if DSC is needed
-cc61b1ccd329 drm/i915/dp: Track the pipe and link bpp limits separately
-2f0b0efb6c70 drm/i915/dp: Factor out helpers to compute the link limits
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/index.html
-
---===============4882072188383357232==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--
+2.25.1
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
+--_000_DM6PR11MB31773E1037468FC86BAE60A0BA1DADM6PR11MB3177namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
 </head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Improve BW management on shared display links (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/122589/">https://patchwork.freedesktop.org/series/122589/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13559 -&gt; Patchwork_122589v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/index.html</p>
-<h2>Participating hosts (39 -&gt; 39)</h2>
-<p>Additional (1): fi-tgl-1115g4 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_122589v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7443">i915#7443</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8102">i915#8102</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13559/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v2/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13559 -&gt; Patchwork_122589v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13559: 2e6e7e62e019d89689eb44307fcc07f2c59e9b01 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7451: 5d48d1fb231f449fe2f80cda14ea7a1ecfda59fa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_122589v2: 2e6e7e62e019d89689eb44307fcc07f2c59e9b01 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>e3478c50e968 drm/i915/dp_mst: Check BW limitations only after all streams are computed<br />
-700a29615b43 drm/i915/dp_mst: Improve BW sharing between MST streams<br />
-84e2b6789606 drm/i915/dp_mst: Allow DSC only for sink ports of the first branch device<br />
-208883f49eca drm/i915/dp_mst: Add missing DSC compression disabling<br />
-1429dea9970a drm/i915/dp_mst: Enable DSC decompression if any stream needs this<br />
-720aea68d0b8 drm/i915/dp: Make sure the DSC PPS SDP is disabled whenever DSC is disabled<br />
-b811e10ece42 drm/i915/dp_mst: Program the DSC PPS SDP for each stream<br />
-8cfd941097a8 drm/i915/dp_mst: Add atomic state for all streams on pre-tgl platforms<br />
-e2abf4c73d92 drm/i915/dp_mst: Fix PBN calculation with FEC overhead<br />
-ace2416aad2d drm/dp_mst: Swap the order of checking root vs. non-root port BW limitations<br />
-9bafd9e9afe2 drm/dp_mst: Factor out a helper to check the atomic state of a topology manager<br />
-440743b441a5 drm/dp_mst: Add helper to determine if an MST port is downstream of another port<br />
-f72a472cce7f drm/dp_mst: Add a way to calculate PBN values with FEC overhead<br />
-624222638024 drm/dp_mst: Fix fractional bpp scaling in drm_dp_calc_pbn_mode()<br />
-97aecb8ea0f3 drm/i915/fdi: Improve FDI BW sharing between pipe B and C<br />
-176ff291481f drm/i915: Factor out a helper to check/compute all the CRTC states<br />
-4e02241b9a81 drm/i915: Add helper to modeset a set of pipes<br />
-bcfeef839b83 drm/i915/dp: Limit the output link bpp in DSC mode<br />
-6b6ff443f6e5 drm/i915/dp: Update the link bpp limits for DSC mode<br />
-0e4fa365aa01 drm/i915/dp: Skip computing a non-DSC link config if DSC is needed<br />
-cc61b1ccd329 drm/i915/dp: Track the pipe and link bpp limits separately<br />
-2f0b0efb6c70 drm/i915/dp: Factor out helpers to compute the link limits</p>
-
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 11pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Reviewed-by: Arun R Murthy &lt;arun.r.murthy@intel.com&gt;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 11pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 11pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Thanks and Regards,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 11pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Arun R Murthy</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 11pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+-------------------</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Kandpal, Suraj &lt;su=
+raj.kandpal@intel.com&gt;<br>
+<b>Sent:</b> Wednesday, August 23, 2023 11:28 AM<br>
+<b>To:</b> intel-gfx@lists.freedesktop.org &lt;intel-gfx@lists.freedesktop.=
+org&gt;<br>
+<b>Cc:</b> Nautiyal, Ankit K &lt;ankit.k.nautiyal@intel.com&gt;; uma.shakar=
+@intel.com &lt;uma.shakar@intel.com&gt;; Murthy, Arun R &lt;arun.r.murthy@i=
+ntel.com&gt;; Kandpal, Suraj &lt;suraj.kandpal@intel.com&gt;<br>
+<b>Subject:</b> [PATCH v2 2/4] drm/i915/hdcp: Propagate aux info in DP HDCP=
+ functions</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">We were propagating dig_port info to dp hdcp2 spec=
+ific functions.<br>
+Let us clean that up and send intel_connector in the following<br>
+functions: intel_dp_hdcp2_wait_for_msg, get_receiver_id_list_rx_info,<br>
+intel_dp_hdcp2_read_rx_status.<br>
+This optimises mst scenarios where aux ends up being remote and not<br>
+stored in dig_port and dig_port can always be derived from<br>
+intel_connector if needed.<br>
+<br>
+--v2<br>
+-Fix Typo [Arun]<br>
+-Dont pass drm_dp core structures [Arun]<br>
+-Fix commit message styling [Arun]<br>
+<br>
+Signed-off-by: Suraj Kandpal &lt;suraj.kandpal@intel.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 39 +++++++++++--------=
+-<br>
+&nbsp;1 file changed, 22 insertions(+), 17 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm=
+/i915/display/intel_dp_hdcp.c<br>
+index 6cd42363837a..59ef77476cb9 100644<br>
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c<br>
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c<br>
+@@ -331,10 +331,11 @@ static const struct hdcp2_dp_msg_data hdcp2_dp_msg_da=
+ta[] =3D {<br>
+&nbsp;};<br>
+&nbsp;<br>
+&nbsp;static int<br>
+-intel_dp_hdcp2_read_rx_status(struct intel_digital_port *dig_port,<br>
++intel_dp_hdcp2_read_rx_status(struct intel_connector *connector,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 *rx_status)<br>
+&nbsp;{<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *i915 =3D to_=
+i915(dig_port-&gt;base.base.dev);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *i915 =3D to_=
+i915(connector-&gt;base.dev);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_digital_port *dig_port =
+=3D intel_attached_dig_port(connector);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ssize_t ret;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_dp_dpcd_read(&=
+amp;dig_port-&gt;dp.aux,<br>
+@@ -350,14 +351,14 @@ intel_dp_hdcp2_read_rx_status(struct intel_digital_po=
+rt *dig_port,<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;static<br>
+-int hdcp2_detect_msg_availability(struct intel_digital_port *dig_port,<br>
++int hdcp2_detect_msg_availability(struct intel_connector *connector,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 msg_id, bool *msg=
+_ready)<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 rx_status;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *msg_ready =3D false;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_read_rx_status=
+(dig_port, &amp;rx_status);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_read_rx_status=
+(connector, &amp;rx_status);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&nbsp;<br>
+@@ -383,12 +384,11 @@ int hdcp2_detect_msg_availability(struct intel_digita=
+l_port *dig_port,<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;static ssize_t<br>
+-intel_dp_hdcp2_wait_for_msg(struct intel_digital_port *dig_port,<br>
++intel_dp_hdcp2_wait_for_msg(struct intel_connector *connector,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; const struct hdcp2_dp_msg_data *hdcp2_msg_data)<br>
+&nbsp;{<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *i915 =3D to_=
+i915(dig_port-&gt;base.base.dev);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_dp *dp =3D &amp;dig_port=
+-&gt;dp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_hdcp *hdcp =3D &amp;dp-&=
+gt;attached_connector-&gt;hdcp;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *i915 =3D to_=
+i915(connector-&gt;base.dev);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_hdcp *hdcp =3D &amp;conn=
+ector-&gt;hdcp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 msg_id =3D hdcp2_msg_da=
+ta-&gt;msg_id;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret, timeout;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool msg_ready =3D false;<=
+br>
+@@ -411,8 +411,8 @@ intel_dp_hdcp2_wait_for_msg(struct intel_digital_port *=
+dig_port,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; * the timeout at wait for CP_IRQ.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; intel_dp_hdcp_wait_for_cp_irq(hdcp, timeout);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D hdcp2_detect_msg_availability(dig_port,<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; msg_id, &amp;msg_ready);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D hdcp2_detect_msg_availability(connector, msg_id,<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; &amp;msg_ready);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if (!msg_ready)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =
+=3D -ETIMEDOUT;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+@@ -445,6 +445,7 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
+nnector,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 *byte =3D buf;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ssize_t ret, bytes_to_writ=
+e, len;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct hdcp2_dp_msg_=
+data *hdcp2_msg_data;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_dp_aux *aux;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hdcp2_msg_data =3D get_hdc=
+p2_dp_msg_data(*byte);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!hdcp2_msg_data)<br>
+@@ -452,6 +453,8 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
+nnector,<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offset =3D hdcp2_msg_data-=
+&gt;offset;<br>
+&nbsp;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aux =3D &amp;dig_port-&gt;dp.aux;<br>
++<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* No msg_id in DP HDCP2.2=
+ msgs */<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bytes_to_write =3D size - =
+1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; byte++;<br>
+@@ -460,7 +463,7 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
+nnector,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; len =3D bytes_to_write &gt; DP_AUX_MAX_PAYLOAD_BYTES =
+?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_AUX_MAX_PAYLOAD_BYTES : bytes=
+_to_write;<br>
+&nbsp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D drm_dp_dpcd_write(&amp;dig_port-&gt;dp.aux,<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D drm_dp_dpcd_write(aux,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; offset, (void *)byte, len);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
+n ret;<br>
+@@ -474,8 +477,10 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *c=
+onnector,<br>
+&nbsp;}<br>
+&nbsp;<br>
+&nbsp;static<br>
+-ssize_t get_receiver_id_list_rx_info(struct intel_digital_port *dig_port, =
+u32 *dev_cnt, u8 *byte)<br>
++ssize_t get_receiver_id_list_rx_info(struct intel_connector *connector,<br=
+>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u32 *dev_cnt,=
+ u8 *byte)<br>
+&nbsp;{<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_digital_port *dig_port =
+=3D intel_attached_dig_port(connector);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ssize_t ret;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 *rx_info =3D byte;<br>
+&nbsp;<br>
+@@ -500,8 +505,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
+nector,<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_digital_port =
+*dig_port =3D intel_attached_dig_port(connector);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *i=
+915 =3D to_i915(dig_port-&gt;base.base.dev);<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_dp *dp =3D &amp;dig_port=
+-&gt;dp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_hdcp *hdcp =3D &amp;dp-&=
+gt;attached_connector-&gt;hdcp;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_hdcp *hdcp =3D &amp;conn=
+ector-&gt;hdcp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int offset;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 *byte =3D buf;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ssize_t ret, bytes_to_recv=
+, len;<br>
+@@ -515,7 +519,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
+nector,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offset =3D hdcp2_msg_data-=
+&gt;offset;<br>
+&nbsp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_wait_for_msg(d=
+ig_port, hdcp2_msg_data);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_wait_for_msg(c=
+onnector, hdcp2_msg_data);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&nbsp;<br>
+@@ -525,7 +529,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
+nector,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; byte++;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (msg_id =3D=3D HDCP_2_2=
+_REP_SEND_RECVID_LIST) {<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D get_receiver_id_list_rx_info(dig_port, &amp;dev_cnt, byt=
+e);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; ret =3D get_receiver_id_list_rx_info(connector, &amp;dev_cnt, by=
+te);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
+n ret;<br>
+&nbsp;<br>
+@@ -609,7 +613,8 @@ int intel_dp_hdcp2_check_link(struct intel_digital_port=
+ *dig_port,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 rx_status;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
+&nbsp;<br>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_read_rx_status=
+(dig_port, &amp;rx_status);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_read_rx_status=
+(connector,<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;rx_status);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&nbsp;<br>
+-- <br>
+2.25.1<br>
+<br>
+</div>
+</span></font></div>
 </body>
 </html>
 
---===============4882072188383357232==--
+--_000_DM6PR11MB31773E1037468FC86BAE60A0BA1DADM6PR11MB3177namp_--
