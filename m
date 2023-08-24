@@ -2,65 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD4087879AC
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 22:54:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A557879AD
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 22:54:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A51010E5BD;
-	Thu, 24 Aug 2023 20:54:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 325D310E5C1;
+	Thu, 24 Aug 2023 20:54:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com
- [IPv6:2607:f8b0:4864:20::f30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C979410E5BC
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 20:54:03 +0000 (UTC)
-Received: by mail-qv1-xf30.google.com with SMTP id
- 6a1803df08f44-649c6ea6e72so1543546d6.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 13:54:03 -0700 (PDT)
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com
+ [IPv6:2607:f8b0:4864:20::82d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ADB410E5BD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 20:54:06 +0000 (UTC)
+Received: by mail-qt1-x82d.google.com with SMTP id
+ d75a77b69052e-40fd2f6bd7cso1387961cf.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 13:54:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1692910442; x=1693515242;
+ d=chromium.org; s=google; t=1692910445; x=1693515245;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=2s3PmwMB370ELZCGQEod9fD7zrXkoA5TurpQEYD1gXM=;
- b=RlE2kTMMsrTVEdPTqH9OzuMpUZKj58slCzwMeeIvX9giz+okI7SO8OrkKObxW+9EOk
- JvAEWRDfWP5/mzwVbxTgKtUZk5v63GSFE51xpUyqK2kCfu9rYIHDMQ4epnJ7NIvQtBTf
- QRkN4u9yF0OfauOg7mHo/2E/DwwCuXDUalrT0=
+ bh=JbH+fBcCZpMijXgFxejSJwqPoIhw9FweehYy5+ciXAw=;
+ b=YrRjcI1A3dnmDQLrO4Gup5+XHo4CqUH7BmiQ0hNZVrUHrGn5EcAig8qvt3DWvit9ks
+ n1I/lYp5DJHUetfQwXdoN8WWNApcEc5LEgIWKMsmaMQ5AmW2DNocChwH+6nw57tkOH4q
+ PLA1mRjBo7gQEzOr8fCuZz/VVBJCOm/QG4e1g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692910442; x=1693515242;
+ d=1e100.net; s=20221208; t=1692910445; x=1693515245;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=2s3PmwMB370ELZCGQEod9fD7zrXkoA5TurpQEYD1gXM=;
- b=Ao2Woy1W6I7kakcBAfGqewrUjNwvCKtZFmcSeHGc1P85WauV2FzuPHAMgoeTnvUVPE
- QWf9Th3aX2utHZC77XpIT0Kjf1yErXSl20vxL9qGxs1cnl+1yecfzswViNIYLGHtMTZs
- B9q8uDoINRRlWZuFHYMEqPJ3q9xtl6D6Hmzi3/XoBS19OpufaQdbecptuRTBoD5tkN9D
- dxs3ViewemYSrgdyziEFdazrTi/Pp1zzK+RarOZK6uRkG6vq2KvcBjhWc67E+08y3MJ4
- NCZFPOTWe6phOE/yMIdIL71+nqdmLogB6rZjYP1a3SzsS6Irv77M2QfflGBH6FARi5YI
- 24JQ==
-X-Gm-Message-State: AOJu0Yx0Q9ABfLTkEBDt95N7QUrnkDy83bbggAju1VFOB/Ioxrlbbfj8
- iAOu2eEtjhdBVVrNY9V1y/FOMrrGTvxzDXgLo1c=
-X-Google-Smtp-Source: AGHT+IFLRQF3ykM6ne4+L37O4VIrHVknvCJsKzzsyoVFO+Vm2rAwb65ZwWJiqT4LsDE9GAMptlgerg==
-X-Received: by 2002:a0c:8c45:0:b0:647:2bd2:a3b with SMTP id
- o5-20020a0c8c45000000b006472bd20a3bmr16894875qvb.31.1692910442499; 
- Thu, 24 Aug 2023 13:54:02 -0700 (PDT)
+ bh=JbH+fBcCZpMijXgFxejSJwqPoIhw9FweehYy5+ciXAw=;
+ b=cB53SSwjWk6j6NX0ZUpq4GufVQJ+pUqVbslH8vvKjOuWLaD9aaixcFT2+n4Q5nrHYB
+ JElRh3qch2goIfWzPufTMH9PYaiZDNdAl+j0SuTMeuqCV6hpQ4iwaDp1V0MUwvw/1eAG
+ Oryjczoy96GIcLNPG9mdw/ZSp9QSgeJCgatw+Ou3VdkHRe6COK51gDmtT+kJjVCrDBe9
+ 9hWV0lb61nY+k/X5RmVRRc0wtMEWHm+8oNM5/KeIgVwQ7INRdSV9N7YWg6I6D5xPEGPO
+ nnRKb8g/pLiFeeCntflGOgUymbuYBfsyYHf1He9e+GtcXep5t8hXuFp5N0xLTy/kCt6J
+ dcFg==
+X-Gm-Message-State: AOJu0Ywr4czApgLUge2ajf5xrdX5lc8ktbksO/rPC+q2O1gljyj0VG3S
+ zYMyNFqsgWzfCAgU3UgN1wZnW/t2srWb+PVcXlU=
+X-Google-Smtp-Source: AGHT+IEq3nkYN9LayjGyXWZQ59F/ZUQNvj1uqtEv+1Fm2ykDbj2GuFvelyyv9CZl8wMW6E3XMCwwIg==
+X-Received: by 2002:a0c:f5c7:0:b0:63d:16b3:1fec with SMTP id
+ q7-20020a0cf5c7000000b0063d16b31fecmr5871532qvm.51.1692910444868; 
+ Thu, 24 Aug 2023 13:54:04 -0700 (PDT)
 Received: from gildekel.nyc.corp.google.com
  ([2620:0:1003:314:321d:e6f5:6dbd:3e5])
  by smtp.gmail.com with ESMTPSA id
- d2-20020a0ce442000000b0064f5020df91sm62038qvm.28.2023.08.24.13.54.01
+ d2-20020a0ce442000000b0064f5020df91sm62038qvm.28.2023.08.24.13.54.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Aug 2023 13:54:01 -0700 (PDT)
+ Thu, 24 Aug 2023 13:54:04 -0700 (PDT)
 From: Gil Dekel <gildekel@chromium.org>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Thu, 24 Aug 2023 16:50:18 -0400
-Message-ID: <20230824205335.500163-4-gildekel@chromium.org>
+Date: Thu, 24 Aug 2023 16:50:19 -0400
+Message-ID: <20230824205335.500163-5-gildekel@chromium.org>
 X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
 In-Reply-To: <20230824205335.500163-1-gildekel@chromium.org>
 References: <20230824205335.500163-1-gildekel@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 3/6] drm/dp_mst: Add
- drm_dp_set_mst_topology_link_status()
+Subject: [Intel-gfx] [PATCH v4 4/6] drm/i915: Move DP modeset_retry_work
+ into intel_dp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,99 +77,133 @@ Cc: seanpaul@chromium.org, Gil Dekel <gildekel@chromium.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Unlike SST, MST can support multiple displays connected to a single
-connector. However, this also means that if the DisplayPort link to the
-top-level MST branch device becomes unstable, then every single branch
-device has an unstable link.
+Currently, link-training fallback is only implemented for SST, so having
+modeset_retry_work in intel_connector makes sense. However, we hope to
+implement link training fallback for MST in a follow-up patchset, so
+moving modeset_retry_work to indel_dp will make handling both SST and
+MST connectors simpler. This patch does exactly that, and updates all
+modeset_retry_work dependencies to use an intel_dp instead.
 
-Since there are multiple downstream ports per connector, setting the
-link status of the parent mstb's port to BAD is not enough. All of the
-downstream mstb ports must also have their link status set to BAD.
-
-This aligns to how the DP link status logic in DRM works. We notify
-userspace that all of the mstb ports need retraining and apply new lower
-bandwidth constraints to all future atomic commits on the topology that
-follow.
-
-Since any driver supporting MST needs to figure out which connectors
-live downstream on an MST topology and update their link status in order
-to retrain MST links properly, we add the
-drm_dp_set_mst_topology_link_status() helper. This helper simply marks
-the link status of all connectors living in that topology as bad. We
-will make use of this helper in i915 later in this series.
-
-Credit: this patch is a refactor of Lyude Pual's original patch:
-https://patchwork.kernel.org/project/dri-devel/patch/20180308232421.14049-5-lyude@redhat.com/
+Credit: this patch is a rebase of Lyude Pual's original patch:
+https://patchwork.freedesktop.org/patch/216627/?series=41576&rev=3
 
 Signed-off-by: Gil Dekel <gildekel@chromium.org>
 ---
- drivers/gpu/drm/display/drm_dp_mst_topology.c | 39 +++++++++++++++++++
- include/drm/display/drm_dp_mst_helper.h       |  3 ++
- 2 files changed, 42 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c       | 14 +++++++++++---
+ drivers/gpu/drm/i915/display/intel_display_types.h |  6 +++---
+ drivers/gpu/drm/i915/display/intel_dp.c            | 11 ++++-------
+ .../gpu/drm/i915/display/intel_dp_link_training.c  |  3 +--
+ 4 files changed, 19 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-index ed96cfcfa304..17cbadfb6ccb 100644
---- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-@@ -3566,6 +3566,45 @@ int drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
- }
- EXPORT_SYMBOL(drm_dp_get_vc_payload_bw);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index db3c26e013e3..2ec75aa0b4ee 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7962,20 +7962,28 @@ void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
 
-+/**
-+ * drm_dp_set_mst_topology_link_status() - set all downstream MST ports' link status
-+ * @mgr: MST topology manager to set state for
-+ * @status: The new status to set the MST topology to
-+ *
-+ * Set all downstream ports' link-status within the topology to the given status.
-+ */
-+void drm_dp_set_mst_topology_link_status(struct drm_dp_mst_topology_mgr *mgr,
-+					 enum drm_link_status status)
-+{
-+	struct drm_dp_mst_port *port;
-+	struct drm_dp_mst_branch *rmstb;
-+	struct drm_dp_mst_branch *mstb =
-+		drm_dp_mst_topology_get_mstb_validated(mgr, mgr->mst_primary);
+ void intel_hpd_poll_fini(struct drm_i915_private *i915)
+ {
+-	struct intel_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
++	struct intel_connector *connector;
++	struct intel_dp *intel_dp;
++	struct intel_encoder *encoder;
+
+ 	/* Kill all the work that may have been queued by hpd. */
+ 	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
+ 	for_each_intel_connector_iter(connector, &conn_iter) {
+-		if (connector->modeset_retry_work.func)
+-			cancel_work_sync(&connector->modeset_retry_work);
+ 		if (connector->hdcp.shim) {
+ 			cancel_delayed_work_sync(&connector->hdcp.check_work);
+ 			cancel_work_sync(&connector->hdcp.prop_work);
+ 		}
+ 	}
+ 	drm_connector_list_iter_end(&conn_iter);
 +
-+	list_for_each_entry_reverse(port, &mstb->ports, next) {
-+		struct drm_connector *connector = port->connector;
-+
-+		if (connector) {
-+			mutex_lock(&connector->dev->mode_config.mutex);
-+			drm_dbg_kms(
-+				connector->dev,
-+				"[MST-CONNECTOR:%d:%s] link status %d -> %d\n",
-+				connector->base.id, connector->name,
-+				connector->state->link_status, status);
-+			connector->state->link_status = status;
-+			mutex_unlock(&connector->dev->mode_config.mutex);
-+		}
-+
-+		rmstb = drm_dp_mst_topology_get_mstb_validated(mstb->mgr,
-+							       port->mstb);
-+		if (rmstb) {
-+			drm_dp_set_mst_topology_link_status(rmstb->mgr, status);
-+			drm_dp_mst_topology_put_mstb(rmstb);
++	for_each_intel_dp(&i915->drm, encoder) {
++		if (encoder->type == DRM_MODE_CONNECTOR_eDP ||
++		    encoder->type == DRM_MODE_CONNECTOR_DisplayPort) {
++			intel_dp = enc_to_intel_dp(encoder);
++			cancel_work_sync(&intel_dp->modeset_retry_work);
 +		}
 +	}
-+}
-+EXPORT_SYMBOL(drm_dp_set_mst_topology_link_status);
-+
- /**
-  * drm_dp_read_mst_cap() - check whether or not a sink supports MST
-  * @aux: The DP AUX channel to use
-diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
-index ed5c9660563c..855d488bf364 100644
---- a/include/drm/display/drm_dp_mst_helper.h
-+++ b/include/drm/display/drm_dp_mst_helper.h
-@@ -832,6 +832,9 @@ struct edid *drm_dp_mst_get_edid(struct drm_connector *connector,
- int drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
- 			     int link_rate, int link_lane_count);
+ }
 
-+void drm_dp_set_mst_topology_link_status(struct drm_dp_mst_topology_mgr *mgr,
-+					 enum drm_link_status status);
-+
- int drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc);
+ bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 731f2ec04d5c..b92bb69a3fe4 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -620,9 +620,6 @@ struct intel_connector {
 
- void drm_dp_mst_update_slots(struct drm_dp_mst_topology_state *mst_state, uint8_t link_encoding_cap);
+ 	struct intel_dp *mst_port;
+
+-	/* Work struct to schedule a uevent on link train failure */
+-	struct work_struct modeset_retry_work;
+-
+ 	struct intel_hdcp hdcp;
+ };
+
+@@ -1779,6 +1776,9 @@ struct intel_dp {
+ 	/* Displayport compliance testing */
+ 	struct intel_dp_compliance compliance;
+
++	/* Work struct to schedule a uevent on link train failure */
++	struct work_struct modeset_retry_work;
++
+ 	/* Downstream facing port caps */
+ 	struct {
+ 		int min_tmds_clock, max_tmds_clock;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 01b180c8d9bd..42353b1ac487 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5992,12 +5992,9 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+
+ static void intel_dp_modeset_retry_work_fn(struct work_struct *work)
+ {
+-	struct intel_connector *intel_connector;
+-	struct drm_connector *connector;
+-
+-	intel_connector = container_of(work, typeof(*intel_connector),
+-				       modeset_retry_work);
+-	connector = &intel_connector->base;
++	struct intel_dp *intel_dp =
++		container_of(work, typeof(*intel_dp), modeset_retry_work);
++	struct drm_connector *connector = &intel_dp->attached_connector->base;
+ 	drm_dbg_kms(connector->dev, "[CONNECTOR:%d:%s]\n", connector->base.id,
+ 		    connector->name);
+
+@@ -6027,7 +6024,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 	int type;
+
+ 	/* Initialize the work for modeset in case of link train failure */
+-	INIT_WORK(&intel_connector->modeset_retry_work,
++	INIT_WORK(&intel_dp->modeset_retry_work,
+ 		  intel_dp_modeset_retry_work_fn);
+
+ 	if (drm_WARN(dev, dig_port->max_lanes < 1,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 31d0d7854003..87d13cd03ef5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -1063,7 +1063,6 @@ intel_dp_link_train_phy(struct intel_dp *intel_dp,
+ static void intel_dp_schedule_fallback_link_training(struct intel_dp *intel_dp,
+ 						     const struct intel_crtc_state *crtc_state)
+ {
+-	struct intel_connector *intel_connector = intel_dp->attached_connector;
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+
+ 	if (!intel_digital_port_connected(&dp_to_dig_port(intel_dp)->base)) {
+@@ -1082,7 +1081,7 @@ static void intel_dp_schedule_fallback_link_training(struct intel_dp *intel_dp,
+ 	}
+
+ 	/* Schedule a Hotplug Uevent to userspace to start modeset */
+-	queue_work(i915->unordered_wq, &intel_connector->modeset_retry_work);
++	queue_work(i915->unordered_wq, &intel_dp->modeset_retry_work);
+ }
+
+ /* Perform the link training on all LTTPRs and the DPRX on a link. */
 --
 Gil Dekel, Software Engineer, Google / ChromeOS Display and Graphics
