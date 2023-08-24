@@ -2,143 +2,138 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 110EC786C8E
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 12:07:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8CBF786CDB
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 12:34:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B2D610E513;
-	Thu, 24 Aug 2023 10:07:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F26F10E51F;
+	Thu, 24 Aug 2023 10:34:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD51D10E513
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 10:07:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE6E610E51F;
+ Thu, 24 Aug 2023 10:34:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692871663; x=1724407663;
- h=from:to:cc:subject:date:message-id:references:
+ t=1692873287; x=1724409287;
+ h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=OCcyfnaCgLR6HFZGnY6nw5O4bxor9kWHSfH8dNXtmhg=;
- b=nIEToK9g0J6WIj+Xiu3idxEApJkkfC2G0tGuX9qwKBtWfxVMZzDZ6W8X
- f3j2hXPpLkDpg6P68opeuHm6snZPAcpZKg9jkhFburFwH2bqKY2jeLGlf
- mn6SwZu1qEdhAl9eb8temaWVBC69ZncAhG9/mZI45oZPJMI5zEH9lUwSd
- cEFtpqJyKMa/76awi9vjNnqEgzlHPL7sgy2pg6Yw3aNjD2M12Yvm01rxQ
- /dsmoSkuI4XV9D2wgPaXcYSqgZVe5+vhfBAHzORG3/+b7Esr7kfGsMHx2
- QwizeBn/bJgruSLdCzT6EjBBp8R1zqng/9dmRD+DnYZHZC2KrRB/pc+xq g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="364574028"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
- d="scan'208,217";a="364574028"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 03:07:43 -0700
+ bh=1n1jJyDSnHWTC/EHE+yMMCK3nxvnYU8iYJ+waRJDfzY=;
+ b=S4E5Vyd7XycqsqisznAOm/iOeNlnHIIDW7kIQKbvcI8EFM2x+yL0IDtg
+ LHhqJxcxYH+C/hPkojH61zMpwxViZOAdefzRqAnIWqxON/CFueLTyzeJK
+ PJSLuC0xMkYXOakATsFnDGC5Kqh8WtXAXn8E0CepuaknSvmYkN2X9FzEz
+ 81HIas3o5qDhbLswDxxStc04bAY6Vv+8dqd5vem7kl2C9zP2yQgyA3zWd
+ rtbQKR5ai1k93MCn9pPkwDalIe/xZJUveuUYoRSLeMATc7bOK1UGLq50N
+ NjTsBxzf/3YEYWrDmfSc2FWmtIF7T5abW5Zyiw3B0UboFRpHILn7MWG8S g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="377133712"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="377133712"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2023 03:34:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="860649824"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
- d="scan'208,217";a="860649824"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga004.jf.intel.com with ESMTP; 24 Aug 2023 03:07:43 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802495275"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802495275"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga008.fm.intel.com with ESMTP; 24 Aug 2023 03:34:31 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 24 Aug 2023 03:07:42 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ 15.1.2507.27; Thu, 24 Aug 2023 03:34:30 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 24 Aug 2023 03:07:42 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.173)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Thu, 24 Aug 2023 03:34:30 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.43) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 24 Aug 2023 03:07:42 -0700
+ 15.1.2507.27; Thu, 24 Aug 2023 03:34:30 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TQKTlptGMvWhneAZ0mo28Zy6LfVH1/7HwZcinkm9Mw1jatHkK3UVJWhtfZAIhpOLR/XGG/NTK4lCTmbq7qM2dyhsJhwB5+QXRY0fnMTBXmV5dTS17h689hnTp/XUFMWk9yEz86BVWdKk0dRffpbOdovLFMA/ABTKWM6T5d1ls/yn4PLzwsKwseLn/bJ5kCECDdtJjkil9acCtrMlHgGbAfxJpHG7MmjCX1LDQFY6Hu0eiR+Hwe3D5WlePFsW/Al8EZyourOwQzBX3QFcYcgEGGaqNKNkbV80P1yvYD4gotS+2oKvX5iWQ4QzPJ281Gg/0WlZu7bCqN2GtSXba+/NHg==
+ b=eJrn/uKJrd/uCGQ6Yee27kgpMzUKduZloHFc8+/pY+hOY3/sQZJhNYrt8EqvG50njb/8U7KCRunGN7UCV0/AlNcPWYKUXfmC4D3gk7xdPcInBBCrde6R+OenVbr8f/v644A4NH02m2GzSpxTrU+zQAiq/75RmAvBEEhT+0Yz84EdbH+lARfsblhRZ8kPv7QiGLfX0n8Ywssp2F0vNQZoXJ6H/kSH/Qj5NWei2HvXmYWnszknoR4i/kWnjXejgpHvifz4+AkrPvXeYGg5q0aIBa4DAxkty5VBDogTFrQtw6zaFs/bB6yN3cQYRozkhhJniiH2Btblb+PxSLhYmuB9Ww==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ne2NbgpwK9PQ2q/enM6I5Lj4SeldFPKHioi+KpeDej8=;
- b=KETKcJPgWnYh1AWZiWx49HAVDRTgz8XMkEPg0WwwTrkxsEZAGbDt0RZkY9ZIgZ55D5OwGf8vql51KPObhAmA89t5s8OjOQOn4X9bWDZ5/P2PyI5o28iwImSaqZ/4NWyQoWf1vP0rnjgpuQmpGELzRvCl65mLdCPyGihroNX1EgvyfYAZNCRj9fe5i7/7RRjxCqZUXcqeqEgXYtoOPBkvFHqc7BqpkHw3CPNDuY6LFlTphzTYUm7RfDlF1uv2BQnkiFvW1zVM3UhHG9jZiThEsvGg9W54i+yRPTHTsvzJUGlidu4mZsJLO2kcdE2TxVXV11fCarysWsl228ABYcyNTw==
+ bh=kiQeAIKqfCA1fv3dnttlWcIWl87gZKVw4yeZn00oOAs=;
+ b=bi4+R69WNP7WquD/mg7NOgFf3iXxdz96lRAsJ6zqdIqLx5rGOFogTxzVdU79LDPh38DlAeGoALfdfpiWfew4WwNHgkfM360x2ewODdM/my3I3UTx2d7zVNk4+hRMEC3quFZBJOm4Vj21kGpsmKARR1nZALJmFlWHb7GyujzIwWeq1BY849mEAIFNmDtN99JQdGvKTJQwvug4PoU6d9YWVORRJRAmNOQkVbTEVIMbDfUJoNP7LKcPh5BVGkxDqHCDGgossIHmQSBX4K6QMSlXG1PGXplgUmOrrAL1iqIMBlVJgvd6cwbctJlJLyBJqPsrUYfltT2EJ8DuHtMjQNCcrw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com (2603:10b6:5:c::28) by
- CH3PR11MB7868.namprd11.prod.outlook.com (2603:10b6:610:12e::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6699.27; Thu, 24 Aug 2023 10:07:40 +0000
-Received: from DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::4c8b:f829:4256:c9e3]) by DM6PR11MB3177.namprd11.prod.outlook.com
- ([fe80::4c8b:f829:4256:c9e3%3]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
- 10:07:40 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2 2/4] drm/i915/hdcp: Propagate aux info in DP HDCP
- functions
-Thread-Index: AQHZ1Yc8r3kNiciZGEKNKADRN1oyma/5OmZE
-Date: Thu, 24 Aug 2023 10:07:39 +0000
-Message-ID: <DM6PR11MB31773E1037468FC86BAE60A0BA1DA@DM6PR11MB3177.namprd11.prod.outlook.com>
-References: <20230823055821.460045-1-suraj.kandpal@intel.com>
- <20230823055821.460045-3-suraj.kandpal@intel.com>
-In-Reply-To: <20230823055821.460045-3-suraj.kandpal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR11MB3177:EE_|CH3PR11MB7868:EE_
-x-ms-office365-filtering-correlation-id: f0a5e326-81dc-4c34-7f58-08dba489f318
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yakql8jZeIpznwJm2mw7mmfQS4fZcGef3bztMbxBLDwc3lnzegAumtyNSMm9CRAELaqOn+ehaMKQV7G9+458XQPX9swH/H+HUrAZeLO/GntcWUbjLcEoA0EYoAHMeO1nltqHV/A/Eul3xwMh7WoFeqSFbvqVYNG4Zn8wWg+eWrXMmeYvWzpF0wK1f7qd7mt73Ko9lCZllQMe1wv5/kadziMS+FnMx+s0cN42no+UtLQ+FPl71fJ8xV4c7hNIXltedPWeTj0LhkU3XCRkE76gUTuXykVnXJphDM8sdcDeerg5ObuPyHu4sRLNYJqfbUIdSa14+E17D67gNo4czc4gfJ/F6bfhUEpU/iQRbaJytwEBFnX3Y0/r9GX/Vzt2NKnH4FxvkrdPbCWDvsiSlsjIPpHQ1F6Zx/q9dKq5vQ201LJ/AY+Z/c82Obev9ANFtjBctMIs09T1eiguQ4tbMhTkVS3Bng30zmfFcgs6UgHE8x9h/eCjDGm/BYr9Ggyk3N1Fjssi/s3v9bo9EtgmIsnEFwHMWYa+lD21VGqWxVhJraMIvz7sZmcN7HfWPcotreSPMDGxzPjxvKX6xzwgraS3yEMn7ZMCftzk95ldZDAhn0Q40Nl1WgtwK7i4JeNfslse
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB3177.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(346002)(366004)(136003)(396003)(376002)(186009)(1800799009)(451199024)(66476007)(66446008)(54906003)(64756008)(66946007)(76116006)(66556008)(316002)(82960400001)(122000001)(478600001)(19627405001)(110136005)(91956017)(26005)(55016003)(38100700002)(38070700005)(33656002)(71200400001)(41300700001)(53546011)(55236004)(6506007)(7696005)(86362001)(2906002)(9686003)(4326008)(8936002)(8676002)(83380400001)(52536014)(107886003)(5660300002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?iOaj8w0EhMpoaqNaZVZe7wCbOWEiiGAiTARja+scFO6bAk8VfDvUybLET/BT?=
- =?us-ascii?Q?8hTbxyzi4ss7EXH96ss2lh96s+xpJWlDvnw1mXcyPVbfM3L2r8pSsrXatL/y?=
- =?us-ascii?Q?nkpvt04idfOLkjfDoY/2w1zm8Dh7LD0TT5Ua+THZrQkCRGsOUws6YDYJr7IY?=
- =?us-ascii?Q?TYqi2aUETzzfjtUcrxT4e9sPZZIP8Rv5RWRLMG27T+gGfTchqUL6BZxB/5bM?=
- =?us-ascii?Q?ry+L3hZUPm5igc6w+bUyqfrGBbK52mhgnVJCb9hKq+A9ECkz01wjWotEz2rt?=
- =?us-ascii?Q?UjN2jIAWgtoXwfLg/xDlKxF+0slX5b59N066HJZBHVKcGqGr3kUBRZXNVs8E?=
- =?us-ascii?Q?TxMLpBrMLiIkoaVejVV6DfknhoNKbM5Zy+C5wwl1KJKQ3ESoudpW4lxlkJnJ?=
- =?us-ascii?Q?1/C1FIWtImSuiRUH+SF8xi+m6r3IlFqEAQN8A3ulmIitvrqOeF03+c//QGgC?=
- =?us-ascii?Q?vOSd+7NS7JeNZErVKMSf3cn839GnrEgv/N6K62S7tQGwfLrmNo5niWH2V2CQ?=
- =?us-ascii?Q?k/rEQZaQff5JDG+Y77I6rzHk0VsmL/vqHqJD2AL1D2f661WaZT2V55GQmybg?=
- =?us-ascii?Q?4FLE4/VzWJKAnlclv2ZuRSiw1IEJMedaf34GFkQjmRXEHGfvvFV69hlusFk/?=
- =?us-ascii?Q?FxlMPjAQCOsOrhfCtOefqzdmaKkx4jzJ1f2rwR/93qGQlEUcTMw1YiQ8d5as?=
- =?us-ascii?Q?UEZboW7VgayV+dpzxxNSxcrsP+9Jzy44m8ApgPjh458nZwKc3SfJs18pJAOm?=
- =?us-ascii?Q?z/KcR4UtE3hbOPCzPPGLKAhnyARuvP1ghOi8X79xc1IHSM6P0Zy0OIMq7qiM?=
- =?us-ascii?Q?rINOpF2xMkzvyuCsgeyIysWSMaEE2yt4wVOi2VoLv5l+DMiG/styn7cmSbSG?=
- =?us-ascii?Q?C5eO4yCUudXPSONqXqxjyo9+5eGUi3ZIrtagLtIdx/lV+zOav1hi/aJE5J2G?=
- =?us-ascii?Q?CWu9gkvMz8BwKYmGkLeUdSN3+XThVFUDJuGgaA81YsMmM5MuMLIMAElpusn2?=
- =?us-ascii?Q?cC32yR7LZh9r90ChmblFXIrDbyz5jhajhe5ZPFwee0z+abvcDa0BxSGPWkhk?=
- =?us-ascii?Q?CbCutqduNpD/wDyvSLx5pH1RodUmjPSJtapumcyR81rwG8h06wIO97jBWLIO?=
- =?us-ascii?Q?fVPpPz1b68XEkyxiLUOk8cf2IFlhVIOuRcwnzMzGWAm22ToN/Bioom6Ap6aS?=
- =?us-ascii?Q?aKumBBQtAz0vZlakBAjnUj/u+a5v0PyWtFe4DK42ektT+OZXOdSV7CW4bGVF?=
- =?us-ascii?Q?zSgTHPoLsmi3d5El3N3ADI7s2bUHby/qwAf2WjFlVKfQo6t1+5f8CGLn+H2p?=
- =?us-ascii?Q?ASFM7ang8spyIgnZJEhYYzyxR4zcwQDgctjIzg8/ykoAfAa3+qaSyysHNepY?=
- =?us-ascii?Q?v0VwZCS/D59juTll47WvFn+ZWKHyuaNVblx/LxuHG16oh/CUFGMHGaLfaafO?=
- =?us-ascii?Q?OmcBcj4nnZAoOH/6FL0VW5NbRN2HOVTjPM3CQxQ3E4QIHWr2lVQ18HDA2kVr?=
- =?us-ascii?Q?Bc0JUEkk9V3u7lmD8chG0cgjHb7A5QAg2EQqX1zNQxDKJiEQLLS2jFh0VSaI?=
- =?us-ascii?Q?mEi8OusTQ9kFAVkry3NrShgLYbpJqOo6wCsLGlT3?=
-Content-Type: multipart/alternative;
- boundary="_000_DM6PR11MB31773E1037468FC86BAE60A0BA1DADM6PR11MB3177namp_"
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by MW3PR11MB4682.namprd11.prod.outlook.com (2603:10b6:303:2e::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Thu, 24 Aug
+ 2023 10:34:29 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
+ 10:34:28 +0000
+Date: Thu, 24 Aug 2023 03:34:25 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <glbznedzmkljwoxxjj4svdd63mitprzukp4idw2ynarlseo34w@sdha33ofw2jc>
+X-Patchwork-Hint: comment
+References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
+ <20230823170740.1180212-19-lucas.demarchi@intel.com>
+ <87zg2g4z4c.fsf@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <87zg2g4z4c.fsf@intel.com>
+X-ClientProxiedBy: MW4PR04CA0283.namprd04.prod.outlook.com
+ (2603:10b6:303:89::18) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MW3PR11MB4682:EE_
+X-MS-Office365-Filtering-Correlation-Id: 088495d0-384e-49e0-58c6-08dba48db1c6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: g8TtxnyMgSjbJ7/nltjdYDP3nhuuBQ/StLreplT8hnueboYyIdxzkuNzK+vls1xXeXf/ATmpNFZLdxShjQc6uMb8HdB7Pz+9/rZNcLt45D6dGtQ4ULnaBNbTzdlWhxBC3PKObRq1wgBp/MDI+BX4tPusdeTMQYKcVrmRrK0M/OiRwRsEAe34UogzMPBXAqJ1JvFvgU65X2mlrmtQ1Xi3cKcNVtc1fG3+XkGKkwI8ijSPOZ47aaQ8HliXwBVQ7lccpmQjrqHzFxANioNk0Yf4wTRBGwUU3KLhShoW+sJEdx7c5YmoAwmG08kItcowhSjdE3THdvVUJ0uq1iq151LVhm0du4yLQv53AEZ8yJXSijZF6YEdYCoEGAeInxQAuD0fdOQNioovMwMHUCnIW2v5GjcewlC+ctVXEHBQMvDMfkYnVHGgVpqn/MPC7JoPG+aYRc6EaJBWKtNG12+mdtOZEfJS+E3Q63ObejNyu1Q2ZNXgGA2v/PUMelf20ariu8eBwZObeYCIoYcQF7N1HMvOOp2E9SABqiyvF/iXKgcj2bvD+YOQ2jg/Hd2hP0qAB8wc
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(396003)(136003)(346002)(376002)(366004)(39860400002)(451199024)(186009)(1800799009)(33716001)(66476007)(66556008)(66946007)(316002)(6916009)(82960400001)(478600001)(26005)(38100700002)(6666004)(41300700001)(86362001)(6486002)(2906002)(6506007)(9686003)(6512007)(4326008)(8676002)(8936002)(5660300002)(83380400001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CvshXP8zcu5tyfS068q7kq6Xh1A5sbz4jz3wUmLrTpr95vSyP4AJ80ej8ERT?=
+ =?us-ascii?Q?M+INzQA/dx8F2+yne+tDAu3p+SnbVSLBD/W2AThkib6WM01zXA9j9rBs5W70?=
+ =?us-ascii?Q?QsmiO293sUIESasE89cIbrS55rA5SUCLVNUrtkPWI7hmLiyZhevHXmnRtZwI?=
+ =?us-ascii?Q?8hu6y23yA6b16MfrobfOuUMxdGzTchgjpfmJJoVfFza1ETeZD9GjbyG0Akzz?=
+ =?us-ascii?Q?lS4ReekNf9RoPxyoQoZ/HqtZ+Mw+nuOuwyVchhyhQvXDMSl1LiGS4s3Bo7KV?=
+ =?us-ascii?Q?WeIR2aUK5GRuIaCXJWDYYFo8O6iBsk0FgTUpF+pGvU5uM+MHbwG995FqaAKj?=
+ =?us-ascii?Q?08iw8nZUE/TaCb5uqyARE3yzE8P72x+2bINAXp4LhWBFT3UKODjc6fiLDPN1?=
+ =?us-ascii?Q?WcfjCLoy9nOb+J1xUI8hkD8ZEbB2oQXDdiCvNgfIeEY3/BebgmsYhZ94dFem?=
+ =?us-ascii?Q?/mR9oS1Pd3z7dzc21+ujn/CrinvHFLljjir7Uhb0imx9FD5cY1FOPkT0j7QX?=
+ =?us-ascii?Q?veF4jiow8BrnVTAYUngxvGvcurIzTKFxuZcUyFWL9LSbPVUGSd+P8ETKfeLV?=
+ =?us-ascii?Q?5vvPXr9N4GhnXrnynADIisCJdpFZ9MCJD+kgDAN3JPmgRKRmp4siN5fHYXjb?=
+ =?us-ascii?Q?X3mAep8/1G0rMjNo9KAEHDSbY6uuUmlSl6vLbGPZZKCiWD647582/1cNPbQf?=
+ =?us-ascii?Q?jhDaK0t8IZJyiR6gw846TUG7uia1cJYga0vXVMc+lAeeJBjHFzHIJtkcUKzD?=
+ =?us-ascii?Q?5nHhly/cipeczet/XBWW5VdgKvAt2hutShoFJ0bRfp9TdC9/pIkAnQlC5t1z?=
+ =?us-ascii?Q?0JVS1c1C8eRR6f0W33K3G9sgxnPzwtX2+Qb+pce+onnso4//PiC9rgTNCKZp?=
+ =?us-ascii?Q?YCDRv96KKlOxrMQ7DliHc571FzqnRpMmEA8yjO+GkUgPne6EPTQryF60K2cG?=
+ =?us-ascii?Q?jyrf/kFHtI9lCRX8UrZHxN0fda0E8XJs42ka+nxhOieIEAdfA9pvzk8I80sH?=
+ =?us-ascii?Q?WUXSgrpYxE+KlFkj+hOivMu5mrXwZANb6V4o6GBsNqpine0DrfY/VOmDLmks?=
+ =?us-ascii?Q?48H2jpSDHSL0vSfGKPsMKK6l4ir9/UhnMXglsraL8Dc9cPkkeHfvUw9iHFHc?=
+ =?us-ascii?Q?T+YsT9X99fHd3lI4LOZ6HrpXZ2q8juC5o4mTHJ9nESWlGsEJHhgNQyFmJyBE?=
+ =?us-ascii?Q?4U1QF2j/yzbA9AVCuIvCjIUQANj1D+iYWF2F7SFA/+75I/vC6W1lTdlvivuV?=
+ =?us-ascii?Q?v1tv3t5zY0i6k8M9eFyUQzMJT9HjzRuHPY1p5HcCfWAqhgTYPDvkk1CZb46w?=
+ =?us-ascii?Q?ULn1lK7rZfVY50fSYHMOv3X+8X1djeARPmSk+segmqH3IfKrHqg5uS4R+/p0?=
+ =?us-ascii?Q?fUMh7HlYVa3T7dQqxVCeSspGOSBESJykaC4iR/tbzLrDdfu284nqtQt9GGr/?=
+ =?us-ascii?Q?381UAt34mSypySvuK2Mf+p/2wdoZAgJkGZUOI91fJYZBT/Q82+bLCUdFsUWe?=
+ =?us-ascii?Q?n5cimun77dRZecLFuWI+lU5ADp+ZbMnM3+18/RWke4k5OZcZmr0lrElPTZOd?=
+ =?us-ascii?Q?CGOrX6MDWrPmq9SRRWmq4/JZi5K4jsPtdWuXEzNDszghlfLT8/tFIQyNM5gZ?=
+ =?us-ascii?Q?eg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 088495d0-384e-49e0-58c6-08dba48db1c6
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3177.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0a5e326-81dc-4c34-7f58-08dba489f318
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2023 10:07:39.8588 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tC/MtPxW8/k2znDjb9Ngy69wA/EAK0W1yCnbTZQZnE4fdYHAHCeINHuVTJAQDyt0WcBfwFvkOD+HiS0a6OqzKA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7868
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 10:34:28.4769 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5QR+so7cNgDVVhjXcK8sFVca/uAaADOw2r4e11fJwStBQX43YP6vW+TQMfIWyPRPqvjNSim0apF5xo01QceF5DyqvYwdgtoWU4mJJUujbhM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4682
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/i915/hdcp: Propagate aux info in
- DP HDCP functions
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 18/42] drm/i915/xe2lpd: Move
+ registers to PICA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,519 +146,242 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "uma.shakar@intel.com" <uma.shakar@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_DM6PR11MB31773E1037468FC86BAE60A0BA1DADM6PR11MB3177namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-
-Thanks and Regards,
-Arun R Murthy
--------------------
-________________________________
-From: Kandpal, Suraj <suraj.kandpal@intel.com>
-Sent: Wednesday, August 23, 2023 11:28 AM
-To: intel-gfx@lists.freedesktop.org <intel-gfx@lists.freedesktop.org>
-Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; uma.shakar@intel.com <u=
-ma.shakar@intel.com>; Murthy, Arun R <arun.r.murthy@intel.com>; Kandpal, Su=
-raj <suraj.kandpal@intel.com>
-Subject: [PATCH v2 2/4] drm/i915/hdcp: Propagate aux info in DP HDCP functi=
-ons
-
-We were propagating dig_port info to dp hdcp2 specific functions.
-Let us clean that up and send intel_connector in the following
-functions: intel_dp_hdcp2_wait_for_msg, get_receiver_id_list_rx_info,
-intel_dp_hdcp2_read_rx_status.
-This optimises mst scenarios where aux ends up being remote and not
-stored in dig_port and dig_port can always be derived from
-intel_connector if needed.
-
---v2
--Fix Typo [Arun]
--Dont pass drm_dp core structures [Arun]
--Fix commit message styling [Arun]
-
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 39 +++++++++++---------
- 1 file changed, 22 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm=
-/i915/display/intel_dp_hdcp.c
-index 6cd42363837a..59ef77476cb9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -331,10 +331,11 @@ static const struct hdcp2_dp_msg_data hdcp2_dp_msg_da=
-ta[] =3D {
- };
-
- static int
--intel_dp_hdcp2_read_rx_status(struct intel_digital_port *dig_port,
-+intel_dp_hdcp2_read_rx_status(struct intel_connector *connector,
-                               u8 *rx_status)
- {
--       struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-+       struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
-+       struct intel_digital_port *dig_port =3D intel_attached_dig_port(con=
-nector);
-         ssize_t ret;
-
-         ret =3D drm_dp_dpcd_read(&dig_port->dp.aux,
-@@ -350,14 +351,14 @@ intel_dp_hdcp2_read_rx_status(struct intel_digital_po=
-rt *dig_port,
- }
-
- static
--int hdcp2_detect_msg_availability(struct intel_digital_port *dig_port,
-+int hdcp2_detect_msg_availability(struct intel_connector *connector,
-                                   u8 msg_id, bool *msg_ready)
- {
-         u8 rx_status;
-         int ret;
-
-         *msg_ready =3D false;
--       ret =3D intel_dp_hdcp2_read_rx_status(dig_port, &rx_status);
-+       ret =3D intel_dp_hdcp2_read_rx_status(connector, &rx_status);
-         if (ret < 0)
-                 return ret;
-
-@@ -383,12 +384,11 @@ int hdcp2_detect_msg_availability(struct intel_digita=
-l_port *dig_port,
- }
-
- static ssize_t
--intel_dp_hdcp2_wait_for_msg(struct intel_digital_port *dig_port,
-+intel_dp_hdcp2_wait_for_msg(struct intel_connector *connector,
-                             const struct hdcp2_dp_msg_data *hdcp2_msg_data=
-)
- {
--       struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
--       struct intel_dp *dp =3D &dig_port->dp;
--       struct intel_hdcp *hdcp =3D &dp->attached_connector->hdcp;
-+       struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
-+       struct intel_hdcp *hdcp =3D &connector->hdcp;
-         u8 msg_id =3D hdcp2_msg_data->msg_id;
-         int ret, timeout;
-         bool msg_ready =3D false;
-@@ -411,8 +411,8 @@ intel_dp_hdcp2_wait_for_msg(struct intel_digital_port *=
-dig_port,
-                  * the timeout at wait for CP_IRQ.
-                  */
-                 intel_dp_hdcp_wait_for_cp_irq(hdcp, timeout);
--               ret =3D hdcp2_detect_msg_availability(dig_port,
--                                                   msg_id, &msg_ready);
-+               ret =3D hdcp2_detect_msg_availability(connector, msg_id,
-+                                                   &msg_ready);
-                 if (!msg_ready)
-                         ret =3D -ETIMEDOUT;
-         }
-@@ -445,6 +445,7 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
-nnector,
-         u8 *byte =3D buf;
-         ssize_t ret, bytes_to_write, len;
-         const struct hdcp2_dp_msg_data *hdcp2_msg_data;
-+       struct drm_dp_aux *aux;
-
-         hdcp2_msg_data =3D get_hdcp2_dp_msg_data(*byte);
-         if (!hdcp2_msg_data)
-@@ -452,6 +453,8 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
-nnector,
-
-         offset =3D hdcp2_msg_data->offset;
-
-+       aux =3D &dig_port->dp.aux;
-+
-         /* No msg_id in DP HDCP2.2 msgs */
-         bytes_to_write =3D size - 1;
-         byte++;
-@@ -460,7 +463,7 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
-nnector,
-                 len =3D bytes_to_write > DP_AUX_MAX_PAYLOAD_BYTES ?
-                                 DP_AUX_MAX_PAYLOAD_BYTES : bytes_to_write;
-
--               ret =3D drm_dp_dpcd_write(&dig_port->dp.aux,
-+               ret =3D drm_dp_dpcd_write(aux,
-                                         offset, (void *)byte, len);
-                 if (ret < 0)
-                         return ret;
-@@ -474,8 +477,10 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *c=
-onnector,
- }
-
- static
--ssize_t get_receiver_id_list_rx_info(struct intel_digital_port *dig_port, =
-u32 *dev_cnt, u8 *byte)
-+ssize_t get_receiver_id_list_rx_info(struct intel_connector *connector,
-+                                    u32 *dev_cnt, u8 *byte)
- {
-+       struct intel_digital_port *dig_port =3D intel_attached_dig_port(con=
-nector);
-         ssize_t ret;
-         u8 *rx_info =3D byte;
-
-@@ -500,8 +505,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
-nector,
- {
-         struct intel_digital_port *dig_port =3D intel_attached_dig_port(co=
-nnector);
-         struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev)=
-;
--       struct intel_dp *dp =3D &dig_port->dp;
--       struct intel_hdcp *hdcp =3D &dp->attached_connector->hdcp;
-+       struct intel_hdcp *hdcp =3D &connector->hdcp;
-         unsigned int offset;
-         u8 *byte =3D buf;
-         ssize_t ret, bytes_to_recv, len;
-@@ -515,7 +519,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
-nector,
-                 return -EINVAL;
-         offset =3D hdcp2_msg_data->offset;
-
--       ret =3D intel_dp_hdcp2_wait_for_msg(dig_port, hdcp2_msg_data);
-+       ret =3D intel_dp_hdcp2_wait_for_msg(connector, hdcp2_msg_data);
-         if (ret < 0)
-                 return ret;
-
-@@ -525,7 +529,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
-nector,
-         byte++;
-
-         if (msg_id =3D=3D HDCP_2_2_REP_SEND_RECVID_LIST) {
--               ret =3D get_receiver_id_list_rx_info(dig_port, &dev_cnt, by=
-te);
-+               ret =3D get_receiver_id_list_rx_info(connector, &dev_cnt, b=
-yte);
-                 if (ret < 0)
-                         return ret;
-
-@@ -609,7 +613,8 @@ int intel_dp_hdcp2_check_link(struct intel_digital_port=
- *dig_port,
-         u8 rx_status;
-         int ret;
-
--       ret =3D intel_dp_hdcp2_read_rx_status(dig_port, &rx_status);
-+       ret =3D intel_dp_hdcp2_read_rx_status(connector,
-+                                           &rx_status);
-         if (ret)
-                 return ret;
-
---
-2.25.1
-
-
---_000_DM6PR11MB31773E1037468FC86BAE60A0BA1DADM6PR11MB3177namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Thu, Aug 24, 2023 at 11:34:59AM +0300, Jani Nikula wrote:
+>On Wed, 23 Aug 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+>> index cb5d1be2ba19..4b5b9a97142d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+>> @@ -6,13 +6,15 @@
+>>  #ifndef __INTEL_CX0_PHY_REGS_H__
+>>  #define __INTEL_CX0_PHY_REGS_H__
+>>
+>> +#include "i915_drv.h"
 >
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 11pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Reviewed-by: Arun R Murthy &lt;arun.r.murthy@intel.com&gt;</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 11pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 11pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Thanks and Regards,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 11pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Arun R Murthy</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 11pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
--------------------</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Kandpal, Suraj &lt;su=
-raj.kandpal@intel.com&gt;<br>
-<b>Sent:</b> Wednesday, August 23, 2023 11:28 AM<br>
-<b>To:</b> intel-gfx@lists.freedesktop.org &lt;intel-gfx@lists.freedesktop.=
-org&gt;<br>
-<b>Cc:</b> Nautiyal, Ankit K &lt;ankit.k.nautiyal@intel.com&gt;; uma.shakar=
-@intel.com &lt;uma.shakar@intel.com&gt;; Murthy, Arun R &lt;arun.r.murthy@i=
-ntel.com&gt;; Kandpal, Suraj &lt;suraj.kandpal@intel.com&gt;<br>
-<b>Subject:</b> [PATCH v2 2/4] drm/i915/hdcp: Propagate aux info in DP HDCP=
- functions</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">We were propagating dig_port info to dp hdcp2 spec=
-ific functions.<br>
-Let us clean that up and send intel_connector in the following<br>
-functions: intel_dp_hdcp2_wait_for_msg, get_receiver_id_list_rx_info,<br>
-intel_dp_hdcp2_read_rx_status.<br>
-This optimises mst scenarios where aux ends up being remote and not<br>
-stored in dig_port and dig_port can always be derived from<br>
-intel_connector if needed.<br>
-<br>
---v2<br>
--Fix Typo [Arun]<br>
--Dont pass drm_dp core structures [Arun]<br>
--Fix commit message styling [Arun]<br>
-<br>
-Signed-off-by: Suraj Kandpal &lt;suraj.kandpal@intel.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 39 +++++++++++--------=
--<br>
-&nbsp;1 file changed, 22 insertions(+), 17 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm=
-/i915/display/intel_dp_hdcp.c<br>
-index 6cd42363837a..59ef77476cb9 100644<br>
---- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c<br>
-+++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c<br>
-@@ -331,10 +331,11 @@ static const struct hdcp2_dp_msg_data hdcp2_dp_msg_da=
-ta[] =3D {<br>
-&nbsp;};<br>
-&nbsp;<br>
-&nbsp;static int<br>
--intel_dp_hdcp2_read_rx_status(struct intel_digital_port *dig_port,<br>
-+intel_dp_hdcp2_read_rx_status(struct intel_connector *connector,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 *rx_status)<br>
-&nbsp;{<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *i915 =3D to_=
-i915(dig_port-&gt;base.base.dev);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *i915 =3D to_=
-i915(connector-&gt;base.dev);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_digital_port *dig_port =
-=3D intel_attached_dig_port(connector);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ssize_t ret;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_dp_dpcd_read(&=
-amp;dig_port-&gt;dp.aux,<br>
-@@ -350,14 +351,14 @@ intel_dp_hdcp2_read_rx_status(struct intel_digital_po=
-rt *dig_port,<br>
-&nbsp;}<br>
-&nbsp;<br>
-&nbsp;static<br>
--int hdcp2_detect_msg_availability(struct intel_digital_port *dig_port,<br>
-+int hdcp2_detect_msg_availability(struct intel_connector *connector,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 msg_id, bool *msg=
-_ready)<br>
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 rx_status;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *msg_ready =3D false;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_read_rx_status=
-(dig_port, &amp;rx_status);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_read_rx_status=
-(connector, &amp;rx_status);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&nbsp;<br>
-@@ -383,12 +384,11 @@ int hdcp2_detect_msg_availability(struct intel_digita=
-l_port *dig_port,<br>
-&nbsp;}<br>
-&nbsp;<br>
-&nbsp;static ssize_t<br>
--intel_dp_hdcp2_wait_for_msg(struct intel_digital_port *dig_port,<br>
-+intel_dp_hdcp2_wait_for_msg(struct intel_connector *connector,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; const struct hdcp2_dp_msg_data *hdcp2_msg_data)<br>
-&nbsp;{<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *i915 =3D to_=
-i915(dig_port-&gt;base.base.dev);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_dp *dp =3D &amp;dig_port=
--&gt;dp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_hdcp *hdcp =3D &amp;dp-&=
-gt;attached_connector-&gt;hdcp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *i915 =3D to_=
-i915(connector-&gt;base.dev);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_hdcp *hdcp =3D &amp;conn=
-ector-&gt;hdcp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 msg_id =3D hdcp2_msg_da=
-ta-&gt;msg_id;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret, timeout;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool msg_ready =3D false;<=
-br>
-@@ -411,8 +411,8 @@ intel_dp_hdcp2_wait_for_msg(struct intel_digital_port *=
-dig_port,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; * the timeout at wait for CP_IRQ.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; intel_dp_hdcp_wait_for_cp_irq(hdcp, timeout);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ret =3D hdcp2_detect_msg_availability(dig_port,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-; msg_id, &amp;msg_ready);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ret =3D hdcp2_detect_msg_availability(connector, msg_id,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-; &amp;msg_ready);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (!msg_ready)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =
-=3D -ETIMEDOUT;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-@@ -445,6 +445,7 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
-nnector,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 *byte =3D buf;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ssize_t ret, bytes_to_writ=
-e, len;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct hdcp2_dp_msg_=
-data *hdcp2_msg_data;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_dp_aux *aux;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hdcp2_msg_data =3D get_hdc=
-p2_dp_msg_data(*byte);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!hdcp2_msg_data)<br>
-@@ -452,6 +453,8 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
-nnector,<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offset =3D hdcp2_msg_data-=
-&gt;offset;<br>
-&nbsp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aux =3D &amp;dig_port-&gt;dp.aux;<br>
-+<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* No msg_id in DP HDCP2.2=
- msgs */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bytes_to_write =3D size - =
-1;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; byte++;<br>
-@@ -460,7 +463,7 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *co=
-nnector,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; len =3D bytes_to_write &gt; DP_AUX_MAX_PAYLOAD_BYTES =
-?<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DP_AUX_MAX_PAYLOAD_BYTES : bytes=
-_to_write;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ret =3D drm_dp_dpcd_write(&amp;dig_port-&gt;dp.aux,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ret =3D drm_dp_dpcd_write(aux,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; offset, (void *)byte, len);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
-n ret;<br>
-@@ -474,8 +477,10 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *c=
-onnector,<br>
-&nbsp;}<br>
-&nbsp;<br>
-&nbsp;static<br>
--ssize_t get_receiver_id_list_rx_info(struct intel_digital_port *dig_port, =
-u32 *dev_cnt, u8 *byte)<br>
-+ssize_t get_receiver_id_list_rx_info(struct intel_connector *connector,<br=
+>Please don't do this. Please don't add inline functions that depend on
+>i915_drv.h etc. being included from headers. This simple headers just
+>changed to including like half the headers in the entire driver. It's
+>that bad.
 >
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u32 *dev_cnt,=
- u8 *byte)<br>
-&nbsp;{<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_digital_port *dig_port =
-=3D intel_attached_dig_port(connector);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ssize_t ret;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 *rx_info =3D byte;<br>
-&nbsp;<br>
-@@ -500,8 +505,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
-nector,<br>
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_digital_port =
-*dig_port =3D intel_attached_dig_port(connector);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *i=
-915 =3D to_i915(dig_port-&gt;base.base.dev);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_dp *dp =3D &amp;dig_port=
--&gt;dp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_hdcp *hdcp =3D &amp;dp-&=
-gt;attached_connector-&gt;hdcp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_hdcp *hdcp =3D &amp;conn=
-ector-&gt;hdcp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int offset;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 *byte =3D buf;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ssize_t ret, bytes_to_recv=
-, len;<br>
-@@ -515,7 +519,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
-nector,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return -EINVAL;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offset =3D hdcp2_msg_data-=
-&gt;offset;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_wait_for_msg(d=
-ig_port, hdcp2_msg_data);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_wait_for_msg(c=
-onnector, hdcp2_msg_data);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&nbsp;<br>
-@@ -525,7 +529,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *con=
-nector,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; byte++;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (msg_id =3D=3D HDCP_2_2=
-_REP_SEND_RECVID_LIST) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ret =3D get_receiver_id_list_rx_info(dig_port, &amp;dev_cnt, byt=
-e);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ret =3D get_receiver_id_list_rx_info(connector, &amp;dev_cnt, by=
-te);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
-n ret;<br>
-&nbsp;<br>
-@@ -609,7 +613,8 @@ int intel_dp_hdcp2_check_link(struct intel_digital_port=
- *dig_port,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 rx_status;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_read_rx_status=
-(dig_port, &amp;rx_status);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_dp_hdcp2_read_rx_status=
-(connector,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;rx_status);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&nbsp;<br>
--- <br>
-2.25.1<br>
-<br>
-</div>
-</span></font></div>
-</body>
-</html>
+>I think the main question is why does anything other than
+>intel_cx0_phy_regs.c need the helpers? It's probably the division
+>between that and intel_ddi.c that's wrong in the first place.
 
---_000_DM6PR11MB31773E1037468FC86BAE60A0BA1DADM6PR11MB3177namp_--
+because on platform N-1 the register was on DDI and on platform N it
+moved to the phy. So how would the divide be?
+
+Lucas De Marchi
+
+>
+>That's actually been one of the benefits of splitting the register
+>macros by area; you can tell what registers are used where, and
+>sometimes it gives bad code smells about stuff being accessed in the
+>wrong place.
+>
+>BR,
+>Jani.
+>
+>
+>>  #include "i915_reg_defs.h"
+>> +#include "intel_display_limits.h"
+>>
+>>  #define _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_A		0x64040
+>>  #define _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_B		0x64140
+>>  #define _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC1		0x16F240
+>>  #define _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC2		0x16F440
+>> -#define XELPDP_PORT_M2P_MSGBUS_CTL(port, lane)		_MMIO(_PICK_EVEN_2RANGES(port, PORT_TC1, \
+>> +#define XELPDP_PORT_M2P_MSGBUS_CTL(idx, lane)		_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
+>>  										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_A, \
+>>  										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_B, \
+>>  										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC1, \
+>> @@ -27,7 +29,7 @@
+>>  #define   XELPDP_PORT_M2P_TRANSACTION_RESET		REG_BIT(15)
+>>  #define   XELPDP_PORT_M2P_ADDRESS_MASK			REG_GENMASK(11, 0)
+>>  #define   XELPDP_PORT_M2P_ADDRESS(val)			REG_FIELD_PREP(XELPDP_PORT_M2P_ADDRESS_MASK, val)
+>> -#define XELPDP_PORT_P2M_MSGBUS_STATUS(port, lane)	_MMIO(_PICK_EVEN_2RANGES(port, PORT_TC1, \
+>> +#define XELPDP_PORT_P2M_MSGBUS_STATUS(idx, lane)	_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
+>>  										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_A, \
+>>  										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_B, \
+>>  										 _XELPDP_PORT_M2P_MSGBUS_CTL_LN0_USBC1, \
+>> @@ -54,7 +56,7 @@
+>>  #define _XELPDP_PORT_BUF_CTL1_LN0_B			0x64104
+>>  #define _XELPDP_PORT_BUF_CTL1_LN0_USBC1			0x16F200
+>>  #define _XELPDP_PORT_BUF_CTL1_LN0_USBC2			0x16F400
+>> -#define XELPDP_PORT_BUF_CTL1(port)			_MMIO(_PICK_EVEN_2RANGES(port, PORT_TC1, \
+>> +#define XELPDP_PORT_BUF_CTL1(idx)			_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
+>>  										 _XELPDP_PORT_BUF_CTL1_LN0_A, \
+>>  										 _XELPDP_PORT_BUF_CTL1_LN0_B, \
+>>  										 _XELPDP_PORT_BUF_CTL1_LN0_USBC1, \
+>> @@ -75,7 +77,7 @@
+>>  #define   XELPDP_PORT_WIDTH_MASK			REG_GENMASK(3, 1)
+>>  #define   XELPDP_PORT_WIDTH(val)			REG_FIELD_PREP(XELPDP_PORT_WIDTH_MASK, val)
+>>
+>> -#define XELPDP_PORT_BUF_CTL2(port)			_MMIO(_PICK_EVEN_2RANGES(port, PORT_TC1, \
+>> +#define XELPDP_PORT_BUF_CTL2(idx)			_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
+>>  										 _XELPDP_PORT_BUF_CTL1_LN0_A, \
+>>  										 _XELPDP_PORT_BUF_CTL1_LN0_B, \
+>>  										 _XELPDP_PORT_BUF_CTL1_LN0_USBC1, \
+>> @@ -95,7 +97,7 @@
+>>  #define   XELPDP_POWER_STATE_READY_MASK			REG_GENMASK(7, 4)
+>>  #define   XELPDP_POWER_STATE_READY(val)			REG_FIELD_PREP(XELPDP_POWER_STATE_READY_MASK, val)
+>>
+>> -#define XELPDP_PORT_BUF_CTL3(port)			_MMIO(_PICK_EVEN_2RANGES(port, PORT_TC1, \
+>> +#define XELPDP_PORT_BUF_CTL3(idx)			_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
+>>  										 _XELPDP_PORT_BUF_CTL1_LN0_A, \
+>>  										 _XELPDP_PORT_BUF_CTL1_LN0_B, \
+>>  										 _XELPDP_PORT_BUF_CTL1_LN0_USBC1, \
+>> @@ -114,7 +116,7 @@
+>>  #define _XELPDP_PORT_CLOCK_CTL_B			0x641E0
+>>  #define _XELPDP_PORT_CLOCK_CTL_USBC1			0x16F260
+>>  #define _XELPDP_PORT_CLOCK_CTL_USBC2			0x16F460
+>> -#define XELPDP_PORT_CLOCK_CTL(port)			_MMIO(_PICK_EVEN_2RANGES(port, PORT_TC1, \
+>> +#define XELPDP_PORT_CLOCK_CTL(idx)			_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
+>>  										 _XELPDP_PORT_CLOCK_CTL_A, \
+>>  										 _XELPDP_PORT_CLOCK_CTL_B, \
+>>  										 _XELPDP_PORT_CLOCK_CTL_USBC1, \
+>> @@ -271,4 +273,61 @@
+>>  #define HDMI_DIV_MASK		REG_GENMASK16(2, 0)
+>>  #define HDMI_DIV(val)		REG_FIELD_PREP16(HDMI_DIV_MASK, val)
+>>
+>> +/*
+>> + * All registers are in the same IP, with a single range.  However the registers
+>> + * for TC_PORT come first.
+>> + */
+>> +static inline enum port xe2lpd_port_idx(enum port port)
+>> +{
+>> +	return port >= PORT_TC1 ? port : PORT_TC4 + 1 + port - PORT_A;
+>> +}
+>> +
+>> +static inline i915_reg_t xelpdp_port_clock_ctl_reg(struct drm_i915_private *i915,
+>> +						   enum port port)
+>> +{
+>> +	return DISPLAY_VER(i915) >= 20 ?
+>> +		XELPDP_PORT_CLOCK_CTL(xe2lpd_port_idx(port)) :
+>> +		XELPDP_PORT_CLOCK_CTL(port);
+>> +}
+>> +
+>> +static inline i915_reg_t xelpdp_port_buf_ctl3_reg(struct drm_i915_private *i915,
+>> +						  enum port port)
+>> +{
+>> +	return DISPLAY_VER(i915) >= 20 ?
+>> +		XELPDP_PORT_BUF_CTL3(xe2lpd_port_idx(port)) :
+>> +		XELPDP_PORT_BUF_CTL3(port);
+>> +}
+>> +
+>> +static inline i915_reg_t xelpdp_port_buf_ctl2_reg(struct drm_i915_private *i915,
+>> +						  enum port port)
+>> +{
+>> +	return DISPLAY_VER(i915) >= 20 ?
+>> +		XELPDP_PORT_BUF_CTL2(xe2lpd_port_idx(port)) :
+>> +		XELPDP_PORT_BUF_CTL2(port);
+>> +}
+>> +
+>> +static inline i915_reg_t xelpdp_port_buf_ctl1_reg(struct drm_i915_private *i915,
+>> +						  enum port port)
+>> +{
+>> +	return DISPLAY_VER(i915) >= 20 ?
+>> +		XELPDP_PORT_BUF_CTL1(xe2lpd_port_idx(port)) :
+>> +		XELPDP_PORT_BUF_CTL1(port);
+>> +}
+>> +
+>> +static inline i915_reg_t xelpdp_port_m2p_msgbus_ctl_reg(struct drm_i915_private *i915,
+>> +							enum port port, int lane)
+>> +{
+>> +	return DISPLAY_VER(i915) >= 20 ?
+>> +		XELPDP_PORT_M2P_MSGBUS_CTL(xe2lpd_port_idx(port), lane) :
+>> +		XELPDP_PORT_M2P_MSGBUS_CTL(port, lane);
+>> +}
+>> +
+>> +static inline i915_reg_t xelpdp_port_p2m_msgbus_status_reg(struct drm_i915_private *i915,
+>> +							   enum port port, int lane)
+>> +{
+>> +	return DISPLAY_VER(i915) >= 20 ?
+>> +		XELPDP_PORT_P2M_MSGBUS_STATUS(xe2lpd_port_idx(port), lane) :
+>> +		XELPDP_PORT_P2M_MSGBUS_STATUS(port, lane);
+>> +}
+>> +
+>>  #endif /* __INTEL_CX0_REG_DEFS_H__ */
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> index 3147ed174d83..3587ddc6d8ed 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -176,7 +176,7 @@ static void mtl_wait_ddi_buf_idle(struct drm_i915_private *i915, enum port port)
+>>  	int ret;
+>>
+>>  	/* FIXME: find out why Bspec's 100us timeout is too short */
+>> -	ret = wait_for_us((intel_de_read(i915, XELPDP_PORT_BUF_CTL1(port)) &
+>> +	ret = wait_for_us((intel_de_read(i915, xelpdp_port_buf_ctl1_reg(i915, port)) &
+>>  			   XELPDP_PORT_BUF_PHY_IDLE), 10000);
+>>  	if (ret)
+>>  		drm_err(&i915->drm, "Timeout waiting for DDI BUF %c to get idle\n",
+>> @@ -224,7 +224,9 @@ static void intel_wait_ddi_buf_active(struct drm_i915_private *dev_priv,
+>>  	}
+>>
+>>  	if (DISPLAY_VER(dev_priv) >= 14)
+>> -		ret = _wait_for(!(intel_de_read(dev_priv, XELPDP_PORT_BUF_CTL1(port)) & XELPDP_PORT_BUF_PHY_IDLE),
+>> +		ret = _wait_for(!(intel_de_read(dev_priv,
+>> +						xelpdp_port_buf_ctl1_reg(dev_priv, port)) &
+>> +				  XELPDP_PORT_BUF_PHY_IDLE),
+>>  				timeout_us, 10, 10);
+>>  	else
+>>  		ret = _wait_for(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) & DDI_BUF_IS_IDLE),
+>> @@ -2365,7 +2367,7 @@ mtl_ddi_enable_d2d(struct intel_encoder *encoder)
+>>  		dig_port->saved_port_bits |= XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
+>>  		wait_bits = XE2LPD_DDI_BUF_D2D_LINK_STATE;
+>>  	} else {
+>> -		reg = XELPDP_PORT_BUF_CTL1(port);
+>> +		reg = xelpdp_port_buf_ctl1_reg(dev_priv, port);
+>>  		set_bits = XELPDP_PORT_BUF_D2D_LINK_ENABLE;
+>>  		wait_bits = XELPDP_PORT_BUF_D2D_LINK_STATE;
+>>  	}
+>> @@ -2385,7 +2387,7 @@ static void mtl_port_buf_ctl_program(struct intel_encoder *encoder,
+>>  	enum port port = encoder->port;
+>>  	u32 val;
+>>
+>> -	val = intel_de_read(i915, XELPDP_PORT_BUF_CTL1(port));
+>> +	val = intel_de_read(i915, xelpdp_port_buf_ctl1_reg(i915, port));
+>>  	val &= ~XELPDP_PORT_WIDTH_MASK;
+>>  	val |= XELPDP_PORT_WIDTH(mtl_get_port_width(crtc_state->lane_count));
+>>
+>> @@ -2398,7 +2400,7 @@ static void mtl_port_buf_ctl_program(struct intel_encoder *encoder,
+>>  	if (dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL)
+>>  		val |= XELPDP_PORT_REVERSAL;
+>>
+>> -	intel_de_write(i915, XELPDP_PORT_BUF_CTL1(port), val);
+>> +	intel_de_write(i915, xelpdp_port_buf_ctl1_reg(i915, port), val);
+>>  }
+>>
+>>  static void mtl_port_buf_ctl_io_selection(struct intel_encoder *encoder)
+>> @@ -2409,7 +2411,7 @@ static void mtl_port_buf_ctl_io_selection(struct intel_encoder *encoder)
+>>
+>>  	val = intel_tc_port_in_tbt_alt_mode(dig_port) ?
+>>  	      XELPDP_PORT_BUF_IO_SELECT_TBT : 0;
+>> -	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL1(encoder->port),
+>> +	intel_de_rmw(i915, xelpdp_port_buf_ctl1_reg(i915, encoder->port),
+>>  		     XELPDP_PORT_BUF_IO_SELECT_TBT, val);
+>>  }
+>>
+>> @@ -2829,7 +2831,7 @@ mtl_ddi_disable_d2d_link(struct intel_encoder *encoder)
+>>  		dig_port->saved_port_bits &= ~XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
+>>  		wait_bits = XE2LPD_DDI_BUF_D2D_LINK_STATE;
+>>  	} else {
+>> -		reg = XELPDP_PORT_BUF_CTL1(port);
+>> +		reg = xelpdp_port_buf_ctl1_reg(dev_priv, port);
+>>  		clr_bits = XELPDP_PORT_BUF_D2D_LINK_ENABLE;
+>>  		wait_bits = XELPDP_PORT_BUF_D2D_LINK_STATE;
+>>  	}
+>> @@ -2967,7 +2969,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
+>>
+>>  	/* De-select Thunderbolt */
+>>  	if (DISPLAY_VER(dev_priv) >= 14)
+>> -		intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(encoder->port),
+>> +		intel_de_rmw(dev_priv, xelpdp_port_buf_ctl1_reg(dev_priv, encoder->port),
+>>  			     XELPDP_PORT_BUF_IO_SELECT_TBT, 0);
+>>  }
+>
+>-- 
+>Jani Nikula, Intel Open Source Graphics Center
