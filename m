@@ -1,143 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE2167873AF
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 17:09:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A29E0787419
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 17:26:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1783510E591;
-	Thu, 24 Aug 2023 15:09:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE6610E591;
+	Thu, 24 Aug 2023 15:26:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A054D10E593;
- Thu, 24 Aug 2023 15:09:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692889758; x=1724425758;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Q41VVQBaL1DpV5MuslxvNLJbpd5sNfakaEGNUiY/dUg=;
- b=XHPNjMCAVJM3Jkz7CLb8dC0/L1dGLdepgWoU0/XzaEqUaXkXtqhDSuWb
- 4mN5tlPxM3bcy+3geCQ4rS7AvQTruCkazDvZEitEg8Tj4ZmGwbYS4mdwy
- ckYHKe6f9Hds/peHevwxWAeV+FcMDiGsXaLdTCSXe5/5OZPEtd+8ttaD4
- OQqaYurv6lwqnCHiRAqvoaz2iQNXxvbKIoLS7sKZtBhV3bX8Syvxpta/r
- Tw6Dqzek0aM+fqbT3a++emVoNUxL5pI7n68Ehjv2OIgmDWcSTb35mAq4F
- tpB7Am5Je31b3Opdkd9e55x87JCgoU0YpeXbofynLKdgX40kBohZEHDEU Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="440823630"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="440823630"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 08:08:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="766566073"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="766566073"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga008.jf.intel.com with ESMTP; 24 Aug 2023 08:08:38 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 24 Aug 2023 08:08:38 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 24 Aug 2023 08:08:37 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 24 Aug 2023 08:08:37 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 24 Aug 2023 08:08:37 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q7qa0PoGfQHLNcwVGag2Gz13C160EFAG+AXJfrVotb1u5Zlea+4+560TFz4fo7FEAJoornC8evEs6p3/ual3bes0EyCH5r9D+0Jo8WdkD7wRe3IF/yi+PMYRogizUVvYnYb+nACGlcFPkTTpC8+P9br8gHGE10g7aKTMg3aNTTymsFCoVrUPRAXz6+4cCCDhwFY3avjU337WvCAPlMod69EgUP8P4QH92XOzYXVWqd+nYCueNmQc9l72mJvsfKOLVaK4ucxNJ+INcwnUyGdGeCokaBOlVEIZ7Y90ALV+fMvX84mjRHL1IhsHIrM18GsiWthnTscSTULykZVlr2KlVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4v2anYaagHIceeIZuNnbTlVEpKFXx1TE9EYZe/nmVYw=;
- b=g+a22nSvRRLx2kFAVxBJBOp6XlnVIi3LVwomcfOLcUNomxZbrznysm45+KidkipyDu9+/3e5RmLYAUrMgJfGBQWGjNkZ8pRTME9M0PCHn3FIRWKMPeKoz0753VkCU0t2Gtm7sAoN9XpgU/r3Q++/HyqpA9saEKd3873Uu7Mpz4nuz5kp1KLKeYVcMsj/H1NczjH5h9GDi5OBohoMQgYuaWOxzTrOIE7Es+2oTWmT58mAi5AEzW80ps0rDOTgpQpZFHu65rxeVnM96dplZKD/1Zt83ngS83XtHzwtUgp3l1/Z4h756R5OvkJyXP43yNxDx2JU5XcVU8NzF0XEkTaNzw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by BN9PR11MB5467.namprd11.prod.outlook.com (2603:10b6:408:100::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Thu, 24 Aug
- 2023 15:08:35 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
- 15:08:35 +0000
-Date: Thu, 24 Aug 2023 08:08:32 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Message-ID: <uglddndjdywwvqb6suwkeqc64jjkxyp54nj5gsw7hcice36lqy@i33djkz7ivmo>
-X-Patchwork-Hint: comment
-References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
- <20230823170740.1180212-10-lucas.demarchi@intel.com>
- <SN7PR11MB6750DB914E983DFCB1449811E31DA@SN7PR11MB6750.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <SN7PR11MB6750DB914E983DFCB1449811E31DA@SN7PR11MB6750.namprd11.prod.outlook.com>
-X-ClientProxiedBy: MW4PR03CA0117.namprd03.prod.outlook.com
- (2603:10b6:303:b7::32) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com
+ [IPv6:2607:f8b0:4864:20::834])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 569C510E58E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 15:26:43 +0000 (UTC)
+Received: by mail-qt1-x834.google.com with SMTP id
+ d75a77b69052e-41090d0f015so29127431cf.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 08:26:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1692890802; x=1693495602;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=X8cRNauecFkBmWFLs8yGoSG17xujvdH/hoaOICRSplk=;
+ b=AghbwdOKKTUoIBPXVKBCUgHCOkE6TvuENu9D55v1miRvQaOBQZGXgUkgaCB5HtftbM
+ F8q3gtr/3Yvz+/vOMEWP3GAArJduDZZ37TaW1cP0436JVInH7Xy5b22Gx2FMimgFdT3K
+ rjNpkmXo2bj/qR82FO0BNJpnK8qTf3HalwMe0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692890802; x=1693495602;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=X8cRNauecFkBmWFLs8yGoSG17xujvdH/hoaOICRSplk=;
+ b=fJ7vMkJHl5a+KaOh5cd2onqfmbWvo5XEv3K2cDuhLznlDFSjgY1ACRFvZzO5PEwUlW
+ vJTJL2QW4eEpRa3rfkTlryvwNNxVC02D2CXxy76dm5srIe1Tm8V3xltrhscI0fn2S1KR
+ D2JjmXSQKjuZMyTEBVAO1vLGd45RrvzuNHLRKqJp3Gpk+OV3kbOCQRSLuioQlneNnEQG
+ 0L2XjIX+vaGK/G2yjO6FzHD50I9g4hEDHHvtefb7/D0ztnrkvNjmqAI9fvsvGho0d8W9
+ j4/RomV5TdkVC+naKcFgMlrMDwvfPe16PQcdilIe5d38zPKYZOl13zKZtFjTyMlYAOrR
+ bQxg==
+X-Gm-Message-State: AOJu0YzDMHHQCYSWU7n88sD4PXBYj+EmCkzcbAiDNtwuilk4LHsQuCzC
+ SM8OpAebyzfbpQiji+MFiszM2OKEMc06RICQosY=
+X-Google-Smtp-Source: AGHT+IH7kf9pS/bwruTAjMTB/iVkqty78ijLWTeqrsqWaWXXkmhrE727je5JgvXIHrt5UOHPNlAx1g==
+X-Received: by 2002:a05:622a:4d0:b0:410:bfe:a462 with SMTP id
+ q16-20020a05622a04d000b004100bfea462mr17371508qtx.27.1692890801948; 
+ Thu, 24 Aug 2023 08:26:41 -0700 (PDT)
+Received: from gildekel.nyc.corp.google.com
+ ([2620:0:1003:314:321d:e6f5:6dbd:3e5])
+ by smtp.gmail.com with ESMTPSA id
+ v10-20020ac83d8a000000b0041079ba4f6bsm4423014qtf.12.2023.08.24.08.26.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 24 Aug 2023 08:26:41 -0700 (PDT)
+From: Gil Dekel <gildekel@chromium.org>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Thu, 24 Aug 2023 11:25:16 -0400
+Message-ID: <20230824152631.401621-1-gildekel@chromium.org>
+X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|BN9PR11MB5467:EE_
-X-MS-Office365-Filtering-Correlation-Id: fa336303-8ee6-4f3a-4f49-08dba4b3fcbe
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MIK7p7IH7C6eV0d3zbq2kKOuJB/vEIIRbhdQulm32VWDgTJmcphMMUH4bCAKSrctZhoO51fazxOXhd8F5ofjx+F6rLgxplbwZ2k+NMK1elib2bSLsfD6r0INUa8sr5dkPaadgWIy+EGdcgHTP/ZIFSRMrqTELJvYYeEgLVGz+lCLu84zSkv7TLk6HZlvo5SgWvMbT0m/lCP/4BYNB2lt7/y+1j32fkYMYBvcfNePDYSxRYMurAo3wNOtcN0MQaV6BW7vxMA4mV4oBy61NkPK4hYfEmDTck16vblctqhY6FyrcNxbmFg0lEQNkJG9TNib8htvCGtRICBJkbXG9KRXuRMJzPf213dX7mLgOEGoSqvyEPTUY0dPUXvMpUkBusDnDKSLayDYaRS/y19B+CAVKzWEpFxx8hgkRBYNhsX43RNTDtm2/7MxGC/W1vmsMjPFN0yrndPcC4NUs8mhSiQUQbmNBLBr9KhTdzzPXB1lsPcMVFWsKS2LlHFfrkwEWMTBPxuz6mMT2OP4O4xZMj+P3MRzk7ScmFZ7LHIoGuvnhvdCz1YGP7WmaYTNf0JJM5K4UZEPMzOB/eDINM2kaE5lgA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(376002)(39860400002)(396003)(366004)(136003)(346002)(186009)(1800799009)(451199024)(5660300002)(107886003)(4326008)(8676002)(8936002)(6862004)(450100002)(83380400001)(26005)(6666004)(38100700002)(82960400001)(66556008)(66476007)(66946007)(33716001)(54906003)(6636002)(316002)(478600001)(966005)(53546011)(41300700001)(6512007)(9686003)(2906002)(6506007)(86362001)(6486002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WXWlftw2+TQ/GdW7cCFfwvhXYIh9rE+XFk0PJQqgP06AUvGLNEZ9dAaQwtw9?=
- =?us-ascii?Q?wPScJbG0Mhysrl5R9iJZ+A85uKs+Tr1mK0kSFLHF/iCM8krAS2Fve9EXPwr7?=
- =?us-ascii?Q?PYpvU8rmg4VigiEvGAxRihAcl8szn+iUKNlLSo2sbZmrDEJcO8D/FwZKVdDT?=
- =?us-ascii?Q?Mm7UXuMbSjSiuDXFzAIyL0501f/qb7oTebaPV69/Ryy5MdGiWQWi0W+kBvX7?=
- =?us-ascii?Q?xmEz6XNgbl/MW6kjZdWpweP5QHlkRfKuz49HTS3COr+SgCdgsTrp8cv4E836?=
- =?us-ascii?Q?an2PQLbAqKm5kQEavciLvRb2D3bX7loIdl7ntxInKaOVOQdsKWXNUGlQp8ex?=
- =?us-ascii?Q?TilOhHtgXaMFCC/6WT3RDlewGQAZNrT3c9eNXAniJKgjKVGq5IMGPW/mMvvy?=
- =?us-ascii?Q?KvSDGkYm+4Svdvl8zZMlSYJcrUau7Mnxe9io43CuwZ9S7nBjOD5pTGOmly3n?=
- =?us-ascii?Q?CMNuSV9UT61po7LAszUvDWWXINErDqR2U6sc3K1pXITZ2tbxruQMniWQjciP?=
- =?us-ascii?Q?gXzOj+Y8NZh6vXlmRaCdthdnqi+Q/RBDi9lXkLVajhQ0BV/H+naN6yydDKQa?=
- =?us-ascii?Q?a7u8AV/5svXg6OcWO82Zs5JbNRukGlGAD8PADs1evUdMZPMqpiF5IB/hqDbo?=
- =?us-ascii?Q?Pt5yXLbml8QdFnHj8iwkBFgRDoZlANRYSbkoQaXri/X2m9iDBHh6veXMRXHi?=
- =?us-ascii?Q?YVCyFPzh+IX/AYEkAtLDzGbcQ8OHULcm79dMC7G1vSgmj72PH3u8efi5BXUp?=
- =?us-ascii?Q?dlOFW5imSqEhk4K8MQBxkr0dPmVx0T5raTvnxLHAjnhzV1Rr0anGrQ7Ao9I9?=
- =?us-ascii?Q?8NYRz70Z/yxZV/hP+WpXygY1u424IJtvDbgk1C5tZuMrh7hGvepaCOnssUIE?=
- =?us-ascii?Q?42harlReLwW2mqttkpaoSwERLNBY+dSpHsULlonHQAkpD/u5B/TVFv9K6gmo?=
- =?us-ascii?Q?Jr7dQBTQ3QbeAiFP3OwU3k8ot13kjc5hyranmos2964jYc23Ha1yBQCrUide?=
- =?us-ascii?Q?EF9Az6nR2R+Py87rICi5UpQKvZGDXdW7HP2XLeslf5IhX0HGamxkUEDlpDCA?=
- =?us-ascii?Q?GnFw7AcfnatJ03LGJFKFJOZYgV8uwApf/M0zdmxejMgAGmJCtiW5ztQr3O84?=
- =?us-ascii?Q?ANJ0I0vkn5kay9OTx9yzxWzzD8QMBFZfA5R4qHBg3afJXWoSTT1hngSyUvbd?=
- =?us-ascii?Q?+uvtEwkIbXRFt9HMKIIdSqgPrH9xzVHX+FSWCyTGxgIZSQpUV0AvjcIDzs3e?=
- =?us-ascii?Q?8GgLP3Khx5jNETBSoXFfWWHyfnYNGbH1PJKXMNgTnse7COQtwb9ayIcpk7zs?=
- =?us-ascii?Q?8pQTjXFOKvuv2UWJTkSCGhSS2DW5IMndmHCXf04d+eLBe++GCZMu56TF4v3l?=
- =?us-ascii?Q?f8LnVMh3VJVW/h+/xK4OTa7aRzhAyimNv+0nx++/PZ730xaV4lY3Ps1gT6PS?=
- =?us-ascii?Q?kveFbgpXThO6WVuGJ8N+Oxn/Z80j6N/SVnkNjFu+4lxGFqa1oK016i5VV44Q?=
- =?us-ascii?Q?BHGWUv1aSNfyprZKnM+9cwVpTMgtQbThifY8NR9p74KssvzfZ4K+4PfImn2f?=
- =?us-ascii?Q?1CDE2QrELbEcYWjSZOIVp3cpqhpBYJIcHqbDy6Du5KpVtpGFqbLOY63IxdGZ?=
- =?us-ascii?Q?4g=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa336303-8ee6-4f3a-4f49-08dba4b3fcbe
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 15:08:35.1351 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NzxRqCUZHN+ZTCmHrL6rKbqOcLDQoAXOoZcDuEYBvK8QGm9JEHmEih18m2UBBBMPAherta3ARobXTCeH4lVVRHJI7ayZzRUUkx0LsUcCE3s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5467
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 09/42] drm/i915/tc: move legacy
- code out of the main _max_lane_count() func
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 0/6] drm/i915/dp_link_training: Define a
+ final failure state when link training fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,127 +70,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Coelho, Luciano" <luciano.coelho@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: seanpaul@chromium.org, Gil Dekel <gildekel@chromium.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Suraj,
+Next version of https://patchwork.freedesktop.org/series/122643/
 
-On Thu, Aug 24, 2023 at 05:43:15AM +0000, Kandpal, Suraj wrote:
->
->
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Lucas
->> De Marchi
->> Sent: Wednesday, August 23, 2023 10:37 PM
->> To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
->> Cc: Coelho, Luciano <luciano.coelho@intel.com>
->> Subject: [Intel-gfx] [PATCH 09/42] drm/i915/tc: move legacy code out of the
->> main _max_lane_count() func
->>
->> From: Luca Coelho <luciano.coelho@intel.com>
->>
->> This makes the code a bit more symmetric and readable, especially when we
->> start adding more display version-specific alternatives.
->>
->> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
->> Link: https://lore.kernel.org/r/20230721111121.369227-4-
->> luciano.coelho@intel.com
->> ---
->>  drivers/gpu/drm/i915/display/intel_tc.c | 32 +++++++++++++++----------
->>  1 file changed, 19 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c
->> b/drivers/gpu/drm/i915/display/intel_tc.c
->> index de848b329f4b..43b8eeba26f8 100644
->> --- a/drivers/gpu/drm/i915/display/intel_tc.c
->> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
->> @@ -311,23 +311,12 @@ static int mtl_tc_port_get_max_lane_count(struct
->> intel_digital_port *dig_port)
->>  	}
->>  }
->>
->> -int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port)
->> +static int intel_tc_port_get_max_lane_count(struct intel_digital_port
->> +*dig_port)
->>  {
->>  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->> -	struct intel_tc_port *tc = to_tc_port(dig_port);
->> -	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
->>  	intel_wakeref_t wakeref;
->> -	u32 lane_mask;
->> -
->> -	if (!intel_phy_is_tc(i915, phy) || tc->mode != TC_PORT_DP_ALT)
->> -		return 4;
->> +	u32 lane_mask = 0;
->>
->> -	assert_tc_cold_blocked(tc);
->> -
->> -	if (DISPLAY_VER(i915) >= 14)
->> -		return mtl_tc_port_get_max_lane_count(dig_port);
->> -
->> -	lane_mask = 0;
->>  	with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE,
->> wakeref)
->>  		lane_mask = intel_tc_port_get_lane_mask(dig_port);
->>
->> @@ -348,6 +337,23 @@ int intel_tc_port_fia_max_lane_count(struct
->> intel_digital_port *dig_port)
->>  	}
->>  }
->
->Rather than having two functions:
->mtl_tc_port_get_max_lane_count()
->& intel_tc_port_get_max_lane_count() that both call:
->with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE, wakeref)
->                lane_mask = intel_tc_port_get_lane_mask(dig_port);
->to get the lane mask the us directly pass the lane_mask to the above two functions
->and make the call for getting the lane_mask common i.e lets call it in
->intel_tc_port_fia_max_lane_count().
+v3:
+  Still learning the ropes of upstream workflow. Apologies for mucking up v2.
+  This is just a re-upload.
 
-Maybe, but I will let this to be decided between you and Luca. Pasting
-from the cover letter:
+v2:
+  Reorganize into:
+  1) Add for final failure state for SST and MST link training fallback.
+  2) Add a DRM helper for setting downstream MST ports' link-status state.
+  3) Make handling SST and MST connectors simpler via intel_dp.
+  4) Update link-status for downstream MST ports.
+  5) Emit a uevent with the "link-status" trigger property.
 
-         3. Patches 7 through 10 can also be ignored: they are not
-            applied yet, but being reviewed in other patch series by its
-            author[2].
+v1:
+Currently, when link training fails after all fallback values have been
+exhausted, the i915 driver seizes to send uevents to userspace. This leave
+userspace thinking that the last passing atomic commit was successful, and that
+all connectors (displays) are connected and operational, when in fact, the last
+link failed to train and the displays remain dark. This manifests as "zombie"
+displays in userspace, in which users observe the displays appear in their
+display settings page, but they are dark and unresponsive.
 
-         [2] https://patchwork.freedesktop.org/series/120980/
+Since, at the time of writing, MST link training fallback is not implemented,
+failing MST link training is a significantly more common case then a complete
+SST link training failure. And with users using MST hubs than ever to connect
+multiple displays via their USB-C ports we observe this case often.
 
-The only reason I added them here is that since this series will take
-some time to be applied, I figured it would be better not to create
-unnecessary conflicts. I expect these patches to merge soon so I will
-just drop them in the next revision of this series.
+This patchset series suggest a solution, in which a final failure state is
+defined. In this final state, the connector's bit rate capabilities, namely
+max_link_rate and max_link_lane_count, are set to 0. This effectively set the
+connector's bandwidth to 0Gbps, thus causing all its modes to be pruned in the
+following connector probing.
 
-thanks
-Lucas De Marchi
+Next, with this state defined, we emit a link-status=Bad uevent. The next time
+userspace probes the connector, it should recognize that the connector has no
+modes and ignore it since it is in a bad state.
 
->
->Regards,
->Suraj Kandpal
->>
->> +int intel_tc_port_fia_max_lane_count(struct intel_digital_port
->> +*dig_port) {
->> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->> +	struct intel_tc_port *tc = to_tc_port(dig_port);
->> +	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
->> +
->> +	if (!intel_phy_is_tc(i915, phy) || tc->mode != TC_PORT_DP_ALT)
->> +		return 4;
->> +
->> +	assert_tc_cold_blocked(tc);
->> +
->> +	if (DISPLAY_VER(i915) >= 14)
->> +		return mtl_tc_port_get_max_lane_count(dig_port);
->> +
->> +	return intel_tc_port_get_max_lane_count(dig_port);
->> +}
->> +
->>  void intel_tc_port_set_fia_lane_count(struct intel_digital_port *dig_port,
->>  				      int required_lanes)
->>  {
->> --
->> 2.40.1
->
+I am aware that always sending a uevent and never stopping may result in some
+userspaces having their expectations broken and enter an infinite loop of
+modesets and link-training attempts. However, per DRM link-status spec:
+```
+ * link-status:
+ *      Connector link-status property to indicate the status of link. The
+ *      default value of link-status is "GOOD". If something fails during or
+ *      after modeset, the kernel driver may set this to "BAD" and issue a
+ *      hotplug uevent. Drivers should update this value using
+ *      drm_connector_set_link_status_property().
+ *
+ *      When user-space receives the hotplug uevent and detects a "BAD"
+ *      link-status, the sink doesn't receive pixels anymore (e.g. the screen
+ *      becomes completely black). The list of available modes may have
+ *      changed. User-space is expected to pick a new mode if the current one
+ *      has disappeared and perform a new modeset with link-status set to
+ *      "GOOD" to re-enable the connector.
+```
+(form drivers/gpu/drm/drm_connector.c - DOC: standard connector properties)
+
+it seems reasonable to assume that the suggested state is an extension of the
+spec's guidelines, in which the next new mode userspace picks for a connector
+with no modes is - none, thus breaking the cycle of failed link-training
+attempts.
+
+I suspect that, maybe, zeroing out the bit rate capabilities is not the right
+way to go, and perhaps marking the connector as disconnected instead may be a
+better solution. However, if marking a connector disconnected is the way to go,
+We will have to iterate over all MST ports in the MST case and mark the spawned
+connectors as disconnected as well.
+
+As a final note I should add that this approach was tested with ChromeOS as
+userspace, and we observed that the zombie displays stop showing up once the
+connectors are pruned of all their modes and are ignored by userspace.
+
+For your consideration and guidance.
+Thanks,
+
+Gil Dekel (6):
+  drm/i915/dp_link_training: Add a final failing state to link training
+    fallback
+  drm/i915/dp_link_training: Add a final failing state to link training
+    fallback for MST
+  drm/dp_mst: Add drm_dp_set_mst_topology_link_status()
+  drm/i915: Move DP modeset_retry_work into intel_dp
+  drm/i915/dp_link_training: Set all downstream MST ports to BAD before
+    retrying
+  drm/i915/dp_link_training: Emit a link-status=Bad uevent with trigger
+    property
+
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 38 ++++++++++
+ drivers/gpu/drm/i915/display/intel_display.c  | 14 +++-
+ .../drm/i915/display/intel_display_types.h    |  6 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 75 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_dp.h       |  4 +-
+ .../drm/i915/display/intel_dp_link_training.c | 11 ++-
+ include/drm/display/drm_dp_mst_helper.h       |  3 +
+ 7 files changed, 110 insertions(+), 41 deletions(-)
+
+--
+Gil Dekel, Software Engineer, Google / ChromeOS Display and Graphics
