@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21CF27879C3
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 22:56:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C4E77879E9
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 23:09:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5925E10E5C0;
-	Thu, 24 Aug 2023 20:56:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45ACC10E5B7;
+	Thu, 24 Aug 2023 21:09:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 863AE10E142
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 20:56:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692910601; x=1724446601;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=G+lqjrCqMOt9StP352671EWpl3NX/Rap5+ui//bIvdo=;
- b=GtVSOVCxLsDP7gRFCkDTJ/Eyy3em099XhSZ5g4Iee+izIfvhQ/RMm99z
- HXbBhgWEfHJZfV5URsEytxYjcNlYyaX6nFgOmFqzJYVhavzz+SeO1KPzZ
- BtyuyAKMOPvIIZsLUKiC3kvPT3VK3ndi3xilCSssUD3cYFp1nN/1oPq73
- En8c0C2HjXgJiej3W71sXqbaxxoJHzhnMWH0L5VP32XaAK947rueJsbX0
- CUCSrEWA87lTzy1HGmVxneGV2qdt/on+FFFfz7Qy5brrO0PL4If1o2o7y
- AQzH90nlsiBUXdW+5rPgYVo6hFgNknm2PGMfcA0YMeJ5lg3PUy4Bi03CS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="438501553"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="438501553"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 13:56:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="772239235"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="772239235"
-Received: from szeng-desk.jf.intel.com ([10.165.21.149])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 13:56:40 -0700
-From: Oak Zeng <oak.zeng@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 24 Aug 2023 17:03:24 -0400
-Message-Id: <20230824210324.1752862-3-oak.zeng@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20230824210324.1752862-1-oak.zeng@intel.com>
-References: <20230824210324.1752862-1-oak.zeng@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6074910E142;
+ Thu, 24 Aug 2023 21:09:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 58006A73C7;
+ Thu, 24 Aug 2023 21:09:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Enable GGTT blitting in MTL
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Date: Thu, 24 Aug 2023 21:09:02 -0000
+Message-ID: <169291134233.13344.12897140804124523427@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230823185104.1994138-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20230823185104.1994138-1-jonathan.cavitt@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Apply_Wa=5F16018031267_/_Wa=5F16018063123_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,89 +40,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, andi.shyti@intel.com,
- chris.p.wilson@linux.intel.com, nirmoy.das@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Nirmoy Das <nirmoy.das@intel.com>
+== Series Details ==
 
-MTL can hang because of a HW bug while parallel reading/writing
-from/to LMEM/GTTMMADR BAR so try to reduce GGTT update
-related pci transactions with blitter command as recommended
-for Wa_13010847436 and Wa_14019519902.
+Series: Apply Wa_16018031267 / Wa_16018063123 (rev3)
+URL   : https://patchwork.freedesktop.org/series/122804/
+State : warning
 
-To issue blitter commands, the driver must be primed to receive
-requests. Maintain blitter-based GGTT update disablement until driver
-probing completes. Moreover, implement a temporary disablement
-of blitter prior to entering suspend, followed by re-enablement
-post-resume. This is acceptable as those transition periods are
-mostly single threaded.
+== Summary ==
 
-v2: Disable GGTT blitter prior to runtime suspend and re-enable
-after runtime resume. (Oak)
-v3: s/blitter_context/bind_context/g (Chris)
+Error: dim checkpatch failed
+5fe66b3b6af8 drm/i915: Add WABB blit for Wa_16018031267 / Wa_16018063123
+-:11: WARNING:BAD_SIGN_OFF: Co-developed-by: should not be used to attribute nominal patch author 'Nirmoy Das <nirmoy.das@intel.com>'
+#11: 
+Co-developed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
----
- drivers/gpu/drm/i915/i915_driver.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+-:11: WARNING:BAD_SIGN_OFF: Co-developed-by: must be immediately followed by Signed-off-by:
+#11: 
+Co-developed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index f8dbee7a5af7..26521de190a7 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -815,6 +815,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	i915_welcome_messages(i915);
- 
- 	i915->do_release = true;
-+	intel_engine_bind_context_set_ready(to_gt(i915), true);
- 
- 	return 0;
- 
-@@ -855,6 +856,7 @@ void i915_driver_remove(struct drm_i915_private *i915)
- {
- 	intel_wakeref_t wakeref;
- 
-+	intel_engine_bind_context_set_ready(to_gt(i915), false);
- 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
- 
- 	i915_driver_unregister(i915);
-@@ -1077,6 +1079,8 @@ static int i915_drm_suspend(struct drm_device *dev)
- 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	pci_power_t opregion_target_state;
- 
-+	intel_engine_bind_context_set_ready(to_gt(dev_priv), false);
+
+-:54: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#54: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:836:
++	GEM_BUG_ON(lrc_ring_wa_bb_per_ctx(engine) == -1);
+
+-:74: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#74: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:1017:
++ * ^I^Ithe PER_CTX_BB.  When disabled, the function returns$
+
+-:75: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#75: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:1018:
++ * ^I^Ithe location of the INDIRECT_CTX.$
+
+-:110: ERROR:TRAILING_WHITESPACE: trailing whitespace
+#110: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:1402:
++^Iu32 addr = intel_gt_scratch_offset(gt, INTEL_GT_SCRATCH_FIELD_DUMMY_BLIT); $
+
+-:164: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#164: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:1456:
 +
- 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 
- 	/* We do a lot of poking in a lot of registers, make sure they work
-@@ -1264,6 +1268,7 @@ static int i915_drm_resume(struct drm_device *dev)
- 	intel_gvt_resume(dev_priv);
- 
- 	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-+	intel_engine_bind_context_set_ready(to_gt(dev_priv), true);
- 
- 	return 0;
- }
-@@ -1515,6 +1520,7 @@ static int intel_runtime_suspend(struct device *kdev)
- 	if (drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_RUNTIME_PM(dev_priv)))
- 		return -ENODEV;
- 
-+	intel_engine_bind_context_set_ready(to_gt(dev_priv), false);
- 	drm_dbg(&dev_priv->drm, "Suspending device\n");
- 
- 	disable_rpm_wakeref_asserts(rpm);
-@@ -1669,6 +1675,8 @@ static int intel_runtime_resume(struct device *kdev)
- 	else
- 		drm_dbg(&dev_priv->drm, "Device resumed\n");
- 
-+	intel_engine_bind_context_set_ready(to_gt(dev_priv), true);
 +
- 	return ret;
- }
- 
--- 
-2.26.3
+
+-:180: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#180: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:1472:
++	GEM_BUG_ON(cs - start > I915_GTT_PAGE_SIZE / sizeof(*cs));
+
+-:225: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#225: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:1583:
++emit_wabb_ctx_canary(const struct intel_context *ce,
++			    u32 *cs, bool per_ctx)
+
+-:250: ERROR:CODE_INDENT: code indent should use tabs where possible
+#250: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:1607:
++        return emit_wabb_ctx_canary(ce, cs, true);$
+
+-:250: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#250: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:1607:
++        return emit_wabb_ctx_canary(ce, cs, true);$
+
+-:354: ERROR:TRAILING_WHITESPACE: trailing whitespace
+#354: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:1739:
++}^I^I$
+
+-:375: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#375: FILE: drivers/gpu/drm/i915/i915_drv.h:816:
++#define NEEDS_FASTCOLOR_BLT_WABB(i915)	(GRAPHICS_VER_FULL(i915) == IP_VER(12, 70) || \
++					 GRAPHICS_VER_FULL(i915) == IP_VER(12, 71) || \
++					 IS_PONTEVECCHIO(i915) || \
++					 IS_DG2(i915))
+
+-:380: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Nirmoy Das <nirmoy.das@intel.com>'
+
+total: 4 errors, 7 warnings, 3 checks, 330 lines checked
+d4d6d18968a9 drm/i915: Set copy engine arbitration for Wa_16018031267 / Wa_16018063123
+
 
