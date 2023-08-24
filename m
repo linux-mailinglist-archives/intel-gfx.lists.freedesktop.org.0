@@ -1,154 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A328D786DFD
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 13:34:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3776F786E0E
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 13:35:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D37110E534;
-	Thu, 24 Aug 2023 11:34:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 862D610E520;
+	Thu, 24 Aug 2023 11:35:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B123B10E533;
- Thu, 24 Aug 2023 11:34:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 887BF10E520
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 11:35:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692876867; x=1724412867;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=g2D1gP5rsH3IzVfWwBsm0adqXdZoGip1C6V4biuSSL8=;
- b=SQoIjP++lNmGH+MILhuDbz70PZdvKnfUrFYNLyksiLKtvbr4lpgSGcfB
- V444NHuiFo0WSotxH+gyPJQNeGYgkdsMsJ+hjphRIYBy+7xMiM2bAhGaz
- PJVyVbloXiNoWOSV7K9gbtRrm3TqC26O+wL8FE3jPj3JYe557L4EtOtRT
- p/Ue4PW27jRfsKISXwss0iRc+KmvtatKjEojYS8c/TXNFKI+LwlX/rJNs
- n/CHEa/5usgNFChKzwiaPXHUQ7xN7CuZhd7sc06i1FPd+ZgyU2hzUWXqa
- xGyX5UMqgEma41UhBDGhPixTsjL4ghuoIgIlgj+KmjK21hrv7fxiNXpz2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="353952156"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="353952156"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 04:34:26 -0700
+ t=1692876921; x=1724412921;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=Pvx7OZfj/fDmz6j6/Hgzyv63P39wMg2OR+45T2Oe8lc=;
+ b=k5Qf9nbCNXGp7jvrf9Jm3myD2HZepDbwvo2qJa7p3ULQD+//n/BoEu00
+ ZKBgEueNd8okOez+3WJIsceT6k7qD9xMLk8LSTwradqpHN2fbn3ieG/2x
+ /aUE5vjeowESY0i2S6bvX8UMSMdW8eHI8iUqePepME3bPNiHb6jMpk5y7
+ zFj/rgCQ7yEy/Mra3nPlo4zbTdVNpyJ2BqYkbUFTTRjJcvV0B0sfSpUa6
+ gTHxG1oFOMK1oA3KT0UKrKV50syvZQQm6/oqCXwpcmnzcwjBFXDBluayU
+ MDT5P3jeIn4mczhY+JWFCtjIo7qwoDYdLXrOH6LWJ7YHfgvkimwopJNq6 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="378168515"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="378168515"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2023 04:35:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="910875631"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="910875631"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga005.jf.intel.com with ESMTP; 24 Aug 2023 04:34:26 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 24 Aug 2023 04:34:25 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 24 Aug 2023 04:34:25 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.103)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 24 Aug 2023 04:34:25 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L9Zrpn6xGDPw3qPaQdLmjSMpAGYc6g+KLGoYzaBeatMbxSnMwmZt6F0IOzOemGHy8sIUaDSqZrJylPH0gNBVyd0QqlK4MtaIXJULnAaxXJc65pFQ3k2g5YkSAlLnSolCOIw9DdWq3Kvmh+4FTHjyPRNVHwD2bN2ywS7WUqpeM1lbwFNNn7xWBvuw1I8Gl0nZqhoG1rsp6PUIDPYpQIGCByoAmJQTaOuGbDJ35t9JFlnMTu8OX8j++uz1o8fkhaofLj9oGTZ4nAXawPMRdv7KouCjt9T5RNQ3uqcRAKPbikqMbWaVhiSqWuZlr+qgFhnZNaxVlPbD08OF1DkjTUiMxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g2D1gP5rsH3IzVfWwBsm0adqXdZoGip1C6V4biuSSL8=;
- b=fwF1DZpjzP7uVnwhZ3khIDpABw4yoTNeCWCH9OSNWDORk7owKkeRDpPwyccHrKLObpsHoOFW8AF1doIK2d4telAcCKYnXP5ZwKSvgQpv+2qR1YuvEiAgJL09HStgv3Ns0UZPz4iVR0pGqO0PuEa06ncPjMzfL8zxUa5Xd68ZY6/YItOx4qYsr5jSt8tttgn7YL6h3JsC8w2c4/vzqlHjZANgGP8xKlhAliwW5bbT/qwL7uPoHh8y7vk2uQ2gOk/DKubyUC2ANS5XsnRCzVXs99PHfrOAVxzs59ym+pub/Tf2B4S2yx638/RWH4FtC9O4Dql7d0EBwPpbNFXIght9pA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7382.namprd11.prod.outlook.com (2603:10b6:8:131::13)
- by SN7PR11MB7589.namprd11.prod.outlook.com (2603:10b6:806:34a::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Thu, 24 Aug
- 2023 11:34:23 +0000
-Received: from DS0PR11MB7382.namprd11.prod.outlook.com
- ([fe80::9d00:cf05:efc7:246d]) by DS0PR11MB7382.namprd11.prod.outlook.com
- ([fe80::9d00:cf05:efc7:246d%5]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
- 11:34:23 +0000
-From: "Coelho, Luciano" <luciano.coelho@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "De
- Marchi, Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 27/42] drm/i915/xe2lpd: Read pin assignment
- from IOM
-Thread-Index: AQHZ1eSUOKwZZ7Zf4E6uUUEAM3DZs6/5UhCA
-Date: Thu, 24 Aug 2023 11:34:22 +0000
-Message-ID: <f07485a99171d442a4ec2cf2b7500829894ae374.camel@intel.com>
-References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
- <20230823170740.1180212-28-lucas.demarchi@intel.com>
-In-Reply-To: <20230823170740.1180212-28-lucas.demarchi@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.4-2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7382:EE_|SN7PR11MB7589:EE_
-x-ms-office365-filtering-correlation-id: 7ad1ef7e-7a37-4592-2abc-08dba4961067
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: XTffoVv78MP9sy10VOUuhgD8BMjLoqzVgvTOtsD7hiyy3p/ZOfHFJ5rCh76tp8g9uDR/fS3mN1+LGQUfmF4JIQTOD2UeEzCOZHI7q1qJvFqVfsdCzBlc1sLpxOtmlhe/reqhflAnRHxM53tlfiVfLU7UXdM3b3L7jx9jtj6H2XQm9b5xkAgGYaKE6bkKB2ktSdVNqhQDTCe3ECGSPm1KV8XUaL5RckDt5Wjw3F/mTK0uN8Yb8VA79VQPyxOUOhJZUnWslJFmCi/8NCDtnnicnjbm4y95o9YUjKAkOfAMv5RpU3fmjd5J/kWRxaPwddN39sw/l1v1aAzbLHnsku4hcMvaiMY0OHbKjY+7exJdMfBIyMaQ2HAEis6svQUTg4TQRfw98LWvW0mhg3ldnIO/+n57LjMV5MIVF1QVIwEFWlrYRBEOtXnLLu4vM5WebpwREiMP5RWSf8XoOJ7z+HWrZcTsXoDAMGKr8v3a+0XZvOOZGph/45eDn04NEwn1CfhNlVAWLNKkoogF6jhmQ0UTcXggdm/O1iCjvz++j+MYOJoqKvho4uCpwj9UohCEktlH5fCBEcPSVCqwYHhPizowdiTkacmcD/arq0/T5vs6ppTm91I92ZIRQoXGzV5gq5dJ
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7382.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(346002)(136003)(396003)(366004)(376002)(1800799009)(451199024)(186009)(86362001)(122000001)(38100700002)(38070700005)(82960400001)(36756003)(6506007)(71200400001)(6486002)(478600001)(5660300002)(316002)(76116006)(6636002)(2906002)(8676002)(91956017)(110136005)(8936002)(450100002)(64756008)(26005)(6512007)(66946007)(66556008)(66476007)(66446008)(41300700001)(2616005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SUpKVnBxL1ZKRENrcCtzWEFaNjFQbzhNN1QrUnZ6ampGTmNYKzMzbmZVWG1s?=
- =?utf-8?B?MnBPVE1zaG5PWE8xb0prbXlGQjdGUnFldG5PTlNieHhlRXVCa3ZQV1JsNE1S?=
- =?utf-8?B?UzRaWjh6bExpbXRTS2xCakVzWkNxWm1SYWkxQVNWWFlEWFlnbjg4R2pFL0pZ?=
- =?utf-8?B?Y1FCUHhjM1AwM0dTeGNxN3NhYUJzdG8xdXl6RDlZaTJYL2tweTlFWGY3Y2l2?=
- =?utf-8?B?dGFldC92eXpJRUFGYXhKVHEzVWZ1Skx4dzFZWElhT0J2L2JZWlRZNnpsSXlV?=
- =?utf-8?B?RWR6MzU1bDYzdk0xa0ZIUUlZZHhOdVE0SzY4ZjRKaWN5TlNwR0lRdzdIaDEw?=
- =?utf-8?B?dUU2N0J6czExQjNvMzMvQ1NzM0p0VmorWkpaMVBTL0d0WVhRUm9CdFBsWDVo?=
- =?utf-8?B?UXB6ZnJhNEJjWi81T2RlTUp1MDhxd1FPcElaMWhsdC9KZDlLa3V2RmF1UU9Z?=
- =?utf-8?B?azQyNGp0TzRBaGQzTnBSbGd0SmZMVG5uNDlNK01EVlAxeWQ5d0E2RXlYc1JK?=
- =?utf-8?B?TFpPblp5TzgxblV5NWNkcjlEQUtWc3p6UXVqYXhaQ0t0MUxwaWh3bHdieEk5?=
- =?utf-8?B?cUxlN2hQVGtaRzZMZEhWQ2pseGhYb1hkVTZQNDAxVVhkakV2eXpyWVlqWmZa?=
- =?utf-8?B?azdUQjdhWEtES0hZaFhjVjdmUnZoMUVPSkoxSE9yOFNpRU03Q0JlUTBvSmR1?=
- =?utf-8?B?d3VuYzVISU14YXNFR3dMeXZBbU16bm9ZY2pNZ3FhU1JHQnU1VnpHVjZPb29K?=
- =?utf-8?B?dHRzQSt0ZncrbWR3L2JJZjFPT1pIRVFhU2dYUkYvcWJkb3B3cXNJVEtrZ2dP?=
- =?utf-8?B?OVRYUEhrZGQ1dWFIN2dOZkN0Q290bFlOaEppU1ROTUlUYm5FQzVnTnhML2xy?=
- =?utf-8?B?R0dYMFN5ZExGWEV4Qkl2cjNwczdzOGpWNnJMUG9xNjFQdUxQNTAxRHVEMVhR?=
- =?utf-8?B?UngzU0EyckdjY3ZCaWhTUUVkMmV2M05tRjR0MUVXUzI0Wm50NzhWdkRySWQ2?=
- =?utf-8?B?MDM4SDV2QXhRMzYyeHZrSTQwd25CL2ZoRWNDcXZMQ283dGw5ZUxwU0xhSzJv?=
- =?utf-8?B?cWM1c01JV2lnQ0xCYWxaSVI1UVlVV3ZkcWE1bkdiSFc4cjUwUW05dFk4N1FR?=
- =?utf-8?B?Tkw4R2kxMjk4aE8venFqK0FJT2FXWTZLNDBXYXVvaHVsL09xVzU0QldWOGgy?=
- =?utf-8?B?WERjNUkrZXJYZ0pGVHFtUWFwOEFnQy9NYmdlTDhoTTgxc3Q0bjZiaHgyalRQ?=
- =?utf-8?B?T2lvWWNLdzZGRkEzSFFuU1lYSkZQaHRQQjZYOGJwM1pjWW1hMUg4WFduWmlm?=
- =?utf-8?B?NHlpdkxteTBrandDaTZPU0lMSmhkanVSL2Z4UjA2cWFKWk1oZ0p1ZitKZFJY?=
- =?utf-8?B?dGhqRjZZQW5Zc1pGcDgrbXY4bmZITG1sMGNLSGFxZjRZT3Z5VGZPem5LYzRn?=
- =?utf-8?B?YWRsZmhpWEJpRVlKWExBTlg4a05sZnMxQmljbXQ2LzJMaDJIZXFCYkJ0d3d6?=
- =?utf-8?B?RkdwUWU4enJ2ait0NEFqekd6RUVIYjFNeDdYZ0l0R2NBZUFjQWxCcGd3aXQ3?=
- =?utf-8?B?MWZUNjdWYWgxd20wU0htRG1ZS3dydjVkQis0OVliVEpiTHcrK1I0RnlmRndz?=
- =?utf-8?B?bk8vNFR0ZWdnV29SMGJEZWJFNlM4WU1OVkRLWVpYYlhpOVk2ZHJYWTh1emcz?=
- =?utf-8?B?YnB1LzRMZC9RaW9yS3h1ZjQzdGpxQ2Nzc01rTVFrVkFYd2d3ZS9tQ2ZaRkJJ?=
- =?utf-8?B?THFJRWlsS0p3TzVYMEkwQ2lvdDFKdlRCZGJhNlJkTWxnSENOZXBJNmV4bFpn?=
- =?utf-8?B?ZHZHQXkyL09WeEVMbEI0K2w0MEJJMlprRlVXUmtiQ0cvZmZ2NkN4NVpPWVht?=
- =?utf-8?B?dUNnSGk4dktKQ3Mybnl2OThqQU9SdVFJbmpBWVlmT2o5MlJQeDlGRG1Vb3Z6?=
- =?utf-8?B?a0loblFzVHM0MktYaDViNGQ5Q2RObHludjg3N1R5a3M1c3ZmV0VCM3ZtRzZO?=
- =?utf-8?B?UmNteXhxeWhNWXZQZUpIK29tSS9pVDJ5dnFTUGdoMnhaeUl0VStBVHBHekhB?=
- =?utf-8?B?aXRPa015eGJ2N1RnMVR5Z3hXTTZmRU5pRTRFSjVxVDd0bC9henJOb0NpMkZU?=
- =?utf-8?B?ZWpuM3hNQ1luVjVmc0RkSWxGNVNUazdZQUg5WmZuQlV0RWdoMmozWWhBcFp6?=
- =?utf-8?B?MGc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1358463604784347B0B07BD3CF4A70EF@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="766512155"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="766512155"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2023 04:35:19 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230824040952.186407-5-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230824040952.186407-1-animesh.manna@intel.com>
+ <20230824040952.186407-5-animesh.manna@intel.com>
+Date: Thu, 24 Aug 2023 14:35:16 +0300
+Message-ID: <878ra04qrv.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7382.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ad1ef7e-7a37-4592-2abc-08dba4961067
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2023 11:34:22.9905 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: blH4StXFBExB5Ti1DovFdKmnTmRVi6nOiUWIqYvxoGO8p9ZmB56Nqd6yDOkhHVneAVKfydAm51mCJkshzzT1iCe/wwh2ETt/dx2tZ43WL8I=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7589
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 27/42] drm/i915/xe2lpd: Read pin assignment
- from IOM
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v4 4/6] drm/i915/panelreplay: Initializaton
+ and compute config for panel replay
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,24 +63,363 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIzLTA4LTIzIGF0IDEwOjA3IC0wNzAwLCBMdWNhcyBEZSBNYXJjaGkgd3JvdGU6
-DQo+IEZyb206IEx1Y2EgQ29lbGhvIDxsdWNpYW5vLmNvZWxob0BpbnRlbC5jb20+DQo+IA0KPiBT
-dGFydGluZyBmcm9tIGRpc3BsYXkgdmVyc2lvbiAyMCwgd2UgbmVlZCB0byByZWFkIHRoZSBwaW4g
-YXNzaWdubWVudA0KPiBmcm9tIHRoZSBJT00gVENTU19ERElfU1RBVFVTIHJlZ2lzdGVyIGluc3Rl
-YWQgb2YgcmVhZGluZyBpdCBmcm9tIHRoZQ0KPiBGSUEuDQo+IA0KPiBXZSB1c2UgdGhlIHBpbiBh
-c3NpZ25tZW50IHRvIGRlY2lkZSB0aGUgbWF4aW11bSBsYW5lIGNvdW50LiAgU28sIHRvDQo+IHN1
-cHBvcnQgdGhpcyBjaGFuZ2UsIGFkZCBhIG5ldyBsbmxfdGNfcG9ydF9nZXRfbWF4X2xhbmVfY291
-bnQoKSBmdW5jdGlvbg0KPiB0aGF0IHJlYWRzIGZyb20gdGhlIFRDU1NfRERJX1NUQVRVUyByZWdp
-c3RlciBhbmQgZGVjaWRlcyB0aGUgbWF4aW11bQ0KPiBsYW5lIGNvdW50IGJhc2VkIG9uIHRoYXQu
-DQo+IA0KPiBCU3BlYzogNjk1OTQNCj4gQ2M6IE1pa2EgS2Fob2xhIDxtaWthLmthaG9sYUBpbnRl
-bC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEx1Y2EgQ29lbGhvIDxsdWNpYW5vLmNvZWxob0BpbnRl
-bC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlA
-aW50ZWwuY29tPg0KPiAtLS0NCg0KTHVjYXMsIGRvIHlvdSB3YW50IG1lIHRvIHNlbmQgdGhpcyB0
-b2dldGhlciB3aXRoIG15IHBhdGNoc2V0IHdpdGggdGhlDQpwcmVwYXJhdGlvbiBmb3IgdGhpcz8N
-Cg0KSW4gYSB3YXksIHRoZSA0IHBhdGNoZXMgSSBzZW50IG91dCBjYW4gYmUgYXBwbGllZCBpbmRl
-cGVuZGVudGx5IG9mIExOTC0NCnJlbGF0ZWQgY2hhbmdlcywgc28gbWF5YmUgSSBjb3VsZCByZXNl
-bmQganVzdCB0aG9zZSA0IHBhdGNoZXMgYW5kIHlvdQ0KYmFzZSB5b3VyIGVudGlyZSBzZXJpZXMg
-b24gdG9wIG9mIG15IHBhdGNoZXMgYWZ0ZXIgdGhleSBnZXQgYXBwbGllZD8NClRoZW4gdGhpcyBw
-YXRjaCwgd2hpY2ggaXMgcmVhbGx5IHJlbGF0ZWQgdG8gTE5MIGNvdWxkIGJlIHBhcnQgb2YgeW91
-cg0Kc2VyaWVzLi4uDQoNCkxldCBtZSBrbm93IHdoYXQgeW91IHByZWZlci4NCg0KLS0NCkNoZWVy
-cywNCkx1Y2EuDQo=
+On Thu, 24 Aug 2023, Animesh Manna <animesh.manna@intel.com> wrote:
+> Modify existing PSR implementation to enable panel replay feature of DP 2=
+.0
+> which is similar to PSR feature of EDP panel. There is different DPCD
+> address to check panel capability compare to PSR and vsc sdp header
+> is different.
+>
+> v1: Initial version.
+> v2:
+> - Set source_panel_replay_support flag under HAS_PNEL_REPLAY() check. [Jo=
+uni]
+> - Code restructured around intel_panel_replay_init
+> and renamed to intel_panel_replay_init_dpcd. [Jouni]
+> - Remove the initial code modification around has_psr2 flag. [Jouni]
+> - Add CAN_PANEL_REPLAY() in intel_encoder_can_psr which is used to
+> enable in intel_psr_post_plane_update. [Jouni]
+> v3:
+> - Initialize both psr and panel-replay. [Jouni]
+> - Initialize both panel replay and psr if detected. [Jouni]
+> - Refactoring psr function by introducing _psr_compute_config(). [Jouni]
+> - Add check for !is_edp while deriving source_panel_replay_support. [Joun=
+i]
+> - Enable panel replay dpcd initialization in a separate patch. [Jouni]
+>
+> v4:
+> - HAS_PANEL_REPLAY() check not needed during sink capability check.[Jouni]
+> - Set either panel replay source support or psr.[Jouni]
+>
+> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    | 12 ++-
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 44 ++++++++--
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  3 +
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 87 +++++++++++++------
+>  4 files changed, 107 insertions(+), 39 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 731f2ec04d5c..97cef458f42b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1202,6 +1202,7 @@ struct intel_crtc_state {
+>  	bool has_psr2;
+>  	bool enable_psr2_sel_fetch;
+>  	bool req_psr2_sdp_prior_scanline;
+> +	bool has_panel_replay;
+>  	bool wm_level_disabled;
+>  	u32 dc3co_exitline;
+>  	u16 su_y_granularity;
+> @@ -1693,6 +1694,8 @@ struct intel_psr {
+>  	bool irq_aux_error;
+>  	u16 su_w_granularity;
+>  	u16 su_y_granularity;
+> +	bool source_panel_replay_support;
+> +	bool sink_panel_replay_support;
+>  	u32 dc3co_exitline;
+>  	u32 dc3co_exit_delay;
+>  	struct delayed_work dc3co_work;
+> @@ -1983,12 +1986,15 @@ dp_to_lspcon(struct intel_dp *intel_dp)
+>  #define CAN_PSR(intel_dp) ((intel_dp)->psr.sink_support && \
+>  			   (intel_dp)->psr.source_support)
+>=20=20
+> +#define CAN_PANEL_REPLAY(intel_dp) ((intel_dp)->psr.sink_panel_replay_su=
+pport && \
+> +			  (intel_dp)->psr.source_panel_replay_support)
+> +
+>  static inline bool intel_encoder_can_psr(struct intel_encoder *encoder)
+>  {
+> -	if (!intel_encoder_is_dp(encoder))
+> +	if (intel_encoder_is_dp(encoder) || (encoder->type =3D=3D INTEL_OUTPUT_=
+DP_MST))
+> +		return CAN_PSR(enc_to_intel_dp(encoder)) || CAN_PANEL_REPLAY(enc_to_in=
+tel_dp(encoder));
+> +	else
+>  		return false;
+> -
+> -	return CAN_PSR(enc_to_intel_dp(encoder));
+>  }
+
+The whole function and macros should live in intel_psr.c as proper
+functions.
+
+>=20=20
+>  static inline struct intel_digital_port *
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 7067ee3a4bd3..b3301cf0da0a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2337,12 +2337,22 @@ static void intel_dp_compute_vsc_colorimetry(cons=
+t struct intel_crtc_state *crtc
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>=20=20
+> -	/*
+> -	 * Prepare VSC Header for SU as per DP 1.4 spec, Table 2-118
+> -	 * VSC SDP supporting 3D stereo, PSR2, and Pixel Encoding/
+> -	 * Colorimetry Format indication.
+> -	 */
+> -	vsc->revision =3D 0x5;
+> +	if (crtc_state->has_panel_replay) {
+> +		/*
+> +		 * Prepare VSC Header for SU as per DP 2.0 spec, Table 2-223
+> +		 * VSC SDP supporting 3D stereo, Panel Replay, and Pixel
+> +		 * Encoding/Colorimetry Format indication.
+> +		 */
+> +		vsc->revision =3D 0x7;
+> +	} else {
+> +		/*
+> +		 * Prepare VSC Header for SU as per DP 1.4 spec, Table 2-118
+> +		 * VSC SDP supporting 3D stereo, PSR2, and Pixel Encoding/
+> +		 * Colorimetry Format indication.
+> +		 */
+> +		vsc->revision =3D 0x5;
+> +	}
+> +
+>  	vsc->length =3D 0x13;
+>=20=20
+>  	/* DP 1.4a spec, Table 2-120 */
+> @@ -2451,6 +2461,21 @@ void intel_dp_compute_psr_vsc_sdp(struct intel_dp =
+*intel_dp,
+>  			vsc->revision =3D 0x4;
+>  			vsc->length =3D 0xe;
+>  		}
+> +	} else if (crtc_state->has_panel_replay) {
+> +		if (intel_dp->psr.colorimetry_support &&
+> +		    intel_dp_needs_vsc_sdp(crtc_state, conn_state)) {
+> +			/* [Panel Replay with colorimetry info] */
+> +			intel_dp_compute_vsc_colorimetry(crtc_state, conn_state,
+> +							 vsc);
+> +		} else {
+> +			/*
+> +			 * [Panel Replay without colorimetry info]
+> +			 * Prepare VSC Header for SU as per DP 2.0 spec, Table 2-223
+> +			 * VSC SDP supporting 3D stereo + Panel Replay.
+> +			 */
+> +			vsc->revision =3D 0x6;
+> +			vsc->length =3D 0x10;
+> +		}
+>  	} else {
+>  		/*
+>  		 * [PSR1]
+> @@ -3744,10 +3769,11 @@ static ssize_t intel_dp_vsc_sdp_pack(const struct=
+ drm_dp_vsc_sdp *vsc,
+>  	sdp->sdp_header.HB3 =3D vsc->length; /* Number of Valid Data Bytes */
+>=20=20
+>  	/*
+> -	 * Only revision 0x5 supports Pixel Encoding/Colorimetry Format as
+> -	 * per DP 1.4a spec.
+> +	 * Other than revision 0x5 which supports Pixel Encoding/Colorimetry
+> +	 * Format as per DP 1.4a spec, revision 0x7 also supports Pixel
+> +	 * Encoding/Colorimetry Format as per DP 2.0 spec.
+>  	 */
+> -	if (vsc->revision !=3D 0x5)
+> +	if (vsc->revision !=3D 0x5 || vsc->revision !=3D 0x7)
+>  		goto out;
+>=20=20
+>  	/* VSC SDP Payload for DB16 through DB18 */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_mst.c
+> index 3eb085fbc7c8..07a3ab473be2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -44,6 +44,7 @@
+>  #include "intel_hdcp.h"
+>  #include "intel_hotplug.h"
+>  #include "skl_scaler.h"
+> +#include "intel_psr.h"
+
+Please keep these sorted.
+
+>=20=20
+>  static int intel_dp_mst_check_constraints(struct drm_i915_private *i915,=
+ int bpp,
+>  					  const struct drm_display_mode *adjusted_mode,
+> @@ -398,6 +399,8 @@ static int intel_dp_mst_compute_config(struct intel_e=
+ncoder *encoder,
+>=20=20
+>  	intel_ddi_compute_min_voltage_level(dev_priv, pipe_config);
+>=20=20
+> +	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
+> +
+>  	return 0;
+>  }
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index b1c0494826f9..8dd61c62492d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -472,6 +472,24 @@ static void intel_dp_get_su_granularity(struct intel=
+_dp *intel_dp)
+>  	intel_dp->psr.su_y_granularity =3D y;
+>  }
+>=20=20
+> +static void _panel_replay_init_dpcd(struct intel_dp *intel_dp)
+> +{
+> +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> +	u8 pr_dpcd =3D 0;
+> +
+> +	drm_dp_dpcd_readb(&intel_dp->aux, DP_PANEL_REPLAY_CAP, &pr_dpcd);
+> +
+> +	if (!(pr_dpcd & DP_PANEL_REPLAY_SUPPORT)) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "Panel replay is not supported by panel\n");
+> +		return;
+> +	}
+> +
+> +	drm_dbg_kms(&dev_priv->drm,
+> +		    "Panel replay is supported by panel\n");
+> +	intel_dp->psr.sink_panel_replay_support =3D true;
+
+This is not eDP so clearing the cached value matters. I don't see this
+cleared anywhere.
+
+> +}
+> +
+>  static void _psr_init_dpcd(struct intel_dp *intel_dp)
+>  {
+>  	struct drm_i915_private *i915 =3D
+> @@ -521,12 +539,13 @@ static void _psr_init_dpcd(struct intel_dp *intel_d=
+p)
+>=20=20
+>  void intel_psr_init_dpcd(struct intel_dp *intel_dp)
+>  {
+> +	_panel_replay_init_dpcd(intel_dp);
+> +
+>  	drm_dp_dpcd_read(&intel_dp->aux, DP_PSR_SUPPORT, intel_dp->psr_dpcd,
+>  			 sizeof(intel_dp->psr_dpcd));
+>=20=20
+>  	if (intel_dp->psr_dpcd[0])
+>  		_psr_init_dpcd(intel_dp);
+> -	/* TODO: Add PR case here */
+>=20=20
+>  	if (intel_dp->psr.sink_psr2_support) {
+>  		intel_dp->psr.colorimetry_support =3D
+> @@ -1207,13 +1226,11 @@ static bool intel_psr2_config_valid(struct intel_=
+dp *intel_dp,
+>  	return false;
+>  }
+>=20=20
+> -void intel_psr_compute_config(struct intel_dp *intel_dp,
+> -			      struct intel_crtc_state *crtc_state,
+> -			      struct drm_connector_state *conn_state)
+> +static bool _psr_compute_config(struct intel_dp *intel_dp,
+> +				struct intel_crtc_state *crtc_state)
+>  {
+>  	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> -	const struct drm_display_mode *adjusted_mode =3D
+> -		&crtc_state->hw.adjusted_mode;
+> +	const struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adjust=
+ed_mode;
+>  	int psr_setup_time;
+>=20=20
+>  	/*
+> @@ -1221,10 +1238,36 @@ void intel_psr_compute_config(struct intel_dp *in=
+tel_dp,
+>  	 * So if VRR is enabled, do not enable PSR.
+>  	 */
+>  	if (crtc_state->vrr.enable)
+> -		return;
+> +		return false;
+>=20=20
+>  	if (!CAN_PSR(intel_dp))
+> -		return;
+> +		return false;
+> +
+> +	psr_setup_time =3D drm_dp_psr_setup_time(intel_dp->psr_dpcd);
+> +	if (psr_setup_time < 0) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "PSR condition failed: Invalid PSR setup time (0x%02x)\n",
+> +			    intel_dp->psr_dpcd[1]);
+> +		return false;
+> +	}
+> +
+> +	if (intel_usecs_to_scanlines(adjusted_mode, psr_setup_time) >
+> +	    adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vdisplay - 1) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "PSR condition failed: PSR setup time (%d us) too long\n",
+> +			    psr_setup_time);
+> +		return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+> +void intel_psr_compute_config(struct intel_dp *intel_dp,
+> +			      struct intel_crtc_state *crtc_state,
+> +			      struct drm_connector_state *conn_state)
+> +{
+> +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> +	const struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adjust=
+ed_mode;
+>=20=20
+>  	if (!psr_global_enabled(intel_dp)) {
+>  		drm_dbg_kms(&dev_priv->drm, "PSR disabled by flag\n");
+> @@ -1234,7 +1277,6 @@ void intel_psr_compute_config(struct intel_dp *inte=
+l_dp,
+>  	if (intel_dp->psr.sink_not_reliable) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "PSR sink implementation is not reliable\n");
+> -		return;
+>  	}
+>=20=20
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE) {
+> @@ -1243,23 +1285,11 @@ void intel_psr_compute_config(struct intel_dp *in=
+tel_dp,
+>  		return;
+>  	}
+>=20=20
+> -	psr_setup_time =3D drm_dp_psr_setup_time(intel_dp->psr_dpcd);
+> -	if (psr_setup_time < 0) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> -			    "PSR condition failed: Invalid PSR setup time (0x%02x)\n",
+> -			    intel_dp->psr_dpcd[1]);
+> -		return;
+> -	}
+> -
+> -	if (intel_usecs_to_scanlines(adjusted_mode, psr_setup_time) >
+> -	    adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vdisplay - 1) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> -			    "PSR condition failed: PSR setup time (%d us) too long\n",
+> -			    psr_setup_time);
+> -		return;
+> -	}
+> +	if (CAN_PANEL_REPLAY(intel_dp))
+> +		crtc_state->has_panel_replay =3D true;
+> +	else
+> +		crtc_state->has_psr =3D _psr_compute_config(intel_dp, crtc_state);
+>=20=20
+> -	crtc_state->has_psr =3D true;
+>  	crtc_state->has_psr2 =3D intel_psr2_config_valid(intel_dp, crtc_state);
+>=20=20
+>  	crtc_state->infoframes.enable |=3D intel_hdmi_infoframe_enable(DP_SDP_V=
+SC);
+> @@ -2699,7 +2729,7 @@ void intel_psr_init(struct intel_dp *intel_dp)
+>  	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+>  	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+>=20=20
+> -	if (!HAS_PSR(dev_priv))
+> +	if (!(HAS_PSR(dev_priv) || HAS_PANEL_REPLAY(dev_priv)))
+>  		return;
+>=20=20
+>  	/*
+> @@ -2717,7 +2747,10 @@ void intel_psr_init(struct intel_dp *intel_dp)
+>  		return;
+>  	}
+>=20=20
+> -	intel_dp->psr.source_support =3D true;
+> +	if (HAS_PANEL_REPLAY(dev_priv) && !intel_dp_is_edp(intel_dp))
+> +		intel_dp->psr.source_panel_replay_support =3D true;
+> +	else
+> +		intel_dp->psr.source_support =3D true;
+>=20=20
+>  	/* Set link_standby x link_off defaults */
+>  	if (DISPLAY_VER(dev_priv) < 12)
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
