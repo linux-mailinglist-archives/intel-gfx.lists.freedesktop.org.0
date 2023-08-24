@@ -1,143 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2E557874BE
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 17:58:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CF327874BB
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 17:57:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EFE310E595;
-	Thu, 24 Aug 2023 15:58:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD9510E595;
+	Thu, 24 Aug 2023 15:57:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9E3910E579;
- Thu, 24 Aug 2023 15:58:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692892721; x=1724428721;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=CzWtaoCB0t/ffd1j1V2N9g10IrBB1l6sZZGXM1qIXvg=;
- b=mjU/C/j3j2cBKIsnNrQ45O3aOTeJ7KncRYirlOoBDWJ4hJ5So+240oAH
- neykFx9Y4PL90OZouTcWuqtVTsJ9/z4X2OF8OyvzsIALS7RboIgoKx3JU
- WnSPvB90PtIeSbgwBMUMWyQ2KSOv/00pN1dJDBCw4y1os9sF3/Uo/wzub
- kJGLQyL6sMqymAEYKyfpxBCs1fHQrI5rZHBOETlPHl5/1KtPtCdJQROhB
- qWw/rUHO6Vtvz6FxZN8Jxg4FG5kFWHEee1ZQxpTudNrRjI+qmGHdgQnjE
- JVZ6KKR02EsTowyfMwr5nMDSTywEZbbKq/eRVk4lsTG9hmAqw+MRGJPVk Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="374455175"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="374455175"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 08:53:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="983763278"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="983763278"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga006.fm.intel.com with ESMTP; 24 Aug 2023 08:53:51 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 24 Aug 2023 08:53:50 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 24 Aug 2023 08:53:49 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 24 Aug 2023 08:53:49 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 24 Aug 2023 08:53:49 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E737LrJBdFCoKFyM2kq0DCKt51NY9cQ7oJB4KlFJpHFUKmB9SOdjz2zsMDDVceWOgJxYAAoUUTBTkZgzzwDqIBfSBpoHMbILF0N3u31qHFiyqhpsVL6GlvPjSC340IB9UAmQg9SJSNemIldELsXhxY2AIiWjHTue0flYNQSLmBNADhvU6+wO86zB7kEK28mOYPkxp3Fjno/OA91Pqv5AJU+AuXz2dTsLEiT/md9Cen/+phYFEwj+g4Oli6iLa3dI4rei7Tw2g8HMcomnGd1yHKupToMw6BWNTYKC7+/dktF7l1XEFWVmucEDqgUkwZ4m/10G2689gLq62HBOQkKVBQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8g+AlHG8CGyrJVhMCvbmURxKU/TUEnP5+toGBfS5vD8=;
- b=Gs9XvHPB4Grb4n7MeBzFQ9DFKemKzTOl4G/5mmsBNYfp3VKFmF33wuXZ1eotl3QbORyQUesYRv6a42MmopL7NxOUM7n9PStsJPwIJ5rF278+uqJZvokff71gC9TzDQ412ubL88gdxSxQf0l7AnolSAuakPSMMDm6nC8opFF97sXlwbP8m99asnUa50AhE46I9kqnnSLmzVKXYUW9ZfixNS0CqRH23QVb8JRMV+wx/y/1M2FTleogduLtUgmpb0C2b13rKr7eyKt+Hjid2nPXlQrgFGgrMjTNCRAmfHN6NnGrTYhwGDdYMcSCF94x+YLxLOOGtp+jXEM6zgDhO84gsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DM8PR11MB5686.namprd11.prod.outlook.com (2603:10b6:8:21::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Thu, 24 Aug
- 2023 15:53:47 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
- 15:53:47 +0000
-Date: Thu, 24 Aug 2023 08:53:44 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <lebkojj4xi4opfrmnbtws775cb65bl26jwlcc7w65obtfabrho@pttf5pd5iiuh>
-X-Patchwork-Hint: comment
-References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
- <20230823170740.1180212-24-lucas.demarchi@intel.com>
- <20230823194936.GE1529860@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20230823194936.GE1529860@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: MW4PR03CA0046.namprd03.prod.outlook.com
- (2603:10b6:303:8e::21) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com
+ [IPv6:2a00:1450:4864:20::22a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 350A610E595
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 15:57:37 +0000 (UTC)
+Received: by mail-lj1-x22a.google.com with SMTP id
+ 38308e7fff4ca-2bb8a12e819so106973571fa.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 08:57:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1692892655; x=1693497455;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=7SEvMRQPullg61dy/E3wdJzWAX3J5rADwVyA4iCVDCU=;
+ b=k1tY2+6cBC5ymZht3nVFVJgTUObH+lI5lQM8QXMUVNhID3+V8x+N+3BQ/oDJPvp5pt
+ UFGcCNN3VyuF8T7wlya0mN0fRxCzNBkz91eMPCSMHJRvUWx7r/pXEj2z/ybK+eGtYJjy
+ BMR5H1QN0lbGPulQ/hZMFfVEwaePsszibaVws=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692892655; x=1693497455;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=7SEvMRQPullg61dy/E3wdJzWAX3J5rADwVyA4iCVDCU=;
+ b=IwjbryTyyOmZ8lypsqNCF9pMMXoAq/9VK37p9DiBBv1D5EvgNgzzHFjNBalzJGRcs5
+ /ieqlXbkD2Xl5FmDgvRxpFwMpBcRBbTxIUEqRc0izXX3Td6H1E4E0ZZzKfW/a7WCygfn
+ chO/+zpTxKx2XHhmdcNLbBsjqjFjJ443G9hgm3s7TK8vFqaYN2MqI7venSFNYAnoxYSq
+ Pbou/PP29UrNu5vS0Iump0D5J3PLZrwVoU3ktToJ5AdjibqStNoOMOpGVDrgpJy5M6m9
+ eLiA2B8U1Fp9ROmDAZzrshPFt/nkW9s/M2u43eM3PO6V+et3T/8xkCV3Ts/J+14eYsfK
+ tmNA==
+X-Gm-Message-State: AOJu0YzpkbfejrKZhDclGx61JpsDAp87tGtc7sPjWNi8R//1VvPTU5i8
+ 0p6NI7HfA0HTcmAyN8OW0foViwGqNW0MCUo/01qz3TxOwqRaiEAf
+X-Google-Smtp-Source: AGHT+IGZNL3AOtWAEtl+vp8xCeV1v/QAiDMBLqlSG3q55R8sBykfMV/0Xa+gDoaTE1OHh55mZ//vKiY9EOizBqa7OvQ=
+X-Received: by 2002:a2e:81d5:0:b0:2bc:e882:f717 with SMTP id
+ s21-20020a2e81d5000000b002bce882f717mr1802370ljg.53.1692892655361; Thu, 24
+ Aug 2023 08:57:35 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM8PR11MB5686:EE_
-X-MS-Office365-Filtering-Correlation-Id: e26ebb84-f863-49ac-47a9-08dba4ba4d43
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Sr86X06ufYYN9Zw6yjvwpUASaUOKVlpEOhYPN1JLOcNgpScmNOUeCx8ZYyC3PyWnwpB42SB3TM+gVL9GDyz+PkCo6jfymvX4E58hKTvKLp8dVhgTQL/uiGmUf/5fNS53K0Ob8akHvIcdOtdfh+pCwPy9/oqyViTxOnqylr+YCXkH9FuwkNXvz6jwd7Eh4AwTpeMVK25QzfuOTSXJr6NDP8bklCCSpjF4d4Qp8qN+U0h0gQoV97S7sAUfA22bT/YsM7aQUzIrpSRKu1HuL66zOOH0r0Nfpzah+cK55JsSWdD/GxdswUPEpLwPU1tCb1fCNNQ1E8CmMj4Fyf29EWt6UYLB+Js8PHlICLAKoL0A69agkbtlBhgNU70ucpWDwk7GUI0XFFHZDmp8/Mas+QGilJjdOcNsmfcu+bf3PUSEwpUA7LrAZfjtgiwAWMAblBEeIohPtCqhsXOuKMsXSRzpQ2ZvdvRfspHTInzKMTjzc7mJx9c+OFgUgiKMO8sOilpuV6DH3IcpQ9gwD4XmqP01VFw71WX3KW2BfuAlUwd7QmaQ6MG9TKN5VRBOQRtNU+fR
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(136003)(366004)(39860400002)(376002)(346002)(396003)(451199024)(186009)(1800799009)(33716001)(66946007)(66556008)(6636002)(316002)(66476007)(82960400001)(478600001)(26005)(6666004)(38100700002)(41300700001)(86362001)(6486002)(6506007)(2906002)(6512007)(9686003)(450100002)(8676002)(8936002)(4326008)(6862004)(5660300002)(83380400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DaxA7DS87zauj0e+oBjMmS0bjQfe/12ihFUDqcLEZx0+AijnTaSmouPb4Iku?=
- =?us-ascii?Q?yIFn+k+8j3givzOKNDmqnIxDE0qdpKrycQc6VKj0V5hx/lFxb2tttnmnxgk2?=
- =?us-ascii?Q?UWXojyffW7690K0UdNJ255cwL58IHq3YbeSGZWOTbbvchVAKYTEes/RgKes6?=
- =?us-ascii?Q?LYB4XkEHb/k5A2x2KpGy3L4KDxP9sxqnsYJjzi2WWXjYcs4puuj1oiTLLpDF?=
- =?us-ascii?Q?qJDGlxIiF1+7qLy7evjJK06Dby5de68Rz8OwQm4xn0YveQ+h2cpiLLOulPDc?=
- =?us-ascii?Q?B3pqFbzwz/a8XI/5RxaG1TxTrdYK6h3e2ju8do+eO300Gr+201wEy2ASmUGg?=
- =?us-ascii?Q?zQFAF7OmfzBJtxxPvcMPuQlFwCsuompQt2KEjlFmEic1RRht9zB/uWvaT6kC?=
- =?us-ascii?Q?AkGNVI8mvfzydxMEQ0o12NOSxkktYZGDpfoaf3yXXJUhu6h2yV6KFJKuXawC?=
- =?us-ascii?Q?eiiWej3B0npx29otRJ1g7gk9LZ0Bj9Vv00JmEF6ZW850iDEa4F48sdFDX9JV?=
- =?us-ascii?Q?5srpbqTV7guowG17784Y3wwdGQx7s4qCnrZwTYl34dCGPY/pW3cbo13D513N?=
- =?us-ascii?Q?cvY9/3IFaVyoQgECFtGc+SzMQxPatjSfsGh4L2Gqao4YACDr0yJTK4w+6TOI?=
- =?us-ascii?Q?LvVO0FzIygRIzU2NNe2UU+wnqr5Mi5PGFftZ7iGUIS9Xu4HbKho5DgFMMjSc?=
- =?us-ascii?Q?wbNkyBaUhjAyc9wVZPcUHPL9INHxR8egKBko5G2vTBM8b+VP5t4pdxRfETVJ?=
- =?us-ascii?Q?mhpC3ZJsLIUTQdDHaoyGxsE3I5bhTyAqLM2GVXMcxoXNecz6vYymTG8RV7mD?=
- =?us-ascii?Q?p8o2VvOXY5FM4PR8r2Kp51cG8m2SFcrftX6hkAsew91L1ZNxAaYoQpCL/oQ8?=
- =?us-ascii?Q?PBag9uaFMSdpgSjGITw0rzd31EDKCVCXdvMpoWfIV0Ley/p6a8X+pT0jR6Rv?=
- =?us-ascii?Q?i6bqGQrWxBG4bGsLeQ6HhkPcdsO230rK3p5fwKBBqp7bdpQ+NNZWXfQ2PA/3?=
- =?us-ascii?Q?tH0MBpOr0TAJDSqoEF23iALlfiIfvW3uUZuOeNSnhquz9ir5SIJ+0FuscbT2?=
- =?us-ascii?Q?AposDCLYVQZmu2B4Fidg5Z6UKAKBW+3Q/SnnqHXG6mRwmWf0dLU53PPwWoHn?=
- =?us-ascii?Q?E/ArRSr6fNbLP5MOzVKw77hD53BA13OnKce3a+BA13X5FSsck9PWZNG0P141?=
- =?us-ascii?Q?nwbiR7cF2XnQUOm9bogLsaXmAWtR/Z0IaFhvbJF0foN6I/DWeSNhkkzV9x8J?=
- =?us-ascii?Q?MmcqtMJ/JKZ/FUeSSPc1ukSRkOOyzv3YKK077RS14veJKvjbZ1elh0dM5xRY?=
- =?us-ascii?Q?AhITgvSoiJxkaxzDgOsyb9uAz2xTfrYhb3py7tRpyE5s9iARmaxzex5PNyV2?=
- =?us-ascii?Q?XY7/OHOkjcAftHEl/KbhnNINQf3OBwvOs2RtWzMWu4ZoGYt0DWgowkSD9Z4j?=
- =?us-ascii?Q?g3sV9UCG4wjIPSiuAPf8Kr+7cR2et3Ch4LJNHY75H+a/aMjRo0MYp9fCvtTJ?=
- =?us-ascii?Q?03ucR3A6Q27GytqCHRDvff30TheWbuR95T7kW22cGyS0WmZ8UXaa+LhIQSMv?=
- =?us-ascii?Q?dtl91KyBXOmtTwVyzosQL1Xl0X9Z/4V6rrSyYTSQlf0BQ0l3/7gI44zrqsBX?=
- =?us-ascii?Q?NA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e26ebb84-f863-49ac-47a9-08dba4ba4d43
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 15:53:47.2354 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hS4cht8txwsi7fViItCkDOK4Jch62bV/wZW8rwnq7RyspPvzmMeJsyYNKICJWCP74JvzU4eA9D+CXXiACwdOXWKMsrcJ8jrIeIAVgHnpxhQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR11MB5686
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 23/42] drm/i915/xe2lpd: FBC is
- now supported on all pipes
+References: <20230818190501.241062-1-navaremanasi@chromium.org>
+ <87fs484r4a.fsf@intel.com> <ZOdB0VXC_knLUmFI@intel.com>
+In-Reply-To: <ZOdB0VXC_knLUmFI@intel.com>
+From: Manasi Navare <navaremanasi@chromium.org>
+Date: Thu, 24 Aug 2023 08:57:24 -0700
+Message-ID: <CAE72mNky4e7pgM=3yjWdzBuhG5+3WxhH0ap16PnSXM=3gM4nSQ@mail.gmail.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/display: Dual refresh rate
+ fastset fixes with VRR fastset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,55 +67,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Drew Davenport <ddavenport@chromium.org>, intel-gfx@lists.freedesktop.org,
+ Sean Paul <seanpaul@chromium.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 23, 2023 at 12:49:36PM -0700, Matt Roper wrote:
->On Wed, Aug 23, 2023 at 10:07:21AM -0700, Lucas De Marchi wrote:
->> From: Matt Roper <matthew.d.roper@intel.com>
->>
->> FBC is no longer limited by pipe.
->
->It looks like we lost the part of this patch that adds this to the
->xe2_lpd_display device info structure.
+Hi Ville and Jani,
 
-ack, but I will just move this patch first in the series so when we
-introduce xe2_lpd_display we can already add it.
+Thanks for your review and feedback.
 
-Lucas De Marchi
+To rightly explain the use case here:
+Case 1: We are at 120 Hz refresh rate so by default VRR registers are
+programmed for 120Hz case. And say the VRR range is 30-120Hz we get
+the full range here.
+Case 2: When we switch to downclock mode of 60Hz and if a game is
+being played we want the VRR parameters to be updated in a fastset
+fashion to now reflect a new range of 30-60Hz.
 
+These use cases would need both VRR and DRR to work together and seamlessly=
+.
+I tried updating VRR parameters in update_crtc() hook to do this and
+that works, but that will be a different patch series.
+
+But until then, this patch tries to make sure atleast DRR works
+correctly and seamlessly switches between the refresh rates when VRR
+is not enabled. This would be are
+first step to atleast fix the fastset of DRR that was broken when VRR
+fastset was enabled since thats when VRR parameters started to get
+computed always by default.
+
+@Ville Syrj=C3=A4l=C3=A4  @Jani Nikula  : Based on your feedback, may be I =
+can
+use the vrr_enabling and vrr_disabling() and only during these
+conditions is when it can check the pipe mismatch for the VRR
+parameters and in all other cases when it is fastset + seamless_m_n we
+can ignore the VRR pipe mismatches?
+
+Let me know if this looks like a good approach or what would be your
+suggestion on excluding the pipe mismatches for VRR params in case of
+DRRS and fastset mode?
+
+Regards
+Manasi
+
+On Thu, Aug 24, 2023 at 4:41=E2=80=AFAM Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
 >
+> On Thu, Aug 24, 2023 at 02:27:49PM +0300, Jani Nikula wrote:
+> > On Fri, 18 Aug 2023, Manasi Navare <navaremanasi@chromium.org> wrote:
+> > > Dual refresh rate (DRR) fastset seamlessly lets refresh rate
+> > > throttle without needing a full modeset.
+> > > However with the recent VRR fastset patches that got merged this
+> > > logic was broken. This is broken because now with VRR fastset
+> > > VRR parameters are calculated by default at the nominal refresh rate =
+say 120Hz.
+> > > Now when DRR throttle happens to switch refresh rate to 60Hz, crtc cl=
+ock
+> > > changes and this throws a mismatch in VRR parameters and fastset logi=
+c
+> > > for DRR gets thrown off and full modeset is indicated.
+> > >
+> > > This patch fixes this by ignoring the pipe mismatch for VRR parameter=
+s
+> > > in the case of DRR and when VRR is not enabled. With this fix, DRR
+> > > will still throttle seamlessly as long as VRR is not enabled.
+> > >
+> > > This will still need a full modeset for both DRR and VRR operating to=
+gether
+> > > during the refresh rate throttle and then enabling VRR since now VRR
+> > > parameters need to be recomputed with new crtc clock and written to H=
+W.
+> > >
+> > > This DRR + VRR fastset in conjunction needs more work in the driver a=
+nd
+> > > will be fixed in later patches.
+> > >
+> > > v3:
+> > > Compute new VRR params whenever there is fastset and its non DRRS.
+> > > This will ensure it computes while switching to a fixed RR (Mitul)
+> > >
+> > > v2:
+> > > Check for pipe config mismatch in crtc clock whenever VRR is enabled
+> > >
+> > > Fixes: 1af1d18825d3 ("drm/i915/vrr: Allow VRR to be toggled during fa=
+stsets")
+> >
+> > How could this have broken fastsets, when this made it possible to do
+> > vrr enable/disable fastsets to begin with? I was hoping to get a
+> > regressing commit to make this easier to reason.
+> >
+> > > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9154
+> > > Cc: Drew Davenport <ddavenport@chromium.org>
+> > > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> > > Cc: Sean Paul <seanpaul@chromium.org>
+> > > Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> > > Signed-off-by: Manasi Navare <navaremanasi@chromium.org>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++------
+> > >  1 file changed, 8 insertions(+), 6 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
+pu/drm/i915/display/intel_display.c
+> > > index 763ab569d8f3..2cf3b22adaf7 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -5352,7 +5352,7 @@ intel_pipe_config_compare(const struct intel_cr=
+tc_state *current_config,
+> > >     if (IS_G4X(dev_priv) || DISPLAY_VER(dev_priv) >=3D 5)
+> > >             PIPE_CONF_CHECK_I(pipe_bpp);
+> > >
+> > > -   if (!fastset || !pipe_config->seamless_m_n) {
+> > > +   if (!fastset || !pipe_config->seamless_m_n || pipe_config->vrr.en=
+able) {
+> > >             PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_clock);
+> > >             PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_clock);
+> > >     }
+> > > @@ -5387,11 +5387,13 @@ intel_pipe_config_compare(const struct intel_=
+crtc_state *current_config,
+> > >
+> > >     if (!fastset)
+> > >             PIPE_CONF_CHECK_BOOL(vrr.enable);
+> > > -   PIPE_CONF_CHECK_I(vrr.vmin);
+> > > -   PIPE_CONF_CHECK_I(vrr.vmax);
+> > > -   PIPE_CONF_CHECK_I(vrr.flipline);
+> > > -   PIPE_CONF_CHECK_I(vrr.pipeline_full);
+> > > -   PIPE_CONF_CHECK_I(vrr.guardband);
+> > > +   if ((fastset && !pipe_config->seamless_m_n) || pipe_config->vrr.e=
+nable) {
+> >
+> > I just don't get the conditions here and above. For example, why
+> > wouldn't we check the parameters e.g. on full modeset that disables vrr=
+?
+> >
+> > I think we'll need a matrix of the features, which of them can be
+> > combined together, which are mutually exclusive, and which are expected
+> > to be fastsets.
 >
->Matt
+> I wouldn't expect a panel to support both DRRS and VRR. Pick one and
+> stick to it.
 >
->>
->> Bspec: 68881, 68904
->> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_fbc.h | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
->> index 4adb98afe6ff..6720ec8ee8a2 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbc.h
->> +++ b/drivers/gpu/drm/i915/display/intel_fbc.h
->> @@ -20,6 +20,8 @@ struct intel_plane_state;
->>  enum intel_fbc_id {
->>  	INTEL_FBC_A,
->>  	INTEL_FBC_B,
->> +	INTEL_FBC_C,
->> +	INTEL_FBC_D,
->>
->>  	I915_MAX_FBCS,
->>  };
->> --
->> 2.40.1
->>
+> I haven't thought through all the implications of changing all the VRR
+> parameters live, so fastsets doing that are currently not possible. I
+> have a branch for LRR (which is essentially manual VRR) but that was
+> writtent before the VRR fastset support, so needs a full redesign now.
+> Until then I don't think we can do anything.
 >
->-- 
->Matt Roper
->Graphics Software Engineer
->Linux GPU Platform Enablement
->Intel Corporation
+> --
+> Ville Syrj=C3=A4l=C3=A4
+> Intel
