@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D99786B1E
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 11:06:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADAF3786BDB
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 11:30:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 214FE10E50A;
-	Thu, 24 Aug 2023 09:06:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 376D710E513;
+	Thu, 24 Aug 2023 09:30:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEB0710E50A
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 09:06:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0F4310E512;
+ Thu, 24 Aug 2023 09:29:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692867984; x=1724403984;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=HBK7utooEMBcLNAkSDvOfnphByhIgE5pPmfkmHNq9lE=;
- b=NyqghQ2ng4ZnkpPFA1nzjG2XyyZ05QzTUzZfyJGZGg0y8+ltsphGKduE
- rd1m16lhCg3ldSqc3FtTPTP8/T14oVakUYmsKuvCjaIpMCUfZY03n/4wx
- 8dl68MuM74qGcUps54aHtPUMF2+zq/mH3sq3YxOzNsNGl2yvnFbCoQeca
- jbDy2AQAi35LO8XSdIPE86q+kPcdeZJ/BuBhMgBnapMrw/Xr9Ks7QVAeq
- 3kejce/M4M7bgMaweS91cfJQEmyIakCZoZsGGRVvkBRu4ciowYcTsscOi
- wX6+1alZXJU86aq/3NYKKr3dcj8jN+VNVQk4uA1xw+QP2YIT1Q+Lp7Hme g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="364562397"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="364562397"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 02:06:22 -0700
+ t=1692869399; x=1724405399;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=FoZxMzR7Zchg2Ic1jUTaJl7PEGyEXQW6/CKO3RR1vhw=;
+ b=cz0uhUMPI7BeDQl+xDXhuWhjI8JOhZyqpmhnwzZa6Ak6EWjXMA3XlrqP
+ Ye1KytEkiooxqN3ETryRnjiPLOQzgjItC8tsbYVxkWpr32KnTF1mMtnaF
+ GxRwlY/HLgsZQEeIA402PvMf5tH/xZhNXLMr0W+ES88kUuPC4M93e+EdK
+ m/Alzw8CPvvg7Stcxl3xROpTi5o139OPQJTXoER0UsBT08byHtUAQ5bkW
+ Lqy3gnv0G2RG5aD4+wJ5b9rA7/DSLizHuz1VjdPuXiMrG9Bta2ovvL1Hb
+ xZqaduviHateH7q0YaNABBC+uclea22OnQNWjwEfFWTKB6Z11X8yXVt0u g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="405396467"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="405396467"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2023 02:29:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="713893594"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="713893594"
-Received: from andrzejk-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.46.90])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 02:06:20 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230824083846.1114262-1-chaitanya.kumar.borah@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230824083846.1114262-1-chaitanya.kumar.borah@intel.com>
-Date: Thu, 24 Aug 2023 12:06:18 +0300
-Message-ID: <87ttso4xo5.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="851419703"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="851419703"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2023 02:29:56 -0700
+Date: Thu, 24 Aug 2023 12:29:48 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Message-ID: <ZOcjDCx3r3TARJNX@intel.com>
+References: <20230823115425.715644-1-ankit.k.nautiyal@intel.com>
+ <20230823115425.715644-3-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/rpl: Add new RPL PCI-IDs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230823115425.715644-3-ankit.k.nautiyal@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drivers/drm/i915: Honor limits->max_bpp
+ while computing DSC max input bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,54 +59,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 24 Aug 2023, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
-> Add newly added PCI-IDs for RPL
+On Wed, Aug 23, 2023 at 05:24:25PM +0530, Ankit Nautiyal wrote:
+> Edid specific BPC constraints are stored in limits->max_bpp. Honor these
+> limits while computing the input bpp for DSC.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Please review [1] instead.
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-BR,
-Jani.
+That is kind of funny, I can see this patch in my mails but can't
+see the other one you had "Default 8 bpc support when DSC is supported",
+which is visible from patchwork.
+Anyways I give r-b for that one as well.
 
-
-[1] https://patchwork.freedesktop.org/patch/msgid/20230824062840.2372872-1-dnyaneshwar.bhadane@intel.com
-
->
-> BSpec: 55376
->
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 > ---
->  include/drm/i915_pciids.h | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
->
-> diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-> index 1661f9e552d2..1256770d3827 100644
-> --- a/include/drm/i915_pciids.h
-> +++ b/include/drm/i915_pciids.h
-> @@ -689,14 +689,18 @@
->  #define INTEL_RPLU_IDS(info) \
->  	INTEL_VGA_DEVICE(0xA721, info), \
->  	INTEL_VGA_DEVICE(0xA7A1, info), \
-> -	INTEL_VGA_DEVICE(0xA7A9, info)
-> +	INTEL_VGA_DEVICE(0xA7A9, info), \
-> +	INTEL_VGA_DEVICE(0xA7AC, info), \
-> +	INTEL_VGA_DEVICE(0xA7AD, info)
->  
->  /* RPL-P */
->  #define INTEL_RPLP_IDS(info) \
->  	INTEL_RPLU_IDS(info), \
->  	INTEL_VGA_DEVICE(0xA720, info), \
->  	INTEL_VGA_DEVICE(0xA7A0, info), \
-> -	INTEL_VGA_DEVICE(0xA7A8, info)
-> +	INTEL_VGA_DEVICE(0xA7A8, info), \
-> +	INTEL_VGA_DEVICE(0xA7AA, info), \
-> +	INTEL_VGA_DEVICE(0xA7AB, info)
->  
->  /* DG2 */
->  #define INTEL_DG2_G10_IDS(info) \
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+>  drivers/gpu/drm/i915/display/intel_dp.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 5b48bfe09d0e..2a7f6cfe2832 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2061,9 +2061,11 @@ static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+>  	if (forced_bpp) {
+>  		pipe_bpp = forced_bpp;
+>  	} else {
+> +		u8 max_bpc = limits->max_bpp / 3;
+> +
+>  		/* For eDP use max bpp that can be supported with DSC. */
+>  		pipe_bpp = intel_dp_dsc_compute_max_bpp(intel_dp,
+> -							conn_state->max_requested_bpc);
+> +							min(max_bpc, conn_state->max_requested_bpc));
+>  		if (!is_dsc_pipe_bpp_sufficient(i915, conn_state, limits, pipe_bpp)) {
+>  			drm_dbg_kms(&i915->drm,
+>  				    "Computed BPC is not in DSC BPC limits\n");
+> -- 
+> 2.40.1
+> 
