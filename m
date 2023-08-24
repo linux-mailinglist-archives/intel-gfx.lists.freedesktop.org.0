@@ -2,32 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB5C0786773
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 08:25:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 235AA78677F
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 08:28:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7637010E103;
-	Thu, 24 Aug 2023 06:24:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 563FD10E103;
+	Thu, 24 Aug 2023 06:28:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9619F10E103;
- Thu, 24 Aug 2023 06:24:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8D17EAADDA;
- Thu, 24 Aug 2023 06:24:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AC4210E103
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 06:28:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692858526; x=1724394526;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Yifi6SPfWx3SkykTY8OCtvhgdXQcPJiL05HcnWXSOUw=;
+ b=RX3ZxMc28nklW2rv+tqGBa9sj4sRpOsh8IE1tehdRbI6pWxHjasLqqnM
+ jck4fFUGcRDBN8JZZ7kKZHFj5/a6XPc8U2jQ/RmPoNTiUoAglT6JrLk4n
+ ddI2kL0R/NKuhocaPTrf37YOEq83XeD3XvDjj46ndwoYqyWNC1MVSqv16
+ i701QOhm9zbuBH0qF77gfAl0l41SqZoCMgd2WRB2W1PHUhlLPbaMXSxSt
+ anNzY6IIaCq7DOEYjMwOrp5w6EGm44TpqaI/hXfkBh2jU/rGoI3xuRXSk
+ jogp7OqEIDYNZ3MA0S2L3BTuE+J5GjjMjNBH3dp4CSSm23iuQQdaYU0Li A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="373241277"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="373241277"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2023 23:28:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="736933098"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="736933098"
+Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
+ by orsmga002.jf.intel.com with ESMTP; 23 Aug 2023 23:28:43 -0700
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 24 Aug 2023 11:58:40 +0530
+Message-Id: <20230824062840.2372872-1-dnyaneshwar.bhadane@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gil Dekel" <gildekel@chromium.org>
-Date: Thu, 24 Aug 2023 06:24:57 -0000
-Message-ID: <169285829756.13342.5443384793366086326@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230818170156.2194015-1-gildekel@chromium.org>
-In-Reply-To: <20230818170156.2194015-1-gildekel@chromium.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBE?=
- =?utf-8?q?efine_a_final_failure_state_when_link_training_fails?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3] drm/i915/rpl: Update pci ids for RPL P/U
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,31 +54,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Update pci device ids as per bspec for
+RPL P/U.
+Bpsec: 55376
 
-Series: Define a final failure state when link training fails
-URL   : https://patchwork.freedesktop.org/series/122644/
-State : failure
+v2:
+- Append new id's instead of replacing the existing in device
+id list define
 
-== Summary ==
+v3:
+- Fixed the commit messege with revision details.
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/122644/revisions/1/mbox/ not applied
-Applying: drm/i915/dp_link_training: Add a final failing state to link training fallback
-Applying: drm/i915/dp_link_training: Add a final failing state to link training fallback for MST
-Applying: drm/i915/dp_link_training: Emit a link-status=Bad uevent with trigger property
-Applying: drm/i915: Move DP modeset_retry_work into intel_dp
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_dp.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0004 drm/i915: Move DP modeset_retry_work into intel_dp
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+---
+ include/drm/i915_pciids.h | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
+diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+index e1e10dfbb661..21faa73db7ec 100644
+--- a/include/drm/i915_pciids.h
++++ b/include/drm/i915_pciids.h
+@@ -689,14 +689,18 @@
+ #define INTEL_RPLU_IDS(info) \
+ 	INTEL_VGA_DEVICE(0xA721, info), \
+ 	INTEL_VGA_DEVICE(0xA7A1, info), \
+-	INTEL_VGA_DEVICE(0xA7A9, info)
++	INTEL_VGA_DEVICE(0xA7A9, info), \
++	INTEL_VGA_DEVICE(0xA7AC, info), \
++	INTEL_VGA_DEVICE(0xA7AD, info)
+ 
+ /* RPL-P */
+ #define INTEL_RPLP_IDS(info) \
+ 	INTEL_RPLU_IDS(info), \
+ 	INTEL_VGA_DEVICE(0xA720, info), \
+ 	INTEL_VGA_DEVICE(0xA7A0, info), \
+-	INTEL_VGA_DEVICE(0xA7A8, info)
++	INTEL_VGA_DEVICE(0xA7A8, info), \
++	INTEL_VGA_DEVICE(0xA7AA, info), \
++	INTEL_VGA_DEVICE(0xA7AB, info)
+ 
+ /* DG2 */
+ #define INTEL_DG2_G10_IDS(info) \
+-- 
+2.34.1
 
