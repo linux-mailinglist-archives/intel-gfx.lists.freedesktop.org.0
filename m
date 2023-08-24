@@ -2,47 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66D3F7866A2
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 06:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AE2D7866A3
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Aug 2023 06:20:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10E9E10E481;
-	Thu, 24 Aug 2023 04:20:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A188910E487;
+	Thu, 24 Aug 2023 04:20:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8286310E0E8
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 04:20:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB56110E0E8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Aug 2023 04:20:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692850838; x=1724386838;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Iqgc0ky8FmomQuRW5lh9PVxXLvVHuonQq5nufzqJnbU=;
- b=MZG3hAoo6kisNH5DmYYhZG74ol8OVBrZDT4EC7sDn3qK056jEci3XPEV
- F8z3PS5S+LC648ZtgLfJq9oEPbklEjLG9n2HFXTcVqoy7ReiCd4OmGFJM
- 3MjZZLVHx4nrQrmb19XusCNLyukHZdluIvRnNb6AaawEKiIdbQBLV5lCr
- ExMWUqUA4/r68rdbex+4SGBu29qv+nRSYuRxECYhyPVF7cxzPwvmw+Mym
- YsPDn7q0W4n4pMyIEIvD8FfCocMOZyCPqCzbfd2Wce9gFe36dJBjnkwwe
- QZ7Y32LEktqXKXhVWIUAVqVqbhK3WjJmDW8ooRvKXvSlHMPL5Q3uOujx+ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="371750938"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="371750938"
+ t=1692850839; x=1724386839;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=BWFrCIQjcJbTTkdka9BHhYrGhXAymZAJwZvhesycZ3k=;
+ b=PJwEwBclbpBItxeG6tESAR8HEC0xkknCFWKn9rsm6UPXnfMkdoWkAppz
+ 44ePLKekldfHLoVYubu6jsuF5Y2U1jOhcHb+hu1a4XBKQOvZoY5nMvLwB
+ TfYxePRRQ29DJ8PTQ38ns6RNQWIrOTypq+LTqDeLM6o2wi1IAQgxKfvPW
+ /d3cRe01UOVz5L0nx0pFOLQ4wNRXu0S9sF0skZzM4BOyfynSzzLqvmuf5
+ 5j7cQfJ20rltPeVkGG7IS+F9y3PigFsxOiPrwFZE6ZzK1idgxVjbpKJTZ
+ oOtSg1moi4KlZ7pviCgvjnBGBND1TVbPHq56zvFJ7m3563uvsqwDAbydM g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="371750949"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="371750949"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 21:20:37 -0700
+ 23 Aug 2023 21:20:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="730441449"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="730441449"
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="730441455"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="730441455"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orsmga007.jf.intel.com with ESMTP; 23 Aug 2023 21:20:35 -0700
+ by orsmga007.jf.intel.com with ESMTP; 23 Aug 2023 21:20:38 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 24 Aug 2023 09:39:46 +0530
-Message-Id: <20230824040952.186407-1-animesh.manna@intel.com>
+Date: Thu, 24 Aug 2023 09:39:47 +0530
+Message-Id: <20230824040952.186407-2-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
+In-Reply-To: <20230824040952.186407-1-animesh.manna@intel.com>
+References: <20230824040952.186407-1-animesh.manna@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 0/6] Panel replay phase1 implementation
+Subject: [Intel-gfx] [PATCH v4 1/6] drm/panelreplay: dpcd register
+ definition for panelreplay
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,49 +61,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Panel Replay is a power saving feature for DP 2.0 monitor and similar
-to PSR on EDP.
-
-These patches are basic enablement patches added on top of
-existing psr framework to enable full-screen live active frame
-update mode of panel replay. Panel replay also can be enabled
-in selective update mode which will be enabled in a incremental
-approach.
-
-As per current design panel replay priority is higher than psr.
-intel_dp->psr.panel_replay_enabled flag indicate panel replay is enabled.
-intel_dp->psr.panel_replay_enabled + intel_dp->psr.psr2_enabled indicates
-panel replay is enabled in selective update mode.
-intel_dp->psr.panel_replay_enabled + intel_dp->psr.psr2_enabled +
-intel_psr.selective_fetch enabled indicates panel replay is
-enabled in selective update mode with selective fetch.
-PSR replated flags remain same like before.
-
-Note: The patches are under testing by using panel replay emulator and
-panel is not avalible.
+DPCD register definition added to check and enable panel replay
+capability of the sink.
 
 Cc: Jouni Högander <jouni.hogander@intel.com>
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ include/drm/display/drm_dp.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Animesh Manna (5):
-  drm/panelreplay: dpcd register definition for panelreplay
-  drm/i915/panelreplay: Added HAS_PANEL_REPLAY() macro
-  drm/i915/panelreplay: Initializaton and compute config for panel
-    replay
-  drm/i915/panelreplay: Enable panel replay dpcd initialization for DP
-  drm/i915/panelreplay: enable/disable panel replay
-
-Jouni Högander (1):
-  drm/i915/psr: Move psr specific dpcd init into own function
-
- .../drm/i915/display/intel_display_device.h   |   1 +
- .../drm/i915/display/intel_display_types.h    |  13 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  44 +++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 197 ++++++++++++------
- include/drm/display/drm_dp.h                  |  11 +
- 6 files changed, 199 insertions(+), 70 deletions(-)
-
+diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+index e69cece404b3..a38dc5f1731e 100644
+--- a/include/drm/display/drm_dp.h
++++ b/include/drm/display/drm_dp.h
+@@ -543,6 +543,10 @@
+ /* DFP Capability Extension */
+ #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT	0x0a3	/* 2.0 */
+ 
++#define DP_PANEL_REPLAY_CAP                 0x0b0
++# define DP_PANEL_REPLAY_SUPPORT            (1 << 0)
++# define DP_PANEL_REPLAY_SU_SUPPORT         (1 << 1)
++
+ /* Link Configuration */
+ #define	DP_LINK_BW_SET		            0x100
+ # define DP_LINK_RATE_TABLE		    0x00    /* eDP 1.4 */
+@@ -716,6 +720,13 @@
+ #define DP_BRANCH_DEVICE_CTRL		    0x1a1
+ # define DP_BRANCH_DEVICE_IRQ_HPD	    (1 << 0)
+ 
++#define PANEL_REPLAY_CONFIG                             0x1b0
++# define DP_PANEL_REPLAY_ENABLE                         (1 << 0)
++# define DP_PANEL_REPLAY_UNRECOVERABLE_ERROR            (1 << 3)
++# define DP_PANEL_REPLAY_RFB_STORAGE_ERROR              (1 << 4)
++# define DP_PANEL_REPLAY_ACTIVE_FRAME_CRC_ERROR         (1 << 5)
++# define DP_PANEL_REPLAY_SU_ENABLE                      (1 << 6)
++
+ #define DP_PAYLOAD_ALLOCATE_SET		    0x1c0
+ #define DP_PAYLOAD_ALLOCATE_START_TIME_SLOT 0x1c1
+ #define DP_PAYLOAD_ALLOCATE_TIME_SLOT_COUNT 0x1c2
 -- 
 2.29.0
 
