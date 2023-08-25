@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B4E07888D7
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Aug 2023 15:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF28C7888DB
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Aug 2023 15:45:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B13810E69B;
-	Fri, 25 Aug 2023 13:44:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AA7510E699;
+	Fri, 25 Aug 2023 13:45:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 371D910E69B
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Aug 2023 13:44:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C144610E699
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Aug 2023 13:45:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692971078; x=1724507078;
+ t=1692971103; x=1724507103;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9DUsSFVwXOfpGSS0n3LxIlu+inYPOR7Um0Fri3I4dHU=;
- b=WD6Rf+Yjdk+L0lG2/+ZU0lymjzJomNJ+rukRQzHNye5wMGZJGow+xQqm
- MeRE3En53u1JugQgjW1aEjDd/4JaplphNgH6RVlC/52h8IB8kOD7XTO1I
- oTg0VEhBOQZ6vFsvyK2kNaDE8Tr4W/DbwtBwsdeFgc3nTeUaOUeUXX9C2
- l/zR06pQAnPEUC4cqsV/J3kJR5nNSAB/BaRsjKlpI0BMhgqndJAIM8tIr
- fHjd2O84mOujk3/hD6DAc54HtC2OpYEuHtCQg21/5KPrNUlFEMMDvY5Zt
- r8dNCINA7jOH31hIPtwC+NANHx1R2VHbTtYgjtdfWBCiA35Zwoxdl658q Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="359714306"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="359714306"
+ bh=9PUGpZepgxvmIXVtzGlmMBEu95yN2fJLSa/uC1+BYys=;
+ b=I/jvHRm39GBU4/Z4D5+Ym5+Pjxi6ZgEZ1INucx13wr5f+28Bg2uauKIs
+ i/xNIldzExkP5LyknU+UxI5FmU7wP3QDbN1RjWF9ZWVF6WlQuqT1WJD1h
+ JEuuGnLgMIBXukrJHqsSXXucBEJcbAcL2JTP4az4HHh3U1nX++hRxodyD
+ egq15yA/MNqiIYDnPx+V+G4mrtg+k1k+Rkqz4FFPATOeohNU59PXxBiTQ
+ 9OnFHrcrj+/k7rT/WSnvLjqvkMTG2awTPNm6piGP4K8dttjk+gedhStoZ
+ nMyn0+KjxzSdBfQ74GSiNEMRbPUq7D5Lp7+FkuawbMx51oIuNkEUDLsDd Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="359714335"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="359714335"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2023 06:44:37 -0700
+ 25 Aug 2023 06:44:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="984123031"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="984123031"
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="984123039"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="984123039"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by fmsmga006.fm.intel.com with SMTP; 25 Aug 2023 06:44:35 -0700
+ by fmsmga006.fm.intel.com with SMTP; 25 Aug 2023 06:44:38 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 25 Aug 2023 16:44:34 +0300
+ Fri, 25 Aug 2023 16:44:38 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 25 Aug 2023 16:44:26 +0300
-Message-ID: <20230825134431.24391-2-ville.syrjala@linux.intel.com>
+Date: Fri, 25 Aug 2023 16:44:27 +0300
+Message-ID: <20230825134431.24391-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230825134431.24391-1-ville.syrjala@linux.intel.com>
 References: <20230825134431.24391-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 1/6] drm/i915/sdvo: Nuke attached_output
- tracking
+Subject: [Intel-gfx] [PATCH v2 2/6] drm/i915/sdvo: Initialize the encoder
+ earlier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,135 +66,130 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Instead of operating on the output the user specified (via the
-connector) the current code tends to operate on whichever outputs
-it has detected as attached. That is not how the kms uapi is supposed
-to work. So simply get rid of attached_outputs and instead directly
-operate on the output the user has specified.
+Call drm_encoder_init() earlier so that we don't have to keep passing
+the i915/dev_priv around separately.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+v2: Reorder drm_encoder_cleanup() in the error path (Jani)
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_sdvo.c | 31 ++++++++++++-----------
- 1 file changed, 16 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 37 +++++++++++------------
+ 1 file changed, 18 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index a1fbeac95347..2690db9c593e 100644
+index 2690db9c593e..89b0262539e9 100644
 --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
 +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -103,12 +103,6 @@ struct intel_sdvo {
- 	/* Pixel clock limitations reported by the SDVO device, in kHz */
- 	int pixel_clock_min, pixel_clock_max;
+@@ -2613,9 +2613,9 @@ intel_sdvo_guess_ddc_bus(struct intel_sdvo *sdvo)
+  * outputs, then LVDS outputs.
+  */
+ static void
+-intel_sdvo_select_ddc_bus(struct drm_i915_private *dev_priv,
+-			  struct intel_sdvo *sdvo)
++intel_sdvo_select_ddc_bus(struct intel_sdvo *sdvo)
+ {
++	struct drm_i915_private *dev_priv = to_i915(sdvo->base.base.dev);
+ 	struct sdvo_device_mapping *mapping;
  
--	/*
--	* For multiple function SDVO device,
--	* this is for current attached outputs.
--	*/
--	u16 attached_output;
--
- 	/*
- 	 * Hotplug activation bits for this device
- 	 */
-@@ -1223,12 +1217,13 @@ static bool intel_sdvo_set_tv_format(struct intel_sdvo *intel_sdvo,
+ 	if (sdvo->port == PORT_B)
+@@ -2630,9 +2630,9 @@ intel_sdvo_select_ddc_bus(struct drm_i915_private *dev_priv,
+ }
+ 
+ static void
+-intel_sdvo_select_i2c_bus(struct drm_i915_private *dev_priv,
+-			  struct intel_sdvo *sdvo)
++intel_sdvo_select_i2c_bus(struct intel_sdvo *sdvo)
+ {
++	struct drm_i915_private *dev_priv = to_i915(sdvo->base.base.dev);
+ 	struct sdvo_device_mapping *mapping;
+ 	u8 pin;
+ 
+@@ -2671,9 +2671,9 @@ intel_sdvo_is_hdmi_connector(struct intel_sdvo *intel_sdvo)
+ }
+ 
+ static u8
+-intel_sdvo_get_slave_addr(struct drm_i915_private *dev_priv,
+-			  struct intel_sdvo *sdvo)
++intel_sdvo_get_slave_addr(struct intel_sdvo *sdvo)
+ {
++	struct drm_i915_private *dev_priv = to_i915(sdvo->base.base.dev);
+ 	struct sdvo_device_mapping *my_mapping, *other_mapping;
+ 
+ 	if (sdvo->port == PORT_B) {
+@@ -2994,7 +2994,6 @@ intel_sdvo_output_setup(struct intel_sdvo *intel_sdvo)
+ 		SDVO_OUTPUT_LVDS0,
+ 		SDVO_OUTPUT_LVDS1,
+ 	};
+-	struct drm_i915_private *i915 = to_i915(intel_sdvo->base.base.dev);
+ 	u16 flags;
+ 	int i;
+ 
+@@ -3008,7 +3007,7 @@ intel_sdvo_output_setup(struct intel_sdvo *intel_sdvo)
+ 
+ 	intel_sdvo->controlled_output = flags;
+ 
+-	intel_sdvo_select_ddc_bus(i915, intel_sdvo);
++	intel_sdvo_select_ddc_bus(intel_sdvo);
+ 
+ 	for (i = 0; i < ARRAY_SIZE(probe_order); i++) {
+ 		u16 type = flags & probe_order[i];
+@@ -3309,9 +3308,9 @@ static const struct i2c_lock_operations proxy_lock_ops = {
+ };
  
  static bool
- intel_sdvo_set_output_timings_from_mode(struct intel_sdvo *intel_sdvo,
-+					struct intel_sdvo_connector *intel_sdvo_connector,
- 					const struct drm_display_mode *mode)
+-intel_sdvo_init_ddc_proxy(struct intel_sdvo *sdvo,
+-			  struct drm_i915_private *dev_priv)
++intel_sdvo_init_ddc_proxy(struct intel_sdvo *sdvo)
  {
- 	struct intel_sdvo_dtd output_dtd;
++	struct drm_i915_private *dev_priv = to_i915(sdvo->base.base.dev);
+ 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
  
- 	if (!intel_sdvo_set_target_output(intel_sdvo,
--					  intel_sdvo->attached_output))
-+					  intel_sdvo_connector->output_flag))
+ 	sdvo->ddc.owner = THIS_MODULE;
+@@ -3357,23 +3356,23 @@ bool intel_sdvo_init(struct drm_i915_private *dev_priv,
+ 	if (!intel_sdvo)
  		return false;
  
- 	intel_sdvo_get_dtd_from_mode(&output_dtd, mode);
-@@ -1369,7 +1364,9 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
- 	 * the sequence to do it. Oh well.
- 	 */
- 	if (IS_TV(intel_sdvo_connector)) {
--		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo, mode))
-+		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo,
-+							     intel_sdvo_connector,
-+							     mode))
- 			return -EINVAL;
- 
- 		(void) intel_sdvo_get_preferred_input_mode(intel_sdvo,
-@@ -1387,7 +1384,9 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
- 		if (ret)
- 			return ret;
- 
--		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo, fixed_mode))
-+		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo,
-+							     intel_sdvo_connector,
-+							     fixed_mode))
- 			return -EINVAL;
- 
- 		(void) intel_sdvo_get_preferred_input_mode(intel_sdvo,
-@@ -1528,7 +1527,7 @@ static void intel_sdvo_pre_enable(struct intel_atomic_state *state,
- 	 * channel on the motherboard.  In a two-input device, the first input
- 	 * will be SDVOB and the second SDVOC.
- 	 */
--	in_out.in0 = intel_sdvo->attached_output;
-+	in_out.in0 = intel_sdvo_connector->output_flag;
- 	in_out.in1 = 0;
- 
- 	intel_sdvo_set_value(intel_sdvo,
-@@ -1537,7 +1536,7 @@ static void intel_sdvo_pre_enable(struct intel_atomic_state *state,
- 
- 	/* Set the output timings to the screen */
- 	if (!intel_sdvo_set_target_output(intel_sdvo,
--					  intel_sdvo->attached_output))
-+					  intel_sdvo_connector->output_flag))
- 		return;
- 
- 	/* lvds has a special fixed output timing. */
-@@ -1874,6 +1873,8 @@ static void intel_enable_sdvo(struct intel_atomic_state *state,
- 	struct drm_device *dev = encoder->base.dev;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_sdvo *intel_sdvo = to_sdvo(encoder);
-+	struct intel_sdvo_connector *intel_sdvo_connector =
-+		to_intel_sdvo_connector(conn_state->connector);
- 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
- 	u32 temp;
- 	bool input1, input2;
-@@ -1903,7 +1904,7 @@ static void intel_enable_sdvo(struct intel_atomic_state *state,
- 	if (0)
- 		intel_sdvo_set_encoder_power_state(intel_sdvo,
- 						   DRM_MODE_DPMS_ON);
--	intel_sdvo_set_active_outputs(intel_sdvo, intel_sdvo->attached_output);
-+	intel_sdvo_set_active_outputs(intel_sdvo, intel_sdvo_connector->output_flag);
- 
- 	if (pipe_config->has_audio)
- 		intel_sdvo_enable_audio(intel_sdvo, pipe_config, conn_state);
-@@ -2158,8 +2159,6 @@ intel_sdvo_detect(struct drm_connector *connector, bool force)
- 	if (response == 0)
- 		return connector_status_disconnected;
- 
--	intel_sdvo->attached_output = response;
+-	intel_sdvo->sdvo_reg = sdvo_reg;
+-	intel_sdvo->port = port;
+-	intel_sdvo->slave_addr =
+-		intel_sdvo_get_slave_addr(dev_priv, intel_sdvo) >> 1;
+-	intel_sdvo_select_i2c_bus(dev_priv, intel_sdvo);
+-	if (!intel_sdvo_init_ddc_proxy(intel_sdvo, dev_priv))
+-		goto err_i2c_bus;
 -
- 	if ((intel_sdvo_connector->output_flag & response) == 0)
- 		ret = connector_status_disconnected;
- 	else if (IS_TMDS(intel_sdvo_connector))
-@@ -2287,6 +2286,8 @@ static const struct drm_display_mode sdvo_tv_modes[] = {
- static int intel_sdvo_get_tv_modes(struct drm_connector *connector)
- {
- 	struct intel_sdvo *intel_sdvo = intel_attached_sdvo(to_intel_connector(connector));
-+	struct intel_sdvo_connector *intel_sdvo_connector =
-+		to_intel_sdvo_connector(connector);
- 	const struct drm_connector_state *conn_state = connector->state;
- 	struct intel_sdvo_sdtv_resolution_request tv_res;
- 	u32 reply = 0, format_map = 0;
-@@ -2304,7 +2305,7 @@ static int intel_sdvo_get_tv_modes(struct drm_connector *connector)
- 	memcpy(&tv_res, &format_map,
- 	       min(sizeof(format_map), sizeof(struct intel_sdvo_sdtv_resolution_request)));
+ 	/* encoder type will be decided later */
+ 	intel_encoder = &intel_sdvo->base;
+ 	intel_encoder->type = INTEL_OUTPUT_SDVO;
+ 	intel_encoder->power_domain = POWER_DOMAIN_PORT_OTHER;
+ 	intel_encoder->port = port;
++
+ 	drm_encoder_init(&dev_priv->drm, &intel_encoder->base,
+ 			 &intel_sdvo_enc_funcs, 0,
+ 			 "SDVO %c", port_name(port));
  
--	if (!intel_sdvo_set_target_output(intel_sdvo, intel_sdvo->attached_output))
-+	if (!intel_sdvo_set_target_output(intel_sdvo, intel_sdvo_connector->output_flag))
- 		return 0;
++	intel_sdvo->sdvo_reg = sdvo_reg;
++	intel_sdvo->port = port;
++	intel_sdvo->slave_addr = intel_sdvo_get_slave_addr(intel_sdvo) >> 1;
++	intel_sdvo_select_i2c_bus(intel_sdvo);
++	if (!intel_sdvo_init_ddc_proxy(intel_sdvo))
++		goto err_i2c_bus;
++
+ 	/* Read the regs to test if we can talk to the device */
+ 	for (i = 0; i < 0x40; i++) {
+ 		u8 byte;
+@@ -3467,10 +3466,10 @@ bool intel_sdvo_init(struct drm_i915_private *dev_priv,
+ 	intel_sdvo_output_cleanup(intel_sdvo);
  
- 	BUILD_BUG_ON(sizeof(tv_res) != 3);
+ err:
+-	drm_encoder_cleanup(&intel_encoder->base);
+ 	i2c_del_adapter(&intel_sdvo->ddc);
+ err_i2c_bus:
+ 	intel_sdvo_unselect_i2c_bus(intel_sdvo);
++	drm_encoder_cleanup(&intel_encoder->base);
+ 	kfree(intel_sdvo);
+ 
+ 	return false;
 -- 
 2.41.0
 
