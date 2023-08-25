@@ -1,54 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C804B7887FB
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Aug 2023 15:01:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 628B77888D6
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Aug 2023 15:44:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10CE910E687;
-	Fri, 25 Aug 2023 13:01:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 245DF10E69A;
+	Fri, 25 Aug 2023 13:44:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B3E110E686;
- Fri, 25 Aug 2023 13:01:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83C9D10E69A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Aug 2023 13:44:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692968487; x=1724504487;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8cmqtqG/EG6R4dOaX1svLnRD0AON8tt76w3UGGR8r9Q=;
- b=diYg147X0lVLgU06Pz86VgJxIvI8mDkunJqPF3HyAKm6TQpk8m4kdqh6
- XBGFV1TT44SPKKX548hhMkpgkh/qMbWlvgzXErIz1h+tvq80ljF0FXwXa
- oPkVW8NB8fSRTqnCeHic6/v2uLWrYFvk9+Obr6IW3xv2B0a/d4G0Z13sG
- RrZcXwMqK5Y7XgySftqls4Kr2uHPg0ADYNgbe45UMF5Y5E5BOpOhOHn8i
- k1MRX35klYIXbGrSpLkIGYJelEe4yDtDTZzdndBScawd8/hmE3S+RQvts
- 81fqfq7rcN7ZvosTPSssIfvFdHdX0Zfw27xibMOjWgAOOWYWnB05Zjvxn w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="354236670"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="354236670"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2023 06:01:26 -0700
+ t=1692971075; x=1724507075;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=R/cln/pVe558fAWM5mDUFwwE7a7qReURbt8ncw47wRo=;
+ b=cyqx3dZPkbgm7LGcNe9qyTEaoGDfSSBCClULn5qpxqlu3XcVPEhmhlCL
+ pBj42qOiJ2papQ3fWhWO9rM0T3JOHPqpD0KMULCgcNJ9/4KHmAwdM8q6f
+ bNavYwNWQr2QZ5JJh7DJNykTYIrAlYbJWA2yU33+laSSfWEre8jt41bIW
+ Brzd4okvXhBYBizPr1tcZyoGV52P7AhBUTytsrYEoQfFg0HLN/tco4xIL
+ +Rbh3DVqtsn/RjneZLMlWGAz8kDT3wEuHtn58q/KQYjyHFLGhHJUcFUs4
+ Q1SFIIcHEwTGhlbGXSit/Sfx8DOe0vpNW+lOJ+6svLrq4DjNQ1LDxNxkL g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="359714280"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="359714280"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2023 06:44:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="740602738"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="740602738"
-Received: from ogbrugge-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.56.56])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2023 06:01:25 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 25 Aug 2023 16:01:20 +0300
-Message-Id: <20230825130120.1250089-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <f8ed9b38fd2ebcd8344a1889a6c0f288969454ea.1692884619.git.jani.nikula@intel.com>
-References: <f8ed9b38fd2ebcd8344a1889a6c0f288969454ea.1692884619.git.jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="984123020"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="984123020"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by fmsmga006.fm.intel.com with SMTP; 25 Aug 2023 06:44:32 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 25 Aug 2023 16:44:31 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 25 Aug 2023 16:44:25 +0300
+Message-ID: <20230825134431.24391-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/cec: add drm_dp_cec_attach() as the
- non-edid version of set edid
+Subject: [Intel-gfx] [PATCH v2 0/6] drm/i915/sdvo: DDC rework and fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,112 +57,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>, intel-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Connectors have source physical address available in display
-info. There's no need to parse the EDID again for this. Add
-drm_dp_cec_attach() to do this.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Seems like the set_edid/unset_edid naming is a bit specific now that
-there's no need to pass the EDID at all, so aim for attach/detach going
-forward.
+I have plans to switch the whole driver over to using
+drm_connector_init_with_ddc(), and thus populate the
+sysfs "ddc" consistently. The biggest hurdle is the
+SDVO DDC handling, so start by cleaning that up.
 
-v2: Fix the embarrashing build failures
+I also found some other issues with the SDVO code so
+some additional fixes are also included.
 
-Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc: linux-media@vger.kernel.org
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/display/drm_dp_cec.c | 23 ++++++++++++++++++++---
- include/drm/display/drm_dp_helper.h  |  6 ++++++
- 2 files changed, 26 insertions(+), 3 deletions(-)
+v2: Bunch of stuff alreadey merged
+    Fixed the error path in the init code (Jani)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_cec.c b/drivers/gpu/drm/display/drm_dp_cec.c
-index ae39dc794190..007ceb281d00 100644
---- a/drivers/gpu/drm/display/drm_dp_cec.c
-+++ b/drivers/gpu/drm/display/drm_dp_cec.c
-@@ -14,6 +14,7 @@
- #include <drm/display/drm_dp_helper.h>
- #include <drm/drm_connector.h>
- #include <drm/drm_device.h>
-+#include <drm/drm_edid.h>
- 
- /*
-  * Unfortunately it turns out that we have a chicken-and-egg situation
-@@ -297,7 +298,7 @@ static void drm_dp_cec_unregister_work(struct work_struct *work)
-  * were unchanged and just update the CEC physical address. Otherwise
-  * unregister the old CEC adapter and create a new one.
-  */
--void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
-+void drm_dp_cec_attach(struct drm_dp_aux *aux, u16 source_physical_address)
- {
- 	struct drm_connector *connector = aux->cec.connector;
- 	u32 cec_caps = CEC_CAP_DEFAULTS | CEC_CAP_NEEDS_HPD |
-@@ -339,7 +340,7 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
- 		if (aux->cec.adap->capabilities == cec_caps &&
- 		    aux->cec.adap->available_log_addrs == num_las) {
- 			/* Unchanged, so just set the phys addr */
--			cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-+			cec_s_phys_addr(aux->cec.adap, source_physical_address, false);
- 			goto unlock;
- 		}
- 		/*
-@@ -370,11 +371,27 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
- 		 * from drm_dp_cec_register_connector() edid == NULL, so in
- 		 * that case the phys addr is just invalidated.
- 		 */
--		cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-+		cec_s_phys_addr(aux->cec.adap, source_physical_address, false);
- 	}
- unlock:
- 	mutex_unlock(&aux->cec.lock);
- }
-+EXPORT_SYMBOL(drm_dp_cec_attach);
-+
-+/*
-+ * Note: Prefer calling drm_dp_cec_attach() with
-+ * connector->display_info.source_physical_address if possible.
-+ */
-+void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
-+{
-+	u16 pa = CEC_PHYS_ADDR_INVALID;
-+
-+	if (edid && edid->extensions)
-+		pa = cec_get_edid_phys_addr((const u8 *)edid,
-+					    EDID_LENGTH * (edid->extensions + 1), NULL);
-+
-+	drm_dp_cec_attach(aux, pa);
-+}
- EXPORT_SYMBOL(drm_dp_cec_set_edid);
- 
- /*
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index 86f24a759268..3369104e2d25 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -699,6 +699,7 @@ void drm_dp_cec_irq(struct drm_dp_aux *aux);
- void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
- 				   struct drm_connector *connector);
- void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);
-+void drm_dp_cec_attach(struct drm_dp_aux *aux, u16 source_physical_address);
- void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid);
- void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);
- #else
-@@ -716,6 +717,11 @@ static inline void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux)
- {
- }
- 
-+static inline void drm_dp_cec_attach(struct drm_dp_aux *aux,
-+				     u16 source_physical_address)
-+{
-+}
-+
- static inline void drm_dp_cec_set_edid(struct drm_dp_aux *aux,
- 				       const struct edid *edid)
- {
+Cc: Jani Nikula <jani.nikula@intel.com>
+
+Ville Syrjälä (6):
+  drm/i915/sdvo: Nuke attached_output tracking
+  drm/i915/sdvo: Initialize the encoder earlier
+  drm/i915/sdvo: Nuke the duplicate sdvo->port
+  drm/i915/sdvo: Get rid of the per-connector i2c symlink
+  drm/i915/sdvo: Rework DDC bus handling
+  drm/i915/sdvo: Print out the i2c pin and slave address
+
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 311 +++++++++++-----------
+ 1 file changed, 155 insertions(+), 156 deletions(-)
+
 -- 
-2.39.2
+2.41.0
 
