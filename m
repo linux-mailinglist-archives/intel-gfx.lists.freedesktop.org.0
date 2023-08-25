@@ -1,54 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07904787F51
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Aug 2023 07:37:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 859CF787F81
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Aug 2023 08:03:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43C8D10E5FC;
-	Fri, 25 Aug 2023 05:37:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A1C410E5FC;
+	Fri, 25 Aug 2023 06:03:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A61010E5FC
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Aug 2023 05:37:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B1C710E5FC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Aug 2023 06:03:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692941870; x=1724477870;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ulk/pWKSLoLfNtuWxIyh5YSMrNecKc7Fel0TBIDiJag=;
- b=f3BeysK6RvOP8BnYbCj2qalWa+XZesfgFAxJWyEFb8+X+8WEkkJHr31T
- yGzcaXLoUA2MEKpgXaJsXPNSNS+Jc9cnw/pBQmC5ACVcDoR6lwlKQrjGT
- ThVNW0QFfN6bMRuHWXtKreU93p7Y4EFZ1QfC2K0FrUBVhCXjcBMT8AmZw
- Pu+gDK2+1KjLebfdShT8RBRmZ6kL4DlodNDfVyjyt4TEeI9/RCsGrivoo
- YmMElDGxOF3jg/wq6S8Ni3iPc7+vsGIgv1T/1Rjg+0lnFhj3bZUiFnbJa
- xdt51eLhrZIvtqtnKx8wBnopXnlwJYqvyOgimNirvPC/l0cE+hUZXsmPo w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="377375727"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="377375727"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 22:37:49 -0700
+ t=1692943418; x=1724479418;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=o+tAxqG6OUpyfy9SZw3EJBHA8zUtz8efNj/9LoVkgmw=;
+ b=aSNuXe6ju9x/UuHNcqvZ9pg0CGOzj47Vpl8nuUSAwTuKZ63oZpEpdR3t
+ fwdmv5Ba1+rDwkZkklPPa3TROsnJRBDCzGeEhr8qdAlbG/rCz2Ig15dB2
+ BuXnkpqXaDrEmx3CBXndWCvi+MSPGYgYD9YEo99ZR1ajcvwrNd+mKGKfd
+ qzTBsEg9/sz4d9wV88cTp2pJFvLx9tjPogR2BaB5S4D2HbcG/X9Hx/1Cg
+ HuhJO8RWt04MO3SZYAIV7dezXndZNRzFMjlgY28eZgsrZ3f1cybuUGw1k
+ JIQTBZgsaxUgZGOCJUZtvvK2t9L6ZoNV7DYIkvuzgVft2PI4btkQ+t0Zq w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="373511979"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="373511979"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2023 23:03:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="737354246"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="737354246"
+X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="802847520"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="802847520"
 Received: from ogbrugge-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.56.56])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 22:37:47 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Linyu Yuan <quic_linyyuan@quicinc.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20230825050029.1122-1-quic_linyyuan@quicinc.com>
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2023 23:03:35 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <b7e8f31cf1dbf6f234e6e8836c4a24aef0f5ad1e.camel@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230825050029.1122-1-quic_linyyuan@quicinc.com>
-Date: Fri, 25 Aug 2023 08:37:43 +0300
-Message-ID: <875y534r88.fsf@intel.com>
+References: <20230818112758.3586545-1-jani.nikula@intel.com>
+ <b7e8f31cf1dbf6f234e6e8836c4a24aef0f5ad1e.camel@intel.com>
+Date: Fri, 25 Aug 2023 09:03:32 +0300
+Message-ID: <87zg2f3bgr.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: fix compile issue of
- guc_klvs_abi.h
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/vma: constify unbind_fence_ops
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +61,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Linyu Yuan <quic_linyyuan@quicinc.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 25 Aug 2023, Linyu Yuan <quic_linyyuan@quicinc.com> wrote:
-> GCC report GUC_KLV_0_KEY and GUC_KLV_0_LEN is not constant when do
-> preprocessing.
+On Wed, 23 Aug 2023, "Hogander, Jouni" <jouni.hogander@intel.com> wrote:
+> On Fri, 2023-08-18 at 14:27 +0300, Jani Nikula wrote:
+>> unbind_fence_ops can be const and placed in rodata.
+>>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 
-Please paste the actual compiler warning.
+Thanks, pushed to din.
 
 BR,
 Jani.
 
-
-
 >
-> Change to use GENMASK() to avoid the issue.
+>> ---
+>>  drivers/gpu/drm/i915/i915_vma_resource.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_vma_resource.c
+>> b/drivers/gpu/drm/i915/i915_vma_resource.c
+>> index 6ba7a7feceba..53d619ef0c3d 100644
+>> --- a/drivers/gpu/drm/i915/i915_vma_resource.c
+>> +++ b/drivers/gpu/drm/i915/i915_vma_resource.c
+>> @@ -94,7 +94,7 @@ static void unbind_fence_release(struct dma_fence
+>> *fence)
+>>         call_rcu(&fence->rcu, unbind_fence_free_rcu);
+>>  }
+>>
+>> -static struct dma_fence_ops unbind_fence_ops =3D {
+>> +static const struct dma_fence_ops unbind_fence_ops =3D {
+>>         .get_driver_name =3D get_driver_name,
+>>         .get_timeline_name =3D get_timeline_name,
+>>         .release =3D unbind_fence_release,
 >
-> Signed-off-by: Linyu Yuan <quic_linyyuan@quicinc.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-> index 58012edd4eb0..fd3c16695e5f 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-> @@ -29,8 +29,8 @@
->   */
->  
->  #define GUC_KLV_LEN_MIN				1u
-> -#define GUC_KLV_0_KEY				(0xffff << 16)
-> -#define GUC_KLV_0_LEN				(0xffff << 0)
-> +#define GUC_KLV_0_KEY				GENMASK(31, 16)
-> +#define GUC_KLV_0_LEN				GENMASK(15, 0)
->  #define GUC_KLV_n_VALUE				(0xffffffff << 0)
->  
->  /**
 
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
