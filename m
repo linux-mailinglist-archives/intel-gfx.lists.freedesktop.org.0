@@ -1,48 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED48378943A
-	for <lists+intel-gfx@lfdr.de>; Sat, 26 Aug 2023 09:21:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD4207894BA
+	for <lists+intel-gfx@lfdr.de>; Sat, 26 Aug 2023 10:15:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26B3A10E185;
-	Sat, 26 Aug 2023 07:21:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4496F10E187;
+	Sat, 26 Aug 2023 08:15:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AC6610E17E;
- Sat, 26 Aug 2023 07:21:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693034491; x=1724570491;
- h=date:from:to:cc:subject:message-id;
- bh=90aaa/v6TnUI2vFp6mvZHDtzMwlBNDKOpVYoUpdCj94=;
- b=CvNEAJUWC/DErNdWRmQHaTdgMNS1CQr1AQe7tCY9FtMVADvFpgYLQ6JZ
- SofO3TOrqEWQZVLLWrrzUel2ilLmD/s9jFNQt3s+AxAokANvgank6mC3N
- wM9C5FDSAY7d6Veo39f4SHAYYvM7bQfz7c+EHN7jP5tB96OHpNNIcDVBm
- LO9ay00Fpescsf5l8w55VmSzgAtcjygXrTPLnkER45X5+kO3rBPeR+pFn
- eMHHta5F05jCaBdiIGnEvrcN6JFLHZakXtW92n29H4KaQOL646iJlXpO9
- TYPItML6EIHH+BHs3tJu/WOynZfGMLV56G+3HTVC/z7LQw+WBeW2j74Xz Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="359849510"
-X-IronPort-AV: E=Sophos;i="6.02,203,1688454000"; d="scan'208";a="359849510"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2023 00:21:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="807762989"
-X-IronPort-AV: E=Sophos;i="6.02,203,1688454000"; d="scan'208";a="807762989"
-Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
- by fmsmga004.fm.intel.com with ESMTP; 26 Aug 2023 00:21:23 -0700
-Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qZnbm-0004Rz-2D;
- Sat, 26 Aug 2023 07:21:22 +0000
-Date: Sat, 26 Aug 2023 15:20:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Message-ID: <202308261517.LZOQhPlO-lkp@intel.com>
-User-Agent: s-nail v14.9.24
-Subject: [Intel-gfx] [linux-next:master] BUILD REGRESSION
- 6269320850097903b30be8f07a5c61d9f7592393
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 178D510E186;
+ Sat, 26 Aug 2023 08:15:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0AD60A47DF;
+ Sat, 26 Aug 2023 08:15:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6189351530896535301=="
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Sat, 26 Aug 2023 08:15:53 -0000
+Message-ID: <169303775301.6795.7143575260425113089@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1692884619.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1692884619.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=2C_cec_and_edid_updates_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,1770 +40,1708 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
- kvm@vger.kernel.org, linux-cifs@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-block@vger.kernel.org,
- ath10k@lists.infradead.org, linux-clk@vger.kernel.org,
- cluster-devel@redhat.com, Linux Memory Management List <linux-mm@kvack.org>,
- iommu@lists.linux.dev, keyrings@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, amd-gfx@lists.freedesktop.org,
- dmaengine@vger.kernel.org, cgroups@vger.kernel.org, bpf@vger.kernel.org,
- MPT-FusionLinux.pdl@broadcom.com, intel-gfx@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 6269320850097903b30be8f07a5c61d9f7592393  Add linux-next specific files for 20230825
+--===============6189351530896535301==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Error/Warning reports:
+== Series Details ==
 
-https://lore.kernel.org/oe-kbuild-all/202308111853.ISf5a6VC-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308162234.Y7j8JEIF-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308170007.OzhdwITj-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308170206.fZG3V1Gy-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308171521.DFEZZNuE-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308171801.P2Rd8yeL-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308211837.4VBSUAtZ-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308212225.fGjY1rr6-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308212225.rDBrZgwf-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308212348.1TirdKeg-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308220024.7HnE6uda-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308220116.C2UzYhrZ-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308220614.h0EIBlon-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308230251.2EhAALdZ-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308231008.lxCTs3d2-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308231917.NfCYTXDO-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308232055.9pzSbqTs-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308241150.LquDYwGT-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308250621.1lwt7PtZ-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308251634.tuRn4OVv-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308251844.1FuQYsql-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308251906.SYawej6g-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308251949.5IiaV0sz-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308252255.2HPJ6x5Q-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202308260218.hAEW63gz-lkp@intel.com
+Series: drm, cec and edid updates (rev2)
+URL   : https://patchwork.freedesktop.org/series/122841/
+State : success
 
-Error/Warning: (recently discovered and may have been fixed)
+== Summary ==
 
-../lib/gcc/loongarch64-linux/13.2.0/plugin/include/config/loongarch/loongarch-opts.h:31:10: fatal error: loongarch-def.h: No such file or directory
-<command-line>: warning: '%s' directive argument is null [-Wformat-overflow=]
-ERROR: modpost: ".L874" [drivers/mtd/nand/raw/nand.ko] undefined!
-ERROR: modpost: "efi" [sound/pci/hda/snd-hda-scodec-tas2781-i2c.ko] undefined!
-arch/arm/kernel/bios32.c:413:39: warning: '%d' directive writing between 1 and 11 bytes into a region of size 9 [-Wformat-overflow=]
-arch/csky/include/asm/ptrace.h:100:11: error: expected ';' before 'void'
-arch/csky/include/asm/ptrace.h:99:11: error: expected ';' before 'int'
-arch/csky/include/asm/traps.h:43:11: error: expected ';' before 'void'
-arch/loongarch/kernel/asm-offsets.c:172:6: warning: no previous prototype for 'output_thread_lbt_defines' [-Wmissing-prototypes]
-arch/powerpc/include/asm/switch_to.h:86:2: error: call to __compiletime_assert_261 declared with 'error' attribute: BUILD_BUG failed
-arch/powerpc/kvm/../../../virt/kvm/vfio.c:89:7: error: attribute declaration must precede definition [-Werror,-Wignored-attributes]
-arch/powerpc/lib/sstep.c:287:23: error: writing 8 bytes into a region of size 0 [-Werror=stringop-overflow=]
-arch/um/os-Linux/umid.c:106:23: warning: '__builtin___sprintf_chk' may write a terminating nul past the end of the destination [-Wformat-overflow=]
-arch/x86/kernel/cpu/microcode/amd.c:504:58: warning: 'h.bin' directive output may be truncated writing 5 bytes into a region of size between 1 and 7 [-Wformat-truncation=]
-block/blk-throttle.c:1531:74: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-block/blk-throttle.c:1538:43: warning: '%lu' directive output may be truncated writing between 1 and 20 bytes into a region of size 17 [-Wformat-truncation=]
-block/disk-events.c:300: warning: Excess function parameter 'events' description in 'disk_force_media_change'
-drivers/ata/libata-core.c:2277:56: warning: '%d' directive output may be truncated writing between 1 and 2 bytes into a region of size between 1 and 11 [-Wformat-truncation=]
-drivers/ata/libata-core.c:2282:56: warning: '%d' directive output may be truncated writing between 1 and 2 bytes into a region of size between 1 and 11 [-Wformat-truncation=]
-drivers/ata/libata-eh.c:2338:59: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 4 [-Wformat-truncation=]
-drivers/ata/libata-eh.c:2364:59: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 4 [-Wformat-truncation=]
-drivers/ata/pata_it821x.c:635:25: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 3 [-Wformat-truncation=]
-drivers/block/virtio_blk.c:1079:68: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 7 [-Wformat-truncation=]
-drivers/clk/clk-lmk04832.c:1297:36: warning: '%02d' directive writing between 2 and 11 bytes into a region of size between 0 and 3 [-Wformat-overflow=]
-drivers/clk/clk-lmk04832.c:1312:31: warning: '%02d' directive writing between 2 and 11 bytes into a region of size 6 [-Wformat-overflow=]
-drivers/clk/clk-renesas-pcie.c:185:24: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size 2 [-Wformat-truncation=]
-drivers/clk/mvebu/clk-cpu.c:200:41: warning: 'sprintf' may write a terminating nul past the end of the destination [-Wformat-overflow=]
-drivers/clocksource/sh_mtu2.c:348:27: warning: '%u' directive writing between 1 and 10 bytes into a region of size 3 [-Wformat-overflow=]
-drivers/crypto/ccree/cc_cipher.c:1430:60: warning: '%s' directive output may be truncated writing up to 17663 bytes into a region of size 128 [-Wformat-truncation=]
-drivers/crypto/hifn_795x.c:2396:64: warning: '%s' directive output may be truncated writing up to 7679 bytes into a region of size 128 [-Wformat-truncation=]
-drivers/crypto/hifn_795x.c:2396:64: warning: '%s' directive output may be truncated writing up to 8831 bytes into a region of size 128 [-Wformat-truncation=]
-drivers/crypto/intel/qat/qat_common/adf_isr.c:197:47: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size between 0 and 5 [-Wformat-truncation=]
-drivers/crypto/marvell/cesa/cesa.c:512:59: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 3 [-Wformat-truncation=]
-drivers/dma/dw-edma/dw-edma-v0-debugfs.c:193:50: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 8 [-Wformat-truncation=]
-drivers/dma/dw-edma/dw-edma-v0-debugfs.c:256:50: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 8 [-Wformat-truncation=]
-drivers/dma/dw-edma/dw-hdma-v0-debugfs.c:125:50: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 8 [-Wformat-truncation=]
-drivers/dma/dw-edma/dw-hdma-v0-debugfs.c:142:50: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 8 [-Wformat-truncation=]
-drivers/dma/tegra20-apb-dma.c:1496:64: warning: '%d' directive output may be truncated writing between 1 and 8 bytes into a region of size 5 [-Wformat-truncation=]
-drivers/edac/sb_edac.c:1678:85: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-drivers/edac/skx_common.c:392:87: warning: '_DIMM#' directive output may be truncated writing 6 bytes into a region of size between 0 and 9 [-Wformat-truncation=]
-drivers/firmware/efi/cper-arm.c:298:64: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-drivers/firmware/efi/cper-x86.c:295:72: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-drivers/firmware/turris-mox-rwtm.c:255:90: warning: '%08x' directive writing 8 bytes into a region of size between 7 and 9 [-Wformat-overflow=]
-drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:516: warning: Function parameter or member 'xcc_id' not described in 'amdgpu_mm_wreg_mmio_rlc'
-drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c:123: warning: Excess function parameter 'db_index' description in 'amdgpu_doorbell_index_on_bar'
-drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c:123: warning: Function parameter or member 'doorbell_index' not described in 'amdgpu_doorbell_index_on_bar'
-drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:330:40: warning: '%d' directive writing between 1 and 10 bytes into a region of size between 0 and 8 [-Wformat-overflow=]
-drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c:1475:66: warning: '%s' directive output may be truncated writing between 1 and 2 bytes into a region of size between 0 and 29 [-Wformat-truncation=]
-drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c:1034:101: warning: '%012llX' directive output may be truncated writing between 12 and 16 bytes into a region of size between 9 and 14 [-Wformat-truncation=]
-drivers/gpu/drm/i915/display/intel_tc.c:1845:11: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 3 [-Wformat-truncation=]
-drivers/gpu/drm/nouveau/nouveau_backlight.c:56:69: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size 3 [-Wformat-truncation=]
-drivers/hid/hid-logitech-dj.c:764:44: warning: '%d' directive output may be truncated writing between 1 and 3 bytes into a region of size 2 [-Wformat-truncation=]
-drivers/hid/hid-sensor-custom.c:591:62: warning: '%s' directive output may be truncated writing likely 4 or more bytes into a region of size between 0 and 63 [-Wformat-truncation=]
-drivers/hwmon/i5k_amb.c:284:13: warning: '_label' directive output may be truncated writing 6 bytes into a region of size between 2 and 11 [-Wformat-truncation=]
-drivers/hwmon/i5k_amb.c:299:13: warning: '_input' directive output may be truncated writing 6 bytes into a region of size between 2 and 11 [-Wformat-truncation=]
-drivers/hwmon/i5k_amb.c:314:13: warning: '_min' directive output may be truncated writing 4 bytes into a region of size between 2 and 11 [-Wformat-truncation=]
-drivers/hwmon/i5k_amb.c:330:13: warning: '_mid' directive output may be truncated writing 4 bytes into a region of size between 2 and 11 [-Wformat-truncation=]
-drivers/hwmon/i5k_amb.c:346:13: warning: '_max' directive output may be truncated writing 4 bytes into a region of size between 2 and 11 [-Wformat-truncation=]
-drivers/hwmon/i5k_amb.c:362:13: warning: '_alarm' directive output may be truncated writing 6 bytes into a region of size between 2 and 11 [-Wformat-truncation=]
-drivers/iio/adc/aspeed_adc.c:507:65: warning: '%s' directive argument is null [-Wformat-truncation=]
-drivers/infiniband/hw/qib/qib_verbs.c:1554:40: warning: '%s' directive output may be truncated writing up to 64 bytes into a region of size 43 [-Wformat-truncation=]
-drivers/input/keyboard/atkbd.c:1153:21: warning: '/input0' directive output may be truncated writing 7 bytes into a region of size between 1 and 32 [-Wformat-truncation=]
-drivers/input/keyboard/sunkbd.c:275:57: warning: '/input0' directive output may be truncated writing 7 bytes into a region of size between 1 and 32 [-Wformat-truncation=]
-drivers/input/mouse/alps.c:1419:56: warning: '%s' directive output may be truncated writing 6 bytes into a region of size between 0 and 31 [-Wformat-truncation=]
-drivers/input/mouse/alps.c:3102:63: warning: '/input1' directive output may be truncated writing 7 bytes into a region of size between 1 and 32 [-Wformat-truncation=]
-drivers/input/mouse/elantech.c:2090:65: warning: '/input1' directive output may be truncated writing 7 bytes into a region of size between 1 and 32 [-Wformat-truncation=]
-drivers/input/mouse/lifebook.c:283:21: warning: '/input1' directive output may be truncated writing 7 bytes into a region of size between 1 and 32 [-Wformat-truncation=]
-drivers/input/mouse/psmouse-base.c:1603:59: warning: '/input0' directive output may be truncated writing 7 bytes into a region of size between 1 and 32 [-Wformat-truncation=]
-drivers/input/mouse/sermouse.c:240:61: warning: '/input0' directive output may be truncated writing 7 bytes into a region of size between 1 and 32 [-Wformat-truncation=]
-drivers/input/mouse/vmmouse.c:455:53: warning: '/input1' directive output may be truncated writing 7 bytes into a region of size between 1 and 32 [-Wformat-truncation=]
-drivers/input/mouse/vsxxxaa.c:468:55: warning: '/input0' directive output may be truncated writing 7 bytes into a region of size between 1 and 32 [-Wformat-truncation=]
-drivers/input/serio/serio_raw.c:303:28: warning: '%ld' directive output may be truncated writing between 1 and 11 bytes into a region of size 7 [-Wformat-truncation=]
-drivers/iommu/intel/dmar.c:1062:35: warning: '%d' directive writing between 1 and 10 bytes into a region of size 9 [-Wformat-overflow=]
-drivers/leds/led-core.c:513:78: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-drivers/leds/leds-lp55xx-common.c:184:43: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size between 5 and 24 [-Wformat-truncation=]
-drivers/leds/trigger/ledtrig-cpu.c:155:56: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 5 [-Wformat-truncation=]
-drivers/leds/trigger/ledtrig-netdev.c:234:41: warning: writing 1 byte into a region of size 0 [-Wstringop-overflow=]
-drivers/md/raid5.c:2428:33: warning: '%s' directive output may be truncated writing up to 31 bytes into a region of size between 16 and 26 [-Wformat-truncation=]
-drivers/media/radio/radio-miropcm20.c:206:57: warning: '%s' directive output may be truncated writing up to 35 bytes into a region of size 28 [-Wformat-truncation=]
-drivers/media/radio/radio-shark2.c:191:17: warning: '%s' directive output may be truncated writing up to 35 bytes into a region of size 32 [-Wformat-truncation=]
-drivers/memory/tegra/tegra20.c:605:62: warning: '.' directive output may be truncated writing 1 byte into a region of size between 0 and 5 [-Wformat-truncation=]
-drivers/mfd/cs42l43.c:1076:12: warning: 'cs42l43_suspend' defined but not used [-Wunused-function]
-drivers/mfd/cs42l43.c:1106:12: warning: 'cs42l43_resume' defined but not used [-Wunused-function]
-drivers/mfd/cs42l43.c:1124:12: warning: 'cs42l43_runtime_suspend' defined but not used [-Wunused-function]
-drivers/mfd/cs42l43.c:1138:12: warning: 'cs42l43_runtime_resume' defined but not used [-Wunused-function]
-drivers/mmc/host/mmc_spi.c:248:64: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-drivers/net/ethernet/amd/pds_core/core.c:126:45: warning: '%s' directive output may be truncated writing up to 31 bytes into a region of size between 19 and 21 [-Wformat-truncation=]
-drivers/net/ethernet/amd/pds_core/dev.c:263:22: warning: '%s' directive output may be truncated writing up to 64 bytes into a region of size 23 [-Wformat-truncation=]
-drivers/net/ethernet/aquantia/atlantic/aq_ethtool.c:277:59: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 6 [-Wformat-truncation=]
-drivers/net/ethernet/broadcom/bnx2x/bnx2x_cmn.c:153:40: warning: '%s' directive output may be truncated writing up to 19 bytes into a region of size between 13 and 24 [-Wformat-truncation=]
-drivers/net/ethernet/broadcom/bnx2x/bnx2x_ethtool.c:3199:43: warning: '%d' directive output may be truncated writing between 1 and 7 bytes into a region of size 5 [-Wformat-truncation=]
-drivers/net/ethernet/broadcom/bnxt/bnxt_ethtool.c:3032:32: warning: '%s' directive output may be truncated writing up to 31 bytes into a region of size 26 [-Wformat-truncation=]
-drivers/net/ethernet/broadcom/tg3.c:11228:37: warning: '-txrx-' directive output may be truncated writing 6 bytes into a region of size between 1 and 16 [-Wformat-truncation=]
-drivers/net/ethernet/broadcom/tg3.c:11231:37: warning: '-tx-' directive output may be truncated writing 4 bytes into a region of size between 1 and 16 [-Wformat-truncation=]
-drivers/net/ethernet/broadcom/tg3.c:11234:37: warning: '-rx-' directive output may be truncated writing 4 bytes into a region of size between 1 and 16 [-Wformat-truncation=]
-drivers/net/ethernet/broadcom/tg3.c:11237:38: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size between 0 and 15 [-Wformat-truncation=]
-drivers/net/ethernet/cadence/macb_main.c:3151:77: warning: '%s' directive output may be truncated writing up to 239 bytes into a region of size between 19 and 29 [-Wformat-truncation=]
-drivers/net/ethernet/cavium/liquidio/lio_core.c:1121:76: warning: '%u' directive output may be truncated writing between 1 and 10 bytes into a region of size between 0 and 13 [-Wformat-truncation=]
-drivers/net/ethernet/cavium/thunder/thunder_bgx.c:1432:34: warning: '%d' directive output may be truncated writing between 1 and 3 bytes into a region of size 2 [-Wformat-truncation=]
-drivers/net/ethernet/freescale/dpaa/dpaa_ethtool.c:255:64: warning: '%s' directive output may be truncated writing up to 287 bytes into a region of size 32 [-Wformat-truncation=]
-drivers/net/ethernet/hisilicon/hns3/hns3pf/hclge_main.c:662:50: warning: '%s' directive output may be truncated writing up to 4895 bytes into a region of size 32 [-Wformat-truncation=]
-drivers/net/ethernet/intel/igb/igb_main.c:3092:53: warning: '%d' directive output may be truncated writing between 1 and 5 bytes into a region of size between 1 and 13 [-Wformat-truncation=]
-drivers/net/ethernet/marvell/octeontx2/af/cgx.c:1644:49: warning: '%d' directive writing between 1 and 11 bytes into a region of size between 4 and 6 [-Wformat-overflow=]
-drivers/net/ethernet/marvell/octeontx2/af/rvu_debugfs.c:533:36: warning: '%d' directive writing between 1 and 11 bytes into a region of size 7 [-Wformat-overflow=]
-drivers/net/ethernet/marvell/octeontx2/nic/otx2_pf.c:1809:58: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.h:48:34: warning: '%s' directive argument is null [-Wformat-overflow=]
-drivers/net/ethernet/mellanox/mlxsw/core_linecards.c:1421:9: warning: '.bin' directive output may be truncated writing 4 bytes into a region of size between 3 and 11 [-Wformat-truncation=]
-drivers/net/ethernet/mellanox/mlxsw/core_thermal.c:545:66: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 7 [-Wformat-truncation=]
-drivers/net/ethernet/neterion/s2io.c:6942:19: warning: '-RX' directive output may be truncated writing 3 bytes into a region of size between 0 and 17 [-Wformat-truncation=]
-drivers/net/ethernet/neterion/s2io.c:6953:19: warning: '-TX' directive output may be truncated writing 3 bytes into a region of size between 0 and 17 [-Wformat-truncation=]
-drivers/net/ethernet/netronome/nfp/nfp_net_ethtool.c:212:24: warning: ' ' directive output may be truncated writing 1 byte into a region of size between 0 and 31 [-Wformat-truncation=]
-drivers/net/ethernet/pensando/ionic/ionic_lif.c:237:11: warning: '%s' directive output may be truncated writing up to 31 bytes into a region of size 25 [-Wformat-truncation=]
-drivers/net/ethernet/pensando/ionic/ionic_lif.c:237:25: warning: '%s' directive output may be truncated writing up to 31 bytes into a region of size between 10 and 25 [-Wformat-truncation=]
-drivers/net/ethernet/qlogic/netxen/netxen_nic_main.c:1054:45: warning: '%d' directive writing between 1 and 11 bytes into a region of size between 4 and 19 [-Wformat-overflow=]
-drivers/net/ethernet/qlogic/qede/qede_main.c:1903:61: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size between 5 and 20 [-Wformat-truncation=]
-drivers/net/ethernet/qlogic/qlcnic/qlcnic_main.c:1771:49: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size between 9 and 24 [-Wformat-truncation=]
-drivers/net/ethernet/ti/cpsw_ethtool.c:248:21: warning: ': ' directive output may be truncated writing 2 bytes into a region of size between 1 and 19 [-Wformat-truncation=]
-drivers/net/phy/mscc/mscc_main.c:452:64: warning: 'sprintf' may write a terminating nul past the end of the destination [-Wformat-overflow=]
-drivers/net/virtio_net.c:4101:36: warning: 'sprintf' may write a terminating nul past the end of the destination [-Wformat-overflow=]
-drivers/net/virtio_net.c:4101:48: warning: '%d' directive writing between 1 and 11 bytes into a region of size 10 [-Wformat-overflow=]
-drivers/net/virtio_net.c:4101:50: warning: 'sprintf' may write a terminating nul past the end of the destination [-Wformat-overflow=]
-drivers/net/virtio_net.c:4102:35: warning: '%d' directive writing between 1 and 10 bytes into a region of size 9 [-Wformat-overflow=]
-drivers/net/virtio_net.c:4102:49: warning: '%d' directive writing between 1 and 10 bytes into a region of size 9 [-Wformat-overflow=]
-drivers/net/wan/hdlc_ppp.c:353:35: warning: '%s' directive argument is null [-Wformat-overflow=]
-drivers/net/wireless/ath/ath10k/core.c:928:50: warning: '%s' directive output may be truncated writing up to 99 bytes into a region of size between 98 and 99 [-Wformat-truncation=]
-drivers/net/wireless/intel/iwlwifi/fw/acpi.c:1242:25: warning: '%s' directive argument is null [-Wformat-overflow=]
-drivers/of/unittest.c:3763:43: error: invalid use of undefined type 'struct overlay_info'
-drivers/opp/debugfs.c:43:42: warning: '%.62s' directive argument is null [-Wformat-overflow=]
-drivers/opp/debugfs.c:63:42: warning: '%.1d' directive output may be truncated writing between 1 and 10 bytes into a region of size 2 [-Wformat-truncation=]
-drivers/parisc/led.c:687:24: warning: '%s' directive output may be truncated writing up to 64 bytes into a region of size 26 [-Wformat-truncation=]
-drivers/pci/controller/dwc/pci-keystone.c:1189:55: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size 2 [-Wformat-truncation=]
-drivers/pci/controller/dwc/pcie-designware.c:904:50: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 3 [-Wformat-truncation=]
-drivers/pci/hotplug/cpci_hotplug_core.c:215:44: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-drivers/phy/allwinner/phy-sun4i-usb.c:792:52: warning: '_vbus' directive output may be truncated writing 5 bytes into a region of size between 2 and 12 [-Wformat-truncation=]
-drivers/phy/allwinner/phy-sun4i-usb.c:806:60: warning: '_phy' directive output may be truncated writing 4 bytes into a region of size between 2 and 12 [-Wformat-truncation=]
-drivers/phy/allwinner/phy-sun4i-usb.c:819:60: warning: '_hsic_12M' directive output may be truncated writing 9 bytes into a region of size between 2 and 12 [-Wformat-truncation=]
-drivers/phy/allwinner/phy-sun4i-usb.c:826:60: warning: '_clk' directive output may be truncated writing 4 bytes into a region of size between 2 and 12 [-Wformat-truncation=]
-drivers/phy/allwinner/phy-sun4i-usb.c:834:52: warning: '_reset' directive output may be truncated writing 6 bytes into a region of size between 2 and 12 [-Wformat-truncation=]
-drivers/pinctrl/pinctrl-cy8c95x0.c:168: warning: Function parameter or member 'gpio_reset' not described in 'cy8c95x0_pinctrl'
-drivers/platform/mellanox/mlxreg-hotplug.c:87:61: warning: '%d' directive output may be truncated writing 1 byte into a region of size between 0 and 31 [-Wformat-truncation=]
-drivers/platform/x86/amd/pmc.c:1070:9: error: call to undeclared function 'acpi_register_lps0_dev'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-drivers/platform/x86/amd/pmc.c:1091:3: error: call to undeclared function 'acpi_unregister_lps0_dev'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-drivers/platform/x86/amd/pmc.c:878:35: error: variable has incomplete type 'struct acpi_s2idle_dev_ops'
-drivers/power/supply/rt5033_charger.c:578:(.text+0x1e4): undefined reference to `extcon_get_state'
-drivers/power/supply/rt5033_charger.c:696:(.text+0x11a4): undefined reference to `extcon_find_edev_by_node'
-drivers/remoteproc/keystone_remoteproc.c:369:39: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size 5 [-Wformat-truncation=]
-drivers/rpmsg/rpmsg_char.c:75: warning: Function parameter or member 'remote_flow_restricted' not described in 'rpmsg_eptdev'
-drivers/rpmsg/rpmsg_char.c:75: warning: Function parameter or member 'remote_flow_updated' not described in 'rpmsg_eptdev'
-drivers/rtc/rtc-sh.c:517:58: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size 3 [-Wformat-truncation=]
-drivers/s390/block/dasd_eckd.c:1088:27: warning: '%s' directive output may be truncated writing up to 3 bytes into a region of size 1 [-Wformat-truncation=]
-drivers/scsi/aha1542.c:775:61: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-drivers/scsi/ch.c:915:29: warning: '%d' directive writing between 1 and 10 bytes into a region of size 6 [-Wformat-overflow=]
-drivers/scsi/lpfc/lpfc_init.c:14740:53: warning: '.grp' directive output may be truncated writing 4 bytes into a region of size between 1 and 80 [-Wformat-truncation=]
-drivers/scsi/megaraid.c:317:36: warning: '%d' directive output may be truncated writing between 1 and 2 bytes into a region of size between 1 and 2 [-Wformat-truncation=]
-drivers/scsi/mpt3sas/mpt3sas_base.c:3133:63: warning: '-mq-poll' directive output may be truncated writing 8 bytes into a region of size between 6 and 31 [-Wformat-truncation=]
-drivers/scsi/mpt3sas/mpt3sas_base.c:3142:68: warning: '%d' directive output may be truncated writing between 1 and 3 bytes into a region of size between 1 and 26 [-Wformat-truncation=]
-drivers/scsi/mpt3sas/mpt3sas_base.c:830:57: warning: '%s' directive output may be truncated writing up to 23 bytes into a region of size 15 [-Wformat-truncation=]
-drivers/scsi/mpt3sas/mpt3sas_scsih.c:12330:23: warning: '%s' directive output may be truncated writing up to 23 bytes into a region of size 11 [-Wformat-truncation=]
-drivers/scsi/qla2xxx/qla_mr.c:3017:25: warning: 'memset' writing 68 bytes into a region of size 64 overflows the destination [-Wstringop-overflow=]
-drivers/scsi/st.c:4190:31: warning: '%s' directive output may be truncated writing up to 31 bytes into a region of size between 9 and 10 [-Wformat-truncation=]
-drivers/thermal/thermal_sysfs.c:474:38: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 9 [-Wformat-truncation=]
-drivers/tty/serial/samsung_tty.c:1880:35: warning: '%d' directive writing between 1 and 10 bytes into a region of size 2 [-Wformat-overflow=]
-drivers/tty/serial/ucc_uart.c:1204:59: warning: '%u' directive writing between 1 and 2 bytes into a region of size between 1 and 11 [-Wformat-overflow=]
-drivers/usb/core/hcd.c:443:48: warning: '%s' directive output may be truncated writing up to 64 bytes into a region of size between 35 and 99 [-Wformat-truncation=]
-drivers/usb/core/hcd.c:464:48: warning: '%s' directive output may be truncated writing up to 64 bytes into a region of size between 35 and 99 [-Wformat-truncation=]
-drivers/usb/core/usb.c:706:37: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size between 0 and 15 [-Wformat-truncation=]
-drivers/usb/core/usb.c:715:37: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size between 0 and 15 [-Wformat-truncation=]
-drivers/usb/gadget/function/f_mass_storage.c:2946:48: warning: '%d' directive output may be truncated writing between 1 and 9 bytes into a region of size 5 [-Wformat-truncation=]
-drivers/usb/gadget/udc/tegra-xudc.c:3547:60: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size 2 [-Wformat-truncation=]
-drivers/vdpa/pds/debugfs.c:266:49: warning: '%02d' directive output may be truncated writing between 2 and 11 bytes into a region of size 6 [-Wformat-truncation=]
-drivers/watchdog/stm32_iwdg.c:215:34: warning: 'stm32_iwdg_of_match' defined but not used [-Wunused-const-variable=]
-drivers/watchdog/stm32_iwdg.c:215:34: warning: unused variable 'stm32_iwdg_of_match' [-Wunused-const-variable]
-drivers/xen/manage.c:354:60: warning: '%s' directive output may be truncated writing up to 95 bytes into a region of size 12 [-Wformat-truncation=]
-fs/dlm/debug_fs.c:1031:50: warning: '_queued_asts' directive output may be truncated writing 12 bytes into a region of size between 8 and 72 [-Wformat-truncation=]
-fs/gfs2/super.c:768: warning: Function parameter or member 'who' not described in 'gfs2_freeze_super'
-fs/gfs2/super.c:823: warning: Function parameter or member 'who' not described in 'gfs2_thaw_super'
-fs/smb/server/smb2pdu.c:4166: warning: Excess function parameter 'infoclass_size' description in 'buffer_check_err'
-include/linux/build_bug.h:78:41: error: static assertion failed: "sizeof(struct utp_upiu_header) == 12"
-include/linux/dev_printk.h:150:24: warning: '%s' directive argument is null [-Wformat-overflow=]
-include/linux/dynamic_debug.h:269:33: warning: '%s' directive argument is null [-Wformat-overflow=]
-include/linux/fortify-string.h:406:19: warning: writing 1 byte into a region of size 0 [-Wstringop-overflow=]
-include/linux/kern_levels.h:5:25: warning: '%s' directive argument is null [-Wformat-overflow=]
-include/linux/phy.h:296:20: warning: '%s' directive output may be truncated writing up to 60 bytes into a region of size 20 [-Wformat-truncation=]
-include/linux/printk.h:455:44: warning: '%s' directive argument is null [-Wformat-overflow=]
-include/net/9p/9p.h:55:9: warning: '%s' directive argument is null [-Wformat-overflow=]
-kernel/bpf/core.c:596:54: warning: '%s' directive argument is null [-Wformat-truncation=]
-kernel/bpf/map_iter.c:200:17: warning: no previous declaration for 'bpf_map_sum_elem_count' [-Wmissing-declarations]
-kernel/locking/lockdep_proc.c:438:32: warning: '%lld' directive output may be truncated writing between 1 and 17 bytes into a region of size 15 [-Wformat-truncation=]
-kernel/relay.c:357:42: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-kernel/workqueue.c:2148:54: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size between 5 and 14 [-Wformat-truncation=]
-kernel/workqueue.c:2188:54: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size between 5 and 14 [-Wformat-truncation=]
-lib/string_helpers.c:119:46: warning: '%03u' directive output may be truncated writing between 3 and 10 bytes into a region of size 7 [-Wformat-truncation=]
-lib/vsprintf.c:2893:33: warning: writing 1 byte into a region of size 0 [-Wstringop-overflow=]
-mm/mempolicy.c:3118:26: warning: writing 1 byte into a region of size 0 [-Wstringop-overflow=]
-net/8021q/vlan.c:235:46: warning: '%.4i' directive output may be truncated writing 4 bytes into a region of size between 0 and 15 [-Wformat-truncation=]
-net/8021q/vlan.c:247:46: warning: '%i' directive output may be truncated writing between 1 and 4 bytes into a region of size between 0 and 15 [-Wformat-truncation=]
-net/9p/trans_xen.c:444:39: warning: '%d' directive writing between 1 and 11 bytes into a region of size 8 [-Wformat-overflow=]
-net/bpf/test_run.c:559:15: warning: no previous declaration for 'bpf_fentry_test_sinfo' [-Wmissing-declarations]
-net/bpf/test_run.c:569:17: warning: no previous declaration for 'bpf_modify_return_test2' [-Wmissing-declarations]
-net/core/selftests.c:404:52: warning: '%s' directive output may be truncated writing up to 279 bytes into a region of size 28 [-Wformat-truncation=]
-net/socket.c:1678:21: warning: no previous declaration for 'update_socket_protocol' [-Wmissing-declarations]
-net/sunrpc/clnt.c:571:75: warning: '%s' directive output may be truncated writing up to 107 bytes into a region of size 48 [-Wformat-truncation=]
-powerpc64-linux-ld: drivers/power/supply/rt5033_charger.c:710:(.text+0x1284): undefined reference to `devm_extcon_register_notifier_all'
-security/keys/proc.c:213:44: warning: 'h' directive writing 1 byte into a region of size between 0 and 15 [-Wformat-overflow=]
-security/keys/proc.c:217:45: warning: 'sprintf' may write a terminating nul past the end of the destination [-Wformat-overflow=]
-sound/aoa/fabrics/layout.c:779:36: warning: '%s' directive output may be truncated writing up to 31 bytes into a region of size 23 [-Wformat-truncation=]
-sound/core/ump.c:1160:63: warning: '%s' directive output may be truncated writing up to 127 bytes into a region of size between 21 and 23 [-Wformat-truncation=]
-sound/core/ump.c:1194:53: warning: '%s' directive output may be truncated writing up to 127 bytes into a region of size 80 [-Wformat-truncation=]
-sound/firewire/fireworks/fireworks.c:97:28: warning: ', GUID ' directive output may be truncated writing 7 bytes into a region of size between 4 and 77 [-Wformat-truncation=]
-sound/hda/intel-sdw-acpi.c:34:35: warning: '-subproperties' directive output may be truncated writing 14 bytes into a region of size between 7 and 17 [-Wformat-truncation=]
-sound/hda/intel-sdw-acpi.c:34:35: warning: '-subproperties' directive output may be truncated writing 14 bytes into a region of size between 8 and 17 [-Wformat-truncation=]
-sound/isa/ad1848/ad1848.c:104:29: warning: ' at 0x' directive output may be truncated writing 6 bytes into a region of size between 1 and 80 [-Wformat-truncation=]
-sound/isa/cs423x/cs4231.c:106:29: warning: ' at 0x' directive output may be truncated writing 6 bytes into a region of size between 1 and 80 [-Wformat-truncation=]
-sound/isa/cs423x/cs4236.c:375:29: warning: ' at 0x' directive output may be truncated writing 6 bytes into a region of size between 1 and 80 [-Wformat-truncation=]
-sound/isa/es1688/es1688.c:134:20: warning: ' at 0x' directive output may be truncated writing 6 bytes into a region of size between 1 and 80 [-Wformat-truncation=]
-sound/isa/opti9xx/miro.c:1348:31: warning: '%s' directive output may be truncated writing up to 79 bytes into a region of size between 35 and 72 [-Wformat-truncation=]
-sound/isa/opti9xx/opti92x-ad1848.c:868:23: warning: '%s' directive output may be truncated writing up to 79 bytes into a region of size between 47 and 78 [-Wformat-truncation=]
-sound/isa/sscape.c:560:50: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size 3 [-Wformat-truncation=]
-sound/soc/dwc/dwc-i2s.c:733:12: warning: 'jh7110_i2s_crg_master_init' defined but not used [-Wunused-function]
-sound/soc/dwc/dwc-i2s.c:891:12: warning: 'jh7110_i2srx_crg_init' defined but not used [-Wunused-function]
-sound/soc/dwc/dwc-i2s.c:908:12: warning: 'jh7110_i2stx0_clk_cfg' defined but not used [-Wunused-function]
-sound/xen/xen_snd_front_cfg.c:486:49: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-{standard input}:15: Error: symbol `__export_symbol_alpha_mv' is already defined
+CI Bug Log - changes from CI_DRM_13568_full -> Patchwork_122841v2_full
+====================================================
 
-Unverified Error/Warning (likely false positive, please contact us if interested):
+Summary
+-------
 
-(.text+0x4924): undefined reference to `.L858'
-drivers/dma/fsl-edma-main.c:234:3-10: line 234 is redundant because platform_get_irq() already prints an error
-drivers/firmware/broadcom/bcm47xx_sprom.c:604:60: warning: '/' directive output may be truncated writing 1 byte into a region of size between 0 and 3 [-Wformat-truncation=]
-drivers/firmware/broadcom/bcm47xx_sprom.c:666:63: warning: 'snprintf' output may be truncated before the last format character [-Wformat-truncation=]
-drivers/gpu/drm/nouveau/nouveau_exec.c:399:22-28: ERROR: invalid reference to the index variable of the iterator on line 373
-drivers/gpu/drm/nouveau/nouveau_uvmm.c:1532:23-25: ERROR: invalid reference to the index variable of the iterator on line 41
-drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c:38:32: warning: cast from 'mtk_vcodec_ipi_handler' (aka 'void (*)(void *, unsigned int, void *)') to 'ipi_handler_t' (aka 'void (*)(const void *, unsigned int, void *)') converts to incompatible function type [-Wcast-function-type-strict]
-fs/erofs/zdata.c:1042 z_erofs_do_read_page() error: we previously assumed 'fe->pcl' could be null (see line 1016)
-fs/ext4/super.c:796 update_super_work() error: uninitialized symbol 'call_notify_err'.
-include/linux/compiler_types.h:397:45: error: call to '__compiletime_assert_314' declared with attribute error: BUILD_BUG_ON failed: IS_ENABLED(CONFIG_32BIT) && (PFN_PTE_SHIFT > PAGE_SHIFT)
-kernel/workqueue.c:325:40: sparse: sparse: duplicate [noderef]
-kernel/workqueue.c:325:40: sparse: sparse: multiple address spaces given: __percpu & __rcu
-lib/crypto/mpi/mpi-inv.c:34:15: warning: variable 'k' set but not used [-Wunused-but-set-variable]
-sh4-linux-gcc: internal compiler error: Segmentation fault signal terminated program cc1
-{standard input}: Warning: end of file not at end of a line; newline inserted
-{standard input}:1095: Error: pcrel too far
-{standard input}:611: Warning: end of file not at end of a line; newline inserted
-{standard input}:944: Error: unknown pseudo-op: `.'
+  **SUCCESS**
 
-Error/Warning ids grouped by kconfigs:
+  No regressions found.
 
-gcc_recent_errors
-|-- alpha-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- alpha-allyesconfig
-|   |-- block-blk-throttle.c:warning:lu-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- block-blk-throttle.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-intel-qat-qat_common-adf_isr.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-leds-trigger-ledtrig-cpu.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-media-radio-radio-miropcm20.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-net-ethernet-amd-pds_core-core.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-amd-pds_core-dev.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-cavium-liquidio-lio_core.c:warning:u-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-marvell-octeontx2-af-cgx.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-marvell-octeontx2-af-rvu_debugfs.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-marvell-octeontx2-nic-otx2_pf.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-pensando-ionic-ionic_lif.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-scsi-aha1542.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-vdpa-pds-debugfs.c:warning:02d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|   |-- sound-isa-ad1848-ad1848.c:warning:at-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- sound-isa-cs423x-cs4231.c:warning:at-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- sound-isa-cs423x-cs4236.c:warning:at-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- sound-isa-es1688-es1688.c:warning:at-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- sound-isa-opti9xx-miro.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   |-- sound-isa-opti9xx-opti92x-ad1848.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   `-- sound-isa-sscape.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|-- alpha-defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- alpha-randconfig-r004-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   `-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|-- alpha-randconfig-r005-20230825
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-iio-adc-aspeed_adc.c:warning:s-directive-argument-is-null
-|   `-- drivers-watchdog-stm32_iwdg.c:warning:stm32_iwdg_of_match-defined-but-not-used
-|-- alpha-randconfig-r006-20230826
-|   `-- drivers-of-unittest.c:error:invalid-use-of-undefined-type-struct-overlay_info
-|-- alpha-randconfig-r012-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- standard-input:Error:symbol-__export_symbol_alpha_mv-is-already-defined
-|-- alpha-randconfig-r024-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-intel-qat-qat_common-adf_isr.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   `-- drivers-watchdog-stm32_iwdg.c:warning:stm32_iwdg_of_match-defined-but-not-used
-|-- arc-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-net-wan-hdlc_ppp.c:warning:s-directive-argument-is-null
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- arc-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- arc-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- arc-defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- arc-randconfig-001-20230825
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   `-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|-- arc-randconfig-r013-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|-- arc-vdk_hs38_smp_defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- arm-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- arm-defconfig
-|   |-- arch-arm-kernel-bios32.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-clk-mvebu-clk-cpu.c:warning:sprintf-may-write-a-terminating-nul-past-the-end-of-the-destination
-|   |-- drivers-clocksource-sh_mtu2.c:warning:u-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-crypto-marvell-cesa-cesa.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-tegra20-apb-dma.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-memory-tegra-tegra20.c:warning:.-directive-output-may-be-truncated-writing-byte-into-a-region-of-size-between-and
-|   |-- drivers-remoteproc-keystone_remoteproc.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-rtc-rtc-sh.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-usb-gadget-function-f_mass_storage.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- security-keys-proc.c:warning:h-directive-writing-byte-into-a-region-of-size-between-and
-|   `-- security-keys-proc.c:warning:sprintf-may-write-a-terminating-nul-past-the-end-of-the-destination
-|-- arm-imx_v6_v7_defconfig
-|   `-- drivers-net-wireless-ath-ath10k-core.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|-- arm-randconfig-r001-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-dma-tegra20-apb-dma.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- include-linux-build_bug.h:error:static-assertion-failed:sizeof(struct-utp_upiu_header)
-|-- arm-randconfig-r016-20230824
-|   |-- drivers-scsi-qla2xxx-qla_mr.c:warning:memset-writing-bytes-into-a-region-of-size-overflows-the-destination
-|   `-- include-linux-build_bug.h:error:static-assertion-failed:sizeof(struct-utp_upiu_header)
-|-- arm-realview_defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- arm-s3c6400_defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- arm64-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- arm64-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-firmware-efi-cper-arm.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-net-ethernet-cavium-thunder-thunder_bgx.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-freescale-dpaa-dpaa_ethtool.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-wireless-ath-ath10k-core.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-usb-gadget-udc-tegra-xudc.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   `-- drivers-xen-manage.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|-- arm64-randconfig-r026-20230823
-|   `-- drivers-net-ethernet-netronome-nfp-nfp_net_ethtool.c:warning:directive-output-may-be-truncated-writing-byte-into-a-region-of-size-between-and
-|-- csky-allmodconfig
-|   |-- arch-csky-include-asm-ptrace.h:error:expected-before-int
-|   |-- arch-csky-include-asm-ptrace.h:error:expected-before-void
-|   |-- arch-csky-include-asm-traps.h:error:expected-before-void
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-hifn_795x.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-tegra20-apb-dma.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-broadcom-bnx2x-bnx2x_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-pci-controller-dwc-pci-keystone.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-usb-gadget-function-f_mass_storage.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- csky-allnoconfig
-|   |-- arch-csky-include-asm-ptrace.h:error:expected-before-int
-|   |-- arch-csky-include-asm-ptrace.h:error:expected-before-void
-|   |-- arch-csky-include-asm-traps.h:error:expected-before-void
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- csky-allyesconfig
-|   |-- arch-csky-include-asm-ptrace.h:error:expected-before-int
-|   |-- arch-csky-include-asm-ptrace.h:error:expected-before-void
-|   |-- arch-csky-include-asm-traps.h:error:expected-before-void
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-hifn_795x.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-tegra20-apb-dma.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-broadcom-bnx2x-bnx2x_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-pci-controller-dwc-pci-keystone.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-usb-gadget-function-f_mass_storage.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|   |-- sound-core-ump.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   `-- sound-core-ump.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|-- csky-defconfig
-|   |-- arch-csky-include-asm-ptrace.h:error:expected-before-int
-|   |-- arch-csky-include-asm-ptrace.h:error:expected-before-void
-|   |-- arch-csky-include-asm-traps.h:error:expected-before-void
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- csky-randconfig-r003-20230824
-|   |-- arch-csky-include-asm-ptrace.h:error:expected-before-int
-|   |-- arch-csky-include-asm-ptrace.h:error:expected-before-void
-|   `-- arch-csky-include-asm-traps.h:error:expected-before-void
-|-- csky-randconfig-r006-20230825
-|   `-- sound-firewire-fireworks-fireworks.c:warning:GUID-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|-- i386-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- i386-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-leds-trigger-ledtrig-netdev.c:warning:writing-byte-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- i386-buildonly-randconfig-001-20230826
-|   `-- include-net-9p-9p.h:warning:s-directive-argument-is-null
-|-- i386-debian-10.3
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- i386-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- net-socket.c:warning:no-previous-declaration-for-update_socket_protocol
-|-- i386-randconfig-011-20230825
-|   `-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|-- i386-randconfig-012-20230825
-|   |-- ERROR:efi-sound-pci-hda-snd-hda-scodec-tas2781-i2c.ko-undefined
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- include-linux-fortify-string.h:warning:writing-byte-into-a-region-of-size
-|   `-- lib-vsprintf.c:warning:writing-byte-into-a-region-of-size
-|-- i386-randconfig-013-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-opp-debugfs.c:warning:.62s-directive-argument-is-null
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   `-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|-- i386-randconfig-014-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- include-linux-dynamic_debug.h:warning:s-directive-argument-is-null
-|   |-- include-linux-printk.h:warning:s-directive-argument-is-null
-|   `-- lib-vsprintf.c:warning:writing-byte-into-a-region-of-size
-|-- i386-randconfig-015-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- include-linux-printk.h:warning:s-directive-argument-is-null
-|-- i386-randconfig-016-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- kernel-bpf-map_iter.c:warning:no-previous-declaration-for-bpf_map_sum_elem_count
-|   |-- net-bpf-test_run.c:warning:no-previous-declaration-for-bpf_fentry_test_sinfo
-|   |-- net-bpf-test_run.c:warning:no-previous-declaration-for-bpf_modify_return_test2
-|   `-- net-socket.c:warning:no-previous-declaration-for-update_socket_protocol
-|-- i386-randconfig-061-20230826
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-dma-fsl-edma-common.c:sparse:sparse:cast-removes-address-space-__iomem-of-expression
-|   |-- drivers-dma-fsl-edma-main.c:sparse:sparse:cast-removes-address-space-__iomem-of-expression
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- include-linux-printk.h:warning:s-directive-argument-is-null
-|   |-- kernel-workqueue.c:sparse:sparse:duplicate-noderef
-|   `-- kernel-workqueue.c:sparse:sparse:multiple-address-spaces-given:__percpu-__rcu
-|-- i386-randconfig-062-20230826
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- include-linux-fortify-string.h:warning:writing-byte-into-a-region-of-size
-|   |-- include-linux-printk.h:warning:s-directive-argument-is-null
-|   |-- kernel-workqueue.c:sparse:sparse:duplicate-noderef
-|   |-- kernel-workqueue.c:sparse:sparse:multiple-address-spaces-given:__percpu-__rcu
-|   `-- lib-vsprintf.c:warning:writing-byte-into-a-region-of-size
-|-- i386-randconfig-063-20230826
-|   |-- command-line:warning:s-directive-argument-is-null
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-workqueue.c:sparse:sparse:duplicate-noderef
-|   `-- kernel-workqueue.c:sparse:sparse:multiple-address-spaces-given:__percpu-__rcu
-|-- i386-randconfig-141-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-ext4-super.c-update_super_work()-error:uninitialized-symbol-call_notify_err-.
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   `-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|-- i386-randconfig-r023-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- kernel-bpf-map_iter.c:warning:no-previous-declaration-for-bpf_map_sum_elem_count
-|   |-- net-bpf-test_run.c:warning:no-previous-declaration-for-bpf_fentry_test_sinfo
-|   |-- net-bpf-test_run.c:warning:no-previous-declaration-for-bpf_modify_return_test2
-|   `-- net-socket.c:warning:no-previous-declaration-for-update_socket_protocol
-|-- loongarch-allmodconfig
-|   `-- lib-gcc-loongarch64-linux-..-plugin-include-config-loongarch-loongarch-opts.h:fatal-error:loongarch-def.h:No-such-file-or-directory
-|-- loongarch-allnoconfig
-|   |-- arch-loongarch-kernel-asm-offsets.c:warning:no-previous-prototype-for-output_thread_lbt_defines
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- loongarch-allyesconfig
-|   `-- lib-gcc-loongarch64-linux-..-plugin-include-config-loongarch-loongarch-opts.h:fatal-error:loongarch-def.h:No-such-file-or-directory
-|-- loongarch-defconfig
-|   |-- arch-loongarch-kernel-asm-offsets.c:warning:no-previous-prototype-for-output_thread_lbt_defines
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   `-- sound-hda-intel-sdw-acpi.c:warning:subproperties-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|-- loongarch-randconfig-r011-20230825
-|   |-- arch-loongarch-kernel-asm-offsets.c:warning:no-previous-prototype-for-output_thread_lbt_defines
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-intel-qat-qat_common-adf_isr.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|-- loongarch-randconfig-r031-20230825
-|   |-- arch-loongarch-kernel-asm-offsets.c:warning:no-previous-prototype-for-output_thread_lbt_defines
-|   |-- drivers-crypto-intel-qat-qat_common-adf_isr.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   `-- kernel-bpf-core.c:warning:s-directive-argument-is-null
-|-- loongarch-randconfig-r036-20230825
-|   `-- drivers-net-wireless-intel-iwlwifi-fw-acpi.c:warning:s-directive-argument-is-null
-|-- m68k-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- m68k-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- m68k-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- m68k-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- m68k-m5272c3_defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- m68k-randconfig-r003-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|-- m68k-randconfig-r032-20230825
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   `-- drivers-watchdog-stm32_iwdg.c:warning:stm32_iwdg_of_match-defined-but-not-used
-|-- microblaze-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-ccree-cc_cipher.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-crypto-hifn_795x.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-tegra20-apb-dma.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-hid-hid-sensor-custom.c:warning:s-directive-output-may-be-truncated-writing-likely-or-more-bytes-into-a-region-of-size-between-and
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-broadcom-bnx2x-bnx2x_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-pci-controller-dwc-pci-keystone.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-usb-gadget-function-f_mass_storage.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- microblaze-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- microblaze-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-hifn_795x.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-tegra20-apb-dma.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-broadcom-bnx2x-bnx2x_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-pci-controller-dwc-pci-keystone.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-usb-gadget-function-f_mass_storage.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- microblaze-defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- mips-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- mips-randconfig-r012-20230826
-|   `-- include-linux-compiler_types.h:error:call-to-__compiletime_assert_NNN-declared-with-attribute-error:BUILD_BUG_ON-failed:IS_ENABLED(CONFIG_32BIT)-(PFN_PTE_SHIFT-PAGE_SHIFT)
-|-- nios2-alldefconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- nios2-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- nios2-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- nios2-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- nios2-defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- nios2-randconfig-r002-20230825
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   `-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|-- openrisc-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-tegra20-apb-dma.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-broadcom-bnx2x-bnx2x_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-pci-controller-dwc-pci-keystone.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-usb-gadget-function-f_mass_storage.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- openrisc-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- openrisc-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-tegra20-apb-dma.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-broadcom-bnx2x-bnx2x_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-pci-controller-dwc-pci-keystone.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-usb-gadget-function-f_mass_storage.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- openrisc-randconfig-r006-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   `-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|-- openrisc-randconfig-r035-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-dma-tegra20-apb-dma.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-usb-gadget-function-f_mass_storage.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   `-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|-- openrisc-virt_defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- parisc-allmodconfig
-|   |-- ERROR:L874-drivers-mtd-nand-raw-nand.ko-undefined
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-intel-qat-qat_common-adf_isr.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-parisc-led.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- parisc-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- parisc-allyesconfig
-|   |-- (.text):undefined-reference-to-L858
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-intel-qat-qat_common-adf_isr.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-broadcom-bcm47xx_sprom.c:warning:directive-output-may-be-truncated-writing-byte-into-a-region-of-size-between-and
-|   |-- drivers-firmware-broadcom-bcm47xx_sprom.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-parisc-led.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- parisc-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- drivers-parisc-led.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|-- parisc64-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-ata-libata-core.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-ata-libata-eh.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-input-keyboard-atkbd.c:warning:input0-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-serio-serio_raw.c:warning:ld-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-parisc-led.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-usb-core-hcd.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   |-- drivers-usb-core-usb.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-relay.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- kernel-workqueue.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- lib-string_helpers.c:warning:03u-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- net-core-selftests.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   `-- net-sunrpc-clnt.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|-- powerpc-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- powerpc-arches_defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- powerpc-currituck_defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- powerpc-ppc6xx_defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-net-ethernet-broadcom-bnx2x-bnx2x_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- sound-aoa-fabrics-layout.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|-- powerpc-rainier_defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- powerpc-randconfig-r026-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-pci-controller-dwc-pci-keystone.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-tty-serial-ucc_uart.c:warning:u-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   `-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|-- powerpc64-randconfig-r004-20230826
-|   `-- drivers-net-ethernet-hisilicon-hns3-hns3pf-hclge_main.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|-- powerpc64-randconfig-r021-20230823
-|   `-- arch-powerpc-lib-sstep.c:error:writing-bytes-into-a-region-of-size
-|-- powerpc64-randconfig-r025-20230825
-|   |-- drivers-crypto-intel-qat-qat_common-adf_isr.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_runtime_suspend-defined-but-not-used
-|   `-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|-- powerpc64-randconfig-r035-20230826
-|   |-- drivers-power-supply-rt5033_charger.c:(.text):undefined-reference-to-extcon_find_edev_by_node
-|   |-- drivers-power-supply-rt5033_charger.c:(.text):undefined-reference-to-extcon_get_state
-|   `-- powerpc64-linux-ld:drivers-power-supply-rt5033_charger.c:(.text):undefined-reference-to-devm_extcon_register_notifier_all
-|-- riscv-allnoconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- kernel-workqueue.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   `-- lib-string_helpers.c:warning:03u-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|-- riscv-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- command-line:warning:s-directive-argument-is-null
-|   |-- drivers-ata-libata-core.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-ata-libata-eh.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-block-virtio_blk.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-input-keyboard-atkbd.c:warning:input0-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-alps.c:warning:input1-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-alps.c:warning:s-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-psmouse-base.c:warning:input0-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-mmc-host-mmc_spi.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-net-ethernet-cadence-macb_main.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pci-controller-dwc-pcie-designware.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-phy-allwinner-phy-sun4i-usb.c:warning:_clk-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-phy-allwinner-phy-sun4i-usb.c:warning:_hsic_12M-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-phy-allwinner-phy-sun4i-usb.c:warning:_phy-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-phy-allwinner-phy-sun4i-usb.c:warning:_reset-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-phy-allwinner-phy-sun4i-usb.c:warning:_vbus-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-thermal-thermal_sysfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-usb-core-hcd.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   |-- drivers-usb-core-usb.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- net-8021q-vlan.c:warning:.4i-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- net-8021q-vlan.c:warning:i-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- net-core-selftests.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   `-- net-sunrpc-clnt.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|-- riscv-randconfig-001-20230826
-|   `-- drivers-net-ethernet-mellanox-mlx5-core-mlx5_core.h:warning:s-directive-argument-is-null
-|-- riscv-randconfig-r036-20230826
-|   `-- drivers-net-phy-mscc-mscc_main.c:warning:sprintf-may-write-a-terminating-nul-past-the-end-of-the-destination
-|-- riscv-rv32_defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   `-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|-- s390-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- s390-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-net-ethernet-mellanox-mlx5-core-mlx5_core.h:warning:s-directive-argument-is-null
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-s390-block-dasd_eckd.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   `-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|-- s390-randconfig-r003-20230826
-|   `-- drivers-s390-block-dasd_eckd.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|-- s390-randconfig-r014-20230825
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_linecards.c:warning:.bin-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   `-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|-- s390-randconfig-r021-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   `-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|-- s390-randconfig-r051-20230730
-|   |-- drivers-gpu-drm-nouveau-nouveau_exec.c:ERROR:invalid-reference-to-the-index-variable-of-the-iterator-on-line
-|   `-- drivers-gpu-drm-nouveau-nouveau_uvmm.c:ERROR:invalid-reference-to-the-index-variable-of-the-iterator-on-line
-|-- sh-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|   |-- sh4-linux-gcc:internal-compiler-error:Segmentation-fault-signal-terminated-program-cc1
-|   |-- standard-input:Error:pcrel-too-far
-|   |-- standard-input:Error:unknown-pseudo-op:
-|   `-- standard-input:Warning:end-of-file-not-at-end-of-a-line-newline-inserted
-|-- sh-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- sh-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_resume-defined-but-not-used
-|   |-- drivers-mfd-cs42l43.c:warning:cs42l43_suspend-defined-but-not-used
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|   |-- sh4-linux-gcc:internal-compiler-error:Segmentation-fault-signal-terminated-program-cc1
-|   |-- standard-input:Error:pcrel-too-far
-|   `-- standard-input:Warning:end-of-file-not-at-end-of-a-line-newline-inserted
-|-- sh-randconfig-r003-20230825
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   `-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|-- sh-randconfig-r025-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- sparc-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-intel-qat-qat_common-adf_isr.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-marvell-octeontx2-af-cgx.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-marvell-octeontx2-nic-otx2_pf.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-vdpa-pds-debugfs.c:warning:02d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- sparc-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- sparc-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-intel-qat-qat_common-adf_isr.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-marvell-octeontx2-af-cgx.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-marvell-octeontx2-nic-otx2_pf.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-scsi-lpfc-lpfc_init.c:warning:.grp-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-vdpa-pds-debugfs.c:warning:02d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|   `-- kernel-locking-lockdep_proc.c:warning:lld-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|-- sparc-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-input-keyboard-sunkbd.c:warning:input0-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   `-- drivers-input-mouse-sermouse.c:warning:input0-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|-- sparc-randconfig-r001-20230825
-|   |-- drivers-crypto-hifn_795x.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   `-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|-- sparc-sparc64_defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- sparc64-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-intel-qat-qat_common-adf_isr.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-marvell-octeontx2-af-cgx.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-marvell-octeontx2-nic-otx2_pf.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-vdpa-pds-debugfs.c:warning:02d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- sparc64-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-intel-qat-qat_common-adf_isr.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-dma-dw-edma-dw-edma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-dma-dw-edma-dw-hdma-v0-debugfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-firmware-turris-mox-rwtm.c:warning:08x-directive-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-media-radio-radio-shark2.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-aquantia-atlantic-aq_ethtool.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-marvell-octeontx2-af-cgx.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-marvell-octeontx2-nic-otx2_pf.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-net-ethernet-mellanox-mlxsw-core_thermal.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-qlogic-netxen-netxen_nic_main.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qede-qede_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-qlogic-qlcnic-qlcnic_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-vdpa-pds-debugfs.c:warning:02d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   `-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|-- sparc64-defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- um-defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- um-i386_defconfig
-|   |-- arch-um-os-Linux-umid.c:warning:__builtin___sprintf_chk-may-write-a-terminating-nul-past-the-end-of-the-destination
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- net-socket.c:warning:no-previous-declaration-for-update_socket_protocol
-|-- um-x86_64_defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- x86_64-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- x86_64-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-infiniband-hw-qib-qib_verbs.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- fs-dlm-debug_fs.c:warning:_queued_asts-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- fs-smb-server-smb2pdu.c:warning:Excess-function-parameter-infoclass_size-description-in-buffer_check_err
-|   |-- sound-core-ump.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   `-- sound-core-ump.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|-- x86_64-buildonly-randconfig-004-20230824
-|   `-- drivers-tty-serial-samsung_tty.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|-- x86_64-buildonly-randconfig-006-20230824
-|   |-- drivers-net-ethernet-pensando-ionic-ionic_lif.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   `-- drivers-net-ethernet-ti-cpsw_ethtool.c:warning::directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|-- x86_64-defconfig
-|   |-- arch-x86-kernel-cpu-microcode-amd.c:warning:h.bin-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-ata-libata-core.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-ata-libata-eh.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-input-keyboard-atkbd.c:warning:input0-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-alps.c:warning:input1-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-alps.c:warning:s-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-lifebook.c:warning:input1-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-psmouse-base.c:warning:input0-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-iommu-intel-dmar.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-leds-led-core.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-net-ethernet-broadcom-tg3.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-broadcom-tg3.c:warning:rx-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-broadcom-tg3.c:warning:tx-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-broadcom-tg3.c:warning:txrx-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-virtio_net.c:warning:sprintf-may-write-a-terminating-nul-past-the-end-of-the-destination
-|   |-- drivers-usb-core-hcd.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   |-- drivers-usb-core-usb.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- include-linux-printk.h:warning:s-directive-argument-is-null
-|   |-- kernel-relay.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- kernel-workqueue.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- lib-string_helpers.c:warning:03u-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- lib-vsprintf.c:warning:writing-byte-into-a-region-of-size
-|   |-- mm-mempolicy.c:warning:writing-byte-into-a-region-of-size
-|   |-- net-core-selftests.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- net-sunrpc-clnt.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   `-- sound-hda-intel-sdw-acpi.c:warning:subproperties-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|-- x86_64-randconfig-001-20230825
-|   |-- arch-x86-kernel-cpu-microcode-amd.c:warning:h.bin-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- net-9p-trans_xen.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- sound-soc-dwc-dwc-i2s.c:warning:jh7110_i2s_crg_master_init-defined-but-not-used
-|   |-- sound-soc-dwc-dwc-i2s.c:warning:jh7110_i2srx_crg_init-defined-but-not-used
-|   `-- sound-soc-dwc-dwc-i2s.c:warning:jh7110_i2stx0_clk_cfg-defined-but-not-used
-|-- x86_64-randconfig-002-20230825
-|   `-- drivers-firmware-efi-cper-x86.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|-- x86_64-randconfig-003-20230823
-|   |-- drivers-clk-clk-renesas-pcie.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-neterion-s2io.c:warning:RX-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   `-- drivers-net-ethernet-neterion-s2io.c:warning:TX-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|-- x86_64-randconfig-003-20230825
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_mes.c:warning:s-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-lifebook.c:warning:input1-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-broadcom-bnx2x-bnx2x_cmn.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-broadcom-bnxt-bnxt_ethtool.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-net-ethernet-netronome-nfp-nfp_net_ethtool.c:warning:directive-output-may-be-truncated-writing-byte-into-a-region-of-size-between-and
-|   |-- drivers-platform-mellanox-mlxreg-hotplug.c:warning:d-directive-output-may-be-truncated-writing-byte-into-a-region-of-size-between-and
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   `-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|-- x86_64-randconfig-004-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-edac-sb_edac.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-edac-skx_common.c:warning:_DIMM-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   `-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|-- x86_64-randconfig-005-20230825
-|   |-- drivers-leds-leds-lp55xx-common.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-virtio_net.c:warning:sprintf-may-write-a-terminating-nul-past-the-end-of-the-destination
-|   `-- include-linux-dev_printk.h:warning:s-directive-argument-is-null
-|-- x86_64-randconfig-006-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-net-virtio_net.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-net-virtio_net.c:warning:sprintf-may-write-a-terminating-nul-past-the-end-of-the-destination
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_freeze_super
-|   |-- fs-gfs2-super.c:warning:Function-parameter-or-member-who-not-described-in-gfs2_thaw_super
-|   |-- include-linux-printk.h:warning:s-directive-argument-is-null
-|   |-- lib-vsprintf.c:warning:writing-byte-into-a-region-of-size
-|   `-- sound-xen-xen_snd_front_cfg.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|-- x86_64-randconfig-101-20230825
-|   `-- drivers-dma-fsl-edma-main.c:line-is-redundant-because-platform_get_irq()-already-prints-an-error
-|-- x86_64-randconfig-161-20230825
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_device.c:warning:Function-parameter-or-member-xcc_id-not-described-in-amdgpu_mm_wreg_mmio_rlc
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-pinctrl-pinctrl-cy8c95x0.c:warning:Function-parameter-or-member-gpio_reset-not-described-in-cy8c95x0_pinctrl
-|   `-- fs-erofs-zdata.c-z_erofs_do_read_page()-error:we-previously-assumed-fe-pcl-could-be-null-(see-line-)
-|-- x86_64-randconfig-r003-20230826
-|   `-- drivers-ata-pata_it821x.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|-- x86_64-randconfig-r016-20230823
-|   |-- drivers-clk-clk-lmk04832.c:warning:02d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-clk-clk-lmk04832.c:warning:02d-directive-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_ras_eeprom.c:warning:012llX-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-i915-display-intel_tc.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-hwmon-i5k_amb.c:warning:_alarm-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-hwmon-i5k_amb.c:warning:_input-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-hwmon-i5k_amb.c:warning:_label-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-hwmon-i5k_amb.c:warning:_max-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-hwmon-i5k_amb.c:warning:_mid-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-hwmon-i5k_amb.c:warning:_min-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-opp-debugfs.c:warning:.1d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   `-- drivers-pci-hotplug-cpci_hotplug_core.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|-- x86_64-rhel-8.3
-|   |-- block-blk-throttle.c:warning:lu-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- block-blk-throttle.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-block-virtio_blk.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-edac-sb_edac.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-edac-skx_common.c:warning:_DIMM-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-firmware-efi-cper-x86.c:warning:snprintf-output-may-be-truncated-before-the-last-format-character
-|   |-- drivers-hid-hid-logitech-dj.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-hid-hid-sensor-custom.c:warning:s-directive-output-may-be-truncated-writing-likely-or-more-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-elantech.c:warning:input1-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-sermouse.c:warning:input0-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-vmmouse.c:warning:input1-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-mouse-vsxxxaa.c:warning:input0-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-input-serio-serio_raw.c:warning:ld-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-md-raid5.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   |-- drivers-net-ethernet-intel-igb-igb_main.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-scsi-ch.c:warning:d-directive-writing-between-and-bytes-into-a-region-of-size
-|   |-- drivers-scsi-megaraid.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-scsi-mpt3sas-mpt3sas_base.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|   |-- drivers-scsi-mpt3sas-mpt3sas_base.c:warning:mq-poll-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-scsi-mpt3sas-mpt3sas_base.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-scsi-mpt3sas-mpt3sas_scsih.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-scsi-st.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size-between-and
-|   |-- drivers-thermal-thermal_sysfs.c:warning:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- include-linux-phy.h:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- net-8021q-vlan.c:warning:.4i-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   `-- net-8021q-vlan.c:warning:i-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size-between-and
-|-- xtensa-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- xtensa-audio_kc705_defconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-`-- xtensa-iss_defconfig
-    `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-clang_recent_errors
-|-- arm-bcm2835_defconfig
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- arm-randconfig-001-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- hexagon-randconfig-001-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- hexagon-randconfig-002-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- hexagon-randconfig-r026-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- hexagon-randconfig-r033-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-watchdog-stm32_iwdg.c:warning:unused-variable-stm32_iwdg_of_match
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-buildonly-randconfig-001-20230825
-|   |-- drivers-watchdog-stm32_iwdg.c:warning:unused-variable-stm32_iwdg_of_match
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-buildonly-randconfig-002-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-buildonly-randconfig-003-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-buildonly-randconfig-004-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-buildonly-randconfig-005-20230825
-|   |-- drivers-watchdog-stm32_iwdg.c:warning:unused-variable-stm32_iwdg_of_match
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-buildonly-randconfig-006-20230825
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-randconfig-001-20230825
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-randconfig-002-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-randconfig-003-20230825
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-randconfig-004-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-randconfig-005-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-randconfig-006-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- i386-randconfig-r035-20230825
-|   |-- drivers-platform-x86-amd-pmc.c:error:call-to-undeclared-function-acpi_register_lps0_dev-ISO-C99-and-later-do-not-support-implicit-function-declarations
-|   |-- drivers-platform-x86-amd-pmc.c:error:call-to-undeclared-function-acpi_unregister_lps0_dev-ISO-C99-and-later-do-not-support-implicit-function-declarations
-|   `-- drivers-platform-x86-amd-pmc.c:error:variable-has-incomplete-type-struct-acpi_s2idle_dev_ops
-|-- powerpc64-randconfig-r001-20230825
-|   `-- arch-powerpc-kvm-..-..-..-virt-kvm-vfio.c:error:attribute-declaration-must-precede-definition-Werror-Wignored-attributes
-|-- powerpc64-randconfig-r005-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- powerpc64-randconfig-r024-20230824
-|   `-- arch-powerpc-include-asm-switch_to.h:error:call-to-__compiletime_assert_NNN-declared-with-error-attribute:BUILD_BUG-failed
-|-- riscv-randconfig-001-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- riscv-randconfig-r004-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- s390-randconfig-r002-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- um-randconfig-r022-20230825
-|   |-- drivers-media-platform-mediatek-vcodec-common-mtk_vcodec_fw_vpu.c:warning:cast-from-mtk_vcodec_ipi_handler-(aka-void-(-)(void-unsigned-int-void-)-)-to-ipi_handler_t-(aka-void-(-)(const-void-unsigned-i
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-buildonly-randconfig-001-20230825
-|   |-- drivers-watchdog-stm32_iwdg.c:warning:unused-variable-stm32_iwdg_of_match
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-buildonly-randconfig-002-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-buildonly-randconfig-003-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-buildonly-randconfig-004-20230825
-|   |-- drivers-media-platform-mediatek-vcodec-common-mtk_vcodec_fw_vpu.c:warning:cast-from-mtk_vcodec_ipi_handler-(aka-void-(-)(void-unsigned-int-void-)-)-to-ipi_handler_t-(aka-void-(-)(const-void-unsigned-i
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-buildonly-randconfig-005-20230825
-|   |-- drivers-media-platform-mediatek-vcodec-common-mtk_vcodec_fw_vpu.c:warning:cast-from-mtk_vcodec_ipi_handler-(aka-void-(-)(void-unsigned-int-void-)-)-to-ipi_handler_t-(aka-void-(-)(const-void-unsigned-i
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   |-- drivers-watchdog-stm32_iwdg.c:warning:unused-variable-stm32_iwdg_of_match
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-buildonly-randconfig-006-20230825
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-011-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-012-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-013-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-014-20230825
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-015-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-016-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-071-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-072-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-073-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-074-20230825
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-075-20230823
-|   `-- drivers-spi-spi-amd.o:warning:objtool:amd_spi_host_transfer-falls-through-to-next-function-amd_spi_max_transfer_size()
-|-- x86_64-randconfig-075-20230825
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Excess-function-parameter-db_index-description-in-amdgpu_doorbell_index_on_bar
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_doorbell_mgr.c:warning:Function-parameter-or-member-doorbell_index-not-described-in-amdgpu_doorbell_index_on_bar
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-|-- x86_64-randconfig-076-20230825
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_restricted-not-described-in-rpmsg_eptdev
-|   |-- drivers-rpmsg-rpmsg_char.c:warning:Function-parameter-or-member-remote_flow_updated-not-described-in-rpmsg_eptdev
-|   `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
-`-- x86_64-rhel-8.3-rust
-    `-- lib-crypto-mpi-mpi-inv.c:warning:variable-k-set-but-not-used
+  
 
-elapsed time: 1451m
+Participating hosts (9 -> 9)
+------------------------------
 
-configs tested: 192
-configs skipped: 2
+  No changes in participating hosts
 
-tested configs:
-alpha                             allnoconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-alpha                randconfig-r004-20230825   gcc  
-alpha                randconfig-r005-20230825   gcc  
-alpha                randconfig-r012-20230825   gcc  
-alpha                randconfig-r024-20230825   gcc  
-arc                              allmodconfig   gcc  
-arc                               allnoconfig   gcc  
-arc                              allyesconfig   gcc  
-arc                                 defconfig   gcc  
-arc                   randconfig-001-20230825   gcc  
-arc                  randconfig-r013-20230825   gcc  
-arc                    vdk_hs38_smp_defconfig   gcc  
-arm                              allmodconfig   gcc  
-arm                               allnoconfig   gcc  
-arm                              allyesconfig   gcc  
-arm                         bcm2835_defconfig   clang
-arm                                 defconfig   gcc  
-arm                        neponset_defconfig   clang
-arm                   randconfig-001-20230825   clang
-arm                  randconfig-r001-20230825   gcc  
-arm                  randconfig-r036-20230825   gcc  
-arm                        realview_defconfig   gcc  
-arm                         s3c6400_defconfig   gcc  
-arm64                            allmodconfig   gcc  
-arm64                             allnoconfig   gcc  
-arm64                            allyesconfig   gcc  
-arm64                               defconfig   gcc  
-arm64                randconfig-r021-20230825   gcc  
-arm64                randconfig-r022-20230825   gcc  
-csky                             allmodconfig   gcc  
-csky                              allnoconfig   gcc  
-csky                             allyesconfig   gcc  
-csky                                defconfig   gcc  
-hexagon               randconfig-001-20230825   clang
-hexagon               randconfig-002-20230825   clang
-hexagon              randconfig-r026-20230825   clang
-hexagon              randconfig-r033-20230825   clang
-i386                              allnoconfig   gcc  
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-001-20230825   clang
-i386         buildonly-randconfig-002-20230825   clang
-i386         buildonly-randconfig-003-20230825   clang
-i386         buildonly-randconfig-004-20230825   clang
-i386         buildonly-randconfig-005-20230825   clang
-i386         buildonly-randconfig-006-20230825   clang
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                  randconfig-001-20230825   clang
-i386                  randconfig-002-20230825   clang
-i386                  randconfig-003-20230825   clang
-i386                  randconfig-004-20230825   clang
-i386                  randconfig-005-20230825   clang
-i386                  randconfig-006-20230825   clang
-i386                  randconfig-011-20230825   gcc  
-i386                  randconfig-012-20230825   gcc  
-i386                  randconfig-013-20230825   gcc  
-i386                  randconfig-014-20230825   gcc  
-i386                  randconfig-015-20230825   gcc  
-i386                  randconfig-016-20230825   gcc  
-i386                 randconfig-r023-20230825   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                        allyesconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch             randconfig-001-20230825   gcc  
-loongarch            randconfig-r011-20230825   gcc  
-loongarch            randconfig-r031-20230825   gcc  
-m68k                             allmodconfig   gcc  
-m68k                              allnoconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-m68k                        m5272c3_defconfig   gcc  
-m68k                 randconfig-r003-20230825   gcc  
-m68k                 randconfig-r032-20230825   gcc  
-microblaze                       allmodconfig   gcc  
-microblaze                        allnoconfig   gcc  
-microblaze                       allyesconfig   gcc  
-microblaze                          defconfig   gcc  
-mips                             allmodconfig   gcc  
-mips                              allnoconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                 randconfig-r006-20230825   gcc  
-mips                 randconfig-r015-20230825   clang
-nios2                            alldefconfig   gcc  
-nios2                            allmodconfig   gcc  
-nios2                             allnoconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                               defconfig   gcc  
-nios2                randconfig-r002-20230825   gcc  
-openrisc                         allmodconfig   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-openrisc             randconfig-r006-20230825   gcc  
-openrisc             randconfig-r035-20230825   gcc  
-openrisc                       virt_defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   gcc  
-powerpc                      arches_defconfig   gcc  
-powerpc                   currituck_defconfig   gcc  
-powerpc                     kmeter1_defconfig   clang
-powerpc                      ppc6xx_defconfig   gcc  
-powerpc                     rainier_defconfig   gcc  
-powerpc              randconfig-r026-20230825   gcc  
-powerpc64            randconfig-r005-20230825   clang
-powerpc64            randconfig-r025-20230825   gcc  
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   gcc  
-riscv                               defconfig   gcc  
-riscv                 randconfig-001-20230825   clang
-riscv                randconfig-r004-20230825   clang
-riscv                randconfig-r023-20230825   gcc  
-riscv                randconfig-r024-20230825   gcc  
-riscv                          rv32_defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                              allnoconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-s390                  randconfig-001-20230825   gcc  
-s390                 randconfig-r002-20230825   clang
-s390                 randconfig-r014-20230825   gcc  
-s390                 randconfig-r016-20230825   gcc  
-s390                 randconfig-r021-20230825   gcc  
-sh                               allmodconfig   gcc  
-sh                                allnoconfig   gcc  
-sh                               allyesconfig   gcc  
-sh                        apsh4ad0a_defconfig   gcc  
-sh                                  defconfig   gcc  
-sh                        edosk7760_defconfig   gcc  
-sh                 kfr2r09-romimage_defconfig   gcc  
-sh                   randconfig-r003-20230825   gcc  
-sh                   randconfig-r025-20230825   gcc  
-sh                           sh2007_defconfig   gcc  
-sparc                            allmodconfig   gcc  
-sparc                             allnoconfig   gcc  
-sparc                            allyesconfig   gcc  
-sparc                               defconfig   gcc  
-sparc                randconfig-r001-20230825   gcc  
-sparc                       sparc64_defconfig   gcc  
-sparc64                          allmodconfig   gcc  
-sparc64                          allyesconfig   gcc  
-sparc64                             defconfig   gcc  
-um                               allmodconfig   clang
-um                                allnoconfig   clang
-um                               allyesconfig   clang
-um                                  defconfig   gcc  
-um                             i386_defconfig   gcc  
-um                   randconfig-r022-20230825   clang
-um                           x86_64_defconfig   gcc  
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64       buildonly-randconfig-001-20230825   clang
-x86_64       buildonly-randconfig-002-20230825   clang
-x86_64       buildonly-randconfig-003-20230825   clang
-x86_64       buildonly-randconfig-004-20230825   clang
-x86_64       buildonly-randconfig-005-20230825   clang
-x86_64       buildonly-randconfig-006-20230825   clang
-x86_64                              defconfig   gcc  
-x86_64                randconfig-001-20230825   gcc  
-x86_64                randconfig-002-20230825   gcc  
-x86_64                randconfig-003-20230825   gcc  
-x86_64                randconfig-004-20230825   gcc  
-x86_64                randconfig-005-20230825   gcc  
-x86_64                randconfig-006-20230825   gcc  
-x86_64                randconfig-011-20230825   clang
-x86_64                randconfig-012-20230825   clang
-x86_64                randconfig-013-20230825   clang
-x86_64                randconfig-014-20230825   clang
-x86_64                randconfig-015-20230825   clang
-x86_64                randconfig-016-20230825   clang
-x86_64                randconfig-071-20230825   clang
-x86_64                randconfig-072-20230825   clang
-x86_64                randconfig-073-20230825   clang
-x86_64                randconfig-074-20230825   clang
-x86_64                randconfig-075-20230825   clang
-x86_64                randconfig-076-20230825   clang
-x86_64                          rhel-8.3-rust   clang
-x86_64                               rhel-8.3   gcc  
-xtensa                            allnoconfig   gcc  
-xtensa                           allyesconfig   gcc  
-xtensa                  audio_kc705_defconfig   gcc  
-xtensa                          iss_defconfig   gcc  
-xtensa               randconfig-r034-20230825   gcc  
+New tests
+---------
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  New tests have been introduced between CI_DRM_13568_full and Patchwork_122841v2_full:
+
+### New IGT tests (7) ###
+
+  * igt@kms_flip@dpms-off-confusion@a-hdmi-a3:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_flip@dpms-off-confusion@b-hdmi-a3:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_flip@dpms-off-confusion@c-hdmi-a3:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_invalid_mode@zero-hdisplay@hdmi-a-3-pipe-a:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_invalid_mode@zero-hdisplay@hdmi-a-3-pipe-b:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_invalid_mode@zero-hdisplay@hdmi-a-3-pipe-c:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_invalid_mode@zero-hdisplay@hdmi-a-3-pipe-d:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_122841v2_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@drm_fdinfo@virtual-busy-all:
+    - shard-mtlp:         NOTRUN -> [SKIP][1] ([i915#8414])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@drm_fdinfo@virtual-busy-all.html
+
+  * igt@drm_mm@drm_mm_test:
+    - shard-snb:          NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#8661])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb5/igt@drm_mm@drm_mm_test.html
+    - shard-dg2:          NOTRUN -> [SKIP][3] ([i915#8661])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@drm_mm@drm_mm_test.html
+
+  * igt@gem_caching@reads:
+    - shard-mtlp:         NOTRUN -> [SKIP][4] ([i915#4873])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gem_caching@reads.html
+
+  * igt@gem_create@create-ext-set-pat:
+    - shard-dg2:          NOTRUN -> [SKIP][5] ([i915#8562])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@gem_create@create-ext-set-pat.html
+
+  * igt@gem_ctx_persistence@legacy-engines-queued:
+    - shard-snb:          NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#1099]) +3 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb5/igt@gem_ctx_persistence@legacy-engines-queued.html
+
+  * igt@gem_exec_fair@basic-deadline:
+    - shard-glk:          [PASS][7] -> [FAIL][8] ([i915#2846])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-glk4/igt@gem_exec_fair@basic-deadline.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-glk6/igt@gem_exec_fair@basic-deadline.html
+
+  * igt@gem_exec_fair@basic-none-share@rcs0:
+    - shard-rkl:          [PASS][9] -> [FAIL][10] ([i915#2842]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-rkl-1/igt@gem_exec_fair@basic-none-share@rcs0.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-2/igt@gem_exec_fair@basic-none-share@rcs0.html
+
+  * igt@gem_exec_fair@basic-pace:
+    - shard-dg2:          NOTRUN -> [SKIP][11] ([i915#3539])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_exec_fair@basic-pace.html
+
+  * igt@gem_exec_fair@basic-pace@rcs0:
+    - shard-glk:          [PASS][12] -> [FAIL][13] ([i915#2842])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-glk9/igt@gem_exec_fair@basic-pace@rcs0.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-glk3/igt@gem_exec_fair@basic-pace@rcs0.html
+
+  * igt@gem_exec_fair@basic-sync:
+    - shard-mtlp:         NOTRUN -> [SKIP][14] ([i915#4473] / [i915#4771])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-7/igt@gem_exec_fair@basic-sync.html
+
+  * igt@gem_exec_fence@parallel@vecs0:
+    - shard-mtlp:         [PASS][15] -> [FAIL][16] ([i915#8957]) +2 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-1/igt@gem_exec_fence@parallel@vecs0.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@gem_exec_fence@parallel@vecs0.html
+
+  * igt@gem_exec_flush@basic-batch-kernel-default-wb:
+    - shard-mtlp:         [PASS][17] -> [DMESG-FAIL][18] ([i915#9121]) +2 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-5/igt@gem_exec_flush@basic-batch-kernel-default-wb.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@gem_exec_flush@basic-batch-kernel-default-wb.html
+
+  * igt@gem_exec_flush@basic-uc-pro-default:
+    - shard-dg2:          NOTRUN -> [SKIP][19] ([i915#3539] / [i915#4852]) +3 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_exec_flush@basic-uc-pro-default.html
+
+  * igt@gem_exec_reloc@basic-write-cpu-noreloc:
+    - shard-mtlp:         NOTRUN -> [SKIP][20] ([i915#3281]) +1 similar issue
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gem_exec_reloc@basic-write-cpu-noreloc.html
+
+  * igt@gem_exec_reloc@basic-write-wc-noreloc:
+    - shard-dg2:          NOTRUN -> [SKIP][21] ([i915#3281]) +4 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@gem_exec_reloc@basic-write-wc-noreloc.html
+
+  * igt@gem_exec_schedule@preempt-engines@ccs0:
+    - shard-mtlp:         [PASS][22] -> [FAIL][23] ([i915#9119]) +4 similar issues
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-5/igt@gem_exec_schedule@preempt-engines@ccs0.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@gem_exec_schedule@preempt-engines@ccs0.html
+
+  * igt@gem_exec_schedule@preempt-engines@rcs0:
+    - shard-mtlp:         [PASS][24] -> [DMESG-FAIL][25] ([i915#8962] / [i915#9121]) +3 similar issues
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-5/igt@gem_exec_schedule@preempt-engines@rcs0.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@gem_exec_schedule@preempt-engines@rcs0.html
+
+  * igt@gem_fenced_exec_thrash@2-spare-fences:
+    - shard-dg2:          NOTRUN -> [SKIP][26] ([i915#4860]) +3 similar issues
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@gem_fenced_exec_thrash@2-spare-fences.html
+
+  * igt@gem_lmem_swapping@heavy-random:
+    - shard-mtlp:         NOTRUN -> [SKIP][27] ([i915#4613])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gem_lmem_swapping@heavy-random.html
+
+  * igt@gem_lmem_swapping@smem-oom@lmem0:
+    - shard-dg2:          NOTRUN -> [TIMEOUT][28] ([i915#5493])
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_lmem_swapping@smem-oom@lmem0.html
+
+  * igt@gem_mmap_gtt@basic-write-read-distinct:
+    - shard-mtlp:         NOTRUN -> [SKIP][29] ([i915#4077]) +3 similar issues
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gem_mmap_gtt@basic-write-read-distinct.html
+
+  * igt@gem_mmap_gtt@zero-extend:
+    - shard-dg2:          NOTRUN -> [SKIP][30] ([i915#4077]) +7 similar issues
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_mmap_gtt@zero-extend.html
+
+  * igt@gem_mmap_wc@copy:
+    - shard-dg2:          NOTRUN -> [SKIP][31] ([i915#4083]) +3 similar issues
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_mmap_wc@copy.html
+
+  * igt@gem_ppgtt@blt-vs-render-ctxn:
+    - shard-snb:          [PASS][32] -> [DMESG-FAIL][33] ([i915#8295])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-snb2/igt@gem_ppgtt@blt-vs-render-ctxn.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb1/igt@gem_ppgtt@blt-vs-render-ctxn.html
+
+  * igt@gem_pread@snoop:
+    - shard-mtlp:         NOTRUN -> [SKIP][34] ([i915#3282]) +1 similar issue
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-6/igt@gem_pread@snoop.html
+
+  * igt@gem_pxp@create-regular-context-2:
+    - shard-dg2:          NOTRUN -> [SKIP][35] ([i915#4270]) +2 similar issues
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@gem_pxp@create-regular-context-2.html
+
+  * igt@gem_readwrite@beyond-eob:
+    - shard-dg2:          NOTRUN -> [SKIP][36] ([i915#3282]) +2 similar issues
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_readwrite@beyond-eob.html
+
+  * igt@gem_render_copy@y-tiled-mc-ccs-to-y-tiled-ccs:
+    - shard-mtlp:         NOTRUN -> [SKIP][37] ([i915#8428]) +1 similar issue
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gem_render_copy@y-tiled-mc-ccs-to-y-tiled-ccs.html
+
+  * igt@gem_set_tiling_vs_blt@tiled-to-untiled:
+    - shard-dg2:          NOTRUN -> [SKIP][38] ([i915#4079]) +1 similar issue
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@gem_set_tiling_vs_blt@tiled-to-untiled.html
+
+  * igt@gem_softpin@noreloc-s3:
+    - shard-dg1:          [PASS][39] -> [FAIL][40] ([fdo#103375])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-18/igt@gem_softpin@noreloc-s3.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-13/igt@gem_softpin@noreloc-s3.html
+
+  * igt@gen3_render_tiledx_blits:
+    - shard-dg2:          NOTRUN -> [SKIP][41] ([fdo#109289]) +2 similar issues
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@gen3_render_tiledx_blits.html
+
+  * igt@gen9_exec_parse@allowed-single:
+    - shard-apl:          [PASS][42] -> [ABORT][43] ([i915#5566])
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-apl3/igt@gen9_exec_parse@allowed-single.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-apl7/igt@gen9_exec_parse@allowed-single.html
+
+  * igt@gen9_exec_parse@batch-zero-length:
+    - shard-mtlp:         NOTRUN -> [SKIP][44] ([i915#2856]) +1 similar issue
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gen9_exec_parse@batch-zero-length.html
+
+  * igt@gen9_exec_parse@bb-start-param:
+    - shard-dg2:          NOTRUN -> [SKIP][45] ([i915#2856]) +3 similar issues
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@gen9_exec_parse@bb-start-param.html
+
+  * igt@i915_pm_backlight@fade-with-suspend:
+    - shard-dg2:          NOTRUN -> [SKIP][46] ([i915#5354] / [i915#7561])
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@i915_pm_backlight@fade-with-suspend.html
+
+  * igt@i915_pm_dc@dc6-dpms:
+    - shard-dg2:          NOTRUN -> [SKIP][47] ([i915#5978])
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@i915_pm_dc@dc6-dpms.html
+
+  * igt@i915_pm_rc6_residency@media-rc6-accuracy:
+    - shard-mtlp:         NOTRUN -> [SKIP][48] ([i915#8403])
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@i915_pm_rc6_residency@media-rc6-accuracy.html
+
+  * igt@i915_pm_rpm@modeset-non-lpsp:
+    - shard-dg2:          [PASS][49] -> [SKIP][50] ([i915#1397])
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-1/igt@i915_pm_rpm@modeset-non-lpsp.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@i915_pm_rpm@modeset-non-lpsp.html
+    - shard-dg1:          [PASS][51] -> [SKIP][52] ([i915#1397])
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-13/igt@i915_pm_rpm@modeset-non-lpsp.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-19/igt@i915_pm_rpm@modeset-non-lpsp.html
+
+  * igt@i915_pm_sseu@full-enable:
+    - shard-dg2:          NOTRUN -> [SKIP][53] ([i915#4387])
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@i915_pm_sseu@full-enable.html
+
+  * igt@i915_suspend@fence-restore-tiled2untiled:
+    - shard-snb:          NOTRUN -> [DMESG-WARN][54] ([i915#8841]) +4 similar issues
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb4/igt@i915_suspend@fence-restore-tiled2untiled.html
+
+  * igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels:
+    - shard-dg2:          NOTRUN -> [SKIP][55] ([i915#1769] / [i915#3555])
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels.html
+
+  * igt@kms_big_fb@linear-32bpp-rotate-270:
+    - shard-dg2:          NOTRUN -> [SKIP][56] ([fdo#111614]) +3 similar issues
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_big_fb@linear-32bpp-rotate-270.html
+
+  * igt@kms_big_fb@y-tiled-64bpp-rotate-0:
+    - shard-dg2:          NOTRUN -> [SKIP][57] ([i915#5190]) +4 similar issues
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_big_fb@y-tiled-64bpp-rotate-0.html
+
+  * igt@kms_big_fb@y-tiled-addfb-size-offset-overflow:
+    - shard-mtlp:         NOTRUN -> [SKIP][58] ([i915#6187])
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-6/igt@kms_big_fb@y-tiled-addfb-size-offset-overflow.html
+
+  * igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip:
+    - shard-mtlp:         NOTRUN -> [SKIP][59] ([fdo#111615])
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip.html
+
+  * igt@kms_big_fb@yf-tiled-32bpp-rotate-90:
+    - shard-dg2:          NOTRUN -> [SKIP][60] ([i915#4538] / [i915#5190]) +3 similar issues
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_big_fb@yf-tiled-32bpp-rotate-90.html
+
+  * igt@kms_ccs@pipe-a-bad-aux-stride-y_tiled_gen12_mc_ccs:
+    - shard-mtlp:         NOTRUN -> [SKIP][61] ([i915#3886] / [i915#6095]) +1 similar issue
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-7/igt@kms_ccs@pipe-a-bad-aux-stride-y_tiled_gen12_mc_ccs.html
+
+  * igt@kms_ccs@pipe-a-crc-sprite-planes-basic-4_tiled_dg2_mc_ccs:
+    - shard-mtlp:         NOTRUN -> [SKIP][62] ([i915#6095]) +9 similar issues
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_ccs@pipe-a-crc-sprite-planes-basic-4_tiled_dg2_mc_ccs.html
+
+  * igt@kms_ccs@pipe-b-bad-rotation-90-y_tiled_gen12_mc_ccs:
+    - shard-dg2:          NOTRUN -> [SKIP][63] ([i915#3689] / [i915#3886] / [i915#5354])
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_ccs@pipe-b-bad-rotation-90-y_tiled_gen12_mc_ccs.html
+
+  * igt@kms_ccs@pipe-c-crc-sprite-planes-basic-y_tiled_gen12_rc_ccs:
+    - shard-dg2:          NOTRUN -> [SKIP][64] ([i915#3689] / [i915#5354]) +10 similar issues
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_ccs@pipe-c-crc-sprite-planes-basic-y_tiled_gen12_rc_ccs.html
+
+  * igt@kms_chamelium_frames@hdmi-crc-multiple:
+    - shard-dg2:          NOTRUN -> [SKIP][65] ([i915#7828]) +6 similar issues
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_chamelium_frames@hdmi-crc-multiple.html
+
+  * igt@kms_color@deep-color:
+    - shard-rkl:          NOTRUN -> [SKIP][66] ([i915#3555])
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-6/igt@kms_color@deep-color.html
+
+  * igt@kms_content_protection@dp-mst-type-1:
+    - shard-dg2:          NOTRUN -> [SKIP][67] ([i915#3299])
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_content_protection@dp-mst-type-1.html
+
+  * igt@kms_content_protection@srm@pipe-a-dp-2:
+    - shard-dg2:          NOTRUN -> [TIMEOUT][68] ([i915#7173]) +1 similar issue
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-12/igt@kms_content_protection@srm@pipe-a-dp-2.html
+
+  * igt@kms_content_protection@type1:
+    - shard-dg2:          NOTRUN -> [SKIP][69] ([i915#7118])
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_content_protection@type1.html
+
+  * igt@kms_cursor_crc@cursor-offscreen-512x170:
+    - shard-dg2:          NOTRUN -> [SKIP][70] ([i915#3359]) +2 similar issues
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_cursor_crc@cursor-offscreen-512x170.html
+
+  * igt@kms_cursor_crc@cursor-onscreen-32x10:
+    - shard-mtlp:         NOTRUN -> [SKIP][71] ([i915#8814]) +1 similar issue
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_cursor_crc@cursor-onscreen-32x10.html
+
+  * igt@kms_cursor_crc@cursor-suspend@pipe-d-hdmi-a-3:
+    - shard-dg1:          NOTRUN -> [FAIL][72] ([fdo#103375])
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-13/igt@kms_cursor_crc@cursor-suspend@pipe-d-hdmi-a-3.html
+
+  * igt@kms_cursor_legacy@2x-flip-vs-cursor-atomic:
+    - shard-mtlp:         NOTRUN -> [SKIP][73] ([fdo#111767] / [i915#3546])
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-6/igt@kms_cursor_legacy@2x-flip-vs-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@2x-long-nonblocking-modeset-vs-cursor-atomic:
+    - shard-dg2:          NOTRUN -> [SKIP][74] ([fdo#109274] / [i915#5354]) +2 similar issues
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_cursor_legacy@2x-long-nonblocking-modeset-vs-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@cursor-vs-flip-toggle:
+    - shard-mtlp:         [PASS][75] -> [FAIL][76] ([i915#8248])
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-3/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html
+
+  * igt@kms_cursor_legacy@cursora-vs-flipb-atomic:
+    - shard-mtlp:         NOTRUN -> [SKIP][77] ([i915#3546]) +2 similar issues
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_cursor_legacy@cursora-vs-flipb-atomic.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
+    - shard-glk:          [PASS][78] -> [FAIL][79] ([i915#2346])
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-glk9/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-glk3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+
+  * igt@kms_cursor_legacy@short-busy-flip-before-cursor-toggle:
+    - shard-dg2:          NOTRUN -> [SKIP][80] ([i915#4103] / [i915#4213]) +1 similar issue
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_cursor_legacy@short-busy-flip-before-cursor-toggle.html
+
+  * igt@kms_cursor_legacy@single-move@all-pipes:
+    - shard-mtlp:         [PASS][81] -> [DMESG-WARN][82] ([i915#2017])
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-1/igt@kms_cursor_legacy@single-move@all-pipes.html
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@kms_cursor_legacy@single-move@all-pipes.html
+
+  * igt@kms_flip@2x-flip-vs-panning-vs-hang:
+    - shard-dg2:          NOTRUN -> [SKIP][83] ([fdo#109274]) +5 similar issues
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_flip@2x-flip-vs-panning-vs-hang.html
+
+  * igt@kms_flip@2x-flip-vs-rmfb-interruptible:
+    - shard-dg2:          NOTRUN -> [SKIP][84] ([fdo#109274] / [fdo#111767])
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_flip@2x-flip-vs-rmfb-interruptible.html
+    - shard-snb:          NOTRUN -> [SKIP][85] ([fdo#109271] / [fdo#111767])
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb5/igt@kms_flip@2x-flip-vs-rmfb-interruptible.html
+
+  * igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling@pipe-a-valid-mode:
+    - shard-dg2:          NOTRUN -> [SKIP][86] ([i915#2672]) +3 similar issues
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling@pipe-a-valid-mode.html
+
+  * igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling@pipe-a-default-mode:
+    - shard-mtlp:         NOTRUN -> [SKIP][87] ([i915#2672])
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling@pipe-a-default-mode.html
+
+  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-draw-mmap-gtt:
+    - shard-mtlp:         NOTRUN -> [SKIP][88] ([i915#8708]) +2 similar issues
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-draw-mmap-gtt.html
+
+  * igt@kms_frontbuffer_tracking@fbc-2p-primscrn-cur-indfb-draw-mmap-wc:
+    - shard-dg2:          NOTRUN -> [SKIP][89] ([i915#8708]) +7 similar issues
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-cur-indfb-draw-mmap-wc.html
+
+  * igt@kms_frontbuffer_tracking@fbc-badstride:
+    - shard-dg2:          NOTRUN -> [FAIL][90] ([i915#6880])
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_frontbuffer_tracking@fbc-badstride.html
+
+  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-blt:
+    - shard-dg2:          NOTRUN -> [SKIP][91] ([i915#3458]) +8 similar issues
+   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-blt.html
+
+  * igt@kms_frontbuffer_tracking@psr-2p-primscrn-cur-indfb-draw-pwrite:
+    - shard-mtlp:         NOTRUN -> [SKIP][92] ([i915#1825]) +1 similar issue
+   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_frontbuffer_tracking@psr-2p-primscrn-cur-indfb-draw-pwrite.html
+
+  * igt@kms_frontbuffer_tracking@psr-2p-scndscrn-cur-indfb-draw-blt:
+    - shard-dg2:          NOTRUN -> [SKIP][93] ([i915#5354]) +33 similar issues
+   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-cur-indfb-draw-blt.html
+
+  * igt@kms_hdr@static-swap:
+    - shard-mtlp:         NOTRUN -> [SKIP][94] ([i915#8228])
+   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-7/igt@kms_hdr@static-swap.html
+
+  * igt@kms_hdr@static-toggle-suspend:
+    - shard-dg2:          NOTRUN -> [SKIP][95] ([i915#3555] / [i915#8228]) +1 similar issue
+   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_hdr@static-toggle-suspend.html
+
+  * igt@kms_panel_fitting@legacy:
+    - shard-dg2:          NOTRUN -> [SKIP][96] ([i915#6301])
+   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_panel_fitting@legacy.html
+
+  * igt@kms_plane@pixel-format-source-clamping@pipe-b-planes:
+    - shard-mtlp:         [PASS][97] -> [FAIL][98] ([i915#1623]) +1 similar issue
+   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-7/igt@kms_plane@pixel-format-source-clamping@pipe-b-planes.html
+   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-8/igt@kms_plane@pixel-format-source-clamping@pipe-b-planes.html
+
+  * igt@kms_plane_cursor@viewport@pipe-d-edp-1-size-256:
+    - shard-mtlp:         [PASS][99] -> [DMESG-WARN][100] ([i915#1982])
+   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-6/igt@kms_plane_cursor@viewport@pipe-d-edp-1-size-256.html
+   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-8/igt@kms_plane_cursor@viewport@pipe-d-edp-1-size-256.html
+
+  * igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-b-dp-2:
+    - shard-dg2:          NOTRUN -> [SKIP][101] ([i915#5176]) +3 similar issues
+   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-12/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-b-dp-2.html
+
+  * igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-d-edp-1:
+    - shard-mtlp:         NOTRUN -> [SKIP][102] ([i915#5176]) +5 similar issues
+   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-7/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-d-edp-1.html
+
+  * igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-b-hdmi-a-1:
+    - shard-rkl:          NOTRUN -> [SKIP][103] ([i915#5176]) +1 similar issue
+   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-7/igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-b-hdmi-a-1.html
+
+  * igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-b-hdmi-a-4:
+    - shard-dg1:          NOTRUN -> [SKIP][104] ([i915#5176]) +11 similar issues
+   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-14/igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-b-hdmi-a-4.html
+
+  * igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-d-hdmi-a-2:
+    - shard-dg2:          NOTRUN -> [SKIP][105] ([i915#5235]) +23 similar issues
+   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-2/igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-d-hdmi-a-2.html
+
+  * igt@kms_plane_scaling@planes-downscale-factor-0-5-unity-scaling@pipe-b-vga-1:
+    - shard-snb:          NOTRUN -> [SKIP][106] ([fdo#109271]) +276 similar issues
+   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb6/igt@kms_plane_scaling@planes-downscale-factor-0-5-unity-scaling@pipe-b-vga-1.html
+
+  * igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-b-hdmi-a-2:
+    - shard-rkl:          NOTRUN -> [SKIP][107] ([i915#5235]) +1 similar issue
+   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-4/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-b-hdmi-a-2.html
+
+  * igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-5@pipe-a-edp-1:
+    - shard-mtlp:         NOTRUN -> [SKIP][108] ([i915#5235]) +3 similar issues
+   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-2/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-5@pipe-a-edp-1.html
+
+  * igt@kms_plane_scaling@planes-upscale-factor-0-25-downscale-factor-0-25@pipe-d-hdmi-a-4:
+    - shard-dg1:          NOTRUN -> [SKIP][109] ([i915#5235]) +15 similar issues
+   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-16/igt@kms_plane_scaling@planes-upscale-factor-0-25-downscale-factor-0-25@pipe-d-hdmi-a-4.html
+
+  * igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area:
+    - shard-dg2:          NOTRUN -> [SKIP][110] ([i915#658]) +4 similar issues
+   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area.html
+
+  * igt@kms_psr2_su@page_flip-xrgb8888:
+    - shard-mtlp:         NOTRUN -> [SKIP][111] ([i915#4348])
+   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_psr2_su@page_flip-xrgb8888.html
+
+  * igt@kms_psr@sprite_blt:
+    - shard-dg2:          NOTRUN -> [SKIP][112] ([i915#1072]) +4 similar issues
+   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_psr@sprite_blt.html
+
+  * igt@kms_psr_stress_test@invalidate-primary-flip-overlay:
+    - shard-dg2:          NOTRUN -> [SKIP][113] ([i915#5461] / [i915#658])
+   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_psr_stress_test@invalidate-primary-flip-overlay.html
+
+  * igt@kms_rotation_crc@bad-pixel-format:
+    - shard-mtlp:         NOTRUN -> [SKIP][114] ([i915#4235])
+   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_rotation_crc@bad-pixel-format.html
+
+  * igt@kms_tv_load_detect@load-detect:
+    - shard-mtlp:         NOTRUN -> [SKIP][115] ([fdo#109309])
+   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_tv_load_detect@load-detect.html
+
+  * igt@kms_vrr@flipline:
+    - shard-dg2:          NOTRUN -> [SKIP][116] ([i915#3555]) +1 similar issue
+   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_vrr@flipline.html
+
+  * igt@perf@gen8-unprivileged-single-ctx-counters:
+    - shard-dg2:          NOTRUN -> [SKIP][117] ([i915#2436])
+   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@perf@gen8-unprivileged-single-ctx-counters.html
+
+  * igt@perf_pmu@rc6@other-idle-gt0:
+    - shard-dg2:          NOTRUN -> [SKIP][118] ([i915#8516])
+   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@perf_pmu@rc6@other-idle-gt0.html
+
+  * igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem:
+    - shard-dg2:          NOTRUN -> [INCOMPLETE][119] ([i915#5493])
+   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html
+
+  * igt@prime_udl:
+    - shard-dg2:          NOTRUN -> [SKIP][120] ([fdo#109291])
+   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@prime_udl.html
+
+  * igt@v3d/v3d_get_param@base-params:
+    - shard-mtlp:         NOTRUN -> [SKIP][121] ([i915#2575]) +1 similar issue
+   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@v3d/v3d_get_param@base-params.html
+
+  * igt@v3d/v3d_submit_cl@valid-multisync-submission:
+    - shard-dg2:          NOTRUN -> [SKIP][122] ([i915#2575]) +5 similar issues
+   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@v3d/v3d_submit_cl@valid-multisync-submission.html
+
+  * igt@vc4/vc4_purgeable_bo@mark-purgeable-twice:
+    - shard-mtlp:         NOTRUN -> [SKIP][123] ([i915#7711]) +2 similar issues
+   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@vc4/vc4_purgeable_bo@mark-purgeable-twice.html
+
+  * igt@vc4/vc4_tiling@get-bad-handle:
+    - shard-dg2:          NOTRUN -> [SKIP][124] ([i915#7711]) +3 similar issues
+   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@vc4/vc4_tiling@get-bad-handle.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_eio@in-flight-suspend:
+    - shard-mtlp:         [FAIL][125] ([i915#6121] / [i915#7052]) -> [PASS][126]
+   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-5/igt@gem_eio@in-flight-suspend.html
+   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@gem_eio@in-flight-suspend.html
+
+  * igt@gem_eio@kms:
+    - shard-dg2:          [INCOMPLETE][127] ([i915#7892]) -> [PASS][128]
+   [127]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-2/igt@gem_eio@kms.html
+   [128]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-11/igt@gem_eio@kms.html
+
+  * igt@gem_eio@unwedge-stress:
+    - shard-dg1:          [FAIL][129] ([i915#5784]) -> [PASS][130] +1 similar issue
+   [129]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-15/igt@gem_eio@unwedge-stress.html
+   [130]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-18/igt@gem_eio@unwedge-stress.html
+
+  * igt@gem_exec_fair@basic-flow@rcs0:
+    - shard-tglu:         [FAIL][131] ([i915#2842]) -> [PASS][132]
+   [131]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-tglu-2/igt@gem_exec_fair@basic-flow@rcs0.html
+   [132]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-tglu-10/igt@gem_exec_fair@basic-flow@rcs0.html
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - shard-dg2:          [INCOMPLETE][133] ([i915#6311]) -> [PASS][134]
+   [133]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-6/igt@gem_exec_suspend@basic-s0@smem.html
+   [134]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_pipe_stress@stress-xrgb8888-untiled:
+    - shard-mtlp:         [FAIL][135] ([i915#8691]) -> [PASS][136]
+   [135]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-2/igt@i915_pipe_stress@stress-xrgb8888-untiled.html
+   [136]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-6/igt@i915_pipe_stress@stress-xrgb8888-untiled.html
+
+  * igt@i915_pm_rc6_residency@rc6-idle@rcs0:
+    - shard-dg1:          [FAIL][137] ([i915#3591]) -> [PASS][138] +1 similar issue
+   [137]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-14/igt@i915_pm_rc6_residency@rc6-idle@rcs0.html
+   [138]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-17/igt@i915_pm_rc6_residency@rc6-idle@rcs0.html
+
+  * igt@i915_pm_rpm@dpms-lpsp:
+    - shard-dg1:          [SKIP][139] ([i915#1397]) -> [PASS][140]
+   [139]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-13/igt@i915_pm_rpm@dpms-lpsp.html
+   [140]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-19/igt@i915_pm_rpm@dpms-lpsp.html
+    - shard-dg2:          [SKIP][141] ([i915#1397]) -> [PASS][142]
+   [141]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-1/igt@i915_pm_rpm@dpms-lpsp.html
+   [142]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@i915_pm_rpm@dpms-lpsp.html
+
+  * igt@i915_selftest@live@requests:
+    - shard-mtlp:         [ABORT][143] ([i915#7920] / [i915#7982]) -> [PASS][144]
+   [143]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-6/igt@i915_selftest@live@requests.html
+   [144]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@i915_selftest@live@requests.html
+
+  * igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip:
+    - shard-mtlp:         [FAIL][145] ([i915#3743]) -> [PASS][146] +1 similar issue
+   [145]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-2/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html
+   [146]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-6/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html
+
+  * igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip:
+    - shard-mtlp:         [FAIL][147] ([i915#5138]) -> [PASS][148]
+   [147]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-4/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip.html
+   [148]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-2/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
+    - shard-apl:          [FAIL][149] ([i915#2346]) -> [PASS][150]
+   [149]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-apl1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+   [150]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-apl7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
+
+  * igt@kms_fbcon_fbt@fbc-suspend:
+    - shard-mtlp:         [FAIL][151] ([fdo#103375]) -> [PASS][152] +2 similar issues
+   [151]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-5/igt@kms_fbcon_fbt@fbc-suspend.html
+   [152]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@kms_fbcon_fbt@fbc-suspend.html
+
+  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-shrfb-pgflip-blt:
+    - shard-dg2:          [FAIL][153] ([i915#6880]) -> [PASS][154] +1 similar issue
+   [153]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-11/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-shrfb-pgflip-blt.html
+   [154]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-12/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-shrfb-pgflip-blt.html
+
+  * igt@kms_frontbuffer_tracking@fbc-suspend:
+    - shard-dg2:          [FAIL][155] ([fdo#103375]) -> [PASS][156]
+   [155]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-5/igt@kms_frontbuffer_tracking@fbc-suspend.html
+   [156]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_frontbuffer_tracking@fbc-suspend.html
+
+  * igt@perf@non-zero-reason@0-rcs0:
+    - shard-dg2:          [FAIL][157] ([i915#7484]) -> [PASS][158]
+   [157]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-5/igt@perf@non-zero-reason@0-rcs0.html
+   [158]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@perf@non-zero-reason@0-rcs0.html
+
+  * igt@perf_pmu@busy-double-start@vecs1:
+    - shard-dg2:          [FAIL][159] ([i915#4349]) -> [PASS][160] +3 similar issues
+   [159]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-8/igt@perf_pmu@busy-double-start@vecs1.html
+   [160]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-6/igt@perf_pmu@busy-double-start@vecs1.html
+
+  
+#### Warnings ####
+
+  * igt@gem_lmem_swapping@smem-oom@lmem0:
+    - shard-dg1:          [TIMEOUT][161] ([i915#5493]) -> [DMESG-WARN][162] ([i915#4936] / [i915#5493])
+   [161]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-17/igt@gem_lmem_swapping@smem-oom@lmem0.html
+   [162]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-16/igt@gem_lmem_swapping@smem-oom@lmem0.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - shard-rkl:          [FAIL][163] ([fdo#103375]) -> [INCOMPLETE][164] ([i915#4817])
+   [163]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-rkl-6/igt@i915_suspend@basic-s3-without-i915.html
+   [164]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-1/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@i915_suspend@forcewake:
+    - shard-snb:          [DMESG-WARN][165] ([i915#8841]) -> [INCOMPLETE][166] ([i915#4817] / [i915#7888])
+   [165]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-snb5/igt@i915_suspend@forcewake.html
+   [166]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb7/igt@i915_suspend@forcewake.html
+
+  * igt@kms_content_protection@content_type_change:
+    - shard-dg2:          [SKIP][167] ([i915#7118]) -> [SKIP][168] ([i915#7118] / [i915#7162])
+   [167]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-2/igt@kms_content_protection@content_type_change.html
+   [168]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-11/igt@kms_content_protection@content_type_change.html
+
+  * igt@kms_fbcon_fbt@psr:
+    - shard-rkl:          [SKIP][169] ([fdo#110189] / [i915#3955]) -> [SKIP][170] ([i915#3955])
+   [169]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-rkl-2/igt@kms_fbcon_fbt@psr.html
+   [170]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-7/igt@kms_fbcon_fbt@psr.html
+
+  * igt@kms_fbcon_fbt@psr-suspend:
+    - shard-rkl:          [SKIP][171] ([i915#3955]) -> [SKIP][172] ([fdo#110189] / [i915#3955])
+   [171]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-rkl-4/igt@kms_fbcon_fbt@psr-suspend.html
+   [172]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-1/igt@kms_fbcon_fbt@psr-suspend.html
+
+  * igt@kms_multipipe_modeset@basic-max-pipe-crc-check:
+    - shard-rkl:          [SKIP][173] ([i915#4816]) -> [SKIP][174] ([i915#4070] / [i915#4816])
+   [173]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-rkl-4/igt@kms_multipipe_modeset@basic-max-pipe-crc-check.html
+   [174]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-1/igt@kms_multipipe_modeset@basic-max-pipe-crc-check.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - shard-dg1:          [SKIP][175] ([i915#1072]) -> [SKIP][176] ([i915#1072] / [i915#4078])
+   [175]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-19/igt@kms_psr@cursor_plane_move.html
+   [176]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-16/igt@kms_psr@cursor_plane_move.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - shard-dg1:          [SKIP][177] ([i915#1072] / [i915#4078]) -> [SKIP][178] ([i915#1072])
+   [177]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-18/igt@kms_psr@sprite_plane_onoff.html
+   [178]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-19/igt@kms_psr@sprite_plane_onoff.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
+  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
+  [fdo#109291]: https://bugs.freedesktop.org/show_bug.cgi?id=109291
+  [fdo#109309]: https://bugs.freedesktop.org/show_bug.cgi?id=109309
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [fdo#111614]: https://bugs.freedesktop.org/show_bug.cgi?id=111614
+  [fdo#111615]: https://bugs.freedesktop.org/show_bug.cgi?id=111615
+  [fdo#111767]: https://bugs.freedesktop.org/show_bug.cgi?id=111767
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1099]: https://gitlab.freedesktop.org/drm/intel/issues/1099
+  [i915#1397]: https://gitlab.freedesktop.org/drm/intel/issues/1397
+  [i915#1623]: https://gitlab.freedesktop.org/drm/intel/issues/1623
+  [i915#1769]: https://gitlab.freedesktop.org/drm/intel/issues/1769
+  [i915#1825]: https://gitlab.freedesktop.org/drm/intel/issues/1825
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#2436]: https://gitlab.freedesktop.org/drm/intel/issues/2436
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2672]: https://gitlab.freedesktop.org/drm/intel/issues/2672
+  [i915#2842]: https://gitlab.freedesktop.org/drm/intel/issues/2842
+  [i915#2846]: https://gitlab.freedesktop.org/drm/intel/issues/2846
+  [i915#2856]: https://gitlab.freedesktop.org/drm/intel/issues/2856
+  [i915#3281]: https://gitlab.freedesktop.org/drm/intel/issues/3281
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3299]: https://gitlab.freedesktop.org/drm/intel/issues/3299
+  [i915#3359]: https://gitlab.freedesktop.org/drm/intel/issues/3359
+  [i915#3458]: https://gitlab.freedesktop.org/drm/intel/issues/3458
+  [i915#3539]: https://gitlab.freedesktop.org/drm/intel/issues/3539
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3591]: https://gitlab.freedesktop.org/drm/intel/issues/3591
+  [i915#3689]: https://gitlab.freedesktop.org/drm/intel/issues/3689
+  [i915#3743]: https://gitlab.freedesktop.org/drm/intel/issues/3743
+  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
+  [i915#3886]: https://gitlab.freedesktop.org/drm/intel/issues/3886
+  [i915#3955]: https://gitlab.freedesktop.org/drm/intel/issues/3955
+  [i915#4070]: https://gitlab.freedesktop.org/drm/intel/issues/4070
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4235]: https://gitlab.freedesktop.org/drm/intel/issues/4235
+  [i915#4270]: https://gitlab.freedesktop.org/drm/intel/issues/4270
+  [i915#4348]: https://gitlab.freedesktop.org/drm/intel/issues/4348
+  [i915#4349]: https://gitlab.freedesktop.org/drm/intel/issues/4349
+  [i915#4387]: https://gitlab.freedesktop.org/drm/intel/issues/4387
+  [i915#4473]: https://gitlab.freedesktop.org/drm/intel/issues/4473
+  [i915#4538]: https://gitlab.freedesktop.org/drm/intel/issues/4538
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#4771]: https://gitlab.freedesktop.org/drm/intel/issues/4771
+  [i915#4816]: https://gitlab.freedesktop.org/drm/intel/issues/4816
+  [i915#4817]: https://gitlab.freedesktop.org/drm/intel/issues/4817
+  [i915#4852]: https://gitlab.freedesktop.org/drm/intel/issues/4852
+  [i915#4860]: https://gitlab.freedesktop.org/drm/intel/issues/4860
+  [i915#4873]: https://gitlab.freedesktop.org/drm/intel/issues/4873
+  [i915#4936]: https://gitlab.freedesktop.org/drm/intel/issues/4936
+  [i915#5138]: https://gitlab.freedesktop.org/drm/intel/issues/5138
+  [i915#5176]: https://gitlab.freedesktop.org/drm/intel/issues/5176
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5235]: https://gitlab.freedesktop.org/drm/intel/issues/5235
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#5461]: https://gitlab.freedesktop.org/drm/intel/issues/5461
+  [i915#5493]: https://gitlab.freedesktop.org/drm/intel/issues/5493
+  [i915#5566]: https://gitlab.freedesktop.org/drm/intel/issues/5566
+  [i915#5784]: https://gitlab.freedesktop.org/drm/intel/issues/5784
+  [i915#5978]: https://gitlab.freedesktop.org/drm/intel/issues/5978
+  [i915#6095]: https://gitlab.freedesktop.org/drm/intel/issues/6095
+  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
+  [i915#6187]: https://gitlab.freedesktop.org/drm/intel/issues/6187
+  [i915#6301]: https://gitlab.freedesktop.org/drm/intel/issues/6301
+  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
+  [i915#658]: https://gitlab.freedesktop.org/drm/intel/issues/658
+  [i915#6880]: https://gitlab.freedesktop.org/drm/intel/issues/6880
+  [i915#7052]: https://gitlab.freedesktop.org/drm/intel/issues/7052
+  [i915#7118]: https://gitlab.freedesktop.org/drm/intel/issues/7118
+  [i915#7162]: https://gitlab.freedesktop.org/drm/intel/issues/7162
+  [i915#7173]: https://gitlab.freedesktop.org/drm/intel/issues/7173
+  [i915#7484]: https://gitlab.freedesktop.org/drm/intel/issues/7484
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7711]: https://gitlab.freedesktop.org/drm/intel/issues/7711
+  [i915#7828]: https://gitlab.freedesktop.org/drm/intel/issues/7828
+  [i915#7888]: https://gitlab.freedesktop.org/drm/intel/issues/7888
+  [i915#7892]: https://gitlab.freedesktop.org/drm/intel/issues/7892
+  [i915#7920]: https://gitlab.freedesktop.org/drm/intel/issues/7920
+  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
+  [i915#8228]: https://gitlab.freedesktop.org/drm/intel/issues/8228
+  [i915#8248]: https://gitlab.freedesktop.org/drm/intel/issues/8248
+  [i915#8295]: https://gitlab.freedesktop.org/drm/intel/issues/8295
+  [i915#8403]: https://gitlab.freedesktop.org/drm/intel/issues/8403
+  [i915#8414]: https://gitlab.freedesktop.org/drm/intel/issues/8414
+  [i915#8428]: https://gitlab.freedesktop.org/drm/intel/issues/8428
+  [i915#8516]: https://gitlab.freedesktop.org/drm/intel/issues/8516
+  [i915#8562]: https://gitlab.freedesktop.org/drm/intel/issues/8562
+  [i915#8661]: https://gitlab.freedesktop.org/drm/intel/issues/8661
+  [i915#8691]: https://gitlab.freedesktop.org/drm/intel/issues/8691
+  [i915#8708]: https://gitlab.freedesktop.org/drm/intel/issues/8708
+  [i915#8814]: https://gitlab.freedesktop.org/drm/intel/issues/8814
+  [i915#8841]: https://gitlab.freedesktop.org/drm/intel/issues/8841
+  [i915#8957]: https://gitlab.freedesktop.org/drm/intel/issues/8957
+  [i915#8962]: https://gitlab.freedesktop.org/drm/intel/issues/8962
+  [i915#9053]: https://gitlab.freedesktop.org/drm/intel/issues/9053
+  [i915#9119]: https://gitlab.freedesktop.org/drm/intel/issues/9119
+  [i915#9121]: https://gitlab.freedesktop.org/drm/intel/issues/9121
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13568 -> Patchwork_122841v2
+
+  CI-20190529: 20190529
+  CI_DRM_13568: f8b90de70ee92dbdebc6f2078e2edd12756d7a63 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7453: 7453
+  Patchwork_122841v2: f8b90de70ee92dbdebc6f2078e2edd12756d7a63 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/index.html
+
+--===============6189351530896535301==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm, cec and edid updates (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/122841/">https://patchwork.freedesktop.org/series/122841/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13568_full -&gt; Patchwork_122841v2_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_13568_full and Patchwork_122841v2_full:</p>
+<h3>New IGT tests (7)</h3>
+<ul>
+<li>
+<p>igt@kms_flip@dpms-off-confusion@a-hdmi-a3:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@dpms-off-confusion@b-hdmi-a3:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@dpms-off-confusion@c-hdmi-a3:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_invalid_mode@zero-hdisplay@hdmi-a-3-pipe-a:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_invalid_mode@zero-hdisplay@hdmi-a-3-pipe-b:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_invalid_mode@zero-hdisplay@hdmi-a-3-pipe-c:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_invalid_mode@zero-hdisplay@hdmi-a-3-pipe-d:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_122841v2_full that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@drm_fdinfo@virtual-busy-all:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@drm_fdinfo@virtual-busy-all.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8414">i915#8414</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@drm_mm@drm_mm_test:</p>
+<ul>
+<li>
+<p>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb5/igt@drm_mm@drm_mm_test.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8661">i915#8661</a>)</p>
+</li>
+<li>
+<p>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@drm_mm@drm_mm_test.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8661">i915#8661</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_caching@reads:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gem_caching@reads.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4873">i915#4873</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_create@create-ext-set-pat:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@gem_create@create-ext-set-pat.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8562">i915#8562</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_persistence@legacy-engines-queued:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb5/igt@gem_ctx_persistence@legacy-engines-queued.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1099">i915#1099</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-deadline:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-glk4/igt@gem_exec_fair@basic-deadline.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-glk6/igt@gem_exec_fair@basic-deadline.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2846">i915#2846</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none-share@rcs0:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-rkl-1/igt@gem_exec_fair@basic-none-share@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-2/igt@gem_exec_fair@basic-none-share@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_exec_fair@basic-pace.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3539">i915#3539</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace@rcs0:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-glk9/igt@gem_exec_fair@basic-pace@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-glk3/igt@gem_exec_fair@basic-pace@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-sync:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-7/igt@gem_exec_fair@basic-sync.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4473">i915#4473</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4771">i915#4771</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@parallel@vecs0:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-1/igt@gem_exec_fence@parallel@vecs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@gem_exec_fence@parallel@vecs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8957">i915#8957</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_flush@basic-batch-kernel-default-wb:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-5/igt@gem_exec_flush@basic-batch-kernel-default-wb.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@gem_exec_flush@basic-batch-kernel-default-wb.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9121">i915#9121</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_flush@basic-uc-pro-default:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_exec_flush@basic-uc-pro-default.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3539">i915#3539</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4852">i915#4852</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-write-cpu-noreloc:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gem_exec_reloc@basic-write-cpu-noreloc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3281">i915#3281</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_reloc@basic-write-wc-noreloc:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@gem_exec_reloc@basic-write-wc-noreloc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3281">i915#3281</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_schedule@preempt-engines@ccs0:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-5/igt@gem_exec_schedule@preempt-engines@ccs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@gem_exec_schedule@preempt-engines@ccs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9119">i915#9119</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_schedule@preempt-engines@rcs0:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-5/igt@gem_exec_schedule@preempt-engines@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@gem_exec_schedule@preempt-engines@rcs0.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8962">i915#8962</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9121">i915#9121</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_fenced_exec_thrash@2-spare-fences:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@gem_fenced_exec_thrash@2-spare-fences.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4860">i915#4860</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@heavy-random:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gem_lmem_swapping@heavy-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@smem-oom@lmem0:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_lmem_swapping@smem-oom@lmem0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5493">i915#5493</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@basic-write-read-distinct:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gem_mmap_gtt@basic-write-read-distinct.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@zero-extend:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_mmap_gtt@zero-extend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_wc@copy:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_mmap_wc@copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ppgtt@blt-vs-render-ctxn:</p>
+<ul>
+<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-snb2/igt@gem_ppgtt@blt-vs-render-ctxn.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb1/igt@gem_ppgtt@blt-vs-render-ctxn.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8295">i915#8295</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_pread@snoop:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-6/igt@gem_pread@snoop.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_pxp@create-regular-context-2:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@gem_pxp@create-regular-context-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4270">i915#4270</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_readwrite@beyond-eob:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@gem_readwrite@beyond-eob.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_copy@y-tiled-mc-ccs-to-y-tiled-ccs:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gem_render_copy@y-tiled-mc-ccs-to-y-tiled-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8428">i915#8428</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_set_tiling_vs_blt@tiled-to-untiled:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@gem_set_tiling_vs_blt@tiled-to-untiled.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_softpin@noreloc-s3:</p>
+<ul>
+<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-18/igt@gem_softpin@noreloc-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-13/igt@gem_softpin@noreloc-s3.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gen3_render_tiledx_blits:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@gen3_render_tiledx_blits.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109289">fdo#109289</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@allowed-single:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-apl3/igt@gen9_exec_parse@allowed-single.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-apl7/igt@gen9_exec_parse@allowed-single.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5566">i915#5566</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@batch-zero-length:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@gen9_exec_parse@batch-zero-length.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2856">i915#2856</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@bb-start-param:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@gen9_exec_parse@bb-start-param.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2856">i915#2856</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@fade-with-suspend:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@i915_pm_backlight@fade-with-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_dc@dc6-dpms:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@i915_pm_dc@dc6-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5978">i915#5978</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rc6_residency@media-rc6-accuracy:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@i915_pm_rc6_residency@media-rc6-accuracy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8403">i915#8403</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@modeset-non-lpsp:</p>
+<ul>
+<li>
+<p>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-1/igt@i915_pm_rpm@modeset-non-lpsp.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@i915_pm_rpm@modeset-non-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>)</p>
+</li>
+<li>
+<p>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-13/igt@i915_pm_rpm@modeset-non-lpsp.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-19/igt@i915_pm_rpm@modeset-non-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_sseu@full-enable:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@i915_pm_sseu@full-enable.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4387">i915#4387</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@fence-restore-tiled2untiled:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb4/igt@i915_suspend@fence-restore-tiled2untiled.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1769">i915#1769</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@linear-32bpp-rotate-270:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_big_fb@linear-32bpp-rotate-270.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111614">fdo#111614</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@y-tiled-64bpp-rotate-0:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_big_fb@y-tiled-64bpp-rotate-0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@y-tiled-addfb-size-offset-overflow:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-6/igt@kms_big_fb@y-tiled-addfb-size-offset-overflow.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6187">i915#6187</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_big_fb@y-tiled-max-hw-stride-32bpp-rotate-0-hflip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111615">fdo#111615</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@yf-tiled-32bpp-rotate-90:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_big_fb@yf-tiled-32bpp-rotate-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4538">i915#4538</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-a-bad-aux-stride-y_tiled_gen12_mc_ccs:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-7/igt@kms_ccs@pipe-a-bad-aux-stride-y_tiled_gen12_mc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3886">i915#3886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6095">i915#6095</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-a-crc-sprite-planes-basic-4_tiled_dg2_mc_ccs:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_ccs@pipe-a-crc-sprite-planes-basic-4_tiled_dg2_mc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6095">i915#6095</a>) +9 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-b-bad-rotation-90-y_tiled_gen12_mc_ccs:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_ccs@pipe-b-bad-rotation-90-y_tiled_gen12_mc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3689">i915#3689</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3886">i915#3886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-c-crc-sprite-planes-basic-y_tiled_gen12_rc_ccs:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_ccs@pipe-c-crc-sprite-planes-basic-y_tiled_gen12_rc_ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3689">i915#3689</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +10 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@hdmi-crc-multiple:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_chamelium_frames@hdmi-crc-multiple.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7828">i915#7828</a>) +6 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@deep-color:</p>
+<ul>
+<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-6/igt@kms_color@deep-color.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@dp-mst-type-1:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_content_protection@dp-mst-type-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3299">i915#3299</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@srm@pipe-a-dp-2:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-12/igt@kms_content_protection@srm@pipe-a-dp-2.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7173">i915#7173</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@type1:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_content_protection@type1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@cursor-offscreen-512x170:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_cursor_crc@cursor-offscreen-512x170.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3359">i915#3359</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@cursor-onscreen-32x10:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_cursor_crc@cursor-onscreen-32x10.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8814">i915#8814</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@cursor-suspend@pipe-d-hdmi-a-3:</p>
+<ul>
+<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-13/igt@kms_cursor_crc@cursor-suspend@pipe-d-hdmi-a-3.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@2x-flip-vs-cursor-atomic:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-6/igt@kms_cursor_legacy@2x-flip-vs-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111767">fdo#111767</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@2x-long-nonblocking-modeset-vs-cursor-atomic:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_cursor_legacy@2x-long-nonblocking-modeset-vs-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@cursor-vs-flip-toggle:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-3/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@kms_cursor_legacy@cursor-vs-flip-toggle.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8248">i915#8248</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@cursora-vs-flipb-atomic:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_cursor_legacy@cursora-vs-flipb-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-glk9/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-glk3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@short-busy-flip-before-cursor-toggle:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_cursor_legacy@short-busy-flip-before-cursor-toggle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@single-move@all-pipes:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-1/igt@kms_cursor_legacy@single-move@all-pipes.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@kms_cursor_legacy@single-move@all-pipes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-flip-vs-panning-vs-hang:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_flip@2x-flip-vs-panning-vs-hang.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a>) +5 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-flip-vs-rmfb-interruptible:</p>
+<ul>
+<li>
+<p>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_flip@2x-flip-vs-rmfb-interruptible.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109274">fdo#109274</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111767">fdo#111767</a>)</p>
+</li>
+<li>
+<p>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb5/igt@kms_flip@2x-flip-vs-rmfb-interruptible.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111767">fdo#111767</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling@pipe-a-valid-mode:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling@pipe-a-valid-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2672">i915#2672</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling@pipe-a-default-mode:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling@pipe-a-default-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2672">i915#2672</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-draw-mmap-gtt:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-draw-mmap-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8708">i915#8708</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-2p-primscrn-cur-indfb-draw-mmap-wc:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-cur-indfb-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8708">i915#8708</a>) +7 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-badstride:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_frontbuffer_tracking@fbc-badstride.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6880">i915#6880</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-blt:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3458">i915#3458</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@psr-2p-primscrn-cur-indfb-draw-pwrite:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_frontbuffer_tracking@psr-2p-primscrn-cur-indfb-draw-pwrite.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1825">i915#1825</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@psr-2p-scndscrn-cur-indfb-draw-blt:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-cur-indfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>) +33 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@static-swap:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-7/igt@kms_hdr@static-swap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8228">i915#8228</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@static-toggle-suspend:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_hdr@static-toggle-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8228">i915#8228</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_panel_fitting@legacy:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_panel_fitting@legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6301">i915#6301</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane@pixel-format-source-clamping@pipe-b-planes:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-7/igt@kms_plane@pixel-format-source-clamping@pipe-b-planes.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-8/igt@kms_plane@pixel-format-source-clamping@pipe-b-planes.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1623">i915#1623</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_cursor@viewport@pipe-d-edp-1-size-256:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-6/igt@kms_plane_cursor@viewport@pipe-d-edp-1-size-256.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-8/igt@kms_plane_cursor@viewport@pipe-d-edp-1-size-256.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-b-dp-2:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-12/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-b-dp-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-d-edp-1:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-7/igt@kms_plane_scaling@plane-downscale-with-modifiers-factor-0-25@pipe-d-edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>) +5 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-b-hdmi-a-1:</p>
+<ul>
+<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-7/igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-b-hdmi-a-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-b-hdmi-a-4:</p>
+<ul>
+<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-14/igt@kms_plane_scaling@plane-upscale-with-rotation-factor-0-25@pipe-b-hdmi-a-4.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5176">i915#5176</a>) +11 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-d-hdmi-a-2:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-2/igt@kms_plane_scaling@planes-downscale-factor-0-25@pipe-d-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a>) +23 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@planes-downscale-factor-0-5-unity-scaling@pipe-b-vga-1:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb6/igt@kms_plane_scaling@planes-downscale-factor-0-5-unity-scaling@pipe-b-vga-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +276 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-b-hdmi-a-2:</p>
+<ul>
+<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-4/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25@pipe-b-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-5@pipe-a-edp-1:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-2/igt@kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-5@pipe-a-edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@planes-upscale-factor-0-25-downscale-factor-0-25@pipe-d-hdmi-a-4:</p>
+<ul>
+<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-16/igt@kms_plane_scaling@planes-upscale-factor-0-25-downscale-factor-0-25@pipe-d-hdmi-a-4.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5235">i915#5235</a>) +15 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/658">i915#658</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_su@page_flip-xrgb8888:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_psr2_su@page_flip-xrgb8888.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4348">i915#4348</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_blt:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-1/igt@kms_psr@sprite_blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr_stress_test@invalidate-primary-flip-overlay:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@kms_psr_stress_test@invalidate-primary-flip-overlay.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5461">i915#5461</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/658">i915#658</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_rotation_crc@bad-pixel-format:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_rotation_crc@bad-pixel-format.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4235">i915#4235</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_tv_load_detect@load-detect:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@kms_tv_load_detect@load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109309">fdo#109309</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vrr@flipline:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_vrr@flipline.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@perf@gen8-unprivileged-single-ctx-counters:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@perf@gen8-unprivileged-single-ctx-counters.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2436">i915#2436</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@perf_pmu@rc6@other-idle-gt0:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@perf_pmu@rc6@other-idle-gt0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8516">i915#8516</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5493">i915#5493</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_udl:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@prime_udl.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109291">fdo#109291</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@v3d/v3d_get_param@base-params:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@v3d/v3d_get_param@base-params.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@v3d/v3d_submit_cl@valid-multisync-submission:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@v3d/v3d_submit_cl@valid-multisync-submission.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +5 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@vc4/vc4_purgeable_bo@mark-purgeable-twice:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@vc4/vc4_purgeable_bo@mark-purgeable-twice.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7711">i915#7711</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@vc4/vc4_tiling@get-bad-handle:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@vc4/vc4_tiling@get-bad-handle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7711">i915#7711</a>) +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_eio@in-flight-suspend:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-5/igt@gem_eio@in-flight-suspend.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7052">i915#7052</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@gem_eio@in-flight-suspend.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_eio@kms:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-2/igt@gem_eio@kms.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7892">i915#7892</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-11/igt@gem_eio@kms.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_eio@unwedge-stress:</p>
+<ul>
+<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-15/igt@gem_eio@unwedge-stress.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5784">i915#5784</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-18/igt@gem_eio@unwedge-stress.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-flow@rcs0:</p>
+<ul>
+<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-tglu-2/igt@gem_exec_fair@basic-flow@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2842">i915#2842</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-tglu-10/igt@gem_exec_fair@basic-flow@rcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-6/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6311">i915#6311</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pipe_stress@stress-xrgb8888-untiled:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-2/igt@i915_pipe_stress@stress-xrgb8888-untiled.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8691">i915#8691</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-6/igt@i915_pipe_stress@stress-xrgb8888-untiled.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rc6_residency@rc6-idle@rcs0:</p>
+<ul>
+<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-14/igt@i915_pm_rc6_residency@rc6-idle@rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3591">i915#3591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-17/igt@i915_pm_rc6_residency@rc6-idle@rcs0.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@dpms-lpsp:</p>
+<ul>
+<li>
+<p>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-13/igt@i915_pm_rpm@dpms-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-19/igt@i915_pm_rpm@dpms-lpsp.html">PASS</a></p>
+</li>
+<li>
+<p>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-1/igt@i915_pm_rpm@dpms-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1397">i915#1397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-10/igt@i915_pm_rpm@dpms-lpsp.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-6/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7920">i915#7920</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-5/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-2/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3743">i915#3743</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-6/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-4/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5138">i915#5138</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-2/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-apl1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-apl7/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_fbcon_fbt@fbc-suspend:</p>
+<ul>
+<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-mtlp-5/igt@kms_fbcon_fbt@fbc-suspend.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-mtlp-4/igt@kms_fbcon_fbt@fbc-suspend.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-1p-primscrn-shrfb-pgflip-blt:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-11/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-shrfb-pgflip-blt.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6880">i915#6880</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-12/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-shrfb-pgflip-blt.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbc-suspend:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-5/igt@kms_frontbuffer_tracking@fbc-suspend.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@kms_frontbuffer_tracking@fbc-suspend.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@perf@non-zero-reason@0-rcs0:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-5/igt@perf@non-zero-reason@0-rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7484">i915#7484</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-3/igt@perf@non-zero-reason@0-rcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@perf_pmu@busy-double-start@vecs1:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-8/igt@perf_pmu@busy-double-start@vecs1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4349">i915#4349</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-6/igt@perf_pmu@busy-double-start@vecs1.html">PASS</a> +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@smem-oom@lmem0:</p>
+<ul>
+<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-17/igt@gem_lmem_swapping@smem-oom@lmem0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5493">i915#5493</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-16/igt@gem_lmem_swapping@smem-oom@lmem0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4936">i915#4936</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5493">i915#5493</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-rkl-6/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-1/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@forcewake:</p>
+<ul>
+<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-snb5/igt@i915_suspend@forcewake.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-snb7/igt@i915_suspend@forcewake.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4817">i915#4817</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7888">i915#7888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@content_type_change:</p>
+<ul>
+<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg2-2/igt@kms_content_protection@content_type_change.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg2-11/igt@kms_content_protection@content_type_change.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7118">i915#7118</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7162">i915#7162</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_fbcon_fbt@psr:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-rkl-2/igt@kms_fbcon_fbt@psr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-7/igt@kms_fbcon_fbt@psr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_fbcon_fbt@psr-suspend:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-rkl-4/igt@kms_fbcon_fbt@psr-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-1/igt@kms_fbcon_fbt@psr-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3955">i915#3955</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_multipipe_modeset@basic-max-pipe-crc-check:</p>
+<ul>
+<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-rkl-4/igt@kms_multipipe_modeset@basic-max-pipe-crc-check.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4816">i915#4816</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-rkl-1/igt@kms_multipipe_modeset@basic-max-pipe-crc-check.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4070">i915#4070</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4816">i915#4816</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-19/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-16/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13568/shard-dg1-18/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122841v2/shard-dg1-19/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13568 -&gt; Patchwork_122841v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13568: f8b90de70ee92dbdebc6f2078e2edd12756d7a63 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7453: 7453<br />
+  Patchwork_122841v2: f8b90de70ee92dbdebc6f2078e2edd12756d7a63 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============6189351530896535301==--
