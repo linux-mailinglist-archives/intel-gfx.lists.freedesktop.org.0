@@ -2,144 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA8A7898A7
-	for <lists+intel-gfx@lfdr.de>; Sat, 26 Aug 2023 20:18:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B77378A08B
+	for <lists+intel-gfx@lfdr.de>; Sun, 27 Aug 2023 19:56:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EE9510E1A5;
-	Sat, 26 Aug 2023 18:18:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF18510E1C5;
+	Sun, 27 Aug 2023 17:55:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26D3510E1A5
- for <intel-gfx@lists.freedesktop.org>; Sat, 26 Aug 2023 18:18:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693073897; x=1724609897;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=mIdGj2iaJO/dCRHDHCopIfcSr7tf8cRj9R4aV6ptGZI=;
- b=WZQ/xXooRPk8lrS2ZXKgPeFgfWrhPpMjDM5IZsAFTYq44NmK2Z+9ckEy
- R/g1J03Of6JZLTjZS/uS46KJS25SFbKywIEBl02+ajnwBck2z0yi/R6lx
- kbKm3eqwHYHObGUnDb5/Qe1O/L+uSB6rAFHJC0+PbgPqLVSciRK9WURg3
- sRac5OVcHd77sGte9kb+Db+LHuz/tYKKU4chKQC3/ru6hzq4uthEUYGoM
- 5mMT97NxJRi/lt39caBMMbXmLuNvByDFZKusPV1/9+GklKkDsT+sCduWQ
- ICYr3ln8fBmpMA1Kb1ojK9WkzqOBMnKlUnfeGxBZs7UDu0+UN3RzRXN5Y g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10814"; a="355223214"
-X-IronPort-AV: E=Sophos;i="6.02,203,1688454000"; d="scan'208";a="355223214"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2023 11:18:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10814"; a="687648680"
-X-IronPort-AV: E=Sophos;i="6.02,203,1688454000"; d="scan'208";a="687648680"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga003.jf.intel.com with ESMTP; 26 Aug 2023 11:18:15 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Sat, 26 Aug 2023 11:18:14 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Sat, 26 Aug 2023 11:18:14 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Sat, 26 Aug 2023 11:18:14 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.104)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Sat, 26 Aug 2023 11:18:13 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TdLQjKBLpgsPwNOp9v/7KyN+K6v0/5i1UThGV5Hktma6Flnlqd9jpXtdYGBdL9mYSQoU6z6yfydBk8cQcw6vQhmPc7WH1dlvhcljT6RTaZeRFEMSbp6OgzE0WddwUCbGDITX0hJnQ88dVSiEMCfIiIHgqQus8Ux0r0OejwXzMg+wHVqIMUWbHj/nqL6Ml3L60GK30rOzmSzx2Wlmw2GIRFZER4BmZwlS90gAog0rx68yssk8rYbol/WVoNFmE7X7AzL5SxkxyVEoeLpbCGHER8Xoa9RYET0CUdhjUuUjSyy1zV/JuAZuzEs+WPz0JOqTyrkVJ0vdozevWuOnFES9/A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TWZzbiQM6UBVAqEb2zf/atMQ6EbJEsN1maEY7NK7ooQ=;
- b=Jjnz5Qg0Ulq5x9LqsCpbw/nZqfcBiChszb3LPC1pD22TzQtLbuFSYV0uNPQxYasq1zolCPIVox+vjh7lRcsZiMczsy/xwbCmT3Lw2bbuAiwkxy1sn5CW6lr9yTyp/mqOIZf03AzbbLN6dzpkx25X1qN2l951V0v/T2OdX6dr6Hp/LWmHjeHwDfOu8aSeXIKG+62xoKYQpKqjoaJDh5CwrYIbayz+Oc7Oq52+qbXTsj37FYIL6/vQ6wg06XffkloDPX2247o1kG6V0WGSmlTMXdbfBVeMg+cp6s0raxJ4tTju85s0C7qYBn7Av2P230UBNj5IbaX1t/lXFJYQkrBZwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by CY8PR11MB7265.namprd11.prod.outlook.com (2603:10b6:930:98::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.30; Sat, 26 Aug
- 2023 18:18:12 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::88b:6fa5:dca0:2419]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::88b:6fa5:dca0:2419%7]) with mapi id 15.20.6699.027; Sat, 26 Aug 2023
- 18:18:11 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 6/9] drm/i915/dsc/mtl: Add support for
- fractional bpp
-Thread-Index: AQHZ1PIvly8x2ZIrzEuT+6SXcw6VV6/848eA
-Date: Sat, 26 Aug 2023 18:18:11 +0000
-Message-ID: <SN7PR11MB6750E957C7B87FEB5221D25EE3E2A@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20230822121033.597447-1-ankit.k.nautiyal@intel.com>
- <20230822121033.597447-7-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20230822121033.597447-7-ankit.k.nautiyal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|CY8PR11MB7265:EE_
-x-ms-office365-filtering-correlation-id: f163f7ce-5ced-4a95-4d7e-08dba660cea7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: qNAhzT+o6MhljoSGQcnOmSugASSFgw9AjfAf3E2bMMoFhZCfIuFcSIjmCAGH/BXF6NkoJBI36fK9Y4YKf+EAsqf49iTTEVhynw1LDeOkf9gX3wGhfv1HthOT9gUoKks81u9K0zt8rC6/Qpj1xfGtQ/9DlTWlRFyLX6hLbO7LRrF+gvzkhR2iimeOTghHQjFNp8yWVtQZ+h/W11UCJCeqCgOp1xH3naqbgkb5RaYsTkBSqIOpvNjs26TqJHUBsD9THXKpmL/7ka+Poy1fFnPW76gN5eOnz0YMiRO1zaX8ucU1bwI98T6/AaE9zQEW3Te37C2kPM+BcMdAegbREl6TXeM9BaeioeFN/rV8dwgjuVRsanmTNJnYWSgd+alM56ssC1aOjUqeTO4b6LuG/qygca40RzaGIZ9M8HZ8EZbMS0WQVAjXD8V6K016x6898szuPbFll9YRS6fKDFf4T6FfaT+nMzCSaXvMwW3m3WQtOU/RRv8jqo3FiTdlXlEZ1w/FwVTm2Uj+M+k4jAFvgIZcOgSzZ2wOmDLnI2hKx5wDkrxz0ANc3S7TZjYdCFW0TwmrxnFk6Ff7ewn2eyw6X4fsickbKtOIJAoT/mcW8Pbxj8FsH5RP5BiBYZ7PtFRlZbPR
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(396003)(346002)(39860400002)(136003)(376002)(451199024)(1800799009)(186009)(83380400001)(55016003)(9686003)(478600001)(26005)(52536014)(5660300002)(2906002)(8936002)(8676002)(82960400001)(38070700005)(38100700002)(122000001)(110136005)(66946007)(76116006)(86362001)(66556008)(66476007)(71200400001)(64756008)(41300700001)(7696005)(6506007)(66446008)(316002)(33656002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?KsK7sRJEoU3vVKC7FKJowQw/HI3U/vA0puMQ6Aj46cL/H8nvzzkvYjvvM/ea?=
- =?us-ascii?Q?7WIkzobbEoYpm2HV/H3GiSdf/cFPSU39uK6Qnzwe/L74aZkayQzdmMWiI02b?=
- =?us-ascii?Q?f+kmelDqWuVMW6RU1RAg2T28nzIAgPeav8nrsPBa8EPnsrEJl7FpdeweQxZ7?=
- =?us-ascii?Q?D3Z2yzEwUlcQhl8MDOFONlRriuuaCWcKNDO2zLnaZShQ4v3ukA53fHagcNQu?=
- =?us-ascii?Q?7xjE8+9Y9oW/pzBZsQKli/FYQpZDvVLfp6VL7RCBPA3Xk4JF0cMXp5bo9wIs?=
- =?us-ascii?Q?2t2qRif5Rjc7mXXgDAjBGdM112Ephv+B1pH4vZEkk3Sxjymko4bOeuEru3KD?=
- =?us-ascii?Q?v4Wox4Sn7cXdkzoaaXtxPQwYVGtzAFtSDwhyVeebU1e3f3qtjE2ObwgkhtUt?=
- =?us-ascii?Q?EHMwql0gmLI8PqJcc+h9Xq7vdPSdEJ2AL6QAFsmHauXPeGHzhHZ69f4ChNGO?=
- =?us-ascii?Q?pC3PHIpTrz9M/wU97uZ1K2Ysj8Td4mPHEAI3NKb/0GNkbA3H3DK2CfRPpM9L?=
- =?us-ascii?Q?FZ/CGoQPLpCGscAffOMqlvUklI12ToiUndXVP2WqDcPBlU9e5O9Vk/1pl2ez?=
- =?us-ascii?Q?JEoGa96HhUXcQu2bAleG92GLPDO1+hS0kF5ovbWsUw7jQG8Ay64nir0XLGtf?=
- =?us-ascii?Q?ieYEDLZ/SXaKATUyTmUL02x3FqnLZMoKkot52iyl2zvQQp8wxLBrOlCn5BTy?=
- =?us-ascii?Q?QgDg1Y2aKAuwr8qwyGgFAMazh9Ouk7i7rBSRfYjduwD04HDQOwDEMPEnX+6X?=
- =?us-ascii?Q?FELulMYQVopJFj0rJ/wGK1wyGsSjRSjTZTroeLrU2+FsLcl7QFK3V3pD1p7d?=
- =?us-ascii?Q?IytUr7Fd9qqZUgUJ8WYhQzEEniBHAAD3P8/+oETyCmKpbtj4WijffsB6y10e?=
- =?us-ascii?Q?nP59LYMuPKL8/AmpEylA4YLWb9zBGSW9lp7UPAkErX0ECecXaMRt2wuC+/aQ?=
- =?us-ascii?Q?OIFSdNh5kOSxO/iCaM/T+G9j9Urj+XA8Yc0/fBhPwZufZTVhMDYdfBhSID5P?=
- =?us-ascii?Q?5ZC5vTK6Fb4BBgzzIu0Gn54Q4H6TbQCLLe15u2KyCQgkxo0m1v6JgQPT5Q45?=
- =?us-ascii?Q?u6mgMaISiTxx+ly+Qcc6DvbKpPCyLwN9hpNXzTZLfjORJhnn+CzqsbXcfKaO?=
- =?us-ascii?Q?jqAS1oA5tZm0A4FXtAE7dvPJjew0KS+TPs4XjTeQhFSVuD1jedq0mOf2Bg7G?=
- =?us-ascii?Q?+Li/Cq9RaWsUrlw7KRNZIbPLQ6fvV6dBXO2lGYDW9VclBfcZcvUAqXN1CUII?=
- =?us-ascii?Q?liEYT7Br0B2c1Zpacp5bNriwHdLbaAet3Di2mCjZYSrqsum+ChlK/gxXLG+P?=
- =?us-ascii?Q?u9Q8QJlP8ID9vrCO8hiTvJM3e3OTTwNTaxDQhFshOs8h6uav35AQ889gDZwh?=
- =?us-ascii?Q?/rtvX1qkKV7XbsRri5zqx26OA53mvoNC6OvxRBnwgO1X5vmBY/Y5ErCt+zvs?=
- =?us-ascii?Q?eYuTz5hmBbf+4A/kvpsObe3Ux5ZxPcEf8NlHD80Cepubk6yAjNT+iGg5g31+?=
- =?us-ascii?Q?NdzGIpcb8UcJ3ijVYrLtAx2795HynfPQ9vg2PsxcqUevqqPuH69S8i/OndTt?=
- =?us-ascii?Q?HmVKogW8FzxAb0RY3L3rbfS/gDkH0ja4wKpfChgc?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF54410E076;
+ Sun, 27 Aug 2023 17:55:51 +0000 (UTC)
+Received: from workpc.. (109-252-153-31.dynamic.spd-mgts.ru [109.252.153.31])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 9A0EA66018CF;
+ Sun, 27 Aug 2023 18:55:48 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1693158950;
+ bh=W1FM9N5rUIJgVSCGIlYUhfhcIs285iOKD7BFJ+1+ha8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=G+mNd1YPk8b0hnwwMp6bTpnOolmNmfYvX1kh5Sr/3de3Scc2GxOyfFzGasvW5aWyD
+ zGdsJpOVe8t/0Ra6I6I1l2UD+te0yy0umbjsqA8zaJxZi5mzuScQKOmdxD8VxaV9Sx
+ JKD4RtfMslTtcQ09Sl1uuFpRCapsAQzy/VTAtTPPaef+l3aSzsuCPlbbYVxIsgVit/
+ kCRLb5uennwtoYU2++4rtnPH7c9H0y3a2GVIeUmAQO3MokFAbupPlJteBRDq8rztj4
+ r7T9I70FClfbwhraYxSHRrG2VgQ/ED+W7zRj4roT8aQtx84fm9lw5ybtgLx7lHWt8n
+ wF0O8apcqjP1Q==
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: David Airlie <airlied@gmail.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Qiang Yu <yuq825@gmail.com>, Steven Price <steven.price@arm.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Emma Anholt <emma@anholt.net>, Melissa Wen <mwen@igalia.com>,
+ Will Deacon <will@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Boqun Feng <boqun.feng@gmail.com>, Mark Rutland <mark.rutland@arm.com>
+Date: Sun, 27 Aug 2023 20:54:26 +0300
+Message-ID: <20230827175449.1766701-1-dmitry.osipenko@collabora.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f163f7ce-5ced-4a95-4d7e-08dba660cea7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Aug 2023 18:18:11.6654 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Fhv+Ce1u2fxhAMT1ht2Wy70lN6DTOYYj1knMIS966gcuzG+WrTd0cWkL3yRAblh3P4xsQY/PrrlBVpKSOVFPRQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7265
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915/dsc/mtl: Add support for
- fractional bpp
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v15 00/23] Add generic memory shrinker to
+ VirtIO-GPU and Panfrost DRM drivers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,113 +62,186 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, kernel@collabora.com,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> Subject: [Intel-gfx] [PATCH 6/9] drm/i915/dsc/mtl: Add support for fracti=
-onal
-> bpp
->=20
-> From: Vandita Kulkarni <vandita.kulkarni@intel.com>
->=20
-> Consider the fractional bpp while reading the qp values.
->=20
-> v2: Use helpers for fractional, integral bits of bits_per_pixel.
->=20
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_qp_tables.c    |  3 ---
->  drivers/gpu/drm/i915/display/intel_vdsc.c     | 23 +++++++++++++++----
->  2 files changed, 18 insertions(+), 8 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_qp_tables.c
-> b/drivers/gpu/drm/i915/display/intel_qp_tables.c
-> index 543cdc46aa1d..600c815e37e4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_qp_tables.c
-> +++ b/drivers/gpu/drm/i915/display/intel_qp_tables.c
-> @@ -34,9 +34,6 @@
->   * These qp tables are as per the C model
->   * and it has the rows pointing to bpps which increment
->   * in steps of 0.5
-> - * We do not support fractional bpps as of today,
-> - * hence we would skip the fractional bpps during
-> - * our references for qp calclulations.
->   */
->  static const u8
-> rc_range_minqp444_8bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP444_8BPC
-> _MAX_NUM_BPP] =3D {
->  	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, =
-diff --git
-> a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index 2dc6ea82c024..4bd570fb0ab2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -77,8 +77,9 @@ intel_vdsc_set_min_max_qp(struct drm_dsc_config
-> *vdsc_cfg, int buf,  static void  calculate_rc_params(struct drm_dsc_conf=
-ig
-> *vdsc_cfg)  {
-> +	int fractional_bits =3D dsc_fractional_compressed_bpp(vdsc_cfg-
-> >bits_per_pixel);
-> +	int bpp =3D dsc_integral_compressed_bpp(vdsc_cfg->bits_per_pixel);
->  	int bpc =3D vdsc_cfg->bits_per_component;
-> -	int bpp =3D vdsc_cfg->bits_per_pixel >> 4;
->  	int qp_bpc_modifier =3D (bpc - 8) * 2;
->  	int uncompressed_bpg_rate;
->  	int first_line_bpg_offset;
-> @@ -148,7 +149,13 @@ calculate_rc_params(struct drm_dsc_config *vdsc_cfg)
->  		static const s8 ofs_und8[] =3D {
->  			10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -10, -12, -12, -12
->  		};
-> -
-> +	/*
-> +	 * For 420 format since bits_per_pixel (bpp) is set to target bpp * 2,
-> +	 * QP table values for target bpp 4.0 to 4.4375 (rounded to 4.0) are
-> +	 * actually for bpp 8 to 8.875 (rounded to 4.0 * 2 i.e 8).
-> +	 * Similarly values for target bpp 4.5 to 4.8375 (rounded to 4.5)
-> +	 * are for bpp 9 to 9.875 (rounded to 4.5 * 2 i.e 9), and so on.
-> +	 */
->  		bpp_i  =3D bpp - 8;
->  		for (buf_i =3D 0; buf_i < DSC_NUM_BUF_RANGES; buf_i++) {
->  			u8 range_bpg_offset;
-> @@ -191,7 +198,14 @@ calculate_rc_params(struct drm_dsc_config *vdsc_cfg)
->  			10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -10, -12, -12, -12
->  		};
->=20
-> -		bpp_i  =3D (2 * (bpp - 6));
-> +		/*
-> +		 * QP table rows have values in increment of 0.5.
-> +		 * So 6.0 bpp to 6.4375 will have index 0, 6.5 to 6.9375 will
-> have index 1,
-> +		 * and so on.
-> +		 * 0.5 represented as 0x8 in U6.4 format.
-> +		 */
-> +		bpp_i  =3D ((bpp - 6) + (fractional_bits < 0x8 ? 0 : 1));
+This series:
 
-Can we have a the 0x8 as a #define rather than a direct comparison to 0x8
+  1. Adds common drm-shmem memory shrinker
+  2. Enables shrinker for VirtIO-GPU driver
+  3. Switches Panfrost driver to the common shrinker
 
-Also isn't what was previously present doing the same thing
-Sure fractional bits weren't taken into consideration but they would still =
-fall in the same
-Index. Anyways the bpp taken is the integer part so I thing no change is re=
-quired to the formula.
+Changelog:
 
-> +
->  		for (buf_i =3D 0; buf_i < DSC_NUM_BUF_RANGES; buf_i++) {
->  			u8 range_bpg_offset;
->=20
-> @@ -279,8 +293,7 @@ int intel_dsc_compute_params(struct intel_crtc_state
-> *pipe_config)
->  	/* Gen 11 does not support VBR */
->  	vdsc_cfg->vbr_enable =3D false;
->=20
-> -	/* Gen 11 only supports integral values of bpp */
-> -	vdsc_cfg->bits_per_pixel =3D compressed_bpp << 4;
-> +	vdsc_cfg->bits_per_pixel =3D pipe_config->dsc.compressed_bpp;
->=20
->  	/*
->  	 * According to DSC 1.2 specs in Section 4.1 if native_420 is set
-> --
-> 2.40.1
+v15:- Moved drm-shmem reference counters to use kref that allows to
+      optimize unlocked functions, like was suggested by Boris Brezillon.
+
+    - Changed drm/gem/shmem function names to use _locked postfix and
+      dropped the _unlocked, making the naming scheme consistent across
+      DRM code, like was suggested by Boris Brezillon.
+
+    - Added patch that fixes UAF in drm-shmem for drivers that import
+      dma-buf and then release buffer in the import error code path.
+
+    - Added patch that makes drm-shmem use new flag for SGT's get_pages()
+      refcounting, preventing unbalanced refcounting when GEM is freed.
+
+    - Fixed guest blob pinning in virtio-gpu driver that was missed
+      previously in the shrinker patch.
+
+    - Moved VC4 and virtio-gpu drivers to use drm_gem_put() in
+      GEM-creation error code paths, which is now required by drm-shmem
+      and was missed in a previous patch versions.
+
+    - Virtio-GPU now attaches shmem pages to host on first use and not
+      when BO is created. In older patch versions there was a potential
+      race condition in the BO creation code path where both
+      get_sgt()+object_attach() should've been made under same resv lock,
+      otherwise pages could be evicted before attachment is invoked.
+
+    - Virtio-GPU and drm-shmem shrinker patches are split into smaller
+      ones.
+
+v14:- All the prerequisite reservation locking patches landed upstream,
+      previously were a part of this series in v13 and older.
+
+        https://lore.kernel.org/dri-devel/20230529223935.2672495-1-dmitry.osipenko@collabora.com/
+
+    - Added patches to improve locked/unlocked function names, like was
+      suggested by Boris Brezillon for v13.
+
+    - Made all exported drm-shmem symbols GPL, like was previously
+      discussed with Thomas Zimmermann on this series.
+
+    - Improved virtio-gpu shrinker patch. Now it won't detach purged BO
+      when userspace closes GEM. Crosvm (and not qemu) checks res_id on
+      CMD_CTX_DETACH_RESOURCE and prints noisy error message if ID is
+      invalid, which wasn't noticed before.
+
+v13:- Updated virtio-gpu shrinker patch to use drm_gem_shmem_object_pin()
+      directly instead of drm_gem_pin() and dropped patch that exported
+      drm_gem_pin() functions, like was requested by Thomas Zimmermann in
+      v12.
+
+v12:- Fixed the "no previous prototype for function" warning reported by
+      kernel build bot for v11.
+
+    - Fixed the missing reservation lock reported by Intel CI for VGEM
+      driver. Other drivers using drm-shmem were affected similarly to
+      VGEM. The problem was in the dma-buf attachment code path that led
+      to drm-shmem pinning function which assumed the held reservation lock
+      by drm_gem_pin(). In the past that code path was causing trouble for
+      i915 driver and we've changed the locking scheme for the attachment
+      code path in the dma-buf core to let exporters to handle the locking
+      themselves. After a closer investigation, I realized that my assumption
+      about testing of dma-buf export code path using Panfrost driver was
+      incorrect. Now I created additional local test to exrecise the Panfrost
+      export path. I also reproduced the issue reported by the Intel CI for
+      v10. It's all fixed now by making the drm_gem_shmem_pin() to take the
+      resv lock by itself.
+
+    - Patches are based on top of drm-tip, CC'd intel-gfx CI for testing.
+
+v11:- Rebased on a recent linux-next. Added new patch as a result:
+
+        drm/shmem-helper: Export drm_gem_shmem_get_pages_sgt_locked()
+
+        It's needed by the virtio-gpu driver to swap-in/unevict shmem
+        object, previously get_pages_sgt() didn't use locking.
+
+    - Separated the "Add memory shrinker" patch into smaller parts to ease
+      the reviewing, as was requested by Thomas Zimmermann:
+
+        drm/shmem-helper: Factor out pages alloc/release from
+          drm_gem_shmem_get/put_pages()
+        drm/shmem-helper: Add pages_pin_count field
+        drm/shmem-helper: Switch drm_gem_shmem_vmap/vunmap to use pin/unpin
+        drm/shmem-helper: Factor out unpinning part from drm_gem_shmem_purge()
+
+    - Addessed the v10 review comments from Thomas Zimmermann: return errno
+      instead of bool, sort code alphabetically, rename function and etc
+      minor changes.
+
+    - Added new patch to remove the "map->is_iomem" from drm-shmem, as
+      was suggested by Thomas Zimmermann.
+
+    - Added acks and r-b's that were given to v10.
+
+v10:- Was partially applied to misc-fixes/next.
+
+      https://lore.kernel.org/dri-devel/6c16f303-81df-7ebe-85e9-51bb40a8b301@collabora.com/T/
+
+Dmitry Osipenko (23):
+  drm/shmem-helper: Fix UAF in error path when freeing SGT of imported
+    GEM
+  drm/shmem-helper: Use flag for tracking page count bumped by
+    get_pages_sgt()
+  drm/gem: Change locked/unlocked postfix of drm_gem_v/unmap() function
+    names
+  drm/gem: Add _locked postfix to functions that have unlocked
+    counterpart
+  drm/v3d: Replace open-coded drm_gem_shmem_free() with
+    drm_gem_object_put()
+  drm/virtio: Replace drm_gem_shmem_free() with drm_gem_object_put()
+  drm/shmem-helper: Make all exported symbols GPL
+  drm/shmem-helper: Refactor locked/unlocked functions
+  drm/shmem-helper: Remove obsoleted is_iomem test
+  locking/refcount, kref: Add kref_put_ww_mutex()
+  dma-resv: Add kref_put_dma_resv()
+  drm/shmem-helper: Add and use pages_pin_count
+  drm/shmem-helper: Use kref for pages_use_count
+  drm/shmem-helper: Add and use lockless drm_gem_shmem_get_pages()
+  drm/shmem-helper: Switch drm_gem_shmem_vmap/vunmap to use pin/unpin
+  drm/shmem-helper: Use kref for vmap_use_count
+  drm/shmem-helper: Add and use drm_gem_shmem_resv_assert_held() helper
+  drm/shmem-helper: Add memory shrinker
+  drm/shmem-helper: Export drm_gem_shmem_get_pages_sgt_locked()
+  drm/virtio: Pin display framebuffer BO
+  drm/virtio: Attach shmem BOs dynamically
+  drm/virtio: Support memory shrinking
+  drm/panfrost: Switch to generic memory shrinker
+
+ drivers/gpu/drm/drm_client.c                  |   6 +-
+ drivers/gpu/drm/drm_gem.c                     |  26 +-
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c  |   6 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c        | 616 +++++++++++++++---
+ drivers/gpu/drm/drm_internal.h                |   4 +-
+ drivers/gpu/drm/drm_prime.c                   |   4 +-
+ drivers/gpu/drm/lima/lima_gem.c               |  11 +-
+ drivers/gpu/drm/lima/lima_sched.c             |   4 +-
+ drivers/gpu/drm/panfrost/Makefile             |   1 -
+ drivers/gpu/drm/panfrost/panfrost_device.h    |   4 -
+ drivers/gpu/drm/panfrost/panfrost_drv.c       |  29 +-
+ drivers/gpu/drm/panfrost/panfrost_dump.c      |   4 +-
+ drivers/gpu/drm/panfrost/panfrost_gem.c       |  36 +-
+ drivers/gpu/drm/panfrost/panfrost_gem.h       |   9 -
+ .../gpu/drm/panfrost/panfrost_gem_shrinker.c  | 122 ----
+ drivers/gpu/drm/panfrost/panfrost_job.c       |  18 +-
+ drivers/gpu/drm/panfrost/panfrost_mmu.c       |   4 +-
+ drivers/gpu/drm/panfrost/panfrost_perfcnt.c   |   6 +-
+ drivers/gpu/drm/v3d/v3d_bo.c                  |  26 +-
+ drivers/gpu/drm/virtio/virtgpu_drv.h          |  22 +-
+ drivers/gpu/drm/virtio/virtgpu_gem.c          |  80 +++
+ drivers/gpu/drm/virtio/virtgpu_ioctl.c        |  57 +-
+ drivers/gpu/drm/virtio/virtgpu_kms.c          |   8 +
+ drivers/gpu/drm/virtio/virtgpu_object.c       | 147 ++++-
+ drivers/gpu/drm/virtio/virtgpu_plane.c        |  17 +-
+ drivers/gpu/drm/virtio/virtgpu_submit.c       |  15 +-
+ drivers/gpu/drm/virtio/virtgpu_vq.c           |  40 ++
+ include/drm/drm_device.h                      |  10 +-
+ include/drm/drm_gem.h                         |   6 +-
+ include/drm/drm_gem_shmem_helper.h            | 141 +++-
+ include/linux/dma-resv.h                      |   9 +
+ include/linux/kref.h                          |  12 +
+ include/linux/refcount.h                      |   5 +
+ include/uapi/drm/virtgpu_drm.h                |  14 +
+ lib/refcount.c                                |  34 +
+ 35 files changed, 1167 insertions(+), 386 deletions(-)
+ delete mode 100644 drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
+
+-- 
+2.41.0
 
