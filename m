@@ -1,61 +1,141 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65FFE78B8CF
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 21:58:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 655C978B992
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 22:30:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7DCC10E0B8;
-	Mon, 28 Aug 2023 19:58:18 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E66EE10E0B8;
- Mon, 28 Aug 2023 19:58:16 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id
- 4fb4d7f45d1cf-52bcd4db4bdso227465a12.3; 
- Mon, 28 Aug 2023 12:58:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1693252695; x=1693857495;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=l4I/5rlOV0NCpOMnT1Z1j3vGVur6FeLd5vpS7S1OKgc=;
- b=hlTv1mgzQZzjuFPfcQLMo27XlpbijJxxabSYP3p14lpnL1eNwv0B9/V0uTG6CNncI7
- bXqodaRGC2oZkv1SOgeA7ZCuy6OrpB4qqQIEzuNBeb1zDhl9rwZPWS3yXbYqPQin7JkJ
- wMuvEghE3rrNXOoEG3Tv2bqwIi0RRI+/jHbw8cyh0f6eZro6d81ILSjrNrtH79cgmaAi
- Cjv+ENfZISrgbFOPTne3/UzPtLo73x6E+JBNmBhEcyRuSq4UHonhfSRHAws3Y1bOqXbg
- kpoO+hPZKRopxZwh+0L3TIoHimzKmrj39wZWfdRcvXJeTppsJYyatFqpk/FiYx1TWTIG
- U6Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693252695; x=1693857495;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=l4I/5rlOV0NCpOMnT1Z1j3vGVur6FeLd5vpS7S1OKgc=;
- b=i8un2vbSOOtfJ+eawSC3va936adj6G4V08a+AzSWaZRY+ME3cXDGKBzt5ZBrpcZT6o
- /bkgRCIIcHJ0azV7EJQxFmQ8nC6GCOmzAOXqs1lysHQfrNXkrPUFivlFGAmzLSZs4gYV
- SV9b8foVKkI3Go35Od5wgdVgQxhY78+yo0xMvlJ1blNK98wQL7z7cpqucAJxsxZfu4lo
- f04jDzWo/IFjxmcvA1hoc5VVbADsEXRPlwiOb5toRMVLrhBomeVpkni464Tu1Xwm/bHm
- o4wWntn0zqi9+03RsAbXjrkKYzj3Byo2pZy/Am8TXFEbtJAWDWDZsiWlkiASDNlUYFaV
- Iz8w==
-X-Gm-Message-State: AOJu0Yy5h8xLQDbkhZXgXPSqMfWQxOKOhdReRbbWDb4gEMPLkqy5tGjM
- p41yVG2KZKiCYW54uVe41ICtK05W+b2loocfdsE=
-X-Google-Smtp-Source: AGHT+IGZFbfeK7T34TCy+cmwDrwNqxs9IbN1ainieCsHoXzxwBeFsr9gWcFbuo0YUnWxocfCVx8w0SOWvFvOrHsFdhg=
-X-Received: by 2002:a05:6402:34b:b0:525:69ec:e1c8 with SMTP id
- r11-20020a056402034b00b0052569ece1c8mr16600451edw.40.1693252694977; Mon, 28
- Aug 2023 12:58:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230621094824.2348732-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20230621094824.2348732-1-tvrtko.ursulin@linux.intel.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Mon, 28 Aug 2023 12:58:02 -0700
-Message-ID: <CAF6AEGu+ztCSACr7WjJAcmwObszLNYmysGj_XdnkNiXAqoCiEw@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3284110E34C;
+	Mon, 28 Aug 2023 20:30:24 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3036F10E34C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 20:30:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693254623; x=1724790623;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=b6ecYZ0Mm1LjC1+aFgk5gkDPwYTxGd+svh4TPldz5lQ=;
+ b=NB6+L4cEKJHIQlJeaMSgdumf/EVwnCzbX7F8UDVCBR3IYuQY09oYjN0f
+ Bi9tN3RrjVq8XRHAW1mnMwYb6p4X7m+WN1pSvLXYbd5/7qW7mgQosx/H/
+ ZiW6sNBXJ/d0EOHK4dfPqd3CjOhUb+HHYMCAxkdEPuVfbEAnLdsrykIL3
+ /0Z7DLtbjisiBpRrp4uJ1qSez7ffgf/CSr7nv179AW12olYos03O9MD23
+ XLrH7X84hZDd4cqljc4a8DeJdprH6FaBtdzZdOQ1S2bZ7unbC1iBgeTjM
+ 21TRAYb/yUItB+gSi5P0r2QQpPDs/8vV01Pl8RmrV05xlIW6ugzB71rN2 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="372609626"
+X-IronPort-AV: E=Sophos;i="6.02,208,1688454000"; d="scan'208";a="372609626"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2023 13:30:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="773387575"
+X-IronPort-AV: E=Sophos;i="6.02,208,1688454000"; d="scan'208";a="773387575"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga001.jf.intel.com with ESMTP; 28 Aug 2023 13:30:21 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Mon, 28 Aug 2023 13:30:21 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Mon, 28 Aug 2023 13:30:21 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.43) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Mon, 28 Aug 2023 13:30:21 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bQUQxIP2mLoTDhlwdLtyqk5D3jgEEdhoJYxq3zHo4TCN/VOGb5nOdPKMNc5twcXIBHaDOCY76O4AIVTP7aMtorWVWB0mwPXx/IkfrgqHhmbTMzenVkh6mBgkSvjkIdQo3akO9mMxtpOMqxKOGQWRiKDBaXNcp+5cK/XZDA34QSb3jku6z31R30jKeEddUorOqPdDdAhphK9YtoDVTdXseoWyk/KeJ3I0xdM1pUIYC72xG2I8RspnBpLZzh0rOrKOXAd7q5X9C1/7hNQf6b6pdPWZmkrhLKF1oidxkYCkj7UQk9CwbfUyavViZd5mOjRJqYmROWQIuKTzDs4g7GRhnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RWjCNHk/pbEzXF78/W6maTY0OKS3z65Uo5tqhNy36oQ=;
+ b=Ki5PquCbz/KrbQVf/ECH988FccyS8c5Zc5hAVZ4/aCfB3f9da0z81cCEiOAdUs03fsJjA2m3MIBRpcH8h9K9klBEealyMnH2eSotFn9IbNvfMGovUbQhqC9+HaYHAFIvLqpsXQLK4q32y7sMv/AUi6eBk/C/xLDvIv/XFhCNTVsU7J01xHLoQz6s/w7MHODU1XUAp/V6XKOUYQ2lioLGY0igaYz4PXcyeD6IG+77BHMic/i5NiJUS2D/yUiPPK2grBeHnM8FJvMH7YfrX7cMYK5udgkbEZv2lTHO7J3OvnesjEoG0dTV2IPfPcvPoCpOPuvtlIim8oR2w9L6dwiiqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB5971.namprd11.prod.outlook.com (2603:10b6:8:5e::7) by
+ SJ0PR11MB5197.namprd11.prod.outlook.com (2603:10b6:a03:2d1::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.34; Mon, 28 Aug
+ 2023 20:30:19 +0000
+Received: from DM4PR11MB5971.namprd11.prod.outlook.com
+ ([fe80::8934:bc24:bf8a:2316]) by DM4PR11MB5971.namprd11.prod.outlook.com
+ ([fe80::8934:bc24:bf8a:2316%3]) with mapi id 15.20.6699.034; Mon, 28 Aug 2023
+ 20:30:19 +0000
+From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
+To: "Sousa, Gustavo" <gustavo.sousa@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/cx0: Check and increase msgbus
+ timeout threshold
+Thread-Index: AQHZ2dYUrU0RisvnS0CLwvjYWd58YK///sjA
+Date: Mon, 28 Aug 2023 20:30:19 +0000
+Message-ID: <DM4PR11MB597193DFDCC38D7E92C9CFC187E0A@DM4PR11MB5971.namprd11.prod.outlook.com>
+References: <20230828173405.59812-1-gustavo.sousa@intel.com>
+In-Reply-To: <20230828173405.59812-1-gustavo.sousa@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB5971:EE_|SJ0PR11MB5197:EE_
+x-ms-office365-filtering-correlation-id: 15f55a9b-25b3-4765-9024-08dba805989e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: YBQeDAHO/S0FMJUCwTIiiag5h5kHHFr1l+sIItOwcgbg4tEB49t7fpxHql+eqwSH2VUUxaESBo69gkh6czabIUCMQMM8LeIzD0edHTex6Tg5kwztowbZfVVUZKQfenCigbSODiy4J/Ki+wDJ5nXvuJwEFDiwkFSCGdZ6DY7q2w+Ng/hgQ/v7Ez5gS1zI/QuNVD0AxoT4uqN0WT5tdtCvXEqZ6OeB196e+RfC0SpDZg8eKbhluB2D1jAtL+Mtvyq35IyHaVF4HNW1bfwqPio18AMNE2ogIvgNcTRsYIAV12lAIv1lJmoikb2EEGroYTI0q4OdHjy8G5Y79qUhbevWkn/L1hOzMcrkXh07SuOVEvgkamgP6Pj3zjYzAx6yuDReGqJlkqfNUCEDXu3mhZwNgSJ0puTDX3aJDcQiwia1xELwZLv6j+FhtqoXKeoXAtpHNCKKCbmaDd5li1mKRGaaMxj9T4Ci/BFJ9P0rKEcHZhgf32jaYjva2695ua5MNdekv3RcL5LBVwvH+kE9+cJKypewghCauqz+bh4eERtQ7RuM9RQPpjG3hOGVgwBI05C0kwRQd9yy/CDs4t88bIDcUibzY1vugWS1JUSQ7vReChSkCF93jWxtIOzE4Rqd6ybP
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5971.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(396003)(366004)(136003)(346002)(39860400002)(1800799009)(186009)(451199024)(478600001)(83380400001)(122000001)(26005)(9686003)(7696005)(110136005)(53546011)(6506007)(71200400001)(55016003)(86362001)(33656002)(82960400001)(2906002)(52536014)(316002)(38100700002)(66476007)(8676002)(38070700005)(5660300002)(64756008)(66446008)(76116006)(41300700001)(66946007)(8936002)(66556008);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?10iwumg3Fv9FTAI3K06C/mlNLuKD/+9W5rP5cxgSQb6w3OzYcnYu5zLT2jFn?=
+ =?us-ascii?Q?mpJ6teNVzROSRQzUnsXtsecVoMoIxeMUaEepsVFc1ZcN7SJWvDjfq27ymyi1?=
+ =?us-ascii?Q?Cb4e3OSyGUXOm/90oU/RHFtL9z8ie16MYdLYhrUIcBU3t/72yp1JIW8xq4Ly?=
+ =?us-ascii?Q?wBYibkajIaThxghC10ZuvEY+7TUN/ulqLDznYyiynXBkuaZNsO0Eb3kUUOPJ?=
+ =?us-ascii?Q?oCCQyuIi9nS64OJe/Onzk+vs3KBzv1FW9p8yCAtbXsU5jx3CKZtocyZlksVZ?=
+ =?us-ascii?Q?WxjNYJQTHYXOSR6avaz2Xr9iADd9eG0HIKy6KJKDhFWhDc4Y82vrg0lxmNlE?=
+ =?us-ascii?Q?4g01vBqB1H2nAHLkvAt0SokLd2tndvyqLoZNOOD3ndDRtEFFv/9apxUU/KrI?=
+ =?us-ascii?Q?BwHAUTlGOZZ483cqAmQWC1jFtOgRIj8PNuJRVLxSjmGbGlTWtyJuqxyDUr84?=
+ =?us-ascii?Q?F2AdZnEp04PlfxJmgj9yfEGeb/VmrK6FCnoXsvoNRBED/htsykpdniacmyZo?=
+ =?us-ascii?Q?7dDN+Sb8f5IW0JFB2bUYn+1CK3gCBQvbNmURuOI3UrHfbILkpnin+Lx5EuUL?=
+ =?us-ascii?Q?9sSq769yAkTMoUFevPK93oIbLYnElYUniriJwjUhPBnXxur28Trb/qdL1fFx?=
+ =?us-ascii?Q?hVw/a0s+Mru12U+yrx+QmEcBQLkSLlNI2tuQCqfv32Okcagm5C/UqXsU1UFY?=
+ =?us-ascii?Q?tSaXbRNnhJl0muAqYGley+YvtmsNFILHF0goola1BeBDx++QdXGVMglB6JQN?=
+ =?us-ascii?Q?cjZ2vJDGkE7BA6wRBS1QQUe75cJZ88FUeRgsWGD7BA9l4/2CPbWgW0A9oV8n?=
+ =?us-ascii?Q?LqH1FDV0MNbohU1J1O9LQ6hroAB5YkezWNyaoF6VCQuGbm7Azs63386+8sAZ?=
+ =?us-ascii?Q?b8btn4MqAZ/Qa+3ugl3FFM6AKDMs0+S/Xl3Te1IYkeHeQLGzfzxpD7Bi4RSh?=
+ =?us-ascii?Q?m1KCd2Em4iM0Y2VU1jYMDOdo7iK41oEBEtjm3uzc2WVNsIRMzQJ7FdjI4TFM?=
+ =?us-ascii?Q?jea2HpuEKeoF3C82FSqOZLeJK9RwDoZ9GbeHoWSRpF+6Z7ioDrbKQ0Bva3tQ?=
+ =?us-ascii?Q?w6VUsPyModGs0mnKfk1ytQj3WAdN//DxYIIBH5cz+2yXFwZPWSUs1RhiOqJ2?=
+ =?us-ascii?Q?ViXH0xZHPe3g+3pTyhpuEjyaBzKoOJtwD2ShTQdNkUhjAzWjzU+HZO2f6yie?=
+ =?us-ascii?Q?ie/8AvvbYjFNdHN9xQ8FUIN17Z+pefIwMmZnfMGrtbo6ra7rZD6qAdPFi0TN?=
+ =?us-ascii?Q?mvaMQKLDv0+kPuSXOqGVQQIHC+nuXtrDX0kmcZ2nEYC1p/8Mxrvs+QsPy46L?=
+ =?us-ascii?Q?udL6p6Up2IkzzSqCTizrjEu4/XPigevEl8Ps9iBmLAXZ/m4tt/XLK3wJdomB?=
+ =?us-ascii?Q?8hgI0HY9AEbEqRjLnVIgADj7Qx/SYE7/Zk7uKgAsNZrrgPDyIoMRNaLAq6bV?=
+ =?us-ascii?Q?nJuRqXxjP1YevnNIBnrKIP/WVt6IIqy7rEICwlw8V6OijIPsgsbCBDNJbHnT?=
+ =?us-ascii?Q?TMjZ71XKnlw3IJaskPRANZTGEBTPVbcvBL6NIjEMcb2Z45xdbaqN7bKa0qOc?=
+ =?us-ascii?Q?rB+5fnby6WBZa6Kw2uyOHmKJzHsBbx0yeg5XJ49uxB9iXOl0JB8aEyDdT6Zv?=
+ =?us-ascii?Q?Ww=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2] drm: Update file owner during use
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5971.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15f55a9b-25b3-4765-9024-08dba805989e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2023 20:30:19.1406 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wt/GuxYb3XG58uUCzD45NUdmveGqggHrL6F3JCTNT38BfNpK4IuaNwM8CYb+OLv4+HWNyAWU5T4B9Sw06d9krtSbCVbMETGbC1ajDU4L+JA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5197
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/cx0: Check and increase msgbus
+ timeout threshold
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,343 +148,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 21, 2023 at 2:48=E2=80=AFAM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> With the typical model where the display server opens the file descriptor
-> and then hands it over to the client(*), we were showing stale data in
-> debugfs.
->
-> Fix it by updating the drm_file->pid on ioctl access from a different
-> process.
->
-> The field is also made RCU protected to allow for lockless readers. Updat=
-e
-> side is protected with dev->filelist_mutex.
->
-> Before:
->
-> $ cat /sys/kernel/debug/dri/0/clients
->              command   pid dev master a   uid      magic
->                 Xorg  2344   0   y    y     0          0
->                 Xorg  2344   0   n    y     0          2
->                 Xorg  2344   0   n    y     0          3
->                 Xorg  2344   0   n    y     0          4
->
-> After:
->
-> $ cat /sys/kernel/debug/dri/0/clients
->              command  tgid dev master a   uid      magic
->                 Xorg   830   0   y    y     0          0
->        xfce4-session   880   0   n    y     0          1
->                xfwm4   943   0   n    y     0          2
->            neverball  1095   0   n    y     0          3
->
-> *)
-> More detailed and historically accurate description of various handover
-> implementation kindly provided by Emil Velikov:
->
-> """
-> The traditional model, the server was the orchestrator managing the
-> primary device node. From the fd, to the master status and
-> authentication. But looking at the fd alone, this has varied across
-> the years.
->
-> IIRC in the DRI1 days, Xorg (libdrm really) would have a list of open
-> fd(s) and reuse those whenever needed, DRI2 the client was responsible
-> for open() themselves and with DRI3 the fd was passed to the client.
->
-> Around the inception of DRI3 and systemd-logind, the latter became
-> another possible orchestrator. Whereby Xorg and Wayland compositors
-> could ask it for the fd. For various reasons (hysterical and genuine
-> ones) Xorg has a fallback path going the open(), whereas Wayland
-> compositors are moving to solely relying on logind... some never had
-> fallback even.
->
-> Over the past few years, more projects have emerged which provide
-> functionality similar (be that on API level, Dbus, or otherwise) to
-> systemd-logind.
-> """
->
-> v2:
->  * Fixed typo in commit text and added a fine historical explanation
->    from Emil.
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
+Hi Gustavo,
 
-Reviewed-by: Rob Clark <robdclark@gmail.com>
-Tested-by: Rob Clark <robdclark@gmail.com>
-
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Gu=
+stavo
+> Sousa
+> Sent: Monday, August 28, 2023 10:34 AM
+> To: intel-gfx@lists.freedesktop.org
+> Subject: [Intel-gfx] [PATCH] drm/i915/cx0: Check and increase msgbus time=
+out
+> threshold
+>=20
+> We have experienced timeout issues when accessing C20 SRAM registers.
+This wording is misleading. It seems to imply that we directly access SRAM
+registers via msg bus but the reads/writes go through intermediate register=
+s
+and it is this read/write that is failing. Adding extra clarity here would =
+be helpful.
+=20
+> Experimentation showed that bumping the message bus timer threshold
+> helped on getting display Type-C connection on the C20 PHY to work.
+>=20
+> While the timeout is still under investigation with the HW team, having
+> logic to allow forward progress (with the proper warnings) seems useful.
+> Thus, let's bump the threshold when a timeout is detected.
+>=20
+> The maximum value of 0x200 pclk cycles was somewhat arbitrary - 2x the
+> default value. That value was successfully tested on real hardware that
+> was displaying timeouts otherwise.=20
+>=20
+> BSpec: 65156
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c |  6 ++--
->  drivers/gpu/drm/drm_auth.c              |  3 +-
->  drivers/gpu/drm/drm_debugfs.c           | 10 ++++---
->  drivers/gpu/drm/drm_file.c              | 40 +++++++++++++++++++++++--
->  drivers/gpu/drm/drm_ioctl.c             |  3 ++
->  drivers/gpu/drm/nouveau/nouveau_drm.c   |  5 +++-
->  drivers/gpu/drm/vmwgfx/vmwgfx_gem.c     |  6 ++--
->  include/drm/drm_file.h                  | 13 ++++++--
->  8 files changed, 71 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_gem.c
-> index 74055cba3dc9..849097dff02b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> @@ -963,6 +963,7 @@ static int amdgpu_debugfs_gem_info_show(struct seq_fi=
-le *m, void *unused)
->         list_for_each_entry(file, &dev->filelist, lhead) {
->                 struct task_struct *task;
->                 struct drm_gem_object *gobj;
-> +               struct pid *pid;
->                 int id;
->
->                 /*
-> @@ -972,8 +973,9 @@ static int amdgpu_debugfs_gem_info_show(struct seq_fi=
-le *m, void *unused)
->                  * Therefore, we need to protect this ->comm access using=
- RCU.
->                  */
->                 rcu_read_lock();
-> -               task =3D pid_task(file->pid, PIDTYPE_TGID);
-> -               seq_printf(m, "pid %8d command %s:\n", pid_nr(file->pid),
-> +               pid =3D rcu_dereference(file->pid);
-> +               task =3D pid_task(pid, PIDTYPE_TGID);
-> +               seq_printf(m, "pid %8d command %s:\n", pid_nr(pid),
->                            task ? task->comm : "<unknown>");
->                 rcu_read_unlock();
->
-> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
-> index cf92a9ae8034..2ed2585ded37 100644
-> --- a/drivers/gpu/drm/drm_auth.c
-> +++ b/drivers/gpu/drm/drm_auth.c
-> @@ -235,7 +235,8 @@ static int drm_new_set_master(struct drm_device *dev,=
- struct drm_file *fpriv)
->  static int
->  drm_master_check_perm(struct drm_device *dev, struct drm_file *file_priv=
-)
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 41 +++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_cx0_phy_regs.h | 12 ++++++
+>  2 files changed, 53 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index dd489b50ad60..55d2333032e3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -5,6 +5,7 @@
+>=20
+>  #include <linux/log2.h>
+>  #include <linux/math64.h>
+> +#include <linux/minmax.h>
+>  #include "i915_reg.h"
+>  #include "intel_cx0_phy.h"
+>  #include "intel_cx0_phy_regs.h"
+> @@ -29,6 +30,8 @@
+>  #define INTEL_CX0_LANE1		BIT(1)
+>  #define INTEL_CX0_BOTH_LANES	(INTEL_CX0_LANE1 |
+> INTEL_CX0_LANE0)
+>=20
+> +#define INTEL_CX0_MSGBUS_TIMER_VAL_MAX	0x200
+> +
+>  bool intel_is_c10phy(struct drm_i915_private *i915, enum phy phy)
 >  {
-> -       if (file_priv->pid =3D=3D task_pid(current) && file_priv->was_mas=
-ter)
-> +       if (file_priv->was_master &&
-> +           rcu_access_pointer(file_priv->pid) =3D=3D task_pid(current))
->                 return 0;
->
->         if (!capable(CAP_SYS_ADMIN))
-> diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.=
-c
-> index 4855230ba2c6..b46f5ceb24c6 100644
-> --- a/drivers/gpu/drm/drm_debugfs.c
-> +++ b/drivers/gpu/drm/drm_debugfs.c
-> @@ -90,15 +90,17 @@ static int drm_clients_info(struct seq_file *m, void =
-*data)
->          */
->         mutex_lock(&dev->filelist_mutex);
->         list_for_each_entry_reverse(priv, &dev->filelist, lhead) {
-> -               struct task_struct *task;
->                 bool is_current_master =3D drm_is_current_master(priv);
-> +               struct task_struct *task;
-> +               struct pid *pid;
->
-> -               rcu_read_lock(); /* locks pid_task()->comm */
-> -               task =3D pid_task(priv->pid, PIDTYPE_TGID);
-> +               rcu_read_lock(); /* Locks priv->pid and pid_task()->comm!=
- */
-> +               pid =3D rcu_dereference(priv->pid);
-> +               task =3D pid_task(pid, PIDTYPE_TGID);
->                 uid =3D task ? __task_cred(task)->euid : GLOBAL_ROOT_UID;
->                 seq_printf(m, "%20s %5d %3d   %c    %c %5d %10u\n",
->                            task ? task->comm : "<unknown>",
-> -                          pid_vnr(priv->pid),
-> +                          pid_vnr(pid),
->                            priv->minor->index,
->                            is_current_master ? 'y' : 'n',
->                            priv->authenticated ? 'y' : 'n',
-> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-> index 883d83bc0e3d..e692770ef6d3 100644
-> --- a/drivers/gpu/drm/drm_file.c
-> +++ b/drivers/gpu/drm/drm_file.c
-> @@ -160,7 +160,7 @@ struct drm_file *drm_file_alloc(struct drm_minor *min=
-or)
->
->         /* Get a unique identifier for fdinfo: */
->         file->client_id =3D atomic64_inc_return(&ident);
-> -       file->pid =3D get_pid(task_tgid(current));
-> +       rcu_assign_pointer(file->pid, get_pid(task_tgid(current)));
->         file->minor =3D minor;
->
->         /* for compatibility root is always authenticated */
-> @@ -200,7 +200,7 @@ struct drm_file *drm_file_alloc(struct drm_minor *min=
-or)
->                 drm_syncobj_release(file);
->         if (drm_core_check_feature(dev, DRIVER_GEM))
->                 drm_gem_release(dev, file);
-> -       put_pid(file->pid);
-> +       put_pid(rcu_access_pointer(file->pid));
->         kfree(file);
->
->         return ERR_PTR(ret);
-> @@ -291,7 +291,7 @@ void drm_file_free(struct drm_file *file)
->
->         WARN_ON(!list_empty(&file->event_list));
->
-> -       put_pid(file->pid);
-> +       put_pid(rcu_access_pointer(file->pid));
->         kfree(file);
+>  	if (DISPLAY_VER_FULL(i915) =3D=3D IP_VER(14, 0) && phy < PHY_C)
+> @@ -119,6 +122,43 @@ static void intel_cx0_bus_reset(struct drm_i915_priv=
+ate
+> *i915, enum port port, i
+>  	intel_clear_response_ready_flag(i915, port, lane);
 >  }
->
-> @@ -505,6 +505,40 @@ int drm_release(struct inode *inode, struct file *fi=
-lp)
->  }
->  EXPORT_SYMBOL(drm_release);
->
-> +void drm_file_update_pid(struct drm_file *filp)
+>=20
+> +/*
+> + * Check if there was a timeout detected by the hardware in the message =
+bus
+> + * and bump the threshold if so.
+> + */
+> +static void intel_cx0_bus_check_and_bump_timer(struct drm_i915_private
+> *i915,
+> +					       enum port port, int lane)
 > +{
-> +       struct drm_device *dev;
-> +       struct pid *pid, *old;
+> +	enum phy phy =3D intel_port_to_phy(i915, port);
+> +	i915_reg_t reg;
+> +	u32 val;
+> +	u32 timer_val;
 > +
-> +       /*
-> +        * Master nodes need to keep the original ownership in order for
-> +        * drm_master_check_perm to keep working correctly. (See comment =
-in
-> +        * drm_auth.c.)
-> +        */
-> +       if (filp->was_master)
-> +               return;
+> +	reg =3D XELPDP_PORT_MSGBUS_TIMER(port, lane);
+> +	val =3D intel_de_read(i915, reg);
 > +
-> +       pid =3D task_tgid(current);
+> +	if (!(val & XELPDP_PORT_MSGBUS_TIMER_TIMED_OUT)) {
+> +		drm_warn(&i915->drm,
+> +			 "PHY %c lane %d: hardware did not detect a
+> timeout\n",
+> +			 phy_name(phy), lane);
+> +		return;
+> +	}
 > +
-> +       /*
-> +        * Quick unlocked check since the model is a single handover foll=
-owed by
-> +        * exclusive repeated use.
-> +        */
-> +       if (pid =3D=3D rcu_access_pointer(filp->pid))
-> +               return;
+> +	timer_val =3D
+> REG_FIELD_GET(XELPDP_PORT_MSGBUS_TIMER_VAL_MASK, val);
 > +
-> +       dev =3D filp->minor->dev;
-> +       mutex_lock(&dev->filelist_mutex);
-> +       old =3D rcu_replace_pointer(filp->pid, pid, 1);
-> +       mutex_unlock(&dev->filelist_mutex);
+> +	if (timer_val =3D=3D INTEL_CX0_MSGBUS_TIMER_VAL_MAX)
+> +		return;
 > +
-> +       if (pid !=3D old) {
-> +               get_pid(pid);
-> +               synchronize_rcu();
-> +               put_pid(old);
-> +       }
+> +	timer_val =3D min(2 * timer_val,
+> (u32)INTEL_CX0_MSGBUS_TIMER_VAL_MAX);
+     ^ is this cast necessary?
+
+> +	val &=3D ~XELPDP_PORT_MSGBUS_TIMER_VAL_MASK;
+> +	val |=3D REG_FIELD_PREP(XELPDP_PORT_MSGBUS_TIMER_VAL_MASK,
+> timer_val);
+We do not use REG_FIELD_PREP in the function. Instead we use it in
+register definition in intel_cx0_phy_regs.h.
+
+Thanks,
+Radhakrishna Sripada
+
+> +
+> +	drm_dbg_kms(&i915->drm,
+> +		    "PHY %c lane %d: increasing msgbus timer threshold to
+> %#x\n",
+> +		    phy_name(phy), lane, timer_val);
+> +	intel_de_write(i915, reg, val);
 > +}
 > +
->  /**
->   * drm_release_noglobal - release method for DRM file
->   * @inode: device inode
-> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
-> index 7c9d66ee917d..305b18d9d7b6 100644
-> --- a/drivers/gpu/drm/drm_ioctl.c
-> +++ b/drivers/gpu/drm/drm_ioctl.c
-> @@ -775,6 +775,9 @@ long drm_ioctl_kernel(struct file *file, drm_ioctl_t =
-*func, void *kdata,
->         struct drm_device *dev =3D file_priv->minor->dev;
->         int retcode;
->
-> +       /* Update drm_file owner if fd was passed along. */
-> +       drm_file_update_pid(file_priv);
+>  static int intel_cx0_wait_for_ack(struct drm_i915_private *i915, enum po=
+rt port,
+>  				  int command, int lane, u32 *val)
+>  {
+> @@ -132,6 +172,7 @@ static int intel_cx0_wait_for_ack(struct
+> drm_i915_private *i915, enum port port,
+>  					 XELPDP_MSGBUS_TIMEOUT_SLOW,
+> val)) {
+>  		drm_dbg_kms(&i915->drm, "PHY %c Timeout waiting for
+> message ACK. Status: 0x%x\n",
+>  			    phy_name(phy), *val);
+> +		intel_cx0_bus_check_and_bump_timer(i915, port, lane);
+>  		intel_cx0_bus_reset(i915, port, lane);
+>  		return -ETIMEDOUT;
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> index cb5d1be2ba19..17cc3385aabb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> @@ -110,6 +110,18 @@
+>  #define   CX0_P4PG_STATE_DISABLE			0xC
+>  #define   CX0_P2_STATE_RESET				0x2
+>=20
+> +#define _XELPDP_PORT_MSGBUS_TIMER_LN0_A
+> 	0x640d8
+> +#define _XELPDP_PORT_MSGBUS_TIMER_LN0_B
+> 	0x641d8
+> +#define _XELPDP_PORT_MSGBUS_TIMER_LN0_USBC1		0x16f258
+> +#define _XELPDP_PORT_MSGBUS_TIMER_LN0_USBC2		0x16f458
+> +#define XELPDP_PORT_MSGBUS_TIMER(port, lane)
+> 	_MMIO(_PICK_EVEN_2RANGES(port, PORT_TC1, \
 > +
->         if (drm_dev_is_unplugged(dev))
->                 return -ENODEV;
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouv=
-eau/nouveau_drm.c
-> index 51f1918b44d3..e3cb60eb0bc8 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> @@ -1101,7 +1101,10 @@ nouveau_drm_open(struct drm_device *dev, struct dr=
-m_file *fpriv)
->         }
->
->         get_task_comm(tmpname, current);
-> -       snprintf(name, sizeof(name), "%s[%d]", tmpname, pid_nr(fpriv->pid=
-));
-> +       rcu_read_lock();
-> +       snprintf(name, sizeof(name), "%s[%d]",
-> +                tmpname, pid_nr(rcu_dereference(fpriv->pid)));
-> +       rcu_read_unlock();
->
->         if (!(cli =3D kzalloc(sizeof(*cli), GFP_KERNEL))) {
->                 ret =3D -ENOMEM;
-> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c b/drivers/gpu/drm/vmwgfx=
-/vmwgfx_gem.c
-> index c0da89e16e6f..a07e5b7e2f2f 100644
-> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-> @@ -232,6 +232,7 @@ static int vmw_debugfs_gem_info_show(struct seq_file =
-*m, void *unused)
->         list_for_each_entry(file, &dev->filelist, lhead) {
->                 struct task_struct *task;
->                 struct drm_gem_object *gobj;
-> +               struct pid *pid;
->                 int id;
->
->                 /*
-> @@ -241,8 +242,9 @@ static int vmw_debugfs_gem_info_show(struct seq_file =
-*m, void *unused)
->                  * Therefore, we need to protect this ->comm access using=
- RCU.
->                  */
->                 rcu_read_lock();
-> -               task =3D pid_task(file->pid, PIDTYPE_TGID);
-> -               seq_printf(m, "pid %8d command %s:\n", pid_nr(file->pid),
-> +               pid =3D rcu_dereference(file->pid);
-> +               task =3D pid_task(pid, PIDTYPE_TGID);
-> +               seq_printf(m, "pid %8d command %s:\n", pid_nr(pid),
->                            task ? task->comm : "<unknown>");
->                 rcu_read_unlock();
->
-> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-> index 966912053cb0..c76249d5467e 100644
-> --- a/include/drm/drm_file.h
-> +++ b/include/drm/drm_file.h
-> @@ -256,8 +256,15 @@ struct drm_file {
->         /** @master_lookup_lock: Serializes @master. */
->         spinlock_t master_lookup_lock;
->
-> -       /** @pid: Process that opened this file. */
-> -       struct pid *pid;
-> +       /**
-> +        * @pid: Process that is using this file.
-> +        *
-> +        * Must only be dereferenced under a rcu_read_lock or equivalent.
-> +        *
-> +        * Updates are guarded with dev->filelist_mutex and reference mus=
-t be
-> +        * dropped after a RCU grace period to accommodate lockless reade=
-rs.
-> +        */
-> +       struct pid __rcu *pid;
->
->         /** @client_id: A unique id for fdinfo */
->         u64 client_id;
-> @@ -420,6 +427,8 @@ static inline bool drm_is_accel_client(const struct d=
-rm_file *file_priv)
->         return file_priv->minor->type =3D=3D DRM_MINOR_ACCEL;
->  }
->
-> +void drm_file_update_pid(struct drm_file *);
+> 	 _XELPDP_PORT_MSGBUS_TIMER_LN0_A, \
 > +
->  int drm_open(struct inode *inode, struct file *filp);
->  int drm_open_helper(struct file *filp, struct drm_minor *minor);
->  ssize_t drm_read(struct file *filp, char __user *buffer,
+> 	 _XELPDP_PORT_MSGBUS_TIMER_LN0_B, \
+> +
+> 	 _XELPDP_PORT_MSGBUS_TIMER_LN0_USBC1, \
+> +
+> 	 _XELPDP_PORT_MSGBUS_TIMER_LN0_USBC2) + (lane) * 4)
+> +#define   XELPDP_PORT_MSGBUS_TIMER_TIMED_OUT		REG_BIT(31)
+> +#define   XELPDP_PORT_MSGBUS_TIMER_VAL_MASK
+> 	REG_GENMASK(23, 0)
+> +
+>  #define _XELPDP_PORT_CLOCK_CTL_A			0x640E0
+>  #define _XELPDP_PORT_CLOCK_CTL_B			0x641E0
+>  #define _XELPDP_PORT_CLOCK_CTL_USBC1			0x16F260
 > --
-> 2.39.2
->
+> 2.41.0
+
