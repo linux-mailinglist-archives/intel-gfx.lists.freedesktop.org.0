@@ -1,148 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4018A78B9F6
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 23:08:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFB7078BA6B
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 23:42:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57E6F10E35F;
-	Mon, 28 Aug 2023 21:08:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B14110E0E6;
+	Mon, 28 Aug 2023 21:42:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7E5F10E35C;
- Mon, 28 Aug 2023 21:08:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 116EF10E0E6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 21:42:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693256895; x=1724792895;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=lcM+LHvOkmo6sWMHKJ+9zskTuvt7dSJAudcoXRMm8xw=;
- b=TBjasLexas9MmE8HVnjzi6kenqEwIXxU+AxmTu0A1q0eUHqSreqdD8MI
- suK4UGFh5w/MB3mfX98kYo2lFSWxizxvZHNb/WUYvaslw/g7we/isjSLa
- 05K29I9zZFWsW15pWl07dkGWzBmw4W6DXBjo7j4AXKIKb7thnzPYiucIx
- iL5ZUKRO7QVtryfZ6g1WWQjI/Qpf1vSVToLBfgbIxHRQEbUrVHMkA3mYT
- 6hOlK+fn4sG5mTrC+85uqDmGkL8+oh6ZVyxWVDyD6R4LXBzLB4O1OGEw6
- xs+AsQuDgGFlLaeNaMMo001frcfV84JBgrt3p7sheAw5ZtslBxObFJ7LH A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="406202298"
-X-IronPort-AV: E=Sophos;i="6.02,208,1688454000"; d="scan'208";a="406202298"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2023 14:08:14 -0700
+ t=1693258974; x=1724794974;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=AWOCYu3r3ku7y/o8qJj5ZZgs7SRz99QyCWr6efO6CG4=;
+ b=jKTy88g7NM03iUUYcbf6CEJM+bUw7tHeW9n9+Bsg75eUk9EQV8Xi+I2/
+ RzZlwQlQtvDBiGMh8jyvDZSDfZCK73l5F3l3TBlCi03ltGTKhgq1xZB/n
+ xIBvd8z3kaI/W8fgFREBLb5UFMHwoQooGHtdd0ZGBrozwQsqWZEdLasI2
+ KBIg01IEa0OgCzhq7M04xjUguyBLZmEBW9rT9idn/43bMYPZm/WP9GD3z
+ 8bpiE7AXOKZ8WYpa84s+m5uhkLDSBikcjgNiB1/qrg/+/zjNmj/HIGbc2
+ /Gxno2n1nHW3k23TaiwPWFToJmSehVV8gD8d74P3YjdHIPJRFbMvTXa8/ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="365415571"
+X-IronPort-AV: E=Sophos;i="6.02,208,1688454000"; d="scan'208";a="365415571"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2023 14:42:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="767823763"
-X-IronPort-AV: E=Sophos;i="6.02,208,1688454000"; d="scan'208";a="767823763"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga008.jf.intel.com with ESMTP; 28 Aug 2023 14:08:13 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 28 Aug 2023 14:08:12 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Mon, 28 Aug 2023 14:08:12 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.171)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Mon, 28 Aug 2023 14:08:12 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eeXrE/yT90Wf6g9LtvVe2yNkFLeiRMZp8a/nClzSITu051KIl13JM7L4EN+UebOGui0+5621lzbOxpU96nu87PswXkqREYHbVk3Yh+J8eAp0rJ2ZVoC2RHyY7IFBzDwTHEl3hStPRz14FeB7j9ZZSbfeYYFnyP4CxnnPSH6758Xbh+DQK+RNnb+EQQWqvyA8ZR41/rAKkn6/GKv7f/pWxenSfyIS+3ZVKuADFLWp+mAZ7tuVb2HjIi2ZAwdirv/ZNOCsm0tNtQLxyiTyUhhXG4W5GddtxTBFkYkoglpRjws9pUR8gVuVgQfBtxdUxDU2HoMC9BFki8RVi71US1Dviw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5cnSTUi0LVcVbtJz2JbtNQ5Gq7jlOpQikx+T+aG4Pqg=;
- b=WkKkc3TQ0n/dGn0vN/+EdZ2yYe9lF1pZLX1erwpdqxyVAh3+9O213utNv7I3Ih4PsZ1L10w45652nAUpKjEeYGHCN/ak+wGNd1W0bR7wdx+qneVgmjW4/zyanzuOmaHcTXer7uZnsfdNSeUslmFgaP+7u0socptKgcVOuWgpUpIqkKwX8Xwjy0XgUIwvEiRpCWheue1dp0eoZTssOCFLU/mrfxop3a6p0IT6noU5HpM/pYYm8FAP+V8d/i43ZnjWHeCcHOy7HRYk9VDRMlETZTNrAaFp3U1D1blSft8OreX92VTWpBuNI/+JaZECq2CixIVCZqCA/z6TIf7HDyWj1w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
- IA1PR11MB8248.namprd11.prod.outlook.com (2603:10b6:208:447::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.34; Mon, 28 Aug
- 2023 21:08:08 +0000
-Received: from DM4PR11MB5373.namprd11.prod.outlook.com
- ([fe80::1127:c109:d888:f6d1]) by DM4PR11MB5373.namprd11.prod.outlook.com
- ([fe80::1127:c109:d888:f6d1%5]) with mapi id 15.20.6699.034; Mon, 28 Aug 2023
- 21:08:08 +0000
-Date: Mon, 28 Aug 2023 23:08:04 +0200
-From: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
-To: James Zhu <jamesz@amd.com>
-Message-ID: <6qcxpntlr36itieyoyebsncwdv4vadr5ac7imgl4rdemoyedvp@a3m7l32pkcnf>
-References: <20230724211428.3831636-1-michal.winiarski@intel.com>
- <20230724211428.3831636-2-michal.winiarski@intel.com>
- <10bb9689-9226-d47c-4cf1-7bf9d599456c@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <10bb9689-9226-d47c-4cf1-7bf9d599456c@amd.com>
-X-ClientProxiedBy: BE1P281CA0281.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:84::14) To DM4PR11MB5373.namprd11.prod.outlook.com
- (2603:10b6:5:394::7)
+X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="985058680"
+X-IronPort-AV: E=Sophos;i="6.02,208,1688454000"; d="scan'208";a="985058680"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmsmga006.fm.intel.com with ESMTP; 28 Aug 2023 14:42:50 -0700
+Received: from [10.249.131.165] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.131.165])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id E36293496C;
+ Mon, 28 Aug 2023 22:42:49 +0100 (IST)
+Message-ID: <1de9f939-1164-de25-9410-279f4558ebaa@intel.com>
+Date: Mon, 28 Aug 2023 23:42:49 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|IA1PR11MB8248:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3c283668-428e-46fe-4bba-08dba80ae0c5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Yf4Fw3lAmjGvFua30OG4s8sHOD6s2eO3vTxsSoS+jHjyX58T6ekCzaRl0s6DKR7/pIYuQrpb+BnvM2/kiEffsnVQ6qaxI+S4fB/MTtZkLWgxj7AFljWtLwvL0kT4t0uQZcM181wy9mNYXa30Y4W7t41J8MS32M8zOh5t4XyDhnzBBHZs0W2MgaH3MZrS2D8cxD4wj7vpUvkrXXo0hOXWxGNxvEaG/oKoy7f9F0RBsGJz+MisYGN1CdzmU6k0e4Rdk1KZVTn4o/QESTqamgnAudw/kSsiKmqbXgoxzQkIlOR0VbXgtW0a2Uh1zjLtnkpVBR5lSmvaDvB5qje4Wv1Z33DZaU7LQZ9klPEqxtvqD/7UGWJaDfTCxuDUsNtIJMRKg4TN1MfwkpogAk8lvgM9nh2m9ZycNLb0AFvw9r4feRSi0HQLGi9LbTi008v59KE1Wr5kL5vY4zJAfBK50faYxvpnKdv5C6X4cuGAP5k0PUyHul80Thce17Q9MGdZGJ8RLFKQg0ZpKpeiEP/KNo0QJY2p1cWC3sbKwGudTaQjdJA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(376002)(396003)(136003)(366004)(346002)(39860400002)(1800799009)(186009)(451199024)(478600001)(83380400001)(966005)(26005)(6486002)(9686003)(53546011)(6506007)(6512007)(6666004)(86362001)(82960400001)(2906002)(7416002)(316002)(66476007)(38100700002)(8676002)(4326008)(6916009)(33716001)(5660300002)(41300700001)(54906003)(8936002)(66946007)(66556008);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QlhScXlyYldiWTc1cWc3U1VMUWFqeU4rMmcxbHBQYlRVY3Bsb0RtWGdnQWN2?=
- =?utf-8?B?cSthUE1vVnF6UVhpd0RZeUhFK2gzbWo3YUxMUTV3S1NQTFRDSE1kbU1zUnFU?=
- =?utf-8?B?RWVITVoyV1l0NEV3Ty9pd1FxVUprRnFpMjE1ZEZFQnMvT1h2TFdIbFJIaUN4?=
- =?utf-8?B?RUxxU3hRamhXMzRrNlRGVGJ5cytjektRdVJOdm5pNHIvN1d0Q01ZQjRYekNG?=
- =?utf-8?B?YWY4N0p2dCtpbU5KQytPQ3lOUEFzekpVMzU3S1Uxak9PUUJINUdQaXlHZlQ5?=
- =?utf-8?B?YWpSVUhoa2V3Umxqa1JTK3ZrZXFpckFTNjREdlRDRE41RUNEcW9vei93MDUv?=
- =?utf-8?B?QUJYUHgrMnRjd0tJMm02b2J3ZU9jbEkxbXEzVGtwb1REWHRUdUE1VDRHaGQ4?=
- =?utf-8?B?OUNqTDAxWnVlY1lTUndzYkw1eUtMQkI0a1BHMnMyOG1lTjVMSDh2ejIzbkta?=
- =?utf-8?B?R3FKbW5mL01CQmIrSm5rdXNOWHpwYTNPYk9WTkFXSWtybCttZCtzME1NdlJ4?=
- =?utf-8?B?bU1BSldHRitIcFNadTZQcDUrclpBVzRyRnk4aXlGV1MvMW83djlqemtmVkRk?=
- =?utf-8?B?eUNCQkY5bmRmVFNrRkh5RDJkNnQxSmUwc2lkdElsTkZkUnd5OEk5aU0xT2dt?=
- =?utf-8?B?ZnBKZ0pyK2FOZ1cxLzVDQ1hQSUY3MDNUbkViQ3FMYmY2RTY5SVhKUHpzYW5J?=
- =?utf-8?B?Zk9nM0JNTGM3ZGhRcFhwN0d0cFY3T2tPR1BtcXA5c1dxdjdDeTYyVWNGUmdG?=
- =?utf-8?B?NmNqZHZQbFZlTWtCZFB1RTMwbTN4QlZrbEhPSS92alZwblBuWFJwakJPQ21C?=
- =?utf-8?B?aHA1RU1OblE2NGMveWdlRWRjMytXT0hkb0J5WlhkTXcwMlUra0ZWa25yZmtR?=
- =?utf-8?B?V2p0eWhWdFJNYUM5bElKTno4V0hKU01qcnBRdysrdkpMN0psZGZ5b0J6czBU?=
- =?utf-8?B?bWo2NFdZYUlhSDRkVURPTTJZOTlNWjZBNnVkQ2Ftb2hRNTVDUVkvb20vdnAv?=
- =?utf-8?B?aFpkMFFBMjZCUjAxajBiZlpoMUlQWXRHMXNRQTNHTnYrUVFKVGpWSjI4ZWp6?=
- =?utf-8?B?ZjFzT1RodmhMeHN6Y09hbTM4NGsrTGVLWXA4QXZPU2c3b2VXRWZBWmZHemRQ?=
- =?utf-8?B?SU1yT0dlQytDMUptRXkvTml2Uk14ZzlkS25FN2FVbktteG1DZGE5MHZGTzQ2?=
- =?utf-8?B?RTVFSU5MT2hxZzU4NVhnVUZCZ2NXbURaY1llNUYzZjcrZThmM0N0K20rVzZz?=
- =?utf-8?B?T05pQzAyRUlEM2dCSmFQeWJTVmR4SkNJd2kwdmdEbGlNTjBUbitGZWpMaDFJ?=
- =?utf-8?B?ZG4xUTR6UGR2dnV0RVpvaHU0bzJVWjg1c2M2bmlUcENGOGx0azIzRlFMajF0?=
- =?utf-8?B?aEt5Mm4rZmhxQnZ1ZWc0eHo0cEJZc1F0VUhEb09VUUtHQkJsaEMwVjVMYjVo?=
- =?utf-8?B?TklWMEkvOElPYWNYVkwyQ3c0b1VEMGxnWlFwZDVRNkFjOVo1RVZjU3AyUm41?=
- =?utf-8?B?eklpV3d4WlQ2dnN0bVFwVmtpS01aQ0w0WW1ZL1A2czlsSVBtZmJxQjNLeXpB?=
- =?utf-8?B?cmpzVmlNNTNma1ZaUThWdHNnMHpSbTI3TzdHSldZR1BYRkFYdnQ5OStPbTBE?=
- =?utf-8?B?aFZVaFJwMGdHZURPL1BucFNqWG1TWmQ3M0VWaERiVGl3Z3l4eElOSERQaFFT?=
- =?utf-8?B?UzdVUFd2RURyUGJBMWdURXQzZzI5cUQ5d0lvelRjNmFoOUxxaStKNUNwZlRK?=
- =?utf-8?B?dnlqU2R2YjdIb3g2R3VIMndsSHJEVHNXSVZRNDUwWVp2UTE0Tmp3TkcxUnhC?=
- =?utf-8?B?a2JmQUI2dFB6Wm9uYWt6aEJlMUxsOTlYb3krWXcyUUF2Rm1xdWhYdUZkOEJQ?=
- =?utf-8?B?bThQbGNPeWQ0WFZIM0RydUtQWnU4akcwMkxKbnFDQ1BuQVU2VWZOaHlNRWh0?=
- =?utf-8?B?d1JlaHBJTmxXbkUyaTBXUHFPWE5PL0Y4TEVEakk3SWowUlA3S01OL3RzM3o1?=
- =?utf-8?B?WlJoZFZPQ2ZDWW80Ymw2Qi9oUm82dlYzL091Ui95KzdvQlpNV25yNVEwRXdE?=
- =?utf-8?B?QnV6TzZNMjlhSUpHYTJCbktZQnlzbmYvSlFHY2FUUmU5WkRnVXBkMHU0T0Js?=
- =?utf-8?B?M29MNXE1d21CZG1CVCt0NmVQb2pVVGc5NVZUL0drM1FHZGozdFE1amliaVJK?=
- =?utf-8?B?cVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c283668-428e-46fe-4bba-08dba80ae0c5
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2023 21:08:07.9178 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hIAqV/k/ZB3UABKT+L5/Lr5JujvU55ZwfJsv+yIbM6uSKb/FrNS0XSKaFz6BxjQKi5sHlu62UbjBBbhfDUgpww30yHhDUZq1PtVrOlZNfxc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8248
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v6 1/4] drm: Use XArray instead of IDR for
- minors
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.14.0
+Content-Language: en-US
+To: Linyu Yuan <quic_linyyuan@quicinc.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+References: <20230825050029.1122-1-quic_linyyuan@quicinc.com>
+ <875y534r88.fsf@intel.com> <336c1090-e15f-03f5-7fa3-7fe3784dff5d@quicinc.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <336c1090-e15f-03f5-7fa3-7fe3784dff5d@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: fix compile issue of
+ guc_klvs_abi.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,195 +69,242 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Wilcox <willy@infradead.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Maxime Ripard <mripard@kernel.org>, Daniel
- Vetter <daniel@ffwll.ch>, James Zhu <James.Zhu@amd.com>,
- Oded Gabbay <ogabbay@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 25, 2023 at 12:59:26PM -0400, James Zhu wrote:
+
+
+On 25.08.2023 07:50, Linyu Yuan wrote:
 > 
-> On 2023-07-24 17:14, Michał Winiarski wrote:
-> > IDR is deprecated, and since XArray manages its own state with internal
-> > locking, it simplifies the locking on DRM side.
-> > Additionally, don't use the IRQ-safe variant, since operating on drm
-> > minor is not done in IRQ context.
-> > 
-> > Signed-off-by: Michał Winiarski<michal.winiarski@intel.com>
-> > Suggested-by: Matthew Wilcox<willy@infradead.org>
-> > ---
-> >   drivers/gpu/drm/drm_drv.c | 63 ++++++++++++++++-----------------------
-> >   1 file changed, 25 insertions(+), 38 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > index 3eda026ffac6..3faecb01186f 100644
-> > --- a/drivers/gpu/drm/drm_drv.c
-> > +++ b/drivers/gpu/drm/drm_drv.c
-> > @@ -34,6 +34,7 @@
-> >   #include <linux/pseudo_fs.h>
-> >   #include <linux/slab.h>
-> >   #include <linux/srcu.h>
-> > +#include <linux/xarray.h>
-> >   #include <drm/drm_accel.h>
-> >   #include <drm/drm_cache.h>
-> > @@ -54,8 +55,7 @@ MODULE_AUTHOR("Gareth Hughes, Leif Delgass, José Fonseca, Jon Smirl");
-> >   MODULE_DESCRIPTION("DRM shared core routines");
-> >   MODULE_LICENSE("GPL and additional rights");
-> > -static DEFINE_SPINLOCK(drm_minor_lock);
-> > -static struct idr drm_minors_idr;
-> > +static DEFINE_XARRAY_ALLOC(drm_minors_xa);
-> >   /*
-> >    * If the drm core fails to init for whatever reason,
-> > @@ -101,26 +101,23 @@ static struct drm_minor **drm_minor_get_slot(struct drm_device *dev,
-> >   static void drm_minor_alloc_release(struct drm_device *dev, void *data)
-> >   {
-> >   	struct drm_minor *minor = data;
-> > -	unsigned long flags;
-> >   	WARN_ON(dev != minor->dev);
-> >   	put_device(minor->kdev);
-> > -	if (minor->type == DRM_MINOR_ACCEL) {
-> > +	if (minor->type == DRM_MINOR_ACCEL)
-> >   		accel_minor_remove(minor->index);
-> > -	} else {
-> > -		spin_lock_irqsave(&drm_minor_lock, flags);
-> > -		idr_remove(&drm_minors_idr, minor->index);
-> > -		spin_unlock_irqrestore(&drm_minor_lock, flags);
-> > -	}
-> > +	else
-> > +		xa_erase(&drm_minors_xa, minor->index);
-> >   }
-> > +#define DRM_MINOR_LIMIT(t) ({ typeof(t) _t = (t); XA_LIMIT(64 * _t, 64 * _t + 63); })
-> > +
-> >   static int drm_minor_alloc(struct drm_device *dev, enum drm_minor_type type)
-> >   {
-> >   	struct drm_minor *minor;
-> > -	unsigned long flags;
-> > -	int r;
-> > +	int index, r;
-> >   	minor = drmm_kzalloc(dev, sizeof(*minor), GFP_KERNEL);
-> >   	if (!minor)
-> > @@ -129,24 +126,17 @@ static int drm_minor_alloc(struct drm_device *dev, enum drm_minor_type type)
-> >   	minor->type = type;
-> >   	minor->dev = dev;
-> > -	idr_preload(GFP_KERNEL);
-> >   	if (type == DRM_MINOR_ACCEL) {
-> >   		r = accel_minor_alloc();
-> > +		index = r;
-> >   	} else {
-> > -		spin_lock_irqsave(&drm_minor_lock, flags);
-> > -		r = idr_alloc(&drm_minors_idr,
-> > -			NULL,
-> > -			64 * type,
-> > -			64 * (type + 1),
-> > -			GFP_NOWAIT);
-> > -		spin_unlock_irqrestore(&drm_minor_lock, flags);
-> > +		r = xa_alloc(&drm_minors_xa, &index, NULL, DRM_MINOR_LIMIT(type), GFP_KERNEL);
-> >   	}
-> > -	idr_preload_end();
-> >   	if (r < 0)
-> >   		return r;
-> > -	minor->index = r;
-> > +	minor->index = index;
-> >   	r = drmm_add_action_or_reset(dev, drm_minor_alloc_release, minor);
-> >   	if (r)
-> > @@ -163,7 +153,7 @@ static int drm_minor_alloc(struct drm_device *dev, enum drm_minor_type type)
-> >   static int drm_minor_register(struct drm_device *dev, enum drm_minor_type type)
-> >   {
-> >   	struct drm_minor *minor;
-> > -	unsigned long flags;
-> > +	void *entry;
-> >   	int ret;
-> >   	DRM_DEBUG("\n");
-> > @@ -190,9 +180,12 @@ static int drm_minor_register(struct drm_device *dev, enum drm_minor_type type)
-> >   	if (minor->type == DRM_MINOR_ACCEL) {
-> >   		accel_minor_replace(minor, minor->index);
-> >   	} else {
-> > -		spin_lock_irqsave(&drm_minor_lock, flags);
-> > -		idr_replace(&drm_minors_idr, minor, minor->index);
-> > -		spin_unlock_irqrestore(&drm_minor_lock, flags);
-> > +		entry = xa_store(&drm_minors_xa, minor->index, minor, GFP_KERNEL);
-> > +		if (xa_is_err(entry)) {
-> > +			ret = xa_err(entry);
-> > +			goto err_debugfs;
-> > +		}
-> > +		WARN_ON(entry);
-> [JZ] would WARN_ON(entry != minor)be better?
+> On 8/25/2023 1:37 PM, Jani Nikula wrote:
+>> On Fri, 25 Aug 2023, Linyu Yuan <quic_linyyuan@quicinc.com> wrote:
+>>> GCC report GUC_KLV_0_KEY and GUC_KLV_0_LEN is not constant when do
+>>> preprocessing.
+>> Please paste the actual compiler warning.
+> 
+> 
+>   CC      drivers/gpu/drm/i915/gt/uc/intel_guc_submission.o
+> In file included from <command-line>:0:0:
+> In function ‘__guc_context_policy_add_priority.isra.47’,
+>     inlined from ‘__guc_context_set_prio.isra.48’ at
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:3332:3,
+>     inlined from ‘guc_context_set_prio’ at
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:3360:2:
+> ././include/linux/compiler_types.h:397:38: error: call to
+> ‘__compiletime_assert_1803’ declared with attribute error: FIELD_PREP:
+> mask is not constant
+>   _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>                                       ^
+> ././include/linux/compiler_types.h:378:4: note: in definition of macro
+> ‘__compiletime_assert’
+>     prefix ## suffix();    \
+>     ^~~~~~
+> ././include/linux/compiler_types.h:397:2: note: in expansion of macro
+> ‘_compiletime_assert’
+>   _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>   ^~~~~~~~~~~~~~~~~~~
+> ./include/linux/build_bug.h:39:37: note: in expansion of macro
+> ‘compiletime_assert’
+>  #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+>                                      ^~~~~~~~~~~~~~~~~~
+> ./include/linux/bitfield.h:65:3: note: in expansion of macro
+> ‘BUILD_BUG_ON_MSG’
+>    BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),  \
+>    ^~~~~~~~~~~~~~~~
+> ./include/linux/bitfield.h:114:3: note: in expansion of macro
+> ‘__BF_FIELD_CHECK’
+>    __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: "); \
+>    ^~~~~~~~~~~~~~~~
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2461:3: note: in
+> expansion of macro ‘FIELD_PREP’
+>    FIELD_PREP(GUC_KLV_0_KEY, GUC_CONTEXT_POLICIES_KLV_ID_##id) | \
+>    ^~~~~~~~~~
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2469:1: note: in
+> expansion of macro ‘MAKE_CONTEXT_POLICY_ADD’
+>  MAKE_CONTEXT_POLICY_ADD(priority, SCHEDULING_PRIORITY)
+>  ^~~~~~~~~~~~~~~~~~~~~~~
+> In function ‘__guc_context_policy_add_preemption_timeout.isra.51’,
+>     inlined from ‘__guc_context_set_preemption_timeout’ at
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:3005:3:
+> ././include/linux/compiler_types.h:397:38: error: call to
+> ‘__compiletime_assert_1793’ declared with attribute error: FIELD_PREP:
+> mask is not constant
+>   _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>                                       ^
+> ././include/linux/compiler_types.h:378:4: note: in definition of macro
+> ‘__compiletime_assert’
+>     prefix ## suffix();    \
+>     ^~~~~~
+> ././include/linux/compiler_types.h:397:2: note: in expansion of macro
+> ‘_compiletime_assert’
+>   _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>   ^~~~~~~~~~~~~~~~~~~
+> ./include/linux/build_bug.h:39:37: note: in expansion of macro
+> ‘compiletime_assert’
+>  #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+>                                      ^~~~~~~~~~~~~~~~~~
+> ./include/linux/bitfield.h:65:3: note: in expansion of macro
+> ‘BUILD_BUG_ON_MSG’
+>    BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),  \
+>    ^~~~~~~~~~~~~~~~
+> ./include/linux/bitfield.h:114:3: note: in expansion of macro
+> ‘__BF_FIELD_CHECK’
+>    __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: "); \
+>    ^~~~~~~~~~~~~~~~
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2461:3: note: in
+> expansion of macro ‘FIELD_PREP’
+>    FIELD_PREP(GUC_KLV_0_KEY, GUC_CONTEXT_POLICIES_KLV_ID_##id) | \
+>    ^~~~~~~~~~
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2468:1: note: in
+> expansion of macro ‘MAKE_CONTEXT_POLICY_ADD’
+>  MAKE_CONTEXT_POLICY_ADD(preemption_timeout, PREEMPTION_TIMEOUT)
+>  ^~~~~~~~~~~~~~~~~~~~~~~
+> In function ‘__guc_context_policy_add_priority.isra.47’,
+>     inlined from ‘__guc_add_request’ at
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2503:2:
+> ././include/linux/compiler_types.h:397:38: error: call to
+> ‘__compiletime_assert_1803’ declared with attribute error: FIELD_PREP:
+> mask is not constant
+>   _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>                                       ^
+> ././include/linux/compiler_types.h:378:4: note: in definition of macro
+> ‘__compiletime_assert’
+>     prefix ## suffix();    \
+>     ^~~~~~
+> ././include/linux/compiler_types.h:397:2: note: in expansion of macro
+> ‘_compiletime_assert’
+>   _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>   ^~~~~~~~~~~~~~~~~~~
+> ./include/linux/build_bug.h:39:37: note: in expansion of macro
+> ‘compiletime_assert’
+>  #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+>                                      ^~~~~~~~~~~~~~~~~~
+> ./include/linux/bitfield.h:65:3: note: in expansion of macro
+> ‘BUILD_BUG_ON_MSG’
+>    BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),  \
+>    ^~~~~~~~~~~~~~~~
+> ./include/linux/bitfield.h:114:3: note: in expansion of macro
+> ‘__BF_FIELD_CHECK’
+>    __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: "); \
+>    ^~~~~~~~~~~~~~~~
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2461:3: note: in
+> expansion of macro ‘FIELD_PREP’
+>    FIELD_PREP(GUC_KLV_0_KEY, GUC_CONTEXT_POLICIES_KLV_ID_##id) | \
+>    ^~~~~~~~~~
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2469:1: note: in
+> expansion of macro ‘MAKE_CONTEXT_POLICY_ADD’
+>  MAKE_CONTEXT_POLICY_ADD(priority, SCHEDULING_PRIORITY)
+>  ^~~~~~~~~~~~~~~~~~~~~~~
+> In function ‘__guc_context_policy_add_priority.isra.47’,
+>     inlined from ‘register_context’ at
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2503:2:
+> ././include/linux/compiler_types.h:397:38: error: call to
+> ‘__compiletime_assert_1803’ declared with attribute error: FIELD_PREP:
+> mask is not constant
+>   _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>                                       ^
+> ././include/linux/compiler_types.h:378:4: note: in definition of macro
+> ‘__compiletime_assert’
+>     prefix ## suffix();    \
+>     ^~~~~~
+> ././include/linux/compiler_types.h:397:2: note: in expansion of macro
+> ‘_compiletime_assert’
+>   _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>   ^~~~~~~~~~~~~~~~~~~
+> ./include/linux/build_bug.h:39:37: note: in expansion of macro
+> ‘compiletime_assert’
+>  #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+>                                      ^~~~~~~~~~~~~~~~~~
+> ./include/linux/bitfield.h:65:3: note: in expansion of macro
+> ‘BUILD_BUG_ON_MSG’
+>    BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),  \
+>    ^~~~~~~~~~~~~~~~
+> ./include/linux/bitfield.h:114:3: note: in expansion of macro
+> ‘__BF_FIELD_CHECK’
+>    __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: "); \
+>    ^~~~~~~~~~~~~~~~
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2461:3: note: in
+> expansion of macro ‘FIELD_PREP’
+>    FIELD_PREP(GUC_KLV_0_KEY, GUC_CONTEXT_POLICIES_KLV_ID_##id) | \
+>    ^~~~~~~~~~
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2469:1: note: in
+> expansion of macro ‘MAKE_CONTEXT_POLICY_ADD’
+>  MAKE_CONTEXT_POLICY_ADD(priority, SCHEDULING_PRIORITY)
+>  ^~~~~~~~~~~~~~~~~~~~~~~
+> In function ‘__guc_scheduling_policy_add_klv.isra.56’,
+>     inlined from ‘guc_init_global_schedule_policy’ at
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4449:3,
+>     inlined from ‘intel_guc_submission_enable’ at
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4490:6:
+> ././include/linux/compiler_types.h:397:38: error: call to
+> ‘__compiletime_assert_1882’ declared with attribute error: FIELD_PREP:
+> mask is not constant
+>   _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>                                       ^
+> ././include/linux/compiler_types.h:378:4: note: in definition of macro
+> ‘__compiletime_assert’
+>     prefix ## suffix();    \
+>     ^~~~~~
+> ././include/linux/compiler_types.h:397:2: note: in expansion of macro
+> ‘_compiletime_assert’
+>   _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+>   ^~~~~~~~~~~~~~~~~~~
+> ./include/linux/build_bug.h:39:37: note: in expansion of macro
+> ‘compiletime_assert’
+>  #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+>                                      ^~~~~~~~~~~~~~~~~~
+> ./include/linux/bitfield.h:65:3: note: in expansion of macro
+> ‘BUILD_BUG_ON_MSG’
+>    BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),  \
+>    ^~~~~~~~~~~~~~~~
+> ./include/linux/bitfield.h:114:3: note: in expansion of macro
+> ‘__BF_FIELD_CHECK’
+>    __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: "); \
+>    ^~~~~~~~~~~~~~~~
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:4401:17: note: in
+> expansion of macro ‘FIELD_PREP’
+>   *(klv_ptr++) = FIELD_PREP(GUC_KLV_0_KEY, action) |
+>                  ^~~~~~~~~~
+> scripts/Makefile.build:243: recipe for target
+> 'drivers/gpu/drm/i915/gt/uc/intel_guc_submission.o' failed
+> 
 
-We expect NULL here.
-The same one that was previously stored here ⌄⌄⌄
-r = xa_alloc(&drm_minors_xa, &minor->index, NULL, DRM_EXTENDED_MINOR_LIMIT, GFP_KERNEL);
-in drm_minor_alloc.
+What GCC/.config was it?
 
-> >   	}
-> >   	DRM_DEBUG("new minor registered %d\n", minor->index);
-> > @@ -206,20 +199,16 @@ static int drm_minor_register(struct drm_device *dev, enum drm_minor_type type)
-> >   static void drm_minor_unregister(struct drm_device *dev, enum drm_minor_type type)
-> >   {
-> >   	struct drm_minor *minor;
-> > -	unsigned long flags;
-> >   	minor = *drm_minor_get_slot(dev, type);
-> >   	if (!minor || !device_is_registered(minor->kdev))
-> >   		return;
-> >   	/* replace @minor with NULL so lookups will fail from now on */
-> > -	if (minor->type == DRM_MINOR_ACCEL) {
-> > +	if (minor->type == DRM_MINOR_ACCEL)
-> >   		accel_minor_replace(NULL, minor->index);
-> > -	} else {
-> > -		spin_lock_irqsave(&drm_minor_lock, flags);
-> > -		idr_replace(&drm_minors_idr, NULL, minor->index);
-> > -		spin_unlock_irqrestore(&drm_minor_lock, flags);
-> > -	}
-> > +	else
-> > +		xa_store(&drm_minors_xa, minor->index, NULL, GFP_KERNEL);
-> >   	device_del(minor->kdev);
-> >   	dev_set_drvdata(minor->kdev, NULL); /* safety belt */
-> > @@ -238,13 +227,12 @@ static void drm_minor_unregister(struct drm_device *dev, enum drm_minor_type typ
-> >   struct drm_minor *drm_minor_acquire(unsigned int minor_id)
-> >   {
-> >   	struct drm_minor *minor;
-> > -	unsigned long flags;
-> > -	spin_lock_irqsave(&drm_minor_lock, flags);
-> > -	minor = idr_find(&drm_minors_idr, minor_id);
-> > +	xa_lock(&drm_minors_xa);
-> > +	minor = xa_load(&drm_minors_xa, minor_id);
-> >   	if (minor)
-> >   		drm_dev_get(minor->dev);
-> [JZ] why minor->dev need ca_lock here?
+In the meantime, can you try simpler fix below (we want to avoid
+external dependencies in GuC ABI headers)
 
-We're relying on the ordering for acquire/release (previously
-guaranteed by the drm_minor_lock, now by internal XArray locking).
-xa_load doesn't take xa_lock internally:
-https://docs.kernel.org/core-api/xarray.html#locking
+-#define GUC_KLV_0_KEY                          (0xffff << 16)
++#define GUC_KLV_0_KEY                          (0xffffu << 16)
 
-> > -	spin_unlock_irqrestore(&drm_minor_lock, flags);
-> > +	xa_unlock(&drm_minors_xa);
-> >   	if (!minor) {
-> >   		return ERR_PTR(-ENODEV);
-> > @@ -1067,7 +1055,7 @@ static void drm_core_exit(void)
-> >   	unregister_chrdev(DRM_MAJOR, "drm");
-> >   	debugfs_remove(drm_debugfs_root);
-> >   	drm_sysfs_destroy();
-> > -	idr_destroy(&drm_minors_idr);
-> [JZ] Should we call xa_destroy instead here?
+Michal
 
-We could, if we expect the xarray to potentially not be empty.
-From what I understand - all minors should be released at this point.
-
-Thanks,
--Michał
-
-> > +	WARN_ON(!xa_empty(&drm_minors_xa));
-> >   	drm_connector_ida_destroy();
-> >   }
-> > @@ -1076,7 +1064,6 @@ static int __init drm_core_init(void)
-> >   	int ret;
-> >   	drm_connector_ida_init();
-> > -	idr_init(&drm_minors_idr);
-> >   	drm_memcpy_init_early();
-> >   	ret = drm_sysfs_init();
+> 
+>>
+>> BR,
+>> Jani.
+>>
+>>
+>>
+>>> Change to use GENMASK() to avoid the issue.
+>>>
+>>> Signed-off-by: Linyu Yuan <quic_linyyuan@quicinc.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h | 4 ++--
+>>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+>>> b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+>>> index 58012edd4eb0..fd3c16695e5f 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+>>> @@ -29,8 +29,8 @@
+>>>    */
+>>>     #define GUC_KLV_LEN_MIN                1u
+>>> -#define GUC_KLV_0_KEY                (0xffff << 16)
+>>> -#define GUC_KLV_0_LEN                (0xffff << 0)
+>>> +#define GUC_KLV_0_KEY                GENMASK(31, 16)
+>>> +#define GUC_KLV_0_LEN                GENMASK(15, 0)
+>>>   #define GUC_KLV_n_VALUE                (0xffffffff << 0)
+>>>     /**
