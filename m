@@ -1,60 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EE1A78B73A
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 20:30:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90B3978B73B
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 20:32:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 782CF10E004;
-	Mon, 28 Aug 2023 18:30:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E69D10E0A1;
+	Mon, 28 Aug 2023 18:32:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com
- [IPv6:2a00:1450:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DF3F10E004
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 18:30:38 +0000 (UTC)
-Received: by mail-lj1-x235.google.com with SMTP id
- 38308e7fff4ca-2bd0a5a5abbso23555621fa.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 11:30:38 -0700 (PDT)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
+ [IPv6:2a00:1450:4864:20::62e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 707C710E0A1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 18:32:03 +0000 (UTC)
+Received: by mail-ej1-x62e.google.com with SMTP id
+ a640c23a62f3a-9a1de3417acso947755166b.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 11:32:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1693247437; x=1693852237;
+ d=chromium.org; s=google; t=1693247522; x=1693852322;
+ darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=VrQn9QvDLqogtGjzgBt4gGrVDmirw1TzuPAqJB5ufig=;
- b=Rk16wvdxwUcCiIGyq6Jg42wFQEkmZiCX3P3AWACWrrEi51SKnW+lGc7yMX7FELJ4pl
- Cx2PPt2hesr0oxWEhRs6EJ1ww77UuVLSxIIghVKhngHJZ+MPJHND1zT+1PKEC9ws7Y8T
- g7XB/EMA4eQBoisSRYdGDBst2RAeylzZnGnf8=
+ bh=ZdK6nYA9XcvPqqx8rm+4jzMG4/o0F3DXqEzR8I74MtQ=;
+ b=eda4h6xQDNNcCAiptjK7gKvucYhcYKCvDHr6Xvlf9+GHUWaGmprhkdvzdrxhf5r/xK
+ GyrwJJ9Ao6F5S44bH65ZFpRSkJe57o81ZQ2OpF0ha0e9xjl42IV8a9WvDKaAZ5FKTmit
+ FZuYj2PNApGskl3QwDrjkoXkeqj8xAh1zqLS4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693247437; x=1693852237;
+ d=1e100.net; s=20221208; t=1693247522; x=1693852322;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=VrQn9QvDLqogtGjzgBt4gGrVDmirw1TzuPAqJB5ufig=;
- b=CyB3T3CCkAhHtJWYUlTtwCu5uJMhS2vwr677iuFToOIuisSXbo4E/JvoCbw5EeyIaB
- vaSJajnLX3INeQp2IjLD5Ikf4OqlzPKg9ceWNLefifQWsjUZr+n9Cz+g79AVYvd5P55d
- JgbW4AZzeD/oUgCKVyI8idC8VAeglChSIU+2eShceQwuuqasGS1Qj6WbULDOZmMDvNCo
- dHwFpMrcxgLru5IbcLpgHxg9sjRXUvakKBw67eGFPTNrkW4JLHiwHWlvA6hQoI6iM5M4
- 1FZS5B0Q7UALqJ/LQMo5mZjVuAHbb/ebeL0FrW5CQ7+BB43QiwjqwKGHn962SbI5S/X/
- Aljw==
-X-Gm-Message-State: AOJu0YyzMXVZGqZBehpdh+VlEs8D/85N4XftiESgDh0UJJ+cPsZAqmAt
- oV8YbaGY5ube1If6PFDAsiY9GT3ePNFSLQcobwo9v/wp5IgkKTTd
-X-Google-Smtp-Source: AGHT+IFEt9XGAEEoOY+ETF1+1q1vPu3/MPClDzJAnFGzoJGo1KljCSmznyAzoOyoSkdoqxroHJg5ufDlHkm2AlgkfCc=
-X-Received: by 2002:a2e:98d2:0:b0:2ba:7b3b:4b7d with SMTP id
- s18-20020a2e98d2000000b002ba7b3b4b7dmr19692098ljj.17.1693247436677; Mon, 28
- Aug 2023 11:30:36 -0700 (PDT)
+ bh=ZdK6nYA9XcvPqqx8rm+4jzMG4/o0F3DXqEzR8I74MtQ=;
+ b=jvI2eIiXRyNhvlUknWF3zBUSPhDzI6pjCEw8eUuPDZyzn5vB8vm/MO3D60fLgYpHCO
+ Pbo9Qt+5T7D6nhnsyoVhhEUdjsXlwgvGz7fzCPAqDng0FVSQY9rjM9dRi8dvAjAwmpJb
+ vbM3LDYnqXbGBIUmf+VEtMZwBwfdDVOq+zw99GIWQnAeaL9GSnfIEenbqdmqjnQLfzNT
+ YQDjL6thbKjfvX5GzrTBkVDni4ihl1KJ8AsgkfU67xV1Mb6XSH8ZVOe7x+7zKbLtADOW
+ b96E6yI/Jy970n2A9Kh0V92u6FBZ/p7ZffrrmGRTYVTBdsz//1F7L3qYnp8VeUe1zNoy
+ U7rA==
+X-Gm-Message-State: AOJu0YxiJPVp+erY3XRITJU9/DbzfavNkyrfZjB94Lk/cRtWCoN1nJAR
+ FuE3S8I5WbCJ9qX9gg1x/tng7BGlGSpBkm3jgL8o9IKS70Aa1ntH
+X-Google-Smtp-Source: AGHT+IHmT/KwTGgXDcIbjwyYPnm2l1OcnrWZx8zHQE4ldcLWe843taULQR6fwiM7FPtn4srUErCjBXFK05bBHk6VrWU=
+X-Received: by 2002:a17:907:2cc2:b0:9a1:e5bf:c907 with SMTP id
+ hg2-20020a1709072cc200b009a1e5bfc907mr405471ejc.2.1693247521697; Mon, 28 Aug
+ 2023 11:32:01 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230828054140.28054-1-ville.syrjala@linux.intel.com>
- <20230828054140.28054-3-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230828054140.28054-3-ville.syrjala@linux.intel.com>
+ <20230828054140.28054-4-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230828054140.28054-4-ville.syrjala@linux.intel.com>
 From: Manasi Navare <navaremanasi@chromium.org>
-Date: Mon, 28 Aug 2023 11:30:25 -0700
-Message-ID: <CAE72mNmgn063MVSr_jS7PDKXxPvw5C6xRdKAVd8WJYrAivBDwQ@mail.gmail.com>
+Date: Mon, 28 Aug 2023 11:31:50 -0700
+Message-ID: <CAE72mNk+nC5R_B8ShQX0UrwOE=pOkT8NCpxR6BukQCESfpz13w@mail.gmail.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Change
- intel_pipe_update_{start, end}() calling convention
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Extract
+ intel_crtc_vblank_evade_scanlines()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,136 +72,124 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This looks good to me,
+
+Reviewed-by: Manasi Navare <navaremanasi@chromium.org>
+
+Manasi
+
 On Sun, Aug 27, 2023 at 10:41=E2=80=AFPM Ville Syrjala
 <ville.syrjala@linux.intel.com> wrote:
 >
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> We'll need to also look at the old crtc state in
-> intel_pipe_update_start() so change the calling convention to
-> just plumb in the full atomic state instead.
-
-I am guessing we would need the old crtc state to look at if VRR parameters
-were changed?
-Could we elaborate why we would need old crtc state so we better understand=
- this
-change in the patch?
-
-Manasi
-
+> Pull the vblank evasion scanline calculations into their own helper
+> to declutter intel_pipe_update_start() a bit.
 >
 > Cc: Manasi Navare <navaremanasi@chromium.org>
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_crtc.c    | 18 ++++++++++++------
->  drivers/gpu/drm/i915/display/intel_crtc.h    |  6 ++++--
->  drivers/gpu/drm/i915/display/intel_display.c |  4 ++--
->  3 files changed, 18 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_crtc.c | 53 +++++++++++++----------
+>  1 file changed, 31 insertions(+), 22 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
 i915/display/intel_crtc.c
-> index 5caa928e5ce9..461949b48411 100644
+> index 461949b48411..e46a15d59d79 100644
 > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
 > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -470,7 +470,8 @@ static int intel_mode_vblank_start(const struct drm_d=
-isplay_mode *mode)
+> @@ -468,6 +468,36 @@ static int intel_mode_vblank_start(const struct drm_=
+display_mode *mode)
+>         return vblank_start;
+>  }
 >
+> +static void intel_crtc_vblank_evade_scanlines(struct intel_atomic_state =
+*state,
+> +                                             struct intel_crtc *crtc,
+> +                                             int *min, int *max, int *vb=
+lank_start)
+> +{
+> +       const struct intel_crtc_state *new_crtc_state =3D
+> +               intel_atomic_get_new_crtc_state(state, crtc);
+> +       const struct drm_display_mode *adjusted_mode =3D &new_crtc_state-=
+>hw.adjusted_mode;
+> +
+> +       if (new_crtc_state->vrr.enable) {
+> +               if (intel_vrr_is_push_sent(new_crtc_state))
+> +                       *vblank_start =3D intel_vrr_vmin_vblank_start(new=
+_crtc_state);
+> +               else
+> +                       *vblank_start =3D intel_vrr_vmax_vblank_start(new=
+_crtc_state);
+> +       } else {
+> +               *vblank_start =3D intel_mode_vblank_start(adjusted_mode);
+> +       }
+> +
+> +       /* FIXME needs to be calibrated sensibly */
+> +       *min =3D *vblank_start - intel_usecs_to_scanlines(adjusted_mode,
+> +                                                       VBLANK_EVASION_TI=
+ME_US);
+> +       *max =3D *vblank_start - 1;
+> +
+> +       /*
+> +        * M/N is double buffered on the transcoder's undelayed vblank,
+> +        * so with seamless M/N we must evade both vblanks.
+> +        */
+> +       if (new_crtc_state->seamless_m_n && intel_crtc_needs_fastset(new_=
+crtc_state))
+> +               *min -=3D adjusted_mode->crtc_vblank_start - adjusted_mod=
+e->crtc_vdisplay;
+> +}
+> +
 >  /**
 >   * intel_pipe_update_start() - start update of a set of display register=
 s
-> - * @new_crtc_state: the new crtc state
-> + * @state: the atomic state
-> + * @crtc: the crtc
->   *
->   * Mark the start of an update to pipe registers that should be updated
->   * atomically regarding vblank. If the next vblank will happens within
-> @@ -480,10 +481,12 @@ static int intel_mode_vblank_start(const struct drm=
-_display_mode *mode)
->   * until a subsequent call to intel_pipe_update_end(). That is done to
->   * avoid random delays.
->   */
-> -void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state)
-> +void intel_pipe_update_start(struct intel_atomic_state *state,
-> +                            struct intel_crtc *crtc)
->  {
-> -       struct intel_crtc *crtc =3D to_intel_crtc(new_crtc_state->uapi.cr=
-tc);
+>   * @state: the atomic state
+> @@ -487,7 +517,6 @@ void intel_pipe_update_start(struct intel_atomic_stat=
+e *state,
 >         struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> +       struct intel_crtc_state *new_crtc_state =3D
-> +               intel_atomic_get_new_crtc_state(state, crtc);
->         const struct drm_display_mode *adjusted_mode =3D &new_crtc_state-=
+>         struct intel_crtc_state *new_crtc_state =3D
+>                 intel_atomic_get_new_crtc_state(state, crtc);
+> -       const struct drm_display_mode *adjusted_mode =3D &new_crtc_state-=
 >hw.adjusted_mode;
 >         long timeout =3D msecs_to_jiffies_timeout(1);
 >         int scanline, min, max, vblank_start;
-> @@ -631,15 +634,18 @@ static void dbg_vblank_evade(struct intel_crtc *crt=
-c, ktime_t end) {}
+>         wait_queue_head_t *wq =3D drm_crtc_vblank_waitqueue(&crtc->base);
+> @@ -503,27 +532,7 @@ void intel_pipe_update_start(struct intel_atomic_sta=
+te *state,
+>         if (intel_crtc_needs_vblank_work(new_crtc_state))
+>                 intel_crtc_vblank_work_init(new_crtc_state);
 >
->  /**
->   * intel_pipe_update_end() - end update of a set of display registers
-> - * @new_crtc_state: the new crtc state
-> + * @state: the atomic state
-> + * @crtc: the crtc
->   *
->   * Mark the end of an update started with intel_pipe_update_start(). Thi=
-s
->   * re-enables interrupts and verifies the update was actually completed
->   * before a vblank.
->   */
-> -void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
-> +void intel_pipe_update_end(struct intel_atomic_state *state,
-> +                          struct intel_crtc *crtc)
->  {
-> -       struct intel_crtc *crtc =3D to_intel_crtc(new_crtc_state->uapi.cr=
-tc);
-> +       struct intel_crtc_state *new_crtc_state =3D
-> +               intel_atomic_get_new_crtc_state(state, crtc);
->         enum pipe pipe =3D crtc->pipe;
->         int scanline_end =3D intel_get_crtc_scanline(crtc);
->         u32 end_vbl_count =3D intel_crtc_get_vblank_counter(crtc);
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/=
-i915/display/intel_crtc.h
-> index 51a4c8df9e65..22d7993d1f0b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.h
-> @@ -36,8 +36,10 @@ void intel_crtc_state_reset(struct intel_crtc_state *c=
-rtc_state,
->  u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc);
->  void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state);
->  void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state);
-> -void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state);
-> -void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state);
-> +void intel_pipe_update_start(struct intel_atomic_state *state,
-> +                            struct intel_crtc *crtc);
-> +void intel_pipe_update_end(struct intel_atomic_state *state,
-> +                          struct intel_crtc *crtc);
->  void intel_wait_for_vblank_workers(struct intel_atomic_state *state);
->  struct intel_crtc *intel_first_crtc(struct drm_i915_private *i915);
->  struct intel_crtc *intel_crtc_for_pipe(struct drm_i915_private *i915,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index f6397462e4c2..cfad967b5684 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6559,7 +6559,7 @@ static void intel_update_crtc(struct intel_atomic_s=
-tate *state,
->         intel_crtc_planes_update_noarm(state, crtc);
+> -       if (new_crtc_state->vrr.enable) {
+> -               if (intel_vrr_is_push_sent(new_crtc_state))
+> -                       vblank_start =3D intel_vrr_vmin_vblank_start(new_=
+crtc_state);
+> -               else
+> -                       vblank_start =3D intel_vrr_vmax_vblank_start(new_=
+crtc_state);
+> -       } else {
+> -               vblank_start =3D intel_mode_vblank_start(adjusted_mode);
+> -       }
+> -
+> -       /* FIXME needs to be calibrated sensibly */
+> -       min =3D vblank_start - intel_usecs_to_scanlines(adjusted_mode,
+> -                                                     VBLANK_EVASION_TIME=
+_US);
+> -       max =3D vblank_start - 1;
+> -
+> -       /*
+> -        * M/N is double buffered on the transcoder's undelayed vblank,
+> -        * so with seamless M/N we must evade both vblanks.
+> -        */
+> -       if (new_crtc_state->seamless_m_n && intel_crtc_needs_fastset(new_=
+crtc_state))
+> -               min -=3D adjusted_mode->crtc_vblank_start - adjusted_mode=
+->crtc_vdisplay;
+> -
+> +       intel_crtc_vblank_evade_scanlines(state, crtc, &min, &max, &vblan=
+k_start);
+>         if (min <=3D 0 || max <=3D 0)
+>                 goto irq_disable;
 >
->         /* Perform vblank evasion around commit operation */
-> -       intel_pipe_update_start(new_crtc_state);
-> +       intel_pipe_update_start(state, crtc);
->
->         commit_pipe_pre_planes(state, crtc);
->
-> @@ -6567,7 +6567,7 @@ static void intel_update_crtc(struct intel_atomic_s=
-tate *state,
->
->         commit_pipe_post_planes(state, crtc);
->
-> -       intel_pipe_update_end(new_crtc_state);
-> +       intel_pipe_update_end(state, crtc);
->
->         /*
->          * We usually enable FIFO underrun interrupts as part of the
 > --
 > 2.41.0
 >
