@@ -1,33 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48DB578B248
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 15:53:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4CB878B33C
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 16:37:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 428C710E2E2;
-	Mon, 28 Aug 2023 13:53:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8FD10E04E;
+	Mon, 28 Aug 2023 14:37:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C11F610E2E2;
- Mon, 28 Aug 2023 13:53:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A9ACBAADD5;
- Mon, 28 Aug 2023 13:53:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8125490161787722828=="
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C0C210E04E;
+ Mon, 28 Aug 2023 14:37:16 +0000 (UTC)
+Received: from hamburger.collabora.co.uk (hamburger.collabora.co.uk
+ [IPv6:2a01:4f8:1c1c:f269::1])
+ by madras.collabora.co.uk (Postfix) with ESMTP id 2B6C966003AC;
+ Mon, 28 Aug 2023 15:37:13 +0100 (BST)
+From: "Helen Mae Koike Fornazier" <helen.koike@collabora.com>
+In-Reply-To: <20230827175449.1766701-1-dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+X-Forward: 127.0.0.1
+Date: Mon, 28 Aug 2023 15:37:12 +0100
+To: "Dmitry Osipenko" <dmitry.osipenko@collabora.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Linyu Yuan" <quic_linyyuan@quicinc.com>
-Date: Mon, 28 Aug 2023 13:53:38 -0000
-Message-ID: <169323081869.20018.7223656738619456600@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230825050029.1122-1-quic_linyyuan@quicinc.com>
-In-Reply-To: <20230825050029.1122-1-quic_linyyuan@quicinc.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/guc=3A_fix_compile_issue_of_guc=5Fklvs=5Fabi=2Eh?=
+Message-ID: <55db-64ecb100-57-403f1500@96946290>
+User-Agent: SOGoMail 5.8.4
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] 
+ =?utf-8?q?=5BPATCH_v15_00/23=5D_Add_generic_memory_s?=
+ =?utf-8?q?hrinker_to_VirtIO-GPU_and_Panfrost_DRM_drivers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,225 +42,273 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Mark Rutland <mark.rutland@arm.com>, Emma Anholt <emma@anholt.net>,
+ Peter Zijlstra <peterz@infradead.org>, dri-devel@lists.freedesktop.org,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, kernel@collabora.com,
+ Will Deacon <will@kernel.org>, David Airlie <airlied@gmail.com>,
+ Steven Price <steven.price@arm.com>, intel-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Boqun Feng <boqun.feng@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>, Melissa Wen <mwen@igalia.com>,
+ virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ Chia-I Wu <olvaffe@gmail.com>, Qiang Yu <yuq825@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8125490161787722828==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Sunday, August 27, 2023 14:54 -03, Dmitry Osipenko <dmitry.osipenko@=
+collabora.com> wrote:
 
-== Series Details ==
+> This series:
+>=20
+>   1. Adds common drm-shmem memory shrinker
+>   2. Enables shrinker for VirtIO-GPU driver
+>   3. Switches Panfrost driver to the common shrinker
 
-Series: drm/i915/guc: fix compile issue of guc_klvs_abi.h
-URL   : https://patchwork.freedesktop.org/series/122971/
-State : success
+Hi Dmitry,=20
 
-== Summary ==
+Would you mind testing with drm-ci? We virt-io tests there and it would=
+ be
+really great to get your feedback of it.
 
-CI Bug Log - changes from CI_DRM_13571 -> Patchwork_122971v1
-====================================================
+https://cgit.freedesktop.org/drm/drm/log/?h=3Dtopic/drm-ci
 
-Summary
--------
+You need to merge your changes with the above tree.
+To configure it, you just need to have a tree on gitlab.freedesktop.org=
+,
+go to the settings and change the CI/CD configuration file from .gitlab=
+-ci.yml
+to drivers/gpu/drm/ci/gitlab-ci.yml, and you can start a pipeline
+on your branch.
 
-  **SUCCESS**
+at the time of this writting, gitlab.freedesktop.org is under maintenan=
+ce,
+but it should be back soon.
 
-  No regressions found.
+Thank you!
+Helen
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/index.html
+>=20
+> Changelog:
+>=20
+> v15:- Moved drm-shmem reference counters to use kref that allows to
+>       optimize unlocked functions, like was suggested by Boris Brezil=
+lon.
+>=20
+>     - Changed drm/gem/shmem function names to use =5Flocked postfix a=
+nd
+>       dropped the =5Funlocked, making the naming scheme consistent ac=
+ross
+>       DRM code, like was suggested by Boris Brezillon.
+>=20
+>     - Added patch that fixes UAF in drm-shmem for drivers that import
+>       dma-buf and then release buffer in the import error code path.
+>=20
+>     - Added patch that makes drm-shmem use new flag for SGT's get=5Fp=
+ages()
+>       refcounting, preventing unbalanced refcounting when GEM is free=
+d.
+>=20
+>     - Fixed guest blob pinning in virtio-gpu driver that was missed
+>       previously in the shrinker patch.
+>=20
+>     - Moved VC4 and virtio-gpu drivers to use drm=5Fgem=5Fput() in
+>       GEM-creation error code paths, which is now required by drm-shm=
+em
+>       and was missed in a previous patch versions.
+>=20
+>     - Virtio-GPU now attaches shmem pages to host on first use and no=
+t
+>       when BO is created. In older patch versions there was a potenti=
+al
+>       race condition in the BO creation code path where both
+>       get=5Fsgt()+object=5Fattach() should've been made under same re=
+sv lock,
+>       otherwise pages could be evicted before attachment is invoked.
+>=20
+>     - Virtio-GPU and drm-shmem shrinker patches are split into smalle=
+r
+>       ones.
+>=20
+> v14:- All the prerequisite reservation locking patches landed upstrea=
+m,
+>       previously were a part of this series in v13 and older.
+>=20
+>         https://lore.kernel.org/dri-devel/20230529223935.2672495-1-dm=
+itry.osipenko@collabora.com/
+>=20
+>     - Added patches to improve locked/unlocked function names, like w=
+as
+>       suggested by Boris Brezillon for v13.
+>=20
+>     - Made all exported drm-shmem symbols GPL, like was previously
+>       discussed with Thomas Zimmermann on this series.
+>=20
+>     - Improved virtio-gpu shrinker patch. Now it won't detach purged =
+BO
+>       when userspace closes GEM. Crosvm (and not qemu) checks res=5Fi=
+d on
+>       CMD=5FCTX=5FDETACH=5FRESOURCE and prints noisy error message if=
+ ID is
+>       invalid, which wasn't noticed before.
+>=20
+> v13:- Updated virtio-gpu shrinker patch to use drm=5Fgem=5Fshmem=5Fob=
+ject=5Fpin()
+>       directly instead of drm=5Fgem=5Fpin() and dropped patch that ex=
+ported
+>       drm=5Fgem=5Fpin() functions, like was requested by Thomas Zimme=
+rmann in
+>       v12.
+>=20
+> v12:- Fixed the "no previous prototype for function" warning reported=
+ by
+>       kernel build bot for v11.
+>=20
+>     - Fixed the missing reservation lock reported by Intel CI for VGE=
+M
+>       driver. Other drivers using drm-shmem were affected similarly t=
+o
+>       VGEM. The problem was in the dma-buf attachment code path that =
+led
+>       to drm-shmem pinning function which assumed the held reservatio=
+n lock
+>       by drm=5Fgem=5Fpin(). In the past that code path was causing tr=
+ouble for
+>       i915 driver and we've changed the locking scheme for the attach=
+ment
+>       code path in the dma-buf core to let exporters to handle the lo=
+cking
+>       themselves. After a closer investigation, I realized that my as=
+sumption
+>       about testing of dma-buf export code path using Panfrost driver=
+ was
+>       incorrect. Now I created additional local test to exrecise the =
+Panfrost
+>       export path. I also reproduced the issue reported by the Intel =
+CI for
+>       v10. It's all fixed now by making the drm=5Fgem=5Fshmem=5Fpin()=
+ to take the
+>       resv lock by itself.
+>=20
+>     - Patches are based on top of drm-tip, CC'd intel-gfx CI for test=
+ing.
+>=20
+> v11:- Rebased on a recent linux-next. Added new patch as a result:
+>=20
+>         drm/shmem-helper: Export drm=5Fgem=5Fshmem=5Fget=5Fpages=5Fsg=
+t=5Flocked()
+>=20
+>         It's needed by the virtio-gpu driver to swap-in/unevict shmem
+>         object, previously get=5Fpages=5Fsgt() didn't use locking.
+>=20
+>     - Separated the "Add memory shrinker" patch into smaller parts to=
+ ease
+>       the reviewing, as was requested by Thomas Zimmermann:
+>=20
+>         drm/shmem-helper: Factor out pages alloc/release from
+>           drm=5Fgem=5Fshmem=5Fget/put=5Fpages()
+>         drm/shmem-helper: Add pages=5Fpin=5Fcount field
+>         drm/shmem-helper: Switch drm=5Fgem=5Fshmem=5Fvmap/vunmap to u=
+se pin/unpin
+>         drm/shmem-helper: Factor out unpinning part from drm=5Fgem=5F=
+shmem=5Fpurge()
+>=20
+>     - Addessed the v10 review comments from Thomas Zimmermann: return=
+ errno
+>       instead of bool, sort code alphabetically, rename function and =
+etc
+>       minor changes.
+>=20
+>     - Added new patch to remove the "map->is=5Fiomem" from drm-shmem,=
+ as
+>       was suggested by Thomas Zimmermann.
+>=20
+>     - Added acks and r-b's that were given to v10.
+>=20
+> v10:- Was partially applied to misc-fixes/next.
+>=20
+>       https://lore.kernel.org/dri-devel/6c16f303-81df-7ebe-85e9-51bb4=
+0a8b301@collabora.com/T/
+>=20
+> Dmitry Osipenko (23):
+>   drm/shmem-helper: Fix UAF in error path when freeing SGT of importe=
+d
+>     GEM
+>   drm/shmem-helper: Use flag for tracking page count bumped by
+>     get=5Fpages=5Fsgt()
+>   drm/gem: Change locked/unlocked postfix of drm=5Fgem=5Fv/unmap() fu=
+nction
+>     names
+>   drm/gem: Add =5Flocked postfix to functions that have unlocked
+>     counterpart
+>   drm/v3d: Replace open-coded drm=5Fgem=5Fshmem=5Ffree() with
+>     drm=5Fgem=5Fobject=5Fput()
+>   drm/virtio: Replace drm=5Fgem=5Fshmem=5Ffree() with drm=5Fgem=5Fobj=
+ect=5Fput()
+>   drm/shmem-helper: Make all exported symbols GPL
+>   drm/shmem-helper: Refactor locked/unlocked functions
+>   drm/shmem-helper: Remove obsoleted is=5Fiomem test
+>   locking/refcount, kref: Add kref=5Fput=5Fww=5Fmutex()
+>   dma-resv: Add kref=5Fput=5Fdma=5Fresv()
+>   drm/shmem-helper: Add and use pages=5Fpin=5Fcount
+>   drm/shmem-helper: Use kref for pages=5Fuse=5Fcount
+>   drm/shmem-helper: Add and use lockless drm=5Fgem=5Fshmem=5Fget=5Fpa=
+ges()
+>   drm/shmem-helper: Switch drm=5Fgem=5Fshmem=5Fvmap/vunmap to use pin=
+/unpin
+>   drm/shmem-helper: Use kref for vmap=5Fuse=5Fcount
+>   drm/shmem-helper: Add and use drm=5Fgem=5Fshmem=5Fresv=5Fassert=5Fh=
+eld() helper
+>   drm/shmem-helper: Add memory shrinker
+>   drm/shmem-helper: Export drm=5Fgem=5Fshmem=5Fget=5Fpages=5Fsgt=5Flo=
+cked()
+>   drm/virtio: Pin display framebuffer BO
+>   drm/virtio: Attach shmem BOs dynamically
+>   drm/virtio: Support memory shrinking
+>   drm/panfrost: Switch to generic memory shrinker
+>=20
+>  drivers/gpu/drm/drm=5Fclient.c                  |   6 +-
+>  drivers/gpu/drm/drm=5Fgem.c                     |  26 +-
+>  drivers/gpu/drm/drm=5Fgem=5Fframebuffer=5Fhelper.c  |   6 +-
+>  drivers/gpu/drm/drm=5Fgem=5Fshmem=5Fhelper.c        | 616 ++++++++++=
++++++---
+>  drivers/gpu/drm/drm=5Finternal.h                |   4 +-
+>  drivers/gpu/drm/drm=5Fprime.c                   |   4 +-
+>  drivers/gpu/drm/lima/lima=5Fgem.c               |  11 +-
+>  drivers/gpu/drm/lima/lima=5Fsched.c             |   4 +-
+>  drivers/gpu/drm/panfrost/Makefile             |   1 -
+>  drivers/gpu/drm/panfrost/panfrost=5Fdevice.h    |   4 -
+>  drivers/gpu/drm/panfrost/panfrost=5Fdrv.c       |  29 +-
+>  drivers/gpu/drm/panfrost/panfrost=5Fdump.c      |   4 +-
+>  drivers/gpu/drm/panfrost/panfrost=5Fgem.c       |  36 +-
+>  drivers/gpu/drm/panfrost/panfrost=5Fgem.h       |   9 -
+>  .../gpu/drm/panfrost/panfrost=5Fgem=5Fshrinker.c  | 122 ----
+>  drivers/gpu/drm/panfrost/panfrost=5Fjob.c       |  18 +-
+>  drivers/gpu/drm/panfrost/panfrost=5Fmmu.c       |   4 +-
+>  drivers/gpu/drm/panfrost/panfrost=5Fperfcnt.c   |   6 +-
+>  drivers/gpu/drm/v3d/v3d=5Fbo.c                  |  26 +-
+>  drivers/gpu/drm/virtio/virtgpu=5Fdrv.h          |  22 +-
+>  drivers/gpu/drm/virtio/virtgpu=5Fgem.c          |  80 +++
+>  drivers/gpu/drm/virtio/virtgpu=5Fioctl.c        |  57 +-
+>  drivers/gpu/drm/virtio/virtgpu=5Fkms.c          |   8 +
+>  drivers/gpu/drm/virtio/virtgpu=5Fobject.c       | 147 ++++-
+>  drivers/gpu/drm/virtio/virtgpu=5Fplane.c        |  17 +-
+>  drivers/gpu/drm/virtio/virtgpu=5Fsubmit.c       |  15 +-
+>  drivers/gpu/drm/virtio/virtgpu=5Fvq.c           |  40 ++
+>  include/drm/drm=5Fdevice.h                      |  10 +-
+>  include/drm/drm=5Fgem.h                         |   6 +-
+>  include/drm/drm=5Fgem=5Fshmem=5Fhelper.h            | 141 +++-
+>  include/linux/dma-resv.h                      |   9 +
+>  include/linux/kref.h                          |  12 +
+>  include/linux/refcount.h                      |   5 +
+>  include/uapi/drm/virtgpu=5Fdrm.h                |  14 +
+>  lib/refcount.c                                |  34 +
+>  35 files changed, 1167 insertions(+), 386 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/panfrost/panfrost=5Fgem=5Fshrinke=
+r.c
+>=20
+> --=20
+> 2.41.0
+>
 
-Participating hosts (38 -> 27)
-------------------------------
-
-  Missing    (11): fi-kbl-7567u bat-adls-5 bat-adlp-9 bat-dg2-9 fi-cfl-8700k fi-apl-guc fi-snb-2520m fi-cfl-guc fi-ivb-3770 fi-elk-e7500 bat-mtlp-8 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_122971v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      [PASS][1] -> [DMESG-FAIL][2] ([i915#5334] / [i915#7872])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13571/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-    - bat-jsl-1:          [PASS][3] -> [DMESG-FAIL][4] ([i915#5334])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13571/bat-jsl-1/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-jsl-1/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][5] ([i915#1845]) +3 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - bat-rplp-1:         NOTRUN -> [SKIP][6] ([i915#1072]) +2 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-adlp-6:         NOTRUN -> [ABORT][7] ([i915#8442] / [i915#8668])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-adlp-6/igt@kms_psr@primary_page_flip.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-rplp-1:         NOTRUN -> [ABORT][8] ([i915#8260] / [i915#8668])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-edp-1:
-    - bat-adlp-6:         [ABORT][9] ([i915#7977] / [i915#8469] / [i915#8668]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13571/bat-adlp-6/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-edp-1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-adlp-6/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-edp-1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-rplp-1:         [ABORT][11] ([i915#8442] / [i915#8668] / [i915#8860]) -> [SKIP][12] ([i915#1072])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13571/bat-rplp-1/igt@kms_psr@primary_page_flip.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-rplp-1/igt@kms_psr@primary_page_flip.html
-
-  
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#7872]: https://gitlab.freedesktop.org/drm/intel/issues/7872
-  [i915#7977]: https://gitlab.freedesktop.org/drm/intel/issues/7977
-  [i915#8260]: https://gitlab.freedesktop.org/drm/intel/issues/8260
-  [i915#8442]: https://gitlab.freedesktop.org/drm/intel/issues/8442
-  [i915#8469]: https://gitlab.freedesktop.org/drm/intel/issues/8469
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#8860]: https://gitlab.freedesktop.org/drm/intel/issues/8860
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13571 -> Patchwork_122971v1
-
-  CI-20190529: 20190529
-  CI_DRM_13571: d3f0e020609215d9097f1b1fad5a13ea0b37548e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7454: 7454
-  Patchwork_122971v1: d3f0e020609215d9097f1b1fad5a13ea0b37548e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-6a7147fc198e drm/i915/guc: fix compile issue of guc_klvs_abi.h
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/index.html
-
---===============8125490161787722828==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: fix compile issue of guc_klvs_abi.h</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/122971/">https://patchwork.freedesktop.org/series/122971/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13571 -&gt; Patchwork_122971v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 27)</h2>
-<p>Missing    (11): fi-kbl-7567u bat-adls-5 bat-adlp-9 bat-dg2-9 fi-cfl-8700k fi-apl-guc fi-snb-2520m fi-cfl-guc fi-ivb-3770 fi-elk-e7500 bat-mtlp-8 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_122971v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>
-<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13571/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7872">i915#7872</a>)</p>
-</li>
-<li>
-<p>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13571/bat-jsl-1/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-jsl-1/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>bat-adlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-adlp-6/igt@kms_psr@primary_page_flip.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8260">i915#8260</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-edp-1:<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13571/bat-adlp-6/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7977">i915#7977</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8469">i915#8469</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-adlp-6/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-edp-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_psr@primary_page_flip:<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13571/bat-rplp-1/igt@kms_psr@primary_page_flip.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8860">i915#8860</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122971v1/bat-rplp-1/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13571 -&gt; Patchwork_122971v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13571: d3f0e020609215d9097f1b1fad5a13ea0b37548e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7454: 7454<br />
-  Patchwork_122971v1: d3f0e020609215d9097f1b1fad5a13ea0b37548e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>6a7147fc198e drm/i915/guc: fix compile issue of guc_klvs_abi.h</p>
-
-</body>
-</html>
-
---===============8125490161787722828==--
