@@ -1,52 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30DB078A552
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 07:42:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A15A678A554
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 07:44:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C9DD10E072;
-	Mon, 28 Aug 2023 05:42:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E27510E0D1;
+	Mon, 28 Aug 2023 05:44:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 097D910E05C
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 05:42:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54D4E10E0C7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 05:44:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693201322; x=1724737322;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=iD/wtL6bzclPvTEt1J98IbqWQkFhAk7pgDkoy9LfAIo=;
- b=VMSSfhwfst8AxwNHhWIwBws2V/4aecAkgbhCM+6XyIz1YFM8EfiKKJx4
- yqaNlrwDBctSdv2BmYmcI4loeCN0nPaK23BMmcX474FLtN+5749DpQE2u
- fTSI+xrWO3bTp8cqSKJA6GhXFrLyQymytTtfbjNbf/On9gPlpLDvpHAKk
- yHDLDYw5MgOnUfdL0nkEuK/e70eG9TAhWfwxSLaz76CE+CIL3w6iBVSTh
- SHoVfKP5PiGiQRH7WPObamx7JQ8JXtyBmL3eZJESs0OEa6zQ+gIg8/xAz
- rkka4qK/hZzgYIxDBK9nFUHwfpo4ZZ0B+dKwIVSW8aE7V1pzRHH1G3OFG w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10815"; a="372420541"
-X-IronPort-AV: E=Sophos;i="6.02,206,1688454000"; d="scan'208";a="372420541"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2023 22:42:01 -0700
+ t=1693201482; x=1724737482;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wiDQ4ywhZhb85bRO41bGNT/iZDhWpJWnkAh8mB2RlEw=;
+ b=UoEv1nAACLQBnzHW47cujlFkLnZn7LS3Tc2k2G2oAx7gZhtWHkWSn2si
+ ioWFSSdPeSzAimxzot5cZQK0ajznw80xZWD+TxOCaIZOQezclKkciVUmI
+ mqRAGCmn/hUDIC1ainQaq7+s1eZwb3NfNJs9WjVLxHWFfI91N03vqaZRZ
+ 6rYIKu3iaqYcQpilnVRngVyO0VUxEsoo8eZdz8YGrGKeRllZmkqRqyL7g
+ l1o925p5cA3VVCBHTKI4UW5kUqcC1KwwWUZIjWAAzMfiBgjgXFVhvhYRI
+ d3Ww/IYvokZGV6WTIQw0a4q1wZ6MzAzZfZqIjTS+GLfAJ7G+l7AtsI0Or A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10815"; a="373906586"
+X-IronPort-AV: E=Sophos;i="6.02,206,1688454000"; d="scan'208";a="373906586"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2023 22:44:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10815"; a="852707986"
-X-IronPort-AV: E=Sophos;i="6.02,206,1688454000"; d="scan'208";a="852707986"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by fmsmga002.fm.intel.com with SMTP; 27 Aug 2023 22:41:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 28 Aug 2023 08:41:59 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10815"; a="738128522"
+X-IronPort-AV: E=Sophos;i="6.02,206,1688454000"; d="scan'208";a="738128522"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by orsmga002.jf.intel.com with ESMTP; 27 Aug 2023 22:44:38 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Aug 2023 08:41:40 +0300
-Message-ID: <20230828054140.28054-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230828054140.28054-1-ville.syrjala@linux.intel.com>
-References: <20230828054140.28054-1-ville.syrjala@linux.intel.com>
+Date: Mon, 28 Aug 2023 11:12:53 +0530
+Message-Id: <20230828054300.560559-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915: Optimize out redundant M/N updates
+Subject: [Intel-gfx] [PATCH v12 0/8] Add DSC PPS readout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,35 +54,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Up until now we only verified one or two of the dsc pps
+params like bits_per_component and bits_per_pixel this
+patch series aim to readout almost all PPS param and get
+them compared.
+Along with that some work on making a common function to
+read and write PPS param regiters is also done.
 
-Don't perform a seamless M/N update if the values aren't actually
-changing. This avoids doing extra shenanigans during vblank evasion
-needlessly.
+--v2
+-Remove duplicated code and create function that fetches register
+and reuse that. [Jani]
+-move WARN_ON one abstraction layer up. [Jani]
+-Split patch so that refactor and a new functionality is not added
+in the same patch. [Jani]
+-Add a new refactor patch so that bit shifting can be done in a
+clean way. [Jani]
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+--v3
+-Fix the typo in patch 2 [Jani]
+-Get both dsc_reg regardless of dsc_eng_no. [Jani]
+-Remove usage of num_vdsc_instances. [Ankit]
+-Add macro to further optimize intel_dsc_get_pps_reg
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6196ef76390b..c20eaf0e7a91 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5525,7 +5525,9 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
- 	else
- 		new_crtc_state->uapi.mode_changed = false;
- 
--	if (intel_crtc_needs_modeset(new_crtc_state))
-+	if (intel_crtc_needs_modeset(new_crtc_state) ||
-+	    intel_compare_link_m_n(&old_crtc_state->dp_m_n,
-+				   &new_crtc_state->dp_m_n))
- 		new_crtc_state->update_m_n = false;
- 
- 	if (!intel_crtc_needs_modeset(new_crtc_state))
+--v4
+-Manipulate register addresses rather than creating a macro to
+manipulate variable name based on pps [Ankit]
+
+--v5
+-Use an array to fill the dsc registers instead of individual register
+[Ankit]
+-Get only dsc register that are required.
+
+--v6
+-make intel_get_no_vdsc_inst_per_pipe func static
+
+--v7
+-shorten func name for getting vdsc instances per pipe [Ankit]
+-send no vdsc instances to dsc read and write reg funcs [Ankit]
+
+--v8
+-remove array dynamic allocation for dsc_reg [Jani]
+-no need for an array to just verify dsc engine values [Jani]
+-remove no_ from no_vdsc_per_pipe and wherever else it is
+applicable [Ankit]
+
+--v9
+-change variable name to dsc_reg_size in intel_get_pps_reg [Ankit]
+-send ARRAY_SIZE(dsc_reg) in intel_dsc_write_pps_reg [Ankit]
+
+--v11
+-add _ prefix to vdsc reg not be directly used [Jani]
+-remove _REG suffix from register macros [Jani]
+-do not register read in intel_dsc_read_pps_reg [Jani]
+
+--v12
+-use vdsc_per_pipe in get_pps_reg instead of array size of
+dsc_reg which will always be 2 [Jani]
+
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+Suraj Kandpal (8):
+  drm/i915/vdsc: Refactor dsc register field macro
+  drm/i915/vdsc: Add a check for dsc split cases
+  drm/i915/vdsc: Add func to get no. of vdsc instances per pipe
+  drm/i915/vdsc: Add function to read any PPS register
+  drm/i915/vdsc: Add function to write in PPS register
+  drm/i915/vdsc: Remove unused dsc registers
+  drm/i915/vdsc: Fill the intel_dsc_get_pps_config function
+  drm/i915/display: Compare the readout dsc pps params
+
+ drivers/gpu/drm/i915/display/intel_display.c  |  31 ++
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 480 ++++++++----------
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    | 365 ++++---------
+ 3 files changed, 351 insertions(+), 525 deletions(-)
+
 -- 
-2.41.0
+2.25.1
 
