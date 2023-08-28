@@ -2,59 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5373178B718
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 20:16:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F04D78B71A
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 20:16:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AE3B10E098;
-	Mon, 28 Aug 2023 18:16:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C99B010E32A;
+	Mon, 28 Aug 2023 18:16:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
- [IPv6:2a00:1450:4864:20::12a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 885E410E098
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 18:16:26 +0000 (UTC)
-Received: by mail-lf1-x12a.google.com with SMTP id
- 2adb3069b0e04-5008faf4456so5495577e87.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 11:16:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1693246585; x=1693851385;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=i4NMKPE/PNiImYJLrMz5971L0p0+xkRbXFUhJalJ7vU=;
- b=D3S5jqgBmPtQ4eRVP2k7flTboti8W2aVkoJz95i8GuYoXbsesOtWOg/KF2WwiUiA3O
- kZBwsNMrMgIfd9oSjdwKr9xOM3itECXIGGF/l6SYXDLXaxh7jZBZiKbtUB5FqvcfqlN+
- tUjbK9OeEeHyIJiYPPsS3W3zkskuWo8khrr30=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693246585; x=1693851385;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=i4NMKPE/PNiImYJLrMz5971L0p0+xkRbXFUhJalJ7vU=;
- b=Xa6Rgfq2p5prZfAFK4TzFOQokR7WvhgG2j0jw+pasW8nZ1JefvsOZdIqXzPYTQbB9J
- J8wK6kUHHvBfYTx1pAB2HQ/c5dGwbM0pXsq1KrYu2/3eTEbt3iA+ZhJ9rpJQVwZQaOvo
- 2GVVNvH7tw8NVAFYNqqDyYo4Ar/7c5Rf2nfyJ0F2x2sIWjeG9QjedkTyqXfrzMuNEaa4
- cD2HSF9EkIPsmWHseMsD523XxxJqFfKyRNqEB95IcWFx3/ZsW9HWM4VoOVqS2uOg8VZR
- rzbJJjV35725+VRDIInvRqdtt8eiryQErkE+cDL7NKZ4K9722kRZV+in4Xqbd280Ld2v
- Uskw==
-X-Gm-Message-State: AOJu0YyEoIcxRulb5IBr/qRaLWLAZGTCDQdRv4mCcDRMY9Xt36+w6YzK
- HWLXSYHQuqQu1o4WeM266IOF+0lZUmU2jlFsVl4afv2B9oPF06G9
-X-Google-Smtp-Source: AGHT+IEJ2QOkI5RSHr8yuij9SF2dRNRSAzDFGJpxS2v1ZZofyflTpowGeIdxQmlK3XneZNXeaB8UQPvTsE5FecaBfx8=
-X-Received: by 2002:a19:4302:0:b0:500:7a21:3e78 with SMTP id
- q2-20020a194302000000b005007a213e78mr14422326lfa.55.1693246584589; Mon, 28
- Aug 2023 11:16:24 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FBAB10E329
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 18:16:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693246602; x=1724782602;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=b6umVKDIIZXmDYmGAxrf3XBl1cDllTRCw6OxWDO3228=;
+ b=DFk3oUmd5VTsnlCMPPa+n9aHFP8sbhLP3JrvVLpnyP5ZTL21HJfBEh/O
+ bAyDr0SDaWQsu5VE9PLM2xkuq/V0nbDSsgd+vbuQOBfBIFTOshsLYqhdz
+ z4+57eYsH9qlXfQb6Un5suoKnQKGtO7KBCz9gV1hrlVjHEHxRypxAvk/t
+ L+/uHKf0ud/I9vyFZl/JYRvyocpryX5Q25JfDNkesP89bPwsAXnUX4am3
+ VRliUGHxz4c/YPWli9ynQQuC4o+y3J8e8K8oIGiincJfS5pMRJinkElye
+ 3rj1aeh8jGRVg8+8qSRC9Ndne2JdKp09FUViTi1Td9O+NrPpMEwN077vO Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="372584287"
+X-IronPort-AV: E=Sophos;i="6.02,208,1688454000"; d="scan'208";a="372584287"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2023 11:16:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="773354339"
+X-IronPort-AV: E=Sophos;i="6.02,208,1688454000"; d="scan'208";a="773354339"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.213.195])
+ ([10.251.213.195])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2023 11:16:37 -0700
+Message-ID: <ff521acf-c1a8-3708-1c64-9bad2d4d9c09@linux.intel.com>
+Date: Mon, 28 Aug 2023 20:16:35 +0200
 MIME-Version: 1.0
-References: <20230828054140.28054-1-ville.syrjala@linux.intel.com>
- <20230828054140.28054-2-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230828054140.28054-2-ville.syrjala@linux.intel.com>
-From: Manasi Navare <navaremanasi@chromium.org>
-Date: Mon, 28 Aug 2023 11:16:13 -0700
-Message-ID: <CAE72mNkp72Od5DyOKM0Qw4ekMA4iXOc=2B9Pa8mJonZ0=F5_xg@mail.gmail.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Move psr unlock out from the
- pipe update critical section
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Content-Language: en-US
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230828063450.2642748-1-tejas.upadhyay@intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20230828063450.2642748-1-tejas.upadhyay@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Update workaround 14016712196
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,67 +61,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-By doing psr_unlock after the vblank evade, are we ensuring that even
-when VRR params change during the pipe update, psr unlock will
-happen after the actual vblank  based on newly programmed VRR params?
 
-Manasi
+On 8/28/2023 8:34 AM, Tejas Upadhyay wrote:
+> Now this workaround is permanent workaround on MTL and DG2,
+> earlier we used to apply on MTL A0 step only.
+> VLK-45480
 
-On Sun, Aug 27, 2023 at 10:41=E2=80=AFPM Ville Syrjala
-<ville.syrjala@linux.intel.com> wrote:
+Please remove the internal VLK reference. Otherwise this is
+
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+
 >
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Do the PSR unlock after the vblank evade critcal section is
-> fully over, not before.
->
-> Cc: Manasi Navare <navaremanasi@chromium.org>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Fixes: d922b80b1010 ("drm/i915/gt: Add workaround 14016712196")
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_crtc.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
+>   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 7 +++----
+>   1 file changed, 3 insertions(+), 4 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
-i915/display/intel_crtc.c
-> index 182c6dd64f47..5caa928e5ce9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -646,10 +646,8 @@ void intel_pipe_update_end(struct intel_crtc_state *=
-new_crtc_state)
->         ktime_t end_vbl_time =3D ktime_get();
->         struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->
-> -       intel_psr_unlock(new_crtc_state);
-> -
->         if (new_crtc_state->do_async_flip)
-> -               return;
-> +               goto out;
->
->         trace_intel_pipe_update_end(crtc, end_vbl_count, scanline_end);
->
-> @@ -709,7 +707,7 @@ void intel_pipe_update_end(struct intel_crtc_state *n=
-ew_crtc_state)
->         local_irq_enable();
->
->         if (intel_vgpu_active(dev_priv))
-> -               return;
-> +               goto out;
->
->         if (crtc->debug.start_vbl_count &&
->             crtc->debug.start_vbl_count !=3D end_vbl_count) {
-> @@ -724,4 +722,7 @@ void intel_pipe_update_end(struct intel_crtc_state *n=
-ew_crtc_state)
->         }
->
->         dbg_vblank_evade(crtc, end_vbl_time);
-> +
-> +out:
-> +       intel_psr_unlock(new_crtc_state);
->  }
-> --
-> 2.41.0
->
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> index 6187b25b67ab..0143445dba83 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> @@ -226,8 +226,8 @@ u32 *gen12_emit_aux_table_inv(struct intel_engine_cs *engine, u32 *cs)
+>   static int mtl_dummy_pipe_control(struct i915_request *rq)
+>   {
+>   	/* Wa_14016712196 */
+> -	if (IS_GFX_GT_IP_STEP(rq->engine->gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> -	    IS_GFX_GT_IP_STEP(rq->engine->gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+> +	if (IS_GFX_GT_IP_RANGE(rq->engine->gt, IP_VER(12, 70), IP_VER(12, 71)) ||
+> +	    IS_DG2(rq->i915)) {
+>   		u32 *cs;
+>   
+>   		/* dummy PIPE_CONTROL + depth flush */
+> @@ -810,8 +810,7 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+>   		     PIPE_CONTROL_FLUSH_ENABLE);
+>   
+>   	/* Wa_14016712196 */
+> -	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+> -	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0))
+> +	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71)) || IS_DG2(i915))
+>   		/* dummy PIPE_CONTROL + depth flush */
+>   		cs = gen12_emit_pipe_control(cs, 0,
+>   					     PIPE_CONTROL_DEPTH_CACHE_FLUSH, 0);
