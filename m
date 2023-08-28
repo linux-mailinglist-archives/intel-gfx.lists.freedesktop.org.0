@@ -1,55 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12BF478AE0B
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 12:55:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7623978AE04
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Aug 2023 12:55:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AE3410E286;
-	Mon, 28 Aug 2023 10:55:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC08010E284;
+	Mon, 28 Aug 2023 10:55:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE27D10E286
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 10:55:30 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A49D010E284;
+ Mon, 28 Aug 2023 10:55:23 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 0865264598
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 10:55:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BEC1C433C7
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 10:55:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1693220129;
- bh=dm9y9OCP+t43iO19XArWc+A5EajPmlhWmQiniBBe6EI=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=f39yRMGx1Ul4Hlmuh7KqOqegKQKbJlfjnmRsJGT5wGIgYo3qYYqyE/j0whIppqkCT
- zZQiFUMzY8xT+5s13uZ2P2QKFp1znV78UFeal2TEkIN+DtlCKGwqBa4xUFFpaEvXiN
- ZJmWlOcioZ3lTpz72iSTuR5zyO2LtFtEBqyBrn/CnOaRg4Ji/yodZWHTv6LcV2dfcn
- iJGBMwqcKTGLqQH+NaAIrM89IhxgA/Ud0zzDGV0XfrKfM6Ib/XOPwHC5nviMc2gqJL
- kXfvWEqFh1XrL9IUnPo+CHi7QvL+3x4WtEqO6IynJtQgwuUgLU2798e1K4JRkxVbZ2
- ydUYqUxg8COmw==
-Received: by mail-yb1-f172.google.com with SMTP id
- 3f1490d57ef6-d66f105634eso2698425276.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Aug 2023 03:55:29 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwLwag8CYe4sN0YvqyTQgA1F2wemTRpse9Gj4JJ4V7RbSwYjc2H
- z2AjobDyAdpLHfpLHOB55uw6If3qL5m1VWR1pjM=
-X-Google-Smtp-Source: AGHT+IGSgbXBFnZtjGGBOVBt1hFAkHS/vTA4TQkoHVcdFTW9O/hoMnUCw3DaA7J+fGZ8VB7l+dYXVgNG9PZL7VG7+30=
-X-Received: by 2002:a25:4014:0:b0:d08:20f1:f7cd with SMTP id
- n20-20020a254014000000b00d0820f1f7cdmr24139775yba.16.1693220128411; Mon, 28
- Aug 2023 03:55:28 -0700 (PDT)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 7620966003AF;
+ Mon, 28 Aug 2023 11:55:21 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1693220122;
+ bh=Y7Xrnk37ffMwXDwhIRgKCNKpNEyURXK76bZ+LzfgfJU=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=MPiXj4Dfk5SQk9okZJLs4FFEgbmsCH+Ofpf9s5uOSQ+2Hglnf69hWQ3QDk0kzlimG
+ ZyABf43UGCrYR3vWBsYQJFl8oMMxcbJ4cRaUqyHAidpFv3HEcHM6qsdXJrEz92lK2e
+ DKo+BLfmEI8k8rGRj1zyB2yO3ij0HO7xp5/PZLdtZeOEldKanV/O4dbkIPTUFEsqPr
+ aS2mj0tOQuwG9hIIra+CJeabSiilp//N9n4emdtuEKqlG1bMv3YVV67h9n0o81i+JL
+ awXZ15YqYk1iey6l99RiKDegI6Vtxtu43LgaD7cdR7A8oBEVIBKov1TNsaVQrWOFVw
+ ZWAn5Z1jUZNBA==
+Date: Mon, 28 Aug 2023 12:55:18 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Message-ID: <20230828125518.7b926fc6@collabora.com>
+In-Reply-To: <20230827175449.1766701-3-dmitry.osipenko@collabora.com>
+References: <20230827175449.1766701-1-dmitry.osipenko@collabora.com>
+ <20230827175449.1766701-3-dmitry.osipenko@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20230823184247.1767725-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20230823184247.1767725-1-daniele.ceraolospurio@intel.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Mon, 28 Aug 2023 06:55:17 -0400
-X-Gmail-Original-Message-ID: <CA+5PVA61vRm9ZawR=gh_FLPEniOLdX0udQjjro3q79_yGOasuw@mail.gmail.com>
-Message-ID: <CA+5PVA61vRm9ZawR=gh_FLPEniOLdX0udQjjro3q79_yGOasuw@mail.gmail.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] PR for GSC FW release 102.0.0.1655 for MTL
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH v15 02/23] drm/shmem-helper: Use flag for
+ tracking page count bumped by get_pages_sgt()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,38 +54,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kyle@kernel.org, ben@decadent.org.uk,
- linux-firmware@kernel.org
+Cc: Mark Rutland <mark.rutland@arm.com>, Emma Anholt <emma@anholt.net>,
+ Peter Zijlstra <peterz@infradead.org>, dri-devel@lists.freedesktop.org,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, kernel@collabora.com,
+ Will Deacon <will@kernel.org>, David Airlie <airlied@gmail.com>,
+ Steven Price <steven.price@arm.com>, intel-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Boqun Feng <boqun.feng@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>, Melissa Wen <mwen@igalia.com>,
+ virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ Chia-I Wu <olvaffe@gmail.com>, Qiang Yu <yuq825@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 23, 2023 at 2:43=E2=80=AFPM Daniele Ceraolo Spurio
-<daniele.ceraolospurio@intel.com> wrote:
->
-> The following changes since commit 0e048b061bde79ad735c7b7b5161ee1bd34001=
-50:
->
->   Merge branch 'for-upstream' of https://github.com/CirrusLogic/linux-fir=
-mware (2023-08-14 13:03:41 -0400)
->
-> are available in the Git repository at:
->
->   git://anongit.freedesktop.org/drm/drm-firmware mtl_gsc_1655
+On Sun, 27 Aug 2023 20:54:28 +0300
+Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
 
-Pulled and pushed out.
+> Use separate flag for tracking page count bumped by shmem->sgt to avoid
+> imbalanced page counter during of drm_gem_shmem_free() time. It's fragile
+> to assume that populated shmem->pages at a freeing time means that the
+> count was bumped by drm_gem_shmem_get_pages_sgt(), using a flag removes
+> the ambiguity.
+> 
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> ---
+>  drivers/gpu/drm/drm_gem_shmem_helper.c | 3 ++-
+>  drivers/gpu/drm/lima/lima_gem.c        | 1 +
+>  include/drm/drm_gem_shmem_helper.h     | 7 +++++++
+>  3 files changed, 10 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> index 78d9cf2355a5..db20b9123891 100644
+> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> @@ -152,7 +152,7 @@ void drm_gem_shmem_free(struct drm_gem_shmem_object *shmem)
+>  			sg_free_table(shmem->sgt);
+>  			kfree(shmem->sgt);
+>  		}
+> -		if (shmem->pages)
+> +		if (shmem->got_sgt)
+>  			drm_gem_shmem_put_pages(shmem);
 
-josh
+Can't we just move this drm_gem_shmem_put_pages() call in the
+if (shmem->sgt) block?
 
->
-> for you to fetch changes up to 81caac98eda16944446fa057191ee969c377154a:
->
->   i915: add GSC 102.0.0.1655 for MTL (2023-08-21 14:13:11 -0700)
->
-> ----------------------------------------------------------------
-> Daniele Ceraolo Spurio (1):
->       i915: add GSC 102.0.0.1655 for MTL
->
->  WHENCE             |   3 +++
->  i915/mtl_gsc_1.bin | Bin 0 -> 1142784 bytes
->  2 files changed, 3 insertions(+)
->  create mode 100755 i915/mtl_gsc_1.bin
+>  
+>  		drm_WARN_ON(obj->dev, shmem->pages_use_count);
+> @@ -687,6 +687,7 @@ static struct sg_table *drm_gem_shmem_get_pages_sgt_locked(struct drm_gem_shmem_
+>  	if (ret)
+>  		goto err_free_sgt;
+>  
+> +	shmem->got_sgt = true;
+>  	shmem->sgt = sgt;
+>  
+>  	return sgt;
+> diff --git a/drivers/gpu/drm/lima/lima_gem.c b/drivers/gpu/drm/lima/lima_gem.c
+> index 4f9736e5f929..28602302c281 100644
+> --- a/drivers/gpu/drm/lima/lima_gem.c
+> +++ b/drivers/gpu/drm/lima/lima_gem.c
+> @@ -89,6 +89,7 @@ int lima_heap_alloc(struct lima_bo *bo, struct lima_vm *vm)
+>  	}
+>  
+>  	*bo->base.sgt = sgt;
+> +	bo->base.got_sgt = true;
+>  
+>  	if (vm) {
+>  		ret = lima_vm_map_bo(vm, bo, old_size >> PAGE_SHIFT);
+> diff --git a/include/drm/drm_gem_shmem_helper.h b/include/drm/drm_gem_shmem_helper.h
+> index ec70a98a8fe1..f87124629bb5 100644
+> --- a/include/drm/drm_gem_shmem_helper.h
+> +++ b/include/drm/drm_gem_shmem_helper.h
+> @@ -73,6 +73,13 @@ struct drm_gem_shmem_object {
+>  	 */
+>  	unsigned int vmap_use_count;
+>  
+> +	/**
+> +	 * @got_sgt:
+> +	 *
+> +	 * True if SG table was retrieved using drm_gem_shmem_get_pages_sgt()
+> +	 */
+> +	bool got_sgt : 1;
+> +
+>  	/**
+>  	 * @imported_sgt:
+>  	 *
+
