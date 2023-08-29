@@ -2,49 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5905F78BF36
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Aug 2023 09:30:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 959EF78BF7D
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Aug 2023 09:46:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5C6910E07A;
-	Tue, 29 Aug 2023 07:29:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14FAF10E0A1;
+	Tue, 29 Aug 2023 07:46:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 066EC10E07A;
- Tue, 29 Aug 2023 07:29:56 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 1234966071EF;
- Tue, 29 Aug 2023 08:29:54 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1693294194;
- bh=Ecrnw1IOFH3doPfE6+44e9yvuZAmYZFTAiUn0vXlg0M=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=IECg13CjZ43Q9RAtlU/1MDOlh4f6fKzxlmtZKFa6vwn5PW5Enn1riu1/7d8sq8uZk
- 3nq1tdc5hQXbEa5AiiGuJlD4u7GdBKzoKslSaLiYW5Td3TQr0kTLqRPwOKfo8fyoec
- 5YcnF+L82WBVUnNOcpOLw7XlWuoNUrFD+A6SGWppcm2++KyzQbm3pzhl9UCjXf3hQN
- rO8RSMrWoJSUaLwccu/59ogl5r3+On1BiCt1mEerWirZCNpMiN8jArzVho0oWz2UlL
- YuRHukQTodOuvzthDIZqWymGszSIjxJsvu/QvPOChIZHEh5u4ES/kAv8h0KzLCM4GC
- vUIelZ1biepIw==
-Date: Tue, 29 Aug 2023 09:29:50 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Message-ID: <20230829092950.3a9c40c1@collabora.com>
-In-Reply-To: <01930e66-cba2-5d81-7f46-d46907bdd300@collabora.com>
-References: <20230827175449.1766701-1-dmitry.osipenko@collabora.com>
- <20230827175449.1766701-18-dmitry.osipenko@collabora.com>
- <20230828121239.78a180e6@collabora.com>
- <01930e66-cba2-5d81-7f46-d46907bdd300@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3D1A10E06E;
+ Tue, 29 Aug 2023 07:46:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693295175; x=1724831175;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=zuOA5LM3g2ghNjJh/pZXzZ5xDHkSBFRyR/EyKclt9l8=;
+ b=bzC1QqABxOk2Lz3zOpAdPbIvyUjBIXIT4uvz/zI+xI/3erJgnPjX1GUl
+ H4Cs3TEsJR1HppK7ut4GJeUXcPAagGCZnXQ4BETaXuFSzmbs+9/pq3Jpe
+ HszzgEAreBz+jCymtA5tEleag6+A11jkiW48wjwk7v/kwltYvch9xOhrV
+ 0K6qhMsnP7b17v/iAgJZPEnV7iChPi7xhEZn9bPbjEJiYtU56/fufIkJl
+ b84DkMoSI7vtqZevDml+NutpbNSYewB2UFntRyZM1ZFDBn+GFhaH1uzN3
+ rQXhPX5rlMxRgw1VAMl+W5ueiCY1gV0kmD1AzhKNLFTumDMiPfI3tyn5T Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="372718205"
+X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="372718205"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2023 00:46:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="715420450"
+X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="715420450"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by orsmga006.jf.intel.com with SMTP; 29 Aug 2023 00:46:11 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 29 Aug 2023 10:46:11 +0300
+Date: Tue, 29 Aug 2023 10:46:11 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Message-ID: <ZO2iQytXpy04CG1R@intel.com>
+References: <20230828062035.6906-1-vinod.govindapillai@intel.com>
+ <20230828062035.6906-3-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v15 17/23] drm/shmem-helper: Add and use
- drm_gem_shmem_resv_assert_held() helper
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230828062035.6906-3-vinod.govindapillai@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 2/4] drm/i915/lnl: update FBC
+ debugfs to include plane information
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,105 +62,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Emma Anholt <emma@anholt.net>,
- Peter Zijlstra <peterz@infradead.org>, dri-devel@lists.freedesktop.org,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Gerd Hoffmann <kraxel@redhat.com>, kernel@collabora.com,
- Will Deacon <will@kernel.org>, David Airlie <airlied@gmail.com>,
- Steven Price <steven.price@arm.com>, intel-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Boqun Feng <boqun.feng@gmail.com>,
- Maxime Ripard <mripard@kernel.org>, Melissa Wen <mwen@igalia.com>,
- virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- Chia-I Wu <olvaffe@gmail.com>, Qiang Yu <yuq825@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 29 Aug 2023 05:34:23 +0300
-Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
-
-> On 8/28/23 13:12, Boris Brezillon wrote:
-> > On Sun, 27 Aug 2023 20:54:43 +0300
-> > Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
-> >   
-> >> In a preparation of adding drm-shmem memory shrinker, move all reservation
-> >> locking lockdep checks to use new drm_gem_shmem_resv_assert_held() that
-> >> will resolve spurious lockdep warning about wrong locking order vs
-> >> fs_reclam code paths during freeing of shmem GEM, where lockdep isn't
-> >> aware that it's impossible to have locking contention with the fs_reclam
-> >> at this special time.
-> >>
-> >> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> >> ---
-> >>  drivers/gpu/drm/drm_gem_shmem_helper.c | 37 +++++++++++++++++---------
-> >>  1 file changed, 25 insertions(+), 12 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> >> index d96fee3d6166..ca5da976aafa 100644
-> >> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> >> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> >> @@ -128,6 +128,23 @@ struct drm_gem_shmem_object *drm_gem_shmem_create(struct drm_device *dev, size_t
-> >>  }
-> >>  EXPORT_SYMBOL_GPL(drm_gem_shmem_create);
-> >>  
-> >> +static void drm_gem_shmem_resv_assert_held(struct drm_gem_shmem_object *shmem)
-> >> +{
-> >> +	/*
-> >> +	 * Destroying the object is a special case.. drm_gem_shmem_free()
-> >> +	 * calls many things that WARN_ON if the obj lock is not held.  But
-> >> +	 * acquiring the obj lock in drm_gem_shmem_free() can cause a locking
-> >> +	 * order inversion between reservation_ww_class_mutex and fs_reclaim.
-> >> +	 *
-> >> +	 * This deadlock is not actually possible, because no one should
-> >> +	 * be already holding the lock when drm_gem_shmem_free() is called.
-> >> +	 * Unfortunately lockdep is not aware of this detail.  So when the
-> >> +	 * refcount drops to zero, we pretend it is already locked.
-> >> +	 */
-> >> +	if (kref_read(&shmem->base.refcount))
-> >> +		drm_gem_shmem_resv_assert_held(shmem);
-> >> +}
-> >> +
-> >>  /**
-> >>   * drm_gem_shmem_free - Free resources associated with a shmem GEM object
-> >>   * @shmem: shmem GEM object to free
-> >> @@ -142,8 +159,6 @@ void drm_gem_shmem_free(struct drm_gem_shmem_object *shmem)
-> >>  	if (obj->import_attach) {
-> >>  		drm_prime_gem_destroy(obj, shmem->sgt);
-> >>  	} else if (!shmem->imported_sgt) {
-> >> -		dma_resv_lock(shmem->base.resv, NULL);
-> >> -
-> >>  		drm_WARN_ON(obj->dev, kref_read(&shmem->vmap_use_count));
-> >>  
-> >>  		if (shmem->sgt) {
-> >> @@ -156,8 +171,6 @@ void drm_gem_shmem_free(struct drm_gem_shmem_object *shmem)
-> >>  			drm_gem_shmem_put_pages_locked(shmem);  
-> > 
-> > AFAICT, drm_gem_shmem_put_pages_locked() is the only function that's
-> > called in the free path and would complain about resv-lock not being
-> > held. I think I'd feel more comfortable if we were adding a
-> > drm_gem_shmem_free_pages() function that did everything
-> > drm_gem_shmem_put_pages_locked() does except for the lock_held() check
-> > and the refcount dec, and have it called here (and in
-> > drm_gem_shmem_put_pages_locked()). This way we can keep using
-> > dma_resv_assert_held() instead of having our own variant.  
+On Mon, Aug 28, 2023 at 09:20:33AM +0300, Vinod Govindapillai wrote:
+> In future platforms, FBC can be supported on planes other than
+> the primary plane. So update the debugfs entry for FBC status
+> to have the plane ID included.
 > 
-> It's not only drm_gem_shmem_free_pages(), but any drm-shmem function
-> that drivers may use in the GEM's freeing callback.
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
 > 
-> For example, panfrost_gem_free_object() may unpin shmem BO and then do
-> drm_gem_shmem_free().
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index d36499d7e0be..45e205a0f740 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -1837,7 +1837,9 @@ static int intel_fbc_debugfs_status_show(struct seq_file *m, void *unused)
+>  	mutex_lock(&fbc->lock);
+>  
+>  	if (fbc->active) {
+> -		seq_puts(m, "FBC enabled\n");
+> +		seq_printf(m, "FBC enabled: [PLANE:%d:%s]\n",
+> +			   fbc->state.plane->base.base.id,
+> +			   fbc->state.plane->base.name);
 
-Is this really a valid use case? If the GEM refcount dropped to zero,
-we should certainly not have pages_pin_count > 0 (thinking of vmap-ed
-buffers that might disappear while kernel still has a pointer to the
-CPU-mapped area). The only reason we have this
-drm_gem_shmem_put_pages_locked() in drm_gem_shmem_free() is because of
-this implicit ref hold by the sgt, and IMHO, we should be stricter and
-check that pages_use_count == 1 when sgt != NULL and pages_use_count ==
-0 otherwise.
+That informtion is already part of the plane loop below.
 
-I actually think it's a good thing to try and catch any attempt to call
-functions trying lock the resv in a path they're not supposed to. At
-least we can decide whether these actions are valid or not in this
-context, and provide dedicated helpers for the free path if they are.
+>  		seq_printf(m, "Compressing: %s\n",
+>  			   str_yes_no(intel_fbc_is_compressing(fbc)));
+>  	} else {
+> @@ -1910,10 +1912,16 @@ static void intel_fbc_debugfs_add(struct intel_fbc *fbc,
+>  
+>  void intel_fbc_crtc_debugfs_add(struct intel_crtc *crtc)
+>  {
+> -	struct intel_plane *plane = to_intel_plane(crtc->base.primary);
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	struct intel_plane *plane;
+> +
+> +	for_each_intel_plane(&i915->drm, plane) {
+> +		if (!plane->fbc || plane->pipe != crtc->pipe)
+> +			continue;
+>  
+> -	if (plane->fbc)
+>  		intel_fbc_debugfs_add(plane->fbc, crtc->base.debugfs_entry);
+> +		break;
+> +	}
+
+Do we have a case where the first plane wouldn't support FBC? If not
+this wouldn't really be needed. But I guess no harm in iterating here
+too.
+
+>  }
+>  
+>  /* FIXME: remove this once igt is on board with per-crtc stuff */
+> -- 
+> 2.34.1
+
+-- 
+Ville Syrjälä
+Intel
