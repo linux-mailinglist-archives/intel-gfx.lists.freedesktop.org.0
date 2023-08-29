@@ -1,123 +1,143 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E12CB78CB4F
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Aug 2023 19:34:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2EA978CB6E
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Aug 2023 19:40:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE90D10E474;
-	Tue, 29 Aug 2023 17:34:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84F1610E403;
+	Tue, 29 Aug 2023 17:39:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2062e.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e89::62e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 630CE10E474;
- Tue, 29 Aug 2023 17:34:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF1E10E3EA;
+ Tue, 29 Aug 2023 17:39:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693330795; x=1724866795;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=mmXcdsv7VejLPwzgJuEWKLJmO02gW4kCrhf6oqpJsls=;
+ b=fgm34zUJlu589K+0NePyuJ6NmqT/UlIdpUQtoMVzNFYcPkfKGvr2iNZ6
+ A2oLm2JTRKHG8nXsQq4UyK0f728PBX4sb0hhi9P1LAAZryDUHLXuyCnHi
+ 84ewFRSXfZaapKGpGcqaGbNmxu4rWfks6bRanM3hy/irspzEJC7JxOSh6
+ oNt6sUHmiNAeem0uUGimv+CgNFPzkNmA1+MO17dQNmJcM4TsruKB/HA7L
+ nX+zn1pse45QrFU34+BhGOceVfyjkw7yI2CxyTQ5kdOPF8tIJrs2ubhSv
+ BstRMW3507FOkpaVX72P62OZRywkQeKZgfZApt4Q3t001/F6yqzmQraDi g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="372848479"
+X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="372848479"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2023 10:39:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="773787834"
+X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="773787834"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga001.jf.intel.com with ESMTP; 29 Aug 2023 10:39:53 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 29 Aug 2023 10:39:53 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 29 Aug 2023 10:39:52 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Tue, 29 Aug 2023 10:39:52 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.175)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Tue, 29 Aug 2023 10:39:52 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I/v5o1sXNkObdUk7wl14As2fBlf855ruSOa3h76QeYIPxaU654QH1nCa6DpGRq/9XBpTou3HmQK0AbqzgXrhPjwAjX+kRDx0gALbYMCN/4/MHlclYXiE72nvy83tWqJDZosov9VCaMNv7Ki3h9FPv4IZXFUgRYpA5sLeueXCIgpbfRm5tvpm5xEoa8NjMiduOhcwo1Z5pHsr3SWZhL3++vbJZXEHZmg7kz7GAoSEn7fsFIWbY/fe2O5SSjBRVLjimLSd4/pp8Bmii2cewEu7X02SRPJtkW2m6A8NbR0YfNIQ2YZ6oqR3Wb0s6twNboDs8yuwiEalv6BV49vPTeSXVw==
+ b=fmwSXz4dMCslOfLVs98Rb4JcYh4YYECNxuXZ9gTDiC7m55RHrcJocqBdIFVVpJBHDyO2nfoVG7ugnQzeqZ5oJLnBKOaQcZJRhkDHXGRrKVtHR2dGib2o3l8igkoKuYMfdk355dQK+3ROEGtdLtStA8ZzRRQtDczT9dIMw1vliIOAdoVwP/nogVqERP/17kUnfMjZw5orwOwEu+xX1vvMbsEmkTyZBmti07DGyO6NiV9Wzoy94rwCKsI5la4bB1bzLHIpAa8lDVCCzlD1XWcIxtJPFWXQ1l4UOozl4VjgKDFoy6meciF7uRxZcUPYCSKeZ5VVIiUuhzU5HUdAOoPqGA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hANVOBfR9UcDcBRj1//8l9wD1c28ovnJtRNXuiUHWZM=;
- b=cEFasjikUwypPhVX83ZQ5TpFXs9iJm64pyBZYLwxwH9yiKTQhyu5ah4DgcH75ZN/t+jceXZy/7XFLFVnB9NPXrYRQLyVrfwrHxV08XDw+x0Rz3gHJzzzNVh0RFM6jE1S4xANEuYkNQGrPNQiOLRGannOFBF2gZ91xkXQug40bsrGqCwznLQbEMi3CmDIPfsiBgxsiJ6xOWfuzdfPEAxqFoKu5xxi9XO6iVcV7KV/PW4SvzdEtpTOb23NwvXA+EXgPllsSFCUhXcw220Id783CgFtXD3gve+LyVqBeyu9W29+b01H75EaZNzCdae45i/Vuf+ct7zFmMyZOCdiw/X8Lg==
+ bh=g9u4nb453HrvtpOFEupEP6/hL+g4Ov1LUeCB6KsK7VM=;
+ b=h3KJ0AZgipIsREJJ800Gr+3+Oy8bzDCdlonTlkm3QE9/XfdyxapKX+77ln4L5Z85biuQSAimJtJfEDzZE4dAK5DN09YxLdF0xnQzD8m9Xke4KSyDztISJNhUi5glV2lya8Kog+SdLNsXBCI4GM8BOwBgPHmIj8Dizd9SwPnRjAGFhBQmLHWPqwxsRrX6bnAJeiaN/Ok0aP1XWHUKjUIFuG9WvFijCbzgoZvRmoYbfT+kcrR84vn+AiNF+LysDmaxrZHzf/59gtQO60NCd8GBLjlYPrBd7DYDW5FVoWgIRDdHGk/xSCdGfdldSoE/dkd/76NLjOa8d501LPllEtRyNg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hANVOBfR9UcDcBRj1//8l9wD1c28ovnJtRNXuiUHWZM=;
- b=AKbRcdHptLLBaBU3Qa3DenbGR9ySY3UmFRVQGMQv2xXAqjrG50XWXtEtUzuBkYFtqwkCH0o40ekvPZQAAS3L9V78as3MISlgYu47sWDFbiN4WwKZUj8vd8u9r+BeRHTNe3KksWTNMCotHfFOuqehafeVfUioSSP9RJsuAIs5BDo=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SJ0PR12MB6760.namprd12.prod.outlook.com (2603:10b6:a03:44c::18)
- by CH0PR12MB5027.namprd12.prod.outlook.com (2603:10b6:610:e2::19)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by CO1PR11MB5091.namprd11.prod.outlook.com (2603:10b6:303:6c::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.35; Tue, 29 Aug
- 2023 17:34:28 +0000
-Received: from SJ0PR12MB6760.namprd12.prod.outlook.com
- ([fe80::ae93:e5c5:41f7:bf08]) by SJ0PR12MB6760.namprd12.prod.outlook.com
- ([fe80::ae93:e5c5:41f7:bf08%7]) with mapi id 15.20.6699.034; Tue, 29 Aug 2023
- 17:34:27 +0000
-Message-ID: <bcbfe6d5-da87-fa2b-c05a-8bea6e0004fb@amd.com>
-Date: Tue, 29 Aug 2023 13:34:22 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: =?UTF-8?Q?Micha=c5=82_Winiarski?= <michal.winiarski@intel.com>
-References: <20230724211428.3831636-1-michal.winiarski@intel.com>
- <20230724211428.3831636-2-michal.winiarski@intel.com>
- <10bb9689-9226-d47c-4cf1-7bf9d599456c@amd.com>
- <6qcxpntlr36itieyoyebsncwdv4vadr5ac7imgl4rdemoyedvp@a3m7l32pkcnf>
-From: James Zhu <jamesz@amd.com>
-Organization: AMD RTG
-In-Reply-To: <6qcxpntlr36itieyoyebsncwdv4vadr5ac7imgl4rdemoyedvp@a3m7l32pkcnf>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YQXP288CA0030.CANP288.PROD.OUTLOOK.COM
- (2603:10b6:c00:41::36) To SJ0PR12MB6760.namprd12.prod.outlook.com
- (2603:10b6:a03:44c::18)
+ 2023 17:39:50 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6699.035; Tue, 29 Aug 2023
+ 17:39:50 +0000
+Date: Tue, 29 Aug 2023 10:39:47 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <yexrt74xzvyrarp4za24eg6qdod2ljn2ykd6cu7e5so4v35wsz@7xx7zluf7uql>
+X-Patchwork-Hint: comment
+References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
+ <20230823170740.1180212-33-lucas.demarchi@intel.com>
+ <20230823211439.GM1529860@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20230823211439.GM1529860@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: MW4PR04CA0240.namprd04.prod.outlook.com
+ (2603:10b6:303:87::35) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR12MB6760:EE_|CH0PR12MB5027:EE_
-X-MS-Office365-Filtering-Correlation-Id: 283873d2-696b-4c05-a345-08dba8b6316d
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CO1PR11MB5091:EE_
+X-MS-Office365-Filtering-Correlation-Id: a9f280c8-b416-4f8c-6481-08dba8b6f201
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wBgH/8Nyu8XmjgnNldn7O4CoYDLoZXLDf/7+7cHNyoNt8kzzHJJnSlhYNaMdIo4RVxAnBjyU/B5n9pnGHiROHCyyAWvmkqgW5TcCxn9e6w+EDGrY+j+RljZ6rNs5+tH40PLd/8xs81jxqcDMB9oj3UPjvexFPsf40BQgAh04jqJiBu/cW8cOPlEPJ4RvLmUDjcJvL0QP5We1Q8pD++AeIeqv1Zr3mF5xPgFZjucxuGEmucBCIlX++qOutShNrySpWtKy6+/rdpjnDIMHyIGRDVJz4pO5iMsRl5iAURHN/0JfIFJ7eSVpG1B9N+mIQP0PiuQia++TqMnGVqBuQ5yc/fADtYggfEpn19b0xKIDvfSFGXW41bOKtNkrbBHhvVIepU4WBi2OfYTB9eOcv7r2gXXSnm+/ask6c/2faFmWuybxTjOWCCR7DUWYOnUaqIkR8+bRZ8nQGUFZOiaT8FEk+Bf79CVK0O4MA4gz5jdpMhsvS2RMlENCaVvkzW3TWDp4tfL7O+kDcgZFKy3Q4jQDAhMLxBw9DOOfOBFJUV4hCjLqhQ1TBHkoxLCFSI8sLhKUqx1jn50SNEZ2kgJ3YCTXOLlWDPjt3jiGpHyQN+2Laav+uUzT0zqLevbiSl+/zYvdFpN7psgW1KMsA5dK8Y1VHA==
+X-Microsoft-Antispam-Message-Info: z3hQe6RNrNWw7R4eduvRwcf/DRvcJbqRDftLOVqqMyIIHj7CWPKgpn9GQLKYqtv16EQD8cDVZP20wpZg7ThNevh/NsSwiqLH1NbSQCB/ZpSYGQJHXXX3pFmya6JXnenb4EAigKNVo8TETFIXzc6uaugsQXG2j5FiIbZMkXUdINDrEbwro91SCzImdIgvW+CRSYyXrq5CmOjpegLogz3qQw7uZrLyZojmlUsVhDxpQd/eUWRJUBN1MfVCuhC7Og0aw2yErw8Gk9Jkn4mc8LQ8JTw72kYG8ivdBW2V/B6O+F1XJxhfYETyOvFN8Mkmj6rSgWWMPUL23GXQMV2mOFUZhFWB9mHZMReOuyufI0d2QSOV66kOUDlB7GiYGOz+R3oIpBmCtzRQSkVIuLNnXdIvMQrJ9uUsdW85cTM6fXQseJ8FXN+AgzU1BLa85tKa9v4mivVYn/YFS/ekf9n9hgIQ13ZL1z0AMVa/kAGB6YVQoqCFr1dSHvovFNoqk+lbEIImMd5Mg6gGsdc0xqcdSu46oD8tgWgpdS8u2THNCd4rfYcvLoiqq/dxabOYTQ1jL84T
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR12MB6760.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(366004)(136003)(376002)(396003)(39860400002)(1800799009)(186009)(451199024)(8936002)(6666004)(66946007)(53546011)(31686004)(478600001)(6506007)(66556008)(66476007)(54906003)(6486002)(36916002)(966005)(6916009)(316002)(38100700002)(41300700001)(6512007)(36756003)(26005)(8676002)(5660300002)(83380400001)(31696002)(2906002)(2616005)(7416002)(4326008)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(39860400002)(396003)(376002)(136003)(366004)(346002)(451199024)(1800799009)(186009)(6512007)(9686003)(38100700002)(316002)(6636002)(41300700001)(82960400001)(6862004)(4326008)(2906002)(83380400001)(33716001)(86362001)(26005)(5660300002)(8676002)(8936002)(450100002)(6666004)(6506007)(6486002)(66476007)(66556008)(66946007)(478600001);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NzBIUzV0Um40c3BjQ1Z6bk8wRXI4VTAyZWNyYmJqODNaR3Qva2d0U1VoaWVR?=
- =?utf-8?B?eXVVZUV2YkVHKzRwYlpSa3p0SDJIVEJMVzUrdkFVL0NLMVFPcHRqaDNjQ0t3?=
- =?utf-8?B?UmxkQXNlQlZ6aktsSFdQNU5pZGNORHdETUh3N08ySkgvVCtGYm01dmZXYWtK?=
- =?utf-8?B?VHMzdWF0KzZYcWNsOXhtRkJXbnBzZWthanNUMy9PS2NnZ1RqT2hhbVFPZHBI?=
- =?utf-8?B?NUI3WmFwYzBPNThkMFM4T2l5Q2FtRklkVDBLeHg2bEpkWGhzNXZrVWhZdk56?=
- =?utf-8?B?eHBlU1BKSXdDaTVraVpHc0lOREJ5TURaaVhVKzJGY2plMVY3UzJFM2R6ZzJK?=
- =?utf-8?B?THBwQzdpcFE5dERtZWhCcUxPYktEQlkyVHNmc2FTWFF5ck9rRTFjajVGZ1pQ?=
- =?utf-8?B?ZjQ5eUkyaEVwTE1XSmhKYkVLVW54VVpWSEl4Sld3K2FSeURrL2xuWEpKNXBU?=
- =?utf-8?B?WFZzbE9JSE83QVQ4cWVBVDcxM1drQWhlN0RlRG5Ib053T2J1UHFsTGx2NDJR?=
- =?utf-8?B?QzVUWFZzWkVSdGMvbEZtemRYdE1aSTVrZmVLN0dTLzdJYVNVMlVOankyUnFq?=
- =?utf-8?B?S0h2elQrNVY2SEhuMTQ0LzRGbVhySDM3c3FYcm1DUDBVMS9yeUNybVVkMWpu?=
- =?utf-8?B?MFU2SEQ2bVpDZkVNQVdPZklXTnBmUUIxSzc5ZmhObExITnlPUFZqMkNaak1w?=
- =?utf-8?B?NWFXM25uUkJFTEFPcGNxNzh5U0JQcmxpMkJ1VzhNYmRpRU5nUU5SeDErN1FE?=
- =?utf-8?B?NUw0clJYS2Rqb2JGMWxnYUt0U1lmUXM1aVN5Yy80VTVmY0M2SmM4ODA2a0tX?=
- =?utf-8?B?V3YzNFkrcUpZZWJsL0MycGRDelhaVGMyRGgvUFp0bUxUZ0lyc0x3Y2M2MytB?=
- =?utf-8?B?QThsVDVCMC8wZGV1ZWEyWHJ2MXBGVzEyWTdpWHBtdmk3SDRjUzNhVXlsTWxl?=
- =?utf-8?B?Y1EvZlpsb085VGFNT0dZcXpFRnVialRHNlF1Z3p3cnZTc21Qbit3US9OaDRp?=
- =?utf-8?B?TjlWc1pzUkNVOHhmWmJRUEp6OGhSZFNyUkJZQWdpVHJ2WE1iWTMreEJrb202?=
- =?utf-8?B?L20zV0dERmwzcFRlSmUxRkpNN2hnU1RwS1ZJYUhxTVJnVjZZVko3M284azFX?=
- =?utf-8?B?MTFyeERSVEpTZkx4djE5ckQ5cEN2SXlhMFh3QkZoL1VWcURxWVZueXpIWW16?=
- =?utf-8?B?RDZFanRYWEFnOGFGY0dOaE9ydkhSbUdNWjdOSmYvWXl4UjFlTmJ1cDlvdmhF?=
- =?utf-8?B?ZWNIaklSVWVNOTNjeU44cjJ4MmNIc1pQU1c2Zlk2bll2YkJUb0o2RWVhSEQy?=
- =?utf-8?B?QlYzanR1d2N4WFIrWUxhUmgxM3JwWnh2V1kwazB2bEZJSHgyWFBFVG1BRU44?=
- =?utf-8?B?R3B6OTlSenNmaXgzQnhuckUwanVXV1BoWWtvVVFJTEEyQWpielVadUtSaXFR?=
- =?utf-8?B?Y0RiOWRRRDRIbG9Wa2JlOHZVTG1La1dWZXNFckEweWYvS2owTUhlWXdNSUVp?=
- =?utf-8?B?eU8xZ3dsT005clZpcnBhRkk5VmRwVHhaYmRINGJwTm1GNDhYRlU2cndobjU0?=
- =?utf-8?B?Z1lSWjE1ZWc4Nm1XbGxQQWREYmxrMXhHTWl5dTI0aitQUUJ6aTlTbXdid0pu?=
- =?utf-8?B?UGorL3Y0MUMxSGVzV3pVZlBadytUZ2ZhQmVDeWtra3pkdVZkdzcrZ2J4bUpp?=
- =?utf-8?B?U3JqZGlxZVorTDdhSXhRSkV6OWg3bllXdUNVYzg3Zi9oc2lDQ3FFM1grQ1Ri?=
- =?utf-8?B?V2RpOEd1TWZIVTNDWXQ0dnVvc1EwMEJHVWJRT1dXZmlHeXdRNFJ5S283ZEpz?=
- =?utf-8?B?Z3BFY24rbW5PZVRMZVFPUlBMVU9lQWVsWWRuQitkZ2ZkU3RvYm1uYUJnUE9N?=
- =?utf-8?B?VW5WWUg2N0g2UXFQT3pIS3VLSFZKQ2cwQktBL2Y1YVFmdEdTWGF0cnFvKzAy?=
- =?utf-8?B?ZTYzcEtmTjV0MjNUeGF3U1krR1ZhWHVQaDZzS2h2Q2R0ZGYwUnFKcW1rSk9P?=
- =?utf-8?B?OFh4eitwamFud3FINC96MlJIK0ZhKzE0UUJocXBKSXRPYVJublNYMjZsNUlQ?=
- =?utf-8?B?cmtYcFZjYlBmSklUSFVDOHdTMGNIVVlRS0paRk83MVpiWU02VFE3UjZNK1dZ?=
- =?utf-8?Q?27ejgv0iuDuoYeYKlw9TfS+Qr?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 283873d2-696b-4c05-a345-08dba8b6316d
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB6760.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0O82KRym4I+M/BPcxDxWsk2YUZxA5EUNCsPeq/e84CT6c5VnNcohgN8AfC5q?=
+ =?us-ascii?Q?YE+R1IdyeZ3wQuest+aGavViOf6ax3JMDJybjG2WQArBRlJjmWuelTOLeqBR?=
+ =?us-ascii?Q?UQOeh4OI5+Wq6ux4plGkXncud23MVwZr4SF6MyaZgQugP7uLOgvrRD+cXYty?=
+ =?us-ascii?Q?Eh+bIlZLBqoO58QKcfrgxRMjP9wbfO3JfNxxoUdagWwdpeCxdeg8qgqUxChA?=
+ =?us-ascii?Q?3z5CT0Dj5qxbPWpAJInEk0Z5+l17ZrtltFCOR56FM9fMybM24h4yl/RbUOcL?=
+ =?us-ascii?Q?1uS8jPMji3xrDX/PHiiJkmcnR9RE0vcrjAQdkbXnTw6RDgnkoESb0O0h10no?=
+ =?us-ascii?Q?S8nYJYIFsieTBuToTGETR0rtCT9DnWNTSFEAwWyegrYkKheVBLP6vauSpv09?=
+ =?us-ascii?Q?WyvjKHdPdC1NoCVRWfdE+A0CTKA3inWQyZuADKDvRKEpzfc/5T5mHCtFAlbH?=
+ =?us-ascii?Q?Gldh71/clFTNiYwCIrnbE7JdwifsvHQMYGjVdp9vnViAUQ47iqn7frcYu7LU?=
+ =?us-ascii?Q?Hbdi5U8Na2gqQoMP7PyVWigfY50sTBHqLXMjZ+DvwNLCGxvWqy6+eTgPMMEW?=
+ =?us-ascii?Q?/Gs4/6iZ23n/BwYXZdvzGRsIsagv/Zy+vU0ITXSlvokvtfJwMd2TbAOI2N6K?=
+ =?us-ascii?Q?ZzQ7xQOZhSWwtNaTEkHPHOUZZWymjn7doHTFrhuKVUF2xJflj7OPk16blxcM?=
+ =?us-ascii?Q?xiXqUaBVxhHz4IwJkbNHpMnyLMS1iBALHg27jqEo9beiaRaRSts0I5HS3N/V?=
+ =?us-ascii?Q?MAnDfnu0P6/EER60GcocnMdx2MOedLJX/oqxD80lsWVtJ+4vD1JwJSz5rlae?=
+ =?us-ascii?Q?yK1pz7XgmiDFovCzLjEcAVd76AykMz1OdyfkeRps0YAzC/LOxPDzJHzfzMXI?=
+ =?us-ascii?Q?vJNK3clsNwWd0CALhfHdyeizRkCpuvsldc7oYSWUs9m9tsrKlLx6b+e2xehz?=
+ =?us-ascii?Q?mFhl2fexptROeqgnGswrbitUU5I6HIXNTUimCg/wV9RZAWPuIJJK6Y/pwjBx?=
+ =?us-ascii?Q?jKK8Xpl0usBYm85GSV6nJfxd7a7y2MR6G8hwPPy47Aj/EQROSdAFAr1Dx9oC?=
+ =?us-ascii?Q?GIf6G4Fwnz+bl8qNKKHEEY9N/oqaOUru3gM5V/TrOG5L8bnkoY7+jq5Zy9VG?=
+ =?us-ascii?Q?2ZDDM4acaysFazpgwFOerBaledX0WLyS+YvN4ZvTreV83qHXdqaU6hrqc+Cy?=
+ =?us-ascii?Q?HZRgHqNFweeB2+klL7wgFY+t/voSWV8cKA89RrhqdAGnT9jXsVoXNOIBuRRZ?=
+ =?us-ascii?Q?og8c2c4zweNDiZT3BdPl6zbRn7swL0jYgFTznB3JnWpcNreyoaHdZ0N2VKZI?=
+ =?us-ascii?Q?srYeM7Hq/o8Z/rLsTt+d5MDU0TbAEu3zWUJPo7BoxJJdX1pSR4KKYBMuVAV5?=
+ =?us-ascii?Q?O6Ov+BbR6BcjjoikEcv/2NFoxiPGRwFy1KPS30baL9IMvMYZmOgKcs6etFRq?=
+ =?us-ascii?Q?8mVemX18v2G3oVm2IBnMwsqRrNXvpAt39UUq5xi7ru0vIoGOVn5K0Os6QNJd?=
+ =?us-ascii?Q?BwSRRA4sFw1+8lWjrNaNLM4huch76uQ3B0bbUv4JhsrWppAMXxyL81UHQTbi?=
+ =?us-ascii?Q?0cTtuW13WETgI77BuU5rjpdQHsXBi5Eqhov7eMah0nzjG+tcNN8H3WhZav+f?=
+ =?us-ascii?Q?Zg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a9f280c8-b416-4f8c-6481-08dba8b6f201
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2023 17:34:27.1738 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2023 17:39:50.2593 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oxfNgJc7GcmLeHFwwQ1QbwQw9fTxchJuqkyoHTmCRgPwa50RwvZ5DFrycYT1pTDy
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5027
-Subject: Re: [Intel-gfx] [PATCH v6 1/4] drm: Use XArray instead of IDR for
- minors
+X-MS-Exchange-CrossTenant-UserPrincipalName: L1qWP90hUQJ8wrQs+OanBgR/4hxtLEHbz2Ub3MNme3HZVY74YHsAMNt/7PysqU7R67XWNWvANDU6AXmv9aJuS7rQt2adm7USBvbvJYeTOec=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5091
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 32/42] drm/i915/lnl: Introduce
+ MDCLK
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,194 +150,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Wilcox <willy@infradead.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- James Zhu <James.Zhu@amd.com>, Oded Gabbay <ogabbay@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Aug 23, 2023 at 02:14:39PM -0700, Matt Roper wrote:
+>On Wed, Aug 23, 2023 at 10:07:30AM -0700, Lucas De Marchi wrote:
+>> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+>>
+>> In Lunar Lake we now separate MDCLK from CDLCK, which used to be before
+>> always 2 times CDCLK.  Now we might afford lower CDCLK, while having
+>> higher memory clock, so improving bandwidth and power consumption at the
+>> same time.  This is prep work required to enable that.
+>>
+>> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_cdclk.c | 30 ++++++++++++++++++++++
+>>  drivers/gpu/drm/i915/display/intel_cdclk.h |  2 +-
+>>  2 files changed, 31 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+>> index fdd8d04fe12c..3e566f45996d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+>> @@ -1223,6 +1223,7 @@ static void skl_cdclk_uninit_hw(struct drm_i915_private *dev_priv)
+>>
+>>  struct intel_cdclk_vals {
+>>  	u32 cdclk;
+>> +	u32 mdclk;
+>>  	u16 refclk;
+>>  	u16 waveform;
+>>  	u8 divider;	/* CD2X divider * 2 */
+>> @@ -1524,6 +1525,8 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
+>>  static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
+>>  			  struct intel_cdclk_config *cdclk_config)
+>>  {
+>> +	const struct intel_cdclk_vals *table = dev_priv->display.cdclk.table;
+>> +	int i, ratio, tbl_waveform = 0;
+>>  	u32 squash_ctl = 0;
+>>  	u32 divider;
+>>  	int div;
+>> @@ -1574,10 +1577,36 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
+>>
+>>  		cdclk_config->cdclk = DIV_ROUND_CLOSEST(hweight16(waveform) *
+>>  							cdclk_config->vco, size * div);
+>> +		tbl_waveform = squash_ctl & CDCLK_SQUASH_WAVEFORM_MASK;
+>>  	} else {
+>>  		cdclk_config->cdclk = DIV_ROUND_CLOSEST(cdclk_config->vco, div);
+>>  	}
+>>
+>> +	ratio = cdclk_config->vco / cdclk_config->ref;
+>> +
+>> +	for (i = 0; table[i].refclk; i++) {
+>> +		if (table[i].refclk != cdclk_config->ref)
+>> +			continue;
+>> +
+>> +		if (table[i].divider != div)
+>> +			continue;
+>> +
+>> +		if (table[i].waveform != tbl_waveform)
+>> +			continue;
+>> +
+>> +		if (table[i].ratio != ratio)
+>> +			continue;
+>> +
+>> +		/*
+>> +		 * Supported from LunarLake HW onwards, however considering that
+>> +		 * besides this the whole procedure is the same, we keep this
+>> +		 * for all the platforms.
+>> +		 */
+>> +		cdclk_config->mdclk = table[i].mdclk;
+>> +
+>> +		break;
+>> +	}
+>
+>I might be misunderstanding something, but from bspec 68861, is looks
+>like the mdclk frequency is always just "ratio * refclk."  Which is the
+>value we already have stored in cdclk_config->vco.  Do we need to do
+>this extra lookup or track this value separately?
 
-On 2023-08-28 17:08, Michał Winiarski wrote:
-> On Fri, Aug 25, 2023 at 12:59:26PM -0400, James Zhu wrote:
->> On 2023-07-24 17:14, Michał Winiarski wrote:
->>> IDR is deprecated, and since XArray manages its own state with internal
->>> locking, it simplifies the locking on DRM side.
->>> Additionally, don't use the IRQ-safe variant, since operating on drm
->>> minor is not done in IRQ context.
->>>
->>> Signed-off-by: Michał Winiarski<michal.winiarski@intel.com>
->>> Suggested-by: Matthew Wilcox<willy@infradead.org>
->>> ---
->>>    drivers/gpu/drm/drm_drv.c | 63 ++++++++++++++++-----------------------
->>>    1 file changed, 25 insertions(+), 38 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
->>> index 3eda026ffac6..3faecb01186f 100644
->>> --- a/drivers/gpu/drm/drm_drv.c
->>> +++ b/drivers/gpu/drm/drm_drv.c
->>> @@ -34,6 +34,7 @@
->>>    #include <linux/pseudo_fs.h>
->>>    #include <linux/slab.h>
->>>    #include <linux/srcu.h>
->>> +#include <linux/xarray.h>
->>>    #include <drm/drm_accel.h>
->>>    #include <drm/drm_cache.h>
->>> @@ -54,8 +55,7 @@ MODULE_AUTHOR("Gareth Hughes, Leif Delgass, José Fonseca, Jon Smirl");
->>>    MODULE_DESCRIPTION("DRM shared core routines");
->>>    MODULE_LICENSE("GPL and additional rights");
->>> -static DEFINE_SPINLOCK(drm_minor_lock);
->>> -static struct idr drm_minors_idr;
->>> +static DEFINE_XARRAY_ALLOC(drm_minors_xa);
->>>    /*
->>>     * If the drm core fails to init for whatever reason,
->>> @@ -101,26 +101,23 @@ static struct drm_minor **drm_minor_get_slot(struct drm_device *dev,
->>>    static void drm_minor_alloc_release(struct drm_device *dev, void *data)
->>>    {
->>>    	struct drm_minor *minor = data;
->>> -	unsigned long flags;
->>>    	WARN_ON(dev != minor->dev);
->>>    	put_device(minor->kdev);
->>> -	if (minor->type == DRM_MINOR_ACCEL) {
->>> +	if (minor->type == DRM_MINOR_ACCEL)
->>>    		accel_minor_remove(minor->index);
->>> -	} else {
->>> -		spin_lock_irqsave(&drm_minor_lock, flags);
->>> -		idr_remove(&drm_minors_idr, minor->index);
->>> -		spin_unlock_irqrestore(&drm_minor_lock, flags);
->>> -	}
->>> +	else
->>> +		xa_erase(&drm_minors_xa, minor->index);
->>>    }
->>> +#define DRM_MINOR_LIMIT(t) ({ typeof(t) _t = (t); XA_LIMIT(64 * _t, 64 * _t + 63); })
->>> +
->>>    static int drm_minor_alloc(struct drm_device *dev, enum drm_minor_type type)
->>>    {
->>>    	struct drm_minor *minor;
->>> -	unsigned long flags;
->>> -	int r;
->>> +	int index, r;
->>>    	minor = drmm_kzalloc(dev, sizeof(*minor), GFP_KERNEL);
->>>    	if (!minor)
->>> @@ -129,24 +126,17 @@ static int drm_minor_alloc(struct drm_device *dev, enum drm_minor_type type)
->>>    	minor->type = type;
->>>    	minor->dev = dev;
->>> -	idr_preload(GFP_KERNEL);
->>>    	if (type == DRM_MINOR_ACCEL) {
->>>    		r = accel_minor_alloc();
->>> +		index = r;
->>>    	} else {
->>> -		spin_lock_irqsave(&drm_minor_lock, flags);
->>> -		r = idr_alloc(&drm_minors_idr,
->>> -			NULL,
->>> -			64 * type,
->>> -			64 * (type + 1),
->>> -			GFP_NOWAIT);
->>> -		spin_unlock_irqrestore(&drm_minor_lock, flags);
->>> +		r = xa_alloc(&drm_minors_xa, &index, NULL, DRM_MINOR_LIMIT(type), GFP_KERNEL);
->>>    	}
->>> -	idr_preload_end();
->>>    	if (r < 0)
->>>    		return r;
->>> -	minor->index = r;
->>> +	minor->index = index;
->>>    	r = drmm_add_action_or_reset(dev, drm_minor_alloc_release, minor);
->>>    	if (r)
->>> @@ -163,7 +153,7 @@ static int drm_minor_alloc(struct drm_device *dev, enum drm_minor_type type)
->>>    static int drm_minor_register(struct drm_device *dev, enum drm_minor_type type)
->>>    {
->>>    	struct drm_minor *minor;
->>> -	unsigned long flags;
->>> +	void *entry;
->>>    	int ret;
->>>    	DRM_DEBUG("\n");
->>> @@ -190,9 +180,12 @@ static int drm_minor_register(struct drm_device *dev, enum drm_minor_type type)
->>>    	if (minor->type == DRM_MINOR_ACCEL) {
->>>    		accel_minor_replace(minor, minor->index);
->>>    	} else {
->>> -		spin_lock_irqsave(&drm_minor_lock, flags);
->>> -		idr_replace(&drm_minors_idr, minor, minor->index);
->>> -		spin_unlock_irqrestore(&drm_minor_lock, flags);
->>> +		entry = xa_store(&drm_minors_xa, minor->index, minor, GFP_KERNEL);
->>> +		if (xa_is_err(entry)) {
->>> +			ret = xa_err(entry);
->>> +			goto err_debugfs;
->>> +		}
->>> +		WARN_ON(entry);
->> [JZ] would WARN_ON(entry != minor)be better?
-> We expect NULL here.
-> The same one that was previously stored here ⌄⌄⌄
-> r = xa_alloc(&drm_minors_xa, &minor->index, NULL, DRM_EXTENDED_MINOR_LIMIT, GFP_KERNEL);
-> in drm_minor_alloc.
-[JZ] My mistake.
+It seems it could be different based on the source of the clock.
+CDCLK_CTL has the config and could select the clock to be configured
+either from CDCLK or CD2XCLK. However the LNL table has all the entries
+with CDCLK as the source, so indeed it seems redundant.  And even if we
+had a cd2xclk source, it seems a waste of space to add this field to the
+table that could easily be computed.
+
+I will drop this patch in v2.
+
+thanks
+Lucas De Marchi
+
 >
->>>    	}
->>>    	DRM_DEBUG("new minor registered %d\n", minor->index);
->>> @@ -206,20 +199,16 @@ static int drm_minor_register(struct drm_device *dev, enum drm_minor_type type)
->>>    static void drm_minor_unregister(struct drm_device *dev, enum drm_minor_type type)
->>>    {
->>>    	struct drm_minor *minor;
->>> -	unsigned long flags;
->>>    	minor = *drm_minor_get_slot(dev, type);
->>>    	if (!minor || !device_is_registered(minor->kdev))
->>>    		return;
->>>    	/* replace @minor with NULL so lookups will fail from now on */
->>> -	if (minor->type == DRM_MINOR_ACCEL) {
->>> +	if (minor->type == DRM_MINOR_ACCEL)
->>>    		accel_minor_replace(NULL, minor->index);
->>> -	} else {
->>> -		spin_lock_irqsave(&drm_minor_lock, flags);
->>> -		idr_replace(&drm_minors_idr, NULL, minor->index);
->>> -		spin_unlock_irqrestore(&drm_minor_lock, flags);
->>> -	}
->>> +	else
->>> +		xa_store(&drm_minors_xa, minor->index, NULL, GFP_KERNEL);
->>>    	device_del(minor->kdev);
->>>    	dev_set_drvdata(minor->kdev, NULL); /* safety belt */
->>> @@ -238,13 +227,12 @@ static void drm_minor_unregister(struct drm_device *dev, enum drm_minor_type typ
->>>    struct drm_minor *drm_minor_acquire(unsigned int minor_id)
->>>    {
->>>    	struct drm_minor *minor;
->>> -	unsigned long flags;
->>> -	spin_lock_irqsave(&drm_minor_lock, flags);
->>> -	minor = idr_find(&drm_minors_idr, minor_id);
->>> +	xa_lock(&drm_minors_xa);
->>> +	minor = xa_load(&drm_minors_xa, minor_id);
->>>    	if (minor)
->>>    		drm_dev_get(minor->dev);
->> [JZ] why minor->dev need ca_lock here?
-> We're relying on the ordering for acquire/release (previously
-> guaranteed by the drm_minor_lock, now by internal XArray locking).
-> xa_load doesn't take xa_lock internally:
-> https://docs.kernel.org/core-api/xarray.html#locking
-[JZ] I means that drm_dev_get(minor->dev); can move out of xa_lock.
->>> -	spin_unlock_irqrestore(&drm_minor_lock, flags);
->>> +	xa_unlock(&drm_minors_xa);
->>>    	if (!minor) {
->>>    		return ERR_PTR(-ENODEV);
->>> @@ -1067,7 +1055,7 @@ static void drm_core_exit(void)
->>>    	unregister_chrdev(DRM_MAJOR, "drm");
->>>    	debugfs_remove(drm_debugfs_root);
->>>    	drm_sysfs_destroy();
->>> -	idr_destroy(&drm_minors_idr);
->> [JZ] Should we call xa_destroy instead here?
-> We could, if we expect the xarray to potentially not be empty.
->  From what I understand - all minors should be released at this point.
-[JZ] In practice,  adding destroy here will be better.
 >
-> Thanks,
-> -Michał
+>Matt
 >
->>> +	WARN_ON(!xa_empty(&drm_minors_xa));
->>>    	drm_connector_ida_destroy();
->>>    }
->>> @@ -1076,7 +1064,6 @@ static int __init drm_core_init(void)
->>>    	int ret;
->>>    	drm_connector_ida_init();
->>> -	idr_init(&drm_minors_idr);
->>>    	drm_memcpy_init_early();
->>>    	ret = drm_sysfs_init();
+>> +
+>>   out:
+>>  	/*
+>>  	 * Can't read this out :( Let's assume it's
+>> @@ -2191,6 +2220,7 @@ bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
+>>  			       const struct intel_cdclk_config *b)
+>>  {
+>>  	return a->cdclk != b->cdclk ||
+>> +		a->mdclk != b->mdclk ||
+>>  		a->vco != b->vco ||
+>>  		a->ref != b->ref;
+>>  }
+>> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+>> index 48fd7d39e0cd..3e7eabd4d7b6 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+>> @@ -16,7 +16,7 @@ struct intel_atomic_state;
+>>  struct intel_crtc_state;
+>>
+>>  struct intel_cdclk_config {
+>> -	unsigned int cdclk, vco, ref, bypass;
+>> +	unsigned int cdclk, mdclk, vco, ref, bypass;
+>>  	u8 voltage_level;
+>>  };
+>>
+>> --
+>> 2.40.1
+>>
+>
+>-- 
+>Matt Roper
+>Graphics Software Engineer
+>Linux GPU Platform Enablement
+>Intel Corporation
