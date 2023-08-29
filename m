@@ -2,137 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAD7A78C030
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Aug 2023 10:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E36DE78C035
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Aug 2023 10:26:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 542EC10E172;
-	Tue, 29 Aug 2023 08:25:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65C4D10E17B;
+	Tue, 29 Aug 2023 08:26:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D686B10E172
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Aug 2023 08:25:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1408310E17B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Aug 2023 08:26:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693297552; x=1724833552;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=2PRZcV9K7I74eDndAuNp1IVsSj8Opi9xj+JBUyvUPJ8=;
- b=Pih8dEtKK5JgDPuEQEkg6v8ndN1SPy3SAgliVYjaTvf5BYDvh9OqSqGN
- w8h5GmfoSozOq5ULY7o47frJl5Gn9I1dVwTlE2SYfRO5KQy8KuWpORKpx
- rVD7LNPMrK4kzVGUpEYACNg2j2HnjYhT4G9KMj/AyiLJm7UpPaM9k/tmb
- xu+zeSEnKosRRoWQpA9Uy1evqh3UkcmYefQhAvlfgc+TALnmuCI8A6a+j
- mMdL4vkr1tpSXMUd+vKJGKVq2yFEKUCCyNhA5GK82T/zBw1dymtQ+qcMq
- WbsPreYn0qxr4MXmYmITQRuX7YUVcMvhAoKtycmHitZqa4h38NaUj0aWO g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="374202654"
-X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="374202654"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2023 01:25:51 -0700
+ t=1693297615; x=1724833615;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=P5JpUn6tRpq/MDUHJ2gk+V6JBxh7DmgFQtvCZwpFoAs=;
+ b=iaxwuGEulGvQpTx7RJ4fr9EH3+kFAgmNDuPzqdr6zoNAAb9mRGRCIeXZ
+ m8csn2FUufBdBlTFv9WRLpACLBlWmrHj2Gsam8bncdXex2lAE814knz8a
+ pS0oB7n1sZ4PnPwFlazfKyN1D/IScbbGPEAfPay6+LBTJFIiWriKTDg0Y
+ BQHSCcLRFSVUMNFpLvtJUaal4E3SrNW4vxiG3RRzUZtmn7nIj5QU8POAk
+ IVUYMQ979pqLfZW3Q52jzoOp+NyZtmtW5sMGOh2gvUYkIswCYrVNl4QzM
+ 4n4kGsZk841xs5QSwFVMwYE5guDUov2BInPPEi7hhQGEDpclczHxo1Igi w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="354824240"
+X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="354824240"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2023 01:26:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="912337522"
-X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="912337522"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga005.jf.intel.com with ESMTP; 29 Aug 2023 01:25:51 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 29 Aug 2023 01:25:50 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 29 Aug 2023 01:25:50 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.49) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 29 Aug 2023 01:25:44 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I4Vx3is90Jfjpz1R+CJF3r8dYU37m8HxV91P2dHEOOaFAI1QWxaVrV7m/4tWu3fjQIPFXb0gT3c31s8aDRhODNLUsdHRgy3t9mY6ZbZ+dhpyCaneqyRKCKon7pXS7OuutXBlYLmSFIjPkfIFQk8Cm4pBS8jWrYHCEqVsu1KtfQdeeEZ4mRmyGKiPeGoBvBYURnAuIgK0ZOBrHwXIc6eVLC0aqCEOjTsp0nP6+qu2TZwz7VLEHielFKynBcyqIMu8sPhuWgfSc14UUMXVNSb9rUelRVXExpAhmDS2JSg0IiALMjIqh6WhlQgHpz82SGnyaM0iN5g2E8e1vxoX0oZPlQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nc+kqWl//TcwMeNr1tooIl8ZfYh0FslsiIovXFO3jLg=;
- b=PJQNqRKJ17LlXQjLjwcSxRPDUhO+wBhBWV+3Yx9CuHwSLKnr69THaBZMjHfKsRKsE1n6t8JON0riT+Jz1PXfxZL6qLu9fA9xcgMI+rPZfTKhWBVfFe3bD/vm1BSaadiB60GafZWsuH8CVzXVaGQPVNVY8/eaQzhQaxLHkpUb6qAuSlSaAmXrSKW+hI/kg0/w4j7ZXWt4sbzWwoaEzhAkSRez5pSv66/7g+oGtQOQazNre3B8lxSL3nr/EGq7PAu1xAjm+PKPy8D8F9Ww98dp5bJQOYHgR8+jThDvGwxnRxlrbK9yuRefGM5GuQtXkyuHxXa4pNf0KTmEjGBO6WSGGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY5PR11MB6344.namprd11.prod.outlook.com (2603:10b6:930:3b::6)
- by BN9PR11MB5291.namprd11.prod.outlook.com (2603:10b6:408:118::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.35; Tue, 29 Aug
- 2023 08:25:38 +0000
-Received: from CY5PR11MB6344.namprd11.prod.outlook.com
- ([fe80::47c3:d35d:e598:b83]) by CY5PR11MB6344.namprd11.prod.outlook.com
- ([fe80::47c3:d35d:e598:b83%4]) with mapi id 15.20.6699.034; Tue, 29 Aug 2023
- 08:25:38 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v3 0/4] HDCP MST aux issue fix
-Thread-Index: AQHZ2XnjT184kYjJYkKia9t3yiTFzbAA8Y4g
-Date: Tue, 29 Aug 2023 08:25:37 +0000
-Message-ID: <CY5PR11MB634471F53518F56AFFDED96EF4E7A@CY5PR11MB6344.namprd11.prod.outlook.com>
-References: <20230828063401.600414-1-suraj.kandpal@intel.com>
-In-Reply-To: <20230828063401.600414-1-suraj.kandpal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY5PR11MB6344:EE_|BN9PR11MB5291:EE_
-x-ms-office365-filtering-correlation-id: 24bf817e-69fb-4347-a482-08dba869863a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: DzTXnEWTKLUtF2ataYWaGHfOcarxWfgQhkug42672zOk5RNpkMWivGRNshtEmMpct5Uir477xbK8WvgNaVZqhAjqNYHgYHEuh4WuTMvc/U51+tIHogrgH4JBDDR/cuHIK9Ixw5tEWhfAfQ0ZAARqNhLuzThBeY9y9yJ/qAyfX0bSqlhmQrUjIIJP+Vbw6XWNYR+lCTOo744REMoHLpuufNpkGyk45fFcq/usibNvRF4F5BesUgUMEfBw/qJ17KJ1c6pFyCnHBrVlh7HYvih4yOYhD1vPSAKCmrW+tl1+YTn6APCEW0601PXUZYVEcxWuNd6UdpVcGCC3tqnDfA2+DERf6aFC5/OTkJSjbnILBG94ujGMa5AVWfazFd/6PLhYS+bWDQFhVLH/NhsnnS6XNn5LItwFe5/P6m+kp40Jqh57QwsODQ4clVCjkcdRMRFQXswK+TAIMB/TQdu57cXbrmJew2WxGvIERjxpzgtESfAxyhZq1rHSxbo2C+LfC7cZW2nv0MXsmwcIOkiedgurPC6hJJLmbkBofRpdMv8LbqbzMAE01H7HLffzaFGjEtxh6V73pOG5AprCDJixNiKvaQMundpxuNlPm2pg8KcIodsBXQbBK+0mxMGDB6VMSdam
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6344.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(376002)(396003)(346002)(366004)(39860400002)(451199024)(1800799009)(186009)(8936002)(122000001)(110136005)(53546011)(76116006)(478600001)(66946007)(6506007)(7696005)(71200400001)(64756008)(66446008)(66476007)(66556008)(38070700005)(316002)(38100700002)(41300700001)(82960400001)(9686003)(26005)(8676002)(5660300002)(83380400001)(2906002)(107886003)(52536014)(86362001)(55016003)(33656002)(4326008);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?f6m/AVTZkg99LwpXEXv2kmfc87elsCEH3TFJgkzCDn86PvE1lAbImkpqyyJd?=
- =?us-ascii?Q?GAlJTNeyUd1bkBJpo4eqPE3JR1mL9i4ntppSAlHIe2LhBw/+IuqSJ4sKta9k?=
- =?us-ascii?Q?c24oE63czCEaTxKmNP9O9UBgDJuuCX0VzFZghQjx93LkN2xV0ub7/07Dkzoh?=
- =?us-ascii?Q?o7RJxZ/YPB4WqTDhX4sQGWraEE279XIrJ0M8dVpnzGylakbg2KTR93w7BBV2?=
- =?us-ascii?Q?NXVXRkzpGBaH7xK/m4pS/u0SI0AETD382SC3qgPdehRqBERZNAJEQubB+ViO?=
- =?us-ascii?Q?9OcTD7VL4Yi3fZ/Aurmp0AxLGP6/GS0xykZYZineh7ifxeG58u6+B+UTe/Er?=
- =?us-ascii?Q?NKa1XaK8JFJISVV6Olq76QVAAgERL1UqpZETkiE7zXTDRdhq7NlKvnOiU9uz?=
- =?us-ascii?Q?5ZYOz38YesbAzAmcnX+VLZAVPuhSErTViOkHJw9K2uFKQ28utY7pG8x+CpJ6?=
- =?us-ascii?Q?ER/Qj9YhgRwZUoEFLxCoaWD47R7QHJjqbGYKbRqMQWUTVaykoRz1IWE0bYgA?=
- =?us-ascii?Q?5dNcN3aS1Ni9AxYRdX0j5mYPZeDFRYdNArUVfjsQevLkk2mqzZ5IBkNjvrEW?=
- =?us-ascii?Q?hBFdu+Fq1oXn7g5bNyJGUDTW0NzMS/RYEkS/JP7gGZW7IHwrIYc2AFbPvxbD?=
- =?us-ascii?Q?N8QHXRG4dkqYb4B/rU6BEiQEjm5p/wpkJK/M8DCftqqqKDjEd3jDbtH2h2vj?=
- =?us-ascii?Q?6rP6vuxUJ6YCKLCQjvemY8gynKJEZYOINIKegCe57KV1O4Nky3lqIoTMPyz8?=
- =?us-ascii?Q?f2v1Nhpsxv96Ef69wYA/DFNLicex2eAMc4a/e0+5jBEpFr2249F5Ij8ZeEkS?=
- =?us-ascii?Q?ZLoVkVlp1cUQ0pYSI2oiM0SuiLPRA4pkNjA+CG/AulDLgdgFhnxAPL3U2Wds?=
- =?us-ascii?Q?FqzSXUcaxiwC3JwXby67kylXiz1eDQ3zplX2WUFzYNHP5FWPdhAm8OMTUCbG?=
- =?us-ascii?Q?vRFIoxAYenI7bjwBPqC8Bn0nSSUdDHo7ivfdbdunJiwgLy1GjZkhvoRI7nKE?=
- =?us-ascii?Q?0Mp+tRDWozMitWSXarLWrG8c1D/HH4PD9OGr5DniM2PF7sRaxcoGss4r6kLQ?=
- =?us-ascii?Q?TmJl+c9ZhJpVq+D/9Z0nFSgg6JeiI/z3023ZQ+Z8e/tcYccfG2bsqwuHTLZc?=
- =?us-ascii?Q?cIZXh/jkyoU+A5o7HqGP//NGDQacXi25kcDWbA9/XMSBl15X6aZhl7dIJSpP?=
- =?us-ascii?Q?RSqbqslEo5YTlG+TLCIUQ6r95vEwNZyTHQfu+SkWQ1qnx7pdIV+nWZep6/xr?=
- =?us-ascii?Q?IjTMHkJiX5VMNnlNDX+8wwIMmz2yFTvnw5EwHrGXKSN4CscK+hA3dnaOWMv0?=
- =?us-ascii?Q?ZFz7qNm2j5cOmumM9oVpWP8Uyxy+B76WCQs9xQ7OqO9ilzT2lSmjCCzCRcF1?=
- =?us-ascii?Q?MK4vUyrnI4rlNw5nlm60cRxbv6/fM+nIFLGsSD7ACxB5jtmVkzTbzk2bX3tF?=
- =?us-ascii?Q?gakpUFnmfD0kpQbLRxVII1B2ENfizpHf2E/eZ9HXrYd8q078pjuA2BLyEw2D?=
- =?us-ascii?Q?pB796ZC9fkvyqxX7f3U8jsxHkXmSQWPz4f1MmbWpzHefCQIHIVVt5J97rGv7?=
- =?us-ascii?Q?RaBSA1TEpdDxN6ifUHB0QE7C8ylOgSu3JVjlos0I?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="732132727"
+X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="732132727"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by orsmga007.jf.intel.com with SMTP; 29 Aug 2023 01:26:51 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 29 Aug 2023 11:26:50 +0300
+Date: Tue, 29 Aug 2023 11:26:50 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Manasi Navare <navaremanasi@chromium.org>
+Message-ID: <ZO2ryl0WXTa-cZuC@intel.com>
+References: <20230828054140.28054-1-ville.syrjala@linux.intel.com>
+ <20230828054140.28054-5-ville.syrjala@linux.intel.com>
+ <CAE72mNk6VHHnUgOxHboCVB=X=UZ+jQLObB_12orHnMjJWm62jw@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6344.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 24bf817e-69fb-4347-a482-08dba869863a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Aug 2023 08:25:37.9484 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TrD8oVhbHbMdLChdocFLRjsRZYxsI87jSAn9dwRXppyyuycPKm2So7Ae3rrWWRZ4uYPxjiRs7384Wp4tCehLuw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5291
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 0/4] HDCP MST aux issue fix
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAE72mNk6VHHnUgOxHboCVB=X=UZ+jQLObB_12orHnMjJWm62jw@mail.gmail.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915: Enable VRR later during
+ fastsets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,55 +63,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "uma.shakar@intel.com" <uma.shakar@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Aug 28, 2023 at 11:47:49AM -0700, Manasi Navare wrote:
+> On Sun, Aug 27, 2023 at 10:41 PM Ville Syrjala
+> <ville.syrjala@linux.intel.com> wrote:
+> >
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > In order to reconcile seamless M/N updates with VRR we'll
+> > need to defer the fastset VRR enable to happen after the
+> > seamless M/N update (which happens during the vblank evade
+> > critical section). So just push the VRR enable to be the last
+> > thing during the update.
+> >
+> > This will also affect the vblank evasion as the transcoder
+> > will now still be running with the old VRR state during
+> > the vblank evasion. So just grab the timings always from the
+> > old crtc state during any non-modeset commit, and also grab
+> > the current state of VRR from the active timings (as we disable
+> > VRR before vblank evasion during fastsets).
+> >
+> > This also fixes vblank evasion for seamless M/N updates as
+> > we now properly account for the fact that the M/N update
+> > happens after vblank evasion.
+> >
+> > Cc: Manasi Navare <navaremanasi@chromium.org>
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_crtc.c    | 35 ++++++++++++--------
+> >  drivers/gpu/drm/i915/display/intel_display.c | 21 ++++++++----
+> >  2 files changed, 36 insertions(+), 20 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > index e46a15d59d79..1992e7060263 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > @@ -472,15 +472,31 @@ static void intel_crtc_vblank_evade_scanlines(struct intel_atomic_state *state,
+> >                                               struct intel_crtc *crtc,
+> >                                               int *min, int *max, int *vblank_start)
+> >  {
+> > +       const struct intel_crtc_state *old_crtc_state =
+> > +               intel_atomic_get_old_crtc_state(state, crtc);
+> >         const struct intel_crtc_state *new_crtc_state =
+> >                 intel_atomic_get_new_crtc_state(state, crtc);
+> > -       const struct drm_display_mode *adjusted_mode = &new_crtc_state->hw.adjusted_mode;
+> > +       const struct intel_crtc_state *crtc_state;
+> > +       const struct drm_display_mode *adjusted_mode;
+> >
+> > -       if (new_crtc_state->vrr.enable) {
+> > -               if (intel_vrr_is_push_sent(new_crtc_state))
+> > -                       *vblank_start = intel_vrr_vmin_vblank_start(new_crtc_state);
+> > +       /*
+> > +        * During fastsets/etc. the transcoder is still
+> > +        * running with the old timings at this point.
+> > +        *
+> > +        * TODO: maybe just use the active timings here?
+> > +        */
+> > +       if (intel_crtc_needs_modeset(new_crtc_state))
+> > +               crtc_state = new_crtc_state;
+> > +       else
+> > +               crtc_state = old_crtc_state;
+> > +
+> > +       adjusted_mode = &crtc_state->hw.adjusted_mode;
+> > +
+> > +       if (crtc->mode_flags & I915_MODE_FLAG_VRR) {
+> > +               if (intel_vrr_is_push_sent(crtc_state))
+> > +                       *vblank_start = intel_vrr_vmin_vblank_start(crtc_state);
+> >                 else
+> > -                       *vblank_start = intel_vrr_vmax_vblank_start(new_crtc_state);
+> > +                       *vblank_start = intel_vrr_vmax_vblank_start(crtc_state);
+> >         } else {
+> >                 *vblank_start = intel_mode_vblank_start(adjusted_mode);
+> >         }
+> > @@ -710,15 +726,6 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+> >          */
+> >         intel_vrr_send_push(new_crtc_state);
+> >
+> > -       /*
+> > -        * Seamless M/N update may need to update frame timings.
+> > -        *
+> > -        * FIXME Should be synchronized with the start of vblank somehow...
+> > -        */
+> > -       if (new_crtc_state->seamless_m_n && intel_crtc_needs_fastset(new_crtc_state))
+> > -               intel_crtc_update_active_timings(new_crtc_state,
+> > -                                                new_crtc_state->vrr.enable);
+> > -
+> >         local_irq_enable();
+> >
+> >         if (intel_vgpu_active(dev_priv))
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index cfad967b5684..632f1f58df9e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -6476,6 +6476,8 @@ static void commit_pipe_post_planes(struct intel_atomic_state *state,
+> >                                     struct intel_crtc *crtc)
+> >  {
+> >         struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > +       const struct intel_crtc_state *old_crtc_state =
+> > +               intel_atomic_get_old_crtc_state(state, crtc);
+> >         const struct intel_crtc_state *new_crtc_state =
+> >                 intel_atomic_get_new_crtc_state(state, crtc);
+> >
+> > @@ -6487,6 +6489,9 @@ static void commit_pipe_post_planes(struct intel_atomic_state *state,
+> >         if (DISPLAY_VER(dev_priv) >= 9 &&
+> >             !intel_crtc_needs_modeset(new_crtc_state))
+> >                 skl_detach_scalers(new_crtc_state);
+> > +
+> > +       if (vrr_enabling(old_crtc_state, new_crtc_state))
+> > +               intel_vrr_enable(new_crtc_state);
+> 
+> Wouldnt we also need the condition here:
+> new_crtc_state->seamless_m_n && intel_crtc_needs_fastset(new_crtc_state))
 
+That is handled elsewhere already.
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Su=
-raj
-> Kandpal
-> Sent: Monday, August 28, 2023 12:04 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: uma.shakar@intel.com
-> Subject: [Intel-gfx] [PATCH v3 0/4] HDCP MST aux issue fix
->=20
-> Up until now all dp hdcp specific function derived the aux from dig_port =
-which gave
-> the aux of the primary port but with DPMST when a MST hub comes into pict=
-ure the
-> monitor becomes remote and what we need is a corresponding aux which is a=
-lso
-> remote.
-> These set of patches aim to fix up just that.
->=20
-> --v2
-> -Do not pass drm_core struct to i915 function [Arun] -Fix typo and correc=
-t commit
-> message in 3rd patch [Arun] -Provide justification for timeout adjustment=
- [Arun]
->=20
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> 
+> So that we update VRR enable bit in the seamless_m_n fastset case as well.
+> This will be needed later once we start updating the VRR params regs
+> in fastset, since
+> that otherwise ends up resetting VRR enable bit.
+> 
+> 
+> 
+> >  }
+> >
+> >  static void intel_enable_crtc(struct intel_atomic_state *state,
+> > @@ -6527,12 +6532,6 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+> >                         intel_dpt_configure(crtc);
+> >         }
+> >
+> > -       if (vrr_enabling(old_crtc_state, new_crtc_state)) {
+> > -               intel_vrr_enable(new_crtc_state);
+> > -               intel_crtc_update_active_timings(new_crtc_state,
+> > -                                                new_crtc_state->vrr.enable);
+> > -       }
+> > -
+> >         if (!modeset) {
+> >                 if (new_crtc_state->preload_luts &&
+> >                     intel_crtc_needs_color_update(new_crtc_state))
+> > @@ -6569,6 +6568,16 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+> >
+> >         intel_pipe_update_end(state, crtc);
+> >
+> > +       /*
+> > +        * VRR/Seamless M/N update may need to update frame timings.
+> > +        *
+> > +        * FIXME Should be synchronized with the start of vblank somehow...
+> > +        */
+> > +       if (vrr_enabling(old_crtc_state, new_crtc_state) ||
+> > +           (new_crtc_state->seamless_m_n && intel_crtc_needs_fastset(new_crtc_state)))
+> > +               intel_crtc_update_active_timings(new_crtc_state,
+> > +                                                new_crtc_state->vrr.enable);
+> > +
+> 
+> So would the VRR min/max, flipline values also be updated here
+> eventually for the fastset in seamless_m_n case?
 
-Pushed to drm-intel-next. Thanks for the patches and reviews.
+No, it would be done earlier. Should be OK to do anywhere
+between the VRR disable and enable really. Doesn't even need
+to be inside the vblank evade critical section since VRR will
+already have been disabled when we change these.
 
-Regards,
-Uma Shankar
+> 
+> Manasi
+> 
+> 
+> >         /*
+> >          * We usually enable FIFO underrun interrupts as part of the
+> >          * CRTC enable sequence during modesets.  But when we inherit a
+> > --
+> > 2.41.0
+> >
 
-> Suraj Kandpal (4):
->   drm/i915/hdcp: Use intel_connector argument in intel_hdcp_shim
->   drm/i915/hdcp: Propagate aux info in DP HDCP functions
->   drm/i915/hdcp: Send the correct aux for DPMST HDCP scenario
->   drm/i915/hdcp: Adjust timeout for read in DPMST Scenario
->=20
->  .../drm/i915/display/intel_display_types.h    |  6 +-
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 80 ++++++++++++-------
->  drivers/gpu/drm/i915/display/intel_hdcp.c     | 30 +++----
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |  6 +-
->  4 files changed, 73 insertions(+), 49 deletions(-)
->=20
-> --
-> 2.25.1
-
+-- 
+Ville Syrjälä
+Intel
