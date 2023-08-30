@@ -2,66 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 726A978F4B3
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Aug 2023 23:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 903CE78F4A7
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Aug 2023 23:34:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE87A10E599;
-	Thu, 31 Aug 2023 21:34:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 316D310E6EB;
+	Thu, 31 Aug 2023 21:33:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
- [IPv6:2a00:1450:4864:20::134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C84310E59C
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 19:47:57 +0000 (UTC)
-Received: by mail-lf1-x134.google.com with SMTP id
- 2adb3069b0e04-4fe15bfb1adso360406e87.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 12:47:56 -0700 (PDT)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
+ [IPv6:2a00:1450:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AA7D10E5AB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 19:54:20 +0000 (UTC)
+Received: by mail-ej1-x634.google.com with SMTP id
+ a640c23a62f3a-99c1c66876aso509566b.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 12:54:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1693424875; x=1694029675; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:subject:from:content-language
- :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
- :subject:date:message-id:reply-to;
- bh=RQcM6QzSDrdw05zBYqyUQ1YoaP9zqQVZwczUVAgTjDI=;
- b=eZVJpy31od5fkofiTKzHFSRAxIrxiuefVNWC0SoZZ+GKvcngauMatipJMI6MOKYEOL
- 0+u469LN9O0EftSMCqaIMwpPhqTEph51D62m3zQL3wbbWcrYq8ab8b5x25Nr7u7cg1a2
- Qmmgm97fdPqHeCj+ULLh8BHCAzjbCSR9qqyFuOYpIs9mNOmt23O6vCbKfcmUvj1Ok4+b
- b8Nf7Z3GVYy8uq8m82z+o4p0rF5DQH/RUSutav8GLpkn8AxrL1RRI/8MIcrimja1NAIy
- OIF9TINVvAljQisYIBdktojKPQeEdn+Pi0kNFXfSAE52dCbJw0xK2Ms71g+oGuTyiQEh
- K/tA==
+ d=gmail.com; s=20221208; t=1693425259; x=1694030059; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=lYTTCqSEdcIJyTpZVB7E2UPb3ND2QCQc334nWhMiy+U=;
+ b=KCuXBIWlAyfRG5cAbCuklqyYtUknQmTf0qARgUzJZEDxGcjkiGj2RPfvKQbYDKcXPU
+ m76Sj8Uj+sGPPo6gaXxftrWauwh0g07S27DJKEP2+TNdq03ZXKfTrffmCTST3XJ0zEIA
+ byIXNiwvjA2ZrceLNDmXWF7z89rWvpwYcxTv8ttSZOnAe5z+r5C6D4+GpDHiUGQ+RH8f
+ ZU39wvGS0A6kbG5HSRKFpNfvk2i8MG0Vc1sPeDNlKtyrJ94gtNVeV2UJZUysElc9mMwj
+ oOroXiIAnT16OMs8US97q2udPSBKVR1UuzgYXDmr1Wav5PKlL0eY32s8Cr8RvEfE8hF/
+ bN1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693424875; x=1694029675;
- h=content-transfer-encoding:in-reply-to:subject:from:content-language
- :references:cc:to:user-agent:mime-version:date:message-id
+ d=1e100.net; s=20221208; t=1693425259; x=1694030059;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=RQcM6QzSDrdw05zBYqyUQ1YoaP9zqQVZwczUVAgTjDI=;
- b=Yze8POv3HxVQpn9H//1qL8q+Uco5g6ZQJ82ZbG8mpf9AJ5YUM44DvhAqrMi6mB9g0K
- BJ6vetpNRVoMVj1Igg2OYoZtt/9l1aL2StlSO+jmSCg9Y7osWLq2lrqPBKpreB42CWAZ
- /VhRo8KalYOS6mbkUKY9dhQeWlUNPKLlMTAugvwymD2J4f1KW31gVZ9DTg4XzXoQQeGt
- CpO4d6fuL7kkUirzaQFvCwDzCZPZRmqtN+8W+PiGrCUAPguz8kT/4sMvcdho2BcbJwJw
- ZIT22EV1ogqwBGnGOzlFHijhBROunHxZc26PKHTwKEVuyja3eielUaEE7ybSOyXbFeMi
- bD9A==
-X-Gm-Message-State: AOJu0YzerJ4b/nap9CekG+XBbBfKxHEx/S8dQ76QAqjgtSYpCq9aEFWX
- /H8yUqDjhyWYt3rgHa/9F7g1pre57Ec=
-X-Google-Smtp-Source: AGHT+IEKTx5QIs7BavwcZ95zC6a1N2eVgZo+TpMoQFooW8DueLhLak8FN677a7iQrMuiBcy49cc70g==
-X-Received: by 2002:a19:2d45:0:b0:500:96fc:129d with SMTP id
- t5-20020a192d45000000b0050096fc129dmr2048436lft.14.1693424874737; 
- Wed, 30 Aug 2023 12:47:54 -0700 (PDT)
+ bh=lYTTCqSEdcIJyTpZVB7E2UPb3ND2QCQc334nWhMiy+U=;
+ b=QmiY9iqf4IUvn8+SO+DxeXjnEhUcm3P/3jw1oUXx0GeIhZaGNsAyKLc21P+mZCFLPm
+ Qa3F4bTDo5MvU0NaNipBRYPFkCon5D55Q9cS7Rq1Jz+dVSrN2NCBqiV7WVIWcL1Q7y6h
+ devy/18VUzExfi/sP7GR8YawBo8ZxopYjnCS67YJVTOOLlVBlFkof0K9koWqsHJOJqWq
+ ByYQCBZyXz4cr9Yg4G8NNBnIJhb43vrGr3fBLZF05BUdaagijYs+dBKYsKGi3X9Kni/7
+ 0kYD4SyUea2NcskWrv7+BTruJWDxKdgJb1vhEfy8oSvP6ieW3u3jh+xX3rxVXAhwjfG3
+ yGvw==
+X-Gm-Message-State: AOJu0Yxj6+NmzRRDh5xks4MeZ+mLvhDR4Pztbf+dUbwNYOY/kwYLmzqB
+ VmWQ6KPE5qJsY8RluhpSisA=
+X-Google-Smtp-Source: AGHT+IFzSmlz/pwFX2xKSsV9ocT+amX0DS7F7b+ZBL9KRK2TYYC6CbpN4ABojmsIoe3uWCcOwyiEOA==
+X-Received: by 2002:a17:906:3287:b0:9a1:ddb9:6550 with SMTP id
+ 7-20020a170906328700b009a1ddb96550mr2321538ejw.52.1693425258622; 
+ Wed, 30 Aug 2023 12:54:18 -0700 (PDT)
 Received: from ?IPV6:2a01:c23:b8a0:2d00:e558:bad6:b660:31e3?
  (dynamic-2a01-0c23-b8a0-2d00-e558-bad6-b660-31e3.c23.pool.telefonica.de.
  [2a01:c23:b8a0:2d00:e558:bad6:b660:31e3])
  by smtp.googlemail.com with ESMTPSA id
- e1-20020a1709062c0100b0099df2ddfc37sm7454502ejh.165.2023.08.30.12.47.53
+ v9-20020a170906488900b0099cc36c4681sm7530926ejq.157.2023.08.30.12.54.17
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 30 Aug 2023 12:47:54 -0700 (PDT)
-Message-ID: <af18507c-8d22-f33d-a5b2-c59f6cf5058b@gmail.com>
-Date: Wed, 30 Aug 2023 21:47:52 +0200
+ Wed, 30 Aug 2023 12:54:18 -0700 (PDT)
+Message-ID: <2e31f088-72e5-6a15-4210-2a721c422d1d@gmail.com>
+Date: Wed, 30 Aug 2023 21:54:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
+Content-Language: en-US
 To: imre.deak@intel.com, Tejun Heo <tj@kernel.org>
 References: <f7e21caa-e98d-e5b5-932a-fe12d27fde9b@gmail.com>
  <ZO-BkaGuVCgdr3wc@slm.duckdns.org> <ZO+Q0Oaw/1GkDx6T@ideak-desk.fi.intel.com>
-Content-Language: en-US
 From: Heiner Kallweit <hkallweit1@gmail.com>
 In-Reply-To: <ZO+Q0Oaw/1GkDx6T@ideak-desk.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
@@ -109,9 +109,6 @@ On 30.08.2023 20:56, Imre Deak wrote:
 >> That should have made them go away as the code path isn't active at all for
 >> WQ_UNBOUND workqueues. Can you please double check?
 >>
-
-I tried the patch given below and double-checked. No change in behavior.
-
 >>> Maybe relevant: I run the affected system headless.
 >>
 >> i915 folks, workqueue recently added debug warnings which trigger when a
@@ -133,12 +130,13 @@ I tried the patch given below and double-checked. No change in behavior.
 > Could you give a try to
 > https://lore.kernel.org/all/20230809104307.1218058-1-imre.deak@intel.com/
 > 
-Didn't help
-
 > and if that doesn't help provide more information/logs, by opening a
 > ticket at:
 > https://gitlab.freedesktop.org/drm/intel/-/issues/new
 > 
+Done
+https://gitlab.freedesktop.org/drm/intel/-/issues/9245
+
 > Thanks,
 > Imre
 > 
@@ -148,45 +146,4 @@ Didn't help
 >>
 >> -- 
 >> tejun
-
-
-
-diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
-index 3f479483d..ac28b8d0f 100644
---- a/drivers/gpu/drm/drm_probe_helper.c
-+++ b/drivers/gpu/drm/drm_probe_helper.c
-@@ -279,7 +279,7 @@ static void reschedule_output_poll_work(struct drm_device *dev)
- 		 */
- 		delay = HZ;
- 
--	schedule_delayed_work(&dev->mode_config.output_poll_work, delay);
-+	queue_delayed_work(system_unbound_wq, &dev->mode_config.output_poll_work, delay);
- }
- 
- /**
-@@ -614,7 +614,7 @@ int drm_helper_probe_single_connector_modes(struct drm_connector *connector,
- 		 */
- 		dev->mode_config.delayed_event = true;
- 		if (dev->mode_config.poll_enabled)
--			mod_delayed_work(system_wq,
-+			mod_delayed_work(system_unbound_wq,
- 					 &dev->mode_config.output_poll_work,
- 					 0);
- 	}
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index ec4d26b3c..c0592b77b 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -138,7 +138,7 @@ static int i915_workqueues_init(struct drm_i915_private *dev_priv)
- 	 * to be scheduled on the system_wq before moving to a driver
- 	 * instance due deprecation of flush_scheduled_work().
- 	 */
--	dev_priv->unordered_wq = alloc_workqueue("i915-unordered", 0, 0);
-+	dev_priv->unordered_wq = alloc_workqueue("i915-unordered", WQ_UNBOUND, 0);
- 	if (dev_priv->unordered_wq == NULL)
- 		goto out_free_dp_wq;
- 
--- 
-2.42.0
-
 
