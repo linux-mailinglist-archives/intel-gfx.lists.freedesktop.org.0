@@ -1,54 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CFA78D302
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 07:34:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 885EF78D320
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 08:06:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0650710E4B5;
-	Wed, 30 Aug 2023 05:34:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43C5D10E4BF;
+	Wed, 30 Aug 2023 06:06:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A624310E4B5;
- Wed, 30 Aug 2023 05:34:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B94910E4BE;
+ Wed, 30 Aug 2023 06:06:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693373662; x=1724909662;
+ t=1693375568; x=1724911568;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=7ah5EQgZew0SPvrVoNoXGe118J2Q3qs8RvfYkg92FdQ=;
- b=LQWYqebXIqkJqlPcYhWpsrRJEwPF2cWTXp3DR6FFMy1HRDUKKW4YjKTF
- Iy1QlrUk9NsgU+GrOKvpNCgnOhn4rqPfD1qP0hB/KQrIPrR6GoG/GeinP
- 21DCwypXGUs9TOzAb1jIgL5v5r/iSnD7CcrJC1a4AFbbOxkKHxx+TQUSa
- ggyhWXOqfVAFqKp5gYcOai/IAso5UGPbWztyWe+zvjKRO/5KTo4STXGt9
- DP1MQhgOKthMY80KvmOtDuOn+ChmK8k69K1qj35Ux4sk27Esbuh8GjBvZ
- Llb92q0l6+ZFw9UKji2eBLszU/D6AOAnQ8ptx8A8CfVI4q0345BdOU5Y+ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="374457958"
-X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="374457958"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ bh=hIxUQOiD34ot6XuxENsMGAgaiAwTy7oB+wAxyrfbHnA=;
+ b=ljoWdPmMYJB0ax1QkoVk5VMSvIuXCo98ri9Dp6mYMRawU8Y0nt66GVfA
+ 9pXvrYk2I5yhS1n85j1zq93XfHur4nnUWvdzXyR6u4XvXNZmcYJ9XuL73
+ BaaaGa2dwD1II1424HfNnsrlsWP5UMixnTkbVaN0qv4TU5v9FU9lfAgqX
+ yfg0VAur4IMi4fjyxCAXZ2uKTOPGGd5MzDhr6KX/8MFIiPxvpmsNbRMsa
+ N5TQAaoNT0kSu8qcu0iN4cDJn3Qgl0fYI7xlmSi+xsnijZ1/Zzfe/4S9j
+ LGePq20yC1CLyOLZRZui45pqNifRY/oIPXybgszsTAG9MQVapO2qvDFWd w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="374463013"
+X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="374463013"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2023 22:34:21 -0700
+ 29 Aug 2023 23:06:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="732468604"
-X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="732468604"
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="853595595"
+X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="853595595"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by orsmga007.jf.intel.com with SMTP; 29 Aug 2023 22:34:18 -0700
+ by fmsmga002.fm.intel.com with SMTP; 29 Aug 2023 23:06:04 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 30 Aug 2023 08:34:17 +0300
-Date: Wed, 30 Aug 2023 08:34:17 +0300
+ Wed, 30 Aug 2023 09:06:04 +0300
+Date: Wed, 30 Aug 2023 09:06:04 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Message-ID: <ZO7U2ZQB3BlI-QYe@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <ZO7cTDAqAPDFp5qi@intel.com>
 References: <20230828062035.6906-1-vinod.govindapillai@intel.com>
  <20230828062035.6906-4-vinod.govindapillai@intel.com>
- <ZO2jLiEn9zuQFqsO@intel.com>
- <b97f948a77128607be6b7a5cd12f82423e987377.camel@intel.com>
+ <20230829001604.GQ6080@mdroper-desk1.amr.corp.intel.com>
+ <58c721715af42c1e71f80af2bb655021a648b426.camel@intel.com>
+ <20230829160428.GI1529860@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <b97f948a77128607be6b7a5cd12f82423e987377.camel@intel.com>
+In-Reply-To: <20230829160428.GI1529860@mdroper-desk1.amr.corp.intel.com>
 X-Patchwork-Hint: comment
 Subject: Re: [Intel-gfx] [Intel-xe] [PATCH 3/4] drm/i915/lnl: support FBC on
  any plane
@@ -70,145 +71,80 @@ Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 29, 2023 at 01:34:56PM +0000, Govindapillai, Vinod wrote:
-> On Tue, 2023-08-29 at 10:50 +0300, Ville Syrjälä wrote:
-> > On Mon, Aug 28, 2023 at 09:20:34AM +0300, Vinod Govindapillai wrote:
-> > > In LNL onwards, FBC can be associated to the first three planes.
-> > > The FBC will be enabled for first FBC capable visible plane
-> > > until the userspace can select one of these FBC capable plane
-> > > explicitly
+On Tue, Aug 29, 2023 at 09:04:28AM -0700, Matt Roper wrote:
+> On Tue, Aug 29, 2023 at 06:50:02AM -0700, Govindapillai, Vinod wrote:
+> > On Mon, 2023-08-28 at 17:16 -0700, Matt Roper wrote:
+> > > On Mon, Aug 28, 2023 at 09:20:34AM +0300, Vinod Govindapillai wrote:
+> > > > In LNL onwards, FBC can be associated to the first three planes.
 > > > 
-> > > Bspec: 69560
-> > > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_fbc.c      | 29 +++++++++++++++++++
-> > >  .../drm/i915/display/skl_universal_plane.c    |  5 +++-
-> > >  drivers/gpu/drm/i915/i915_reg.h               |  4 +++
-> > >  3 files changed, 37 insertions(+), 1 deletion(-)
+> > > The title of this patch shouldn't say "any plane" when the reality is
+> > > that only the first three support FBC (the upper two do not).
 > > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > index 45e205a0f740..62f59630d410 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > @@ -649,6 +649,21 @@ static void skl_fbc_program_cfb_stride(struct intel_fbc *fbc)
-> > >                      CHICKEN_FBC_STRIDE_MASK, val);
-> > >  }
-> > >  
-> > > +static u32 lnl_plane_binding(struct intel_fbc *fbc)
-> > > +{
-> > > +       switch (fbc->state.plane->id) {
-> > > +       default:
-> > > +               MISSING_CASE(fbc->state.plane->id);
-> > > +               fallthrough;
-> > > +       case 0:
-> > > +               return DPFC_CTL_PLANE_BINDING_1;
-> > > +       case 1:
-> > > +               return DPFC_CTL_PLANE_BINDING_2;
-> > > +       case 2:
-> > > +               return DPFC_CTL_PLANE_BINDING_3;
-> > > +       }
-> > > +}
-> > > +
-> > >  static u32 ivb_dpfc_ctl(struct intel_fbc *fbc)
-> > >  {
-> > >         const struct intel_fbc_state *fbc_state = &fbc->state;
-> > > @@ -660,6 +675,9 @@ static u32 ivb_dpfc_ctl(struct intel_fbc *fbc)
-> > >         if (IS_IVYBRIDGE(i915))
-> > >                 dpfc_ctl |= DPFC_CTL_PLANE_IVB(fbc_state->plane->i9xx_plane);
-> > >  
-> > > +       if (DISPLAY_VER(i915) >= 20)
-> > > +               dpfc_ctl |= lnl_plane_binding(fbc);
-> > > +
-> > >         if (fbc_state->fence_id >= 0)
-> > >                 dpfc_ctl |= DPFC_CTL_FENCE_EN_IVB;
-> > >  
-> > > @@ -1250,6 +1268,17 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
-> > >                 }
-> > >         }
-> > >  
-> > > +       /*
-> > > +        * From LNL, FBC can be assigned on any plane. Until a provision is
-> > > +        * provided for the userspace to select a plane for FBC, lets select
-> > > +        * the first visible plane that is FBC capable.
-> > > +        */
-> > > +       if (DISPLAY_VER(i915) >= 20 && fbc->state.plane &&
-> > > +           fbc->state.plane != plane) {
-> > > +               plane_state->no_fbc_reason = "fbc enabled on another plane";
-> > > +               return 0;
-> > > +       }
+> > > > The FBC will be enabled for first FBC capable visible plane
+> > > > until the userspace can select one of these FBC capable plane
+> > > > explicitly
+> > > 
+> > > Even if we add new Intel-specific uapi to select this explicitly, is any
+> > > userspace actually going to use it?  Would it make more sense to try to
+> > > come up with a heuristic to guess which plane would benefit the most and
+> > > switch to that automatically without userspace needing to be involved in
+> > > the decision?  For that matter, do we have a real-world use case lined
+> > > up where we can see that switching FBC to a higher plane is beneficial?
+> > > Even if the hardware suddenly has this capability, it isn't necessarily
+> > > worth adding the extra complexity to the driver if we don't expect to
+> > > get real-world benefit from it.
+> > > 
+> > > BTW, I'm not super familiar with all the FBC-specific details, but it
+> > > feels like if we do go forward with this, the decision to select a
+> > > specific plane for FBC usage should be handled more deliberately during
+> > > the atomic check phase.  Right now it doesn't seem like we're really
+> > > making a firm decision on which plane to use, and we're probably not
+> > > handling all the cases where the register needs to be reprogrammed
+> > > if/when the FBC moves from one plane to another (potentially on a
+> > > per-frame basis).
 > > 
-> > This isn't right. fbc->state.plane is an internal state thing
-> > that chanes willy nilly, so we don't want to check it here.
+> > Hi Matt,
 > > 
-> > But we shouldn't need this kind of check anyway. The code 
-> > should already work just fine if you just do the tweak to
-> > skl_plane_has_fbc((). Which plane actually gets FBC will be
-> > a bit random, but I think that's fine for the moment.
+> > Agree with the comments about the subject line and also about your suggestions about some code
+> > changes, will update accordingly.
+> > 
+> > Yes.. the logic for how to choose a plane for FBC is still open.
+> > 
+> > While discussing with Uma, it was decided that we split this task into two where we first have this
+> > possibility to associate FBC to first three planes and then decide on this logic to select the plane
+> > for fbc after discussing with Ville. ( Jira VLK-19372 / VLK-21508)
+> > 
+> > In this patch, "fbc" pointer is associated with first three plane implying those three are FBC
+> > capable. And because there is no selection logic there, I choose the first available fbc capable
+> > plane for FBC and the rest two to have a no_fbc_reason as "fbc enabled on another plane" which will
+> > prevent them from being configured for FBC.
+> > 
+> > Ville has done refactoring to FBC code earlier and I think the current code flow should handle
+> > disable/enable/register handling etc. Ville had some comments about the approach I explained above,
+> > I have asked for some clarifications
+> > 
+> > BR
+> > Vinod
 > 
-> Currently, intel_crtc_init() creates the primary plane and other planes. Then the "fbc" is
-> associated with the primary plane based on skl_plane_has_fbc() 
+> I also just noticed that there's a workaround (Wa_14019417088) that
+> requires us to always bind FBC to plane 3.
 > 
-> In Lnl, the first 3 planes are FBC capable. So my thinking has been that those three planes can have
-> the fbc pointers. 
+>         "Plane - FBC binding is fixed to Plane 3."
 > 
-> And because at the moment we don't have a logic to select which frame should get this FBC,
+> And it's marked as a permanent workaround for Xe2_LPD.  So it sounds
+> like even though the hardware was designed to support FBC on any of the
+> three planes, the reality is that we can only use it on one specific
+> plane for this platform; moving it around will have to wait for the next
+> platform down the road.
 
-It's there (in intel_fbc_update()/__intel_fbc_enable() more or
-less). It's just "first come first serve".
+That w/a is a mess. Trawling the HSD confirmed my hunch that it's
+"plane 3" because of Windows compositor behaviour. So for us that
+is just nonsense.
 
-> I used
-> the above snippet to avoid FBC being assoicated with multiple planes in a pipe. So the first visible
-> fbc capable plane will had no_fbc_reason as NULL and the other 2 planes will have "fbc on another
-> plane".
-> 
-> BR
-> Vinod
-> 
-> > 
-> > > +
-> > >         plane_state->no_fbc_reason = NULL;
-> > >  
-> > >         return 0;
-> > > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > index 4d01c7ae4485..1291351c9941 100644
-> > > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > @@ -1962,7 +1962,10 @@ static bool skl_plane_has_fbc(struct drm_i915_private *dev_priv,
-> > >         if ((DISPLAY_RUNTIME_INFO(dev_priv)->fbc_mask & BIT(fbc_id)) == 0)
-> > >                 return false;
-> > >  
-> > > -       return plane_id == PLANE_PRIMARY;
-> > > +       if (DISPLAY_VER(dev_priv) >= 20)
-> > > +               return plane_id <= PLANE_SPRITE1;
-> > > +       else
-> > > +               return plane_id == PLANE_PRIMARY;
-> > >  }
-> > >  
-> > >  static struct intel_fbc *skl_plane_fbc(struct drm_i915_private *dev_priv,
-> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > > index aefad14ab27a..b207774f3c33 100644
-> > > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > > @@ -1327,6 +1327,10 @@
-> > >  #define   DPFC_CTL_PLANE_IVB(i9xx_plane)       REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_IVB,
-> > > (i9xx_plane))
-> > >  #define   DPFC_CTL_FENCE_EN_IVB                        REG_BIT(28) /* ivb+ */
-> > >  #define   DPFC_CTL_PERSISTENT_MODE             REG_BIT(25) /* g4x-snb */
-> > > +#define   DPFC_CTL_PLANE_BINDING_MASK          REG_GENMASK(12, 11) /* XE */
-> > > +#define   DPFC_CTL_PLANE_BINDING_1             REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, 0)
-> > > /* XE */
-> > > +#define   DPFC_CTL_PLANE_BINDING_2             REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, 1)
-> > > /* XE */
-> > > +#define   DPFC_CTL_PLANE_BINDING_3             REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, 2)
-> > > /* XE */
-> > >  #define   DPFC_CTL_FALSE_COLOR                 REG_BIT(10) /* ivb+ */
-> > >  #define   DPFC_CTL_SR_EN                       REG_BIT(10) /* g4x only */
-> > >  #define   DPFC_CTL_SR_EXIT_DIS                 REG_BIT(9) /* g4x only */
-> > > -- 
-> > > 2.34.1
-> > 
-> 
+And looks like we can avoid the whole mess by simply programming
+FBC_CTL twice; first without the enable bit set so the plane
+binding gets updated, and then again with the with enable bit
+set. That is in fact documented as the "alternate w/a".
 
 -- 
 Ville Syrjälä
