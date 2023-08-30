@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A13F78F4AC
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Aug 2023 23:34:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7266078F4AD
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Aug 2023 23:34:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6157F10E6F2;
-	Thu, 31 Aug 2023 21:33:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E09DB10E6EA;
+	Thu, 31 Aug 2023 21:34:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89FE210E4AF
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 02:01:27 +0000 (UTC)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 652CC10E4AF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 02:05:11 +0000 (UTC)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
  by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 37U21Mqd027015; Wed, 30 Aug 2023 02:01:22 GMT
+ 37U1TBOc019755; Wed, 30 Aug 2023 02:05:09 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com;
  h=message-id : date :
  mime-version : subject : to : cc : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=qcppdkim1;
- bh=TEi9ZCzJnhyaZJpJZ92TnEABbWX2LUG4ji9g2mzEyvs=;
- b=S3EpoM23n9jrghA/jlskffgWRbreNaGxUPePMkIhrCUsEnuQNvyK6lzvANB2kXcldV80
- 96oITf0VXHVFph7E4H2DUQeKMAOtKzaMcxsnvLXfS0oaSjLz97rPGzBaZp9PxIiAGt7z
- d6w41tBluYlAssj7geLuSlYwlL1v+rJgWnIq1DZmaUjA2sffOuGKAnRmUXxEegZSf8/K
- o9oIko2kOlqls3GrFHfwth36gXo+cJX149TXck2ySFpSMkzFFZCxg94+/hFB1E51zkAb
- bETqrQhTgkk2a/gLDWcE+rR95pmbByKhdxhHwymUrVNE8ibv7gfnGswLNskd7nsO3Kuj vw== 
+ bh=1b6uao/4nTQ7R8G8oHXy7ADUUXcbgP9nztyU1Nqbsx4=;
+ b=ZPBg66ZaPBiM0yy3kUNcdYdrZ8jUb0iBkR796IoeU+rDoFIpZRcPUtIuzCXbyVW5Dxgr
+ Jyn3FOWFJfq003osxYLxhW/0euetpwbCCtYacF/WRGx/K4h1Xqt3Zk8dNq69JHYPoF92
+ C1MLIOK6L1XB3lEUNj/GAtPDjT3M4YMpKuw5Bl8TmLOsgr2/5ScIMtB4gdTNFO5dV4AK
+ TtdphSb4aiqCIGuq/oPd1n3z2eaUuei4WzktnkPR7JZawVelLG0Db4CUjZKSAtn29Oo/
+ Dq+B715GHIk8iH+3tNjVAIhhFWoWSWbLKUcdr0OwNJCumIboBQhdz4ko5Fka6I9YndKg RQ== 
 Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
  [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ss4wq2y7u-1
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ss7metyqt-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 30 Aug 2023 02:01:22 +0000
+ Wed, 30 Aug 2023 02:05:09 +0000
 Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com
  [10.47.209.197])
- by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37U21LLP010335
+ by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37U25823014686
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 30 Aug 2023 02:01:21 GMT
+ Wed, 30 Aug 2023 02:05:08 GMT
 Received: from [10.233.19.102] (10.80.80.8) by nalasex01b.na.qualcomm.com
  (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 29 Aug
- 2023 19:01:19 -0700
-Message-ID: <1de7b6df-8d61-4b32-59d7-00f6bc1a21e5@quicinc.com>
-Date: Wed, 30 Aug 2023 10:01:16 +0800
+ 2023 19:05:06 -0700
+Message-ID: <4d9602cf-67d4-9613-e71c-955e5c2c810d@quicinc.com>
+Date: Wed, 30 Aug 2023 10:05:03 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
+Content-Language: en-US
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>, Jani Nikula
  <jani.nikula@linux.intel.com>, Joonas Lahtinen
  <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
@@ -52,7 +53,6 @@ To: Michal Wajdeczko <michal.wajdeczko@intel.com>, Jani Nikula
 References: <20230825050029.1122-1-quic_linyyuan@quicinc.com>
  <875y534r88.fsf@intel.com> <336c1090-e15f-03f5-7fa3-7fe3784dff5d@quicinc.com>
  <1de9f939-1164-de25-9410-279f4558ebaa@intel.com>
-Content-Language: en-US
 From: Linyu Yuan <quic_linyyuan@quicinc.com>
 In-Reply-To: <1de9f939-1164-de25-9410-279f4558ebaa@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
@@ -63,17 +63,17 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
  signatures=585085
-X-Proofpoint-GUID: 8-kySsrrc0JgC3pEYkv4-hYAjc8ER5HY
-X-Proofpoint-ORIG-GUID: 8-kySsrrc0JgC3pEYkv4-hYAjc8ER5HY
+X-Proofpoint-ORIG-GUID: ROqZhPU1hJsWbZAcCmov3pV7A3XfiEWF
+X-Proofpoint-GUID: ROqZhPU1hJsWbZAcCmov3pV7A3XfiEWF
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
  definitions=2023-08-29_16,2023-08-29_01,2023-05-22_02
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0
- suspectscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1011
- spamscore=0 malwarescore=0 priorityscore=1501 mlxscore=0 adultscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2308300017
+ impostorscore=0 mlxscore=0
+ bulkscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0
+ mlxlogscore=999 phishscore=0 priorityscore=1501 clxscore=1015 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
+ definitions=main-2308300017
 X-Mailman-Approved-At: Thu, 31 Aug 2023 21:33:53 +0000
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: fix compile issue of
  guc_klvs_abi.h
@@ -289,17 +289,21 @@ On 8/29/2023 5:42 AM, Michal Wajdeczko wrote:
 >> 'drivers/gpu/drm/i915/gt/uc/intel_guc_submission.o' failed
 >>
 > What GCC/.config was it?
+
+
+gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+
+
+make ARCH=x86 allyesconfig
+
+
 >
 > In the meantime, can you try simpler fix below (we want to avoid
 > external dependencies in GuC ABI headers)
 >
 > -#define GUC_KLV_0_KEY                          (0xffff << 16)
 > +#define GUC_KLV_0_KEY                          (0xffffu << 16)
-
-
-i test it, this change can solve the issue, please submit a change.
-
-
+>
 > Michal
 >
 >>> BR,
