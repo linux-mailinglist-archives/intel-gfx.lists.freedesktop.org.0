@@ -2,33 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4165E78D7DA
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 19:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A9EA78D7DF
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 19:51:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E99D610E56D;
-	Wed, 30 Aug 2023 17:46:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E01A010E56A;
+	Wed, 30 Aug 2023 17:51:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A92AB10E56D;
- Wed, 30 Aug 2023 17:46:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7EA44A47E9;
- Wed, 30 Aug 2023 17:46:52 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com
+ [IPv6:2607:f8b0:4864:20::533])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 698EA10E56A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 17:51:16 +0000 (UTC)
+Received: by mail-pg1-x533.google.com with SMTP id
+ 41be03b00d2f7-564cd28d48dso78073a12.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 10:51:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1693417876; x=1694022676; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+ :reply-to; bh=mWxHZBHe+McomQO2YHa9mxYrBp2VqVWidmsS0Hpwi+s=;
+ b=IKGO1ElYKXNqQmiVJ05+RZhgmEGJaoiKGE8b6sB6bXd3LlksulDEjv8yO2KT39ge2f
+ DiO+KN6v5ORA4t2rydqOc6FKcLb0fUENxnB6UjYGwtrRDGx8wNGMGtlYqIHeECpExDOi
+ 60Kpq5x0TVpp91MXyB92aRjGviv2O7xN36h9mG15Oz+T2syj+E/FtlaWIqpqW1SycHzn
+ ustDlDV1Y7Cl6DOFbj6/mMgT7+i5lDUCDijXkDayvZJZTBVqzf5/hhrmpPI3N1PSxGnk
+ V9CwAqqWD6S66HDDxkAst3jo/6Z2pqNQMbrhErUJBgi86+eMnZON+y3PorcoqQ0P94vu
+ H50w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693417876; x=1694022676;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=mWxHZBHe+McomQO2YHa9mxYrBp2VqVWidmsS0Hpwi+s=;
+ b=MTajn0gxhnPlYWNKlBuGuKUQrDBL39BlZjcZ6WAqOZSjmj+VWwRM7dhXj+ynSzRo3r
+ uCDr240KQNMEKh8FrL2mAjxzIrYK2WVLFT6hOriunYHGtK2nnmyhS24EJp3uHV3qbB6v
+ NjXc8Dca20yWLnUFptfrXCJAitQGdzweKqIm9T3NckdCGrJGNymIOCPb9RVbTD8al/3T
+ putrlDHBIXxpx3B/VG3boggP1zfSgCaeH4T92gp9Z9SPxqe1gbX+fOdaDbDEnmaLu+Wa
+ OTFN+ZF54i8x7xfNdfr5r6fWQLnLMzS4AqJ09aboGK9rmLeKSTYjXAxDKOEgTocKCg8K
+ yFGg==
+X-Gm-Message-State: AOJu0YwCQ0SQMFjEO4zkEh1CTXZzyPxskFJZq2F9r54C3TVxsCQ/UHRJ
+ Kx547nMIxaV57N4ugyc8vzU=
+X-Google-Smtp-Source: AGHT+IFOnDLb75qnIk8shTUqbVkDhI7QMBhXtBxk+doHCAIlVlzWjbe70pnsbZITl3aGZjTkxhiRNA==
+X-Received: by 2002:a17:90b:196:b0:268:81c6:a01f with SMTP id
+ t22-20020a17090b019600b0026881c6a01fmr2926973pjs.26.1693417875803; 
+ Wed, 30 Aug 2023 10:51:15 -0700 (PDT)
+Received: from localhost (dhcp-72-235-13-41.hawaiiantel.net. [72.235.13.41])
+ by smtp.gmail.com with ESMTPSA id
+ nh5-20020a17090b364500b0026b0b4ed7b1sm1525450pjb.15.2023.08.30.10.51.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 30 Aug 2023 10:51:15 -0700 (PDT)
+Date: Wed, 30 Aug 2023 07:51:13 -1000
+From: Tejun Heo <tj@kernel.org>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Message-ID: <ZO-BkaGuVCgdr3wc@slm.duckdns.org>
+References: <f7e21caa-e98d-e5b5-932a-fe12d27fde9b@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Wed, 30 Aug 2023 17:46:52 -0000
-Message-ID: <169341761249.15234.2474610668738563597@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230830140421.2031111-1-imre.deak@intel.com>
-In-Reply-To: <20230830140421.2031111-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915/dp=3A_Drop_redundant_AU?=
- =?utf-8?q?X_power_get/put_in_intel=5Fdp=5Fforce=28=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f7e21caa-e98d-e5b5-932a-fe12d27fde9b@gmail.com>
+Subject: Re: [Intel-gfx] WQ_UNBOUND warning since recent workqueue
+ refactoring
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,106 +73,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hello,
 
-Series: series starting with [1/2] drm/i915/dp: Drop redundant AUX power get/put in intel_dp_force()
-URL   : https://patchwork.freedesktop.org/series/123067/
-State : warning
+(cc'ing i915 folks)
 
-== Summary ==
+On Wed, Aug 30, 2023 at 04:57:42PM +0200, Heiner Kallweit wrote:
+> Recently I started to see the following warning on linux-next and presumably
+> this may be related to the refactoring of the workqueue core code.
+> 
+> [   56.900223] workqueue: output_poll_execute [drm_kms_helper] hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+> [   56.923226] workqueue: i915_hpd_poll_init_work [i915] hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+> [   97.860430] workqueue: output_poll_execute [drm_kms_helper] hogged CPU for >10000us 8 times, consider switching to WQ_UNBOUND
+> [   97.884453] workqueue: i915_hpd_poll_init_work [i915] hogged CPU for >10000us 8 times, consider switching to WQ_UNBOUND
+> 
+> Adding WQ_UNBOUND to these queues didn't change the behavior.
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+./arch/x86/include/asm/bitops.h:117:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:148:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:150:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:154:26: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:156:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:156:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:174:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:176:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:180:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:182:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:182:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:186:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:188:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:192:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:195:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:195:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:237:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:239:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:66:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:92:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:105:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:107:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:108:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:109:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:121:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:128:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:166:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:168:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:169:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:170:9: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:19: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:25: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:28:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:30:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:31:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:37:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:39:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:40:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:55:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:57:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:58:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:15: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:73:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:75:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:76:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:77:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:93:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:95:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:96:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:97:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:21: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:112:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:115:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:127:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:130:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:139:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:142:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:26:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:42:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:58:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:97:1: warning: unreplaced symbol 'return'
+That should have made them go away as the code path isn't active at all for
+WQ_UNBOUND workqueues. Can you please double check?
 
+> Maybe relevant: I run the affected system headless.
 
+i915 folks, workqueue recently added debug warnings which trigger when a
+per-cpu work item hogs the CPU for too long - 10ms in this case. This is
+problematic because such work item can stall other per-cpu work items.
+
+* Is it expected for the above two work functions to occupy the CPU for over
+  10ms repeatedly?
+
+* If so, can we make them use an unbound workqueue instead?
+
+Thanks.
+
+-- 
+tejun
