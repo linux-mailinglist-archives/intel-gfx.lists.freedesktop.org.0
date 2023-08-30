@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D863078D3A7
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 09:37:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2434E78D3BC
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 09:51:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63B8C10E4C9;
-	Wed, 30 Aug 2023 07:37:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C29810E4D0;
+	Wed, 30 Aug 2023 07:51:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E863F10E4C9
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 07:37:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7935610E4D0;
+ Wed, 30 Aug 2023 07:51:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693381020; x=1724917020;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ASDzbtG/O7y4+zncOtJFF/ks9D8FmxgiXQPeXRe9mqc=;
- b=RNRGijHWlMir/uThal2EmcdTRJknVcWQlGwl+zXtM2zrQC01fyHvpXDp
- jph4g2WmBiOWdmbQNPppz+0wNWVS1VYXE5n0RxZy+pb23LXl4zL3FXVfa
- 5SO1iNYfzRFGvYe0PsdXhgF4mOCvELCDDc2YEpsMU27NRFMTkqELT6u9m
- 6zZM0tsgOurlUQ869y7gEUwyKv2G9x3g/U+g3d9QEGqxBhBOKe8NcU5vq
- FWQKQcdBfYkM4gMD+efNuJXSQTdrfCAJc6ra2VIlOjcCcLU6IfzpkxG3M
- WVd9OcwWt/XCeZuwqhtUlyxxHqJeaUSH+hVvTsz679icET1+q5yjY2qDJ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="379326143"
-X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="379326143"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2023 00:37:00 -0700
+ t=1693381910; x=1724917910;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=0XT9n5Z4r6fOHqovX9YbXWebfSSo0VleXQh7sphfzI8=;
+ b=n5YFtyL3feSAtyMva1+1NNKBC7aLBXXFdgKeWHDbikJAF56SPQd98X5q
+ wL0creCqxU1fB1guXpPk2X1FY6hxiHY4yxo86bBgGEiO27ym3fv58KU6C
+ 7fB8dJJrtxReC2N27HRI4iHGP5LpGeMfsHpsDjDRV1m4kQHBUb+Rim5Id
+ y4VzFJtQlSNsn4pcPO+5hW4ABpwhiCjZOnO8d6++Q58izAuHjDxAjh8gu
+ tzTzbCNhuSzS+s4AXu7+gjDOCMv8SrpEBlYr9RQfsX8wyMXfMcOp6fS9n
+ msbtRiLJv79mb85vgbyiQuqfXODWDvXFpUbWJhwkMO6sfAflrlFOapZkK w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="355889255"
+X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="355889255"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2023 00:51:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="912692489"
-X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="912692489"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga005.jf.intel.com with ESMTP; 30 Aug 2023 00:36:58 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 30 Aug 2023 13:04:38 +0530
-Message-Id: <20230830073437.666263-3-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230830073437.666263-1-suraj.kandpal@intel.com>
-References: <20230830073437.666263-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="862534554"
+X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="862534554"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2023 00:51:49 -0700
+Date: Wed, 30 Aug 2023 10:51:41 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Message-ID: <ZO71Dbu1NvY8qYup@intel.com>
+References: <20230824125121.840298-2-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/hdcp: Use correct aux for
- capability check scenario
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230824125121.840298-2-ankit.k.nautiyal@intel.com>
+Subject: Re: [Intel-gfx] [1/2] drm/display/dp: Assume 8 bpc support when DSC
+ is supported
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,39 +58,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Send the correct aux rather than the one derived
-from intel_digital_port so that the HDCP version of both monitors
-are fetched rather than just the primary one's
+On Thu, Aug 24, 2023 at 06:21:20PM +0530, Ankit Nautiyal wrote:
+> As per DP v1.4, a DP DSC Sink device shall support 8bpc in DPCD 6Ah.
+> Apparently some panels that do support DSC, are not setting the bit for
+> 8bpc.
+> 
+> So always assume 8bpc support by DSC decoder, when DSC is claimed to be
+> supported.
+> 
+> v2: Use helper to get check dsc support. (Ankit)
+> v3: Fix styling and other typos. (Jani)
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-index 3b579887bb99..3a595cd433d4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -651,12 +651,14 @@ static
- int intel_dp_hdcp2_capable(struct intel_connector *connector,
- 			   bool *capable)
- {
--	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-+	struct drm_dp_aux *aux;
- 	u8 rx_caps[3];
- 	int ret;
- 
-+	aux = intel_dp_hdcp_get_aux(connector);
-+
- 	*capable = false;
--	ret = drm_dp_dpcd_read(&dig_port->dp.aux,
-+	ret = drm_dp_dpcd_read(aux,
- 			       DP_HDCP_2_2_REG_RX_CAPS_OFFSET,
- 			       rx_caps, HDCP_2_2_RXCAPS_LEN);
- 	if (ret != HDCP_2_2_RXCAPS_LEN)
--- 
-2.25.1
-
+> ---
+>  drivers/gpu/drm/display/drm_dp_helper.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> index e6a78fd32380..8a1b64c57dfd 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -2449,12 +2449,16 @@ int drm_dp_dsc_sink_supported_input_bpcs(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_S
+>  	int num_bpc = 0;
+>  	u8 color_depth = dsc_dpcd[DP_DSC_DEC_COLOR_DEPTH_CAP - DP_DSC_SUPPORT];
+>  
+> +	if (!drm_dp_sink_supports_dsc(dsc_dpcd))
+> +		return 0;
+> +
+>  	if (color_depth & DP_DSC_12_BPC)
+>  		dsc_bpc[num_bpc++] = 12;
+>  	if (color_depth & DP_DSC_10_BPC)
+>  		dsc_bpc[num_bpc++] = 10;
+> -	if (color_depth & DP_DSC_8_BPC)
+> -		dsc_bpc[num_bpc++] = 8;
+> +
+> +	/* A DP DSC Sink device shall support 8 bpc. */
+> +	dsc_bpc[num_bpc++] = 8;
+>  
+>  	return num_bpc;
+>  }
