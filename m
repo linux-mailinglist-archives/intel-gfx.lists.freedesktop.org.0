@@ -1,49 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8152278D65F
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 16:04:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7AC678D660
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 16:04:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B8C010E475;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6025A10E524;
 	Wed, 30 Aug 2023 14:04:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6337D10E524
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EE3910E475
  for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 14:04:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1693404260; x=1724940260;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DBabW7sKvwNo5QBwmVjU6hUsHvxJC/mqkVuQyhhVJ6U=;
- b=S5fGjET2DOXSpzlow13mus0C2mj8Lj8xJPf0wknMH4hKqYlarEQ/vn+b
- lAtjb6C0lHDyZSbCxmo/SI52PBHuJ6plAGk4CHImyVjrk9aVwlN5PEvNi
- GdTaJO9N5S6od5VoraBtvuZLmR1d3ZWKd6uxmqm1pZlkyCtUein9Rf2n9
- zwZM29U/hkgo8/39w2aD7dc6LDZHYg10jWoMhnmsBIHJwUMU57zQEc4nF
- fgSGpGCboXBamVhvXB5Pt48KziZbyds+GLyllVlWY4nT75oMPklNJ/tB/
- TpTgwNk8L2tmn81N9I2wwNozCBZNxZosk9Lluh2UILRGr88jcIt+qmxm8 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="355962828"
-X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; d="scan'208";a="355962828"
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=vu8t/W0UhzEMxECyOnvvGrQC2uRpRsHHcfDCa2AUk7s=;
+ b=XGX+7+8rwZK0KnwpZTOLYTBivElX8U/HgIfTFJY0IeMIuY08PaaEGUud
+ +WDV1TnqLqU9N2tHwM67H238+q+PD59wjVRAT2ouq5YjOh1gv2P62Pi3g
+ oOLvg1KSkMzX1oWVyraoNSj7G8/+s3PopQ36mxUOIzIHTulBjjf+imU56
+ jIN/SPVQU5n3v5mniKGTC4aI9de27T3npamY+QUuKQEuUqXoU10ae/olj
+ 0BWxysKutt1nuhV8Vteag4567a4yTetB8PvzKUtcLtBGXPdYcKPjdt3GX
+ z2m65UYWvMgzBRTJJCdFg+folUC15cfBWhhV+VD/99hVHRmA+xoQxyu1L A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="355962832"
+X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; d="scan'208";a="355962832"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2023 07:04:05 -0700
+ 30 Aug 2023 07:04:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="768415857"
-X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; d="scan'208";a="768415857"
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="768415866"
+X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; d="scan'208";a="768415866"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2023 07:04:04 -0700
+ 30 Aug 2023 07:04:05 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 30 Aug 2023 17:04:20 +0300
-Message-Id: <20230830140421.2031111-1-imre.deak@intel.com>
+Date: Wed, 30 Aug 2023 17:04:21 +0300
+Message-Id: <20230830140421.2031111-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230830140421.2031111-1-imre.deak@intel.com>
+References: <20230830140421.2031111-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/dp: Drop redundant AUX power
- get/put in intel_dp_force()
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/mtl: Add TC port lockdep assert to
+ AUX power well enabling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,44 +61,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-intel_dp_force() takes the AUX power reference as required by the DP AUX
-transactions in intel_dp_set_edid(). However the low level AUX handler
-takes this reference already so the get/put in intel_dp_force() can be
-dropped. This also fixes a problem where the TC port mode changed while
-the AUX power well was enabled.
+Similarly to earlier platforms, assert in the MTL AUX power well
+enabling handler for TC AUX CH power wells that the TC port using the
+AUX CH is locked.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8779
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 7 -------
- 1 file changed, 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power_well.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 9d303caf969e0..16fb12d187a29 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5365,9 +5365,6 @@ intel_dp_force(struct drm_connector *connector)
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	struct intel_encoder *intel_encoder = &dig_port->base;
- 	struct drm_i915_private *dev_priv = to_i915(intel_encoder->base.dev);
--	enum intel_display_power_domain aux_domain =
--		intel_aux_power_domain(dig_port);
--	intel_wakeref_t wakeref;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 916009894d89c..820b7d41a0a8f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -1794,6 +1794,11 @@ static void xelpdp_aux_power_well_enable(struct drm_i915_private *dev_priv,
+ 					 struct i915_power_well *power_well)
+ {
+ 	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
++	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
++
++	if (intel_phy_is_tc(dev_priv, phy))
++		icl_tc_port_assert_ref_held(dev_priv, power_well,
++					    aux_ch_to_digital_port(dev_priv, aux_ch));
  
- 	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s]\n",
- 		    connector->base.id, connector->name);
-@@ -5376,11 +5373,7 @@ intel_dp_force(struct drm_connector *connector)
- 	if (connector->status != connector_status_connected)
- 		return;
- 
--	wakeref = intel_display_power_get(dev_priv, aux_domain);
--
- 	intel_dp_set_edid(intel_dp);
--
--	intel_display_power_put(dev_priv, aux_domain, wakeref);
- }
- 
- static int intel_dp_get_modes(struct drm_connector *connector)
+ 	intel_de_rmw(dev_priv, XELPDP_DP_AUX_CH_CTL(aux_ch),
+ 		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
 -- 
 2.37.2
 
