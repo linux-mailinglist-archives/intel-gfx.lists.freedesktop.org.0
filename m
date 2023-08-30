@@ -2,33 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FF9278D7E8
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 20:02:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6104D78D9F4
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 20:35:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE95610E1BD;
-	Wed, 30 Aug 2023 18:02:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDE3A10E0F7;
+	Wed, 30 Aug 2023 18:35:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 19FD710E1BD;
- Wed, 30 Aug 2023 18:02:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 11361A00CC;
- Wed, 30 Aug 2023 18:02:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5735727248279406478=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1335110E0F7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 18:35:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693420542; x=1724956542;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Od8TQbOjeB9WIbaKQd1AyJ6CbTvuTwV8/DVHCnJfwU8=;
+ b=hlfd2CAhlwJkaK0MAG8gT+o/V4LQTPB5QBFJDWlczLCivl1w6CDYm6wS
+ cDzjTbXegwa7VNDnHvisCmQM+1VSAFjrRhXTTh+Eic0jU5vybzo1BtRbR
+ h47vD0GJYAUNtoeUwMfC24OLJNhKxEgjGxr+bBEO7+4AngGL65UTOyQ0o
+ Mm6ft6H9azV+gSXzl/iWZz+0tz8yhY0Qyr5ndVqZbVJcd52KNahrbZzvL
+ GmEa9FFlczihMl1EKNDK03CJJ7JCmTzHvKjCQT56cgrOzZQXE3XdksmN5
+ te6pmaknHvmiaBAp9csC00lPtxC/Jkj+GGTEgwzzulihWKrQPYOjjgZsm g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="462096512"
+X-IronPort-AV: E=Sophos;i="6.02,214,1688454000"; d="scan'208";a="462096512"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2023 11:35:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="689015854"
+X-IronPort-AV: E=Sophos;i="6.02,214,1688454000"; d="scan'208";a="689015854"
+Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
+ by orsmga003.jf.intel.com with ESMTP; 30 Aug 2023 11:35:21 -0700
+Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qbQ2D-000A7P-0W;
+ Wed, 30 Aug 2023 18:35:21 +0000
+Date: Thu, 31 Aug 2023 02:34:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: Shekhar Chauhan <shekhar.chauhan@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <202308310238.2Dnlp2IN-lkp@intel.com>
+References: <20230830160001.2395993-1-shekhar.chauhan@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Wed, 30 Aug 2023 18:02:45 -0000
-Message-ID: <169341856503.15231.573968423140368817@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230830140421.2031111-1-imre.deak@intel.com>
-In-Reply-To: <20230830140421.2031111-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/dp=3A_Drop_redundant_AUX_p?=
- =?utf-8?q?ower_get/put_in_intel=5Fdp=5Fforce=28=29?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230830160001.2395993-1-shekhar.chauhan@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add Wa_14015150844
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,429 +60,538 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5735727248279406478==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Shekhar,
 
-== Series Details ==
+kernel test robot noticed the following build errors:
 
-Series: series starting with [1/2] drm/i915/dp: Drop redundant AUX power get/put in intel_dp_force()
-URL   : https://patchwork.freedesktop.org/series/123067/
-State : success
+[auto build test ERROR on drm-tip/drm-tip]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Shekhar-Chauhan/drm-i915-Add-Wa_14015150844/20230831-000233
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230830160001.2395993-1-shekhar.chauhan%40intel.com
+patch subject: [Intel-gfx] [PATCH] drm/i915: Add Wa_14015150844
+config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20230831/202308310238.2Dnlp2IN-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230831/202308310238.2Dnlp2IN-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from CI_DRM_13577 -> Patchwork_123067v1
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308310238.2Dnlp2IN-lkp@intel.com/
 
-Summary
--------
+All errors (new ones prefixed by >>):
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/index.html
-
-Participating hosts (39 -> 39)
-------------------------------
-
-  Additional (1): bat-dg2-9 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_123067v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - bat-dg2-9:          NOTRUN -> [INCOMPLETE][1] ([i915#6311])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@gem_mmap@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][2] ([i915#4083])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@gem_mmap@basic.html
-
-  * igt@gem_mmap_gtt@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][3] ([i915#4077]) +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@gem_mmap_gtt@basic.html
-
-  * igt@gem_render_tiled_blits@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][4] ([i915#4079]) +1 similar issue
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@gem_render_tiled_blits@basic.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - bat-dg2-9:          NOTRUN -> [SKIP][5] ([i915#5354] / [i915#7561])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_backlight@basic-brightness@edp-1:
-    - bat-rplp-1:         NOTRUN -> [ABORT][6] ([i915#7077] / [i915#8668])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-rplp-1/igt@i915_pm_backlight@basic-brightness@edp-1.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-9:          NOTRUN -> [SKIP][7] ([i915#6621])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-mtlp-6:         [PASS][8] -> [ABORT][9] ([i915#7982] / [i915#8865])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13577/bat-mtlp-6/igt@i915_selftest@live@requests.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-mtlp-6/igt@i915_selftest@live@requests.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][10] ([i915#5190])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][11] ([i915#4215] / [i915#5190])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_addfb_basic@framebuffer-vs-set-tiling:
-    - bat-dg2-9:          NOTRUN -> [SKIP][12] ([i915#4212]) +7 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][13] ([i915#4103] / [i915#4213]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-dg2-9:          NOTRUN -> [SKIP][14] ([fdo#109285])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-dg2-9:          NOTRUN -> [SKIP][15] ([i915#5274])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5:
-    - bat-adlp-11:        NOTRUN -> [ABORT][16] ([i915#8668])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-rplp-1:         NOTRUN -> [SKIP][17] ([i915#1072]) +3 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-rplp-1/igt@kms_psr@primary_page_flip.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - bat-dg2-9:          NOTRUN -> [SKIP][18] ([i915#1072]) +3 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_psr@sprite_plane_onoff.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-rplp-1:         NOTRUN -> [SKIP][19] ([i915#3555])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html
-    - bat-dg2-9:          NOTRUN -> [SKIP][20] ([i915#3555])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - bat-dg2-9:          NOTRUN -> [SKIP][21] ([i915#3708])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@prime_vgem@basic-fence-mmap:
-    - bat-dg2-9:          NOTRUN -> [SKIP][22] ([i915#3708] / [i915#4077]) +1 similar issue
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-dg2-9:          NOTRUN -> [SKIP][23] ([i915#3291] / [i915#3708]) +2 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@prime_vgem@basic-write.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5:
-    - bat-adlp-11:        [DMESG-FAIL][24] ([i915#6868]) -> [PASS][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13577/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5:
-    - bat-adlp-11:        [FAIL][26] ([i915#9047]) -> [PASS][27] +2 similar issues
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13577/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
-    - bat-rplp-1:         [ABORT][28] ([i915#8442] / [i915#8668]) -> [PASS][29]
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13577/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-vga-1:
-    - fi-hsw-4770:        [DMESG-WARN][30] ([i915#8841]) -> [DMESG-WARN][31] ([i915#1982] / [i915#8841])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13577/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-vga-1.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-vga-1.html
-
-  
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6311]: https://gitlab.freedesktop.org/drm/intel/issues/6311
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#6868]: https://gitlab.freedesktop.org/drm/intel/issues/6868
-  [i915#7077]: https://gitlab.freedesktop.org/drm/intel/issues/7077
-  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
-  [i915#7982]: https://gitlab.freedesktop.org/drm/intel/issues/7982
-  [i915#8442]: https://gitlab.freedesktop.org/drm/intel/issues/8442
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#8841]: https://gitlab.freedesktop.org/drm/intel/issues/8841
-  [i915#8865]: https://gitlab.freedesktop.org/drm/intel/issues/8865
-  [i915#9047]: https://gitlab.freedesktop.org/drm/intel/issues/9047
+   drivers/gpu/drm/i915/gt/intel_workarounds.c: In function 'rcs_engine_wa_init':
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2330:13: error: implicit declaration of function 'IS_DG2_GRAPHICS_STEP'; did you mean 'IS_GRAPHICS_STEP'? [-Werror=implicit-function-declaration]
+    2330 |         if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_C0, STEP_FOREVER) ||
+         |             ^~~~~~~~~~~~~~~~~~~~
+         |             IS_GRAPHICS_STEP
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2330:40: error: 'G10' undeclared (first use in this function)
+    2330 |         if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_C0, STEP_FOREVER) ||
+         |                                        ^~~
+   drivers/gpu/drm/i915/gt/intel_workarounds.c:2330:40: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2331:40: error: 'G11' undeclared (first use in this function)
+    2331 |             IS_DG2_GRAPHICS_STEP(i915, G11, STEP_B0, STEP_FOREVER) ||
+         |                                        ^~~
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2333:13: error: implicit declaration of function 'IS_MTL_GRAPHICS_STEP'; did you mean 'INTEL_GRAPHICS_STEP'? [-Werror=implicit-function-declaration]
+    2333 |             IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_FOREVER) ||
+         |             ^~~~~~~~~~~~~~~~~~~~
+         |             INTEL_GRAPHICS_STEP
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2333:40: error: 'M' undeclared (first use in this function)
+    2333 |             IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_FOREVER) ||
+         |                                        ^
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2334:40: error: 'P' undeclared (first use in this function)
+    2334 |             IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_FOREVER)) {
+         |                                        ^
+   cc1: some warnings being treated as errors
 
 
-Build changes
--------------
+vim +2330 drivers/gpu/drm/i915/gt/intel_workarounds.c
 
-  * Linux: CI_DRM_13577 -> Patchwork_123067v1
+  2292	
+  2293	static void
+  2294	rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+  2295	{
+  2296		struct drm_i915_private *i915 = engine->i915;
+  2297		struct intel_gt *gt = engine->gt;
+  2298	
+  2299		if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+  2300		    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0)) {
+  2301			/* Wa_22014600077 */
+  2302			wa_mcr_masked_en(wal, GEN10_CACHE_MODE_SS,
+  2303					 ENABLE_EU_COUNT_FOR_TDL_FLUSH);
+  2304		}
+  2305	
+  2306		if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+  2307		    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+  2308		    IS_DG2(i915)) {
+  2309			/* Wa_1509727124 */
+  2310			wa_mcr_masked_en(wal, GEN10_SAMPLER_MODE,
+  2311					 SC_DISABLE_POWER_OPTIMIZATION_EBB);
+  2312		}
+  2313	
+  2314		if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+  2315		    IS_DG2(i915)) {
+  2316			/* Wa_22012856258 */
+  2317			wa_mcr_masked_en(wal, GEN8_ROW_CHICKEN2,
+  2318					 GEN12_DISABLE_READ_SUPPRESSION);
+  2319		}
+  2320	
+  2321		if (IS_DG2(i915)) {
+  2322			/*
+  2323			 * Wa_22010960976:dg2
+  2324			 * Wa_14013347512:dg2
+  2325			 */
+  2326			wa_mcr_masked_dis(wal, XEHP_HDC_CHICKEN0,
+  2327					  LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK);
+  2328		}
+  2329	
+> 2330		if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_C0, STEP_FOREVER) ||
+> 2331		    IS_DG2_GRAPHICS_STEP(i915, G11, STEP_B0, STEP_FOREVER) ||
+  2332		    IS_DG2_G12(i915) ||
+> 2333		    IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_FOREVER) ||
+> 2334		    IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_FOREVER)) {
+  2335			/* Wa_14015150844 */
+  2336			wa_mcr_masked_dis(wal, XEHP_HDC_CHICKEN0,
+  2337					  ATOMIC_CHAINING_TYPED_WRITES);
+  2338		}
+  2339	
+  2340		if (IS_DG2_G11(i915) || IS_DG2_G10(i915)) {
+  2341			/* Wa_22014600077:dg2 */
+  2342			wa_mcr_add(wal, GEN10_CACHE_MODE_SS, 0,
+  2343				   _MASKED_BIT_ENABLE(ENABLE_EU_COUNT_FOR_TDL_FLUSH),
+  2344				   0 /* Wa_14012342262 write-only reg, so skip verification */,
+  2345				   true);
+  2346		}
+  2347	
+  2348		if (IS_DG2(i915) || IS_ALDERLAKE_P(i915) || IS_ALDERLAKE_S(i915) ||
+  2349		    IS_DG1(i915) || IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+  2350			/*
+  2351			 * Wa_1606700617:tgl,dg1,adl-p
+  2352			 * Wa_22010271021:tgl,rkl,dg1,adl-s,adl-p
+  2353			 * Wa_14010826681:tgl,dg1,rkl,adl-p
+  2354			 * Wa_18019627453:dg2
+  2355			 */
+  2356			wa_masked_en(wal,
+  2357				     GEN9_CS_DEBUG_MODE1,
+  2358				     FF_DOP_CLOCK_GATE_DISABLE);
+  2359		}
+  2360	
+  2361		if (IS_ALDERLAKE_P(i915) || IS_ALDERLAKE_S(i915) || IS_DG1(i915) ||
+  2362		    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+  2363			/* Wa_1606931601:tgl,rkl,dg1,adl-s,adl-p */
+  2364			wa_mcr_masked_en(wal, GEN8_ROW_CHICKEN2, GEN12_DISABLE_EARLY_READ);
+  2365	
+  2366			/*
+  2367			 * Wa_1407928979:tgl A*
+  2368			 * Wa_18011464164:tgl[B0+],dg1[B0+]
+  2369			 * Wa_22010931296:tgl[B0+],dg1[B0+]
+  2370			 * Wa_14010919138:rkl,dg1,adl-s,adl-p
+  2371			 */
+  2372			wa_write_or(wal, GEN7_FF_THREAD_MODE,
+  2373				    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
+  2374	
+  2375			/* Wa_1406941453:tgl,rkl,dg1,adl-s,adl-p */
+  2376			wa_mcr_masked_en(wal,
+  2377					 GEN10_SAMPLER_MODE,
+  2378					 ENABLE_SMALLPL);
+  2379		}
+  2380	
+  2381		if (IS_ALDERLAKE_P(i915) || IS_ALDERLAKE_S(i915) ||
+  2382		    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+  2383			/* Wa_1409804808 */
+  2384			wa_mcr_masked_en(wal, GEN8_ROW_CHICKEN2,
+  2385					 GEN12_PUSH_CONST_DEREF_HOLD_DIS);
+  2386	
+  2387			/* Wa_14010229206 */
+  2388			wa_mcr_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
+  2389		}
+  2390	
+  2391		if (IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915) || IS_ALDERLAKE_P(i915)) {
+  2392			/*
+  2393			 * Wa_1607297627
+  2394			 *
+  2395			 * On TGL and RKL there are multiple entries for this WA in the
+  2396			 * BSpec; some indicate this is an A0-only WA, others indicate
+  2397			 * it applies to all steppings so we trust the "all steppings."
+  2398			 */
+  2399			wa_masked_en(wal,
+  2400				     RING_PSMI_CTL(RENDER_RING_BASE),
+  2401				     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
+  2402				     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
+  2403		}
+  2404	
+  2405		if (GRAPHICS_VER(i915) == 11) {
+  2406			/* This is not an Wa. Enable for better image quality */
+  2407			wa_masked_en(wal,
+  2408				     _3D_CHICKEN3,
+  2409				     _3D_CHICKEN3_AA_LINE_QUALITY_FIX_ENABLE);
+  2410	
+  2411			/*
+  2412			 * Wa_1405543622:icl
+  2413			 * Formerly known as WaGAPZPriorityScheme
+  2414			 */
+  2415			wa_write_or(wal,
+  2416				    GEN8_GARBCNTL,
+  2417				    GEN11_ARBITRATION_PRIO_ORDER_MASK);
+  2418	
+  2419			/*
+  2420			 * Wa_1604223664:icl
+  2421			 * Formerly known as WaL3BankAddressHashing
+  2422			 */
+  2423			wa_write_clr_set(wal,
+  2424					 GEN8_GARBCNTL,
+  2425					 GEN11_HASH_CTRL_EXCL_MASK,
+  2426					 GEN11_HASH_CTRL_EXCL_BIT0);
+  2427			wa_write_clr_set(wal,
+  2428					 GEN11_GLBLINVL,
+  2429					 GEN11_BANK_HASH_ADDR_EXCL_MASK,
+  2430					 GEN11_BANK_HASH_ADDR_EXCL_BIT0);
+  2431	
+  2432			/*
+  2433			 * Wa_1405733216:icl
+  2434			 * Formerly known as WaDisableCleanEvicts
+  2435			 */
+  2436			wa_mcr_write_or(wal,
+  2437					GEN8_L3SQCREG4,
+  2438					GEN11_LQSC_CLEAN_EVICT_DISABLE);
+  2439	
+  2440			/* Wa_1606682166:icl */
+  2441			wa_write_or(wal,
+  2442				    GEN7_SARCHKMD,
+  2443				    GEN7_DISABLE_SAMPLER_PREFETCH);
+  2444	
+  2445			/* Wa_1409178092:icl */
+  2446			wa_mcr_write_clr_set(wal,
+  2447					     GEN11_SCRATCH2,
+  2448					     GEN11_COHERENT_PARTIAL_WRITE_MERGE_ENABLE,
+  2449					     0);
+  2450	
+  2451			/* WaEnable32PlaneMode:icl */
+  2452			wa_masked_en(wal, GEN9_CSFE_CHICKEN1_RCS,
+  2453				     GEN11_ENABLE_32_PLANE_MODE);
+  2454	
+  2455			/*
+  2456			 * Wa_1408767742:icl[a2..forever],ehl[all]
+  2457			 * Wa_1605460711:icl[a0..c0]
+  2458			 */
+  2459			wa_write_or(wal,
+  2460				    GEN7_FF_THREAD_MODE,
+  2461				    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
+  2462	
+  2463			/* Wa_22010271021 */
+  2464			wa_masked_en(wal,
+  2465				     GEN9_CS_DEBUG_MODE1,
+  2466				     FF_DOP_CLOCK_GATE_DISABLE);
+  2467		}
+  2468	
+  2469		/*
+  2470		 * Intel platforms that support fine-grained preemption (i.e., gen9 and
+  2471		 * beyond) allow the kernel-mode driver to choose between two different
+  2472		 * options for controlling preemption granularity and behavior.
+  2473		 *
+  2474		 * Option 1 (hardware default):
+  2475		 *   Preemption settings are controlled in a global manner via
+  2476		 *   kernel-only register CS_DEBUG_MODE1 (0x20EC).  Any granularity
+  2477		 *   and settings chosen by the kernel-mode driver will apply to all
+  2478		 *   userspace clients.
+  2479		 *
+  2480		 * Option 2:
+  2481		 *   Preemption settings are controlled on a per-context basis via
+  2482		 *   register CS_CHICKEN1 (0x2580).  CS_CHICKEN1 is saved/restored on
+  2483		 *   context switch and is writable by userspace (e.g., via
+  2484		 *   MI_LOAD_REGISTER_IMMEDIATE instructions placed in a batch buffer)
+  2485		 *   which allows different userspace drivers/clients to select
+  2486		 *   different settings, or to change those settings on the fly in
+  2487		 *   response to runtime needs.  This option was known by name
+  2488		 *   "FtrPerCtxtPreemptionGranularityControl" at one time, although
+  2489		 *   that name is somewhat misleading as other non-granularity
+  2490		 *   preemption settings are also impacted by this decision.
+  2491		 *
+  2492		 * On Linux, our policy has always been to let userspace drivers
+  2493		 * control preemption granularity/settings (Option 2).  This was
+  2494		 * originally mandatory on gen9 to prevent ABI breakage (old gen9
+  2495		 * userspace developed before object-level preemption was enabled would
+  2496		 * not behave well if i915 were to go with Option 1 and enable that
+  2497		 * preemption in a global manner).  On gen9 each context would have
+  2498		 * object-level preemption disabled by default (see
+  2499		 * WaDisable3DMidCmdPreemption in gen9_ctx_workarounds_init), but
+  2500		 * userspace drivers could opt-in to object-level preemption as they
+  2501		 * saw fit.  For post-gen9 platforms, we continue to utilize Option 2;
+  2502		 * even though it is no longer necessary for ABI compatibility when
+  2503		 * enabling a new platform, it does ensure that userspace will be able
+  2504		 * to implement any workarounds that show up requiring temporary
+  2505		 * adjustments to preemption behavior at runtime.
+  2506		 *
+  2507		 * Notes/Workarounds:
+  2508		 *  - Wa_14015141709:  On DG2 and early steppings of MTL,
+  2509		 *      CS_CHICKEN1[0] does not disable object-level preemption as
+  2510		 *      it is supposed to (nor does CS_DEBUG_MODE1[0] if we had been
+  2511		 *      using Option 1).  Effectively this means userspace is unable
+  2512		 *      to disable object-level preemption on these platforms/steppings
+  2513		 *      despite the setting here.
+  2514		 *
+  2515		 *  - Wa_16013994831:  May require that userspace program
+  2516		 *      CS_CHICKEN1[10] when certain runtime conditions are true.
+  2517		 *      Userspace requires Option 2 to be in effect for their update of
+  2518		 *      CS_CHICKEN1[10] to be effective.
+  2519		 *
+  2520		 * Other workarounds may appear in the future that will also require
+  2521		 * Option 2 behavior to allow proper userspace implementation.
+  2522		 */
+  2523		if (GRAPHICS_VER(i915) >= 9)
+  2524			wa_masked_en(wal,
+  2525				     GEN7_FF_SLICE_CS_CHICKEN1,
+  2526				     GEN9_FFSC_PERCTX_PREEMPT_CTRL);
+  2527	
+  2528		if (IS_SKYLAKE(i915) ||
+  2529		    IS_KABYLAKE(i915) ||
+  2530		    IS_COFFEELAKE(i915) ||
+  2531		    IS_COMETLAKE(i915)) {
+  2532			/* WaEnableGapsTsvCreditFix:skl,kbl,cfl */
+  2533			wa_write_or(wal,
+  2534				    GEN8_GARBCNTL,
+  2535				    GEN9_GAPS_TSV_CREDIT_DISABLE);
+  2536		}
+  2537	
+  2538		if (IS_BROXTON(i915)) {
+  2539			/* WaDisablePooledEuLoadBalancingFix:bxt */
+  2540			wa_masked_en(wal,
+  2541				     FF_SLICE_CS_CHICKEN2,
+  2542				     GEN9_POOLED_EU_LOAD_BALANCING_FIX_DISABLE);
+  2543		}
+  2544	
+  2545		if (GRAPHICS_VER(i915) == 9) {
+  2546			/* WaContextSwitchWithConcurrentTLBInvalidate:skl,bxt,kbl,glk,cfl */
+  2547			wa_masked_en(wal,
+  2548				     GEN9_CSFE_CHICKEN1_RCS,
+  2549				     GEN9_PREEMPT_GPGPU_SYNC_SWITCH_DISABLE);
+  2550	
+  2551			/* WaEnableLbsSlaRetryTimerDecrement:skl,bxt,kbl,glk,cfl */
+  2552			wa_mcr_write_or(wal,
+  2553					BDW_SCRATCH1,
+  2554					GEN9_LBS_SLA_RETRY_TIMER_DECREMENT_ENABLE);
+  2555	
+  2556			/* WaProgramL3SqcReg1DefaultForPerf:bxt,glk */
+  2557			if (IS_GEN9_LP(i915))
+  2558				wa_mcr_write_clr_set(wal,
+  2559						     GEN8_L3SQCREG1,
+  2560						     L3_PRIO_CREDITS_MASK,
+  2561						     L3_GENERAL_PRIO_CREDITS(62) |
+  2562						     L3_HIGH_PRIO_CREDITS(2));
+  2563	
+  2564			/* WaOCLCoherentLineFlush:skl,bxt,kbl,cfl */
+  2565			wa_mcr_write_or(wal,
+  2566					GEN8_L3SQCREG4,
+  2567					GEN8_LQSC_FLUSH_COHERENT_LINES);
+  2568	
+  2569			/* Disable atomics in L3 to prevent unrecoverable hangs */
+  2570			wa_write_clr_set(wal, GEN9_SCRATCH_LNCF1,
+  2571					 GEN9_LNCF_NONIA_COHERENT_ATOMICS_ENABLE, 0);
+  2572			wa_mcr_write_clr_set(wal, GEN8_L3SQCREG4,
+  2573					     GEN8_LQSQ_NONIA_COHERENT_ATOMICS_ENABLE, 0);
+  2574			wa_mcr_write_clr_set(wal, GEN9_SCRATCH1,
+  2575					     EVICTION_PERF_FIX_ENABLE, 0);
+  2576		}
+  2577	
+  2578		if (IS_HASWELL(i915)) {
+  2579			/* WaSampleCChickenBitEnable:hsw */
+  2580			wa_masked_en(wal,
+  2581				     HSW_HALF_SLICE_CHICKEN3, HSW_SAMPLE_C_PERFORMANCE);
+  2582	
+  2583			wa_masked_dis(wal,
+  2584				      CACHE_MODE_0_GEN7,
+  2585				      /* enable HiZ Raw Stall Optimization */
+  2586				      HIZ_RAW_STALL_OPT_DISABLE);
+  2587		}
+  2588	
+  2589		if (IS_VALLEYVIEW(i915)) {
+  2590			/* WaDisableEarlyCull:vlv */
+  2591			wa_masked_en(wal,
+  2592				     _3D_CHICKEN3,
+  2593				     _3D_CHICKEN_SF_DISABLE_OBJEND_CULL);
+  2594	
+  2595			/*
+  2596			 * WaVSThreadDispatchOverride:ivb,vlv
+  2597			 *
+  2598			 * This actually overrides the dispatch
+  2599			 * mode for all thread types.
+  2600			 */
+  2601			wa_write_clr_set(wal,
+  2602					 GEN7_FF_THREAD_MODE,
+  2603					 GEN7_FF_SCHED_MASK,
+  2604					 GEN7_FF_TS_SCHED_HW |
+  2605					 GEN7_FF_VS_SCHED_HW |
+  2606					 GEN7_FF_DS_SCHED_HW);
+  2607	
+  2608			/* WaPsdDispatchEnable:vlv */
+  2609			/* WaDisablePSDDualDispatchEnable:vlv */
+  2610			wa_masked_en(wal,
+  2611				     GEN7_HALF_SLICE_CHICKEN1,
+  2612				     GEN7_MAX_PS_THREAD_DEP |
+  2613				     GEN7_PSD_SINGLE_PORT_DISPATCH_ENABLE);
+  2614		}
+  2615	
+  2616		if (IS_IVYBRIDGE(i915)) {
+  2617			/* WaDisableEarlyCull:ivb */
+  2618			wa_masked_en(wal,
+  2619				     _3D_CHICKEN3,
+  2620				     _3D_CHICKEN_SF_DISABLE_OBJEND_CULL);
+  2621	
+  2622			if (0) { /* causes HiZ corruption on ivb:gt1 */
+  2623				/* enable HiZ Raw Stall Optimization */
+  2624				wa_masked_dis(wal,
+  2625					      CACHE_MODE_0_GEN7,
+  2626					      HIZ_RAW_STALL_OPT_DISABLE);
+  2627			}
+  2628	
+  2629			/*
+  2630			 * WaVSThreadDispatchOverride:ivb,vlv
+  2631			 *
+  2632			 * This actually overrides the dispatch
+  2633			 * mode for all thread types.
+  2634			 */
+  2635			wa_write_clr_set(wal,
+  2636					 GEN7_FF_THREAD_MODE,
+  2637					 GEN7_FF_SCHED_MASK,
+  2638					 GEN7_FF_TS_SCHED_HW |
+  2639					 GEN7_FF_VS_SCHED_HW |
+  2640					 GEN7_FF_DS_SCHED_HW);
+  2641	
+  2642			/* WaDisablePSDDualDispatchEnable:ivb */
+  2643			if (IS_IVB_GT1(i915))
+  2644				wa_masked_en(wal,
+  2645					     GEN7_HALF_SLICE_CHICKEN1,
+  2646					     GEN7_PSD_SINGLE_PORT_DISPATCH_ENABLE);
+  2647		}
+  2648	
+  2649		if (GRAPHICS_VER(i915) == 7) {
+  2650			/* WaBCSVCSTlbInvalidationMode:ivb,vlv,hsw */
+  2651			wa_masked_en(wal,
+  2652				     RING_MODE_GEN7(RENDER_RING_BASE),
+  2653				     GFX_TLB_INVALIDATE_EXPLICIT | GFX_REPLAY_MODE);
+  2654	
+  2655			/* WaDisable_RenderCache_OperationalFlush:ivb,vlv,hsw */
+  2656			wa_masked_dis(wal, CACHE_MODE_0_GEN7, RC_OP_FLUSH_ENABLE);
+  2657	
+  2658			/*
+  2659			 * BSpec says this must be set, even though
+  2660			 * WaDisable4x2SubspanOptimization:ivb,hsw
+  2661			 * WaDisable4x2SubspanOptimization isn't listed for VLV.
+  2662			 */
+  2663			wa_masked_en(wal,
+  2664				     CACHE_MODE_1,
+  2665				     PIXEL_SUBSPAN_COLLECT_OPT_DISABLE);
+  2666	
+  2667			/*
+  2668			 * BSpec recommends 8x4 when MSAA is used,
+  2669			 * however in practice 16x4 seems fastest.
+  2670			 *
+  2671			 * Note that PS/WM thread counts depend on the WIZ hashing
+  2672			 * disable bit, which we don't touch here, but it's good
+  2673			 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
+  2674			 */
+  2675			wa_masked_field_set(wal,
+  2676					    GEN7_GT_MODE,
+  2677					    GEN6_WIZ_HASHING_MASK,
+  2678					    GEN6_WIZ_HASHING_16x4);
+  2679		}
+  2680	
+  2681		if (IS_GRAPHICS_VER(i915, 6, 7))
+  2682			/*
+  2683			 * We need to disable the AsyncFlip performance optimisations in
+  2684			 * order to use MI_WAIT_FOR_EVENT within the CS. It should
+  2685			 * already be programmed to '1' on all products.
+  2686			 *
+  2687			 * WaDisableAsyncFlipPerfMode:snb,ivb,hsw,vlv
+  2688			 */
+  2689			wa_masked_en(wal,
+  2690				     RING_MI_MODE(RENDER_RING_BASE),
+  2691				     ASYNC_FLIP_PERF_DISABLE);
+  2692	
+  2693		if (GRAPHICS_VER(i915) == 6) {
+  2694			/*
+  2695			 * Required for the hardware to program scanline values for
+  2696			 * waiting
+  2697			 * WaEnableFlushTlbInvalidationMode:snb
+  2698			 */
+  2699			wa_masked_en(wal,
+  2700				     GFX_MODE,
+  2701				     GFX_TLB_INVALIDATE_EXPLICIT);
+  2702	
+  2703			/* WaDisableHiZPlanesWhenMSAAEnabled:snb */
+  2704			wa_masked_en(wal,
+  2705				     _3D_CHICKEN,
+  2706				     _3D_CHICKEN_HIZ_PLANE_DISABLE_MSAA_4X_SNB);
+  2707	
+  2708			wa_masked_en(wal,
+  2709				     _3D_CHICKEN3,
+  2710				     /* WaStripsFansDisableFastClipPerformanceFix:snb */
+  2711				     _3D_CHICKEN3_SF_DISABLE_FASTCLIP_CULL |
+  2712				     /*
+  2713				      * Bspec says:
+  2714				      * "This bit must be set if 3DSTATE_CLIP clip mode is set
+  2715				      * to normal and 3DSTATE_SF number of SF output attributes
+  2716				      * is more than 16."
+  2717				      */
+  2718				     _3D_CHICKEN3_SF_DISABLE_PIPELINED_ATTR_FETCH);
+  2719	
+  2720			/*
+  2721			 * BSpec recommends 8x4 when MSAA is used,
+  2722			 * however in practice 16x4 seems fastest.
+  2723			 *
+  2724			 * Note that PS/WM thread counts depend on the WIZ hashing
+  2725			 * disable bit, which we don't touch here, but it's good
+  2726			 * to keep in mind (see 3DSTATE_PS and 3DSTATE_WM).
+  2727			 */
+  2728			wa_masked_field_set(wal,
+  2729					    GEN6_GT_MODE,
+  2730					    GEN6_WIZ_HASHING_MASK,
+  2731					    GEN6_WIZ_HASHING_16x4);
+  2732	
+  2733			/* WaDisable_RenderCache_OperationalFlush:snb */
+  2734			wa_masked_dis(wal, CACHE_MODE_0, RC_OP_FLUSH_ENABLE);
+  2735	
+  2736			/*
+  2737			 * From the Sandybridge PRM, volume 1 part 3, page 24:
+  2738			 * "If this bit is set, STCunit will have LRA as replacement
+  2739			 *  policy. [...] This bit must be reset. LRA replacement
+  2740			 *  policy is not supported."
+  2741			 */
+  2742			wa_masked_dis(wal,
+  2743				      CACHE_MODE_0,
+  2744				      CM0_STC_EVICT_DISABLE_LRA_SNB);
+  2745		}
+  2746	
+  2747		if (IS_GRAPHICS_VER(i915, 4, 6))
+  2748			/* WaTimedSingleVertexDispatch:cl,bw,ctg,elk,ilk,snb */
+  2749			wa_add(wal, RING_MI_MODE(RENDER_RING_BASE),
+  2750			       0, _MASKED_BIT_ENABLE(VS_TIMER_DISPATCH),
+  2751			       /* XXX bit doesn't stick on Broadwater */
+  2752			       IS_I965G(i915) ? 0 : VS_TIMER_DISPATCH, true);
+  2753	
+  2754		if (GRAPHICS_VER(i915) == 4)
+  2755			/*
+  2756			 * Disable CONSTANT_BUFFER before it is loaded from the context
+  2757			 * image. For as it is loaded, it is executed and the stored
+  2758			 * address may no longer be valid, leading to a GPU hang.
+  2759			 *
+  2760			 * This imposes the requirement that userspace reload their
+  2761			 * CONSTANT_BUFFER on every batch, fortunately a requirement
+  2762			 * they are already accustomed to from before contexts were
+  2763			 * enabled.
+  2764			 */
+  2765			wa_add(wal, ECOSKPD(RENDER_RING_BASE),
+  2766			       0, _MASKED_BIT_ENABLE(ECO_CONSTANT_BUFFER_SR_DISABLE),
+  2767			       0 /* XXX bit doesn't stick on Broadwater */,
+  2768			       true);
+  2769	}
+  2770	
 
-  CI-20190529: 20190529
-  CI_DRM_13577: bb585492db95d4cc7fe3797523ed2bbf5c621d37 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7459: 7459
-  Patchwork_123067v1: bb585492db95d4cc7fe3797523ed2bbf5c621d37 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-564132aad8c4 drm/i915/mtl: Add TC port lockdep assert to AUX power well enabling
-9077dcc30f1f drm/i915/dp: Drop redundant AUX power get/put in intel_dp_force()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/index.html
-
---===============5735727248279406478==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/dp: Drop redundant AUX power get/put in intel_dp_force()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123067/">https://patchwork.freedesktop.org/series/123067/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13577 -&gt; Patchwork_123067v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 39)</h2>
-<p>Additional (1): bat-dg2-9 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_123067v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6311">i915#6311</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@gem_mmap_gtt@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness@edp-1:</p>
-<ul>
-<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-rplp-1/igt@i915_pm_backlight@basic-brightness@edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7077">i915#7077</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13577/bat-mtlp-6/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-mtlp-6/igt@i915_selftest@live@requests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7982">i915#7982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8865">i915#8865</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@framebuffer-vs-set-tiling:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-5.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-rplp-1/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>
-<p>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
-</li>
-<li>
-<p>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-dg2-9/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13577/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6868">i915#6868</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-a-dp-5.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13577/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9047">i915#9047</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-adlp-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-5.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13577/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-vga-1:<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13577/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-vga-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123067v1/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-a-vga-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13577 -&gt; Patchwork_123067v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13577: bb585492db95d4cc7fe3797523ed2bbf5c621d37 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7459: 7459<br />
-  Patchwork_123067v1: bb585492db95d4cc7fe3797523ed2bbf5c621d37 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>564132aad8c4 drm/i915/mtl: Add TC port lockdep assert to AUX power well enabling<br />
-9077dcc30f1f drm/i915/dp: Drop redundant AUX power get/put in intel_dp_force()</p>
-
-</body>
-</html>
-
---===============5735727248279406478==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
