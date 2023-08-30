@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2434E78D3BC
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 09:51:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F0378D3BF
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 09:55:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C29810E4D0;
-	Wed, 30 Aug 2023 07:51:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA1610E4D2;
+	Wed, 30 Aug 2023 07:55:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7935610E4D0;
- Wed, 30 Aug 2023 07:51:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DEFF10E4D2;
+ Wed, 30 Aug 2023 07:55:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693381910; x=1724917910;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=0XT9n5Z4r6fOHqovX9YbXWebfSSo0VleXQh7sphfzI8=;
- b=n5YFtyL3feSAtyMva1+1NNKBC7aLBXXFdgKeWHDbikJAF56SPQd98X5q
- wL0creCqxU1fB1guXpPk2X1FY6hxiHY4yxo86bBgGEiO27ym3fv58KU6C
- 7fB8dJJrtxReC2N27HRI4iHGP5LpGeMfsHpsDjDRV1m4kQHBUb+Rim5Id
- y4VzFJtQlSNsn4pcPO+5hW4ABpwhiCjZOnO8d6++Q58izAuHjDxAjh8gu
- tzTzbCNhuSzS+s4AXu7+gjDOCMv8SrpEBlYr9RQfsX8wyMXfMcOp6fS9n
- msbtRiLJv79mb85vgbyiQuqfXODWDvXFpUbWJhwkMO6sfAflrlFOapZkK w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="355889255"
-X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="355889255"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2023 00:51:50 -0700
+ t=1693382127; x=1724918127;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gy42heFFBmku26L7zRC32gHV7wb/DscL5QqcL5RLE0Y=;
+ b=GeEnD3P2iiZJqRJjlE/XcTOfB7AqeZc/F7/rbQC4Rsyaj6A0byGzgQej
+ vrs7ubAfDzPSfiAgLF11P8Xp3Qx3g61ARLYNG3dcVpE1Zh9G+7C0AJrKB
+ LwmQ3B1VWylHdyLBGntTCEkxZVJtO9+dDjpLZSE+Bt9t7vby0KfCIzcBd
+ rhNhmVOd8H6EkyPXsRzB9c2iqGCo9IlS8mq3IWbdwcu6Bc3lJaL5QLG/i
+ B4WXOZ7lfybd1bVldYCfw+TjKC/hZoHbtIaqbUUCIwZIirfnM1UnygDmi
+ RKSegDSrlynParS9gc5aPBCFE4Wehef+FdH0NfX7KOsyHtJyKw3BQK7zA g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="375533342"
+X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="375533342"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2023 00:55:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="862534554"
-X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="862534554"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2023 00:51:49 -0700
-Date: Wed, 30 Aug 2023 10:51:41 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <ZO71Dbu1NvY8qYup@intel.com>
-References: <20230824125121.840298-2-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="829138446"
+X-IronPort-AV: E=Sophos;i="6.02,212,1688454000"; d="scan'208";a="829138446"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.213.24.84])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2023 00:55:20 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Brendan Higgins <brendan.higgins@linux.dev>,
+ David Gow <davidgow@google.com>
+Date: Wed, 30 Aug 2023 09:54:20 +0200
+Message-ID: <20230830075419.26484-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230824125121.840298-2-ankit.k.nautiyal@intel.com>
-Subject: Re: [Intel-gfx] [1/2] drm/display/dp: Assume 8 bpc support when DSC
- is supported
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [RFC PATCH] kunit: Fix test log size limit too low for
+ some tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,49 +58,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ drm-devel@lists.freedesktop.org, linux-kselftest@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, kunit-dev@googlegroups.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 24, 2023 at 06:21:20PM +0530, Ankit Nautiyal wrote:
-> As per DP v1.4, a DP DSC Sink device shall support 8bpc in DPCD 6Ah.
-> Apparently some panels that do support DSC, are not setting the bit for
-> 8bpc.
-> 
-> So always assume 8bpc support by DSC decoder, when DSC is claimed to be
-> supported.
-> 
-> v2: Use helper to get check dsc support. (Ankit)
-> v3: Fix styling and other typos. (Jani)
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Now we have memory space available to a kunit test case log exposed via
+debugfs limited to 2048 bytes, while some parametrized test cases, e.g.,
+drm_framebuffer.drm_test_framebuffer_create, need more.  For this reason,
+debugfs results from affected test cases get truncated silently, and
+external tools that rely on parsing of debugfs results can fail.
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Increase kunit test case log size limit to 4096 bytes.
 
-> ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index e6a78fd32380..8a1b64c57dfd 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -2449,12 +2449,16 @@ int drm_dp_dsc_sink_supported_input_bpcs(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_S
->  	int num_bpc = 0;
->  	u8 color_depth = dsc_dpcd[DP_DSC_DEC_COLOR_DEPTH_CAP - DP_DSC_SUPPORT];
->  
-> +	if (!drm_dp_sink_supports_dsc(dsc_dpcd))
-> +		return 0;
-> +
->  	if (color_depth & DP_DSC_12_BPC)
->  		dsc_bpc[num_bpc++] = 12;
->  	if (color_depth & DP_DSC_10_BPC)
->  		dsc_bpc[num_bpc++] = 10;
-> -	if (color_depth & DP_DSC_8_BPC)
-> -		dsc_bpc[num_bpc++] = 8;
-> +
-> +	/* A DP DSC Sink device shall support 8 bpc. */
-> +	dsc_bpc[num_bpc++] = 8;
->  
->  	return num_bpc;
->  }
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ include/kunit/test.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/kunit/test.h b/include/kunit/test.h
+index d33114097d0d0..d20eb1884edfa 100644
+--- a/include/kunit/test.h
++++ b/include/kunit/test.h
+@@ -34,7 +34,7 @@ DECLARE_STATIC_KEY_FALSE(kunit_running);
+ struct kunit;
+ 
+ /* Size of log associated with test. */
+-#define KUNIT_LOG_SIZE 2048
++#define KUNIT_LOG_SIZE 4096
+ 
+ /* Maximum size of parameter description string. */
+ #define KUNIT_PARAM_DESC_SIZE 128
+-- 
+2.41.0
+
