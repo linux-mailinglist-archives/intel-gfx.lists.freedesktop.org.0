@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6104D78D9F4
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 20:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8553978DBCB
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 20:46:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDE3A10E0F7;
-	Wed, 30 Aug 2023 18:35:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0E1A10E570;
+	Wed, 30 Aug 2023 18:46:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1335110E0F7
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 18:35:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ADFE10E570
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 18:46:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693420542; x=1724956542;
+ t=1693421176; x=1724957176;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=Od8TQbOjeB9WIbaKQd1AyJ6CbTvuTwV8/DVHCnJfwU8=;
- b=hlfd2CAhlwJkaK0MAG8gT+o/V4LQTPB5QBFJDWlczLCivl1w6CDYm6wS
- cDzjTbXegwa7VNDnHvisCmQM+1VSAFjrRhXTTh+Eic0jU5vybzo1BtRbR
- h47vD0GJYAUNtoeUwMfC24OLJNhKxEgjGxr+bBEO7+4AngGL65UTOyQ0o
- Mm6ft6H9azV+gSXzl/iWZz+0tz8yhY0Qyr5ndVqZbVJcd52KNahrbZzvL
- GmEa9FFlczihMl1EKNDK03CJJ7JCmTzHvKjCQT56cgrOzZQXE3XdksmN5
- te6pmaknHvmiaBAp9csC00lPtxC/Jkj+GGTEgwzzulihWKrQPYOjjgZsm g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="462096512"
-X-IronPort-AV: E=Sophos;i="6.02,214,1688454000"; d="scan'208";a="462096512"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2023 11:35:26 -0700
+ bh=DfRlEy0lqz/ZPyrlMzMFfGSlFtu7RTCtBtQZ4Zr2/rU=;
+ b=e4bBftqO2PgPSC7MAsrL1HgBCwIHQlrgtgtUKM4KZsnwm71KPk0x8UkS
+ 1cBPwKR98/7/9bWF826zQbzQH9k0P+duG6z8uv9LCh5K+yxVi9zCoWbRY
+ mzLYaQMlbu9iriABUxgWSEUpOJuHpkrSG+65iKqZdGg2P/u/7WaH7bWiY
+ Gn2mr8RtqdzJ15C+m9zZr/7Cn6pnn5MrxfQXhwBpZBmnZwSpww9sZdbMR
+ d859EsR2BrMHiLiiYb/dsVaTvkLb8pIfCFqXn0gRt4+XVJe7gFFE/QeOy
+ B94aDTTe8Kj6W2ClfNRV0JiWVCsw1/ZaPmEBhq9xpWuxCCLV+WRhtC/Hc Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="439668169"
+X-IronPort-AV: E=Sophos;i="6.02,214,1688454000"; d="scan'208";a="439668169"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2023 11:46:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="689015854"
-X-IronPort-AV: E=Sophos;i="6.02,214,1688454000"; d="scan'208";a="689015854"
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="732748397"
+X-IronPort-AV: E=Sophos;i="6.02,214,1688454000"; d="scan'208";a="732748397"
 Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
- by orsmga003.jf.intel.com with ESMTP; 30 Aug 2023 11:35:21 -0700
+ by orsmga007.jf.intel.com with ESMTP; 30 Aug 2023 11:46:14 -0700
 Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qbQ2D-000A7P-0W;
- Wed, 30 Aug 2023 18:35:21 +0000
-Date: Thu, 31 Aug 2023 02:34:22 +0800
+ (envelope-from <lkp@intel.com>) id 1qbQCj-000A7s-0l;
+ Wed, 30 Aug 2023 18:46:13 +0000
+Date: Thu, 31 Aug 2023 02:45:15 +0800
 From: kernel test robot <lkp@intel.com>
 To: Shekhar Chauhan <shekhar.chauhan@intel.com>,
  intel-gfx@lists.freedesktop.org
-Message-ID: <202308310238.2Dnlp2IN-lkp@intel.com>
+Message-ID: <202308310210.60ealdkg-lkp@intel.com>
 References: <20230830160001.2395993-1-shekhar.chauhan@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -74,39 +74,40 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Shekhar-Chauhan/drm-i915-
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
 patch link:    https://lore.kernel.org/r/20230830160001.2395993-1-shekhar.chauhan%40intel.com
 patch subject: [Intel-gfx] [PATCH] drm/i915: Add Wa_14015150844
-config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20230831/202308310238.2Dnlp2IN-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230831/202308310238.2Dnlp2IN-lkp@intel.com/reproduce)
+config: x86_64-buildonly-randconfig-004-20230831 (https://download.01.org/0day-ci/archive/20230831/202308310210.60ealdkg-lkp@intel.com/config)
+compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230831/202308310210.60ealdkg-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202308310238.2Dnlp2IN-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308310210.60ealdkg-lkp@intel.com/
 
 All errors (new ones prefixed by >>):
 
    drivers/gpu/drm/i915/gt/intel_workarounds.c: In function 'rcs_engine_wa_init':
->> drivers/gpu/drm/i915/gt/intel_workarounds.c:2330:13: error: implicit declaration of function 'IS_DG2_GRAPHICS_STEP'; did you mean 'IS_GRAPHICS_STEP'? [-Werror=implicit-function-declaration]
-    2330 |         if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_C0, STEP_FOREVER) ||
-         |             ^~~~~~~~~~~~~~~~~~~~
-         |             IS_GRAPHICS_STEP
->> drivers/gpu/drm/i915/gt/intel_workarounds.c:2330:40: error: 'G10' undeclared (first use in this function)
-    2330 |         if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_C0, STEP_FOREVER) ||
-         |                                        ^~~
-   drivers/gpu/drm/i915/gt/intel_workarounds.c:2330:40: note: each undeclared identifier is reported only once for each function it appears in
->> drivers/gpu/drm/i915/gt/intel_workarounds.c:2331:40: error: 'G11' undeclared (first use in this function)
-    2331 |             IS_DG2_GRAPHICS_STEP(i915, G11, STEP_B0, STEP_FOREVER) ||
-         |                                        ^~~
->> drivers/gpu/drm/i915/gt/intel_workarounds.c:2333:13: error: implicit declaration of function 'IS_MTL_GRAPHICS_STEP'; did you mean 'INTEL_GRAPHICS_STEP'? [-Werror=implicit-function-declaration]
-    2333 |             IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_FOREVER) ||
-         |             ^~~~~~~~~~~~~~~~~~~~
-         |             INTEL_GRAPHICS_STEP
->> drivers/gpu/drm/i915/gt/intel_workarounds.c:2333:40: error: 'M' undeclared (first use in this function)
-    2333 |             IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_FOREVER) ||
-         |                                        ^
->> drivers/gpu/drm/i915/gt/intel_workarounds.c:2334:40: error: 'P' undeclared (first use in this function)
-    2334 |             IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_FOREVER)) {
-         |                                        ^
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2330:6: error: implicit declaration of function 'IS_DG2_GRAPHICS_STEP'; did you mean 'IS_GRAPHICS_STEP'? [-Werror=implicit-function-declaration]
+     if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_C0, STEP_FOREVER) ||
+         ^~~~~~~~~~~~~~~~~~~~
+         IS_GRAPHICS_STEP
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2330:33: error: 'G10' undeclared (first use in this function)
+     if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_C0, STEP_FOREVER) ||
+                                    ^~~
+   drivers/gpu/drm/i915/gt/intel_workarounds.c:2330:33: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2331:33: error: 'G11' undeclared (first use in this function); did you mean 'G10'?
+         IS_DG2_GRAPHICS_STEP(i915, G11, STEP_B0, STEP_FOREVER) ||
+                                    ^~~
+                                    G10
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2333:6: error: implicit declaration of function 'IS_MTL_GRAPHICS_STEP'; did you mean 'INTEL_GRAPHICS_STEP'? [-Werror=implicit-function-declaration]
+         IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_FOREVER) ||
+         ^~~~~~~~~~~~~~~~~~~~
+         INTEL_GRAPHICS_STEP
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2333:33: error: 'M' undeclared (first use in this function)
+         IS_MTL_GRAPHICS_STEP(i915, M, STEP_A0, STEP_FOREVER) ||
+                                    ^
+>> drivers/gpu/drm/i915/gt/intel_workarounds.c:2334:33: error: 'P' undeclared (first use in this function)
+         IS_MTL_GRAPHICS_STEP(i915, P, STEP_A0, STEP_FOREVER)) {
+                                    ^
    cc1: some warnings being treated as errors
 
 
