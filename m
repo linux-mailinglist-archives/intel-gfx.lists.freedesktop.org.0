@@ -2,70 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F8B178E17D
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 23:32:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A3E78E18B
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 23:41:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1772010E163;
-	Wed, 30 Aug 2023 21:32:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85A7910E163;
+	Wed, 30 Aug 2023 21:41:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E08910E14D
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 21:32:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B9D810E182
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 21:41:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1693431140;
+ s=mimecast20190719; t=1693431700;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=muYS3JTdtl5ij4HfFLRfXrr71LVNj5k2IECcY5Q/I/Q=;
- b=flHf96J3sra60ZvXhJUTEwd7KQTQqejkkZA4fuJqCTicG4ex4vRowEfo5kqJTR/yAqVSY+
- VWh2HmwEtKNPW3QkMFSRBDWrtLDeYlQY7NfpHKww+ruylDOe38Wbw/phRm2ktxJb8RIuMS
- cDV8ueu0qDO/3lwxdaAxvy+8jmJLcfg=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=MZhf7II9vtbJCXNAso1V6B0RA+VgorocPdsW3cpI4rA=;
+ b=jQdbEBLI42lPpgAkR7dKgtAXbzpusiDsK5w9Ue9bXSE2v7Z52SqxiwkCDeRnnpGOQrhnuG
+ WFD4jBMciU3e8+Ug3n5suvMLAK1A6VsLRczdyWN3KfTv4Fv5aoQzKA+rqFuDkjn+dwQ7A7
+ XngEbs89iAYN5WGV57xGocSicSSJH40=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-88-w5zcNt3DP1-kdkoJz0vhhQ-1; Wed, 30 Aug 2023 17:32:19 -0400
-X-MC-Unique: w5zcNt3DP1-kdkoJz0vhhQ-1
-Received: by mail-qk1-f200.google.com with SMTP id
- af79cd13be357-76e1a6a107eso19134985a.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 14:32:19 -0700 (PDT)
+ us-mta-398-Vn2Rc7VhNxW67Ka5dVQxLw-1; Wed, 30 Aug 2023 17:41:39 -0400
+X-MC-Unique: Vn2Rc7VhNxW67Ka5dVQxLw-1
+Received: by mail-qv1-f70.google.com with SMTP id
+ 6a1803df08f44-64cdbf21aa3so2111416d6.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Aug 2023 14:41:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693431138; x=1694035938;
+ d=1e100.net; s=20221208; t=1693431698; x=1694036498;
  h=mime-version:user-agent:content-transfer-encoding:organization
  :references:in-reply-to:date:cc:to:from:subject:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=KDXOTCugmWwzlMtneetPJwGDPlqzAsl8vZFdxtx5l00=;
- b=M2qzJRT9MrjzWEZhlnlWNNCpOM509GToRhe6ccB67IG9CjhCFaqc9VSLtHpv8xSUw8
- gmftoLS4jdRqunTg/pKVrGUQk2mH1xLHT4wnb2qrVOMkbNRqXp26Ov5VApD0jyRuTN/p
- ReetggQnUn8qE5mF4ZBFQUySmtah2gf0vFK4vqfjSeBs9Pa8SjGpW6r9AbP8FQIVmNBM
- T/vgxqxM2i8/wIFG+eqF9OUeTW49yQ77NbvQdYooQmWjawTwJF8CrSEfpwgEtDrjz06S
- bbrgOebk6601GzTm/FBaP60Df30casayuMyQL0UsXJ+9tQueQCmmLpBZmvS6mGVNI8QQ
- a0fA==
-X-Gm-Message-State: AOJu0YxPkVcKf6HddY2TRCTeRNl2eEClXYXzpxVwHrNtfuLH+gZvuQG/
- lOSOblB3KfD7VYab0Ex279z7p2DC54iuQIQv47y7aeYcTCetLAMNweZC5WR/Njiq6ACL31S4POE
- SRt0W/lTU07iiis5ZpIKV2bOQiXSP
-X-Received: by 2002:a05:620a:b04:b0:76c:97a9:8ff0 with SMTP id
- t4-20020a05620a0b0400b0076c97a98ff0mr821856qkg.77.1693431138764; 
- Wed, 30 Aug 2023 14:32:18 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHuj0y2dliYKqj6ukTLeiCw0z5f+0ujpYgtl/Ewjx6vV54tP1wbw65s3GP9+11SUKZzgT5HdA==
-X-Received: by 2002:a05:620a:b04:b0:76c:97a9:8ff0 with SMTP id
- t4-20020a05620a0b0400b0076c97a98ff0mr821843qkg.77.1693431138514; 
- Wed, 30 Aug 2023 14:32:18 -0700 (PDT)
+ bh=MZhf7II9vtbJCXNAso1V6B0RA+VgorocPdsW3cpI4rA=;
+ b=FnRSOJIH4l24/v/o19A+WVBx97l5777lsPu28y8wsCBrmojf4JOO6uXCzBfAY+BYTt
+ bAJM0lu9+P0Wps0IfX2Tys397lwlrYJkRFXc9upkGuQIJFzP+BkbZiT2xGPrfaifuG9l
+ SkaqfuEti+jiNefq83JqmGw5ttaYED+Goaijotl0EEuK0PBzaBBSn3EWvW85TI4RxnUM
+ 4tWxChSl1Ppi/jdBNFAEhx+QbWJ1BshxPpNUPJK+va5mN644E0KEJB6iybFWxs0iZCQm
+ KdgHRTc6pLu8RaXboivkgWXGvReUhpKUAQSE9OBbev2olPmIcYwaEG5SlHSvFkOXVWbh
+ OZsw==
+X-Gm-Message-State: AOJu0Yzb3+FcaKvvtoHTt7qBMNUK2RcV/ILmnQ580rU9RWb2332R+wmy
+ JM87xizDjyO488nm8ebBXimc1LdZ0UIvHu/FLZKy8Fuu7lB83Cet+rXbqs2bKXizY3zIXigbJhx
+ Pm1xoirHFG1gzTrm27PbaydEYnrCp
+X-Received: by 2002:a05:622a:1187:b0:410:7b5:3f13 with SMTP id
+ m7-20020a05622a118700b0041007b53f13mr1213793qtk.16.1693431698527; 
+ Wed, 30 Aug 2023 14:41:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHMgqp9xD2SGBugS5P7h0e/1BnqXqlsEDl+s7SDTNfo953w0fNTue1ZedsIWzK1w0tD9C8rZg==
+X-Received: by 2002:a05:622a:1187:b0:410:7b5:3f13 with SMTP id
+ m7-20020a05622a118700b0041007b53f13mr1213776qtk.16.1693431698210; 
+ Wed, 30 Aug 2023 14:41:38 -0700 (PDT)
 Received: from ?IPv6:2600:4040:5c7d:5f00::feb? ([2600:4040:5c7d:5f00::feb])
  by smtp.gmail.com with ESMTPSA id
- i25-20020a05620a145900b007671b599cf5sm29163qkl.40.2023.08.30.14.32.17
+ h14-20020ac8776e000000b004069782c943sm3986894qtu.40.2023.08.30.14.41.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 30 Aug 2023 14:32:18 -0700 (PDT)
-Message-ID: <56e130b5f3c22790ea54cac7cb7281675290d4a2.camel@redhat.com>
+ Wed, 30 Aug 2023 14:41:37 -0700 (PDT)
+Message-ID: <06b50235b6bb02d0774fe0bdf5186ab999c0940a.camel@redhat.com>
 From: Lyude Paul <lyude@redhat.com>
 To: Gil Dekel <gildekel@chromium.org>, intel-gfx@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org
-Date: Wed, 30 Aug 2023 17:32:17 -0400
-In-Reply-To: <20230824205335.500163-4-gildekel@chromium.org>
+Date: Wed, 30 Aug 2023 17:41:37 -0400
+In-Reply-To: <20230824205335.500163-1-gildekel@chromium.org>
 References: <20230824205335.500163-1-gildekel@chromium.org>
- <20230824205335.500163-4-gildekel@chromium.org>
 Organization: Red Hat Inc.
 User-Agent: Evolution 3.48.3 (3.48.3-1.fc38)
 MIME-Version: 1.0
@@ -73,8 +72,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v4 3/6] drm/dp_mst: Add
- drm_dp_set_mst_topology_link_status()
+Subject: Re: [Intel-gfx] [PATCH v4 0/6] drm/i915/dp_link_training: Define a
+ final failure state when link training fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,116 +90,163 @@ Cc: seanpaul@chromium.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Other then the name typo (s/Pual/Paul):
+
+Signed-off-by: Lyude Paul <lyude@redhat.com> (just since I co-authored
+things~)
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+
+I think we definitely want to make sure we get intel's opinions on this
+though, especially regarding the usage of link-status. I think we're close
+enough to link-status's intended purpose, but I definitely would like to kn=
+ow
+what others think about that since userspace will definitely have to handle
+situations like this a bit differently than with SST.
+
+Also - definitely make sure you take a look at Imre's patch series that's
+currently on the list (I just finished reviewing it), since it adds some
+things to the helpers that might end up being useful here :)
+
+https://patchwork.freedesktop.org/series/122589/
+
 On Thu, 2023-08-24 at 16:50 -0400, Gil Dekel wrote:
-> Unlike SST, MST can support multiple displays connected to a single
-> connector. However, this also means that if the DisplayPort link to the
-> top-level MST branch device becomes unstable, then every single branch
-> device has an unstable link.
+> Next version of https://patchwork.freedesktop.org/series/122850/
 >=20
-> Since there are multiple downstream ports per connector, setting the
-> link status of the parent mstb's port to BAD is not enough. All of the
-> downstream mstb ports must also have their link status set to BAD.
+> v4:
+>   Another blunder. I uploaded the patches from my ChromeiumOS kernel dev =
+repo
+>   instead of drm-tip/drm-tip. Apologies for the noise :(
 >=20
-> This aligns to how the DP link status logic in DRM works. We notify
-> userspace that all of the mstb ports need retraining and apply new lower
-> bandwidth constraints to all future atomic commits on the topology that
-> follow.
+> v3:
+>   Still learning the ropes of upstream workflow. Apologies for mucking up=
+ v2.
+>   This is just a re-upload.
 >=20
-> Since any driver supporting MST needs to figure out which connectors
-> live downstream on an MST topology and update their link status in order
-> to retrain MST links properly, we add the
-> drm_dp_set_mst_topology_link_status() helper. This helper simply marks
-> the link status of all connectors living in that topology as bad. We
-> will make use of this helper in i915 later in this series.
+> v2:
+>   Reorganize into:
+>   1) Add for final failure state for SST and MST link training fallback.
+>   2) Add a DRM helper for setting downstream MST ports' link-status state=
+.
+>   3) Make handling SST and MST connectors simpler via intel_dp.
+>   4) Update link-status for downstream MST ports.
+>   5) Emit a uevent with the "link-status" trigger property.
 >=20
-> Credit: this patch is a refactor of Lyude Pual's original patch:
-> https://patchwork.kernel.org/project/dri-devel/patch/20180308232421.14049=
--5-lyude@redhat.com/
+> v1:
+> Currently, when link training fails after all fallback values have been
+> exhausted, the i915 driver seizes to send uevents to userspace. This leav=
+e
+> userspace thinking that the last passing atomic commit was successful, an=
+d that
+> all connectors (displays) are connected and operational, when in fact, th=
+e last
+> link failed to train and the displays remain dark. This manifests as "zom=
+bie"
+> displays in userspace, in which users observe the displays appear in thei=
+r
+> display settings page, but they are dark and unresponsive.
+>=20
+> Since, at the time of writing, MST link training fallback is not implemen=
+ted,
+> failing MST link training is a significantly more common case then a comp=
+lete
+> SST link training failure. And with users using MST hubs more than ever t=
+o
+> connect multiple displays via their USB-C ports we observe this case ofte=
+n.
+>=20
+> This patchset series suggest a solution, in which a final failure state i=
+s
+> defined. In this final state, the connector's bit rate capabilities, name=
+ly
+> max_link_rate and max_link_lane_count, are set to 0. This effectively set=
+ the
+> connector's bandwidth to 0Gbps, thus causing all its modes to be pruned i=
+n the
+> following connector probing.
+>=20
+> Next, with this state defined, we emit a link-status=3DBad uevent. The ne=
+xt time
+> userspace probes the connector, it should recognize that the connector ha=
+s no
+> modes and ignore it since it is in a bad state.
+>=20
+> I am aware that always sending a uevent and never stopping may result in =
+some
+> userspaces having their expectations broken and enter an infinite loop of
+> modesets and link-training attempts. However, per DRM link-status spec:
+> ```
+>  * link-status:
+>  *      Connector link-status property to indicate the status of link. Th=
+e
+>  *      default value of link-status is "GOOD". If something fails during=
+ or
+>  *      after modeset, the kernel driver may set this to "BAD" and issue =
+a
+>  *      hotplug uevent. Drivers should update this value using
+>  *      drm_connector_set_link_status_property().
+>  *
+>  *      When user-space receives the hotplug uevent and detects a "BAD"
+>  *      link-status, the sink doesn't receive pixels anymore (e.g. the sc=
+reen
+>  *      becomes completely black). The list of available modes may have
+>  *      changed. User-space is expected to pick a new mode if the current=
+ one
+>  *      has disappeared and perform a new modeset with link-status set to
+>  *      "GOOD" to re-enable the connector.
+> ```
+> (form drivers/gpu/drm/drm_connector.c - DOC: standard connector propertie=
+s)
+>=20
+> it seems reasonable to assume that the suggested state is an extension of=
+ the
+> spec's guidelines, in which the next new mode userspace picks for a conne=
+ctor
+> with no modes is - none, thus breaking the cycle of failed link-training
+> attempts.
+>=20
+> I suspect that, maybe, zeroing out the bit rate capabilities is not the r=
+ight
+> way to go, and perhaps marking the connector as disconnected instead may =
+be a
+> better solution. However, if marking a connector disconnected is the way =
+to go,
+> We will have to iterate over all MST ports in the MST case and mark the s=
+pawned
+> connectors as disconnected as well.
 
-s/Pual/Paul/ (probably want to fix this on the other patches in the series =
+I -think- this is probably fine, that's likely how I'd=20
+
+>=20
+> As a final note I should add that this approach was tested with ChromeOS =
 as
-well)
-
+> userspace, and we observed that the zombie displays stop showing up once =
+the
+> connectors are pruned of all their modes and are ignored by userspace.
 >=20
-> Signed-off-by: Gil Dekel <gildekel@chromium.org>
-> ---
->  drivers/gpu/drm/display/drm_dp_mst_topology.c | 39 +++++++++++++++++++
->  include/drm/display/drm_dp_mst_helper.h       |  3 ++
->  2 files changed, 42 insertions(+)
+> For your consideration and guidance.
+> Thanks,
 >=20
-> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/=
-drm/display/drm_dp_mst_topology.c
-> index ed96cfcfa304..17cbadfb6ccb 100644
-> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> @@ -3566,6 +3566,45 @@ int drm_dp_get_vc_payload_bw(const struct drm_dp_m=
-st_topology_mgr *mgr,
->  }
->  EXPORT_SYMBOL(drm_dp_get_vc_payload_bw);
+> Gil Dekel (6):
+>   drm/i915/dp_link_training: Add a final failing state to link training
+>     fallback
+>   drm/i915/dp_link_training: Add a final failing state to link training
+>     fallback for MST
+>   drm/dp_mst: Add drm_dp_set_mst_topology_link_status()
+>   drm/i915: Move DP modeset_retry_work into intel_dp
+>   drm/i915/dp_link_training: Set all downstream MST ports to BAD before
+>     retrying
+>   drm/i915/dp_link_training: Emit a link-status=3DBad uevent with trigger
+>     property
 >=20
-> +/**
-> + * drm_dp_set_mst_topology_link_status() - set all downstream MST ports'=
- link status
-> + * @mgr: MST topology manager to set state for
-> + * @status: The new status to set the MST topology to
-> + *
-> + * Set all downstream ports' link-status within the topology to the give=
-n status.
-> + */
-> +void drm_dp_set_mst_topology_link_status(struct drm_dp_mst_topology_mgr =
-*mgr,
-> +=09=09=09=09=09 enum drm_link_status status)
-> +{
-> +=09struct drm_dp_mst_port *port;
-> +=09struct drm_dp_mst_branch *rmstb;
-> +=09struct drm_dp_mst_branch *mstb =3D
-> +=09=09drm_dp_mst_topology_get_mstb_validated(mgr, mgr->mst_primary);
-> +
-> +=09list_for_each_entry_reverse(port, &mstb->ports, next) {
-> +=09=09struct drm_connector *connector =3D port->connector;
-> +
-> +=09=09if (connector) {
-> +=09=09=09mutex_lock(&connector->dev->mode_config.mutex);
-> +=09=09=09drm_dbg_kms(
-> +=09=09=09=09connector->dev,
-> +=09=09=09=09"[MST-CONNECTOR:%d:%s] link status %d -> %d\n",
-> +=09=09=09=09connector->base.id, connector->name,
-> +=09=09=09=09connector->state->link_status, status);
-> +=09=09=09connector->state->link_status =3D status;
-> +=09=09=09mutex_unlock(&connector->dev->mode_config.mutex);
-> +=09=09}
-> +
-> +=09=09rmstb =3D drm_dp_mst_topology_get_mstb_validated(mstb->mgr,
-> +=09=09=09=09=09=09=09       port->mstb);
-> +=09=09if (rmstb) {
-> +=09=09=09drm_dp_set_mst_topology_link_status(rmstb->mgr, status);
-> +=09=09=09drm_dp_mst_topology_put_mstb(rmstb);
-> +=09=09}
-> +=09}
-> +}
-> +EXPORT_SYMBOL(drm_dp_set_mst_topology_link_status);
-> +
->  /**
->   * drm_dp_read_mst_cap() - check whether or not a sink supports MST
->   * @aux: The DP AUX channel to use
-> diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/displa=
-y/drm_dp_mst_helper.h
-> index ed5c9660563c..855d488bf364 100644
-> --- a/include/drm/display/drm_dp_mst_helper.h
-> +++ b/include/drm/display/drm_dp_mst_helper.h
-> @@ -832,6 +832,9 @@ struct edid *drm_dp_mst_get_edid(struct drm_connector=
- *connector,
->  int drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
->  =09=09=09     int link_rate, int link_lane_count);
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c | 39 ++++++++++
+>  drivers/gpu/drm/i915/display/intel_display.c  | 14 +++-
+>  .../drm/i915/display/intel_display_types.h    |  6 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 75 ++++++++++++-------
+>  drivers/gpu/drm/i915/display/intel_dp.h       |  2 +-
+>  .../drm/i915/display/intel_dp_link_training.c | 11 ++-
+>  include/drm/display/drm_dp_mst_helper.h       |  3 +
+>  7 files changed, 110 insertions(+), 40 deletions(-)
 >=20
-> +void drm_dp_set_mst_topology_link_status(struct drm_dp_mst_topology_mgr =
-*mgr,
-> +=09=09=09=09=09 enum drm_link_status status);
-> +
->  int drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc);
->=20
->  void drm_dp_mst_update_slots(struct drm_dp_mst_topology_state *mst_state=
-, uint8_t link_encoding_cap);
 > --
 > Gil Dekel, Software Engineer, Google / ChromeOS Display and Graphics
 >=20
