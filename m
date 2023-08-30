@@ -1,33 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D63978D56E
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 13:09:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 606E378D579
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Aug 2023 13:19:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 321EF10E4F5;
-	Wed, 30 Aug 2023 11:09:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65D3E10E12F;
+	Wed, 30 Aug 2023 11:19:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4E8BF10E4F5;
- Wed, 30 Aug 2023 11:09:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 46FC9AADDA;
- Wed, 30 Aug 2023 11:09:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1456183106454983411=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 919A710E12F;
+ Wed, 30 Aug 2023 11:19:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693394378; x=1724930378;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=/RPJwV/HOkSk+ghhx++giuU8oLv9bHOPgzmO+fBa9iY=;
+ b=QpC4uAQvkZ2RJfU3bBVhE0e9RbYuZ7wruMKDEr34DATn0LZsGC7xc69X
+ 3UqMtPDde3wvmnFpdTerbryr0Edr3c/rQWrMieDX12w4InMUs+odSBeKl
+ 2GfydxATaUpWXj5NTXcEYszMVmkEM8ymxcRkMP+KeVK80qgYjNOScW8Gg
+ UG41ZAuYDiWp95dm/ff72NdFPhxap0UfhZB5PA4mxu4aulwvgVAJiqFS+
+ l4iT0kU/oqHsDP2mtU2CClMlPjJMLftxncpIQ9ELBtlPSan557h2V2iPW
+ VUXY4uZj3WnAavHoBTezhJIJqqjROQDVmepb7dnKgh/sdqL27cuA37IUX w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="374525910"
+X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; d="scan'208";a="374525910"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2023 04:19:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="829198503"
+X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; d="scan'208";a="829198503"
+Received: from ziemtocx-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.57.251])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2023 04:19:36 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230829113920.13713-4-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230829113920.13713-1-ville.syrjala@linux.intel.com>
+ <20230829113920.13713-4-ville.syrjala@linux.intel.com>
+Date: Wed, 30 Aug 2023 14:19:34 +0300
+Message-ID: <878r9s22wp.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Date: Wed, 30 Aug 2023 11:09:50 -0000
-Message-ID: <169339379025.15232.5972845601143783368@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230830080219.2529281-1-jouni.hogander@intel.com>
-In-Reply-To: <20230830080219.2529281-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSGFu?=
- =?utf-8?q?dle_dma_fences_in_dirtyfb_ioctl_=28rev5=29?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH 03/12] drm/i915: Call the DDC bus i2c
+ adapter "ddc"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,253 +62,448 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1456183106454983411==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 29 Aug 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Rename the various names we've used for the DDC bus
+> i2c adapter ("i2c", "adapter", etc.) to just "ddc".
+> This differentiates it from the various other i2c
+> busses we might have (DSI panel stuff, DVO control bus, etc.).
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_connector.c    |  6 +--
+>  .../gpu/drm/i915/display/intel_connector.h    |  2 +-
+>  drivers/gpu/drm/i915/display/intel_crt.c      | 32 ++++++------
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  4 +-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     | 51 +++++++++----------
+>  drivers/gpu/drm/i915/display/intel_lspcon.c   | 14 ++---
+>  6 files changed, 52 insertions(+), 57 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu=
+/drm/i915/display/intel_connector.c
+> index ff3bcadebe59..c65887870ddc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_connector.c
+> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
+> @@ -192,17 +192,17 @@ int intel_connector_update_modes(struct drm_connect=
+or *connector,
+>  /**
+>   * intel_ddc_get_modes - get modelist from monitor
+>   * @connector: DRM connector device to use
+> - * @adapter: i2c adapter
+> + * @ddc: DDC bus i2c adapter
+>   *
+>   * Fetch the EDID information from @connector using the DDC bus.
+>   */
+>  int intel_ddc_get_modes(struct drm_connector *connector,
+> -			struct i2c_adapter *adapter)
+> +			struct i2c_adapter *ddc)
+>  {
+>  	const struct drm_edid *drm_edid;
+>  	int ret;
+>=20=20
+> -	drm_edid =3D drm_edid_read_ddc(connector, adapter);
+> +	drm_edid =3D drm_edid_read_ddc(connector, ddc);
+>  	if (!drm_edid)
+>  		return 0;
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_connector.h b/drivers/gpu=
+/drm/i915/display/intel_connector.h
+> index aaf7281462dc..bafde3f11ff4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_connector.h
+> +++ b/drivers/gpu/drm/i915/display/intel_connector.h
+> @@ -26,7 +26,7 @@ bool intel_connector_get_hw_state(struct intel_connecto=
+r *connector);
+>  enum pipe intel_connector_get_pipe(struct intel_connector *connector);
+>  int intel_connector_update_modes(struct drm_connector *connector,
+>  				 const struct drm_edid *drm_edid);
+> -int intel_ddc_get_modes(struct drm_connector *c, struct i2c_adapter *ada=
+pter);
+> +int intel_ddc_get_modes(struct drm_connector *c, struct i2c_adapter *ddc=
+);
+>  void intel_attach_force_audio_property(struct drm_connector *connector);
+>  void intel_attach_broadcast_rgb_property(struct drm_connector *connector=
+);
+>  void intel_attach_aspect_ratio_property(struct drm_connector *connector);
+> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i=
+915/display/intel_crt.c
+> index f66340b4caf0..8145511bd5c3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> @@ -610,18 +610,18 @@ static bool intel_crt_detect_hotplug(struct drm_con=
+nector *connector)
+>  }
+>=20=20
+>  static const struct drm_edid *intel_crt_get_edid(struct drm_connector *c=
+onnector,
+> -						 struct i2c_adapter *i2c)
+> +						 struct i2c_adapter *ddc)
+>  {
+>  	const struct drm_edid *drm_edid;
+>=20=20
+> -	drm_edid =3D drm_edid_read_ddc(connector, i2c);
+> +	drm_edid =3D drm_edid_read_ddc(connector, ddc);
+>=20=20
+> -	if (!drm_edid && !intel_gmbus_is_forced_bit(i2c)) {
+> +	if (!drm_edid && !intel_gmbus_is_forced_bit(ddc)) {
+>  		drm_dbg_kms(connector->dev,
+>  			    "CRT GMBUS EDID read failed, retry using GPIO bit-banging\n");
+> -		intel_gmbus_force_bit(i2c, true);
+> -		drm_edid =3D drm_edid_read_ddc(connector, i2c);
+> -		intel_gmbus_force_bit(i2c, false);
+> +		intel_gmbus_force_bit(ddc, true);
+> +		drm_edid =3D drm_edid_read_ddc(connector, ddc);
+> +		intel_gmbus_force_bit(ddc, false);
+>  	}
+>=20=20
+>  	return drm_edid;
+> @@ -629,12 +629,12 @@ static const struct drm_edid *intel_crt_get_edid(st=
+ruct drm_connector *connector
+>=20=20
+>  /* local version of intel_ddc_get_modes() to use intel_crt_get_edid() */
+>  static int intel_crt_ddc_get_modes(struct drm_connector *connector,
+> -				struct i2c_adapter *adapter)
+> +				   struct i2c_adapter *ddc)
+>  {
+>  	const struct drm_edid *drm_edid;
+>  	int ret;
+>=20=20
+> -	drm_edid =3D intel_crt_get_edid(connector, adapter);
+> +	drm_edid =3D intel_crt_get_edid(connector, ddc);
+>  	if (!drm_edid)
+>  		return 0;
+>=20=20
+> @@ -650,11 +650,11 @@ static bool intel_crt_detect_ddc(struct drm_connect=
+or *connector)
+>  	struct intel_crt *crt =3D intel_attached_crt(to_intel_connector(connect=
+or));
+>  	struct drm_i915_private *dev_priv =3D to_i915(crt->base.base.dev);
+>  	const struct drm_edid *drm_edid;
+> -	struct i2c_adapter *i2c;
+> +	struct i2c_adapter *ddc;
+>  	bool ret =3D false;
+>=20=20
+> -	i2c =3D intel_gmbus_get_adapter(dev_priv, dev_priv->display.vbt.crt_ddc=
+_pin);
+> -	drm_edid =3D intel_crt_get_edid(connector, i2c);
+> +	ddc =3D intel_gmbus_get_adapter(dev_priv, dev_priv->display.vbt.crt_ddc=
+_pin);
+> +	drm_edid =3D intel_crt_get_edid(connector, ddc);
+>=20=20
+>  	if (drm_edid) {
+>  		const struct edid *edid =3D drm_edid_raw(drm_edid);
+> @@ -917,20 +917,20 @@ static int intel_crt_get_modes(struct drm_connector=
+ *connector)
+>  	struct intel_crt *crt =3D intel_attached_crt(to_intel_connector(connect=
+or));
+>  	struct intel_encoder *intel_encoder =3D &crt->base;
+>  	intel_wakeref_t wakeref;
+> -	struct i2c_adapter *i2c;
+> +	struct i2c_adapter *ddc;
+>  	int ret;
+>=20=20
+>  	wakeref =3D intel_display_power_get(dev_priv,
+>  					  intel_encoder->power_domain);
+>=20=20
+> -	i2c =3D intel_gmbus_get_adapter(dev_priv, dev_priv->display.vbt.crt_ddc=
+_pin);
+> -	ret =3D intel_crt_ddc_get_modes(connector, i2c);
+> +	ddc =3D intel_gmbus_get_adapter(dev_priv, dev_priv->display.vbt.crt_ddc=
+_pin);
+> +	ret =3D intel_crt_ddc_get_modes(connector, ddc);
+>  	if (ret || !IS_G4X(dev_priv))
+>  		goto out;
+>=20=20
+>  	/* Try to probe digital port for output in DVI-I -> VGA mode. */
+> -	i2c =3D intel_gmbus_get_adapter(dev_priv, GMBUS_PIN_DPB);
+> -	ret =3D intel_crt_ddc_get_modes(connector, i2c);
+> +	ddc =3D intel_gmbus_get_adapter(dev_priv, GMBUS_PIN_DPB);
+> +	ret =3D intel_crt_ddc_get_modes(connector, ddc);
+>=20=20
+>  out:
+>  	intel_display_power_put(dev_priv, intel_encoder->power_domain, wakeref);
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index b7f4281b8658..e6cc4dab3201 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4323,7 +4323,7 @@ static int intel_hdmi_reset_link(struct intel_encod=
+er *encoder,
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	struct intel_hdmi *hdmi =3D enc_to_intel_hdmi(encoder);
+>  	struct intel_connector *connector =3D hdmi->attached_connector;
+> -	struct i2c_adapter *adapter =3D
+> +	struct i2c_adapter *ddc =3D
+>  		intel_gmbus_get_adapter(dev_priv, hdmi->ddc_bus);
+>  	struct drm_connector_state *conn_state;
+>  	struct intel_crtc_state *crtc_state;
+> @@ -4365,7 +4365,7 @@ static int intel_hdmi_reset_link(struct intel_encod=
+er *encoder,
+>  	    !try_wait_for_completion(&conn_state->commit->hw_done))
+>  		return 0;
+>=20=20
+> -	ret =3D drm_scdc_readb(adapter, SCDC_TMDS_CONFIG, &config);
+> +	ret =3D drm_scdc_readb(ddc, SCDC_TMDS_CONFIG, &config);
+>  	if (ret < 0) {
+>  		drm_err(&dev_priv->drm, "[CONNECTOR:%d:%s] Failed to read TMDS config:=
+ %d\n",
+>  			connector->base.base.id, connector->base.name, ret);
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index 116556d6352a..82f9a40b34e3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -1240,17 +1240,16 @@ static void hsw_set_infoframes(struct intel_encod=
+er *encoder,
+>  void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool en=
+able)
+>  {
+>  	struct drm_i915_private *dev_priv =3D intel_hdmi_to_i915(hdmi);
+> -	struct i2c_adapter *adapter;
+> +	struct i2c_adapter *ddc =3D intel_gmbus_get_adapter(dev_priv, hdmi->ddc=
+_bus);
+>=20=20
+>  	if (hdmi->dp_dual_mode.type < DRM_DP_DUAL_MODE_TYPE2_DVI)
+>  		return;
+>=20=20
+> -	adapter =3D intel_gmbus_get_adapter(dev_priv, hdmi->ddc_bus);
+> -
+>  	drm_dbg_kms(&dev_priv->drm, "%s DP dual mode adaptor TMDS output\n",
+>  		    enable ? "Enabling" : "Disabling");
+>=20=20
+> -	drm_dp_dual_mode_set_tmds_output(&dev_priv->drm, hdmi->dp_dual_mode.typ=
+e, adapter, enable);
+> +	drm_dp_dual_mode_set_tmds_output(&dev_priv->drm,
+> +					 hdmi->dp_dual_mode.type, ddc, enable);
+>  }
+>=20=20
+>  static int intel_hdmi_hdcp_read(struct intel_digital_port *dig_port,
+> @@ -1258,8 +1257,7 @@ static int intel_hdmi_hdcp_read(struct intel_digita=
+l_port *dig_port,
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+>  	struct intel_hdmi *hdmi =3D &dig_port->hdmi;
+> -	struct i2c_adapter *adapter =3D intel_gmbus_get_adapter(i915,
+> -							      hdmi->ddc_bus);
+> +	struct i2c_adapter *ddc =3D intel_gmbus_get_adapter(i915, hdmi->ddc_bus=
+);
+>  	int ret;
+>  	u8 start =3D offset & 0xff;
+>  	struct i2c_msg msgs[] =3D {
+> @@ -1276,7 +1274,7 @@ static int intel_hdmi_hdcp_read(struct intel_digita=
+l_port *dig_port,
+>  			.buf =3D buffer
+>  		}
+>  	};
+> -	ret =3D i2c_transfer(adapter, msgs, ARRAY_SIZE(msgs));
+> +	ret =3D i2c_transfer(ddc, msgs, ARRAY_SIZE(msgs));
+>  	if (ret =3D=3D ARRAY_SIZE(msgs))
+>  		return 0;
+>  	return ret >=3D 0 ? -EIO : ret;
+> @@ -1287,8 +1285,7 @@ static int intel_hdmi_hdcp_write(struct intel_digit=
+al_port *dig_port,
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+>  	struct intel_hdmi *hdmi =3D &dig_port->hdmi;
+> -	struct i2c_adapter *adapter =3D intel_gmbus_get_adapter(i915,
+> -							      hdmi->ddc_bus);
+> +	struct i2c_adapter *ddc =3D intel_gmbus_get_adapter(i915, hdmi->ddc_bus=
+);
+>  	int ret;
+>  	u8 *write_buf;
+>  	struct i2c_msg msg;
+> @@ -1305,7 +1302,7 @@ static int intel_hdmi_hdcp_write(struct intel_digit=
+al_port *dig_port,
+>  	msg.len =3D size + 1,
+>  	msg.buf =3D write_buf;
+>=20=20
+> -	ret =3D i2c_transfer(adapter, &msg, 1);
+> +	ret =3D i2c_transfer(ddc, &msg, 1);
+>  	if (ret =3D=3D 1)
+>  		ret =3D 0;
+>  	else if (ret >=3D 0)
+> @@ -1321,8 +1318,7 @@ int intel_hdmi_hdcp_write_an_aksv(struct intel_digi=
+tal_port *dig_port,
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+>  	struct intel_hdmi *hdmi =3D &dig_port->hdmi;
+> -	struct i2c_adapter *adapter =3D intel_gmbus_get_adapter(i915,
+> -							      hdmi->ddc_bus);
+> +	struct i2c_adapter *ddc =3D intel_gmbus_get_adapter(i915, hdmi->ddc_bus=
+);
+>  	int ret;
+>=20=20
+>  	ret =3D intel_hdmi_hdcp_write(dig_port, DRM_HDCP_DDC_AN, an,
+> @@ -1333,7 +1329,7 @@ int intel_hdmi_hdcp_write_an_aksv(struct intel_digi=
+tal_port *dig_port,
+>  		return ret;
+>  	}
+>=20=20
+> -	ret =3D intel_gmbus_output_aksv(adapter);
+> +	ret =3D intel_gmbus_output_aksv(ddc);
+>  	if (ret < 0) {
+>  		drm_dbg_kms(&i915->drm, "Failed to output aksv (%d)\n", ret);
+>  		return ret;
+> @@ -2402,9 +2398,8 @@ intel_hdmi_dp_dual_mode_detect(struct drm_connector=
+ *connector)
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->dev);
+>  	struct intel_hdmi *hdmi =3D intel_attached_hdmi(to_intel_connector(conn=
+ector));
+>  	struct intel_encoder *encoder =3D &hdmi_to_dig_port(hdmi)->base;
+> -	struct i2c_adapter *adapter =3D
+> -		intel_gmbus_get_adapter(dev_priv, hdmi->ddc_bus);
+> -	enum drm_dp_dual_mode_type type =3D drm_dp_dual_mode_detect(&dev_priv->=
+drm, adapter);
+> +	struct i2c_adapter *ddc =3D intel_gmbus_get_adapter(dev_priv, hdmi->ddc=
+_bus);
+> +	enum drm_dp_dual_mode_type type =3D drm_dp_dual_mode_detect(&dev_priv->=
+drm, ddc);
+>=20=20
+>  	/*
+>  	 * Type 1 DVI adaptors are not required to implement any
+> @@ -2431,7 +2426,7 @@ intel_hdmi_dp_dual_mode_detect(struct drm_connector=
+ *connector)
+>=20=20
+>  	hdmi->dp_dual_mode.type =3D type;
+>  	hdmi->dp_dual_mode.max_tmds_clock =3D
+> -		drm_dp_dual_mode_max_tmds_clock(&dev_priv->drm, type, adapter);
+> +		drm_dp_dual_mode_max_tmds_clock(&dev_priv->drm, type, ddc);
+>=20=20
+>  	drm_dbg_kms(&dev_priv->drm,
+>  		    "DP dual mode adaptor (%s) detected (max TMDS clock: %d kHz)\n",
+> @@ -2452,24 +2447,24 @@ intel_hdmi_set_edid(struct drm_connector *connect=
+or)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(connector->dev);
+>  	struct intel_hdmi *intel_hdmi =3D intel_attached_hdmi(to_intel_connecto=
+r(connector));
+> +	struct i2c_adapter *ddc =3D intel_gmbus_get_adapter(dev_priv, intel_hdm=
+i->ddc_bus);
+>  	intel_wakeref_t wakeref;
+>  	const struct drm_edid *drm_edid;
+>  	const struct edid *edid;
+>  	bool connected =3D false;
+> -	struct i2c_adapter *i2c;
+>=20=20
+>  	wakeref =3D intel_display_power_get(dev_priv, POWER_DOMAIN_GMBUS);
+>=20=20
+> -	i2c =3D intel_gmbus_get_adapter(dev_priv, intel_hdmi->ddc_bus);
+> +	edid =3D drm_get_edid(connector, ddc);
 
-== Series Details ==
+Must be a rebase fail.
 
-Series: Handle dma fences in dirtyfb ioctl (rev5)
-URL   : https://patchwork.freedesktop.org/series/116620/
-State : success
+BR,
+Jani.
 
-== Summary ==
+>=20=20
+> -	drm_edid =3D drm_edid_read_ddc(connector, i2c);
+> +	drm_edid =3D drm_edid_read_ddc(connector, ddc);
+>=20=20
+> -	if (!drm_edid && !intel_gmbus_is_forced_bit(i2c)) {
+> +	if (!drm_edid && !intel_gmbus_is_forced_bit(ddc)) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "HDMI GMBUS EDID read failed, retry using GPIO bit-banging\n");
+> -		intel_gmbus_force_bit(i2c, true);
+> -		drm_edid =3D drm_edid_read_ddc(connector, i2c);
+> -		intel_gmbus_force_bit(i2c, false);
+> +		intel_gmbus_force_bit(ddc, true);
+> +		drm_edid =3D drm_edid_read_ddc(connector, ddc);
+> +		intel_gmbus_force_bit(ddc, false);
+>  	}
+>=20=20
+>  	/* Below we depend on display info having been updated */
+> @@ -2561,8 +2556,8 @@ intel_hdmi_get_i2c_adapter(struct drm_connector *co=
+nnector)
+>  static void intel_hdmi_create_i2c_symlink(struct drm_connector *connecto=
+r)
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+> -	struct i2c_adapter *adapter =3D intel_hdmi_get_i2c_adapter(connector);
+> -	struct kobject *i2c_kobj =3D &adapter->dev.kobj;
+> +	struct i2c_adapter *ddc =3D intel_hdmi_get_i2c_adapter(connector);
+> +	struct kobject *i2c_kobj =3D &ddc->dev.kobj;
+>  	struct kobject *connector_kobj =3D &connector->kdev->kobj;
+>  	int ret;
+>=20=20
+> @@ -2573,8 +2568,8 @@ static void intel_hdmi_create_i2c_symlink(struct dr=
+m_connector *connector)
+>=20=20
+>  static void intel_hdmi_remove_i2c_symlink(struct drm_connector *connecto=
+r)
+>  {
+> -	struct i2c_adapter *adapter =3D intel_hdmi_get_i2c_adapter(connector);
+> -	struct kobject *i2c_kobj =3D &adapter->dev.kobj;
+> +	struct i2c_adapter *ddc =3D intel_hdmi_get_i2c_adapter(connector);
+> +	struct kobject *i2c_kobj =3D &ddc->dev.kobj;
+>  	struct kobject *connector_kobj =3D &connector->kdev->kobj;
+>=20=20
+>  	sysfs_remove_link(connector_kobj, i2c_kobj->name);
+> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/dr=
+m/i915/display/intel_lspcon.c
+> index bb3b5355a0d9..152a22a8ffd2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> @@ -144,9 +144,9 @@ static enum drm_lspcon_mode lspcon_get_current_mode(s=
+truct intel_lspcon *lspcon)
+>  	struct intel_dp *intel_dp =3D lspcon_to_intel_dp(lspcon);
+>  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+>  	enum drm_lspcon_mode current_mode;
+> -	struct i2c_adapter *adapter =3D &intel_dp->aux.ddc;
+> +	struct i2c_adapter *ddc =3D &intel_dp->aux.ddc;
+>=20=20
+> -	if (drm_lspcon_get_mode(intel_dp->aux.drm_dev, adapter, &current_mode))=
+ {
+> +	if (drm_lspcon_get_mode(intel_dp->aux.drm_dev, ddc, &current_mode)) {
+>  		drm_dbg_kms(&i915->drm, "Error reading LSPCON mode\n");
+>  		return DRM_LSPCON_MODE_INVALID;
+>  	}
+> @@ -185,9 +185,9 @@ static int lspcon_change_mode(struct intel_lspcon *ls=
+pcon,
+>  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+>  	int err;
+>  	enum drm_lspcon_mode current_mode;
+> -	struct i2c_adapter *adapter =3D &intel_dp->aux.ddc;
+> +	struct i2c_adapter *ddc =3D &intel_dp->aux.ddc;
+>=20=20
+> -	err =3D drm_lspcon_get_mode(intel_dp->aux.drm_dev, adapter, &current_mo=
+de);
+> +	err =3D drm_lspcon_get_mode(intel_dp->aux.drm_dev, ddc, &current_mode);
+>  	if (err) {
+>  		drm_err(&i915->drm, "Error reading LSPCON mode\n");
+>  		return err;
+> @@ -198,7 +198,7 @@ static int lspcon_change_mode(struct intel_lspcon *ls=
+pcon,
+>  		return 0;
+>  	}
+>=20=20
+> -	err =3D drm_lspcon_set_mode(intel_dp->aux.drm_dev, adapter, mode);
+> +	err =3D drm_lspcon_set_mode(intel_dp->aux.drm_dev, ddc, mode);
+>  	if (err < 0) {
+>  		drm_err(&i915->drm, "LSPCON mode change failed\n");
+>  		return err;
+> @@ -233,7 +233,7 @@ static bool lspcon_probe(struct intel_lspcon *lspcon)
+>  	enum drm_dp_dual_mode_type adaptor_type;
+>  	struct intel_dp *intel_dp =3D lspcon_to_intel_dp(lspcon);
+>  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> -	struct i2c_adapter *adapter =3D &intel_dp->aux.ddc;
+> +	struct i2c_adapter *ddc =3D &intel_dp->aux.ddc;
+>  	enum drm_lspcon_mode expected_mode;
+>=20=20
+>  	expected_mode =3D lspcon_wake_native_aux_ch(lspcon) ?
+> @@ -244,7 +244,7 @@ static bool lspcon_probe(struct intel_lspcon *lspcon)
+>  		if (retry)
+>  			usleep_range(500, 1000);
+>=20=20
+> -		adaptor_type =3D drm_dp_dual_mode_detect(intel_dp->aux.drm_dev, adapte=
+r);
+> +		adaptor_type =3D drm_dp_dual_mode_detect(intel_dp->aux.drm_dev, ddc);
+>  		if (adaptor_type =3D=3D DRM_DP_DUAL_MODE_LSPCON)
+>  			break;
+>  	}
 
-CI Bug Log - changes from CI_DRM_13575 -> Patchwork_116620v5
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/index.html
-
-Participating hosts (39 -> 38)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_116620v5 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@read_all_entries:
-    - bat-adlp-11:        [PASS][1] -> [DMESG-WARN][2] ([i915#6868])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-adlp-11/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-adlp-11/igt@debugfs_test@read_all_entries.html
-
-  * igt@gem_exec_suspend@basic-s3@smem:
-    - bat-rpls-2:         [PASS][3] -> [ABORT][4] ([i915#7978] / [i915#8668])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-adlp-9:         NOTRUN -> [SKIP][5] ([i915#3546]) +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - bat-rplp-1:         NOTRUN -> [SKIP][6] ([i915#1072]) +2 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-rplp-1:         NOTRUN -> [ABORT][7] ([i915#8260] / [i915#8668])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium_edid@hdmi-edid-read:
-    - {bat-dg2-13}:       [DMESG-WARN][8] ([i915#7952]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
-
-  
-#### Warnings ####
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-rplp-1:         [ABORT][10] ([i915#8442] / [i915#8668] / [i915#8860]) -> [SKIP][11] ([i915#1072])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-rplp-1/igt@kms_psr@primary_page_flip.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-rplp-1/igt@kms_psr@primary_page_flip.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-mtlp-8:         [SKIP][12] ([i915#8809]) -> [SKIP][13] ([i915#3555] / [i915#8809])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-mtlp-8/igt@kms_setmode@basic-clone-single-crtc.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-mtlp-8/igt@kms_setmode@basic-clone-single-crtc.html
-    - bat-mtlp-6:         [SKIP][14] ([i915#8809]) -> [SKIP][15] ([i915#3555] / [i915#8809])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-mtlp-6/igt@kms_setmode@basic-clone-single-crtc.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-mtlp-6/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#6868]: https://gitlab.freedesktop.org/drm/intel/issues/6868
-  [i915#7952]: https://gitlab.freedesktop.org/drm/intel/issues/7952
-  [i915#7978]: https://gitlab.freedesktop.org/drm/intel/issues/7978
-  [i915#8260]: https://gitlab.freedesktop.org/drm/intel/issues/8260
-  [i915#8442]: https://gitlab.freedesktop.org/drm/intel/issues/8442
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#8809]: https://gitlab.freedesktop.org/drm/intel/issues/8809
-  [i915#8860]: https://gitlab.freedesktop.org/drm/intel/issues/8860
-  [i915#8879]: https://gitlab.freedesktop.org/drm/intel/issues/8879
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13575 -> Patchwork_116620v5
-
-  CI-20190529: 20190529
-  CI_DRM_13575: 05be2315bcb0d65730be1bafd7ec047a994e4817 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7459: 7459
-  Patchwork_116620v5: 05be2315bcb0d65730be1bafd7ec047a994e4817 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-1a309cf481a6 drm/i915: Handle dma fences in dirtyfb callback
-44b6eb184556 drm/i915: Add new frontbuffer tracking interface to queue flush
-3964ff1bdb34 drm/i915/psr: Clear frontbuffer busy bits on flip
-618db98680e9 drm/i915/fbc: Clear frontbuffer busy bits on flip
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/index.html
-
---===============1456183106454983411==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Handle dma fences in dirtyfb ioctl (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116620/">https://patchwork.freedesktop.org/series/116620/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13575 -&gt; Patchwork_116620v5</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/index.html</p>
-<h2>Participating hosts (39 -&gt; 38)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_116620v5 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-adlp-11/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-adlp-11/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6868">i915#6868</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3@smem:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-rpls-2/igt@gem_exec_suspend@basic-s3@smem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7978">i915#7978</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8260">i915#8260</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_chamelium_edid@hdmi-edid-read:<ul>
-<li>{bat-dg2-13}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7952">i915#7952</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-rplp-1/igt@kms_psr@primary_page_flip.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8860">i915#8860</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-rplp-1/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>
-<p>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-mtlp-8/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8809">i915#8809</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-mtlp-8/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8809">i915#8809</a>)</p>
-</li>
-<li>
-<p>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13575/bat-mtlp-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8809">i915#8809</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_116620v5/bat-mtlp-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8809">i915#8809</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13575 -&gt; Patchwork_116620v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13575: 05be2315bcb0d65730be1bafd7ec047a994e4817 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7459: 7459<br />
-  Patchwork_116620v5: 05be2315bcb0d65730be1bafd7ec047a994e4817 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>1a309cf481a6 drm/i915: Handle dma fences in dirtyfb callback<br />
-44b6eb184556 drm/i915: Add new frontbuffer tracking interface to queue flush<br />
-3964ff1bdb34 drm/i915/psr: Clear frontbuffer busy bits on flip<br />
-618db98680e9 drm/i915/fbc: Clear frontbuffer busy bits on flip</p>
-
-</body>
-</html>
-
---===============1456183106454983411==--
+--=20
+Jani Nikula, Intel Open Source Graphics Center
