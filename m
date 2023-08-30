@@ -2,40 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3FE978F4A4
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Aug 2023 23:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E1C078F4A6
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Aug 2023 23:34:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F21210E599;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A88810E6E9;
 	Thu, 31 Aug 2023 21:33:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30F6810E0C6;
- Wed, 30 Aug 2023 10:26:07 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 86F3C60E86;
- Wed, 30 Aug 2023 10:26:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F1D5C433C7;
- Wed, 30 Aug 2023 10:26:04 +0000 (UTC)
-Message-ID: <bdebe804-139e-f3d4-f77a-1ede7e6ac02c@xs4all.nl>
-Date: Wed, 30 Aug 2023 12:26:03 +0200
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com
+ [IPv6:2607:f8b0:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 947E110E549;
+ Wed, 30 Aug 2023 15:04:30 +0000 (UTC)
+Received: by mail-pf1-x431.google.com with SMTP id
+ d2e1a72fcca58-68bec3a1c0fso4180466b3a.1; 
+ Wed, 30 Aug 2023 08:04:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1693407870; x=1694012670; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+ :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=BY1v90+5NSPW40nepdwawsmQXXDE6gdV3lwX6BIPunA=;
+ b=Mb+xyE/xiJ6C1gSJu/qbjA8Al7GQZdNZUz//cs2DouvJYS/guRV/06VZXEo8KnZSSB
+ C5Sw+DiUo+Inmnv/9q95IhrGtoTy7Kvq9pXTDHzB9h78uRNQOd0iFVuuTPi1gCjnqcGJ
+ jDh/c3akLYzD0BgtcLsXka8MzLTHwCauzggAabMpIDIuWDBOeV7/a0yUiHU1PbOd7Kcg
+ 4ltMZbogaDRKvkFEOqJDs8I2A5/bCdEbT26pIhg8gjDvXSd6aRH6/3nfixzDRn2+oeFP
+ +Gk1OnR1Ko1iX2idw9KJFPOqYvlaFrKPlB+7KSo2XdebdJ00mOyTvNJX/6+wJ4USPXvY
+ VSbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693407870; x=1694012670;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+ :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=BY1v90+5NSPW40nepdwawsmQXXDE6gdV3lwX6BIPunA=;
+ b=SFISaLYDa8aUI/hPNh6ynmtRrmrW3FhwUkee8oQftgi+JczY1NCHYz5ziiVvh/9kcX
+ QXYqaZe6nbixNtoPdTjaFwiU3FOok7fjyfZ8S2219Hz92+mjCdnvq0QbVnGZzxYxJJ34
+ pneaIJqtvFxeiE2lLDhjpYEdrD6jsDGJ7Ai75jw5/L2/9h6LHjcG9B8OOD51Z7hvHXTH
+ ZsC3DVLlBt4TWxMstvGVAJq3D8ZiR/xjfGqAHoetzguHSx9sOToVDok671fNByGei6jN
+ 75ZiTLPY8mC0Jq0LJZ2iMM4iDsRDIxYDCUU5c6IEgBE/RHi+rYaFZqg9Z88+edQSu4WT
+ G27Q==
+X-Gm-Message-State: AOJu0YxCp5XdteTYZaZpgoySCUrBNNstWyY51JsMJT4vpEebZ6CtZhVo
+ 2/dtpB4aCmTRKY/MUGgqOJ0=
+X-Google-Smtp-Source: AGHT+IHRm7rtzj81ZlIYH0T79lr+GUMNzYCHKFMVKdWz4gEygQ5O/SCsRCq+FFjEb1B0FGxf56amUA==
+X-Received: by 2002:a05:6a21:9997:b0:14c:c767:a56a with SMTP id
+ ve23-20020a056a21999700b0014cc767a56amr2949112pzb.25.1693407869896; 
+ Wed, 30 Aug 2023 08:04:29 -0700 (PDT)
+Received: from [192.168.255.10] ([101.80.250.8])
+ by smtp.gmail.com with ESMTPSA id
+ n21-20020aa79055000000b00682a908949bsm10496088pfo.92.2023.08.30.08.04.25
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 30 Aug 2023 08:04:29 -0700 (PDT)
+Message-ID: <6c691bc5-dbfc-46f9-8c09-9c74c51d8708@gmail.com>
+Date: Wed, 30 Aug 2023 23:04:21 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Content-Language: en-US, nl
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-References: <f8ed9b38fd2ebcd8344a1889a6c0f288969454ea.1692884619.git.jani.nikula@intel.com>
- <20230825130120.1250089-1-jani.nikula@intel.com>
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230825130120.1250089-1-jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.13.0
+To: Sean Christopherson <seanjc@google.com>
+References: <20230729013535.1070024-1-seanjc@google.com>
+ <20230729013535.1070024-17-seanjc@google.com>
+From: Like Xu <like.xu.linux@gmail.com>
+In-Reply-To: <20230729013535.1070024-17-seanjc@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Thu, 31 Aug 2023 21:33:53 +0000
-Subject: Re: [Intel-gfx] [PATCH v2] drm/cec: add drm_dp_cec_attach() as the
- non-edid version of set edid
+Subject: Re: [Intel-gfx] [PATCH v4 16/29] KVM: x86: Reject memslot MOVE
+ operations if KVMGT is attached
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,121 +78,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org
+Cc: Yan Zhao <yan.y.zhao@intel.com>, kvm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Yongwei Ma <yongwei.ma@intel.com>, Ben Gardon <bgardon@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, intel-gvt-dev@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
-
-Sorry, I missed the v2.
-
-On 25/08/2023 15:01, Jani Nikula wrote:
-> Connectors have source physical address available in display
-> info. There's no need to parse the EDID again for this. Add
-> drm_dp_cec_attach() to do this.
+On 2023/7/29 09:35, Sean Christopherson wrote:
+> Disallow moving memslots if the VM has external page-track users, i.e. if
+> KVMGT is being used to expose a virtual GPU to the guest, as KVMGT doesn't
+> correctly handle moving memory regions.
 > 
-> Seems like the set_edid/unset_edid naming is a bit specific now that
-> there's no need to pass the EDID at all, so aim for attach/detach going
-> forward.
+> Note, this is potential ABI breakage!  E.g. userspace could move regions
+> that aren't shadowed by KVMGT without harming the guest.  However, the
+> only known user of KVMGT is QEMU, and QEMU doesn't move generic memory
+
+This change breaks two kvm selftests:
+
+- set_memory_region_test;
+- memslot_perf_test;
+
+Please help confirm if the tests/doc needs to be updated,
+or if the assumption needs to be further clarified.
+
+> regions.  KVM's own support for moving memory regions was also broken for
+> multiple years (albeit for an edge case, but arguably moving RAM is
+> itself an edge case), e.g. see commit edd4fa37baa6 ("KVM: x86: Allocate
+> new rmap and large page tracking when moving memslot").
 > 
-> v2: Fix the embarrashing build failures
-> 
-> Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-
-Regards,
-
-	Hans
-
+> Reviewed-by: Yan Zhao <yan.y.zhao@intel.com>
+> Tested-by: Yongwei Ma <yongwei.ma@intel.com>
+> Signed-off-by: Sean Christopherson <seanjc@google.com>
 > ---
->  drivers/gpu/drm/display/drm_dp_cec.c | 23 ++++++++++++++++++++---
->  include/drm/display/drm_dp_helper.h  |  6 ++++++
->  2 files changed, 26 insertions(+), 3 deletions(-)
+>   arch/x86/include/asm/kvm_page_track.h | 3 +++
+>   arch/x86/kvm/mmu/page_track.c         | 5 +++++
+>   arch/x86/kvm/x86.c                    | 7 +++++++
+>   3 files changed, 15 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/display/drm_dp_cec.c b/drivers/gpu/drm/display/drm_dp_cec.c
-> index ae39dc794190..007ceb281d00 100644
-> --- a/drivers/gpu/drm/display/drm_dp_cec.c
-> +++ b/drivers/gpu/drm/display/drm_dp_cec.c
-> @@ -14,6 +14,7 @@
->  #include <drm/display/drm_dp_helper.h>
->  #include <drm/drm_connector.h>
->  #include <drm/drm_device.h>
-> +#include <drm/drm_edid.h>
->  
->  /*
->   * Unfortunately it turns out that we have a chicken-and-egg situation
-> @@ -297,7 +298,7 @@ static void drm_dp_cec_unregister_work(struct work_struct *work)
->   * were unchanged and just update the CEC physical address. Otherwise
->   * unregister the old CEC adapter and create a new one.
->   */
-> -void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
-> +void drm_dp_cec_attach(struct drm_dp_aux *aux, u16 source_physical_address)
->  {
->  	struct drm_connector *connector = aux->cec.connector;
->  	u32 cec_caps = CEC_CAP_DEFAULTS | CEC_CAP_NEEDS_HPD |
-> @@ -339,7 +340,7 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
->  		if (aux->cec.adap->capabilities == cec_caps &&
->  		    aux->cec.adap->available_log_addrs == num_las) {
->  			/* Unchanged, so just set the phys addr */
-> -			cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-> +			cec_s_phys_addr(aux->cec.adap, source_physical_address, false);
->  			goto unlock;
->  		}
->  		/*
-> @@ -370,11 +371,27 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
->  		 * from drm_dp_cec_register_connector() edid == NULL, so in
->  		 * that case the phys addr is just invalidated.
->  		 */
-> -		cec_s_phys_addr_from_edid(aux->cec.adap, edid);
-> +		cec_s_phys_addr(aux->cec.adap, source_physical_address, false);
->  	}
->  unlock:
->  	mutex_unlock(&aux->cec.lock);
->  }
-> +EXPORT_SYMBOL(drm_dp_cec_attach);
+> diff --git a/arch/x86/include/asm/kvm_page_track.h b/arch/x86/include/asm/kvm_page_track.h
+> index 8c4d216e3b2b..f744682648e7 100644
+> --- a/arch/x86/include/asm/kvm_page_track.h
+> +++ b/arch/x86/include/asm/kvm_page_track.h
+> @@ -75,4 +75,7 @@ kvm_page_track_unregister_notifier(struct kvm *kvm,
+>   void kvm_page_track_write(struct kvm_vcpu *vcpu, gpa_t gpa, const u8 *new,
+>   			  int bytes);
+>   void kvm_page_track_flush_slot(struct kvm *kvm, struct kvm_memory_slot *slot);
 > +
-> +/*
-> + * Note: Prefer calling drm_dp_cec_attach() with
-> + * connector->display_info.source_physical_address if possible.
-> + */
-> +void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
+> +bool kvm_page_track_has_external_user(struct kvm *kvm);
+> +
+>   #endif
+> diff --git a/arch/x86/kvm/mmu/page_track.c b/arch/x86/kvm/mmu/page_track.c
+> index 891e5cc52b45..e6de9638e560 100644
+> --- a/arch/x86/kvm/mmu/page_track.c
+> +++ b/arch/x86/kvm/mmu/page_track.c
+> @@ -303,3 +303,8 @@ void kvm_page_track_flush_slot(struct kvm *kvm, struct kvm_memory_slot *slot)
+>   			n->track_flush_slot(kvm, slot, n);
+>   	srcu_read_unlock(&head->track_srcu, idx);
+>   }
+> +
+> +bool kvm_page_track_has_external_user(struct kvm *kvm)
 > +{
-> +	u16 pa = CEC_PHYS_ADDR_INVALID;
-> +
-> +	if (edid && edid->extensions)
-> +		pa = cec_get_edid_phys_addr((const u8 *)edid,
-> +					    EDID_LENGTH * (edid->extensions + 1), NULL);
-> +
-> +	drm_dp_cec_attach(aux, pa);
+> +	return hlist_empty(&kvm->arch.track_notifier_head.track_notifier_list);
 > +}
->  EXPORT_SYMBOL(drm_dp_cec_set_edid);
->  
->  /*
-> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> index 86f24a759268..3369104e2d25 100644
-> --- a/include/drm/display/drm_dp_helper.h
-> +++ b/include/drm/display/drm_dp_helper.h
-> @@ -699,6 +699,7 @@ void drm_dp_cec_irq(struct drm_dp_aux *aux);
->  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
->  				   struct drm_connector *connector);
->  void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);
-> +void drm_dp_cec_attach(struct drm_dp_aux *aux, u16 source_physical_address);
->  void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid);
->  void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);
->  #else
-> @@ -716,6 +717,11 @@ static inline void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux)
->  {
->  }
->  
-> +static inline void drm_dp_cec_attach(struct drm_dp_aux *aux,
-> +				     u16 source_physical_address)
-> +{
-> +}
+> diff --git a/arch/x86/kvm/x86.c b/arch/x86/kvm/x86.c
+> index 059571d5abed..4394bb49051f 100644
+> --- a/arch/x86/kvm/x86.c
+> +++ b/arch/x86/kvm/x86.c
+> @@ -12606,6 +12606,13 @@ int kvm_arch_prepare_memory_region(struct kvm *kvm,
+>   				   struct kvm_memory_slot *new,
+>   				   enum kvm_mr_change change)
+>   {
+> +	/*
+> +	 * KVM doesn't support moving memslots when there are external page
+> +	 * trackers attached to the VM, i.e. if KVMGT is in use.
+> +	 */
+> +	if (change == KVM_MR_MOVE && kvm_page_track_has_external_user(kvm))
+> +		return -EINVAL;
 > +
->  static inline void drm_dp_cec_set_edid(struct drm_dp_aux *aux,
->  				       const struct edid *edid)
->  {
-
+>   	if (change == KVM_MR_CREATE || change == KVM_MR_MOVE) {
+>   		if ((new->base_gfn + new->npages - 1) > kvm_mmu_max_gfn())
+>   			return -EINVAL;
