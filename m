@@ -1,123 +1,157 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53A3D78F53A
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Sep 2023 00:01:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2228578F562
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Sep 2023 00:27:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB7F310E6EE;
-	Thu, 31 Aug 2023 22:01:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A27E10E6FB;
+	Thu, 31 Aug 2023 22:27:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2081.outbound.protection.outlook.com [40.107.223.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7F7710E6EE;
- Thu, 31 Aug 2023 22:01:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6E3E10E6F6;
+ Thu, 31 Aug 2023 22:27:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693520869; x=1725056869;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=yeyGZLRFD4uSczpm4cuv0sYq5nIymYke8USPZLOj/+U=;
+ b=NP/nZ5xSfOgkCjB8CnPkwUQp+QeCFkFp6zbN8WF3kW9V7at1+GGhVFQa
+ sPe4m53p2CsCyUdzaAvuLPvv3RELltYlCNNRJPzhSKmZVfRbo68Zr5F1C
+ VGnKovA3B7a6VTVtBM/k/nlmR2/7HV/Dq/oKtdrr9yTQOSIZ7aaFEF9Xg
+ rnQEQW4yLR5+mq0DJS+k/Y2r2FZ1axSZoiTjft/ouXkW8hubnygTRNPA8
+ x/vND8cxS4BllKQVaPXIgOmk3ayQC4yY6tLCM7CNs+hkwKcTRBY7A/DfG
+ YHBU09/cC+pexnnEu0nTUHxzRwqUbB0h1mbr+E4iO4k/MAmpYT0KEW/cX g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="462444489"
+X-IronPort-AV: E=Sophos;i="6.02,218,1688454000"; d="scan'208";a="462444489"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2023 15:27:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="1070495174"
+X-IronPort-AV: E=Sophos;i="6.02,218,1688454000"; d="scan'208";a="1070495174"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 31 Aug 2023 15:27:34 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 31 Aug 2023 15:27:34 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 31 Aug 2023 15:27:33 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Thu, 31 Aug 2023 15:27:33 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.109)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Thu, 31 Aug 2023 15:27:33 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T2evLfKqP1e1zqLYMIMGONcwyrZS7hVMVTjU3e41KxM8KMHIKHSU9C5XB14L164LG3luhdodFxbzMOW6LGEEzI3uI+QzsSivzTtYhUvMQXvYG7dHF/ZJOVxfYuGyifggXmAlzCz5WHC9DVgNk6yx/ZVnfDG7LEily9soqBh2dkOOGfbbDNuOoEX9GpbhzGOrBiwODlAABFxiOl60ZoBiFTPldsKrb0JvjgXSAfUsWfO41u5uuvbKEOQXtGRbFHa/urTHsl9hgEvz/09gtJVEACszxkwNPBu/Ye1LxEBbIO8gYX5SBeB8vE2vfkvmHG79f8l92eq9ZyeDa5q0cL9TZg==
+ b=KE1s8G9w3oo9F+7igRDu5NJ/N7PlNit+vAac+jviWiRZZ5p9R4JdqtcYCxFEnmRb0eCOkcUlQ+Qk/FNuGA5E1p0zlHIslpzGn+Zgmsy3EQTfhhuiMJA00TT4r8XXh1mwvjjCOb4u0K5oiOK5KfdZgtoHw1+jQzVjPolVY/59c+4vOSNjEP6M0owc2c07mWJDx8dQ0JzdyHWcGwhe1f9+dmtssYQYYYdp0tukaTwpaN04/LM2308u7J9n2pAiX6HAWG/y2taaVCw0X2RwAJT9Br90EYxBJFSMzHwyPvuqxDowcIizHL1cb1YpDbGasg3YzGi9DFdvrytpYMWj9GagQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kvoAvqlVmZaPSsRMmyCg7yGw6rSE8NMsh3Oa0t2DAuk=;
- b=a4bnyHx84b8WajiqQK8mScCDmOGoezE54SWaE58bWZ27VoqBW7k9IXPwpt5uPASu9ws0mMh5fvamAo1/NUAIXFhmyIHu9kujf13Ak9tIKEbP/GNWNRKHWMQs1TIUA64QeN8aEovO1vt1phQHSZQBxmGrAszb/gdhsRl6GbiZvDJMyCPL03rqWRg7Haqil9xzP+q2YY/AG/qU+KZYYnbErvPEuSlBnkxejLZijYyDjiA1lFClQgGBsiOgPLzEAe2wf+lioK8jmeStNNhuBFI7FzfqzoE/HUvvkwHy6ufthSYp1Z54zfaAMvpUuqnb06UFvoPrJ4C6ECG/xX9GMs+hDA==
+ bh=BAQAsL19N5jD4o+e7cb8+WFCK+6eNnRnmRUYx2yKs/8=;
+ b=ELc8hgEvGs7qR+pgd0AMXdgHLUUOB0IvF9HUK1BTkHofImpfoAjGJgm0pAjauBeAQQouvI8JuqUoQAOtlgi0q9aBwcfDZy2+wotaWNdIMbsnVZ6FZAkKLMuyhJKmUhAYMiWFqvXO4FbgpWiBVFWIzgS/Bp490hK/kW3G/jCEhnAw7mYkUVgQpslSCuQpxG43srBwIdePLZqkg8BUcp9TxzhbnLb2t4YJcww0i8wKQpuKeaEBs6YRGM5AB3QSTqF2Q4ON1G6GpWaq/zdjnp9dT9zRAUgRQvkR2wXDlI7s51CVLZMmT44aYQY6eJhFvUJiBl+MHRT9huxuW6sSCxf9UA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kvoAvqlVmZaPSsRMmyCg7yGw6rSE8NMsh3Oa0t2DAuk=;
- b=3vaMi7CENh5xOU2QYMdbXeopGeQMk0QooAQNl8ViuD+kAzrWmUSxweJo0iyzhVyRbz8Lg/EcAYPCN9m3hlGoSNsgCTC+ZKYNP9vbE+dm9oe/B1YB1RecLght8ilxnHbq57cTH714TFsgsXhIRFYbKir42rvdq944/iXA0BTeM2Q=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB3048.namprd12.prod.outlook.com (2603:10b6:a03:ad::33)
- by MN2PR12MB4550.namprd12.prod.outlook.com (2603:10b6:208:24e::12)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by PH7PR11MB6500.namprd11.prod.outlook.com (2603:10b6:510:213::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.21; Thu, 31 Aug
- 2023 22:01:50 +0000
-Received: from BYAPR12MB3048.namprd12.prod.outlook.com
- ([fe80::1dd2:153c:f0bc:b80d]) by BYAPR12MB3048.namprd12.prod.outlook.com
- ([fe80::1dd2:153c:f0bc:b80d%6]) with mapi id 15.20.6745.020; Thu, 31 Aug 2023
- 22:01:49 +0000
-Message-ID: <b32199ef-7179-3908-3bed-dd164cadc5de@amd.com>
-Date: Thu, 31 Aug 2023 16:01:43 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, Alex Deucher <alexdeucher@gmail.com>
-References: <cover.1692705543.git.jani.nikula@intel.com>
- <788721f6-afff-e0b2-db7c-32ab2dd075a9@amd.com> <87il965gob.fsf@intel.com>
- <871qfm2kg1.fsf@intel.com>
- <CADnq5_P49U3dcqiZhB-CjS8UbOtB7K2jNObS0ZQqMhOr3UhLQg@mail.gmail.com>
- <87o7ip252r.fsf@intel.com> <87jztd2332.fsf@intel.com>
- <1e6aa1ff-9aa9-6b2f-84f4-e0304205085c@amd.com> <87h6oh0yz9.fsf@intel.com>
-From: Alex Hung <alex.hung@amd.com>
-In-Reply-To: <87h6oh0yz9.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.22; Thu, 31 Aug
+ 2023 22:27:31 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::6bdd:6fe1:4045:c26f]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::6bdd:6fe1:4045:c26f%6]) with mapi id 15.20.6745.021; Thu, 31 Aug 2023
+ 22:27:31 +0000
+Message-ID: <983eb186-5b6a-8df3-1e67-eb7da6a8dbcd@intel.com>
+Date: Thu, 31 Aug 2023 15:27:27 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.14.0
+To: Andi Shyti <andi.shyti@linux.intel.com>
+References: <20230811182011.546026-1-zhanjun.dong@intel.com>
+ <3a745c83-e7cf-6a24-5556-8c0c019adfec@intel.com>
+ <ZOYtNyqfvqJPeqq2@phenom.ffwll.local>
+ <e31b1f49-88cd-d6e4-abbe-51f27712ff83@intel.com>
+ <ZPCc4CU+S6Gv6GzQ@ashyti-mobl2.lan>
+Content-Language: en-GB
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <ZPCc4CU+S6Gv6GzQ@ashyti-mobl2.lan>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0373.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::18) To BYAPR12MB3048.namprd12.prod.outlook.com
- (2603:10b6:a03:ad::33)
+X-ClientProxiedBy: MW4PR03CA0227.namprd03.prod.outlook.com
+ (2603:10b6:303:b9::22) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3048:EE_|MN2PR12MB4550:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6f4fca7b-4c51-4cc3-dc39-08dbaa6ddffc
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|PH7PR11MB6500:EE_
+X-MS-Office365-Filtering-Correlation-Id: f00f7bfb-f640-493a-541c-08dbaa717753
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YV6PcgqmedmWB99CTj5JZhkS4+GLiL8w3ySxtjnfC+dq4h6PeoQiH3zZef7Srj5eUUtUvbaUsEUx3VTbErLZjZRQSL6qtKzifIo6bqWY+Xf3SFOIJjVh3MTke/CUuPzyUrWxZ19UA05M/LnUg/n+tgp4aCOSRA6WMZ6f4rx751OHP4tByi4HM85ezIQpInsijJpsFoGJm18iLgti+opH7syNBM/vX0djd4SDdc1DMEAsZGaHqw6ZvPm4vZIoRhk1jNrjruMzk1/Br+TvJhVjxlBPY2AqKGn270EI9NDzMBN1OZ82ghVkRG6QYRbmh6NmNF1/Pw0Di1dfaXGCKUCkDys/6ApUUaXjEQXvpgVFbsYf5iF9Tz6d+RdP2cEvHce2MDMypo7h7p4Mvz9rjDUMBfsJdtm42ZSvRRBb0Z6jwwYlG/wSnM2Ve36h7gLMaPwSncESJ3pZSD52kcL7wCcs2yWikLj0Wizx91Pq7w6ngpSuPygT9OigTEDiZJjrff7g1xFZRRBYQJGPcWXBbLdXIXCbppn5J9i3rjY898kkz/hxOulJ56y8loCes5OjIBefdieWilJKMnBOcw4hx48rSJj32ygwNgowuXRnju4vW1bioLC89EMftErIftee44AE
+X-Microsoft-Antispam-Message-Info: ctg8xy7YC6bNLYRpX782EutSH/DnPzGAhQqvEM61jq+xfaHXpgm5U0YvRgAqTi5mVTyZGJVYcbCNfvlaI1ixstMFOcHNccrA183EkwNa4QUzIH7wqmuONHz+ntixS256avwecgDNfR1n97iQPR9VLEzhAtQ6eMBMhpfVHeOHAWUy9xDbpLC3/QNBFxGdRWTVadP4Df7N3drHaSLKJ0GZ1wJscSGB6bA6yJLpIP81+jr1DbDhrGlBMnQVXIe8AyTu2cuw4eShK2VKikQCz0pKso/2kRUQSe8GU6R+n0DFtXqRUuYgFV4cvEC3TFtgBsEcaOY5T1AXd3nYUfKG8aGg/dvxNksHNzp7q13ZbkR85MJq8iC4baEWS9hQvujCOKjZmwyD12pttrBpAjFbBWWaxYW7FqXR7zsESukT+uj7yoUEfzsOe/ad61HLvVR7HHsRkuVr4dBF33+3P/o3vpKxyJoV0F8sHONHnv7AqZ15p3iB+cYAV7T0OZFEVDLoK9Ntid/2dRv2Cd5HzhdlldSTN/8K8cnJ5+5ofNmsKnhXwFJ0gnlrcONDMToAG5gden59KpAh8aamdVhK6LGKnDRhG7M6RC3eNUrgRzJtC8IrpL1245uHKh+UFFaEOxdsxbg9Pqy6BgMMblByrKK6KuDnhw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB3048.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(396003)(346002)(136003)(39860400002)(376002)(186009)(451199024)(1800799009)(31686004)(6512007)(6506007)(6666004)(6486002)(36756003)(31696002)(86362001)(38100700002)(2616005)(2906002)(26005)(53546011)(966005)(83380400001)(478600001)(110136005)(66946007)(4326008)(8936002)(8676002)(316002)(5660300002)(54906003)(44832011)(41300700001)(66476007)(66556008)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(346002)(136003)(376002)(396003)(366004)(1800799009)(451199024)(186009)(6666004)(2906002)(86362001)(53546011)(316002)(82960400001)(6916009)(478600001)(5660300002)(2616005)(4326008)(8676002)(31686004)(6486002)(6506007)(6512007)(31696002)(8936002)(26005)(38100700002)(41300700001)(36756003)(66946007)(54906003)(66556008)(66476007)(83380400001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S0xlb3JvQWVJQkpnWm5iTWtUUXVhTDJkU1Bpem4yYlQ0d0tXdWZobExURk1Q?=
- =?utf-8?B?M2lQK0QrVHByWVYvZW0xdTZrdkplRDlKTDArbDhLZmhKTWhaK0dNYlZEcGFi?=
- =?utf-8?B?azRxU3k5akZLakM4Ulkza1pCZ2hXVHNCb08zbHJMeCtFNDBITEIrcUg5OUw3?=
- =?utf-8?B?WW5zemt3UXA2c0VSbzc4MzQ0d3pkOUNxSXIwaHgxbGZKYXRoLzEydWkycHhX?=
- =?utf-8?B?NjdyWGV2UHBpU1U3dDRNTDJLR0Z6WWtzTWh0R1Q3K1BTVnpzYTE2a082R3Qv?=
- =?utf-8?B?WXZHRXJua2dyVW5MWXQ1VEVrSzF0UkE0RGcycVdlMWo5VTNpa2pkRVBURFF5?=
- =?utf-8?B?a3pDazA1MWNBa3cyNVJvU25kbDYzVnQ3MFpIdmE1ZkczSkN5MERwclN2TFVS?=
- =?utf-8?B?Q3FNMk0xeWVRMU56U0pBTVI0RWNrUXVMaXJzTUsrSFdhd2JBV1NjOVg1NWly?=
- =?utf-8?B?K1dpL3RvN0hnVnM1TnYwK0M1UlEzMDhzNStidVovUlpiY2dCK1FiZnBTcytB?=
- =?utf-8?B?czZkNS9QTmpZbW1aVXcvVUtqVHRuQzcrSndGbFJZREN1TEsyQ1EyS2NtMjVV?=
- =?utf-8?B?emFEclV4U0FtSWtnNDd1R0ZacUNrZ2xwZVJ6VHhYOVVlb0pmQUZzVWhiZnBs?=
- =?utf-8?B?VEcrai9ZelA4MmhwNFlvNHF4RjZ5TE1NVGFnd2F0dHVBM0pJa25MZjBmeEFa?=
- =?utf-8?B?ZzZtMGtmaWVzR3ZpZlVrRG9GZ2UzdURIS2ptOUF0TnI2WXJQKzlzcmRhOXdz?=
- =?utf-8?B?ZEttc2JmanJaZVVmM0M5Zy9FN2hYaHRwTjVSU2d5Y0dDTWFpdUs0RGVpbWIz?=
- =?utf-8?B?ODl0dUtrWUJVUmJNK0Y4MkVGZm9HNXJkMVdoZENkcGkrUElhSjdpZG8rQ05Y?=
- =?utf-8?B?RENocXJSZkc2VE5WdGpzNFhWMXZoSXJNM3VnOEZDS0NQRFcrYS9peU9CdUtC?=
- =?utf-8?B?K1lLYzkzNGdhSG9YdFQvb2hhcDlVTDZkdnpIc1ZPL2J6SmhONWNVcHdlaHkz?=
- =?utf-8?B?eFUvYUk3c2lNc1NpS2poV1pqRHNSSEMxMEFXNmlVZCtWcjFRc0xnV2E4UzVu?=
- =?utf-8?B?V2Y4b2FFSHI4TFovTDZmZzBkZEpXbC9iWDRPd2RzalUzTHQ2eHJRRnVEbzhC?=
- =?utf-8?B?MEJWMTVsak04bHlXM0phcTlHTnFYanlXVVUrODk0V1g1Umd0d2hEeVB6cE1v?=
- =?utf-8?B?aXFhNjMyR0x0Wm1BMytoNGc4VTR4ZFlvODluQXJFMWhxZThaRE9QUUtJbmpr?=
- =?utf-8?B?Z2tBSklVZUNQbEtoa1NnelhRdHhzc3RjNW5XcC9PQ1dGcFlEWlRYdDhxZjBZ?=
- =?utf-8?B?RXNpVzA5VDgyQ1l4dTZoSVh6NW9JTWkxVytnRUgvVnRSclA3dDM5eXg2Zm96?=
- =?utf-8?B?OVQ2K1FsUjExQWZKYlIzdVlCVXRYUDJmM2dwejRYY29sTG5jNGRvZFdLWWxL?=
- =?utf-8?B?Tmtqa0NRNGVrdmRDYWptQkNLUUhRNm1TNFoyM1VhVmdrKytDQ05rcDFOWXVP?=
- =?utf-8?B?NXBYMldoU25EME81dzdFMVRLWFVIdFZjRmxvd2tHcmZIRmhVZGlINTJkYlB1?=
- =?utf-8?B?NW5aT2pHTWV4Q3RyYTQ4SVpNK1k0WmRmTnVXa2RieU50MTQ5Q0VPMzJJYTNv?=
- =?utf-8?B?UTBudVRqSEs5VUZBOFp0YU9mN2xXU2hHRmVPVmNYa0RpOHJELzNrYzNXblZm?=
- =?utf-8?B?OUFnRjVSRjZBOERjQTJ4bDlscjFCMVRIVDlhSEJGTnZlQ3VVayt2akpkL1hN?=
- =?utf-8?B?Nzl5RVdGanNwT1h1L0lHYW93M0QwZUJQYUhHL0hTZkQwdVNic09ZK3NHVTd1?=
- =?utf-8?B?YkF3WmorODBodmR3azFPZGt2RllOcnRUeW5uYTd1U05HKy9sOUh6bmZPZVNn?=
- =?utf-8?B?WGF1QWo1V3daZ1FlUWt4RVp1QXZITHZIQ0NpVFl2VnpBTmlPSVR4YmxpZ1Bo?=
- =?utf-8?B?SUpVUTA2eE4vR283eHNENzR5cTFLVXFkYTNkQmtvNGt4dHJ2eWczVTNOR0Fm?=
- =?utf-8?B?N2l5RlFaL3ZpamUyWTF2S1hsRzk3SldDb0pmVnVUaDVWY1pPZ0ZqYXdBZDUr?=
- =?utf-8?B?ajdYRnl0SHpIVHRjNWpYMnlWV1ZqV3o3WDlDYVFLSVpBRnliN0oybjhuUXFT?=
- =?utf-8?Q?0fZ/wNEvOzXzLw0fZ41+W4D6G?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f4fca7b-4c51-4cc3-dc39-08dbaa6ddffc
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3048.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bkZaWm84UnJIY2UwNnpBZWV6SVZGZmdkUHBaR2tWRnJnTDU4UGxKT2NkemhS?=
+ =?utf-8?B?YkpGb3VhbTEwVVBKcFUxL0lQNDdueVlNV2YyazJsbi83Q2FGSkFNbmtqVmky?=
+ =?utf-8?B?RXY1dERacDlxSUZmRXhoWU9oTlozaVltU0k0R1haV1p1b3FUMVJpeXNuZENy?=
+ =?utf-8?B?UDdsQ0QvakdOaGc1TEg1aXpwRHh3Z0NPdkExdmNrZFI1Ly9TejJZY2UvanlE?=
+ =?utf-8?B?eUE2azlxYkJjTzRNM25GNDRlRlBxNjNMYTBiUjJqdGZzUUVaUG0vY2poTVla?=
+ =?utf-8?B?TkMwRDd1WlNEMXk5cUFYWXhsekJseHFzQTNDeDRxSGU3MTRGUi9ENGtINDEy?=
+ =?utf-8?B?eW1OWlNvUzI1NHljOVVvSFVaVHdlSWVmanVRUEN6VDl1M3lOYnA4Z3FEN0x0?=
+ =?utf-8?B?UHFML09KOEhPdSthOXMwaWpEUlFXMTlCYnVGZmxjL0FxOHBXUXVDc1RGYXJq?=
+ =?utf-8?B?cjc0cDlBc29DcURwdGNHT21kZG5JTTJaWW01L243ZEhacU5iQTRGNXQybk42?=
+ =?utf-8?B?YVFKUGJtcVR6Nm9FZ2lNOFRremxEaEl4ZWc4bUJSK001QnhPbUNMWkpTSi9o?=
+ =?utf-8?B?NThpU2k0ZjJMS1pxRUZUcUJGejN2OEtwenVncGNoVTRVWUY5TTNsR0tzZHRH?=
+ =?utf-8?B?N2NNaFJEelhCeHNCUEVncHV6ckszQWhYY21wTXhSQTRnZkY1TVArOE0zWHdr?=
+ =?utf-8?B?K29tTmFRZE1sdHphdlFlY2NyemUvTHlxaUh6Umh0RWNtNmwySmtHVjFnRWV6?=
+ =?utf-8?B?cXlFelE3MUE5V2l2SU16UjF4MkZUZ2pDaTN5c0VoOXIxaGt5VHRRMU4xNHEw?=
+ =?utf-8?B?UFBoOEMwZG50VUx5cmxFVHFwN2U2OWE3d05FdFdSWmRqSGtYSy94U2RNWWNU?=
+ =?utf-8?B?dmtrYXJiN2NYTkx5OXVtcitIQXFldXkzQWV6TXROeXAzWnpSbmJWeXI5dkFP?=
+ =?utf-8?B?K1ptL2VBSldVU1FXS0NQNU5kOVpQRmdXbVlkeWMwNVpPNWRJS2txTFJSOUYz?=
+ =?utf-8?B?M3J1M29BYnczQ0luTFR0VDZGWWJsTFQ5bGorZmNTcjFET3NmbTlmclJQYXUz?=
+ =?utf-8?B?Q0tEdm9FSXh0NzYrdk9RNE1QcVkzQ0lDc3J5WG9CZGpuMXlMOFNiNFUyeGEx?=
+ =?utf-8?B?Z1ArcTFRbTlJdGpKcUZBbTdEYWVUelFKY05kYWNqeWY1VDI5RnFENk5XN0Qr?=
+ =?utf-8?B?OWovV1g3RUd0SVQ5NklzUkNjMG9JUVZrcTlmSXluL2RmNktWZjN1ZHo2eWxS?=
+ =?utf-8?B?NDdJcEJ1MlJ0UXZpQTZ6dlV3YUlGbVpHazF3VEwyVFNqWGhZSWw3eVFXM0pN?=
+ =?utf-8?B?VHV0SWNPWnNPc3hqUXpDVmxHVko5SkNBWFVXc21TblhrL1hqZHlvY0E5OHJa?=
+ =?utf-8?B?OHhpTWFWNTBtNmxieXlLcGNQb3JsTm9UNGVEaWtUZzdtSHFiR21TRzBWbkQ4?=
+ =?utf-8?B?YW1xRi91N1U2ZWtMa3JWVFNvTEpYVllNUjM0SUkrOU1qdmVLOWp1bXpQWTNV?=
+ =?utf-8?B?ZXphcTFPSWgvd0dWYjRQbFh3OCsydDRzTm1lR3owZHBla1FvS0NSa2JVUzdG?=
+ =?utf-8?B?RTNhck8wMTdUREhoSUZqRmNkRUgxV1RwU2hhSlpUNzhRMkczakZLZGJQMnZZ?=
+ =?utf-8?B?UCs5cVl3ZU5ZamR3dnUvWGF1dzMxN2lKSyttWGxzMGRJM0NHdm5lMHhDK2pw?=
+ =?utf-8?B?YzFGN2hIUUphbUVWNi9LMUQ2TUpwMXI3N0k2QVVEa2Z1WUpPbmR4cGFYWmRh?=
+ =?utf-8?B?QlFFczVNM3JGNVJvKzRnRThLL3V1cC9sWmxSRjRyQWNaV1crQzlzZmpGM3la?=
+ =?utf-8?B?U3REcm5iZ0w2NTlxaHM5eCt3aEdsRlozakJTY1dWeW9CQ0tra2w0SFRYUURP?=
+ =?utf-8?B?M2FpUzl3VEdVWFFMMndTbEJHV3pGVlZMZk9xTXZ6Szl2cDhhbnRGbWZvREdO?=
+ =?utf-8?B?K0wwc1FnZ0IxeTdBT1JzVmlsRms2NGFLVUEvd01PeWVUY1R4YlBWR29kNGtv?=
+ =?utf-8?B?ZmNUaUhMQ2Z3OVF2Y3JDNS9MMTR5dzRDWi9sZnhFai9KbDFJc0FrVnBCSkpy?=
+ =?utf-8?B?LzBzZjFSNlhwK25KdkhXOGpTeE96dzY5b1ZlN0J2S1Y5R3Fhd09CR0UrT1J6?=
+ =?utf-8?B?dkdKVWl5WjZ5Ny9ERWxwb3d5dXJxODZXTFRKVjFCazRjMk40Y1cvMVowTUl5?=
+ =?utf-8?B?RXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f00f7bfb-f640-493a-541c-08dbaa717753
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2023 22:01:49.1258 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2023 22:27:31.4671 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I0Sv+rsmwkdRYTVmUaiEZKz2T23OQ3JOPH4IwkfsiMYxgjnpMnpcRt1DEAefGIkeRhyO0nRFs/c5lRado0miTw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4550
-Subject: Re: [Intel-gfx] [PATCH 0/4] drm/amd/display: stop using
- drm_edid_override_connector_update()
+X-MS-Exchange-CrossTenant-UserPrincipalName: SSrcQpycv4C5XrdNgAqzsG4dJmx8K8i+ayUeOSJPYEKQpQe+F9XNiU8YuLYxDjX4EqwqGnGxYVYDRb1ReR+UwtkqssMD4RaDcDP/3eckH88=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6500
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: Avoid circular locking
+ dependency when flush delayed work on gt reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,127 +164,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
- "Wang, Yu \(Charlie\)" <Yu.Wang4@amd.com>,
- Daniel Wheeler <daniel.wheeler@amd.com>, Hersen Wu <hersenxs.wu@amd.com>,
- dri-devel@lists.freedesktop.org, Wenchieh Chien <wenchieh.chien@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 2023-08-30 01:29, Jani Nikula wrote:
-> On Tue, 29 Aug 2023, Alex Hung <alex.hung@amd.com> wrote:
->> On 2023-08-29 11:03, Jani Nikula wrote:
->>> On Tue, 29 Aug 2023, Jani Nikula <jani.nikula@intel.com> wrote:
->>>> On Tue, 29 Aug 2023, Alex Deucher <alexdeucher@gmail.com> wrote:
->>>>> On Tue, Aug 29, 2023 at 6:48 AM Jani Nikula <jani.nikula@intel.com> wrote:
->>>>>>
->>>>>> On Wed, 23 Aug 2023, Jani Nikula <jani.nikula@intel.com> wrote:
->>>>>>> On Tue, 22 Aug 2023, Alex Hung <alex.hung@amd.com> wrote:
->>>>>>>> On 2023-08-22 06:01, Jani Nikula wrote:
->>>>>>>>> Over the past years I've been trying to unify the override and firmware
->>>>>>>>> EDID handling as well as EDID property updates. It won't work if drivers
->>>>>>>>> do their own random things.
->>>>>>>> Let's check how to replace these references by appropriate ones or fork
->>>>>>>> the function as reverting these patches causes regressions.
->>>>>>>
->>>>>>> I think the fundamental problem you have is conflating connector forcing
->>>>>>> with EDID override. They're orthogonal. The .force callback has no
->>>>>>> business basing the decisions on connector->edid_override. Force is
->>>>>>> force, override is override.
->>>>>>>
->>>>>>> The driver isn't even supposed to know or care if the EDID originates
->>>>>>> from the firmware loader or override EDID debugfs. drm_get_edid() will
->>>>>>> handle that for you transparently. It'll return the EDID, and you
->>>>>>> shouldn't look at connector->edid_blob_ptr either. Using that will make
->>>>>>> future work in drm_edid.c harder.
->>>>>>>
->>>>>>> You can't fix that with minor tweaks. I think you'll be better off
->>>>>>> starting from scratch.
->>>>>>>
->>>>>>> Also, connector->edid_override is debugfs. You actually can change the
->>>>>>> behaviour. If your userspace, whatever it is, has been written to assume
->>>>>>> connector forcing if EDID override is set, you *do* have to fix that,
->>>>>>> and set both.
->>>>>>
->>>>>> Any updates on fixing this, or shall we proceed with the reverts?
->>
->> There is a patch under internal reviews. It removes calls edid_override
->> and drm_edid_override_connector_update as intended in this patchset but
->> does not remove the functionality.
-> 
-> While I am happy to hear there's progress, I'm somewhat baffled the
-> review is internal. The commits that I suggested to revert were also
-> only reviewed internally, as far as I can see... And that's kind of the
-> problem.
-> 
-> Upstream code should be reviewed in public.
-
-Hi Jani,
-
-All patches are sent for public reviews, the progress is summarized as 
-the followings:
-
-== internal ==
-
-1. a patch or patches are tested by CI.
-2. internal technical and IP reviews are performed to ensure no concerns 
-before patches are merged to internal branch.
-
-== public ==
-
-3. a regression test and IP reviews are performed by engineers before 
-sending to public mailing lists.
-4. the patchset is sent for public reviews ex. 
-https://patchwork.freedesktop.org/series/122498/
-5. patches are merged to public repo.
-
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
->>
->> With the patch. both following git grep commands return nothing in
->> amd-staging-drm-next.
->>
->> $ git grep drm_edid_override_connector_update -- drivers/gpu/drm/amd
->> $ git grep edid_override -- drivers/gpu/drm/amd
->>
->> Best regards,
->> Alex Hung
->>
->>>>>
->>>>> What is the goal of the reverts?  I don't disagree that we may be
->>>>> using the interfaces wrong, but reverting them will regess
->>>>> functionality in the driver.
+On 8/31/2023 07:00, Andi Shyti wrote:
+> Hi,
+>
+>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>> index a0e3ef1c65d2..600388c849f7 100644
+>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>>>>> @@ -1359,7 +1359,16 @@ static void guc_enable_busyness_worker(struct intel_guc *guc)
+>>>>>     static void guc_cancel_busyness_worker(struct intel_guc *guc)
+>>>>>     {
+>>>>> -	cancel_delayed_work_sync(&guc->timestamp.work);
+>>>>> +	/*
+>>>>> +	 * When intel_gt_reset was called, task will hold a lock.
+>>>>> +	 * To cacel delayed work here, the _sync version will also acquire a lock, which might
+>>>>> +	 * trigger the possible cirular locking dependency warning.
+>>>>> +	 * Check the reset_in_progress flag, call async verion if reset is in progress.
+>>>>> +	 */
+>>>> This needs to explain in much more detail what is going on and why it is not
+>>>> a problem. E.g.:
 >>>>
->>>> The commits are in v6.5-rc1, but not yet in a release. No user depends
->>>> on them yet. I'd strongly prefer them not reaching v6.5 final and users.
->>>
->>> Sorry for confusion here, that's obviously come and gone already. :(
->>>
->>>> The firmware EDID, override EDID, connector forcing, the EDID property,
->>>> etc. have been and somewhat still are a hairy mess that we must keep
->>>> untangling, and this isn't helping.
+>>>>      The busyness worker needs to be cancelled. In general that means
+>>>>      using the synchronous cancel version to ensure that an in-progress
+>>>>      worker will not keep executing beyond whatever is happening that
+>>>>      needs the cancel. E.g. suspend, driver unload, etc. However, in the
+>>>>      case of a reset, the synchronous version is not required and can
+>>>>      trigger a false deadlock detection warning.
 >>>>
->>>> I've put in crazy amounts of work on this, and I've added kernel-doc
->>>> comments about stuff that should and should not be done, but they go
->>>> unread and ignored.
+>>>>      The business worker takes the reset mutex to protect against resets
+>>>>      interfering with it. However, it does a trylock and bails out if the
+>>>>      reset lock is already acquired. Thus there is no actual deadlock or
+>>>>      other concern with the worker running concurrently with a reset. So
+>>>>      an asynchronous cancel is safe in the case of a reset rather than a
+>>>>      driver unload or suspend type operation. On the other hand, if the
+>>>>      cancel_sync version is used when a reset is in progress then the
+>>>>      mutex deadlock detection sees the mutex being acquired through
+>>>>      multiple paths and complains.
 >>>>
->>>> I really don't want to end up having to clean this up myself before I
->>>> can embark on further cleanups and refactoring.
->>>>
->>>> And again, if the functionality in the driver depends on conflating two
->>>> things that should be separate, it's probably not such a hot idea to let
->>>> it reach users either. Even if it's just debugfs.
->>>>
->>>>
->>>> BR,
->>>> Jani.
->>>
-> 
+>>>>      So just don't bother. That keeps the detection code happy and is
+>>>>      safe because of the trylock code described above.
+>>> So why do we even need to cancel anything if it doesn't do anything while
+>>> the reset is in progress?
+>> It still needs to be cancelled. The worker only aborts if it is actively
+>> executing concurrently with the reset. It might not start to execute until
+>> after the reset has completed. And there is presumably a reason why the
+>> cancel is being called, a reason not necessarily related to resets at all.
+>> Leaving the worker to run arbitrarily after the driver is expecting it to be
+>> stopped will lead to much worse things than a fake lockdep splat, e.g. a use
+>> after free pointer deref.
+> I was actually thinking why not leave things as they are and just
+> disable lockdep from CI. This doesn't look like a relevant report
+> to me.
+>
+> Andi
+Disable lockdep? The whole of lockdep? We absolutely do not want to 
+disable an extremely important deadlock testing infrastructure in our 
+test framework. That would be defeating the whole point of CI.
+
+Potentially we could annotate this one particular scenario to suppress 
+this one particular error.  But it seems simpler and safer to just 
+update the code to not hit that scenario in the first place.
+
+John.
+
