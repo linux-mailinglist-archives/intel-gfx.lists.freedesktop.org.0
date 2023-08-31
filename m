@@ -2,42 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF6078F4A8
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Aug 2023 23:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81E0978F44B
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Aug 2023 22:52:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48A5610E6EC;
-	Thu, 31 Aug 2023 21:33:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5224110E070;
+	Thu, 31 Aug 2023 20:52:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 310 seconds by postgrey-1.36 at gabe;
- Thu, 31 Aug 2023 11:43:27 UTC
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 682A610E639;
- Thu, 31 Aug 2023 11:43:27 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 4A4DDB82164;
- Thu, 31 Aug 2023 11:38:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A80EC433C8;
- Thu, 31 Aug 2023 11:38:12 +0000 (UTC)
-Message-ID: <f312fc14-13b0-43ea-3502-0ca4eef7aaca@xs4all.nl>
-Date: Thu, 31 Aug 2023 13:38:10 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BD6210E070
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Aug 2023 20:52:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693515144; x=1725051144;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TuyEYHRnjY/+O7DOnS+47F47u5D2858bsTj8HAELm8g=;
+ b=TtIKWXFDX0yK5EIL9pg3u6oCVCI7SM6p4EHnJk8JhB0Z1ztfvcXdHNmG
+ 7C+67FMdpfxESPcvXUqTsmWiQJTCbkmPmtOlMW+PTaeEtUWUUtnh+qI/R
+ Dw/huvy47uxlAM0dBBayMNE3hhDTnkjKbKKqJ2ZTkJ5npKJhMGvvI1Ss5
+ GzT3UJZvCY5TkU/A7qF9Xu5HRKp7yiRAInCuDlHs4mKLrs3Ni8Cq7yuIc
+ WDCYqbPpuug3ozQqd/iHLHbR3YdF0swWFaT5yN3Mf/XPakndJLelcovxt
+ CgOGCCciXHMtQMbC+JM0zijucHZKIMTxgQWGrv/n89PxpOYEWPr0aKCuY g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="378797862"
+X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="378797862"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2023 13:52:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="733275190"
+X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="733275190"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.135.36])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2023 13:52:21 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 31 Aug 2023 22:51:50 +0200
+Message-Id: <20230831205150.165-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Content-Language: en-US, nl
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-References: <7cebfea8f999d2d0d49533f9849d109830c5d1b6.1692884619.git.jani.nikula@intel.com>
- <20230831105144.25923-1-jani.nikula@intel.com>
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230831105144.25923-1-jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 31 Aug 2023 21:33:53 +0000
-Subject: Re: [Intel-gfx] [PATCH v2] media: cec: core: add note about
- *_from_edid() function usage in drm
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/guc: Update GUC_KLV_0_KEY definition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,65 +56,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@intel.com>, Linyu Yuan <quic_linyyuan@quicinc.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 31/08/2023 12:51, Jani Nikula wrote:
-> In the drm subsystem, the source physical address is, in most cases,
-> available without having to parse the EDID again. Add notes about
-> preferring to use the pre-parsed address instead.
-> 
-> Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+While building ARCH=x86 with GCC 7.5.0 we get compilation errors:
 
-Reviewed-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+  CC      drivers/gpu/drm/i915/gt/uc/intel_guc_submission.o
+In file included from <command-line>:0:0:
+In function ‘__guc_context_policy_add_priority.isra.47’,
+    inlined from ‘__guc_context_set_prio.isra.48’ at drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:3332:3,
+    inlined from ‘guc_context_set_prio’ at drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:3360:2:
+././include/linux/compiler_types.h:397:38: error: call to ‘__compiletime_assert_1803’ declared with attribute error: FIELD_PREP: mask is not constant
+  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+                                      ^
+././include/linux/compiler_types.h:378:4: note: in definition of macro ‘__compiletime_assert’
+    prefix ## suffix();    \
+    ^~~~~~
+././include/linux/compiler_types.h:397:2: note: in expansion of macro ‘_compiletime_assert’
+  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+  ^~~~~~~~~~~~~~~~~~~
+./include/linux/build_bug.h:39:37: note: in expansion of macro ‘compiletime_assert’
+ #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+                                     ^~~~~~~~~~~~~~~~~~
+./include/linux/bitfield.h:65:3: note: in expansion of macro ‘BUILD_BUG_ON_MSG’
+   BUILD_BUG_ON_MSG(!__builtin_constant_p(_mask),  \
+   ^~~~~~~~~~~~~~~~
+./include/linux/bitfield.h:114:3: note: in expansion of macro ‘__BF_FIELD_CHECK’
+   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: "); \
+   ^~~~~~~~~~~~~~~~
+drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2461:3: note: in expansion of macro ‘FIELD_PREP’
+   FIELD_PREP(GUC_KLV_0_KEY, GUC_CONTEXT_POLICIES_KLV_ID_##id) | \
+   ^~~~~~~~~~
 
-Thanks!
+This is due to our GUC_KLV_0_KEY definition that uses signed mask in
+shift operator, which may lead to undefined behavior on 32-bit system.
+Use unsigned mask to enforce expected integer promotion.
 
-	Hans
+Reported-by: Linyu Yuan <quic_linyyuan@quicinc.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Linyu Yuan <quic_linyyuan@quicinc.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
-> ---
-> 
-> v2: rephrase comments, in particular indicate cec_s_phys_addr() should
-> be false (Hans)
-> ---
->  drivers/media/cec/core/cec-adap.c     | 5 +++++
->  drivers/media/cec/core/cec-notifier.c | 5 +++++
->  2 files changed, 10 insertions(+)
-> 
-> diff --git a/drivers/media/cec/core/cec-adap.c b/drivers/media/cec/core/cec-adap.c
-> index 241b1621b197..1109af525c35 100644
-> --- a/drivers/media/cec/core/cec-adap.c
-> +++ b/drivers/media/cec/core/cec-adap.c
-> @@ -1688,6 +1688,11 @@ void cec_s_phys_addr(struct cec_adapter *adap, u16 phys_addr, bool block)
->  }
->  EXPORT_SYMBOL_GPL(cec_s_phys_addr);
->  
-> +/*
-> + * Note: In the drm subsystem, prefer calling (if possible):
-> + *
-> + * cec_s_phys_addr(adap, connector->display_info.source_physical_address, false);
-> + */
->  void cec_s_phys_addr_from_edid(struct cec_adapter *adap,
->  			       const struct edid *edid)
->  {
-> diff --git a/drivers/media/cec/core/cec-notifier.c b/drivers/media/cec/core/cec-notifier.c
-> index 389dc664b211..d600be0f7b67 100644
-> --- a/drivers/media/cec/core/cec-notifier.c
-> +++ b/drivers/media/cec/core/cec-notifier.c
-> @@ -195,6 +195,11 @@ void cec_notifier_set_phys_addr(struct cec_notifier *n, u16 pa)
->  }
->  EXPORT_SYMBOL_GPL(cec_notifier_set_phys_addr);
->  
-> +/*
-> + * Note: In the drm subsystem, prefer calling (if possible):
-> + *
-> + * cec_notifier_set_phys_addr(n, connector->display_info.source_physical_address);
-> + */
->  void cec_notifier_set_phys_addr_from_edid(struct cec_notifier *n,
->  					  const struct edid *edid)
->  {
+diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+index 58012edd4eb0..8e821aefb164 100644
+--- a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+@@ -29,7 +29,7 @@
+  */
+ 
+ #define GUC_KLV_LEN_MIN				1u
+-#define GUC_KLV_0_KEY				(0xffff << 16)
++#define GUC_KLV_0_KEY				(0xffffu << 16)
+ #define GUC_KLV_0_LEN				(0xffff << 0)
+ #define GUC_KLV_n_VALUE				(0xffffffff << 0)
+ 
+-- 
+2.25.1
 
