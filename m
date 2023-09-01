@@ -2,55 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 966BC78FBAD
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Sep 2023 12:16:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B13178FBC0
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Sep 2023 12:28:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C4CE10E068;
-	Fri,  1 Sep 2023 10:16:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31D4910E770;
+	Fri,  1 Sep 2023 10:28:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F12F510E068
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Sep 2023 10:16:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D6DE10E770
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Sep 2023 10:28:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693563392; x=1725099392;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=ixYSut+4pPLV+TrMuCotyHwohf1Ojacg8fsgjusKSig=;
- b=cLr5U4ZfjTOZo9c7nLnRxfpdBqODhVbnrTEL7jtgFPGoTk5wO26ut+Sp
- y+vB2eKoNxFp7kShqsCoXFa2D1vpXoSuRTFda847Kj0JAroEGtttqfdQg
- NdYmC85OuCgYbIhD2iRQs2Hi9HY+LMe3rZfH2AmB9MGaJBSfuGu2XOdVz
- chaRPhyLnpvXRWUIcqza8QMswUqiv8sf9cpV9wKUOSAtFl2KKO3rQUbG4
- jm8S8hjuiNT6CkI5xY4QvPf5f5HXel1w88S7h55QlBydpUPo7y6JaaBll
- wxS05g3yk4INr8d+2+Dy6uAE5JxV5bvnfam12HVGSaz3Pvqc6QEn9Crw7 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="462554709"
-X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="462554709"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2023 03:16:31 -0700
+ t=1693564098; x=1725100098;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=hSp0GA0FZzXZFR+3sfGaeM0d7rin4QkG3xpjsZYuYh8=;
+ b=Hk/0Y/4FoJuScltllnwMlGnAzYhcHm7nr7BUOtQUqZYY7FLf3DxjYeRS
+ 4ub5YXQqUU+w4UB6dgEIO2c5P4F80lonFl0bwPFz5a1uciH+JWzs76cHY
+ q0QSa/QLFrSOKVLnw4kuuEe8W8tizmt5dOfMojzDlBwR9Xg5vsouPhqjH
+ qbi02Rade+9S/RPx2S9IRRhmZjMjnSYPstuSd6TxY2z+pEow7PPvVHUvB
+ 3VTexE6LBqojSQygwRPpQ+1SaBXkihsq31ulNI0THrTtTiGGWHlVMzKSV
+ 7b+vMxFS+93iqcotRERwbQsDfc2BXuObVikELXoInstpw0lunAnQjjx8u A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="356501173"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="356501173"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2023 03:28:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="739883236"
-X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="739883236"
-Received: from amirafax-mobl4.gar.corp.intel.com (HELO [10.249.254.147])
- ([10.249.254.147])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2023 03:16:25 -0700
-Message-ID: <5b340552-e09b-48cb-0677-7f65f24ee6ce@linux.intel.com>
-Date: Fri, 1 Sep 2023 12:16:21 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="805400187"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="805400187"
+Received: from epronina-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.34.21])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2023 03:28:15 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: William Tseng <william.tseng@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20230901095100.3771188-1-william.tseng@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230901095100.3771188-1-william.tseng@intel.com>
+Date: Fri, 01 Sep 2023 13:28:09 +0300
+Message-ID: <87ttsei3wm.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20230831162643.20354-1-ville.syrjala@linux.intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20230831162643.20354-1-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use vblank worker to unpin old
- legacy cursor fb safely
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: let HW maintain HS-TRAIL and
+ CLK_POST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,79 +59,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: William Tseng <william.tseng@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+On Fri, 01 Sep 2023, William Tseng <william.tseng@intel.com> wrote:
+> This change is to adjust TEOT timing and TCLK-POST timing so DSI
+> signaling can meet CTS specification.
+>
+> For clock lane, the measured TEOT may be changed from 142.64 ns to
+> 107.36 ns, which is less than (105 ns+12*UI) and is conformed to
+> mipi D-PHY v1.2 CTS v1.0.
+>
+> As to TCLK-POST, it may be changed from 133.44 ns to 178.72 ns, which
+> is greater than (60 ns+52*UI) and is conformed to the CTS standard.
+>
+> The computed UI is around 1.47 ns.
+
+The question is, why does the VBT define all this stuff, and when should
+it be used and when ignored?
+
+Also, this won't build.
+
+BR,
+Jani.
 
 
-Den 2023-08-31 kl. 18:26, skrev Ville Syrjala:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 >
-> The cursor hardware only does sync updates, and thus the hardware
-> will be scanning out from the old fb until the next start of vblank.
-> So in order to make the legacy cursor fastpath actually safe we
-> should not unpin the old fb until we're sure the hardware has
-> ceased accessing it. The simplest approach is to just use a vblank
-> work here to do the delayed unpin.
->
-> Not 100% sure it's a good idea to put this onto the same high
-> priority vblank worker as eg. our timing critical gamma updates.
-> But let's keep it simple for now, and it we later discover that
-> this is causing problems we can think about adding a lower
-> priority worker for such things.
->
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> Cc: Lee Shawn C <shawn.c.lee@intel.com>
+> Signed-off-by: William Tseng <william.tseng@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_cursor.c   | 25 +++++++++++++++++--
->   .../drm/i915/display/intel_display_types.h    |  3 +++
->   2 files changed, 26 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/icl_dsi.c | 31 ++++----------------------
+>  1 file changed, 4 insertions(+), 27 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-> index b342fad180ca..2bd1a79c6955 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> @@ -603,6 +603,16 @@ static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
->   	return format == DRM_FORMAT_ARGB8888;
->   }
->   
-> +static void intel_cursor_unpin_work(struct kthread_work *base)
-> +{
-> +	struct drm_vblank_work *work = to_drm_vblank_work(base);
-> +	struct intel_plane_state *plane_state =
-> +		container_of(work, typeof(*plane_state), unpin_work);
-> +
-> +	intel_plane_unpin_fb(plane_state);
-> +	intel_plane_destroy_state(plane_state->uapi.plane, &plane_state->uapi);
-> +}
-> +
->   static int
->   intel_legacy_cursor_update(struct drm_plane *_plane,
->   			   struct drm_crtc *_crtc,
-> @@ -730,14 +740,25 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
->   
->   	local_irq_enable();
->   
-> -	intel_plane_unpin_fb(old_plane_state);
-> +	if (old_plane_state->hw.fb != new_plane_state->hw.fb) {
-> +		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
-> +				     intel_cursor_unpin_work);
-> +
-> +		drm_vblank_work_schedule(&old_plane_state->unpin_work,
-> +					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-> +					 false);
-> +
-> +		old_plane_state = NULL;
-> +	} else {
-> +		intel_plane_unpin_fb(old_plane_state);
-> +	}
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index ad6488e9c2b2..4a13f467ca46 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -1819,10 +1819,10 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+>  	struct intel_connector *connector = intel_dsi->attached_connector;
+>  	struct mipi_config *mipi_config = connector->panel.vbt.dsi.config;
+>  	u32 tlpx_ns;
+> -	u32 prepare_cnt, exit_zero_cnt, clk_zero_cnt, trail_cnt;
+> -	u32 ths_prepare_ns, tclk_trail_ns;
+> +	u32 prepare_cnt, exit_zero_cnt, clk_zero_cnt;
+> +	u32 ths_prepare_ns;
+>  	u32 hs_zero_cnt;
+> -	u32 tclk_pre_cnt, tclk_post_cnt;
+> +	u32 tclk_pre_cnt;
+>  
+>  	tlpx_ns = intel_dsi_tlpx_ns(intel_dsi);
+>  
+> @@ -1853,14 +1853,6 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+>  		clk_zero_cnt = ICL_CLK_ZERO_CNT_MAX;
+>  	}
+>  
+> -	/* trail cnt in escape clocks*/
+> -	trail_cnt = DIV_ROUND_UP(tclk_trail_ns, tlpx_ns);
+> -	if (trail_cnt > ICL_TRAIL_CNT_MAX) {
+> -		drm_dbg_kms(&dev_priv->drm, "trail_cnt out of range (%d)\n",
+> -			    trail_cnt);
+> -		trail_cnt = ICL_TRAIL_CNT_MAX;
+> -	}
+> -
+>  	/* tclk pre count in escape clocks */
+>  	tclk_pre_cnt = DIV_ROUND_UP(mipi_config->tclk_pre, tlpx_ns);
+>  	if (tclk_pre_cnt > ICL_TCLK_PRE_CNT_MAX) {
+> @@ -1869,15 +1861,6 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+>  		tclk_pre_cnt = ICL_TCLK_PRE_CNT_MAX;
+>  	}
+>  
+> -	/* tclk post count in escape clocks */
+> -	tclk_post_cnt = DIV_ROUND_UP(mipi_config->tclk_post, tlpx_ns);
+> -	if (tclk_post_cnt > ICL_TCLK_POST_CNT_MAX) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> -			    "tclk_post_cnt out of range (%d)\n",
+> -			    tclk_post_cnt);
+> -		tclk_post_cnt = ICL_TCLK_POST_CNT_MAX;
+> -	}
+> -
+>  	/* hs zero cnt in escape clocks */
+>  	hs_zero_cnt = DIV_ROUND_UP(mipi_config->ths_prepare_hszero -
+>  				   ths_prepare_ns, tlpx_ns);
+> @@ -1902,19 +1885,13 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+>  			       CLK_ZERO_OVERRIDE |
+>  			       CLK_ZERO(clk_zero_cnt) |
+>  			       CLK_PRE_OVERRIDE |
+> -			       CLK_PRE(tclk_pre_cnt) |
+> -			       CLK_POST_OVERRIDE |
+> -			       CLK_POST(tclk_post_cnt) |
+> -			       CLK_TRAIL_OVERRIDE |
+> -			       CLK_TRAIL(trail_cnt));
+> +			       CLK_PRE(tclk_pre_cnt));
+>  
+>  	/* data lanes dphy timings */
+>  	intel_dsi->dphy_data_lane_reg = (HS_PREPARE_OVERRIDE |
+>  					 HS_PREPARE(prepare_cnt) |
+>  					 HS_ZERO_OVERRIDE |
+>  					 HS_ZERO(hs_zero_cnt) |
+> -					 HS_TRAIL_OVERRIDE |
+> -					 HS_TRAIL(trail_cnt) |
+>  					 HS_EXIT_OVERRIDE |
+>  					 HS_EXIT(exit_zero_cnt));
 
-Maybe check if crtc is active and no modeset is happening? Similar to 
-how the vblank worker is used in other cases. That should hopefully fix 
-the cursor leak test.
-
-Cheers,
-
-~Maarten
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
