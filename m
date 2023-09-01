@@ -1,136 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A0A7903A3
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 Sep 2023 00:34:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F0DC7903C5
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 Sep 2023 00:51:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4E2010E01F;
-	Fri,  1 Sep 2023 22:34:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EAD710E069;
+	Fri,  1 Sep 2023 22:51:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B41DF10E01F
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Sep 2023 22:34:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693607650; x=1725143650;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=yw6MhhHwhwyHMTT4Ggos4qA3IWNBOnNry4vuITf9KSM=;
- b=cxEe619CrOmLKjNRZ2yreMR4bIiceYfhpriwK6LfCsD+Si4v3a5Rvnc1
- SU/zB/SMOTo3gx/CUWhBmSbvEGiVlU0d8QhFzQ4HdVLYKI+4Lda/DPBvu
- 0h6IHcJisBcFnHQkb0QerwbrXImYwOsGF1K6KZp+0sF+nJ29t7qw9l3U4
- m7e9k3aC3c2opHtv6ySKQj7J0NZeUB6nJiQPWnvnwN68Si6g27UcGsSUv
- WFWHdWo6lLkjSSVyy9jXisFbrvhO6ii0KcXbwbTmI/PYbk995UeENuUvK
- QKcEE+iYT/BTOcFSQcslWo7fJk/pLCd5Z6E3oDRw058nNKEBh0zlTVM1q g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="375222652"
-X-IronPort-AV: E=Sophos;i="6.02,221,1688454000"; d="scan'208";a="375222652"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2023 15:34:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="769339898"
-X-IronPort-AV: E=Sophos;i="6.02,221,1688454000"; d="scan'208";a="769339898"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 01 Sep 2023 15:34:09 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Fri, 1 Sep 2023 15:34:08 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Fri, 1 Sep 2023 15:34:08 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.46) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Fri, 1 Sep 2023 15:34:08 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b/7IoVTRkUmPXqKTeLkaqyOnk+A/VImbbQltIbuSIhsFxkWQ1eUfoe41DTLWiODRS3gsWLlQjNvSt1Bfl02H7UmzD6zzjwFYJsDA9z9t5rADYU5PQhRuUj8AARLDcQFjhfzVthDWGglM0LExZ0tIaJV31q1PvesgggdaidIRQLxuWvlOHrpE5a2/X/CimmRCtadTjeCgD7uMe2KsXz5ToaP3HikHvXX7Dxk8n00beN+u8YyYvkS0uyZcw8+9P2OjtJGCkL12WPkChBtqwp45UkV6klf6+3RNf9zkQOJAJrsr0GCK/pytSrikwRg+yNZh+6vOGwpaqF36WYYxZpxDVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JyctxHDKZWuk+7/hxywckf5xLKCQs/+RMJjtrTBaMYs=;
- b=U0al0WHQKx3YS4vVkhNuYx08V/ofQGXze+CncGc/vFIE33/g3kAHG9vdGDEdIm/HyPChjJxMHUtc3QTI7vTs1aYE8hyHzXQKElGV4B/o+jSazREbug1s/94qPQHwIjp6x46DV96InfNQJclRuPtPJVGKssW11CM628MBXdKW1CCi6qtApPopPPXhO/JeirO91TvcrGmweuPiMkR2WgJA3ld4hiQpdL3ARIsTd9dknw4YSfSG3CJQIeuzdMk3b52XJVUy2L1NqDeYmJ7O8pAhyQYZqBw2Zj+d/lExiNnYhgIYd0uTfknQPOJWzhrb4sQPMKwYXRBty7CTi+NN4oGoxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- PH7PR11MB6546.namprd11.prod.outlook.com (2603:10b6:510:212::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.26; Fri, 1 Sep
- 2023 22:34:04 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6745.023; Fri, 1 Sep 2023
- 22:34:03 +0000
-Date: Fri, 1 Sep 2023 15:34:00 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Shekhar Chauhan <shekhar.chauhan@intel.com>
-Message-ID: <20230901223400.GW6080@mdroper-desk1.amr.corp.intel.com>
-References: <20230901045700.2553994-1-shekhar.chauhan@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230901045700.2553994-1-shekhar.chauhan@intel.com>
-X-ClientProxiedBy: BY3PR04CA0029.namprd04.prod.outlook.com
- (2603:10b6:a03:217::34) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
+ [IPv6:2a00:1450:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 830E010E069
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Sep 2023 22:51:27 +0000 (UTC)
+Received: by mail-lj1-x22b.google.com with SMTP id
+ 38308e7fff4ca-2bcc846fed0so42432391fa.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 01 Sep 2023 15:51:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1693608685; x=1694213485;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=+imYCqEpQGQYJF9z3Zred9fi662pg+dZPyYtyzKuds0=;
+ b=cz7gO1S9t0q2K16WS3UI4x4yE5lnSSHlg0YjDbDJm5lKu873wToCG1UPSWcwLdEfhl
+ qMQRA+SUIXsMNEXH0YfgHu5bIqwkW3E5ek6WAQj8Z5AoL/ghUeVjZ6fZZJJy98KdBl1F
+ DKQBIZPA5q5ZNhcCAw1Arqzf1vJ0FcQGEqXuA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693608685; x=1694213485;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=+imYCqEpQGQYJF9z3Zred9fi662pg+dZPyYtyzKuds0=;
+ b=a7mB1+sulc2+u/ym1i8QA7I0m1A6QO5jRVyTaTOsRnsSlF5kL3Nr6fE8w7Avhu+Wtf
+ SrtN1lojd/r7VckgR+GSvIVtS0yAAX0qDZtxTM74VGRiBN9DF0XVCu4RFOXt6vhMhR9N
+ TmR43MpmkzUKf/ww0U32rudYdu0nMF2yiYeY5DDXZs6CJV2Teor5kk9iD6SvoofBVGRA
+ bh7yrockcdbBgvOnR0MQpDgWAMveC4WRTyxfwLlYp9sUXkRp9eFHUbO6dQDDQD0ZoljH
+ OnnOs3zctgPcX8C5F+oF54yNflCmSmiCdSPi37FrVVLOrrCp+QM1bD4Q8GqvfXkZvwqI
+ XfBQ==
+X-Gm-Message-State: AOJu0YyGThAI7GxTGk2pdWStUdBYHomjCKmDI22DmgFcL0Pd2ASaApso
+ OLqWKRLM8mEZtcqD/evZXk0fKEnzNMPBTyncZI8pQQ==
+X-Google-Smtp-Source: AGHT+IHZVhh8nONbxjFRGwOWOC8nTFjU/wJw+509miskR/7gNkjplZe4JmTrOVGQvlIAusGXspz4Wz+/dzdPRb+onfo=
+X-Received: by 2002:a2e:701a:0:b0:2bc:d5f1:b9cf with SMTP id
+ l26-20020a2e701a000000b002bcd5f1b9cfmr2606495ljc.27.1693608685358; Fri, 01
+ Sep 2023 15:51:25 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|PH7PR11MB6546:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2a47ae5-215d-4260-7898-08dbab3b8b2d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ebm8HWv6GJMcBRhCuybr2+sjFwzhbMkQJOolUeCw9K1SJVA/mtuyxu6//VJQTjNwd0wE3CtzeFo88ouZMLuf5x9M3us8OidUtWdCJUqSlch0Ngd9vlUHpA3G5SeVO7tirGQG43VNKV0knSB8F1djhGEp8+VhajfymwjQKnx8qvdpLBUSs6UtLWlYJhyWAunp8HMecArmNJ5QjqvNylxZ3J0NoGIrjR2vfdzONtLo0ilfMg5PCFHLB5OS4AYjZdm/8OGGV8g0rhIgY/6kudiCUC7AzVQNaGUnVEbey5BKQyEXgk+aTmMR1x7BhXAU37DqYo3FsQJ6VsRuHolzHnqfACjG9xwCSzLxRsCPBLO2We1K88bVDBd6qRByLAKViANQYUJXuC4jNFe2C34QRPty/D68M0M4qVcklSA5gW8pWaavlzNGs5XVrEkHPs3bquLZS2rqVoDG3jD1gmfBIOuXmFlTJlkEqY1pxFoZyguHkdMoGVatiSSxfyTD0l7i6FTdOoVYqtIFh2VD1iH5oykS3duFnPy/1ua36Yuuu/TwgmlSf7zAqjn66k47s/Apnc7f
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(346002)(366004)(376002)(136003)(396003)(451199024)(1800799009)(186009)(33656002)(8676002)(6862004)(4326008)(8936002)(6486002)(6506007)(86362001)(66556008)(66946007)(66476007)(6512007)(478600001)(41300700001)(316002)(26005)(38100700002)(6636002)(5660300002)(82960400001)(2906002)(1076003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ZXadMPGdZYC0gxPoGIRD2QaqEWP0IpkMHkZ++bwgGHDBri9RuqpDBth+ZOSE?=
- =?us-ascii?Q?vLzLu+z37m4eTm5En5QhG2WeXo0JHGURhD7i76xekzaQGQKX6s4fVMJBV9LT?=
- =?us-ascii?Q?6Ov0mMBV6K/svo6fnj9Sqca96Cdd97MzwwhTI5q/PAFKCCf2aeMdbmOB57gY?=
- =?us-ascii?Q?2KrjlBnbW48o70fkDEOupaRl2vIcn5Kiyyhd08X1Kpq/XzTYqLc7voyReQpg?=
- =?us-ascii?Q?fTssiEGq1rhC1RS9fkxTx6ERf5TYnvHHT7NlnAE6cLFbmvpLdW0pIpOhJXbw?=
- =?us-ascii?Q?xxLTR3W6d7XpbNBGcO/Hw2x3FjpboRnmSguAThYozMUuEfltCCG0+VuZl4Kq?=
- =?us-ascii?Q?2YdWSgeGY8qjqVNaZ4vxRCWSiPZQsOXyVHbA8Snjjq7fY/1vU32gjm3NN2Za?=
- =?us-ascii?Q?qjsecWtiGFdyIPr6QjO0AX6qBGYYQxNC4MahHeLBXIm7gvZAO/tZrGDSVr0Z?=
- =?us-ascii?Q?u4A7VNAkt/Q9sw7pZ50j37X9z7kdbvRZdfruVbiBfnGmVYGg8JlhckO2s6z3?=
- =?us-ascii?Q?ZKudGxHRZjBTlGWczAncAftHz8xOSj0H6sDI7hUN2/WOJFgEHa+Xbwwett48?=
- =?us-ascii?Q?O5obWw4L59fmzBZWU3KxZySYYITFQCUKvwlXwMGuY4/B9p4eJ1KMb/p2a2Wa?=
- =?us-ascii?Q?5s7k79609SAI5SYdMCoGm7edniy/Wxd+Ig4M/YhnE8cmRdFdijg1gv8sz6+W?=
- =?us-ascii?Q?bZM/0APQ4QAtb28zC9RG6LSvFRSDRkb1CjlbZefoOz84Q3tz0qLoVvFhIubX?=
- =?us-ascii?Q?07buT3e37a8TQFr+6jdIxcgsP/baRMlQvZ16aejc8+GmFjcyVK8zVvvQP+TI?=
- =?us-ascii?Q?w/QTLkZ52wJNjBC4Jo54wOAh8f/ro6Jmnvzlx2L9/6FLIXRJcC4Xi8flkU2O?=
- =?us-ascii?Q?h4cwF9sSEJc0HSSCNj2K8X+EJT485/KfhtvqK7pGzMgol+ys+RUwak1JtOdi?=
- =?us-ascii?Q?FU0jONIvqjU/xsyto1XYzn1YIL2K18TdJXzx5l3koEzkPfCrdSZ8hYS5rlvM?=
- =?us-ascii?Q?Nmgf2vx80y/LGvli75q1ROKB1fRpPBFLxu9+LoG4F773FUYx761txR3F/MI7?=
- =?us-ascii?Q?FXhBqk4EbPZITXUkrPu5cs/3cVHgcADOmnVK3VQ5F8hNn4nQqDWGI3nhcgJM?=
- =?us-ascii?Q?77LD3pd0THWYPo8FHUYUcRNVQrzxeKxSCGxjg0Oc5HLm6Th2BAEuvqA9BmxY?=
- =?us-ascii?Q?/HlZCPvMdwTRJgewwCtGfymASh0smCaZNlMopyK0a3CnX/6KqIZtfzJPOvL1?=
- =?us-ascii?Q?U6Crf9CQcybZajnrXFbpHS/XaUIhy/uz+dQuwWxiVDg8WyVz3tctMUsut8pG?=
- =?us-ascii?Q?18ja6CNuxJTTnf6PSXvPuqXQhveJBX84jumEnhOLptj5CaKd997hQ00S/28f?=
- =?us-ascii?Q?NdVtts0eo9KG7angQZPxYJJBZtbHaV/BOp0zZfFTJOVQEEDeMgEGWCjlXkCN?=
- =?us-ascii?Q?+yCK5kXY4FYjx9dbKGWgw8gWdxVd45gJbF1M+mxXlG2gihrR92tQj4Lybrtx?=
- =?us-ascii?Q?tURktKEbf4b8CrXbsr426Qqbkj3uzT9TRzgE/bB5veuicpJSmt3CeDlErFgr?=
- =?us-ascii?Q?l4mpQvvFm7mxoMjxso17BTMNLvTUh/iI4D0cD6kgYgBmflgUZE2vo8rCHMt8?=
- =?us-ascii?Q?qA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2a47ae5-215d-4260-7898-08dbab3b8b2d
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2023 22:34:03.1664 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5J+U1nBVINKgPlCbAsh48tBakrLkmhKa3+hW/HL/ZwaYM8DcGts4Avikw218P+VPP7btERj2oxGKFu0UdtEs0R9z8f2pthqFTWktei/Ec88=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6546
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add Wa_14015150844
+References: <20230824205335.500163-1-gildekel@chromium.org>
+ <20230824205335.500163-2-gildekel@chromium.org> <ZPI0BX6KyIIKMaKP@intel.com>
+In-Reply-To: <ZPI0BX6KyIIKMaKP@intel.com>
+From: Gil Dekel <gildekel@chromium.org>
+Date: Fri, 1 Sep 2023 18:51:14 -0400
+Message-ID: <CAOD+-Q42-LwUb1X8z_TP2=Q+zpbg7O0x4r5RXShQaCaLcsajgw@mail.gmail.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v4 1/6] drm/i915/dp_link_training: Add a
+ final failing state to link training fallback
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,61 +68,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, seanpaul@chromium.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 01, 2023 at 10:27:00AM +0530, Shekhar Chauhan wrote:
-> Disables Atomic-chaining of Typed Writes.
-> 
-> BSpec: 54040
-> Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+On Fri, Sep 1, 2023 at 2:57=E2=80=AFPM Rodrigo Vivi <rodrigo.vivi@intel.com=
+> wrote:
+>
+> On Thu, Aug 24, 2023 at 04:50:16PM -0400, Gil Dekel wrote:
+> > Instead of silently giving up when all link-training fallback values ar=
+e
+> > exhausted, this patch modifies the fallback's failure branch to reduces
+> > both max_link_lane_count and max_link_rate to zero (0) and continues to
+> > emit uevents until userspace stops attempting to modeset.
+> >
+> > By doing so, we ensure the failing connector, which is in
+> > link-status=3DBad, has all its modes pruned (due to effectively having =
+a
+> > bandwidth of 0Gbps).
+> >
+> > It is then the userspace's responsibility to ignore connectors with no
+> > modes, even if they are marked as connected.
+> >
+> > Signed-off-by: Gil Dekel <gildekel@chromium.org>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 18 ++++++++++++++++--
+> >  1 file changed, 16 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
+i915/display/intel_dp.c
+> > index 7067ee3a4bd3..2152ddbab557 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -276,8 +276,12 @@ static int intel_dp_common_len_rate_limit(const st=
+ruct intel_dp *intel_dp,
+> >
+> >  static int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
+> >  {
+> > +     /* This occurs when max link rate drops to 0 via link training fa=
+llback*/
+> > +     if (index < 0)
+> > +             return 0;
+>
+> I'm not comfortable with handling negative input as normal here
+> and no warning or msg.
+> Maybe I'm missing the cases in which this will get to negative and
+> it would be acceptable? In this case probably better to improve the
+> commit message.
+>
+If we set the max_link_rate to 0, as I am suggesting in this approach,
+it will eventually reach:
+int intel_dp_rate_limit_len(intel_dp_rate_limit_len(const int *rates,
+int len, int max_rate)
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+and since max_rate is =3D=3D 0, the returned value will be 0.
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 2 ++
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 8 ++++++++
->  2 files changed, 10 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> index 0e4c638fcbbf..a00ff51c681d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> @@ -1218,6 +1218,8 @@
->  
->  #define XEHP_HDC_CHICKEN0			MCR_REG(0xe5f0)
->  #define   LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK	REG_GENMASK(13, 11)
-> +#define   DIS_ATOMIC_CHAINING_TYPED_WRITES	REG_BIT(3)
-> +
->  #define ICL_HDC_MODE				MCR_REG(0xe5f4)
->  
->  #define EU_PERF_CNTL2				PERF_REG(0xe658)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 864d41bcf6bb..70071ead0659 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -2327,6 +2327,14 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
->  				  LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK);
->  	}
->  
-> +	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71)) ||
-> +	    IS_DG2(i915)) {
-> +		/* Wa_14015150844 */
-> +		wa_mcr_add(wal, XEHP_HDC_CHICKEN0, 0,
-> +			   _MASKED_BIT_ENABLE(DIS_ATOMIC_CHAINING_TYPED_WRITES),
-> +			   0, true);
-> +	}
-> +
->  	if (IS_DG2_G11(i915) || IS_DG2_G10(i915)) {
->  		/* Wa_22014600077:dg2 */
->  		wa_mcr_add(wal, GEN10_CACHE_MODE_SS, 0,
-> -- 
-> 2.34.1
-> 
+The common use case of
+int intel_dp_common_rate(struct intel_dp *intel_dp, int index) is:
+intel_dp_common_rate(intel_dp, len - 1);
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+where len is the position of the last link rate value that was attempted
+in the connector's array of bit rates.
+
+When len =3D=3D 0, you hit the case where the index becomes -1, which
+indicates we ran out of possible bitrates in:
+intel_dp->num_common_rates
+so we return the bit rate 0Gbps for all invalid cases (index < 0).
+
+If this is acceptable, I'll gladly add some details to the commit
+message.
+
+An alternative approach is to introduce 0 link rate at the front of:
+intel_dp->num_common_rates, which will ensure all connectors
+have 0 as a last option, and then we can use the normal fallback
+code path with no special cases here.
+
+I hope this makes sense...
+> > +
+> >       if (drm_WARN_ON(&dp_to_i915(intel_dp)->drm,
+> > -                     index < 0 || index >=3D intel_dp->num_common_rate=
+s))
+> > +                     index >=3D intel_dp->num_common_rates))
+> >               return 162000;
+> >
+> >       return intel_dp->common_rates[index];
+> > @@ -318,6 +322,9 @@ static int intel_dp_max_common_lane_count(struct in=
+tel_dp *intel_dp)
+> >  int intel_dp_max_lane_count(struct intel_dp *intel_dp)
+> >  {
+> >       switch (intel_dp->max_link_lane_count) {
+> > +     /* This occurs when max link lane count drops to 0 via link train=
+ing fallback*/
+> > +     case 0:
+> > +             return 0;
+> >       case 1:
+> >       case 2:
+> >       case 4:
+> > @@ -672,7 +679,14 @@ int intel_dp_get_link_train_fallback_values(struct=
+ intel_dp *intel_dp,
+> >               intel_dp->max_link_lane_count =3D lane_count >> 1;
+> >       } else {
+> >               drm_err(&i915->drm, "Link Training Unsuccessful\n");
+> > -             return -1;
+> > +             /*
+> > +              * Ensure all of the connector's modes are pruned in the =
+next
+> > +              * probe by effectively reducing its bandwidth to 0 so us=
+erspace
+> > +              * can ignore it within the next modeset attempt.
+> > +              */
+> > +             intel_dp->max_link_rate =3D 0;
+> > +             intel_dp->max_link_lane_count =3D 0;
+> > +             return 0;
+> >       }
+> >
+> >       return 0;
+> > --
+> > Gil Dekel, Software Engineer, Google / ChromeOS Display and Graphics
+
+Thanks for your reviews and comments!
+
+--
+Best,
+Gil Dekel, Software Engineer, Google / ChromeOS Display and Graphics
