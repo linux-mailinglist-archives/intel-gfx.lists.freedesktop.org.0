@@ -1,33 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9497F78FD64
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Sep 2023 14:39:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74F6178FDEB
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Sep 2023 15:00:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 065A610E7BD;
-	Fri,  1 Sep 2023 12:38:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3D7B10E1C9;
+	Fri,  1 Sep 2023 13:00:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A4DC810E7BD;
- Fri,  1 Sep 2023 12:38:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9FF7BAADD6;
- Fri,  1 Sep 2023 12:38:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4185347057479152519=="
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 915F210E1BF;
+ Fri,  1 Sep 2023 13:00:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693573209; x=1725109209;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5Gw0JG4YPFiH6MD0xTmJjHqELE5jeUg9HR16WrQBNQk=;
+ b=fAtldzNYbt+FxAFCM2v7jbNIcbYfQJ2ekyGga5ZN4CG1/JkZMr3jlDbx
+ ImwRSO3V/DQu7rYxH+M9AdqawBWdkVN8n5mgnaKZjRGYsrFIGkbCEkY3E
+ ZgF2ZlxyWF92NgmvQ0oSJ/GX2RTxsmor5sAb80LbBp5RSu0maYMdJ9qrt
+ nu5QNDlVmZkY2ENZAkZDvoShDqXa5r6gujKUhH7msrPDL46HhAaLcUjT9
+ HJbjixV6XXuTTqXM/aT2Z267Qo7Ymgtyq1Xc29gxbHDvbXtTkR1L4oYKr
+ N9Z+alEw5pM4iYE56QyJ9cI15w6bhB7/j5H3eeIBXdjxyzeGif5Z/ujhb Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="442607787"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="442607787"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2023 06:00:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="913681874"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="913681874"
+Received: from jeroenke-mobl.ger.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.252.59.110])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2023 06:00:05 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri,  1 Sep 2023 15:59:49 +0300
+Message-Id: <20230901125950.76088-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
-Date: Fri, 01 Sep 2023 12:38:52 -0000
-Message-ID: <169357193265.9815.12069955197566748253@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230901045700.2553994-1-shekhar.chauhan@intel.com>
-In-Reply-To: <20230901045700.2553994-1-shekhar.chauhan@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Add_Wa=5F14015150844_=28rev3=29?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v2 0/1] fbc on any plane
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,214 +57,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, matthew.d.roper@intel.com,
+ ville.syraja@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4185347057479152519==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+FBC can be supported in first three planes in lnl
 
-== Series Details ==
+Matt pointed out that FBC + PSR2 combination require few more condition
+checks and also a WA also need to be impleteds. So patch to enabled FBC
+in case of PSR2 is removed from this version.  Also per pizel alpha
+condition is removed for FBC in LNL.
 
-Series: drm/i915: Add Wa_14015150844 (rev3)
-URL   : https://patchwork.freedesktop.org/series/123074/
-State : failure
+Vinod Govindapillai (1):
+  drm/i915/lnl: possibility to enable FBC on first three planes
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_fbc.c           | 7 ++++++-
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 5 ++++-
+ drivers/gpu/drm/i915/i915_reg.h                    | 1 +
+ 3 files changed, 11 insertions(+), 2 deletions(-)
 
-CI Bug Log - changes from CI_DRM_13587 -> Patchwork_123074v3
-====================================================
+-- 
+2.34.1
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_123074v3 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_123074v3, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/index.html
-
-Participating hosts (39 -> 39)
-------------------------------
-
-  Additional (1): fi-bsw-nick 
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_123074v3:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-bsw-nick:        NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_123074v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][2] ([fdo#109271]) +18 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-rpls-2:         [PASS][3] -> [DMESG-FAIL][4] ([i915#4258] / [i915#7913])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13587/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/bat-rpls-2/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
-    - bat-rplp-1:         [PASS][5] -> [ABORT][6] ([i915#8442] / [i915#8668])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13587/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a1:
-    - fi-elk-e7500:       [FAIL][7] ([i915#2122]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13587/fi-elk-e7500/igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/fi-elk-e7500/igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a1.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2122]: https://gitlab.freedesktop.org/drm/intel/issues/2122
-  [i915#4258]: https://gitlab.freedesktop.org/drm/intel/issues/4258
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#8442]: https://gitlab.freedesktop.org/drm/intel/issues/8442
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13587 -> Patchwork_123074v3
-
-  CI-20190529: 20190529
-  CI_DRM_13587: 8152aa47d7b14683059ec856ffa99e2d86acfc8b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7463: 7463
-  Patchwork_123074v3: 8152aa47d7b14683059ec856ffa99e2d86acfc8b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-0f93733ac100 drm/i915: Add Wa_14015150844
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/index.html
-
---===============4185347057479152519==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Add Wa_14015150844 (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123074/">https://patchwork.freedesktop.org/series/123074/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13587 -&gt; Patchwork_123074v3</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_123074v3 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_123074v3, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/index.html</p>
-<h2>Participating hosts (39 -&gt; 39)</h2>
-<p>Additional (1): fi-bsw-nick <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_123074v3:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_123074v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +18 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>bat-rpls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13587/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/bat-rpls-2/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4258">i915#4258</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13587/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a1:<ul>
-<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13587/fi-elk-e7500/igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2122">i915#2122</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123074v3/fi-elk-e7500/igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13587 -&gt; Patchwork_123074v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13587: 8152aa47d7b14683059ec856ffa99e2d86acfc8b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7463: 7463<br />
-  Patchwork_123074v3: 8152aa47d7b14683059ec856ffa99e2d86acfc8b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>0f93733ac100 drm/i915: Add Wa_14015150844</p>
-
-</body>
-</html>
-
---===============4185347057479152519==--
