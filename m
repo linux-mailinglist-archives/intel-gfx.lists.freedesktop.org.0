@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA65D78FF72
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Sep 2023 16:47:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 744A378FF91
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Sep 2023 16:58:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 517B210E800;
-	Fri,  1 Sep 2023 14:47:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08F8D10E805;
+	Fri,  1 Sep 2023 14:58:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6D4FE10E7FE;
- Fri,  1 Sep 2023 14:47:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4705010E805;
+ Fri,  1 Sep 2023 14:58:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 65785AADF1;
- Fri,  1 Sep 2023 14:47:19 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 34396A00E8;
+ Fri,  1 Sep 2023 14:58:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Fri, 01 Sep 2023 14:47:19 -0000
-Message-ID: <169357963941.9813.1835359481592188123@emeril.freedesktop.org>
+To: "William Tseng" <william.tseng@intel.com>
+Date: Fri, 01 Sep 2023 14:58:03 -0000
+Message-ID: <169358028318.9815.15851806411367028210@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230901093500.3463046-1-jouni.hogander@intel.com>
-In-Reply-To: <20230901093500.3463046-1-jouni.hogander@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Handle_dma_fences_in_dirtyfb_ioctl_=28rev6=29?=
+References: <20230901095100.3771188-1-william.tseng@intel.com>
+In-Reply-To: <20230901095100.3771188-1-william.tseng@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/dsi=3A_let_HW_maintain_HS-TRAIL_and_CLK=5FPOST?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,14 +47,29 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Handle dma fences in dirtyfb ioctl (rev6)
-URL   : https://patchwork.freedesktop.org/series/116620/
-State : warning
+Series: drm/i915/dsi: let HW maintain HS-TRAIL and CLK_POST
+URL   : https://patchwork.freedesktop.org/series/123157/
+State : failure
 
 == Summary ==
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/display/icl_dsi.o
+drivers/gpu/drm/i915/display/icl_dsi.c: In function ‘icl_dphy_param_init’:
+drivers/gpu/drm/i915/display/icl_dsi.c:1829:2: error: ‘tclk_trail_ns’ undeclared (first use in this function)
+ 1829 |  tclk_trail_ns = max(mipi_config->tclk_trail, mipi_config->ths_trail);
+      |  ^~~~~~~~~~~~~
+drivers/gpu/drm/i915/display/icl_dsi.c:1829:2: note: each undeclared identifier is reported only once for each function it appears in
+make[6]: *** [scripts/Makefile.build:243: drivers/gpu/drm/i915/display/icl_dsi.o] Error 1
+make[5]: *** [scripts/Makefile.build:480: drivers/gpu/drm/i915] Error 2
+make[4]: *** [scripts/Makefile.build:480: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:480: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:480: drivers] Error 2
+make[1]: *** [/home/kbuild2/kernel/Makefile:2032: .] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+Build failed, no error log produced
 
 
