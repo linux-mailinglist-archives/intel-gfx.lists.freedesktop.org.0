@@ -1,53 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49AFE78FC16
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Sep 2023 13:09:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CC4E78FD30
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Sep 2023 14:27:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBA0810E788;
-	Fri,  1 Sep 2023 11:09:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E658D10E7B8;
+	Fri,  1 Sep 2023 12:27:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63BD910E788
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Sep 2023 11:09:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFD7D10E7B7;
+ Fri,  1 Sep 2023 12:27:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693566544; x=1725102544;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Xj2Ummde3psriO9g7Z2CvRA3KivO9TScA7E1PWN6Hu0=;
- b=CouBIQpac2Y8mdpnvhxgWoz8lWchUq3OXc4PL6hEInoMZ+Uk59mj0Mi5
- 4WxkseSFMeeTK86WjaeFtYLPABHXnxXe2XVYBR1S/DP238jMjKm3xp2GF
- EYA16ja9AJIWgUCdpajq7AurXV9p0vIOVEqalAVVdnTWt+9bCWRhrwmS9
- l4PlVJEQM2KGuOuNrFsbXSwWeRSLErSkjhmZGsQNswS6mksJblLIVqjLF
- 47y91bn4hEhmOYwiwycEqAV0HShOk+Mo1zQwFVVRhMnmL9q8lp+7KTv+N
- ngQdpnsTb1s/CS7UGsC2KctUOxi/RZv17+b/Rg8oumrigSauRPUVRqYOL A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="356510932"
-X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="356510932"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2023 04:09:03 -0700
+ t=1693571264; x=1725107264;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=OTEL3GSK+6A4sQHuCHvEp5CHkNzWKNu+FDPztYX+hGI=;
+ b=FshBngAnY5WJ3BlzDpMAEoxHz8qcADzo7OsqpaZGyUigPFByWLzZozl/
+ oUkO0orWx/9u3MIPlt2CZ3YY4rGD1zth/7aXP9q9kdMcmj+9mXBVL/Cbl
+ i/Fgp+gBN+oOmHGqZ5utoSxInSCJ2AewVF/5ltnnHvkR0o/gu8KBjA6sg
+ Mu3fxhFWn3Qz9jfv67eZEx4QHRbdhLfmR05L8CBYk/YyqFETPsjb3Euze
+ rSdj9m1fCUwXkaAFomPhRUc/HERezpuzUaloDupwbMPpbax/P0eW9YdDJ
+ Dgxmx9utfucH4exCPeeLDfsQcq4vdX5+sjaWsUbiEizbE2tkYUEjy5Lhq g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="462575733"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="462575733"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2023 05:27:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="854670892"
-X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="854670892"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by fmsmga002.fm.intel.com with SMTP; 01 Sep 2023 04:09:01 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 01 Sep 2023 14:09:00 +0300
-Date: Fri, 1 Sep 2023 14:09:00 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Message-ID: <ZPHGTJ15jPjAw4Je@intel.com>
-References: <20230901093500.3463046-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="863524687"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="863524687"
+Received: from epronina-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.34.21])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2023 05:27:33 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Alex Hung <alex.hung@amd.com>, Alex Deucher <alexdeucher@gmail.com>
+In-Reply-To: <b32199ef-7179-3908-3bed-dd164cadc5de@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1692705543.git.jani.nikula@intel.com>
+ <788721f6-afff-e0b2-db7c-32ab2dd075a9@amd.com> <87il965gob.fsf@intel.com>
+ <871qfm2kg1.fsf@intel.com>
+ <CADnq5_P49U3dcqiZhB-CjS8UbOtB7K2jNObS0ZQqMhOr3UhLQg@mail.gmail.com>
+ <87o7ip252r.fsf@intel.com> <87jztd2332.fsf@intel.com>
+ <1e6aa1ff-9aa9-6b2f-84f4-e0304205085c@amd.com> <87h6oh0yz9.fsf@intel.com>
+ <b32199ef-7179-3908-3bed-dd164cadc5de@amd.com>
+Date: Fri, 01 Sep 2023 15:27:27 +0300
+Message-ID: <87msy6hyds.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230901093500.3463046-1-jouni.hogander@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v4 0/4] Handle dma fences in dirtyfb ioctl
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 0/4] drm/amd/display: stop using
+ drm_edid_override_connector_update()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,54 +65,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Leo Li <sunpeng.li@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ amd-gfx@lists.freedesktop.org, "Wang, 
+ Yu \(Charlie\)" <Yu.Wang4@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>,
+ Hersen Wu <hersenxs.wu@amd.com>, dri-devel@lists.freedesktop.org,
+ Wenchieh Chien <wenchieh.chien@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 01, 2023 at 12:34:56PM +0300, Jouni Högander wrote:
-> Currently i915 dirtyfb ioctl is not taking dma fences into
-> account. This works with features like FBC, PSR, DRRS because our gem
-> code is triggering flush again when rendering completes. We are
-> targeting in getting rid of frontbuffer tracking code: Flusing hook
-> from gem code will be removed as well.
-> 
-> This patch set is adding dma fence handling into i915 dirtyfb ioctl.
-> 
-> v4:
->  - Move invalidate back being done before cb is added
-> v3:
->  - Check frontbuffer bits before adding any fence fb
->  - Invalidate only when adding fence cb succeeds
->  - Check schedule work success rather than work being pending
->  - Init flush work when frontbuffer struct is initialized
-> v2:
->  - Clear fbc and psr busy bits on flip
->  - Check if flush work is already pending
->  - Use dma_resv_get_singleton
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+On Thu, 31 Aug 2023, Alex Hung <alex.hung@amd.com> wrote:
+> On 2023-08-30 01:29, Jani Nikula wrote:
+>> On Tue, 29 Aug 2023, Alex Hung <alex.hung@amd.com> wrote:
+>>> There is a patch under internal reviews. It removes calls edid_override
+>>> and drm_edid_override_connector_update as intended in this patchset but
+>>> does not remove the functionality.
+>> 
+>> While I am happy to hear there's progress, I'm somewhat baffled the
+>> review is internal. The commits that I suggested to revert were also
+>> only reviewed internally, as far as I can see... And that's kind of the
+>> problem.
+>> 
+>> Upstream code should be reviewed in public.
+>
+> Hi Jani,
+>
+> All patches are sent for public reviews, the progress is summarized as 
+> the followings:
+>
+> == internal ==
+>
+> 1. a patch or patches are tested by CI.
+> 2. internal technical and IP reviews are performed to ensure no concerns 
+> before patches are merged to internal branch.
+>
+> == public ==
+>
+> 3. a regression test and IP reviews are performed by engineers before 
+> sending to public mailing lists.
+> 4. the patchset is sent for public reviews ex. 
+> https://patchwork.freedesktop.org/series/122498/
+> 5. patches are merged to public repo.
 
-For the series:
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+The point about public review is that there's no transparency to the
+steps before 4. The patches are posted for public review with
+Reviewed-by and Acked-by already added, based on internal review, and
+there is de facto no public review taking place on the code drops. There
+is zero visibility to the discussions taking place. We don't know if
+it's just rubber stamping, we don't know what concerns were raised, if
+any.
 
-> 
-> Jouni Högander (4):
->   drm/i915/fbc: Clear frontbuffer busy bits on flip
->   drm/i915/psr: Clear frontbuffer busy bits on flip
->   drm/i915: Add new frontbuffer tracking interface to queue flush
->   drm/i915: Handle dma fences in dirtyfb callback
-> 
->  drivers/gpu/drm/i915/display/intel_fb.c       | 60 ++++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_fbc.c      |  6 +-
->  .../gpu/drm/i915/display/intel_frontbuffer.c  | 28 +++++++++
->  .../gpu/drm/i915/display/intel_frontbuffer.h  |  4 ++
->  drivers/gpu/drm/i915/display/intel_psr.c      |  6 ++
->  5 files changed, 97 insertions(+), 7 deletions(-)
-> 
-> -- 
-> 2.34.1
+I'm mainly disappointed about the double standards here, given that we
+post most patches directly upstream (especially ones that have zero
+reason to be embargoed like the ones being discussed here), and the ones
+that have gone through internal review will be stripped of all prior
+internal Reviewed-by's and Acked-by's before posting. Because that's the
+upstream expectation.
+
+
+BR,
+Jani.
+
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel Open Source Graphics Center
