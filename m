@@ -1,63 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5D0479230E
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Sep 2023 15:31:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 072DA79235B
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Sep 2023 16:14:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CDC510E506;
-	Tue,  5 Sep 2023 13:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF8E10E033;
+	Tue,  5 Sep 2023 14:14:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8A92810E50D;
- Tue,  5 Sep 2023 13:31:16 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Bx5fCgLfdkKpwfAA--.64132S3;
- Tue, 05 Sep 2023 21:31:12 +0800 (CST)
-Received: from [0.0.0.0] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8DxPCOQLfdkY_hsAA--.46601S3; 
- Tue, 05 Sep 2023 21:31:12 +0800 (CST)
-Message-ID: <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
-Date: Tue, 5 Sep 2023 21:30:56 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
- <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
-Content-Language: en-US
-From: suijingfeng <suijingfeng@loongson.cn>
-In-Reply-To: <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxPCOQLfdkY_hsAA--.46601S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxGFy5CFWxGryftF48tr1fuFX_yoWrAFWUpF
- WFqFWjkrWkGa18Jry7Aw1FvFyrXws5Jay5Kr1kCF98Zrs8Gr40vry2qw4q9a4UJr4rZ3WY
- qrWagw17uFyDAabCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUP0b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
- GcCE3s1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2
- x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r126r1D
- McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7
- I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCF
- x2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r
- 1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij
- 64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr
- 0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF
- 0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8HKZJUUUUU==
-Subject: Re: [Intel-gfx] [Nouveau] [RFC,
- drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
- primary video adapter at boot time
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF61A10E032
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 Sep 2023 15:17:58 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::228])
+ by mslow1.mail.gandi.net (Postfix) with ESMTP id A287DC88F2
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 Sep 2023 15:00:58 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E42A81BF205;
+ Sat,  2 Sep 2023 15:00:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=otheo.eu; s=gm1;
+ t=1693666853;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=+S38coWq3m/m/YV3cRo4Hp7mNzZLey5FCp657+1AbpM=;
+ b=MglkVGClQbBS8SUcIVpvaw40odncjGGqpmkuTzCjxStaOM9Wu7QcorOzsD9rEsbXKdVQWx
+ 2sQiRXZ+NOPvqd+AyEOudZS6mBHTExQCcy1wopn94/TjHHN3uzKUVdMaSIWbnSvah147CN
+ TVrEayURYWoqRI0rG6rmIU93wiy+3KW4QORgawNBX1A+RuPifiP98NAIwnT5i5YjkGnjCH
+ 4elQi1kEXs6R2+4mrlb11a/ZpKgiUOuoj8eYBb55w8ktJ98G0ceEETOJ0rJTbqmGE1Gp2r
+ HM+M57K05w2lmLXFfptsB381mVWA2JKzYqbKTaghGQCFzoZDAGJo8JsNmZKDGg==
+Date: Sat, 2 Sep 2023 17:00:29 +0200
+From: Javier Pello <devel@otheo.eu>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+Message-Id: <20230902170029.4d21920fe1a9224c1547a4a6@otheo.eu>
+In-Reply-To: <d1a82d5e-8c86-645d-031c-a0243c94bef4@intel.com>
+References: <20230825163343.e2fc7eb70db106edc6df3c4c@otheo.eu>
+ <d1a82d5e-8c86-645d-031c-a0243c94bef4@intel.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; i686-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: #01#@otheo.eu
+X-Mailman-Approved-At: Tue, 05 Sep 2023 14:14:03 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Fix reservation address in
+ ggtt_reserve_guc_top
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,105 +56,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Fernando Pacheco <fernando.pacheco@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Thu, 31 Aug 2023 15:49:28 -0700
+"Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com> wrote:
 
+> On 8/25/2023 7:33 AM, Javier Pello wrote:
+> > There is an assertion in ggtt_reserve_guc_top that the global GTT
+> > is of size at least GUC_GGTT_TOP, which is not the case on a 32-bit
+> > platform; see commit 562d55d991b39ce376c492df2f7890fd6a541ffc
+> > ("drm/i915/bdw: Only use 2g GGTT for 32b platforms"). If GEM_BUG_ON
+> > is enabled, this triggers a BUG(); if GEM_BUG_ON is disabled, the
+> > subsequent reservation fails and the driver fails to initialise
+> > the device:
+> >
+> > i915 0000:00:02.0: [drm:i915_init_ggtt [i915]] Failed to reserve top of=
+ GGTT for GuC
+> > i915 0000:00:02.0: Device initialization failed (-28)
+> > i915 0000:00:02.0: Please file a bug on drm/i915; see https://gitlab.fr=
+eedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs for details.
+> > i915: probe of 0000:00:02.0 failed with error -28
+> >
+> > Make the reservation at the top of the available space, whatever
+> > that is, instead of assuming that the top will be GUC_GGTT_TOP.
+> >
+> > Fixes: 911800765ef6 ("drm/i915/uc: Reserve upper range of GGTT")
+>=20
+> For tracking, it might be good to also add:
+>=20
+> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/9080
 
-On 2023/9/5 18:45, Thomas Zimmermann wrote:
-> Hi
->
-> Am 04.09.23 um 21:57 schrieb Sui Jingfeng:
->> From: Sui Jingfeng <suijingfeng@loongson.cn>
->>
->> On a machine with multiple GPUs, a Linux user has no control over which
->> one is primary at boot time. This series tries to solve above mentioned
->
-> If anything, the primary graphics adapter is the one initialized by 
-> the firmware. I think our boot-up graphics also make this assumption 
-> implicitly.
->
+Sure.
 
-Yes, but by the time of DRM drivers get loaded successfully,the boot-up graphics already finished.
-Firmware framebuffer device already get killed by the drm_aperture_remove_conflicting_pci_framebuffers()
-function (or its siblings). So, this series is definitely not to interact with the firmware framebuffer
-(or more intelligent framebuffer drivers).  It is for user space program, such as X server and Wayland
-compositor. Its for Linux user or drm drivers testers, which allow them to direct graphic display server
-using right hardware of interested as primary video card.
+> > Signed-off-by: Javier Pello <devel@otheo.eu>
+> > Cc: intel-gfx@lists.freedesktop.org
+> > Cc: stable@vger.kernel.org # v5.3+
+>=20
+> Need the full CC list here, so that when the patch gets back-ported the=20
+> relevant developers get automatically added.
 
-Also, I believe that X server and Wayland compositor are the best test examples.
-If a specific DRM driver can't work with X server as a primary,
-then there probably have something wrong.
+I was unsure if I should add them from the start or wait for a review.
 
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_ggtt.c | 21 +++++++++++++++------
+> >   1 file changed, 15 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i91=
+5/gt/intel_ggtt.c
+> > index e9328e1a..0157bebb 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> > @@ -511,20 +511,29 @@ void intel_ggtt_unbind_vma(struct i915_address_sp=
+ace *vm,
+> >   	vm->clear_range(vm, vma_res->start, vma_res->vma_size);
+> >   }
+> >  =20
+> > +/* Reserve the top of the GuC address space for firmware images. Addre=
+sses
+> > + * beyond GUC_GGTT_TOP in the GuC address space are inaccessible by Gu=
+C,
+> > + * which makes for a suitable range to hold GuC/HuC firmware images if=
+ the
+> > + * size of the GGTT is 4G. However, on a 32-bit platform the size of t=
+he GGTT
+> > + * is limited to 2G, which is less than GUC_GGTT_TOP, but we reserve a=
+ chunk
+> > + * of the same size anyway, which is far more than needed, to keep the=
+ logic
+> > + * in uc_fw_ggtt_offset() simple. */
+>=20
+> Style: multi-line comment should be formatted as:
+>=20
+> /*
+>  =A0* Text
+>  =A0* more text
+>  =A0*/
 
-> But what's the use case for overriding this setting?
->
+Yes, I realised that after I sent the patch, but I thought I would
+wait for replies rather than resending with only a style change.
 
-On a specific machine with multiple GPUs mounted,
-only the primary graphics get POST-ed (initialized) by the firmware.
-Therefore, the DRM drivers for the rest video cards, have to choose to
-work without the prerequisite setups done by firmware, This is called as POST.
+> > +#define GUC_TOP_RESERVE_SIZE (SZ_4G - GUC_GGTT_TOP)
+> > +
+> >   static int ggtt_reserve_guc_top(struct i915_ggtt *ggtt)
+> >   {
+> > -	u64 size;
+> > +	u64 offset;
+> >   	int ret;
+> >  =20
+> >   	if (!intel_uc_uses_guc(&ggtt->vm.gt->uc))
+> >   		return 0;
+> >  =20
+> > -	GEM_BUG_ON(ggtt->vm.total <=3D GUC_GGTT_TOP);
+> > -	size =3D ggtt->vm.total - GUC_GGTT_TOP;
+> > +	GEM_BUG_ON(ggtt->vm.total <=3D GUC_TOP_RESERVE_SIZE);
+> > +	offset =3D ggtt->vm.total - GUC_TOP_RESERVE_SIZE;
+> >  =20
+> > -	ret =3D i915_gem_gtt_reserve(&ggtt->vm, NULL, &ggtt->uc_fw, size,
+> > -				   GUC_GGTT_TOP, I915_COLOR_UNEVICTABLE,
+> > -				   PIN_NOEVICT);
+> > +	ret =3D i915_gem_gtt_reserve(&ggtt->vm, NULL, &ggtt->uc_fw,
+> > +				   GUC_TOP_RESERVE_SIZE, offset,
+> > +				   I915_COLOR_UNEVICTABLE, PIN_NOEVICT);
+>=20
+> The code change looks good to me, so with the style fix and the=20
+> additions to the commit message this is:
+>=20
+> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-One of the use cases of this series is to test if a specific DRM driver could works properly,
-even though there is no prerequisite works have been done by firmware at all.
-And it seems that the results is not satisfying in all cases.
+Thank you.
 
-drm/ast is the first drm drivers which refused to work if not being POST-ed by the firmware.
-
-Before apply this series, I was unable make drm/ast as the primary video card easily. On a
-multiple video card configuration, the monitor connected with the AST2400 not light up.
-While confusing, a naive programmer may suspect the PRIME is not working.
-
-After applied this series and passing ast.modeset=10 on the kernel cmd line,
-I found that the monitor connected with my ast2400 video card still black,
-It doesn't display and doesn't show image to me.
-
-While in the process of study drm/ast, I know that drm/ast driver has the POST code shipped.
-See the ast_post_gpu() function, then, I was wondering why this function doesn't works.
-After a short-time (hasty) debugging, I found that the the ast_post_gpu() function
-didn't get run. Because it have something to do with the ast->config_mode.
-
-Without thinking too much, I hardcoded the ast->config_mode as ast_use_p2a to
-force the ast_post_gpu() function get run.
-
-```
-
---- a/drivers/gpu/drm/ast/ast_main.c
-+++ b/drivers/gpu/drm/ast/ast_main.c
-@@ -132,6 +132,8 @@ static int ast_device_config_init(struct ast_device 
-*ast)
-                 }
-         }
-
-+       ast->config_mode = ast_use_p2a;
-+
-         switch (ast->config_mode) {
-         case ast_use_defaults:
-                 drm_info(dev, "Using default configuration\n");
-
-```
-
-Then, the monitor light up, it display the Ubuntu greeter to me.
-Therefore, my patch is helpful, at lease for the Linux drm driver tester and developer.
-It allow programmers to test the specific part of the specific drive
-without changing a line of the source code and without the need of sudo authority.
-It helps to improve efficiency of the testing and patch verification.
-
-I know the PrimaryGPU option of Xorg conf, but this approach will remember the setup
-have been made, you need modify it with root authority each time you want to switch
-the primary. But on rapid developing and/or testing multiple video drivers, with
-only one computer hardware resource available. What we really want probably is a
-one-shoot command as this series provide.
-
-So, this is the first use case. This probably also help to test full modeset,
-PRIME and reverse PRIME on multiple video card machine.
-
-
-> Best regards
-> Thomas
->
-
+Javier
