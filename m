@@ -1,68 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27E6A790D83
-	for <lists+intel-gfx@lfdr.de>; Sun,  3 Sep 2023 20:46:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1E9A790DA1
+	for <lists+intel-gfx@lfdr.de>; Sun,  3 Sep 2023 21:11:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3922310E1D3;
-	Sun,  3 Sep 2023 18:46:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE3D110E11F;
+	Sun,  3 Sep 2023 19:11:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com
- [IPv6:2607:f8b0:4864:20::130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA30A10E1A1;
- Sun,  3 Sep 2023 18:46:22 +0000 (UTC)
-Received: by mail-il1-x130.google.com with SMTP id
- e9e14a558f8ab-34df008b0cbso3303145ab.1; 
- Sun, 03 Sep 2023 11:46:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1693766782; x=1694371582; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9+vShd9z6JIlJdMcVT9ozEMb7ECMtYhQaxypaqn+ojI=;
- b=gsG7vqqREloVFGLQnEO9qOBUm3hP/oMcF+m2BCq68YPNrflltw3N+FN1LMoJOvlgQe
- 2VlGc7IfBWyUjeEACWGHqYuy3d9TvY5UJtKFfNNyrytreyC7n0CWo45J9B9A3tpoh4J8
- TizawBiB6p/1Ypwl+D7Oeix8ePXy1HEvaAPLgF8jpkmKjUx7tgPf/DxqgM0qRrXxbrEK
- 1amYyM5QzHRoyGWW0GDgeouyx/uC368Gu42qvJCrhmTMLS1sqi7rSXcG5pk5jPpWHKXY
- rT02ZjicRDoNpo2rTM8S2/KKQroWk+M58cpdVo9X6C6bfDcSWxHWEKho9DoenBDuh0hb
- bjTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693766782; x=1694371582;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=9+vShd9z6JIlJdMcVT9ozEMb7ECMtYhQaxypaqn+ojI=;
- b=MW9IveanG2u26KxmtZCnmblLyAXe8iUHheIvnTjj3xuQhzJa/cVAtfQbADZLUVuM0j
- cuxiKlmQb9pVAvOwFkQsB3dXRLUnJG2VMV3OtWdjV2ErhEM0V9VO+bmtH+CDOUBX+tgX
- +JLJ6JqccG6ozLWkzPrTuz3nshQQRjmIhAG/Nmo9b4L55VvT67JiyHRoDkBDTk97PtTc
- nCBKhnN5UN+8CPGXthqfSqWcBsIfXvAaIqjuAd8BcsuF/gIuKOLUjQ8dyzmOfIvqEpl1
- gmHCBfatMLanUmlPS17LtjVrnIF1f57wyfjoCKLd9r4p+lSk+oYiJCY7G1CfhxoHcScZ
- EEvQ==
-X-Gm-Message-State: AOJu0YyFJgJrUbMUn6VnBQhZRQG5y/UBxI8LUQcH90CkTn0+0Glyo0xK
- jj/AI44cV8WL/xqvcZAfWdk=
-X-Google-Smtp-Source: AGHT+IGqOoyhaY6/BLxjGQwr9jgSrLCBNKR3l+qSBXjy+8E6+buexCVqqyAEqMiNiyX8+oyGCVjU2Q==
-X-Received: by 2002:a05:6e02:e12:b0:349:9993:f223 with SMTP id
- a18-20020a056e020e1200b003499993f223mr8706895ilk.23.1693766781766; 
- Sun, 03 Sep 2023 11:46:21 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- u9-20020a02cb89000000b0042b37dda71asm2519968jap.136.2023.09.03.11.46.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 03 Sep 2023 11:46:21 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Sun,  3 Sep 2023 12:46:03 -0600
-Message-ID: <20230903184607.272198-7-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230903184607.272198-1-jim.cromie@gmail.com>
-References: <20230903184607.272198-1-jim.cromie@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2B08F10E11F;
+ Sun,  3 Sep 2023 19:11:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F2B24AADF1;
+ Sun,  3 Sep 2023 19:11:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 6/6] drm: use correct ccflags-y syntax
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jim Cromie" <jim.cromie@gmail.com>
+Date: Sun, 03 Sep 2023 19:11:29 -0000
+Message-ID: <169376828996.29657.677252132222845602@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230903184607.272198-1-jim.cromie@gmail.com>
+In-Reply-To: <20230903184607.272198-1-jim.cromie@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=5Fdbg=3A_add_trailing_newlines_where_missing_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,42 +40,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, jani.nikula@intel.com,
- daniel.vetter@ffwll.ch, Maxime Ripard <mripard@kernel.org>,
- Jim Cromie <jim.cromie@gmail.com>, seanpaul@chromium.org, daniel@ffwll.ch,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- David Airlie <airlied@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Incorrect CFLAGS- usage failed to add -DDYNAMIC_DEBUG_MODULE,
-which broke builds with:
+== Series Details ==
 
-CONFIG_DRM_USE_DYNAMIC_DEBUG=Y
-CONFIG_DYNAMIC_DEBUG_CORE=Y, but CONFIG_DYNAMIC_DEBUG=N
+Series: drm_dbg: add trailing newlines where missing (rev2)
+URL   : https://patchwork.freedesktop.org/series/121583/
+State : warning
 
-Also add subdir-ccflags so that all drivers pick up the addition.
+== Summary ==
 
-Fixes: 84ec67288c10 ("drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro")
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/Makefile | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Error: dim checkpatch failed
+4c66f4d11632 drm_dbg: add trailing newlines to msgs
+7cd8bc083a40 drm_dbg: add trailing newlines to msgs
+bf97bf2bfbe3 drm_dbg: add trailing newlines to msgs
+a4719712c337 drm_dbg: add trailing newlines to msgs
+-:36: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#36: FILE: drivers/gpu/drm/msm/msm_fb.c:180:
++	drm_dbg_state(dev, "create framebuffer: mode_cmd=%p (%dx%d@%4.4s)\n",
+ 			mode_cmd, mode_cmd->width, mode_cmd->height,
 
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 7a09a89b493b..013cde886326 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -3,7 +3,8 @@
- # Makefile for the drm device driver.  This driver provides support for the
- # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
- 
--CFLAGS-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
-+ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)		+= -DDYNAMIC_DEBUG_MODULE
-+subdir-ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
- 
- drm-y := \
- 	drm_aperture.o \
--- 
-2.41.0
+total: 0 errors, 0 warnings, 1 checks, 24 lines checked
+ed1eced143b5 drm_dbg: add trailing newlines to msgs
+019d4e4f030c drm: use correct ccflags-y syntax
+
 
