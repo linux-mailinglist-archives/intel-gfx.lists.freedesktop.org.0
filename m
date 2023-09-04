@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 509FB7912E1
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Sep 2023 10:01:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3AAB791394
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Sep 2023 10:36:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5247110E2E9;
-	Mon,  4 Sep 2023 08:01:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBF6C10E0B5;
+	Mon,  4 Sep 2023 08:36:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CADC110E2E9;
- Mon,  4 Sep 2023 08:01:45 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2D2D10E0B5;
+ Mon,  4 Sep 2023 08:36:37 +0000 (UTC)
 Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested) (Authenticated sender: bbrezillon)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 4B1416607239;
- Mon,  4 Sep 2023 09:01:43 +0100 (BST)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id C7295660727F;
+ Mon,  4 Sep 2023 09:36:35 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1693814504;
- bh=e788C098QfddEO6hbR3WKnWmYUt07fZ7PCwwrd1VwFI=;
+ s=mail; t=1693816596;
+ bh=SW4UyKASRes34dFYstoQvepCjdo8dXyyAQmx/si9FhA=;
  h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=EOqkLVtSqUOCgc8GPlpz2M4k/6FdauJ5pvx55T+jY+dq7Ot4IHIhnADdb4GXozeiH
- ndpbRAwKSPxos43fFKQUg+3BmY3ucNNfGNw5x19QqCbila88LyIU7j0wWq9q77/FMv
- qK9khOPykQCMpCGnjoyUmaXMdzBeSngN0ABciFV9Rg1LhIp3viYPbZFqZNG4xFtsED
- vgJv5Hp4u5XnY0JLuJvX2wcvp0dHadNCK5i7up4G1pyigyoGz9/b1qBSazHGNDpUiX
- KfgUeIuIS7OGuAMqg2kTT+ITINSyd08RoPgVYrCUdmEUPuFoe/gYlqqz+odKvv0Now
- 8Of5RikIDdL1Q==
-Date: Mon, 4 Sep 2023 10:01:40 +0200
+ b=igTW5fpEPxJdHm54MT3fU8oqPsfT0AZDCEyZxFD/0yaUh/gEJ49Ht23LoUJdR0P2B
+ 0uPbP7TFDhZUV3d8UIi4cXyhD5xf/sPtXlRMRiV8HFE57ok3p0psXMEuKdhEfiMqjm
+ IGIM6YXJ0Ak9h0WGN1aUEp9PVGfyc2QY/cYaviGex1JDyVzcP7Pfmbuy/KvUF0g+EL
+ 0Oysn2zm9KGHtdWcSWVDwfyMm4sAXPC7aaR54RKtBVVNJVbOxaWAWQnYebwNySNxfm
+ Nsn6ItS2ge/Vas9HjNKIOLW2DBG5jzqG7q1PKxpCe8lu56pCAWgLI01A/B9ATJxQ8m
+ IkaceYfGrTFGA==
+Date: Mon, 4 Sep 2023 10:36:32 +0200
 From: Boris Brezillon <boris.brezillon@collabora.com>
 To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Message-ID: <20230904100140.6f4e3012@collabora.com>
-In-Reply-To: <a587b4db-c3a8-654b-a043-b698f1d98bf6@collabora.com>
+Message-ID: <20230904103632.1f88ad89@collabora.com>
+In-Reply-To: <73dd54d3-cb36-cb21-6bbb-ff1dd89429a3@collabora.com>
 References: <20230827175449.1766701-1-dmitry.osipenko@collabora.com>
- <20230827175449.1766701-2-dmitry.osipenko@collabora.com>
- <20230828131647.18888896@collabora.com>
- <a587b4db-c3a8-654b-a043-b698f1d98bf6@collabora.com>
+ <20230827175449.1766701-18-dmitry.osipenko@collabora.com>
+ <20230828121239.78a180e6@collabora.com>
+ <01930e66-cba2-5d81-7f46-d46907bdd300@collabora.com>
+ <20230829092950.3a9c40c1@collabora.com>
+ <73dd54d3-cb36-cb21-6bbb-ff1dd89429a3@collabora.com>
 Organization: Collabora
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v15 01/23] drm/shmem-helper: Fix UAF in
- error path when freeing SGT of imported GEM
+Subject: Re: [Intel-gfx] [PATCH v15 17/23] drm/shmem-helper: Add and use
+ drm_gem_shmem_resv_assert_held() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,83 +73,110 @@ Cc: Mark Rutland <mark.rutland@arm.com>, Emma Anholt <emma@anholt.net>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 2 Sep 2023 21:15:39 +0300
+On Sat, 2 Sep 2023 22:43:02 +0300
 Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
 
-> On 8/28/23 14:16, Boris Brezillon wrote:
-> > On Sun, 27 Aug 2023 20:54:27 +0300
+> On 8/29/23 10:29, Boris Brezillon wrote:
+> > On Tue, 29 Aug 2023 05:34:23 +0300
 > > Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
 > >   
-> >> Freeing drm-shmem GEM right after creating it using
-> >> drm_gem_shmem_prime_import_sg_table() frees SGT of the imported dma-buf
-> >> and then dma-buf frees this SGT second time.
+> >> On 8/28/23 13:12, Boris Brezillon wrote:  
+> >>> On Sun, 27 Aug 2023 20:54:43 +0300
+> >>> Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
+> >>>     
+> >>>> In a preparation of adding drm-shmem memory shrinker, move all reservation
+> >>>> locking lockdep checks to use new drm_gem_shmem_resv_assert_held() that
+> >>>> will resolve spurious lockdep warning about wrong locking order vs
+> >>>> fs_reclam code paths during freeing of shmem GEM, where lockdep isn't
+> >>>> aware that it's impossible to have locking contention with the fs_reclam
+> >>>> at this special time.
+> >>>>
+> >>>> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> >>>> ---
+> >>>>  drivers/gpu/drm/drm_gem_shmem_helper.c | 37 +++++++++++++++++---------
+> >>>>  1 file changed, 25 insertions(+), 12 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> >>>> index d96fee3d6166..ca5da976aafa 100644
+> >>>> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+> >>>> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> >>>> @@ -128,6 +128,23 @@ struct drm_gem_shmem_object *drm_gem_shmem_create(struct drm_device *dev, size_t
+> >>>>  }
+> >>>>  EXPORT_SYMBOL_GPL(drm_gem_shmem_create);
+> >>>>  
+> >>>> +static void drm_gem_shmem_resv_assert_held(struct drm_gem_shmem_object *shmem)
+> >>>> +{
+> >>>> +	/*
+> >>>> +	 * Destroying the object is a special case.. drm_gem_shmem_free()
+> >>>> +	 * calls many things that WARN_ON if the obj lock is not held.  But
+> >>>> +	 * acquiring the obj lock in drm_gem_shmem_free() can cause a locking
+> >>>> +	 * order inversion between reservation_ww_class_mutex and fs_reclaim.
+> >>>> +	 *
+> >>>> +	 * This deadlock is not actually possible, because no one should
+> >>>> +	 * be already holding the lock when drm_gem_shmem_free() is called.
+> >>>> +	 * Unfortunately lockdep is not aware of this detail.  So when the
+> >>>> +	 * refcount drops to zero, we pretend it is already locked.
+> >>>> +	 */
+> >>>> +	if (kref_read(&shmem->base.refcount))
+> >>>> +		drm_gem_shmem_resv_assert_held(shmem);
+> >>>> +}
+> >>>> +
+> >>>>  /**
+> >>>>   * drm_gem_shmem_free - Free resources associated with a shmem GEM object
+> >>>>   * @shmem: shmem GEM object to free
+> >>>> @@ -142,8 +159,6 @@ void drm_gem_shmem_free(struct drm_gem_shmem_object *shmem)
+> >>>>  	if (obj->import_attach) {
+> >>>>  		drm_prime_gem_destroy(obj, shmem->sgt);
+> >>>>  	} else if (!shmem->imported_sgt) {
+> >>>> -		dma_resv_lock(shmem->base.resv, NULL);
+> >>>> -
+> >>>>  		drm_WARN_ON(obj->dev, kref_read(&shmem->vmap_use_count));
+> >>>>  
+> >>>>  		if (shmem->sgt) {
+> >>>> @@ -156,8 +171,6 @@ void drm_gem_shmem_free(struct drm_gem_shmem_object *shmem)
+> >>>>  			drm_gem_shmem_put_pages_locked(shmem);    
+> >>>
+> >>> AFAICT, drm_gem_shmem_put_pages_locked() is the only function that's
+> >>> called in the free path and would complain about resv-lock not being
+> >>> held. I think I'd feel more comfortable if we were adding a
+> >>> drm_gem_shmem_free_pages() function that did everything
+> >>> drm_gem_shmem_put_pages_locked() does except for the lock_held() check
+> >>> and the refcount dec, and have it called here (and in
+> >>> drm_gem_shmem_put_pages_locked()). This way we can keep using
+> >>> dma_resv_assert_held() instead of having our own variant.    
 > >>
-> >> The v3d_prime_import_sg_table() is example of a error code path where
-> >> dma-buf's SGT is freed by drm-shmem and then it's freed second time by
-> >> dma_buf_unmap_attachment() in drm_gem_prime_import_dev().
+> >> It's not only drm_gem_shmem_free_pages(), but any drm-shmem function
+> >> that drivers may use in the GEM's freeing callback.
 > >>
-> >> Add drm-shmem GEM flag telling that this is imported SGT shall not be
-> >> treated as own SGT, fixing the use-after-free bug.
-> >>
-> >> Cc: stable@vger.kernel.org
-> >> Fixes: 2194a63a818d ("drm: Add library for shmem backed GEM objects")
-> >> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> >> ---
-> >>  drivers/gpu/drm/drm_gem_shmem_helper.c | 3 ++-
-> >>  include/drm/drm_gem_shmem_helper.h     | 7 +++++++
-> >>  2 files changed, 9 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> >> index a783d2245599..78d9cf2355a5 100644
-> >> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> >> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> >> @@ -141,7 +141,7 @@ void drm_gem_shmem_free(struct drm_gem_shmem_object *shmem)
-> >>  
-> >>  	if (obj->import_attach) {
-> >>  		drm_prime_gem_destroy(obj, shmem->sgt);
-> >> -	} else {
-> >> +	} else if (!shmem->imported_sgt) {
-> >>  		dma_resv_lock(shmem->base.resv, NULL);
-> >>  
-> >>  		drm_WARN_ON(obj->dev, shmem->vmap_use_count);
-> >> @@ -758,6 +758,7 @@ drm_gem_shmem_prime_import_sg_table(struct drm_device *dev,
-> >>  		return ERR_CAST(shmem);
-> >>  
-> >>  	shmem->sgt = sgt;
-> >> +	shmem->imported_sgt = true;  
+> >> For example, panfrost_gem_free_object() may unpin shmem BO and then do
+> >> drm_gem_shmem_free().  
 > > 
+> > Is this really a valid use case? If the GEM refcount dropped to zero,
+> > we should certainly not have pages_pin_count > 0 (thinking of vmap-ed
+> > buffers that might disappear while kernel still has a pointer to the
+> > CPU-mapped area). The only reason we have this
+> > drm_gem_shmem_put_pages_locked() in drm_gem_shmem_free() is because of
+> > this implicit ref hold by the sgt, and IMHO, we should be stricter and
+> > check that pages_use_count == 1 when sgt != NULL and pages_use_count ==
+> > 0 otherwise.
 > > 
-> > I feel like adding more fields that can be used to do the is_imported()
-> > check is going to be even more confusing. Can we instead have
-> > 
-> > 	/* drm_gem_shmem_prime_import_sg_table() can be called from a
-> > 	 * driver specific ->import_sg_table() implementations that
-> > 	 * have extra failable initialization steps. Assign
-> > 	 * drm_gem_object::import_attach here (even though it's
-> > 	 * assigned in drm_gem_prime_import_dev()), so we don't end up
-> > 	 * with driver error paths calling drm_gem_shmem_free() with an
-> > 	 * imported sg_table assigned to drm_gem_shmem_object::sgt and
-> > 	 * drm_gem_object::import_attach left uninitialized.
-> > 	 */
-> > 	shmem->base.import_attach = attach;
-> > 
-> > here?  
+> > I actually think it's a good thing to try and catch any attempt to call
+> > functions trying lock the resv in a path they're not supposed to. At
+> > least we can decide whether these actions are valid or not in this
+> > context, and provide dedicated helpers for the free path if they are.  
 > 
-> AFAICT, this is not going to work because obj->import_attach will be
-> released by drm_prime core by the time drm_gem_shmem_free() is invoked
-> and drm_gem_shmem_free() uses obj->import_attach as well.
+> To me it's a valid use-case. I was going to do it for the virtio-gpu
+> driver for a specific BO type that should be permanently pinned in
+> memory. So I made the BO pinned in the virto_gpu's bo_create() and
+> unpinned it from the virtio-gpu's gem->free(), this is a perfectly valid
+> case to me. Though, in the end I switched to another approach that
+> doesn't require to do the pinning in the virtio-gpu driver.
 
-How can this happen? If something wrong happens in the driver-specific
-->gem_prime_import_sg_table() implementation, drm_gem_shmem_free() will
-be called before ->gem_prime_import_sg_table() returns, and the
-attachment will only be released after that [1].
-
-> I'll keep this
-> patch around unless there will be other suggestions. To me the flag is
-> good enough, I'll add a clarifying comment to the code in v16.
-
-I really think this is a bad idea, for the same reasons I gave in my
-reply to patch 2 (adding fields that need to be maintained when the
-state can be inferred from other fields is error prone).
-
-[1]https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/drm_prime.c#L958
+Not saying driver-specific gem_create() methods can't own an
+implicit ref on pages, but not checking that pages_{use,ref}_count <=
+max_implicit_refs means you leave an opportunity for pages ref leaks to
+go unnoticed. If your driver has a pin_on_creation flag, it should get a
+ref in the creation path, and release this ref in the gem_free() path,
+before calling drm_gem_shmem_free(), so the shmem layer can still make
+sure there's at most one implicit ref left (the one taken by the sgt
+creation logic) in drm_gem_shmem_free().
