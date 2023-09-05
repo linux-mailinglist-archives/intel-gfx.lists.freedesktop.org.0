@@ -2,52 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E78F0792C4B
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Sep 2023 19:17:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10FFC792C57
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Sep 2023 19:24:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D31910E290;
-	Tue,  5 Sep 2023 17:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2041210E21B;
+	Tue,  5 Sep 2023 17:24:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D95710E290
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Sep 2023 17:17:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693934240; x=1725470240;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2rUf9UjttZuvEadguiAvLVmBRi8x/jzdE2dpN8wlL9s=;
- b=XmlS0t4d4+neYLbWDeHMu2cMcAMhCf0NGECc3rLzQQR5e35ape1Lyd0G
- GrZf46dvMGnohzMCGAbqt61Vrgxi11HlOieUs3/vF3Qsu7cvn2fTWGDi4
- wECC24X95+cjV7WPFSXwMSgHYSdx+4tZXfAJ3MR+3oe9y/mkI6vDXEJY3
- wr3bfcWiataFArIRqXBvJlJApE8gVkuDxvpJywle4Nq5ehpbtn5YG9w0s
- KAZQWc8hGtH/2WFZfiA8Q8mfqhYgw2+2VIDgav3ZOD+ovcHqij9HINQ6J
- 4zIdC3h+40ulkVyXLsnMNOeEYuprJ9Q2nUK29bArrNjMnm9HYdKIvpdn4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="443244029"
-X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="443244029"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 10:12:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="914920981"
-X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="914920981"
-Received: from amyachev-mobl3.ccr.corp.intel.com (HELO localhost)
- ([10.252.60.152])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 10:12:09 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 Sep 2023 20:11:27 +0300
-Message-Id: <0dfebe37a391a5ceb8bfae8e16383f1e5aef815d.1693933849.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1693933849.git.jani.nikula@intel.com>
-References: <cover.1693933849.git.jani.nikula@intel.com>
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 54E6810E21B;
+ Tue,  5 Sep 2023 17:24:50 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8CxtPBgZPdkRsQfAA--.64834S3;
+ Wed, 06 Sep 2023 01:24:48 +0800 (CST)
+Received: from [0.0.0.0] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8Dx5sxgZPdk7UltAA--.46048S3; 
+ Wed, 06 Sep 2023 01:24:48 +0800 (CST)
+Message-ID: <40f32814-ca87-6e29-0e10-4b4463a2920d@loongson.cn>
+Date: Wed, 6 Sep 2023 01:24:47 +0800
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>
+References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+ <20230904195724.633404-4-sui.jingfeng@linux.dev>
+ <d3e6a9ce-1c7a-8e44-3127-413cd471a8e9@amd.com>
+From: suijingfeng <suijingfeng@loongson.cn>
+In-Reply-To: <d3e6a9ce-1c7a-8e44-3127-413cd471a8e9@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 8/8] drm/i915/dsc: use REG_BIT, REG_GENMASK,
- and friends for PPS0 and PPS1
+X-CM-TRANSID: AQAAf8Dx5sxgZPdk7UltAA--.46048S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxGry3tr4UZrW7Zr1fCw13WrX_yoWruFW8pa
+ ySqFW7ArykG3W0y347Aw4UuFyrX3yrJayUtrn5Jas5Zws8JrW0vryjvw4qgasrJrZ3Aw4Y
+ va4ag3W7ZFyDA3cCm3ZEXasCq-sJn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUvIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+ xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
+ 1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv
+ 67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07
+ AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
+ F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
+ ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
+ xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
+ 1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07UR
+ a0PUUUUU=
+Subject: Re: [Intel-gfx] [RFC,
+ drm-misc-next v4 3/9] drm/radeon: Implement .be_primary() callback
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,102 +67,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the register helper macros for PPS0 and PPS1 register contents.
+Hi,
 
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vdsc.c     | 15 +++++------
- .../gpu/drm/i915/display/intel_vdsc_regs.h    | 27 ++++++++++---------
- 2 files changed, 22 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 126aff804e33..5c00f7ccad7f 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -423,10 +423,10 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 	int vdsc_instances_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
- 
- 	/* PPS 0 */
--	pps_val = DSC_PPS0_VER_MAJ | vdsc_cfg->dsc_version_minor <<
--		DSC_PPS0_VER_MIN_SHIFT |
--		vdsc_cfg->bits_per_component << DSC_PPS0_BPC_SHIFT |
--		vdsc_cfg->line_buf_depth << DSC_PPS0_LINE_BUF_DEPTH_SHIFT;
-+	pps_val = DSC_PPS0_VER_MAJOR(1) |
-+		DSC_PPS0_VER_MINOR(vdsc_cfg->dsc_version_minor) |
-+		DSC_PPS0_BPC(vdsc_cfg->bits_per_component) |
-+		DSC_PPS0_LINE_BUF_DEPTH(vdsc_cfg->line_buf_depth);
- 	if (vdsc_cfg->dsc_version_minor == 2) {
- 		pps_val |= DSC_PPS0_ALT_ICH_SEL;
- 		if (vdsc_cfg->native_420)
-@@ -857,9 +857,8 @@ static void intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
- 	/* PPS 0 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 0);
- 
--	vdsc_cfg->bits_per_component = (pps_temp & DSC_PPS0_BPC_MASK) >> DSC_PPS0_BPC_SHIFT;
--	vdsc_cfg->line_buf_depth =
--		(pps_temp & DSC_PPS0_LINE_BUF_DEPTH_MASK) >> DSC_PPS0_LINE_BUF_DEPTH_SHIFT;
-+	vdsc_cfg->bits_per_component = REG_FIELD_GET(DSC_PPS0_BPC_MASK, pps_temp);
-+	vdsc_cfg->line_buf_depth = REG_FIELD_GET(DSC_PPS0_LINE_BUF_DEPTH_MASK, pps_temp);
- 	vdsc_cfg->block_pred_enable = pps_temp & DSC_PPS0_BLOCK_PREDICTION;
- 	vdsc_cfg->convert_rgb = pps_temp & DSC_PPS0_COLOR_SPACE_CONVERSION;
- 	vdsc_cfg->simple_422 = pps_temp & DSC_PPS0_422_ENABLE;
-@@ -870,7 +869,7 @@ static void intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
- 	/* PPS 1 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 1);
- 
--	vdsc_cfg->bits_per_pixel = pps_temp;
-+	vdsc_cfg->bits_per_pixel = REG_FIELD_GET(DSC_PPS1_BPP_MASK, pps_temp);
- 
- 	if (vdsc_cfg->native_420)
- 		vdsc_cfg->bits_per_pixel >>= 1;
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-index 92782de2b309..64f440fdc22b 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -73,22 +73,25 @@
- #define  ICL_DSC1_PPS(pipe, pps)		_MMIO(_ICL_DSC1_PPS_0(pipe) + ((pps) * 4))
- 
- /* PPS 0 */
--#define   DSC_PPS0_NATIVE_422_ENABLE		BIT(23)
--#define   DSC_PPS0_NATIVE_420_ENABLE		BIT(22)
--#define   DSC_PPS0_ALT_ICH_SEL			(1 << 20)
--#define   DSC_PPS0_VBR_ENABLE			(1 << 19)
--#define   DSC_PPS0_422_ENABLE			(1 << 18)
--#define   DSC_PPS0_COLOR_SPACE_CONVERSION	(1 << 17)
--#define   DSC_PPS0_BLOCK_PREDICTION		(1 << 16)
--#define   DSC_PPS0_LINE_BUF_DEPTH_SHIFT		12
-+#define   DSC_PPS0_NATIVE_422_ENABLE		REG_BIT(23)
-+#define   DSC_PPS0_NATIVE_420_ENABLE		REG_BIT(22)
-+#define   DSC_PPS0_ALT_ICH_SEL			REG_BIT(20)
-+#define   DSC_PPS0_VBR_ENABLE			REG_BIT(19)
-+#define   DSC_PPS0_422_ENABLE			REG_BIT(18)
-+#define   DSC_PPS0_COLOR_SPACE_CONVERSION	REG_BIT(17)
-+#define   DSC_PPS0_BLOCK_PREDICTION		REG_BIT(16)
- #define   DSC_PPS0_LINE_BUF_DEPTH_MASK		REG_GENMASK(15, 12)
--#define   DSC_PPS0_BPC_SHIFT			8
-+#define   DSC_PPS0_LINE_BUF_DEPTH(depth)	REG_FIELD_PREP(DSC_PPS0_LINE_BUF_DEPTH_MASK, depth)
- #define   DSC_PPS0_BPC_MASK			REG_GENMASK(11, 8)
--#define   DSC_PPS0_VER_MIN_SHIFT		4
--#define   DSC_PPS0_VER_MAJ			(0x1 << 0)
-+#define   DSC_PPS0_BPC(bpc)			REG_FIELD_PREP(DSC_PPS0_BPC_MASK, bpc)
-+#define   DSC_PPS0_VER_MINOR_MASK		REG_GENMASK(7, 4)
-+#define   DSC_PPS0_VER_MINOR(minor)		REG_FIELD_PREP(DSC_PPS0_VER_MINOR_MASK, minor)
-+#define   DSC_PPS0_VER_MAJOR_MASK		REG_GENMASK(3, 0)
-+#define   DSC_PPS0_VER_MAJOR(major)		REG_FIELD_PREP(DSC_PPS0_VER_MAJOR_MASK, major)
- 
- /* PPS 1 */
--#define   DSC_PPS1_BPP(bpp)			((bpp) << 0)
-+#define   DSC_PPS1_BPP_MASK			REG_GENMASK(9, 0)
-+#define   DSC_PPS1_BPP(bpp)			REG_FIELD_PREP(DSC_PPS1_BPP_MASK, bpp)
- 
- /* PPS 2 */
- #define   DSC_PPS2_PIC_WIDTH_MASK		REG_GENMASK(31, 16)
--- 
-2.39.2
+On 2023/9/5 13:50, Christian König wrote:
+> Am 04.09.23 um 21:57 schrieb Sui Jingfeng:
+>> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>>
+>> On a machine with multiple GPUs, a Linux user has no control over 
+>> which one
+>> is primary at boot time.
+>
+> Question is why is that useful? Should we give users the ability to 
+> control that?
+>
+> I don't see an use case for this.
+>
+
+On a specific machine with multiple GPUs mounted, only the
+primary graphics get POST-ed (initialized) by the firmware.
+Therefore the DRM drivers for the rest video cards have to
+work without the prerequisite setups done by firmware, This
+is called as POST.
+
+One of the use cases is to test if a specific DRM driver
+would works properly, under the circumstance of not being
+POST-ed, The ast drm driver is the first one which refused
+to work if not being POST-ed by the firmware.
+
+Before apply this series, I was unable make drm/ast as the
+primary video card easily. The problem is that on a multiple
+video card configuration, the monitor connected with my
+AST2400 card not light up. While confusing, a naive programmer
+may suspect the PRIME is not working.
+
+After applied this series and passing ast.modeset=10 on the
+kernel cmd line, I found that the monitor connected with my
+ast2400 video card still black, It doesn't display and It
+doesn't show image to me.
+
+While in the process of study drm/ast, I know that drm/ast
+driver has the POST code shipped, See the ast_post_gpu() function.
+Then, I was wondering why this function doesn't works.
+
+After a short-time (hasty) debugging, I found that the ast_post_gpu()
+function didn't get run. Because it have something to do with the
+ast->config_mode. Without thinking too much, I hardcoded the
+ast->config_mode as ast_use_p2a, the key point is to force the
+ast_post_gpu() function to run.
+
+
+```
+
+--- a/drivers/gpu/drm/ast/ast_main.c
++++ b/drivers/gpu/drm/ast/ast_main.c
+@@ -132,6 +132,8 @@ static int ast_device_config_init(struct ast_device 
+*ast)
+                 }
+         }
+
++       ast->config_mode = ast_use_p2a;
++
+         switch (ast->config_mode) {
+         case ast_use_defaults:
+                 drm_info(dev, "Using default configuration\n");
+
+```
+
+Then, the monitor light up, it display the Ubuntu greeter to me. Therefore
+my patch is useful, at least for the Linux drm driver tester and developer.
+It allow programmers to test the specific part of a specific driver without
+changing a line of the source code and without the need of sudo authority.
+
+It improves the efficiency of the testing and patch verification. I know
+the PrimaryGPU option of Xorg conf, but this approach will remember the
+setup have been made, you need modify it with root authority each time
+you want to switch the primary. But on the process of rapid developing
+and/or testing for multiple video drivers, with only one computer hardware
+resource available. What we really want is a one-shot command, as provided
+by this series.  So, this is the first use case.
+
+
+The second use case is that sometime the firmware is not reliable.
+While there are thousands of ARM64, PowerPC and Mips servers machine,
+Most of them don't have a good UEFI firmware support. I haven't test the
+drm/amdgpu and drm/radeon at my ARM64 server yet. Because this ARM64
+server always use the platform(BMC) integrated display controller as primary.
+The UEFI firmware of it does not provide options menu to tune.
+So, for the first time, the discrete card because useless, despite more powerful.
+I will take time to carry on the testing, so I will be able to tell more
+in the future.
+
+
+Even on X86, when select the PEG as primary on the UEFI BIOS menu.
+There is no way to tell the bios which one of my three
+discrete video be the primary. Not to mention some old UEFI
+firmware, which doesn't provide a setting at all.
+While the benefit of my approach is the flexibility.
+Yes the i915, amdgpu and radeon are good quality,
+but there may have programmers want to try nouveau.
+
+
+The third use case is that VGAARB is also not reliable, It will
+select a wrong device as primary. Especially on Arm64, Loongarch
+and mips arch etc. And the X server will use this wrong device
+as primary and completely crash there. Either because of lacking
+a driver or the driver has a bug which can not bear the graphic
+environment up. VGAARB is firmware dependent.
+My patch provide a temporary method to rescue.
+
+
+The forth is probably the PRIME and reverse PRIME development
+and developing driver for new video cards.
 
