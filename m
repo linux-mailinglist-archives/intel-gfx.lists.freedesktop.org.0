@@ -1,64 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB52F7921F9
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Sep 2023 12:49:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C159E792208
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Sep 2023 13:01:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14F9810E4AA;
-	Tue,  5 Sep 2023 10:49:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CCA010E4AF;
+	Tue,  5 Sep 2023 11:01:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3241710E49F;
- Tue,  5 Sep 2023 10:49:35 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id E13721F750;
- Tue,  5 Sep 2023 10:49:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1693910973; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=/h7vQ0p06iIl+9hlbDcAIadyTSEFhmGic1bBYO4Q3/U=;
- b=d0WQNptghpH8JEQ/z3U12QGuKi8R8J47rBUAWfHos0sw4if/RkcnufoEHpWZF8gbuyv3gt
- 5Sd3dg58NZiju2B9c8GZZriXxRRSbPhlQ0mHL55Sfczs/JYCaxWC3QxJovkyhvHv3wEAff
- 1N09fmfNW6I8xb7WwJrNmlxDsm6x0bM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1693910973;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=/h7vQ0p06iIl+9hlbDcAIadyTSEFhmGic1bBYO4Q3/U=;
- b=ayiwjRa2TRnCjH6mDcI3P4P9RIZ+Pvloje05zJyBie1NIp6o0QaHjzXDI9HzSd4UNLt2iY
- ZuCaYWgKa2oIMoCw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id AF31913499;
- Tue,  5 Sep 2023 10:49:33 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id qnzIKb0H92RuXAAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Tue, 05 Sep 2023 10:49:33 +0000
-Message-ID: <151c0429-dbc2-e987-1491-6c733ca159ac@suse.de>
-Date: Tue, 5 Sep 2023 12:49:32 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 640CA10E4AE;
+ Tue,  5 Sep 2023 11:01:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693911689; x=1725447689;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=fDI45R6W8t/ZljCV7zv9zrYFb6R9WkaVGX4N3lJCYbU=;
+ b=EHikOsCb6iIOe/uiMkJIhmwdmV9tu6Kn/JXIGbU8ZmTzmvMS/BMLrs+n
+ XwDedUrlGy3h3Fbc5iMi4TZe7NmCywtz7ZKm6y9xzIrhKX6X/hr5tt3BI
+ lKHL/rjVZBlM/SfJ4S2fTxgU5GA/YBdbE7H31qHH8rx5YwNCIP9xqCOPg
+ He4ZSw2BavQhxPUq1R/pqa9B/Gc+CdZ5W7PNS3dEykQzf09nM6nHXWuds
+ 8Mi48jQ2/Xva0xJzETYYSFD0hYIvc1vJC7oE5i9ZG22cAH3Qy4Qmuch57
+ igeC+cfVr9s+L5Y8P+tUdbJsQQsA5gGrKAOWypQZRp5iDPnjVi1JL0ciH A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10823"; a="376690437"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="376690437"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2023 04:00:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10823"; a="914793383"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="914793383"
+Received: from lkp-server02.sh.intel.com (HELO e0b2ea88afd5) ([10.239.97.151])
+ by orsmga005.jf.intel.com with ESMTP; 05 Sep 2023 04:00:33 -0700
+Received: from kbuild by e0b2ea88afd5 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qdTnK-0001ZV-36;
+ Tue, 05 Sep 2023 11:00:30 +0000
+Date: Tue, 5 Sep 2023 19:00:28 +0800
+From: kernel test robot <lkp@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <202309051831.AMUjJOcB-lkp@intel.com>
+References: <20230905073551.958368-4-animesh.manna@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Content-Language: en-US
-To: Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>
-References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20230904195724.633404-1-sui.jingfeng@linux.dev>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------SZftlnzSQEmkHrhKFKQvdI2G"
-Subject: Re: [Intel-gfx] [Nouveau] [RFC,
- drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
- primary video adapter at boot time
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230905073551.958368-4-animesh.manna@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 3/6] drm/i915/panelreplay: Initializaton
+ and compute config for panel replay
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,151 +61,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sui Jingfeng <suijingfeng@loongson.cn>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-pci@vger.kernel.org
+Cc: jani.nikula@intel.com, llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------SZftlnzSQEmkHrhKFKQvdI2G
-Content-Type: multipart/mixed; boundary="------------a08JUWfqX04s0HL1577KPQKl";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>
-Cc: Sui Jingfeng <suijingfeng@loongson.cn>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-pci@vger.kernel.org
-Message-ID: <151c0429-dbc2-e987-1491-6c733ca159ac@suse.de>
-Subject: Re: [Nouveau] [RFC, drm-misc-next v4 0/9] PCI/VGA: Allowing the user
- to select the primary video adapter at boot time
-References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
-In-Reply-To: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+Hi Animesh,
 
---------------a08JUWfqX04s0HL1577KPQKl
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+kernel test robot noticed the following build warnings:
 
-SGkNCg0KQW0gMDQuMDkuMjMgdW0gMjE6NTcgc2NocmllYiBTdWkgSmluZ2Zlbmc6DQo+IEZy
-b206IFN1aSBKaW5nZmVuZyA8c3VpamluZ2ZlbmdAbG9vbmdzb24uY24+DQo+IA0KPiBPbiBh
-IG1hY2hpbmUgd2l0aCBtdWx0aXBsZSBHUFVzLCBhIExpbnV4IHVzZXIgaGFzIG5vIGNvbnRy
-b2wgb3ZlciB3aGljaA0KPiBvbmUgaXMgcHJpbWFyeSBhdCBib290IHRpbWUuIFRoaXMgc2Vy
-aWVzIHRyaWVzIHRvIHNvbHZlIGFib3ZlIG1lbnRpb25lZA0KPiBwcm9ibGVtIGJ5IGludHJv
-ZHVjZWQgdGhlIC0+YmVfcHJpbWFyeSgpIGZ1bmN0aW9uIHN0dWIuIFRoZSBzcGVjaWZpYw0K
-PiBkZXZpY2UgZHJpdmVycyBjYW4gcHJvdmlkZSBhbiBpbXBsZW1lbnRhdGlvbiB0byBob29r
-IHVwIHdpdGggdGhpcyBzdHViIGJ5DQo+IGNhbGxpbmcgdGhlIHZnYV9jbGllbnRfcmVnaXN0
-ZXIoKSBmdW5jdGlvbi4NCj4gDQo+IE9uY2UgdGhlIGRyaXZlciBib3VuZCB0aGUgZGV2aWNl
-IHN1Y2Nlc3NmdWxseSwgVkdBQVJCIHdpbGwgY2FsbCBiYWNrIHRvDQo+IHRoZSBkZXZpY2Ug
-ZHJpdmVyLiBUbyBxdWVyeSBpZiB0aGUgZGV2aWNlIGRyaXZlcnMgd2FudCB0byBiZSBwcmlt
-YXJ5IG9yDQo+IG5vdC4gRGV2aWNlIGRyaXZlcnMgY2FuIGp1c3QgcGFzcyBOVUxMIGlmIGhh
-dmUgbm8gc3VjaCBuZWVkcy4NCj4gDQo+IFBsZWFzZSBub3RlIHRoYXQ6DQo+IA0KPiAxKSBU
-aGUgQVJNNjQsIExvb25nYXJjaCwgTWlwcyBzZXJ2ZXJzIGhhdmUgYSBsb3QgUENJZSBzbG90
-LCBhbmQgSSB3b3VsZA0KPiAgICAgbGlrZSB0byBtb3VudCBhdCBsZWFzdCB0aHJlZSB2aWRl
-byBjYXJkcy4NCj4gDQo+IDIpIFR5cGljYWxseSwgdGhvc2Ugbm9uLTg2IG1hY2hpbmVzIGRv
-bid0IGhhdmUgYSBnb29kIFVFRkkgZmlybXdhcmUNCj4gICAgIHN1cHBvcnQsIHdoaWNoIGRv
-ZXNuJ3Qgc3VwcG9ydCBzZWxlY3QgcHJpbWFyeSBHUFUgYXMgZmlybXdhcmUgc3RhZ2UuDQo+
-ICAgICBFdmVuIG9uIHg4NiwgdGhlcmUgYXJlIG9sZCBVRUZJIGZpcm13YXJlcyB3aGljaCBh
-bHJlYWR5IG1hZGUgdW5kZXNpcmVkDQo+ICAgICBkZWNpc2lvbiBmb3IgeW91Lg0KPiANCj4g
-MykgVGhpcyBzZXJpZXMgaXMgYXR0ZW1wdCB0byBzb2x2ZSB0aGUgcmVtYWluIHByb2JsZW1z
-IGF0IHRoZSBkcml2ZXIgbGV2ZWwsDQo+ICAgICB3aGlsZSBhbm90aGVyIHNlcmllc1sxXSBv
-ZiBtZSBpcyB0YXJnZXQgdG8gc29sdmUgdGhlIG1ham9yaXR5IG9mIHRoZQ0KPiAgICAgcHJv
-YmxlbXMgYXQgZGV2aWNlIGxldmVsLg0KPiANCj4gVGVzdGVkIChsaW1pdGVkKSBvbiB4ODYg
-d2l0aCBmb3VyIHZpZGVvIGNhcmQgbW91bnRlZCwgSW50ZWwgVUhEIEdyYXBoaWNzDQo+IDYz
-MCBpcyB0aGUgZGVmYXVsdCBib290IFZHQSwgc3VjY2Vzc2Z1bGx5IG92ZXJyaWRlIGJ5IGFz
-dDI0MDAgd2l0aA0KPiBhc3QubW9kZXNldD0xMCBhcHBlbmQgYXQgdGhlIGtlcm5lbCBjbWQg
-bGluZS4NCg0KRllJOiBwZXItZHJpdmVyIG1vZGVzZXQgcGFyYW1ldGVycyBhcmUgZGVwcmVj
-YXRlZCBhbmQgbm90IHRvIGJlIHVzZWQuIA0KUGxlYXNlIGRvbid0IHByb21vdGUgdGhlbS4g
-WW91IGNhbiB1c2UgbW9kcHJvYmUuYmxhY2tsaXN0IG9yIA0KaW5pdGNhbGxfYmxhY2tsaXN0
-IG9uIHRoZSBrZXJuZWwgY29tbWFuZCBsaW5lLg0KDQpCZXN0IHJlZ2FyZHMNClRob21hcw0K
-DQo+IA0KPiAkIGxzcGNpIHwgZ3JlcCBWR0ENCj4gDQo+ICAgMDA6MDIuMCBWR0EgY29tcGF0
-aWJsZSBjb250cm9sbGVyOiBJbnRlbCBDb3Jwb3JhdGlvbiBDb2ZmZWVMYWtlLVMgR1QyIFtV
-SEQgR3JhcGhpY3MgNjMwXQ0KPiAgIDAxOjAwLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxl
-cjogQWR2YW5jZWQgTWljcm8gRGV2aWNlcywgSW5jLiBbQU1EL0FUSV0gQ2FpY29zIFhUWCBb
-UmFkZW9uIEhEIDg0OTAgLyBSNSAyMzVYIE9FTV0NCj4gICAwNDowMC4wIFZHQSBjb21wYXRp
-YmxlIGNvbnRyb2xsZXI6IEFTUEVFRCBUZWNobm9sb2d5LCBJbmMuIEFTUEVFRCBHcmFwaGlj
-cyBGYW1pbHkgKHJldiAzMCkNCj4gICAwNTowMC4wIFZHQSBjb21wYXRpYmxlIGNvbnRyb2xs
-ZXI6IE5WSURJQSBDb3Jwb3JhdGlvbiBHSzIwOEIgW0dlRm9yY2UgR1QgNzIwXSAocmV2IGEx
-KQ0KPiANCj4gJCBzdWRvIGRtZXNnIHwgZ3JlcCB2Z2FhcmINCj4gDQo+ICAgcGNpIDAwMDA6
-MDA6MDIuMDogdmdhYXJiOiBzZXR0aW5nIGFzIGJvb3QgVkdBIGRldmljZQ0KPiAgIHBjaSAw
-MDAwOjAwOjAyLjA6IHZnYWFyYjogVkdBIGRldmljZSBhZGRlZDogZGVjb2Rlcz1pbyttZW0s
-b3ducz1pbyttZW0sbG9ja3M9bm9uZQ0KPiAgIHBjaSAwMDAwOjAxOjAwLjA6IHZnYWFyYjog
-VkdBIGRldmljZSBhZGRlZDogZGVjb2Rlcz1pbyttZW0sb3ducz1ub25lLGxvY2tzPW5vbmUN
-Cj4gICBwY2kgMDAwMDowNDowMC4wOiB2Z2FhcmI6IFZHQSBkZXZpY2UgYWRkZWQ6IGRlY29k
-ZXM9aW8rbWVtLG93bnM9bm9uZSxsb2Nrcz1ub25lDQo+ICAgcGNpIDAwMDA6MDU6MDAuMDog
-dmdhYXJiOiBWR0EgZGV2aWNlIGFkZGVkOiBkZWNvZGVzPWlvK21lbSxvd25zPW5vbmUsbG9j
-a3M9bm9uZQ0KPiAgIHZnYWFyYjogbG9hZGVkDQo+ICAgYXN0IDAwMDA6MDQ6MDAuMDogdmdh
-YXJiOiBPdmVycmlkZSBhcyBwcmltYXJ5IGJ5IGRyaXZlcg0KPiAgIGk5MTUgMDAwMDowMDow
-Mi4wOiB2Z2FhcmI6IGNoYW5nZWQgVkdBIGRlY29kZXM6IG9sZGRlY29kZXM9aW8rbWVtLGRl
-Y29kZXM9bm9uZTpvd25zPWlvK21lbQ0KPiAgIHJhZGVvbiAwMDAwOjAxOjAwLjA6IHZnYWFy
-YjogY2hhbmdlZCBWR0EgZGVjb2Rlczogb2xkZGVjb2Rlcz1pbyttZW0sZGVjb2Rlcz1ub25l
-Om93bnM9bm9uZQ0KPiAgIGFzdCAwMDAwOjA0OjAwLjA6IHZnYWFyYjogY2hhbmdlZCBWR0Eg
-ZGVjb2Rlczogb2xkZGVjb2Rlcz1pbyttZW0sZGVjb2Rlcz1ub25lOm93bnM9bm9uZQ0KPiAN
-Cj4gdjI6DQo+IAkqIEFkZCBhIHNpbXBsZSBpbXBsZW1tZW50IGZvciBkcm0vaTkxNSBhbmQg
-ZHJtL2FzdA0KPiAJKiBQaWNrIHVwIGFsbCB0YWdzIChNYXJpbykNCj4gdjM6DQo+IAkqIEZp
-eCBhIG1pc3Rha2UgZm9yIGRybS9pOTE1IGltcGxlbWVudA0KPiAJKiBGaXggcGF0Y2ggY2Fu
-IG5vdCBiZSBhcHBsaWVkIHByb2JsZW0gYmVjYXVzZSBvZiBtZXJnZSBjb25mbGVjdC4NCj4g
-djQ6DQo+IAkqIEZvY3VzIG9uIHNvbHZlIHRoZSByZWFsIHByb2JsZW0uDQo+IA0KPiB2MSx2
-MiBhdCBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzEyMDA1OS8N
-Cj4gICAgIHYzIGF0IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMv
-MTIwNTYyLw0KPiANCj4gWzFdIGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9z
-ZXJpZXMvMTIyODQ1Lw0KPiANCj4gU3VpIEppbmdmZW5nICg5KToNCj4gICAgUENJL1ZHQTog
-QWxsb3dpbmcgdGhlIHVzZXIgdG8gc2VsZWN0IHRoZSBwcmltYXJ5IHZpZGVvIGFkYXB0ZXIg
-YXQgYm9vdA0KPiAgICAgIHRpbWUNCj4gICAgZHJtL25vdXZlYXU6IEltcGxlbWVudCAuYmVf
-cHJpbWFyeSgpIGNhbGxiYWNrDQo+ICAgIGRybS9yYWRlb246IEltcGxlbWVudCAuYmVfcHJp
-bWFyeSgpIGNhbGxiYWNrDQo+ICAgIGRybS9hbWRncHU6IEltcGxlbWVudCAuYmVfcHJpbWFy
-eSgpIGNhbGxiYWNrDQo+ICAgIGRybS9pOTE1OiBJbXBsZW1lbnQgLmJlX3ByaW1hcnkoKSBj
-YWxsYmFjaw0KPiAgICBkcm0vbG9vbmdzb246IEltcGxlbWVudCAuYmVfcHJpbWFyeSgpIGNh
-bGxiYWNrDQo+ICAgIGRybS9hc3Q6IFJlZ2lzdGVyIGFzIGEgVkdBIGNsaWVudCBieSBjYWxs
-aW5nIHZnYV9jbGllbnRfcmVnaXN0ZXIoKQ0KPiAgICBkcm0vaGlibWM6IFJlZ2lzdGVyIGFz
-IGEgVkdBIGNsaWVudCBieSBjYWxsaW5nIHZnYV9jbGllbnRfcmVnaXN0ZXIoKQ0KPiAgICBk
-cm0vZ21hNTAwOiBSZWdpc3RlciBhcyBhIFZHQSBjbGllbnQgYnkgY2FsbGluZyB2Z2FfY2xp
-ZW50X3JlZ2lzdGVyKCkNCj4gDQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
-Z3B1X2RldmljZS5jICAgIHwgMTEgKysrLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L2FtZGdwdV9kcnYuYyAgICAgICB8IDEzICsrKystDQo+ICAgZHJpdmVycy9ncHUvZHJt
-L2FzdC9hc3RfZHJ2LmMgICAgICAgICAgICAgICAgIHwgMzEgKysrKysrKysrKw0KPiAgIGRy
-aXZlcnMvZ3B1L2RybS9nbWE1MDAvcHNiX2Rydi5jICAgICAgICAgICAgICB8IDU3ICsrKysr
-KysrKysrKysrKysrKy0NCj4gICAuLi4vZ3B1L2RybS9oaXNpbGljb24vaGlibWMvaGlibWNf
-ZHJtX2Rydi5jICAgfCAxNSArKysrKw0KPiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfdmdhLmMgICAgICB8IDE1ICsrKystDQo+ICAgZHJpdmVycy9ncHUvZHJtL2xv
-b25nc29uL2xvb25nc29uX21vZHVsZS5jICAgIHwgIDIgKy0NCj4gICBkcml2ZXJzL2dwdS9k
-cm0vbG9vbmdzb24vbG9vbmdzb25fbW9kdWxlLmggICAgfCAgMSArDQo+ICAgZHJpdmVycy9n
-cHUvZHJtL2xvb25nc29uL2xzZGNfZHJ2LmMgICAgICAgICAgIHwgMTAgKysrLQ0KPiAgIGRy
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfdmdhLmMgICAgICAgICB8IDExICsrKy0N
-Cj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kZXZpY2UuYyAgICAgICAgfCAx
-MCArKystDQo+ICAgZHJpdmVycy9wY2kvdmdhYXJiLmMgICAgICAgICAgICAgICAgICAgICAg
-ICAgIHwgNDMgKysrKysrKysrKysrLS0NCj4gICBkcml2ZXJzL3ZmaW8vcGNpL3ZmaW9fcGNp
-X2NvcmUuYyAgICAgICAgICAgICAgfCAgMiArLQ0KPiAgIGluY2x1ZGUvbGludXgvdmdhYXJi
-LmggICAgICAgICAgICAgICAgICAgICAgICB8ICA4ICsrLQ0KPiAgIDE0IGZpbGVzIGNoYW5n
-ZWQsIDIxMCBpbnNlcnRpb25zKCspLCAxOSBkZWxldGlvbnMoLSkNCj4gDQoNCi0tIA0KVGhv
-bWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdh
-cmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KRnJhbmtlbnN0cmFzc2UgMTQ2LCA5MDQ2MSBO
-dWVybmJlcmcsIEdlcm1hbnkNCkdGOiBJdm8gVG90ZXYsIEFuZHJldyBNeWVycywgQW5kcmV3
-IE1jRG9uYWxkLCBCb3VkaWVuIE1vZXJtYW4NCkhSQiAzNjgwOSAoQUcgTnVlcm5iZXJnKQ0K
+[auto build test WARNING on drm-tip/drm-tip]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Animesh-Manna/drm-panelreplay-dpcd-register-definition-for-panelreplay/20230905-154811
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230905073551.958368-4-animesh.manna%40intel.com
+patch subject: [Intel-gfx] [PATCH v5 3/6] drm/i915/panelreplay: Initializaton and compute config for panel replay
+config: i386-randconfig-r036-20230905 (https://download.01.org/0day-ci/archive/20230905/202309051831.AMUjJOcB-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230905/202309051831.AMUjJOcB-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309051831.AMUjJOcB-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/display/intel_dp.c:3779:27: warning: overlapping comparisons always evaluate to true [-Wtautological-overlap-compare]
+           if (vsc->revision != 0x5 || vsc->revision != 0x7)
+               ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
 
 
---------------a08JUWfqX04s0HL1577KPQKl--
+vim +3779 drivers/gpu/drm/i915/display/intel_dp.c
 
---------------SZftlnzSQEmkHrhKFKQvdI2G
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+  3754	
+  3755	static ssize_t intel_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc,
+  3756					     struct dp_sdp *sdp, size_t size)
+  3757	{
+  3758		size_t length = sizeof(struct dp_sdp);
+  3759	
+  3760		if (size < length)
+  3761			return -ENOSPC;
+  3762	
+  3763		memset(sdp, 0, size);
+  3764	
+  3765		/*
+  3766		 * Prepare VSC Header for SU as per DP 1.4a spec, Table 2-119
+  3767		 * VSC SDP Header Bytes
+  3768		 */
+  3769		sdp->sdp_header.HB0 = 0; /* Secondary-Data Packet ID = 0 */
+  3770		sdp->sdp_header.HB1 = vsc->sdp_type; /* Secondary-data Packet Type */
+  3771		sdp->sdp_header.HB2 = vsc->revision; /* Revision Number */
+  3772		sdp->sdp_header.HB3 = vsc->length; /* Number of Valid Data Bytes */
+  3773	
+  3774		/*
+  3775		 * Other than revision 0x5 which supports Pixel Encoding/Colorimetry
+  3776		 * Format as per DP 1.4a spec, revision 0x7 also supports Pixel
+  3777		 * Encoding/Colorimetry Format as per DP 2.0 spec.
+  3778		 */
+> 3779		if (vsc->revision != 0x5 || vsc->revision != 0x7)
+  3780			goto out;
+  3781	
+  3782		/* VSC SDP Payload for DB16 through DB18 */
+  3783		/* Pixel Encoding and Colorimetry Formats  */
+  3784		sdp->db[16] = (vsc->pixelformat & 0xf) << 4; /* DB16[7:4] */
+  3785		sdp->db[16] |= vsc->colorimetry & 0xf; /* DB16[3:0] */
+  3786	
+  3787		switch (vsc->bpc) {
+  3788		case 6:
+  3789			/* 6bpc: 0x0 */
+  3790			break;
+  3791		case 8:
+  3792			sdp->db[17] = 0x1; /* DB17[3:0] */
+  3793			break;
+  3794		case 10:
+  3795			sdp->db[17] = 0x2;
+  3796			break;
+  3797		case 12:
+  3798			sdp->db[17] = 0x3;
+  3799			break;
+  3800		case 16:
+  3801			sdp->db[17] = 0x4;
+  3802			break;
+  3803		default:
+  3804			MISSING_CASE(vsc->bpc);
+  3805			break;
+  3806		}
+  3807		/* Dynamic Range and Component Bit Depth */
+  3808		if (vsc->dynamic_range == DP_DYNAMIC_RANGE_CTA)
+  3809			sdp->db[17] |= 0x80;  /* DB17[7] */
+  3810	
+  3811		/* Content Type */
+  3812		sdp->db[18] = vsc->content_type & 0x7;
+  3813	
+  3814	out:
+  3815		return length;
+  3816	}
+  3817	
 
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmT3B70FAwAAAAAACgkQlh/E3EQov+AX
-Lw/9F0C7Gkxj5ijEeIjnoVFjFuSwWlTKeLdkEE58cXv1FKXsjLhJvkmU9CJp3Y/QDQO7JEgBX8F9
-ZvuF18ILOyh6+a3GMMN2YhdV123ZhDICHdqlZ0LcszorCLPfmOwkIGVpuqmt0Mhh5x5MF3WkKaF1
-RHrog7KcO5r9xluX2BDlrASgsne8cEfGhwUTMxy6TglgIAgo7RV3A92aRAfCNw+QljxYFLFGUmI5
-Zo74+ULVn7ozCgUM23csJ8YSgPVEnXEKa+PWAlGbwhOnncqYNlFlsICfkFk1/npP9ErPlGyfX2pK
-jwat7ueFnQ1fxwUUtTdx7YZC1KJQCINBuQtwfSTRFt7FQbnZki90hRPk+hCNo0wLx90hc7g29kWC
-kBVDdW73zVC2IPTJ1ZnGseLZnVwdX9rD3RVVlbZ5bOt0GoItFsT6L+MQzB2BL3jpuyjgFzU/HRZP
-LduQUIqUZkKwIpMXpOQIH1fjvxpr0WaSo3zj96BkIJLO7i6dEytc1zSTVJhJaIX6mKzJtIBhyLIS
-LUa5nN9ylr7Qz6Ly/Sc/FhLnsEpn+RESQWZCGJeZmIBmg6IkmuUWErjP9KOyFYb/XFCg5ddHxC9N
-yRI+qx6bv9Cp/WnznUYx+HsSNJ/DesvT1IcUyfjREIiaDDzioKRre/pKkfZ3vln/qHqU+8TaxdYI
-pJ4=
-=Yl0Q
------END PGP SIGNATURE-----
-
---------------SZftlnzSQEmkHrhKFKQvdI2G--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
