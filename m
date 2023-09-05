@@ -2,80 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74127922C7
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Sep 2023 14:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09E67792307
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Sep 2023 15:28:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A86310E4F0;
-	Tue,  5 Sep 2023 12:57:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3DD010E51A;
+	Tue,  5 Sep 2023 13:28:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D205A10E4F0
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Sep 2023 12:57:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1693918639;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JXtPHPu1ESaQkw+w3FbcMigzZ8fjP5dOebOzqU7Tj90=;
- b=ZlEnQcBMnFnBEHqlZPzyt7WmQIQ6Va0DYy9BN3l9veNmZ5XC7QSoJArojaRo/Zr/Cl/E14
- ic3+koY/FKghlpPSx1O12YgPC7VUbT8GvefW6MwVDd+g96ACcOxxDMSw0uFu0jq0r+De7k
- C28LiiJ5AwRTWoveuvE9CToifHmKtT8=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-465-rqaHrgKOM866uSlzmSbYaQ-1; Tue, 05 Sep 2023 08:57:16 -0400
-X-MC-Unique: rqaHrgKOM866uSlzmSbYaQ-1
-Received: by mail-ej1-f69.google.com with SMTP id
- a640c23a62f3a-99388334de6so172906866b.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 05 Sep 2023 05:57:15 -0700 (PDT)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
+ [IPv6:2a00:1450:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D43510E506;
+ Tue,  5 Sep 2023 13:28:19 +0000 (UTC)
+Received: by mail-wm1-x335.google.com with SMTP id
+ 5b1f17b1804b1-401da71b83cso24104565e9.2; 
+ Tue, 05 Sep 2023 06:28:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1693920497; x=1694525297; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=HO60y5WvecntGMap+7ti8637GtVXXtrbirknYBL6Q24=;
+ b=FlQAyFQNK/BHXuK3A3+GzQ/ahXcyYwEYohsqtdXggwfUDL0di68lxE1t82nWbkHVNH
+ 9H4y598jlcymkjXv5Vl4gMkeo5y1GMKxd3ExeafUnU9cZ/wvkorTWZn36nyfUByraDMn
+ OvJ5zfT9XVkaw8q2082Lbw2pVMLd3kr3bYIfbs8rDDE1v8qqn9fb+NZf/JOplb1ht/Pt
+ MrAJRW9981kBQFpeKWebi44oDMpurtFCVBBUb3pfdC02dPQLWTATDF3L+RrHixrNpKbS
+ ikYs6H6tUSQtKfHN4irN5UVmXRbNtXASU0DDY3y9Q8YaW6gDcY1v6v9coHc1JxRjCENP
+ Iwng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693918635; x=1694523435;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
+ d=1e100.net; s=20221208; t=1693920497; x=1694525297;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=JXtPHPu1ESaQkw+w3FbcMigzZ8fjP5dOebOzqU7Tj90=;
- b=JXyaC1VE7mtjNoxCw2CCdW6UqZ0mh6hZwVsH9l1wvfH/Fq7zQu4Vj/OPMmGFEEMpXf
- hLinwEui4Nw/OHVRA36z7pi0f0hce2cjhAzMis/7oO+VXb/6Ck+XIZmICPW3f5VgROLb
- IdamqOABuunZkjwbcVs/n/Hfo+Iwg9DRm5owony2sSMQ0b5a7eJfIlbaRyW4WGgmWvBQ
- UUP50GHO4cgKNnvpq7PhuiFY1LhRejD1JDqYUEZQorhAvWe/oRw+BhiURHCj6/Jk1HYH
- JrPWVQX9W0FJ4owo9ZQut+OBNqMffz9ykLDJu/MlwLxsn5P0mrAr8k84QbbCFJJk5uqv
- bLmQ==
-X-Gm-Message-State: AOJu0YwOzj+OrKpiSW3JfUYzMcc6d+Zy8aspXAjWF78CQgU73WCI/CjU
- 72VF9vBe/q6bROlxd8tX8C/mtGmLL65vRm9NwW9NCtJwKIoIDmGFX39zCrhKfRoxlCsbIc5NCPA
- uRzCT1lTd2VF8jtJ9x6PskTnp8MGF
-X-Received: by 2002:a17:906:1009:b0:9a5:db06:4264 with SMTP id
- 9-20020a170906100900b009a5db064264mr10731450ejm.72.1693918634908; 
- Tue, 05 Sep 2023 05:57:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEXmkc5p4BKJ7ZS4arkyf+XdZWtvmkVxEit8murENjYqq98o3LKnSsISWPbDaxqRPe2oAfI2w==
-X-Received: by 2002:a17:906:1009:b0:9a5:db06:4264 with SMTP id
- 9-20020a170906100900b009a5db064264mr10731431ejm.72.1693918634542; 
- Tue, 05 Sep 2023 05:57:14 -0700 (PDT)
-Received: from toolbox ([2001:9e8:899e:bc00:ba8:f004:5f7b:725b])
+ bh=HO60y5WvecntGMap+7ti8637GtVXXtrbirknYBL6Q24=;
+ b=U2kosq0OW3eYNwdq0iuZldMCNraG5UsZrbCC9Pz3ciGASf/uARiB1T0+HL7MFmmIm1
+ Xb4HfAQeucHX1x5b8ybvDNG+s5Wk6ERMaj5YiOSO1mL+R5Ftkh8rdUCNI2xtHc1cFaA7
+ T3V7pPYeX9bBcJ2mz2Qztl+GcGp1FC2Uizb3atv+x/rMBweA7zkju/p7jrUTstyNzRsq
+ nxUTQlz2mYoxhAAUe5NAh7NDvHDSBevfGpFuNvwRGQsIUFM9sEJiM+HQNserZJiBfB/V
+ xW5g+85kSdISE9nxaEnsJTWg7xctkUtDNUDULK2G00FDZWl+4nkue4kbRB3Ck0zfYOWq
+ ynag==
+X-Gm-Message-State: AOJu0YzuBqVNxothL7dwUwE1iQccaOPqYVDDfXQbdeGynsK2JntTz1BG
+ btGKCONenLtPiInJzWeWfSs=
+X-Google-Smtp-Source: AGHT+IE9N4h9DnLrGBA6w0mD6fm9bBMgaxlwOB4SKAbQC3od7Yg6OmwCuXYoDvsI34rJ37MMdyjrhQ==
+X-Received: by 2002:a5d:4408:0:b0:313:f399:6cea with SMTP id
+ z8-20020a5d4408000000b00313f3996ceamr9182865wrq.4.1693920497247; 
+ Tue, 05 Sep 2023 06:28:17 -0700 (PDT)
+Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
  by smtp.gmail.com with ESMTPSA id
- lj17-20020a170906f9d100b009829dc0f2a0sm7559394ejb.111.2023.09.05.05.57.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 Sep 2023 05:57:14 -0700 (PDT)
-Date: Tue, 5 Sep 2023 14:57:12 +0200
-From: Sebastian Wick <sebastian.wick@redhat.com>
-To: Pekka Paalanen <ppaalanen@gmail.com>
-Message-ID: <20230905125712.GB579774@toolbox>
-References: <20230829160422.1251087-1-uma.shankar@intel.com>
- <dbde0306-cc10-420f-a663-663481e127e2@amd.com>
- <PH7PR11MB63548CC6A606C9DD183B5954F4E6A@PH7PR11MB6354.namprd11.prod.outlook.com>
- <20230830211536.GA243703@toolbox>
- <IA1PR11MB63470B60E59FF5F359F6D4A6F4E9A@IA1PR11MB6347.namprd11.prod.outlook.com>
- <20230905143326.38fe5170@eldfell> <20230905123304.GA579774@toolbox>
+ n10-20020adfe78a000000b0031aca6cc69csm17618765wrm.2.2023.09.05.06.28.15
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 05 Sep 2023 06:28:16 -0700 (PDT)
+Message-ID: <b11fedb4-d577-d007-0ef8-ac62775d9eee@gmail.com>
+Date: Tue, 5 Sep 2023 15:28:14 +0200
 MIME-Version: 1.0
-In-Reply-To: <20230905123304.GA579774@toolbox>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [RFC 00/33] Add Support for Plane Color Pipeline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>
+References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+ <874jk8j45s.fsf@intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <874jk8j45s.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [RFC,
+ drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
+ primary video adapter at boot time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,386 +80,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander Goins <agoins@nvidia.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "wayland-devel@lists.freedesktop.org" <wayland-devel@lists.freedesktop.org>,
- Melissa Wen <mwen@igalia.com>,
- Jonas =?iso-8859-1?Q?=C5dahl?= <jadahl@redhat.com>,
- Naseer Ahmed <quic_naseer@quicinc.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Christopher Braga <quic_cbraga@quicinc.com>
+Cc: Sui Jingfeng <suijingfeng@loongson.cn>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 05, 2023 at 02:33:04PM +0200, Sebastian Wick wrote:
-> On Tue, Sep 05, 2023 at 02:33:26PM +0300, Pekka Paalanen wrote:
-> > On Mon, 4 Sep 2023 14:29:56 +0000
-> > "Shankar, Uma" <uma.shankar@intel.com> wrote:
-> > 
-> > > > -----Original Message-----
-> > > > From: Sebastian Wick <sebastian.wick@redhat.com>
-> > > > Sent: Thursday, August 31, 2023 2:46 AM
-> > > > To: Shankar, Uma <uma.shankar@intel.com>
-> > > > Cc: Harry Wentland <harry.wentland@amd.com>; intel-
-> > > > gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; wayland-
-> > > > devel@lists.freedesktop.org; Ville Syrjala <ville.syrjala@linux.intel.com>; Pekka
-> > > > Paalanen <pekka.paalanen@collabora.com>; Simon Ser <contact@emersion.fr>;
-> > > > Melissa Wen <mwen@igalia.com>; Jonas Ådahl <jadahl@redhat.com>; Shashank
-> > > > Sharma <shashank.sharma@amd.com>; Alexander Goins <agoins@nvidia.com>;
-> > > > Naseer Ahmed <quic_naseer@quicinc.com>; Christopher Braga
-> > > > <quic_cbraga@quicinc.com>
-> > > > Subject: Re: [RFC 00/33] Add Support for Plane Color Pipeline
-> > > > 
-> > > > On Wed, Aug 30, 2023 at 08:47:37AM +0000, Shankar, Uma wrote:  
-> > > > >
-> > > > >  
-> > > > > > -----Original Message-----
-> > > > > > From: Harry Wentland <harry.wentland@amd.com>
-> > > > > > Sent: Wednesday, August 30, 2023 12:56 AM
-> > > > > > To: Shankar, Uma <uma.shankar@intel.com>;
-> > > > > > intel-gfx@lists.freedesktop.org; dri- devel@lists.freedesktop.org
-> > > > > > Cc: wayland-devel@lists.freedesktop.org; Ville Syrjala
-> > > > > > <ville.syrjala@linux.intel.com>; Pekka Paalanen
-> > > > > > <pekka.paalanen@collabora.com>; Simon Ser <contact@emersion.fr>;
-> > > > > > Melissa Wen <mwen@igalia.com>; Jonas Ådahl <jadahl@redhat.com>;
-> > > > > > Sebastian Wick <sebastian.wick@redhat.com>; Shashank Sharma
-> > > > > > <shashank.sharma@amd.com>; Alexander Goins <agoins@nvidia.com>;
-> > > > > > Naseer Ahmed <quic_naseer@quicinc.com>; Christopher Braga
-> > > > > > <quic_cbraga@quicinc.com>
-> > > > > > Subject: Re: [RFC 00/33] Add Support for Plane Color Pipeline
-> > > > > >
-> > > > > > +CC Naseer and Chris, FYI
-> > > > > >
-> > > > > > See https://patchwork.freedesktop.org/series/123024/ for whole series.
-> > > > > >
-> > > > > > On 2023-08-29 12:03, Uma Shankar wrote:  
-> > > > > > > Introduction
-> > > > > > > ============
-> > > > > > >
-> > > > > > > Modern hardwares have various color processing capabilities both
-> > > > > > > at pre-blending and post-blending phases in the color pipeline.
-> > > > > > > The current drm implementation exposes only the post-blending
-> > > > > > > color hardware blocks. Support for pre-blending hardware is missing.
-> > > > > > > There are multiple use cases where pre-blending color hardware
-> > > > > > > will be
-> > > > > > > useful:
-> > > > > > > 	a) Linearization of input buffers encoded in various transfer
-> > > > > > > 	   functions.
-> > > > > > > 	b) Color Space conversion
-> > > > > > > 	c) Tone mapping
-> > > > > > > 	d) Frame buffer format conversion
-> > > > > > > 	e) Non-linearization of buffer(apply transfer function)
-> > > > > > > 	f) 3D Luts
-> > > > > > >
-> > > > > > > and other miscellaneous color operations.
-> > > > > > >
-> > > > > > > Hence, there is a need to expose the color capabilities of the
-> > > > > > > hardware to user-space. This will help userspace/middleware to use
-> > > > > > > display hardware for color processing and blending instead of
-> > > > > > > doing it through GPU shaders.
-> > > > > > >  
-> > > > > >
-> > > > > > Thanks, Uma, for sending this. I've been working on something
-> > > > > > similar but you beat me to it. :)  
-> > > > >
-> > > > > Thanks Harry for the useful feedback and overall collaboration on this so far.
-> > > > >  
-> > > > > > >
-> > > > > > > Work done so far and relevant references
-> > > > > > > ========================================
-> > > > > > >
-> > > > > > > Some implementation is done by Intel and AMD/Igalia to address the same.
-> > > > > > > Broad consensus is there that we need a generic API at drm core to
-> > > > > > > suffice the use case of various HW vendors. Below are the links
-> > > > > > > capturing the discussion so far.
-> > > > > > >
-> > > > > > > Intel's Plane Color Implementation:
-> > > > > > > https://patchwork.freedesktop.org/series/90825/
-> > > > > > > AMD's Plane Color Implementation:
-> > > > > > > https://patchwork.freedesktop.org/series/116862/
-> > > > > > >
-> > > > > > >
-> > > > > > > Hackfest conclusions
-> > > > > > > ====================
-> > > > > > >
-> > > > > > > HDR/Color Hackfest was organised by Redhat to bring all the
-> > > > > > > industry stakeholders together and converge on a common uapi  
-> > > > expectations.  
-> > > > > > > Participants from Intel, AMD, Nvidia, Collabora, Redhat, Igalia
-> > > > > > > and other prominent user-space developers and maintainers.
-> > > > > > >
-> > > > > > > Discussions happened on the uapi expectations, opens, nature of
-> > > > > > > hardware of multiple hardware vendors, challenges in generalizing
-> > > > > > > the same and the path forward. Consensus was made that drm core
-> > > > > > > should implement descriptive APIs and not go with prescriptive
-> > > > > > > APIs. DRM core should just expose the hardware capabilities;
-> > > > > > > enabling, customizing and programming the same should be done by
-> > > > > > > the user-space. Driver should just  
-> > > > > > honor the user space request without doing any operations internally.  
-> > > > > > >
-> > > > > > > Thanks to Simon Ser, for nicely documenting the design consensus
-> > > > > > > and an UAPI RFC which can be referred to here:
-> > > > > > >
-> > > > > > > https://lore.kernel.org/dri-devel/QMers3awXvNCQlyhWdTtsPwkp5ie9bze
-> > > > > > > _hD5
-> > > > > > >  
-> > > > > >  
-> > > > nAccFW7a_RXlWjYB7MoUW_8CKLT2bSQwIXVi5H6VULYIxCdgvryZoAoJnC5lZgyK1
-> > > > Q  
-> > > > > > Wn48  
-> > > > > > > 8=@emersion.fr/
-> > > > > > >
-> > > > > > >
-> > > > > > > Design considerations
-> > > > > > > =====================
-> > > > > > >
-> > > > > > > Following are the important aspects taken into account while
-> > > > > > > designing the current RFC
-> > > > > > > proposal:
-> > > > > > >
-> > > > > > > 	1. Individual HW blocks can be muxed. (e.g. out of two HW blocks
-> > > > > > > only one  
-> > > > > > can be used)  
-> > > > > > > 	2. Position of the HW block in the pipeline can be programmable
-> > > > > > > 	3. LUTs can be one dimentional or three dimentional
-> > > > > > > 	4. Number of LUT entries can vary across platforms
-> > > > > > > 	5. Precision of LUT entries can vary across platforms
-> > > > > > > 	6. Distribution of LUT entries may vary. e.g Mutli-segmented,  
-> > > > Logarithmic,  
-> > > > > > > 	   Piece-Wise Linear(PWL) etc
-> > > > > > > 	7. There can be parameterized/non-parameterized fixed function HW  
-> > > > > > blocks.  
-> > > > > > > 	   e.g. Just a hardware bit, to convert from one color space to another.
-> > > > > > > 	8. Custom non-standard HW implementation.
-> > > > > > > 	9. Leaving scope for some vendor defined pescriptive
-> > > > > > > implementation if  
-> > > > > > required.  
-> > > > > > > 	10.Scope to handle any modification in hardware as technology
-> > > > > > > evolves
-> > > > > > >
-> > > > > > > The current proposal takes into account the above considerations
-> > > > > > > while keeping the implementation as generic as possible leaving
-> > > > > > > scope for future  
-> > > > > > additions or modifications.  
-> > > > > > >
-> > > > > > > This proposal is also in line to the details mentioned by Simon's
-> > > > > > > RFC covering all the aspects discussed in hackfest.
-> > > > > > >
-> > > > > > >
-> > > > > > > Outline of the implementation
-> > > > > > > ============================
-> > > > > > >
-> > > > > > > Each Color Hardware block will be represented by a data structure  
-> > > > drm_color_op.  
-> > > > > > > These color operations will form the building blocks of a color
-> > > > > > > pipeline which best represents the underlying Hardware. Color
-> > > > > > > operations can be re-arranged, substracted or added to create
-> > > > > > > distinct color pipelines to accurately describe the Hardware
-> > > > > > > blocks present in the display  
-> > > > > > engine.
-> > > > > >
-> > > > > > Who is doing the arranging of color operations? IMO a driver should
-> > > > > > define one or more respective pipelines that can be selected by
-> > > > > > userspace. This seems to be what you're talking about after (I
-> > > > > > haven't reviewed the whole thing yet). Might be best to drop this sentence or  
-> > > > to add clarifications in order to avoid confusion.  
-> > > > >
-> > > > > Yes it's the driver who will set the pipeline based on the underlying
-> > > > > hardware arrangement and possible combinations. There can be multiple
-> > > > > pipelines possible if hardware can be muxed or order can be re-arranged (all  
-> > > > viable combinations should be defined as a pipeline in driver).  
-> > > > > Yeah, I will re-phrase this to help clarify it and avoid any ambiguity.
-> > > > >  
-> > > > > > >
-> > > > > > > In this proposal, a color pipeline is represented as an array of
-> > > > > > > struct drm_color_op. For individual color operation, we add blobs
-> > > > > > > to advertise the capability of the particular Hardware block.
-> > > > > > >
-> > > > > > > This color pipeline is then packaged within a blob for the user
-> > > > > > > space to retrieve it.
-> > > > > > >  
-> > > > > >
-> > > > > > Would it be better to expose the drm_color_ops directly, instead of
-> > > > > > packing a array of drm_color_ops into a blob and then giving that to  
-> > > > userspace.  
-> > > > >
-> > > > > Advantage we see in packing in blobs is that interface will be
-> > > > > cleaner. There will be just one GET_COLOR_PIPELINE property to invoke by user  
-> > > > and then its just parsing the data.  
-> > > > > This way the entire underlying hardware blocks with pipeline will be available to  
-> > > > user.
-> > > > 
-> > > > I don't see how parsing a blob is easier than requesting the color ops from the
-> > > > kernel. User space is already equiped with getting KMS objects and the igt test
-> > > > code from Harry shows that this is all pretty trivial plumbing.  
-> > > 
-> > > There are multiple color operations possible with unique lut distribution and
-> > > capabilities. Also the order of hardware blocks and possibility of multiple pipelines.
-> > > Having all the information with one query and property and also be able to set the
-> > > same with just one property call using blobs is better than multiple calls to driver.
-> > > This can be useful in high refresh rate cases where not much time is there to program
-> > > the hardware state. Latency of multiple calls to driver can be avoided.
-> > 
-> > Hi,
-> > 
-> > querying all that information only happens once, at KMS client start-up.
-> > 
-> > Setting up a color pipeline is already a single call: the atomic commit ioctl.
-> 
-> Well, clients also issue a bunch of ioctl to set some properties to the
-> desired state and then you might run through a whole bunch of
-> configurations to find one that actually works, so there is a case to be
-> made that there are a lot of ioctls involved.
+Am 05.09.23 um 12:38 schrieb Jani Nikula:
+> On Tue, 05 Sep 2023, Sui Jingfeng <sui.jingfeng@linux.dev> wrote:
+>> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>>
+>> On a machine with multiple GPUs, a Linux user has no control over which
+>> one is primary at boot time. This series tries to solve above mentioned
+>> problem by introduced the ->be_primary() function stub. The specific
+>> device drivers can provide an implementation to hook up with this stub by
+>> calling the vga_client_register() function.
+>>
+>> Once the driver bound the device successfully, VGAARB will call back to
+>> the device driver. To query if the device drivers want to be primary or
+>> not. Device drivers can just pass NULL if have no such needs.
+>>
+>> Please note that:
+>>
+>> 1) The ARM64, Loongarch, Mips servers have a lot PCIe slot, and I would
+>>     like to mount at least three video cards.
 
-pq pointed at that for atomic this is actually really just a single
-ioctl so really there is no advantage here at all.
+Well, you rarely find a board which can actually handle a single one :)
 
-> I just don't think this is an issue right now. Nobody has been
-> complaining about the ioctls being a limiting factor so why should we
-> optimize for this? Especially because it brings with it a bunch of
-> disadvantages.
-> 
-> Anyway, I agree with the sentiment here: this is not something we should
-> optimize for.
-> 
-> > 
-> > > 
-> > > > > For a particular hardware block in pipeline, user can get the relevant
-> > > > > details from blob representing that particular block. We have created
-> > > > > IGT tests (links mentioned in cover-letter) to demonstrate how it can be done.  
-> > > > This is just to clarify the idea.
-> > > > 
-> > > > The blob is also not introspectable with the usual tools whereas exposing them as
-> > > > properties would be.
-> > > > 
-> > > > It also would, like Pekka correctly noted, bring a whole bunch of issues about
-> > > > compatibility and versioning that are well understood with objects
-> > > > + properties.  
-> > > 
-> > > The blob should be standardized in the UAPI and structures to parse them should be fixed.
-> > > With this compatibility issues can be prevented.
-> > 
-> > I think that is short-sighted.
-> > 
-> > > > > Also since info is passed via blobs we have the flexibility to even
-> > > > > define segmented LUTs and PWL hardware blocks. Also we have left scope
-> > > > > for custom private hardware blocks as well which driver can work with  
-> > > > respective HAL and get that implemented.
-> > > > 
-> > > > When color ops are real KMS objects they still can have properties which are
-> > > > blobs that can store LUTs and other data.
-> > > > 
-> > > > And we should avoid private blocks at all cost. In fact, I don't think the KMS rules
-> > > > have changed in that regard and it simply is not allowed.  
-> > > 
-> > > Private blocks are not standardized but are vendor specific. So generic userspace will
-> > > ignore these. However vendor and its respective HAL can make use of this field and leaves
-> > > a scope to cater to such hardware vendors need. This doesn't affect the expectation of the
-> > > standardized color operations which will be defined as enum in UAPI.
-> > 
-> > Vendors can have and expose their own unique snowflake operations
-> > without any "private" as well: pick an unused operation type code, and
-> > document what it does. Advertise it in some pipelines.
-> > 
-> > Vendor HALs can make use of it, but it also allows generic userspace to
-> > make use of it at will, and it allows other vendors to implement the
-> > same and benefit from it without needing to patch every userspace.
-> > 
-> > Or does Intel not want other vendors to potentially make use of their
-> > UAPIs?
-> > 
-> > > > > We can even define prescriptive operations as a private entry and
-> > > > > enable it if a certain driver and HAL agree.
-> > > > >  
-> > > > > > > To advertise the available color pipelines, an immutable ENUM
-> > > > > > > property "GET_COLOR_PIPELINE" is introduced. This enum property has  
-> > > > blob id's as values.  
-> > > > > > > With each blob id representing a distinct color pipeline based on
-> > > > > > > underlying HW capabilities and their respective combinations.
-> > > > > > >
-> > > > > > > Once the user space decides on a color pipeline, it can set the
-> > > > > > > pipeline and the corresponding data for the hardware blocks within
-> > > > > > > the pipeline with the BLOB property "SET_COLOR_PIPELINE".
-> > > > > > >  
-> > > > > >
-> > > > > > When I discussed this at the hackfest with Simon he proposed a new
-> > > > > > DRM object, (I've called it a drm_colorop) to represent a color operation.
-> > > > > > Each drm_colorop has a "NEXT" pointer to another drm_colorop, or
-> > > > > > NULL if its the last in the pipeline. You can then have a mutable
-> > > > > > enum property on the plane to discover and select a color pipeline.  
-> > > > >
-> > > > > Yes, the proposal is inspired by this idea. Sure, we can work together to enhance  
-> > > > the design.  
-> > > > > Personally I feel the one proposed in the current RFC will do the same
-> > > > > thing envisioned by Simon and you Harry. Management of the pipeline,
-> > > > > addition, deletion and flexibility to represent hardware is more with blobs with  
-> > > > the relevant structures agreed in UAPI.  
-> > > > >  
-> > > > > > This seems a bit more transparent than a blob. You can see my
-> > > > > > changes (unfortunately very WIP, don't look too closely at
-> > > > > > individual patches) at
-> > > > > > https://gitlab.freedesktop.org/hwentland/linux/-/merge_requests/5/di
-> > > > > > ffs
-> > > > > >
-> > > > > > libdrm changes:
-> > > > > > https://gitlab.freedesktop.org/hwentland/drm/-/merge_requests/1/diff
-> > > > > > s  
-> > > > >
-> > > > > Sure, will check the same.
-> > > > >  
-> > > > > > IGT changes:
-> > > > > > https://gitlab.freedesktop.org/hwentland/igt-gpu-tools/-/merge_reque
-> > > > > > sts/1/diffs
-> > > > > >
-> > > > > > I'll take time to review your whole series and will see whether we
-> > > > > > can somehow keep the best parts of each.  
-> > > > >
-> > > > > Thanks and agree. Let's work together and get this implemented in DRM.
-> > > > >  
-> > > > > > Curious to hear other opinions on the blob vs new DRM object question as  
-> > > > well.
-> > > > 
-> > > > I can see a few advantages with the blob approach.
-> > > > 
-> > > > User space can store the entire state in one blob and just assign a new blob to
-> > > > change to another pipeline configuration.  
-> > > 
-> > > Agree
-> > > 
-> > > > However, I would argue that changing a lot of properties is already common
-> > > > practice and works well. User space can deal with it and has abstractions to
-> > > > make this managable.  
-> > > 
-> > > Blob gives a lot of flexibility and ability to define the hardware capabilities generically.
-> > 
-> > The structure of the atomic commit ioctl and the KMS property system is
-> > even more flexible.
-> > 
-> > > Lut distribution, number of segments, samples in each segment, precision of luts etc.
-> > > can be precisely defined and userspace will get a complete picture of the underlying
-> > > hardware and its capabilities. Also this is being done with just 2 properties. Leaving
-> > > scope for future addition of any standard color operation as well.
-> > 
-> > The number of properties does not seem too useful to strictly minimise
-> > over other aspects.
-> > 
-> > 
-> > Thanks,
-> > pq
-> > 
-> > > 
-> > > I feel blob approach once properly documented is a bit more flexible and scalable.
-> > > Maybe I am bit biased here 😊 but all ideas are welcome. 
-> > > 
-> > > We have implemented some IGT's as well to explain the design better. Link below:
-> > > https://patchwork.freedesktop.org/series/123018/
-> > > 
-> > > Thanks Sebastian for the feedback.
-> > > 
-> > > Regards,
-> > > Uma Shankar
-> 
-> 
+>>
+>> 2) Typically, those non-86 machines don't have a good UEFI firmware
+>>     support, which doesn't support select primary GPU as firmware stage.
+>>     Even on x86, there are old UEFI firmwares which already made undesired
+>>     decision for you.
+>>
+>> 3) This series is attempt to solve the remain problems at the driver level,
+>>     while another series[1] of me is target to solve the majority of the
+>>     problems at device level.
+>>
+>> Tested (limited) on x86 with four video card mounted, Intel UHD Graphics
+>> 630 is the default boot VGA, successfully override by ast2400 with
+>> ast.modeset=10 append at the kernel cmd line.
+> The value 10 is incredibly arbitrary, and multiplied as a magic number
+> all over the place.
+
++1
+
+>
+>> $ lspci | grep VGA
+>>
+>>   00:02.0 VGA compatible controller: Intel Corporation CoffeeLake-S GT2 [UHD Graphics 630]
+>>   01:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Caicos XTX [Radeon HD 8490 / R5 235X OEM]
+>>   04:00.0 VGA compatible controller: ASPEED Technology, Inc. ASPEED Graphics Family (rev 30)
+>>   05:00.0 VGA compatible controller: NVIDIA Corporation GK208B [GeForce GT 720] (rev a1)
+> In this example, all of the GPUs are driven by different drivers. What
+> good does a module parameter do if you have multiple GPUs of the same
+> model, all driven by the same driver module?
+
+Completely agree. Question is what is the benefit for the end user to 
+actually specify this?
+
+If you want the initial console on a different device than implement a 
+kernel options for vgaarb and *not* the drivers.
+
+Regards,
+Christian.
+
+>
+> BR,
+> Jani.
+>
+>> $ sudo dmesg | grep vgaarb
+>>
+>>   pci 0000:00:02.0: vgaarb: setting as boot VGA device
+>>   pci 0000:00:02.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+>>   pci 0000:01:00.0: vgaarb: VGA device added: decodes=io+mem,owns=none,locks=none
+>>   pci 0000:04:00.0: vgaarb: VGA device added: decodes=io+mem,owns=none,locks=none
+>>   pci 0000:05:00.0: vgaarb: VGA device added: decodes=io+mem,owns=none,locks=none
+>>   vgaarb: loaded
+>>   ast 0000:04:00.0: vgaarb: Override as primary by driver
+>>   i915 0000:00:02.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=none:owns=io+mem
+>>   radeon 0000:01:00.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=none:owns=none
+>>   ast 0000:04:00.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=none:owns=none
+>>
+>> v2:
+>> 	* Add a simple implemment for drm/i915 and drm/ast
+>> 	* Pick up all tags (Mario)
+>> v3:
+>> 	* Fix a mistake for drm/i915 implement
+>> 	* Fix patch can not be applied problem because of merge conflect.
+>> v4:
+>> 	* Focus on solve the real problem.
+>>
+>> v1,v2 at https://patchwork.freedesktop.org/series/120059/
+>>     v3 at https://patchwork.freedesktop.org/series/120562/
+>>
+>> [1] https://patchwork.freedesktop.org/series/122845/
+>>
+>> Sui Jingfeng (9):
+>>    PCI/VGA: Allowing the user to select the primary video adapter at boot
+>>      time
+>>    drm/nouveau: Implement .be_primary() callback
+>>    drm/radeon: Implement .be_primary() callback
+>>    drm/amdgpu: Implement .be_primary() callback
+>>    drm/i915: Implement .be_primary() callback
+>>    drm/loongson: Implement .be_primary() callback
+>>    drm/ast: Register as a VGA client by calling vga_client_register()
+>>    drm/hibmc: Register as a VGA client by calling vga_client_register()
+>>    drm/gma500: Register as a VGA client by calling vga_client_register()
+>>
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 11 +++-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       | 13 ++++-
+>>   drivers/gpu/drm/ast/ast_drv.c                 | 31 ++++++++++
+>>   drivers/gpu/drm/gma500/psb_drv.c              | 57 ++++++++++++++++++-
+>>   .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   | 15 +++++
+>>   drivers/gpu/drm/i915/display/intel_vga.c      | 15 ++++-
+>>   drivers/gpu/drm/loongson/loongson_module.c    |  2 +-
+>>   drivers/gpu/drm/loongson/loongson_module.h    |  1 +
+>>   drivers/gpu/drm/loongson/lsdc_drv.c           | 10 +++-
+>>   drivers/gpu/drm/nouveau/nouveau_vga.c         | 11 +++-
+>>   drivers/gpu/drm/radeon/radeon_device.c        | 10 +++-
+>>   drivers/pci/vgaarb.c                          | 43 ++++++++++++--
+>>   drivers/vfio/pci/vfio_pci_core.c              |  2 +-
+>>   include/linux/vgaarb.h                        |  8 ++-
+>>   14 files changed, 210 insertions(+), 19 deletions(-)
 
