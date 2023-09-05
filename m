@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33A72792C4A
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Sep 2023 19:17:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E78F0792C4B
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Sep 2023 19:17:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8948410E2D1;
-	Tue,  5 Sep 2023 17:17:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D31910E290;
+	Tue,  5 Sep 2023 17:17:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99D6010E2B1
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Sep 2023 17:17:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D95710E290
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Sep 2023 17:17:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693934220; x=1725470220;
+ t=1693934240; x=1725470240;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f+PATnhwOnGPO1xhKIpSyO7hjTCG6rI+nzVt8o0Sa3A=;
- b=RLOzAd2aFo4LKFwmh4r1/8kZzBbKwZdtNOZies25PoeHNQS4P8o1HSr7
- jb/BJ1ch5M7KX3QYHEmaigs62irkty5Ot92gackWa5zw/j7T0KAbfLmY+
- CCPl0uUy13HZi/ynQUVt6if8r0bJU8rwy5/9grjnFJyFCSc9rtNRf6t3F
- n3A84RnolyGn2Qc4bua3+pc0dPm/nnHPZZK35GQ+sNvJtbVbLQ5fE3R5F
- mk2bjaiBH+46EhgzefopFwm/iwu6V9Jd3QVSSfLUv+tY4Moc5UZmDfNpS
- GZ87SlCo8TbMAzeNI1k9GCF5+vDuLm71kWdJT5rzHvjyyvRIs15IX3QbV Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="407846624"
-X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="407846624"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 10:14:59 -0700
+ bh=2rUf9UjttZuvEadguiAvLVmBRi8x/jzdE2dpN8wlL9s=;
+ b=XmlS0t4d4+neYLbWDeHMu2cMcAMhCf0NGECc3rLzQQR5e35ape1Lyd0G
+ GrZf46dvMGnohzMCGAbqt61Vrgxi11HlOieUs3/vF3Qsu7cvn2fTWGDi4
+ wECC24X95+cjV7WPFSXwMSgHYSdx+4tZXfAJ3MR+3oe9y/mkI6vDXEJY3
+ wr3bfcWiataFArIRqXBvJlJApE8gVkuDxvpJywle4Nq5ehpbtn5YG9w0s
+ KAZQWc8hGtH/2WFZfiA8Q8mfqhYgw2+2VIDgav3ZOD+ovcHqij9HINQ6J
+ 4zIdC3h+40ulkVyXLsnMNOeEYuprJ9Q2nUK29bArrNjMnm9HYdKIvpdn4 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="443244029"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="443244029"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2023 10:12:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="744343917"
-X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="744343917"
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="914920981"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="914920981"
 Received: from amyachev-mobl3.ccr.corp.intel.com (HELO localhost)
  ([10.252.60.152])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 10:12:03 -0700
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2023 10:12:09 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  5 Sep 2023 20:11:26 +0300
-Message-Id: <58de57b04ad2da5207f52c56c9e40663aaf16173.1693933849.git.jani.nikula@intel.com>
+Date: Tue,  5 Sep 2023 20:11:27 +0300
+Message-Id: <0dfebe37a391a5ceb8bfae8e16383f1e5aef815d.1693933849.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1693933849.git.jani.nikula@intel.com>
 References: <cover.1693933849.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 7/8] drm/i915/dsc: add the PPS number to the
- register content macros
+Subject: [Intel-gfx] [PATCH 8/8] drm/i915/dsc: use REG_BIT, REG_GENMASK,
+ and friends for PPS0 and PPS1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,496 +64,98 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Improve clarity by specifying the PPS number in the register content
-macros. It's easier to notice if macros are being used for the wrong
-register.
+Use the register helper macros for PPS0 and PPS1 register contents.
 
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
 ---
-
-Probably easiest to review by applying and using 'git show --word-diff'
----
- drivers/gpu/drm/i915/display/intel_vdsc.c     | 146 ++++++++---------
- .../gpu/drm/i915/display/intel_vdsc_regs.h    | 152 +++++++++---------
- 2 files changed, 149 insertions(+), 149 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 15 +++++------
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    | 27 ++++++++++---------
+ 2 files changed, 22 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 4855514d7b09..126aff804e33 100644
+index 126aff804e33..5c00f7ccad7f 100644
 --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
 +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -423,109 +423,109 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+@@ -423,10 +423,10 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
  	int vdsc_instances_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
  
  	/* PPS 0 */
--	pps_val = DSC_VER_MAJ | vdsc_cfg->dsc_version_minor <<
--		DSC_VER_MIN_SHIFT |
--		vdsc_cfg->bits_per_component << DSC_BPC_SHIFT |
--		vdsc_cfg->line_buf_depth << DSC_LINE_BUF_DEPTH_SHIFT;
-+	pps_val = DSC_PPS0_VER_MAJ | vdsc_cfg->dsc_version_minor <<
-+		DSC_PPS0_VER_MIN_SHIFT |
-+		vdsc_cfg->bits_per_component << DSC_PPS0_BPC_SHIFT |
-+		vdsc_cfg->line_buf_depth << DSC_PPS0_LINE_BUF_DEPTH_SHIFT;
+-	pps_val = DSC_PPS0_VER_MAJ | vdsc_cfg->dsc_version_minor <<
+-		DSC_PPS0_VER_MIN_SHIFT |
+-		vdsc_cfg->bits_per_component << DSC_PPS0_BPC_SHIFT |
+-		vdsc_cfg->line_buf_depth << DSC_PPS0_LINE_BUF_DEPTH_SHIFT;
++	pps_val = DSC_PPS0_VER_MAJOR(1) |
++		DSC_PPS0_VER_MINOR(vdsc_cfg->dsc_version_minor) |
++		DSC_PPS0_BPC(vdsc_cfg->bits_per_component) |
++		DSC_PPS0_LINE_BUF_DEPTH(vdsc_cfg->line_buf_depth);
  	if (vdsc_cfg->dsc_version_minor == 2) {
--		pps_val |= DSC_ALT_ICH_SEL;
-+		pps_val |= DSC_PPS0_ALT_ICH_SEL;
+ 		pps_val |= DSC_PPS0_ALT_ICH_SEL;
  		if (vdsc_cfg->native_420)
--			pps_val |= DSC_NATIVE_420_ENABLE;
-+			pps_val |= DSC_PPS0_NATIVE_420_ENABLE;
- 		if (vdsc_cfg->native_422)
--			pps_val |= DSC_NATIVE_422_ENABLE;
-+			pps_val |= DSC_PPS0_NATIVE_422_ENABLE;
- 	}
- 	if (vdsc_cfg->block_pred_enable)
--		pps_val |= DSC_BLOCK_PREDICTION;
-+		pps_val |= DSC_PPS0_BLOCK_PREDICTION;
- 	if (vdsc_cfg->convert_rgb)
--		pps_val |= DSC_COLOR_SPACE_CONVERSION;
-+		pps_val |= DSC_PPS0_COLOR_SPACE_CONVERSION;
- 	if (vdsc_cfg->simple_422)
--		pps_val |= DSC_422_ENABLE;
-+		pps_val |= DSC_PPS0_422_ENABLE;
- 	if (vdsc_cfg->vbr_enable)
--		pps_val |= DSC_VBR_ENABLE;
-+		pps_val |= DSC_PPS0_VBR_ENABLE;
- 	drm_dbg_kms(&dev_priv->drm, "PPS0 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 0, pps_val);
- 
- 	/* PPS 1 */
--	pps_val = DSC_BPP(vdsc_cfg->bits_per_pixel);
-+	pps_val = DSC_PPS1_BPP(vdsc_cfg->bits_per_pixel);
- 	drm_dbg_kms(&dev_priv->drm, "PPS1 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 1, pps_val);
- 
- 	/* PPS 2 */
--	pps_val = DSC_PIC_HEIGHT(vdsc_cfg->pic_height) |
--		DSC_PIC_WIDTH(vdsc_cfg->pic_width / num_vdsc_instances);
-+	pps_val = DSC_PPS2_PIC_HEIGHT(vdsc_cfg->pic_height) |
-+		DSC_PPS2_PIC_WIDTH(vdsc_cfg->pic_width / num_vdsc_instances);
- 	drm_dbg_kms(&dev_priv->drm, "PPS2 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 2, pps_val);
- 
- 	/* PPS 3 */
--	pps_val = DSC_SLICE_HEIGHT(vdsc_cfg->slice_height) |
--		DSC_SLICE_WIDTH(vdsc_cfg->slice_width);
-+	pps_val = DSC_PPS3_SLICE_HEIGHT(vdsc_cfg->slice_height) |
-+		DSC_PPS3_SLICE_WIDTH(vdsc_cfg->slice_width);
- 	drm_dbg_kms(&dev_priv->drm, "PPS3 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 3, pps_val);
- 
- 	/* PPS 4 */
--	pps_val = DSC_INITIAL_XMIT_DELAY(vdsc_cfg->initial_xmit_delay) |
--		DSC_INITIAL_DEC_DELAY(vdsc_cfg->initial_dec_delay);
-+	pps_val = DSC_PPS4_INITIAL_XMIT_DELAY(vdsc_cfg->initial_xmit_delay) |
-+		DSC_PPS4_INITIAL_DEC_DELAY(vdsc_cfg->initial_dec_delay);
- 	drm_dbg_kms(&dev_priv->drm, "PPS4 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 4, pps_val);
- 
- 	/* PPS 5 */
--	pps_val = DSC_SCALE_INC_INT(vdsc_cfg->scale_increment_interval) |
--		DSC_SCALE_DEC_INT(vdsc_cfg->scale_decrement_interval);
-+	pps_val = DSC_PPS5_SCALE_INC_INT(vdsc_cfg->scale_increment_interval) |
-+		DSC_PPS5_SCALE_DEC_INT(vdsc_cfg->scale_decrement_interval);
- 	drm_dbg_kms(&dev_priv->drm, "PPS5 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 5, pps_val);
- 
- 	/* PPS 6 */
--	pps_val = DSC_INITIAL_SCALE_VALUE(vdsc_cfg->initial_scale_value) |
--		DSC_FIRST_LINE_BPG_OFFSET(vdsc_cfg->first_line_bpg_offset) |
--		DSC_FLATNESS_MIN_QP(vdsc_cfg->flatness_min_qp) |
--		DSC_FLATNESS_MAX_QP(vdsc_cfg->flatness_max_qp);
-+	pps_val = DSC_PPS6_INITIAL_SCALE_VALUE(vdsc_cfg->initial_scale_value) |
-+		DSC_PPS6_FIRST_LINE_BPG_OFFSET(vdsc_cfg->first_line_bpg_offset) |
-+		DSC_PPS6_FLATNESS_MIN_QP(vdsc_cfg->flatness_min_qp) |
-+		DSC_PPS6_FLATNESS_MAX_QP(vdsc_cfg->flatness_max_qp);
- 	drm_dbg_kms(&dev_priv->drm, "PPS6 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 6, pps_val);
- 
- 	/* PPS 7 */
--	pps_val = DSC_SLICE_BPG_OFFSET(vdsc_cfg->slice_bpg_offset) |
--		DSC_NFL_BPG_OFFSET(vdsc_cfg->nfl_bpg_offset);
-+	pps_val = DSC_PPS7_SLICE_BPG_OFFSET(vdsc_cfg->slice_bpg_offset) |
-+		DSC_PPS7_NFL_BPG_OFFSET(vdsc_cfg->nfl_bpg_offset);
- 	drm_dbg_kms(&dev_priv->drm, "PPS7 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 7, pps_val);
- 
- 	/* PPS 8 */
--	pps_val = DSC_FINAL_OFFSET(vdsc_cfg->final_offset) |
--		DSC_INITIAL_OFFSET(vdsc_cfg->initial_offset);
-+	pps_val = DSC_PPS8_FINAL_OFFSET(vdsc_cfg->final_offset) |
-+		DSC_PPS8_INITIAL_OFFSET(vdsc_cfg->initial_offset);
- 	drm_dbg_kms(&dev_priv->drm, "PPS8 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 8, pps_val);
- 
- 	/* PPS 9 */
--	pps_val = DSC_RC_MODEL_SIZE(vdsc_cfg->rc_model_size) |
--		DSC_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
-+	pps_val = DSC_PPS9_RC_MODEL_SIZE(vdsc_cfg->rc_model_size) |
-+		DSC_PPS9_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
- 	drm_dbg_kms(&dev_priv->drm, "PPS9 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 9, pps_val);
- 
- 	/* PPS 10 */
--	pps_val = DSC_RC_QUANT_INC_LIMIT0(vdsc_cfg->rc_quant_incr_limit0) |
--		DSC_RC_QUANT_INC_LIMIT1(vdsc_cfg->rc_quant_incr_limit1) |
--		DSC_RC_TARGET_OFF_HIGH(DSC_RC_TGT_OFFSET_HI_CONST) |
--		DSC_RC_TARGET_OFF_LOW(DSC_RC_TGT_OFFSET_LO_CONST);
-+	pps_val = DSC_PPS10_RC_QUANT_INC_LIMIT0(vdsc_cfg->rc_quant_incr_limit0) |
-+		DSC_PPS10_RC_QUANT_INC_LIMIT1(vdsc_cfg->rc_quant_incr_limit1) |
-+		DSC_PPS10_RC_TARGET_OFF_HIGH(DSC_RC_TGT_OFFSET_HI_CONST) |
-+		DSC_PPS10_RC_TARGET_OFF_LOW(DSC_RC_TGT_OFFSET_LO_CONST);
- 	drm_dbg_kms(&dev_priv->drm, "PPS10 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 10, pps_val);
- 
- 	/* PPS 16 */
--	pps_val = DSC_SLICE_CHUNK_SIZE(vdsc_cfg->slice_chunk_size) |
--		DSC_SLICE_PER_LINE((vdsc_cfg->pic_width / num_vdsc_instances) /
--				   vdsc_cfg->slice_width) |
--		DSC_SLICE_ROW_PER_FRAME(vdsc_cfg->pic_height /
--					vdsc_cfg->slice_height);
-+	pps_val = DSC_PPS16_SLICE_CHUNK_SIZE(vdsc_cfg->slice_chunk_size) |
-+		DSC_PPS16_SLICE_PER_LINE((vdsc_cfg->pic_width / num_vdsc_instances) /
-+					 vdsc_cfg->slice_width) |
-+		DSC_PPS16_SLICE_ROW_PER_FRAME(vdsc_cfg->pic_height /
-+					      vdsc_cfg->slice_height);
- 	drm_dbg_kms(&dev_priv->drm, "PPS16 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 16, pps_val);
- 
- 	if (DISPLAY_VER(dev_priv) >= 14) {
- 		/* PPS 17 */
--		pps_val = DSC_SL_BPG_OFFSET(vdsc_cfg->second_line_bpg_offset);
-+		pps_val = DSC_PPS17_SL_BPG_OFFSET(vdsc_cfg->second_line_bpg_offset);
- 		drm_dbg_kms(&dev_priv->drm, "PPS17 = 0x%08x\n", pps_val);
- 		intel_dsc_pps_write(crtc_state, 17, pps_val);
- 
- 		/* PPS 18 */
--		pps_val = DSC_NSL_BPG_OFFSET(vdsc_cfg->nsl_bpg_offset) |
--			DSC_SL_OFFSET_ADJ(vdsc_cfg->second_line_offset_adj);
-+		pps_val = DSC_PPS18_NSL_BPG_OFFSET(vdsc_cfg->nsl_bpg_offset) |
-+			DSC_PPS18_SL_OFFSET_ADJ(vdsc_cfg->second_line_offset_adj);
- 		drm_dbg_kms(&dev_priv->drm, "PPS18 = 0x%08x\n", pps_val);
- 		intel_dsc_pps_write(crtc_state, 18, pps_val);
- 	}
-@@ -857,15 +857,15 @@ static void intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
+@@ -857,9 +857,8 @@ static void intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
  	/* PPS 0 */
  	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 0);
  
--	vdsc_cfg->bits_per_component = (pps_temp & DSC_BPC_MASK) >> DSC_BPC_SHIFT;
-+	vdsc_cfg->bits_per_component = (pps_temp & DSC_PPS0_BPC_MASK) >> DSC_PPS0_BPC_SHIFT;
- 	vdsc_cfg->line_buf_depth =
--		(pps_temp & DSC_LINE_BUF_DEPTH_MASK) >> DSC_LINE_BUF_DEPTH_SHIFT;
--	vdsc_cfg->block_pred_enable = pps_temp & DSC_BLOCK_PREDICTION;
--	vdsc_cfg->convert_rgb = pps_temp & DSC_COLOR_SPACE_CONVERSION;
--	vdsc_cfg->simple_422 = pps_temp & DSC_422_ENABLE;
--	vdsc_cfg->native_422 = pps_temp & DSC_NATIVE_422_ENABLE;
--	vdsc_cfg->native_420 = pps_temp & DSC_NATIVE_420_ENABLE;
--	vdsc_cfg->vbr_enable = pps_temp & DSC_VBR_ENABLE;
-+		(pps_temp & DSC_PPS0_LINE_BUF_DEPTH_MASK) >> DSC_PPS0_LINE_BUF_DEPTH_SHIFT;
-+	vdsc_cfg->block_pred_enable = pps_temp & DSC_PPS0_BLOCK_PREDICTION;
-+	vdsc_cfg->convert_rgb = pps_temp & DSC_PPS0_COLOR_SPACE_CONVERSION;
-+	vdsc_cfg->simple_422 = pps_temp & DSC_PPS0_422_ENABLE;
-+	vdsc_cfg->native_422 = pps_temp & DSC_PPS0_NATIVE_422_ENABLE;
-+	vdsc_cfg->native_420 = pps_temp & DSC_PPS0_NATIVE_420_ENABLE;
-+	vdsc_cfg->vbr_enable = pps_temp & DSC_PPS0_VBR_ENABLE;
- 
+-	vdsc_cfg->bits_per_component = (pps_temp & DSC_PPS0_BPC_MASK) >> DSC_PPS0_BPC_SHIFT;
+-	vdsc_cfg->line_buf_depth =
+-		(pps_temp & DSC_PPS0_LINE_BUF_DEPTH_MASK) >> DSC_PPS0_LINE_BUF_DEPTH_SHIFT;
++	vdsc_cfg->bits_per_component = REG_FIELD_GET(DSC_PPS0_BPC_MASK, pps_temp);
++	vdsc_cfg->line_buf_depth = REG_FIELD_GET(DSC_PPS0_LINE_BUF_DEPTH_MASK, pps_temp);
+ 	vdsc_cfg->block_pred_enable = pps_temp & DSC_PPS0_BLOCK_PREDICTION;
+ 	vdsc_cfg->convert_rgb = pps_temp & DSC_PPS0_COLOR_SPACE_CONVERSION;
+ 	vdsc_cfg->simple_422 = pps_temp & DSC_PPS0_422_ENABLE;
+@@ -870,7 +869,7 @@ static void intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
  	/* PPS 1 */
  	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 1);
-@@ -880,74 +880,74 @@ static void intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
- 	/* PPS 2 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 2);
  
--	vdsc_cfg->pic_width = REG_FIELD_GET(DSC_PIC_WIDTH_MASK, pps_temp) / num_vdsc_instances;
--	vdsc_cfg->pic_height = REG_FIELD_GET(DSC_PIC_HEIGHT_MASK, pps_temp);
-+	vdsc_cfg->pic_width = REG_FIELD_GET(DSC_PPS2_PIC_WIDTH_MASK, pps_temp) / num_vdsc_instances;
-+	vdsc_cfg->pic_height = REG_FIELD_GET(DSC_PPS2_PIC_HEIGHT_MASK, pps_temp);
+-	vdsc_cfg->bits_per_pixel = pps_temp;
++	vdsc_cfg->bits_per_pixel = REG_FIELD_GET(DSC_PPS1_BPP_MASK, pps_temp);
  
- 	/* PPS 3 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 3);
- 
--	vdsc_cfg->slice_width = REG_FIELD_GET(DSC_SLICE_WIDTH_MASK, pps_temp);
--	vdsc_cfg->slice_height = REG_FIELD_GET(DSC_SLICE_HEIGHT_MASK, pps_temp);
-+	vdsc_cfg->slice_width = REG_FIELD_GET(DSC_PPS3_SLICE_WIDTH_MASK, pps_temp);
-+	vdsc_cfg->slice_height = REG_FIELD_GET(DSC_PPS3_SLICE_HEIGHT_MASK, pps_temp);
- 
- 	/* PPS 4 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 4);
- 
--	vdsc_cfg->initial_dec_delay = REG_FIELD_GET(DSC_INITIAL_DEC_DELAY_MASK, pps_temp);
--	vdsc_cfg->initial_xmit_delay = REG_FIELD_GET(DSC_INITIAL_XMIT_DELAY_MASK, pps_temp);
-+	vdsc_cfg->initial_dec_delay = REG_FIELD_GET(DSC_PPS4_INITIAL_DEC_DELAY_MASK, pps_temp);
-+	vdsc_cfg->initial_xmit_delay = REG_FIELD_GET(DSC_PPS4_INITIAL_XMIT_DELAY_MASK, pps_temp);
- 
- 	/* PPS 5 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 5);
- 
--	vdsc_cfg->scale_decrement_interval = REG_FIELD_GET(DSC_SCALE_DEC_INT_MASK, pps_temp);
--	vdsc_cfg->scale_increment_interval = REG_FIELD_GET(DSC_SCALE_INC_INT_MASK, pps_temp);
-+	vdsc_cfg->scale_decrement_interval = REG_FIELD_GET(DSC_PPS5_SCALE_DEC_INT_MASK, pps_temp);
-+	vdsc_cfg->scale_increment_interval = REG_FIELD_GET(DSC_PPS5_SCALE_INC_INT_MASK, pps_temp);
- 
- 	/* PPS 6 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 6);
- 
--	vdsc_cfg->initial_scale_value = REG_FIELD_GET(DSC_INITIAL_SCALE_VALUE_MASK, pps_temp);
--	vdsc_cfg->first_line_bpg_offset = REG_FIELD_GET(DSC_FIRST_LINE_BPG_OFFSET_MASK, pps_temp);
--	vdsc_cfg->flatness_min_qp = REG_FIELD_GET(DSC_FLATNESS_MIN_QP_MASK, pps_temp);
--	vdsc_cfg->flatness_max_qp = REG_FIELD_GET(DSC_FLATNESS_MAX_QP_MASK, pps_temp);
-+	vdsc_cfg->initial_scale_value = REG_FIELD_GET(DSC_PPS6_INITIAL_SCALE_VALUE_MASK, pps_temp);
-+	vdsc_cfg->first_line_bpg_offset = REG_FIELD_GET(DSC_PPS6_FIRST_LINE_BPG_OFFSET_MASK, pps_temp);
-+	vdsc_cfg->flatness_min_qp = REG_FIELD_GET(DSC_PPS6_FLATNESS_MIN_QP_MASK, pps_temp);
-+	vdsc_cfg->flatness_max_qp = REG_FIELD_GET(DSC_PPS6_FLATNESS_MAX_QP_MASK, pps_temp);
- 
- 	/* PPS 7 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 7);
- 
--	vdsc_cfg->nfl_bpg_offset = REG_FIELD_GET(DSC_NFL_BPG_OFFSET_MASK, pps_temp);
--	vdsc_cfg->slice_bpg_offset = REG_FIELD_GET(DSC_SLICE_BPG_OFFSET_MASK, pps_temp);
-+	vdsc_cfg->nfl_bpg_offset = REG_FIELD_GET(DSC_PPS7_NFL_BPG_OFFSET_MASK, pps_temp);
-+	vdsc_cfg->slice_bpg_offset = REG_FIELD_GET(DSC_PPS7_SLICE_BPG_OFFSET_MASK, pps_temp);
- 
- 	/* PPS 8 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 8);
- 
--	vdsc_cfg->initial_offset = REG_FIELD_GET(DSC_INITIAL_OFFSET_MASK, pps_temp);
--	vdsc_cfg->final_offset = REG_FIELD_GET(DSC_FINAL_OFFSET_MASK, pps_temp);
-+	vdsc_cfg->initial_offset = REG_FIELD_GET(DSC_PPS8_INITIAL_OFFSET_MASK, pps_temp);
-+	vdsc_cfg->final_offset = REG_FIELD_GET(DSC_PPS8_FINAL_OFFSET_MASK, pps_temp);
- 
- 	/* PPS 9 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 9);
- 
--	vdsc_cfg->rc_model_size = REG_FIELD_GET(DSC_RC_MODEL_SIZE_MASK, pps_temp);
-+	vdsc_cfg->rc_model_size = REG_FIELD_GET(DSC_PPS9_RC_MODEL_SIZE_MASK, pps_temp);
- 
- 	/* PPS 10 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 10);
- 
--	vdsc_cfg->rc_quant_incr_limit0 = REG_FIELD_GET(DSC_RC_QUANT_INC_LIMIT0_MASK, pps_temp);
--	vdsc_cfg->rc_quant_incr_limit1 = REG_FIELD_GET(DSC_RC_QUANT_INC_LIMIT1_MASK, pps_temp);
-+	vdsc_cfg->rc_quant_incr_limit0 = REG_FIELD_GET(DSC_PPS10_RC_QUANT_INC_LIMIT0_MASK, pps_temp);
-+	vdsc_cfg->rc_quant_incr_limit1 = REG_FIELD_GET(DSC_PPS10_RC_QUANT_INC_LIMIT1_MASK, pps_temp);
- 
- 	/* PPS 16 */
- 	pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 16);
- 
--	vdsc_cfg->slice_chunk_size = REG_FIELD_GET(DSC_SLICE_CHUNK_SIZE_MASK, pps_temp);
-+	vdsc_cfg->slice_chunk_size = REG_FIELD_GET(DSC_PPS16_SLICE_CHUNK_SIZE_MASK, pps_temp);
- 
- 	if (DISPLAY_VER(i915) >= 14) {
- 		/* PPS 17 */
- 		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 17);
- 
--		vdsc_cfg->second_line_bpg_offset = REG_FIELD_GET(DSC_SL_BPG_OFFSET_MASK, pps_temp);
-+		vdsc_cfg->second_line_bpg_offset = REG_FIELD_GET(DSC_PPS17_SL_BPG_OFFSET_MASK, pps_temp);
- 
- 		/* PPS 18 */
- 		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 18);
- 
--		vdsc_cfg->nsl_bpg_offset = REG_FIELD_GET(DSC_NSL_BPG_OFFSET_MASK, pps_temp);
--		vdsc_cfg->second_line_offset_adj = REG_FIELD_GET(DSC_SL_OFFSET_ADJ_MASK, pps_temp);
-+		vdsc_cfg->nsl_bpg_offset = REG_FIELD_GET(DSC_PPS18_NSL_BPG_OFFSET_MASK, pps_temp);
-+		vdsc_cfg->second_line_offset_adj = REG_FIELD_GET(DSC_PPS18_SL_OFFSET_ADJ_MASK, pps_temp);
- 	}
- }
- 
+ 	if (vdsc_cfg->native_420)
+ 		vdsc_cfg->bits_per_pixel >>= 1;
 diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-index 58d282dcfc6f..92782de2b309 100644
+index 92782de2b309..64f440fdc22b 100644
 --- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -73,115 +73,115 @@
+@@ -73,22 +73,25 @@
  #define  ICL_DSC1_PPS(pipe, pps)		_MMIO(_ICL_DSC1_PPS_0(pipe) + ((pps) * 4))
  
  /* PPS 0 */
--#define  DSC_NATIVE_422_ENABLE		BIT(23)
--#define  DSC_NATIVE_420_ENABLE		BIT(22)
--#define  DSC_ALT_ICH_SEL		(1 << 20)
--#define  DSC_VBR_ENABLE			(1 << 19)
--#define  DSC_422_ENABLE			(1 << 18)
--#define  DSC_COLOR_SPACE_CONVERSION	(1 << 17)
--#define  DSC_BLOCK_PREDICTION		(1 << 16)
--#define  DSC_LINE_BUF_DEPTH_SHIFT	12
--#define  DSC_LINE_BUF_DEPTH_MASK	REG_GENMASK(15, 12)
--#define  DSC_BPC_SHIFT			8
--#define  DSC_BPC_MASK			REG_GENMASK(11, 8)
--#define  DSC_VER_MIN_SHIFT		4
--#define  DSC_VER_MAJ			(0x1 << 0)
-+#define   DSC_PPS0_NATIVE_422_ENABLE		BIT(23)
-+#define   DSC_PPS0_NATIVE_420_ENABLE		BIT(22)
-+#define   DSC_PPS0_ALT_ICH_SEL			(1 << 20)
-+#define   DSC_PPS0_VBR_ENABLE			(1 << 19)
-+#define   DSC_PPS0_422_ENABLE			(1 << 18)
-+#define   DSC_PPS0_COLOR_SPACE_CONVERSION	(1 << 17)
-+#define   DSC_PPS0_BLOCK_PREDICTION		(1 << 16)
-+#define   DSC_PPS0_LINE_BUF_DEPTH_SHIFT		12
-+#define   DSC_PPS0_LINE_BUF_DEPTH_MASK		REG_GENMASK(15, 12)
-+#define   DSC_PPS0_BPC_SHIFT			8
-+#define   DSC_PPS0_BPC_MASK			REG_GENMASK(11, 8)
-+#define   DSC_PPS0_VER_MIN_SHIFT		4
-+#define   DSC_PPS0_VER_MAJ			(0x1 << 0)
+-#define   DSC_PPS0_NATIVE_422_ENABLE		BIT(23)
+-#define   DSC_PPS0_NATIVE_420_ENABLE		BIT(22)
+-#define   DSC_PPS0_ALT_ICH_SEL			(1 << 20)
+-#define   DSC_PPS0_VBR_ENABLE			(1 << 19)
+-#define   DSC_PPS0_422_ENABLE			(1 << 18)
+-#define   DSC_PPS0_COLOR_SPACE_CONVERSION	(1 << 17)
+-#define   DSC_PPS0_BLOCK_PREDICTION		(1 << 16)
+-#define   DSC_PPS0_LINE_BUF_DEPTH_SHIFT		12
++#define   DSC_PPS0_NATIVE_422_ENABLE		REG_BIT(23)
++#define   DSC_PPS0_NATIVE_420_ENABLE		REG_BIT(22)
++#define   DSC_PPS0_ALT_ICH_SEL			REG_BIT(20)
++#define   DSC_PPS0_VBR_ENABLE			REG_BIT(19)
++#define   DSC_PPS0_422_ENABLE			REG_BIT(18)
++#define   DSC_PPS0_COLOR_SPACE_CONVERSION	REG_BIT(17)
++#define   DSC_PPS0_BLOCK_PREDICTION		REG_BIT(16)
+ #define   DSC_PPS0_LINE_BUF_DEPTH_MASK		REG_GENMASK(15, 12)
+-#define   DSC_PPS0_BPC_SHIFT			8
++#define   DSC_PPS0_LINE_BUF_DEPTH(depth)	REG_FIELD_PREP(DSC_PPS0_LINE_BUF_DEPTH_MASK, depth)
+ #define   DSC_PPS0_BPC_MASK			REG_GENMASK(11, 8)
+-#define   DSC_PPS0_VER_MIN_SHIFT		4
+-#define   DSC_PPS0_VER_MAJ			(0x1 << 0)
++#define   DSC_PPS0_BPC(bpc)			REG_FIELD_PREP(DSC_PPS0_BPC_MASK, bpc)
++#define   DSC_PPS0_VER_MINOR_MASK		REG_GENMASK(7, 4)
++#define   DSC_PPS0_VER_MINOR(minor)		REG_FIELD_PREP(DSC_PPS0_VER_MINOR_MASK, minor)
++#define   DSC_PPS0_VER_MAJOR_MASK		REG_GENMASK(3, 0)
++#define   DSC_PPS0_VER_MAJOR(major)		REG_FIELD_PREP(DSC_PPS0_VER_MAJOR_MASK, major)
  
  /* PPS 1 */
--#define  DSC_BPP(bpp)				((bpp) << 0)
-+#define   DSC_PPS1_BPP(bpp)			((bpp) << 0)
+-#define   DSC_PPS1_BPP(bpp)			((bpp) << 0)
++#define   DSC_PPS1_BPP_MASK			REG_GENMASK(9, 0)
++#define   DSC_PPS1_BPP(bpp)			REG_FIELD_PREP(DSC_PPS1_BPP_MASK, bpp)
  
  /* PPS 2 */
--#define  DSC_PIC_WIDTH_MASK		REG_GENMASK(31, 16)
--#define  DSC_PIC_HEIGHT_MASK		REG_GENMASK(15, 0)
--#define  DSC_PIC_WIDTH(pic_width)	REG_FIELD_PREP(DSC_PIC_WIDTH_MASK, pic_width)
--#define  DSC_PIC_HEIGHT(pic_height)	REG_FIELD_PREP(DSC_PIC_HEIGHT_MASK, pic_height)
-+#define   DSC_PPS2_PIC_WIDTH_MASK		REG_GENMASK(31, 16)
-+#define   DSC_PPS2_PIC_HEIGHT_MASK		REG_GENMASK(15, 0)
-+#define   DSC_PPS2_PIC_WIDTH(pic_width)		REG_FIELD_PREP(DSC_PPS2_PIC_WIDTH_MASK, pic_width)
-+#define   DSC_PPS2_PIC_HEIGHT(pic_height)	REG_FIELD_PREP(DSC_PPS2_PIC_HEIGHT_MASK, pic_height)
- 
- /* PPS 3 */
--#define  DSC_SLICE_WIDTH_MASK			REG_GENMASK(31, 16)
--#define  DSC_SLICE_HEIGHT_MASK			REG_GENMASK(15, 0)
--#define  DSC_SLICE_WIDTH(slice_width)		REG_FIELD_PREP(DSC_SLICE_WIDTH_MASK, slice_width)
--#define  DSC_SLICE_HEIGHT(slice_height)		REG_FIELD_PREP(DSC_SLICE_HEIGHT_MASK, slice_height)
-+#define   DSC_PPS3_SLICE_WIDTH_MASK		REG_GENMASK(31, 16)
-+#define   DSC_PPS3_SLICE_HEIGHT_MASK		REG_GENMASK(15, 0)
-+#define   DSC_PPS3_SLICE_WIDTH(slice_width)	REG_FIELD_PREP(DSC_PPS3_SLICE_WIDTH_MASK, slice_width)
-+#define   DSC_PPS3_SLICE_HEIGHT(slice_height)	REG_FIELD_PREP(DSC_PPS3_SLICE_HEIGHT_MASK, slice_height)
- 
- /* PPS 4 */
--#define  DSC_INITIAL_DEC_DELAY_MASK		REG_GENMASK(31, 16)
--#define  DSC_INITIAL_XMIT_DELAY_MASK		REG_GENMASK(9, 0)
--#define  DSC_INITIAL_DEC_DELAY(dec_delay)       REG_FIELD_PREP(DSC_INITIAL_DEC_DELAY_MASK, \
-+#define   DSC_PPS4_INITIAL_DEC_DELAY_MASK	REG_GENMASK(31, 16)
-+#define   DSC_PPS4_INITIAL_XMIT_DELAY_MASK	REG_GENMASK(9, 0)
-+#define   DSC_PPS4_INITIAL_DEC_DELAY(dec_delay)	REG_FIELD_PREP(DSC_PPS4_INITIAL_DEC_DELAY_MASK, \
- 							       dec_delay)
--#define  DSC_INITIAL_XMIT_DELAY(xmit_delay)     REG_FIELD_PREP(DSC_INITIAL_XMIT_DELAY_MASK, \
--							       xmit_delay)
-+#define   DSC_PPS4_INITIAL_XMIT_DELAY(xmit_delay)	REG_FIELD_PREP(DSC_PPS4_INITIAL_XMIT_DELAY_MASK, \
-+								       xmit_delay)
- 
- /* PPS 5 */
--#define  DSC_SCALE_DEC_INT_MASK			REG_GENMASK(27, 16)
--#define  DSC_SCALE_INC_INT_MASK			REG_GENMASK(15, 0)
--#define  DSC_SCALE_DEC_INT(scale_dec)		REG_FIELD_PREP(DSC_SCALE_DEC_INT_MASK, scale_dec)
--#define  DSC_SCALE_INC_INT(scale_inc)		REG_FIELD_PREP(DSC_SCALE_INC_INT_MASK, scale_inc)
-+#define   DSC_PPS5_SCALE_DEC_INT_MASK		REG_GENMASK(27, 16)
-+#define   DSC_PPS5_SCALE_INC_INT_MASK		REG_GENMASK(15, 0)
-+#define   DSC_PPS5_SCALE_DEC_INT(scale_dec)	REG_FIELD_PREP(DSC_PPS5_SCALE_DEC_INT_MASK, scale_dec)
-+#define   DSC_PPS5_SCALE_INC_INT(scale_inc)	REG_FIELD_PREP(DSC_PPS5_SCALE_INC_INT_MASK, scale_inc)
- 
- /* PPS 6 */
--#define  DSC_FLATNESS_MAX_QP_MASK		REG_GENMASK(28, 24)
--#define  DSC_FLATNESS_MIN_QP_MASK		REG_GENMASK(20, 16)
--#define  DSC_FIRST_LINE_BPG_OFFSET_MASK		REG_GENMASK(12, 8)
--#define  DSC_INITIAL_SCALE_VALUE_MASK		REG_GENMASK(5, 0)
--#define  DSC_FLATNESS_MAX_QP(max_qp)		REG_FIELD_PREP(DSC_FLATNESS_MAX_QP_MASK, max_qp)
--#define  DSC_FLATNESS_MIN_QP(min_qp)		REG_FIELD_PREP(DSC_FLATNESS_MIN_QP_MASK, min_qp)
--#define  DSC_FIRST_LINE_BPG_OFFSET(offset)	REG_FIELD_PREP(DSC_FIRST_LINE_BPG_OFFSET_MASK, \
--							       offset)
--#define  DSC_INITIAL_SCALE_VALUE(value)		REG_FIELD_PREP(DSC_INITIAL_SCALE_VALUE_MASK, \
-+#define   DSC_PPS6_FLATNESS_MAX_QP_MASK		REG_GENMASK(28, 24)
-+#define   DSC_PPS6_FLATNESS_MIN_QP_MASK		REG_GENMASK(20, 16)
-+#define   DSC_PPS6_FIRST_LINE_BPG_OFFSET_MASK	REG_GENMASK(12, 8)
-+#define   DSC_PPS6_INITIAL_SCALE_VALUE_MASK	REG_GENMASK(5, 0)
-+#define   DSC_PPS6_FLATNESS_MAX_QP(max_qp)	REG_FIELD_PREP(DSC_PPS6_FLATNESS_MAX_QP_MASK, max_qp)
-+#define   DSC_PPS6_FLATNESS_MIN_QP(min_qp)	REG_FIELD_PREP(DSC_PPS6_FLATNESS_MIN_QP_MASK, min_qp)
-+#define   DSC_PPS6_FIRST_LINE_BPG_OFFSET(offset)	REG_FIELD_PREP(DSC_PPS6_FIRST_LINE_BPG_OFFSET_MASK, \
-+								       offset)
-+#define   DSC_PPS6_INITIAL_SCALE_VALUE(value)	REG_FIELD_PREP(DSC_PPS6_INITIAL_SCALE_VALUE_MASK, \
- 							       value)
- 
- /* PPS 7 */
--#define  DSC_NFL_BPG_OFFSET_MASK		REG_GENMASK(31, 16)
--#define  DSC_SLICE_BPG_OFFSET_MASK		REG_GENMASK(15, 0)
--#define  DSC_NFL_BPG_OFFSET(bpg_offset)		REG_FIELD_PREP(DSC_NFL_BPG_OFFSET_MASK, bpg_offset)
--#define  DSC_SLICE_BPG_OFFSET(bpg_offset)	REG_FIELD_PREP(DSC_SLICE_BPG_OFFSET_MASK, \
-+#define   DSC_PPS7_NFL_BPG_OFFSET_MASK		REG_GENMASK(31, 16)
-+#define   DSC_PPS7_SLICE_BPG_OFFSET_MASK	REG_GENMASK(15, 0)
-+#define   DSC_PPS7_NFL_BPG_OFFSET(bpg_offset)	REG_FIELD_PREP(DSC_PPS7_NFL_BPG_OFFSET_MASK, bpg_offset)
-+#define   DSC_PPS7_SLICE_BPG_OFFSET(bpg_offset)	REG_FIELD_PREP(DSC_PPS7_SLICE_BPG_OFFSET_MASK, \
- 							       bpg_offset)
- /* PPS 8 */
--#define  DSC_INITIAL_OFFSET_MASK		REG_GENMASK(31, 16)
--#define  DSC_FINAL_OFFSET_MASK			REG_GENMASK(15, 0)
--#define  DSC_INITIAL_OFFSET(initial_offset)	REG_FIELD_PREP(DSC_INITIAL_OFFSET_MASK, \
--							       initial_offset)
--#define  DSC_FINAL_OFFSET(final_offset)		REG_FIELD_PREP(DSC_FINAL_OFFSET_MASK, \
-+#define   DSC_PPS8_INITIAL_OFFSET_MASK		REG_GENMASK(31, 16)
-+#define   DSC_PPS8_FINAL_OFFSET_MASK		REG_GENMASK(15, 0)
-+#define   DSC_PPS8_INITIAL_OFFSET(initial_offset)	REG_FIELD_PREP(DSC_PPS8_INITIAL_OFFSET_MASK, \
-+								       initial_offset)
-+#define   DSC_PPS8_FINAL_OFFSET(final_offset)	REG_FIELD_PREP(DSC_PPS8_FINAL_OFFSET_MASK, \
- 							       final_offset)
- 
- /* PPS 9 */
--#define  DSC_RC_EDGE_FACTOR_MASK		REG_GENMASK(19, 16)
--#define  DSC_RC_MODEL_SIZE_MASK			REG_GENMASK(15, 0)
--#define  DSC_RC_EDGE_FACTOR(rc_edge_fact)	REG_FIELD_PREP(DSC_RC_EDGE_FACTOR_MASK, \
-+#define   DSC_PPS9_RC_EDGE_FACTOR_MASK		REG_GENMASK(19, 16)
-+#define   DSC_PPS9_RC_MODEL_SIZE_MASK		REG_GENMASK(15, 0)
-+#define   DSC_PPS9_RC_EDGE_FACTOR(rc_edge_fact)	REG_FIELD_PREP(DSC_PPS9_RC_EDGE_FACTOR_MASK, \
- 							       rc_edge_fact)
--#define  DSC_RC_MODEL_SIZE(rc_model_size)	REG_FIELD_PREP(DSC_RC_MODEL_SIZE_MASK, \
-+#define   DSC_PPS9_RC_MODEL_SIZE(rc_model_size)	REG_FIELD_PREP(DSC_PPS9_RC_MODEL_SIZE_MASK, \
- 							       rc_model_size)
- 
- /* PPS 10 */
--#define  DSC_RC_TGT_OFF_LOW_MASK			REG_GENMASK(23, 20)
--#define  DSC_RC_TGT_OFF_HIGH_MASK			REG_GENMASK(19, 16)
--#define  DSC_RC_QUANT_INC_LIMIT1_MASK			REG_GENMASK(12, 8)
--#define  DSC_RC_QUANT_INC_LIMIT0_MASK			REG_GENMASK(4, 0)
--#define  DSC_RC_TARGET_OFF_LOW(rc_tgt_off_low)		REG_FIELD_PREP(DSC_RC_TGT_OFF_LOW_MASK, \
-+#define   DSC_PPS10_RC_TGT_OFF_LOW_MASK		REG_GENMASK(23, 20)
-+#define   DSC_PPS10_RC_TGT_OFF_HIGH_MASK	REG_GENMASK(19, 16)
-+#define   DSC_PPS10_RC_QUANT_INC_LIMIT1_MASK	REG_GENMASK(12, 8)
-+#define   DSC_PPS10_RC_QUANT_INC_LIMIT0_MASK	REG_GENMASK(4, 0)
-+#define   DSC_PPS10_RC_TARGET_OFF_LOW(rc_tgt_off_low)	REG_FIELD_PREP(DSC_PPS10_RC_TGT_OFF_LOW_MASK, \
- 								       rc_tgt_off_low)
--#define  DSC_RC_TARGET_OFF_HIGH(rc_tgt_off_high)	REG_FIELD_PREP(DSC_RC_TGT_OFF_HIGH_MASK, \
-+#define   DSC_PPS10_RC_TARGET_OFF_HIGH(rc_tgt_off_high)	REG_FIELD_PREP(DSC_PPS10_RC_TGT_OFF_HIGH_MASK, \
- 								       rc_tgt_off_high)
--#define  DSC_RC_QUANT_INC_LIMIT1(lim)		REG_FIELD_PREP(DSC_RC_QUANT_INC_LIMIT1_MASK, lim)
--#define  DSC_RC_QUANT_INC_LIMIT0(lim)		REG_FIELD_PREP(DSC_RC_QUANT_INC_LIMIT0_MASK, lim)
-+#define   DSC_PPS10_RC_QUANT_INC_LIMIT1(lim)	REG_FIELD_PREP(DSC_PPS10_RC_QUANT_INC_LIMIT1_MASK, lim)
-+#define   DSC_PPS10_RC_QUANT_INC_LIMIT0(lim)	REG_FIELD_PREP(DSC_PPS10_RC_QUANT_INC_LIMIT0_MASK, lim)
- 
- /* PPS 16 */
--#define  DSC_SLICE_ROW_PR_FRME_MASK			REG_GENMASK(31, 20)
--#define  DSC_SLICE_PER_LINE_MASK			REG_GENMASK(18, 16)
--#define  DSC_SLICE_CHUNK_SIZE_MASK			REG_GENMASK(15, 0)
--#define  DSC_SLICE_ROW_PER_FRAME(slice_row_per_frame)	REG_FIELD_PREP(DSC_SLICE_ROW_PR_FRME_MASK, \
--								       slice_row_per_frame)
--#define  DSC_SLICE_PER_LINE(slice_per_line)		REG_FIELD_PREP(DSC_SLICE_PER_LINE_MASK, \
--								       slice_per_line)
--#define  DSC_SLICE_CHUNK_SIZE(slice_chunk_size)		REG_FIELD_PREP(DSC_SLICE_CHUNK_SIZE_MASK, \
--								       slice_chunk_size)
-+#define   DSC_PPS16_SLICE_ROW_PR_FRME_MASK	REG_GENMASK(31, 20)
-+#define   DSC_PPS16_SLICE_PER_LINE_MASK		REG_GENMASK(18, 16)
-+#define   DSC_PPS16_SLICE_CHUNK_SIZE_MASK	REG_GENMASK(15, 0)
-+#define   DSC_PPS16_SLICE_ROW_PER_FRAME(slice_row_per_frame)	REG_FIELD_PREP(DSC_PPS16_SLICE_ROW_PR_FRME_MASK, \
-+									       slice_row_per_frame)
-+#define   DSC_PPS16_SLICE_PER_LINE(slice_per_line)		REG_FIELD_PREP(DSC_PPS16_SLICE_PER_LINE_MASK, \
-+									       slice_per_line)
-+#define   DSC_PPS16_SLICE_CHUNK_SIZE(slice_chunk_size)		REG_FIELD_PREP(DSC_PPS16_SLICE_CHUNK_SIZE_MASK, \
-+									       slice_chunk_size)
- 
- /* PPS 17 (MTL+) */
--#define DSC_SL_BPG_OFFSET_MASK			REG_GENMASK(31, 27)
--#define DSC_SL_BPG_OFFSET(offset)		REG_FIELD_PREP(DSC_SL_BPG_OFFSET_MASK, offset)
-+#define   DSC_PPS17_SL_BPG_OFFSET_MASK		REG_GENMASK(31, 27)
-+#define   DSC_PPS17_SL_BPG_OFFSET(offset)	REG_FIELD_PREP(DSC_PPS17_SL_BPG_OFFSET_MASK, offset)
- 
- /* PPS 18 (MTL+) */
--#define DSC_NSL_BPG_OFFSET_MASK			REG_GENMASK(31, 16)
--#define DSC_SL_OFFSET_ADJ_MASK			REG_GENMASK(15, 0)
--#define DSC_NSL_BPG_OFFSET(offset)		REG_FIELD_PREP(DSC_NSL_BPG_OFFSET_MASK, offset)
--#define DSC_SL_OFFSET_ADJ(offset)		REG_FIELD_PREP(DSC_SL_OFFSET_ADJ_MASK, offset)
-+#define   DSC_PPS18_NSL_BPG_OFFSET_MASK		REG_GENMASK(31, 16)
-+#define   DSC_PPS18_SL_OFFSET_ADJ_MASK		REG_GENMASK(15, 0)
-+#define   DSC_PPS18_NSL_BPG_OFFSET(offset)	REG_FIELD_PREP(DSC_PPS18_NSL_BPG_OFFSET_MASK, offset)
-+#define   DSC_PPS18_SL_OFFSET_ADJ(offset)	REG_FIELD_PREP(DSC_PPS18_SL_OFFSET_ADJ_MASK, offset)
- 
- /* Icelake Rate Control Buffer Threshold Registers */
- #define DSCA_RC_BUF_THRESH_0			_MMIO(0x6B230)
+ #define   DSC_PPS2_PIC_WIDTH_MASK		REG_GENMASK(31, 16)
 -- 
 2.39.2
 
