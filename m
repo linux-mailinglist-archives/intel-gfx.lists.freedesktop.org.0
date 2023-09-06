@@ -1,48 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6410A796DB4
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 01:48:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39E61796DC7
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 01:55:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D40B110E73F;
-	Wed,  6 Sep 2023 23:47:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08A2C10E202;
+	Wed,  6 Sep 2023 23:55:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBBC010E73F;
- Wed,  6 Sep 2023 23:47:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694044077; x=1725580077;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=SeQmSwT6avmJfppnXPWQyIms9MtWfxKS8eQHGPFjc4c=;
- b=bGIZpPDFdTA03k/SwEbw4E1JWMjfY8mGzsOcbrYUwQZ+s3iTy+x0bwAZ
- zKBGjz8mllez7h7Cse5i//iYU4SVtbUS75hbG1WTZHK6DSpYcwlncCSM4
- KFWlrw/j2MaHze6PzTw32UmV82TTcrErav8k8Nbf90eq3DR40HNdrNuPU
- tdRPgHdDZLEzRqZK5EmlvIa1tt1UnbzsRn3/7z5jL4p9t521U4fWzYM7u
- /oZTYF91EssYKzOPdlRiX5aL/ThU4BmwtcDs3oMdFpNyZwSuCWorP/BV0
- 8vtxdeOJXqTEAIj+rTxF0tj+yRDV0zvnEEBitX1mcP4fQfo0RdqZANWop w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="367434461"
-X-IronPort-AV: E=Sophos;i="6.02,233,1688454000"; d="scan'208";a="367434461"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 16:47:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="811884245"
-X-IronPort-AV: E=Sophos;i="6.02,233,1688454000"; d="scan'208";a="811884245"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by fmsmga004.fm.intel.com with ESMTP; 06 Sep 2023 16:47:47 -0700
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 Sep 2023 16:47:43 -0700
-Message-Id: <20230906234746.78924-1-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.39.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6063710E202;
+ Wed,  6 Sep 2023 23:55:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4998EAADDD;
+ Wed,  6 Sep 2023 23:55:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 0/3] drm/i915/pxp/mtl: Update gsc-heci cmd
- submission to align with fw/hw spec
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Wed, 06 Sep 2023 23:55:08 -0000
+Message-ID: <169404450826.17390.15693735937441634148@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230906234732.3728630-6-matthew.d.roper@intel.com>
+In-Reply-To: <20230906234732.3728630-6-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBT?=
+ =?utf-8?q?eparate_display_workarounds_from_clock_gating?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,37 +40,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
- Alan Previn <alan.previn.teres.alexis@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For MTL, update the GSC-HECI packet size and the max firmware
-response timeout to match internal fw specs. Enforce setting
-run-alone bit in LRC for protected contexts.
+== Series Details ==
 
-Changes from prio revs:
-   v3: - Patch #1. Only start counting the request completion
-         timeout from after the request has started (Daniele).
-   v2: - Patch #3: fix sparse warning reported by kernel test robot.
-   v1: - N/A (Re-test)
+Series: Separate display workarounds from clock gating
+URL   : https://patchwork.freedesktop.org/series/123363/
+State : failure
 
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+== Summary ==
 
-Alan Previn (3):
-  drm/i915/pxp/mtl: Update pxp-firmware response timeout
-  drm/i915/pxp/mtl: Update pxp-firmware packet size
-  drm/i915/lrc: User PXP contexts requires runalone bit in lrc
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/display/intel_display_wa.o
+drivers/gpu/drm/i915/display/intel_display_wa.c:39:6: error: no previous prototype for ‘intel_display_wa_apply’ [-Werror=missing-prototypes]
+   39 | void intel_display_wa_apply(struct drm_i915_private *i915)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+make[6]: *** [scripts/Makefile.build:243: drivers/gpu/drm/i915/display/intel_display_wa.o] Error 1
+make[5]: *** [scripts/Makefile.build:480: drivers/gpu/drm/i915] Error 2
+make[4]: *** [scripts/Makefile.build:480: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:480: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:480: drivers] Error 2
+make[1]: *** [/home/kbuild2/kernel/Makefile:2032: .] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+Build failed, no error log produced
 
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 23 +++++++++++++++++++
- .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c | 20 ++++++++++++++--
- .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h |  6 +++++
- .../drm/i915/pxp/intel_pxp_cmd_interface_43.h |  4 ++--
- drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h    | 11 +++++----
- 5 files changed, 56 insertions(+), 8 deletions(-)
-
-
-base-commit: 5008076127a9599704e98fb4de3761743d943dd0
--- 
-2.39.0
 
