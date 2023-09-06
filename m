@@ -2,152 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BB92793544
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 08:28:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAC63793582
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 08:45:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F399710E0C8;
-	Wed,  6 Sep 2023 06:28:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F7C310E3A4;
+	Wed,  6 Sep 2023 06:45:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 064C810E0C8
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 06:28:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693981710; x=1725517710;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=+9HvdDA2bEBmIR6AO9j5vzr38GivkICpWH2eR3IJtbM=;
- b=XnjOljNEd5LR+okzXz4aqkQQGqGMSkRUUlgb6DbLILbYmdNrzEr4RfVJ
- ZpuLyU8wEC5bAgAHHJOfDfsAN3OEPQ0OlQsPfPS8ohtwsk4xV7K9FRC79
- T5DRc1HZmWlcSWMavnsfEFKeCIXs+eyB9uey6fzL1hujTOJ6KpOHng1g1
- nJBpgVpqjXgnB7BGsWrCzfM7O7vAl63URcQqIiwGZxVus3C95rjmrBpyo
- KVm7191Flhp7oDpPVt1kpBrJRdtOfw5Jtw13yzC89wtsSYEfqlrDQs/Jx
- SpWIN321oR79zpefuCBWhiz2OnRdlBqMTmCjLAl2I64mWLxWNm0BpbduW Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="379701587"
-X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="379701587"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 23:28:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="744556002"
-X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="744556002"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Sep 2023 23:28:28 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 5 Sep 2023 23:28:28 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 5 Sep 2023 23:28:28 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.42) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 5 Sep 2023 23:28:28 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L30WsblSu2NQwBrIVZHjmGjpxf2gr5lkHQY/7wRLwfHmTRei7R8HUzYOYgdjerq6GXti4LAm7WMG5O/NYOKPhCVvPqZy/yxO6cnVtOAH0FyOAfzb/AHIZtFrFCU1SqVGUFzLg3YHi2foSAManp/rf3TcJUl6J6NX9QtBG8ZpYXdTtNAh/Ymh3uMOkkl0rkjloS/fiMgh18uFFzZw+SO5YxfP7mxoBFZyPOV5vLLIRJx547nFkFeo826wXj1/eGsIBjpi/HKBEsvKcOgPY+GUP6FQm+kLsXIwSEMwDQNQnTTEpvfEkPEqAwXyVpsDMWlCNyVf3uO1dTeyymxFXJQLuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+9HvdDA2bEBmIR6AO9j5vzr38GivkICpWH2eR3IJtbM=;
- b=CmRmbDjbRUQ86P9zrLSRQ6j3Nlln0Yo00ORc2tZO1HlNbBurhRuC4AyQ8sDj7SBODRdKAA4WM5LeJ1iPuCacWo4YO6Fw02iBJ1NIsI5I0rltmpIRpJClLqQGQ1e5cZ6J9EStptbTaSY9SWNfYLDTdOLoG+hDrSEewFkJ8jkypJptwbTNAtLdGbdXVs3XzIKRJOz7zLJ0Bo7LT0ZALvOFK6hKl4zEJp49tV8iWlDSPDmyTthQwhYOW43+36/pqALr29K5J+iP432j5sHVDCgkaFB+u6MqLwvYrDPX6lkyhQd+zb3/MJc9LbmlCbBOSADwR8bGfLqdZCz5KeNrnL+Auw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7382.namprd11.prod.outlook.com (2603:10b6:8:131::13)
- by DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Wed, 6 Sep
- 2023 06:28:26 +0000
-Received: from DS0PR11MB7382.namprd11.prod.outlook.com
- ([fe80::9d00:cf05:efc7:246d]) by DS0PR11MB7382.namprd11.prod.outlook.com
- ([fe80::9d00:cf05:efc7:246d%5]) with mapi id 15.20.6745.034; Wed, 6 Sep 2023
- 06:28:26 +0000
-From: "Coelho, Luciano" <luciano.coelho@intel.com>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v4 0/4] drm/i915/tc: some clean-ups in max
- lane count handling code
-Thread-Index: AQHZ4GzOZsAZYNWKEkGkTsVBBr8ZoLANVdKA
-Date: Wed, 6 Sep 2023 06:28:25 +0000
-Message-ID: <6e81f0336fc24e7399920a20161ce3b1fa3a75b3.camel@intel.com>
-References: <20230825081638.275795-1-luciano.coelho@intel.com>
- <bybk5m7d2u3str4ozmr6ezurt7jrdiswcrx3hncjt5yslcympo@yudjfjkgsr3s>
-In-Reply-To: <bybk5m7d2u3str4ozmr6ezurt7jrdiswcrx3hncjt5yslcympo@yudjfjkgsr3s>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.4-2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7382:EE_|DM4PR11MB7183:EE_
-x-ms-office365-filtering-correlation-id: ae552ff0-d8d0-4d5f-c489-08dbaea279f3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: hx+CArkY38tL3HI/uWrYUylOII6nazPFdCrlbIMAi1kc7MP6SU+VdpvzPNfZ4GOlJyQiz9HyYjHjNqi4V3uO4kFqHxhX8aBOiyVfL7l51dVEHOFcVIaYFDDzrAjf6ONdFb0iE/QfQJ+pR00eN1DrbdIBmriu1v2iQwRdagqOvgwdSSWlzXaA0esTYe1SsClktclCEkokBw/rfOh/Wj1TlnKm3lXwyo0KxSt5G6xdIKFvVEd8cPI99WnD6kwBuoi9gGtThJw6hGCzzfwqEN6+740xulEY11Wpbg+UgaOkwDPQDTX5YiSEuZ6B1/eEfIe1XA5bjHiOm2H1Gk8MZvAxysSBzir0HHLyJl7h7M1Je43jZzS93Yb8NHR0HvUrIJzRnUakA+GkW5KZtWmXjA5EiPQY1nCX1nSRaBC1bkw65KaFu2mglY48GV8rjVKO4kpqFTyTwtoGeu0AjvIbUYHuP6BKFM4NWxIMfyLrzxrA3Lm8gQlGHl75EFpDmNz/mXlhgelYWYKfPeMWJM0qfJNzkrJc3X+fQ10NazjJdWzF+kEeNKyXUx/oMnMwW3VYvtudog8fGHG16IYoCd8LxBKnGaZEJR2T1UTXy5MkCllX+21TjBemst3bNlo8jfoJO25h
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7382.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(396003)(39860400002)(366004)(136003)(376002)(186009)(1800799009)(451199024)(41300700001)(38100700002)(82960400001)(26005)(122000001)(71200400001)(86362001)(38070700005)(478600001)(2616005)(6506007)(6486002)(6512007)(66946007)(66476007)(76116006)(54906003)(316002)(91956017)(2906002)(37006003)(6636002)(66556008)(66446008)(36756003)(64756008)(4744005)(8676002)(8936002)(5660300002)(6862004)(4326008);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MDlZc0twTVdYVE1QWnNWQzgxVEppVHFPRXlDUVFrZm5kejhQdWhNdkUxWldE?=
- =?utf-8?B?aDJYZXI1eEVKbmRjOUU1K2dUeUhjS2hwdllTNFkvc1lzN2NsNDZLUDhlZ2Nl?=
- =?utf-8?B?V2pxZERkei9PbWhGM3V6SFUvVmd2NnRlakhXS05RSEZLajRuVkhWdnVTK2hr?=
- =?utf-8?B?VzhkYkc0YU5yTkppRGEyeWsyODhVM3NSYUE3eDQ0a0R4WjdyeUJHTDlOSVEv?=
- =?utf-8?B?eXVaWHBDVEdyK09CRkhHeUFiTHlpMDFubnRSbmhMcUZtZW1RUStTSk5XdGRJ?=
- =?utf-8?B?OU1IbVpwRFJXcDBvQXlHdjBseVBmcUo2K3cwdGpGZTEzRVVFMmdJS1VVN0Fw?=
- =?utf-8?B?SDJLTWhCd2FUa1hnd0dCQW5IVEtUaVRWaE5hK1U4U1I3YlV6NGFqdEV2aGZR?=
- =?utf-8?B?SllqbGxqcFdvcTVleWJmTTlCOEYrKzNSblpDWkwwMXlxWGZkejBhcHhrSUpP?=
- =?utf-8?B?Yk5mUE1vOHdOc2RoMWErRFFCV0lMMFBBdVdIbWhDcnZIYzlWcVhzUllxZmdj?=
- =?utf-8?B?emdqWGVoNVdyS2pZelV6eEpxejZoK0JUaHFQd095YndNdzVudEZoQ1NCZisw?=
- =?utf-8?B?UTMvK01sRDc5TTVNcm5sZjRGSWZ3RG80VDdVekVMWGtLdm02RE5LdU5DUmFO?=
- =?utf-8?B?bDBqZGV5SzhRL3FhTlhPUGMzdS9qWFV5Mlp6Tnc5QXRFUjNBeDlTNEMrbUlX?=
- =?utf-8?B?WDhqUWhuZjR4YTYvalpoSWczRDdWOTc3QVZkY2Z4czhLYmlSeU9wUU5nNHpa?=
- =?utf-8?B?WkhhNXZZOVhZSStZcHE3TTg3UkFYNGRrU2hrTEYvWVhLNjQrSXREZGtNMjlQ?=
- =?utf-8?B?b0I3b083V0ZZaysxVlhiZDBrVjVhN1EwUXhuNWIyc0xMZ1NwaGZKQ0pCa2xs?=
- =?utf-8?B?NUJxZWlpV3NWWmFPMnR2OFdSaXh3VXFMMHYybmpCTWtsU2RQU21VV1c2TE5o?=
- =?utf-8?B?a1I5blFjUDV2TkRRaktnc29TKzZSby9zQ3JOSGpVQTMrdmZ1azFFOWFiNWJa?=
- =?utf-8?B?MTE2NEtJY1hBVXRYb2M0UU1KODROUGlnTms4UUVKblUrUFpwei8raVZBdHE5?=
- =?utf-8?B?cXJiTWVkTlRLMUpWN0VxVlpNMmRFU25nUzFIQzV0d1pBdGxadnBYNk1xSVh3?=
- =?utf-8?B?aEZPcENydm53cVV0MVZPeThTVGdXUkhQSG5sYmhhSVVnOC96RTJXU05qa0V3?=
- =?utf-8?B?T3cyL1lGY3l3ZlFnajc0ajEydGJKdU84RUZIWHR3K24yUVhVc1FzNnJuZll5?=
- =?utf-8?B?ZWFYMThZMTdTRDlXNTJHS3FqYTlDL1ZuMWJjSlhZUE8vL2lDZEJ3ejF1MGVY?=
- =?utf-8?B?ZjBPUWZMdFE3VzhOSzdlNE9qMjBQeHhHWU53NXBJUDZteFowWGJpOUs5OThJ?=
- =?utf-8?B?Um04cnF6Y2Uwb1A3ZXhUUHBWZ2xHZ05vWUk1Q1lBcjBDUVFsUnFSRnoxUWNC?=
- =?utf-8?B?USs2QlE4dDlPV0hMWkJvbmt2THU1OGlIai9xYWd0TFRPc0tZQTd2ZWF4UnMz?=
- =?utf-8?B?SFlRYXBYa1AxME9hL0p1ZE9iRDRTWkVJM1JkODZ2eFNteGJDVGpxcG4xdmZL?=
- =?utf-8?B?Y1k5MTZQb2txUFJ4UCtCTjVuQ1JsZG1pMVdoeVAvZlVqV1NZbHdOTmJHdFZ5?=
- =?utf-8?B?N1lvRWRqRGI1MSt4b1JQbFRWWTh6QTFpU2dsMWRCeGM3Tnh2VytHTFBMSVpK?=
- =?utf-8?B?S0hEVG4xdGZrVmVwSGcrK2ZubDhXVXljOUNrenZNZEVLUURPbVIydlMrZTA4?=
- =?utf-8?B?N2NIV0t0aDFaMjRYUDFkNXp2MUdtUHYrczFiSEZCbDJhTVRoa0wxUlYxSkxC?=
- =?utf-8?B?SjlMT3VRUkN2bExVb3k1Rkpqb3FuYVgxOUc4dHVyYXBFY2RVYU41VEF1V3k4?=
- =?utf-8?B?SEhQRkRHZUg2eWg4YXR3VUxxUjNJRDN4b21WV0M1Z1F4Ukx1K0hydjFkYXVl?=
- =?utf-8?B?ZDQrK3NETFR0VUxkTjZoSlZ0eXhZR0hneU5Pa3ZvQjFrdStCbTFDMTlOQVR5?=
- =?utf-8?B?UTVPZElnQ0JxSjEyWk5wd0ZvbWdGNU9aNlFUei9SV0QwYm9BVk1IYzJmZEFX?=
- =?utf-8?B?RkQ1Y01qelhWRDlHa1JEZVhZVkd2T0NGNVlpblFYOE0yMVFMWFpwRVg0VXhp?=
- =?utf-8?B?UDlGSjIxdXU3Y0FIMnRnanNTQ0Q5YVRldUpTS3VSemZvS3RkMFBTbE40Y0Ry?=
- =?utf-8?B?OHc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B4530EFE079A3143BD8C2C2BC72FD0EF@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
+ [IPv6:2a00:1450:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89B3510E0C8;
+ Wed,  6 Sep 2023 06:45:20 +0000 (UTC)
+Received: by mail-wm1-x330.google.com with SMTP id
+ 5b1f17b1804b1-400a087b0bfso32110655e9.2; 
+ Tue, 05 Sep 2023 23:45:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1693982719; x=1694587519; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=WbC+PTccFxw+0DVOTgccrbkscfu/JcAyQutBiCpNZyU=;
+ b=ADA9cQUMM8Efxe/0ejb5ci9CNcMugz7mkKbzts+tgCEli1PBYEJXscVfJu2KZCuFvn
+ eNp+U6L5K0vSACx29A7Xcqclv7y5SivwhIZsxGvpviPBx6Au25jwoPushdKxlb6pot4F
+ v2n+66j3GsOJqcag8hhdJGGWaNt3X7wF4OYIYRtuCyRq2C6nlS5MIfaiskJ3uxqc4IlL
+ pUnjzDWtqijm7IDg+mpAU/VlOrYEQ475vMEFm9OGDbRf2wzTLlCP7ceolLky5Hg/VjxX
+ mi8VGmSo4vfjxto0MU30WrsYwUlsRcN63bREdAtYyGTzEuSBqoN1VdqioakfwbWYVi5t
+ 7S6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693982719; x=1694587519;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=WbC+PTccFxw+0DVOTgccrbkscfu/JcAyQutBiCpNZyU=;
+ b=UotILUgHFj6+deao0YpNg8nzd+aXZx7aoerZKbVUAcmr81+9vmDegeK757ihooexLM
+ JYZYNMNeA+peEmk64bTgpLzm7rF2IoekFK+WBK0JykIzbwGATGMKjgJ1zPmnWYeRkAA9
+ tgK4cm4sqcXK8WlzkFveXe3tH7TO4S/+FqLhgFpmVPTvKpzmI3syjOOq9fag8f3DHC+n
+ lYgQ/f5XqiGppjCgiOP6uCTWre7UxQNUepp59fj40ZveBmW7+QTzJbkQO/tw/k0CT0zf
+ dDLsWEO26v4CQxWHc6NZLoJVuq+s3EDilntXWETWwu2FVckTjNp3+v0nMynxybybtyyH
+ qopg==
+X-Gm-Message-State: AOJu0YxoECXEJGCzICB7t/yWFGweJbRkKorgF8pzncc6G7JEwI2q5qIW
+ AFdh0gAiP1BYcvF3ebxDkpY=
+X-Google-Smtp-Source: AGHT+IEjlomr6GhSa/peo2K0S5StXQRwjl6hxXlIzISB+VOeqKfc7FMbOl/xn6u/5EwAY+fXSbGWHg==
+X-Received: by 2002:a1c:7207:0:b0:401:cf0d:25cd with SMTP id
+ n7-20020a1c7207000000b00401cf0d25cdmr1486233wmc.22.1693982718606; 
+ Tue, 05 Sep 2023 23:45:18 -0700 (PDT)
+Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ o10-20020a1c750a000000b003fbb25da65bsm19248601wmc.30.2023.09.05.23.45.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 05 Sep 2023 23:45:17 -0700 (PDT)
+Message-ID: <2adfa653-ac35-d560-be52-c92848a1eef5@gmail.com>
+Date: Wed, 6 Sep 2023 08:45:16 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7382.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae552ff0-d8d0-4d5f-c489-08dbaea279f3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Sep 2023 06:28:25.6406 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LemaZEN435gt0aTR/qX1fj4/MESvOstODfY2KN+rvZilk0TzJFOZ35gBAp2bRoFBRp225J3+o2CgeYI2MT24FX5hTVNyVlloOrGVZDT63M8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7183
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 0/4] drm/i915/tc: some clean-ups in max
- lane count handling code
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: suijingfeng <suijingfeng@loongson.cn>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+ <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
+ <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [Nouveau] [RFC,
+ drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
+ primary video adapter at boot time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,23 +85,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "suraj.kandpal@linux.intel.com" <suraj.kandpal@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIzLTA5LTA1IGF0IDE5OjQ5IC0wNzAwLCBMdWNhcyBEZSBNYXJjaGkgd3JvdGU6
-DQo+IE9uIEZyaSwgQXVnIDI1LCAyMDIzIGF0IDExOjE2OjM0QU0gKzAzMDAsIEx1Y2EgQ29lbGhv
-IHdyb3RlOg0KPiA+IEhpLA0KPiA+IA0KPiA+IEhlcmUgYXJlIGZvdXIgcGF0Y2hlcyB3aXRoIHNv
-bWUgY2xlYW4tdXBzIGluIHRoZSBjb2RlIHRoYXQgaGFuZGxlcyB0aGUNCj4gPiBtYXggbGFuZSBj
-b3VudCBvZiBUeXBlLUMgY29ubmVjdGlvbnMuDQo+ID4gDQo+ID4gVGhpcyBpcyBkb25lIG1vc3Rs
-eSBpbiBwcmVwYXJhdGlvbiBmb3IgYSBuZXcgd2F5IHRvIHJlYWQgdGhlIHBpbg0KPiA+IGFzc2ln
-bm1lbnRzIGFuZCBsYW5lIGNvdW50IGluIGZ1dHVyZSBkZXZpY2VzLg0KPiA+IA0KPiA+IEluIHYy
-Og0KPiA+ICAgKiBGaXggc29tZSByZWJhc2luZyBkYW1hZ2UuDQo+ID4gDQo+ID4gSW4gdjM6DQo+
-ID4gICAqIEZpeGVkICJhc3NpZ21lbnQiIHR5cG8sIGFzIHJlcG9ydGVkIGJ5IGNoZWNrcGF0Y2gu
-DQo+ID4gDQo+ID4gSW4gdjQ6DQo+ID4gICAqIFJlYmFzZWQ7DQo+ID4gICAqIFJlbmFtZWQgcG9y
-dF9tYXggdG8gbGFuZV9tYXggKEx1Y2FzJyBjb21tZW50KS4NCj4gPiANCj4gPiBQbGVhc2UgcmV2
-aWV3Lg0KPiANCj4gQWxsIHBhdGNoZXMgYXJlIHJldmlld2VkLiBJIGxvb2tlZCB0byB0aGUgQ0kg
-cmVzdWx0cyBhbmQgbm9uZSBvZiB0aGUNCj4gcmVncmVzc2lvbnMgc2VlbSByZWxhdGVkLg0KPiAN
-Cj4gUHVzaGVkLiBUaGFua3MNCg0KR3JlYXQsIHRoYW5rcyBmb3IgY2hlY2tpbmcgYW5kIHB1c2hp
-bmcsIEx1Y2FzIQ0KDQotLQ0KQ2hlZXJzLA0KTHVjYS4NCg==
+Am 05.09.23 um 15:30 schrieb suijingfeng:
+> Hi,
+>
+>
+> On 2023/9/5 18:45, Thomas Zimmermann wrote:
+>> Hi
+>>
+>> Am 04.09.23 um 21:57 schrieb Sui Jingfeng:
+>>> From: Sui Jingfeng <suijingfeng@loongson.cn>
+>>>
+>>> On a machine with multiple GPUs, a Linux user has no control over which
+>>> one is primary at boot time. This series tries to solve above mentioned
+>>
+>> If anything, the primary graphics adapter is the one initialized by 
+>> the firmware. I think our boot-up graphics also make this assumption 
+>> implicitly.
+>>
+>
+> Yes, but by the time of DRM drivers get loaded successfully,the 
+> boot-up graphics already finished.
+
+This is an incorrect assumption.
+
+drm_aperture_remove_conflicting_pci_framebuffers() and co don't kill the 
+framebuffer, they just remove the current framebuffer driver to avoid 
+further updates.
+
+So what happens (at least for amdgpu) is that we take over the 
+framebuffer, including both mode and it's contents, and provide a new 
+framebuffer interface until DRM masters like X or Wayland take over.
+
+> Firmware framebuffer device already get killed by the 
+> drm_aperture_remove_conflicting_pci_framebuffers()
+> function (or its siblings). So, this series is definitely not to 
+> interact with the firmware framebuffer
+> (or more intelligent framebuffer drivers).  It is for user space 
+> program, such as X server and Wayland
+> compositor. Its for Linux user or drm drivers testers, which allow 
+> them to direct graphic display server
+> using right hardware of interested as primary video card.
+>
+> Also, I believe that X server and Wayland compositor are the best test 
+> examples.
+> If a specific DRM driver can't work with X server as a primary,
+> then there probably have something wrong.
+>
+>
+>> But what's the use case for overriding this setting?
+>>
+>
+> On a specific machine with multiple GPUs mounted,
+> only the primary graphics get POST-ed (initialized) by the firmware.
+> Therefore, the DRM drivers for the rest video cards, have to choose to
+> work without the prerequisite setups done by firmware, This is called 
+> as POST.
+
+Well, you don't seem to understand the background here. This is 
+perfectly normal behavior.
+
+Secondary cards are posted after loading the appropriate DRM driver. At 
+least for amdgpu this is done by calling the appropriate functions in 
+the BIOS.
+
+>
+> One of the use cases of this series is to test if a specific DRM 
+> driver could works properly,
+> even though there is no prerequisite works have been done by firmware 
+> at all.
+> And it seems that the results is not satisfying in all cases.
+>
+> drm/ast is the first drm drivers which refused to work if not being 
+> POST-ed by the firmware.
+
+As far as I know this is expected as well. AST is a relatively simple 
+driver and when it's not the primary one during boot the assumption is 
+that it isn't used at all.
+
+Regards,
+Christian.
+
+>
+> Before apply this series, I was unable make drm/ast as the primary 
+> video card easily. On a
+> multiple video card configuration, the monitor connected with the 
+> AST2400 not light up.
+> While confusing, a naive programmer may suspect the PRIME is not working.
+>
+> After applied this series and passing ast.modeset=10 on the kernel cmd 
+> line,
+> I found that the monitor connected with my ast2400 video card still 
+> black,
+> It doesn't display and doesn't show image to me.
+>
+> While in the process of study drm/ast, I know that drm/ast driver has 
+> the POST code shipped.
+> See the ast_post_gpu() function, then, I was wondering why this 
+> function doesn't works.
+> After a short-time (hasty) debugging, I found that the the 
+> ast_post_gpu() function
+> didn't get run. Because it have something to do with the 
+> ast->config_mode.
+>
+> Without thinking too much, I hardcoded the ast->config_mode as 
+> ast_use_p2a to
+> force the ast_post_gpu() function get run.
+>
+> ```
+>
+> --- a/drivers/gpu/drm/ast/ast_main.c
+> +++ b/drivers/gpu/drm/ast/ast_main.c
+> @@ -132,6 +132,8 @@ static int ast_device_config_init(struct 
+> ast_device *ast)
+>                 }
+>         }
+>
+> +       ast->config_mode = ast_use_p2a;
+> +
+>         switch (ast->config_mode) {
+>         case ast_use_defaults:
+>                 drm_info(dev, "Using default configuration\n");
+>
+> ```
+>
+> Then, the monitor light up, it display the Ubuntu greeter to me.
+> Therefore, my patch is helpful, at lease for the Linux drm driver 
+> tester and developer.
+> It allow programmers to test the specific part of the specific drive
+> without changing a line of the source code and without the need of 
+> sudo authority.
+> It helps to improve efficiency of the testing and patch verification.
+>
+> I know the PrimaryGPU option of Xorg conf, but this approach will 
+> remember the setup
+> have been made, you need modify it with root authority each time you 
+> want to switch
+> the primary. But on rapid developing and/or testing multiple video 
+> drivers, with
+> only one computer hardware resource available. What we really want 
+> probably is a
+> one-shoot command as this series provide.
+>
+> So, this is the first use case. This probably also help to test full 
+> modeset,
+> PRIME and reverse PRIME on multiple video card machine.
+>
+>
+>> Best regards
+>> Thomas
+>>
+>
+
