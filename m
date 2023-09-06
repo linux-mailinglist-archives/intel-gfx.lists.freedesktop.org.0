@@ -1,65 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 695847938CE
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 11:48:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E168793963
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 12:04:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DE2910E5BA;
-	Wed,  6 Sep 2023 09:48:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F383210E5E6;
+	Wed,  6 Sep 2023 10:04:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8658410E5B9;
- Wed,  6 Sep 2023 09:48:35 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Ax1fDxSvhkEEggAA--.64833S3;
- Wed, 06 Sep 2023 17:48:33 +0800 (CST)
-Received: from [0.0.0.0] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8Bx3yPvSvhkg2huAA--.28402S3; 
- Wed, 06 Sep 2023 17:48:31 +0800 (CST)
-Message-ID: <3f41eea5-d441-304d-f441-eaf7ce63d3e1@loongson.cn>
-Date: Wed, 6 Sep 2023 17:48:31 +0800
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38BB110E5E5;
+ Wed,  6 Sep 2023 10:04:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693994671; x=1725530671;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=P0b/otjmIHI6otfHXkCwXeQeYXMI8IOH75FQnuvPwn0=;
+ b=kj60hl1/RM2TkOMkUjs92i1gZAd7wsbDaK4jTE7PPCSGijMWyEBb0iQ4
+ F8h+GMIHGm1x7UR10QHg4bLoeq4gD3m8nf/nphDLrWLTQrUBKlRxQTnlH
+ BlnqSNY89fNRvH7xnWhFiVuA2+iUI6Mtj9O676R+I268LHsdjGMkgZVMB
+ dSKD78qjFJoqvISaEL07bbj5l2E24+qoSoUjShWKgyCIQXlG3SVzYxzKS
+ K6M2n5oyzjmomOtBXcdzCKkNoQNu7hvC1v7R1a8LrAWEU8Nz8BIaPWi1v
+ 1DVwSMKxfgsiWZg2JvWi0jPopFd/Y2/uZq8gXelOyty/8SswZFcGNPfa6 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="357335064"
+X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="357335064"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 03:04:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="806950478"
+X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="806950478"
+Received: from iiervoli-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.60.161])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 03:04:09 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>, John Harrison
+ <john.c.harrison@intel.com>
+In-Reply-To: <ZPhDqTusn9FYY8qV@ashyti-mobl2.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230811182011.546026-1-zhanjun.dong@intel.com>
+ <3a745c83-e7cf-6a24-5556-8c0c019adfec@intel.com>
+ <ZOYtNyqfvqJPeqq2@phenom.ffwll.local>
+ <e31b1f49-88cd-d6e4-abbe-51f27712ff83@intel.com>
+ <ZPCc4CU+S6Gv6GzQ@ashyti-mobl2.lan>
+ <983eb186-5b6a-8df3-1e67-eb7da6a8dbcd@intel.com>
+ <ZPhDqTusn9FYY8qV@ashyti-mobl2.lan>
+Date: Wed, 06 Sep 2023 13:04:06 +0300
+Message-ID: <87jzt3hb3d.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Content-Language: en-US
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
- <151c0429-dbc2-e987-1491-6c733ca159ac@suse.de>
- <3eced3f5-622f-31a6-f8a0-ff0812be74ff@loongson.cn>
- <6035cf27-1506-dda7-e1ca-d83ce5cb5340@suse.de>
-From: suijingfeng <suijingfeng@loongson.cn>
-In-Reply-To: <6035cf27-1506-dda7-e1ca-d83ce5cb5340@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Bx3yPvSvhkg2huAA--.28402S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxtF4UuFWxWr17Gw47JryrAFc_yoWxJw17pF
- ykuay5KF4kJrn5C340v3WUuFWFq3y8JFWfJrn3G345ua90kryUZFZFgw4Y9asrCr4fXF15
- tF4Ut3429343AagCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUBFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AK
- xVWxJr0_GcWln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
- xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y
- 6r17McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
- 1lc7I2V7IY0VAS07AlzVAYIcxG8wCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWU
- JVW8JwCFI7km07C267AKxVWUtVW8ZwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4
- vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IY
- x2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26c
- xKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAF
- wI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jFa0PUUUUU=
-Subject: Re: [Intel-gfx] [Nouveau] [RFC,
- drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
- primary video adapter at boot time
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: Avoid circular locking
+ dependency when flush delayed work on gt reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,173 +67,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-
-On 2023/9/6 16:05, Thomas Zimmermann wrote:
-> Hi
+On Wed, 06 Sep 2023, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+>> > I was actually thinking why not leave things as they are and just
+>> > disable lockdep from CI. This doesn't look like a relevant report
+>> > to me.
+>> >=20
+>> > Andi
+>> Disable lockdep? The whole of lockdep? We absolutely do not want to disa=
+ble
+>> an extremely important deadlock testing infrastructure in our test
+>> framework. That would be defeating the whole point of CI.
+>>=20
+>> Potentially we could annotate this one particular scenario to suppress t=
+his
+>> one particular error.=C2=A0 But it seems simpler and safer to just updat=
+e the
+>> code to not hit that scenario in the first place.
 >
-> Am 05.09.23 um 17:59 schrieb suijingfeng:
-> [...]
->>> FYI: per-driver modeset parameters are deprecated and not to be 
->>> used. Please don't promote them.
->>
->>
->> Well, please wait, I want to explain.
->>
->>
->>
->> drm/nouveau already promote it a little bit.
->>
->> Despite no code of conduct or specification guiding how the modules 
->> parameters should be.
->> Noticed that there already have a lot of DRM drivers support the 
->> modeset parameters,
+> yes... lockdep is a debug tool and might provide false reports...
+> We need to have a great willingness to start fixing and hunting
+> debug lockdep's false positives (like this one, for instance).
 >
-> Please look at the history and discussion around this parameter. To my 
-> knowledge, 'modeset' got introduced when modesetting with still done 
-> in userspace. It was an easy way of disabling the kernel driver if the 
-> system's Xorg did no yet support kernel mode setting.
+> It's even more annoying to reduce our CI pass rates, especially
+> when in BAT tests, with such false deadlocks.
+
+Make lockdep understand what you're doing, and there are no false
+positives. That's all there is to it.
+
+> It's the developer's responsibility to test its code with
+> debug_lockdep and fix all the potential deadlocks and ignore the
+> false ones.
+
+No. Manual validation of lockdep reports is not feasible. Lockdep is the
+tool to validate locking. It's the developer's responsibility to make
+lockdep understand the design.
+
+Besides, locking is often subtle. Stuff can change as a side effect even
+when you're not intentionally changing locking, e.g. during
+refactoring. What you're suggesting effectively means all developers
+should run all of igt on a bunch of different generations of machines
+with lockdep enabled. Realistically, not going to happen, and we have CI
+because of this.
+
+> I sent a patch for this[*] already.
 >
-> Fast forward a few years and all Linux' use kernel modesetting, which 
-> make the modeset parameters obsolete. We discussed and decided to keep 
-> them in, because many articles and blog posts refer to them. We didn't 
-> want to invalidate them. BUT modeset is deprecated and not allowed in 
-> new code. If you look at existing modeset usage, you will eventually 
-> come across the comment at [1].
+> Andi
 >
+> [*] https://gitlab.freedesktop.org/gfx-ci/i915-infra/-/merge_requests/128
 
-OK, no problem. I agree what you said.
-
-
-> There's 'nomodeset', which disables all native drivers. It's useful 
-> for debugging or as a quick-fix if the graphics driver breaks. If you 
-> want to disable a specific driver, please use one of the options for 
-> blacklisting.
->
-Yeah, the 'nomodeset' disables all native drivers,
-this is a good point of it, but this is also the weak point of it.
-
-Sometimes, when you are developing a drm driver for a new device.
-You will see the pain. Its too often a programmer's modification
-make the entire Linux kernel hang there. The problematic drm
-driver kernel module already in the initrd. Then, the real
-need to disable the ill-functional drm driver kernel module
-only. While what you recommend to disable them all. There
-are subtle difference.
-
-Another limitation of the 'nomodeset' parameter is that
-it is only available on recent upstream kernel. Low version
-downstream kernel don't has this parameter supported yet.
-So this create inconstant developing experience. I believe that
-there always some people need do back-port and upstream work
-for various reasons.
-
-While (kindly, no offensive) debating, since we have the modprobe.blacklist
-why we still need the 'nomodeset' parameter ?
-why not try modprobe.blacklist="amdgpu,radeon,i915,ast,nouveau,gma500_gfx, ..."
-
-:-/
+Yeah, no.
 
 
-But OK in overall, I will listen to your advice.
+BR,
+Jani.
 
 
-> Best regards
-> Thomas
->
-> [1] 
-> https://elixir.bootlin.com/linux/v6.5/source/include/drm/drm_module.h#L83
->
->
->> for the modeset parameter, authors of various device driver try to 
->> make the usage not
->> conflict with others. I believe that this is good thing for Linux users.
->> It is probably the responsibility of the drm core maintainers to 
->> force various drm
->> drivers to reach a minimal consensus. Probably it pains to do so and 
->> doesn't pay off.
->> But reach a minimal consensus do benefit to Linux users.
->>
->>
->>> You can use modprobe.blacklist or initcall_blacklist on the kernel 
->>> command line.
->>>
->> There are some cases where the modprobe.blacklist doesn't works,
->> I have come cross several time during the past.
->> Because the device selected by the VGAARB is device-level thing,
->> it is not the driver's problem.
->>
->> Sometimes when VGAARB has a bug, it will select a wrong device as 
->> primary.
->> And the X server will use this wrong device as primary and completely 
->> crash
->> there, due to lack a driver. Take my old S3 Graphics as an example:
->>
->> $ lspci | grep VGA
->>
->>   00:06.1 VGA compatible controller: Loongson Technology LLC DC 
->> (Display Controller) (rev 01)
->>   03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. 
->> [AMD/ATI] Caicos XT [Radeon HD 7470/8470 / R5 235/310 OEM]
->>   07:00.0 VGA compatible controller: S3 Graphics Ltd. Device 9070 
->> (rev 01)
->>   08:00.0 VGA compatible controller: S3 Graphics Ltd. Device 9070 
->> (rev 01)
->>
->> Before apply this patch:
->>
->> [    0.361748] pci 0000:00:06.1: vgaarb: setting as boot VGA device
->> [    0.361753] pci 0000:00:06.1: vgaarb: VGA device added: 
->> decodes=io+mem,owns=io+mem,locks=none
->> [    0.361765] pci 0000:03:00.0: vgaarb: VGA device added: 
->> decodes=io+mem,owns=none,locks=none
->> [    0.361773] pci 0000:07:00.0: vgaarb: VGA device added: 
->> decodes=io+mem,owns=none,locks=none
->> [    0.361779] pci 0000:08:00.0: vgaarb: VGA device added: 
->> decodes=io+mem,owns=none,locks=none
->> [    0.361781] vgaarb: loaded
->> [    0.367838] pci 0000:00:06.1: Overriding boot device as 1002:6778
->> [    0.367841] pci 0000:00:06.1: Overriding boot device as 5333:9070
->> [    0.367843] pci 0000:00:06.1: Overriding boot device as 5333:9070
->>
->>
->> For known reason, one of my system select the S3 Graphics as primary 
->> GPU.
->> But this S3 Graphics not even have a decent drm upstream driver yet.
->> Under such a case, I begin to believe that only the device who has a
->> driver deserve the primary.
->>
->> Under such a condition, I want to reboot and enter the graphic 
->> environment
->> with other working video cards. Either platform integrated and 
->> discrete GPU.
->> This don't means I should compromise by un-mount the S3 graphics card 
->> from
->> the motherboard, this also don't means that I should update my BIOS 
->> setting.
->> As sometimes, the BIOS is more worse.
->>
->> With this series applied, all I need to do is to reboot the computer and
->> pass a command line. By force override another video card (who has a
->> decent driver support) as primary, I'm able to do the debugging under
->> graphic environment. I would like to examine what's wrong with the 
->> vgaarb
->> on a specific platform under X server graphic environment.
->>
->> Probably try compile a driver for this card and see it works, simply 
->> reboot
->> without the need to change anything. It is so efficient. So this is 
->> probably
->> the second usage of my patch. It hand the right of control back to the
->> graphic developer.
->>
->>
->
-
+--=20
+Jani Nikula, Intel Open Source Graphics Center
