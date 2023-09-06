@@ -2,48 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01009796DAF
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 01:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20CA1796DB0
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 01:47:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40B2210E35B;
-	Wed,  6 Sep 2023 23:47:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F0E310E738;
+	Wed,  6 Sep 2023 23:47:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0262F10E35B
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 23:47:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 567D210E35B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 23:47:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694044061; x=1725580061;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iNfz6FhTbkHjXDv6HYN360q6MjIKCILIJRGIuL0ncek=;
- b=A9sC6RGPwzkM+mLbDpDBbZDLrWa7MbIuvvZGdYQW90uYocTIgaeIm7NM
- OxfvJw+BQS0+kpLUube2XR6hH2Ux46sBD88U7bBFXHAkclRQdy0x25gM6
- +NqRv/pMrwZQpR/OZ2Qk/GzHargM/ec5LIX4tLY9A9tVirGeQxmnAzn3U
- 6CME2oFu1FV8m5oGVq1oWTF2G5gnGcvZARESS+SaoileIu52ixQ2VSNER
- pKCbzC8VOmXrI0UmAmFIMeIv8K5clP/IWm0FbO0esAhofIoi8gMMFYLGh
- ksAdxwkKI2AyzFcJ2rACUwT5nMWdOxDoY0tfowu8Lr/YaJOmmPGT1Ab9O A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="357526292"
-X-IronPort-AV: E=Sophos;i="6.02,233,1688454000"; d="scan'208";a="357526292"
+ t=1694044062; x=1725580062;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=96UtOko1Zd37NvI4pZVDZOa9IofUu5harWB4hFnHaaw=;
+ b=QM3GQ2ZGguapQkRaL2lHO/xUcyPOKd899fQwRDqZzJA1fBxUfs+jh4Rr
+ y/Opr09P36U6kokkVgB+ULHTRXWgPCq++UYucpcNF2oW6kprAKewP6ATb
+ ORtT8OP+nsTueaid1pco4XlmaO7QAVBbv8XIxeuB50+FqYnyhoQvXyHRw
+ z0acycJDor76cguk2zc/Z1zWm9YJqpiURe2GP6iX9ZulYTgeGdnNT97Sk
+ sceqRPr/mDEBPysJVTDOpxmaCmDZWSntGAcFH8krxvxKU5GCBmvJiAR0G
+ +9Dmm3LrEPpUGE5+eWGSwRIUdqgaRmeVabj4KkJMhaifYcS35y18zRzwp Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="357526295"
+X-IronPort-AV: E=Sophos;i="6.02,233,1688454000"; d="scan'208";a="357526295"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 16:47:40 -0700
+ 06 Sep 2023 16:47:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="865363198"
-X-IronPort-AV: E=Sophos;i="6.02,233,1688454000"; d="scan'208";a="865363198"
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="865363201"
+X-IronPort-AV: E=Sophos;i="6.02,233,1688454000"; d="scan'208";a="865363201"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 16:47:39 -0700
+ 06 Sep 2023 16:47:41 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 Sep 2023 16:47:33 -0700
-Message-ID: <20230906234732.3728630-6-matthew.d.roper@intel.com>
+Date: Wed,  6 Sep 2023 16:47:34 -0700
+Message-ID: <20230906234732.3728630-7-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230906234732.3728630-6-matthew.d.roper@intel.com>
+References: <20230906234732.3728630-6-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 0/4] Separate display workarounds from clock
- gating
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Stop forcing clock gating init
+ for future platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,41 +62,56 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The clock gating init hooks in i915 are a bit jumbled.  The current
-implementation includes a mix of GT workarounds (which really should
-have been in the GT workaround file instead), SoC/sgunit clock gating
-workarounds, and display workarounds (some of which are entirely
-unrelated to clock gating).  Some of this confusion originates from
-really old platforms where the boundaries between GT/display/other IP
-blocks weren't as clear as they are today, but at least on modern
-platforms we should be able to do a better job of placing this
-programming now.
+In the early days of i915, pretty much every platform needed to
+initialize _something_ in the clock gating init functions.  In some
+cases the items initialized were inside the GT (and really should have
+been initialized through the GT workaround infrastructure instead).
+In other cases they were display programming (sometimes not even related
+to "clock gating" at all!) which probably needs to move inside the
+display-specific code.  The number of initialization tasks that are
+truly "clock gating" and don't fall within the GT or display domains is
+relatively limited.  Let's stop forcing future platforms to always
+define a clock gating init hook.
 
-Let's separate the display workarounds for gen11 and newer platforms
-into a dedicated file and apply the workarounds during actual display
-initialization, rather than having them applied indirectly during GEM
-init.  This will help keep the clock gating hooks focused on actual
-SoC/sgunit clock gating going forward and avoid making them a dumping
-ground for assorted register programming.  It will also ensure that when
-i915's display code is built into the Xe driver these workarounds will
-still get applied during device probe rather than being missed as they
-are today.
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/intel_clock_gating.c | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
 
-Matt Roper (4):
-  drm/i915: Stop forcing clock gating init for future platforms
-  drm/i915/adlp: Stop calling gen12lp_init_clock_gating()
-  drm/i915/display: Extract display workarounds from clock gating init
-  drm/i915/display: Apply workarounds during display init
-
- drivers/gpu/drm/i915/Makefile                 |  1 +
- .../drm/i915/display/intel_display_driver.c   |  2 +
- .../gpu/drm/i915/display/intel_display_wa.c   | 47 ++++++++++++++++
- .../gpu/drm/i915/display/intel_display_wa.h   | 13 +++++
- drivers/gpu/drm/i915/intel_clock_gating.c     | 53 ++-----------------
- 5 files changed, 66 insertions(+), 50 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_wa.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_wa.h
-
+diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+index c66eb6abd4a2..1f2e2d7087cb 100644
+--- a/drivers/gpu/drm/i915/intel_clock_gating.c
++++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+@@ -835,9 +835,7 @@ CG_FUNCS(nop);
+  */
+ void intel_clock_gating_hooks_init(struct drm_i915_private *i915)
+ {
+-	if (IS_METEORLAKE(i915))
+-		i915->clock_gating_funcs = &nop_clock_gating_funcs;
+-	else if (IS_PONTEVECCHIO(i915))
++	if (IS_PONTEVECCHIO(i915))
+ 		i915->clock_gating_funcs = &pvc_clock_gating_funcs;
+ 	else if (IS_DG2(i915))
+ 		i915->clock_gating_funcs = &dg2_clock_gating_funcs;
+@@ -845,7 +843,7 @@ void intel_clock_gating_hooks_init(struct drm_i915_private *i915)
+ 		i915->clock_gating_funcs = &xehpsdv_clock_gating_funcs;
+ 	else if (IS_ALDERLAKE_P(i915))
+ 		i915->clock_gating_funcs = &adlp_clock_gating_funcs;
+-	else if (GRAPHICS_VER(i915) == 12)
++	else if (DISPLAY_VER(i915) == 12)
+ 		i915->clock_gating_funcs = &gen12lp_clock_gating_funcs;
+ 	else if (GRAPHICS_VER(i915) == 11)
+ 		i915->clock_gating_funcs = &icl_clock_gating_funcs;
+@@ -885,8 +883,6 @@ void intel_clock_gating_hooks_init(struct drm_i915_private *i915)
+ 		i915->clock_gating_funcs = &i85x_clock_gating_funcs;
+ 	else if (GRAPHICS_VER(i915) == 2)
+ 		i915->clock_gating_funcs = &i830_clock_gating_funcs;
+-	else {
+-		MISSING_CASE(INTEL_DEVID(i915));
++	else
+ 		i915->clock_gating_funcs = &nop_clock_gating_funcs;
+-	}
+ }
 -- 
 2.41.0
 
