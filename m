@@ -2,66 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF7BF7937B8
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 11:08:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 860197937E0
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 11:17:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A8C210E5AC;
-	Wed,  6 Sep 2023 09:08:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B272110E5A9;
+	Wed,  6 Sep 2023 09:17:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id CBE3D10E1A5;
- Wed,  6 Sep 2023 09:08:14 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8DxVuh8Qfhk0EAgAA--.29532S3;
- Wed, 06 Sep 2023 17:08:12 +0800 (CST)
-Received: from [0.0.0.0] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8CxvM56QfhkpFxuAA--.3166S3; 
- Wed, 06 Sep 2023 17:08:10 +0800 (CST)
-Message-ID: <b51d49f3-e3de-6b8d-9cb4-df5c03f3cdc0@loongson.cn>
-Date: Wed, 6 Sep 2023 17:08:10 +0800
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B2BD10E5A9;
+ Wed,  6 Sep 2023 09:17:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693991855; x=1725527855;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=59bLv4KLEPTsW/Kpuzfm11fkHZsbY2iGvbMNU7NcZ9o=;
+ b=TPYGUIKD4en0yJV6SzO7mMQblLQtcvTgnZ3p9M7Q0hEK53wdOARy3VhB
+ D3CBEOowQvnbqYiPjoOcB/hBAJAhfkC+P0CJ/4X4rZnmDn+tkwMDzPL9m
+ k5WbxK9B/4BiuQTtnAHBWRknQpbOE1uXaUe/DmnWcMqH/iJg+Zk6e2GqW
+ J9f6YDtUigPVJW2JN9DLXkp7oqxsZzezfec+3w7b0HFe7WFdS0F3ChI52
+ O0R8ro6ow6r4y29NouQVgHTW7cluABLlDUTpC+RrUk50Io4PgLVfUOsWo
+ o9m7LjRkDJyfRjMo8J3M+Eg+35t1lTfO7Lm1FnpggGXCekKzFsQ9TKB5V w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="375916951"
+X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="375916951"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 02:17:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="988161031"
+X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="988161031"
+Received: from kmiranda-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.251.216.135])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 02:17:32 -0700
+Date: Wed, 6 Sep 2023 11:17:29 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Message-ID: <ZPhDqTusn9FYY8qV@ashyti-mobl2.lan>
+References: <20230811182011.546026-1-zhanjun.dong@intel.com>
+ <3a745c83-e7cf-6a24-5556-8c0c019adfec@intel.com>
+ <ZOYtNyqfvqJPeqq2@phenom.ffwll.local>
+ <e31b1f49-88cd-d6e4-abbe-51f27712ff83@intel.com>
+ <ZPCc4CU+S6Gv6GzQ@ashyti-mobl2.lan>
+ <983eb186-5b6a-8df3-1e67-eb7da6a8dbcd@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
- <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
- <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
- <2adfa653-ac35-d560-be52-c92848a1eef5@gmail.com>
-From: suijingfeng <suijingfeng@loongson.cn>
-In-Reply-To: <2adfa653-ac35-d560-be52-c92848a1eef5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxvM56QfhkpFxuAA--.3166S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxArWruw1kuFW8Ar4UKF1xJFc_yoWrJw1rpF
- 4YqFyUtr4kGr1rAr4Skw48WFZ5AFsFqFy5GF1vgr1Fv398Xr1Fvr9rtF4UCa4UXrn7Z3W0
- 9rWFqrW7GF4DZFXCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUP2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v2
- 6F4UJVW0owAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
- Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_
- Jw1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrw
- CYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48J
- MxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI
- 0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y
- 0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxV
- WUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1l
- IxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8uc_3UUUU
- U==
-Subject: Re: [Intel-gfx] [Nouveau] [RFC,
- drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
- primary video adapter at boot time
+In-Reply-To: <983eb186-5b6a-8df3-1e67-eb7da6a8dbcd@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: Avoid circular locking
+ dependency when flush delayed work on gt reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,100 +65,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi John,
 
+> > > > > >     static void guc_cancel_busyness_worker(struct intel_guc *guc)
+> > > > > >     {
+> > > > > > -	cancel_delayed_work_sync(&guc->timestamp.work);
+> > > > > > +	/*
+> > > > > > +	 * When intel_gt_reset was called, task will hold a lock.
+> > > > > > +	 * To cacel delayed work here, the _sync version will also acquire a lock, which might
+> > > > > > +	 * trigger the possible cirular locking dependency warning.
+> > > > > > +	 * Check the reset_in_progress flag, call async verion if reset is in progress.
+> > > > > > +	 */
+> > > > > This needs to explain in much more detail what is going on and why it is not
+> > > > > a problem. E.g.:
+> > > > > 
+> > > > >      The busyness worker needs to be cancelled. In general that means
+> > > > >      using the synchronous cancel version to ensure that an in-progress
+> > > > >      worker will not keep executing beyond whatever is happening that
+> > > > >      needs the cancel. E.g. suspend, driver unload, etc. However, in the
+> > > > >      case of a reset, the synchronous version is not required and can
+> > > > >      trigger a false deadlock detection warning.
+> > > > > 
+> > > > >      The business worker takes the reset mutex to protect against resets
+> > > > >      interfering with it. However, it does a trylock and bails out if the
+> > > > >      reset lock is already acquired. Thus there is no actual deadlock or
+> > > > >      other concern with the worker running concurrently with a reset. So
+> > > > >      an asynchronous cancel is safe in the case of a reset rather than a
+> > > > >      driver unload or suspend type operation. On the other hand, if the
+> > > > >      cancel_sync version is used when a reset is in progress then the
+> > > > >      mutex deadlock detection sees the mutex being acquired through
+> > > > >      multiple paths and complains.
+> > > > > 
+> > > > >      So just don't bother. That keeps the detection code happy and is
+> > > > >      safe because of the trylock code described above.
+> > > > So why do we even need to cancel anything if it doesn't do anything while
+> > > > the reset is in progress?
+> > > It still needs to be cancelled. The worker only aborts if it is actively
+> > > executing concurrently with the reset. It might not start to execute until
+> > > after the reset has completed. And there is presumably a reason why the
+> > > cancel is being called, a reason not necessarily related to resets at all.
+> > > Leaving the worker to run arbitrarily after the driver is expecting it to be
+> > > stopped will lead to much worse things than a fake lockdep splat, e.g. a use
+> > > after free pointer deref.
+> > I was actually thinking why not leave things as they are and just
+> > disable lockdep from CI. This doesn't look like a relevant report
+> > to me.
+> > 
+> > Andi
+> Disable lockdep? The whole of lockdep? We absolutely do not want to disable
+> an extremely important deadlock testing infrastructure in our test
+> framework. That would be defeating the whole point of CI.
+> 
+> Potentially we could annotate this one particular scenario to suppress this
+> one particular error.  But it seems simpler and safer to just update the
+> code to not hit that scenario in the first place.
 
-On 2023/9/6 14:45, Christian KÃ¶nig wrote:
-> Am 05.09.23 um 15:30 schrieb suijingfeng:
->> Hi,
->>
->>
->> On 2023/9/5 18:45, Thomas Zimmermann wrote:
->>> Hi
->>>
->>> Am 04.09.23 um 21:57 schrieb Sui Jingfeng:
->>>> From: Sui Jingfeng <suijingfeng@loongson.cn>
->>>>
->>>> On a machine with multiple GPUs, a Linux user has no control over 
->>>> which
->>>> one is primary at boot time. This series tries to solve above 
->>>> mentioned
->>>
->>> If anything, the primary graphics adapter is the one initialized by 
->>> the firmware. I think our boot-up graphics also make this assumption 
->>> implicitly.
->>>
->>
->> Yes, but by the time of DRM drivers get loaded successfully,the 
->> boot-up graphics already finished.
->
-> This is an incorrect assumption.
->
-> drm_aperture_remove_conflicting_pci_framebuffers() and co don't kill 
-> the framebuffer, 
+yes... lockdep is a debug tool and might provide false reports...
+We need to have a great willingness to start fixing and hunting
+debug lockdep's false positives (like this one, for instance).
 
-Well, my original description to this technique point is that
+It's even more annoying to reduce our CI pass rates, especially
+when in BAT tests, with such false deadlocks.
 
-1) "Firmware framebuffer device already get killed by the drm_aperture_remove_conflicting_pci_framebuffers() function (or its siblings)"
-2) "By the time of DRM drivers get loaded successfully, the boot-up graphics already finished."
+It's the developer's responsibility to test its code with
+debug_lockdep and fix all the potential deadlocks and ignore the
+false ones.
 
-The word "killed" here is rough and coarse description about
-how does the drm device driver take over the firmware framebuffer.
-Since there seems have something obscure our communication,
-lets make the things clear. See below for more elaborate description.
+I sent a patch for this[*] already.
 
+Andi
 
-> they just remove the current framebuffer driver to avoid further updates.
->
-This statement doesn't sound right, for UEFI environment,
-a correct description is that they remove the platform device, not the framebuffer driver.
-For the machines with the UEFI firmware, framebuffer driver here definitely refer to the efifb.
-The efifb still reside in the system(linux kernel).
-
-Please see the aperture_detach_platform_device() function in video/aperture.c
-
-> So what happens (at least for amdgpu) is that we take over the 
-> framebuffer,
-
-This statement here is also not an accurate description.
-
-Strictly speaking, drm/amdgpu takes over the device (the VRAM hardware),
-not the framebuffer.
-
-The word "take over" here is also dubious, because drm/amdgpu takes over nothing.
-
- From the perspective of device-driver model, the GPU hardware *belongs* to the amdgpu drivers.
-Why you need to take over a thing originally and belong to you?
-
-If you could build the drm/amdgpu into the kernel and make it get loaded
-before the efifb. Then, there no need to use the firmware framebuffer (
-the talking is limited to the display boot graphics purpose here).
-On such a case, the so-called "take over" will not happen.
-
-The truth is that the efifb create a platform device, which *occupy*
-part of the VRAM hardware resource. Thus, the efifb and the drm/amdgpu
-form the conflict. There are conflict because they share the same
-hardware resource. It is the hardware resources(address ranges) used
-by two different driver are conflict. Not the efifb driver itself
-conflict with drm/amdgpu driver.
-
-Thus, drm_aperture_remove_conflicting_xxxxxx() function have to kill
-one of the device are conflicting. Not to kill the driver. Therefore,
-the correct word would be the "reclaim".
-drm/amdgpu *reclaim* the hardware resource (vram address range) originally belong to you.
-
-The modeset state (including the framebuffer content) still reside in the amdgpu device.
-You just get the dirty framebuffer image in the framebuffer object.
-But the framebuffer object already dirty since it in the UEFI firmware stage.
-
-In conclusion, *reclaim* is more accurate than the "take over".
-And as far as I'm understanding, the drm/amdgpu take over nothing, no gains.
-
-Well, welcome to correct me if I'm wrong.
-
+[*] https://gitlab.freedesktop.org/gfx-ci/i915-infra/-/merge_requests/128
