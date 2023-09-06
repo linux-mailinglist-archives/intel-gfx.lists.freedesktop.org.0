@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9D737944EB
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 23:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3230F794509
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 23:20:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B945F10E1E2;
-	Wed,  6 Sep 2023 21:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B933D10E1F9;
+	Wed,  6 Sep 2023 21:19:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA85E10E1E2
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 21:05:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694034304; x=1725570304;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8WSMG/KYjbTfadga1OJx6tG7pPXPqEjBuGwJjm3jC3I=;
- b=W/w3+6rZ2KVXxJZVz9iy3iWbyO2aT+Jv10WEDma0uGS4VJITM7r7pJs/
- 9G3NNmbR79B8zcRH9w65niC9vzoUwcKV/JAS2xctfu2p8mRJ8/Nn84QFd
- 87J2RF1RXq0GN9TvzNcpQ7O4xsoycpZXR/lpDmXdv6kAL9O3O5oJQQsUg
- 9FSISgJPI0DSxTyHa7x9kFJphvHyhTt2szzdg6Ofnb5vALnnCtAOu1YJM
- yFE3kFTRCa1s0vVQ3uLZ3MMohOt5kPLKvuK/1GZ6fgLZiDq1kWJ//kJvP
- 6kyOBQDXThQvnolxvufcr5/5nP1v3DhzCwyh7b3LLjkLBecjeIguXE4py A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="367405187"
-X-IronPort-AV: E=Sophos;i="6.02,233,1688454000"; d="scan'208";a="367405187"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 14:04:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="831850267"
-X-IronPort-AV: E=Sophos;i="6.02,233,1688454000"; d="scan'208";a="831850267"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 14:04:15 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  6 Sep 2023 14:04:09 -0700
-Message-ID: <20230906210409.2674462-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.41.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 45B5310E1FF;
+ Wed,  6 Sep 2023 21:19:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 421ADAADDC;
+ Wed,  6 Sep 2023 21:19:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI] PR for MTL HuC v8.5.4
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Date: Wed, 06 Sep 2023 21:19:57 -0000
+Message-ID: <169403519723.17389.5587215622524636573@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230905201947.1299112-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20230905201947.1299112-1-jonathan.cavitt@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Apply_Wa=5F16018031267_/_Wa=5F16018063123_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,25 +40,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following changes since commit ad03b851816cc6868f27a29732489fc565739368:
+== Series Details ==
 
-  Merge branch 'rb12-fw-v2' into 'main' (2023-09-06 20:40:34 +0000)
+Series: Apply Wa_16018031267 / Wa_16018063123 (rev3)
+URL   : https://patchwork.freedesktop.org/series/123306/
+State : warning
 
-are available in the Git repository at:
+== Summary ==
 
-  git://anongit.freedesktop.org/drm/drm-firmware mtl_huc_8.5.4
+Error: dim checkpatch failed
+aac4252cdeda drm/i915: Add WABB blit for Wa_16018031267 / Wa_16018063123
+-:10: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
+#10: 
+Co-developed-by: Nirmoy Das <nirmoy.das@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-for you to fetch changes up to 82ef648d026200e40a597ba7ea795b1c97dcebf2:
+-:35: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'engine' - possible side-effects?
+#35: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:86:
++#define NEEDS_FASTCOLOR_BLT_WABB(engine) ( \
++	IS_GFX_GT_IP_RANGE(engine->gt, IP_VER(12, 55), IP_VER(12, 71)) && \
++	engine->class == COPY_ENGINE_CLASS)
 
-  i915: update MTL HuC to version 8.5.4 (2023-09-06 13:58:22 -0700)
+-:35: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'engine' may be better as '(engine)' to avoid precedence issues
+#35: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:86:
++#define NEEDS_FASTCOLOR_BLT_WABB(engine) ( \
++	IS_GFX_GT_IP_RANGE(engine->gt, IP_VER(12, 55), IP_VER(12, 71)) && \
++	engine->class == COPY_ENGINE_CLASS)
 
-----------------------------------------------------------------
-Daniele Ceraolo Spurio (1):
-      i915: update MTL HuC to version 8.5.4
+-:68: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#68: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:836:
++	GEM_BUG_ON(lrc_ring_wa_bb_per_ctx(engine) == -1);
 
- WHENCE               |   2 +-
- i915/mtl_huc_gsc.bin | Bin 569344 -> 561152 bytes
- 2 files changed, 1 insertion(+), 1 deletion(-)
+-:184: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#184: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:1462:
++	GEM_BUG_ON(cs - start > I915_GTT_PAGE_SIZE / sizeof(*cs));
+
+total: 0 errors, 3 warnings, 2 checks, 317 lines checked
+a5d433015017 drm/i915: Set copy engine arbitration for Wa_16018031267 / Wa_16018063123
+
+
