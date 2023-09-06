@@ -2,51 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D02EE79383C
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 11:30:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C0CF79387A
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 11:40:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD2C110E5B6;
-	Wed,  6 Sep 2023 09:29:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5F8A10E5A1;
+	Wed,  6 Sep 2023 09:40:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85E3B10E5B5;
- Wed,  6 Sep 2023 09:29:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693992596; x=1725528596;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=InuUFgNUsul1w70mGZDKR5EL1cwSsb7qff6mKym4wiI=;
- b=B4XI4lvXeOJUl0RiKFAQk8MQXK35WfMa45i8dH14nSCIGgs+/hEjPRBB
- 6WW2o45/v0xB0Jc06YCBRLuSdc5rQMjohlTwWnkI+K6tYTd1vMyuVy6P3
- qVSFB7mlsWMeyWUSsLlpRmkaq1CF5weK8c2m+F0pc3yV0yr/8mH9x+cIk
- Crop2Aq1Ijw3rlKOTHUGun1bGzJXc9eTjE6nraHwHw0CBdC9JCuVMZ9Ww
- 97gk6Jc4ApRCk575sQgdLhkFEJ1MHpAv7Jm6yiBog+i3f8N6ojv4d6Za7
- D8mGTq2N3642/L90S3u99jMjSatyPxp0i6/WLj1nEpAYiAnFnNVeAuXPx g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="367237148"
-X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="367237148"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 02:29:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="776528961"
-X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="776528961"
-Received: from kmiranda-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.251.216.135])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 02:29:52 -0700
-Date: Wed, 6 Sep 2023 11:29:48 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Message-ID: <ZPhGjLtIcsA3G8vP@ashyti-mobl2.lan>
-References: <20230905193624.525020-1-radhakrishna.sripada@intel.com>
- <ZPhFj0H8OYtp1CGh@ashyti-mobl2.lan>
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7B2010E184;
+ Wed,  6 Sep 2023 09:40:18 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id
+ 4fb4d7f45d1cf-5230a22cfd1so4986161a12.1; 
+ Wed, 06 Sep 2023 02:40:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1693993217; x=1694598017; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=X9Vb47gswGc4CRFmCgVTREKIby3QhfxygfFTeY7yqU8=;
+ b=Ao9wuGckfQOQNZwPOzx7K6e9yNXhVQPkqL46S/jz+BEc7PlFwgf2/A7elpqb8oOUr0
+ 8m+cKSLmBoZihy1/oiXUiZJeKhdFo2PpTn2THvHYyxOvCQoMTZ81pfJXUonn5aQ8xIR3
+ tUTsrjA3wVpEXzpaBwNZf+/alUCygXv004qVqsEGSJNBXiZd2eJ2UKns2xryf9UV0ywL
+ +K1lWSQfhF7tudjhRxb9NUcy5pbIraQ9ctJrivU6Q0dxwb3QqKicsVdd2jfb5KgoJVB9
+ VNuV1GFi+rVvabSA+4TVUzGdL8K0jj5Mm+Eus1HUV5g5QyFXdpXxJfElI0i+OAoocQsy
+ 6QqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693993217; x=1694598017;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=X9Vb47gswGc4CRFmCgVTREKIby3QhfxygfFTeY7yqU8=;
+ b=OKCom0vVX+Y7pQFwM5dJxsprj/hOEuChgGyn/L9ifOurqXAioFZd1S5X1iY33VxXfp
+ KAMeLuAohil66wX5wXQELIjGVlsU9AYxkwDCT0O9fWD4JCkjS4w8pqFKtaLqsKLsAex2
+ ECzRMLRqAmiops+dherw4Kx1qIbN9DaVye9BSciqd1upZE/6JK1KryHl5Aq9ls1ol04a
+ lJ6u+WUIpdJ7wYMpzINwv7eyylSmgLi2VfESsQFXbd2wGm/N5QWfXvk6aeNckp+idM5+
+ 1tc8I/zj5AR5Sq7t04MM88TZ9mXPzlxk6KZPDLLOnbT93ZKy66+U6CsuhIlp455+MXzJ
+ aH4g==
+X-Gm-Message-State: AOJu0YwFcoz6faH++xv1tEhBl87VCYV8qozyR3vIgbZuJXVQb/Q7glrD
+ auxxhzSMHAu0LE1RUCbrWYw=
+X-Google-Smtp-Source: AGHT+IGAFjVUBWoiL4jFZIhLJ5+kFxpO6Qwb5IlvPalw7IqLnbbVI5DXHgXOw/07cUZAyzy2ptzREw==
+X-Received: by 2002:aa7:c750:0:b0:522:3ef1:b1d with SMTP id
+ c16-20020aa7c750000000b005223ef10b1dmr1598365eds.6.1693993216912; 
+ Wed, 06 Sep 2023 02:40:16 -0700 (PDT)
+Received: from [192.168.178.25] ([134.19.97.6])
+ by smtp.gmail.com with ESMTPSA id
+ es9-20020a056402380900b0052e9b50dafdsm599052edb.33.2023.09.06.02.40.12
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 06 Sep 2023 02:40:12 -0700 (PDT)
+Message-ID: <10509692-ce04-e225-5a27-abc955554bdc@gmail.com>
+Date: Wed, 6 Sep 2023 11:40:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZPhFj0H8OYtp1CGh@ashyti-mobl2.lan>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Drop force_probe requirement
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: suijingfeng <suijingfeng@loongson.cn>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+ <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
+ <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
+ <2adfa653-ac35-d560-be52-c92848a1eef5@gmail.com>
+ <b51d49f3-e3de-6b8d-9cb4-df5c03f3cdc0@loongson.cn>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <b51d49f3-e3de-6b8d-9cb4-df5c03f3cdc0@loongson.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [Nouveau] [RFC,
+ drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
+ primary video adapter at boot time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,36 +87,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, dri-devel@lists.freedesktop.org,
- Andrzej Hajda <andrzej.hajda@intel.com>, rodrigo.vivi@intel.com,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> > Meteorlake has been very usable for a while now, all of uapi changes
-> > related to fundamental platform usage have been finalized and all
-> > required firmware blobs are available. Recent CI results have also
-> > been healthy, so we're ready to drop the force_probe requirement and
-> > enable the platform by default.
-> > 
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> 
-> Please keep me in the loop as well... It's been a year I've been
-> working for this patch to work :)
+Am 06.09.23 um 11:08 schrieb suijingfeng:
+> Well, welcome to correct me if I'm wrong.
 
-not just me, but also (in alphabetical order):
+You seem to have some very basic misunderstandings here.
 
-  Andrzej Hajda <andrzej.hajda@intel.com>
-  Chris Wilson <chris.p.wilson@linux.intel.com>
-  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-  Jonathan Cavitt <jonathan.cavitt@intel.com>
-  Nirmoy Das <nirmoy.das@intel.com>
+The term framebuffer describes some VRAM memory used for scanout.
 
-Thanks!
-Andi
+This framebuffer is exposed to userspace through some framebuffer 
+driver, on UEFI platforms that is usually efifb but can be quite a bunch 
+of different drivers.
+
+When the DRM drivers load they remove the previous drivers using 
+drm_aperture_remove_conflicting_pci_framebuffers() (or similar 
+function), but this does not mean that the framebuffer or scanout 
+parameters are modified in any way. It just means that the framebuffer 
+is just no longer exposed through this driver.
+
+Take over is the perfectly right description here because that's exactly 
+what's happening. The framebuffer configuration including the VRAM 
+memory as well as the parameters for scanout are exposed by the newly 
+loaded DRM driver.
+
+In other words userspace can query through the DRM interfaces which 
+monitors already driven by the hardware and so in your terminology 
+figure out which is the primary one.
+
+It's just that as Thomas explained as well that this completely 
+irrelevant to any modern desktop. Both X and Wayland both iterate the 
+available devices and start rendering to them which one was used during 
+boot doesn't really matter to them.
+
+Apart from that ranting like this and trying to explain stuff to people 
+who obviously have much better background in the topic is not going to 
+help your patches getting upstream.
+
+Regards,
+Christian.
+
