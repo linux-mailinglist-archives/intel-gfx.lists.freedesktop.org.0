@@ -1,69 +1,79 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3AE79437B
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 21:03:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 881FB7943C9
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 21:29:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72E2610E71F;
-	Wed,  6 Sep 2023 19:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF38410E1E0;
+	Wed,  6 Sep 2023 19:29:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com
- [IPv6:2607:f8b0:4864:20::d2f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67E1310E70E;
- Wed,  6 Sep 2023 19:02:36 +0000 (UTC)
-Received: by mail-io1-xd2f.google.com with SMTP id
- ca18e2360f4ac-794cd987ea6so4443539f.2; 
- Wed, 06 Sep 2023 12:02:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1694026955; x=1694631755; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=usLeqXzE5U9X3mWlGIhl2wkCPYgPL1jt55C0ImyryHk=;
- b=npZ3pZivWvRqUaXwwfgbiguPH8fIFg/ymvUutQrUntSfmh/E29WtFKknD9snKamVwN
- Okc/tkNL3PRzrkzp746RGHAcMyHeJ+8Y4F3u/t9moLokgDmVrT4ydrNxu0DmbIUFMnw5
- j5ceMAYRhfBZxpniBBxheQaXfDXOAM5FS7matSrvmj1y6sRL6nj69oRHm7FDq4VHFpyk
- wVPiBDa8LuUDgxWJLmYouZ+ut7fTZOoc5SjVJnghuDf+FH1R9RhnyWDiFwsrHKcrq7AF
- fvoLus6My1popPUKgRoZ26Pvi6xILs99qtTOic3DTCMMO4NzUVhpNRKqU4QnUYBJ2c8a
- KzKA==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32A6010E1C8
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 19:29:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1694028550;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=OwwduPqGCVJn22tqbOPsTtJSzzPqAt4KVB85T+OdR9M=;
+ b=N7WNtkXQDquXfaQ4FGVCFu5ahGgxelHGSNQD5HB/LFgg5vggIidaOpiHfVCzl7murlPUmX
+ f/lZV6xbdDTXD3zj4gx/WUwRSjO5pw/dl8/YXoOVtL0fa5CP1L+bxv+nyu2dVlfXrh2PnA
+ UahjfqdoW1rmi7iOPXCmALd8UjKC8lc=
+Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
+ [209.85.166.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-60-kW3fFuloMT2eovmrjl4bNQ-1; Wed, 06 Sep 2023 15:29:07 -0400
+X-MC-Unique: kW3fFuloMT2eovmrjl4bNQ-1
+Received: by mail-il1-f199.google.com with SMTP id
+ e9e14a558f8ab-34bbda33121so1466925ab.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 06 Sep 2023 12:29:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1694026955; x=1694631755;
+ d=1e100.net; s=20221208; t=1694028546; x=1694633346;
  h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=usLeqXzE5U9X3mWlGIhl2wkCPYgPL1jt55C0ImyryHk=;
- b=Sk97UZyd8Y1bFPBuoqqv1xCI2maLXSph0qsR7eeoXcJqdtWX4k5IrqjJpWfdlV/q8n
- xlCmDqs5HSK1JFroGsTkYGes2hqdlelZNQLohI/V60h7f8TudSlrt145gcBCEUWxV/Qg
- yKxnZgwZ73pcI57Nzs1ZYrp3nNf+vABdNcr9kHW8+7HZU9vYCKuIR91PGjsEfyom+ETL
- cAWxSJKpn6nQh0enHARycqduTXucxVSz6oowS3eqmgFQPf0K4D+shGadSE1m3KF3mP/b
- hHI8rXWHdSwej2/Th0c+OhlBRKq+I8Y2YCpb3hFe9PJ+vqlS+17OFVEgDuVjDU4PsLXL
- N+1w==
-X-Gm-Message-State: AOJu0YwTHTGkBWgWgMTYPnSt7o3G3jIjhfCcUFCppQspKqNfc7zDqRmX
- j3xwYprtviRkpMDGMhsnUPY=
-X-Google-Smtp-Source: AGHT+IFTPVrAnUWjjhREw0Hvr2AR0rY8UkvdcnI2CamAN17ipmhg22bz+NrpSLLjzXAWDFV8FZHQ6Q==
-X-Received: by 2002:a6b:dd0b:0:b0:791:16ba:d764 with SMTP id
- f11-20020a6bdd0b000000b0079116bad764mr18373492ioc.16.1694026955566; 
- Wed, 06 Sep 2023 12:02:35 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- w11-20020a5d844b000000b0076ffebfc9fasm5152306ior.47.2023.09.06.12.02.34
+ bh=BkNqqrFNSye+85FOkqcxyjqr5JGuixiZESeFlYs5s54=;
+ b=f6vE6bTkeixSOH5LCRYRgj76GrHOwZ4Dvzr9G1tnD46QOTban7AZapNQjUITWFPFIm
+ 4REN0F9KFA7WXSC+UltZXZJ6/q5YdaX726hqmXjNszCgoWCFxzt/HvSL7kroDLyvNg0p
+ qq/ehS7Jzw/iS6SipSUHxZj3RwJGEjKRudmXxknZvm/QOx9cGM8zxvGH1BjQK9p/TyTw
+ t8k244JqAZQtiQqZkFtqw1tdFr5pZim1X8qJE4BXy8mQQiFIGl3fovNa4VmhSYUW6I5k
+ OFozVu4D9tiPBGYn6a+LchTi8RvJ1t/rlNOTfoHQYGseU4DEf5UFr2ct84SeD8+MSh+v
+ jOGQ==
+X-Gm-Message-State: AOJu0YwqPuZpD7lsxGrhqBOHgUe6Clu5k68EVyQ74q73BWPD70phAcRd
+ rKPVnD833MUIhzFiCEjbvz4qTY4l5Xm9USarGa2ApQU5p0057Z8hWvMdWM4esfQhQLImfa4xz14
+ TR20IioH+IgkIwJVQHxZvxuXBifAg
+X-Received: by 2002:a05:6e02:1d11:b0:347:6b30:5bd3 with SMTP id
+ i17-20020a056e021d1100b003476b305bd3mr21867133ila.13.1694028546537; 
+ Wed, 06 Sep 2023 12:29:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEyKFIvkN7zuLMbU6PvggO334g+2dgeQZvJcZ8JKJqA6E6EEEA4iTKmp69E/q99AN/ZBKFIOQ==
+X-Received: by 2002:a05:6e02:1d11:b0:347:6b30:5bd3 with SMTP id
+ i17-20020a056e021d1100b003476b305bd3mr21867112ila.13.1694028546213; 
+ Wed, 06 Sep 2023 12:29:06 -0700 (PDT)
+Received: from redhat.com ([38.15.60.12]) by smtp.gmail.com with ESMTPSA id
+ m11-20020a92710b000000b0034e28100d1csm3233596ilc.58.2023.09.06.12.29.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 06 Sep 2023 12:02:35 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Wed,  6 Sep 2023 13:02:23 -0600
-Message-ID: <20230906190224.583577-6-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230906190224.583577-1-jim.cromie@gmail.com>
-References: <20230906190224.583577-1-jim.cromie@gmail.com>
+ Wed, 06 Sep 2023 12:29:05 -0700 (PDT)
+Date: Wed, 6 Sep 2023 13:29:04 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Sui Jingfeng <sui.jingfeng@linux.dev>
+Message-ID: <20230906132904.4e49e269.alex.williamson@redhat.com>
+In-Reply-To: <a6337007-b6fa-2ce9-d0cd-46465b540205@linux.dev>
+References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+ <20230905085243.4b22725e.alex.williamson@redhat.com>
+ <a6337007-b6fa-2ce9-d0cd-46465b540205@linux.dev>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 5/5] drm/Makefile: use correct ccflags-y
- syntax
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [RFC,
+ drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
+ primary video adapter at boot time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,43 +86,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, jani.nikula@intel.com,
- daniel.vetter@ffwll.ch, Maxime Ripard <mripard@kernel.org>,
- Jim Cromie <jim.cromie@gmail.com>, seanpaul@chromium.org, daniel@ffwll.ch,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- David Airlie <airlied@gmail.com>
+Cc: Sui Jingfeng <suijingfeng@loongson.cn>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, linux-pci@vger.kernel.org,
+ Bjorn Helgaas <bhelgaas@google.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Incorrect CFLAGS- usage failed to add -DDYNAMIC_DEBUG_MODULE when needed,
-which broke builds with:
+On Wed, 6 Sep 2023 11:51:59 +0800
+Sui Jingfeng <sui.jingfeng@linux.dev> wrote:
 
-CONFIG_DRM_USE_DYNAMIC_DEBUG=Y
-CONFIG_DYNAMIC_DEBUG_CORE=Y
-CONFIG_DYNAMIC_DEBUG=N
+> Hi,
+>=20
+>=20
+> On 2023/9/5 22:52, Alex Williamson wrote:
+> > On Tue,  5 Sep 2023 03:57:15 +0800
+> > Sui Jingfeng <sui.jingfeng@linux.dev> wrote:
+> > =20
+> >> From: Sui Jingfeng <suijingfeng@loongson.cn>
+> >>
+> >> On a machine with multiple GPUs, a Linux user has no control over whic=
+h
+> >> one is primary at boot time. This series tries to solve above mentione=
+d
+> >> problem by introduced the ->be_primary() function stub. The specific
+> >> device drivers can provide an implementation to hook up with this stub=
+ by
+> >> calling the vga_client_register() function.
+> >>
+> >> Once the driver bound the device successfully, VGAARB will call back t=
+o
+> >> the device driver. To query if the device drivers want to be primary o=
+r
+> >> not. Device drivers can just pass NULL if have no such needs.
+> >>
+> >> Please note that:
+> >>
+> >> 1) The ARM64, Loongarch, Mips servers have a lot PCIe slot, and I woul=
+d
+> >>     like to mount at least three video cards.
+> >>
+> >> 2) Typically, those non-86 machines don't have a good UEFI firmware
+> >>     support, which doesn't support select primary GPU as firmware stag=
+e.
+> >>     Even on x86, there are old UEFI firmwares which already made undes=
+ired
+> >>     decision for you.
+> >>
+> >> 3) This series is attempt to solve the remain problems at the driver l=
+evel,
+> >>     while another series[1] of me is target to solve the majority of t=
+he
+> >>     problems at device level.
+> >>
+> >> Tested (limited) on x86 with four video card mounted, Intel UHD Graphi=
+cs
+> >> 630 is the default boot VGA, successfully override by ast2400 with
+> >> ast.modeset=3D10 append at the kernel cmd line.
+> >>
+> >> $ lspci | grep VGA
+> >>
+> >>   00:02.0 VGA compatible controller: Intel Corporation CoffeeLake-S GT=
+2 [UHD Graphics 630] =20
+> > In all my previous experiments with VGA routing and IGD I found that
+> > IGD can't actually release VGA routing and Intel confirmed the hardware
+> > doesn't have the ability to do so. =20
+>=20
+> Which model of the IGD you are using?=C2=A0even for the IGD in Atom D2550=
+,
+> the legacy 128KB VGA memory range can be=C2=A0tuned to be mapped to IGD
+> or to the DMI Interface. See the 1.7.3.2 section of the N2000 datasheet[1=
+].
 
-Also add subdir-ccflags so that all drivers pick up the addition.
+I believe it's the VGA I/O that can't be disabled, there's no means to
+do so other than the I/O enable bit in the command register and iirc
+the driver depends on this for other features.  The history of this is
+pretty old, but here are some links:
 
-Fixes: 84ec67288c10 ("drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro")
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/Makefile | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+https://lore.kernel.org/all/1376486637.31494.19.camel@ul30vt.home/
+https://bbs.archlinux.org/viewtopic.php?pid=3D1400212#p1400212
+https://lore.kernel.org/all/20130815223917.27890.28003.stgit@bling.home/
+https://lore.kernel.org/all/20130824144701.23370.42110.stgit@bling.home/
+https://lore.kernel.org/all/20140509201655.2849.97478.stgit@bling.home/
 
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 7a09a89b493b..013cde886326 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -3,7 +3,8 @@
- # Makefile for the drm device driver.  This driver provides support for the
- # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
- 
--CFLAGS-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
-+ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)		+= -DDYNAMIC_DEBUG_MODULE
-+subdir-ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
- 
- drm-y := \
- 	drm_aperture.o \
--- 
-2.41.0
+I think the issue was that i915 doesn't claim to the VGA arbiter to be
+controlling legacy VGA ranges, but in fact the hardware does claim
+those ranges.  We can "fix" i915 to report that VGA MMIO space is
+owned and can be controlled, but then Xorg likely sees multiple VGA
+arbiter clients and disables DRI because it wants to mmap VGA MMIO
+space.
+
+Therefore unless something has changed in the past 10yrs, i915 owns but
+does not advertise ownership of the VGA address spaces and therefore
+the arbiter can't and doesn't know to change VGA routing to enable a
+"be_primary" path to another device.
+=20
+> If a specific model of Intel has a bug in the VGA routing hardware logic =
+unit,
+> I would like to ignore it. Or switch to the UEFI firmware on such hardwar=
+e.
+
+That's a convenient and impractical approach.  I expect all Intel HD
+graphics has this issue.  Unknown for Xe.
+
+> It is the hardware engineer's responsibility, I will not worry about it.
+
+We often need to deal with broken hardware in the kernel.
+
+> Thanks for you tell this.
+>=20
+> [1] https://www.intel.com/content/dam/doc/datasheet/atom-d2000-n2000-vol-=
+2-datasheet.pdf
+>=20
+>=20
+> >   It will always be primary from a
+> > VGA routing perspective.  Was this actually tested with non-UEFI? =20
+>=20
+>=20
+> As you already said,=C2=A0the generous Intel already have confirmed that =
+the hardware defect.
+> So probably this is a good chance to switch to UEFI to solve the problem.=
+ Then, no
+> testing for legacy is needed.
+
+Then why are we hacking on VGA arbitration in this series at all?
+
+> > I suspect it might only work in UEFI mode where we probably don't
+> > actually have a dependency on VGA routing.  This is essentially why
+> > vfio requires UEFI ROMs when assigning GPUs to VMs, VGA routing is too
+> > broken to use on Intel systems with IGD.  Thanks, =20
+>=20
+> Thanks for you tell me this.
+>=20
+> To be honest, I have only tested my patch on machines with UEFI=C2=A0firm=
+ware.
+> Since UEFI because the main stream, but if this patch is really useful fo=
+r
+> majority machine, I'm satisfied. The results is not too bad.
+
+This looks like a pretty significant scoping issue if you're proposing
+changes to the VGA arbiter which specifically handles the routing of
+legacy VGA address spaces but are not willing to commit to testing
+legacy configurations.  Thanks,
+
+Alex
 
