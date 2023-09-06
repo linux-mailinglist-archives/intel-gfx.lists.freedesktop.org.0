@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59D74793823
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 11:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D02EE79383C
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 11:30:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86E1910E5A9;
-	Wed,  6 Sep 2023 09:25:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD2C110E5B6;
+	Wed,  6 Sep 2023 09:29:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48AB410E192;
- Wed,  6 Sep 2023 09:25:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85E3B10E5B5;
+ Wed,  6 Sep 2023 09:29:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693992340; x=1725528340;
+ t=1693992596; x=1725528596;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=HuzTWU4TjFaD1+WvsaPWQM0dzZen5pURK3RvGKWgYgg=;
- b=Kv9lvqTlHA0anLjXkYKdvah4qqcnS+rsX8bgVH65uB/WLnlxuj+4qgcZ
- FRvOGYBSHxb1JSz/81S0kDFFwOZJF8VM3NmUj5hFccTr1oEE5uM5IGHQA
- LBBr6DWBzsfkpROB/rSFH/6O5lgyPzYdGHhvVyEwJPzTN8DIp2LvvakTI
- fzPvsCwo767IxU5VmpBZi1lYvZA22lb1M74Zf2OIJC8c4o6MN+O64RQq6
- NU0iBHmhhDo/XtW9CfNZCZ/l1IZsPTcRQvJFJgu0GZ8ASKqDEMCQcSTBi
- y9IsgG93mNsjOg6uOsK7qMF5xFNSGLhN4NXfQi7X9lfLMMRPo3nf4rbT7 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="440991107"
-X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="440991107"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 02:25:39 -0700
+ bh=InuUFgNUsul1w70mGZDKR5EL1cwSsb7qff6mKym4wiI=;
+ b=B4XI4lvXeOJUl0RiKFAQk8MQXK35WfMa45i8dH14nSCIGgs+/hEjPRBB
+ 6WW2o45/v0xB0Jc06YCBRLuSdc5rQMjohlTwWnkI+K6tYTd1vMyuVy6P3
+ qVSFB7mlsWMeyWUSsLlpRmkaq1CF5weK8c2m+F0pc3yV0yr/8mH9x+cIk
+ Crop2Aq1Ijw3rlKOTHUGun1bGzJXc9eTjE6nraHwHw0CBdC9JCuVMZ9Ww
+ 97gk6Jc4ApRCk575sQgdLhkFEJ1MHpAv7Jm6yiBog+i3f8N6ojv4d6Za7
+ D8mGTq2N3642/L90S3u99jMjSatyPxp0i6/WLj1nEpAYiAnFnNVeAuXPx g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="367237148"
+X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="367237148"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 02:29:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="811583642"
-X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="811583642"
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="776528961"
+X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="776528961"
 Received: from kmiranda-mobl.ger.corp.intel.com (HELO intel.com)
  ([10.251.216.135])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 02:25:37 -0700
-Date: Wed, 6 Sep 2023 11:25:35 +0200
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 02:29:52 -0700
+Date: Wed, 6 Sep 2023 11:29:48 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Message-ID: <ZPhFj0H8OYtp1CGh@ashyti-mobl2.lan>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Message-ID: <ZPhGjLtIcsA3G8vP@ashyti-mobl2.lan>
 References: <20230905193624.525020-1-radhakrishna.sripada@intel.com>
+ <ZPhFj0H8OYtp1CGh@ashyti-mobl2.lan>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230905193624.525020-1-radhakrishna.sripada@intel.com>
+In-Reply-To: <ZPhFj0H8OYtp1CGh@ashyti-mobl2.lan>
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/mtl: Drop force_probe requirement
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,50 +59,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com
+Cc: intel-gfx@lists.freedesktop.org,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>, dri-devel@lists.freedesktop.org,
+ Andrzej Hajda <andrzej.hajda@intel.com>, rodrigo.vivi@intel.com,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Radhakrishna,
-
-On Tue, Sep 05, 2023 at 12:36:24PM -0700, Radhakrishna Sripada wrote:
-> Meteorlake has been very usable for a while now, all of uapi changes
-> related to fundamental platform usage have been finalized and all
-> required firmware blobs are available. Recent CI results have also
-> been healthy, so we're ready to drop the force_probe requirement and
-> enable the platform by default.
+> > Meteorlake has been very usable for a while now, all of uapi changes
+> > related to fundamental platform usage have been finalized and all
+> > required firmware blobs are available. Recent CI results have also
+> > been healthy, so we're ready to drop the force_probe requirement and
+> > enable the platform by default.
+> > 
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 > 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Please keep me in the loop as well... It's been a year I've been
+> working for this patch to work :)
 
-Please keep me in the loop as well... It's been a year I've been
-working for this patch to work :)
+not just me, but also (in alphabetical order):
 
-> ---
->  drivers/gpu/drm/i915/i915_pci.c | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index df7c261410f7..fe748906c06f 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -836,7 +836,6 @@ static const struct intel_device_info mtl_info = {
->  	.has_pxp = 1,
->  	.memory_regions = REGION_SMEM | REGION_STOLEN_LMEM,
->  	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(CCS0),
-> -	.require_force_probe = 1,
+  Andrzej Hajda <andrzej.hajda@intel.com>
+  Chris Wilson <chris.p.wilson@linux.intel.com>
+  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+  Jonathan Cavitt <jonathan.cavitt@intel.com>
+  Nirmoy Das <nirmoy.das@intel.com>
 
-What's the thinking behind this patch? Are you trying to
-understand how CI behaves?
-
+Thanks!
 Andi
-
->  	MTL_CACHELEVEL,
->  };
->  
-> -- 
-> 2.34.1
