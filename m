@@ -1,70 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F32BF79359A
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 08:50:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D408E7935D0
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 09:00:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B86310E565;
-	Wed,  6 Sep 2023 06:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0E1410E120;
+	Wed,  6 Sep 2023 07:00:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7237910E540
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 06:50:07 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id
- ffacd0b85a97d-31dcb3928beso421333f8f.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 05 Sep 2023 23:50:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1693983006; x=1694587806; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=RY8eBpKTWHCMtsXRzQM9B4P0pw9Q3s2j9gJ/f7sz780=;
- b=LXKO+K9fjCl2/0I8ZD+GsrmvAjoPCzrM23yEwaXkTILwCZ2PV8Ic1v9TmXbl6lCKcA
- NWbJuy9N5iz1FGU6bY1i+TPAKESI0DctmwCQg44rYdu3St9de/UyG1GdxR+yUa4tGpcs
- AfqCQTRsA7PLX60jZlRAdBd2UvqQaMaFEe8sU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693983006; x=1694587806;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=RY8eBpKTWHCMtsXRzQM9B4P0pw9Q3s2j9gJ/f7sz780=;
- b=DRLBXMkP3/Xyvx5SzNU3RM6vKYK1Y8bm2FZj8rMGs+6foBZ46BEafgJS2Oop61mBG+
- iS7iYKHfL7s9Do/BJU6ivVToiWFm0o1+pYNbwAPMtUsx3fmE+EJWm6ilBhYB2z/3vY+v
- 2nkT0VyD9LCRfqNMpyrHaNdyDBFiKf66aOk9kgzFB5mliaZJk02yP2sd6/auNJtwfv5u
- ZiAHQsnaberrN3xYm0HJCIm/9jOGU9GJ3Gxy09VVVCJGE2BkCOk7dIcGuf6l5FXUIg2J
- ZfGXNMyYtECw+1JQmNiMI7npWA466pbwp+3a90CsUgFPxzOez7ypezgk03WQnJRD44gU
- GVeQ==
-X-Gm-Message-State: AOJu0YxIyRT8Et0c7Vfa8MkTo+ioxnfH44SxBJrInh7+SVAgQY5Tyu3J
- b9txBTBP2lbbsX8jfzWRnvDUoA==
-X-Google-Smtp-Source: AGHT+IGZKnkZJnx6na5RF/fqJFn/Ofx6GtwKlU4cfSWLAhdwHYdtP4uuE1pRRucze9LEcrs2YUel5w==
-X-Received: by 2002:a5d:6084:0:b0:31d:1833:4141 with SMTP id
- w4-20020a5d6084000000b0031d18334141mr12074278wrt.6.1693983005709; 
- Tue, 05 Sep 2023 23:50:05 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- r12-20020adfce8c000000b00317afc7949csm19333866wrn.50.2023.09.05.23.50.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 Sep 2023 23:50:04 -0700 (PDT)
-Date: Wed, 6 Sep 2023 08:50:03 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: John Harrison <john.c.harrison@intel.com>
-Message-ID: <ZPghG6GmhO4j/9qV@phenom.ffwll.local>
-References: <20230811182011.546026-1-zhanjun.dong@intel.com>
- <3a745c83-e7cf-6a24-5556-8c0c019adfec@intel.com>
- <ZOYtNyqfvqJPeqq2@phenom.ffwll.local>
- <e31b1f49-88cd-d6e4-abbe-51f27712ff83@intel.com>
- <2bd0fb41-58d5-9862-143e-34e31f6f791f@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 410B110E120;
+ Wed,  6 Sep 2023 07:00:40 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id EC4932241E;
+ Wed,  6 Sep 2023 07:00:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1693983638; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=lxSJsWB1ylv2KntbbZas6fIVYa/2+q6JTBUTnIgymps=;
+ b=Ui5sveWkzp7Z55EkFAN8YDp3EARPttCtZR7fjW/yvcSnanZNZ5FG4sUNm3rkKlf2suhuZN
+ AhYCV2gxkpWPM1nZ/BGvDI599LgqjEYFUPCRbt4gHGPbL/MHrarZNgI0jMkdpfgJjvbTn4
+ ABOgGxHyYmn6sXcYvy5syGW+pTLOP+E=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1693983638;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=lxSJsWB1ylv2KntbbZas6fIVYa/2+q6JTBUTnIgymps=;
+ b=kWmll6OMEDUMrQQssJcEER9bbQMyfF6sv8eT+LzIEa9pnVD0zhg38E5/JTNtVeTikeuPUx
+ Q9RHj6b/vaYQLUDw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id AED1D1333E;
+ Wed,  6 Sep 2023 07:00:38 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id qwfEKZYj+GRPNQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Wed, 06 Sep 2023 07:00:38 +0000
+Message-ID: <22e8f3a4-63e6-63bd-9e6a-c0a42cb2c33a@suse.de>
+Date: Wed, 6 Sep 2023 09:00:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2bd0fb41-58d5-9862-143e-34e31f6f791f@intel.com>
-X-Operating-System: Linux phenom 6.4.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: Avoid circular locking
- dependency when flush delayed work on gt reset
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+To: suijingfeng <suijingfeng@loongson.cn>,
+ Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+ <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
+ <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
+ <773be4c6-0b3d-be39-7857-b3e2942007d9@suse.de>
+ <42c907fe-a8c3-5a07-a792-737e45f8134e@loongson.cn>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <42c907fe-a8c3-5a07-a792-737e45f8134e@loongson.cn>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------KYZ86D8lIziF85L0q28xAh3G"
+Subject: Re: [Intel-gfx] [Nouveau] [RFC,
+ drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
+ primary video adapter at boot time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,141 +79,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 28, 2023 at 04:01:38PM -0700, John Harrison wrote:
-> On 8/23/2023 10:37, John Harrison wrote:
-> > On 8/23/2023 09:00, Daniel Vetter wrote:
-> > > On Tue, Aug 22, 2023 at 11:53:24AM -0700, John Harrison wrote:
-> > > > On 8/11/2023 11:20, Zhanjun Dong wrote:
-> > > > > This attempts to avoid circular locking dependency between
-> > > > > flush delayed
-> > > > > work and intel_gt_reset.
-> > > > > When intel_gt_reset was called, task will hold a lock.
-> > > > > To cacel delayed work here, the _sync version will also
-> > > > > acquire a lock,
-> > > > > which might trigger the possible cirular locking dependency warning.
-> > > > > When intel_gt_reset called, reset_in_progress flag will be
-> > > > > set, add code
-> > > > > to check the flag, call async verion if reset is in progress.
-> > > > > 
-> > > > > Signed-off-by: Zhanjun Dong<zhanjun.dong@intel.com>
-> > > > > Cc: John Harrison<John.C.Harrison@Intel.com>
-> > > > > Cc: Andi Shyti<andi.shyti@linux.intel.com>
-> > > > > Cc: Daniel Vetter<daniel@ffwll.ch>
-> > > > > ---
-> > > > >    drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 ++++++++++-
-> > > > >    1 file changed, 10 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git
-> > > > > a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > > b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > > index a0e3ef1c65d2..600388c849f7 100644
-> > > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > > @@ -1359,7 +1359,16 @@ static void
-> > > > > guc_enable_busyness_worker(struct intel_guc *guc)
-> > > > >    static void guc_cancel_busyness_worker(struct intel_guc *guc)
-> > > > >    {
-> > > > > -    cancel_delayed_work_sync(&guc->timestamp.work);
-> > > > > +    /*
-> > > > > +     * When intel_gt_reset was called, task will hold a lock.
-> > > > > +     * To cacel delayed work here, the _sync version will
-> > > > > also acquire a lock, which might
-> > > > > +     * trigger the possible cirular locking dependency warning.
-> > > > > +     * Check the reset_in_progress flag, call async verion
-> > > > > if reset is in progress.
-> > > > > +     */
-> > > > This needs to explain in much more detail what is going on and
-> > > > why it is not
-> > > > a problem. E.g.:
-> > > > 
-> > > >     The busyness worker needs to be cancelled. In general that means
-> > > >     using the synchronous cancel version to ensure that an in-progress
-> > > >     worker will not keep executing beyond whatever is happening that
-> > > >     needs the cancel. E.g. suspend, driver unload, etc. However, in the
-> > > >     case of a reset, the synchronous version is not required and can
-> > > >     trigger a false deadlock detection warning.
-> > > > 
-> > > >     The business worker takes the reset mutex to protect against resets
-> > > >     interfering with it. However, it does a trylock and bails
-> > > > out if the
-> > > >     reset lock is already acquired. Thus there is no actual deadlock or
-> > > >     other concern with the worker running concurrently with a reset. So
-> > > >     an asynchronous cancel is safe in the case of a reset rather than a
-> > > >     driver unload or suspend type operation. On the other hand, if the
-> > > >     cancel_sync version is used when a reset is in progress then the
-> > > >     mutex deadlock detection sees the mutex being acquired through
-> > > >     multiple paths and complains.
-> > > > 
-> > > >     So just don't bother. That keeps the detection code happy and is
-> > > >     safe because of the trylock code described above.
-> > > So why do we even need to cancel anything if it doesn't do anything
-> > > while
-> > > the reset is in progress?
-> > It still needs to be cancelled. The worker only aborts if it is actively
-> > executing concurrently with the reset. It might not start to execute
-> > until after the reset has completed. And there is presumably a reason
-> > why the cancel is being called, a reason not necessarily related to
-> > resets at all. Leaving the worker to run arbitrarily after the driver is
-> > expecting it to be stopped will lead to much worse things than a fake
-> > lockdep splat, e.g. a use after free pointer deref.
-> > 
-> > John.
-> @Daniel Vetter - ping? Is this explanation sufficient? Are you okay with
-> this change now?
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------KYZ86D8lIziF85L0q28xAh3G
+Content-Type: multipart/mixed; boundary="------------LN1ZlLEbEZdmmpEoynl00UYi";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: suijingfeng <suijingfeng@loongson.cn>,
+ Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org
+Message-ID: <22e8f3a4-63e6-63bd-9e6a-c0a42cb2c33a@suse.de>
+Subject: Re: [Nouveau] [RFC, drm-misc-next v4 0/9] PCI/VGA: Allowing the user
+ to select the primary video adapter at boot time
+References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+ <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
+ <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
+ <773be4c6-0b3d-be39-7857-b3e2942007d9@suse.de>
+ <42c907fe-a8c3-5a07-a792-737e45f8134e@loongson.cn>
+In-Reply-To: <42c907fe-a8c3-5a07-a792-737e45f8134e@loongson.cn>
 
-Sorry for the late reply, I'm constantly behind on mails :-/ Ping me on
-irc next time around if I don't reply, that's quicker.
+--------------LN1ZlLEbEZdmmpEoynl00UYi
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-"presumably" isn't good enough for locking design. Either you know, and
-can prove it all, or you shouldn't touch the code and its locking design
-before you've figured this out.
+SGkNCg0KQW0gMDYuMDkuMjMgdW0gMDQ6MTQgc2NocmllYiBzdWlqaW5nZmVuZzoNCj4gSGks
+DQo+IA0KPiANCj4gT24gMjAyMy85LzUgMjM6MDUsIFRob21hcyBaaW1tZXJtYW5uIHdyb3Rl
+Og0KPj4gSG93ZXZlciwgb24gbW9kZXJuIExpbnV4IHN5c3RlbXMgdGhlIHByaW1hcnkgZGlz
+cGxheSBkb2VzIG5vdCByZWFsbHkgDQo+PiBleGlzdC4NCj4gDQo+IA0KPiBObywgaXQgZG8g
+ZXhpc3QuwqAgWCBzZXJ2ZXIgbmVlZCB0byBrbm93IHdoaWNoIG9uZSBpcyB0aGUgcHJpbWFy
+eSBHUFUuDQo+IFRoZSAnKicgY2hhcmFjdGVyIGF0IHRoZSBvZiAoNEAwOjA6MCkgUENJIGRl
+dmljZcKgaXMgdGhlIFByaW1hcnkuDQo+IFRoZSAnKicgZGVub3RlIHByaW1hcnksIHNlZSB0
+aGUgbG9nIGJlbG93Lg0KPiANCj4gKElJKSB4ZnJlZTg2OiBBZGRpbmcgZHJtIGRldmljZSAo
+L2Rldi9kcmkvY2FyZDIpDQo+IChJSSkgeGZyZWU4NjogQWRkaW5nIGRybSBkZXZpY2UgKC9k
+ZXYvZHJpL2NhcmQwKQ0KPiAoSUkpIFBsYXRmb3JtIHByb2JlIGZvciANCj4gL3N5cy9kZXZp
+Y2VzL3BjaTAwMDA6MDAvMDAwMDowMDoxYy41LzAwMDA6MDAzOjAwLjAvMDAwMDowNDowMC4w
+L2RybS9jYXJkMA0KPiAoSUkpIHhmcmVlODY6IEFkZGluZyBkcm0gZGV2aWNlICgvZGV2L2Ry
+aS9jYXJkMykNCj4gKElJKSBQbGF0Zm9ybSBwcm9iZSBmb3IgDQo+IC9zeXMvZGV2aWNlcy9w
+Y2kwMDAwOjAwLzAwMDA6MDA6MWMuNi8wMDAwOjAwNTowMC4wL2RybS9jYXJkMw0KPiAoLS0p
+IFBDSTogKDBAMDoyOjApIDgwODY6M2U5MTo4MDg2OjNlOTEgcmV2IDAsIE1lbSBAIA0KPiAw
+eGRiMDAwMDAwLzE2Nzc3NzIxNiwgMHhhMDAwMDAwMC81MzY4NzA5MTIsIEkvTyBAIDB4MDAw
+MGYwMDAvNjQsIEJJT1MgQCANCj4gMHg/Pz8/Pz8/Py8xMzEwNzINCj4gKC0tKSBQQ0k6ICgx
+QDA6MDowKSAxMDAyOjY3NzE6MTA0Mzo4NjM2IHJldiAwLCBNZW0gQCANCj4gMHhjMDAwMDAw
+MC8yNjg4NDM1NDU2LCAweGRmMjIwMDAwLzEzMTA3MiwgSS9PIEAgMHgwMDAwZTAwMC8yNTYs
+IEJJT1MgQCANCj4gMHg/Pz8/Pz8/Py8xMzEwNzINCj4gKC0tKSBQQ0k6Kig0QDA6MDowKSAx
+YTAzOjIwMDA6MWEwMzoyMDAwIHJldiA0OCwgTWVtIEAgDQo+IDB4ZGUwMDAwMDAvMTY2Nzc3
+MjE2LCAweGRmMDIwMDAwLzEzMTA3MiwgSS9PIEAgMHgwMDAwYzAwMC8xMjgsIEJJT1MgQCAN
+Cj4gMHg/Pz8/Pz8/Py8xMzEwNzINCj4gKC0tKSBQQ0k6ICg1QDA6MDowKSAxMGRlOjEyODg6
+MTc0YjpiMzI0IHJldiAxNjEsIE1lbSBAIA0KPiAweGRjMDAwMDAwLzExNjc3NzIxNiwgMHhk
+MDAwMDAwMC8xMzQyMTc3MjgsIDB4ZDgwMDAwMDAvMzM1NTQ0MzIsIEkvTyBAIA0KPiAweDAw
+MDBiMDAwLzEyOCwgQklPUyBAQDB4Pz8/Pz8/Pz8vNTI0Mjg4DQo+IA0KPiBUaGUgbW9kZXNl
+dHRpbmcgZHJpdmVyIG9mIFggc2VydmVyIHdpbGwgY3JlYXRlIGZyYW1lYnVmZmVyIG9uIHRo
+ZSANCj4gcHJpbWFyeSB2aWRlbyBhZGFwdGVyLg0KPiBJZiBhIDJEIHZpZGVvIGFkYXB0ZXIg
+KGxpa2UgdGhlIGFzcGVlZCBCTUMpIGlzIG5vdCB0aGUgcHJpbWFyeSwgdGhlbiBpdCANCj4g
+cHJvYmFibHkgd2lsbCBub3QNCj4gYmUgdXNlZC4gVGhlIG9ubHkgY2hhbmNlIHRvIGJlIGFi
+bGUgdG8gZGlzcGxheSBzb21ldGhpbmcgaXMgdG8gDQo+IGZ1bmN0aW9uYWwgYXMgYSBvdXRw
+dXQgc2xhdmUuDQo+IEJ1dCB0aGUgb3V0cHV0IHNsYXZlIHRlY2hub2xvZ3kgbmVlZCB0aGUg
+UFJJTUUgc3VwcG9ydCBmb3IgY3Jvc3MgZHJpdmVyIA0KPiBidWZmZXIgc2hhcmluZy4NCj4g
+DQo+IFNvLCB0aGVyZSBkbyBoYXZlIHNvbWUgZGlmZmVyZW5jZSBiZXR3ZWVuIHRoZSBwcmlt
+YXJ5IGFuZCBub24tcHJpbWFyeSANCj4gdmlkZW8gYWRhcHRlcnMuDQoNClhvcmcgaXMgYSBw
+cmV0dHkgYmFkIGV4YW1wbGUsIGJlY2F1c2UgWCBwYXJzZXMgdGhlIFBDSSBidXMgYW5kIHRo
+ZW4gDQp0cmllcyB0byBtYXRjaCBkZXZpY2VzIHRvIC9kZXYvZHJpLyBmaWxlcy4gVGhhdCdz
+IGFsc28gbm90IGZpeGFibGUgaW4gDQpYb3JnJ3MgY3VycmVudCBjb2RlIGJhc2UuIFBsZWFz
+ZSBkb24ndCBwcm9tb3RlIFhvcmcncyBkZXNpZ24uIEl0IGRhdGVzIA0KYmFjayB0byB0aGUg
+dGltZSB3aGVuIFhvcmcgZGlkIHRoZSBtb2Rlc2V0dGluZyBieSBpdHNlbGYuDQoNClVzZXJz
+cGFjZSBzaG91bGQganVzdCBvcGVuIGV4aXN0aW5nIGRldmljZSBmaWxlcyBhbmQgc3RhcnQg
+cmVuZGVyaW5nLiANCk1heWJlIHBpY2sgdGhlIHByZXZpb3VzIHNldHRpbmdzIGFuZC9vciBk
+byBzb21lIGd1ZXNzIHdvcmsgYWJvdXQgdGhlIA0KYXJyYW5nbWVudCBvZiB0aGVzZSBkZXZp
+Y2VzLiBBRkFJSyB0aGF0J3Mgd2hhdCB0aGUgbW9kZXJuIGNvbXBvc2l0b3JzIGRvLg0KDQpC
+ZXN0IHJlZ2FyZHMNClRob21hcw0KDQo+IA0KPiANCj4+ICdQcmltYXJ5JyBpcyB0aGUgZGV2
+aWNlIHRoYXQgaXMgYXZhaWxhYmxlIHZpYSBWR0EsIFZFU0Egb3IgRUZJLiBPdXIgDQo+PiBk
+cml2ZXJzIGRvbid0IHVzZSB0aGVzZSBpbnRlcmZhY2VzLCBidXQgdGhlIG5hdGl2ZSByZWdp
+c3RlcnMuIEFzIHlvdSANCj4+IHNhaWQgeW91cnNlbGYsIHRoZXNlIGZpcm13YXJlIGRldmlj
+ZXMgKFZHQSwgVkVTQSwgRUZJKSBhcmUgcmVtb3ZlZCANCj4+IEFTQVAgYnkgdGhlIG5hdGl2
+ZSBkcml2ZXJzLiANCj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERy
+aXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0K
+RnJhbmtlbnN0cmFzc2UgMTQ2LCA5MDQ2MSBOdWVybmJlcmcsIEdlcm1hbnkNCkdGOiBJdm8g
+VG90ZXYsIEFuZHJldyBNeWVycywgQW5kcmV3IE1jRG9uYWxkLCBCb3VkaWVuIE1vZXJtYW4N
+CkhSQiAzNjgwOSAoQUcgTnVlcm5iZXJnKQ0K
 
-Again, either this is a deadlock, race condition, or the cancel isn't
-necessary. And this argument works in full generality. All this patch does
-it replace the dealock with one of the other two, and that's not good
-enough if you don't even know which one it is.
+--------------LN1ZlLEbEZdmmpEoynl00UYi--
 
-- if you need the cancel, you have a race condition
+--------------KYZ86D8lIziF85L0q28xAh3G
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-- if you don't have a race condition, you don't need the cancel
+-----BEGIN PGP SIGNATURE-----
 
-- currently you have the deadlock
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmT4I5UFAwAAAAAACgkQlh/E3EQov+As
+LBAAywJbx/82a4kzBkPg9aE9JI6eCWr6ObjJU3j0lAb//Khw3fGlnKGYZJm1P/3THDHewIhOgTnv
+IRUH7VGvyEHL770iX4XwWF7noE+TXVqDbButx7V6SMUF9LlcaQmG2nPeX8n/rwzh2IatlrP0bWBm
+7mIAGNnqpWMS0c5tMUS9w4aznXdtuD4QyV/TEWW6/ZlTgmjbi3P7enfs81zpZ6Qvp0FJOqcYdqsv
+Y1cnRpTN1UxDxZgf4nEKlss0cXFp52wOCvUr+EVkRVMftQQhLDgSMlmXLZWYjhRCJpflDU5zoJwt
+tYxxJ7n7iPZPYbe+kNYGyZ8rxJ1I9Atsd3+0ytXP0DHhIrtLTMMbHLB+f2RhpDHp7QRfmKRNCfkZ
+ym6AHDE2Mx70wiBhJtfunyR5IL8WBB+6BN1uqko4Q0lLYp0OOJnAjJIE+lxaHvcxi5+vqhugOXnl
+Sjo516Gd35D+aMhuWX6uFiBXNXxZhl7p3FZ4HXNo8d1rwI0kcENLY6QpYLW3gmOzX+SKNKdh649E
+pYbVaSSoHDbTv/BOKME7WefiychZhRFSEGiPs+pO5Sa7rFlv1zE2LAn5euwMhoTu+jXubxeoBvhG
+Vt3+dB5waqKpQQHfjMNU1h3q1gI8w8k+jwefMmyqIvgUxkMdDoPei7+NuYksfqJi7oOQlahn17yC
+0Bk=
+=2vYu
+-----END PGP SIGNATURE-----
 
-"presumably" and "maybe" aint enoug for locking design.
-
-Cheers, Daniel
-
-> 
-> John.
-> 
-> > 
-> > > 
-> > > Just remove the cancel from the reset path as uneeded instead, and
-> > > explain
-> > > why that's ok? Because that's defacto what the cancel_work with a
-> > > potential deadlock scenario for cancel_work_sync does, you either don't
-> > > need it at all, or the replacement creates a bug.
-> > > -Daniel
-> > > 
-> > > > 
-> > > > John.
-> > > > 
-> > > > 
-> > > > > +    if (guc_to_gt(guc)->uc.reset_in_progress)
-> > > > > +        cancel_delayed_work(&guc->timestamp.work);
-> > > > > +    else
-> > > > > + cancel_delayed_work_sync(&guc->timestamp.work);
-> > > > >    }
-> > > > >    static void __reset_guc_busyness_stats(struct intel_guc *guc)
-> > 
-> 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+--------------KYZ86D8lIziF85L0q28xAh3G--
