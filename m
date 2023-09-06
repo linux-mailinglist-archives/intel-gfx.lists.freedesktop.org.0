@@ -2,140 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 837E37933D7
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 04:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5160D7933F2
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Sep 2023 05:08:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2868010E55F;
-	Wed,  6 Sep 2023 02:50:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FFAE10E15B;
+	Wed,  6 Sep 2023 03:08:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53F6010E55F
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Sep 2023 02:49:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693968598; x=1725504598;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=dyn1/d2W5d4L2noY+Jqv+Z6Fvtx5YZLzwskya72G320=;
- b=DwEk1Nu81UQwRr1pCFMaWKeJ06kUpIavTFi4Ac8Y11dcRrNBPenQ6n2m
- QrDqdP8qRrhwXbp31Ulsg88xTo5/v0g/g4hnQZJhxXkWsSR/qD+4V+zGX
- 2FUBEpQUIvpZ5jyZGz6aN4TFfJoOrk3j8a3SWrJAXkT98pWRRN7hC2nBE
- mcOgVG8U58U5D8tCHnOX2SrAmZ5T0v24XrXlCUlX6JlvfbsqBC9ATblVJ
- AlLYq4ho6HBXX9mUef57gk/cwPyHYfdC4Ka2nCOK0Y076KsDx3U7LfRey
- I9R08nHNFzm3G1gFWfFqzIemr2NYYQWtiGojbFJWIZUrXmgMDoFI3Zkur Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="357261876"
-X-IronPort-AV: E=Sophos;i="6.02,230,1688454000"; d="scan'208";a="357261876"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 19:49:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="915094511"
-X-IronPort-AV: E=Sophos;i="6.02,230,1688454000"; d="scan'208";a="915094511"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Sep 2023 19:49:57 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 5 Sep 2023 19:49:57 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 5 Sep 2023 19:49:56 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 5 Sep 2023 19:49:56 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.49) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 5 Sep 2023 19:49:55 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sh3sOxSflgSqQeIME/oek+e2sfQGa0EprzDAVYnr1KSFW5zi6OsYQt2EkbNPxtYeKcfwHiLxvuMyBQUMsUqnaJJaZvIiqFZZO4MSf73uuyfDsMVQtQNBjeKO5bkEcodAKI1Voh7hjATb9W8nqH8a0H9DN/Icwm7JiBb8HDTNcSjvGxsVGy2nDECcWVviHMxp9gNJIcPmG4KRez0H6nZBDMqUKbCMo3BDPUh9kjs8zvAFMeYq04PVu08Z1C99mvi4HzBjioHiIZ3Zvf3O6msj/nV7MjBg8QOTxVxmSf+khvKKggsZgFGpLQVMqm1Uqv7TuNhKjlPTh4iB7Fr97l77zw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0zC+T8+8Y2YlPxLcfeRXMGY7rVaQKtnXGA63wtqtxvo=;
- b=l+QEKTzKx0E29q3mGRfXhYLOL7Ujf4PRnm65I6j4GV+e3firGrL95MBO3wtW/5gOoQzvRJ05nxPpcAzcUGiyE4I45Ov7yXNnofKB8BWPl2gHV2852NvTIw2EKbTXscn+2eMMOB5KYCAP1wMrwVv5DoEhEOhOkw+HvfzbyQ3qTDXGEGfP71pYmGOwx11E572cgeoR+kEJQIhLzlh/wpXjoin+bZTJof9oTATmfQ8jjMJV4ZOcmLp8WPeiAI+Qf6OGh9cFS32Mg3D5qbDzLQvdW1HlbI+LIQ+Att7QzmIl+yTCAkSVbxSv8NoVixrY+m0BliXqylK9JJJAJ66bRY7Ung==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DM4PR11MB8131.namprd11.prod.outlook.com (2603:10b6:8:190::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Wed, 6 Sep
- 2023 02:49:49 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6745.034; Wed, 6 Sep 2023
- 02:49:49 +0000
-Date: Tue, 5 Sep 2023 19:49:06 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>
-Message-ID: <bybk5m7d2u3str4ozmr6ezurt7jrdiswcrx3hncjt5yslcympo@yudjfjkgsr3s>
-References: <20230825081638.275795-1-luciano.coelho@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20230825081638.275795-1-luciano.coelho@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0134.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::19) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6FE0410E06B;
+ Wed,  6 Sep 2023 03:08:21 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8Ax1fAk7fdkkAsgAA--.64477S3;
+ Wed, 06 Sep 2023 11:08:20 +0800 (CST)
+Received: from [0.0.0.0] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8CxF80j7fdk4u5tAA--.64736S3; 
+ Wed, 06 Sep 2023 11:08:19 +0800 (CST)
+Message-ID: <abf8053d-4c4a-2562-b57f-db92a0cb15a7@loongson.cn>
+Date: Wed, 6 Sep 2023 11:08:19 +0800
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM4PR11MB8131:EE_
-X-MS-Office365-Filtering-Correlation-Id: 38be86dd-36d0-4560-0e34-08dbae83efd1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: voBWGOy0bcBQi8A8oe8iarOQqp20XCdUX0TFIf9FNCRsC6OCgdh3y0cBLbEVHLBk/zRERQ1RDEXl7mB13wnuiqfXL7vhu5KfM/u2tQR7WXRFXqstzZBtzjsR9KTjTBoDtzY1XKHQEyys3Ks1Zw8fV2A2BDhRF3yuAzhmgONQWFjd9eBCOHUgBOPWlW0tjmQArh/ic6MAjtvhzcJpTo60nWltkN2nL8nRJuWOTuuLcCwpKRYPuuiMnh49/7TVBUw6wH6Xc9clc/ziTRLy4J7eEfCt3dXIoZJNvYwBMBBrpP4h7sGs3xjfxa87QELQ8JLD1taQ2lm3PNKKiZgzwm2yby7VHW4cFSOIbXu49CUx6l3jZ79lfLSJkuF5MBOlq0fvhKtYYBOKYXk99RhWs0dYVAF9tUNBiu3hnkb0WYAqfNkIkF0th5XaVkAent83gkPryqgj3dyrXeQ8mCgn/Y+R7k+DjOdBvzDpp1RgRTg1xbFSQRHqMfJGEy5i9Dkbj55lXmJ2IiOuplfGhO0pRz2ds2WdvcU7hd+C5fzKV2rtF5/qz8c/adBt96qjErbGYd8D
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(376002)(366004)(396003)(136003)(39860400002)(346002)(1800799009)(451199024)(186009)(6862004)(2906002)(4744005)(66476007)(8676002)(4326008)(8936002)(41300700001)(5660300002)(316002)(6636002)(66946007)(66556008)(86362001)(82960400001)(6666004)(478600001)(6506007)(33716001)(6512007)(9686003)(6486002)(38100700002)(26005);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?fLjcyaxkMCTqgZc1kbJQT+GKEBXnieIhFf9IOGJjoUJfDnRE9+e4cINEKMRq?=
- =?us-ascii?Q?kl0rMMSkbtNmn2w+JfGHXdd8B6+3q2B2ADGfe/CBYSemz0h/FwxmwB/Yuv19?=
- =?us-ascii?Q?NBmrSPi38L3JrPK+LSQzue2Iy3+2bxCz/P9z1WeDLRGbN15rSKx5iMU34b5q?=
- =?us-ascii?Q?MCSwIekvpcrREsjVoVf96v1uozI6QtzGt59r5BWiBSDP6i8qDYRJnaPu0Oju?=
- =?us-ascii?Q?a7kSxu2hhfGiKG3mnoi2I5/rYZlihS6j8Y/RGjggEoDZ1jiiHcuxHk9jTBZM?=
- =?us-ascii?Q?umHlxQa+C19zNGuuruz1yO+ymzPMITnYwrohfRmE0byiavEeIo587jws9+Oc?=
- =?us-ascii?Q?J7pq3Iv2N0yo0Y5Bm9uNiaOd1iITSxa/jM/1oVCdH4S10uiawYM1TP0ArJyy?=
- =?us-ascii?Q?NgJ3g1z7QCQVczOfxHMxaLSpQe4EJb6pIzheY/DDQTeZrO79jYTYyHyk+PgH?=
- =?us-ascii?Q?DmM6oaxFCh3vKp/+1zP9l92mKU0I4UxE4pdzr6r/ZsPrn3JnaDCf4Bc8lQa4?=
- =?us-ascii?Q?5dSQZnKW3t/uRFnFnEq/CY3zeF8w1FWdwA1q5P6yAiTqsD41jE7XqyZMp/2w?=
- =?us-ascii?Q?3T6g7eDtcXXkyQH/R9wXz2PeAgMkTPd7ISD043KWiX13U//VQgJCK0PqkwRh?=
- =?us-ascii?Q?20v1rTCPJ59/sOAhvnF6lUNHDdfAdjMBeuI2LDwHcl/lOQIA0VtENKXujA2o?=
- =?us-ascii?Q?3JWUQ5BV5RsG/0xitK5FDPsompwvNvfTQZL8kFW0xQKAZttEqaFPoXwGqoP1?=
- =?us-ascii?Q?kfeLo0qYDXYHFM6xReYHMtAjMKpRqAPR3PXcwYrx8JsFZOcKK+eNzWrrxJqk?=
- =?us-ascii?Q?lv2ECXX2xx2Kp2qqsx4fgin7Nt1kBMjMFhWB90mKbCTx6hT5lDYWFdHAdWuJ?=
- =?us-ascii?Q?+Fhx43JcN/+v8pKXU6Uf1J9GLh1KgxQGTqWDZg5d2kj5p+5leB8PZbCvs5eQ?=
- =?us-ascii?Q?54R/hincBHDWU9vRddHzr5RaVHiK5+hNY7Cf0d9geKU6/FRb6L4d3lyoL8BP?=
- =?us-ascii?Q?YNgF4RVOSxZ7Sf1BCZf8MNlAjdvKKB37nGqUhKDL2khtS65ArOBeBO+sa7kp?=
- =?us-ascii?Q?2KhBTHDN92fksBZEmfXuPIG/UJZ/3cGGiB8K1bR0Dz00vHsd5EkWnqmiyGrp?=
- =?us-ascii?Q?vuLPDrQgC9kqQRQWdq+6YQE45cSrE62Gnrv2iPiNf8j+Rz3BnqOWLzxFlZwQ?=
- =?us-ascii?Q?n7pRv0GpyUZPramHWn38V9rPZgIWXjj9u6idOzuQkiU75uTx3ogv4VZ+ST/m?=
- =?us-ascii?Q?tpmlqy5qplXD2GlWs72GT0rynH7o/23epJc+FFA6/uGdl5KKW2n08s/Fp83Z?=
- =?us-ascii?Q?O210/rE55Hnf5a9W+77P8aBXDKXdoCgHYss3GB2gNGPrr3uCIVm8Hs1YeFrP?=
- =?us-ascii?Q?oarP/jTgiALts65D7OWerrZbgxZcchn9kEdq7kpDbE/h9z52AN20HRorrMgy?=
- =?us-ascii?Q?DCeCLl48sYQnDClUU50+7nMPI7KOBZBEr1k2euGTu1tQQVRsCPgLQIWK6YFq?=
- =?us-ascii?Q?UC7rLdElDhJF7niMoRVpMDhpL3GB6KT5SKf6j6Ru5LLSxgjVxu1L3j6QADmp?=
- =?us-ascii?Q?l15a9SKeynWLTEbZkaAQwqgIR+zt9zK0c/knhPw5i/edS6o8cZAzSiVSkStK?=
- =?us-ascii?Q?Lg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38be86dd-36d0-4560-0e34-08dbae83efd1
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2023 02:49:49.2529 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: arzCV7wo3HnJsNaWOUXJUjrx2wbEycbZfXXd9mE0qPDLipe/bIMrzP67yK8fcRtWYxC42rJAoOYxkme67G3px3LmgqR/PkI+R0nGHuzppE0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8131
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v4 0/4] drm/i915/tc: some clean-ups in max
- lane count handling code
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Content-Language: en-US
+To: Thomas Zimmermann <tzimmermann@suse.de>,
+ Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn Helgaas <bhelgaas@google.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ Alex Williamson <alex.williamson@redhat.com>
+References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+ <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
+ <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
+ <773be4c6-0b3d-be39-7857-b3e2942007d9@suse.de>
+From: suijingfeng <suijingfeng@loongson.cn>
+In-Reply-To: <773be4c6-0b3d-be39-7857-b3e2942007d9@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxF80j7fdk4u5tAA--.64736S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7Ar4DuFWDJFyUXF1rCF4kAFc_yoW8JFW5pF
+ W5tF18ta95WFWfAr97Jr409Fy0vrn5Jay8Xrn5WryDA3Z8Gr92v3y8t398Za4UC393Z3Wa
+ yr90qas3KayDJabCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUPab4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+ xVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+ AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
+ AVWUtwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI4
+ 8JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vI
+ r41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_GFv_Wrylx2IqxVAqx4xG67
+ AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIY
+ rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14
+ v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWx
+ JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUxYiiDU
+ UUU
+Subject: Re: [Intel-gfx] [Nouveau] [RFC,
+ drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
+ primary video adapter at boot time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,34 +74,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: suraj.kandpal@linux.intel.com, intel-gfx@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 25, 2023 at 11:16:34AM +0300, Luca Coelho wrote:
->Hi,
->
->Here are four patches with some clean-ups in the code that handles the
->max lane count of Type-C connections.
->
->This is done mostly in preparation for a new way to read the pin
->assignments and lane count in future devices.
->
->In v2:
->   * Fix some rebasing damage.
->
->In v3:
->   * Fixed "assigment" typo, as reported by checkpatch.
->
->In v4:
->   * Rebased;
->   * Renamed port_max to lane_max (Lucas' comment).
->
->Please review.
+Hi,
 
-All patches are reviewed. I looked to the CI results and none of the
-regressions seem related.
 
-Pushed. Thanks
+On 2023/9/5 23:05, Thomas Zimmermann wrote:
+> However, on modern Linux systems the primary display does not really 
+> exist. 'Primary' is the device that is available via VGA, VESA or EFI. 
 
-Lucas De Marchi
+I may miss the point, what do you means by choose the word "modern"?
+Are you trying to tell me that X server is too old and Wayland is the modern display server?
+
+
+> Our drivers don't use these interfaces, but the native registers.
+
+
+Yes and no?
+
+Yes for the machine with the UEFI firmware,
+but I not sure if this statement is true for the machine with the legacy firmware.
+
+As the display controller in the ASpeed BMC is VGA compatible.
+Therefore, in theory, it should works with the VGA console on the machine
+with another VGA compatible video card. So the ast_vga_set_decode() function
+provided in the 0007 patch probably useful on legacy firmware environment.
+
+To be honest, I have tested this on various machine with UEFI firmware.
+But I didn't realized that I should do the testing on legacy firmware environment
+before sending this patch. It seems that the testing effort needed are quite
+exhausting, since all my machines come with the UEFI firmware.
+
+So is it OK to leave the legacy part to someone else who interested in it?
+Probably Alex is more professional at legacy VGA routing stuff?
+:-)
+
+
