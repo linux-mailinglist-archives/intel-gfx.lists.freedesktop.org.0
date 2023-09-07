@@ -1,53 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC527971A0
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 13:04:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EBB37971D8
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 13:38:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 219F910E22A;
-	Thu,  7 Sep 2023 11:04:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4C2E10E229;
+	Thu,  7 Sep 2023 11:37:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E5F310E22A
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 11:04:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694084643; x=1725620643;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=PD0CI25fMb2ajlwBYu0nDynwcZ3ErqJjkZXySNbp16E=;
- b=i5gC9Pr5lRKD+kLiJTYBVY1kFcilySpj0guBHTbfdfLU8YD7u0bAkp49
- 0bZqYnYObNabQ/RA19DfljI0AGgXq1FQGG/aSOXb0UMV09pdfsGG9vpuw
- qlTXwcx7BbneQNOfFDwpDF9uFLFXTOn8xMqM7FPR1UukDqX1+E6ASyCW1
- Q9PccQDEMTqS/j/JAlnN4kZw64BzA4yD0hbUaFdFpQyngWvFFVjlvhYSh
- Z7JMwRl4uTYU29V0ZKamyAewdNY+UcevpZcJ7yXlNWcf7kmCyKyNi5RfO
- lpIuoN5hFE7AtHSFwj+NEIvRJmctIR7qiVvjwY1PDRwWeE2magKX1b09E Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="377234903"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="377234903"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 04:04:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="988723886"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="988723886"
-Received: from mmalyshx-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.35.13])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 04:04:00 -0700
-Date: Thu, 7 Sep 2023 13:03:57 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <ZPmuHf1EdLaQdeU7@ashyti-mobl2.lan>
-References: <20230906113121.30472-1-nirmoy.das@intel.com>
- <20230906113121.30472-2-nirmoy.das@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E964910E19C;
+ Thu,  7 Sep 2023 11:37:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E34B2AADE4;
+ Thu,  7 Sep 2023 11:37:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230906113121.30472-2-nirmoy.das@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: Lift runtime-pm acquire
- callbacks out of intel_wakeref.mutex
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Thu, 07 Sep 2023 11:37:56 -0000
+Message-ID: <169408667689.17902.1881095831181398680@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230906113121.30472-1-nirmoy.das@intel.com>
+In-Reply-To: <20230906113121.30472-1-nirmoy.das@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Update_GGTT_with_MI=5FUPDATE=5FGTT_on_MTL_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,35 +40,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@intel.com>, chris.p.wilson@linux.intel.com,
- intel-gfx@lists.freedesktop.org, matthew.d.roper@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nirmoy and Chris,
+== Series Details ==
 
-On Wed, Sep 06, 2023 at 01:31:17PM +0200, Nirmoy Das wrote:
-> From: Chris Wilson <chris.p.wilson@intel.com>
-> 
-> When runtime pm is first woken, it will synchronously call the
-> registered callbacks for the device and bug. These callback
+Series: Update GGTT with MI_UPDATE_GTT on MTL (rev2)
+URL   : https://patchwork.freedesktop.org/series/123329/
+State : warning
 
-"and bug" means "hit a bug"?
+== Summary ==
 
-/callback/callbacks/
+Error: dim checkpatch failed
+1fb73c567369 drm/i915: Lift runtime-pm acquire callbacks out of intel_wakeref.mutex
+-:57: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#57: FILE: drivers/gpu/drm/i915/intel_wakeref.c:27:
++		INTEL_WAKEREF_BUG_ON(wf->wakeref);
 
-> may pull in their own forest of locks, which we do not want to
-> conflate with the intel_wakeref.mutex. A second minor beneft to
+-:73: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#73: FILE: drivers/gpu/drm/i915/intel_wakeref.c:40:
++	INTEL_WAKEREF_BUG_ON(atomic_read(&wf->count) <= 0);
 
-/beneft/benefit/
+-:96: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#96: FILE: drivers/gpu/drm/i915/intel_wakeref.c:60:
++		INTEL_WAKEREF_BUG_ON(!wf->wakeref);
 
-> reducing the coverage of the mutex, is that it will reduce
-> contention for frequent sleeps and wakes (such as when being used
-> for soft-rc6).
-> 
-> Signed-off-by: Chris Wilson <chris.p.wilson@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+total: 0 errors, 3 warnings, 0 checks, 83 lines checked
+183b06118dce drm/i915: Create a kernel context for GGTT updates
+e7e081a64212 drm/i915: Implement __for_each_sgt_daddr_next
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__iter' - possible side-effects?
+#25: FILE: drivers/gpu/drm/i915/i915_scatterlist.h:100:
++#define __for_each_daddr_next(__dp, __iter, __step)                  \
++	for (; ((__dp) = (__iter).dma + (__iter).curr), (__iter).sgp;   \
++	     (((__iter).curr += (__step)) >= (__iter).max) ?            \
++	     (__iter) = __sgt_iter(__sg_next((__iter).sgp), true), 0 : 0)
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+total: 0 errors, 0 warnings, 1 checks, 16 lines checked
+dff2ea539632 drm/i915: Implement GGTT update method with MI_UPDATE_GTT
+-:68: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#68: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:276:
++	GEM_BUG_ON(!ce);
 
-Andi
+-:238: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#238: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:491:
++	if (!gen8_ggtt_bind_ptes(ggtt, start, vma_res->bi.pages,
++	      vma_res->node_size / I915_GTT_PAGE_SIZE, pte_encode))
+
+-:286: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#286: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:553:
++	if (should_update_ggtt_with_bind(ggtt) && gen8_ggtt_bind_ptes(ggtt, first_entry,
++	     NULL, num_entries, scratch_pte))
+
+total: 0 errors, 1 warnings, 2 checks, 292 lines checked
+a957d9392de4 drm/i915: Enable GGTT updates with binder in MTL
+
+
