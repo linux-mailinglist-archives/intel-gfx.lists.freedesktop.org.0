@@ -1,61 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2D50797C0F
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 20:38:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77516797C16
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 20:39:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E46F10E083;
-	Thu,  7 Sep 2023 18:38:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCF9010E083;
+	Thu,  7 Sep 2023 18:39:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
- [IPv6:2a00:1450:4864:20::135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 925D710E083
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 18:38:15 +0000 (UTC)
-Received: by mail-lf1-x135.google.com with SMTP id
- 2adb3069b0e04-501bd6f7d11so2106455e87.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 Sep 2023 11:38:15 -0700 (PDT)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
+ [IPv6:2a00:1450:4864:20::52c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF7D710E083
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 18:39:51 +0000 (UTC)
+Received: by mail-ed1-x52c.google.com with SMTP id
+ 4fb4d7f45d1cf-52a250aa012so1741787a12.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 07 Sep 2023 11:39:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1694111893; x=1694716693;
+ d=chromium.org; s=google; t=1694111990; x=1694716790;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=ejiA8lRtcGexN1RaZHrbwnVSZvmOzul2xV6O3/qdSy4=;
- b=mpdUKjtldcrdCgiv3sHZN9tbg8amrle/+4Of1KmFRHSIuQc11eCgLBzPYzKSecVkmw
- TjKoGjdzQrL4mH0UnKRe2/eXPBZ2T4p0+foBjBcK79jndtSvME8cdJNewy7G74+OXiq5
- G6X/UfWvX5OWryEL+ljS62IyUhl/lQnudx84I=
+ bh=TQDxLqmzjq89sTehG3MDEct9xCR7E9qIHSSusObYhWs=;
+ b=SRunmCo1IL4fji+8I/lybZW+WWGPHJP94njK/UeKLpZI+eKZyP0XzGorbF8c3t3EI3
+ RaWfnYhsOGGMeYp8HGwhzUOgsGNqhsiO/ThociKNQBi+ynOi5I8TPe9E7I3IU0AKlSaJ
+ zr2kf3zFXSPAEqrJsoJbVl1XsHh5UwauN9M8g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1694111893; x=1694716693;
+ d=1e100.net; s=20230601; t=1694111990; x=1694716790;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ejiA8lRtcGexN1RaZHrbwnVSZvmOzul2xV6O3/qdSy4=;
- b=rLupB6CvUtkkDylDjvdk8VgxsWzyNDWOjZbLWifxaZ0lj5L7L4jIlW7TXrAn3T5Rxp
- tzBC8LqktFZ3TIHDghG8h8hSJ1QNJehQOiw8JmhKDdWZdYg9BdACQ2yqQge4t9tzLSp8
- mMxJvsdaq2ovF7fpF4EbYJplg0VFoVOjwHjSOF3T8Tl8PI5K9oufxLy8q8lIFHPEz2k5
- Nyo9cCYwsl2DB3E4l40HGGNk5PTw8oKqLZ+HZJ01fzv2mSSJ648t40a0HXh9gIwf1lmM
- TwHNXyDypdON/A7Fj2kf/hqbxWB7BOAw1F6fDkhR/i1aV5U8Uqxj4DDyUvEjbLzFDOWY
- SuwA==
-X-Gm-Message-State: AOJu0YzVlk0cwhD6QTHVQmllw/pfQwTyWVMBIzNnlGYDVodwFUH1zCLy
- GsougLwmfftsyTSp8oCgdTD53WtclbDxHZcQRN78ZSE+ZjxkwjQOG84=
-X-Google-Smtp-Source: AGHT+IG443Qap94xxtnIFIR5dZU3zsg6cXgvILZ+Uxro1sreqKhCkfTpa8FEkfBJ/Qpn6PyfuG9v//YupLq7YvB7lqE=
-X-Received: by 2002:a05:6512:ea1:b0:4ff:af45:1ef7 with SMTP id
- bi33-20020a0565120ea100b004ffaf451ef7mr292806lfb.6.1694111893523; Thu, 07 Sep
- 2023 11:38:13 -0700 (PDT)
+ bh=TQDxLqmzjq89sTehG3MDEct9xCR7E9qIHSSusObYhWs=;
+ b=AtlJ6Eo1SMMxc1jwTX5BuHi2jrDQuJ03jo2VHynaJdsqeCl8b3C23ZB3JZswdSRRpg
+ W0ZVp9q8vPNoncyNkVYB7tVltrVAa7aCIQNWgFljerrwf9b+jxH4RdtRGsJ7Y4yAt4k8
+ 4aF9LOzxLPnC57hCIh7/H3mM1ZR9btII69SNUD8HNHJmAvSXPS6ft6p1kw3GKzP1bqRX
+ eDuIl4I4m9MyRrfV3rN0bNIa8Jd+Bpjb9jAus73SJJP2Sv3+j7JQK0DHgC9B+7zy7G92
+ +KfbkXgBT9l1NNGudxJzgzH82m6yNDiFnjdNg8r/SsbnmWnVt8hAZ4yRMPUdQNn4uCzr
+ 4yhA==
+X-Gm-Message-State: AOJu0YyPmlj+vwO/0cY0qt1Ecy5cJ3KwMRrEK10OzavbyZjd/XmZPA5B
+ LqI7J2xD5xA0CHZXIsnNZIBoJGE9o12846vXBqKYNHWeoL6srq9Gtmw=
+X-Google-Smtp-Source: AGHT+IGx1P/RGihOFKKleTn+vOCPVrhDPmparwA7H/YQEauYpDAKNxagoX9utBK0hd3btMpZEWNDZGys5blD2odnvwg=
+X-Received: by 2002:aa7:c511:0:b0:521:e502:baf8 with SMTP id
+ o17-20020aa7c511000000b00521e502baf8mr142537edq.11.1694111989922; Thu, 07 Sep
+ 2023 11:39:49 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230901130440.2085-1-ville.syrjala@linux.intel.com>
- <20230901130440.2085-5-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230901130440.2085-5-ville.syrjala@linux.intel.com>
+ <20230901130440.2085-6-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230901130440.2085-6-ville.syrjala@linux.intel.com>
 From: Manasi Navare <navaremanasi@chromium.org>
-Date: Thu, 7 Sep 2023 11:38:02 -0700
-Message-ID: <CAE72mNnFQHqhoKYVG5iGHv88NDTzh+D1To+St-zt9DC9zzHo1w@mail.gmail.com>
+Date: Thu, 7 Sep 2023 11:39:39 -0700
+Message-ID: <CAE72mNmfBXhS4E8yPWXcTT9Ro6gtDptf3NXrOkUSXFCYbS-HdA@mail.gmail.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 04/12] drm/i915: Enable VRR later during
- fastsets
+Subject: Re: [Intel-gfx] [PATCH 05/12] drm/i915: Adjust seamless_m_n flag
+ behaviour
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,7 +72,7 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Looks good to me,
+Makes sense to rename the flag to update_m_n
 
 Reviewed-by: Manasi Navare <navaremanasi@chromium.org>
 
@@ -83,161 +83,209 @@ On Fri, Sep 1, 2023 at 6:05=E2=80=AFAM Ville Syrjala
 >
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> In order to reconcile seamless M/N updates with VRR we'll
-> need to defer the fastset VRR enable to happen after the
-> seamless M/N update (which happens during the vblank evade
-> critical section). So just push the VRR enable to be the last
-> thing during the update.
+> Make the seamless_m_n flag more like the update_pipe fastset
+> flag, ie. the flag will only be set if we need to do the seamless
+> M/N update, and in all other cases the flag is cleared. Also
+> rename the flag to update_m_n to make it more clear it's similar
+> to update_pipe.
 >
-> This will also affect the vblank evasion as the transcoder
-> will now still be running with the old VRR state during
-> the vblank evasion. So just grab the timings always from the
-> old crtc state during any non-modeset commit, and also grab
-> the current state of VRR from the active timings (as we disable
-> VRR before vblank evasion during fastsets).
->
-> This also fixes vblank evasion for seamless M/N updates as
-> we now properly account for the fact that the M/N update
-> happens after vblank evasion.
+> I believe special casing seamless_m_n like this makes sense
+> as it also affects eg. vblank evasion. We can potentially avoid
+> some vblank evasion tricks, simplify some checks, and hopefully
+> will help with the VRR vs. M/N mess.
 >
 > Cc: Manasi Navare <navaremanasi@chromium.org>
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_crtc.c    | 35 ++++++++++++--------
->  drivers/gpu/drm/i915/display/intel_display.c | 21 ++++++++----
->  2 files changed, 36 insertions(+), 20 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_atomic.c   |  1 +
+>  drivers/gpu/drm/i915/display/intel_crtc.c     |  2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c  | 22 +++++++++++--------
+>  .../drm/i915/display/intel_display_types.h    |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
+>  5 files changed, 17 insertions(+), 12 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/dr=
+m/i915/display/intel_atomic.c
+> index 7cf51dd8c056..aaddd8c0cfa0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -259,6 +259,7 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
+>                 drm_property_blob_get(crtc_state->post_csc_lut);
+>
+>         crtc_state->update_pipe =3D false;
+> +       crtc_state->update_m_n =3D false;
+>         crtc_state->disable_lp_wm =3D false;
+>         crtc_state->disable_cxsr =3D false;
+>         crtc_state->update_wm_pre =3D false;
 > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
 i915/display/intel_crtc.c
-> index e46a15d59d79..1992e7060263 100644
+> index 1992e7060263..a04076064f02 100644
 > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
 > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -472,15 +472,31 @@ static void intel_crtc_vblank_evade_scanlines(struc=
-t intel_atomic_state *state,
->                                               struct intel_crtc *crtc,
->                                               int *min, int *max, int *vb=
-lank_start)
->  {
-> +       const struct intel_crtc_state *old_crtc_state =3D
-> +               intel_atomic_get_old_crtc_state(state, crtc);
->         const struct intel_crtc_state *new_crtc_state =3D
->                 intel_atomic_get_new_crtc_state(state, crtc);
-> -       const struct drm_display_mode *adjusted_mode =3D &new_crtc_state-=
->hw.adjusted_mode;
-> +       const struct intel_crtc_state *crtc_state;
-> +       const struct drm_display_mode *adjusted_mode;
->
-> -       if (new_crtc_state->vrr.enable) {
-> -               if (intel_vrr_is_push_sent(new_crtc_state))
-> -                       *vblank_start =3D intel_vrr_vmin_vblank_start(new=
-_crtc_state);
-> +       /*
-> +        * During fastsets/etc. the transcoder is still
-> +        * running with the old timings at this point.
-> +        *
-> +        * TODO: maybe just use the active timings here?
-> +        */
-> +       if (intel_crtc_needs_modeset(new_crtc_state))
-> +               crtc_state =3D new_crtc_state;
-> +       else
-> +               crtc_state =3D old_crtc_state;
-> +
-> +       adjusted_mode =3D &crtc_state->hw.adjusted_mode;
-> +
-> +       if (crtc->mode_flags & I915_MODE_FLAG_VRR) {
-> +               if (intel_vrr_is_push_sent(crtc_state))
-> +                       *vblank_start =3D intel_vrr_vmin_vblank_start(crt=
-c_state);
->                 else
-> -                       *vblank_start =3D intel_vrr_vmax_vblank_start(new=
-_crtc_state);
-> +                       *vblank_start =3D intel_vrr_vmax_vblank_start(crt=
-c_state);
->         } else {
->                 *vblank_start =3D intel_mode_vblank_start(adjusted_mode);
->         }
-> @@ -710,15 +726,6 @@ void intel_pipe_update_end(struct intel_atomic_state=
- *state,
+> @@ -510,7 +510,7 @@ static void intel_crtc_vblank_evade_scanlines(struct =
+intel_atomic_state *state,
+>          * M/N is double buffered on the transcoder's undelayed vblank,
+>          * so with seamless M/N we must evade both vblanks.
 >          */
->         intel_vrr_send_push(new_crtc_state);
->
-> -       /*
-> -        * Seamless M/N update may need to update frame timings.
-> -        *
-> -        * FIXME Should be synchronized with the start of vblank somehow.=
-..
-> -        */
 > -       if (new_crtc_state->seamless_m_n && intel_crtc_needs_fastset(new_=
 crtc_state))
-> -               intel_crtc_update_active_timings(new_crtc_state,
-> -                                                new_crtc_state->vrr.enab=
-le);
-> -
->         local_irq_enable();
->
->         if (intel_vgpu_active(dev_priv))
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index cfad967b5684..632f1f58df9e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6476,6 +6476,8 @@ static void commit_pipe_post_planes(struct intel_at=
-omic_state *state,
->                                     struct intel_crtc *crtc)
->  {
->         struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> +       const struct intel_crtc_state *old_crtc_state =3D
-> +               intel_atomic_get_old_crtc_state(state, crtc);
->         const struct intel_crtc_state *new_crtc_state =3D
->                 intel_atomic_get_new_crtc_state(state, crtc);
->
-> @@ -6487,6 +6489,9 @@ static void commit_pipe_post_planes(struct intel_at=
-omic_state *state,
->         if (DISPLAY_VER(dev_priv) >=3D 9 &&
->             !intel_crtc_needs_modeset(new_crtc_state))
->                 skl_detach_scalers(new_crtc_state);
-> +
-> +       if (vrr_enabling(old_crtc_state, new_crtc_state))
-> +               intel_vrr_enable(new_crtc_state);
+> +       if (new_crtc_state->update_m_n)
+>                 *min -=3D adjusted_mode->crtc_vblank_start - adjusted_mod=
+e->crtc_vdisplay;
 >  }
 >
->  static void intel_enable_crtc(struct intel_atomic_state *state,
-> @@ -6527,12 +6532,6 @@ static void intel_update_crtc(struct intel_atomic_=
-state *state,
->                         intel_dpt_configure(crtc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 632f1f58df9e..6196ef76390b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5170,7 +5170,7 @@ intel_pipe_config_compare(const struct intel_crtc_s=
+tate *current_config,
+>         PIPE_CONF_CHECK_X(lane_lat_optim_mask);
+>
+>         if (HAS_DOUBLE_BUFFERED_M_N(dev_priv)) {
+> -               if (!fastset || !pipe_config->seamless_m_n)
+> +               if (!fastset || !pipe_config->update_m_n)
+>                         PIPE_CONF_CHECK_M_N(dp_m_n);
+>         } else {
+>                 PIPE_CONF_CHECK_M_N(dp_m_n);
+> @@ -5307,7 +5307,7 @@ intel_pipe_config_compare(const struct intel_crtc_s=
+tate *current_config,
+>         if (IS_G4X(dev_priv) || DISPLAY_VER(dev_priv) >=3D 5)
+>                 PIPE_CONF_CHECK_I(pipe_bpp);
+>
+> -       if (!fastset || !pipe_config->seamless_m_n) {
+> +       if (!fastset || !pipe_config->update_m_n) {
+>                 PIPE_CONF_CHECK_I(hw.pipe_mode.crtc_clock);
+>                 PIPE_CONF_CHECK_I(hw.adjusted_mode.crtc_clock);
 >         }
+> @@ -5402,6 +5402,7 @@ int intel_modeset_all_pipes(struct intel_atomic_sta=
+te *state,
 >
-> -       if (vrr_enabling(old_crtc_state, new_crtc_state)) {
-> -               intel_vrr_enable(new_crtc_state);
-> -               intel_crtc_update_active_timings(new_crtc_state,
-> -                                                new_crtc_state->vrr.enab=
-le);
+>                 crtc_state->uapi.mode_changed =3D true;
+>                 crtc_state->update_pipe =3D false;
+> +               crtc_state->update_m_n =3D false;
+>
+>                 ret =3D drm_atomic_add_affected_connectors(&state->base,
+>                                                          &crtc->base);
+> @@ -5519,13 +5520,14 @@ static void intel_crtc_check_fastset(const struct=
+ intel_crtc_state *old_crtc_sta
+>  {
+>         struct drm_i915_private *i915 =3D to_i915(old_crtc_state->uapi.cr=
+tc->dev);
+>
+> -       if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state, tr=
+ue)) {
+> +       if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state, tr=
+ue))
+>                 drm_dbg_kms(&i915->drm, "fastset requirement not met, for=
+cing full modeset\n");
+> +       else
+> +               new_crtc_state->uapi.mode_changed =3D false;
+>
+> -               return;
 > -       }
-> -
->         if (!modeset) {
->                 if (new_crtc_state->preload_luts &&
->                     intel_crtc_needs_color_update(new_crtc_state))
-> @@ -6569,6 +6568,16 @@ static void intel_update_crtc(struct intel_atomic_=
-state *state,
+> +       if (intel_crtc_needs_modeset(new_crtc_state))
+> +               new_crtc_state->update_m_n =3D false;
 >
->         intel_pipe_update_end(state, crtc);
+> -       new_crtc_state->uapi.mode_changed =3D false;
+>         if (!intel_crtc_needs_modeset(new_crtc_state))
+>                 new_crtc_state->update_pipe =3D true;
+>  }
+> @@ -6240,6 +6242,7 @@ int intel_atomic_check(struct drm_device *dev,
+>                         if (intel_cpu_transcoders_need_modeset(state, BIT=
+(master))) {
+>                                 new_crtc_state->uapi.mode_changed =3D tru=
+e;
+>                                 new_crtc_state->update_pipe =3D false;
+> +                               new_crtc_state->update_m_n =3D false;
+>                         }
+>                 }
 >
-> +       /*
-> +        * VRR/Seamless M/N update may need to update frame timings.
-> +        *
-> +        * FIXME Should be synchronized with the start of vblank somehow.=
+> @@ -6252,6 +6255,7 @@ int intel_atomic_check(struct drm_device *dev,
+>                         if (intel_cpu_transcoders_need_modeset(state, tra=
+ns)) {
+>                                 new_crtc_state->uapi.mode_changed =3D tru=
+e;
+>                                 new_crtc_state->update_pipe =3D false;
+> +                               new_crtc_state->update_m_n =3D false;
+>                         }
+>                 }
+>
+> @@ -6259,6 +6263,7 @@ int intel_atomic_check(struct drm_device *dev,
+>                         if (intel_pipes_need_modeset(state, new_crtc_stat=
+e->bigjoiner_pipes)) {
+>                                 new_crtc_state->uapi.mode_changed =3D tru=
+e;
+>                                 new_crtc_state->update_pipe =3D false;
+> +                               new_crtc_state->update_m_n =3D false;
+>                         }
+>                 }
+>         }
+> @@ -6437,7 +6442,7 @@ static void intel_pipe_fastset(const struct intel_c=
+rtc_state *old_crtc_state,
+>             IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+>                 hsw_set_linetime_wm(new_crtc_state);
+>
+> -       if (new_crtc_state->seamless_m_n)
+> +       if (new_crtc_state->update_m_n)
+>                 intel_cpu_transcoder_set_m1_n1(crtc, new_crtc_state->cpu_=
+transcoder,
+>                                                &new_crtc_state->dp_m_n);
+>  }
+> @@ -6573,8 +6578,7 @@ static void intel_update_crtc(struct intel_atomic_s=
+tate *state,
+>          *
+>          * FIXME Should be synchronized with the start of vblank somehow.=
 ..
-> +        */
-> +       if (vrr_enabling(old_crtc_state, new_crtc_state) ||
-> +           (new_crtc_state->seamless_m_n && intel_crtc_needs_fastset(new=
+>          */
+> -       if (vrr_enabling(old_crtc_state, new_crtc_state) ||
+> -           (new_crtc_state->seamless_m_n && intel_crtc_needs_fastset(new=
 _crtc_state)))
-> +               intel_crtc_update_active_timings(new_crtc_state,
-> +                                                new_crtc_state->vrr.enab=
+> +       if (vrr_enabling(old_crtc_state, new_crtc_state) || new_crtc_stat=
+e->update_m_n)
+>                 intel_crtc_update_active_timings(new_crtc_state,
+>                                                  new_crtc_state->vrr.enab=
 le);
-> +
->         /*
->          * We usually enable FIFO underrun interrupts as part of the
->          * CRTC enable sequence during modesets.  But when we inherit a
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index c21064794f32..2f35560d7e4e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1083,6 +1083,7 @@ struct intel_crtc_state {
+>
+>         unsigned fb_bits; /* framebuffers to flip */
+>         bool update_pipe; /* can a fast modeset be performed? */
+> +       bool update_m_n; /* update M/N seamlessly during fastset? */
+>         bool disable_cxsr;
+>         bool update_wm_pre, update_wm_post; /* watermarks are updated */
+>         bool fifo_changed; /* FIFO split is changed */
+> @@ -1195,7 +1196,6 @@ struct intel_crtc_state {
+>         /* m2_n2 for eDP downclock */
+>         struct intel_link_m_n dp_m2_n2;
+>         bool has_drrs;
+> -       bool seamless_m_n;
+>
+>         /* PSR is supported but might not be enabled due the lack of enab=
+led planes */
+>         bool has_psr;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 3faa68989d85..d4c259da3a14 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2536,7 +2536,7 @@ intel_dp_drrs_compute_config(struct intel_connector=
+ *connector,
+>         int pixel_clock;
+>
+>         if (has_seamless_m_n(connector))
+> -               pipe_config->seamless_m_n =3D true;
+> +               pipe_config->update_m_n =3D true;
+>
+>         if (!can_enable_drrs(connector, pipe_config, downclock_mode)) {
+>                 if (intel_cpu_transcoder_has_m2_n2(i915, pipe_config->cpu=
+_transcoder))
 > --
 > 2.41.0
 >
