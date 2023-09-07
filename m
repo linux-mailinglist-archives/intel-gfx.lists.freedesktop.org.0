@@ -1,54 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E229797149
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 11:36:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1C87797151
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 11:43:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD35810E602;
-	Thu,  7 Sep 2023 09:36:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D56210E7AD;
+	Thu,  7 Sep 2023 09:43:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FAF810E223;
- Thu,  7 Sep 2023 09:36:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE46210E7A3;
+ Thu,  7 Sep 2023 09:43:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694079369; x=1725615369;
+ t=1694079816; x=1725615816;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=FSQ7vuGo6AwUt3MAO0J06RwhL1Zs4K+W4r9Ms0Ij0ts=;
- b=TZhPV74dE4tPU1Gx+yF4FOMmWj49o6Mj8NXP25Oyb/02Lh9zME35Vz+b
- ksHy9kUHKidXgkqeXErpgveBrWzdntedpapR/pcPezkZLeQcFIs+pLTw0
- Ss+gydvppNXbmqjdSGMVVsnfPS4cNDkm49vOV2J4Bp+R7VyKLgDV/o+YA
- ujoKufqjBC0I+WBYjbkpwrbus8p3MrH6jV8/VZnPZ7F7J+ZASxkOWtnlx
- 9pFvZAHWoDHOa5E/2NIpZssEBgSqw8ZzndhAwAnkmTtqQirjO4x6b7B1e
- GtxvHMCtAV3yhM8TKxwmYchkcCsyy8ORrmvEnA+OU6FEHROMOhscpfkW3 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="443691159"
-X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="443691159"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 02:35:56 -0700
+ bh=pnR5kstqGfQdtJCcOXHBRX9aXdYhQVq6t+ivw38b4fk=;
+ b=iWnFxUPQwY+h/utSZOE2SL9d+VK4V9p/dqQ3N3S5oLJJEPxscFadGlab
+ QGyPOicMO3L+934OqMurD0OKI9WwehnyC3KsEkX3ST9i2rRK62lLxrhAJ
+ TP+Ugw1/JITmRShZD43Hcxwj0tYKrsoKplO1DsQbUINgvECCa2hMsqYkS
+ w3C2XxLslDV2VpCr8HZ3k4bpmDjS5rE9FdyauhC0E5xIupyhshsozNVj5
+ 5jhdrZ7gdh1vlWQKPopn8hrUtwAV55YNZf4/TJMqu7SGbwteyoouAchiY
+ ZvzmBtmoJKKoViIJlFtE6YLnF4nPRYTvfzJg6wYsaZ/EvLG45HRtTPWG9 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="380025591"
+X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="380025591"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2023 02:43:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="865561582"
-X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="865561582"
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="832092585"
+X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="832092585"
 Received: from iraduica-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.61.21])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 02:35:54 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230821160004.2821445-3-mitulkumar.ajitkumar.golani@intel.com>
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2023 02:43:31 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: suijingfeng <suijingfeng@loongson.cn>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Sui Jingfeng <sui.jingfeng@linux.dev>, Bjorn
+ Helgaas <bhelgaas@google.com>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>, "Deucher, Alexander"
+ <Alexander.Deucher@amd.com>
+In-Reply-To: <3f41eea5-d441-304d-f441-eaf7ce63d3e1@loongson.cn>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230821160004.2821445-1-mitulkumar.ajitkumar.golani@intel.com>
- <20230821160004.2821445-3-mitulkumar.ajitkumar.golani@intel.com>
-Date: Thu, 07 Sep 2023 12:35:52 +0300
-Message-ID: <87h6o6gwav.fsf@intel.com>
+References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+ <151c0429-dbc2-e987-1491-6c733ca159ac@suse.de>
+ <3eced3f5-622f-31a6-f8a0-ff0812be74ff@loongson.cn>
+ <6035cf27-1506-dda7-e1ca-d83ce5cb5340@suse.de>
+ <3f41eea5-d441-304d-f441-eaf7ce63d3e1@loongson.cn>
+Date: Thu, 07 Sep 2023 12:43:29 +0300
+Message-ID: <87edjagvy6.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm: Add Wrapper Functions for ELD SAD
- Extraction
+Subject: Re: [Intel-gfx] [Nouveau] [RFC,
+ drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
+ primary video adapter at boot time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,83 +68,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 21 Aug 2023, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
-> Add wrapper functions to facilitate extracting Short Audio
-> Descriptor (SAD) information from EDID-Like Data (ELD) pointers
-> with different constness requirements.
->
-> 1. `drm_eld_sad`: This function returns a constant `uint8_t`
-> pointer and wraps the main extraction function, allowing access
-> to SAD information while maintaining const correctness.
->
-> 2. `drm_extract_sad_from_eld`: This function returns a mutable
-> `uint8_t` pointer and implements the core logic for extracting
-> SAD from the provided ELD pointer. It performs version and
-> maximum channel checks to ensure proper extraction.
->
-> These wrapper functions provide flexibility to the codebase,
-> allowing users to access SAD information while adhering to
-> const correctness when needed and modifying the pointer when
-> required.
+On Wed, 06 Sep 2023, suijingfeng <suijingfeng@loongson.cn> wrote:
+> Another limitation of the 'nomodeset' parameter is that
+> it is only available on recent upstream kernel. Low version
+> downstream kernel don't has this parameter supported yet.
+> So this create inconstant developing experience. I believe that
+> there always some people need do back-port and upstream work
+> for various reasons.
 
-I've considered this, and in the end I think it's better to *not* make
-it easier for drivers to modify the ELD buffer directly.
-
-To that end, I wrote some helpers to modify the SADs using the existing
-struct cea_sad abstraction [1]. Please have a look. It should make your
-changes better focus on what you need to do here, instead of getting
-distracted with ELD parsing details.
+While that may be true, it's not an argument in favour of adding new
+module parameters or special values to existing module parameters. They
+would have to be backported just as well.
 
 BR,
 Jani.
 
-
-[1] https://patchwork.freedesktop.org/series/123384/
-
-
->
-> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> ---
->  include/drm/drm_edid.h | 15 ++++++++++-----
->  1 file changed, 10 insertions(+), 5 deletions(-)
->
-> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
-> index 48e93f909ef6..626bc0d542eb 100644
-> --- a/include/drm/drm_edid.h
-> +++ b/include/drm/drm_edid.h
-> @@ -418,11 +418,7 @@ static inline int drm_eld_mnl(const uint8_t *eld)
->  	return (eld[DRM_ELD_CEA_EDID_VER_MNL] & DRM_ELD_MNL_MASK) >> DRM_ELD_MNL_SHIFT;
->  }
->  
-> -/**
-> - * drm_eld_sad - Get ELD SAD structures.
-> - * @eld: pointer to an eld memory structure with sad_count set
-> - */
-> -static inline const uint8_t *drm_eld_sad(const uint8_t *eld)
-> +static uint8_t *drm_extract_sad_from_eld(uint8_t *eld)
->  {
->  	unsigned int ver, mnl;
->  
-> @@ -437,6 +433,15 @@ static inline const uint8_t *drm_eld_sad(const uint8_t *eld)
->  	return eld + DRM_ELD_CEA_SAD(mnl, 0);
->  }
->  
-> +/**
-> + * drm_eld_sad - Get ELD SAD structures.
-> + * @eld: pointer to an eld memory structure with sad_count set
-> + */
-> +static inline const uint8_t *drm_eld_sad(const uint8_t *eld)
-> +{
-> +	return drm_extract_sad_from_eld((uint8_t *)eld);
-> +}
-> +
->  /**
->   * drm_eld_sad_count - Get ELD SAD count.
->   * @eld: pointer to an eld memory structure with sad_count set
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
