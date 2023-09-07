@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF762797C30
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 20:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 180B2797C3A
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 20:49:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6545710E083;
-	Thu,  7 Sep 2023 18:45:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C31610E0AA;
+	Thu,  7 Sep 2023 18:49:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C51510E083
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 18:44:59 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id
- 4fb4d7f45d1cf-52a39a1c4d5so1733640a12.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 Sep 2023 11:44:59 -0700 (PDT)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
+ [IPv6:2a00:1450:4864:20::529])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A2F210E0AA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 18:49:23 +0000 (UTC)
+Received: by mail-ed1-x529.google.com with SMTP id
+ 4fb4d7f45d1cf-52eed139ec2so47382a12.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 07 Sep 2023 11:49:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1694112297; x=1694717097;
+ d=chromium.org; s=google; t=1694112561; x=1694717361;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=PJzoKPEBEP4BOtihURtdwsXaBBE2IFiO7eH6ORkPy0A=;
- b=J3zPA6IBsXs7lwT2CU10pYIgidp+GXXEW3erjWCqS+ovf32FqqBYr1A8sFIRnzwphV
- wuGII3YBU6Bdfu9d8yUGGaX9DsFH1b11NCuYw1S6crSjBHeD/tcXwaX8vVDKQjDOpxK7
- 7e8RTSUFuJKCesPaXlng0w6LZA8z+zyHuRXew=
+ bh=6ddggg+drtuTShn5kELgLASJLZ3xWbZKOM95bokNY/0=;
+ b=P/bGlNL4e+sktiNGPvuLet10542DBk0yoCir3BDMYM6ygt+gFMWH6zd+KHI/QEk83X
+ 7vfdIfYv/WJ1RMcFbmM5XICNDt0kG+8G2e+tS83Bif6HvlUSO05SzgVIaoLLs0m7tpg6
+ FNZA8YKKcjEQTSA8K7EQNsi9CnhtytL0is/0w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1694112297; x=1694717097;
+ d=1e100.net; s=20230601; t=1694112561; x=1694717361;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=PJzoKPEBEP4BOtihURtdwsXaBBE2IFiO7eH6ORkPy0A=;
- b=VKprBRIwqLJm4m+DjSIyTIBPnHDykgkV5iUYlVOigmrs4E7hpkAFakDsM/rDZg+Dyv
- SLzo9sS9hWBa4qAVwnygE9Z+k6IZteJWViL4W+wGEYgabWHZn0QR90e0iHxHosYUqK8B
- ryHvx+q9zvBjkk0NgH8K0f8wNDxRrxVceinPJZluqBxvkWuInhImtiWr0wY7G9pniSVW
- WX7fNZ28aBRf3w1mgizxDKwzWdfVLY1YMSpLy6IkUngTWIV1kdUNvEIws7TODgTzW0No
- agaBS5JM7HsyPowAGEkFV9zunve39jblRU2+sUNyJTm/m5GPH8M7tyG0MIh1MVs/bcA1
- lRIA==
-X-Gm-Message-State: AOJu0YzoFQep9Cw0LckechXuW4/GMAaMeF5qZYDiNxySUExh8WR84B6M
- XFozAJkc2O7cjeBsM6UL8maZL2BL1f1nem9RqzKyL4yTbzbaK1jz5+M=
-X-Google-Smtp-Source: AGHT+IEv4napuZjLlXjMJ59PL/Dvf4kt3QDtsEfJ2XRlEGDIzi+37qTTRlf8XL0bZuATiasHlEV5x/jmZRKjZw6j37g=
-X-Received: by 2002:aa7:d68c:0:b0:525:6d9e:67c0 with SMTP id
- d12-20020aa7d68c000000b005256d9e67c0mr151559edr.23.1694112297494; Thu, 07 Sep
- 2023 11:44:57 -0700 (PDT)
+ bh=6ddggg+drtuTShn5kELgLASJLZ3xWbZKOM95bokNY/0=;
+ b=UOGUpGvf/2jS9JUihVx8hhIXvhbvkDwEo1VFqEiQcqtzQiPFAetTwmeBq8ZY74+XSa
+ dRMCSsc4oiv8eHuQWc9qP9o015I49vuLzOTwd4HAO5bVlrbrQDaLy+WgfB5SI8Hvy03h
+ 94QRfzEkFFuaw/lzuiwA8SXgHXWzokR/a3X7LY9PkSX1mS4sAkkqeLk7CvlC6cYrm4Ao
+ I8CcgqZ6Te+fZozHsa+UhdHzOo0TCqIcgyOKhhcQ6B4ZzJIL3jneFPbT/ejiPmk9HGKF
+ LKnp1BrQ+sKhNZ3EbRJzbI9iHG2YpCQafKmi7hUvNp8PkzNU8F/f8S2q7zgSNsu/AEID
+ QZBA==
+X-Gm-Message-State: AOJu0YySB88WHxgOkN5Tcc/r6U3bYLEqwgtNFAiXVRSCVDQ15hjzpywc
+ l1bbFEgvreldGz9SVpbzWH8gfhL3TnnOD08UP054iJLTO5RVxXj2
+X-Google-Smtp-Source: AGHT+IGAnClsPZD9RzBQ++8p1JkqQw6n87+9aRzM7LZ+AgZbIr6yEj26BJrqZJF6nyrjn7VD39Z1bxZXivXhLdINqgA=
+X-Received: by 2002:aa7:d7d3:0:b0:528:925f:413e with SMTP id
+ e19-20020aa7d7d3000000b00528925f413emr147735eds.12.1694112561729; Thu, 07 Sep
+ 2023 11:49:21 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230901130440.2085-1-ville.syrjala@linux.intel.com>
- <20230901130440.2085-9-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230901130440.2085-9-ville.syrjala@linux.intel.com>
+ <20230901130440.2085-10-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230901130440.2085-10-ville.syrjala@linux.intel.com>
 From: Manasi Navare <navaremanasi@chromium.org>
-Date: Thu, 7 Sep 2023 11:44:46 -0700
-Message-ID: <CAE72mNk42kbNu7hbo3pJbuoiR2=wwx-ns2UegBJry37aFikMMg@mail.gmail.com>
+Date: Thu, 7 Sep 2023 11:49:10 -0700
+Message-ID: <CAE72mN=gAjB=h3BDzkMZqyh-OktWx3NwH38sn0oFEs_xdOhpXw@mail.gmail.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 08/12] drm/i915: Validate that the timings
- are within the VRR range
+Subject: Re: [Intel-gfx] [PATCH 09/12] drm/i915: Disable VRR during seamless
+ M/N changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,8 +72,21 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Manasi Navare <navaremanasi@chromium.org>
+Hi Ville,
 
+Since we are always disabling when update_m_n, that means if in gaming
+mode if VRR enable is requested by userspace, it cannot
+be enabled if update_m_n or dual refresh mode is enabled and say we
+have downclocked from 120Hz - 60Hz?
+
+Doesnt this contradict the purpose of this series to try and do VRR
+update params in fastset because we want VRR range to be
+correctly reflected when in dual refresh mode when we downclock from
+120-60hz in gaming use case with VRR?
+
+Am I missing something here?
+
+Regards
 Manasi
 
 On Fri, Sep 1, 2023 at 6:05=E2=80=AFAM Ville Syrjala
@@ -81,42 +94,43 @@ On Fri, Sep 1, 2023 at 6:05=E2=80=AFAM Ville Syrjala
 >
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Let's assume there are some crazy displays where the high
-> end of the VRR range ends up being lower than the refresh
-> rate as determined by the actual timings. In that case
-> when we toggle VRR on/off we would step outside the VRR
-> range when toggling VRR on/off. Let's just make sure that
-> never happens by not using VRR in such cases. If the user
-> really wants VRR they should then select the timings to
-> land within the VRR range.
+> Make life less confusing by making sure VRR is disabled whenever
+> we do any drastic changes to the display timings, such as seamless
+> M/N changes.
 >
 > Cc: Manasi Navare <navaremanasi@chromium.org>
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i=
-915/display/intel_vrr.c
-> index 6ef782538337..12731ad725a8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -117,10 +117,10 @@ intel_vrr_compute_config(struct intel_crtc_state *c=
-rtc_state,
->         const struct drm_display_info *info =3D &connector->base.display_=
-info;
->         int vmin, vmax;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index c20eaf0e7a91..cbbee303cd00 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -916,13 +916,15 @@ static bool planes_disabling(const struct intel_crt=
+c_state *old_crtc_state,
+>  static bool vrr_enabling(const struct intel_crtc_state *old_crtc_state,
+>                          const struct intel_crtc_state *new_crtc_state)
+>  {
+> -       return is_enabling(vrr.enable, old_crtc_state, new_crtc_state);
+> +       return is_enabling(vrr.enable, old_crtc_state, new_crtc_state) ||
+> +               (new_crtc_state->vrr.enable && new_crtc_state->update_m_n=
+);
+>  }
 >
-> -       if (!intel_vrr_is_capable(connector))
-> +       if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
->                 return;
+>  static bool vrr_disabling(const struct intel_crtc_state *old_crtc_state,
+>                           const struct intel_crtc_state *new_crtc_state)
+>  {
+> -       return is_disabling(vrr.enable, old_crtc_state, new_crtc_state);
+> +       return is_disabling(vrr.enable, old_crtc_state, new_crtc_state) |=
+|
+> +               (old_crtc_state->vrr.enable && new_crtc_state->update_m_n=
+);
+>  }
 >
-> -       if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
-> +       if (!intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_=
-mode)))
->                 return;
->
->         vmin =3D DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
+>  #undef is_disabling
 > --
 > 2.41.0
 >
