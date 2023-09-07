@@ -1,55 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B517972DB
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 15:38:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 151D77972DC
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 15:38:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA99610E247;
-	Thu,  7 Sep 2023 13:38:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A86810E7DA;
+	Thu,  7 Sep 2023 13:38:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7989410E231
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 13:38:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3292610E231;
+ Thu,  7 Sep 2023 13:38:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694093888; x=1725629888;
+ t=1694093901; x=1725629901;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=aXAGRS+BSVhyH7CA7dsgLIrt3pJUQ9obpeCmwNHacWo=;
- b=kDvmQuwxdDE0orLnyqJJHBAdbfwVqrIVxPb9oNeifqVfz1SV7wovXxAH
- qrgIjGdvztX5O1GBZLwvvUbD1GqvXIyauM/8FtTx0qoISRU4EJub1PKiL
- udloewWciKKWwUlhinjGX4Zbja/Xg22O6Lp+v14FcD2Y2VdGgkkOUj8at
- tQ9cfQhE80nWCFVN1sV4FYsDm9VykIYavPqsP4wkbQy9XfBLTR1WUAXw1
- gwnDuqNU1kSmgc1NzOdoJxu2N/0fvEs51ZSdWXdR+Db/u/tleGO6zz5eL
- enHOplH3Hoh74Hl/9PoIW94lsk855T5R9zSdGSGCLq8NPZVUx+D4fSVHW g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="408354867"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="408354867"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=v4+1AW/CDx6onMh9wLsXsI+FAWh4ntKx9+rb7gA6UNA=;
+ b=KZCFO2+hZ5rCjGkESS5O6+/6Z0U4mE8+HHPzMiQXRJt8jLx8X8V6ofIs
+ evjtmQPw4JYUxuY7sayH8XDjTGVYuzftWADQKPNdVg5jwEVOkGvfrXl8g
+ I1VR3MlZuiqeDmQOtYgqzfDBtdkq5BIsTrKfSdbzH9qzA9aVuJFDTqlVm
+ Swe8UqZvLOboTzGP9MSXzjcTHpUdMfZ+F2FBOcaMMRd6eHx3I5S1FkB1r
+ YLsR/F4Li/+xZv9XyXiR+FQ1K0Y12A283apuAJ0jIhFpe9XiGfgBbXqfB
+ Iok1Nijd61a5IDCN2UM+762TY2dlQNmB9U7BeyqPBPYJmTJ6+TnzN8PCL g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="374745034"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="374745034"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Sep 2023 06:38:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="885157066"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="885157066"
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="988778123"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="988778123"
 Received: from lkp-server01.sh.intel.com (HELO 59b3c6e06877) ([10.239.97.150])
- by fmsmga001.fm.intel.com with ESMTP; 07 Sep 2023 06:37:52 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 07 Sep 2023 06:38:05 -0700
 Received: from kbuild by 59b3c6e06877 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qeFCt-0001G9-1m;
+ (envelope-from <lkp@intel.com>) id 1qeFCt-0001G7-1j;
  Thu, 07 Sep 2023 13:38:03 +0000
-Date: Thu, 7 Sep 2023 21:37:27 +0800
+Date: Thu, 7 Sep 2023 21:37:28 +0800
 From: kernel test robot <lkp@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <202309072112.hlih7zXW-lkp@intel.com>
-References: <20230907101135.176326-1-andi.shyti@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Message-ID: <202309072156.iD0ETpd1-lkp@intel.com>
+References: <eba53a0904126fb904a5190750002695350f44eb.1694078430.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230907101135.176326-1-andi.shyti@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Run relevant bits of debugfs
- drop_caches per GT
+In-Reply-To: <eba53a0904126fb904a5190750002695350f44eb.1694078430.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/edid: add helpers to get/set struct
+ cea_sad from/to 3-byte sad
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,102 +60,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, llvm@lists.linux.dev,
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
  oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andi,
+Hi Jani,
 
-kernel test robot noticed the following build errors:
+kernel test robot noticed the following build warnings:
 
-[auto build test ERROR on drm-tip/drm-tip]
+[auto build test WARNING on drm-tip/drm-tip]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andi-Shyti/drm-i915-Run-relevant-bits-of-debugfs-drop_caches-per-GT/20230907-181322
+url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-edid-split-out-drm_eld-h-from-drm_edid-h/20230907-173011
 base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230907101135.176326-1-andi.shyti%40linux.intel.com
-patch subject: [Intel-gfx] [PATCH v2] drm/i915: Run relevant bits of debugfs drop_caches per GT
-config: x86_64-buildonly-randconfig-003-20230907 (https://download.01.org/0day-ci/archive/20230907/202309072112.hlih7zXW-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230907/202309072112.hlih7zXW-lkp@intel.com/reproduce)
+patch link:    https://lore.kernel.org/r/eba53a0904126fb904a5190750002695350f44eb.1694078430.git.jani.nikula%40intel.com
+patch subject: [PATCH 5/6] drm/edid: add helpers to get/set struct cea_sad from/to 3-byte sad
+config: i386-randconfig-013-20230907 (https://download.01.org/0day-ci/archive/20230907/202309072156.iD0ETpd1-lkp@intel.com/config)
+compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230907/202309072156.iD0ETpd1-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309072112.hlih7zXW-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309072156.iD0ETpd1-lkp@intel.com/
 
-All error/warnings (new ones prefixed by >>):
+All warnings (new ones prefixed by >>):
 
->> drivers/gpu/drm/i915/i915_debugfs.c:751:2: warning: ordered comparison between pointer and integer ('struct intel_gt *' and 'int')
-           for_each_gt(i915, i, gt) {
-           ^~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gt/intel_gt.h:170:14: note: expanded from macro 'for_each_gt'
-                (id__) < I915_MAX_GT; \
-                ~~~~~~ ^ ~~~~~~~~~~~
->> drivers/gpu/drm/i915/i915_debugfs.c:751:2: error: member reference type 'unsigned int' is not a pointer
-           for_each_gt(i915, i, gt) {
-           ^~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gt/intel_gt.h:172:35: note: expanded from macro 'for_each_gt'
-                   for_each_if(((gt__) = (i915__)->gt[(id__)]))
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-   include/drm/drm_util.h:63:38: note: expanded from macro 'for_each_if'
-   #define for_each_if(condition) if (!(condition)) {} else
-                                        ^~~~~~~~~
->> drivers/gpu/drm/i915/i915_debugfs.c:751:2: error: array subscript is not an integer
-           for_each_gt(i915, i, gt) {
-           ^~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/gt/intel_gt.h:172:37: note: expanded from macro 'for_each_gt'
-                   for_each_if(((gt__) = (i915__)->gt[(id__)]))
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
-   include/drm/drm_util.h:63:38: note: expanded from macro 'for_each_if'
-   #define for_each_if(condition) if (!(condition)) {} else
-                                        ^~~~~~~~~
-   1 warning and 2 errors generated.
+>> drivers/gpu/drm/drm_edid.c:5505:6: warning: no previous declaration for 'drm_edid_cta_sad_get' [-Wmissing-declarations]
+    void drm_edid_cta_sad_get(const struct cea_sad *cta_sad, u8 *sad)
+         ^~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/drm_edid.c:5515:6: warning: no previous declaration for 'drm_edid_cta_sad_set' [-Wmissing-declarations]
+    void drm_edid_cta_sad_set(struct cea_sad *cta_sad, const u8 *sad)
+         ^~~~~~~~~~~~~~~~~~~~
 
 
-vim +751 drivers/gpu/drm/i915/i915_debugfs.c
+vim +/drm_edid_cta_sad_get +5505 drivers/gpu/drm/drm_edid.c
 
-   738	
-   739	static int
-   740	i915_drop_caches_set(void *data, u64 val)
-   741	{
-   742		struct drm_i915_private *i915 = data;
-   743		struct intel_gt *gt;
-   744		unsigned int flags;
-   745		unsigned int i;
-   746		int ret;
-   747	
-   748		drm_dbg(&i915->drm, "Dropping caches: 0x%08llx [0x%08llx]\n",
-   749			val, val & DROP_ALL);
-   750	
- > 751		for_each_gt(i915, i, gt) {
-   752			ret = gt_drop_caches(gt, val);
-   753			if (ret)
-   754				return ret;
-   755		}
-   756	
-   757		fs_reclaim_acquire(GFP_KERNEL);
-   758		flags = memalloc_noreclaim_save();
-   759		if (val & DROP_BOUND)
-   760			i915_gem_shrink(NULL, i915, LONG_MAX, NULL, I915_SHRINK_BOUND);
-   761	
-   762		if (val & DROP_UNBOUND)
-   763			i915_gem_shrink(NULL, i915, LONG_MAX, NULL, I915_SHRINK_UNBOUND);
-   764	
-   765		if (val & DROP_SHRINK_ALL)
-   766			i915_gem_shrink_all(i915);
-   767		memalloc_noreclaim_restore(flags);
-   768		fs_reclaim_release(GFP_KERNEL);
-   769	
-   770		if (val & DROP_RCU)
-   771			rcu_barrier();
-   772	
-   773		if (val & DROP_FREED)
-   774			i915_gem_drain_freed_objects(i915);
-   775	
-   776		return 0;
-   777	}
-   778	
+  5501	
+  5502	/*
+  5503	 * Get 3-byte SAD buf from struct cea_sad.
+  5504	 */
+> 5505	void drm_edid_cta_sad_get(const struct cea_sad *cta_sad, u8 *sad)
+  5506	{
+  5507		sad[0] = cta_sad->format << 3 | cta_sad->channels;
+  5508		sad[1] = cta_sad->freq;
+  5509		sad[2] = cta_sad->byte2;
+  5510	}
+  5511	
+  5512	/*
+  5513	 * Set struct cea_sad from 3-byte SAD buf.
+  5514	 */
+> 5515	void drm_edid_cta_sad_set(struct cea_sad *cta_sad, const u8 *sad)
+  5516	{
+  5517		cta_sad->format = (sad[0] & 0x78) >> 3;
+  5518		cta_sad->channels = sad[0] & 0x07;
+  5519		cta_sad->freq = sad[1] & 0x7f;
+  5520		cta_sad->byte2 = sad[2];
+  5521	}
+  5522	
 
 -- 
 0-DAY CI Kernel Test Service
