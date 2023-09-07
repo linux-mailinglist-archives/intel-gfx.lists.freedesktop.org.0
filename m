@@ -2,44 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E048579705A
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 08:52:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F0A797065
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 08:57:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AD5110E774;
-	Thu,  7 Sep 2023 06:52:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09BA710E775;
+	Thu,  7 Sep 2023 06:57:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A274C10E772;
- Thu,  7 Sep 2023 06:52:06 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 1D0B0B81A56;
- Thu,  7 Sep 2023 06:52:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75840C433D9;
- Thu,  7 Sep 2023 06:52:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1694069521;
- bh=DbVPF3fDuw+/fHxkvTKzad9h+IArdS9JFe7ZDMm1wRs=;
- h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
- b=I3CaSgdX+UXuLoTXrYqF74CfiYpT3dwsti35q8kBkQRaXW9ykJtq8eDKFYRguPgsD
- O+FuJc6uRm+FEgpRbwt/cdx4mgd2vMerRWmhSJP4+7EqiRJ5YWsa5bc8RCA5nFdPrq
- /4jcmzcSy5xLdfTXLykPw3nAW3n5sXJ/wM8dnLcPqr+ujrSHc5JVuvvLq0RB22wzOz
- tjK2W8UdB4yXSspV1zN3YSf/h3bUucnw88Vte8V9LXEohvRd+jFss8dmCvp7SQ9Dxp
- nYt3WkuAIvmWNu4kMf/d4YdtKQOtHaxCSlD9OOzlTnx0uH7obJiQO2KfOEmvn7pCmN
- 86ncDuPDk6ojA==
-Message-ID: <040b316aae533abac3d3fa9c1eaff3d1.mripard@kernel.org>
-Date: Thu, 07 Sep 2023 06:51:59 +0000
-From: "Maxime Ripard" <mripard@kernel.org>
-To: "Jim Cromie" <jim.cromie@gmail.com>
-In-Reply-To: <20230906190224.583577-5-jim.cromie@gmail.com>
-References: <20230906190224.583577-5-jim.cromie@gmail.com>
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH v3 4/5] drm/vc4: add trailing newlines to
- drm_dbg msgs
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9466C10E775
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 06:57:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694069860; x=1725605860;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=N/QLzwU+LeoQohFdtvkHaIsnkLEOj+PUYrvI6jVWvsY=;
+ b=m40YU4WwBSGwDZRyao0hMixkMLNG1Qv5JOmoCLOEW2+lmqz/A2Leu/uu
+ gSI3QHNSwW51b2L5TU8XcJRqRyers+063WHzR9CLmeRNw73N3V/SK8lgx
+ +8qYbhZ0IxQ5hExqziWVdeCHj/lz0By65z7Tk8DBQGn8cMVOZD5fZSj6m
+ SoER8PfxRDfWoOwAM8b1NWt3O/4TJN/woHKUZlv/2/GY+6SiWGJipAe8d
+ p4RRlCh2vDS6m2NRSDhZapFB+gSAzVVVEhA0OIWGeFA1ea6MzdgVKdUQB
+ Hn8An0HQqV4EFkKKoGxP8qkVI2O6zhzDhpsnxnRmXe5ZLRfXkIOOE2zC9 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="362304100"
+X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="362304100"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 23:57:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="988636980"
+X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="988636980"
+Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
+ by fmsmga006.fm.intel.com with ESMTP; 06 Sep 2023 23:57:38 -0700
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  7 Sep 2023 12:27:34 +0530
+Message-Id: <20230907065734.3871575-1-dnyaneshwar.bhadane@intel.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Added Wa_18022495364
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,24 +54,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, Emma Anholt <emma@anholt.net>,
- jani.nikula@intel.com, daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- seanpaul@chromium.org, amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, David
- Airlie <airlied@gmail.com>, intel-gvt-dev@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 6 Sep 2023 13:02:22 -0600, Jim Cromie wrote:
-> By at least strong convention, a print-buffer's trailing newline says
-> "message complete, send it".  The exception (no TNL, followed by a call
-> to pr_cont) proves the general rule.
-> 
-> Most DRM.debug calls already comport with this: 207 DRM_DEV_DEBUG,
-> 
-> [ ... ]
+This workaround has two different implementations,
+one for gen 12 to DG2 and another for DG2 and later.
+Bspec :  11354 , 56551.
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+---
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c    | 4 ++++
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 2 ++
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 3 +++
+ 3 files changed, 9 insertions(+)
 
-Thanks!
-Maxime
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index 0143445dba83..fee2712f81e8 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -271,6 +271,10 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+ 		if (GRAPHICS_VER_FULL(rq->i915) >= IP_VER(12, 70))
+ 			bit_group_0 |= PIPE_CONTROL_CCS_FLUSH;
+ 
++		/* Wa_18022495364 */
++		if ((GRAPHICS_VER_FULL(rq->i915) >= IP_VER(12, 70)) ||
++		    IS_DG2(rq->i915))
++			bit_group_1 |= PIPE_CONTROL_CONST_CACHE_INVALIDATE;
+ 		bit_group_1 |= PIPE_CONTROL_TILE_CACHE_FLUSH;
+ 		bit_group_1 |= PIPE_CONTROL_FLUSH_L3;
+ 		bit_group_1 |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index 0e4c638fcbbf..4c0cb3a3d0aa 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -164,6 +164,8 @@
+ #define GEN9_CSFE_CHICKEN1_RCS			_MMIO(0x20d4)
+ #define   GEN9_PREEMPT_GPGPU_SYNC_SWITCH_DISABLE	(1 << 2)
+ #define   GEN11_ENABLE_32_PLANE_MODE		(1 << 7)
++#define GEN12_CS_DEBUG_MODE2			_MMIO(0x20d8)
++#define   GEN12_GLOBAL_DEBUG_ENABLE			BIT(6)
+ 
+ #define GEN7_FF_SLICE_CS_CHICKEN1		_MMIO(0x20e0)
+ #define   GEN9_FFSC_PERCTX_PREEMPT_CTRL		(1 << 14)
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 864d41bcf6bb..1a026d4d7ac5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -712,6 +712,9 @@ static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 			    GEN9_PREEMPT_GPGPU_LEVEL_MASK,
+ 			    GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL);
+ 
++	/* Wa_18022495364 :tgl,rkl,dg1,adl-s,adl-p */
++	wa_masked_en(wal, GEN12_CS_DEBUG_MODE2,
++		     GEN12_GLOBAL_DEBUG_ENABLE);
+ 	/*
+ 	 * Wa_16011163337 - GS_TIMER
+ 	 *
+-- 
+2.34.1
+
