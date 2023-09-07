@@ -1,59 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09876796FC2
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 07:05:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A6C4796FC7
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 07:07:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDDBD10E758;
-	Thu,  7 Sep 2023 05:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A67EE10E756;
+	Thu,  7 Sep 2023 05:07:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1095E10E758
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 05:05:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2064210E756
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 05:07:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694063153; x=1725599153;
+ t=1694063260; x=1725599260;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=Da69c9eJ/Ip8ftomW7nGBcHe54hz1nls/Mf621htqdk=;
- b=cvSYhsqiBHr+R3cZw5LUnMTY4sNDhY2bHmbH6paFWuYSD3vShVBg64Yd
- cDNLy64CeCFh+Q6EWclbVnNUSbrMrIbTIlbnRGY3Bf/lydMJ9+gW2ev3d
- vuIxBAUGvgutPzmQLZ7VL8dukluYWrAWoxa6YeO/tCREGIoDls9ioJ671
- iq7LZdxQke4zQtxNHJI9AU80K1t4VnCGKkwgwsqqMQtIjmjOQMDUAnnjq
- mMe0/W3HhNg5dRxuPeZmuMzj8kW5dAcNT79tWeL5f2GShlUchVSgHQIsX
- EhUtVACWSDDe0A9lhIXxE4UG5HkkEzBp0CDzgCCz9ZpjR6/58enhPhkof w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="357570973"
-X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="357570973"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 22:05:52 -0700
+ bh=x+EbSWRi0YFgdLI1NbdFmcbw5NDzZ/mfcsTX91uoneg=;
+ b=L68JorUwcjuSjKaWUz9BND3IGWQnLYvM1wmQ8SmFXI9wYRHHyAfk9VwJ
+ zjCI58Ohj88aSXxBepWcbs145p8EWu4XOoeJJqXBGpW+RCkHNtTkEwSKv
+ C3EjuqZEqGhsSiJvC+rOcgGELkLgnp81AqLtryWFBdAeVzft0rTZuwS8W
+ sV0cNWyObj7/rWOwczbnbIl/9K4rkO6Dg5LCWPVFVAgf06ElF48G69ZIv
+ WrIacdkw572YlHcdHfE42cDpvujRTtoIuXjBeFHE9FSx2FpydFWlH2YT6
+ rZL4tgxv3O6VrZ97n8W8wHmOGhPQFOlR5kABvi6ecWl7BNvX+O565t9Mk A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="379971602"
+X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="379971602"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 22:07:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="865464506"
-X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="865464506"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Sep 2023 22:05:51 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="1072706325"
+X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="1072706325"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Sep 2023 22:07:39 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 6 Sep 2023 22:05:51 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.32; Wed, 6 Sep 2023 22:07:38 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Wed, 6 Sep 2023 22:05:51 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.107)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Wed, 6 Sep 2023 22:07:38 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Wed, 6 Sep 2023 22:05:51 -0700
+ 15.1.2507.27; Wed, 6 Sep 2023 22:07:38 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QUGCBsUIww4+lDKzuRk0Avhjes9wfP8cyMtnx2Fq3vJjnLqMFOAyJtji8yv0UENXtlWwQ6aGqr+l/9MhbjQJ1nfax2sFWraTxFtdblPpJWlzheL2pcRTMJG8rIIbzN4eR7D+eB0fZaPcgjzydJlMn2mSIpyAYNOgQ+HUQ2CrLyGulAqKfJqnpn7cBwdH6zh80G8cjzFbIeFfpZa9psxGfe1cz1mrpzA2/XvxOn6meevJCUSAw+mTdZF5dFm8yi6iGDnlpWC5D+iY/p/ceQk6gpAf/g9SzvqfhmGsfnpn8yBia9KiRotX5cvcGHsPNxK0vdGxoGAoV3lzSIDWdrpUPQ==
+ b=dOE92UQRW4eSUmhZ+jIuDLSpUR4W3AOARDX2WFHgJrX8UPtz5KDO7SvVWkxsjsAIgrmC0quNNf8hdMyuYBlog0En831C/HtiL71iodfAnb76WYDt5DSHnsN85AUsTfaaGy9GQGXNHfCLc8Yb4waCSrk9n/yx4OzGGcKB1fqEBzu2O//Pbg3elNCJpN4hBmZQb1aPrwkTcFHqAEmU/ouaGAk53xGWl33/SPgmBLb1fi9yYw5a6KnIvVW/MT/8vzdANs1bzqAHeXsUGA/04EcbIeysqY1wAw2FDCYVCu9pGP7SvhuR+WQJqW5X0m8rhUSybJsLvhsMiH2XakiwvuNM8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n9vMrA6cvg9CtlQOj4tg+YjcNauOEtJSXB9dNyaiUdA=;
- b=QQLGXaDcwW8m7xaQDms3DLddRNWOgGK/PV1dRAJkJKJJ3ArV9R00zETp90G0dDGvm9gNFunM0ob2oudgFvzk3HnJkwE44LzqX2AG7B2awFhmfEF0QXkiKYdktv3LKaysS7ycrov+Yj1n1C0AmqqNliH25DG1t/3AXWHhW4+YahZ5JyYwWHs7DWZMGMHhEyGVEHYlViv0fK41tgAuCof2whViu0G7Qbb7EdAHr61y4xh0Kx3pFRG5eN/yC3T9GbII0NsiFa6FJQEPtgXlzCQBBQ/AStUhBK6EP3GOk7BKeYJgftGPFH82M1VkTEkkjR8G9qQAe4nVyQcmXYIaklIQsA==
+ bh=RzlNecr9/txPh91q70QaNqEke0CrQBIJ1g1sON0luhw=;
+ b=dgFEaDMYlrXtYFGqR1wrK6xbc2crfqnFGbqC/tJ4NtZ9iCqaiLMX22kOas1Q3PhTqU2CExhaEUTCbXm/ph+DT9IXqaSpnwzC2bSKYittH0R/Iyk7r6sKowMNycpZljeHH3vRazytc6+D2Xql+Q0xVFdgR4vfskHhWI4UuTy2cm20LiZsHo+0A8dBNppSie1ha5h3Ut3spexuM1AEyHApMh6tuHv87gZNk7ySv1qkpyC+cL0Z2rSx1n1wq0JjYkSDQ585yPsfKbMRsAD8naV+FCGVt6/3GjOM1mrpuQTyFJ+PpVVrVvocDW++z3K5/4p4OcGrhoDiphV2Fj9H+YrYnQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -61,22 +61,22 @@ Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
  by PH7PR11MB5957.namprd11.prod.outlook.com (2603:10b6:510:1e0::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Thu, 7 Sep
- 2023 05:05:49 +0000
+ 2023 05:07:36 +0000
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::88b:6fa5:dca0:2419]) by SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::88b:6fa5:dca0:2419%7]) with mapi id 15.20.6745.035; Thu, 7 Sep 2023
- 05:05:49 +0000
+ 05:07:36 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 3/8] drm/i915/dsc: have intel_dsc_pps_read() return the
- value
-Thread-Index: AQHZ4Bx+CFuc6dzjVUKIMXbxemyfq7AO0XtQ
-Date: Thu, 7 Sep 2023 05:05:49 +0000
-Message-ID: <SN7PR11MB67508AA7D148478AAEF11EA7E3EEA@SN7PR11MB6750.namprd11.prod.outlook.com>
+Thread-Topic: [PATCH 4/8] drm/i915/dsc: rename pps write to
+ intel_dsc_pps_write()
+Thread-Index: AQHZ4ByFnceN6g+a0ka76zX+VaGDxrAO0fyQ
+Date: Thu, 7 Sep 2023 05:07:36 +0000
+Message-ID: <SN7PR11MB6750C09F86A3035A980591E4E3EEA@SN7PR11MB6750.namprd11.prod.outlook.com>
 References: <cover.1693933849.git.jani.nikula@intel.com>
- <4d08c0f63c4975cc8cd01b0f82845c989bf13dd0.1693933849.git.jani.nikula@intel.com>
-In-Reply-To: <4d08c0f63c4975cc8cd01b0f82845c989bf13dd0.1693933849.git.jani.nikula@intel.com>
+ <e793056e610ee8cfe2a8d69605402cd2445a517a.1693933849.git.jani.nikula@intel.com>
+In-Reply-To: <e793056e610ee8cfe2a8d69605402cd2445a517a.1693933849.git.jani.nikula@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -85,59 +85,59 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|PH7PR11MB5957:EE_
-x-ms-office365-filtering-correlation-id: adae50e2-8b5e-489f-0655-08dbaf601a19
+x-ms-office365-filtering-correlation-id: c4c4183a-b57d-4161-d7bc-08dbaf6059c2
 x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: JoEL5zj36oCSrJEx8yq7IAibts7NfBMbfVi4NDgYi/WYWRZRFV9grVASmPvgJYRBnOwD5FgO8AxuCUf35DrlNesc6RtjU8EoWN1vtGYedTEvIL95kX5vH5VmJA1sMR6oWlg3tc2Vxk/nm3g6XhkxM1VGPMDGYqhRnXqTAoqe5/A0RoEIY7wIa2CvJjr1RgWB8Aq+/rWXgog05D48DsdepkZOYQRhfH213X2ryio85UnB4nHfEOg2JF6uNW8I68z0R/d75/SKgi5AQbG3KwTp9+yE25fPifwb42hE1mKSAJWHwIs56SlToGPeuQcMGVxEQ2WKWekjHAQe6/qPvz+nhhymEDjJFGk+chEq/hL78mAQq1fqSKQROfsJIrgB24XAHbryKHgRre+SmVT5pnZlPYiF2GVILz2ZpdjURiy60X1iB564V6Lj2QhIqHZ+8vgznUReMMkf1A2DO7ad3Q0ibQDlLzOpLz+Nvrl2oZV0E9YKGUGbKWXOPvtLx/WGUuUVS/9Y5g94WzvFyfUHrfpts7or+sp9ot5eaG0jbRQRlej7cT7qMQ8UQdUYHHcSzUGq960/NHiaUaDw0y0KEny88au0MuuiXjAI9e+PUuIsznhEe4IkfAi4w782acHzvsk4
+x-microsoft-antispam-message-info: XudtNmI8rjXyqFJPmtcWf1Fy+XkXoUeg7xx6NK81s5yzS4rqXV6pyQJ5HUZmvrRxaVM64KCKv1D67D0KKb7YvdJz6STWf7dVxZx4B+aKL8Du1CSvjQObVeAAeg4KoCehAOXizHCJjCgvxPqgB5A3TlrGikCa7xfWQU9spFBrq4+eSmf8Fz/uzbfdVkNxwjPlCKfPWASzqfIOfnzFkXGSpcChHj1F1mZYj3NTp6+iGmIfDj/A3OKzQ/DRp8HplJtKSoUZp9nJKX9c+qg3DMKYnCsoshH98PuhhWefK8j0ZY3vtbM/YdBsoM/kjY2tBGlr61m2jS9PNMlLzUpzSpJDT0jAGrrN390Ng5TqjJqzxg8bEpshdKX3kXwtCmIuxua1mLppPDbSbqjUZViR1tlsnALfs5MkWjnQkez6AFmxpsvn2f8C6rY1GB0NB2MXPuvO1qO19vXDMgwhsLZQHKTJjVJ9FQad7aR/N8XKF88Wo6ounel5BRqHUTATNOPuJPqggBLeMMGEOVf2TV3y3LrS7uqkiTF+gQDf7tJ6C5IsH3yEvuH+Gka3FuPAg4mRMxyN9HNZdRNEuMlGyaRjLkjOFMGuuTTuwjOqK1qii5uYqFe9LF9LwXk48ISPhFe4C2l0
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(396003)(39860400002)(136003)(376002)(366004)(346002)(186009)(451199024)(1800799009)(66556008)(76116006)(26005)(71200400001)(66446008)(64756008)(66476007)(9686003)(7696005)(66946007)(110136005)(41300700001)(316002)(55016003)(122000001)(107886003)(4326008)(8676002)(8936002)(5660300002)(52536014)(6506007)(83380400001)(478600001)(2906002)(86362001)(38070700005)(82960400001)(33656002)(38100700002);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Y/ztqBcxHXdWngwCOFcktbCcl2CAtSCGUusTrIRs6m29oM1baaIr/Tpk5BEh?=
- =?us-ascii?Q?dfiGXxAYzPL8B46rjv8rKThxsb3icmo2iJ0xFDhBIeg7SWZrFIMNMPGEtAjH?=
- =?us-ascii?Q?ooL66AO5blkOHnfW2j2evebZFXeWZzdcuCE9CyNnCmSPGem2FUf6DidUL0Bv?=
- =?us-ascii?Q?TxaKtjNT3jpQnOTSW6FDDYd3/f3jvjGE0P7UjMg1soXoKEpaSYB95VlYAQZG?=
- =?us-ascii?Q?GFy6TxSJcmATmIhc45wQh5HtFwEUFTDLMzkrspqeR0uw0mZdlOxHWm5xvbk0?=
- =?us-ascii?Q?UrW/oD0dw+mJ8HDzcr0d7HXaXXHQS7eUG4BnUAoQMOjGXW+qSdrU2qU/ZYpe?=
- =?us-ascii?Q?T9bcQgjJNpjHYA/5R9zDRq/e83gyQVmAfjD8Rx4GtQQSaGROe4VXMBjMbk00?=
- =?us-ascii?Q?7wrkJBLs5QN3NYrG1024AtYkfFiy3hoMCdrUS5iJ8MAWbOP2JMxCMm/CMlKz?=
- =?us-ascii?Q?WgnmC9NBYhCFy0n6x1oaBE17JhdgqQrajVzrGMYY9Gg96Oy7dKxCjqQGJadF?=
- =?us-ascii?Q?ojuqS3nMnldj5xaR9lgIA9oYVq+g9f0yfEbbUi330LReTo2a73INLl+yEqSj?=
- =?us-ascii?Q?3i+OMVzs9hjgT7c3ZdN3Dt6WxMq0BwqYNuq/HvjN9Rp2GtpaIwKuJkpKLL1F?=
- =?us-ascii?Q?KwKCIZHCNw7HM9pgNl8X1NzKMJFplK9SZfc6q4qazJfCIXWMyW8Vvhl0BQym?=
- =?us-ascii?Q?1oxMmNOeEJ/nArjxfIuXMSZMfs/qUIz9KBncN1aZry2dSR/KHrZSaV00MQbV?=
- =?us-ascii?Q?TOqhKNvPnLYsRr42i9ComD0okcG3RVf4EkW4xkkZHvGNfexE3cDEwEU+9Lgx?=
- =?us-ascii?Q?vYGKK+ZO1L7xz/W9yfDNRX1+vSmACjcvDiHAZs/ki3L9OmwMslLqIiFnmBqy?=
- =?us-ascii?Q?Kf8QZUwcLSkWErHLAC5l2WfX0CgbNmvt5YhxcUghSUarmfmeu7taGxYOg2g6?=
- =?us-ascii?Q?KW5Z4D99DrCgA8YhjzaN1cGwKtyXoCppSSKFSULhTJCv4pBNMNEMQjAupS8f?=
- =?us-ascii?Q?YT5MAYYqmPCs4hXifYoWlUFUfTJnyUClg0fworfv1bnpvN3djFkGTOwFcyk3?=
- =?us-ascii?Q?kK2WNjzYdZKfbwQatdDCXL6H7jDOAlCveZck0zGpBZhEP3ZHA1YcZrB9x3Sx?=
- =?us-ascii?Q?m9vB5URe+waWUMOJXbjHnrR1G/A5RcqyBccXp87TpRqs/csDzEaSKf/s9bo1?=
- =?us-ascii?Q?s396vAtP/3ne7ug1cnlQxVVARzhraao26cTiZMYKVYgm/B9eqcsf4caQGcan?=
- =?us-ascii?Q?B34FljSGeZRtkvM+ytJYaAp7nYezRXr8ULIHeHd4hrWYpw+1a2vVd9eNx6E7?=
- =?us-ascii?Q?0aYA+P8nVxCJBLY5HLAb9MGZiMk0JJfM/fsY+DkvuCVyqx0CUO+2poSuffZs?=
- =?us-ascii?Q?/hHS01WCbaepWUhRc5NbegJVl8mOWt85IF9lktejMDty5Gt3fo0bMahg8EmL?=
- =?us-ascii?Q?czBWSZ46gwXvCqXpJ/0iyk4CVmZLdE+FVZ50J6+a2Y3UjnZzHapD9OGHOMmC?=
- =?us-ascii?Q?B192qbRMQZzWiQFxAoIyBQI2iegEEd/mm81HmkX69huuAfn0FNwDxEtFz+Qc?=
- =?us-ascii?Q?vFGAP3fPheCcWJ/0/bbAKg7QjDQtjdDPavonZB0B?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?7+P+I/SyGrUeZi0QKh8m00sdrG9fbmxCpkqSEmdaEVnIrPuccTV/0Cj0Hktr?=
+ =?us-ascii?Q?+UpkfJbsO8A9QIxaLSecF5638iPrvIEvkRPYGT2LiI9lWtxLMvZ5WdTDZVQT?=
+ =?us-ascii?Q?VkyAEeKlM+waglu+OUZ3HiIiIj2Df1NAeVcwfzDYv/SrsfAQO17vYuv5mh8J?=
+ =?us-ascii?Q?89j44RliIG6RQ+5SEKiJTCY+KwOQvjslmilMHoK1Yi3bpDugbDuWYL8nQsoE?=
+ =?us-ascii?Q?+CqqD6zpADJ7umHuGwVH/Gy1kcTmf58oAZDnNgwQdkKs4RuPKgU0YS96t5JU?=
+ =?us-ascii?Q?0YYgkmVC315RhjoMfBsu27+b3iGKXwbH+fn1v2yJvih5CoLrkH7+6lxTSfwr?=
+ =?us-ascii?Q?kFparLFj7lSfF7PLMN4iHlUmJPZZUUTlGQVjjge5FopAWbKiFidAnBnZNdmu?=
+ =?us-ascii?Q?rg8ZISXTOWnVtJc+fiVYBc6i0u0YV3312mxHbNn2z7IdCd2Z/c3r6kKS86Rk?=
+ =?us-ascii?Q?kE/q6mQI7Hw+msz/b8qXq/Usjah7BTAbRogAwH2/1aBrdrxu9JzaB4+T6YCG?=
+ =?us-ascii?Q?brUxIIH3y8o2KzN4V15R+JLpzUpZd6nKqS8N98YqGzWlUrERf6mt6uas2fGc?=
+ =?us-ascii?Q?hef2kDx4S5qcFhU76q4q1qHbe27iHH3WIbgWrsrXqQn61unuJs4mORA+1vE1?=
+ =?us-ascii?Q?y5UD6hMO46zQRkDiSM8Y5QXEfIlAR3x5OvMbOX2UcILt0JvwyYkWyWNtvpG0?=
+ =?us-ascii?Q?3Z8xPsNQnM2cnTrunzbH4s62O8JALav3A5tBgxO9dYzIjFhHRGcXBdYwf6k5?=
+ =?us-ascii?Q?JEm9f633gYcVbABuAytVb0dpoaFPkYr79aAco0uVInU90fxwX+9YvZcFabDo?=
+ =?us-ascii?Q?UYQlf3aada4T+A8BiECyECkuqqSoP2ns3k4TJBSuh+aqahyrIXK6iIBFzyZv?=
+ =?us-ascii?Q?qij4B2dezUQK+0Ax6PNe6na8xcHOwFOtWJ5997A0GjEwLx0FDH/+cRIKct4I?=
+ =?us-ascii?Q?ASUXpfFNaglTR5BdH5prpyccGM5aGmHdgNDm0KLG7jMaR3DEU223znNH5JSI?=
+ =?us-ascii?Q?oWhiJ6v7sTWHSbjIPC3DT++b6hTHhLDOKXuE80/uYj9cz6DXT8tT9A6XH2y4?=
+ =?us-ascii?Q?z+gEpH2pL425y+ai8dbNVZjKvS3fgFnyxdPo1PfUGZYzZ3RD+OlOHsHw11q2?=
+ =?us-ascii?Q?OKxjcwnFRFgT9qwq+NYS649U9lIrX6ipc2j48gfs1Fh2gboJDynuxlCzJ7JB?=
+ =?us-ascii?Q?VIgNpx1010p7Kl3hssxDtqvUc1DTh1ZV36MPES9cPLafIITR6A9YSXaoaBXG?=
+ =?us-ascii?Q?g4nmCQHw3oBhsAiaCuM1pztdXQhiIqFsEgdnnWVSsmKA3vzzNVXsHI5x9cxD?=
+ =?us-ascii?Q?g5p5cbJ2DLwzdyOej4BJC/6spZFoiPs+78t5aYB87RtKqnHTsXIb604EgXfP?=
+ =?us-ascii?Q?rvOuYjusPWhAQ6aljPLjuGcINln+z4OmqqGpXL/mf3ySvjZ6NlBFSqhKqsXc?=
+ =?us-ascii?Q?4r7EnfsDHedrgf8n5e4en5bVpwQHuGrAHfuIDRBsfyz3EvigmVUvDjHf3/Zp?=
+ =?us-ascii?Q?SF8xfSEHu/OfNQWoYmLpcUT3ZEv0Jo8mlLnr9eUwOZwas5fHsl9JCjvoNTL1?=
+ =?us-ascii?Q?Yya+s99U6gbGl6PjbgjfKxCNI2OgS5x+QiOmtlZD?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: adae50e2-8b5e-489f-0655-08dbaf601a19
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2023 05:05:49.2438 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4c4183a-b57d-4161-d7bc-08dbaf6059c2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2023 05:07:36.0359 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7ed1vw/g/4EH+kOd8NJqv4/bvyueaFkY73qUeo4Dvzo1NV85+RkHlPqaVAlD3H6Zt0/NxrXuB3GWvbAcWQx+Bg==
+X-MS-Exchange-CrossTenant-userprincipalname: 0sk1VhgsRLR1AXqHuLFwRteK1ExbFgPvLoP8QHnBy6/6Vge7ifMaPPctRHamdWuJURllnUs57yr5E/1GpxRtew==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5957
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 3/8] drm/i915/dsc: have intel_dsc_pps_read()
- return the value
+Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915/dsc: rename pps write to
+ intel_dsc_pps_write()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,19 +153,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> Subject: [PATCH 3/8] drm/i915/dsc: have intel_dsc_pps_read() return the v=
-alue
+> Subject: [PATCH 4/8] drm/i915/dsc: rename pps write to intel_dsc_pps_writ=
+e()
 >=20
-> Register read functions usually return the value instead of passing via p=
-ointer
-> parameters. Return the multiple register verification results via a point=
-er
-> parameter, which can also be NULL to skip the extra checks.
->=20
-> Make the name conform to existing style better while at it.
+> Make the function name conform to existing style better.
 >=20
 
-LGTM.
+LGTM.=20
 
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
@@ -173,86 +167,152 @@ Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_vdsc.c | 32 ++++++++++++++---------
->  1 file changed, 19 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_vdsc.c | 32 +++++++++++------------
+>  1 file changed, 16 insertions(+), 16 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c
 > b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index abb2c4370231..b0be6615a865 100644
+> index b0be6615a865..4086dbb25ca5 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
 > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -809,13 +809,14 @@ void intel_dsc_disable(const struct intel_crtc_stat=
-e
-> *old_crtc_state)
->  	}
->  }
+> @@ -389,8 +389,8 @@ static void intel_dsc_get_pps_reg(const struct
+> intel_crtc_state *crtc_state, int
+>  		dsc_reg[0] =3D pipe_dsc ? ICL_DSC0_PPS(pipe, pps) :
+> DSCA_PPS(pps);  }
 >=20
-> -static bool intel_dsc_read_pps_reg(struct intel_crtc_state *crtc_state,
-> -				   int pps, u32 *pps_val)
-> +static u32 intel_dsc_pps_read(struct intel_crtc_state *crtc_state, int p=
-ps,
-> +			      bool *check_equal)
+> -static void intel_dsc_write_pps_reg(const struct intel_crtc_state *crtc_=
+state,
+> -				    int pps, u32 pps_val)
+> +static void intel_dsc_pps_write(const struct intel_crtc_state *crtc_stat=
+e,
+> +				int pps, u32 pps_val)
 >  {
 >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
->  	i915_reg_t dsc_reg[2];
->  	int i, vdsc_per_pipe, dsc_reg_num;
-> +	u32 val =3D 0;
->=20
->  	vdsc_per_pipe =3D intel_dsc_get_vdsc_per_pipe(crtc_state);
->  	dsc_reg_num =3D min_t(int, ARRAY_SIZE(dsc_reg), vdsc_per_pipe); @@ -
-> 824,20 +825,25 @@ static bool intel_dsc_read_pps_reg(struct intel_crtc_st=
+>  	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev); @@ -443,41
+> +443,41 @@ static void intel_dsc_pps_configure(const struct intel_crtc_st=
 ate
-> *crtc_state,
+> *crtc_state)
+>  	if (vdsc_cfg->vbr_enable)
+>  		pps_val |=3D DSC_VBR_ENABLE;
+>  	drm_dbg_kms(&dev_priv->drm, "PPS0 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 0, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 0, pps_val);
 >=20
->  	intel_dsc_get_pps_reg(crtc_state, pps, dsc_reg, dsc_reg_num);
+>  	/* Populate PICTURE_PARAMETER_SET_1 registers */
+>  	pps_val =3D 0;
+>  	pps_val |=3D DSC_BPP(vdsc_cfg->bits_per_pixel);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS1 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 1, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 1, pps_val);
 >=20
-> -	*pps_val =3D 0;
-> +	if (check_equal)
-> +		*check_equal =3D true;
+>  	/* Populate PICTURE_PARAMETER_SET_2 registers */
+>  	pps_val =3D 0;
+>  	pps_val |=3D DSC_PIC_HEIGHT(vdsc_cfg->pic_height) |
+>  		DSC_PIC_WIDTH(vdsc_cfg->pic_width / num_vdsc_instances);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS2 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 2, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 2, pps_val);
 >=20
->  	for (i =3D 0; i < dsc_reg_num; i++) {
-> -		u32 pps_temp;
-> +		u32 tmp;
+>  	/* Populate PICTURE_PARAMETER_SET_3 registers */
+>  	pps_val =3D 0;
+>  	pps_val |=3D DSC_SLICE_HEIGHT(vdsc_cfg->slice_height) |
+>  		DSC_SLICE_WIDTH(vdsc_cfg->slice_width);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS3 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 3, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 3, pps_val);
 >=20
-> -		pps_temp =3D intel_de_read(i915, dsc_reg[i]);
-> +		tmp =3D intel_de_read(i915, dsc_reg[i]);
+>  	/* Populate PICTURE_PARAMETER_SET_4 registers */
+>  	pps_val =3D 0;
+>  	pps_val |=3D DSC_INITIAL_XMIT_DELAY(vdsc_cfg->initial_xmit_delay) |
+>  		DSC_INITIAL_DEC_DELAY(vdsc_cfg->initial_dec_delay);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS4 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 4, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 4, pps_val);
 >=20
-> -		if (i =3D=3D 0)
-> -			*pps_val =3D pps_temp;
-> -		else if (pps_temp !=3D *pps_val)
-> -			return false;
-> +		if (i =3D=3D 0) {
-> +			val =3D tmp;
-> +		} else if (check_equal && tmp !=3D val) {
-> +			*check_equal =3D false;
-> +			break;
-> +		} else if (!check_equal) {
-> +			break;
-> +		}
+>  	/* Populate PICTURE_PARAMETER_SET_5 registers */
+>  	pps_val =3D 0;
+>  	pps_val |=3D DSC_SCALE_INC_INT(vdsc_cfg->scale_increment_interval) |
+>  		DSC_SCALE_DEC_INT(vdsc_cfg->scale_decrement_interval);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS5 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 5, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 5, pps_val);
+>=20
+>  	/* Populate PICTURE_PARAMETER_SET_6 registers */
+>  	pps_val =3D 0;
+> @@ -486,28 +486,28 @@ static void intel_dsc_pps_configure(const struct
+> intel_crtc_state *crtc_state)
+>  		DSC_FLATNESS_MIN_QP(vdsc_cfg->flatness_min_qp) |
+>  		DSC_FLATNESS_MAX_QP(vdsc_cfg->flatness_max_qp);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS6 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 6, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 6, pps_val);
+>=20
+>  	/* Populate PICTURE_PARAMETER_SET_7 registers */
+>  	pps_val =3D 0;
+>  	pps_val |=3D DSC_SLICE_BPG_OFFSET(vdsc_cfg->slice_bpg_offset) |
+>  		DSC_NFL_BPG_OFFSET(vdsc_cfg->nfl_bpg_offset);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS7 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 7, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 7, pps_val);
+>=20
+>  	/* Populate PICTURE_PARAMETER_SET_8 registers */
+>  	pps_val =3D 0;
+>  	pps_val |=3D DSC_FINAL_OFFSET(vdsc_cfg->final_offset) |
+>  		DSC_INITIAL_OFFSET(vdsc_cfg->initial_offset);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS8 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 8, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 8, pps_val);
+>=20
+>  	/* Populate PICTURE_PARAMETER_SET_9 registers */
+>  	pps_val =3D 0;
+>  	pps_val |=3D DSC_RC_MODEL_SIZE(vdsc_cfg->rc_model_size) |
+>  		DSC_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS9 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 9, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 9, pps_val);
+>=20
+>  	/* Populate PICTURE_PARAMETER_SET_10 registers */
+>  	pps_val =3D 0;
+> @@ -516,7 +516,7 @@ static void intel_dsc_pps_configure(const struct
+> intel_crtc_state *crtc_state)
+>  		DSC_RC_TARGET_OFF_HIGH(DSC_RC_TGT_OFFSET_HI_CONST)
+> |
+>=20
+> 	DSC_RC_TARGET_OFF_LOW(DSC_RC_TGT_OFFSET_LO_CONST);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS10 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 10, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 10, pps_val);
+>=20
+>  	/* Populate Picture parameter set 16 */
+>  	pps_val =3D 0;
+> @@ -526,21 +526,21 @@ static void intel_dsc_pps_configure(const struct
+> intel_crtc_state *crtc_state)
+>  		DSC_SLICE_ROW_PER_FRAME(vdsc_cfg->pic_height /
+>  					vdsc_cfg->slice_height);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS16 =3D 0x%08x\n", pps_val);
+> -	intel_dsc_write_pps_reg(crtc_state, 16, pps_val);
+> +	intel_dsc_pps_write(crtc_state, 16, pps_val);
+>=20
+>  	if (DISPLAY_VER(dev_priv) >=3D 14) {
+>  		/* Populate PICTURE_PARAMETER_SET_17 registers */
+>  		pps_val =3D 0;
+>  		pps_val |=3D DSC_SL_BPG_OFFSET(vdsc_cfg-
+> >second_line_bpg_offset);
+>  		drm_dbg_kms(&dev_priv->drm, "PPS17 =3D 0x%08x\n", pps_val);
+> -		intel_dsc_write_pps_reg(crtc_state, 17, pps_val);
+> +		intel_dsc_pps_write(crtc_state, 17, pps_val);
+>=20
+>  		/* Populate PICTURE_PARAMETER_SET_18 registers */
+>  		pps_val =3D 0;
+>  		pps_val |=3D DSC_NSL_BPG_OFFSET(vdsc_cfg->nsl_bpg_offset) |
+>  			   DSC_SL_OFFSET_ADJ(vdsc_cfg-
+> >second_line_offset_adj);
+>  		drm_dbg_kms(&dev_priv->drm, "PPS18 =3D 0x%08x\n", pps_val);
+> -		intel_dsc_write_pps_reg(crtc_state, 18, pps_val);
+> +		intel_dsc_pps_write(crtc_state, 18, pps_val);
 >  	}
 >=20
-> -	return true;
-> +	return val;
->  }
->=20
->  static u32 intel_dsc_pps_read_and_verify(struct intel_crtc_state *crtc_s=
-tate,
-> int pps) @@ -845,10 +851,10 @@ static u32
-> intel_dsc_pps_read_and_verify(struct intel_crtc_state *crtc_state, in
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
->  	u32 val;
-> -	int ret;
-> +	bool all_equal;
->=20
-> -	ret =3D intel_dsc_read_pps_reg(crtc_state, pps, &val);
-> -	drm_WARN_ON(&i915->drm, !ret);
-> +	val =3D intel_dsc_pps_read(crtc_state, pps, &all_equal);
-> +	drm_WARN_ON(&i915->drm, !all_equal);
->=20
->  	return val;
->  }
+>  	/* Populate the RC_BUF_THRESH registers */
 > --
 > 2.39.2
 
