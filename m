@@ -2,77 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CE80797D26
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 22:09:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31F5A797D58
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 22:22:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C863210E263;
-	Thu,  7 Sep 2023 20:09:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D87310E094;
+	Thu,  7 Sep 2023 20:22:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F76210E09E;
- Thu,  7 Sep 2023 20:09:12 +0000 (UTC)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 387K91cJ000850; Thu, 7 Sep 2023 20:09:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com;
- h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=hhzDBf5AmE8f9BSMR58GPOslaMokHslIIA8MOOikM2E=;
- b=QfRjbjllevUlcHCAlBSqFxe909tnyTcWN1YRMvgW3WMMw3pHDHBJcrI1MPIlv39R7csM
- rC7isgXgY1ltUDHCe0AINduQq5O1bdoQQxWEvMTmTHg4hZJIhpbhU/BQeTe+YRpDdcW4
- /yjVatv99Ou191PJKPTvMrAzxEX+IIZ1ZqPtKHuVPlPFC43hNwgY4L8ERfwcQOghXQ4t
- RuOpA0QYNZ3vkwto0SXEyZRZGmZlQllC7fLNUNOYSrPIKM7lgzbWL54pRxNFeN1OTGax
- yOcnrwHX+hfoWjboPGSfdzkUFoGwyrDtZK7fiBkM/yKj88st+8o9OOBttgQcwBbD6A/v aQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sym36850s-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 07 Sep 2023 20:09:00 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 387K8xB3024652
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 7 Sep 2023 20:08:59 GMT
-Received: from [10.38.241.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 7 Sep
- 2023 13:08:58 -0700
-Message-ID: <1a21bcdd-16e0-af33-83b5-a905c4616dc5@quicinc.com>
-Date: Thu, 7 Sep 2023 16:08:56 -0400
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CC1F910E094;
+ Thu,  7 Sep 2023 20:22:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C157FAADE3;
+ Thu,  7 Sep 2023 20:22:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6862506643431317577=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Content-Language: en-US
-To: Uma Shankar <uma.shankar@intel.com>, <intel-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>
-References: <20230829160422.1251087-1-uma.shankar@intel.com>
- <20230829160422.1251087-2-uma.shankar@intel.com>
-From: Christopher Braga <quic_cbraga@quicinc.com>
-In-Reply-To: <20230829160422.1251087-2-uma.shankar@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-ORIG-GUID: cFYKTwxBSoCgPRdqZhTiXkHbAjSFvhxd
-X-Proofpoint-GUID: cFYKTwxBSoCgPRdqZhTiXkHbAjSFvhxd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-07_12,2023-09-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0
- priorityscore=1501 spamscore=0 mlxscore=0 phishscore=0 lowpriorityscore=0
- bulkscore=0 impostorscore=0 clxscore=1011 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
- definitions=main-2309070177
-Subject: Re: [Intel-gfx] [RFC 01/33] drm/doc/rfc: Add RFC document for
- proposed Plane Color Pipeline
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Thu, 07 Sep 2023 20:22:11 -0000
+Message-ID: <169411813175.17901.15185481117043612338@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230906234732.3728630-6-matthew.d.roper@intel.com>
+In-Reply-To: <20230906234732.3728630-6-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgU2Vw?=
+ =?utf-8?q?arate_display_workarounds_from_clock_gating_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,483 +40,1010 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: wayland-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============6862506643431317577==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Separate display workarounds from clock gating (rev3)
+URL   : https://patchwork.freedesktop.org/series/123363/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_13609 -> Patchwork_123363v3
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_123363v3 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_123363v3, please notify your bug team (lgci.bug.filing@intel.com) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/index.html
+
+Participating hosts (22 -> 37)
+------------------------------
+
+  Additional (18): fi-kbl-7567u bat-kbl-2 bat-adlp-11 bat-adlp-9 fi-skl-guc fi-cfl-8700k fi-ilk-650 fi-apl-guc fi-cfl-guc fi-kbl-guc fi-glk-j4005 fi-kbl-x1275 fi-kbl-8809g fi-elk-e7500 fi-blb-e6850 fi-bsw-nick fi-skl-6600u bat-mtlp-6 
+  Missing    (3): bat-dg2-8 bat-adlm-1 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_123363v3:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-rpls-1:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_123363v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][3] ([i915#8298])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@debugfs_test@basic-hwmon:
+    - bat-adlp-9:         NOTRUN -> [SKIP][4] ([i915#7456])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@debugfs_test@basic-hwmon.html
+    - bat-adlp-11:        NOTRUN -> [SKIP][5] ([i915#7456])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@debugfs_test@basic-hwmon.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][6] ([i915#7456])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@debugfs_test@basic-hwmon.html
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-kbl-7567u:       NOTRUN -> [ABORT][7] ([i915#8913])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-7567u/igt@debugfs_test@read_all_entries.html
+
+  * igt@fbdev@info:
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#1849])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-x1275/igt@fbdev@info.html
+    - fi-kbl-guc:         NOTRUN -> [SKIP][9] ([fdo#109271] / [i915#1849])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-guc/igt@fbdev@info.html
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#1849])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@fbdev@info.html
+    - bat-kbl-2:          NOTRUN -> [SKIP][11] ([fdo#109271] / [i915#1849])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-kbl-2/igt@fbdev@info.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][12] ([i915#1849] / [i915#2582])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@fbdev@info.html
+
+  * igt@fbdev@write:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][13] ([i915#2582]) +3 other tests skip
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@fbdev@write.html
+
+  * igt@gem_exec_suspend@basic-s0@lmem0:
+    - bat-dg2-9:          NOTRUN -> [INCOMPLETE][14] ([i915#9275])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][15] ([fdo#109271] / [i915#2190])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
+    - fi-cfl-8700k:       NOTRUN -> [SKIP][16] ([fdo#109271] / [i915#2190])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-cfl-8700k/igt@gem_huc_copy@huc-copy.html
+    - fi-skl-6600u:       NOTRUN -> [SKIP][17] ([fdo#109271] / [i915#2190])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
+    - fi-glk-j4005:       NOTRUN -> [SKIP][18] ([fdo#109271] / [i915#2190])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][19] ([fdo#109271] / [i915#2190])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-x1275/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-apl-guc:         NOTRUN -> [SKIP][20] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-apl-guc/igt@gem_lmem_swapping@basic.html
+    - fi-glk-j4005:       NOTRUN -> [SKIP][21] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-glk-j4005/igt@gem_lmem_swapping@basic.html
+    - bat-adlp-9:         NOTRUN -> [SKIP][22] ([i915#4613]) +3 other tests skip
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@gem_lmem_swapping@basic.html
+    - fi-skl-guc:         NOTRUN -> [SKIP][23] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-guc/igt@gem_lmem_swapping@basic.html
+    - fi-cfl-8700k:       NOTRUN -> [SKIP][24] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-cfl-8700k/igt@gem_lmem_swapping@basic.html
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][25] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][26] ([fdo#109271]) +18 other tests skip
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
+    - bat-kbl-2:          NOTRUN -> [SKIP][27] ([fdo#109271]) +39 other tests skip
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][28] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - fi-cfl-guc:         NOTRUN -> [SKIP][29] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-cfl-guc/igt@gem_lmem_swapping@verify-random.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][30] ([i915#4613]) +3 other tests skip
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@gem_lmem_swapping@verify-random.html
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][31] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-x1275/igt@gem_lmem_swapping@verify-random.html
+    - fi-kbl-guc:         NOTRUN -> [SKIP][32] ([fdo#109271] / [i915#4613]) +3 other tests skip
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-guc/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@gem_mmap@basic:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][33] ([i915#4083])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@gem_mmap@basic.html
+
+  * igt@gem_tiled_blits@basic:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][34] ([i915#4077]) +2 other tests skip
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@gem_tiled_blits@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-adlp-9:         NOTRUN -> [SKIP][35] ([i915#3282])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@gem_tiled_pread_basic.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][36] ([i915#4079]) +1 other test skip
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@gem_tiled_pread_basic.html
+    - bat-adlp-11:        NOTRUN -> [SKIP][37] ([i915#3282])
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][38] ([i915#3546])
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@i915_pm_backlight@basic-brightness.html
+    - bat-adlp-9:         NOTRUN -> [SKIP][39] ([i915#3546] / [i915#7561])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-elk-e7500:       NOTRUN -> [SKIP][40] ([fdo#109271]) +23 other tests skip
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-elk-e7500/igt@i915_pm_rpm@basic-pci-d3-state.html
+    - fi-ilk-650:         NOTRUN -> [SKIP][41] ([fdo#109271]) +21 other tests skip
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-ilk-650/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-blb-e6850:       NOTRUN -> [SKIP][42] ([fdo#109271]) +31 other tests skip
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-blb-e6850/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-adlp-9:         NOTRUN -> [SKIP][43] ([i915#6621])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@i915_pm_rps@basic-api.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][44] ([i915#6621])
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live@gt_engines:
+    - bat-mtlp-6:         NOTRUN -> [FAIL][45] ([i915#9278])
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@i915_selftest@live@gt_engines.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - bat-mtlp-6:         NOTRUN -> [DMESG-FAIL][46] ([i915#9270])
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@i915_selftest@live@gt_pm.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-kbl-soraka:      NOTRUN -> [ABORT][47] ([i915#7913] / [i915#9274])
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-soraka/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-adlp-9:         NOTRUN -> [INCOMPLETE][48] ([i915#7443])
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@i915_suspend@basic-s3-without-i915.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][49] ([i915#6645])
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_addfb_basic@addfb25-x-tiled-legacy:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][50] ([i915#4212]) +8 other tests skip
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_addfb_basic@addfb25-x-tiled-legacy.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][51] ([i915#5190])
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_addfb_basic@too-high:
+    - fi-kbl-8809g:       NOTRUN -> [FAIL][52] ([i915#8296]) +2 other tests fail
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@kms_addfb_basic@too-high.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][53] ([fdo#109271]) +9 other tests skip
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - bat-adlp-9:         NOTRUN -> [SKIP][54] ([i915#4103]) +1 other test skip
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-cfl-guc:         NOTRUN -> [SKIP][55] ([fdo#109271]) +10 other tests skip
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-cfl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+    - bat-adlp-11:        NOTRUN -> [SKIP][56] ([i915#4103]) +1 other test skip
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][57] ([i915#1845]) +11 other tests skip
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - fi-kbl-guc:         NOTRUN -> [SKIP][58] ([fdo#109271] / [i915#1845]) +8 other tests skip
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][59] ([i915#3637]) +3 other tests skip
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_flip@basic-flip-vs-dpms.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - fi-kbl-8809g:       NOTRUN -> [DMESG-FAIL][60] ([i915#8299])
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-8809g:       NOTRUN -> [CRASH][61] ([i915#8299])
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@kms_force_connector_basic@force-edid.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-cfl-8700k:       NOTRUN -> [SKIP][62] ([fdo#109271]) +10 other tests skip
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-cfl-8700k/igt@kms_force_connector_basic@force-load-detect.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][63] ([fdo#109285])
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_force_connector_basic@force-load-detect.html
+    - bat-adlp-9:         NOTRUN -> [SKIP][64] ([fdo#109285])
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-adlp-11:        NOTRUN -> [SKIP][65] ([i915#4093]) +3 other tests skip
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@kms_force_connector_basic@prune-stale-modes.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][66] ([i915#5274])
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][67] ([i915#4342])
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_frontbuffer_tracking@basic.html
+    - fi-bsw-nick:        NOTRUN -> [FAIL][68] ([i915#9276])
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-apl-guc:         NOTRUN -> [SKIP][69] ([fdo#109271]) +16 other tests skip
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html
+    - fi-skl-guc:         NOTRUN -> [FAIL][70] ([IGT#3])
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-guc/igt@kms_hdmi_inject@inject-audio.html
+    - fi-bsw-nick:        NOTRUN -> [FAIL][71] ([IGT#3])
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-bsw-nick/igt@kms_hdmi_inject@inject-audio.html
+    - bat-adlp-11:        NOTRUN -> [SKIP][72] ([i915#4369])
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@kms_hdmi_inject@inject-audio.html
+    - fi-kbl-guc:         NOTRUN -> [FAIL][73] ([IGT#3] / [i915#6121])
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-2:
+    - fi-skl-guc:         NOTRUN -> [SKIP][74] ([fdo#109271]) +12 other tests skip
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-2.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-edp-1:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][75] ([fdo#109271]) +7 other tests skip
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-edp-1.html
+
+  * igt@kms_pipe_crc_basic@read-crc:
+    - fi-kbl-x1275:       NOTRUN -> [SKIP][76] ([fdo#109271]) +36 other tests skip
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-5:
+    - bat-adlp-11:        NOTRUN -> [ABORT][77] ([i915#8668])
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-5.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc:
+    - fi-kbl-guc:         NOTRUN -> [SKIP][78] ([fdo#109271]) +25 other tests skip
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-guc/igt@kms_pipe_crc_basic@suspend-read-crc.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][79] ([i915#1845] / [i915#4078]) +4 other tests skip
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_pipe_crc_basic@suspend-read-crc.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1:
+    - fi-rkl-11600:       [PASS][80] -> [FAIL][81] ([fdo#103375])
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1.html
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][82] ([fdo#109271]) +56 other tests skip
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@kms_psr@cursor_plane_move.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][83] ([i915#1072]) +3 other tests skip
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_psr@cursor_plane_move.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - bat-rplp-1:         NOTRUN -> [SKIP][84] ([i915#1072]) +1 other test skip
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@kms_psr@sprite_plane_onoff:
+    - bat-adlp-9:         NOTRUN -> [SKIP][85] ([i915#1072]) +3 other tests skip
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@kms_psr@sprite_plane_onoff.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-adlp-9:         NOTRUN -> [SKIP][86] ([i915#3555])
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@kms_setmode@basic-clone-single-crtc.html
+    - bat-rplp-1:         NOTRUN -> [ABORT][87] ([i915#8260] / [i915#8668])
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][88] ([i915#3555] / [i915#8809])
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][89] ([i915#1845] / [i915#3708])
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@prime_vgem@basic-fence-mmap:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][90] ([i915#3708] / [i915#4077]) +1 other test skip
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@prime_vgem@basic-fence-mmap.html
+
+  * igt@prime_vgem@basic-fence-read:
+    - bat-adlp-9:         NOTRUN -> [SKIP][91] ([fdo#109295] / [i915#3291] / [i915#3708]) +2 other tests skip
+   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@prime_vgem@basic-fence-read.html
+
+  * igt@prime_vgem@basic-write:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][92] ([i915#3708]) +2 other tests skip
+   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@prime_vgem@basic-write.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0@smem:
+    - bat-jsl-3:          [INCOMPLETE][93] ([i915#9275]) -> [PASS][94]
+   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html
+   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html
+    - bat-dg2-9:          [INCOMPLETE][95] ([i915#9275]) -> [PASS][96]
+   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
+   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-jsl-3:          [FAIL][97] ([fdo#103375]) -> [PASS][98]
+   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html
+   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html
+
+  
+#### Warnings ####
+
+  * igt@kms_psr@cursor_plane_move:
+    - bat-rplp-1:         [ABORT][99] ([i915#8469] / [i915#8668] / [i915#9243]) -> [SKIP][100] ([i915#1072])
+   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/bat-rplp-1/igt@kms_psr@cursor_plane_move.html
+   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-rplp-1/igt@kms_psr@cursor_plane_move.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
+  [Intel XE#485]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/485
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109295]: https://bugs.freedesktop.org/show_bug.cgi?id=109295
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4078]: https://gitlab.freedesktop.org/drm/intel/issues/4078
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4093]: https://gitlab.freedesktop.org/drm/intel/issues/4093
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4342]: https://gitlab.freedesktop.org/drm/intel/issues/4342
+  [i915#4369]: https://gitlab.freedesktop.org/drm/intel/issues/4369
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#7443]: https://gitlab.freedesktop.org/drm/intel/issues/7443
+  [i915#7456]: https://gitlab.freedesktop.org/drm/intel/issues/7456
+  [i915#7561]: https://gitlab.freedesktop.org/drm/intel/issues/7561
+  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
+  [i915#8260]: https://gitlab.freedesktop.org/drm/intel/issues/8260
+  [i915#8296]: https://gitlab.freedesktop.org/drm/intel/issues/8296
+  [i915#8298]: https://gitlab.freedesktop.org/drm/intel/issues/8298
+  [i915#8299]: https://gitlab.freedesktop.org/drm/intel/issues/8299
+  [i915#8469]: https://gitlab.freedesktop.org/drm/intel/issues/8469
+  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
+  [i915#8809]: https://gitlab.freedesktop.org/drm/intel/issues/8809
+  [i915#8913]: https://gitlab.freedesktop.org/drm/intel/issues/8913
+  [i915#9243]: https://gitlab.freedesktop.org/drm/intel/issues/9243
+  [i915#9270]: https://gitlab.freedesktop.org/drm/intel/issues/9270
+  [i915#9274]: https://gitlab.freedesktop.org/drm/intel/issues/9274
+  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
+  [i915#9276]: https://gitlab.freedesktop.org/drm/intel/issues/9276
+  [i915#9278]: https://gitlab.freedesktop.org/drm/intel/issues/9278
 
 
-On 8/29/2023 12:03 PM, Uma Shankar wrote:
-> Add the documentation for the new proposed Plane Color Pipeline.
-> 
-> Co-developed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->   .../gpu/rfc/plane_color_pipeline.rst          | 394 ++++++++++++++++++
->   1 file changed, 394 insertions(+)
->   create mode 100644 Documentation/gpu/rfc/plane_color_pipeline.rst
-> 
-> diff --git a/Documentation/gpu/rfc/plane_color_pipeline.rst b/Documentation/gpu/rfc/plane_color_pipeline.rst
-> new file mode 100644
-> index 000000000000..60ce515b6ea7
-> --- /dev/null
-> +++ b/Documentation/gpu/rfc/plane_color_pipeline.rst
-> @@ -0,0 +1,394 @@
-> +=======================================
-> + Plane Color Pipeline: A UAPI proposal
-> +=======================================
-> +
-> +To build the proposal on, lets take the premise of a color pipeline as shown
-> +below.
-> +
-Hi Uma,
-Thanks for posting this. A few comments, with some echoing the 
-sentiments of other commenters on the patch set.
+Build changes
+-------------
 
-> + +-------------------------------------------+
-> + |                RAM                        |
-> + |  +------+    +---------+    +---------+   |
-> + |  | FB 1 |    |  FB 2   |    | FB N    |   |
-> + |  +------+    +---------+    +---------+   |
-> + +-------------------------------------------+
-> +       |  Plane Color Hardware Block |
-> + +--------------------------------------------+
-> + | +---v-----+   +---v-------+   +---v------+ |
-> + | | Plane A |   | Plane B   |   | Plane N  | |
-> + | | Pre-CSC |   | Pre-CSC   |   | Pre-CSC  | |
-> + | +---+-----+   +---+-------+   +---+------+ |
-> + |     |             |               |        |
-> + | +---v-----+   +---v-------+   +---v------+ |
-> + | |Plane A  |   | Plane B   |   | Plane N  | |
-> + | |CSC/CTM  |   | CSC/CTM   |   | CSC/CTM  | |
-> + | +---+-----+   +----+------+   +----+-----+ |
-> + |     |              |               |       |
-> + | +---v-----+   +----v------+   +----v-----+ |
-> + | | Plane A |   | Plane B   |   | Plane N  | |
-> + | |Post-CSC |   | Post-CSC  |   | Post-CSC | |
-> + | +---+-----+   +----+------+   +----+-----+ |
-> + |     |              |               |       |
-> + +--------------------------------------------+
-> ++------v--------------v---------------v-------|
-> +||                                           ||
-> +||           Pipe Blender                    ||
-> ++--------------------+------------------------+
-> +|                    |                        |
-> +|        +-----------v----------+             |
-> +|        |  Pipe Pre-CSC        |             |
-> +|        |                      |             |
-> +|        +-----------+----------+             |
-> +|                    |            Pipe Color  |
-> +|        +-----------v----------+ Hardware    |
-> +|        |  Pipe CSC/CTM        |             |
-> +|        |                      |             |
-> +|        +-----------+----------+             |
-> +|                    |                        |
-> +|        +-----------v----------+             |
-> +|        |  Pipe Post-CSC       |             |
-> +|        |                      |             |
-> +|        +-----------+----------+             |
-> +|                    |                        |
-> ++---------------------------------------------+
-> +                     |
-> +                     v
-> +                Pipe Output
-> +
-> +Each plane consists of the following color blocks
-> + * Pre-CSC : This block can used to linearize the input frame buffer data.
-> +             The linear data then can be further acted on by the following
-> +             color hardware blocks in the display hardware pipeline
-> +
-> + * CSC/CTM: Used to program color transformation matrix, this block is used
-> +            to perform color space conversions like BT2020 to BT709 or BT601
-> +            etc. This block acts on the linearized data coming from the
-> +            Pre-CSC HW block.
-> +
-> + * Post-CSC: This HW block can be used to non-linearize frame buffer data to
-> +             match the sink. Another use case of it could be to perform Tone
-> +             mapping for HDR use-cases.
-> +
-> +Data from multiple planes will then be fed to pipe/crtc where it will get blended.
-> +There is a similar set of HW blocks available at pipe/crtc level which acts on
-> +this blended data.
-> +
-> +Below is a sample usecase fo video playback with sub-titles and playback
-> +controls
-> +
-> +┌────────────┐    ┌─────────────┐     ┌─────────────┐    ┌─────────────┐
-> +│FB1         │    │PRE-CSC      │     │ CTM Matrix  │    │ POST-CSC    │
-> +│            ├───►│Linearize    ├────►│ BT709 to    ├───►│ SDR to HDR  │
-> +│BT709 SDR   │    │             │     │ BT2020      │    │ Tone Mapping├─────┐
-> +└────────────┘    └─────────────┘     └─────────────┘    └─────────────┘     │
-> +(subtitles)                                                                  │
-> +                                                                             │
-> +┌────────────┐    ┌─────────────┐     ┌─────────────┐    ┌─────────────┐     │
-> +│FB2         │    │PRE-CSC      │     │ CTM Matrix  │    │ POST-CSC    │     │
-> +│            ├───►│Linearize    ├────►│ BT601 to    ├───►│ SDR to HDR  ├───┐ │
-> +│BT601 SDR   │    │             │     │ BT2020      │    │ Tone Mapping│   │ │
-> +└────────────┘    └─────────────┘     └─────────────┘    └─────────────┘   │ │
-> +(Playback controls UI)                                                     │ │
-> +                                                                           │ │
-> +┌────────────┐    ┌─────────────┐     ┌─────────────┐    ┌─────────────┐   │ │
-> +│FB2         │    │PRE-CSC      │     │ CTM Matrix  │    │ POST-CSC    │   │ │
-> +│            ├───►│Linearize    ├────►│ BT601 to    ├───►│ SDR to HDR  ├─┐ │ │
-> +│BT2020 HDR  │    │             │     │ pass-through│    │ pass-through│ │ │ │
-> +└────────────┘    └─────────────┘     └─────────────┘    └─────────────┘ │ │ │
-BT601 to pass-through seems odd here. Shouldn't this be BT2020 pass-through?
-> +(video frame)                                                            │ │ │
-> +                                                                         │ │ │
-> +┌────────────────────────────────────────────────────────────────────────┴─┴─┘
-> +│
-> +│ ┌─────────────┐      ┌─────────────┐      ┌───────────────┐
-> +│ │ CRTC        │      │ CRTC        │      │ CRTC          │
-> +└─┤ PRE-CSC     ├─────►│ CSC/CTM     ├─────►│ POST-CSC      ├─────► TO Port
-> +  │             │      │             │      │               │
-> +  └─────────────┘      └─────────────┘      └───────────────┘
-> +
-> +This RFC is intended to propose an uAPI for the pre-blending color pipeline
-> +(however, can be also extended to post blending pipeline).
-> +
-> +Below are the design considerations while designing the uAPI.
-> +
-> +1. Individual HW blocks can be muxed. (e.g. out of two HW blocks only one can be used)
-> +2. Position of the HW block can be programmable
-> +3. LUTs can be one dimentional or three dimentional
-> +4. Number of LUT entries can vary across platforms
-> +5. Precision of LUT entries can vary across platforms
-> +6. Distribution of LUT entries may vary. e.g Mutli-segmented, Logarithmic,
-> +   Piece-Wise Linear(PWL) etc
-> +7. There can be parameterized/non-parameterized fixed function HW blocks.
-> +   e.g. Just a hardware bit, to convert from one color space to another.
-> +
-> +Plane Color Pipeline: Design Proposal
-> +=====================================
-> +Each Color Hardware block will be represented by the structure drm_color_op.
-> +
-> +struct drm_color_op {
-> +	enum color_op_block name;
-> +	enum color_op_type type; > +	u32 blob_id;
-> +	u32 private_flags;
-> +};
-> +
-> +The members of which will constitute:
-> +1. name: A standardised enum for the color hardware block
-> +2. type: The type of mathematical operation done by the hardware block.
-> +         e.g. 1D Curve, 3D Curve, Matrix etc.
-Using both 'type' and 'name' to identify the block sounds like an over 
-complication to me. From a UAPI perspective we mainly care about the 
-functionality the block provides, and type should be able to cover this 
-on its own. If name is needed to declare a divergence from the standard 
-definition for the type, why wouldn't a new type just be declared?
+  * Linux: CI_DRM_13609 -> Patchwork_123363v3
 
-I'm currently not seeing any benefit that name provides.
-
-> +3. blob id: Id  pointing to a blob containing information about the hardware
-> +         block advertising the respective capabilities to the userspace.
-> +         It can be an optional field depending on the members "name" and "type".
-> +4. private_flags: This can be used to provide vendor specific hints
-> +         to user space
-> +
-If OEMs are declaring essentially hints in this property, how is user 
-space going to handle this when they don't know how to interpret or 
-handle them? To give any compositor a chance to use the color block 
-these hints would have to result in no modification of the behavior 
-agreed upon by the 'type', at which point I don't see what purpose they 
-serve. The blob UAPI being fixed for a given color block type would also 
-pose an issue here.
-
-On the other hand, if these flags are only used for vendor specific 
-hardware blocks it sounds like we are clubbing a proprietary block + 
-definition into the color pipeline. I don't think this co-exists well 
-with the intent of the original proposal.
-
-> +
-> +   For example to represent LUTs, we introduce the drm_color_lut_range
-> +   structure. It can represent LUTs with varied number of entries and
-> +   distributions (Multi segmented, Logarithmic etc).
-> +
-> +   struct drm_color_lut_range {
-> +		/* DRM_MODE_LUT_* */
-> +		__u32 flags;
-> +		/* number of points on the curve */
-> +		__u16 count;
-> +		/* input/output bits per component */
-> +		__u8 input_bpc, output_bpc;
-> +		/* input start/end values */
-> +		__s32 start, end;
-> +		/* output min/max values */
-> +		__s32 min, max;
-> +   };
-> +
-> +Note: More details on exact usage and implementation of this structure can be
-> +      found in the RFC. This structure is taken as is from the series.
-> +      https://patchwork.freedesktop.org/series/90825/
-> +      However, we can add more members to it to encompass all use-cases.
-> +      For example. we can add a precision field to advertise the
-> +      bitdepth of the LUTs. Similarly, we can reserve some bits in the flag
-> +      field for vendor specific use cases.
-> +
-> +      At the same time, we don't need to pass any additional information for the
-> +      CSC block as userspace and driver already agrees struct drm_color_ctm as
-> +      a uAPI to pass on data.
-> +
-> +These color operations will form the building blocks of a color pipeline which
-> +best represents the underlying Hardware. Color operations can be re-arranged,
-> +substracted or added to create distinct color pipelines to accurately describe
-> +the Hardware blocks present in the display engine.
-> +
-> +In this proposal, a color pipeline is represented as an array of
-> +struct drm_color_op.
-> +
-> +struct drm_color_op color_pipeline_1[]
-> +
-> +For example to represent the pre-blending color pipeline as described above
-> +
-> +We can create a color pipeline like this.
-> +
-> +struct drm_color_op color_pipeline_1[] = {
-> +	{
-> +		.name = DRM_CB_PRE_CSC,
-> +		.type = CURVE_1D,
-> +		.blob_id = 0; /* actual value to be populated during plane
-> +						 initialization*/
-> +	},
-> +	{
-> +		.name = DRM_CB_CSC,
-> +		.type = MATRIX,
-> +		.blob_id = 0;
-> +	},
-> +	{
-> +		.name = DRM_CB_POST_CSC,
-> +		.type = CURVE_1D,
-> +		.blob_id = 0;
-> +	},
-> +};
-
-I'm noticing that in the shared IGT patch set these names are being used 
-to determine position instead of, well, the actual position in the color 
-pipeline. We definitely need to be careful to avoid coupling 
-functionality with usage, and I think having a name field is going to 
-cause developers to make that mistake / shortcut.
-
-> +
-> +Then, for individual color operation, we add blobs to advertise the capability
-> +of the particular Hardware block. In case of the example pipeline, we add
-> +blobs of type drm_color_lut_range for the "pre-csc" and "post-csc".
-> +For the "csc" block we pass no blob id to user space as it is known to both
-> +user space and driver that drm_color_ctm structure is to be used for such
-> +operation.
-> +
-> +To represent, this in a diagram.
-> +
-> +   struct drm_color_op color_pipeline_1[]
-> +      +---------------------------+
-> +      |                           |           drm_color_op
-> +      |  +---------------------+--+-----------+---------------------+
-> +      |  |                     |  |           |                     |
-> +      |  |                     |  |           | +-----------------+ |
-> +      |  |                     |  |           | |     name        | |
-> +      |  |                     |  |           | +-----------------+ |
-> +      |  |                     |  |           | |     type        | |
-> +      |  |    color_op_1       |  |           | +-----------------+ |
-> +      |  |                     |  |           | |     blob id     | +--------+
-> +      |  |                     |  |           | +-----------------+ |        |
-> +      |  |                     |  |           | |     private     | |        |
-> +      |  |                     |  |           | |      flags      | |        |
-> +      |  |                     |  |           | +-----------------+ |        |
-> +      |  |                     |  |           |                     |        |
-> +      |  +---------------------+--+-----------+---------------------+        |
-> +      |                           |                                          |
-> +      |                           |                                          |
-> +      |  +---------------------+  |                                          |
-> +      |  |                     |  |           drm_color_lut_range            |
-> +      |  |    color_op_2       |  |           +-------------------------+    |
-> +      |  |                     |  |           |                         |    |
-> +      |  |                     |  |           | +---------------------+ |    |
-> +      |  +---------------------+  |           | | segment 1 {         | |<---+
-> +      |                           |           | |  ...                | |
-> +      |  +---------------------+  |           | |  .input_bpc = 16,   | |
-> +      |  |                     |  |           | |  .output_bpc = 16,  | |
-> +      |  |    color_op_3       |  |           | |  ...                | |
-> +      |  |                     |  |           | | }                   | |
-> +      |  |                     |  |           | +---------------------+ |
-> +      |  +---------------------+  |           |                         |
-> +      |             .             |           | +---------------------+ |
-> +      |             .             |           | | segment 2 {         | |
-> +      |             .             |           | | ...                 | |
-> +      +---------------------------+           | | }                   | |
-> +                                              | |                     | |
-> +                                              | |                     | |
-> +                                              | |                     | |
-> +                                              | +---------------------+ |
-> +                                              |            .            |
-> +                                              |            .            |
-> +                                              |            .            |
-> +                                              +-------------------------+
-> +
-> +
-> +
-> +This color pipeline is then packaged within a blob for the user space to
-> +retrieve it. Details can be found in the next section
-While I get the intent of the blob nesting, as others have mentioned 
-this does feel like a recreation of what we already have with DRM 
-objects. DRM objects would also have the advantage of allowing for 
-easier OEM extension. Instead of private flags, an OEM could introduce 
-behavior modifiers or additional features on a color block object via 
-additional properties (these properties would obviously have to default 
-to a disabled state to ensure default behavior is what is defined by the 
-base color block type).
-
-> +
-> +Exposing a color pipeline to user space
-> +=======================================
-> +
-> +To advertise the available color pipelines, an immutable ENUM property
-> +"GET_COLOR_PIPELINE" is introduced.
-> +This enum property has blob id's as values. With each blob id representing
-> +a distinct color pipeline based on underlying HW capabilities and their
-> +respective combinations.
-> +
-> +The following output of drm_info [1], shows how color pipelines are visible
-> +to userspace.
-> +
-> +├───Plane 0
-> +    │   ├───Object ID: 31
-> +    │   ├───CRTCs: {0}
-> +    │   ├───Legacy info
-> +        ...
-> +    │       ├───"GET_COLOR_PIPELINE" (immutable): enum {no color pipeline,
-> +						color pipeline 1, color pipeline 2}= no color pipeline
-> +
-> +To understand the capabilities of individual pipelines, first the userspace
-> +need to retrieve the pipeline blob with the blob ids retrieved by reading the
-> +enum property.
-> +
-> +Once the color pipeline is retrieved, user can then parse through
-> +individual drm_color_op blocks to understand the capabilities of each
-> +hardware block.
-> +
-> +Check IGT series to see how user space can parse through color pipelines.
-> +Refer the IGT series here: https://patchwork.freedesktop.org/series/123018/
-> +
-> +Setting up a color pipeline
-> +===========================
-> +
-> +Once the user space decides on a color pipeline, it can set the pipeline and
-> +the corresponding data for the hardware blocks within the pipeline with
-> +the BLOB property "SET_COLOR_PIPELINE".
-> +
-> +To achieve this two structures are introduced
-> +
-> +1.	struct drm_color_op_data: It represents data to be passed onto individual
-> +							  color hardware blocks. It contains three members
-> +                      a) name: to identify the color operation block
-> +                      b) blob_id: pointing to the blob with data for the
-> +                                  corresponding hardware block
-> +
-> +	struct drm_color_op_data {
-> +		enum color_op_block name;
-> +		u32 blob_id;
-> +	};
-> +
-> +2.	struct drm_color_pipeline: This structure represents the aggregate
-> +                                   pipeline to be set. it contains the following  members
-> +					  a) num: pipeline number to be selected
-> +					  b) size: size of the data to be passed onto the driver
-> +					  c) data: array of struct drm_color_op_data with data for
-> +                                                   the hardware block/s that userspace wants to
-> +                                                   set values for.
-> +
-> +	struct drm_color_pipeline {
-> +		int num;
-> +		int size;
-> +		struct drm_color_op_data *data;
-> +	};
-> +
-> +	User can either:
-> +	1. send data for all the color operations in a pipeline as shown in [2].
-> +	   The color operation data need not be in order that the pipeline advertises
-> +	   however, it should not contain data for any
-> +	   color operation that is not present in the pipeline.
-> +
-> +	   Note: This check for pipeline is not yet implemented but if the
-> +	   wider proposal is accepted we have few solutions in mind.
-> +
-> +	2. send data for a subset of color operations as shown in [3].For the
-> +	   color operation that userspace does not send data will retain their
-> +	   older state.
-> +
-> +	3. reset/disable the pipeline by setting the "SET_COLOR_PIPELINE" blob
-> +	   property to NULL as shown in both [2] and [3]
-> +
-> +	4. change the color pipeline as demonstrated in [3].
-> +	   On the new pipeline, the user is expected to setup all the color hardware block
-> +	   Once the user requests a pipeline change, the driver will provide it a clean slate
-> +           which means that all the data previously set by the user will be discarded even if
-> +           there are common hardware blocks between the two(previous and current) pipelines.
-> +
-> +IGT implementation can be found here [4]
-> +
-> +Representing Fixed function hardware
-> +====================================
-> +
-> +To provide support for fixed function hardware, the driver could expose vendor
-> +specific struct drm_color_op with parameters that both the userspace and
-> +driver agrees on. To demonstrate, let's consider a hyphothetical fixed
-> +function hardware block that converts BT601 to BT2020.
-> +The driver can choose to advertise the block as such.
-> +
-> +struct drm_color_op color_pipeline_X[] = {
-> +	{
-> +		.name = DRM_CB_PRIVATE,
-> +		.type = FIXED_FUNCTION,
-> +		.blob_id = 45;
-> +	},
-> +}
-> +
-> +Where the blob represents some vendor specific enums, strings or any other
-> +appropriate data types which both the user-space and drivers are aligned on.
-> +
-> +blob:45 {
-> +	VENDORXXX_BT602_TO_BT2020,
-> +};
-
-As far as I see it, one of the primary advantages of moving to this new 
-color pipeline is the standardization of the color block definition. 
-User space looks at the 'type', and if it supports it then it can look 
-at other expected information such as 'lut_size', 'bit_depth', etc to 
-determine the programming considerations.
-
-The second we start having color blocks fully defined by private_flags 
-and vendor specific blobs we end up with the same scenario we have today 
-with vendor specific properties on our DRM CRTC and DRM PLANE objects. 
-While we aren't going to make all the different OEM hardware match, we 
-still want to encourage common approaches to block declaration so user 
-space can easily identify functionality it supports across a wide range 
-of hardware.
+  CI-20190529: 20190529
+  CI_DRM_13609: 1b25a43002e4409156a9b3aa1cb8c08eb4dd343d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_123363v3: 1b25a43002e4409156a9b3aa1cb8c08eb4dd343d @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
-> +
-> +For enabling or passing parameters to such blocks, the user can send data
-> +to the driver wrapped within a blob like any other color operation block.
-> +
-> +	struct drm_color_op_data {
-> +		.name = DRM_CB_PRIVATE;
-> +		.blob_id = 46;
-> +	} ;
-> +
-> +where blob with id 46 contains data to enable the fixed function hardware(s).
-> +
+### Linux commits
 
-All that said, thanks again for working on this. I'm definitely curious 
-to see how this will all come together.
+fea4608f41cc drm/i915/display: Apply workarounds during display init
+ea9f50960451 drm/i915/display: Extract display workarounds from clock gating init
+c9e416f3ea47 drm/i915/adlp: Stop calling gen12lp_init_clock_gating()
+0a567d7c7eb8 drm/i915: Stop forcing clock gating init for future platforms
 
-- Christopher
+== Logs ==
 
-> +References
-> +==========
-> +
-> +[1] https://gitlab.freedesktop.org/emersion/drm_info
-> +[2] https://patchwork.freedesktop.org/patch/554827/?series=123018&rev=1
-> +[3] https://patchwork.freedesktop.org/patch/554826/?series=123018&rev=1
-> +[4] https://patchwork.freedesktop.org/series/123018/
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/index.html
+
+--===============6862506643431317577==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Separate display workarounds from clock gating (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123363/">https://patchwork.freedesktop.org/series/123363/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13609 -&gt; Patchwork_123363v3</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_123363v3 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_123363v3, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/index.html</p>
+<h2>Participating hosts (22 -&gt; 37)</h2>
+<p>Additional (18): fi-kbl-7567u bat-kbl-2 bat-adlp-11 bat-adlp-9 fi-skl-guc fi-cfl-8700k fi-ilk-650 fi-apl-guc fi-cfl-guc fi-kbl-guc fi-glk-j4005 fi-kbl-x1275 fi-kbl-8809g fi-elk-e7500 fi-blb-e6850 fi-bsw-nick fi-skl-6600u bat-mtlp-6 <br />
+  Missing    (3): bat-dg2-8 bat-adlm-1 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_123363v3:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_lrc:<ul>
+<li>bat-rpls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-rpls-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_123363v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8298">i915#8298</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>
+<p>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</p>
+</li>
+<li>
+<p>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</p>
+</li>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7456">i915#7456</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-7567u/igt@debugfs_test@read_all_entries.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8913">i915#8913</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@fbdev@info:</p>
+<ul>
+<li>
+<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-x1275/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</p>
+</li>
+<li>
+<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-guc/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</p>
+</li>
+<li>
+<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</p>
+</li>
+<li>
+<p>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</p>
+</li>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@lmem0:</p>
+<ul>
+<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-dg2-9/igt@gem_exec_suspend@basic-s0@lmem0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>
+<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-cfl-8700k/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-x1275/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>
+<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-glk-j4005/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-cfl-8700k/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>
+<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +18 other tests skip</p>
+</li>
+<li>
+<p>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +39 other tests skip</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@random-engines:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>
+<p>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-cfl-guc/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-x1275/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-guc/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>
+<p>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</p>
+</li>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</p>
+</li>
+<li>
+<p>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3282">i915#3282</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_backlight@basic-brightness:</p>
+<ul>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>)</p>
+</li>
+<li>
+<p>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/7561">i915#7561</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>
+<p>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-elk-e7500/igt@i915_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +23 other tests skip</p>
+</li>
+<li>
+<p>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-ilk-650/igt@i915_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +21 other tests skip</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-blb-e6850/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>
+<p>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</p>
+</li>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@i915_selftest@live@gt_engines.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9278">i915#9278</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9270">i915#9270</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-soraka/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9274">i915#9274</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>
+<p>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7443">i915#7443</a>)</p>
+</li>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-x-tiled-legacy:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_addfb_basic@addfb25-x-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +8 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@too-high:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@kms_addfb_basic@too-high.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8296">i915#8296</a>) +2 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>
+<p>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 other tests skip</p>
+</li>
+<li>
+<p>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 other test skip</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>
+<p>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-cfl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +10 other tests skip</p>
+</li>
+<li>
+<p>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 other test skip</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>) +11 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
+<ul>
+<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-guc/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>) +8 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3637">i915#3637</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@kms_force_connector_basic@force-connector-state.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8299">i915#8299</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-edid:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@kms_force_connector_basic@force-edid.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8299">i915#8299</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>
+<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-cfl-8700k/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +10 other tests skip</p>
+</li>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+<li>
+<p>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>
+<p>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4093">i915#4093</a>) +3 other tests skip</p>
+</li>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4342">i915#4342</a>)</p>
+</li>
+<li>
+<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9276">i915#9276</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>
+<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 other tests skip</p>
+</li>
+<li>
+<p>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</p>
+</li>
+<li>
+<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-bsw-nick/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</p>
+</li>
+<li>
+<p>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4369">i915#4369</a>)</p>
+</li>
+<li>
+<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-2:</p>
+<ul>
+<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-2.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +12 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-edp-1:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-skl-6600u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-edp-1.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +7 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc:</p>
+<ul>
+<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +36 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-5:</p>
+<ul>
+<li>bat-adlp-11:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-5.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
+<ul>
+<li>
+<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-guc/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +25 other tests skip</p>
+</li>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4078">i915#4078</a>) +4 other tests skip</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1:</p>
+<ul>
+<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-hdmi-a-1.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>
+<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/fi-kbl-8809g/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +56 other tests skip</p>
+</li>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 other tests skip</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-rplp-1/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@sprite_plane_onoff:</p>
+<ul>
+<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>
+<p>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</p>
+</li>
+<li>
+<p>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8260">i915#8260</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</p>
+</li>
+<li>
+<p>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8809">i915#8809</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-mmap:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-read:</p>
+<ul>
+<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-adlp-9/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109295">fdo#109295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-mtlp-6/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0@smem:</p>
+<ul>
+<li>
+<p>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></p>
+</li>
+<li>
+<p>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_psr@cursor_plane_move:<ul>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13609/bat-rplp-1/igt@kms_psr@cursor_plane_move.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8469">i915#8469</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9243">i915#9243</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123363v3/bat-rplp-1/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13609 -&gt; Patchwork_123363v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13609: 1b25a43002e4409156a9b3aa1cb8c08eb4dd343d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_123363v3: 1b25a43002e4409156a9b3aa1cb8c08eb4dd343d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>fea4608f41cc drm/i915/display: Apply workarounds during display init<br />
+ea9f50960451 drm/i915/display: Extract display workarounds from clock gating init<br />
+c9e416f3ea47 drm/i915/adlp: Stop calling gen12lp_init_clock_gating()<br />
+0a567d7c7eb8 drm/i915: Stop forcing clock gating init for future platforms</p>
+
+</body>
+</html>
+
+--===============6862506643431317577==--
