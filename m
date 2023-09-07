@@ -1,71 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71EC8797253
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 14:32:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF36797257
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 14:33:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4977610E7CF;
-	Thu,  7 Sep 2023 12:32:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4377E10E7D3;
+	Thu,  7 Sep 2023 12:33:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7DE7E10E24E;
- Thu,  7 Sep 2023 12:32:40 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8DxxPDjwvlkjl8hAA--.1794S3;
- Thu, 07 Sep 2023 20:32:35 +0800 (CST)
-Received: from [0.0.0.0] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8CxLCPTwvlkZKhwAA--.54321S3; 
- Thu, 07 Sep 2023 20:32:31 +0800 (CST)
-Message-ID: <5d9f9780-995f-33dc-e3db-3112aa085062@loongson.cn>
-Date: Thu, 7 Sep 2023 20:32:19 +0800
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD68A10E7D3
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 12:33:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694089985; x=1725625985;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=+Egx+6JqN/biiJB89oOz9c+PS/68pbbOFL542+gdVGM=;
+ b=d+Vakpzevv4wVeTnGsanPWdHBALgjr2DY83GTihZX6GG9HVQTjv+RJ3z
+ UqXt8YtqjFkOPXM26lWFou8GcSv+wMITVIF41ILHyof6Osao0QDx0bSLp
+ JTHxEYFeBshQg4xV0WE5G4gU14QnTtzoDrxQPyKyUcRQqE2eL78RJ/2q3
+ t4hFp2Wr9vShQgSB2SZm6RZ2rzWX9o4ZrT89IEGCi0WPrdNum4M54QCAm
+ K4VEDPEtKd8vqU7Srl6hmbzARhZKdCTiLifLehaI4Z61HszPlERthPTC1
+ wrvgUyy1x9JSE0j+OmLqVuSE1BpSwEEyLTzgZS7b7lvr2wp5yjnh31EZh Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="441327069"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="441327069"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2023 05:33:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="1072878228"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="1072878228"
+Received: from lkp-server01.sh.intel.com (HELO 59b3c6e06877) ([10.239.97.150])
+ by fmsmga005.fm.intel.com with ESMTP; 07 Sep 2023 05:33:03 -0700
+Received: from kbuild by 59b3c6e06877 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qeEBx-0001Df-1I;
+ Thu, 07 Sep 2023 12:33:01 +0000
+Date: Thu, 7 Sep 2023 20:32:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+Message-ID: <202309072011.nQPrRcF6-lkp@intel.com>
+References: <20230907101135.176326-1-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Sui Jingfeng <sui.jingfeng@linux.dev>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Bjorn Helgaas
- <bhelgaas@google.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
- <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
- <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
- <2adfa653-ac35-d560-be52-c92848a1eef5@gmail.com>
- <b51d49f3-e3de-6b8d-9cb4-df5c03f3cdc0@loongson.cn>
- <10509692-ce04-e225-5a27-abc955554bdc@gmail.com>
- <a9af88c5-4509-96ff-a7fd-a0f72d2f1e6a@linux.dev>
- <127fab21-bc5c-f782-e42b-1092fbb8df34@amd.com>
-From: suijingfeng <suijingfeng@loongson.cn>
-In-Reply-To: <127fab21-bc5c-f782-e42b-1092fbb8df34@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxLCPTwvlkZKhwAA--.54321S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj9xXoW7Jw15CrW3Jry5Kr17Ar4rXrc_yoWxAwb_ua
- 1jyrn5J3y8GwnrZFnxG3W5CrWvg34vq34Fg3yktry5Jr1UXasIka1xCF15uF1FvF40qFn8
- Xry0kFs3Zw4jkosvyTuYvTs0mTUanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvT
- s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
- cSsGvfJTRUUUbq8YFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
- vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
- w2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
- W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
- 6F4UJVW0owAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
- Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_
- Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrw
- CYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48J
- MxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI
- 0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y
- 0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxV
- WUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1l
- IxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUcbAwUUUUU
-Subject: Re: [Intel-gfx] [Nouveau] [RFC,
- drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
- primary video adapter at boot time
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230907101135.176326-1-andi.shyti@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Run relevant bits of debugfs
+ drop_caches per GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,28 +62,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Andi,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on drm-tip/drm-tip]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Andi-Shyti/drm-i915-Run-relevant-bits-of-debugfs-drop_caches-per-GT/20230907-181322
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230907101135.176326-1-andi.shyti%40linux.intel.com
+patch subject: [Intel-gfx] [PATCH v2] drm/i915: Run relevant bits of debugfs drop_caches per GT
+config: i386-debian-10.3 (https://download.01.org/0day-ci/archive/20230907/202309072011.nQPrRcF6-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230907/202309072011.nQPrRcF6-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309072011.nQPrRcF6-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/i915/i915_debugfs.c:36:
+   drivers/gpu/drm/i915/i915_debugfs.c: In function 'i915_drop_caches_set':
+>> drivers/gpu/drm/i915/gt/intel_gt.h:170:21: warning: comparison between pointer and integer
+     170 |              (id__) < I915_MAX_GT; \
+         |                     ^
+   drivers/gpu/drm/i915/i915_debugfs.c:751:9: note: in expansion of macro 'for_each_gt'
+     751 |         for_each_gt(i915, i, gt) {
+         |         ^~~~~~~~~~~
+   In file included from include/drm/drm_connector.h:32,
+                    from drivers/gpu/drm/i915/display/intel_display_core.h:16,
+                    from drivers/gpu/drm/i915/i915_drv.h:40,
+                    from drivers/gpu/drm/i915/gt/intel_context.h:14,
+                    from drivers/gpu/drm/i915/gem/i915_gem_context.h:12,
+                    from drivers/gpu/drm/i915/i915_debugfs.c:35:
+   drivers/gpu/drm/i915/gt/intel_gt.h:172:47: error: invalid type argument of '->' (have 'unsigned int')
+     172 |                 for_each_if(((gt__) = (i915__)->gt[(id__)]))
+         |                                               ^~
+   include/drm/drm_util.h:63:38: note: in definition of macro 'for_each_if'
+      63 | #define for_each_if(condition) if (!(condition)) {} else
+         |                                      ^~~~~~~~~
+   drivers/gpu/drm/i915/i915_debugfs.c:751:9: note: in expansion of macro 'for_each_gt'
+     751 |         for_each_gt(i915, i, gt) {
+         |         ^~~~~~~~~~~
 
 
-On 2023/9/7 17:08, Christian König wrote:
-> Well, I have over 25 years of experience with display hardware and 
-> what you describe here was never an issue. 
+vim +170 drivers/gpu/drm/i915/gt/intel_gt.h
 
-I want to give you an example to let you know more.
+bec68cc9ea42d8 Tvrtko Ursulin 2022-03-19  167  
+bec68cc9ea42d8 Tvrtko Ursulin 2022-03-19  168  #define for_each_gt(gt__, i915__, id__) \
+bec68cc9ea42d8 Tvrtko Ursulin 2022-03-19  169  	for ((id__) = 0; \
+bec68cc9ea42d8 Tvrtko Ursulin 2022-03-19 @170  	     (id__) < I915_MAX_GT; \
+bec68cc9ea42d8 Tvrtko Ursulin 2022-03-19  171  	     (id__)++) \
+bec68cc9ea42d8 Tvrtko Ursulin 2022-03-19  172  		for_each_if(((gt__) = (i915__)->gt[(id__)]))
+bec68cc9ea42d8 Tvrtko Ursulin 2022-03-19  173  
 
-I have a ASRock AD2550B-ITX board[1],
-When another discrete video card is mounted into it mini PCIe slot or PCI slot,
-The IGD cannot be the primary display adapter anymore. The display is totally black.
-I have try to draft a few trivial patch to help fix this[2].
-
-And I want to use the IGD as primary, does this count as an issue?
-
-[1] https://www.asrock.com/mb/Intel/AD2550-ITX/
-[2] https://patchwork.freedesktop.org/series/123073/
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
