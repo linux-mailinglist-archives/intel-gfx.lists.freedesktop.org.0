@@ -2,81 +2,84 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A6C4796FC7
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 07:07:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0B48796FCC
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 07:11:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A67EE10E756;
-	Thu,  7 Sep 2023 05:07:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2164E10E758;
+	Thu,  7 Sep 2023 05:11:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2064210E756
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 05:07:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAF2610E756
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 05:11:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694063260; x=1725599260;
+ t=1694063478; x=1725599478;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=x+EbSWRi0YFgdLI1NbdFmcbw5NDzZ/mfcsTX91uoneg=;
- b=L68JorUwcjuSjKaWUz9BND3IGWQnLYvM1wmQ8SmFXI9wYRHHyAfk9VwJ
- zjCI58Ohj88aSXxBepWcbs145p8EWu4XOoeJJqXBGpW+RCkHNtTkEwSKv
- C3EjuqZEqGhsSiJvC+rOcgGELkLgnp81AqLtryWFBdAeVzft0rTZuwS8W
- sV0cNWyObj7/rWOwczbnbIl/9K4rkO6Dg5LCWPVFVAgf06ElF48G69ZIv
- WrIacdkw572YlHcdHfE42cDpvujRTtoIuXjBeFHE9FSx2FpydFWlH2YT6
- rZL4tgxv3O6VrZ97n8W8wHmOGhPQFOlR5kABvi6ecWl7BNvX+O565t9Mk A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="379971602"
-X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="379971602"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 22:07:39 -0700
+ bh=8qKs7ifpsyoBkrymDWUDLHEhnvQtLr1H3yVonDZQ0o8=;
+ b=lO7XjZ/D7lsv+Z8JZQ138VrjiwDbrM9xzEbvvjh/ld+cT7pRaiy6h2y6
+ OCWCNy6ue+HOPyPcEKuxiixZmFIjAS7tCngbumNFlnF0c58yK8OD7FSMB
+ ZvN16nJd4CsKuXtwcRBncH7lxvFeFgQ+f7UD0drhoAkHydLp+UvIhiUcb
+ uX77IRs57iC4/Earwa/JDii14yFhhW1GZOsla0knL5Sk0nS73q8xP4ywv
+ +4FRBlrlpltMl3sbW/IMZ6QC8vTJUUN66qLjCySlFJ9NXeyGh424MXEpe
+ pohLheMBuJ4+ZMNHWkktzgY+n3rE3uq8B8Ox/zi81TjbWZVCWiJGFPc9o Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="357571854"
+X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="357571854"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 22:11:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="1072706325"
-X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="1072706325"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Sep 2023 22:07:39 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="865467285"
+X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="865467285"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Sep 2023 22:11:00 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 6 Sep 2023 22:07:38 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.32; Wed, 6 Sep 2023 22:10:59 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Wed, 6 Sep 2023 22:07:38 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.32; Wed, 6 Sep 2023 22:10:59 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Wed, 6 Sep 2023 22:10:59 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.43) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Wed, 6 Sep 2023 22:07:38 -0700
+ 15.1.2507.27; Wed, 6 Sep 2023 22:10:59 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dOE92UQRW4eSUmhZ+jIuDLSpUR4W3AOARDX2WFHgJrX8UPtz5KDO7SvVWkxsjsAIgrmC0quNNf8hdMyuYBlog0En831C/HtiL71iodfAnb76WYDt5DSHnsN85AUsTfaaGy9GQGXNHfCLc8Yb4waCSrk9n/yx4OzGGcKB1fqEBzu2O//Pbg3elNCJpN4hBmZQb1aPrwkTcFHqAEmU/ouaGAk53xGWl33/SPgmBLb1fi9yYw5a6KnIvVW/MT/8vzdANs1bzqAHeXsUGA/04EcbIeysqY1wAw2FDCYVCu9pGP7SvhuR+WQJqW5X0m8rhUSybJsLvhsMiH2XakiwvuNM8w==
+ b=M62r1KMCfxF9xsIRil+GtyInv3ia2LO5HT4kAN3m05+2UQzg8WFqbw5vu47XAvQhA0jfu2ONQu6SzaRobA2p2VpR5BYuF3nPy4DdkQpHfqUjCMs+27CAJgdAez3TsP0TlZFIrsBi0f1eGCMbGmvURyszz4oQ+mBF3Es8VtJT4LUG8BPThA4Kf56j+aeMHy6CP08b1InMK0zfvNXu4I4LE9oouRsF4MJxoi7n3qkpcKDS+yH2Hz/YyjrwVep4tKMcwQtF6DSRf2qnfVOt6VLEq1hdl1kYwvbM/zFv7zxc1eAriaFx3Nm45YVdjVx+UcxX48FSm+WtKF1rxDI0VkHTUQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RzlNecr9/txPh91q70QaNqEke0CrQBIJ1g1sON0luhw=;
- b=dgFEaDMYlrXtYFGqR1wrK6xbc2crfqnFGbqC/tJ4NtZ9iCqaiLMX22kOas1Q3PhTqU2CExhaEUTCbXm/ph+DT9IXqaSpnwzC2bSKYittH0R/Iyk7r6sKowMNycpZljeHH3vRazytc6+D2Xql+Q0xVFdgR4vfskHhWI4UuTy2cm20LiZsHo+0A8dBNppSie1ha5h3Ut3spexuM1AEyHApMh6tuHv87gZNk7ySv1qkpyC+cL0Z2rSx1n1wq0JjYkSDQ585yPsfKbMRsAD8naV+FCGVt6/3GjOM1mrpuQTyFJ+PpVVrVvocDW++z3K5/4p4OcGrhoDiphV2Fj9H+YrYnQ==
+ bh=IsOZEA2UlbBxp7xeFpxnqWgzycUtWODhMohgEw3R13M=;
+ b=MjhwpyrQ7j8yaiQLp0iEqyZ5jBp+ASj6rgftytY3wSagiqv2Hkk4DeYtDyL+YGONwUoUDNEbPuQH0QyQ3DY+Nkm3SkQ9A+2VZ6J+ngkifTCuVckR82adVZP/n2pkeq1/8S7q34bUmcwLqrfDjA48e2LnvuDeKYTKFFcD4PhYuJaibFkpMuQTKqk8WWv7GZyNsVG/FEZilLmTSrCwZD/X84nuZGuurZPuIOQgFXAzHMPQSIeOgk3m+22wi7u4WO73O6pWYPwVTGMiZkASOYzm6kgfdB3xnnMCyAy3f+59UBIHS8GeuRCxABO3AHjcCJ5bS/Jlg68lg6VmEknpseJg2w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by PH7PR11MB5957.namprd11.prod.outlook.com (2603:10b6:510:1e0::14)
+ by IA0PR11MB8355.namprd11.prod.outlook.com (2603:10b6:208:480::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Thu, 7 Sep
- 2023 05:07:36 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.34; Thu, 7 Sep
+ 2023 05:10:57 +0000
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::88b:6fa5:dca0:2419]) by SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::88b:6fa5:dca0:2419%7]) with mapi id 15.20.6745.035; Thu, 7 Sep 2023
- 05:07:36 +0000
+ 05:10:57 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 4/8] drm/i915/dsc: rename pps write to
- intel_dsc_pps_write()
-Thread-Index: AQHZ4ByFnceN6g+a0ka76zX+VaGDxrAO0fyQ
-Date: Thu, 7 Sep 2023 05:07:36 +0000
-Message-ID: <SN7PR11MB6750C09F86A3035A980591E4E3EEA@SN7PR11MB6750.namprd11.prod.outlook.com>
+Thread-Topic: [PATCH 6/8] drm/i915/dsc: clean up pps comments
+Thread-Index: AQHZ4ByCXquJp4algUyJ7FhvTX0dAbAO0ujg
+Date: Thu, 7 Sep 2023 05:10:57 +0000
+Message-ID: <SN7PR11MB6750AFE1EC137A0FFC8AE9B7E3EEA@SN7PR11MB6750.namprd11.prod.outlook.com>
 References: <cover.1693933849.git.jani.nikula@intel.com>
- <e793056e610ee8cfe2a8d69605402cd2445a517a.1693933849.git.jani.nikula@intel.com>
-In-Reply-To: <e793056e610ee8cfe2a8d69605402cd2445a517a.1693933849.git.jani.nikula@intel.com>
+ <915970973ef117fc8d47fbc57e8fa296235ad3e3.1693933849.git.jani.nikula@intel.com>
+In-Reply-To: <915970973ef117fc8d47fbc57e8fa296235ad3e3.1693933849.git.jani.nikula@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -84,60 +87,59 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|PH7PR11MB5957:EE_
-x-ms-office365-filtering-correlation-id: c4c4183a-b57d-4161-d7bc-08dbaf6059c2
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|IA0PR11MB8355:EE_
+x-ms-office365-filtering-correlation-id: df876dd9-194f-4ac1-51b5-08dbaf60d19c
 x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: XudtNmI8rjXyqFJPmtcWf1Fy+XkXoUeg7xx6NK81s5yzS4rqXV6pyQJ5HUZmvrRxaVM64KCKv1D67D0KKb7YvdJz6STWf7dVxZx4B+aKL8Du1CSvjQObVeAAeg4KoCehAOXizHCJjCgvxPqgB5A3TlrGikCa7xfWQU9spFBrq4+eSmf8Fz/uzbfdVkNxwjPlCKfPWASzqfIOfnzFkXGSpcChHj1F1mZYj3NTp6+iGmIfDj/A3OKzQ/DRp8HplJtKSoUZp9nJKX9c+qg3DMKYnCsoshH98PuhhWefK8j0ZY3vtbM/YdBsoM/kjY2tBGlr61m2jS9PNMlLzUpzSpJDT0jAGrrN390Ng5TqjJqzxg8bEpshdKX3kXwtCmIuxua1mLppPDbSbqjUZViR1tlsnALfs5MkWjnQkez6AFmxpsvn2f8C6rY1GB0NB2MXPuvO1qO19vXDMgwhsLZQHKTJjVJ9FQad7aR/N8XKF88Wo6ounel5BRqHUTATNOPuJPqggBLeMMGEOVf2TV3y3LrS7uqkiTF+gQDf7tJ6C5IsH3yEvuH+Gka3FuPAg4mRMxyN9HNZdRNEuMlGyaRjLkjOFMGuuTTuwjOqK1qii5uYqFe9LF9LwXk48ISPhFe4C2l0
+x-microsoft-antispam-message-info: 8l5s4pF6xwBtwIPwqWjAyqKXmPa1Vp713diMAFlRPImitwW/pKCxyBuTWxbeIiRJ41FcgCaPFdm8UruPsXytl8o0QWB97SPki8GU5oniv9fSabVhsi849RX1zjnwMojVRZG7Nnh8xTALyyIqB2DR5EQc3QCTeHn+Qz+aUH4Yhnaxji2pbkU8y9Rmhu4RwpQwIXv7RzY9Oy0GLIf15jbTM6pObltt96pH5mdQNl0/YhrAYZhbNZavfeVi+bw9ghqFjtrofjkSTStt90ObE9SL9D1bD0HGJkg4B3Vq6vec4ZolsrUYRu6sKVf9P07/rq05F7/JskswMbkbDf/tlC4qF1bCzLUx9dWqMpibJu+rAa+pIdb+Ol7Jk7hPjxm9kEkBLHRNojs/VAbiue8zeIT8LqIGFrlVC/qb7NV5AzcxvRvQd/xzEWHz3yxTPdUkN4uj2tGVw7CSq5Fjaz+C11ooEJb/naqPHz9tHC67GKnv5ju4iTVhEImrVxc7Q6leegdDWWMUIwB0nYTQWFm1xwOnkKCHp5YZN0uXfH0ncAWCmgZ5oQdsESOpVHIjVpuP8ZqyLzN0YJhb2BQ2zPjBNRadWTJcbxfi3M9aV1F5GuC7gyhf/q5P7HJfcaNB7QR1gxav
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(39860400002)(136003)(376002)(366004)(346002)(186009)(451199024)(1800799009)(66556008)(76116006)(26005)(71200400001)(66446008)(64756008)(66476007)(9686003)(7696005)(66946007)(110136005)(41300700001)(316002)(55016003)(122000001)(107886003)(4326008)(8676002)(8936002)(5660300002)(52536014)(6506007)(83380400001)(478600001)(2906002)(86362001)(38070700005)(82960400001)(33656002)(38100700002);
+ SFS:(13230031)(366004)(346002)(376002)(396003)(136003)(39860400002)(451199024)(186009)(1800799009)(478600001)(71200400001)(30864003)(9686003)(6506007)(110136005)(7696005)(316002)(8676002)(5660300002)(4326008)(26005)(107886003)(41300700001)(2906002)(83380400001)(52536014)(8936002)(82960400001)(122000001)(76116006)(38100700002)(38070700005)(33656002)(64756008)(66476007)(66556008)(66946007)(66446008)(86362001)(55016003);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?7+P+I/SyGrUeZi0QKh8m00sdrG9fbmxCpkqSEmdaEVnIrPuccTV/0Cj0Hktr?=
- =?us-ascii?Q?+UpkfJbsO8A9QIxaLSecF5638iPrvIEvkRPYGT2LiI9lWtxLMvZ5WdTDZVQT?=
- =?us-ascii?Q?VkyAEeKlM+waglu+OUZ3HiIiIj2Df1NAeVcwfzDYv/SrsfAQO17vYuv5mh8J?=
- =?us-ascii?Q?89j44RliIG6RQ+5SEKiJTCY+KwOQvjslmilMHoK1Yi3bpDugbDuWYL8nQsoE?=
- =?us-ascii?Q?+CqqD6zpADJ7umHuGwVH/Gy1kcTmf58oAZDnNgwQdkKs4RuPKgU0YS96t5JU?=
- =?us-ascii?Q?0YYgkmVC315RhjoMfBsu27+b3iGKXwbH+fn1v2yJvih5CoLrkH7+6lxTSfwr?=
- =?us-ascii?Q?kFparLFj7lSfF7PLMN4iHlUmJPZZUUTlGQVjjge5FopAWbKiFidAnBnZNdmu?=
- =?us-ascii?Q?rg8ZISXTOWnVtJc+fiVYBc6i0u0YV3312mxHbNn2z7IdCd2Z/c3r6kKS86Rk?=
- =?us-ascii?Q?kE/q6mQI7Hw+msz/b8qXq/Usjah7BTAbRogAwH2/1aBrdrxu9JzaB4+T6YCG?=
- =?us-ascii?Q?brUxIIH3y8o2KzN4V15R+JLpzUpZd6nKqS8N98YqGzWlUrERf6mt6uas2fGc?=
- =?us-ascii?Q?hef2kDx4S5qcFhU76q4q1qHbe27iHH3WIbgWrsrXqQn61unuJs4mORA+1vE1?=
- =?us-ascii?Q?y5UD6hMO46zQRkDiSM8Y5QXEfIlAR3x5OvMbOX2UcILt0JvwyYkWyWNtvpG0?=
- =?us-ascii?Q?3Z8xPsNQnM2cnTrunzbH4s62O8JALav3A5tBgxO9dYzIjFhHRGcXBdYwf6k5?=
- =?us-ascii?Q?JEm9f633gYcVbABuAytVb0dpoaFPkYr79aAco0uVInU90fxwX+9YvZcFabDo?=
- =?us-ascii?Q?UYQlf3aada4T+A8BiECyECkuqqSoP2ns3k4TJBSuh+aqahyrIXK6iIBFzyZv?=
- =?us-ascii?Q?qij4B2dezUQK+0Ax6PNe6na8xcHOwFOtWJ5997A0GjEwLx0FDH/+cRIKct4I?=
- =?us-ascii?Q?ASUXpfFNaglTR5BdH5prpyccGM5aGmHdgNDm0KLG7jMaR3DEU223znNH5JSI?=
- =?us-ascii?Q?oWhiJ6v7sTWHSbjIPC3DT++b6hTHhLDOKXuE80/uYj9cz6DXT8tT9A6XH2y4?=
- =?us-ascii?Q?z+gEpH2pL425y+ai8dbNVZjKvS3fgFnyxdPo1PfUGZYzZ3RD+OlOHsHw11q2?=
- =?us-ascii?Q?OKxjcwnFRFgT9qwq+NYS649U9lIrX6ipc2j48gfs1Fh2gboJDynuxlCzJ7JB?=
- =?us-ascii?Q?VIgNpx1010p7Kl3hssxDtqvUc1DTh1ZV36MPES9cPLafIITR6A9YSXaoaBXG?=
- =?us-ascii?Q?g4nmCQHw3oBhsAiaCuM1pztdXQhiIqFsEgdnnWVSsmKA3vzzNVXsHI5x9cxD?=
- =?us-ascii?Q?g5p5cbJ2DLwzdyOej4BJC/6spZFoiPs+78t5aYB87RtKqnHTsXIb604EgXfP?=
- =?us-ascii?Q?rvOuYjusPWhAQ6aljPLjuGcINln+z4OmqqGpXL/mf3ySvjZ6NlBFSqhKqsXc?=
- =?us-ascii?Q?4r7EnfsDHedrgf8n5e4en5bVpwQHuGrAHfuIDRBsfyz3EvigmVUvDjHf3/Zp?=
- =?us-ascii?Q?SF8xfSEHu/OfNQWoYmLpcUT3ZEv0Jo8mlLnr9eUwOZwas5fHsl9JCjvoNTL1?=
- =?us-ascii?Q?Yya+s99U6gbGl6PjbgjfKxCNI2OgS5x+QiOmtlZD?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?KBfF0FQ77T37OQmkzy03Cs/MooR+/C8NXLvQUo3IRN1iPXiNjIQj8MRNOuCM?=
+ =?us-ascii?Q?kT/PYEARYfrkZRoIfbBjYkYSKBKs+UqaJlCfOAJMMad+cA3djvu6GqSipT+h?=
+ =?us-ascii?Q?dbrZb0k7lem3FwQB8v+Uj2fa96ucKJLEjXNlbgUvUnOIG1OEPpArEdWZJa+t?=
+ =?us-ascii?Q?b+OLyFd7677GE9CE7tUTBuML8IYxtMLnQ7QDgUYNo+xn1OyzChEgVIwstvIU?=
+ =?us-ascii?Q?hF+ZlsmfiTHhwr1BbGoiKCtzxNmEOwszQb3ikeb2fJABpKagu+UVac6W+u3x?=
+ =?us-ascii?Q?Xz9VNFUK87eKUky5MeAGErBtshe/cAs6IJ500MG7l15C6XHPePdFXJv+vpRA?=
+ =?us-ascii?Q?XrJnZtP1o4jN9MILqWFYoYVqH5oNwlMHbsqxTwavrQBO8ga+MLiaR2e/HXyD?=
+ =?us-ascii?Q?9SfLJA3HEsuHrnxIujphe3bDMoSu06O47kDOcYuNzwTACuTdgJ8aBz2kPH0o?=
+ =?us-ascii?Q?WV7osRDFGptw5nfmnnWIXQFu4nMkJaOGDVROdhk0PzUQIIcHBfO77JfgS2fH?=
+ =?us-ascii?Q?LZsGXJOl/fELKKTS41mP9Qs05XSekMk4VVc/eRM0lr1lzqqXWDm255MDSj1i?=
+ =?us-ascii?Q?vlqupyllI0QaJ6RGLutgs1NlFVpqfyFw6bYJs7vjF6Jzdl877DTLTXfNOukL?=
+ =?us-ascii?Q?0Wsd/89/fEXZ1u7sy1rkuqTKqJBOzwmbVAHXm7sTWLMR//wS4o3w/JL2hT5G?=
+ =?us-ascii?Q?rq7JG5UbDE87kFqzCDi9/xhDoLwvPPxXeyJjccfmONuHdufR5ZnluNb5Idx3?=
+ =?us-ascii?Q?+CcxqFmWXc6nP3ORufvp7h9VyBZ0OBOmzQLx8aqve97N0t43ctxGx32+p/xT?=
+ =?us-ascii?Q?GZEs5ciA4aSxIn5i6M9HawEhcpKaUklkyYRf2xV3C2yMPaAg0y6Z2U4POQQ2?=
+ =?us-ascii?Q?KyocdA01A5hz4wQjyhIUI4nHCsA4P6Nc87YQroRbyUFy13BjbdUdgvaZA+rE?=
+ =?us-ascii?Q?GbGdU+hQVaGowTXuGLh4a+ZhkMYwi5BxwOOO4TzuRWmzlFJ9nc/cEgjuNHp9?=
+ =?us-ascii?Q?tWaf1Ieua03gtemRrbfm6HlPN4Uqvejc9OxVEScLD92L5LjFLFPwHc8Fep9C?=
+ =?us-ascii?Q?Uo+OyuDUFuQo7LTC1UkGjVw6VZINDv3SHGdaW7NTMpyxvBHv/PAaNpOV2GqD?=
+ =?us-ascii?Q?OQBFJ/VbOb5l4jh0kswJT80VOXJ+/LS7FQdcSsqtsqljLjja8IjjeNf6F3Jo?=
+ =?us-ascii?Q?QQnlj5mxM5/CD+WNERkrXIftPHNuuS/RvF7LIFbYTmCjFrYAN31Kewxpgity?=
+ =?us-ascii?Q?mbDIGNXkJJA9IvVWcjKDx/e9rLZJo3885M3QxTpBSNFkzr2w9cBqFlUHKJs2?=
+ =?us-ascii?Q?TYsz70AAPi2xjUMWtE10aNlDzQO7gZRNi0YUFAPkuVVbvmU+ylG5zJ55W1zL?=
+ =?us-ascii?Q?BZIyRfB6quS1akXgmqwwnWTuavEXbRGO5JoMq4DOiqLENTYQKyvERqgTp0tr?=
+ =?us-ascii?Q?JaVdBRn9yYNV/BRKSNEpCUNMoOhuVQIO0JNY5a6e2OzE/zGScXcVhXaKgRXB?=
+ =?us-ascii?Q?/mIeWqWhyh82DzgPNrwzoDlUTaNBcTWuJ+quqQ1uaNVp09B53onu8kV1hKcc?=
+ =?us-ascii?Q?HZewA4e/XdEW/k6NEurTZqcqTC6VZ3SQhOojvNOr?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4c4183a-b57d-4161-d7bc-08dbaf6059c2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2023 05:07:36.0359 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: df876dd9-194f-4ac1-51b5-08dbaf60d19c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2023 05:10:57.1122 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0sk1VhgsRLR1AXqHuLFwRteK1ExbFgPvLoP8QHnBy6/6Vge7ifMaPPctRHamdWuJURllnUs57yr5E/1GpxRtew==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5957
+X-MS-Exchange-CrossTenant-userprincipalname: wcibLyAfTlU/sJ7A1YCw3WHOSvHdYAt1Zp8fVy8kKflEukRaGqvJ21d2Sl7LXtaY/I2ZaWivsplja4vIhok5QA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB8355
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915/dsc: rename pps write to
- intel_dsc_pps_write()
+Subject: Re: [Intel-gfx] [PATCH 6/8] drm/i915/dsc: clean up pps comments
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,13 +155,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> Subject: [PATCH 4/8] drm/i915/dsc: rename pps write to intel_dsc_pps_writ=
-e()
+> Subject: [PATCH 6/8] drm/i915/dsc: clean up pps comments
 >=20
-> Make the function name conform to existing style better.
+> Unify comments to be the simple "PPS n" instead of all sorts of variants.
 >=20
 
-LGTM.=20
+LGTM.
 
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
@@ -167,152 +168,415 @@ Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_vdsc.c | 32 +++++++++++------------
->  1 file changed, 16 insertions(+), 16 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_vdsc.c     | 56 +++++++++----------
+>  .../gpu/drm/i915/display/intel_vdsc_regs.h    | 29 +++++-----
+>  2 files changed, 42 insertions(+), 43 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c
 > b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index b0be6615a865..4086dbb25ca5 100644
+> index 73bfa4d6633d..4855514d7b09 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
 > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -389,8 +389,8 @@ static void intel_dsc_get_pps_reg(const struct
-> intel_crtc_state *crtc_state, int
->  		dsc_reg[0] =3D pipe_dsc ? ICL_DSC0_PPS(pipe, pps) :
-> DSCA_PPS(pps);  }
+> @@ -422,7 +422,7 @@ static void intel_dsc_pps_configure(const struct
+> intel_crtc_state *crtc_state)
+>  	int num_vdsc_instances =3D
+> intel_dsc_get_num_vdsc_instances(crtc_state);
+>  	int vdsc_instances_per_pipe =3D
+> intel_dsc_get_vdsc_per_pipe(crtc_state);
 >=20
-> -static void intel_dsc_write_pps_reg(const struct intel_crtc_state *crtc_=
-state,
-> -				    int pps, u32 pps_val)
-> +static void intel_dsc_pps_write(const struct intel_crtc_state *crtc_stat=
-e,
-> +				int pps, u32 pps_val)
->  {
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev); @@ -443,41
-> +443,41 @@ static void intel_dsc_pps_configure(const struct intel_crtc_st=
-ate
-> *crtc_state)
->  	if (vdsc_cfg->vbr_enable)
->  		pps_val |=3D DSC_VBR_ENABLE;
+> -	/* Populate PICTURE_PARAMETER_SET_0 registers */
+> +	/* PPS 0 */
+>  	pps_val =3D DSC_VER_MAJ | vdsc_cfg->dsc_version_minor <<
+>  		DSC_VER_MIN_SHIFT |
+>  		vdsc_cfg->bits_per_component << DSC_BPC_SHIFT | @@ -
+> 445,36 +445,36 @@ static void intel_dsc_pps_configure(const struct
+> intel_crtc_state *crtc_state)
 >  	drm_dbg_kms(&dev_priv->drm, "PPS0 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 0, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 0, pps_val);
+>  	intel_dsc_pps_write(crtc_state, 0, pps_val);
 >=20
->  	/* Populate PICTURE_PARAMETER_SET_1 registers */
->  	pps_val =3D 0;
->  	pps_val |=3D DSC_BPP(vdsc_cfg->bits_per_pixel);
+> -	/* Populate PICTURE_PARAMETER_SET_1 registers */
+> +	/* PPS 1 */
+>  	pps_val =3D DSC_BPP(vdsc_cfg->bits_per_pixel);
 >  	drm_dbg_kms(&dev_priv->drm, "PPS1 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 1, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 1, pps_val);
+>  	intel_dsc_pps_write(crtc_state, 1, pps_val);
 >=20
->  	/* Populate PICTURE_PARAMETER_SET_2 registers */
->  	pps_val =3D 0;
->  	pps_val |=3D DSC_PIC_HEIGHT(vdsc_cfg->pic_height) |
+> -	/* Populate PICTURE_PARAMETER_SET_2 registers */
+> +	/* PPS 2 */
+>  	pps_val =3D DSC_PIC_HEIGHT(vdsc_cfg->pic_height) |
 >  		DSC_PIC_WIDTH(vdsc_cfg->pic_width / num_vdsc_instances);
 >  	drm_dbg_kms(&dev_priv->drm, "PPS2 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 2, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 2, pps_val);
+>  	intel_dsc_pps_write(crtc_state, 2, pps_val);
 >=20
->  	/* Populate PICTURE_PARAMETER_SET_3 registers */
->  	pps_val =3D 0;
->  	pps_val |=3D DSC_SLICE_HEIGHT(vdsc_cfg->slice_height) |
+> -	/* Populate PICTURE_PARAMETER_SET_3 registers */
+> +	/* PPS 3 */
+>  	pps_val =3D DSC_SLICE_HEIGHT(vdsc_cfg->slice_height) |
 >  		DSC_SLICE_WIDTH(vdsc_cfg->slice_width);
 >  	drm_dbg_kms(&dev_priv->drm, "PPS3 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 3, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 3, pps_val);
+>  	intel_dsc_pps_write(crtc_state, 3, pps_val);
 >=20
->  	/* Populate PICTURE_PARAMETER_SET_4 registers */
->  	pps_val =3D 0;
->  	pps_val |=3D DSC_INITIAL_XMIT_DELAY(vdsc_cfg->initial_xmit_delay) |
+> -	/* Populate PICTURE_PARAMETER_SET_4 registers */
+> +	/* PPS 4 */
+>  	pps_val =3D DSC_INITIAL_XMIT_DELAY(vdsc_cfg->initial_xmit_delay) |
 >  		DSC_INITIAL_DEC_DELAY(vdsc_cfg->initial_dec_delay);
 >  	drm_dbg_kms(&dev_priv->drm, "PPS4 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 4, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 4, pps_val);
+>  	intel_dsc_pps_write(crtc_state, 4, pps_val);
 >=20
->  	/* Populate PICTURE_PARAMETER_SET_5 registers */
->  	pps_val =3D 0;
->  	pps_val |=3D DSC_SCALE_INC_INT(vdsc_cfg->scale_increment_interval) |
+> -	/* Populate PICTURE_PARAMETER_SET_5 registers */
+> +	/* PPS 5 */
+>  	pps_val =3D DSC_SCALE_INC_INT(vdsc_cfg->scale_increment_interval) |
 >  		DSC_SCALE_DEC_INT(vdsc_cfg->scale_decrement_interval);
 >  	drm_dbg_kms(&dev_priv->drm, "PPS5 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 5, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 5, pps_val);
+>  	intel_dsc_pps_write(crtc_state, 5, pps_val);
 >=20
->  	/* Populate PICTURE_PARAMETER_SET_6 registers */
->  	pps_val =3D 0;
-> @@ -486,28 +486,28 @@ static void intel_dsc_pps_configure(const struct
+> -	/* Populate PICTURE_PARAMETER_SET_6 registers */
+> +	/* PPS 6 */
+>  	pps_val =3D DSC_INITIAL_SCALE_VALUE(vdsc_cfg->initial_scale_value) |
+>  		DSC_FIRST_LINE_BPG_OFFSET(vdsc_cfg->first_line_bpg_offset)
+> |
+>  		DSC_FLATNESS_MIN_QP(vdsc_cfg->flatness_min_qp) | @@ -
+> 482,25 +482,25 @@ static void intel_dsc_pps_configure(const struct
 > intel_crtc_state *crtc_state)
->  		DSC_FLATNESS_MIN_QP(vdsc_cfg->flatness_min_qp) |
->  		DSC_FLATNESS_MAX_QP(vdsc_cfg->flatness_max_qp);
 >  	drm_dbg_kms(&dev_priv->drm, "PPS6 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 6, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 6, pps_val);
+>  	intel_dsc_pps_write(crtc_state, 6, pps_val);
 >=20
->  	/* Populate PICTURE_PARAMETER_SET_7 registers */
->  	pps_val =3D 0;
->  	pps_val |=3D DSC_SLICE_BPG_OFFSET(vdsc_cfg->slice_bpg_offset) |
+> -	/* Populate PICTURE_PARAMETER_SET_7 registers */
+> +	/* PPS 7 */
+>  	pps_val =3D DSC_SLICE_BPG_OFFSET(vdsc_cfg->slice_bpg_offset) |
 >  		DSC_NFL_BPG_OFFSET(vdsc_cfg->nfl_bpg_offset);
 >  	drm_dbg_kms(&dev_priv->drm, "PPS7 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 7, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 7, pps_val);
+>  	intel_dsc_pps_write(crtc_state, 7, pps_val);
 >=20
->  	/* Populate PICTURE_PARAMETER_SET_8 registers */
->  	pps_val =3D 0;
->  	pps_val |=3D DSC_FINAL_OFFSET(vdsc_cfg->final_offset) |
+> -	/* Populate PICTURE_PARAMETER_SET_8 registers */
+> +	/* PPS 8 */
+>  	pps_val =3D DSC_FINAL_OFFSET(vdsc_cfg->final_offset) |
 >  		DSC_INITIAL_OFFSET(vdsc_cfg->initial_offset);
 >  	drm_dbg_kms(&dev_priv->drm, "PPS8 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 8, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 8, pps_val);
+>  	intel_dsc_pps_write(crtc_state, 8, pps_val);
 >=20
->  	/* Populate PICTURE_PARAMETER_SET_9 registers */
->  	pps_val =3D 0;
->  	pps_val |=3D DSC_RC_MODEL_SIZE(vdsc_cfg->rc_model_size) |
+> -	/* Populate PICTURE_PARAMETER_SET_9 registers */
+> +	/* PPS 9 */
+>  	pps_val =3D DSC_RC_MODEL_SIZE(vdsc_cfg->rc_model_size) |
 >  		DSC_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
 >  	drm_dbg_kms(&dev_priv->drm, "PPS9 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 9, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 9, pps_val);
+>  	intel_dsc_pps_write(crtc_state, 9, pps_val);
 >=20
->  	/* Populate PICTURE_PARAMETER_SET_10 registers */
->  	pps_val =3D 0;
-> @@ -516,7 +516,7 @@ static void intel_dsc_pps_configure(const struct
-> intel_crtc_state *crtc_state)
->  		DSC_RC_TARGET_OFF_HIGH(DSC_RC_TGT_OFFSET_HI_CONST)
+> -	/* Populate PICTURE_PARAMETER_SET_10 registers */
+> +	/* PPS 10 */
+>  	pps_val =3D DSC_RC_QUANT_INC_LIMIT0(vdsc_cfg-
+> >rc_quant_incr_limit0) |
+>  		DSC_RC_QUANT_INC_LIMIT1(vdsc_cfg->rc_quant_incr_limit1)
 > |
->=20
-> 	DSC_RC_TARGET_OFF_LOW(DSC_RC_TGT_OFFSET_LO_CONST);
->  	drm_dbg_kms(&dev_priv->drm, "PPS10 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 10, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 10, pps_val);
->=20
->  	/* Populate Picture parameter set 16 */
->  	pps_val =3D 0;
-> @@ -526,21 +526,21 @@ static void intel_dsc_pps_configure(const struct
+>  		DSC_RC_TARGET_OFF_HIGH(DSC_RC_TGT_OFFSET_HI_CONST)
+> | @@ -508,7 +508,7 @@ static void intel_dsc_pps_configure(const struct
 > intel_crtc_state *crtc_state)
->  		DSC_SLICE_ROW_PER_FRAME(vdsc_cfg->pic_height /
->  					vdsc_cfg->slice_height);
->  	drm_dbg_kms(&dev_priv->drm, "PPS16 =3D 0x%08x\n", pps_val);
-> -	intel_dsc_write_pps_reg(crtc_state, 16, pps_val);
-> +	intel_dsc_pps_write(crtc_state, 16, pps_val);
+>  	drm_dbg_kms(&dev_priv->drm, "PPS10 =3D 0x%08x\n", pps_val);
+>  	intel_dsc_pps_write(crtc_state, 10, pps_val);
+>=20
+> -	/* Populate Picture parameter set 16 */
+> +	/* PPS 16 */
+>  	pps_val =3D DSC_SLICE_CHUNK_SIZE(vdsc_cfg->slice_chunk_size) |
+>  		DSC_SLICE_PER_LINE((vdsc_cfg->pic_width /
+> num_vdsc_instances) /
+>  				   vdsc_cfg->slice_width) |
+> @@ -518,12 +518,12 @@ static void intel_dsc_pps_configure(const struct
+> intel_crtc_state *crtc_state)
+>  	intel_dsc_pps_write(crtc_state, 16, pps_val);
 >=20
 >  	if (DISPLAY_VER(dev_priv) >=3D 14) {
->  		/* Populate PICTURE_PARAMETER_SET_17 registers */
->  		pps_val =3D 0;
->  		pps_val |=3D DSC_SL_BPG_OFFSET(vdsc_cfg-
+> -		/* Populate PICTURE_PARAMETER_SET_17 registers */
+> +		/* PPS 17 */
+>  		pps_val =3D DSC_SL_BPG_OFFSET(vdsc_cfg-
 > >second_line_bpg_offset);
 >  		drm_dbg_kms(&dev_priv->drm, "PPS17 =3D 0x%08x\n", pps_val);
-> -		intel_dsc_write_pps_reg(crtc_state, 17, pps_val);
-> +		intel_dsc_pps_write(crtc_state, 17, pps_val);
+>  		intel_dsc_pps_write(crtc_state, 17, pps_val);
 >=20
->  		/* Populate PICTURE_PARAMETER_SET_18 registers */
->  		pps_val =3D 0;
->  		pps_val |=3D DSC_NSL_BPG_OFFSET(vdsc_cfg->nsl_bpg_offset) |
->  			   DSC_SL_OFFSET_ADJ(vdsc_cfg-
+> -		/* Populate PICTURE_PARAMETER_SET_18 registers */
+> +		/* PPS 18 */
+>  		pps_val =3D DSC_NSL_BPG_OFFSET(vdsc_cfg->nsl_bpg_offset) |
+>  			DSC_SL_OFFSET_ADJ(vdsc_cfg-
 > >second_line_offset_adj);
 >  		drm_dbg_kms(&dev_priv->drm, "PPS18 =3D 0x%08x\n", pps_val);
-> -		intel_dsc_write_pps_reg(crtc_state, 18, pps_val);
-> +		intel_dsc_pps_write(crtc_state, 18, pps_val);
->  	}
+> @@ -854,7 +854,7 @@ static void intel_dsc_get_pps_config(struct
+> intel_crtc_state *crtc_state)
+>  	int num_vdsc_instances =3D
+> intel_dsc_get_num_vdsc_instances(crtc_state);
+>  	u32 pps_temp;
 >=20
->  	/* Populate the RC_BUF_THRESH registers */
+> -	/* PPS_0 */
+> +	/* PPS 0 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 0);
+>=20
+>  	vdsc_cfg->bits_per_component =3D (pps_temp & DSC_BPC_MASK) >>
+> DSC_BPC_SHIFT; @@ -867,7 +867,7 @@ static void
+> intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
+>  	vdsc_cfg->native_420 =3D pps_temp & DSC_NATIVE_420_ENABLE;
+>  	vdsc_cfg->vbr_enable =3D pps_temp & DSC_VBR_ENABLE;
+>=20
+> -	/* PPS_1 */
+> +	/* PPS 1 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 1);
+>=20
+>  	vdsc_cfg->bits_per_pixel =3D pps_temp;
+> @@ -877,31 +877,31 @@ static void intel_dsc_get_pps_config(struct
+> intel_crtc_state *crtc_state)
+>=20
+>  	crtc_state->dsc.compressed_bpp =3D vdsc_cfg->bits_per_pixel >> 4;
+>=20
+> -	/* PPS_2 */
+> +	/* PPS 2 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 2);
+>=20
+>  	vdsc_cfg->pic_width =3D REG_FIELD_GET(DSC_PIC_WIDTH_MASK,
+> pps_temp) / num_vdsc_instances;
+>  	vdsc_cfg->pic_height =3D REG_FIELD_GET(DSC_PIC_HEIGHT_MASK,
+> pps_temp);
+>=20
+> -	/* PPS_3 */
+> +	/* PPS 3 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 3);
+>=20
+>  	vdsc_cfg->slice_width =3D REG_FIELD_GET(DSC_SLICE_WIDTH_MASK,
+> pps_temp);
+>  	vdsc_cfg->slice_height =3D REG_FIELD_GET(DSC_SLICE_HEIGHT_MASK,
+> pps_temp);
+>=20
+> -	/* PPS_4 */
+> +	/* PPS 4 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 4);
+>=20
+>  	vdsc_cfg->initial_dec_delay =3D
+> REG_FIELD_GET(DSC_INITIAL_DEC_DELAY_MASK, pps_temp);
+>  	vdsc_cfg->initial_xmit_delay =3D
+> REG_FIELD_GET(DSC_INITIAL_XMIT_DELAY_MASK, pps_temp);
+>=20
+> -	/* PPS_5 */
+> +	/* PPS 5 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 5);
+>=20
+>  	vdsc_cfg->scale_decrement_interval =3D
+> REG_FIELD_GET(DSC_SCALE_DEC_INT_MASK, pps_temp);
+>  	vdsc_cfg->scale_increment_interval =3D
+> REG_FIELD_GET(DSC_SCALE_INC_INT_MASK, pps_temp);
+>=20
+> -	/* PPS_6 */
+> +	/* PPS 6 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 6);
+>=20
+>  	vdsc_cfg->initial_scale_value =3D
+> REG_FIELD_GET(DSC_INITIAL_SCALE_VALUE_MASK, pps_temp); @@ -909,41
+> +909,41 @@ static void intel_dsc_get_pps_config(struct intel_crtc_state
+> *crtc_state)
+>  	vdsc_cfg->flatness_min_qp =3D
+> REG_FIELD_GET(DSC_FLATNESS_MIN_QP_MASK, pps_temp);
+>  	vdsc_cfg->flatness_max_qp =3D
+> REG_FIELD_GET(DSC_FLATNESS_MAX_QP_MASK, pps_temp);
+>=20
+> -	/* PPS_7 */
+> +	/* PPS 7 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 7);
+>=20
+>  	vdsc_cfg->nfl_bpg_offset =3D
+> REG_FIELD_GET(DSC_NFL_BPG_OFFSET_MASK, pps_temp);
+>  	vdsc_cfg->slice_bpg_offset =3D
+> REG_FIELD_GET(DSC_SLICE_BPG_OFFSET_MASK, pps_temp);
+>=20
+> -	/* PPS_8 */
+> +	/* PPS 8 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 8);
+>=20
+>  	vdsc_cfg->initial_offset =3D REG_FIELD_GET(DSC_INITIAL_OFFSET_MASK,
+> pps_temp);
+>  	vdsc_cfg->final_offset =3D REG_FIELD_GET(DSC_FINAL_OFFSET_MASK,
+> pps_temp);
+>=20
+> -	/* PPS_9 */
+> +	/* PPS 9 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 9);
+>=20
+>  	vdsc_cfg->rc_model_size =3D
+> REG_FIELD_GET(DSC_RC_MODEL_SIZE_MASK, pps_temp);
+>=20
+> -	/* PPS_10 */
+> +	/* PPS 10 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 10);
+>=20
+>  	vdsc_cfg->rc_quant_incr_limit0 =3D
+> REG_FIELD_GET(DSC_RC_QUANT_INC_LIMIT0_MASK, pps_temp);
+>  	vdsc_cfg->rc_quant_incr_limit1 =3D
+> REG_FIELD_GET(DSC_RC_QUANT_INC_LIMIT1_MASK, pps_temp);
+>=20
+> -	/* PPS_16 */
+> +	/* PPS 16 */
+>  	pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 16);
+>=20
+>  	vdsc_cfg->slice_chunk_size =3D
+> REG_FIELD_GET(DSC_SLICE_CHUNK_SIZE_MASK, pps_temp);
+>=20
+>  	if (DISPLAY_VER(i915) >=3D 14) {
+> -		/* PPS_17 */
+> +		/* PPS 17 */
+>  		pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 17);
+>=20
+>  		vdsc_cfg->second_line_bpg_offset =3D
+> REG_FIELD_GET(DSC_SL_BPG_OFFSET_MASK, pps_temp);
+>=20
+> -		/* PPS_18 */
+> +		/* PPS 18 */
+>  		pps_temp =3D intel_dsc_pps_read_and_verify(crtc_state, 18);
+>=20
+>  		vdsc_cfg->nsl_bpg_offset =3D
+> REG_FIELD_GET(DSC_NSL_BPG_OFFSET_MASK, pps_temp); diff --git
+> a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+> b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+> index 5cbcbd9db7b1..58d282dcfc6f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+> @@ -72,7 +72,7 @@
+>  #define  ICL_DSC0_PPS(pipe, pps)
+> 	_MMIO(_ICL_DSC0_PPS_0(pipe) + ((pps) * 4))
+>  #define  ICL_DSC1_PPS(pipe, pps)
+> 	_MMIO(_ICL_DSC1_PPS_0(pipe) + ((pps) * 4))
+>=20
+> -/* PPS0 */
+> +/* PPS 0 */
+>  #define  DSC_NATIVE_422_ENABLE		BIT(23)
+>  #define  DSC_NATIVE_420_ENABLE		BIT(22)
+>  #define  DSC_ALT_ICH_SEL		(1 << 20)
+> @@ -87,22 +87,22 @@
+>  #define  DSC_VER_MIN_SHIFT		4
+>  #define  DSC_VER_MAJ			(0x1 << 0)
+>=20
+> -/* PPS1 */
+> +/* PPS 1 */
+>  #define  DSC_BPP(bpp)				((bpp) << 0)
+>=20
+> -/* PPS2 */
+> +/* PPS 2 */
+>  #define  DSC_PIC_WIDTH_MASK		REG_GENMASK(31, 16)
+>  #define  DSC_PIC_HEIGHT_MASK		REG_GENMASK(15, 0)
+>  #define  DSC_PIC_WIDTH(pic_width)
+> 	REG_FIELD_PREP(DSC_PIC_WIDTH_MASK, pic_width)
+>  #define  DSC_PIC_HEIGHT(pic_height)
+> 	REG_FIELD_PREP(DSC_PIC_HEIGHT_MASK, pic_height)
+>=20
+> -/* PPS3 */
+> +/* PPS 3 */
+>  #define  DSC_SLICE_WIDTH_MASK			REG_GENMASK(31,
+> 16)
+>  #define  DSC_SLICE_HEIGHT_MASK			REG_GENMASK(15, 0)
+>  #define  DSC_SLICE_WIDTH(slice_width)
+> 	REG_FIELD_PREP(DSC_SLICE_WIDTH_MASK, slice_width)
+>  #define  DSC_SLICE_HEIGHT(slice_height)
+> 	REG_FIELD_PREP(DSC_SLICE_HEIGHT_MASK, slice_height)
+>=20
+> -/* PPS4 */
+> +/* PPS 4 */
+>  #define  DSC_INITIAL_DEC_DELAY_MASK		REG_GENMASK(31,
+> 16)
+>  #define  DSC_INITIAL_XMIT_DELAY_MASK		REG_GENMASK(9, 0)
+>  #define  DSC_INITIAL_DEC_DELAY(dec_delay)
+> REG_FIELD_PREP(DSC_INITIAL_DEC_DELAY_MASK, \
+> @@ -110,13 +110,13 @@
+>  #define  DSC_INITIAL_XMIT_DELAY(xmit_delay)
+> REG_FIELD_PREP(DSC_INITIAL_XMIT_DELAY_MASK, \
+>  							       xmit_delay)
+>=20
+> -/* PPS5 */
+> +/* PPS 5 */
+>  #define  DSC_SCALE_DEC_INT_MASK			REG_GENMASK(27,
+> 16)
+>  #define  DSC_SCALE_INC_INT_MASK			REG_GENMASK(15, 0)
+>  #define  DSC_SCALE_DEC_INT(scale_dec)
+> 	REG_FIELD_PREP(DSC_SCALE_DEC_INT_MASK, scale_dec)
+>  #define  DSC_SCALE_INC_INT(scale_inc)
+> 	REG_FIELD_PREP(DSC_SCALE_INC_INT_MASK, scale_inc)
+>=20
+> -/* PPS6 */
+> +/* PPS 6 */
+>  #define  DSC_FLATNESS_MAX_QP_MASK		REG_GENMASK(28,
+> 24)
+>  #define  DSC_FLATNESS_MIN_QP_MASK		REG_GENMASK(20,
+> 16)
+>  #define  DSC_FIRST_LINE_BPG_OFFSET_MASK		REG_GENMASK(12, 8)
+> @@ -128,13 +128,13 @@
+>  #define  DSC_INITIAL_SCALE_VALUE(value)
+> 	REG_FIELD_PREP(DSC_INITIAL_SCALE_VALUE_MASK, \
+>  							       value)
+>=20
+> -/* PPS7 */
+> +/* PPS 7 */
+>  #define  DSC_NFL_BPG_OFFSET_MASK		REG_GENMASK(31, 16)
+>  #define  DSC_SLICE_BPG_OFFSET_MASK		REG_GENMASK(15, 0)
+>  #define  DSC_NFL_BPG_OFFSET(bpg_offset)
+> 	REG_FIELD_PREP(DSC_NFL_BPG_OFFSET_MASK, bpg_offset)
+>  #define  DSC_SLICE_BPG_OFFSET(bpg_offset)
+> 	REG_FIELD_PREP(DSC_SLICE_BPG_OFFSET_MASK, \
+>  							       bpg_offset)
+> -/* PPS8 */
+> +/* PPS 8 */
+>  #define  DSC_INITIAL_OFFSET_MASK		REG_GENMASK(31, 16)
+>  #define  DSC_FINAL_OFFSET_MASK			REG_GENMASK(15, 0)
+>  #define  DSC_INITIAL_OFFSET(initial_offset)
+> 	REG_FIELD_PREP(DSC_INITIAL_OFFSET_MASK, \
+> @@ -142,7 +142,7 @@
+>  #define  DSC_FINAL_OFFSET(final_offset)
+> 	REG_FIELD_PREP(DSC_FINAL_OFFSET_MASK, \
+>  							       final_offset)
+>=20
+> -/* PPS9 */
+> +/* PPS 9 */
+>  #define  DSC_RC_EDGE_FACTOR_MASK		REG_GENMASK(19, 16)
+>  #define  DSC_RC_MODEL_SIZE_MASK			REG_GENMASK(15, 0)
+>  #define  DSC_RC_EDGE_FACTOR(rc_edge_fact)
+> 	REG_FIELD_PREP(DSC_RC_EDGE_FACTOR_MASK, \
+> @@ -150,7 +150,7 @@
+>  #define  DSC_RC_MODEL_SIZE(rc_model_size)
+> 	REG_FIELD_PREP(DSC_RC_MODEL_SIZE_MASK, \
+>  							       rc_model_size)
+>=20
+> -/* PPS10 */
+> +/* PPS 10 */
+>  #define  DSC_RC_TGT_OFF_LOW_MASK
+> 	REG_GENMASK(23, 20)
+>  #define  DSC_RC_TGT_OFF_HIGH_MASK
+> 	REG_GENMASK(19, 16)
+>  #define  DSC_RC_QUANT_INC_LIMIT1_MASK
+> 	REG_GENMASK(12, 8)
+> @@ -162,7 +162,7 @@
+>  #define  DSC_RC_QUANT_INC_LIMIT1(lim)
+> 	REG_FIELD_PREP(DSC_RC_QUANT_INC_LIMIT1_MASK, lim)
+>  #define  DSC_RC_QUANT_INC_LIMIT0(lim)
+> 	REG_FIELD_PREP(DSC_RC_QUANT_INC_LIMIT0_MASK, lim)
+>=20
+> -/* PPS16 */
+> +/* PPS 16 */
+>  #define  DSC_SLICE_ROW_PR_FRME_MASK
+> 	REG_GENMASK(31, 20)
+>  #define  DSC_SLICE_PER_LINE_MASK			REG_GENMASK(18,
+> 16)
+>  #define  DSC_SLICE_CHUNK_SIZE_MASK
+> 	REG_GENMASK(15, 0)
+> @@ -173,12 +173,11 @@
+>  #define  DSC_SLICE_CHUNK_SIZE(slice_chunk_size)
+> 	REG_FIELD_PREP(DSC_SLICE_CHUNK_SIZE_MASK, \
+>=20
+> slice_chunk_size)
+>=20
+> -/* MTL Display Stream Compression registers */
+> -/* PPS17 */
+> +/* PPS 17 (MTL+) */
+>  #define DSC_SL_BPG_OFFSET_MASK			REG_GENMASK(31,
+> 27)
+>  #define DSC_SL_BPG_OFFSET(offset)
+> 	REG_FIELD_PREP(DSC_SL_BPG_OFFSET_MASK, offset)
+>=20
+> -/* PPS18 */
+> +/* PPS 18 (MTL+) */
+>  #define DSC_NSL_BPG_OFFSET_MASK			REG_GENMASK(31,
+> 16)
+>  #define DSC_SL_OFFSET_ADJ_MASK			REG_GENMASK(15, 0)
+>  #define DSC_NSL_BPG_OFFSET(offset)
+> 	REG_FIELD_PREP(DSC_NSL_BPG_OFFSET_MASK, offset)
 > --
 > 2.39.2
 
