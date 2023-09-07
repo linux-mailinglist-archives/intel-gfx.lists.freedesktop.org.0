@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EADD797247
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 14:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81EA5797246
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 14:26:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E42FD10E7C3;
-	Thu,  7 Sep 2023 12:26:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 914C710E7BA;
+	Thu,  7 Sep 2023 12:26:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 846C010E24E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A509010E7BA
  for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 12:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1694089560; x=1725625560;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=5DtGvKWmJ8msZu6gF3cFnJIyq7A6FDdz88vuCdhwj+Y=;
- b=ldojARLylI1eCaen6DWpB9VB7Pa2ACAQWC7tbEPRko4Tc3tOqPDGo/MT
- Kr2OeBy4hiBNCGXX/HOO+fDkWj2dup1TSapX+QaXeXZyIhA8YQ62iX+P7
- /UWysi0Fj3UABv0Mx/LiETzCNJmD4Uh28jXnjXIzyVVMWW8Sh+EEXXJGh
- +Lx50LA5XWgiAw8ore7jN9zwOZRqQxFtn82Y8ljZ1Zqfdguv/l1ybPHvL
- s16IGORRovXp2/4nuY6Iu1ahv3JKxHDTm29DtMdxnBrsPgc5noUEMZyH3
- A3M/ve0IbjYjtbSlpcAh9pkaR4goQMLWfCM+PEDq6It5BgpjtBZ44kkSP g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="377252958"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="377252958"
+ bh=dqi2cJra30T3RfeVQO+f1lpGWRebgQaaW2LqS7wONe4=;
+ b=BvyaMyjLB0eBKs/S/aaXwgFb5lLbKCH+iuSu4RCXx4OwBWWOBtCEbLrr
+ JTStuziAREJk+Z28cr7BiDyNGOv0NUAzGW7CEFsB/lhBFi5pr4DZZwYBb
+ qQX/GXGQl0kmj27Rj3o8iy3jeMO3KePcsLWH7lnb3cZCi5DYDvyW/r0kW
+ f/Z2Ns4ssydVE3cZxi/WyHOhUccxJ3FyaCEVa7hRM17y5leyQ63Ebpqat
+ HxVkYlixV2a6eNE0TZ0Y3TFPSEIw4FjDQWWeNnM31wkXXprjgKT1ig+i2
+ 0E2swWE/GoVQRgshPl3WTpa+yVfPzmJ3jFpronjmzkgHbz5qG5tYydIxH Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="377252968"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="377252968"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 05:25:51 -0700
+ 07 Sep 2023 05:25:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="777051269"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="777051269"
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="777051271"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="777051271"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by orsmga001.jf.intel.com with SMTP; 07 Sep 2023 05:25:48 -0700
+ by orsmga001.jf.intel.com with SMTP; 07 Sep 2023 05:25:52 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 Sep 2023 15:25:48 +0300
+ Thu, 07 Sep 2023 15:25:51 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  7 Sep 2023 15:25:40 +0300
-Message-ID: <20230907122541.32261-3-ville.syrjala@linux.intel.com>
+Date: Thu,  7 Sep 2023 15:25:41 +0300
+Message-ID: <20230907122541.32261-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230907122541.32261-1-ville.syrjala@linux.intel.com>
 References: <20230907122541.32261-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Split intel_update_crtc() into
- two parts
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Do plane/etc. updates more
+ atomically across pipes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,70 +65,80 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Split intel_update_crtc() into two parts such that the first
-part performs all the non-vblank evasion preparatory stuff,
-and the second part just does the vblank evasion stuff.
-
-For now we just call these back to back so that there is
-no funcitonal change.
+Perform all the intel_pre_update_crtc() stuff for all pipes first,
+and only then do the intel_update_crtc() vblank evasion stuff for
+every pipe back to back. This should make it more likely that
+the plane updates from multiple pipes happen on the same frame
+(assuming the pipes are running in sync, eg. due to bigjoiner
+or port sync).
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 16 ++++++++++++++--
- 1 file changed, 14 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 26 ++++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 526f38b502be..7c19a0f380ca 100644
+index 7c19a0f380ca..f96230232a47 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6542,8 +6542,8 @@ static void intel_enable_crtc(struct intel_atomic_state *state,
- 	intel_crtc_enable_pipe_crc(crtc);
- }
- 
--static void intel_update_crtc(struct intel_atomic_state *state,
--			      struct intel_crtc *crtc)
-+static void intel_pre_update_crtc(struct intel_atomic_state *state,
-+				  struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	const struct intel_crtc_state *old_crtc_state =
-@@ -6588,6 +6588,15 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 		intel_color_commit_noarm(new_crtc_state);
- 
- 	intel_crtc_planes_update_noarm(state, crtc);
-+}
-+
-+static void intel_update_crtc(struct intel_atomic_state *state,
-+			      struct intel_crtc *crtc)
-+{
-+	const struct intel_crtc_state *old_crtc_state =
-+		intel_atomic_get_old_crtc_state(state, crtc);
-+	struct intel_crtc_state *new_crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
- 
- 	/* Perform vblank evasion around commit operation */
- 	intel_pipe_update_start(new_crtc_state);
-@@ -6701,6 +6710,7 @@ static void intel_commit_modeset_enables(struct intel_atomic_state *state)
- 			continue;
+@@ -6711,6 +6711,12 @@ static void intel_commit_modeset_enables(struct intel_atomic_state *state)
  
  		intel_enable_crtc(state, crtc);
-+		intel_pre_update_crtc(state, crtc);
+ 		intel_pre_update_crtc(state, crtc);
++	}
++
++	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
++		if (!new_crtc_state->hw.active)
++			continue;
++
  		intel_update_crtc(state, crtc);
  	}
  }
-@@ -6753,6 +6763,7 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+@@ -6748,6 +6754,15 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+ 	 * So first lets enable all pipes that do not need a fullmodeset as
+ 	 * those don't have any external dependency.
+ 	 */
++	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
++		enum pipe pipe = crtc->pipe;
++
++		if ((update_pipes & BIT(pipe)) == 0)
++			continue;
++
++		intel_pre_update_crtc(state, crtc);
++	}
++
+ 	while (update_pipes) {
+ 		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+ 						    new_crtc_state, i) {
+@@ -6763,7 +6778,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
  			entries[pipe] = new_crtc_state->wm.skl.ddb;
  			update_pipes &= ~BIT(pipe);
  
-+			intel_pre_update_crtc(state, crtc);
+-			intel_pre_update_crtc(state, crtc);
  			intel_update_crtc(state, crtc);
  
  			/*
-@@ -6820,6 +6831,7 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+@@ -6819,6 +6833,15 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+ 	/*
+ 	 * Finally we do the plane updates/etc. for all pipes that got enabled.
+ 	 */
++	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
++		enum pipe pipe = crtc->pipe;
++
++		if ((update_pipes & BIT(pipe)) == 0)
++			continue;
++
++		intel_pre_update_crtc(state, crtc);
++	}
++
+ 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+ 		enum pipe pipe = crtc->pipe;
+ 
+@@ -6831,7 +6854,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
  		entries[pipe] = new_crtc_state->wm.skl.ddb;
  		update_pipes &= ~BIT(pipe);
  
-+		intel_pre_update_crtc(state, crtc);
+-		intel_pre_update_crtc(state, crtc);
  		intel_update_crtc(state, crtc);
  	}
  
