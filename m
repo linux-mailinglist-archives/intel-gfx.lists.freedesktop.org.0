@@ -1,33 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2530C79732C
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 16:51:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55BD0797390
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 17:27:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86FCC10E7F8;
-	Thu,  7 Sep 2023 14:51:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B46C010E7FF;
+	Thu,  7 Sep 2023 15:27:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9A4D410E7F8;
- Thu,  7 Sep 2023 14:51:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9E054AADE0;
- Thu,  7 Sep 2023 14:51:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0880017059102857834=="
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C78EF10E7F8;
+ Thu,  7 Sep 2023 15:27:20 +0000 (UTC)
+Received: from loongson.cn (unknown [10.20.42.43])
+ by gateway (Coremail) with SMTP id _____8Cxh+jV6_lk2HwhAA--.31173S3;
+ Thu, 07 Sep 2023 23:27:17 +0800 (CST)
+Received: from [0.0.0.0] (unknown [10.20.42.43])
+ by localhost.localdomain (Coremail) with SMTP id
+ AQAAf8AxzyO_6_lkAtlwAA--.32479S3; 
+ Thu, 07 Sep 2023 23:27:12 +0800 (CST)
+Message-ID: <d3c38433-a23e-56b3-634a-9bb4c492245d@loongson.cn>
+Date: Thu, 7 Sep 2023 23:26:55 +0800
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 07 Sep 2023 14:51:38 -0000
-Message-ID: <169409829864.17901.3403850017106427379@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230907122541.32261-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230907122541.32261-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Slightly_more_atomic_multi-pipe_commits?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Sui Jingfeng <sui.jingfeng@linux.dev>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Bjorn Helgaas
+ <bhelgaas@google.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+References: <20230904195724.633404-1-sui.jingfeng@linux.dev>
+ <44ec8549-dc36-287e-4359-abd3ec8d22d6@suse.de>
+ <5afd2efb-f838-f9b7-02a9-2cf4d4fd2382@loongson.cn>
+ <2adfa653-ac35-d560-be52-c92848a1eef5@gmail.com>
+ <b51d49f3-e3de-6b8d-9cb4-df5c03f3cdc0@loongson.cn>
+ <10509692-ce04-e225-5a27-abc955554bdc@gmail.com>
+ <a9af88c5-4509-96ff-a7fd-a0f72d2f1e6a@linux.dev>
+ <127fab21-bc5c-f782-e42b-1092fbb8df34@amd.com>
+ <5d9f9780-995f-33dc-e3db-3112aa085062@loongson.cn>
+ <714d5ecf-f0dd-c099-0970-9ee765d35161@amd.com>
+Content-Language: en-US
+From: suijingfeng <suijingfeng@loongson.cn>
+In-Reply-To: <714d5ecf-f0dd-c099-0970-9ee765d35161@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8AxzyO_6_lkAtlwAA--.32479S3
+X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
+X-Coremail-Antispam: 1Uk129KBj93XoW3XFy5KFWUCFW7Gw4xXF47trc_yoWxKw48pF
+ WfW39IgrW8ur48J34IvF1UWw4agF4rJF45AryFkwn0k3WUWFn0vwnagw4Iga4UArs7uF4j
+ vry0q3yFyw1UCagCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUP2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v2
+ 6F4UJVW0owAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
+ Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_
+ Jw1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrw
+ CYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48J
+ MxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI
+ 0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y
+ 0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxV
+ WUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1l
+ IxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8uc_3UUUU
+ U==
+Subject: Re: [Intel-gfx] [Nouveau] [RFC,
+ drm-misc-next v4 0/9] PCI/VGA: Allowing the user to select the
+ primary video adapter at boot time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,298 +81,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-pci@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0880017059102857834==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Slightly more atomic multi-pipe commits
-URL   : https://patchwork.freedesktop.org/series/123391/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13607 -> Patchwork_123391v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/index.html
-
-Participating hosts (39 -> 39)
-------------------------------
-
-  Additional (2): fi-hsw-4770 bat-kbl-2 
-  Missing    (2): fi-kbl-soraka fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_123391v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#1849])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_busy@busy@all-engines:
-    - bat-mtlp-8:         [PASS][2] -> [DMESG-FAIL][3] ([i915#9121])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/bat-mtlp-8/igt@gem_busy@busy@all-engines.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-mtlp-8/igt@gem_busy@busy@all-engines.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][4] ([fdo#109271]) +39 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-glk-j4005:       [PASS][5] -> [DMESG-FAIL][6] ([i915#5334])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][7] ([fdo#109271]) +13 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-adlp-9:         NOTRUN -> [SKIP][8] ([i915#3546]) +2 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:
-    - fi-hsw-4770:        NOTRUN -> [DMESG-WARN][9] ([i915#8841]) +6 other tests dmesg-warn
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - bat-rplp-1:         NOTRUN -> [ABORT][10] ([i915#9243])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-rplp-1/igt@kms_psr@cursor_plane_move.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][11] ([fdo#109271] / [i915#1072]) +3 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - bat-dg2-9:          [INCOMPLETE][12] ([i915#9275]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@kms_chamelium_edid@hdmi-edid-read:
-    - {bat-dg2-13}:       [DMESG-WARN][14] ([i915#7952]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-guc:         [FAIL][16] ([IGT#3] / [i915#6121]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  
-#### Warnings ####
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-rplp-1:         [ABORT][18] ([i915#8442] / [i915#8668] / [i915#8860]) -> [SKIP][19] ([i915#1072])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/bat-rplp-1/igt@kms_psr@primary_page_flip.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-rplp-1/igt@kms_psr@primary_page_flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
-  [i915#7952]: https://gitlab.freedesktop.org/drm/intel/issues/7952
-  [i915#8442]: https://gitlab.freedesktop.org/drm/intel/issues/8442
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#8841]: https://gitlab.freedesktop.org/drm/intel/issues/8841
-  [i915#8860]: https://gitlab.freedesktop.org/drm/intel/issues/8860
-  [i915#9121]: https://gitlab.freedesktop.org/drm/intel/issues/9121
-  [i915#9243]: https://gitlab.freedesktop.org/drm/intel/issues/9243
-  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
+Hi,
 
 
-Build changes
--------------
+On 2023/9/7 20:43, Christian König wrote:
+> Am 07.09.23 um 14:32 schrieb suijingfeng:
+>> Hi,
+>>
+>>
+>> On 2023/9/7 17:08, Christian König wrote:
+>>> Well, I have over 25 years of experience with display hardware and 
+>>> what you describe here was never an issue. 
+>>
+>> I want to give you an example to let you know more.
+>>
+>> I have a ASRock AD2550B-ITX board[1],
+>> When another discrete video card is mounted into it mini PCIe slot or 
+>> PCI slot,
+>> The IGD cannot be the primary display adapter anymore. The display is 
+>> totally black.
+>> I have try to draft a few trivial patch to help fix this[2].
+>>
+>> And I want to use the IGD as primary, does this count as an issue?
+>
+> No, this is completely expected behavior and a limitation of the 
+> hardware design.
+>
+> As far as I know both AMD and Intel GPUs work the same here.
+>
+> Regards,
+> Christian.
+>
+>>
+>> [1] https://www.asrock.com/mb/Intel/AD2550-ITX/
+>> [2] https://patchwork.freedesktop.org/series/123073/
+>>
 
-  * Linux: CI_DRM_13607 -> Patchwork_123391v1
+Then, I'll give you another example, see below for elaborate description.
+I have one AMD BC160 GPU, see[1] to get what it looks like.
 
-  CI-20190529: 20190529
-  CI_DRM_13607: 1a3148216ba5cb6fdde2cb185401b7c35895646c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_123391v1: 1a3148216ba5cb6fdde2cb185401b7c35895646c @ git://anongit.freedesktop.org/gfx-ci/linux
+The GPU don't has a display connector interface exported.
+It actually can be seen as a render-only GPU or compute class GPU for bitcoin.
+But the firmware of it still acclaim this GPU as VGA compatible.
+When mount this GPU onto motherboard, the system always select this GPU as primary.
+But this GPU can't be able to connect with a monitor.
+
+Under such a situation, modprobe.blacklist=amdgpu don't works either,
+because vgaarb always select this GPU as primary, this is a device-level decision.
+
+$ dmesg | grep vgaarb:
+
+[    3.541405] pci 0000:0c:00.0: vgaarb: BAR 0: [mem 0xa0000000-0xafffffff 64bit pref] contains firmware FB [0xa0000000-0xa02fffff]
+[    3.901448] pci 0000:05:00.0: vgaarb: setting as boot VGA device
+[    3.905375] pci 0000:05:00.0: vgaarb: VGA device added: decodes=io+mem,owns=none,locks=none
+[    3.905382] pci 0000:0c:00.0: vgaarb: setting as boot VGA device (overriding previous)
+[    3.909375] pci 0000:0c:00.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+[    3.913375] pci 0000:0d:00.0: vgaarb: VGA device added: decodes=io+mem,owns=none,locks=none
+[    3.913377] vgaarb: loaded
+[   13.513760] amdgpu 0000:0c:00.0: vgaarb: deactivate vga console
+[   19.020992] amdgpu 0000:0c:00.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=none:owns=io+mem
+
+I'm using ubuntu 22.04 system, with ast.modeset=10 passed on the cmd line,
+I still be able to enter the graphics system. And views this GPU as a render-only GPU.
+Probably continue to examine what's wrong, except this, drm/amdgpu report
+" *ERROR* IB test failed on sdma0 (-110)" to me.
+
+Does this count as problem?
+
+Before I could find solution, I have keep this de-fact render only GPU mounted.
+Because I need recompile kennel module, install the kernel module and testing.
+
+All I need is a 2D video card to display something, ast drm is OK, despite simple.
+It suit the need for my daily usage with VIM, that's enough for me.
+
+Now, the real questions that I want ask is:
+
+1)
+
+Does the fact that when the kernel driver module got blocked (by modprobe.blacklist=amdgpu),
+while the vgaarb still select it as primary which leave the X server crash there (because no kennel space driver loaded)
+count as a problem?
 
 
-### Linux commits
+2)
 
-c2b10a2d2cf7 drm/i915: Do plane/etc. updates more atomically across pipes
-5b98679cb397 drm/i915: Split intel_update_crtc() into two parts
-5806740db66d drm/i915: Drop redundant !modeset check
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/index.html
-
---===============0880017059102857834==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Does my approach that mounting another GPU as the primary display adapter,
+while its real purpose is to solving bugs and development for another GPU,
+count as a use case?
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+$ cat demsg.txt | grep drm
+
+[   10.099888] ACPI: bus type drm_connector registered
+[   11.083920] etnaviv 0000:0d:00.0: [drm] bind etnaviv-display, master 
+name: 0000:0d:00.0
+[   11.084106] [drm] Initialized etnaviv 1.3.0 20151214 for 0000:0d:00.0 
+on minor 0
+[   13.301702] [drm] amdgpu kernel modesetting enabled.
+[   13.359820] [drm] initializing kernel modesetting (NAVI12 
+0x1002:0x7360 0x1002:0x0A34 0xC7).
+[   13.368246] [drm] register mmio base: 0xEB100000
+[   13.372861] [drm] register mmio size: 524288
+[   13.380788] [drm] add ip block number 0 <nv_common>
+[   13.385661] [drm] add ip block number 1 <gmc_v10_0>
+[   13.390531] [drm] add ip block number 2 <navi10_ih>
+[   13.395405] [drm] add ip block number 3 <psp>
+[   13.399760] [drm] add ip block number 4 <smu>
+[   13.404111] [drm] add ip block number 5 <dm>
+[   13.408378] [drm] add ip block number 6 <gfx_v10_0>
+[   13.413249] [drm] add ip block number 7 <sdma_v5_0>
+[   13.433546] [drm] add ip block number 8 <vcn_v2_0>
+[   13.433547] [drm] add ip block number 9 <jpeg_v2_0>
+[   13.497757] [drm] VCN decode is enabled in VM mode
+[   13.502540] [drm] VCN encode is enabled in VM mode
+[   13.508785] [drm] JPEG decode is enabled in VM mode
+[   13.529596] [drm] vm size is 262144 GB, 4 levels, block size is 
+9-bit, fragment size is 9-bit
+[   13.564762] [drm] Detected VRAM RAM=8176M, BAR=256M
+[   13.569628] [drm] RAM width 2048bits HBM
+[   13.574167] [drm] amdgpu: 8176M of VRAM memory ready
+[   13.579125] [drm] amdgpu: 15998M of GTT memory ready.
+[   13.584184] [drm] GART: num cpu pages 131072, num gpu pages 131072
+[   13.590505] [drm] PCIE GART of 512M enabled (table at 
+0x0000008000300000).
+[   13.598749] [drm] Found VCN firmware Version ENC: 1.16 DEC: 5 VEP: 0 
+Revision: 4
+[   13.671786] [drm] reserve 0xe00000 from 0x81fd000000 for PSP TMR
+[   13.801235] [drm] Display Core v3.2.247 initialized on DCN 2.0
+[   13.807061] [drm] DP-HDMI FRL PCON supported
+[   13.832382] [drm] kiq ring mec 2 pipe 1 q 0
+[   13.838131] [drm] VCN decode and encode initialized 
+successfully(under DPG Mode).
+[   13.845877] [drm] JPEG decode initialized successfully.
+[   14.072508] [drm] Initialized amdgpu 3.54.0 20150101 for 0000:0c:00.0 
+on minor 1
+[   14.080976] amdgpu 0000:0c:00.0: [drm] Cannot find any crtc or sizes
+[   14.087341] [drm] DSC precompute is not needed.
+[   16.487330] systemd[1]: Starting Load Kernel Module drm...
+[  619.901873] [drm] PCIE GART of 512M enabled (table at 
+0x0000008000300000).
+[  619.901898] [drm] PSP is resuming...
+[  619.925307] [drm] reserve 0xe00000 from 0x81fd000000 for PSP TMR
+[  619.991034] [drm] psp gfx command AUTOLOAD_RLC(0x21) failed and 
+response status is (0xFFFF000D)
+[  620.294366] [drm] kiq ring mec 2 pipe 1 q 0
+[  620.298953] [drm] VCN decode and encode initialized 
+successfully(under DPG Mode).
+[  620.299103] [drm] JPEG decode initialized successfully.
+[  621.309543] [drm:sdma_v5_0_ring_test_ib [amdgpu]] *ERROR* amdgpu: IB 
+test timed out
+[  621.317577] amdgpu 0000:0c:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] 
+*ERROR* IB test failed on sdma0 (-110).
+[  622.333548] [drm:sdma_v5_0_ring_test_ib [amdgpu]] *ERROR* amdgpu: IB 
+test timed out
+[  622.341587] amdgpu 0000:0c:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] 
+*ERROR* IB test failed on sdma1 (-110).
+[  622.354071] [drm:amdgpu_device_delayed_init_work_handler [amdgpu]] 
+*ERROR* ib ring test failed (-110).
+[  622.363721] amdgpu 0000:0c:00.0: [drm] Cannot find any crtc or sizes
+
+[1] https://www.techpowerup.com/gpu-specs/xfx-bc-160.b9346
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Slightly more atomic multi-pipe commits</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123391/">https://patchwork.freedesktop.org/series/123391/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13607 -&gt; Patchwork_123391v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 39)</h2>
-<p>Additional (2): fi-hsw-4770 bat-kbl-2 <br />
-  Missing    (2): fi-kbl-soraka fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_123391v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_busy@busy@all-engines:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/bat-mtlp-8/igt@gem_busy@busy@all-engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-mtlp-8/igt@gem_busy@busy@all-engines.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9121">i915#9121</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +39 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/fi-glk-j4005/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) +6 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-rplp-1/igt@kms_psr@cursor_plane_move.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9243">i915#9243</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_edid@hdmi-edid-read:</p>
-<ul>
-<li>{bat-dg2-13}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7952">i915#7952</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_psr@primary_page_flip:<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13607/bat-rplp-1/igt@kms_psr@primary_page_flip.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8860">i915#8860</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123391v1/bat-rplp-1/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13607 -&gt; Patchwork_123391v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13607: 1a3148216ba5cb6fdde2cb185401b7c35895646c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_123391v1: 1a3148216ba5cb6fdde2cb185401b7c35895646c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>c2b10a2d2cf7 drm/i915: Do plane/etc. updates more atomically across pipes<br />
-5b98679cb397 drm/i915: Split intel_update_crtc() into two parts<br />
-5806740db66d drm/i915: Drop redundant !modeset check</p>
-
-</body>
-</html>
-
---===============0880017059102857834==--
