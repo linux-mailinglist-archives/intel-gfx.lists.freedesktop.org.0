@@ -1,61 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2161797C19
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 20:40:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB18E797C2B
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 20:44:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A43E10E24B;
-	Thu,  7 Sep 2023 18:40:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42FA210E24B;
+	Thu,  7 Sep 2023 18:44:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A11FC10E24B
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 18:40:40 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id
- 4fb4d7f45d1cf-52a3ff5f0abso1761779a12.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 Sep 2023 11:40:40 -0700 (PDT)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
+ [IPv6:2a00:1450:4864:20::62e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA81A10E083
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 18:44:09 +0000 (UTC)
+Received: by mail-ej1-x62e.google.com with SMTP id
+ a640c23a62f3a-99bc9e3cbf1so267459666b.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 07 Sep 2023 11:44:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1694112039; x=1694716839;
+ d=chromium.org; s=google; t=1694112248; x=1694717048;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=wTFbjLUADUJX2U7Y6iaqEjlaCG+7NH2yn15ec/e7na8=;
- b=GZr+R4iFtTHL7c/QpzojFM3tMP8sMtvn1zUTgESpfJ/G+kDnqTNeoEtZcyfQ+OZzSb
- yY4SB4QCzunPIVIDBbcYGqN8lcex4Qzr1Dkc2AEYKRbych5Y0b8jfuCfBGm9ZwL9cGBO
- F7kwslyaRv8QHqclw5OFunrhmVgS2UJOPCpKg=
+ bh=NR0+LzZt6ApxULWVduSWp+QfaT8i2+8P/2DWbs7FZ5k=;
+ b=V1Cbh3oQzDCMHbU5BTY2Poa7P3HMf4U1jh1xehijstFJSCJz6X/v/sFs1v1GmYM9HM
+ DZL9QphLPQXqkxSLiNu9ihTIpAj1zV5/RllX+L0uAcAqobvhYBkAIzzkKtnQHERVukla
+ m6D3U4qjLB2QkJ4r6aG7IiL4nuoSPURe0ffDc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1694112039; x=1694716839;
+ d=1e100.net; s=20230601; t=1694112248; x=1694717048;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=wTFbjLUADUJX2U7Y6iaqEjlaCG+7NH2yn15ec/e7na8=;
- b=Bgg8pU5zLQs63A6BOSxAicIPcIZ3phiTC98el57fDjNt1s4cFu0/+bp9eAQYBzYDHf
- zjhany8tFm4kO94KkMC4lhGIsw4NKjCXEPquI6CMV9iaLuMm3h3eck/UpznH25U8P+EN
- njHQcWnLPSYKrbI66rgm/zNVmwZ+LrrhcWJ1D1yL9P/txkYXAj32lyBRSvcpKsHa53Ea
- uTx1CHvTLUUFcbo5nNQPGnBmU0qH/jmWt3tIW9jaRxzqrpI/7NoAd03wihnHC3uz0q2n
- yymqBm9waugwKZ1SrzfHxZRqBInWFrRy9BV6SKj0wz0G6Rl/RyjP9xLCdHB9ttyqghau
- 2+nQ==
-X-Gm-Message-State: AOJu0Yz303nqK5+72Ceyok9OESusLJiP3zjM4+ZYHjve3ZumIan+TbTG
- ysG47EnY5p2LFFyaIXTvbCHCGBeNYxxHFCZpavcZYkptmWaOEfF6H0s=
-X-Google-Smtp-Source: AGHT+IFneatpoF2We8Ycw7DW48Kd5bELRLUcIrUVj0D1popdtEVX29s+j5KQkeVOPZXjN4ekjsvvKrcLebZ6fOie4FM=
-X-Received: by 2002:aa7:d648:0:b0:528:88e2:7fec with SMTP id
- v8-20020aa7d648000000b0052888e27fecmr138786edr.2.1694112039202; Thu, 07 Sep
- 2023 11:40:39 -0700 (PDT)
+ bh=NR0+LzZt6ApxULWVduSWp+QfaT8i2+8P/2DWbs7FZ5k=;
+ b=I6F83NhVpa5jiWVMah3yHHtYswpcq9k05LAsTqb73qy+NyBRna4/OC3+El+5Jn3lyW
+ BoUXS7viLYu1KqY61gsQSeS4XaT9aPQDxZFTM2kqXj9OyufzGVstRLNp8EUemQ8TWyss
+ eTepbAaIPd2v4YqLbheQloYh2my9VEidf9fZSRJMtoFm9Bb7SpImKM+nUAuZMonD9b8F
+ /PU8RPsm0R59yGrmydPcSjiszVXahii3oKIY7ynW7KS6RNjLg8Bt/HG651LhhgQLkLKW
+ lunR2cK9qpH21+tRTxNf0/yy8GpzJv2vVVGan1HV6Q4NaAIxBdYAkI2OvJqhqdkj/FxV
+ 4Szg==
+X-Gm-Message-State: AOJu0Yz6oLoBnG6BRqFqX/xUxcWkuUSf4/k1g8h4jkm2rSsuqd2lGQ+Y
+ Xe17G6BwrYn20QrhtXJ6z66WC9f7Sop27mbXnv2opHFrQFmxwsGOdXc=
+X-Google-Smtp-Source: AGHT+IHtMgiUo0gOCH1Zu0Neqk2PI6okT56Fr/Xb81DDfLQrMXN0lk3us3O6qcMHRhpuRTjgxML6CEku5MI4FPj9u0Q=
+X-Received: by 2002:a17:907:2b24:b0:9a9:e898:db20 with SMTP id
+ gc36-20020a1709072b2400b009a9e898db20mr1800577ejc.0.1694112248408; Thu, 07
+ Sep 2023 11:44:08 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230901130440.2085-1-ville.syrjala@linux.intel.com>
- <20230901130440.2085-7-ville.syrjala@linux.intel.com>
-In-Reply-To: <20230901130440.2085-7-ville.syrjala@linux.intel.com>
+ <20230901130440.2085-8-ville.syrjala@linux.intel.com>
+In-Reply-To: <20230901130440.2085-8-ville.syrjala@linux.intel.com>
 From: Manasi Navare <navaremanasi@chromium.org>
-Date: Thu, 7 Sep 2023 11:40:28 -0700
-Message-ID: <CAE72mN=ZqyZ7LZmOp3kRstocOUf+YmnhriS+naW+ymz9MOMPqg@mail.gmail.com>
+Date: Thu, 7 Sep 2023 11:43:57 -0700
+Message-ID: <CAE72mNmmCwH7o_QHAmzrchtWmN+tKxJc6i=VffBnapUTEjZHzw@mail.gmail.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 06/12] drm/i915: Optimize out redundant M/N
- updates
+Subject: Re: [Intel-gfx] [PATCH 07/12] drm/i915: Relocate is_in_vrr_range()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,33 +80,104 @@ On Fri, Sep 1, 2023 at 6:05=E2=80=AFAM Ville Syrjala
 >
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Don't perform a seamless M/N update if the values aren't actually
-> changing. This avoids doing extra shenanigans during vblank evasion
-> needlessly.
+> Move is_in_vrr_range() into intel_vrr.c in anticipation of
+> more users, and rename it accordingly.
 >
 > Cc: Manasi Navare <navaremanasi@chromium.org>
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_panel.c | 17 ++++-------------
+>  drivers/gpu/drm/i915/display/intel_vrr.c   |  9 +++++++++
+>  drivers/gpu/drm/i915/display/intel_vrr.h   |  1 +
+>  3 files changed, 14 insertions(+), 13 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 6196ef76390b..c20eaf0e7a91 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5525,7 +5525,9 @@ static void intel_crtc_check_fastset(const struct i=
-ntel_crtc_state *old_crtc_sta
->         else
->                 new_crtc_state->uapi.mode_changed =3D false;
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm=
+/i915/display/intel_panel.c
+> index 9232a305b1e6..086cb8dbe22c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -59,15 +59,6 @@ intel_panel_preferred_fixed_mode(struct intel_connecto=
+r *connector)
+>                                         struct drm_display_mode, head);
+>  }
 >
-> -       if (intel_crtc_needs_modeset(new_crtc_state))
-> +       if (intel_crtc_needs_modeset(new_crtc_state) ||
-> +           intel_compare_link_m_n(&old_crtc_state->dp_m_n,
-> +                                  &new_crtc_state->dp_m_n))
->                 new_crtc_state->update_m_n =3D false;
+> -static bool is_in_vrr_range(struct intel_connector *connector, int vrefr=
+esh)
+> -{
+> -       const struct drm_display_info *info =3D &connector->base.display_=
+info;
+> -
+> -       return intel_vrr_is_capable(connector) &&
+> -               vrefresh >=3D info->monitor_range.min_vfreq &&
+> -               vrefresh <=3D info->monitor_range.max_vfreq;
+> -}
+> -
+>  static bool is_best_fixed_mode(struct intel_connector *connector,
+>                                int vrefresh, int fixed_mode_vrefresh,
+>                                const struct drm_display_mode *best_mode)
+> @@ -81,8 +72,8 @@ static bool is_best_fixed_mode(struct intel_connector *=
+connector,
+>          * vrefresh, which we can then reduce to match the requested
+>          * vrefresh by extending the vblank length.
+>          */
+> -       if (is_in_vrr_range(connector, vrefresh) &&
+> -           is_in_vrr_range(connector, fixed_mode_vrefresh) &&
+> +       if (intel_vrr_is_in_range(connector, vrefresh) &&
+> +           intel_vrr_is_in_range(connector, fixed_mode_vrefresh) &&
+>             fixed_mode_vrefresh < vrefresh)
+>                 return false;
 >
->         if (!intel_crtc_needs_modeset(new_crtc_state))
+> @@ -224,8 +215,8 @@ int intel_panel_compute_config(struct intel_connector=
+ *connector,
+>          * Assume that we shouldn't muck about with the
+>          * timings if they don't land in the VRR range.
+>          */
+> -       is_vrr =3D is_in_vrr_range(connector, vrefresh) &&
+> -               is_in_vrr_range(connector, fixed_mode_vrefresh);
+> +       is_vrr =3D intel_vrr_is_in_range(connector, vrefresh) &&
+> +               intel_vrr_is_in_range(connector, fixed_mode_vrefresh);
+>
+>         if (!is_vrr) {
+>                 /*
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i=
+915/display/intel_vrr.c
+> index 88e4759b538b..6ef782538337 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -42,6 +42,15 @@ bool intel_vrr_is_capable(struct intel_connector *conn=
+ector)
+>                 info->monitor_range.max_vfreq - info->monitor_range.min_v=
+freq > 10;
+>  }
+>
+> +bool intel_vrr_is_in_range(struct intel_connector *connector, int vrefre=
+sh)
+> +{
+> +       const struct drm_display_info *info =3D &connector->base.display_=
+info;
+> +
+> +       return intel_vrr_is_capable(connector) &&
+> +               vrefresh >=3D info->monitor_range.min_vfreq &&
+> +               vrefresh <=3D info->monitor_range.max_vfreq;
+> +}
+> +
+>  void
+>  intel_vrr_check_modeset(struct intel_atomic_state *state)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i=
+915/display/intel_vrr.h
+> index de16960c4929..89937858200d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+> @@ -14,6 +14,7 @@ struct intel_connector;
+>  struct intel_crtc_state;
+>
+>  bool intel_vrr_is_capable(struct intel_connector *connector);
+> +bool intel_vrr_is_in_range(struct intel_connector *connector, int vrefre=
+sh);
+>  void intel_vrr_check_modeset(struct intel_atomic_state *state);
+>  void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>                               struct drm_connector_state *conn_state);
 > --
 > 2.41.0
 >
