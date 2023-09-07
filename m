@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81EA5797246
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 14:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E792797249
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Sep 2023 14:26:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 914C710E7BA;
-	Thu,  7 Sep 2023 12:26:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DF5110E7BD;
+	Thu,  7 Sep 2023 12:26:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A509010E7BA
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Sep 2023 12:26:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694089560; x=1725625560;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=dqi2cJra30T3RfeVQO+f1lpGWRebgQaaW2LqS7wONe4=;
- b=BvyaMyjLB0eBKs/S/aaXwgFb5lLbKCH+iuSu4RCXx4OwBWWOBtCEbLrr
- JTStuziAREJk+Z28cr7BiDyNGOv0NUAzGW7CEFsB/lhBFi5pr4DZZwYBb
- qQX/GXGQl0kmj27Rj3o8iy3jeMO3KePcsLWH7lnb3cZCi5DYDvyW/r0kW
- f/Z2Ns4ssydVE3cZxi/WyHOhUccxJ3FyaCEVa7hRM17y5leyQ63Ebpqat
- HxVkYlixV2a6eNE0TZ0Y3TFPSEIw4FjDQWWeNnM31wkXXprjgKT1ig+i2
- 0E2swWE/GoVQRgshPl3WTpa+yVfPzmJ3jFpronjmzkgHbz5qG5tYydIxH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="377252968"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="377252968"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 05:25:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="777051271"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="777051271"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by orsmga001.jf.intel.com with SMTP; 07 Sep 2023 05:25:52 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 Sep 2023 15:25:51 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  7 Sep 2023 15:25:41 +0300
-Message-ID: <20230907122541.32261-4-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230907122541.32261-1-ville.syrjala@linux.intel.com>
-References: <20230907122541.32261-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DFFFE10E7BD;
+ Thu,  7 Sep 2023 12:26:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DE63FAADF1;
+ Thu,  7 Sep 2023 12:26:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Do plane/etc. updates more
- atomically across pipes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Date: Thu, 07 Sep 2023 12:26:37 -0000
+Message-ID: <169408959790.17902.757611104977094047@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230907101135.176326-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20230907101135.176326-1-andi.shyti@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Run_relevant_bits_of_debugfs_drop=5Fcaches_per_GT?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,88 +40,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Perform all the intel_pre_update_crtc() stuff for all pipes first,
-and only then do the intel_update_crtc() vblank evasion stuff for
-every pipe back to back. This should make it more likely that
-the plane updates from multiple pipes happen on the same frame
-(assuming the pipes are running in sync, eg. due to bigjoiner
-or port sync).
+Series: drm/i915: Run relevant bits of debugfs drop_caches per GT
+URL   : https://patchwork.freedesktop.org/series/123386/
+State : failure
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 26 ++++++++++++++++++--
- 1 file changed, 24 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 7c19a0f380ca..f96230232a47 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6711,6 +6711,12 @@ static void intel_commit_modeset_enables(struct intel_atomic_state *state)
- 
- 		intel_enable_crtc(state, crtc);
- 		intel_pre_update_crtc(state, crtc);
-+	}
-+
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		if (!new_crtc_state->hw.active)
-+			continue;
-+
- 		intel_update_crtc(state, crtc);
- 	}
- }
-@@ -6748,6 +6754,15 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 	 * So first lets enable all pipes that do not need a fullmodeset as
- 	 * those don't have any external dependency.
- 	 */
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		enum pipe pipe = crtc->pipe;
-+
-+		if ((update_pipes & BIT(pipe)) == 0)
-+			continue;
-+
-+		intel_pre_update_crtc(state, crtc);
-+	}
-+
- 	while (update_pipes) {
- 		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 						    new_crtc_state, i) {
-@@ -6763,7 +6778,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 			entries[pipe] = new_crtc_state->wm.skl.ddb;
- 			update_pipes &= ~BIT(pipe);
- 
--			intel_pre_update_crtc(state, crtc);
- 			intel_update_crtc(state, crtc);
- 
- 			/*
-@@ -6819,6 +6833,15 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 	/*
- 	 * Finally we do the plane updates/etc. for all pipes that got enabled.
- 	 */
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		enum pipe pipe = crtc->pipe;
-+
-+		if ((update_pipes & BIT(pipe)) == 0)
-+			continue;
-+
-+		intel_pre_update_crtc(state, crtc);
-+	}
-+
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		enum pipe pipe = crtc->pipe;
- 
-@@ -6831,7 +6854,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 		entries[pipe] = new_crtc_state->wm.skl.ddb;
- 		update_pipes &= ~BIT(pipe);
- 
--		intel_pre_update_crtc(state, crtc);
- 		intel_update_crtc(state, crtc);
- 	}
- 
--- 
-2.41.0
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/i915_debugfs.o
+In file included from drivers/gpu/drm/i915/i915_debugfs.c:36:
+drivers/gpu/drm/i915/i915_debugfs.c: In function ‘i915_drop_caches_set’:
+drivers/gpu/drm/i915/gt/intel_gt.h:170:14: error: comparison between pointer and integer [-Werror]
+  170 |       (id__) < I915_MAX_GT; \
+      |              ^
+drivers/gpu/drm/i915/i915_debugfs.c:751:2: note: in expansion of macro ‘for_each_gt’
+  751 |  for_each_gt(i915, i, gt) {
+      |  ^~~~~~~~~~~
+In file included from ./include/drm/drm_connector.h:32,
+                 from ./drivers/gpu/drm/i915/display/intel_display_core.h:16,
+                 from ./drivers/gpu/drm/i915/i915_drv.h:40,
+                 from ./drivers/gpu/drm/i915/gt/intel_context.h:14,
+                 from drivers/gpu/drm/i915/gem/i915_gem_context.h:12,
+                 from drivers/gpu/drm/i915/i915_debugfs.c:35:
+drivers/gpu/drm/i915/gt/intel_gt.h:172:33: error: invalid type argument of ‘->’ (have ‘unsigned int’)
+  172 |   for_each_if(((gt__) = (i915__)->gt[(id__)]))
+      |                                 ^~
+./include/drm/drm_util.h:63:38: note: in definition of macro ‘for_each_if’
+   63 | #define for_each_if(condition) if (!(condition)) {} else
+      |                                      ^~~~~~~~~
+drivers/gpu/drm/i915/i915_debugfs.c:751:2: note: in expansion of macro ‘for_each_gt’
+  751 |  for_each_gt(i915, i, gt) {
+      |  ^~~~~~~~~~~
+cc1: all warnings being treated as errors
+make[6]: *** [scripts/Makefile.build:243: drivers/gpu/drm/i915/i915_debugfs.o] Error 1
+make[5]: *** [scripts/Makefile.build:480: drivers/gpu/drm/i915] Error 2
+make[4]: *** [scripts/Makefile.build:480: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:480: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:480: drivers] Error 2
+make[1]: *** [/home/kbuild2/kernel/Makefile:2032: .] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+Build failed, no error log produced
+
 
