@@ -2,32 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED0CF7981B0
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Sep 2023 07:56:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE7CC7981B1
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Sep 2023 07:57:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21D5710E0A9;
-	Fri,  8 Sep 2023 05:56:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CCE410E868;
+	Fri,  8 Sep 2023 05:57:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 96C2B10E0A9;
- Fri,  8 Sep 2023 05:56:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8CBE9A00E6;
- Fri,  8 Sep 2023 05:56:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4190169474949870295=="
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C23510E867;
+ Fri,  8 Sep 2023 05:56:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694152617; x=1725688617;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=o9pYK6y0ut30pEruk9Vv1mrSnktL+4fSEz+RdtkTV+w=;
+ b=MzhPSBGqtNFDKmwAy5ctLecpmPfSAVwFbZZ35E9J07DcExlUrhDFP0HR
+ kuwoBUveu21ae115Hy+8fWO4FuVTeFCGdflGvNi3HOxUOTKL4VwNDPoa1
+ Bjy8Rk9ovF0kf21IyspcO2iMqYdwZccUuvfF8OxR4VMmuVTCQReWBGY8s
+ yFQWc5Cg9leZhAsB3VCcrEgaluk0V6qNXP1sX2lQHCnsEydqPNtPrrdeh
+ e2KMUXZPXrKsOFu9IOrIlRv8d80uTb34aHM1Plc4xPqyR2TW3jppeqZP+
+ OW94/4RK5bUB9Npji7LQOwqey5VdvJhR5w4Lkzr6MwLbPI3w6ZBBwoa5N A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="367830370"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="367830370"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2023 22:56:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="885533723"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="885533723"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by fmsmga001.fm.intel.com with SMTP; 07 Sep 2023 22:56:38 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 08 Sep 2023 08:56:53 +0300
+Date: Fri, 8 Sep 2023 08:56:53 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <ZPq3pcrxUbEpXLGA@intel.com>
+References: <20230907153757.2249452-1-lucas.demarchi@intel.com>
+ <20230907153757.2249452-6-lucas.demarchi@intel.com>
+ <20230907170442.GK2706891@mdroper-desk1.amr.corp.intel.com>
+ <oxqzybmceob67inunbnnvjna7sgbpjjhb4kwqzfwc7rz5hir6u@x4warrnufecs>
+ <20230908005719.GU2706891@mdroper-desk1.amr.corp.intel.com>
+ <ZPqzpNlTWiLrRXCy@intel.com>
+ <pxfmwknh5jetgwlqslwnkybdkhghbc6krclqqt6wf2tu3kb3tw@qu52d3etwech>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Date: Fri, 08 Sep 2023 05:56:38 -0000
-Message-ID: <169415259853.14896.1858154076665535038@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230908045538.806063-1-suraj.kandpal@intel.com>
-In-Reply-To: <20230908045538.806063-1-suraj.kandpal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dsc=3A_Fix_pic=5Fwidth_readout?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <pxfmwknh5jetgwlqslwnkybdkhghbc6krclqqt6wf2tu3kb3tw@qu52d3etwech>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 05/27] drm/i915/xe2lpd: Add fake PCH
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,258 +66,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4190169474949870295==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Sep 08, 2023 at 12:51:09AM -0500, Lucas De Marchi wrote:
+> On Fri, Sep 08, 2023 at 08:39:48AM +0300, Ville Syrjälä wrote:
+> >On Thu, Sep 07, 2023 at 05:57:19PM -0700, Matt Roper wrote:
+> >> On Thu, Sep 07, 2023 at 03:43:59PM -0500, Lucas De Marchi wrote:
+> >> > On Thu, Sep 07, 2023 at 10:04:42AM -0700, Matt Roper wrote:
+> >> > > On Thu, Sep 07, 2023 at 08:37:35AM -0700, Lucas De Marchi wrote:
+> >> > > > From: Gustavo Sousa <gustavo.sousa@intel.com>
+> >> > > >
+> >> > > > Xe2_LPD has sourth display on the same SOC. As such, define a new fake
+> >> > >
+> >> > > s/sourth/south/
+> >> > >
+> >> > > You might also want to drop the word "same" from the description here
+> >> > > since NDE and SDE are technically on different dies in this case (NDE is
+> >> > > on the compute die, whereas SDE is on the SoC die).  To be 100% accurate
+> >> > > we'd want to identify SDE behavior via the PICA's GMD_ID (since PICA
+> >> > > also lives on the SoC die for this platform).  But since we've just been
+> >> >
+> >> > I'd not re-architect this based on where the PICA lives as it seems very
+> >> > easy to change in future.... tying the SDE behavior to the PICA behavior
+> >> > because they are on the same die, doesn't seem very future proof.
+> >>
+> >> The point is that tying it to any one thing for every platform is
+> >> incorrect; figuring out a) which die is relevant to SDE behavior and b)
+> >> how to fingerprint the variant and stepping of that die is very platform
+> >> specific.  Art specifically suggested using the PICA ID in cases where
+> >> the PICA lives on the die that we need to fingerprint but the NDE does
+> >> not.  But again, that's not a silver bullet that can be used on every
+> >> single platform.  Nor is using the ISA bus ID like we've done for a long
+> >> time.  Nor is using the display version.  Nor is using just the PCI ID.
+> >> There's no single answer here, which is why we need a major rethink of
+> >> our strategy at some point in the future.  But that overhaul can wait
+> >> for a future series; I just want to make sure that the commit messages
+> >> here aren't causing further confusion.
+> >>
+> >> >
+> >> > Here the real reason for the change is that from the SW perspective they
+> >> > are under the same PCI device and there's no reason to look for a
+> >> > different one. Maybe rewording it a "Xe2_LPD has south display on the
+> >> > same PCI device" would be simpler?
+> >>
+> >> No, that would be even less correct; PCI device isn't really related to
+> >> any of this.  Obviously at the register level, everything our driver
+> >> cares about (NDE, SDE, GT, etc.) is accessed through the same PCI device
+> >> (e.g., 00:02.0 on an igpu).  Under the hood the various pieces of that
+> >> PCI device (NDE, SDE, render GT, media GT, etc.) might be located
+> >> together on a single chip, or may be spread across different dies.  When
+> >> spread across different dies, those dies can be mixed-and-matched in
+> >> various ways (and it seems like hardware design is trending toward more
+> >> flexibility in mix-and-match).
+> >>
+> >> The register interface to the SDE (i.e., which registers exist and what
+> >> bitfields they have inside) hasn't had any meaningful changes in a long
+> >> time.  And if it does change in the future, the _interface_ changes are
+> >> probably more tied to the display IP version than to anything else.
+> >> However there's some important SDE handling that the driver needs to do
+> >> that may vary based on the identity of the specific die that's
+> >> responsible for doing SDE I/O on a given platform.  I.e., there may be
+> >> I/O-related defects+workarounds that require special SDE programming
+> >> when a certain die variant and/or stepping is present.  There can also
+> >> be differences in how lanes are physically wired up, resulting in pin
+> >> mapping changes.  In these cases we need to be able to fingerprint the
+> >> identity of the specific die handling the I/O (which might be a compute
+> >> die, an SoC die, and IOE die, a PCH die, etc.) and make our decisions
+> >> accordingly.  If the SDE I/O happens on the same die as the north
+> >> display functionality, then using the display version might be an
+> >> effective way to fingerprint.  If the SDE I/O happens on a different die
+> >> from the NDE, but on the same die the PICA lives on, the display
+> >> architects suggested using the PICA ID in that case.  If neither of
+> >> those cases are true, then we may need to look at PCI IDs or something.
+> >>
+> >> In the past, the PCH was often where the SDE I/O responsibility was so
+> >> we needed a way to identify exactly which PCH variant was present.  The
+> >> "PCH ID" that we try to match on during driver startup is entirely
+> >> unrelated to the SDE; it's just a random bus that we know was always
+> >> part of every PCH and always present in the same predictable PCI slot,
+> >> so it's handy for identification purposes.  The fact that we're still
+> >> looking at the ISA bus on MTL today is 100% wrong because most (maybe
+> >> all?) MTL platforms don't even have a PCH (so that ISA bus might be on a
+> >> different die that we really don't care about at all).  For MTL I
+> >> believe the NDE and the SDE's I/O are both on the same SoC die, so we
+> >> should really just be making our decisions based on IP version and/or
+> >> graphics device ID.
+> >
+> >I think ideally SDE would have its own IP version/etc. we could
+> >use to identify it.
+> 
+> maybe some future platform
+> 
+> >
+> >I'm not really sure why we even started down this "fake PCH" route
+> >since we never added that for BXT/GLK either, and they managed just
+> 
+> it was originally done for the discrete cards, I think DG1, and got
+> extended to the next ones. Differently than BXT/GLK it doesn't work
+> at all to try finding the ISA bridge as that would end up matching the
+> wrong one.
 
-== Series Details ==
+BXT/GLK don't look for the ISA bridge either. Well, they do, but
+they won't find a matching one and thus we're left with PCH_NONE.
 
-Series: drm/i915/dsc: Fix pic_width readout
-URL   : https://patchwork.freedesktop.org/series/123415/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13613 -> Patchwork_123415v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/index.html
-
-Participating hosts (38 -> 37)
-------------------------------
-
-  Additional (1): fi-hsw-4770 
-  Missing    (2): bat-dg2-9 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_123415v1 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-hsw-4770:        NOTRUN -> [FAIL][1] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/fi-hsw-4770/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_busy@busy@all-engines:
-    - bat-mtlp-8:         [PASS][2] -> [DMESG-FAIL][3] ([i915#9121])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-mtlp-8/igt@gem_busy@busy@all-engines.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-mtlp-8/igt@gem_busy@busy@all-engines.html
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - bat-jsl-3:          [PASS][4] -> [INCOMPLETE][5] ([i915#9275])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@i915_suspend@basic-s3-without-i915:
-    - bat-jsl-3:          [PASS][6] -> [FAIL][7] ([fdo#103375])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-bsw-nick:        [PASS][8] -> [FAIL][9] ([i915#9276])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6:
-    - bat-adlp-11:        [PASS][10] -> [ABORT][11] ([i915#8668])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6.html
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-rplp-1:         NOTRUN -> [SKIP][12] ([i915#1072]) +3 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-rplp-1/igt@kms_psr@primary_page_flip.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-rplp-1:         NOTRUN -> [ABORT][13] ([i915#8260] / [i915#8668])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-5:
-    - bat-adlp-11:        [ABORT][14] ([i915#8668]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-5.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-5.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:
-    - bat-rplp-1:         [ABORT][16] ([i915#8442] / [i915#8668]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html
-
-  
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#8260]: https://gitlab.freedesktop.org/drm/intel/issues/8260
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-  [i915#8442]: https://gitlab.freedesktop.org/drm/intel/issues/8442
-  [i915#8668]: https://gitlab.freedesktop.org/drm/intel/issues/8668
-  [i915#9121]: https://gitlab.freedesktop.org/drm/intel/issues/9121
-  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
-  [i915#9276]: https://gitlab.freedesktop.org/drm/intel/issues/9276
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13613 -> Patchwork_123415v1
-
-  CI-20190529: 20190529
-  CI_DRM_13613: 25ec37710fd81562fd25eccebaac156d9334ff0c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_123415v1: 25ec37710fd81562fd25eccebaac156d9334ff0c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-2dc949d8fabf drm/i915/dsc: Fix pic_width readout
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/index.html
-
---===============4190169474949870295==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dsc: Fix pic_width readout</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123415/">https://patchwork.freedesktop.org/series/123415/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13613 -&gt; Patchwork_123415v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 37)</h2>
-<p>Additional (1): fi-hsw-4770 <br />
-  Missing    (2): bat-dg2-9 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_123415v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/fi-hsw-4770/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_busy@busy@all-engines:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-mtlp-8/igt@gem_busy@busy@all-engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-mtlp-8/igt@gem_busy@busy@all-engines.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9121">i915#9121</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-jsl-3/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
-<ul>
-<li>bat-jsl-3:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-jsl-3/igt@i915_suspend@basic-s3-without-i915.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9276">i915#9276</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-b-dp-6.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-rplp-1/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-rplp-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-rplp-1/igt@kms_setmode@basic-clone-single-crtc.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8260">i915#8260</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-5:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-5.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-adlp-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-5.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1:</p>
-<ul>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13613/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8442">i915#8442</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8668">i915#8668</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123415v1/bat-rplp-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-d-edp-1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13613 -&gt; Patchwork_123415v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13613: 25ec37710fd81562fd25eccebaac156d9334ff0c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_123415v1: 25ec37710fd81562fd25eccebaac156d9334ff0c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>2dc949d8fabf drm/i915/dsc: Fix pic_width readout</p>
-
-</body>
-</html>
-
---===============4190169474949870295==--
+-- 
+Ville Syrjälä
+Intel
