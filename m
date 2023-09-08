@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EF4E798611
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Sep 2023 12:46:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1D9A798612
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Sep 2023 12:46:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23ED010E89E;
-	Fri,  8 Sep 2023 10:46:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD45010E8A3;
+	Fri,  8 Sep 2023 10:46:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6852110E89B;
- Fri,  8 Sep 2023 10:46:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90C4710E89F;
+ Fri,  8 Sep 2023 10:46:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694169995; x=1725705995;
+ t=1694169997; x=1725705997;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4ALvskPNi3LaMw5KVy7vYqgxxd2v3zPfVa4OMNirJ8E=;
- b=X/TKKAZNoyulFZtfOlNvrUVXc0Y5rGXcunWZK2BsHl1IyIiSe7ENjKI9
- 5sch1cNqaNIKDqNwkPMq+Il6XJw8vBQusehZlbpPsWPRSByTrf9zFure2
- EuBKMXq052Tf58UxZMAZ8TYKD9d1oEsMDH2q4bP9vF4bNjwI4kfgjJvte
- hpbHKsKNV2FnrB/E8blGga634ulWewU55oEA44wdK1/fmKOPh5pongsNH
- xScSTtdHYLMysZQndnBkd7/PUG/gbc0UyNpdvd6DWDlb4WygkYugwitT1
- 6ZNbi4OWRHXWSKg3XrToVF/njZdQvivD/KgZ8by8bQ56SXYT93hyuhLdt A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="357922567"
-X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="357922567"
+ bh=r+IHRzp6K/Mi2Qdb1+eIJA15NKdIDNp1VFDAPNtiAi0=;
+ b=PyD1WBdYy37oYB5kAvnXjzWb7VpDKOXUaHcT6djUJ4ryyBYa/BgIiidi
+ lx3khu7l9vK8ObzVolzsE6nH95E8X5kAKvPd+FpE7gyqrALHS1NwzIXK8
+ SHmLoROiEiF3O0yP2bfAKPJQp3PtoaHv41E1s8AA2iyKLAe30StX6XUNA
+ HZiwJIYoqNfjfmqXhALUjzhF4l3hKAAQ2Sb3lr0E+tMw7eStpGC2TpOXR
+ qKXDfbsrH3LfKGssOQjac5omemV3FS/Nng8R/Y73f7c3zzN0bZSvwwX5a
+ SQRm2xznfXdyjZOpd9LnNNOOG50Ne6hcnpU7kzB8yw7tvjabN8XR6sPo0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="357922574"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="357922574"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2023 03:46:35 -0700
+ 08 Sep 2023 03:46:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="812531554"
-X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="812531554"
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="812531561"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="812531561"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.28.201])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2023 03:46:33 -0700
+ 08 Sep 2023 03:46:35 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri,  8 Sep 2023 12:44:42 +0200
-Message-ID: <20230908104438.125454-22-janusz.krzysztofik@linux.intel.com>
+Date: Fri,  8 Sep 2023 12:44:43 +0200
+Message-ID: <20230908104438.125454-23-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230908104438.125454-19-janusz.krzysztofik@linux.intel.com>
 References: <20230908104438.125454-19-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 03/17] lib/kunit: Fix struct kmod_module
- kunit_kmod not freed
+Subject: [Intel-gfx] [PATCH i-g-t 04/17] lib/kunit: Optimize calls to
+ igt_success/skip/fail()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,26 +65,57 @@ Cc: intel-gfx@lists.freedesktop.org,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We obtain a kmod_module structure for kunit module in order to check if
-it is modular or built-in, then we never release that structure.  Fix it.
+Calling igt_success() explicitly at the end of subtest body is not needed.
+Other calls to igt_success() can be usually avoided by inverting test
+result checks.  Optimize the code that now calls igt_success().
+
+Moreover, using more advanced variants of igt_skip() and igt_fail() where
+applicable makes the code more compact.  Go for it.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- lib/igt_kmod.c | 1 +
- 1 file changed, 1 insertion(+)
+ lib/igt_kmod.c | 14 +++-----------
+ 1 file changed, 3 insertions(+), 11 deletions(-)
 
 diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-index faf31afabc..34ddec3fad 100644
+index 34ddec3fad..1d1cd51170 100644
 --- a/lib/igt_kmod.c
 +++ b/lib/igt_kmod.c
-@@ -797,6 +797,7 @@ static void __igt_kunit(const char *module_name, const char *opts)
- 	}
+@@ -814,12 +814,8 @@ static void __igt_kunit(const char *module_name, const char *opts)
+ 		if (READ_ONCE(results->head) != NULL) {
+ 			pthread_mutex_lock(&results->mutex);
  
- 	is_builtin = kmod_module_get_initstate(kunit_kmod) == KMOD_MODULE_BUILTIN;
-+	kmod_module_unref(kunit_kmod);
+-			igt_dynamic(results->head->test_name) {
+-				if (READ_ONCE(results->head->passed))
+-					igt_success();
+-				else
+-					igt_fail(IGT_EXIT_FAILURE);
+-			}
++			igt_dynamic(results->head->test_name)
++				igt_assert(READ_ONCE(results->head->passed));
  
- 	results = ktap_parser_start(tst.kmsg, is_builtin);
+ 			temp = results->head;
+ 			results->head = results->head->next;
+@@ -834,8 +830,7 @@ unload:
  
+ 	igt_ktest_fini(&tst);
+ 
+-	if (skip)
+-		igt_skip("Skipping test, as probing KUnit module returned %d", skip);
++	igt_skip_on_f(skip, "Skipping test, as probing KUnit module failed\n");
+ 
+ 	if (fail)
+ 		igt_fail(IGT_EXIT_ABORT);
+@@ -844,9 +839,6 @@ unload:
+ 
+ 	if (ret != 0)
+ 		igt_fail(IGT_EXIT_ABORT);
+-
+-	if (ret == 0)
+-		igt_success();
+ }
+ 
+ void igt_kunit(const char *module_name, const char *name, const char *opts)
 -- 
 2.41.0
 
