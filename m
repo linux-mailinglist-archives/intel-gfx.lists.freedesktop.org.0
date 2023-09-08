@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6D747984EE
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Sep 2023 11:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E89F2798505
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Sep 2023 11:49:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F97C10E004;
-	Fri,  8 Sep 2023 09:41:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C9B910E04B;
+	Fri,  8 Sep 2023 09:49:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82B2910E004
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Sep 2023 09:41:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0B1710E04B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Sep 2023 09:49:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694166111; x=1725702111;
+ t=1694166580; x=1725702580;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=t0D21qqF2eafbYFQlUXWTUuEwNz4pTvGJA+li5IAkZ4=;
- b=Giu8P5OHa51kHTdDMWE0/0yjNKdbkxskrk6HWqQbENel4LU18HWvtY9T
- vmlhlLd1SEHAKjnTDcGmk/SVjYes8AZOOZevq0uJdIOHofuxaySdgjhay
- kU2OCRrn0ZKBuPA5+01I3iJeGomUFO8M6YkFXGGAvX17bKvGf2rPgcnAr
- bN6uYNoCU8jqAzj+YgII6pHnin0T1r41SIRdOYpZ39RjvBUj0XlwH0iT8
- DJM5e4yUehWnbxpvOducK0w52uYXvNKY9R0MM5ugV+3PD/XDX0t+T8pNv
- WXbb2uRCzYEjM3vuO0mHkliAzXvnAqrErfGhQpDXnAoKJzeWGpmyfx2DS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="377518251"
-X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="377518251"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2023 02:41:50 -0700
+ bh=DP0CEv8hn0i19eSYIRmyQ+wRe9rEHXjb+oAVwkneKoA=;
+ b=gg+/qaHG/Qw+T9s9tr8wIgS4j8pK3dlC4vPmE0nj4fI6WrnvOBX3E0Vm
+ gEd/KrOaIIbh0zuekPDkZ06Gsqnp/D+SrXO7uG9Pbu++py2WJnqM/hr+W
+ 5yQHzowZCaW/y0CWPWHsyfR01dT9eQ4c7HQJvsB+YBi6/7m4Uhr3nk8WF
+ 92ADfrTLTV56ZjD2rJPfJ28Z6fDjwuXyIagwX3JIQqKJFAbKe5oynLrTh
+ 8vmiqDAkjCHz+kYA9DE7Zs11slatz3C/bqRO81U/M/tO0yGazVWKlrU9S
+ /vW8AeQ3bwPKzKmAfggAXfqVxl2NyL/wBVgoTpMOiPruj7Rwoowt7jOpM w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="408599212"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="408599212"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2023 02:49:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="1073262462"
-X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="1073262462"
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="719111483"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="719111483"
 Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
- by fmsmga005.fm.intel.com with ESMTP; 08 Sep 2023 02:41:48 -0700
+ by orsmga006.jf.intel.com with ESMTP; 08 Sep 2023 02:49:37 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  8 Sep 2023 15:11:42 +0530
-Message-Id: <20230908094142.4119379-1-dnyaneshwar.bhadane@intel.com>
+Date: Fri,  8 Sep 2023 15:19:32 +0530
+Message-Id: <20230908094933.4121472-1-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Added Wa_18022495364
+Subject: [Intel-gfx] [PATCH v3] drm/i915: Added Wa_18022495364
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,8 +54,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, Garg@freedesktop.org,
-	matthew.d.roper@intel.com
+Cc: matthew.d.roper@intel.com, lucas.demarchi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
@@ -67,9 +66,12 @@ v2:
 - Removed extra parentheses from the condition (Lucas)
 - Fixed spacing and new line (Lucas)
 
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+v3:
+- Fixed commit message.
+
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Garg, Nemesa <nemesa.garg@intel.com>
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Reviewed-by: Nemesa Garg<nemesa.garg@intel.com>
 ---
  drivers/gpu/drm/i915/gt/gen8_engine_cs.c    | 5 +++++
  drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 2 ++
