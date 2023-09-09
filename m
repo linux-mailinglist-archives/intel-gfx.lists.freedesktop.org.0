@@ -1,34 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B7D799A06
-	for <lists+intel-gfx@lfdr.de>; Sat,  9 Sep 2023 18:37:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7B9F799BEA
+	for <lists+intel-gfx@lfdr.de>; Sun, 10 Sep 2023 00:38:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0A2610E0BE;
-	Sat,  9 Sep 2023 16:37:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A4A910E14C;
+	Sat,  9 Sep 2023 22:38:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5C8ED10E0BE;
- Sat,  9 Sep 2023 16:37:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 56A6CAADF2;
- Sat,  9 Sep 2023 16:37:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EA7510E14C;
+ Sat,  9 Sep 2023 22:38:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694299131; x=1725835131;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4XVxmMKb64KDczJcUWUtwoxeRn7jZD6DAXEn9wDVHvU=;
+ b=Ey36JqVf8foY8gj/FZJwkY/kuVuKwFb3RsLftBgQ5jJTGsJqz/BuhE6B
+ 43ncDAKtSQ034j7HE2xC+UdHXGhKMen7xgqNuRt433cpG2zAr3QUdKMn+
+ dPh38hMAagdou1Y6mLL9oZvEZCUv0Hnmjb/ba0S8vcDHfx40YGKrSi2Bt
+ VI/tKTHxjVcr+mxrw9ikQM7TUspNxrS0nnmxvaaS8IOn74Eh1F3kJTCWj
+ N6UXul1NKwxWBmRZtdLUki8osnCPY/Ti/iUIpvFzfUEj1eI6QdKlWkgWx
+ c6RuKyeLqhsC7IC2TuojlkwkoZqz5zUONtLYyQlkALRHanONB+b7BMLSv A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="377767891"
+X-IronPort-AV: E=Sophos;i="6.02,240,1688454000"; d="scan'208";a="377767891"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2023 15:38:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="719532026"
+X-IronPort-AV: E=Sophos;i="6.02,240,1688454000"; d="scan'208";a="719532026"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by orsmga006.jf.intel.com with ESMTP; 09 Sep 2023 15:38:49 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Sat,  9 Sep 2023 15:38:45 -0700
+Message-Id: <20230909223848.427849-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Date: Sat, 09 Sep 2023 16:37:04 -0000
-Message-ID: <169427742431.13820.4313349324983034652@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230909160902.15644-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20230909160902.15644-1-Arunpravin.PaneerSelvam@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv2=2C1/3=5D_drm/buddy=3A_Improve_contig?=
- =?utf-8?q?uous_memory_allocation?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5 0/3] drm/i915/pxp/mtl: Update gsc-heci cmd
+ submission to align with fw/hw spec
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +55,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+For MTL, update the GSC-HECI packet size and the max firmware
+response timeout to match internal fw specs. Enforce setting
+run-alone bit in LRC for protected contexts.
 
-Series: series starting with [v2,1/3] drm/buddy: Improve contiguous memory allocation
-URL   : https://patchwork.freedesktop.org/series/123501/
-State : warning
+Changes from prio revs:
+   v4: - PAGE_ALIGN the max heci packet size (Alan).
+   v3: - Patch #1. Only start counting the request completion
+         timeout from after the request has started (Daniele).
+   v2: - Patch #3: fix sparse warning reported by kernel test robot.
+   v1: - N/A (Re-test)
 
-== Summary ==
+Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Alan Previn (3):
+  drm/i915/pxp/mtl: Update pxp-firmware response timeout
+  drm/i915/pxp/mtl: Update pxp-firmware packet size
+  drm/i915/lrc: User PXP contexts requires runalone bit in lrc
 
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 23 +++++++++++++++++++
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c | 20 ++++++++++++++--
+ .../i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h |  6 +++++
+ .../drm/i915/pxp/intel_pxp_cmd_interface_43.h |  4 ++--
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h    | 11 +++++----
+ 5 files changed, 56 insertions(+), 8 deletions(-)
+
+
+base-commit: f8d21cb17a99b75862196036bb4bb93ee9637b74
+-- 
+2.39.0
 
