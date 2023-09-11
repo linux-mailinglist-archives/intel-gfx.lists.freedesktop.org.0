@@ -1,34 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E16679AB3E
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Sep 2023 22:35:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65CB879AB43
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Sep 2023 22:42:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77CAC10E1E4;
-	Mon, 11 Sep 2023 20:35:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA1910E1CA;
+	Mon, 11 Sep 2023 20:42:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C2EB610E1CA;
- Mon, 11 Sep 2023 20:35:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A3F08A3ECB;
- Mon, 11 Sep 2023 20:35:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1180032920406221500=="
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D7CA10E076
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Sep 2023 20:42:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694464961; x=1726000961;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=SEAudrCsYyz9XT4+1obhfKdiJkMwpA9MG9YjpcrGyHY=;
+ b=mPeL1j2nSad4Bw5XO1P8XDza64gU8l4CebPRt6VVaOwdVGTC3iDekCNo
+ PVqIHsRswe6doeZERYhuCpiJu/IgO1yRq8PCLZHJUVPSRfFNFALuyf77j
+ EeAN7+qqAobGORl/b1PK0Limk4VLMgBrZBKFRd4Fbm1VVqT78fDyerR+x
+ MhRjkJ+C5NVv8SZDkz6GKS2Y+E4FRK5tQ3w3MJI110UaZLV+LvKrQWYXa
+ yf4pbe1dio8jms0UeCmLrGujmw9ytoDZOuQekhYe5OY9Q5N4ZoyoJinIH
+ Z3J8yFpi580+xbTC+Gmnlp+7Rx/HQKJAsqqtWvnoY9zo8JRbkDwdnBX7e w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="444631772"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="444631772"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 13:42:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="858484055"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="858484055"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 13:42:29 -0700
+Date: Mon, 11 Sep 2023 23:42:48 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <ZP97yMIC7GLvxpFd@ideak-desk.fi.intel.com>
+References: <20230824080517.693621-1-imre.deak@intel.com>
+ <20230824080517.693621-9-imre.deak@intel.com>
+ <ZP9jltWAdNY7LJpM@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
-Date: Mon, 11 Sep 2023 20:35:02 -0000
-Message-ID: <169446450263.31369.10094969600114966600@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230911130323.7037-2-janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20230911130323.7037-2-janusz.krzysztofik@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/tests=3A_Fix_incorrect_argument_in_drm=5Ftest=5Fmm=5Finsert=5F?=
- =?utf-8?q?range?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZP9jltWAdNY7LJpM@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 08/22] drm/i915/fdi: Improve FDI BW
+ sharing between pipe B and C
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,366 +61,848 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1180032920406221500==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Sep 11, 2023 at 09:59:34PM +0300, Ville Syrjälä wrote:
+> On Thu, Aug 24, 2023 at 11:05:03AM +0300, Imre Deak wrote:
+> > At the moment modesetting pipe C on IVB will fail if pipe B uses 4 FDI
+> > lanes. Make the BW sharing more dynamic by trying to reduce pipe B's
+> > link bpp in this case, until pipe B uses only up to 2 FDI lanes.
+> > 
+> > For this instead of the encoder compute config retry loop - which
+> > reduced link bpp only for the encoder's pipe - check the overall BW
+> > limits after all CRTC states have been computed and if the check fails
+> > reduce the maximum link bpp for a selected pipe (for FDI pipe B or C as
+> > required) and recompute all the CRTC states. Retry this sequence until
+> > either the overall BW limit check passes, or further bpp reduction is
+> > not possible (because all pipes/encoders sharing the link BW reached
+> > their minimum link bpp).
+> > 
+> > This change also prepares for an upcoming patch resolving BW limits in
+> > a similar way on MST links as well.
+> > 
+> > v2:
+> > - Rename intel_crtc_state::max_link_bpp to max_link_bpp_x16 and
+> >   intel_link_bw_limits::max_bpp to max_bpp_x16. (Jani)
+> > - Increase back pipe B's link bpp if earlier it was limited due to
+> >   pipe C and pipe C gets later disabled.
+> > - Don't assume that a CRTC is already in the atomic state, while
+> >   reducing its link bpp.
+> > - Add DocBook description to intel_fdi_atomic_check_link().
+> > 
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/g4x_hdmi.c       |   5 +-
+> >  drivers/gpu/drm/i915/display/intel_atomic.c   | 207 ++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_atomic.h   |   8 +
+> >  drivers/gpu/drm/i915/display/intel_crt.c      |   7 +
+> >  drivers/gpu/drm/i915/display/intel_crtc.c     |   1 +
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  44 ++--
+> >  drivers/gpu/drm/i915/display/intel_display.h  |   4 +
+> >  .../drm/i915/display/intel_display_types.h    |   9 +-
+> >  drivers/gpu/drm/i915/display/intel_dp.c       |   3 +-
+> >  drivers/gpu/drm/i915/display/intel_fdi.c      | 137 ++++++++++--
+> >  drivers/gpu/drm/i915/display/intel_fdi.h      |   5 +
+> >  drivers/gpu/drm/i915/display/intel_lvds.c     |   9 +-
+> >  drivers/gpu/drm/i915/display/intel_sdvo.c     |   9 +-
+> >  13 files changed, 404 insertions(+), 44 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > index 634b14116d9dd..ebbceddc13259 100644
+> > --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > @@ -133,8 +133,11 @@ static int g4x_hdmi_compute_config(struct intel_encoder *encoder,
+> >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> >  
+> > -	if (HAS_PCH_SPLIT(i915))
+> > +	if (HAS_PCH_SPLIT(i915)) {
+> >  		crtc_state->has_pch_encoder = true;
+> > +		if (!intel_atomic_compute_pipe_bpp(crtc_state))
+> > +			return -EINVAL;
+> > +	}
+> >  
+> >  	if (IS_G4X(i915))
+> >  		crtc_state->has_hdmi_sink = g4x_compute_has_hdmi_sink(state, crtc);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+> > index 7cf51dd8c0567..ee4cbf80ddb55 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> 
+> Not convinced we should put anything there. I think I mostly managed to
+> move a bunch or semi-random stuff out now, so all it more or less has is
+> the struct intel_atomic_state alloc/free stuff.
+> 
+> You have intel_atomic_check() in intel_display.c and the lower level
+> intel_atomic_check_config() is also there, but now the middle man
+> intel_atomic_check_config_and_link() ended up in intel_atomic.c for
+> whatever reason. I'd just shove all of it into intel_display.c.
 
-== Series Details ==
+I didn't want to add more stuff to intel_display.c, but yes
+intel_atomic.c is not the best place for these. How about moving the
+link BW config/check functions instead to intel_link_bw.c as in
+https://github.com/ideak/linux/commit/9fd9d456da53 ?
 
-Series: drm/tests: Fix incorrect argument in drm_test_mm_insert_range
-URL   : https://patchwork.freedesktop.org/series/123541/
-State : success
+> The patch is also rather massive.
 
-== Summary ==
+I thought it's easier to understand if new function definitions / their
+use is in one patch, but I guess here the amount of changes vs. just
+additions makes it less clear.
 
-CI Bug Log - changes from CI_DRM_13622 -> Patchwork_123541v1
-====================================================
+> Can we try to chunk it up to eg. something like:
+> 1) add the new infrastructure
+> 2) convert the fdi retry stuff to use the new infrastructure
+> 3) add intel_fdi_add_affected_crtcs() (which seems more or less
+>    independent from the rest of the fdi conversion?)
 
-Summary
--------
+Yes, 3) can be regarded as an additional functionality.
 
-  **SUCCESS**
+> ?
 
-  No regressions found.
+Ok, will split the changes based on the above points.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/index.html
-
-Participating hosts (38 -> 38)
-------------------------------
-
-  Additional (1): bat-dg2-9 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_123541v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_mmap@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][1] ([i915#4083])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@gem_mmap@basic.html
-
-  * igt@gem_mmap_gtt@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][2] ([i915#4077]) +2 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@gem_mmap_gtt@basic.html
-
-  * igt@gem_render_tiled_blits@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][3] ([i915#4079]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@gem_render_tiled_blits@basic.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-9:          NOTRUN -> [SKIP][4] ([i915#6621])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@i915_pm_rps@basic-api.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][5] ([i915#5190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][6] ([i915#4215] / [i915#5190])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_addfb_basic@framebuffer-vs-set-tiling:
-    - bat-dg2-9:          NOTRUN -> [SKIP][7] ([i915#4212]) +7 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][8] ([i915#4103] / [i915#4213]) +1 other test skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-dg2-9:          NOTRUN -> [SKIP][9] ([fdo#109285])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-dg2-9:          NOTRUN -> [SKIP][10] ([i915#5274])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-guc:         [PASS][11] -> [FAIL][12] ([IGT#3] / [i915#6121])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13622/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-adlp-9:         NOTRUN -> [SKIP][13] ([i915#3546]) +2 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][14] ([i915#1845])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - bat-dg2-9:          NOTRUN -> [SKIP][15] ([i915#1072]) +3 other tests skip
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_psr@sprite_plane_onoff.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-dg2-9:          NOTRUN -> [SKIP][16] ([i915#3555])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - bat-dg2-9:          NOTRUN -> [SKIP][17] ([i915#3708])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@prime_vgem@basic-fence-mmap:
-    - bat-dg2-9:          NOTRUN -> [SKIP][18] ([i915#3708] / [i915#4077]) +1 other test skip
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-dg2-9:          NOTRUN -> [SKIP][19] ([i915#3291] / [i915#3708]) +2 other tests skip
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@prime_vgem@basic-write.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hugepages:
-    - bat-mtlp-8:         [DMESG-WARN][20] ([i915#9121]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13622/bat-mtlp-8/igt@i915_selftest@live@hugepages.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-mtlp-8/igt@i915_selftest@live@hugepages.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2:
-    - bat-dg1-5:          [FAIL][22] ([fdo#103375]) -> [PASS][23] +4 other tests pass
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13622/bat-dg1-5/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg1-5/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [Intel XE#485]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/485
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#7952]: https://gitlab.freedesktop.org/drm/intel/issues/7952
-  [i915#9121]: https://gitlab.freedesktop.org/drm/intel/issues/9121
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_13622 -> Patchwork_123541v1
-
-  CI-20190529: 20190529
-  CI_DRM_13622: 84ba384a9f96d41e3ec3c331feb544e7d39be04d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7480: a8d38db9ac258d7fd71b2cf7607e259a864f95be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_123541v1: 84ba384a9f96d41e3ec3c331feb544e7d39be04d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-20bf9b67bb67 drm/tests: Fix incorrect argument in drm_test_mm_insert_range
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/index.html
-
---===============1180032920406221500==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/tests: Fix incorrect argument in drm_test_mm_insert_range</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123541/">https://patchwork.freedesktop.org/series/123541/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13622 -&gt; Patchwork_123541v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 38)</h2>
-<p>Additional (1): bat-dg2-9 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_123541v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@gem_mmap_gtt@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@framebuffer-vs-set-tiling:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13622/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/6121">i915#6121</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg2-9/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13622/bat-mtlp-8/igt@i915_selftest@live@hugepages.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9121">i915#9121</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-mtlp-8/igt@i915_selftest@live@hugepages.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2:</p>
-<ul>
-<li>bat-dg1-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13622/bat-dg1-5/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=103375">fdo#103375</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123541v1/bat-dg1-5/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-d-hdmi-a-2.html">PASS</a> +4 other tests pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13622 -&gt; Patchwork_123541v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13622: 84ba384a9f96d41e3ec3c331feb544e7d39be04d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7480: a8d38db9ac258d7fd71b2cf7607e259a864f95be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_123541v1: 84ba384a9f96d41e3ec3c331feb544e7d39be04d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>20bf9b67bb67 drm/tests: Fix incorrect argument in drm_test_mm_insert_range</p>
-
-</body>
-</html>
-
---===============1180032920406221500==--
+> > @@ -38,6 +38,7 @@
+> >  #include "intel_atomic.h"
+> >  #include "intel_cdclk.h"
+> >  #include "intel_display_types.h"
+> > +#include "intel_fdi.h"
+> >  #include "intel_global_state.h"
+> >  #include "intel_hdcp.h"
+> >  #include "intel_psr.h"
+> > @@ -358,3 +359,209 @@ intel_atomic_get_crtc_state(struct drm_atomic_state *state,
+> >  
+> >  	return to_intel_crtc_state(crtc_state);
+> >  }
+> > +
+> > +/**
+> > + * intel_atomic_compute_pipe_bpp - compute pipe bpp limited by max link bpp
+> > + * @crtc_state: the crtc state
+> > + *
+> > + * Compute the pipe bpp limited by the CRTC's maximum link bpp. Encoders can
+> > + * call this function during state computation in the simple case where the
+> > + * link bpp will always match the pipe bpp. This is the case for all non-DP
+> > + * encoders, while DP encoders will use a link bpp lower than pipe bpp in case
+> > + * of DSC compression.
+> > + *
+> > + * Returns %true in case of success, %false if pipe bpp would need to be
+> > + * reduced below its valid range.
+> > + */
+> > +bool intel_atomic_compute_pipe_bpp(struct intel_crtc_state *crtc_state)
+> > +{
+> > +	int pipe_bpp = min(crtc_state->pipe_bpp,
+> > +			   to_bpp_int(crtc_state->max_link_bpp_x16));
+> > +
+> > +	pipe_bpp = rounddown(pipe_bpp, 2 * 3);
+> > +
+> > +	if (pipe_bpp < 6 * 3)
+> > +		return false;
+> > +
+> > +	crtc_state->pipe_bpp = pipe_bpp;
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +/**
+> > + * intel_atomic_reduce_link_bpp - reduce maximum link bpp for a selected pipe
+> > + * @state: atomic state
+> > + * @limits: link BW limits
+> > + * @pipe_mask: mask of pipes to select from
+> > + * @reason: explanation of why bpp reduction is needed
+> > + *
+> > + * Select the pipe from @pipe_mask with the biggest link bpp value and set the
+> > + * maximum of link bpp in @limits below this value. Modeset the selected pipe,
+> > + * so that its state will get recomputed.
+> > + *
+> > + * This function can be called to resolve a link's BW overallocation by reducing
+> > + * the link bpp of one pipe on the link and hence reducing the total link BW.
+> > + *
+> > + * Returns
+> > + *   - 0 in case of success
+> > + *   - %-EINVAL if no pipe can further reduce its link bpp
+> > + *   - Other negative error, if modesetting the selected pipe failed
+> > + */
+> > +int intel_atomic_reduce_link_bpp(struct intel_atomic_state *state,
+> > +				 struct intel_link_bw_limits *limits,
+> > +				 u8 pipe_mask,
+> > +				 const char *reason)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > +	enum pipe max_bpp_pipe = INVALID_PIPE;
+> > +	struct intel_crtc *crtc;
+> > +	int max_bpp = 0;
+> > +
+> > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, pipe_mask) {
+> > +		struct intel_crtc_state *crtc_state;
+> > +		int pipe_bpp;
+> > +
+> > +		if (limits->min_bpp_pipes & BIT(crtc->pipe))
+> > +			continue;
+> > +
+> > +		crtc_state = intel_atomic_get_crtc_state(&state->base,
+> > +							 crtc);
+> > +		if (IS_ERR(crtc_state))
+> > +			return PTR_ERR(crtc_state);
+> > +
+> > +		if (crtc_state->dsc.compression_enable)
+> > +			pipe_bpp = crtc_state->dsc.compressed_bpp;
+> > +		else
+> > +			pipe_bpp = crtc_state->pipe_bpp;
+> > +
+> > +		if (pipe_bpp > max_bpp) {
+> > +			max_bpp = pipe_bpp;
+> > +			max_bpp_pipe = crtc->pipe;
+> > +		}
+> > +	}
+> > +
+> > +	if (max_bpp_pipe == INVALID_PIPE)
+> > +		return -EINVAL;
+> > +
+> > +	limits->max_bpp_x16[max_bpp_pipe] = to_bpp_x16(max_bpp) - 1;
+> > +
+> > +	return intel_modeset_pipes_in_mask(state, reason,
+> > +					   BIT(max_bpp_pipe), false);
+> > +}
+> > +
+> > +static int intel_atomic_check_link(struct intel_atomic_state *state,
+> > +				   struct intel_link_bw_limits *limits)
+> > +{
+> > +	int ret;
+> > +
+> > +	ret = intel_fdi_atomic_check_link(state, limits);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static bool
+> > +assert_link_limit_change_valid(struct drm_i915_private *i915,
+> > +			       const struct intel_link_bw_limits *old_limits,
+> > +			       const struct intel_link_bw_limits *new_limits)
+> > +{
+> > +	bool bpps_changed = false;
+> > +	enum pipe pipe;
+> > +
+> > +	for_each_pipe(i915, pipe) {
+> > +		/* The bpp limit can only decrease. */
+> > +		if (drm_WARN_ON(&i915->drm,
+> > +				new_limits->max_bpp_x16[pipe] >
+> > +				old_limits->max_bpp_x16[pipe]))
+> > +			return false;
+> > +
+> > +		if (new_limits->max_bpp_x16[pipe] <
+> > +		    old_limits->max_bpp_x16[pipe])
+> > +			bpps_changed = true;
+> > +	}
+> > +
+> > +	if (drm_WARN_ON(&i915->drm,
+> > +			!bpps_changed))
+> > +		return false;
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +static bool
+> > +reset_link_bpp_limit_to_min(struct intel_atomic_state *state,
+> > +			    const struct intel_link_bw_limits *old_limits,
+> > +			    struct intel_link_bw_limits *new_limits,
+> > +			    enum pipe failed_pipe)
+> > +{
+> > +	if (failed_pipe == INVALID_PIPE)
+> > +		return false;
+> > +
+> > +	if (new_limits->min_bpp_pipes & BIT(failed_pipe))
+> > +		return false;
+> > +
+> > +	if (new_limits->max_bpp_x16[failed_pipe] ==
+> > +	    old_limits->max_bpp_x16[failed_pipe])
+> > +		return false;
+> > +
+> > +	new_limits->max_bpp_x16[failed_pipe] =
+> > +		old_limits->max_bpp_x16[failed_pipe];
+> > +	new_limits->min_bpp_pipes |= BIT(failed_pipe);
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +/**
+> > + * intel_atomic_check_config_and_link - compute CRTC configs, resolving any BW limits
+> > + * @state: atomic state
+> > + *
+> > + * Compute the configuration of all CRTCs in @state and resolve any BW
+> > + * limitations on links shared by these CRTCs.
+> > + *
+> > + * Return 0 in case of success, or a negative error code otherwise.
+> > + */
+> > +int intel_atomic_check_config_and_link(struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > +	struct intel_link_bw_limits new_limits = {};
+> > +	struct intel_link_bw_limits old_limits;
+> > +	enum pipe pipe;
+> > +	int ret;
+> > +
+> > +	for_each_pipe(i915, pipe)
+> > +		new_limits.max_bpp_x16[pipe] = INT_MAX;
+> > +
+> > +	old_limits = new_limits;
+> > +
+> > +	while (true) {
+> > +		enum pipe failed_pipe;
+> > +
+> > +		ret = intel_atomic_check_config(state, &new_limits,
+> > +						&failed_pipe);
+> > +		if (ret) {
+> > +			if (ret == -EINVAL &&
+> > +			    reset_link_bpp_limit_to_min(state,
+> > +							&old_limits,
+> > +							&new_limits,
+> > +							failed_pipe))
+> > +				continue;
+> > +
+> > +			break;
+> > +		}
+> > +
+> > +		old_limits = new_limits;
+> > +
+> > +		ret = intel_atomic_check_link(state, &new_limits);
+> > +		if (ret != -EAGAIN)
+> > +			break;
+> > +
+> > +		if (!assert_link_limit_change_valid(i915,
+> > +						    &old_limits,
+> > +						    &new_limits)) {
+> > +			ret = -EINVAL;
+> > +			break;
+> > +		}
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.h b/drivers/gpu/drm/i915/display/intel_atomic.h
+> > index e506f6a873447..bbf3595d52c41 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_atomic.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_atomic.h
+> > @@ -20,6 +20,7 @@ struct intel_atomic_state;
+> >  struct intel_connector;
+> >  struct intel_crtc;
+> >  struct intel_crtc_state;
+> > +struct intel_link_bw_limits;
+> >  
+> >  int intel_digital_connector_atomic_get_property(struct drm_connector *connector,
+> >  						const struct drm_connector_state *state,
+> > @@ -52,4 +53,11 @@ struct intel_crtc_state *
+> >  intel_atomic_get_crtc_state(struct drm_atomic_state *state,
+> >  			    struct intel_crtc *crtc);
+> >  
+> > +int intel_atomic_reduce_link_bpp(struct intel_atomic_state *state,
+> > +				 struct intel_link_bw_limits *limits,
+> > +				 u8 pipe_mask,
+> > +				 const char *reason);
+> > +bool intel_atomic_compute_pipe_bpp(struct intel_crtc_state *crtc_state);
+> > +int intel_atomic_check_config_and_link(struct intel_atomic_state *state);
+> > +
+> >  #endif /* __INTEL_ATOMIC_H__ */
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+> > index f66340b4caf0f..3322080a574e8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> > @@ -36,6 +36,7 @@
+> >  #include "i915_drv.h"
+> >  #include "i915_irq.h"
+> >  #include "i915_reg.h"
+> > +#include "intel_atomic.h"
+> >  #include "intel_connector.h"
+> >  #include "intel_crt.h"
+> >  #include "intel_crtc.h"
+> > @@ -413,6 +414,9 @@ static int pch_crt_compute_config(struct intel_encoder *encoder,
+> >  		return -EINVAL;
+> >  
+> >  	pipe_config->has_pch_encoder = true;
+> > +	if (!intel_atomic_compute_pipe_bpp(pipe_config))
+> > +		return -EINVAL;
+> > +
+> >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+> >  
+> >  	return 0;
+> > @@ -435,6 +439,9 @@ static int hsw_crt_compute_config(struct intel_encoder *encoder,
+> >  		return -EINVAL;
+> >  
+> >  	pipe_config->has_pch_encoder = true;
+> > +	if (!intel_atomic_compute_pipe_bpp(pipe_config))
+> > +		return -EINVAL;
+> > +
+> >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+> >  
+> >  	/* LPT FDI RX only supports 8bpc. */
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > index 182c6dd64f47c..1eda6a9f19aa8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > @@ -175,6 +175,7 @@ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
+> >  	crtc_state->hsw_workaround_pipe = INVALID_PIPE;
+> >  	crtc_state->scaler_state.scaler_id = -1;
+> >  	crtc_state->mst_master_transcoder = INVALID_TRANSCODER;
+> > +	crtc_state->max_link_bpp_x16 = INT_MAX;
+> >  }
+> >  
+> >  static struct intel_crtc *intel_crtc_alloc(void)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index dbf109a2e738f..32778bd01bb05 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -4641,7 +4641,8 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
+> >  
+> >  static int
+> >  intel_modeset_pipe_config(struct intel_atomic_state *state,
+> > -			  struct intel_crtc *crtc)
+> > +			  struct intel_crtc *crtc,
+> > +			  const struct intel_link_bw_limits *limits)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> >  	struct intel_crtc_state *crtc_state =
+> > @@ -4650,7 +4651,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
+> >  	struct drm_connector_state *connector_state;
+> >  	int pipe_src_w, pipe_src_h;
+> >  	int base_bpp, ret, i;
+> > -	bool retry = true;
+> >  
+> >  	crtc_state->cpu_transcoder = (enum transcoder) crtc->pipe;
+> >  
+> > @@ -4673,6 +4673,17 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > +	crtc_state->max_link_bpp_x16 = limits->max_bpp_x16[crtc->pipe];
+> > +
+> > +	if (crtc_state->pipe_bpp > to_bpp_int(crtc_state->max_link_bpp_x16)) {
+> > +		drm_dbg_kms(&i915->drm,
+> > +			    "[CRTC:%d:%s] Link bpp limited to %d.%04d\n",
+> > +			    crtc->base.base.id, crtc->base.name,
+> > +			    to_bpp_int(crtc_state->max_link_bpp_x16),
+> > +			    to_bpp_frac_dec(crtc_state->max_link_bpp_x16));
+> > +		crtc_state->bw_constrained = true;
+> > +	}
+> > +
+> >  	base_bpp = crtc_state->pipe_bpp;
+> >  
+> >  	/*
+> > @@ -4714,7 +4725,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
+> >  			crtc_state->output_types |= BIT(encoder->type);
+> >  	}
+> >  
+> > -encoder_retry:
+> >  	/* Ensure the port clock defaults are reset when retrying. */
+> >  	crtc_state->port_clock = 0;
+> >  	crtc_state->pixel_multiplier = 1;
+> > @@ -4754,17 +4764,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
+> >  	ret = intel_crtc_compute_config(state, crtc);
+> >  	if (ret == -EDEADLK)
+> >  		return ret;
+> > -	if (ret == -EAGAIN) {
+> > -		if (drm_WARN(&i915->drm, !retry,
+> > -			     "[CRTC:%d:%s] loop in pipe configuration computation\n",
+> > -			     crtc->base.base.id, crtc->base.name))
+> > -			return -EINVAL;
+> > -
+> > -		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] bw constrained, retrying\n",
+> > -			    crtc->base.base.id, crtc->base.name);
+> > -		retry = false;
+> > -		goto encoder_retry;
+> > -	}
+> >  	if (ret < 0) {
+> >  		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] config failure: %d\n",
+> >  			    crtc->base.base.id, crtc->base.name, ret);
+> > @@ -6206,7 +6205,9 @@ static int intel_bigjoiner_add_affected_crtcs(struct intel_atomic_state *state)
+> >  	return 0;
+> >  }
+> >  
+> > -static int intel_atomic_check_config(struct intel_atomic_state *state)
+> > +int intel_atomic_check_config(struct intel_atomic_state *state,
+> > +			      struct intel_link_bw_limits *limits,
+> > +			      enum pipe *failed_pipe)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> >  	struct intel_crtc_state *new_crtc_state;
+> > @@ -6214,10 +6215,16 @@ static int intel_atomic_check_config(struct intel_atomic_state *state)
+> >  	int ret;
+> >  	int i;
+> >  
+> > +	*failed_pipe = INVALID_PIPE;
+> > +
+> >  	ret = intel_bigjoiner_add_affected_crtcs(state);
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > +	ret = intel_fdi_add_affected_crtcs(state);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> >  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> >  		if (!intel_crtc_needs_modeset(new_crtc_state)) {
+> >  			if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
+> > @@ -6239,7 +6246,7 @@ static int intel_atomic_check_config(struct intel_atomic_state *state)
+> >  		if (!new_crtc_state->hw.enable)
+> >  			continue;
+> >  
+> > -		ret = intel_modeset_pipe_config(state, crtc);
+> > +		ret = intel_modeset_pipe_config(state, crtc, limits);
+> >  		if (ret)
+> >  			break;
+> >  
+> > @@ -6248,6 +6255,9 @@ static int intel_atomic_check_config(struct intel_atomic_state *state)
+> >  			break;
+> >  	}
+> >  
+> > +	if (ret)
+> > +		*failed_pipe = crtc->pipe;
+> > +
+> >  	return ret;
+> >  }
+> >  
+> > @@ -6295,7 +6305,7 @@ int intel_atomic_check(struct drm_device *dev,
+> >  			return ret;
+> >  	}
+> >  
+> > -	ret = intel_atomic_check_config(state);
+> > +	ret = intel_atomic_check_config_and_link(state);
+> >  	if (ret)
+> >  		goto fail;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> > index d9a54610d9d5e..2e0535739bd70 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > @@ -55,6 +55,7 @@ struct intel_digital_port;
+> >  struct intel_dp;
+> >  struct intel_encoder;
+> >  struct intel_initial_plane_config;
+> > +struct intel_link_bw_limits;
+> >  struct intel_link_m_n;
+> >  struct intel_plane;
+> >  struct intel_plane_state;
+> > @@ -391,6 +392,9 @@ enum phy_fia {
+> >  			     (new_connector_state) = to_intel_digital_connector_state((__state)->base.connectors[__i].new_state), 1))
+> >  
+> >  int intel_atomic_check(struct drm_device *dev, struct drm_atomic_state *state);
+> > +int intel_atomic_check_config(struct intel_atomic_state *state,
+> > +			      struct intel_link_bw_limits *limits,
+> > +			      enum pipe *failed_pipe);
+> >  int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
+> >  				     struct intel_crtc *crtc);
+> >  u8 intel_calc_active_pipes(struct intel_atomic_state *state,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index b143085b399eb..6f4f46658df22 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -66,6 +66,12 @@ struct intel_tc_port;
+> >   * Display related stuff
+> >   */
+> >  
+> > +struct intel_link_bw_limits {
+> > +	u8 min_bpp_pipes;
+> > +	/* in 1/16 bpp units */
+> > +	int max_bpp_x16[I915_MAX_PIPES];
+> > +};
+> > +
+> >  /* these are outputs from the chip - integrated only
+> >     external chips are via DVO or SDVO output */
+> >  enum intel_output_type {
+> > @@ -1189,7 +1195,8 @@ struct intel_crtc_state {
+> >  		u32 ctrl, div;
+> >  	} dsi_pll;
+> >  
+> > -	int pipe_bpp;
+> > +	int max_link_bpp_x16;	/* in 1/16 bpp units */
+> > +	int pipe_bpp;		/* in 1 bpp units */
+> >  	struct intel_link_m_n dp_m_n;
+> >  
+> >  	/* m2_n2 for eDP downclock */
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 6637bd4768bf7..48f005932ad8b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -2218,7 +2218,8 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
+> >  	const struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+> >  	int max_link_bpp_x16;
+> >  
+> > -	max_link_bpp_x16 = to_bpp_x16(limits->pipe.max_bpp);
+> > +	max_link_bpp_x16 = min(crtc_state->max_link_bpp_x16,
+> > +			       to_bpp_x16(limits->pipe.max_bpp));
+> >  
+> >  	if (!dsc) {
+> >  		max_link_bpp_x16 = rounddown(max_link_bpp_x16, to_bpp_x16(2 * 3));
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
+> > index e12b46a84fa11..123ba67f68791 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fdi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+> > @@ -119,6 +119,59 @@ void intel_fdi_link_train(struct intel_crtc *crtc,
+> >  	dev_priv->display.funcs.fdi->fdi_link_train(crtc, crtc_state);
+> >  }
+> >  
+> > +/**
+> > + * intel_fdi_add_affected_crtcs - add CRTCs on FDI affected by other modeset CRTCs
+> > + * @state: intel atomic state
+> > + *
+> > + * Add a CRTC using FDI to @state if changing another CRTC's FDI BW usage is
+> > + * known to affect the available FDI BW for the former CRTC. In practice this
+> > + * means adding CRTC B on IVYBRIDGE if its use of FDI lanes is limited (by
+> > + * CRTC C) and CRTC C is getting disabled.
+> > + *
+> > + * Returns 0 in case of success, or a negative error code otherwise.
+> > + */
+> > +int intel_fdi_add_affected_crtcs(struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > +	struct intel_crtc_state *old_crtc_state;
+> > +	struct intel_crtc_state *new_crtc_state;
+> > +	struct intel_crtc *crtc;
+> > +
+> > +	if (!IS_IVYBRIDGE(i915))
+> > +		return 0;
+> > +
+> > +	crtc = intel_crtc_for_pipe(i915, PIPE_C);
+> > +	new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
+> > +
+> > +	if (!new_crtc_state)
+> > +		return 0;
+> > +
+> > +	old_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
+> > +
+> > +	if (!old_crtc_state->fdi_lanes)
+> > +		return 0;
+> > +
+> > +	if (!intel_crtc_needs_modeset(new_crtc_state))
+> > +		return 0;
+> > +
+> > +	if (new_crtc_state->uapi.enable)
+> > +		return 0;
+> > +
+> > +	crtc = intel_crtc_for_pipe(i915, PIPE_B);
+> > +	new_crtc_state = intel_atomic_get_crtc_state(&state->base, crtc);
+> > +
+> > +	if (IS_ERR(new_crtc_state))
+> > +		return PTR_ERR(old_crtc_state);
+> > +
+> > +	old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
+> > +	if (!old_crtc_state->fdi_lanes)
+> > +		return 0;
+> > +
+> > +	return intel_modeset_pipes_in_mask(state,
+> > +					   "FDI link BW decrease on pipe C",
+> > +					   BIT(PIPE_B), false);
+> > +}
+> > +
+> >  /* units of 100MHz */
+> >  static int pipe_required_fdi_lanes(struct intel_crtc_state *crtc_state)
+> >  {
+> > @@ -129,13 +182,16 @@ static int pipe_required_fdi_lanes(struct intel_crtc_state *crtc_state)
+> >  }
+> >  
+> >  static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
+> > -			       struct intel_crtc_state *pipe_config)
+> > +			       struct intel_crtc_state *pipe_config,
+> > +			       enum pipe *pipe_to_reduce)
+> >  {
+> >  	struct drm_i915_private *dev_priv = to_i915(dev);
+> >  	struct drm_atomic_state *state = pipe_config->uapi.state;
+> >  	struct intel_crtc *other_crtc;
+> >  	struct intel_crtc_state *other_crtc_state;
+> >  
+> > +	*pipe_to_reduce = pipe;
+> > +
+> >  	drm_dbg_kms(&dev_priv->drm,
+> >  		    "checking fdi config on pipe %c, lanes %i\n",
+> >  		    pipe_name(pipe), pipe_config->fdi_lanes);
+> > @@ -198,6 +254,9 @@ static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
+> >  		if (pipe_required_fdi_lanes(other_crtc_state) > 2) {
+> >  			drm_dbg_kms(&dev_priv->drm,
+> >  				    "fdi link B uses too many lanes to enable link C\n");
+> > +
+> > +			*pipe_to_reduce = PIPE_B;
+> > +
+> >  			return -EINVAL;
+> >  		}
+> >  		return 0;
+> > @@ -238,10 +297,8 @@ int ilk_fdi_compute_config(struct intel_crtc *crtc,
+> >  	struct drm_device *dev = crtc->base.dev;
+> >  	struct drm_i915_private *i915 = to_i915(dev);
+> >  	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+> > -	int lane, link_bw, fdi_dotclock, ret;
+> > -	bool needs_recompute = false;
+> > +	int lane, link_bw, fdi_dotclock;
+> >  
+> > -retry:
+> >  	/* FDI is a binary signal running at ~2.7GHz, encoding
+> >  	 * each output octet as 10 bits. The actual frequency
+> >  	 * is stored as a divider into a 100MHz clock, and the
+> > @@ -261,25 +318,69 @@ int ilk_fdi_compute_config(struct intel_crtc *crtc,
+> >  	intel_link_compute_m_n(pipe_config->pipe_bpp, lane, fdi_dotclock,
+> >  			       link_bw, &pipe_config->fdi_m_n, false);
+> >  
+> > -	ret = ilk_check_fdi_lanes(dev, crtc->pipe, pipe_config);
+> > -	if (ret == -EDEADLK)
+> > +	return 0;
+> > +}
+> > +
+> > +static int intel_fdi_atomic_check_bw(struct intel_atomic_state *state,
+> > +				     struct intel_crtc *crtc,
+> > +				     struct intel_crtc_state *pipe_config,
+> > +				     struct intel_link_bw_limits *limits)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> > +	enum pipe pipe_to_reduce;
+> > +	int ret;
+> > +
+> > +	ret = ilk_check_fdi_lanes(&i915->drm, crtc->pipe, pipe_config,
+> > +				  &pipe_to_reduce);
+> > +	if (ret != -EINVAL)
+> >  		return ret;
+> >  
+> > -	if (ret == -EINVAL && pipe_config->pipe_bpp > 6*3) {
+> > -		pipe_config->pipe_bpp -= 2*3;
+> > -		drm_dbg_kms(&i915->drm,
+> > -			    "fdi link bw constraint, reducing pipe bpp to %i\n",
+> > -			    pipe_config->pipe_bpp);
+> > -		needs_recompute = true;
+> > -		pipe_config->bw_constrained = true;
+> > +	ret = intel_atomic_reduce_link_bpp(state, limits,
+> > +					   BIT(pipe_to_reduce),
+> > +					   "FDI link BW");
+> >  
+> > -		goto retry;
+> > -	}
+> > +	return ret ? : -EAGAIN;
+> > +}
+> >  
+> > -	if (needs_recompute)
+> > -		return -EAGAIN;
+> > +/**
+> > + * intel_fdi_atomic_check_link - check all modeset FDI link configuration
+> > + * @state: intel atomic state
+> > + * @limits: link BW limits
+> > + *
+> > + * Check the link configuration for all modeset FDI outputs. If the
+> > + * configuration is invalid @limits will be updated if possible to
+> > + * reduce the total BW, after which the configuration for all CRTCs in
+> > + * @state must be recomputed with the updated @limits.
+> > + *
+> > + * Returns:
+> > + *   - 0 if the confugration is valid
+> > + *   - %-EAGAIN, if the configuration is invalid and @limits got updated
+> > + *     with fallback values with which the configuration of all CRTCs
+> > + *     in @state must be recomputed
+> > + *   - Other negative error, if the configuration is invalid without a
+> > + *     fallback possibility, or the check failed for another reason
+> > + */
+> > +int intel_fdi_atomic_check_link(struct intel_atomic_state *state,
+> > +				struct intel_link_bw_limits *limits)
+> > +{
+> > +	struct intel_crtc *crtc;
+> > +	struct intel_crtc_state *crtc_state;
+> > +	int i;
+> > +
+> > +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> > +		int ret;
+> >  
+> > -	return ret;
+> > +		if (!crtc_state->has_pch_encoder ||
+> > +		    !intel_crtc_needs_modeset(crtc_state) ||
+> > +		    !crtc_state->hw.enable)
+> > +			continue;
+> > +
+> > +		ret = intel_fdi_atomic_check_bw(state, crtc, crtc_state, limits);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> > +	return 0;
+> >  }
+> >  
+> >  static void cpt_set_fdi_bc_bifurcation(struct drm_i915_private *dev_priv, bool enable)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i915/display/intel_fdi.h
+> > index 1cdb86172702f..eb02b967bb440 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fdi.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_fdi.h
+> > @@ -8,14 +8,19 @@
+> >  
+> >  enum pipe;
+> >  struct drm_i915_private;
+> > +struct intel_atomic_state;
+> >  struct intel_crtc;
+> >  struct intel_crtc_state;
+> >  struct intel_encoder;
+> > +struct intel_link_bw_limits;
+> >  
+> > +int intel_fdi_add_affected_crtcs(struct intel_atomic_state *state);
+> >  int intel_fdi_link_freq(struct drm_i915_private *i915,
+> >  			const struct intel_crtc_state *pipe_config);
+> >  int ilk_fdi_compute_config(struct intel_crtc *intel_crtc,
+> >  			   struct intel_crtc_state *pipe_config);
+> > +int intel_fdi_atomic_check_link(struct intel_atomic_state *state,
+> > +				struct intel_link_bw_limits *limits);
+> >  void intel_fdi_normal_train(struct intel_crtc *crtc);
+> >  void ilk_fdi_disable(struct intel_crtc *crtc);
+> >  void ilk_fdi_pll_disable(struct intel_crtc *intel_crtc);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+> > index 3ace56979b70e..08dcc2d10a2c1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+> > @@ -425,6 +425,12 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
+> >  		return -EINVAL;
+> >  	}
+> >  
+> > +	if (HAS_PCH_SPLIT(i915)) {
+> > +		crtc_state->has_pch_encoder = true;
+> > +		if (!intel_atomic_compute_pipe_bpp(crtc_state))
+> > +			return -EINVAL;
+> > +	}
+> > +
+> >  	if (lvds_encoder->a3_power == LVDS_A3_POWER_UP)
+> >  		lvds_bpp = 8*3;
+> >  	else
+> > @@ -453,9 +459,6 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
+> >  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+> >  		return -EINVAL;
+> >  
+> > -	if (HAS_PCH_SPLIT(i915))
+> > -		crtc_state->has_pch_encoder = true;
+> > -
+> >  	ret = intel_panel_fitting(crtc_state, conn_state);
+> >  	if (ret)
+> >  		return ret;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > index 7d25a64698e2f..1c6330151f4d6 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > @@ -1352,14 +1352,17 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
+> >  	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+> >  	struct drm_display_mode *mode = &pipe_config->hw.mode;
+> >  
+> > +	if (HAS_PCH_SPLIT(to_i915(encoder->base.dev))) {
+> > +		pipe_config->has_pch_encoder = true;
+> > +		if (!intel_atomic_compute_pipe_bpp(pipe_config))
+> > +			return -EINVAL;
+> > +	}
+> > +
+> >  	DRM_DEBUG_KMS("forcing bpc to 8 for SDVO\n");
+> >  	pipe_config->pipe_bpp = 8*3;
+> >  	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+> >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+> >  
+> > -	if (HAS_PCH_SPLIT(to_i915(encoder->base.dev)))
+> > -		pipe_config->has_pch_encoder = true;
+> > -
+> >  	/*
+> >  	 * We need to construct preferred input timings based on our
+> >  	 * output timings.  To do that, we have to set the output
+> > -- 
+> > 2.37.2
+> 
+> -- 
+> Ville Syrjälä
+> Intel
