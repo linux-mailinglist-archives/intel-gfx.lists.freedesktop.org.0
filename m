@@ -2,51 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D921379A995
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Sep 2023 17:25:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7690479A9DF
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Sep 2023 17:41:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C736010E31D;
-	Mon, 11 Sep 2023 15:25:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AAB510E325;
+	Mon, 11 Sep 2023 15:41:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B58310E31D
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Sep 2023 15:25:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0F1410E325
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Sep 2023 15:41:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694445939; x=1725981939;
+ t=1694446910; x=1725982910;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=gkNK0bxOkYU1z8KNJ7AI9F7z7mL4pKf+g5aDDh7fITU=;
- b=DCduM3LdXgh6LW5NKO9gTBYOsceHdVBMmIpxk7eoAD6/QPF4doeXp8tj
- J0OcGpDFMuh42uO8387ao1PnBhJQ1dpZdQjOtc7L3dbxiNYKUOoC6tvQG
- Cv9QDqWQSvgkPN4gUwE7GzfprO0t7pyvCfmPTUGVr/y0+YsJq6a8jlxFt
- 2CHgNq2ewB16dOXdTHlUHwxo4xhtuEhMjL6x+vtnfquv3bP0n7ZM+Hx06
- cqdmvgvBU6Cp7FK+njQrIlohSHWI9Gh86bksb5uMYC9lpJZjlN+ibaSFz
- hS1hbBbG0rvEhMkXX0/rGfGxiqAXAMTlk41m7CgCT2JQ8mSk8eMhi4Ylz A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="444532749"
-X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="444532749"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 08:25:07 -0700
+ bh=6W9idaRnJKAddi7Iu6iBf1emm6+cGQuWKTdySZJmups=;
+ b=KY728PLqRzJ63Zp9b//lia7Bi8BJAxkLzXudoM/IGgWLCNhY3dqb4GZ3
+ Q51XdqukAFYm6p1Cc2ZBlapsx3a8QxWW+ML4lG8vOP25/5ukBVaiROOcW
+ wPa6nZu1dkhC6q8rsosvCeitcSDIrLHL150wvuapkuu1gW6WLON8H8a60
+ kQj7hC0LVXAR72tZPIH9JLpQ1P6tqerfRgmJptCNVDQ8xXQAU86qIh7Y3
+ HCWkjBthl6nEDU9lwUegY47Y5munvvz2nyJu0hB4kaTV/AqEwuxYY1caq
+ w85JLc/78CNJh8SgKWKXxcqsiJoNO4BLmjWm7k3YX0dqHFrUmtmjhm+/j Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="357555307"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="357555307"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 08:41:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="990117287"
-X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="990117287"
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="736810066"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="736810066"
 Received: from kschuele-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.63.119])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 08:25:05 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <wetll4dmmg36536akmjgdotyiai73nsljllumo7foyac4z5g6e@p2o6lxujxpfp>
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 08:41:30 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Alexander Usyskin <alexander.usyskin@intel.com>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <20230910123949.1251964-2-alexander.usyskin@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230911123305.1682554-1-jani.nikula@intel.com>
- <wetll4dmmg36536akmjgdotyiai73nsljllumo7foyac4z5g6e@p2o6lxujxpfp>
-Date: Mon, 11 Sep 2023 18:25:03 +0300
-Message-ID: <87r0n4enqo.fsf@intel.com>
+References: <20230910123949.1251964-1-alexander.usyskin@intel.com>
+ <20230910123949.1251964-2-alexander.usyskin@intel.com>
+Date: Mon, 11 Sep 2023 18:41:27 +0300
+Message-ID: <87msxsemzc.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: rename DBG() to GTT_TRACE()
+Subject: Re: [Intel-gfx] [PATCH 01/10] drm/i915/spi: add spi device for
+ discrete graphics
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,143 +63,229 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Alexander Usyskin <alexander.usyskin@intel.com>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ linux-mtd@lists.infradead.org, Tomas Winkler <tomas.winkler@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 11 Sep 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Mon, Sep 11, 2023 at 03:33:05PM +0300, Jani Nikula wrote:
->>intel_gtt.h is indirectly included absolutely everywhere in the
->>driver. DBG() is too short a name. Rename it GTT_TRACE() after
->>GEM_TRACE().
->>
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>---
->> drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 36 ++++++++++++++--------------
->
-> I like the new name. However since this is the only file actually using
-> it, why not move the define there too?
+On Sun, 10 Sep 2023, Alexander Usyskin <alexander.usyskin@intel.com> wrote:
+> From: Jani Nikula <jani.nikula@intel.com>
 
-Heh, I did that at first, but then moved it back, undecided.
+I'm almost certain I did not write this patch originally. The authorship
+may have been changed accidentally along the way, but it's not mine.
 
-Maybe you can send a patch on top moving it. ;D
-
->
-> Other than that,
->
-> 	Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Thanks,
+BR,
 Jani.
 
+
 >
-> thanks
-> Lucas De Marchi
+> Enable access to internal spi on DGFX devices via a child device.
+> The spi child device is exposed via auxiliary bus.
 >
->> drivers/gpu/drm/i915/gt/intel_gtt.h  |  4 ++--
->> 2 files changed, 20 insertions(+), 20 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->>index c8568e5d1147..9895e18df043 100644
->>--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->>+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
->>@@ -242,9 +242,9 @@ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
->> 	GEM_BUG_ON(end > vm->total >> GEN8_PTE_SHIFT);
->>
->> 	len = gen8_pd_range(start, end, lvl--, &idx);
->>-	DBG("%s(%p):{ lvl:%d, start:%llx, end:%llx, idx:%d, len:%d, used:%d }\n",
->>-	    __func__, vm, lvl + 1, start, end,
->>-	    idx, len, atomic_read(px_used(pd)));
->>+	GTT_TRACE("%s(%p):{ lvl:%d, start:%llx, end:%llx, idx:%d, len:%d, used:%d }\n",
->>+		  __func__, vm, lvl + 1, start, end,
->>+		  idx, len, atomic_read(px_used(pd)));
->> 	GEM_BUG_ON(!len || len >= atomic_read(px_used(pd)));
->>
->> 	do {
->>@@ -252,8 +252,8 @@ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
->>
->> 		if (atomic_fetch_inc(&pt->used) >> gen8_pd_shift(1) &&
->> 		    gen8_pd_contains(start, end, lvl)) {
->>-			DBG("%s(%p):{ lvl:%d, idx:%d, start:%llx, end:%llx } removing pd\n",
->>-			    __func__, vm, lvl + 1, idx, start, end);
->>+			GTT_TRACE("%s(%p):{ lvl:%d, idx:%d, start:%llx, end:%llx } removing pd\n",
->>+				  __func__, vm, lvl + 1, idx, start, end);
->> 			clear_pd_entry(pd, idx, scratch);
->> 			__gen8_ppgtt_cleanup(vm, as_pd(pt), I915_PDES, lvl);
->> 			start += (u64)I915_PDES << gen8_pd_shift(lvl);
->>@@ -270,10 +270,10 @@ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
->> 			u64 *vaddr;
->>
->> 			count = gen8_pt_count(start, end);
->>-			DBG("%s(%p):{ lvl:%d, start:%llx, end:%llx, idx:%d, len:%d, used:%d } removing pte\n",
->>-			    __func__, vm, lvl, start, end,
->>-			    gen8_pd_index(start, 0), count,
->>-			    atomic_read(&pt->used));
->>+			GTT_TRACE("%s(%p):{ lvl:%d, start:%llx, end:%llx, idx:%d, len:%d, used:%d } removing pte\n",
->>+				  __func__, vm, lvl, start, end,
->>+				  gen8_pd_index(start, 0), count,
->>+				  atomic_read(&pt->used));
->> 			GEM_BUG_ON(!count || count >= atomic_read(&pt->used));
->>
->> 			num_ptes = count;
->>@@ -325,9 +325,9 @@ static void __gen8_ppgtt_alloc(struct i915_address_space * const vm,
->> 	GEM_BUG_ON(end > vm->total >> GEN8_PTE_SHIFT);
->>
->> 	len = gen8_pd_range(*start, end, lvl--, &idx);
->>-	DBG("%s(%p):{ lvl:%d, start:%llx, end:%llx, idx:%d, len:%d, used:%d }\n",
->>-	    __func__, vm, lvl + 1, *start, end,
->>-	    idx, len, atomic_read(px_used(pd)));
->>+	GTT_TRACE("%s(%p):{ lvl:%d, start:%llx, end:%llx, idx:%d, len:%d, used:%d }\n",
->>+		  __func__, vm, lvl + 1, *start, end,
->>+		  idx, len, atomic_read(px_used(pd)));
->> 	GEM_BUG_ON(!len || (idx + len - 1) >> gen8_pd_shift(1));
->>
->> 	spin_lock(&pd->lock);
->>@@ -338,8 +338,8 @@ static void __gen8_ppgtt_alloc(struct i915_address_space * const vm,
->> 		if (!pt) {
->> 			spin_unlock(&pd->lock);
->>
->>-			DBG("%s(%p):{ lvl:%d, idx:%d } allocating new tree\n",
->>-			    __func__, vm, lvl + 1, idx);
->>+			GTT_TRACE("%s(%p):{ lvl:%d, idx:%d } allocating new tree\n",
->>+				  __func__, vm, lvl + 1, idx);
->>
->> 			pt = stash->pt[!!lvl];
->> 			__i915_gem_object_pin_pages(pt->base);
->>@@ -369,10 +369,10 @@ static void __gen8_ppgtt_alloc(struct i915_address_space * const vm,
->> 		} else {
->> 			unsigned int count = gen8_pt_count(*start, end);
->>
->>-			DBG("%s(%p):{ lvl:%d, start:%llx, end:%llx, idx:%d, len:%d, used:%d } inserting pte\n",
->>-			    __func__, vm, lvl, *start, end,
->>-			    gen8_pd_index(*start, 0), count,
->>-			    atomic_read(&pt->used));
->>+			GTT_TRACE("%s(%p):{ lvl:%d, start:%llx, end:%llx, idx:%d, len:%d, used:%d } inserting pte\n",
->>+				  __func__, vm, lvl, *start, end,
->>+				  gen8_pd_index(*start, 0), count,
->>+				  atomic_read(&pt->used));
->>
->> 			atomic_add(count, &pt->used);
->> 			/* All other pdes may be simultaneously removed */
->>diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
->>index 4d6296cdbcfd..346ec8ec2edd 100644
->>--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
->>+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
->>@@ -35,9 +35,9 @@
->> #define I915_GFP_ALLOW_FAIL (GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN)
->>
->> #if IS_ENABLED(CONFIG_DRM_I915_TRACE_GTT)
->>-#define DBG(...) trace_printk(__VA_ARGS__)
->>+#define GTT_TRACE(...) trace_printk(__VA_ARGS__)
->> #else
->>-#define DBG(...)
->>+#define GTT_TRACE(...)
->> #endif
->>
->> #define NALLOC 3 /* 1 normal, 1 for concurrent threads, 1 for preallocation */
->>-- 
->>2.39.2
->>
+> CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> CC: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile        |  3 ++
+>  drivers/gpu/drm/i915/i915_driver.c   |  7 +++
+>  drivers/gpu/drm/i915/i915_drv.h      |  4 ++
+>  drivers/gpu/drm/i915/i915_reg.h      |  1 +
+>  drivers/gpu/drm/i915/spi/intel_spi.c | 68 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/spi/intel_spi.h | 26 +++++++++++
+>  6 files changed, 109 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/spi/intel_spi.c
+>  create mode 100644 drivers/gpu/drm/i915/spi/intel_spi.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 79f65eff6bb2..f16870ad2615 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -222,6 +222,9 @@ i915-y += \
+>  # graphics system controller (GSC) support
+>  i915-y += gt/intel_gsc.o
+>  
+> +# graphics spi device (DGFX) support
+> +i915-y += spi/intel_spi.o
+> +
+>  # graphics hardware monitoring (HWMON) support
+>  i915-$(CONFIG_HWMON) += i915_hwmon.o
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index f8dbee7a5af7..aeeb34a8dde2 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -80,6 +80,8 @@
+>  #include "soc/intel_dram.h"
+>  #include "soc/intel_gmch.h"
+>  
+> +#include "spi/intel_spi.h"
+> +
+>  #include "i915_debugfs.h"
+>  #include "i915_driver.h"
+>  #include "i915_drm_client.h"
+> @@ -666,6 +668,8 @@ static void i915_driver_unregister(struct drm_i915_private *dev_priv)
+>  
+>  	i915_hwmon_unregister(dev_priv);
+>  
+> +	intel_spi_fini(&dev_priv->spi);
+> +
+>  	i915_perf_unregister(dev_priv);
+>  	i915_pmu_unregister(dev_priv);
+>  
+> @@ -1133,6 +1137,9 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
+>  
+>  	i915_gem_suspend_late(dev_priv);
+>  
+> +
+> +	intel_spi_init(&dev_priv->spi, dev_priv);
+> +
+>  	for_each_gt(gt, dev_priv, i)
+>  		intel_uncore_suspend(gt->uncore);
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 87ffc477c3b1..abc601200cb4 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -51,6 +51,8 @@
+>  
+>  #include "soc/intel_pch.h"
+>  
+> +#include "spi/intel_spi.h"
+> +
+>  #include "i915_drm_client.h"
+>  #include "i915_gem.h"
+>  #include "i915_gpu_error.h"
+> @@ -315,6 +317,8 @@ struct drm_i915_private {
+>  
+>  	struct i915_perf perf;
+>  
+> +	struct intel_spi spi;
+> +
+>  	struct i915_hwmon *hwmon;
+>  
+>  	/* Abstract the submission mechanism (legacy ringbuffer or execlists) away */
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index e00e4d569ba9..0f8b01495b77 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -930,6 +930,7 @@
+>  #define DG2_GSC_HECI2_BASE	0x00374000
+>  #define MTL_GSC_HECI1_BASE	0x00116000
+>  #define MTL_GSC_HECI2_BASE	0x00117000
+> +#define GEN12_GUNIT_SPI_BASE	0x00102040
+>  
+>  #define HECI_H_CSR(base)	_MMIO((base) + 0x4)
+>  #define   HECI_H_CSR_IE		REG_BIT(0)
+> diff --git a/drivers/gpu/drm/i915/spi/intel_spi.c b/drivers/gpu/drm/i915/spi/intel_spi.c
+> new file mode 100644
+> index 000000000000..9eb5ab6bc4b9
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/spi/intel_spi.c
+> @@ -0,0 +1,68 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2019-2022, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#include <linux/irq.h>
+> +#include "i915_reg.h"
+> +#include "i915_drv.h"
+> +#include "spi/intel_spi.h"
+> +
+> +#define GEN12_GUNIT_SPI_SIZE 0x80
+> +
+> +static void i915_spi_release_dev(struct device *dev)
+> +{
+> +}
+> +
+> +void intel_spi_init(struct intel_spi *spi, struct drm_i915_private *dev_priv)
+> +{
+> +	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+> +	struct auxiliary_device *aux_dev = &spi->aux_dev;
+> +	int ret;
+> +
+> +	/* Only the DGFX devices have internal SPI */
+> +	if (!IS_DGFX(dev_priv))
+> +		return;
+> +
+> +	spi->bar.parent = &pdev->resource[0];
+> +	spi->bar.start = GEN12_GUNIT_SPI_BASE + pdev->resource[0].start;
+> +	spi->bar.end = spi->bar.start + GEN12_GUNIT_SPI_SIZE - 1;
+> +	spi->bar.flags = IORESOURCE_MEM;
+> +	spi->bar.desc = IORES_DESC_NONE;
+> +
+> +	aux_dev->name = "spi";
+> +	aux_dev->id = (pci_domain_nr(pdev->bus) << 16) |
+> +		       PCI_DEVID(pdev->bus->number, pdev->devfn);
+> +	aux_dev->dev.parent = &pdev->dev;
+> +	aux_dev->dev.release = i915_spi_release_dev;
+> +
+> +	ret = auxiliary_device_init(aux_dev);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "i915-spi aux init failed %d\n", ret);
+> +		return;
+> +	}
+> +
+> +	ret = auxiliary_device_add(aux_dev);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "i915-spi aux add failed %d\n", ret);
+> +		auxiliary_device_uninit(aux_dev);
+> +		return;
+> +	}
+> +
+> +	spi->i915 = dev_priv;
+> +}
+> +
+> +void intel_spi_fini(struct intel_spi *spi)
+> +{
+> +	struct pci_dev *pdev;
+> +
+> +	if (!spi->i915)
+> +		return;
+> +
+> +	pdev = to_pci_dev(spi->i915->drm.dev);
+> +
+> +	dev_dbg(&pdev->dev, "removing i915-spi cell\n");
+> +
+> +	auxiliary_device_delete(&spi->aux_dev);
+> +	auxiliary_device_uninit(&spi->aux_dev);
+> +}
+> diff --git a/drivers/gpu/drm/i915/spi/intel_spi.h b/drivers/gpu/drm/i915/spi/intel_spi.h
+> new file mode 100644
+> index 000000000000..a58bf79dcbc9
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/spi/intel_spi.h
+> @@ -0,0 +1,26 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright(c) 2019-2022, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#ifndef __INTEL_SPI_DEV_H__
+> +#define __INTEL_SPI_DEV_H__
+> +
+> +#include <linux/auxiliary_bus.h>
+> +
+> +struct drm_i915_private;
+> +
+> +struct intel_spi {
+> +	struct auxiliary_device aux_dev;
+> +	struct drm_i915_private *i915;
+> +	struct resource bar;
+> +};
+> +
+> +#define auxiliary_dev_to_intel_spi_dev(auxiliary_dev) \
+> +	container_of(auxiliary_dev, struct intel_spi, aux_dev)
+> +
+> +void intel_spi_init(struct intel_spi *spi, struct drm_i915_private *i915);
+> +
+> +void intel_spi_fini(struct intel_spi *spi);
+> +
+> +#endif /* __INTEL_SPI_DEV_H__ */
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
