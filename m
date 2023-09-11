@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCD9479A2B0
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Sep 2023 07:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52DCB79A2B8
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Sep 2023 07:11:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDE3D10E059;
-	Mon, 11 Sep 2023 05:11:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C99910E13C;
+	Mon, 11 Sep 2023 05:11:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FA3F10E059
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C97610E059
  for <intel-gfx@lists.freedesktop.org>; Mon, 11 Sep 2023 05:11:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1694409096; x=1725945096;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3z6Bpu8pucpZitg6FyXXFewLnWacSX+9HCV+Kxj7frk=;
- b=iQWNHHus+eetG9dhfYVSr0N2oo4GCel3rR0PW0w+WDBkSv0oHAzYEoAS
- 9iEsLZ8/ghziP2vrsI8tOkWckwjKrji9PXmIUY9JOilgljhed0/JBX8bc
- lxeH+ddVdE8sPvM3d+Iy/wmAiU05kleId5N+nh7ey4cMXDUXSmuopboIM
- dOCFgY8K6ZValBPWhh89nmgAzdfDDYDIMqd3PUNTVde0yQU0ft5IqAAC/
- bEOFxzD92wD+kgj35dClzTtKIEL2rmOfQpy89htqdZldMO/PvNe4mUJey
- 3+9IxGTRU7IyNycBLIz8/uRbpz5An0nRyebme/7DXyZRpbPQz6/ofcBwm A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="377911988"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="377911988"
+ bh=ezSl3Z0zNEQUEwuaHjbGhz1AmS6NTTWlhTzpK4GcztY=;
+ b=Q0q57VOBsZcqhD0G+p3x0oKBs5H3X0Wm6j+eWMUbmJv5l4JDEOLV6WvS
+ BNcx++914e3jK1OQJupykb9S/Wu1CfVHRV7+IooXu95BH0bDpfnCTXary
+ mft5FXQ9G/jXGAL/dwEPyWsvNR2EJ3tAOgesrlhxerHjQXQz6UHfNrJsf
+ nTP6MWA6uZdoDJsI7REX5E1oyaWNzMfKiJx6q/B0UQqIrBe2i8hrRztKj
+ fhOtoq6V7QEvFm4/ACEhqTX7Iif70N9fMGWy7x/18Wxn5rOpCMyv+TJrX
+ bxhx845qR2KDXrmTvkW0NGD7oy48tr+v3Y0sF2jo2IXFjrBlTUJReQnrH A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="377911991"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="377911991"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Sep 2023 22:11:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="808692864"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="808692864"
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="808692867"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="808692867"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmsmga008.fm.intel.com with ESMTP; 10 Sep 2023 22:11:16 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 10 Sep 2023 22:11:18 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Sep 2023 10:35:44 +0530
-Message-Id: <20230911050549.763538-4-mitulkumar.ajitkumar.golani@intel.com>
+Date: Mon, 11 Sep 2023 10:35:45 +0530
+Message-Id: <20230911050549.763538-5-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230911050549.763538-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20230911050549.763538-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/8] drm/i915/display: Consider fractional vdsc
- bpp while computing m_n values
+Subject: [Intel-gfx] [PATCH 4/8] drm/i915/audio : Consider fractional vdsc
+ bpp while computing tu_data
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,110 +64,63 @@ From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
 MTL+ supports fractional compressed bits_per_pixel, with precision of
 1/16. This compressed bpp is stored in U6.4 format.
-Accommodate this precision while computing m_n values.
+Accommodate the precision during calculation of transfer unit data
+for hblank_early calculation.
+
+v2:
+-Fixed tu_data calculation while dealing with U6.4 format. (Stan)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 6 +++++-
- drivers/gpu/drm/i915/display/intel_display.h | 2 +-
- drivers/gpu/drm/i915/display/intel_dp.c      | 5 +++--
- drivers/gpu/drm/i915/display/intel_dp_mst.c  | 6 ++++--
- drivers/gpu/drm/i915/display/intel_fdi.c     | 2 +-
- 5 files changed, 14 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_audio.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index afcbdd4f105a..b37aeac961f4 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2380,10 +2380,14 @@ void
- intel_link_compute_m_n(u16 bits_per_pixel, int nlanes,
- 		       int pixel_clock, int link_clock,
- 		       struct intel_link_m_n *m_n,
--		       bool fec_enable)
-+		       bool fec_enable,
-+		       bool is_dsc_fractional_bpp)
- {
- 	u32 data_clock = bits_per_pixel * pixel_clock;
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index aa93ccd6c2aa..cfbaa7006905 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -521,14 +521,14 @@ static unsigned int calc_hblank_early_prog(struct intel_encoder *encoder,
+ 	unsigned int link_clks_available, link_clks_required;
+ 	unsigned int tu_data, tu_line, link_clks_active;
+ 	unsigned int h_active, h_total, hblank_delta, pixel_clk;
+-	unsigned int fec_coeff, cdclk, vdsc_bpp;
++	unsigned int fec_coeff, cdclk, vdsc_bppx16;
+ 	unsigned int link_clk, lanes;
+ 	unsigned int hblank_rise;
  
-+	if (is_dsc_fractional_bpp)
-+		data_clock = DIV_ROUND_UP(bits_per_pixel * pixel_clock, 16);
-+
- 	if (fec_enable)
- 		data_clock = intel_dp_mode_to_fec_clock(data_clock);
+ 	h_active = crtc_state->hw.adjusted_mode.crtc_hdisplay;
+ 	h_total = crtc_state->hw.adjusted_mode.crtc_htotal;
+ 	pixel_clk = crtc_state->hw.adjusted_mode.crtc_clock;
+-	vdsc_bpp = to_bpp_int(crtc_state->dsc.compressed_bpp_x16);
++	vdsc_bppx16 = crtc_state->dsc.compressed_bpp_x16;
+ 	cdclk = i915->display.cdclk.hw.cdclk;
+ 	/* fec= 0.972261, using rounding multiplier of 1000000 */
+ 	fec_coeff = 972261;
+@@ -536,10 +536,10 @@ static unsigned int calc_hblank_early_prog(struct intel_encoder *encoder,
+ 	lanes = crtc_state->lane_count;
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 49ac8473b988..a4c4ca3cad65 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -398,7 +398,7 @@ u8 intel_calc_active_pipes(struct intel_atomic_state *state,
- void intel_link_compute_m_n(u16 bpp, int nlanes,
- 			    int pixel_clock, int link_clock,
- 			    struct intel_link_m_n *m_n,
--			    bool fec_enable);
-+			    bool fec_enable, bool is_dsc_fractional_bpp);
- u32 intel_plane_fb_max_stride(struct drm_i915_private *dev_priv,
- 			      u32 pixel_format, u64 modifier);
- enum drm_mode_status
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 9b88ac3a73c7..d13fa2749eaf 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2558,7 +2558,7 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
+ 	drm_dbg_kms(&i915->drm, "h_active = %u link_clk = %u :"
+-		    "lanes = %u vdsc_bpp = %u cdclk = %u\n",
+-		    h_active, link_clk, lanes, vdsc_bpp, cdclk);
++		    "lanes = %u vdsc_bppx16 = %u cdclk = %u\n",
++		    h_active, link_clk, lanes, vdsc_bppx16, cdclk);
  
- 	intel_link_compute_m_n(link_bpp, pipe_config->lane_count, pixel_clock,
- 			       pipe_config->port_clock, &pipe_config->dp_m2_n2,
--			       pipe_config->fec_enable);
-+			       pipe_config->fec_enable, false);
+-	if (WARN_ON(!link_clk || !pixel_clk || !lanes || !vdsc_bpp || !cdclk))
++	if (WARN_ON(!link_clk || !pixel_clk || !lanes || !vdsc_bppx16 || !cdclk))
+ 		return 0;
  
- 	/* FIXME: abstract this better */
- 	if (pipe_config->splitter.enable)
-@@ -2737,7 +2737,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 			       adjusted_mode->crtc_clock,
- 			       pipe_config->port_clock,
- 			       &pipe_config->dp_m_n,
--			       pipe_config->fec_enable);
-+			       pipe_config->fec_enable,
-+			       pipe_config->dsc.compression_enable);
+ 	link_clks_available = (h_total - h_active) * link_clk / pixel_clk - 28;
+@@ -551,8 +551,8 @@ static unsigned int calc_hblank_early_prog(struct intel_encoder *encoder,
+ 		hblank_delta = DIV64_U64_ROUND_UP(mul_u32_u32(5 * (link_clk + cdclk), pixel_clk),
+ 						  mul_u32_u32(link_clk, cdclk));
  
- 	/* FIXME: abstract this better */
- 	if (pipe_config->splitter.enable)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 68a81f10e772..68630925a0b9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -171,7 +171,8 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
- 			       adjusted_mode->crtc_clock,
- 			       crtc_state->port_clock,
- 			       &crtc_state->dp_m_n,
--			       crtc_state->fec_enable);
-+			       crtc_state->fec_enable,
-+			       false);
- 	crtc_state->dp_m_n.tu = slots;
- 
- 	return 0;
-@@ -265,7 +266,8 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
- 			       adjusted_mode->crtc_clock,
- 			       crtc_state->port_clock,
- 			       &crtc_state->dp_m_n,
--			       crtc_state->fec_enable);
-+			       crtc_state->fec_enable,
-+			       crtc_state->dsc.compression_enable);
- 	crtc_state->dp_m_n.tu = slots;
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index e12b46a84fa1..15fddabf7c2e 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -259,7 +259,7 @@ int ilk_fdi_compute_config(struct intel_crtc *crtc,
- 	pipe_config->fdi_lanes = lane;
- 
- 	intel_link_compute_m_n(pipe_config->pipe_bpp, lane, fdi_dotclock,
--			       link_bw, &pipe_config->fdi_m_n, false);
-+			       link_bw, &pipe_config->fdi_m_n, false, false);
- 
- 	ret = ilk_check_fdi_lanes(dev, crtc->pipe, pipe_config);
- 	if (ret == -EDEADLK)
+-	tu_data = div64_u64(mul_u32_u32(pixel_clk * vdsc_bpp * 8, 1000000),
+-			    mul_u32_u32(link_clk * lanes, fec_coeff));
++	tu_data = div64_u64(mul_u32_u32(pixel_clk * vdsc_bppx16 * 8, 1000000),
++			    mul_u32_u32(link_clk * lanes * 16, fec_coeff));
+ 	tu_line = div64_u64(h_active * mul_u32_u32(link_clk, fec_coeff),
+ 			    mul_u32_u32(64 * pixel_clk, 1000000));
+ 	link_clks_active  = (tu_line - 1) * 64 + tu_data;
 -- 
 2.25.1
 
