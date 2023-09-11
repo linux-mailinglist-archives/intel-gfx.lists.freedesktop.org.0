@@ -2,46 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A502979A7B4
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Sep 2023 13:49:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 723C679A7BB
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Sep 2023 13:58:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 168DA10E2D1;
-	Mon, 11 Sep 2023 11:49:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4654210E135;
+	Mon, 11 Sep 2023 11:58:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7C3410E2D1
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Sep 2023 11:49:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99AB810E135;
+ Mon, 11 Sep 2023 11:58:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694432980; x=1725968980;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LXLyjK5JDydDiKRZIjqyn+mvDljOFtdIPXs+3+CJGkE=;
- b=eR9lcEHEsDF+HCnSu9oeDIGPCZ8kMmk7BgTe1bnAyrU1pEd3WZ+I4rzM
- rtj6TnV0U0vUk/ZAVx9bML9M3XOHxcK/CyZLsRDI60fh1dKCPhOu4QPKo
- 2FWW9PSfFrxwkxZPK0llb4rprBqQnPehRIPWgU3XY38TOujShli0/jAHf
- J6TGozGNwIpmxSIwJtPzuFIgiO1xIVjl0rrs9QthofgMP2hQBtATJKMZh
- EoJn75o+AgVOZpb0hDS7hl3IdStxLcBmEPl5P0Z5aWEx8NNGjmHvruphR
- 1X8xtBDCiZoQZ04bGGnrWakI4+EPO/2dzx84M6Ax65uF40CkzloTnqy/l g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="444475800"
-X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="444475800"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 04:49:40 -0700
+ t=1694433490; x=1725969490;
+ h=date:from:to:cc:subject:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=y1eenHJPMMjkZBCCRJKGFQkqzPbiTgak2E9HolAUCmE=;
+ b=NcwPvLSa9CruYT92lmKL0vG7nylgoodzk+Xff3PVmcoEqpu47xbDYrRO
+ snnQdkdF8x7Ub3BVb5ga1ZoCN7czLHJBxqGiBpDSTt3MRxFG+dohtHcR9
+ PAahriBhZLLHm5tH01jYK5Xi43g3IjaGMxDq1wws2kzeLC8r2zhIU35J3
+ KWw5sLz8+uhKmlgsdVbi6RT8UwsKiOS0tMtiONmjJD6qFod6NM5eXuaa3
+ FytPDuyg5/umR3xhB2Uar7FFFGWs4qY+B4s/lDHEdRHRcG2M0rU048bJ8
+ hEp/Shx+vARm1Y/NwlOC8Ogae9NQEwOyVAExdN3d6rKJydONxRJA1h1nK g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="464435133"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="464435133"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 04:57:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="886493797"
-X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="886493797"
-Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
- by fmsmga001.fm.intel.com with ESMTP; 11 Sep 2023 04:49:14 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Sep 2023 17:19:33 +0530
-Message-Id: <20230911114933.149353-1-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="778367123"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="778367123"
+Received: from linux.intel.com ([10.54.29.200])
+ by orsmga001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 04:57:33 -0700
+Received: from maurocar-mobl2 (maurocar-mobl2.ger.corp.intel.com
+ [10.252.24.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id A11E0580960;
+ Mon, 11 Sep 2023 04:57:31 -0700 (PDT)
+Date: Mon, 11 Sep 2023 13:57:29 +0200
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Message-ID: <20230911135729.24056014@maurocar-mobl2>
+In-Reply-To: <2157156.irdbgypaU6@jkrzyszt-mobl2.ger.corp.intel.com>
+References: <20230908123233.137134-19-janusz.krzysztofik@linux.intel.com>
+ <20230908123233.137134-24-janusz.krzysztofik@linux.intel.com>
+ <20230911105251.220d90ed@maurocar-mobl2>
+ <2157156.irdbgypaU6@jkrzyszt-mobl2.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4] drm/i915: Added Wa_18022495364
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH i-g-t v2 05/17] lib/kunit: Fix illegal
+ igt_fail() calls inside subtest body
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,63 +67,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Isabella Basso <isabbasso@riseup.net>,
+ Dominik Karol =?UTF-8?B?UGnEhXRrb3dza2k=?=
+ <dominik.karol.piatkowski@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This workaround has two different implementations,
-one for gen 12 to DG2 and another for DG2 and later.
-In this patch only GEN12 changes are implemented.
-BSpec: 11354
+On Mon, 11 Sep 2023 11:28:32 +0200
+Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
 
-v2:
-- Removed extra parentheses from the condition (Lucas)
-- Fixed spacing and new line (Lucas)
+> Hi Mauro,
+> 
+> Thanks for review.
+> 
+> On Monday, 11 September 2023 10:52:51 CEST Mauro Carvalho Chehab wrote:
+> > On Fri,  8 Sep 2023 14:32:39 +0200
+> > Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
+> >   
+> > > In a body of a subtest with dynamic sub-subtests, it is illegal to call
+> > > igt_fail() and its variants from outside of a dynamic sub-subtest body.
+> > > On the other hand, it is perfectly legal to call either igt_skip() and
+> > > friends or __igt_abort() or its variant from there.
+> > > 
+> > > In the current implementation of igt_kunit(), there are several places
+> > > where igt_fail() is called despite being illegal.  Moreover, it is called
+> > > with IGT_EXIT_ABORT as an argument with no good reason for using such
+> > > aggressive method that forces CI to trigger system reboot (in most cases
+> > > igt_runner can decide if abort is required).
+> > > 
+> > > Follow igt_kselftests() pattern more closely, where similar setup and
+> > > cleanup operations are performed but their potential errors are processed
+> > > in a more friendly way.  Move common cleanup and their corresponding setup
+> > > steps out of the subtest body.  Place the latter as requirements in a
+> > > preceding igt_fixture section.  Replace remaining illegal igt_fail() calls
+> > > with more friendly skips.  Let igt_runner decide if abort is needed.
+> > > 
+> > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > > ---
+> > >  lib/igt_kmod.c | 75 +++++++++++++++-----------------------------------
+> > >  1 file changed, 22 insertions(+), 53 deletions(-)
+> > > 
+> > > diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+> > > index 1d1cd51170..78b8eb8f53 100644
+> > > --- a/lib/igt_kmod.c
+> > > +++ b/lib/igt_kmod.c  
+> ...
+> > > @@ -825,24 +793,21 @@ static void __igt_kunit(const char *module_name, const char *opts)
+> > >  		}
+> > >  	}
+> > >  
+> > > -unload:
+> > > -	igt_ktest_end(&tst);
+> > > -
+> > > -	igt_ktest_fini(&tst);
+> > > -
+> > > -	igt_skip_on_f(skip, "Skipping test, as probing KUnit module failed\n");
+> > > -
+> > > -	if (fail)
+> > > -		igt_fail(IGT_EXIT_ABORT);
+> > > -
+> > >  	ret = ktap_parser_stop();
+> > >  
+> > > -	if (ret != 0)
+> > > -		igt_fail(IGT_EXIT_ABORT);
+> > > +	igt_skip_on_f(ret, "KTAP parser failed\n");
+> > >  }
+> > >  
+> > >  void igt_kunit(const char *module_name, const char *name, const char *opts)
+> > >  {
+> > > +	struct igt_ktest tst;
+> > > +
+> > > +	if (igt_ktest_init(&tst, module_name) != 0)
+> > > +		return;  
+> > 
+> > Shouldn't it be calling igt_skip() here too?  
+> 
+> Maybe yes.  I've chosen to follow the algorithm used in igt_kselftest.  There 
+> was an igt_skip() variant there initially but in 2017 that was converted to 
+> the current return only by Peter with IGT commit 9f92893b11e8 ("lib/igt_kmod: 
+> Don't call igt_assert or igt_require without a fixture").  However, 
+> justification for dropping igt_require() instead of calling it from an 
+> igt_fixture section may not apply to kunit modules:
+> 
+> "If kmod_module_new_from_name fails, ... return normally from igt_kselftest, 
+> matching behaviour when the module loading is successful but it doesn't 
+> contain selftests."
+> 
+> While i915 could be built with no selftests included, a kunit module without 
+> any tests doesn't make sense, then silent return may be not what we need.
 
-v3:
-- Fixed commit message.
+Yeah, selftests are handled on a different way with regards to module
+probe, so I guess we need the igt_skip there if modprobe fails.
 
-v4:
-- Only GEN12 changes are kept(Matt Ropper)
-- Renamed the register bit in define
+Well, you can probably simulate it by renaming a Kunit module
+and see how IGT will handle that with the current code and with
+igt_skip().
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Reviewed-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 2 ++
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 ++++
- 2 files changed, 6 insertions(+)
+(Btw, I intend to review the other patches on this series, but need
+some time to do tests, as some changes here are not trivial)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 0e4c638fcbbf..38f02ef8ed01 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -164,6 +164,8 @@
- #define GEN9_CSFE_CHICKEN1_RCS			_MMIO(0x20d4)
- #define   GEN9_PREEMPT_GPGPU_SYNC_SWITCH_DISABLE	(1 << 2)
- #define   GEN11_ENABLE_32_PLANE_MODE		(1 << 7)
-+#define GEN12_CS_DEBUG_MODE2			_MMIO(0x20d8)
-+#define   INSTRUCTION_STATE_CACHE_INVALIDATE	REG_BIT(6)
- 
- #define GEN7_FF_SLICE_CS_CHICKEN1		_MMIO(0x20e0)
- #define   GEN9_FFSC_PERCTX_PREEMPT_CTRL		(1 << 14)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 864d41bcf6bb..30aca8d03f6b 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -712,6 +712,10 @@ static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
- 			    GEN9_PREEMPT_GPGPU_LEVEL_MASK,
- 			    GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL);
- 
-+	/* Wa_18022495364 */
-+	wa_masked_en(wal, GEN12_CS_DEBUG_MODE2,
-+		     INSTRUCTION_STATE_CACHE_INVALIDATE);
-+
- 	/*
- 	 * Wa_16011163337 - GS_TIMER
- 	 *
--- 
-2.34.1
+Regards,
+Mauro
