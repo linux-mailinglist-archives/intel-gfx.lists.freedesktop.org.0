@@ -1,139 +1,138 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A74D679D4F2
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 17:32:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B6479D4FC
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 17:33:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40EFE10E435;
-	Tue, 12 Sep 2023 15:32:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1B7010E431;
+	Tue, 12 Sep 2023 15:33:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E87C10E431;
- Tue, 12 Sep 2023 15:32:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 229E510E431;
+ Tue, 12 Sep 2023 15:33:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694532742; x=1726068742;
+ t=1694532786; x=1726068786;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=MaLw9DXHEdm1GQ97KuxiZiNa9PGLsHkX2ad/SexMlxg=;
- b=gZWpujyJkvDWONof9gnb1cEITQOogzOOAUvfRBv63ZaqZnrEcMM8yJby
- v1UsAKuoUFK2MfC+hFWQRYIVmhtYm22WjeQ1lVqce+FzD99s/zjFnilin
- kCiIPYj7owi9KW9+zk2NimMzF3kM17E/TRupLR8cmZqYH1kSt18xfDTUV
- Su3l96yXrXz9Z5RqX4DonjmVQ4bzshO/io0Qg7OnrX9snDsuO8G3zvD5Q
- 7awPyFBxrYiYYrexgOcNgVGDTBJH4O3GhbBlap38IsVsfb1bX2ZIna791
- gnTZHYID5HCbwcvI9dxQjUTI5oPApx5IbO5ydElizb6Oja4H5esSPxOEn w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="357842017"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="357842017"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 08:31:51 -0700
+ bh=G39+NXbmpe6gOLE/x4yf2S3DXSn4SmgY6DdBf1tvBSM=;
+ b=lXUQhAF2EM+CPX0oHFm7g064v6jR9PRppuIaJ+m44z10LUhhHhC/oZEV
+ MTm75FFCBiBWk1qLPNCkAzsyy1YUO3Ccqch+ososo0gi83Kn/0rSN9DM0
+ xYXkJ/+ijUF1KQDvqK9XViKIt3Gq+1EXjwDS4juzlTdJTw8GoYSAbf9Cs
+ L8qVDq5zOghs83+Hvy7cG6XukY+VMOpNZr3ndYXS+b8aF/S2zEEMoynQW
+ EobD6maki4O8m0ekXN2ty0u4I6XtyyOg29ZIQFvIKY6MaTf2cUdcTOp6j
+ Ln816xRo6NqTtGI3X0V822copT/P3WaTgMAisZ3p6raT55WE6HxL9Pouq w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="409363963"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="409363963"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2023 08:33:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="743760831"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="743760831"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Sep 2023 08:31:50 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="737161432"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="737161432"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Sep 2023 08:33:02 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 12 Sep 2023 08:31:50 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.32; Tue, 12 Sep 2023 08:33:02 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 12 Sep 2023 08:31:50 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Tue, 12 Sep 2023 08:33:02 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.170)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 12 Sep 2023 08:31:49 -0700
+ 15.1.2507.32; Tue, 12 Sep 2023 08:33:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CBuVermD1NIcZk9qpOwA/UTc3qNd+Arowcvuu+XZMWFprAVpwudXQC+GiLcfneSofTa1REZCSykbbMMHXF7vchGpehPq/neR27tvyrceWIm/PPREkeCMqjXSd/2SvVPg9qk5Bb4FOvR8ze+dnvmWO7kA+zF311NUs6826bnrWF/5efGaC+Iiz0eh6CerYw8ZMOc/OoVbY44zfQS97Bfp8t57ctol0rJPWPvggwqXXIkckUuZa6Hw6PmknmTeC/oIUfrgzM0znrgNU5pNR8UIMrEd3tOmIhRy1WJfLdvix44tZ6CD/btya5RrXC0zAeS2lp2Kncf0NQbWiYDGl9sBnw==
+ b=LJGOn+H2A1QGHDzbot5l3G9gOtDEJQHIEmbvqA0oqZdDKtqure/Q2J7UJMeRpXFIJ86svNd7xBoEEBsmHUXdI+5+EpAgp3Xwe7yBt/E9D7qERUcTrZJWluWlUlMHhQf/13IOLH6NJXsi3UkBXVKo2Zccz0xueHNJNKP4ma0yJ6PdgWQ8BFTpSFknhIDB3cwg8rUFXtgqlSSfW3+laEjzH+YF+I0gD5jU4MHOtKmshl1jwunTNqnOs3PyxSXovbN7JHbSvIXSqVSUJZCWoQrEDRIQ/LEsB1Yp30LZGb6mnxYWNXGB4aBpny0w9lFy0QnMV9+OtGuzmPT6iez6mvCvQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PeiZdu75VvbaGd0deGoipijMFxlE0Zk32SWvpH/d4J4=;
- b=JVrOnMzSVltwFS6FNv8/rtM1czKobYoLbzoTdSDtnof9f4uam6olyiwCfEPFOmBL6HC/cDbtUNGjHkR4+VYgrPd29DW3MT5AvvyLvXW0CLiHQouFKtMVJ7ezXVQsSx7ydD+MPW0wdzFPbdyUt3dgecK1iwdqo07rHXmKjf/H15V/L0ZgwW3r4rsBJEG0ckeOuNlPjzUIt+UQFv9ApaBPpEwvZRBjIKrMJRwcIZIlFJwtKU0omi82qhY/tZTg6lOJWxfJJykMAdGogmRcFzZugVl2Mb//WDSIjnw+wSZbmMIvKycdl2m9YjWOhs3QgGIeIlw3cdlxXw59g4CfYd904w==
+ bh=8zW9Zo4sVTG0A1I0HjGt4j2j0+8FHmv2LxoCHZ58r+A=;
+ b=R+0jrYFh3lBcz6TPZnmmUV8X7O6FToXSomrWMJC6OA8VhAZFhfuqxHyPOrMPkfh32lByfwH69nm0FNV+Ll+g4ROfmmuXj1dHHg/LQj8bCWlh/O5+2OMXh0Vqwlr6i6CWUYd2+CBqFQdakPGfIAypG+GbjiBPM9qHvpLKnlo6P+PUfDq7sG2wINhkMRQPbrbxem3ON6EtE9Lvq6V56P8NEqoKQ7KDixFuIuZoiLhBhj8wmbCm3gyN50d3smMaHeCrlNMBfNNJPJIuUXaGwuxpp2Pe/yKF6dA3uLNkUziiWex8tdKqk5SwhFd8N0jZwfpZtfnJ0PVaMJTgjw01Fsxk4w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SA1PR11MB5875.namprd11.prod.outlook.com (2603:10b6:806:238::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.33; Tue, 12 Sep
- 2023 15:31:47 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6768.029; Tue, 12 Sep 2023
- 15:31:47 +0000
-Date: Tue, 12 Sep 2023 10:31:44 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <utg7wk2lr7a7x2x5ax4gmdqpjdg4ach6lzb6o6aqziu63ysq4y@zxo6c4iwv34a>
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ SJ2PR11MB8540.namprd11.prod.outlook.com (2603:10b6:a03:574::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.31; Tue, 12 Sep
+ 2023 15:32:59 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6768.029; Tue, 12 Sep 2023
+ 15:32:57 +0000
+Date: Tue, 12 Sep 2023 08:32:54 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20230912153254.GI2706891@mdroper-desk1.amr.corp.intel.com>
 References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
- <20230912044837.1672060-2-lucas.demarchi@intel.com>
- <20230912151338.GG2706891@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+ <20230912044837.1672060-14-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230912151338.GG2706891@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0174.namprd03.prod.outlook.com
- (2603:10b6:a03:338::29) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <20230912044837.1672060-14-lucas.demarchi@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0117.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::32) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA1PR11MB5875:EE_
-X-MS-Office365-Filtering-Correlation-Id: 26a11408-96e0-4784-8b89-08dbb3a56081
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SJ2PR11MB8540:EE_
+X-MS-Office365-Filtering-Correlation-Id: c103e14f-d0b6-4e4b-c98d-08dbb3a58a13
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Yu0F+TY5OFmBdGwLFj2Sc9Sw0VSHOhUk97S75N1+ivjDFEIxAemHBxo8iN1v2hQ12u34zce9an/q9vd0/1dQhVF2XdDEqSi/gW4fuR0Gb420gEJKbylUC2mJz8yjmqJlpoWf/lJwcs2YMFQZ2aSUHfdG3y3OgNYr815Tux9KHfzLwqIg2N9FtmA0wzKYmYhQW12DKhl5KRvHxh6lVJhldAqLym47QHekn71lBmOkOKgE+ON4q/jiIKgNuadN21UWCvpM3Jl7burJIPp9xomQw4h9iqXbrMaXpLQTM6TNy/1bZ5dUK3U2g1Audr3tdvX9q9P/oY5tTs1G5iKC0hxEf3FIOUOaQ7lx8jaEOwSXRqj+L/nR5ZbV+5rRPDHTaw/zzrEOn6w6bVib03VxmYwyNIzcQkOPZrKkMkmoCZMN/1Opkbh5R5xp5EayXSXRGTY5puAnnsh8nKDt31qQE2+vSXujvgOrqC3Zf5tbWDrZJvXXbXr4Bj4Nl/E+mj2ScCf74DreiHVi74npWpxSZCi2C+NSsZlsGONfHOLskTmMu2BIKpZ/bFqCgr6wIp5vIjY8
+X-Microsoft-Antispam-Message-Info: 1OfyH8ZZ83ymP4aEt/oej80uX5X7uJJFh55fTopiS4ajTwuQEWYX3qyCJek4hH87f91H+KiZxiq5+K1O0mxVMZbUpySq1NLPFX0BoIhZ6y7cIhDOAc1UYIYI12YEl96CZ7bF4FnwY2BtZH1LerYpdBqrk7cEfRdvfB7i3X6T3YfLTl5vW3lIV7r2cq3MtPmhIj5m4XouCqU4JSPwnGGe1areIFDhgQ2EKVNFo9M51SnpQZMcVZ/0UykdwXt+fiQvGaipCEBBbj71lGEss3MopYwJgY+zarnrRwEoz3oHoF9tHMyzF4a5S9ivWWVlGf+JeALflNScU3KfppyMgzxrTfMH5EISkPBbjveF79A8cIJ7DKBwfFknCl8lEmj3/UqsJeAI3admdlWhpK9ASxGOWRvtCwepNbNbZYNSFT9V95iAEUeoEpxa4w7vmhPxfJdNTADkfnC7aH9eTQiqAgXCxsVtcdAiJRlzzesfeCuTs9PblI0GpnzYWSNXS6vOUmbjCz6K/ue440EiySoHum88gIYiqnAYdKIUjioRsjfZnHi9xL6ZF68Hl6/zIA76wCMz
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(346002)(366004)(136003)(39860400002)(376002)(396003)(1800799009)(451199024)(186009)(450100002)(6486002)(6666004)(6506007)(86362001)(82960400001)(38100700002)(2906002)(26005)(6512007)(9686003)(83380400001)(316002)(478600001)(4326008)(41300700001)(8936002)(5660300002)(8676002)(6862004)(66946007)(66556008)(66476007)(6636002)(33716001);
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(346002)(39860400002)(376002)(366004)(396003)(451199024)(1800799009)(186009)(4326008)(6862004)(450100002)(8676002)(8936002)(1076003)(5660300002)(66946007)(6636002)(66556008)(66476007)(316002)(2906002)(41300700001)(6506007)(478600001)(6666004)(6486002)(6512007)(26005)(38100700002)(83380400001)(86362001)(33656002)(82960400001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KLwhdDeu5IEdP0wF5JedbzXT96ijb4juun81Hn0Uygk6Z1VqUIKjsPJo/Gzc?=
- =?us-ascii?Q?0SoDx5lNPNJjG4pAt9puii5a6Zml8+A8tY+todIHUpLkMNhbuQeRocvMuwng?=
- =?us-ascii?Q?9WLMir16oSTNfqjrw+UXywG78+LPjkr/UE9KnxORYErDLSxFGSXvXnShiOG/?=
- =?us-ascii?Q?f+RVsWPdIEK1fFJHmQImfGMzK/f9trcWkkBYF18PbRPaFLVvmGne/M9jd6dl?=
- =?us-ascii?Q?wmnXKiySuIgj3jNtt+Qm6kILcXQHFHBXoGmrDrRLfgHpp1xvjPohx3ryRlVv?=
- =?us-ascii?Q?z7R+XOeMRFQ5iMUtHVdZmTvuKj7aJoZq/bRb0Yfq6Zw5sglPHH+y02DWeSgH?=
- =?us-ascii?Q?Mro9JFvseTMqVX8fYPawLzLm0mYecGtqI/og1Z1fTUc8E+KKjpn8k2S7GXVU?=
- =?us-ascii?Q?UWLjkqq6WyHuUpN5GV8h8uSJmKr947KgYMq1GVEA512ZT3WrpKTx1/cY02Dc?=
- =?us-ascii?Q?hV4ocvCPtOKZdgLn0e4J2MQkUHpRsgWZ/g/v5HfIedkdpPFhWPvJYsuLJBk6?=
- =?us-ascii?Q?YooB+Hg5z/m1F12jidJnCsf9VJQ7jnJ/Vt6SwZJS7+DhW6gGzS8Ugl7HztLk?=
- =?us-ascii?Q?2ToTYI0Ypy6cfko8Lm1R/HNlNE3JsZzYGY6xiZzgDFLeApgPrTXcoilN9tLg?=
- =?us-ascii?Q?GIS9cYIaUXbxwiAmlvq0AMgy+swdaxiF2lGdo3pFsxauTajA/JAWEjlqYXeA?=
- =?us-ascii?Q?lAAwHLJXxEIDzWPPxCo8bMSNFgqrx5WvEo1Y7zVkpX20YKugUcDpffPQXlzN?=
- =?us-ascii?Q?gNJSN0n6PtWVoe5375GmC7HKXUbkLz4KbO3JqDGnHXlpjrqRr9kvDOlJHgpZ?=
- =?us-ascii?Q?8Jv6gNNvUQVKB6nysPdgmoWzRT7qKKnxArxR00+X76yFTqcnGO2yXikQpK9Q?=
- =?us-ascii?Q?PiI4H3/8QTib14rU4+I1sC8TEGJXjp9jAIBdP/nJOM9EcqxaBVfZOnVvadDu?=
- =?us-ascii?Q?8ukQ79QRHh1vrb5qOmuNRaLiBhOg0WHD823SyeoE3VSYM7ojnsFsshpjWmv+?=
- =?us-ascii?Q?2YjTgwSlm765SwZbUGYgfN8FDSKeNiIKYTUZMoqJ6Tb3DUvcI5yetDXDODaC?=
- =?us-ascii?Q?UhdEifnvuI/uk15WncDwhk1mJ7czrsRTtxI6ojRyJhgVYUn6rOMiIDdpFgoN?=
- =?us-ascii?Q?Fo0aYiD0Us47LD0zKcHpqu/FuciGq7wyvAdDsS61F1L2IR29OAL/bhrYiILW?=
- =?us-ascii?Q?AsibE0P4IvGV9x1xFu07DyNFdTW+eR91013ZDTGYKFJfIAmIIK+kVFdXvFRr?=
- =?us-ascii?Q?mFyoE77erm9PsGL0FJojW/4zmGqQbhRDLjSeUzqNBnpOSXpSEkXGZFTpvFn4?=
- =?us-ascii?Q?4RQHJ9SOziphaClhXsLPfr+PFIEn/HpxoJlWdWW1o97wEQMGx3ZWZR9Z5pb6?=
- =?us-ascii?Q?K/3bct6Bk1Ej3AXMsw+kSzgOk7eFAUQL1C87kDK7Pz2FnS8P4v/sBeL2UCNx?=
- =?us-ascii?Q?zvQP3Ezu2Zuhxfmc/KGG1c3VmFtgSzB3YonMWrpbssy48C2Z+tAysxAEDufz?=
- =?us-ascii?Q?b0hoqJT9synu85mld1qUYm1OQ0SBuhLDWj3h8iTrwDba4Cofph8K/JzId0LS?=
- =?us-ascii?Q?K4IGeKkjfmRO7bwMpvaVybih0l0SiqCr1rMQe/pzKJywIS/TXatD1TfeqFqu?=
- =?us-ascii?Q?0g=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26a11408-96e0-4784-8b89-08dbb3a56081
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3kRD5VcgwG7Qgzi7dl/3YOR94R0zcZSMsYENupjIqpMwahSK3WfU2EcwcMRv?=
+ =?us-ascii?Q?+xU40wpedVuoUJWO4XQikR2RDKrskNaP9uZW3aCdJEjX+mKrJWfDncrfqPl2?=
+ =?us-ascii?Q?8BK3xhkvRBQX/X4dwCwVRLVpZ8ARbVTEOfi54X2Twhqj9Vl61iUz73Gffcix?=
+ =?us-ascii?Q?MF0C3GkmLzLAbrFdLpz82vygmCBIM5spAGGnpMtM9e3zTEyWrmyOp+Sd2w4n?=
+ =?us-ascii?Q?b8s0RbGmSJuTJZt7z7d+zjRedZOthfA9pQPJiABiDZsY7SYh7bqp2KdqjF/J?=
+ =?us-ascii?Q?oX+8PqLZxeSW1NR/BbCSp0kP783Ub/qeh2Qy6nLzIhzkIANh2B01qFQItq+V?=
+ =?us-ascii?Q?/00KpEwSEJqwqYOfKRwvS2/rdevQL8uYfITWREs/X8nqGkOAScP8fYYDWNSO?=
+ =?us-ascii?Q?LjxUc/JQa/Jt4bSfn+kavsoaQBcNvicYxbAUQMRSNvMR2aUcIho8GReZm3Ir?=
+ =?us-ascii?Q?bQbt8TO/DfsFgrY1+IfKpDgiVWfc4/quDWEV+3OLoJcb7NOvj2dtFh0asOj/?=
+ =?us-ascii?Q?jdQhQKipacHw/x0fQ9gBosMxyukRCcYchwWdvJ2xMDBBzEJlfqqrQH7lG4PZ?=
+ =?us-ascii?Q?lqqWXuPLXmiZMuChVBziPABo1hfr49lEV74LpJnQg2854KkCuU4Hn5/WW5vA?=
+ =?us-ascii?Q?xcxALk0OolwfLNXsUhth76ZZUulmel/rGnzx186Ake9vfSbEPSBD9R14qHgo?=
+ =?us-ascii?Q?ZRUR0HhzxBjMZyph9NgAyMCDJoYGXmZ2lIdWCalobIko90fGe2adYFk883qD?=
+ =?us-ascii?Q?Kq09/hea0KLPtCMddcVQsAtmoDG+DDgIzrZNxU4vm6o6Dy+GAp5xJF8gQLAk?=
+ =?us-ascii?Q?yEztnEnMQZOwyAzbZT4woXS3Jf3u33p107r2IquYFJgxvSZwL9LANlHx5r7n?=
+ =?us-ascii?Q?xTGSJQt15pLv2HgN8S27tFRB7pkIiA7EXO28th+jG2YHkeuLQjyh1B4qffEk?=
+ =?us-ascii?Q?tNul6xMEskbs6tYwyWcDMveoHMapdTcmxaREYCGYmNzlAIfpSOzTYq4jQflz?=
+ =?us-ascii?Q?znAky2uK2+DF0/RjO7KXdQlLHqPomi0E1DUJ2U+tCCn4xU1luM4KsyDGgSz6?=
+ =?us-ascii?Q?MkKRmysGJRlTyhmgjPKrA+oo2goXkJmuhWtmGSLvi/IR/7GegtPV1rNPblOY?=
+ =?us-ascii?Q?WvOJmD6oeinDNWDRT+AeH5tdEtqNVhoZGHrGa70gfgw1Nr6zGDfjO4N9I43I?=
+ =?us-ascii?Q?ZFujmyRpU37KrOo+bfGERhUnjlpa9NxIrPMI8pVO0hm4iqnHvKhLAoqyKVTa?=
+ =?us-ascii?Q?0f3WvQTtarexcgkbQ/oXgDImrvOAtBk8IGJGUJVro4DPXxKuZlOVEIGT6RaO?=
+ =?us-ascii?Q?EwEcJXOroe73lbzxxvlxXHS9wf8NQEjaYa4qz+ZaVFs09Y3EmEUFvoCivO7r?=
+ =?us-ascii?Q?58i346TzI0Nog+PmIFhz69nyP2qe991pt3kLHZ71YKyysndQVD574LUY21xV?=
+ =?us-ascii?Q?TZ4KR5o+Q+dIV7AUqlZmznbuHFYsWVLzzVI7nENjXLjW7vwPEzpBQchPtg4Y?=
+ =?us-ascii?Q?K1MWneEDK3rwmAtydvdjcXZ82Chz7wplq33w/F/WufrJFNWBkpc6MlzJ331K?=
+ =?us-ascii?Q?W+RqvSUnGJVvbN5lPSbUiG/NpioPOvQMaYQ9Txd4ybgJUxxtDTvYq4Wbb8Lu?=
+ =?us-ascii?Q?eQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c103e14f-d0b6-4e4b-c98d-08dbb3a58a13
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 15:31:47.7295 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 15:32:57.2392 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lwqONyuCZNiZJRZM9ku33ZlRMfBlwghuONi472GOvo2hGDDaphAU782fv649sYz5CwDZNvZXyHhJDOq8+zUBidBkI7C60elKv9Az6iNEMDg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5875
+X-MS-Exchange-CrossTenant-UserPrincipalName: inCcLDdSFq7f3elaQ3SP26FWOI5UL/AdTKMFKLhHFJSWeTQVPuBjaWOlFKVc4vNrHBHnVlnv+TjlO+XpO801IxFpUwIquPYIIgJ6fWuNt9I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8540
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 01/29] drm/i915/xelpdp: Add
- XE_LPDP_FEATURES
+Subject: Re: [Intel-gfx] [PATCH v3 13/29] drm/i915/display: Fix style and
+ conventions for DP AUX regs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,113 +149,126 @@ Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 12, 2023 at 08:13:38AM -0700, Matt Roper wrote:
->On Mon, Sep 11, 2023 at 09:48:09PM -0700, Lucas De Marchi wrote:
->> Add a FEATURES macro for XE_LPD+ as this is expected to be the baseline
->> for Xe2_LPD and will allow to see the delta more easily.
->>
->> v2: Move everything from xe_lpdp_display to the new macro and remove
->>     the version setting: it's not needed with GMD_ID.
->>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  .../drm/i915/display/intel_display_device.c   | 58 +++++++++++++++----
->>  1 file changed, 47 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
->> index c39f8a15d8aa..ddd938bfe7d9 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
->> @@ -710,18 +710,54 @@ static const struct intel_display_device_info xe_hpd_display = {
->>  		BIT(PORT_TC1),
->>  };
->>
->> -static const struct intel_display_device_info xe_lpdp_display = {
->> -	XE_LPD_FEATURES,
->> -	.has_cdclk_crawl = 1,
->> -	.has_cdclk_squash = 1,
->> +#define XE_LPDP_FEATURES							\
->> +	.abox_mask = GENMASK(1, 0),						\
->> +	.color = {								\
->> +		.degamma_lut_size = 129, .gamma_lut_size = 1024,		\
->> +		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |		\
->> +		DRM_COLOR_LUT_EQUAL_CHANNELS,					\
->> +	},									\
->> +	.dbuf.size = 4096,							\
->> +	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |		\
->> +		BIT(DBUF_S4),							\
->> +	.has_cdclk_crawl = 1,							\
->> +	.has_cdclk_squash = 1,							\
->> +	.has_ddi = 1,								\
->> +	.has_dp_mst = 1,							\
->> +	.has_dsb = 1,								\
->> +	.has_fpga_dbg = 1,							\
->> +	.has_hotplug = 1,							\
->> +	.has_ipc = 1,								\
->> +	.has_psr = 1,								\
->> +	.pipe_offsets = {							\
->> +		[TRANSCODER_A] = PIPE_A_OFFSET,					\
->> +		[TRANSCODER_B] = PIPE_B_OFFSET,					\
->> +		[TRANSCODER_C] = PIPE_C_OFFSET,					\
->> +		[TRANSCODER_D] = PIPE_D_OFFSET,					\
->> +	},									\
->> +	.trans_offsets = {							\
->> +		[TRANSCODER_A] = TRANSCODER_A_OFFSET,				\
->> +		[TRANSCODER_B] = TRANSCODER_B_OFFSET,				\
->> +		[TRANSCODER_C] = TRANSCODER_C_OFFSET,				\
->> +		[TRANSCODER_D] = TRANSCODER_D_OFFSET,				\
->> +	},									\
->> +	TGL_CURSOR_OFFSETS,							\
->> +										\
->> +	.__runtime_defaults.cpu_transcoder_mask =				\
->> +		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
->> +		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),				\
->> +	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),	\
->> +	.__runtime_defaults.has_dmc = 1,					\
->> +	.__runtime_defaults.has_dsc = 1,					\
->> +	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),			\
->
->fbc_mask is set just a few lines above (and this second version is wrong
->for Xe_LPD+).
+On Mon, Sep 11, 2023 at 09:48:21PM -0700, Lucas De Marchi wrote:
+> Fix some whitespace issues for register definitions and keep the defines
+> for DP_AUX_CH_CTL and DP_AUX_CH_DATA in the right place: together with
+> the bit definition.
+> 
+> While at it add a TODO entry that those defines shouldn't be using an
+> implicit dev_priv.
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-fixed
+In most of our other register headers we try to indent the values to
+column 49.  It looks like a bunch of the definitions here are only
+indented to column 41.  Not sure if you want to change that for
+consistency or not.  Either way,
 
->
->With this line dropped,
->
->        Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-thanks
-Lucas De Marchi
+> ---
+>  .../gpu/drm/i915/display/intel_dp_aux_regs.h  | 72 +++++++++----------
+>  1 file changed, 35 insertions(+), 37 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
+> index 5185345277c7..4503d94115d7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
+> @@ -13,48 +13,28 @@
+>   * packet size supported is 20 bytes in each direction, hence the 5 fixed data
+>   * registers
+>   */
+> -#define _DPA_AUX_CH_CTL		(DISPLAY_MMIO_BASE(dev_priv) + 0x64010)
+> -#define _DPA_AUX_CH_DATA1	(DISPLAY_MMIO_BASE(dev_priv) + 0x64014)
+> -
+> -#define _DPB_AUX_CH_CTL		(DISPLAY_MMIO_BASE(dev_priv) + 0x64110)
+> -#define _DPB_AUX_CH_DATA1	(DISPLAY_MMIO_BASE(dev_priv) + 0x64114)
+> -
+> -#define DP_AUX_CH_CTL(aux_ch)	_MMIO_PORT(aux_ch, _DPA_AUX_CH_CTL, _DPB_AUX_CH_CTL)
+> -#define DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PORT(aux_ch, _DPA_AUX_CH_DATA1, _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
+> -
+> -#define _XELPDP_USBC1_AUX_CH_CTL	0x16F210
+> -#define _XELPDP_USBC2_AUX_CH_CTL	0x16F410
+> -#define _XELPDP_USBC3_AUX_CH_CTL	0x16F610
+> -#define _XELPDP_USBC4_AUX_CH_CTL	0x16F810
+> -
+> -#define XELPDP_DP_AUX_CH_CTL(aux_ch)		_MMIO(_PICK(aux_ch, \
+> -						       _DPA_AUX_CH_CTL, \
+> -						       _DPB_AUX_CH_CTL, \
+> -						       0, /* port/aux_ch C is non-existent */ \
+> -						       _XELPDP_USBC1_AUX_CH_CTL, \
+> -						       _XELPDP_USBC2_AUX_CH_CTL, \
+> -						       _XELPDP_USBC3_AUX_CH_CTL, \
+> -						       _XELPDP_USBC4_AUX_CH_CTL))
+> -
+> -#define _XELPDP_USBC1_AUX_CH_DATA1      0x16F214
+> -#define _XELPDP_USBC2_AUX_CH_DATA1      0x16F414
+> -#define _XELPDP_USBC3_AUX_CH_DATA1      0x16F614
+> -#define _XELPDP_USBC4_AUX_CH_DATA1      0x16F814
+> -
+> -#define XELPDP_DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PICK(aux_ch, \
+> -						       _DPA_AUX_CH_DATA1, \
+> -						       _DPB_AUX_CH_DATA1, \
+> -						       0, /* port/aux_ch C is non-existent */ \
+> -						       _XELPDP_USBC1_AUX_CH_DATA1, \
+> -						       _XELPDP_USBC2_AUX_CH_DATA1, \
+> -						       _XELPDP_USBC3_AUX_CH_DATA1, \
+> -						       _XELPDP_USBC4_AUX_CH_DATA1) + (i) * 4)
+>  
+> +/* TODO: Remove implicit dev_priv */
+> +#define _DPA_AUX_CH_CTL			(DISPLAY_MMIO_BASE(dev_priv) + 0x64010)
+> +#define _DPB_AUX_CH_CTL			(DISPLAY_MMIO_BASE(dev_priv) + 0x64110)
+> +#define _XELPDP_USBC1_AUX_CH_CTL	0x16f210
+> +#define _XELPDP_USBC2_AUX_CH_CTL	0x16f410
+> +#define _XELPDP_USBC3_AUX_CH_CTL	0x16f610
+> +#define _XELPDP_USBC4_AUX_CH_CTL	0x16f810
+> +#define DP_AUX_CH_CTL(aux_ch)		_MMIO_PORT(aux_ch, _DPA_AUX_CH_CTL,	\
+> +						   _DPB_AUX_CH_CTL)
+> +#define XELPDP_DP_AUX_CH_CTL(aux_ch)	_MMIO(_PICK(aux_ch, \
+> +						    _DPA_AUX_CH_CTL, \
+> +						    _DPB_AUX_CH_CTL, \
+> +						    0, /* port/aux_ch C is non-existent */ \
+> +						    _XELPDP_USBC1_AUX_CH_CTL, \
+> +						    _XELPDP_USBC2_AUX_CH_CTL, \
+> +						    _XELPDP_USBC3_AUX_CH_CTL, \
+> +						    _XELPDP_USBC4_AUX_CH_CTL))
+>  #define   DP_AUX_CH_CTL_SEND_BUSY		REG_BIT(31)
+>  #define   DP_AUX_CH_CTL_DONE			REG_BIT(30)
+>  #define   DP_AUX_CH_CTL_INTERRUPT		REG_BIT(29)
+>  #define   DP_AUX_CH_CTL_TIME_OUT_ERROR		REG_BIT(28)
+> -
+>  #define   DP_AUX_CH_CTL_TIME_OUT_MASK		REG_GENMASK(27, 26)
+>  #define   DP_AUX_CH_CTL_TIME_OUT_400us		REG_FIELD_PREP(DP_AUX_CH_CTL_TIME_OUT_MASK, 0)
+>  #define   DP_AUX_CH_CTL_TIME_OUT_600us		REG_FIELD_PREP(DP_AUX_CH_CTL_TIME_OUT_MASK, 1)
+> @@ -83,4 +63,22 @@
+>  #define   DP_AUX_CH_CTL_SYNC_PULSE_SKL_MASK	REG_GENMASK(4, 0) /* skl+ */
+>  #define   DP_AUX_CH_CTL_SYNC_PULSE_SKL(c)	REG_FIELD_PREP(DP_AUX_CH_CTL_SYNC_PULSE_SKL_MASK, (c) - 1)
+>  
+> +/* TODO: Remove implicit dev_priv */
+> +#define _DPA_AUX_CH_DATA1		(DISPLAY_MMIO_BASE(dev_priv) + 0x64014)
+> +#define _DPB_AUX_CH_DATA1		(DISPLAY_MMIO_BASE(dev_priv) + 0x64114)
+> +#define _XELPDP_USBC1_AUX_CH_DATA1	0x16f214
+> +#define _XELPDP_USBC2_AUX_CH_DATA1	0x16f414
+> +#define _XELPDP_USBC3_AUX_CH_DATA1	0x16f614
+> +#define _XELPDP_USBC4_AUX_CH_DATA1	0x16f814
+> +#define DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PORT(aux_ch, _DPA_AUX_CH_DATA1,	\
+> +						    _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
+> +#define XELPDP_DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PICK(aux_ch, \
+> +							    _DPA_AUX_CH_DATA1, \
+> +							    _DPB_AUX_CH_DATA1, \
+> +							    0, /* port/aux_ch C is non-existent */ \
+> +							    _XELPDP_USBC1_AUX_CH_DATA1, \
+> +							    _XELPDP_USBC2_AUX_CH_DATA1, \
+> +							    _XELPDP_USBC3_AUX_CH_DATA1, \
+> +							    _XELPDP_USBC4_AUX_CH_DATA1) + (i) * 4)
+> +
+>  #endif /* __INTEL_DP_AUX_REGS_H__ */
+> -- 
+> 2.40.1
+> 
 
->
->
->Matt
->
->> +	.__runtime_defaults.has_hdcp = 1,					\
->> +	.__runtime_defaults.pipe_mask =						\
->> +		BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),		\
->> +	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |		\
->> +		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4)
->>
->> -	.__runtime_defaults.ip.ver = 14,
->> -	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),
->> -	.__runtime_defaults.cpu_transcoder_mask =
->> -		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
->> -		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
->> -	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |
->> -		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4),
->> +static const struct intel_display_device_info xe_lpdp_display = {
->> +	XE_LPDP_FEATURES,
->>  };
->>
->>  /*
->> --
->> 2.40.1
->>
->
->-- 
->Matt Roper
->Graphics Software Engineer
->Linux GPU Platform Enablement
->Intel Corporation
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
