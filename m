@@ -2,50 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86A3579D3A1
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 16:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4016879D414
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 16:52:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CCD110E423;
-	Tue, 12 Sep 2023 14:30:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE58210E425;
+	Tue, 12 Sep 2023 14:52:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 052AD10E428
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Sep 2023 14:30:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694529015; x=1726065015;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZhmJUXnxDGVMS7+dMRBbrI+f+2xxI0IHtZloRpHXQ+0=;
- b=TOBK/jPDCJJBJoot+SX4fsE4pvwvucBUBwEVzZBtQ1DgzjbwHE6yKcGK
- 1aRgn3Dioxtz1jC0QgArjUYeOiq3uU1hxLLidO04Jmzs6/2Go40K2gdcA
- 0rvnDBsLN+UOo78cIh+ktnqSom3Om0SBN3V0fj6+fZZ2vQ86L2+j32BcD
- lKP+VQtnQE2AcOapF692fc46XIqQksMT2drHcNHu7IpKsCi9I/o4DqrEL
- ZEkmn7yvpA8nEObKfnuKoKVoXXVe/OlCIE6Y2YtzYZKCKtPRlhbYKjEyt
- P/Z94CAFXiI4vKlLL79xlEghR6kJoQJRadJNR8NfAYDT91GlYtU5nnNV5 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="409343860"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="409343860"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 07:30:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="886951494"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="886951494"
-Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 07:29:45 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 12 Sep 2023 07:19:31 -0700
-Message-Id: <20230912141931.1803917-4-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230912141931.1803917-1-jonathan.cavitt@intel.com>
-References: <20230912141931.1803917-1-jonathan.cavitt@intel.com>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19C0210E0C5;
+ Tue, 12 Sep 2023 14:52:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=/Dq/kgzmWP9Mq/RztWe10io0Pr7hKjtceCIyaERWgas=; b=qHN5HslgceiWbG/UJUBNn1pF3A
+ o22DOKTSiXFEG36QidRahZClCOxse7OpeqaJVrC2GYwMF2H/bbFg2YL1Metn9ZjT3qHyXue1uO+ro
+ e4SIeuw7M46xOs/Wib4Fx+qYptqDHQ1zVrKdYPtoNwqOz9uGfYtA+zdzzIf77Ub1uDRG5eZJQ9hbk
+ F/OBiXE4ip/BchkJcNmtZDlm1GPHU/u0Uqrh9BCFiuRZni6vi8MN61DMGrVkDsFZ3nJIElCU8Z2Es
+ bYROUD+tYwxcJeHADYyJxvyYo0WD9/VyhwlzpWcF2gsS1htfhd7Ul4o358Nqn0kIVgqvwgsCipqo4
+ 0uHERL/Q==;
+Received: from [2601:1c2:980:9ec0::9fed]
+ by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
+ id 1qg4kY-003fWJ-1C; Tue, 12 Sep 2023 14:52:22 +0000
+Message-ID: <4364d453-3560-c3c2-15b1-146f9578755b@infradead.org>
+Date: Tue, 12 Sep 2023 07:52:21 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v9 3/3] drm/i915: Set copy engine arbitration
- for Wa_16018031267 / Wa_16018063123
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+References: <20230911121131.006d3fec@canb.auug.org.au>
+ <eac933bb-eb6d-8b21-422a-b8c6255facc3@infradead.org>
+ <87a5tresu8.fsf@intel.com>
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <87a5tresu8.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] linux-next: Tree for Sep 11
+ (drivers/gpu/drm/i915/display/intel_backlight.o)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,52 +56,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andi.shyti@intel.com, chris.p.wilson@linux.intel.com,
- tomasz.mistat@intel.com, jonathan.cavitt@intel.com, rodrigo.vivi@intel.com,
- gregory.f.germano@intel.com, matthew.d.roper@intel.com, nirmoy.das@intel.com
+Cc: intel-gfx@lists.freedesktop.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Set copy engine arbitration into round robin mode
-for part of Wa_16018031267 / Wa_16018063123 mitigation.
 
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_regs.h | 3 +++
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
- 2 files changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-index 2e06bea73297a..823c6c40213f5 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-@@ -124,6 +124,9 @@
- #define RING_INDIRECT_CTX(base)			_MMIO((base) + 0x1c4) /* gen8+ */
- #define RING_INDIRECT_CTX_OFFSET(base)		_MMIO((base) + 0x1c8) /* gen8+ */
- #define ECOSKPD(base)				_MMIO((base) + 0x1d0)
-+#define   XEHP_BLITTER_SCHEDULING_MODE_MASK	REG_GENMASK(12, 11)
-+#define   XEHP_BLITTER_ROUND_ROBIN_MODE		\
-+		REG_FIELD_PREP(XEHP_BLITTER_SCHEDULING_MODE_MASK, 1)
- #define   ECO_CONSTANT_BUFFER_SR_DISABLE	REG_BIT(4)
- #define   ECO_GATING_CX_ONLY			REG_BIT(3)
- #define   GEN6_BLITTER_FBC_NOTIFY		REG_BIT(3)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 70071ead0659c..3f8177bf5de70 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -2777,6 +2777,11 @@ xcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			 RING_SEMA_WAIT_POLL(engine->mmio_base),
- 			 1);
- 	}
-+	/* Wa_16018031267, Wa_16018063123 */
-+	if (NEEDS_FASTCOLOR_BLT_WABB(engine))
-+		wa_masked_field_set(wal, ECOSKPD(engine->mmio_base),
-+				    XEHP_BLITTER_SCHEDULING_MODE_MASK,
-+				    XEHP_BLITTER_ROUND_ROBIN_MODE);
- }
- 
- static void
+On 9/12/23 00:47, Jani Nikula wrote:
+> On Mon, 11 Sep 2023, Randy Dunlap <rdunlap@infradead.org> wrote:
+>> On 9/10/23 19:11, Stephen Rothwell wrote:
+>>> Hi all,
+>>>
+>>> Please do *not* include material destined for v6.7 in your linux-next
+>>> included branches until *after* v6.6-rc1 has been released.  Also,
+>>> do *not* rebase your linu-next included branches onto v6.5.
+>>>
+>>> Changes since 20230908:
+>>>
+>>> Non-merge commits (relative to Linus' tree): 643
+>>>  614 files changed, 227990 insertions(+), 9502 deletions(-)
+>>>
+>>> ----------------------------------------------------------------------------
+>>
+>> on x86_64:
+>>
+>> # CONFIG_ACPI is not set
+>> CONFIG_DRM_I915=y
+>> CONFIG_BACKLIGHT_CLASS_DEVICE=m
+>>
+>> I915 selects BACKLIGHT_CLASS_DEVICE if ACPI is set.
+>>
+>> ld: drivers/gpu/drm/i915/display/intel_backlight.o: in function `intel_backlight_device_register':
+>> intel_backlight.c:(.text+0x4988): undefined reference to `backlight_device_get_by_name'
+>> ld: intel_backlight.c:(.text+0x4a1b): undefined reference to `backlight_device_register'
+>> ld: drivers/gpu/drm/i915/display/intel_backlight.o: in function `intel_backlight_device_unregister':
+>> intel_backlight.c:(.text+0x4b56): undefined reference to `backlight_device_unregister'
+> 
+> This comes up periodically. The fix is for i915 to depend on backlight,
+> but it's not possible to fix just i915, as it'll lead to circular deps
+> unless *all* select backlight is switched to depend on backlight.
+> 
+> I've gone through it once [1], and not keen on doing it again unless
+> there's buy-in.
+> 
+> IS_REACHABLE() is often suggested as a workaround, but I think it's just
+> plain wrong. i915=y backlight=m is not a configuration that makes
+> sense. Kernel configuration is hard enough, there's no point in allowing
+> dumb configs that just silently don't work.
+> 
+
+Yes, IS_REACHABLE() is just fugly nonsense.
+
+Thanks for the reminder of your attempt(s).
+
+> 
+> BR,
+> Jani.
+> 
+> 
+> [1] https://lore.kernel.org/r/1413580403-16225-1-git-send-email-jani.nikula@intel.com
+> 
+> 
+> 
+
 -- 
-2.25.1
-
+~Randy
