@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E88E679C4D9
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 06:49:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CBB079C4D7
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 06:49:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ABCD10E379;
-	Tue, 12 Sep 2023 04:48:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 349FC10E36E;
+	Tue, 12 Sep 2023 04:48:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D372610E350;
- Tue, 12 Sep 2023 04:48:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2631C10E35B;
+ Tue, 12 Sep 2023 04:48:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694494115; x=1726030115;
+ t=1694494116; x=1726030116;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BCfFcplIfu7E4BwgrlcVWNFbT+X+Q5CneihKMfjaHS0=;
- b=R4PIRRPM8u4f45LOCo7ErBHbBu3mXmcGfiQKiRXo5iuwxi5UbRIPAh7C
- WUuoa4rElKMc88OpBg2sBIB4LeGe1YjRU8lm1PgU5ZTHqGBx4OOXOpaVW
- vMqsY7oyfJGnDvHMEZyGegYKWx5jiH84F/QGEYq1zclyaWdhVy2MjO9Bs
- T5Wcx3oEOlrhj9NOW6eIs5v7rPbWHDO0LAkJTPqkZ/HyRi1m2QETZDRQ+
- 094imTuuBMOVfzykecTpGCCwsritJcwP9dUZsWHYvOn8UURd/Cqwihepr
- sFohsMi0EsiI76E5fEdtmnZDarC6O/0hYKUbA+8WVvnPEXkiqzN+LeW+S Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182335"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182335"
+ bh=hClkUmKNtPwN+1T8/LZ1sd9IsLmMBSP6cw8gCzsPxPs=;
+ b=feKTFHY29KLoDeFRPbElgbk5qoPhoth0vsJNhgeEJez+B/XXrCofz63G
+ v8ajb7GV1AvNz2V1WBh+pIRjLrxbiQWdDYGAH0lh5Xj5C8DeqElxnZb8K
+ Zg7zsFJM6SaAfof0NARorH6Sytn9LNzOqkSM3959paL8nFhSlcei6u1C4
+ /tT2JkaUWLX3DSH+ZhSqwxXrr3d95z3CYgdBrBniAZvDNBBR/rmL0QVLZ
+ c1OlWrpiR8Bsmk7zQ7g7VevMkphtmasrH7RCYo7m+6BAdirrbHqZulob5
+ y7ew9kXChwIFP1GRTUTHl5s6sTuAedl4ZVtLMln3QeEKI5p2TRT/iJFs8 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182336"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182336"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 21:48:35 -0700
+ 11 Sep 2023 21:48:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419962"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419962"
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419965"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419965"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Sep 2023 21:48:35 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Sep 2023 21:48:26 -0700
-Message-Id: <20230912044837.1672060-19-lucas.demarchi@intel.com>
+Date: Mon, 11 Sep 2023 21:48:27 -0700
+Message-Id: <20230912044837.1672060-20-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 18/29] drm/i915/xe2lpd: Handle port AUX
- interrupts
+Subject: [Intel-gfx] [PATCH v3 19/29] drm/i915/xe2lpd: Read pin assignment
+ from IOM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,76 +60,90 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>, Luca Coelho <luciano.coelho@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Gustavo Sousa <gustavo.sousa@intel.com>
+From: Luca Coelho <luciano.coelho@intel.com>
 
-Differently from previous version, Xe2_LPD groups all port AUX interrupt
-bits into PICA interrupt registers.
+Starting from display version 20, we need to read the pin assignment
+from the IOM TCSS_DDI_STATUS register instead of reading it from the
+FIA.
 
-While at it, drop some trailing newlines.
+We use the pin assignment to decide the maximum lane count.  So, to
+support this change, add a new lnl_tc_port_get_max_lane_count() function
+that reads from the TCSS_DDI_STATUS register and decides the maximum
+lane count based on that.
 
-BSpec: 68958, 69697
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+BSpec: 69594
+Cc: Mika Kahola <mika.kahola@intel.com>
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_irq.c | 4 +++-
- drivers/gpu/drm/i915/display/intel_hotplug_irq.c | 3 +++
- drivers/gpu/drm/i915/i915_reg.h                  | 5 ++---
- 3 files changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_tc.c | 28 +++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h         |  1 +
+ 2 files changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 62ce55475554..bff4a76310c0 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -792,7 +792,9 @@ static u32 gen8_de_port_aux_mask(struct drm_i915_private *dev_priv)
- {
- 	u32 mask;
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+index 678693978892..e9ced251c170 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.c
++++ b/drivers/gpu/drm/i915/display/intel_tc.c
+@@ -290,6 +290,31 @@ u32 intel_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port)
+ 	       DP_PIN_ASSIGNMENT_SHIFT(tc->phy_fia_idx);
+ }
  
--	if (DISPLAY_VER(dev_priv) >= 14)
-+	if (DISPLAY_VER(dev_priv) >= 20)
-+		return 0;
-+	else if (DISPLAY_VER(dev_priv) >= 14)
- 		return TGL_DE_PORT_AUX_DDIA |
- 			TGL_DE_PORT_AUX_DDIB;
- 	else if (DISPLAY_VER(dev_priv) >= 13)
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-index 95a7ea94f417..3398cc21bd26 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-@@ -514,6 +514,9 @@ void xelpdp_pica_irq_handler(struct drm_i915_private *i915, u32 iir)
- 	u32 trigger_aux = iir & XELPDP_AUX_TC_MASK;
- 	u32 pin_mask = 0, long_mask = 0;
++static int lnl_tc_port_get_max_lane_count(struct intel_digital_port *dig_port)
++{
++	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
++	enum tc_port tc_port = intel_port_to_tc(i915, dig_port->base.port);
++	intel_wakeref_t wakeref;
++	u32 val, pin_assignment;
++
++	with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE, wakeref)
++		val = intel_de_read(i915, TCSS_DDI_STATUS(tc_port));
++
++	pin_assignment =
++		REG_FIELD_GET(TCSS_DDI_STATUS_PIN_ASSIGNMENT_MASK, val);
++
++	switch (pin_assignment) {
++	default:
++		MISSING_CASE(pin_assignment);
++		fallthrough;
++	case DP_PIN_ASSIGNMENT_D:
++		return 2;
++	case DP_PIN_ASSIGNMENT_C:
++	case DP_PIN_ASSIGNMENT_E:
++		return 4;
++	}
++}
++
+ static int mtl_tc_port_get_max_lane_count(struct intel_digital_port *dig_port)
+ {
+ 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+@@ -348,6 +373,9 @@ int intel_tc_port_max_lane_count(struct intel_digital_port *dig_port)
+ 
+ 	assert_tc_cold_blocked(tc);
  
 +	if (DISPLAY_VER(i915) >= 20)
-+		trigger_aux |= iir & XE2LPD_AUX_DDI_MASK;
++		return lnl_tc_port_get_max_lane_count(dig_port);
 +
- 	for (pin = HPD_PORT_TC1; pin <= HPD_PORT_TC4; pin++) {
- 		u32 val;
+ 	if (DISPLAY_VER(i915) >= 14)
+ 		return mtl_tc_port_get_max_lane_count(dig_port);
  
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 2f5dd5361263..2f115d339913 100644
+index 2f115d339913..efcf1461988f 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4467,13 +4467,12 @@
- #define PICAINTERRUPT_IMR			_MMIO(0x16FE54)
- #define PICAINTERRUPT_IIR			_MMIO(0x16FE58)
- #define PICAINTERRUPT_IER			_MMIO(0x16FE5C)
--
- #define  XELPDP_DP_ALT_HOTPLUG(hpd_pin)		REG_BIT(16 + _HPD_PIN_TC(hpd_pin))
- #define  XELPDP_DP_ALT_HOTPLUG_MASK		REG_GENMASK(19, 16)
--
- #define  XELPDP_AUX_TC(hpd_pin)			REG_BIT(8 + _HPD_PIN_TC(hpd_pin))
- #define  XELPDP_AUX_TC_MASK			REG_GENMASK(11, 8)
--
-+#define  XE2LPD_AUX_DDI(hpd_pin)		REG_BIT(6 + _HPD_PIN_DDI(hpd_pin))
-+#define  XE2LPD_AUX_DDI_MASK			REG_GENMASK(7, 6)
- #define  XELPDP_TBT_HOTPLUG(hpd_pin)		REG_BIT(_HPD_PIN_TC(hpd_pin))
- #define  XELPDP_TBT_HOTPLUG_MASK		REG_GENMASK(3, 0)
- 
+@@ -6351,6 +6351,7 @@ enum skl_power_gate {
+ #define TCSS_DDI_STATUS(tc)			_MMIO(_PICK_EVEN(tc, \
+ 								 _TCSS_DDI_STATUS_1, \
+ 								 _TCSS_DDI_STATUS_2))
++#define  TCSS_DDI_STATUS_PIN_ASSIGNMENT_MASK	REG_GENMASK(28, 25)
+ #define  TCSS_DDI_STATUS_READY			REG_BIT(2)
+ #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_TBT	REG_BIT(1)
+ #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_ALT	REG_BIT(0)
 -- 
 2.40.1
 
