@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5D0F79C4DD
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 06:49:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7998F79C4EC
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 06:49:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB5D10E37F;
-	Tue, 12 Sep 2023 04:48:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCA7910E396;
+	Tue, 12 Sep 2023 04:49:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E60710E38B;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADDF010E38D;
  Tue, 12 Sep 2023 04:48:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1694494118; x=1726030118;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2hAswdojYQeUw1rZps9euU4MYmnJT2szXWg44XGT3pg=;
- b=UkqGwFkTbuHcplt9BMSFpJ4l51CIFGltYpFU5jmM/4WViMEMp4eMdLqf
- 92hLHp0ghDCJyUQdC7umklfA118ndxcCpQXEm1sGcgU4yNiAWDp5xvJ22
- LmPEMUlflqHkF4w72em3DoJk1CWwNzvmmzxwHxY31LJb5J/XfU6B50BRq
- D8TB6J0MurONCwDCR4FxmMNkExOxB41uiUkJFzbt+xEru3OCH7XDpSPst
- bLRIKEcB8QmumpKdPbMrbpyuxhUNX7AESYOHcG2V5Q/y8jKpZP1JZJ+Nk
- K0aVG0NuQQlwdePBr66Rzm97lvmneAqt+FZo5Auwy/Qgx+0nQpPxu1wTA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182349"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182349"
+ bh=AssikX67Dy4A+aoEXSq9fSPghpAPBhmX4ysYH4Tib8A=;
+ b=Aij17jj5rs8wPO0n5977n1lxmGUfJWWXBZ6yz3VXHYZuqYy82G9KWfh0
+ YaVgoTFgVgXfFKDC0M0sfai7aBE+Omt5+z8sU/FkXDmJsS3JO8C1Mpj5f
+ pOqKfWSLTiNeKEcesNJkz85Y6lfRMZrhohGm7675H4sxR05BwGZbqH3im
+ THnRSDSUc7nFM3C3CejEV+Bd8f4OLTFD7hP1LqWNVftUEls5MZb+Hm3k6
+ IFk5MUvTcdgDBui5xgR1eh19flCrLnh09igbp9XzpkBI3lDlCWAkW91kz
+ mR0i7hBfZRg7ARX9cdLeNx61W/wAS8VfJZcpYbkUgDfFSrWtAgnaivX4H w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182350"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182350"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Sep 2023 21:48:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419992"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419992"
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419995"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419995"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 21:48:37 -0700
+ 11 Sep 2023 21:48:38 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Sep 2023 21:48:36 -0700
-Message-Id: <20230912044837.1672060-29-lucas.demarchi@intel.com>
+Date: Mon, 11 Sep 2023 21:48:37 -0700
+Message-Id: <20230912044837.1672060-30-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3 28/29] drm/i915/xe2lpd: Write DBuf after
- CDCLK change in post plane
+Subject: [Intel-gfx] [PATCH v3 29/29] drm/i915/xe2lpd: Update mbus on post
+ plane updates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,47 +65,53 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-Previously we always updated DBuf MBUS CTL and DBUF CTL regs after
-CDCLK has been changed(CDCLK_CTL), however for Xe2-LPD we can't do like
-that anymore. According to BSpec, we have to first update DBuf regs and
-then write CDCLK regs, when CDCLK is decreased, which we do in post
-plane.
+According to BSpec we need to write the MBUS CTL and DBUF CTL both for
+increasing CDCLK case (pre plane) and for decreasing CDCLK case (post
+plane). Make sure those updates are in place for Xe2-LPD.
 
-So now we do CDCLK post plane update only after DBuf regs are
-written (CDCLK/MDCLK separation requires MDCLK/CDCLK ratio to be written
-to DBuf regs).
+Since the mbus update is not only on pre-enable anymore, also rename the
+function accordingly.
 
 Cc: Mika Kahola <mika.kahola@intel.com>
 Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 83e1bc858b9f..b0455d5d9bfd 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7039,7 +7039,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
- 	dev_priv->display.funcs.display->commit_modeset_enables(state);
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 1fefb02876c8..955a8fb7ba19 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -3486,7 +3486,7 @@ static int get_mbus_mdclk_cdclk_ratio(struct drm_i915_private *i915,
+  * Configure MBUS_CTL and all DBUF_CTL_S of each slice to join_mbus state before
+  * update the request state of all DBUS slices.
+  */
+-static void update_mbus_pre_enable(struct intel_atomic_state *state)
++static void update_mbus(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ 	u32 mbus_ctl, dbuf_min_tracker_val;
+@@ -3545,7 +3545,7 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
  
--	if (state->modeset)
-+	if (state->modeset && DISPLAY_VER(dev_priv) < 20)
- 		intel_set_cdclk_post_plane_update(state);
+ 	WARN_ON(!new_dbuf_state->base.changed);
  
- 	intel_wait_for_vblank_workers(state);
-@@ -7086,6 +7086,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	intel_dbuf_post_plane_update(state);
- 	intel_psr_post_plane_update(state);
+-	update_mbus_pre_enable(state);
++	update_mbus(state);
+ 	gen9_dbuf_slices_update(i915,
+ 				old_dbuf_state->enabled_slices |
+ 				new_dbuf_state->enabled_slices);
+@@ -3567,6 +3567,9 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
  
-+	if (state->modeset && DISPLAY_VER(dev_priv) >= 20)
-+		intel_set_cdclk_post_plane_update(state);
+ 	WARN_ON(!new_dbuf_state->base.changed);
+ 
++	if (DISPLAY_VER(i915) >= 20)
++		update_mbus(state);
 +
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
- 		intel_post_plane_update(state, crtc);
- 
+ 	gen9_dbuf_slices_update(i915,
+ 				new_dbuf_state->enabled_slices);
+ }
 -- 
 2.40.1
 
