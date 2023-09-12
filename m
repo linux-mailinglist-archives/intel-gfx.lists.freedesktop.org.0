@@ -1,142 +1,142 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55E6479D549
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 17:51:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FCE879D554
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 17:52:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D351410E431;
-	Tue, 12 Sep 2023 15:50:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F82710E080;
+	Tue, 12 Sep 2023 15:52:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D38410E080;
- Tue, 12 Sep 2023 15:50:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5680E10E080;
+ Tue, 12 Sep 2023 15:52:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694533855; x=1726069855;
+ t=1694533961; x=1726069961;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=qlIOmWrdjsW7bMqknpDa0dIQX5xUWLKDBDHQQm9E9VM=;
- b=HJ3evtaDjGyDalI4NOEjNw/6zyPprcQLX2ddp+5sNEkK7cM6VerUXNOP
- xfYg93xWHr2LBQOa67albNQyynBBJxd/w9XRdRiyIyzjjy8nZ6X/oqmMZ
- XkoxuGMBITPBk7p+onNSXCPOk3mvZQChuBLnXthEgxYF+sVPF1xqRcjqt
- KJN5fy5hF70m7/SYDo56TIZMIwGlEZxWfyKSjIFWPsRg95fUw2i1vzKpz
- gAQAMDOYE6famkvS4Jnui8729QDZZSaOCSQaqvvHYDKOH1lRfJ158tB29
- e9ZTWmQ7QPWI1h07aGm7mOmQfcWqYXHLxbi9q6c2TP/u57v7gNa1IVfmI Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="368678242"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="368678242"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 08:50:55 -0700
+ bh=zHtXqCXcaWT44H+VirBGgmXhoOgiXDduz/s7va16xEU=;
+ b=PHe94tg3TuLiXLLAAe4ddpAQtpaH55j9DP2Wxp5ZviiBwBBJbJ5rukMy
+ 0hsOVLHrJ+L+zqpoBPVHPw7c5GDK4oWGRTe3IajDiZrucVxUsjbXjPrBK
+ qRPUKohRfJOxBwaKPpSpBsB1gjfLg/RijheuY+2mbKGX4OEGpMiJWcgXc
+ Le02YK0WmOYGF3nhnnK9lhpcZWr9Zog25tK7J5Ndeo+YBAhVJgreoqiK+
+ sdVm7KRZEOt8+TcmjJI110DI6JyygInYV9uKS21KYsx+4L2YckRDLCGpd
+ Csr3TrfW0nkjVoaKI7UDRAfDWQ8+yfiUbBkobiE2rA6hChFGuGSsr4DD3 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="444848512"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="444848512"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2023 08:52:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="693535265"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="693535265"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Sep 2023 08:50:55 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="886980581"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="886980581"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Sep 2023 08:52:12 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 12 Sep 2023 08:50:54 -0700
+ 15.1.2507.32; Tue, 12 Sep 2023 08:52:39 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Tue, 12 Sep 2023 08:52:38 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 12 Sep 2023 08:50:54 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 12 Sep 2023 08:50:54 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Tue, 12 Sep 2023 08:52:38 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 12 Sep 2023 08:50:53 -0700
+ 15.1.2507.32; Tue, 12 Sep 2023 08:52:38 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XRuTiDs8tyPO+dzmS5jj1JdiZhOx4H0UvPtbO7dVEKAmiWhBAirwIAfa+BYb5SyKIsxHU9CcmCgbDs27YD9c36ISm5roXGf47EOypi2CvkwbtchnrOFfr8T3LrjUNIoxfZ1SmU+mboDwSJ7VZVfGqTKc/n9wLicHJyorymdLf1jmnsjT8NEHYAfy5vo4q6AL/jq9ZGxAHsOMMrTiQGddE1hWMSlnctGKlWNpzHYgZO74W8Wz6awxqPFDhvyyvDzEsSdw5Wnr+a5LZoiWekGk+JTDFJrA0XnGI2NkONLsawddvUAlrR8b09Xyo4lxiK45gbWJX/2WK5h/MzrvuhheYA==
+ b=OuRPSqu4X5uh+C42A9zy5ypVCCD/7orFWRaWw0HbHPwLaC5a8eS2mLHtRhpwQt2y8byLlWw/v9x5wa4LMjY8o2ZoxoZls2qbJHTVqUtILQJ/eoUoLIL6JFJc4LiOIixYPALWTBJcvl7Ua3BD4alBcCtIkNFcxDVNogQuza5c+3fZOf4s1KPmxuwY/5QDR0tH1iYCZD6gnwskPdLPmrD8u8mdEQk7MIBbh8n6gliit9uRII9rSSFThvn1hT9ya8dLNVTB1ePlajdqTxnuesWXKYKZAIQFF6JlUj2f8g+CmlUH8ziU/I3nx9uBI7S5/M8plkexmk6lQtizfpnMkFogKw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W2SLZ/7AVXbGCXccsAHQYp0OySEhJIfqH8FA36FRzlA=;
- b=RxLz5HbIsFCyN/ztyvWTRE/8lp6WiORAeSNcpBwpO9oQQqLKZlWKS7g0COmhwdo5LvkaJs5nBbT6o+Kh+ckZuPGlurZKuaH/y8R/eiQ/2JyPqbuVk/mLJjtRxylXDOKFEodIHj7LEhdhDXIncMm7gw+V3DZ007zCA6t6tIY/Dw28QpI/MTVqollNMi2T8o0HI/LQh8kjiyLV3kOTCgr8YI5bMUtd/M6prwUxqhkvTi6icyAVjKL1TTvrggCo7L1o/fSot921aVjYsZ91/2aHArU3aGn+MJphFZITgIjoTnS9sQq37baqZKTHo0OWLmA6tKoHC5Dt5wW0CD5rvQMtdQ==
+ bh=gadBePO6UhuXVLMJ3FoEZHT4kOODHefhW/7u6ezCt5s=;
+ b=BO06BwhBJ+46/zl5emx/g6W+D9R3333VzhwmGW5S7P8n0X+5Dgl71JZGYysHl9z363g0x/jAEdilI2ScbpQsh/C+FoOywh7Qhc8/yOk16lcYaqGHs+UlTD34t8jHdHinaGwJn5xp+RbY/Wj9q8iHdX2TmKy0wjf58ZUPMbt1B8CnRt6NtGftwUpZhc8DTZAZ6bl6fD9jo31nBVLFOPzg2+FuZFRSaKN6Oz+dMJsZdn3RVZ7N7ZylPi2bKTWiBRi61b3SKVc0tCD637i3cMp20IyJHAMBPe8E7ZE97z9fmsdgdbDJeumG4Isyjd9kylgksLN1Cf+kvovypXGkYDe+ng==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- PH0PR11MB4998.namprd11.prod.outlook.com (2603:10b6:510:32::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6768.37; Tue, 12 Sep 2023 15:50:52 +0000
+ SJ2PR11MB8568.namprd11.prod.outlook.com (2603:10b6:a03:56c::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.31; Tue, 12 Sep
+ 2023 15:52:36 +0000
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6768.029; Tue, 12 Sep 2023
- 15:50:52 +0000
-Date: Tue, 12 Sep 2023 08:50:49 -0700
+ 15:52:36 +0000
+Date: Tue, 12 Sep 2023 08:52:33 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20230912155049.GJ2706891@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20230912155233.GK2706891@mdroper-desk1.amr.corp.intel.com>
 References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
- <20230912044837.1672060-15-lucas.demarchi@intel.com>
+ <20230912044837.1672060-16-lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230912044837.1672060-15-lucas.demarchi@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0018.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::23) To DS7PR11MB7859.namprd11.prod.outlook.com
+In-Reply-To: <20230912044837.1672060-16-lucas.demarchi@intel.com>
+X-ClientProxiedBy: BYAPR05CA0101.namprd05.prod.outlook.com
+ (2603:10b6:a03:e0::42) To DS7PR11MB7859.namprd11.prod.outlook.com
  (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|PH0PR11MB4998:EE_
-X-MS-Office365-Filtering-Correlation-Id: 20c40580-e8a7-4084-b061-08dbb3a80abd
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SJ2PR11MB8568:EE_
+X-MS-Office365-Filtering-Correlation-Id: 52c3aaf4-7216-4146-43c0-08dbb3a8491e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UiHMOp3v9j/IrBdudFDgxK3/bMoRR2UX5YHdwSEts436bFNrfGeO/V1IjLlZM7U03VIbLAujgW5YpchOFOVg6gQZrvW/TVoC+p0CMRjsBqsydeVUSSczwxMfP2qy1YWe4Ui3rUA7LLBc1xRuOXtZlbjW6iWy/YXKGN51qFKGkmMjSmQj177uexhf2XT0ZTFrds3FC0PTNIAOQX9vrl0lZyhCHWVs5U4gYx/ERz2LmjpYlPHD5co2NiCUSpEmqA593KLC9sAhYkaPieFbWaxKXLxoQkC3PfUkTImBOOIhJZX9BPm1b1yc401nF7QNb/wZSWsNWSS8teDD+hKWALlmUWSuiFfCraDMTgE4GXWlKAwdE35Ck7orC1drzfPqw2Fa6WvCMi8MQWk5g6veYNexjdLbdt4hnjGJ8KmHQ+sY6Aj5xzdZJr7Mjfv4lX+uHR7+SpFGFCrBHLieYHwwHqC0EDsSPRVf3Db7tpKiGDj8hPtY8cImx5/aM5xD946AMDX6fkaa1ZNIgtb/xdX5y2+J9xWmlPLSzPOzromj45jiRKxX5EHXGJuCwU1U8wuDcssF
+X-Microsoft-Antispam-Message-Info: JMppzkeJm76epe1ErHOUZpABjK73pbDU6EVp0k94O7Tot5yC+sDwFgQ+qsnBjyHOHuM8arspHPcj3lE5MBraStQnVgiT0VnzLcb78/h6y9qDhmWdminjtun+Zd1yUzpA/jYgOG7pCMH2eIT1vG2okKA5WKDV+p8GpTVcXSy3jSE09h3/3kqNrtwasQNywDOjMuoAFqP6V+CQ7Y9Jp69exLyGyOnDKWccO+TKqCXb5mpBsZeaZPvsVI3Ww8P2O+/VnVLTmbmSJpyCf2q/qrt/cidQU4bYAncDNErKn0o6E52rDVyDOXI2yzb/ZX29C3UXqIgJB60reOoBPVDqXzXrfYZrsPWCmPhXMcSyMcLq8eQ+QuTx3+TL/Bp3Rk8UbfdC0zzaJ59cVhOCURxKZmAVog+rrv6AhOfgCVTOeV2a0iEQG1aUPLdOfTrKsfx8n3zO8pWroHddv9F45psjm/sjp34ZaxseFE7pzZwCx0QRCaGMgUqeVz1oubiDNL6lyYXJW1rAQldvYNHGCxBhs+3pd4u/cxQUjPgD/DvZ/vRWhXcCf9INUYyGolDW4MxgmKz6J+rF3EtNN+ck9ozxR2YlttWsH3dPvX0QDibacRZmFMVIr3yCt3w9ySG1dckT86lN
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(376002)(39860400002)(366004)(346002)(136003)(451199024)(1800799009)(186009)(6666004)(66946007)(66556008)(6636002)(66476007)(6506007)(6486002)(41300700001)(316002)(6512007)(478600001)(26005)(8936002)(8676002)(450100002)(1076003)(6862004)(4326008)(82960400001)(5660300002)(86362001)(2906002)(33656002)(38100700002)(83380400001);
+ SFS:(13230031)(376002)(346002)(396003)(39860400002)(366004)(136003)(186009)(1800799009)(451199024)(8676002)(316002)(6636002)(66946007)(66476007)(66556008)(26005)(6486002)(83380400001)(6506007)(6666004)(6512007)(1076003)(33656002)(82960400001)(38100700002)(86362001)(478600001)(2906002)(41300700001)(450100002)(5660300002)(6862004)(4326008)(8936002)(169823001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IVG/+A731cR1NHcNRrqGiD/IauhpF1PX9qMKE7eZvt0G7uBTX33PbLS6m3ub?=
- =?us-ascii?Q?H+TfqNFo9EYSyGQkAH/vl1VXIi0hs4NgIppM5O6GhdFLlgtmt70x/OetCxA/?=
- =?us-ascii?Q?gFNtfU9FmfFimwTcuBsJfHJ8Wa1N1MUi3yCCVYQHbRVlWf2KUywljGZhnHAW?=
- =?us-ascii?Q?3Tdc0P0fNycj7YTniRmQrVt+Jgq3LLyL3cja6/JsyyXFi+MI8OyfPFryRYuL?=
- =?us-ascii?Q?eVFPzr+a5lv1TEO8DEFnRh/wTVGV/qCpHBnM7AkuNZ62YDYhSRjyh9CO7mED?=
- =?us-ascii?Q?ncZAZy57HOIza22+mXl+lSzgYg3x+kF6GtKN3lvJq2RIq8eGYF9gMyMhr0sp?=
- =?us-ascii?Q?J21y8GzfSD2XJt6kwzqquGe/Qy8L2zBAWKgMW89B2TyB4pkv1f5oJRp7KKeI?=
- =?us-ascii?Q?ZhlAg/Su9WDb/ZCWfZd773KdnidKW9fTWHk23R2YHEk2saNPk9V6yvxP+c8+?=
- =?us-ascii?Q?imPB9qvkcF5SK3vyFvAj+RtDvpfugXl17+XTNhaDN2nL1dHUQLbSX6PTXpmU?=
- =?us-ascii?Q?GLic2/jNlQSBz4Rl09IL+OYGRqplliC8qJrSyZSWyCICDoyqmmnX+0BA9SLl?=
- =?us-ascii?Q?OGgUvEc0dttEcd9ZRj82yLIj89UKkPQ2CxxyE8nsLN6EDDnjOTNARHVm+6nI?=
- =?us-ascii?Q?AKH5RtjTBXbxzA8Um+94PZ6iLhiCCrY0PTpoMt+Wffzc2W+gjMcOCVxFGfPM?=
- =?us-ascii?Q?Tk8xBq1+wQgVeoSDkKHHQC/E3G/EzNL44nj0JmWBR5ONWa7QQFBRQPqztALk?=
- =?us-ascii?Q?jMdvtl7cpmiwbKVtHHc2eHBwZ7pAn4zbG+pmHsvRTy+iDt8OyvvrC1kk0c1l?=
- =?us-ascii?Q?JkVtUtQ1N15yOQvoFp4tlhbY3rPLqRYBnWTwW1E91r0rot+V5Bc0FgrgL9lK?=
- =?us-ascii?Q?OuEvf6T44VGEV9qntFIAuuLPhWt/cnT6Kqv4t9tWpWMbhMABjzmodVKn+1oY?=
- =?us-ascii?Q?/XlZar83VR1sSJJFy65SBf0RskafabZh0Jv5Y2K7J01Z2VW0haQanyDBoQSg?=
- =?us-ascii?Q?6xy6XifegpzwkmXCsbHbHV56PH9r/mdsdh9xemRghA9FI2C6URUbPj9IlYM7?=
- =?us-ascii?Q?jiuAnBdQETcAUK1FtAi58XIZAgULsia4EWoe3rznAksjASvLlcmQx8sZDELS?=
- =?us-ascii?Q?3D9G0+6iBSaMYZjLmdSQpnfJlhsbSi+dld6dBvfb8oAm6mMahsVmSu3XHcn9?=
- =?us-ascii?Q?iGr1yl8uzOYwallUmc2qpG7Esb/6XERK6QxoDvWZSy/N20bRkeujMGNn/xDG?=
- =?us-ascii?Q?kLNSj70uzsD1Sl4Gy04iRFCGL+rk0ZwmadFP5I4d4CDJItG+Jn9222rYoDB2?=
- =?us-ascii?Q?DoDnOnhCnwd3B+06AJcQMlRdTzNY2lvMYciNV3hTdD8syt8D6Lppzi/YPC6B?=
- =?us-ascii?Q?uYzwpeZh3NmHYhGTkVyZECHY+fd0gM0Dnx1Kt6myO5x6XuvWRgSWWbdfuUvo?=
- =?us-ascii?Q?cb4NRRE+Z9JzdyULzWkZDBfv874gWap8KqWW5zcxcibZcUdBiTBJW5Y7j+h8?=
- =?us-ascii?Q?Uo8S0FKChOjqsGzw8yODZrQDnOTzXS5lFneuQAItscSJYWSVKnrdNQ6CpeLA?=
- =?us-ascii?Q?PENueao0Vf0eGOh5xykflJOxOs9WoUKf0Og5DqFuKBfo715TSlDCxD3a/uI5?=
- =?us-ascii?Q?kQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20c40580-e8a7-4084-b061-08dbb3a80abd
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nosNTLyQvvVvQijAKlfU3afgtD9q2f4CQq29wgmYwla69BqD86bUHrnLapg9?=
+ =?us-ascii?Q?0gcGv1AjeizjD8Z/lAGhUGumnV2QFLTUoa6kA3LUzuV/DY3+cnJp7uOGikOw?=
+ =?us-ascii?Q?5wUP49cF5bgEfW/NBsN0nUtcqR7us1k2YF7I4DAEy5Zeo23nemxos9utkmOA?=
+ =?us-ascii?Q?hxPIvhtcKciuNmqGGw1C9rL9Lxmic2+6qJDPGPmgMyb7NnUlWjhdGJKOcVTP?=
+ =?us-ascii?Q?UBlb3+3IlfMT8kXIPOxtdQ5vOJJrF6Lm4HA3W8gxxRqa3YaJ0e8jLmdJPBX3?=
+ =?us-ascii?Q?B7sg5N/acGobToHQddU8jNGk/14ICHplEe+JxG7yVpMISi5IuaCV9SQIyYXR?=
+ =?us-ascii?Q?F/Hl9IZGNnvI0u/0ILVHQxwd4y/g1b4gYI83kQpWsbBRAi0xRlLkUbf3aRlJ?=
+ =?us-ascii?Q?W4F1JAjwB4dmDXNhxFq7fa1e9qTezbaPufoiAFoW09p12lhFTE3flUbpxzrX?=
+ =?us-ascii?Q?hwY72gb9SZTpNj5Vqf06bNR+1n4nO5mJzHp8JoYFlKdaCGTz2EgUM0PZfq4z?=
+ =?us-ascii?Q?/OyUdEYirMR6GRD6A0ce8UIh9kip/BSAQTC6l3VwfbAPzhmmAPtpfe3k8B5t?=
+ =?us-ascii?Q?jGssfIlaWEo35hRpby7PSzwcwgfZsAsq/UiCIFBxlbAp2daH4wfLSsF9La8S?=
+ =?us-ascii?Q?dQh2d85wgOfKlxCIGAfrSuvkyOmEk1Zc+j3RumSxTNh0CeQjZ/hjnZEY/pLp?=
+ =?us-ascii?Q?HOwmi2iidZ2TPia27/7jExH1NKREw3qmSMzRT0dpSJpc6udzPFAYLF0cyN8K?=
+ =?us-ascii?Q?6X/RW0ivbn+x5S7eo7KkEsYb+2oohu7wSBhRPzejoAIMbag7SEPS4twJL62f?=
+ =?us-ascii?Q?vXO6BBpe2Re535nFZnIQPJ9aeilScAb1upaqc/mWE/WXchEWktL9gASuCLEd?=
+ =?us-ascii?Q?Y/O1g0aZlf7xOARRFXWJK697bloYltqcTJgEIVYGjHeEYWkaHS5QbvCJZmZa?=
+ =?us-ascii?Q?HzoVNimGvVThTXRSPSBA25N6qmgvz1MDHew83JgHU+VHKrGemGpEBjuhfWAg?=
+ =?us-ascii?Q?9tefqu8C72scW4UcNgSEQhpInQ6GImZRtqck632ta6gZ9dRE7AUDE40TmvoH?=
+ =?us-ascii?Q?73/tyPzfGealFe9PLFy2tiZB7bT2gz3hOw4KKgd6+BPSkXPSfRmVHnMQWEGq?=
+ =?us-ascii?Q?mrg6Gydu7uJos754gN+CsLUDfkPCoPS0TbMCZZ9s85eu/fnI3ETng+xILFkC?=
+ =?us-ascii?Q?kaPFVs0pcr+WJn2Z3h0fzfGvk0mTGCLT/U9cMYqJNXprZYQqo/VpCYdAF5Od?=
+ =?us-ascii?Q?nj97TvSgQkYJ5AkF2PovcvxQUfVfN1SFpLhwItbg07OOUga+z8wxF9Dquq8b?=
+ =?us-ascii?Q?UEdRCWMfCHWpPu6w+/2gNFz5/IYfOjAPI7PVCcptGFz0eKVE9UQh434DOlzv?=
+ =?us-ascii?Q?xJ9VwCbS0Y19WHkpIA6fLGx9RBWJL08V+YJ/ItGDOt3z9gYkX6k28Sy0hZwD?=
+ =?us-ascii?Q?l7G+wZZaXZ9b02TdcwAh6qA4xSyxgomdHArFXd2a5slU8p3QNhnS71SuUYS3?=
+ =?us-ascii?Q?Mv8iwL/7kcQXf8fBGZUQOayTnTGFHkb9gTa0+069eOu67bHVsB+Ymn4Rx6OY?=
+ =?us-ascii?Q?oclMYXKPp+09RGCI0CSw4jOCuv7jQqx9AK0D2q1ZLf2L2MPq1I/pQcStUcdz?=
+ =?us-ascii?Q?lg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52c3aaf4-7216-4146-43c0-08dbb3a8491e
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 15:50:52.0782 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 15:52:36.7001 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Pj550jibIhWPEtnKF2Z9JAz3Uaw7ZxsOmN7COTO29mp/2xD7/pNd+b+wgWigqg13egYXIbhBpPSqGHxytsSvAuSRSuxLCGxvq6O24AJALQ0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4998
+X-MS-Exchange-CrossTenant-UserPrincipalName: O/qQpQooyJN6oMTKAYIAYnMH+H6a5WfTHkgP2NpQMKIDy1Tlrkupay+WrOPyK07bOKoKTQBcHImPBMg+VDvQRctKDalK467j43KgQDNUAU8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8568
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 14/29] drm/i915/display: Use
- _PICK_EVEN_2RANGES() in DP AUX regs
+Subject: Re: [Intel-gfx] [PATCH v3 15/29] drm/i915/xe2lpd: Re-order DP AUX
+ regs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,67 +153,133 @@ Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 11, 2023 at 09:48:22PM -0700, Lucas De Marchi wrote:
-> XELPDP_DP_AUX_CH_CTL() and XELPDP_DP_AUX_CH_DATA() use 2 ranges. Prefer
-> using _PICK_EVEN_2RANGES() over PICK().
+On Mon, Sep 11, 2023 at 09:48:23PM -0700, Lucas De Marchi wrote:
+> The address of CTL and DATA registers for DP AUX were changed in Xe2_LPD:
+> now they are all in a single range, with CH_A and CH_B coming right after
+> the USBC instances. Like was done when moving registers to PICA, use
+> a helper macro to remap the ch passed to an index that can be used to
+> calculate the right offset.
 > 
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
 > ---
->  .../gpu/drm/i915/display/intel_dp_aux_regs.h  | 30 +++++++------------
->  1 file changed, 10 insertions(+), 20 deletions(-)
+>  .../i915/display/intel_display_power_well.c   |  6 +++---
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c   |  8 ++++----
+>  .../gpu/drm/i915/display/intel_dp_aux_regs.h  | 19 +++++++++++++++++--
+>  3 files changed, 24 insertions(+), 9 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> index 820b7d41a0a8..ca0714eba17a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> @@ -1800,7 +1800,7 @@ static void xelpdp_aux_power_well_enable(struct drm_i915_private *dev_priv,
+>  		icl_tc_port_assert_ref_held(dev_priv, power_well,
+>  					    aux_ch_to_digital_port(dev_priv, aux_ch));
+>  
+> -	intel_de_rmw(dev_priv, XELPDP_DP_AUX_CH_CTL(aux_ch),
+> +	intel_de_rmw(dev_priv, XELPDP_DP_AUX_CH_CTL(dev_priv, aux_ch),
+>  		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
+>  		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST);
+>  
+> @@ -1818,7 +1818,7 @@ static void xelpdp_aux_power_well_disable(struct drm_i915_private *dev_priv,
+>  {
+>  	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
+>  
+> -	intel_de_rmw(dev_priv, XELPDP_DP_AUX_CH_CTL(aux_ch),
+> +	intel_de_rmw(dev_priv, XELPDP_DP_AUX_CH_CTL(dev_priv, aux_ch),
+>  		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
+>  		     0);
+>  	usleep_range(10, 30);
+> @@ -1829,7 +1829,7 @@ static bool xelpdp_aux_power_well_enabled(struct drm_i915_private *dev_priv,
+>  {
+>  	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
+>  
+> -	return intel_de_read(dev_priv, XELPDP_DP_AUX_CH_CTL(aux_ch)) &
+> +	return intel_de_read(dev_priv, XELPDP_DP_AUX_CH_CTL(dev_priv, aux_ch)) &
+>  		XELPDP_DP_AUX_CH_CTL_POWER_STATUS;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> index 2d173bd495a3..b90cad7f567b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> @@ -687,10 +687,10 @@ static i915_reg_t xelpdp_aux_ctl_reg(struct intel_dp *intel_dp)
+>  	case AUX_CH_USBC2:
+>  	case AUX_CH_USBC3:
+>  	case AUX_CH_USBC4:
+> -		return XELPDP_DP_AUX_CH_CTL(aux_ch);
+> +		return XELPDP_DP_AUX_CH_CTL(dev_priv, aux_ch);
+>  	default:
+>  		MISSING_CASE(aux_ch);
+> -		return XELPDP_DP_AUX_CH_CTL(AUX_CH_A);
+> +		return XELPDP_DP_AUX_CH_CTL(dev_priv, AUX_CH_A);
+>  	}
+>  }
+>  
+> @@ -707,10 +707,10 @@ static i915_reg_t xelpdp_aux_data_reg(struct intel_dp *intel_dp, int index)
+>  	case AUX_CH_USBC2:
+>  	case AUX_CH_USBC3:
+>  	case AUX_CH_USBC4:
+> -		return XELPDP_DP_AUX_CH_DATA(aux_ch, index);
+> +		return XELPDP_DP_AUX_CH_DATA(dev_priv, aux_ch, index);
+>  	default:
+>  		MISSING_CASE(aux_ch);
+> -		return XELPDP_DP_AUX_CH_DATA(AUX_CH_A, index);
+> +		return XELPDP_DP_AUX_CH_DATA(dev_priv, AUX_CH_A, index);
+>  	}
+>  }
+>  
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
-> index 4503d94115d7..1e9e018a2a48 100644
+> index 1e9e018a2a48..b4e96baae25a 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
 > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
-> @@ -19,18 +19,13 @@
+> @@ -14,6 +14,13 @@
+>   * registers
+>   */
+>  
+> +/*
+> + * Wrapper macro to convert from aux_ch to the index used in some of the
+> + * registers, similarly to __xe2lpd_port_idx().
+> + */
+> +#define __xe2lpd_aux_ch_idx(aux_ch)						\
+> +       (aux_ch >= AUX_CH_USBC1 ? aux_ch : AUX_CH_USBC4 + 1 + aux_ch - AUX_CH_A)
+> +
+>  /* TODO: Remove implicit dev_priv */
+>  #define _DPA_AUX_CH_CTL			(DISPLAY_MMIO_BASE(dev_priv) + 0x64010)
 >  #define _DPB_AUX_CH_CTL			(DISPLAY_MMIO_BASE(dev_priv) + 0x64110)
->  #define _XELPDP_USBC1_AUX_CH_CTL	0x16f210
+> @@ -21,11 +28,15 @@
 >  #define _XELPDP_USBC2_AUX_CH_CTL	0x16f410
-> -#define _XELPDP_USBC3_AUX_CH_CTL	0x16f610
-> -#define _XELPDP_USBC4_AUX_CH_CTL	0x16f810
 >  #define DP_AUX_CH_CTL(aux_ch)		_MMIO_PORT(aux_ch, _DPA_AUX_CH_CTL,	\
 >  						   _DPB_AUX_CH_CTL)
-> -#define XELPDP_DP_AUX_CH_CTL(aux_ch)	_MMIO(_PICK(aux_ch, \
-> -						    _DPA_AUX_CH_CTL, \
-> -						    _DPB_AUX_CH_CTL, \
-> -						    0, /* port/aux_ch C is non-existent */ \
-> -						    _XELPDP_USBC1_AUX_CH_CTL, \
-> -						    _XELPDP_USBC2_AUX_CH_CTL, \
-> -						    _XELPDP_USBC3_AUX_CH_CTL, \
-> -						    _XELPDP_USBC4_AUX_CH_CTL))
-> +#define XELPDP_DP_AUX_CH_CTL(aux_ch)						\
-> +		_MMIO(_PICK_EVEN_2RANGES(aux_ch, AUX_CH_USBC1,			\
-> +					 _DPA_AUX_CH_CTL, _DPB_AUX_CH_CTL,	\
-> +					 _XELPDP_USBC1_AUX_CH_CTL,		\
-> +					 _XELPDP_USBC2_AUX_CH_CTL))
+> -#define XELPDP_DP_AUX_CH_CTL(aux_ch)						\
+> +#define _XELPDP_DP_AUX_CH_CTL(aux_ch)						\
+>  		_MMIO(_PICK_EVEN_2RANGES(aux_ch, AUX_CH_USBC1,			\
+>  					 _DPA_AUX_CH_CTL, _DPB_AUX_CH_CTL,	\
+>  					 _XELPDP_USBC1_AUX_CH_CTL,		\
+>  					 _XELPDP_USBC2_AUX_CH_CTL))
+> +#define XELPDP_DP_AUX_CH_CTL(i915__, aux_ch)					\
+> +		(DISPLAY_VER(i915__) >= 20 ?					\
+> +		 _XELPDP_DP_AUX_CH_CTL(__xe2lpd_aux_ch_idx(aux_ch)) :		\
+> +		 _XELPDP_DP_AUX_CH_CTL(aux_ch))
 >  #define   DP_AUX_CH_CTL_SEND_BUSY		REG_BIT(31)
 >  #define   DP_AUX_CH_CTL_DONE			REG_BIT(30)
 >  #define   DP_AUX_CH_CTL_INTERRUPT		REG_BIT(29)
-> @@ -68,17 +63,12 @@
->  #define _DPB_AUX_CH_DATA1		(DISPLAY_MMIO_BASE(dev_priv) + 0x64114)
->  #define _XELPDP_USBC1_AUX_CH_DATA1	0x16f214
+> @@ -65,10 +76,14 @@
 >  #define _XELPDP_USBC2_AUX_CH_DATA1	0x16f414
-> -#define _XELPDP_USBC3_AUX_CH_DATA1	0x16f614
-> -#define _XELPDP_USBC4_AUX_CH_DATA1	0x16f814
 >  #define DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PORT(aux_ch, _DPA_AUX_CH_DATA1,	\
 >  						    _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
-> -#define XELPDP_DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PICK(aux_ch, \
-> -							    _DPA_AUX_CH_DATA1, \
-> -							    _DPB_AUX_CH_DATA1, \
-> -							    0, /* port/aux_ch C is non-existent */ \
-> -							    _XELPDP_USBC1_AUX_CH_DATA1, \
-> -							    _XELPDP_USBC2_AUX_CH_DATA1, \
-> -							    _XELPDP_USBC3_AUX_CH_DATA1, \
-> -							    _XELPDP_USBC4_AUX_CH_DATA1) + (i) * 4)
-> +#define XELPDP_DP_AUX_CH_DATA(aux_ch, i)					\
-> +		_MMIO(_PICK_EVEN_2RANGES(aux_ch, AUX_CH_USBC1,			\
-> +					 _DPA_AUX_CH_DATA1, _DPB_AUX_CH_DATA1,	\
-> +					 _XELPDP_USBC1_AUX_CH_DATA1,		\
-> +					 _XELPDP_USBC2_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
+> -#define XELPDP_DP_AUX_CH_DATA(aux_ch, i)					\
+> +#define _XELPDP_DP_AUX_CH_DATA(aux_ch, i)					\
+>  		_MMIO(_PICK_EVEN_2RANGES(aux_ch, AUX_CH_USBC1,			\
+>  					 _DPA_AUX_CH_DATA1, _DPB_AUX_CH_DATA1,	\
+>  					 _XELPDP_USBC1_AUX_CH_DATA1,		\
+>  					 _XELPDP_USBC2_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
+> +#define XELPDP_DP_AUX_CH_DATA(i915__, aux_ch, i)				\
+> +		(DISPLAY_VER(i915__) >= 20 ?					\
+> +		 _XELPDP_DP_AUX_CH_DATA(__xe2lpd_aux_ch_idx(aux_ch), i) :	\
+> +		 _XELPDP_DP_AUX_CH_DATA(aux_ch, i))
 >  
 >  #endif /* __INTEL_DP_AUX_REGS_H__ */
 > -- 
