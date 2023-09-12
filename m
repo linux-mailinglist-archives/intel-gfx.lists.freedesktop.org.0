@@ -1,53 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB73D79D0AD
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 14:06:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2A2A79D0D2
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 14:14:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 968BB10E05A;
-	Tue, 12 Sep 2023 12:06:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89EA710E232;
+	Tue, 12 Sep 2023 12:14:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06FED10E412
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Sep 2023 12:06:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694520361; x=1726056361;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=blO/8nwxndmJtprFU2qF4HxCUPWXa0Lelg2saXwKm9M=;
- b=Ta2U5+xnx8vwPeJPU0e1TzLAmskK0E5qOyrVVO8rfosOfIAJ2s4Z4KxJ
- ZFe0xmcpUZywHVtXMgw84pQo6whP8zPDVjq6kBGXBTUbbGrW4slfjY9iX
- 30X22W8jwaNIkYg67nkCYbK4E4p51S5I879ti2csnLSmT3hmdYHDfctzU
- EvrT6MdD8mQfoxvRXWS53WPwtLDcznbkYT7+Cek0LTehSFSdQfhNo5os+
- j5uvMsQQDJ1SbCvSnecXW7UJS/Ly/pL1loYGJ0vQgEAS66+vT09U7qTDK
- FoahXsTQ5Wl1auK/cQnVDSgaCywG11bFXPT2cwT3NI/NoCGjWW2StLBy0 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="377268093"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="377268093"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 05:06:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="746857570"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="746857570"
-Received: from kscholl-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.63.206])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 05:05:50 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 12 Sep 2023 15:05:37 +0300
-Message-Id: <20230912120537.2158209-3-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230912120537.2158209-1-jani.nikula@intel.com>
-References: <20230912120537.2158209-1-jani.nikula@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5493F10E232
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Sep 2023 12:14:37 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id BF61060D29;
+ Tue, 12 Sep 2023 12:14:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B434C433C7;
+ Tue, 12 Sep 2023 12:14:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1694520876;
+ bh=XkmC7wK5Cc/UAqB4TBuSfa6MYKHMEOm7EQvizmgqOAw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=cVwai/lZtzmhpP30W6mex7F/Nfm+WrGAkueHjspW5LDRArScWMNMZNn7+V7ykhMPg
+ 1dPtNAnZDtVQV7TFxILZ1H0MsBUDZzciBv16NI4o1jkOHRJYlNN5YzH4DXBUL2pGj3
+ 9lMPgpMUaCrciKUL9lebhyyKD8MGIiVaZQl89YdtCSSYwx/xNIH+lMffDRucHZUD/W
+ pzkqcFfKpXgKxTO6WZeDkCNLVkQmTKqe+zS9U/t6cw3xkLaRaghx39pf72eIcLAMaU
+ v/k3JZohIaLYH7wns1+pqiVKHteNrHhhD/OeA/fkbmntvx9g9whmguxwYSw6Q82rud
+ 05XGxDZtr2rQw==
+Date: Tue, 12 Sep 2023 13:14:29 +0100
+From: Mark Brown <broonie@kernel.org>
+To: "Usyskin, Alexander" <alexander.usyskin@intel.com>
+Message-ID: <0d60a78b-0305-4cb3-babe-4eefe5001b29@sirena.org.uk>
+References: <20230910123949.1251964-1-alexander.usyskin@intel.com>
+ <20230911094233.326fd936@xps-13>
+ <CY5PR11MB63667FBB6AF5B4331419BDAAEDF1A@CY5PR11MB6366.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: move intel_display_device_probe()
- one level higher
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="uKDrHREIXSOB633X"
+Content-Disposition: inline
+In-Reply-To: <CY5PR11MB63667FBB6AF5B4331419BDAAEDF1A@CY5PR11MB6366.namprd11.prod.outlook.com>
+X-Cookie: Victory uber allies!
+Subject: Re: [Intel-gfx] [PATCH 00/10] drm/i915/spi: spi access for discrete
+ graphics
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,59 +57,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Matt Roper <matthew.d.roper@intel.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Michael Walle <michael@walle.cc>,
+ "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>, "Lubart, Vitaly" <vitaly.lubart@intel.com>,
+ Pratyush Yadav <pratyush@kernel.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Don't hide display probe in device info code.
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_driver.c               | 2 ++
- drivers/gpu/drm/i915/intel_device_info.c         | 2 --
- drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 ++
- 3 files changed, 4 insertions(+), 2 deletions(-)
+--uKDrHREIXSOB633X
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index f8dbee7a5af7..b5e1f72cc3ce 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -735,6 +735,8 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	/* Set up device info and initial runtime info. */
- 	intel_device_info_driver_create(i915, pdev->device, match_info);
- 
-+	intel_display_device_probe(i915);
-+
- 	return i915;
- }
- 
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index b9b8b22540cb..d2ed0f057cb2 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -418,8 +418,6 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
- 	runtime = RUNTIME_INFO(i915);
- 	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
- 
--	intel_display_device_probe(i915);
--
- 	runtime->device_id = device_id;
- }
- 
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index da0b269606c5..7de6477803f8 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -181,6 +181,8 @@ struct drm_i915_private *mock_gem_device(void)
- 	/* Set up device info and initial runtime info. */
- 	intel_device_info_driver_create(i915, pdev->device, &mock_info);
- 
-+	intel_display_device_probe(i915);
-+
- 	dev_pm_domain_set(&pdev->dev, &pm_domain);
- 	pm_runtime_enable(&pdev->dev);
- 	pm_runtime_dont_use_autosuspend(&pdev->dev);
--- 
-2.39.2
+On Tue, Sep 12, 2023 at 10:50:22AM +0000, Usyskin, Alexander wrote:
 
+> The spi controller on discreet graphics card is not visible to user-space.
+> Spi access flows are supported by another hardware module and relevant registers are
+> available on graphics device memory bar.
+
+No SPI controllers are directly visible to userspace, some SPI devices
+are selectively exposed but that needs to be explicitly requested and is
+generally discouraged.
+
+--uKDrHREIXSOB633X
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmUAViIACgkQJNaLcl1U
+h9BBwQf9HEhBAYTf1p6rEEjFlaLKxvrdg4ZwS0HnCh7FR7EL1va8yFb1PT8hrn3e
+e8q3vfqaz1J5L8wUITwS9oyKzKiwfwwDCxXipW9y0+TSjhFEme5/ravNtEvpXN+M
+2hqbmCjp53gDQiz5KKj6F4XsfSHrmLrmCQ+4/qfj1CigXHnxOWuqKJ35tX9y+oDA
+4tngywE43hiLIPNTrVFnocrYzviXWoAMpKjESJiXaD/uRQrLUyOi5cLKb9BJgBaG
+PqETDDh+9R+G3Rvaa8vrr3UqbU0NxZtm/7FPKW1eTUm7/ferGcyMn2LCUH2G1jdj
+u69lmZ5Yhy0LiLVvrL3Ol49IzrUkdQ==
+=/F96
+-----END PGP SIGNATURE-----
+
+--uKDrHREIXSOB633X--
