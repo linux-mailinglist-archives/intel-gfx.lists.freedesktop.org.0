@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A40C79D0B0
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 14:06:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9989079D0AE
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 14:06:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98B3F10E412;
-	Tue, 12 Sep 2023 12:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9A310E416;
+	Tue, 12 Sep 2023 12:06:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85FBE10E417
- for <intel-gfx@lists.freedesktop.org>; Tue, 12 Sep 2023 12:06:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1D6A10E05A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Sep 2023 12:06:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694520382; x=1726056382;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=COqZKJGX16JvILVLXX8XbI+6oKS/91J9v4iyTOphBK0=;
- b=fkaZIOCdSlSjeDGZ7hyp98v+eFp6aXKXiyBKw6AJ8LiCK8/tRRjYCnmQ
- mGPq7ml+Vy90pf47Ctn4tPOm29BpH1Jqk/iOt/0KcWmqiNLi/6TR83kzh
- Z/TfhES7BNjKxv+bunRJrfGgwwQa1Ra7Um39NFZBepIkbgqO0u+MgBkrs
- JVOxzlKA1kURS1nqTJ6/vlRWX8ezVq9ukO5xcXGkrwYAPFaYval7FFoGK
- Y5YkgXnEQiGXfNtf6JhxuuwV+x8HxCdaxfIJHKqQpP/KdImdZ2XIrbFDL
- BoyBLwA0seHsWsxcDBPGaxSiE1vwdPy2QRaNWX+Xvyjyl/gSq17MjNX2s A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378266478"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="378266478"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 05:05:44 -0700
+ t=1694520360; x=1726056360;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=6QrzqQD+x5IZwdpLrXRB5M1IR8xkM6tFUwZ5ECRKBIc=;
+ b=Vh6npY5O1Wx+ra+ZDvq/fd2NmtrO/rXMlzHzfhse+qficXFvvn6/L1Ym
+ VoJE3OL/o+N/IPb5t72pLf0cXtdwDOLRPHSZ8yflrRO+GQu8J+pzQtU3x
+ kJicSMk3uHNCR/H2itA8GHcE0xg2wWBjKWzqe223BoTb28S9AaYiS+dtN
+ 4YEsd2WE5sn9KjQJPa/i3ic68Ad/f/N/A5ui6JvAl7SuSbe/qJp/rDe5X
+ 57r/OKK9AvkyUBhjSVaywQUA36uFeXo5TKEXoB63vawLme+cDpM6/NUlV
+ kyvhFFNZwwHeTbrGC5QXdX5GvFTF47TqwTR+YycCfXw1+q7g7pdt5Zq20 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="377268090"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="377268090"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2023 05:06:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="720390728"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="720390728"
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="746857489"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="746857489"
 Received: from kscholl-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.63.206])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 05:05:41 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2023 05:05:47 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 12 Sep 2023 15:05:35 +0300
-Message-Id: <20230912120537.2158209-1-jani.nikula@intel.com>
+Date: Tue, 12 Sep 2023 15:05:36 +0300
+Message-Id: <20230912120537.2158209-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230912120537.2158209-1-jani.nikula@intel.com>
+References: <20230912120537.2158209-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: move more of the display probe to
- display code
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915/display: call gmdid display probe
+ at a higher level
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,106 +64,55 @@ Cc: jani.nikula@intel.com, Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Initializing i915->display.info.__device_info and DISPLAY_RUNTIME_INFO()
-really belongs in display code. Move them there.
+Move gmdid selection one abstraction level higher.
 
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_device.c   | 24 ++++++++++++++++---
- .../drm/i915/display/intel_display_device.h   |  4 +---
- drivers/gpu/drm/i915/intel_device_info.c      | 14 +----------
- 3 files changed, 23 insertions(+), 19 deletions(-)
+ .../gpu/drm/i915/display/intel_display_device.c | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index c39f8a15d8aa..ed564566e31b 100644
+index ed564566e31b..4a6c4ee503b2 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -850,9 +850,9 @@ probe_gmdid_display(struct drm_i915_private *i915, u16 *ver, u16 *rel, u16 *step
- 	return &no_display;
+@@ -851,15 +851,11 @@ probe_gmdid_display(struct drm_i915_private *i915, u16 *ver, u16 *rel, u16 *step
  }
  
--const struct intel_display_device_info *
--intel_display_device_probe(struct drm_i915_private *i915, bool has_gmdid,
--			   u16 *gmdid_ver, u16 *gmdid_rel, u16 *gmdid_step)
-+static const struct intel_display_device_info *
-+probe_display(struct drm_i915_private *i915, bool has_gmdid,
-+	      u16 *gmdid_ver, u16 *gmdid_rel, u16 *gmdid_step)
+ static const struct intel_display_device_info *
+-probe_display(struct drm_i915_private *i915, bool has_gmdid,
+-	      u16 *gmdid_ver, u16 *gmdid_rel, u16 *gmdid_step)
++probe_display(struct drm_i915_private *i915)
  {
  	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
  	int i;
-@@ -876,6 +876,24 @@ intel_display_device_probe(struct drm_i915_private *i915, bool has_gmdid,
- 	return &no_display;
- }
  
-+void intel_display_device_probe(struct drm_i915_private *i915)
-+{
-+	u16 ver, rel, step;
-+
-+	/* Probe display support */
-+	i915->display.info.__device_info = probe_display(i915, HAS_GMD_ID(i915),
-+							 &ver, &rel, &step);
-+	memcpy(DISPLAY_RUNTIME_INFO(i915),
-+	       &DISPLAY_INFO(i915)->__runtime_defaults,
-+	       sizeof(*DISPLAY_RUNTIME_INFO(i915)));
-+
-+	if (HAS_GMD_ID(i915)) {
-+		DISPLAY_RUNTIME_INFO(i915)->ip.ver = ver;
-+		DISPLAY_RUNTIME_INFO(i915)->ip.rel = rel;
-+		DISPLAY_RUNTIME_INFO(i915)->ip.step = step;
-+	}
-+}
-+
- void intel_display_device_info_runtime_init(struct drm_i915_private *i915)
+-	if (has_gmdid)
+-		return probe_gmdid_display(i915, gmdid_ver, gmdid_rel, gmdid_step);
+-
+ 	if (has_no_display(pdev)) {
+ 		drm_dbg_kms(&i915->drm, "Device doesn't have display\n");
+ 		return &no_display;
+@@ -878,11 +874,16 @@ probe_display(struct drm_i915_private *i915, bool has_gmdid,
+ 
+ void intel_display_device_probe(struct drm_i915_private *i915)
  {
- 	struct intel_display_runtime_info *display_runtime = DISPLAY_RUNTIME_INFO(i915);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 8198401aa5be..a7b6469b43a6 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -149,9 +149,7 @@ struct intel_display_device_info {
- 	} color;
- };
- 
--const struct intel_display_device_info *
--intel_display_device_probe(struct drm_i915_private *i915, bool has_gmdid,
--			   u16 *ver, u16 *rel, u16 *step);
-+void intel_display_device_probe(struct drm_i915_private *i915);
- void intel_display_device_info_runtime_init(struct drm_i915_private *i915);
- 
- void intel_display_device_info_print(const struct intel_display_device_info *info,
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 9dfa680a4c62..b9b8b22540cb 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -410,7 +410,6 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
- 				     const struct intel_device_info *match_info)
- {
- 	struct intel_runtime_info *runtime;
--	u16 ver, rel, step;
- 
- 	/* Setup INTEL_INFO() */
- 	i915->__info = match_info;
-@@ -419,18 +418,7 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
- 	runtime = RUNTIME_INFO(i915);
- 	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
++	const struct intel_display_device_info *info;
+ 	u16 ver, rel, step;
  
 -	/* Probe display support */
--	i915->display.info.__device_info = intel_display_device_probe(i915, HAS_GMD_ID(i915),
--								      &ver, &rel, &step);
--	memcpy(DISPLAY_RUNTIME_INFO(i915),
--	       &DISPLAY_INFO(i915)->__runtime_defaults,
--	       sizeof(*DISPLAY_RUNTIME_INFO(i915)));
--
--	if (HAS_GMD_ID(i915)) {
--		DISPLAY_RUNTIME_INFO(i915)->ip.ver = ver;
--		DISPLAY_RUNTIME_INFO(i915)->ip.rel = rel;
--		DISPLAY_RUNTIME_INFO(i915)->ip.step = step;
--	}
-+	intel_display_device_probe(i915);
- 
- 	runtime->device_id = device_id;
- }
+-	i915->display.info.__device_info = probe_display(i915, HAS_GMD_ID(i915),
+-							 &ver, &rel, &step);
++	if (HAS_GMD_ID(i915))
++		info = probe_gmdid_display(i915, &ver, &rel, &step);
++	else
++		info = probe_display(i915);
++
++	i915->display.info.__device_info = info;
++
+ 	memcpy(DISPLAY_RUNTIME_INFO(i915),
+ 	       &DISPLAY_INFO(i915)->__runtime_defaults,
+ 	       sizeof(*DISPLAY_RUNTIME_INFO(i915)));
 -- 
 2.39.2
 
