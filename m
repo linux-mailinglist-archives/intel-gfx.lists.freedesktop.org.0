@@ -1,137 +1,142 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35A0779D454
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 17:06:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A7379D489
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Sep 2023 17:13:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 868A710E42C;
-	Tue, 12 Sep 2023 15:06:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3707E10E42E;
+	Tue, 12 Sep 2023 15:13:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06B7210E42C;
- Tue, 12 Sep 2023 15:06:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 399C310E42E;
+ Tue, 12 Sep 2023 15:13:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694531194; x=1726067194;
+ t=1694531632; x=1726067632;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=HhCi4A8Xu/LC1zVGfUtYYtONEBrlXe2QWKO4x+fEDSI=;
- b=dGGUWEnldzWd6aXPeWtMcseq3S+lvJ9YoDMwHaQVyawew0zQRlGGGDUj
- 1dbCylHriFQvxLnO90FSTOKLnsTiBE7TIoQ9+aBUfwX8jD7zsW+nYqI7R
- FmXKLROEbcM2MDpmBti8BNlhRzaHJT3Q+0m0IJViLpXki6jYvNgDCuPcN
- Q5WulNyq2guLLql2imYKYGfVirCXlwXbBQlXWPBGRUX8moJ05baYQw4uj
- j8HqXidScONKkQ+q2WNn6K/dvDHn4eL10HeRoMME2ZoImvJhWQa9Hp9lo
- pnPR+UUUaklCkEn4o7UyOH6Q4tlQH16ignX8oWmunNLHZZUI7pM/ey5Mk g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="381104458"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="381104458"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 08:05:57 -0700
+ bh=SLYZlRViYJCEViVKfy/dTfs1KXY5BGcOmygzMN2gKMk=;
+ b=aGCseIZfXxuM+VIoK5strg/aZoWXeGjpg0KgcW60sFk+feU4aW3xXN8S
+ mpgV9hGqAsOvAGsa0jtM6oX39xSXbXxpN9scJ5QMkCA/FFfhHG/FRaLvZ
+ f+8Oyp1ClPb0T3UkywI4gof+l6sMxWloWuGC0jiwOyRekjOrXHSRWoWkn
+ 6a23HP6eHiiuEwSTgVaV6cKy4z30XqXYh5lpQBXlYZ+0Osx9rXX4Q1iWX
+ vEo9uPPgTz9wcWBAJKV4gq07DsPwEZozUg1dz6i86wEE5sjhSpkPyka6/
+ uAQ1qgwQMYPOhX2Mf+P8WDW+mx+8PSZd3ZRr7vD98ywphaG0M57yaH4Zo A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="409358896"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="409358896"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2023 08:13:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="1074579307"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="1074579307"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Sep 2023 08:05:57 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="990533316"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="990533316"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Sep 2023 08:13:49 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 12 Sep 2023 08:05:57 -0700
+ 15.1.2507.32; Tue, 12 Sep 2023 08:13:49 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Tue, 12 Sep 2023 08:13:48 -0700
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 12 Sep 2023 08:05:57 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.104)
+ 15.1.2507.32 via Frontend Transport; Tue, 12 Sep 2023 08:13:48 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.176)
  by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 12 Sep 2023 08:05:57 -0700
+ 15.1.2507.32; Tue, 12 Sep 2023 08:13:48 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fw64XzOl3JyG3T31DaX9SFlbbltzD1JhSlc/TO/HsEmN+WUPqU+NcOdVrl55ggWRpDhUQVx4cngSOrYcGWrEnIGSH6uYwSZj+TrZ5B8EnC3ub7sPhlIpMn6x6DA/ZfGhzfxlp0bN/GYhKdPvGovn1FV+7OqFaGjO6zwpnGfDuKrAucwmDyrjl1IHA/zo9RLafZgHM1AIwhjvTQ6uVHDj9RPUIg2Z93qudRAQ6W6Aq17OIGOA+GKlJoA24jQ6EQwPVu5CYtlI5JCsPdt38bnRIeZecYagN+lsxi/BVUh9+JSB0ta9xlymyMS6aBGpblYhtI5NIulvXdcLFpe5ymRF+g==
+ b=lvk1/RrpI97gJhKW5IfNCvf9Do+gUVo4DctIgzSVgV7jt99fJ0hWQWfbY/EABzt9iQ0kC9bJ1GPU+nWc39+wYe0CswsQCpWGhUqH9S/kdSyFrKRnSe7TvBZtHLknHzbVYu0JO4Xnp3vbFv/4I6Vz90GO9ci35is2Nqz+hR6xYiN0pli6k8Vi7LaMmpPefAxPa5QlFTc2ludgQ4ggGtPeI1/nLgTYeti0Jcmuykartyd8N3+gGNdXcVkgE30aLiLJkN/yPEWTwFJDj2+aVmIpkSFKP6wtMdaiK76R6EAnRm+0CQjEyT9AkzO3Rl+vYGJbPtFK7Pdj3tJjAu8/nGoQyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+dvtU01tw9heH80tzsGYtoZNeWTrrs68b7qxYOSMTeY=;
- b=VD8Ge9dTwrdQyc7XwTMFZfLORnL8oz+KSp2sZhq+DvBjBM1CISkiDAHcV/EGBGrv4Xdt8iHNs5DyrLb6yxKyHlfF+BFXHWX2aN/yCaYFK3NeTt03I5Yv50fsqd+tGJjnRbyN5g1B5OwmlVeBi7gSRFuBW7s/tiulDtLgHWO9z2I4ZgJ7d3PeS6vmnIRU5+f8gPls4SHG+UM5l5pZgKwsH6Hhqz55oNLlES/ePO1HvbSgiBXX7auex2vEwhCepo45u2pxNuz0EGlwzIfcVQTuFOS3aiMjchF2oWq/UuWwiJSoX+d9dcLZelHOolEtKJCMeTwj/ncNVIqjSaesyhgM6A==
+ bh=GlbIWobO1PRxXKweSrFZ/ueYCSHyjhf58I5EwxEk/4E=;
+ b=TNJRiGICaxRtvn2ip33ShGEA7vnz4QZG71lJtKe/I4mTiKQKDGtCmNv5yh87WdAqnNp+A0kB3mETgICBTU0dQBz1aO+C0+C7ZIlDgmWsa7kIPvo5j4atxtPDXmqyPnaNWA6xYgTZvl0h88tLbhON+UVwE1Mkb2DBIWpqJB/HMKGH9l4H2D52hJdhHaYB3nYh18jEF7lbkKg8Cu6tbyWJN+WtmtJF1eGfZ7jih8VIruknmwVvDpN7q3Bldggn1CREJ0gHfPYOZxTk1W/NVMe89wEwjtGAvg6hwaED+yRyv+jEAnHd3ug3aJUHUy0ieSLQeyYA8Q1v3WNArGlHCYyD4Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- CYXPR11MB8691.namprd11.prod.outlook.com (2603:10b6:930:d5::22) with
+ PH0PR11MB4855.namprd11.prod.outlook.com (2603:10b6:510:41::12) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6768.31; Tue, 12 Sep 2023 15:05:55 +0000
+ 15.20.6768.37; Tue, 12 Sep 2023 15:13:41 +0000
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6768.029; Tue, 12 Sep 2023
- 15:05:55 +0000
-Date: Tue, 12 Sep 2023 08:05:51 -0700
+ 15:13:41 +0000
+Date: Tue, 12 Sep 2023 08:13:38 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20230912150551.GF2706891@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20230912151338.GG2706891@mdroper-desk1.amr.corp.intel.com>
 References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
- <20230912044837.1672060-25-lucas.demarchi@intel.com>
+ <20230912044837.1672060-2-lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230912044837.1672060-25-lucas.demarchi@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0203.namprd03.prod.outlook.com
- (2603:10b6:a03:2ef::28) To DS7PR11MB7859.namprd11.prod.outlook.com
+In-Reply-To: <20230912044837.1672060-2-lucas.demarchi@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0066.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::11) To DS7PR11MB7859.namprd11.prod.outlook.com
  (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|CYXPR11MB8691:EE_
-X-MS-Office365-Filtering-Correlation-Id: 93710c40-7047-477c-288a-08dbb3a1c333
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|PH0PR11MB4855:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7171cb1c-5257-4f6a-00d2-08dbb3a2d90d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OHYcJFmg1Ftk7Z3rWp6ehuAUriobMVGIaRKJG3vKCiFVYJ5IKEvhfFrmFaFtOnSBmLpYclW8ibpC+ty31ZcSMjZu5dQ0649YHTYwgJcI02Soe677rPgTqcBE3A3KcfZD+YXNIxOA+UyYrlNfjPE3cQYs8qboVWpOaW/+9HdEExWKGquJmKIPhAy3eKDF5su4L3KrykZy7rO3pEDCuTFccfnAqRTGF6xnVxE8twXCUnX8glP72RM/hMMtrit+OtVKosbz0XQFd1JtDXg4/rYr6IPZ1BT4Xo0qIg5NUwsclUOfN+KibipJo81rAarKzeR/dlkb/ntIbycqEVb/rg3CQfQoysThwqhBCVWqvFyR/fpsy4/oq9tr8MKUBn3iPAYJkobE+UrENIMv4JUb7wohF/mjk8/IkzusSKWTeP0LVxWyrV1zUm8bxSstrRlJhsWA/ti2w1zJDm7JSTJpD2hag+YFgQYn5lBNrKZWD3xSmkXcfQTPWtZ30dFOS7+h1PmdCAhfJI/DSPuxaLkmTZlZS7dM/jnddjI/VHY2ICqw0CGLkbLEtxU4SxzwqHmorCOL
+X-Microsoft-Antispam-Message-Info: GByMcug0fTCX3iAK8Y3Vq+TkZdIFs0QthqSvBLrTyXEnp2/rPKfF54edc1D04jdaK8YaDKzaVQmQPIDFjNpRl0wR60sOc/klztDI3pVJB2SZAVd1JaFxA7qWtbnipxuCwQrQwVkqpYcnKK56phAHRP7Y6j2SOsjRJ4yeMgvg2Zn9ACDfXJBvLo3CE4RFwWvVcdUyTlcm8Nsgp4wfGr8PhY37xTXU4S9zT6uVHVj1/Iu3beesrhTPbP+P5/94Fl/V5bb0BR4EP2J9hJgMt9qpVxTlvT/kkrAf69Hx5g1ORd62BOvZfsjmY6514+X+nwvJUJ0jbdv6CiJI1knR8+sctCJ9CHjDMqp5+mI9iM7zbGIB2O/tq4o7w1MDgUdEJ0NahFI+G9fFqqgsPJ7LJVRuv4CQzDEpFj6D3rlUb0erw0/Kz4chcpjftx+QksgMQDjsZnzu3eT88GtzDihGNNTd6f7Kbw3L7iw4JMnoenWRvSXAWSRTcPDbHxKpXmn1tkf5LLIKZmVaP91dI/j4osNy2R0XPoZ1zVzr6ql95Xrf+cnKaDLz0bEXxyfXTUQjfAJp
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(366004)(396003)(376002)(346002)(39860400002)(186009)(1800799009)(451199024)(6486002)(6506007)(6512007)(6666004)(83380400001)(33656002)(86362001)(82960400001)(38100700002)(1076003)(26005)(66556008)(66476007)(6636002)(316002)(41300700001)(66946007)(2906002)(4326008)(450100002)(6862004)(8676002)(8936002)(5660300002)(478600001);
+ SFS:(13230031)(39860400002)(366004)(136003)(376002)(346002)(396003)(186009)(1800799009)(451199024)(41300700001)(66946007)(66556008)(66476007)(478600001)(6636002)(316002)(38100700002)(2906002)(33656002)(86362001)(450100002)(5660300002)(4326008)(6862004)(8676002)(8936002)(26005)(1076003)(83380400001)(6506007)(6486002)(6512007)(82960400001)(6666004);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wgeLbr3i5XkGa5VuvEHvyDNVirhS0NbpCrtFXDV07LyyOTMVv+nZAcn2q2hy?=
- =?us-ascii?Q?7lQjIzBUJ+lqH5l4SG7ww+BQSLHpAX4ZyXCnwy4lhJ78rFTuaam8T9vSTe2k?=
- =?us-ascii?Q?F02n//Q/UNL+z7wlQm8i99gsxr3If52XCm+QarjI+PS5wp5dZIBmlTHiF36h?=
- =?us-ascii?Q?fTG5pMNf3g35HDWEHVPp3cqdKxPiKwI0NpRnkJLuzTabGt2u3Wrh3aTMjbMC?=
- =?us-ascii?Q?hjWccmrt25kGFD7bpwuZufzjXPUnvyfjeLJsby0D8ncihm6cbRVOeALjhkVR?=
- =?us-ascii?Q?sCcXKtkCkGVMF1fjDbrko6Pph6dAjIhTGX9RGEJaJesrte27vLm7rSox6lYB?=
- =?us-ascii?Q?tAxynOgBNOJZe6CI/4xii84xd9PUL0n3wdFlN+mdkfttQO5ohazR3YfPY0Zk?=
- =?us-ascii?Q?dduchGQ7gsQ+wHkmwVOUKR0XDwYymf+dg/yL+dfE2qgE3fK+dn3+gaiBREOg?=
- =?us-ascii?Q?bB9q/LsTMRpzkiNNkCwkfBBm4q53O/0SoWdd5aoJ2hp8ibLi03ej+77ZwrQk?=
- =?us-ascii?Q?ou2p+Pku0hrdbXMHs6qx9XZBZI9hazCDqkf2s2xIiNm4EIT9G9InNKaXm7oK?=
- =?us-ascii?Q?pl3zGzbHOs+9vgvEB3OESdHaGOMD4sQQAI6NXMpPehnZqP4OUFRNFve8dWA+?=
- =?us-ascii?Q?tZIWJi3x0ASRVq+CeOSL6aXzFPVWhmbf3VjE40rDOk8jPYecj5urbFUoW937?=
- =?us-ascii?Q?Dhz2uoorN9VBfOFFEJwNVgF/SaHc/sirTYCTqjyjwKtEF+CSstsu/ZYNDVZz?=
- =?us-ascii?Q?/YmIFWbpWboGUYkoFNPveiTLJ9fa7LtypsElZxz607qszKZyPHDLPxWFYZ4n?=
- =?us-ascii?Q?czE6idljSHyodhRkEJPC0sRPgBFNb730jvNLbgATx3t3mU1tQcYX16+3N22D?=
- =?us-ascii?Q?0kfs8+0Feq9b9zYROVyYfUpwDyO7b+Inf1i6WJARQ0h4p/FKfXJxuGWkha4L?=
- =?us-ascii?Q?QtDWdPqZQZ6FPLY5pTyZm0pz2nvPtJVPHJD8nXrNjLFj95tQMoY3x1meLVT5?=
- =?us-ascii?Q?lTU6MnqopsPhAoEUdk2VRiXILGCVyRCW9+epiKhz+SrFOHDktKPOCT7dWyRu?=
- =?us-ascii?Q?V6axOcZPb9/5pMX8bCtcXX3j5taNhDR1LJ3KyE7Qfxs+9DYgFIihqZdCxAlD?=
- =?us-ascii?Q?hLMPFSp9V+y/JUBaJc1p30Neq9ei3pGN4ZHE4WJP3VHIT60D+mUGBiZg3tLm?=
- =?us-ascii?Q?kIQ7+WdAm0ExYZZtAXUR5I4kVjebxPkPRlEmyQe03PVtA1O27ncbk+Xfj/dd?=
- =?us-ascii?Q?Aow/n2hOh1bKsrBtA5mDrhz7WMy1cqClErtJ4tnm20CyQp/PmaOr8tJIRZ/k?=
- =?us-ascii?Q?ihV3hE5D3SC5KmnU3OWdWVsXJ/bzeB2vLH7/RUkuoJg3xvQkZ4P2B2Bir0yV?=
- =?us-ascii?Q?URBGTSAL/iJxGFcnyw3tX0GTiOwwgmMd0rGicVvJQuRqSaKMvSC4WjdRQsuq?=
- =?us-ascii?Q?hP+IUgoRmwyYwfEIj1+rPRGjR99ExZ3ErQJ5J1laYSG3i3VHBwV5wsMrYFCp?=
- =?us-ascii?Q?5WNRYETc7sb/KD5RWhjgAoo9ImQwkOs5PsCuFioxz8cyBOf+6jD/oj52E4RZ?=
- =?us-ascii?Q?O0bD184tBCxAWKiL0ztcKJik13VrDUSZnILDnmgJYuw4CiD0/+iwk5CMYwQw?=
- =?us-ascii?Q?Ww=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93710c40-7047-477c-288a-08dbb3a1c333
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?AQ6ziC9r+zHM5UUsro2qPVqqlT5X/k1AJIM8IGQS3rVVPUtkQ8d7gHyOobxP?=
+ =?us-ascii?Q?8hKkHNG82rljA4yUUpm9wx1rQNVr+Xzd4A7EXlLqhzrgael5eNQ/A3PTQI3b?=
+ =?us-ascii?Q?dYo7Pn8aFPdoSJsI9LyfuGIcFEZ/8EUApKmsyqBwUBA+RKyUr6xq+jEH3X4j?=
+ =?us-ascii?Q?BvUMbhkOCobds6vSqwoIy9XUBte32Gvl23Aip35nfQmtmm/fhHVQ8njNApQ6?=
+ =?us-ascii?Q?3P2uSLsE+95YRZ/4MlvwsAqlnPnQeP7RCkNWiUSvR0vlZmpdPt8CnXEl+XMb?=
+ =?us-ascii?Q?A75Mw91lesEJCczYe1jbsl/3GAag95cyMVMZJMwfEV9+xpV0WYfiOUL5xa8U?=
+ =?us-ascii?Q?FSshoNWkUequQA6Bv40Dy9Cj3k5uE7+f7AQGK4KIDwkcfqvwaI2xCfFJMcoA?=
+ =?us-ascii?Q?GhpBOfQy9e8Zm7v/Jv0gpIwGoD455OdXC79XOIOynUM+NUhmbhdNKZsfuE+C?=
+ =?us-ascii?Q?xxnfl6KGDEMC9ymDGT9Qh3IKPwrvW0qEIOXAtsfdKWfjYMpTIzzC07ix3A1I?=
+ =?us-ascii?Q?jadz/qy8Th84ZR4s7QilpZqtJmmHiuGOyJ0aYtgFpkVnb+z2S0YviOsStjHU?=
+ =?us-ascii?Q?unGQpfcy1rNavbFJpGHl9cC8lTepZWSYX5jEO9SwVOPPex2iVERuzRJtJfDA?=
+ =?us-ascii?Q?Tdorp+8PyX422qIJ+AxUzFpWWsqIvzYccEqL+MnXslGD/31yVj6l9B2Xiay1?=
+ =?us-ascii?Q?64dr2UlJ7BT8XQ90v2Zy9CYVVR0jFoPSXmhuxuadnfllaf6oK2Bf7IeiidXD?=
+ =?us-ascii?Q?sCe2rc6mfpfiUK3WGzAxJAldaC2TOi9juW/x5aJwb1b83kBIuDAPm2Bbw7y6?=
+ =?us-ascii?Q?INZjMgfW9bAi7y87OajJhm3e+u5Kr+F+iDmhEmM/M6eqtEBTgaUgscv5IhvL?=
+ =?us-ascii?Q?Xfo9wQTlElNWRyn3sAUd9j+Q6JOPJw1zC+cmgxzClArjMr4AjeJCgUo4pAfu?=
+ =?us-ascii?Q?FNYC1itmw4TBQg1BSFKCp62G4yNBklfbgK+UWZLTrCKRZNzxTLwM1K2CoZvE?=
+ =?us-ascii?Q?vH5/OD33TFxV5HImgdfkosctdn9PUs0qIS/ERiV3lCahkZUOMtqi6CrCPIwh?=
+ =?us-ascii?Q?Nq4aosD4AZFJctZWsHWvPlbMcHgaVB/4ypG2tQukSjnCT85KH+Jbtk1Zisp+?=
+ =?us-ascii?Q?kUbY/n0o1pit82zliY/5kjO2FrrtBp9IoXeSGr3ykpGNVut8owreoye/QNeg?=
+ =?us-ascii?Q?aC+3JgpI/A48ygHxq/usgOCzAMmdhb/21dDA8GGlums/Tmv24Mp/AIGUDKPu?=
+ =?us-ascii?Q?IQGWi9/iIEsRQJ8zXnpcvVPOlwSi8DLreL7HzEuhSvKeYAvN1kA65ons1SGZ?=
+ =?us-ascii?Q?5L+ipBSmZkDPxpw6160u8daWaKYoRU/mvGpoJ6DPIfg06uilqmD6w2IprP8B?=
+ =?us-ascii?Q?6I8UPnBADC4l0xFcgnpdsFx9hO4i8AO/ThK7t2lmd7JZWoMQ/MM8nd9a5i7Y?=
+ =?us-ascii?Q?vCSxTk1DI7GcYQZJePCPsk2KTv3aoAdeiBuSSHND/Z0WCINABkGrHQlmvlHg?=
+ =?us-ascii?Q?y+TP/pIWjC1+v7QTbpd3gSpHIoPMErG7R7LGjt1ft1FBdymIaLY58GM2W27+?=
+ =?us-ascii?Q?dIe/b2JhppOA+jIXySq7SvyjXloPlqJzkAkcSfbf8e+d10zpSIeM/xM3skY6?=
+ =?us-ascii?Q?qg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7171cb1c-5257-4f6a-00d2-08dbb3a2d90d
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 15:05:55.1024 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 15:13:41.4158 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OMIGCEtLpm/mONP33nII41GpRInQCCR02K30E7IdvziNzgjpQAoIlWlshyHT49oHHPIovhVegjisdIBTeHfVzAtwZ18NaaCVpb0I8IBJ8ZQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8691
+X-MS-Exchange-CrossTenant-UserPrincipalName: OwdEQ3Z0+T5zbsOvRkuhZZop3bTn24x22/MRNEWyF5u2KrpPi0+LToPOlYtrSiZeiQW+D3n0hH3hBfcfrTEJ56o1kCj7cqrYQU24xDqAxEY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4855
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 24/29] drm/i915/lnl: Add CDCLK table
+Subject: Re: [Intel-gfx] [PATCH v3 01/29] drm/i915/xelpdp: Add
+ XE_LPDP_FEATURES
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,79 +153,99 @@ Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 11, 2023 at 09:48:32PM -0700, Lucas De Marchi wrote:
-> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+On Mon, Sep 11, 2023 at 09:48:09PM -0700, Lucas De Marchi wrote:
+> Add a FEATURES macro for XE_LPD+ as this is expected to be the baseline
+> for Xe2_LPD and will allow to see the delta more easily.
 > 
-> Add a new CDCLK table for Lunar Lake.
+> v2: Move everything from xe_lpdp_display to the new macro and remove
+>     the version setting: it's not needed with GMD_ID.
 > 
-> v2:
->   - Remove mdclk from the table as it's not needed (Matt Roper)
->   - Update waveform values to the latest from spec (Matt Roper)
->   - Rename functions and calculation to match by pixel rate (Lucas)
-> v3: Keep only the table: as far as intel_pixel_rate_to_cdclk()
->     is concerned, the minimum cdclk should still be half the pixel
->     rate on Xe2 (bspec 68858:
->     "Pipe maximum pixel rate = 2 * CDCLK frequency * Pipe Ratio")
->     (Matt Roper)
-> 
-> Bspec: 68861, 68858
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
 > ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 30 +++++++++++++++++++++-
->  1 file changed, 29 insertions(+), 1 deletion(-)
+>  .../drm/i915/display/intel_display_device.c   | 58 +++++++++++++++----
+>  1 file changed, 47 insertions(+), 11 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 656ff50def39..4cde78db83a1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1382,6 +1382,31 @@ static const struct intel_cdclk_vals mtl_cdclk_table[] = {
->  	{}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+> index c39f8a15d8aa..ddd938bfe7d9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+> @@ -710,18 +710,54 @@ static const struct intel_display_device_info xe_hpd_display = {
+>  		BIT(PORT_TC1),
 >  };
 >  
-> +static const struct intel_cdclk_vals lnl_cdclk_table[] = {
-> +	{ .refclk = 38400, .cdclk = 153600, .divider = 2, .ratio = 16, .waveform = 0xaaaa },
-> +	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio = 16, .waveform = 0xad5a },
-> +	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 16, .waveform = 0xb6b6 },
-> +	{ .refclk = 38400, .cdclk = 211200, .divider = 2, .ratio = 16, .waveform = 0xdbb6 },
-> +	{ .refclk = 38400, .cdclk = 230400, .divider = 2, .ratio = 16, .waveform = 0xeeee },
-> +	{ .refclk = 38400, .cdclk = 249600, .divider = 2, .ratio = 16, .waveform = 0xf7de },
-> +	{ .refclk = 38400, .cdclk = 268800, .divider = 2, .ratio = 16, .waveform = 0xfefe },
-> +	{ .refclk = 38400, .cdclk = 288000, .divider = 2, .ratio = 16, .waveform = 0xfffe },
-> +	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16, .waveform = 0xffff },
-> +	{ .refclk = 38400, .cdclk = 330000, .divider = 2, .ratio = 25, .waveform = 0xdbb6 },
-> +	{ .refclk = 38400, .cdclk = 360000, .divider = 2, .ratio = 25, .waveform = 0xeeee },
-> +	{ .refclk = 38400, .cdclk = 390000, .divider = 2, .ratio = 25, .waveform = 0xf7de },
-> +	{ .refclk = 38400, .cdclk = 420000, .divider = 2, .ratio = 25, .waveform = 0xfefe },
-> +	{ .refclk = 38400, .cdclk = 450000, .divider = 2, .ratio = 25, .waveform = 0xfffe },
-> +	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25, .waveform = 0xffff },
-> +	{ .refclk = 38400, .cdclk = 487200, .divider = 2, .ratio = 29, .waveform = 0xfefe },
-> +	{ .refclk = 38400, .cdclk = 522000, .divider = 2, .ratio = 29, .waveform = 0xfffe },
-> +	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29, .waveform = 0xffff },
-> +	{ .refclk = 38400, .cdclk = 571200, .divider = 2, .ratio = 34, .waveform = 0xfefe },
-> +	{ .refclk = 38400, .cdclk = 612000, .divider = 2, .ratio = 34, .waveform = 0xfffe },
-> +	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0xffff },
-> +	{}
-> +};
-> +
->  static int bxt_calc_cdclk(struct drm_i915_private *dev_priv, int min_cdclk)
->  {
->  	const struct intel_cdclk_vals *table = dev_priv->display.cdclk.table;
-> @@ -3591,7 +3616,10 @@ static const struct intel_cdclk_funcs i830_cdclk_funcs = {
->   */
->  void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
->  {
-> -	if (DISPLAY_VER(dev_priv) >= 14) {
-> +	if (DISPLAY_VER(dev_priv) >= 20) {
-> +		dev_priv->display.funcs.cdclk = &mtl_cdclk_funcs;
-> +		dev_priv->display.cdclk.table = lnl_cdclk_table;
-> +	} else if (DISPLAY_VER(dev_priv) >= 14) {
->  		dev_priv->display.funcs.cdclk = &mtl_cdclk_funcs;
->  		dev_priv->display.cdclk.table = mtl_cdclk_table;
->  	} else if (IS_DG2(dev_priv)) {
+> -static const struct intel_display_device_info xe_lpdp_display = {
+> -	XE_LPD_FEATURES,
+> -	.has_cdclk_crawl = 1,
+> -	.has_cdclk_squash = 1,
+> +#define XE_LPDP_FEATURES							\
+> +	.abox_mask = GENMASK(1, 0),						\
+> +	.color = {								\
+> +		.degamma_lut_size = 129, .gamma_lut_size = 1024,		\
+> +		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |		\
+> +		DRM_COLOR_LUT_EQUAL_CHANNELS,					\
+> +	},									\
+> +	.dbuf.size = 4096,							\
+> +	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |		\
+> +		BIT(DBUF_S4),							\
+> +	.has_cdclk_crawl = 1,							\
+> +	.has_cdclk_squash = 1,							\
+> +	.has_ddi = 1,								\
+> +	.has_dp_mst = 1,							\
+> +	.has_dsb = 1,								\
+> +	.has_fpga_dbg = 1,							\
+> +	.has_hotplug = 1,							\
+> +	.has_ipc = 1,								\
+> +	.has_psr = 1,								\
+> +	.pipe_offsets = {							\
+> +		[TRANSCODER_A] = PIPE_A_OFFSET,					\
+> +		[TRANSCODER_B] = PIPE_B_OFFSET,					\
+> +		[TRANSCODER_C] = PIPE_C_OFFSET,					\
+> +		[TRANSCODER_D] = PIPE_D_OFFSET,					\
+> +	},									\
+> +	.trans_offsets = {							\
+> +		[TRANSCODER_A] = TRANSCODER_A_OFFSET,				\
+> +		[TRANSCODER_B] = TRANSCODER_B_OFFSET,				\
+> +		[TRANSCODER_C] = TRANSCODER_C_OFFSET,				\
+> +		[TRANSCODER_D] = TRANSCODER_D_OFFSET,				\
+> +	},									\
+> +	TGL_CURSOR_OFFSETS,							\
+> +										\
+> +	.__runtime_defaults.cpu_transcoder_mask =				\
+> +		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
+> +		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),				\
+> +	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),	\
+> +	.__runtime_defaults.has_dmc = 1,					\
+> +	.__runtime_defaults.has_dsc = 1,					\
+> +	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),			\
+
+fbc_mask is set just a few lines above (and this second version is wrong
+for Xe_LPD+).
+
+With this line dropped,
+
+        Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+
+Matt
+
+> +	.__runtime_defaults.has_hdcp = 1,					\
+> +	.__runtime_defaults.pipe_mask =						\
+> +		BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),		\
+> +	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |		\
+> +		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4)
+>  
+> -	.__runtime_defaults.ip.ver = 14,
+> -	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),
+> -	.__runtime_defaults.cpu_transcoder_mask =
+> -		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+> -		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+> -	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |
+> -		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4),
+> +static const struct intel_display_device_info xe_lpdp_display = {
+> +	XE_LPDP_FEATURES,
+>  };
+>  
+>  /*
 > -- 
 > 2.40.1
 > 
