@@ -2,51 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C93B79E482
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Sep 2023 12:04:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A365D79E4BC
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Sep 2023 12:21:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DB3010E0A1;
-	Wed, 13 Sep 2023 10:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 981F610E495;
+	Wed, 13 Sep 2023 10:21:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E747710E0A1
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Sep 2023 10:04:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D52BD10E00A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Sep 2023 10:21:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694599491; x=1726135491;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kR6IaWN/xCtwhxFSo/xvOTO1ouNvfYl6PiwttNKWsqo=;
- b=JUbOIPWO1p+A7lxXbL4kHL54XT+1kHbPIYNiGb9Ht7wDKUez4xaJBcxI
- y+AbQdSOmZD7D0ARHKBQafoRYflhWfEs7wacyEzH9VlnehVM+5ECzjhw1
- hmh86YuLfmt/XhbYctU6ZQJFaIv0FwpEnABTpSocmFB1pP4OHDHgE2e9G
- rqfNCgg7niUWl5cvskMOWXiCOqgVYH+aVjMyPbHMqL72olxgqpXnTShhL
- bT5Vj2SQkW79a5lQ+OnuULsDAx7GTVjMXbv/31bL37bB8o4OKpMdj+zlk
- tP9racZZg9MA3Jz3iHx5jcDjBxIJnGmdtT99UAX4tAEChu1uB4N+LeDcj Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="363648525"
-X-IronPort-AV: E=Sophos;i="6.02,142,1688454000"; d="scan'208";a="363648525"
+ t=1694600484; x=1726136484;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=uOOhPnd4a5gigfdFp7yjJLC2EY9/kZvroHRnnTB3UZI=;
+ b=jcfilqJEZ51dChKDdqjWnvL5fQTkyOIWT4vxZcnSBCweq6IUBMXXXgFT
+ kuKH5C/DOeGnMMnPJ9cvY91GvEpj2kHmMHNGFxG9Y2KBI8BDcAWm4aj0N
+ rJm4hdeyvvYGjSM4B+9QbENcN0XhyrQodLqstX65qZZJ/CcVUKDRUp+FF
+ KgeFEhdoFPNAHOn8CUtnj2LxCbnZmX7GY0SE/teJ8fDgNsFzgx5HQsroy
+ Rb78CFGAe1El0JwrntntQiuJrU9LRSauDUXgdo4/bTARbQv273hF5wal8
+ LsTO4hr4s4FK39rT56Eb3tTl8SooVbPntZcU5HOki7gLuCeVpf4u4YiXH w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="363651354"
+X-IronPort-AV: E=Sophos;i="6.02,142,1688454000"; d="scan'208";a="363651354"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2023 03:04:50 -0700
+ 13 Sep 2023 03:21:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="773409621"
-X-IronPort-AV: E=Sophos;i="6.02,142,1688454000"; d="scan'208";a="773409621"
-Received: from seanpaul-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.249.45.158])
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="773411556"
+X-IronPort-AV: E=Sophos;i="6.02,142,1688454000"; d="scan'208";a="773411556"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.31.48])
+ ([10.213.31.48])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2023 03:04:48 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Sep 2023 13:04:30 +0300
-Message-Id: <20230913100430.3433969-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
+ 13 Sep 2023 03:21:15 -0700
+Message-ID: <3fbe265b-5ead-b95a-7a74-a49ceb3c2caa@intel.com>
+Date: Wed, 13 Sep 2023 12:21:12 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Remove runtime suspended boolean from
- intel_runtime_pm struct
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.15.0
+Content-Language: en-US
+To: Matt Roper <matthew.d.roper@intel.com>
+References: <20230912073521.2106162-1-andrzej.hajda@intel.com>
+ <20230912210540.GN2706891@mdroper-desk1.amr.corp.intel.com>
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20230912210540.GN2706891@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: skip WA verfication for
+ GEN7_MISCCPCTL on DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,115 +65,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It's not necessary to carry separate suspended status information in
-intel_runtime_pm struct as this information is already in underlying device
-structure. Remove it and use pm_runtime_suspended() to obtain suspended
-status information when needed.
+On 12.09.2023 23:05, Matt Roper wrote:
+> On Tue, Sep 12, 2023 at 09:35:21AM +0200, Andrzej Hajda wrote:
+>> Some DG2 firmware locks this register for modification. Using wa_add
+>> with read_mask 0 allows to skip checks of such registers.
+>>
+>> Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/intel_workarounds.c | 7 +++++--
+>>   1 file changed, 5 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> index 70071ead0659cc..1d1474ad945e0c 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> @@ -1597,8 +1597,11 @@ dg2_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+>>   	/* Wa_14014830051:dg2 */
+>>   	wa_mcr_write_clr(wal, SARB_CHICKEN1, COMP_CKN_IN);
+>>   
+>> -	/* Wa_14015795083 */
+>> -	wa_write_clr(wal, GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE);
+>> +	/* Wa_14015795083
+> 
+> Minor nitpick:  kernel coding style says that "/*" should be on a line
+> by itself for multi-line comments.  Aside from that,
+> 
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
- drivers/gpu/drm/i915/i915_driver.c                 | 3 ---
- drivers/gpu/drm/i915/i915_gpu_error.c              | 2 +-
- drivers/gpu/drm/i915/intel_runtime_pm.c            | 1 -
- drivers/gpu/drm/i915/intel_runtime_pm.h            | 4 ++--
- 5 files changed, 4 insertions(+), 8 deletions(-)
+Thanks for both r-b.
+Pushed with adjusted comment.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 68cf5e6b0b46..889bb26009a2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -216,7 +216,7 @@ bool __intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
- 	struct i915_power_well *power_well;
- 	bool is_enabled;
- 
--	if (dev_priv->runtime_pm.suspended)
-+	if (pm_runtime_suspended(dev_priv->drm.dev))
- 		return false;
- 
- 	is_enabled = true;
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index f8dbee7a5af7..cd98ee740976 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1569,8 +1569,6 @@ static int intel_runtime_suspend(struct device *kdev)
- 	if (root_pdev)
- 		pci_d3cold_disable(root_pdev);
- 
--	rpm->suspended = true;
--
- 	/*
- 	 * FIXME: We really should find a document that references the arguments
- 	 * used below!
-@@ -1621,7 +1619,6 @@ static int intel_runtime_resume(struct device *kdev)
- 	disable_rpm_wakeref_asserts(rpm);
- 
- 	intel_opregion_notify_adapter(dev_priv, PCI_D0);
--	rpm->suspended = false;
- 
- 	root_pdev = pcie_find_root_port(pdev);
- 	if (root_pdev)
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 4008bb09fdb5..a60bab177c55 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1972,7 +1972,7 @@ static void capture_gen(struct i915_gpu_coredump *error)
- 	struct drm_i915_private *i915 = error->i915;
- 
- 	error->wakelock = atomic_read(&i915->runtime_pm.wakeref_count);
--	error->suspended = i915->runtime_pm.suspended;
-+	error->suspended = pm_runtime_suspended(i915->drm.dev);
- 
- 	error->iommu = i915_vtd_active(i915);
- 	error->reset_count = i915_reset_count(&i915->gpu_error);
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index 6d8e5e5c0cba..8743153fad87 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -652,7 +652,6 @@ void intel_runtime_pm_init_early(struct intel_runtime_pm *rpm)
- 
- 	rpm->kdev = kdev;
- 	rpm->available = HAS_RUNTIME_PM(i915);
--	rpm->suspended = false;
- 	atomic_set(&rpm->wakeref_count, 0);
- 
- 	init_intel_runtime_pm_wakeref(rpm);
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
-index 764b183ae452..f79cda7a2503 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.h
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
-@@ -6,6 +6,7 @@
- #ifndef __INTEL_RUNTIME_PM_H__
- #define __INTEL_RUNTIME_PM_H__
- 
-+#include <linux/pm_runtime.h>
- #include <linux/types.h>
- 
- #include "intel_wakeref.h"
-@@ -43,7 +44,6 @@ struct intel_runtime_pm {
- 	atomic_t wakeref_count;
- 	struct device *kdev; /* points to i915->drm.dev */
- 	bool available;
--	bool suspended;
- 	bool irqs_enabled;
- 	bool no_wakeref_tracking;
- 
-@@ -110,7 +110,7 @@ intel_rpm_wakelock_count(int wakeref_count)
- static inline void
- assert_rpm_device_not_suspended(struct intel_runtime_pm *rpm)
- {
--	WARN_ONCE(rpm->suspended,
-+	WARN_ONCE(pm_runtime_suspended(rpm->kdev),
- 		  "Device suspended during HW access\n");
- }
- 
--- 
-2.34.1
+Regards
+Andrzej
+
+> 
+> 
+> Matt
+> 
+>> +	 * Skip verification for possibly locked register.
+>> +	 */
+>> +	wa_add(wal, GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE,
+>> +	       0, 0, false);
+>>   
+>>   	/* Wa_18018781329 */
+>>   	wa_mcr_write_or(wal, RENDER_MOD_CTRL, FORCE_MISS_FTLB);
+>> -- 
+>> 2.34.1
+>>
+> 
 
