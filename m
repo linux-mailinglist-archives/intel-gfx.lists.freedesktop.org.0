@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EBA179F25B
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Sep 2023 21:49:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 806E179F29B
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Sep 2023 22:11:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 544F810E0E6;
-	Wed, 13 Sep 2023 19:49:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C4AA10E0E6;
+	Wed, 13 Sep 2023 20:11:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9E6C810E0E6;
- Wed, 13 Sep 2023 19:49:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 57EC710E171;
+ Wed, 13 Sep 2023 20:11:01 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 939FAAA917;
- Wed, 13 Sep 2023 19:49:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6269779307305001601=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4D82CAA01E;
+ Wed, 13 Sep 2023 20:11:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dan Carpenter" <dan.carpenter@linaro.org>
-Date: Wed, 13 Sep 2023 19:49:23 -0000
-Message-ID: <169463456356.31252.17169918531949283345@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 13 Sep 2023 20:11:01 -0000
+Message-ID: <169463586128.31252.13606094429185807673@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <455b2279-2e08-4d00-9784-be56d8ee42e3@moroto.mountain>
-In-Reply-To: <455b2279-2e08-4d00-9784-be56d8ee42e3@moroto.mountain>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Prevent_error_pointer_dereference_=28rev2=29?=
+References: <cover.1694514689.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1694514689.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_prepare_for_xe_driver_display_integration_=28re?=
+ =?utf-8?b?djIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,228 +46,423 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6269779307305001601==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/gt: Prevent error pointer dereference (rev2)
-URL   : https://patchwork.freedesktop.org/series/123628/
-State : success
+Series: drm/i915: prepare for xe driver display integration (rev2)
+URL   : https://patchwork.freedesktop.org/series/123595/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_13626 -> Patchwork_123628v2
-====================================================
+Error: dim checkpatch failed
+1b12af564c06 drm/i915: define I915 during i915 driver build
+6acbd52df16f drm/i915/display: add I915 conditional build to intel_lvds.h
+-:30: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#30: FILE: drivers/gpu/drm/i915/display/intel_lvds.h:28:
++}
++static inline void intel_lvds_init(struct drm_i915_private *dev_priv)
 
-Summary
--------
+-:33: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#33: FILE: drivers/gpu/drm/i915/display/intel_lvds.h:31:
++}
++static inline struct intel_encoder *intel_get_lvds_encoder(struct drm_i915_private *dev_priv)
 
-  **SUCCESS**
+-:37: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#37: FILE: drivers/gpu/drm/i915/display/intel_lvds.h:35:
++}
++static inline bool intel_is_dual_link_lvds(struct drm_i915_private *dev_priv)
 
-  No regressions found.
+total: 0 errors, 0 warnings, 3 checks, 29 lines checked
+ecf3ba1f7f3c drm/i915/display: add I915 conditional build to hsw_ips.h
+-:31: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#31: FILE: drivers/gpu/drm/i915/display/hsw_ips.h:32:
++}
++static inline bool hsw_ips_pre_update(struct intel_atomic_state *state,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/index.html
+-:36: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#36: FILE: drivers/gpu/drm/i915/display/hsw_ips.h:37:
++}
++static inline void hsw_ips_post_update(struct intel_atomic_state *state,
 
-Participating hosts (40 -> 40)
-------------------------------
+-:40: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#40: FILE: drivers/gpu/drm/i915/display/hsw_ips.h:41:
++}
++static inline bool hsw_crtc_supports_ips(struct intel_crtc *crtc)
 
-  Additional (1): fi-pnv-d510 
-  Missing    (1): fi-snb-2520m 
+-:44: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#44: FILE: drivers/gpu/drm/i915/display/hsw_ips.h:45:
++}
++static inline bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state)
 
-Known issues
-------------
+-:48: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#48: FILE: drivers/gpu/drm/i915/display/hsw_ips.h:49:
++}
++static inline int hsw_ips_compute_config(struct intel_atomic_state *state,
 
-  Here are the changes found in Patchwork_123628v2 that come from known issues:
+-:53: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#53: FILE: drivers/gpu/drm/i915/display/hsw_ips.h:54:
++}
++static inline void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
 
-### IGT changes ###
+-:56: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#56: FILE: drivers/gpu/drm/i915/display/hsw_ips.h:57:
++}
++static inline void hsw_ips_crtc_debugfs_add(struct intel_crtc *crtc)
 
-#### Issues hit ####
+total: 0 errors, 0 warnings, 7 checks, 46 lines checked
+a389119da8a1 drm/i915/display: add I915 conditional build to i9xx_plane.h
+-:33: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#33: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:36:
++}
++static inline int i9xx_check_plane_surface(struct intel_plane_state *plane_state)
 
-  * igt@gem_lmem_swapping@basic:
-    - fi-apl-guc:         NOTRUN -> [SKIP][1] ([fdo#109271] / [i915#4613]) +3 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-apl-guc/igt@gem_lmem_swapping@basic.html
+-:37: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#37: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:40:
++}
++static inline struct intel_plane *
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         NOTRUN -> [DMESG-FAIL][2] ([i915#5334])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+-:42: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#42: FILE: drivers/gpu/drm/i915/display/i9xx_plane.h:45:
++}
++static inline void i9xx_get_initial_plane_config(struct intel_crtc *crtc,
 
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271]) +12 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+total: 0 errors, 0 warnings, 3 checks, 33 lines checked
+40c419b0967e drm/i915/display: add I915 conditional build to intel_lpe_audio.h
+-:31: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#31: FILE: drivers/gpu/drm/i915/display/intel_lpe_audio.h:27:
++}
++static inline void intel_lpe_audio_teardown(struct drm_i915_private *dev_priv)
 
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-bsw-nick:        [PASS][4] -> [FAIL][5] ([i915#9276])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13626/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html
+-:34: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#34: FILE: drivers/gpu/drm/i915/display/intel_lpe_audio.h:30:
++}
++static inline void intel_lpe_audio_irq_handler(struct drm_i915_private *dev_priv)
 
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-apl-guc:         NOTRUN -> [SKIP][6] ([fdo#109271]) +16 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html
+-:37: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#37: FILE: drivers/gpu/drm/i915/display/intel_lpe_audio.h:33:
++}
++static inline void intel_lpe_audio_notify(struct drm_i915_private *dev_priv,
 
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-adlp-9:         NOTRUN -> [SKIP][7] ([i915#3546]) +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+total: 0 errors, 0 warnings, 3 checks, 29 lines checked
+67d8d4926626 drm/i915/display: add I915 conditional build to intel_pch_refclk.h
+-:31: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#31: FILE: drivers/gpu/drm/i915/display/intel_pch_refclk.h:26:
++}
++static inline void lpt_disable_iclkip(struct drm_i915_private *dev_priv)
 
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:
-    - fi-hsw-4770:        NOTRUN -> [DMESG-WARN][8] ([i915#8841]) +6 other tests dmesg-warn
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html
+-:34: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#34: FILE: drivers/gpu/drm/i915/display/intel_pch_refclk.h:29:
++}
++static inline int lpt_get_iclkip(struct drm_i915_private *dev_priv)
 
-  * igt@kms_psr@primary_page_flip:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][9] ([fdo#109271]) +31 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-pnv-d510/igt@kms_psr@primary_page_flip.html
+-:38: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#38: FILE: drivers/gpu/drm/i915/display/intel_pch_refclk.h:33:
++}
++static inline int lpt_iclkip(const struct intel_crtc_state *crtc_state)
 
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#1072]) +3 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html
+-:42: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#42: FILE: drivers/gpu/drm/i915/display/intel_pch_refclk.h:37:
++}
++static inline void intel_init_pch_refclk(struct drm_i915_private *dev_priv)
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:45: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#45: FILE: drivers/gpu/drm/i915/display/intel_pch_refclk.h:40:
++}
++static inline void lpt_disable_clkout_dp(struct drm_i915_private *dev_priv)
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
-  [i915#8841]: https://gitlab.freedesktop.org/drm/intel/issues/8841
-  [i915#9273]: https://gitlab.freedesktop.org/drm/intel/issues/9273
-  [i915#9276]: https://gitlab.freedesktop.org/drm/intel/issues/9276
-  [i915#9279]: https://gitlab.freedesktop.org/drm/intel/issues/9279
+total: 0 errors, 0 warnings, 5 checks, 34 lines checked
+bfcfe5b05a73 drm/i915/display: add I915 conditional build to intel_pch_display.h
+-:33: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#33: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:51:
++}
++static inline int intel_crtc_pch_transcoder(struct intel_crtc *crtc)
+
+-:37: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#37: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:55:
++}
++static inline void ilk_pch_pre_enable(struct intel_atomic_state *state,
+
+-:41: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#41: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:59:
++}
++static inline void ilk_pch_enable(struct intel_atomic_state *state,
+
+-:45: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#45: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:63:
++}
++static inline void ilk_pch_disable(struct intel_atomic_state *state,
+
+-:49: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#49: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:67:
++}
++static inline void ilk_pch_post_disable(struct intel_atomic_state *state,
+
+-:53: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#53: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:71:
++}
++static inline void ilk_pch_get_config(struct intel_crtc_state *crtc_state)
+
+-:56: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#56: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:74:
++}
++static inline void lpt_pch_enable(struct intel_atomic_state *state,
+
+-:60: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#60: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:78:
++}
++static inline void lpt_pch_disable(struct intel_atomic_state *state,
+
+-:64: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#64: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:82:
++}
++static inline void lpt_pch_get_config(struct intel_crtc_state *crtc_state)
+
+-:67: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#67: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:85:
++}
++static inline void intel_pch_transcoder_get_m1_n1(struct intel_crtc *crtc,
+
+-:71: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#71: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:89:
++}
++static inline void intel_pch_transcoder_get_m2_n2(struct intel_crtc *crtc,
+
+-:75: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#75: FILE: drivers/gpu/drm/i915/display/intel_pch_display.h:93:
++}
++static inline void intel_pch_sanitize(struct drm_i915_private *i915)
+
+total: 0 errors, 0 warnings, 12 checks, 64 lines checked
+b1686e0a6069 drm/i915/display: add I915 conditional build to intel_sprite.h
+adc49c545f6d drm/i915/display: add I915 conditional build to intel_overlay.h
+-:31: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#31: FILE: drivers/gpu/drm/i915/display/intel_overlay.h:33:
++}
++static inline void intel_overlay_cleanup(struct drm_i915_private *dev_priv)
+
+-:34: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#34: FILE: drivers/gpu/drm/i915/display/intel_overlay.h:36:
++}
++static inline int intel_overlay_switch_off(struct intel_overlay *overlay)
+
+-:38: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#38: FILE: drivers/gpu/drm/i915/display/intel_overlay.h:40:
++}
++static inline int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
+
+-:39: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#39: FILE: drivers/gpu/drm/i915/display/intel_overlay.h:41:
++static inline int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
++				  struct drm_file *file_priv)
+
+-:43: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#43: FILE: drivers/gpu/drm/i915/display/intel_overlay.h:45:
++}
++static inline int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
+
+-:48: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#48: FILE: drivers/gpu/drm/i915/display/intel_overlay.h:50:
++}
++static inline void intel_overlay_reset(struct drm_i915_private *dev_priv)
+
+-:51: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#51: FILE: drivers/gpu/drm/i915/display/intel_overlay.h:53:
++}
++static inline struct intel_overlay_error_state *
+
+-:56: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#56: FILE: drivers/gpu/drm/i915/display/intel_overlay.h:58:
++}
++static inline void intel_overlay_print_error_state(struct drm_i915_error_state_buf *e,
+
+total: 0 errors, 0 warnings, 8 checks, 46 lines checked
+7bda41f572dc drm/i915/display: add I915 conditional build to g4x_dp.h
+-:31: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#31: FILE: drivers/gpu/drm/i915/display/g4x_dp.h:35:
++}
++static inline int vlv_active_pipe(struct intel_dp *intel_dp)
+
+-:35: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#35: FILE: drivers/gpu/drm/i915/display/g4x_dp.h:39:
++}
++static inline void g4x_dp_set_clock(struct intel_encoder *encoder,
+
+-:39: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#39: FILE: drivers/gpu/drm/i915/display/g4x_dp.h:43:
++}
++static inline bool g4x_dp_port_enabled(struct drm_i915_private *dev_priv,
+
+-:45: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#45: FILE: drivers/gpu/drm/i915/display/g4x_dp.h:49:
++}
++static inline bool g4x_dp_init(struct drm_i915_private *dev_priv,
+
+total: 0 errors, 0 warnings, 4 checks, 37 lines checked
+598c19219cd7 drm/i915/display: add I915 conditional build to intel_dpio_phy.h
+-:32: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#32: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:79:
++}
++static inline void bxt_ddi_phy_set_signal_levels(struct intel_encoder *encoder,
+
+-:36: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#36: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:83:
++}
++static inline void bxt_ddi_phy_init(struct drm_i915_private *dev_priv, enum dpio_phy phy)
+
+-:39: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#39: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:86:
++}
++static inline void bxt_ddi_phy_uninit(struct drm_i915_private *dev_priv, enum dpio_phy phy)
+
+-:42: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#42: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:89:
++}
++static inline bool bxt_ddi_phy_is_enabled(struct drm_i915_private *dev_priv,
+
+-:47: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#47: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:94:
++}
++static inline bool bxt_ddi_phy_verify_state(struct drm_i915_private *dev_priv,
+
+-:52: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#52: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:99:
++}
++static inline u8 bxt_ddi_phy_calc_lane_lat_optim_mask(u8 lane_count)
+
+-:56: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#56: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:103:
++}
++static inline void bxt_ddi_phy_set_lane_optim_mask(struct intel_encoder *encoder,
+
+-:60: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#60: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:107:
++}
++static inline u8 bxt_ddi_phy_get_lane_lat_optim_mask(struct intel_encoder *encoder)
+
+-:64: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#64: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:111:
++}
++static inline enum dpio_channel vlv_dig_port_to_channel(struct intel_digital_port *dig_port)
+
+-:68: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#68: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:115:
++}
++static inline enum dpio_phy vlv_dig_port_to_phy(struct intel_digital_port *dig_port)
+
+-:72: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#72: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:119:
++}
++static inline enum dpio_channel vlv_pipe_to_channel(enum pipe pipe)
+
+-:76: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#76: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:123:
++}
++static inline void chv_set_phy_signal_level(struct intel_encoder *encoder,
+
+-:82: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#82: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:129:
++}
++static inline void chv_data_lane_soft_reset(struct intel_encoder *encoder,
+
+-:87: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#87: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:134:
++}
++static inline void chv_phy_pre_pll_enable(struct intel_encoder *encoder,
+
+-:91: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#91: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:138:
++}
++static inline void chv_phy_pre_encoder_enable(struct intel_encoder *encoder,
+
+-:95: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#95: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:142:
++}
++static inline void chv_phy_release_cl2_override(struct intel_encoder *encoder)
+
+-:98: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#98: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:145:
++}
++static inline void chv_phy_post_pll_disable(struct intel_encoder *encoder,
+
+-:109: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#109: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:156:
++}
++static inline void vlv_phy_pre_pll_enable(struct intel_encoder *encoder,
+
+-:113: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#113: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:160:
++}
++static inline void vlv_phy_pre_encoder_enable(struct intel_encoder *encoder,
+
+-:117: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#117: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:164:
++}
++static inline void vlv_phy_reset_lanes(struct intel_encoder *encoder,
+
+total: 0 errors, 0 warnings, 20 checks, 107 lines checked
+a0102d5c059b drm/i915/display: add I915 conditional build to intel_crt.h
+-:29: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#29: FILE: drivers/gpu/drm/i915/display/intel_crt.h:26:
++}
++static inline void intel_crt_init(struct drm_i915_private *dev_priv)
+
+-:32: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#32: FILE: drivers/gpu/drm/i915/display/intel_crt.h:29:
++}
++static inline void intel_crt_reset(struct drm_encoder *encoder)
+
+total: 0 errors, 0 warnings, 2 checks, 23 lines checked
+466fd44d0ba9 drm/i915/display: add I915 conditional build to vlv_dsi.h
+-:26: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#26: FILE: drivers/gpu/drm/i915/display/vlv_dsi.h:23:
++}
++static inline enum mipi_dsi_pixel_format pixel_format_from_register_bits(u32 fmt)
+
+-:30: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#30: FILE: drivers/gpu/drm/i915/display/vlv_dsi.h:27:
++}
++static inline void vlv_dsi_init(struct drm_i915_private *dev_priv)
+
+total: 0 errors, 0 warnings, 2 checks, 21 lines checked
+3ec6c18adaec drm/i915/display: add I915 conditional build to i9xx_wm.h
+-:28: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#28: FILE: drivers/gpu/drm/i915/display/i9xx_wm.h:25:
++}
++static inline void ilk_wm_sanitize(struct drm_i915_private *i915)
+
+-:31: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#31: FILE: drivers/gpu/drm/i915/display/i9xx_wm.h:28:
++}
++static inline bool intel_set_memory_cxsr(struct drm_i915_private *i915, bool enable)
+
+-:35: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#35: FILE: drivers/gpu/drm/i915/display/i9xx_wm.h:32:
++}
++static inline void i9xx_wm_init(struct drm_i915_private *i915)
+
+total: 0 errors, 0 warnings, 3 checks, 26 lines checked
+7d5529baaf42 drm/i915/display: add I915 conditional build to g4x_hdmi.h
+-:28: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#28: FILE: drivers/gpu/drm/i915/display/g4x_hdmi.h:28:
++}
++static inline int g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
+
+total: 0 errors, 0 warnings, 1 checks, 21 lines checked
+c011edea4b83 drm/i915/display: add I915 conditional build to intel_dvo.h
+13cb366d0302 drm/i915/display: add I915 conditional build to intel_sdvo.h
+-:29: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#29: FILE: drivers/gpu/drm/i915/display/intel_sdvo.h:28:
++}
++static inline bool intel_sdvo_init(struct drm_i915_private *dev_priv,
+
+total: 0 errors, 0 warnings, 1 checks, 22 lines checked
+bc6680b3e9a9 drm/i915/display: add I915 conditional build to intel_tv.h
+469709895e79 drm/i915/display: add I915 conditional build to vlv_dsi_pll.h
+-:25: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#25: FILE: drivers/gpu/drm/i915/display/vlv_dsi_pll.h:42:
++}
++static inline void assert_dsi_pll_disabled(struct drm_i915_private *i915)
+
+total: 0 errors, 0 warnings, 1 checks, 16 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_13626 -> Patchwork_123628v2
-
-  CI-20190529: 20190529
-  CI_DRM_13626: d5838c603de7b95ea299cbf7ff87228496bc86b2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7486: afd9a940c8247291baadd1977fe881d4f2edf0c7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_123628v2: d5838c603de7b95ea299cbf7ff87228496bc86b2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-ec409b4962bb drm/i915/gt: Prevent error pointer dereference
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/index.html
-
---===============6269779307305001601==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Prevent error pointer dereference (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123628/">https://patchwork.freedesktop.org/series/123628/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13626 -&gt; Patchwork_123628v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/index.html</p>
-<h2>Participating hosts (40 -&gt; 40)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_123628v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +12 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13626/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-bsw-nick/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9276">i915#9276</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +16 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-hsw-4770/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-c-vga-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) +6 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-pnv-d510/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +31 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123628v2/fi-hsw-4770/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_13626 -&gt; Patchwork_123628v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13626: d5838c603de7b95ea299cbf7ff87228496bc86b2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7486: afd9a940c8247291baadd1977fe881d4f2edf0c7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_123628v2: d5838c603de7b95ea299cbf7ff87228496bc86b2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>ec409b4962bb drm/i915/gt: Prevent error pointer dereference</p>
-
-</body>
-</html>
-
---===============6269779307305001601==--
