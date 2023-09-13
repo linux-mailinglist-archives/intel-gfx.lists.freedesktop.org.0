@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2F879EB37
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Sep 2023 16:36:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E16679EB4B
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Sep 2023 16:41:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 244F310E0F8;
-	Wed, 13 Sep 2023 14:36:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2843610E24C;
+	Wed, 13 Sep 2023 14:41:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B7A610E24C;
- Wed, 13 Sep 2023 14:36:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80A6310E072;
+ Wed, 13 Sep 2023 14:41:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694615806; x=1726151806;
+ t=1694616111; x=1726152111;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=JpNbZ0bggklpxemUIqL03n4LjOB85pfBbv3L5CBdVqU=;
- b=kZo6iL6gKGn7CII27KnwRlshUQl0IwNSAkTgJJ2k3XkJi+SODO6+Gsie
- hXVV+U73vYZeECR1VbGjl6RZnmsmfFVIkL8j5+/AMdjMY+wO6FPltArfL
- v7NHiA/xH+CKhqhonss5raodtEw0UT4em+wkpHP6ExQAMhIvrVqygSDti
- pWoptxESG5QnQ7EjqFcpEwrNuVocdpDZ8R+T0y70IVbQJsHdHPVOmBSx3
- 7aVvsNnAARbFLrgOnFnxM2t3wh81+Ml/tXGP1+EaY/nrSqBLDs7CZaDQ3
- yUpe3F4AAZiRTN5JCir1tAw6oTgQvcasg9UZC9tK8HdT0V4l56BQVyMaY g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="409629085"
-X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="409629085"
+ bh=CjVV9xvhEMv97Jc9gVwxA0bhg16EarfXLqk54Hv6BB0=;
+ b=W9MVJE2arPLtN1T/LbuuBRTnjXCo1FXkCNtTo05Tf8YYzIp/QFjOf8dM
+ jdJVni5YuC3gycmpjM9pByzJtE+NzA0Sps60cVv72Knopj68PuP7qEVsv
+ by4o8AFabFNTDDMVPzah+UBwlVksLTqBWRRaRcCMKpmV7qQmjxR5dByys
+ jWQzw533O+zM+jKGt/Cht17d84CZlzxnfmc2MH30VO/GtRgxa2j+5G8uQ
+ qxqyQF3/3Nu8q/RqIEYZ7cRqdr6WTJnaxuazLB+TzbA8WN0msahBckEeJ
+ CHz26fE051wtSwH6UR1+SlmPqCwOxboZ+1Ml9Gg1HXcVPeMh1RYv9AbsT w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="409630190"
+X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="409630190"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2023 07:36:45 -0700
+ 13 Sep 2023 07:41:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="834326777"
-X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="834326777"
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="834327224"
+X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="834327224"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by FMSMGA003.fm.intel.com with SMTP; 13 Sep 2023 07:36:43 -0700
+ by FMSMGA003.fm.intel.com with SMTP; 13 Sep 2023 07:41:48 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 13 Sep 2023 17:36:42 +0300
-Date: Wed, 13 Sep 2023 17:36:42 +0300
+ Wed, 13 Sep 2023 17:41:48 +0300
+Date: Wed, 13 Sep 2023 17:41:48 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Luca Coelho <luca@coelho.fi>
-Message-ID: <ZQHI-nrvFQvhoBwP@intel.com>
-References: <20230502143906.2401-9-ville.syrjala@linux.intel.com>
- <20230503113659.16305-1-ville.syrjala@linux.intel.com>
- <c11fcc5b7920363e885826d31a4fd01e4dbb00a5.camel@coelho.fi>
+Message-ID: <ZQHKLFQiygq_OKgV@intel.com>
+References: <20230502143906.2401-1-ville.syrjala@linux.intel.com>
+ <20230502143906.2401-6-ville.syrjala@linux.intel.com>
+ <e73031cb908653d57684775d66771998dedf71b0.camel@coelho.fi>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c11fcc5b7920363e885826d31a4fd01e4dbb00a5.camel@coelho.fi>
+In-Reply-To: <e73031cb908653d57684775d66771998dedf71b0.camel@coelho.fi>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 08/11] drm/i915: Introduce
- crtc_state->enhanced_framing
+Subject: Re: [Intel-gfx] [PATCH 05/11] drm/i915: Check lane count when
+ determining FEC support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,94 +67,89 @@ Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 25, 2023 at 12:51:28PM +0300, Luca Coelho wrote:
-> On Wed, 2023-05-03 at 14:36 +0300, Ville Syrjala wrote:
+On Thu, May 25, 2023 at 11:09:30AM +0300, Luca Coelho wrote:
+> On Tue, 2023-05-02 at 17:39 +0300, Ville Syrjala wrote:
 > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > > 
-> > Track DP enhanced framing properly in the crtc state instead
-> > of relying just on the cached DPCD everywhere, and hook it
-> > up into the state check and dump.
-> > 
-> > v2: Actually set enhanced_framing in .compute_config()
+> > ICL doesn't support FEC with a x1 DP link. Make sure
+> > we don't try to enable FEC in such cases.
 > > 
 > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/g4x_dp.c                 | 10 ++++++++--
-> >  drivers/gpu/drm/i915/display/intel_crt.c              |  2 ++
-> >  drivers/gpu/drm/i915/display/intel_crtc_state_dump.c  |  5 +++--
-> >  drivers/gpu/drm/i915/display/intel_ddi.c              | 11 +++++++++--
-> >  drivers/gpu/drm/i915/display/intel_display.c          |  1 +
-> >  drivers/gpu/drm/i915/display/intel_display_types.h    |  2 ++
-> >  drivers/gpu/drm/i915/display/intel_dp.c               |  3 +++
-> >  drivers/gpu/drm/i915/display/intel_dp_link_training.c |  2 +-
-> >  8 files changed, 29 insertions(+), 7 deletions(-)
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 23 ++++++++++++-----------
+> >  1 file changed, 12 insertions(+), 11 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-> > index 920d570f7594..534546ea7d0b 100644
-> > --- a/drivers/gpu/drm/i915/display/g4x_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-> > @@ -141,7 +141,7 @@ static void intel_dp_prepare(struct intel_encoder *encoder,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index b27b4fb71ed7..9ac199444155 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -1218,7 +1218,8 @@ static bool intel_dp_source_supports_fec(struct intel_dp *intel_dp,
+> >  	if (DISPLAY_VER(dev_priv) >= 12)
+> >  		return true;
 > >  
-> >  		intel_de_rmw(dev_priv, TRANS_DP_CTL(crtc->pipe),
-> >  			     TRANS_DP_ENH_FRAMING,
-> > -			     drm_dp_enhanced_frame_cap(intel_dp->dpcd) ?
-> > +			     pipe_config->enhanced_framing ?
-> >  			     TRANS_DP_ENH_FRAMING : 0);
-> >  	} else {
-> >  		if (IS_G4X(dev_priv) && pipe_config->limited_color_range)
-> > @@ -153,7 +153,7 @@ static void intel_dp_prepare(struct intel_encoder *encoder,
-> >  			intel_dp->DP |= DP_SYNC_VS_HIGH;
-> >  		intel_dp->DP |= DP_LINK_TRAIN_OFF;
+> > -	if (DISPLAY_VER(dev_priv) == 11 && encoder->port != PORT_A)
+> > +	if (DISPLAY_VER(dev_priv) == 11 &&
+> > +	    encoder->port != PORT_A && pipe_config->lane_count != 1)
+> >  		return true;
 > >  
-> > -		if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
-> > +		if (pipe_config->enhanced_framing)
-> >  			intel_dp->DP |= DP_ENHANCED_FRAMING;
-> >  
-> >  		if (IS_CHERRYVIEW(dev_priv))
-> > @@ -351,6 +351,9 @@ static void intel_dp_get_config(struct intel_encoder *encoder,
-> >  		u32 trans_dp = intel_de_read(dev_priv,
-> >  					     TRANS_DP_CTL(crtc->pipe));
-> >  
-> > +		if (trans_dp & TRANS_DP_ENH_FRAMING)
-> > +			pipe_config->enhanced_framing = true;
-> > +
-> >  		if (trans_dp & TRANS_DP_HSYNC_ACTIVE_HIGH)
-> >  			flags |= DRM_MODE_FLAG_PHSYNC;
-> >  		else
-> > @@ -361,6 +364,9 @@ static void intel_dp_get_config(struct intel_encoder *encoder,
-> >  		else
-> >  			flags |= DRM_MODE_FLAG_NVSYNC;
-> >  	} else {
-> > +		if (tmp & DP_ENHANCED_FRAMING)
-> > +			pipe_config->enhanced_framing = true;
-> > +
-> >  		if (tmp & DP_SYNC_HS_HIGH)
-> >  			flags |= DRM_MODE_FLAG_PHSYNC;
-> >  		else
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-> > index 13519f78cf9f..52af64aa9953 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> > @@ -449,6 +449,8 @@ static int hsw_crt_compute_config(struct intel_encoder *encoder,
-> >  	/* FDI must always be 2.7 GHz */
-> >  	pipe_config->port_clock = 135000 * 2;
-> >  
-> > +	pipe_config->enhanced_framing = true;
-> > +
+> >  	return false;
+> > @@ -1234,7 +1235,7 @@ static bool intel_dp_supports_fec(struct intel_dp *intel_dp,
+> >  static bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
+> >  				  const struct intel_crtc_state *crtc_state)
+> >  {
+> > -	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP) && !crtc_state->fec_enable)
+> > +	if (!intel_dp_is_edp(intel_dp) && !crtc_state->fec_enable)
 > 
-> Just curious, why are you setting it to true by default here?
+> I'm probably missing something, but this change...
 
-We always want to use enhanced framing with FDI. Setting it here
-and doing the readout allows us to also state check it also for FDI.
+This should have been a separate change I suppose. What this is
+currently asserting is DP-SST needs FEC to use DSC, but so does DP-MST
+which this is totally forgetting to check. eDP is only case where we
+can skip FEC.
 
 > 
-> Otherwise, the changes look reasonable:
 > 
-> Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+> >  		return false;
+> >  
+> >  	return intel_dsc_source_support(crtc_state) &&
+> > @@ -1580,15 +1581,6 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+> >  	int pipe_bpp;
+> >  	int ret;
+> >  
+> > -	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
+> > -		intel_dp_supports_fec(intel_dp, pipe_config);
+> > -
+> > -	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+> > -		return -EINVAL;
+> > -
+> > -	if (!intel_dp_dsc_supports_format(intel_dp, pipe_config->output_format))
+> > -		return -EINVAL;
+> > -
+> >  	if (compute_pipe_bpp)
+> >  		pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
+> >  	else
+> > @@ -1615,6 +1607,15 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+> >  	pipe_config->port_clock = limits->max_rate;
+> >  	pipe_config->lane_count = limits->max_lane_count;
+> >  
+> > +	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
+> > +		intel_dp_supports_fec(intel_dp, pipe_config);
+> > +
+> > +	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+> > +		return -EINVAL;
+> > +
+> > +	if (!intel_dp_dsc_supports_format(intel_dp, pipe_config->output_format))
+> > +		return -EINVAL;
+> > +
+> >  	if (intel_dp_is_edp(intel_dp)) {
+> >  		pipe_config->dsc.compressed_bpp =
+> >  			min_t(u16, drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4,
 > 
-> --
-> Cheers,
-> Luca.
+> ...and this code move are not explained in the commit message? How are
+> they related?
+
+This is moved becaue we need to compute lanel_count before we can
+actually check it.
 
 -- 
 Ville Syrjälä
