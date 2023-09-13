@@ -1,51 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5C5D79EC13
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Sep 2023 17:05:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3387F79EC14
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Sep 2023 17:05:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2124E10E461;
-	Wed, 13 Sep 2023 15:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3FE610E46A;
+	Wed, 13 Sep 2023 15:05:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A8FB10E461
- for <intel-gfx@lists.freedesktop.org>; Wed, 13 Sep 2023 15:05:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1E2C10E461
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Sep 2023 15:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694617546; x=1726153546;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=I10CKN7GoFAQf/qAZwohOvj/Q7LBfwXpWRiOikbqB6w=;
- b=RxgJkdQqF7UUQmzc918Li7J0C9fq33TfCjp6PsOKp1nIPhrOz0vvx+xQ
- QbuoIeMY+13kAVd/Af7xW0Wb+n2tc4aoMenF7g5Ttd3rRYXgOLvJgjdYn
- avEv7FYlfN5UPnWzUK9HdxHSh/HGChBs8GhJ7tDn6mQwkdnt39+bCcGsi
- Mq7rt4SJG8Nag9gEGxFljh8NAaOAKQjx85ivGTKwgx4jAvYa9zJG8jf6R
- mHirGkIMnQrKNal1glJvouOXbg6YavwWW1pOL7L+w0GPX62ZSp5BLNRfx
- RWJU3pji0VUxRq+SWwxcz8y/h+f8pEnH5ZkK2UnTJ/dRqZkE11Ux6tPZc A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="363717924"
-X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="363717924"
+ t=1694617547; x=1726153547;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=wNZV38sX1Sr1cYxfkXkbQ3Q/UfIDMb9SUJC1kNm8g4I=;
+ b=MNyzbdI291F+mjqXncnFo2Pw5YumN/ukwcTu23lNMRvdRYE6DYUcUUye
+ LyASltw+e7tMuIflhvTNa/MZ3nWrilTvnqIIkvdM0vGQc3uMko2GDt6uf
+ BRC8WAmS9lxKFTaHDuRPtRPJ2sS057n1HFaCjNayUp4x0F/P1Uqnug524
+ VfeoSlZprZ58CmPth+iHoOislh+uzLnzvJH0kda5OXMvyV7phXyc9kRhr
+ WtjC2hILEcaUkof/LSGAR8QfnsSBGSElY/A6TFZ6apU7ZLuQxQFvvv2T7
+ J9S1lzXmykeifGyQbp/ha6OYTTHxn6nfWXHm7f5kNtU83dGwbxM4Dgozz A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="363717931"
+X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="363717931"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2023 08:03:59 -0700
+ 13 Sep 2023 08:04:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="809696191"
-X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="809696191"
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="809696197"
+X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="809696197"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by fmsmga008.fm.intel.com with SMTP; 13 Sep 2023 08:03:57 -0700
+ by fmsmga008.fm.intel.com with SMTP; 13 Sep 2023 08:04:00 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 13 Sep 2023 18:03:56 +0300
+ Wed, 13 Sep 2023 18:03:59 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Sep 2023 18:03:55 +0300
-Message-ID: <20230913150356.9477-1-ville.syrjala@linux.intel.com>
+Date: Wed, 13 Sep 2023 18:03:56 +0300
+Message-ID: <20230913150356.9477-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230913150356.9477-1-ville.syrjala@linux.intel.com>
+References: <20230913150356.9477-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Check lane count when determining
- FEC support
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Require FEC for DSC on DP-MST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,64 +65,29 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-ICL doesn't support FEC with a x1 DP link. Make sure
-we don't try to enable FEC in such cases.
-
-Requires a bit of reordering to make sure we've computed lane_count
-before checking it.
+The current check just asserts that we need FEC to use DSC
+with (non-eDP) DP-SST. But MST also needs FEC for DSC. Just
+check for !eDP instead to cover all the cases correctly.
 
 Cc: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 21 +++++++++++----------
- 1 file changed, 11 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 55ba6eeaa810..2cde8ac513bb 100644
+index 2cde8ac513bb..41f180f2879e 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1363,7 +1363,8 @@ static bool intel_dp_source_supports_fec(struct intel_dp *intel_dp,
- 	if (DISPLAY_VER(dev_priv) >= 12)
- 		return true;
+@@ -1380,7 +1380,7 @@ static bool intel_dp_supports_fec(struct intel_dp *intel_dp,
+ static bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
+ 				  const struct intel_crtc_state *crtc_state)
+ {
+-	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP) && !crtc_state->fec_enable)
++	if (!intel_dp_is_edp(intel_dp) && !crtc_state->fec_enable)
+ 		return false;
  
--	if (DISPLAY_VER(dev_priv) == 11 && encoder->port != PORT_A)
-+	if (DISPLAY_VER(dev_priv) == 11 &&
-+	    encoder->port != PORT_A && pipe_config->lane_count != 1)
- 		return true;
- 
- 	return false;
-@@ -2105,15 +2106,6 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 		&pipe_config->hw.adjusted_mode;
- 	int ret;
- 
--	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
--		intel_dp_supports_fec(intel_dp, pipe_config);
--
--	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
--		return -EINVAL;
--
--	if (!intel_dp_dsc_supports_format(intel_dp, pipe_config->output_format))
--		return -EINVAL;
--
- 	/*
- 	 * compute pipe bpp is set to false for DP MST DSC case
- 	 * and compressed_bpp is calculated same time once
-@@ -2134,6 +2126,15 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 		}
- 	}
- 
-+	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
-+		intel_dp_supports_fec(intel_dp, pipe_config);
-+
-+	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
-+		return -EINVAL;
-+
-+	if (!intel_dp_dsc_supports_format(intel_dp, pipe_config->output_format))
-+		return -EINVAL;
-+
- 	/* Calculate Slice count */
- 	if (intel_dp_is_edp(intel_dp)) {
- 		pipe_config->dsc.slice_count =
+ 	return intel_dsc_source_support(crtc_state) &&
 -- 
 2.41.0
 
