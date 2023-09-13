@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3479479F508
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Sep 2023 00:32:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88DD079F509
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Sep 2023 00:32:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2AB810E171;
-	Wed, 13 Sep 2023 22:32:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6215410E175;
+	Wed, 13 Sep 2023 22:32:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4752D10E171;
- Wed, 13 Sep 2023 22:32:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91D3010E171
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Sep 2023 22:32:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694644323; x=1726180323;
+ t=1694644324; x=1726180324;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dULmhBrKRI7OzjuDrif85h8nGx05H+whHxUsfugNRV8=;
- b=C3ZS+GZgiKBKSNcXiGkkf6CQxiBNfAB1C0dsFLaGhagGp7BM+vjxBTKI
- 72gfvhvEjv7VDDfgElpAqAa5ZfBpH6FSNVEMLBdIgbxZ+mHFJf1Eya1Lk
- GtQZGx0rNqUoeO4PGiraiaUcwxHzcY8iuEX2GkkS22oORIduibZxnvFr4
- qN7Qe1AlpBFrwCVuAsuY4p6scS5Gp1N7X/qSgMTnUSOtDtHmIja9Vf3LH
- QbM+/7qx6k1cAEvflMix1Q8niagyvqikvXGXpect+RziS/ZbVRnO4xi80
- S+TrfDl0Vp/6OD4rEY9RKDMioDrz/yGorEtfzP0PQ9xEa9o7DGj2F0Jwu g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="442828869"
-X-IronPort-AV: E=Sophos;i="6.02,144,1688454000"; d="scan'208";a="442828869"
+ bh=n3KlZQ0R7Z6GzVu0GEmTVZtB+MzksjkMgFcJy5S6jSQ=;
+ b=N7OPmbIqVU6f1LZFbs1R7eNmANNkwXQcSg15LaSdvtQH2M4iOT0Nyo2S
+ TLkIC78HauNgRZdq/6RGc7KY8l4LDUqhPMbspggq+1kniX7Itf26h78TS
+ 6WnauIMjI9kaYtZTKnFWQvyus5Qm/wrPNY4K9yNcd8WyQEPtiqN8PxiaV
+ jdvsAFLJDHmgZTPbwPCcKJWrRsSVrxcRjuAJoPgnx8uKC/jDxNVLooiKH
+ HsgxoywIRJ191g2ISYYU6P06zV+rXqz2cOo2xpT2miH2AKRp2cmRDUgE/
+ rWefBB1DhTOCNaokz/RMOvH5WvdPJvpEeZob7HOeORavktWHNYRc7NYps w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="442828879"
+X-IronPort-AV: E=Sophos;i="6.02,144,1688454000"; d="scan'208";a="442828879"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2023 15:32:03 -0700
+ 13 Sep 2023 15:32:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="991138915"
-X-IronPort-AV: E=Sophos;i="6.02,144,1688454000"; d="scan'208";a="991138915"
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="991138947"
+X-IronPort-AV: E=Sophos;i="6.02,144,1688454000"; d="scan'208";a="991138947"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2023 15:32:01 -0700
+ 13 Sep 2023 15:32:03 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 14 Sep 2023 01:32:17 +0300
-Message-Id: <20230913223218.540365-3-imre.deak@intel.com>
+Date: Thu, 14 Sep 2023 01:32:18 +0300
+Message-Id: <20230913223218.540365-4-imre.deak@intel.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20230913223218.540365-1-imre.deak@intel.com>
 References: <20230913223218.540365-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/4] drm/dp_mst: Tune down error message during
- payload addition
+Subject: [Intel-gfx] [PATCH 4/4] drm/i915/dp_mst: Tune down error message
+ during payload addition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,37 +58,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Wayne Lin <Wayne.Lin@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If a sink is removed in the middle of payload addition the corresponding
-AUX transfer will fail as expected, so tune the error message down to a
-debug messge.
+If a sink is removed in the middle of payload addition
+drm_dp_add_payload_part1() will fail as expected, either not finding the
+payload's MST port or failing the payload-add AUX transaction.
 
-Cc: Wayne Lin <Wayne.Lin@amd.com>
+Based on the above tune the error message down to a debug messge.
+
 Cc: Lyude Paul <lyude@redhat.com>
-Cc: dri-devel@lists.freedesktop.org
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/display/drm_dp_mst_topology.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-index dbec9cf004594..c490e8befc2fa 100644
---- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-@@ -3332,8 +3332,8 @@ int drm_dp_add_payload_part1(struct drm_dp_mst_topology_mgr *mgr,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 1c7f0b6afe475..ff3accebf0a89 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -726,8 +726,8 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
+ 	ret = drm_dp_add_payload_part1(&intel_dp->mst_mgr, mst_state,
+ 				       drm_atomic_get_mst_payload_state(mst_state, connector->port));
+ 	if (ret < 0)
+-		drm_err(&dev_priv->drm, "Failed to create MST payload for %s: %d\n",
+-			connector->base.name, ret);
++		drm_dbg_kms(&dev_priv->drm, "Failed to create MST payload for %s: %d\n",
++			    connector->base.name, ret);
  
- 	ret = drm_dp_create_payload_at_dfp(mgr, payload);
- 	if (ret < 0) {
--		drm_warn(mgr->dev, "Failed to create MST payload for port %p: %d\n",
--			 payload->port, ret);
-+		drm_dbg_kms(mgr->dev, "Failed to create MST payload for port %p: %d\n",
-+			    payload->port, ret);
- 		goto put_port;
- 	}
- 
+ 	/*
+ 	 * Before Gen 12 this is not done as part of
 -- 
 2.37.2
 
