@@ -1,50 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 047057A0276
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Sep 2023 13:23:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABEC17A02D1
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Sep 2023 13:39:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B9ED10E10A;
-	Thu, 14 Sep 2023 11:23:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D1E10E56A;
+	Thu, 14 Sep 2023 11:39:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 285C210E10A;
- Thu, 14 Sep 2023 11:23:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 767C210E264
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Sep 2023 11:39:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694690582; x=1726226582;
+ t=1694691550; x=1726227550;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=1tUKKzt+v8evnHDjl/tVtH142SAQscaWBffYryBoqTQ=;
- b=jxEpkIgDe1Gfy1/dxB33hnlife/qUsU3/StjlC/r3K4pTDxXhM9RL+bJ
- 08xSRixW1g8mMiST7xjnXpF8L+ppzmYcouUxWpX3Cco/WLxpYrtR0S8ux
- 9KR+LT6Eo7Dn6jKILHfv9cdJvkGI9KS1VqJGDe4DTZiUsHt8/P4vxJeZl
- oSN2rX0AUNofmReEm1SkA66zhf+wXAoEoP0hbV/E2QHooBPvEzl6vcF4k
- C7AKjjfSteOaN51ilHgslGBim9fGbzIZ9dk50Xc6A5W+7j+o9O4x0CQY1
- ZoNefnBLD+Pz8uq9NeAppCPtLgh5w1rN3Ye2LWtpEuLfChRbSy7i4G1ky A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="377829785"
-X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="377829785"
+ bh=bTc01px+lQjTF8f4Z41PJw/cACjmn40BTrdFZEGebQg=;
+ b=cS2OwR0Rrka1fubsswNNlAV0mr+cOc9bwP+uNHQjBT60+HmPCWEwRku6
+ AYcqmd2vtrL8uD61bRL+fXtGZ1RY/Q64Ix9eHhTu8D88+KM6tT6pRC8OO
+ FP1mO4fG2sh2yPe2Ez93LodP89XGag5K2wuGMdYu/HOI7teMy4YEuuySj
+ 6t2+rDUFyKJlEwzeA8b6MTpKKNRGDjx/S34u8h5PQUGpTULzD+tHcQL5g
+ 4AVTxzu9oDxfUrqtEt8ldTo2/vrpboEsVIgwShlK35vc0NQONAsMKyfBz
+ gIucprQ/LnF04V3qn4gvw6bwugGhaMxVAxlWzsk3+M7NgPaUVv6YIhmIO Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="359186736"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="359186736"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2023 04:23:01 -0700
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 04:38:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="810025950"
-X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="810025950"
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="810028946"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="810028946"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by fmsmga008.fm.intel.com with SMTP; 14 Sep 2023 04:22:59 -0700
+ by fmsmga008.fm.intel.com with SMTP; 14 Sep 2023 04:38:55 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 14 Sep 2023 14:22:58 +0300
+ Thu, 14 Sep 2023 14:38:54 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Thu, 14 Sep 2023 14:22:58 +0300
-Message-ID: <20230914112258.27156-1-ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 14 Sep 2023 14:38:50 +0300
+Message-ID: <20230914113854.10008-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/edid: Fixup h/vsync_end instead of h/vtotal
+Subject: [Intel-gfx] [PATCH 1/5] drm/i915/fbc: Remove ancient 16k plane
+ stride limit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,75 +58,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-There are some weird EDIDs floating around that have the sync
-pulse extending beyond the end of the blanking period.
+The 16k max plane stride limit seems to be originally from
+i965gm, and no limit explicit limit has been specified since (g4x+).
+So let's assume the max plane stride itself is a suitable limit
+also for the more recent FBC hardware.
 
-On the currently problemtic machine (HP Omni 120) EDID reports
-the following mode:
-"1600x900": 60 108000 1600 1780 1860 1800 900 910 913 1000 0x40 0x5
-which is then "corrected" to have htotal=1861 by the current drm_edid.c
-code.
+In fact even for i965gm the max X-tiled stride is also 16k so
+technically we don't need the check there either, but let's
+keep it there anyway since it's explicitly mentioned in the
+spec. Gen2/3 have more strict limits checked separately.
 
-The fixup code was originally added in commit 7064fef56369 ("drm: work
-around EDIDs with bad htotal/vtotal values"). Googling around we end up in
-https://bugs.launchpad.net/ubuntu/hardy/+source/xserver-xorg-video-intel/+bug/297245
-where we find an EDID for a Dell Studio 15, which reports:
-(II) VESA(0): clock: 65.0 MHz   Image Size:  331 x 207 mm
-(II) VESA(0): h_active: 1280  h_sync: 1328  h_sync_end 1360 h_blank_end 1337 h_border: 0
-(II) VESA(0): v_active: 800  v_sync: 803  v_sync_end 809 v_blanking: 810 v_border: 0
-
-Note that if we use the hblank size (as opposed of the hsync_end)
-from the DTD to determine htotal we get exactly 60Hz refresh rate in
-both cases, whereas using hsync_end to determine htotal we get a
-slightly lower refresh rates. This makes me believe the using the
-hblank size is what was intended even in those cases.
-
-Also note that in case of the HP Onmi 120 the VBIOS boots with these:
-  crtc timings: 108000 1600 1780 1860 1800 900 910 913 1000, type: 0x40 flags: 0x5
-ie. it just blindly stuffs the bogus hsync_end and htotal from the DTD
-into the transcoder timing registers, and the display works. I believe
-the (at least more modern) hardware will automagically terminate the hsync
-pulse when the timing generator reaches htotal, which again points that we
-should use the hblank size to determine htotal. Unfortunatley the old bug
-reports for the Dell machines are extremely lacking in useful details so
-we have no idea what kind of timings the VBIOS programmed into the
-hardware :(
-
-Let's just flip this quirk around and reduce the length of the sync
-pulse instead of extending the blanking period. This at least seems
-to be the correct thing to do on more modern hardware. And if any
-issues crop up on older hardware we need to debug them properly.
-
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8895
+Cc: Swati Sharma <swati2.sharma@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/drm_edid.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index 39dd3f694544..0c5563b4d21e 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -3497,11 +3497,11 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
- 	mode->vsync_end = mode->vsync_start + vsync_pulse_width;
- 	mode->vtotal = mode->vdisplay + vblank;
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 817e5784660b..1b3358a0fbfb 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -866,7 +866,8 @@ static bool stride_is_valid(const struct intel_plane_state *plane_state)
+ 	if (DISPLAY_VER(i915) == 2 || DISPLAY_VER(i915) == 3)
+ 		return stride == 4096 || stride == 8192;
  
--	/* Some EDIDs have bogus h/vtotal values */
-+	/* Some EDIDs have bogus h/vsync_end values */
- 	if (mode->hsync_end > mode->htotal)
--		mode->htotal = mode->hsync_end + 1;
-+		mode->hsync_end = mode->htotal;
- 	if (mode->vsync_end > mode->vtotal)
--		mode->vtotal = mode->vsync_end + 1;
-+		mode->vsync_end = mode->vtotal;
+-	if (DISPLAY_VER(i915) == 4 && !IS_G4X(i915) && stride < 2048)
++	if (DISPLAY_VER(i915) == 4 && !IS_G4X(i915) &&
++	    (stride < 2048 || stride > 16384))
+ 		return false;
  
- 	drm_mode_do_interlace_quirk(mode, pt);
+ 	/* Display WA #1105: skl,bxt,kbl,cfl,glk */
+@@ -874,9 +875,6 @@ static bool stride_is_valid(const struct intel_plane_state *plane_state)
+ 	    fb->modifier == DRM_FORMAT_MOD_LINEAR && stride & 511)
+ 		return false;
+ 
+-	if (stride > 16384)
+-		return false;
+-
+ 	return true;
+ }
  
 -- 
 2.41.0
