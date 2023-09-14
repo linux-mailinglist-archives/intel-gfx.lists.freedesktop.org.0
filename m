@@ -2,41 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 945F97A00C0
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Sep 2023 11:49:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E45207A0021
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Sep 2023 11:35:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7439310E55A;
-	Thu, 14 Sep 2023 09:49:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 139A410E51E;
+	Thu, 14 Sep 2023 09:35:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 939 seconds by postgrey-1.36 at gabe;
- Thu, 14 Sep 2023 09:49:44 UTC
-Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1A1E10E559
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Sep 2023 09:49:44 +0000 (UTC)
-Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
- helo=[192.168.100.137])
- by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96)
- (envelope-from <luca@coelho.fi>) id 1qgijY-000K8d-1v;
- Thu, 14 Sep 2023 12:34:03 +0300
-Message-ID: <b381e7ff588f86f8ba9783f666de76926de433f5.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Thu, 14 Sep 2023 12:33:59 +0300
-In-Reply-To: <20230824080517.693621-3-imre.deak@intel.com>
-References: <20230824080517.693621-1-imre.deak@intel.com>
- <20230824080517.693621-3-imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 474A310E51E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Sep 2023 09:35:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694684104; x=1726220104;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=b+Oi8SA/EjnnkkcyxX14+fQNQRwMo0wKwcBRx4RAke0=;
+ b=E+8xOS85nAvGMJNJO+y7BFfAr4n45dOpP/c2cWoSiqwcn7JvBAgVbrXe
+ Dq/Oj2miQk7xv6YszBP8C2yvZ91+Jy2EPkDP3pFPfftZuM64ov+mCnbbv
+ /pelUD7+ULvmB+r3nfdxNxy2vfnQRwu87Gn5noNKqd4H//bzlFZUlEDEc
+ uY5hmZw62QM1OJ4Fw+ySek2ZYFKmEOkqd9bciBVJQeizcPPk+vlQR1e9/
+ 53yijyQZcbv5bOq4a184aG+weGWU2jtxe/cwwxnkbjKTcv+ZlVyEP1A5o
+ ngQFi7OzuDW+Ppkj5BR09cFzEg84NFvqLXjW6bxALy8EK3pGUFwrsz2L7 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="409856663"
+X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="409856663"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 02:35:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="773825306"
+X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="773825306"
+Received: from haslam-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.49.56])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 02:35:02 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 14 Sep 2023 12:34:56 +0300
+Message-Id: <cover.1694684044.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
-Subject: Re: [Intel-gfx] [PATCH v2 02/22] drm/i915/dp: Track the pipe and
- link bpp limits separately
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/3] drm/i915/display: remove last uses of
+ GEM_BUG_ON/GEM_WARN_ON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,62 +58,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2023-08-24 at 11:04 +0300, Imre Deak wrote:
-> A follow-up patch will need to limit the output link bpp both in the
-> non-DSC and DSC configuration, so track the pipe and link bpp limits
-> separately in the link_config_limits struct.
->=20
-> Use .4 fixed point format for link bpp matching the 1/16 bpp granularity
-> in DSC mode and for now keep this limit matching the pipe bpp limit.
->=20
-> v2: (Jani)
-> - Add to_bpp_int(), to_bpp_x16() helpers instead of opencoding them.
-> - Rename link_config_limits::link.min/max_bpp to min/max_bpp_x16.
->=20
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    | 10 ++++++++
->  drivers/gpu/drm/i915/display/intel_dp.c       | 25 +++++++++++--------
->  drivers/gpu/drm/i915/display/intel_dp.h       |  9 ++++++-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 17 ++++++++-----
->  4 files changed, 44 insertions(+), 17 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 731f2ec04d5cd..5875eff5012ce 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+The display code has almost no uses of GEM_BUG_ON/GEM_WARN_ON. Remove
+the last ones to be clean of them.
 
-[...]
+Jani Nikula (3):
+  drm/i915/fbc: replace GEM_BUG_ON() to drm_WARN_ON()
+  drm/i915/fb: replace GEM_WARN_ON() with drm_WARN_ON()
+  drm/i915/dpt: replace GEM_BUG_ON() with drm_WARN_ON()
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
-15/display/intel_dp.h
-> index 788a577ebe16e..ebc7f4e60c777 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -26,7 +26,14 @@ struct intel_encoder;
->  struct link_config_limits {
->  	int min_rate, max_rate;
->  	int min_lane_count, max_lane_count;
-> -	int min_bpp, max_bpp;
-> +	struct {
-> +		/* Uncompressed DSC input or link output bpp in 1 bpp units */
-> +		int min_bpp, max_bpp;
-> +	} pipe;
-> +	struct {
-> +		/* Compressed or uncompressed link output bpp in 1/16 bpp units */
-> +		int min_bpp_x16, max_bpp_x16;
-> +	} link;
->  };
+ drivers/gpu/drm/i915/display/intel_dpt.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.c |  3 ++-
+ drivers/gpu/drm/i915/display/intel_fbc.c    | 14 ++++++++------
+ 3 files changed, 11 insertions(+), 8 deletions(-)
 
-It's not clear to me from the commit message (nor from the code, for
-that matter) why you need to store the values in both formats.  Can you
-clarify?
+-- 
+2.39.2
 
---
-Cheers,
-Luca.
