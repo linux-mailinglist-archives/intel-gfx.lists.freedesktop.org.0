@@ -2,49 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5D8779FE54
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Sep 2023 10:28:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 945F97A00C0
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Sep 2023 11:49:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46A5110E51D;
-	Thu, 14 Sep 2023 08:28:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7439310E55A;
+	Thu, 14 Sep 2023 09:49:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1F6F10E530
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Sep 2023 08:28:12 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 876C5B827D5;
- Thu, 14 Sep 2023 08:28:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F5C4C433C9;
- Thu, 14 Sep 2023 08:28:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1694680090;
- bh=MsmhYO8KJ8ECWfZWMSMi+rY8Po1xZWCObFsBHCpOn6c=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=cRZVXHpkX7+mCAMdof/igi9Dp/bmgFOaOxEWb+0/7Vsleq/vjC7WeEhC9gP6KRiO6
- esSdsjpmahz1W2/wYgyM5+oGYJaanY/1zNC7/XT/8SGAgt9UsefgcTvtFcnigMCw+S
- gvdGqS0xHs+DL2rlmU/lS3gba4ZTIF5v2SiPpPIVCB3rVCfco5fmGR/tYmRBUVff1v
- rPfL2WFj7L+4ifH6cCOKNQ8zf8Qe4siRqQXobCF8o8bYZAFbfZnpRKCaIaxzOtzlCw
- B3LTxwNiZrj1Xvkwal5lLLnSQ/JfLGwjolWK7Ks1wUBnH6BxoQsqqxlGy04dr4bDjY
- 1tqtdPSDiZWxA==
-Date: Thu, 14 Sep 2023 10:28:06 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20230914082806.zbtcyiz4s47dd7bs@zenone.zhora.eu>
-References: <455b2279-2e08-4d00-9784-be56d8ee42e3@moroto.mountain>
- <169464981588.29165.162062522450308577@emeril.freedesktop.org>
+X-Greylist: delayed 939 seconds by postgrey-1.36 at gabe;
+ Thu, 14 Sep 2023 09:49:44 UTC
+Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1A1E10E559
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Sep 2023 09:49:44 +0000 (UTC)
+Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
+ helo=[192.168.100.137])
+ by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96)
+ (envelope-from <luca@coelho.fi>) id 1qgijY-000K8d-1v;
+ Thu, 14 Sep 2023 12:34:03 +0300
+Message-ID: <b381e7ff588f86f8ba9783f666de76926de433f5.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Thu, 14 Sep 2023 12:33:59 +0300
+In-Reply-To: <20230824080517.693621-3-imre.deak@intel.com>
+References: <20230824080517.693621-1-imre.deak@intel.com>
+ <20230824080517.693621-3-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <169464981588.29165.162062522450308577@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Prevent_error_pointer_dereference_=28rev2=29?=
+X-Spam-Checker-Version: SpamAssassin 4.0.0 (2022-12-13) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.0
+Subject: Re: [Intel-gfx] [PATCH v2 02/22] drm/i915/dp: Track the pipe and
+ link bpp limits separately
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,26 +49,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dan Carpenter <dan.carpenter@linaro.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dan,
+On Thu, 2023-08-24 at 11:04 +0300, Imre Deak wrote:
+> A follow-up patch will need to limit the output link bpp both in the
+> non-DSC and DSC configuration, so track the pipe and link bpp limits
+> separately in the link_config_limits struct.
+>=20
+> Use .4 fixed point format for link bpp matching the 1/16 bpp granularity
+> in DSC mode and for now keep this limit matching the pipe bpp limit.
+>=20
+> v2: (Jani)
+> - Add to_bpp_int(), to_bpp_x16() helpers instead of opencoding them.
+> - Rename link_config_limits::link.min/max_bpp to min/max_bpp_x16.
+>=20
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    | 10 ++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 25 +++++++++++--------
+>  drivers/gpu/drm/i915/display/intel_dp.h       |  9 ++++++-
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 17 ++++++++-----
+>  4 files changed, 44 insertions(+), 17 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 731f2ec04d5cd..5875eff5012ce 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
 
-> Possible regressions
-> 
->   • igt@gem_ccs@ctrl-surf-copy-new-ctx:
-> 
->       □ shard-mtlp: NOTRUN -> SKIP
->   • igt@gen9_exec_parse@allowed-all:
-> 
->       □ shard-apl: PASS -> INCOMPLETE
+[...]
 
-I believe these failures are not caused by this patch. I had to
-retrigger the tests because the BAT tests failed at first (Jani,
-actually did it).
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
+15/display/intel_dp.h
+> index 788a577ebe16e..ebc7f4e60c777 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -26,7 +26,14 @@ struct intel_encoder;
+>  struct link_config_limits {
+>  	int min_rate, max_rate;
+>  	int min_lane_count, max_lane_count;
+> -	int min_bpp, max_bpp;
+> +	struct {
+> +		/* Uncompressed DSC input or link output bpp in 1 bpp units */
+> +		int min_bpp, max_bpp;
+> +	} pipe;
+> +	struct {
+> +		/* Compressed or uncompressed link output bpp in 1/16 bpp units */
+> +		int min_bpp_x16, max_bpp_x16;
+> +	} link;
+>  };
 
-I applied your patch in drm-intel-gt-nex.
+It's not clear to me from the commit message (nor from the code, for
+that matter) why you need to store the values in both formats.  Can you
+clarify?
 
-Thanks!
-Andi
+--
+Cheers,
+Luca.
