@@ -1,58 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE2497A0E27
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Sep 2023 21:22:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7998A7A0E31
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Sep 2023 21:26:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2174010E2B2;
-	Thu, 14 Sep 2023 19:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1574710E2B2;
+	Thu, 14 Sep 2023 19:26:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1838610E2B2
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Sep 2023 19:22:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ECAF10E2B2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Sep 2023 19:26:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694719350; x=1726255350;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=tHFZKlkGqZEN76xZCWieNrzAZzscdC6uDKqeGhH4RRU=;
- b=MRSCscqQ8VGfYgA05cLbyxxpZqaK/hnkPhzaiwjxSEukGquG9Vqjd+jU
- z717/C6jYsWPuRKLfx2Ym2+PP5fhXlcAzG/6KXr+COpVBXU/Dygu0B+RK
- idbj0zpE+VgQ1izRrBUv7cUbUxAY+ouG61VL5wjYp/iDFk95MHcypm2R5
- tL7hPdasLLfMz7gZbAPq9KFMX5chInZ6ip3wD2LLLXXD9pV5p4E7u3smL
- +ClTWLRFkpgi457BOHrsa0O8aTtyeis+db1N3R5GCbmGX5llXugd+HF/a
- pupEu9nmS5LVvieeJ8K8RpOlWK/g9+8zIo6Eakihkf2QteB2RBUG7UBrf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="376388927"
-X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="376388927"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2023 12:22:29 -0700
+ t=1694719602; x=1726255602;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HAzjmVFbnx/3FyOU3vC/5ikND2c+M8da1ZWqxBMckg0=;
+ b=Wu/yrGOBfUsQ/isTi5rjT1TfON0BbdcYTsBy/yb5VAY16LulgNq+C3dD
+ AYFYPzQxM7g3NwseTMlu6IhzfpQbx6XgPKDe0D3oeMROn2B+9KCgL+KzQ
+ FlKNCwRW8Km7nLp8bmAmT9GdCD+w88U71wSWUVrlgoVn1/J8XCcpoPUE2
+ wCqR6CIemgCn2Fpc2YtmlUNCaFNcFX1l9c4VVIVgQKq9Rcb+wvZE3eQT5
+ lbBrLBT5sbajKij57N1w98t604vYa1rQpaZh+Zy06VAJJIS8wR9labr4L
+ VWCcfghfncs45981zqTeCwbCwYFiQXDgYFJVwcoazodRwH56liQ7RkKYf A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="465421646"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="465421646"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 12:26:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="810200165"
-X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="810200165"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.46.50])
- ([10.249.46.50])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2023 12:22:27 -0700
-Message-ID: <3958d006-677f-9922-ad86-7c660ec388db@linux.intel.com>
-Date: Thu, 14 Sep 2023 21:22:25 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="779790466"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="779790466"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 12:26:39 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 14 Sep 2023 22:26:34 +0300
+Message-Id: <20230914192659.757475-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-To: "Zeng, Oak" <oak.zeng@intel.com>, "Das, Nirmoy" <nirmoy.das@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20230913130935.27707-1-nirmoy.das@intel.com>
- <20230913130935.27707-4-nirmoy.das@intel.com>
- <SA1PR11MB6991B337C78C5D409B35D6A892F0A@SA1PR11MB6991.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <SA1PR11MB6991B337C78C5D409B35D6A892F0A@SA1PR11MB6991.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915: Create a kernel context for
- GGTT updates
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v3 00/25] drm/i915: Improve BW management on
+ shared display links
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,215 +57,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Shyti, Andi" <andi.shyti@intel.com>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>,
- "chris.p.wilson@linux.intel.com" <chris.p.wilson@linux.intel.com>
+Cc: Luca Coelho <luciano.coelho@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Oak,
+This is v3 of [1] addressing the review comments, adding R-bs
+and the following changes based on further testing / offline
+discussions:
 
-On 9/13/2023 6:30 PM, Zeng, Oak wrote:
->
-> Thanks,
-> Oak
->
->> -----Original Message-----
->> From: Das, Nirmoy <nirmoy.das@intel.com>
->> Sent: Wednesday, September 13, 2023 9:10 AM
->> To: intel-gfx@lists.freedesktop.org
->> Cc: Zeng, Oak <oak.zeng@intel.com>; chris.p.wilson@linux.intel.com; Piorkowski,
->> Piotr <piotr.piorkowski@intel.com>; Shyti, Andi <andi.shyti@intel.com>; Mun,
->> Gwan-gyeong <gwan-gyeong.mun@intel.com>; Roper, Matthew D
->> <matthew.d.roper@intel.com>; Das, Nirmoy <nirmoy.das@intel.com>
->> Subject: [PATCH 2/7] drm/i915: Create a kernel context for GGTT updates
->>
->> Create a separate kernel context if a platform requires
->> GGTT updates using MI_UPDATE_GTT blitter command.
->>
->> Subsequent patch will introduce methods to update
->> GGTT using this bind context and MI_UPDATE_GTT blitter
->> command.
->>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_engine.h       |  2 ++
->>   drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 33 +++++++++++++++++++-
->>   drivers/gpu/drm/i915/gt/intel_engine_types.h |  3 ++
->>   drivers/gpu/drm/i915/gt/intel_gt.c           | 18 +++++++++++
->>   drivers/gpu/drm/i915/gt/intel_gt.h           |  2 ++
->>   5 files changed, 57 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h
->> b/drivers/gpu/drm/i915/gt/intel_engine.h
->> index b58c30ac8ef0..40269e4c1e31 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
->> @@ -170,6 +170,8 @@ intel_write_status_page(struct intel_engine_cs *engine,
->> int reg, u32 value)
->>   #define I915_GEM_HWS_SEQNO		0x40
->>   #define I915_GEM_HWS_SEQNO_ADDR		(I915_GEM_HWS_SEQNO
->> * sizeof(u32))
->>   #define I915_GEM_HWS_MIGRATE		(0x42 * sizeof(u32))
->> +#define I915_GEM_HWS_GGTT_BIND		0x46
->> +#define I915_GEM_HWS_GGTT_BIND_ADDR	(I915_GEM_HWS_GGTT_BIND *
->> sizeof(u32))
->>   #define I915_GEM_HWS_PXP		0x60
->>   #define I915_GEM_HWS_PXP_ADDR		(I915_GEM_HWS_PXP *
->> sizeof(u32))
->>   #define I915_GEM_HWS_GSC		0x62
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->> index dfb69fc977a0..52a24f55cb57 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->> @@ -1419,6 +1419,20 @@ void intel_engine_destroy_pinned_context(struct
->> intel_context *ce)
->>   	intel_context_put(ce);
->>   }
->>
->> +static struct intel_context *
->> +create_ggtt_bind_context(struct intel_engine_cs *engine)
->> +{
->> +	static struct lock_class_key kernel;
->> +
->> +	/*
->> +	 * MI_UPDATE_GTT can insert up to 512 PTE entries and there could be
->> multiple
->> +	 * bind requets at a time so get a bigger ring.
->> +	 */
->> +	return intel_engine_create_pinned_context(engine, engine->gt->vm,
->> SZ_512K,
->> +
->> I915_GEM_HWS_GGTT_BIND_ADDR,
->> +						  &kernel, "ggtt_bind_context");
->> +}
->> +
->>   static struct intel_context *
->>   create_kernel_context(struct intel_engine_cs *engine)
->>   {
->> @@ -1442,7 +1456,7 @@ create_kernel_context(struct intel_engine_cs *engine)
->>    */
->>   static int engine_init_common(struct intel_engine_cs *engine)
->>   {
->> -	struct intel_context *ce;
->> +	struct intel_context *ce, *bce = NULL;
->>   	int ret;
->>
->>   	engine->set_default_submission(engine);
->> @@ -1458,6 +1472,17 @@ static int engine_init_common(struct intel_engine_cs
->> *engine)
->>   	ce = create_kernel_context(engine);
->>   	if (IS_ERR(ce))
->>   		return PTR_ERR(ce);
->> +	/*
->> +	 * Create a separate pinned context for GGTT update with blitter engine
->> +	 * if a platform require such service. MI_UPDATE_GTT works on other
->> +	 * engines as well but BCS should be less busy engine so pick that for
->> +	 * GGTT updates.
->> +	 */
->> +	if (engine->id == BCS0) {
->> +		bce = create_ggtt_bind_context(engine);
->> +		if (IS_ERR(bce))
->> +			return PTR_ERR(bce);
->
-> Do you need to destroy ce before return?
+- Return -ENOSPC to userspace in case of a link BW limit
+  failure. (Patch 9, thanks to Karthik B S for the related IGT
+  testing)
+- Replace fractional bpp fix with a patch from Ville. (Patch 12)
+- Disable DSC PPS SDP during output disabling. (Patch 20, Ville)
 
-Yes , I will fix it in next rev.
+[1] https://lore.kernel.org/intel-gfx/20230824080517.693621-1-imre.deak@intel.com
 
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Luca Coelho <luciano.coelho@intel.com>
 
-Thanks,
+Imre Deak (24):
+  drm/i915/dp: Factor out helpers to compute the link limits
+  drm/i915/dp: Track the pipe and link bpp limits separately
+  drm/i915/dp: Skip computing a non-DSC link config if DSC is needed
+  drm/i915/dp: Update the link bpp limits for DSC mode
+  drm/i915/dp: Limit the output link bpp in DSC mode
+  drm/i915: Add helper to modeset a set of pipes
+  drm/i915: During modeset forcing handle inactive but enabled pipes
+  drm/i915: Factor out a helper to check/compute all the CRTC states
+  drm/i915: Add helpers for BW management on shared display links
+  drm/i915/fdi: Improve FDI BW sharing between pipe B and C
+  drm/i915/fdi: Recompute state for affected CRTCs on FDI links
+  drm/dp_mst: Add a way to calculate PBN values with FEC overhead
+  drm/dp_mst: Add helper to determine if an MST port is downstream of
+    another port
+  drm/dp_mst: Factor out a helper to check the atomic state of a
+    topology manager
+  drm/dp_mst: Swap the order of checking root vs. non-root port BW
+    limitations
+  drm/i915/dp_mst: Fix PBN calculation with FEC overhead
+  drm/i915/dp_mst: Add atomic state for all streams on pre-tgl platforms
+  drm/i915/dp_mst: Program the DSC PPS SDP for each stream
+  drm/i915/dp: Make sure the DSC PPS SDP is disabled whenever DSC is
+    disabled
+  drm/i915/dp_mst: Enable DSC decompression if any stream needs this
+  drm/i915/dp_mst: Add missing DSC compression disabling
+  drm/i915/dp_mst: Allow DSC only for sink ports of the first branch
+    device
+  drm/i915/dp_mst: Improve BW sharing between MST streams
+  drm/i915/dp_mst: Check BW limitations only after all streams are
+    computed
 
-Nirmoy
+Ville Syrjälä (1):
+  drm/dp_mst: Fix fractional DSC bpp handling
 
->
-> Oak
->> +	}
->>
->>   	ret = measure_breadcrumb_dw(ce);
->>   	if (ret < 0)
->> @@ -1465,11 +1490,14 @@ static int engine_init_common(struct intel_engine_cs
->> *engine)
->>
->>   	engine->emit_fini_breadcrumb_dw = ret;
->>   	engine->kernel_context = ce;
->> +	engine->bind_context = bce;
->>
->>   	return 0;
->>
->>   err_context:
->>   	intel_engine_destroy_pinned_context(ce);
->> +	if (bce)
->> +		intel_engine_destroy_pinned_context(ce);
->>   	return ret;
->>   }
->>
->> @@ -1537,6 +1565,9 @@ void intel_engine_cleanup_common(struct
->> intel_engine_cs *engine)
->>
->>   	if (engine->kernel_context)
->>   		intel_engine_destroy_pinned_context(engine->kernel_context);
->> +	if (engine->bind_context)
->> +		intel_engine_destroy_pinned_context(engine->bind_context);
->> +
->>
->>   	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
->>   	cleanup_status_page(engine);
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h
->> b/drivers/gpu/drm/i915/gt/intel_engine_types.h
->> index a7e677598004..a8f527fab0f0 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
->> @@ -416,6 +416,9 @@ struct intel_engine_cs {
->>   	struct llist_head barrier_tasks;
->>
->>   	struct intel_context *kernel_context; /* pinned */
->> +	struct intel_context *bind_context; /* pinned, only for BCS0 */
->> +	/* mark the bind context's availability status */
->> +	bool bind_context_ready;
->>
->>   	/**
->>   	 * pinned_contexts_list: List of pinned contexts. This list is only
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c
->> b/drivers/gpu/drm/i915/gt/intel_gt.c
->> index 449f0b7fc843..cd0ff1597db9 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
->> @@ -1019,3 +1019,21 @@ enum i915_map_type
->> intel_gt_coherent_map_type(struct intel_gt *gt,
->>   	else
->>   		return I915_MAP_WC;
->>   }
->> +
->> +void intel_gt_bind_context_set_ready(struct intel_gt *gt, bool ready)
->> +{
->> +	struct intel_engine_cs *engine = gt->engine[BCS0];
->> +
->> +	if (engine && engine->bind_context)
->> +		engine->bind_context_ready = ready;
->> +}
->> +
->> +bool intel_gt_is_bind_context_ready(struct intel_gt *gt)
->> +{
->> +	struct intel_engine_cs *engine = gt->engine[BCS0];
->> +
->> +	if (engine)
->> +		return engine->bind_context_ready;
->> +
->> +	return false;
->> +}
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h
->> b/drivers/gpu/drm/i915/gt/intel_gt.h
->> index 239848bcb2a4..9e70e625cebc 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
->> @@ -180,4 +180,6 @@ enum i915_map_type
->> intel_gt_coherent_map_type(struct intel_gt *gt,
->>   					      struct drm_i915_gem_object *obj,
->>   					      bool always_coherent);
->>
->> +void intel_gt_bind_context_set_ready(struct intel_gt *gt, bool ready);
->> +bool intel_gt_is_bind_context_ready(struct intel_gt *gt);
->>   #endif /* __INTEL_GT_H__ */
->> --
->> 2.41.0
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   2 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   2 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 181 ++++++++---
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |   6 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |   7 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   1 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  12 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 203 +++++++++----
+ drivers/gpu/drm/i915/display/intel_display.h  |   6 +-
+ .../drm/i915/display/intel_display_types.h    |  26 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 196 +++++++++---
+ drivers/gpu/drm/i915/display/intel_dp.h       |  17 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 287 +++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_dp_mst.h   |   3 +
+ drivers/gpu/drm/i915/display/intel_fdi.c      | 140 +++++++--
+ drivers/gpu/drm/i915/display/intel_fdi.h      |   5 +
+ drivers/gpu/drm/i915/display/intel_link_bw.c  | 244 +++++++++++++++
+ drivers/gpu/drm/i915/display/intel_link_bw.h  |  39 +++
+ drivers/gpu/drm/i915/display/intel_lvds.c     |  10 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  10 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |   2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       |   3 +-
+ .../gpu/drm/tests/drm_dp_mst_helper_test.c    |  19 +-
+ include/drm/display/drm_dp_mst_helper.h       |   9 +-
+ 26 files changed, 1203 insertions(+), 230 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_link_bw.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_link_bw.h
+
+-- 
+2.37.2
+
