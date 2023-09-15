@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99E3D7A20AA
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 16:17:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 337FB7A20C0
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 16:22:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 894ED10E638;
-	Fri, 15 Sep 2023 14:17:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0438110E63A;
+	Fri, 15 Sep 2023 14:22:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F40810E638;
- Fri, 15 Sep 2023 14:17:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 122BC10E638
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 14:22:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694787472; x=1726323472;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cx41cKa/RBYb6E2/xEb8yE9p/WzNj4Uug7P74vjnNdg=;
- b=gLfzPe/dS5ZvC8wnY2ZolfLUD64sq1yfH+6oS9XPxkbOW/BpB/WWjvUQ
- 9zhqf3CJGzxfhELCU9//6NZOlumPNONw68khwgWOWM9ULIom/ST1bXWQe
- dHBhQ1cD7FVN2HOn3u2yzUL1/WHnFEYyGDX6VQRh3Gn3RV0DomVJz9COE
- Egs7vFIlsfRa1OSG70My6Zl9BIsjPOT09s0ANU/8YbDuWVlIEs/OdPMLv
- A96qyoQuzYIm4J/koV5h/GRhadWpRPTz3J8etOMk77/ITOIZcsQ/okBTL
- lbC7l3IRFEUKW6IG2sbxCLNA3r0x0aUYYkcMln1Nza22KoJ60+A7uuKrP Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445715520"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445715520"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 07:17:51 -0700
+ t=1694787758; x=1726323758;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=/ikepzHqKVkDSce84bYgp2OfmMMhjYD02rIvu5TAmR0=;
+ b=O5H95GKiq1nyjO90ilA6Z6EWH8NXlpulnmg9W8afFSQdY7G+FutJmbxc
+ YpykEOn43WduRqkxNB4Fs4NQiCyrcY896XdLM+Up57+RCLOBUY0oQd2nP
+ lTxcAbVRuaws7tbq/VJqWwb6omfoqeausf1RJJ/jRqd+8tmxweUjuJnwK
+ T3JEbLnG9dN+ZHx29vsp8shjVMR8LqnTceSOcLimone6zGEIdANaitJUg
+ 9/Xw+p9JvQzxAyz0CxNVbuE0uXIMKlnpBwqT/Jaen+HUPQnsk9FkX4r05
+ ZtNa9Fhy/pKuV6N+YjDdDtju4DLhADY+N8mvAkDHNrgX44rtrnWInQBvH A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="358673357"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="358673357"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2023 07:22:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="810535659"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="810535659"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.6.122])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 07:17:49 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: dri-devel@lists.freedesktop.org, Maira Canal <mairacanal@riseup.net>
-Date: Fri, 15 Sep 2023 16:17:46 +0200
-Message-ID: <3244709.oiGErgHkdL@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <4fb393ff-3b2a-369a-5e9f-f96d802b2d87@riseup.net>
-References: <20230911130323.7037-2-janusz.krzysztofik@linux.intel.com>
- <4fb393ff-3b2a-369a-5e9f-f96d802b2d87@riseup.net>
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="815185669"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="815185669"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.46.156])
+ ([10.249.46.156])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2023 07:22:35 -0700
+Message-ID: <85f9b337-9776-6180-7185-6198ef516a8e@linux.intel.com>
+Date: Fri, 15 Sep 2023 16:22:33 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-Subject: Re: [Intel-gfx] [PATCH] drm/tests: Fix incorrect argument in
- drm_test_mm_insert_range
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20230915083412.4572-1-nirmoy.das@intel.com>
+ <20230915083412.4572-7-nirmoy.das@intel.com> <87o7i3vk8f.fsf@intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <87o7i3vk8f.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915: Toggle binder context ready
+ status
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,76 +64,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Latypov <dlatypov@google.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Arthur Grillo <arthurgrillo@riseup.net>, igt-dev@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, intel-xe@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
+Cc: chris.p.wilson@linux.intel.com, matthew.d.roper@intel.com,
+ andi.shyti@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ma=EDra,
 
-Thanks for review.
+On 9/15/2023 11:50 AM, Jani Nikula wrote:
+> On Fri, 15 Sep 2023, Nirmoy Das <nirmoy.das@intel.com> wrote:
+>> Toggle binder context ready status when needed.
+>>
+>> To issue gpu commands, the driver must be primed to receive
+>> requests. Maintain binder-based GGTT update disablement until driver
+>> probing completes. Moreover, implement a temporary disablement
+>> of blitter prior to entering suspend, followed by re-enablement
+>> post-resume. This is acceptable as those transition periods are
+>> mostly single threaded.
+>>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+> Not a fan of adding more gt (or gem, or display) specific details at the
+> top level driver hooks. The direction should be to remove stuff from
+> there, and move to lower levels.
+>
+> The top level functions have become really hard to understand because we
+> don't know the ordering constraints. This adds more constraints, and
+> looks like very specific and complicated ones too.
 
-On Friday, 15 September 2023 16:01:31 CEST Maira Canal wrote:
-> Hi,
->=20
-> On 9/11/23 10:03, Janusz Krzysztofik wrote:
-> > While drm_mm test was converted form igt selftest to kunit, unexpected
-> > value of "end" argument equal "start" was introduced to one of calls to=
- a
-> > function that executes the drm_test_mm_insert_range for specific start/=
-end
-> > pair of arguments.  As a consequence, DRM_MM_BUG_ON(end <=3D start) is
-> > triggered.  Fix it by restoring the original value.
-> >=20
-> > Fixes: fc8d29e298cf ("drm: selftest: convert drm_mm selftest to KUnit")
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
->=20
-> Reviewed-by: Ma=EDra Canal <mairacanal@riseup.net>
->=20
-> Do you need me to push it to drm-misc-fixes?
+Tried to hook this into gt suspend/resume but didn't work well . I will 
+try again.
 
-Yes, please do if you can.
 
 Thanks,
-Janusz
 
->=20
-> Best Regards,
-> - Ma=EDra
->=20
-> > Cc: "Ma=EDra Canal" <mairacanal@riseup.net>
-> > Cc: Arthur Grillo <arthurgrillo@riseup.net>
-> > Cc: Javier Martinez Canillas <javierm@redhat.com>
-> > Cc: Daniel Latypov <dlatypov@google.com>
-> > Cc: stable@vger.kernel.org # v6.1+
-> > ---
-> >   drivers/gpu/drm/tests/drm_mm_test.c | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/tests/drm_mm_test.c b/drivers/gpu/drm/test=
-s/drm_mm_test.c
-> > index 186b28dc70380..05d5e7af6d250 100644
-> > --- a/drivers/gpu/drm/tests/drm_mm_test.c
-> > +++ b/drivers/gpu/drm/tests/drm_mm_test.c
-> > @@ -939,7 +939,7 @@ static void drm_test_mm_insert_range(struct kunit *=
-test)
-> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
-ze, 0, max - 1));
-> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
-ze, 0, max / 2));
-> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
-ze,
-> > -								    max / 2, max / 2));
-> > +								    max / 2, max));
-> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
-ze,
-> >   								    max / 4 + 1, 3 * max / 4 - 1));
-> >  =20
->=20
+Nirmoy
 
-
-
-
+>
+> BR,
+> Jani.
+>
+>
+>> ---
+>>   drivers/gpu/drm/i915/i915_driver.c | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+>> index f8dbee7a5af7..8cc289acdb39 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -815,6 +815,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>>   	i915_welcome_messages(i915);
+>>   
+>>   	i915->do_release = true;
+>> +	intel_gt_bind_context_set_ready(to_gt(i915), true);
+>>   
+>>   	return 0;
+>>   
+>> @@ -855,6 +856,7 @@ void i915_driver_remove(struct drm_i915_private *i915)
+>>   {
+>>   	intel_wakeref_t wakeref;
+>>   
+>> +	intel_gt_bind_context_set_ready(to_gt(i915), false);
+>>   	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+>>   
+>>   	i915_driver_unregister(i915);
+>> @@ -1077,6 +1079,8 @@ static int i915_drm_suspend(struct drm_device *dev)
+>>   	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+>>   	pci_power_t opregion_target_state;
+>>   
+>> +	intel_gt_bind_context_set_ready(to_gt(dev_priv), false);
+>> +
+>>   	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>>   
+>>   	/* We do a lot of poking in a lot of registers, make sure they work
+>> @@ -1264,6 +1268,7 @@ static int i915_drm_resume(struct drm_device *dev)
+>>   	intel_gvt_resume(dev_priv);
+>>   
+>>   	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>> +	intel_gt_bind_context_set_ready(to_gt(dev_priv), true);
+>>   
+>>   	return 0;
+>>   }
