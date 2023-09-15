@@ -1,54 +1,149 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63A287A2AE6
-	for <lists+intel-gfx@lfdr.de>; Sat, 16 Sep 2023 01:13:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 251857A2B1B
+	for <lists+intel-gfx@lfdr.de>; Sat, 16 Sep 2023 01:55:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1BFA10E6B0;
-	Fri, 15 Sep 2023 23:13:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99D8110E6B4;
+	Fri, 15 Sep 2023 23:55:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C397A10E6B0
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 23:13:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2C6310E6B5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 23:55:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694819616; x=1726355616;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=OZon80AMkFUq02/qVr7y30u4BNC75ALWZkqT0Qmk9gg=;
- b=YGebaxOs9nX0gweW/2YT0f+0Zgjcf3EQQMS3dlrFxWtv6Q9BPc8aVWCC
- Ai0PJRMiBbpj2Cpd1HPVMuz5rLuSbNCVu2aG6Gdgc/7kThdIIv0YIvTCq
- /blHRW64rCk5NwizuDpKXKqRGxaUCRt5KmRsSgaK1ZLUDGZeHn4I4xlyh
- ml/SYbpRGJmz67JLvxxi5giEImP6wFKs6EDCnxVmYjIlUf/ZT/duOuv33
- S2vCRNFL8V8e08gx/FZJquKs1dxuushHyUNVxdq0CjhEN6V/NQ5khMRyC
- 7UAbsc4h6whkV/Rq8yFjz5gPuwGM/IMlh08VJt9dfG0WO7DCWMd7LwymH A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="383195833"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="383195833"
+ t=1694822139; x=1726358139;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=bnszrww7wJzirYNiCZ60siM62XyPOEPpHlkfeXfUGyg=;
+ b=jFFrxDMUgKskl9Tdm5K3rKLifaDauAXenIXup/xCjnU4f6w9HsLz6XT7
+ wHvDvkhLx08D9gwV888t4SKuRWjTlbsHiVkgQDAwG7raguGPwdAlXJ2CY
+ UN8EgzToIV9bUJOtm4vgtdL+IRK7qf5xX99jqP9Qx/W21+Vv/a1YOPQzf
+ 5B3ILhOTgQP7jyvIq2fFbJJmS8IQgwbBUSrrQN9HLt4W4URFB8uRIxDAZ
+ NC8CHHURgXB70bX6qZm9Vva3vC6vm4kfemx9T2PD0f8IW8p4lqkVGqt8y
+ VIWvNrgST3/c/4yZyX2aTtKE3/80FE4GiuyF8sFIYrVPLnRT9tsQ9GkMa Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="359612870"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="359612870"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 16:13:34 -0700
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2023 16:55:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="721852349"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="721852349"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 16:13:33 -0700
-Date: Sat, 16 Sep 2023 02:13:53 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZQTlMaipby0nnOYP@ideak-desk.fi.intel.com>
-References: <20230914192659.757475-1-imre.deak@intel.com>
- <20230914192659.757475-11-imre.deak@intel.com>
- <ZQSw-bjeE3_vf1sR@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="721866917"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="721866917"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Sep 2023 16:55:22 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Fri, 15 Sep 2023 16:55:21 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Fri, 15 Sep 2023 16:55:21 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.49) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Fri, 15 Sep 2023 16:55:21 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ahzlXXQQfAXeDXEq+psbxKLetil3WcOm4JRsU3FwvOcZWWG5bwyG2WSHU4KSy+iegFPn5yOvChzgLopVzcOY8gpmhpy510ypCv9OyT5n4+QqP/S4ZTBhH91CeHDiOdXi9nEle58vXV0isT/iE1EZjjWTA0IJCkmW7+UbPwqZg05k+raSsI7ewF8Ss1+Qjo3Fq0mmxyO/pYAnKbNgeKW/hHtAIHpTs2/gTk9Mh2vMftV8LezTbNqoacAKykV+sK3DsveKsEnXM8I+KVFFH8Fz0IuHjfM9aMMTVJ3LLZA1EUmmoVm3swIBLqnmKM3JcesaYHXqblnJYVT5nGFXkYZZlQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=B3ebGcdtEdDjcqlQ/9T26XJUl1PTt2UqfF7iXFvX+kA=;
+ b=mG6nP0mylf3hCNmBI+Z3VdmzXDrHDDwgr+SW0ca9ZQSx4F/xSjD1qxowecK9Bn0C5NjFzqguenTvZUZdr9HHdmZBUw8udqTVmWAThB0zZZVjQfRkEXomTJJFw/4RMe00G/lFxVekjHDTO2i4cwg0wbTh8Q3kl9enomAmSJ1eFsL4YX/RWzh6j9s/D6MMRhrv59bWKeWm4kca/yHWTPYkeegjQA+wKk6tXLEzKgciTZVrSHqHZBzIlI+FTVDSh29oN4mM+JaC3iFxvdyVG0WvOgNLVKIjZ7Y4LNHX055DnGnJmrhzGMIbkFBIjVQjwVer5fKKDCiWmZLbDpsHzkD3mg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
+ by PH0PR11MB5110.namprd11.prod.outlook.com (2603:10b6:510:3f::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.37; Fri, 15 Sep
+ 2023 23:55:20 +0000
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::4b20:e34:71f:139f]) by PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::4b20:e34:71f:139f%4]) with mapi id 15.20.6792.021; Fri, 15 Sep 2023
+ 23:55:19 +0000
+Message-ID: <f78fdbb9-c83f-4340-ad50-6fd53bb32191@intel.com>
+Date: Fri, 15 Sep 2023 16:55:17 -0700
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+References: <20230915012857.2159217-1-umesh.nerlige.ramappa@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <20230915012857.2159217-1-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BY5PR03CA0003.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::13) To PH7PR11MB7605.namprd11.prod.outlook.com
+ (2603:10b6:510:277::5)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZQSw-bjeE3_vf1sR@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 10/25] drm/i915/fdi: Improve FDI BW
- sharing between pipe B and C
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|PH0PR11MB5110:EE_
+X-MS-Office365-Filtering-Correlation-Id: 64915bc9-815b-4caf-6c13-08dbb6473770
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LM4H1a4uPjeDL0nvBxtUUUWcVF9+XLmZZTUqu3/UvUutfUqCHKZb2EPnAHp1TYF+9zdvLOvic37qD93f12NW/Q9sc7A4WtyJ+7E6O9LcOg1isTVHFhjOEdVy1kW1n1RgL/Km1Rw8u5aUxcMry6d0vM4W4w8gG0U2OcMAoheOqBaVQnad7ZBvzgPdAZKnCYVOsDHkp0uZXxAKHruKUZbT4YIHwCFG0w67EqvBbb7WY46GF9+Fpos+/2WVyru3rrf3T/w69kuHTHpuTsAXCFLIzlUVTDN9bVZhCHM+Fjx9WdFwU6UBxyjAZT44iTljWmwOzPtOvj8DTEUqgT2zGXooWOK5hLa627t8M9mWY+NDT4gROOZhHMdFAJ9u80NS87Ap0zTsUz7ikzER/DGQHz7fVRIM06psTXDnJ2Q7UWIjVn6QBeRTbpeMaTfQD4SGzUBSB8f9XKyC8T6EdIoyDublnLoIaPoJjwyj4MwT5tuIAngynHTWWZRh/H0zzzFM31HPxzudUOlXguuLIpj8CmLVoNKnWRb1MhUKqBALWOUAyIWKptfO9XQaDu69N4NZSugQ/j1gLSnVshq0nR2GzrrcsyNkJqqD2epGK1V6Yj/0GrHIWJ6X79pgeZnXkQQrzEzp
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(346002)(376002)(396003)(136003)(366004)(186009)(451199024)(1800799009)(5660300002)(8936002)(8676002)(41300700001)(316002)(26005)(36756003)(38100700002)(86362001)(31696002)(2616005)(4326008)(83380400001)(2906002)(31686004)(66899024)(82960400001)(6486002)(66556008)(66946007)(6512007)(6506007)(107886003)(66476007)(966005)(53546011)(478600001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDMrY0EweE00ejcxTm9xMlYwQWdTR2ZxT1ZKaEJySllHeHU4bVRBa09razhL?=
+ =?utf-8?B?QndtSXAyNC9GTHBwRDZUVkt4V1hnN0szQThHQk01ajRqd080V3ZrNzlXRTVL?=
+ =?utf-8?B?UDZ3bVpiUzdxTnc4Skg0QkVHSnQzRmdZWDhrV1ZlME1iclFyYlRBTGxBVTFI?=
+ =?utf-8?B?dWk3ZSswY3J5b3lzQ25ESVRwUDdVR2N2bjRZa2xPdHBBeXk5VCtPdnJEd2cr?=
+ =?utf-8?B?czFjVjJDcXo4U2s5SjQ3U2VXZTMyTHpJVXg1Ty80MktVMmo4UW1mTStSRG01?=
+ =?utf-8?B?eXFzT0JEbTg3cUlCODQ3YmYvWlZoVmNtcExPNS9VNUpjZWdWYWhDWW9HeWpP?=
+ =?utf-8?B?WXpVMm0rb3BjQ21NZzBONHU4cWVhY3BPN2Z5QjBqMHZBbVNBSWFKK0JuQXJI?=
+ =?utf-8?B?ekZuTWIzM0lpTHdaZklxYVRHZGRnenpyRHVDRUlicEJrQmdvemJ6YkNWbmFP?=
+ =?utf-8?B?ODlyZlhUdk95QnB6a2hrQ294T1AwSTFuc2d2NVJzZlpVRklFa1dXQ2tEWWNi?=
+ =?utf-8?B?WXU0czJPSmI0SnZVb3BLUEs4TU5HcjBmMzRTdVFVUlFvbDZLbnhBVGhOQnVN?=
+ =?utf-8?B?dG5HblhYUHY0SWkwdUNXQzZlc0ZqeHNFSWFldUgrOC9OcnhSU0c4RCsrd3Zs?=
+ =?utf-8?B?SE9JT1puMldWcXVOZ092OC9Ibjl4c21kcWxhVCt4VmNaUTJqbUZLMmhrMG0v?=
+ =?utf-8?B?VGEyTUxMRmJQOFBlbTE0UmRHZkx1MDRQV3FydGplV3BSZlNtWUQzaGpuemVo?=
+ =?utf-8?B?OVFHdzBXVTlqNGN6MVRNWXpYQ290YU5kVWJOeGVsdTFJOHhHTUdETUl3MnpU?=
+ =?utf-8?B?VzIrcWpBVXJiVHBGamFlTTg4Zi9qNmNQYndjaVdtVkZIMzRBZFhUWlZJd3Y3?=
+ =?utf-8?B?THNlMlM0azBzcjZFWHNXS2tzKzhuUHlHVkhaWHNwcHdTazh5aDA2dThLQWtJ?=
+ =?utf-8?B?TGtQWlhSL0hqN0NVdkwzalNPTCtlaWxCSzNzMkFmNlljNzU0VVJ4LzFMNWZo?=
+ =?utf-8?B?NFNKc2RWVjl5VDVpOGsxeEZpamJFUDZ5UVRRYzVIYVVtT0VWNzhteStVZUlR?=
+ =?utf-8?B?TitVaU93aWNMNVVCVGFXQllhbXV3OFp5Z25CMEwrUjBYTnFWTXpxbDJyT1c3?=
+ =?utf-8?B?c3k1OXYwL2ZDSU1KV0V2U2FacktrK1g4eWxQN3lZa3E5aTlCdmd5aVZxazlJ?=
+ =?utf-8?B?WUc3ZmcwK1VNSlAvbDI2T1p5RGl0QnlqU3Z3aTNjZHV1R005dEttcXYrSEdU?=
+ =?utf-8?B?Myt3SWlSZ2Z6ZHZISVpGb21aRTBaOXNHaUthMDNsVHFpSDl2NjZYUjNyUXM4?=
+ =?utf-8?B?RTZYUFloRm1kdFhYdTBYQjhpWEZzdzk5Y1lJSDlneTNYeWxjR3RyN0g1cWhS?=
+ =?utf-8?B?Tk1qTU5YYWRLVm4ybFFJTU5PN0YweEljQnE3OEpXWnhlaUhoNUh5RFZ4R1lU?=
+ =?utf-8?B?UFZ2TnlwMnRKdy9tVUpreG81Vlo0cWdMTFVHOWVtYnQ1a3ZKb1V5SnNSNWhz?=
+ =?utf-8?B?VlhST092b0IwdlZORXptT1BtR0ZmTmNQM2lKL2ExM3ZwY2hXd0loSEdOcXZX?=
+ =?utf-8?B?M0czK1dMOXRTdzNNaWVZaGlJeEZDWWFSWC9nQk9pL0krMC9jU3Zib20vMHA4?=
+ =?utf-8?B?TDlzMkRCRUd3eFF0eXNOWHpIOXZmVS9zZDM5OVlMRlllYlgxSU9Kelh5dkln?=
+ =?utf-8?B?TUxxditoZUs2SmlvM1JiK2M0dm1uM3BLS3VtUDNpYlJzcDF4S3JHK3ZLcnNW?=
+ =?utf-8?B?dFBJRFhLamo1ZDFDMlpwd0pqNHNwWVkwdXNEMDBKRFNZbkxGbXQzUnNYQjBw?=
+ =?utf-8?B?TzNRQnh1clUvMXpiT3dWcTBFWU0wSXg0dkZUajNvNHZjNHBTV1kzRjJMM1pO?=
+ =?utf-8?B?cm51WXZLMmlMZ0JBemxHZ2x2L0dKS0plZUJlVldzSU5YeFQxeDlrS3EyNUl4?=
+ =?utf-8?B?cjIyZXJ3OEJra2J3RHZmM3lVUjhtVXdOeC9qZHMxc3k3bUY0OXpzNjZTWWR2?=
+ =?utf-8?B?WE1kczlCc3Nza1YvMEdTS3N5MDRZMDVsR084K1VpcnpkVXA5SWNXS2cwVjla?=
+ =?utf-8?B?RzlQbXJpQklUdDl3SzJrdngyeVFaNGNlMnhoZStzQzE3TWJOdEZ2VEUzNng1?=
+ =?utf-8?B?c3lPRjkzL2hnMG9PK216S0I5RmNlQ2pJUHZaOXlxN2QyZXluWTgvVlNxRk1o?=
+ =?utf-8?Q?l9KGmHztW7+TmTcvdtp9gt8=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64915bc9-815b-4caf-6c13-08dbb6473770
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2023 23:55:19.3284 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zxKQye5hBNTLGigG7KlcwucrODYABkbpvu6lC1SESrH81PStsP7wob4iR2tEDi/vG5v7y72uBdgv28Zr97bNnDppx3k0Nkx5Xx3sSuObu3c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5110
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] i915/guc: Get runtime pm in busyness worker
+ only if already active
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,438 +156,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 15, 2023 at 10:31:05PM +0300, Ville Syrjälä wrote:
-> On Thu, Sep 14, 2023 at 10:26:44PM +0300, Imre Deak wrote:
-> > At the moment modesetting pipe C on IVB will fail if pipe B uses 4 FDI
-> > lanes. Make the BW sharing more dynamic by trying to reduce pipe B's
-> > link bpp in this case, until pipe B uses only up to 2 FDI lanes.
-> > 
-> > For this instead of the encoder compute config retry loop - which
-> > reduced link bpp only for the encoder's pipe - reduce the maximum link
-> > bpp for pipe B/C as required after all CRTC states are computed and
-> > recompute the CRTC states with the new bpp limit.
-> > 
-> > v2:
-> > - Don't assume that a CRTC is already in the atomic state, while
-> >   reducing its link bpp.
-> > - Add DocBook description to intel_fdi_atomic_check_link().
-> > v3:
-> > - Enable BW management for FDI links in a separate patch. (Ville)
-> > 
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/g4x_hdmi.c      |  6 +-
-> >  drivers/gpu/drm/i915/display/intel_crt.c     |  7 ++
-> >  drivers/gpu/drm/i915/display/intel_display.c | 14 +---
-> >  drivers/gpu/drm/i915/display/intel_dp.c      |  3 +-
-> >  drivers/gpu/drm/i915/display/intel_fdi.c     | 87 +++++++++++++++-----
-> >  drivers/gpu/drm/i915/display/intel_fdi.h     |  4 +
-> >  drivers/gpu/drm/i915/display/intel_link_bw.c |  7 +-
-> >  drivers/gpu/drm/i915/display/intel_lvds.c    | 10 ++-
-> >  drivers/gpu/drm/i915/display/intel_sdvo.c    | 10 ++-
-> >  9 files changed, 107 insertions(+), 41 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> > index 634b14116d9dd..8b5d26cd3b85e 100644
-> > --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> > +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> > @@ -19,6 +19,7 @@
-> >  #include "intel_fifo_underrun.h"
-> >  #include "intel_hdmi.h"
-> >  #include "intel_hotplug.h"
-> > +#include "intel_link_bw.h"
-> >  #include "intel_sdvo.h"
-> >  #include "vlv_sideband.h"
-> >  
-> > @@ -133,8 +134,11 @@ static int g4x_hdmi_compute_config(struct intel_encoder *encoder,
-> >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> >  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> >  
-> > -	if (HAS_PCH_SPLIT(i915))
-> > +	if (HAS_PCH_SPLIT(i915)) {
-> >  		crtc_state->has_pch_encoder = true;
-> > +		if (!intel_link_bw_compute_pipe_bpp(crtc_state))
-> > +			return -EINVAL;
-> > +	}
-> >  
-> >  	if (IS_G4X(i915))
-> >  		crtc_state->has_hdmi_sink = g4x_compute_has_hdmi_sink(state, crtc);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-> > index f6df6c4fa72ef..7aa89d0fa3d6c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> > @@ -49,6 +49,7 @@
-> >  #include "intel_gmbus.h"
-> >  #include "intel_hotplug.h"
-> >  #include "intel_hotplug_irq.h"
-> > +#include "intel_link_bw.h"
-> >  #include "intel_load_detect.h"
-> >  #include "intel_pch_display.h"
-> >  #include "intel_pch_refclk.h"
-> > @@ -413,6 +414,9 @@ static int pch_crt_compute_config(struct intel_encoder *encoder,
-> >  		return -EINVAL;
-> >  
-> >  	pipe_config->has_pch_encoder = true;
-> > +	if (!intel_link_bw_compute_pipe_bpp(pipe_config))
-> > +		return -EINVAL;
-> > +
-> >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
-> >  
-> >  	return 0;
-> > @@ -435,6 +439,9 @@ static int hsw_crt_compute_config(struct intel_encoder *encoder,
-> >  		return -EINVAL;
-> >  
-> >  	pipe_config->has_pch_encoder = true;
-> > +	if (!intel_link_bw_compute_pipe_bpp(pipe_config))
-> > +		return -EINVAL;
-> > +
-> >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
-> >  
-> >  	/* LPT FDI RX only supports 8bpc. */
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 29816153fdd59..aad16dcceb788 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -4607,7 +4607,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
-> >  	struct drm_connector_state *connector_state;
-> >  	int pipe_src_w, pipe_src_h;
-> >  	int base_bpp, ret, i;
-> > -	bool retry = true;
-> >  
-> >  	crtc_state->cpu_transcoder = (enum transcoder) crtc->pipe;
-> >  
-> > @@ -4637,6 +4636,7 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
-> >  			    "[CRTC:%d:%s] Link bpp limited to " BPP_X16_FMT "\n",
-> >  			    crtc->base.base.id, crtc->base.name,
-> >  			    BPP_X16_ARGS(crtc_state->max_link_bpp_x16));
-> > +		crtc_state->bw_constrained = true;
-> >  	}
-> >  
-> >  	base_bpp = crtc_state->pipe_bpp;
-> > @@ -4680,7 +4680,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
-> >  			crtc_state->output_types |= BIT(encoder->type);
-> >  	}
-> >  
-> > -encoder_retry:
-> >  	/* Ensure the port clock defaults are reset when retrying. */
-> >  	crtc_state->port_clock = 0;
-> >  	crtc_state->pixel_multiplier = 1;
-> > @@ -4720,17 +4719,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
-> >  	ret = intel_crtc_compute_config(state, crtc);
-> >  	if (ret == -EDEADLK)
-> >  		return ret;
-> > -	if (ret == -EAGAIN) {
-> > -		if (drm_WARN(&i915->drm, !retry,
-> > -			     "[CRTC:%d:%s] loop in pipe configuration computation\n",
-> > -			     crtc->base.base.id, crtc->base.name))
-> > -			return -EINVAL;
-> > -
-> > -		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] bw constrained, retrying\n",
-> > -			    crtc->base.base.id, crtc->base.name);
-> > -		retry = false;
-> > -		goto encoder_retry;
-> > -	}
-> >  	if (ret < 0) {
-> >  		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] config failure: %d\n",
-> >  			    crtc->base.base.id, crtc->base.name, ret);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index d5e6813d36c8f..03010accc1c7f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -2219,7 +2219,8 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
-> >  	const struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> >  	int max_link_bpp_x16;
-> >  
-> > -	max_link_bpp_x16 = to_bpp_x16(limits->pipe.max_bpp);
-> > +	max_link_bpp_x16 = min(crtc_state->max_link_bpp_x16,
-> > +			       to_bpp_x16(limits->pipe.max_bpp));
-> >  
-> >  	if (!dsc) {
-> >  		max_link_bpp_x16 = rounddown(max_link_bpp_x16, to_bpp_x16(2 * 3));
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-> > index 4d7d524c68017..ad01915a4a39b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fdi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-> > @@ -13,6 +13,7 @@
-> >  #include "intel_display_types.h"
-> >  #include "intel_fdi.h"
-> >  #include "intel_fdi_regs.h"
-> > +#include "intel_link_bw.h"
-> >  
-> >  struct intel_fdi_funcs {
-> >  	void (*fdi_link_train)(struct intel_crtc *crtc,
-> > @@ -129,13 +130,16 @@ static int pipe_required_fdi_lanes(struct intel_crtc_state *crtc_state)
-> >  }
-> >  
-> >  static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
-> > -			       struct intel_crtc_state *pipe_config)
-> > +			       struct intel_crtc_state *pipe_config,
-> > +			       enum pipe *pipe_to_reduce)
-> >  {
-> >  	struct drm_i915_private *dev_priv = to_i915(dev);
-> >  	struct drm_atomic_state *state = pipe_config->uapi.state;
-> >  	struct intel_crtc *other_crtc;
-> >  	struct intel_crtc_state *other_crtc_state;
-> >  
-> > +	*pipe_to_reduce = pipe;
-> > +
-> >  	drm_dbg_kms(&dev_priv->drm,
-> >  		    "checking fdi config on pipe %c, lanes %i\n",
-> >  		    pipe_name(pipe), pipe_config->fdi_lanes);
-> > @@ -198,6 +202,9 @@ static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
-> >  		if (pipe_required_fdi_lanes(other_crtc_state) > 2) {
-> >  			drm_dbg_kms(&dev_priv->drm,
-> >  				    "fdi link B uses too many lanes to enable link C\n");
-> > +
-> > +			*pipe_to_reduce = PIPE_B;
-> > +
-> >  			return -EINVAL;
-> >  		}
-> >  		return 0;
-> > @@ -238,10 +245,8 @@ int ilk_fdi_compute_config(struct intel_crtc *crtc,
-> >  	struct drm_device *dev = crtc->base.dev;
-> >  	struct drm_i915_private *i915 = to_i915(dev);
-> >  	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
-> > -	int lane, link_bw, fdi_dotclock, ret;
-> > -	bool needs_recompute = false;
-> > +	int lane, link_bw, fdi_dotclock;
-> >  
-> > -retry:
-> >  	/* FDI is a binary signal running at ~2.7GHz, encoding
-> >  	 * each output octet as 10 bits. The actual frequency
-> >  	 * is stored as a divider into a 100MHz clock, and the
-> > @@ -261,25 +266,69 @@ int ilk_fdi_compute_config(struct intel_crtc *crtc,
-> >  	intel_link_compute_m_n(pipe_config->pipe_bpp, lane, fdi_dotclock,
-> >  			       link_bw, &pipe_config->fdi_m_n, false);
-> >  
-> > -	ret = ilk_check_fdi_lanes(dev, crtc->pipe, pipe_config);
-> > -	if (ret == -EDEADLK)
-> > +	return 0;
-> > +}
-> > +
-> > +static int intel_fdi_atomic_check_bw(struct intel_atomic_state *state,
-> > +				     struct intel_crtc *crtc,
-> > +				     struct intel_crtc_state *pipe_config,
-> > +				     struct intel_link_bw_limits *limits)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> > +	enum pipe pipe_to_reduce;
-> > +	int ret;
-> > +
-> > +	ret = ilk_check_fdi_lanes(&i915->drm, crtc->pipe, pipe_config,
-> > +				  &pipe_to_reduce);
-> > +	if (ret != -EINVAL)
-> >  		return ret;
-> >  
-> > -	if (ret == -EINVAL && pipe_config->pipe_bpp > 6*3) {
-> > -		pipe_config->pipe_bpp -= 2*3;
-> > -		drm_dbg_kms(&i915->drm,
-> > -			    "fdi link bw constraint, reducing pipe bpp to %i\n",
-> > -			    pipe_config->pipe_bpp);
-> > -		needs_recompute = true;
-> > -		pipe_config->bw_constrained = true;
-> > -
-> > -		goto retry;
-> > +	ret = intel_link_bw_reduce_bpp(state, limits,
-> > +				       BIT(pipe_to_reduce),
-> > +				       "FDI link BW");
-> > +
-> > +	return ret ? : -EAGAIN;
-> > +}
-> > +
-> > +/**
-> > + * intel_fdi_atomic_check_link - check all modeset FDI link configuration
-> > + * @state: intel atomic state
-> > + * @limits: link BW limits
-> > + *
-> > + * Check the link configuration for all modeset FDI outputs. If the
-> > + * configuration is invalid @limits will be updated if possible to
-> > + * reduce the total BW, after which the configuration for all CRTCs in
-> > + * @state must be recomputed with the updated @limits.
-> > + *
-> > + * Returns:
-> > + *   - 0 if the confugration is valid
-> > + *   - %-EAGAIN, if the configuration is invalid and @limits got updated
-> > + *     with fallback values with which the configuration of all CRTCs
-> > + *     in @state must be recomputed
-> > + *   - Other negative error, if the configuration is invalid without a
-> > + *     fallback possibility, or the check failed for another reason
-> > + */
-> > +int intel_fdi_atomic_check_link(struct intel_atomic_state *state,
-> > +				struct intel_link_bw_limits *limits)
-> > +{
-> > +	struct intel_crtc *crtc;
-> > +	struct intel_crtc_state *crtc_state;
-> > +	int i;
-> > +
-> > +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-> > +		int ret;
-> > +
-> > +		if (!crtc_state->has_pch_encoder ||
-> > +		    !intel_crtc_needs_modeset(crtc_state) ||
-> > +		    !crtc_state->hw.enable)
-> > +			continue;
-> > +
-> > +		ret = intel_fdi_atomic_check_bw(state, crtc, crtc_state, limits);
-> > +		if (ret)
-> > +			return ret;
-> >  	}
-> >  
-> > -	if (needs_recompute)
-> > -		return -EAGAIN;
-> > -
-> > -	return ret;
-> > +	return 0;
-> >  }
-> >  
-> >  static void cpt_set_fdi_bc_bifurcation(struct drm_i915_private *dev_priv, bool enable)
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i915/display/intel_fdi.h
-> > index 1cdb86172702f..129444c580f27 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fdi.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_fdi.h
-> > @@ -8,14 +8,18 @@
-> >  
-> >  enum pipe;
-> >  struct drm_i915_private;
-> > +struct intel_atomic_state;
-> >  struct intel_crtc;
-> >  struct intel_crtc_state;
-> >  struct intel_encoder;
-> > +struct intel_link_bw_limits;
-> >  
-> >  int intel_fdi_link_freq(struct drm_i915_private *i915,
-> >  			const struct intel_crtc_state *pipe_config);
-> >  int ilk_fdi_compute_config(struct intel_crtc *intel_crtc,
-> >  			   struct intel_crtc_state *pipe_config);
-> > +int intel_fdi_atomic_check_link(struct intel_atomic_state *state,
-> > +				struct intel_link_bw_limits *limits);
-> >  void intel_fdi_normal_train(struct intel_crtc *crtc);
-> >  void ilk_fdi_disable(struct intel_crtc *crtc);
-> >  void ilk_fdi_pll_disable(struct intel_crtc *intel_crtc);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/drm/i915/display/intel_link_bw.c
-> > index 22494772b9d59..aacf22bab3135 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_link_bw.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
-> > @@ -160,7 +160,12 @@ intel_link_bw_reset_pipe_limit_to_min(struct intel_atomic_state *state,
-> >  static int check_all_link_config(struct intel_atomic_state *state,
-> >  				 struct intel_link_bw_limits *limits)
-> >  {
-> > -	/* TODO: Check all shared display link configurations like FDI */
-> > +	int ret;
-> > +
-> > +	ret = intel_fdi_atomic_check_link(state, limits);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> >  	return 0;
-> >  }
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-> > index 3ace56979b70e..0366d4cc6b72b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_lvds.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-> > @@ -48,6 +48,7 @@
-> >  #include "intel_dpll.h"
-> >  #include "intel_fdi.h"
-> >  #include "intel_gmbus.h"
-> > +#include "intel_link_bw.h"
-> >  #include "intel_lvds.h"
-> >  #include "intel_lvds_regs.h"
-> >  #include "intel_panel.h"
-> > @@ -425,6 +426,12 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
-> >  		return -EINVAL;
-> >  	}
-> >  
-> > +	if (HAS_PCH_SPLIT(i915)) {
-> > +		crtc_state->has_pch_encoder = true;
-> > +		if (!intel_link_bw_compute_pipe_bpp(crtc_state))
-> > +			return -EINVAL;
-> > +	}
-> > +
-> >  	if (lvds_encoder->a3_power == LVDS_A3_POWER_UP)
-> >  		lvds_bpp = 8*3;
-> >  	else
-> > @@ -453,9 +460,6 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
-> >  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
-> >  		return -EINVAL;
-> >  
-> > -	if (HAS_PCH_SPLIT(i915))
-> > -		crtc_state->has_pch_encoder = true;
-> > -
-> >  	ret = intel_panel_fitting(crtc_state, conn_state);
-> >  	if (ret)
-> >  		return ret;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> > index 135a2527fd1b4..3c912f3bc10ba 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> > @@ -48,6 +48,7 @@
-> >  #include "intel_gmbus.h"
-> >  #include "intel_hdmi.h"
-> >  #include "intel_hotplug.h"
-> > +#include "intel_link_bw.h"
-> >  #include "intel_panel.h"
-> >  #include "intel_sdvo.h"
-> >  #include "intel_sdvo_regs.h"
-> > @@ -1351,14 +1352,17 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
-> >  	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
-> >  	struct drm_display_mode *mode = &pipe_config->hw.mode;
-> >  
-> > +	if (HAS_PCH_SPLIT(to_i915(encoder->base.dev))) {
-> > +		pipe_config->has_pch_encoder = true;
-> > +		if (!intel_link_bw_compute_pipe_bpp(pipe_config))
-> > +			return -EINVAL;
-> > +	}
-> > +
-> >  	DRM_DEBUG_KMS("forcing bpc to 8 for SDVO\n");
-> >  	pipe_config->pipe_bpp = 8*3;
-> 
-> This seems borked. I think we want to force this to 8bpc only if we're
-> higher currently.
 
-This would fail the modeset if pipe_bpp would need to be reduced to 6*3
-due to a BW limit and that's what happens before this change as well
-afaics. I agree it's strange to detect that only later in the retry loop
-and the above should return already error in that case. Are you ok with
-that (if crtc_state->max_link_bpp < 8*3 -> return -EINVAL) ?
 
-If you meant that increasing an EDID (6 bpc) baseline to 8 bpc (if BW
-allows otherwise) doesn't make sense either here, that would be an issue
-already before this change. I can add a FIXME: comment for that.
+On 9/14/2023 6:28 PM, Umesh Nerlige Ramappa wrote:
+> Ideally the busyness worker should take a gt pm wakeref because the
+> worker only needs to be active while gt is awake. However, the gt_park
+> path cancels the worker synchronously and this complicates the flow if
+> the worker is also running at the same time. The cancel waits for the
+> worker and when the worker releases the wakeref, that would call gt_park
+> and would lead to a deadlock.
+>
+> The resolution is to take the global pm wakeref if runtime pm is already
+> active. If not, we don't need to update the busyness stats as the stats
+> would already be updated when the gt was parked.
+>
+> Note:
+> - We do not requeue the worker if we cannot take a reference to runtime
+>    pm since intel_guc_busyness_unpark would requeue the worker in the
+>    resume path.
+>
+> - If the gt was parked longer than time taken for GT timestamp to roll
+>    over, we ignore those rollovers since we don't care about tracking the
+>    exact GT time. We only care about roll overs when the gt is active and
+>    running workloads.
+>
+> - There is a window of time between gt_park and runtime suspend, where
+>    the worker may run. This is acceptable since the worker will not find
+>    any new data to update busyness.
+>
+> v2: (Daniele)
+> - Edit commit message and code comment
+> - Use runtime pm in the worker
+> - Put runtime pm after enabling the worker
+> - Use Link tag and add Fixes tag
+>
+> v3: (Daniele)
+> - Reword commit and comments and add details
+>
+> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/7077
+> Fixes: 77cdd054dd2c ("drm/i915/pmu: Connect engine busyness stats from GuC to pmu")
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-> Same for the LVDS case I think, though that one is a bit more sane atm
-> since it looks at the bw_constrained flag, though I don't think we
-> really need that flag anymore, at least for this purpose.
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-This patch doesn't change the behavior there either, but bw_constrained
-could be replaced with crtc_state->max_link_bpp < lvds_bpp (as a
-follow-up imo).
+Daniele
 
-> Hmm, but maybe we do still need it for the LPT FDI case where we do
-> actually want to increase the bpc to 8 if the EDID baseline is below
-> that.
+> ---
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 38 +++++++++++++++++--
+>   1 file changed, 35 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index cabdc645fcdd..ae3495a9c814 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -1432,6 +1432,36 @@ static void guc_timestamp_ping(struct work_struct *wrk)
+>   	unsigned long index;
+>   	int srcu, ret;
+>   
+> +	/*
+> +	 * Ideally the busyness worker should take a gt pm wakeref because the
+> +	 * worker only needs to be active while gt is awake. However, the
+> +	 * gt_park path cancels the worker synchronously and this complicates
+> +	 * the flow if the worker is also running at the same time. The cancel
+> +	 * waits for the worker and when the worker releases the wakeref, that
+> +	 * would call gt_park and would lead to a deadlock.
+> +	 *
+> +	 * The resolution is to take the global pm wakeref if runtime pm is
+> +	 * already active. If not, we don't need to update the busyness stats as
+> +	 * the stats would already be updated when the gt was parked.
+> +	 *
+> +	 * Note:
+> +	 * - We do not requeue the worker if we cannot take a reference to runtime
+> +	 *   pm since intel_guc_busyness_unpark would requeue the worker in the
+> +	 *   resume path.
+> +	 *
+> +	 * - If the gt was parked longer than time taken for GT timestamp to roll
+> +	 *   over, we ignore those rollovers since we don't care about tracking
+> +	 *   the exact GT time. We only care about roll overs when the gt is
+> +	 *   active and running workloads.
+> +	 *
+> +	 * - There is a window of time between gt_park and runtime suspend,
+> +	 *   where the worker may run. This is acceptable since the worker will
+> +	 *   not find any new data to update busyness.
+> +	 */
+> +	wakeref = intel_runtime_pm_get_if_active(&gt->i915->runtime_pm);
+> +	if (!wakeref)
+> +		return;
+> +
+>   	/*
+>   	 * Synchronize with gt reset to make sure the worker does not
+>   	 * corrupt the engine/guc stats. NB: can't actually block waiting
+> @@ -1440,10 +1470,9 @@ static void guc_timestamp_ping(struct work_struct *wrk)
+>   	 */
+>   	ret = intel_gt_reset_trylock(gt, &srcu);
+>   	if (ret)
+> -		return;
+> +		goto err_trylock;
+>   
+> -	with_intel_runtime_pm(&gt->i915->runtime_pm, wakeref)
+> -		__update_guc_busyness_stats(guc);
+> +	__update_guc_busyness_stats(guc);
+>   
+>   	/* adjust context stats for overflow */
+>   	xa_for_each(&guc->context_lookup, index, ce)
+> @@ -1452,6 +1481,9 @@ static void guc_timestamp_ping(struct work_struct *wrk)
+>   	intel_gt_reset_unlock(gt, srcu);
+>   
+>   	guc_enable_busyness_worker(guc);
+> +
+> +err_trylock:
+> +	intel_runtime_pm_put(&gt->i915->runtime_pm, wakeref);
+>   }
+>   
+>   static int guc_action_enable_usage_stats(struct intel_guc *guc)
 
-I suppose bw_constrained && pipe_bpp < 24 there could be also replaced
-with crtc_state->max_link_bpp < 24.
-
-> >  	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
-> >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
-> >  
-> > -	if (HAS_PCH_SPLIT(to_i915(encoder->base.dev)))
-> > -		pipe_config->has_pch_encoder = true;
-> > -
-> >  	/*
-> >  	 * We need to construct preferred input timings based on our
-> >  	 * output timings.  To do that, we have to set the output
-> > -- 
-> > 2.37.2
-> 
-> -- 
-> Ville Syrjälä
-> Intel
