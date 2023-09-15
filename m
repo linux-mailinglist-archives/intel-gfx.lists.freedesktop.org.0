@@ -2,53 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 327227A278D
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 22:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 183FC7A27DA
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 22:15:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14E7110E678;
-	Fri, 15 Sep 2023 20:03:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52FDE10E678;
+	Fri, 15 Sep 2023 20:15:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A614A10E678
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 20:03:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 979EE10E67C;
+ Fri, 15 Sep 2023 20:15:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694808195; x=1726344195;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ORpOnYu/bFysGJq6L4g+eW6t/Ig0g8L+qQcsAuIIEEU=;
- b=khOzTnHBfUTuTLbuFT+c1tzn52SAG9e6oD/21lv6Tsbytxo74U8CKTA8
- Qu/EuHrRF3p1SUFn26yMX58bPV+jyQ1ScF72rPG+rTDobh55/JX5sHlHO
- befH5jC6G7uPqXIMQIiakseQ52qykmUmQn+uM8szJHucS8g0eCwpOoc+J
- L3slxHWfxr8A1cHdf0xzOXyu9f4FamyuDianGWWApYze6+COSFKne09XR
- TlzZk2WuEXVt2GjZXN/oSPXJO+NBNg4o0xUadFTiS4VQkwYDac2smvbRs
- JNfz8TliuVE8k+FKAulGFVwJ8pffFsTDwAorCdpnb+Ry3LF5C9pCI5fAc Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="465691279"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="465691279"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ t=1694808917; x=1726344917;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=F6S33oxpNZL15b/FCsy04IQnVHw/gHFJ67IYhvjEVFY=;
+ b=BFagW5sYeNvZ3T/E6j7w4CKWaK+6m6GeKeKayBAujeTKzSqzlkO6YZ7L
+ NhjdWau4zkRJMgQ1AMQrp3q74yePgp/QXtkfXOMOB7Mj35FyNS90yCwb/
+ N6DeU7h+XtmL/lX2pR0D1Q/9yY4EdJUXH3bhUKkb2DS7+vFoUioEh8YLR
+ 1t/vkkZtiRlcCwTa99CbHQiCCrKuxZTJdzOxsDrogvUaNcN980YOYyneg
+ tdGwuuR2vEDjWByUiWD9vt2n3Z5XgpbOjBJBoXLR01KUhSWuz6pTJUe+O
+ cTNZfeVjIKDRrf2T1p+UuwaU1ThsGRqxcjN9pCgaejMs69+/CXrgQfl/J A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="465693520"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="465693520"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 13:03:14 -0700
+ 15 Sep 2023 13:15:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="780217516"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="780217516"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 13:03:13 -0700
-Date: Fri, 15 Sep 2023 23:03:33 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZQS4lSYj+nXh/FiF@ideak-desk.fi.intel.com>
-References: <20230914192659.757475-1-imre.deak@intel.com>
- <20230914192659.757475-7-imre.deak@intel.com>
- <ZQSjsnMzbusYgfSt@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="815305299"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="815305299"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by fmsmga004.fm.intel.com with ESMTP; 15 Sep 2023 13:15:16 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 15 Sep 2023 13:15:15 -0700
+Message-Id: <20230915201515.1238771-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZQSjsnMzbusYgfSt@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 06/25] drm/i915: Add helper to modeset a
- set of pipes
+Subject: [Intel-gfx] [PATCH v3] drm/i915/pxp: Add drm_dbgs for critical PXP
+ events.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,171 +55,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: , intel.com@freedesktop.org, dri-devel@lists.freedesktop.org,
+	Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 15, 2023 at 09:34:26PM +0300, Ville Syrjälä wrote:
-> On Thu, Sep 14, 2023 at 10:26:40PM +0300, Imre Deak wrote:
-> > Add intel_modeset_pipes_in_mask_early() to modeset a provided set of
-> > pipes, used in a follow-up patch.
-> > 
-> > While at it add _late suffix to intel_modeset_all_pipes() for clarity
-> > and add DocBook descriptions for the two exported functions.
-> > 
-> > v2:
-> > - Add a flag controlling if active planes are force updated as well.
-> > - Add DockBook descriptions.
-> > v3:
-> > - For clarity use _early/_late suffixes for the exported functions
-> >   instead of the update_active_planes parameter. (Ville)
-> > 
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_cdclk.c   |  2 +-
-> >  drivers/gpu/drm/i915/display/intel_display.c | 45 ++++++++++++++++++--
-> >  drivers/gpu/drm/i915/display/intel_display.h |  6 ++-
-> >  drivers/gpu/drm/i915/display/skl_watermark.c |  2 +-
-> >  4 files changed, 47 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > index ad5251ba6fe13..a2e20b25d6361 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > @@ -3139,7 +3139,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
-> >  	} else if (intel_cdclk_needs_modeset(&old_cdclk_state->actual,
-> >  					     &new_cdclk_state->actual)) {
-> >  		/* All pipes must be switched off while we change the cdclk. */
-> > -		ret = intel_modeset_all_pipes(state, "CDCLK change");
-> > +		ret = intel_modeset_all_pipes_late(state, "CDCLK change");
-> >  		if (ret)
-> >  			return ret;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 6bbc9069754c4..27e6ea21e0a91 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -5407,8 +5407,9 @@ intel_verify_planes(struct intel_atomic_state *state)
-> >  			     plane_state->uapi.visible);
-> >  }
-> >  
-> > -int intel_modeset_all_pipes(struct intel_atomic_state *state,
-> > -			    const char *reason)
-> > +static int intel_modeset_pipes_in_mask(struct intel_atomic_state *state,
-> > +				       const char *reason, u8 mask,
-> > +				       bool update_active_planes)
-> >  {
-> >  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> >  	struct intel_crtc *crtc;
-> > @@ -5417,7 +5418,7 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
-> >  	 * Add all pipes to the state, and force
-> >  	 * a modeset on all the active ones.
-> >  	 */
-> > -	for_each_intel_crtc(&dev_priv->drm, crtc) {
-> > +	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc, mask) {
-> >  		struct intel_crtc_state *crtc_state;
-> >  		int ret;
-> >  
-> > @@ -5448,7 +5449,9 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
-> >  		if (ret)
-> >  			return ret;
-> >  
-> > -		crtc_state->update_planes |= crtc_state->active_planes;
-> > +		if (update_active_planes)
-> > +			crtc_state->update_planes |= crtc_state->active_planes;
-> 
-> This thing still confuses me. We have a bunch of other "late modeset"
-> stuff in there (async flip handling and clearing of fastset flag at
-> least). I still think a clean split would be better than a confusing
-> parameter.
+Debugging PXP issues can't even begin without understanding precedding
+sequence of important events. Add drm_dbg into the most important PXP events.
 
-Ok, makes sense. The rest of the flags start out as cleared, but the
-only relevant thing for early modeset is setting uapi.mode_changed
-(IIUC).
+ v3 : - move gt_dbg to after mutex block in function
+        i915_gsc_proxy_component_bind. (Vivaik)
+ v2 : - remove __func__ since drm_dbg covers that (Jani).
+      - add timeout dbg of the restart from front-end (Alan).
 
-Also, adding hw.enable && !hw.active CRTCs to the state could be
-done only during an early modeset.
+Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c |  2 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp.c         | 15 ++++++++++++---
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c     |  4 ++--
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.c |  6 +++++-
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h   |  1 +
+ 5 files changed, 22 insertions(+), 6 deletions(-)
 
-> > +
-> >  		crtc_state->async_flip_planes = 0;
-> >  		crtc_state->do_async_flip = false;
-> >  	}
-> > @@ -5456,6 +5459,40 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
-> >  	return 0;
-> >  }
-> >  
-> > +/**
-> > + * intel_modeset_pipes_in_mask_early - force a full modeset on a set of pipes
-> > + * @state: intel atomic state
-> > + * @reason: the reason for the full modeset
-> > + * @mask: mask of pipes to modeset
-> > + *
-> > + * Force a full modeset on pipes in @mask due to the description in @reason.
-> > + * This function can be called only before new plane states are computed.
-> > + *
-> > + * Returns 0 in case of success, negative error code otherwise.
-> > + */
-> > +int intel_modeset_pipes_in_mask_early(struct intel_atomic_state *state,
-> > +				      const char *reason, u8 mask)
-> > +{
-> > +	return intel_modeset_pipes_in_mask(state, reason, mask, false);
-> > +}
-> > +
-> > +/**
-> > + * intel_modeset_all_pipes_late - force a full modeset on all pipes
-> > + * @state: intel atomic state
-> > + * @reason: the reason for the full modeset
-> > + *
-> > + * Force a full modeset on all pipes due to the description in @reason.
-> > + * This function can be called only after new plane states are computed
-> > + * already.
-> > + *
-> > + * Returns 0 in case of success, negative error code otherwise.
-> > + */
-> > +int intel_modeset_all_pipes_late(struct intel_atomic_state *state,
-> > +				 const char *reason)
-> > +{
-> > +	return intel_modeset_pipes_in_mask(state, reason, -1, true);
-> > +}
-> > +
-> >  /*
-> >   * This implements the workaround described in the "notes" section of the mode
-> >   * set sequence documentation. When going from no pipes or single pipe to
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> > index 49ac8473b988b..64a5be7859331 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> > @@ -513,8 +513,10 @@ void intel_plane_fixup_bitmasks(struct intel_crtc_state *crtc_state);
-> >  void intel_update_watermarks(struct drm_i915_private *i915);
-> >  
-> >  /* modesetting */
-> > -int intel_modeset_all_pipes(struct intel_atomic_state *state,
-> > -			    const char *reason);
-> > +int intel_modeset_pipes_in_mask_early(struct intel_atomic_state *state,
-> > +				      const char *reason, u8 pipe_mask);
-> > +int intel_modeset_all_pipes_late(struct intel_atomic_state *state,
-> > +				 const char *reason);
-> >  void intel_modeset_get_crtc_power_domains(struct intel_crtc_state *crtc_state,
-> >  					  struct intel_power_domain_mask *old_domains);
-> >  void intel_modeset_put_crtc_power_domains(struct intel_crtc *crtc,
-> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > index 063929a42a42f..a29d9b717deed 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > @@ -2616,7 +2616,7 @@ skl_compute_ddb(struct intel_atomic_state *state)
-> >  
-> >  		if (old_dbuf_state->joined_mbus != new_dbuf_state->joined_mbus) {
-> >  			/* TODO: Implement vblank synchronized MBUS joining changes */
-> > -			ret = intel_modeset_all_pipes(state, "MBUS joining change");
-> > +			ret = intel_modeset_all_pipes_late(state, "MBUS joining change");
-> >  			if (ret)
-> >  				return ret;
-> >  		}
-> > -- 
-> > 2.37.2
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
+index 5f138de3c14f..40817ebcca71 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c
+@@ -322,6 +322,7 @@ static int i915_gsc_proxy_component_bind(struct device *i915_kdev,
+ 	gsc->proxy.component = data;
+ 	gsc->proxy.component->mei_dev = mei_kdev;
+ 	mutex_unlock(&gsc->proxy.mutex);
++	gt_dbg(gt, "GSC proxy mei component bound\n");
+ 
+ 	return 0;
+ }
+@@ -342,6 +343,7 @@ static void i915_gsc_proxy_component_unbind(struct device *i915_kdev,
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
+ 		intel_uncore_rmw(gt->uncore, HECI_H_CSR(MTL_GSC_HECI2_BASE),
+ 				 HECI_H_CSR_IE | HECI_H_CSR_RST, 0);
++	gt_dbg(gt, "GSC proxy mei component unbound\n");
+ }
+ 
+ static const struct component_ops i915_gsc_proxy_component_ops = {
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+index dc327cf40b5a..e11f562b1876 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+@@ -303,6 +303,8 @@ static int __pxp_global_teardown_final(struct intel_pxp *pxp)
+ 
+ 	if (!pxp->arb_is_valid)
+ 		return 0;
++
++	drm_dbg(&pxp->ctrl_gt->i915->drm, "PXP: teardown for suspend/fini");
+ 	/*
+ 	 * To ensure synchronous and coherent session teardown completion
+ 	 * in response to suspend or shutdown triggers, don't use a worker.
+@@ -324,6 +326,8 @@ static int __pxp_global_teardown_restart(struct intel_pxp *pxp)
+ 
+ 	if (pxp->arb_is_valid)
+ 		return 0;
++
++	drm_dbg(&pxp->ctrl_gt->i915->drm, "PXP: teardown for restart");
+ 	/*
+ 	 * The arb-session is currently inactive and we are doing a reset and restart
+ 	 * due to a runtime event. Use the worker that was designed for this.
+@@ -332,8 +336,11 @@ static int __pxp_global_teardown_restart(struct intel_pxp *pxp)
+ 
+ 	timeout = intel_pxp_get_backend_timeout_ms(pxp);
+ 
+-	if (!wait_for_completion_timeout(&pxp->termination, msecs_to_jiffies(timeout)))
++	if (!wait_for_completion_timeout(&pxp->termination, msecs_to_jiffies(timeout))) {
++		drm_dbg(&pxp->ctrl_gt->i915->drm, "PXP: restart backend timed out (%d ms)",
++			timeout);
+ 		return -ETIMEDOUT;
++	}
+ 
+ 	return 0;
+ }
+@@ -414,10 +421,12 @@ int intel_pxp_start(struct intel_pxp *pxp)
+ 	int ret = 0;
+ 
+ 	ret = intel_pxp_get_readiness_status(pxp, PXP_READINESS_TIMEOUT);
+-	if (ret < 0)
++	if (ret < 0) {
++		drm_dbg(&pxp->ctrl_gt->i915->drm, "PXP: tried but not-avail (%d)", ret);
+ 		return ret;
+-	else if (ret > 1)
++	} else if (ret > 1) {
+ 		return -EIO; /* per UAPI spec, user may retry later */
++	}
+ 
+ 	mutex_lock(&pxp->arb_mutex);
+ 
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+index 91e9622c07d0..0637b1d36356 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+@@ -40,11 +40,11 @@ void intel_pxp_irq_handler(struct intel_pxp *pxp, u16 iir)
+ 		   GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT)) {
+ 		/* immediately mark PXP as inactive on termination */
+ 		intel_pxp_mark_termination_in_progress(pxp);
+-		pxp->session_events |= PXP_TERMINATION_REQUEST | PXP_INVAL_REQUIRED;
++		pxp->session_events |= PXP_TERMINATION_REQUEST | PXP_INVAL_REQUIRED | PXP_EVENT_TYPE_IRQ;
+ 	}
+ 
+ 	if (iir & GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT)
+-		pxp->session_events |= PXP_TERMINATION_COMPLETE;
++		pxp->session_events |= PXP_TERMINATION_COMPLETE | PXP_EVENT_TYPE_IRQ;
+ 
+ 	if (pxp->session_events)
+ 		queue_work(system_unbound_wq, &pxp->session_work);
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+index 0a3e66b0265e..091c86e03d1a 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+@@ -137,8 +137,10 @@ void intel_pxp_terminate(struct intel_pxp *pxp, bool post_invalidation_needs_res
+ static void pxp_terminate_complete(struct intel_pxp *pxp)
+ {
+ 	/* Re-create the arb session after teardown handle complete */
+-	if (fetch_and_zero(&pxp->hw_state_invalidated))
++	if (fetch_and_zero(&pxp->hw_state_invalidated)) {
++		drm_dbg(&pxp->ctrl_gt->i915->drm, "PXP: creating arb_session after invalidation");
+ 		pxp_create_arb_session(pxp);
++	}
+ 
+ 	complete_all(&pxp->termination);
+ }
+@@ -157,6 +159,8 @@ static void pxp_session_work(struct work_struct *work)
+ 	if (!events)
+ 		return;
+ 
++	drm_dbg(&gt->i915->drm, "PXP: processing event-flags 0x%08x", events);
++
+ 	if (events & PXP_INVAL_REQUIRED)
+ 		intel_pxp_invalidate(pxp);
+ 
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+index 7e11fa8034b2..07864b584cf4 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+@@ -124,6 +124,7 @@ struct intel_pxp {
+ #define PXP_TERMINATION_REQUEST  BIT(0)
+ #define PXP_TERMINATION_COMPLETE BIT(1)
+ #define PXP_INVAL_REQUIRED       BIT(2)
++#define PXP_EVENT_TYPE_IRQ       BIT(3)
+ };
+ 
+ #endif /* __INTEL_PXP_TYPES_H__ */
+
+base-commit: cf1e91e884bb1113c653e654e9de1754fc1d4488
+-- 
+2.39.0
+
