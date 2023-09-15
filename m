@@ -2,48 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA2A7A250E
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 19:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45BF67A2510
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 19:47:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07E6B10E66B;
-	Fri, 15 Sep 2023 17:46:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95D0E10E665;
+	Fri, 15 Sep 2023 17:46:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE0E10E660;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C0BF88D18;
  Fri, 15 Sep 2023 17:46:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1694800010; x=1726336010;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=MsHtxSSIkGd9R+llMitSV0hdANWDStumWkkCjzXUICY=;
- b=FEunTxgfO+cAk58WJZ5Q7PMP87FIEy6qccyyMP5w73ngLJd8IQGnesVQ
- yWu7wtYrHj8jJRV/tWqRUf1xb2rc4dwbxyjSKqhmwt0bu4OBeKGqPMA1s
- MDqnfXmV/dGtfAWpYtJHt7lFw0wF4/PLlK4Z6QDa70S3VqbbO/Mv4sJob
- mQXsM55tIJSU8WAvMb1miauqZ4Un8GXop6cAKp72Fh3QHk7EAzePE5lJ0
- qV19gXcaEnQycPNqEPZX+shSKZDN42wAnPfGZP/jqmFWdcIjZu8CcwzE7
- 5CQhh/u7V9zZZ1t1b/tAqUSIHjTPYd4smCiIH14usQX+hRIgnFObjw8PZ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445779259"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445779259"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=2P5RTPdHLlYs3CRzEYgthJxcb1pbk2+mbm0Jptn64ZU=;
+ b=kWwfFRJyXOFRxbSTOMzk9KyWin/IfGoXL71vFBrttZL6P0vQ1w2Ppz/C
+ StmJKoxFSGoeGzvelHdI98Jg0bTU0yO/3Ii59p8JxXU/xGbpYVgPFqS3L
+ RmttnJGFrW1kVmwXuoULNew3PK//10YU5nkKmJwlzelcpeKB/b/DorBWs
+ ePJPsUExdi2PO0OUK9i+PJrAnsjuYkJ1SndHCL3CABL6tzqov6AKN6ZvL
+ ZaqKCcgxsZvzEyi/g+5udQgfhvqJQ6zaWhNO8B5QgYAapTk9xWlq8V+b4
+ zJCVF6XBBd4nFgDeiWZh1G98yWJ11Uu7eH6SV8bP6pqay45/TOdWg/RKY A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445779260"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445779260"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Sep 2023 10:46:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="868818227"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="868818227"
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="868818231"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="868818231"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Sep 2023 10:46:49 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Sep 2023 10:46:21 -0700
-Message-Id: <20230915174651.1928176-1-lucas.demarchi@intel.com>
+Date: Fri, 15 Sep 2023 10:46:22 -0700
+Message-Id: <20230915174651.1928176-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230915174651.1928176-1-lucas.demarchi@intel.com>
+References: <20230915174651.1928176-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 00/30] Enable Lunar Lake display
+Subject: [Intel-gfx] [PATCH v4 01/30] drm/i915/xelpdp: Add XE_LPDP_FEATURES
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,104 +57,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Cross posting this to the i915 and xe mailing lists. The basic platform
-enabling for Lunar Lake is already applied in the xe driver[1].
-This patch series adds the display support in the i915 driver, that is
-going to be shared with xe.
+Add a FEATURES macro for XE_LPD+ as this is expected to be the baseline
+for Xe2_LPD and will allow to see the delta more easily.
 
-Like v3, this is based off drm-tip and the goal is to start applying
-patches to drm-intel-next.
+v2: Move everything from xe_lpdp_display to the new macro and remove
+    the version setting: it's not needed with GMD_ID.
 
-v4 adds a couple more patches due to review feedback and moves the
-cdclk stuff to the end of the series. We are running into some
-issues due to those patches, so it's better to have the rest land
-earlier.  This should address all the comments from v3.
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ .../drm/i915/display/intel_display_device.c   | 57 +++++++++++++++----
+ 1 file changed, 46 insertions(+), 11 deletions(-)
 
-Balasubramani Vivekanandan (1):
-  drm/i915/lnl: Add display definitions
-
-Clint Taylor (3):
-  drm/i915/display: Remove FBC capability from fused off pipes
-  drm/i915/xe2lpd: Register DE_RRMR has been removed
-  drm/i915/display: Consolidate saved port bits in intel_digital_port
-
-Gustavo Sousa (3):
-  drm/i915/xe2lpd: Add fake PCH
-  drm/i915/xe2lpd: Handle port AUX interrupts
-  drm/i915/xe2lpd: Add support for HPD
-
-Juha-Pekka Heikkilä (1):
-  drm/i915/xe2lpd: Enable odd size and panning for planar yuv
-
-Luca Coelho (1):
-  drm/i915/xe2lpd: Read pin assignment from IOM
-
-Lucas De Marchi (10):
-  drm/i915/xelpdp: Add XE_LPDP_FEATURES
-  drm/i915: Re-order if/else ladder in intel_detect_pch()
-  drm/i915/display: Rename intel_dp->DP
-  drm/i915/xe2lpd: Move D2D enable/disable
-  drm/i915/xe2lpd: Move registers to PICA
-  drm/i915/display: Fix style and conventions for DP AUX regs
-  drm/i915/display: Use _PICK_EVEN_2RANGES() in DP AUX regs
-  drm/i915/xe2lpd: Re-order DP AUX regs
-  drm/i915/xe2lpd: Extend Wa_15010685871
-  drm/i915/lnl: Add gmbus/ddc support
-
-Matt Roper (3):
-  drm/i915/xe2lpd: FBC is now supported on all pipes
-  drm/i915/xe2lpd: Don't try to program PLANE_AUX_DIST
-  drm/i915/xe2lpd: Add DC state support
-
-Ravi Kumar Vodapalli (2):
-  drm/i915/xe2lpd: Add display power well
-  drm/i915/lnl: Add programming for CDCLK change
-
-Stanislav Lisovskiy (6):
-  drm/i915/xe2lpd: Treat cursor plane as regular plane for DDB
-    allocation
-  drm/i915/lnl: Add CDCLK table
-  drm/i915/lnl: Start using CDCLK through PLL
-  FIXME: drm/i915/lnl: Introduce MDCLK_CDCLK ratio to DBuf
-  drm/i915/xe2lpd: Write DBuf after CDCLK change in post plane
-  drm/i915/xe2lpd: Update mbus on post plane updates
-
- drivers/gpu/drm/i915/display/g4x_dp.c         | 118 ++++++++---------
- .../gpu/drm/i915/display/intel_atomic_plane.c |  14 +-
- drivers/gpu/drm/i915/display/intel_bios.c     |   3 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 120 +++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  85 +++++++------
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  63 +++++++--
- drivers/gpu/drm/i915/display/intel_ddi.c      |  98 ++++++++------
- drivers/gpu/drm/i915/display/intel_display.c  |   5 +-
- .../drm/i915/display/intel_display_device.c   |  67 ++++++++--
- .../gpu/drm/i915/display/intel_display_irq.c  |   4 +-
- .../drm/i915/display/intel_display_power.c    |   4 +-
- .../i915/display/intel_display_power_map.c    |  54 +++++++-
- .../i915/display/intel_display_power_well.c   |  47 ++++++-
- .../i915/display/intel_display_power_well.h   |   1 +
- .../drm/i915/display/intel_display_types.h    |   2 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |   2 +-
- drivers/gpu/drm/i915/display/intel_dp_aux.c   |   8 +-
- .../gpu/drm/i915/display/intel_dp_aux_regs.h  |  80 ++++++------
- drivers/gpu/drm/i915/display/intel_fbc.h      |   2 +
- drivers/gpu/drm/i915/display/intel_gmbus.c    |   5 +-
- .../gpu/drm/i915/display/intel_hotplug_irq.c  |  24 +++-
- drivers/gpu/drm/i915/display/intel_tc.c       |  44 ++++++-
- .../drm/i915/display/skl_universal_plane.c    |   2 +-
- drivers/gpu/drm/i915/display/skl_watermark.c  |  51 ++++++--
- drivers/gpu/drm/i915/display/skl_watermark.h  |   1 +
- .../gpu/drm/i915/display/skl_watermark_regs.h |   2 +
- drivers/gpu/drm/i915/i915_gpu_error.c         |   2 +-
- drivers/gpu/drm/i915/i915_reg.h               |   9 +-
- drivers/gpu/drm/i915/soc/intel_pch.c          |  12 +-
- drivers/gpu/drm/i915/soc/intel_pch.h          |   2 +
- 30 files changed, 685 insertions(+), 246 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 4a6c4ee503b2..b572ca16647d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -710,18 +710,53 @@ static const struct intel_display_device_info xe_hpd_display = {
+ 		BIT(PORT_TC1),
+ };
+ 
+-static const struct intel_display_device_info xe_lpdp_display = {
+-	XE_LPD_FEATURES,
+-	.has_cdclk_crawl = 1,
+-	.has_cdclk_squash = 1,
++#define XE_LPDP_FEATURES							\
++	.abox_mask = GENMASK(1, 0),						\
++	.color = {								\
++		.degamma_lut_size = 129, .gamma_lut_size = 1024,		\
++		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |		\
++		DRM_COLOR_LUT_EQUAL_CHANNELS,					\
++	},									\
++	.dbuf.size = 4096,							\
++	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |		\
++		BIT(DBUF_S4),							\
++	.has_cdclk_crawl = 1,							\
++	.has_cdclk_squash = 1,							\
++	.has_ddi = 1,								\
++	.has_dp_mst = 1,							\
++	.has_dsb = 1,								\
++	.has_fpga_dbg = 1,							\
++	.has_hotplug = 1,							\
++	.has_ipc = 1,								\
++	.has_psr = 1,								\
++	.pipe_offsets = {							\
++		[TRANSCODER_A] = PIPE_A_OFFSET,					\
++		[TRANSCODER_B] = PIPE_B_OFFSET,					\
++		[TRANSCODER_C] = PIPE_C_OFFSET,					\
++		[TRANSCODER_D] = PIPE_D_OFFSET,					\
++	},									\
++	.trans_offsets = {							\
++		[TRANSCODER_A] = TRANSCODER_A_OFFSET,				\
++		[TRANSCODER_B] = TRANSCODER_B_OFFSET,				\
++		[TRANSCODER_C] = TRANSCODER_C_OFFSET,				\
++		[TRANSCODER_D] = TRANSCODER_D_OFFSET,				\
++	},									\
++	TGL_CURSOR_OFFSETS,							\
++										\
++	.__runtime_defaults.cpu_transcoder_mask =				\
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),				\
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),	\
++	.__runtime_defaults.has_dmc = 1,					\
++	.__runtime_defaults.has_dsc = 1,					\
++	.__runtime_defaults.has_hdcp = 1,					\
++	.__runtime_defaults.pipe_mask =						\
++		BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),		\
++	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |		\
++		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4)
+ 
+-	.__runtime_defaults.ip.ver = 14,
+-	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),
+-	.__runtime_defaults.cpu_transcoder_mask =
+-		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+-		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+-	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |
+-		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4),
++static const struct intel_display_device_info xe_lpdp_display = {
++	XE_LPDP_FEATURES,
+ };
+ 
+ /*
 -- 
 2.40.1
 
