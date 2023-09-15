@@ -2,54 +2,141 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 242367A2735
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 21:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C206F7A2768
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 21:50:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36CF010E085;
-	Fri, 15 Sep 2023 19:31:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2ADA10E66F;
+	Fri, 15 Sep 2023 19:50:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9566010E085
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 19:31:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF71C10E085;
+ Fri, 15 Sep 2023 19:50:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694806269; x=1726342269;
+ t=1694807452; x=1726343452;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=uDUOLFYzj3ZvEoylxmF248zHbzDJrSSynWaNh8w1fbM=;
- b=infhjjDJ/5LaPQF19zMZPZHr5Ct9wiQJtMI//8Z+5wR39xxAqh/uDDpY
- cXCTgn6yrIXmbDt0T6e0uX13F7vJBhkBI3GwlwkiJuZL8/3a8UVF5SHF9
- u9urRSq3rMlOT8OflKMjTmWikLTmo2DPfNy4UX8dTkEuLIg7JykIFCoBj
- tnPJDloIGgvswhYVcf+OvQlYekrlRWfk0fCUtv8hIYvCL0+8aQ7nAYp2J
- taHTfUJx4gy05McbMCQMjkb7z1xx4hlkSOmlTjhHGzqIz8TWLr/Od92Gp
- IJROLZIg1iAQQQsBPlTC4FGMVivl01Pftx5Fa5m6C5umyJvFYyLnKYamh w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="465686038"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="465686038"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 12:31:08 -0700
+ in-reply-to:mime-version;
+ bh=eX4EaUKkeC3cP/CdL7SkwiZ37vZNV7HlQ9jPxBeyHCI=;
+ b=GCxtHbqRun7qzMd03nyzksXirbzSR3NgJjsMnHiDNhPdaoIIwirg3glB
+ bZ2u4Kl+Ccdz+8f+zjOvzxMUvXCnftmwpRZtaAhvA/v8L7zlAXnBjDpm5
+ bN41/sjwuc7sR5DabZtrkXbD9YKNGE0UPVLkFp519RzoIerOY2eVsceMe
+ iEpUy7Ild5038uGs6ylUiZLfYau/F/6Vd5i5WGnBE6+6kaRVKxxmMZf3j
+ lRPbzQ6fzOzUDVwo+VxE8WMv7fcOh3UW/9ke6ezcuRsrFth1qMlschugs
+ NEy6jqc9WHFFuKUQA8dM1cLmXq7MjaRwTHb2zzYAznxsoj6nWAksaYcC9 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="369649571"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="369649571"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2023 12:50:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="748300905"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="748300905"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by fmsmga007.fm.intel.com with SMTP; 15 Sep 2023 12:31:06 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 15 Sep 2023 22:31:05 +0300
-Date: Fri, 15 Sep 2023 22:31:05 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <ZQSw-bjeE3_vf1sR@intel.com>
-References: <20230914192659.757475-1-imre.deak@intel.com>
- <20230914192659.757475-11-imre.deak@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="694828424"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="694828424"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Sep 2023 12:50:51 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Fri, 15 Sep 2023 12:50:51 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Fri, 15 Sep 2023 12:50:50 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Fri, 15 Sep 2023 12:50:50 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.175)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Fri, 15 Sep 2023 12:50:50 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z3NzwPSrg723d8JuLrU31dnClgXsRLQ7XN53XlKPSatmLwJkBco5bQg+wC5eAIr9ms3duf3Ffc2wIISZ3V74vJ0fbKKz1/XyNp8ZpeGFPJy0RK7HlzA27h63N76Sbbon7MWi/DitQnBdUYlGjF1OXgkcpcSJvya03u0cDX9koA2Tw/lobYyBGQciwoi3Ld/fm0SPYpMVcS334UYIORU/tEHR1uj9r4moePbEzDfU01ykp3Qx8WPdS3Iv5JFa521ah9RRZgFHHAs+ksNI6U6ACbWWOGeBLaRHbazlsXWV+AoihHivtWKSnXvsMf/oKupDlbuIiYjHUx9bta+z36ztVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6wr099vytTUbaytkM2ni/a0g7Qj/9to8MMhpyX6N/pQ=;
+ b=VQLcv8SREk5gjpBNsNPQ9IJWZ7an+Jhnc4H/Pi/2Z3acGfYrengkFnH+OsvkT7tZwnYUYlqTD8t582WN/Ek8nwHLf3jnb7WqmKYN2OciFcu/eqz5HSK6sYKQclc1Dr34cH3D9sY90kGgNlE7ErEKLwTxI4Oq1GhrDH9vB7nSHrcelIOe1rtHnFTVyRTBN6vYIh7lPjOxMMd2/2gSWujR02GI+Tva5am1gWnQpRuo79JAIu+5v2joZCTsY9gcKou1pJtzN8IuBOnBJ+UVA53koMIVAth27XgBa7cIRF6yDpmRcgzkPQLYPUGceHVQ5Qluoz8nDmi61ABa6i7eW0I6Sg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ PH7PR11MB7985.namprd11.prod.outlook.com (2603:10b6:510:240::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.21; Fri, 15 Sep
+ 2023 19:50:48 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6768.029; Fri, 15 Sep 2023
+ 19:50:46 +0000
+Date: Fri, 15 Sep 2023 12:50:41 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20230915195041.GG2706891@mdroper-desk1.amr.corp.intel.com>
+References: <20230915174651.1928176-1-lucas.demarchi@intel.com>
+ <20230915174651.1928176-11-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230914192659.757475-11-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 10/25] drm/i915/fdi: Improve FDI BW
- sharing between pipe B and C
+In-Reply-To: <20230915174651.1928176-11-lucas.demarchi@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0119.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::34) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|PH7PR11MB7985:EE_
+X-MS-Office365-Filtering-Correlation-Id: aae89620-7bae-48f6-3cf1-08dbb6250db1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: U/5ud+dZ2Br5z5wftK8N3FFZZaDoqhPhgKYPTK06VRed/Dfmn1tOFc+f9AGEhRWxBSCfCsjap3WENcjr3UZ3YLknbPnuoSklb7jXU9aXCdJQHgu/5QqzurVLpOpMX3MnCdPBdwHb5/yuG+ezEo7N00dcgNf+THwtpNC0NhteG7qcUhlDjfA2bEERltgCdJft1sVtqrkbQTvN5TjvHUFg43prT1aqc2MLNcTYQk6r/vcpEqX+LAnc1CWIuk8SIirZbSE4nHBkEr0+mnEVEAWcGZ3yU+FDZYHs/FeLgxxJaVaZTvfhva/Ino6gly//GxxUlrz6tVBQ7Ojgx2sz8rjY7u2ufdZ7+RD4OQjxltQIfJ60TIedMV/xVbgpxpqA5RZS6RC95daxdcTNvHQUKFFXQj/bmgmBsCheLLPWCmNKdeGtiJI6YbPC176qF2D4MaU/bkbHOxBcIqCzuhmXDyWLXhnTlcbAfNrdbl1FwyAjzrelJNeHcaUInmUtxKtFRuEXb0jzA9rEvVeM+j2Le7U7/61KMg40GsLm/gzulHIRdCyZx9gkYAaiOMoKK99/pDuu
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(346002)(39860400002)(136003)(366004)(396003)(186009)(1800799009)(451199024)(8676002)(450100002)(4326008)(8936002)(6862004)(5660300002)(6636002)(316002)(41300700001)(66556008)(66476007)(66946007)(54906003)(82960400001)(83380400001)(38100700002)(33656002)(6512007)(86362001)(1076003)(26005)(2906002)(478600001)(6666004)(6506007)(6486002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FsvdRLqDK/XZ/QI/ntPqEP3O2JtFw/MrkGgmcXgNpJHjeWP7Y9ijLRoY25vl?=
+ =?us-ascii?Q?1+RdyB4SaSGdWfQBOXTxwnn2TMXLdhbbMY1jXDRa+digj18Ee5Nw8RPX6z8Y?=
+ =?us-ascii?Q?1QQUocOVJ/lv7WXL16wodB4mAAD/y1Sc3aklRNW9zwT7wcbtzuxzF4nz1D2L?=
+ =?us-ascii?Q?voN9hoAtVVSoJtXQm002I5bS6cJ3Yoiq/92tj+jPvfz7LW49uKDWBrCf1p8N?=
+ =?us-ascii?Q?ZutH8FhXLL6TV0djF3kxqsox3RTO5njRSepTc1ligIntv4AduW6RN0SFCM4/?=
+ =?us-ascii?Q?pzrXYTQ1/04rAWd0LvJ+yzNfoNd2u2ZteVV+JuJm47wImqiIiaz5+MrQ2jrI?=
+ =?us-ascii?Q?WfKklUdn+3xvNujalX3yjTRSqHR88juj0lISaPUoZ0lUs9qe5/vMI6PGuijd?=
+ =?us-ascii?Q?5qWH1lrkRYbnVaCm7KpjWp0D/qPUgA8+dJQB0LJKb0VzeT9reyNlq2z1wXXB?=
+ =?us-ascii?Q?DbgVrJBzfVQzwnTlGICCTNHVA/MhTVWOjv8s7XaogAskg7nbPUJSjnPhcdIf?=
+ =?us-ascii?Q?ew43W5Xd3kDn+dhVLlWB1SJCIt4EevH+MIGiQzOq1VBW6m4CCbm1/pqa+4es?=
+ =?us-ascii?Q?xtZnrz7c9+ZPlgdjW6axFsLz9cPihV2htQfu7VZNdnkB+Dfxej7UHcQg2ESa?=
+ =?us-ascii?Q?9irSFqsLIG31kBCUBHPQ8OG46npIYl3x8LY0Q/20k1LPd5/M9E4yStAURKhR?=
+ =?us-ascii?Q?50fhHt5yDj3UvpxE66f5TkIqWanDa1DsR3/Wg675itCziS2UlqALtMp4d4RM?=
+ =?us-ascii?Q?Z+72UIfRrMH42kqVtqralD+FLZAB2d64/KYbwaVC0S4F4E+prZttHX4FTO/M?=
+ =?us-ascii?Q?HIVNcc7IORynEY5XBU0ZrzLTjeO/HrZmgyBvaeYmAc7P4zEkYmNvZCS5OOkK?=
+ =?us-ascii?Q?ubL/1pvTsjhaWBzASNZ7W9b9BVKOeuYnKwppJFaL5hqkIh/jbAl9BK7IXRuK?=
+ =?us-ascii?Q?4qU/kcX+t1ZfAV/my367Bo82cJCjIagasqeASwsgI2IIimhyVwDnWem0aKA+?=
+ =?us-ascii?Q?IEf7mokXWESotgMHkiz1DkS1k61WUoxZDT4g0oj/DwVmdsrv+TT4DF5DDWXC?=
+ =?us-ascii?Q?IfisMvrCLFphCmHWQTZoINx6TZ82ieviZv6H6DTtmiYmhROkkCV+sFSZLs+y?=
+ =?us-ascii?Q?Yrow2GX48YVcEcIcLTgH9b/SJrb1u84ZHViZdqyjQfDqDoS93eghaEdmKbQi?=
+ =?us-ascii?Q?I0AxUDtTqk0+pv9ATqozWl3AukH83PY9H5M5otUdPkwa8v8INd9kzlsnLavw?=
+ =?us-ascii?Q?btzG0nVifjQKED9nEM791xfHgV5mgW5pGlO9D2wYdSSUbggrOhiZyqrOARSY?=
+ =?us-ascii?Q?HaX/2qeMVc8F0f1xZYfsBV7CWda/LjrXhs7ZGAu7Y6hBKqeoGphce2rWYL6I?=
+ =?us-ascii?Q?TF72hYXn/1uMDUxPQd5jBcL/yUMqcqkQrtkUS1hRYswAhyEW+wKicCD3Migl?=
+ =?us-ascii?Q?DtEk45zSHoiFnmDcGm4YU9cYrNzDxTDAxPD+b/P7FUPfMbnYahW04NH+c7c5?=
+ =?us-ascii?Q?hfA1Yime1x58MJKNN0kaQmaiHHzvEu3ErkKgGXxnat6cg7lWUUbana9vY7pd?=
+ =?us-ascii?Q?Gihknab6qE4y3S6e1b9UBbL6EcIM9r593q8ebkM7R4bgStUzbMiH8zmdm12E?=
+ =?us-ascii?Q?+Q=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: aae89620-7bae-48f6-3cf1-08dbb6250db1
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2023 19:50:46.4962 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mom24tvcKwBXlzEEDmu0I2jg31hR6C7uRDA54+/pq/LfgA2PKeSZHyNSC8GjAli6rZJCrS2d6yLoBz+EO3ZZgvCvwHIirp0OnFoglHrL/Y4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7985
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [Intel-xe] [PATCH v4 10/30] drm/i915/display:
+ Consolidate saved port bits in intel_digital_port
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,416 +149,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 14, 2023 at 10:26:44PM +0300, Imre Deak wrote:
-> At the moment modesetting pipe C on IVB will fail if pipe B uses 4 FDI
-> lanes. Make the BW sharing more dynamic by trying to reduce pipe B's
-> link bpp in this case, until pipe B uses only up to 2 FDI lanes.
+On Fri, Sep 15, 2023 at 10:46:31AM -0700, Lucas De Marchi wrote:
+> From: Clint Taylor <clinton.a.taylor@intel.com>
 > 
-> For this instead of the encoder compute config retry loop - which
-> reduced link bpp only for the encoder's pipe - reduce the maximum link
-> bpp for pipe B/C as required after all CRTC states are computed and
-> recompute the CRTC states with the new bpp limit.
+> We use multiple variables for HDMI and DisplayPort to store the value of
+> DDI_BUF_CTL register (now called DDI_CTL_DE in the spec). Consolidate it
+> to just one in struct intel_digital_port. This is a preparation step for
+> future changes in D2D enable/disable sequence for xe2lpd that need to
+> save some additional bits.
 > 
-> v2:
-> - Don't assume that a CRTC is already in the atomic state, while
->   reducing its link bpp.
-> - Add DocBook description to intel_fdi_atomic_check_link().
-> v3:
-> - Enable BW management for FDI links in a separate patch. (Ville)
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/g4x_hdmi.c      |  6 +-
->  drivers/gpu/drm/i915/display/intel_crt.c     |  7 ++
->  drivers/gpu/drm/i915/display/intel_display.c | 14 +---
->  drivers/gpu/drm/i915/display/intel_dp.c      |  3 +-
->  drivers/gpu/drm/i915/display/intel_fdi.c     | 87 +++++++++++++++-----
->  drivers/gpu/drm/i915/display/intel_fdi.h     |  4 +
->  drivers/gpu/drm/i915/display/intel_link_bw.c |  7 +-
->  drivers/gpu/drm/i915/display/intel_lvds.c    | 10 ++-
->  drivers/gpu/drm/i915/display/intel_sdvo.c    | 10 ++-
->  9 files changed, 107 insertions(+), 41 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 36 +++++++++++-------------
+>  drivers/gpu/drm/i915/display/intel_dp.c  |  2 +-
+>  2 files changed, 18 insertions(+), 20 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> index 634b14116d9dd..8b5d26cd3b85e 100644
-> --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> @@ -19,6 +19,7 @@
->  #include "intel_fifo_underrun.h"
->  #include "intel_hdmi.h"
->  #include "intel_hotplug.h"
-> +#include "intel_link_bw.h"
->  #include "intel_sdvo.h"
->  #include "vlv_sideband.h"
->  
-> @@ -133,8 +134,11 @@ static int g4x_hdmi_compute_config(struct intel_encoder *encoder,
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 4668de45d6fe..29c9386659ff 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -325,26 +325,25 @@ static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
+>  				      const struct intel_crtc_state *crtc_state)
+>  {
 >  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> -	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>  	enum phy phy = intel_port_to_phy(i915, encoder->port);
 >  
-> -	if (HAS_PCH_SPLIT(i915))
-> +	if (HAS_PCH_SPLIT(i915)) {
->  		crtc_state->has_pch_encoder = true;
-> +		if (!intel_link_bw_compute_pipe_bpp(crtc_state))
-> +			return -EINVAL;
-> +	}
+>  	/* DDI_BUF_CTL_ENABLE will be set by intel_ddi_prepare_link_retrain() later */
+> -	intel_dp->DP = dig_port->saved_port_bits |
+> +	dig_port->saved_port_bits |=
+
+Before this patch, saved_port_bits was a copy of DDI_BUF_PORT_REVERSAL
+and DDI_A_4_LANES, either based on a value we readout from hardware at
+startup, or based on VBT settings.  So it was a value of some
+fundamental settings that we "saved" once at startup time and could then
+just re-use thereafter.
+
+If we're going to start saving per-modeset information (such as lane
+count and link rate), then that's a pretty fundamental change to the
+purpose of this field, and "saved_port_bits" doesn't really feel like an
+appropriate name anymore.  We should probably rename it and add some
+documentation on the field explaining exactly what its purpose is and
+how/when it gets updated.
+
+>  		DDI_PORT_WIDTH(crtc_state->lane_count) |
+>  		DDI_BUF_TRANS_SELECT(0);
 >  
->  	if (IS_G4X(i915))
->  		crtc_state->has_hdmi_sink = g4x_compute_has_hdmi_sink(state, crtc);
-> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-> index f6df6c4fa72ef..7aa89d0fa3d6c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> @@ -49,6 +49,7 @@
->  #include "intel_gmbus.h"
->  #include "intel_hotplug.h"
->  #include "intel_hotplug_irq.h"
-> +#include "intel_link_bw.h"
->  #include "intel_load_detect.h"
->  #include "intel_pch_display.h"
->  #include "intel_pch_refclk.h"
-> @@ -413,6 +414,9 @@ static int pch_crt_compute_config(struct intel_encoder *encoder,
->  		return -EINVAL;
->  
->  	pipe_config->has_pch_encoder = true;
-> +	if (!intel_link_bw_compute_pipe_bpp(pipe_config))
-> +		return -EINVAL;
-> +
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
->  	return 0;
-> @@ -435,6 +439,9 @@ static int hsw_crt_compute_config(struct intel_encoder *encoder,
->  		return -EINVAL;
->  
->  	pipe_config->has_pch_encoder = true;
-> +	if (!intel_link_bw_compute_pipe_bpp(pipe_config))
-> +		return -EINVAL;
-> +
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
->  
->  	/* LPT FDI RX only supports 8bpc. */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 29816153fdd59..aad16dcceb788 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4607,7 +4607,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
->  	struct drm_connector_state *connector_state;
->  	int pipe_src_w, pipe_src_h;
->  	int base_bpp, ret, i;
-> -	bool retry = true;
->  
->  	crtc_state->cpu_transcoder = (enum transcoder) crtc->pipe;
->  
-> @@ -4637,6 +4636,7 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
->  			    "[CRTC:%d:%s] Link bpp limited to " BPP_X16_FMT "\n",
->  			    crtc->base.base.id, crtc->base.name,
->  			    BPP_X16_ARGS(crtc_state->max_link_bpp_x16));
-> +		crtc_state->bw_constrained = true;
+>  	if (DISPLAY_VER(i915) >= 14) {
+>  		if (intel_dp_is_uhbr(crtc_state))
+> -			intel_dp->DP |= DDI_BUF_PORT_DATA_40BIT;
+> +			dig_port->saved_port_bits |= DDI_BUF_PORT_DATA_40BIT;
+>  		else
+> -			intel_dp->DP |= DDI_BUF_PORT_DATA_10BIT;
+> +			dig_port->saved_port_bits |= DDI_BUF_PORT_DATA_10BIT;
 >  	}
 >  
->  	base_bpp = crtc_state->pipe_bpp;
-> @@ -4680,7 +4680,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
->  			crtc_state->output_types |= BIT(encoder->type);
+>  	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy)) {
+> -		intel_dp->DP |= ddi_buf_phy_link_rate(crtc_state->port_clock);
+> +		dig_port->saved_port_bits |= ddi_buf_phy_link_rate(crtc_state->port_clock);
+>  		if (!intel_tc_port_in_tbt_alt_mode(dig_port))
+> -			intel_dp->DP |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+> +			dig_port->saved_port_bits |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+>  	}
+>  }
+>  
+> @@ -1450,7 +1449,7 @@ hsw_set_signal_levels(struct intel_encoder *encoder,
+>  		      const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> -	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>  	int level = intel_ddi_level(encoder, crtc_state, 0);
+>  	enum port port = encoder->port;
+>  	u32 signal_levels;
+> @@ -1467,10 +1466,10 @@ hsw_set_signal_levels(struct intel_encoder *encoder,
+>  	drm_dbg_kms(&dev_priv->drm, "Using signal levels %08x\n",
+>  		    signal_levels);
+>  
+> -	intel_dp->DP &= ~DDI_BUF_EMP_MASK;
+> -	intel_dp->DP |= signal_levels;
+> +	dig_port->saved_port_bits &= ~DDI_BUF_EMP_MASK;
+> +	dig_port->saved_port_bits |= signal_levels;
+>  
+> -	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
+> +	intel_de_write(dev_priv, DDI_BUF_CTL(port), dig_port->saved_port_bits);
+>  	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
+>  }
+>  
+> @@ -3145,7 +3144,6 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
+>  	struct drm_connector *connector = conn_state->connector;
+>  	enum port port = encoder->port;
+>  	enum phy phy = intel_port_to_phy(dev_priv, port);
+> -	u32 buf_ctl;
+>  
+>  	if (!intel_hdmi_handle_sink_scrambling(encoder, connector,
+>  					       crtc_state->hdmi_high_tmds_clock_ratio,
+> @@ -3211,7 +3209,7 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
+>  	 * is filled with lane count, already set in the crtc_state.
+>  	 * The same is required to be filled in PORT_BUF_CTL for C10/20 Phy.
+>  	 */
+> -	buf_ctl = dig_port->saved_port_bits | DDI_BUF_CTL_ENABLE;
+> +	dig_port->saved_port_bits |= DDI_BUF_CTL_ENABLE;
+>  	if (DISPLAY_VER(dev_priv) >= 14) {
+>  		u8  lane_count = mtl_get_port_width(crtc_state->lane_count);
+>  		u32 port_buf = 0;
+> @@ -3224,13 +3222,13 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
+>  		intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(port),
+>  			     XELPDP_PORT_WIDTH_MASK | XELPDP_PORT_REVERSAL, port_buf);
+>  
+> -		buf_ctl |= DDI_PORT_WIDTH(lane_count);
+> +		dig_port->saved_port_bits |= DDI_PORT_WIDTH(lane_count);
+>  	} else if (IS_ALDERLAKE_P(dev_priv) && intel_phy_is_tc(dev_priv, phy)) {
+>  		drm_WARN_ON(&dev_priv->drm, !intel_tc_port_in_legacy_mode(dig_port));
+> -		buf_ctl |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+> +		dig_port->saved_port_bits |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
 >  	}
 >  
-> -encoder_retry:
->  	/* Ensure the port clock defaults are reset when retrying. */
->  	crtc_state->port_clock = 0;
->  	crtc_state->pixel_multiplier = 1;
-> @@ -4720,17 +4719,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
->  	ret = intel_crtc_compute_config(state, crtc);
->  	if (ret == -EDEADLK)
->  		return ret;
-> -	if (ret == -EAGAIN) {
-> -		if (drm_WARN(&i915->drm, !retry,
-> -			     "[CRTC:%d:%s] loop in pipe configuration computation\n",
-> -			     crtc->base.base.id, crtc->base.name))
-> -			return -EINVAL;
-> -
-> -		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] bw constrained, retrying\n",
-> -			    crtc->base.base.id, crtc->base.name);
-> -		retry = false;
-> -		goto encoder_retry;
-> -	}
->  	if (ret < 0) {
->  		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] config failure: %d\n",
->  			    crtc->base.base.id, crtc->base.name, ret);
+> -	intel_de_write(dev_priv, DDI_BUF_CTL(port), buf_ctl);
+> +	intel_de_write(dev_priv, DDI_BUF_CTL(port), dig_port->saved_port_bits);
+>  
+>  	intel_wait_ddi_buf_active(dev_priv, port);
+>  
+> @@ -3448,8 +3446,8 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+>  	mtl_port_buf_ctl_program(encoder, crtc_state);
+>  
+>  	/* 6.i Configure and enable DDI_CTL_DE to start sending valid data to port slice */
+> -	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
+> -	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
+> +	dig_port->saved_port_bits |= DDI_BUF_CTL_ENABLE;
+> +	intel_de_write(dev_priv, DDI_BUF_CTL(port), dig_port->saved_port_bits);
+>  	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
+>  
+>  	/* 6.j Poll for PORT_BUF_CTL Idle Status == 0, timeout after 100 us */
+> @@ -3499,8 +3497,8 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+>  	    (intel_tc_port_in_dp_alt_mode(dig_port) || intel_tc_port_in_legacy_mode(dig_port)))
+>  		adlp_tbt_to_dp_alt_switch_wa(encoder);
+>  
+> -	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
+> -	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
+> +	dig_port->saved_port_bits |= DDI_BUF_CTL_ENABLE;
+> +	intel_de_write(dev_priv, DDI_BUF_CTL(port), dig_port->saved_port_bits);
+>  	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
+>  
+>  	intel_wait_ddi_buf_active(dev_priv, port);
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index d5e6813d36c8f..03010accc1c7f 100644
+> index 189c5737e63a..2346cd32f5a7 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2219,7 +2219,8 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
->  	const struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->  	int max_link_bpp_x16;
+> @@ -6025,7 +6025,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+>  	intel_dp->pps.active_pipe = INVALID_PIPE;
 >  
-> -	max_link_bpp_x16 = to_bpp_x16(limits->pipe.max_bpp);
-> +	max_link_bpp_x16 = min(crtc_state->max_link_bpp_x16,
-> +			       to_bpp_x16(limits->pipe.max_bpp));
->  
->  	if (!dsc) {
->  		max_link_bpp_x16 = rounddown(max_link_bpp_x16, to_bpp_x16(2 * 3));
-> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-> index 4d7d524c68017..ad01915a4a39b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-> @@ -13,6 +13,7 @@
->  #include "intel_display_types.h"
->  #include "intel_fdi.h"
->  #include "intel_fdi_regs.h"
-> +#include "intel_link_bw.h"
->  
->  struct intel_fdi_funcs {
->  	void (*fdi_link_train)(struct intel_crtc *crtc,
-> @@ -129,13 +130,16 @@ static int pipe_required_fdi_lanes(struct intel_crtc_state *crtc_state)
->  }
->  
->  static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
-> -			       struct intel_crtc_state *pipe_config)
-> +			       struct intel_crtc_state *pipe_config,
-> +			       enum pipe *pipe_to_reduce)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct drm_atomic_state *state = pipe_config->uapi.state;
->  	struct intel_crtc *other_crtc;
->  	struct intel_crtc_state *other_crtc_state;
->  
-> +	*pipe_to_reduce = pipe;
-> +
->  	drm_dbg_kms(&dev_priv->drm,
->  		    "checking fdi config on pipe %c, lanes %i\n",
->  		    pipe_name(pipe), pipe_config->fdi_lanes);
-> @@ -198,6 +202,9 @@ static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
->  		if (pipe_required_fdi_lanes(other_crtc_state) > 2) {
->  			drm_dbg_kms(&dev_priv->drm,
->  				    "fdi link B uses too many lanes to enable link C\n");
-> +
-> +			*pipe_to_reduce = PIPE_B;
-> +
->  			return -EINVAL;
->  		}
->  		return 0;
-> @@ -238,10 +245,8 @@ int ilk_fdi_compute_config(struct intel_crtc *crtc,
->  	struct drm_device *dev = crtc->base.dev;
->  	struct drm_i915_private *i915 = to_i915(dev);
->  	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
-> -	int lane, link_bw, fdi_dotclock, ret;
-> -	bool needs_recompute = false;
-> +	int lane, link_bw, fdi_dotclock;
->  
-> -retry:
->  	/* FDI is a binary signal running at ~2.7GHz, encoding
->  	 * each output octet as 10 bits. The actual frequency
->  	 * is stored as a divider into a 100MHz clock, and the
-> @@ -261,25 +266,69 @@ int ilk_fdi_compute_config(struct intel_crtc *crtc,
->  	intel_link_compute_m_n(pipe_config->pipe_bpp, lane, fdi_dotclock,
->  			       link_bw, &pipe_config->fdi_m_n, false);
->  
-> -	ret = ilk_check_fdi_lanes(dev, crtc->pipe, pipe_config);
-> -	if (ret == -EDEADLK)
-> +	return 0;
-> +}
-> +
-> +static int intel_fdi_atomic_check_bw(struct intel_atomic_state *state,
-> +				     struct intel_crtc *crtc,
-> +				     struct intel_crtc_state *pipe_config,
-> +				     struct intel_link_bw_limits *limits)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	enum pipe pipe_to_reduce;
-> +	int ret;
-> +
-> +	ret = ilk_check_fdi_lanes(&i915->drm, crtc->pipe, pipe_config,
-> +				  &pipe_to_reduce);
-> +	if (ret != -EINVAL)
->  		return ret;
->  
-> -	if (ret == -EINVAL && pipe_config->pipe_bpp > 6*3) {
-> -		pipe_config->pipe_bpp -= 2*3;
-> -		drm_dbg_kms(&i915->drm,
-> -			    "fdi link bw constraint, reducing pipe bpp to %i\n",
-> -			    pipe_config->pipe_bpp);
-> -		needs_recompute = true;
-> -		pipe_config->bw_constrained = true;
-> -
-> -		goto retry;
-> +	ret = intel_link_bw_reduce_bpp(state, limits,
-> +				       BIT(pipe_to_reduce),
-> +				       "FDI link BW");
-> +
-> +	return ret ? : -EAGAIN;
-> +}
-> +
-> +/**
-> + * intel_fdi_atomic_check_link - check all modeset FDI link configuration
-> + * @state: intel atomic state
-> + * @limits: link BW limits
-> + *
-> + * Check the link configuration for all modeset FDI outputs. If the
-> + * configuration is invalid @limits will be updated if possible to
-> + * reduce the total BW, after which the configuration for all CRTCs in
-> + * @state must be recomputed with the updated @limits.
-> + *
-> + * Returns:
-> + *   - 0 if the confugration is valid
-> + *   - %-EAGAIN, if the configuration is invalid and @limits got updated
-> + *     with fallback values with which the configuration of all CRTCs
-> + *     in @state must be recomputed
-> + *   - Other negative error, if the configuration is invalid without a
-> + *     fallback possibility, or the check failed for another reason
-> + */
-> +int intel_fdi_atomic_check_link(struct intel_atomic_state *state,
-> +				struct intel_link_bw_limits *limits)
-> +{
-> +	struct intel_crtc *crtc;
-> +	struct intel_crtc_state *crtc_state;
-> +	int i;
-> +
-> +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-> +		int ret;
-> +
-> +		if (!crtc_state->has_pch_encoder ||
-> +		    !intel_crtc_needs_modeset(crtc_state) ||
-> +		    !crtc_state->hw.enable)
-> +			continue;
-> +
-> +		ret = intel_fdi_atomic_check_bw(state, crtc, crtc_state, limits);
-> +		if (ret)
-> +			return ret;
->  	}
->  
-> -	if (needs_recompute)
-> -		return -EAGAIN;
-> -
-> -	return ret;
-> +	return 0;
->  }
->  
->  static void cpt_set_fdi_bc_bifurcation(struct drm_i915_private *dev_priv, bool enable)
-> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i915/display/intel_fdi.h
-> index 1cdb86172702f..129444c580f27 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fdi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fdi.h
-> @@ -8,14 +8,18 @@
->  
->  enum pipe;
->  struct drm_i915_private;
-> +struct intel_atomic_state;
->  struct intel_crtc;
->  struct intel_crtc_state;
->  struct intel_encoder;
-> +struct intel_link_bw_limits;
->  
->  int intel_fdi_link_freq(struct drm_i915_private *i915,
->  			const struct intel_crtc_state *pipe_config);
->  int ilk_fdi_compute_config(struct intel_crtc *intel_crtc,
->  			   struct intel_crtc_state *pipe_config);
-> +int intel_fdi_atomic_check_link(struct intel_atomic_state *state,
-> +				struct intel_link_bw_limits *limits);
->  void intel_fdi_normal_train(struct intel_crtc *crtc);
->  void ilk_fdi_disable(struct intel_crtc *crtc);
->  void ilk_fdi_pll_disable(struct intel_crtc *intel_crtc);
-> diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/drm/i915/display/intel_link_bw.c
-> index 22494772b9d59..aacf22bab3135 100644
-> --- a/drivers/gpu/drm/i915/display/intel_link_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
-> @@ -160,7 +160,12 @@ intel_link_bw_reset_pipe_limit_to_min(struct intel_atomic_state *state,
->  static int check_all_link_config(struct intel_atomic_state *state,
->  				 struct intel_link_bw_limits *limits)
->  {
-> -	/* TODO: Check all shared display link configurations like FDI */
-> +	int ret;
-> +
-> +	ret = intel_fdi_atomic_check_link(state, limits);
-> +	if (ret)
-> +		return ret;
-> +
->  	return 0;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-> index 3ace56979b70e..0366d4cc6b72b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-> @@ -48,6 +48,7 @@
->  #include "intel_dpll.h"
->  #include "intel_fdi.h"
->  #include "intel_gmbus.h"
-> +#include "intel_link_bw.h"
->  #include "intel_lvds.h"
->  #include "intel_lvds_regs.h"
->  #include "intel_panel.h"
-> @@ -425,6 +426,12 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
->  		return -EINVAL;
->  	}
->  
-> +	if (HAS_PCH_SPLIT(i915)) {
-> +		crtc_state->has_pch_encoder = true;
-> +		if (!intel_link_bw_compute_pipe_bpp(crtc_state))
-> +			return -EINVAL;
-> +	}
-> +
->  	if (lvds_encoder->a3_power == LVDS_A3_POWER_UP)
->  		lvds_bpp = 8*3;
->  	else
-> @@ -453,9 +460,6 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
->  		return -EINVAL;
->  
-> -	if (HAS_PCH_SPLIT(i915))
-> -		crtc_state->has_pch_encoder = true;
-> -
->  	ret = intel_panel_fitting(crtc_state, conn_state);
->  	if (ret)
->  		return ret;
-> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> index 135a2527fd1b4..3c912f3bc10ba 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -48,6 +48,7 @@
->  #include "intel_gmbus.h"
->  #include "intel_hdmi.h"
->  #include "intel_hotplug.h"
-> +#include "intel_link_bw.h"
->  #include "intel_panel.h"
->  #include "intel_sdvo.h"
->  #include "intel_sdvo_regs.h"
-> @@ -1351,14 +1352,17 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
->  	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
->  	struct drm_display_mode *mode = &pipe_config->hw.mode;
->  
-> +	if (HAS_PCH_SPLIT(to_i915(encoder->base.dev))) {
-> +		pipe_config->has_pch_encoder = true;
-> +		if (!intel_link_bw_compute_pipe_bpp(pipe_config))
-> +			return -EINVAL;
-> +	}
-> +
->  	DRM_DEBUG_KMS("forcing bpc to 8 for SDVO\n");
->  	pipe_config->pipe_bpp = 8*3;
+>  	/* Preserve the current hw state. */
+> -	intel_dp->DP = intel_de_read(dev_priv, intel_dp->output_reg);
+> +	dig_port->saved_port_bits = intel_de_read(dev_priv, intel_dp->output_reg);
 
-This seems borked. I think we want to force this to 8bpc only if we're
-higher currently. Same for the LVDS case I think, though that one is a
-bit more sane atm since it looks at the bw_constrained flag, though
-I don't think we really need that flag anymore, at least for this 
-purpose. Hmm, but maybe we do still need it for the LPT FDI case
-where we do actually want to increase the bpc to 8 if the EDID
-baseline is below that.
+Isn't this going to potentially clobber the lane reversal setting we
+determined from the VBT near the beginning of intel_ddi_init()?
 
->  	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+
+Matt
+
+>  	intel_dp->attached_connector = intel_connector;
 >  
-> -	if (HAS_PCH_SPLIT(to_i915(encoder->base.dev)))
-> -		pipe_config->has_pch_encoder = true;
-> -
->  	/*
->  	 * We need to construct preferred input timings based on our
->  	 * output timings.  To do that, we have to set the output
+>  	if (_intel_dp_is_port_edp(dev_priv, intel_encoder->devdata, port)) {
 > -- 
-> 2.37.2
+> 2.40.1
+> 
 
 -- 
-Ville Syrjälä
-Intel
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
