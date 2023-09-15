@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83E017A18F5
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 10:34:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 003F17A18F7
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 10:34:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEE4510E5D2;
-	Fri, 15 Sep 2023 08:34:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B7BD10E5DB;
+	Fri, 15 Sep 2023 08:34:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA9D210E5D2
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 08:34:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2B6210E5D2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 08:34:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694766882; x=1726302882;
+ t=1694766884; x=1726302884;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=I6WkdfaiB2zZejUEK03La+49SbLQh6W79iIkXqc9wRc=;
- b=bFv5TvBmM2JUXtpg4+nCWxn2fw64gmDxxehIr84KtkAoTFWJcTB2et/k
- Y5gkmfkgkMdhshiChiNhPhFegrwZ60ZkLUxHiWykGI4l8U5w1u93fTMuP
- B8WG42nAA3hmXRs16rOAER5rZO/xnpMgUADvlizyktPGtm4z9nFom7cW8
- GndadQAMhvEtOM1coEGNPDUR/pP2241Jx1o5DNxISqyFADxWkMwByTyuh
- LBo8ETNvl7Kr1f2w3AKhauAXXNq3XKdABg18O6zatnSE+uwxViAg/dSDY
- 9m9chPcQ8/oZkS/Cig/FtzCWL/GqfWw2llUI3ZaP9d/p7Ly3AvHW9IpTx A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="381925595"
-X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; d="scan'208";a="381925595"
+ bh=JFV9sHVTY+uJ8j3lKbM2shfYKjGukZNoZi/LvaED6fs=;
+ b=WqbNguzrKY7GooLB7YXmovI8s5jgXOD3SWJdbxFVegrmWg6rIA/8g2AW
+ Vt0KWkl22G0UA8ziz0X9smHlvbOCrldvGBXQyH0LwIQMRGWGs4I+9XdaO
+ d6WlNysc9i8ATPPTrEAIiHv4qZNomoVFfsyYgxO7m3c5zT8oplww3xoRP
+ e3g8zmbgnT5mzhhc519nRJdnINx6NDhackZswLWYkEwA0LxKPG2QrA4Bs
+ x79RZEkeBK8bs08TVP58KpsF2i9kTgB0KIDnfqKuMqHw6gyiWXSj8yRv/
+ LLIBJEpVjGsAtv/JW8777Qbg08UDBMj8dQ1ovxiTpQGkW0+MKOaA03MoP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="381925599"
+X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; d="scan'208";a="381925599"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 01:34:42 -0700
+ 15 Sep 2023 01:34:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="694647799"
-X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; d="scan'208";a="694647799"
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="694647816"
+X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; d="scan'208";a="694647816"
 Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 01:34:39 -0700
+ 15 Sep 2023 01:34:42 -0700
 From: Nirmoy Das <nirmoy.das@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Sep 2023 10:34:11 +0200
-Message-ID: <20230915083412.4572-7-nirmoy.das@intel.com>
+Date: Fri, 15 Sep 2023 10:34:12 +0200
+Message-ID: <20230915083412.4572-8-nirmoy.das@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230915083412.4572-1-nirmoy.das@intel.com>
 References: <20230915083412.4572-1-nirmoy.das@intel.com>
@@ -47,7 +47,8 @@ Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
  85579 Neubiberg, Germany,
  Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 6/7] drm/i915: Toggle binder context ready status
+Subject: [Intel-gfx] [PATCH 7/7] drm/i915: Enable GGTT updates with binder
+ in MTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,58 +66,31 @@ Cc: andi.shyti@intel.com, chris.p.wilson@linux.intel.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Toggle binder context ready status when needed.
-
-To issue gpu commands, the driver must be primed to receive
-requests. Maintain binder-based GGTT update disablement until driver
-probing completes. Moreover, implement a temporary disablement
-of blitter prior to entering suspend, followed by re-enablement
-post-resume. This is acceptable as those transition periods are
-mostly single threaded.
+MTL can hang because of a HW bug while parallel reading/writing
+from/to LMEM/GTTMMADR BAR so try to reduce GGTT update
+related pci transactions with blitter command as recommended
+for Wa_13010847436 and Wa_14019519902.
 
 Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+Reviewed-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_gtt.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index f8dbee7a5af7..8cc289acdb39 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -815,6 +815,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	i915_welcome_messages(i915);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 4c89eb8d9af7..4fbed27ef0ec 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -23,7 +23,8 @@
  
- 	i915->do_release = true;
-+	intel_gt_bind_context_set_ready(to_gt(i915), true);
- 
- 	return 0;
- 
-@@ -855,6 +856,7 @@ void i915_driver_remove(struct drm_i915_private *i915)
+ bool i915_ggtt_require_binder(struct drm_i915_private *i915)
  {
- 	intel_wakeref_t wakeref;
- 
-+	intel_gt_bind_context_set_ready(to_gt(i915), false);
- 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
- 
- 	i915_driver_unregister(i915);
-@@ -1077,6 +1079,8 @@ static int i915_drm_suspend(struct drm_device *dev)
- 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	pci_power_t opregion_target_state;
- 
-+	intel_gt_bind_context_set_ready(to_gt(dev_priv), false);
-+
- 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 
- 	/* We do a lot of poking in a lot of registers, make sure they work
-@@ -1264,6 +1268,7 @@ static int i915_drm_resume(struct drm_device *dev)
- 	intel_gvt_resume(dev_priv);
- 
- 	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-+	intel_gt_bind_context_set_ready(to_gt(dev_priv), true);
- 
- 	return 0;
+-	return false;
++	/* Wa_13010847436 & Wa_14019519902 */
++	return MEDIA_VER_FULL(i915) == IP_VER(13, 0);
  }
+ 
+ static bool intel_ggtt_update_needs_vtd_wa(struct drm_i915_private *i915)
 -- 
 2.41.0
 
