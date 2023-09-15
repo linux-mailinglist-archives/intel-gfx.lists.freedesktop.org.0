@@ -1,155 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF0657A280B
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 22:26:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F18E57A28DA
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 23:01:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7846910E67C;
-	Fri, 15 Sep 2023 20:25:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E7B710E682;
+	Fri, 15 Sep 2023 21:01:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B310210E678;
- Fri, 15 Sep 2023 20:25:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F13810E682
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 21:01:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694809556; x=1726345556;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=o5MwuDt0rNg5i3u1D9yrpnoCAEBn1HnY9qHXyXyT16I=;
- b=JA8wjE+vzoHI1RmzbcnnI8LOUxOxLpJ/jNQC8AbpcvzJv3fZM/VRE/IJ
- MICyR1ILzUePWe1Peob2BtL2YpOdOYTIjRUhWlUhLRldBvS/8W5bNSaDh
- jqVf6flt9BOfPeBmPCT+Yuj/zAnfRyFQpwiRLgOert1Pjyaa/SV3+YfKn
- EuHQEquvWq3ItuVnnhZJUkupZQm/awNTgt2M91uLxcDQgI3pnt3nZ2u4O
- 2M02xK1b0R8tA42kDBCG8G542jZXTr3afzlwzdhXpDQ3rD7rdKQ2HaxOw
- HaXb4KG9XrkaNL9W/MKXRfF1r350Ig9NR+W3LAZoOzSKI9STf3MgOiFgz g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="465695030"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="465695030"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 13:25:56 -0700
+ t=1694811701; x=1726347701;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=dTlqpmOzfrKmecySZF/bRfl9jOvDantiu/1EaamGxds=;
+ b=lBqfLZd8Mnn+oU82juK98lD/jrWgPG+eNhJ+YDA+cF3YMTC1vGefb+Ku
+ eK7kcCtpzDcgMPaMluTBLXBQQwA3ZTchYnzA7MRCkW2lPsTnf7eomtzmb
+ OZ+C9ItV51CEPlZCqf7j+OiOSU828ojA2vWtvhKSurEIXTCeM8Dtl4TAM
+ nC6aUYzW7a4Hgj1pkHhtVKdG6j2plAZ+xvlYfoDtFPXqjF8bYo3Bp8ONm
+ dViKMK9l4l6cwvKOtlGTq5Cyl8J0gWLeo1/HSYtH21pKcgMwlOdDObSu+
+ UAeJi43WwZ1+jv6JFUIxcexqBTrSOoG7+dvTb6Ew+8K0shyw4XDang5sm w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="383176098"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="383176098"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2023 14:01:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="780223283"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="780223283"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Sep 2023 13:25:55 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 15 Sep 2023 13:25:55 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 15 Sep 2023 13:25:48 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Fri, 15 Sep 2023 13:25:48 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Fri, 15 Sep 2023 13:25:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Qlw6O1hOvxg6dyNLWu4HqU8tyWg5t3fIPmJrE9grtwSmKGGKhIoev9eBd7qCnE2fh4AUINKklO1FEUuxPNLvyd4qmN40BepzIvc5ZBfNbbn5DMHjZkb85WQqAUbvOXlPIHAbZ1zjGznHZr1R/wCmO1z9Oc49fi3xMezoTKi1YfvmjrRnQcgEBAEK+8y1Eh6VxLM0nqOHXDRPgmHvyIdELeXwojABpqm59ZGj6VqybrQfsjX0D1aw2du9DOTkbI9clXw2QhyOTXsL35IDwvQgLOvZP9TRrfuZ+NsLzgGv2RUsUzsONajNl1S0xWFX8HwyHcujnhgA5+Apuz6Bj05wWQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o5MwuDt0rNg5i3u1D9yrpnoCAEBn1HnY9qHXyXyT16I=;
- b=V8hDDpiwyrWHnZUki2k5is8mbw+ROO5j7ZWvSC4q2Tm1NII7uBU0ZNWvDbNIA++U39lgwXN++ZQAqgsqpNoS/pK6YAkr+bCrT7epFbdVqmf6qBPyPOeINaOg7Mmkg/m8WX97VXXl5v8e+YieucxeBMfxxFEGzC3cDK4b5kTD2DQKpsdAVPDMVWFCgHWc3Cf4vj3WVs0Ng21HbLpNLgL+UmbnLtIHBhAjTpFRZSZF71YeQFJ5/MDkU5mnZ5DKOx7bbaayhE8xAuj5mIfF9UumASPurS+F4XNLgcvyGgp04q4zCwWhHpw+9DCkPEakgrPRubwAOEgzApbXcxeUsa7L0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5751.namprd11.prod.outlook.com (2603:10b6:8:12::16) by
- CO1PR11MB4897.namprd11.prod.outlook.com (2603:10b6:303:97::20) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6792.21; Fri, 15 Sep 2023 20:25:45 +0000
-Received: from DM8PR11MB5751.namprd11.prod.outlook.com
- ([fe80::542d:f32a:14b:1531]) by DM8PR11MB5751.namprd11.prod.outlook.com
- ([fe80::542d:f32a:14b:1531%3]) with mapi id 15.20.6792.021; Fri, 15 Sep 2023
- 20:25:45 +0000
-From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v3] drm/i915/pxp: Add drm_dbgs for critical PXP events.
-Thread-Index: AQHZ6BFdd02CfzSLaE2Z8n1GBNH8l7AcVXgA
-Date: Fri, 15 Sep 2023 20:25:45 +0000
-Message-ID: <58a5d6827da2935f905eadf11804802b47994eac.camel@intel.com>
-References: <20230915201515.1238771-1-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20230915201515.1238771-1-alan.previn.teres.alexis@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.46.1-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5751:EE_|CO1PR11MB4897:EE_
-x-ms-office365-filtering-correlation-id: 4212ac43-b14e-4b74-74c0-08dbb629f10f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: hT2L+PxubaC0FfsX+xTxaH0CW0RuzevQMKEM4hiEYFkDCDyaSFGjxm5W3+1sjBmQZS2zpuCVRLq4MfyTvatvScGprhCwxHAk72Kd9FaEUsoMoOrKDhwfi/pMhc/M8mwA7h/o8j2ekiGM0HloE/kfWNP4qJhAFxjDaY5wfmWcQB3jkdKE8Im9CM6WEelaC8p9sOWrGvTR6nI0HOwqJqexPzICb4WzE5qrdj98j9BCCa3aJRmXTK8RuZTbICOXvb7IwsLEdONkVu8n0+0qEJzmzGguNJShK+bQeqJoztLVTZvqzh3xX0SUpvsdevY4x6bHSGlKd3L6EVLCBJoJ5b8m/V9GsM4ibjeMWgB3FfyFSUY2p4qw2VQzIVm3IGruJ2TbCWpbUNdtnL3HzGbwtFTUw0IVOyIUsQuZVVKNYluzDSmGa2vZt4tZPwB961+1Bdu5q7kZMzxhYTGbocOqzHaiy0vSVcTbIJqJ2cRkS/8cwzQOa7toMFA/0TlB8nFXoNnFCcDbN3HldUvTvD8594No9BwZq7hnWCR+4rgcCEZZBt52CZ+tHTaQpaVGnC3zGLQtZRuaDnBaxiw27omdXCzkppoRSlcoGi/4jVPkK+FCT/0=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5751.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(396003)(39860400002)(346002)(366004)(136003)(186009)(451199024)(1800799009)(478600001)(966005)(4326008)(8676002)(8936002)(6916009)(316002)(54906003)(64756008)(91956017)(66476007)(66556008)(66446008)(66946007)(76116006)(36756003)(450100002)(5660300002)(71200400001)(41300700001)(2906002)(86362001)(122000001)(26005)(107886003)(38070700005)(38100700002)(2616005)(4744005)(82960400001)(6512007)(6486002)(83380400001)(6506007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZCtvV3E1VVBxbkw0NmIvNjRwTHdOSnArdXUzQ1F3MjlOMklVL3gySUJXYmZ5?=
- =?utf-8?B?TVhsSDFRenZlL3V3N1RTTHkyN3NJZXkxVmNPWlhYYnMxTVNON2ZQYjJNVlE3?=
- =?utf-8?B?aWk3ZU1EdVkrNGRBVWliYWZKREZDL0o0eEp3Yks1cC9mNmpEZVVHQmVpN1dD?=
- =?utf-8?B?SWdiaHhqK2w2RFFlWGkrTFdzQVdmVks5dzc4MkNwWnl2ZEg0MFhOK0p2NGZM?=
- =?utf-8?B?eXlJN0RZckRqc3RrREhoZW5SNlJaU1daVnh6ZXpNUDVKWUtXUTU3ZWVtQ0M5?=
- =?utf-8?B?dW54MnpxajllWmQwZS8zU1B3M0tLY0ljYnlmWmo2b2RpK05ISTRqQkZ6a1lW?=
- =?utf-8?B?MUZIeFhQRXZDMzFjTHVqemEzQUdNT2hYWXVLOVJDVmhLRVd0SEVjK2hnd1NR?=
- =?utf-8?B?SldFak1TNitIME1qU2xmUHhJOEhDWFZYZWJSM21CSkh1eHN5OU9hbU5sV0lM?=
- =?utf-8?B?VDhIWFhoaUZKbi9kc0RTbTQ1cWZlZloxNVpKUm9JN0VBWWF1SGF5ZC9FOHln?=
- =?utf-8?B?MW5LZzF2eThzeTd1L0RDdnZvbUJsWS94QkJjOHNUVHpaM1o0aFh1R3dKaENh?=
- =?utf-8?B?a0dkbCtRc2FwbEkxUXVtWmJuUThON05BOGtPTk40cmx2aSt3bTRSamlVS25Z?=
- =?utf-8?B?bmJsL1hnWHB4bzFCc0dEZUZLam53aUtna0dpMTl4WEVLRWxwY2UxV01aY0Vv?=
- =?utf-8?B?bFlSVWNqbTdFQkphV0E4akZHeE82QzVpWTc2UnJBVUNZc1ZiOEFGUmpaOTBD?=
- =?utf-8?B?d1RoeWJpT3dQOXFrMGhaeHg3NUhqM08wQ3M2MVIrTDJwNlkzWEZuOTk1dHBa?=
- =?utf-8?B?SkpiQnNaNk04SHB4SVY1eGJCRm12SWVORWoyRXBVYjN1T09QRDgrK2FXNU01?=
- =?utf-8?B?V2picUp0Q2V0U1JtZzdtNWdXaU5PQWg5VUhmUTErK05kMnRnV2hnK2hWaHZF?=
- =?utf-8?B?aVBJZmM5dEtGL1ZXcWRDYzVXbTUzVVhHbFc4cHQvVE9sYk9xckNnajVrYlcv?=
- =?utf-8?B?d2czRFRTeHRWT1BuaE9rQmRnZjhlSzdrOVdtNUFVeGJDSTRndU1SSkVkQzFH?=
- =?utf-8?B?MmdHdDlsbXU2NkROTFdOKzYveVlhYWhjTWZhTU1vcU0wVVNzdFROUmQvOXor?=
- =?utf-8?B?SlljTUFEZE5YVEx1dEhSTUdpSTdMVjUraUdiN2NXaFVObmsxVEFKV2MvUE9a?=
- =?utf-8?B?amt6L0gycjRnZ0o2Z2NuYkFGL0FyMUQ5UWZpWVlZK1YvS0xBWmIwcktFekNs?=
- =?utf-8?B?bWVkZXU4aEV1cUorY1FqUUhrTmZKU3FmRHlKUnorbGU5Nm5TWEcyWmRZZTUr?=
- =?utf-8?B?SDdJaGU3cElXQXFIZTJNY2NQQ3RMUncwM0FMMEVoVnU3NkVBWDdiNHl6OEo2?=
- =?utf-8?B?OHlBcWxIQ0xVVzlrV3BKTmZxekxkMnBWcnVKWStNUlBYclN2VWhPSlF5alZT?=
- =?utf-8?B?aDdVUzJmb1dUdXp5NkFOUkFLRk9nOHYxRmJ2NThPeWZQNkx0ZndwT0F0clE0?=
- =?utf-8?B?Tk1rVlY0S0RSYTQ0WEpiS0liV2ZBKzBxMHdBK3pMVGxSNjVhWVoxQ3NxMWV4?=
- =?utf-8?B?anBNSXIyMy9ZTm8rd1FUVktRVEZEa2tJWDAyMG5pNE90ZWFOWjZXREtuelQv?=
- =?utf-8?B?NTd4QWJwSG8zOEltYjVJQnZUcitwempGYTVyS1Y0TGhUYWJoVm9VcXlzallG?=
- =?utf-8?B?dTFOblA5WVp4cGY1cDVlWExOZkhBeGtVU0tHQ2VNS3RwY0FPUUtmRU80cXNr?=
- =?utf-8?B?eUVlcURqM3doczFTUFRCSFBqV3ZjM3MrblJWRlpwSlhXZlNic0gyYkZzM2pm?=
- =?utf-8?B?T0h4L0N2ODczd1pHQUpqY1Fscmo5NU1mQ2x3OW4vcFEzYWx2RFNNY0ZlN2Yz?=
- =?utf-8?B?d1llTmEvNUZ4S2M3ZnF6VjhGTVcxbkM1R3paTk1WZnFSQ3pTVVdkckF4OVJB?=
- =?utf-8?B?VUhGL09lK1BWSEZmOUFta052QTdpeEVEbDZJMXlCbzYwMzRHME44aU9DaEJz?=
- =?utf-8?B?cEJTd0dqRmtiL1ZPb0xURUNud1J3VU9LQ1pxdy9pR09CS05tcE9vaHVta3E3?=
- =?utf-8?B?KzVycisyK1RaU2lLL05WZVNWR3ltd2U2Vjhtai9iNTZTdEhvWWdMaUhYNlE1?=
- =?utf-8?B?ZVlpdTRJNkRYcitEbHVVMmF1aTdVTUI1TVVuT29QL2crT0w3TFUyb0ozUnJG?=
- =?utf-8?Q?duzDP9//aLH93DQfbW6dBAI=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A5428EC10DF4CA4C9D61BFB92A483FD5@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="918773400"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="918773400"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2023 14:01:39 -0700
+Date: Sat, 16 Sep 2023 00:01:58 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <ZQTGRrxNBu0ZBXfN@ideak-desk.fi.intel.com>
+References: <20230914192659.757475-10-imre.deak@intel.com>
+ <20230915003354.857552-1-imre.deak@intel.com>
+ <ZQSsal4rSD4XZ0cY@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5751.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4212ac43-b14e-4b74-74c0-08dbb629f10f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2023 20:25:45.6685 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: evrrBFRNpqEVPqrUJxrbrvVIBBtz1eSeXQl+2ta2TJtXhq1F7KQHdhQPKKTQxSz+oTT6eOB56oaDcFgXrqANkkqE2G9l+de266DGEWKW+emy15Rxk3+KkM/EwqeJ7u7d
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4897
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/pxp: Add drm_dbgs for critical
- PXP events.
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZQSsal4rSD4XZ0cY@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 09/25] drm/i915: Add helpers for BW
+ management on shared display links
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,26 +61,543 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIzLTA5LTE1IGF0IDEzOjE1IC0wNzAwLCBUZXJlcyBBbGV4aXMsIEFsYW4gUHJl
-dmluIHdyb3RlOg0KPiBEZWJ1Z2dpbmcgUFhQIGlzc3VlcyBjYW4ndCBldmVuIGJlZ2luIHdpdGhv
-dXQgdW5kZXJzdGFuZGluZyBwcmVjZWRkaW5nDQo+IHNlcXVlbmNlIG9mIGltcG9ydGFudCBldmVu
-dHMuIEFkZCBkcm1fZGJnIGludG8gdGhlIG1vc3QgaW1wb3J0YW50IFBYUCBldmVudHMuDQo+IA0K
-PiAgdjMgOiAtIG1vdmUgZ3RfZGJnIHRvIGFmdGVyIG11dGV4IGJsb2NrIGluIGZ1bmN0aW9uDQo+
-ICAgICAgICAgaTkxNV9nc2NfcHJveHlfY29tcG9uZW50X2JpbmQuIChWaXZhaWspDQo+ICB2MiA6
-IC0gcmVtb3ZlIF9fZnVuY19fIHNpbmNlIGRybV9kYmcgY292ZXJzIHRoYXQgKEphbmkpLg0KPiAg
-ICAgICAtIGFkZCB0aW1lb3V0IGRiZyBvZiB0aGUgcmVzdGFydCBmcm9tIGZyb250LWVuZCAoQWxh
-bikuDQo+IA0KYWxhbjpzbmlwDQoNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMv
-aW50ZWxfZ3NjX3Byb3h5LmMNCj4gQEAgLTMyMiw2ICszMjIsNyBAQCBzdGF0aWMgaW50IGk5MTVf
-Z3NjX3Byb3h5X2NvbXBvbmVudF9iaW5kKHN0cnVjdCBkZXZpY2UgKmk5MTVfa2RldiwNCj4gIAln
-c2MtPnByb3h5LmNvbXBvbmVudCA9IGRhdGE7DQo+ICAJZ3NjLT5wcm94eS5jb21wb25lbnQtPm1l
-aV9kZXYgPSBtZWlfa2RldjsNCj4gIAltdXRleF91bmxvY2soJmdzYy0+cHJveHkubXV0ZXgpOw0K
-PiArCWd0X2RiZyhndCwgIkdTQyBwcm94eSBtZWkgY29tcG9uZW50IGJvdW5kXG4iKTsNCg0KZm9y
-Z290IHRvIGluY2x1ZGUgUkIgZnJvbSBWaXZhaWssIHBlciBjb25kaXRpb24gb2YgZml4aW5nIGFi
-b3ZlIGh1bmssIGZyb20gcmV2MiBkcmktZGV2ZWwgaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvYXJjaGl2ZXMvZHJpLWRldmVsLzIwMjMtU2VwdGVtYmVyLzQyMjg1OC5odG1sIDoNCg0KUmV2
-aWV3ZWQtYnk6IEJhbGFzdWJyYXdtYW5pYW4sIFZpdmFpayA8dml2YWlrLmJhbGFzdWJyYXdtYW5p
-YW4gYXQgaW50ZWwuY29tPiANCg==
+On Fri, Sep 15, 2023 at 10:11:38PM +0300, Ville Syrjälä wrote:
+> On Fri, Sep 15, 2023 at 03:33:54AM +0300, Imre Deak wrote:
+> > At the moment a modeset fails if the config computation of a pipe can't
+> > fit its required BW to the available link BW even though the limitation
+> > may be resolved by reducing the BW requirement of other pipes.
+> > 
+> > To improve the above this patch adds helper functions checking the
+> > overall BW limits after all CRTC states have been computed. If the check
+> > fails the maximum link bpp for a selected pipe will be reduced and all
+> > the CRTC states will be recomputed until either the overall BW limit
+> > check passes, or further bpp reduction is not possible (because all
+> > pipes/encoders sharing the link BW reached their minimum link bpp).
+> > 
+> > This change prepares for upcoming patches enabling the above BW
+> > management on FDI and MST links.
+> > 
+> > v2:
+> > - Rename intel_crtc_state::max_link_bpp to max_link_bpp_x16 and
+> >   intel_link_bw_limits::max_bpp to max_bpp_x16. (Jani)
+> > v3:
+> > - Add the helper functions in a separate patch. (Ville)
+> > - Add the functions to intel_link_bw.c instead of intel_atomic.c (Ville)
+> > - Return -ENOSPC instead of -EINVAL to userspace in case of a link BW
+> >   limit failure.
+> > v4:
+> > - Make intel_atomic_check_config() static.
+> > 
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/Makefile                 |   1 +
+> >  drivers/gpu/drm/i915/display/intel_crtc.c     |   1 +
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  61 ++++-
+> >  .../drm/i915/display/intel_display_types.h    |   3 +-
+> >  drivers/gpu/drm/i915/display/intel_link_bw.c  | 226 ++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_link_bw.h  |  38 +++
+> >  6 files changed, 325 insertions(+), 5 deletions(-)
+> >  create mode 100644 drivers/gpu/drm/i915/display/intel_link_bw.c
+> >  create mode 100644 drivers/gpu/drm/i915/display/intel_link_bw.h
+> > 
+> > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> > index 1b2e02e9d92cb..de4967c141f00 100644
+> > --- a/drivers/gpu/drm/i915/Makefile
+> > +++ b/drivers/gpu/drm/i915/Makefile
+> > @@ -268,6 +268,7 @@ i915-y += \
+> >  	display/intel_hotplug.o \
+> >  	display/intel_hotplug_irq.o \
+> >  	display/intel_hti.o \
+> > +	display/intel_link_bw.o \
+> >  	display/intel_load_detect.o \
+> >  	display/intel_lpe_audio.o \
+> >  	display/intel_modeset_lock.o \
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > index 182c6dd64f47c..1eda6a9f19aa8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > @@ -175,6 +175,7 @@ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
+> >  	crtc_state->hsw_workaround_pipe = INVALID_PIPE;
+> >  	crtc_state->scaler_state.scaler_id = -1;
+> >  	crtc_state->mst_master_transcoder = INVALID_TRANSCODER;
+> > +	crtc_state->max_link_bpp_x16 = INT_MAX;
+> 
+> Are we sure we won't end up doing random arithmetic with that which could
+> overflow?
+
+It's only used limiting values to an upper bound, so can't see at least
+where it could overflow.
+
+> >  }
+> >  
+> >  static struct intel_crtc *intel_crtc_alloc(void)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index fe3b6844e063d..0f30723a68cc0 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -87,6 +87,7 @@
+> >  #include "intel_frontbuffer.h"
+> >  #include "intel_hdmi.h"
+> >  #include "intel_hotplug.h"
+> > +#include "intel_link_bw.h"
+> >  #include "intel_lvds.h"
+> >  #include "intel_lvds_regs.h"
+> >  #include "intel_modeset_setup.h"
+> > @@ -4596,7 +4597,8 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
+> >  
+> >  static int
+> >  intel_modeset_pipe_config(struct intel_atomic_state *state,
+> > -			  struct intel_crtc *crtc)
+> > +			  struct intel_crtc *crtc,
+> > +			  const struct intel_link_bw_limits *limits)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> >  	struct intel_crtc_state *crtc_state =
+> > @@ -4628,6 +4630,15 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > +	crtc_state->max_link_bpp_x16 = limits->max_bpp_x16[crtc->pipe];
+> > +
+> > +	if (crtc_state->pipe_bpp > to_bpp_int(crtc_state->max_link_bpp_x16)) {
+> > +		drm_dbg_kms(&i915->drm,
+> > +			    "[CRTC:%d:%s] Link bpp limited to " BPP_X16_FMT "\n",
+> > +			    crtc->base.base.id, crtc->base.name,
+> > +			    BPP_X16_ARGS(crtc_state->max_link_bpp_x16));
+> > +	}
+> > +
+> >  	base_bpp = crtc_state->pipe_bpp;
+> >  
+> >  	/*
+> > @@ -6195,7 +6206,9 @@ static int intel_bigjoiner_add_affected_crtcs(struct intel_atomic_state *state)
+> >  	return 0;
+> >  }
+> >  
+> > -static int intel_atomic_check_config(struct intel_atomic_state *state)
+> > +static int intel_atomic_check_config(struct intel_atomic_state *state,
+> > +				     struct intel_link_bw_limits *limits,
+> > +				     enum pipe *failed_pipe)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> >  	struct intel_crtc_state *new_crtc_state;
+> > @@ -6203,6 +6216,8 @@ static int intel_atomic_check_config(struct intel_atomic_state *state)
+> >  	int ret;
+> >  	int i;
+> >  
+> > +	*failed_pipe = INVALID_PIPE;
+> > +
+> >  	ret = intel_bigjoiner_add_affected_crtcs(state);
+> >  	if (ret)
+> >  		return ret;
+> > @@ -6228,7 +6243,7 @@ static int intel_atomic_check_config(struct intel_atomic_state *state)
+> >  		if (!new_crtc_state->hw.enable)
+> >  			continue;
+> >  
+> > -		ret = intel_modeset_pipe_config(state, crtc);
+> > +		ret = intel_modeset_pipe_config(state, crtc, limits);
+> >  		if (ret)
+> >  			break;
+> >  
+> > @@ -6237,9 +6252,47 @@ static int intel_atomic_check_config(struct intel_atomic_state *state)
+> >  			break;
+> >  	}
+> >  
+> > +	if (ret)
+> > +		*failed_pipe = crtc->pipe;
+> > +
+> >  	return ret;
+> >  }
+> >  
+> > +static int intel_atomic_check_config_and_link(struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > +	struct intel_link_bw_limits new_limits;
+> > +	struct intel_link_bw_limits old_limits;
+> > +	int ret;
+> > +
+> > +	intel_link_bw_init_limits(i915, &new_limits);
+> > +	old_limits = new_limits;
+> > +
+> > +	while (true) {
+> > +		enum pipe failed_pipe;
+> > +
+> > +		ret = intel_atomic_check_config(state, &new_limits,
+> > +						&failed_pipe);
+> > +		if (ret) {
+> > +			if (ret == -EINVAL &&
+> > +			    intel_link_bw_reset_pipe_limit_to_min(state,
+> > +								  &old_limits,
+> > +								  &new_limits,
+> > +								  failed_pipe))
+> > +				continue;
+> > +
+> > +			break;
+> > +		}
+> > +
+> > +		old_limits = new_limits;
+> > +
+> > +		ret = intel_link_bw_atomic_check(state, &new_limits);
+> > +		if (ret != -EAGAIN)
+> > +			break;
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> >  /**
+> >   * intel_atomic_check - validate state object
+> >   * @dev: drm device
+> > @@ -6284,7 +6337,7 @@ int intel_atomic_check(struct drm_device *dev,
+> >  			return ret;
+> >  	}
+> >  
+> > -	ret = intel_atomic_check_config(state);
+> > +	ret = intel_atomic_check_config_and_link(state);
+> >  	if (ret)
+> >  		goto fail;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index 966163ccbd7a3..514977ebc17b0 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -1189,7 +1189,8 @@ struct intel_crtc_state {
+> >  		u32 ctrl, div;
+> >  	} dsi_pll;
+> >  
+> > -	int pipe_bpp;
+> > +	int max_link_bpp_x16;	/* in 1/16 bpp units */
+> > +	int pipe_bpp;		/* in 1 bpp units */
+> >  	struct intel_link_m_n dp_m_n;
+> >  
+> >  	/* m2_n2 for eDP downclock */
+> > diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/drm/i915/display/intel_link_bw.c
+> > new file mode 100644
+> > index 0000000000000..22494772b9d59
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
+> > @@ -0,0 +1,226 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright © 2023 Intel Corporation
+> > + */
+> > +
+> > +#include "i915_drv.h"
+> > +
+> > +#include "intel_atomic.h"
+> > +#include "intel_display_types.h"
+> > +#include "intel_dp_mst.h"
+> > +#include "intel_fdi.h"
+> > +#include "intel_link_bw.h"
+> > +
+> > +/**
+> > + * intel_link_bw_init_limits - initialize BW limits
+> > + * @i915: device instance
+> > + * @limits: link BW limits
+> > + *
+> > + * Initialize @limits.
+> > + */
+> > +void intel_link_bw_init_limits(struct drm_i915_private *i915, struct intel_link_bw_limits *limits)
+> > +{
+> > +	enum pipe pipe;
+> > +
+> > +	limits->min_bpp_pipes = 0;
+> > +	for_each_pipe(i915, pipe)
+> > +		limits->max_bpp_x16[pipe] = INT_MAX;
+> > +}
+> > +
+> > +/**
+> > + * intel_link_bw_compute_pipe_bpp - compute pipe bpp limited by max link bpp
+> > + * @crtc_state: the crtc state
+> > + *
+> > + * Compute the pipe bpp limited by the CRTC's maximum link bpp. Encoders can
+> > + * call this function during state computation in the simple case where the
+> > + * link bpp will always match the pipe bpp. This is the case for all non-DP
+> > + * encoders, while DP encoders will use a link bpp lower than pipe bpp in case
+> > + * of DSC compression.
+> > + *
+> > + * Returns %true in case of success, %false if pipe bpp would need to be
+> > + * reduced below its valid range.
+> > + */
+> > +bool intel_link_bw_compute_pipe_bpp(struct intel_crtc_state *crtc_state)
+> > +{
+> > +	int pipe_bpp = min(crtc_state->pipe_bpp,
+> > +			   to_bpp_int(crtc_state->max_link_bpp_x16));
+> > +
+> > +	pipe_bpp = rounddown(pipe_bpp, 2 * 3);
+> > +
+> > +	if (pipe_bpp < 6 * 3)
+> > +		return false;
+> > +
+> > +	crtc_state->pipe_bpp = pipe_bpp;
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +/**
+> > + * intel_link_bw_reduce_bpp - reduce maximum link bpp for a selected pipe
+> > + * @state: atomic state
+> > + * @limits: link BW limits
+> > + * @pipe_mask: mask of pipes to select from
+> > + * @reason: explanation of why bpp reduction is needed
+> > + *
+> > + * Select the pipe from @pipe_mask with the biggest link bpp value and set the
+> > + * maximum of link bpp in @limits below this value. Modeset the selected pipe,
+> > + * so that its state will get recomputed.
+> > + *
+> > + * This function can be called to resolve a link's BW overallocation by reducing
+> > + * the link bpp of one pipe on the link and hence reducing the total link BW.
+> > + *
+> > + * Returns
+> > + *   - 0 in case of success
+> > + *   - %-ENOSPC if no pipe can further reduce its link bpp
+> > + *   - Other negative error, if modesetting the selected pipe failed
+> > + */
+> > +int intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
+> > +			     struct intel_link_bw_limits *limits,
+> > +			     u8 pipe_mask,
+> > +			     const char *reason)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > +	enum pipe max_bpp_pipe = INVALID_PIPE;
+> > +	struct intel_crtc *crtc;
+> > +	int max_bpp = 0;
+> > +
+> > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, pipe_mask) {
+> > +		struct intel_crtc_state *crtc_state;
+> > +		int pipe_bpp;
+> > +
+> > +		if (limits->min_bpp_pipes & BIT(crtc->pipe))
+> > +			continue;
+> > +
+> > +		crtc_state = intel_atomic_get_crtc_state(&state->base,
+> > +							 crtc);
+> > +		if (IS_ERR(crtc_state))
+> > +			return PTR_ERR(crtc_state);
+> > +
+> > +		if (crtc_state->dsc.compression_enable)
+> > +			pipe_bpp = crtc_state->dsc.compressed_bpp;
+> > +		else
+> > +			pipe_bpp = crtc_state->pipe_bpp;
+> 
+> That sounds like it should be 'link_bpp'.
+
+Yes, will change it.
+
+> Hmm. How does this work with 4:2:0 output?
+
+Didn't think about that, but looking at
+intel_dp_compute_link_config_wide() now, in the uncompressed case only
+half of crtc_state->pipe_bpp will be the actual bpp output. So in that
+case this code will decrease the limit for 2x of the actual bpp output
+until a valid configuration is found.
+
+> > +
+> > +		if (pipe_bpp > max_bpp) {
+> > +			max_bpp = pipe_bpp;
+> > +			max_bpp_pipe = crtc->pipe;
+> > +		}
+> > +	}
+> > +
+> > +	if (max_bpp_pipe == INVALID_PIPE)
+> > +		return -ENOSPC;
+> > +
+> > +	limits->max_bpp_x16[max_bpp_pipe] = to_bpp_x16(max_bpp) - 1;
+> > +
+> > +	return intel_modeset_pipes_in_mask_early(state, reason,
+> > +						 BIT(max_bpp_pipe));
+> 
+> So we always reduce just for one pipe at a time. I suppose that does
+> lead to the most optimal bandwidth usage, albeit with perhaps a
+> slighly slower convergence.
+
+Yes, assuming that the retry loop is not a significant overhead.
+
+> > +}
+> > +
+> > +/**
+> > + * intel_link_bw_reset_pipe_limit_to_min - reset BW limit for a pipe to its minimum
+> > + * @state: atomic state
+> > + * @old_limits: link BW limits
+> > + * @new_limits: link BW limits
+> > + * @pipe: pipe
+> > + *
+> > + * Reset the link bpp limit for @pipe in @new_limits to its value in
+> > + * @old_limits and mark this limit as the minimum. This function must be
+> > + * called after a pipe's compute config function failed, @old_limits
+> > + * containing the bpp limit with which compute config previously passed.
+> > + *
+> > + * The function will fail if setting a minimum is not possible, either
+> > + * because the old and new limits match (and so would lead to a pipe compute
+> > + * config failure) or the limit is already at the minimum.
+> > + *
+> > + * Returns %true in case of success.
+> > + */
+> > +bool
+> > +intel_link_bw_reset_pipe_limit_to_min(struct intel_atomic_state *state,
+> > +				       const struct intel_link_bw_limits *old_limits,
+> > +				       struct intel_link_bw_limits *new_limits,
+> > +				       enum pipe pipe)
+> > +{
+> > +	if (pipe == INVALID_PIPE)
+> > +		return false;
+> > +
+> > +	if (new_limits->min_bpp_pipes & BIT(pipe))
+> > +		return false;
+> > +
+> > +	if (new_limits->max_bpp_x16[pipe] ==
+> > +	    old_limits->max_bpp_x16[pipe])
+> > +		return false;
+> > +
+> > +	new_limits->max_bpp_x16[pipe] =
+> > +		old_limits->max_bpp_x16[pipe];
+> > +	new_limits->min_bpp_pipes |= BIT(pipe);
+> 
+> So that bitmask is keeping track of pipes which have reached what
+> they consider to be an absolute minimum usable bpp?
+
+Yes.
+
+> The naming confused me a bit, of both the bitmask and the function.
+> Maybe something like 'min_bpp_reached_pipes' would be a bit more
+> clear,
+
+Ok, can rename it.
+
+> and intel_link_bw_min_bpp_reached() or something for the
+> function name?
+> Still doesn't really work when just reading the code
+> though...
+
+Yes, couldn't think of a better name, I can rename it to the above.
+
+I was thinking of an alternative way, where encoders could preset the
+minimum bpp they support, but opted for deducting this from the compute
+config functions' error/pass return value as that's more generic.
+
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +static int check_all_link_config(struct intel_atomic_state *state,
+> > +				 struct intel_link_bw_limits *limits)
+> > +{
+> > +	/* TODO: Check all shared display link configurations like FDI */
+> > +	return 0;
+> > +}
+> > +
+> > +static bool
+> > +assert_link_limit_change_valid(struct drm_i915_private *i915,
+> > +			       const struct intel_link_bw_limits *old_limits,
+> > +			       const struct intel_link_bw_limits *new_limits)
+> > +{
+> > +	bool bpps_changed = false;
+> > +	enum pipe pipe;
+> > +
+> > +	for_each_pipe(i915, pipe) {
+> > +		/* The bpp limit can only decrease. */
+> > +		if (drm_WARN_ON(&i915->drm,
+> > +				new_limits->max_bpp_x16[pipe] >
+> > +				old_limits->max_bpp_x16[pipe]))
+> > +			return false;
+> > +
+> > +		if (new_limits->max_bpp_x16[pipe] <
+> > +		    old_limits->max_bpp_x16[pipe])
+> > +			bpps_changed = true;
+> > +	}
+> > +
+> > +	/* At least one limit must change. */
+> > +	if (drm_WARN_ON(&i915->drm,
+> > +			!bpps_changed))
+> > +		return false;
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +/**
+> > + * intel_link_bw_atomic_check - check display link states and set a fallback config if needed
+> > + * @state: atomic state
+> > + * @new_limits: link BW limits
+> > + *
+> > + * Check the configuration of all shared display links in @state and set new BW
+> > + * limits in @new_limits if there is a BW limitation.
+> > + *
+> > + * Returns:
+> > + *   - 0 if the confugration is valid
+> > + *   - %-EAGAIN, if the configuration is invalid and @new_limits got updated
+> > + *     with fallback values with which the configuration of all CRTCs
+> > + *     in @state must be recomputed
+> > + *   - Other negative error, if the configuration is invalid without a
+> > + *     fallback possibility, or the check failed for another reason
+> > + */
+> > +int intel_link_bw_atomic_check(struct intel_atomic_state *state,
+> > +			       struct intel_link_bw_limits *new_limits)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > +	struct intel_link_bw_limits old_limits = *new_limits;
+> > +	int ret;
+> > +
+> > +	ret = check_all_link_config(state, new_limits);
+> > +	if (ret != -EAGAIN)
+> > +		return ret;
+> > +
+> > +	if (!assert_link_limit_change_valid(i915, &old_limits, new_limits))
+> > +		return -EINVAL;
+> > +
+> > +	return -EAGAIN;
+> > +}
+> > diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.h b/drivers/gpu/drm/i915/display/intel_link_bw.h
+> > new file mode 100644
+> > index 0000000000000..e514caff5898e
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/i915/display/intel_link_bw.h
+> > @@ -0,0 +1,38 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright © 2023 Intel Corporation
+> > + */
+> > +
+> > +#ifndef __INTEL_LINK_BW_H__
+> > +#define __INTEL_LINK_BW_H__
+> > +
+> > +#include <linux/types.h>
+> > +
+> > +#include "intel_display_limits.h"
+> > +
+> > +struct drm_i915_private;
+> > +
+> > +struct intel_atomic_state;
+> > +struct intel_crtc_state;
+> > +
+> > +struct intel_link_bw_limits {
+> > +	u8 min_bpp_pipes;
+> > +	/* in 1/16 bpp units */
+> > +	int max_bpp_x16[I915_MAX_PIPES];
+> > +};
+> > +
+> > +void intel_link_bw_init_limits(struct drm_i915_private *i915,
+> > +			       struct intel_link_bw_limits *limits);
+> > +bool intel_link_bw_compute_pipe_bpp(struct intel_crtc_state *crtc_state);
+> > +int intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
+> > +			     struct intel_link_bw_limits *limits,
+> > +			     u8 pipe_mask,
+> > +			     const char *reason);
+> > +bool intel_link_bw_reset_pipe_limit_to_min(struct intel_atomic_state *state,
+> > +					   const struct intel_link_bw_limits *old_limits,
+> > +					   struct intel_link_bw_limits *new_limits,
+> > +					   enum pipe pipe);
+> > +int intel_link_bw_atomic_check(struct intel_atomic_state *state,
+> > +			       struct intel_link_bw_limits *new_limits);
+> > +
+> > +#endif
+> > -- 
+> > 2.37.2
+> 
+> -- 
+> Ville Syrjälä
+> Intel
