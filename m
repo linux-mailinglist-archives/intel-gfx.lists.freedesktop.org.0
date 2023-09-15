@@ -2,84 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BB927A22B7
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 17:44:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 358CE7A2300
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 17:57:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3B7E10E649;
-	Fri, 15 Sep 2023 15:44:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7D8910E169;
+	Fri, 15 Sep 2023 15:57:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C81F310E649
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 15:44:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97F0A10E169
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 15:57:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694792644; x=1726328644;
+ t=1694793426; x=1726329426;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=AoTHrQQZ9dBxmdbMIfrvvt7i68t8piNfAkTcTGqHCio=;
- b=hQWGoBs8ZFOsdHr8EnnNZVkPF2DhIqftd00vBDdbmpO/5jESC5tXlpuV
- CX8zXG68Rb1D3wHjoYe9J9zuxnCP0N9/qTZxEIGB2x/f2bNZK9qcuyScD
- DBBxHLkoUttan8nDm3tK4DepUpAKfM/2moE9vH9r9f4vI5XbSv/PxWNNa
- bqb14/iq5/wDlVIIM6C1rv4rue9Uvn9ktBSjkmStS1Ue6I6mZVs7uBizW
- iTlrR0f6XcaHTCjY4Qppe3hS18rFreGbz6c4DCE2aYn+KjojPaZ7rCpmw
- XwC5fL0oQw0ljvaBFKbwrhJD7MRkdIgg+gLOuM1v2M4MItWlzlK7lqEJ9 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="378190092"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="378190092"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 08:44:04 -0700
+ bh=WmbCV185+mced8P0zdaC7kcbmaNvC0xT0NTsT5WZk7Q=;
+ b=nxqQTm6ntmHWJduoeN1CP3tcJ5DULzqRTP+Uj7j4PafLRf5RTBHP14jQ
+ K0wQYi74lHjpf/JnPBiUzZL4IxeHXGO0P6Dkgu04H4nkORdtruu7eE6bY
+ cthCOzsao4XNKbkEE8VmfkhON9dkmDJOCs5/fR4WydCYrw4dde988dE2T
+ T0eeLQxlGFEBEb25b3jmHAllTLWyk4AqwVLeAz8gidaoi8oxorw0cnY0Q
+ ShDDcjTHI7OmDT6lA4FWTIwa0tj8SB5L+8tKoGi3KDPEm4SZINmmGmHXO
+ 56Dx9kyY0NVkIS/EuJsZilXUNYAXHnBvtjfdKKlcLeWLih4I/N92J6Byy g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="358699349"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="358699349"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2023 08:57:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="810568382"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="810568382"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Sep 2023 08:44:04 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="738379822"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="738379822"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Sep 2023 08:57:04 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 15 Sep 2023 08:44:03 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.32; Fri, 15 Sep 2023 08:57:04 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 15 Sep 2023 08:44:03 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Fri, 15 Sep 2023 08:44:03 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.106)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Fri, 15 Sep 2023 08:57:04 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.171)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Fri, 15 Sep 2023 08:44:03 -0700
+ 15.1.2507.32; Fri, 15 Sep 2023 08:57:03 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FnV8oMoTpWrq+4YLvRyOyD/HvMKuEBTuPUGvRcURCKjvBcf8ei+RGDDTW6ORWmCKvDT8F27vzqUuLz9KGe3adgM0PsLCrQfW1p8nj3yLa5y0hDCDjzGTF0GiFOeJ8EuGdpxJP8GmGE8/wlNMpjSdDleICPcP+SX86Wn9z3Y+XuBC6yJ03KNa/ldfDixXyP5Ug1KCVtBTA0n7SjmzTs6L1nUhs3Is90Wvxfc010nrj6zJoOP2i8DVRTL/FBnZxsNdTLhF9Bc0kmGDPy4FXDYHX4R/SN/iDhX9aFkp9hFt5uQJWKpdpzE9A1uHivXBfZakfaApAHYRRs/2ohymNMuCYQ==
+ b=dgw9Vfu0HJsoP9z61y7Bl0NWO0LlRXSnwTqm5SOg15D2vhPuoZHw+9U5wkKCqhWgx+wpnLCGK7OeH8eA17e/MEFiwZBrciey41RCQOl1E/Z351qJa06J15isbjEe60CR8bFBZ+at+tWuuMe8hmoLtdZVnaVcE2T2u8dRJLMaq55sHzdfOOaC4c7r8eEjuQKJujrIWI1mof3Mtyd3juMZs0zsndZtupupe2+Q5+AMF1+U69SXuDYsiuOUIMji3fTGjE8S1ufLxPgg5jiwyJ6F8sgT4fH+nEE9ikFz5y0wDHMwlpOmqO8Ax5fdmqKHGb7UM7/FKjaC1rhbUEDMV+QvBQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qwZ0YgJYxezD+csvKLsdwiAzeoUED/RFnsJ3+xuIAuA=;
- b=FDwM6h049Nxb71N2R9q3F+hCxJMnDUdzmnpvX4pM2ctCTUK9sXT6KM4hHxSri42qNJRYK4NsyZYFeDs9X+TYMgGNfD8Rl/3g80JtWDyPajdpkv//BmL8ns3K4wW5M6J2KA9Y3I1MdaCnxo+NGOepPNio/AjeeUIKoOuMpq7TAuGDhj7IFlGkMdiSF1x2v6F3GkPkEOuMEsktAPUjJ/zOo+QR9SPICPuDvOK+KQA+JksCVVFQ5RILXP/n7EeZDg+iXZP0a/yeIYUVrk8S6pJt/c19OP1o79r6u3mK3e68ASRhcKQe8IM5XFwCPCmJ1vGUbS26885e6EmjJijcYPRPjg==
+ bh=kjcHlqkSHZDGQnWZ0qW4DICn1DFupX6Et6o5mVs0eeo=;
+ b=ITljUOgjSl1GMDbuyNZgWMyTB4D5Z9SLqWEik6zt9pQB2RIXvuEWHcGNQcFfRi4xN8s8eATyF936ElHthEpaU23RCl/Y6Qp8OXo1iTl5RMYaW+5agcT+8v/rM0hh7VVR63/XN3oBuKI5dHL9nj+i5UiFaEncgYVSMdDAUJVJ5+VQmMN1KZSntsOZDaeYfRbPvqxXZm3j1aEwuEEs0ZdrXEml/bUEqjDGwLoZKDKlTmcpky096TKPffD6J32zcMA2HopmuNM76UkjagC3evb7Un93iLK9Zpg//IRofxMVGDsojrBwM1nIGNFkk/aHAqXGQlPMfZsb4l/9uqqZ/m8Xtg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from SA1PR11MB6991.namprd11.prod.outlook.com (2603:10b6:806:2b8::21)
- by SA0PR11MB4592.namprd11.prod.outlook.com (2603:10b6:806:98::10)
+ by SJ0PR11MB4781.namprd11.prod.outlook.com (2603:10b6:a03:2d8::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.21; Fri, 15 Sep
- 2023 15:44:01 +0000
+ 2023 15:56:56 +0000
 Received: from SA1PR11MB6991.namprd11.prod.outlook.com
  ([fe80::18a2:59e7:4541:b61c]) by SA1PR11MB6991.namprd11.prod.outlook.com
  ([fe80::18a2:59e7:4541:b61c%3]) with mapi id 15.20.6768.029; Fri, 15 Sep 2023
- 15:44:01 +0000
+ 15:56:56 +0000
 From: "Zeng, Oak" <oak.zeng@intel.com>
 To: "Das, Nirmoy" <nirmoy.das@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 2/7] drm/i915: Create a kernel context for GGTT updates
-Thread-Index: AQHZ5691Ibes0rGnC0WDZ94Eo6zDu7AcB2xw
-Date: Fri, 15 Sep 2023 15:44:01 +0000
-Message-ID: <SA1PR11MB69914D4F2BA165B196C4BD4B92F6A@SA1PR11MB6991.namprd11.prod.outlook.com>
+Thread-Topic: [PATCH 5/7] drm/i915: Implement GGTT update method with
+ MI_UPDATE_GTT
+Thread-Index: AQHZ5697JY+dV6d2IkG8BECE/oX8P7AcCfsg
+Date: Fri, 15 Sep 2023 15:56:56 +0000
+Message-ID: <SA1PR11MB6991E7C50BEFDCB2EEE04ABA92F6A@SA1PR11MB6991.namprd11.prod.outlook.com>
 References: <20230915083412.4572-1-nirmoy.das@intel.com>
- <20230915083412.4572-3-nirmoy.das@intel.com>
-In-Reply-To: <20230915083412.4572-3-nirmoy.das@intel.com>
+ <20230915083412.4572-6-nirmoy.das@intel.com>
+In-Reply-To: <20230915083412.4572-6-nirmoy.das@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -87,59 +84,59 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA1PR11MB6991:EE_|SA0PR11MB4592:EE_
-x-ms-office365-filtering-correlation-id: 9b93583d-eef9-4523-7b66-08dbb6029528
+x-ms-traffictypediagnostic: SA1PR11MB6991:EE_|SJ0PR11MB4781:EE_
+x-ms-office365-filtering-correlation-id: d7ab42d7-5ec2-49d3-8f08-08dbb6046320
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ImSgbl9nr3ypEFRIe6CziEiXQ/hw5CTIo9vpHCeNAyNBB02n0TOEC5EaKyMb02KZL+i1I/laPoapuWJ6xIYyrSY4Y8YEcQiDZ4JHIuhuF+OTFobW6zQiG5V0P2zQY9HeHHGcOoLgQGid02cHrnphMpli/Ns8qxvW1uLC866PnJVf1QrwkqcPAJhz/bqocA+blf2VDnwkKGLO3C3gEPe+hCPAkvZUBn75FJtWG9/grizw1McTc8p6yDzO3LvFeHZJaZM9tHlT2nfLb64EaZ4GyW7RKM2SZnohREbl6a3rtnu2kMcPErbMFN1Y3ndV6mjVXoeCMCVQLqMv5rRPOjp3a9swZL1D8GiejBPtE9+mHIsPDIz4H2H1q5lpDAs7gDqBYOScrgDO8pfhU+nfqtKaEbLnatXaKvF/SM9dccidhoMGYspkUNZboB7fzkm5pShhZb8MBNxik9eW3WP3F3bWyA1nlUt6qAuEP+cg/rSR2KSnPWpKYkNBAjf4q16gQ3ZEZz+lOG0afmhCRlt3pchEyy7Jc4lVhxevi6uYVIiq6jtzvRPQC1mWC2a2+tsvIjBq4QvvZfw1T8AZHgSlPnLGeiZNk5OsdvTeolrRnPHXVBaYfBDimH4Ws/n3DNcQCHio
+x-microsoft-antispam-message-info: pIDqu71oVHD862kCW6LFTUUMmJxnpP/J5cYCbpYvpIOsZnVNSkD3P/bSTx34WqzasRvkZHsmnQXYh1D2MtMU5Qcf8edwNwN1VyHk/rN9ZEUvRYIQXJb9ofG7OCFgZOlv38VzSpqhi/tZhjuD6YW0jar+GM6uIgH4rwNg5+R9MjDfgX+z0akoO9qbxbrimkYmKzu3ZJzQdOT3S4ahGEQbb7puXn9UdiyfcjFLvFTLranzGmejPhTngdI6gBaYDDXMfAzWuFH/5KmXxj+M9qiw2VGBGW5cM4K2QFgu7BGwTvX9Ne4NekQmgYlpX6k5PD6HST/jK0FFgd31uGdk7IHMD92RuIur9drDNs85S30hFTH+Inw/LLBz0WbuS5do+LoiS/oPxPR1230REdxG9FsDxrDSlHEk+10fcpy53dFzAxPlgBMsO2Zl7RsMZErAf7OFyW8hA6ROzRoU1qUJTEEGezNdSW1gPRnjWz1fjzFowhH8UiQ998xux6SgneJDT27CfmK10NwAXmgS2OwGVysYgcxJVUEmV4TXf1T4Dhp1A7hV77hiN8w6/770Q5vznOj758EO9EiIpb9znZFPVAnNYf/EX3g3XoStMSY6SzrPgWKUvsYcFDiX02yIAzX7yMEg
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SA1PR11MB6991.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(346002)(366004)(396003)(39860400002)(376002)(451199024)(1800799009)(186009)(33656002)(2906002)(86362001)(15650500001)(83380400001)(26005)(5660300002)(52536014)(4326008)(8676002)(9686003)(7696005)(8936002)(110136005)(76116006)(71200400001)(6506007)(53546011)(122000001)(82960400001)(41300700001)(38100700002)(38070700005)(478600001)(316002)(66476007)(66946007)(66556008)(64756008)(66446008)(54906003)(55016003);
+ SFS:(13230031)(366004)(136003)(396003)(39860400002)(346002)(376002)(1800799009)(186009)(451199024)(71200400001)(7696005)(53546011)(6506007)(55016003)(33656002)(122000001)(38100700002)(82960400001)(38070700005)(86362001)(26005)(2906002)(15650500001)(30864003)(9686003)(478600001)(83380400001)(4326008)(5660300002)(52536014)(110136005)(8676002)(41300700001)(8936002)(316002)(54906003)(64756008)(66556008)(66476007)(76116006)(66446008)(66946007);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Ed9UAYd25hivCeI6Bbrj2jSd7KLhipAxLEZnDprkEIEK1twHikAkPPhRHIN1?=
- =?us-ascii?Q?Bru671441oGXgVykmDxiY32ZDt01EN0bcHGz8pCSLqciLegIocAJ60JVMg6s?=
- =?us-ascii?Q?WnYo+3hxbyP/N+1fjE6JAYIRy9y88Pk40RU6LfZBBHnrubUXIbnpqwLdgtnq?=
- =?us-ascii?Q?POZ4vFC+KzWw3P4SRBBh0wG2hjUDkpbXfmzQOKGPJK3e4AuCIMRphcxPmqla?=
- =?us-ascii?Q?4ND1CH1rjjH5umjXm99gfY/EKF4doJo2i6jDgz1yOINzjar84c83PY067OHx?=
- =?us-ascii?Q?6L+bfRRTBa5d5aQtCEB3bUQDAgKiM9Han/OA5894odDxsh2FLRXU5uGe565Z?=
- =?us-ascii?Q?LBbZRrddx1/ox/QCJX26K3azHgogpnfbgI9DUHTOrMGTtxw8pocc70PGAzv0?=
- =?us-ascii?Q?J2rwlNhrduwHqvTXq8aLTQskqOLBWgwn8PaLnYq8y2Sj7fm0qCnwic7HOZ2V?=
- =?us-ascii?Q?sWbKhTJdBQbhKM9ICBe++ArHMf7Y04WP2qoXKvma0j3ZexwRDY5i8YhgUz41?=
- =?us-ascii?Q?c2HNzaVisADc6dQmEMAjYOK7ecvf6oyFEiUPoTZhMwLiHO0OjtCEJEl5gKyk?=
- =?us-ascii?Q?fiN8lU9Lj2PT0UuyQ+Gt1cXQ/aGI/CBH2z1k+Qzaj6k3pyt9Habk2DSpi3tc?=
- =?us-ascii?Q?p22sn2O4LG+wTKOr2eGGxXqHPKgL+c9QKC+qHsqzeVI2CxFvXvgkX788H9lk?=
- =?us-ascii?Q?50s/bM4mQlC3vxf4wpyQtzyZ+Ht8smpzIuY6So21opT5F0VwJbdjjzfsLRLX?=
- =?us-ascii?Q?tpsCPs81+FOA7k0AKu8nZ6iqwdcMAL1bukqpr5SarVBtErh4prUTcDUiocUX?=
- =?us-ascii?Q?pykN/v6yoPjHrJZhp2NLnlL9KRRqN84ETLOew2eKtgqgVrXciv1cjRg6jKaT?=
- =?us-ascii?Q?7OpJL/+6rp8Z3I1lOmRSH+6wkcxv8mE3ju6ctzaNAH6gzTJSIhCH0+PoC6wC?=
- =?us-ascii?Q?J+RgZuQW+POP3BxPJVe9BHoY+d17xdcwKUx5W7HoDPRf/EwPh0UIB0L6g3LY?=
- =?us-ascii?Q?daeYZFMgaXZRv5vByl5cxXWlUCqCs9Hxy3Te4grui+HcxgYjjBzqM2A+mpC6?=
- =?us-ascii?Q?5WdieNjKOtGU+TYJUpAMb1vxeQbzOnsX2pHP03a9HKBAcnFjtKarocM1+2vQ?=
- =?us-ascii?Q?7yzIgdH0ozvKPXhYgNX4OkdDszlwkumy0zkJs/5oOGLJ8tKqVJHOrNGLLlr8?=
- =?us-ascii?Q?pHOLChfTx8ETMJ+Fe7IXjWBbatXCV3bIHUKyL6rIxJ3LCs2u7OisY3RuS2tb?=
- =?us-ascii?Q?RAX1YYVgL/So0uVJKOEV+kkAlLPisMJjL7Odm4u3jk1/zYe0+zpbgg/6KBwo?=
- =?us-ascii?Q?li1UJ6JryfS0WlKBTqt24UCK9UFzdimL1L6tONA/AGeKPY5s0haFwhxMx3ua?=
- =?us-ascii?Q?GEOINUN8xg1YISPJ4NQpry5yVx1XXcf196nBZpUo1iSzS4ScLgIOx2CAWt5W?=
- =?us-ascii?Q?aLJI3ezxy7ll5sKphLD6JcVXunPplSNAGdY7/9XcidPVRyx+zELiALHVw3V3?=
- =?us-ascii?Q?k80Y/32Zf3VegultIKtj6xP3ur6h1Z0AMvEif+LEmxVOSxTziUq3ihbpdxgg?=
- =?us-ascii?Q?VhbcKmO++0HlEH6mIqk=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?r+bmtanOx2ctzGtKGK7BIVtbFpkOf0LdbTLX1ig/5qCro+kxjPmszveN5AT/?=
+ =?us-ascii?Q?QKZjn8EJSlgxXGQJHNQqKzkKoGArzMIs2YM5VhEQrHrBZ51+P0gworwBh8KX?=
+ =?us-ascii?Q?ZzoTpMgrhsGPhlQlrTAHt2BQ8yUMshVnqU7fEc3pXApgqqwQduA0WBtrLJgU?=
+ =?us-ascii?Q?tkMjsecGqjE4oea19Y/ot7ZIMv8O102eMZoFc22kyvbRgLG6DUuvAZkOfTnK?=
+ =?us-ascii?Q?KVUlZS8OeOwZgOMuAFhFJjiMrvuR3y/Zh9D2xMZSIWZoEgl9Lj9sp8AC2Izi?=
+ =?us-ascii?Q?E500Ht2I7ur2BC+R4lVrkbC74QcbGTi+VAIIya8kZO1xAhHgsynwdMZpXBcp?=
+ =?us-ascii?Q?bmSU/GBjUkf8T8pni/Cl53wdxi9kEBrBC5He44sBqRJyMY/HkpZzi+9CFsGq?=
+ =?us-ascii?Q?np+CF1FAypjfwCfb8flqWw9GCRK398TVU6nKlOX+lhj1Ls4KAREeXEk//ESM?=
+ =?us-ascii?Q?DvfXIiaZGAOnyj/R7kuOAWWtcBJWM6mAHmBsaJXBZMFycDT07vWJcXyQFOSX?=
+ =?us-ascii?Q?IDJjE56BXNaJOSeG/frPr6AxPbZz52wOwz3RQxuEbB9f5pTstQ59/mPm6XbF?=
+ =?us-ascii?Q?praDMN8QWQgx6c4gJsoK7daUfOJ22fmuAyOD9R8TLPon3M6eVaVNtmSEaYCe?=
+ =?us-ascii?Q?WvlEN6ufkSLolyfh2ZFTsDfoTAHGGbQt0jrKMxmSIc7lWjW9oOvK8Bn4lM7L?=
+ =?us-ascii?Q?Ea4mi2tOMRPYsh186DLJS6vfUOysu+adMmdFfJrLKND+EDF6xSjkPtJqALRQ?=
+ =?us-ascii?Q?vE+BwmUap0/u9GZY1qKDFoPiMEFAZzuNIuK7St4ZnCdUBYvEr7/rqUVNu6Fa?=
+ =?us-ascii?Q?f6tnfETlQTXrL9sIOFzmmz56z7og38chNBpKLjLnglqz0SrF6aq4xu8WqQCY?=
+ =?us-ascii?Q?ubkwIwBb3El71IyJoeExLSGyrsct6H8hoEs+twcsGbq6a37a5RP50B5BT1P3?=
+ =?us-ascii?Q?1tCpu7/7EQO+EiaIqiwgFX5uZBnla40CPbEdFcrPMBchyqoeULKtpDgc0pzI?=
+ =?us-ascii?Q?ft1vlEYZrqOZHO9AIMFZwxQgqsp9XyxStHBzpRL9NSH7kMUfKlH0PrLoEo4l?=
+ =?us-ascii?Q?cGfYhQnbjn++ohOV9jErqMoEGEUu98Dncilsn2pAIy6hw4itmzD769RDDn2s?=
+ =?us-ascii?Q?EL/Tbxd0tBvHfzHTHalTlB11bxCZfEwk6lR+KPaE7jPjr9/dAltj0w9howEE?=
+ =?us-ascii?Q?HxmWRPOy74eMzPkfy9OcQ1H10twRYY86e7MDmxLkbd5V/kZFYAdhV6Blwv0g?=
+ =?us-ascii?Q?RFBowGSGrnqQ+/NxXzN6G/xa5c0IsGLqwKmBgQzzKwC5k9M2yqLQJEfAKqxC?=
+ =?us-ascii?Q?XwU10/NS8H2DPzcRndQahWn+qqDfX5CE4zp6C1I4AYhvnsK8wQXW/bbm4m66?=
+ =?us-ascii?Q?KbGwh4szzdKLFU1FeAGFjGslAZz3t97Bc3ziFMAa7YWnYWF+AklTIVVRLh/z?=
+ =?us-ascii?Q?AiFXW+fSXUjkCDzxdHw2GE2az4/Am1ukxIUAu6FAvO3PhJHSOqNtaeyg+yYw?=
+ =?us-ascii?Q?788AbhmHe5/eR0j3kMnOrQFqL5ZPPg/Xk0G8XL6vA1ToW665jkobdluJsF0o?=
+ =?us-ascii?Q?0D0aJrDHOnvbjhCTzjs=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB6991.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b93583d-eef9-4523-7b66-08dbb6029528
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2023 15:44:01.1499 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7ab42d7-5ec2-49d3-8f08-08dbb6046320
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2023 15:56:56.1937 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: B9Edg1NXtzTd257ZD8eewz8XRzhqKkOMbUrUBgfuEK+bZeQBWzlGOyi9s40xkULnI084e6hymimTUjcEQu4m2Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4592
+X-MS-Exchange-CrossTenant-userprincipalname: aKEfOQzM1AJiUSimoPFwzdQufiw6iwPfhyi/uAcUUu2ift5mYSj6PqwAXxF/80TksgUDqJL+w9NxgH3FjPyfKA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4781
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915: Create a kernel context for
- GGTT updates
+Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915: Implement GGTT update method
+ with MI_UPDATE_GTT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,7 +155,7 @@ Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>, "Shyti,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Oak Zeng <oak.zeng@intel.com>
+
 
 Thanks,
 Oak
@@ -173,189 +170,335 @@ owski,
 un,
 > Gwan-gyeong <gwan-gyeong.mun@intel.com>; Roper, Matthew D
 > <matthew.d.roper@intel.com>; Das, Nirmoy <nirmoy.das@intel.com>
-> Subject: [PATCH 2/7] drm/i915: Create a kernel context for GGTT updates
+> Subject: [PATCH 5/7] drm/i915: Implement GGTT update method with
+> MI_UPDATE_GTT
 >=20
-> Create a separate kernel context if a platform requires
-> GGTT updates using MI_UPDATE_GTT blitter command.
+> Implement GGTT update method with blitter command, MI_UPDATE_GTT
+> and install those handlers if a platform requires that.
 >=20
-> Subsequent patch will introduce methods to update
-> GGTT using this bind context and MI_UPDATE_GTT blitter
-> command.
+> v2: Make sure we hold the GT wakeref and Blitter engine wakeref before
+> we call mutex_lock/intel_context_enter below. When GT/engine are not
+> awake, the intel_context_enter calls into some runtime pm function which
+> can end up with kmalloc/fs_reclaim. But trigger fs_reclaim holding a
+> mutex lock is not allowed because shrinker can also try to hold the same
+> mutex lock. It is a circular lock. So hold the GT/blitter engine wakeref
+> before calling mutex_lock, to fix the circular lock.
 >=20
 > Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+> Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_engine.h       |  2 ++
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 35 +++++++++++++++++++-
->  drivers/gpu/drm/i915/gt/intel_engine_types.h |  3 ++
->  drivers/gpu/drm/i915/gt/intel_gt.c           | 18 ++++++++++
->  drivers/gpu/drm/i915/gt/intel_gt.h           |  2 ++
->  5 files changed, 59 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c | 235 +++++++++++++++++++++++++++
+>  1 file changed, 235 insertions(+)
 >=20
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h
-> b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index b58c30ac8ef0..40269e4c1e31 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -170,6 +170,8 @@ intel_write_status_page(struct intel_engine_cs *engin=
-e,
-> int reg, u32 value)
->  #define I915_GEM_HWS_SEQNO		0x40
->  #define I915_GEM_HWS_SEQNO_ADDR		(I915_GEM_HWS_SEQNO
-> * sizeof(u32))
->  #define I915_GEM_HWS_MIGRATE		(0x42 * sizeof(u32))
-> +#define I915_GEM_HWS_GGTT_BIND		0x46
-> +#define I915_GEM_HWS_GGTT_BIND_ADDR	(I915_GEM_HWS_GGTT_BIND *
-> sizeof(u32))
->  #define I915_GEM_HWS_PXP		0x60
->  #define I915_GEM_HWS_PXP_ADDR		(I915_GEM_HWS_PXP *
-> sizeof(u32))
->  #define I915_GEM_HWS_GSC		0x62
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index dfb69fc977a0..18ae56ea012a 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -1419,6 +1419,20 @@ void intel_engine_destroy_pinned_context(struct
-> intel_context *ce)
->  	intel_context_put(ce);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index dd0ed941441a..b94de7cebfce 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -15,18 +15,23 @@
+>  #include "display/intel_display.h"
+>  #include "gem/i915_gem_lmem.h"
+>=20
+> +#include "intel_context.h"
+>  #include "intel_ggtt_gmch.h"
+> +#include "intel_gpu_commands.h"
+>  #include "intel_gt.h"
+>  #include "intel_gt_regs.h"
+>  #include "intel_pci_config.h"
+> +#include "intel_ring.h"
+>  #include "i915_drv.h"
+>  #include "i915_pci.h"
+> +#include "i915_request.h"
+>  #include "i915_scatterlist.h"
+>  #include "i915_utils.h"
+>  #include "i915_vgpu.h"
+>=20
+>  #include "intel_gtt.h"
+>  #include "gen8_ppgtt.h"
+> +#include "intel_engine_pm.h"
+>=20
+>  static void i915_ggtt_color_adjust(const struct drm_mm_node *node,
+>  				   unsigned long color,
+> @@ -252,6 +257,145 @@ u64 gen8_ggtt_pte_encode(dma_addr_t addr,
+>  	return pte;
 >  }
 >=20
-> +static struct intel_context *
-> +create_ggtt_bind_context(struct intel_engine_cs *engine)
+> +static bool should_update_ggtt_with_bind(struct i915_ggtt *ggtt)
 > +{
-> +	static struct lock_class_key kernel;
+> +	struct intel_gt *gt =3D ggtt->vm.gt;
 > +
-> +	/*
-> +	 * MI_UPDATE_GTT can insert up to 512 PTE entries and there could be
-> multiple
-> +	 * bind requets at a time so get a bigger ring.
-> +	 */
-> +	return intel_engine_create_pinned_context(engine, engine->gt->vm,
-> SZ_512K,
-> +
-> I915_GEM_HWS_GGTT_BIND_ADDR,
-> +						  &kernel, "ggtt_bind_context");
+> +	return intel_gt_is_bind_context_ready(gt);
 > +}
 > +
->  static struct intel_context *
->  create_kernel_context(struct intel_engine_cs *engine)
->  {
-> @@ -1442,7 +1456,7 @@ create_kernel_context(struct intel_engine_cs *engin=
-e)
->   */
->  static int engine_init_common(struct intel_engine_cs *engine)
->  {
-> -	struct intel_context *ce;
-> +	struct intel_context *ce, *bce =3D NULL;
->  	int ret;
->=20
->  	engine->set_default_submission(engine);
-> @@ -1458,6 +1472,19 @@ static int engine_init_common(struct intel_engine_=
-cs
-> *engine)
->  	ce =3D create_kernel_context(engine);
->  	if (IS_ERR(ce))
->  		return PTR_ERR(ce);
+> +static struct intel_context *gen8_ggtt_bind_get_ce(struct i915_ggtt *ggt=
+t)
+> +{
+> +	struct intel_context *ce;
+> +	struct intel_gt *gt =3D ggtt->vm.gt;
+> +
+> +	if (intel_gt_is_wedged(gt))
+> +		return NULL;
+> +
+> +	ce =3D gt->engine[BCS0]->bind_context;
+> +	GEM_BUG_ON(!ce);
+> +
 > +	/*
-> +	 * Create a separate pinned context for GGTT update with blitter engine
-> +	 * if a platform require such service. MI_UPDATE_GTT works on other
-> +	 * engines as well but BCS should be less busy engine so pick that for
-> +	 * GGTT updates.
+> +	 * If the GT is not awake already at this stage then fallback
+> +	 * to pci based GGTT update otherwise __intel_wakeref_get_first()
+> +	 * would conflict with fs_reclaim trying to allocate memory while
+> +	 * doing rpm_resume().
 > +	 */
-> +	if (engine->id =3D=3D BCS0) {
-> +		bce =3D create_ggtt_bind_context(engine);
-> +		if (IS_ERR(bce)) {
-> +			intel_engine_destroy_pinned_context(ce);
-> +			return PTR_ERR(bce);
+> +	if (!intel_gt_pm_get_if_awake(gt))
+> +		return NULL;
+> +
+> +	intel_engine_pm_get(ce->engine);
+> +
+> +	return ce;
+> +}
+> +
+> +static void gen8_ggtt_bind_put_ce(struct intel_context *ce)
+> +{
+> +	intel_engine_pm_put(ce->engine);
+> +	intel_gt_pm_put(ce->engine->gt);
+> +}
+> +
+> +static bool gen8_ggtt_bind_ptes(struct i915_ggtt *ggtt, u32 offset,
+> +				struct sg_table *pages, u32 num_entries,
+> +				const gen8_pte_t pte)
+> +{
+> +	struct i915_sched_attr attr =3D {};
+> +	struct intel_gt *gt =3D ggtt->vm.gt;
+> +	const gen8_pte_t scratch_pte =3D ggtt->vm.scratch[0]->encode;
+> +	struct sgt_iter iter;
+> +	struct i915_request *rq;
+> +	struct intel_context *ce;
+> +	u32 *cs;
+> +
+> +	if (!num_entries)
+> +		return true;
+> +
+> +	ce =3D gen8_ggtt_bind_get_ce(ggtt);
+> +	if (!ce)
+> +		return false;
+> +
+> +	if (pages)
+> +		iter =3D __sgt_iter(pages->sgl, true);
+> +
+> +	while (num_entries) {
+> +		int count =3D 0;
+> +		dma_addr_t addr;
+> +		/*
+> +		 * MI_UPDATE_GTT can update 512 entries in a single command
+> but
+> +		 * that end up with engine reset, 511 works.
+> +		 */
+> +		u32 n_ptes =3D min_t(u32, 511, num_entries);
+> +
+> +		if (mutex_lock_interruptible(&ce->timeline->mutex))
+> +			goto put_ce;
+> +
+> +		intel_context_enter(ce);
+> +		rq =3D __i915_request_create(ce, GFP_NOWAIT | GFP_ATOMIC);
+> +		intel_context_exit(ce);
+> +		if (IS_ERR(rq)) {
+> +			GT_TRACE(gt, "Failed to get bind request\n");
+> +			mutex_unlock(&ce->timeline->mutex);
+> +			goto put_ce;
 > +		}
+> +
+> +		cs =3D intel_ring_begin(rq, 2 * n_ptes + 2);
+> +		if (IS_ERR(cs)) {
+> +			GT_TRACE(gt, "Failed to ring space for GGTT bind\n");
+> +			i915_request_set_error_once(rq, PTR_ERR(cs));
+> +			/* once a request is created, it must be queued */
+> +			goto queue_err_rq;
+> +		}
+> +
+> +		*cs++ =3D MI_UPDATE_GTT | (2 * n_ptes);
+> +		*cs++ =3D offset << 12;
+> +
+> +		if (pages) {
+> +			for_each_sgt_daddr_next(addr, iter) {
+> +				if (count =3D=3D n_ptes)
+> +					break;
+> +				*cs++ =3D lower_32_bits(pte | addr);
+> +				*cs++ =3D upper_32_bits(pte | addr);
+> +				count++;
+> +			}
+> +			/* fill remaining with scratch pte, if any */
+> +			if (count < n_ptes) {
+> +				memset64((u64 *)cs, scratch_pte,
+> +					 n_ptes - count);
+> +				cs +=3D (n_ptes - count) * 2;
+> +			}
+
+Should we return error instead of silently fill pte with scratch? Or maybe =
+even gem_bug_on on this case? The caller didn't allocate enough pages, mean=
+s something wrong happened...
+
+Oak
+
+> +		} else {
+> +			memset64((u64 *)cs, pte, n_ptes);
+> +			cs +=3D n_ptes * 2;
+> +		}
+> +
+> +		intel_ring_advance(rq, cs);
+> +queue_err_rq:
+> +		i915_request_get(rq);
+> +		__i915_request_commit(rq);
+> +		__i915_request_queue(rq, &attr);
+> +
+> +		mutex_unlock(&ce->timeline->mutex);
+> +		/* This will break if the request is complete or after engine reset
+> */
+> +		i915_request_wait(rq, 0, MAX_SCHEDULE_TIMEOUT);
+> +		if (rq->fence.error)
+> +			goto err_rq;
+> +
+> +		i915_request_put(rq);
+> +
+> +		num_entries -=3D n_ptes;
+> +		offset +=3D n_ptes;
 > +	}
->=20
->  	ret =3D measure_breadcrumb_dw(ce);
->  	if (ret < 0)
-> @@ -1465,11 +1492,14 @@ static int engine_init_common(struct intel_engine=
-_cs
-> *engine)
->=20
->  	engine->emit_fini_breadcrumb_dw =3D ret;
->  	engine->kernel_context =3D ce;
-> +	engine->bind_context =3D bce;
->=20
->  	return 0;
->=20
->  err_context:
->  	intel_engine_destroy_pinned_context(ce);
-> +	if (bce)
-> +		intel_engine_destroy_pinned_context(ce);
->  	return ret;
->  }
->=20
-> @@ -1537,6 +1567,9 @@ void intel_engine_cleanup_common(struct
-> intel_engine_cs *engine)
->=20
->  	if (engine->kernel_context)
->  		intel_engine_destroy_pinned_context(engine->kernel_context);
-> +	if (engine->bind_context)
-> +		intel_engine_destroy_pinned_context(engine->bind_context);
 > +
->=20
->  	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
->  	cleanup_status_page(engine);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> index a7e677598004..a8f527fab0f0 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> @@ -416,6 +416,9 @@ struct intel_engine_cs {
->  	struct llist_head barrier_tasks;
->=20
->  	struct intel_context *kernel_context; /* pinned */
-> +	struct intel_context *bind_context; /* pinned, only for BCS0 */
-> +	/* mark the bind context's availability status */
-> +	bool bind_context_ready;
->=20
->  	/**
->  	 * pinned_contexts_list: List of pinned contexts. This list is only
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c
-> b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 449f0b7fc843..cd0ff1597db9 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -1019,3 +1019,21 @@ enum i915_map_type
-> intel_gt_coherent_map_type(struct intel_gt *gt,
->  	else
->  		return I915_MAP_WC;
->  }
+> +	gen8_ggtt_bind_put_ce(ce);
+> +	return true;
 > +
-> +void intel_gt_bind_context_set_ready(struct intel_gt *gt, bool ready)
-> +{
-> +	struct intel_engine_cs *engine =3D gt->engine[BCS0];
-> +
-> +	if (engine && engine->bind_context)
-> +		engine->bind_context_ready =3D ready;
-> +}
-> +
-> +bool intel_gt_is_bind_context_ready(struct intel_gt *gt)
-> +{
-> +	struct intel_engine_cs *engine =3D gt->engine[BCS0];
-> +
-> +	if (engine)
-> +		return engine->bind_context_ready;
-> +
+> +err_rq:
+> +	i915_request_put(rq);
+> +put_ce:
+> +	gen8_ggtt_bind_put_ce(ce);
 > +	return false;
 > +}
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h
-> b/drivers/gpu/drm/i915/gt/intel_gt.h
-> index 239848bcb2a4..9e70e625cebc 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-> @@ -180,4 +180,6 @@ enum i915_map_type
-> intel_gt_coherent_map_type(struct intel_gt *gt,
->  					      struct drm_i915_gem_object *obj,
->  					      bool always_coherent);
+> +
+>  static void gen8_set_pte(void __iomem *addr, gen8_pte_t pte)
+>  {
+>  	writeq(pte, addr);
+> @@ -272,6 +416,21 @@ static void gen8_ggtt_insert_page(struct
+> i915_address_space *vm,
+>  	ggtt->invalidate(ggtt);
+>  }
 >=20
-> +void intel_gt_bind_context_set_ready(struct intel_gt *gt, bool ready);
-> +bool intel_gt_is_bind_context_ready(struct intel_gt *gt);
->  #endif /* __INTEL_GT_H__ */
+> +static void gen8_ggtt_insert_page_bind(struct i915_address_space *vm,
+> +				       dma_addr_t addr, u64 offset,
+> +				       unsigned int pat_index, u32 flags)
+> +{
+> +	struct i915_ggtt *ggtt =3D i915_vm_to_ggtt(vm);
+> +	gen8_pte_t pte;
+> +
+> +	pte =3D ggtt->vm.pte_encode(addr, pat_index, flags);
+> +	if (should_update_ggtt_with_bind(i915_vm_to_ggtt(vm)) &&
+> +	    gen8_ggtt_bind_ptes(ggtt, offset, NULL, 1, pte))
+> +		return ggtt->invalidate(ggtt);
+> +
+> +	gen8_ggtt_insert_page(vm, addr, offset, pat_index, flags);
+> +}
+> +
+>  static void gen8_ggtt_insert_entries(struct i915_address_space *vm,
+>  				     struct i915_vma_resource *vma_res,
+>  				     unsigned int pat_index,
+> @@ -311,6 +470,50 @@ static void gen8_ggtt_insert_entries(struct
+> i915_address_space *vm,
+>  	ggtt->invalidate(ggtt);
+>  }
+>=20
+> +static bool __gen8_ggtt_insert_entries_bind(struct i915_address_space *v=
+m,
+> +					    struct i915_vma_resource *vma_res,
+> +					    unsigned int pat_index, u32 flags)
+> +{
+> +	struct i915_ggtt *ggtt =3D i915_vm_to_ggtt(vm);
+> +	gen8_pte_t scratch_pte =3D vm->scratch[0]->encode;
+> +	gen8_pte_t pte_encode;
+> +	u64 start, end;
+> +
+> +	pte_encode =3D ggtt->vm.pte_encode(0, pat_index, flags);
+> +	start =3D (vma_res->start - vma_res->guard) / I915_GTT_PAGE_SIZE;
+> +	end =3D start + vma_res->guard / I915_GTT_PAGE_SIZE;
+> +	if (!gen8_ggtt_bind_ptes(ggtt, start, NULL, end - start, scratch_pte))
+> +		goto err;
+> +
+> +	start =3D end;
+> +	end +=3D (vma_res->node_size + vma_res->guard) / I915_GTT_PAGE_SIZE;
+> +	if (!gen8_ggtt_bind_ptes(ggtt, start, vma_res->bi.pages,
+> +	      vma_res->node_size / I915_GTT_PAGE_SIZE, pte_encode))
+> +		goto err;
+> +
+> +	start +=3D vma_res->node_size / I915_GTT_PAGE_SIZE;
+> +	if (!gen8_ggtt_bind_ptes(ggtt, start, NULL, end - start, scratch_pte))
+> +		goto err;
+> +
+> +	return true;
+> +
+> +err:
+> +	return false;
+> +}
+> +
+> +static void gen8_ggtt_insert_entries_bind(struct i915_address_space *vm,
+> +					  struct i915_vma_resource *vma_res,
+> +					  unsigned int pat_index, u32 flags)
+> +{
+> +	struct i915_ggtt *ggtt =3D i915_vm_to_ggtt(vm);
+> +
+> +	if (should_update_ggtt_with_bind(i915_vm_to_ggtt(vm)) &&
+> +	    __gen8_ggtt_insert_entries_bind(vm, vma_res, pat_index, flags))
+> +		return ggtt->invalidate(ggtt);
+> +
+> +	gen8_ggtt_insert_entries(vm, vma_res, pat_index, flags);
+> +}
+> +
+>  static void gen8_ggtt_clear_range(struct i915_address_space *vm,
+>  				  u64 start, u64 length)
+>  {
+> @@ -332,6 +535,27 @@ static void gen8_ggtt_clear_range(struct
+> i915_address_space *vm,
+>  		gen8_set_pte(&gtt_base[i], scratch_pte);
+>  }
+>=20
+> +static void gen8_ggtt_scratch_range_bind(struct i915_address_space *vm,
+> +					 u64 start, u64 length)
+> +{
+> +	struct i915_ggtt *ggtt =3D i915_vm_to_ggtt(vm);
+> +	unsigned int first_entry =3D start / I915_GTT_PAGE_SIZE;
+> +	unsigned int num_entries =3D length / I915_GTT_PAGE_SIZE;
+> +	const gen8_pte_t scratch_pte =3D vm->scratch[0]->encode;
+> +	const int max_entries =3D ggtt_total_entries(ggtt) - first_entry;
+> +
+> +	if (WARN(num_entries > max_entries,
+> +		 "First entry =3D %d; Num entries =3D %d (max=3D%d)\n",
+> +		 first_entry, num_entries, max_entries))
+> +		num_entries =3D max_entries;
+> +
+> +	if (should_update_ggtt_with_bind(ggtt) && gen8_ggtt_bind_ptes(ggtt,
+> first_entry,
+> +	     NULL, num_entries, scratch_pte))
+> +		return ggtt->invalidate(ggtt);
+> +
+> +	gen8_ggtt_clear_range(vm, start, length);
+> +}
+> +
+>  static void gen6_ggtt_insert_page(struct i915_address_space *vm,
+>  				  dma_addr_t addr,
+>  				  u64 offset,
+> @@ -997,6 +1221,17 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+>  			I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND;
+>  	}
+>=20
+> +	if (i915_ggtt_require_binder(i915)) {
+> +		ggtt->vm.scratch_range =3D gen8_ggtt_scratch_range_bind;
+> +		ggtt->vm.insert_page =3D gen8_ggtt_insert_page_bind;
+> +		ggtt->vm.insert_entries =3D gen8_ggtt_insert_entries_bind;
+> +		/*
+> +		 * On GPU is hung, we might bind VMAs for error capture.
+> +		 * Fallback to CPU GGTT updates in that case.
+> +		 */
+> +		ggtt->vm.raw_insert_page =3D gen8_ggtt_insert_page;
+> +	}
+> +
+>  	if (intel_uc_wants_guc(&ggtt->vm.gt->uc))
+>  		ggtt->invalidate =3D guc_ggtt_invalidate;
+>  	else
 > --
 > 2.41.0
 
