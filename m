@@ -1,63 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1744B7A14D3
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 06:38:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D15B47A1535
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 07:15:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A4DB10E0AD;
-	Fri, 15 Sep 2023 04:38:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77A1410E0A0;
+	Fri, 15 Sep 2023 05:15:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com
- [IPv6:2607:f8b0:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C88810E0AD
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 04:38:14 +0000 (UTC)
-Received: by mail-pf1-x431.google.com with SMTP id
- d2e1a72fcca58-68fb2e9ebbfso1411335b3a.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Sep 2023 21:38:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1694752694; x=1695357494;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=P6xmR7jlw0IbB3VWBm5rVQtoneTVrpegGRYEYV8nLys=;
- b=YpF/SYzhlri6MIvSLSfLVSuu3kSIOKI+Xwr8W8EzrvwNbND9GLEpwZGLJo74aqVtLu
- o3P03+AGFYv3w+t52qXrxiv64tHZtFcVmWKSJIm5ghbiO06EZ4OUoYPqeXssLS3UgbEH
- 6V+HXVGYOXQ9gDpb3sVcVGZWG3JVgP4t8CAG0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1694752694; x=1695357494;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=P6xmR7jlw0IbB3VWBm5rVQtoneTVrpegGRYEYV8nLys=;
- b=XEU7zd247MaYyN32ZgrlSkNhGNkJBNyvuP5kdVXHihvbsPwC9+vTg4/PglWTYzz1h3
- 9284tUa3oW/Ripod50uI7ckFtPB2/reUE7tYlzAsLFy8m9LK4I9aiUJoqwmPam55+/Ao
- CIrbaQ91Jp8Lg+YH76CdAV5I4o1+1UvCv2Yj+lX0r9cdkHzUXmKlQQeg5466f39iHVS8
- JHrOm3OG6ndLmzHLZLsU/W2xYYeGEXlLtTa3iJWbiY3+Tk68FeeH/bon5rFDlP95f8zG
- GMp3MgVvIcd2pwJoQ5+1TctzsIZ3UIvmUrosQc7JHs8LARsi+2Txv1Ufzc4t4eH6a2Vn
- v47g==
-X-Gm-Message-State: AOJu0Yz5a+VswP5h00KvK1HRuOabgCFaeIv8y0FamYa+o5QbDnFUe/0R
- PWzBAwLI23yYHhRW4IWzdduEjA==
-X-Google-Smtp-Source: AGHT+IFwyKUaO6hudOvRJCuyZ4AGYfBVqP4sKU1jrW6uaQ5K3+beOE0L71mI880YRk0jfwOpAcpWng==
-X-Received: by 2002:a05:6a00:21cb:b0:68f:fa05:b77a with SMTP id
- t11-20020a056a0021cb00b0068ffa05b77amr613661pfj.31.1694752694070; 
- Thu, 14 Sep 2023 21:38:14 -0700 (PDT)
-Received: from www.outflux.net (198-0-35-241-static.hfc.comcastbusiness.net.
- [198.0.35.241]) by smtp.gmail.com with ESMTPSA id
- j13-20020aa7800d000000b0068fb1709f52sm2061763pfi.136.2023.09.14.21.38.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 Sep 2023 21:38:13 -0700 (PDT)
-Date: Thu, 14 Sep 2023 21:38:12 -0700
-From: Kees Cook <keescook@chromium.org>
-To: Justin Stitt <justinstitt@google.com>
-Message-ID: <202309142137.DDC1D0A@keescook>
-References: <20230914-strncpy-drivers-gpu-drm-i915-gem-selftests-mock_context-c-v1-1-c3f92df942e0@google.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E041110E0A0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 05:15:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694754953; x=1726290953;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=2WcGX9P9deCnCjq8jVeayORw3luP87bM7yEoC4AIA0Q=;
+ b=Oh2LrWj5DUOcGuhusHfrq4ZsobisGWsE+3bAAJY1qZPib5ZmXwoT8poA
+ EakDyu/m92UTLybJsHBeSribNKlb5WhPT5Jl+AAWfBA7RYLinkOH3SAYt
+ faL0eWElnk44EdOQYJWcCEEoMmykIafkAPVMqC1v0OKKX1c+PxdH8rwt4
+ bG8BV7UX7evwHW7ynEI9MOlKRTT4Nx7VKiQ+nHy9WoXCK70oPr5uCH3xn
+ mMZMVkopz9sxOIc/0Pzi1D7NXE+bAgl6VSbv0iT4H3MJnSKuMe2mzs49w
+ iVv65rHjLpytXaFPIHNAWcqwmemUt0VUlC9ohRWOgE1IY8t130LSpDVRH g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="376496638"
+X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; d="scan'208";a="376496638"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 22:15:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="744824739"
+X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; d="scan'208";a="744824739"
+Received: from swatish2-mobl2.gar.corp.intel.com (HELO [10.213.104.157])
+ ([10.213.104.157])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 22:15:50 -0700
+Message-ID: <74c06653-92b0-7601-84fd-27a7492fea1e@intel.com>
+Date: Fri, 15 Sep 2023 10:45:46 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230914-strncpy-drivers-gpu-drm-i915-gem-selftests-mock_context-c-v1-1-c3f92df942e0@google.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: refactor deprecated strncpy
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Content-Language: en-US
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20230914113854.10008-1-ville.syrjala@linux.intel.com>
+From: "Sharma, Swati2" <swati2.sharma@intel.com>
+In-Reply-To: <20230914113854.10008-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/fbc: Remove ancient 16k plane
+ stride limit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,62 +63,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- linux-hardening@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 14, 2023 at 09:14:07PM +0000, Justin Stitt wrote:
-> `strncpy` is deprecated for use on NUL-terminated destination strings [1].
-> 
-> We should prefer more robust and less ambiguous string interfaces.
-> 
-> A suitable replacement is `strscpy` [2] due to the fact that it guarantees
-> NUL-termination on the destination buffer without unnecessarily NUL-padding.
-> 
-> `ctx` is zero allocated and as such strncpy's NUL-padding behavior was
-> strictly a performance hit which should now be resolved. It should be
-> noted, however, that performance is not critical in these selftests,
-> especially by these margins.
-> 
-> Link: https://www.kernel.org/doc/html/latest/process/deprecated.html#strncpy-on-nul-terminated-strings [1]
-> Link: https://manpages.debian.org/testing/linux-manual-4.8/strscpy.9.en.html [2]
-> Link: https://github.com/KSPP/linux/issues/90
-> Cc: linux-hardening@vger.kernel.org
-> Signed-off-by: Justin Stitt <justinstitt@google.com>
-> ---
->  drivers/gpu/drm/i915/gem/selftests/mock_context.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> index 8ac6726ec16b..025b9c773b93 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> @@ -36,7 +36,7 @@ mock_context(struct drm_i915_private *i915,
->  	if (name) {
->  		struct i915_ppgtt *ppgtt;
->  
-> -		strncpy(ctx->name, name, sizeof(ctx->name) - 1);
-> +		strscpy(ctx->name, name, sizeof(ctx->name) - 1);
+Thanks Ville for the fix!
+LGTM
 
-I'd expect the "- 1" to go away...
+Reviewed-by: Swati Sharma <swati2.sharma@intel.com>
 
--Kees
+On 14-Sep-23 5:08 PM, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> The 16k max plane stride limit seems to be originally from
+> i965gm, and no limit explicit limit has been specified since (g4x+).
 
->  
->  		ppgtt = mock_ppgtt(i915, name);
->  		if (!ppgtt)
-> 
-> ---
-> base-commit: 3669558bdf354cd352be955ef2764cde6a9bf5ec
-> change-id: 20230914-strncpy-drivers-gpu-drm-i915-gem-selftests-mock_context-c-980c8ecc9142
-> 
-> Best regards,
-> --
-> Justin Stitt <justinstitt@google.com>
-> 
+nitpick: "limit" seems to be extra here
 
--- 
-Kees Cook
+> So let's assume the max plane stride itself is a suitable limit
+> also for the more recent FBC hardware.
+> 
+> In fact even for i965gm the max X-tiled stride is also 16k so
+> technically we don't need the check there either, but let's
+> keep it there anyway since it's explicitly mentioned in the
+> spec. Gen2/3 have more strict limits checked separately.
+> 
+> Cc: Swati Sharma <swati2.sharma@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com> > ---
+>   drivers/gpu/drm/i915/display/intel_fbc.c | 6 ++----
+>   1 file changed, 2 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index 817e5784660b..1b3358a0fbfb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -866,7 +866,8 @@ static bool stride_is_valid(const struct intel_plane_state *plane_state)
+>   	if (DISPLAY_VER(i915) == 2 || DISPLAY_VER(i915) == 3)
+>   		return stride == 4096 || stride == 8192;
+>   
+> -	if (DISPLAY_VER(i915) == 4 && !IS_G4X(i915) && stride < 2048)
+> +	if (DISPLAY_VER(i915) == 4 && !IS_G4X(i915) &&
+> +	    (stride < 2048 || stride > 16384))
+>   		return false;
+>   
+>   	/* Display WA #1105: skl,bxt,kbl,cfl,glk */
+> @@ -874,9 +875,6 @@ static bool stride_is_valid(const struct intel_plane_state *plane_state)
+>   	    fb->modifier == DRM_FORMAT_MOD_LINEAR && stride & 511)
+>   		return false;
+>   
+> -	if (stride > 16384)
+> -		return false;
+> -
+>   	return true;
+>   }
+>   
