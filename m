@@ -2,47 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC7327A2028
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 15:49:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E3D7A20AA
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Sep 2023 16:17:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 298FA10E634;
-	Fri, 15 Sep 2023 13:49:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 894ED10E638;
+	Fri, 15 Sep 2023 14:17:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67DEB10E62F
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 Sep 2023 13:49:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F40810E638;
+ Fri, 15 Sep 2023 14:17:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694785775; x=1726321775;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NVQCYUnlXrC4jIQvD3Ek+1KHbJKjizhAhr3Ahuh9DGI=;
- b=Q1kWz36M+QjvP580jeJNkgWz9JWKiJZdvQBPRamgXTrSLocjjymBTu6V
- FRGEvECcSOIaILn3TO4AiuHj/Xjz6oZpZ1lKwe3yj3+Qo6CKZO3cp3pCK
- XLeWgbdmPYYbSVuiff+0+rLpDP8ujL5QNph9PdhTp/fCb/ty5CwEtyEm8
- BFpRXtxO+Q9dpy1ZonjzitJ90VE8xuejZhB7GO+vtzc+6LdTVcu92vCMq
- RSyEbpiFyM76SGGZMzJ6E0j1TyDlx329RdqVVX9v+FRIqwd4FQwe8pEBk
- DBEl6en31NL1ghuek82jTSUxAMRAocvNscebTSOYSqnUHEKMnEktlKRX+ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="378164530"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="378164530"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 06:49:34 -0700
+ t=1694787472; x=1726323472;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=cx41cKa/RBYb6E2/xEb8yE9p/WzNj4Uug7P74vjnNdg=;
+ b=gLfzPe/dS5ZvC8wnY2ZolfLUD64sq1yfH+6oS9XPxkbOW/BpB/WWjvUQ
+ 9zhqf3CJGzxfhELCU9//6NZOlumPNONw68khwgWOWM9ULIom/ST1bXWQe
+ dHBhQ1cD7FVN2HOn3u2yzUL1/WHnFEYyGDX6VQRh3Gn3RV0DomVJz9COE
+ Egs7vFIlsfRa1OSG70My6Zl9BIsjPOT09s0ANU/8YbDuWVlIEs/OdPMLv
+ A96qyoQuzYIm4J/koV5h/GRhadWpRPTz3J8etOMk77/ITOIZcsQ/okBTL
+ lbC7l3IRFEUKW6IG2sbxCLNA3r0x0aUYYkcMln1Nza22KoJ60+A7uuKrP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445715520"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445715520"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2023 07:17:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="774324819"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="774324819"
-Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 06:49:32 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Sep 2023 19:26:28 +0530
-Message-Id: <20230915135628.2952527-1-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="810535659"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="810535659"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.6.122])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2023 07:17:49 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: dri-devel@lists.freedesktop.org, Maira Canal <mairacanal@riseup.net>
+Date: Fri, 15 Sep 2023 16:17:46 +0200
+Message-ID: <3244709.oiGErgHkdL@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <4fb393ff-3b2a-369a-5e9f-f96d802b2d87@riseup.net>
+References: <20230911130323.7037-2-janusz.krzysztofik@linux.intel.com>
+ <4fb393ff-3b2a-369a-5e9f-f96d802b2d87@riseup.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Update RC6 mask for mtl_drpc
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+Subject: Re: [Intel-gfx] [PATCH] drm/tests: Fix incorrect argument in
+ drm_test_mm_insert_range
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,46 +61,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Cc: Daniel Latypov <dlatypov@google.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Arthur Grillo <arthurgrillo@riseup.net>, igt-dev@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, intel-xe@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It is seen that for RC6 status register is sometimes setting unused bits
-without affecting functionality. So updated the mask with used bits.
-As mtl_drpc is debug fs function removing MISSING_CASE from default case.
+Hi Ma=EDra,
 
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 1 -
- drivers/gpu/drm/i915/gt/intel_gt_regs.h       | 2 +-
- 2 files changed, 1 insertion(+), 2 deletions(-)
+Thanks for review.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-index 357e2f865727..f900cc68d6d9 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-@@ -290,7 +290,6 @@ static int mtl_drpc(struct seq_file *m)
- 		seq_puts(m, "RC6\n");
- 		break;
- 	default:
--		MISSING_CASE(REG_FIELD_GET(MTL_CC_MASK, gt_core_status));
- 		seq_puts(m, "Unknown\n");
- 		break;
- 	}
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index a00ff51c681d..71b31d52c646 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -26,7 +26,7 @@
- #define   MTL_CAGF_MASK				REG_GENMASK(8, 0)
- #define   MTL_CC0				0x0
- #define   MTL_CC6				0x3
--#define   MTL_CC_MASK				REG_GENMASK(12, 9)
-+#define   MTL_CC_MASK				REG_GENMASK(10, 9)
- 
- /* RPM unit config (Gen8+) */
- #define RPM_CONFIG0				_MMIO(0xd00)
--- 
-2.25.1
+On Friday, 15 September 2023 16:01:31 CEST Maira Canal wrote:
+> Hi,
+>=20
+> On 9/11/23 10:03, Janusz Krzysztofik wrote:
+> > While drm_mm test was converted form igt selftest to kunit, unexpected
+> > value of "end" argument equal "start" was introduced to one of calls to=
+ a
+> > function that executes the drm_test_mm_insert_range for specific start/=
+end
+> > pair of arguments.  As a consequence, DRM_MM_BUG_ON(end <=3D start) is
+> > triggered.  Fix it by restoring the original value.
+> >=20
+> > Fixes: fc8d29e298cf ("drm: selftest: convert drm_mm selftest to KUnit")
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+>=20
+> Reviewed-by: Ma=EDra Canal <mairacanal@riseup.net>
+>=20
+> Do you need me to push it to drm-misc-fixes?
+
+Yes, please do if you can.
+
+Thanks,
+Janusz
+
+>=20
+> Best Regards,
+> - Ma=EDra
+>=20
+> > Cc: "Ma=EDra Canal" <mairacanal@riseup.net>
+> > Cc: Arthur Grillo <arthurgrillo@riseup.net>
+> > Cc: Javier Martinez Canillas <javierm@redhat.com>
+> > Cc: Daniel Latypov <dlatypov@google.com>
+> > Cc: stable@vger.kernel.org # v6.1+
+> > ---
+> >   drivers/gpu/drm/tests/drm_mm_test.c | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/tests/drm_mm_test.c b/drivers/gpu/drm/test=
+s/drm_mm_test.c
+> > index 186b28dc70380..05d5e7af6d250 100644
+> > --- a/drivers/gpu/drm/tests/drm_mm_test.c
+> > +++ b/drivers/gpu/drm/tests/drm_mm_test.c
+> > @@ -939,7 +939,7 @@ static void drm_test_mm_insert_range(struct kunit *=
+test)
+> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
+ze, 0, max - 1));
+> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
+ze, 0, max / 2));
+> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
+ze,
+> > -								    max / 2, max / 2));
+> > +								    max / 2, max));
+> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
+ze,
+> >   								    max / 4 + 1, 3 * max / 4 - 1));
+> >  =20
+>=20
+
+
+
 
