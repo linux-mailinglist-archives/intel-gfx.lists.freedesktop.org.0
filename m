@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A388E7A4981
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Sep 2023 14:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C42727A4ACA
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Sep 2023 15:52:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA2C210E276;
-	Mon, 18 Sep 2023 12:24:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A240C10E0C7;
+	Mon, 18 Sep 2023 13:52:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0928B10E636;
- Fri, 15 Sep 2023 14:44:55 +0000 (UTC)
-Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx1.riseup.net (Postfix) with ESMTPS id 4RnH5y3fX8zDqvw;
- Fri, 15 Sep 2023 14:44:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1694789094; bh=7WnGctcR0Nrmkhsk6tceK1RcYZ5Am2ri8k6V1DoAUMc=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=iXxnJ5nNuAR/TT25xPkyoZ7C8+tc/mdSy63JMbauFXWvg23adbAiPPLSUCKW9M08D
- 9oh1Nm91xZhgsr6q3KcUaaOG5YoGx4ub+NOVG4mTLTTEWshr0vQSXF9I9huYTU3B1e
- Ck82mwiHs8pWwUwflFd6Ro//hT6DzqiHunyc+BTQ=
-X-Riseup-User-ID: B37274D3CE7D0BDD056CF7E221C90C8893195330A846BAE59AAA21B3419799E0
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4RnH5v5fNczJmpf;
- Fri, 15 Sep 2023 14:44:51 +0000 (UTC)
-Message-ID: <5ef3e508-9f0a-1c73-ac42-e6c7ac4e027e@riseup.net>
-Date: Fri, 15 Sep 2023 11:44:49 -0300
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B65AF10E011;
+ Mon, 18 Sep 2023 13:52:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695045144; x=1726581144;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NP1h+0UKldLz1lY9m6HbO8rN+lE/bgTGhXtzh53+ZzU=;
+ b=StO+iggF6C8h96MCl/t/rM7CKp+jLnFTT9QogSkTATfF8HNKmif+V277
+ Ea9jN63K8XWWUhw2igU/q39nXueOXYHA7sBhxAl4bFeyctxpQWU0TtuY5
+ YRxQf4BnEwpMTNz/AAW3gQDW1GbEYcYujQV0oIx8QaQQpFfrCOwL4D/5x
+ EmFzThxeKCa0LSnMdv2uRYNapii9e5Fp0cWsWXL71+Vv7cVniFAWEyr1y
+ OhMz9ZTNQC3jph/Zb3NztjnMUVW7+1MTZuAc4b3/TTyfvGAN+FbQu8tGf
+ vSY/ieOFP9EYwch64Ru7CTG1ag/vLOmrKmgccAE52+eyQfMOQms5gbWt2 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="376969479"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="376969479"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 06:52:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="749030431"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="749030431"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.18.199])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 06:52:21 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Mon, 18 Sep 2023 15:42:50 +0200
+Message-ID: <20230918134249.31645-19-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Language: en-US
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-References: <20230911130323.7037-2-janusz.krzysztofik@linux.intel.com>
- <4fb393ff-3b2a-369a-5e9f-f96d802b2d87@riseup.net>
- <3244709.oiGErgHkdL@jkrzyszt-mobl2.ger.corp.intel.com>
-From: Maira Canal <mairacanal@riseup.net>
-In-Reply-To: <3244709.oiGErgHkdL@jkrzyszt-mobl2.ger.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 Sep 2023 12:24:43 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/tests: Fix incorrect argument in
- drm_test_mm_insert_range
+Subject: [Intel-gfx] [PATCH i-g-t v3 00/17] Fix IGT Kunit implementation
+ issues
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,75 +56,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Latypov <dlatypov@google.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Arthur Grillo <arthurgrillo@riseup.net>, igt-dev@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, intel-xe@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Dominik=20Karol=20Pi=C4=85tkowski?=
+ <dominik.karol.piatkowski@intel.com>, Isabella Basso <isabbasso@riseup.net>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, intel-xe@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 9/15/23 11:17, Janusz Krzysztofik wrote:
-> Hi Maíra,
-> 
-> Thanks for review.
-> 
-> On Friday, 15 September 2023 16:01:31 CEST Maira Canal wrote:
->> Hi,
->>
->> On 9/11/23 10:03, Janusz Krzysztofik wrote:
->>> While drm_mm test was converted form igt selftest to kunit, unexpected
->>> value of "end" argument equal "start" was introduced to one of calls to a
->>> function that executes the drm_test_mm_insert_range for specific start/end
->>> pair of arguments.  As a consequence, DRM_MM_BUG_ON(end <= start) is
->>> triggered.  Fix it by restoring the original value.
->>>
->>> Fixes: fc8d29e298cf ("drm: selftest: convert drm_mm selftest to KUnit")
->>> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
->>
->> Reviewed-by: Maíra Canal <mairacanal@riseup.net>
->>
->> Do you need me to push it to drm-misc-fixes?
-> 
-> Yes, please do if you can.
+v3: Also call igt_skip() on igt_ktest_init() failure (Mauro), but then,
+    initialize local tst structure when declaring it to avoid freeing a
+    random pointer from igt_ktest_fini() when only listing subtests,
+  - call igt_ktest_end() from igt_fixture so it is not unnecessarily
+    called when only listing subtests,
+  - drop EINTR handling completely as not applicable since SIGINT default
+    signal handler kills the whole process anyway,
+  - update commit description to also mention read error handling fix,
+  - interrupt blocking read() on modprobe failure.
+v2: Fix incorrect and missing includes in the test source file,
+  - add license and copyright clauses to the test source file.
 
-Pushed to drm-misc/drm-misc-fixes. Thanks!
+Janusz Krzysztofik (17):
+  lib/kunit: Drop unused file stream
+  lib/kunit: Stop loading kunit module explicitly
+  lib/kunit: Fix struct kmod_module kunit_kmod not freed
+  lib/kunit: Optimize calls to igt_success/skip/fail()
+  lib/kunit: Fix illegal igt_fail() calls inside subtest body
+  lib/ktap: Make sure we fail on premature cancel
+  lib/ktap: Drop checks for EINTR on read() failures
+  lib/kunit: Cancel KTP parser on module load failure
+  lib/ktap: Drop is_running flag
+  lib/ktap: Read /dev/kmsg in blocking mode
+  lib/kunit: Fail / skip on kernel taint
+  lib/ktap: Use IGT linked lists for storing KTAP results
+  lib/ktap: Reimplement KTAP parser
+  lib/kunit: Load test modules in background
+  lib/kunit: Parse KTAP report from the main process thread
+  lib/kunit: Strip "_test" or "_kunit" suffix from subtest names
+  lib/kunit: Omit suite name prefix if the same as subtest name
 
-Best Regards,
-- Maíra
+ lib/igt_kmod.c              | 320 ++++++++++----
+ lib/igt_ktap.c              | 833 ++++++++++++------------------------
+ lib/igt_ktap.h              |  28 +-
+ lib/tests/igt_ktap_parser.c | 246 +++++++++++
+ lib/tests/meson.build       |   1 +
+ tests/drm_mm.c              |  42 +-
+ 6 files changed, 775 insertions(+), 695 deletions(-)
+ create mode 100644 lib/tests/igt_ktap_parser.c
 
-> 
-> Thanks,
-> Janusz
-> 
->>
->> Best Regards,
->> - Maíra
->>
->>> Cc: "Maíra Canal" <mairacanal@riseup.net>
->>> Cc: Arthur Grillo <arthurgrillo@riseup.net>
->>> Cc: Javier Martinez Canillas <javierm@redhat.com>
->>> Cc: Daniel Latypov <dlatypov@google.com>
->>> Cc: stable@vger.kernel.org # v6.1+
->>> ---
->>>    drivers/gpu/drm/tests/drm_mm_test.c | 2 +-
->>>    1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/tests/drm_mm_test.c b/drivers/gpu/drm/tests/drm_mm_test.c
->>> index 186b28dc70380..05d5e7af6d250 100644
->>> --- a/drivers/gpu/drm/tests/drm_mm_test.c
->>> +++ b/drivers/gpu/drm/tests/drm_mm_test.c
->>> @@ -939,7 +939,7 @@ static void drm_test_mm_insert_range(struct kunit *test)
->>>    		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, size, 0, max - 1));
->>>    		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, size, 0, max / 2));
->>>    		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, size,
->>> -								    max / 2, max / 2));
->>> +								    max / 2, max));
->>>    		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, size,
->>>    								    max / 4 + 1, 3 * max / 4 - 1));
->>>    
->>
-> 
-> 
-> 
-> 
+-- 
+2.41.0
+
