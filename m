@@ -1,54 +1,71 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB487A64ED
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Sep 2023 15:31:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC69E7A6617
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Sep 2023 16:03:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4804C10E287;
-	Tue, 19 Sep 2023 13:31:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5915410E12C;
+	Tue, 19 Sep 2023 14:03:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5F8010E287
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Sep 2023 13:31:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695130286; x=1726666286;
- h=date:from:to:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=bio11/gOuzJUJiVy0CRW9Nc+Miy11BomsxTeMl4SDcA=;
- b=bFfTYV+StyrUfvFsmX3PbcTn8mJdINe9aTbWzb3GCQaB/znDv1DWXHRh
- ARDKSgTqV9TInVXiFewuf+E2Zva6JKcXclqYCKJxBQN2ZIlLgt7HuL/QT
- ddG7fYJ1IKX7W78OXkVwqF1DoCMUGQvKCRvPBR2ZJZSVBkTbFyprPAm2R
- gP9XXwwJlTK5NmDluoghgDJyo4IqNIaEoXHqzUSv87SQa3iv26gObnGFr
- AZK9RxaWgPeXxIh92mDB2Fh0M86jz05k8uc6WtZKmvZBIzVUEREeL4Yvb
- xDaVXx6lzF89yaq4mL3uLjgc/RMuNsBT564kgz7M25JBz8MP6DFQ9Iup3 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="410871540"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="410871540"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 06:29:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="749478759"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="749478759"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 06:29:30 -0700
-Date: Tue, 19 Sep 2023 16:29:51 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <ZQmiT8MEVCnI13on@ideak-desk.fi.intel.com>
-References: <20230914192659.757475-1-imre.deak@intel.com>
- <169512453031.3667.994176278823103721@emeril.freedesktop.org>
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com
+ [IPv6:2607:f8b0:4864:20::62e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A5C410E11F;
+ Tue, 19 Sep 2023 14:03:09 +0000 (UTC)
+Received: by mail-pl1-x62e.google.com with SMTP id
+ d9443c01a7336-1bf7a6509deso42043005ad.3; 
+ Tue, 19 Sep 2023 07:03:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1695132188; x=1695736988; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=PYn4vYjqybxZ2CzfvZ1C7yMXEKjRphlK8G76dbCmVAc=;
+ b=IiKFPtEUaQ4C0meJN3bGGdbsTvzXwdNb9jfe4dc1HaQ/XMJ8DgyUGIK1qEEStBT4i1
+ 73P334dGpdWzbwbgqbZ5rw3Ag5SiGOp+YAU9vMbvDqVA+ceqlSnE2hFNS1Bc23ysLWqT
+ wohQwpOqyToPvRrlAPhXz9UHbgLtzIE9YVWTyXQ7AdCo18soxDeXaAjKqPieWB2Qb1Kv
+ xXqUDZtUa6/wPDXzTbXwMvXplWc+aVfxHHXgkQX/QU6nqgYK0S1fC8YP9I7ZbN1K/9vY
+ SewMti6//arnEGG5Si9F2kd3eM3s3yWMWOYazL5NsJ0zhSsa8sa222jN5yqOTsQAuLYm
+ eWKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1695132188; x=1695736988;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=PYn4vYjqybxZ2CzfvZ1C7yMXEKjRphlK8G76dbCmVAc=;
+ b=kWvOn04Y+DSIS8NH2MgGZUhCTVFJnifYecSEu4m4l36HZIl4d2G0mKJT3/eBastrVF
+ WQnttIiNRHVzF9WlBU1sA6ffco7djh7swi+cTTYwzC/W3iMy1+D3JIk364nrGFbNWur2
+ 9evByWttrH5hTZGegZG8JkdrSD78ktPKJ5MIfgjijbbBYzi+83LBG/D3XLlIcR96YUgE
+ XamChJTBE6ORbe7JN7UFREvL5iTYzHwmo1EPwZNRy7NIyoS5ccADVjl9sWfq2Yw0HyG3
+ MPBQwOx5lRjcShIMv78YyCNWjB5Iv5RrxInVAelWc0WJKuoEa1+a71c4i/sT2gYAyv+2
+ jhLw==
+X-Gm-Message-State: AOJu0YwfLxXijCvRbhl7S2SYP2Q+qOS1fxMzS1hUBHlFzQxcV1zMss4T
+ MPc6Bc0GcgYx2vO5dryojz4=
+X-Google-Smtp-Source: AGHT+IGwwKUALeHqOp8CRjZ7BjDjcFcSYhkLiMtNnowNteilCqrInFdFlEZiMXIIUrM2Bcc35bHHPg==
+X-Received: by 2002:a17:902:e5c4:b0:1c5:82bb:223e with SMTP id
+ u4-20020a170902e5c400b001c582bb223emr3883918plf.67.1695132188320; 
+ Tue, 19 Sep 2023 07:03:08 -0700 (PDT)
+Received: from debian.me ([103.124.138.83]) by smtp.gmail.com with ESMTPSA id
+ z12-20020a170903018c00b001beef2c9bffsm10062609plg.85.2023.09.19.07.03.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 19 Sep 2023 07:03:07 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+ id CCEAD81A82C8; Tue, 19 Sep 2023 21:03:03 +0700 (WIB)
+Date: Tue, 19 Sep 2023 21:03:03 +0700
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Oleksandr Natalenko <oleksandr@natalenko.name>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Message-ID: <ZQmqF7oyrZ32Qdhb@debian.me>
+References: <4857570.31r3eYUQgx@natalenko.name>
+ <6287208.lOV4Wx5bFT@natalenko.name>
+ <2612319.ElGaqSPkdT@natalenko.name>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="qr0otETeDhzUuptw"
 Content-Disposition: inline
-In-Reply-To: <169512453031.3667.994176278823103721@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Improve_BW_management_on_shared_display_links_=28rev10?=
- =?utf-8?q?=29?=
+In-Reply-To: <2612319.ElGaqSPkdT@natalenko.name>
+Subject: Re: [Intel-gfx] [REGRESSION] [BISECTED] Panic in
+ gen8_ggtt_insert_entries() with v6.5
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,189 +78,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Linux Regressions <regressions@lists.linux.dev>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Linux Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux DRI Development <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Nathan Chancellor <nathan@kernel.org>,
+ linux-mm@kvack.org, Matthew Wilcox <willy@infradead.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
+ David Airlie <airlied@gmail.com>, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 19, 2023 at 11:55:30AM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/i915: Improve BW management on shared display links (rev10)
-> URL   : https://patchwork.freedesktop.org/series/122589/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_13651 -> Patchwork_122589v10
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_122589v10 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_122589v10, please notify your bug team (lgci.bug.filing@intel.com) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/index.html
-> 
-> Participating hosts (38 -> 37)
-> ------------------------------
-> 
->   Additional (2): fi-kbl-soraka bat-rpls-2 
->   Missing    (3): fi-tgl-1115g4 bat-atsm-1 fi-snb-2520m 
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_122589v10:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@i915_module_load@load:
->     - bat-mtlp-8:         [PASS][1] -> [INCOMPLETE][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/bat-mtlp-8/igt@i915_module_load@load.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/bat-mtlp-8/igt@i915_module_load@load.html
 
-Looks like an issue in 
-intel_crtc_initial_plane_config() -> intel_plane_disable_noatomic()
+--qr0otETeDhzUuptw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-which has been happening on different mtlp machines, recently in
-CI_DRM_13651 / re-mtlp-7. I opened a ticket for it:
-https://gitlab.freedesktop.org/drm/intel/-/issues/9366
+On Tue, Sep 19, 2023 at 03:23:28PM +0200, Oleksandr Natalenko wrote:
+> /cc Bagas as well (see below).
+>=20
+> On =C3=BAter=C3=BD 19. z=C3=A1=C5=99=C3=AD 2023 10:26:42 CEST Oleksandr N=
+atalenko wrote:
+> > /cc Matthew Wilcox and Andrew Morton because of folios (please see belo=
+w).
+> >=20
+> > On sobota 2. z=C3=A1=C5=99=C3=AD 2023 18:14:12 CEST Oleksandr Natalenko=
+ wrote:
+> > > Hello.
+> > >=20
+> > > Since v6.5 kernel the following HW:
+> > >=20
+> > > * Lenovo T460s laptop with Skylake GT2 [HD Graphics 520] (rev 07)
+> > > * Lenovo T490s laptop with WhiskeyLake-U GT2 [UHD Graphics 620] (rev =
+02)
+> > >=20
+> > > is affected by the following crash once KDE on either X11 or Wayland =
+is started:
+> > >=20
+> > > i915 0000:00:02.0: enabling device (0006 -> 0007)
+> > > i915 0000:00:02.0: vgaarb: deactivate vga console
+> > > i915 0000:00:02.0: vgaarb: changed VGA decodes: olddecodes=3Dio+mem,d=
+ecodes=3Dio+mem:owns=3Dmem
+> > > i915 0000:00:02.0: [drm] Finished loading DMC firmware i915/skl_dmc_v=
+er1_27.bin (v1.27)
+> > > [drm] Initialized i915 1.6.0 20201103 for 0000:00:02.0 on minor 1
+> > > fbcon: i915drmfb (fb0) is primary device
+> > > i915 0000:00:02.0: [drm] fb0: i915drmfb frame buffer device
+> > > =E2=80=A6
+> > > memfd_create() without MFD_EXEC nor MFD_NOEXEC_SEAL, pid=3D674 'kwin_=
+wayland'
+> > > BUG: unable to handle page fault for address: ffffb422c2800000
+> > > #PF: supervisor write access in kernel mode
+> > > #PF: error_code(0x0002) - not-present page
+> > > PGD 100000067 P4D 100000067 PUD 1001df067 PMD 10d1cf067 PTE 0
+> > > Oops: 0002 [#1] PREEMPT SMP PTI
+> > > CPU: 1 PID: 674 Comm: kwin_wayland Not tainted 6.5.0-pf1 #1 a6c58ff41=
+a7b8bb16a19f5af9e0e9bce20f9f38d
+> > > Hardware name: LENOVO 20FAS2BM0F/20FAS2BM0F, BIOS N1CET90W (1.58 ) 11=
+/15/2022
+> > > RIP: 0010:gen8_ggtt_insert_entries+0xc2/0x140 [i915]
+> > > =E2=80=A6
+> > > Call Trace:
+> > >  <TASK>
+> > >  intel_ggtt_bind_vma+0x3e/0x60 [i915 a83fdc6539431252dba13053979a8b68=
+0af86836]
+> > >  i915_vma_bind+0x216/0x4b0 [i915 a83fdc6539431252dba13053979a8b680af8=
+6836]
+> > >  i915_vma_pin_ww+0x405/0xa80 [i915 a83fdc6539431252dba13053979a8b680a=
+f86836]
+> > >  __i915_ggtt_pin+0x5a/0x130 [i915 a83fdc6539431252dba13053979a8b680af=
+86836]
+> > >  i915_ggtt_pin+0x78/0x1f0 [i915 a83fdc6539431252dba13053979a8b680af86=
+836]
+> > >  __intel_context_do_pin_ww+0x312/0x700 [i915 a83fdc6539431252dba13053=
+979a8b680af86836]
+> > >  i915_gem_do_execbuffer+0xfc6/0x2720 [i915 a83fdc6539431252dba1305397=
+9a8b680af86836]
+> > >  i915_gem_execbuffer2_ioctl+0x111/0x260 [i915 a83fdc6539431252dba1305=
+3979a8b680af86836]
+> > >  drm_ioctl_kernel+0xca/0x170
+> > >  drm_ioctl+0x30f/0x580
+> > >  __x64_sys_ioctl+0x94/0xd0
+> > >  do_syscall_64+0x5d/0x90
+> > >  entry_SYSCALL_64_after_hwframe+0x6e/0xd8
+> > > =E2=80=A6
+> > > note: kwin_wayland[674] exited with irqs disabled
+> > >=20
+> > > RIP seems to translate into this:
+> > >=20
+> > > $ scripts/faddr2line drivers/gpu/drm/i915/gt/intel_ggtt.o gen8_ggtt_i=
+nsert_entries+0xc2
+> > > gen8_ggtt_insert_entries+0xc2/0x150:
+> > > writeq at /home/pf/work/devel/own/pf-kernel/linux/./arch/x86/include/=
+asm/io.h:99
+> > > (inlined by) gen8_set_pte at /home/pf/work/devel/own/pf-kernel/linux/=
+drivers/gpu/drm/i915/gt/intel_ggtt.c:257
+> > > (inlined by) gen8_ggtt_insert_entries at /home/pf/work/devel/own/pf-k=
+ernel/linux/drivers/gpu/drm/i915/gt/intel_ggtt.c:300
+> > >=20
+> > > Probably, recent PTE-related changes are relevant:
+> > >=20
+> > > $ git log --oneline --no-merges v6.4..v6.5 -- drivers/gpu/drm/i915/gt=
+/intel_ggtt.c
+> > > 3532e75dfadcf drm/i915/uc: perma-pin firmwares
+> > > 4722e2ebe6f21 drm/i915/gt: Fix second parameter type of pre-gen8 pte_=
+encode callbacks
+> > > 9275277d53248 drm/i915: use pat_index instead of cache_level
+> > > 5e352e32aec23 drm/i915: preparation for using PAT index
+> > > 341ad0e8e2542 drm/i915/mtl: Add PTE encode function
+> > >=20
+> > > Also note Lenovo T14s laptop with TigerLake-LP GT2 [Iris Xe Graphics]=
+ (rev 01) is not affected by this issue.
+> > >=20
+> > > Full dmesg with DRM debug enabled is available in the bugreport I've =
+reported earlier [1]. I'm sending this email to make the issue more visible.
+> > >=20
+> > > Please help.
+> > >=20
+> > > Thanks.
+> > >=20
+> > > [1] https://gitlab.freedesktop.org/drm/intel/-/issues/9256
+> >=20
+> > Matthew,
+> >=20
+> > Andrzej asked me to try to revert commits 0b62af28f249, e0b72c14d8dc an=
+d 1e0877d58b1e, and reverting those fixed the i915 crash for me. The e0b72c=
+14d8dc and 1e0877d58b1e commits look like just prerequisites, so I assume 0=
+b62af28f249 ("i915: convert shmem_sg_free_table() to use a folio_batch") is=
+ the culprit here.
+> >=20
+> > Could you please check this?
+> >=20
+> > Our conversation with Andrzej is available at drm-intel GitLab [1].
+> >=20
+> > Thanks.
+> >=20
+> > [1] https://gitlab.freedesktop.org/drm/intel/-/issues/9256
+>=20
+> Bagas,
+>=20
+> would you mind adding this to the regression tracker please?
+>=20
 
->   * igt@runner@aborted:
->     - bat-rpls-2:         NOTRUN -> [FAIL][3]
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/bat-rpls-2/igt@runner@aborted.html
+Will add shortly, thanks!
 
-This is an issue unrelated to i915, happening before loading the driver:
+--=20
+An old man doll... just what I always wanted! - Clara
 
-6>[   12.711379] pcieport 0000:00:1d.0:   bridge window [mem 0x6001000000-0x60019fffff 64bit pref]
+--qr0otETeDhzUuptw
+Content-Type: application/pgp-signature; name="signature.asc"
 
-<4>[   12.715089] ======================================================
-<4>[   12.721385] WARNING: possible circular locking dependency detected
-<4>[   12.727676] 6.6.0-rc2-Patchwork_122589v10-g61b71c3f061a+ #1 Not tainted
-<4>[   12.734394] ------------------------------------------------------
-<4>[   12.740680] irq/123-pciehp/150 is trying to acquire lock:
-<4>[   12.746193] ffff888105adc2f8 (&ctrl->reset_lock){.+.+}-{3:3}, at: pciehp_configure_device+0xb5/0x160
-<4>[   12.755573]
-                  but task is already holding lock:
-<4>[   12.761693] ffffffff827aeb68 (pci_rescan_remove_lock){+.+.}-{3:3}, at: pciehp_configure_device+0x23/0x160
+-----BEGIN PGP SIGNATURE-----
 
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_122589v10 that come from known issues:
-> 
-> ### CI changes ###
-> 
-> #### Issues hit ####
-> 
->   * boot:
->     - fi-hsw-4770:        [PASS][4] -> [FAIL][5] ([i915#8293])
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/fi-hsw-4770/boot.html
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/fi-hsw-4770/boot.html
-> 
->   
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@gem_huc_copy@huc-copy:
->     - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#2190])
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-> 
->   * igt@gem_lmem_swapping@basic:
->     - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#4613]) +3 other tests skip
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/fi-kbl-soraka/igt@gem_lmem_swapping@basic.html
-> 
->   * igt@i915_selftest@live@gt_pm:
->     - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][8] ([i915#1886] / [i915#7913])
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-> 
->   * igt@kms_dsc@dsc-basic:
->     - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271]) +9 other tests skip
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/fi-kbl-soraka/igt@kms_dsc@dsc-basic.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@i915_selftest@live@execlists:
->     - fi-bsw-n3050:       [ABORT][10] ([i915#7913]) -> [PASS][11]
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-> 
->   * igt@kms_chamelium_edid@hdmi-edid-read:
->     - {bat-dg2-13}:       [DMESG-WARN][12] ([i915#7952]) -> [PASS][13]
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
-> 
->   * igt@kms_hdmi_inject@inject-audio:
->     - fi-kbl-guc:         [FAIL][14] ([IGT#3] / [i915#6121]) -> [PASS][15]
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/fi-kbl-guc/igt@kms_hdmi_inject@inject-audio.html
-> 
->   
->   {name}: This element is suppressed. This means it is ignored when computing
->           the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
->   [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
->   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
->   [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
->   [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
->   [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
->   [i915#6121]: https://gitlab.freedesktop.org/drm/intel/issues/6121
->   [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
->   [i915#7952]: https://gitlab.freedesktop.org/drm/intel/issues/7952
->   [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: CI_DRM_13651 -> Patchwork_122589v10
-> 
->   CI-20190529: 20190529
->   CI_DRM_13651: 61b71c3f061a44a6ab1dcf756918886aa03a5480 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_7493: 2517e42d612e0c1ca096acf8b5f6177f7ef4bce7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   Patchwork_122589v10: 61b71c3f061a44a6ab1dcf756918886aa03a5480 @ git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> 
-> ### Linux commits
-> 
-> 083e3c934233 drm/i915/dp_mst: Check BW limitations only after all streams are computed
-> 981a0f4e3e4c drm/i915/dp_mst: Improve BW sharing between MST streams
-> 56ef0e4b6625 drm/i915/dp_mst: Allow DSC only for sink ports of the first branch device
-> d6dd87fac678 drm/i915/dp_mst: Add missing DSC compression disabling
-> 1a32e08efe98 drm/i915/dp_mst: Enable DSC decompression if any stream needs this
-> 6cc7e9ed99c7 drm/i915/dp: Make sure the DSC PPS SDP is disabled whenever DSC is disabled
-> 11fc2f2b8219 drm/i915/dp_mst: Program the DSC PPS SDP for each stream
-> 1ae3523042c4 drm/i915/dp_mst: Add atomic state for all streams on pre-tgl platforms
-> a0ef3c0a67ac drm/i915/dp_mst: Fix PBN calculation with FEC overhead
-> cbeff948d039 drm/dp_mst: Swap the order of checking root vs. non-root port BW limitations
-> 53b98fbfae49 drm/dp_mst: Factor out a helper to check the atomic state of a topology manager
-> 08dccb8ead0c drm/dp_mst: Add helper to determine if an MST port is downstream of another port
-> 9ce658a8cf6c drm/dp_mst: Add a way to calculate PBN values with FEC overhead
-> 0a1f353ad215 drm/dp_mst: Fix fractional DSC bpp handling
-> ff78e7f980c5 drm/i915/fdi: Recompute state for affected CRTCs on FDI links
-> 94262c175ffd drm/i915/fdi: Improve FDI BW sharing between pipe B and C
-> bfb10a7239d1 drm/i915: Add helpers for BW management on shared display links
-> 0899c01543f4 drm/i915: Factor out a helper to check/compute all the CRTC states
-> 81ea58177388 drm/i915: Rename intel_modeset_all_pipes() to intel_modeset_all_pipes_late()
-> f3bc271dbb8b drm/i915: Add helper to modeset a set of pipes
-> 45a2fb673630 drm/i915/dp: Limit the output link bpp in DSC mode
-> a14f3e77aa9f drm/i915/dp: Update the link bpp limits for DSC mode
-> 7b7d3300dc14 drm/i915/dp: Skip computing a non-DSC link config if DSC is needed
-> 94fc9fc20497 drm/i915/dp: Track the pipe and link bpp limits separately
-> 33e00687bb18 drm/i915/dp: Factor out helpers to compute the link limits
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_122589v10/index.html
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZQmqAgAKCRD2uYlJVVFO
+ow2JAP0edcVoa2ibxwmEKL50V95Q+tuCyFU5b9EKHD4pXbLNgQD+PIaHonsixovR
+szsV8iCL4IaV/XCjda0iGXeUtnR3XgM=
+=rxM3
+-----END PGP SIGNATURE-----
+
+--qr0otETeDhzUuptw--
