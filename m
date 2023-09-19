@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C8837A69B5
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Sep 2023 19:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ADEC7A69D1
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Sep 2023 19:44:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C18AB10E148;
-	Tue, 19 Sep 2023 17:39:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15B5D10E13A;
+	Tue, 19 Sep 2023 17:44:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF4CA10E13D
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Sep 2023 17:39:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E734E10E13A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Sep 2023 17:44:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695145189; x=1726681189;
+ t=1695145486; x=1726681486;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=LTau/q5KhhRk4YSzrmSk41ZAd+CxP1W3Wa2lI4nBvCI=;
- b=AnbVOb3xw6q8dnoptdQbglh4xkyz6wxBX37jpI6qAiowLs+dYAxMMt6I
- Fy48c3W1rStNMYDlhFVgTxUNBIS/l8LhZBWxN5DyK3mxWKwO7MisfIERu
- pN/LaZuwpwTFterdixJIwJjMVhJipn/bE3nHsMwlqz5dkySqfmtF4/Pmk
- 5LN8huiplMMc+QYih6nRxnsClWGTXfuBQH8riXQzL5Eqv0OlnAdUxiSG0
- FVwfGm1uts25A6Vxw1mSjJ/XPdhUOfG8bdTfc4GuhJlipXRiX+pzZlohp
- n7KNWzstNYEhKvu3Z7k8Jikdr3q2jH+HWan4KZJHFl7jftEd7SK20oSqE w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="444097670"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="444097670"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 10:39:49 -0700
+ bh=VjgAY+rkCFre6ZysHempN7XeLkMf1zOuhHPTOZQHgE4=;
+ b=hNAvmUDIAXfPiUCHzKkeyQkA6jNQn7nMTjE+NqcNQnbHFHn4BSl119PE
+ QhkZuJRo4M4Du6Wp4EuoNyQJxT7zkOgP3Mes/9tTm6VDRI8ny7gXgde4j
+ I93Sd8Mj1Aps+tsi546zT6O+lOZh9HZRP/q2OunRFUfHZ6n4b4ljR90Gy
+ Zqb74ShSo8dCUguElH8MvWYrVETZAxm0Cr71x/ODzsoxYqR7iXiI/idHe
+ Sih7+IioyNVcL1ApF80udwfHrXMEocNuS5oT4L7R4GkbsUWtdfjFAetLx
+ nAlpQvxq7JRWbWGUCuLi7VGVfQO8hzPJ98cUoBjcSWInmHVm/GHSItZxk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="359401045"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="359401045"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2023 10:44:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="746318924"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="746318924"
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="775652376"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="775652376"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 10:39:47 -0700
-Date: Tue, 19 Sep 2023 20:40:09 +0300
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2023 10:44:44 -0700
+Date: Tue, 19 Sep 2023 20:45:05 +0300
 From: Imre Deak <imre.deak@intel.com>
 To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <ZQnc2PIHzl1uqPiB@ideak-desk.fi.intel.com>
-References: <20230915003354.857552-1-imre.deak@intel.com>
- <20230918182506.1634464-3-imre.deak@intel.com>
- <ZQm8kC-lxZ62614M@intel.com>
+Message-ID: <ZQneIT+/lUf5REfq@ideak-desk.fi.intel.com>
+References: <20230914192659.757475-1-imre.deak@intel.com>
+ <20230914192659.757475-11-imre.deak@intel.com>
+ <ZQSw-bjeE3_vf1sR@intel.com>
+ <ZQTlMaipby0nnOYP@ideak-desk.fi.intel.com>
+ <ZQm_wpxQdL8Z74WB@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZQm8kC-lxZ62614M@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 09/25] drm/i915: Add helpers for BW
- management on shared display links
+In-Reply-To: <ZQm_wpxQdL8Z74WB@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 10/25] drm/i915/fdi: Improve FDI BW
+ sharing between pipe B and C
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,582 +68,446 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 19, 2023 at 06:21:52PM +0300, Ville Syrjälä wrote:
-> On Mon, Sep 18, 2023 at 09:25:05PM +0300, Imre Deak wrote:
-> > At the moment a modeset fails if the config computation of a pipe can't
-> > fit its required BW to the available link BW even though the limitation
-> > may be resolved by reducing the BW requirement of other pipes.
+On Tue, Sep 19, 2023 at 06:35:30PM +0300, Ville Syrjälä wrote:
+> On Sat, Sep 16, 2023 at 02:13:53AM +0300, Imre Deak wrote:
+> > On Fri, Sep 15, 2023 at 10:31:05PM +0300, Ville Syrjälä wrote:
+> > > On Thu, Sep 14, 2023 at 10:26:44PM +0300, Imre Deak wrote:
+> > > > At the moment modesetting pipe C on IVB will fail if pipe B uses 4 FDI
+> > > > lanes. Make the BW sharing more dynamic by trying to reduce pipe B's
+> > > > link bpp in this case, until pipe B uses only up to 2 FDI lanes.
+> > > > 
+> > > > For this instead of the encoder compute config retry loop - which
+> > > > reduced link bpp only for the encoder's pipe - reduce the maximum link
+> > > > bpp for pipe B/C as required after all CRTC states are computed and
+> > > > recompute the CRTC states with the new bpp limit.
+> > > > 
+> > > > v2:
+> > > > - Don't assume that a CRTC is already in the atomic state, while
+> > > >   reducing its link bpp.
+> > > > - Add DocBook description to intel_fdi_atomic_check_link().
+> > > > v3:
+> > > > - Enable BW management for FDI links in a separate patch. (Ville)
+> > > > 
+> > > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/g4x_hdmi.c      |  6 +-
+> > > >  drivers/gpu/drm/i915/display/intel_crt.c     |  7 ++
+> > > >  drivers/gpu/drm/i915/display/intel_display.c | 14 +---
+> > > >  drivers/gpu/drm/i915/display/intel_dp.c      |  3 +-
+> > > >  drivers/gpu/drm/i915/display/intel_fdi.c     | 87 +++++++++++++++-----
+> > > >  drivers/gpu/drm/i915/display/intel_fdi.h     |  4 +
+> > > >  drivers/gpu/drm/i915/display/intel_link_bw.c |  7 +-
+> > > >  drivers/gpu/drm/i915/display/intel_lvds.c    | 10 ++-
+> > > >  drivers/gpu/drm/i915/display/intel_sdvo.c    | 10 ++-
+> > > >  9 files changed, 107 insertions(+), 41 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > > > index 634b14116d9dd..8b5d26cd3b85e 100644
+> > > > --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > > > +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > > > @@ -19,6 +19,7 @@
+> > > >  #include "intel_fifo_underrun.h"
+> > > >  #include "intel_hdmi.h"
+> > > >  #include "intel_hotplug.h"
+> > > > +#include "intel_link_bw.h"
+> > > >  #include "intel_sdvo.h"
+> > > >  #include "vlv_sideband.h"
+> > > >  
+> > > > @@ -133,8 +134,11 @@ static int g4x_hdmi_compute_config(struct intel_encoder *encoder,
+> > > >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > > >  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> > > >  
+> > > > -	if (HAS_PCH_SPLIT(i915))
+> > > > +	if (HAS_PCH_SPLIT(i915)) {
+> > > >  		crtc_state->has_pch_encoder = true;
+> > > > +		if (!intel_link_bw_compute_pipe_bpp(crtc_state))
+> > > > +			return -EINVAL;
+> > > > +	}
+> > > >  
+> > > >  	if (IS_G4X(i915))
+> > > >  		crtc_state->has_hdmi_sink = g4x_compute_has_hdmi_sink(state, crtc);
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+> > > > index f6df6c4fa72ef..7aa89d0fa3d6c 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> > > > @@ -49,6 +49,7 @@
+> > > >  #include "intel_gmbus.h"
+> > > >  #include "intel_hotplug.h"
+> > > >  #include "intel_hotplug_irq.h"
+> > > > +#include "intel_link_bw.h"
+> > > >  #include "intel_load_detect.h"
+> > > >  #include "intel_pch_display.h"
+> > > >  #include "intel_pch_refclk.h"
+> > > > @@ -413,6 +414,9 @@ static int pch_crt_compute_config(struct intel_encoder *encoder,
+> > > >  		return -EINVAL;
+> > > >  
+> > > >  	pipe_config->has_pch_encoder = true;
+> > > > +	if (!intel_link_bw_compute_pipe_bpp(pipe_config))
+> > > > +		return -EINVAL;
+> > > > +
+> > > >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+> > > >  
+> > > >  	return 0;
+> > > > @@ -435,6 +439,9 @@ static int hsw_crt_compute_config(struct intel_encoder *encoder,
+> > > >  		return -EINVAL;
+> > > >  
+> > > >  	pipe_config->has_pch_encoder = true;
+> > > > +	if (!intel_link_bw_compute_pipe_bpp(pipe_config))
+> > > > +		return -EINVAL;
+> > > > +
+> > > >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+> > > >  
+> > > >  	/* LPT FDI RX only supports 8bpc. */
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > index 29816153fdd59..aad16dcceb788 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -4607,7 +4607,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
+> > > >  	struct drm_connector_state *connector_state;
+> > > >  	int pipe_src_w, pipe_src_h;
+> > > >  	int base_bpp, ret, i;
+> > > > -	bool retry = true;
+> > > >  
+> > > >  	crtc_state->cpu_transcoder = (enum transcoder) crtc->pipe;
+> > > >  
+> > > > @@ -4637,6 +4636,7 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
+> > > >  			    "[CRTC:%d:%s] Link bpp limited to " BPP_X16_FMT "\n",
+> > > >  			    crtc->base.base.id, crtc->base.name,
+> > > >  			    BPP_X16_ARGS(crtc_state->max_link_bpp_x16));
+> > > > +		crtc_state->bw_constrained = true;
+> > > >  	}
+> > > >  
+> > > >  	base_bpp = crtc_state->pipe_bpp;
+> > > > @@ -4680,7 +4680,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
+> > > >  			crtc_state->output_types |= BIT(encoder->type);
+> > > >  	}
+> > > >  
+> > > > -encoder_retry:
+> > > >  	/* Ensure the port clock defaults are reset when retrying. */
+> > > >  	crtc_state->port_clock = 0;
+> > > >  	crtc_state->pixel_multiplier = 1;
+> > > > @@ -4720,17 +4719,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
+> > > >  	ret = intel_crtc_compute_config(state, crtc);
+> > > >  	if (ret == -EDEADLK)
+> > > >  		return ret;
+> > > > -	if (ret == -EAGAIN) {
+> > > > -		if (drm_WARN(&i915->drm, !retry,
+> > > > -			     "[CRTC:%d:%s] loop in pipe configuration computation\n",
+> > > > -			     crtc->base.base.id, crtc->base.name))
+> > > > -			return -EINVAL;
+> > > > -
+> > > > -		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] bw constrained, retrying\n",
+> > > > -			    crtc->base.base.id, crtc->base.name);
+> > > > -		retry = false;
+> > > > -		goto encoder_retry;
+> > > > -	}
+> > > >  	if (ret < 0) {
+> > > >  		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] config failure: %d\n",
+> > > >  			    crtc->base.base.id, crtc->base.name, ret);
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > index d5e6813d36c8f..03010accc1c7f 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > > @@ -2219,7 +2219,8 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
+> > > >  	const struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+> > > >  	int max_link_bpp_x16;
+> > > >  
+> > > > -	max_link_bpp_x16 = to_bpp_x16(limits->pipe.max_bpp);
+> > > > +	max_link_bpp_x16 = min(crtc_state->max_link_bpp_x16,
+> > > > +			       to_bpp_x16(limits->pipe.max_bpp));
+> > > >  
+> > > >  	if (!dsc) {
+> > > >  		max_link_bpp_x16 = rounddown(max_link_bpp_x16, to_bpp_x16(2 * 3));
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
+> > > > index 4d7d524c68017..ad01915a4a39b 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_fdi.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+> > > > @@ -13,6 +13,7 @@
+> > > >  #include "intel_display_types.h"
+> > > >  #include "intel_fdi.h"
+> > > >  #include "intel_fdi_regs.h"
+> > > > +#include "intel_link_bw.h"
+> > > >  
+> > > >  struct intel_fdi_funcs {
+> > > >  	void (*fdi_link_train)(struct intel_crtc *crtc,
+> > > > @@ -129,13 +130,16 @@ static int pipe_required_fdi_lanes(struct intel_crtc_state *crtc_state)
+> > > >  }
+> > > >  
+> > > >  static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
+> > > > -			       struct intel_crtc_state *pipe_config)
+> > > > +			       struct intel_crtc_state *pipe_config,
+> > > > +			       enum pipe *pipe_to_reduce)
+> > > >  {
+> > > >  	struct drm_i915_private *dev_priv = to_i915(dev);
+> > > >  	struct drm_atomic_state *state = pipe_config->uapi.state;
+> > > >  	struct intel_crtc *other_crtc;
+> > > >  	struct intel_crtc_state *other_crtc_state;
+> > > >  
+> > > > +	*pipe_to_reduce = pipe;
+> > > > +
+> > > >  	drm_dbg_kms(&dev_priv->drm,
+> > > >  		    "checking fdi config on pipe %c, lanes %i\n",
+> > > >  		    pipe_name(pipe), pipe_config->fdi_lanes);
+> > > > @@ -198,6 +202,9 @@ static int ilk_check_fdi_lanes(struct drm_device *dev, enum pipe pipe,
+> > > >  		if (pipe_required_fdi_lanes(other_crtc_state) > 2) {
+> > > >  			drm_dbg_kms(&dev_priv->drm,
+> > > >  				    "fdi link B uses too many lanes to enable link C\n");
+> > > > +
+> > > > +			*pipe_to_reduce = PIPE_B;
+> > > > +
+> > > >  			return -EINVAL;
+> > > >  		}
+> > > >  		return 0;
+> > > > @@ -238,10 +245,8 @@ int ilk_fdi_compute_config(struct intel_crtc *crtc,
+> > > >  	struct drm_device *dev = crtc->base.dev;
+> > > >  	struct drm_i915_private *i915 = to_i915(dev);
+> > > >  	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+> > > > -	int lane, link_bw, fdi_dotclock, ret;
+> > > > -	bool needs_recompute = false;
+> > > > +	int lane, link_bw, fdi_dotclock;
+> > > >  
+> > > > -retry:
+> > > >  	/* FDI is a binary signal running at ~2.7GHz, encoding
+> > > >  	 * each output octet as 10 bits. The actual frequency
+> > > >  	 * is stored as a divider into a 100MHz clock, and the
+> > > > @@ -261,25 +266,69 @@ int ilk_fdi_compute_config(struct intel_crtc *crtc,
+> > > >  	intel_link_compute_m_n(pipe_config->pipe_bpp, lane, fdi_dotclock,
+> > > >  			       link_bw, &pipe_config->fdi_m_n, false);
+> > > >  
+> > > > -	ret = ilk_check_fdi_lanes(dev, crtc->pipe, pipe_config);
+> > > > -	if (ret == -EDEADLK)
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int intel_fdi_atomic_check_bw(struct intel_atomic_state *state,
+> > > > +				     struct intel_crtc *crtc,
+> > > > +				     struct intel_crtc_state *pipe_config,
+> > > > +				     struct intel_link_bw_limits *limits)
+> > > > +{
+> > > > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> > > > +	enum pipe pipe_to_reduce;
+> > > > +	int ret;
+> > > > +
+> > > > +	ret = ilk_check_fdi_lanes(&i915->drm, crtc->pipe, pipe_config,
+> > > > +				  &pipe_to_reduce);
+> > > > +	if (ret != -EINVAL)
+> > > >  		return ret;
+> > > >  
+> > > > -	if (ret == -EINVAL && pipe_config->pipe_bpp > 6*3) {
+> > > > -		pipe_config->pipe_bpp -= 2*3;
+> > > > -		drm_dbg_kms(&i915->drm,
+> > > > -			    "fdi link bw constraint, reducing pipe bpp to %i\n",
+> > > > -			    pipe_config->pipe_bpp);
+> > > > -		needs_recompute = true;
+> > > > -		pipe_config->bw_constrained = true;
+> > > > -
+> > > > -		goto retry;
+> > > > +	ret = intel_link_bw_reduce_bpp(state, limits,
+> > > > +				       BIT(pipe_to_reduce),
+> > > > +				       "FDI link BW");
+> > > > +
+> > > > +	return ret ? : -EAGAIN;
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * intel_fdi_atomic_check_link - check all modeset FDI link configuration
+> > > > + * @state: intel atomic state
+> > > > + * @limits: link BW limits
+> > > > + *
+> > > > + * Check the link configuration for all modeset FDI outputs. If the
+> > > > + * configuration is invalid @limits will be updated if possible to
+> > > > + * reduce the total BW, after which the configuration for all CRTCs in
+> > > > + * @state must be recomputed with the updated @limits.
+> > > > + *
+> > > > + * Returns:
+> > > > + *   - 0 if the confugration is valid
+> > > > + *   - %-EAGAIN, if the configuration is invalid and @limits got updated
+> > > > + *     with fallback values with which the configuration of all CRTCs
+> > > > + *     in @state must be recomputed
+> > > > + *   - Other negative error, if the configuration is invalid without a
+> > > > + *     fallback possibility, or the check failed for another reason
+> > > > + */
+> > > > +int intel_fdi_atomic_check_link(struct intel_atomic_state *state,
+> > > > +				struct intel_link_bw_limits *limits)
+> > > > +{
+> > > > +	struct intel_crtc *crtc;
+> > > > +	struct intel_crtc_state *crtc_state;
+> > > > +	int i;
+> > > > +
+> > > > +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> > > > +		int ret;
+> > > > +
+> > > > +		if (!crtc_state->has_pch_encoder ||
+> > > > +		    !intel_crtc_needs_modeset(crtc_state) ||
+> > > > +		    !crtc_state->hw.enable)
+> > > > +			continue;
+> > > > +
+> > > > +		ret = intel_fdi_atomic_check_bw(state, crtc, crtc_state, limits);
+> > > > +		if (ret)
+> > > > +			return ret;
+> > > >  	}
+> > > >  
+> > > > -	if (needs_recompute)
+> > > > -		return -EAGAIN;
+> > > > -
+> > > > -	return ret;
+> > > > +	return 0;
+> > > >  }
+> > > >  
+> > > >  static void cpt_set_fdi_bc_bifurcation(struct drm_i915_private *dev_priv, bool enable)
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i915/display/intel_fdi.h
+> > > > index 1cdb86172702f..129444c580f27 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_fdi.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_fdi.h
+> > > > @@ -8,14 +8,18 @@
+> > > >  
+> > > >  enum pipe;
+> > > >  struct drm_i915_private;
+> > > > +struct intel_atomic_state;
+> > > >  struct intel_crtc;
+> > > >  struct intel_crtc_state;
+> > > >  struct intel_encoder;
+> > > > +struct intel_link_bw_limits;
+> > > >  
+> > > >  int intel_fdi_link_freq(struct drm_i915_private *i915,
+> > > >  			const struct intel_crtc_state *pipe_config);
+> > > >  int ilk_fdi_compute_config(struct intel_crtc *intel_crtc,
+> > > >  			   struct intel_crtc_state *pipe_config);
+> > > > +int intel_fdi_atomic_check_link(struct intel_atomic_state *state,
+> > > > +				struct intel_link_bw_limits *limits);
+> > > >  void intel_fdi_normal_train(struct intel_crtc *crtc);
+> > > >  void ilk_fdi_disable(struct intel_crtc *crtc);
+> > > >  void ilk_fdi_pll_disable(struct intel_crtc *intel_crtc);
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/drm/i915/display/intel_link_bw.c
+> > > > index 22494772b9d59..aacf22bab3135 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_link_bw.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
+> > > > @@ -160,7 +160,12 @@ intel_link_bw_reset_pipe_limit_to_min(struct intel_atomic_state *state,
+> > > >  static int check_all_link_config(struct intel_atomic_state *state,
+> > > >  				 struct intel_link_bw_limits *limits)
+> > > >  {
+> > > > -	/* TODO: Check all shared display link configurations like FDI */
+> > > > +	int ret;
+> > > > +
+> > > > +	ret = intel_fdi_atomic_check_link(state, limits);
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > >  	return 0;
+> > > >  }
+> > > >  
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+> > > > index 3ace56979b70e..0366d4cc6b72b 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+> > > > @@ -48,6 +48,7 @@
+> > > >  #include "intel_dpll.h"
+> > > >  #include "intel_fdi.h"
+> > > >  #include "intel_gmbus.h"
+> > > > +#include "intel_link_bw.h"
+> > > >  #include "intel_lvds.h"
+> > > >  #include "intel_lvds_regs.h"
+> > > >  #include "intel_panel.h"
+> > > > @@ -425,6 +426,12 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
+> > > >  		return -EINVAL;
+> > > >  	}
+> > > >  
+> > > > +	if (HAS_PCH_SPLIT(i915)) {
+> > > > +		crtc_state->has_pch_encoder = true;
+> > > > +		if (!intel_link_bw_compute_pipe_bpp(crtc_state))
+> > > > +			return -EINVAL;
+> > > > +	}
+> > > > +
+> > > >  	if (lvds_encoder->a3_power == LVDS_A3_POWER_UP)
+> > > >  		lvds_bpp = 8*3;
+> > > >  	else
+> > > > @@ -453,9 +460,6 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
+> > > >  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+> > > >  		return -EINVAL;
+> > > >  
+> > > > -	if (HAS_PCH_SPLIT(i915))
+> > > > -		crtc_state->has_pch_encoder = true;
+> > > > -
+> > > >  	ret = intel_panel_fitting(crtc_state, conn_state);
+> > > >  	if (ret)
+> > > >  		return ret;
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > > > index 135a2527fd1b4..3c912f3bc10ba 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > > > @@ -48,6 +48,7 @@
+> > > >  #include "intel_gmbus.h"
+> > > >  #include "intel_hdmi.h"
+> > > >  #include "intel_hotplug.h"
+> > > > +#include "intel_link_bw.h"
+> > > >  #include "intel_panel.h"
+> > > >  #include "intel_sdvo.h"
+> > > >  #include "intel_sdvo_regs.h"
+> > > > @@ -1351,14 +1352,17 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
+> > > >  	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+> > > >  	struct drm_display_mode *mode = &pipe_config->hw.mode;
+> > > >  
+> > > > +	if (HAS_PCH_SPLIT(to_i915(encoder->base.dev))) {
+> > > > +		pipe_config->has_pch_encoder = true;
+> > > > +		if (!intel_link_bw_compute_pipe_bpp(pipe_config))
+> > > > +			return -EINVAL;
+> > > > +	}
+> > > > +
+> > > >  	DRM_DEBUG_KMS("forcing bpc to 8 for SDVO\n");
+> > > >  	pipe_config->pipe_bpp = 8*3;
+> > > 
+> > > This seems borked. I think we want to force this to 8bpc only if we're
+> > > higher currently.
 > > 
-> > To improve the above this patch adds helper functions checking the
-> > overall BW limits after all CRTC states have been computed. If the check
-> > fails the maximum link bpp for a selected pipe will be reduced and all
-> > the CRTC states will be recomputed until either the overall BW limit
-> > check passes, or further bpp reduction is not possible (because all
-> > pipes/encoders sharing the link BW reached their minimum link bpp).
-> > 
-> > Atm, the MST encoder allocates twice the required BW for YUV420 format
-> > streams. A follow-up patchset will fix that, add a code comment about
-> > this.
-> > 
-> > This change prepares for upcoming patches enabling the above BW
-> > management on FDI and MST links.
-> > 
-> > v2:
-> > - Rename intel_crtc_state::max_link_bpp to max_link_bpp_x16 and
-> >   intel_link_bw_limits::max_bpp to max_bpp_x16. (Jani)
-> > v3:
-> > - Add the helper functions in a separate patch. (Ville)
-> > - Add the functions to intel_link_bw.c instead of intel_atomic.c (Ville)
-> > - Return -ENOSPC instead of -EINVAL to userspace in case of a link BW
-> >   limit failure.
-> > v4:
-> > - Make intel_atomic_check_config() static.
-> > v5: (Ville)
-> > - Rename intel_link_bw_limits::min_bpp_pipes to min_bpp_reached_pipes
-> >   and intel_link_bw_reset_pipe_limit_to_min() to
-> >   intel_link_bw_set_min_bpp_for_pipe().
-> > - Rename pipe_bpp to link_bpp in intel_link_bw_reduce_bpp().
-> > - Add FIXME: comment about MST encoder's YUV420 BW allocation and
-> >   tracking the link bpp limit accordingly.
-> > 
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/Makefile                 |   1 +
-> >  drivers/gpu/drm/i915/display/intel_crtc.c     |   1 +
-> >  drivers/gpu/drm/i915/display/intel_display.c  |  65 ++++-
-> >  .../drm/i915/display/intel_display_types.h    |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   4 +
-> >  drivers/gpu/drm/i915/display/intel_link_bw.c  | 232 ++++++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_link_bw.h  |  38 +++
-> >  7 files changed, 339 insertions(+), 5 deletions(-)
-> >  create mode 100644 drivers/gpu/drm/i915/display/intel_link_bw.c
-> >  create mode 100644 drivers/gpu/drm/i915/display/intel_link_bw.h
-> > 
-> > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> > index 1b2e02e9d92cb..de4967c141f00 100644
-> > --- a/drivers/gpu/drm/i915/Makefile
-> > +++ b/drivers/gpu/drm/i915/Makefile
-> > @@ -268,6 +268,7 @@ i915-y += \
-> >  	display/intel_hotplug.o \
-> >  	display/intel_hotplug_irq.o \
-> >  	display/intel_hti.o \
-> > +	display/intel_link_bw.o \
-> >  	display/intel_load_detect.o \
-> >  	display/intel_lpe_audio.o \
-> >  	display/intel_modeset_lock.o \
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > index 182c6dd64f47c..1eda6a9f19aa8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > @@ -175,6 +175,7 @@ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
-> >  	crtc_state->hsw_workaround_pipe = INVALID_PIPE;
-> >  	crtc_state->scaler_state.scaler_id = -1;
-> >  	crtc_state->mst_master_transcoder = INVALID_TRANSCODER;
-> > +	crtc_state->max_link_bpp_x16 = INT_MAX;
-> >  }
-> >  
-> >  static struct intel_crtc *intel_crtc_alloc(void)
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 3bdc338a22e19..537884035304c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -87,6 +87,7 @@
-> >  #include "intel_frontbuffer.h"
-> >  #include "intel_hdmi.h"
-> >  #include "intel_hotplug.h"
-> > +#include "intel_link_bw.h"
-> >  #include "intel_lvds.h"
-> >  #include "intel_lvds_regs.h"
-> >  #include "intel_modeset_setup.h"
-> > @@ -4596,7 +4597,8 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
-> >  
-> >  static int
-> >  intel_modeset_pipe_config(struct intel_atomic_state *state,
-> > -			  struct intel_crtc *crtc)
-> > +			  struct intel_crtc *crtc,
-> > +			  const struct intel_link_bw_limits *limits)
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> >  	struct intel_crtc_state *crtc_state =
-> > @@ -4628,6 +4630,15 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > +	crtc_state->max_link_bpp_x16 = limits->max_bpp_x16[crtc->pipe];
-> > +
-> > +	if (crtc_state->pipe_bpp > to_bpp_int(crtc_state->max_link_bpp_x16)) {
-> > +		drm_dbg_kms(&i915->drm,
-> > +			    "[CRTC:%d:%s] Link bpp limited to " BPP_X16_FMT "\n",
-> > +			    crtc->base.base.id, crtc->base.name,
-> > +			    BPP_X16_ARGS(crtc_state->max_link_bpp_x16));
-> > +	}
-> > +
-> >  	base_bpp = crtc_state->pipe_bpp;
-> >  
-> >  	/*
-> > @@ -6218,7 +6229,9 @@ static int intel_bigjoiner_add_affected_crtcs(struct intel_atomic_state *state)
-> >  	return 0;
-> >  }
-> >  
-> > -static int intel_atomic_check_config(struct intel_atomic_state *state)
-> > +static int intel_atomic_check_config(struct intel_atomic_state *state,
-> > +				     struct intel_link_bw_limits *limits,
-> > +				     enum pipe *failed_pipe)
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> >  	struct intel_crtc_state *new_crtc_state;
-> > @@ -6226,6 +6239,8 @@ static int intel_atomic_check_config(struct intel_atomic_state *state)
-> >  	int ret;
-> >  	int i;
-> >  
-> > +	*failed_pipe = INVALID_PIPE;
-> > +
-> >  	ret = intel_bigjoiner_add_affected_crtcs(state);
-> >  	if (ret)
-> >  		return ret;
-> > @@ -6251,7 +6266,7 @@ static int intel_atomic_check_config(struct intel_atomic_state *state)
-> >  		if (!new_crtc_state->hw.enable)
-> >  			continue;
-> >  
-> > -		ret = intel_modeset_pipe_config(state, crtc);
-> > +		ret = intel_modeset_pipe_config(state, crtc, limits);
-> >  		if (ret)
-> >  			break;
-> >  
-> > @@ -6260,9 +6275,51 @@ static int intel_atomic_check_config(struct intel_atomic_state *state)
-> >  			break;
-> >  	}
-> >  
-> > +	if (ret)
-> > +		*failed_pipe = crtc->pipe;
-> > +
-> >  	return ret;
-> >  }
-> >  
-> > +static int intel_atomic_check_config_and_link(struct intel_atomic_state *state)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> > +	struct intel_link_bw_limits new_limits;
-> > +	struct intel_link_bw_limits old_limits;
-> > +	int ret;
-> > +
-> > +	intel_link_bw_init_limits(i915, &new_limits);
-> > +	old_limits = new_limits;
-> > +
-> > +	while (true) {
-> > +		enum pipe failed_pipe;
-> > +
-> > +		ret = intel_atomic_check_config(state, &new_limits,
-> > +						&failed_pipe);
-> > +		if (ret) {
-> > +			/*
-> > +			 * The bpp limit for a pipe is below the minimum it supports, set the
-> > +			 * limit to the minimum and recalculate the config.
-> > +			 */
-> > +			if (ret == -EINVAL &&
-> > +			    intel_link_bw_set_min_bpp_for_pipe(state,
-> > +							       &old_limits,
-> > +							       &new_limits,
-> > +							       failed_pipe))
-> > +				continue;
-> > +
-> > +			break;
-> > +		}
-> > +
-> > +		old_limits = new_limits;
-> > +
-> > +		ret = intel_link_bw_atomic_check(state, &new_limits);
-> > +		if (ret != -EAGAIN)
-> > +			break;
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> >  /**
-> >   * intel_atomic_check - validate state object
-> >   * @dev: drm device
-> > @@ -6307,7 +6364,7 @@ int intel_atomic_check(struct drm_device *dev,
-> >  			return ret;
-> >  	}
-> >  
-> > -	ret = intel_atomic_check_config(state);
-> > +	ret = intel_atomic_check_config_and_link(state);
-> >  	if (ret)
-> >  		goto fail;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 50a22261f5eec..4d7948fa4bbba 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1189,7 +1189,8 @@ struct intel_crtc_state {
-> >  		u32 ctrl, div;
-> >  	} dsi_pll;
-> >  
-> > -	int pipe_bpp;
-> > +	int max_link_bpp_x16;	/* in 1/16 bpp units */
-> > +	int pipe_bpp;		/* in 1 bpp units */
-> >  	struct intel_link_m_n dp_m_n;
-> >  
-> >  	/* m2_n2 for eDP downclock */
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index a914d83ab3dde..f26c2eecb2778 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -157,6 +157,10 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
-> >  	int slots = -EINVAL;
-> >  	int link_bpp;
-> >  
-> > +	/*
-> > +	 * FIXME: allocate the BW according to link_bpp, which in the case of
-> > +	 * YUV420 is only half of the pipe bpp value.
-> > +	 */
-> >  	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state,
-> >  						     to_bpp_int(limits->link.max_bpp_x16),
-> >  						     to_bpp_int(limits->link.min_bpp_x16),
-> > diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/drm/i915/display/intel_link_bw.c
-> > new file mode 100644
-> > index 0000000000000..9b6d0891345d7
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
-> > @@ -0,0 +1,232 @@
-> > +// SPDX-License-Identifier: MIT
-> > +/*
-> > + * Copyright © 2023 Intel Corporation
-> > + */
-> > +
-> > +#include "i915_drv.h"
-> > +
-> > +#include "intel_atomic.h"
-> > +#include "intel_display_types.h"
-> > +#include "intel_dp_mst.h"
-> > +#include "intel_fdi.h"
-> > +#include "intel_link_bw.h"
-> > +
-> > +/**
-> > + * intel_link_bw_init_limits - initialize BW limits
-> > + * @i915: device instance
-> > + * @limits: link BW limits
-> > + *
-> > + * Initialize @limits.
-> > + */
-> > +void intel_link_bw_init_limits(struct drm_i915_private *i915, struct intel_link_bw_limits *limits)
-> > +{
-> > +	enum pipe pipe;
-> > +
-> > +	limits->min_bpp_reached_pipes = 0;
-> > +	for_each_pipe(i915, pipe)
-> > +		limits->max_bpp_x16[pipe] = INT_MAX;
-> > +}
-> > +
-> > +/**
-> > + * intel_link_bw_compute_pipe_bpp - compute pipe bpp limited by max link bpp
-> > + * @crtc_state: the crtc state
-> > + *
-> > + * Compute the pipe bpp limited by the CRTC's maximum link bpp. Encoders can
-> > + * call this function during state computation in the simple case where the
-> > + * link bpp will always match the pipe bpp. This is the case for all non-DP
-> > + * encoders, while DP encoders will use a link bpp lower than pipe bpp in case
-> > + * of DSC compression.
-> > + *
-> > + * Returns %true in case of success, %false if pipe bpp would need to be
-> > + * reduced below its valid range.
-> > + */
-> > +bool intel_link_bw_compute_pipe_bpp(struct intel_crtc_state *crtc_state)
-> > +{
-> > +	int pipe_bpp = min(crtc_state->pipe_bpp,
-> > +			   to_bpp_int(crtc_state->max_link_bpp_x16));
-> > +
-> > +	pipe_bpp = rounddown(pipe_bpp, 2 * 3);
-> > +
-> > +	if (pipe_bpp < 6 * 3)
-> > +		return false;
-> > +
-> > +	crtc_state->pipe_bpp = pipe_bpp;
-> > +
-> > +	return true;
-> > +}
+> > This would fail the modeset if pipe_bpp would need to be reduced to 6*3
+> > due to a BW limit and that's what happens before this change as well
+> > afaics. I agree it's strange to detect that only later in the retry loop
+> > and the above should return already error in that case. Are you ok with
+> > that (if crtc_state->max_link_bpp < 8*3 -> return -EINVAL) ?
 > 
-> Hmm. The fact that you can't use this for DP makes this rather
-> non-generic. Maybe it should just live in intel_fdi.c or something?
-> Or are we going to use it for something else as well?
+> I don't think forcing to 8bpc makes any real sense, other than as an
+> upper limit (since SDVO can only transmit 8bpc data). So I think this
+> should just use 'min(pipe_bpp, 8*3)'. But we should do that change
+> as a separate patch.
 
-No, it's only used for non-DP FDI encoders, so can move it to
-intel_fdi.c
+Ok, I'll drop the above check then, handling the pipe_bpp==6*3 case the
+current way.
 
-> > +
-> > +/**
-> > + * intel_link_bw_reduce_bpp - reduce maximum link bpp for a selected pipe
-> > + * @state: atomic state
-> > + * @limits: link BW limits
-> > + * @pipe_mask: mask of pipes to select from
-> > + * @reason: explanation of why bpp reduction is needed
-> > + *
-> > + * Select the pipe from @pipe_mask with the biggest link bpp value and set the
-> > + * maximum of link bpp in @limits below this value. Modeset the selected pipe,
-> > + * so that its state will get recomputed.
-> > + *
-> > + * This function can be called to resolve a link's BW overallocation by reducing
-> > + * the link bpp of one pipe on the link and hence reducing the total link BW.
-> > + *
-> > + * Returns
-> > + *   - 0 in case of success
-> > + *   - %-ENOSPC if no pipe can further reduce its link bpp
-> > + *   - Other negative error, if modesetting the selected pipe failed
-> > + */
-> > +int intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
-> > +			     struct intel_link_bw_limits *limits,
-> > +			     u8 pipe_mask,
-> > +			     const char *reason)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> > +	enum pipe max_bpp_pipe = INVALID_PIPE;
-> > +	struct intel_crtc *crtc;
-> > +	int max_bpp = 0;
-> > +
-> > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, pipe_mask) {
-> > +		struct intel_crtc_state *crtc_state;
-> > +		int link_bpp;
-> > +
-> > +		if (limits->min_bpp_reached_pipes & BIT(crtc->pipe))
-> > +			continue;
-> > +
-> > +		crtc_state = intel_atomic_get_crtc_state(&state->base,
-> > +							 crtc);
-> > +		if (IS_ERR(crtc_state))
-> > +			return PTR_ERR(crtc_state);
-> > +
-> > +		if (crtc_state->dsc.compression_enable)
-> > +			link_bpp = crtc_state->dsc.compressed_bpp;
-> > +		else
-> > +			/*
-> > +			 * TODO: for YUV420 the actual link bpp is only half
-> > +			 * of the pipe bpp value. The MST encoder's BW allocation
-> > +			 * is based on the pipe bpp value, set the actual link bpp
-> > +			 * limit here once the MST BW allocation is fixed.
-> > +			 */
-> > +			link_bpp = crtc_state->pipe_bpp;
-> 
-> Not quite sure how we should handle all this in the end. IIRC the current
-> SST logic will attempt both 4:4:4 and 4:2:0 immediately. Dunno if that
-> makes sense or if we should try to stick to 4:4:4 a bit more aggressively
-> before allowing 4:2:0 fallback. But I guess that's more or less the
-> same kind of problem as the DSC vs. no DSC issue.
-
-Ok, didn't think about the 4:4:4 fallback. IIUC the encoder tries both
-formats first without then with DSC. This looks to me a reasonable way
-BW utilization-wise. Which order the encoder tries the configs could be
-encoder specific in any case, selecting one based only on the available
-BW (minimum of the sink's and the passed in link - via max_link_bpp -
-BW) and the resulting quality. (An additional factor may be the
-granularity of its fallback reducing bpp, for instance it could enable
-compression already earlier for this.)
-
-For the above the current way of simply decreasing
-crtc_state->max_link_bpp_x16 one pipe at a time works I think, even if
-for 4:2:0 the encoder will allocate only half of what max_link_bpp would
-allow for (the optimal BW usage is still found). In the TODO: I referred
-to retrieving and passing back to the encoder the actual link bpp even
-in that case, which I suppose would mean instead of the above something
-like:
-
-	link_bpp = intel_dp_output_bpp(crtc_state);
-
-This would make things more consistent at least.
-
-> I was also pondering if the respect_downstream_limits stuff could
-> also matter here, but I think we use that just for some TMDS link
-> stuff so there should be no wider implications from it.
-
-I guess that matters only in how the encoder calculates the min(sink_bw,
-link_bw) value for its fallback logic above, so yes it shouldn't matter
-for the link BW fallback.
-
-> > +
-> > +		if (link_bpp > max_bpp) {
-> > +			max_bpp = link_bpp;
-> > +			max_bpp_pipe = crtc->pipe;
-> > +		}
-> > +	}
-> > +
-> > +	if (max_bpp_pipe == INVALID_PIPE)
-> > +		return -ENOSPC;
-> > +
-> > +	limits->max_bpp_x16[max_bpp_pipe] = to_bpp_x16(max_bpp) - 1;
-> > +
-> > +	return intel_modeset_pipes_in_mask_early(state, reason,
-> > +						 BIT(max_bpp_pipe));
-> > +}
-> > +
-> > +/**
-> > + * intel_link_bw_set_min_bpp_for_pipe - set link bpp limit for a pipe to its minimum
-> > + * @state: atomic state
-> > + * @old_limits: link BW limits
-> > + * @new_limits: link BW limits
-> > + * @pipe: pipe
-> > + *
-> > + * Set the link bpp limit for @pipe in @new_limits to its value in
-> > + * @old_limits and mark this limit as the minimum. This function must be
-> > + * called after a pipe's compute config function failed, @old_limits
-> > + * containing the bpp limit with which compute config previously passed.
-> > + *
-> > + * The function will fail if setting a minimum is not possible, either
-> > + * because the old and new limits match (and so would lead to a pipe compute
-> > + * config failure) or the limit is already at the minimum.
-> > + *
-> > + * Returns %true in case of success.
-> > + */
-> > +bool
-> > +intel_link_bw_set_min_bpp_for_pipe(struct intel_atomic_state *state,
-> > +				   const struct intel_link_bw_limits *old_limits,
-> > +				   struct intel_link_bw_limits *new_limits,
-> > +				   enum pipe pipe)
-> > +{
-> > +	if (pipe == INVALID_PIPE)
-> > +		return false;
-> > +
-> > +	if (new_limits->min_bpp_reached_pipes & BIT(pipe))
-> > +		return false;
-> 
-> I suppose this check is a bit redundant and it should also be
-> caught by the == check below. But I suppose no harm in having this
-> too.
-
-Yes, can move it after the check below as an assert.
-
-> The naming is still bugging me though. The "min_bpp" might end up
-> being a bit confusing since we have a min_bpp member in the limits
-> but we're setting the max_bpp here. Maybe s/min_bpp/bpp_limit/ or
-> something like that would be a bit better?
-
-Ok, will change that.
-
-> > +
-> > +	if (new_limits->max_bpp_x16[pipe] ==
-> > +	    old_limits->max_bpp_x16[pipe])
-> > +		return false;
-> > +
-> > +	new_limits->max_bpp_x16[pipe] =
-> > +		old_limits->max_bpp_x16[pipe];
-> > +	new_limits->min_bpp_reached_pipes |= BIT(pipe);
-> > +
-> > +	return true;
-> > +}
-> > +
-> > +static int check_all_link_config(struct intel_atomic_state *state,
-> > +				 struct intel_link_bw_limits *limits)
-> > +{
-> > +	/* TODO: Check all shared display link configurations like FDI */
-> > +	return 0;
-> > +}
-> > +
-> > +static bool
-> > +assert_link_limit_change_valid(struct drm_i915_private *i915,
-> > +			       const struct intel_link_bw_limits *old_limits,
-> > +			       const struct intel_link_bw_limits *new_limits)
-> > +{
-> > +	bool bpps_changed = false;
-> > +	enum pipe pipe;
-> > +
-> > +	for_each_pipe(i915, pipe) {
-> > +		/* The bpp limit can only decrease. */
-> > +		if (drm_WARN_ON(&i915->drm,
-> > +				new_limits->max_bpp_x16[pipe] >
-> > +				old_limits->max_bpp_x16[pipe]))
-> > +			return false;
-> > +
-> > +		if (new_limits->max_bpp_x16[pipe] <
-> > +		    old_limits->max_bpp_x16[pipe])
-> > +			bpps_changed = true;
-> > +	}
-> > +
-> > +	/* At least one limit must change. */
-> > +	if (drm_WARN_ON(&i915->drm,
-> > +			!bpps_changed))
-> > +		return false;
-> > +
-> > +	return true;
-> > +}
-> > +
-> > +/**
-> > + * intel_link_bw_atomic_check - check display link states and set a fallback config if needed
-> > + * @state: atomic state
-> > + * @new_limits: link BW limits
-> > + *
-> > + * Check the configuration of all shared display links in @state and set new BW
-> > + * limits in @new_limits if there is a BW limitation.
-> > + *
-> > + * Returns:
-> > + *   - 0 if the confugration is valid
-> > + *   - %-EAGAIN, if the configuration is invalid and @new_limits got updated
-> > + *     with fallback values with which the configuration of all CRTCs
-> > + *     in @state must be recomputed
-> > + *   - Other negative error, if the configuration is invalid without a
-> > + *     fallback possibility, or the check failed for another reason
-> > + */
-> > +int intel_link_bw_atomic_check(struct intel_atomic_state *state,
-> > +			       struct intel_link_bw_limits *new_limits)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> > +	struct intel_link_bw_limits old_limits = *new_limits;
-> > +	int ret;
-> > +
-> > +	ret = check_all_link_config(state, new_limits);
-> > +	if (ret != -EAGAIN)
-> > +		return ret;
-> > +
-> > +	if (!assert_link_limit_change_valid(i915, &old_limits, new_limits))
-> > +		return -EINVAL;
-> > +
-> > +	return -EAGAIN;
-> > +}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.h b/drivers/gpu/drm/i915/display/intel_link_bw.h
-> > new file mode 100644
-> > index 0000000000000..0f666c9712f3c
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/i915/display/intel_link_bw.h
-> > @@ -0,0 +1,38 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +/*
-> > + * Copyright © 2023 Intel Corporation
-> > + */
-> > +
-> > +#ifndef __INTEL_LINK_BW_H__
-> > +#define __INTEL_LINK_BW_H__
-> > +
-> > +#include <linux/types.h>
-> > +
-> > +#include "intel_display_limits.h"
-> > +
-> > +struct drm_i915_private;
-> > +
-> > +struct intel_atomic_state;
-> > +struct intel_crtc_state;
-> > +
-> > +struct intel_link_bw_limits {
-> > +	u8 min_bpp_reached_pipes;
-> > +	/* in 1/16 bpp units */
-> > +	int max_bpp_x16[I915_MAX_PIPES];
-> > +};
-> > +
-> > +void intel_link_bw_init_limits(struct drm_i915_private *i915,
-> > +			       struct intel_link_bw_limits *limits);
-> > +bool intel_link_bw_compute_pipe_bpp(struct intel_crtc_state *crtc_state);
-> > +int intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
-> > +			     struct intel_link_bw_limits *limits,
-> > +			     u8 pipe_mask,
-> > +			     const char *reason);
-> > +bool intel_link_bw_set_min_bpp_for_pipe(struct intel_atomic_state *state,
-> > +					const struct intel_link_bw_limits *old_limits,
-> > +					struct intel_link_bw_limits *new_limits,
-> > +					enum pipe pipe);
-> > +int intel_link_bw_atomic_check(struct intel_atomic_state *state,
-> > +			       struct intel_link_bw_limits *new_limits);
-> > +
-> > +#endif
-> > -- 
-> > 2.37.2
+> > If you meant that increasing an EDID (6 bpc) baseline to 8 bpc (if BW
+> > allows otherwise) doesn't make sense either here, that would be an issue
+> > already before this change. I can add a FIXME: comment for that.
+> > 
+> > > Same for the LVDS case I think, though that one is a bit more sane atm
+> > > since it looks at the bw_constrained flag, though I don't think we
+> > > really need that flag anymore, at least for this purpose.
+> > 
+> > This patch doesn't change the behavior there either, but bw_constrained
+> > could be replaced with crtc_state->max_link_bpp < lvds_bpp (as a
+> > follow-up imo).
+> > 
+> > > Hmm, but maybe we do still need it for the LPT FDI case where we do
+> > > actually want to increase the bpc to 8 if the EDID baseline is below
+> > > that.
+> > 
+> > I suppose bw_constrained && pipe_bpp < 24 there could be also replaced
+> > with crtc_state->max_link_bpp < 24.
+> > 
+> > > >  	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+> > > >  	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+> > > >  
+> > > > -	if (HAS_PCH_SPLIT(to_i915(encoder->base.dev)))
+> > > > -		pipe_config->has_pch_encoder = true;
+> > > > -
+> > > >  	/*
+> > > >  	 * We need to construct preferred input timings based on our
+> > > >  	 * output timings.  To do that, we have to set the output
+> > > > -- 
+> > > > 2.37.2
+> > > 
+> > > -- 
+> > > Ville Syrjälä
+> > > Intel
 > 
 > -- 
 > Ville Syrjälä
