@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 706177A6B81
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Sep 2023 21:21:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8BC77A6B85
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Sep 2023 21:21:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA7910E29F;
-	Tue, 19 Sep 2023 19:21:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E600D10E2AA;
+	Tue, 19 Sep 2023 19:21:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40BB110E28F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6151910E287
  for <intel-gfx@lists.freedesktop.org>; Tue, 19 Sep 2023 19:21:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1695151287; x=1726687287;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=C94K5GbLvkSWlNEuGcsQ6ArfMB3aFpVzc6uUDTKnMm8=;
- b=i5qE7GObIaJYGT8XwgcTFG0i5OCiFvyy78P4m5730NHbcKn/rF85oYEg
- PmBNKJo8pg5BUujpX61/LxCKbLsGWSgRxZRTDuQLzdFt8TLedJXwSlbIt
- /pCsI1GN3oLHdhaNjokn0wvr4Cy8xVczw4pnwj74YeXM/yYhuwI1JIcjg
- KFPayg3qyF93ng+gqgOnZVs7oXTHA/D5UOzPxU9XMXW2lG1zHTdrHczVO
- DOuYei0RyKl/CvPxeq8Ja35JnRCvYQurki/yc9ufV4xTjJwX9qEPq07j6
- rwMpBN5i9wfrhze2Y3NwVrAZ09VperqFi3sa+svv15eut/n5CbKpOwSwR w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="359423144"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="359423144"
+ bh=Z6psOcumUPl+pSGNIXoez5eJxnSOHFI7bNo62p5C0NQ=;
+ b=BsxqUvoowH12bNNSZK8Hd54+sO2/5134irEUfxbHoTZotBXPFOoayTpg
+ PPLayv2v91kK69ae96C+Vo7m+Vh9ulJ2+qyH9rLOW3BJtRR/wLXwg+d05
+ 9eO+SSyjEuhA0QBx+hG2Q26MZYKHOf1RVR3wj50ZvKxGJNjw8VhCKM6K6
+ 6D9sAurhIWiWPJss3hVTsxOwUJ7SFsIMqbN7Xj3uvjcx4u+L/AWwrmBZt
+ rlnWlK8nPM6i5EKbRJqDnUtFjQpPneekzrTfXre2hJuCz+D+gB5eicdW8
+ oBz13PaKxUsHiALtTOPhVT3VgpXbEKkNIwmDr465xQ7WYhZRxSLr/YX2n w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="359423147"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="359423147"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Sep 2023 12:21:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="746350102"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="746350102"
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="746350104"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="746350104"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Sep 2023 12:21:25 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Sep 2023 12:21:24 -0700
-Message-Id: <20230919192128.2045154-18-lucas.demarchi@intel.com>
+Date: Tue, 19 Sep 2023 12:21:25 -0700
+Message-Id: <20230919192128.2045154-19-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230919192128.2045154-1-lucas.demarchi@intel.com>
 References: <20230919192128.2045154-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI 18/22] drm/i915/lnl: Add gmbus/ddc support
+Subject: [Intel-gfx] [CI 19/22] drm/i915/lnl: Add CDCLK table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,51 +60,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-LNL's south display uses the same table as MTP. Check for LNL's fake PCH
-to make it consistent with the other checks.
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-The VBT table doesn't contain the VBT -> spec mapping for LNL. Like in
-other cases, uses the same as the previous platform.
+Add a new CDCLK table for Lunar Lake.
 
-Bspec: 68971, 20124
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+v2:
+  - Remove mdclk from the table as it's not needed (Matt Roper)
+  - Update waveform values to the latest from spec (Matt Roper)
+  - Rename functions and calculation to match by pixel rate (Lucas)
+v3: Keep only the table: as far as intel_pixel_rate_to_cdclk()
+    is concerned, the minimum cdclk should still be half the pixel
+    rate on Xe2 (bspec 68858:
+    "Pipe maximum pixel rate = 2 * CDCLK frequency * Pipe Ratio")
+    (Matt Roper)
+
+Bspec: 68861, 68858
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c  | 3 ++-
- drivers/gpu/drm/i915/display/intel_gmbus.c | 5 ++++-
- 2 files changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 30 +++++++++++++++++++++-
+ 1 file changed, 29 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index f735b035436c..099ef48d8172 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2194,7 +2194,8 @@ static u8 map_ddc_pin(struct drm_i915_private *i915, u8 vbt_pin)
- 	const u8 *ddc_pin_map;
- 	int i, n_entries;
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 656ff50def39..4cde78db83a1 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1382,6 +1382,31 @@ static const struct intel_cdclk_vals mtl_cdclk_table[] = {
+ 	{}
+ };
  
--	if (HAS_PCH_MTP(i915) || IS_ALDERLAKE_P(i915)) {
-+	if (INTEL_PCH_TYPE(i915) >= PCH_LNL || HAS_PCH_MTP(i915) ||
-+	    IS_ALDERLAKE_P(i915)) {
- 		ddc_pin_map = adlp_ddc_pin_map;
- 		n_entries = ARRAY_SIZE(adlp_ddc_pin_map);
- 	} else if (IS_ALDERLAKE_S(i915)) {
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index e95ddb580ef6..801fabbccf7e 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -155,7 +155,10 @@ static const struct gmbus_pin *get_gmbus_pin(struct drm_i915_private *i915,
- 	const struct gmbus_pin *pins;
- 	size_t size;
- 
--	if (INTEL_PCH_TYPE(i915) >= PCH_DG2) {
-+	if (INTEL_PCH_TYPE(i915) >= PCH_LNL) {
-+		pins = gmbus_pins_mtp;
-+		size = ARRAY_SIZE(gmbus_pins_mtp);
-+	} else if (INTEL_PCH_TYPE(i915) >= PCH_DG2) {
- 		pins = gmbus_pins_dg2;
- 		size = ARRAY_SIZE(gmbus_pins_dg2);
- 	} else if (INTEL_PCH_TYPE(i915) >= PCH_DG1) {
++static const struct intel_cdclk_vals lnl_cdclk_table[] = {
++	{ .refclk = 38400, .cdclk = 153600, .divider = 2, .ratio = 16, .waveform = 0xaaaa },
++	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio = 16, .waveform = 0xad5a },
++	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 16, .waveform = 0xb6b6 },
++	{ .refclk = 38400, .cdclk = 211200, .divider = 2, .ratio = 16, .waveform = 0xdbb6 },
++	{ .refclk = 38400, .cdclk = 230400, .divider = 2, .ratio = 16, .waveform = 0xeeee },
++	{ .refclk = 38400, .cdclk = 249600, .divider = 2, .ratio = 16, .waveform = 0xf7de },
++	{ .refclk = 38400, .cdclk = 268800, .divider = 2, .ratio = 16, .waveform = 0xfefe },
++	{ .refclk = 38400, .cdclk = 288000, .divider = 2, .ratio = 16, .waveform = 0xfffe },
++	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 330000, .divider = 2, .ratio = 25, .waveform = 0xdbb6 },
++	{ .refclk = 38400, .cdclk = 360000, .divider = 2, .ratio = 25, .waveform = 0xeeee },
++	{ .refclk = 38400, .cdclk = 390000, .divider = 2, .ratio = 25, .waveform = 0xf7de },
++	{ .refclk = 38400, .cdclk = 420000, .divider = 2, .ratio = 25, .waveform = 0xfefe },
++	{ .refclk = 38400, .cdclk = 450000, .divider = 2, .ratio = 25, .waveform = 0xfffe },
++	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 487200, .divider = 2, .ratio = 29, .waveform = 0xfefe },
++	{ .refclk = 38400, .cdclk = 522000, .divider = 2, .ratio = 29, .waveform = 0xfffe },
++	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 571200, .divider = 2, .ratio = 34, .waveform = 0xfefe },
++	{ .refclk = 38400, .cdclk = 612000, .divider = 2, .ratio = 34, .waveform = 0xfffe },
++	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0xffff },
++	{}
++};
++
+ static int bxt_calc_cdclk(struct drm_i915_private *dev_priv, int min_cdclk)
+ {
+ 	const struct intel_cdclk_vals *table = dev_priv->display.cdclk.table;
+@@ -3591,7 +3616,10 @@ static const struct intel_cdclk_funcs i830_cdclk_funcs = {
+  */
+ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+ {
+-	if (DISPLAY_VER(dev_priv) >= 14) {
++	if (DISPLAY_VER(dev_priv) >= 20) {
++		dev_priv->display.funcs.cdclk = &mtl_cdclk_funcs;
++		dev_priv->display.cdclk.table = lnl_cdclk_table;
++	} else if (DISPLAY_VER(dev_priv) >= 14) {
+ 		dev_priv->display.funcs.cdclk = &mtl_cdclk_funcs;
+ 		dev_priv->display.cdclk.table = mtl_cdclk_table;
+ 	} else if (IS_DG2(dev_priv)) {
 -- 
 2.40.1
 
