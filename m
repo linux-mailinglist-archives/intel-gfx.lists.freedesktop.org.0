@@ -1,33 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABD327A6746
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Sep 2023 16:49:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 244147A6747
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Sep 2023 16:50:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13EBA10E295;
-	Tue, 19 Sep 2023 14:49:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 861F910E299;
+	Tue, 19 Sep 2023 14:50:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 925DD10E295;
- Tue, 19 Sep 2023 14:49:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 91CA9A73C7;
- Tue, 19 Sep 2023 14:49:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9032653687190094402=="
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF78A10E124
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Sep 2023 14:50:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695135011; x=1726671011;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=6ZaPQO1aSuWtLsrzoEK1PVRWBlNR3XWeO9kIEUkNlbM=;
+ b=gGMEvZaWMzroslF3rT7ng2DHmi3BQza7hSftKxsr7uYqVn4/VDPQFSPP
+ z4jK2/KB8EXMVLxlesk3Xw8hvNAChvVFGYeriwlvdVkzf+Y5qMiPQMSi7
+ Xho3x1aPTE5qGxHYKiy1YM1OwUAr19gumthjWHP8LziVFIsVHnfctUmma
+ Nyfr5/3Y4wKM5InvP6ilfrnnn05PFT7L2gpjl0R1EqA2OfHvyDnxUvcfa
+ m+B7kzr1Red/Z4xgYgklIhkgeYUM8hhEj+OdktrWFSLg1bu9EZq9xSqfz
+ BJOW8hRQdAoi5QfPw85ddT9Q6S3CGCFivkQ/N3QVBXmZ7ptFebeq63x7E Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="446431103"
+X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="446431103"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2023 07:49:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="1076998797"
+X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="1076998797"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by fmsmga005.fm.intel.com with SMTP; 19 Sep 2023 07:49:53 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 19 Sep 2023 17:49:52 +0300
+Date: Tue, 19 Sep 2023 17:49:52 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <ZQm1EJwuqk-LAYzw@intel.com>
+References: <20230914192659.757475-1-imre.deak@intel.com>
+ <20230914192659.757475-6-imre.deak@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Date: Tue, 19 Sep 2023 14:49:50 -0000
-Message-ID: <169513499059.3669.11619573875872788374@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230918170257.8586-1-nirmoy.das@intel.com>
-In-Reply-To: <20230918170257.8586-1-nirmoy.das@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgVXBk?=
- =?utf-8?q?ate_GGTT_with_MI=5FUPDATE=5FGTT_on_MTL_=28rev7=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230914192659.757475-6-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3 05/25] drm/i915/dp: Limit the output link
+ bpp in DSC mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,257 +62,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============9032653687190094402==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Sep 14, 2023 at 10:26:39PM +0300, Imre Deak wrote:
+> Limit the output link bpp in DSC mode to the link_config_limits
+> link.min_bpp_x16 .. max_bpp_x16 range the same way it's done in non-DSC
+> mode.  Atm this doesn't make a difference, the link bpp range being
+> 0 .. max pipe bpp, but a follow-up patch will need a way to reduce max
+> link bpp below its current value.
+> 
+> v2:
+> - Add to_bpp_int_roundup() instead of open coding it. (Jani)
+> 
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-== Series Details ==
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: Update GGTT with MI_UPDATE_GTT on MTL (rev7)
-URL   : https://patchwork.freedesktop.org/series/123329/
-State : failure
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_types.h | 5 +++++
+>  drivers/gpu/drm/i915/display/intel_dp.c            | 4 ++++
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c        | 3 +++
+>  3 files changed, 12 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 50fe8ff354137..966163ccbd7a3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -2123,6 +2123,11 @@ static inline int to_bpp_frac(int bpp_x16)
+>  #define BPP_X16_FMT		"%d.%04d"
+>  #define BPP_X16_ARGS(bpp_x16)	to_bpp_int(bpp_x16), (to_bpp_frac(bpp_x16) * 625)
+>  
+> +static inline int to_bpp_int_roundup(int bpp_x16)
+> +{
+> +	return (bpp_x16 + 0xf) >> 4;
+> +}
+> +
+>  static inline int to_bpp_x16(int bpp)
+>  {
+>  	return bpp << 4;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 2a45eefc83ebf..d5e6813d36c8f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1925,6 +1925,7 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+>  	dsc_src_min_bpp = dsc_src_min_compressed_bpp();
+>  	dsc_sink_min_bpp = dsc_sink_min_compressed_bpp(pipe_config);
+>  	dsc_min_bpp = max(dsc_src_min_bpp, dsc_sink_min_bpp);
+> +	dsc_min_bpp = max(dsc_min_bpp, to_bpp_int_roundup(limits->link.min_bpp_x16));
+>  
+>  	dsc_src_max_bpp = dsc_src_max_compressed_bpp(intel_dp);
+>  	dsc_sink_max_bpp = dsc_sink_max_compressed_bpp(intel_dp, pipe_config, pipe_bpp / 3);
+> @@ -1934,6 +1935,7 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+>  								adjusted_mode->hdisplay,
+>  								pipe_config->bigjoiner_pipes);
+>  	dsc_max_bpp = min(dsc_max_bpp, dsc_joiner_max_bpp);
+> +	dsc_max_bpp = min(dsc_max_bpp, to_bpp_int(limits->link.max_bpp_x16));
+>  
+>  	if (DISPLAY_VER(i915) >= 13)
+>  		return xelpd_dsc_compute_link_config(intel_dp, pipe_config, limits,
+> @@ -2079,10 +2081,12 @@ static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+>  	dsc_src_min_bpp = dsc_src_min_compressed_bpp();
+>  	dsc_sink_min_bpp = dsc_sink_min_compressed_bpp(pipe_config);
+>  	dsc_min_bpp = max(dsc_src_min_bpp, dsc_sink_min_bpp);
+> +	dsc_min_bpp = max(dsc_min_bpp, to_bpp_int_roundup(limits->link.min_bpp_x16));
+>  
+>  	dsc_src_max_bpp = dsc_src_max_compressed_bpp(intel_dp);
+>  	dsc_sink_max_bpp = dsc_sink_max_compressed_bpp(intel_dp, pipe_config, pipe_bpp / 3);
+>  	dsc_max_bpp = dsc_sink_max_bpp ? min(dsc_sink_max_bpp, dsc_src_max_bpp) : dsc_src_max_bpp;
+> +	dsc_max_bpp = min(dsc_max_bpp, to_bpp_int(limits->link.max_bpp_x16));
+>  
+>  	/* Compressed BPP should be less than the Input DSC bpp */
+>  	dsc_max_bpp = min(dsc_max_bpp, pipe_bpp - 1);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 7d84689d69fad..d38d0dd23fc39 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -233,6 +233,9 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
+>  	if (max_bpp > sink_max_bpp)
+>  		max_bpp = sink_max_bpp;
+>  
+> +	min_bpp = max(min_bpp, to_bpp_int_roundup(limits->link.min_bpp_x16));
+> +	max_bpp = min(max_bpp, to_bpp_int(limits->link.max_bpp_x16));
+> +
+>  	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_bpp,
+>  						     min_bpp, limits,
+>  						     conn_state, 2 * 3, true);
+> -- 
+> 2.37.2
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_13651 -> Patchwork_123329v7
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_123329v7 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_123329v7, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/index.html
-
-Participating hosts (38 -> 37)
-------------------------------
-
-  Additional (1): bat-rpls-2 
-  Missing    (2): bat-adlm-1 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_123329v7:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@debugfs_test@read_all_entries:
-    - bat-rpls-2:         NOTRUN -> [ABORT][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-rpls-2/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_module_load@load:
-    - bat-mtlp-8:         [PASS][2] -> [INCOMPLETE][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/bat-mtlp-8/igt@i915_module_load@load.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-mtlp-8/igt@i915_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_123329v7 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0@smem:
-    - bat-dg2-9:          [PASS][4] -> [INCOMPLETE][5] ([i915#8797] / [i915#9275])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-adlp-9:         NOTRUN -> [SKIP][6] ([i915#3546]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-    - bat-dg2-11:         NOTRUN -> [SKIP][7] ([i915#1845]) +3 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [ABORT][8] ([i915#7913]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_chamelium_edid@hdmi-edid-read:
-    - {bat-dg2-13}:       [DMESG-WARN][10] ([i915#7952]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1845]: https://gitlab.freedesktop.org/drm/intel/issues/1845
-  [i915#3546]: https://gitlab.freedesktop.org/drm/intel/issues/3546
-  [i915#7913]: https://gitlab.freedesktop.org/drm/intel/issues/7913
-  [i915#7952]: https://gitlab.freedesktop.org/drm/intel/issues/7952
-  [i915#8797]: https://gitlab.freedesktop.org/drm/intel/issues/8797
-  [i915#9275]: https://gitlab.freedesktop.org/drm/intel/issues/9275
-
-
-Build changes
--------------
-
-  * IGT: IGT_7493 -> IGTPW_9823
-  * Linux: CI_DRM_13651 -> Patchwork_123329v7
-
-  CI-20190529: 20190529
-  CI_DRM_13651: 61b71c3f061a44a6ab1dcf756918886aa03a5480 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_9823: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_9823/index.html
-  IGT_7493: 2517e42d612e0c1ca096acf8b5f6177f7ef4bce7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_123329v7: 61b71c3f061a44a6ab1dcf756918886aa03a5480 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-26265f5f9f61 drm/i915: Enable GGTT updates with binder in MTL
-7a67035923d6 drm/i915: Toggle binder context ready status
-6fa6bfc6f03f drm/i915: Implement GGTT update method with MI_UPDATE_GTT
-f930e850fdf6 drm/i915: Parameterize binder context creation
-831e959ba305 drm/i915: Implement for_each_sgt_daddr_next
-fbfc23fefdae drm/i915: Create a kernel context for GGTT updates
-d9820958a5b0 drm/i915: Lift runtime-pm acquire callbacks out of intel_wakeref.mutex
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/index.html
-
---===============9032653687190094402==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Update GGTT with MI_UPDATE_GTT on MTL (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123329/">https://patchwork.freedesktop.org/series/123329/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_13651 -&gt; Patchwork_123329v7</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_123329v7 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_123329v7, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/index.html</p>
-<h2>Participating hosts (38 -&gt; 37)</h2>
-<p>Additional (1): bat-rpls-2 <br />
-  Missing    (2): bat-adlm-1 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_123329v7:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>bat-rpls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-rpls-2/igt@debugfs_test@read_all_entries.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/bat-mtlp-8/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-mtlp-8/igt@i915_module_load@load.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_123329v7 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@smem:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-dg2-9/igt@gem_exec_suspend@basic-s0@smem.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8797">i915#8797</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9275">i915#9275</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>
-<p>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-adlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3546">i915#3546</a>) +2 other tests skip</p>
-</li>
-<li>
-<p>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1845">i915#1845</a>) +3 other tests skip</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7913">i915#7913</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_edid@hdmi-edid-read:</p>
-<ul>
-<li>{bat-dg2-13}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13651/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7952">i915#7952</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123329v7/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7493 -&gt; IGTPW_9823</li>
-<li>Linux: CI_DRM_13651 -&gt; Patchwork_123329v7</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_13651: 61b71c3f061a44a6ab1dcf756918886aa03a5480 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGTPW_9823: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_9823/index.html<br />
-  IGT_7493: 2517e42d612e0c1ca096acf8b5f6177f7ef4bce7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_123329v7: 61b71c3f061a44a6ab1dcf756918886aa03a5480 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>26265f5f9f61 drm/i915: Enable GGTT updates with binder in MTL<br />
-7a67035923d6 drm/i915: Toggle binder context ready status<br />
-6fa6bfc6f03f drm/i915: Implement GGTT update method with MI_UPDATE_GTT<br />
-f930e850fdf6 drm/i915: Parameterize binder context creation<br />
-831e959ba305 drm/i915: Implement for_each_sgt_daddr_next<br />
-fbfc23fefdae drm/i915: Create a kernel context for GGTT updates<br />
-d9820958a5b0 drm/i915: Lift runtime-pm acquire callbacks out of intel_wakeref.mutex</p>
-
-</body>
-</html>
-
---===============9032653687190094402==--
+-- 
+Ville Syrjälä
+Intel
