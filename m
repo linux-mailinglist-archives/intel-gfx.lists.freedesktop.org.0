@@ -2,54 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 493807A684A
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Sep 2023 17:44:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7964C7A688D
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Sep 2023 18:03:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B25C310E27F;
-	Tue, 19 Sep 2023 15:44:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2373C10E281;
+	Tue, 19 Sep 2023 16:03:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FD3E10E27F
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Sep 2023 15:44:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695138253; x=1726674253;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=lk/Zc6rTmrxs/zoYJCWfgdeXcP+9kxfymPoSFq7fIV0=;
- b=A0uP22/WVVcFnvyrgkCVe3usV1Y5PBmgUCTgq/B6WukBPvTdLT/TRPY5
- 1PCqINxmeTGiYX6fu+xQpxYGTN9aZNRxbMKVPZHuIXsywEv5ubftItlT3
- PCWsgwG6rm6e8YCB1AZ59yuk6rCOFoeIrBA1Vv7W7LlF7gdJa/xTw6pKw
- Gpz9MqOSEUB4biyMgCi/U9lWjJ87VhPwJh89P9uxjE2XY2QTqYxndziX9
- 6MELxUjPgsik1B6blZMrFNAaXW+gkSHs0D4F4SJSpaB1E+4hldG0Nxh2f
- XMefLXmZbKJQVpSDRjVQjzSLo3m2P5tvOwI+yvF3deYWSai9wa1FiZstd Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="365015987"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="365015987"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 08:44:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="775603357"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="775603357"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by orsmga008.jf.intel.com with SMTP; 19 Sep 2023 08:44:01 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 19 Sep 2023 18:44:00 +0300
-Date: Tue, 19 Sep 2023 18:44:00 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <ZQnBwAPEimmZVziF@intel.com>
-References: <20230914192659.757475-1-imre.deak@intel.com>
- <20230914192659.757475-12-imre.deak@intel.com>
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE5F10E27F;
+ Tue, 19 Sep 2023 16:03:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=dZMuR0d3fMuzTTg9AbhRGR2xkVbdfI0ojr0EnSeYVZs=; b=nNc6yhOtVNP+puR0lYFU0ZIT0s
+ 0XPpHQJ/LVJwC13oib4Qqkf3m8XKUagH7maED5JTQb786bFBCmxX3SqbkCk8UK4PZyaiceOf96NLi
+ keLbH+TfFQNorG6OTLMcfZCwjxtLeechmefl7gvPQ6XARJjNcMJQPUqrc++9JfWafDIu5gODO+M6o
+ ViopTh0QbLShwC3C+onnAmVxezWMNRXpLGEvPi2Wb7JhPwM+fjGtTIJupOd9pWkmeiFACxEQCdqPp
+ cxVIwioSzdha0hIz2vp2TFnaGfF8CbCX0AyHBQJ77A5glt5Ty4nGvJfnwrj/pe8HFiSx4yGieBKAs
+ l/6a7d2w==;
+Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1qidBi-000VvE-KN; Tue, 19 Sep 2023 16:02:58 +0000
+Date: Tue, 19 Sep 2023 17:02:58 +0100
+From: Matthew Wilcox <willy@infradead.org>
+To: Oleksandr Natalenko <oleksandr@natalenko.name>
+Message-ID: <ZQnGMtm7zJ9E9a8R@casper.infradead.org>
+References: <4857570.31r3eYUQgx@natalenko.name>
+ <6287208.lOV4Wx5bFT@natalenko.name>
+ <ZQnBrLCPnZfG0A1s@casper.infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230914192659.757475-12-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 11/25] drm/i915/fdi: Recompute state for
- affected CRTCs on FDI links
+In-Reply-To: <ZQnBrLCPnZfG0A1s@casper.infradead.org>
+Subject: Re: [Intel-gfx] [REGRESSION] [BISECTED] Panic in
+ gen8_ggtt_insert_entries() with v6.5
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,139 +50,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Nathan Chancellor <nathan@kernel.org>, linux-mm@kvack.org,
+ Andrzej Hajda <andrzej.hajda@intel.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>, David Airlie <airlied@gmail.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 14, 2023 at 10:26:45PM +0300, Imre Deak wrote:
-> Recompute the state of all CRTCs on an FDI link during a modeset that
-> may be affected by the modeset of other CRTCs on the same link. This
-> ensures that each CRTC on the link maximizes its BW use (after another
-> CRTC is disabled).
-> 
-> In practice this means recomputing pipe B's config on IVB if pipe C gets
-> disabled.
-> 
-> v2:
-> - Add the change recomputing affected CRTC states in a separate patch.
->   (Ville)
-> 
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c |  4 ++
->  drivers/gpu/drm/i915/display/intel_fdi.c     | 53 ++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_fdi.h     |  1 +
->  3 files changed, 58 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index aad16dcceb788..31297a333f50e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6210,6 +6210,10 @@ int intel_atomic_check_config(struct intel_atomic_state *state,
->  	if (ret)
->  		return ret;
->  
-> +	ret = intel_fdi_add_affected_crtcs(state);
-> +	if (ret)
-> +		return ret;
-> +
->  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
->  		if (!intel_crtc_needs_modeset(new_crtc_state)) {
->  			if (intel_crtc_is_bigjoiner_slave(new_crtc_state))
-> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-> index ad01915a4a39b..d723ae7e10d71 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-> @@ -120,6 +120,59 @@ void intel_fdi_link_train(struct intel_crtc *crtc,
->  	dev_priv->display.funcs.fdi->fdi_link_train(crtc, crtc_state);
->  }
->  
-> +/**
-> + * intel_fdi_add_affected_crtcs - add CRTCs on FDI affected by other modeset CRTCs
-> + * @state: intel atomic state
-> + *
-> + * Add a CRTC using FDI to @state if changing another CRTC's FDI BW usage is
-> + * known to affect the available FDI BW for the former CRTC. In practice this
-> + * means adding CRTC B on IVYBRIDGE if its use of FDI lanes is limited (by
-> + * CRTC C) and CRTC C is getting disabled.
-> + *
-> + * Returns 0 in case of success, or a negative error code otherwise.
-> + */
-> +int intel_fdi_add_affected_crtcs(struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> +	struct intel_crtc_state *old_crtc_state;
-> +	struct intel_crtc_state *new_crtc_state;
+On Tue, Sep 19, 2023 at 04:43:41PM +0100, Matthew Wilcox wrote:
+> Could I ask you to try this patch?  I'll follow up with another patch
+> later because I think I made another assumption that may not be valid.
 
-Both look like they can be const.
-
-> +	struct intel_crtc *crtc;
-> +
-> +	if (!IS_IVYBRIDGE(i915))
-
-Should also check num_pipes==3 since pipe C can (at least in theory)
-be fused off.
-
-> +		return 0;
-> +
-> +	crtc = intel_crtc_for_pipe(i915, PIPE_C);
-> +	new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
-> +
-> +	if (!new_crtc_state)
-> +		return 0;
-> +
-> +	old_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
-
-old vs. new mixup
-
-> +
-> +	if (!old_crtc_state->fdi_lanes)
-> +		return 0;
-> +
-> +	if (!intel_crtc_needs_modeset(new_crtc_state))
-> +		return 0;
-> +
-> +	if (new_crtc_state->uapi.enable)
-> +		return 0;
-
-We could be switching pipe C from driving a PCH port to driving
-the CPU eDP port. So this check seems a bit wrong.
-
-> +
-> +	crtc = intel_crtc_for_pipe(i915, PIPE_B);
-> +	new_crtc_state = intel_atomic_get_crtc_state(&state->base, crtc);
-> +
-> +	if (IS_ERR(new_crtc_state))
-> +		return PTR_ERR(old_crtc_state);
-> +
-> +	old_crtc_state = intel_atomic_get_old_crtc_state(state, crtc);
-> +	if (!old_crtc_state->fdi_lanes)
-> +		return 0;
-> +
-> +	return intel_modeset_pipes_in_mask_early(state,
-> +						 "FDI link BW decrease on pipe C",
-> +						 BIT(PIPE_B));
-> +}
-> +
->  /* units of 100MHz */
->  static int pipe_required_fdi_lanes(struct intel_crtc_state *crtc_state)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i915/display/intel_fdi.h
-> index 129444c580f27..eb02b967bb440 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fdi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fdi.h
-> @@ -14,6 +14,7 @@ struct intel_crtc_state;
->  struct intel_encoder;
->  struct intel_link_bw_limits;
->  
-> +int intel_fdi_add_affected_crtcs(struct intel_atomic_state *state);
->  int intel_fdi_link_freq(struct drm_i915_private *i915,
->  			const struct intel_crtc_state *pipe_config);
->  int ilk_fdi_compute_config(struct intel_crtc *intel_crtc,
-> -- 
-> 2.37.2
-
--- 
-Ville Syrjälä
-Intel
+Ah, no, never mind.  I thought we could start in the middle of a folio,
+but we always start constructing the sg list from index 0 of the file,
+so we always start at the first page of a folio.  If this patch solves
+your problem, then I think we're done.
