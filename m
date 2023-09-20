@@ -2,47 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4251B7A7693
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 10:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 836527A76DB
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 11:08:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B02A810E465;
-	Wed, 20 Sep 2023 08:59:08 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2750510E465
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 08:59:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0AC010E46D;
+	Wed, 20 Sep 2023 09:08:49 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E2B710E46C;
+ Wed, 20 Sep 2023 09:08:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695200347; x=1726736347;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3F/fr9b/8Qug53SBfoGyM30+rimDLZ/gkyFEFYCyFRY=;
- b=j5qMwNh0Jr/Opqhv+ALsfpqAiXiN0qJu7LPWVUpq+UJ/VhA4nfTeiWK9
- 8Jl2qm4ays7xKcXYbfSloyigi4H2zCU+XhbGthVzfgFgihvYCFBMK/9Qc
- AV2hGzyNolpmxpqNWrOO9vOLe2kUUozGqfVjxBtedW6pp4MxU4WRVyGfU
- bLdExdUyTk01IXlOc8U5fPNkckcKu3PI/NxeiM3Zfxb5kUFwWVdAU0rPG
- k75jJI/t+p571AYS4ZA88/9rnKLyr5fbmoPrpVDbMEFKT2dgqEl7CnbHt
- eSI8ZxaYKS8/zlRfhwmU4jpXNmgG+5z72i3bS3FTv4fZBw1TByDfHJ5ku g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="379053769"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="379053769"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 01:59:06 -0700
+ t=1695200928; x=1726736928;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=AfhwoS7uXIFUvf4f5ZkpilRwaDSDXoWJQQj3zfGwfrk=;
+ b=EdQHEEzeyWO/4pMYsrtA3ROQKO1nY8VdrFF+EdY3dGXm0qbuqKBW5E2D
+ 0c5rs5ck6DmWzKbIdHt5Ajh4Odmw4XBL1KgVyk1quYX+H6lL+c5wM8Q2C
+ 25lnB5AjgTX7b7Ib/9+mJi8TyxKYDeiG9vgwmgF3YXS/vgeN2VhweUbla
+ Ij2TS0ZE3jVyYUPIfrRPvKRf6NsQHG7BbUfCpxzW6j6MDRgHlXbZbNeFh
+ uGKamvXNiuSKBbsLcV/k0gd9Iw2lXoqwxa9zE0ABJl3OmTQ8z2xabq9eO
+ YaY6Ox/rLaOgXeO33cNdtwYTORxnUbXy4L3glVMLP4fmgGAPs21/qHOLG A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="380075502"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="380075502"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 02:08:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="746567680"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="746567680"
-Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 01:59:04 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 Sep 2023 14:36:20 +0530
-Message-Id: <20230920090620.3255091-1-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="781617993"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="781617993"
+Received: from ptelkov-mobl2.ccr.corp.intel.com (HELO localhost)
+ ([10.252.38.103])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 02:08:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20230920085715.6905-1-tvrtko.ursulin@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230920085715.6905-1-tvrtko.ursulin@linux.intel.com>
+Date: Wed, 20 Sep 2023 12:08:43 +0300
+Message-ID: <87r0mtrz38.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Update RC6 mask for mtl_drpc
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Zap some empty lines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,49 +58,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It is seen that for RC6 status register is sometimes setting unused bits
-without affecting functionality. So updated the mask with used bits.
-As mtl_drpc is debug fs function removing MISSING_CASE from default case as
-it doesn't make sense to panic (panic_on_warn=1) the system if register is
-reporting unsupported state.
+On Wed, 20 Sep 2023, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>
+> Recent refactoring left an unsightly block of empty lines. Remove them.
+>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 1 -
- drivers/gpu/drm/i915/gt/intel_gt_regs.h       | 2 +-
- 2 files changed, 1 insertion(+), 2 deletions(-)
+One of the harder patches I've reviewed this week.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-index 357e2f865727..f900cc68d6d9 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-@@ -290,7 +290,6 @@ static int mtl_drpc(struct seq_file *m)
- 		seq_puts(m, "RC6\n");
- 		break;
- 	default:
--		MISSING_CASE(REG_FIELD_GET(MTL_CC_MASK, gt_core_status));
- 		seq_puts(m, "Unknown\n");
- 		break;
- 	}
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 0d5260d126d8..9f2a7d103ea5 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -26,7 +26,7 @@
- #define   MTL_CAGF_MASK				REG_GENMASK(8, 0)
- #define   MTL_CC0				0x0
- #define   MTL_CC6				0x3
--#define   MTL_CC_MASK				REG_GENMASK(12, 9)
-+#define   MTL_CC_MASK				REG_GENMASK(10, 9)
- 
- /* RPM unit config (Gen8+) */
- #define RPM_CONFIG0				_MMIO(0xd00)
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/i915_drv.h | 7 -------
+>  1 file changed, 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 87ffc477c3b1..511eba3bbdba 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -646,13 +646,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  #define IS_TIGERLAKE_UY(i915) \
+>  	IS_SUBPLATFORM(i915, INTEL_TIGERLAKE, INTEL_SUBPLATFORM_UY)
+>  
+> -
+> -
+> -
+> -
+> -
+> -
+> -
+>  #define IS_XEHPSDV_GRAPHICS_STEP(__i915, since, until) \
+>  	(IS_XEHPSDV(__i915) && IS_GRAPHICS_STEP(__i915, since, until))
+
 -- 
-2.25.1
-
+Jani Nikula, Intel
