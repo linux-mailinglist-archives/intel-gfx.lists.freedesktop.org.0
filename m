@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91C817A7A26
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 13:11:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B7087A7A30
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 13:14:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19F6210E485;
-	Wed, 20 Sep 2023 11:11:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA3610E16F;
+	Wed, 20 Sep 2023 11:14:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FDF010E483;
- Wed, 20 Sep 2023 11:11:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FD5B10E16F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 11:14:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695208301; x=1726744301;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=c0SZhvlhnSQl1roMwUzMg8nEoyStVAs4NBGX89KR3Bg=;
- b=mqL4Dnb5Qx/63JX2YZk0v8gO1zWmu5op5DZbsPFjFJBufu2z8BYm/XMk
- IW/szEYWBTf6YXZaao4+Ih4wxa4y4ylKRWIB7IlZYlind5G6cZtyhrWgX
- CDiwkc8nUXpSFYDYTDl01o8uR9eKnvsnGdaHgaswo8FoHh/a6pCzVz993
- 36SZKc9p07iBIX8MoC1/z80NukWrgF/k6C46UaEp51YlMr5mYX2pnNva2
- FCDVVdxhRxmpgoQEfUggbUV6nj1s8C9dnNSpgfxt3jzOg1bycl7TKpdcT
- dWZp7a6JG46N/kWc+VySzo1q49Ibe6uQ518tF0v8wZnmjqc/A2TrThYpZ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="384038946"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="384038946"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 04:11:40 -0700
+ t=1695208444; x=1726744444;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=TfjVVAGlkaUsutRe37iFppwT2iRipMXbb6GWjeMIrj0=;
+ b=BUInxQ7t/8N7d4H4p+dy9wax/4Gd8CiEdGPQdAgxUHsIRe4jL4NztbdW
+ 3Ds+QtolTLPOM+4jZX/xJuIM1KdoeaJzZYzO8/ZffcL80alvg2RH6+ple
+ 9JouxHZKIjN5yjQ8fBpw5ijzWd5B1ulXVkG3h+2idNatgZ0TG8z9KNETF
+ kC97f0dvYU2UdfvZvlreAOf8owqkif5+qCWO8NHNXjzGL/rOGIl1ev/SW
+ p7IYklPXKp9JMIzGa6/usrXUJZfj/dua/zf6bxKQcXe3zl1fGwGFGVAL1
+ dMCFBaXgo7rrAE4OxEEAqnrcnkO4Rav1Wxk7klqdAgyNuZ/kebOnTIuhc w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="365241951"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="365241951"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 04:14:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="775960934"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="775960934"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 04:11:37 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 Sep 2023 13:11:31 +0200
-Message-ID: <20230920111131.2696-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.41.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="781651011"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="781651011"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by orsmga001.jf.intel.com with SMTP; 20 Sep 2023 04:14:01 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 20 Sep 2023 14:14:00 +0300
+Date: Wed, 20 Sep 2023 14:14:00 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <ZQrT-BzAEnh7hEHd@intel.com>
+References: <20230913150356.9477-1-ville.syrjala@linux.intel.com>
+ <87il85ryeh.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Remove unnecessary memory quiescing
- for aux inval
+In-Reply-To: <87il85ryeh.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Check lane count when
+ determining FEC support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,124 +62,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Mark Janes <mark.janes@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Luca Coelho <luciano.coelho@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915 already does memory quiesce before signaling
-breadcrumb so remove extra memory quiescing for aux
-invalidation which can cause unnecessary side effects.
+On Wed, Sep 20, 2023 at 12:23:34PM +0300, Jani Nikula wrote:
+> On Wed, 13 Sep 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > ICL doesn't support FEC with a x1 DP link. Make sure
+> > we don't try to enable FEC in such cases.
+> 
+> The question is, should we rather require x2 link for FEC?
+> 
+> I suppose x1 link with DSC+FEC is an unlikely scenario with our current
+> link bandwidth policy, so probably not a big deal.
 
-Fixes: 78a6ccd65fa3 ("drm/i915/gt: Ensure memory quiesced before invalidation")
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.8+
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-Cc: Tapani PÃ¤lli <tapani.palli@intel.com>
-Cc: Mark Janes <mark.janes@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 50 ++++++++++++------------
- 1 file changed, 26 insertions(+), 24 deletions(-)
+I think currently we just smash lane_count to max when using DSC.
+So doesn't really matter currently. But something to keep in mind 
+if/when we tune the policy.
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-index 0143445dba83..5001670046a0 100644
---- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-@@ -248,11 +248,7 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
- {
- 	struct intel_engine_cs *engine = rq->engine;
- 
--	/*
--	 * On Aux CCS platforms the invalidation of the Aux
--	 * table requires quiescing memory traffic beforehand
--	 */
--	if (mode & EMIT_FLUSH || gen12_needs_ccs_aux_inv(engine)) {
-+	if (mode & EMIT_FLUSH) {
- 		u32 bit_group_0 = 0;
- 		u32 bit_group_1 = 0;
- 		int err;
-@@ -264,13 +260,6 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
- 
- 		bit_group_0 |= PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
- 
--		/*
--		 * When required, in MTL and beyond platforms we
--		 * need to set the CCS_FLUSH bit in the pipe control
--		 */
--		if (GRAPHICS_VER_FULL(rq->i915) >= IP_VER(12, 70))
--			bit_group_0 |= PIPE_CONTROL_CCS_FLUSH;
--
- 		bit_group_1 |= PIPE_CONTROL_TILE_CACHE_FLUSH;
- 		bit_group_1 |= PIPE_CONTROL_FLUSH_L3;
- 		bit_group_1 |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
-@@ -800,14 +789,15 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
- {
- 	struct drm_i915_private *i915 = rq->i915;
- 	struct intel_gt *gt = rq->engine->gt;
--	u32 flags = (PIPE_CONTROL_CS_STALL |
--		     PIPE_CONTROL_TLB_INVALIDATE |
--		     PIPE_CONTROL_TILE_CACHE_FLUSH |
--		     PIPE_CONTROL_FLUSH_L3 |
--		     PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
--		     PIPE_CONTROL_DEPTH_CACHE_FLUSH |
--		     PIPE_CONTROL_DC_FLUSH_ENABLE |
--		     PIPE_CONTROL_FLUSH_ENABLE);
-+	u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
-+	u32 bit_group_1 = (PIPE_CONTROL_CS_STALL |
-+			   PIPE_CONTROL_TLB_INVALIDATE |
-+			   PIPE_CONTROL_TILE_CACHE_FLUSH |
-+			   PIPE_CONTROL_FLUSH_L3 |
-+			   PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-+			   PIPE_CONTROL_DEPTH_CACHE_FLUSH |
-+			   PIPE_CONTROL_DC_FLUSH_ENABLE |
-+			   PIPE_CONTROL_FLUSH_ENABLE);
- 
- 	/* Wa_14016712196 */
- 	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71)) || IS_DG2(i915))
-@@ -817,14 +807,26 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
- 
- 	if (GRAPHICS_VER(i915) == 12 && GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
- 		/* Wa_1409600907 */
--		flags |= PIPE_CONTROL_DEPTH_STALL;
-+		bit_group_1 |= PIPE_CONTROL_DEPTH_STALL;
- 
- 	if (!HAS_3D_PIPELINE(rq->i915))
--		flags &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
-+		bit_group_1 &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
- 	else if (rq->engine->class == COMPUTE_CLASS)
--		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
-+		bit_group_1 &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
-+
-+	/*
-+	 * On Aux CCS platforms the invalidation of the Aux
-+	 * table requires quiescing memory traffic beforehand.
-+	 * gen12_emit_fini_breadcrumb_rcs() does this for us as
-+	 * all memory traffic has to be completed before we signal
-+	 * the breadcrumb. In MTL and beyond platforms, we need to also
-+	 * add CCS_FLUSH bit in the pipe control for that purpose.
-+	 */
-+
-+	if (GRAPHICS_VER_FULL(rq->i915) >= IP_VER(12, 70))
-+		bit_group_0 |= PIPE_CONTROL_CCS_FLUSH;
- 
--	cs = gen12_emit_pipe_control(cs, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0);
-+	cs = gen12_emit_pipe_control(cs, bit_group_0, bit_group_1, 0);
- 
- 	/*XXX: Look at gen8_emit_fini_breadcrumb_rcs */
- 	cs = gen12_emit_ggtt_write_rcs(cs,
+> 
+> BR,
+> Jani.
+> 
+> >
+> > Requires a bit of reordering to make sure we've computed lane_count
+> > before checking it.
+> >
+> > Cc: Luca Coelho <luciano.coelho@intel.com>
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 21 +++++++++++----------
+> >  1 file changed, 11 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 55ba6eeaa810..2cde8ac513bb 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -1363,7 +1363,8 @@ static bool intel_dp_source_supports_fec(struct intel_dp *intel_dp,
+> >  	if (DISPLAY_VER(dev_priv) >= 12)
+> >  		return true;
+> >  
+> > -	if (DISPLAY_VER(dev_priv) == 11 && encoder->port != PORT_A)
+> > +	if (DISPLAY_VER(dev_priv) == 11 &&
+> > +	    encoder->port != PORT_A && pipe_config->lane_count != 1)
+> >  		return true;
+> >  
+> >  	return false;
+> > @@ -2105,15 +2106,6 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+> >  		&pipe_config->hw.adjusted_mode;
+> >  	int ret;
+> >  
+> > -	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
+> > -		intel_dp_supports_fec(intel_dp, pipe_config);
+> > -
+> > -	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+> > -		return -EINVAL;
+> > -
+> > -	if (!intel_dp_dsc_supports_format(intel_dp, pipe_config->output_format))
+> > -		return -EINVAL;
+> > -
+> >  	/*
+> >  	 * compute pipe bpp is set to false for DP MST DSC case
+> >  	 * and compressed_bpp is calculated same time once
+> > @@ -2134,6 +2126,15 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+> >  		}
+> >  	}
+> >  
+> > +	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
+> > +		intel_dp_supports_fec(intel_dp, pipe_config);
+> > +
+> > +	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
+> > +		return -EINVAL;
+> > +
+> > +	if (!intel_dp_dsc_supports_format(intel_dp, pipe_config->output_format))
+> > +		return -EINVAL;
+> > +
+> >  	/* Calculate Slice count */
+> >  	if (intel_dp_is_edp(intel_dp)) {
+> >  		pipe_config->dsc.slice_count =
+> 
+> -- 
+> Jani Nikula, Intel
+
 -- 
-2.41.0
-
+Ville Syrjälä
+Intel
