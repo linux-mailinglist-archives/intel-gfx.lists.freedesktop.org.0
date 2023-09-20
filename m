@@ -1,47 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16E0E7A72A6
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 08:13:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98E5F7A72E0
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 08:38:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 707C810E439;
-	Wed, 20 Sep 2023 06:13:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F383310E440;
+	Wed, 20 Sep 2023 06:38:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19DC310E43D;
- Wed, 20 Sep 2023 06:13:44 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 7813AB817F4;
- Wed, 20 Sep 2023 06:13:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C81A7C433C7;
- Wed, 20 Sep 2023 06:13:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1695190418;
- bh=sCA6t4YXZyc5rNhGUjMitz7bxr3cqh7547VPQO5z/NI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=bAlxtLY7YcvLrOxMsiqbf4Le3cggE28w/GyZvSzTDZ1LWDwulDeA7PXnKNpr818wD
- Oh+RcbcyXLMQ1tgsLYKsmcnCjgqn7nw17NhnFRG2sf6fZqAWsTyVntPFQNJ1gQznQl
- Z/8P+WUcfjIsCbf2DDTDTZgaL9Z/nof0KsFVEZnR+YebobrMgn1ZjbdqcWqlJZ7mvp
- n4I8Ng33kgHK/NeDt1jY1mHRFccpKgGmT4P8ig310BOcLXlEFgXlrd/9zmXznCUfrR
- EIIkSZeDvR3Tk/vs8xkZq3VqsfPYYM6XXCEVWowAgfrsI6GzCgTFn4udr6WvmV5moq
- kPNKybovu1lEw==
-Date: Wed, 20 Sep 2023 08:13:35 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Helen Koike <helen.koike@collabora.com>
-Message-ID: <56iam34xkp4gnffi7cdqkzn33nqkb53ttttersctoa7b2rvvpn@ukaj2ceo4f2y>
-References: <20230919182249.153499-1-helen.koike@collabora.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4464D10E440
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 06:38:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695191886; x=1726727886;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5W5Lu/L69BWFiPQbKsoAFqRHkOFGJvBtwJknX24Br8Y=;
+ b=RnPk9AbYuq1Xvv9D2YfTGRqbZzHq1R36X7zWWS3B/UolY3OIIyaUuUx7
+ oqwEO3FyT6c31pq6v9nIuzofUaAZjsUeU7JIbkZbyX4bkA39smYJEmCYB
+ gfQq6ZOr7sXUJn9r7hSL9BzzCFWSMjQKl764PVTLFPzM/ZZvyEDS9X5aq
+ bZcymjXTLnut67NvTV/o5PulXIYPnn8Sujgn2mYLKQA4ukMcmpYwv8ffQ
+ POlttchPc77zi3ssqK9qRV84KazEMltpIf9cKiGgyrvI4ZC+ZSs9+B7w8
+ 1728WQdpoAd/l8vmY8PJOYqfqi75LlfaaowyYfdX1Z9+tmFLPxYZJJC8A w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="379028800"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="379028800"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2023 23:38:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="836728150"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="836728150"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by FMSMGA003.fm.intel.com with ESMTP; 19 Sep 2023 23:38:04 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 20 Sep 2023 12:06:09 +0530
+Message-Id: <20230920063611.242942-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="snkfr47lvwx67rio"
-Content-Disposition: inline
-In-Reply-To: <20230919182249.153499-1-helen.koike@collabora.com>
-Subject: Re: [Intel-gfx] [PATCH] MAINTAINERS: drm/ci: add entries for xfail
- files
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/2] Refactor i915 HDCP for XE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,46 +54,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: neil.armstrong@linaro.org, amd-gfx@lists.freedesktop.org, heiko@sntech.de,
- michel.daenzer@mailbox.org, daniel@ffwll.ch, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- p.zabel@pengutronix.de, airlied@redhat.com, alexander.deucher@amd.com,
- linux-amlogic@lists.infradead.org, daniel@fooishbar.org
+Cc: jani.nikula@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This patch series contains some refactors for i915 side of things
+which will help with a cleaner code and maximum reuse of code
+for XE going forward.
 
---snkfr47lvwx67rio
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Hi,
 
-On Tue, Sep 19, 2023 at 03:22:49PM -0300, Helen Koike wrote:
-> DRM CI keeps track of which tests are failing, flaking or being skipped
-> by the ci in the expectations files. Add entries for those files to the
-> corresponding driver maintainer, so they can be notified when they
-> change.
->=20
-> Signed-off-by: Helen Koike <helen.koike@collabora.com>
+Suraj Kandpal (2):
+  drm/i915/hdcp: Move checks for gsc health status
+  drm/i915/hdcp: Move common message filling function to its own file
 
-Thanks for sending this
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |   8 +-
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 620 +-----------------
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |   3 +
+ 4 files changed, 30 insertions(+), 602 deletions(-)
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+-- 
+2.25.1
 
-Maxime
-
---snkfr47lvwx67rio
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZQqNjwAKCRDj7w1vZxhR
-xXAYAP9Bj69+O1sa6mIVvufb7pxaegBC7CPhLcZvoTbWo7giVwEA6DxfglNf7WDj
-GvhfiMjoMJRWAeagnk3gM2FAxR30aA0=
-=48R+
------END PGP SIGNATURE-----
-
---snkfr47lvwx67rio--
