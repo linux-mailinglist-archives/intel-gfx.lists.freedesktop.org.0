@@ -1,52 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 537277A7A70
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 13:29:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D81C7A7A7E
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 13:35:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F034A10E170;
-	Wed, 20 Sep 2023 11:29:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84C1810E48E;
+	Wed, 20 Sep 2023 11:35:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9531010E170
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 11:29:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2DAF10E48E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 11:35:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695209347; x=1726745347;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=epqE+Hkw13arMcKNAcqpQVy237ecwFpNj6OqLP5ylI4=;
- b=mKHsd9vkEgDhh4uD0deyJV43j1+07YaNA2ftv7kBK4EzUwrGDt6VObWi
- 3tarzwtRKxj8DKXYGa6Xnixh+sw4HCa5VzCwiTh4AAswCV+uwWQ4eBCoG
- BPad4AeL5/r3Ed8Gtyb8Knb//nEDA+AlRAup8Zz9JzZSNIvlYEL2us+xM
- 5G5r1C3dTyeWcKqRxM6LTSPtOmLfDVZbGBioeYipdkLYIaHdjizp6d4Tc
- fnCG+Uu2XUOpWmUGELvHImaf7gTKOyw6EXZuaMR837n5t4iDKdilw6nn0
- i3CizO/H8YSGne4GXSFjuYCKnMABcxULvwIaXEaMKdQ1ZlzZRO/7wIQUm A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="365244322"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="365244322"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 04:29:06 -0700
+ t=1695209713; x=1726745713;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=3STPOeMeSvM8IKTJJi6209HOpyzwlAoshRcT48U9ZpM=;
+ b=Mi+cSjbPn99+Cjci78I02lAFaD5hsSXh593MCjplqZMe6xfuL8CN8rUB
+ f6BeN9kUNXdOibW655g0tHVBNSaglXwn8t1wOiyiX/yv1cnWFT7Dzkf30
+ fkwcSgLTe0ztZI2nekv2xR3/BTh7sTdsfIewUNgqZeKkEbdfC2qg/wXrI
+ eIXHWw9VgpSRpovA1BWEWFvmOfJHBzv7fqtx3b0OhLViIzVWqUX7aGsSW
+ W6pszL2rm+Y402C1qb3klVRUOBhViL1f/O6sUv8LSumHqVRG1q2282qbg
+ GsLN+hwvsVc6tneNBspjpvUGmkOiPOwXPpsGSPKDENK4VIvNYJulBUl14 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="377502135"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="377502135"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 04:35:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="749864631"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="749864631"
-Received: from ptelkov-mobl2.ccr.corp.intel.com (HELO localhost)
- ([10.252.38.103])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 04:29:05 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 Sep 2023 14:29:01 +0300
-Message-Id: <20230920112901.3315876-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="812112535"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="812112535"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 04:35:07 -0700
+Date: Wed, 20 Sep 2023 14:35:28 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <ZQrZAPqERRrpechw@ideak-desk.fi.intel.com>
+References: <20230914192659.757475-1-imre.deak@intel.com>
+ <20230914192659.757475-18-imre.deak@intel.com>
+ <ZQrQY60YmL3UDzsS@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: add a note about fec_enable with
- 128b/132b
+In-Reply-To: <ZQrQY60YmL3UDzsS@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 17/25] drm/i915/dp_mst: Fix PBN
+ calculation with FEC overhead
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,38 +61,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a note that fec_enable actually means FEC is to be enabled
-explicitly. 128b/132b always has FEC enabled, the driver doesn't need to
-enable it separately, and fec_enable will be false.
+On Wed, Sep 20, 2023 at 01:58:43PM +0300, Ville Syrj‰l‰ wrote:
+> On Thu, Sep 14, 2023 at 10:26:51PM +0300, Imre Deak wrote:
+> > On 8b/10b MST links the PBN value for DSC streams must be calculated
+> > accounting for the FEC overhead. The same applies to 8b/10b non-DSC
+> > streams if there is another DSC stream on the same link. Fix up the PBN
+> > calculation accordingly.
+> > 
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index 01291bbb44693..c1fea894d3774 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -110,7 +110,8 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+> >  
+> >  		crtc_state->pbn = drm_dp_calc_pbn_mode(adjusted_mode->crtc_clock,
+> >  						       bpp << 4,
+> > -						       false);
+> > +						       (dsc || crtc_state->fec_enable) &&
+> > +							!intel_dp_is_uhbr(crtc_state));
+> 
+> Why is this not simply 'fec_enable'?
 
-Cc: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_types.h | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+For DSC it's enabled only after the link configuration is computed. I
+can move that enabling from intel_dp_dsc_compute_config() earlier
+instead.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 3c54fe2bfddd..f781a9755a52 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1364,7 +1364,12 @@ struct intel_crtc_state {
- 
- 	bool enhanced_framing;
- 
--	/* Forward Error correction State */
-+	/*
-+	 * Forward Error Correction.
-+	 *
-+	 * Note: This will be false for 128b/132b, which will always have FEC
-+	 * enabled automatically.
-+	 */
- 	bool fec_enable;
- 
- 	bool sdp_split_enable;
--- 
-2.39.2
-
+> >  
+> >  		slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst_mgr,
+> >  						      connector->port,
+> > -- 
+> > 2.37.2
+> 
+> -- 
+> Ville Syrj‰l‰
+> Intel
