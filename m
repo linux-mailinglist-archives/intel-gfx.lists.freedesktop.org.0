@@ -2,57 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E71DB7A7291
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 08:08:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16E0E7A72A6
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 08:13:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8B5110E0FC;
-	Wed, 20 Sep 2023 06:08:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 707C810E439;
+	Wed, 20 Sep 2023 06:13:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B788A10E36A;
- Wed, 20 Sep 2023 06:08:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695190102; x=1726726102;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=GIaIXCqIGoxl1rQ/uxCgQqfwjzyvj08lMJhHPrSZpx0=;
- b=VZItf5AcbtNRS7v/SopXlt85Tm/OWsFU6Wbc6I4u8tStGPmuAIeoGpJm
- luNigWzawQxcfIid+OlYRABkHQT8w7mCACvhzdkH17FNBUhv5o4ZFDXQm
- xCOLEQkfN6H7PWcXKEfbCtYThw4KQ85B2yB/qrsgPkC1gqz2JlUDgQpqd
- 92LckcTZeb6ooki12ug1mckXMxJPz/iKqH7TdmUESKvRdWJGLiKXfF0UM
- YdRCCHg2W+MhW03yUNMrdmddlquVb2Wm4BUHSGEB5hsIb4f3co9ALZ2k/
- u2u/G7pBbs/BQuDPLebFNPIkJgVSHuL7PilkCgMX4fX77BP4u4LXhdP+X g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="382880381"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="382880381"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 23:08:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="1077294545"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="1077294545"
-Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.213.20.10])
- ([10.213.20.10])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 23:08:17 -0700
-Message-ID: <81f332a3-2b30-465d-f026-bc203aada32d@intel.com>
-Date: Wed, 20 Sep 2023 08:08:15 +0200
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19DC310E43D;
+ Wed, 20 Sep 2023 06:13:44 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 7813AB817F4;
+ Wed, 20 Sep 2023 06:13:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C81A7C433C7;
+ Wed, 20 Sep 2023 06:13:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1695190418;
+ bh=sCA6t4YXZyc5rNhGUjMitz7bxr3cqh7547VPQO5z/NI=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=bAlxtLY7YcvLrOxMsiqbf4Le3cggE28w/GyZvSzTDZ1LWDwulDeA7PXnKNpr818wD
+ Oh+RcbcyXLMQ1tgsLYKsmcnCjgqn7nw17NhnFRG2sf6fZqAWsTyVntPFQNJ1gQznQl
+ Z/8P+WUcfjIsCbf2DDTDTZgaL9Z/nof0KsFVEZnR+YebobrMgn1ZjbdqcWqlJZ7mvp
+ n4I8Ng33kgHK/NeDt1jY1mHRFccpKgGmT4P8ig310BOcLXlEFgXlrd/9zmXznCUfrR
+ EIIkSZeDvR3Tk/vs8xkZq3VqsfPYYM6XXCEVWowAgfrsI6GzCgTFn4udr6WvmV5moq
+ kPNKybovu1lEw==
+Date: Wed, 20 Sep 2023 08:13:35 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Helen Koike <helen.koike@collabora.com>
+Message-ID: <56iam34xkp4gnffi7cdqkzn33nqkb53ttttersctoa7b2rvvpn@ukaj2ceo4f2y>
+References: <20230919182249.153499-1-helen.koike@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.15.1
-Content-Language: en-US
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>,
- Andrew Morton <akpm@linux-foundation.org>
-References: <20230919194855.347582-1-willy@infradead.org>
-From: Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230919194855.347582-1-willy@infradead.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH] i915: Limit the length of an sg list to the
- requested length
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="snkfr47lvwx67rio"
+Content-Disposition: inline
+In-Reply-To: <20230919182249.153499-1-helen.koike@collabora.com>
+Subject: Re: [Intel-gfx] [PATCH] MAINTAINERS: drm/ci: add entries for xfail
+ files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,79 +54,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, Oleksandr Natalenko <oleksandr@natalenko.name>,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: neil.armstrong@linaro.org, amd-gfx@lists.freedesktop.org, heiko@sntech.de,
+ michel.daenzer@mailbox.org, daniel@ffwll.ch, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ p.zabel@pengutronix.de, airlied@redhat.com, alexander.deucher@amd.com,
+ linux-amlogic@lists.infradead.org, daniel@fooishbar.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 19.09.2023 21:48, Matthew Wilcox (Oracle) wrote:
-> The folio conversion changed the behaviour of shmem_sg_alloc_table() to
-> put the entire length of the last folio into the sg list, even if the sg
-> list should have been shorter.  gen8_ggtt_insert_entries() relied on the
-> list being the right langth and would overrun the end of the page tables.
 
-s/langth/length/, I can fix it on applying.
+--snkfr47lvwx67rio
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Other functions may also have been affected.
-> 
-> Clamp the length of the last entry in the sg list to be the expected
-> length.
-> 
-> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
-> Fixes: 0b62af28f249 ("i915: convert shmem_sg_free_table() to use a folio_batch")
-> Cc: stable@vger.kernel.org # 6.5.x
-> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/9256
-> Link: https://lore.kernel.org/lkml/6287208.lOV4Wx5bFT@natalenko.name/
-> Reported-by: Oleksandr Natalenko <oleksandr@natalenko.name>
-> Tested-by: Oleksandr Natalenko <oleksandr@natalenko.name>
+Hi,
 
-Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+On Tue, Sep 19, 2023 at 03:22:49PM -0300, Helen Koike wrote:
+> DRM CI keeps track of which tests are failing, flaking or being skipped
+> by the ci in the expectations files. Add entries for those files to the
+> corresponding driver maintainer, so they can be notified when they
+> change.
+>=20
+> Signed-off-by: Helen Koike <helen.koike@collabora.com>
 
-Regards
-Andrzej
+Thanks for sending this
 
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 11 +++++++----
->   1 file changed, 7 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> index 8f1633c3fb93..73a4a4eb29e0 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> @@ -100,6 +100,7 @@ int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
->   	st->nents = 0;
->   	for (i = 0; i < page_count; i++) {
->   		struct folio *folio;
-> +		unsigned long nr_pages;
->   		const unsigned int shrink[] = {
->   			I915_SHRINK_BOUND | I915_SHRINK_UNBOUND,
->   			0,
-> @@ -150,6 +151,8 @@ int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
->   			}
->   		} while (1);
->   
-> +		nr_pages = min_t(unsigned long,
-> +				folio_nr_pages(folio), page_count - i);
->   		if (!i ||
->   		    sg->length >= max_segment ||
->   		    folio_pfn(folio) != next_pfn) {
-> @@ -157,13 +160,13 @@ int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
->   				sg = sg_next(sg);
->   
->   			st->nents++;
-> -			sg_set_folio(sg, folio, folio_size(folio), 0);
-> +			sg_set_folio(sg, folio, nr_pages * PAGE_SIZE, 0);
->   		} else {
->   			/* XXX: could overflow? */
-> -			sg->length += folio_size(folio);
-> +			sg->length += nr_pages * PAGE_SIZE;
->   		}
-> -		next_pfn = folio_pfn(folio) + folio_nr_pages(folio);
-> -		i += folio_nr_pages(folio) - 1;
-> +		next_pfn = folio_pfn(folio) + nr_pages;
-> +		i += nr_pages - 1;
->   
->   		/* Check that the i965g/gm workaround works. */
->   		GEM_BUG_ON(gfp & __GFP_DMA32 && next_pfn >= 0x00100000UL);
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
+Maxime
+
+--snkfr47lvwx67rio
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZQqNjwAKCRDj7w1vZxhR
+xXAYAP9Bj69+O1sa6mIVvufb7pxaegBC7CPhLcZvoTbWo7giVwEA6DxfglNf7WDj
+GvhfiMjoMJRWAeagnk3gM2FAxR30aA0=
+=48R+
+-----END PGP SIGNATURE-----
+
+--snkfr47lvwx67rio--
