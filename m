@@ -1,51 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A4057A7165
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 06:02:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 170CF7A7172
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 06:12:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CD4310E424;
-	Wed, 20 Sep 2023 04:02:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00C7210E43B;
+	Wed, 20 Sep 2023 04:12:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A44F010E424;
- Wed, 20 Sep 2023 04:02:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04C7A10E43B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 04:12:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695182553; x=1726718553;
+ t=1695183160; x=1726719160;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=HGPYiYiQfRFLsrUuXlVIuA304F5GSy2KJSAB0B47n+Q=;
- b=FIWodon5T3suDH9QQA+JB5jpEB4mnT0jMhgYRrh9MV6dQZJbz/LOpOQN
- tS/CLeg3Qrac41C4J1wdVH+ObcwbmoBLWm1vM2fgILQcZkhAb9OkLR4jD
- De7PD//b+fv4T3hVf51X+3JmH8nwyWtojBfrv1E736Sf03Y6h+UgsGk/T
- X9xe6RHX/0f7ehz0HQrfbANmIsrmHhcy9N5j4vlCNv3OvgFO3ofF2Wrc2
- prL4v6FO6AiXHockj8mxuDNBbCqU9k318EUpwSVwKIpLu9CCRJ9vTe7eu
- /vm4CMeEwA6LvJJiq0guM0SlvuYvjvCkBCVJZ7krjreD7auLuMbJMaZb2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="444209695"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="444209695"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 21:02:19 -0700
+ bh=lHvXAUC5cgvLDIQYbavytcJNYfp5BfgzM2FDHg/y2ko=;
+ b=DNYXLDsNETBPHXatS8paZ02DnshKE3uicKq8QalLXdGZDpwJTR4JAabK
+ VefePLbrJgeyUPj+DWdVr7sB88FcmjbSsdQ9bkuGiDvRRqQBtmOEzYrfr
+ zDqtOD7iswDBBJQDZqelOorJnZKOm1OzwCPBhmwXJf/bNNx76z8mSeF19
+ 2lxqKvgcDJgBg79nWAK8I+D/7fbKJHl8dCwSFuqOPDN5FnI2gqVWQ1g/p
+ 741npbmRQJXXtUwhFs17vgP7SLZLK0RLfcRjj3/pA86sngkdl/yRY2MeI
+ ecqxlgKu7sz4ZnTLJ06ni+/vav19XtXTx5rKe9QKH9QIckMl/nMYmvtKY Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="370432651"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="370432651"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2023 21:06:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="775822951"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="775822951"
-Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
- ([10.165.21.138])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 21:02:18 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="920119278"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="920119278"
+Received: from shekharc-desk.iind.intel.com ([10.190.239.54])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2023 21:05:58 -0700
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Sep 2023 21:02:11 -0700
-Message-ID: <20230920040211.2351279-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.41.0
+Date: Wed, 20 Sep 2023 09:35:47 +0530
+Message-Id: <20230920040547.181861-1-shekhar.chauhan@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/perf: Remove gtt_offset from
- stream->oa_buffer.head/.tail
+Subject: [Intel-gfx] [PATCH] drm/i915: Add Wa_18028616096
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,193 +55,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is no reason to add gtt_offset to the cached head/tail pointers
-stream->oa_buffer.head and stream->oa_buffer.tail. This causes the code to
-constantly add gtt_offset and subtract gtt_offset and is error
-prone.
+Drop UGM per set fragment threshold to 3
 
-It is much simpler to maintain stream->oa_buffer.head and
-stream->oa_buffer.tail without adding gtt_offset to them and just allow for
-the gtt_offset when reading/writing from/to HW registers.
-
-v2: Minor tweak to commit message due to dropping patch in previous series
-
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+BSpec: 54833
+Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c | 52 ++++++++------------------------
- 1 file changed, 13 insertions(+), 39 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 1 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 3 +++
+ 2 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 018f42fff4cc0..1347e4ec9dd5a 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -543,10 +543,9 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- {
- 	u32 gtt_offset = i915_ggtt_offset(stream->oa_buffer.vma);
- 	int report_size = stream->oa_buffer.format->size;
--	u32 head, tail, read_tail;
-+	u32 tail, hw_tail;
- 	unsigned long flags;
- 	bool pollin;
--	u32 hw_tail;
- 	u32 partial_report_size;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index a00ff51c681d..f8ab99affa15 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -1227,6 +1227,7 @@
+ #define EU_PERF_CNTL3				PERF_REG(0xe758)
  
- 	/* We have to consider the (unlikely) possibility that read() errors
-@@ -556,6 +555,7 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- 	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
- 
- 	hw_tail = stream->perf->ops.oa_hw_tail_read(stream);
-+	hw_tail -= gtt_offset;
- 
- 	/* The tail pointer increases in 64 byte increments, not in report_size
- 	 * steps. Also the report size may not be a power of 2. Compute
-@@ -567,13 +567,6 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- 	/* Subtract partial amount off the tail */
- 	hw_tail = OA_TAKEN(hw_tail, partial_report_size);
- 
--	/* NB: The head we observe here might effectively be a little
--	 * out of date. If a read() is in progress, the head could be
--	 * anywhere between this head and stream->oa_buffer.tail.
--	 */
--	head = stream->oa_buffer.head - gtt_offset;
--	read_tail = stream->oa_buffer.tail - gtt_offset;
--
- 	tail = hw_tail;
- 
- 	/* Walk the stream backward until we find a report with report
-@@ -587,7 +580,7 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- 	 * memory in the order they were written to.
- 	 * If not : (╯°□°）╯︵ ┻━┻
- 	 */
--	while (OA_TAKEN(tail, read_tail) >= report_size) {
-+	while (OA_TAKEN(tail, stream->oa_buffer.tail) >= report_size) {
- 		void *report = stream->oa_buffer.vaddr + tail;
- 
- 		if (oa_report_id(stream, report) ||
-@@ -601,9 +594,9 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
- 	    __ratelimit(&stream->perf->tail_pointer_race))
- 		drm_notice(&stream->uncore->i915->drm,
- 			   "unlanded report(s) head=0x%x tail=0x%x hw_tail=0x%x\n",
--		 head, tail, hw_tail);
-+		 stream->oa_buffer.head, tail, hw_tail);
- 
--	stream->oa_buffer.tail = gtt_offset + tail;
-+	stream->oa_buffer.tail = tail;
- 
- 	pollin = OA_TAKEN(stream->oa_buffer.tail,
- 			  stream->oa_buffer.head) >= report_size;
-@@ -753,13 +746,6 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
- 
- 	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
- 
--	/*
--	 * NB: oa_buffer.head/tail include the gtt_offset which we don't want
--	 * while indexing relative to oa_buf_base.
--	 */
--	head -= gtt_offset;
--	tail -= gtt_offset;
--
- 	/*
- 	 * An out of bounds or misaligned head or tail pointer implies a driver
- 	 * bug since we validate + align the tail pointers we read from the
-@@ -895,9 +881,8 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
- 		 * We removed the gtt_offset for the copy loop above, indexing
- 		 * relative to oa_buf_base so put back here...
+ #define LSC_CHICKEN_BIT_0			MCR_REG(0xe7c8)
++#define   UGM_FRAGMENT_THRESHOLD_TO_3		REG_BIT(58)
+ #define   DISABLE_D8_D16_COASLESCE		REG_BIT(30)
+ #define   FORCE_1_SUB_MESSAGE_PER_FRAGMENT	REG_BIT(15)
+ #define LSC_CHICKEN_BIT_0_UDW			MCR_REG(0xe7c8 + 4)
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 660d4f358eab..3f3977014ee7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -2914,6 +2914,9 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 		 * Wa_22015475538:dg2
  		 */
--		head += gtt_offset;
- 		intel_uncore_write(uncore, oaheadptr,
--				   head & GEN12_OAG_OAHEADPTR_MASK);
-+				   (head + gtt_offset) & GEN12_OAG_OAHEADPTR_MASK);
- 		stream->oa_buffer.head = head;
+ 		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0_UDW, DIS_CHAIN_2XSIMD8);
++
++		/* Wa_18028616096:dg2 */
++		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0, UGM_FRAGMENT_THRESHOLD_TO_3);
+ 	}
  
- 		spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
-@@ -1042,12 +1027,6 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
- 
- 	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
- 
--	/* NB: oa_buffer.head/tail include the gtt_offset which we don't want
--	 * while indexing relative to oa_buf_base.
--	 */
--	head -= gtt_offset;
--	tail -= gtt_offset;
--
- 	/* An out of bounds or misaligned head or tail pointer implies a driver
- 	 * bug since we validate + align the tail pointers we read from the
- 	 * hardware and we are in full control of the head pointer which should
-@@ -1110,13 +1089,8 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
- 	if (start_offset != *offset) {
- 		spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
- 
--		/* We removed the gtt_offset for the copy loop above, indexing
--		 * relative to oa_buf_base so put back here...
--		 */
--		head += gtt_offset;
--
- 		intel_uncore_write(uncore, GEN7_OASTATUS2,
--				   (head & GEN7_OASTATUS2_HEAD_MASK) |
-+				   ((head + gtt_offset) & GEN7_OASTATUS2_HEAD_MASK) |
- 				   GEN7_OASTATUS2_MEM_SELECT_GGTT);
- 		stream->oa_buffer.head = head;
- 
-@@ -1704,7 +1678,7 @@ static void gen7_init_oa_buffer(struct i915_perf_stream *stream)
- 	 */
- 	intel_uncore_write(uncore, GEN7_OASTATUS2, /* head */
- 			   gtt_offset | GEN7_OASTATUS2_MEM_SELECT_GGTT);
--	stream->oa_buffer.head = gtt_offset;
-+	stream->oa_buffer.head = 0;
- 
- 	intel_uncore_write(uncore, GEN7_OABUFFER, gtt_offset);
- 
-@@ -1712,7 +1686,7 @@ static void gen7_init_oa_buffer(struct i915_perf_stream *stream)
- 			   gtt_offset | OABUFFER_SIZE_16M);
- 
- 	/* Mark that we need updated tail pointers to read from... */
--	stream->oa_buffer.tail = gtt_offset;
-+	stream->oa_buffer.tail = 0;
- 
- 	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
- 
-@@ -1746,7 +1720,7 @@ static void gen8_init_oa_buffer(struct i915_perf_stream *stream)
- 
- 	intel_uncore_write(uncore, GEN8_OASTATUS, 0);
- 	intel_uncore_write(uncore, GEN8_OAHEADPTR, gtt_offset);
--	stream->oa_buffer.head = gtt_offset;
-+	stream->oa_buffer.head = 0;
- 
- 	intel_uncore_write(uncore, GEN8_OABUFFER_UDW, 0);
- 
-@@ -1763,7 +1737,7 @@ static void gen8_init_oa_buffer(struct i915_perf_stream *stream)
- 	intel_uncore_write(uncore, GEN8_OATAILPTR, gtt_offset & GEN8_OATAILPTR_MASK);
- 
- 	/* Mark that we need updated tail pointers to read from... */
--	stream->oa_buffer.tail = gtt_offset;
-+	stream->oa_buffer.tail = 0;
- 
- 	/*
- 	 * Reset state used to recognise context switches, affecting which
-@@ -1800,7 +1774,7 @@ static void gen12_init_oa_buffer(struct i915_perf_stream *stream)
- 	intel_uncore_write(uncore, __oa_regs(stream)->oa_status, 0);
- 	intel_uncore_write(uncore, __oa_regs(stream)->oa_head_ptr,
- 			   gtt_offset & GEN12_OAG_OAHEADPTR_MASK);
--	stream->oa_buffer.head = gtt_offset;
-+	stream->oa_buffer.head = 0;
- 
- 	/*
- 	 * PRM says:
-@@ -1816,7 +1790,7 @@ static void gen12_init_oa_buffer(struct i915_perf_stream *stream)
- 			   gtt_offset & GEN12_OAG_OATAILPTR_MASK);
- 
- 	/* Mark that we need updated tail pointers to read from... */
--	stream->oa_buffer.tail = gtt_offset;
-+	stream->oa_buffer.tail = 0;
- 
- 	/*
- 	 * Reset state used to recognise context switches, affecting which
+ 	if (IS_DG2_G11(i915)) {
 -- 
-2.41.0
+2.34.1
 
