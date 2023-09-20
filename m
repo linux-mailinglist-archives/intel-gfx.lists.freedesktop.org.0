@@ -1,58 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 639527A7A40
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 13:19:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 979307A7A63
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 13:25:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83DD710E484;
-	Wed, 20 Sep 2023 11:18:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BDC910E48F;
+	Wed, 20 Sep 2023 11:25:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A0A110E146;
- Wed, 20 Sep 2023 11:18:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFDFF10E48E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 11:25:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695208729; x=1726744729;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=V/blwaER0AEA6MQ0muNozilAvVoc4x9ou18moN7caUY=;
- b=CH7/c/KhYcm5ry1nevrTPEkkJxjVM7oGsFU2oUpKnFqqZee9yDm5Pgda
- FqD1qRlMKZyjpwuRw70o01sFDWwEIi283jQ14/4sGOaDARxTFx1Kw0K8j
- xjXKEaaGO8GOX2vdY6btVrHTylAGnPa9REJsKBTTxrlefFtPQFxt3hlI5
- deHuA0364qRC8xm2CfRfYvUusrJgF/ss6T5eUS+6P1Cjk5NE/H/JxwmjH
- LTTUsyYsokgNkrsOXRKH5ljKujG7xCaNHeUy3d0wr1XNCzIhX0KDjTzQ4
- JfgU5vxwhXAK+3TxhY5o9yBVaGDpLKOkAXWTW3KL3RRfs8ZW32hcjr2ML w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="446662748"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="446662748"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 04:18:48 -0700
+ t=1695209125; x=1726745125;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=4HVcypDTpG0gUWqPBzj00BYw5QsZtW7Zdu4p+lX9ocM=;
+ b=galSpGArKg3YX/TQ2sF95SC1IGea8FwIA33He+s+YhcA8lqUKZLeGyQO
+ iQmfasZ01Rg+T2gJdWw3YOcNr9tsuo1w+RP0rcyGN2xBQlxMPBgFc6kWh
+ mBSQP3aJ4PRa3+2px3ygjZDwHsultGeACS93qu26L3aRPe+WLtV/fAQ/V
+ DaR8bhwHjJCgO2qT6dbbBJdvJRz7gCOAkK7iD36/lvAHcADyun2xpnxBP
+ M9Up32WnIX70HLcEfwaVBcQr9wC6fphEmFjj+ZL90/iDEaKRc3sldNujR
+ vKXWKyMu0KpM55407vneW+M+eWiUNxZmjkYJtUQHrO6PaHhNw4DXMBVrt w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="360451667"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="360451667"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 04:25:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="746604130"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="746604130"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.39.128])
- ([10.252.39.128])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 04:18:46 -0700
-Message-ID: <5ff2eb37-fa7b-84a5-4354-7e1b54dba907@linux.intel.com>
-Date: Wed, 20 Sep 2023 13:18:43 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="836810132"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="836810132"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 04:25:23 -0700
+Date: Wed, 20 Sep 2023 14:25:14 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <ZQrWmvN7dg8abxpY@intel.com>
+References: <20230914192659.757475-1-imre.deak@intel.com>
+ <20230914192659.757475-19-imre.deak@intel.com>
+ <ZQq3XlBGdXFZAh2z@intel.com> <ZQrQqUeMjVBLn3by@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: =?UTF-8?Q?Tapani_P=c3=a4lli?= <tapani.palli@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, Nirmoy Das <nirmoy.das@intel.com>
-References: <20230919114716.19378-1-nirmoy.das@intel.com>
- <ZQmP+IWIcu1yUkSC@ashyti-mobl2.lan>
- <aa102a2e-0b73-9f1b-8fcf-75eb5b741d03@intel.com>
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <aa102a2e-0b73-9f1b-8fcf-75eb5b741d03@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix aux invalidation with proper
- pipe_control flag
+In-Reply-To: <ZQrQqUeMjVBLn3by@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 18/25] drm/i915/dp_mst: Add atomic state
+ for all streams on pre-tgl platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,54 +61,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Sent out https://patchwork.freedesktop.org/series/123975/
+On Wed, Sep 20, 2023 at 01:59:53PM +0300, Ville Syrjälä wrote:
+> On Wed, Sep 20, 2023 at 12:11:58PM +0300, Lisovskiy, Stanislav wrote:
+> > On Thu, Sep 14, 2023 at 10:26:52PM +0300, Imre Deak wrote:
+> > > If an MST stream is modeset, its state must be checked along all the
+> > > other streams on the same MST link, for instance to resolve a BW
+> > > overallocation of a non-sink MST port or to make sure that the FEC is
+> > > enabled/disabled the same way for all these streams.
+> > > 
+> > > To prepare for that this patch adds all the stream CRTCs to the atomic
+> > > state and marks them for modeset similarly to tgl+ platforms. (If the
+> > > state computation doesn't change the state the CRTC is switched back to
+> > > fastset mode.)
+> > > 
+> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 ---
+> > >  1 file changed, 3 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > index c1fea894d3774..832e8b0e87e84 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > @@ -491,9 +491,6 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
+> > >  	struct intel_connector *connector_iter;
+> > >  	int ret = 0;
+> > >  
+> > > -	if (DISPLAY_VER(dev_priv) < 12)
+> > > -		return  0;
+> > > -
+> > 
+> > I'm just a bit concerned, why this check was initially added?
+> > Probably there was a reason?
+> 
+> It's in the name of the function, which should be renamed if we're
+> extending it beyond its original purpose.
 
-to replace this one as this not really fixing the issue.
+Well, I would say this check could be "a bit" more descriptive.
+Still, even if function name gets changed, we just remove the check, for the
+function which was initially not even intended to be called for pre-tgl?
+Why it became suitable now then? Or was it just wrong check?
 
+Stan
 
-Thanks,
-
-Nirmoy
-
-On 9/19/2023 2:19 PM, Tapani PÃ¤lli wrote:
->
-> On 19.9.2023 15.11, Andi Shyti wrote:
->> Hi Nirmoy,
->>
->> On Tue, Sep 19, 2023 at 01:47:16PM +0200, Nirmoy Das wrote:
->>> The suggestion from the spec is to do l3 fabric flush not L3 flush.
->>>
->>> Fixes: 78a6ccd65fa3 ("drm/i915/gt: Ensure memory quiesced before
->>> invalidation")
->> please put this in one line.
->>
->>> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
->>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->>> Cc: <stable@vger.kernel.org> # v5.8+
->>> Cc: Nirmoy Das <nirmoy.das@intel.com>
->>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
->>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
->>> Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
->>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->>
->> and I believe
->>
->> Tested-by: Tapani PÃ¤lli <tapani.palli@intel.com>
->
-> Yes, tested on TGL LP (0x9a49)!
->
->
->> Thanks,
->> Andi
+> 
+> > 
+> > Stan
+> > 
+> > >  	if (!intel_connector_needs_modeset(state, &connector->base))
+> > >  		return 0;
+> > >  
+> > > -- 
+> > > 2.37.2
+> > > 
+> 
+> -- 
+> Ville Syrjälä
+> Intel
