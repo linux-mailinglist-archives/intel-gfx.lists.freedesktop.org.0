@@ -1,57 +1,82 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F10317A8D00
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 21:40:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E07C7A8D2B
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 21:53:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 843C910E541;
-	Wed, 20 Sep 2023 19:40:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB35110E089;
+	Wed, 20 Sep 2023 19:53:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 504D110E542
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 19:40:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695238825; x=1726774825;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=xmXV9Sft6PFV4X+l70YAguEjEHE084dQxuUVx/UDwos=;
- b=QccV+oGG96ZNaDAefzTPSyn7h/DMBMsEIMD8oDrAynIH9RVJpaeVLVos
- Cc8212EmuZi7F+KIV9tZ/rKsKUpUOfmTd2LeCeJME1XxAgmjLPjC7vo8t
- sKuM4j21J/JjcaPvyjCyefnVkgCkQ7jSNqkIo7QUfswvDwxLEgjZEA0ks
- aIV3Zw09cH8wibI46qSkfTZE09wQsqrS5SyfX8zrd1PS6dhf36VKdmZfK
- PNqiNgRmbTFY7BOzCioBCaMUnpxK4+w7itKFWOkyClv6LASonJ1kUDeRh
- LdS2oy6bSVDmIc6CtJuEIP+2icZ3OD2ax48UTG84Rb4+UeXV4rTiG66s+ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="383066907"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="383066907"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 12:40:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="862128783"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="862128783"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by fmsmga002.fm.intel.com with SMTP; 20 Sep 2023 12:40:22 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 20 Sep 2023 22:40:21 +0300
-Date: Wed, 20 Sep 2023 22:40:21 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <navaremanasi@chromium.org>
-Message-ID: <ZQtKpdBnQw_W-yrv@intel.com>
-References: <20230901130440.2085-13-ville.syrjala@linux.intel.com>
- <20230915103800.14218-1-ville.syrjala@linux.intel.com>
- <CAE72mNmXMUitTmSeMO7d=Q3rSPhXXuvT45yLr3tkVfTP8v+6dw@mail.gmail.com>
- <CAE72mNkYk+aR+jJi_iXaw_YS1p063eORu+DaXKN08yGzyAJ+yQ@mail.gmail.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5F3B10E089
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 19:53:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1695239614;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=OYRAQSJ/mIsjZ7lej8HuVZ7DoqHau0ERsGdB4RaFzfA=;
+ b=KrwXNv1TUqLVckycj8c3UT2fkkIbPnExGsaxfGjc+nmsU86eqgg4aqMPR16mKYACY8+n2/
+ h7Ml+2I0W+PWSLvmXofJ5syy9WhuvBBaRBlx3iYFUbX50YwYNWL1xzDkEIm3HYOxVtprI9
+ ETIyS7ETkZ5UpMUBIMZbi+A4Pmd7OSE=
+Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com
+ [209.85.208.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-218-iW0g9mHoMDWishls5A-w2Q-1; Wed, 20 Sep 2023 15:53:33 -0400
+X-MC-Unique: iW0g9mHoMDWishls5A-w2Q-1
+Received: by mail-lj1-f197.google.com with SMTP id
+ 38308e7fff4ca-2be51691dd5so1641821fa.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 12:53:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1695239611; x=1695844411;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=OYRAQSJ/mIsjZ7lej8HuVZ7DoqHau0ERsGdB4RaFzfA=;
+ b=bUqhAdsJ254w4J2OCgUbLqyHXNx1uEVfi4wXh2FbjigMia8njxmh3xg0dn1NiYYplR
+ sxkKUpl2Lc1ju4eOjszTj7dEa1FaFzRw77SKnoe1VmcK3oGW2ifC7WoGGYNLJvKbxYlE
+ 9RZu9esctH0ETSB/7W62B1L9YHDAVhW1OjKlqr3L8A/5REj5vXZF8c0puSRQeW+aJiTe
+ A3Yb2DdocQNvKc7pDRzCZ5CB5qEzHH02vk51MnPYooUoh9HxCHL588RFhgd7Bpm1u9nd
+ F8OKrWzW2cbrXqEcmYvlEnP5UXlCTnExz1s16hzeYYeSuedtxMh3v4HLirACN9Gp1MzW
+ CXEQ==
+X-Gm-Message-State: AOJu0YyZ3MjNCJhJBT1cjhvKdJvVMYHK0O7QyOPuuUc6LPIgg9iWs3cc
+ OtR9RU+KSTtuXLLg8KHkjYOCSuqfuYh1DKZR3X8wNwI0HvXgl0RinmMV8zUPe2F1Gj4D5q8xlH+
+ lCupiDw7Ohj8qM+MDJBatWet5ByGTX3OqDXPK
+X-Received: by 2002:a2e:b179:0:b0:2bd:19c5:3950 with SMTP id
+ a25-20020a2eb179000000b002bd19c53950mr2909817ljm.33.1695239611280; 
+ Wed, 20 Sep 2023 12:53:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF2SewmoQQE7DH5Pzqth5cqA/NiHmCbMQ+cFvVeg7Wr0pjmaT+AV1yO/PxdyDUfNlARxIirZw==
+X-Received: by 2002:a2e:b179:0:b0:2bd:19c5:3950 with SMTP id
+ a25-20020a2eb179000000b002bd19c53950mr2909805ljm.33.1695239610904; 
+ Wed, 20 Sep 2023 12:53:30 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ z15-20020a17090655cf00b00997d7aa59fasm10032008ejp.14.2023.09.20.12.53.29
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 20 Sep 2023 12:53:30 -0700 (PDT)
+Message-ID: <2069ba62-98a9-7d89-7bf2-bfade5c140d2@redhat.com>
+Date: Wed, 20 Sep 2023 21:53:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20230916125455.237325-1-hdegoede@redhat.com>
+ <ZQgDmTO0PxvO0lhX@intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <ZQgDmTO0PxvO0lhX@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAE72mNkYk+aR+jJi_iXaw_YS1p063eORu+DaXKN08yGzyAJ+yQ@mail.gmail.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 12/12] drm/i915: Implement transcoder LRR
- for TGL+
+Subject: Re: [Intel-gfx] [PATCH 0/4] drm/i915/vlv_dsi: Add quirks for x86
+ android tablets (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,327 +89,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 20, 2023 at 11:47:05AM -0700, Manasi Navare wrote:
-> Hi Ville,
-> 
-> Quick question here on the use case and the trigger for the LRR case
-> which is within VRR range.
-> Could this perhaps be used if we had a virtual mode say 40Hz that now
-> falls in the VRR range (30 -120Hz) that is
-> exposed through the connector mode list and then if we do a modest to
-> 40Hz that would make update_lrr = true within VRR and
-> hand adjust the vtotal to that exact value?
-> I am looking at adding this virtual mode to DRM soon, wondering if
-> this would be how the kernel would actual set the timings for it.
+Hi Ville,
 
-Userspace can supply any mode it wants. So just take whatever higher
-refresh rate mode you have and increase vtotal until you reach
-the desired lower vrefresh rate and feed that to the kernel.
+On 9/18/23 10:00, Ville Syrjälä wrote:
+> On Sat, Sep 16, 2023 at 02:54:51PM +0200, Hans de Goede wrote:
+>> Hi All,
+>>
+>> Some vlv/chv tablets ship with Android as factory OS. The factory OS
+>> BSP style kernel on these tablets does not use the normal x86 hw
+>> autodetection instead it hardcodes a whole bunch of things including
+>> using panel drivers instead of relying on VBT MIPI sequences to
+>> turn the panel/backlight on/off.
+>>
+>> The normal i915 driver (which does not use panel drivers) mostly works
+>> since the VBT still needs to contain valid info for the GOP, but because
+>> of the Android kernel relying on panel drivers with various things
+>> hardcoded some DMI quirks are necessary to fix some issues on these
+>> devices.
+>>
+>> Some of these issues also are related to which I2C bus to use for
+>> MIPI sequence elements which do I2C transfers. This series also
+>> includes a patch adding some extra debugging to mipi_exec_i2c() to
+>> help with debugging similar issues in the future.
+>>
+>> These patches have been posted before but back then I did not get around
+>> to follow up on the series:
+>> https://lore.kernel.org/intel-gfx/20220225214934.383168-1-hdegoede@redhat.com/
+>>
+>> Changes compared to this old version:
+>> - Drop the changes how the I2C bus number is found, instead just have
+>>   the quirks set the right number directly where necessary. This should
+>>   avoid any chances of causing regressions on devices where the quirks
+>>   do not apply.
+>>
+>> - New quirk for backlight control issues on Lenovo Yoga Tab 3
+>>
+>> - Address Jani Nikula's remark about __func__ being redundant when using
+>>   drm_dbg_kms()
+>>
+>>
+>> Regards,
+>>
+>> Hans
+>>
+>>
+>>
+>> Hans de Goede (4):
+>>   drm/i915/vlv_dsi: Add DMI quirk for wrong panel modeline in BIOS on
+>>     Asus TF103C (v2)
+>>   drm/i915/vlv_dsi: Add DMI quirk for wrong I2C bus and panel size on
+>>     Lenovo Yoga Tablet 2 series (v2)
+>>   drm/i915/vlv_dsi: Add DMI quirk for backlight control issues on Lenovo
+>>     Yoga Tab 3
+> 
+> Please file a bug for each of these and attach the usual drm.debug=0xe
+> dmesg + VBT + any other relevant information there. Otherwise a few
+> years from now I'll be cursing at these commits as well for not leaving
+> a decent papertrail...
+
+Ok. I've just completed filing 3 issues (1 per affected model) and
+I've added Closes: tags to the patches pointing to the issues.
+
+I'll send out a v3 of this series with the Closes tags.
+
+Regards,
+
+Hans
+
+
 
 > 
-> Regards
-> Manasi
+>>   drm/i915/dsi: Add some debug logging to mipi_exec_i2c (v2)
+>>
+>>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c |   3 +
+>>  drivers/gpu/drm/i915/display/vlv_dsi.c       | 124 +++++++++++++++++++
+>>  2 files changed, 127 insertions(+)
+>>
+>> -- 
+>> 2.41.0
 > 
-> On Mon, Sep 18, 2023 at 4:16 PM Manasi Navare <navaremanasi@chromium.org> wrote:
-> >
-> > Thanks Ville for the respin, the changes look good now.
-> >
-> > Reviewed-by: Manasi Navare <navaremanasi@chromium.org>
-> >
-> > Manasi
-> >
-> >
-> > On Fri, Sep 15, 2023 at 3:38 AM Ville Syrjala
-> > <ville.syrjala@linux.intel.com> wrote:
-> > >
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > >
-> > > Implement low refresh rate (LRR) where we change the vblank
-> > > length by hand as requested, but otherwise keep the timing
-> > > generator running in non-VRR mode (ie. fixed refresh rate).
-> > >
-> > > The panel itself must support VRR for this to work, and
-> > > only TGL+ has the double buffred TRANS_VTOTAL.VTOTAL that
-> > > we need to make the switch properly. The double buffer
-> > > latching happens at the start of transcoders undelayed
-> > > vblank. The other thing that we change is
-> > > TRANS_VBLANK.VBLANK_END but the hardware entirely ignores
-> > > that in DP mode. But I decided to keep writing it anyway
-> > > just to avoid more special cases in readout/state check.
-> > >
-> > > v2: Document that TRANS_VBLANK.VBLANK_END is ignored by
-> > >     the hardware
-> > > v3: Reconcile with VRR fastset
-> > >     Adjust update_lrr flag behaviour
-> > >     Make sure timings stay within VRR range
-> > > v4: Fix up update_m_n vs. update_lrr rebase fail (Manasi)
-> > >     Drop DOUBLE_BUFFER_VACTIVE define as it's not needed (Manasi)
-> > >
-> > > TODO: Hook LRR into the automatic DRRS downclocking stuff?
-> > >
-> > > Cc: Manasi Navare <navaremanasi@chromium.org>
-> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_atomic.c   |  1 +
-> > >  drivers/gpu/drm/i915/display/intel_crtc.c     |  9 +--
-> > >  drivers/gpu/drm/i915/display/intel_display.c  | 60 +++++++++++++++++--
-> > >  .../drm/i915/display/intel_display_device.h   |  1 +
-> > >  .../drm/i915/display/intel_display_types.h    |  3 +-
-> > >  drivers/gpu/drm/i915/display/intel_vrr.c      |  7 ++-
-> > >  6 files changed, 70 insertions(+), 11 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-> > > index aaddd8c0cfa0..5d18145da279 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_atomic.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-> > > @@ -260,6 +260,7 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
-> > >
-> > >         crtc_state->update_pipe = false;
-> > >         crtc_state->update_m_n = false;
-> > > +       crtc_state->update_lrr = false;
-> > >         crtc_state->disable_lp_wm = false;
-> > >         crtc_state->disable_cxsr = false;
-> > >         crtc_state->update_wm_pre = false;
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > > index a39e31c1ca85..22e85fe7e8aa 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > > @@ -495,7 +495,7 @@ static void intel_crtc_vblank_evade_scanlines(struct intel_atomic_state *state,
-> > >         if (crtc->mode_flags & I915_MODE_FLAG_VRR) {
-> > >                 /* timing changes should happen with VRR disabled */
-> > >                 drm_WARN_ON(state->base.dev, intel_crtc_needs_modeset(new_crtc_state) ||
-> > > -                           new_crtc_state->update_m_n);
-> > > +                           new_crtc_state->update_m_n || new_crtc_state->update_lrr);
-> > >
-> > >                 if (intel_vrr_is_push_sent(crtc_state))
-> > >                         *vblank_start = intel_vrr_vmin_vblank_start(crtc_state);
-> > > @@ -511,10 +511,11 @@ static void intel_crtc_vblank_evade_scanlines(struct intel_atomic_state *state,
-> > >         *max = *vblank_start - 1;
-> > >
-> > >         /*
-> > > -        * M/N is double buffered on the transcoder's undelayed vblank,
-> > > -        * so with seamless M/N we must evade both vblanks.
-> > > +        * M/N and TRANS_VTOTAL are double buffered on the transcoder's
-> > > +        * undelayed vblank, so with seamless M/N and LRR we must evade
-> > > +        * both vblanks.
-> > >          */
-> > > -       if (new_crtc_state->update_m_n)
-> > > +       if (new_crtc_state->update_m_n || new_crtc_state->update_lrr)
-> > >                 *min -= adjusted_mode->crtc_vblank_start - adjusted_mode->crtc_vdisplay;
-> > >  }
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index f0bb5c70ebfc..988558ccf794 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -928,7 +928,7 @@ static bool vrr_enabling(const struct intel_crtc_state *old_crtc_state,
-> > >  {
-> > >         return is_enabling(vrr.enable, old_crtc_state, new_crtc_state) ||
-> > >                 (new_crtc_state->vrr.enable &&
-> > > -                (new_crtc_state->update_m_n ||
-> > > +                (new_crtc_state->update_m_n || new_crtc_state->update_lrr ||
-> > >                   vrr_params_changed(old_crtc_state, new_crtc_state)));
-> > >  }
-> > >
-> > > @@ -937,7 +937,7 @@ static bool vrr_disabling(const struct intel_crtc_state *old_crtc_state,
-> > >  {
-> > >         return is_disabling(vrr.enable, old_crtc_state, new_crtc_state) ||
-> > >                 (old_crtc_state->vrr.enable &&
-> > > -                (new_crtc_state->update_m_n ||
-> > > +                (new_crtc_state->update_m_n || new_crtc_state->update_lrr ||
-> > >                   vrr_params_changed(old_crtc_state, new_crtc_state)));
-> > >  }
-> > >
-> > > @@ -2586,6 +2586,37 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
-> > >                                VTOTAL(crtc_vtotal - 1));
-> > >  }
-> > >
-> > > +static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc_state)
-> > > +{
-> > > +       struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > > +       struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> > > +       enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> > > +       const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> > > +       u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start, crtc_vblank_end;
-> > > +
-> > > +       crtc_vdisplay = adjusted_mode->crtc_vdisplay;
-> > > +       crtc_vtotal = adjusted_mode->crtc_vtotal;
-> > > +       crtc_vblank_start = adjusted_mode->crtc_vblank_start;
-> > > +       crtc_vblank_end = adjusted_mode->crtc_vblank_end;
-> > > +
-> > > +       drm_WARN_ON(&dev_priv->drm, adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE);
-> > > +
-> > > +       /*
-> > > +        * The hardware actually ignores TRANS_VBLANK.VBLANK_END in DP mode.
-> > > +        * But let's write it anyway to keep the state checker happy.
-> > > +        */
-> > > +       intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder),
-> > > +                      VBLANK_START(crtc_vblank_start - 1) |
-> > > +                      VBLANK_END(crtc_vblank_end - 1));
-> > > +       /*
-> > > +        * The double buffer latch point for TRANS_VTOTAL
-> > > +        * is the transcoder's undelayed vblank.
-> > > +        */
-> > > +       intel_de_write(dev_priv, TRANS_VTOTAL(cpu_transcoder),
-> > > +                      VACTIVE(crtc_vdisplay - 1) |
-> > > +                      VTOTAL(crtc_vtotal - 1));
-> > > +}
-> > > +
-> > >  static void intel_set_pipe_src_size(const struct intel_crtc_state *crtc_state)
-> > >  {
-> > >         struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > > @@ -5082,11 +5113,13 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
-> > >         PIPE_CONF_CHECK_I(name.crtc_hsync_start); \
-> > >         PIPE_CONF_CHECK_I(name.crtc_hsync_end); \
-> > >         PIPE_CONF_CHECK_I(name.crtc_vdisplay); \
-> > > -       PIPE_CONF_CHECK_I(name.crtc_vtotal); \
-> > >         PIPE_CONF_CHECK_I(name.crtc_vblank_start); \
-> > > -       PIPE_CONF_CHECK_I(name.crtc_vblank_end); \
-> > >         PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
-> > >         PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
-> > > +       if (!fastset || !pipe_config->update_lrr) { \
-> > > +               PIPE_CONF_CHECK_I(name.crtc_vtotal); \
-> > > +               PIPE_CONF_CHECK_I(name.crtc_vblank_end); \
-> > > +       } \
-> > >  } while (0)
-> > >
-> > >  #define PIPE_CONF_CHECK_RECT(name) do { \
-> > > @@ -5420,6 +5453,7 @@ int intel_modeset_all_pipes(struct intel_atomic_state *state,
-> > >                 crtc_state->uapi.mode_changed = true;
-> > >                 crtc_state->update_pipe = false;
-> > >                 crtc_state->update_m_n = false;
-> > > +               crtc_state->update_lrr = false;
-> > >
-> > >                 ret = drm_atomic_add_affected_connectors(&state->base,
-> > >                                                          &crtc->base);
-> > > @@ -5537,6 +5571,10 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
-> > >  {
-> > >         struct drm_i915_private *i915 = to_i915(old_crtc_state->uapi.crtc->dev);
-> > >
-> > > +       /* only allow LRR when the timings stay within the VRR range */
-> > > +       if (old_crtc_state->vrr.in_range != new_crtc_state->vrr.in_range)
-> > > +               new_crtc_state->update_lrr = false;
-> > > +
-> > >         if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state, true))
-> > >                 drm_dbg_kms(&i915->drm, "fastset requirement not met, forcing full modeset\n");
-> > >         else
-> > > @@ -5547,6 +5585,11 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
-> > >                                    &new_crtc_state->dp_m_n))
-> > >                 new_crtc_state->update_m_n = false;
-> > >
-> > > +       if (intel_crtc_needs_modeset(new_crtc_state) ||
-> > > +           (old_crtc_state->hw.adjusted_mode.crtc_vtotal == new_crtc_state->hw.adjusted_mode.crtc_vtotal &&
-> > > +            old_crtc_state->hw.adjusted_mode.crtc_vblank_end == new_crtc_state->hw.adjusted_mode.crtc_vblank_end))
-> > > +               new_crtc_state->update_lrr = false;
-> > > +
-> > >         if (!intel_crtc_needs_modeset(new_crtc_state))
-> > >                 new_crtc_state->update_pipe = true;
-> > >  }
-> > > @@ -6262,6 +6305,7 @@ int intel_atomic_check(struct drm_device *dev,
-> > >                                 new_crtc_state->uapi.mode_changed = true;
-> > >                                 new_crtc_state->update_pipe = false;
-> > >                                 new_crtc_state->update_m_n = false;
-> > > +                               new_crtc_state->update_lrr = false;
-> > >                         }
-> > >                 }
-> > >
-> > > @@ -6275,6 +6319,7 @@ int intel_atomic_check(struct drm_device *dev,
-> > >                                 new_crtc_state->uapi.mode_changed = true;
-> > >                                 new_crtc_state->update_pipe = false;
-> > >                                 new_crtc_state->update_m_n = false;
-> > > +                               new_crtc_state->update_lrr = false;
-> > >                         }
-> > >                 }
-> > >
-> > > @@ -6283,6 +6328,7 @@ int intel_atomic_check(struct drm_device *dev,
-> > >                                 new_crtc_state->uapi.mode_changed = true;
-> > >                                 new_crtc_state->update_pipe = false;
-> > >                                 new_crtc_state->update_m_n = false;
-> > > +                               new_crtc_state->update_lrr = false;
-> > >                         }
-> > >                 }
-> > >         }
-> > > @@ -6464,6 +6510,9 @@ static void intel_pipe_fastset(const struct intel_crtc_state *old_crtc_state,
-> > >         if (new_crtc_state->update_m_n)
-> > >                 intel_cpu_transcoder_set_m1_n1(crtc, new_crtc_state->cpu_transcoder,
-> > >                                                &new_crtc_state->dp_m_n);
-> > > +
-> > > +       if (new_crtc_state->update_lrr)
-> > > +               intel_set_transcoder_timings_lrr(new_crtc_state);
-> > >  }
-> > >
-> > >  static void commit_pipe_pre_planes(struct intel_atomic_state *state,
-> > > @@ -6600,7 +6649,8 @@ static void intel_update_crtc(struct intel_atomic_state *state,
-> > >          *
-> > >          * FIXME Should be synchronized with the start of vblank somehow...
-> > >          */
-> > > -       if (vrr_enabling(old_crtc_state, new_crtc_state) || new_crtc_state->update_m_n)
-> > > +       if (vrr_enabling(old_crtc_state, new_crtc_state) ||
-> > > +           new_crtc_state->update_m_n || new_crtc_state->update_lrr)
-> > >                 intel_crtc_update_active_timings(new_crtc_state,
-> > >                                                  new_crtc_state->vrr.enable);
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> > > index 8198401aa5be..ee77750af82b 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> > > @@ -56,6 +56,7 @@ struct drm_printer;
-> > >  #define HAS_HW_SAGV_WM(i915)           (DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
-> > >  #define HAS_IPC(i915)                  (DISPLAY_INFO(i915)->has_ipc)
-> > >  #define HAS_IPS(i915)                  (IS_HASWELL_ULT(i915) || IS_BROADWELL(i915))
-> > > +#define HAS_LRR(i915)                  (DISPLAY_VER(i915) >= 12)
-> > >  #define HAS_LSPCON(i915)               (IS_DISPLAY_VER(i915, 9, 10))
-> > >  #define HAS_MBUS_JOINING(i915)         (IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
-> > >  #define HAS_MSO(i915)                  (DISPLAY_VER(i915) >= 12)
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > index 2f35560d7e4e..536c642eb562 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > @@ -1084,6 +1084,7 @@ struct intel_crtc_state {
-> > >         unsigned fb_bits; /* framebuffers to flip */
-> > >         bool update_pipe; /* can a fast modeset be performed? */
-> > >         bool update_m_n; /* update M/N seamlessly during fastset? */
-> > > +       bool update_lrr; /* update TRANS_VTOTAL/etc. during fastset? */
-> > >         bool disable_cxsr;
-> > >         bool update_wm_pre, update_wm_post; /* watermarks are updated */
-> > >         bool fifo_changed; /* FIFO split is changed */
-> > > @@ -1383,7 +1384,7 @@ struct intel_crtc_state {
-> > >
-> > >         /* Variable Refresh Rate state */
-> > >         struct {
-> > > -               bool enable;
-> > > +               bool enable, in_range;
-> > >                 u8 pipeline_full;
-> > >                 u16 flipline, vmin, vmax, guardband;
-> > >         } vrr;
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> > > index 12731ad725a8..5d905f932cb4 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> > > @@ -120,9 +120,14 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
-> > >         if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
-> > >                 return;
-> > >
-> > > -       if (!intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode)))
-> > > +       crtc_state->vrr.in_range =
-> > > +               intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
-> > > +       if (!crtc_state->vrr.in_range)
-> > >                 return;
-> > >
-> > > +       if (HAS_LRR(i915))
-> > > +               crtc_state->update_lrr = true;
-> > > +
-> > >         vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
-> > >                             adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
-> > >         vmax = adjusted_mode->crtc_clock * 1000 /
-> > > --
-> > > 2.41.0
-> > >
 
--- 
-Ville Syrjälä
-Intel
