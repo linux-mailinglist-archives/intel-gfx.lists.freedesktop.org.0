@@ -2,142 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CF77A8DD5
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 22:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B39997A8DE8
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 22:41:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76F2610E082;
-	Wed, 20 Sep 2023 20:35:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6276D10E559;
+	Wed, 20 Sep 2023 20:41:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEE0E10E082;
- Wed, 20 Sep 2023 20:35:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695242156; x=1726778156;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=4gb/sLtLe4lXXM1URtx9U5OLtystm2McJecAQxyEHjE=;
- b=TQj0XybseiaI8J/Z5PYTLuBYsEg+Ev5K7Lrcfpv9p12x3ZUDwZ4Voemg
- q+dJIIN8N3cgRu3ioLg/8oHjb1p/BlC5rFMn1h+huH5rg5BCGKCIdP2ZH
- SmszvRC71Yhdi4yJG5g9LrJRb29gObHA0YGL86WEixaDaDl2Kkq9KttGK
- QBcsOzrgGk5d5Vk2eda0iqaXJxiCMm50ek8RePEdZat5vBSHUamkGeKVc
- lCpNSYDU7y6uk6/TjJdidj8PfEVUs19RHNaz1W9J6/rlXXeioGjQVgLEt
- EzH++5jrh4pF2bSLPsyydw5+t6NXJOtXF6XoUMa622gtFGe7AZ4yWto9I g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="411276983"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="411276983"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 13:33:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="750084111"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="750084111"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Sep 2023 13:33:11 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 20 Sep 2023 13:33:11 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 20 Sep 2023 13:33:11 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Wed, 20 Sep 2023 13:33:11 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Wed, 20 Sep 2023 13:33:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=knjDQ0+1Xd6CGYbZGDfmrXisZSYIV7dmb+EKvbmnCE1J5PW+UVCTe55KtcmtjUi1+O9yc/PNfvT4jTgFYPB4IBhsVzXj8qeZsX/96ZZW9CmhgdTtG/hVV51S9pV2dC0WdJrfoodpzO65CtUKK6H2NzjkFrRx2OT0v7Qn8qlbxC8CacfC9LHAWNEHosRvaDO4zYqiSlS1oCD5EHcv8d3kl5JPSH2QdFJr+L6Bg0Bz1WmWBKr8YMUGyu+BVAMe+h42ROXRq4JkWT5SZGTDKbmmDI/1/ovfsDDnits93S1X8jE9qVKThjsk0YlCLMCYJqL2802DdjZLsIqPPdXdlXXdHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hA9zukTkNybZ77/Mg0cIM+52r/kDpDN4mYqVtqF1WaA=;
- b=hl3YJbuJUBsYaJ/N3UqFPG6/oFcStNDE4ubmnL/n7oD0pZ94iPMje1HrD5x+QgQ+qCHauX2hf5PwAg7U56efncpV75+0s10TpcR+10ZdRrcH9AsBGTE0am6fulN3tnCdFbt8o3zyxP2qJnshZVKhMdgEREi4E/Mr7kD/kxT7jXeH5fPS+QxQ+pE3CfXY0/IPgqcFFV60VB1jj3ZPGUE/zxucTScv3not7Ve0ib5CFo/wHJfWXkxtPsGCw46dEko54Ui+5yeLPmyoVnrVtHplADdzQJct8qVOqDk3MO1W3PFEn6KfOHY2d8+tMGqLvL9SOfPOevvEqDNCToaKFvwc0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by CO1PR11MB4849.namprd11.prod.outlook.com (2603:10b6:303:90::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Wed, 20 Sep
- 2023 20:33:08 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593%6]) with mapi id 15.20.6792.022; Wed, 20 Sep 2023
- 20:33:08 +0000
-Date: Wed, 20 Sep 2023 16:33:04 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-Message-ID: <ZQtXAJ3EwcrYBIA5@intel.com>
-References: <20230918190259.2817143-1-vinay.belgaumkar@intel.com>
- <ZQr8lowFNiMGnrbn@intel.com>
- <4028e035-4b39-0c6d-a0dd-a9ec583ab07e@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <4028e035-4b39-0c6d-a0dd-a9ec583ab07e@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0051.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::26) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
+ [IPv6:2a00:1450:4864:20::32c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8332910E556
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 20:41:03 +0000 (UTC)
+Received: by mail-wm1-x32c.google.com with SMTP id
+ 5b1f17b1804b1-40479f8325fso2573265e9.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 13:41:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1695242462; x=1695847262;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ugeEfyfYAjc7crCy2psgP4HZ+9j1EQ2rwrQhNQPGqI0=;
+ b=CdT7kj5amCuDtgxl9xD87WXVwerH/lqq2oZUh4JtPRGHeL0Hhjrn4cfgkDPLDFjdj5
+ +VpFw/OARNLBmd6otktP8DpZJ3j3AnypTox1cGb3HSTqqkWKl+JdmX06ltzYBpNBaSM0
+ SIfloAMdbzYRpEk3KvnsD8bQd9nRstow9crHs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1695242462; x=1695847262;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ugeEfyfYAjc7crCy2psgP4HZ+9j1EQ2rwrQhNQPGqI0=;
+ b=ftcXDxZumTqUuYoSORlHNTWNZ3RYUBWopexPNB+ch1o9ajz656O3RyHDgRtQpGyCms
+ WeQ4QwfjDxpZsxfHdeCFu0qoQJLxuDpdyQi8ilC/fcX0cO8w8c99xpwy8N2+IsSbtokf
+ 2GJeCChEgdcwa5wzMvKf1zdcrW4QXh1WXJdssHxcQhRn5C8fquXc9huizTTHQGWQ1GJA
+ 1AMlWTCkH9qEGyfuHc7q1+Jeh+rlF2iyI5TqGQJJ+me3EUTK2CHBU213ZjFpNw8JwGO5
+ 0o+nSr+oj0hZkYzFk9tC/QkQgUO6XrGxstw1ZyxnLokwq8h+Fvm5jVMpU2AKY3lsf8bX
+ GHUQ==
+X-Gm-Message-State: AOJu0YyrR8FNdoKQUzwmkwhID16AKutzDt2chhQE6if/V7h2COGPVu28
+ n5Wd5fXXTfEjN0U2fYDuooTInt90w5586Nj2tGAgc7UvNg7GMU0o
+X-Google-Smtp-Source: AGHT+IE6i1jKrYZ+rFhkLdxiN5T5fyDN8v61MCmMT7iArFlPaNmZO8TUD2pULMZEYL6xZNGL9lnBSNhDsHFWtUvHe/E=
+X-Received: by 2002:a5d:4084:0:b0:321:5969:d465 with SMTP id
+ o4-20020a5d4084000000b003215969d465mr3364309wrp.65.1695242461325; Wed, 20 Sep
+ 2023 13:41:01 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CO1PR11MB4849:EE_
-X-MS-Office365-Filtering-Correlation-Id: ef3ad12e-cb2d-40ee-2c70-08dbba18ccc1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Zd5R1Ix3sQT6GrrTJIPt+DyKBKrDeBm+dvrWYi2ZPRX9aZxWaXDEUqIZCgkxx+4yHxvrhDe7GNWw2ZyllluygVAvACZLi01NFPi2Le5degC5ZSwNHjQc4gz7nSHgMxB3dHBNuCwJLWXe5L1ysAa8cvcIrP81P2tQ8MK+DI3+lkjA+4WuR9abO4em+iwwpG19BLyBe7bFqACwBVYCbIWE3bic/0PZiOBobJrfKHGrfXzlQtzDLt+JvSnLtLSbmnsXXVAVhxlfG9gaoyaUmrtv/XsrgZeMZRhk2dGJL8vHpBwo+X2gnUvCRQ0+SXFt/peTTDKQE5BEONpyYIWyuy8rhaJ6QqoxbSN4zx3x0TgDFnGH9L3xarwYeuUfop3gjt+BregH/jPeRnb9kmcEkk/7r5ixWb2IW0rnmbm2LSpnopL+n5kjNRSc1Pb4yr76zA/THUE4TqocigvSdJpPKK20LCsKNjk1MPZuECFiXPOnDcKxLm3VGD3lTLcHabQYpT4QMANRvDp4owdm8vVVuf0DhDlxRwvHrwoIbP1U3QzMwn0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(366004)(136003)(396003)(376002)(346002)(451199024)(1800799009)(186009)(36756003)(4326008)(5660300002)(6506007)(83380400001)(6862004)(8936002)(8676002)(82960400001)(41300700001)(6486002)(53546011)(450100002)(26005)(2616005)(6512007)(6666004)(66946007)(44832011)(966005)(478600001)(86362001)(2906002)(38100700002)(6636002)(37006003)(316002)(66556008)(66476007);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uyir9yH90GRLuThggEWVt3Q/JpYqotjnE87PBenIayE27SL1Rdbqi/fExnOB?=
- =?us-ascii?Q?fyRViIKbb/QzbvBhRAvoclXdLYD2azMw7puOkClP2ZsPyrjVzeo/Wo/66uqo?=
- =?us-ascii?Q?rAmYDC05mWowhWhiyDWNGutIZuZtBG5z5pdF56ZfCqG909Y777lWnxEqYvCp?=
- =?us-ascii?Q?YRElbTR3mrtFqqUFqE+P15jdhAIL6Xdc+Zen7q80VGVcAuAwCKMVwLOpvlOK?=
- =?us-ascii?Q?gmyINJfon9dljb4X7iN8JoG559xDmtoYM+w8gQ8t8N+ezJcDPFC+l7OU6CX2?=
- =?us-ascii?Q?fshGVDt/5XZaEKJSFRBeIeGsf7ghBT/Cv76GNGRoj+vyUtqdJUV8TaORyMMf?=
- =?us-ascii?Q?XnlKTCqTGd1rYOuPqleGOKLBA5O+OfqrfHxIEB1kqO8+t4V08o4wig/kfeBS?=
- =?us-ascii?Q?1oHwTdoMw2CKCVmsmr4uFQQMgwDtglOYo3QF70gfLaLIbsTseMqlSyoZTdjX?=
- =?us-ascii?Q?y3Li9NmoYoTVSbu240Tq+6lcsA7/jbQgHwkIoPbLlJGutYad9AiNT3p8HALl?=
- =?us-ascii?Q?CIVz4N6+1fFgtMTlPtleUgKDdLDp6Q3FucduBWuTAWtBuCCU2ljWcrpMGbZW?=
- =?us-ascii?Q?FSH3F4mO5o70xX8ugFrsSWD6Ws1uewQh4o+C1dgVGS/UsVilwwzJGIJO+4St?=
- =?us-ascii?Q?c3hqj2o1GBr7QWruVEVzfHMZ8BxuuCsxbA8MFBUX9igvPTGXahxx60eNDmzD?=
- =?us-ascii?Q?DdqoFKNOStcHE5LZ8dlwsosqRhdSV8wSuGj9YDonNIgHBSZTbfzAp4V4YfG7?=
- =?us-ascii?Q?5YXr9jwQvx7VfZ7DwPnTZcDHF79aucFW+AcIQJVj8VdC/LcIelWO/Z2R+CpV?=
- =?us-ascii?Q?zOvDDpCbb0zHDREF5zeGdrNIW31iLWzzIZ4fsFNHYzvYM3J8XLYKCLPP8tqd?=
- =?us-ascii?Q?D78oUgy/Bd9/AIoaIPimAig3jBsZl4XZEG9Q2pE9DuwI+zG6XQtQ3BlNTpRq?=
- =?us-ascii?Q?lPYsFaKddffguPYweKF48It0tbUsH/uKCy59RGcAtv5Pda0PRzCQGl0toGOI?=
- =?us-ascii?Q?ryN90XHspmv6IcOy6NW2iFnQ0y9KEs5r7cew9L0UYk60Lxjrsa1pKY4OB4gt?=
- =?us-ascii?Q?u4Rgw5yWY4LbCM/wP30Q85h+aWpHfHUGTvoB0Vny9eUEusCAtaqMJKld1SMR?=
- =?us-ascii?Q?ugDYko9BPZk3Fm16WbC/LdoN/tdeNZ4tSxpE9XghgHMyAi84/8BCgUqUNpCV?=
- =?us-ascii?Q?5sUCoLnc2uDIdgj+jnRbShNzoFzKnx3e/gyiPccMdz4udaxcEHBaxQcCJl5N?=
- =?us-ascii?Q?LpmvTDPl041COeP6IMcdUvfyV7pQG9Ih8Me7WWYNnrSR6rJvM4sTT03cX6l/?=
- =?us-ascii?Q?rLlz7C7ElOs4FOZNcyiB5A34/h8UdF/VvlL0ZDcE+hjUnzs4pRDa6q7n98im?=
- =?us-ascii?Q?uqTPalcuLLw27Yl9fq6+s5uGmhkrSolGLHaOCsV3FOnTT9KTx2g3BpMVgmA8?=
- =?us-ascii?Q?Kw8TTvjW8Jp2QJqFYSgLjf1qC7xOtTmDJHPmf5m0lvo2PySP5KZtfbMTLYUC?=
- =?us-ascii?Q?9S3qQnjCw5uMctyfJw2gbmSkyWu/jqlZb4FW7ikvYQaCeNA2WG5nLJnEHAUK?=
- =?us-ascii?Q?FZWGwdeHI6CBSxEDGxw0BusAJlUQ5QfS1SJ3Ha9aJ4gNJDSFCcWhUo2KHY4e?=
- =?us-ascii?Q?dw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef3ad12e-cb2d-40ee-2c70-08dbba18ccc1
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2023 20:33:08.7945 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8DzhLWwXPuDijZJK5LM+gPJlaTHbZYz/JqknJY6ZhUW5aZyYIvPqUs5MOz7Ozi/2yCLIYkG5VFc5WLMHmpe8hA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4849
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915_pm_freq_api: Set min/max
- to expected values
+References: <20230901130440.2085-13-ville.syrjala@linux.intel.com>
+ <20230915103800.14218-1-ville.syrjala@linux.intel.com>
+ <CAE72mNmXMUitTmSeMO7d=Q3rSPhXXuvT45yLr3tkVfTP8v+6dw@mail.gmail.com>
+ <CAE72mNkYk+aR+jJi_iXaw_YS1p063eORu+DaXKN08yGzyAJ+yQ@mail.gmail.com>
+ <ZQtKpdBnQw_W-yrv@intel.com>
+In-Reply-To: <ZQtKpdBnQw_W-yrv@intel.com>
+From: Manasi Navare <navaremanasi@chromium.org>
+Date: Wed, 20 Sep 2023 13:40:50 -0700
+Message-ID: <CAE72mNm0xZq+GZLHj4aqAVg87b4NinZ4GHZ=U59_zO_j98LsqA@mail.gmail.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v2 12/12] drm/i915: Implement transcoder LRR
+ for TGL+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,88 +71,436 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 20, 2023 at 09:18:07AM -0700, Belgaumkar, Vinay wrote:
-> 
-> On 9/20/2023 7:07 AM, Rodrigo Vivi wrote:
-> > On Mon, Sep 18, 2023 at 12:02:59PM -0700, Vinay Belgaumkar wrote:
-> > > A prior(rps) test leaves the system in a bad state causing failures
-> > > in the basic test.
-> > Why?
-> > 
-> > What was the freq immediately before the failure that made the
-> > machine to be busted and not accept the new freq request?
-> > 
-> > Maybe we should use this information to limit the freq requests
-> > that we accept instead of workaround the test case. Otherwise
-> > we are at risk of users selecting the bad freq that let " the
-> > system in a bad state"...
-> 
-> i915_pm_rps (waitboost) test sets soft max_freq to some value less than RP0
-> and then fails. The restore on failure does not work properly as the test is
-> not multitile capable(it sets the root sysfs entry instead of using the per
-> tile entry). Then, the current test (i915_pm_freq_api --r basic-api) tries
-> to set min_freq to RP0 as part of normal testing. This fails as soft_max is
-> < RP0.
-> 
-> There is some non-trivial effort needed to convert i915_pm_rps to multitile,
-> and this is a BAT failure, hence adding the quick fix to ensure the test
-> runs with a good pre-environment.
+On Wed, Sep 20, 2023 at 12:40=E2=80=AFPM Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
+>
+> On Wed, Sep 20, 2023 at 11:47:05AM -0700, Manasi Navare wrote:
+> > Hi Ville,
+> >
+> > Quick question here on the use case and the trigger for the LRR case
+> > which is within VRR range.
+> > Could this perhaps be used if we had a virtual mode say 40Hz that now
+> > falls in the VRR range (30 -120Hz) that is
+> > exposed through the connector mode list and then if we do a modest to
+> > 40Hz that would make update_lrr =3D true within VRR and
+> > hand adjust the vtotal to that exact value?
+> > I am looking at adding this virtual mode to DRM soon, wondering if
+> > this would be how the kernel would actual set the timings for it.
+>
+> Userspace can supply any mode it wants. So just take whatever higher
+> refresh rate mode you have and increase vtotal until you reach
+> the desired lower vrefresh rate and feed that to the kernel.
 
-okay, right, regardless the issue on the other test, this one is working
-with some assumptions that needs to be corrected.
-We either correct the assumption and set the max while setting the min,
-or we do like this patch and make the assumption true.
+Okay perfect that makes sense.
+So effectively if i create specific modes lower than the highest
+refresh rate, then
+userspace can request a modeset to any of the lower refresh rate virtual mo=
+de
+and the kernel would stretch out the vtotal manually corresponding to
+the vtotal of
+that virtual mode timing and modeset to that seamlessly in a fastset fashio=
+n.
 
-Let's go with your patch
+Is this correct?
 
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Regards
+Manasi
 
-
-> 
-> Thanks,
-> 
-> Vinay.
-> 
-> > 
-> > > Set min/max to expected values before running it.
-> > > Test will restore values at the end.
-> > > 
-> > > Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8670
-> > > 
-> > > Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> > > ---
-> > >   tests/intel/i915_pm_freq_api.c | 8 ++++++--
-> > >   1 file changed, 6 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/tests/intel/i915_pm_freq_api.c b/tests/intel/i915_pm_freq_api.c
-> > > index 03bd0d05b..6018692a2 100644
-> > > --- a/tests/intel/i915_pm_freq_api.c
-> > > +++ b/tests/intel/i915_pm_freq_api.c
-> > > @@ -55,7 +55,11 @@ static void test_freq_basic_api(int dirfd, int gt)
-> > >   	rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
-> > >   	rp0 = get_freq(dirfd, RPS_RP0_FREQ_MHZ);
-> > >   	rpe = get_freq(dirfd, RPS_RP1_FREQ_MHZ);
-> > > -	igt_debug("GT: %d, RPn: %d, RPe: %d, RP0: %d", gt, rpn, rpe, rp0);
-> > > +	igt_debug("GT: %d, RPn: %d, RPe: %d, RP0: %d\n", gt, rpn, rpe, rp0);
-> > > +
-> > > +	/* Set min/max to RPn, RP0 for baseline behavior */
-> > > +	igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0);
-> > > +	igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rp0) > 0);
-> > >   	/*
-> > >   	 * Negative bound tests
-> > > @@ -170,7 +174,7 @@ igt_main
-> > >   		for_each_sysfs_gt_dirfd(i915, dirfd, gt) {
-> > >   			stash_min[gt] = get_freq(dirfd, RPS_MIN_FREQ_MHZ);
-> > >   			stash_max[gt] = get_freq(dirfd, RPS_MAX_FREQ_MHZ);
-> > > -			igt_debug("GT: %d, min: %d, max: %d", gt, stash_min[gt], stash_max[gt]);
-> > > +			igt_debug("GT: %d, min: %d, max: %d\n", gt, stash_min[gt], stash_max[gt]);
-> > >   			igt_pm_ignore_slpc_efficient_freq(i915, dirfd, true);
-> > >   		}
-> > >   		igt_install_exit_handler(restore_sysfs_freq);
-> > > -- 
-> > > 2.38.1
-> > > 
+>
+> >
+> > Regards
+> > Manasi
+> >
+> > On Mon, Sep 18, 2023 at 4:16=E2=80=AFPM Manasi Navare <navaremanasi@chr=
+omium.org> wrote:
+> > >
+> > > Thanks Ville for the respin, the changes look good now.
+> > >
+> > > Reviewed-by: Manasi Navare <navaremanasi@chromium.org>
+> > >
+> > > Manasi
+> > >
+> > >
+> > > On Fri, Sep 15, 2023 at 3:38=E2=80=AFAM Ville Syrjala
+> > > <ville.syrjala@linux.intel.com> wrote:
+> > > >
+> > > > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> > > >
+> > > > Implement low refresh rate (LRR) where we change the vblank
+> > > > length by hand as requested, but otherwise keep the timing
+> > > > generator running in non-VRR mode (ie. fixed refresh rate).
+> > > >
+> > > > The panel itself must support VRR for this to work, and
+> > > > only TGL+ has the double buffred TRANS_VTOTAL.VTOTAL that
+> > > > we need to make the switch properly. The double buffer
+> > > > latching happens at the start of transcoders undelayed
+> > > > vblank. The other thing that we change is
+> > > > TRANS_VBLANK.VBLANK_END but the hardware entirely ignores
+> > > > that in DP mode. But I decided to keep writing it anyway
+> > > > just to avoid more special cases in readout/state check.
+> > > >
+> > > > v2: Document that TRANS_VBLANK.VBLANK_END is ignored by
+> > > >     the hardware
+> > > > v3: Reconcile with VRR fastset
+> > > >     Adjust update_lrr flag behaviour
+> > > >     Make sure timings stay within VRR range
+> > > > v4: Fix up update_m_n vs. update_lrr rebase fail (Manasi)
+> > > >     Drop DOUBLE_BUFFER_VACTIVE define as it's not needed (Manasi)
+> > > >
+> > > > TODO: Hook LRR into the automatic DRRS downclocking stuff?
+> > > >
+> > > > Cc: Manasi Navare <navaremanasi@chromium.org>
+> > > > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
+om>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_atomic.c   |  1 +
+> > > >  drivers/gpu/drm/i915/display/intel_crtc.c     |  9 +--
+> > > >  drivers/gpu/drm/i915/display/intel_display.c  | 60 +++++++++++++++=
+++--
+> > > >  .../drm/i915/display/intel_display_device.h   |  1 +
+> > > >  .../drm/i915/display/intel_display_types.h    |  3 +-
+> > > >  drivers/gpu/drm/i915/display/intel_vrr.c      |  7 ++-
+> > > >  6 files changed, 70 insertions(+), 11 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/=
+gpu/drm/i915/display/intel_atomic.c
+> > > > index aaddd8c0cfa0..5d18145da279 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> > > > @@ -260,6 +260,7 @@ intel_crtc_duplicate_state(struct drm_crtc *crt=
+c)
+> > > >
+> > > >         crtc_state->update_pipe =3D false;
+> > > >         crtc_state->update_m_n =3D false;
+> > > > +       crtc_state->update_lrr =3D false;
+> > > >         crtc_state->disable_lp_wm =3D false;
+> > > >         crtc_state->disable_cxsr =3D false;
+> > > >         crtc_state->update_wm_pre =3D false;
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gp=
+u/drm/i915/display/intel_crtc.c
+> > > > index a39e31c1ca85..22e85fe7e8aa 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > > @@ -495,7 +495,7 @@ static void intel_crtc_vblank_evade_scanlines(s=
+truct intel_atomic_state *state,
+> > > >         if (crtc->mode_flags & I915_MODE_FLAG_VRR) {
+> > > >                 /* timing changes should happen with VRR disabled *=
+/
+> > > >                 drm_WARN_ON(state->base.dev, intel_crtc_needs_modes=
+et(new_crtc_state) ||
+> > > > -                           new_crtc_state->update_m_n);
+> > > > +                           new_crtc_state->update_m_n || new_crtc_=
+state->update_lrr);
+> > > >
+> > > >                 if (intel_vrr_is_push_sent(crtc_state))
+> > > >                         *vblank_start =3D intel_vrr_vmin_vblank_sta=
+rt(crtc_state);
+> > > > @@ -511,10 +511,11 @@ static void intel_crtc_vblank_evade_scanlines=
+(struct intel_atomic_state *state,
+> > > >         *max =3D *vblank_start - 1;
+> > > >
+> > > >         /*
+> > > > -        * M/N is double buffered on the transcoder's undelayed vbl=
+ank,
+> > > > -        * so with seamless M/N we must evade both vblanks.
+> > > > +        * M/N and TRANS_VTOTAL are double buffered on the transcod=
+er's
+> > > > +        * undelayed vblank, so with seamless M/N and LRR we must e=
+vade
+> > > > +        * both vblanks.
+> > > >          */
+> > > > -       if (new_crtc_state->update_m_n)
+> > > > +       if (new_crtc_state->update_m_n || new_crtc_state->update_lr=
+r)
+> > > >                 *min -=3D adjusted_mode->crtc_vblank_start - adjust=
+ed_mode->crtc_vdisplay;
+> > > >  }
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers=
+/gpu/drm/i915/display/intel_display.c
+> > > > index f0bb5c70ebfc..988558ccf794 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -928,7 +928,7 @@ static bool vrr_enabling(const struct intel_crt=
+c_state *old_crtc_state,
+> > > >  {
+> > > >         return is_enabling(vrr.enable, old_crtc_state, new_crtc_sta=
+te) ||
+> > > >                 (new_crtc_state->vrr.enable &&
+> > > > -                (new_crtc_state->update_m_n ||
+> > > > +                (new_crtc_state->update_m_n || new_crtc_state->upd=
+ate_lrr ||
+> > > >                   vrr_params_changed(old_crtc_state, new_crtc_state=
+)));
+> > > >  }
+> > > >
+> > > > @@ -937,7 +937,7 @@ static bool vrr_disabling(const struct intel_cr=
+tc_state *old_crtc_state,
+> > > >  {
+> > > >         return is_disabling(vrr.enable, old_crtc_state, new_crtc_st=
+ate) ||
+> > > >                 (old_crtc_state->vrr.enable &&
+> > > > -                (new_crtc_state->update_m_n ||
+> > > > +                (new_crtc_state->update_m_n || new_crtc_state->upd=
+ate_lrr ||
+> > > >                   vrr_params_changed(old_crtc_state, new_crtc_state=
+)));
+> > > >  }
+> > > >
+> > > > @@ -2586,6 +2586,37 @@ static void intel_set_transcoder_timings(con=
+st struct intel_crtc_state *crtc_sta
+> > > >                                VTOTAL(crtc_vtotal - 1));
+> > > >  }
+> > > >
+> > > > +static void intel_set_transcoder_timings_lrr(const struct intel_cr=
+tc_state *crtc_state)
+> > > > +{
+> > > > +       struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.=
+crtc);
+> > > > +       struct drm_i915_private *dev_priv =3D to_i915(crtc->base.de=
+v);
+> > > > +       enum transcoder cpu_transcoder =3D crtc_state->cpu_transcod=
+er;
+> > > > +       const struct drm_display_mode *adjusted_mode =3D &crtc_stat=
+e->hw.adjusted_mode;
+> > > > +       u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start, crtc_vbl=
+ank_end;
+> > > > +
+> > > > +       crtc_vdisplay =3D adjusted_mode->crtc_vdisplay;
+> > > > +       crtc_vtotal =3D adjusted_mode->crtc_vtotal;
+> > > > +       crtc_vblank_start =3D adjusted_mode->crtc_vblank_start;
+> > > > +       crtc_vblank_end =3D adjusted_mode->crtc_vblank_end;
+> > > > +
+> > > > +       drm_WARN_ON(&dev_priv->drm, adjusted_mode->flags & DRM_MODE=
+_FLAG_INTERLACE);
+> > > > +
+> > > > +       /*
+> > > > +        * The hardware actually ignores TRANS_VBLANK.VBLANK_END in=
+ DP mode.
+> > > > +        * But let's write it anyway to keep the state checker happ=
+y.
+> > > > +        */
+> > > > +       intel_de_write(dev_priv, TRANS_VBLANK(cpu_transcoder),
+> > > > +                      VBLANK_START(crtc_vblank_start - 1) |
+> > > > +                      VBLANK_END(crtc_vblank_end - 1));
+> > > > +       /*
+> > > > +        * The double buffer latch point for TRANS_VTOTAL
+> > > > +        * is the transcoder's undelayed vblank.
+> > > > +        */
+> > > > +       intel_de_write(dev_priv, TRANS_VTOTAL(cpu_transcoder),
+> > > > +                      VACTIVE(crtc_vdisplay - 1) |
+> > > > +                      VTOTAL(crtc_vtotal - 1));
+> > > > +}
+> > > > +
+> > > >  static void intel_set_pipe_src_size(const struct intel_crtc_state =
+*crtc_state)
+> > > >  {
+> > > >         struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.=
+crtc);
+> > > > @@ -5082,11 +5113,13 @@ intel_pipe_config_compare(const struct inte=
+l_crtc_state *current_config,
+> > > >         PIPE_CONF_CHECK_I(name.crtc_hsync_start); \
+> > > >         PIPE_CONF_CHECK_I(name.crtc_hsync_end); \
+> > > >         PIPE_CONF_CHECK_I(name.crtc_vdisplay); \
+> > > > -       PIPE_CONF_CHECK_I(name.crtc_vtotal); \
+> > > >         PIPE_CONF_CHECK_I(name.crtc_vblank_start); \
+> > > > -       PIPE_CONF_CHECK_I(name.crtc_vblank_end); \
+> > > >         PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
+> > > >         PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
+> > > > +       if (!fastset || !pipe_config->update_lrr) { \
+> > > > +               PIPE_CONF_CHECK_I(name.crtc_vtotal); \
+> > > > +               PIPE_CONF_CHECK_I(name.crtc_vblank_end); \
+> > > > +       } \
+> > > >  } while (0)
+> > > >
+> > > >  #define PIPE_CONF_CHECK_RECT(name) do { \
+> > > > @@ -5420,6 +5453,7 @@ int intel_modeset_all_pipes(struct intel_atom=
+ic_state *state,
+> > > >                 crtc_state->uapi.mode_changed =3D true;
+> > > >                 crtc_state->update_pipe =3D false;
+> > > >                 crtc_state->update_m_n =3D false;
+> > > > +               crtc_state->update_lrr =3D false;
+> > > >
+> > > >                 ret =3D drm_atomic_add_affected_connectors(&state->=
+base,
+> > > >                                                          &crtc->bas=
+e);
+> > > > @@ -5537,6 +5571,10 @@ static void intel_crtc_check_fastset(const s=
+truct intel_crtc_state *old_crtc_sta
+> > > >  {
+> > > >         struct drm_i915_private *i915 =3D to_i915(old_crtc_state->u=
+api.crtc->dev);
+> > > >
+> > > > +       /* only allow LRR when the timings stay within the VRR rang=
+e */
+> > > > +       if (old_crtc_state->vrr.in_range !=3D new_crtc_state->vrr.i=
+n_range)
+> > > > +               new_crtc_state->update_lrr =3D false;
+> > > > +
+> > > >         if (!intel_pipe_config_compare(old_crtc_state, new_crtc_sta=
+te, true))
+> > > >                 drm_dbg_kms(&i915->drm, "fastset requirement not me=
+t, forcing full modeset\n");
+> > > >         else
+> > > > @@ -5547,6 +5585,11 @@ static void intel_crtc_check_fastset(const s=
+truct intel_crtc_state *old_crtc_sta
+> > > >                                    &new_crtc_state->dp_m_n))
+> > > >                 new_crtc_state->update_m_n =3D false;
+> > > >
+> > > > +       if (intel_crtc_needs_modeset(new_crtc_state) ||
+> > > > +           (old_crtc_state->hw.adjusted_mode.crtc_vtotal =3D=3D ne=
+w_crtc_state->hw.adjusted_mode.crtc_vtotal &&
+> > > > +            old_crtc_state->hw.adjusted_mode.crtc_vblank_end =3D=
+=3D new_crtc_state->hw.adjusted_mode.crtc_vblank_end))
+> > > > +               new_crtc_state->update_lrr =3D false;
+> > > > +
+> > > >         if (!intel_crtc_needs_modeset(new_crtc_state))
+> > > >                 new_crtc_state->update_pipe =3D true;
+> > > >  }
+> > > > @@ -6262,6 +6305,7 @@ int intel_atomic_check(struct drm_device *dev=
+,
+> > > >                                 new_crtc_state->uapi.mode_changed =
+=3D true;
+> > > >                                 new_crtc_state->update_pipe =3D fal=
+se;
+> > > >                                 new_crtc_state->update_m_n =3D fals=
+e;
+> > > > +                               new_crtc_state->update_lrr =3D fals=
+e;
+> > > >                         }
+> > > >                 }
+> > > >
+> > > > @@ -6275,6 +6319,7 @@ int intel_atomic_check(struct drm_device *dev=
+,
+> > > >                                 new_crtc_state->uapi.mode_changed =
+=3D true;
+> > > >                                 new_crtc_state->update_pipe =3D fal=
+se;
+> > > >                                 new_crtc_state->update_m_n =3D fals=
+e;
+> > > > +                               new_crtc_state->update_lrr =3D fals=
+e;
+> > > >                         }
+> > > >                 }
+> > > >
+> > > > @@ -6283,6 +6328,7 @@ int intel_atomic_check(struct drm_device *dev=
+,
+> > > >                                 new_crtc_state->uapi.mode_changed =
+=3D true;
+> > > >                                 new_crtc_state->update_pipe =3D fal=
+se;
+> > > >                                 new_crtc_state->update_m_n =3D fals=
+e;
+> > > > +                               new_crtc_state->update_lrr =3D fals=
+e;
+> > > >                         }
+> > > >                 }
+> > > >         }
+> > > > @@ -6464,6 +6510,9 @@ static void intel_pipe_fastset(const struct i=
+ntel_crtc_state *old_crtc_state,
+> > > >         if (new_crtc_state->update_m_n)
+> > > >                 intel_cpu_transcoder_set_m1_n1(crtc, new_crtc_state=
+->cpu_transcoder,
+> > > >                                                &new_crtc_state->dp_=
+m_n);
+> > > > +
+> > > > +       if (new_crtc_state->update_lrr)
+> > > > +               intel_set_transcoder_timings_lrr(new_crtc_state);
+> > > >  }
+> > > >
+> > > >  static void commit_pipe_pre_planes(struct intel_atomic_state *stat=
+e,
+> > > > @@ -6600,7 +6649,8 @@ static void intel_update_crtc(struct intel_at=
+omic_state *state,
+> > > >          *
+> > > >          * FIXME Should be synchronized with the start of vblank so=
+mehow...
+> > > >          */
+> > > > -       if (vrr_enabling(old_crtc_state, new_crtc_state) || new_crt=
+c_state->update_m_n)
+> > > > +       if (vrr_enabling(old_crtc_state, new_crtc_state) ||
+> > > > +           new_crtc_state->update_m_n || new_crtc_state->update_lr=
+r)
+> > > >                 intel_crtc_update_active_timings(new_crtc_state,
+> > > >                                                  new_crtc_state->vr=
+r.enable);
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/=
+drivers/gpu/drm/i915/display/intel_display_device.h
+> > > > index 8198401aa5be..ee77750af82b 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> > > > @@ -56,6 +56,7 @@ struct drm_printer;
+> > > >  #define HAS_HW_SAGV_WM(i915)           (DISPLAY_VER(i915) >=3D 13 =
+&& !IS_DGFX(i915))
+> > > >  #define HAS_IPC(i915)                  (DISPLAY_INFO(i915)->has_ip=
+c)
+> > > >  #define HAS_IPS(i915)                  (IS_HASWELL_ULT(i915) || IS=
+_BROADWELL(i915))
+> > > > +#define HAS_LRR(i915)                  (DISPLAY_VER(i915) >=3D 12)
+> > > >  #define HAS_LSPCON(i915)               (IS_DISPLAY_VER(i915, 9, 10=
+))
+> > > >  #define HAS_MBUS_JOINING(i915)         (IS_ALDERLAKE_P(i915) || DI=
+SPLAY_VER(i915) >=3D 14)
+> > > >  #define HAS_MSO(i915)                  (DISPLAY_VER(i915) >=3D 12)
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/d=
+rivers/gpu/drm/i915/display/intel_display_types.h
+> > > > index 2f35560d7e4e..536c642eb562 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > @@ -1084,6 +1084,7 @@ struct intel_crtc_state {
+> > > >         unsigned fb_bits; /* framebuffers to flip */
+> > > >         bool update_pipe; /* can a fast modeset be performed? */
+> > > >         bool update_m_n; /* update M/N seamlessly during fastset? *=
+/
+> > > > +       bool update_lrr; /* update TRANS_VTOTAL/etc. during fastset=
+? */
+> > > >         bool disable_cxsr;
+> > > >         bool update_wm_pre, update_wm_post; /* watermarks are updat=
+ed */
+> > > >         bool fifo_changed; /* FIFO split is changed */
+> > > > @@ -1383,7 +1384,7 @@ struct intel_crtc_state {
+> > > >
+> > > >         /* Variable Refresh Rate state */
+> > > >         struct {
+> > > > -               bool enable;
+> > > > +               bool enable, in_range;
+> > > >                 u8 pipeline_full;
+> > > >                 u16 flipline, vmin, vmax, guardband;
+> > > >         } vrr;
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu=
+/drm/i915/display/intel_vrr.c
+> > > > index 12731ad725a8..5d905f932cb4 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> > > > @@ -120,9 +120,14 @@ intel_vrr_compute_config(struct intel_crtc_sta=
+te *crtc_state,
+> > > >         if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
+> > > >                 return;
+> > > >
+> > > > -       if (!intel_vrr_is_in_range(connector, drm_mode_vrefresh(adj=
+usted_mode)))
+> > > > +       crtc_state->vrr.in_range =3D
+> > > > +               intel_vrr_is_in_range(connector, drm_mode_vrefresh(=
+adjusted_mode));
+> > > > +       if (!crtc_state->vrr.in_range)
+> > > >                 return;
+> > > >
+> > > > +       if (HAS_LRR(i915))
+> > > > +               crtc_state->update_lrr =3D true;
+> > > > +
+> > > >         vmin =3D DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
+> > > >                             adjusted_mode->crtc_htotal * info->moni=
+tor_range.max_vfreq);
+> > > >         vmax =3D adjusted_mode->crtc_clock * 1000 /
+> > > > --
+> > > > 2.41.0
+> > > >
+>
+> --
+> Ville Syrj=C3=A4l=C3=A4
+> Intel
