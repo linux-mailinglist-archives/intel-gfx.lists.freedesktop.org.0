@@ -2,135 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB4E37A862F
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 16:07:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D20CC7A86A7
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 16:35:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C546310E4C4;
-	Wed, 20 Sep 2023 14:07:43 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49C3810E4C4;
- Wed, 20 Sep 2023 14:07:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2768410E4CD;
+	Wed, 20 Sep 2023 14:35:01 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3551A10E4C9;
+ Wed, 20 Sep 2023 14:34:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695218861; x=1726754861;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=HLUxPJs6qfH2eewIAhueKtnKg4KvloRJgGBQfgw5fKg=;
- b=FzR1jH3F08hzKqUe6exoEu3roJJK8YKWSTf13Vegahq2FOXe0QztX2Jx
- Q1DBrxdRGahhFDif8tlA4f6aZlMkxN48H3879KZ3LfL8WGrPXLapof8bq
- l8Lt1UtjW9wjUnC9YKslzg0sQATLbeKef41N2c5D7sIaXZqf7yxE5RTKb
- GPMCc90vrk0g/NL2c7VOEQlctybFGpNsDVJvbW33JRdnEt1bSEAhMGDtE
- 8yf9tO/XKD75PCeRcsjgf/ZAPayKdLbJC44L0deitM0P8uOurCq9nsJSp
- BIe/BaPyvmi8opL2t9yfUFMOX7/MFA+P+jleGcoDiimKK6uxaTdrFOYuz Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="360488221"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="360488221"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 07:07:29 -0700
+ t=1695220499; x=1726756499;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=sLpQI5jlczxYtnfDdaRiHyH0T7NOrjgN4vsg+1iJ6EY=;
+ b=Itk2kcMQNagNRzwxpfDMKto5w4aqhWLFrjUVw+MXSFAj/3i5WGPINo9E
+ Q5w2Wnonl3NMR+uoNpB+s6PoMdnm43TD3wAOOWXvkHMn/nbDt5ZqqBfbP
+ 5vJTiVLPvoaciOJW+R+rpRYLv9ln55Nhd1kzX868EHV0UlOGHB2pymaWD
+ 755Y8+RiPhyAUquNqs0ysXMssqbtZfPtmlp3tVt5oAM0ihLcxd5iTmYHp
+ PYo0T5MpFnQyF29TRIcB3qmo7nxpA+2XbNh7Znv0LnMo42HfQZqGnt76d
+ mo7H4qPCrwlpEhCI8u/oufiixM3cj8rpWHFiFAX7FVN1DN+VV+rePpqxk w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="380149222"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="380149222"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 07:22:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="781702798"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="781702798"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Sep 2023 07:07:29 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 20 Sep 2023 07:07:28 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Wed, 20 Sep 2023 07:07:28 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.170)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Wed, 20 Sep 2023 07:07:28 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gwjISyyY72aUkW8GHfhM0yBhIvlGH/Z844JdXIzCIs5roSk5i8FRsoNvhJ8WTMoshsAZxm/XRAT0aAuM5GENK2KhPxC9YaLW1q9IQqG9Xbq/Zpiw0fBKnTq6+FlbY7Lu0SMK8iEPvW5R8Ozq/4Y029y6SpwgfCY4rjeAmAXcAwtzH3O0HHjl+RwYZv8wOcyS/4j7sW911Xvnx/Cub6ij2RmNKx1ldV+8s6o71Z1Qv/tLoMMBtspM8s5Avk7b/g52kX3KQwDN99A4kYoSoSIfEtN8q5ah2Fd3eYT0eFTe0WaAIwnnuS+bCnsA/7cSBLyR9y/YsxEsPhuLL6rvLaYMjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=q6JdWN9uJb6R6ywd5dmFFL0qTwlDAmnRjYsUio/f890=;
- b=BFCVkj4ZuPM8Yrnyt6ph4vIyzHGhXxBRW2HkS39Ui28fEBRAoX/C59jnK1LwR+NGRGmc+rQ3vj7xSM1chuEf2SXCAVW6kxPzAEWANZisXujr42EF9zXWkEAk6TcrzAg3KwFbWhQo28GVbOqJiAArAxd06/7z4NlNohpF9/0GGawwQx6Oxafqkj45quVSPiRLl6H3yyYViR3UOCYV28rgX9nFOS6As/rmPCuBcD67CEZ4ISjMVuANdUVq8ZVaAaJPPOOSfEjdZRkmF+/Rrr8PZat4r1TpdflzzJKWVlYsyxJLA0iigSxqOhoWvX91Htifyj3iGL1XocJXX8EGKGKJaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DM4PR11MB6067.namprd11.prod.outlook.com (2603:10b6:8:63::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.24; Wed, 20 Sep
- 2023 14:07:25 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593%6]) with mapi id 15.20.6792.022; Wed, 20 Sep 2023
- 14:07:23 +0000
-Date: Wed, 20 Sep 2023 10:07:18 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Message-ID: <ZQr8lowFNiMGnrbn@intel.com>
-References: <20230918190259.2817143-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230918190259.2817143-1-vinay.belgaumkar@intel.com>
-X-ClientProxiedBy: BYAPR08CA0034.namprd08.prod.outlook.com
- (2603:10b6:a03:100::47) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="776026772"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="776026772"
+Received: from conorbyr-mobl1.ger.corp.intel.com (HELO [10.213.199.161])
+ ([10.213.199.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 07:22:51 -0700
+Message-ID: <83cc1270-1924-cd39-8eab-c89b5b5a8ee7@linux.intel.com>
+Date: Wed, 20 Sep 2023 15:22:49 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB6067:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8d76eff7-92a8-4b1d-a7e9-08dbb9e2e926
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A20Cq1Mffeqp7GHJpAetqZdTe+vvASr3KeCZpB7E+fwbj5HRCB2TbZWmldaT8Y2j3zNcElPOzLhzczUYPaZNKifzmQS6KcrJG/bRnVOAsHtpRju5/Ml25jX/5zJ3wCxUnm2xXJwh2+/WRAWj6BiPyTvIQuhM6o8yHswhLrSm6YsWkEIJMx8cL+qhMzTSWjXEaTRY6OTWbAgSiIA6HZ8Jp+PpuCc+mFj8js+1nlZBv7q+mbl90kgTmoieqDnh0k/LhVqYDYFIOKW3mAAQvb5dOEd8TimezHQDPvKyHLjMzn5oLvjiA+dOU+nKQCkPEQ5ztITZwn+WOXmaM9Hhz0MpNwXsQuiuk2AeWXMCFoUcpva6zIIFIJUsktwjr/FMZgqRCxZcVJXyhtN9z8N5cJanMVlww32+geHztlhmvCJalYGPXLXCzaPQ+h0GwP5KXGvDvDar+QlonfMdHJWkq2AJnWFtj7OeZC2ZTrrUUCf+eMutTRQAoWMZTM2OIRRlSK+y4vok+cvu46Q6aY+7AgLdXa43XFsA4i4RmTL5CB/6XiI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(366004)(376002)(136003)(39860400002)(396003)(186009)(1800799009)(451199024)(26005)(8936002)(82960400001)(450100002)(2616005)(4326008)(8676002)(2906002)(83380400001)(36756003)(6862004)(44832011)(5660300002)(86362001)(6506007)(6486002)(966005)(6666004)(6636002)(37006003)(478600001)(41300700001)(66556008)(38100700002)(66476007)(66946007)(6512007)(316002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?woFHpKaGQ+jL8qSyQh2WyiKLVwrKBvmaHo6dZDiLeLk2t2JNytBthU210d/w?=
- =?us-ascii?Q?k3r+vBL3wcTX3zdjDsYNIYL/Y/oK+Lif2bIE5LmHsWzxlcOe10NVZzLo60q6?=
- =?us-ascii?Q?ZKpqwMNMvVyRK912HXSGnKML39DPC/vJx3RZ+Ty767xYDDXhS0JIzLzqClk5?=
- =?us-ascii?Q?OyQnsqiV1C0Y7Ugg7+NMIdwJpzO5L7Ce9WRqhPDRDZoPWTzjPD+ngAtWJ8+6?=
- =?us-ascii?Q?mBjjVAgEGIHEv4pAyu6z9DATSf35BEBAcXHq8YYX7blF2rFaX09obNnZY3sZ?=
- =?us-ascii?Q?HFl9nO59F3cQ5x4fgBv2u34EdJpTYSJMUS2eRaqYJn7USIOzFCDT2gdrbWaB?=
- =?us-ascii?Q?0zIYvYv2ny9XI8UOXPtaApQSWgHlDFlc2IW9N9HuNS43q6EjblvkuhLlCfWB?=
- =?us-ascii?Q?bYTyiIax5aSdD57yPPOVB5hEmaKjQz6h8/FfuAFaCJARM/2a2gmIg+OR9Aei?=
- =?us-ascii?Q?ymfih3iP4J/if3mpbTxl1AkpqXf61HDwxkDINfxxdN2f50Fm+tyuy8lO8saI?=
- =?us-ascii?Q?cnuO/gMbT5Zv0vbzOsjQxDix3Tbub15G5CPFjoYJODg6Qv8N1NX8DHF2mFwl?=
- =?us-ascii?Q?C/2X6UY7uGDXXeACj+1CAsPemyxjXM527fyxX9FpBOmPBbQOSbamxVyYsLhA?=
- =?us-ascii?Q?3LbUA1pd30t9B4dS8eBBLeHA/XLkCNVKJND6JoK1e1aDEGPERL2L/r9bewWw?=
- =?us-ascii?Q?KpHMXPWe8VrwQI0vud2b3XDJNntGq2kQaJFb3EQbZd/c2BNT2pi1Q3S+6yOu?=
- =?us-ascii?Q?UjpRbnCY7iO6+veYUrz0ScETHJrsTD5t+84rPhHHt6vLVAfVQEdOJI4JPARl?=
- =?us-ascii?Q?fiYuGRjlCRzD8kllrgHTHMNEQNaoLvH8TvjDo7+SQOerqt/TzDxXV/wnI3I5?=
- =?us-ascii?Q?HTPfMTsMV5QhMmKhrG/sWxTDKQCJmcEnQqab/ZP2NwCQA6qmBKSnwdoAabw/?=
- =?us-ascii?Q?EpoZNlFhgAYHQ2MFGXmnK0mR4hl4MUptAQIc75O/MqOsRiZ//guncwdX0gyX?=
- =?us-ascii?Q?La/XEgCmygCbYQmOb0RFMv94AutOxn1ynMg+RjE/9lGmvqhDetllRw1RcXm/?=
- =?us-ascii?Q?Iy4+/8VZhleyI4sW9c+CErP3WEe7+2/bUdepzKkoLJXvAs0BDLtrFP/nu5cP?=
- =?us-ascii?Q?S4JSC7SGEoLrUHb4zPQyujdVZaB3t696O+4GIC0swynpH4SB665stIQnmO2e?=
- =?us-ascii?Q?CkJHJnG29rxr6AfE0n7Tg2vUar7cIJmVrcepDVBIT58wyFSIuLciMTTGlwZO?=
- =?us-ascii?Q?zVBOa0spolLXuxvYlODLMyKCzMQuPNQM/FQARnVllQYTY25LsLyZ+upmFiUe?=
- =?us-ascii?Q?L82u9ZMjOcsgK/24pvzIGHKoI08AQ/FzeOsds1hTCn3Agn2hFdl4EJ/A5lE7?=
- =?us-ascii?Q?oB38Flm+XW5cJr4k9zOz8YdEo6X8T27azMPm3ABqN0BIPZHEgd9Z+1sqgoFB?=
- =?us-ascii?Q?k4d7sNtwwSIJnbj7dOw8e3Z6+e0n8shUfE1rV5e+0345JQVkpSvQIZ/5zyeP?=
- =?us-ascii?Q?uE2tobD4QpgfToMk1RRT4UgyLrRCqIq1f9y2Avziq3Do7BoA08HQw9eYNaij?=
- =?us-ascii?Q?wDu0unO8S8aNnKylZEQqmMcIref2Gb2nFjLNLG5W?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d76eff7-92a8-4b1d-a7e9-08dbb9e2e926
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2023 14:07:23.3309 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4JmkgUjHJDHvDFnVGgdkJCxEAQs/Jn32+7Ku2pJM/ZhAABYfz1GaGGUO4bO/FecZAXicr+5IMmrhuUsANwIFlA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6067
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915_pm_freq_api: Set min/max
- to expected values
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
+ "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Rob Clark <robdclark@chromium.org>
+References: <20230707130220.3966836-1-tvrtko.ursulin@linux.intel.com>
+ <20230707130220.3966836-6-tvrtko.ursulin@linux.intel.com>
+ <SJ1PR11MB620442619CCB434B2A5A87EF811DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <SJ1PR11MB620442619CCB434B2A5A87EF811DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: Implement fdinfo memory stats
+ printing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,60 +68,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 18, 2023 at 12:02:59PM -0700, Vinay Belgaumkar wrote:
-> A prior(rps) test leaves the system in a bad state causing failures
-> in the basic test.
 
-Why?
-
-What was the freq immediately before the failure that made the
-machine to be busted and not accept the new freq request?
-
-Maybe we should use this information to limit the freq requests
-that we accept instead of workaround the test case. Otherwise
-we are at risk of users selecting the bad freq that let " the
-system in a bad state"...
-
-> Set min/max to expected values before running it.
-> Test will restore values at the end.
+On 24/08/2023 12:35, Upadhyay, Tejas wrote:
+>> -----Original Message-----
+>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Tvrtko
+>> Ursulin
+>> Sent: Friday, July 7, 2023 6:32 PM
+>> To: Intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+>> Subject: [Intel-gfx] [PATCH 5/5] drm/i915: Implement fdinfo memory stats
+>> printing
+>>
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> Use the newly added drm_print_memory_stats helper to show memory
+>> utilisation of our objects in drm/driver specific fdinfo output.
+>>
+>> To collect the stats we walk the per memory regions object lists and
+>> accumulate object size into the respective drm_memory_stats categories.
+>>
+>> Objects with multiple possible placements are reported in multiple regions for
+>> total and shared sizes, while other categories are counted only for the
+>> currently active region.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+>> Cc: Rob Clark <robdclark@gmail.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_drm_client.c | 85 ++++++++++++++++++++++++++
+>>   1 file changed, 85 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c
+>> b/drivers/gpu/drm/i915/i915_drm_client.c
+>> index ffccb6239789..5c77d6987d90 100644
+>> --- a/drivers/gpu/drm/i915/i915_drm_client.c
+>> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
+>> @@ -45,6 +45,89 @@ void __i915_drm_client_free(struct kref *kref)  }
+>>
+>>   #ifdef CONFIG_PROC_FS
+>> +static void
+>> +obj_meminfo(struct drm_i915_gem_object *obj,
+>> +	    struct drm_memory_stats stats[INTEL_REGION_UNKNOWN]) {
+>> +	struct intel_memory_region *mr;
+>> +	u64 sz = obj->base.size;
+>> +	enum intel_region_id id;
+>> +	unsigned int i;
+>> +
+>> +	/* Attribute size and shared to all possible memory regions. */
+>> +	for (i = 0; i < obj->mm.n_placements; i++) {
+>> +		mr = obj->mm.placements[i];
+>> +		id = mr->id;
+>> +
+>> +		if (obj->base.handle_count > 1)
+>> +			stats[id].shared += sz;
+>> +		else
+>> +			stats[id].private += sz;
+>> +	}
+>> +
+>> +	/* Attribute other categories to only the current region. */
+>> +	mr = obj->mm.region;
+>> +	if (mr)
+>> +		id = mr->id;
+>> +	else
+>> +		id = INTEL_REGION_SMEM;
+>> +
+>> +	if (!obj->mm.n_placements) {
+>> +		if (obj->base.handle_count > 1)
+>> +			stats[id].shared += sz;
+>> +		else
+>> +			stats[id].private += sz;
+>> +	}
+>> +
+>> +	if (i915_gem_object_has_pages(obj)) {
+>> +		stats[id].resident += sz;
+>> +
+>> +		if (!dma_resv_test_signaled(obj->base.resv,
+>> +					    dma_resv_usage_rw(true)))
 > 
-> Link: https://gitlab.freedesktop.org/drm/intel/-/issues/8670
-> 
-> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> ---
->  tests/intel/i915_pm_freq_api.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
-> 
-> diff --git a/tests/intel/i915_pm_freq_api.c b/tests/intel/i915_pm_freq_api.c
-> index 03bd0d05b..6018692a2 100644
-> --- a/tests/intel/i915_pm_freq_api.c
-> +++ b/tests/intel/i915_pm_freq_api.c
-> @@ -55,7 +55,11 @@ static void test_freq_basic_api(int dirfd, int gt)
->  	rpn = get_freq(dirfd, RPS_RPn_FREQ_MHZ);
->  	rp0 = get_freq(dirfd, RPS_RP0_FREQ_MHZ);
->  	rpe = get_freq(dirfd, RPS_RP1_FREQ_MHZ);
-> -	igt_debug("GT: %d, RPn: %d, RPe: %d, RP0: %d", gt, rpn, rpe, rp0);
-> +	igt_debug("GT: %d, RPn: %d, RPe: %d, RP0: %d\n", gt, rpn, rpe, rp0);
-> +
-> +	/* Set min/max to RPn, RP0 for baseline behavior */
-> +	igt_assert(set_freq(dirfd, RPS_MIN_FREQ_MHZ, rpn) > 0);
-> +	igt_assert(set_freq(dirfd, RPS_MAX_FREQ_MHZ, rp0) > 0);
->  
->  	/*
->  	 * Negative bound tests
-> @@ -170,7 +174,7 @@ igt_main
->  		for_each_sysfs_gt_dirfd(i915, dirfd, gt) {
->  			stash_min[gt] = get_freq(dirfd, RPS_MIN_FREQ_MHZ);
->  			stash_max[gt] = get_freq(dirfd, RPS_MAX_FREQ_MHZ);
-> -			igt_debug("GT: %d, min: %d, max: %d", gt, stash_min[gt], stash_max[gt]);
-> +			igt_debug("GT: %d, min: %d, max: %d\n", gt, stash_min[gt], stash_max[gt]);
->  			igt_pm_ignore_slpc_efficient_freq(i915, dirfd, true);
->  		}
->  		igt_install_exit_handler(restore_sysfs_freq);
-> -- 
-> 2.38.1
+> Should not DMA_RESV_USAGE_BOOKKEEP also considered active (why only "rw")? Some app is syncing with syncjobs and has added dma_fence with DMA_RESV_USAGE_BOOKKEEP during execbuf while that BO is busy on waiting on work!
+
+Hmm do we have a path which adds DMA_RESV_USAGE_BOOKKEEP usage in execbuf?
+
+Rob, any comments here? Given how I basically lifted the logic from 
+686b21b5f6ca ("drm: Add fdinfo memory stats"), does it sound plausible 
+to upgrade the test against all fences?
+
+Regards,
+
+Tvrtko
+
+>> +			stats[id].active += sz;
+>> +		else if (i915_gem_object_is_shrinkable(obj) &&
+>> +			 obj->mm.madv == I915_MADV_DONTNEED)
+>> +			stats[id].purgeable += sz;
+>> +	}
+>> +}
+>> +
+>> +static void show_meminfo(struct drm_printer *p, struct drm_file *file)
+>> +{
+>> +	struct drm_memory_stats stats[INTEL_REGION_UNKNOWN] = {};
+>> +	struct drm_i915_file_private *fpriv = file->driver_priv;
+>> +	struct i915_drm_client *client = fpriv->client;
+>> +	struct drm_i915_private *i915 = fpriv->i915;
+>> +	struct drm_i915_gem_object *obj;
+>> +	struct intel_memory_region *mr;
+>> +	struct list_head *pos;
+>> +	unsigned int id;
+>> +
+>> +	/* Public objects. */
+>> +	spin_lock(&file->table_lock);
+>> +	idr_for_each_entry (&file->object_idr, obj, id)
+>> +		obj_meminfo(obj, stats);
+>> +	spin_unlock(&file->table_lock);
+>> +
+>> +	/* Internal objects. */
+>> +	rcu_read_lock();
+>> +	list_for_each_rcu(pos, &client->objects_list) {
+>> +		obj = i915_gem_object_get_rcu(list_entry(pos, typeof(*obj),
+>> +							 client_link));
+>> +		if (!obj)
+>> +			continue;
+>> +		obj_meminfo(obj, stats);
+>> +		i915_gem_object_put(obj);
+>> +	}
+>> +	rcu_read_unlock();
+>> +
+>> +	for_each_memory_region(mr, i915, id)
+>> +		drm_print_memory_stats(p,
+>> +				       &stats[id],
+>> +				       DRM_GEM_OBJECT_RESIDENT |
+>> +				       DRM_GEM_OBJECT_PURGEABLE,
+>> +				       mr->name);
+>> +}
+>> +
+>>   static const char * const uabi_class_names[] = {
+>>   	[I915_ENGINE_CLASS_RENDER] = "render",
+>>   	[I915_ENGINE_CLASS_COPY] = "copy",
+>> @@ -106,6 +189,8 @@ void i915_drm_client_fdinfo(struct drm_printer *p,
+>> struct drm_file *file)
+>>   	 *
+>> ****************************************************************
+>> **
+>>   	 */
+>>
+>> +	show_meminfo(p, file);
+>> +
+>>   	if (GRAPHICS_VER(i915) < 8)
+>>   		return;
+>>
+>> --
+>> 2.39.2
 > 
