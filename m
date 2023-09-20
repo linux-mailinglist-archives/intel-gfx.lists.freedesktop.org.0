@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B30167A8E52
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 23:20:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E2D17A8E55
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 23:21:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D50EB10E563;
-	Wed, 20 Sep 2023 21:20:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B032010E56B;
+	Wed, 20 Sep 2023 21:20:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6ACBF10E55F
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 21:20:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0616310E569;
+ Wed, 20 Sep 2023 21:20:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695244836; x=1726780836;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iiAhzo9cwzG4t4JL58sicwz/n1Sg9ShGSNqAuYpY1eM=;
- b=YSjkH2qLIJZgY4qQayPZmFC8fjSG72+8lRpjd//aIpR+p0liSebCqaS3
- P7lcEI13bWyeHqIsuXt9krPAfyvDrwwGhlLgosa1BVBdgEwaca2GzVK97
- UFNVX1FXZ9DdHC+cxr3QFgCjof1VUanEXG/b0A/fc2/y0zAHn/AYiBkMT
- HbeIssApiT16kE0Qn4LtAqYP0k8gMBEdZhWYEk3acMDYxFjIBqvDvpaNy
- Ds1IS5yccWoMB3Ddvz3sK5qHkmJI31Ky9+01v/gYma53Slx4/09fUSeAD
- Ezmx+ynzmbWOLtXnKaY7d9XRbJU36ihOcRnM56MF4LPBYk2YRlOf5d2/q g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="359726911"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="359726911"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ t=1695244856; x=1726780856;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3VKsI0M61DcKzQhU2E32Nt5bB46yLMP7MUH6ZS0dftE=;
+ b=Lf8Q6IlUOum3g0vsLzNGAUOTKc9Noqalwe4hxV3RqYi7lvO77UmVAsIF
+ teTIR/DJ6YOfroVhu1Gki1PjYwSQ0syuW/ycxMPWK7EeMMdB5nwuTcXep
+ yGpjdeyFxGfZUvezEIVepFZ4N4u2yk3VPjD2FFWWm3jlyvYP+UlfRJWOa
+ T2D5im/oK2cgIxGfGko/1K5RMfP863gXDJ5ny4Enj9yKQt55sEmVm/CTU
+ 6lG1p7x7d4lZDlVA1ula8UrbhXhjqTq+iqXEF7+42dn8Fb4++kFXLMgDe
+ XPrv19GPKULc6x8CRKlPOcPc+yr2m/P5fC7dmlZay4e84FStPtYLPMNFS w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="359727144"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="359727144"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 14:17:50 -0700
+ 20 Sep 2023 14:19:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="812320030"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="812320030"
-Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 14:17:49 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 Sep 2023 14:07:04 -0700
-Message-Id: <20230920210704.3624771-5-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230920210704.3624771-1-jonathan.cavitt@intel.com>
-References: <20230920210704.3624771-1-jonathan.cavitt@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="776155750"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="776155750"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by orsmga008.jf.intel.com with SMTP; 20 Sep 2023 14:19:35 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 21 Sep 2023 00:19:34 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Thu, 21 Sep 2023 00:19:33 +0300
+Message-ID: <20230920211934.14920-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v12 4/4] drm/i915: Set copy engine arbitration
- for Wa_16018031267 / Wa_16018063123
+Subject: [Intel-gfx] [PATCH v2 1/2] drm/edid: Fixup h/vsync_end instead of
+ h/vtotal
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,52 +58,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andi.shyti@intel.com, chris.p.wilson@linux.intel.com,
- tomasz.mistat@intel.com, jonathan.cavitt@intel.com, rodrigo.vivi@intel.com,
- gregory.f.germano@intel.com, matthew.d.roper@intel.com, nirmoy.das@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Set copy engine arbitration into round robin mode
-for part of Wa_16018031267 / Wa_16018063123 mitigation.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+There are some weird EDIDs floating around that have the sync
+pulse extending beyond the end of the blanking period.
+
+On the currently problemtic machine (HP Omni 120) EDID reports
+the following mode:
+"1600x900": 60 108000 1600 1780 1860 1800 900 910 913 1000 0x40 0x5
+which is then "corrected" to have htotal=1861 by the current drm_edid.c
+code.
+
+The fixup code was originally added in commit 7064fef56369 ("drm: work
+around EDIDs with bad htotal/vtotal values"). Googling around we end up in
+https://bugs.launchpad.net/ubuntu/hardy/+source/xserver-xorg-video-intel/+bug/297245
+where we find an EDID for a Dell Studio 15, which reports:
+(II) VESA(0): clock: 65.0 MHz   Image Size:  331 x 207 mm
+(II) VESA(0): h_active: 1280  h_sync: 1328  h_sync_end 1360 h_blank_end 1337 h_border: 0
+(II) VESA(0): v_active: 800  v_sync: 803  v_sync_end 809 v_blanking: 810 v_border: 0
+
+Note that if we use the hblank size (as opposed of the hsync_end)
+from the DTD to determine htotal we get exactly 60Hz refresh rate in
+both cases, whereas using hsync_end to determine htotal we get a
+slightly lower refresh rates. This makes me believe the using the
+hblank size is what was intended even in those cases.
+
+Also note that in case of the HP Onmi 120 the VBIOS boots with these:
+  crtc timings: 108000 1600 1780 1860 1800 900 910 913 1000, type: 0x40 flags: 0x5
+ie. it just blindly stuffs the bogus hsync_end and htotal from the DTD
+into the transcoder timing registers, and the display works. I believe
+the (at least more modern) hardware will automagically terminate the hsync
+pulse when the timing generator reaches htotal, which again points that we
+should use the hblank size to determine htotal. Unfortunatley the old bug
+reports for the Dell machines are extremely lacking in useful details so
+we have no idea what kind of timings the VBIOS programmed into the
+hardware :(
+
+Let's just flip this quirk around and reduce the length of the sync
+pulse instead of extending the blanking period. This at least seems
+to be the correct thing to do on more modern hardware. And if any
+issues crop up on older hardware we need to debug them properly.
+
+v2: Add debug message breadcrumbs (Jani)
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com> #v1
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8895
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_regs.h | 3 +++
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
- 2 files changed, 8 insertions(+)
+ drivers/gpu/drm/drm_edid.c | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-index b8618ee3e3041..c0c8c12edea10 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-@@ -124,6 +124,9 @@
- #define RING_INDIRECT_CTX(base)			_MMIO((base) + 0x1c4) /* gen8+ */
- #define RING_INDIRECT_CTX_OFFSET(base)		_MMIO((base) + 0x1c8) /* gen8+ */
- #define ECOSKPD(base)				_MMIO((base) + 0x1d0)
-+#define   XEHP_BLITTER_SCHEDULING_MODE_MASK	REG_GENMASK(12, 11)
-+#define   XEHP_BLITTER_ROUND_ROBIN_MODE		\
-+		REG_FIELD_PREP(XEHP_BLITTER_SCHEDULING_MODE_MASK, 1)
- #define   ECO_CONSTANT_BUFFER_SR_DISABLE	REG_BIT(4)
- #define   ECO_GATING_CX_ONLY			REG_BIT(3)
- #define   GEN6_BLITTER_FBC_NOTIFY		REG_BIT(3)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 660d4f358eab7..b8f3b991e4202 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -2781,6 +2781,11 @@ xcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			 RING_SEMA_WAIT_POLL(engine->mmio_base),
- 			 1);
- 	}
-+	/* Wa_16018031267, Wa_16018063123 */
-+	if (NEEDS_FASTCOLOR_BLT_WABB(engine))
-+		wa_masked_field_set(wal, ECOSKPD(engine->mmio_base),
-+				    XEHP_BLITTER_SCHEDULING_MODE_MASK,
-+				    XEHP_BLITTER_ROUND_ROBIN_MODE);
- }
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index 39dd3f694544..ec1cb4890acb 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -3497,11 +3497,19 @@ static struct drm_display_mode *drm_mode_detailed(struct drm_connector *connecto
+ 	mode->vsync_end = mode->vsync_start + vsync_pulse_width;
+ 	mode->vtotal = mode->vdisplay + vblank;
  
- static void
+-	/* Some EDIDs have bogus h/vtotal values */
+-	if (mode->hsync_end > mode->htotal)
+-		mode->htotal = mode->hsync_end + 1;
+-	if (mode->vsync_end > mode->vtotal)
+-		mode->vtotal = mode->vsync_end + 1;
++	/* Some EDIDs have bogus h/vsync_end values */
++	if (mode->hsync_end > mode->htotal) {
++		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] reducing hsync_end %d->%d\n",
++			    connector->base.id, connector->name,
++			    mode->hsync_end, mode->htotal);
++		mode->hsync_end = mode->htotal;
++	}
++	if (mode->vsync_end > mode->vtotal) {
++		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] reducing vsync_end %d->%d\n",
++			    connector->base.id, connector->name,
++			    mode->vsync_end, mode->vtotal);
++		mode->vsync_end = mode->vtotal;
++	}
+ 
+ 	drm_mode_do_interlace_quirk(mode, pt);
+ 
 -- 
-2.25.1
+2.41.0
 
