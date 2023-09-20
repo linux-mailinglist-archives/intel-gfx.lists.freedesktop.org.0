@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 101ED7A8E51
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 23:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D4D87A8E50
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 23:20:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1D1E10E562;
-	Wed, 20 Sep 2023 21:20:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 284CC10E55F;
+	Wed, 20 Sep 2023 21:20:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDFCF10E55E
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 21:20:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15FE210E55E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 21:20:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695244835; x=1726780835;
+ t=1695244836; x=1726780836;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZXiyxi6b9RDHkxkNYTcrVGGKIcEU6ojgswDc/qKa968=;
- b=J4r4AS0kQngo0Vb9ZJNCFw2YenL1yG94GTsSIbpmG336jubHv1pSc91S
- x3SDqaHYXNtQolBuBSIh/Hy4t9fM0Nsgo8UYoXkU+T3yUM3HngFeAA8WH
- JFveQqXCh9NlbeBP/X9UqWfIfsoLERt/0VdYdWLOJzkfmBHU2UfcejtJe
- 09N9HBrNvDU5acC9s7YvgnC5UPzorMSLlnZQRuDr8xLGyL3L9FFtCjE7u
- wUOU6LNv5J60gNork6FWjeCDfKF9XZovWu3PEE0BEm0RBZhZ2tWHbZi+r
- HUsuAkkAOGt0uy5MLPDGLNF/JmC+sk8W3wezLHRBeLWb8nf/pg8o84Bd3 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="359726904"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="359726904"
+ bh=Rq5qxPJVDguxjNM7ViQHpRnfnCuVKdogo7G1p+gfB6Y=;
+ b=AwzeHimL9BwNretuRE2aT1ENzM6jk/o4xev9+UGQeQfebVx1ShjDoFky
+ DfFPgGsp0Gn8CO1Brt6BZNLUxlRwbFQ1yjd0/3kYQMnVEZoruFGSPB0bB
+ EPemexTIhBMDrfeFVjkryRQw5V2RcAIZryOESjBGgSEV73Dz7E6UutJSq
+ 2pOVx4sdZWx6b5otWp8FJzGTb8shc3YjrVB8MERIBHDJDerY8RJdLhm7/
+ qD7LfmPBYm+men9bMLsQLim9CH5iX0xNO0va54E6C3QEcvYawkfDJHjMy
+ PMwKbP2NK45UVhkIZY+v/ywhBgr6SEffFT6IE6SACkGRN5l5tm2Cf8U0Q g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="359726907"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="359726907"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Sep 2023 14:17:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="812320021"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="812320021"
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="812320024"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="812320024"
 Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 14:17:47 -0700
+ 20 Sep 2023 14:17:48 -0700
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 Sep 2023 14:07:01 -0700
-Message-Id: <20230920210704.3624771-2-jonathan.cavitt@intel.com>
+Date: Wed, 20 Sep 2023 14:07:02 -0700
+Message-Id: <20230920210704.3624771-3-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230920210704.3624771-1-jonathan.cavitt@intel.com>
 References: <20230920210704.3624771-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v12 1/4] drm/i915: Enable NULL PTE support for
- vm scratch
+Subject: [Intel-gfx] [PATCH v12 2/4] drm/i915: Reserve some kernel space per
+ vm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,112 +64,53 @@ Cc: andi.shyti@intel.com, chris.p.wilson@linux.intel.com,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable NULL PTE support for vm scratch pages.
-
-The use of NULL PTEs in teh vm scratch pages requires us to change how
-the i915 gem_contexts live selftest perform vm_isolation: instead of
-checking the scratch pages are isolated and don't affect each other, we
-check that all changes to the scratch pages are voided.
+Reserve two pages in each vm for kernel space to use for things
+such as workarounds.
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c | 6 ++++++
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c                  | 3 +++
- drivers/gpu/drm/i915/gt/intel_gtt.h                   | 1 +
- drivers/gpu/drm/i915/i915_drv.h                       | 2 ++
- drivers/gpu/drm/i915/i915_pci.c                       | 2 ++
- drivers/gpu/drm/i915/intel_device_info.h              | 1 +
- 6 files changed, 15 insertions(+)
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 7 +++++++
+ drivers/gpu/drm/i915/gt/intel_gtt.h  | 1 +
+ 2 files changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index 7021b6e9b219e..48fc5990343bc 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -1751,6 +1751,12 @@ static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
- 	if (!vm)
- 		return -ENODEV;
- 
-+	if (HAS_NULL_PAGE(vm->i915)) {
-+		if (out)
-+			*out = 0;
-+		return 0;
-+	}
-+
- 	if (!vm->scratch[0]) {
- 		pr_err("No scratch page!\n");
- 		return -EINVAL;
 diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index 9895e18df0435..84aa29715e0ac 100644
+index 84aa29715e0ac..6344d733fb2c4 100644
 --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
 +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -855,6 +855,9 @@ static int gen8_init_scratch(struct i915_address_space *vm)
- 						      I915_CACHE_NONE),
- 			       pte_flags);
+@@ -230,6 +230,7 @@ static void gen8_ppgtt_cleanup(struct i915_address_space *vm)
+ 				     gen8_pd_top_count(vm), vm->top);
  
-+	if (HAS_NULL_PAGE(vm->i915))
-+		vm->scratch[0]->encode |= PTE_NULL_PAGE;
+ 	free_scratch(vm);
++	drm_mm_remove_node(&vm->rsvd);
+ }
+ 
+ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
+@@ -1014,6 +1015,12 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt,
+ 	ppgtt->vm.foreach = gen8_ppgtt_foreach;
+ 	ppgtt->vm.cleanup = gen8_ppgtt_cleanup;
+ 
++	ppgtt->vm.rsvd.start = ppgtt->vm.total - (SZ_4K * 2);
++	ppgtt->vm.rsvd.size = (SZ_4K * 2);
++	ppgtt->vm.rsvd.color = I915_COLOR_UNEVICTABLE;
++	GEM_BUG_ON(drm_mm_reserve_node(&ppgtt->vm.mm, &ppgtt->vm.rsvd));
++	ppgtt->vm.total -= (SZ_4K * 2);
 +
- 	for (i = 1; i <= vm->top; i++) {
- 		struct drm_i915_gem_object *obj;
- 
+ 	err = gen8_init_scratch(&ppgtt->vm);
+ 	if (err)
+ 		goto err_put;
 diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index 346ec8ec2edda..153ddfca0ae18 100644
+index 153ddfca0ae18..680ce27dda40c 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
 +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -151,6 +151,7 @@ typedef u64 gen8_pte_t;
+@@ -247,6 +247,7 @@ struct i915_address_space {
+ 	struct work_struct release_work;
  
- #define GEN8_PAGE_PRESENT		BIT_ULL(0)
- #define GEN8_PAGE_RW			BIT_ULL(1)
-+#define PTE_NULL_PAGE			BIT_ULL(9)
- 
- #define GEN8_PDE_IPS_64K BIT(11)
- #define GEN8_PDE_PS_2M   BIT(7)
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 87ffc477c3b1a..687a8fcdc3d54 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -782,6 +782,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
-  */
- #define HAS_FLAT_CCS(i915)   (INTEL_INFO(i915)->has_flat_ccs)
- 
-+#define HAS_NULL_PAGE(dev_priv) (INTEL_INFO(dev_priv)->has_null_page)
-+
- #define HAS_GT_UC(i915)	(INTEL_INFO(i915)->has_gt_uc)
- 
- #define HAS_POOLED_EU(i915)	(RUNTIME_INFO(i915)->has_pooled_eu)
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index df7c261410f79..80a65ea192107 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -642,6 +642,7 @@ static const struct intel_device_info jsl_info = {
- 	GEN(12), \
- 	TGL_CACHELEVEL, \
- 	.has_global_mocs = 1, \
-+	.has_null_page = 1, \
- 	.has_pxp = 1, \
- 	.max_pat_index = 3
- 
-@@ -721,6 +722,7 @@ static const struct intel_device_info adl_p_info = {
- 	.has_mslice_steering = 1, \
- 	.has_oa_bpc_reporting = 1, \
- 	.has_oa_slice_contrib_limits = 1, \
-+	.has_null_page = 1, \
- 	.has_oam = 1, \
- 	.has_rc6 = 1, \
- 	.has_reset_engine = 1, \
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 39817490b13fd..252f8dc0fe790 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -162,6 +162,7 @@ enum intel_ppgtt_type {
- 	func(has_mslice_steering); \
- 	func(has_oa_bpc_reporting); \
- 	func(has_oa_slice_contrib_limits); \
-+	func(has_null_page); \
- 	func(has_oam); \
- 	func(has_one_eu_per_fuse_bit); \
- 	func(has_pxp); \
+ 	struct drm_mm mm;
++	struct drm_mm_node rsvd;
+ 	struct intel_gt *gt;
+ 	struct drm_i915_private *i915;
+ 	struct device *dma;
 -- 
 2.25.1
 
