@@ -2,59 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D13657A8D37
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 21:56:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A12287A8D6D
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 22:00:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 759DD10E54D;
-	Wed, 20 Sep 2023 19:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B451610E545;
+	Wed, 20 Sep 2023 20:00:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAC8C10E550
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 19:56:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1695239792;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Tt1oyx9UBclJogZ6DRbxVIlbM0rrfuuxabal50tETcg=;
- b=gy9yx7pKczmMBquQ4NDrvl9Q+Ck66iKXt1T4KNj52GSEOxlSaKOCUJYRSZytdsXHlal5yP
- q4A7JeUoNz41waOVUVOqhvJPp2WPAdKDwBe7g8U0rGhh24gNy/0wv6qyFZHsbWVf+t//u4
- vGa41l/6LN1zj3IDiOms6WmPeqqdQ6c=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-257-f2OOlMuiOtWIB8SvOKjcNQ-1; Wed, 20 Sep 2023 15:56:29 -0400
-X-MC-Unique: f2OOlMuiOtWIB8SvOKjcNQ-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com
- [10.11.54.8])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id CE9991818840;
- Wed, 20 Sep 2023 19:56:28 +0000 (UTC)
-Received: from localhost.localdomain (unknown [10.39.195.126])
- by smtp.corp.redhat.com (Postfix) with ESMTP id B9688C15BB8;
- Wed, 20 Sep 2023 19:56:27 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Wed, 20 Sep 2023 21:56:13 +0200
-Message-ID: <20230920195613.304091-5-hdegoede@redhat.com>
-In-Reply-To: <20230920195613.304091-1-hdegoede@redhat.com>
-References: <20230920195613.304091-1-hdegoede@redhat.com>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 573FF10E545
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 20:00:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695240012; x=1726776012;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ONV1QJD9kTR6O1/YD1I5DvFJBcs9CERmETVEO1P0d3Q=;
+ b=MLaR/jR72aV+7AW0RlQIwhr/FuvmmyG2lqt2ecvMIx84arqctBWL+821
+ 9P8i3oK2jPF07sZYrLXihnc2vlqhzr1qu26K4Af1eQtrdN0euyWcf0wJj
+ FFyT39uudeSS9joNHEO1onRp4KpJJAl0wJ1aacurjyMUQ/X215Ndog8Jg
+ 9Jyv5Fl/37SW+dzSlde6aj8l6S1W0zMY26x0m3ZCcVa0R8qgDadfho/PE
+ AP0bPEMG9TEnzrPOza56prPfpBRdPObp4ixD4mIDtA7EWZC4Ke50qacfY
+ 5GlK+vd1HWGHFxeTr5krOpGA2o4AvbKSjW5/f7yEnRGWWh2mfysR+Z0gS w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="384161677"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="384161677"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 13:00:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="862132856"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="862132856"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by fmsmga002.fm.intel.com with SMTP; 20 Sep 2023 13:00:08 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 20 Sep 2023 23:00:07 +0300
+Date: Wed, 20 Sep 2023 23:00:07 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+Message-ID: <ZQtPR3XtOl3WWW9Q@intel.com>
+References: <20230920195351.59421-2-gustavo.sousa@intel.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.1 on 10.11.54.8
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/dsi: Add some debug logging to
- mipi_exec_i2c (v2)
+In-Reply-To: <20230920195351.59421-2-gustavo.sousa@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/irq: Clear GFX_MSTR_IRQ as part
+ of IRQ reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,36 +61,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hans de Goede <hdegoede@redhat.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add some debug logging to mipi_exec_i2c, to make debugging various
-issues seen with it easier.
+On Wed, Sep 20, 2023 at 04:53:52PM -0300, Gustavo Sousa wrote:
+> Starting with Xe_LP+, GFX_MSTR_IRQ contains status bits that have W1C
+> behavior. If we do not properly reset them, we would miss delivery of
+> interrupts if a pending bit is set when enabling IRQs.
+> 
+> As an example, the display part of our probe routine contains paths
+> where we wait for vblank interrupts. If a display interrupt was already
+> pending when enabling IRQs, we would time out waiting for the vblank.
+> 
+> Avoid the potential issue by clearing GFX_MSTR_IRQ as part of the IRQ
+> reset.
+> 
+> v2:
+>   - Move logic from gen11_gt_irq_reset() to dg1_irq_reset(). (Matt)
+> 
+> BSpec: 50875, 54028
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_irq.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index 1bfcfbe6e30b..8130f043693b 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -751,6 +751,8 @@ static void dg1_irq_reset(struct drm_i915_private *dev_priv)
+>  
+>  	GEN3_IRQ_RESET(uncore, GEN11_GU_MISC_);
+>  	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
+> +
+> +	intel_uncore_write(uncore, GEN11_GFX_MSTR_IRQ, ~0);
 
-Changes in v2:
-- Drop unnecessary __func__ drm_dbg_kms() argument
+Did you confirm that it's not double buffered?
 
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 3 +++
- 1 file changed, 3 insertions(+)
+>  }
+>  
+>  static void cherryview_irq_reset(struct drm_i915_private *dev_priv)
+> -- 
+> 2.42.0
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index e56ec3f2d84a..24b2cbcfc1ef 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -565,6 +565,9 @@ static const u8 *mipi_exec_i2c(struct intel_dsi *intel_dsi, const u8 *data)
- 	u8 payload_size = *(data + 6);
- 	u8 *payload_data;
- 
-+	drm_dbg_kms(&i915->drm, "bus %d client-addr 0x%02x reg 0x%02x data %*ph\n",
-+		    vbt_i2c_bus_num, slave_addr, reg_offset, payload_size, data + 7);
-+
- 	if (intel_dsi->i2c_bus_num < 0) {
- 		intel_dsi->i2c_bus_num = vbt_i2c_bus_num;
- 		i2c_acpi_find_adapter(intel_dsi, slave_addr);
 -- 
-2.41.0
-
+Ville Syrjälä
+Intel
