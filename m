@@ -1,153 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B1CE7A8062
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 14:36:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62C997A808B
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 14:37:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA8AB10E49F;
-	Wed, 20 Sep 2023 12:36:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78C0C10E4A3;
+	Wed, 20 Sep 2023 12:37:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFB2610E49F;
- Wed, 20 Sep 2023 12:36:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC66510E4AA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 12:37:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695213411; x=1726749411;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=+LZ5bNBk3XBl0lhpiVgELZqu+xpxpvj4pBLjSxtgLXs=;
- b=f3nng3CHGft/guIwCVsj1scj7B1lWZqWzf4PBRyQF4MPPkHkoTjSLKa3
- bMmlZiNKz4s7u7OSQgICJoDO6BrJ1bxZcr7OgcM17ywV6MyHl0QW6bbKa
- WwjOsFeYGLGB5aEn0+iHvF47Uw51qR3dFieznYYle9NbuyoPr/3QFYCiZ
- r1tdPPK7xo/NQj9vAHorkIURDoXP/M4+s/4mrIbW+nTIZTg8ubv7kNS6V
- nnKc8QN8eJog8eMh1NuZhTEDElyJ1M3uEbBAIHPBZ6qQ6JfqsJlpQHojZ
- 5Jyv8yWdBRA9wQ/boYg/uWdcq02VA8+Hyy2quDtc76K/4Xs3Ppre0PC9x w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="377513344"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="377513344"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 05:36:50 -0700
+ t=1695213465; x=1726749465;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=kNsGOQs438ywpnAQjLDjwSfEUWVOFWG/YH4PS1jATHA=;
+ b=HcS0b5QuztgmzFw59Igjgrx0KWSZDgk9s92Jp7AkHqI2pUWQvTfnrbEY
+ VtqcAT+8ody/ZHke1ePfkCwnREbLwRO2vJIqF+MOn6jkgUOLKrRYVxb7I
+ ULVoyHrF8TMX/tzjYywuGSa7UaonDs0+8pWfNQ+FqMgrjRJ0jPvG6KRAS
+ oHEzTq+a5jCRqj8jAYce0zW3YLv0g7ebZF99gA6nNNfhV1HkKbfHtkHm0
+ aqkKf/tHaqIQtN0lLo0WecarJ3nRgRttmtl+OM6NugyFcwfLIwV41THea
+ JrIDRf/F6qWKeqq6erCBkVQyeqr0d2qm0QdaqopmArPBcBR0wpRrAMfkV Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="446679758"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="446679758"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 05:37:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="775986724"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="775986724"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Sep 2023 05:36:49 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 20 Sep 2023 05:36:49 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 20 Sep 2023 05:36:48 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Wed, 20 Sep 2023 05:36:48 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Wed, 20 Sep 2023 05:36:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FYFJwYO8mzNKZ8+3fLJPZkwDIuok4Lgtv9hZR5gWBzewso94xknwLy1f680LNLyhT++yTRcAHKbK98FO0CFrkp6tiu7qNiJ9Aihgcj6GDLzWaV2Kdw3ZprrcakDHmbmY3sqm0BxzW4iE2XikIbfTSXv+X0CBCz3OdcDnVWWlDIURovALtZ+N2Em85avsVGn7dRyj4DIgYBB+v0bXdLojbxrlAcYeOG3dhDI8OY7PuLcfGqglOpF1MTFomQlKtM0HnzX3uJHqUaOqKzl/vZQkCI88THL4poCxl7fGM8MXy+86w8v+LBpIIMNoPPjhry0W66wzwjm2eNZawTBN25D+dA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ukWo0dJPbetW9XLrcA+WWyC3uaQUtcakmhvYGTjhLD4=;
- b=czV+F/lBxyASfdF954Q0VZuQwgrpzZNsclvxByLN99rDqouOk18EMV1eeVdl7mi9rICx/mwjgYnSjckYSy3C7IHGtYIA9WYJ1Exid4bTZaFVDbBa5ULfCtsG1vkHrbtOnL5B3NBhrw5eSnRKar4aVjPG6l79RzChIHEOqdBctzHoiX7H4cvP0pn8ghJGkdw7q8rubDG451dkNV+o4HBsWGuikdkVpvFzBYY7XP9Mmw7JwWOSCTKbNN7XiGQUxWJBWLiBH9HGrnm0WkKQfacRmWrUU6fZVrf/OFM4ojZAiv15xu06bqTBEwiYUO0OwuaQfd81FSltT28r5fI/YtV24g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5169.namprd11.prod.outlook.com (2603:10b6:303:95::19)
- by BN9PR11MB5275.namprd11.prod.outlook.com (2603:10b6:408:134::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Wed, 20 Sep
- 2023 12:36:45 +0000
-Received: from CO1PR11MB5169.namprd11.prod.outlook.com
- ([fe80::5fb6:7200:97a4:b7e9]) by CO1PR11MB5169.namprd11.prod.outlook.com
- ([fe80::5fb6:7200:97a4:b7e9%7]) with mapi id 15.20.6792.026; Wed, 20 Sep 2023
- 12:36:45 +0000
-Message-ID: <c9f1ffe9-1e96-ec36-3e0c-c972f726b65c@intel.com>
-Date: Wed, 20 Sep 2023 15:36:52 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
-Content-Language: en-US
-To: Nirmoy Das <nirmoy.das@intel.com>, <intel-gfx@lists.freedesktop.org>
-References: <20230920111131.2696-1-nirmoy.das@intel.com>
-From: =?UTF-8?Q?Tapani_P=c3=a4lli?= <tapani.palli@intel.com>
-In-Reply-To: <20230920111131.2696-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DB9PR02CA0025.eurprd02.prod.outlook.com
- (2603:10a6:10:1d9::30) To CO1PR11MB5169.namprd11.prod.outlook.com
- (2603:10b6:303:95::19)
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="740195925"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="740195925"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 05:37:43 -0700
+Date: Wed, 20 Sep 2023 15:38:05 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <ZQrnrTF6OwUuDeuS@ideak-desk.fi.intel.com>
+References: <20230914192659.757475-1-imre.deak@intel.com>
+ <20230914192659.757475-19-imre.deak@intel.com>
+ <ZQq3XlBGdXFZAh2z@intel.com> <ZQrQqUeMjVBLn3by@intel.com>
+ <ZQrWmvN7dg8abxpY@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5169:EE_|BN9PR11MB5275:EE_
-X-MS-Office365-Filtering-Correlation-Id: ad8910ba-b047-41ed-7bd8-08dbb9d64035
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: B8gTvDEBnXAtF1NATU6uyuqSMhZCrsGwjJKr7cwxQUqZ1C2geQ6d6VVYTfmZLcqEwYDNfeMBdXlno4QTK8JcgKQ41brNlfwKWNqZ104z+Lfl4RFeu7rYDO1maTm/idYf/R7AMt7jBmiK8suRVz6R387TTuVTbk0+INht6rVphIBTqFIEF7CQHb3bmJmJaLb63PXrusjGWbiXorPn63wZmxIY1p4HrSn6bZGimJzhAKwuvbkhSIby6VQ0y+WU1VQIraR2MIWK7Yj+f5qM9gxrQtLYGwfHMihdREP4IjHIIQyTRtBK6AIsZ89SV9oVmCNEwKHlI5sMH2MHQCX1hwZHu3GmTTThT+iIL3Z4v7I7+gWbtKfTkVSKgJ2x9z1c0M5egCz3QS6/E4cfTODeAsgIQrg602FGmFT4TNTHSbiznfnIcMisASIoG83SJdnU3V0LCTfhVnSAkcBhvbORlwUWVF2P1RA9mISvmTC2C4soN2muiBU166KKbJ6F1WjMZDeuwWRE9Co5FA+Am0SvdjdJrEqPhDUV/6vBeEx60+ECH1egLDocxnqXAXoe5h3pBgPfSQWI7kfyebiA3Km1edzfmj5/diK80Y5PzKLkSKFnYCtCNGL7vyCp8ju7u7ox+M99BQg90fYTBKgGeM+TJU1zMO3hH2tEhJcY+YAKGUothD8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5169.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(376002)(346002)(396003)(366004)(136003)(1800799009)(186009)(451199024)(66574015)(83380400001)(5660300002)(54906003)(66946007)(36756003)(6512007)(6666004)(82960400001)(6506007)(6486002)(4326008)(41300700001)(8676002)(2906002)(66476007)(66556008)(31696002)(316002)(8936002)(38100700002)(478600001)(86362001)(2616005)(26005)(31686004)(21314003)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TXFkaERsaWJGOWZOZFlWeEFMeHlqTEZjbVdqUThXakhndjhIaUxkSDBHYnVz?=
- =?utf-8?B?V0V6WkxEWk5NZ1VMNnVrQWxqZ1NacDdCYzFNUVd3R0d3MzJKK0VVYlJJSzJs?=
- =?utf-8?B?RnhTdXdmdGNyVWRqRkRtaHZGczJCVlRiQnNEc3VPQW5EcXFVZlE2TE8yaUJv?=
- =?utf-8?B?MThiNkNGb3hFcWg4YnpMWGZXN1FUV0RkRWU1NE93YkdSS0FOblJEQThTc0RG?=
- =?utf-8?B?MmY2aitBcUdwYy90MTlaTWZJOVVjYkYxZ1liSzdReXAwK3lOaFNSVDVBRXpY?=
- =?utf-8?B?OTI0TlovcHZSQ0JkdzJsVkFZd1Jsc3JuM1FVZk9uNkM2SSsvckNDQVh4ZU50?=
- =?utf-8?B?c2ZnWFdNTU55U2xxaFN0NkVrbTdPNFdPWVBmNmt2ZzBsNG9CbDZxNzl1VHls?=
- =?utf-8?B?cndsTWduZ3R5UUFRcGxCNXErMndGSzlmdkxDTnFvWVlpTStFeUlySnpIY2lp?=
- =?utf-8?B?VnJPMUJTejN3Zk9WUEFURXA4WXc5aWFrUUZBZEw3VHdjVVI0QTFmRVhFWkJM?=
- =?utf-8?B?d3NoSkN5bXRTSkIyeEQ2U0dQbUo2dGs2SGRRZXVzRXd2dzZxUnZkbW9CeXhT?=
- =?utf-8?B?ZkdPTk1TTHFCWUF5bkljRjIrRFMrQXJ1Tk55bHJPQVVWcjI4b1IvZU15SEpj?=
- =?utf-8?B?N1NHOGlZVEhlTlFOL1o0R2RBZ2RQTHZYc1Z0ZTdsa3gyTEF5ZEk3aU5HSEJQ?=
- =?utf-8?B?bWdxWTRvd2h5K2ZCVWt1S29YWDkrWFY4Zkgxa0pjQzNPWnBhN0ovWnp6WU10?=
- =?utf-8?B?REZSOFZLNFl2ZGtKZTFNZ3gwb01UdktlMHZaN2hvcGpyVUdiK095VFNNQlNO?=
- =?utf-8?B?bjRyNGVPTGhjUjc0Y1dZNkdsdER6M1grZmV6VGphUWloRytoSVVoODJ2M0ZD?=
- =?utf-8?B?clovZFJ4dE5oRTU2TTkvSkhlV0ovTktLbFBoZFhLTCsxeGxDR09FeUhMNDd6?=
- =?utf-8?B?UjFpV1dHREVlckgvWkhIZm5INjhXNzBLeGNaZjFZa29LeFRtZk9Rcjc3UjFu?=
- =?utf-8?B?WWhtYlRmWFlsaithU0M4K1UyUzlWSnJQSHRkV0lMcGhzREI3V0NlQUZxaVI5?=
- =?utf-8?B?cFFjanJadzBiWm9SbmVIbVFJUnVucVZYTm1wWFFZZkRWVEJGbzNKVEJBQjV3?=
- =?utf-8?B?NVVJdk0zNlNTWEwrYnc0QzBCVnhEenU4RzhwdEttOVlvOHM5L1dGc2dBekJV?=
- =?utf-8?B?SlhlempYYTMrcTJ0emg5QmVaakliVkVSNElFQ043WkM5UDFwMWxHRHYrZy9I?=
- =?utf-8?B?ejRTVzlyN3FWdGp0V09DTTJvMTJqaUg3ZEpYTjhIVVE2WTZvdzJyaDF0VWdp?=
- =?utf-8?B?SWNmc3dydjRDNDJNbEJPbmpFK3lQZTdFNGZ1SUYyYjFVUXFiWDM5cE5yR0g1?=
- =?utf-8?B?OWx2a1BFY1JtbDQ2QlpVMUlqV2tNaGpyVkFVeVV5Z2VDSWFHWUU4K3JKTzNY?=
- =?utf-8?B?YTZDd3hIc2lIMVVxbmpIL0ZCSDU2MnArdG01L1Y1U2lXWkc5T0RvRXNmOGIz?=
- =?utf-8?B?MFpGVHNIZUpHTEg3ek5ZQ0NKdkFuVTQ4L1FJbC9mWFJJOWVURjNCRUlNcExn?=
- =?utf-8?B?SlMvUC9pZFNwUUZzM3pOVnROSnZiVUhLb1hkdVFZWFdSWk15OEo3SkY0RXhw?=
- =?utf-8?B?RFlxTDlvTTRsVGtVTXZwV0g5eWdRRkw5QVVLQ055Z1hwUlRLNTFZUEx3ZmI5?=
- =?utf-8?B?SW95N2xoY3hPdnV5Z3pUQXljMTFoV1dkdCt5L0djVTF5Y2lIMVFaZmxXZC9C?=
- =?utf-8?B?KzV2OWRxbjQ5cGVQOWZETjZ6UEYxUnlvNEhzQmpyMU10NmpCazg2TmdzVXNH?=
- =?utf-8?B?NFRFVnlHWCtUYyt6THgrUXA3TGk5eTVoWlJ1RTRoYTlXQ0s3dC9ZK3FZSDNa?=
- =?utf-8?B?RFVRYWFXUUxZcTJCQ3dBbjc0ajZMYnAza1M0R2xadXhCT1JtT2swd0VZdll5?=
- =?utf-8?B?NFlVZGR2OGtIcGFkbi9mdTdua3lYM3pyT080eExjRTZ1Q2xnQis5SDRRK2dz?=
- =?utf-8?B?MlVrOTV1OGNOZ09TSHJnMjRVM0IwczhDZ1ZxMWlOTCtyM3h5NGNZSmxUSXRO?=
- =?utf-8?B?bXFDeHhlNERKbFhHZ2l6R3Y4Umk5T3RtZ0ZSRFpWYnQyOWpENk9PMWx4VkJZ?=
- =?utf-8?B?ZitpMlJTTyt5eXZLbUNSeTl0VzcvTEc4MTZVN0JMbkxrV3lzNkhWZnpudVJG?=
- =?utf-8?B?b1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad8910ba-b047-41ed-7bd8-08dbb9d64035
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5169.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2023 12:36:45.7072 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wioe3BxJ60wH0i0wmLXNiFJAdcFFAxWFIuYrh74+jy6oIIXc0SfhwEHZPt9TdsJKDw7mMiqHL/VmxeMFGhhv1A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5275
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove unnecessary memory
- quiescing for aux inval
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZQrWmvN7dg8abxpY@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 18/25] drm/i915/dp_mst: Add atomic state
+ for all streams on pre-tgl platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,130 +62,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Rodrigo
- Vivi <rodrigo.vivi@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
- Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>,
- Mark Janes <mark.janes@intel.com>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I tested this first against tests that were failing for Mesa and it 
-fixes all of the regressed cases (TGL LP). Also did a full run of all 
-KHR-GLES31* and KHR-GLES32* test groups in the Khronos CTS suite, no 
-regressions observed.
+On Wed, Sep 20, 2023 at 02:25:14PM +0300, Lisovskiy, Stanislav wrote:
+> On Wed, Sep 20, 2023 at 01:59:53PM +0300, Ville Syrjälä wrote:
+> > On Wed, Sep 20, 2023 at 12:11:58PM +0300, Lisovskiy, Stanislav wrote:
+> > > On Thu, Sep 14, 2023 at 10:26:52PM +0300, Imre Deak wrote:
+> > > > If an MST stream is modeset, its state must be checked along all the
+> > > > other streams on the same MST link, for instance to resolve a BW
+> > > > overallocation of a non-sink MST port or to make sure that the FEC is
+> > > > enabled/disabled the same way for all these streams.
+> > > > 
+> > > > To prepare for that this patch adds all the stream CRTCs to the atomic
+> > > > state and marks them for modeset similarly to tgl+ platforms. (If the
+> > > > state computation doesn't change the state the CRTC is switched back to
+> > > > fastset mode.)
+> > > > 
+> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 ---
+> > > >  1 file changed, 3 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > > index c1fea894d3774..832e8b0e87e84 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > > @@ -491,9 +491,6 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
+> > > >  	struct intel_connector *connector_iter;
+> > > >  	int ret = 0;
+> > > >  
+> > > > -	if (DISPLAY_VER(dev_priv) < 12)
+> > > > -		return  0;
+> > > > -
+> > > 
+> > > I'm just a bit concerned, why this check was initially added?
+> > > Probably there was a reason?
+> > 
+> > It's in the name of the function, which should be renamed if we're
+> > extending it beyond its original purpose.
+> 
+> Well, I would say this check could be "a bit" more descriptive.
+> Still, even if function name gets changed, we just remove the check, for the
+> function which was initially not even intended to be called for pre-tgl?
 
-Tested-by: Tapani PÃ¤lli <tapani.palli@intel.com>
+The change on tgl+ platforms is that all the MST streams go through a
+master transcoder, while on old platforms each stream has only its own
+transcoder. Hence on tgl+ all streams/CRTCs may need to be modeset, at
+least in the case the CRTC owning the master transcoder (for instance
+pipe A/transcoder A) is modeset. So on tgl+ here all CRTCs for a given
+MST topology is added to the state/marked for modeset.
 
+pre-tgl this wasn't necessary, until the need to recalculate the BW
+requirement of each stream came up, as described in the commit log.
 
-On 20.9.2023 14.11, Nirmoy Das wrote:
-> i915 already does memory quiesce before signaling
-> breadcrumb so remove extra memory quiescing for aux
-> invalidation which can cause unnecessary side effects.
->
-> Fixes: 78a6ccd65fa3 ("drm/i915/gt: Ensure memory quiesced before invalidation")
-> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v5.8+
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-> Cc: Tapani PÃ¤lli <tapani.palli@intel.com>
-> Cc: Mark Janes <mark.janes@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 50 ++++++++++++------------
->   1 file changed, 26 insertions(+), 24 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> index 0143445dba83..5001670046a0 100644
-> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> @@ -248,11 +248,7 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
->   {
->   	struct intel_engine_cs *engine = rq->engine;
->   
-> -	/*
-> -	 * On Aux CCS platforms the invalidation of the Aux
-> -	 * table requires quiescing memory traffic beforehand
-> -	 */
-> -	if (mode & EMIT_FLUSH || gen12_needs_ccs_aux_inv(engine)) {
-> +	if (mode & EMIT_FLUSH) {
->   		u32 bit_group_0 = 0;
->   		u32 bit_group_1 = 0;
->   		int err;
-> @@ -264,13 +260,6 @@ int gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
->   
->   		bit_group_0 |= PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
->   
-> -		/*
-> -		 * When required, in MTL and beyond platforms we
-> -		 * need to set the CCS_FLUSH bit in the pipe control
-> -		 */
-> -		if (GRAPHICS_VER_FULL(rq->i915) >= IP_VER(12, 70))
-> -			bit_group_0 |= PIPE_CONTROL_CCS_FLUSH;
-> -
->   		bit_group_1 |= PIPE_CONTROL_TILE_CACHE_FLUSH;
->   		bit_group_1 |= PIPE_CONTROL_FLUSH_L3;
->   		bit_group_1 |= PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH;
-> @@ -800,14 +789,15 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
->   {
->   	struct drm_i915_private *i915 = rq->i915;
->   	struct intel_gt *gt = rq->engine->gt;
-> -	u32 flags = (PIPE_CONTROL_CS_STALL |
-> -		     PIPE_CONTROL_TLB_INVALIDATE |
-> -		     PIPE_CONTROL_TILE_CACHE_FLUSH |
-> -		     PIPE_CONTROL_FLUSH_L3 |
-> -		     PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-> -		     PIPE_CONTROL_DEPTH_CACHE_FLUSH |
-> -		     PIPE_CONTROL_DC_FLUSH_ENABLE |
-> -		     PIPE_CONTROL_FLUSH_ENABLE);
-> +	u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
-> +	u32 bit_group_1 = (PIPE_CONTROL_CS_STALL |
-> +			   PIPE_CONTROL_TLB_INVALIDATE |
-> +			   PIPE_CONTROL_TILE_CACHE_FLUSH |
-> +			   PIPE_CONTROL_FLUSH_L3 |
-> +			   PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-> +			   PIPE_CONTROL_DEPTH_CACHE_FLUSH |
-> +			   PIPE_CONTROL_DC_FLUSH_ENABLE |
-> +			   PIPE_CONTROL_FLUSH_ENABLE);
->   
->   	/* Wa_14016712196 */
->   	if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 71)) || IS_DG2(i915))
-> @@ -817,14 +807,26 @@ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
->   
->   	if (GRAPHICS_VER(i915) == 12 && GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
->   		/* Wa_1409600907 */
-> -		flags |= PIPE_CONTROL_DEPTH_STALL;
-> +		bit_group_1 |= PIPE_CONTROL_DEPTH_STALL;
->   
->   	if (!HAS_3D_PIPELINE(rq->i915))
-> -		flags &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
-> +		bit_group_1 &= ~PIPE_CONTROL_3D_ARCH_FLAGS;
->   	else if (rq->engine->class == COMPUTE_CLASS)
-> -		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
-> +		bit_group_1 &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
-> +
-> +	/*
-> +	 * On Aux CCS platforms the invalidation of the Aux
-> +	 * table requires quiescing memory traffic beforehand.
-> +	 * gen12_emit_fini_breadcrumb_rcs() does this for us as
-> +	 * all memory traffic has to be completed before we signal
-> +	 * the breadcrumb. In MTL and beyond platforms, we need to also
-> +	 * add CCS_FLUSH bit in the pipe control for that purpose.
-> +	 */
-> +
-> +	if (GRAPHICS_VER_FULL(rq->i915) >= IP_VER(12, 70))
-> +		bit_group_0 |= PIPE_CONTROL_CCS_FLUSH;
->   
-> -	cs = gen12_emit_pipe_control(cs, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0);
-> +	cs = gen12_emit_pipe_control(cs, bit_group_0, bit_group_1, 0);
->   
->   	/*XXX: Look at gen8_emit_fini_breadcrumb_rcs */
->   	cs = gen12_emit_ggtt_write_rcs(cs,
+I can clarify the above in the commit log and rename the function
+accordingly, is that ok?
+
+> Why it became suitable now then? Or was it just wrong check?
+> 
+> Stan
+> 
+> > 
+> > > 
+> > > Stan
+> > > 
+> > > >  	if (!intel_connector_needs_modeset(state, &connector->base))
+> > > >  		return 0;
+> > > >  
+> > > > -- 
+> > > > 2.37.2
+> > > > 
+> > 
+> > -- 
+> > Ville Syrjälä
+> > Intel
