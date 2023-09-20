@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B7087A7A30
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 13:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 639527A7A40
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Sep 2023 13:19:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA3610E16F;
-	Wed, 20 Sep 2023 11:14:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83DD710E484;
+	Wed, 20 Sep 2023 11:18:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FD5B10E16F
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Sep 2023 11:14:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A0A110E146;
+ Wed, 20 Sep 2023 11:18:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695208444; x=1726744444;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=TfjVVAGlkaUsutRe37iFppwT2iRipMXbb6GWjeMIrj0=;
- b=BUInxQ7t/8N7d4H4p+dy9wax/4Gd8CiEdGPQdAgxUHsIRe4jL4NztbdW
- 3Ds+QtolTLPOM+4jZX/xJuIM1KdoeaJzZYzO8/ZffcL80alvg2RH6+ple
- 9JouxHZKIjN5yjQ8fBpw5ijzWd5B1ulXVkG3h+2idNatgZ0TG8z9KNETF
- kC97f0dvYU2UdfvZvlreAOf8owqkif5+qCWO8NHNXjzGL/rOGIl1ev/SW
- p7IYklPXKp9JMIzGa6/usrXUJZfj/dua/zf6bxKQcXe3zl1fGwGFGVAL1
- dMCFBaXgo7rrAE4OxEEAqnrcnkO4Rav1Wxk7klqdAgyNuZ/kebOnTIuhc w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="365241951"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="365241951"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 04:14:04 -0700
+ t=1695208729; x=1726744729;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=V/blwaER0AEA6MQ0muNozilAvVoc4x9ou18moN7caUY=;
+ b=CH7/c/KhYcm5ry1nevrTPEkkJxjVM7oGsFU2oUpKnFqqZee9yDm5Pgda
+ FqD1qRlMKZyjpwuRw70o01sFDWwEIi283jQ14/4sGOaDARxTFx1Kw0K8j
+ xjXKEaaGO8GOX2vdY6btVrHTylAGnPa9REJsKBTTxrlefFtPQFxt3hlI5
+ deHuA0364qRC8xm2CfRfYvUusrJgF/ss6T5eUS+6P1Cjk5NE/H/JxwmjH
+ LTTUsyYsokgNkrsOXRKH5ljKujG7xCaNHeUy3d0wr1XNCzIhX0KDjTzQ4
+ JfgU5vxwhXAK+3TxhY5o9yBVaGDpLKOkAXWTW3KL3RRfs8ZW32hcjr2ML w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="446662748"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="446662748"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 04:18:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="781651011"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="781651011"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by orsmga001.jf.intel.com with SMTP; 20 Sep 2023 04:14:01 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 20 Sep 2023 14:14:00 +0300
-Date: Wed, 20 Sep 2023 14:14:00 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <ZQrT-BzAEnh7hEHd@intel.com>
-References: <20230913150356.9477-1-ville.syrjala@linux.intel.com>
- <87il85ryeh.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="746604130"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="746604130"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.39.128])
+ ([10.252.39.128])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 04:18:46 -0700
+Message-ID: <5ff2eb37-fa7b-84a5-4354-7e1b54dba907@linux.intel.com>
+Date: Wed, 20 Sep 2023 13:18:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: =?UTF-8?Q?Tapani_P=c3=a4lli?= <tapani.palli@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+References: <20230919114716.19378-1-nirmoy.das@intel.com>
+ <ZQmP+IWIcu1yUkSC@ashyti-mobl2.lan>
+ <aa102a2e-0b73-9f1b-8fcf-75eb5b741d03@intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <aa102a2e-0b73-9f1b-8fcf-75eb5b741d03@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87il85ryeh.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Check lane count when
- determining FEC support
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix aux invalidation with proper
+ pipe_control flag
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,90 +65,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Luca Coelho <luciano.coelho@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 20, 2023 at 12:23:34PM +0300, Jani Nikula wrote:
-> On Wed, 13 Sep 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > ICL doesn't support FEC with a x1 DP link. Make sure
-> > we don't try to enable FEC in such cases.
-> 
-> The question is, should we rather require x2 link for FEC?
-> 
-> I suppose x1 link with DSC+FEC is an unlikely scenario with our current
-> link bandwidth policy, so probably not a big deal.
+Sent out https://patchwork.freedesktop.org/series/123975/
 
-I think currently we just smash lane_count to max when using DSC.
-So doesn't really matter currently. But something to keep in mind 
-if/when we tune the policy.
+to replace this one as this not really fixing the issue.
 
-> 
-> BR,
-> Jani.
-> 
-> >
-> > Requires a bit of reordering to make sure we've computed lane_count
-> > before checking it.
-> >
-> > Cc: Luca Coelho <luciano.coelho@intel.com>
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 21 +++++++++++----------
-> >  1 file changed, 11 insertions(+), 10 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 55ba6eeaa810..2cde8ac513bb 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -1363,7 +1363,8 @@ static bool intel_dp_source_supports_fec(struct intel_dp *intel_dp,
-> >  	if (DISPLAY_VER(dev_priv) >= 12)
-> >  		return true;
-> >  
-> > -	if (DISPLAY_VER(dev_priv) == 11 && encoder->port != PORT_A)
-> > +	if (DISPLAY_VER(dev_priv) == 11 &&
-> > +	    encoder->port != PORT_A && pipe_config->lane_count != 1)
-> >  		return true;
-> >  
-> >  	return false;
-> > @@ -2105,15 +2106,6 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
-> >  		&pipe_config->hw.adjusted_mode;
-> >  	int ret;
-> >  
-> > -	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
-> > -		intel_dp_supports_fec(intel_dp, pipe_config);
-> > -
-> > -	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
-> > -		return -EINVAL;
-> > -
-> > -	if (!intel_dp_dsc_supports_format(intel_dp, pipe_config->output_format))
-> > -		return -EINVAL;
-> > -
-> >  	/*
-> >  	 * compute pipe bpp is set to false for DP MST DSC case
-> >  	 * and compressed_bpp is calculated same time once
-> > @@ -2134,6 +2126,15 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
-> >  		}
-> >  	}
-> >  
-> > +	pipe_config->fec_enable = !intel_dp_is_edp(intel_dp) &&
-> > +		intel_dp_supports_fec(intel_dp, pipe_config);
-> > +
-> > +	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
-> > +		return -EINVAL;
-> > +
-> > +	if (!intel_dp_dsc_supports_format(intel_dp, pipe_config->output_format))
-> > +		return -EINVAL;
-> > +
-> >  	/* Calculate Slice count */
-> >  	if (intel_dp_is_edp(intel_dp)) {
-> >  		pipe_config->dsc.slice_count =
-> 
-> -- 
-> Jani Nikula, Intel
 
--- 
-Ville Syrjälä
-Intel
+Thanks,
+
+Nirmoy
+
+On 9/19/2023 2:19 PM, Tapani PÃ¤lli wrote:
+>
+> On 19.9.2023 15.11, Andi Shyti wrote:
+>> Hi Nirmoy,
+>>
+>> On Tue, Sep 19, 2023 at 01:47:16PM +0200, Nirmoy Das wrote:
+>>> The suggestion from the spec is to do l3 fabric flush not L3 flush.
+>>>
+>>> Fixes: 78a6ccd65fa3 ("drm/i915/gt: Ensure memory quiesced before
+>>> invalidation")
+>> please put this in one line.
+>>
+>>> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+>>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+>>> Cc: <stable@vger.kernel.org> # v5.8+
+>>> Cc: Nirmoy Das <nirmoy.das@intel.com>
+>>> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>>> Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+>>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+>>
+>> and I believe
+>>
+>> Tested-by: Tapani PÃ¤lli <tapani.palli@intel.com>
+>
+> Yes, tested on TGL LP (0x9a49)!
+>
+>
+>> Thanks,
+>> Andi
