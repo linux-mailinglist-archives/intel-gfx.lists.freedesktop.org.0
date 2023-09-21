@@ -2,47 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 093477A93BA
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 12:58:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E88E27A93B4
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 12:55:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B291910E5BB;
-	Thu, 21 Sep 2023 10:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AD0C10E5B5;
+	Thu, 21 Sep 2023 10:55:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FFBA10E5B7;
- Thu, 21 Sep 2023 10:57:51 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 0F2ADB81D2D;
- Thu, 21 Sep 2023 10:57:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3167DC116A6;
- Thu, 21 Sep 2023 10:57:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1695293868;
- bh=D4CJzvXGDbUYSM2SUe0zO0nRz+N5sMZBQz4rRqjlLLY=;
- h=From:To:Cc:Subject:Date:From;
- b=ovyCAQunUD8FAaXg9OtUqXZhsrTYi1dn5KtiZMZH/U/3JXJVk4BzPUIQfGjILVryM
- PAltff/R3xr3GdI8B2rcpK+Z1SJ+2YFnH1uS8QZyQfrmtFk7Dar8+1iLruMuxMIGF7
- FECBrYYe4iUw9jKTSyvJIGMUXLaQlp4xE7M8Chg5OjVmmz3t6GZiMd8PaewRSV1Gl1
- MJHlMkDZ7PkbJzKZrrfl85+7hLMj8YBJDlAgTx+tGh4PFAysYBiW5VK5ujJ2T8XWVl
- FZDOJrP45soBmrVYcG1eUSEcmS3wwdCHXknnLO7dO5s56Z/S9eYq1c9lUvDtp0Vu4t
- dkeKkkqt7HFAQ==
-From: Maxime Ripard <mripard@kernel.org>
-To: Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>
-Date: Thu, 21 Sep 2023 12:57:43 +0200
-Message-ID: <20230921105743.2611263-1-mripard@kernel.org>
-X-Mailer: git-send-email 2.41.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7715810E5B5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Sep 2023 10:55:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695293716; x=1726829716;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lXiWlZw5ZOdDV1d5iGqETZVX361SR4NzUu7aXTAJoVI=;
+ b=DWRy75NpU0cyGX23lwWKYwGgV4yOFemAbtwtyo2onGfuFRvF6/+VUuze
+ i46x74iRmDfiO/lpqvnCmenNSixS69JOEU5WRo+7HAqU53okNCbMkZHBb
+ EWBaRocxWzmypsPDX54T9e5M9uyhpgzWronO+SAx5tjrR5d/4L4mbcLGB
+ 1upvj1tkwSOw8N75n7394745+7XL0ugUaFj6KhcDbz5L1pbOO3FkoUz/V
+ +nOMHIQZt0TvNt2L0BVX7EF+9AJU7thhCb92tcYuYOFM1/aGrsPibpuxJ
+ kFNAWM/Zguuo4FrcRNVPsvrwBDYdqHCnmMiSxqkvTFq3Zr3tf68KFPrMZ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="360733503"
+X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="360733503"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2023 03:55:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="1077862466"
+X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="1077862466"
+Received: from bvivekan-desk.iind.intel.com ([10.190.239.116])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2023 03:55:09 -0700
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Sep 2023 16:29:54 +0530
+Message-Id: <20230921105954.2002469-1-balasubramani.vivekanandan@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] MAINTAINERS: Update drm-misc entry to match
- all drivers
+Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Print display info inside
+ driver display initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,121 +56,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org,
- Edmund Dea <edmund.j.dea@intel.com>, dri-devel@lists.freedesktop.org,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Russell King <linux@armlinux.org.uk>, amd-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Kyungmin Park <kyungmin.park@samsung.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx@lists.freedesktop.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- etnaviv@lists.freedesktop.org, Inki Dae <inki.dae@samsung.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, linux-tegra@vger.kernel.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, linux-renesas-soc@vger.kernel.org,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We've had a number of times when a patch slipped through and we couldn't
-pick them up either because our MAINTAINERS entry only covers the
-framework and thus we weren't Cc'd.
+Separate the printing of display version and feature flags from the main
+driver probe to inside the display initialization. This is in alignment
+with isolating the display code from the main driver and helps Xe driver
+to resuse it.
 
-Let's take another approach where we match everything, and remove all
-the drivers that are not maintained through drm-misc.
+v2: Replace drm_info_printer with drm_debug_printer (Jani)
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
-
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 ---
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 5 +++++
+ drivers/gpu/drm/i915/i915_driver.c                  | 2 --
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-Cc: Russell King <linux@armlinux.org.uk>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Christian Gmeiner <christian.gmeiner@gmail.com>
-Cc: Inki Dae <inki.dae@samsung.com>
-Cc: Seung-Woo Kim <sw0312.kim@samsung.com>
-Cc: Kyungmin Park <kyungmin.park@samsung.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc: Anitha Chrisanthus <anitha.chrisanthus@intel.com>
-Cc: Edmund Dea <edmund.j.dea@intel.com>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc: Rob Clark <robdclark@gmail.com>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Sean Paul <sean@poorly.run>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org
-Cc: etnaviv@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: linux-renesas-soc@vger.kernel.org
-Cc: linux-tegra@vger.kernel.org
-
-Changes from v1:
-- Remove ingenic and gma500 from the excluded list
----
- MAINTAINERS | 21 ++++++++++++++++++---
- 1 file changed, 18 insertions(+), 3 deletions(-)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90f13281d297..1012402dada5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6860,12 +6860,27 @@ M:	Thomas Zimmermann <tzimmermann@suse.de>
- S:	Maintained
- W:	https://01.org/linuxgraphics/gfx-docs/maintainer-tools/drm-misc.html
- T:	git git://anongit.freedesktop.org/drm/drm-misc
-+F:	Documentation/devicetree/bindings/display/
-+F:	Documentation/devicetree/bindings/gpu/
- F:	Documentation/gpu/
--F:	drivers/gpu/drm/*
-+F:	drivers/gpu/drm/
- F:	drivers/gpu/vga/
--F:	include/drm/drm*
-+F:	include/drm/drm
- F:	include/linux/vga*
--F:	include/uapi/drm/drm*
-+F:	include/uapi/drm/
-+X:	drivers/gpu/drm/amd/
-+X:	drivers/gpu/drm/armada/
-+X:	drivers/gpu/drm/etnaviv/
-+X:	drivers/gpu/drm/exynos/
-+X:	drivers/gpu/drm/i915/
-+X:	drivers/gpu/drm/imx/
-+X:	drivers/gpu/drm/kmb/
-+X:	drivers/gpu/drm/mediatek/
-+X:	drivers/gpu/drm/msm/
-+X:	drivers/gpu/drm/nouveau/
-+X:	drivers/gpu/drm/radeon/
-+X:	drivers/gpu/drm/renesas/
-+X:	drivers/gpu/drm/tegra/
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 9d9b034b9bdc..44b59ac301e6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -380,6 +380,8 @@ int intel_display_driver_probe(struct drm_i915_private *i915)
  
- DRM DRIVERS FOR ALLWINNER A10
- M:	Maxime Ripard <mripard@kernel.org>
+ void intel_display_driver_register(struct drm_i915_private *i915)
+ {
++	struct drm_printer p = drm_debug_printer("i915 display info:");
++
+ 	if (!HAS_DISPLAY(i915))
+ 		return;
+ 
+@@ -407,6 +409,9 @@ void intel_display_driver_register(struct drm_i915_private *i915)
+ 	 * fbdev->async_cookie.
+ 	 */
+ 	drm_kms_helper_poll_init(&i915->drm);
++
++	intel_display_device_info_print(DISPLAY_INFO(i915),
++					DISPLAY_RUNTIME_INFO(i915), &p);
+ }
+ 
+ /* part #1: call before irq uninstall */
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index e5d693904123..d50347e5773a 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -699,8 +699,6 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
+ 
+ 		intel_device_info_print(INTEL_INFO(dev_priv),
+ 					RUNTIME_INFO(dev_priv), &p);
+-		intel_display_device_info_print(DISPLAY_INFO(dev_priv),
+-						DISPLAY_RUNTIME_INFO(dev_priv), &p);
+ 		i915_print_iommu_status(dev_priv, &p);
+ 		for_each_gt(gt, dev_priv, i)
+ 			intel_gt_info_print(&gt->info, &p);
 -- 
-2.41.0
+2.25.1
 
