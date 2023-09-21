@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D44B7A915A
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 05:53:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3FC87A915B
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 05:54:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB8310E462;
-	Thu, 21 Sep 2023 03:53:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E414D10E4AA;
+	Thu, 21 Sep 2023 03:53:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D916D10E462;
- Thu, 21 Sep 2023 03:53:52 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4C8BD10E4AA;
+ Thu, 21 Sep 2023 03:53:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C305EAA01E;
- Thu, 21 Sep 2023 03:53:52 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 37D2CAA01E;
+ Thu, 21 Sep 2023 03:53:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-Date: Thu, 21 Sep 2023 03:53:52 -0000
-Message-ID: <169526843277.7232.3562127123994152057@emeril.freedesktop.org>
+Date: Thu, 21 Sep 2023 03:53:55 -0000
+Message-ID: <169526843522.7232.14905230479425316775@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230920215624.3482244-1-vinay.belgaumkar@intel.com>
 In-Reply-To: <20230920215624.3482244-1-vinay.belgaumkar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gem=3A_Allow_users_to_disable_waitboost?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/gem=3A_Allow_users_to_disable_waitboost?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,13 +53,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-3bc405ff6c90 drm/i915/gem: Allow users to disable waitboost
--:85: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#85: FILE: include/uapi/drm/i915_drm.h:1931:
-+#define I915_GEM_WAITBOOST_DISABLE      (1u<<0)
-                                            ^
-
-total: 0 errors, 0 warnings, 1 checks, 50 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
