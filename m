@@ -1,54 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84F4E7A958E
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 17:33:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5A3A7A9590
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 17:34:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB5410E5E7;
-	Thu, 21 Sep 2023 15:33:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 352FE10E122;
+	Thu, 21 Sep 2023 15:34:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 746CB10E5ED
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Sep 2023 15:33:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB45D10E122;
+ Thu, 21 Sep 2023 15:34:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695310399; x=1726846399;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=UN0E2d7xSAWUwxO5LwpdogXJolKeSbU5R9vMjuwaEeY=;
- b=kPOzgdslL1ArRNMHSD4pKHJ7c4lKeWvwRody9m/sfKINcnQNBt9riNRI
- 8eZ/EPjHgy1pCHjm1jI0pXooLnHBkTHszPPBDajZviED/l0IzHemfb65a
- XxT59WB/kGMgEZ5Gt6GboYWoJ0Rh0mKVqMH5L24c+8pD6vnDp5FpHCDtW
- ntAinvlmz4JpjZywNCskb2JupPVWdO5BkdOI3aWv/L46Uq7kB/5mtqMIw
- 8GY9YyHNUhhho1/4L/Z3mD4JFl5u1uOZDYU9VHn8vFbxVwKd+QVzJk7qh
- hYlk3D/5SGYA+Jl79EVsOb4TLWL0DnbQyDTZO5nntK5xzAn3X7PidODxB A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="377849584"
-X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="377849584"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2023 08:33:07 -0700
+ t=1695310476; x=1726846476;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JLKU2D1BVTU0m9vnX3OqHLS4lJFw60ZvQhpOqf0/MEQ=;
+ b=me9NboYwIsZsz1tMviTss3sVFRueeztD3pW/Vv+8YLkiKpwQW2P8cCp+
+ mbj0jEMZKGlq/5GLsMSuNSFCD+6GsmtSwS6XTszcnizP2izboC5++L/ga
+ xT6ysR1avcwatmmJaIsEhr0vgGBvX2U2DOscFeON95cF4hcMatiCNxmVs
+ ZNGsqFjRm+yUKlEszDZ+J4SPFcfE8M4t0cF4aB5whequHlPJ1i6oLWJsk
+ IieStLUoZgeyDwzuid2gNamKSgE62fTW6E2b5Gs77SPbolW32unlHagJm
+ HKmr8mUAnFkbjLRDzkvpr7bslPavCLGMJnOSIxRjGMjtM1znlPcZJjCsw g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="379440088"
+X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="379440088"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2023 08:34:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="890415119"
-X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="890415119"
-Received: from lkp-server02.sh.intel.com (HELO b77866e22201) ([10.239.97.151])
- by fmsmga001.fm.intel.com with ESMTP; 21 Sep 2023 08:32:13 -0700
-Received: from kbuild by b77866e22201 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qjLfr-000061-0K;
- Thu, 21 Sep 2023 15:33:03 +0000
-Date: Thu, 21 Sep 2023 23:32:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Message-ID: <202309212348.71aApJ0M-lkp@intel.com>
-References: <20230920063611.242942-3-suraj.kandpal@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="994124600"
+X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="994124600"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2023 08:34:32 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Thu, 21 Sep 2023 18:34:29 +0300
+Message-Id: <20230921153429.3822278-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230920063611.242942-3-suraj.kandpal@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/hdcp: Move common message
- filling function to its own file
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/edid/firmware: drop
+ drm_kms_helper.edid_firmware backward compat
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,42 +57,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Suraj,
+Since the edid_firmware module parameter was moved from
+drm_kms_helper.ko to drm.ko in v4.15, we've had a backwards
+compatibility helper in place, with a DRM_NOTE() suggesting to migrate
+to drm.edid_firmware. This was added in commit ac6c35a4d8c7 ("drm: add
+backwards compatibility support for drm_kms_helper.edid_firmware").
 
-kernel test robot noticed the following build errors:
+More than five years and 30+ kernel releases later, see if we could drop
+the backward compatibility. Leave some warnings in place for a while
+longer.
 
-[auto build test ERROR on drm-tip/drm-tip]
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/drm_edid_load.c         | 16 ----------------
+ drivers/gpu/drm/drm_kms_helper_common.c | 11 ++++++-----
+ include/drm/drm_edid.h                  |  5 -----
+ 3 files changed, 6 insertions(+), 26 deletions(-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-hdcp-Move-checks-for-gsc-health-status/20230921-174353
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230920063611.242942-3-suraj.kandpal%40intel.com
-patch subject: [Intel-gfx] [PATCH 2/2] drm/i915/hdcp: Move common message filling function to its own file
-config: x86_64-rhel-8.3-rust (https://download.01.org/0day-ci/archive/20230921/202309212348.71aApJ0M-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230921/202309212348.71aApJ0M-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309212348.71aApJ0M-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/display/intel_hdcp_gsc.c:11:10: fatal error: 'intel_hdcp_gsc_message.h' file not found
-   #include "intel_hdcp_gsc_message.h"
-            ^~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 error generated.
-
-
-vim +11 drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-
-  > 11	#include "intel_hdcp_gsc_message.h"
-    12	
-
+diff --git a/drivers/gpu/drm/drm_edid_load.c b/drivers/gpu/drm/drm_edid_load.c
+index 5d9ef267ebb3..60fcb80bce61 100644
+--- a/drivers/gpu/drm/drm_edid_load.c
++++ b/drivers/gpu/drm/drm_edid_load.c
+@@ -23,22 +23,6 @@ module_param_string(edid_firmware, edid_firmware, sizeof(edid_firmware), 0644);
+ MODULE_PARM_DESC(edid_firmware, "Do not probe monitor, use specified EDID blob "
+ 	"from built-in data or /lib/firmware instead. ");
+ 
+-/* Use only for backward compatibility with drm_kms_helper.edid_firmware */
+-int __drm_set_edid_firmware_path(const char *path)
+-{
+-	scnprintf(edid_firmware, sizeof(edid_firmware), "%s", path);
+-
+-	return 0;
+-}
+-EXPORT_SYMBOL(__drm_set_edid_firmware_path);
+-
+-/* Use only for backward compatibility with drm_kms_helper.edid_firmware */
+-int __drm_get_edid_firmware_path(char *buf, size_t bufsize)
+-{
+-	return scnprintf(buf, bufsize, "%s", edid_firmware);
+-}
+-EXPORT_SYMBOL(__drm_get_edid_firmware_path);
+-
+ #define GENERIC_EDIDS 6
+ static const char * const generic_edid_name[GENERIC_EDIDS] = {
+ 	"edid/800x600.bin",
+diff --git a/drivers/gpu/drm/drm_kms_helper_common.c b/drivers/gpu/drm/drm_kms_helper_common.c
+index 0bf0fc1abf54..924e0f7bd5b7 100644
+--- a/drivers/gpu/drm/drm_kms_helper_common.c
++++ b/drivers/gpu/drm/drm_kms_helper_common.c
+@@ -38,17 +38,18 @@ MODULE_LICENSE("GPL and additional rights");
+ 
+ #if IS_ENABLED(CONFIG_DRM_LOAD_EDID_FIRMWARE)
+ 
+-/* Backward compatibility for drm_kms_helper.edid_firmware */
+ static int edid_firmware_set(const char *val, const struct kernel_param *kp)
+ {
+-	DRM_NOTE("drm_kms_helper.edid_firmware is deprecated, please use drm.edid_firmware instead.\n");
++	pr_warn("drm_kms_helper.edid_firmware has been removed, please use drm.edid_firmware instead.\n");
+ 
+-	return __drm_set_edid_firmware_path(val);
++	return -ENOENT;
+ }
+ 
+ static int edid_firmware_get(char *buffer, const struct kernel_param *kp)
+ {
+-	return __drm_get_edid_firmware_path(buffer, PAGE_SIZE);
++	pr_warn("drm_kms_helper.edid_firmware has been removed, please use drm.edid_firmware instead.\n");
++
++	return -ENOENT;
+ }
+ 
+ static const struct kernel_param_ops edid_firmware_ops = {
+@@ -59,6 +60,6 @@ static const struct kernel_param_ops edid_firmware_ops = {
+ module_param_cb(edid_firmware, &edid_firmware_ops, NULL, 0644);
+ __MODULE_PARM_TYPE(edid_firmware, "charp");
+ MODULE_PARM_DESC(edid_firmware,
+-		 "DEPRECATED. Use drm.edid_firmware module parameter instead.");
++		 "REMOVED. Use drm.edid_firmware module parameter instead.");
+ 
+ #endif
+diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+index 882d2638708e..00f0a778ab62 100644
+--- a/include/drm/drm_edid.h
++++ b/include/drm/drm_edid.h
+@@ -387,11 +387,6 @@ int drm_edid_to_speaker_allocation(const struct edid *edid, u8 **sadb);
+ int drm_av_sync_delay(struct drm_connector *connector,
+ 		      const struct drm_display_mode *mode);
+ 
+-#ifdef CONFIG_DRM_LOAD_EDID_FIRMWARE
+-int __drm_set_edid_firmware_path(const char *path);
+-int __drm_get_edid_firmware_path(char *buf, size_t bufsize);
+-#endif
+-
+ bool drm_edid_are_equal(const struct edid *edid1, const struct edid *edid2);
+ 
+ int
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.39.2
+
