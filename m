@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B81B7A917B
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 06:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA6267A917D
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 06:41:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE8110E462;
-	Thu, 21 Sep 2023 04:27:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA45510E4B0;
+	Thu, 21 Sep 2023 04:41:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A229710E462
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Sep 2023 04:27:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695270465; x=1726806465;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8yiwATUKkpcOJ2cjXuN+YnBApv+sWYqQ8b0T8SOi52A=;
- b=expl9TU0Fj40dA/YVJT3uO1S0fJcSbE5bQfTuzoZm9iycYaiJSLey0Ve
- CDeBIBxIcshuGVNBKmLbnj2Ah8Bh5m6KC6e5m+DLUoGIUFvIiMO16MzcT
- 5q4tkwOfba7MBgwQkmLX1cLT9aD+yjFdhNiCTwnxmbqZtDfg4pR4qeCva
- q2ElWa1kqvkEc8i1j5bI798CVWjsV47oiYdQvxnziV31MYNzZvRgKSIN9
- qG3qUXO99B/4/NDvtxYM7HFLdzxICNwRXxmGeUpcEI0d7gacRIrIFjFDN
- P6V0g7OwiqG4OWVBgSuNX/D+MZx7lxdqfVrC2gw8WkOHQ7goZ0OhIFUGB w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="384258123"
-X-IronPort-AV: E=Sophos;i="6.03,164,1694761200"; d="scan'208";a="384258123"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 21:27:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="740470354"
-X-IronPort-AV: E=Sophos;i="6.03,164,1694761200"; d="scan'208";a="740470354"
-Received: from shekharc-desk.iind.intel.com ([10.190.239.54])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 21:27:43 -0700
-From: Shekhar Chauhan <shekhar.chauhan@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 21 Sep 2023 09:57:27 +0530
-Message-Id: <20230921042727.362710-1-shekhar.chauhan@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1B32910E4B0;
+ Thu, 21 Sep 2023 04:41:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0F422A00CC;
+ Thu, 21 Sep 2023 04:41:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Add Wa_18028616096
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
+Date: Thu, 21 Sep 2023 04:41:49 -0000
+Message-ID: <169527130903.7233.3647143930575674628@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230921042727.362710-1-shekhar.chauhan@intel.com>
+In-Reply-To: <20230921042727.362710-1-shekhar.chauhan@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Add_Wa=5F18028616096_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,44 +40,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Drop UGM per set fragment threshold to 3
+== Series Details ==
 
-BSpec: 54833
-Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 1 +
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 3 +++
- 2 files changed, 4 insertions(+)
+Series: drm/i915: Add Wa_18028616096 (rev2)
+URL   : https://patchwork.freedesktop.org/series/123951/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index a00ff51c681d..326224abe395 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -1230,6 +1230,7 @@
- #define   DISABLE_D8_D16_COASLESCE		REG_BIT(30)
- #define   FORCE_1_SUB_MESSAGE_PER_FRAGMENT	REG_BIT(15)
- #define LSC_CHICKEN_BIT_0_UDW			MCR_REG(0xe7c8 + 4)
-+#define   UGM_FRAGMENT_THRESHOLD_TO_3		MCR_REG(58 - 32)
- #define   DIS_CHAIN_2XSIMD8			REG_BIT(55 - 32)
- #define   FORCE_SLM_FENCE_SCOPE_TO_TILE		REG_BIT(42 - 32)
- #define   FORCE_UGM_FENCE_SCOPE_TO_TILE		REG_BIT(41 - 32)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 660d4f358eab..992041e3776c 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -2914,6 +2914,9 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
- 		 * Wa_22015475538:dg2
- 		 */
- 		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0_UDW, DIS_CHAIN_2XSIMD8);
-+
-+		/* Wa_18028616096:dg2 */
-+		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0_UDW, UGM_FRAGMENT_THRESHOLD_TO_3);
- 	}
- 
- 	if (IS_DG2_G11(i915)) {
--- 
-2.34.1
+== Summary ==
+
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/gt/intel_workarounds.o
+In file included from ./drivers/gpu/drm/i915/intel_uncore.h:34,
+                 from ./drivers/gpu/drm/i915/gt/intel_engine_types.h:26,
+                 from ./drivers/gpu/drm/i915/gt/intel_context_types.h:18,
+                 from ./drivers/gpu/drm/i915/gem/i915_gem_context_types.h:20,
+                 from ./drivers/gpu/drm/i915/i915_drv.h:42,
+                 from drivers/gpu/drm/i915/gt/intel_workarounds.c:6:
+drivers/gpu/drm/i915/gt/intel_workarounds.c: In function ‘general_render_compute_wa_init’:
+./drivers/gpu/drm/i915/i915_reg_defs.h:273:25: error: incompatible type for argument 3 of ‘wa_mcr_write_or’
+  273 | #define MCR_REG(offset) ((const i915_mcr_reg_t){ .reg = (offset) })
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                         |
+      |                         i915_mcr_reg_t {aka const struct <anonymous>}
+drivers/gpu/drm/i915/gt/intel_gt_regs.h:1235:40: note: in expansion of macro ‘MCR_REG’
+ 1235 | #define   UGM_FRAGMENT_THRESHOLD_TO_3  MCR_REG(58 - 32)
+      |                                        ^~~~~~~
+drivers/gpu/drm/i915/gt/intel_workarounds.c:2919:47: note: in expansion of macro ‘UGM_FRAGMENT_THRESHOLD_TO_3’
+ 2919 |   wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0_UDW, UGM_FRAGMENT_THRESHOLD_TO_3);
+      |                                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/i915/gt/intel_workarounds.c:272:67: note: expected ‘u32’ {aka ‘unsigned int’} but argument is of type ‘i915_mcr_reg_t’ {aka ‘const struct <anonymous>’}
+  272 | wa_mcr_write_or(struct i915_wa_list *wal, i915_mcr_reg_t reg, u32 set)
+      |                                                               ~~~~^~~
+make[6]: *** [scripts/Makefile.build:243: drivers/gpu/drm/i915/gt/intel_workarounds.o] Error 1
+make[5]: *** [scripts/Makefile.build:480: drivers/gpu/drm/i915] Error 2
+make[4]: *** [scripts/Makefile.build:480: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:480: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:480: drivers] Error 2
+make[1]: *** [/home/kbuild2/kernel/Makefile:1913: .] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+Build failed, no error log produced
+
 
