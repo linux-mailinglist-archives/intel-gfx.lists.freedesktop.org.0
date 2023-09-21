@@ -2,54 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E0AC7A9201
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 09:21:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C95947A91F3
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 09:15:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6142110E57D;
-	Thu, 21 Sep 2023 07:21:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FD3F10E578;
+	Thu, 21 Sep 2023 07:15:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6530510E57C;
- Thu, 21 Sep 2023 07:21:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2108F10E578
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Sep 2023 07:15:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695280901; x=1726816901;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Bslg26FrupRP2+aUFgm7tEtxDKmyqlfu+NDlT2Dd5lg=;
- b=IgDoI1orfntriBHL7QtwNa11jWzO/lWYfW1JcGvqZsGpILMlP9T7hq01
- SVc93cKHZW8uYwqmCin5lVcClH6wGyUdP05guoJnWJ+yIfsiasaECw7dj
- YYr+MTpdQfLzk4OprJEaAx2TYtE2wffuxytzXe80Imc+H9WJMmC5Oju3A
- i/eug/KmjcM7s1Qn6Un9UCyPjN/OrrBwhKbc/5W+WKqPS1NuzVdZw/qSs
- 7uAScZlGvqT88Nl/a9jEpYtU4r29lyb9gCmqY/T7oLUpH/53GG7YPmzT3
- xpNVhT7VblOxxws+sF/jxzpoekIrITHqhysViwmFqbmnh6DcbBbRzihT7 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="379325483"
-X-IronPort-AV: E=Sophos;i="6.03,164,1694761200"; d="scan'208";a="379325483"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ t=1695280510; x=1726816510;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wBPlaWXOF4CToz1V0szIcNHMkr4FWaudxDB1hTssyxo=;
+ b=TmPvpzlw8n2aT6OoROGSfKGXttk3jVV9k7zHQTg8HyugGr0fdR4dQckh
+ v+6k9iNhyNwpnl8TN04pCvIk+AT2CJyZlVB5DaVoI0nM871NqjcqIgAtp
+ maeAE5mLMfuGE2XThjQTVTRvJohMyPCBwq7O9yh0Tu3nJlG+XleXnodr3
+ nlauzeLmD0zGfTEjWM8BfWkQlBKK0leuRv8e1fU4GA+Qf79br2SPj1lhg
+ 7dMLqp/YGq/sGIg+P3wAfyIoh/oAyGGzC2KMnN652TgxJ3Phu9158wgvv
+ /LJrfD0oSVm87FEthoeXwLUFbk4NG5gmUzk/Q6BOBcjgzTcP6+FC7csQG w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="379324011"
+X-IronPort-AV: E=Sophos;i="6.03,164,1694761200"; d="scan'208";a="379324011"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2023 00:17:36 -0700
+ 21 Sep 2023 00:13:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="920622942"
-X-IronPort-AV: E=Sophos;i="6.03,164,1694761200"; d="scan'208";a="920622942"
-Received: from idubinov-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.52.72])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2023 00:17:34 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20230920211934.14920-2-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230920211934.14920-1-ville.syrjala@linux.intel.com>
- <20230920211934.14920-2-ville.syrjala@linux.intel.com>
-Date: Thu, 21 Sep 2023 10:17:32 +0300
-Message-ID: <87bkdwq9kj.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="817259404"
+X-IronPort-AV: E=Sophos;i="6.03,164,1694761200"; d="scan'208";a="817259404"
+Received: from bvivekan-desk.iind.intel.com ([10.190.239.116])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2023 00:13:42 -0700
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Sep 2023 12:48:20 +0530
+Message-Id: <20230921071820.1969102-1-balasubramani.vivekanandan@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/bios: Fixup h/vsync_end
- instead of h/vtotal
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Print display info inside
+ driver display initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,90 +56,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 21 Sep 2023, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> We have the same h/vsync_end vs. h/vtotal quirk in the VBT parser
-> that was also present in EDID parser. Adjust the VBT parser the
-> same way as was done for hte EDID parser to fixup h/vsync_end
-> instead of h/vtotal. While I'm not currently aware of any machines
-> that need this for the VBT it seems prudent to keep both parsers
-> in sync.
->
-> And while at it let's add some debugs here as well. A bit
-> lackluster but didn't feel like plumbing the connector all
-> the way down at this time.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Separate the printing of display version and feature flags from the main
+driver probe to inside the display initialization. This is in alignment
+with isolating the display code from the main driver and helps Xe driver
+to resuse it.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 5 +++++
+ drivers/gpu/drm/i915/i915_driver.c                  | 2 --
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 9d9b034b9bdc..2fbb3c956336 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -380,6 +380,8 @@ int intel_display_driver_probe(struct drm_i915_private *i915)
+ 
+ void intel_display_driver_register(struct drm_i915_private *i915)
+ {
++	struct drm_printer p = drm_info_printer(i915->drm.dev);
++
+ 	if (!HAS_DISPLAY(i915))
+ 		return;
+ 
+@@ -407,6 +409,9 @@ void intel_display_driver_register(struct drm_i915_private *i915)
+ 	 * fbdev->async_cookie.
+ 	 */
+ 	drm_kms_helper_poll_init(&i915->drm);
++
++	intel_display_device_info_print(DISPLAY_INFO(i915),
++					DISPLAY_RUNTIME_INFO(i915), &p);
+ }
+ 
+ /* part #1: call before irq uninstall */
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index e5d693904123..d50347e5773a 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -699,8 +699,6 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
+ 
+ 		intel_device_info_print(INTEL_INFO(dev_priv),
+ 					RUNTIME_INFO(dev_priv), &p);
+-		intel_display_device_info_print(DISPLAY_INFO(dev_priv),
+-						DISPLAY_RUNTIME_INFO(dev_priv), &p);
+ 		i915_print_iommu_status(dev_priv, &p);
+ 		for_each_gt(gt, dev_priv, i)
+ 			intel_gt_info_print(&gt->info, &p);
+-- 
+2.25.1
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 23 +++++++++++++++--------
->  1 file changed, 15 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index f735b035436c..863ff54fffd1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -521,7 +521,8 @@ static void init_bdb_blocks(struct drm_i915_private *=
-i915,
->  }
->=20=20
->  static void
-> -fill_detail_timing_data(struct drm_display_mode *panel_fixed_mode,
-> +fill_detail_timing_data(struct drm_i915_private *i915,
-> +			struct drm_display_mode *panel_fixed_mode,
->  			const struct lvds_dvo_timing *dvo_timing)
->  {
->  	panel_fixed_mode->hdisplay =3D (dvo_timing->hactive_hi << 8) |
-> @@ -561,11 +562,17 @@ fill_detail_timing_data(struct drm_display_mode *pa=
-nel_fixed_mode,
->  	panel_fixed_mode->height_mm =3D (dvo_timing->vimage_hi << 8) |
->  		dvo_timing->vimage_lo;
->=20=20
-> -	/* Some VBTs have bogus h/vtotal values */
-> -	if (panel_fixed_mode->hsync_end > panel_fixed_mode->htotal)
-> -		panel_fixed_mode->htotal =3D panel_fixed_mode->hsync_end + 1;
-> -	if (panel_fixed_mode->vsync_end > panel_fixed_mode->vtotal)
-> -		panel_fixed_mode->vtotal =3D panel_fixed_mode->vsync_end + 1;
-> +	/* Some VBTs have bogus h/vsync_end values */
-> +	if (panel_fixed_mode->hsync_end > panel_fixed_mode->htotal) {
-> +		drm_dbg_kms(&i915->drm, "reducing hsync_end %d->%d\n",
-> +			    panel_fixed_mode->hsync_end, panel_fixed_mode->htotal);
-> +		panel_fixed_mode->hsync_end =3D panel_fixed_mode->htotal;
-> +	}
-> +	if (panel_fixed_mode->vsync_end > panel_fixed_mode->vtotal) {
-> +		drm_dbg_kms(&i915->drm, "reducing vsync_end %d->%d\n",
-> +			    panel_fixed_mode->vsync_end, panel_fixed_mode->vtotal);
-> +		panel_fixed_mode->vsync_end =3D panel_fixed_mode->vtotal;
-> +	}
->=20=20
->  	drm_mode_set_name(panel_fixed_mode);
->  }
-> @@ -849,7 +856,7 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
->  	if (!panel_fixed_mode)
->  		return;
->=20=20
-> -	fill_detail_timing_data(panel_fixed_mode, panel_dvo_timing);
-> +	fill_detail_timing_data(i915, panel_fixed_mode, panel_dvo_timing);
->=20=20
->  	panel->vbt.lfp_lvds_vbt_mode =3D panel_fixed_mode;
->=20=20
-> @@ -1134,7 +1141,7 @@ parse_sdvo_panel_data(struct drm_i915_private *i915,
->  	if (!panel_fixed_mode)
->  		return;
->=20=20
-> -	fill_detail_timing_data(panel_fixed_mode, &dtds->dtds[index]);
-> +	fill_detail_timing_data(i915, panel_fixed_mode, &dtds->dtds[index]);
->=20=20
->  	panel->vbt.sdvo_lvds_vbt_mode =3D panel_fixed_mode;
-
---=20
-Jani Nikula, Intel
