@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F1F7A9595
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 17:37:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 692D97A959C
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 17:47:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6917910E128;
-	Thu, 21 Sep 2023 15:37:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49A8E10E122;
+	Thu, 21 Sep 2023 15:46:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FE9F10E122;
- Thu, 21 Sep 2023 15:37:15 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 17C5622BF6;
- Thu, 21 Sep 2023 15:37:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1695310634; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=6NK3W4Hvr1f7d0S+F7x5hys1NiQQthxLtdk+FWyRWv0=;
- b=L/LQCnXrNWMrFz6cHgDsCfEbkDSiimt/35RN9kDOQV0RZcaUatfhiLqmoD4t1iejNbf43Y
- H4OhUgndH4irDUZfQ0Oq/xWAZxRXRNRtLw9lFgP1BZc8+7Av7vATSBXGfoe+5UT/dvckDS
- YazjymN6Eyeuh57m0Z/BCmxvndzcePI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1695310634;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=6NK3W4Hvr1f7d0S+F7x5hys1NiQQthxLtdk+FWyRWv0=;
- b=xHVHDsUSK9q2z8aXo/DaXYKb5Yb4fQ1855kWAJRrzd90aTEgS6NeGlPNDFbj25f4r7un45
- gBJfesruOEfQLjBA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id D777D134B0;
- Thu, 21 Sep 2023 15:37:13 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id MebiMyljDGV5fAAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Thu, 21 Sep 2023 15:37:13 +0000
-Date: Thu, 21 Sep 2023 17:37:12 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20230921153712.GA14059@linux-uq9g>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8DAE10E122
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Sep 2023 15:46:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695311213; x=1726847213;
+ h=date:message-id:from:to:subject:in-reply-to:references:
+ mime-version; bh=RDxHV3KyQbKYN4/vzeMbZU00BMMAxZLVj/0Gapr3EXY=;
+ b=WzzmgnJiLH1QH43edYtXNBaK6CgJn5NLmkr3EjnKPjnV0hjs9s4F9NSd
+ JhNE21fs3KXj3VZHBaAiQxffZAExXqiOQYwcCRbay2mczYZfqQv2Zcjnq
+ dZF/BPmB3Udo+YDhOPvUrYa7tR1uBIvvzDQML6FQUX9qYXqVB1fxyiCbC
+ aCh3Y+JeGgMp1efYagZb5yyGWXRL4WYfdHrH58WpYLzl5wEy7K8bDUcsq
+ WCe4JVDg9/gPSzs8NDeoKp+rOJnwKJ/0haWeoDKQX0rcP5PFCvVB6i9/A
+ a6PhroyE/wXg3k2t5y0Cb7q1qRA59uB8yVzwvGahbh9SApZylFm7Vlroy g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="383315371"
+X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="383315371"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2023 08:46:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="812704587"
+X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="812704587"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.251.19.132])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2023 08:46:51 -0700
+Date: Thu, 21 Sep 2023 08:43:10 -0700
+Message-ID: <87edirilbl.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <169526525453.7233.924478576838889572@emeril.freedesktop.org>
+References: <20230920040211.2351279-1-ashutosh.dixit@intel.com>
+ <169526525453.7233.924478576838889572@emeril.freedesktop.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/perf=3A_Remove_gtt=5Foffset_from_stream-=3Eoa=5Fbuffer=2E?=
+ =?utf-8?q?head/=2Etail_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,117 +63,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+On Wed, 20 Sep 2023 20:00:54 -0700, Patchwork wrote:
+>
+> Patch Details
+>
+>  Series:  drm/i915/perf: Remove gtt_offset from stream->oa_buffer.head/.tail (rev2)
+>  URL:  https://patchwork.freedesktop.org/series/123949/
+>  State:  failure
+>  Details:  https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_123949v2/index.html
+>
+> CI Bug Log - changes from CI_DRM_13658_full -> Patchwork_123949v2_full
+>
+> Summary
+>
+> FAILURE
+>
+> Serious unknown changes coming with Patchwork_123949v2_full absolutely need to be
+> verified manually.
+>
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_123949v2_full, please notify your bug team (lgci.bug.filing@intel.com) to allow them
+> to document this new failure mode, which will reduce false positives in CI.
+>
+> Participating hosts (9 -> 9)
+>
+> No changes in participating hosts
+>
+> Possible new issues
+>
+> Here are the unknown changes that may have been introduced in Patchwork_123949v2_full:
+>
+> IGT changes
+>
+> Possible regressions
+>
+> * igt@kms_plane_cursor@overlay@pipe-d-edp-1-size-128:
+>
+>  * shard-mtlp: PASS -> ABORT
 
-this is the PR for drm-misc-fixes for this week.
+This failure is unrelated, this patch only affects igt@perf. I am planning
+to merge this patch.
 
-Best regards
-Thomas
-
-drm-misc-fixes-2023-09-21:
-Short summary of fixes pull:
-
- * DRM MM-test fixes
- * Fbdev Kconfig fixes
-
- * ivpu:
-   * IRQ-handling fixes
-
- * meson:
-   * Fix memory leak in HDMI EDID code
-
- * nouveau:
-   * Correct type casting
-   * Fix memory leak in scheduler
-   * u_memcpya() fixes
-
- * virtio:
-   * Fence cleanups
-The following changes since commit 139a27854bf5ce93ff9805f9f7683b88c13074dc:
-
-  drm/tests: helpers: Avoid a driver uaf (2023-09-14 13:57:58 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2023-09-21
-
-for you to fetch changes up to f75f71b2c418a27a7c05139bb27a0c83adf88d19:
-
-  fbdev/sh7760fb: Depend on FB=y (2023-09-21 10:33:49 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
- * DRM MM-test fixes
- * Fbdev Kconfig fixes
-
- * ivpu:
-   * IRQ-handling fixes
-
- * meson:
-   * Fix memory leak in HDMI EDID code
-
- * nouveau:
-   * Correct type casting
-   * Fix memory leak in scheduler
-   * u_memcpya() fixes
-
- * virtio:
-   * Fence cleanups
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm: fix up fbdev Kconfig defaults
-
-Dan Carpenter (1):
-      nouveau/u_memcpya: fix NULL vs error pointer bug
-
-Danilo Krummrich (2):
-      drm/nouveau: fence: fix type cast warning in nouveau_fence_emit()
-      drm/nouveau: sched: fix leaking memory of timedout job
-
-Dave Airlie (1):
-      nouveau/u_memcpya: use vmemdup_user
-
-Jani Nikula (1):
-      drm/meson: fix memory leak on ->hpd_notify callback
-
-Janusz Krzysztofik (1):
-      drm/tests: Fix incorrect argument in drm_test_mm_insert_range
-
-José Pekkarinen (1):
-      drm/virtio: clean out_fence on complete_submit
-
-Karol Wachowski (1):
-      accel/ivpu/40xx: Fix buttress interrupt handling
-
-Thomas Zimmermann (1):
-      fbdev/sh7760fb: Depend on FB=y
-
- drivers/accel/ivpu/ivpu_hw_40xx.c          |  9 ++++++++-
- drivers/gpu/drm/Kconfig                    |  2 +-
- drivers/gpu/drm/meson/meson_encoder_hdmi.c |  2 ++
- drivers/gpu/drm/nouveau/nouveau_drv.h      | 19 +++++--------------
- drivers/gpu/drm/nouveau/nouveau_exec.c     |  2 +-
- drivers/gpu/drm/nouveau/nouveau_fence.c    |  2 +-
- drivers/gpu/drm/nouveau/nouveau_sched.c    | 12 +++++++++---
- drivers/gpu/drm/tests/drm_mm_test.c        |  2 +-
- drivers/gpu/drm/virtio/virtgpu_submit.c    |  1 -
- drivers/video/console/Kconfig              |  1 +
- drivers/video/fbdev/Kconfig                |  2 +-
- drivers/video/fbdev/core/Kconfig           |  2 +-
- 12 files changed, 31 insertions(+), 25 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Thanks.
+--
+Ashutosh
