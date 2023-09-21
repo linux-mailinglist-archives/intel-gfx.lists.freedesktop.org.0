@@ -1,51 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A44D7A9ABC
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 20:48:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96A1A7A9AAA
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 20:47:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8A3C10E31A;
-	Thu, 21 Sep 2023 18:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03B5010E31A;
+	Thu, 21 Sep 2023 18:47:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2821D10E31A
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Sep 2023 18:48:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695322093; x=1726858093;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iiAhzo9cwzG4t4JL58sicwz/n1Sg9ShGSNqAuYpY1eM=;
- b=C34fDhBJFbcVRyXUUQx49yv47o0o4J8S8icLuIPbJB0Lh+HxYLgcwTLB
- 1GKWjto+/JfLgFOqyApGHqJ67dyf0xrzqTOzB1EbVI9yEbINtPi7C92+/
- 5psS8WsuDL1mAQAVTuyhXagfyzsrB8/rLlAKRak6D6oVk+y4/NbtuCFZl
- Pp+dOW5+q0q/4bSjp6/k5kXNoIwI84jn+cuoEN37UkQL5JTqAHvLvZAZK
- Yt+SkeCXNFj4v6I1WupDLWg07NhF/Y8YDwPa10H/ek+2B2/AUDbFwWSPn
- 4GWK0u3DNiJ29AJPMhu0PiWS7USoEFWwDq5waeQV0c7jvrnEKRgNtuNgG Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="383381502"
-X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; d="scan'208";a="383381502"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2023 11:48:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="817513089"
-X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; d="scan'208";a="817513089"
-Received: from dut-internal-9dd7.jf.intel.com ([10.165.21.194])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2023 11:48:12 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 21 Sep 2023 11:37:29 -0700
-Message-Id: <20230921183729.3763860-3-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230921183729.3763860-1-jonathan.cavitt@intel.com>
-References: <20230921183729.3763860-1-jonathan.cavitt@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C751D10E31A;
+ Thu, 21 Sep 2023 18:47:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C354DA0169;
+ Thu, 21 Sep 2023 18:47:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8153241120966299787=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v13 2/2] drm/i915: Set copy engine arbitration
- for Wa_16018031267 / Wa_16018063123
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maxime Ripard" <mripard@kernel.org>
+Date: Thu, 21 Sep 2023 18:47:07 -0000
+Message-ID: <169532202779.7233.5126714666532755153@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230921105743.2611263-1-mripard@kernel.org>
+In-Reply-To: <20230921105743.2611263-1-mripard@kernel.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTUFJ?=
+ =?utf-8?q?NTAINERS=3A_Update_drm-misc_entry_to_match_all_drivers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,52 +40,186 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andi.shyti@intel.com, chris.p.wilson@linux.intel.com,
- tomasz.mistat@intel.com, jonathan.cavitt@intel.com, rodrigo.vivi@intel.com,
- gregory.f.germano@intel.com, matthew.d.roper@intel.com, nirmoy.das@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Set copy engine arbitration into round robin mode
-for part of Wa_16018031267 / Wa_16018063123 mitigation.
+--===============8153241120966299787==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_regs.h | 3 +++
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
- 2 files changed, 8 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_regs.h b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-index b8618ee3e3041..c0c8c12edea10 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_regs.h
-@@ -124,6 +124,9 @@
- #define RING_INDIRECT_CTX(base)			_MMIO((base) + 0x1c4) /* gen8+ */
- #define RING_INDIRECT_CTX_OFFSET(base)		_MMIO((base) + 0x1c8) /* gen8+ */
- #define ECOSKPD(base)				_MMIO((base) + 0x1d0)
-+#define   XEHP_BLITTER_SCHEDULING_MODE_MASK	REG_GENMASK(12, 11)
-+#define   XEHP_BLITTER_ROUND_ROBIN_MODE		\
-+		REG_FIELD_PREP(XEHP_BLITTER_SCHEDULING_MODE_MASK, 1)
- #define   ECO_CONSTANT_BUFFER_SR_DISABLE	REG_BIT(4)
- #define   ECO_GATING_CX_ONLY			REG_BIT(3)
- #define   GEN6_BLITTER_FBC_NOTIFY		REG_BIT(3)
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 660d4f358eab7..b8f3b991e4202 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -2781,6 +2781,11 @@ xcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			 RING_SEMA_WAIT_POLL(engine->mmio_base),
- 			 1);
- 	}
-+	/* Wa_16018031267, Wa_16018063123 */
-+	if (NEEDS_FASTCOLOR_BLT_WABB(engine))
-+		wa_masked_field_set(wal, ECOSKPD(engine->mmio_base),
-+				    XEHP_BLITTER_SCHEDULING_MODE_MASK,
-+				    XEHP_BLITTER_ROUND_ROBIN_MODE);
- }
- 
- static void
--- 
-2.25.1
+Series: MAINTAINERS: Update drm-misc entry to match all drivers
+URL   : https://patchwork.freedesktop.org/series/124045/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_13664 -> Patchwork_124045v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/index.html
+
+Participating hosts (40 -> 37)
+------------------------------
+
+  Missing    (3): fi-kbl-soraka fi-snb-2520m fi-kbl-8809g 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_124045v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3@lmem0:
+    - bat-atsm-1:         NOTRUN -> [DMESG-WARN][1] ([i915#8841]) +4 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/bat-atsm-1/igt@gem_exec_suspend@basic-s3@lmem0.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-apl-guc:         [PASS][2] -> [DMESG-FAIL][3] ([i915#5334])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13664/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_suspend@basic-s3-without-i915:
+    - bat-atsm-1:         NOTRUN -> [SKIP][4] ([i915#6645])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/bat-atsm-1/igt@i915_suspend@basic-s3-without-i915.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc:
+    - bat-atsm-1:         NOTRUN -> [SKIP][5] ([i915#1836])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/bat-atsm-1/igt@kms_pipe_crc_basic@suspend-read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_timelines:
+    - bat-atsm-1:         [INCOMPLETE][6] -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13664/bat-atsm-1/igt@i915_selftest@live@gt_timelines.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/bat-atsm-1/igt@i915_selftest@live@gt_timelines.html
+
+  
+  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+  [i915#5334]: https://gitlab.freedesktop.org/drm/intel/issues/5334
+  [i915#6645]: https://gitlab.freedesktop.org/drm/intel/issues/6645
+  [i915#8841]: https://gitlab.freedesktop.org/drm/intel/issues/8841
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_13664 -> Patchwork_124045v1
+
+  CI-20190529: 20190529
+  CI_DRM_13664: 24303ce015224a18891b6b2787aa52a0bdfed4b6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7496: 6a96d3ad178e468b74a58cc10dead2f57bc1558d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_124045v1: 24303ce015224a18891b6b2787aa52a0bdfed4b6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+2f66b107c21c MAINTAINERS: Update drm-misc entry to match all drivers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/index.html
+
+--===============8153241120966299787==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>MAINTAINERS: Update drm-misc entry to match all drivers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124045/">https://patchwork.freedesktop.org/series/124045/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_13664 -&gt; Patchwork_124045v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/index.html</p>
+<h2>Participating hosts (40 -&gt; 37)</h2>
+<p>Missing    (3): fi-kbl-soraka fi-snb-2520m fi-kbl-8809g </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_124045v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3@lmem0:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/bat-atsm-1/igt@gem_exec_suspend@basic-s3@lmem0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8841">i915#8841</a>) +4 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13664/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5334">i915#5334</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/bat-atsm-1/igt@i915_suspend@basic-s3-without-i915.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6645">i915#6645</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
+<ul>
+<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/bat-atsm-1/igt@kms_pipe_crc_basic@suspend-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1836">i915#1836</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_timelines:<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_13664/bat-atsm-1/igt@i915_selftest@live@gt_timelines.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_124045v1/bat-atsm-1/igt@i915_selftest@live@gt_timelines.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_13664 -&gt; Patchwork_124045v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_13664: 24303ce015224a18891b6b2787aa52a0bdfed4b6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7496: 6a96d3ad178e468b74a58cc10dead2f57bc1558d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_124045v1: 24303ce015224a18891b6b2787aa52a0bdfed4b6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>2f66b107c21c MAINTAINERS: Update drm-misc entry to match all drivers</p>
+
+</body>
+</html>
+
+--===============8153241120966299787==--
