@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9997F7A95AC
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 18:14:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACE477A95B1
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Sep 2023 18:25:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FB3F10E128;
-	Thu, 21 Sep 2023 16:14:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BCB310E051;
+	Thu, 21 Sep 2023 16:25:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A71E10E128
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Sep 2023 16:14:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0063610E051
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Sep 2023 16:25:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695312858; x=1726848858;
+ t=1695313508; x=1726849508;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=eh6GZdMT6vDdm08LjHufLa2RY5rYRIBn6qx/MIRsnF8=;
- b=isFVV1JbR4tCbOb3iRUH+IL2/C4+9DbOkxVgpZwSKbRgwiuMLASwJcAS
- FMBSy4hJBq6Ggh/QutvomqMEBFEKpkjWeb/Lwcgg8gq00O5Xntz0YCMdl
- ZA8clp9YzMx9tjpbdpIo2gcCyFWH1UfTL/89GmCkBGKt89pnK+AozgP5b
- wBhpHxqbs/Eu9r+hPjENi0RIP6Yizfk5D6BwD+RVIRvw+eVn1vI2RY+cA
- +tMQmoTSJiSd+If5q2hs0icdYHSOzcoWwQRa45K2cAnWTdhGfHrfBhhpI
- X3Cfh8FyUNEoiFRon0/PD0JNxYkxOzXeTa8/PnH9TU0OLf5e4TApwhRI7 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="370891817"
-X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="370891817"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2023 09:06:43 -0700
+ bh=jXZnnY5s5ajleSLjdsnJ8fLT3qBOscA5JKjIyyqCEGw=;
+ b=ZwR6NbHVVPnugCi3HtgAshkF/NmkCkviVavrkEzjOe91Sy5CHLL5iu/r
+ 5eZ6TB/CxsNr+YGKTbMnIn/EBueJmxNjI41SXOGCvtj5V84uWj2PyH1yp
+ EuABlO3hm9eSPNz4lfS2EqtR9Rd+O8HxBNrS0+LoT8mIUNd189HVrmCma
+ HNV9vSukvAlWJqWU5/yu9GH+63+LFgfEbVmuU4/JGkE8Ie+l7lS5PEUL6
+ pDDrd9AFkH2UWZKatrLUEPlJPAzIsgY+hx2/y0SJl2VQmnBejYyXb0yiO
+ piWstfPGo7Uhbv61mxrHwmaQblSrW3dNMrN+EzJvd3qpy/gp0Fq0Ix6iL w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="444685101"
+X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="444685101"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2023 09:25:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="776501759"
-X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="776501759"
+X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="862540524"
+X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="862540524"
 Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2023 09:06:41 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2023 09:25:00 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 21 Sep 2023 19:06:37 +0300
-Message-Id: <20230921160637.3862597-1-jani.nikula@intel.com>
+Date: Thu, 21 Sep 2023 19:24:56 +0300
+Message-Id: <20230921162456.3889375-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: remove inlines from
- i915_gem_execbuffer.c
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: remove a static inline that
+ requires including i915_drv.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,105 +58,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: jani.nikula@intel.com, Matt Roper <matthew.d.roper@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Just let the compiler decide what's best. Turns out absolutely nothing
-changes in the output with the inlines removed.
+It's actively harmful to add static inlines in headers that require you
+to pull in more headers. Remove the include added in commit f1530f912ed8
+("drm/i915/gt: Apply workaround 22016122933 correctly"). We see that
+there's already an implicit dependency on the i915_drv.h that we need to
+address too.
 
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Fei Yang <fei.yang@intel.com>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 ---
 
-The same should really be done for most inlines in .c files. *wink wink*
+As a reminder, a significant portion of the headers in the driver cause
+a rebuild of the *entire* driver when changed. We need to reduce the
+header interdependencies, not add more.
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 20 +++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt.c     | 5 +++++
+ drivers/gpu/drm/i915/gt/intel_gt.h     | 6 +-----
+ drivers/gpu/drm/i915/gt/intel_gt_mcr.c | 1 +
+ 3 files changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 7d04ec740fd1..683fd8d3151c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -321,7 +321,7 @@ static int eb_pin_engine(struct i915_execbuffer *eb, bool throttle);
- static void eb_unpin_engine(struct i915_execbuffer *eb);
- static void eb_capture_release(struct i915_execbuffer *eb);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 449f0b7fc843..93062c35e072 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -1019,3 +1019,8 @@ enum i915_map_type intel_gt_coherent_map_type(struct intel_gt *gt,
+ 	else
+ 		return I915_MAP_WC;
+ }
++
++bool intel_gt_needs_wa_22016122933(struct intel_gt *gt)
++{
++	return MEDIA_VER_FULL(gt->i915) == IP_VER(13, 0) && gt->type == GT_MEDIA;
++}
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+index 239848bcb2a4..2cac499d5aa3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+@@ -6,7 +6,6 @@
+ #ifndef __INTEL_GT__
+ #define __INTEL_GT__
  
--static inline bool eb_use_cmdparser(const struct i915_execbuffer *eb)
-+static bool eb_use_cmdparser(const struct i915_execbuffer *eb)
- {
- 	return intel_engine_requires_cmd_parser(eb->context->engine) ||
- 		(intel_engine_using_cmd_parser(eb->context->engine) &&
-@@ -433,7 +433,7 @@ static u64 eb_pin_flags(const struct drm_i915_gem_exec_object2 *entry,
- 	return pin_flags;
+-#include "i915_drv.h"
+ #include "intel_engine_types.h"
+ #include "intel_gt_types.h"
+ #include "intel_reset.h"
+@@ -88,10 +87,7 @@ static inline bool gt_is_root(struct intel_gt *gt)
+ 	return !gt->info.id;
  }
  
--static inline int
-+static int
- eb_pin_vma(struct i915_execbuffer *eb,
- 	   const struct drm_i915_gem_exec_object2 *entry,
- 	   struct eb_vma *ev)
-@@ -486,7 +486,7 @@ eb_pin_vma(struct i915_execbuffer *eb,
- 	return 0;
- }
+-static inline bool intel_gt_needs_wa_22016122933(struct intel_gt *gt)
+-{
+-	return MEDIA_VER_FULL(gt->i915) == IP_VER(13, 0) && gt->type == GT_MEDIA;
+-}
++bool intel_gt_needs_wa_22016122933(struct intel_gt *gt);
  
--static inline void
-+static void
- eb_unreserve_vma(struct eb_vma *ev)
+ static inline struct intel_gt *uc_to_gt(struct intel_uc *uc)
  {
- 	if (unlikely(ev->flags & __EXEC_OBJECT_HAS_FENCE))
-@@ -548,7 +548,7 @@ eb_validate_vma(struct i915_execbuffer *eb,
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+index 11d181b1cc7a..bf4a933de03a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2022 Intel Corporation
+  */
  
--static inline bool
-+static bool
- is_batch_buffer(struct i915_execbuffer *eb, unsigned int buffer_idx)
- {
- 	return eb->args->flags & I915_EXEC_BATCH_FIRST ?
-@@ -628,8 +628,8 @@ eb_add_vma(struct i915_execbuffer *eb,
- 	return 0;
- }
- 
--static inline int use_cpu_reloc(const struct reloc_cache *cache,
--				const struct drm_i915_gem_object *obj)
-+static int use_cpu_reloc(const struct reloc_cache *cache,
-+			 const struct drm_i915_gem_object *obj)
- {
- 	if (!i915_gem_object_has_struct_page(obj))
- 		return false;
-@@ -1107,7 +1107,7 @@ static void eb_destroy(const struct i915_execbuffer *eb)
- 		kfree(eb->buckets);
- }
- 
--static inline u64
-+static u64
- relocation_target(const struct drm_i915_gem_relocation_entry *reloc,
- 		  const struct i915_vma *target)
- {
-@@ -1128,19 +1128,19 @@ static void reloc_cache_init(struct reloc_cache *cache,
- 	cache->node.flags = 0;
- }
- 
--static inline void *unmask_page(unsigned long p)
-+static void *unmask_page(unsigned long p)
- {
- 	return (void *)(uintptr_t)(p & PAGE_MASK);
- }
- 
--static inline unsigned int unmask_flags(unsigned long p)
-+static unsigned int unmask_flags(unsigned long p)
- {
- 	return p & ~PAGE_MASK;
- }
- 
- #define KMAP 0x4 /* after CLFLUSH_FLAGS */
- 
--static inline struct i915_ggtt *cache_to_ggtt(struct reloc_cache *cache)
-+static struct i915_ggtt *cache_to_ggtt(struct reloc_cache *cache)
- {
- 	struct drm_i915_private *i915 =
- 		container_of(cache, struct i915_execbuffer, reloc_cache)->i915;
++#include "i915_drv.h"
+ #include "intel_gt.h"
+ #include "intel_gt_mcr.h"
+ #include "intel_gt_print.h"
 -- 
 2.39.2
 
