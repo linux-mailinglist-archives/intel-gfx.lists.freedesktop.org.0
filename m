@@ -1,51 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E19057AB2DD
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Sep 2023 15:44:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66EE47AB2DE
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Sep 2023 15:44:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FF9710E192;
-	Fri, 22 Sep 2023 13:44:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E211410E66D;
+	Fri, 22 Sep 2023 13:44:52 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6B3F10E192;
- Fri, 22 Sep 2023 13:44:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5D0610E192;
+ Fri, 22 Sep 2023 13:44:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695390284; x=1726926284;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2t5alZFgsjRFPf0YMbhE+cakTpUpEbZgl15+hT5foXw=;
- b=QX1F9m5p94SINblpUM2hL4j4MYfPYxkiKUxCEgsMMJQL4jj04Mx9/HcT
- DcBTY6GTniDkzFjCMXsUGS1ji3trSRyUdtkG2WrZJEl01X7/CnlpRkgpo
- z6xwrDOUaqQ18HI7jQnWdsDFyboeVzkEY66wutUGxCN0bvXc7IR4p1cOi
- ahS+XC2YY4qGj04HeUUBVtzEpuL727EZ42LB+8jHm1YD9iZkZZNM/c7uG
- 0hM32wttqP4AD273BGlIuMDTZreIqiuOmIzykjhqsxvMzgo5wurYKhDsH
- E1H8srE2AVMmNnTWudjuVSNSREHD+Rqeus4NRNqcw20dV+K883PyQzwOd A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="378117123"
-X-IronPort-AV: E=Sophos;i="6.03,167,1694761200"; d="scan'208";a="378117123"
+ t=1695390285; x=1726926285;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=N90svU8/+EDmL4BDCuEXsesNgibQ3RFAYJlT34EqpXQ=;
+ b=TJ1iaaK3I0V4bWtjL1YlMe23Rpcy5c9dGPZ4n4wHJ+rT15IuXVbXcLiX
+ bYHRsSAHnXyuzGXUrS1qwyUP26u17HJ0/3DDv+IB6DrPZrk2XN0vgofTY
+ i73In+4ACBbBNNvLTBsRY2W63xSYanKGPIUPayh7ZvIWHh4sNfaO13hla
+ 4izi2c4IKlgV9LEUb+0zVzPfZCavx4xLz+wrcEOWhBqKzozy9k1p5i0ks
+ BYW34OIfX4zSvzFxkhQ5Niqq2iZjFMf2io57V6nbdvziRG5QYhMfSZ557
+ A7G1mhDLtXIWOdySZJlti5wFhpsG7OQnT+NMbnQGj/E0SlOsYty0Sg6fP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="378117128"
+X-IronPort-AV: E=Sophos;i="6.03,167,1694761200"; d="scan'208";a="378117128"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2023 06:44:44 -0700
+ 22 Sep 2023 06:44:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="871243527"
-X-IronPort-AV: E=Sophos;i="6.03,167,1694761200"; d="scan'208";a="871243527"
+X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="871243535"
+X-IronPort-AV: E=Sophos;i="6.03,167,1694761200"; d="scan'208";a="871243535"
 Received: from placki-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.213.200.149])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2023 06:44:42 -0700
+ 22 Sep 2023 06:44:44 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: igt-dev@lists.freedesktop.org,
 	Intel-gfx@lists.freedesktop.org
-Date: Fri, 22 Sep 2023 14:44:25 +0100
-Message-Id: <20230922134437.234888-1-tvrtko.ursulin@linux.intel.com>
+Date: Fri, 22 Sep 2023 14:44:26 +0100
+Message-Id: <20230922134437.234888-2-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230922134437.234888-1-tvrtko.ursulin@linux.intel.com>
+References: <20230922134437.234888-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH i-g-t 00/12] fdinfo tests,
- intel_gpu_top memory support, etc
+Subject: [Intel-gfx] [PATCH i-g-t 01/12] tests/i915/drm_fdinfo: Stress test
+ context close versus fdinfo reads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,34 +65,119 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Some basic testst for fdinfo memory stats, intel_gpu_top memory stats support
-(first draft) and a couple fixlets.
+A short smoke tests to exercise fdinfo reads in parallel to contexts
+getting created and destroyed.
 
-Primarily sending to use as "Test-with" but review is also welcome.
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ tests/intel/drm_fdinfo.c | 68 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 68 insertions(+)
 
-Tvrtko Ursulin (12):
-  tests/i915/drm_fdinfo: Stress test context close versus fdinfo reads
-  tests/i915/drm_fdinfo: Add some memory info tests
-  tools/intel_gpu_top: Restore user friendly error message
-  tools/intel_gpu_top: Fix clients header width when no clients
-  tools/intel_gpu_top: Fix client layout on first sample period
-  tools/intel_gpu_top: Optimise interactive display a bit
-  lib/igt_drm_fdinfo: Copy over region map name on match
-  lib/igt_drm_clients: Fix client id type confusion
-  lib/igt_drm_clients: Allow passing in the memory region map
-  tools/intel_gpu_top: Fully wrap clients operations
-  tools/intel_gpu_top: Add per client memory info
-  tools/intel_gpu_top: Add ability to show memory region breakdown
-
- lib/igt_drm_clients.c    |   7 +-
- lib/igt_drm_clients.h    |   5 +-
- lib/igt_drm_fdinfo.c     |   4 +
- man/intel_gpu_top.rst    |   4 +
- tests/intel/drm_fdinfo.c | 269 +++++++++++++++++++++++++++++++++++++++
- tools/gputop.c           |   4 +-
- tools/intel_gpu_top.c    | 260 +++++++++++++++++++++++++++++++------
- 7 files changed, 508 insertions(+), 45 deletions(-)
-
+diff --git a/tests/intel/drm_fdinfo.c b/tests/intel/drm_fdinfo.c
+index aca19db50680..a9910900358d 100644
+--- a/tests/intel/drm_fdinfo.c
++++ b/tests/intel/drm_fdinfo.c
+@@ -22,11 +22,14 @@
+  *
+  */
+ 
++#include <fcntl.h>
++
+ #include "igt.h"
+ #include "igt_core.h"
+ #include "igt_device.h"
+ #include "igt_drm_fdinfo.h"
+ #include "i915/gem.h"
++#include "i915/gem_create.h"
+ #include "i915/gem_vm.h"
+ #include "intel_ctx.h"
+ /**
+@@ -72,6 +75,8 @@
+  * SUBTEST: virtual-busy-idle-all
+  *
+  * SUBTEST: virtual-idle
++ *
++ * SUBTEST: context-close-stress
+  */
+ 
+ IGT_TEST_DESCRIPTION("Test the i915 drm fdinfo data");
+@@ -717,6 +722,56 @@ virtual_all(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
+ 	}
+ }
+ 
++static void stress_context_close(int i915)
++{
++	const uint32_t bbe = MI_BATCH_BUFFER_END;
++	struct igt_helper_process reader = { };
++	struct drm_client_fdinfo info;
++	uint32_t batch;
++	int dir, ret;
++	char buf[64];
++
++	ret = snprintf(buf, sizeof(buf), "%u", i915);
++	igt_assert(ret > 0 && ret < sizeof(buf));
++
++	dir = open("/proc/self/fdinfo", O_DIRECTORY | O_RDONLY);
++	igt_assert_fd(dir);
++
++	memset(&info, 0, sizeof(info));
++	ret = __igt_parse_drm_fdinfo(dir, buf, &info, NULL, 0, NULL, 0);
++	igt_assert(ret > 0);
++	igt_require(info.num_regions);
++
++	batch = gem_create(i915, 4096);
++	gem_write(i915, batch, 0, &bbe, sizeof(bbe));
++
++	igt_fork_helper(&reader) {
++		for (;;) {
++			memset(&info, 0, sizeof(info));
++			ret = __igt_parse_drm_fdinfo(dir, buf, &info,
++						     NULL, 0, NULL, 0);
++			igt_assert(ret > 0);
++		}
++	}
++
++	igt_until_timeout(10) {
++		struct drm_i915_gem_exec_object2 obj = {
++			.handle = batch,
++		};
++		struct drm_i915_gem_execbuffer2 eb = {
++			.buffers_ptr = to_user_pointer(&obj),
++			.buffer_count = 1,
++		};
++
++		eb.rsvd1 = gem_context_create(i915);
++		igt_assert(eb.rsvd1);
++		gem_execbuf(i915, &eb);
++		gem_context_destroy(i915, eb.rsvd1);
++	}
++
++	igt_stop_helper(&reader);
++}
++
+ #define test_each_engine(T, i915, ctx, e) \
+ 	igt_subtest_with_dynamic(T) for_each_ctx_engine(i915, ctx, e) \
+ 		igt_dynamic_f("%s", e->name)
+@@ -847,6 +902,19 @@ igt_main
+ 	test_each_engine("isolation", i915, ctx, e)
+ 		single(i915, ctx, e, TEST_BUSY | TEST_ISOLATION);
+ 
++	igt_subtest_group {
++		int newfd;
++
++		igt_fixture
++			newfd = drm_reopen_driver(i915);
++
++		igt_subtest("context-close-stress")
++			stress_context_close(newfd);
++
++		igt_fixture
++			drm_close_driver(newfd);
++	}
++
+ 	igt_fixture {
+ 		intel_ctx_destroy(i915, ctx);
+ 		drm_close_driver(i915);
 -- 
 2.39.2
 
