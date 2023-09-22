@@ -1,153 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A5CF7AB1FB
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Sep 2023 14:18:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A23A67AB21D
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Sep 2023 14:28:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84B4210E06D;
-	Fri, 22 Sep 2023 12:18:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8412110E65A;
+	Fri, 22 Sep 2023 12:28:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FBD810E06D
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 12:17:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAF5610E669;
+ Fri, 22 Sep 2023 12:28:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695385079; x=1726921079;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:to:date:message-id:mime-version;
- bh=kN/+JDZxQEYhLiQOe05ed5yJFdCkOLhmfXTTghVTryo=;
- b=LnLgm5HMIfAZWss+ZWWoxoUrYeQMgn+Vb76qJJRg86zkhYDGoMZ20cOs
- 7BRRRc/glSw1U7vclBWq3ZMJNO24qc8pjS3VfN+6xg/iH4dZh3yjne1qv
- Hl40ZeT7OU9NMgU+vzhzywV72twrE8KUCQF1BnDEeE0Xp7sAM/WleOx8P
- evBrp/pPwp3k27/O5cmO2W9AUNLQnfuKWh9PITuxGCW1T0Sd+m7BqWKDB
- 7BWSi3w0jHnmFjeixbps6JujbpoUzXhsHidD1O5bwhRdqmQHVE8LdI8qv
- 6lP5YH4beYu+J45ldcfDw3trhgC6zuHvpNVlY9A0tcDc/yi7I5RvuZyLF Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="384649521"
-X-IronPort-AV: E=Sophos;i="6.03,167,1694761200"; d="scan'208";a="384649521"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2023 05:17:58 -0700
+ t=1695385710; x=1726921710;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Wl5hKbTwWIKz4jMPdh4mnw83mPlcsKt64N+zcm6ASJk=;
+ b=IW8P15/BwVIbvUCcA2I6bnsFW9o0i1JyIWc+OrURZA3HDUXjPqtfitmr
+ Jf+zaw+HRAdyI/kDqlmbcUlE4cdjC9J+gPWqqPZxs1mm1xJY6gROnDe70
+ NTp7uOc+u8YUGdVnbakoysA9WcQM6acHvEz30fbNdEM4JmDpZlM0o7LHK
+ ymWSOlg6CefxY4CPgdyHDpJWdGdajrBQLZku7N76p9XZm6Qq+WiGKCm1S
+ FEWqUdB//jKSYd/ITROfuv6vNSXzSXd545YkR3We40kuJAT8CsHeifNwL
+ bY5dt4uYUsWSOTLEiKfCRyB4NIZJc+5wNcDB/Hz34Vwz3Cv34wDp6RBe6 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="360195339"
+X-IronPort-AV: E=Sophos;i="6.03,167,1694761200"; d="scan'208";a="360195339"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2023 05:28:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="750822853"
-X-IronPort-AV: E=Sophos;i="6.03,167,1694761200"; d="scan'208";a="750822853"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Sep 2023 05:17:57 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 22 Sep 2023 05:17:57 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 22 Sep 2023 05:17:57 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Fri, 22 Sep 2023 05:17:57 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.176)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Fri, 22 Sep 2023 05:17:57 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CN/O17NkTxrViw3flHQe1dtkUzVNlv+5buxI0pkCko1KmveWrbQR8MKvxIwQOqGUVMUK/kfVCtgpDNR62t061gFe2hpwF5mxxvcUiZPXlQ10i/Zgbx6uOeWgr+sAk6yftFmxvxr2ZuYj6nOUAJy2H6PuwepUMH6HrupTmHXrv2OQ0/Vh4wOdpQZP0rzyiiuZ3Iivr3SNwyQoNmWUyOxbXWNkBaBcxqbSe/QMGAgKwKuSANf39JrXLgaqxeHCuN0TCP76vuDtcizJovOT/1MQ6YDgr31y59Z3nQvXHaoP+ZV1jc9voiEk6HQSJQHAyoLTl1lvjIB0yvSFJ/6LjQIwHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5TV15bspyQqvlXMXphZ8bhaJEvabXuyr8H7V5fjmD4Q=;
- b=jwI0r1PN+2mU497sF9u5InCVcRgkRJyDa0FnLVZCF3VJhzLRiiaEvfXcCgfUMCqRVvqtuE7h3y+VdjjyIwHucabEWyJfm4GcdDM3mNlU9x6OofW4h0XBjtWgqlbotIbeBCWaYnhvYnKiNqhtff6rThgAAAPaSkSUFXJhyBhYP/Ja2DvS+pIzVtxIzF0Lek1vv+oqUvCXrlEwxN9tvMu6qeRpz6l0PgDo/R9cjqe+3VfRi4BAzsRpYhr4klxfJa0vjtpR1HOGJpn4oy23Id4T1ome98dvtRHl7dXoZBKxOJpzyj74x568OxhL9NZzgjIH+1DnKHkL+1yf0oqByrlgmw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
- by PH7PR11MB8121.namprd11.prod.outlook.com (2603:10b6:510:234::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.27; Fri, 22 Sep
- 2023 12:17:55 +0000
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::d89f:e7e6:dbb3:3ddf]) by BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::d89f:e7e6:dbb3:3ddf%6]) with mapi id 15.20.6813.017; Fri, 22 Sep 2023
- 12:17:55 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <5e2c29a6-083e-4f84-932e-a14fed53086c@intel.com>
-References: <20230921143028.483008-1-shekhar.chauhan@intel.com>
- <169533011276.1903.10121233791745587247@gjsousa-mobl2>
- <5e2c29a6-083e-4f84-932e-a14fed53086c@intel.com>
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: "Chauhan, Shekhar" <shekhar.chauhan@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <matthew.d.roper@intel.com>
-Date: Fri, 22 Sep 2023 09:17:47 -0300
-Message-ID: <169538506796.1821.18234276438047673572@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: BY5PR20CA0003.namprd20.prod.outlook.com
- (2603:10b6:a03:1f4::16) To BN8PR11MB3556.namprd11.prod.outlook.com
- (2603:10b6:408:8d::31)
+X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="890799342"
+X-IronPort-AV: E=Sophos;i="6.03,167,1694761200"; d="scan'208";a="890799342"
+Received: from aboreiko-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.50.131])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2023 05:27:32 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Sharma, Swati2" <swati2.sharma@intel.com>, Mitul Golani
+ <mitulkumar.ajitkumar.golani@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <81bd6bdf-6a83-5365-b360-3d2574b8fea1@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230913060606.1105349-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20230913060606.1105349-8-mitulkumar.ajitkumar.golani@intel.com>
+ <8734z8q7lf.fsf@intel.com>
+ <00f0441f-98e5-6d09-8f33-9c69e764b153@intel.com>
+ <87il83pvta.fsf@intel.com>
+ <81bd6bdf-6a83-5365-b360-3d2574b8fea1@intel.com>
+Date: Fri, 22 Sep 2023 15:28:24 +0300
+Message-ID: <87fs36o0if.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|PH7PR11MB8121:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0137d883-b62b-48b3-16c9-08dbbb65f2ad
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: M6m+VBwOcYJSXsJdMgpX21NJ15/K3zPSshpONAB/cZyA5rDX3Wa8x9N+JH/XCR0dQXgD6EK8OTjR4z2T/ngU69+ZzbX+j2/qgDrDjxxVY2s9MjP1yKfuTckT0gWfRc8M0Qgua5l38J+QKrgkaxOmZOzNnj+2B1q/QaWA3Li7WgE5j9yOYxZeU/cQcl1rS6R/uD2mt6ZWNmlLJScWnsnFtel4BuewigbXjg6BwLFVkHDQ0z+na/x7XAYmVxnsr82aSXbrbit+pMd7H2fEGEUjFW7GmF18j7Xtb2t2dXdWLxHFSnpnVRVY10Hs1fSimXRwvMU9L3sfz46PtHSQxyqfZiIlJdh8XefLbNN5IL0EfwwTwbPve0OxDc4HRx4RMpivF06imHyfTCtHWsWsLhrqoZBvyne/Gk+VoZELFgFToWgqWMdMjS8inpg5ECCP2TvtJg7G+Wg+n3jPx8PPqUppuHufonGuxfPM5eTS2KrbZ7cJO1VfVlj9s+GlfDMmQvkv/casMEsPWz/YO7O7Ew5XLLj1NAxUF+PINU46zr6b0PEXHOxB3b5OxauZeekNEtRrI31RGnVwFSA2fxoRRQV1Fw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(39860400002)(346002)(366004)(136003)(376002)(396003)(1800799009)(186009)(451199024)(26005)(9686003)(6486002)(6512007)(82960400001)(86362001)(33716001)(38100700002)(478600001)(8936002)(316002)(44832011)(5660300002)(66556008)(6636002)(66946007)(8676002)(66476007)(6666004)(83380400001)(6506007)(2906002)(41300700001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MnJSSnczQUFrbUphYXRld2NUd1RKNFpSUmtRaUQ5RUlCNmRMY05kVlFsMkQz?=
- =?utf-8?B?NVdoVVF2dnk3ZkhmNDQyQ0NJT2w0REp1emc1dTFONFREdTE4cGxLRzFUVXpa?=
- =?utf-8?B?QUdvc0RRWDBVczVIZWRnN3QwWlJBZU0vdDQxU3hJTytqZUVtRXhMZGxVdUlo?=
- =?utf-8?B?MHlEem9jS1Q3SXQ4cFBhc2F4UTcrdnZUWlFPQ3hkUGNnNUZVNG5ZQ0k3M1JT?=
- =?utf-8?B?bTdFZ1BNQ1d4b00wdmhPK2YzUGVmOVVKSVUxNCtydTkwWk5Ebjc1ZklDbmJN?=
- =?utf-8?B?Nk5PcXY2eUczT3ZSSjczK1BiWjRFTmxsSUYxak9YM09zYzF2dGwyWWQyRnIr?=
- =?utf-8?B?TWVxMi9nWml2VktaMHVDSFJjc1B6U3hhek94eFN1MXhtTllqT0hzZGE3K3Vw?=
- =?utf-8?B?SDExVndtQ1pSVEc5MDZSaUVSMkdHVjFGRmp4MEFWaHQ4NEJETUNRbTFLdGdO?=
- =?utf-8?B?T0NyZFY4aEpDVkRaUnFBS0RlSTR3dVR3b2NKWmtNaWU0TFg4ckJYRWlaVjI3?=
- =?utf-8?B?Vi9ncVh0Wk45dUdvVW9GV3FvN2ZoQU53dTlRUEhodVp1RFB6U0pCckxVZGVt?=
- =?utf-8?B?QUhFMEp6SGYyaEZpT0JZbk5xTFE0V2Y5MWhnT0ZNTkVUd0lad3dhRTJ2Vjkr?=
- =?utf-8?B?SHN3aitSUnkvanVYb2c0V1NmY3V3OG9nSjhNeThZWlB6M1pnL2liNjc4Z0tN?=
- =?utf-8?B?a09aVWxCUzFhSzk2VEErWnJrMDlKVCtDWHNRQ0xCSW1kRzJXdXZDUTF5VVg0?=
- =?utf-8?B?VFFPTGd2T1pZSHpwdCs2djFkV21PSlhwSUUyNlF4bmNjYzJNQXVQTHY3NG1S?=
- =?utf-8?B?NXhtMU9uUEZZblJNUUgrVXI3ZkZtQm5MdUNleGdhU0NoWXN5ZWYzdml5QlpM?=
- =?utf-8?B?NWFDSU9QMS91L2ZEMUorMXJhdS9wY0ExTXMwUGlvOU81dUdjTmtaWUloZGVM?=
- =?utf-8?B?Tmt6dHFQZWdOdnVEWFd5UERnTU9ZYUZUWnRuTDNOZGdORHZNT1JORFFReE5E?=
- =?utf-8?B?VmU2L24yd2VtSWx5bE0rbC94UnBxMGJOWUUzMXBBRDQraHlsb3J6cHZlQWVs?=
- =?utf-8?B?RWNVaE9NWThTcEg2emFzU2dPV2h3eWY3V21uNWdVK25sMFRKbW1KenVtbTcz?=
- =?utf-8?B?T3lXK0g2d2FFbEMydzF4a29wZGp6YmJkM0xOaVBJN2pmOCtPczlmMmlqd09m?=
- =?utf-8?B?MWpJMXpDczZqeWNsTUhEdGdQZjU1TXNDb0gxUmgvcHRUR1ZxWG9JQUxCQ3RE?=
- =?utf-8?B?S3BSb2Q3TEhzd0xVUE5sRWJ5WDY0RzNpczh6aXNLdTllcGxraHN1dXJiSXp4?=
- =?utf-8?B?Nm40MVlmM25Ebm9QeXVlbzZjRDFOaDlvdjZjUFA4MDZucUIyS01kZ3hWaUta?=
- =?utf-8?B?YXoxOG1CN3Yyb0ZVSnZvRU13QUQydDFndzl3UEs0azdCMCtMa1ZlQWlwaUpY?=
- =?utf-8?B?TFhRVEFJSGJTNVVXSW5TRGhvZHVmTVpTdUpoZHlqYWFBYWJ5ZHhtSUZ5b256?=
- =?utf-8?B?OXpwY3lzR2U3WUN2VTdqRmUyWEVFYzdzZEZmR2EzbmN2V0pkaHRNOUV5czJm?=
- =?utf-8?B?NGxhR0tOWUEySEY5d0FxMVkwWHIwNzdhTUxXZEV1RlV1YjQ2eEJTLzlIRTZN?=
- =?utf-8?B?VGxZblJxWEZjL3FKK2xacEZTUHArY0pDbWtKbVA1dTh0TmlwVk9YQTdGNGhq?=
- =?utf-8?B?V0JwbkgrQUJFRVBJOU10OFlqRjZJTHZsalpmblBBNkdIK3ZvY1hIbURsemo5?=
- =?utf-8?B?UTBEdkJIWkVhNCtnTTk0SmkwUjUzdVVUYnJSQVd4MGQ0bHpMMGxKU3lNSU16?=
- =?utf-8?B?azRhTG9MY01ub3RITFhEcC9wR3JRZjdJQW9aZ1NpSll6c3EwWHYrV0U3ckND?=
- =?utf-8?B?cHNad2daRHFWRy9VUkkwN2VGcXdYemlTWWxKRUVBdzdjdVBCaDcxeEozYWJF?=
- =?utf-8?B?UjBBaDR5SWRIaXlZQzdYRVljRVI1cjZseFA1a0pzYWw0TG0yZEFmQWNVa24x?=
- =?utf-8?B?c0wyOFRYNU84Z0d0ZTFBVXlGNWNpNFlvNGxueEdwMDd6QmJ0UmF1VDRieHQ1?=
- =?utf-8?B?SStrVU8wU3oxUDhyNldVM2ZOWWc4ZXl3dktyeURJMkNoSUdtR012bWpjRnR5?=
- =?utf-8?B?YjQyTXV6SHpNZlprM3JVS0hTelNydWxuZTl1ZzRXWWJIMmcxYXRvYzRpdkRs?=
- =?utf-8?B?enc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0137d883-b62b-48b3-16c9-08dbbb65f2ad
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2023 12:17:54.6819 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AxaqNB4d3Y1I9VP2eSeZ7fYl89yCbBJ5faB92BfrBAQa0G3+9dBBFodOd5n0zFTODT4cQZ9pWV3VMiPsqRt3gQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8121
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add Wa_18028616096
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915/dsc: Add debugfs entry to
+ validate DSC fractional bpp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,103 +69,244 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chauhan, Shekhar (2023-09-22 01:04:36-03:00)
->Quoting Gustavo Sousa:
->
->On 9/22/2023 02:31, Gustavo Sousa wrote:
->> Quoting Shekhar Chauhan (2023-09-21 11:30:28-03:00)
->>> Drop UGM per set fragment threshold to 3
+On Thu, 21 Sep 2023, "Sharma, Swati2" <swati2.sharma@intel.com> wrote:
+> On 21-Sep-23 5:44 PM, Jani Nikula wrote:
+>> On Thu, 21 Sep 2023, "Sharma, Swati2" <swati2.sharma@intel.com> wrote:
+>>> On 21-Sep-23 1:30 PM, Jani Nikula wrote:
+>>>> On Wed, 13 Sep 2023, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
+>>>>> From: Swati Sharma <swati2.sharma@intel.com>
+>>>>>
+>>>>> DSC_Sink_BPP_Precision entry is added to i915_dsc_fec_support_show
+>>>>> to depict sink's precision.
+>>>>> Also, new debugfs entry is created to enforce fractional bpp.
+>>>>> If Force_DSC_Fractional_BPP_en is set then while iterating over
+>>>>> output bpp with fractional step size we will continue if output_bpp is
+>>>>> computed as integer. With this approach, we will be able to validate
+>>>>> DSC with fractional bpp.
+>>>>>
+>>>>> v2:
+>>>>> Add drm_modeset_unlock to new line(Suraj)
+>>>>>
+>>>>> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
+>>>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>>>>> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+>>>>> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>>>>> ---
+>>>>>    .../drm/i915/display/intel_display_debugfs.c  | 83 +++++++++++++++++++
+>>>>>    .../drm/i915/display/intel_display_types.h    |  1 +
+>>>>>    2 files changed, 84 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>>>>> index f05b52381a83..776ab96def1f 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>>>>> @@ -1244,6 +1244,8 @@ static int i915_dsc_fec_support_show(struct seq_file *m, void *data)
+>>>>>    								      DP_DSC_YCbCr420_Native)),
+>>>>>    			   str_yes_no(drm_dp_dsc_sink_supports_format(intel_dp->dsc_dpcd,
+>>>>>    								      DP_DSC_YCbCr444)));
+>>>>> +		seq_printf(m, "DSC_Sink_BPP_Precision: %d\n",
+>>>>> +			   drm_dp_dsc_sink_bpp_incr(intel_dp->dsc_dpcd));
+>>>>>    		seq_printf(m, "Force_DSC_Enable: %s\n",
+>>>>>    			   str_yes_no(intel_dp->force_dsc_en));
+>>>>>    		if (!intel_dp_is_edp(intel_dp))
+>>>>> @@ -1436,6 +1438,84 @@ static const struct file_operations i915_dsc_output_format_fops = {
+>>>>>    	.write = i915_dsc_output_format_write
+>>>>>    };
+>>>>>    
+>>>>> +static int i915_dsc_fractional_bpp_show(struct seq_file *m, void *data)
+>>>>> +{
+>>>>> +	struct drm_connector *connector = m->private;
+>>>>> +	struct drm_device *dev = connector->dev;
+>>>>> +	struct drm_crtc *crtc;
+>>>>> +	struct intel_dp *intel_dp;
+>>>>> +	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
+>>>>> +	int ret;
+>>>>> +
+>>>>> +	if (!encoder)
+>>>>> +		return -ENODEV;
+>>>>> +
+>>>>> +	ret = drm_modeset_lock_single_interruptible(&dev->mode_config.connection_mutex);
+>>>>> +	if (ret)
+>>>>> +		return ret;
+>>>>> +
+>>>>> +	crtc = connector->state->crtc;
+>>>>> +	if (connector->status != connector_status_connected || !crtc) {
+>>>>> +		ret = -ENODEV;
+>>>>> +		goto out;
+>>>>> +	}
+>>>>> +
+>>>>> +	intel_dp = intel_attached_dp(to_intel_connector(connector));
+>>>>> +	seq_printf(m, "Force_DSC_Fractional_BPP_Enable: %s\n",
+>>>>> +		   str_yes_no(intel_dp->force_dsc_fractional_bpp_en));
+>>>>
+>>>> Why "Force_DSC_Fractional_BPP_Enable" in the output?
+>>>>
+>>>> Usually debugfs files, like sysfs files, for stuff like this should be
+>>>> attributes, one thing per file. Why print a long name for it, if the
+>>>> name of the debugfs file is the name of the attribute?
+>>>>
+>>>> And even if you print it for humans, why the underscores?
 >>>
->>> BSpec: 54833
->>> Signed-off-by: Shekhar Chauhan<shekhar.chauhan@intel.com>
->>> ---
->>> drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 1 +
->>> drivers/gpu/drm/i915/gt/intel_workarounds.c | 3 +++
->>> 2 files changed, 4 insertions(+)
+>>> Hi Jani,
+>>> Followed same strategy as we are doing for other dsc scenarios like
+>>> force_dsc.
+>>> Even naming convention followed same as other dsc stuff like
+>>> Force_DSC_Enable, etc.
+>>> All DSC related enteries have underscores in its naming convention.
+>> 
+>> There's value in that, though maybe my comment highlights I'm not fond
+>> of the existing stuff. ;)
+>
+> Sure, I can work on cleanup part later.
+>
+>> 
+>>> May be i can consolidate other dsc debugfs enteries into
+>>> one as a cleanup task later. But it will impact IGT aswell. And i'm not
+>>> sure if we can break compatibility but since IGT (intel as only vendor)
+>>> is the only consumer, may be we change at both places and clean it up.
+>> 
+>> We can do what we want with debugfs, as long as we change both the
+>> driver and igt.
+>
+> Sure, will make corresponding changes in both IGT and KMD.
+>
+>> 
 >>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/=
-i915/gt/intel_gt_regs.h
->>> index a00ff51c681d..431c575c532b 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
->>> @@ -1230,6 +1230,7 @@
->>> #define   DISABLE_D8_D16_COASLESCE                REG_BIT(30)
->>> #define   FORCE_1_SUB_MESSAGE_PER_FRAGMENT        REG_BIT(15)
->>> #define LSC_CHICKEN_BIT_0_UDW                        MCR_REG(0xe7c8 + 4=
-)
->>> +#define   UGM_FRAGMENT_THRESHOLD_TO_3                REG_BIT(58 - 32)
->>> #define   DIS_CHAIN_2XSIMD8                        REG_BIT(55 - 32)
->>> #define   FORCE_SLM_FENCE_SCOPE_TO_TILE                REG_BIT(42 - 32)
->>> #define   FORCE_UGM_FENCE_SCOPE_TO_TILE                REG_BIT(41 - 32)
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/=
-drm/i915/gt/intel_workarounds.c
->>> index 660d4f358eab..992041e3776c 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>> @@ -2914,6 +2914,9 @@ general_render_compute_wa_init(struct intel_engin=
-e_cs *engine, struct i915_wa_li
->>>                   * Wa_22015475538:dg2
->>>                   */
->>>                  wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0_UDW, DIS_CHAIN_=
-2XSIMD8);
->>> +
->>> +                /* Wa_18028616096:dg2 */
->> This is not a blocker, but I would prefer to remove the ":dg2" suffix.
->>
->> There was an effort to remove them from our driver[1], but it kinda of
->> stalled. I myself agree that we would be better off without them.
->>
->> [1]https://lore.kernel.org/all/20221222082557.1364711-1-lucas.demarchi@i=
-ntel.com
->Ack'ed in the new version.
->>
->>> +                wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0_UDW, UGM_FRAGME=
-NT_THRESHOLD_TO_3);
->> This workaround applies to (i) DG2 G10 from stepping C0 to forever and
->> (ii) any stepping of DG2 G12. Here you are applying this workaround to
->> any variant of DG2.
->>
->> It should be moved out of this "if" statement and rather be guarded by
->> something like:
->>
->>         if ((IS_DG2_G10(i915) && IS_GRAPHICS_STEP(i915, STEP_C0, STEP_FO=
-REVER)) ||
->>             IS_DG2_G12(i915))
->>
->> Note that we are there is still a pending decision for G11, so we may
->> need to update this in the future.
->
->I believe we're only supporting production steppings for DG2,=20
->henceforth, not really interacting with the "older" steppings.
->
->Please have a look:
->
->https://lore.kernel.org/intel-gfx/20230816214201.534095-7-matthew.d.roper@=
-intel.com/
-
-Oh, I missed that. Thanks!
-
-So I believe we would have the following condition instead:
-
-	if (IS_DG2_G10(i915) || IS_DG2_G12(i915))
-
-, because we do not know yet if this will also apply to DG2 G11.
-
---
-Gustavo Sousa
-
->
->Although, I could be wrong, if I am, I'll send in another version,=20
->modifying the patch as you've suggested.
->
->> --
->> Gustavo Sousa
->>
->>>          }
+>>>>
+>>>>> +
+>>>>> +out:
+>>>>> +	drm_modeset_unlock(&dev->mode_config.connection_mutex);
+>>>>> +
+>>>>> +	return ret;
+>>>>> +}
+>>>>> +
+>>>>> +static ssize_t i915_dsc_fractional_bpp_write(struct file *file,
+>>>>> +					     const char __user *ubuf,
+>>>>> +					     size_t len, loff_t *offp)
+>>>>> +{
+>>>>> +	struct drm_connector *connector =
+>>>>> +		((struct seq_file *)file->private_data)->private;
+>>>>
+>>>> I know this is copy-pasted from elsewhere, but really it's nicer to
+>>>> avoid the cast, and copy-paste from the places that get this right:
+>>>>
+>>>> 	struct seq_file *m = file->private_data;
+>>>>           struct drm_connector *connector = m->private;
 >>>
->>>          if (IS_DG2_G11(i915)) {
->>> --=20
->>> 2.34.1
+>>> Done.
 >>>
->--=20
->-shekhar
+>>>>
+>>>>> +	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
+>>>>> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>>>>> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>>>>> +	bool dsc_fractional_bpp_enable = false;
+>>>>> +	int ret;
+>>>>> +
+>>>>> +	if (len == 0)
+>>>>> +		return 0;
+>>>>
+>>>> kstrtobool_from_user() has this covered.
+>>>
+>>> Done.
+>>>
+>>>>
+>>>>> +
+>>>>> +	drm_dbg(&i915->drm,
+>>>>> +		"Copied %zu bytes from user to force fractional bpp for DSC\n", len);
+>>>>
+>>>> That's useless.
+>>>
+>>> Done.
+>>>
+>>>>
+>>>>> +
+>>>>> +	ret = kstrtobool_from_user(ubuf, len, &dsc_fractional_bpp_enable);
+>>>>> +	if (ret < 0)
+>>>>> +		return ret;
+>>>>> +
+>>>>> +	drm_dbg(&i915->drm, "Got %s for DSC Fractional BPP Enable\n",
+>>>>> +		(dsc_fractional_bpp_enable) ? "true" : "false");
+>>>>
+>>>> Is this useful?
+>>>
+>>> Yes, to know when fractional bpp is enabled.
+>> 
+>> I think it would be more useful to debug log this at the use site, not
+>> when you're setting the debugfs knob.
+>
+> We already have those in IGT. Like said, to maintain consitency with 
+> other dsc func() like fec_support_write(), this debug print is added 
+> here. I can drop and will drop from fec_support_write() too during cleanup.
+>
+>> 
+>> BR,
+>> Jani.
+>> 
+>> 
+>> 
+>> 
+>>>
+>>>>
+>>>>> +	intel_dp->force_dsc_fractional_bpp_en = dsc_fractional_bpp_enable;
+>>>>> +
+>>>>> +	*offp += len;
+>>>>> +
+>>>>> +	return len;
+>>>>> +}
+>>>>> +
+>>>>> +static int i915_dsc_fractional_bpp_open(struct inode *inode,
+>>>>> +					struct file *file)
+>>>>> +{
+>>>>> +	return single_open(file, i915_dsc_fractional_bpp_show, inode->i_private);
+>>>>> +}
+>>>>> +
+>>>>> +static const struct file_operations i915_dsc_fractional_bpp_fops = {
+>>>>> +	.owner = THIS_MODULE,
+>>>>> +	.open = i915_dsc_fractional_bpp_open,
+>>>>> +	.read = seq_read,
+>>>>> +	.llseek = seq_lseek,
+>>>>> +	.release = single_release,
+>>>>> +	.write = i915_dsc_fractional_bpp_write
+>>>>> +};
+>>>>> +
+>>>>>    /*
+>>>>>     * Returns the Current CRTC's bpc.
+>>>>>     * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
+>>>>> @@ -1513,6 +1593,9 @@ void intel_connector_debugfs_add(struct intel_connector *intel_connector)
+>>>>>    
+>>>>>    		debugfs_create_file("i915_dsc_output_format", 0644, root,
+>>>>>    				    connector, &i915_dsc_output_format_fops);
+>>>>> +
+>>>>> +		debugfs_create_file("i915_dsc_fractional_bpp", 0644, root,
+>>>>> +				    connector, &i915_dsc_fractional_bpp_fops);
+>>>>>    	}
+>>>>>    
+>>>>>    	if (connector->connector_type == DRM_MODE_CONNECTOR_DSI ||
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>>>> index 69bcabec4a29..27b31cb4c7b4 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>>>> @@ -1797,6 +1797,7 @@ struct intel_dp {
+>>>>>    	/* Display stream compression testing */
+>>>>>    	bool force_dsc_en;
+>>>>>    	int force_dsc_output_format;
+>>>>> +	bool force_dsc_fractional_bpp_en;
+>>>>>    	int force_dsc_bpc;
+>>>>>    
+>>>>>    	bool hobl_failed;
+>>>>
+>> 
+>
+> With above KMD changes IGT is already rb'ed and validated
+> https://patchwork.freedesktop.org/series/117493/#rev12
+> I request if we can get ack on this. As cleanup task,
+> will make changes as requested.
+
+Okay then.
+
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel
