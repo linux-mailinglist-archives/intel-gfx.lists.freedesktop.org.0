@@ -1,79 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A45267AB9B6
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Sep 2023 21:01:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 781567ABA43
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Sep 2023 21:48:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E47C10E6FE;
-	Fri, 22 Sep 2023 19:01:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7A1810E090;
+	Fri, 22 Sep 2023 19:48:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C61A10E701
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 19:00:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1695409254;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=NE66f7DfP4/A2VOZXmvxuXHt1FmCuY2Q51yLIoHLwck=;
- b=Ibm8bsehKpB8a6TgkRt5TtWN9XJlvHukx+/Z3O8rnocEGPuxG3RIZCfY34LM8VYMbZybsG
- gPhdtKQ+nERDOXoscDe/iss5Jqym6KM89C0hzIqp4XD7tIY2aL/N2v857a7DIq9eb4Sb89
- EFyR/e693/VTwCXhQ2i6WvyGeEjNFgg=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-515-lt5yW3luNbua8pv8pwrx6A-1; Fri, 22 Sep 2023 15:00:51 -0400
-X-MC-Unique: lt5yW3luNbua8pv8pwrx6A-1
-Received: by mail-qk1-f199.google.com with SMTP id
- af79cd13be357-773ed3bb708so282265885a.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 12:00:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695409250; x=1696014050;
- h=mime-version:user-agent:content-transfer-encoding:organization
- :references:in-reply-to:date:cc:to:from:subject:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=llC9/wUzzd4JVzDSD0PHMCO4lX+W74lZOeDntPKMIjc=;
- b=sLxgFcxgNVgTiSuU14TAIxmeoN4Rbhir33tMGUP1sS3qe2U6FxDx8zHF2dkhgURX/Y
- 791dgtoq1xnUPbWEGlh1da+JvNr7Xqi8qVHBKt26W3aDqGMwFvYGsb+ut5kYhtjJYF1h
- exvGJa+odQYLbNWvPhLtPPlc2HXcz1eAwt6dkXgvTOxiloPUjYZ8JZi7/jAdbO2L4dHn
- chupRhBtmGtSeEQ/eu8c6kjg88lq5inUiW2ymPvDUNkV9i/SGqAoe/jVAcrbGC7Hd0cD
- jc9DxcFMCA1zwsGhnWbMSamBt09ROlRYeCxjG34Spntm/F04aI0sAFqKrupqrYcDNakL
- caHQ==
-X-Gm-Message-State: AOJu0YwObmcJksRCT31X6/2aM01K+LLkjRl8GCPv2/9ywJQhWo3TVk1M
- DqLCgfZCcivryFUfW6vGd7ZXRo4c3hb8w9kJ0OWuWaYRg6YJu1GQknSY4giBEo+PQKsv5dom/7w
- KzW50mfOUqbECWAkZkNdmZeO1+Xac
-X-Received: by 2002:a05:6214:1845:b0:655:d2c7:a9d1 with SMTP id
- d5-20020a056214184500b00655d2c7a9d1mr187771qvy.14.1695409250677; 
- Fri, 22 Sep 2023 12:00:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHcAhYi3agHEIh1mExaRpOkIAUDfxEWkbuUfbk0Y5Ex6ReRQkYaRYp/G33/F11gHisOBD3h3Q==
-X-Received: by 2002:a05:6214:1845:b0:655:d2c7:a9d1 with SMTP id
- d5-20020a056214184500b00655d2c7a9d1mr187719qvy.14.1695409250417; 
- Fri, 22 Sep 2023 12:00:50 -0700 (PDT)
-Received: from ?IPv6:2600:4040:5c6c:a300::feb? ([2600:4040:5c6c:a300::feb])
- by smtp.gmail.com with ESMTPSA id
- w6-20020a0ce106000000b0064f50e2c551sm1671895qvk.1.2023.09.22.12.00.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 22 Sep 2023 12:00:49 -0700 (PDT)
-Message-ID: <1fc22ed54041660dfff5b7f3cc69708fd4ac0472.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Kees Cook <keescook@chromium.org>, David Airlie <airlied@gmail.com>
-Date: Fri, 22 Sep 2023 15:00:47 -0400
-In-Reply-To: <20230922173216.3823169-5-keescook@chromium.org>
-References: <20230922173110.work.084-kees@kernel.org>
- <20230922173216.3823169-5-keescook@chromium.org>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDC8010E090
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Sep 2023 19:47:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695412079; x=1726948079;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VpMsFQR+iwy0MOUcz4oSFy4E0Sex3S/QLLPd6x4riU0=;
+ b=DBo1L5PptD2loogPK6pA6jt7u+eeVEeUlqGw9eaZ5GGS7jb2wkV1nFsI
+ laF3+T0tuhM13Bz4/pi6a7tesKjHmGVxty/Q+SWVmL57yMYeWjKiWBZvT
+ 6ixGrp6R2I42WWXRKDZFJdNt8klG4uHY+8nDVI6+kO/677sTQP5t4tXt+
+ 1FhYHGHDuTOlK9x7Fpoi/kKYC63QGkyQYnUzWDwmWNY/2MNVsGpSXd/6A
+ IIbcoG+K5ZoLIZFesHng9DrpYFcEHvV+bo0pLp7ZcVNYj6sU+oVn9AqJQ
+ FkIaug8fEYoxb6tdQvtHJqBx8gtqmaXedRLCSLtPB8RdXmPoFStyy+18r g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="365980360"
+X-IronPort-AV: E=Sophos;i="6.03,169,1694761200"; d="scan'208";a="365980360"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2023 12:46:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10841"; a="782766335"
+X-IronPort-AV: E=Sophos;i="6.03,169,1694761200"; d="scan'208";a="782766335"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by orsmga001.jf.intel.com with ESMTP; 22 Sep 2023 12:46:43 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Sat, 23 Sep 2023 01:05:18 +0530
+Message-Id: <20230922193518.723664-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 5/9] drm/nouveau/pm: Annotate struct
- nvkm_perfdom with __counted_by
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/dsb: DSB code refactoring
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,83 +54,390 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org,
- llvm@lists.linux.dev, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Prike Liang <Prike.Liang@amd.com>,
- Huang Rui <ray.huang@amd.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>, Emma Anholt <emma@anholt.net>,
- Neil Armstrong <neil.armstrong@linaro.org>, amd-gfx@lists.freedesktop.org,
- Kuogee Hsieh <quic_khsieh@quicinc.com>, Nathan Chancellor <nathan@kernel.org>,
- VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
- Ben Skeggs <bskeggs@redhat.com>, Tom Rix <trix@redhat.com>,
- David Airlie <airlied@redhat.com>, virtualization@lists.linux-foundation.org,
- Chia-I Wu <olvaffe@gmail.com>, linux-hardening@vger.kernel.org,
- Lijo Lazar <lijo.lazar@amd.com>, Yifan Zhang <yifan1.zhang@amd.com>,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Kevin Wang <kevin1.wang@amd.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Melissa Wen <mwen@igalia.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Evan Quan <evan.quan@amd.com>, Xiaojian Du <Xiaojian.Du@amd.com>,
- Le Ma <le.ma@amd.com>, freedreno@lists.freedesktop.org,
- Bjorn Andersson <andersson@kernel.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
- Zack Rusin <zackr@vmware.com>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, Nirmoy Das <nirmoy.das@intel.com>,
- Lang Yu <Lang.Yu@amd.com>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+Refactor DSB implementation to be compatible with Xe driver.
 
-Thanks!
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile                |   1 +
+ drivers/gpu/drm/i915/display/intel_dsb.c     | 115 ++++---------------
+ drivers/gpu/drm/i915/display/intel_dsb.h     |  41 ++++++-
+ drivers/gpu/drm/i915/display/intel_dsb_ops.c |  67 +++++++++++
+ 4 files changed, 130 insertions(+), 94 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dsb_ops.c
 
-On Fri, 2023-09-22 at 10:32 -0700, Kees Cook wrote:
-> Prepare for the coming implementation by GCC and Clang of the __counted_b=
-y
-> attribute. Flexible array members annotated with __counted_by can have
-> their accesses bounds-checked at run-time checking via CONFIG_UBSAN_BOUND=
-S
-> (for array indexing) and CONFIG_FORTIFY_SOURCE (for strcpy/memcpy-family
-> functions).
->=20
-> As found with Coccinelle[1], add __counted_by for struct nvkm_perfdom.
->=20
-> [1] https://github.com/kees/kernel-tools/blob/trunk/coccinelle/examples/c=
-ounted_by.cocci
->=20
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Signed-off-by: Kees Cook <keescook@chromium.org>
-> ---
->  drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h b/drivers/gpu/=
-drm/nouveau/nvkm/engine/pm/priv.h
-> index 6ae25d3e7f45..c011227f7052 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h
-> @@ -82,7 +82,7 @@ struct nvkm_perfdom {
->  =09u8  mode;
->  =09u32 clk;
->  =09u16 signal_nr;
-> -=09struct nvkm_perfsig signal[];
-> +=09struct nvkm_perfsig signal[] __counted_by(signal_nr);
->  };
-> =20
->  struct nvkm_funcdom {
-
---=20
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 1b2e02e9d92c..7fbb5055b85b 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -256,6 +256,7 @@ i915-y += \
+ 	display/intel_dpt.o \
+ 	display/intel_drrs.o \
+ 	display/intel_dsb.o \
++	display/intel_dsb_ops.o \
+ 	display/intel_fb.o \
+ 	display/intel_fb_pin.o \
+ 	display/intel_fbc.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 9a507b9ad82c..f7c6b9aa130f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -4,8 +4,6 @@
+  *
+  */
+ 
+-#include "gem/i915_gem_internal.h"
+-
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "intel_de.h"
+@@ -13,41 +11,7 @@
+ #include "intel_dsb.h"
+ #include "intel_dsb_regs.h"
+ 
+-struct i915_vma;
+-
+-enum dsb_id {
+-	INVALID_DSB = -1,
+-	DSB1,
+-	DSB2,
+-	DSB3,
+-	MAX_DSB_PER_PIPE
+-};
+-
+-struct intel_dsb {
+-	enum dsb_id id;
+-
+-	u32 *cmd_buf;
+-	struct i915_vma *vma;
+-	struct intel_crtc *crtc;
+-
+-	/*
+-	 * maximum number of dwords the buffer will hold.
+-	 */
+-	unsigned int size;
+-
+-	/*
+-	 * free_pos will point the first free dword and
+-	 * help in calculating tail of command buffer.
+-	 */
+-	unsigned int free_pos;
+-
+-	/*
+-	 * ins_start_offset will help to store start dword of the dsb
+-	 * instuction and help in identifying the batch of auto-increment
+-	 * register.
+-	 */
+-	unsigned int ins_start_offset;
+-};
++#define CACHELINE_BYTES 64
+ 
+ /**
+  * DOC: DSB
+@@ -117,8 +81,6 @@ static bool is_dsb_busy(struct drm_i915_private *i915, enum pipe pipe,
+ 
+ static void intel_dsb_emit(struct intel_dsb *dsb, u32 ldw, u32 udw)
+ {
+-	u32 *buf = dsb->cmd_buf;
+-
+ 	if (!assert_dsb_has_room(dsb))
+ 		return;
+ 
+@@ -127,14 +89,13 @@ static void intel_dsb_emit(struct intel_dsb *dsb, u32 ldw, u32 udw)
+ 
+ 	dsb->ins_start_offset = dsb->free_pos;
+ 
+-	buf[dsb->free_pos++] = ldw;
+-	buf[dsb->free_pos++] = udw;
++	intel_dsb_write(dsb, dsb->free_pos++, ldw);
++	intel_dsb_write(dsb, dsb->free_pos++, udw);
+ }
+ 
+ static bool intel_dsb_prev_ins_is_write(struct intel_dsb *dsb,
+ 					u32 opcode, i915_reg_t reg)
+ {
+-	const u32 *buf = dsb->cmd_buf;
+ 	u32 prev_opcode, prev_reg;
+ 
+ 	/*
+@@ -145,8 +106,8 @@ static bool intel_dsb_prev_ins_is_write(struct intel_dsb *dsb,
+ 	if (dsb->free_pos == 0)
+ 		return false;
+ 
+-	prev_opcode = buf[dsb->ins_start_offset + 1] & ~DSB_REG_VALUE_MASK;
+-	prev_reg = buf[dsb->ins_start_offset + 1] & DSB_REG_VALUE_MASK;
++	prev_opcode = intel_dsb_read(dsb, dsb->ins_start_offset + 1) >> DSB_OPCODE_SHIFT;
++	prev_reg =  intel_dsb_read(dsb, dsb->ins_start_offset + 1) & DSB_REG_VALUE_MASK;
+ 
+ 	return prev_opcode == opcode && prev_reg == i915_mmio_reg_offset(reg);
+ }
+@@ -179,6 +140,8 @@ static bool intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb, i915_reg_
+ void intel_dsb_reg_write(struct intel_dsb *dsb,
+ 			 i915_reg_t reg, u32 val)
+ {
++	u32 old_val;
++
+ 	/*
+ 	 * For example the buffer will look like below for 3 dwords for auto
+ 	 * increment register:
+@@ -202,31 +165,30 @@ void intel_dsb_reg_write(struct intel_dsb *dsb,
+ 			       (DSB_BYTE_EN << DSB_BYTE_EN_SHIFT) |
+ 			       i915_mmio_reg_offset(reg));
+ 	} else {
+-		u32 *buf = dsb->cmd_buf;
+-
+ 		if (!assert_dsb_has_room(dsb))
+ 			return;
+ 
+ 		/* convert to indexed write? */
+ 		if (intel_dsb_prev_ins_is_mmio_write(dsb, reg)) {
+-			u32 prev_val = buf[dsb->ins_start_offset + 0];
++			u32 prev_val = intel_dsb_read(dsb, dsb->ins_start_offset + 0);
+ 
+-			buf[dsb->ins_start_offset + 0] = 1; /* count */
+-			buf[dsb->ins_start_offset + 1] =
+-				(DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT) |
+-				i915_mmio_reg_offset(reg);
+-			buf[dsb->ins_start_offset + 2] = prev_val;
++			intel_dsb_write(dsb, dsb->ins_start_offset + 0, 1); /* count */
++			intel_dsb_write(dsb, dsb->ins_start_offset + 1,
++					(DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT) |
++					i915_mmio_reg_offset(reg));
++			intel_dsb_write(dsb, dsb->ins_start_offset + 2, prev_val);
+ 
+ 			dsb->free_pos++;
+ 		}
+ 
+-		buf[dsb->free_pos++] = val;
++		intel_dsb_write(dsb, dsb->free_pos++, val);
+ 		/* Update the count */
+-		buf[dsb->ins_start_offset]++;
++		old_val = intel_dsb_read(dsb, dsb->ins_start_offset);
++		intel_dsb_write(dsb, dsb->ins_start_offset, old_val + 1);
+ 
+ 		/* if number of data words is odd, then the last dword should be 0.*/
+ 		if (dsb->free_pos & 0x1)
+-			buf[dsb->free_pos] = 0;
++			intel_dsb_write(dsb, dsb->free_pos, 0);
+ 	}
+ }
+ 
+@@ -238,8 +200,8 @@ static void intel_dsb_align_tail(struct intel_dsb *dsb)
+ 	aligned_tail = ALIGN(tail, CACHELINE_BYTES);
+ 
+ 	if (aligned_tail > tail)
+-		memset(&dsb->cmd_buf[dsb->free_pos], 0,
+-		       aligned_tail - tail);
++		intel_dsb_memset(dsb, dsb->free_pos, 0,
++				 aligned_tail - tail);
+ 
+ 	dsb->free_pos = aligned_tail / 4;
+ }
+@@ -277,9 +239,9 @@ void intel_dsb_commit(struct intel_dsb *dsb, bool wait_for_vblank)
+ 		       (wait_for_vblank ? DSB_WAIT_FOR_VBLANK : 0) |
+ 		       DSB_ENABLE);
+ 	intel_de_write(dev_priv, DSB_HEAD(pipe, dsb->id),
+-		       i915_ggtt_offset(dsb->vma));
++		       intel_dsb_ggtt_offset(dsb));
+ 	intel_de_write(dev_priv, DSB_TAIL(pipe, dsb->id),
+-		       i915_ggtt_offset(dsb->vma) + tail);
++		       intel_dsb_ggtt_offset(dsb) + tail);
+ }
+ 
+ void intel_dsb_wait(struct intel_dsb *dsb)
+@@ -325,12 +287,9 @@ struct intel_dsb *intel_dsb_prepare(struct intel_crtc *crtc,
+ 				    unsigned int max_cmds)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+-	struct drm_i915_gem_object *obj;
+ 	intel_wakeref_t wakeref;
+ 	struct intel_dsb *dsb;
+-	struct i915_vma *vma;
+ 	unsigned int size;
+-	u32 *buf;
+ 
+ 	if (!HAS_DSB(i915))
+ 		return NULL;
+@@ -344,28 +303,11 @@ struct intel_dsb *intel_dsb_prepare(struct intel_crtc *crtc,
+ 	/* ~1 qword per instruction, full cachelines */
+ 	size = ALIGN(max_cmds * 8, CACHELINE_BYTES);
+ 
+-	obj = i915_gem_object_create_internal(i915, PAGE_ALIGN(size));
+-	if (IS_ERR(obj))
+-		goto out_put_rpm;
+-
+-	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
+-	if (IS_ERR(vma)) {
+-		i915_gem_object_put(obj);
++	if (!intel_dsb_buffer_create(crtc, dsb, size))
+ 		goto out_put_rpm;
+-	}
+-
+-	buf = i915_gem_object_pin_map_unlocked(vma->obj, I915_MAP_WC);
+-	if (IS_ERR(buf)) {
+-		i915_vma_unpin_and_release(&vma, I915_VMA_RELEASE_MAP);
+-		goto out_put_rpm;
+-	}
+ 
+ 	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+ 
+-	dsb->id = DSB1;
+-	dsb->vma = vma;
+-	dsb->crtc = crtc;
+-	dsb->cmd_buf = buf;
+ 	dsb->size = size / 4; /* in dwords */
+ 	dsb->free_pos = 0;
+ 	dsb->ins_start_offset = 0;
+@@ -382,16 +324,3 @@ struct intel_dsb *intel_dsb_prepare(struct intel_crtc *crtc,
+ 
+ 	return NULL;
+ }
+-
+-/**
+- * intel_dsb_cleanup() - To cleanup DSB context.
+- * @dsb: DSB context
+- *
+- * This function cleanup the DSB context by unpinning and releasing
+- * the VMA object associated with it.
+- */
+-void intel_dsb_cleanup(struct intel_dsb *dsb)
+-{
+-	i915_vma_unpin_and_release(&dsb->vma, I915_VMA_RELEASE_MAP);
+-	kfree(dsb);
+-}
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+index b8148b47022d..7feeb37e00a5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+@@ -11,7 +11,41 @@
+ #include "i915_reg_defs.h"
+ 
+ struct intel_crtc;
+-struct intel_dsb;
++struct i915_vma;
++
++enum dsb_id {
++	INVALID_DSB = -1,
++	DSB1,
++	DSB2,
++	DSB3,
++	MAX_DSB_PER_PIPE
++};
++
++struct intel_dsb {
++	enum dsb_id id;
++
++	u32 *cmd_buf;
++	struct i915_vma *vma;
++	struct intel_crtc *crtc;
++
++	/*
++	 * maximum number of dwords the buffer will hold.
++	 */
++	unsigned int size;
++
++	/*
++	 * free_pos will point the first free dword and
++	 * help in calculating tail of command buffer.
++	 */
++	unsigned int free_pos;
++
++	/*
++	 * ins_start_offset will help to store start dword of the dsb
++	 * instuction and help in identifying the batch of auto-increment
++	 * register.
++	 */
++	unsigned int ins_start_offset;
++};
+ 
+ struct intel_dsb *intel_dsb_prepare(struct intel_crtc *crtc,
+ 				    unsigned int max_cmds);
+@@ -22,5 +56,10 @@ void intel_dsb_reg_write(struct intel_dsb *dsb,
+ void intel_dsb_commit(struct intel_dsb *dsb,
+ 		      bool wait_for_vblank);
+ void intel_dsb_wait(struct intel_dsb *dsb);
++u32 intel_dsb_ggtt_offset(struct intel_dsb *dsb);
++void intel_dsb_write(struct intel_dsb *dsb, u32 idx, u32 val);
++u32 intel_dsb_read(struct intel_dsb *dsb, u32 idx);
++void intel_dsb_memset(struct intel_dsb *dsb, u32 idx, u32 val, u32 sz);
++bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb *dsb, u32 size);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb_ops.c b/drivers/gpu/drm/i915/display/intel_dsb_ops.c
+new file mode 100644
+index 000000000000..9fe125abb890
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_dsb_ops.c
+@@ -0,0 +1,67 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright 2023, Intel Corporation.
++ */
++
++#include "gem/i915_gem_internal.h"
++#include "i915_drv.h"
++#include "i915_vma.h"
++#include "intel_display_types.h"
++#include "intel_dsb.h"
++
++u32 intel_dsb_ggtt_offset(struct intel_dsb *dsb)
++{
++	return i915_ggtt_offset(dsb->vma);
++}
++
++void intel_dsb_write(struct intel_dsb *dsb, u32 idx, u32 val)
++{
++	dsb->cmd_buf[idx] = val;
++}
++
++u32 intel_dsb_read(struct intel_dsb *dsb, u32 idx)
++{
++	return dsb->cmd_buf[idx];
++}
++
++void intel_dsb_memset(struct intel_dsb *dsb, u32 idx, u32 val, u32 sz)
++{
++	memset(&dsb->cmd_buf[idx], val, sz);
++}
++
++bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb *dsb, u32 size)
++{
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct drm_i915_gem_object *obj;
++	struct i915_vma *vma;
++	u32 *buf;
++
++	obj = i915_gem_object_create_internal(i915, PAGE_ALIGN(size));
++	if (IS_ERR(obj))
++		return false;
++
++	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
++	if (IS_ERR(vma)) {
++		i915_gem_object_put(obj);
++		return false;
++	}
++
++	buf = i915_gem_object_pin_map_unlocked(vma->obj, I915_MAP_WC);
++	if (IS_ERR(buf)) {
++		i915_vma_unpin_and_release(&vma, I915_VMA_RELEASE_MAP);
++		return false;
++	}
++
++	dsb->id = DSB1;
++	dsb->vma = vma;
++	dsb->crtc = crtc;
++	dsb->cmd_buf = buf;
++
++	return true;
++}
++
++void intel_dsb_cleanup(struct intel_dsb *dsb)
++{
++	i915_vma_unpin_and_release(&dsb->vma, I915_VMA_RELEASE_MAP);
++	kfree(dsb);
++}
+-- 
+2.29.0
 
