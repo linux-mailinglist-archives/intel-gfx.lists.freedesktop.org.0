@@ -1,43 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79D627AD871
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 14:59:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E7107AD86C
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 14:59:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C381410E24D;
-	Mon, 25 Sep 2023 12:59:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB3AC10E24E;
+	Mon, 25 Sep 2023 12:59:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 905 seconds by postgrey-1.36 at gabe;
- Sat, 23 Sep 2023 17:51:13 UTC
-Received: from m15.mail.163.com (m15.mail.163.com [45.254.50.220])
- by gabe.freedesktop.org (Postfix) with ESMTP id 851EE10E071;
- Sat, 23 Sep 2023 17:51:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id; bh=T8DBtTZL75Mkz7Nv4P
- /oNxr1qOjt1z3TeK2i1xDdYI8=; b=hxg8hYPiYprkAE8xSncon7mEHsLtHDpts2
- pTqT1QE/md+heFMByQZ/Zg86rnXEGc+ld7GNMkICY5JztWS6HxIY8fiQoNy9WER5
- V9D8nH9+iiUuQlzb9aCHvQoALTPHkRUSlz9PPAduFAtUdi1+7nUBJfqCQjNv8luv
- 8cVbveUzY=
-Received: from localhost.localdomain (unknown [223.104.131.178])
- by zwqz-smtp-mta-g0-1 (Coremail) with SMTP id _____wCnfrDqIQ9luOtjBA--.52569S2;
- Sun, 24 Sep 2023 01:35:40 +0800 (CST)
-From: liuhaoran <liuhaoran14@163.com>
-To: airlied@gmail.com
-Date: Sun, 24 Sep 2023 01:35:25 +0800
-Message-Id: <20230923173525.46759-1-liuhaoran14@163.com>
-X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID: _____wCnfrDqIQ9luOtjBA--.52569S2
-X-Coremail-Antispam: 1Uf129KBjvdXoW7XrWxZF4rKF1kXr15KF43trb_yoWDGFX_Gr
- 18Ary7XFZrAF929347uw43ZFySya1DuFyrAr1rKFy3A3y2yr4qgas3urW5Xr15Aa43Jay7
- AanYqFn5Ary7JjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUUXyZ5UUUUU==
-X-Originating-IP: [223.104.131.178]
-X-CM-SenderInfo: xolxxtxrud0iqu6rljoofrz/1tbibA7zgmNfuLT0vQAAsq
+X-Greylist: delayed 1316 seconds by postgrey-1.36 at gabe;
+ Sun, 24 Sep 2023 01:03:11 UTC
+Received: from mx.treblig.org (mx.treblig.org [IPv6:2a00:1098:5b::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7974D10E08A
+ for <intel-gfx@lists.freedesktop.org>; Sun, 24 Sep 2023 01:03:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
+ ; s=bytemarkmx;
+ h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:
+ Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description
+ :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=E077wAdyEkVySS1+LXo/H+AZNFp/cAK0I9hfQH/1Dmc=; b=bfedigwJ9dJryvC4sxxFFrruxQ
+ UOiofSrSMVdXPlnjBepLh3H6VOO+KwQglGV/5VOxNXVfH+eWgCJ+kON0tlwvmf7lsaTKJPI0nbbmD
+ Wo/BBRhvWlq9TiEC9e9TZkgdwDNxgCDditCaJ53zTQgfCIoDUvERXrOV3UdkPK1pDQJWMnODNccm+
+ 7WDwMLtnTdBAr9i7tSlOgIxE0WkSgRrWqTbXgj52Etmjy0JKnkJzY9q3/wq4cOdscVtzSXyRUVngK
+ HiE8TcxifIB5wmGw6pQtu3Q1W4lLHHmNeujcWy9WSChZyZCElKns30wvHxOdPc/wfBsqFEC7vSfvN
+ yR6nmSOg==;
+Received: from dg by mx.treblig.org with local (Exim 4.96)
+ (envelope-from <dg@treblig.org>) id 1qkDBL-0018ci-19;
+ Sun, 24 Sep 2023 00:41:07 +0000
+Date: Sun, 24 Sep 2023 00:41:07 +0000
+From: "Dr. David Alan Gilbert" <dave@treblig.org>
+To: matthew.brost@intel.com, mgreer@animalcreek.com,
+ krzysztof.kozlowski@linaro.org
+Message-ID: <ZQ+Fo9WKyGphwI8R@gallifrey>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+X-Chocolate: 70 percent or better cocoa solids preferably
+X-Operating-System: Linux/6.1.0-12-amd64 (x86_64)
+X-Uptime: 00:32:50 up 8 days,  3:31,  1 user,  load average: 0.00, 0.00, 0.00
+User-Agent: Mutt/2.2.9 (2022-11-12)
 X-Mailman-Approved-At: Mon, 25 Sep 2023 12:59:26 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Add error handling in
- intel_timeline_pin()
+Subject: [Intel-gfx] ERR_PTR(0) in a couple of places
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,36 +56,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, liuhaoran <liuhaoran14@163.com>,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, airlied@gmail.com,
+ linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch adds error-handling for the i915_active_acquire()
-inside the intel_timeline_pin().
+Hi,
+  I randomly noticed there are a couple of places in the kernel that
+do
+   ERR_PTR(0);
 
-Signed-off-by: liuhaoran <liuhaoran14@163.com>
----
- drivers/gpu/drm/i915/gt/intel_timeline.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+and thought that was odd - shouldn't those just be NULL's ?
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-index b9640212d659..a2edf9233500 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-@@ -211,7 +211,11 @@ int intel_timeline_pin(struct intel_timeline *tl, struct i915_gem_ww_ctx *ww)
- 	GT_TRACE(tl->gt, "timeline:%llx using HWSP offset:%x\n",
- 		 tl->fence_context, tl->hwsp_offset);
- 
--	i915_active_acquire(&tl->active);
-+	err = i915_active_acquire(&tl->active);
-+
-+	if (err)
-+		return err;
-+
- 	if (atomic_fetch_inc(&tl->pin_count)) {
- 		i915_active_release(&tl->active);
- 		__i915_vma_unpin(tl->hwsp_ggtt);
+1) i915
+  drivers/gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c : 47
+
+    if (i <= 1)
+      return ERR_PTR(0);
+
+  from f9d72092cb490 
+
+2) trf7970a
+  drivers/nfc/trf7970a.c : 896
+
+      trf->ignore_timeout =
+         !cancel_delayed_work(&trf->timeout_work);
+      trf->rx_skb = ERR_PTR(0);
+      trf7970a_send_upstream(trf);
+
+   from 1961843ceeca0
+
+Dave
 -- 
-2.17.1
-
+ -----Open up your eyes, open up your mind, open up your code -------   
+/ Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \ 
+\        dave @ treblig.org |                               | In Hex /
+ \ _________________________|_____ http://www.treblig.org   |_______/
