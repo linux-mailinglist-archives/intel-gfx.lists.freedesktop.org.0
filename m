@@ -1,57 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2BAF7AD350
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 10:29:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D6CB7AD392
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Sep 2023 10:40:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 082AB10E167;
-	Mon, 25 Sep 2023 08:28:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95BE310E1DD;
+	Mon, 25 Sep 2023 08:40:52 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EAE610E075;
- Mon, 25 Sep 2023 08:28:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A70C210E1D5;
+ Mon, 25 Sep 2023 08:40:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695630534; x=1727166534;
+ t=1695631250; x=1727167250;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=tNgkzqPpXef9C6w+km7S4djq5yq7DkvBq+GbL5tYinA=;
- b=EP9nHeMWh9NFU1vIUO63/1eCwyG+PIhnZF5HyE2ewa/Ve/WXrfWVI3a+
- 3mGVIt54T/wEfXjYxP26GYZU8i8WBUVxuEbhcgAF1Ob0kj5f3e64KE9hw
- BAijiU//uJ/g4VDCQKQaEO/ySej+v0N0reXKEsqtMN2F1lM3xIMeDFfYk
- pUNYiGkwRe5s3e/CYUNpWFXZNSJcOVeKJjRkw7dt6z96g6PAYdg30OwhF
- lMnqgvlW1JjDQDR+7aHMLZX48Z3rF7AtRTryolnSjiF/veYgvV1NuSvFi
- IL/Y+QMm+QQeWYjxybFwUg+BmUqA7DUQbOkfHBOjyOlF9Kj+gzs3PlSN1 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="378467208"
-X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="378467208"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ bh=t1Rp2p6LqvtVSorP9ZA29kRrfzDbGpNeTKEPl2Ww4t4=;
+ b=itvWMcIi/+2DeJ4jIYnSEVfTsXcF74klLjquSR4e9yZTZvTy+Ap92RpM
+ oXThuLdf8kYBQH8m/aV0f2uVVa7F5vEYUxVc9P5Ek3uOlSsXdbHQg03Lr
+ Na9etbCBkCUeoG4dYiM5RBEjhqaOASTjMQtm3AH44bzRvyFVYhPtu4fTq
+ YCS5ACHCfk1avQOToB3BvZlc7jmTLehLIiV4emRdqOcGgF3bueqPDg1un
+ zrZnNwivad1uKkGPfKt49RBc3aWHluPv/ZyklKKiWeuuE9lOO72wafrE6
+ tBWHa/F/XeCENAoCX15OWtiIwbc8IMWJwMbruRDmQoEgducyrffpyrqWk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="378469558"
+X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="378469558"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 01:28:53 -0700
+ 25 Sep 2023 01:40:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="863782185"
-X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="863782185"
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="748285954"
+X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="748285954"
 Received: from shaunbis-mobl4.ger.corp.intel.com (HELO [10.213.220.248])
  ([10.213.220.248])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 01:28:52 -0700
-Message-ID: <f97e832f-2a4d-cb6b-7550-51e0e256f26c@linux.intel.com>
-Date: Mon, 25 Sep 2023 09:28:46 +0100
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 01:40:48 -0700
+Message-ID: <f407b0f0-830e-3696-8661-c7dddf0128d6@linux.intel.com>
+Date: Mon, 25 Sep 2023 09:40:46 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
+Content-Language: en-US
 To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
 References: <20230922222510.2235213-1-John.C.Harrison@Intel.com>
- <20230922222510.2235213-4-John.C.Harrison@Intel.com>
-Content-Language: en-US
+ <20230922222510.2235213-3-John.C.Harrison@Intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <20230922222510.2235213-4-John.C.Harrison@Intel.com>
+In-Reply-To: <20230922222510.2235213-3-John.C.Harrison@Intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/mtl: Add counters for engine
- busyness ticks
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/mtl: Add a PMU counter for
+ total active ticks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,385 +72,161 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On 22/09/2023 23:25, John.C.Harrison@Intel.com wrote:
 > From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 > 
-> In new version of GuC engine busyness, GuC provides engine busyness
-> ticks as a 64 bit counter. Add a new counter to relay this value to the
-> user as is.
+> Current engine busyness interface exposed by GuC has a few issues:
 > 
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_engine.h        |  1 +
->   drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 16 +++++
->   drivers/gpu/drm/i915/gt/intel_engine_types.h  | 12 ++++
->   drivers/gpu/drm/i915/gt/intel_engine_user.c   |  1 +
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 67 ++++++++++++++-----
->   drivers/gpu/drm/i915/i915_pmu.c               | 25 ++++++-
->   drivers/gpu/drm/i915/i915_pmu.h               |  2 +-
->   include/uapi/drm/i915_drm.h                   | 13 +++-
->   8 files changed, 116 insertions(+), 21 deletions(-)
+> - The busyness of active engine is calculated using 2 values provided by
+>    GuC and is prone to race between CPU reading those values and GuC
+>    updating them. Any sort of HW synchronization would be at the cost of
+>    scheduling latencies.
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index b58c30ac8ef02..57af7ec8ecd82 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -249,6 +249,7 @@ void intel_engine_dump_active_requests(struct list_head *requests,
->   
->   ktime_t intel_engine_get_busy_time(struct intel_engine_cs *engine,
->   				   ktime_t *now);
-> +u64 intel_engine_get_busy_ticks(struct intel_engine_cs *engine);
->   
->   void intel_engine_get_hung_entity(struct intel_engine_cs *engine,
->   				  struct intel_context **ce, struct i915_request **rq);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 84a75c95f3f7d..1c9ffb1ae9889 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -2426,6 +2426,22 @@ ktime_t intel_engine_get_busy_time(struct intel_engine_cs *engine, ktime_t *now)
->   	return engine->busyness(engine, now);
->   }
->   
-> +/**
-> + * intel_engine_get_busy_ticks() - Return current accumulated engine busyness
-> + * ticks
-> + * @engine: engine to report on
-> + *
-> + * Returns accumulated ticks @engine was busy since engine stats were enabled.
-> + */
-> +u64 intel_engine_get_busy_ticks(struct intel_engine_cs *engine)
-> +{
-> +	if (!engine->busyness_ticks ||
-> +	    !(engine->flags & I915_ENGINE_SUPPORTS_TICKS_STATS))
-> +		return 0;
-> +
-> +	return engine->busyness_ticks(engine);
-> +}
-> +
->   struct intel_context *
->   intel_engine_create_virtual(struct intel_engine_cs **siblings,
->   			    unsigned int count, unsigned long flags)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> index 40fd8f984d64b..a88d40c74d604 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> @@ -548,6 +548,11 @@ struct intel_engine_cs {
->   	ktime_t		(*busyness)(struct intel_engine_cs *engine,
->   				    ktime_t *now);
->   
-> +	/*
-> +	 * Get engine busyness ticks
-> +	 */
-> +	u64		(*busyness_ticks)(struct intel_engine_cs *engine);
-> +
->   	struct intel_engine_execlists execlists;
->   
->   	/*
-> @@ -574,6 +579,7 @@ struct intel_engine_cs {
->   #define I915_ENGINE_HAS_EU_PRIORITY    BIT(10)
->   #define I915_ENGINE_FIRST_RENDER_COMPUTE BIT(11)
->   #define I915_ENGINE_USES_WA_HOLD_CCS_SWITCHOUT BIT(12)
-> +#define I915_ENGINE_SUPPORTS_TICKS_STATS   BIT(13)
->   	unsigned int flags;
->   
->   	/*
-> @@ -649,6 +655,12 @@ intel_engine_supports_stats(const struct intel_engine_cs *engine)
->   	return engine->flags & I915_ENGINE_SUPPORTS_STATS;
->   }
->   
-> +static inline bool
-> +intel_engine_supports_tick_stats(const struct intel_engine_cs *engine)
-> +{
-> +	return engine->flags & I915_ENGINE_SUPPORTS_TICKS_STATS;
-> +}
-> +
->   static inline bool
->   intel_engine_has_preemption(const struct intel_engine_cs *engine)
->   {
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> index dcedff41a825f..69eb610b5ab0a 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> @@ -100,6 +100,7 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
->   		MAP(HAS_PREEMPTION, PREEMPTION),
->   		MAP(HAS_SEMAPHORES, SEMAPHORES),
->   		MAP(SUPPORTS_STATS, ENGINE_BUSY_STATS),
-> +		MAP(SUPPORTS_TICKS_STATS, ENGINE_BUSY_TICKS_STATS),
->   #undef MAP
->   	};
->   	struct intel_engine_cs *engine;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 0c1fee5360777..71749fb9ad35b 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1289,12 +1289,7 @@ static void busy_v1_guc_update_pm_timestamp(struct intel_guc *guc, ktime_t *now)
->   	guc->busy.v1.gt_stamp = ((u64)gt_stamp_hi << 32) | gt_stamp_lo;
->   }
->   
-> -/*
-> - * Unlike the execlist mode of submission total and active times are in terms of
-> - * gt clocks. The *now parameter is retained to return the cpu time at which the
-> - * busyness was sampled.
-> - */
-> -static ktime_t busy_v1_guc_engine_busyness(struct intel_engine_cs *engine, ktime_t *now)
-> +static u64 __busy_v1_guc_engine_busyness_ticks(struct intel_engine_cs *engine, ktime_t *now_out)
->   {
->   	struct intel_engine_guc_stats_v1 stats_saved, *stats = &engine->stats.guc_v1;
->   	struct i915_gpu_error *gpu_error = &engine->i915->gpu_error;
-> @@ -1304,6 +1299,7 @@ static ktime_t busy_v1_guc_engine_busyness(struct intel_engine_cs *engine, ktime
->   	unsigned long flags;
->   	u32 reset_count;
->   	bool in_reset;
-> +	ktime_t now;
->   
->   	spin_lock_irqsave(&guc->busy.v1.lock, flags);
->   
-> @@ -1318,7 +1314,7 @@ static ktime_t busy_v1_guc_engine_busyness(struct intel_engine_cs *engine, ktime
->   	reset_count = i915_reset_count(gpu_error);
->   	in_reset = test_bit(I915_RESET_BACKOFF, &gt->reset.flags);
->   
-> -	*now = ktime_get();
-> +	now = ktime_get();
->   
->   	/*
->   	 * The active busyness depends on start_gt_clk and gt_stamp.
-> @@ -1334,7 +1330,7 @@ static ktime_t busy_v1_guc_engine_busyness(struct intel_engine_cs *engine, ktime
->   		 * start_gt_clk' calculation below for active engines.
->   		 */
->   		busy_v1_guc_update_engine_gt_clks(engine);
-> -		busy_v1_guc_update_pm_timestamp(guc, now);
-> +		busy_v1_guc_update_pm_timestamp(guc, &now);
->   		intel_gt_pm_put_async(gt);
->   		if (i915_reset_count(gpu_error) != reset_count) {
->   			*stats = stats_saved;
-> @@ -1342,16 +1338,37 @@ static ktime_t busy_v1_guc_engine_busyness(struct intel_engine_cs *engine, ktime
->   		}
->   	}
->   
-> -	total = intel_gt_clock_interval_to_ns(gt, stats->total_gt_clks);
-> +	total = stats->total_gt_clks;
->   	if (stats->running) {
->   		u64 clk = guc->busy.v1.gt_stamp - stats->start_gt_clk;
->   
-> -		total += intel_gt_clock_interval_to_ns(gt, clk);
-> +		total += clk;
->   	}
->   
->   	spin_unlock_irqrestore(&guc->busy.v1.lock, flags);
->   
-> -	return ns_to_ktime(total);
-> +	if (now_out)
-> +		*now_out = now;
-> +
-> +	return total;
-> +}
-> +
-> +/*
-> + * Unlike the execlist mode of submission total and active times are in terms of
-> + * gt clocks. The *now parameter is retained to return the cpu time at which the
-> + * busyness was sampled.
-> + */
-> +static ktime_t busy_v1_guc_engine_busyness(struct intel_engine_cs *engine, ktime_t *now)
-> +{
-> +	u64 ticks = __busy_v1_guc_engine_busyness_ticks(engine, now);
-> +	u64 ns = intel_gt_clock_interval_to_ns(engine->gt, ticks);
-> +
-> +	return ns_to_ktime(ns);
-> +}
-> +
-> +static u64 busy_v1_guc_engine_busyness_ticks(struct intel_engine_cs *engine)
-> +{
-> +	return __busy_v1_guc_engine_busyness_ticks(engine, NULL);
->   }
->   
->   static void busy_v1_guc_enable_worker(struct intel_guc *guc)
-> @@ -1607,6 +1624,16 @@ static ktime_t busy_v2_guc_engine_busyness(struct intel_engine_cs *engine, ktime
->   	return ns_to_ktime(total);
->   }
->   
-> +static u64 busy_v2_guc_engine_busyness_ticks(struct intel_engine_cs *engine)
-> +{
-> +	struct intel_guc *guc = &engine->gt->uc.guc;
-> +	u64 ticks_engine;
-> +
-> +	__busy_v2_get_engine_usage_record(guc, engine, &ticks_engine, NULL, NULL);
-> +
-> +	return ticks_engine;
-> +}
-> +
->   static u64 busy_v1_intel_guc_total_active_ticks(struct intel_guc *guc)
->   {
->   	return guc->busy.v1.gt_stamp;
-> @@ -4480,12 +4507,20 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
->   		engine->emit_flush = gen12_emit_flush_xcs;
->   	}
->   	engine->set_default_submission = guc_set_default_submission;
-> -	if (GUC_SUBMIT_VER(&engine->gt->uc.guc) < MAKE_GUC_VER(1, 3, 1))
-> -		engine->busyness = busy_v1_guc_engine_busyness;
-> -	else
-> -		engine->busyness = busy_v2_guc_engine_busyness;
-> +	if (GUC_SUBMIT_VER(&engine->gt->uc.guc) < MAKE_GUC_VER(1, 3, 1)) {
-> +		if (GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70))
-> +			engine->busyness = busy_v1_guc_engine_busyness;
-> +		engine->busyness_ticks = busy_v1_guc_engine_busyness_ticks;
-> +	} else {
-> +		if (GRAPHICS_VER_FULL(engine->i915) < IP_VER(12, 70))
-> +			engine->busyness = busy_v2_guc_engine_busyness;
-> +		engine->busyness_ticks = busy_v2_guc_engine_busyness_ticks;
-> +	}
-> +
-> +	if (engine->busyness)
-> +		engine->flags |= I915_ENGINE_SUPPORTS_STATS;
->   
-> -	engine->flags |= I915_ENGINE_SUPPORTS_STATS;
-> +	engine->flags |= I915_ENGINE_SUPPORTS_TICKS_STATS;
->   	engine->flags |= I915_ENGINE_HAS_PREEMPTION;
->   	engine->flags |= I915_ENGINE_HAS_TIMESLICES;
->   
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index 4f52636eb4a80..1b859556644f6 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -26,7 +26,8 @@
->   #define ENGINE_SAMPLE_MASK \
->   	(BIT(I915_SAMPLE_BUSY) | \
->   	 BIT(I915_SAMPLE_WAIT) | \
-> -	 BIT(I915_SAMPLE_SEMA))
-> +	 BIT(I915_SAMPLE_SEMA) | \
-> +	 BIT(I915_SAMPLE_BUSY_TICKS))
+> - GuC provides only 32 bit values for busyness and KMD has to run a
+>    worker to extend the values to 64 bit. In addition KMD also needs to
+>    extend the GT timestamp to 64 bits so that it can be used to calculate
+>    active busyness for an engine.
+> 
+> To address these issues, GuC provides a new interface to calculate
+> engine busyness. GuC accumulates the busyness ticks in a 64 bit value
+> and also internally updates the busyness for an active context using a
+> periodic timer. This simplifies the KMD implementation such that KMD
+> only needs to relay the busyness value to the user.
+> 
+> In addition to fixing the interface, GuC also provides a periodically
+> total active ticks that the GT has been running for. This counter is
+> exposed to the user so that the % busyness can be calculated as follows:
+> 
+> busyness % = (engine active ticks/total active ticks) * 100.
 
-This mask is for counters which may need sampling and AFAIU the new 
-method should not apply.
+AFAIU I915_PMU_TOTAL_ACTIVE_TICKS only runs when GT is awake, right?
 
->   
->   static cpumask_t i915_pmu_cpumask;
->   static unsigned int i915_pmu_target_cpu = -1;
-> @@ -161,8 +162,11 @@ static bool pmu_needs_timer(struct i915_pmu *pmu)
->   	 * Also there is software busyness tracking available we do not
->   	 * need the timer for I915_SAMPLE_BUSY counter.
->   	 */
-> -	if (i915->caps.scheduler & I915_SCHEDULER_CAP_ENGINE_BUSY_STATS)
-> +	if ((i915->caps.scheduler & I915_SCHEDULER_CAP_ENGINE_BUSY_STATS) ||
-> +	    (i915->caps.scheduler & I915_SCHEDULER_CAP_ENGINE_BUSY_TICKS_STATS)) {
->   		enable &= ~BIT(I915_SAMPLE_BUSY);
-> +		enable &= ~BIT(I915_SAMPLE_BUSY_TICKS);
-> +	}
->   
->   	/*
->   	 * If some bits remain it means we need the sampling timer running.
-> @@ -362,7 +366,8 @@ static void engine_sample(struct intel_engine_cs *engine, unsigned int period_ns
->   		add_sample(&pmu->sample[I915_SAMPLE_SEMA], period_ns);
->   
->   	/* No need to sample when busy stats are supported. */
-> -	if (intel_engine_supports_stats(engine))
-> +	if (intel_engine_supports_stats(engine) ||
-> +	    intel_engine_supports_tick_stats(engine))
->   		return;
->   
->   	/*
-> @@ -519,6 +524,13 @@ engine_event_status(struct intel_engine_cs *engine,
->   {
->   	switch (sample) {
->   	case I915_SAMPLE_BUSY:
-> +		if (!intel_engine_supports_stats(engine))
-> +			return -ENODEV;
-> +		break;
+So if GT is awake 10% of the time, and engine is busy that 100% of that 
+time, which is 10% of the real/wall time, the busyness by this formula 
+comes up as 100%. Which wouldn't be useful for intel_gpu_top and alike.
 
-Why is this changing the logic for the existing counter? It is not 
-breaking it for all gen < 8?
+How to scale it back to wall time? Again AFAIU there is no info about 
+tick frequency, so how does one know what a delta in total active ticks 
+means?
 
-> +	case I915_SAMPLE_BUSY_TICKS:
-> +		if (!intel_engine_supports_tick_stats(engine))
-> +			return -ENODEV;
-> +		break;
->   	case I915_SAMPLE_WAIT:
->   		break;
->   	case I915_SAMPLE_SEMA:
-> @@ -651,6 +663,9 @@ static u64 __i915_pmu_event_read(struct perf_event *event)
->   
->   			val = ktime_to_ns(intel_engine_get_busy_time(engine,
->   								     &unused));
-> +		} else if (sample == I915_SAMPLE_BUSY_TICKS &&
-> +			   intel_engine_supports_tick_stats(engine)) {
-> +			val = intel_engine_get_busy_ticks(engine);
->   		} else {
->   			val = engine->pmu.sample[sample].cur;
->   		}
-> @@ -1000,6 +1015,7 @@ create_event_attributes(struct i915_pmu *pmu)
->   		__engine_event(I915_SAMPLE_BUSY, "busy"),
->   		__engine_event(I915_SAMPLE_SEMA, "sema"),
->   		__engine_event(I915_SAMPLE_WAIT, "wait"),
-> +		__engine_event(I915_SAMPLE_BUSY_TICKS, "busy-ticks"),
->   	};
->   	unsigned int count = 0;
->   	struct perf_pmu_events_attr *pmu_attr = NULL, *pmu_iter;
-> @@ -1103,6 +1119,9 @@ create_event_attributes(struct i915_pmu *pmu)
->   								engine->uabi_instance,
->   								engine_events[i].sample));
->   
-> +			if (engine_events[i].sample == I915_SAMPLE_BUSY_TICKS)
-> +				continue;
+Going back on the higher level, I am not convinced we need to add a new 
+uapi just for MTL. If the tick period is known internally we could just 
+use v2 internally and expose the current uapi using it.
 
-Okay, or add the unit explicitly in the descriptor array as global 
-eventts do. Not much real difference.
-
-> +
->   			str = kasprintf(GFP_KERNEL, "%s-%s.unit",
->   					engine->name, engine_events[i].name);
->   			if (!str)
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
-> index 41af038c37388..72a9c71944f8d 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.h
-> +++ b/drivers/gpu/drm/i915/i915_pmu.h
-> @@ -49,7 +49,7 @@ enum {
->   	(I915_ENGINE_SAMPLE_COUNT + \
->   	 I915_PMU_MAX_GT * __I915_PMU_TRACKED_EVENT_COUNT)
->   
-> -#define I915_ENGINE_SAMPLE_COUNT (I915_SAMPLE_SEMA + 1)
-> +#define I915_ENGINE_SAMPLE_COUNT (I915_SAMPLE_BUSY_TICKS + 1)
-
-Are we sure the enabled status tracking is needed for a non-sampling event?
+Any timebase conversion error is unlikely to be relevant because 
+userspace only looks at deltas over relatively short periods (seconds). 
+Ie. I don't think that the clock drift error would accumulate so it 
+would need to be really huge to be relevant over short sampling periods.
 
 Regards,
 
 Tvrtko
 
->   struct i915_pmu_sample {
->   	u64 cur;
+> 
+> Implement the new interface and start by adding a new counter for total
+> active ticks.
+> 
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 24 +++++++++++++++++++
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.h |  1 +
+>   drivers/gpu/drm/i915/i915_pmu.c               |  6 +++++
+>   include/uapi/drm/i915_drm.h                   |  2 ++
+>   4 files changed, 33 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 88465d701c278..0c1fee5360777 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -1607,6 +1607,30 @@ static ktime_t busy_v2_guc_engine_busyness(struct intel_engine_cs *engine, ktime
+>   	return ns_to_ktime(total);
+>   }
+>   
+> +static u64 busy_v1_intel_guc_total_active_ticks(struct intel_guc *guc)
+> +{
+> +	return guc->busy.v1.gt_stamp;
+> +}
+> +
+> +static u64 busy_v2_intel_guc_total_active_ticks(struct intel_guc *guc)
+> +{
+> +	u64 ticks_gt;
+> +
+> +	__busy_v2_get_engine_usage_record(guc, NULL, NULL, NULL, &ticks_gt);
+> +
+> +	return ticks_gt;
+> +}
+> +
+> +u64 intel_guc_total_active_ticks(struct intel_gt *gt)
+> +{
+> +	struct intel_guc *guc = &gt->uc.guc;
+> +
+> +	if (GUC_SUBMIT_VER(guc) < MAKE_GUC_VER(1, 3, 1))
+> +		return busy_v1_intel_guc_total_active_ticks(guc);
+> +	else
+> +		return busy_v2_intel_guc_total_active_ticks(guc);
+> +}
+> +
+>   static int busy_v2_guc_action_enable_usage_stats_device(struct intel_guc *guc)
+>   {
+>   	u32 offset = guc_engine_usage_offset_v2_device(guc);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> index c57b29cdb1a64..f6d42838825f2 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> @@ -30,6 +30,7 @@ void intel_guc_dump_active_requests(struct intel_engine_cs *engine,
+>   				    struct drm_printer *m);
+>   void intel_guc_busyness_park(struct intel_gt *gt);
+>   void intel_guc_busyness_unpark(struct intel_gt *gt);
+> +u64 intel_guc_total_active_ticks(struct intel_gt *gt);
+>   
+>   bool intel_guc_virtual_engine_has_heartbeat(const struct intel_engine_cs *ve);
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index d35973b411863..4f52636eb4a80 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -563,6 +563,8 @@ config_status(struct drm_i915_private *i915, u64 config)
+>   		break;
+>   	case I915_PMU_SOFTWARE_GT_AWAKE_TIME:
+>   		break;
+> +	case I915_PMU_TOTAL_ACTIVE_TICKS:
+> +		break;
+>   	default:
+>   		return -ENOENT;
+>   	}
+> @@ -678,6 +680,9 @@ static u64 __i915_pmu_event_read(struct perf_event *event)
+>   		case I915_PMU_SOFTWARE_GT_AWAKE_TIME:
+>   			val = ktime_to_ns(intel_gt_get_awake_time(to_gt(i915)));
+>   			break;
+> +		case I915_PMU_TOTAL_ACTIVE_TICKS:
+> +			val = intel_guc_total_active_ticks(i915->gt[gt_id]);
+> +			break;
+>   		}
+>   	}
+>   
+> @@ -986,6 +991,7 @@ create_event_attributes(struct i915_pmu *pmu)
+>   		__global_event(2, "interrupts", NULL),
+>   		__event(3, "rc6-residency", "ns"),
+>   		__event(4, "software-gt-awake-time", "ns"),
+> +		__event(5, "total-active-ticks", NULL),
+>   	};
+>   	static const struct {
+>   		enum drm_i915_pmu_engine_sample sample;
 > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index e26dd27ff4a5f..8ae98c1bda0ea 100644
+> index 7000e5910a1d7..e26dd27ff4a5f 100644
 > --- a/include/uapi/drm/i915_drm.h
 > +++ b/include/uapi/drm/i915_drm.h
-> @@ -257,7 +257,8 @@ struct i915_engine_class_instance {
->   enum drm_i915_pmu_engine_sample {
->   	I915_SAMPLE_BUSY = 0,
->   	I915_SAMPLE_WAIT = 1,
-> -	I915_SAMPLE_SEMA = 2
-> +	I915_SAMPLE_SEMA = 2,
-> +	I915_SAMPLE_BUSY_TICKS = 3,
->   };
+> @@ -296,6 +296,7 @@ enum drm_i915_pmu_engine_sample {
+>   #define I915_PMU_INTERRUPTS		__I915_PMU_OTHER(2)
+>   #define I915_PMU_RC6_RESIDENCY		__I915_PMU_OTHER(3)
+>   #define I915_PMU_SOFTWARE_GT_AWAKE_TIME	__I915_PMU_OTHER(4)
+> +#define I915_PMU_TOTAL_ACTIVE_TICKS	__I915_PMU_OTHER(5)
 >   
->   #define I915_PMU_SAMPLE_BITS (4)
-> @@ -274,6 +275,9 @@ enum drm_i915_pmu_engine_sample {
->   #define I915_PMU_ENGINE_BUSY(class, instance) \
->   	__I915_PMU_ENGINE(class, instance, I915_SAMPLE_BUSY)
+>   #define I915_PMU_LAST /* Deprecated - do not use */ I915_PMU_RC6_RESIDENCY
 >   
-> +#define I915_PMU_ENGINE_BUSY_TICKS(class, instance) \
-> +	__I915_PMU_ENGINE(class, instance, I915_SAMPLE_BUSY_TICKS)
-> +
->   #define I915_PMU_ENGINE_WAIT(class, instance) \
->   	__I915_PMU_ENGINE(class, instance, I915_SAMPLE_WAIT)
+> @@ -304,6 +305,7 @@ enum drm_i915_pmu_engine_sample {
+>   #define __I915_PMU_INTERRUPTS(gt)		___I915_PMU_OTHER(gt, 2)
+>   #define __I915_PMU_RC6_RESIDENCY(gt)		___I915_PMU_OTHER(gt, 3)
+>   #define __I915_PMU_SOFTWARE_GT_AWAKE_TIME(gt)	___I915_PMU_OTHER(gt, 4)
+> +#define __I915_PMU_TOTAL_ACTIVE_TICKS(gt)	___I915_PMU_OTHER(gt, 5)
 >   
-> @@ -651,7 +655,14 @@ typedef struct drm_i915_irq_wait {
->   #define   I915_SCHEDULER_CAP_PRIORITY	(1ul << 1)
->   #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
->   #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
-> +/*
-> + * BUSY_STATS is deprecated on platforms with GuC based submission and will nt
-> + * be available at all on newer platforms. It has accuracy issues due to the
-> + * conversions from tick counts to wall time.
-> + * BUSY_TICKS_STATS should be used instead.
-> + */
->   #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS	(1ul << 4)
-> +#define   I915_SCHEDULER_CAP_ENGINE_BUSY_TICKS_STATS	(1ul << 5)
->   /*
->    * Indicates the 2k user priority levels are statically mapped into 3 buckets as
->    * follows:
+>   /* Each region is a minimum of 16k, and there are at most 255 of them.
+>    */
